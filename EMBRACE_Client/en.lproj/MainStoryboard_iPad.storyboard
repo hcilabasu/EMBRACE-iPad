@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="KdN-Nn-VnM">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+    </dependencies>
+    <scenes>
+        <!--Library View Controller - Library-->
+        <scene sceneID="7">
+            <objects>
+                <viewController storyboardIdentifier="LibraryViewController" id="5" customClass="LibraryViewController" sceneMemberID="viewController">
+                    <collectionView key="view" contentMode="bottom" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="aSi-Zv-eMG">
+                        <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9AB-UL-Tl1">
+                            <size key="itemSize" width="110" height="158"/>
+                            <size key="headerReferenceSize" width="1004" height="50"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <view key="backgroundView" contentMode="scaleToFill" id="PUl-oh-qXs">
+                            <rect key="frame" x="0.0" y="0.0" width="1024" height="704"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        </view>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BookCellView" id="Fp0-8x-b0J" customClass="BookCellView">
+                                <rect key="frame" x="0.0" y="51" width="110" height="158"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="110" height="158"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumFontSize="5" preferredMaxLayoutWidth="110" translatesAutoresizingMaskIntoConstraints="NO" id="cde-73-Ljm">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="110" id="HAQ-7C-sff"/>
+                                                <constraint firstAttribute="height" constant="40" id="cEp-pr-7k1"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <color key="highlightedColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <imageView clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8qe-L1-6mW">
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <rect key="contentStretch" x="1" y="1" width="1" height="1"/>
+                                            <gestureRecognizers/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="100" id="GwH-IE-Ui7"/>
+                                                <constraint firstAttribute="height" constant="100" id="aEi-ho-AYj"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="cde-73-Ljm" firstAttribute="top" secondItem="Fp0-8x-b0J" secondAttribute="top" constant="115" id="KxI-7v-oX1"/>
+                                    <constraint firstItem="8qe-L1-6mW" firstAttribute="top" secondItem="Fp0-8x-b0J" secondAttribute="top" constant="5" id="lLr-Bl-aCg"/>
+                                    <constraint firstItem="8qe-L1-6mW" firstAttribute="leading" secondItem="cde-73-Ljm" secondAttribute="leading" type="default" id="mtR-AP-qVq"/>
+                                    <constraint firstItem="8qe-L1-6mW" firstAttribute="leading" secondItem="Fp0-8x-b0J" secondAttribute="leading" constant="5" id="yTr-YC-jUu"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="coverImage" destination="8qe-L1-6mW" id="s4D-os-XNB"/>
+                                    <outlet property="coverTitle" destination="cde-73-Ljm" id="O9j-to-j9F"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BookHeaderView" id="iSs-Oa-seY" customClass="BookHeaderView">
+                            <rect key="frame" x="0.0" y="0.0" width="1024" height="50"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4kd-Zx-KGc">
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="1004" id="6Nb-og-ZED"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="4kd-Zx-KGc" firstAttribute="top" secondItem="iSs-Oa-seY" secondAttribute="top" type="default" id="KWs-hO-iOy"/>
+                                <constraint firstItem="4kd-Zx-KGc" firstAttribute="centerX" secondItem="iSs-Oa-seY" secondAttribute="centerX" type="default" id="Xo4-DN-uAz"/>
+                                <constraint firstItem="4kd-Zx-KGc" firstAttribute="bottom" secondItem="iSs-Oa-seY" secondAttribute="bottom" type="default" id="bwT-dh-ea4"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="bookTitle" destination="4kd-Zx-KGc" id="lbN-ae-qAG"/>
+                            </connections>
+                        </collectionReusableView>
+                        <connections>
+                            <outlet property="dataSource" destination="5" id="9aB-5N-6w2"/>
+                            <outlet property="delegate" destination="5" id="do9-DF-oXY"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="Library" id="Eh2-KU-xR3">
+                        <barButtonItem key="rightBarButtonItem" title="Logout" id="Ylb-07-G6B"/>
+                    </navigationItem>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="libraryView" destination="aSi-Zv-eMG" id="RDA-WP-kCm"/>
+                        <segue destination="NLI-lb-tHz" kind="push" identifier="OpenPMActivitySegue" id="Z12-Kb-24m"/>
+                        <segue destination="3Sz-rj-6wY" kind="push" identifier="OpenIMActivitySegue" id="0xy-ba-a1I"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="844" y="-2887"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="1zI-VA-WYc">
+            <objects>
+                <navigationController storyboardIdentifier="UINavigationController" wantsFullScreenLayout="YES" definesPresentationContext="YES" id="KdN-Nn-VnM" customClass="NavigationController" sceneMemberID="viewController">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="YF0-TG-zBJ">
+                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="9V8-ht-jVV">
+                        <rect key="frame" x="0.0" y="980" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="5" kind="relationship" relationship="rootViewController" id="cem-GG-gRO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6aY-Dg-DGB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1475" y="-2887"/>
+        </scene>
+        <!--Help View Controller-->
+        <scene sceneID="oGY-hq-T9i">
+            <objects>
+                <viewController title="HelpViewController" id="021-vN-Gg0" userLabel="Help View Controller" customClass="HelpViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UZZ-Zu-Odv">
+                        <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ByF-0h-Tem">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="99" id="cBp-r6-kNa"/>
+                                    <constraint firstAttribute="width" constant="200" id="ikc-9K-6QS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Definitions">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SRx-Hp-mn8">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="p5C-AJ-gng"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Tutorial">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="SRx-Hp-mn8" firstAttribute="bottom" secondItem="ByF-0h-Tem" secondAttribute="bottom" type="default" id="FSb-9T-nZQ"/>
+                            <constraint firstAttribute="trailing" secondItem="SRx-Hp-mn8" secondAttribute="trailing" constant="284" id="OAB-3g-dyW"/>
+                            <constraint firstItem="ByF-0h-Tem" firstAttribute="top" secondItem="UZZ-Zu-Odv" secondAttribute="top" constant="284" id="RcX-G7-QqK"/>
+                            <constraint firstItem="ByF-0h-Tem" firstAttribute="leading" secondItem="UZZ-Zu-Odv" secondAttribute="leading" constant="285" id="SXf-fb-lUY"/>
+                            <constraint firstItem="SRx-Hp-mn8" firstAttribute="top" secondItem="ByF-0h-Tem" secondAttribute="top" type="default" id="yWA-hD-jKf"/>
+                        </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="PZl-lN-Qp7">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="FEG-HT-kDt">
+                            <connections>
+                                <action selector="prepareForPop:" destination="021-vN-Gg0" id="sP1-NI-i18"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jym-OZ-SdO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3344" y="-2887"/>
+        </scene>
+        <!--PMView Controller-->
+        <scene sceneID="OH6-RJ-2K5">
+            <objects>
+                <pageViewController storyboardIdentifier="PMViewController" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="NLI-lb-tHz" userLabel="PMView Controller" customClass="PMViewController" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="mGp-BB-LQI">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="Yd3-Rv-IZ6"/>
+                        <barButtonItem key="rightBarButtonItem" title="Help" id="R0l-Da-eK8">
+                            <connections>
+                                <segue destination="021-vN-Gg0" kind="push" id="y3V-Kf-tce"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="bookView" destination="1u8-HC-lY8" id="1pb-zc-vPH"/>
+                        <outlet property="panRecognizer" destination="iaN-Wz-vgI" id="DDs-ye-s0g"/>
+                        <outlet property="pinchRecognizer" destination="IG0-TB-X5w" id="ZYE-6c-rPe"/>
+                        <outlet property="tapRecognizer" destination="6LS-gR-BKA" id="Rdy-ac-T01"/>
+                        <outlet property="view" destination="erm-JD-CyO" id="O9j-oO-dyD"/>
+                    </connections>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d1n-FJ-bLf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view clipsSubviews="YES" contentMode="scaleAspectFit" id="erm-JD-CyO">
+                    <rect key="frame" x="0.0" y="236" width="1024" height="768"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <webView clipsSubviews="YES" contentMode="TopLeft" translatesAutoresizingMaskIntoConstraints="NO" id="1u8-HC-lY8">
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <dataDetectorType key="dataDetectorTypes"/>
+                            <connections>
+                                <outlet property="delegate" destination="NLI-lb-tHz" id="pIc-4U-niu"/>
+                                <outletCollection property="gestureRecognizers" destination="6LS-gR-BKA" appends="YES" id="zSQ-fw-Zkv"/>
+                                <outletCollection property="gestureRecognizers" destination="iaN-Wz-vgI" appends="YES" id="dF4-Pw-syc"/>
+                                <outletCollection property="gestureRecognizers" destination="j3h-7r-Imw" appends="YES" id="C29-MC-Toz"/>
+                                <outletCollection property="gestureRecognizers" destination="IG0-TB-X5w" appends="YES" id="VGC-g7-Rrx"/>
+                            </connections>
+                        </webView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u4R-ML-16W">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="49" id="w3Q-gN-iaM"/>
+                                <constraint firstAttribute="width" constant="75" id="yVF-fx-ObQ"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <color key="tintColor" red="0.0" green="0.40000000000000002" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="Next">
+                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" red="0.0" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="pressedNext:" destination="NLI-lb-tHz" eventType="touchUpInside" id="NOd-Fr-ijj"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="1u8-HC-lY8" firstAttribute="leading" secondItem="erm-JD-CyO" secondAttribute="leading" type="default" id="7Ta-Tj-a8V"/>
+                        <constraint firstAttribute="trailing" secondItem="u4R-ML-16W" secondAttribute="trailing" constant="10" id="Bhy-KE-3sk"/>
+                        <constraint firstItem="1u8-HC-lY8" firstAttribute="top" secondItem="erm-JD-CyO" secondAttribute="top" type="default" id="FRx-Ra-7dA"/>
+                        <constraint firstItem="1u8-HC-lY8" firstAttribute="bottom" secondItem="erm-JD-CyO" secondAttribute="bottom" type="default" id="WsJ-j4-RLJ"/>
+                        <constraint firstAttribute="bottom" secondItem="u4R-ML-16W" secondAttribute="bottom" constant="9" id="g12-Nt-AAW"/>
+                        <constraint firstItem="1u8-HC-lY8" firstAttribute="trailing" secondItem="erm-JD-CyO" secondAttribute="trailing" type="default" id="l4a-se-sV5"/>
+                    </constraints>
+                </view>
+                <tapGestureRecognizer id="6LS-gR-BKA">
+                    <connections>
+                        <action selector="tapGesturePerformed:" destination="NLI-lb-tHz" id="huz-7O-zPt"/>
+                        <outlet property="delegate" destination="NLI-lb-tHz" id="NTW-aL-OUH"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="iaN-Wz-vgI">
+                    <connections>
+                        <action selector="panGesturePerformed:" destination="NLI-lb-tHz" id="kNT-SK-UW1"/>
+                        <outlet property="delegate" destination="NLI-lb-tHz" id="AE8-We-mHD"/>
+                    </connections>
+                </panGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="j3h-7r-Imw">
+                    <connections>
+                        <action selector="longPressGesturePerformed:" destination="NLI-lb-tHz" id="zm1-NP-w4C"/>
+                        <outlet property="delegate" destination="NLI-lb-tHz" id="IwW-z6-rec"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pinchGestureRecognizer id="IG0-TB-X5w">
+                    <connections>
+                        <action selector="pinchGesturePerformed:" destination="NLI-lb-tHz" id="1Jv-eU-KDA"/>
+                        <outlet property="delegate" destination="NLI-lb-tHz" id="8BB-lf-QsE"/>
+                    </connections>
+                </pinchGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2099" y="-3319"/>
+        </scene>
+        <!--IMView Controller-->
+        <scene sceneID="aA6-Bo-4E4">
+            <objects>
+                <pageViewController storyboardIdentifier="IMViewController" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="3Sz-rj-6wY" userLabel="IMView Controller" customClass="PMViewController" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="aaU-Ac-eWA">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="NyP-eZ-035"/>
+                        <barButtonItem key="rightBarButtonItem" title="Help" id="bfT-sl-6wM">
+                            <connections>
+                                <segue destination="021-vN-Gg0" kind="push" id="lri-90-NjS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="bookView" destination="1u8-HC-lY8" id="kcD-5W-jy2"/>
+                        <outlet property="panRecognizer" destination="iaN-Wz-vgI" id="K3n-ge-A1O"/>
+                        <outlet property="pinchRecognizer" destination="IG0-TB-X5w" id="DiC-dr-Fo3"/>
+                        <outlet property="view" destination="erm-JD-CyO" id="9vt-5c-jdY"/>
+                    </connections>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bmB-qY-ulY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view clipsSubviews="YES" contentMode="scaleAspectFit" id="Jqi-Zg-Bmj">
+                    <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <webView clipsSubviews="YES" contentMode="scaleAspectFit" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6aj-gV-asA">
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <dataDetectorType key="dataDetectorTypes"/>
+                            <connections>
+                                <outlet property="delegate" destination="3Sz-rj-6wY" id="mGI-Zy-Aya"/>
+                                <outletCollection property="gestureRecognizers" destination="DSA-Rh-q8c" appends="YES" id="b25-Ws-Z3a"/>
+                                <outletCollection property="gestureRecognizers" destination="cAV-zU-nbn" appends="YES" id="7c5-ax-Eyt"/>
+                            </connections>
+                        </webView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ubx-qn-Yia">
+                            <constraints>
+                                <constraint firstAttribute="width" constant="75" id="aR4-bL-b53"/>
+                                <constraint firstAttribute="height" constant="49" id="oj3-fF-JWp"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <state key="normal" title="Next">
+                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="pressedNext:" destination="3Sz-rj-6wY" eventType="touchUpInside" id="FTi-mq-vcP"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="Ubx-qn-Yia" secondAttribute="trailing" constant="10" id="ElM-OL-xay"/>
+                        <constraint firstItem="6aj-gV-asA" firstAttribute="leading" secondItem="Jqi-Zg-Bmj" secondAttribute="leading" type="default" id="HkF-GY-I8p"/>
+                        <constraint firstAttribute="bottom" secondItem="Ubx-qn-Yia" secondAttribute="bottom" constant="9" id="Q88-vY-i7X"/>
+                        <constraint firstItem="6aj-gV-asA" firstAttribute="bottom" secondItem="Jqi-Zg-Bmj" secondAttribute="bottom" type="default" id="mQC-YU-zDp"/>
+                        <constraint firstItem="6aj-gV-asA" firstAttribute="top" secondItem="Jqi-Zg-Bmj" secondAttribute="top" type="default" id="sD0-QK-ij9"/>
+                        <constraint firstItem="6aj-gV-asA" firstAttribute="trailing" secondItem="Jqi-Zg-Bmj" secondAttribute="trailing" type="default" id="yh9-Xu-eEv"/>
+                    </constraints>
+                </view>
+                <tapGestureRecognizer id="DSA-Rh-q8c">
+                    <connections>
+                        <action selector="tapGesturePerformed:" destination="3Sz-rj-6wY" id="AWw-VY-ryK"/>
+                        <outlet property="delegate" destination="3Sz-rj-6wY" id="hoM-se-F94"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="cAV-zU-nbn">
+                    <connections>
+                        <action selector="longPressGesturePerformed:" destination="3Sz-rj-6wY" id="qi3-Ho-AOc"/>
+                        <outlet property="delegate" destination="3Sz-rj-6wY" id="n2M-pB-lPc"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2099" y="-2375"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="OEV-5U-xhQ">
+            <objects>
+                <viewController id="e9p-ZO-asL" customClass="LoginViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gIy-Ix-Z1e">
+                        <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k35-nB-bRq">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="74" id="EjH-jx-0nW"/>
+                                    <constraint firstAttribute="width" constant="150" id="Rc4-iq-RC2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="login:" destination="e9p-ZO-asL" eventType="touchUpInside" id="HnY-wt-FrI"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kqd-k5-FuV">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="KME-hh-zOH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WYJ-TE-HlA">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kqd-k5-FuV" firstAttribute="trailing" secondItem="WYJ-TE-HlA" secondAttribute="trailing" type="default" id="Cpw-cZ-HLZ"/>
+                            <constraint firstItem="k35-nB-bRq" firstAttribute="centerX" secondItem="gIy-Ix-Z1e" secondAttribute="centerX" type="default" id="Tum-Bz-b5T"/>
+                            <constraint firstItem="kqd-k5-FuV" firstAttribute="top" secondItem="gIy-Ix-Z1e" secondAttribute="top" constant="255" id="U84-7P-HW3"/>
+                            <constraint firstItem="WYJ-TE-HlA" firstAttribute="centerX" secondItem="k35-nB-bRq" secondAttribute="centerX" type="default" id="cEc-78-zZ5"/>
+                            <constraint firstItem="kqd-k5-FuV" firstAttribute="leading" secondItem="WYJ-TE-HlA" secondAttribute="leading" type="default" id="mqe-0n-Kiv"/>
+                            <constraint firstAttribute="bottom" secondItem="k35-nB-bRq" secondAttribute="bottom" constant="255" id="nvr-65-3hh"/>
+                            <constraint firstItem="WYJ-TE-HlA" firstAttribute="top" secondItem="gIy-Ix-Z1e" secondAttribute="top" constant="318" id="rkz-Kh-ozC"/>
+                        </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="y87-aq-9jP"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="firstNameField" destination="kqd-k5-FuV" id="2Ca-8y-7vj"/>
+                        <outlet property="lastNameField" destination="WYJ-TE-HlA" id="Bpa-Vx-AdO"/>
+                        <segue destination="5" kind="push" identifier="OpenLibrarySegue" id="UAZ-I9-Wkj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Oz-0h-4Lh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-320" y="-2887"/>
+        </scene>
+        <!--Library View Controller-->
+        <scene sceneID="oap-rn-5QO">
+            <objects>
+                <viewController storyboardIdentifier="LibraryViewController2" id="80Z-95-8Zd" customClass="LibraryViewController" sceneMemberID="viewController">
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="cOp-aN-v4o" customClass="TabView">
+                        <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Qk9-ak-oXZ" customClass="LibraryView">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="673" id="FVb-Pg-lRl"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8X5-Sh-9uZ">
+                                    <size key="itemSize" width="120" height="158"/>
+                                    <size key="headerReferenceSize" width="50" height="50"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BookCellView2" id="H3G-xz-R7V" customClass="BookCellView">
+                                        <rect key="frame" x="0.0" y="50" width="120" height="158"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="120" height="158"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aMg-Az-3P6">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DZh-5Q-HvQ">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="100" id="Tp5-o0-hAO"/>
+                                                        <constraint firstAttribute="width" constant="100" id="WEM-ra-Ifg"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="DZh-5Q-HvQ" firstAttribute="leading" secondItem="aMg-Az-3P6" secondAttribute="leading" type="default" id="2gO-cp-zTV"/>
+                                            <constraint firstItem="DZh-5Q-HvQ" firstAttribute="top" secondItem="H3G-xz-R7V" secondAttribute="top" constant="5" id="FCO-s6-TQA"/>
+                                            <constraint firstItem="DZh-5Q-HvQ" firstAttribute="leading" secondItem="H3G-xz-R7V" secondAttribute="leading" constant="5" id="Mtx-Ov-9Nq"/>
+                                            <constraint firstItem="aMg-Az-3P6" firstAttribute="top" secondItem="DZh-5Q-HvQ" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="lBb-fD-Lkz"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="coverImage" destination="DZh-5Q-HvQ" id="Bh3-hl-rYK"/>
+                                            <outlet property="coverTitle" destination="aMg-Az-3P6" id="POL-eK-dkq"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BookHeaderView2" id="mDe-T3-EsZ" customClass="BookHeaderView">
+                                    <rect key="frame" x="0.0" y="0.0" width="1024" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IKm-9Y-g69">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="1024" id="iTU-PU-Q05"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="IKm-9Y-g69" firstAttribute="leading" secondItem="mDe-T3-EsZ" secondAttribute="leading" constant="10" id="Lck-43-ZDM"/>
+                                        <constraint firstItem="IKm-9Y-g69" firstAttribute="bottom" secondItem="mDe-T3-EsZ" secondAttribute="bottom" type="default" id="wYw-5m-pou"/>
+                                        <constraint firstItem="IKm-9Y-g69" firstAttribute="top" secondItem="mDe-T3-EsZ" secondAttribute="top" type="default" id="z91-oT-Xs1"/>
+                                    </constraints>
+                                    <connections>
+                                        <outlet property="bookTitle" destination="IKm-9Y-g69" id="0ef-jo-1wI"/>
+                                    </connections>
+                                </collectionReusableView>
+                                <connections>
+                                    <outlet property="dataSource" destination="80Z-95-8Zd" id="bfo-Ij-R0x"/>
+                                    <outlet property="delegate" destination="80Z-95-8Zd" id="dMF-wp-5DH"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Qk9-ak-oXZ" firstAttribute="bottom" secondItem="cOp-aN-v4o" secondAttribute="bottom" type="default" id="8pQ-No-wp1"/>
+                            <constraint firstItem="Qk9-ak-oXZ" firstAttribute="leading" secondItem="cOp-aN-v4o" secondAttribute="leading" type="default" id="PKP-eW-c96"/>
+                            <constraint firstItem="Qk9-ak-oXZ" firstAttribute="trailing" secondItem="cOp-aN-v4o" secondAttribute="trailing" type="default" id="Y4j-rR-L0z"/>
+                        </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <toolbarItems/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="libraryView" destination="Qk9-ak-oXZ" id="vVk-Ko-kVe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m9a-nD-0ne" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="850" y="-1999"/>
+        </scene>
+    </scenes>
+    <classes>
+        <class className="BookCellView" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BookCellView.h"/>
+            <relationships>
+                <relationship kind="outlet" name="coverImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="coverTitle" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="defaultAuthor" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="defaultTitle" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="BookHeaderView" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BookHeaderView.h"/>
+            <relationships>
+                <relationship kind="outlet" name="bookTitle" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="HelpViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HelpViewController.h"/>
+        </class>
+        <class className="LibraryView" superclassName="UICollectionView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LibraryView.h"/>
+        </class>
+        <class className="LibraryViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LibraryViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="libraryView" candidateClass="UICollectionView"/>
+            </relationships>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="login:"/>
+                <relationship kind="outlet" name="firstNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="lastNameField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="NavigationController" superclassName="UINavigationController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NavigationController.h"/>
+        </class>
+        <class className="PMViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PMViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="bookView" candidateClass="UIWebView"/>
+                <relationship kind="outlet" name="panRecognizer" candidateClass="UIPanGestureRecognizer"/>
+                <relationship kind="outlet" name="pinchRecognizer" candidateClass="UIPinchGestureRecognizer"/>
+                <relationship kind="outlet" name="tapRecognizer" candidateClass="UITapGestureRecognizer"/>
+            </relationships>
+        </class>
+        <class className="TabView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TabView.h"/>
+        </class>
+        <class className="UICollectionReusableView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
+        </class>
+        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="y3V-Kf-tce"/>
+        <segue reference="cem-GG-gRO"/>
+    </inferredMetricsTieBreakers>
+</document>
