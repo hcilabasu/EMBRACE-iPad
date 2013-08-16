@@ -156,6 +156,9 @@ function groupOverlappingObjects(object) {
  * If we want to do this correctly, we'll need to use another function to change the size of the object that fits within
  * the other object. Additionally, we'll have to change the location of the objects when they interact to show that they're
  * interacting.
+ * The function takes in two object id parameters. object1 is the object that is being manipulated. Object 2 is the static
+ * object that object1 is being grouped with. (x2, y2) correspond to the coordinates of the hotspot for object 2 that
+ * the coordinates (x1, y1) of object1 should move toward and snap to.
  */
 function groupObjectsAtLoc(object1, x1, y1, object2, x2, y2) {
     var group = new Array();

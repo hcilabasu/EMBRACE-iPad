@@ -454,7 +454,7 @@
                                 if(deltaX <= 50 && deltaY <= 50) {
                                     //We also want to go ahead and snap the objects in place based on the hotspots so we need to calculate the (x,y) positions of each of these objects such that the hotspots are in the same spot. How do we do this?
                                     
-                                    NSString *groupObjects = [NSString stringWithFormat:@"groupObjectsAtLoc(%@, %f, %f, %@, %f, %f)", movingObjectId, objId, movingObjectHotspotLoc.x, movingObjectHotspotLoc.y];
+                                    NSString *groupObjects = [NSString stringWithFormat:@"groupObjectsAtLoc(%@, %f, %f, %@, %f, %f)", movingObjectId, movingObjectHotspotLoc.x, movingObjectHotspotLoc.y, objId, hotspotLoc.x, hotspotLoc.y];
                                     [bookView stringByEvaluatingJavaScriptFromString:groupObjects];
                                 }
                                     
