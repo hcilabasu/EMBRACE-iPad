@@ -117,6 +117,14 @@
     NSString* sentenceCount = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount];
     totalSentences = [sentenceCount intValue];
     
+    //Set sentence color to blue for first sentence.
+    NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
+    [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
+    
+    //Bold sentence
+    NSString* setSentenceWeight = [NSString stringWithFormat:@"setSentenceFontWeight(s%d, 'bold')", currentSentence];
+    [bookView stringByEvaluatingJavaScriptFromString:setSentenceWeight];
+    
     //Set the opacity of all but the current sentence to .5
     //Color will default to blue. And be changed to green once it's been done. 
     for(int i = currentSentence; i < totalSentences; i++) {
@@ -598,17 +606,31 @@
 
 -(IBAction)pressedNext:(id)sender {
     //Check to make sure the answer is correct and act appropriately.
+    //For the moment we assume the sentence is correct and set the sentence color to green.
+    NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'green')", currentSentence];
+    [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
+    
+    //Unbold sentence
+    NSString* setSentenceWeight = [NSString stringWithFormat:@"setSentenceFontWeight(s%d, 'normal')", currentSentence];
+    [bookView stringByEvaluatingJavaScriptFromString:setSentenceWeight];
+    
     //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
     currentSentence ++;
     
-    //Highlight the next sentence.
+    //Highlight the next sentence and set its color to blue.
+    setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
+    [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
+    
+    //Bold sentence
+    setSentenceWeight = [NSString stringWithFormat:@"setSentenceFontWeight(s%d, 'bold')", currentSentence];
+    [bookView stringByEvaluatingJavaScriptFromString:setSentenceWeight];
+    
     NSString* setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, 1.0)", currentSentence];
-    
     [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
-   
-    /*NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, \"blue\")", currentSentence];
     
-    [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];*/
+    /*NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, \"blue\")", currentSentence];
+     
+     [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];*/
     
     //currentSentence is 1 indexed.
     if(currentSentence > totalSentences) {

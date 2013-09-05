@@ -315,8 +315,12 @@ function setSentenceOpacity(sentenceId, opacity) {
     sentenceId.style.opacity = opacity;
 }
 
-function setTextColor(sentenceId, color) {
+function setSentenceColor(sentenceId, color) {
     sentenceId.style.color = color;
+}
+
+function setSentenceFontWeight(sentenceId, weight) {
+    sentenceId.style.fontWeight = weight;
 }
 
 function highlight(object) {
