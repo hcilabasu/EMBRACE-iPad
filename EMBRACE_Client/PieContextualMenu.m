@@ -22,10 +22,10 @@
 @synthesize dataSource = dataSource_;
 @synthesize center;
 @synthesize radius;
-@synthesize boundingBox; //may not need this eventually.
 
 float const itemRadius = 100.0; //radius of each menu item.
 float const minAngle = 5.0; //minimum angle in degrees.
+float const menuBoundingBox = 400.0; // The bounding box of the large for the menu.
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -41,50 +41,13 @@ float const minAngle = 5.0; //minimum angle in degrees.
     return self;
 }
 
-//TODO: Come back to this. For the moment, we'll just copy the interaction objects to the center of the screen and redisplay them. 
--(void) expandMenu:(CGPoint)location :(CGFloat)circleRadius {
-    [self setCenter:CGPointMake(circleBounds.origin.x + (circleBounds.size.width / 2), circleBounds.origin.y + (circleBounds.size.height / 2))]; //temporary.
-    [self setRadius:self->circleRadius]; //temporary
-
-    /*
-    //[self setCenter:CGPointMake(boundingBox.size.width / 2, boundingBox.size.height / 2)];
-    //[self setRadius:circleRadius];
-
-    //Calculate the minimum distance on the circle that two menu items can be based on the minAngle(between items) and
-    //the itemRadius.
-    //Calculating the angle of each item from center to edge using: angle = 2 * asin(chord length / 2r)
-    float itemAngle = 2 * (asinf(itemRadius / (2 * radius)));
-    
-    //total angle then is the minAngle + 2 * itemAngle.
-    float totalAngle = minAngle + (2 * itemAngle);
-    float minAngleRadians = totalAngle * M_PI / 180.0;*/
+-(void) expandMenu:(CGFloat)circleRadius {
+    [self setCenter:CGPointMake(circleBounds.origin.x + (circleBounds.size.width / 2), circleBounds.origin.y + (circleBounds.size.height / 2))];
+    [self setRadius:self->circleRadius];
     
     //Get the total number of items in the menu.
     int numItems = [[self dataSource] numberOfMenuItems];
-    
-    //Figure out where the menu needs to be placed, and how much of the circle I have available to me.
-    /*float startingRadians;
-    float endingRadians;
-    
-    //add the item radius to the circle radius to ensure that the full item is displayed.
-    float circleAndItemRadius = radius + itemRadius;
-    
-    //if the edge of this expanded circle is over the width of the parent frame, then we'll increase the angle until we hit the edge.
-    if(center.x + circleAndItemRadius > [self frame].size.width) {
-            //Figure out at what x,y the x + radius is less than the parent frame width.
-        
-            //Check to make sure that the y location is not < 0, thereby moving off the frame at the top.
-            //If it does, keep increasing the angle until y > 0 and x + radius < parent frame width.
-        
-            //At some point, we may have to check to make sure we haven't gone off the frame in the other direction for the x-axis. 
-    }
-    //otherwise, we'll decrease the angle from 2PI to find the starting point.
-    else {
-        
-    }
-    
-    //if minimum distance for all items is larger than the space available expand the frame to make the menu larger.
-    */
+
     //Calculate the distance between items.
     float distance = 2 * M_PI / numItems;
     
@@ -124,11 +87,7 @@ float const minAngle = 5.0; //minimum angle in degrees.
 }
 
 - (void)drawRect:(CGRect)rect {
-    //Leave space in the frame to draw the menu items.
-    //CGRect circleBounds = CGRectMake(boundingBox.origin.x + itemRadius, boundingBox.origin.y + itemRadius, boundingBox.size.width - (itemRadius * 2), boundingBox.size.height - (itemRadius * 2));
-    //Draw circle around items to be grouped or ungrouped.
-    
-    //For now, draw the circle in the center.
+    //Draw the circle in the center.
     CGContextRef context = UIGraphicsGetCurrentContext();
     UIColor *color = [[UIColor alloc] initWithRed:.086 green:.41 blue:.53 alpha:.1];
     CGContextSetStrokeColorWithColor(context, color.CGColor);

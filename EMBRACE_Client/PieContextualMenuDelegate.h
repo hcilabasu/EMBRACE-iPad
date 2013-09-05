@@ -8,6 +8,6 @@
 
 @protocol PieContextualMenuDelegate <NSObject>
 
--(void) expandMenu:(CGPoint)location :(CGRect) boundingBox;
+-(void) expandMenu;
 
 @end

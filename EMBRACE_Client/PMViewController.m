@@ -10,9 +10,6 @@
 #import "ContextualMenuDataSource.h"
 #import "PieContextualMenu.h"
 @interface PMViewController () {
-    NSUInteger totalPages; //Total number of chapters/pages in this activity. TODO: remove
-    NSUInteger pageNum; //The current chapter/page. TODO: remove
-
     NSString* currentPage; //The current page being shown, so that the next page can be requested. 
     
     NSUInteger currentSentence; //Active sentence to be completed.
@@ -65,7 +62,6 @@
     [[bookView scrollView] setBounces: NO];
     [[bookView scrollView] setScrollEnabled:NO];
     
-    pageNum = 0;
     movingObject = FALSE;
     pinching = FALSE;
     
@@ -140,11 +136,9 @@
 }
 
 //creates pages and the content
-- (void) loadFirstPage
-{
+- (void) loadFirstPage {
     book = [bookImporter getBookWithTitle:bookTitle]; //Get the book reference.
     model = [book model];
-    totalPages = [book totalPages]; //Get the total number of pages for this book.
     
     currentPage = [book getNextPageForChapterAndActivity:chapterTitle :PM_MODE :nil];
     
@@ -155,7 +149,6 @@
     currentPage = [book getNextPageForChapterAndActivity:chapterTitle :PM_MODE :currentPage];
     
     while (currentPage == nil) {
-
         chapterTitle = [book getChapterAfterChapter:chapterTitle];
         
         if(chapterTitle == nil) { //no more chapters.
@@ -245,16 +238,11 @@
     if(recognizer.state == UIGestureRecognizerStateBegan) {
         pinching = TRUE;
         
-        //Retrieve the elements at this location and see if it's an element that is moveable.
-        NSString* requestImageAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
+        NSString* imageAtPoint = [self getManipulationObjectAtPoint:location];
         
-        NSString* requestImageAtPointClass = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).className", location.x, location.y];
-        
-        NSString* imageAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPoint];
-        NSString* imageAtPointClass = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointClass];
-        
+        NSLog(@"imageAtPoint: %@", imageAtPoint);
         //if it's an image that can be moved, then start moving it.
-        if([imageAtPointClass isEqualToString:@"manipulationObject"]) {
+        if(imageAtPoint != nil) {
             separatingObjectId = imageAtPoint;
         }
     }
@@ -311,40 +299,7 @@
                     [menuDataSource addMenuItem:@"is grouped with" :itemIds :items];
                 }
                 
-                //Get the location of the image.
-                NSString* requestImageAtPointTop = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).offsetTop", location.x, location.y];
-                NSString* requestImageAtPointLeft = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).offsetLeft", location.x, location.y];
-                
-                NSString* imageAtPointTop = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointTop];
-                NSString* imageAtPointLeft = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointLeft];
-                delta.x = location.x - [imageAtPointLeft floatValue];
-                delta.y = location.y - [imageAtPointTop floatValue];
-
-                //Get the size of the image in order to determine the bounding box for the contextual menu.
-                NSString* requestImageHeight = [NSString stringWithFormat:@"%@.height", separatingObjectId];
-                NSString* requestImageWidth = [NSString stringWithFormat:@"%@.width", separatingObjectId];
-                
-                float imageHeight = [[bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
-                float imageWidth = [[bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
-                
-                CGFloat width;
-                CGFloat height;
-                
-                //Currently defaulting to 100 for the radius of the individual items.
-                CGFloat xStart = location.x - (imageWidth / 2) - (itemRadius * 2);
-                CGFloat yStart = location.y - (imageHeight/ 2) - (itemRadius * 2);
-                
-                if(imageWidth > imageHeight) {
-                    width = 400 + imageWidth;
-                    height = 400 + imageWidth;
-                }
-                else {
-                    width = 400 + imageHeight;
-                    height = 400 + imageHeight;
-                }
-                
-                CGRect rect = CGRectMake(xStart, yStart, width, height);
-                [self expandMenu:location :rect];
+                [self expandMenu];
             }
             else if([itemPairArray count] == 1) {
                 NSArray *pair = [[itemPairArray objectAtIndex:0] componentsSeparatedByString:@", "];
@@ -469,6 +424,11 @@
                             }
                         }
                     }
+<<<<<<< HEAD
+=======
+                    
+                    [self expandMenu];
+>>>>>>> fdae863... Code cleanup
                 }
 
                 //No longer moving object
@@ -503,6 +463,59 @@
             }
         }
     }
+}
+
+-(NSString*) getManipulationObjectAtPoint:(CGPoint) location {
+    //Temporarily hide the overlay canvas to get the object we need
+    NSString* hideCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'none';", @"'overlay'"];
+    [bookView stringByEvaluatingJavaScriptFromString:hideCanvas];
+    
+    //Retrieve the elements at this location and see if it's an element that is moveable.
+    NSString* requestImageAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
+    
+    NSString* requestImageAtPointClass = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).className", location.x, location.y];
+    
+    NSString* imageAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPoint];
+    NSString* imageAtPointClass = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointClass];
+    
+    //Bring the canvas back to where it should be.
+    //NSString* showCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.zIndex = 100;", @"'overlay'"];
+    NSString* showCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'block';", @"'overlay'"];
+    [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
+    
+    if([imageAtPointClass isEqualToString:@"manipulationObject"])
+        return imageAtPoint;
+    else
+        return nil;
+}
+
+-(void) calculateDeltaForMovingObjectAtPoint:(CGPoint) location {
+    //Calculate offset between top-left corner of image and the point clicked.
+    NSString* requestImageAtPointTop = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).offsetTop", location.x, location.y];
+    NSString* requestImageAtPointLeft = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).offsetLeft", location.x, location.y];
+    
+    NSString* imageAtPointTop = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointTop];
+    NSString* imageAtPointLeft = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointLeft];
+    
+    NSLog(@"location of %@: (%@, %@)", movingObjectId, imageAtPointLeft, imageAtPointTop);
+    
+    //Check to see if the locations returned are in percentages. If they are, change them to pixel values based on the size of the screen.
+    NSRange rangePercentTop = [imageAtPointTop rangeOfString:@"%"];
+    NSRange rangePercentLeft = [imageAtPointLeft rangeOfString:@"%"];
+    
+    if(rangePercentTop.location != NSNotFound) {
+        delta.y = location.y - ([imageAtPointTop floatValue] / 100.0 * [bookView frame].size.height);
+        //NSLog(@"location top specified in percent. calculated location: %f", [imageAtPointTop floatValue] / 100.0 * [bookView frame].size.height);
+    }
+    else
+        delta.y = location.y - [imageAtPointTop floatValue];
+    
+    if(rangePercentLeft.location != NSNotFound) {
+        delta.x = location.x - ([imageAtPointLeft floatValue] / 100.0 * [bookView frame].size.width);
+        //NSLog(@"location left specified in percent. calculated location: %f", [imageAtPointLeft floatValue] / 100.0 * [bookView frame].size.width);
+    }
+    else
+        delta.x = location.x - [imageAtPointLeft floatValue];
 }
 
 -(void) moveObject:(NSString*) object :(CGPoint) location {
@@ -639,18 +652,17 @@
 }
 
 #pragma mark - PieContextualMenuDelegate
--(void) expandMenu:(CGPoint)location :(CGRect) boundingBox {
+-(void) expandMenu {
     menu = [[PieContextualMenu alloc] initWithFrame:[[self view] frame]];
     [menu addGestureRecognizer:tapRecognizer];
-    [menu setBoundingBox:boundingBox];
     [[self view] addSubview:menu];
     
     menu.delegate = self;
     menu.dataSource = menuDataSource;
     
     //Calculate the radius of the circle
-    CGFloat radius = (boundingBox.size.width -  (itemRadius * 2)) / 2;
-    [menu expandMenu:location :radius];
+    CGFloat radius = (menuBoundingBox -  (itemRadius * 2)) / 2;
+    [menu expandMenu:radius];
 }
 
 

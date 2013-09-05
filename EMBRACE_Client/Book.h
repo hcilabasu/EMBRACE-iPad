@@ -10,12 +10,6 @@
 #import "Chapter.h"
 #import "InteractionModel.h"
 
-//The mode enum will provide the information for what mode we're in.
-/*typedef enum modeTypes {
-    PM_MODE,
-    IM_MODE
-} Mode;*/
-
 @interface Book : NSObject {
     NSString *title;
     NSString *author;

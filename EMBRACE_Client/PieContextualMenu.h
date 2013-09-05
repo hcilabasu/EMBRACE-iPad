@@ -18,13 +18,13 @@
 @property (nonatomic, strong) id<PieContextualMenuDataSource> dataSource;
 @property (nonatomic, assign) CGPoint center;
 @property (nonatomic, assign) CGFloat radius;
-@property (nonatomic, assign) CGRect boundingBox;
 
 //Constants for the menu
 extern float const itemRadius; 
-extern float const minAngle; 
+extern float const minAngle;
+extern float const menuBoundingBox;
 
--(void) expandMenu:(CGPoint)location :(CGFloat) circleRadius;
+-(void) expandMenu:(CGFloat) circleRadius;
 -(int) pointInMenuItem:(CGPoint) point;
 
 @end
