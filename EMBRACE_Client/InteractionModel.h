@@ -8,7 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "Hotspot.h"
+
 #import "Constraint.h"
+#import "MovementConstraint.h"
+#import "OrderConstraint.h"
+
 #import "Relationship.h"
 
 @interface InteractionModel : NSObject {
@@ -30,7 +34,10 @@
 //- (void) addHotspot:(NSString*) objId :(CGPoint) loc;
 - (void) addHotspot:(NSString*)objId :(NSString*)act :(NSString*)objRole :(CGPoint)loc; //add hotspot to object with objectId at location loc.
 - (void) addRelationship:(NSString*) obj1Id :(NSString*) can :(NSString*) obj2Id; //add relationship "can" between obj1 and obj2
-- (void) addConstraint:(NSString*) action1 :(NSString*) action2 :(NSString*) ruleType; //add constraint with ruleType between action1 and action2.
+//- (void) addConstraint:(NSString*) action1 :(NSString*) action2 :(NSString*) ruleType; //add constraint with ruleType between action1 and action2.
+
+-(void) addMovementConstraint:(NSString*) objectId :(NSString*) action :(NSString*) direction :(NSString*) originX :(NSString*) originY :(NSString*) height :(NSString*)width;
+-(void) addOrderConstraint:(NSString*)action1 :(NSString*) action2 :(NSString*) ruleType;
 
 - (NSMutableArray*) getAllHotspots; //Return all hotspots for all objects.
 - (NSMutableArray*) getHotspotsForObjectId:(NSString* )objId; //Return all hotspots for object with objId.

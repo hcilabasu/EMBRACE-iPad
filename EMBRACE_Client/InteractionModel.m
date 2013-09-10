@@ -47,9 +47,15 @@
     return relationshipsBetweenObjects;
 }
 
--(void) addConstraint:(NSString*) action1 :(NSString*) action2 :(NSString*) ruleType {
-    Constraint *constraint = [[Constraint alloc] initWithValues:action1 :action2 :ruleType];
+-(void) addMovementConstraint:(NSString*) objectId :(NSString*) action :(NSString*) direction :(NSString*) originX :(NSString*) originY :(NSString*) height :(NSString*)width {
+    
+    Constraint *constraint = [[MovementConstraint alloc] initWithValues:objectId :action :direction :originX :originY :width :height];
     [constraints addObject:constraint];
+}
+
+-(void) addOrderConstraint:(NSString*)action1 :(NSString*) action2 :(NSString*) ruleType {
+    Constraint *constraint = [[OrderConstraint alloc] initWithValues:action1 :action2 :ruleType];
+    [constraints addObject:constraint];    
 }
 
 /* Add a hotspot to the dictionary with object ID: objId, action act, object role, orjRole and

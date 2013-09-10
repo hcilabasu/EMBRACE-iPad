@@ -444,14 +444,44 @@
     NSArray* constraintsElements = [metadataDoc nodesForXPath:@"//constraints" error:nil];
     GDataXMLElement *constraintsElement = (GDataXMLElement *) [constraintsElements objectAtIndex:0];
     
-    NSArray * constraints = [constraintsElement elementsForName:@"constraint"];
+    //NSArray * constraints = [constraintsElement elementsForName:@"constraint"];
+    /*for(GDataXMLElement *constraint in constraints) {
+     NSString* action1 = [[constraint attributeForName:@"action1"] stringValue];
+     NSString* rule = [[constraint attributeForName:@"rule"] stringValue];
+     NSString* action2 = [[constraint attributeForName:@"action2"] stringValue];
+     
+     [model addConstraint:action1 :action2 :rule];
+     }*/
     
-    for(GDataXMLElement *constraint in constraints) {
+    //Get movement constraints
+    NSArray * movementConstraintsElements = [constraintsElement elementsForName:@"movementConstraints"];
+    GDataXMLElement *movementConstraintsElement = (GDataXMLElement *) [movementConstraintsElements objectAtIndex:0];
+    
+    NSArray *movementConstraints = [movementConstraintsElement elementsForName:@"constraint"];
+    
+    for(GDataXMLElement *constraint in movementConstraints) {
+        NSString* objectId = [[constraint attributeForName:@"objId"] stringValue];
+        NSString* action = [[constraint attributeForName:@"action"] stringValue];
+        NSString* direction = [[constraint attributeForName:@"direction"] stringValue];
+        NSString* originX = [[constraint attributeForName:@"x"] stringValue];
+        NSString* originY = [[constraint attributeForName:@"y"] stringValue];
+        NSString* width = [[constraint attributeForName:@"width"] stringValue];
+        NSString* height = [[constraint attributeForName:@"height"] stringValue];
+        
+        [model addMovementConstraint:objectId :action :direction :originX :originY :width :height];
+    }
+    //Get order constraints
+    NSArray *orderConstraintsElements = [constraintsElement elementsForName:@"orderConstraints"];
+    GDataXMLElement *orderConstraintsElement = (GDataXMLElement *) [orderConstraintsElements objectAtIndex:0];
+    
+    NSArray *orderConstraints = [orderConstraintsElement elementsForName:@"constraint"];
+    
+    for(GDataXMLElement *constraint in orderConstraints) {
         NSString* action1 = [[constraint attributeForName:@"action1"] stringValue];
         NSString* rule = [[constraint attributeForName:@"rule"] stringValue];
         NSString* action2 = [[constraint attributeForName:@"action2"] stringValue];
         
-        [model addConstraint:action1 :action2 :rule];
+        [model addOrderConstraint:action1 :action2 :rule];
     }
     
     //Reading in the hotspot information.

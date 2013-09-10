@@ -7,21 +7,11 @@
 //
 
 #import "Constraint.h"
+@class MovementConstraint;
+@class OrderConstraint;
 
 @implementation Constraint
 
-@synthesize action1;
-@synthesize action2;
-@synthesize ruleType;
-
-- (id) initWithValues:(NSString*)act1 :(NSString*)act2 :(NSString*) type {
-    if(self = [super init]) {
-        action1 = act1;
-        action2 = act2;
-        ruleType = type;
-    }
-    
-    return self;
-}
+@synthesize type;
 
 @end

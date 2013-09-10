@@ -13,6 +13,8 @@
 		31058C7C176BE73D00595AAE /* ImagineManipulationActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 31058C7B176BE73D00595AAE /* ImagineManipulationActivity.m */; };
 		31058C7F176BE74B00595AAE /* AssessmentActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 31058C7E176BE74B00595AAE /* AssessmentActivity.m */; };
 		31058C82176BEB6300595AAE /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = 31058C81176BEB6200595AAE /* Page.m */; };
+		310908EC17DE90CA004590A2 /* MovementConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 310908EB17DE90CA004590A2 /* MovementConstraint.m */; };
+		310908EF17DE90DB004590A2 /* OrderConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 310908EE17DE90DB004590A2 /* OrderConstraint.m */; };
 		311096FD174AAA8F00B02BF7 /* farm.epub in Resources */ = {isa = PBXBuildFile; fileRef = 311096FC174AAA8F00B02BF7 /* farm.epub */; };
 		311096FF174AB08400B02BF7 /* house.epub in Resources */ = {isa = PBXBuildFile; fileRef = 311096FE174AB08400B02BF7 /* house.epub */; };
 		31109702174AB35E00B02BF7 /* cover_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 31109701174AB35E00B02BF7 /* cover_default.png */; };
@@ -71,6 +73,10 @@
 		31058C7E176BE74B00595AAE /* AssessmentActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssessmentActivity.m; sourceTree = "<group>"; };
 		31058C80176BEB6200595AAE /* Page.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Page.h; sourceTree = "<group>"; };
 		31058C81176BEB6200595AAE /* Page.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Page.m; sourceTree = "<group>"; };
+		310908EA17DE90CA004590A2 /* MovementConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovementConstraint.h; sourceTree = "<group>"; };
+		310908EB17DE90CA004590A2 /* MovementConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovementConstraint.m; sourceTree = "<group>"; };
+		310908ED17DE90DB004590A2 /* OrderConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderConstraint.h; sourceTree = "<group>"; };
+		310908EE17DE90DB004590A2 /* OrderConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderConstraint.m; sourceTree = "<group>"; };
 		311096FC174AAA8F00B02BF7 /* farm.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = farm.epub; sourceTree = SOURCE_ROOT; };
 		311096FE174AB08400B02BF7 /* house.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = house.epub; sourceTree = SOURCE_ROOT; };
 		31109701174AB35E00B02BF7 /* cover_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cover_default.png; sourceTree = "<group>"; };
@@ -415,6 +421,10 @@
 				31161432179DE85E00655221 /* Relationship.m */,
 				3116142E179DE78C00655221 /* InteractionModel.h */,
 				3116142F179DE78C00655221 /* InteractionModel.m */,
+				310908EA17DE90CA004590A2 /* MovementConstraint.h */,
+				310908EB17DE90CA004590A2 /* MovementConstraint.m */,
+				310908ED17DE90DB004590A2 /* OrderConstraint.h */,
+				310908EE17DE90DB004590A2 /* OrderConstraint.m */,
 			);
 			name = "Interaction Model";
 			sourceTree = "<group>";
@@ -526,6 +536,10 @@
 				3116142D179DE77B00655221 /* Constraint.m in Sources */,
 				31161430179DE78C00655221 /* InteractionModel.m in Sources */,
 				31161433179DE85E00655221 /* Relationship.m in Sources */,
+				3133992917C58B1300F6188A /* MenuItemObject.m in Sources */,
+				3133992C17C58BE200F6188A /* MenuItemConnection.m in Sources */,
+				310908EC17DE90CA004590A2 /* MovementConstraint.m in Sources */,
+				310908EF17DE90DB004590A2 /* OrderConstraint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

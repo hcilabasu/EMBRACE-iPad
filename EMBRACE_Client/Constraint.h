@@ -8,16 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface Constraint : NSObject {
-    NSString* action1;
-    NSString* action2;
-    NSString* ruleType;
+    NSString* type;
 }
 
-@property (nonatomic, strong) NSString* action1;
-@property (nonatomic, strong) NSString* action2;
-@property (nonatomic, strong) NSString* ruleType;
-
-- (id) initWithValues:(NSString*)act1 :(NSString*)act2 :(NSString*) type;
+@property (nonatomic, strong) NSString* type;
 
 @end
