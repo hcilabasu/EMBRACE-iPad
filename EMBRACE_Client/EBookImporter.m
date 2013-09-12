@@ -462,13 +462,12 @@
     for(GDataXMLElement *constraint in movementConstraints) {
         NSString* objectId = [[constraint attributeForName:@"objId"] stringValue];
         NSString* action = [[constraint attributeForName:@"action"] stringValue];
-        NSString* direction = [[constraint attributeForName:@"direction"] stringValue];
         NSString* originX = [[constraint attributeForName:@"x"] stringValue];
         NSString* originY = [[constraint attributeForName:@"y"] stringValue];
         NSString* width = [[constraint attributeForName:@"width"] stringValue];
         NSString* height = [[constraint attributeForName:@"height"] stringValue];
         
-        [model addMovementConstraint:objectId :action :direction :originX :originY :width :height];
+        [model addMovementConstraint:objectId :action :originX :originY :width :height];
     }
     //Get order constraints
     NSArray *orderConstraintsElements = [constraintsElement elementsForName:@"orderConstraints"];

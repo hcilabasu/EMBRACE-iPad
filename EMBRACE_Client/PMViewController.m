@@ -207,11 +207,31 @@
         [menu removeFromSuperview];
         menu = nil;
     }
-    /*else {
-        NSString* requestImageAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
-
-        NSString* imageAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPoint];
-    }*/
+    else {
+        //Get the object at that point if it's a manipulation object.
+        NSString* imageAtPoint = [self getManipulationObjectAtPoint:location];
+        NSLog(@"location pressed: (%f, %f)", location.x, location.y);
+        
+        //Need to figure out how to properly convert the location given by the locationinView function to one that is similar to that of the webview.
+        NSLog(@"size of bookView: %f x %f", [bookView frame].size.width, [bookView frame].size.height);
+        //location of apple should be at 798 x 513 or so.
+        //location instead is returned by js as being 764 x 492. Why? And how do I get the coordinates to match so that I can actually pick up the apple? 
+        
+        //Print the location of the apple for the moment, and the size and width of the apple.
+        NSString *requestLocationOfAppleTop = [NSString stringWithFormat:@"apple.offsetTop"];
+        NSString *requestLocationOfAppleLeft = [NSString stringWithFormat:@"apple.offsetLeft"];
+        NSString* locationOfAppleTop = [bookView stringByEvaluatingJavaScriptFromString:requestLocationOfAppleTop];
+        NSString* locationOfAppleLeft = [bookView stringByEvaluatingJavaScriptFromString:requestLocationOfAppleLeft];
+        
+        NSString *requestWidthOfApple = [NSString stringWithFormat:@"apple.offsetWidth"];
+        NSString *requestHeightOfApple = [NSString stringWithFormat:@"apple.offsetHeight"];
+        NSString* widthOfApple = [bookView stringByEvaluatingJavaScriptFromString:requestWidthOfApple];
+        NSString* heightOfApple = [bookView stringByEvaluatingJavaScriptFromString:requestHeightOfApple];
+        
+        NSLog(@"location of apple: (%f, %f) with size: %f x %f", [locationOfAppleLeft floatValue], [locationOfAppleTop floatValue], [widthOfApple floatValue], [heightOfApple floatValue]);
+        
+        NSLog(@"imageAtPoint: %@", imageAtPoint);
+    }
 }
 
 /*
@@ -324,23 +344,22 @@
         if(recognizer.state == UIGestureRecognizerStateBegan) {
             //NSLog(@"pan gesture began at location: (%f, %f)", location.x, location.y);
             
-            //Temporarily hide the overlay canvas to get the object we need
-            NSString* hideCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'none';", @"'overlay'"];
-            //NSString* hideCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.zIndex = 0;", @"'overlay'"];
-            [bookView stringByEvaluatingJavaScriptFromString:hideCanvas];
-                
-            //Retrieve the elements at this location and see if it's an element that is moveable.
-            NSString* requestImageAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
+            //Get the object at that point if it's a manipulation object.
+            NSString* imageAtPoint = [self getManipulationObjectAtPoint:location];
+            NSLog(@"location pressed: (%f, %f)", location.x, location.y);
             
-            NSString* requestImageAtPointClass = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).className", location.x, location.y];
-            
-            NSString* imageAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPoint];
-            NSString* imageAtPointClass = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointClass];
-            
-            //Bring the canvas back to where it should be.
-            //NSString* showCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.zIndex = 100;", @"'overlay'"];
-            NSString* showCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'block';", @"'overlay'"];
-            [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
+            //Print the location of the apple for the moment, and the size and width of the apple.
+            NSString *requestLocationOfAppleTop = [NSString stringWithFormat:@"apple.offsetTop"];
+            NSString *requestLocationOfAppleLeft = [NSString stringWithFormat:@"apple.offsetLeft"];
+            NSString* locationOfAppleTop = [bookView stringByEvaluatingJavaScriptFromString:requestLocationOfAppleTop];
+            NSString* locationOfAppleLeft = [bookView stringByEvaluatingJavaScriptFromString:requestLocationOfAppleLeft];
+
+            NSString *requestWidthOfApple = [NSString stringWithFormat:@"apple.width"];
+            NSString *requestHeightOfApple = [NSString stringWithFormat:@"apple.height"];
+            NSString* widthOfApple = [bookView stringByEvaluatingJavaScriptFromString:requestWidthOfApple];
+            NSString* heightOfApple = [bookView stringByEvaluatingJavaScriptFromString:requestHeightOfApple];
+
+            NSLog(@"location of apple: (%f, %f) with size: %f x %f", [locationOfAppleLeft floatValue], [locationOfAppleTop floatValue], [widthOfApple floatValue], [heightOfApple floatValue]);
             
             NSLog(@"imageAtPoint: %@", imageAtPoint);
             //if it's an image that can be moved, then start moving it.
@@ -517,12 +536,41 @@
     //Change the location to accounting for the different between the point clicked and the top-left corner which is used to set the position of the image.
     CGPoint adjLocation = CGPointMake(location.x - delta.x, location.y - delta.y);
     
-    //Get the width and height of the image to ensure that the image is not being moved off screen.
+    //Get the width and height of the image to ensure that the image is not being moved off screen and that the image is being moved in accordance with all movement constraints.
     NSString* requestImageHeight = [NSString stringWithFormat:@"%@.height", object];
     NSString* requestImageWidth = [NSString stringWithFormat:@"%@.width", object];
     
     float imageHeight = [[bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
     float imageWidth = [[bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
+    
+    //Check to see if the image is being moved outside of any bounding boxes. At this point in time, each object only has 1 movemet constraint associated with it and the movement constraint is a bounding box. The bounding box is in relative (percentage) values to the background object.
+    NSArray* constraints = [model getMovementConstraintsForObjectId:object];
+    
+    NSLog(@"location of image being moved adjusted for point clicked: (%f, %f) size of image: %f x %f", adjLocation.x, adjLocation.y, imageWidth, imageHeight);
+    
+    //If there are movement constraints for this object.
+    //TODO: come back to this and figure out why the slight shift. 
+    if([constraints count] > 0) {
+        MovementConstraint* constraint = (MovementConstraint*)[constraints objectAtIndex:0];
+    
+        //Calculate the x,y coordinates and the width and height in pixels from %
+        float boxX = [constraint.originX floatValue] / 100.0 * [bookView frame].size.width;
+        float boxY = [constraint.originY floatValue] / 100.0 * [bookView frame].size.height;
+        float boxWidth = [constraint.width floatValue] / 100.0 * [bookView frame].size.width;
+        float boxHeight = [constraint.height floatValue] / 100.0 * [bookView frame].size.height;
+        
+        NSLog(@"location of bounding box: (%f, %f) and size of bounding box: %f x %f", boxX, boxY, boxWidth, boxHeight);
+        
+        //Ensure that the image is not being moved outside of its bounding box.
+        if(adjLocation.x + imageWidth > boxX + boxWidth)
+            adjLocation.x = boxX + boxWidth - imageWidth;
+        else if(adjLocation.x < boxX)
+            adjLocation.x = boxX;
+        if(adjLocation.y + imageHeight > boxY + boxHeight)
+            adjLocation.y = boxY + boxHeight - imageHeight;
+        else if(adjLocation.y < boxY)
+            adjLocation.y = boxY;
+    }
     
     //Check to see if the image is being moved off screen. If it is, change it so that the image cannot be moved off screen.
     if(adjLocation.x + imageWidth > [bookView frame].size.width)

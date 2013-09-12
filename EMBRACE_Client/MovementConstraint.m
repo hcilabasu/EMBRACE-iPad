@@ -12,17 +12,15 @@
 
 @synthesize objId;
 @synthesize action;
-@synthesize direction;
 @synthesize originX;
 @synthesize originY;
 @synthesize height;
 @synthesize width;
 
-- (id) initWithValues:(NSString*)objectId :(NSString*)act :(NSString*) dir :(NSString*)x :(NSString*)y :(NSString*)w :(NSString*)h {
+- (id) initWithValues:(NSString*)objectId :(NSString*)act :(NSString*)x :(NSString*)y :(NSString*)w :(NSString*)h {
     if(self = [super init]) {
         objId = objectId;
         action = act;
-        direction = dir;
         originX = x;
         originY = y;
         width = w;

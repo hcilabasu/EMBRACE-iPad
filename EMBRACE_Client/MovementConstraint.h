@@ -11,7 +11,6 @@
 @interface MovementConstraint : Constraint {
     NSString* objId;
     NSString* action;
-    NSString* direction;
     NSString* originX;
     NSString* originY;
     NSString* height;
@@ -20,11 +19,10 @@
 
 @property (nonatomic, strong) NSString* objId;
 @property (nonatomic, strong) NSString* action;
-@property (nonatomic, strong) NSString* direction;
 @property (nonatomic, strong) NSString* originX;
 @property (nonatomic, strong) NSString* originY;
 @property (nonatomic, strong) NSString* height;
 @property (nonatomic, strong) NSString* width;
 
-- (id) initWithValues:(NSString*)objectId :(NSString*)act :(NSString*) dir :(NSString*)x :(NSString*)y :(NSString*)w :(NSString*)h;
+- (id) initWithValues:(NSString*)objectId :(NSString*)act :(NSString*)x :(NSString*)y :(NSString*)w :(NSString*)h;
 @end

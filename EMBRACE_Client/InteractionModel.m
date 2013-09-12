@@ -47,15 +47,30 @@
     return relationshipsBetweenObjects;
 }
 
--(void) addMovementConstraint:(NSString*) objectId :(NSString*) action :(NSString*) direction :(NSString*) originX :(NSString*) originY :(NSString*) height :(NSString*)width {
+-(void) addMovementConstraint:(NSString*) objectId :(NSString*) action :(NSString*) originX :(NSString*) originY :(NSString*) width :(NSString*)height {
     
-    Constraint *constraint = [[MovementConstraint alloc] initWithValues:objectId :action :direction :originX :originY :width :height];
+    Constraint *constraint = [[MovementConstraint alloc] initWithValues:objectId :action :originX :originY :width :height];
     [constraints addObject:constraint];
 }
 
 -(void) addOrderConstraint:(NSString*)action1 :(NSString*) action2 :(NSString*) ruleType {
     Constraint *constraint = [[OrderConstraint alloc] initWithValues:action1 :action2 :ruleType];
     [constraints addObject:constraint];    
+}
+
+- (NSMutableArray*) getMovementConstraintsForObjectId:(NSString*)objId {
+    NSMutableArray* movementConstraintsForObject = [[NSMutableArray alloc] init];
+    
+    for(Constraint* constraint in constraints) {
+        if([constraint class] == [MovementConstraint class]) {
+            MovementConstraint *mConstraint = (MovementConstraint*)constraint;
+            
+            if([[mConstraint objId] isEqualToString:objId])
+                [movementConstraintsForObject addObject:mConstraint];
+        }
+    }
+
+    return movementConstraintsForObject;
 }
 
 /* Add a hotspot to the dictionary with object ID: objId, action act, object role, orjRole and

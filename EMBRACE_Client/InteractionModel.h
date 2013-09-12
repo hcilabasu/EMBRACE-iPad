@@ -36,7 +36,7 @@
 - (void) addRelationship:(NSString*) obj1Id :(NSString*) can :(NSString*) obj2Id; //add relationship "can" between obj1 and obj2
 //- (void) addConstraint:(NSString*) action1 :(NSString*) action2 :(NSString*) ruleType; //add constraint with ruleType between action1 and action2.
 
--(void) addMovementConstraint:(NSString*) objectId :(NSString*) action :(NSString*) direction :(NSString*) originX :(NSString*) originY :(NSString*) height :(NSString*)width;
+-(void) addMovementConstraint:(NSString*) objectId :(NSString*) action :(NSString*) originX :(NSString*) originY :(NSString*) height :(NSString*)width;
 -(void) addOrderConstraint:(NSString*)action1 :(NSString*) action2 :(NSString*) ruleType;
 
 - (NSMutableArray*) getAllHotspots; //Return all hotspots for all objects.
@@ -44,5 +44,7 @@
 -(NSMutableArray*) getHotspotsForObjectOverlappingWithObject:(NSString*) obj1 :(NSString*) obj2;
 
 //- (NSMutableArray*) getRelationshipsForObjects:(NSString*)obj1Id :(NSString*)obj2Id;
+
+- (NSMutableArray*) getMovementConstraintsForObjectId:(NSString*)objId;
 
 @end
