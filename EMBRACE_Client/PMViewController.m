@@ -362,8 +362,9 @@
             NSLog(@"location of apple: (%f, %f) with size: %f x %f", [locationOfAppleLeft floatValue], [locationOfAppleTop floatValue], [widthOfApple floatValue], [heightOfApple floatValue]);
             
             NSLog(@"imageAtPoint: %@", imageAtPoint);
+            
             //if it's an image that can be moved, then start moving it.
-            if([imageAtPointClass isEqualToString:@"manipulationObject"]) {
+            if(imageAtPoint != nil) {
                 movingObject = TRUE;
                 movingObjectId = imageAtPoint;
                 
