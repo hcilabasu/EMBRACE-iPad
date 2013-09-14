@@ -424,11 +424,6 @@
                             }
                         }
                     }
-<<<<<<< HEAD
-=======
-                    
-                    [self expandMenu];
->>>>>>> fdae863... Code cleanup
                 }
 
                 //No longer moving object
