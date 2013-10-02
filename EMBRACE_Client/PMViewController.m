@@ -54,6 +54,11 @@
 {
     [super viewDidLoad];
     
+    //Added to deal with ios7 view changes. This makes it so the UIWebView and the navigation bar do not overlap.
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+    
     self.view.backgroundColor = [UIColor whiteColor];
 
     bookView.scalesPageToFit = YES;
@@ -218,7 +223,7 @@
         //location instead is returned by js as being 764 x 492. Why? And how do I get the coordinates to match so that I can actually pick up the apple? 
         
         //Print the location of the apple for the moment, and the size and width of the apple.
-        NSString *requestLocationOfAppleTop = [NSString stringWithFormat:@"apple.offsetTop"];
+        /*NSString *requestLocationOfAppleTop = [NSString stringWithFormat:@"apple.offsetTop"];
         NSString *requestLocationOfAppleLeft = [NSString stringWithFormat:@"apple.offsetLeft"];
         NSString* locationOfAppleTop = [bookView stringByEvaluatingJavaScriptFromString:requestLocationOfAppleTop];
         NSString* locationOfAppleLeft = [bookView stringByEvaluatingJavaScriptFromString:requestLocationOfAppleLeft];
@@ -228,7 +233,7 @@
         NSString* widthOfApple = [bookView stringByEvaluatingJavaScriptFromString:requestWidthOfApple];
         NSString* heightOfApple = [bookView stringByEvaluatingJavaScriptFromString:requestHeightOfApple];
         
-        NSLog(@"location of apple: (%f, %f) with size: %f x %f", [locationOfAppleLeft floatValue], [locationOfAppleTop floatValue], [widthOfApple floatValue], [heightOfApple floatValue]);
+        NSLog(@"location of apple: (%f, %f) with size: %f x %f", [locationOfAppleLeft floatValue], [locationOfAppleTop floatValue], [widthOfApple floatValue], [heightOfApple floatValue]);*/
         
         NSLog(@"imageAtPoint: %@", imageAtPoint);
     }
@@ -271,6 +276,8 @@
         NSString* requestGroupedImages = [NSString stringWithFormat:@"getGroupedObjectsString(%@)", separatingObjectId];
         NSString* groupedImages = [bookView stringByEvaluatingJavaScriptFromString:requestGroupedImages];
 
+        NSLog(@"in pinch gesture recognizer state ended, and got list of groupe images: %@", groupedImages);
+        
         //If there is an array, split the array based on pairs.
         if(![groupedImages isEqualToString:@""]) {
             NSArray* itemPairArray = [groupedImages componentsSeparatedByString:@"; "];
@@ -319,6 +326,8 @@
                     [menuDataSource addMenuItem:@"is grouped with" :itemIds :items];
                 }
                 
+                NSLog(@"multiple ungrouping options...showing menu");
+                
                 [self expandMenu];
             }
             else if([itemPairArray count] == 1) {
@@ -328,7 +337,10 @@
                 NSString* obj2 = [pair objectAtIndex:1]; //get object 2
                 
                 [self ungroupObjects:obj1 :obj2]; //ungroup the objects.
+                NSLog(@"ingrouping two objects");
             }
+            else
+                NSLog(@"no items grouped");
         }
         pinching = FALSE;
     }
@@ -349,7 +361,7 @@
             NSLog(@"location pressed: (%f, %f)", location.x, location.y);
             
             //Print the location of the apple for the moment, and the size and width of the apple.
-            NSString *requestLocationOfAppleTop = [NSString stringWithFormat:@"apple.offsetTop"];
+            /*NSString *requestLocationOfAppleTop = [NSString stringWithFormat:@"apple.offsetTop"];
             NSString *requestLocationOfAppleLeft = [NSString stringWithFormat:@"apple.offsetLeft"];
             NSString* locationOfAppleTop = [bookView stringByEvaluatingJavaScriptFromString:requestLocationOfAppleTop];
             NSString* locationOfAppleLeft = [bookView stringByEvaluatingJavaScriptFromString:requestLocationOfAppleLeft];
@@ -359,7 +371,7 @@
             NSString* widthOfApple = [bookView stringByEvaluatingJavaScriptFromString:requestWidthOfApple];
             NSString* heightOfApple = [bookView stringByEvaluatingJavaScriptFromString:requestHeightOfApple];
 
-            NSLog(@"location of apple: (%f, %f) with size: %f x %f", [locationOfAppleLeft floatValue], [locationOfAppleTop floatValue], [widthOfApple floatValue], [heightOfApple floatValue]);
+            NSLog(@"location of apple: (%f, %f) with size: %f x %f", [locationOfAppleLeft floatValue], [locationOfAppleTop floatValue], [widthOfApple floatValue], [heightOfApple floatValue]);*/
             
             NSLog(@"imageAtPoint: %@", imageAtPoint);
             
@@ -376,6 +388,7 @@
                 NSString* imageAtPointLeft = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointLeft];
                 
                 NSLog(@"location of %@: (%@, %@)", imageAtPoint, imageAtPointLeft, imageAtPointTop);
+                NSLog(@"location of click: (%f, %f)", location.x, location.y);
                 
                 //Check to see if the locations returned are in percentages. If they are, change them to pixel values based on the size of the screen.
                 NSRange rangePercentTop = [imageAtPointTop rangeOfString:@"%"];
@@ -403,13 +416,9 @@
                 [self moveObject:movingObjectId :location];
                 
                 //If we've dropped the object, we want to check and see if it's overlapping with another object.
+                //We also want to double check and make sure that neither of the objects is already grouped with another object at the relevant hotspots. If it is, that means we may need to transfer the grouping, instead of creating a new grouping.
                 //If it is, we have to make sure that the hotspots for the two objects are within a certain radius of each other for the grouping to occur.
                 //If they are, we want to go ahead and group the objects.
-                //NSString *checkObjectOverlap = [NSString stringWithFormat:@"checkObjectOverlap(%@)", movingObjectId];
-                
-                //NSString *groupOverlappingObjects = [NSString stringWithFormat:@"groupOverlappingObjects(%@)", movingObjectId];
-                //[bookView stringByEvaluatingJavaScriptFromString:groupOverlappingObjects];
-                
                 NSString *overlappingObjects = [NSString stringWithFormat:@"checkObjectOverlapString(%@)", movingObjectId];
                 NSString* overlapArrayString = [bookView stringByEvaluatingJavaScriptFromString:overlappingObjects];
                 
@@ -421,6 +430,8 @@
                     for(NSString* objId in overlappingWith) {
                         NSMutableArray* hotspots = [model getHotspotsForObjectOverlappingWithObject:movingObjectId :objId];
                         NSMutableArray* movingObjectHotspots = [model getHotspotsForObjectOverlappingWithObject:objId :movingObjectId];
+                        
+                        //TODO: Stuff here.
                         
                         //Figure out if one of the hotspots from the object we're moving is within close distance of one of the hotspots from the overlapping object. If it is, then group them based on that hotspot.
                         for(Hotspot* hotspot in hotspots) {
@@ -555,6 +566,8 @@
         MovementConstraint* constraint = (MovementConstraint*)[constraints objectAtIndex:0];
     
         //Calculate the x,y coordinates and the width and height in pixels from %
+        //TODO: See if I can list a width, height, x, and y for the background image and then retrieve the size of that image in order to calculate the
+        //location of the bounding box. If this works we may consider using some sort of calculation based on the ratio of the background and the [bookView frame] size to calculate the point that should be used to identify the items being manipulated as well and see if this solves all the problems that we've been seeing.
         float boxX = [constraint.originX floatValue] / 100.0 * [bookView frame].size.width;
         float boxY = [constraint.originY floatValue] / 100.0 * [bookView frame].size.height;
         float boxWidth = [constraint.width floatValue] / 100.0 * [bookView frame].size.width;
@@ -697,7 +710,7 @@
 
 #pragma mark - PieContextualMenuDelegate
 -(void) expandMenu {
-    menu = [[PieContextualMenu alloc] initWithFrame:[[self view] frame]];
+    menu = [[PieContextualMenu alloc] initWithFrame:[bookView frame]];
     [menu addGestureRecognizer:tapRecognizer];
     [[self view] addSubview:menu];
     

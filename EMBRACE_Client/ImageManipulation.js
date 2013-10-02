@@ -1,4 +1,5 @@
-var groupings = new Array(); //Stores objects that may be grouped together. 3 or more objects may be grouped at different times.
+var groupings = new Array(); //Stores objects that may be grouped together. This array will now be a 1D array of objects that contains Connection objects. These Connection objects will contain the necessary information for each grouping. All functions that rely on this specific data structure will need to be updated.
+
 var overlayGraphics = new jsGraphics(document.getElementById('overlay')); //Create jsGraphics object
 
 /*
@@ -10,7 +11,7 @@ var overlayGraphics = new jsGraphics(document.getElementById('overlay')); //Crea
 function moveObject(object, newX, newY) {
     if(object == null)
         alert("object is null");
-    
+
     //Calculate a delta change, so we know what to move grouped objects by.
     var deltaX = newX - object.offsetLeft;
     var deltaY = newY - object.offsetTop;
@@ -27,7 +28,7 @@ function moveObject(object, newX, newY) {
     
     //If it's grouped with other objects, move those as well.
     //Skip the object at location 1, because that's our original object that we've already moved.
-    for(var i = 1; i < groupedWithObjects.length; i ++) {        
+    for(var i = 1; i < groupedWithObjects.length; i ++) {
         groupedWithObjects[i].style.left = groupedWithObjects[i].offsetLeft + deltaX + "px";
         groupedWithObjects[i].style.top =  groupedWithObjects[i].offsetTop + deltaY + "px";
     }
@@ -160,12 +161,87 @@ function groupOverlappingObjects(object) {
  * object that object1 is being grouped with. (x2, y2) correspond to the coordinates of the hotspot for object 2 that
  * the coordinates (x1, y1) of object1 should move toward and snap to.
  */
-function groupObjectsAtLoc(object1, x1, y1, object2, x2, y2) {
+//Originally this was designed such that we only maintained information about which 2 objects were connected to each other. We want to change our format for our list of connections such that we contain information about the individual hotspots at which 2 objects are connected. Additionally, we want to make sure that if there's already an object connected at a particular hotspot, we cannot connect another object at that same hotspot. This will help in the following ways: 1) it will provide the necessary location information to animate the grouping and ungrouping of objects. 2) it will keep multiple objects from being grouped at the same location, making it easir to detect whether or not transferance between two objects needs to occur.
+/*function groupObjectsAtLoc(object1, x1, y1, object2, x2, y2) {
     var group = new Array();
     group[0] = object1;
     group[1] = object2;
 
     groupings[groupings.length] = group;
+}*/
+
+function groupObjectsAtLoc(object1, x1, y1, object2, x2, y2) {
+    var group = new Connection(object1, x1, y1, object2, x2, y2);
+    //alert("grouping " + object1.id + " and " + object2.id);
+    groupings[groupings.length] = group;
+
+    animateGrouping(group);
+}
+
+/* 
+ * This function takes a new group that has been created and animates it appropriately so that the object that was being moved
+ * slowly animated towards the other object. the x and y coordinates of the connection specify the two hotspots that are joined.
+ * object1 is the one that will be moving toward object 2. 
+ * We need to calculate the delta movement and then apply it to the top, left corner of object 1 over time.
+ * TODO: Come back to this for instances in which objects that being animated are also connected to other objects that should be moved with them.
+ */
+function animateGrouping(group) {
+    //Calculate the total change that needs to occur, even though we'll only move a small step size towards the hotspot every time.
+    var deltaX = group.obj2x - group.obj1x;
+    var deltaY = group.obj2y - group.obj1y;
+    
+    //Check to see whether there is more animation to be done (assume that deltaX and deltaY will both be 0 if no more animation needs to occur.
+    if((deltaX != 0) || (deltaY != 0)) {
+        //used for the specific change that occurs on this animation turn.
+        var changeX = 0;
+        var changeY = 0;
+        
+        //Check to see if delta change is greater than the step size (currently 5 pixels), and whether it's positive or negative.
+        //Use this information to determine how much to move on this turn.
+        var STEP = 5;
+        if(deltaX < -STEP)
+            changeX = -STEP;
+        else if(deltaX < 0)
+            changeX = deltaX;
+        else if(deltaX > STEP)
+            changeX = STEP;
+        else if(deltaX > 0)
+            changeX = deltaX;
+        
+        if(deltaY < -STEP)
+            changeY = -STEP;
+        else if(deltaY < 0)
+            changeY = deltaY;
+        else if(deltaY > STEP)
+            changeY = STEP;
+        else if(deltaY > 0)
+            changeY = deltaY;
+        
+        //Update the x,y coordinates of the connection point for obj1 based on the new location.
+        group.obj1x = group.obj1x + changeX;
+        group.obj1y = group.obj1y + changeY;
+        
+        //Change the location of the object.
+        group.obj1.style.left = group.obj1.offsetLeft + changeX + "px";
+        group.obj1.style.top = group.obj1.offsetTop + changeY + "px";
+        
+        //Call the function again after a 5000 ms delay.
+        setTimeout(animateGrouping(group), 5000);
+    }
+}
+
+/*
+ * A connection object specifying that a grouping exists between object1 and object2.
+ * x1, y1 represents the hotspot location that belongs to object1. 
+ * x2, y2 represents the hotspot location that belongs to object2.
+ */
+function Connection(object1, x1, y1, object2, x2, y2) {
+    this.obj1 = object1;
+    this.obj1x = x1;
+    this.obj1y = y1;
+    this.obj2 = object2;
+    this.obj2x = x2;
+    this.obj2y = y2
 }
 
 /*
@@ -173,12 +249,14 @@ function groupObjectsAtLoc(object1, x1, y1, object2, x2, y2) {
  * Return these object ids in a 2D array (of n x 2), where each row represents a link between two objects and is separated
  * by a semicolon. Each element in the row is separated by a comma.
  */
-function getGroupedObjectsString(object) {
+/*function getGroupedObjectsString(object) {
     //Get objects this object may be grouped with.
     var groupedWithObjects = new Array();
     
     getGroupedObjectsArray(object, groupedWithObjects);
-
+    
+    //alert("grouped with objects array length in getGroupedObjectsString: " + groupedWithObjects.length);
+    
     if(groupedWithObjects.length > 0) {
         var objGroupString = groupedWithObjects[0][0].id + ", " + groupedWithObjects[0][1].id;
     
@@ -186,6 +264,28 @@ function getGroupedObjectsString(object) {
             objGroupString = objGroupString + "; " + groupedWithObjects[i][0].id + ", " + groupedWithObjects[i][1].id;
         }
     
+        return objGroupString;
+    }
+    else
+        return null;
+}*/
+
+function getGroupedObjectsString(object) {
+    //Get objects this object may be grouped with.
+    var groupedWithObjects = new Array();
+    
+    getGroupedObjectsArray(object, groupedWithObjects);
+    
+    if(groupedWithObjects.length > 0) {
+        var group = groupedWithObjects[0];
+        var objGroupString = group.obj1.id + ", " + group.obj2.id;
+        
+        for(var i = 1; i < groupedWithObjects.length; i ++) {
+            group = groupedWithObjects[i];
+            
+            objGroupString = objGroupString + "; " + group.obj1.id + ", " + group.obj2.id;
+        }
+        
         return objGroupString;
     }
     else
@@ -198,7 +298,7 @@ function getGroupedObjectsString(object) {
  * In this case groupedObjects will be an array of pairs of objects that are grouped together. 
  * TODO: come back to this and see if this and getObjectsGroupedWithObject can be combined.
  */
-function getGroupedObjectsArray(object, groupedObjects) {
+/*function getGroupedObjectsArray(object, groupedObjects) {
     //Go through the entire 2D array.
     for(var i = 0; i < groupings.length; i++) {
         if(object.id == groupings[i][0].id) {
@@ -218,6 +318,30 @@ function getGroupedObjectsArray(object, groupedObjects) {
             }
         }
     }
+}*/
+
+function getGroupedObjectsArray(object, groupedObjects) {
+    //Go through the entire 2D array.
+    for(var i = 0; i < groupings.length; i++) {
+        var group = groupings[i];
+        
+        if(object.id == group.obj1.id) {
+            if(!pairInList(group.obj1, group.obj2, groupedObjects)) {
+                //alert(group.obj1.id + " and " + group.obj2.id + " are not in the connections list, adding them now");
+                
+                groupedObjects[groupedObjects.length] = group;
+                getGroupedObjectsArray(group.obj2, groupedObjects);
+            }
+        }
+        else if(object.id == group.obj2.id) {
+            if(!pairInList(group.obj1, group.obj2, groupedObjects)) {
+                //alert(group.obj1.id + " and " + group.obj2.id + " are not in the connections list, adding them now");
+                
+                groupedObjects[groupedObjects.length] = group;
+                getGroupedObjectsArray(group.obj1, groupedObjects);
+            }
+        }
+    }
 }
 
 /* 
@@ -225,7 +349,7 @@ function getGroupedObjectsArray(object, groupedObjects) {
  * Need to recursively check objects due to the fact that 3 or more objects may be grouped at different times.
  * Return the list of objects that are all grouped together. 
  */
-function getObjectsGroupedWithObject(object, groupedObjects) {
+/*function getObjectsGroupedWithObject(object, groupedObjects) {
     //Go through the entire 2D array.
     for(var i = 0; i < groupings.length; i++) {
         if(object.id == groupings[i][0].id) {
@@ -238,6 +362,26 @@ function getObjectsGroupedWithObject(object, groupedObjects) {
             if(!objectInList(groupings[i][0], groupedObjects)) {
                 groupedObjects[groupedObjects.length] = groupings[i][0];
                 getObjectsGroupedWithObject(groupings[i][0], groupedObjects);
+            }
+        }
+    }
+}*/
+
+function getObjectsGroupedWithObject(object, groupedObjects) {
+    //Go through the entire 2D array.
+    for(var i = 0; i < groupings.length; i++) {
+        var group = groupings[i];
+        
+        if(object.id == group.obj1.id) {
+            if(!objectInList(group.obj2, groupedObjects)) {
+                groupedObjects[groupedObjects.length] = group.obj2;
+                getObjectsGroupedWithObject(group.obj2, groupedObjects);
+            }
+        }
+        else if(object.id == group.obj2.id) {
+            if(!objectInList(group.obj1, groupedObjects)) {
+                groupedObjects[groupedObjects.length] = group.obj1;
+                getObjectsGroupedWithObject(group.obj1, groupedObjects);
             }
         }
     }
@@ -260,29 +404,56 @@ function objectInList(object, objectList) {
  * Checks to see if the pair of objects are in the list so it isn't added again.
  * TODO: come back to this and see if this and objectInList can be combined.
  */
-function pairInList(object1, object2, objectList) {
+/*function pairInList(object1, object2, objectList) {
     for(var i = 0; i < objectList.length; i ++) {
         if((object1.id == objectList[i][0].id) && (object2.id == objectList[i][1].id)) {
-            //alert("in if, object1 id: " + object1.id + " object2 id: " + object2.id)
+            //alert("in if, object1 id: " + object1.id + " object2 id: " + object2.id);
             return true;
         }
         else if((object1.id == objectList[i][1]) && (object2.id == objectList[i][0].id)) {
-            //alert("in else if, object1 id: " + object1.id + " object2 id: " + object2.id)
+            //alert("in else if, object1 id: " + object1.id + " object2 id: " + object2.id);
             return true;
         }
     }
     
     return false;    
+}*/
+function pairInList(object1, object2, objectList) {
+    for(var i = 0; i < objectList.length; i ++) {
+        var group = objectList[i];
+        
+        if((object1.id == group.obj1.id) && (object2.id == group.obj2.id)) {
+            return true;
+        }
+        else if((object1.id == group.obj2.id) && (object2.id == group.obj1.id)) {
+            return true;
+        }
+    }
+ 
+    return false;
 }
 
 /*
  * Returns the index at which the objects are in the array if object1 and object 2 are grouped together, and -1 otherwise.
  */
-function areObjectsGrouped(object1, object2) {
+/*function areObjectsGrouped(object1, object2) {
     for(var i = 0; i < groupings.length; i ++) {
         if((object1.id == groupings[i][0].id) && (object2.id == groupings[i][1].id))
             return i;
         else if((object2.id == groupings[i][0].id) && (object1.id == groupings[i][1].id))
+            return i;
+    }
+    
+    return -1;
+}*/
+
+function areObjectsGrouped(object1, object2) {
+    for(var i = 0; i < groupings.length; i ++) {
+        var group = groupings[i];
+        
+        if((object1.id == group.obj1.id) && (object2.id == group.obj2.id))
+            return i;
+        else if((object2.id == group.obj1.id) && (object1.id == group.obj2.id))
             return i;
     }
     
@@ -293,17 +464,73 @@ function areObjectsGrouped(object1, object2) {
  * Ungroups 2 objects from each other.
  */
 function ungroupObjects(object1, object2) {
-    //alert("ungrouping objects");
     //Get the index at which the objects are grouped.
     var areGrouped = areObjectsGrouped(object1, object2);
-        
+    
     //Make sure they are grouped, and if they are, ungroup them.
     if(areGrouped > -1) {
-        //alert("ungrouping " + object1.id + " and " + object2.id);
-        //alert("groupings length before ungrouping: " + groupings.length);
+        //Grab the reference to the connection that needs to be removed so that animation can occur.
+        var group = groupings[areGrouped];
+        
+        //Remove the connection.
         groupings.splice(areGrouped, 1);
-        //alert("groupings length after ungrouping: " + groupings.length);
+
+        //Animate the ungrouping.
+        animateUngrouping(group);
     }
+}
+
+/*
+ * Animate the ungrouping by moving the objects away from each other. 
+ * Do so by ensuring that the objects no longer overlap and by putting a 50 pixel space in between them.
+ * Keep in mind that objects should not be moved off screen when doing so.
+ * Both objects should animate, not just one and the calculation will be based on the hotspots at which the two were connected.
+ */
+function animateUngrouping(group) {
+    //Figure out which is the left most and which is the right most object. The left most object will move left and the right most object will move right. TODO: What implications does this have for the rest of the scene? For example, when the left most object is also one connected to an object to its right. Do we want to put in additional rules to deal with this, or are we going to calculate the "left-most" and "right-most" objects as whatever groups of objects we'll need to move.
+
+    //Below is code copied from animateGrouping to use as a reference. Delete when done with this function.
+    /*var deltaX = group.obj2x - group.obj1x;
+    var deltaY = group.obj2y - group.obj1y;
+    
+    //Check to see whether there is more animation to be done (assume that deltaX and deltaY will both be 0 if no more animation needs to occur.
+    if((deltaX != 0) || (deltaY != 0)) {
+        //used for the specific change that occurs on this animation turn.
+        var changeX = 0;
+        var changeY = 0;
+        
+        //Check to see if delta change is greater than the step size (currently 5 pixels), and whether it's positive or negative.
+        //Use this information to determine how much to move on this turn.
+        var STEP = 5;
+        if(deltaX < -STEP)
+            changeX = -STEP;
+        else if(deltaX < 0)
+            changeX = deltaX;
+        else if(deltaX > STEP)
+            changeX = STEP;
+        else if(deltaX > 0)
+            changeX = deltaX;
+        
+        if(deltaY < -STEP)
+            changeY = -STEP;
+        else if(deltaY < 0)
+            changeY = deltaY;
+        else if(deltaY > STEP)
+            changeY = STEP;
+        else if(deltaY > 0)
+            changeY = deltaY;
+        
+        //Update the x,y coordinates of the connection point for obj1 based on the new location.
+        group.obj1x = group.obj1x + changeX;
+        group.obj1y = group.obj1y + changeY;
+        
+        //Change the location of the object.
+        group.obj1.style.left = group.obj1.offsetLeft + changeX + "px";
+        group.obj1.style.top = group.obj1.offsetTop + changeY + "px";
+        
+        //Call the function again after a 5000 ms delay.
+        setTimeout(animateGrouping(group), 5000);
+    }*/
 }
 
 /*
@@ -357,8 +584,8 @@ function drawHotspot(x, y, color) {
 
 /*function drawHotspot(x, y, color) {
     var canvas = document.getElementById('overlay');
-
-    //Instead of having to do this, figure out how to properly make it the right size in the epub or through css. 
+    
+    //Instead of having to do this, figure out how to properly make it the right size in the epub or through css.
     //canvas.width = window.innerWidth;
     //canvas.height = window.innerHeight;
     
@@ -382,6 +609,7 @@ function clearCanvas() {
 
 /*function clearCanvas() {
     var canvas = document.getElementById('overlay');
+    //var canvas = document.getElementById('overlayCanvas');
     var context = canvas.getContext('2d');
 
     context.clearRect(0, 0, canvas.width, canvas.height);
