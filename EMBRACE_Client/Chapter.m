@@ -59,11 +59,11 @@
     
     //If we're loading the first page.
     if(currentPage == nil) {
-        NSLog(@"current Page is nil");
+        //NSLog(@"current Page is nil");
         return [[pages objectAtIndex:0] pagePath];
     }
     
-    NSLog(@"current page is not nil...looking for next page");
+    //NSLog(@"current page is not nil...looking for next page");
     
     for(int i = 0; i < [pages count]; i ++) {
         Page* page = [pages objectAtIndex:i];

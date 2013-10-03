@@ -132,7 +132,7 @@
     destination.chapterTitle = self.chapterToOpen;
     
     //Instead of loading the first page, we're going to load the page that was selected.]
-    NSLog(@"chapter to Open: %@", self.chapterToOpen);
+    //NSLog(@"chapter to Open: %@", self.chapterToOpen);
     
     [destination loadFirstPage];
     
@@ -182,7 +182,7 @@
     //NSString *title = [titles objectAtIndex:indexPath.row];
 
     Book* book = [books objectAtIndex:indexPath.section];
-    NSLog(@"in did select item at index path");
+
     NSString *title = [[book title] stringByAppendingString:@" - "];
     title = [title stringByAppendingString:[book author]];
     

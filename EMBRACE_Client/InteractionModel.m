@@ -28,8 +28,8 @@
     return self;
 }
 
-- (void) addRelationship:(NSString*) obj1Id :(NSString*) can :(NSString*) obj2Id {
-    Relationship *relationship = [[Relationship alloc] initWithValues:obj1Id :can :obj2Id];
+- (void) addRelationship:(NSString*) obj1Id :(NSString*) can :(NSString*)type :(NSString*) obj2Id {
+    Relationship *relationship = [[Relationship alloc] initWithValues:obj1Id :can :type :obj2Id];
     [relationships addObject:relationship];
 }
 

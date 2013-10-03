@@ -44,6 +44,9 @@
 @synthesize bookImporter;
 @synthesize bookView;
 
+//Used to determine the required proximity of 2 hotspots to group two items together.
+float const groupingProximity = 20.0;
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -199,7 +202,7 @@
         
         //If we've selected a menuItem.
         if(menuItem != -1) {
-            NSLog(@"selected menu item: %d with value: %@", menuItem, [menuDataSource dataObjectAtIndex:menuItem]);
+            //NSLog(@"selected menu item: %d with value: %@", menuItem, [menuDataSource dataObjectAtIndex:menuItem]);
             MenuItemDataSource *dataForItem = [menuDataSource dataObjectAtIndex:menuItem];
             NSArray * objectIds = [dataForItem objectIds]; //get the object Ids for this particular menuItem.
             NSString* obj1 = [objectIds objectAtIndex:0]; //get object 1
@@ -215,10 +218,10 @@
     else {
         //Get the object at that point if it's a manipulation object.
         NSString* imageAtPoint = [self getManipulationObjectAtPoint:location];
-        NSLog(@"location pressed: (%f, %f)", location.x, location.y);
+        //NSLog(@"location pressed: (%f, %f)", location.x, location.y);
         
         //Need to figure out how to properly convert the location given by the locationinView function to one that is similar to that of the webview.
-        NSLog(@"size of bookView: %f x %f", [bookView frame].size.width, [bookView frame].size.height);
+        //NSLog(@"size of bookView: %f x %f", [bookView frame].size.width, [bookView frame].size.height);
         //location of apple should be at 798 x 513 or so.
         //location instead is returned by js as being 764 x 492. Why? And how do I get the coordinates to match so that I can actually pick up the apple? 
         
@@ -235,7 +238,7 @@
         
         NSLog(@"location of apple: (%f, %f) with size: %f x %f", [locationOfAppleLeft floatValue], [locationOfAppleTop floatValue], [widthOfApple floatValue], [heightOfApple floatValue]);*/
         
-        NSLog(@"imageAtPoint: %@", imageAtPoint);
+        //NSLog(@"imageAtPoint: %@", imageAtPoint);
     }
 }
 
@@ -337,7 +340,7 @@
                 NSString* obj2 = [pair objectAtIndex:1]; //get object 2
                 
                 [self ungroupObjects:obj1 :obj2]; //ungroup the objects.
-                NSLog(@"ingrouping two objects");
+                NSLog(@"ungrouping two objects");
             }
             else
                 NSLog(@"no items grouped");
@@ -358,7 +361,7 @@
             
             //Get the object at that point if it's a manipulation object.
             NSString* imageAtPoint = [self getManipulationObjectAtPoint:location];
-            NSLog(@"location pressed: (%f, %f)", location.x, location.y);
+            //NSLog(@"location pressed: (%f, %f)", location.x, location.y);
             
             //Print the location of the apple for the moment, and the size and width of the apple.
             /*NSString *requestLocationOfAppleTop = [NSString stringWithFormat:@"apple.offsetTop"];
@@ -373,7 +376,7 @@
 
             NSLog(@"location of apple: (%f, %f) with size: %f x %f", [locationOfAppleLeft floatValue], [locationOfAppleTop floatValue], [widthOfApple floatValue], [heightOfApple floatValue]);*/
             
-            NSLog(@"imageAtPoint: %@", imageAtPoint);
+            //NSLog(@"imageAtPoint: %@", imageAtPoint);
             
             //if it's an image that can be moved, then start moving it.
             if(imageAtPoint != nil) {
@@ -387,9 +390,10 @@
                 NSString* imageAtPointTop = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointTop];
                 NSString* imageAtPointLeft = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointLeft];
                 
-                NSLog(@"location of %@: (%@, %@)", imageAtPoint, imageAtPointLeft, imageAtPointTop);
-                NSLog(@"location of click: (%f, %f)", location.x, location.y);
+                //NSLog(@"location of %@: (%@, %@)", imageAtPoint, imageAtPointLeft, imageAtPointTop);
+                //NSLog(@"location of click: (%f, %f)", location.x, location.y);
                 
+                //TODO: See if this calcuation can be pulled out of this function into it's own function. I think variants of this calcuation have to happen throughout the code, so it would be worthwhile to have a function that does this.
                 //Check to see if the locations returned are in percentages. If they are, change them to pixel values based on the size of the screen.
                 NSRange rangePercentTop = [imageAtPointTop rangeOfString:@"%"];
                 NSRange rangePercentLeft = [imageAtPointLeft rangeOfString:@"%"];
@@ -423,7 +427,7 @@
                 NSString* overlapArrayString = [bookView stringByEvaluatingJavaScriptFromString:overlappingObjects];
                 
                 if(![overlapArrayString isEqualToString:@""]) {
-                    NSLog(@"overlapping with: %@", overlapArrayString);
+                    //NSLog(@"overlapping with: %@", overlapArrayString);
                     
                     NSArray* overlappingWith = [overlapArrayString componentsSeparatedByString:@", "];
                     
@@ -431,9 +435,7 @@
                         NSMutableArray* hotspots = [model getHotspotsForObjectOverlappingWithObject:movingObjectId :objId];
                         NSMutableArray* movingObjectHotspots = [model getHotspotsForObjectOverlappingWithObject:objId :movingObjectId];
                         
-                        //TODO: Stuff here.
-                        
-                        //Figure out if one of the hotspots from the object we're moving is within close distance of one of the hotspots from the overlapping object. If it is, then group them based on that hotspot.
+                       //Figure out if one of the hotspots from the object we're moving is within close distance of one of the hotspots from the overlapping object. If it is, then group them based on that hotspot.
                         for(Hotspot* hotspot in hotspots) {
                             for(Hotspot* movingObjectHotspot in movingObjectHotspots) {
                                 //Need to calculate exact pixel locations of both hotspots and then make sure they're within a specific distance of each other.
@@ -444,12 +446,32 @@
                                 float deltaX = fabsf(movingObjectHotspotLoc.x - hotspotLoc.x);
                                 float deltaY = fabsf(movingObjectHotspotLoc.y - hotspotLoc.y);
                                 
-                                //For the moment, we'll use 50 px as the acceptable radius to snap two objects together.
-                                if(deltaX <= 50 && deltaY <= 50) {
+                                //Check to make sure that the two hotspots are in close proximity to each other.
+                                //TODO: Possibly move a lot of this over the the JS side. Ask JS to come up with a list of reasonable connection points.
+                                //TODO: There's a logic bug in the code currently, in which this code actually goes through all possible hotspots and checks them all, even if it found a hotspot that's reasonable. This both does and doesn't make sense at the same time. In order to figure out when transference has to occur, all hotspots must be checked. Similarly, in order to figure out when there's ambiguity in possible connections all hotspots must be checked. On the other hand, no more than 1 connection should be made per interaction. The current code is making multiple connections per interactions, and this is wrong.
+                                if(deltaX <= groupingProximity && deltaY <= groupingProximity) {
                                     //We also want to go ahead and snap the objects in place based on the hotspots so we need to calculate the (x,y) positions of each of these objects such that the hotspots are in the same spot. How do we do this?
                                     
-                                    NSString *groupObjects = [NSString stringWithFormat:@"groupObjectsAtLoc(%@, %f, %f, %@, %f, %f)", movingObjectId, movingObjectHotspotLoc.x, movingObjectHotspotLoc.y, objId, hotspotLoc.x, hotspotLoc.y];
-                                    [bookView stringByEvaluatingJavaScriptFromString:groupObjects];
+                                    //Check to see if either of these hotspots are currently connected to another objects.
+                                    //If not, then go ahead and group...if they are, then we have to create a menu to show the possibilities of how the objects could be connected.
+                                    NSString *isHotspotConnectedMovingObject = [NSString stringWithFormat:@"isObjectGroupedAtHotspot(%@, %f, %f)", movingObjectId, movingObjectHotspotLoc.x, movingObjectHotspotLoc.y];
+                                    NSString* isHotspotConnectedMovingObjectString  = [bookView stringByEvaluatingJavaScriptFromString:isHotspotConnectedMovingObject];
+                                    
+                                    NSString *isHotspotConnectedObject = [NSString stringWithFormat:@"isObjectGroupedAtHotspot(%@, %f, %f)", objId, hotspotLoc.x, hotspotLoc.y];
+                                    NSString* isHotspotConnectedObjectString  = [bookView stringByEvaluatingJavaScriptFromString:isHotspotConnectedObject];
+                                    
+                                    NSLog(@"moving object hotspot connected: %@", isHotspotConnectedMovingObjectString);
+                                    NSLog(@"Static object hotspot connected: %@", isHotspotConnectedObjectString);
+                                    
+                                    //Only connect the two if the hotspots are free for the moment.
+                                    if([isHotspotConnectedMovingObjectString isEqualToString:@"false"] && [isHotspotConnectedObjectString isEqualToString:@"false"]) {
+
+                                        NSString *groupObjects = [NSString stringWithFormat:@"groupObjectsAtLoc(%@, %f, %f, %@, %f, %f)", movingObjectId, movingObjectHotspotLoc.x, movingObjectHotspotLoc.y, objId, hotspotLoc.x, hotspotLoc.y];
+                                        [bookView stringByEvaluatingJavaScriptFromString:groupObjects];
+                                    }
+                                    else {
+                                        NSLog(@"at least one object's hotspot is already taken");
+                                    }
                                 }
                                     
                             }
@@ -477,7 +499,7 @@
             NSString* overlapArrayString = [bookView stringByEvaluatingJavaScriptFromString:overlappingObjects];
             
             if(![overlapArrayString isEqualToString:@""]) {
-                NSLog(@"overlapping with: %@", overlapArrayString);
+                //NSLog(@"overlapping with: %@", overlapArrayString);
             
                 NSArray* overlappingWith = [overlapArrayString componentsSeparatedByString:@", "];
                             
@@ -558,7 +580,7 @@
     //Check to see if the image is being moved outside of any bounding boxes. At this point in time, each object only has 1 movemet constraint associated with it and the movement constraint is a bounding box. The bounding box is in relative (percentage) values to the background object.
     NSArray* constraints = [model getMovementConstraintsForObjectId:object];
     
-    NSLog(@"location of image being moved adjusted for point clicked: (%f, %f) size of image: %f x %f", adjLocation.x, adjLocation.y, imageWidth, imageHeight);
+    //NSLog(@"location of image being moved adjusted for point clicked: (%f, %f) size of image: %f x %f", adjLocation.x, adjLocation.y, imageWidth, imageHeight);
     
     //If there are movement constraints for this object.
     //TODO: come back to this and figure out why the slight shift. 
@@ -573,7 +595,7 @@
         float boxWidth = [constraint.width floatValue] / 100.0 * [bookView frame].size.width;
         float boxHeight = [constraint.height floatValue] / 100.0 * [bookView frame].size.height;
         
-        NSLog(@"location of bounding box: (%f, %f) and size of bounding box: %f x %f", boxX, boxY, boxWidth, boxHeight);
+        //NSLog(@"location of bounding box: (%f, %f) and size of bounding box: %f x %f", boxX, boxY, boxWidth, boxHeight);
         
         //Ensure that the image is not being moved outside of its bounding box.
         if(adjLocation.x + imageWidth > boxX + boxWidth)
@@ -598,7 +620,7 @@
     
     //May want to add code to keep objects from moving to the location that the text is taking up on screen.
 
-    NSLog(@"new location of %@: (%f, %f)", object, adjLocation.x, adjLocation.y);
+    //NSLog(@"new location of %@: (%f, %f)", object, adjLocation.x, adjLocation.y);
     //Call the moveObject function in the js file.
     NSString *move = [NSString stringWithFormat:@"moveObject(%@, %f, %f)", object, adjLocation.x, adjLocation.y];
     [bookView stringByEvaluatingJavaScriptFromString:move];

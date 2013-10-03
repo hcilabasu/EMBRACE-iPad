@@ -435,9 +435,10 @@
     for(GDataXMLElement *relationship in relationships){
         NSString* obj1Id = [[relationship attributeForName:@"obj1Id"] stringValue];
         NSString* can = [[relationship attributeForName:@"can"] stringValue];
+        NSString* type = [[relationship attributeForName:@"action"] stringValue];
         NSString* obj2Id = [[relationship attributeForName:@"obj2Id"] stringValue];
         
-        [model addRelationship:obj1Id :can :obj2Id];
+        [model addRelationship:obj1Id :can :type :obj2Id];
     }
     
     //Read in the Constraints

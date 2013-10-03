@@ -24,8 +24,6 @@
     self = [super init];
     if (self) {
         data = [[NSMutableArray alloc] init];
-        
-        NSLog(@"in contextual menu controller init");
     }
     return self;
 }

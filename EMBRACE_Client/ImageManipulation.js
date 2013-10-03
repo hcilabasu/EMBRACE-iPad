@@ -225,7 +225,7 @@ function animateGrouping(group) {
         group.obj1.style.left = group.obj1.offsetLeft + changeX + "px";
         group.obj1.style.top = group.obj1.offsetTop + changeY + "px";
         
-        //Call the function again after a 5000 ms delay.
+        //Call the function again after a 200 ms delay. TODO: Figure out why the delay isn't working.
         setTimeout(animateGrouping(group), 5000);
     }
 }
@@ -458,6 +458,41 @@ function areObjectsGrouped(object1, object2) {
     }
     
     return -1;
+}
+
+/* 
+ * Checks to see if a particular hotspot for an object is already connected to another object.
+ * This is necessary to ensure that we're not trying to connect two objects to the same hotspot. 
+ * It's possible that at some point in time we want to allow multiple objects to connect to the same hotspot based on the object.
+ * If so, a property should be added specifying the maximum number of connections that can be made to any one hotspot at a time.
+ * For now, we assume this maximum is one for all objects. 
+ * TODO: Need to make sure this still works if groupings are moved after created. Not sure that the hotspots are currently kept updated.
+ */
+function isObjectGroupedAtHotspot(object, x, y) {
+    //alert("number of groupings: " + groupings.length);
+    
+    for(var i = 0; i < groupings.length; i ++) {
+        var group = groupings[i];
+        
+        if(object.id == group.obj1.id) {
+            //alert("found object " + object.id + " for hotspot location: (" + group.obj1x + ", " + group.obj1y + ") grouped with " + group.obj2.id + " and comparing to (" + x + ", " + y + ")");
+            
+            if((x == group.obj1x) && (y == group.obj1y)) {
+                //alert("returning true");
+                return true;
+            }
+        }
+        else if(object.id == group.obj2.id) {
+            //alert("found object " + object.id + " for hotspot location: (" + group.obj2x + ", " + group.obj2y +") grouped with " + group.obj1.id + " and comparing to (" + x + ", " + y + ")");
+            
+            if((x == group.obj2x) && (y == group.obj2y)) {
+                //alert("returning true");
+                return true;
+            }
+        }
+    }
+    
+    return false;
 }
 
 /* 

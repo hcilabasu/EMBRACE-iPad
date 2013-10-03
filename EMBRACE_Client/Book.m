@@ -86,7 +86,7 @@
 
 //This is the base URL for the book.
 - (NSString*) getHTMLURL {
-    NSLog(@"in getHTMLURL");
+    //NSLog(@"in getHTMLURL");
     NSString* idPage = [itemOrder objectAtIndex:0];
     NSString* page = [bookItems objectForKey:idPage];
     NSString* url = [self.mainContentPath stringByAppendingString:page];
