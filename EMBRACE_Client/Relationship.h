@@ -20,6 +20,8 @@
 @property (nonatomic, strong) NSString* action;
 @property (nonatomic, strong) NSString* actionType;
 
+extern NSSet *actionTypes; //Contains the relevant actionTypes that we're looking for. Currently just "group" and "disappear".
+
 - (id) initWithValues:(NSString*)obj1Id :(NSString*)can :(NSString*)type :(NSString*) obj2Id;
 
 @end

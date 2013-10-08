@@ -40,11 +40,42 @@
     
     for(Relationship *relation in relationships) {
         if(([[relation object1Id] isEqualToString:obj1Id] && [[relation object2Id] isEqualToString:obj2Id]) || ([[relation object1Id] isEqualToString:obj2Id] && [[relation object2Id] isEqualToString:obj1Id])) {
-            [relationshipsBetweenObjects addObject:relation];
+            //filter based on valid action types.
+            if([actionTypes containsObject:[relation actionType]])
+                [relationshipsBetweenObjects addObject:relation];
         }
     }
     
     return relationshipsBetweenObjects;
+}
+
+- (Relationship*) getRelationshipForObjectsForAction:(NSString*)obj1Id :(NSString*)obj2Id :(NSString*)action {
+    for(Relationship *relation in relationships) {
+        if(([[relation object1Id] isEqualToString:obj1Id] && [[relation object2Id] isEqualToString:obj2Id]) || ([[relation object1Id] isEqualToString:obj2Id] && [[relation object2Id] isEqualToString:obj1Id])) {
+ 
+            //Check to make sure the action is appropriate and filter based on valid action types.
+            if(([[relation action] isEqualToString:action]) && ([actionTypes containsObject:[relation actionType]]))
+                return relation;
+        }
+    }
+    
+    return nil;
+    
+}
+
+-(NSMutableArray*) getRelationshipForObjectForAction:(NSString*) obj1Id :(NSString*)action {
+    NSMutableArray* relationshipsBetweenObjects = [[NSMutableArray alloc] init];
+
+    for(Relationship *relation in relationships) {
+        if([[relation object1Id] isEqualToString:obj1Id] || [[relation object2Id] isEqualToString:obj1Id]) {
+            //Check to make sure we have the correct action.
+            if([[relation action] isEqualToString:action])
+                [relationshipsBetweenObjects addObject:relation];
+        }
+    }
+    
+    return relationshipsBetweenObjects;
+    
 }
 
 -(void) addMovementConstraint:(NSString*) objectId :(NSString*) action :(NSString*) originX :(NSString*) originY :(NSString*) width :(NSString*)height {
@@ -147,6 +178,17 @@
     }
     
     return hotspotsForObject;
+}
+
+-(Hotspot*) getHotspotforObjectWithActionAndRole:(NSString*)obj :(NSString*)action :(NSString*)role {
+    NSMutableArray* hotspotsForObject = [self getHotspotsForObjectId:obj];
+    
+    for(Hotspot* hotspot in hotspotsForObject) {
+        if(([[hotspot action] isEqualToString:action]) && ([[hotspot role] isEqualToString:role]))
+            return hotspot;
+    }
+    
+    return nil;
 }
 
 -(void) addSentenceMetadata {

@@ -41,8 +41,11 @@
 - (NSMutableArray*) getAllHotspots; //Return all hotspots for all objects.
 - (NSMutableArray*) getHotspotsForObjectId:(NSString* )objId; //Return all hotspots for object with objId.
 -(NSMutableArray*) getHotspotsForObjectOverlappingWithObject:(NSString*) obj1 :(NSString*) obj2;
+-(Hotspot*) getHotspotforObjectWithActionAndRole:(NSString*)obj :(NSString*)action :(NSString*)role; //Returns the hotspot for the specified object relevant to the specified action and role. The assumption is that the combination of those three is unique.
 
-//- (NSMutableArray*) getRelationshipsForObjects:(NSString*)obj1Id :(NSString*)obj2Id;
+- (NSMutableArray*) getRelationshipsForObjects:(NSString*)obj1Id :(NSString*)obj2Id; //Returns all relationships between two objects.
+- (Relationship*) getRelationshipForObjectsForAction:(NSString*)obj1Id :(NSString*)obj2Id :(NSString*)action; //Returns the relationship between two objects taking into account the action that we're interested in.
+-(NSMutableArray*) getRelationshipForObjectForAction:(NSString*) obj1Id :(NSString*)action; //Returns a list of the relationships between the specified object and all other objects with the given action.
 
 - (NSMutableArray*) getMovementConstraintsForObjectId:(NSString*)objId;
 

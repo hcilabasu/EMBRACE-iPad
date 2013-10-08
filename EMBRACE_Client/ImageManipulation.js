@@ -606,7 +606,7 @@ function clearAllHighlighted() {
         removeHighlight(manipulationObjects[i]);
 }
 
-function drawHotspot(x, y, color) {
+/*function drawHotspot(x, y, color) {
     //Create jsColor object
     var col = new jsColor(color);
     
@@ -615,9 +615,9 @@ function drawHotspot(x, y, color) {
     
     //Draw filled circle with pt1 as center point and radius 30.
     overlayGraphics.fillCircle(col,pt1,10);
-}
+}*/
 
-/*function drawHotspot(x, y, color) {
+function drawHotspot(x, y, color) {
     var canvas = document.getElementById('overlay');
     
     //Instead of having to do this, figure out how to properly make it the right size in the epub or through css.
@@ -636,16 +636,16 @@ function drawHotspot(x, y, color) {
     context.arc(x, y, radius, 0, 2 * Math.PI, false);
     context.fillStyle = color;
     context.fill();
-}*/
-
-function clearCanvas() {
-    overlayGraphics.clear();
 }
 
 /*function clearCanvas() {
+    overlayGraphics.clear();
+}*/
+
+function clearCanvas() {
     var canvas = document.getElementById('overlay');
     //var canvas = document.getElementById('overlayCanvas');
     var context = canvas.getContext('2d');
 
     context.clearRect(0, 0, canvas.width, canvas.height);
-}*/
+}

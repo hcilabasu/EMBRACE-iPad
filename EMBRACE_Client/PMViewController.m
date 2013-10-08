@@ -21,7 +21,7 @@
     BOOL sepearatingObject; //True if two objects are currently being ungrouped, false otherwise.
     
     BOOL pinching;
-        
+    
     CGPoint delta; //distance between the top-left corner of the image being moved and the point clicked.
     
     ContextualMenuDataSource *menuDataSource;
@@ -135,12 +135,6 @@ float const groupingProximity = 20.0;
         NSString* setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, .5)", i + 1];
         [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
     }
-    
-    //For the moment, lets go ahead and draw all the hotspots now.
-    /*InteractionModel *model = [book model];
-    
-    NSMutableArray* hotspots = [model getAllHotspots];
-    [self drawHotspots:hotspots];*/
 }
 
 //creates pages and the content
@@ -191,7 +185,8 @@ float const groupingProximity = 20.0;
 
 #pragma mark - Responding to gestures
 /*
- Tap gesture. Currently only used for menu selection. 
+ * Tap gesture. Currently only used for menu selection.
+ * TODO: We need to come back to this function and figure out a way to distinguish between a menu that's created for disambiguation of possible grouping/disappearing interactions and a menu that's created for ungrouping objects. Right now this function only handles ungrouping. This will be directly relevant to both the conditions.
  */
 - (IBAction)tapGesturePerformed:(UITapGestureRecognizer *)recognizer {
     CGPoint location = [recognizer locationInView:self.view];
@@ -217,33 +212,13 @@ float const groupingProximity = 20.0;
     }
     else {
         //Get the object at that point if it's a manipulation object.
-        NSString* imageAtPoint = [self getManipulationObjectAtPoint:location];
+        //NSString* imageAtPoint = [self getManipulationObjectAtPoint:location];
         //NSLog(@"location pressed: (%f, %f)", location.x, location.y);
-        
-        //Need to figure out how to properly convert the location given by the locationinView function to one that is similar to that of the webview.
-        //NSLog(@"size of bookView: %f x %f", [bookView frame].size.width, [bookView frame].size.height);
-        //location of apple should be at 798 x 513 or so.
-        //location instead is returned by js as being 764 x 492. Why? And how do I get the coordinates to match so that I can actually pick up the apple? 
-        
-        //Print the location of the apple for the moment, and the size and width of the apple.
-        /*NSString *requestLocationOfAppleTop = [NSString stringWithFormat:@"apple.offsetTop"];
-        NSString *requestLocationOfAppleLeft = [NSString stringWithFormat:@"apple.offsetLeft"];
-        NSString* locationOfAppleTop = [bookView stringByEvaluatingJavaScriptFromString:requestLocationOfAppleTop];
-        NSString* locationOfAppleLeft = [bookView stringByEvaluatingJavaScriptFromString:requestLocationOfAppleLeft];
-        
-        NSString *requestWidthOfApple = [NSString stringWithFormat:@"apple.offsetWidth"];
-        NSString *requestHeightOfApple = [NSString stringWithFormat:@"apple.offsetHeight"];
-        NSString* widthOfApple = [bookView stringByEvaluatingJavaScriptFromString:requestWidthOfApple];
-        NSString* heightOfApple = [bookView stringByEvaluatingJavaScriptFromString:requestHeightOfApple];
-        
-        NSLog(@"location of apple: (%f, %f) with size: %f x %f", [locationOfAppleLeft floatValue], [locationOfAppleTop floatValue], [widthOfApple floatValue], [heightOfApple floatValue]);*/
-        
-        //NSLog(@"imageAtPoint: %@", imageAtPoint);
     }
 }
 
 /*
- Long press gesture. Either tap or long press can be used for definitions. 
+ * Long press gesture. Either tap or long press can be used for definitions.
  */
 -(IBAction)longPressGesturePerformed:(UILongPressGestureRecognizer *)recognizer {
     //This is the location of the point in the parent UIView, not in the UIWebView.
@@ -258,7 +233,7 @@ float const groupingProximity = 20.0;
 }
 
 /*
- Pinch gesture. Used to ungroup two images from each other.
+ * Pinch gesture. Used to ungroup two images from each other.
  */
 -(IBAction)pinchGesturePerformed:(UIPinchGestureRecognizer *)recognizer {
     CGPoint location = [recognizer locationInView:self.view];
@@ -355,7 +330,8 @@ float const groupingProximity = 20.0;
 -(IBAction)panGesturePerformed:(UIPanGestureRecognizer *)recognizer {
     CGPoint location = [recognizer locationInView:self.view];
     
-    if(!pinching) { //This should work with requireGestureRecognizerToFail:pinchRecognizer but it doesn't currently.
+    //This should work with requireGestureRecognizerToFail:pinchRecognizer but it doesn't currently.
+    if(!pinching) {
         if(recognizer.state == UIGestureRecognizerStateBegan) {
             //NSLog(@"pan gesture began at location: (%f, %f)", location.x, location.y);
             
@@ -363,122 +339,38 @@ float const groupingProximity = 20.0;
             NSString* imageAtPoint = [self getManipulationObjectAtPoint:location];
             //NSLog(@"location pressed: (%f, %f)", location.x, location.y);
             
-            //Print the location of the apple for the moment, and the size and width of the apple.
-            /*NSString *requestLocationOfAppleTop = [NSString stringWithFormat:@"apple.offsetTop"];
-            NSString *requestLocationOfAppleLeft = [NSString stringWithFormat:@"apple.offsetLeft"];
-            NSString* locationOfAppleTop = [bookView stringByEvaluatingJavaScriptFromString:requestLocationOfAppleTop];
-            NSString* locationOfAppleLeft = [bookView stringByEvaluatingJavaScriptFromString:requestLocationOfAppleLeft];
-
-            NSString *requestWidthOfApple = [NSString stringWithFormat:@"apple.width"];
-            NSString *requestHeightOfApple = [NSString stringWithFormat:@"apple.height"];
-            NSString* widthOfApple = [bookView stringByEvaluatingJavaScriptFromString:requestWidthOfApple];
-            NSString* heightOfApple = [bookView stringByEvaluatingJavaScriptFromString:requestHeightOfApple];
-
-            NSLog(@"location of apple: (%f, %f) with size: %f x %f", [locationOfAppleLeft floatValue], [locationOfAppleTop floatValue], [widthOfApple floatValue], [heightOfApple floatValue]);*/
-            
-            //NSLog(@"imageAtPoint: %@", imageAtPoint);
-            
             //if it's an image that can be moved, then start moving it.
             if(imageAtPoint != nil) {
                 movingObject = TRUE;
                 movingObjectId = imageAtPoint;
                 
                 //Calculate offset between top-left corner of image and the point clicked.
-                NSString* requestImageAtPointTop = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).offsetTop", location.x, location.y];
-                NSString* requestImageAtPointLeft = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).offsetLeft", location.x, location.y];
-                
-                NSString* imageAtPointTop = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointTop];
-                NSString* imageAtPointLeft = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointLeft];
-                
-                //NSLog(@"location of %@: (%@, %@)", imageAtPoint, imageAtPointLeft, imageAtPointTop);
-                //NSLog(@"location of click: (%f, %f)", location.x, location.y);
-                
-                //TODO: See if this calcuation can be pulled out of this function into it's own function. I think variants of this calcuation have to happen throughout the code, so it would be worthwhile to have a function that does this.
-                //Check to see if the locations returned are in percentages. If they are, change them to pixel values based on the size of the screen.
-                NSRange rangePercentTop = [imageAtPointTop rangeOfString:@"%"];
-                NSRange rangePercentLeft = [imageAtPointLeft rangeOfString:@"%"];
-                
-                if(rangePercentTop.location != NSNotFound) {
-                    delta.y = location.y - ([imageAtPointTop floatValue] / 100.0 * [bookView frame].size.height);
-                    //NSLog(@"location top specified in percent. calculated location: %f", [imageAtPointTop floatValue] / 100.0 * [bookView frame].size.height);
-                }
-                else
-                    delta.y = location.y - [imageAtPointTop floatValue];
-                
-                if(rangePercentLeft.location != NSNotFound) {
-                    delta.x = location.x - ([imageAtPointLeft floatValue] / 100.0 * [bookView frame].size.width);
-                    //NSLog(@"location left specified in percent. calculated location: %f", [imageAtPointLeft floatValue] / 100.0 * [bookView frame].size.width);
-                }
-                else
-                    delta.x = location.x - [imageAtPointLeft floatValue];
+                delta = [self calculateDeltaForMovingObjectAtPoint:location];
             }
         }
         else if(recognizer.state == UIGestureRecognizerStateEnded) {
             //NSLog(@"pan gesture ended at location (%f, %f)", location.x, location.y);
             //if moving object, move object to final position.
             if(movingObject) {
-                [self moveObject:movingObjectId :location];
+                [self moveObject:movingObjectId :location :delta];
                 
-                //If we've dropped the object, we want to check and see if it's overlapping with another object.
-                //We also want to double check and make sure that neither of the objects is already grouped with another object at the relevant hotspots. If it is, that means we may need to transfer the grouping, instead of creating a new grouping.
-                //If it is, we have to make sure that the hotspots for the two objects are within a certain radius of each other for the grouping to occur.
-                //If they are, we want to go ahead and group the objects.
-                NSString *overlappingObjects = [NSString stringWithFormat:@"checkObjectOverlapString(%@)", movingObjectId];
-                NSString* overlapArrayString = [bookView stringByEvaluatingJavaScriptFromString:overlappingObjects];
-                
-                if(![overlapArrayString isEqualToString:@""]) {
-                    //NSLog(@"overlapping with: %@", overlapArrayString);
-                    
-                    NSArray* overlappingWith = [overlapArrayString componentsSeparatedByString:@", "];
-                    
-                    for(NSString* objId in overlappingWith) {
-                        NSMutableArray* hotspots = [model getHotspotsForObjectOverlappingWithObject:movingObjectId :objId];
-                        NSMutableArray* movingObjectHotspots = [model getHotspotsForObjectOverlappingWithObject:objId :movingObjectId];
-                        
-                       //Figure out if one of the hotspots from the object we're moving is within close distance of one of the hotspots from the overlapping object. If it is, then group them based on that hotspot.
-                        for(Hotspot* hotspot in hotspots) {
-                            for(Hotspot* movingObjectHotspot in movingObjectHotspots) {
-                                //Need to calculate exact pixel locations of both hotspots and then make sure they're within a specific distance of each other.
-                                CGPoint movingObjectHotspotLoc = [self getHotspotLocation:movingObjectHotspot];
-                                CGPoint hotspotLoc = [self getHotspotLocation:hotspot];
-                                
-                                //calculate delta between the two hotspot locations.
-                                float deltaX = fabsf(movingObjectHotspotLoc.x - hotspotLoc.x);
-                                float deltaY = fabsf(movingObjectHotspotLoc.y - hotspotLoc.y);
-                                
-                                //Check to make sure that the two hotspots are in close proximity to each other.
-                                //TODO: Possibly move a lot of this over the the JS side. Ask JS to come up with a list of reasonable connection points.
-                                //TODO: There's a logic bug in the code currently, in which this code actually goes through all possible hotspots and checks them all, even if it found a hotspot that's reasonable. This both does and doesn't make sense at the same time. In order to figure out when transference has to occur, all hotspots must be checked. Similarly, in order to figure out when there's ambiguity in possible connections all hotspots must be checked. On the other hand, no more than 1 connection should be made per interaction. The current code is making multiple connections per interactions, and this is wrong.
-                                if(deltaX <= groupingProximity && deltaY <= groupingProximity) {
-                                    //We also want to go ahead and snap the objects in place based on the hotspots so we need to calculate the (x,y) positions of each of these objects such that the hotspots are in the same spot. How do we do this?
-                                    
-                                    //Check to see if either of these hotspots are currently connected to another objects.
-                                    //If not, then go ahead and group...if they are, then we have to create a menu to show the possibilities of how the objects could be connected.
-                                    NSString *isHotspotConnectedMovingObject = [NSString stringWithFormat:@"isObjectGroupedAtHotspot(%@, %f, %f)", movingObjectId, movingObjectHotspotLoc.x, movingObjectHotspotLoc.y];
-                                    NSString* isHotspotConnectedMovingObjectString  = [bookView stringByEvaluatingJavaScriptFromString:isHotspotConnectedMovingObject];
-                                    
-                                    NSString *isHotspotConnectedObject = [NSString stringWithFormat:@"isObjectGroupedAtHotspot(%@, %f, %f)", objId, hotspotLoc.x, hotspotLoc.y];
-                                    NSString* isHotspotConnectedObjectString  = [bookView stringByEvaluatingJavaScriptFromString:isHotspotConnectedObject];
-                                    
-                                    NSLog(@"moving object hotspot connected: %@", isHotspotConnectedMovingObjectString);
-                                    NSLog(@"Static object hotspot connected: %@", isHotspotConnectedObjectString);
-                                    
-                                    //Only connect the two if the hotspots are free for the moment.
-                                    if([isHotspotConnectedMovingObjectString isEqualToString:@"false"] && [isHotspotConnectedObjectString isEqualToString:@"false"]) {
+                //If the object was dropped, check if it's overlapping with any other objects that it could interact with.
+                NSMutableArray* possibleInteractions = [self getPossibleInteractions];
 
-                                        NSString *groupObjects = [NSString stringWithFormat:@"groupObjectsAtLoc(%@, %f, %f, %@, %f, %f)", movingObjectId, movingObjectHotspotLoc.x, movingObjectHotspotLoc.y, objId, hotspotLoc.x, hotspotLoc.y];
-                                        [bookView stringByEvaluatingJavaScriptFromString:groupObjects];
-                                    }
-                                    else {
-                                        NSLog(@"at least one object's hotspot is already taken");
-                                    }
-                                }
-                                    
-                            }
-                        }
-                    }
+                //If only 1 possible interaction was found, go ahead and perform that interaction.
+                if([possibleInteractions count] == 1) {
+                    //Check whether the type of interaction is a disappear or group interaction, and call the appropriate function.
+                    
+                    //TODO: Do we also need a specific way to encode a transfer interaction, and if so how do we do that both in the array that we return and when checking to see what we're doing.
                 }
-
+                //If more than 1 was found, prompt the user to disambiguate.
+                else if ([possibleInteractions count] > 1){
+                    //Create data source for menu.
+                    
+                    //Expand menu.
+                    [self expandMenu];
+                }
+                
                 //No longer moving object
                 movingObject = FALSE;
                 movingObjectId = nil;
@@ -489,7 +381,7 @@ float const groupingProximity = 20.0;
             //InteractionModel *model = [book model];
             
             //NSLog(@"pan gesture continued");
-            [self moveObject:movingObjectId :location];
+            [self moveObject:movingObjectId :location :delta];
             
             [self drawHotspots:[model getHotspotsForObjectId:movingObjectId]];
             //If we're overlapping with another object, then we need to figure out which hotspots are currently active and highlight those hotspots.
@@ -513,6 +405,11 @@ float const groupingProximity = 20.0;
     }
 }
 
+/* 
+ * Sends the JS request for the element at the location provided, and takes care of moving any
+ * canvas objects out of the way to get accurate information.
+ * It also checks to make sure the object that is at that point is a manipulation object before returning it.
+ */
 -(NSString*) getManipulationObjectAtPoint:(CGPoint) location {
     //Temporarily hide the overlay canvas to get the object we need
     NSString* hideCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'none';", @"'overlay'"];
@@ -537,7 +434,97 @@ float const groupingProximity = 20.0;
         return nil;
 }
 
--(void) calculateDeltaForMovingObjectAtPoint:(CGPoint) location {
+/*
+ * Returns all possible interactions that can occur between the object being moved and any other objects it's overlapping with.
+ * This function takes into account all hotspots, both available and unavailable. It checkes cases in which all hotspots are 
+ * available, as well as instances in which one hotspots is already taken up by a grouping but the other is not. The function
+ * currently checks both group and disappear interaction types.
+ */
+-(NSMutableArray*) getPossibleInteractions {
+    //TODO: This was copied over directly from the panGesturePerformed function condition in which the recognizer state has ended. Need to update this code to return a list of possible interactions that makes sense instead of doing all this work in this function. Some of this code may need to be moved back to the panGesturePerformed function, while other code may need to be split into other smaller functions. Still other code needs to be added to return the appropriate possible interactions.
+    NSMutableArray* groupings = [[NSMutableArray alloc] init];
+    
+    //We also want to double check and make sure that neither of the objects is already grouped with another object at the relevant hotspots. If it is, that means we may need to transfer the grouping, instead of creating a new grouping.
+    //If it is, we have to make sure that the hotspots for the two objects are within a certain radius of each other for the grouping to occur.
+    //If they are, we want to go ahead and group the objects.
+    NSString *overlappingObjects = [NSString stringWithFormat:@"checkObjectOverlapString(%@)", movingObjectId];
+    NSString* overlapArrayString = [bookView stringByEvaluatingJavaScriptFromString:overlappingObjects];
+    
+    if(![overlapArrayString isEqualToString:@""]) {
+        //NSLog(@"overlapping with: %@", overlapArrayString);
+        
+        NSArray* overlappingWith = [overlapArrayString componentsSeparatedByString:@", "];
+        
+        for(NSString* objId in overlappingWith) {
+            NSMutableArray* hotspots = [model getHotspotsForObjectOverlappingWithObject:movingObjectId :objId];
+            NSMutableArray* movingObjectHotspots = [model getHotspotsForObjectOverlappingWithObject:objId :movingObjectId];
+            
+            //Figure out if one of the hotspots from the object we're moving is within close distance of one of the hotspots from the overlapping object. If it is, then group them based on that hotspot.
+            for(Hotspot* hotspot in hotspots) {
+                for(Hotspot* movingObjectHotspot in movingObjectHotspots) {
+                    //Need to calculate exact pixel locations of both hotspots and then make sure they're within a specific distance of each other.
+                    CGPoint movingObjectHotspotLoc = [self getHotspotLocation:movingObjectHotspot];
+                    CGPoint hotspotLoc = [self getHotspotLocation:hotspot];
+                    
+                    //calculate delta between the two hotspot locations.
+                    float deltaX = fabsf(movingObjectHotspotLoc.x - hotspotLoc.x);
+                    float deltaY = fabsf(movingObjectHotspotLoc.y - hotspotLoc.y);
+                    
+                    //Check to make sure that the two hotspots are in close proximity to each other.
+                    //TODO: Possibly move a lot of this over the the JS side. Ask JS to come up with a list of reasonable connection points.
+                    //TODO: There's a logic bug in the code currently, in which this code actually goes through all possible hotspots and checks them all, even if it found a hotspot that's reasonable. This both does and doesn't make sense at the same time. In order to figure out when transference has to occur, all hotspots must be checked. Similarly, in order to figure out when there's ambiguity in possible connections all hotspots must be checked. On the other hand, no more than 1 connection should be made per interaction. The current code is making multiple connections per interactions, and this is wrong.
+                    if(deltaX <= groupingProximity && deltaY <= groupingProximity) {
+                        //We also want to go ahead and snap the objects in place based on the hotspots so we need to calculate the (x,y) positions of each of these objects such that the hotspots are in the same spot. How do we do this?
+                        
+                        //Check to see if either of these hotspots are currently connected to another objects.
+                        //If not, then go ahead and group...if they are, then we have to create a menu to show the possibilities of how the objects could be connected.
+                        NSString *isHotspotConnectedMovingObject = [NSString stringWithFormat:@"isObjectGroupedAtHotspot(%@, %f, %f)", movingObjectId, movingObjectHotspotLoc.x, movingObjectHotspotLoc.y];
+                        NSString* isHotspotConnectedMovingObjectString  = [bookView stringByEvaluatingJavaScriptFromString:isHotspotConnectedMovingObject];
+                        
+                        NSString *isHotspotConnectedObject = [NSString stringWithFormat:@"isObjectGroupedAtHotspot(%@, %f, %f)", objId, hotspotLoc.x, hotspotLoc.y];
+                        NSString* isHotspotConnectedObjectString  = [bookView stringByEvaluatingJavaScriptFromString:isHotspotConnectedObject];
+                        
+                        NSLog(@"moving object hotspot connected: %@", isHotspotConnectedMovingObjectString);
+                        NSLog(@"Static object hotspot connected: %@", isHotspotConnectedObjectString);
+                        
+                        //Only connect the two if the hotspots are free for the moment, and if the possible relationship between these two objects is of type "group".
+                        //Get the relationship between these two objects so we can check to see what type of relationship it is.
+                        //First we may need to disambiguate. If we do..then what? TODO: Figure this out...I think this is what's happening here. Also need to split this function into smaller pieces again.
+                        Relationship* relationshipBetweenObjects = [model getRelationshipForObjectsForAction:movingObjectId :objId :[movingObjectHotspot action]];
+                        
+                        if([isHotspotConnectedMovingObjectString isEqualToString:@"false"] && [isHotspotConnectedObjectString isEqualToString:@"false"]) {
+                            //TODO: Pretty sure this needs to be moved back up to the panGesturePerformed function, but I need to first establish what the mutable array is going to produce. Doing so may actually fix the bug that's causing the exception to be thrown in the case of disappearing items.
+                            //If they're suppposed to be grouped, go ahead and group them.
+                            if([[relationshipBetweenObjects  actionType] isEqualToString:@"group"]) {
+                                [self groupObjects:movingObjectId :movingObjectHotspotLoc :objId :hotspotLoc];
+                            }
+                            //If one of the objects is supposed to disappear, then we're going to hide the object that is supposed to disappear and make it re-appear at it's "appear" hotspot location.
+                            else if([[relationshipBetweenObjects actionType] isEqualToString:@"disappear"]) {
+                                //Figure out which object is the one that needs to disappear. We can use the relationship information for this. In the relationship, object1 is the one causing the disappearing, and object2 is the one doing the disappearing.
+                                [self consumeAndReplenishSupply:[relationshipBetweenObjects object2Id]];
+                            }
+                        }
+                        else {
+                            NSLog(@"at least one object's hotspot is already taken");
+                        }
+                    }
+                    
+                }
+            }
+        }
+    }
+    
+    return groupings;
+}
+
+/*
+ * Calculates the delta pixel change for the object that is being moved
+ * and changes the lcoation from relative % to pixels if necessary.
+ * TODO: Figure out why this isn't being called anywhere besides the new consumeAndReplenish function.
+ */
+-(CGPoint) calculateDeltaForMovingObjectAtPoint:(CGPoint) location {
+    CGPoint change;
+    
     //Calculate offset between top-left corner of image and the point clicked.
     NSString* requestImageAtPointTop = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).offsetTop", location.x, location.y];
     NSString* requestImageAtPointLeft = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).offsetLeft", location.x, location.y];
@@ -545,30 +532,33 @@ float const groupingProximity = 20.0;
     NSString* imageAtPointTop = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointTop];
     NSString* imageAtPointLeft = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointLeft];
     
-    NSLog(@"location of %@: (%@, %@)", movingObjectId, imageAtPointLeft, imageAtPointTop);
+    //NSLog(@"location of %@: (%@, %@)", movingObjectId, imageAtPointLeft, imageAtPointTop);
     
     //Check to see if the locations returned are in percentages. If they are, change them to pixel values based on the size of the screen.
     NSRange rangePercentTop = [imageAtPointTop rangeOfString:@"%"];
     NSRange rangePercentLeft = [imageAtPointLeft rangeOfString:@"%"];
     
-    if(rangePercentTop.location != NSNotFound) {
-        delta.y = location.y - ([imageAtPointTop floatValue] / 100.0 * [bookView frame].size.height);
-        //NSLog(@"location top specified in percent. calculated location: %f", [imageAtPointTop floatValue] / 100.0 * [bookView frame].size.height);
-    }
+    if(rangePercentTop.location != NSNotFound)
+        change.y = location.y - ([imageAtPointTop floatValue] / 100.0 * [bookView frame].size.height);
     else
-        delta.y = location.y - [imageAtPointTop floatValue];
+        change.y = location.y - [imageAtPointTop floatValue];
     
-    if(rangePercentLeft.location != NSNotFound) {
-        delta.x = location.x - ([imageAtPointLeft floatValue] / 100.0 * [bookView frame].size.width);
-        //NSLog(@"location left specified in percent. calculated location: %f", [imageAtPointLeft floatValue] / 100.0 * [bookView frame].size.width);
-    }
+    if(rangePercentLeft.location != NSNotFound)
+        change.x = location.x - ([imageAtPointLeft floatValue] / 100.0 * [bookView frame].size.width);
     else
-        delta.x = location.x - [imageAtPointLeft floatValue];
+        change.x = location.x - [imageAtPointLeft floatValue];
+    
+    return change;
 }
 
--(void) moveObject:(NSString*) object :(CGPoint) location {
+/*
+ * Moves the object passeed in to the location given. Calculates the difference between the point touched and the
+ * top-left corner of the image, which is the x,y coordate that's actually used when moving the object.
+ * Also ensures that the image is not moved off screen or outside of any specified bounding boxes for the image.
+ */
+-(void) moveObject:(NSString*) object :(CGPoint) location :(CGPoint)offset {
     //Change the location to accounting for the different between the point clicked and the top-left corner which is used to set the position of the image.
-    CGPoint adjLocation = CGPointMake(location.x - delta.x, location.y - delta.y);
+    CGPoint adjLocation = CGPointMake(location.x - offset.x, location.y - offset.y);
     
     //Get the width and height of the image to ensure that the image is not being moved off screen and that the image is being moved in accordance with all movement constraints.
     NSString* requestImageHeight = [NSString stringWithFormat:@"%@.height", object];
@@ -626,11 +616,106 @@ float const groupingProximity = 20.0;
     [bookView stringByEvaluatingJavaScriptFromString:move];
 }
 
+/* 
+ * Calls the JS function to group two objects at the specified hotspots.
+ */
+-(void) groupObjects:(NSString*)object1 :(CGPoint)object1Hotspot :(NSString*)object2 :(CGPoint)object2Hotspot {
+    NSString *groupObjects = [NSString stringWithFormat:@"groupObjectsAtLoc(%@, %f, %f, %@, %f, %f)", object1, object1Hotspot.x, object1Hotspot.y, object2, object2Hotspot.x, object2Hotspot.y];
+    [bookView stringByEvaluatingJavaScriptFromString:groupObjects];
+}
+
+/* 
+ * Calls the JS function to ungroup two objects.
+ */
 -(void) ungroupObjects:(NSString* )object1 :(NSString*) object2 {
     NSString* ungroup = [NSString stringWithFormat:@"ungroupObjects(%@, %@)", object1, object2];
     [bookView stringByEvaluatingJavaScriptFromString:ungroup];
 }
 
+/*
+ * Handles instances in which two objects are connected, but in which the user wants to transfer that grouping to a 
+ * third object. (Example: the farmer puts the hay in the cart. In this case the user is not required to first ungroup the 
+ * hay from the farmer before grouping it with the car, because it's the farmer that's actually doing the action. Instead, 
+ * the application should automatically detect this case, and ungroup the hay from the farmer and group it to the cart directly.
+ * object1 is the object that is doing the action. In this example, it's the farmer. object2 is the object that is being
+ * transfered, in this case the hay. object3 is the object accepting the transfer, in this case the cart. 
+ * In order to properly group the hay and the cart together, we need the hotspots at which they should be grouped.
+ */
+-(void) transferGrouping:(NSString*)object1 :(NSString*)object2 :(CGPoint)object2Hotspot :(NSString*)object3 :(CGPoint)object3Hotspot {
+    //Ungroup object 1 from object 2.
+    [self ungroupObjects:object1 :object2];
+    
+    //Group object 2 and object 3 at the specified hotspots.
+    [self groupObjects:object2 :object2Hotspot :object3 :object3Hotspot];
+}
+
+/*
+ * Call JS code to cause the object to disappear, then calculate where it needs to re-appear and call the JS code to make
+ * it re-appear at the new location.
+ * TODO: Figure out why the object isn't being moved appropriately once I get the new epub.
+ * TODO: Figure out how to deal with instances of transferGrouping + consumeAndReplenishSupply
+ */
+- (void) consumeAndReplenishSupply:(NSString*)disappearingObject {
+    //First hide the object that needs to disappear.
+    NSString* hideObj = [NSString stringWithFormat:@"document.getElementById(%@).style.visibility = 'hidden';", disappearingObject];
+    [bookView stringByEvaluatingJavaScriptFromString:hideObj];
+    
+    //Next move the object to the "appear" hotspot location. This means finding the hotspot that specifies this information for the object, and also finding the relationship that links this object to the other object it's supposed to appear at/in.
+    //NSMutableArray *hiddenObjectHotspots = [model getHotspotsForObjectId:disappearingObject];
+    Hotspot* hiddenObjectHotspot = [model getHotspotforObjectWithActionAndRole:disappearingObject :@"appear" :@"subject"];
+    
+    //Get the relationship between this object and the other object specifying where the object should appear. Even though the call is to a general function, there should only be 1 valid relationship returned.
+    NSLog(@"disappearing object id: %@", disappearingObject);
+    
+    NSMutableArray* relationshipsForHiddenObject = [model getRelationshipForObjectForAction:disappearingObject :@"appear"];
+    NSLog(@"number of relationships for Hidden Object: %d", [relationshipsForHiddenObject count]);
+
+    //There should be one and only one valid relationship returned, but we'll double check anyway.
+    if([relationshipsForHiddenObject count] > 0) {
+        Relationship *appearRelation = [relationshipsForHiddenObject objectAtIndex:0];
+    
+        NSLog(@"find hotspot in %@ for %@ to appear in", [appearRelation object2Id], disappearingObject);
+        
+        //Now we have to pull the hotspot at which this relationship occurs.
+        //Note: We may at one point want to programmatically determine the role, but for now, we'll hard code it in.
+        Hotspot* appearHotspot = [model getHotspotforObjectWithActionAndRole:[appearRelation object2Id] :@"appear" :@"object"];
+        
+        //Make sure that the hotspot was found and returned.
+        if(appearHotspot != nil) {
+            //Use the hotspot returned to calculate the location at which the disappearing object should appear.
+            //The two hotspots need to match up, so we need to figure out how far away the top-left corner of the disappearing object needs to be from the location it needs to appear at.
+            CGPoint appearLocation = [self getHotspotLocation:appearHotspot];
+            
+            //Next we have to move the apple to that location. Need the pixel location of the hotspot of the disappearing object.
+            //Again, double check to make sure this isn't nil.
+            if(hiddenObjectHotspot != nil) {
+                CGPoint hiddenObjectHotspotLocation = [self getHotspotLocation:hiddenObjectHotspot];
+                NSLog(@"found hotspot on hidden object that we need to match to the other object.");
+                
+                //With both hotspot pixel values we can calcuate the distance between the top-left corner of the hidden object and it's hotspot.
+                CGPoint change = [self calculateDeltaForMovingObjectAtPoint:hiddenObjectHotspotLocation];
+                
+                //Now move the object taking into account the difference in change.
+                [self moveObject:disappearingObject :appearLocation :change];
+                
+                //Then show the object again.
+                NSString* showObj = [NSString stringWithFormat:@"document.getElementById(%@).style.visibility = 'visible';", disappearingObject];
+                [bookView stringByEvaluatingJavaScriptFromString:showObj];
+            }
+        }
+        else {
+            NSLog(@"Uhoh, couldn't find relevant hotspot location to replenish the supply of: %@", disappearingObject);
+        }
+    }
+    //Should've been at least 1 relationship returned
+    else {
+        NSLog(@"Oh, noes! We didn't find a relationship for the hidden object: %@", disappearingObject);
+    }
+}
+
+/*
+ * Calls the JS function to draw each individual hotspot in the array provided.
+ */
 -(void) drawHotspots:(NSMutableArray *)hotspots {
     for(Hotspot* hotspot in hotspots) {
         CGPoint hotspotLoc = [self getHotspotLocation:hotspot];
@@ -642,6 +727,10 @@ float const groupingProximity = 20.0;
     }
 }
 
+/*
+ * Returns the pixel location of the hotspot based on the location of the image and the relative location of the
+ * hotspot to that image.
+ */
 - (CGPoint) getHotspotLocation:(Hotspot*) hotspot {
     //Get the height and width of the image.
     NSString* requestImageHeight = [NSString stringWithFormat:@"%@.height", [hotspot objectId]];
@@ -696,6 +785,12 @@ float const groupingProximity = 20.0;
     return nil;
 }
 
+/* 
+ * Button listener for the "Next" button. This function moves to the next active sentence in the story, or to the 
+ * next story if at the end of the current story. Eventually, this function will also ensure that the correctness
+ * of the interaction is checked against the current sentence before moving on to the next sentence. If the manipulation
+ * is correct, then it will move on to the next sentence. If the manipulation is not current, then feedback will be provided.
+ */
 -(IBAction)pressedNext:(id)sender {
     //Check to make sure the answer is correct and act appropriately.
     //For the moment we assume the sentence is correct and set the sentence color to green.
@@ -731,6 +826,10 @@ float const groupingProximity = 20.0;
 }
 
 #pragma mark - PieContextualMenuDelegate
+/*
+ * Expands the contextual menu, allowing the user to select a possible grouping/ungrouping.
+ * This function is called after the data source is created.
+ */
 -(void) expandMenu {
     menu = [[PieContextualMenu alloc] initWithFrame:[bookView frame]];
     [menu addGestureRecognizer:tapRecognizer];
@@ -743,6 +842,5 @@ float const groupingProximity = 20.0;
     CGFloat radius = (menuBoundingBox -  (itemRadius * 2)) / 2;
     [menu expandMenu:radius];
 }
-
 
 @end
