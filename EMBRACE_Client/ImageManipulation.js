@@ -2,6 +2,7 @@ var groupings = new Array(); //Stores objects that may be grouped together. This
 
 var overlayGraphics = new jsGraphics(document.getElementById('overlay')); //Create jsGraphics object
 
+var STEP = 5; //Step size used for animation when grouping and ungrouping.
 /*
  * Moves the specified object to the new X,Y coordinated.
  * Also checks to see if this particular object is grouped to other objects.
@@ -198,7 +199,6 @@ function animateGrouping(group) {
         
         //Check to see if delta change is greater than the step size (currently 5 pixels), and whether it's positive or negative.
         //Use this information to determine how much to move on this turn.
-        var STEP = 5;
         if(deltaX < -STEP)
             changeX = -STEP;
         else if(deltaX < 0)
@@ -517,55 +517,82 @@ function ungroupObjects(object1, object2) {
 
 /*
  * Animate the ungrouping by moving the objects away from each other. 
- * Do so by ensuring that the objects no longer overlap and by putting a 50 pixel space in between them.
+ * Do so by ensuring that the objects no longer overlap and by putting a 10 pixel space in between them.
  * Keep in mind that objects should not be moved off screen when doing so.
- * Both objects should animate, not just one and the calculation will be based on the hotspots at which the two were connected.
+ * TODO: Need to handle more complex cases, such as when objects that are ungrouping are also still grouped to other objects.
+ * TODO: Move objects towards the edges of the screens to avoid overlap with other objects toward the middle of the scene.
+ * TODO: Once we figure out why the timeout doesn't work in the grouping animation, 
+ *       add in a timeout here too to smooth the animation.
+ * TODO: It would be ideal to give priority to objects that can move on their own. E.g. the chicken is standing on the hay.
+ *       Ungrouping the chicken and hay would result in only the chicken moving, not the hay as well.
  */
 function animateUngrouping(group) {
-    //Figure out which is the left most and which is the right most object. The left most object will move left and the right most object will move right. TODO: What implications does this have for the rest of the scene? For example, when the left most object is also one connected to an object to its right. Do we want to put in additional rules to deal with this, or are we going to calculate the "left-most" and "right-most" objects as whatever groups of objects we'll need to move.
-
-    //Below is code copied from animateGrouping to use as a reference. Delete when done with this function.
-    /*var deltaX = group.obj2x - group.obj1x;
-    var deltaY = group.obj2y - group.obj1y;
+    var GAP = 10; //we want a 10 pixel gap between objects.
+    //Figure out which is the left most and which is the right most object. The left most object will move left and the right most object will move right. TODO: What implications does this have for the rest of the scene? For example, when the left most object is also one connected to an object to its right. Do we want to put in additional rules to deal with this, or are we going to calculate the "left-most" and "right-most" objects as whatever groups of objects we'll need to move. Should we instead move the smaller of the two objects away from the larger of the two. What about generalizability? What happens when we've got 2 groups of objects that need to ungroup, or alternately what if the object is connected to multiple things at once, how do we move it away from the object that it was just ungrouped from, while keeping it connected to the objects it's still grouped with. Do we animate both sets of objects or just one set of objects?
     
-    //Check to see whether there is more animation to be done (assume that deltaX and deltaY will both be 0 if no more animation needs to occur.
-    if((deltaX != 0) || (deltaY != 0)) {
-        //used for the specific change that occurs on this animation turn.
-        var changeX = 0;
-        var changeY = 0;
-        
-        //Check to see if delta change is greater than the step size (currently 5 pixels), and whether it's positive or negative.
-        //Use this information to determine how much to move on this turn.
-        var STEP = 5;
-        if(deltaX < -STEP)
-            changeX = -STEP;
-        else if(deltaX < 0)
-            changeX = deltaX;
-        else if(deltaX > STEP)
-            changeX = STEP;
-        else if(deltaX > 0)
-            changeX = deltaX;
-        
-        if(deltaY < -STEP)
-            changeY = -STEP;
-        else if(deltaY < 0)
-            changeY = deltaY;
-        else if(deltaY > STEP)
-            changeY = STEP;
-        else if(deltaY > 0)
-            changeY = deltaY;
-        
-        //Update the x,y coordinates of the connection point for obj1 based on the new location.
-        group.obj1x = group.obj1x + changeX;
-        group.obj1y = group.obj1y + changeY;
-        
-        //Change the location of the object.
-        group.obj1.style.left = group.obj1.offsetLeft + changeX + "px";
-        group.obj1.style.top = group.obj1.offsetTop + changeY + "px";
-        
-        //Call the function again after a 5000 ms delay.
-        setTimeout(animateGrouping(group), 5000);
-    }*/
+    //Lets start with the simplest case and go from there. 2 objects are grouped together and we just want to move them apart.
+    //There are 2 possibilities. Either they are partially overlapping (or connected on the edges), or one object is contained within the other.
+    //Figure out which one is the correct one. Then figure out which direction to move them and which object we're moving if we're not moving both.
+    //If object 1 is contained within object 2.
+    if(objectContainedInObject(group.obj1, group.obj2)) {
+        //alert(group.obj1.id + " contained in " + group.obj2.id);
+        //For now just move the object that's contained within the other object toward the left until it's no longer overlapping.
+        //Also make sure you're not moving it off screen.
+        while((group.obj1.offsetLeft + group.obj1.offsetWidth + GAP > group.obj2.offsetLeft) &&
+              (group.obj1.offsetLeft - STEP > 0)) {
+            group.obj1.style.left = group.obj1.offsetLeft - STEP + "px";
+        }
+    }
+    //If object 2 is contained within object 1.
+    else if(objectContainedInObject(group.obj2, group.obj1)) {
+        //alert(group.obj2.id + " contained in " + group.obj1.id);
+        //For now just move the object that's contained within the other object toward the left until it's no longer overlapping.
+        //Also make sure you're not moving it off screen.
+        while((group.obj2.offsetLeft + group.obj2.offsetWidth + GAP > group.obj1.offsetLeft) &&
+             (grou.obj2.offsetLeft - STEP > 0)) {
+            group.obj2.style.left = group.obj2.offsetLeft - STEP + "px";
+        }
+    }
+    //Otherwise, partially overlapping or connected on the edges.
+    else {
+        //Figure out which is the leftmost object.
+        if(group.obj1.offsetLeft < group.obj2.offsetLeft) {
+            //Move obj1 left by STEP and obj2 right by STEP until there's a distance of 10 pixels between them.
+            //Also make sure you're not moving either object offscreen.
+            while(group.obj1.offsetLeft + group.obj1.offsetWidth + GAP > group.obj2.offsetLeft) {
+                if(group.obj1.offsetLeft - STEP > 0)
+                    group.obj1.style.left = group.obj1.offsetLeft - STEP + "px";
+                
+                if(group.obj2.offsetLeft + group.obj2.offsetWidth + STEP < window.innerWidth)
+                    group.obj2.style.left = group.obj2.offsetLeft + STEP + "px";
+            }
+        }
+        else {
+            //Move obj2 left by STEP and obj1 right by STEP until there's a distance of 10 pixels between them.
+            //Change the location of the object.
+            while(group.obj2.offsetLeft + group.obj2.offsetWidth + GAP > group.obj1.offsetLeft) {
+                if(group.obj1.offsetLeft + group.obj1.offsetWidth + STEP < window.innerWidth)
+                    group.obj1.style.left = group.obj1.offsetLeft + STEP + "px";
+                
+                if(group.obj2.offsetLeft - STEP > 0)
+                    group.obj2.style.left = group.obj2.offsetLeft - STEP + "px";
+            }
+        }
+    }
+}
+
+/*
+ * Helper method that tells us whether one object is completely contained within another object.
+ * Will return true if object1 is contained in object2.
+ */
+function objectContainedInObject(object1, object2) {
+   if((object1.offsetTop >= object2.offsetTop) &&
+      (object1.offsetTop + object1.offsetHeight <= object2.offsetTop + object2.offsetHeight) &&
+      (object1.offsetLeft > object2.offsetLeft) &&
+      (object1.offsetLeft + object1.offsetWidth <= object2.offsetLeft + object2.offsetWidth))
+       return true;
+    else
+        return false;
 }
 
 /*

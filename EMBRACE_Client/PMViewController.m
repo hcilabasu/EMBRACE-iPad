@@ -438,7 +438,12 @@ float const groupingProximity = 20.0;
  * Returns all possible interactions that can occur between the object being moved and any other objects it's overlapping with.
  * This function takes into account all hotspots, both available and unavailable. It checkes cases in which all hotspots are 
  * available, as well as instances in which one hotspots is already taken up by a grouping but the other is not. The function
- * currently checks both group and disappear interaction types.
+ * checks both group and disappear interaction types.
+ * 
+ * NOTE: Can this method be written such that the only thing that changes is the "proximity" between hotspot and menu condition.
+ * Instead of using the proximity in the menu condition, we just check overlap alone, making every situation an "ambiguous" 
+ * situation. The only other change would be that we check for the number of possible interactions to be returned to be 1 or 
+ * more, instead of 2 or more for an ambiguous situation.
  */
 -(NSMutableArray*) getPossibleInteractions {
     //TODO: This was copied over directly from the panGesturePerformed function condition in which the recognizer state has ended. Need to update this code to return a list of possible interactions that makes sense instead of doing all this work in this function. Some of this code may need to be moved back to the panGesturePerformed function, while other code may need to be split into other smaller functions. Still other code needs to be added to return the appropriate possible interactions.
@@ -493,7 +498,7 @@ float const groupingProximity = 20.0;
                         Relationship* relationshipBetweenObjects = [model getRelationshipForObjectsForAction:movingObjectId :objId :[movingObjectHotspot action]];
                         
                         if([isHotspotConnectedMovingObjectString isEqualToString:@"false"] && [isHotspotConnectedObjectString isEqualToString:@"false"]) {
-                            //TODO: Pretty sure this needs to be moved back up to the panGesturePerformed function, but I need to first establish what the mutable array is going to produce. Doing so may actually fix the bug that's causing the exception to be thrown in the case of disappearing items.
+                            //TODO: Pretty sure this needs to be moved back up to the panGesturePerformed function, but I need to first establish what the mutable array is going to produce.
                             //If they're suppposed to be grouped, go ahead and group them.
                             if([[relationshipBetweenObjects  actionType] isEqualToString:@"group"]) {
                                 [self groupObjects:movingObjectId :movingObjectHotspotLoc :objId :hotspotLoc];
@@ -520,7 +525,6 @@ float const groupingProximity = 20.0;
 /*
  * Calculates the delta pixel change for the object that is being moved
  * and changes the lcoation from relative % to pixels if necessary.
- * TODO: Figure out why this isn't being called anywhere besides the new consumeAndReplenish function.
  */
 -(CGPoint) calculateDeltaForMovingObjectAtPoint:(CGPoint) location {
     CGPoint change;
@@ -573,13 +577,10 @@ float const groupingProximity = 20.0;
     //NSLog(@"location of image being moved adjusted for point clicked: (%f, %f) size of image: %f x %f", adjLocation.x, adjLocation.y, imageWidth, imageHeight);
     
     //If there are movement constraints for this object.
-    //TODO: come back to this and figure out why the slight shift. 
     if([constraints count] > 0) {
         MovementConstraint* constraint = (MovementConstraint*)[constraints objectAtIndex:0];
     
         //Calculate the x,y coordinates and the width and height in pixels from %
-        //TODO: See if I can list a width, height, x, and y for the background image and then retrieve the size of that image in order to calculate the
-        //location of the bounding box. If this works we may consider using some sort of calculation based on the ratio of the background and the [bookView frame] size to calculate the point that should be used to identify the items being manipulated as well and see if this solves all the problems that we've been seeing.
         float boxX = [constraint.originX floatValue] / 100.0 * [bookView frame].size.width;
         float boxY = [constraint.originY floatValue] / 100.0 * [bookView frame].size.height;
         float boxWidth = [constraint.width floatValue] / 100.0 * [bookView frame].size.width;
@@ -652,7 +653,7 @@ float const groupingProximity = 20.0;
 /*
  * Call JS code to cause the object to disappear, then calculate where it needs to re-appear and call the JS code to make
  * it re-appear at the new location.
- * TODO: Figure out why the object isn't being moved appropriately once I get the new epub.
+ * TODO: Figure out if the object is being moved appropriately once I get the new epub.
  * TODO: Figure out how to deal with instances of transferGrouping + consumeAndReplenishSupply
  */
 - (void) consumeAndReplenishSupply:(NSString*)disappearingObject {

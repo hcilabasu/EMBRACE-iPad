@@ -80,7 +80,6 @@
 		311096FC174AAA8F00B02BF7 /* farm.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = farm.epub; sourceTree = SOURCE_ROOT; };
 		311096FE174AB08400B02BF7 /* house.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = house.epub; sourceTree = SOURCE_ROOT; };
 		31109701174AB35E00B02BF7 /* cover_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cover_default.png; sourceTree = "<group>"; };
-		31109703174AF02E00B02BF7 /* NextSentence.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = NextSentence.js; sourceTree = "<group>"; };
 		31161428179DE69400655221 /* Hotspot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hotspot.h; sourceTree = "<group>"; };
 		31161429179DE69400655221 /* Hotspot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hotspot.m; sourceTree = "<group>"; };
 		3116142B179DE77B00655221 /* Constraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constraint.h; sourceTree = "<group>"; };
@@ -241,7 +240,6 @@
 			isa = PBXGroup;
 			children = (
 				317FF1741742C8DE00F1F160 /* ImageManipulation.js */,
-				31109703174AF02E00B02BF7 /* NextSentence.js */,
 			);
 			name = "JavaScript Event Handling";
 			sourceTree = "<group>";
