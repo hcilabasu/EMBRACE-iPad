@@ -374,6 +374,11 @@ float const groupingProximity = 20.0;
                 //No longer moving object
                 movingObject = FALSE;
                 movingObjectId = nil;
+                
+                //Clear any remaining highlighting.
+                //TODO: it's probably better to move the highlighting outside of the move function, that way we don't have to clear the highlighting at a point when highlighting shouldn't happen anyway. 
+                NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
+                [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
             }
         }
         //If we're in the middle of moving the object, just call the JS to move it.

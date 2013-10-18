@@ -5,15 +5,50 @@ var overlayGraphics = new jsGraphics(document.getElementById('overlay')); //Crea
 var STEP = 5; //Step size used for animation when grouping and ungrouping.
 
 /*
- * Moves the specified object to the new X,Y coordinated.
- * Also checks to see if this particular object is grouped to other objects.
- * If it is, all other objects it's grouped to are also moved.
- * This includes objects that are grouped to objects that it is grouped to. (recursive)
+ * Moves the specified object to the new X,Y coordinated and takes care of all visual feedback.
  */
 function moveObject(object, newX, newY) {
+    //Call the move function
+    move(object, newX, newY);
+    
+    //Check to see if any of the objects in this group are overlapping with any other objects that they are not grouped with.
+    //If so, go ahead and highlight those objects.
+    //Also make sure to remove highlighting of objects that should no longer be highlighted.
+    clearAllHighlighted();
+    clearCanvas();
+
+    //Highlight all objects that need to be highlighted.
+    //TODO: We should actually be highlighting groupings as one object, not as individual objects. Why not create a function in the js that gives me the size of the grouped objects. This would help with the menu creation as well.
+    
+    //Get objects this object may be grouped with.
+    var groupedWithObjects = new Array();
+    groupedWithObjects[0] = object;
+    
+    getObjectsGroupedWithObject(object, groupedWithObjects);
+    
+    for(var i = 0; i < groupedWithObjects.length; i ++) {
+        highlight(groupedWithObjects[i]);
+    }
+    
+    //Check and highight all overlapping objects, only for the object being moved.
+    //TODO: We should really only be highlighting objects that this object can be grouped with (e.g. moving the tractor over the pen shouldn't highlight the pen because it can't be grouped wtih it). We may need to rethink the way this is done and send more information over from the PMViewController. Additionally, we may want the highlighting to happen on its own with an explicit call from the PMViewController, instead of being called from the moveObject function.
+    var overlapArray = checkObjectOverlap(object);
+    
+    for(i = 0; i < overlapArray.length; i ++) {
+            highlight(overlapArray[i][1]);
+    }
+}
+
+/* 
+ * Function that does the actual moving of the object specified to the new x,y coordinates
+ * Also checks to see if this particular object is grouped to other objects.
+ * If it is, all other objects it's grouped to are also moved.
+ * This includes objects that are grouped to objects that it is grouped to.
+ */
+function move(object, newX, newY) {
     if(object == null)
         alert("object is null");
-
+    
     //Calculate a delta change, so we know what to move grouped objects by.
     var deltaX = newX - object.offsetLeft;
     var deltaY = newY - object.offsetTop;
@@ -34,23 +69,6 @@ function moveObject(object, newX, newY) {
         groupedWithObjects[i].style.left = groupedWithObjects[i].offsetLeft + deltaX + "px";
         groupedWithObjects[i].style.top =  groupedWithObjects[i].offsetTop + deltaY + "px";
     }
-    
-    //Check to see if any of the objects in this group are overlapping with any other objects that they are not grouped with.
-    //If so, go ahead and highlight those objects.
-    //Also make sure to remove highlighting of objects that should no longer be highlighted.
-    //clearAllHighlighted();
-    clearCanvas(); 
-    
-    /*for(var i = 0; i < groupedWithObjects.length; i ++) {
-        var overlapArray = checkObjectOverlap(groupedWithObjects[i]);
-    
-        for(i = 0; i < overlapArray.length; i ++) {
-            highlight(overlapArray[i][1]);
-        }
-    }*/
-
-    //if(groupings.length > 0)
-    //    alert("object: " + object.id);
 }
 
 /*
@@ -123,7 +141,7 @@ function groupOverlappingObjects(object) {
     }
     
     //Clear all the highlighting because we've finished our grouping.
-    //clearAllHighlighted();
+    clearAllHighlighted();
 }
 
 /*
@@ -183,8 +201,8 @@ function animateGrouping(group) {
         group.obj1x = group.obj1x + changeX;
         group.obj1y = group.obj1y + changeY;
         
-        //Move the object using the moveObject function so that all other objects it's already connected to are moved with it.
-        moveObject(group.obj1, group.obj1.offsetLeft + changeX, group.obj1.offsetTop + changeY);
+        //Move the object using the move function so that all other objects it's already connected to are moved with it.
+        move(group.obj1, group.obj1.offsetLeft + changeX, group.obj1.offsetTop + changeY);
         
         //Call the function again after a 200 ms delay. TODO: Figure out why the delay isn't working.
         setTimeout(animateGrouping(group), 5000);
@@ -409,7 +427,7 @@ function animateUngrouping(group) {
         //Also make sure you're not moving it off screen.
         while((group.obj1.offsetLeft + group.obj1.offsetWidth + GAP > group.obj2.offsetLeft) &&
               (group.obj1.offsetLeft - STEP > 0)) {
-            moveObject(group.obj1, group.obj1.offsetLeft - STEP, group.obj1.offsetTop);
+            move(group.obj1, group.obj1.offsetLeft - STEP, group.obj1.offsetTop);
         }
     }
     //If object 2 is contained within object 1.
@@ -419,7 +437,7 @@ function animateUngrouping(group) {
         //Also make sure you're not moving it off screen.
         while((group.obj2.offsetLeft + group.obj2.offsetWidth + GAP > group.obj1.offsetLeft) &&
              (grou.obj2.offsetLeft - STEP > 0)) {
-            moveObject(group.obj2, group.obj2.offsetLeft - STEP, group.obj2.offsetTop);
+            move(group.obj2, group.obj2.offsetLeft - STEP, group.obj2.offsetTop);
         }
     }
     //Otherwise, partially overlapping or connected on the edges.
@@ -430,10 +448,10 @@ function animateUngrouping(group) {
             //Also make sure you're not moving either object offscreen.
             while(group.obj1.offsetLeft + group.obj1.offsetWidth + GAP > group.obj2.offsetLeft) {
                 if(group.obj1.offsetLeft - STEP > 0)
-                    moveObject(group.obj1, group.obj1.offsetLeft - STEP, group.obj1.offsetTop);
+                    move(group.obj1, group.obj1.offsetLeft - STEP, group.obj1.offsetTop);
                 
                 if(group.obj2.offsetLeft + group.obj2.offsetWidth + STEP < window.innerWidth)
-                    moveObject(group.obj2, group.obj2.offsetLeft + STEP, group.obj1.offsetTop);
+                    move(group.obj2, group.obj2.offsetLeft + STEP, group.obj1.offsetTop);
             }
         }
         else {
@@ -441,10 +459,10 @@ function animateUngrouping(group) {
             //Change the location of the object.
             while(group.obj2.offsetLeft + group.obj2.offsetWidth + GAP > group.obj1.offsetLeft) {
                 if(group.obj1.offsetLeft + group.obj1.offsetWidth + STEP < window.innerWidth)
-                    moveObject(group.obj1, group.obj1.offsetLeft + STEP, group.obj1.offsetTop);
+                    move(group.obj1, group.obj1.offsetLeft + STEP, group.obj1.offsetTop);
                 
                 if(group.obj2.offsetLeft - STEP > 0)
-                    moveObject(group.obj2, group.obj2.offsetLeft - STEP, group.obj2.offsetTop);
+                    move(group.obj2, group.obj2.offsetLeft - STEP, group.obj2.offsetTop);
             }
         }
     }
@@ -481,16 +499,67 @@ function setSentenceFontWeight(sentenceId, weight) {
     sentenceId.style.fontWeight = weight;
 }
 
-function highlight(object) {
+/*function highlight(object) {
     object.style.backgroundColor = "rgba(255, 250, 205, .4)";
     //object.style.border = "3px solid rgba(250, 250, 210, .2)";
     
     //When we highlight we also want to draw the hotspots for this object.
     //Not sure if we should call this from here or from the objectiveC code. 
     //drawHotspots(object);
+}*/
+
+/* 
+ * Create a highlight around the specified object. 
+ * TODO: Refine this so it looks a bit better.
+ */
+function highlight(object) {
+    var canvas = document.getElementById('highlight');
+    
+    //Make sure the canvas is the size of the window. If not, make it the same size.
+    //NOTE: This doesn't work, but we need something like this.
+    /*
+     if(canvas.width != window.innerWidth)
+     canvas.width = window.innerWidth;
+     if(canvas.height != window.innerHeight)
+     canvas.height = window.innerheight;
+     */
+    
+    var context = canvas.getContext('2d');
+    
+    //Get the size of the image and add 50 px to make the oval larger than the image.
+    var width = object.offsetWidth + 50;
+    var height = object.offsetHeight + 50;
+    
+    //Get the top-left corner and subtract 25 px to make the oval larger than the image.
+    var x = object.offsetLeft - 25;
+    var y = object.offsetTop - 25;
+
+    //Figure out where our bezier points need to be.
+    var kappa = .5522848;
+    var ox = (width / 2) * kappa; // control point offset horizontal
+    var oy = (height / 2) * kappa; // control point offset vertical
+    var xe = x + width;           // x-end
+    var ye = y + height;          // y-end
+    var xm = x + width / 2;       // x-middle
+    var ym = y + height / 2;       // y-middle
+    
+    //Draw the oval.
+    context.beginPath();
+    //Create a halo effect.
+    context.strokeStyle = "rgba(250, 250, 210, .2)";
+    context.lineWidth = 5;
+    context.moveTo(x, ym);
+    context.bezierCurveTo(x, ym - oy, xm - ox, y, xm, y);
+    context.bezierCurveTo(xm + ox, y, xe, ym - oy, xe, ym);
+    context.bezierCurveTo(xe, ym + oy, xm + ox, ye, xm, ye);
+    context.bezierCurveTo(xm - ox, ye, x, ym + oy, x, ym);
+    context.closePath();
+    context.stroke();
+    context.fillStyle = "rgba(255, 250, 205, .4)";
+    context.fill();
 }
 
-function removeHighlight(object) {
+/*function removeHighlight(object) {
     //object.style.border = "0px";
     object.style.backgroundColor = "transparent";
 }
@@ -500,6 +569,17 @@ function clearAllHighlighted() {
 
     for(var i = 0; i < manipulationObjects.length; i++)
         removeHighlight(manipulationObjects[i]);
+}*/
+
+/* 
+ * Remove highlights from all objects.
+ */
+function clearAllHighlighted() {
+    var canvas = document.getElementById('highlight');
+    var context = canvas.getContext('2d');
+    
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    
 }
 
 /*function drawHotspot(x, y, color) {
@@ -538,6 +618,9 @@ function drawHotspot(x, y, color) {
     overlayGraphics.clear();
 }*/
 
+/* 
+ * Clear all hotspots.
+ */
 function clearCanvas() {
     var canvas = document.getElementById('overlay');
     var context = canvas.getContext('2d');
