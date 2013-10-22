@@ -11,32 +11,31 @@ function moveObject(object, newX, newY) {
     //Call the move function
     move(object, newX, newY);
     
-    //Check to see if any of the objects in this group are overlapping with any other objects that they are not grouped with.
-    //If so, go ahead and highlight those objects.
-    //Also make sure to remove highlighting of objects that should no longer be highlighted.
+    //Clear hotspots and highlights in case the user put down the object and these no longer need to be shown.
     clearAllHighlighted();
-    clearCanvas();
+    clearAllHotspots();
 
-    //Highlight all objects that need to be highlighted.
-    //TODO: We should actually be highlighting groupings as one object, not as individual objects. Why not create a function in the js that gives me the size of the grouped objects. This would help with the menu creation as well.
-    
+    //Highlight the object that is being moved. If it's part of a group of objects, highlight the entire group.
     //Get objects this object may be grouped with.
     var groupedWithObjects = new Array();
     groupedWithObjects[0] = object;
     
     getObjectsGroupedWithObject(object, groupedWithObjects);
     
-    for(var i = 0; i < groupedWithObjects.length; i ++) {
-        highlight(groupedWithObjects[i]);
-    }
+    //Pass the array into the the getboundingbox function to determine the size and location of the bounding box for the entire group so the entire group is highlighted together.
+    var box = getBoundingBoxOfGroup(groupedWithObjects);
     
-    //Check and highight all overlapping objects, only for the object being moved.
-    //TODO: We should really only be highlighting objects that this object can be grouped with (e.g. moving the tractor over the pen shouldn't highlight the pen because it can't be grouped wtih it). We may need to rethink the way this is done and send more information over from the PMViewController. Additionally, we may want the highlighting to happen on its own with an explicit call from the PMViewController, instead of being called from the moveObject function.
-    var overlapArray = checkObjectOverlap(object);
-    
-    for(i = 0; i < overlapArray.length; i ++) {
-            highlight(overlapArray[i][1]);
-    }
+    //highlight the group (or the single object if there's just one).
+    highlight(box.x, box.y, box.width, box.height);
+}
+
+/* 
+ * Highlights only the specified object. 
+ * This function is called by the PMView controller to highlight overlapping objects that have relevant relationships 
+ * with object being moved.
+ */
+function highlightObject(object) {
+    highlight(object.offsetLeft, object.offsetTop, object.offsetWidth, object.offsetHeight);
 }
 
 /* 
@@ -69,6 +68,60 @@ function move(object, newX, newY) {
         groupedWithObjects[i].style.left = groupedWithObjects[i].offsetLeft + deltaX + "px";
         groupedWithObjects[i].style.top =  groupedWithObjects[i].offsetTop + deltaY + "px";
     }
+}
+
+/*
+ * Returns the top left corner and width and height of the group of objects specified in a BoundingBox object.
+ * This function does not check whether or not the group of objects passed in is actually connected.
+ * so the function can be used for any set of objects. 
+ * Instead, it just finds the left-most, top-most, right-most and bottom-most points to calculate the
+ * necessary information.
+ * The group parameter contains an array of the elements that are grouped together, as specified by
+ * the getObjectsGroupedWithObject function, for example.
+ */
+function getBoundingBoxOfGroup(group) {
+    //Just in case, make sure we're provided with at least one object.
+    if(group.length > 0) {
+        //set all of our locations to the first object for now.
+        var leftMostPoint = group[0].offsetLeft;
+        var topMostPoint = group[0].offsetTop;
+        var rightMostPoint = group[0].offsetLeft + group[0].offsetWidth;
+        var bottomMostPoint = group[0].offsetTop + group[0].offsetHeight;
+    
+        //If there is more than 1 item, go through the rest of the array.
+        for(var i = 1; i < group.length; i ++) {
+            if(group[i].offsetLeft < leftMostPoint)
+                leftMostPoint = group[i].offsetLeft;
+            if(group[i].offsetTop < topMostPoint)
+                topMostPoint = group[i].offsetTop;
+            if(group[i].offsetLeft + group[i].offsetWidth > rightMostPoint)
+                rightMostPoint = group[i].offsetLeft + group[i].offsetWidth;
+            if(group[i].offsetTop + group[i].offsetHeight > bottomMostPoint)
+                bottomMostPoint = group[i].offsetTop + group[i].offsetHeight;
+        }
+        
+        //alert("bounding box: (" + leftMostPoint + ", " + topMostPoint + ") " + (rightMostPoint - leftMostPoint) + " x " + (bottomMostPoint - topMostPoint));
+    
+        //Create the bounding box.
+        var box = new BoundingBox(leftMostPoint, topMostPoint, rightMostPoint - leftMostPoint,
+                                      bottomMostPoint - topMostPoint);
+    
+        //alert("bounding box: (" + box.x + ", " + box.y + ") " + box.width + " x " + box.height);
+        
+        return box;
+    }
+    
+    return null;
+}
+
+/*
+ * Bounding box object used to return the necessary information for the space requirements of a set of objects.
+ */
+function BoundingBox(topX, topY, totalWidth, totalHeight) {
+    this.x = topX;
+    this.y = topY;
+    this.width = totalWidth;
+    this.height = totalHeight;
 }
 
 /*
@@ -354,27 +407,19 @@ function areObjectsGrouped(object1, object2) {
  * It's possible that at some point in time we want to allow multiple objects to connect to the same hotspot based on the object.
  * If so, a property should be added specifying the maximum number of connections that can be made to any one hotspot at a time.
  * For now, we assume this maximum is one for all objects. 
- * TODO: Need to make sure this still works if groupings are moved after created. Not sure that the hotspots are currently kept updated.
  */
 function isObjectGroupedAtHotspot(object, x, y) {
-    //alert("number of groupings: " + groupings.length);
     
     for(var i = 0; i < groupings.length; i ++) {
         var group = groupings[i];
         
         if(object.id == group.obj1.id) {
-            //alert("found object " + object.id + " for hotspot location: (" + group.obj1x + ", " + group.obj1y + ") grouped with " + group.obj2.id + " and comparing to (" + x + ", " + y + ")");
-            
             if((x == group.obj1x) && (y == group.obj1y)) {
-                //alert("returning true");
                 return true;
             }
         }
         else if(object.id == group.obj2.id) {
-            //alert("found object " + object.id + " for hotspot location: (" + group.obj2x + ", " + group.obj2y +") grouped with " + group.obj1.id + " and comparing to (" + x + ", " + y + ")");
-            
             if((x == group.obj2x) && (y == group.obj2y)) {
-                //alert("returning true");
                 return true;
             }
         }
@@ -499,20 +544,15 @@ function setSentenceFontWeight(sentenceId, weight) {
     sentenceId.style.fontWeight = weight;
 }
 
-/*function highlight(object) {
-    object.style.backgroundColor = "rgba(255, 250, 205, .4)";
-    //object.style.border = "3px solid rgba(250, 250, 210, .2)";
-    
-    //When we highlight we also want to draw the hotspots for this object.
-    //Not sure if we should call this from here or from the objectiveC code. 
-    //drawHotspots(object);
-}*/
-
 /* 
- * Create a highlight around the specified object. 
- * TODO: Refine this so it looks a bit better.
+ * Create an oval highlight using the top left corner and width and height specified.
+ * If highlighting only one object the top left corner specified will be based on the offsetLeft and offsetTop properies
+ * and the width and height will be based on the offsetWidth and offsetTop.
+ * If highlighting a group of objects, the top left corner will specify the top left corner of the entire group, and the 
+ * width and height will be the width and height of the entire group of objects.
+ * TODO: Refine this so it looks a bit better. It seems to be slightly offset sometimes.
  */
-function highlight(object) {
+function highlight(topleftX, topleftY, objectWidth, objectHeight) {
     var canvas = document.getElementById('highlight');
     
     //Make sure the canvas is the size of the window. If not, make it the same size.
@@ -527,12 +567,12 @@ function highlight(object) {
     var context = canvas.getContext('2d');
     
     //Get the size of the image and add 50 px to make the oval larger than the image.
-    var width = object.offsetWidth + 50;
-    var height = object.offsetHeight + 50;
+    var width = objectWidth + 50;
+    var height = objectHeight + 50;
     
     //Get the top-left corner and subtract 25 px to make the oval larger than the image.
-    var x = object.offsetLeft - 25;
-    var y = object.offsetTop - 25;
+    var x = topleftX - 25;
+    var y = topleftY - 25;
 
     //Figure out where our bezier points need to be.
     var kappa = .5522848;
@@ -559,19 +599,7 @@ function highlight(object) {
     context.fill();
 }
 
-/*function removeHighlight(object) {
-    //object.style.border = "0px";
-    object.style.backgroundColor = "transparent";
-}
-
-function clearAllHighlighted() {
-    var manipulationObjects = document.getElementsByClassName('manipulationObject');
-
-    for(var i = 0; i < manipulationObjects.length; i++)
-        removeHighlight(manipulationObjects[i]);
-}*/
-
-/* 
+/*
  * Remove highlights from all objects.
  */
 function clearAllHighlighted() {
@@ -581,17 +609,6 @@ function clearAllHighlighted() {
     context.clearRect(0, 0, canvas.width, canvas.height);
     
 }
-
-/*function drawHotspot(x, y, color) {
-    //Create jsColor object
-    var col = new jsColor(color);
-    
-    //Create jsPoint object
-    var pt1 = new jsPoint(x,y);
-    
-    //Draw filled circle with pt1 as center point and radius 30.
-    overlayGraphics.fillCircle(col,pt1,10);
-}*/
 
 function drawHotspot(x, y, color) {
     var canvas = document.getElementById('overlay');
@@ -614,14 +631,10 @@ function drawHotspot(x, y, color) {
     context.fill();
 }
 
-/*function clearCanvas() {
-    overlayGraphics.clear();
-}*/
-
-/* 
+/*
  * Clear all hotspots.
  */
-function clearCanvas() {
+function clearAllHotspots() {
     var canvas = document.getElementById('overlay');
     var context = canvas.getContext('2d');
 

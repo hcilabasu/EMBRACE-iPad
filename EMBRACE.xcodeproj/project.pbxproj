@@ -59,7 +59,6 @@
 		31953E971729EEDE00570087 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 31953E961729EEDE00570087 /* libz.dylib */; };
 		31953E9C172A136A00570087 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31953E9B172A136A00570087 /* QuartzCore.framework */; };
 		31AA5FAA175FB16500E9A9B3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AA5FA9175FB16500E9A9B3 /* LoginViewController.m */; };
-		31B14AD817AB19F800544B35 /* jsDraw2D.js in Resources */ = {isa = PBXBuildFile; fileRef = 31B14AD617AB17F400544B35 /* jsDraw2D.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -158,8 +157,6 @@
 		31953E9B172A136A00570087 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		31AA5FA8175FB16500E9A9B3 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		31AA5FA9175FB16500E9A9B3 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		31B14AD217AB17D700544B35 /* jsDraw2D_Uncompressed.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = jsDraw2D_Uncompressed.js; path = jsDraw2D/jsDraw2D_Uncompressed.js; sourceTree = "<group>"; };
-		31B14AD617AB17F400544B35 /* jsDraw2D.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = jsDraw2D.js; path = jsDraw2D/jsDraw2D.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -307,7 +304,6 @@
 		31953E651729ED4500570087 /* External Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				31B14ACB17AB179400544B35 /* JSDraw */,
 				31953E7A1729ED6000570087 /* GData XML Parser */,
 				31953E7B1729ED6C00570087 /* Unzip Library */,
 			);
@@ -399,15 +395,6 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
-		31B14ACB17AB179400544B35 /* JSDraw */ = {
-			isa = PBXGroup;
-			children = (
-				31B14AD617AB17F400544B35 /* jsDraw2D.js */,
-				31B14AD217AB17D700544B35 /* jsDraw2D_Uncompressed.js */,
-			);
-			name = JSDraw;
-			sourceTree = "<group>";
-		};
 		31C5A6801799EFE600A084A3 /* Interaction Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -478,7 +465,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31B14AD817AB19F800544B35 /* jsDraw2D.js in Resources */,
 				31953E531729ECC100570087 /* InfoPlist.strings in Resources */,
 				31953E5B1729ECC100570087 /* Default.png in Resources */,
 				31953E5D1729ECC100570087 /* Default@2x.png in Resources */,

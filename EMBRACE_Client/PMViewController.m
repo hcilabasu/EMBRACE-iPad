@@ -388,7 +388,9 @@ float const groupingProximity = 20.0;
             //NSLog(@"pan gesture continued");
             [self moveObject:movingObjectId :location :delta];
             
+            //Draw hotspots for the object.
             [self drawHotspots:[model getHotspotsForObjectId:movingObjectId]];
+            
             //If we're overlapping with another object, then we need to figure out which hotspots are currently active and highlight those hotspots.
             //Starting with the simple case of moving an object that is not grouped to any other object, and then expanding from there.
             //When moving the object, we may have the JS return a list of all the objects that are currently grouped together so that we can process all of them.
@@ -404,6 +406,12 @@ float const groupingProximity = 20.0;
                     //we have the list of objects it's overlapping with, we now have to figure out which hotspots to draw.                    
                     NSMutableArray* hotspots = [model getHotspotsForObjectOverlappingWithObject:movingObjectId :objId];
                     [self drawHotspots:hotspots];
+                    
+                    //Since hotspots are filtered based on relevant relationships between objects, only highlight objects that have at least one hotspot returned by the model.
+                    if([hotspots count] > 0) {
+                        NSString* highlight = [NSString stringWithFormat:@"highlightObject(%@)", objId];
+                        [bookView stringByEvaluatingJavaScriptFromString:highlight];
+                    }
                 }
             }
         }
