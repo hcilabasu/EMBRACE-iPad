@@ -37,8 +37,8 @@
     return [data objectAtIndex:itemIndex];
 }
 
--(void) addMenuItem:(NSString*)relationship :(NSArray*) objectIds :(NSArray*)images {
-    MenuItemDataSource* currentMenuItem = [[MenuItemDataSource alloc] initWithRelationshipAndImages:relationship :objectIds :images];
+-(void) addMenuItem:(PossibleInteraction*)possInteraction :(NSArray*) imageArray :(CGRect) box {
+    MenuItemDataSource* currentMenuItem = [[MenuItemDataSource alloc] initWithPossibleInteractionAndImages:possInteraction :imageArray :box];
     [data addObject:currentMenuItem];
 }
 

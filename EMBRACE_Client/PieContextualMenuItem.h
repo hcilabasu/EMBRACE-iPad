@@ -10,7 +10,7 @@
 #import "MenuItemDataSource.h"
 
 @interface PieContextualMenuItem : UIView {
-    MenuItemDataSource *data;
+    MenuItemDataSource *data; 
     float angleFromMenuCenter; //angle at which the item is from the center of the menu. Used to offset the inside circle from the outside circle.
 }
 

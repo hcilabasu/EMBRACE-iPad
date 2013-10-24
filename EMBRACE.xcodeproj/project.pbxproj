@@ -18,6 +18,8 @@
 		311096FD174AAA8F00B02BF7 /* farm.epub in Resources */ = {isa = PBXBuildFile; fileRef = 311096FC174AAA8F00B02BF7 /* farm.epub */; };
 		311096FF174AB08400B02BF7 /* house.epub in Resources */ = {isa = PBXBuildFile; fileRef = 311096FE174AB08400B02BF7 /* house.epub */; };
 		31109702174AB35E00B02BF7 /* cover_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 31109701174AB35E00B02BF7 /* cover_default.png */; };
+		3115B1D11819AA0E007171E3 /* MenuItemImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3115B1D01819AA0E007171E3 /* MenuItemImage.m */; };
+		3115B1D41819C532007171E3 /* PossibleInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3115B1D31819C532007171E3 /* PossibleInteraction.m */; };
 		3116142A179DE69400655221 /* Hotspot.m in Sources */ = {isa = PBXBuildFile; fileRef = 31161429179DE69400655221 /* Hotspot.m */; };
 		3116142D179DE77B00655221 /* Constraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 3116142C179DE77B00655221 /* Constraint.m */; };
 		31161430179DE78C00655221 /* InteractionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3116142F179DE78C00655221 /* InteractionModel.m */; };
@@ -79,6 +81,10 @@
 		311096FC174AAA8F00B02BF7 /* farm.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = farm.epub; sourceTree = SOURCE_ROOT; };
 		311096FE174AB08400B02BF7 /* house.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = house.epub; sourceTree = SOURCE_ROOT; };
 		31109701174AB35E00B02BF7 /* cover_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cover_default.png; sourceTree = "<group>"; };
+		3115B1CF1819AA0E007171E3 /* MenuItemImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuItemImage.h; sourceTree = "<group>"; };
+		3115B1D01819AA0E007171E3 /* MenuItemImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuItemImage.m; sourceTree = "<group>"; };
+		3115B1D21819C532007171E3 /* PossibleInteraction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PossibleInteraction.h; sourceTree = "<group>"; };
+		3115B1D31819C532007171E3 /* PossibleInteraction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PossibleInteraction.m; sourceTree = "<group>"; };
 		31161428179DE69400655221 /* Hotspot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hotspot.h; sourceTree = "<group>"; };
 		31161429179DE69400655221 /* Hotspot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hotspot.m; sourceTree = "<group>"; };
 		3116142B179DE77B00655221 /* Constraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constraint.h; sourceTree = "<group>"; };
@@ -229,6 +235,10 @@
 				312F5B12177A0F58000DAD2E /* MenuItemDataSource.m */,
 				316CFAE01773ACFB004216D0 /* PieContextualMenuDelegate.h */,
 				316CFAE31773AD9F004216D0 /* PieContextualMenuDataSource.h */,
+				3115B1CF1819AA0E007171E3 /* MenuItemImage.h */,
+				3115B1D01819AA0E007171E3 /* MenuItemImage.m */,
+				3115B1D21819C532007171E3 /* PossibleInteraction.h */,
+				3115B1D31819C532007171E3 /* PossibleInteraction.m */,
 			);
 			name = "Physical Manipulation";
 			sourceTree = "<group>";
@@ -491,6 +501,7 @@
 				31953E741729ED5A00570087 /* GDataXMLNode.m in Sources */,
 				31953E751729ED5A00570087 /* ioapi.c in Sources */,
 				31953E761729ED5A00570087 /* mztools.c in Sources */,
+				3115B1D41819C532007171E3 /* PossibleInteraction.m in Sources */,
 				31953E771729ED5A00570087 /* unzip.c in Sources */,
 				31953E781729ED5A00570087 /* zip.c in Sources */,
 				31953E791729ED5A00570087 /* ZipArchive.mm in Sources */,
@@ -504,6 +515,7 @@
 				3193753D1741A76F00782C2B /* HelpViewController.m in Sources */,
 				3154982A174EAA22004521B1 /* Student.m in Sources */,
 				31AA5FAA175FB16500E9A9B3 /* LoginViewController.m in Sources */,
+				3115B1D11819AA0E007171E3 /* MenuItemImage.m in Sources */,
 				311646AE175FCFE100B483F0 /* Chapter.m in Sources */,
 				311646B1175FD03F00B483F0 /* Activity.m in Sources */,
 				3183DA151761614500815211 /* BookHeaderView.m in Sources */,

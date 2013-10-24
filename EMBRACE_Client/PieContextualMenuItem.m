@@ -56,11 +56,11 @@
 
     if(data != nil) {
         //Pull the images and draw them based on the relationship
-        NSArray* images = [data images];
-        NSString* relationship = [data relationship];
+        NSArray* images = [data images]; //This is an array of MenuItemImage objects.
+        InteractionType type = [[data interaction] interactionType];
         
         //separate
-        if([relationship isEqualToString:@"is grouped with"]) {
+        if(type == UNGROUP) {
             //Calculate the square that fits in the circle.
             //Find the top-left point of the square, which will be at 3/4PI angle from the center of the circle.
             float angle = (5.0 * M_PI) / 4.0; // PI/4 is in quadrant IV and we want 45 angle in quadrant II.
@@ -72,8 +72,11 @@
             float widthImage = (lengthSide - 40) / 2;
     
             //There are only two images.
-            UIImage *image1 = [images objectAtIndex:0];
-            UIImage *image2 = [images objectAtIndex:1];
+            //TODO: Delete the following 2 lines after we've verified this new code works.
+            //UIImage *image1 = [images objectAtIndex:0];
+            //UIImage *image2 = [images objectAtIndex:1];
+            UIImage *image1 = [[images objectAtIndex:0] image];
+            UIImage *image2 = [[images objectAtIndex:1] image];
             
             //Need to properly figure out what these image resolutions need to be.
             UIImage *image1Scaled = [self scaleImagetoResolution:image1 :widthImage];
@@ -95,6 +98,7 @@
             [self addSubview:imageView1];
             [self addSubview:imageView2];
             
+            //TODO: Remove the arrows and draw something more generalizeable based on the information passed in from the PMViewController.
             //Draw arrows indicating that you're separating them.
             CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
             CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor);

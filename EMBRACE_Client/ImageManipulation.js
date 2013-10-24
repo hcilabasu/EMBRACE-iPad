@@ -11,11 +11,8 @@ function moveObject(object, newX, newY) {
     //Call the move function
     move(object, newX, newY);
     
-    //Clear hotspots and highlights in case the user put down the object and these no longer need to be shown.
-    clearAllHighlighted();
-    clearAllHotspots();
-
     //Highlight the object that is being moved. If it's part of a group of objects, highlight the entire group.
+    //Note: It may be worth moving the group highlighting code into its own function and calling it from the PMView controller. If this is done, there's no need for a moveObject and a move function anymore, so these should be combined again.
     //Get objects this object may be grouped with.
     var groupedWithObjects = new Array();
     groupedWithObjects[0] = object;
@@ -48,6 +45,10 @@ function move(object, newX, newY) {
     if(object == null)
         alert("object is null");
     
+    //Clear hotspots and highlights in case the user put down the object and these no longer need to be shown.
+    clearAllHighlighted();
+    clearAllHotspots();
+
     //Calculate a delta change, so we know what to move grouped objects by.
     var deltaX = newX - object.offsetLeft;
     var deltaY = newY - object.offsetTop;
@@ -68,6 +69,18 @@ function move(object, newX, newY) {
         groupedWithObjects[i].style.left = groupedWithObjects[i].offsetLeft + deltaX + "px";
         groupedWithObjects[i].style.top =  groupedWithObjects[i].offsetTop + deltaY + "px";
     }
+}
+
+/* 
+ * Calls getBoundingBoxOfGroup and converts the answer to a string that
+ * can be parsed by the PMViewController.m
+ * Returns a string that specifies the values in the following order: 
+ * x,y,width, height.
+ */
+function getStringBoundingBoxOfGroup(group) {
+    var box = getBoundingBoxOfGroup(group);
+    
+    return "" + box.x + "," + box.y + "," + box.width + "," + box.height;
 }
 
 /*
@@ -100,14 +113,10 @@ function getBoundingBoxOfGroup(group) {
                 bottomMostPoint = group[i].offsetTop + group[i].offsetHeight;
         }
         
-        //alert("bounding box: (" + leftMostPoint + ", " + topMostPoint + ") " + (rightMostPoint - leftMostPoint) + " x " + (bottomMostPoint - topMostPoint));
-    
         //Create the bounding box.
         var box = new BoundingBox(leftMostPoint, topMostPoint, rightMostPoint - leftMostPoint,
                                       bottomMostPoint - topMostPoint);
     
-        //alert("bounding box: (" + box.x + ", " + box.y + ") " + box.width + " x " + box.height);
-        
         return box;
     }
     
@@ -610,6 +619,9 @@ function clearAllHighlighted() {
     
 }
 
+/* 
+ * Draw hotspot at location x,y with the specified color.
+ */
 function drawHotspot(x, y, color) {
     var canvas = document.getElementById('overlay');
     
