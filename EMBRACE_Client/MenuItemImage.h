@@ -10,11 +10,13 @@
 
 @interface MenuItemImage : NSObject {
     UIImage *image;
-    CGPoint position;
+    CGRect boundingBoxImage;
+    float zPosition;
 }
 
 @property (nonatomic, strong) UIImage *image;
-@property (nonatomic, assign) CGPoint position;
+@property (nonatomic, assign) CGRect boundingBoxImage;
+@property (nonatomic, assign) float zPosition;
 
 - (id)initWithImage:(UIImage*)img;
 

@@ -12,7 +12,8 @@ typedef enum InteractionType {
     GROUP,
     UNGROUP,
     DISAPPEAR,
-    TRANSFER
+    TRANSFERANDGROUP,
+    TRANSFERANDDISAPPEAR
 } InteractionType;
 
 @interface PossibleInteraction: NSObject {

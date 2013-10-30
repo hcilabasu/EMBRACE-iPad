@@ -4,6 +4,7 @@ var overlayGraphics = new jsGraphics(document.getElementById('overlay')); //Crea
 
 var STEP = 5; //Step size used for animation when grouping and ungrouping.
 
+var animatingGrouping = false;
 /*
  * Moves the specified object to the new X,Y coordinated and takes care of all visual feedback.
  */
@@ -24,15 +25,6 @@ function moveObject(object, newX, newY) {
     
     //highlight the group (or the single object if there's just one).
     highlight(box.x, box.y, box.width, box.height);
-}
-
-/* 
- * Highlights only the specified object. 
- * This function is called by the PMView controller to highlight overlapping objects that have relevant relationships 
- * with object being moved.
- */
-function highlightObject(object) {
-    highlight(object.offsetLeft, object.offsetTop, object.offsetWidth, object.offsetHeight);
 }
 
 /* 
@@ -69,18 +61,32 @@ function move(object, newX, newY) {
         groupedWithObjects[i].style.left = groupedWithObjects[i].offsetLeft + deltaX + "px";
         groupedWithObjects[i].style.top =  groupedWithObjects[i].offsetTop + deltaY + "px";
     }
-}
-
-/* 
- * Calls getBoundingBoxOfGroup and converts the answer to a string that
- * can be parsed by the PMViewController.m
- * Returns a string that specifies the values in the following order: 
- * x,y,width, height.
- */
-function getStringBoundingBoxOfGroup(group) {
-    var box = getBoundingBoxOfGroup(group);
     
-    return "" + box.x + "," + box.y + "," + box.width + "," + box.height;
+    //Make sure we also update the Connection information for all objects that just got moved.
+    //This is necessary for the objectGroupedAtHotspot function.
+    //Skip the first object if we're animating a grouping, so that it doesn't get updated twice (it's already updated in the animateGrouping function.
+    //Why doesn't this group anymore when
+    if(animatingGrouping)
+        i = 1;
+    else
+        i = 0;
+    
+    for(; i < groupedWithObjects.length; i ++) {
+        for(var j = 0; j < groupings.length; j ++) {
+            var group = groupings[j];
+            
+            //We only have to check the object we're currently looking for right now.
+            //All other object hotspots will be updated accordingly later as we go through the outer loop.
+            if(groupedWithObjects[i].id == group.obj1.id) {
+                group.obj1x = group.obj1x + deltaX;
+                group.obj1y = group.obj1y + deltaY;
+            }
+            else if(groupedWithObjects[i].id == group.obj2.id) {
+                group.obj2x = group.obj2x + deltaX;
+                group.obj2y = group.obj2y + deltaY;
+            }
+        }
+    }
 }
 
 /*
@@ -216,7 +222,9 @@ function groupObjectsAtLoc(object1, x1, y1, object2, x2, y2) {
     var group = new Connection(object1, x1, y1, object2, x2, y2);
     
     //Animate the grouping before adding them to the grouped objects array so that they animate correctly.
+    animatingGrouping = true; //set our flag to true so hotspots get updated accordingly.
     animateGrouping(group);
+    animatingGrouping = false; //set our flag to false once we're done with the animation.
     
     //Add them to the grouped objects array.
     groupings[groupings.length] = group;
@@ -260,6 +268,8 @@ function animateGrouping(group) {
             changeY = deltaY;
         
         //Update the x,y coordinates of the connection point for obj1 based on the new location.
+        //Why is it that if these two lines of code get commented out with the added nested for loop in the move function
+        //the code freezes?
         group.obj1x = group.obj1x + changeX;
         group.obj1y = group.obj1y + changeY;
         
@@ -343,7 +353,7 @@ function getGroupedObjectsArray(object, groupedObjects) {
  * Return the list of objects that are all grouped together. 
  */
 function getObjectsGroupedWithObject(object, groupedObjects) {
-    //Go through the entire 2D array.
+    //Go through the entire list of connections.
     for(var i = 0; i < groupings.length; i++) {
         var group = groupings[i];
         
@@ -365,6 +375,7 @@ function getObjectsGroupedWithObject(object, groupedObjects) {
 /* 
  * Used as a helper method for getObjectsGroupedWithObject.
  * Checks to see if the objects is in the list so it isn't added again.
+ * The objectList is a list of individual objects.
  */
 function objectInList(object, objectList) {
     for(var i = 0; i < objectList.length; i ++)
@@ -377,7 +388,7 @@ function objectInList(object, objectList) {
 /*
  * Used as a helper method for getGroupedObjectsArray.
  * Checks to see if the pair of objects are in the list so it isn't added again.
- * TODO: come back to this and see if this and objectInList can be combined.
+ * The object list is a list of Connections.
  */
 function pairInList(object1, object2, objectList) {
     for(var i = 0; i < objectList.length; i ++) {
@@ -415,26 +426,26 @@ function areObjectsGrouped(object1, object2) {
  * This is necessary to ensure that we're not trying to connect two objects to the same hotspot. 
  * It's possible that at some point in time we want to allow multiple objects to connect to the same hotspot based on the object.
  * If so, a property should be added specifying the maximum number of connections that can be made to any one hotspot at a time.
- * For now, we assume this maximum is one for all objects. 
+ * For now, we assume this maximum is one for all objects.
+ * Returns null if no object grouped, or the object id otherwise.
  */
-function isObjectGroupedAtHotspot(object, x, y) {
-    
+function objectGroupedAtHotspot(object, x, y) {
     for(var i = 0; i < groupings.length; i ++) {
         var group = groupings[i];
         
         if(object.id == group.obj1.id) {
             if((x == group.obj1x) && (y == group.obj1y)) {
-                return true;
+                return group.obj2.id;
             }
         }
         else if(object.id == group.obj2.id) {
             if((x == group.obj2x) && (y == group.obj2y)) {
-                return true;
+                return group.obj1.id;
             }
         }
     }
     
-    return false;
+    return null;
 }
 
 /* 
@@ -551,6 +562,15 @@ function setSentenceColor(sentenceId, color) {
 
 function setSentenceFontWeight(sentenceId, weight) {
     sentenceId.style.fontWeight = weight;
+}
+
+/*
+ * Highlights only the specified object.
+ * This function is called by the PMView controller to highlight overlapping objects that have relevant relationships
+ * with object being moved.
+ */
+function highlightObject(object) {
+    highlight(object.offsetLeft, object.offsetTop, object.offsetWidth, object.offsetHeight);
 }
 
 /* 

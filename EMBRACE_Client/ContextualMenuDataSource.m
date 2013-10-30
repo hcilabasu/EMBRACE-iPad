@@ -42,4 +42,8 @@
     [data addObject:currentMenuItem];
 }
 
+-(void) clearMenuitems {
+    [data removeAllObjects];
+}
+
 @end

@@ -452,6 +452,11 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Andreea Danielescu";
+				TargetAttributes = {
+					31953E441729ECC100570087 = {
+						DevelopmentTeam = BWSLUFSJRA;
+					};
+				};
 			};
 			buildConfigurationList = 31953E401729ECC100570087 /* Build configuration list for PBXProject "EMBRACE" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -636,6 +641,8 @@
 		31953E631729ECC100570087 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EMBRACE_Client/EMBRACE-Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
@@ -647,6 +654,7 @@
 				);
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = EMBRACE;
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -654,6 +662,8 @@
 		31953E641729ECC100570087 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EMBRACE_Client/EMBRACE-Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
@@ -665,6 +675,7 @@
 				);
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = EMBRACE;
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

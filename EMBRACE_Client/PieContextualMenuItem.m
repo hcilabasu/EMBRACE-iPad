@@ -7,6 +7,46 @@
 //
 
 #import "PieContextualMenuItem.h"
+
+/* 
+ * Private class used to paint an X over an image in instances in which we're showing an object that's disappearing.
+ */
+@interface XView : UIView {
+
+}
+@end
+
+@implementation XView
+    
+- (id)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        [self setBackgroundColor:[UIColor clearColor]];
+    }
+    return self;
+}
+    
+- (void)drawRect:(CGRect)rect {
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetStrokeColorWithColor(context, CGColorCreateCopyWithAlpha([UIColor blackColor].CGColor, .5));
+    CGContextSetLineWidth(context, 5.0);
+    
+    CGContextBeginPath(context);
+    
+    CGContextMoveToPoint(context, 0, 0); //Move to top left corner of image.
+    //Draw line to bottom right corner of image.
+    CGContextAddLineToPoint(context, rect.size.width, rect.size.height);
+    CGContextStrokePath(context);
+    
+    //Move to top right corner of image.
+    CGContextMoveToPoint(context, rect.size.width, 0);
+    //Draw line to bottom left corner of image.
+    CGContextAddLineToPoint(context, 0, rect.size.height);
+    CGContextStrokePath(context);
+}
+
+@end
+
 @implementation PieContextualMenuItem
 
 @synthesize data;
@@ -16,6 +56,9 @@
         [self setBackgroundColor:[UIColor clearColor]];
         data = itemData;
         angleFromMenuCenter = angleFromCenter;
+
+        NSLog(@"initialized menu item with interaction type: %d between objects: %@", [[itemData interaction] interactionType], [[[itemData interaction] objects] componentsJoinedByString:@","]);
+
     }
     return self;
 }
@@ -59,22 +102,19 @@
         NSArray* images = [data images]; //This is an array of MenuItemImage objects.
         InteractionType type = [[data interaction] interactionType];
         
-        //separate
+        //Calculate the square that fits in the circle.
+        //Find the top-left point of the square, which will be at 3/4PI angle from the center of the circle.
+        float angle = (5.0 * M_PI) / 4.0; // PI/4 is in quadrant IV and we want 45 angle in quadrant II.
+        CGFloat topleftX = innerCircleCenter.x + innerCircleRadius * cos(angle);
+        CGFloat topleftY = innerCircleCenter.y + innerCircleRadius * sin(angle);
+        float lengthSide = sqrtf(powf((innerCircleRadius * 2), 2) / 2);
+
+        //Ungrouping two items. For the moment, just go ahead and leave the code that shows the 2 items at opposite ends of the circle with arrows pointing away from the center. TODO: We may want to remove the arrows and not check what the type of interaction we have and just go ahead and display all of them the same way.
         if(type == UNGROUP) {
-            //Calculate the square that fits in the circle.
-            //Find the top-left point of the square, which will be at 3/4PI angle from the center of the circle.
-            float angle = (5.0 * M_PI) / 4.0; // PI/4 is in quadrant IV and we want 45 angle in quadrant II.
-            CGFloat topleftX = innerCircleCenter.x + innerCircleRadius * cos(angle);
-            CGFloat topleftY = innerCircleCenter.y + innerCircleRadius * sin(angle);
-            float lengthSide = sqrtf(powf((innerCircleRadius * 2), 2) / 2);
-            
             //40 pixels is currently what the arrows will take up. 
             float widthImage = (lengthSide - 40) / 2;
     
             //There are only two images.
-            //TODO: Delete the following 2 lines after we've verified this new code works.
-            //UIImage *image1 = [images objectAtIndex:0];
-            //UIImage *image2 = [images objectAtIndex:1];
             UIImage *image1 = [[images objectAtIndex:0] image];
             UIImage *image2 = [[images objectAtIndex:1] image];
             
@@ -98,7 +138,6 @@
             [self addSubview:imageView1];
             [self addSubview:imageView2];
             
-            //TODO: Remove the arrows and draw something more generalizeable based on the information passed in from the PMViewController.
             //Draw arrows indicating that you're separating them.
             CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
             CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor);
@@ -133,7 +172,51 @@
             CGContextClosePath(context);
             CGContextStrokePath(context);
             CGContextFillPath(context);
-
+        }
+        else {
+            //Figure out where the images should be and how they should be scaled, then add all images to the subview.
+            //Get the bounding box information because this will determine how much we need to scale each individual image.
+            //Use lengthside to determine the scaling factor. Keep in mind that the bounding box may not be square, so the largest side needs to be determnined.
+            CGRect boundingBoxScene = [data boundingBox];
+            float scaleFactor = 0;
+            
+            if(boundingBoxScene.size.width > boundingBoxScene.size.height)
+                scaleFactor = lengthSide / boundingBoxScene.size.width;
+            else
+                scaleFactor = lengthSide / boundingBoxScene.size.height;
+            
+            NSArray* sortedImages = [self sortMenuItemImagesByZPosition:images];
+            
+            for(MenuItemImage *itemImage in sortedImages) {
+                UIImage *image = [itemImage image];
+                
+                //Calculate the size of this  image based on the width of the image in the larger scene and the scale factor.
+                int widthImage = itemImage.boundingBoxImage.size.width * scaleFactor;
+                
+                UIImage *imageScaled = [self scaleImagetoResolution:image :widthImage]; //Create the scaled image.
+                UIImageView *imageView = [[UIImageView alloc] initWithImage:imageScaled]; //Create the image view.
+                
+                //Calculate the location of the image within the menu item view. Use the bounding box information as well as the position information stored in the MenuItemImage object.
+                CGPoint position = [itemImage boundingBoxImage].origin;
+                
+                //TODO: Currently we're passing in information specific to the location of the image when the objects are overlapped and before the action occurs. We need to actually calculate the final position of the object based on the hotspots and pass that information in instead, so that the result that's shown is the same as what they'll look like once the images are snapped together correctly.
+                CGFloat imageTopLeftX = topleftX + ((position.x - boundingBoxScene.origin.x) * scaleFactor);
+                CGFloat imageTopLeftY = topleftY + ((position.y - boundingBoxScene.origin.y) * scaleFactor);
+                
+                CGRect imageLoc = CGRectMake(imageTopLeftX, imageTopLeftY,
+                                             imageView.frame.size.width, imageView.frame.size.height);
+                
+                [imageView setFrame:imageLoc]; //Set the location of the image.
+                [self addSubview:imageView]; //Add the image as a subview.
+                
+                //If this is an object that should be disappearing, go ahead and draw an X over it.
+                //That means this image corresponds to the first image in the unsorted array.
+                if((itemImage == [images objectAtIndex:0]) && (type == DISAPPEAR)) {
+                    //Create the view that paints the X over the top of the image.
+                    XView *xView = [[XView alloc] initWithFrame:CGRectMake(imageTopLeftX, imageTopLeftY, imageView.frame.size.width, imageView.frame.size.height)];
+                    [self addSubview:xView];
+                }
+            }
         }
     }
     
@@ -170,6 +253,16 @@
     UIGraphicsEndImageContext();
     
     return imageCopy;
+}
+
+-(NSArray*) sortMenuItemImagesByZPosition:(NSArray*) unsortedImages {
+    NSSortDescriptor *sortDescriptor;
+    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"zPosition"
+                                                 ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    NSArray *sortedArray = [unsortedImages sortedArrayUsingDescriptors:sortDescriptors];
+    
+    return sortedArray;
 }
 
 @end
