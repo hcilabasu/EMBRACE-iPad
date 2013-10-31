@@ -19,7 +19,7 @@ typedef enum InteractionType {
 @interface PossibleInteraction: NSObject {
     InteractionType interactionType;
     NSArray *objects; //List of objects in a predetermined order.
-    NSArray *hotspots; // List of hotspots. One hotspot per object.
+    NSArray *hotspots; // List of Hotspot objects. One hotspot per object.
 }
 
 @property (nonatomic, assign) InteractionType interactionType;

@@ -248,7 +248,7 @@ float const groupingProximity = 20.0;
         }
     }
     else if(recognizer.state == UIGestureRecognizerStateEnded) {
-        //TODO: We may want to create functions that take some form of information in about the kind of menu they're creating and create the menu based on that instead of repeating the same code every time we have to create a menu.
+        //TODO: Check to see if any more of this code is duplicated elsewhere.
         //Get other objects grouped with this object.
         NSString* requestGroupedImages = [NSString stringWithFormat:@"getGroupedObjectsString(%@)", separatingObjectId];
         NSString* groupedImages = [bookView stringByEvaluatingJavaScriptFromString:requestGroupedImages];
@@ -273,51 +273,15 @@ float const groupingProximity = 20.0;
                     NSMutableArray* affectedItemIds = [[NSMutableArray alloc] init];
                     NSMutableArray* allItemIds = [[NSMutableArray alloc] init];
                     
-                    for(NSString* item in itemPair) {
-                        [affectedItemIds addObject:item]; //This is one of the objects that will be affected by the ungroup.
-                        [allItemIds addObject:item]; //Add to the all item ids array for the bounding box calculation.
+                    for(NSString* objId in itemPair) {
+                        [affectedItemIds addObject:objId]; //This is one of the objects that will be affected by the ungroup.
+                        [allItemIds addObject:objId]; //Add to the all item ids array for the bounding box calculation.
                         
-                        //TODO: We may want to do this not only for the image that is being ungrouped, but also for all other images it may be grouped with. It will depend on how cluttered the menu item gets by doing that.
-                        NSString* requestImageSrc = [NSString stringWithFormat:@"%@.src", item];
-                        NSString* imageSrc = [bookView stringByEvaluatingJavaScriptFromString:requestImageSrc];
+                        //NOTE: We may want to do this not only for the image that is being ungrouped, but also for all other images it may be grouped with. It will depend on how cluttered the menu item gets by doing that.
+                        MenuItemImage *itemImage = [self createMenuItemForImage:objId];
                         
-                        NSRange range = [imageSrc rangeOfString:@"file:"];
-                        NSString* imagePath = [imageSrc substringFromIndex:range.location + range.length + 1];
-                        
-                        UIImage* image = [[UIImage alloc] initWithContentsOfFile:imagePath];
-                        
-                        if(image == nil)
-                            NSLog(@"image is nil");
-                        else {
-                            MenuItemImage *itemImage = [[MenuItemImage alloc] initWithImage:image];
-                            
-                            //Get the z-index of the image.
-                            NSString* requestZIndex = [NSString stringWithFormat:@"%@.style.zIndex", item];
-                            NSString* zIndex = [bookView stringByEvaluatingJavaScriptFromString:requestZIndex];
-                            
-                            NSLog(@"item %@ z-index: %@", item, zIndex);
-                            
-                            [itemImage setZPosition:[zIndex floatValue]];
-                            
-                            //Get the location of the image, so we can position it appropriately.
-                            NSString* requestPositionX = [NSString stringWithFormat:@"%@.offsetLeft", item];
-                            NSString* requestPositionY = [NSString stringWithFormat:@"%@.offsetTop", item];
-                            
-                            NSString* positionX = [bookView stringByEvaluatingJavaScriptFromString:requestPositionX];
-                            NSString* positionY = [bookView stringByEvaluatingJavaScriptFromString:requestPositionY];
-                            
-                            //Get the size of the image, so that it can be scaled appropriately.
-                            NSString* requestWidth = [NSString stringWithFormat:@"%@.offsetWidth", item];
-                            NSString* requestHeight = [NSString stringWithFormat:@"%@.offsetHeight", item];
-                            
-                            NSString* width = [bookView stringByEvaluatingJavaScriptFromString:requestWidth];
-                            NSString* height = [bookView stringByEvaluatingJavaScriptFromString:requestHeight];
-                            
-                            [itemImage setBoundingBoxImage:CGRectMake([positionX floatValue], [positionY floatValue],
-                                                                      [width floatValue], [height floatValue])];
-                            //Add this MenuItemImage to the array.
+                        if(itemImage != nil)
                             [images addObject:itemImage];
-                        }
                     }
                     
                     //Create the menuItem object that will hold the data and add menuItem to the menuDataSource.
@@ -442,7 +406,7 @@ float const groupingProximity = 20.0;
                             
                 for(NSString* objId in overlappingWith) {
                     //we have the list of objects it's overlapping with, we now have to figure out which hotspots to draw.                    
-                    NSMutableArray* hotspots = [model getHotspotsForObjectOverlappingWithObject:movingObjectId :objId];
+                    NSMutableArray* hotspots = [model getHotspotsForObject:objId OverlappingWithObject:movingObjectId];
                     [self drawHotspots:hotspots];
                     
                     //Since hotspots are filtered based on relevant relationships between objects, only highlight objects that have at least one hotspot returned by the model.
@@ -457,10 +421,62 @@ float const groupingProximity = 20.0;
 }
 
 /* 
- * This function takes in a possible interaction and calculates the layout of the images after the interaction occurs. 
+ * Gets the necessary information from the JS for this particular image id and creates a 
+ * MenuItemImage out of that information. If the image src isn't found, returns nil.
+ * Otherwise, returned the MenuItemImage that was created.
+ */
+-(MenuItemImage*) createMenuItemForImage:(NSString*) objId {
+    NSString* requestImageSrc = [NSString stringWithFormat:@"%@.src", objId];
+    NSString* imageSrc = [bookView stringByEvaluatingJavaScriptFromString:requestImageSrc];
+    
+    NSRange range = [imageSrc rangeOfString:@"file:"];
+    NSString* imagePath = [imageSrc substringFromIndex:range.location + range.length + 1];
+    
+    UIImage* image = [[UIImage alloc] initWithContentsOfFile:imagePath];
+    
+    if(image == nil)
+        NSLog(@"image is nil");
+    else {
+        MenuItemImage *itemImage = [[MenuItemImage alloc] initWithImage:image];
+        
+        //Get the z-index of the image.
+        NSString* requestZIndex = [NSString stringWithFormat:@"%@.style.zIndex", objId];
+        NSString* zIndex = [bookView stringByEvaluatingJavaScriptFromString:requestZIndex];
+        
+        NSLog(@"z-index of %@: %@", objId, zIndex);
+        
+        [itemImage setZPosition:[zIndex floatValue]];
+        
+        //Get the location of the image, so we can position it appropriately.
+        NSString* requestPositionX = [NSString stringWithFormat:@"%@.offsetLeft", objId];
+        NSString* requestPositionY = [NSString stringWithFormat:@"%@.offsetTop", objId];
+        
+        NSString* positionX = [bookView stringByEvaluatingJavaScriptFromString:requestPositionX];
+        NSString* positionY = [bookView stringByEvaluatingJavaScriptFromString:requestPositionY];
+        
+        NSLog(@"position of %@ when creating menuItemImage: (%@, %@)", objId, positionX, positionY);
+        
+        //Get the size of the image, so that it can be scaled appropriately.
+        NSString* requestWidth = [NSString stringWithFormat:@"%@.offsetWidth", objId];
+        NSString* requestHeight = [NSString stringWithFormat:@"%@.offsetHeight", objId];
+        
+        NSString* width = [bookView stringByEvaluatingJavaScriptFromString:requestWidth];
+        NSString* height = [bookView stringByEvaluatingJavaScriptFromString:requestHeight];
+        
+        [itemImage setBoundingBoxImage:CGRectMake([positionX floatValue], [positionY floatValue],
+                                                  [width floatValue], [height floatValue])];
+        
+        return itemImage;
+    }
+    
+    return nil;
+}
+
+/*
+ * This function takes in a possible interaction and calculates the layout of the images after the interaction occurs.
  * It then adds the result to the menuDataSOurce in order to display each menu item appropriately.
  * NOTE: For the moment this code could be used to create both the ungroup and all other interactions...lets see if this is the case after this code actually simulates the end result. If it is, the code should be simplified to use the same function.
- *This should be pushed to the JS so that all actual positioning information is in one place but for now...we'll just do it here.
+ * NOTE: This should be pushed to the JS so that all actual positioning information is in one place and we're not duplicating code that's in the JS in the objC as well. For now...we'll just do it here.
  */
 -(void) simulatePossibleInteractionForMenuItem:(PossibleInteraction*)interaction {
     NSArray* objectIds = [interaction objects];
@@ -469,84 +485,33 @@ float const groupingProximity = 20.0;
     NSMutableArray* images = [[NSMutableArray alloc] init];
 
     //Get all the necessary information of the UIImages.
-    for(NSString* item in objectIds) {
-    //for(int i = 0; i <[objectIds count]; i ++)
-        NSString* requestImageSrc = [NSString stringWithFormat:@"%@.src", item];
-        NSString* imageSrc = [bookView stringByEvaluatingJavaScriptFromString:requestImageSrc];
+    for(NSString* objId in objectIds) {
+        MenuItemImage *itemImage = [self createMenuItemForImage:objId];
         
-        NSRange range = [imageSrc rangeOfString:@"file:"];
-        NSString* imagePath = [imageSrc substringFromIndex:range.location + range.length + 1];
-        
-        UIImage* image = [[UIImage alloc] initWithContentsOfFile:imagePath];
-        
-        if(image == nil)
-            NSLog(@"image is nil");
-        else {
-            MenuItemImage *itemImage = [[MenuItemImage alloc] initWithImage:image];
-            
-            //Get the z-index of the image.
-            NSString* requestZIndex = [NSString stringWithFormat:@"%@.style.zIndex", item];
-            NSString* zIndex = [bookView stringByEvaluatingJavaScriptFromString:requestZIndex];
-            
-            [itemImage setZPosition:[zIndex floatValue]];
-            
-            //Get the location of the image, so we can position it appropriately.
-            //TODO: Simulate the end position of this particular interaction.
-            NSString* requestPositionX = [NSString stringWithFormat:@"%@.offsetLeft", item];
-            NSString* requestPositionY = [NSString stringWithFormat:@"%@.offsetTop", item];
-            
-            NSString* positionX = [bookView stringByEvaluatingJavaScriptFromString:requestPositionX];
-            NSString* positionY = [bookView stringByEvaluatingJavaScriptFromString:requestPositionY];
-            
-            //Get the size of the image, so that it can be scaled appropriately.
-            NSString* requestWidth = [NSString stringWithFormat:@"%@.offsetWidth", item];
-            NSString* requestHeight = [NSString stringWithFormat:@"%@.offsetHeight", item];
-            
-            NSString* width = [bookView stringByEvaluatingJavaScriptFromString:requestWidth];
-            NSString* height = [bookView stringByEvaluatingJavaScriptFromString:requestHeight];
-            
-            [itemImage setBoundingBoxImage:CGRectMake([positionX floatValue], [positionY floatValue],
-                                                      [width floatValue], [height floatValue])];
-            
-            //Add this MenuItemImage to the array.
+        if(itemImage != nil)
             [images addObject:itemImage];
-        }
     }
 
-    //Update the locations of the UIImages based on the type of interaction. 
+    //Update the locations of the UIImages based on the type of interaction with the simulated location.
     //get the object Ids for this particular menuItem.
     NSString* obj1 = [objectIds objectAtIndex:0]; //get object 1, since we'll always have at least one object.
     
     if([interaction interactionType] == UNGROUP || [interaction interactionType] == DISAPPEAR) {
         NSString* obj2 = [objectIds objectAtIndex:1]; //get object 2
         
-        /*Instead of doing this just update them directly.
-        NSArray* finalPositions = [self simulateUngrouping:obj1 :obj2 :images]; //ungroup objects.
-        
-        for(int i = 0; i < [finalPositions count]; i ++) {
-            CGPoint finalLocation = [[finalPositions objectAtIndex:i] CGPointValue];
-            
-            //set the new location for the first MenuImageItem.
-            
-            MenuItemImage* objImage = [images objectAtIndex:i];
-            [objImage setBoundingBoxImage:CGRectMake(finalLocation.x, finalLocation.y,
-                                                      [objImage boundingBoxImage].size.width, [objImage boundingBoxImage].size.height)];
-        }*/
         [self simulateUngrouping:obj1 :obj2 :images];
     }
     else if([interaction interactionType] == GROUP) {
         NSString* obj2 = [objectIds objectAtIndex:1]; //get object 2
         
         //Get hotspots.
-        CGPoint hotspot1 = [[hotspots objectAtIndex:0] CGPointValue];
-        CGPoint hotspot2 = [[hotspots objectAtIndex:1] CGPointValue];
+        Hotspot *hotspot1 = [hotspots objectAtIndex:0];
+        Hotspot *hotspot2 = [hotspots objectAtIndex:1];
         
-        /*CGPoint obj1FinalLocation = [self simulateGrouping:obj1 :hotspot1 :obj2 :hotspot2]; //Group objects.
-        //set the new location for the first MenuImageItem.
-        MenuItemImage* obj1Image = [images objectAtIndex:0];
-        [obj1Image setBoundingBoxImage:CGRectMake(obj1FinalLocation.x, obj1FinalLocation.y,
-                                                  [obj1Image boundingBoxImage].size.width, [obj1Image boundingBoxImage].size.height)];*/
-        [self simulateGrouping:obj1 :hotspot1 :obj2 :hotspot2 :images];
+        CGPoint hotspot1Loc = [self getHotspotLocation:hotspot1];
+        CGPoint hotspot2Loc = [self getHotspotLocation:hotspot2];
+        
+        [self simulateGrouping:obj1 :hotspot1Loc :obj2 :hotspot2Loc :images];
     }
     //This currently uses the ungroup interaction.
     /*else if([interaction interactionType] == DISAPPEAR) {
@@ -560,8 +525,8 @@ float const groupingProximity = 20.0;
         NSString* obj3 = [objectIds objectAtIndex:2]; //get object 3
         
         //Get hotspots.
-        CGPoint hotspot1 = [[hotspots objectAtIndex:0] CGPointValue];
-        CGPoint hotspot2 = [[hotspots objectAtIndex:1] CGPointValue];
+        Hotspot *obj2Hotspot = [hotspots objectAtIndex:0];
+        Hotspot *obj3Hotspot = [hotspots objectAtIndex:1];
 
         //Object 1 and 2 are grouped already, and must be ungrouped and object 3 should be grouped with object 2.
         [self simulateUngrouping:obj1 :obj2 :images];
@@ -570,7 +535,14 @@ float const groupingProximity = 20.0;
         MenuItemImage* image1 = [images objectAtIndex:0];
         [images removeObjectAtIndex:0];
         
-        [self simulateGrouping:obj2 :hotspot1 :obj3 :hotspot2 :images];
+        //Calculate the hotspot locations based on the image locations.
+        CGRect obj2BoundingBox = [((MenuItemImage*)[images objectAtIndex:0]) boundingBoxImage];
+        CGPoint obj2HotspotLoc = [self calculateHotspotLocationBasedOnBoundingBox:obj2Hotspot :obj2BoundingBox];
+
+        CGRect obj3BoundingBox = [((MenuItemImage*)[images objectAtIndex:1]) boundingBoxImage];
+        CGPoint obj3HotspotLoc = [self calculateHotspotLocationBasedOnBoundingBox:obj3Hotspot :obj3BoundingBox];
+        
+        [self simulateGrouping:obj2 :obj2HotspotLoc :obj3 :obj3HotspotLoc :images];
         
         //Add image1 back in.
         [images insertObject:image1 atIndex:0];
@@ -625,25 +597,6 @@ float const groupingProximity = 20.0;
     return boundingBox;
 }
 
-//Note: it would be nice if we could get the result of the x,y positions of all the objects from the js.
-//Should we push that to the JS or redo the calculations here?
-//currently in the grouping function, only obj1 is moved. Returning position of object1.
-/*-(CGPoint)simulateGrouping:(NSString*)obj1 :(CGPoint)hotspot1 :(NSString*)obj2 :(CGPoint)hotspot2 {
-    //Figure out the distance necessary for obj1 to travel such that hotspot1 and hotspot2 are in the same location.
-    float deltaX = hotspot2.x - hotspot1.x; //get the delta between the 2 hotspots.
-    float deltaY = hotspot2.y - hotspot1.y;
-    //Get the location of the top left corner of obj1.
-    NSString* requestPositionX = [NSString stringWithFormat:@"%@.offsetLeft", obj1];
-    NSString* requestPositionY = [NSString stringWithFormat:@"%@.offsetTop", obj1];
-    
-    NSString* positionX = [bookView stringByEvaluatingJavaScriptFromString:requestPositionX];
-    NSString* positionY = [bookView stringByEvaluatingJavaScriptFromString:requestPositionY];
-    //set the location of the top left corner of the image being moved to its current top left corner + delta.
-    CGPoint obj1FinalPosition = CGPointMake([positionX floatValue] + deltaX, [positionY floatValue] + deltaY);
-    
-    return obj1FinalPosition;
-}*/
-
 -(void)simulateGrouping:(NSString*)obj1 :(CGPoint)hotspot1 :(NSString*)obj2 :(CGPoint)hotspot2 :(NSMutableArray*)images{
     //Figure out the distance necessary for obj1 to travel such that hotspot1 and hotspot2 are in the same location.
     float deltaX = hotspot2.x - hotspot1.x; //get the delta between the 2 hotspots.
@@ -660,66 +613,6 @@ float const groupingProximity = 20.0;
     [obj1Image setBoundingBoxImage:CGRectMake(obj1FinalPosX, obj1FinalPosY, [obj1Image boundingBoxImage].size.width,
                                               [obj1Image boundingBoxImage].size.height)];
 }
-
-//Returns an array of CGPoints representing the 2 objects that have been ungrouped.
-//Use the menu items to get the locations and sizes of the objects.
-/*-(NSArray*)simulateUngrouping:(NSString*)obj1 :(NSString*)obj2 {
-    float GAP = 10; //we want a 10 pixel gap between objects to show that they're no longer grouped together.
-    //See if one object is contained in the other.
-    NSString* requestObj1ContainedInObj2 = [NSString stringWithFormat:@"objectContainedInObject(%@, %@)", obj1, obj2];
-    NSString* obj1ContainedInObj2 = [bookView stringByEvaluatingJavaScriptFromString:requestObj1ContainedInObj2];
-
-    NSString* requestObj2ContainedInObj1 = [NSString stringWithFormat:@"objectContainedInObject(%@, %@)", obj2, obj1];
-    NSString* obj2ContainedInObj1 = [bookView stringByEvaluatingJavaScriptFromString:requestObj2ContainedInObj1];
-
-    CGPoint obj1FinalPosition, obj2FinalPosition;
-    
-    //Get the locations and widths of objects 1 and 2.
-    NSString* requestObj1PositionX = [NSString stringWithFormat:@"%@.offsetLeft", obj1];
-    NSString* requestObj1PositionY = [NSString stringWithFormat:@"%@.offsetTop", obj1];
-    
-    NSString* obj1PositionX = [bookView stringByEvaluatingJavaScriptFromString:requestObj1PositionX];
-    NSString* obj1PositionY = [bookView stringByEvaluatingJavaScriptFromString:requestObj1PositionY];
-
-    NSString* requestObj2PositionX = [NSString stringWithFormat:@"%@.offsetLeft", obj2];
-    NSString* requestObj2PositionY = [NSString stringWithFormat:@"%@.offsetTop", obj2];
-    
-    NSString* obj2PositionX = [bookView stringByEvaluatingJavaScriptFromString:requestObj2PositionX];
-    NSString* obj2PositionY = [bookView stringByEvaluatingJavaScriptFromString:requestObj2PositionY];
-
-    NSString* requestObj1Width = [NSString stringWithFormat:@"%@.offsetWidth", obj1];
-    NSString* requestObj2Width = [NSString stringWithFormat:@"%@.offsetWidth", obj2];
-    
-    NSString* obj1Width = [bookView stringByEvaluatingJavaScriptFromString:requestObj1Width];
-    NSString* obj2Width = [bookView stringByEvaluatingJavaScriptFromString:requestObj2Width];
-    
-    if([obj1ContainedInObj2 isEqualToString:@"true"]) {
-        obj1FinalPosition = CGPointMake([obj2PositionX floatValue] - [obj1Width floatValue] - GAP, [obj1PositionY floatValue]);
-        obj2FinalPosition = CGPointMake([obj2PositionX floatValue], [obj2PositionY floatValue]);
-    }
-    else if([obj2ContainedInObj1 isEqualToString:@"true"]) {
-        obj1FinalPosition = CGPointMake([obj1PositionX floatValue], [obj1PositionY floatValue]);
-        obj2FinalPosition = CGPointMake([obj1PositionX floatValue] + [obj1Width floatValue] + GAP, [obj2PositionY floatValue]);
-    }
-    //Otherwise, partially overlapping or connected on the edges.
-    else {
-        //Figure out which is the leftmost object. Unlike the animate ungrouping function, we're just going to move the left most object to the left so that it's not overlapping with the other one.
-        if([obj1PositionX floatValue] < [obj2PositionX floatValue]) {
-            obj1FinalPosition = CGPointMake([obj2PositionX floatValue] - [obj1Width floatValue] - GAP,
-                                            [obj1PositionY floatValue]);
-            obj2FinalPosition = CGPointMake([obj2PositionX floatValue], [obj2PositionY floatValue]);
-        }
-        else {
-            obj1FinalPosition = CGPointMake([obj1PositionX floatValue], [obj1PositionY floatValue]);
-            obj2FinalPosition = CGPointMake([obj1PositionX floatValue] - [obj2Width floatValue] - GAP,
-                                            [obj2PositionY floatValue]);
-        }
-    }
-    
-    NSArray* finalPositions = [[NSArray alloc] initWithObjects:[NSValue valueWithCGPoint:obj1FinalPosition], [NSValue valueWithCGPoint:obj2FinalPosition], nil];
-   
-    return finalPositions;
-}*/
 
 -(void)simulateUngrouping:(NSString*)obj1 :(NSString*)obj2 :(NSMutableArray*)images {
     float GAP = 10; //we want a 10 pixel gap between objects to show that they're no longer grouped together.
@@ -777,7 +670,7 @@ float const groupingProximity = 20.0;
  */
 -(void) performInteraction:(PossibleInteraction*)interaction {
     NSArray* objectIds = [interaction objects]; //get the object Ids for this particular menuItem.
-    NSArray* hotspots = [interaction hotspots];
+    NSArray* hotspots = [interaction hotspots]; //Array of hotspot objects.
     NSString* obj1 = [objectIds objectAtIndex:0]; //get object 1, since we'll always have at least one object.
     
     if([interaction interactionType] == UNGROUP) {
@@ -792,31 +685,43 @@ float const groupingProximity = 20.0;
         NSString* obj2 = [objectIds objectAtIndex:1]; //get object 2
         
         //Get hotspots.
-        CGPoint hotspot1 = [[hotspots objectAtIndex:0] CGPointValue];
-        CGPoint hotspot2 = [[hotspots objectAtIndex:1] CGPointValue];
+        Hotspot* hotspot1 = [hotspots objectAtIndex:0];
+        Hotspot* hotspot2 = [hotspots objectAtIndex:1];
         
-        [self groupObjects:obj1 :hotspot1 :obj2 :hotspot2]; //Group objects.
+        CGPoint hotspot1Loc = [self getHotspotLocation:hotspot1];
+        CGPoint hotspot2Loc = [self getHotspotLocation:hotspot2];
+        
+        [self groupObjects:obj1 :hotspot1Loc :obj2 :hotspot2Loc]; //Group objects.
     }
     else if([interaction interactionType] == DISAPPEAR) {
         //NSLog(@"causing object to disappear");
         [self consumeAndReplenishSupply:obj1];
     }
     else if([interaction interactionType] == TRANSFERANDGROUP) {
-        //NSLog(@"transfering an item to another item");
         //If we're transfering an item there will be 3 ids instead of 2.
         NSString* obj2 = [objectIds objectAtIndex:1]; //get object 2
         NSString* obj3 = [objectIds objectAtIndex:2]; //get object 3
         
         //Get hotspots.
-        CGPoint hotspot1 = [[hotspots objectAtIndex:0] CGPointValue];
-        CGPoint hotspot2 = [[hotspots objectAtIndex:1] CGPointValue];
+        Hotspot* hotspot1 = [hotspots objectAtIndex:0];
+        Hotspot* hotspot2 = [hotspots objectAtIndex:1];
         
-        //Object 1 and 2 are grouped already, and must be ungrouped and object 3 should be grouped with object 2.
-        [self transferGrouping:obj1 :obj2 :(hotspot1) :obj3 :(hotspot2)];
+        //ungroup object 1 and object 2 first.
+        [self ungroupObjects:obj1 :obj2];
+        
+        //Calculate the current hotspot locations.
+        CGPoint hotspot1Loc = [self getHotspotLocation:hotspot1];
+        CGPoint hotspot2Loc = [self getHotspotLocation:hotspot2];
+        
+        //NSLog(@"transfering %@ to %@ from %@", obj2, obj3, obj1);
+        
+        //Group object 2 and object 3.
+        [self groupObjects:obj2 :hotspot1Loc :obj3 :hotspot2Loc];
     }
     else if([interaction interactionType] == TRANSFERANDDISAPPEAR) {
         NSString* obj2 = [objectIds objectAtIndex:1]; //get object 2
 
+        //NSLog(@"%@ given by %@ to be consumed", obj2, obj1);
         //In this case we just ungroup the object from what it's grouped to and consume it.
         [self ungroupObjects:obj1 :obj2];
         [self consumeAndReplenishSupply:obj2];
@@ -877,8 +782,8 @@ float const groupingProximity = 20.0;
         NSArray* overlappingWith = [overlapArrayString componentsSeparatedByString:@", "];
         
         for(NSString* objId in overlappingWith) {
-            NSMutableArray* hotspots = [model getHotspotsForObjectOverlappingWithObject:movingObjectId :objId];
-            NSMutableArray* movingObjectHotspots = [model getHotspotsForObjectOverlappingWithObject:objId :movingObjectId];
+            NSMutableArray* hotspots = [model getHotspotsForObject:objId OverlappingWithObject:movingObjectId];
+            NSMutableArray* movingObjectHotspots = [model getHotspotsForObject:movingObjectId OverlappingWithObject:objId];
             
             //Compare hotspots of the two objects.
             for(Hotspot* hotspot in hotspots) {
@@ -888,18 +793,12 @@ float const groupingProximity = 20.0;
                     CGPoint hotspotLoc = [self getHotspotLocation:hotspot];
                     
                     //Check to see if either of these hotspots are currently connected to another objects.
-                    //NSLog(@"checking if object %@ is grouped at hotspot location: (%f, %f)", movingObjectId, movingObjectHotspotLoc.x, movingObjectHotspotLoc.y);
-                    //NSLog(@"checking if object %@ is grouped at hotspot location: (%f, %f)", objId, hotspotLoc.x, hotspotLoc.y);
-                    
                     NSString *isHotspotConnectedMovingObject = [NSString stringWithFormat:@"objectGroupedAtHotspot(%@, %f, %f)", movingObjectId, movingObjectHotspotLoc.x, movingObjectHotspotLoc.y];
                     NSString* isHotspotConnectedMovingObjectString  = [bookView stringByEvaluatingJavaScriptFromString:isHotspotConnectedMovingObject];
                     
                     NSString *isHotspotConnectedObject = [NSString stringWithFormat:@"objectGroupedAtHotspot(%@, %f, %f)", objId, hotspotLoc.x, hotspotLoc.y];
                     NSString* isHotspotConnectedObjectString  = [bookView stringByEvaluatingJavaScriptFromString:isHotspotConnectedObject];
                     
-                    //NSLog(@"moving object hotspot connected: %@", isHotspotConnectedMovingObjectString);
-                    //NSLog(@"Static object hotspot connected: %@", isHotspotConnectedObjectString);
-
                     //Make sure the two hotspots have the same action. It may also be necessary to ensure that the roles do not match. Also make sure neither of the hotspots are connected to another object. If all is well, these objects can be connected together.
                     if([[hotspot action] isEqualToString:[movingObjectHotspot action]] && [isHotspotConnectedMovingObjectString isEqualToString:@""] && [isHotspotConnectedObjectString isEqualToString:@""]) {
                         //calculate delta between the two hotspot locations.
@@ -916,10 +815,11 @@ float const groupingProximity = 20.0;
                             
                             if([[relationshipBetweenObjects actionType] isEqualToString:@"group"]) {
                                 objects = [[NSArray alloc] initWithObjects:movingObjectId, objId, nil];
-                                //Can't store CGPoints in an array, so we convert to NSValue.
-                                NSArray *hotspotsForInteraction = [[NSArray alloc] initWithObjects:[NSValue valueWithCGPoint:movingObjectHotspotLoc], [NSValue valueWithCGPoint:hotspotLoc], nil];
+                                NSArray *hotspotsForInteraction = [[NSArray alloc] initWithObjects:movingObjectHotspot,
+                                                                   hotspot, nil];
                                 
                                 [groupings addObject:[[PossibleInteraction alloc] initWithValues:GROUP :objects :hotspotsForInteraction]];
+
                             }
                             else if([[relationshipBetweenObjects actionType] isEqualToString:@"disappear"]) {
                                 //Add both the object causing the disappearing and the one that is doing the disappearing.
@@ -933,10 +833,9 @@ float const groupingProximity = 20.0;
                     }
                     
                     //if either one of these objects is connected to something, we also want to check the possibility of a transfer.
-                    //This is currently just very very broken.
-                    //NSLog(@"a hotspot of %@ is connected to: %@", movingObjectId, isHotspotConnectedMovingObjectString);
-                    //NSLog(@"a hotspot of %@ is connected to: %@", objId, isHotspotConnectedObjectString);
-                    /*if((![isHotspotConnectedMovingObjectString isEqualToString:@""]) || (![isHotspotConnectedObjectString isEqualToString:@""])) {
+                    //Currently this adds all possible interactions multiple times.
+                    //Additionally, not all possible interactions are being created...we should think about how to do this more robustly. The issue is that if the student drags the hay and the farmer (when grouped) by the hay, then the interaction will not be identified. 
+                    if((![isHotspotConnectedMovingObjectString isEqualToString:@""]) || (![isHotspotConnectedObjectString isEqualToString:@""])) {
                         //NSLog(@"checking for a transfer");
                         
                         NSString *objConnected;
@@ -956,8 +855,11 @@ float const groupingProximity = 20.0;
                         }
                         
                         //Check if the object that's connected at that hotspot can possibly be grouped with the other object.
-                        NSMutableArray* hotspotsForObjConnectedTo = [model getHotspotsForObjectOverlappingWithObject :objConnectedTo :currentUnconnectedObj];
-                        NSMutableArray* hotspotsForCurrentUnconnectedObject = [model getHotspotsForObjectOverlappingWithObject:currentUnconnectedObj :objConnectedTo];
+                        NSMutableArray* hotspotsForCurrentUnconnectedObject = [model getHotspotsForObject:currentUnconnectedObj OverlappingWithObject
+                                                                               :objConnectedTo];
+                        NSMutableArray* hotspotsForObjConnectedTo = [model getHotspotsForObject:objConnectedTo OverlappingWithObject
+                                                                     :currentUnconnectedObj];
+                        //NSLog(@"Comparing hotspots for %@ and %@", objConnectedTo, currentUnconnectedObj);
                         
                         //Now we have to check every hotspot against every other hotspot for pairing.
                         for(Hotspot* hotspot1 in hotspotsForObjConnectedTo) {
@@ -966,18 +868,11 @@ float const groupingProximity = 20.0;
                                 CGPoint hotspot1Loc = [self getHotspotLocation:hotspot1];
                                 CGPoint hotspot2Loc = [self getHotspotLocation:hotspot2];
                                 
-                                //Check to see if either of these hotspots are currently connected to another objects.
-                                NSLog(@"checking if object %@ is grouped at hotspot location: (%f, %f)", objConnectedTo, hotspot1Loc.x, hotspot1Loc.y);
-                                NSLog(@"checking if object %@ is grouped at hotspot location: (%f, %f)", currentUnconnectedObj, hotspot2Loc.x, hotspot2Loc.y);
-                                
                                 NSString *isHotspot1Connected = [NSString stringWithFormat:@"objectGroupedAtHotspot(%@, %f, %f)", objConnectedTo, hotspot1Loc.x, hotspot1Loc.y];
                                 NSString* isHotspot1ConnectedString  = [bookView stringByEvaluatingJavaScriptFromString:isHotspot1Connected];
                                 
                                 NSString *isHotspot2Connected = [NSString stringWithFormat:@"objectGroupedAtHotspot(%@, %f, %f)", currentUnconnectedObj, hotspot2Loc.x, hotspot2Loc.y];
                                 NSString* isHotspot2ConnectedString  = [bookView stringByEvaluatingJavaScriptFromString:isHotspot2Connected];
-                                
-                                NSLog(@"hotspot 2 connected: %@", isHotspot1Connected);
-                                NSLog(@"hotspot 3 connected: %@", isHotspot2Connected);
                                 
                                 //Make sure the two hotspots have the same action. It may also be necessary to ensure that the roles do not match. Also make sure neither of the hotspots are connected to another object. If all is well, these objects can be connected together.
                                 if([[hotspot1 action] isEqualToString:[hotspot2 action]] && [isHotspot1ConnectedString isEqualToString:@""] && [isHotspot2ConnectedString isEqualToString:@""]) {
@@ -989,9 +884,8 @@ float const groupingProximity = 20.0;
                                     NSArray *objects = [[NSArray alloc] initWithObjects:objConnected, objConnectedTo, currentUnconnectedObj, nil];
                                     
                                     if([[relationshipBetweenObjects  actionType] isEqualToString:@"group"]) {
-                                        //Can't store CGPoints in an array, so we convert to NSValue.
-                                        NSArray *hotspotsForInteraction = [[NSArray alloc] initWithObjects:[NSValue valueWithCGPoint:hotspot1Loc], [NSValue valueWithCGPoint:hotspot2Loc], nil];
-                                        
+                                        NSArray* hotspotsForInteraction = [[NSArray alloc] initWithObjects:hotspot1,
+                                                                           hotspot2, nil];
                                         [groupings addObject:[[PossibleInteraction alloc] initWithValues:TRANSFERANDGROUP :objects :hotspotsForInteraction]];
                                     }
                                     else if([[relationshipBetweenObjects actionType] isEqualToString:@"disappear"]) {
@@ -1001,7 +895,7 @@ float const groupingProximity = 20.0;
                                 }
                             }
                         }
-                    }*/
+                    }
                 }
             }
         }
@@ -1023,9 +917,7 @@ float const groupingProximity = 20.0;
     
     NSString* imageAtPointTop = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointTop];
     NSString* imageAtPointLeft = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointLeft];
-    
-    //NSLog(@"location of %@: (%@, %@)", movingObjectId, imageAtPointLeft, imageAtPointTop);
-    
+        
     //Check to see if the locations returned are in percentages. If they are, change them to pixel values based on the size of the screen.
     NSRange rangePercentTop = [imageAtPointTop rangeOfString:@"%"];
     NSRange rangePercentLeft = [imageAtPointLeft rangeOfString:@"%"];
@@ -1122,23 +1014,6 @@ float const groupingProximity = 20.0;
 }
 
 /*
- * Handles instances in which two objects are connected, but in which the user wants to transfer that grouping to a 
- * third object. (Example: the farmer puts the hay in the cart. In this case the user is not required to first ungroup the 
- * hay from the farmer before grouping it with the car, because it's the farmer that's actually doing the action. Instead, 
- * the application should automatically detect this case, and ungroup the hay from the farmer and group it to the cart directly.
- * object1 is the object that is doing the action. In this example, it's the farmer. object2 is the object that is being
- * transfered, in this case the hay. object3 is the object accepting the transfer, in this case the cart. 
- * In order to properly group the hay and the cart together, we need the hotspots at which they should be grouped.
- */
--(void) transferGrouping:(NSString*)object1 :(NSString*)object2 :(CGPoint)object2Hotspot :(NSString*)object3 :(CGPoint)object3Hotspot {
-    //Ungroup object 1 from object 2.
-    [self ungroupObjects:object1 :object2];
-    
-    //Group object 2 and object 3 at the specified hotspots.
-    [self groupObjects:object2 :object2Hotspot :object3 :object3Hotspot];
-}
-
-/*
  * Call JS code to cause the object to disappear, then calculate where it needs to re-appear and call the JS code to make
  * it re-appear at the new location.
  * TODO: Figure out how to deal with instances of transferGrouping + consumeAndReplenishSupply
@@ -1152,7 +1027,7 @@ float const groupingProximity = 20.0;
     Hotspot* hiddenObjectHotspot = [model getHotspotforObjectWithActionAndRole:disappearingObject :@"appear" :@"subject"];
     
     //Get the relationship between this object and the other object specifying where the object should appear. Even though the call is to a general function, there should only be 1 valid relationship returned.
-    NSLog(@"disappearing object id: %@", disappearingObject);
+    //NSLog(@"disappearing object id: %@", disappearingObject);
     
     NSMutableArray* relationshipsForHiddenObject = [model getRelationshipForObjectForAction:disappearingObject :@"appear"];
     NSLog(@"number of relationships for Hidden Object: %d", [relationshipsForHiddenObject count]);
@@ -1161,7 +1036,7 @@ float const groupingProximity = 20.0;
     if([relationshipsForHiddenObject count] > 0) {
         Relationship *appearRelation = [relationshipsForHiddenObject objectAtIndex:0];
     
-        NSLog(@"find hotspot in %@ for %@ to appear in", [appearRelation object2Id], disappearingObject);
+       // NSLog(@"find hotspot in %@ for %@ to appear in", [appearRelation object2Id], disappearingObject);
         
         //Now we have to pull the hotspot at which this relationship occurs.
         //Note: We may at one point want to programmatically determine the role, but for now, we'll hard code it in.
@@ -1177,7 +1052,7 @@ float const groupingProximity = 20.0;
             //Again, double check to make sure this isn't nil.
             if(hiddenObjectHotspot != nil) {
                 CGPoint hiddenObjectHotspotLocation = [self getHotspotLocation:hiddenObjectHotspot];
-                NSLog(@"found hotspot on hidden object that we need to match to the other object.");
+                //NSLog(@"found hotspot on hidden object that we need to match to the other object.");
                 
                 //With both hotspot pixel values we can calcuate the distance between the top-left corner of the hidden object and it's hotspot.
                 CGPoint change = [self calculateDeltaForMovingObjectAtPoint:hiddenObjectHotspotLocation];
@@ -1260,6 +1135,31 @@ float const groupingProximity = 20.0;
     }
     
     return CGPointMake(-1, -1);
+}
+
+/* 
+ * Calculates the location of the hotspot based on the bounding box provided. 
+ * This function is used when simulating the locations of objects, since we can't pull the 
+ * current location and size of the image for this.
+ */
+-(CGPoint) calculateHotspotLocationBasedOnBoundingBox:(Hotspot*)hotspot :(CGRect) boundingBox {
+    float imageWidth = boundingBox.size.width;
+    float imageHeight = boundingBox.size.height;
+    
+    //if image height and width are 0 then the image doesn't exist on this page.
+    if(imageWidth > 0 && imageHeight > 0) {
+        float locX = boundingBox.origin.x;
+        float locY = boundingBox.origin.y;
+        
+        //Now we've got the location of the top left corner of the image, the size of the image and the relative position of the hotspot. Need to calculate the pixel location of the hotspot and call the js to draw the hotspot.
+        float hotspotX = locX + (imageWidth * [hotspot location].x / 100.0);
+        float hotspotY = locY + (imageHeight * [hotspot location].y / 100.0);
+        
+        return CGPointMake(hotspotX, hotspotY);
+    }
+    
+    return CGPointMake(-1, -1);
+
 }
 
 //Needed so the Controller gets the touch events.

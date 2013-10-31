@@ -149,14 +149,18 @@
     return [[NSMutableArray alloc] initWithArray:[[hotspots objectForKey:objId] allObjects]];
 }
 
-//TODO: Re-name the parameters or the function name, or both to clarify that one of these is the object that I'm returning the hotspots for and the other is the object that is currently overlapping with it. obj2 is the object for which the hotspots are being generated. 
--(NSMutableArray*) getHotspotsForObjectOverlappingWithObject:(NSString*) obj1 :(NSString*) obj2 {
-    NSMutableArray* hotspotsForObject = [self getHotspotsForObjectId:obj2];
+/*
+ * Get the hotspots for obj1 that are overlapping with obj2. 
+ * Filter the hotspots based on the relationships for the objects. 
+ * Eventually we may want to also filter the hotspots based on the constraints.
+ */
+-(NSMutableArray*) getHotspotsForObject:(NSString*)obj1 OverlappingWithObject:(NSString*) obj2{
+    NSMutableArray* hotspotsForObject = [self getHotspotsForObjectId:obj1];
     
     //If we want to constrain the hotspots shown by the possible relationships between two objects, then we need to filter hotspots based on those relationships. E.g. of a relationship would be: the farmer can pick up the hay.
     if(useRelationships) {
         //Get relationships for the two overlapping objects.
-        NSMutableArray* relationshipForObjects = [self getRelationshipsForObjects:obj1 :obj2];
+        NSMutableArray* relationshipForObjects = [self getRelationshipsForObjects:obj2 :obj1];
         NSMutableArray* relevantHotspots = [[NSMutableArray alloc] init];
         
         for(Relationship* relationship in relationshipForObjects) {
