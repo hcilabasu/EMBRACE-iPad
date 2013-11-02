@@ -197,23 +197,6 @@ function checkObjectOverlapString(object) {
 }
 
 /*
- * Function calls checkObjectOverlap to see if this object is overlapping
- * with any other objects. 
- * If it is, then it adds the overlapping objects to the groupings array.
- */
-function groupOverlappingObjects(object) {
-    var overlapArray = checkObjectOverlap(object);
-    
-    //Go through the array returned by the checkObjectOverlap function to see if the objects are already grouped. If they aren't, group them.
-    for(i = 0; i < overlapArray.length; i ++) {
-        groupings[groupings.length] = overlapArray[i];
-    }
-    
-    //Clear all the highlighting because we've finished our grouping.
-    clearAllHighlighted();
-}
-
-/*
  * Group the two objects at the specified hotspots.
  * x1,y1 specifies the hotspot location of object1 that will be grouped with the hotspot of object2 specified by x2,y2.
  * Object1 is the object that is being manipulated. Object 2 is static when the grouping is animated.
@@ -229,6 +212,8 @@ function groupObjectsAtLoc(object1, x1, y1, object2, x2, y2) {
     
     //Add them to the grouped objects array.
     groupings[groupings.length] = group;
+
+    clearAllHighlighted();
 }
 
 /* 
@@ -300,6 +285,8 @@ function ungroupObjects(object1, object2) {
         //Animate the ungrouping.
         animateUngrouping(group);
     }
+    
+    clearAllHighlighted();
 }
 
 /*
@@ -514,18 +501,29 @@ function areObjectsGrouped(object1, object2) {
  * If so, a property should be added specifying the maximum number of connections that can be made to any one hotspot at a time.
  * For now, we assume this maximum is one for all objects.
  * Returns null if no object grouped, or the object id otherwise.
+ * It's possible that there's some variability here, so we're going to provide a 2 pixel margin.
+ * This variability exists because the calculation of the function that figures out where the hotspot location is in the objC 
+ * does not quite match where the JS thinks it is based on the Connection. 
  */
 function objectGroupedAtHotspot(object, x, y) {
+    var MARGIN = 2;
+    
     for(var i = 0; i < groupings.length; i ++) {
         var group = groupings[i];
         
         if(object.id == group.obj1.id) {
-            if((x == group.obj1x) && (y == group.obj1y)) {
+            var diffX = Math.abs(x - group.obj1x);
+            var diffY = Math.abs(y - group.obj1y);
+            
+            if(diffX < MARGIN && diffY < MARGIN) {
                 return group.obj2.id;
             }
         }
         else if(object.id == group.obj2.id) {
-            if((x == group.obj2x) && (y == group.obj2y)) {
+            var diffX = Math.abs(x - group.obj1x);
+            var diffY = Math.abs(y - group.obj1y);
+            
+            if(diffX < MARGIN && diffY < MARGIN) {
                 return group.obj1.id;
             }
         }
