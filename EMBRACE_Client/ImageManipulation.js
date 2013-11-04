@@ -645,7 +645,7 @@ function drawHotspot(x, y, color) {
     var canvas = document.getElementById('overlay');
     
     //Make sure the canvas is the size of the window. If not, make it the same size.
-    //NOTE: This doesn't work, but we need something like this.
+    //NOTE: This doesn't work, but we need something like this if we ever end up working in different sized screens.
     /*
      if(canvas.width != window.innerWidth)
         canvas.width = window.innerWidth;
@@ -660,6 +660,8 @@ function drawHotspot(x, y, color) {
     context.arc(x, y, radius, 0, 2 * Math.PI, false);
     context.fillStyle = color;
     context.fill();
+    
+    document.getElementById('overlay').style.zIndex = "100";
 }
 
 /*
@@ -670,4 +672,6 @@ function clearAllHotspots() {
     var context = canvas.getContext('2d');
 
     context.clearRect(0, 0, canvas.width, canvas.height);
+    
+    document.getElementById('overlay').style.zIndex = "0";
 }
