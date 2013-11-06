@@ -160,14 +160,18 @@
     //If we want to constrain the hotspots shown by the possible relationships between two objects, then we need to filter hotspots based on those relationships. E.g. of a relationship would be: the farmer can pick up the hay.
     if(useRelationships) {
         //Get relationships for the two overlapping objects.
-        NSMutableArray* relationshipForObjects = [self getRelationshipsForObjects:obj1 :obj2];
+        NSMutableArray* relationshipForObjects = [self getRelationshipsForObjects:obj1 :obj2];        
         NSMutableArray* relevantHotspots = [[NSMutableArray alloc] init];
         
         for(Relationship* relationship in relationshipForObjects) {
             //Use the relationships to reduce the hotspots available.
             for(Hotspot* hotspot in hotspotsForObject) {
+                //Need to make sure the relationship and the hotspot share the same verb. Also want to make sure that object1 of the relationship is the subject and object2 of the relationship is the object.
                 if([[relationship action] isEqualToString:[hotspot action]]) {
-                    [relevantHotspots addObject:hotspot];
+                    //if the object of this hotspot is the subject, then it should be object 1 in the relationship. Otherwise, if the object of this hotspot is the object, it should be object 2 in the relationship.
+                    if(([[hotspot role] isEqualToString:@"subject"] && [[relationship object1Id] isEqualToString:obj1])
+                       || ([[hotspot role] isEqualToString:@"object"] && [[relationship object2Id] isEqualToString:obj1]))
+                        [relevantHotspots addObject:hotspot];
                 }
             }
         }
