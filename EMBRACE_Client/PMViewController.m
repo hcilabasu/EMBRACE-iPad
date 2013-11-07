@@ -94,19 +94,8 @@ float const groupingProximity = 20.0;
     // Disable callout
     [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitTouchCallout='none';"];
     
-    // Load the js files. 
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"jsDraw2D" ofType:@"js"];
-    
-    if(filePath == nil) {
-        NSLog(@"Cannot find js file: jsDraw2D");
-    }
-    else {
-        NSData *fileData = [NSData dataWithContentsOfFile:filePath];
-        NSString *jsString = [[NSMutableString alloc] initWithData:fileData encoding:NSUTF8StringEncoding];
-        [bookView stringByEvaluatingJavaScriptFromString:jsString];
-    }
-
-    filePath = [[NSBundle mainBundle] pathForResource:@"ImageManipulation" ofType:@"js"];
+    // Load the js files.
+    NSString* filePath = [[NSBundle mainBundle] pathForResource:@"ImageManipulation" ofType:@"js"];
     
     if(filePath == nil) {
         NSLog(@"Cannot find js file: ImageManipulation");

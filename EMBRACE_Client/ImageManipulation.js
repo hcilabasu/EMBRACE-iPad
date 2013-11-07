@@ -1,7 +1,5 @@
 var groupings = new Array(); //Stores objects that may be grouped together. This array will now be a 1D array of objects that contains Connection objects. These Connection objects will contain the necessary information for each grouping. All functions that rely on this specific data structure will need to be updated.
 
-var overlayGraphics = new jsGraphics(document.getElementById('overlay')); //Create jsGraphics object
-
 var STEP = 5; //Step size used for animation when grouping and ungrouping.
 
 var animatingGrouping = false;
