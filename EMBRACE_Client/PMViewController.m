@@ -345,8 +345,9 @@ float const groupingProximity = 20.0;
                 [self moveObject:movingObjectId :location :delta];
                 
                 //If the object was dropped, check if it's overlapping with any other objects that it could interact with.
-                NSMutableArray* possibleInteractions = [self getPossibleInteractions];
-
+                //NSMutableArray* possibleInteractions = [self getPossibleInteractions];
+                NSMutableArray* possibleInteractions = [self getPossibleInteractions:YES];
+                
                 //If only 1 possible interaction was found, go ahead and perform that interaction.
                 if([possibleInteractions count] == 1) {
                     NSLog(@"returned one possible interaction");
@@ -391,7 +392,7 @@ float const groupingProximity = 20.0;
             [self moveObject:movingObjectId :location :delta];
             
             //Draw hotspots for the object.
-            [self drawHotspots:[model getHotspotsForObjectId:movingObjectId]];
+            //[self drawHotspots:[model getHotspotsForObjectId:movingObjectId]];
             
             //If we're overlapping with another object, then we need to figure out which hotspots are currently active and highlight those hotspots.
             //Starting with the simple case of moving an object that is not grouped to any other object, and then expanding from there.
@@ -401,19 +402,26 @@ float const groupingProximity = 20.0;
             
             if(![overlapArrayString isEqualToString:@""]) {
                 //NSLog(@"overlapping with: %@", overlapArrayString);
-            
+                
                 NSArray* overlappingWith = [overlapArrayString componentsSeparatedByString:@", "];
                             
                 for(NSString* objId in overlappingWith) {
                     //we have the list of objects it's overlapping with, we now have to figure out which hotspots to draw.                    
                     NSMutableArray* hotspots = [model getHotspotsForObject:objId OverlappingWithObject:movingObjectId];
-                    [self drawHotspots:hotspots];
+                    //[self drawHotspots:hotspots];
                     
                     //Since hotspots are filtered based on relevant relationships between objects, only highlight objects that have at least one hotspot returned by the model.
                     if([hotspots count] > 0) {
                         NSString* highlight = [NSString stringWithFormat:@"highlightObject(%@)", objId];
                         [bookView stringByEvaluatingJavaScriptFromString:highlight];
                     }
+                }
+                
+                NSMutableArray* possibleInteractions = [self getPossibleInteractions:NO];
+                
+                for(PossibleInteraction* interaction in possibleInteractions) {
+                    NSMutableArray* hotspots = [[interaction hotspots] mutableCopy];
+                    [self drawHotspots:hotspots];
                 }
             }
         }
@@ -765,7 +773,8 @@ float const groupingProximity = 20.0;
  * TODO: Figure out how to return all possible interactions robustly. Currently if the student drags the hay and the farmer (when grouped) by the hay, then the interaction will not be identified.
  * TODO: Lots of duplication here. Need to fix the above and then pull out duplicate code.
  */
--(NSMutableArray*) getPossibleInteractions {
+//-(NSMutableArray*) getPossibleInteractions {
+-(NSMutableArray*) getPossibleInteractions:(BOOL)useProximity {
     NSMutableArray* groupings = [[NSMutableArray alloc] init];
     
     //We also want to double check and make sure that neither of the objects is already grouped with another object at the relevant hotspots. If it is, that means we may need to transfer the grouping, instead of creating a new grouping.
@@ -810,7 +819,8 @@ float const groupingProximity = 20.0;
                         Relationship* relationshipBetweenObjects = [model getRelationshipForObjectsForAction:movingObjectId :objId :[movingObjectHotspot action]];
                         
                         //Check to make sure that the two hotspots are in close proximity to each other.
-                        if(deltaX <= groupingProximity && deltaY <= groupingProximity) {
+                        //if(deltaX <= groupingProximity && deltaY <= groupingProximity) {
+                        if((useProximity && deltaX <= groupingProximity && deltaY <= groupingProximity) || !useProximity) {
                             //Create necessary arrays for the interaction.
                             NSArray *objects;
                             
