@@ -488,7 +488,7 @@
     NSArray* hotspotsElements = [metadataDoc nodesForXPath:@"//hotspots" error:nil];
     GDataXMLElement *hotspotsElement = (GDataXMLElement *)[hotspotsElements objectAtIndex:0];
     
-    NSArray *hotspots = [hotspotsElement elementsForName:@"hotspot"];
+    NSArray* hotspots = [hotspotsElement elementsForName:@"hotspot"];
     
     //Read in the hotspot information.
     for(GDataXMLElement *hotspot in hotspots) {
@@ -505,6 +505,69 @@
         CGPoint location = CGPointMake(locX, locY);
         //[model addHotspot:objectId :location];
         [model addHotspot:objectId :action :role :location];
+    }
+    
+    //Read in any setup information.
+    NSArray* setupElements = [metadataDoc nodesForXPath:@"//setups" error:nil];
+    GDataXMLElement* setupElement = (GDataXMLElement*)[setupElements objectAtIndex:0];
+    
+    NSArray* storySetupElements = [setupElement elementsForName:@"story"];
+    
+    for(GDataXMLElement* storySetupElement in storySetupElements) {
+        NSString* storyTitle = [[storySetupElement attributeForName:@"title"] stringValue];
+        
+        NSArray* storySetupSteps = [storySetupElement children];
+        
+        //NSLog(@"%@", [storySetupElement name]);
+        
+        for(GDataXMLElement* storySetupStep in storySetupSteps) {
+            
+            //<setup obj1Id="cart" action="hook" obj2Id="tractor"/>
+        }
+    }
+    
+    //Read in the solutions and add them to the PhysicalManipulationActivity they belong to.
+    NSArray* solutionsElements = [metadataDoc nodesForXPath:@"//solutions" error:nil];
+    GDataXMLElement* solutionsElement = (GDataXMLElement*)[solutionsElements objectAtIndex:0];
+    
+    NSArray* storySolutions = [solutionsElement elementsForName:@"story"];
+    
+    for(GDataXMLElement* solution in storySolutions) {
+        //Get story title.
+        NSString* title = [[solution attributeForName:@"title"] stringValue];
+        
+        NSArray* sentenceSolutions = [solution elementsForName:@"sentence"];
+        
+        for(GDataXMLElement* sentence in sentenceSolutions) {
+            //Get sentence number
+            int sentenceNum = [[[sentence attributeForName:@"number"] stringValue] integerValue];
+            
+            //Get solution steps for sentence.
+            NSArray* stepsForSentence = [sentence children];
+
+            for(GDataXMLElement* step in stepsForSentence) {
+                //Get step information.
+                if([[step name] isEqualToString:@"step"]) {
+                    int stepNum = [[[step attributeForName:@"number"] stringValue] integerValue];
+                    NSString* obj1Id = [[step attributeForName:@"obj1Id"] stringValue];
+                    NSString* action = [[step attributeForName:@"action"] stringValue];
+                    NSString* obj2Id = [[step attributeForName:@"obj2Id"] stringValue];
+                }
+                //otherwise, it may be one of two types of moves -- move into a bounding box or move to waypoint.
+                else if([[step name] isEqualToString:@"move"]) {
+                    NSString* obj1Id = [[step attributeForName:@"obj1Id"] stringValue];
+                    NSString* action = [[step attributeForName:@"action"] stringValue];
+                    
+                    if([step attributeForName:@"locationId"]) {
+                        NSString* location = [[step attributeForName:@"locationId"] stringValue];
+                    }
+                    else if([step attributeForName:@"waypointId"]) {
+                        NSString* waypoint = [[step attributeForName:@"waypointId"] stringValue];
+                    }
+                }
+            }
+        }
+        
     }
 }
 @end

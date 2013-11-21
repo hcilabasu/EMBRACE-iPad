@@ -61,6 +61,8 @@
 		31953E971729EEDE00570087 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 31953E961729EEDE00570087 /* libz.dylib */; };
 		31953E9C172A136A00570087 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31953E9B172A136A00570087 /* QuartzCore.framework */; };
 		31AA5FAA175FB16500E9A9B3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AA5FA9175FB16500E9A9B3 /* LoginViewController.m */; };
+		31C306C2183D900B0043DEDD /* Solution.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C306C1183D900B0043DEDD /* Solution.m */; };
+		31C306C5183E93A60043DEDD /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C306C4183E93A60043DEDD /* Connection.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -163,6 +165,10 @@
 		31953E9B172A136A00570087 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		31AA5FA8175FB16500E9A9B3 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		31AA5FA9175FB16500E9A9B3 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		31C306C0183D900B0043DEDD /* Solution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Solution.h; sourceTree = "<group>"; };
+		31C306C1183D900B0043DEDD /* Solution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Solution.m; sourceTree = "<group>"; };
+		31C306C3183E93A60043DEDD /* Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Connection.h; sourceTree = "<group>"; };
+		31C306C4183E93A60043DEDD /* Connection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connection.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +226,8 @@
 				31058C7E176BE74B00595AAE /* AssessmentActivity.m */,
 				31058C80176BEB6200595AAE /* Page.h */,
 				31058C81176BEB6200595AAE /* Page.m */,
+				31C306C0183D900B0043DEDD /* Solution.h */,
+				31C306C1183D900B0043DEDD /* Solution.m */,
 			);
 			name = "Book Model";
 			sourceTree = "<group>";
@@ -239,6 +247,8 @@
 				3115B1D01819AA0E007171E3 /* MenuItemImage.m */,
 				3115B1D21819C532007171E3 /* PossibleInteraction.h */,
 				3115B1D31819C532007171E3 /* PossibleInteraction.m */,
+				31C306C3183E93A60043DEDD /* Connection.h */,
+				31C306C4183E93A60043DEDD /* Connection.m */,
 			);
 			name = "Physical Manipulation";
 			sourceTree = "<group>";
@@ -522,6 +532,7 @@
 				31AA5FAA175FB16500E9A9B3 /* LoginViewController.m in Sources */,
 				3115B1D11819AA0E007171E3 /* MenuItemImage.m in Sources */,
 				311646AE175FCFE100B483F0 /* Chapter.m in Sources */,
+				31C306C2183D900B0043DEDD /* Solution.m in Sources */,
 				311646B1175FD03F00B483F0 /* Activity.m in Sources */,
 				3183DA151761614500815211 /* BookHeaderView.m in Sources */,
 				3183DA1A1762886300815211 /* TabView.m in Sources */,
@@ -539,6 +550,7 @@
 				31161433179DE85E00655221 /* Relationship.m in Sources */,
 				310908EC17DE90CA004590A2 /* MovementConstraint.m in Sources */,
 				310908EF17DE90DB004590A2 /* OrderConstraint.m in Sources */,
+				31C306C5183E93A60043DEDD /* Connection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

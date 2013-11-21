@@ -10,18 +10,31 @@
 
 @implementation PossibleInteraction
 
+@synthesize connections;
 @synthesize interactionType;
-@synthesize objects;
-@synthesize hotspots;
 
-- (id)initWithValues:(InteractionType)type :(NSArray*) objs :(NSArray*) hotspts {
+-(id) init {
     self = [super init];
     if (self) {
-        interactionType = type;
-        objects = objs;
-        hotspots = hotspts;
+        connections = [[NSMutableArray alloc] init];
     }
     return self;
+
+}
+
+-(id) initWithInteractionType:(InteractionType)type {
+    self = [super init];
+    if (self) {
+        connections = [[NSMutableArray alloc] init];
+        interactionType = type;
+    }
+    return self;
+    
+}
+
+- (void)addConnection:(InteractionType)type :(NSArray*) objs :(NSArray*) hotspts {
+    Connection *connection = [[Connection alloc] initWithValues:type :objs :hotspts];
+    [connections addObject:connection];
 }
 
 @end

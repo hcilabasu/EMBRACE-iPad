@@ -57,7 +57,7 @@
         data = itemData;
         angleFromMenuCenter = angleFromCenter;
 
-        NSLog(@"initialized menu item with interaction type: %d between objects: %@", [[itemData interaction] interactionType], [[[itemData interaction] objects] componentsJoinedByString:@","]);
+        //NSLog(@"initialized menu item with interaction type: %d between objects: %@", [[itemData interaction] interactionType], [[[itemData interaction] objects] componentsJoinedByString:@","]);
 
     }
     return self;

@@ -275,8 +275,11 @@ float const groupingProximity = 20.0;
                     
                     //Create the menuItem object that will hold the data and add menuItem to the menuDataSource.
                     //In this case we have no hotspots.
-                    PossibleInteraction *interaction = [[PossibleInteraction alloc] initWithValues:UNGROUP
-                                                                                                  :affectedItemIds :nil];
+                    //PossibleInteraction *interaction = [[PossibleInteraction alloc] initWithValues:UNGROUP :affectedItemIds :nil];
+                    //TODO: come back to this and see why the this interaction has no hotspots.
+                    PossibleInteraction* interaction = [[PossibleInteraction alloc] initWithInteractionType:UNGROUP];
+                    [interaction addConnection:UNGROUP :affectedItemIds :nil];
+                    
                     //Calculate the bounding box for the group of objects being passed to the menu item.
                     CGRect boundingBox = [self getBoundingBoxOfImages:images];
                     
@@ -352,8 +355,6 @@ float const groupingProximity = 20.0;
                     
                     //Create new data source for menu.
                     //Go through and great a menuItem for every possible interaction
-                    //TODO: Should we move this to a different function along with the code that creates the ungrouping menu data source?
-
                     for(PossibleInteraction* interaction in possibleInteractions) {
                         [self simulatePossibleInteractionForMenuItem:interaction];
                     }
@@ -397,7 +398,6 @@ float const groupingProximity = 20.0;
                 for(NSString* objId in overlappingWith) {
                     //we have the list of objects it's overlapping with, we now have to figure out which hotspots to draw.                    
                     NSMutableArray* hotspots = [model getHotspotsForObject:objId OverlappingWithObject:movingObjectId];
-                    //[self drawHotspots:hotspots];
                     
                     //Since hotspots are filtered based on relevant relationships between objects, only highlight objects that have at least one hotspot returned by the model.
                     if([hotspots count] > 0) {
@@ -409,8 +409,22 @@ float const groupingProximity = 20.0;
                 NSMutableArray* possibleInteractions = [self getPossibleInteractions:NO];
                 
                 for(PossibleInteraction* interaction in possibleInteractions) {
-                    NSMutableArray* hotspots = [[interaction hotspots] mutableCopy];
-                    [self drawHotspots:hotspots];
+                    for(Connection* connection in [interaction connections]) {
+                        NSMutableArray* hotspots  = [[connection hotspots] mutableCopy];
+                        //TODO: This will only work for possible interactions that have a "grouping" aspect to them. This means that if an animal can eat something, but not pick it up, the hotspots will not be draw. That's incorrect. In this case, we may want to add the hotspots to the possible interaction regardless of the type of interaction it is.
+                        //TODO: Are there ever cases where we're provided with more than 2 hotspots? Are we drawing the right hotspots?
+                        //[self drawHotspots:hotspots];
+
+                        //Figure out whether two hotspots are close enough together to currently be grouped. If so, draw the hotspots with green. Otherwise, draw them with red.
+                        BOOL areWithinProximity = [self hotspotsWithinGroupingProximity:[hotspots objectAtIndex:0] :[hotspots objectAtIndex:1]];
+                        
+                        //TODO: Figure out how to fix this when the same hotspot is within proximity in one instance and not within proximity in another instance.
+                        //TODO: Figure out what it means to be in proximity when an object is being transfered.
+                        if(areWithinProximity)
+                            [self drawHotspots:hotspots :@"green"];
+                        else
+                            [self drawHotspots:hotspots :@"red"];
+                    }
                 }
             }
         }
@@ -423,6 +437,8 @@ float const groupingProximity = 20.0;
  * Otherwise, returned the MenuItemImage that was created.
  */
 -(MenuItemImage*) createMenuItemForImage:(NSString*) objId {
+    NSLog(@"creating menu item for image with object id: %@", objId);
+    
     NSString* requestImageSrc = [NSString stringWithFormat:@"%@.src", objId];
     NSString* imageSrc = [bookView stringByEvaluatingJavaScriptFromString:requestImageSrc];
     
@@ -474,92 +490,100 @@ float const groupingProximity = 20.0;
  * It then adds the result to the menuDataSOurce in order to display each menu item appropriately.
  * NOTE: For the moment this code could be used to create both the ungroup and all other interactions...lets see if this is the case after this code actually simulates the end result. If it is, the code should be simplified to use the same function.
  * NOTE: This should be pushed to the JS so that all actual positioning information is in one place and we're not duplicating code that's in the JS in the objC as well. For now...we'll just do it here.
+ * Come back to this...
  */
 -(void) simulatePossibleInteractionForMenuItem:(PossibleInteraction*)interaction {
-    NSArray* objectIds = [interaction objects];
-    NSArray* hotspots = [interaction hotspots];
-
     NSMutableArray* images = [[NSMutableArray alloc] init];
 
-    //Get all the necessary information of the UIImages.
-    for(NSString* objId in objectIds) {
-        MenuItemImage *itemImage = [self createMenuItemForImage:objId];
+    for(Connection* connection in [interaction connections]) {
+        //NSArray* objectIds = [interaction objects];
+        //NSArray* hotspots = [interaction hotspots];
+        NSArray* objectIds = [connection objects];
+        NSArray* hotspots = [connection hotspots];
         
-        if(itemImage != nil)
-            [images addObject:itemImage];
-    }
-
-    //Update the locations of the UIImages based on the type of interaction with the simulated location.
-    //get the object Ids for this particular menuItem.
-    NSString* obj1 = [objectIds objectAtIndex:0]; //get object 1, since we'll always have at least one object.
-    
-    if([interaction interactionType] == UNGROUP || [interaction interactionType] == DISAPPEAR) {
-        NSString* obj2 = [objectIds objectAtIndex:1]; //get object 2
+        //Get all the necessary information of the UIImages.
+        for(NSString* objId in objectIds) {
+            MenuItemImage *itemImage = [self createMenuItemForImage:objId];
+            
+            if(itemImage != nil)
+                [images addObject:itemImage];
+        }
         
-        [self simulateUngrouping:obj1 :obj2 :images];
-    }
-    else if([interaction interactionType] == GROUP) {
-        NSString* obj2 = [objectIds objectAtIndex:1]; //get object 2
+        //Update the locations of the UIImages based on the type of interaction with the simulated location.
+        //get the object Ids for this particular menuItem.
+        NSString* obj1 = [objectIds objectAtIndex:0]; //get object 1, since we'll always have at least one object.
         
-        //Get hotspots.
-        Hotspot *hotspot1 = [hotspots objectAtIndex:0];
-        Hotspot *hotspot2 = [hotspots objectAtIndex:1];
-        
-        CGPoint hotspot1Loc = [self getHotspotLocation:hotspot1];
-        CGPoint hotspot2Loc = [self getHotspotLocation:hotspot2];
-        
-        [self simulateGrouping:obj1 :hotspot1Loc :obj2 :hotspot2Loc :images];
-    }
-    //This currently uses the ungroup interaction.
-    /*else if([interaction interactionType] == DISAPPEAR) {
-        NSString* obj2 = [objectIds objectAtIndex:1]; //get object 2
-        
-        [self simulateConsumeAndReplenishSupply:obj1 :obj2];
-    }*/
-    else if([interaction interactionType] == TRANSFERANDGROUP) {
-        //If we're transfering an item there will be 3 ids instead of 2.
-        NSString* obj2 = [objectIds objectAtIndex:1]; //get object 2
-        NSString* obj3 = [objectIds objectAtIndex:2]; //get object 3
-        
-        //Get hotspots.
-        Hotspot *obj2Hotspot = [hotspots objectAtIndex:0];
-        Hotspot *obj3Hotspot = [hotspots objectAtIndex:1];
-
-        //Object 1 and 2 are grouped already, and must be ungrouped and object 3 should be grouped with object 2.
-        [self simulateUngrouping:obj1 :obj2 :images];
-        
-        //Temporarily remove image 1 from the array.
-        MenuItemImage* image1 = [images objectAtIndex:0];
-        [images removeObjectAtIndex:0];
-        
-        //Calculate the hotspot locations based on the image locations.
-        CGRect obj2BoundingBox = [((MenuItemImage*)[images objectAtIndex:0]) boundingBoxImage];
-        CGPoint obj2HotspotLoc = [self calculateHotspotLocationBasedOnBoundingBox:obj2Hotspot :obj2BoundingBox];
-
-        CGRect obj3BoundingBox = [((MenuItemImage*)[images objectAtIndex:1]) boundingBoxImage];
-        CGPoint obj3HotspotLoc = [self calculateHotspotLocationBasedOnBoundingBox:obj3Hotspot :obj3BoundingBox];
-        
-        [self simulateGrouping:obj2 :obj2HotspotLoc :obj3 :obj3HotspotLoc :images];
-        
-        //Add image1 back in.
-        [images insertObject:image1 atIndex:0];
-    }
-    else if([interaction interactionType] == TRANSFERANDDISAPPEAR) {
-        NSString* obj2 = [objectIds objectAtIndex:1]; //get object 2
-        NSString* obj3 = [objectIds objectAtIndex:2]; //get object 3
-        
-        //In this case we just ungroup the object from what it's grouped to and consume it.
-        //Consuming it currently uses the ungroup object.
-        [self simulateUngrouping:obj1 :obj2 :images];
-        
-        //Temporarily remove image 1 from the array.
-        MenuItemImage* image1 = [images objectAtIndex:0];
-        [images removeObjectAtIndex:0];
-        
-        [self simulateUngrouping:obj2 :obj3 :images];
-        
-        //Add image1 back in.
-        [images insertObject:image1 atIndex:0];
+        //if([interaction interactionType] == UNGROUP || [interaction interactionType] == DISAPPEAR) {
+        if([connection interactionType] == UNGROUP || [connection interactionType] == DISAPPEAR) {
+            NSString* obj2 = [objectIds objectAtIndex:1]; //get object 2
+            
+            [self simulateUngrouping:obj1 :obj2 :images];
+        }
+        //else if([interaction interactionType] == GROUP) {
+        else if([connection interactionType] == GROUP) {
+            NSString* obj2 = [objectIds objectAtIndex:1]; //get object 2
+            
+            //Get hotspots.
+            Hotspot *hotspot1 = [hotspots objectAtIndex:0];
+            Hotspot *hotspot2 = [hotspots objectAtIndex:1];
+            
+            CGPoint hotspot1Loc = [self getHotspotLocation:hotspot1];
+            CGPoint hotspot2Loc = [self getHotspotLocation:hotspot2];
+            
+            [self simulateGrouping:obj1 :hotspot1Loc :obj2 :hotspot2Loc :images];
+        }
+        //This currently uses the ungroup interaction.
+        /*else if([interaction interactionType] == DISAPPEAR) {
+         NSString* obj2 = [objectIds objectAtIndex:1]; //get object 2
+         
+         [self simulateConsumeAndReplenishSupply:obj1 :obj2];
+         }*/
+        //NOTE: With the changes to the possibleInteractions, we may not need this complexity.
+        /*else if([interaction interactionType] == TRANSFERANDGROUP) {
+            //If we're transfering an item there will be 3 ids instead of 2.
+            NSString* obj2 = [objectIds objectAtIndex:1]; //get object 2
+            NSString* obj3 = [objectIds objectAtIndex:2]; //get object 3
+            
+            //Get hotspots.
+            Hotspot *obj2Hotspot = [hotspots objectAtIndex:0];
+            Hotspot *obj3Hotspot = [hotspots objectAtIndex:1];
+            
+            //Object 1 and 2 are grouped already, and must be ungrouped and object 3 should be grouped with object 2.
+            [self simulateUngrouping:obj1 :obj2 :images];
+            
+            //Temporarily remove image 1 from the array.
+            MenuItemImage* image1 = [images objectAtIndex:0];
+            [images removeObjectAtIndex:0];
+            
+            //Calculate the hotspot locations based on the image locations.
+            CGRect obj2BoundingBox = [((MenuItemImage*)[images objectAtIndex:0]) boundingBoxImage];
+            CGPoint obj2HotspotLoc = [self calculateHotspotLocationBasedOnBoundingBox:obj2Hotspot :obj2BoundingBox];
+            
+            CGRect obj3BoundingBox = [((MenuItemImage*)[images objectAtIndex:1]) boundingBoxImage];
+            CGPoint obj3HotspotLoc = [self calculateHotspotLocationBasedOnBoundingBox:obj3Hotspot :obj3BoundingBox];
+            
+            [self simulateGrouping:obj2 :obj2HotspotLoc :obj3 :obj3HotspotLoc :images];
+            
+            //Add image1 back in.
+            [images insertObject:image1 atIndex:0];
+        }
+        else if([interaction interactionType] == TRANSFERANDDISAPPEAR) {
+            NSString* obj2 = [objectIds objectAtIndex:1]; //get object 2
+            NSString* obj3 = [objectIds objectAtIndex:2]; //get object 3
+            
+            //In this case we just ungroup the object from what it's grouped to and consume it.
+            //Consuming it currently uses the ungroup object.
+            [self simulateUngrouping:obj1 :obj2 :images];
+            
+            //Temporarily remove image 1 from the array.
+            MenuItemImage* image1 = [images objectAtIndex:0];
+            [images removeObjectAtIndex:0];
+            
+            [self simulateUngrouping:obj2 :obj3 :images];
+            
+            //Add image1 back in.
+            [images insertObject:image1 atIndex:0];
+        }*/
     }
     
     //Calculate the bounding box for the group of objects being passed to the menu item.
@@ -664,65 +688,75 @@ float const groupingProximity = 20.0;
 /*
  * This checks the PossibleInteractin passed in to figure out what type of interaction it is,
  * extracts the necessary information and calls the appropriate function to perform the interaction.
+ * TODO: Come back to this.
  */
 -(void) performInteraction:(PossibleInteraction*)interaction {
-    NSArray* objectIds = [interaction objects]; //get the object Ids for this particular menuItem.
-    NSArray* hotspots = [interaction hotspots]; //Array of hotspot objects.
-    NSString* obj1 = [objectIds objectAtIndex:0]; //get object 1, since we'll always have at least one object.
-    
-    if([interaction interactionType] == UNGROUP) {
-        //NSLog(@"ungrouping items");
+    for(Connection* connection in [interaction connections]) {
+        //NSArray* objectIds = [interaction objects]; //get the object Ids for this particular menuItem.
+        //NSArray* hotspots = [interaction hotspots]; //Array of hotspot objects.
+        NSArray* objectIds = [connection objects]; //get the object Ids for this particular menuItem.
+        NSArray* hotspots = [connection hotspots]; //Array of hotspot objects.
         
-        NSString* obj2 = [objectIds objectAtIndex:1]; //get object 2
+        NSString* obj1 = [objectIds objectAtIndex:0]; //get object 1, since we'll always have at least one object.
         
-        [self ungroupObjects:obj1 :obj2]; //ungroup objects.
+        //if([interaction interactionType] == UNGROUP) {
+        if([connection interactionType] == UNGROUP) {
+            //NSLog(@"ungrouping items");
+            
+            NSString* obj2 = [objectIds objectAtIndex:1]; //get object 2
+            
+            [self ungroupObjects:obj1 :obj2]; //ungroup objects.
+        }
+        //else if([interaction interactionType] == GROUP) {
+        else if([connection interactionType] == GROUP) {
+            //NSLog(@"grouping items");
+            NSString* obj2 = [objectIds objectAtIndex:1]; //get object 2
+            
+            //Get hotspots.
+            Hotspot* hotspot1 = [hotspots objectAtIndex:0];
+            Hotspot* hotspot2 = [hotspots objectAtIndex:1];
+            
+            CGPoint hotspot1Loc = [self getHotspotLocation:hotspot1];
+            CGPoint hotspot2Loc = [self getHotspotLocation:hotspot2];
+            
+            [self groupObjects:obj1 :hotspot1Loc :obj2 :hotspot2Loc]; //Group objects.
+        }
+        //else if([interaction interactionType] == DISAPPEAR) {
+        else if([connection interactionType] == DISAPPEAR) {
+            //NSLog(@"causing object to disappear");
+            [self consumeAndReplenishSupply:obj1];
+        }
+        //NOTE: May no longer need this with the changes in the possibleInteractions
+        /*else if([interaction interactionType] == TRANSFERANDGROUP) {
+            //If we're transfering an item there will be 3 ids instead of 2.
+            NSString* obj2 = [objectIds objectAtIndex:1]; //get object 2
+            NSString* obj3 = [objectIds objectAtIndex:2]; //get object 3
+            
+            //Get hotspots.
+            Hotspot* hotspot1 = [hotspots objectAtIndex:0];
+            Hotspot* hotspot2 = [hotspots objectAtIndex:1];
+            
+            //ungroup object 1 and object 2 first.
+            [self ungroupObjects:obj1 :obj2];
+            
+            //Calculate the current hotspot locations.
+            CGPoint hotspot1Loc = [self getHotspotLocation:hotspot1];
+            CGPoint hotspot2Loc = [self getHotspotLocation:hotspot2];
+            
+            //NSLog(@"transfering %@ to %@ from %@", obj2, obj3, obj1);
+            
+            //Group object 2 and object 3.
+            [self groupObjects:obj2 :hotspot1Loc :obj3 :hotspot2Loc];
+        }
+        else if([interaction interactionType] == TRANSFERANDDISAPPEAR) {
+            NSString* obj2 = [objectIds objectAtIndex:1]; //get object 2
+            
+            //NSLog(@"%@ given by %@ to be consumed", obj2, obj1);
+            //In this case we just ungroup the object from what it's grouped to and consume it.
+            [self ungroupObjects:obj1 :obj2];
+            [self consumeAndReplenishSupply:obj2];
+        }*/
     }
-    else if([interaction interactionType] == GROUP) {
-        //NSLog(@"grouping items");
-        NSString* obj2 = [objectIds objectAtIndex:1]; //get object 2
-        
-        //Get hotspots.
-        Hotspot* hotspot1 = [hotspots objectAtIndex:0];
-        Hotspot* hotspot2 = [hotspots objectAtIndex:1];
-        
-        CGPoint hotspot1Loc = [self getHotspotLocation:hotspot1];
-        CGPoint hotspot2Loc = [self getHotspotLocation:hotspot2];
-        
-        [self groupObjects:obj1 :hotspot1Loc :obj2 :hotspot2Loc]; //Group objects.
-    }
-    else if([interaction interactionType] == DISAPPEAR) {
-        //NSLog(@"causing object to disappear");
-        [self consumeAndReplenishSupply:obj1];
-    }
-    else if([interaction interactionType] == TRANSFERANDGROUP) {
-        //If we're transfering an item there will be 3 ids instead of 2.
-        NSString* obj2 = [objectIds objectAtIndex:1]; //get object 2
-        NSString* obj3 = [objectIds objectAtIndex:2]; //get object 3
-        
-        //Get hotspots.
-        Hotspot* hotspot1 = [hotspots objectAtIndex:0];
-        Hotspot* hotspot2 = [hotspots objectAtIndex:1];
-        
-        //ungroup object 1 and object 2 first.
-        [self ungroupObjects:obj1 :obj2];
-        
-        //Calculate the current hotspot locations.
-        CGPoint hotspot1Loc = [self getHotspotLocation:hotspot1];
-        CGPoint hotspot2Loc = [self getHotspotLocation:hotspot2];
-        
-        //NSLog(@"transfering %@ to %@ from %@", obj2, obj3, obj1);
-        
-        //Group object 2 and object 3.
-        [self groupObjects:obj2 :hotspot1Loc :obj3 :hotspot2Loc];
-    }
-    else if([interaction interactionType] == TRANSFERANDDISAPPEAR) {
-        NSString* obj2 = [objectIds objectAtIndex:1]; //get object 2
-
-        //NSLog(@"%@ given by %@ to be consumed", obj2, obj1);
-        //In this case we just ungroup the object from what it's grouped to and consume it.
-        [self ungroupObjects:obj1 :obj2];
-        [self consumeAndReplenishSupply:obj2];
-    }    
 }
 
 /*
@@ -801,33 +835,44 @@ float const groupingProximity = 20.0;
                     //Make sure the two hotspots have the same action. It may also be necessary to ensure that the roles do not match. Also make sure neither of the hotspots are connected to another object. If all is well, these objects can be connected together.
                     if(actionsMatch && [isHotspotConnectedMovingObjectString isEqualToString:@""] && [isHotspotConnectedObjectString isEqualToString:@""] && !rolesMatch) {
                         //calculate delta between the two hotspot locations.
-                        float deltaX = fabsf(movingObjectHotspotLoc.x - hotspotLoc.x);
-                        float deltaY = fabsf(movingObjectHotspotLoc.y - hotspotLoc.y);
+                        //float deltaX = fabsf(movingObjectHotspotLoc.x - hotspotLoc.x);
+                        //float deltaY = fabsf(movingObjectHotspotLoc.y - hotspotLoc.y);
                         
                         //Get the relationship between these two objects so we can check to see what type of relationship it is.
                         Relationship* relationshipBetweenObjects = [model getRelationshipForObjectsForAction:movingObjectId :objId :[movingObjectHotspot action]];
                         
                         //Check to make sure that the two hotspots are in close proximity to each other.
                         //if(deltaX <= groupingProximity && deltaY <= groupingProximity) {
-                        if((useProximity && deltaX <= groupingProximity && deltaY <= groupingProximity) || !useProximity) {
+                        //if((useProximity && deltaX <= groupingProximity && deltaY <= groupingProximity) || !useProximity) {
+                        if((useProximity && [self hotspotsWithinGroupingProximity:movingObjectHotspot :hotspot]) ||
+                           !useProximity) {
                             //Create necessary arrays for the interaction.
-                            NSArray *objects;
+                            NSArray* objects;
+                            NSArray* hotspotsForInteraction = [[NSArray alloc] initWithObjects:movingObjectHotspot,
+                                                               hotspot, nil];
                             
                             if([[relationshipBetweenObjects actionType] isEqualToString:@"group"]) {
+                                PossibleInteraction* interaction = [[PossibleInteraction alloc] initWithInteractionType:GROUP];
+
                                 objects = [[NSArray alloc] initWithObjects:movingObjectId, objId, nil];
-                                NSArray *hotspotsForInteraction = [[NSArray alloc] initWithObjects:movingObjectHotspot,
-                                                                   hotspot, nil];
+                                //NSArray *hotspotsForInteraction = [[NSArray alloc] initWithObjects:movingObjectHotspot, hotspot, nil];
                                 
-                                [groupings addObject:[[PossibleInteraction alloc] initWithValues:GROUP :objects :hotspotsForInteraction]];
-                                
+                                //[groupings addObject:[[PossibleInteraction alloc] initWithValues:GROUP :objects :hotspotsForInteraction]];
+                                [interaction addConnection:GROUP :objects :hotspotsForInteraction];
+                                [groupings addObject:interaction];
                             }
                             else if([[relationshipBetweenObjects actionType] isEqualToString:@"disappear"]) {
+                                PossibleInteraction* interaction = [[PossibleInteraction alloc] initWithInteractionType:DISAPPEAR];
                                 //Add both the object causing the disappearing and the one that is doing the disappearing.
                                 //So we know which is which, the object doing the disappearing is going to be added first. That way if anything is grouped with the object causing the disappearing that we want to display as well, it can come afterwards.
+                                //TODO: Come back to this to see if it makes sense at all.
                                 objects = [[NSArray alloc] initWithObjects:[relationshipBetweenObjects object2Id], [relationshipBetweenObjects object1Id], nil];
                                 
                                 //In this case we do not need to pass any of the hotspot information as the relevant hotspots will be calculated later on.
-                                [groupings addObject:[[PossibleInteraction alloc] initWithValues:DISAPPEAR :objects :nil]];
+                                //[groupings addObject:[[PossibleInteraction alloc] initWithValues:DISAPPEAR :objects :nil]];
+                                //[groupings addObject:[[PossibleInteraction alloc] initWithValues:DISAPPEAR :objects :hotspotsForInteraction]];
+                                [interaction addConnection:DISAPPEAR :objects :hotspotsForInteraction];
+                                [groupings addObject:interaction];
                             }
                         }
                     }
@@ -836,6 +881,8 @@ float const groupingProximity = 20.0;
             
             //if either one of these objects is connected to something, we also want to check the possibility of a transfer.
             //To do so, we'll go through each objects hotspots in turn, checking to see if any of the hotspots are connected to anything. If they are, we'll check to see if that object has any possible interaction with the other object.
+            hotspots = [model getHotspotsForObjectId:objId];
+            movingObjectHotspots = [model getHotspotsForObjectId:movingObjectId];
             
             for(Hotspot* hotspot in hotspots) {
                 CGPoint hotspotLoc = [self getHotspotLocation:hotspot];
@@ -874,16 +921,40 @@ float const groupingProximity = 20.0;
                                 Relationship* relationshipBetweenObjects = [model getRelationshipForObjectsForAction:objConnectedTo :currentUnconnectedObj :[hotspot1 action]];
                                 
                                 //If so, add it to the list of possible interactions as a transfer.
-                                NSArray *objects = [[NSArray alloc] initWithObjects:objConnected, objConnectedTo, currentUnconnectedObj, nil];
+                                //NSArray *objects = [[NSArray alloc] initWithObjects:objConnected, objConnectedTo, currentUnconnectedObj, nil];
+                                //NSArray* hotspotsForInteraction = [[NSArray alloc] initWithObjects:hotspot1, hotspot2, nil];
+                                
+                                PossibleInteraction* interaction = [[PossibleInteraction alloc] init];
+
+                                //Add the connection to ungroup first.
+                                NSArray *ungroupObjects = [[NSArray alloc] initWithObjects:objConnected, objConnectedTo, nil];
+                                NSArray* hotspotsForUngrouping = [[NSArray alloc] initWithObjects:hotspot,hotspot1, nil];
+                                [interaction addConnection:UNGROUP :ungroupObjects :hotspotsForUngrouping];
                                 
                                 if([[relationshipBetweenObjects  actionType] isEqualToString:@"group"]) {
-                                    NSArray* hotspotsForInteraction = [[NSArray alloc] initWithObjects:hotspot1,
-                                                                       hotspot2, nil];
-                                    [groupings addObject:[[PossibleInteraction alloc] initWithValues:TRANSFERANDGROUP :objects :hotspotsForInteraction]];
+                                    //NSArray* hotspotsForInteraction = [[NSArray alloc] initWithObjects:hotspot1, hotspot2, nil];
+                                    //[groupings addObject:[[PossibleInteraction alloc] initWithValues:TRANSFERANDGROUP :objects :hotspotsForInteraction]];
+                                    
+                                    //Then add the connection to interaction.
+                                    NSArray* groupObjects = [[NSArray alloc] initWithObjects:objConnectedTo, currentUnconnectedObj, nil];
+                                    NSArray* hotspotsForGrouping = [[NSArray alloc] initWithObjects:hotspot1, hotspot2, nil];
+                                    [interaction addConnection:GROUP :groupObjects :hotspotsForGrouping];
+                                    [interaction setInteractionType:TRANSFERANDGROUP];
+                                    
+                                    [groupings addObject:interaction];
                                 }
                                 else if([[relationshipBetweenObjects actionType] isEqualToString:@"disappear"]) {
                                     //In this case we do not need to pass any of the hotspot information as the relevant hotspots will be calculated later on.
-                                    [groupings addObject:[[PossibleInteraction alloc] initWithValues:TRANSFERANDDISAPPEAR :objects :nil]];
+                                    //[groupings addObject:[[PossibleInteraction alloc] initWithValues:TRANSFERANDDISAPPEAR :objects :nil]];
+                                    //[groupings addObject:[[PossibleInteraction alloc] initWithValues:TRANSFERANDDISAPPEAR :objects :hotspotsForInteraction]];
+                                    
+                                    //Then add the disappearing part to interaction.
+                                    NSArray* disappearObjects = [[NSArray alloc] initWithObjects:objConnectedTo, currentUnconnectedObj, nil];
+                                    NSArray* hotspotsForDisappear = [[NSArray alloc] initWithObjects:hotspot1, hotspot2, nil];
+                                    [interaction addConnection:DISAPPEAR :disappearObjects :hotspotsForDisappear];
+                                    [interaction setInteractionType:TRANSFERANDDISAPPEAR];
+                                    
+                                    [groupings addObject:interaction];
                                 }
                             }
                         }
@@ -930,16 +1001,40 @@ float const groupingProximity = 20.0;
                                 Relationship* relationshipBetweenObjects = [model getRelationshipForObjectsForAction:objConnectedTo :currentUnconnectedObj :[hotspot1 action]];
                                 
                                 //If so, add it to the list of possible interactions as a transfer.
-                                NSArray *objects = [[NSArray alloc] initWithObjects:objConnected, objConnectedTo, currentUnconnectedObj, nil];
+                                //NSArray *objects = [[NSArray alloc] initWithObjects:objConnected, objConnectedTo, currentUnconnectedObj, nil];
+                                //NSArray* hotspotsForInteraction = [[NSArray alloc] initWithObjects:hotspot1, hotspot2, nil];
+                                
+                                PossibleInteraction* interaction = [[PossibleInteraction alloc] init];
+                                
+                                //Add the connection to ungroup first.
+                                NSArray *ungroupObjects = [[NSArray alloc] initWithObjects:objConnected, objConnectedTo, nil];
+                                NSArray* hotspotsForUngrouping = [[NSArray alloc] initWithObjects:movingObjectHotspot, hotspot1, nil];
+                                [interaction addConnection:UNGROUP :ungroupObjects :hotspotsForUngrouping];
                                 
                                 if([[relationshipBetweenObjects  actionType] isEqualToString:@"group"]) {
-                                    NSArray* hotspotsForInteraction = [[NSArray alloc] initWithObjects:hotspot1,
-                                                                       hotspot2, nil];
-                                    [groupings addObject:[[PossibleInteraction alloc] initWithValues:TRANSFERANDGROUP :objects :hotspotsForInteraction]];
+                                    //NSArray* hotspotsForInteraction = [[NSArray alloc] initWithObjects:hotspot1, hotspot2, nil];
+                                    //[groupings addObject:[[PossibleInteraction alloc] initWithValues:TRANSFERANDGROUP :objects :hotspotsForInteraction]];
+
+                                    //Then add the connection to interaction.
+                                    NSArray* groupObjects = [[NSArray alloc] initWithObjects:objConnectedTo, currentUnconnectedObj, nil];
+                                    NSArray* hotspotsForGrouping = [[NSArray alloc] initWithObjects:hotspot1, hotspot2, nil];
+                                    [interaction addConnection:GROUP :groupObjects :hotspotsForGrouping];
+                                    [interaction setInteractionType:TRANSFERANDGROUP];
+                                    
+                                    [groupings addObject:interaction];
                                 }
                                 else if([[relationshipBetweenObjects actionType] isEqualToString:@"disappear"]) {
                                     //In this case we do not need to pass any of the hotspot information as the relevant hotspots will be calculated later on.
-                                    [groupings addObject:[[PossibleInteraction alloc] initWithValues:TRANSFERANDDISAPPEAR :objects :nil]];
+                                    //[groupings addObject:[[PossibleInteraction alloc] initWithValues:TRANSFERANDDISAPPEAR :objects :nil]];
+                                    //[groupings addObject:[[PossibleInteraction alloc] initWithValues:TRANSFERANDDISAPPEAR :objects :hotspotsForInteraction]];
+                                    
+                                    //Then add the disappearing part to interaction.
+                                    NSArray* disappearObjects = [[NSArray alloc] initWithObjects:objConnectedTo, currentUnconnectedObj, nil];
+                                    NSArray* hotspotsForDisappear = [[NSArray alloc] initWithObjects:hotspot1, hotspot2, nil];
+                                    [interaction addConnection:DISAPPEAR :disappearObjects :hotspotsForDisappear];
+                                    [interaction setInteractionType:TRANSFERANDDISAPPEAR];
+                                    
+                                    [groupings addObject:interaction];
                                 }
                             }
                         }
@@ -950,6 +1045,23 @@ float const groupingProximity = 20.0;
     }
     
     return groupings;
+}
+
+/* 
+ * Checks to see whether two hotspots are within grouping proximity. 
+ * Returns true if they are, false otherwise.
+ */
+-(BOOL) hotspotsWithinGroupingProximity:(Hotspot *)hotspot1 :(Hotspot *)hotspot2 {
+    CGPoint hotspot1Loc = [self getHotspotLocation:hotspot1];
+    CGPoint hotspot2Loc = [self getHotspotLocation:hotspot2];
+
+    float deltaX = fabsf(hotspot1Loc.x - hotspot2Loc.x);
+    float deltaY = fabsf(hotspot1Loc.y - hotspot2Loc.y);
+    
+    if(deltaX <= groupingProximity && deltaY <= groupingProximity)
+        return true;
+        
+    return false;
 }
 
 /*
@@ -1193,12 +1305,14 @@ float const groupingProximity = 20.0;
 /*
  * Calls the JS function to draw each individual hotspot in the array provided.
  */
--(void) drawHotspots:(NSMutableArray *)hotspots {
+//-(void) drawHotspots:(NSMutableArray *)hotspots {
+-(void) drawHotspots:(NSMutableArray *)hotspots :(NSString *)color{
     for(Hotspot* hotspot in hotspots) {
         CGPoint hotspotLoc = [self getHotspotLocation:hotspot];
         
         if(hotspotLoc.x != -1) {
-            NSString* drawHotspot = [NSString stringWithFormat:@"drawHotspot(%f, %f, \"red\")", hotspotLoc.x, hotspotLoc.y];
+            //NSString* drawHotspot = [NSString stringWithFormat:@"drawHotspot(%f, %f, \"red\")", hotspotLoc.x, hotspotLoc.y];
+            NSString* drawHotspot = [NSString stringWithFormat:@"drawHotspot(%f, %f, \"%@\")", hotspotLoc.x, hotspotLoc.y, color];
             [bookView stringByEvaluatingJavaScriptFromString:drawHotspot];
         }
     }
