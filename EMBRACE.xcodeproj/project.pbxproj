@@ -243,12 +243,6 @@
 				312F5B12177A0F58000DAD2E /* MenuItemDataSource.m */,
 				316CFAE01773ACFB004216D0 /* PieContextualMenuDelegate.h */,
 				316CFAE31773AD9F004216D0 /* PieContextualMenuDataSource.h */,
-				3115B1CF1819AA0E007171E3 /* MenuItemImage.h */,
-				3115B1D01819AA0E007171E3 /* MenuItemImage.m */,
-				3115B1D21819C532007171E3 /* PossibleInteraction.h */,
-				3115B1D31819C532007171E3 /* PossibleInteraction.m */,
-				31C306C3183E93A60043DEDD /* Connection.h */,
-				31C306C4183E93A60043DEDD /* Connection.m */,
 			);
 			name = "Physical Manipulation";
 			sourceTree = "<group>";
@@ -378,6 +372,7 @@
 		31953E7D1729ED8800570087 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3197D02E18454F3E00AF31F0 /* Physical Manipulation Menu */,
 				31953E901729EE8100570087 /* MainStoryboard_iPad.storyboard */,
 				31953E881729EE6E00570087 /* BookCellView.h */,
 				31953E891729EE6E00570087 /* BookCellView.m */,
@@ -387,12 +382,6 @@
 				31953E8C1729EE6E00570087 /* LibraryView.m */,
 				3183DA181762886200815211 /* TabView.h */,
 				3183DA191762886200815211 /* TabView.m */,
-				31953E571729ECC100570087 /* AppDelegate.h */,
-				31953E581729ECC100570087 /* AppDelegate.m */,
-				316CFADC1773A2A2004216D0 /* PieContextualMenu.h */,
-				316CFADD1773A2A2004216D0 /* PieContextualMenu.m */,
-				316CFAE61773BE55004216D0 /* PieContextualMenuItem.h */,
-				316CFAE71773BE56004216D0 /* PieContextualMenuItem.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -411,8 +400,23 @@
 				3193753C1741A76E00782C2B /* HelpViewController.m */,
 				31AA5FA8175FB16500E9A9B3 /* LoginViewController.h */,
 				31AA5FA9175FB16500E9A9B3 /* LoginViewController.m */,
+				31953E571729ECC100570087 /* AppDelegate.h */,
+				31953E581729ECC100570087 /* AppDelegate.m */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		3197D02E18454F3E00AF31F0 /* Physical Manipulation Menu */ = {
+			isa = PBXGroup;
+			children = (
+				3115B1CF1819AA0E007171E3 /* MenuItemImage.h */,
+				3115B1D01819AA0E007171E3 /* MenuItemImage.m */,
+				316CFADC1773A2A2004216D0 /* PieContextualMenu.h */,
+				316CFADD1773A2A2004216D0 /* PieContextualMenu.m */,
+				316CFAE61773BE55004216D0 /* PieContextualMenuItem.h */,
+				316CFAE71773BE56004216D0 /* PieContextualMenuItem.m */,
+			);
+			name = "Physical Manipulation Menu";
 			sourceTree = "<group>";
 		};
 		31C5A6801799EFE600A084A3 /* Interaction Model */ = {
@@ -430,6 +434,10 @@
 				310908EB17DE90CA004590A2 /* MovementConstraint.m */,
 				310908ED17DE90DB004590A2 /* OrderConstraint.h */,
 				310908EE17DE90DB004590A2 /* OrderConstraint.m */,
+				3115B1D21819C532007171E3 /* PossibleInteraction.h */,
+				3115B1D31819C532007171E3 /* PossibleInteraction.m */,
+				31C306C3183E93A60043DEDD /* Connection.h */,
+				31C306C4183E93A60043DEDD /* Connection.m */,
 			);
 			name = "Interaction Model";
 			sourceTree = "<group>";

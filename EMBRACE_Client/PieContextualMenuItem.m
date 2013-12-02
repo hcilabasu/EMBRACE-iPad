@@ -108,7 +108,7 @@
         CGFloat topleftX = innerCircleCenter.x + innerCircleRadius * cos(angle);
         CGFloat topleftY = innerCircleCenter.y + innerCircleRadius * sin(angle);
         float lengthSide = sqrtf(powf((innerCircleRadius * 2), 2) / 2);
-
+        
         //Ungrouping two items. For the moment, just go ahead and leave the code that shows the 2 items at opposite ends of the circle with arrows pointing away from the center. TODO: We may want to remove the arrows and not check what the type of interaction we have and just go ahead and display all of them the same way.
         if(type == UNGROUP) {
             //40 pixels is currently what the arrows will take up. 
@@ -178,10 +178,14 @@
             //Get the bounding box information because this will determine how much we need to scale each individual image.
             //Use lengthside to determine the scaling factor. Keep in mind that the bounding box may not be square, so the largest side needs to be determnined.
             CGRect boundingBoxScene = [data boundingBox];
-            float scaleFactor = 0;
             
-            if(boundingBoxScene.size.width > boundingBoxScene.size.height)
+            float scaleFactor = 0;
+            BOOL scaleWidth = FALSE;
+            
+            if(boundingBoxScene.size.width > boundingBoxScene.size.height) {
                 scaleFactor = lengthSide / boundingBoxScene.size.width;
+                scaleWidth = TRUE;
+            }
             else
                 scaleFactor = lengthSide / boundingBoxScene.size.height;
             
@@ -190,18 +194,31 @@
             for(MenuItemImage *itemImage in sortedImages) {
                 UIImage *image = [itemImage image];
                 
-                //Calculate the size of this  image based on the width of the image in the larger scene and the scale factor.
-                int widthImage = itemImage.boundingBoxImage.size.width * scaleFactor;
+                //UIImage *imageScaled = [self scaleImagetoResolution:image :widthImage]; //Create the scaled image.
+                UIImage *imageScaled;
                 
-                UIImage *imageScaled = [self scaleImagetoResolution:image :widthImage]; //Create the scaled image.
+                if(scaleWidth) {
+                    //Calculate the size of this image based on the width of the image in the larger scene and the scale factor.
+                    float widthImage = itemImage.boundingBoxImage.size.width * scaleFactor;
+                    imageScaled = [self scaleImagetoResolution:image withWidth:widthImage]; //Create the scaled image.
+                }
+                else {
+                    //Calculate the size of this image based on the height of the image in the larger scene and the scale factor.
+                    float heightImage = itemImage.boundingBoxImage.size.height * scaleFactor;
+                    imageScaled = [self scaleImagetoResolution:image withHeight:heightImage];
+                }
+                
                 UIImageView *imageView = [[UIImageView alloc] initWithImage:imageScaled]; //Create the image view.
                 
                 //Calculate the location of the image within the menu item view. Use the bounding box information as well as the position information stored in the MenuItemImage object.
                 CGPoint position = [itemImage boundingBoxImage].origin;
                 
-                //TODO: Currently we're passing in information specific to the location of the image when the objects are overlapped and before the action occurs. We need to actually calculate the final position of the object based on the hotspots and pass that information in instead, so that the result that's shown is the same as what they'll look like once the images are snapped together correctly.
-                CGFloat imageTopLeftX = topleftX + ((position.x - boundingBoxScene.origin.x) * scaleFactor);
-                CGFloat imageTopLeftY = topleftY + ((position.y - boundingBoxScene.origin.y) * scaleFactor);
+                //Calculate the top left corner location so that the scene is centered.
+                CGFloat topLeftXCentered = topleftX + ((lengthSide - boundingBoxScene.size.width * scaleFactor) / 2.0);
+                CGFloat topLeftYCentered = topleftY + ((lengthSide - boundingBoxScene.size.height * scaleFactor) / 2.0);
+                
+                CGFloat imageTopLeftX = topLeftXCentered + ((position.x - boundingBoxScene.origin.x) * scaleFactor);
+                CGFloat imageTopLeftY = topLeftYCentered + ((position.y - boundingBoxScene.origin.y) * scaleFactor);
                 
                 CGRect imageLoc = CGRectMake(imageTopLeftX, imageTopLeftY,
                                              imageView.frame.size.width, imageView.frame.size.height);
@@ -211,7 +228,8 @@
                 
                 //If this is an object that should be disappearing, go ahead and draw an X over it.
                 //That means this image corresponds to the first image in the unsorted array.
-                if((itemImage == [images objectAtIndex:0]) && (type == DISAPPEAR)) {
+                //TODO: Fix this based on the current changes.
+                if((itemImage == [images objectAtIndex:0]) && ((type == DISAPPEAR) || (type == TRANSFERANDDISAPPEAR))) {
                     //Create the view that paints the X over the top of the image.
                     XView *xView = [[XView alloc] initWithFrame:CGRectMake(imageTopLeftX, imageTopLeftY, imageView.frame.size.width, imageView.frame.size.height)];
                     [self addSubview:xView];
@@ -223,8 +241,11 @@
     UIGraphicsEndImageContext();
 }
 
-// Change image resolution to the desired size while maintaining proportions.
-- (UIImage *)scaleImagetoResolution:(UIImage*)image :(int)resolution {
+//TODO: Come back and collapse the bottom three functions into one function.
+/*
+ * Change image resolution to the desired size while maintaining proportions.
+ */
+- (UIImage *)scaleImagetoResolution:(UIImage*)image :(float)resolution {
     CGFloat width = image.size.width;
     CGFloat height = image.size.height;
     CGRect bounds = CGRectMake(0, 0, width, height);
@@ -238,12 +259,12 @@
         CGFloat ratio = width/height;
         
         if (ratio > 1) {
-            bounds.size.width = resolution;
-            bounds.size.height = bounds.size.width / ratio;
-        }
-        else {
             bounds.size.height = resolution;
             bounds.size.width = bounds.size.height * ratio;
+        }
+        else {
+            bounds.size.width = resolution;
+            bounds.size.height = bounds.size.width / ratio;
         }
     }
     
@@ -255,8 +276,62 @@
     return imageCopy;
 }
 
+/*
+ * Change image resolution to the desired width while maintaining proportions.
+ */
+- (UIImage *)scaleImagetoResolution:(UIImage*)image withWidth:(float)newWidth {
+    CGFloat width = image.size.width;
+    CGFloat height = image.size.height;
+    CGRect bounds = CGRectMake(0, 0, width, height);
+    
+    //if already at the minimum resolution, return the orginal image, otherwise scale
+    if (width <= newWidth) {
+        return image;
+    }
+    else {
+        CGFloat ratio = width/height;
+        
+        bounds.size.width = newWidth;
+        bounds.size.height = bounds.size.width / ratio;
+    }
+    
+    UIGraphicsBeginImageContext(bounds.size);
+    [image drawInRect:CGRectMake(0.0, 0.0, bounds.size.width, bounds.size.height)];
+    UIImage *imageCopy = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return imageCopy;
+}
+
+/*
+ * Change image resolution to the desired width while maintaining proportions.
+ */
+- (UIImage *)scaleImagetoResolution:(UIImage*)image withHeight:(float)newHeight {
+    CGFloat width = image.size.width;
+    CGFloat height = image.size.height;
+    CGRect bounds = CGRectMake(0, 0, width, height);
+    
+    //if already at the minimum resolution, return the orginal image, otherwise scale
+    if (height <= newHeight) {
+        return image;
+    }
+    else {
+        CGFloat ratio = width/height;
+        
+        bounds.size.height = newHeight;
+        bounds.size.width = bounds.size.height * ratio;
+    }
+    
+    UIGraphicsBeginImageContext(bounds.size);
+    [image drawInRect:CGRectMake(0.0, 0.0, bounds.size.width, bounds.size.height)];
+    UIImage *imageCopy = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return imageCopy;
+}
+
 -(NSArray*) sortMenuItemImagesByZPosition:(NSArray*) unsortedImages {
-    NSSortDescriptor *sortDescriptor;
+    NSSortDescriptor *sortDescriptor;   
     sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"zPosition"
                                                  ascending:YES];
     NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
