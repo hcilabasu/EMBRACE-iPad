@@ -17,6 +17,5 @@
 @property (nonatomic, strong) MenuItemDataSource *data;
 
 - (id)initWithFrameAndData:(CGRect)frame :(float)angleFromCenter :(MenuItemDataSource*)itemData;
-- (UIImage *)scaleImagetoResolution:(UIImage*)image :(float)resolution;
 
 @end

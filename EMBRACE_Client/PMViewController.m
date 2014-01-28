@@ -130,7 +130,12 @@ float const groupingProximity = 20.0;
     }
 }
 
-//creates pages and the content
+/*
+ * Gets the book reference for the book that's been opened. 
+ * Also sets the reference to the interaction model of the book. 
+ * Sets the page to the one for th current chapter activity. 
+ * Calls the function to load the html content for the activity.
+ */
 - (void) loadFirstPage {
     book = [bookImporter getBookWithTitle:bookTitle]; //Get the book reference.
     model = [book model];
@@ -140,6 +145,11 @@ float const groupingProximity = 20.0;
     [self loadPage];
 }
 
+/*
+ * Loads the next page for the current chapter based on the current activity. 
+ * If the activity has multiple pages, it would load the next page in the activity. 
+ * Otherwise, it will load the next chaper.
+ */
 -(void) loadNextPage {    
     currentPage = [book getNextPageForChapterAndActivity:chapterTitle :PM_MODE :currentPage];
     
@@ -153,9 +163,13 @@ float const groupingProximity = 20.0;
     
         currentPage = [book getNextPageForChapterAndActivity:chapterTitle :PM_MODE :nil];
     }
+    
     [self loadPage];
 }
 
+/* 
+ * Loads the html content for the current page.
+ */
 -(void) loadPage {
     NSURL* baseURL = [NSURL fileURLWithPath:[book getHTMLURL]];
     
@@ -173,8 +187,18 @@ float const groupingProximity = 20.0;
     
     currentSentence = 1;
     self.title = chapterTitle;
+    
+    //Perform setup for activity
 }
 
+/*
+ * Perform any necessary setup for this physical manipulation. 
+ * For example, if the cart should be connected to the tractor at the beginning of the story, 
+ * then this function will connect the cart to the tractor.
+ */
+-(void) performSetupForActivity {
+
+}
 
 #pragma mark - Responding to gestures
 /*
@@ -234,7 +258,6 @@ float const groupingProximity = 20.0;
         
         NSString* imageAtPoint = [self getManipulationObjectAtPoint:location];
         
-        NSLog(@"imageAtPoint: %@", imageAtPoint);
         //if it's an image that can be moved, then start moving it.
         if(imageAtPoint != nil) {
             separatingObjectId = imageAtPoint;
@@ -246,8 +269,6 @@ float const groupingProximity = 20.0;
         NSString* requestGroupedImages = [NSString stringWithFormat:@"getGroupedObjectsString(%@)", separatingObjectId];
         NSString* groupedImages = [bookView stringByEvaluatingJavaScriptFromString:requestGroupedImages];
 
-        NSLog(@"in pinch gesture recognizer state ended, and got list of groupe images: %@", groupedImages);
-        
         //If there is an array, split the array based on pairs.
         if(![groupedImages isEqualToString:@""]) {
             NSArray* itemPairArray = [groupedImages componentsSeparatedByString:@"; "];
@@ -291,7 +312,6 @@ float const groupingProximity = 20.0;
                 NSString* obj2 = [pair objectAtIndex:1]; //get object 2
                 
                 [self ungroupObjects:obj1 :obj2]; //ungroup the objects.
-                NSLog(@"ungrouping two objects");
             }
             else
                 NSLog(@"no items grouped");
@@ -346,7 +366,12 @@ float const groupingProximity = 20.0;
                 else if ([possibleInteractions count] > 1){
                     //First rank the interactions based on location to story.
                     [self rankPossibleInteractions:possibleInteractions];
-
+                    /*NSLog(@"returned %d interactions as follows:", [possibleInteractions count]);
+                    
+                    for(PossibleInteraction* interaction in possibleInteractions) {
+                        NSLog()
+                    }*/
+                    
                     //Populate the menu data source and expand the menu.
                     [self populateMenuDataSource:possibleInteractions];
 
@@ -427,7 +452,7 @@ float const groupingProximity = 20.0;
  * Otherwise, returned the MenuItemImage that was created.
  */
 -(MenuItemImage*) createMenuItemForImage:(NSString*) objId {
-    NSLog(@"creating menu item for image with object id: %@", objId);
+    //NSLog(@"creating menu item for image with object id: %@", objId);
     
     NSString* requestImageSrc = [NSString stringWithFormat:@"%@.src", objId];
     NSString* imageSrc = [bookView stringByEvaluatingJavaScriptFromString:requestImageSrc];
@@ -446,7 +471,7 @@ float const groupingProximity = 20.0;
         NSString* requestZIndex = [NSString stringWithFormat:@"%@.style.zIndex", objId];
         NSString* zIndex = [bookView stringByEvaluatingJavaScriptFromString:requestZIndex];
         
-        NSLog(@"z-index of %@: %@", objId, zIndex);
+        //NSLog(@"z-index of %@: %@", objId, zIndex);
         
         [itemImage setZPosition:[zIndex floatValue]];
         
@@ -464,7 +489,7 @@ float const groupingProximity = 20.0;
         NSString* width = [bookView stringByEvaluatingJavaScriptFromString:requestWidth];
         NSString* height = [bookView stringByEvaluatingJavaScriptFromString:requestHeight];
         
-        NSLog(@"location of %@: (%@, %@) with size: %@ x %@", objId, positionX, positionY, width, height);
+        //NSLog(@"location of %@: (%@, %@) with size: %@ x %@", objId, positionX, positionY, width, height);
         
         [itemImage setBoundingBoxImage:CGRectMake([positionX floatValue], [positionY floatValue],
                                                   [width floatValue], [height floatValue])];
@@ -525,16 +550,16 @@ float const groupingProximity = 20.0;
         
         //if([interaction interactionType] == UNGROUP || [interaction interactionType] == DISAPPEAR) {
         if([connection interactionType] == UNGROUP || [connection interactionType] == DISAPPEAR) {
-            if([connection interactionType] == UNGROUP)
+            /*if([connection interactionType] == UNGROUP)
                 NSLog(@"simulating ungrouping between %@ and %@", obj1, obj2);
             else if([connection interactionType] == DISAPPEAR)
-                NSLog(@"simulating disappear between %@ and %@", obj1, obj2);
+                NSLog(@"simulating disappear between %@ and %@", obj1, obj2);*/
             
             [self simulateUngrouping:obj1 :obj2 :images];
         }
         //else if([interaction interactionType] == GROUP) {
         else if([connection interactionType] == GROUP) {
-            NSLog(@"simulating grouping between %@ and %@", obj1, obj2);
+            //NSLog(@"simulating grouping between %@ and %@", obj1, obj2);
 
             //Get hotspots.
             Hotspot *hotspot1 = [hotspots objectAtIndex:0];
@@ -614,24 +639,28 @@ float const groupingProximity = 20.0;
  * This function gets passed in an array of MenuItemImages and calculates the bounding box for the entire array.
  */
 -(CGRect) getBoundingBoxOfImages:(NSMutableArray*)images {
-    float leftMostPoint = ((MenuItemImage*)[images objectAtIndex:0]).boundingBoxImage.origin.x;
-    float topMostPoint = ((MenuItemImage*)[images objectAtIndex:0]).boundingBoxImage.origin.y;
-    float rightMostPoint = ((MenuItemImage*)[images objectAtIndex:0]).boundingBoxImage.origin.x + ((MenuItemImage*)[images objectAtIndex:0]).boundingBoxImage.size.width;
-    float bottomMostPoint = ((MenuItemImage*)[images objectAtIndex:0]).boundingBoxImage.origin.y + ((MenuItemImage*)[images objectAtIndex:0]).boundingBoxImage.size.height;
+    CGRect boundingBox = CGRectMake(0, 0, 0, 0);
     
-    for(MenuItemImage* image in images) {
-        if(image.boundingBoxImage.origin.x < leftMostPoint)
+    if([images count] > 0) {
+        float leftMostPoint = ((MenuItemImage*)[images objectAtIndex:0]).boundingBoxImage.origin.x;
+        float topMostPoint = ((MenuItemImage*)[images objectAtIndex:0]).boundingBoxImage.origin.y;
+        float rightMostPoint = ((MenuItemImage*)[images objectAtIndex:0]).boundingBoxImage.origin.x + ((MenuItemImage*)[images objectAtIndex:0]).boundingBoxImage.size.width;
+        float bottomMostPoint = ((MenuItemImage*)[images objectAtIndex:0]).boundingBoxImage.origin.y + ((MenuItemImage*)[images objectAtIndex:0]).boundingBoxImage.size.height;
+        
+        for(MenuItemImage* image in images) {
+            if(image.boundingBoxImage.origin.x < leftMostPoint)
             leftMostPoint = image.boundingBoxImage.origin.x;
-        if(image.boundingBoxImage.origin.y < topMostPoint)
+            if(image.boundingBoxImage.origin.y < topMostPoint)
             topMostPoint = image.boundingBoxImage.origin.y;
-        if(image.boundingBoxImage.origin.x + image.boundingBoxImage.size.width > rightMostPoint)
+            if(image.boundingBoxImage.origin.x + image.boundingBoxImage.size.width > rightMostPoint)
             rightMostPoint = image.boundingBoxImage.origin.x + image.boundingBoxImage.size.width;
-        if(image.boundingBoxImage.origin.y + image.boundingBoxImage.size.height > bottomMostPoint)
+            if(image.boundingBoxImage.origin.y + image.boundingBoxImage.size.height > bottomMostPoint)
             bottomMostPoint = image.boundingBoxImage.origin.y + image.boundingBoxImage.size.height;
+        }
+        
+        boundingBox = CGRectMake(leftMostPoint, topMostPoint, rightMostPoint - leftMostPoint,
+                                        bottomMostPoint - topMostPoint);
     }
-    
-    CGRect boundingBox = CGRectMake(leftMostPoint, topMostPoint, rightMostPoint - leftMostPoint,
-                                    bottomMostPoint - topMostPoint);
     
     return boundingBox;
 }
@@ -685,12 +714,12 @@ float const groupingProximity = 20.0;
     if([obj1ContainedInObj2 isEqualToString:@"true"]) {
         obj1FinalPosX = obj2PositionX - obj1Width - GAP;
         obj2FinalPosX = obj2PositionX;
-        NSLog(@"%@ is contained in %@", obj1, obj2);
+        //NSLog(@"%@ is contained in %@", obj1, obj2);
     }
     else if([obj2ContainedInObj1 isEqualToString:@"true"]) {
         obj1FinalPosX = obj1PositionX;
         obj2FinalPosX = obj1PositionX + obj1Width + GAP;
-        NSLog(@"%@ is contained in %@", obj2, obj1);
+        //NSLog(@"%@ is contained in %@", obj2, obj1);
     }
     
     //Otherwise, partially overlapping or connected on the edges.
@@ -699,13 +728,13 @@ float const groupingProximity = 20.0;
         if(obj1PositionX < obj2PositionX) {
             obj1FinalPosX = obj2PositionX - obj1Width - GAP;
             obj2FinalPosX = obj2PositionX;
-            NSLog(@"%@ is the leftmost object", obj1);
-            NSLog(@"%@ width: %f", obj1, obj1Width);
+            //NSLog(@"%@ is the leftmost object", obj1);
+            //NSLog(@"%@ width: %f", obj1, obj1Width);
         }
         else {
             obj1FinalPosX = obj1PositionX;
             obj2FinalPosX = obj1PositionX - obj2Width - GAP;
-            NSLog(@"%@ is the leftmost object", obj2);
+            //NSLog(@"%@ is the leftmost object", obj2);
         }
     }
     
@@ -835,6 +864,8 @@ float const groupingProximity = 20.0;
     //We also want to double check and make sure that neither of the objects is already grouped with another object at the relevant hotspots. If it is, that means we may need to transfer the grouping, instead of creating a new grouping.
     //If it is, we have to make sure that the hotspots for the two objects are within a certain radius of each other for the grouping to occur.
     //If they are, we want to go ahead and group the objects.
+    //TODO: Instead of just checking based on the object that's being moved, we should get all objects the movingObject is connected to. From there, we can either et all the possible interactions for each object, or we can figure out which one is the "subject" and use that one. For example, when the farmer is holding the hay, the farmer is the one doing the action, so the farmer would be the subject. Does this work in all instances? If so, we may also want to think about looking at the object's role when coming up with transfer interactions as well.
+    //TODO: Create a function that checks whether 2 possible interactions are the same, and then only add unique possible interactions to the array in order to remove any duplicates that may be found.
     NSString *overlappingObjects = [NSString stringWithFormat:@"checkObjectOverlapString(%@)", movingObjectId];
     NSString* overlapArrayString = [bookView stringByEvaluatingJavaScriptFromString:overlappingObjects];
     

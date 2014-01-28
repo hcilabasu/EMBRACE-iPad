@@ -112,16 +112,16 @@
         //Ungrouping two items. For the moment, just go ahead and leave the code that shows the 2 items at opposite ends of the circle with arrows pointing away from the center. TODO: We may want to remove the arrows and not check what the type of interaction we have and just go ahead and display all of them the same way.
         if(type == UNGROUP) {
             //40 pixels is currently what the arrows will take up. 
-            float widthImage = (lengthSide - 40) / 2;
+            float widthImage = (lengthSide - 50) / 2;
     
             //There are only two images.
             UIImage *image1 = [[images objectAtIndex:0] image];
             UIImage *image2 = [[images objectAtIndex:1] image];
             
             //Need to properly figure out what these image resolutions need to be.
-            UIImage *image1Scaled = [self scaleImagetoResolution:image1 :widthImage];
-            UIImage *image2Scaled = [self scaleImagetoResolution:image2 :widthImage];
-            
+            UIImage *image1Scaled = [self scaleImagetoResolution:image1 :widthImage :SCALE_EITHER];
+            UIImage *image2Scaled = [self scaleImagetoResolution:image2 :widthImage :SCALE_EITHER];
+
             UIImageView *imageView1 = [[UIImageView alloc] initWithImage:image1Scaled];
             UIImageView *imageView2 = [[UIImageView alloc] initWithImage:image2Scaled];
 
@@ -194,18 +194,17 @@
             for(MenuItemImage *itemImage in sortedImages) {
                 UIImage *image = [itemImage image];
                 
-                //UIImage *imageScaled = [self scaleImagetoResolution:image :widthImage]; //Create the scaled image.
                 UIImage *imageScaled;
                 
                 if(scaleWidth) {
                     //Calculate the size of this image based on the width of the image in the larger scene and the scale factor.
                     float widthImage = itemImage.boundingBoxImage.size.width * scaleFactor;
-                    imageScaled = [self scaleImagetoResolution:image withWidth:widthImage]; //Create the scaled image.
+                    imageScaled = [self scaleImagetoResolution:image :widthImage :SCALE_WIDTH]; //Create the scaled image.
                 }
                 else {
                     //Calculate the size of this image based on the height of the image in the larger scene and the scale factor.
                     float heightImage = itemImage.boundingBoxImage.size.height * scaleFactor;
-                    imageScaled = [self scaleImagetoResolution:image withHeight:heightImage];
+                    imageScaled = [self scaleImagetoResolution:image :heightImage :SCALE_HEIGHT];
                 }
                 
                 UIImageView *imageView = [[UIImageView alloc] initWithImage:imageScaled]; //Create the image view.
@@ -241,85 +240,41 @@
     UIGraphicsEndImageContext();
 }
 
-//TODO: Come back and collapse the bottom three functions into one function.
+typedef enum ScaleDimension {
+    SCALE_WIDTH,
+    SCALE_HEIGHT,
+    SCALE_EITHER,
+} ScaleDimension;
+
+
 /*
  * Change image resolution to the desired size while maintaining proportions.
+ * If dim is SCALE_WIDTH, scale based on width. If dim is SCALE_HEIGHT scale based on height.
+ * If dim is SCALE_EITHER, scale based on ratio that will result in largest image for resolution.
  */
-- (UIImage *)scaleImagetoResolution:(UIImage*)image :(float)resolution {
+- (UIImage *)scaleImagetoResolution:(UIImage*)image :(float)resolution :(ScaleDimension)dim {
     CGFloat width = image.size.width;
     CGFloat height = image.size.height;
     CGRect bounds = CGRectMake(0, 0, width, height);
     
     //if already at the minimum resolution, return the orginal image, otherwise scale
-    if (width <= resolution && height <= resolution) {
+    if(dim == SCALE_WIDTH && width <= resolution)
         return image;
-        
-    }
+    else if(dim == SCALE_HEIGHT && height <= resolution)
+        return image;
+    else if (dim == SCALE_EITHER && width <= resolution && height <= resolution)
+        return image;
     else {
         CGFloat ratio = width/height;
         
-        if (ratio > 1) {
-            bounds.size.height = resolution;
-            bounds.size.width = bounds.size.height * ratio;
-        }
-        else {
+        if ((dim == SCALE_EITHER && ratio > 1) || dim == SCALE_WIDTH) {
             bounds.size.width = resolution;
             bounds.size.height = bounds.size.width / ratio;
         }
-    }
-    
-    UIGraphicsBeginImageContext(bounds.size);
-    [image drawInRect:CGRectMake(0.0, 0.0, bounds.size.width, bounds.size.height)];
-    UIImage *imageCopy = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return imageCopy;
-}
-
-/*
- * Change image resolution to the desired width while maintaining proportions.
- */
-- (UIImage *)scaleImagetoResolution:(UIImage*)image withWidth:(float)newWidth {
-    CGFloat width = image.size.width;
-    CGFloat height = image.size.height;
-    CGRect bounds = CGRectMake(0, 0, width, height);
-    
-    //if already at the minimum resolution, return the orginal image, otherwise scale
-    if (width <= newWidth) {
-        return image;
-    }
-    else {
-        CGFloat ratio = width/height;
-        
-        bounds.size.width = newWidth;
-        bounds.size.height = bounds.size.width / ratio;
-    }
-    
-    UIGraphicsBeginImageContext(bounds.size);
-    [image drawInRect:CGRectMake(0.0, 0.0, bounds.size.width, bounds.size.height)];
-    UIImage *imageCopy = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return imageCopy;
-}
-
-/*
- * Change image resolution to the desired width while maintaining proportions.
- */
-- (UIImage *)scaleImagetoResolution:(UIImage*)image withHeight:(float)newHeight {
-    CGFloat width = image.size.width;
-    CGFloat height = image.size.height;
-    CGRect bounds = CGRectMake(0, 0, width, height);
-    
-    //if already at the minimum resolution, return the orginal image, otherwise scale
-    if (height <= newHeight) {
-        return image;
-    }
-    else {
-        CGFloat ratio = width/height;
-        
-        bounds.size.height = newHeight;
-        bounds.size.width = bounds.size.height * ratio;
+        else {
+            bounds.size.height = resolution;
+            bounds.size.width = bounds.size.height * ratio;
+        }
     }
     
     UIGraphicsBeginImageContext(bounds.size);
