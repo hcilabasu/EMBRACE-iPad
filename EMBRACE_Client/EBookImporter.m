@@ -521,7 +521,7 @@
         //NSLog(@"%@", [storySetupElement name]);
         
         for(GDataXMLElement* storySetupStep in storySetupSteps) {
-            
+            //Uses the same format as the solutions. Can we create the Connection object? Should we rename it to something else?
             //<setup obj1Id="cart" action="hook" obj2Id="tractor"/>
         }
     }
@@ -547,7 +547,12 @@
 
             for(GDataXMLElement* step in stepsForSentence) {
                 //Get step information.
-                if([[step name] isEqualToString:@"step"]) {
+                NSString* stepType = [step name];
+                
+                //Grouping and ungrouping have two objects, and an action.
+                //Check has an object and location.
+                //Move has an object and
+                if([[step name] isEqualToString:@"group"]) {
                     int stepNum = [[[step attributeForName:@"number"] stringValue] integerValue];
                     NSString* obj1Id = [[step attributeForName:@"obj1Id"] stringValue];
                     NSString* action = [[step attributeForName:@"action"] stringValue];
