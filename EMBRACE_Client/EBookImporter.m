@@ -516,6 +516,18 @@
     for(GDataXMLElement* storySetupElement in storySetupElements) {
         NSString* storyTitle = [[storySetupElement attributeForName:@"title"] stringValue];
         
+        PhysicalManipulationActivity* PMActivity = [PhysicalManipulationActivity alloc];
+        
+        for(Chapter* chapter in [book chapters]) {
+            //Chapter title matches setup story title
+            if ([[chapter title] isEqualToString:storyTitle]) {
+                PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity only
+            }
+        }
+        
+        [PMActivity addSetup:storyTitle];
+        Setup* setup = [PMActivity setup];
+        
         NSArray* storySetupSteps = [storySetupElement children];
         
         //NSLog(@"%@", [storySetupElement name]);
@@ -523,6 +535,17 @@
         for(GDataXMLElement* storySetupStep in storySetupSteps) {
             //Uses the same format as the solutions. Can we create the Connection object? Should we rename it to something else?
             //<setup obj1Id="cart" action="hook" obj2Id="tractor"/>
+            
+            NSString* stepType = [storySetupStep name];
+            
+            if([[storySetupStep name] isEqualToString:@"group"]) {
+                NSString* obj1Id = [[storySetupStep attributeForName:@"obj1Id"] stringValue];
+                NSString* action = [[storySetupStep attributeForName:@"action"] stringValue];
+                NSString* obj2Id = [[storySetupStep attributeForName:@"obj2Id"] stringValue];
+                
+                SetupStep* setupStep = [[SetupStep alloc] initWithValues:stepType :obj1Id :obj2Id :action];
+                [setup addSetupStep:setupStep];
+            }
         }
     }
     

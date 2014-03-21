@@ -10,4 +10,10 @@
 
 @implementation PhysicalManipulationActivity
 
+@synthesize setup;
+
+- (void) addSetup:(NSString*)title {
+    setup = [[Setup alloc] initWithTitle:title]; //create new Setup with title
+}
+
 @end

@@ -7,7 +7,14 @@
 //
 
 #import "Activity.h"
+#import "Setup.h"
 
-@interface PhysicalManipulationActivity : Activity
+@interface PhysicalManipulationActivity : Activity {
+    Setup* setup;
+}
+
+@property (nonatomic, strong) Setup *setup;
+
+- (void) addSetup:(NSString*)title;
 
 @end

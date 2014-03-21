@@ -15,8 +15,6 @@
 		31058C82176BEB6300595AAE /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = 31058C81176BEB6200595AAE /* Page.m */; };
 		310908EC17DE90CA004590A2 /* MovementConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 310908EB17DE90CA004590A2 /* MovementConstraint.m */; };
 		310908EF17DE90DB004590A2 /* OrderConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 310908EE17DE90DB004590A2 /* OrderConstraint.m */; };
-		311096FD174AAA8F00B02BF7 /* farm.epub in Resources */ = {isa = PBXBuildFile; fileRef = 311096FC174AAA8F00B02BF7 /* farm.epub */; };
-		311096FF174AB08400B02BF7 /* house.epub in Resources */ = {isa = PBXBuildFile; fileRef = 311096FE174AB08400B02BF7 /* house.epub */; };
 		31109702174AB35E00B02BF7 /* cover_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 31109701174AB35E00B02BF7 /* cover_default.png */; };
 		3115B1D11819AA0E007171E3 /* MenuItemImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3115B1D01819AA0E007171E3 /* MenuItemImage.m */; };
 		3115B1D41819C532007171E3 /* PossibleInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3115B1D31819C532007171E3 /* PossibleInteraction.m */; };
@@ -80,8 +78,6 @@
 		310908EB17DE90CA004590A2 /* MovementConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovementConstraint.m; sourceTree = "<group>"; };
 		310908ED17DE90DB004590A2 /* OrderConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderConstraint.h; sourceTree = "<group>"; };
 		310908EE17DE90DB004590A2 /* OrderConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderConstraint.m; sourceTree = "<group>"; };
-		311096FC174AAA8F00B02BF7 /* farm.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = farm.epub; sourceTree = SOURCE_ROOT; };
-		311096FE174AB08400B02BF7 /* house.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = house.epub; sourceTree = SOURCE_ROOT; };
 		31109701174AB35E00B02BF7 /* cover_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cover_default.png; sourceTree = "<group>"; };
 		3115B1CF1819AA0E007171E3 /* MenuItemImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuItemImage.h; sourceTree = "<group>"; };
 		3115B1D01819AA0E007171E3 /* MenuItemImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuItemImage.m; sourceTree = "<group>"; };
@@ -169,6 +165,12 @@
 		31C306C1183D900B0043DEDD /* Solution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Solution.m; sourceTree = "<group>"; };
 		31C306C3183E93A60043DEDD /* Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Connection.h; sourceTree = "<group>"; };
 		31C306C4183E93A60043DEDD /* Connection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connection.m; sourceTree = "<group>"; };
+		C3AAD2B218DCE7210061AE5E /* Setup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Setup.h; sourceTree = "<group>"; };
+		C3AAD2B318DCE7210061AE5E /* Setup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Setup.m; sourceTree = "<group>"; };
+		C3AAD2B418DCE7210061AE5E /* SetupStep.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetupStep.h; sourceTree = "<group>"; };
+		C3AAD2B518DCE7210061AE5E /* SetupStep.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetupStep.m; sourceTree = "<group>"; };
+		C3AAD2B618DCE7450061AE5E /* farm.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = farm.epub; sourceTree = "<group>"; };
+		C3AAD2B718DCE7450061AE5E /* house.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = house.epub; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +228,10 @@
 				31058C7E176BE74B00595AAE /* AssessmentActivity.m */,
 				31058C80176BEB6200595AAE /* Page.h */,
 				31058C81176BEB6200595AAE /* Page.m */,
+				C3AAD2B218DCE7210061AE5E /* Setup.h */,
+				C3AAD2B318DCE7210061AE5E /* Setup.m */,
+				C3AAD2B418DCE7210061AE5E /* SetupStep.h */,
+				C3AAD2B518DCE7210061AE5E /* SetupStep.m */,
 				31C306C0183D900B0043DEDD /* Solution.h */,
 				31C306C1183D900B0043DEDD /* Solution.m */,
 			);
@@ -302,8 +308,8 @@
 		31953E4F1729ECC100570087 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				311096FE174AB08400B02BF7 /* house.epub */,
-				311096FC174AAA8F00B02BF7 /* farm.epub */,
+				C3AAD2B618DCE7450061AE5E /* farm.epub */,
+				C3AAD2B718DCE7450061AE5E /* house.epub */,
 				31953E501729ECC100570087 /* EMBRACE-Info.plist */,
 				31953E511729ECC100570087 /* InfoPlist.strings */,
 				31953E541729ECC100570087 /* main.m */,
@@ -504,8 +510,6 @@
 				31953E5F1729ECC100570087 /* Default-568h@2x.png in Resources */,
 				31953E921729EE8100570087 /* MainStoryboard_iPad.storyboard in Resources */,
 				317FF1761742CCD100F1F160 /* ImageManipulation.js in Resources */,
-				311096FD174AAA8F00B02BF7 /* farm.epub in Resources */,
-				311096FF174AB08400B02BF7 /* house.epub in Resources */,
 				31109702174AB35E00B02BF7 /* cover_default.png in Resources */,
 				31058C74176BCFF200595AAE /* logo114.png in Resources */,
 				31058C76176BCFF900595AAE /* logo57.png in Resources */,
