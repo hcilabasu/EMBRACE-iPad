@@ -61,6 +61,8 @@
 		31AA5FAA175FB16500E9A9B3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AA5FA9175FB16500E9A9B3 /* LoginViewController.m */; };
 		31C306C2183D900B0043DEDD /* Solution.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C306C1183D900B0043DEDD /* Solution.m */; };
 		31C306C5183E93A60043DEDD /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C306C4183E93A60043DEDD /* Connection.m */; };
+		C3AAD2B818E22DC50061AE5E /* Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AAD2B318DCE7210061AE5E /* Setup.m */; };
+		C3AAD2B918E22DC90061AE5E /* SetupStep.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AAD2B518DCE7210061AE5E /* SetupStep.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -536,6 +538,7 @@
 				31953E841729EE4100570087 /* Book.m in Sources */,
 				31953E871729EE5800570087 /* LibraryViewController.m in Sources */,
 				31953E8D1729EE6E00570087 /* BookCellView.m in Sources */,
+				C3AAD2B818E22DC50061AE5E /* Setup.m in Sources */,
 				31953E8F1729EE6E00570087 /* LibraryView.m in Sources */,
 				31953E951729EEB800570087 /* PMViewController.m in Sources */,
 				3193753A174185E000782C2B /* NavigationController.m in Sources */,
@@ -559,6 +562,7 @@
 				3116142A179DE69400655221 /* Hotspot.m in Sources */,
 				3116142D179DE77B00655221 /* Constraint.m in Sources */,
 				31161430179DE78C00655221 /* InteractionModel.m in Sources */,
+				C3AAD2B918E22DC90061AE5E /* SetupStep.m in Sources */,
 				31161433179DE85E00655221 /* Relationship.m in Sources */,
 				310908EC17DE90CA004590A2 /* MovementConstraint.m in Sources */,
 				310908EF17DE90DB004590A2 /* OrderConstraint.m in Sources */,
