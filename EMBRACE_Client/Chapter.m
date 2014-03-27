@@ -77,4 +77,16 @@
     
     return nil;
 }
+
+// added by Rishab for getting all activities with the spec id
+
+
+-(Activity*) getActivityWithId:(NSString*) id{
+    for(Activity* activity in activities) {
+        if([id isEqualToString: [activity activityId]] )
+            return activity;
+        
+    }
+    return nil;
+}
 @end

@@ -54,4 +54,6 @@
 -(NSString*) getNextPageForChapterAndActivity:(NSString*)chapterTitle :(Mode) activity :(NSString*) currentPage; //Get the page number for the specified chapter and activity mode.
 
 -(NSString* ) getChapterAfterChapter:(NSString* )chapterTitle;
+
+-(Chapter* ) getChapterWithTitle:(NSString* )chapterTitle;
 @end

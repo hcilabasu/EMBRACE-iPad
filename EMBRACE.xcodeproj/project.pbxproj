@@ -59,8 +59,9 @@
 		31953E971729EEDE00570087 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 31953E961729EEDE00570087 /* libz.dylib */; };
 		31953E9C172A136A00570087 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31953E9B172A136A00570087 /* QuartzCore.framework */; };
 		31AA5FAA175FB16500E9A9B3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AA5FA9175FB16500E9A9B3 /* LoginViewController.m */; };
-		31C306C2183D900B0043DEDD /* Solution.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C306C1183D900B0043DEDD /* Solution.m */; };
 		31C306C5183E93A60043DEDD /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C306C4183E93A60043DEDD /* Connection.m */; };
+		68E6C1E418E3A996006C3643 /* SolutionSteps.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E6C1E318E3A996006C3643 /* SolutionSteps.m */; };
+		68E6C1E718E3AAFA006C3643 /* Solution.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E6C1E618E3AAFA006C3643 /* Solution.m */; };
 		C3AAD2B818E22DC50061AE5E /* Setup.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AAD2B318DCE7210061AE5E /* Setup.m */; };
 		C3AAD2B918E22DC90061AE5E /* SetupStep.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AAD2B518DCE7210061AE5E /* SetupStep.m */; };
 /* End PBXBuildFile section */
@@ -163,10 +164,12 @@
 		31953E9B172A136A00570087 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		31AA5FA8175FB16500E9A9B3 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		31AA5FA9175FB16500E9A9B3 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		31C306C0183D900B0043DEDD /* Solution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Solution.h; sourceTree = "<group>"; };
-		31C306C1183D900B0043DEDD /* Solution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Solution.m; sourceTree = "<group>"; };
 		31C306C3183E93A60043DEDD /* Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Connection.h; sourceTree = "<group>"; };
 		31C306C4183E93A60043DEDD /* Connection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connection.m; sourceTree = "<group>"; };
+		68E6C1E218E3A996006C3643 /* SolutionSteps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolutionSteps.h; sourceTree = "<group>"; };
+		68E6C1E318E3A996006C3643 /* SolutionSteps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolutionSteps.m; sourceTree = "<group>"; };
+		68E6C1E518E3AAFA006C3643 /* Solution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Solution.h; sourceTree = "<group>"; };
+		68E6C1E618E3AAFA006C3643 /* Solution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Solution.m; sourceTree = "<group>"; };
 		C3AAD2B218DCE7210061AE5E /* Setup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Setup.h; sourceTree = "<group>"; };
 		C3AAD2B318DCE7210061AE5E /* Setup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Setup.m; sourceTree = "<group>"; };
 		C3AAD2B418DCE7210061AE5E /* SetupStep.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetupStep.h; sourceTree = "<group>"; };
@@ -232,10 +235,12 @@
 				31058C81176BEB6200595AAE /* Page.m */,
 				C3AAD2B218DCE7210061AE5E /* Setup.h */,
 				C3AAD2B318DCE7210061AE5E /* Setup.m */,
+				68E6C1E518E3AAFA006C3643 /* Solution.h */,
+				68E6C1E618E3AAFA006C3643 /* Solution.m */,
+				68E6C1E218E3A996006C3643 /* SolutionSteps.h */,
+				68E6C1E318E3A996006C3643 /* SolutionSteps.m */,
 				C3AAD2B418DCE7210061AE5E /* SetupStep.h */,
 				C3AAD2B518DCE7210061AE5E /* SetupStep.m */,
-				31C306C0183D900B0043DEDD /* Solution.h */,
-				31C306C1183D900B0043DEDD /* Solution.m */,
 			);
 			name = "Book Model";
 			sourceTree = "<group>";
@@ -526,9 +531,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				31953E551729ECC100570087 /* main.m in Sources */,
+				68E6C1E718E3AAFA006C3643 /* Solution.m in Sources */,
 				31953E591729ECC100570087 /* AppDelegate.m in Sources */,
 				31953E741729ED5A00570087 /* GDataXMLNode.m in Sources */,
 				31953E751729ED5A00570087 /* ioapi.c in Sources */,
+				68E6C1E418E3A996006C3643 /* SolutionSteps.m in Sources */,
 				31953E761729ED5A00570087 /* mztools.c in Sources */,
 				3115B1D41819C532007171E3 /* PossibleInteraction.m in Sources */,
 				31953E771729ED5A00570087 /* unzip.c in Sources */,
@@ -547,7 +554,6 @@
 				31AA5FAA175FB16500E9A9B3 /* LoginViewController.m in Sources */,
 				3115B1D11819AA0E007171E3 /* MenuItemImage.m in Sources */,
 				311646AE175FCFE100B483F0 /* Chapter.m in Sources */,
-				31C306C2183D900B0043DEDD /* Solution.m in Sources */,
 				311646B1175FD03F00B483F0 /* Activity.m in Sources */,
 				3183DA151761614500815211 /* BookHeaderView.m in Sources */,
 				3183DA1A1762886300815211 /* TabView.m in Sources */,

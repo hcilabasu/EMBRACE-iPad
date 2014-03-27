@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Solution : NSObject
+#import "SolutionSteps.h"
 
+@interface Solution : NSObject{
+ NSMutableArray* solutionsteps;
+}
+
+@property (nonatomic, strong) NSMutableArray* solutionsteps;
+-(void) addSolutionsteps:(SolutionSteps *)solstep;
 @end

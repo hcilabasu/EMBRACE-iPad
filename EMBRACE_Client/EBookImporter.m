@@ -46,15 +46,15 @@
     //Starting from the Documents directory of the app.
     filemgr =[NSFileManager defaultManager];
     docFileList = [filemgr contentsOfDirectoryAtPath:docsDir error:NULL];
-
-    //Find all the authors directories. 
+    
+    //Find all the authors directories.
     for (NSString* item in docFileList) {
         NSString* authorPath = [docsDir stringByAppendingString:@"/"];
         authorPath = [authorPath stringByAppendingString:item];
         
         NSDictionary *attribs = [filemgr attributesOfItemAtPath:authorPath error: NULL];
         
-        if([attribs objectForKey:NSFileType] == NSFileTypeDirectory) {            
+        if([attribs objectForKey:NSFileType] == NSFileTypeDirectory) {
             NSArray* authorBookList = [filemgr contentsOfDirectoryAtPath:authorPath error:NULL];
             
             //Find all the book directories for this author.
@@ -76,22 +76,22 @@
                             
                             NSDictionary *attribsFile = [filemgr attributesOfItemAtPath:filePath error: NULL];
                             
-                            //make sure we're looking at a file and not a directory. 
+                            //make sure we're looking at a file and not a directory.
                             if([attribsFile objectForKey:NSFileType] != NSFileTypeDirectory) {
                                 NSRange fileExtensionLoc = [file rangeOfString:@"."];
                                 NSString* fileExtension = [file substringFromIndex:fileExtensionLoc.location];
-
+                                
                                 //find the epub file and unzip it.
                                 if([fileExtension isEqualToString:@".epub"]) {
                                     [self unzipEpub:bookPath :file];
-                                }                                
+                                }
                             }
                         }
                     }
                 }
-
+                
             }
-        
+            
         }
     }
     //NSLog(@"at end of import library");
@@ -99,12 +99,12 @@
     //[filemgr release];
 }
 
-//Unzips the epub. 
+//Unzips the epub.
 -(void) unzipEpub:(NSString*) filepath :(NSString*) filename{
     //NSLog(@"at beginning of unzip epub for filename: %@", filename);
     NSString *epubFilePath = [filepath stringByAppendingString:@"/"];
     epubFilePath = [epubFilePath stringByAppendingString:filename];
-
+    
     NSString *epubDirectoryPath = [filepath stringByAppendingString:@"/epub/"];
     //NSString *filepath = [[NSBundle mainBundle] pathForResource:@"ZipFileName" ofType:@"zip"];
     
@@ -135,7 +135,7 @@
     return nil;
 }
 
-//Reads the container for the book to get the filepath for the content.opf file.  
+//Reads the container for the book to get the filepath for the content.opf file.
 -(void) readContainerForBook:(NSString*)filepath {
     //NSLog(@"at beginning of read container for book");
     NSString* containerPath = [filepath stringByAppendingString:@"/epub/META-INF/container.xml"];
@@ -167,7 +167,7 @@
 /* Reads the opf file for the book. This file provides information about the title and author of the book,
  * as well as a list of all the files associated with this book. The spine provides an order for which pages
  * should be displayed. For the purposes of this application, the program will instead use the TOC to identify
- * which pages belong to which part of the book. 
+ * which pages belong to which part of the book.
  */
 -(void) readOpfForBook:(NSString*)filename :(NSString*)filepath {
     //NSLog(@"at beginning of read opf for book. filename: %@ filepath: %@", filename, filepath);
@@ -205,12 +205,12 @@
     
     //Create Book with author and title.
     book = [[Book alloc] initWithTitleAndAuthor:filepath :title :author];
-
+    
     //set the mainContentPath so we can access the cover image and all other files of the book.
     NSRange rangeOfContentFile = [opfFilePath rangeOfString:@"content.opf"];
     [book setMainContentPath:[opfFilePath substringToIndex:rangeOfContentFile.location]];
     
-    //Extract the cover if it has one. 
+    //Extract the cover if it has one.
     //cover image is in <meta content=<> name<>/> inside of metadata.
     //content is the id of the jpg that can be found in the manifest.
     //name is always cover for the cover page.
@@ -221,7 +221,7 @@
     NSArray* metaElement = [metadata elementsForName:@"meta"];
     
     for(GDataXMLElement *element in metaElement) {
-         NSString* name = [[element attributeForName:@"name"] stringValue];
+        NSString* name = [[element attributeForName:@"name"] stringValue];
         
         if([name compare:@"cover"] == NSOrderedSame) {
             coverId = [[element attributeForName:@"content"] stringValue];
@@ -268,17 +268,22 @@
         coverFilePath = [[book mainContentPath] stringByAppendingString:coverFilename];
         [book setCoverImagePath:coverFilePath];
     }
-  
+    
     //Read the TOC for the book and create any Chapters and Activities as necessary.
     [self readTOCForBook:book];
     
     //Read the metadata for the book
     [self readMetadataForBook:book];
     
-    //add the book to the library. 
+    
+    // DEBUG Rishabh
+    //Read the TOC for the book and create any Chapters and Activities as necessary.
+    //[self readTOCForBook:book];
+    
+    //add the book to the library.
     [library addObject:book];
     
-    //NSLog(@"at end of read opf for book");
+    NSLog(@"at end of read opf for book");
 }
 
 //TOC is in the same location as the .opf file. That means that we can use the mainContentPath to find it.
@@ -304,12 +309,12 @@
         //Get the ChapterId
         NSString* chapterId = [[chapterNode attributeForName:@"id"] stringValue];
         [currChapter setChapterId:chapterId];
-            
+        
         //Get the chapter title from the navLabel text
         GDataXMLElement* navLabelElement = [[chapterNode elementsForName:@"navLabel"] objectAtIndex:0];
         GDataXMLElement* navLabelTextElement =  [[navLabelElement elementsForName:@"text"] objectAtIndex:0];
         [currChapter setTitle:[navLabelTextElement stringValue]];
-    
+        
         //NSLog(@"chapter title: %@", [currChapter title]);
         
         //Get the title page and the image for the chapter
@@ -347,7 +352,7 @@
             if([modeType isEqualToString:@"PM_MODE"]) {
                 currActivity= [currChapter getActivityOfType:PM_MODE];
                 
-                //the chapter doesn't currently have an Activity of the current type. 
+                //the chapter doesn't currently have an Activity of the current type.
                 if(currActivity == nil) {
                     currActivity = [[PhysicalManipulationActivity alloc] init];
                     newActivity = TRUE;
@@ -365,14 +370,15 @@
                 currActivity = [[Activity alloc] init]; //Generic activity since I have no idea what it is.
                 newActivity = TRUE;
             }
-            
+            //added by Rishabh for Solutions for adding activity id to activity
+            [currActivity setActivityId:pageId ];
             [currActivity addPage:currPage];
-
+            
             //Get the title of the activity. Don't care about this right now.
             GDataXMLElement *activityTitleElement = [[element elementsForName:@"navLabel"] objectAtIndex:0];
             NSString* activityTitle = [activityTitleElement stringValue];
             [currActivity setActivityTitle:activityTitle];
-
+            
             //If we had to create an activity that doesn't exist in the chapter..add the activity.
             if (newActivity) {
                 //NSLog(@"adding activity with title:%@ to chapter: %@", [currActivity activityTitle], [currChapter title]);
@@ -395,7 +401,7 @@
     NSError *error;
     //Get the html data of the chapter title page.
     GDataXMLDocument *chapterTitlePage = [[GDataXMLDocument alloc] initWithHTMLData:htmlData error:&error];
-
+    
     //Find the cover image and extract the path to the image.
     NSArray* coverImageDivElements = [chapterTitlePage nodesForXPath:@"//div[@class='cover']" error:nil];
     
@@ -425,6 +431,8 @@
     GDataXMLDocument *metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:&error];
     
     InteractionModel *model = [book model];
+    
+    
     
     //Read in the Relationship information
     NSArray* relationshipsElements = [metadataDoc nodesForXPath:@"//relationships" error:nil];
@@ -497,7 +505,7 @@
         NSString* role = [[hotspot attributeForName:@"role" ] stringValue];
         NSString* locationXString = [[hotspot attributeForName:@"x"] stringValue];
         NSString* locationYString = [[hotspot attributeForName:@"y"] stringValue];
-
+        
         //Find the range of "," in the location string.
         CGFloat locX = [locationXString floatValue];
         CGFloat locY = [locationYString floatValue];
@@ -515,15 +523,12 @@
     
     for(GDataXMLElement* storySetupElement in storySetupElements) {
         NSString* storyTitle = [[storySetupElement attributeForName:@"title"] stringValue];
-        
-        PhysicalManipulationActivity* PMActivity = [PhysicalManipulationActivity alloc];
-        
-        for(Chapter* chapter in [book chapters]) {
-            //Chapter title matches setup story title
-            if ([[chapter title] isEqualToString:storyTitle]) {
-                PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity only
-            }
+        Chapter* chapter = [book getChapterWithTitle:storyTitle];
+        if (chapter == nil){
+            break;
         }
+        PhysicalManipulationActivity* PMActivity = [PhysicalManipulationActivity alloc];
+        PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity only
         
         [PMActivity addSetup:storyTitle];
         Setup* setup = [PMActivity setup];
@@ -537,17 +542,16 @@
             //<setup obj1Id="cart" action="hook" obj2Id="tractor"/>
             
             NSString* stepType = [storySetupStep name];
+            NSString* obj1Id = [[storySetupStep attributeForName:@"obj1Id"] stringValue];
+            NSString* action = [[storySetupStep attributeForName:@"action"] stringValue];
+            NSString* obj2Id = [[storySetupStep attributeForName:@"obj2Id"] stringValue];
             
-            if([[storySetupStep name] isEqualToString:@"group"]) {
-                NSString* obj1Id = [[storySetupStep attributeForName:@"obj1Id"] stringValue];
-                NSString* action = [[storySetupStep attributeForName:@"action"] stringValue];
-                NSString* obj2Id = [[storySetupStep attributeForName:@"obj2Id"] stringValue];
-                
-                SetupStep* setupStep = [[SetupStep alloc] initWithValues:stepType :obj1Id :obj2Id :action];
-                [setup addSetupStep:setupStep];
-            }
+            SetupStep* setupStep = [[SetupStep alloc] initWithValues:stepType :obj1Id :obj2Id :action];
+            [setup addSetupStep:setupStep];
         }
     }
+
+    
     
     //Read in the solutions and add them to the PhysicalManipulationActivity they belong to.
     NSArray* solutionsElements = [metadataDoc nodesForXPath:@"//solutions" error:nil];
@@ -555,47 +559,114 @@
     
     NSArray* storySolutions = [solutionsElement elementsForName:@"story"];
     
+    //added by Rishabh for storing Solutions
+    NSArray* storyActivityId = [solutionsElement elementsForName:@"id"];
+    
+    
+    
     for(GDataXMLElement* solution in storySolutions) {
+        
+        // added by rishabh for Solutions Data Structure
+        // for Every activity id we need to get all the activities related to all the chapters
+        
+        //NSMutableArray* chapters = [book getChapters];
         //Get story title.
         NSString* title = [[solution attributeForName:@"title"] stringValue];
-        
         NSArray* sentenceSolutions = [solution elementsForName:@"sentence"];
         
-        for(GDataXMLElement* sentence in sentenceSolutions) {
-            //Get sentence number
-            int sentenceNum = [[[sentence attributeForName:@"number"] stringValue] integerValue];
+        Chapter* chapter = [book getChapterWithTitle:title];
+        if (chapter==nil){
+            continue;
+        }
+        //for(Chapter* chapter in chapters) {
             
-            //Get solution steps for sentence.
-            NSArray* stepsForSentence = [sentence children];
-
-            for(GDataXMLElement* step in stepsForSentence) {
-                //Get step information.
-                NSString* stepType = [step name];
-                
-                //Grouping and ungrouping have two objects, and an action.
-                //Check has an object and location.
-                //Move has an object and
-                if([[step name] isEqualToString:@"group"]) {
-                    int stepNum = [[[step attributeForName:@"number"] stringValue] integerValue];
-                    NSString* obj1Id = [[step attributeForName:@"obj1Id"] stringValue];
-                    NSString* action = [[step attributeForName:@"action"] stringValue];
-                    NSString* obj2Id = [[step attributeForName:@"obj2Id"] stringValue];
-                }
-                //otherwise, it may be one of two types of moves -- move into a bounding box or move to waypoint.
-                else if([[step name] isEqualToString:@"move"]) {
-                    NSString* obj1Id = [[step attributeForName:@"obj1Id"] stringValue];
-                    NSString* action = [[step attributeForName:@"action"] stringValue];
-                    
-                    if([step attributeForName:@"locationId"]) {
-                        NSString* location = [[step attributeForName:@"locationId"] stringValue];
-                    }
-                    else if([step attributeForName:@"waypointId"]) {
-                        NSString* waypoint = [[step attributeForName:@"waypointId"] stringValue];
-                    }
-                }
+            //NSMutableArray* activities = [chapter getActivities];
+            
+            //for(Activity* activity in activities) {
+            
+            // added by Rishabh for Solutions starts
+            NSString* activity_id = [[solution attributeForName:@"activity_id"] stringValue];
+            // added by Rishabh for Solutions starts
+            
+            Activity * activity =  [chapter getActivityWithId:(NSString *)activity_id ];
+            if (activity==nil){
+                continue;
             }
+            
+            Solution* solution1 = [[Solution alloc] init];
+            solution1 = [activity  solution];
+            //added by rishabh for Solutions Data Structure ends
+            
+        
+            
+            for(GDataXMLElement* sentence in sentenceSolutions) {
+                //Get sentence number
+                int sentenceNum = [[[sentence attributeForName:@"number"] stringValue] integerValue];
+                
+                //Get solution steps for sentence.
+                NSArray* stepsForSentence = [sentence children];
+                
+                for(GDataXMLElement* step in stepsForSentence) {
+                    //Get step information.
+                    //Get step information.
+                    NSArray* stepsForStep = [step children];
+                    
+                    for(GDataXMLElement* step1 in stepsForStep) {
+                        NSString* stepType = [step1 name];
+                        
+                        //Grouping and ungrouping have two objects, and an action.
+                        //Check has an object and location.
+                        //Move has an object and
+                        //RISHABH DEBUG Below Line Commented inactive
+                        if([[step1 name] isEqualToString:@"group"]) {
+                            //if([stepType isEqualToString:@"group"]) {
+                            int stepNum = [[[step attributeForName:@"number"] stringValue] integerValue];
+                            NSString* obj1Id = [[step1 attributeForName:@"obj1Id"] stringValue];
+                            NSString* action = [[step1 attributeForName:@"action"] stringValue];
+                            NSString* obj2Id = [[step1 attributeForName:@"obj2Id"] stringValue];
+                            
+                            // Added by Rishabh for storing Solutions Information starts
+                            NSNumber* stepNumber = [NSNumber numberWithInt:stepNum];
+                            SolutionSteps *solutionstep = [[SolutionSteps alloc] initWithValues:stepType :obj1Id :obj2Id :action :stepNumber];
+                            [solution1 addSolutionsteps:solutionstep ];
+                            
+                            
+                            //[model addSolutions:title :sentenceNum :stepType :stepNum :obj1Id :action :obj2Id];
+                            //ends
+                        }
+                        //otherwise, it may be one of two types of moves -- move into a bounding box or move to waypoint.
+                        else if([[step1 name] isEqualToString:@"move"]) {
+                            NSString* obj1Id = [[step1 attributeForName:@"obj1Id"] stringValue];
+                            NSString* action = [[step1 attributeForName:@"action"] stringValue];
+                            
+                            if([step1 attributeForName:@"locationId"]) {
+                                NSString* location = [[step1 attributeForName:@"locationId"] stringValue];
+                            }
+                            else if([step1 attributeForName:@"waypointId"]) {
+                                NSString* waypoint = [[step1 attributeForName:@"waypointId"] stringValue];
+                            }
+                        }
+                    }
+                    
+                    
+                    
+                    
+                    //[chapter addActivity:activity];
+                    
+                    // activities loop ends
+                    
+                }
+                
+                //[book addChapter:chapter];
+                // chapters loop ends
+                
+            //}
+            
+            
         }
         
     }
+    
+    
 }
 @end
