@@ -375,7 +375,7 @@ float const groupingProximity = 20.0;
                     //First rank the interactions based on location to story.
                     //[self rankPossibleInteractions:possibleInteractions];
                     
-                    //New changed code here added by vijay
+                    //New changed code added here
                     NSLog(@"returned %d interactions as follows:", [possibleInteractions count]);
                     NSLog(@"length of all possible groupings array: %d", [allPossibleGroupings count]);
                     
@@ -1081,7 +1081,7 @@ float const groupingProximity = 20.0;
                                     
                                     //following code is to check there is no duplicates in the possibleInteractions
                                     //adding groupobjects and hotspots to the grouping array
-                                    //Edited by Vijay
+                                    
                                     group = [NSMutableArray arrayWithObjects:objConnectedTo,currentUnconnectedObj, hotspot1, hotspot2, nil];
                                     
                                     if([allPossibleGroupings count]==0)
@@ -1170,13 +1170,33 @@ float const groupingProximity = 20.0;
                     NSMutableArray* hotspotsForCurrentUnconnectedObject;
                     
                     //This is needed as the hotspots for Current Unconnected Object (cart) does not have any overlapping with hay
-                    if([objConnectedTo isEqualToString:@"hay"])
-                    {
-                       hotspotsForCurrentUnconnectedObject  = [model getHotspotsForObject:currentUnconnectedObj OverlappingWithObject :objConnected];
+                    //if([objConnectedTo isEqualToString:@"hay"])
+                    //{
+                       NSMutableArray *a2  = [model getHotspotsForObject:currentUnconnectedObj OverlappingWithObject :objConnected];
+                    //}
+                    //else{
+                        NSMutableArray *a1 = [model getHotspotsForObject:currentUnconnectedObj OverlappingWithObject :objConnectedTo];
+                    //}
+                    
+                    NSSet *a1set = [NSSet setWithArray:a1];
+                    NSSet *a2set = [NSSet setWithArray:a2];
+                    
+                    //To check if one object's hotspots (cart) is enclosed within another object's hotspots (farmer)
+                    if ([a1set isSubsetOfSet:a2set]) {
+                        hotspotsForCurrentUnconnectedObject = a2;
+                        NSLog(@"a1 is a subset of a2");
                     }
-                    else{
-                        hotspotsForCurrentUnconnectedObject = [model getHotspotsForObject:currentUnconnectedObj OverlappingWithObject :objConnectedTo];
-                    }
+                    else
+                        hotspotsForCurrentUnconnectedObject = a1;
+                    
+                    /*
+                    for(Hotspot *ht in a1)
+                        NSLog(@"A1 --- obj: %@, action:%@, role:%@", [ht objectId], [ht action], [ht role]);
+                    for(Hotspot *ht in a2)
+                        NSLog(@"A2 --- obj: %@, action:%@, role:%@", [ht objectId], [ht action], [ht role]);
+                    NSLog(@"a1 length: %d, a2 length: %d, HUN length: %d", [a1 count], [a2 count], [hotspotsForCurrentUnconnectedObject count]);
+                    */
+                    
                     NSMutableArray* hotspotsForObjConnectedTo = [model getHotspotsForObject:objConnectedTo
                                                                  OverlappingWithObject :currentUnconnectedObj];
 
@@ -1185,17 +1205,26 @@ float const groupingProximity = 20.0;
                     //get the possible interactions for objectConnectedTo and the overlapping object
                     groupings = [self findInteractions:hotspotsForObjConnectedTo:hotspotsForCurrentUnconnectedObject:movingObjectHotspots:objConnectedTo:currentUnconnectedObj:objConnected:groupings];
                     
-                    NSLog(@"groupings count before: %d", [allPossibleGroupings count]);
+                    //NSLog(@"groupings count before: %d", [allPossibleGroupings count]);
                     //get the possible interactions for movingObject and the overlapping object
                     groupings = [self findInteractions:movingObjectHotspots:hotspotsForCurrentUnconnectedObject:hotspotsForObjConnectedTo:objConnected:currentUnconnectedObj:objConnectedTo:groupings];
                     
-                    NSLog(@"groupings count after: %d", [allPossibleGroupings count]);
+                    //NSLog(@"groupings count after: %d", [allPossibleGroupings count]);
                 }
             }//enf of transference condition 2
         }//end of outer for loop
     
     }
     return groupings;
+}
+
+
+- (BOOL) isSubset: (NSMutableArray*) arr2{
+    
+    BOOL iss = false;
+    
+    
+    return iss;
 }
 
 /*
@@ -1247,12 +1276,14 @@ float const groupingProximity = 20.0;
             bool rolesMatch = [[hotspot1 role] isEqualToString:[hotspot2 role]];
             bool actionsMatch = [[hotspot1 action] isEqualToString:[hotspot2 action]];
             
+            /*
             if([[hotspot2 action] isEqualToString:@"grab"] || [[hotspot1 action] isEqualToString:@"grab"])
             {
                 NSLog(@"Hi %@, %@, action:%@, action:%@, ht1loc-x:%f, ht1loc-y:%f, ht2loc-x:%f, ht2loc-y:%f", objA, objB, [hotspot1 action], [hotspot2 action],[hotspot1 location].x, [hotspot1 location].y, [hotspot2 location].x, [hotspot2 location].y);
-            }
+            }*/
             
             if(actionsMatch && [isUnConnectedObjHotspotConnectedString isEqualToString:@""] && !rolesMatch) {
+                
                 //Get the relationship between these two objects so we can check to see what type of relationship it is.
                 Relationship* relationshipBetweenObjects = [model getRelationshipForObjectsForAction:objA :objB :[hotspot1 action]];
                 
@@ -1286,8 +1317,8 @@ float const groupingProximity = 20.0;
                     [groupings addObject:interaction];
                     
                     //following code is to check there is no duplicates in the possibleInteractions
-                    //adding groupobjects and hotspots to the grouping array
-                    //Edited by Vijay
+                    //adding groupobjects and hotspots to the allPossibleGroupings array
+                    
                     grp = [NSMutableArray arrayWithObjects:objA,objB, hotspot1, hotspot2, nil];
                     
                     if([allPossibleGroupings count]==0)
@@ -1359,6 +1390,7 @@ float const groupingProximity = 20.0;
 
 /*
  * Re-orders the possible ` in place based on the location in the story at which the user is currently.
+   TODO: Pull up information from solution step and rank based on the location in the story and the current step
  */
 -(void) rankPossibleInteractions:(NSMutableArray*) possibleInteractions {
     
