@@ -10,10 +10,20 @@
 
 @implementation PhysicalManipulationActivity
 
-@synthesize setup;
+@synthesize setupSteps;
+@synthesize PMSolution;
 
-- (void) addSetup:(NSString*)title {
-    setup = [[Setup alloc] initWithTitle:title]; //create new Setup with title
+- (id) init {
+    if (self = [super init]) {
+        setupSteps = [[NSMutableArray alloc] init];
+        PMSolution = [[PhysicalManipulationSolution alloc] init];
+    }
+    
+    return self;
+}
+
+- (void) addSetupStep:(ActionStep*)setupStep {
+    [setupSteps addObject:setupStep];
 }
 
 @end

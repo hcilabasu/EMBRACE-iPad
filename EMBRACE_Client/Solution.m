@@ -9,9 +9,5 @@
 #import "Solution.h"
 
 @implementation Solution
-@synthesize solutionsteps;
 
--(void) addSolutionsteps:(SolutionSteps*) solstep {
-    [solutionsteps addObject:solstep];
-}
 @end

@@ -274,13 +274,7 @@
     
     //Read the metadata for the book
     [self readMetadataForBook:book];
-    
-    
-    // DEBUG Rishabh
-    //Read the TOC for the book and create any Chapters and Activities as necessary.
-    //[self readTOCForBook:book];
-    
-    //add the book to the library.
+
     [library addObject:book];
     
     NSLog(@"at end of read opf for book");
@@ -370,7 +364,7 @@
                 currActivity = [[Activity alloc] init]; //Generic activity since I have no idea what it is.
                 newActivity = TRUE;
             }
-            //added by Rishabh for Solutions for adding activity id to activity
+            
             [currActivity setActivityId:pageId ];
             [currActivity addPage:currPage];
             
@@ -431,8 +425,6 @@
     GDataXMLDocument *metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:&error];
     
     InteractionModel *model = [book model];
-    
-    
     
     //Read in the Relationship information
     NSArray* relationshipsElements = [metadataDoc nodesForXPath:@"//relationships" error:nil];
@@ -522,36 +514,30 @@
     NSArray* storySetupElements = [setupElement elementsForName:@"story"];
     
     for(GDataXMLElement* storySetupElement in storySetupElements) {
+        //Get story title
         NSString* storyTitle = [[storySetupElement attributeForName:@"title"] stringValue];
         Chapter* chapter = [book getChapterWithTitle:storyTitle];
-        if (chapter == nil){
-            break;
-        }
-        PhysicalManipulationActivity* PMActivity = [PhysicalManipulationActivity alloc];
-        PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity only
         
-        [PMActivity addSetup:storyTitle];
-        Setup* setup = [PMActivity setup];
-        
-        NSArray* storySetupSteps = [storySetupElement children];
-        
-        //NSLog(@"%@", [storySetupElement name]);
-        
-        for(GDataXMLElement* storySetupStep in storySetupSteps) {
-            //Uses the same format as the solutions. Can we create the Connection object? Should we rename it to something else?
-            //<setup obj1Id="cart" action="hook" obj2Id="tractor"/>
+        if(chapter != nil) {
+            PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity only
             
-            NSString* stepType = [storySetupStep name];
-            NSString* obj1Id = [[storySetupStep attributeForName:@"obj1Id"] stringValue];
-            NSString* action = [[storySetupStep attributeForName:@"action"] stringValue];
-            NSString* obj2Id = [[storySetupStep attributeForName:@"obj2Id"] stringValue];
+            NSArray* storySetupSteps = [storySetupElement children];
             
-            SetupStep* setupStep = [[SetupStep alloc] initWithValues:stepType :obj1Id :obj2Id :action];
-            [setup addSetupStep:setupStep];
+            for(GDataXMLElement* storySetupStep in storySetupSteps) {
+                //Uses the same format as the solutions. Can we create the Connection object? Should we rename it to something else?
+                //<setup obj1Id="cart" action="hook" obj2Id="tractor"/>
+                
+                //Get setup step information
+                NSString* stepType = [storySetupStep name];
+                NSString* obj1Id = [[storySetupStep attributeForName:@"obj1Id"] stringValue];
+                NSString* action = [[storySetupStep attributeForName:@"action"] stringValue];
+                NSString* obj2Id = [[storySetupStep attributeForName:@"obj2Id"] stringValue];
+                
+                ActionStep* setupStep = [[ActionStep alloc] initAsSetupStep:stepType :obj1Id :obj2Id :action];
+                [PMActivity addSetupStep:setupStep];
+            }
         }
     }
-
-    
     
     //Read in the solutions and add them to the PhysicalManipulationActivity they belong to.
     NSArray* solutionsElements = [metadataDoc nodesForXPath:@"//solutions" error:nil];
@@ -559,114 +545,80 @@
     
     NSArray* storySolutions = [solutionsElement elementsForName:@"story"];
     
-    //added by Rishabh for storing Solutions
-    NSArray* storyActivityId = [solutionsElement elementsForName:@"id"];
-    
-    
-    
     for(GDataXMLElement* solution in storySolutions) {
-        
-        // added by rishabh for Solutions Data Structure
-        // for Every activity id we need to get all the activities related to all the chapters
-        
-        //NSMutableArray* chapters = [book getChapters];
-        //Get story title.
+        //Get story title
         NSString* title = [[solution attributeForName:@"title"] stringValue];
-        NSArray* sentenceSolutions = [solution elementsForName:@"sentence"];
-        
         Chapter* chapter = [book getChapterWithTitle:title];
-        if (chapter==nil){
-            continue;
-        }
-        //for(Chapter* chapter in chapters) {
-            
-            //NSMutableArray* activities = [chapter getActivities];
-            
-            //for(Activity* activity in activities) {
-            
-            // added by Rishabh for Solutions starts
-            NSString* activity_id = [[solution attributeForName:@"activity_id"] stringValue];
-            // added by Rishabh for Solutions starts
-            
-            Activity * activity =  [chapter getActivityWithId:(NSString *)activity_id ];
-            if (activity==nil){
-                continue;
-            }
-            
-            Solution* solution1 = [[Solution alloc] init];
-            solution1 = [activity  solution];
-            //added by rishabh for Solutions Data Structure ends
-            
         
+        if (chapter != nil) {
+            PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity only
+            PhysicalManipulationSolution* PMSolution = [PMActivity PMSolution]; //get PM solution
             
+            NSArray* sentenceSolutions = [solution elementsForName:@"sentence"];
+                
             for(GDataXMLElement* sentence in sentenceSolutions) {
                 //Get sentence number
-                int sentenceNum = [[[sentence attributeForName:@"number"] stringValue] integerValue];
+                int sentenceNumber = [[[sentence attributeForName:@"number"] stringValue] integerValue];
+                NSNumber* sentenceNum = [NSNumber numberWithInt:sentenceNumber];
                 
-                //Get solution steps for sentence.
-                NSArray* stepsForSentence = [sentence children];
+                NSArray* stepSolutions = [sentence elementsForName:@"step"];
                 
-                for(GDataXMLElement* step in stepsForSentence) {
-                    //Get step information.
-                    //Get step information.
-                    NSArray* stepsForStep = [step children];
+                for(GDataXMLElement* stepSolution in stepSolutions) {
+                    //Get step number
+                    int stepNumber = [[[stepSolution attributeForName:@"number"] stringValue] integerValue];
+                    NSNumber* stepNum = [NSNumber numberWithInt:stepNumber];
                     
-                    for(GDataXMLElement* step1 in stepsForStep) {
-                        NSString* stepType = [step1 name];
+                    //Get solution steps for sentence.
+                    NSArray* stepsForSentence = [stepSolution children];
+                    
+                    for(GDataXMLElement* step in stepsForSentence) {
+                        NSString* stepType = [step name]; //get step type
                         
-                        //Grouping and ungrouping have two objects, and an action.
-                        //Check has an object and location.
-                        //Move has an object and
-                        //RISHABH DEBUG Below Line Commented inactive
-                        if([[step1 name] isEqualToString:@"group"]) {
-                            //if([stepType isEqualToString:@"group"]) {
-                            int stepNum = [[[step attributeForName:@"number"] stringValue] integerValue];
-                            NSString* obj1Id = [[step1 attributeForName:@"obj1Id"] stringValue];
-                            NSString* action = [[step1 attributeForName:@"action"] stringValue];
-                            NSString* obj2Id = [[step1 attributeForName:@"obj2Id"] stringValue];
+                        //All solution step types have at least an obj1Id and action
+                        NSString* obj1Id = [[step attributeForName:@"obj1Id"] stringValue];
+                        NSString* action = [[step attributeForName:@"action"] stringValue];
+                        
+                        //Group and ungroup also have an obj2Id
+                        if([[step name] isEqualToString:@"group"] || [[step name] isEqualToString:@"ungroup"]) {
+                            NSString* obj2Id = [[step attributeForName:@"obj2Id"] stringValue];
                             
-                            // Added by Rishabh for storing Solutions Information starts
-                            NSNumber* stepNumber = [NSNumber numberWithInt:stepNum];
-                            SolutionSteps *solutionstep = [[SolutionSteps alloc] initWithValues:stepType :obj1Id :obj2Id :action :stepNumber];
-                            [solution1 addSolutionsteps:solutionstep ];
-                            
-                            
-                            //[model addSolutions:title :sentenceNum :stepType :stepNum :obj1Id :action :obj2Id];
-                            //ends
+                            ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :obj2Id :nil :nil :action];
+                            [PMSolution addSolutionStep:solutionStep];
                         }
-                        //otherwise, it may be one of two types of moves -- move into a bounding box or move to waypoint.
-                        else if([[step1 name] isEqualToString:@"move"]) {
-                            NSString* obj1Id = [[step1 attributeForName:@"obj1Id"] stringValue];
-                            NSString* action = [[step1 attributeForName:@"action"] stringValue];
+                        //Move also has either an obj2Id or waypointId
+                        else if([[step name] isEqualToString:@"move"]) {
+                            if([step attributeForName:@"obj2Id"]) {
+                                NSString* obj2Id = [[step attributeForName:@"obj2Id"] stringValue];
+                                
+                                ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :obj2Id :nil :nil :action];
+                                [PMSolution addSolutionStep:solutionStep];
+                            }
+                            else if([step attributeForName:@"waypointId"]) {
+                                NSString* waypointId = [[step attributeForName:@"waypointId"] stringValue];
+                                
+                                ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :waypointId :action];
+                                [PMSolution addSolutionStep:solutionStep];
+                            }
+                        }
+                        //Check also has a locationId
+                        else if([[step name] isEqualToString:@"check"]) {
+                            NSString* locationId = [[step attributeForName:@"locationId"] stringValue];
                             
-                            if([step1 attributeForName:@"locationId"]) {
-                                NSString* location = [[step1 attributeForName:@"locationId"] stringValue];
-                            }
-                            else if([step1 attributeForName:@"waypointId"]) {
-                                NSString* waypoint = [[step1 attributeForName:@"waypointId"] stringValue];
-                            }
+                            ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :locationId :nil :action];
+                            [PMSolution addSolutionStep:solutionStep];
+                        }
+                        //Disappear also has an obj2Id
+                        else if([[step name] isEqualToString:@"disappear"]) {
+                            NSString* obj2Id = [[step attributeForName:@"obj2Id"] stringValue];
+                            
+                            ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :obj2Id :nil :nil :action];
+                            [PMSolution addSolutionStep:solutionStep];
                         }
                     }
-                    
-                    
-                    
-                    
-                    //[chapter addActivity:activity];
-                    
-                    // activities loop ends
-                    
                 }
-                
-                //[book addChapter:chapter];
-                // chapters loop ends
-                
-            //}
-            
-            
+            }
         }
-        
     }
-    
-    
 }
+    
 @end

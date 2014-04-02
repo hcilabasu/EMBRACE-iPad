@@ -7,14 +7,17 @@
 //
 
 #import "Activity.h"
-#import "Setup.h"
+#import "ActionStep.h"
+#import "PhysicalManipulationSolution.h"
 
 @interface PhysicalManipulationActivity : Activity {
-    Setup* setup;
+    NSMutableArray *setupSteps;
+    PhysicalManipulationSolution *PMSolution;
 }
 
-@property (nonatomic, strong) Setup *setup;
+@property (nonatomic, strong) NSMutableArray *setupSteps;
+@property (nonatomic, strong) PhysicalManipulationSolution *PMSolution;
 
-- (void) addSetup:(NSString*)title;
+- (void) addSetupStep:(ActionStep*)setupStep;
 
 @end
