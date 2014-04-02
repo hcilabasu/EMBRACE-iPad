@@ -128,6 +128,9 @@ float const groupingProximity = 20.0;
         NSString* setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, .5)", i + 1];
         [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
     }
+    
+    //Perform setup for activity
+    [self performSetupForActivity];
 }
 
 /*
@@ -187,9 +190,6 @@ float const groupingProximity = 20.0;
     
     currentSentence = 1;
     self.title = chapterTitle;
-    
-    //Perform setup for activity
-    [self performSetupForActivity];
 }
 
 /*
