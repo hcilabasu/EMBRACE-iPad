@@ -130,6 +130,18 @@ float const groupingProximity = 20.0;
     //NSString* setSentenceWeight = [NSString stringWithFormat:@"setSentenceFontWeight(s%d, 'bold')", currentSentence];
     //[bookView stringByEvaluatingJavaScriptFromString:setSentenceWeight];
     
+
+    //Check to see if it is an action sentence
+    NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
+    NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
+
+    //If it is an action sentence underline it
+    if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
+        
+        NSString* underlineSentence = [NSString stringWithFormat:@"setSentenceUnderline(s%d)", currentSentence];
+        [bookView stringByEvaluatingJavaScriptFromString:underlineSentence];
+    }
+    
     //Set the opacity of all but the current sentence to .5
     //Color will default to blue. And be changed to green once it's been done. 
     for(int i = currentSentence; i < totalSentences; i++) {
@@ -1698,6 +1710,17 @@ float const groupingProximity = 20.0;
     /*NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, \"blue\")", currentSentence];
      
      [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];*/
+    
+    //Check to see if it is an action sentence
+    NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
+    NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
+    
+    //If it is an action sentence underline it
+    if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
+        
+        NSString* underlineSentence = [NSString stringWithFormat:@"setSentenceUnderline(s%d)", currentSentence];
+        [bookView stringByEvaluatingJavaScriptFromString:underlineSentence];
+    }
     
     //currentSentence is 1 indexed.
     if(currentSentence > totalSentences) {
