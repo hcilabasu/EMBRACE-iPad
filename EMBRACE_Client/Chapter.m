@@ -78,14 +78,13 @@
     return nil;
 }
 
-// added by Rishab for getting all activities with the spec id
-
-
+/*
+ * Returns the activity with the specified id
+ */
 -(Activity*) getActivityWithId:(NSString*) id{
     for(Activity* activity in activities) {
-        if([id isEqualToString: [activity activityId]] )
+        if([id isEqualToString:[activity activityId]])
             return activity;
-        
     }
     return nil;
 }
