@@ -33,4 +33,5 @@
 -(Activity*) getActivityOfType:(Mode) mode;
 
 -(NSString*) getNextPageForMode:(Mode) mode :(NSString*)currentPage;  //Get the next page in this chapter.
+-(Activity*) getActivityWithId:(NSString*) id;
 @end

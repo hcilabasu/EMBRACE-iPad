@@ -15,8 +15,6 @@
 		31058C82176BEB6300595AAE /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = 31058C81176BEB6200595AAE /* Page.m */; };
 		310908EC17DE90CA004590A2 /* MovementConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 310908EB17DE90CA004590A2 /* MovementConstraint.m */; };
 		310908EF17DE90DB004590A2 /* OrderConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 310908EE17DE90DB004590A2 /* OrderConstraint.m */; };
-		311096FD174AAA8F00B02BF7 /* farm.epub in Resources */ = {isa = PBXBuildFile; fileRef = 311096FC174AAA8F00B02BF7 /* farm.epub */; };
-		311096FF174AB08400B02BF7 /* house.epub in Resources */ = {isa = PBXBuildFile; fileRef = 311096FE174AB08400B02BF7 /* house.epub */; };
 		31109702174AB35E00B02BF7 /* cover_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 31109701174AB35E00B02BF7 /* cover_default.png */; };
 		3115B1D11819AA0E007171E3 /* MenuItemImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3115B1D01819AA0E007171E3 /* MenuItemImage.m */; };
 		3115B1D41819C532007171E3 /* PossibleInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3115B1D31819C532007171E3 /* PossibleInteraction.m */; };
@@ -61,8 +59,10 @@
 		31953E971729EEDE00570087 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 31953E961729EEDE00570087 /* libz.dylib */; };
 		31953E9C172A136A00570087 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31953E9B172A136A00570087 /* QuartzCore.framework */; };
 		31AA5FAA175FB16500E9A9B3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AA5FA9175FB16500E9A9B3 /* LoginViewController.m */; };
-		31C306C2183D900B0043DEDD /* Solution.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C306C1183D900B0043DEDD /* Solution.m */; };
 		31C306C5183E93A60043DEDD /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C306C4183E93A60043DEDD /* Connection.m */; };
+		68E6C1E718E3AAFA006C3643 /* Solution.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E6C1E618E3AAFA006C3643 /* Solution.m */; };
+		C39B0E4218EA39B5001B8238 /* ActionStep.m in Sources */ = {isa = PBXBuildFile; fileRef = C39B0E4118EA39B5001B8238 /* ActionStep.m */; };
+		C39B0E4518EA6BB5001B8238 /* PhysicalManipulationSolution.m in Sources */ = {isa = PBXBuildFile; fileRef = C39B0E4418EA6BB5001B8238 /* PhysicalManipulationSolution.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,8 +80,6 @@
 		310908EB17DE90CA004590A2 /* MovementConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovementConstraint.m; sourceTree = "<group>"; };
 		310908ED17DE90DB004590A2 /* OrderConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderConstraint.h; sourceTree = "<group>"; };
 		310908EE17DE90DB004590A2 /* OrderConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderConstraint.m; sourceTree = "<group>"; };
-		311096FC174AAA8F00B02BF7 /* farm.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = farm.epub; sourceTree = SOURCE_ROOT; };
-		311096FE174AB08400B02BF7 /* house.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = house.epub; sourceTree = SOURCE_ROOT; };
 		31109701174AB35E00B02BF7 /* cover_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cover_default.png; sourceTree = "<group>"; };
 		3115B1CF1819AA0E007171E3 /* MenuItemImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuItemImage.h; sourceTree = "<group>"; };
 		3115B1D01819AA0E007171E3 /* MenuItemImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuItemImage.m; sourceTree = "<group>"; };
@@ -165,10 +163,16 @@
 		31953E9B172A136A00570087 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		31AA5FA8175FB16500E9A9B3 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		31AA5FA9175FB16500E9A9B3 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		31C306C0183D900B0043DEDD /* Solution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Solution.h; sourceTree = "<group>"; };
-		31C306C1183D900B0043DEDD /* Solution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Solution.m; sourceTree = "<group>"; };
 		31C306C3183E93A60043DEDD /* Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Connection.h; sourceTree = "<group>"; };
 		31C306C4183E93A60043DEDD /* Connection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connection.m; sourceTree = "<group>"; };
+		68E6C1E518E3AAFA006C3643 /* Solution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Solution.h; sourceTree = "<group>"; };
+		68E6C1E618E3AAFA006C3643 /* Solution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Solution.m; sourceTree = "<group>"; };
+		C39B0E4018EA39B5001B8238 /* ActionStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionStep.h; sourceTree = "<group>"; };
+		C39B0E4118EA39B5001B8238 /* ActionStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionStep.m; sourceTree = "<group>"; };
+		C39B0E4318EA6BB5001B8238 /* PhysicalManipulationSolution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicalManipulationSolution.h; sourceTree = "<group>"; };
+		C39B0E4418EA6BB5001B8238 /* PhysicalManipulationSolution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhysicalManipulationSolution.m; sourceTree = "<group>"; };
+		C3AAD2B618DCE7450061AE5E /* farm.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = farm.epub; sourceTree = "<group>"; };
+		C3AAD2B718DCE7450061AE5E /* house.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = house.epub; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,8 +230,12 @@
 				31058C7E176BE74B00595AAE /* AssessmentActivity.m */,
 				31058C80176BEB6200595AAE /* Page.h */,
 				31058C81176BEB6200595AAE /* Page.m */,
-				31C306C0183D900B0043DEDD /* Solution.h */,
-				31C306C1183D900B0043DEDD /* Solution.m */,
+				68E6C1E518E3AAFA006C3643 /* Solution.h */,
+				68E6C1E618E3AAFA006C3643 /* Solution.m */,
+				C39B0E4018EA39B5001B8238 /* ActionStep.h */,
+				C39B0E4118EA39B5001B8238 /* ActionStep.m */,
+				C39B0E4318EA6BB5001B8238 /* PhysicalManipulationSolution.h */,
+				C39B0E4418EA6BB5001B8238 /* PhysicalManipulationSolution.m */,
 			);
 			name = "Book Model";
 			sourceTree = "<group>";
@@ -302,8 +310,8 @@
 		31953E4F1729ECC100570087 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				311096FE174AB08400B02BF7 /* house.epub */,
-				311096FC174AAA8F00B02BF7 /* farm.epub */,
+				C3AAD2B618DCE7450061AE5E /* farm.epub */,
+				C3AAD2B718DCE7450061AE5E /* house.epub */,
 				31953E501729ECC100570087 /* EMBRACE-Info.plist */,
 				31953E511729ECC100570087 /* InfoPlist.strings */,
 				31953E541729ECC100570087 /* main.m */,
@@ -504,8 +512,6 @@
 				31953E5F1729ECC100570087 /* Default-568h@2x.png in Resources */,
 				31953E921729EE8100570087 /* MainStoryboard_iPad.storyboard in Resources */,
 				317FF1761742CCD100F1F160 /* ImageManipulation.js in Resources */,
-				311096FD174AAA8F00B02BF7 /* farm.epub in Resources */,
-				311096FF174AB08400B02BF7 /* house.epub in Resources */,
 				31109702174AB35E00B02BF7 /* cover_default.png in Resources */,
 				31058C74176BCFF200595AAE /* logo114.png in Resources */,
 				31058C76176BCFF900595AAE /* logo57.png in Resources */,
@@ -520,6 +526,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				31953E551729ECC100570087 /* main.m in Sources */,
+				68E6C1E718E3AAFA006C3643 /* Solution.m in Sources */,
 				31953E591729ECC100570087 /* AppDelegate.m in Sources */,
 				31953E741729ED5A00570087 /* GDataXMLNode.m in Sources */,
 				31953E751729ED5A00570087 /* ioapi.c in Sources */,
@@ -532,6 +539,7 @@
 				31953E841729EE4100570087 /* Book.m in Sources */,
 				31953E871729EE5800570087 /* LibraryViewController.m in Sources */,
 				31953E8D1729EE6E00570087 /* BookCellView.m in Sources */,
+				C39B0E4518EA6BB5001B8238 /* PhysicalManipulationSolution.m in Sources */,
 				31953E8F1729EE6E00570087 /* LibraryView.m in Sources */,
 				31953E951729EEB800570087 /* PMViewController.m in Sources */,
 				3193753A174185E000782C2B /* NavigationController.m in Sources */,
@@ -540,12 +548,12 @@
 				31AA5FAA175FB16500E9A9B3 /* LoginViewController.m in Sources */,
 				3115B1D11819AA0E007171E3 /* MenuItemImage.m in Sources */,
 				311646AE175FCFE100B483F0 /* Chapter.m in Sources */,
-				31C306C2183D900B0043DEDD /* Solution.m in Sources */,
 				311646B1175FD03F00B483F0 /* Activity.m in Sources */,
 				3183DA151761614500815211 /* BookHeaderView.m in Sources */,
 				3183DA1A1762886300815211 /* TabView.m in Sources */,
 				31058C79176BE71C00595AAE /* PhysicalManipulationActivity.m in Sources */,
 				31058C7C176BE73D00595AAE /* ImagineManipulationActivity.m in Sources */,
+				C39B0E4218EA39B5001B8238 /* ActionStep.m in Sources */,
 				31058C7F176BE74B00595AAE /* AssessmentActivity.m in Sources */,
 				31058C82176BEB6300595AAE /* Page.m in Sources */,
 				316CFADB1773A1E3004216D0 /* ContextualMenuDataSource.m in Sources */,
