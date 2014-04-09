@@ -849,6 +849,57 @@ float const groupingProximity = 20.0;
 }
 
 /*
+ * Returns true if the correct object is selected as the subject based on the solutions
+ * for group step types and increments current step. Otherwise, it returns false.
+ */
+-(BOOL) checkSolutionForSubject:(NSString*)subject {
+    Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
+    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
+    PhysicalManipulationSolution* PMSolution = [PMActivity PMSolution]; //get PM solution
+    
+    NSNumber* currSent = [NSNumber numberWithUnsignedInteger:currentSentence];
+    
+    //Get number of steps for current sentence
+    NSNumber* numSteps = [PMSolution getNumStepsForSentence:currSent];
+    
+    //Check solution only if it exists for the sentence
+    if ([numSteps intValue] > 0) {
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currSent];
+    
+        NSNumber* currStep = [NSNumber numberWithUnsignedInteger:currentStep];
+        
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+    
+        //User can only select the correct subject when step type is group
+        if ([[currSolStep stepType] isEqualToString:@"group"]) {
+            if ([[currSolStep object1Id] isEqualToString:subject]) {
+                //Move to next step if it exists
+                if (currStep < numSteps) {
+                    currentStep++;
+                }
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        //User can move any object for other step types
+        else {
+            //Move to next step if it exists
+            if (currStep < numSteps) {
+                currentStep++;
+            }
+            return true;
+        }
+    }
+    else {
+        return true;
+    }
+}
+
+/*
  * Sends the JS request for the element at the location provided, and takes care of moving any
  * canvas objects out of the way to get accurate information.
  * It also checks to make sure the object that is at that point is a manipulation object before returning it.
@@ -871,8 +922,12 @@ float const groupingProximity = 20.0;
     NSString* showCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'block';", @"'overlay'"];
     [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
     
-    if([imageAtPointClass isEqualToString:@"manipulationObject"])
-        return imageAtPoint;
+    if([imageAtPointClass isEqualToString:@"manipulationObject"]) {
+        if ([self checkSolutionForSubject:imageAtPoint])
+            return imageAtPoint;
+        else
+            return nil;
+    }
     else
         return nil;
 }
