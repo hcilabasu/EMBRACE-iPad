@@ -196,8 +196,36 @@ float const groupingProximity = 20.0;
 }
 
 /*
- * Perform any necessary setup for this physical manipulation. 
- * For example, if the cart should be connected to the tractor at the beginning of the story, 
+ * Converts an ActionStep object to a PossibleInteraction object
+ */
+-(PossibleInteraction*) convertActionStepToPossibleInteraction:(ActionStep*)step {
+    PossibleInteraction* interaction;
+    
+    if ([[step stepType] isEqualToString:@"group"]) {
+        //Get step information
+        NSString* obj1Id = [step object1Id];
+        NSString* obj2Id = [step object2Id];
+        NSString* action = [step action];
+        
+        interaction = [[PossibleInteraction alloc]initWithInteractionType:GROUP];
+        
+        //Objects involved in group setup
+        NSArray* objects = [[NSArray alloc] initWithObjects:obj1Id, obj2Id, nil];
+        
+        //Get hotspots for both objects associated with action
+        Hotspot* hotspot1 = [model getHotspotforObjectWithActionAndRole:obj1Id :action :@"subject"];
+        Hotspot* hotspot2 = [model getHotspotforObjectWithActionAndRole:obj2Id :action :@"object"];
+        NSArray* hotspotsForInteraction = [[NSArray alloc]initWithObjects:hotspot1, hotspot2, nil];
+        
+        [interaction addConnection:GROUP :objects :hotspotsForInteraction];
+    }
+    
+    return interaction;
+}
+
+/*
+ * Perform any necessary setup for this physical manipulation.
+ * For example, if the cart should be connected to the tractor at the beginning of the story,
  * then this function will connect the cart to the tractor.
  */
 -(void) performSetupForActivity {
@@ -206,25 +234,8 @@ float const groupingProximity = 20.0;
     NSMutableArray* setupSteps = [PMActivity setupSteps]; //get setup steps
     
     for (ActionStep* setupStep in setupSteps) {
-        if ([[setupStep stepType] isEqualToString:@"group"]) {
-            //Get setup step information
-            NSString* obj1Id = [setupStep object1Id];
-            NSString* obj2Id = [setupStep object2Id];
-            NSString* action = [setupStep action];
-            
-            PossibleInteraction* interaction = [[PossibleInteraction alloc]initWithInteractionType:GROUP];
-            
-            //Objects involved in group setup
-            NSArray* objects = [[NSArray alloc] initWithObjects:obj1Id, obj2Id, nil];
-            
-            //Get hotspots for both objects associated with action
-            Hotspot* hotspot1 = [model getHotspotforObjectWithActionAndRole:obj1Id :action :@"subject"];
-            Hotspot* hotspot2 = [model getHotspotforObjectWithActionAndRole:obj2Id :action :@"object"];
-            NSArray* hotspotsForInteraction = [[NSArray alloc]initWithObjects:hotspot1, hotspot2, nil];
-            
-            [interaction addConnection:GROUP :objects :hotspotsForInteraction];
-            [self performInteraction:interaction]; //group the objects
-        }
+        PossibleInteraction* interaction = [self convertActionStepToPossibleInteraction:setupStep];
+        [self performInteraction:interaction]; //groups the objects
     }
 }
 
