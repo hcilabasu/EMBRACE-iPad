@@ -16,6 +16,8 @@
     NSUInteger currentSentence; //Active sentence to be completed.
     NSUInteger totalSentences; //Total number of sentences on this page.
     
+    NSUInteger currentStep; //Active step to be completed.
+    
     NSString* movingObjectId; //Object currently being moved.
     NSString* separatingObjectId; //Object identified when pinch gesture performed.
     BOOL movingObject; //True if an object is currently being moved, false otherwise.
@@ -189,6 +191,7 @@ float const groupingProximity = 20.0;
     //[bookView becomeFirstResponder];
     
     currentSentence = 1;
+    currentStep = 1;
     self.title = chapterTitle;
 }
 
@@ -1514,6 +1517,9 @@ float const groupingProximity = 20.0;
     
     //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
     currentSentence ++;
+    
+    //Reset current step to 1 when moving to next sentence
+    currentStep = 1;
     
     //Highlight the next sentence and set its color to blue.
     setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
