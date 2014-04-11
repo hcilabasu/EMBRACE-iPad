@@ -13,6 +13,8 @@
 @synthesize relationships;
 @synthesize constraints;
 @synthesize hotspots;
+@synthesize locations;
+@synthesize waypoints;
 @synthesize sentenceMetadata;
 
 - (id) init {
@@ -20,6 +22,8 @@
         relationships = [[NSMutableSet alloc] init];
         constraints = [[NSMutableSet alloc] init];
         hotspots = [[NSMutableDictionary alloc] init];
+        locations = [[NSMutableSet alloc] init];
+        waypoints = [[NSMutableSet alloc] init];
         sentenceMetadata = [[NSMutableSet alloc] init];
         useRelationships = TRUE;
         useConstraints = TRUE;
@@ -200,6 +204,39 @@
 
 -(void) addSentenceMetadata {
 
+}
+
+-(void) addLocation:(NSString*)locationId :(NSString*)originX :(NSString*)originY :(NSString*)height :(NSString*)width {
+    Location *location = [[Location alloc] initWithValues:locationId :originX :originY :height :width];
+    [locations addObject:location];
+}
+
+/*
+ * Returns location with the specified id
+ */
+-(Location*) getLocationWithId:(NSString*)locId {
+    for (Location* location in locations) {
+        if ([[location locationId] isEqualToString:locId]) {
+            return location;
+        }
+    }
+    
+    return nil;
+}
+
+-(void) addWaypoint:(NSString*)wayptId :(CGPoint)loc {
+    Waypoint *waypoint = [[Waypoint alloc] initWithValues:wayptId :loc];
+    [waypoints addObject:waypoint];
+}
+
+-(Waypoint*) getWaypointWithId:(NSString *)wayptId {
+    for (Waypoint* waypoint in waypoints) {
+        if ([[waypoint waypointId] isEqualToString:wayptId]) {
+            return waypoint;
+        }
+    }
+    
+    return nil;
 }
 
 @end

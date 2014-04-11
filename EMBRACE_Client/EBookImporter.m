@@ -520,6 +520,8 @@
         NSString* originY = [[location attributeForName:@"y"] stringValue];
         NSString* height = [[location attributeForName:@"height"] stringValue];
         NSString* width = [[location attributeForName:@"width"] stringValue];
+        
+        [model addLocation:locationId :originX :originY :height :width];
     }
     
     //Reading in the waypoint information.
@@ -531,8 +533,16 @@
     //Read in the waypoint information.
     for (GDataXMLElement* waypoint in waypoints) {
         NSString* waypointId = [[waypoint attributeForName:@"waypointId"] stringValue];
-        NSString* originX = [[waypoint attributeForName:@"x"] stringValue];
-        NSString* originY = [[waypoint attributeForName:@"y"] stringValue];
+        NSString* locationXString = [[waypoint attributeForName:@"x"] stringValue];
+        NSString* locationYString = [[waypoint attributeForName:@"y"] stringValue];
+        
+        //Find the range of "," in the location string.
+        CGFloat locX = [locationXString floatValue];
+        CGFloat locY = [locationYString floatValue];
+        
+        CGPoint location = CGPointMake(locX, locY);
+
+        [model addWaypoint:waypointId :location];
     }
     
     //Read in any setup information.
