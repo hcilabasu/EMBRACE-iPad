@@ -507,6 +507,34 @@
         [model addHotspot:objectId :action :role :location];
     }
     
+    //Reading in the location information.
+    NSArray* locationElements = [metadataDoc nodesForXPath:@"//locations" error:nil];
+    GDataXMLElement* locationElement = (GDataXMLElement*)[locationElements objectAtIndex:0];
+    
+    NSArray* locations = [locationElement elementsForName:@"location"];
+    
+    //Read in the location information.
+    for (GDataXMLElement* location in locations) {
+        NSString* locationId = [[location attributeForName:@"locationId"] stringValue];
+        NSString* originX = [[location attributeForName:@"x"] stringValue];
+        NSString* originY = [[location attributeForName:@"y"] stringValue];
+        NSString* height = [[location attributeForName:@"height"] stringValue];
+        NSString* width = [[location attributeForName:@"width"] stringValue];
+    }
+    
+    //Reading in the waypoint information.
+    NSArray* waypointElements = [metadataDoc nodesForXPath:@"//waypoints" error:nil];
+    GDataXMLElement* waypointElement = (GDataXMLElement*)[waypointElements objectAtIndex:0];
+    
+    NSArray* waypoints = [waypointElement elementsForName:@"waypoint"];
+    
+    //Read in the waypoint information.
+    for (GDataXMLElement* waypoint in waypoints) {
+        NSString* waypointId = [[waypoint attributeForName:@"waypointId"] stringValue];
+        NSString* originX = [[waypoint attributeForName:@"x"] stringValue];
+        NSString* originY = [[waypoint attributeForName:@"y"] stringValue];
+    }
+    
     //Read in any setup information.
     NSArray* setupElements = [metadataDoc nodesForXPath:@"//setups" error:nil];
     GDataXMLElement* setupElement = (GDataXMLElement*)[setupElements objectAtIndex:0];
@@ -558,15 +586,13 @@
                 
             for(GDataXMLElement* sentence in sentenceSolutions) {
                 //Get sentence number
-                int sentenceNumber = [[[sentence attributeForName:@"number"] stringValue] integerValue];
-                NSNumber* sentenceNum = [NSNumber numberWithInt:sentenceNumber];
+                NSUInteger sentenceNum = [[[sentence attributeForName:@"number"] stringValue] integerValue];
                 
                 NSArray* stepSolutions = [sentence elementsForName:@"step"];
                 
                 for(GDataXMLElement* stepSolution in stepSolutions) {
                     //Get step number
-                    int stepNumber = [[[stepSolution attributeForName:@"number"] stringValue] integerValue];
-                    NSNumber* stepNum = [NSNumber numberWithInt:stepNumber];
+                    NSUInteger stepNum = [[[stepSolution attributeForName:@"number"] stringValue] integerValue];
                     
                     //Get solution steps for sentence.
                     NSArray* stepsForSentence = [stepSolution children];

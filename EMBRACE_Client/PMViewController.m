@@ -868,17 +868,13 @@ float const groupingProximity = 20.0;
     PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
     PhysicalManipulationSolution* PMSolution = [PMActivity PMSolution]; //get PM solution
     
-    NSNumber* currSent = [NSNumber numberWithUnsignedInteger:currentSentence];
-    
     //Get number of steps for current sentence
-    NSNumber* numSteps = [PMSolution getNumStepsForSentence:currSent];
+    NSUInteger numSteps = [PMSolution getNumStepsForSentence:currentSentence];
     
     //Check solution only if it exists for the sentence
-    if ([numSteps intValue] > 0) {
+    if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currSent];
-    
-        NSNumber* currStep = [NSNumber numberWithUnsignedInteger:currentStep];
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -886,10 +882,6 @@ float const groupingProximity = 20.0;
         //User can only select the correct subject when step type is group
         if ([[currSolStep stepType] isEqualToString:@"group"]) {
             if ([[currSolStep object1Id] isEqualToString:subject]) {
-                //Move to next step if it exists
-                if (currStep < numSteps) {
-                    currentStep++;
-                }
                 return true;
             }
             else {
@@ -898,10 +890,6 @@ float const groupingProximity = 20.0;
         }
         //User can move any object for other step types
         else {
-            //Move to next step if it exists
-            if (currStep < numSteps) {
-                currentStep++;
-            }
             return true;
         }
     }

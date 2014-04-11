@@ -27,12 +27,12 @@
 /*
  * Returns an array containing all the steps for a given sentence number
  */
--(NSMutableArray*) getStepsForSentence:(NSNumber*)sentNum {
+-(NSMutableArray*) getStepsForSentence:(NSUInteger)sentNum {
     NSMutableArray* stepsForSentence = [[NSMutableArray alloc] init];
     
     for (ActionStep* step in solutionSteps) {
         //Step sentence number matches
-        if ([step sentNumber] == sentNum) {
+        if ([step sentenceNumber] == sentNum) {
             [stepsForSentence addObject:step];
         }
     }
@@ -43,19 +43,17 @@
 /*
  * Returns the number of steps for a given sentence number
  */
--(NSNumber*) getNumStepsForSentence:(NSNumber*)sentNum {
-    int numberOfSteps = 0;
+-(NSUInteger) getNumStepsForSentence:(NSUInteger)sentNum {
+    NSUInteger numberOfSteps = 0;
     
     for (ActionStep* step in solutionSteps) {
         //Step sentence number matches
-        if ([step sentNumber] == sentNum) {
+        if ([step sentenceNumber] == sentNum) {
             numberOfSteps++; //increase count
         }
     }
     
-    NSNumber* numSteps = [NSNumber numberWithInt:numberOfSteps];
-    
-    return numSteps;
+    return numberOfSteps;
 }
 
 @end

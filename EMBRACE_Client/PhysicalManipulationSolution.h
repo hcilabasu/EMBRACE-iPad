@@ -15,7 +15,7 @@
 @property (nonatomic, strong) NSMutableArray* solutionSteps;
 
 -(void) addSolutionStep:(ActionStep*)solStep;
--(NSMutableArray*) getStepsForSentence:(NSNumber*)sentNum;
--(NSNumber*) getNumStepsForSentence:(NSNumber*)sentNum;
+-(NSMutableArray*) getStepsForSentence:(NSUInteger)sentNum;
+-(NSUInteger) getNumStepsForSentence:(NSUInteger)sentNum;
 
 @end
