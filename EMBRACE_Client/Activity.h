@@ -29,7 +29,7 @@ typedef enum modeTypes {
 @property (nonatomic, strong) NSString* activityTitle;
 @property (nonatomic, strong) NSMutableArray* pages;
 @property (nonatomic, assign) NSInteger pageNum;
-
+@property (nonatomic, strong) Solution* solution;
 -(void) addPage:(Page*) page;
 
 @end
