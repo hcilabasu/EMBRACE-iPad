@@ -25,6 +25,8 @@
 		311646AE175FCFE100B483F0 /* Chapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 311646AD175FCFE100B483F0 /* Chapter.m */; };
 		311646B1175FD03F00B483F0 /* Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 311646B0175FD03F00B483F0 /* Activity.m */; };
 		312F5B13177A0F58000DAD2E /* MenuItemDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 312F5B12177A0F58000DAD2E /* MenuItemDataSource.m */; };
+		314C959418FC3B1700A36DBE /* farm.epub in Resources */ = {isa = PBXBuildFile; fileRef = C3AAD2B618DCE7450061AE5E /* farm.epub */; };
+		314C959518FC3B1700A36DBE /* house.epub in Resources */ = {isa = PBXBuildFile; fileRef = C3AAD2B718DCE7450061AE5E /* house.epub */; };
 		3154982A174EAA22004521B1 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 31549829174EAA22004521B1 /* Student.m */; };
 		316CFADB1773A1E3004216D0 /* ContextualMenuDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 316CFADA1773A1E3004216D0 /* ContextualMenuDataSource.m */; };
 		316CFADE1773A2A2004216D0 /* PieContextualMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 316CFADD1773A2A2004216D0 /* PieContextualMenu.m */; };
@@ -120,7 +122,7 @@
 		31937539174185E000782C2B /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		3193753B1741A76E00782C2B /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
 		3193753C1741A76E00782C2B /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
-		31953E451729ECC100570087 /* EMBRACE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EMBRACE.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		31953E451729ECC100570087 /* Control.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Control.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31953E481729ECC100570087 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		31953E4A1729ECC100570087 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		31953E4C1729ECC100570087 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -275,7 +277,7 @@
 		31953E461729ECC100570087 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				31953E451729ECC100570087 /* EMBRACE.app */,
+				31953E451729ECC100570087 /* Control.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -467,7 +469,7 @@
 			);
 			name = EMBRACE;
 			productName = EMBRACE_Client;
-			productReference = 31953E451729ECC100570087 /* EMBRACE.app */;
+			productReference = 31953E451729ECC100570087 /* Control.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -506,6 +508,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				314C959418FC3B1700A36DBE /* farm.epub in Resources */,
+				314C959518FC3B1700A36DBE /* house.epub in Resources */,
 				31953E531729ECC100570087 /* InfoPlist.strings in Resources */,
 				31953E5B1729ECC100570087 /* Default.png in Resources */,
 				31953E5D1729ECC100570087 /* Default@2x.png in Resources */,
@@ -681,7 +685,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				OTHER_LDFLAGS = "-lxml2";
-				PRODUCT_NAME = EMBRACE;
+				PRODUCT_NAME = Control;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -702,7 +706,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				OTHER_LDFLAGS = "-lxml2";
-				PRODUCT_NAME = EMBRACE;
+				PRODUCT_NAME = Control;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};

@@ -38,23 +38,30 @@
     
     // Copy the farm.epub file from the app bundle to the application support directory
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"farm" ofType:@"epub"];
-    NSString *newPath = [documentsDirectory stringByAppendingPathComponent:@"/ASU/IntroToFarm"];
+    NSString *newPath;
+    NSString* filename;
     
-    [fileManager createDirectoryAtPath:newPath  withIntermediateDirectories:YES attributes:nil error:nil];
+    if(filePath != nil) {
+        newPath = [documentsDirectory stringByAppendingPathComponent:@"/ASU/IntroToFarm"];
+        [fileManager createDirectoryAtPath:newPath  withIntermediateDirectories:YES attributes:nil error:nil];
     
-    NSString* filename = [@"/" stringByAppendingString:[filePath lastPathComponent]];
-    newPath = [newPath stringByAppendingString:filename];
-    [fileManager copyItemAtPath:filePath toPath:newPath error:nil];
+        filename = [@"/" stringByAppendingString:[filePath lastPathComponent]];
+        newPath = [newPath stringByAppendingString:filename];
+        [fileManager copyItemAtPath:filePath toPath:newPath error:nil];
+    }
     
     //Copy the house.epub file from the app bundle to the application support directory
     filePath = [[NSBundle mainBundle] pathForResource:@"house" ofType:@"epub"];
-    newPath = [documentsDirectory stringByAppendingPathComponent:@"/ASU/IntroToHouse"];
     
-    [fileManager createDirectoryAtPath:newPath withIntermediateDirectories:YES attributes:nil error:nil];
+    if(filePath != nil) {
+        newPath = [documentsDirectory stringByAppendingPathComponent:@"/ASU/IntroToHouse"];
     
-    filename = [@"/" stringByAppendingString:[filePath lastPathComponent]];
-    newPath = [newPath stringByAppendingString:filename];
-    [fileManager copyItemAtPath:filePath toPath:newPath error:nil];
+        [fileManager createDirectoryAtPath:newPath withIntermediateDirectories:YES attributes:nil error:nil];
+
+        filename = [@"/" stringByAppendingString:[filePath lastPathComponent]];
+        newPath = [newPath stringByAppendingString:filename];
+        [fileManager copyItemAtPath:filePath toPath:newPath error:nil];
+    }
     
     return YES;
 }
