@@ -37,7 +37,6 @@ function move(object, newX, newY) {
     
     //Clear hotspots and highlights in case the user put down the object and these no longer need to be shown.
     clearAllHighlighted();
-    clearAllHotspots();
 
     //Calculate a delta change, so we know what to move grouped objects by.
     var deltaX = newX - object.offsetLeft;

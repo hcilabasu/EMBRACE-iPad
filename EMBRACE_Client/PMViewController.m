@@ -370,7 +370,7 @@ float const groupingProximity = 20.0;
             }
         }
         else if(recognizer.state == UIGestureRecognizerStateEnded) {
-            //NSLog(@"pan gesture ended at location (%f, %f)", location.x, location.y);
+            NSLog(@"pan gesture ended at location (%f, %f)", location.x, location.y);
             //if moving object, move object to final position.
             if(movingObject) {
                 [self moveObject:movingObjectId :location :delta];
@@ -404,6 +404,7 @@ float const groupingProximity = 20.0;
         //If we're in the middle of moving the object, just call the JS to move it.
         else if(movingObject)  {
             [self moveObject:movingObjectId :location :delta];
+            NSLog(@"image: %@ being moved to location: (%f, %f)",movingObjectId, location.x, location.y);
             
             //If we're overlapping with another object, then we need to figure out which hotspots are currently active and highlight those hotspots.
             //When moving the object, we may have the JS return a list of all the objects that are currently grouped together so that we can process all of them.
