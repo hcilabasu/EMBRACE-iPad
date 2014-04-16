@@ -26,7 +26,7 @@
 float const itemRadius = 100.0; //radius of each menu item.
 float const minAngle = 5.0; //minimum angle in degrees.
 float const menuBoundingBox = 400.0; // The bounding box of the large for the menu.
-int const maxMenuItems = 3; //Total number of items the menu will display. changed to 3 from 6
+int const maxMenuItems = 10; //Total number of items the menu will display. changed to 3 from 6
 
 - (id)initWithFrame:(CGRect)frame
 {
