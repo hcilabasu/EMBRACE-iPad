@@ -25,6 +25,8 @@
 		311646AE175FCFE100B483F0 /* Chapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 311646AD175FCFE100B483F0 /* Chapter.m */; };
 		311646B1175FD03F00B483F0 /* Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 311646B0175FD03F00B483F0 /* Activity.m */; };
 		312F5B13177A0F58000DAD2E /* MenuItemDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 312F5B12177A0F58000DAD2E /* MenuItemDataSource.m */; };
+		314C959418FC3B1700A36DBE /* farm.epub in Resources */ = {isa = PBXBuildFile; fileRef = C3AAD2B618DCE7450061AE5E /* farm.epub */; };
+		314C959518FC3B1700A36DBE /* house.epub in Resources */ = {isa = PBXBuildFile; fileRef = C3AAD2B718DCE7450061AE5E /* house.epub */; };
 		3154982A174EAA22004521B1 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 31549829174EAA22004521B1 /* Student.m */; };
 		316CFADB1773A1E3004216D0 /* ContextualMenuDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 316CFADA1773A1E3004216D0 /* ContextualMenuDataSource.m */; };
 		316CFADE1773A2A2004216D0 /* PieContextualMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 316CFADD1773A2A2004216D0 /* PieContextualMenu.m */; };
@@ -506,6 +508,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				314C959418FC3B1700A36DBE /* farm.epub in Resources */,
+				314C959518FC3B1700A36DBE /* house.epub in Resources */,
 				31953E531729ECC100570087 /* InfoPlist.strings in Resources */,
 				31953E5B1729ECC100570087 /* Default.png in Resources */,
 				31953E5D1729ECC100570087 /* Default@2x.png in Resources */,
