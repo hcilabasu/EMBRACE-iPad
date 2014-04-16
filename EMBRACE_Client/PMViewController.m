@@ -318,7 +318,7 @@ float const groupingProximity = 20.0;
                     [possibleInteractions addObject:interaction];
                 }
                 
-                //Rnak the possible interactions if there are more than the max number of menu items possible.
+                //Rank the possible interactions if there are more than the max number of menu items possible.
                 if([possibleInteractions count] > maxMenuItems) {
                     [self rankPossibleInteractions: possibleInteractions];
                 }
@@ -376,27 +376,13 @@ float const groupingProximity = 20.0;
                 [self moveObject:movingObjectId :location :delta];
                 
                 //If the object was dropped, check if it's overlapping with any other objects that it could interact with.
-                //NSMutableArray* possibleInteractions = [self getPossibleInteractions];
-                NSMutableArray* possibleInteractions = [self getPossibleInteractions:YES];
+                NSMutableArray* possibleInteractions = [self getPossibleInteractions:NO];
                 
-                //If only 1 possible interaction was found, go ahead and perform that interaction.
-                if([possibleInteractions count] == 1) {
-                    NSLog(@"returned one possible interaction");
-                    
-                    PossibleInteraction *interaction = [possibleInteractions objectAtIndex:0];
-                    
-                    [self performInteraction:interaction];
-                }
-                //If more than 1 was found, prompt the user to disambiguate.
-                else if ([possibleInteractions count] > 1){
+                //If at least 1 interaction was found, open the menu.
+                if ([possibleInteractions count] > 0) {
                     //First rank the interactions based on location to story.
                     [self rankPossibleInteractions:possibleInteractions];
-                    /*NSLog(@"returned %d interactions as follows:", [possibleInteractions count]);
-                    
-                    for(PossibleInteraction* interaction in possibleInteractions) {
-                        NSLog()
-                    }*/
-                    
+
                     //Populate the menu data source and expand the menu.
                     [self populateMenuDataSource:possibleInteractions];
 
@@ -437,35 +423,6 @@ float const groupingProximity = 20.0;
                         [bookView stringByEvaluatingJavaScriptFromString:highlight];
                     }
                 }
-                
-                NSMutableArray* possibleInteractions = [self getPossibleInteractions:NO];
-                
-                //Keep a list of all hotspots so that we know which ones should be drawn as green and which should be drawn as red. At the end, draw all hotspots together.
-                NSMutableArray* redHotspots = [[NSMutableArray alloc] init];
-                NSMutableArray* greenHotspots = [[NSMutableArray alloc] init];
-                
-                for(PossibleInteraction* interaction in possibleInteractions) {
-                    for(Connection* connection in [interaction connections]) {
-                        if([connection interactionType] != NONE) {
-                            NSMutableArray* hotspots  = [[connection hotspots] mutableCopy];
-
-                            //Figure out whether two hotspots are close enough together to currently be grouped. If so, draw the hotspots with green. Otherwise, draw them with red.
-                            BOOL areWithinProximity = [self hotspotsWithinGroupingProximity:[hotspots objectAtIndex:0] :[hotspots objectAtIndex:1]];
-                        
-                            //TODO: Make sure this is correct.
-                            if(areWithinProximity || ([interaction interactionType] == TRANSFERANDDISAPPEAR) || ([interaction interactionType] == TRANSFERANDGROUP)) {
-                                [greenHotspots addObjectsFromArray:hotspots];
-                            }
-                            else {
-                                [redHotspots addObjectsFromArray:hotspots];
-                            }
-                        }
-                    }
-                }
-
-                //Draw red hotspots first, then green ones.
-                [self drawHotspots:redHotspots :@"red"];
-                [self drawHotspots:greenHotspots :@"green"];
             }
         }
     }
@@ -882,7 +839,6 @@ float const groupingProximity = 20.0;
  * TODO: Figure out how to return all possible interactions robustly. Currently if the student drags the hay and the farmer (when grouped) by the hay, then the interaction will not be identified.
  * TODO: Lots of duplication here. Need to fix the above and then pull out duplicate code.
  */
-//-(NSMutableArray*) getPossibleInteractions {
 -(NSMutableArray*) getPossibleInteractions:(BOOL)useProximity {
     NSMutableArray* groupings = [[NSMutableArray alloc] init];
     
@@ -1394,22 +1350,6 @@ float const groupingProximity = 20.0;
     //Should've been at least 1 relationship returned
     else {
         NSLog(@"Oh, noes! We didn't find a relationship for the hidden object: %@", disappearingObject);
-    }
-}
-
-/*
- * Calls the JS function to draw each individual hotspot in the array provided
- * with the color specified.
- */
--(void) drawHotspots:(NSMutableArray *)hotspots :(NSString *)color{
-    for(Hotspot* hotspot in hotspots) {
-        CGPoint hotspotLoc = [self getHotspotLocation:hotspot];
-        
-        if(hotspotLoc.x != -1) {
-            NSString* drawHotspot = [NSString stringWithFormat:@"drawHotspot(%f, %f, \"%@\")",
-                                     hotspotLoc.x, hotspotLoc.y, color];
-            [bookView stringByEvaluatingJavaScriptFromString:drawHotspot];
-        }
     }
 }
 
