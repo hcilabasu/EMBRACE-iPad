@@ -354,17 +354,17 @@ float const groupingProximity = 20.0;
     //This should work with requireGestureRecognizerToFail:pinchRecognizer but it doesn't currently.
     if(!pinching) {
         if(recognizer.state == UIGestureRecognizerStateBegan) {
-            //NSLog(@"pan gesture began at location: (%f, %f)", location.x, location.y);
+            NSLog(@"pan gesture began at location: (%f, %f)", location.x, location.y);
             
             //Get the object at that point if it's a manipulation object.
             NSString* imageAtPoint = [self getManipulationObjectAtPoint:location];
-            //NSLog(@"location pressed: (%f, %f)", location.x, location.y);
             
             //if it's an image that can be moved, then start moving it.
             if(imageAtPoint != nil) {
                 movingObject = TRUE;
                 movingObjectId = imageAtPoint;
                 
+                NSLog(@"image being moved: %@", movingObjectId);
                 //Calculate offset between top-left corner of image and the point clicked.
                 delta = [self calculateDeltaForMovingObjectAtPoint:location];
             }
@@ -510,36 +510,17 @@ float const groupingProximity = 20.0;
     
     //Perform the changes to the connections.
     for(Connection* connection in [interaction connections]) {
-        //NSArray* objectIds = [interaction objects];
-        //NSArray* hotspots = [interaction hotspots];
         NSArray* objectIds = [connection objects];
         NSArray* hotspots = [connection hotspots];
-        
-        //Get all the necessary information of the UIImages.
-        /*for(NSString* objId in objectIds) {
-            if([images objectForKey:objId] == nil) {
-                MenuItemImage *itemImage = [self createMenuItemForImage:objId];
-            
-                if(itemImage != nil)
-                    [images addObject:itemImage];
-            }
-        }*/
         
         //Update the locations of the UIImages based on the type of interaction with the simulated location.
         //get the object Ids for this particular menuItem.
         NSString* obj1 = [objectIds objectAtIndex:0]; //get object 1
         NSString* obj2 = [objectIds objectAtIndex:1]; //get object 2
         
-        //if([interaction interactionType] == UNGROUP || [interaction interactionType] == DISAPPEAR) {
         if([connection interactionType] == UNGROUP || [connection interactionType] == DISAPPEAR) {
-            /*if([connection interactionType] == UNGROUP)
-                NSLog(@"simulating ungrouping between %@ and %@", obj1, obj2);
-            else if([connection interactionType] == DISAPPEAR)
-                NSLog(@"simulating disappear between %@ and %@", obj1, obj2);*/
-            
             [self simulateUngrouping:obj1 :obj2 :images];
         }
-        //else if([interaction interactionType] == GROUP) {
         else if([connection interactionType] == GROUP) {
             //NSLog(@"simulating grouping between %@ and %@", obj1, obj2);
 
@@ -547,64 +528,8 @@ float const groupingProximity = 20.0;
             Hotspot *hotspot1 = [hotspots objectAtIndex:0];
             Hotspot *hotspot2 = [hotspots objectAtIndex:1];
             
-            //CGPoint hotspot1Loc = [self getHotspotLocation:hotspot1];
-            //CGPoint hotspot2Loc = [self getHotspotLocation:hotspot2];
-
-            //[self simulateGrouping:obj1 :hotspot1Loc :obj2 :hotspot2Loc :images];
             [self simulateGrouping:obj1 :hotspot1 :obj2 :hotspot2 :images];
         }
-        //This currently uses the ungroup interaction.
-        /*else if([interaction interactionType] == DISAPPEAR) {
-         NSString* obj2 = [objectIds objectAtIndex:1]; //get object 2
-         
-         [self simulateConsumeAndReplenishSupply:obj1 :obj2];
-         }*/
-        //NOTE: With the changes to the possibleInteractions, we may not need this complexity.
-        /*else if([interaction interactionType] == TRANSFERANDGROUP) {
-            //If we're transfering an item there will be 3 ids instead of 2.
-            NSString* obj2 = [objectIds objectAtIndex:1]; //get object 2
-            NSString* obj3 = [objectIds objectAtIndex:2]; //get object 3
-            
-            //Get hotspots.
-            Hotspot *obj2Hotspot = [hotspots objectAtIndex:0];
-            Hotspot *obj3Hotspot = [hotspots objectAtIndex:1];
-            
-            //Object 1 and 2 are grouped already, and must be ungrouped and object 3 should be grouped with object 2.
-            [self simulateUngrouping:obj1 :obj2 :images];
-            
-            //Temporarily remove image 1 from the array.
-            MenuItemImage* image1 = [images objectAtIndex:0];
-            [images removeObjectAtIndex:0];
-            
-            //Calculate the hotspot locations based on the image locations.
-            CGRect obj2BoundingBox = [((MenuItemImage*)[images objectAtIndex:0]) boundingBoxImage];
-            CGPoint obj2HotspotLoc = [self calculateHotspotLocationBasedOnBoundingBox:obj2Hotspot :obj2BoundingBox];
-            
-            CGRect obj3BoundingBox = [((MenuItemImage*)[images objectAtIndex:1]) boundingBoxImage];
-            CGPoint obj3HotspotLoc = [self calculateHotspotLocationBasedOnBoundingBox:obj3Hotspot :obj3BoundingBox];
-            
-            [self simulateGrouping:obj2 :obj2HotspotLoc :obj3 :obj3HotspotLoc :images];
-            
-            //Add image1 back in.
-            [images insertObject:image1 atIndex:0];
-        }
-        else if([interaction interactionType] == TRANSFERANDDISAPPEAR) {
-            NSString* obj2 = [objectIds objectAtIndex:1]; //get object 2
-            NSString* obj3 = [objectIds objectAtIndex:2]; //get object 3
-            
-            //In this case we just ungroup the object from what it's grouped to and consume it.
-            //Consuming it currently uses the ungroup object.
-            [self simulateUngrouping:obj1 :obj2 :images];
-            
-            //Temporarily remove image 1 from the array.
-            MenuItemImage* image1 = [images objectAtIndex:0];
-            [images removeObjectAtIndex:0];
-            
-            [self simulateUngrouping:obj2 :obj3 :images];
-            
-            //Add image1 back in.
-            [images insertObject:image1 atIndex:0];
-        }*/
     }
     
     NSMutableArray* imagesArray = [[images allValues] mutableCopy];
@@ -612,9 +537,6 @@ float const groupingProximity = 20.0;
     CGRect boundingBox = [self getBoundingBoxOfImages:imagesArray];
      
     [menuDataSource addMenuItem:interaction :imagesArray :boundingBox];
-    /*CGRect boundingBox = [self getBoundingBoxOfImages:images];
-    
-    [menuDataSource addMenuItem:interaction :images :boundingBox];*/
 }
 
 /*
@@ -647,7 +569,6 @@ float const groupingProximity = 20.0;
     return boundingBox;
 }
 
-//-(void)simulateGrouping:(NSString*)obj1 :(CGPoint)hotspot1 :(NSString*)obj2 :(CGPoint)hotspot2 :(NSMutableDictionary*)images{
 -(void)simulateGrouping:(NSString*)obj1 :(Hotspot*)hotspot1 :(NSString*)obj2 :(Hotspot*)hotspot2 :(NSMutableDictionary*)images{
     CGPoint hotspot1Loc = [self calculateHotspotLocationBasedOnBoundingBox:hotspot1
                                                                           :[[images objectForKey:obj1] boundingBoxImage]];
@@ -659,7 +580,6 @@ float const groupingProximity = 20.0;
     float deltaY = hotspot2Loc.y - hotspot1Loc.y;
 
     //Get the location of the top left corner of obj1.
-    //MenuItemImage* obj1Image = [images objectAtIndex:0];
     MenuItemImage* obj1Image = [images objectForKey:obj1];
     CGFloat positionX = [obj1Image boundingBoxImage].origin.x;
     CGFloat positionY = [obj1Image boundingBoxImage].origin.y;
@@ -696,12 +616,10 @@ float const groupingProximity = 20.0;
     if([obj1ContainedInObj2 isEqualToString:@"true"]) {
         obj1FinalPosX = obj2PositionX - obj1Width - GAP;
         obj2FinalPosX = obj2PositionX;
-        //NSLog(@"%@ is contained in %@", obj1, obj2);
     }
     else if([obj2ContainedInObj1 isEqualToString:@"true"]) {
         obj1FinalPosX = obj1PositionX;
         obj2FinalPosX = obj1PositionX + obj1Width + GAP;
-        //NSLog(@"%@ is contained in %@", obj2, obj1);
     }
     
     //Otherwise, partially overlapping or connected on the edges.
@@ -710,13 +628,10 @@ float const groupingProximity = 20.0;
         if(obj1PositionX < obj2PositionX) {
             obj1FinalPosX = obj2PositionX - obj1Width - GAP;
             obj2FinalPosX = obj2PositionX;
-            //NSLog(@"%@ is the leftmost object", obj1);
-            //NSLog(@"%@ width: %f", obj1, obj1Width);
         }
         else {
             obj1FinalPosX = obj1PositionX;
             obj2FinalPosX = obj1PositionX - obj2Width - GAP;
-            //NSLog(@"%@ is the leftmost object", obj2);
         }
     }
     
@@ -735,14 +650,11 @@ float const groupingProximity = 20.0;
  */
 -(void) performInteraction:(PossibleInteraction*)interaction {
     for(Connection* connection in [interaction connections]) {
-        //NSArray* objectIds = [interaction objects]; //get the object Ids for this particular menuItem.
-        //NSArray* hotspots = [interaction hotspots]; //Array of hotspot objects.
         NSArray* objectIds = [connection objects]; //get the object Ids for this particular menuItem.
         NSArray* hotspots = [connection hotspots]; //Array of hotspot objects.
         
         NSString* obj1 = [objectIds objectAtIndex:0]; //get object 1, since we'll always have at least one object.
         
-        //if([interaction interactionType] == UNGROUP) {
         if([connection interactionType] == UNGROUP) {
             //NSLog(@"ungrouping items");
             
@@ -750,7 +662,6 @@ float const groupingProximity = 20.0;
             
             [self ungroupObjects:obj1 :obj2]; //ungroup objects.
         }
-        //else if([interaction interactionType] == GROUP) {
         else if([connection interactionType] == GROUP) {
             //NSLog(@"grouping items");
             NSString* obj2 = [objectIds objectAtIndex:1]; //get object 2
@@ -764,41 +675,9 @@ float const groupingProximity = 20.0;
             
             [self groupObjects:obj1 :hotspot1Loc :obj2 :hotspot2Loc]; //Group objects.
         }
-        //else if([interaction interactionType] == DISAPPEAR) {
         else if([connection interactionType] == DISAPPEAR) {
-            //NSLog(@"causing object to disappear");
             [self consumeAndReplenishSupply:obj1];
         }
-        //NOTE: May no longer need this with the changes in the possibleInteractions
-        /*else if([interaction interactionType] == TRANSFERANDGROUP) {
-            //If we're transfering an item there will be 3 ids instead of 2.
-            NSString* obj2 = [objectIds objectAtIndex:1]; //get object 2
-            NSString* obj3 = [objectIds objectAtIndex:2]; //get object 3
-            
-            //Get hotspots.
-            Hotspot* hotspot1 = [hotspots objectAtIndex:0];
-            Hotspot* hotspot2 = [hotspots objectAtIndex:1];
-            
-            //ungroup object 1 and object 2 first.
-            [self ungroupObjects:obj1 :obj2];
-            
-            //Calculate the current hotspot locations.
-            CGPoint hotspot1Loc = [self getHotspotLocation:hotspot1];
-            CGPoint hotspot2Loc = [self getHotspotLocation:hotspot2];
-            
-            //NSLog(@"transfering %@ to %@ from %@", obj2, obj3, obj1);
-            
-            //Group object 2 and object 3.
-            [self groupObjects:obj2 :hotspot1Loc :obj3 :hotspot2Loc];
-        }
-        else if([interaction interactionType] == TRANSFERANDDISAPPEAR) {
-            NSString* obj2 = [objectIds objectAtIndex:1]; //get object 2
-            
-            //NSLog(@"%@ given by %@ to be consumed", obj2, obj1);
-            //In this case we just ungroup the object from what it's grouped to and consume it.
-            [self ungroupObjects:obj1 :obj2];
-            [self consumeAndReplenishSupply:obj2];
-        }*/
     }
 }
 
@@ -821,7 +700,6 @@ float const groupingProximity = 20.0;
     NSString* imageAtPointClass = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointClass];
     
     //Bring the canvas back to where it should be.
-    //NSString* showCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.zIndex = 100;", @"'overlay'"];
     NSString* showCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'block';", @"'overlay'"];
     [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
     
