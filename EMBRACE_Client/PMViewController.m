@@ -195,6 +195,20 @@ float const groupingProximity = 20.0;
     self.title = chapterTitle;
 }
 
+-(void) incrementCurrentStep {
+    Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
+    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
+    PhysicalManipulationSolution* PMSolution = [PMActivity PMSolution]; //get PM solution
+    
+    //Get number of steps for current sentence
+    NSUInteger numSteps = [PMSolution getNumStepsForSentence:currentSentence];
+    
+    //Check if able to increment current step
+    if (currentStep < numSteps) {
+        currentStep++;
+    }
+}
+
 /*
  * Converts an ActionStep object to a PossibleInteraction object
  */
@@ -202,6 +216,43 @@ float const groupingProximity = 20.0;
     PossibleInteraction* interaction;
     
     if ([[step stepType] isEqualToString:@"group"]) {
+        //Get step information
+        NSString* obj1Id = [step object1Id];
+        NSString* obj2Id = [step object2Id];
+        NSString* action = [step action];
+        
+        interaction = [[PossibleInteraction alloc]initWithInteractionType:GROUP];
+        
+        //Objects involved in group setup
+        NSArray* objects = [[NSArray alloc] initWithObjects:obj1Id, obj2Id, nil];
+        
+        //Get hotspots for both objects associated with action
+        Hotspot* hotspot1 = [model getHotspotforObjectWithActionAndRole:obj1Id :action :@"subject"];
+        Hotspot* hotspot2 = [model getHotspotforObjectWithActionAndRole:obj2Id :action :@"object"];
+        NSArray* hotspotsForInteraction = [[NSArray alloc]initWithObjects:hotspot1, hotspot2, nil];
+        
+        [interaction addConnection:GROUP :objects :hotspotsForInteraction];
+    }
+    else if ([[step stepType] isEqualToString:@"ungroup"]) {
+        //Get step information
+        NSString* obj1Id = [step object1Id];
+        NSString* obj2Id = [step object2Id];
+        NSString* action = [step action];
+        
+        interaction = [[PossibleInteraction alloc]initWithInteractionType:UNGROUP];
+        
+        //Objects involved in group setup
+        NSArray* objects = [[NSArray alloc] initWithObjects:obj1Id, obj2Id, nil];
+        
+        //Get hotspots for both objects associated with action
+        Hotspot* hotspot1 = [model getHotspotforObjectWithActionAndRole:obj1Id :action :@"subject"];
+        Hotspot* hotspot2 = [model getHotspotforObjectWithActionAndRole:obj2Id :action :@"object"];
+        NSArray* hotspotsForInteraction = [[NSArray alloc]initWithObjects:hotspot1, hotspot2, nil];
+        
+        [interaction addConnection:UNGROUP :objects :hotspotsForInteraction];
+    }
+    //This case only applies if an object is being moved to another object, not a waypoint
+    else if ([[step stepType] isEqualToString:@"move"]) {
         //Get step information
         NSString* obj1Id = [step object1Id];
         NSString* obj2Id = [step object2Id];
@@ -310,51 +361,41 @@ float const groupingProximity = 20.0;
 
         //If there is an array, split the array based on pairs.
         if(![groupedImages isEqualToString:@""]) {
+            //Create an array that will hold all the items in this group
+            NSMutableArray* groupedItemsArray = [[NSMutableArray alloc] init];
+            
             NSArray* itemPairArray = [groupedImages componentsSeparatedByString:@"; "];
             
-            //Create the possible interactions array if there are multiple possible ungroupings.
-            if([itemPairArray count] > 1) {
-                NSMutableArray* possibleInteractions = [[NSMutableArray alloc] init];
-                
-                for(NSString* pairStr in itemPairArray) {
-                    //separate the objects in this pair.
-                    NSArray *itemPair = [pairStr componentsSeparatedByString:@", "];
-
-                    NSMutableArray* affectedItemIds = [[NSMutableArray alloc] init];
-                    
-                    for(NSString* objId in itemPair) {
-                        [affectedItemIds addObject:objId]; //This is one of the objects that will be affected by the ungroup.
-                    }
-                    
-                    PossibleInteraction* interaction = [[PossibleInteraction alloc] initWithInteractionType:UNGROUP];
-                    [interaction addConnection:UNGROUP :affectedItemIds :nil];
-                    
-                    [possibleInteractions addObject:interaction];
+            for(NSString* pairStr in itemPairArray) {
+                //separate the objects in this pair and add them to our array of all items in this group.
+                [groupedItemsArray addObjectsFromArray:[pairStr componentsSeparatedByString:@", "]];
+            }
+            
+             //Check if correct subject and object are grouped together. If so, they can be ungrouped.
+            BOOL hasCorrectSubject = false;
+            BOOL hasCorrectObject = false;
+            
+            for(NSString* obj in groupedItemsArray) {
+                if ([self checkSolutionForSubject:obj]) {
+                    hasCorrectSubject = true;
                 }
                 
-                //Rnak the possible interactions if there are more than the max number of menu items possible.
-                if([possibleInteractions count] > maxMenuItems) {
-                    [self rankPossibleInteractions: possibleInteractions];
+                if ([self checkSolutionForObject:obj]) {
+                    hasCorrectObject = true;
                 }
-                
-                //Populate the data source and expand the menu.
-                [self populateMenuDataSource:possibleInteractions];
-                
-                if(!menuExpanded)
-                    [self expandMenu];
-                
             }
-            else if([itemPairArray count] == 1) {
-                NSArray *pair = [[itemPairArray objectAtIndex:0] componentsSeparatedByString:@", "];
+            
+            if (hasCorrectSubject && hasCorrectObject) {
+                PossibleInteraction* correctInteraction = [self getCorrectInteraction];
+                [self performInteraction:correctInteraction]; //performs solution step
                 
-                NSString* obj1 = [pair objectAtIndex:0]; //get object 1
-                NSString* obj2 = [pair objectAtIndex:1]; //get object 2
-                
-                [self ungroupObjects:obj1 :obj2]; //ungroup the objects.
+                [self incrementCurrentStep];
             }
-            else
-                NSLog(@"no items grouped");
         }
+        
+        //Move object to another object or waypoint
+        [self moveObjectForSolution];
+        
         pinching = FALSE;
     }
 }
@@ -389,34 +430,38 @@ float const groupingProximity = 20.0;
             if(movingObject) {
                 [self moveObject:movingObjectId :location :delta];
                 
-                //If the object was dropped, check if it's overlapping with any other objects that it could interact with.
-                //NSMutableArray* possibleInteractions = [self getPossibleInteractions];
-                NSMutableArray* possibleInteractions = [self getPossibleInteractions:YES];
+                //Check if dropped object is overlapping any objects
+                NSString *overlappingObjects = [NSString stringWithFormat:@"checkObjectOverlapString(%@)", movingObjectId];
+                NSString* overlapArrayString = [bookView stringByEvaluatingJavaScriptFromString:overlappingObjects];
                 
-                //If only 1 possible interaction was found, go ahead and perform that interaction.
-                if([possibleInteractions count] == 1) {
-                    NSLog(@"returned one possible interaction");
+                if(![overlapArrayString isEqualToString:@""]) {
+                    //Get the objects that the dropped object is overlapping
+                    NSArray* overlappingWith = [overlapArrayString componentsSeparatedByString:@", "];
                     
-                    PossibleInteraction *interaction = [possibleInteractions objectAtIndex:0];
+                    //Check if dropped object is overlapping the correct object
+                    BOOL overlappingCorrectObject = false;
                     
-                    [self performInteraction:interaction];
+                    for (NSString* obj in overlappingWith) {
+                        if ([self checkSolutionForObject:obj]) {
+                            overlappingCorrectObject = true;
+                        }
+                    }
+                    
+                    if (overlappingCorrectObject) {
+                        PossibleInteraction* correctInteraction = [self getCorrectInteraction];
+                        [self performInteraction:correctInteraction]; //performs solution step
+                        
+                        [self incrementCurrentStep];
+                    }
                 }
-                //If more than 1 was found, prompt the user to disambiguate.
-                else if ([possibleInteractions count] > 1){
-                    //First rank the interactions based on location to story.
-                    [self rankPossibleInteractions:possibleInteractions];
-                    /*NSLog(@"returned %d interactions as follows:", [possibleInteractions count]);
-                    
-                    for(PossibleInteraction* interaction in possibleInteractions) {
-                        NSLog()
-                    }*/
-                    
-                    //Populate the menu data source and expand the menu.
-                    [self populateMenuDataSource:possibleInteractions];
-
-                    if(!menuExpanded)
-                        [self expandMenu];
+                
+                //Checks if object is in the correct location
+                if([self isHotspotInsideLocation]) {
+                    [self incrementCurrentStep];
                 }
+                
+                //Move object to another object or waypoint
+                [self moveObjectForSolution];
                 
                 //No longer moving object
                 movingObject = FALSE;
@@ -860,8 +905,45 @@ float const groupingProximity = 20.0;
 }
 
 /*
+ * Returns true if the specified subject from the solutions is part of a group with the
+ * specified object. Otherwise, returns false.
+ */
+-(BOOL)isSubject:(NSString*)subject ContainedInGroupWithObject:(NSString*)object {
+    NSString* requestGroupedImages = [NSString stringWithFormat:@"getGroupedObjectsString(%@)", object];
+    
+    /*
+     * Say the cart is connected to the tractor and the tractor is "connected" to the farmer,
+     * then groupedImages will be a string in the following format: "cart, tractor; tractor, farmer"
+     * if the only thing you currently have connected to the hay is the farmer, then you'll get
+     * a string back that is: "hay, farmer" or "farmer, hay"
+     */
+    NSString* groupedImages = [bookView stringByEvaluatingJavaScriptFromString:requestGroupedImages];
+    
+    //If there is an array, split the array based on pairs.
+    if(![groupedImages isEqualToString:@""]) {
+        //Create an array that will hold all the items in this group
+        NSMutableArray* groupedItemsArray = [[NSMutableArray alloc] init];
+        
+        NSArray* itemPairArray = [groupedImages componentsSeparatedByString:@"; "];
+        
+        for(NSString* pairStr in itemPairArray) {
+            //separate the objects in this pair and add them to our array of all items in this group.
+            [groupedItemsArray addObjectsFromArray:[pairStr componentsSeparatedByString:@", "]];
+        }
+        
+        //Checks if one of the grouped object is the subject
+        for(NSString* obj in groupedItemsArray) {
+            if([obj isEqualToString:subject])
+                return true;
+        }
+    }
+    
+    return false;
+}
+
+/*
  * Returns true if the correct object is selected as the subject based on the solutions
- * for group step types and increments current step. Otherwise, it returns false.
+ * for group step types. Otherwise, it returns false.
  */
 -(BOOL) checkSolutionForSubject:(NSString*)subject {
     Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
@@ -880,12 +962,18 @@ float const groupingProximity = 20.0;
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
     
         //User can only select the correct subject when step type is group
-        if ([[currSolStep stepType] isEqualToString:@"group"]) {
-            if ([[currSolStep object1Id] isEqualToString:subject]) {
+        if ([[currSolStep stepType] isEqualToString:@"group"] ||
+            [[currSolStep stepType] isEqualToString:@"check"]) {
+            NSString* correctSubject = [currSolStep object1Id];
+            
+            //Selected object is the correct subject
+            if ([correctSubject isEqualToString:subject]) {
                 return true;
             }
             else {
-                return false;
+                //Check if selected object is in a group with the correct subject
+                BOOL isSubjectInGroup = [self isSubject:correctSubject ContainedInGroupWithObject:subject];
+                return isSubjectInGroup;
             }
         }
         //User can move any object for other step types
@@ -894,8 +982,137 @@ float const groupingProximity = 20.0;
         }
     }
     else {
-        return true;
+        //User cannot move anything if there are no steps to be performed
+        return false;
     }
+}
+
+/*
+ * Returns true if the active object is overlapping the correct object based on the solutions.
+ * Otherwise, it returns false.
+ */
+-(BOOL) checkSolutionForObject:(NSString*)overlappingObject {
+    Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
+    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
+    PhysicalManipulationSolution* PMSolution = [PMActivity PMSolution]; //get PM solution
+    
+    //Get number of steps for current sentence
+    NSUInteger numSteps = [PMSolution getNumStepsForSentence:currentSentence];
+    
+    //Check solution only if it exists for the sentence
+    if (numSteps > 0) {
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        if ([overlappingObject isEqualToString:[currSolStep object2Id]]) {
+            return true;
+        }
+    }
+    
+    return false;
+}
+
+/*
+ * Moves an object to another object or waypoint for move step types
+ */
+-(void) moveObjectForSolution {
+    Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
+    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
+    PhysicalManipulationSolution* PMSolution = [PMActivity PMSolution]; //get PM solution
+    
+    //Get number of steps for current sentence
+    NSUInteger numSteps = [PMSolution getNumStepsForSentence:currentSentence];
+    
+    //Check solution only if it exists for the sentence
+    if (numSteps > 0) {
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        if ([[currSolStep stepType] isEqualToString:@"move"]) {
+            //Get information for move step type
+            NSString* object1Id = [currSolStep object1Id];
+            NSString* action = [currSolStep action];
+            NSString* object2Id = [currSolStep object2Id];
+            NSString* waypointId = [currSolStep waypointId];
+            
+            //Move either requires object1 to move to object2 (which creates a group interaction) or it requires object1 to move to a waypoint
+            if (object2Id != nil) {
+                PossibleInteraction* correctInteraction = [self getCorrectInteraction];
+                [self performInteraction:correctInteraction]; //performs solution step
+            }
+            else if (waypointId != nil) {
+                Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:object1Id :action :@"subject"];
+                CGPoint hotspotLocation = [hotspot location];
+                //CGPoint hotspotLocation = [self getHotspotLocation:hotspot];
+                
+                Waypoint* waypoint = [model getWaypointWithId:waypointId];
+                CGPoint waypointLoc = [waypoint location];
+                CGFloat waypointX = waypointLoc.x / 100.0 * [bookView frame].size.width;
+                CGFloat waypointY = waypointLoc.y / 100.0 * [bookView frame].size.width;
+                CGPoint waypointLocation = CGPointMake(waypointX, waypointY);
+                
+                //Move the object
+                //[self moveObject:object1Id :waypointLocation :hotspotLocation];
+                [self moveObjectToWaypoint:object1Id :waypointLocation];
+            }
+        }
+    }
+}
+
+/*
+ * Returns true if the hotspot of an object (for a check step type) is inside the correct location.
+ * Otherwise, returns false.
+ */
+-(BOOL) isHotspotInsideLocation {
+    Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
+    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
+    PhysicalManipulationSolution* PMSolution = [PMActivity PMSolution]; //get PM solution
+    
+    //Get number of steps for current sentence
+    NSUInteger numSteps = [PMSolution getNumStepsForSentence:currentSentence];
+    
+    //Check solution only if it exists for the sentence
+    if (numSteps > 0) {
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        if ([[currSolStep stepType] isEqualToString:@"check"]) {
+            //Get information for check step type
+            NSString* objectId = [currSolStep object1Id];
+            NSString* action = [currSolStep action];
+            NSString* locationId = [currSolStep locationId];
+            
+            //Get hotspot location of correct subject
+            Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:objectId :action :@"subject"];
+            CGPoint hotspotLocation = [self getHotspotLocation:hotspot];
+            
+            //Get location that hotspot should be inside
+            Location* location = [model getLocationWithId:locationId];
+            
+            //Calculate the x,y coordinates and the width and height in pixels from %
+            float locationX = [location.originX floatValue] / 100.0 * [bookView frame].size.width;
+            float locationY = [location.originY floatValue] / 100.0 * [bookView frame].size.height;
+            float locationWidth = [location.width floatValue] / 100.0 * [bookView frame].size.width;
+            float locationHeight = [location.height floatValue] / 100.0 * [bookView frame].size.height;
+            
+            //Check if hotspot is inside location
+            if ((hotspotLocation.x < locationX + locationWidth) && (hotspotLocation.x > locationX)
+                && (hotspotLocation.y < locationY + locationHeight) && (hotspotLocation.y > locationY)) {
+                return true;
+            }
+        }
+    }
+    
+    return false;
 }
 
 /*
@@ -929,6 +1146,33 @@ float const groupingProximity = 20.0;
     }
     else
         return nil;
+}
+
+/*
+ * Gets the current solution step of ActionStep type and converts it to a PossibleInteraction
+ * object
+ */
+-(PossibleInteraction*) getCorrectInteraction {
+    PossibleInteraction* correctInteraction;
+    
+    Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
+    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
+    PhysicalManipulationSolution* PMSolution = [PMActivity PMSolution]; //get PM solution
+    
+    //Get number of steps for current sentence
+    NSUInteger numSteps = [PMSolution getNumStepsForSentence:currentSentence];
+    
+    //Check solution only if it exists for the sentence
+    if (numSteps > 0) {
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        correctInteraction = [self convertActionStepToPossibleInteraction:currSolStep];
+    }
+    
+    return correctInteraction;
 }
 
 /*
@@ -1307,6 +1551,63 @@ float const groupingProximity = 20.0;
         change.x = location.x - [imageAtPointLeft floatValue];
     
     return change;
+}
+
+/*
+ * Moves the specified object to the specified waypoint
+ */
+-(void) moveObjectToWaypoint:(NSString*) object :(CGPoint) waypoint {
+    //Get the width and height of the image to ensure that the image is not being moved off screen and that the image is being moved in accordance with all movement constraints.
+    NSString* requestImageHeight = [NSString stringWithFormat:@"%@.height", object];
+    NSString* requestImageWidth = [NSString stringWithFormat:@"%@.width", object];
+    
+    float imageHeight = [[bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
+    float imageWidth = [[bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
+    
+    //Check to see if the image is being moved outside of any bounding boxes. At this point in time, each object only has 1 movemet constraint associated with it and the movement constraint is a bounding box. The bounding box is in relative (percentage) values to the background object.
+    NSArray* constraints = [model getMovementConstraintsForObjectId:object];
+    
+    //NSLog(@"location of image being moved adjusted for point clicked: (%f, %f) size of image: %f x %f", adjLocation.x, adjLocation.y, imageWidth, imageHeight);
+    
+    //If there are movement constraints for this object.
+    if([constraints count] > 0) {
+        MovementConstraint* constraint = (MovementConstraint*)[constraints objectAtIndex:0];
+        
+        //Calculate the x,y coordinates and the width and height in pixels from %
+        float boxX = [constraint.originX floatValue] / 100.0 * [bookView frame].size.width;
+        float boxY = [constraint.originY floatValue] / 100.0 * [bookView frame].size.height;
+        float boxWidth = [constraint.width floatValue] / 100.0 * [bookView frame].size.width;
+        float boxHeight = [constraint.height floatValue] / 100.0 * [bookView frame].size.height;
+        
+        //NSLog(@"location of bounding box: (%f, %f) and size of bounding box: %f x %f", boxX, boxY, boxWidth, boxHeight);
+        
+        //Ensure that the image is not being moved outside of its bounding box.
+        if(waypoint.x + imageWidth > boxX + boxWidth)
+            waypoint.x = boxX + boxWidth - imageWidth;
+        else if(waypoint.x < boxX)
+            waypoint.x = boxX;
+        if(waypoint.y + imageHeight > boxY + boxHeight)
+            waypoint.y = boxY + boxHeight - imageHeight;
+        else if(waypoint.y < boxY)
+            waypoint.y = boxY;
+    }
+    
+    //Check to see if the image is being moved off screen. If it is, change it so that the image cannot be moved off screen.
+    if(waypoint.x + imageWidth > [bookView frame].size.width)
+        waypoint.x = [bookView frame].size.width - imageWidth;
+    else if(waypoint.x < 0)
+        waypoint.x = 0;
+    if(waypoint.y + imageHeight > [bookView frame].size.height)
+        waypoint.y = [bookView frame].size.height - imageHeight;
+    else if(waypoint.y < 0)
+        waypoint.y = 0;
+    
+    //May want to add code to keep objects from moving to the location that the text is taking up on screen.
+    
+    //NSLog(@"new location of %@: (%f, %f)", object, adjLocation.x, adjLocation.y);
+    //Call the moveObject function in the js file.
+    NSString *move = [NSString stringWithFormat:@"moveObject(%@, %f, %f)", object, waypoint.x, waypoint.y];
+    [bookView stringByEvaluatingJavaScriptFromString:move];
 }
 
 /*
