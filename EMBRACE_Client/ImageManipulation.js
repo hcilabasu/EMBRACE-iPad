@@ -506,14 +506,14 @@ function areObjectsGrouped(object1, object2) {
  */
 function objectGroupedAtHotspot(object, x, y) {
     var MARGIN = 2;
-    //alert("inside the main loop");
+    //alert(object + " " + x + " " + y);
     for(var i = 0; i < groupings.length; i ++) {
         var group = groupings[i];
         
         if(object.id == group.obj1.id) {
             //alert("inside if");
-            var diffX = Math.abs(x - group.obj1x);
-            var diffY = Math.abs(y - group.obj1y);
+            var diffX = Math.abs(x - group.obj2x);
+            var diffY = Math.abs(y - group.obj2y);
             //alert(diffX + " " + diffY);
             if(diffX < MARGIN && diffY < MARGIN) {
                 return group.obj2.id;
