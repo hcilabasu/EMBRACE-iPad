@@ -51,6 +51,8 @@
 @synthesize bookImporter;
 @synthesize bookView;
 
+@synthesize syn;
+
 //Used to determine the required proximity of 2 hotspots to group two items together.
 float const groupingProximity = 20.0;
 
@@ -63,6 +65,8 @@ float const groupingProximity = 20.0;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    syn=[[AVSpeechSynthesizer alloc]init];
     
     //Added to deal with ios7 view changes. This makes it so the UIWebView and the navigation bar do not overlap.
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
@@ -103,7 +107,7 @@ float const groupingProximity = 20.0;
     // Disable user selection
     [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitUserSelect='none';"];
     // Disable callout
-    [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitTouchCallout='none';"];
+     [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitTouchCallout='none';"];
     
     // Load the js files.
     NSString* filePath = [[NSBundle mainBundle] pathForResource:@"ImageManipulation" ofType:@"js"];
@@ -123,7 +127,7 @@ float const groupingProximity = 20.0;
     totalSentences = [sentenceCount intValue];
     
     //Set sentence color to blue for first sentence.
-    NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
+    NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence];
     [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
     
     //Bold sentence
@@ -138,7 +142,7 @@ float const groupingProximity = 20.0;
     //If it is an action sentence underline it
     if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
         
-        NSString* underlineSentence = [NSString stringWithFormat:@"setSentenceUnderline(s%d)", currentSentence];
+        NSString* underlineSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
         [bookView stringByEvaluatingJavaScriptFromString:underlineSentence];
     }
     
@@ -247,8 +251,39 @@ float const groupingProximity = 20.0;
     }
     else {
         //Get the object at that point if it's a manipulation object.
-        //NSString* imageAtPoint = [self getManipulationObjectAtPoint:location];
-        //NSLog(@"location pressed: (%f, %f)", location.x, location.y);
+        NSString* imageAtPoint = [self getManipulationObjectAtPoint:location];
+        NSLog(@"location pressed: (%f, %f)", location.x, location.y);
+        
+        //Retrieve the elements at this location and see if it's an element that is moveable.
+        NSString* requestWordAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
+        
+        NSString* requestWordAtPointClass = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).className", location.x, location.y];
+        
+        imageAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestWordAtPoint];
+        NSString* imageAtPointClass = [bookView stringByEvaluatingJavaScriptFromString:requestWordAtPointClass];
+        
+        if([imageAtPointClass isEqualToString:@"audible"]) {
+        
+            NSLog(@"Word: %@", imageAtPointClass);
+            
+            /* Text to Speech */
+            NSString* requestSentenceText = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).innerHTML", location.x, location.y];
+            NSString* sentenceText = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceText];
+            
+            AVSpeechUtterance *utteranceEn = [[AVSpeechUtterance alloc]initWithString:sentenceText];
+            utteranceEn.rate = AVSpeechUtteranceMaximumSpeechRate/7;
+            utteranceEn.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"en-us"];
+            NSLog(@"Sentence: %@",sentenceText);
+            [syn speakUtterance:utteranceEn];
+            
+            //Spanish
+            //AVSpeechUtterance *utteranceEs = [[AVSpeechUtterance alloc]initWithString:sentenceText];
+            //utteranceEs.rate = AVSpeechUtteranceMaximumSpeechRate/7;
+            //utteranceEs.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"es-mx"];
+            //NSLog(@"Sentence: %@",sentenceText);
+            //[syn speakUtterance:utteranceEs];
+            /**********************************/
+        }
     }
 }
 
@@ -1690,14 +1725,14 @@ float const groupingProximity = 20.0;
     [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
     
     //Unbold sentence
-    NSString* setSentenceWeight = [NSString stringWithFormat:@"setSentenceFontWeight(s%d, 'normal')", currentSentence];
-    [bookView stringByEvaluatingJavaScriptFromString:setSentenceWeight];
+    //NSString* setSentenceWeight = [NSString stringWithFormat:@"setSentenceFontWeight(s%d, 'normal')", currentSentence];
+    //[bookView stringByEvaluatingJavaScriptFromString:setSentenceWeight];
     
     //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
     currentSentence ++;
     
     //Highlight the next sentence and set its color to blue.
-    setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
+    setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence];
     [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
     
     //Bold sentence
@@ -1718,9 +1753,13 @@ float const groupingProximity = 20.0;
     //If it is an action sentence underline it
     if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
         
-        NSString* underlineSentence = [NSString stringWithFormat:@"setSentenceUnderline(s%d)", currentSentence];
+        NSString* underlineSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
         [bookView stringByEvaluatingJavaScriptFromString:underlineSentence];
     }
+    
+    //Turn off underline for the previous sentence
+    //NSString* noUnderlineSentence = [NSString stringWithFormat:@"setSentenceNoUnderline(s%d)", currentSentence-1];
+    //[bookView stringByEvaluatingJavaScriptFromString:noUnderlineSentence];
     
     //currentSentence is 1 indexed.
     if(currentSentence > totalSentences) {

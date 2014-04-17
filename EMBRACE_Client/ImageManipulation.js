@@ -677,7 +677,6 @@ function clearAllHotspots() {
 function getSentenceText(sentenceId){
     
     return sentenceId.innerHTML;
-    
 }
 
 function getSentenceClass(sentenceId){
@@ -688,3 +687,11 @@ function getSentenceClass(sentenceId){
 function setSentenceUnderline(sentenceId) {
     sentenceId.style.textDecoration = "underline";
 }
+
+function setSentenceNoUnderline(sentenceId) {
+    sentenceId.style.textDecoration = "none";
+}
+
+//function setAudibleUnderline(sentenceId) {
+    //sentenceId.style.textDecoration = "underline";
+//}
