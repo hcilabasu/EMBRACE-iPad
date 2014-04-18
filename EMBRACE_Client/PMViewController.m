@@ -444,6 +444,7 @@ float const groupingProximity = 20.0;
                     for (NSString* obj in overlappingWith) {
                         if ([self checkSolutionForObject:obj]) {
                             overlappingCorrectObject = true;
+                            break;
                         }
                     }
                     
@@ -523,8 +524,8 @@ float const groupingProximity = 20.0;
                 }
 
                 //Draw red hotspots first, then green ones.
-                [self drawHotspots:redHotspots :@"red"];
-                [self drawHotspots:greenHotspots :@"green"];
+                //[self drawHotspots:redHotspots :@"red"];
+                //[self drawHotspots:greenHotspots :@"green"];
             }
         }
     }
@@ -869,7 +870,10 @@ float const groupingProximity = 20.0;
         //else if([interaction interactionType] == DISAPPEAR) {
         else if([connection interactionType] == DISAPPEAR) {
             //NSLog(@"causing object to disappear");
-            [self consumeAndReplenishSupply:obj1];
+            //[self consumeAndReplenishSupply:obj1];
+            
+            NSString* obj2 = [objectIds objectAtIndex:1]; //get object 2
+            [self consumeAndReplenishSupply:obj2];
         }
         //NOTE: May no longer need this with the changes in the possibleInteractions
         /*else if([interaction interactionType] == TRANSFERANDGROUP) {
@@ -1007,8 +1011,28 @@ float const groupingProximity = 20.0;
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
-        if ([overlappingObject isEqualToString:[currSolStep object2Id]]) {
-            return true;
+        //If current step requires transference and group, the correct object should be the object2 of the next step
+        if ([[currSolStep stepType] isEqualToString:@"transferAndGroup"]) {
+            //Get next step
+            ActionStep* nextSolStep = [currSolSteps objectAtIndex:currentStep];
+            
+            if ([overlappingObject isEqualToString:[nextSolStep object2Id]]) {
+                return true;
+            }
+        }
+        //If current step requires transference and disapppear, the correct object should be the object1 of the next step
+        else if ([[currSolStep stepType] isEqualToString:@"transferAndDisappear"]) {
+            //Get next step
+            ActionStep* nextSolStep = [currSolSteps objectAtIndex:currentStep];
+            
+            if ([overlappingObject isEqualToString:[nextSolStep object1Id]]) {
+                return true;
+            }
+        }
+        else {
+            if ([overlappingObject isEqualToString:[currSolStep object2Id]]) {
+                return true;
+            }
         }
     }
     
@@ -1169,7 +1193,88 @@ float const groupingProximity = 20.0;
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
-        correctInteraction = [self convertActionStepToPossibleInteraction:currSolStep];
+        
+        if ([[currSolStep stepType] isEqualToString:@"transferAndGroup"]) {
+            correctInteraction = [[PossibleInteraction alloc]initWithInteractionType:TRANSFERANDGROUP];
+            
+            //Get step information for current step
+            NSString* currObj1Id = [currSolStep object1Id];
+            NSString* currObj2Id = [currSolStep object2Id];
+            NSString* currAction = [currSolStep action];
+            
+            //Objects involved in group setup for current step
+            NSArray* currObjects = [[NSArray alloc] initWithObjects:currObj1Id, currObj2Id, nil];
+            
+            //Get hotspots for both objects associated with action for current step
+            Hotspot* currHotspot1 = [model getHotspotforObjectWithActionAndRole:currObj1Id :currAction :@"subject"];
+            Hotspot* currHotspot2 = [model getHotspotforObjectWithActionAndRole:currObj2Id :currAction :@"object"];
+            NSArray* currHotspotsForInteraction = [[NSArray alloc]initWithObjects:currHotspot1, currHotspot2, nil];
+            
+            [correctInteraction addConnection:UNGROUP :currObjects :currHotspotsForInteraction];
+            
+            //Get next step to be completed
+            ActionStep* nextSolStep = [currSolSteps objectAtIndex:currentStep];
+            
+            //Get step information for next step
+            NSString* nextObj1Id = [nextSolStep object1Id];
+            NSString* nextObj2Id = [nextSolStep object2Id];
+            NSString* nextAction = [nextSolStep action];
+            
+            //Objects involved in group setup for next step
+            NSArray* nextObjects = [[NSArray alloc] initWithObjects:nextObj1Id, nextObj2Id, nil];
+            
+            //Get hotspots for both objects associated with action for next step
+            Hotspot* nextHotspot1 = [model getHotspotforObjectWithActionAndRole:nextObj1Id :nextAction :@"subject"];
+            Hotspot* nextHotspot2 = [model getHotspotforObjectWithActionAndRole:nextObj2Id :nextAction :@"object"];
+            NSArray* nextHotspotsForInteraction = [[NSArray alloc]initWithObjects:nextHotspot1, nextHotspot2, nil];
+            
+            [correctInteraction addConnection:GROUP :nextObjects :nextHotspotsForInteraction];
+            
+            //Increment step since we are combining two solution steps into one possible interaction
+            [self incrementCurrentStep];
+        }
+        else if ([[currSolStep stepType] isEqualToString:@"transferAndDisappear"]) {
+            correctInteraction = [[PossibleInteraction alloc]initWithInteractionType:TRANSFERANDDISAPPEAR];
+            
+            //Get step information for current step
+            NSString* currObj1Id = [currSolStep object1Id];
+            NSString* currObj2Id = [currSolStep object2Id];
+            NSString* currAction = [currSolStep action];
+            
+            //Objects involved in group setup for current step
+            NSArray* currObjects = [[NSArray alloc] initWithObjects:currObj1Id, currObj2Id, nil];
+            
+            //Get hotspots for both objects associated with action for current step
+            Hotspot* currHotspot1 = [model getHotspotforObjectWithActionAndRole:currObj1Id :currAction :@"subject"];
+            Hotspot* currHotspot2 = [model getHotspotforObjectWithActionAndRole:currObj2Id :currAction :@"object"];
+            NSArray* currHotspotsForInteraction = [[NSArray alloc]initWithObjects:currHotspot1, currHotspot2, nil];
+            
+            [correctInteraction addConnection:UNGROUP :currObjects :currHotspotsForInteraction];
+            
+            //Get next step to be completed
+            ActionStep* nextSolStep = [currSolSteps objectAtIndex:currentStep];
+            
+            //Get step information for next step
+            NSString* nextObj1Id = [nextSolStep object1Id];
+            NSString* nextObj2Id = [nextSolStep object2Id];
+            NSString* nextAction = [nextSolStep action];
+            
+            //Objects involved in group setup for next step
+            NSArray* nextObjects = [[NSArray alloc] initWithObjects:nextObj1Id, nextObj2Id, nil];
+            
+            //Get hotspots for both objects associated with action for next step
+            Hotspot* nextHotspot1 = [model getHotspotforObjectWithActionAndRole:nextObj1Id :nextAction :@"subject"];
+            Hotspot* nextHotspot2 = [model getHotspotforObjectWithActionAndRole:nextObj2Id :nextAction :@"object"];
+            NSArray* nextHotspotsForInteraction = [[NSArray alloc]initWithObjects:nextHotspot1, nextHotspot2, nil];
+            
+            [correctInteraction addConnection:DISAPPEAR :nextObjects :nextHotspotsForInteraction];
+            
+            //Increment step since we are combining two solution steps into one possible interaction
+            [self incrementCurrentStep];
+        }
+        else {
+            correctInteraction = [self convertActionStepToPossibleInteraction:currSolStep];
+        }
     }
     
     return correctInteraction;

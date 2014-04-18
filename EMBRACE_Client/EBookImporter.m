@@ -615,7 +615,35 @@
                         NSString* action = [[step attributeForName:@"action"] stringValue];
                         
                         //Group and ungroup also have an obj2Id
-                        if([[step name] isEqualToString:@"group"] || [[step name] isEqualToString:@"ungroup"]) {
+                        //if([[step name] isEqualToString:@"group"] || [[step name] isEqualToString:@"ungroup"]) {
+                        if([[step name] isEqualToString:@"group"]) {
+                            NSString* obj2Id = [[step attributeForName:@"obj2Id"] stringValue];
+                            
+                            NSMutableArray* solutionSteps = [PMSolution solutionSteps];
+                            ActionStep* previouslyAddedStep = [solutionSteps lastObject];
+                            
+                            if (previouslyAddedStep != nil) {
+                                //Assume transference is required if previous step sentence and step number are the same and type was ungroup
+                                if (([previouslyAddedStep sentenceNumber] == sentenceNum) && ([previouslyAddedStep stepNumber] == stepNum) && [[previouslyAddedStep stepType] isEqualToString:@"ungroup"]) {
+                                    //Change previous previous and current step types to transfer and group
+                                    NSString* newType = @"transferAndGroup";
+                                    
+                                    previouslyAddedStep.stepType = newType;
+                                    
+                                    ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :newType :obj1Id :obj2Id :nil :nil :action];
+                                    [PMSolution addSolutionStep:solutionStep];
+                                }
+                                else {
+                                    ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :obj2Id :nil :nil :action];
+                                    [PMSolution addSolutionStep:solutionStep];
+                                }
+                            }
+                            else {
+                                ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :obj2Id :nil :nil :action];
+                                [PMSolution addSolutionStep:solutionStep];
+                            }
+                        }
+                        else if([[step name] isEqualToString:@"ungroup"]) {
                             NSString* obj2Id = [[step attributeForName:@"obj2Id"] stringValue];
                             
                             ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :obj2Id :nil :nil :action];
@@ -647,8 +675,29 @@
                         else if([[step name] isEqualToString:@"disappear"]) {
                             NSString* obj2Id = [[step attributeForName:@"obj2Id"] stringValue];
                             
-                            ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :obj2Id :nil :nil :action];
-                            [PMSolution addSolutionStep:solutionStep];
+                            NSMutableArray* solutionSteps = [PMSolution solutionSteps];
+                            ActionStep* previouslyAddedStep = [solutionSteps lastObject];
+                            
+                            if (previouslyAddedStep != nil) {
+                                //Assume transference is required if previous step sentence and step number are the same and type was ungroup
+                                if (([previouslyAddedStep sentenceNumber] == sentenceNum) && ([previouslyAddedStep stepNumber] == stepNum) && [[previouslyAddedStep stepType] isEqualToString:@"ungroup"]) {
+                                    //Change previous previous and current step types to transfer and group
+                                    NSString* newType = @"transferAndDisappear";
+                                    
+                                    previouslyAddedStep.stepType = newType;
+                                    
+                                    ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :newType :obj1Id :obj2Id :nil :nil :action];
+                                    [PMSolution addSolutionStep:solutionStep];
+                                }
+                                else {
+                                    ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :obj2Id :nil :nil :action];
+                                    [PMSolution addSolutionStep:solutionStep];
+                                }
+                            }
+                            else {
+                                ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :obj2Id :nil :nil :action];
+                                [PMSolution addSolutionStep:solutionStep];
+                            }
                         }
                     }
                 }
