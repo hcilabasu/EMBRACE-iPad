@@ -1071,19 +1071,29 @@ float const groupingProximity = 20.0;
                 [self performInteraction:correctInteraction]; //performs solution step
             }
             else if (waypointId != nil) {
-                Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:object1Id :action :@"subject"];
-                CGPoint hotspotLocation = [hotspot location];
-                //CGPoint hotspotLocation = [self getHotspotLocation:hotspot];
+                //Get the width and height of the object image
+                NSString* requestImageHeight = [NSString stringWithFormat:@"%@.height", object1Id];
+                NSString* requestImageWidth = [NSString stringWithFormat:@"%@.width", object1Id];
                 
+                float imageHeight = [[bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
+                float imageWidth = [[bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
+                
+                //Get position of hotspot in pixels based on the object image size
+                Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:object1Id :action :@"subject"];
+                CGPoint hotspotLoc = [hotspot location];
+                CGFloat hotspotX = hotspotLoc.x / 100.0 * imageWidth;
+                CGFloat hotspotY = hotspotLoc.y / 100.0 * imageHeight;
+                CGPoint hotspotLocation = CGPointMake(hotspotX, hotspotY);
+                
+                //Get position of waypoint in pixels based on the background size
                 Waypoint* waypoint = [model getWaypointWithId:waypointId];
                 CGPoint waypointLoc = [waypoint location];
                 CGFloat waypointX = waypointLoc.x / 100.0 * [bookView frame].size.width;
-                CGFloat waypointY = waypointLoc.y / 100.0 * [bookView frame].size.width;
+                CGFloat waypointY = waypointLoc.y / 100.0 * [bookView frame].size.height;
                 CGPoint waypointLocation = CGPointMake(waypointX, waypointY);
                 
                 //Move the object
-                //[self moveObject:object1Id :waypointLocation :hotspotLocation];
-                [self moveObjectToWaypoint:object1Id :waypointLocation];
+                [self moveObject:object1Id :waypointLocation :hotspotLocation];
             }
         }
     }
@@ -1656,63 +1666,6 @@ float const groupingProximity = 20.0;
         change.x = location.x - [imageAtPointLeft floatValue];
     
     return change;
-}
-
-/*
- * Moves the specified object to the specified waypoint
- */
--(void) moveObjectToWaypoint:(NSString*) object :(CGPoint) waypoint {
-    //Get the width and height of the image to ensure that the image is not being moved off screen and that the image is being moved in accordance with all movement constraints.
-    NSString* requestImageHeight = [NSString stringWithFormat:@"%@.height", object];
-    NSString* requestImageWidth = [NSString stringWithFormat:@"%@.width", object];
-    
-    float imageHeight = [[bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
-    float imageWidth = [[bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
-    
-    //Check to see if the image is being moved outside of any bounding boxes. At this point in time, each object only has 1 movemet constraint associated with it and the movement constraint is a bounding box. The bounding box is in relative (percentage) values to the background object.
-    NSArray* constraints = [model getMovementConstraintsForObjectId:object];
-    
-    //NSLog(@"location of image being moved adjusted for point clicked: (%f, %f) size of image: %f x %f", adjLocation.x, adjLocation.y, imageWidth, imageHeight);
-    
-    //If there are movement constraints for this object.
-    if([constraints count] > 0) {
-        MovementConstraint* constraint = (MovementConstraint*)[constraints objectAtIndex:0];
-        
-        //Calculate the x,y coordinates and the width and height in pixels from %
-        float boxX = [constraint.originX floatValue] / 100.0 * [bookView frame].size.width;
-        float boxY = [constraint.originY floatValue] / 100.0 * [bookView frame].size.height;
-        float boxWidth = [constraint.width floatValue] / 100.0 * [bookView frame].size.width;
-        float boxHeight = [constraint.height floatValue] / 100.0 * [bookView frame].size.height;
-        
-        //NSLog(@"location of bounding box: (%f, %f) and size of bounding box: %f x %f", boxX, boxY, boxWidth, boxHeight);
-        
-        //Ensure that the image is not being moved outside of its bounding box.
-        if(waypoint.x + imageWidth > boxX + boxWidth)
-            waypoint.x = boxX + boxWidth - imageWidth;
-        else if(waypoint.x < boxX)
-            waypoint.x = boxX;
-        if(waypoint.y + imageHeight > boxY + boxHeight)
-            waypoint.y = boxY + boxHeight - imageHeight;
-        else if(waypoint.y < boxY)
-            waypoint.y = boxY;
-    }
-    
-    //Check to see if the image is being moved off screen. If it is, change it so that the image cannot be moved off screen.
-    if(waypoint.x + imageWidth > [bookView frame].size.width)
-        waypoint.x = [bookView frame].size.width - imageWidth;
-    else if(waypoint.x < 0)
-        waypoint.x = 0;
-    if(waypoint.y + imageHeight > [bookView frame].size.height)
-        waypoint.y = [bookView frame].size.height - imageHeight;
-    else if(waypoint.y < 0)
-        waypoint.y = 0;
-    
-    //May want to add code to keep objects from moving to the location that the text is taking up on screen.
-    
-    //NSLog(@"new location of %@: (%f, %f)", object, adjLocation.x, adjLocation.y);
-    //Call the moveObject function in the js file.
-    NSString *move = [NSString stringWithFormat:@"moveObject(%@, %f, %f)", object, waypoint.x, waypoint.y];
-    [bookView stringByEvaluatingJavaScriptFromString:move];
 }
 
 /*
