@@ -447,33 +447,34 @@ float const groupingProximity = 20.0;
                     }
                     else
                     {
-                        //for(PossibleInteraction *interaction in possibleInteractions)
-                        //    [self performInteraction:interaction];
-                        
-                        NSString* repeatobj;
-                        int count=0;
-                        for(PossibleInteraction *interaction in possibleInteractions){
-                            
-                            for(Connection* connection in [interaction connections]) {
-                                
-                                NSArray* objectIds = [connection objects]; //get the object Ids for this particular menuItem.
-                                
-                                
-                                NSString* obj1 = [objectIds objectAtIndex:0];
-                                
-                                if ([repeatobj isEqualToString:obj1]){
-                                    count = count + 1;
-                                }
-                                
-                                repeatobj = obj1;
-                            }
-                            if (count==0){
+                        if(condition == MENU)
+                        {
+                            for(PossibleInteraction *interaction in possibleInteractions)
                                 [self performInteraction:interaction];
-                            }
-                            else{
-                                count =0;
-                            }
+                        }
+                        if(condition == HOTSPOT)
+                        {
+                                
+                            NSString* repeatobj;
+                            int count=0;
+                            for(PossibleInteraction *interaction in possibleInteractions){
+                                for(Connection* connection in [interaction connections]) {
+                                    NSArray* objectIds = [connection objects]; //get the object Ids for this particular menuItem.
+                                    NSString* obj1 = [objectIds objectAtIndex:0];
+                                
+                                    if ([repeatobj isEqualToString:obj1]){
+                                        count = count + 1;
+                                    }
+                                    repeatobj = obj1;
+                                }
+                                if (count==0){
+                                    [self performInteraction:interaction];
+                                }
+                                else{
+                                    count =0;
+                                }
                             
+                            }
                         }
                     }
                     //end of code
@@ -503,34 +504,46 @@ float const groupingProximity = 20.0;
                     //New changed code added here
                     NSLog(@"returned %d interactions as follows:", [possibleInteractions count]);
                     NSLog(@"length of all possible groupings array: %d", [allPossibleGroupings count]);
-                    
+                    //int j=0;
                     //create possible interaction object from the allPossibleGroupings array
                     for(int i=0; i<[allPossibleGroupings count]; i++)
                     {
                         PossibleInteraction *pI = [[PossibleInteraction alloc] init];
                         //NSString* type = setOfGroups[i][0];
-                        NSArray* groupObjects = [[NSArray alloc] initWithObjects:allPossibleGroupings[i][0], allPossibleGroupings[i][1], nil];
-                        NSArray* hotspotsForGrouping = [[NSArray alloc] initWithObjects:allPossibleGroupings[i][2], allPossibleGroupings[i][3], nil];
+                        NSString *objA = allPossibleGroupings[i][0];
+                        NSString *objB = allPossibleGroupings[i][1];
+                        Hotspot *hotspotA = allPossibleGroupings[i][2];
+                        Hotspot *hotspotB = allPossibleGroupings[i][3];
+                        NSArray* groupObjects = [[NSArray alloc] initWithObjects:objA, objB, nil];
+                        NSArray* hotspotsForGrouping = [[NSArray alloc] initWithObjects:hotspotA, hotspotB, nil];
                         
-                        NSLog(@"obj1:%@, obj2:%@, action:%@", groupObjects[0], groupObjects[1], [hotspotsForGrouping[0] action]);
+                        NSLog(@"obj1:%@, obj2:%@, action:%@", objA, objB, [hotspotA action]);
+                        NSLog(@"ungroup:%i", [ungroupInteractions count]);
                         
-                        if([ungroupInteractions count] > 0)
+                        for(int j=0;j<[ungroupInteractions count];j++)
                         {
-                            NSArray *objs = [[NSArray alloc] init];
-                            NSArray *hspts = [[NSArray alloc] init];
-                        
-                            //create necessary objects and hotspots from connection objects
-                            for(Connection* connection in [ungroupInteractions[i] connections]){
-                                objs = [connection objects];
-                                hspts = [connection hotspots];
-                            }
-                        
-                            [pI addConnection:UNGROUP :objs :hspts];
+                            if([objA isEqualToString:ungroupInteractions[j][1]] && [objB isEqualToString:ungroupInteractions[j][2]])
+                            {
+                                PossibleInteraction *pi = ungroupInteractions[j][0];
+                                Connection *conn = [pi connections][0];
+                                NSArray *objs = [conn objects];
+                                NSArray *hspts = [conn hotspots];
+
+                                [pI addConnection:UNGROUP :objs :hspts];
+                                NSLog(@"ungroup objects %@ %@", objs[0], objs[1]);
+                           }
                         }
-                        //NSLog(@"ungroup objects %@ %@", objs[0], objs[1]);
                         
-                        [pI addConnection:GROUP :groupObjects :hotspotsForGrouping];
-                        [pI setInteractionType:TRANSFERANDGROUP];
+                        if([[hotspotA action] isEqualToString:@"receive"])
+                        {
+                            [pI addConnection:DISAPPEAR :groupObjects :hotspotsForGrouping];
+                            [pI setInteractionType:TRANSFERANDDISAPPEAR];
+                        }
+                        else
+                        {
+                            [pI addConnection:GROUP :groupObjects :hotspotsForGrouping];
+                            [pI setInteractionType:TRANSFERANDGROUP];
+                        }
                         
                         //add each unique possible interaction into the array
                         [uniquePossibleInteractions addObject:pI];
@@ -602,11 +615,11 @@ float const groupingProximity = 20.0;
                     for(Connection* connection in [interaction connections]) {
                         if([connection interactionType] != NONE) {
                             NSMutableArray* hotspots  = [[connection hotspots] mutableCopy];
-                            NSLog(@"Hotspot Obj1: %@ Hotspot Obj2: %@", [connection objects][0], [connection objects][1]);
+                            //NSLog(@"Hotspot Obj1: %@ Hotspot Obj2: %@", [connection objects][0], [connection objects][1]);
                             
                             //Figure out whether two hotspots are close enough together to currently be grouped. If so, draw the hotspots with green. Otherwise, draw them with red.
                             BOOL areWithinProximity = [self hotspotsWithinGroupingProximity:[hotspots objectAtIndex:0] :[hotspots objectAtIndex:1]];
-                            NSLog(@"are within proximity:%u:", areWithinProximity);
+                            //NSLog(@"are within proximity:%u:", areWithinProximity);
                             //NSLog(@"within proximity %hhd %u", areWithinProximity, [interaction interactionType]);
                             //TODO: Make sure this is correct.
                             if(areWithinProximity)// || ([interaction interactionType] == TRANSFERANDDISAPPEAR))
@@ -620,7 +633,7 @@ float const groupingProximity = 20.0;
                         }
                     }
                 }
-                NSLog(@"number of hotspots:%d %d", [redHotspots count], [greenHotspots count]);
+                //NSLog(@"number of hotspots:%d %d", [redHotspots count], [greenHotspots count]);
                 //Draw red hotspots first, then green ones.
                 if(condition == HOTSPOT){
                     [self drawHotspots:redHotspots :@"red"];
@@ -674,7 +687,7 @@ float const groupingProximity = 20.0;
         NSString* width = [bookView stringByEvaluatingJavaScriptFromString:requestWidth];
         NSString* height = [bookView stringByEvaluatingJavaScriptFromString:requestHeight];
         
-        NSLog(@"location of %@: (%@, %@) with size: %@ x %@, zindex:%@", objId, positionX, positionY, width, height, zIndex);
+        //NSLog(@"location of %@: (%@, %@) with size: %@ x %@, zindex:%@", objId, positionX, positionY, width, height, zIndex);
         
         [itemImage setBoundingBoxImage:CGRectMake([positionX floatValue], [positionY floatValue],
                                                   [width floatValue], [height floatValue])];
@@ -715,7 +728,7 @@ float const groupingProximity = 20.0;
            
         //Get all the necessary information of the UIImages.
         for(NSString* objId in objectIds) {
-            NSLog(@"objIds inside simulate: %@", objId);
+            //NSLog(@"objIds inside simulate: %@", objId);
             if([images objectForKey:objId] == nil) {
                 MenuItemImage *itemImage = [self createMenuItemForImage:objId];
                 
@@ -890,7 +903,7 @@ float const groupingProximity = 20.0;
     CGFloat obj1FinalPosX = positionX + deltaX;
     CGFloat obj1FinalPosY = positionY + deltaY;
     
-    NSLog(@"Object1: %@ Object2: %@ X: %f Y: %f %f %f", obj1, obj2, obj1FinalPosX, obj1FinalPosY, [obj1Image boundingBoxImage].size.width, [obj1Image boundingBoxImage].size.height);
+    //NSLog(@"Object1: %@ Object2: %@ X: %f Y: %f %f %f", obj1, obj2, obj1FinalPosX, obj1FinalPosY, [obj1Image boundingBoxImage].size.width, [obj1Image boundingBoxImage].size.height);
 
     
     [obj1Image setBoundingBoxImage:CGRectMake(obj1FinalPosX, obj1FinalPosY, [obj1Image boundingBoxImage].size.width,
@@ -991,26 +1004,56 @@ float const groupingProximity = 20.0;
             NSLog(@"******obj1: %@ obj2: %@************", obj1, obj2);
             
             //to test if its connected
-            CGPoint movingObjectHotspotLoc = [self getHotspotLocation:hotspot2];
+            NSString *contains = @"";
+            NSMutableArray *allhotspots = [model getHotspotsForObjectId:obj1];
+            NSString* isHotspotConnectedMovingObjectString=@"";
             
-            //Check to see if either of these hotspots are currently connected to another objects.
-            NSString *isHotspotConnectedMovingObject = [NSString stringWithFormat:@"objectGroupedAtHotspot(%@, %f, %f)", obj1, movingObjectHotspotLoc.x, movingObjectHotspotLoc.y];
-            NSString* isHotspotConnectedMovingObjectString  = [bookView stringByEvaluatingJavaScriptFromString:isHotspotConnectedMovingObject];
-            NSLog(@"connected object %@", isHotspotConnectedMovingObjectString);
-            if(![isHotspotConnectedMovingObjectString isEqualToString:@""])
+            for(Hotspot *hotspot in allhotspots)
             {
-                NSLog(@"inside first if");
-                NSString *contains = [NSString stringWithFormat:@"objectContainedInObject(%@,%@)",obj1,isHotspotConnectedMovingObjectString];
-                if(contains)
+                CGPoint movingObjectHotspotLoc = [self getHotspotLocation:hotspot];
+            
+                //Check to see if either of these hotspots are currently connected to another objects.
+                NSString *isHotspotConnectedMovingObject = [NSString stringWithFormat:@"objectGroupedAtHotspot(%@, %f, %f)", obj1, movingObjectHotspotLoc.x, movingObjectHotspotLoc.y];
+                isHotspotConnectedMovingObjectString  = [bookView stringByEvaluatingJavaScriptFromString:isHotspotConnectedMovingObject];
+                NSLog(@"object connected to %@", isHotspotConnectedMovingObjectString);
+                
+                if(![isHotspotConnectedMovingObjectString isEqualToString:@""])
                 {
-                    NSLog(@"hay is contained within farmer");
-                    [self ungroupObjects:obj1:isHotspotConnectedMovingObject];
+                    //NSLog(@"inside first if");
+                    contains = [NSString stringWithFormat:@"objectContainedInObject(%@,%@)",isHotspotConnectedMovingObjectString, obj1];
+                    if(contains)
+                    {
+                        NSLog(@"%@ is contained within %@", isHotspotConnectedMovingObjectString, obj1);
+                        [self ungroupObjects:obj1:isHotspotConnectedMovingObject];
+                    }
+                    NSLog(@"%@ and %@ are connected", obj1, isHotspotConnectedMovingObjectString);
                 }
-                NSLog(@"%@ and %@ are connected", obj1, isHotspotConnectedMovingObjectString);
             }
-            
-            
-            [self groupObjects:obj1 :hotspot1Loc :obj2 :hotspot2Loc]; //Group objects.
+            if([contains isEqualToString:@"true"])
+            {
+                NSMutableArray *subjectHotspots = [model getHotspotsForObjectId:isHotspotConnectedMovingObjectString];
+                NSMutableArray *objectHotspots = [model getHotspotsForObjectId:obj2];
+                
+                BOOL getLocation = NO;
+                
+               
+                for(Hotspot *hotspotA in subjectHotspots)
+                {
+                    for(Hotspot *hotspotB in objectHotspots)
+                    {
+                        if(([[hotspotA action] isEqualToString:[hotspotB action]]) && (![[hotspotA role] isEqualToString:[hotspotB action]] ))
+                        {
+                            getLocation = YES;
+                            CGPoint subjectCGPoint = [self getHotspotLocation:hotspotA];
+                            CGPoint objectCGPoint = [self getHotspotLocation:hotspotB];
+                            [self groupObjects:isHotspotConnectedMovingObjectString :subjectCGPoint :obj2 :objectCGPoint]; //Group objects.
+                        }
+                    }
+                }
+                
+            }
+            else
+                [self groupObjects:obj1 :hotspot1Loc :obj2 :hotspot2Loc]; //Group objects.
             
             
             
@@ -1135,6 +1178,7 @@ float const groupingProximity = 20.0;
     
     if(![overlapArrayString isEqualToString:@""]) {
         NSArray* overlappingWith = [overlapArrayString componentsSeparatedByString:@", "];
+        //NSLog(@"number of overlapping objs:%lu", (unsigned long)[overlappingWith count]);
         
         for(NSString* objId in overlappingWith) {
             NSMutableArray* hotspots = [model getHotspotsForObject:objId OverlappingWithObject:movingObjectId];
@@ -1183,7 +1227,7 @@ float const groupingProximity = 20.0;
 
                                 objects = [[NSArray alloc] initWithObjects:movingObjectId, objId, nil];
                                 
-                                //group = [NSMutableArray arrayWithObjects:movingObjectId, objId, movingObjectHotspot, hotspot , nil];
+                                group = [NSMutableArray arrayWithObjects:movingObjectId, objId, movingObjectHotspot, hotspot , nil];
                                 
                                 //NSLog(@"%@ %@ %@", movingObjectId, objId, [movingObjectHotspot action]);
                                 //[groupings addObject:[[PossibleInteraction alloc] initWithValues:GROUP :objects :hotspotsForInteraction]];
@@ -1191,9 +1235,42 @@ float const groupingProximity = 20.0;
                                 
                                 NSLog(@"GROUP interaction added with %@ and %@, hotpot1: %@, hotspot2: %@", objId, movingObjectId, [movingObjectHotspot role], [hotspot role]);
                                 [groupings addObject:interaction];
-                                //[allPossibleGroupings addObject:group];
+                                
+                                if([allPossibleGroupings count] == 0)
+                                    [allPossibleGroupings addObject:group];
+                                else
+                                {
+                                    
+                                    BOOL b1 = false;
+                                    BOOL b2 = false;
+                                    BOOL b3 = false;
+                                    BOOL final = false;
+                                    
+                                    for (int j=0;j<[allPossibleGroupings count];j++) {
+                                        NSString *obj1 = allPossibleGroupings[j][0];
+                                        NSString *obj2 = allPossibleGroupings[j][1];
+                                        Hotspot* hs1 = allPossibleGroupings[j][2];
+                                        Hotspot* hs2 = allPossibleGroupings[j][3];
+                                        if([obj1 isEqualToString:movingObjectId] && [obj2 isEqualToString:objId] )
+                                            b1 = true;
+                                        if([[hs1 role] isEqualToString:[movingObjectHotspot role]] && [[hs2 role] isEqualToString:[hotspot role]])
+                                            b2 = true;
+                                        if([[hs1 action] isEqualToString:[movingObjectHotspot action]])
+                                            b3 = true;
+                                        if (!(b1 && b3 && b2))
+                                        {
+                                            final = true;
+                                            NSLog(@"new interaction added");
+                                        }
+                                        else
+                                            final = false;
+                                    }
+                                    
+                                    if(final)
+                                        [allPossibleGroupings addObject:group];
+                                }
                             }
-                            /* TODO: Need to fix this. Disappear is disabled for both conditions
+                            /* TODO: Need to fix this. Disappear is disabled for both conditions*/
                             else if([[relationshipBetweenObjects actionType] isEqualToString:@"disappear"]) {
                                 PossibleInteraction* interaction = [[PossibleInteraction alloc] initWithInteractionType:DISAPPEAR];
                                 //Add both the object causing the disappearing and the one that is doing the disappearing.
@@ -1207,7 +1284,7 @@ float const groupingProximity = 20.0;
                                 [interaction addConnection:DISAPPEAR :objects :hotspotsForInteraction];
                                 [groupings addObject:interaction];
                             }
-                             */
+                             
                         }//end of if hotspots are in close proximity
                     }//end of if actions match
                     /*
@@ -1372,7 +1449,7 @@ float const groupingProximity = 20.0;
             }
             
             //********Transference for moving object**************
-            if(condition == NONE){//if((condition == MENU) || (condition == HOTSPOT)){
+            if(condition == MENU){//if((condition == MENU) || (condition == HOTSPOT)){
                 BOOL contained = NO;
                 movingObjectHotspots = [model getHotspotsForObjectId:movingObjectId];
             for(Hotspot* movingObjectHotspot in movingObjectHotspots) {
@@ -1381,7 +1458,7 @@ float const groupingProximity = 20.0;
                 //Check to see if either of these hotspots are currently connected to another objects.
                 NSString *isHotspotConnectedMovingObject = [NSString stringWithFormat:@"objectGroupedAtHotspot(%@, %f, %f)", movingObjectId, movingObjectHotspotLoc.x, movingObjectHotspotLoc.y];
                 NSString* isHotspotConnectedMovingObjectString  = [bookView stringByEvaluatingJavaScriptFromString:isHotspotConnectedMovingObject];
-                NSLog(@"moving obj:%@, isConnected:%@", movingObjectId, isHotspotConnectedMovingObjectString);
+                //NSLog(@"moving obj:%@, isConnected:%@", movingObjectId, isHotspotConnectedMovingObjectString);
                 //If one of the hotspots is taken, figure out which one and what it's connected to.
                 if (![isHotspotConnectedMovingObjectString isEqualToString:@""]) {
                     NSString *objConnected = movingObjectId;
@@ -1395,36 +1472,47 @@ float const groupingProximity = 20.0;
                     NSMutableArray *a2  = [model getHotspotsForObject:currentUnconnectedObj OverlappingWithObject :objConnected];
                     NSMutableArray *a1 = [model getHotspotsForObject:currentUnconnectedObj OverlappingWithObject :objConnectedTo];
                     
-                    NSSet *a1set = [NSSet setWithArray:a1];
-                    NSSet *a2set = [NSSet setWithArray:a2];
+                    //NSSet *a1set = [NSSet setWithArray:a1];
+                    //NSSet *a2set = [NSSet setWithArray:a2];
                     
-                    //To check if one object's hotspots (cart) is enclosed within another object's hotspots (farmer)
-                    if ([a1set isSubsetOfSet:a2set]) {
-                        hotspotsForCurrentUnconnectedObject = a2;
-                        contained = YES;
+                    hotspotsForCurrentUnconnectedObject = a2;
+                    
+                    //To check if one object's hotspots (hay) is enclosed within another object's hotspots (farmer) or vice versa, if yes, then append one array to another so that we get all possible interactions.
+                    NSString *isContained = [NSString stringWithFormat:@"objectContainedInObject(%@,%@)", objConnected, objConnectedTo];
+                    isContained = [bookView stringByEvaluatingJavaScriptFromString:isContained];
+                    
+                    //if([isContained isEqualToString:@"true"])
+                    //{
+                    //    [hotspotsForCurrentUnconnectedObject addObjectsFromArray:a1];
+                    //    contained = YES;
                         //NSLog(@"a1 is a subset of a2");
+                    //}
+                    if([isContained isEqualToString:@"false"]){
+                        isContained = [NSString stringWithFormat:@"objectContainedInObject(%@,%@)", objConnectedTo, objConnected];
+                        isContained = [bookView stringByEvaluatingJavaScriptFromString:isContained];
                     }
-                    else if([a2set isSubsetOfSet:a1set])
+                    
+                    if([isContained isEqualToString:@"true"])
                     {
-                        hotspotsForCurrentUnconnectedObject = a1;
+                        [hotspotsForCurrentUnconnectedObject addObjectsFromArray:a1];
                         contained = YES;
                     }
-                    else
-                        hotspotsForCurrentUnconnectedObject = a1;
+                    //else
+                    //    hotspotsForCurrentUnconnectedObject = a2;
                     
                     NSMutableArray* hotspotsForObjConnectedTo = [model getHotspotsForObject:objConnectedTo
                                                                  OverlappingWithObject :currentUnconnectedObj];
 
-                    NSLog(@"Objects involved: %@, %@, %@", objConnected ,objConnectedTo, currentUnconnectedObj);//hay, farmer, cart
+                    NSLog(@"Objects involved: %@, %@, %@, contained: %@, arrLength:%lu", objConnected ,objConnectedTo, currentUnconnectedObj,isContained, (unsigned long)[hotspotsForCurrentUnconnectedObject count]);//hay, farmer, cart
                     
                     //get the possible interactions for objectConnectedTo and the overlapping object
                     groupings = [self findInteractions:hotspotsForObjConnectedTo:hotspotsForCurrentUnconnectedObject:movingObjectHotspots:objConnectedTo:currentUnconnectedObj:objConnected:groupings:contained];
                     
-                    //NSLog(@"groupings count before: %d", [allPossibleGroupings count]);
+                    NSLog(@"groupings count before: %d", [allPossibleGroupings count]);
                     //get the possible interactions for movingObject and the overlapping object
                     groupings = [self findInteractions:movingObjectHotspots:hotspotsForCurrentUnconnectedObject:hotspotsForObjConnectedTo:objConnected:currentUnconnectedObj:objConnectedTo:groupings:contained];
                     
-                    //NSLog(@"groupings count after: %d", [allPossibleGroupings count]);
+                    NSLog(@"groupings count after: %d", [allPossibleGroupings count]);
                 }
             }//enf of transference condition 2
             }
@@ -1484,17 +1572,18 @@ float const groupingProximity = 20.0;
             bool rolesMatch = [[hotspot1 role] isEqualToString:[hotspot2 role]];
             bool actionsMatch = [[hotspot1 action] isEqualToString:[hotspot2 action]];
             
+            NSLog(@"Hi %@, %@, action:%@, action:%@, role:%@, role:%@, isConnected:%@", objA, objB, [hotspot1 action], [hotspot2 action],[hotspot1 role], [hotspot1 role], isUnConnectedObjHotspotConnectedString);
             /*
             if([[hotspot2 action] isEqualToString:@"grab"] || [[hotspot1 action] isEqualToString:@"grab"])
             {
                 NSLog(@"Hi %@, %@, action:%@, action:%@, ht1loc-x:%f, ht1loc-y:%f, ht2loc-x:%f, ht2loc-y:%f", objA, objB, [hotspot1 action], [hotspot2 action],[hotspot1 location].x, [hotspot1 location].y, [hotspot2 location].x, [hotspot2 location].y);
             }*/
-            NSLog(@"hotspot1 action: %@ hotspot2 action:%@", [hotspot1 action], [hotspot2 action]);
+            //NSLog(@"hotspot1 action: %@ hotspot2 action:%@", [hotspot1 action], [hotspot2 action]);
             if(actionsMatch && [isUnConnectedObjHotspotConnectedString isEqualToString:@""] && !rolesMatch) {
                 
                 //Get the relationship between these two objects so we can check to see what type of relationship it is.
                 Relationship* relationshipBetweenObjects = [model getRelationshipForObjectsForAction:objA :objB :[hotspot1 action]];
-                
+                NSLog(@"relation type:%@", [relationshipBetweenObjects actionType]);
                 //If so, add it to the list of possible interactions as a transfer.
                 //NSArray *objects = [[NSArray alloc] initWithObjects:objConnected, objConnectedTo, currentUnconnectedObj, nil];
                 //NSArray* hotspotsForInteraction = [[NSArray alloc] initWithObjects:hotspot1, hotspot2, nil];
@@ -1506,9 +1595,20 @@ float const groupingProximity = 20.0;
                 NSArray *ungroupObjects = [[NSArray alloc] initWithObjects:objC, objA, nil];
                 Hotspot *hotspotC = [self findConnectedHotspot:hotspotsC :objC];
                 NSArray* hotspotsForUngrouping = [[NSArray alloc] initWithObjects:hotspotC, hotspot1, nil];
+                
                 [Uinteraction addConnection:UNGROUP :ungroupObjects :hotspotsForUngrouping];
-                NSLog(@"outside contained if");
                 //[ungroupInteractions addObject:Uinteraction];
+                NSMutableArray *element = [[NSMutableArray alloc] initWithObjects:Uinteraction, objA, objB, nil];
+                
+                NSString *isContained = [NSString stringWithFormat:@"objectContainedInObject(%@,%@)", objC, objA];
+                isContained = [bookView stringByEvaluatingJavaScriptFromString:isContained];
+                NSLog(@"disconnect %@ %@, iscontained:%@", objC, objA, isContained);
+                if([isContained isEqualToString:@"false"])
+                {
+                    [ungroupInteractions addObject:element];
+                }
+                //else
+                //    [ungroupInteractions setObject:NULL forKey:[NSNumber numberWithInt:[allPossibleGroupings count]]];
                 
                 //if(contained){
                 if([[relationshipBetweenObjects  actionType] isEqualToString:@"group"]) {
@@ -1577,7 +1677,7 @@ float const groupingProximity = 20.0;
                     }
                     
                 }
-                /* TODO: Need to fix this. Disappear is disabled for both conditions
+                /* TODO: Need to fix this. Disappear is disabled for both conditions*/
                 //had else if, commented the prev section to allow for transference with only disappear and not grouping
                 if([[relationshipBetweenObjects actionType] isEqualToString:@"disappear"]) {
                     //In this case we do not need to pass any of the hotspot information as the relevant hotspots will be calculated later on.
@@ -1590,9 +1690,45 @@ float const groupingProximity = 20.0;
                     grp = [NSMutableArray arrayWithObjects:objA,objB, hotspot1, hotspot2, nil];
                     [interaction addConnection:DISAPPEAR :disappearObjects :hotspotsForDisappear];
                     [interaction setInteractionType:TRANSFERANDDISAPPEAR];
+                    
+                    //to restrict duplicate disappear actions
+                    if([allPossibleGroupings count]==0)
+                    {
+                        [allPossibleGroupings addObject:grp];
+                    }
+                    else
+                    {
+                        BOOL b1 = false;
+                        BOOL b2 = false;
+                        BOOL b3 = false;
+                        BOOL final = false;
+                        
+                        for (int j=0;j<[allPossibleGroupings count];j++) {
+                            NSString *obj1 = allPossibleGroupings[j][0];
+                            NSString *obj2 = allPossibleGroupings[j][1];
+                            Hotspot* hs1 = allPossibleGroupings[j][2];
+                            Hotspot* hs2 = allPossibleGroupings[j][3];
+                            if([obj1 isEqualToString:objA] && [obj2 isEqualToString:objB] )
+                                b1 = true;
+                            if([[hs1 role] isEqualToString:[hotspot1 role]] && [[hs2 role] isEqualToString:[hotspot2 role]])
+                                b2 = true;
+                            if([[hs1 action] isEqualToString:[hotspot1 action]])
+                                b3 = true;
+                            if (!(b1 && b3 && b2))
+                            {
+                                final = true;
+                            }
+                            else
+                                final = false;
+                        }
+                        
+                        if(final)
+                            [allPossibleGroupings addObject:grp];
+                    }
                     //[allPossibleGroupings addObject:grp];
                     
                     //code to restrict too many disappear interactions
+                    /*
                     for(PossibleInteraction *interaction in groupings)
                     {
                         if([interaction interactionType] == DISAPPEAR)
@@ -1600,7 +1736,8 @@ float const groupingProximity = 20.0;
                     }
                     if(!hasDisappear)
                         [groupings addObject:interaction];
-                }*/
+                     */
+                }
             }
         }
     }
