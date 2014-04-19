@@ -17,11 +17,12 @@
     NSUInteger totalSentences; //Total number of sentences on this page.
     
     NSUInteger currentStep; //Active step to be completed.
+    BOOL stepsComplete; //True if all steps have been completed for a sentence
     
     NSString* movingObjectId; //Object currently being moved.
     NSString* separatingObjectId; //Object identified when pinch gesture performed.
     BOOL movingObject; //True if an object is currently being moved, false otherwise.
-    BOOL sepearatingObject; //True if two objects are currently being ungrouped, false otherwise.
+    BOOL separatingObject; //True if two objects are currently being ungrouped, false otherwise.
     
     BOOL pinching;
     
@@ -192,6 +193,7 @@ float const groupingProximity = 20.0;
     
     currentSentence = 1;
     currentStep = 1;
+    stepsComplete = FALSE;
     self.title = chapterTitle;
 }
 
@@ -207,6 +209,8 @@ float const groupingProximity = 20.0;
     if (currentStep < numSteps) {
         currentStep++;
     }
+    else
+        stepsComplete = TRUE;
 }
 
 /*
@@ -349,7 +353,7 @@ float const groupingProximity = 20.0;
         NSString* imageAtPoint = [self getManipulationObjectAtPoint:location];
         
         //if it's an image that can be moved, then start moving it.
-        if(imageAtPoint != nil) {
+        if(imageAtPoint != nil && !stepsComplete) {
             separatingObjectId = imageAtPoint;
         }
     }
@@ -416,7 +420,7 @@ float const groupingProximity = 20.0;
             //NSLog(@"location pressed: (%f, %f)", location.x, location.y);
             
             //if it's an image that can be moved, then start moving it.
-            if(imageAtPoint != nil) {
+            if(imageAtPoint != nil && !stepsComplete) {
                 movingObject = TRUE;
                 movingObjectId = imageAtPoint;
                 
@@ -1099,6 +1103,8 @@ float const groupingProximity = 20.0;
                 NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
                 [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
             }
+            
+            [self incrementCurrentStep];
         }
     }
 }
@@ -1937,6 +1943,7 @@ float const groupingProximity = 20.0;
     
     //Reset current step to 1 when moving to next sentence
     currentStep = 1;
+    stepsComplete = FALSE;
     
     //Highlight the next sentence and set its color to blue.
     setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
