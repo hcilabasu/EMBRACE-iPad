@@ -1094,6 +1094,10 @@ float const groupingProximity = 20.0;
                 
                 //Move the object
                 [self moveObject:object1Id :waypointLocation :hotspotLocation];
+                
+                //Clear highlighting
+                NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
+                [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
             }
         }
     }
