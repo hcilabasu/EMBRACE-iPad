@@ -117,9 +117,30 @@ float const groupingProximity = 20.0;
     NSString* sentenceCount = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount];
     totalSentences = [sentenceCount intValue];
     
-    //Set sentence color to blue for first sentence.
+    Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
+    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
+    PhysicalManipulationSolution* PMSolution = [PMActivity PMSolution]; //get PM solution
+    
+    //Get number of steps for current sentence
+    NSUInteger numSteps = [PMSolution getNumStepsForSentence:currentSentence];
+    
+    NSString* setSentenceColor;
+    
+    //If the sentence has a solution, highlight it as blue. Otherwise, highlight as black.
+    if (numSteps > 0) {
+        setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
+        [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
+    }
+    else {
+        stepsComplete = TRUE;
+        
+        setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black)", currentSentence];
+        [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
+    }
+    
+    /*//Set sentence color to blue for first sentence.
     NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
-    [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
+    [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];*/
     
     //Bold sentence
     NSString* setSentenceWeight = [NSString stringWithFormat:@"setSentenceFontWeight(s%d, 'bold')", currentSentence];
@@ -209,8 +230,9 @@ float const groupingProximity = 20.0;
     if (currentStep < numSteps) {
         currentStep++;
     }
-    else
+    else {
         stepsComplete = TRUE;
+    }
 }
 
 /*
@@ -990,6 +1012,8 @@ float const groupingProximity = 20.0;
         }
     }
     else {
+        stepsComplete = TRUE; //no steps to complete for current sentence
+        
         //User cannot move anything if there are no steps to be performed
         return false;
     }
@@ -1929,40 +1953,63 @@ float const groupingProximity = 20.0;
  * is correct, then it will move on to the next sentence. If the manipulation is not current, then feedback will be provided.
  */
 -(IBAction)pressedNext:(id)sender {
-    //Check to make sure the answer is correct and act appropriately.
-    //For the moment we assume the sentence is correct and set the sentence color to green.
-    NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'green')", currentSentence];
-    [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
-    
-    //Unbold sentence
-    NSString* setSentenceWeight = [NSString stringWithFormat:@"setSentenceFontWeight(s%d, 'normal')", currentSentence];
-    [bookView stringByEvaluatingJavaScriptFromString:setSentenceWeight];
-    
-    //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
-    currentSentence ++;
-    
-    //Reset current step to 1 when moving to next sentence
-    currentStep = 1;
-    stepsComplete = FALSE;
-    
-    //Highlight the next sentence and set its color to blue.
-    setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
-    [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
-    
-    //Bold sentence
-    setSentenceWeight = [NSString stringWithFormat:@"setSentenceFontWeight(s%d, 'bold')", currentSentence];
-    [bookView stringByEvaluatingJavaScriptFromString:setSentenceWeight];
-    
-    NSString* setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, 1.0)", currentSentence];
-    [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
-    
-    /*NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, \"blue\")", currentSentence];
-     
-     [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];*/
-    
-    //currentSentence is 1 indexed.
-    if(currentSentence > totalSentences) {
-        [self loadNextPage];
+    if (stepsComplete) {        
+        //Check to make sure the answer is correct and act appropriately.
+        //For the moment we assume the sentence is correct and set the sentence color to green.
+        NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'green')", currentSentence];
+        [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
+        
+        //Unbold sentence
+        NSString* setSentenceWeight = [NSString stringWithFormat:@"setSentenceFontWeight(s%d, 'normal')", currentSentence];
+        [bookView stringByEvaluatingJavaScriptFromString:setSentenceWeight];
+        
+        //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
+        currentSentence ++;
+        
+        //Reset current step to 1 when moving to next sentence
+        currentStep = 1;
+        stepsComplete = FALSE;
+        
+        Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
+        PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
+        PhysicalManipulationSolution* PMSolution = [PMActivity PMSolution]; //get PM solution
+        
+        //Get number of steps for current sentence
+        NSUInteger numSteps = [PMSolution getNumStepsForSentence:currentSentence];
+        
+        //If the sentence has a solution, highlight it as blue. Otherwise, highlight as black.
+        if (numSteps > 0) {
+            //Highlight the next sentence and set its color to blue.
+            setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
+            [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
+        }
+        else {
+            //Highlight the next sentence and set its color to black.
+            setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black)", currentSentence];
+            [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
+            
+            stepsComplete = TRUE;
+        }
+        
+        /*//Highlight the next sentence and set its color to blue.
+        setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
+        [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];*/
+        
+        //Bold sentence
+        setSentenceWeight = [NSString stringWithFormat:@"setSentenceFontWeight(s%d, 'bold')", currentSentence];
+        [bookView stringByEvaluatingJavaScriptFromString:setSentenceWeight];
+        
+        NSString* setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, 1.0)", currentSentence];
+        [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
+        
+        /*NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, \"blue\")", currentSentence];
+         
+         [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];*/
+        
+        //currentSentence is 1 indexed.
+        if(currentSentence > totalSentences) {
+            [self loadNextPage];
+        }
     }
 }
 
