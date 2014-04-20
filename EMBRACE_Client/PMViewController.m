@@ -984,7 +984,7 @@ float const groupingProximity = 20.0;
     NSUInteger numSteps = [PMSolution getNumStepsForSentence:currentSentence];
     
     //Check solution only if it exists for the sentence
-    if (numSteps > 0) {
+    if (numSteps > 0 && !stepsComplete) {
         //Get steps for current sentence
         NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
         
@@ -992,7 +992,7 @@ float const groupingProximity = 20.0;
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
     
         //User can only select the correct subject when step type is group
-        if ([[currSolStep stepType] isEqualToString:@"group"] ||
+        /*if ([[currSolStep stepType] isEqualToString:@"group"] ||
             [[currSolStep stepType] isEqualToString:@"check"]) {
             NSString* correctSubject = [currSolStep object1Id];
             
@@ -1009,6 +1009,37 @@ float const groupingProximity = 20.0;
         //User can move any object for other step types
         else {
             return true;
+        }*/
+        
+        if ([[currSolStep stepType] isEqualToString:@"transferAndGroup"]) {
+            //Get next sentence step
+            ActionStep* nextSolStep = [currSolSteps objectAtIndex:currentStep];
+            
+            //Correct subject for a transfer and group step is the obj1 of the next transfer and group step
+            NSString* correctSubject = [nextSolStep object1Id];
+            
+            //Selected object is the correct subject
+            if ([correctSubject isEqualToString:subject]) {
+                return true;
+            }
+            else {
+                //Check if selected object is in a group with the correct subject
+                BOOL isSubjectInGroup = [self isSubject:correctSubject ContainedInGroupWithObject:subject];
+                return isSubjectInGroup;
+            }
+        }
+        else {
+            NSString* correctSubject = [currSolStep object1Id];
+            
+            //Selected object is the correct subject
+            if ([correctSubject isEqualToString:subject]) {
+                return true;
+            }
+            else {
+                //Check if selected object is in a group with the correct subject
+                BOOL isSubjectInGroup = [self isSubject:correctSubject ContainedInGroupWithObject:subject];
+                return isSubjectInGroup;
+            }
         }
     }
     else {
@@ -1953,7 +1984,7 @@ float const groupingProximity = 20.0;
  * is correct, then it will move on to the next sentence. If the manipulation is not current, then feedback will be provided.
  */
 -(IBAction)pressedNext:(id)sender {
-    if (stepsComplete) {        
+    if (stepsComplete) {
         //Check to make sure the answer is correct and act appropriately.
         //For the moment we assume the sentence is correct and set the sentence color to green.
         NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'green')", currentSentence];
