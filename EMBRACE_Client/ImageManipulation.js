@@ -673,3 +673,25 @@ function clearAllHotspots() {
     
     document.getElementById('overlay').style.zIndex = "0";
 }
+
+function getSentenceText(sentenceId){
+    
+    return sentenceId.innerHTML;
+}
+
+function getSentenceClass(sentenceId){
+    
+    return sentenceId.className;
+}
+
+function setSentenceUnderline(sentenceId) {
+    sentenceId.style.textDecoration = "underline";
+}
+
+function setSentenceNoUnderline(sentenceId) {
+    sentenceId.style.textDecoration = "none";
+}
+
+//function setAudibleUnderline(sentenceId) {
+//sentenceId.style.textDecoration = "underline";
+//}
