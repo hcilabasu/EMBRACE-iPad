@@ -611,11 +611,11 @@ float const groupingProximity = 20.0;
                 
                 NSMutableArray* possibleInteractions;
                 if (condition==HOTSPOT){
-                     possibleInteractions = [self getPossibleInteractions:NO];
+                    possibleInteractions = [self getPossibleInteractions:NO];
                 }
                 // for Menu based condition we dont need to have all the possible interactions being stored as we dont need to include them when the movingObject just moves over random objects.
                 else{
-                possibleInteractions = nil;
+                    possibleInteractions = nil;
                 }
                 //Keep a list of all hotspots so that we know which ones should be drawn as green and which should be drawn as red. At the end, draw all hotspots together.
                 NSMutableArray* redHotspots = [[NSMutableArray alloc] init];
@@ -1988,7 +1988,7 @@ float const groupingProximity = 20.0;
              i++;
              }
              */
-          
+            
         }
         
         //ranking for ungroup actions
@@ -2005,7 +2005,7 @@ float const groupingProximity = 20.0;
             [possibleInteractions exchangeObjectAtIndex:2 withObjectAtIndex:indx3];
         
     }
-
+    
 }
 
 -(void) rankPossibleGroupings:(NSMutableArray*) possibleInteractions {
@@ -2026,7 +2026,7 @@ float const groupingProximity = 20.0;
     Hotspot *hotspotA;
     Hotspot *hotspotB ;
     NSString* action2;
-  
+    
     //NSNumber* currentsent = [NSNumber numberWithInt:currentSentence];
     
     for (PossibleInteraction *pI in possibleInteractions)
@@ -2042,7 +2042,7 @@ float const groupingProximity = 20.0;
             for(Connection *connection in [pI connections])
             {
                 
-               
+                
                 
                 NSString *obj1 = [connection objects][0];
                 NSString *obj2 = [connection objects][1];
@@ -2063,26 +2063,26 @@ float const groupingProximity = 20.0;
                 }
                 
             }
-                            }
-            }
+        }
+    }
     
-
-
-            
-            //Connection *connection = [pI connections][1];
-            //NSLog(@"type:@", [connection interactionType]);
-            /*for(ActionStep *step in actionSteps)
-             {
-             if([step sentNumber] == [NSNumber numberWithUnsignedInteger:currentSentence])
-             break;
-             i++;
-             }
-             */
-            
     
-        
-
-
+    
+    
+    //Connection *connection = [pI connections][1];
+    //NSLog(@"type:@", [connection interactionType]);
+    /*for(ActionStep *step in actionSteps)
+     {
+     if([step sentNumber] == [NSNumber numberWithUnsignedInteger:currentSentence])
+     break;
+     i++;
+     }
+     */
+    
+    
+    
+    
+    
     if (allPossibleGroupings && [allPossibleGroupings count]){
         [allPossibleGroupings exchangeObjectAtIndex:0 withObjectAtIndex:indx1];
         if (indx2>0 && [allPossibleGroupings count]>0)
