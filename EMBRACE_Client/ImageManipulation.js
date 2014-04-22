@@ -320,7 +320,7 @@ function animateUngrouping(group) {
         //For now just move the object that's contained within the other object toward the left until it's no longer overlapping.
         //Also make sure you're not moving it off screen.
         while((group.obj2.offsetLeft + group.obj2.offsetWidth + GAP > group.obj1.offsetLeft) &&
-              (grou.obj2.offsetLeft - STEP > 0)) {
+              (group.obj2.offsetLeft - STEP > 0)) {
             move(group.obj2, group.obj2.offsetLeft - STEP, group.obj2.offsetTop);
         }
     }
@@ -672,4 +672,22 @@ function clearAllHotspots() {
     context.clearRect(0, 0, canvas.width, canvas.height);
     
     document.getElementById('overlay').style.zIndex = "0";
+}
+
+function getSentenceText(sentenceId){
+    
+    return sentenceId.innerHTML;
+}
+
+function getSentenceClass(sentenceId){
+    
+    return sentenceId.className;
+}
+
+function setSentenceUnderline(sentenceId) {
+    sentenceId.style.textDecoration = "underline";
+}
+
+function setSentenceNoUnderline(sentenceId) {
+    sentenceId.style.textDecoration = "none";
 }
