@@ -534,14 +534,54 @@ function objectGroupedAtHotspot(object, x, y) {
 }
 
 /*
+ * Helper method that tells us whether one object is  contained within another object.Could be the case where an object is placed inside an object with it being partially visible
+ * Will return true if object1 is contained in object2.
+ */
+function objectContainedWithinObject(object1, object2) {
+    
+//    alert(object1.offsetTop);
+//    alert(object1.offsetHeight);
+//    alert(object2.offsetTop);
+//    alert(object2.offsetHeight);
+//    alert(object1.offsetLeft);
+//    alert(object2.offsetLeft);
+//    alert(object1.offsetWidth);
+//    alert(object2.offsetWidth);
+    
+    
+    if(
+       (object1.offsetTop + object1.offsetHeight <= object2.offsetTop + object2.offsetHeight) &&
+       (object1.offsetLeft > object2.offsetLeft) &&
+       (object1.offsetLeft + object1.offsetWidth <= object2.offsetLeft + object2.offsetWidth))
+        
+        
+        return true;
+    else
+        return false;
+}
+
+/*
  * Helper method that tells us whether one object is completely contained within another object.
  * Will return true if object1 is contained in object2.
  */
 function objectContainedInObject(object1, object2) {
+    
+//    alert(object1.offsetTop);
+//    alert(object1.offsetHeight);
+//    alert(object2.offsetTop);
+//    alert(object2.offsetHeight);
+//    alert(object1.offsetLeft);
+//    alert(object2.offsetLeft);
+//    alert(object1.offsetWidth);
+//    alert(object2.offsetWidth);
+    
+    
    if((object1.offsetTop >= object2.offsetTop) &&
       (object1.offsetTop + object1.offsetHeight <= object2.offsetTop + object2.offsetHeight) &&
       (object1.offsetLeft > object2.offsetLeft) &&
       (object1.offsetLeft + object1.offsetWidth <= object2.offsetLeft + object2.offsetWidth))
+       
+    
        return true;
     else
         return false;

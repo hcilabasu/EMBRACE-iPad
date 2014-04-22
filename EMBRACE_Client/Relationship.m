@@ -20,7 +20,7 @@ NSSet* actionTypes = nil;
 + (void)initialize {
     //We're currently ignoring ungroup since it's just the inverse of group.
     if(!actionTypes)
-        actionTypes = [NSSet setWithObjects:@"group", @"disappear", nil];
+        actionTypes = [NSSet setWithObjects:@"group", @"disappear",@"transfer", nil];
 }
 
 - (id) initWithValues:(NSString*)obj1Id :(NSString*)can :(NSString*)type :(NSString*) obj2Id {
