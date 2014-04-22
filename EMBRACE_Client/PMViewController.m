@@ -2010,8 +2010,8 @@ float const groupingProximity = 20.0;
     if (stepsComplete) {
         //Check to make sure the answer is correct and act appropriately.
         //For the moment we assume the sentence is correct and set the sentence color to green.
-        NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'green')", currentSentence];
-        [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
+        //NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'green')", currentSentence];
+        //[bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
         
        /* //Unbold sentence
         NSString* setSentenceWeight = [NSString stringWithFormat:@"setSentenceFontWeight(s%d, 'normal')", currentSentence];
@@ -2050,9 +2050,11 @@ float const groupingProximity = 20.0;
         [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];*/
         
         //Highlight the next sentence and set its color to blue.
-        setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence];
+        NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence];
         [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
         
+        setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'grey')", currentSentence-1];
+        [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
         /*//Bold sentence
         setSentenceWeight = [NSString stringWithFormat:@"setSentenceFontWeight(s%d, 'bold')", currentSentence];
         [bookView stringByEvaluatingJavaScriptFromString:setSentenceWeight];*/
