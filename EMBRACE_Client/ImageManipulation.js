@@ -634,3 +634,33 @@ function clearAllHighlighted() {
     context.clearRect(0, 0, canvas.width, canvas.height);
     
 }
+
+/*
+ * Clear all hotspots.
+ */
+function clearAllHotspots() {
+    var canvas = document.getElementById('overlay');
+    var context = canvas.getContext('2d');
+
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    
+    document.getElementById('overlay').style.zIndex = "0";
+}
+
+function getSentenceText(sentenceId){
+    
+    return sentenceId.innerHTML;
+}
+
+function getSentenceClass(sentenceId){
+    
+    return sentenceId.className;
+}
+
+function setSentenceUnderline(sentenceId) {
+    sentenceId.style.textDecoration = "underline";
+}
+
+function setSentenceNoUnderline(sentenceId) {
+    sentenceId.style.textDecoration = "none";
+}

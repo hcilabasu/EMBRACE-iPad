@@ -454,6 +454,8 @@ float const groupingProximity = 20.0;
     NSRange range = [imageSrc rangeOfString:@"file:"];
     NSString* imagePath = [imageSrc substringFromIndex:range.location + range.length + 1];
     
+    imagePath = [imagePath stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
     UIImage* image = [[UIImage alloc] initWithContentsOfFile:imagePath];
     
     if(image == nil)
