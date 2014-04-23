@@ -156,13 +156,24 @@ float const groupingProximity = 20.0;
     NSString* sentenceCount = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount];
     totalSentences = [sentenceCount intValue];
     
-    //Set sentence color to blue for first sentence.
-    NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
+    //Set sentence color to black for first sentence.
+    NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence];
     [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
     
     //Bold sentence
-    NSString* setSentenceWeight = [NSString stringWithFormat:@"setSentenceFontWeight(s%d, 'bold')", currentSentence];
-    [bookView stringByEvaluatingJavaScriptFromString:setSentenceWeight];
+    //NSString* setSentenceWeight = [NSString stringWithFormat:@"setSentenceFontWeight(s%d, 'bold')", currentSentence];
+    //[bookView stringByEvaluatingJavaScriptFromString:setSentenceWeight];
+    
+    //Check to see if it is an action sentence
+    NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
+    NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
+    
+    //If it is an action sentence paint it blue
+    if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
+        
+        NSString* underlineSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
+        [bookView stringByEvaluatingJavaScriptFromString:underlineSentence];
+    }
     
     //Set the opacity of all but the current sentence to .5
     //Color will default to blue. And be changed to green once it's been done.
@@ -2631,23 +2642,23 @@ float const groupingProximity = 20.0;
 -(IBAction)pressedNext:(id)sender {
     //Check to make sure the answer is correct and act appropriately.
     //For the moment we assume the sentence is correct and set the sentence color to green.
-    NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'green')", currentSentence];
+    NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'grey')", currentSentence];
     [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
     
     //Unbold sentence
-    NSString* setSentenceWeight = [NSString stringWithFormat:@"setSentenceFontWeight(s%d, 'normal')", currentSentence];
-    [bookView stringByEvaluatingJavaScriptFromString:setSentenceWeight];
+    //NSString* setSentenceWeight = [NSString stringWithFormat:@"setSentenceFontWeight(s%d, 'normal')", currentSentence];
+    //[bookView stringByEvaluatingJavaScriptFromString:setSentenceWeight];
     
     //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
     currentSentence ++;
     
-    //Highlight the next sentence and set its color to blue.
-    setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
+    //Highlight the next sentence and set its color to black.
+    setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence];
     [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
     
     //Bold sentence
-    setSentenceWeight = [NSString stringWithFormat:@"setSentenceFontWeight(s%d, 'bold')", currentSentence];
-    [bookView stringByEvaluatingJavaScriptFromString:setSentenceWeight];
+    //setSentenceWeight = [NSString stringWithFormat:@"setSentenceFontWeight(s%d, 'bold')", currentSentence];
+    //[bookView stringByEvaluatingJavaScriptFromString:setSentenceWeight];
     
     NSString* setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, 1.0)", currentSentence];
     [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
@@ -2655,6 +2666,17 @@ float const groupingProximity = 20.0;
     /*NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, \"blue\")", currentSentence];
      
      [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];*/
+    
+    //Check to see if it is an action sentence
+    NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
+    NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
+    
+    //If it is an action sentence paint it blue
+    if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
+        
+        NSString* underlineSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
+        [bookView stringByEvaluatingJavaScriptFromString:underlineSentence];
+    }
     
     //currentSentence is 1 indexed.
     if(currentSentence > totalSentences) {

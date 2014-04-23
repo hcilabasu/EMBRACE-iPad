@@ -716,3 +716,15 @@ function clearAllHotspots() {
     
     document.getElementById('overlay').style.zIndex = "0";
 }
+
+// Gets the text of a sentence
+function getSentenceText(sentenceId){
+    
+    return sentenceId.innerHTML;
+}
+
+// Gets the class of a sentence
+function getSentenceClass(sentenceId){
+    
+    return sentenceId.className;
+}
