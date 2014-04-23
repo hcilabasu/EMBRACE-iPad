@@ -319,7 +319,7 @@ function animateUngrouping(group) {
         //For now just move the object that's contained within the other object toward the left until it's no longer overlapping.
         //Also make sure you're not moving it off screen.
         while((group.obj2.offsetLeft + group.obj2.offsetWidth + GAP > group.obj1.offsetLeft) &&
-              (grou.obj2.offsetLeft - STEP > 0)) {
+              (group.obj2.offsetLeft - STEP > 0)) {
             move(group.obj2, group.obj2.offsetLeft - STEP, group.obj2.offsetTop);
         }
     }
