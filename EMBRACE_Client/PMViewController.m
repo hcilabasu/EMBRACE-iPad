@@ -29,8 +29,6 @@
     
     NSMutableDictionary *currentGroupings;
     
-    
-    
     BOOL pinching;
     NSInteger MENU;
     NSInteger HOTSPOT;
@@ -69,8 +67,7 @@ float const groupingProximity = 20.0;
     bookView.frame = self.view.bounds;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     //Added to deal with ios7 view changes. This makes it so the UIWebView and the navigation bar do not overlap.
@@ -112,26 +109,6 @@ float const groupingProximity = 20.0;
     //TODO: Figure out how to get the pan gesture to still properly recognize the begin and continue actions.
     //[panRecognizer requireGestureRecognizerToFail:pinchRecognizer];
 }
-//testing code
-/*
- PhysicalManipulationActivity *PMActivity;
- NSMutableArray *chapters = book.chapters;
- 
- for (Chapter *chapter in chapters)
- {
- if([[chapter title] isEqualToString:chapterTitle])
- {
- NSLog(@"title:%@", [chapter title]);
- PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE];
- }
- }
- 
- NSMutableArray *steps = [[PMActivity PMSolution] solutionSteps];
- NSLog(@"steps count:%d", [steps count]);
- 
- //testing code ends
- */
-
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     // Disable user selection
@@ -244,13 +221,72 @@ float const groupingProximity = 20.0;
     
     currentSentence = 1;
     self.title = chapterTitle;
-    
-    
-    //Perform setup for activity
-    
 }
 
-
+/*
+ * Converts an ActionStep object to a PossibleInteraction object
+ */
+-(PossibleInteraction*) convertActionStepToPossibleInteraction:(ActionStep*)step {
+    PossibleInteraction* interaction;
+    
+    if ([[step stepType] isEqualToString:@"group"]) {
+        //Get step information
+        NSString* obj1Id = [step object1Id];
+        NSString* obj2Id = [step object2Id];
+        NSString* action = [step action];
+        
+        interaction = [[PossibleInteraction alloc]initWithInteractionType:GROUP];
+        
+        //Objects involved in group setup
+        NSArray* objects = [[NSArray alloc] initWithObjects:obj1Id, obj2Id, nil];
+        
+        //Get hotspots for both objects associated with action
+        Hotspot* hotspot1 = [model getHotspotforObjectWithActionAndRole:obj1Id :action :@"subject"];
+        Hotspot* hotspot2 = [model getHotspotforObjectWithActionAndRole:obj2Id :action :@"object"];
+        NSArray* hotspotsForInteraction = [[NSArray alloc]initWithObjects:hotspot1, hotspot2, nil];
+        
+        [interaction addConnection:GROUP :objects :hotspotsForInteraction];
+    }
+    else if ([[step stepType] isEqualToString:@"ungroup"]) {
+        //Get step information
+        NSString* obj1Id = [step object1Id];
+        NSString* obj2Id = [step object2Id];
+        NSString* action = [step action];
+        
+        interaction = [[PossibleInteraction alloc]initWithInteractionType:UNGROUP];
+        
+        //Objects involved in group setup
+        NSArray* objects = [[NSArray alloc] initWithObjects:obj1Id, obj2Id, nil];
+        
+        //Get hotspots for both objects associated with action
+        Hotspot* hotspot1 = [model getHotspotforObjectWithActionAndRole:obj1Id :action :@"subject"];
+        Hotspot* hotspot2 = [model getHotspotforObjectWithActionAndRole:obj2Id :action :@"object"];
+        NSArray* hotspotsForInteraction = [[NSArray alloc]initWithObjects:hotspot1, hotspot2, nil];
+        
+        [interaction addConnection:UNGROUP :objects :hotspotsForInteraction];
+    }
+    //This case only applies if an object is being moved to another object, not a waypoint
+    else if ([[step stepType] isEqualToString:@"move"]) {
+        //Get step information
+        NSString* obj1Id = [step object1Id];
+        NSString* obj2Id = [step object2Id];
+        NSString* action = [step action];
+        
+        interaction = [[PossibleInteraction alloc]initWithInteractionType:GROUP];
+        
+        //Objects involved in group setup
+        NSArray* objects = [[NSArray alloc] initWithObjects:obj1Id, obj2Id, nil];
+        
+        //Get hotspots for both objects associated with action
+        Hotspot* hotspot1 = [model getHotspotforObjectWithActionAndRole:obj1Id :action :@"subject"];
+        Hotspot* hotspot2 = [model getHotspotforObjectWithActionAndRole:obj2Id :action :@"object"];
+        NSArray* hotspotsForInteraction = [[NSArray alloc]initWithObjects:hotspot1, hotspot2, nil];
+        
+        [interaction addConnection:GROUP :objects :hotspotsForInteraction];
+    }
+    
+    return interaction;
+}
 
 /*
  * Perform any necessary setup for this physical manipulation.
@@ -262,30 +298,10 @@ float const groupingProximity = 20.0;
     PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
     NSMutableArray* setupSteps = [PMActivity setupSteps]; //get setup steps
     
-    currentGroupings = [[NSMutableDictionary alloc] init];
-    
     for (ActionStep* setupStep in setupSteps) {
-        if ([[setupStep stepType] isEqualToString:@"group"]) {
-            //Get setup step information
-            NSString* obj1Id = [setupStep object1Id];
-            NSString* obj2Id = [setupStep object2Id];
-            NSString* action = [setupStep action];
-            
-            PossibleInteraction* interaction = [[PossibleInteraction alloc]initWithInteractionType:GROUP];
-            
-            //Objects involved in group setup
-            NSArray* objects = [[NSArray alloc] initWithObjects:obj1Id, obj2Id, nil];
-            
-            //Get hotspots for both objects associated with action
-            Hotspot* hotspot1 = [model getHotspotforObjectWithActionAndRole:obj1Id :action :@"subject"];
-            Hotspot* hotspot2 = [model getHotspotforObjectWithActionAndRole:obj2Id :action :@"object"];
-            NSArray* hotspotsForInteraction = [[NSArray alloc]initWithObjects:hotspot1, hotspot2, nil];
-            
-            [interaction addConnection:GROUP :objects :hotspotsForInteraction];
-            [self performInteraction:interaction]; //group the objects
-        }
+        PossibleInteraction* interaction = [self convertActionStepToPossibleInteraction:setupStep];
+        [self performInteraction:interaction]; //groups the objects
     }
-    
 }
 
 
