@@ -63,8 +63,10 @@
 		31AA5FAA175FB16500E9A9B3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AA5FA9175FB16500E9A9B3 /* LoginViewController.m */; };
 		31C306C2183D900B0043DEDD /* Solution.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C306C1183D900B0043DEDD /* Solution.m */; };
 		31C306C5183E93A60043DEDD /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C306C4183E93A60043DEDD /* Connection.m */; };
-		68EECFA718EE003A00D23060 /* ActionStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EECFA618EE003A00D23060 /* ActionStep.m */; };
-		68EECFAA18EE00F400D23060 /* PhysicalManipulationSolution.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EECFA918EE00F400D23060 /* PhysicalManipulationSolution.m */; };
+		C3B5214C19254B0C003FF639 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B5214919254B0C003FF639 /* Location.m */; };
+		C3B5214D19254B0C003FF639 /* Waypoint.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B5214B19254B0C003FF639 /* Waypoint.m */; };
+		C3B5215219254BA2003FF639 /* ActionStep.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B5214F19254BA2003FF639 /* ActionStep.m */; };
+		C3B5215319254BA2003FF639 /* PhysicalManipulationSolution.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B5215119254BA2003FF639 /* PhysicalManipulationSolution.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -171,10 +173,14 @@
 		31C306C1183D900B0043DEDD /* Solution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Solution.m; sourceTree = "<group>"; };
 		31C306C3183E93A60043DEDD /* Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Connection.h; sourceTree = "<group>"; };
 		31C306C4183E93A60043DEDD /* Connection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connection.m; sourceTree = "<group>"; };
-		68EECFA518EE002F00D23060 /* ActionStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionStep.h; sourceTree = "<group>"; };
-		68EECFA618EE003A00D23060 /* ActionStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionStep.m; sourceTree = "<group>"; };
-		68EECFA818EE00D700D23060 /* PhysicalManipulationSolution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicalManipulationSolution.h; sourceTree = "<group>"; };
-		68EECFA918EE00F400D23060 /* PhysicalManipulationSolution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhysicalManipulationSolution.m; sourceTree = "<group>"; };
+		C3B5214819254B0C003FF639 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
+		C3B5214919254B0C003FF639 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
+		C3B5214A19254B0C003FF639 /* Waypoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Waypoint.h; sourceTree = "<group>"; };
+		C3B5214B19254B0C003FF639 /* Waypoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Waypoint.m; sourceTree = "<group>"; };
+		C3B5214E19254BA2003FF639 /* ActionStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionStep.h; sourceTree = "<group>"; };
+		C3B5214F19254BA2003FF639 /* ActionStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionStep.m; sourceTree = "<group>"; };
+		C3B5215019254BA2003FF639 /* PhysicalManipulationSolution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicalManipulationSolution.h; sourceTree = "<group>"; };
+		C3B5215119254BA2003FF639 /* PhysicalManipulationSolution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhysicalManipulationSolution.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,10 +240,10 @@
 				31058C81176BEB6200595AAE /* Page.m */,
 				31C306C0183D900B0043DEDD /* Solution.h */,
 				31C306C1183D900B0043DEDD /* Solution.m */,
-				68EECFA518EE002F00D23060 /* ActionStep.h */,
-				68EECFA618EE003A00D23060 /* ActionStep.m */,
-				68EECFA818EE00D700D23060 /* PhysicalManipulationSolution.h */,
-				68EECFA918EE00F400D23060 /* PhysicalManipulationSolution.m */,
+				C3B5214E19254BA2003FF639 /* ActionStep.h */,
+				C3B5214F19254BA2003FF639 /* ActionStep.m */,
+				C3B5215019254BA2003FF639 /* PhysicalManipulationSolution.h */,
+				C3B5215119254BA2003FF639 /* PhysicalManipulationSolution.m */,
 			);
 			name = "Book Model";
 			sourceTree = "<group>";
@@ -448,6 +454,10 @@
 				3115B1D31819C532007171E3 /* PossibleInteraction.m */,
 				31C306C3183E93A60043DEDD /* Connection.h */,
 				31C306C4183E93A60043DEDD /* Connection.m */,
+				C3B5214819254B0C003FF639 /* Location.h */,
+				C3B5214919254B0C003FF639 /* Location.m */,
+				C3B5214A19254B0C003FF639 /* Waypoint.h */,
+				C3B5214B19254B0C003FF639 /* Waypoint.m */,
 			);
 			name = "Interaction Model";
 			sourceTree = "<group>";
@@ -533,6 +543,7 @@
 				31953E591729ECC100570087 /* AppDelegate.m in Sources */,
 				31953E741729ED5A00570087 /* GDataXMLNode.m in Sources */,
 				31953E751729ED5A00570087 /* ioapi.c in Sources */,
+				C3B5214C19254B0C003FF639 /* Location.m in Sources */,
 				31953E761729ED5A00570087 /* mztools.c in Sources */,
 				3115B1D41819C532007171E3 /* PossibleInteraction.m in Sources */,
 				31953E771729ED5A00570087 /* unzip.c in Sources */,
@@ -543,7 +554,6 @@
 				31953E871729EE5800570087 /* LibraryViewController.m in Sources */,
 				31953E8D1729EE6E00570087 /* BookCellView.m in Sources */,
 				31953E8F1729EE6E00570087 /* LibraryView.m in Sources */,
-				68EECFAA18EE00F400D23060 /* PhysicalManipulationSolution.m in Sources */,
 				31953E951729EEB800570087 /* PMViewController.m in Sources */,
 				3193753A174185E000782C2B /* NavigationController.m in Sources */,
 				3193753D1741A76F00782C2B /* HelpViewController.m in Sources */,
@@ -554,8 +564,8 @@
 				31C306C2183D900B0043DEDD /* Solution.m in Sources */,
 				311646B1175FD03F00B483F0 /* Activity.m in Sources */,
 				3183DA151761614500815211 /* BookHeaderView.m in Sources */,
-				68EECFA718EE003A00D23060 /* ActionStep.m in Sources */,
 				3183DA1A1762886300815211 /* TabView.m in Sources */,
+				C3B5214D19254B0C003FF639 /* Waypoint.m in Sources */,
 				31058C79176BE71C00595AAE /* PhysicalManipulationActivity.m in Sources */,
 				31058C7C176BE73D00595AAE /* ImagineManipulationActivity.m in Sources */,
 				31058C7F176BE74B00595AAE /* AssessmentActivity.m in Sources */,
@@ -568,6 +578,8 @@
 				3116142D179DE77B00655221 /* Constraint.m in Sources */,
 				31161430179DE78C00655221 /* InteractionModel.m in Sources */,
 				31161433179DE85E00655221 /* Relationship.m in Sources */,
+				C3B5215219254BA2003FF639 /* ActionStep.m in Sources */,
+				C3B5215319254BA2003FF639 /* PhysicalManipulationSolution.m in Sources */,
 				310908EC17DE90CA004590A2 /* MovementConstraint.m in Sources */,
 				310908EF17DE90DB004590A2 /* OrderConstraint.m in Sources */,
 				31C306C5183E93A60043DEDD /* Connection.m in Sources */,

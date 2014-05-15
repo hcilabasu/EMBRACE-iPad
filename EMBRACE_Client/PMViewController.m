@@ -466,14 +466,8 @@ float const groupingProximity = 20.0;
                     }
                     else
                     {
-                        if(condition == MENU)
-                        {
-                            for(PossibleInteraction *interaction in possibleInteractions)
-                                [self performInteraction:interaction];
-                        }
-                        if(condition == HOTSPOT)
-                        {
-                            
+                       
+                        
                             NSString* repeatobj;
                             int count=0;
                             for(PossibleInteraction *interaction in possibleInteractions){
@@ -494,7 +488,7 @@ float const groupingProximity = 20.0;
                                 }
                                 
                             }
-                        }
+                        
                     }
                     //end of code
                     
