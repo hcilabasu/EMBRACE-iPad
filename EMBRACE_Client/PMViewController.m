@@ -16,10 +16,14 @@
     NSUInteger currentSentence; //Active sentence to be completed.
     NSUInteger totalSentences; //Total number of sentences on this page.
     
+    /* CONTROL CONDITION
+    NSUInteger currentStep; //Active step to be completed.
+    BOOL stepsComplete; //True if all steps have been completed for a sentence*/
+    
     NSString* movingObjectId; //Object currently being moved.
     NSString* separatingObjectId; //Object identified when pinch gesture performed.
     BOOL movingObject; //True if an object is currently being moved, false otherwise.
-    BOOL sepearatingObject; //True if two objects are currently being ungrouped, false otherwise.
+    BOOL separatingObject; //True if two objects are currently being ungrouped, false otherwise.
     
     NSMutableArray *allPossibleGroupings;    //Array to store all possible groupings
     NSMutableArray *uniquePossibleInteractions; //Array to store possible interactions with UNGROUP actions
@@ -96,7 +100,6 @@ float const groupingProximity = 20.0;
     condition = MENU;
     currentGroupings = [[NSMutableDictionary alloc] init];
     
-    
     //Create contextualMenuController
     menuDataSource = [[ContextualMenuDataSource alloc] init];
     
@@ -137,10 +140,6 @@ float const groupingProximity = 20.0;
     NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence];
     [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
     
-    //Bold sentence
-    //NSString* setSentenceWeight = [NSString stringWithFormat:@"setSentenceFontWeight(s%d, 'bold')", currentSentence];
-    //[bookView stringByEvaluatingJavaScriptFromString:setSentenceWeight];
-    
     //Check to see if it is an action sentence
     NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
     NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
@@ -151,6 +150,10 @@ float const groupingProximity = 20.0;
         NSString* underlineSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
         [bookView stringByEvaluatingJavaScriptFromString:underlineSentence];
     }
+    /* CONTROL CONDITION
+    else {
+        stepsComplete = TRUE; //no steps to complete for non-action sentence
+    }*/
     
     //Set the opacity of all but the current sentence to .5
     //Color will default to blue. And be changed to green once it's been done.
@@ -160,7 +163,8 @@ float const groupingProximity = 20.0;
     }
     
     //Perform setup for activity
-    [self performSetupForActivity];
+    /* CONTROL CONDITION
+    [self performSetupForActivity];*/
 }
 
 
@@ -220,12 +224,37 @@ float const groupingProximity = 20.0;
     //[bookView becomeFirstResponder];
     
     currentSentence = 1;
+    /* CONTROL CONDITION
+    currentStep = 1;
+    stepsComplete = FALSE; */
     self.title = chapterTitle;
 }
 
 /*
+ * Moves to next step in a sentence if possible
+ */
+/* CONTROL CONDITION
+-(void) incrementCurrentStep {
+    Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
+    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
+    PhysicalManipulationSolution* PMSolution = [PMActivity PMSolution]; //get PM solution
+    
+    //Get number of steps for current sentence
+    NSUInteger numSteps = [PMSolution getNumStepsForSentence:currentSentence];
+    
+    //Check if able to increment current step
+    if (currentStep < numSteps) {
+        currentStep++;
+    }
+    else {
+        stepsComplete = TRUE;
+    }
+}*/
+
+/*
  * Converts an ActionStep object to a PossibleInteraction object
  */
+/* CONTROL CONDITION
 -(PossibleInteraction*) convertActionStepToPossibleInteraction:(ActionStep*)step {
     PossibleInteraction* interaction;
     
@@ -286,13 +315,14 @@ float const groupingProximity = 20.0;
     }
     
     return interaction;
-}
+}*/
 
 /*
  * Perform any necessary setup for this physical manipulation.
  * For example, if the cart should be connected to the tractor at the beginning of the story,
  * then this function will connect the cart to the tractor.
  */
+/* CONTROL CONDITION
 -(void) performSetupForActivity {
     Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
     PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
@@ -302,7 +332,7 @@ float const groupingProximity = 20.0;
         PossibleInteraction* interaction = [self convertActionStepToPossibleInteraction:setupStep];
         [self performInteraction:interaction]; //groups the objects
     }
-}
+}*/
 
 
 #pragma mark - Responding to gestures
@@ -364,6 +394,8 @@ float const groupingProximity = 20.0;
         NSString* imageAtPoint = [self getManipulationObjectAtPoint:location];
         
         //if it's an image that can be moved, then start moving it.
+        /* CONTROL CONDITION
+        if(imageAtPoint != nil && !stepsComplete) { */
         if(imageAtPoint != nil) {
             separatingObjectId = imageAtPoint;
         }
@@ -376,11 +408,43 @@ float const groupingProximity = 20.0;
         
         //If there is an array, split the array based on pairs.
         if(![groupedImages isEqualToString:@""]) {
+            /* CONTROL CONDITION
+            //Create an array that will hold all the items in this group
+            NSMutableArray* groupedItemsArray = [[NSMutableArray alloc] init];
+            
             NSArray* itemPairArray = [groupedImages componentsSeparatedByString:@"; "];
             
+            for(NSString* pairStr in itemPairArray) {
+                //separate the objects in this pair and add them to our array of all items in this group.
+                [groupedItemsArray addObjectsFromArray:[pairStr componentsSeparatedByString:@", "]];
+            }
+            
+            //Check if correct subject and object are grouped together. If so, they can be ungrouped.
+            BOOL hasCorrectSubject = false;
+            BOOL hasCorrectObject = false;
+            
+            for(NSString* obj in groupedItemsArray) {
+                if ([self checkSolutionForSubject:obj]) {
+                    hasCorrectSubject = true;
+                }
+                
+                if ([self checkSolutionForObject:obj]) {
+                    hasCorrectObject = true;
+                }
+            }
+            
+            if (hasCorrectSubject && hasCorrectObject) {
+                PossibleInteraction* correctInteraction = [self getCorrectInteraction];
+                [self performInteraction:correctInteraction]; //performs solution step
+                
+                [self incrementCurrentStep];
+            }*/
+            
+            NSArray* itemPairArray = [groupedImages componentsSeparatedByString:@"; "];
             
             //Create the possible interactions array if there are multiple possible ungroupings.
             if([itemPairArray count] > 1) {
+                
                 NSMutableArray* possibleInteractions = [[NSMutableArray alloc] init];
                 
                 for(NSString* pairStr in itemPairArray) {
@@ -418,6 +482,11 @@ float const groupingProximity = 20.0;
             else
                 NSLog(@"no items grouped");
         }
+        
+        /* CONTROL CONDITION
+        //Move object to another object or waypoint
+        [self moveObjectForSolution];*/
+        
         pinching = FALSE;
     }
 }
@@ -441,6 +510,8 @@ float const groupingProximity = 20.0;
             //NSLog(@"location pressed: (%f, %f)", location.x, location.y);
             
             //if it's an image that can be moved, then start moving it.
+            /* CONTROL CONDITION
+            if(imageAtPoint != nil && !stepsComplete) {*/
             if(imageAtPoint != nil) {
                 movingObject = TRUE;
                 movingObjectId = imageAtPoint;
@@ -450,8 +521,7 @@ float const groupingProximity = 20.0;
             }
         }
         else if(recognizer.state == UIGestureRecognizerStateEnded) {
-            
-            NSLog(@"pan gesture ended at location (%f, %f)", location.x, location.y);
+            //NSLog(@"pan gesture ended at location (%f, %f)", location.x, location.y);
             //if moving object, move object to final position.
             BOOL useProximity = YES;
             if(condition == MENU)
@@ -460,9 +530,43 @@ float const groupingProximity = 20.0;
             if(movingObject) {
                 [self moveObject:movingObjectId :location :delta];
                 
+                /* CONTROL CONDITION
+                //Check if dropped object is overlapping any objects
+                NSString *overlappingObjects = [NSString stringWithFormat:@"checkObjectOverlapString(%@)", movingObjectId];
+                NSString* overlapArrayString = [bookView stringByEvaluatingJavaScriptFromString:overlappingObjects];
+                
+                if(![overlapArrayString isEqualToString:@""]) {
+                    //Get the objects that the dropped object is overlapping
+                    NSArray* overlappingWith = [overlapArrayString componentsSeparatedByString:@", "];
+                    
+                    //Check if dropped object is overlapping the correct object
+                    BOOL overlappingCorrectObject = false;
+                    
+                    for (NSString* obj in overlappingWith) {
+                        if ([self checkSolutionForObject:obj]) {
+                            overlappingCorrectObject = true;
+                            break;
+                        }
+                    }
+                    
+                    if (overlappingCorrectObject) {
+                        PossibleInteraction* correctInteraction = [self getCorrectInteraction];
+                        [self performInteraction:correctInteraction]; //performs solution step
+                        
+                        [self incrementCurrentStep];
+                    }
+                }
+                
+                //Checks if object is in the correct location
+                if([self isHotspotInsideLocation]) {
+                    [self incrementCurrentStep];
+                }
+                
+                //Move object to another object or waypoint
+                [self moveObjectForSolution];*/
+                
                 //If the object was dropped, check if it's overlapping with any other objects that it could interact with.
                 //NSMutableArray* possibleInteractions = [self getPossibleInteractions];
-                
                 
                 NSMutableArray* possibleInteractions = [self getPossibleInteractions:useProximity];
                 [self generateSteps];
@@ -470,7 +574,6 @@ float const groupingProximity = 20.0;
                 [self rankPossibleGroupings: (NSMutableArray*) possibleInteractions];
                 //NSLog(@"sentence number:%i", currentSentence);
                 //If only 1 possible interaction was found, go ahead and perform that interaction.
-                
                 
                 if(([possibleInteractions count] == 1) || ((condition == HOTSPOT) && ([possibleInteractions count]>0))){
                     NSLog(@"possible interactions:%lu", (unsigned long)[possibleInteractions count]);
@@ -636,14 +739,18 @@ float const groupingProximity = 20.0;
                     }
                 }
                 
+                /* CONTROL CONDITION
+                NSMutableArray* possibleInteractions = [self getPossibleInteractions:NO];*/
                 NSMutableArray* possibleInteractions;
-                if (condition==HOTSPOT){
+                
+                if (condition==HOTSPOT) {
                     possibleInteractions = [self getPossibleInteractions:NO];
                 }
                 // for Menu based condition we dont need to have all the possible interactions being stored as we dont need to include them when the movingObject just moves over random objects.
-                else{
+                else {
                     possibleInteractions = nil;
                 }
+                
                 //Keep a list of all hotspots so that we know which ones should be drawn as green and which should be drawn as red. At the end, draw all hotspots together.
                 NSMutableArray* redHotspots = [[NSMutableArray alloc] init];
                 NSMutableArray* greenHotspots = [[NSMutableArray alloc] init];
@@ -656,8 +763,10 @@ float const groupingProximity = 20.0;
                             
                             //Figure out whether two hotspots are close enough together to currently be grouped. If so, draw the hotspots with green. Otherwise, draw them with red.
                             BOOL areWithinProximity = [self hotspotsWithinGroupingProximity:[hotspots objectAtIndex:0] :[hotspots objectAtIndex:1]];
+                            
                             //NSLog(@"are within proximity:%u:", areWithinProximity);
                             //NSLog(@"within proximity %hhd %u", areWithinProximity, [interaction interactionType]);
+                            
                             //TODO: Make sure this is correct.
                             if(areWithinProximity)// || ([interaction interactionType] == TRANSFERANDDISAPPEAR))
                                 // || ([interaction interactionType] == TRANSFERANDGROUP))
@@ -676,6 +785,11 @@ float const groupingProximity = 20.0;
                     [self drawHotspots:redHotspots :@"red"];
                     [self drawHotspots:greenHotspots :@"blue"];
                 }
+                
+                /* CONTROL CONDITION
+                //Draw red hotspots first, then green ones.
+                //[self drawHotspots:redHotspots :@"red"];
+                //[self drawHotspots:greenHotspots :@"green"];*/
             }
         }
     }
@@ -1244,6 +1358,272 @@ float const groupingProximity = 20.0;
 }
 
 /*
+ * Returns true if the specified subject from the solutions is part of a group with the
+ * specified object. Otherwise, returns false.
+ */
+/* CONTROL CONDITION
+-(BOOL)isSubject:(NSString*)subject ContainedInGroupWithObject:(NSString*)object {
+    NSString* requestGroupedImages = [NSString stringWithFormat:@"getGroupedObjectsString(%@)", object];*/
+    
+    /*
+     * Say the cart is connected to the tractor and the tractor is "connected" to the farmer,
+     * then groupedImages will be a string in the following format: "cart, tractor; tractor, farmer"
+     * if the only thing you currently have connected to the hay is the farmer, then you'll get
+     * a string back that is: "hay, farmer" or "farmer, hay"
+     */
+    /* CONTROL CONDITION
+    NSString* groupedImages = [bookView stringByEvaluatingJavaScriptFromString:requestGroupedImages];
+    
+    //If there is an array, split the array based on pairs.
+    if(![groupedImages isEqualToString:@""]) {
+        //Create an array that will hold all the items in this group
+        NSMutableArray* groupedItemsArray = [[NSMutableArray alloc] init];
+        
+        NSArray* itemPairArray = [groupedImages componentsSeparatedByString:@"; "];
+        
+        for(NSString* pairStr in itemPairArray) {
+            //separate the objects in this pair and add them to our array of all items in this group.
+            [groupedItemsArray addObjectsFromArray:[pairStr componentsSeparatedByString:@", "]];
+        }
+        
+        //Checks if one of the grouped object is the subject
+        for(NSString* obj in groupedItemsArray) {
+            if([obj isEqualToString:subject])
+                return true;
+        }
+    }
+    
+    return false;
+}*/
+
+/*
+ * Returns true if the correct object is selected as the subject based on the solutions
+ * for group step types. Otherwise, it returns false.
+ */
+/* CONTROL CONDITION
+-(BOOL) checkSolutionForSubject:(NSString*)subject {
+    Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
+    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
+    PhysicalManipulationSolution* PMSolution = [PMActivity PMSolution]; //get PM solution
+    
+    //Get number of steps for current sentence
+    NSUInteger numSteps = [PMSolution getNumStepsForSentence:currentSentence];
+    
+    //Check solution only if it exists for the sentence
+    if (numSteps > 0 && !stepsComplete) {
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        if ([[currSolStep stepType] isEqualToString:@"transferAndGroup"]) {
+            //Get next sentence step
+            ActionStep* nextSolStep = [currSolSteps objectAtIndex:currentStep];
+            
+            //Correct subject for a transfer and group step is the obj1 of the next transfer and group step
+            NSString* correctSubject = [nextSolStep object1Id];
+            
+            //Selected object is the correct subject
+            if ([correctSubject isEqualToString:subject]) {
+                return true;
+            }
+            else {
+                //Check if selected object is in a group with the correct subject
+                BOOL isSubjectInGroup = [self isSubject:correctSubject ContainedInGroupWithObject:subject];
+                return isSubjectInGroup;
+            }
+        }
+        else {
+            NSString* correctSubject = [currSolStep object1Id];
+            
+            //Selected object is the correct subject
+            if ([correctSubject isEqualToString:subject]) {
+                return true;
+            }
+            else {
+                //Check if selected object is in a group with the correct subject
+                BOOL isSubjectInGroup = [self isSubject:correctSubject ContainedInGroupWithObject:subject];
+                return isSubjectInGroup;
+            }
+        }
+    }
+    else {
+        stepsComplete = TRUE; //no steps to complete for current sentence
+        
+        //User cannot move anything if there are no steps to be performed
+        return false;
+    }
+}*/
+
+/*
+ * Returns true if the active object is overlapping the correct object based on the solutions.
+ * Otherwise, it returns false.
+ */
+/* CONTROL CONDITION
+-(BOOL) checkSolutionForObject:(NSString*)overlappingObject {
+    Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
+    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
+    PhysicalManipulationSolution* PMSolution = [PMActivity PMSolution]; //get PM solution
+    
+    //Get number of steps for current sentence
+    NSUInteger numSteps = [PMSolution getNumStepsForSentence:currentSentence];
+    
+    //Check solution only if it exists for the sentence
+    if (numSteps > 0) {
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        //If current step requires transference and group, the correct object should be the object2 of the next step
+        if ([[currSolStep stepType] isEqualToString:@"transferAndGroup"]) {
+            //Get next step
+            ActionStep* nextSolStep = [currSolSteps objectAtIndex:currentStep];
+            
+            if ([overlappingObject isEqualToString:[nextSolStep object2Id]]) {
+                return true;
+            }
+        }
+        //If current step requires transference and disapppear, the correct object should be the object1 of the next step
+        else if ([[currSolStep stepType] isEqualToString:@"transferAndDisappear"]) {
+            //Get next step
+            ActionStep* nextSolStep = [currSolSteps objectAtIndex:currentStep];
+            
+            if ([overlappingObject isEqualToString:[nextSolStep object1Id]]) {
+                return true;
+            }
+        }
+        else {
+            if ([overlappingObject isEqualToString:[currSolStep object2Id]]) {
+                return true;
+            }
+        }
+    }
+    
+    return false;
+}*/
+
+/*
+ * Moves an object to another object or waypoint for move step types
+ */
+/* CONTROL CONDITION
+-(void) moveObjectForSolution {
+    Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
+    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
+    PhysicalManipulationSolution* PMSolution = [PMActivity PMSolution]; //get PM solution
+    
+    //Get number of steps for current sentence
+    NSUInteger numSteps = [PMSolution getNumStepsForSentence:currentSentence];
+    
+    //Check solution only if it exists for the sentence
+    if (numSteps > 0) {
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        if ([[currSolStep stepType] isEqualToString:@"move"]) {
+            //Get information for move step type
+            NSString* object1Id = [currSolStep object1Id];
+            NSString* action = [currSolStep action];
+            NSString* object2Id = [currSolStep object2Id];
+            NSString* waypointId = [currSolStep waypointId];
+            
+            //Move either requires object1 to move to object2 (which creates a group interaction) or it requires object1 to move to a waypoint
+            if (object2Id != nil) {
+                PossibleInteraction* correctInteraction = [self getCorrectInteraction];
+                [self performInteraction:correctInteraction]; //performs solution step
+            }
+            else if (waypointId != nil) {
+                //Get the width and height of the object image
+                NSString* requestImageHeight = [NSString stringWithFormat:@"%@.height", object1Id];
+                NSString* requestImageWidth = [NSString stringWithFormat:@"%@.width", object1Id];
+                
+                float imageHeight = [[bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
+                float imageWidth = [[bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
+                
+                //Get position of hotspot in pixels based on the object image size
+                Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:object1Id :action :@"subject"];
+                CGPoint hotspotLoc = [hotspot location];
+                CGFloat hotspotX = hotspotLoc.x / 100.0 * imageWidth;
+                CGFloat hotspotY = hotspotLoc.y / 100.0 * imageHeight;
+                CGPoint hotspotLocation = CGPointMake(hotspotX, hotspotY);
+                
+                //Get position of waypoint in pixels based on the background size
+                Waypoint* waypoint = [model getWaypointWithId:waypointId];
+                CGPoint waypointLoc = [waypoint location];
+                CGFloat waypointX = waypointLoc.x / 100.0 * [bookView frame].size.width;
+                CGFloat waypointY = waypointLoc.y / 100.0 * [bookView frame].size.height;
+                CGPoint waypointLocation = CGPointMake(waypointX, waypointY);
+                
+                //Move the object
+                [self moveObject:object1Id :waypointLocation :hotspotLocation];
+                
+                //Clear highlighting
+                NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
+                [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
+            }
+            
+            [self incrementCurrentStep];
+        }
+    }
+}*/
+
+/*
+ * Returns true if the hotspot of an object (for a check step type) is inside the correct location.
+ * Otherwise, returns false.
+ */
+/* CONTROL CONDITION
+-(BOOL) isHotspotInsideLocation {
+    Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
+    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
+    PhysicalManipulationSolution* PMSolution = [PMActivity PMSolution]; //get PM solution
+    
+    //Get number of steps for current sentence
+    NSUInteger numSteps = [PMSolution getNumStepsForSentence:currentSentence];
+    
+    //Check solution only if it exists for the sentence
+    if (numSteps > 0) {
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        if ([[currSolStep stepType] isEqualToString:@"check"]) {
+            //Get information for check step type
+            NSString* objectId = [currSolStep object1Id];
+            NSString* action = [currSolStep action];
+            NSString* locationId = [currSolStep locationId];
+            
+            //Get hotspot location of correct subject
+            Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:objectId :action :@"subject"];
+            CGPoint hotspotLocation = [self getHotspotLocation:hotspot];
+            
+            //Get location that hotspot should be inside
+            Location* location = [model getLocationWithId:locationId];
+            
+            //Calculate the x,y coordinates and the width and height in pixels from %
+            float locationX = [location.originX floatValue] / 100.0 * [bookView frame].size.width;
+            float locationY = [location.originY floatValue] / 100.0 * [bookView frame].size.height;
+            float locationWidth = [location.width floatValue] / 100.0 * [bookView frame].size.width;
+            float locationHeight = [location.height floatValue] / 100.0 * [bookView frame].size.height;
+            
+            //Check if hotspot is inside location
+            if ((hotspotLocation.x < locationX + locationWidth) && (hotspotLocation.x > locationX)
+                && (hotspotLocation.y < locationY + locationHeight) && (hotspotLocation.y > locationY)) {
+                return true;
+            }
+        }
+    }
+    
+    return false;
+}*/
+
+/*
  * Sends the JS request for the element at the location provided, and takes care of moving any
  * canvas objects out of the way to get accurate information.
  * It also checks to make sure the object that is at that point is a manipulation object before returning it.
@@ -1268,9 +1648,125 @@ float const groupingProximity = 20.0;
     
     if([imageAtPointClass isEqualToString:@"manipulationObject"])
         return imageAtPoint;
+    /* CONTROL CONDITION
+    if([imageAtPointClass isEqualToString:@"manipulationObject"]) {
+        if ([self checkSolutionForSubject:imageAtPoint])
+            return imageAtPoint;
+        else
+            return nil;
+    }*/
     else
         return nil;
 }
+
+/*
+ * Gets the current solution step of ActionStep type and converts it to a PossibleInteraction
+ * object
+ */
+/* CONTROL CONDITION
+-(PossibleInteraction*) getCorrectInteraction {
+    PossibleInteraction* correctInteraction;
+    
+    Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
+    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
+    PhysicalManipulationSolution* PMSolution = [PMActivity PMSolution]; //get PM solution
+    
+    //Get number of steps for current sentence
+    NSUInteger numSteps = [PMSolution getNumStepsForSentence:currentSentence];
+    
+    //Check solution only if it exists for the sentence
+    if (numSteps > 0) {
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        if ([[currSolStep stepType] isEqualToString:@"transferAndGroup"]) {
+            correctInteraction = [[PossibleInteraction alloc]initWithInteractionType:TRANSFERANDGROUP];
+            
+            //Get step information for current step
+            NSString* currObj1Id = [currSolStep object1Id];
+            NSString* currObj2Id = [currSolStep object2Id];
+            NSString* currAction = [currSolStep action];
+            
+            //Objects involved in group setup for current step
+            NSArray* currObjects = [[NSArray alloc] initWithObjects:currObj1Id, currObj2Id, nil];
+            
+            //Get hotspots for both objects associated with action for current step
+            Hotspot* currHotspot1 = [model getHotspotforObjectWithActionAndRole:currObj1Id :currAction :@"subject"];
+            Hotspot* currHotspot2 = [model getHotspotforObjectWithActionAndRole:currObj2Id :currAction :@"object"];
+            NSArray* currHotspotsForInteraction = [[NSArray alloc]initWithObjects:currHotspot1, currHotspot2, nil];
+            
+            [correctInteraction addConnection:UNGROUP :currObjects :currHotspotsForInteraction];
+            
+            //Get next step to be completed
+            ActionStep* nextSolStep = [currSolSteps objectAtIndex:currentStep];
+            
+            //Get step information for next step
+            NSString* nextObj1Id = [nextSolStep object1Id];
+            NSString* nextObj2Id = [nextSolStep object2Id];
+            NSString* nextAction = [nextSolStep action];
+            
+            //Objects involved in group setup for next step
+            NSArray* nextObjects = [[NSArray alloc] initWithObjects:nextObj1Id, nextObj2Id, nil];
+            
+            //Get hotspots for both objects associated with action for next step
+            Hotspot* nextHotspot1 = [model getHotspotforObjectWithActionAndRole:nextObj1Id :nextAction :@"subject"];
+            Hotspot* nextHotspot2 = [model getHotspotforObjectWithActionAndRole:nextObj2Id :nextAction :@"object"];
+            NSArray* nextHotspotsForInteraction = [[NSArray alloc]initWithObjects:nextHotspot1, nextHotspot2, nil];
+            
+            [correctInteraction addConnection:GROUP :nextObjects :nextHotspotsForInteraction];
+            
+            //Increment step since we are combining two solution steps into one possible interaction
+            [self incrementCurrentStep];
+        }
+        else if ([[currSolStep stepType] isEqualToString:@"transferAndDisappear"]) {
+            correctInteraction = [[PossibleInteraction alloc]initWithInteractionType:TRANSFERANDDISAPPEAR];
+            
+            //Get step information for current step
+            NSString* currObj1Id = [currSolStep object1Id];
+            NSString* currObj2Id = [currSolStep object2Id];
+            NSString* currAction = [currSolStep action];
+            
+            //Objects involved in group setup for current step
+            NSArray* currObjects = [[NSArray alloc] initWithObjects:currObj1Id, currObj2Id, nil];
+            
+            //Get hotspots for both objects associated with action for current step
+            Hotspot* currHotspot1 = [model getHotspotforObjectWithActionAndRole:currObj1Id :currAction :@"subject"];
+            Hotspot* currHotspot2 = [model getHotspotforObjectWithActionAndRole:currObj2Id :currAction :@"object"];
+            NSArray* currHotspotsForInteraction = [[NSArray alloc]initWithObjects:currHotspot1, currHotspot2, nil];
+            
+            [correctInteraction addConnection:UNGROUP :currObjects :currHotspotsForInteraction];
+            
+            //Get next step to be completed
+            ActionStep* nextSolStep = [currSolSteps objectAtIndex:currentStep];
+            
+            //Get step information for next step
+            NSString* nextObj1Id = [nextSolStep object1Id];
+            NSString* nextObj2Id = [nextSolStep object2Id];
+            NSString* nextAction = [nextSolStep action];
+            
+            //Objects involved in group setup for next step
+            NSArray* nextObjects = [[NSArray alloc] initWithObjects:nextObj1Id, nextObj2Id, nil];
+            
+            //Get hotspots for both objects associated with action for next step
+            Hotspot* nextHotspot1 = [model getHotspotforObjectWithActionAndRole:nextObj1Id :nextAction :@"subject"];
+            Hotspot* nextHotspot2 = [model getHotspotforObjectWithActionAndRole:nextObj2Id :nextAction :@"object"];
+            NSArray* nextHotspotsForInteraction = [[NSArray alloc]initWithObjects:nextHotspot1, nextHotspot2, nil];
+            
+            [correctInteraction addConnection:DISAPPEAR :nextObjects :nextHotspotsForInteraction];
+            
+            //Increment step since we are combining two solution steps into one possible interaction
+            [self incrementCurrentStep];
+        }
+        else {
+            correctInteraction = [self convertActionStepToPossibleInteraction:currSolStep];
+        }
+    }
+    
+    return correctInteraction;
+}*/
 
 -(NSString*) findContainedObject:(NSArray*) array {
     NSString *containedObject = @"";
@@ -2692,6 +3188,46 @@ float const groupingProximity = 20.0;
     if(currentSentence > totalSentences) {
         [self loadNextPage];
     }
+    
+    /* CONTROL CONDITION
+    if (stepsComplete) {
+        //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
+        currentSentence ++;
+        
+        //Reset current step to 1 when moving to next sentence
+        currentStep = 1;
+        stepsComplete = FALSE;
+        
+        //Highlight the next sentence and set its color to black.
+        NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence];
+        [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
+        
+        //Set previous sentence color to gray and reduce opacity
+        setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'grey')", currentSentence - 1];
+        [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
+        
+        NSString* setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, 1.0)", currentSentence];
+        [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
+        
+        //Check to see if it is an action sentence
+        NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
+        NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
+        
+        //If it is an action sentence underline it
+        if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
+            
+            NSString* underlineSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
+            [bookView stringByEvaluatingJavaScriptFromString:underlineSentence];
+        }
+        else {
+            stepsComplete = TRUE;
+        }
+        
+        //currentSentence is 1 indexed.
+        if(currentSentence > totalSentences) {
+            [self loadNextPage];
+        }
+    }*/
 }
 
 /*
