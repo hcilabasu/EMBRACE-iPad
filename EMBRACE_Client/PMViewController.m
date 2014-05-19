@@ -2520,7 +2520,7 @@ float const groupingProximity = 20.0;
                         //if([step sentNumber] == currentsent) {
                         if ([step sentenceNumber] == currentSentence) {
                             if([self isSimilar:step :connection]) {
-                                //NSLog(@"rishabh %@ %@ %@ %@", [step stepNumber], [step object1Id], [step object2Id],[step action]);
+                                NSLog(@"rishabh %@ %@ %@ %@", [step stepNumber], [step object1Id], [step object2Id],[step action]);
                                 if (indx1 == 0)
                                     indx1 = indx;
                                 else if(indx2 == 0)

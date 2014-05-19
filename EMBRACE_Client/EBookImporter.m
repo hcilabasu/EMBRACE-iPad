@@ -7,8 +7,6 @@
 //
 
 #import "EBookImporter.h"
-#import "ActionStep.h"
-#import "PhysicalManipulationSolution.h"
 
 @implementation EBookImporter
 
@@ -276,7 +274,7 @@
     
     //Read the metadata for the book
     [self readMetadataForBook:book];
-    
+
     [library addObject:book];
     
     NSLog(@"at end of read opf for book");
@@ -509,6 +507,44 @@
         [model addHotspot:objectId :action :role :location];
     }
     
+    //Reading in the location information.
+    NSArray* locationElements = [metadataDoc nodesForXPath:@"//locations" error:nil];
+    GDataXMLElement* locationElement = (GDataXMLElement*)[locationElements objectAtIndex:0];
+    
+    NSArray* locations = [locationElement elementsForName:@"location"];
+    
+    //Read in the location information.
+    for (GDataXMLElement* location in locations) {
+        NSString* locationId = [[location attributeForName:@"locationId"] stringValue];
+        NSString* originX = [[location attributeForName:@"x"] stringValue];
+        NSString* originY = [[location attributeForName:@"y"] stringValue];
+        NSString* height = [[location attributeForName:@"height"] stringValue];
+        NSString* width = [[location attributeForName:@"width"] stringValue];
+        
+        [model addLocation:locationId :originX :originY :height :width];
+    }
+    
+    //Reading in the waypoint information.
+    NSArray* waypointElements = [metadataDoc nodesForXPath:@"//waypoints" error:nil];
+    GDataXMLElement* waypointElement = (GDataXMLElement*)[waypointElements objectAtIndex:0];
+    
+    NSArray* waypoints = [waypointElement elementsForName:@"waypoint"];
+    
+    //Read in the waypoint information.
+    for (GDataXMLElement* waypoint in waypoints) {
+        NSString* waypointId = [[waypoint attributeForName:@"waypointId"] stringValue];
+        NSString* locationXString = [[waypoint attributeForName:@"x"] stringValue];
+        NSString* locationYString = [[waypoint attributeForName:@"y"] stringValue];
+        
+        //Find the range of "," in the location string.
+        CGFloat locX = [locationXString floatValue];
+        CGFloat locY = [locationYString floatValue];
+        
+        CGPoint location = CGPointMake(locX, locY);
+
+        [model addWaypoint:waypointId :location];
+    }
+    
     //Read in any setup information.
     NSArray* setupElements = [metadataDoc nodesForXPath:@"//setups" error:nil];
     GDataXMLElement* setupElement = (GDataXMLElement*)[setupElements objectAtIndex:0];
@@ -519,7 +555,7 @@
         //Get story title
         NSString* storyTitle = [[storySetupElement attributeForName:@"title"] stringValue];
         Chapter* chapter = [book getChapterWithTitle:storyTitle];
-        //NSLog(@"chapter name:%@", [chapter title]);
+        
         if(chapter != nil) {
             PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity only
             
@@ -551,25 +587,22 @@
         //Get story title
         NSString* title = [[solution attributeForName:@"title"] stringValue];
         Chapter* chapter = [book getChapterWithTitle:title];
-        //NSLog(@"chapter name:%@", [chapter title]);
         
         if (chapter != nil) {
             PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity only
             PhysicalManipulationSolution* PMSolution = [PMActivity PMSolution]; //get PM solution
             
             NSArray* sentenceSolutions = [solution elementsForName:@"sentence"];
-            
+                
             for(GDataXMLElement* sentence in sentenceSolutions) {
                 //Get sentence number
-                int sentenceNumber = [[[sentence attributeForName:@"number"] stringValue] integerValue];
-                NSNumber* sentenceNum = [NSNumber numberWithInt:sentenceNumber];
+                NSUInteger sentenceNum = [[[sentence attributeForName:@"number"] stringValue] integerValue];
                 
                 NSArray* stepSolutions = [sentence elementsForName:@"step"];
                 
                 for(GDataXMLElement* stepSolution in stepSolutions) {
                     //Get step number
-                    int stepNumber = [[[stepSolution attributeForName:@"number"] stringValue] integerValue];
-                    NSNumber* stepNum = [NSNumber numberWithInt:stepNumber];
+                    NSUInteger stepNum = [[[stepSolution attributeForName:@"number"] stringValue] integerValue];
                     
                     //Get solution steps for sentence.
                     NSArray* stepsForSentence = [stepSolution children];
@@ -582,7 +615,35 @@
                         NSString* action = [[step attributeForName:@"action"] stringValue];
                         
                         //Group and ungroup also have an obj2Id
-                        if([[step name] isEqualToString:@"group"] || [[step name] isEqualToString:@"ungroup"]) {
+                        //if([[step name] isEqualToString:@"group"] || [[step name] isEqualToString:@"ungroup"]) {
+                        if([[step name] isEqualToString:@"group"]) {
+                            NSString* obj2Id = [[step attributeForName:@"obj2Id"] stringValue];
+                            
+                            NSMutableArray* solutionSteps = [PMSolution solutionSteps];
+                            ActionStep* previouslyAddedStep = [solutionSteps lastObject];
+                            
+                            if (previouslyAddedStep != nil) {
+                                //Assume transference is required if previous step sentence and step number are the same and type was ungroup
+                                if (([previouslyAddedStep sentenceNumber] == sentenceNum) && ([previouslyAddedStep stepNumber] == stepNum) && [[previouslyAddedStep stepType] isEqualToString:@"ungroup"]) {
+                                    //Change previous previous and current step types to transfer and group
+                                    NSString* newType = @"transferAndGroup";
+                                    
+                                    previouslyAddedStep.stepType = newType;
+                                    
+                                    ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :newType :obj1Id :obj2Id :nil :nil :action];
+                                    [PMSolution addSolutionStep:solutionStep];
+                                }
+                                else {
+                                    ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :obj2Id :nil :nil :action];
+                                    [PMSolution addSolutionStep:solutionStep];
+                                }
+                            }
+                            else {
+                                ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :obj2Id :nil :nil :action];
+                                [PMSolution addSolutionStep:solutionStep];
+                            }
+                        }
+                        else if([[step name] isEqualToString:@"ungroup"]) {
                             NSString* obj2Id = [[step attributeForName:@"obj2Id"] stringValue];
                             
                             ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :obj2Id :nil :nil :action];
@@ -614,15 +675,35 @@
                         else if([[step name] isEqualToString:@"disappear"]) {
                             NSString* obj2Id = [[step attributeForName:@"obj2Id"] stringValue];
                             
-                            ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :obj2Id :nil :nil :action];
-                            [PMSolution addSolutionStep:solutionStep];
+                            NSMutableArray* solutionSteps = [PMSolution solutionSteps];
+                            ActionStep* previouslyAddedStep = [solutionSteps lastObject];
+                            
+                            if (previouslyAddedStep != nil) {
+                                //Assume transference is required if previous step sentence and step number are the same and type was ungroup
+                                if (([previouslyAddedStep sentenceNumber] == sentenceNum) && ([previouslyAddedStep stepNumber] == stepNum) && [[previouslyAddedStep stepType] isEqualToString:@"ungroup"]) {
+                                    //Change previous previous and current step types to transfer and group
+                                    NSString* newType = @"transferAndDisappear";
+                                    
+                                    previouslyAddedStep.stepType = newType;
+                                    
+                                    ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :newType :obj1Id :obj2Id :nil :nil :action];
+                                    [PMSolution addSolutionStep:solutionStep];
+                                }
+                                else {
+                                    ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :obj2Id :nil :nil :action];
+                                    [PMSolution addSolutionStep:solutionStep];
+                                }
+                            }
+                            else {
+                                ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :obj2Id :nil :nil :action];
+                                [PMSolution addSolutionStep:solutionStep];
+                            }
                         }
                     }
                 }
             }
-            //NSLog(@"chapter:%@, steps:%d",[chapter title], [[PMSolution solutionSteps] count]);
         }
     }
 }
-
+    
 @end
