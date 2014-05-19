@@ -22,7 +22,6 @@
 		3115B1D41819C532007171E3 /* PossibleInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3115B1D31819C532007171E3 /* PossibleInteraction.m */; };
 		3116142A179DE69400655221 /* Hotspot.m in Sources */ = {isa = PBXBuildFile; fileRef = 31161429179DE69400655221 /* Hotspot.m */; };
 		3116142D179DE77B00655221 /* Constraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 3116142C179DE77B00655221 /* Constraint.m */; };
-		31161430179DE78C00655221 /* InteractionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3116142F179DE78C00655221 /* InteractionModel.m */; };
 		31161433179DE85E00655221 /* Relationship.m in Sources */ = {isa = PBXBuildFile; fileRef = 31161432179DE85E00655221 /* Relationship.m */; };
 		311646AE175FCFE100B483F0 /* Chapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 311646AD175FCFE100B483F0 /* Chapter.m */; };
 		311646B1175FD03F00B483F0 /* Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 311646B0175FD03F00B483F0 /* Activity.m */; };
@@ -67,6 +66,7 @@
 		C3B5214D19254B0C003FF639 /* Waypoint.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B5214B19254B0C003FF639 /* Waypoint.m */; };
 		C3B5215219254BA2003FF639 /* ActionStep.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B5214F19254BA2003FF639 /* ActionStep.m */; };
 		C3B5215319254BA2003FF639 /* PhysicalManipulationSolution.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B5215119254BA2003FF639 /* PhysicalManipulationSolution.m */; };
+		C3B52156192A97D7003FF639 /* InteractionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B52155192A97D7003FF639 /* InteractionModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,8 +95,6 @@
 		31161429179DE69400655221 /* Hotspot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hotspot.m; sourceTree = "<group>"; };
 		3116142B179DE77B00655221 /* Constraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constraint.h; sourceTree = "<group>"; };
 		3116142C179DE77B00655221 /* Constraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constraint.m; sourceTree = "<group>"; };
-		3116142E179DE78C00655221 /* InteractionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InteractionModel.h; sourceTree = "<group>"; };
-		3116142F179DE78C00655221 /* InteractionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InteractionModel.m; sourceTree = "<group>"; };
 		31161431179DE85E00655221 /* Relationship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Relationship.h; sourceTree = "<group>"; };
 		31161432179DE85E00655221 /* Relationship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Relationship.m; sourceTree = "<group>"; };
 		311646AC175FCFE100B483F0 /* Chapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chapter.h; sourceTree = "<group>"; };
@@ -181,6 +179,8 @@
 		C3B5214F19254BA2003FF639 /* ActionStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionStep.m; sourceTree = "<group>"; };
 		C3B5215019254BA2003FF639 /* PhysicalManipulationSolution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicalManipulationSolution.h; sourceTree = "<group>"; };
 		C3B5215119254BA2003FF639 /* PhysicalManipulationSolution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhysicalManipulationSolution.m; sourceTree = "<group>"; };
+		C3B52154192A97D7003FF639 /* InteractionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InteractionModel.h; sourceTree = "<group>"; };
+		C3B52155192A97D7003FF639 /* InteractionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InteractionModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -444,8 +444,8 @@
 				3116142C179DE77B00655221 /* Constraint.m */,
 				31161431179DE85E00655221 /* Relationship.h */,
 				31161432179DE85E00655221 /* Relationship.m */,
-				3116142E179DE78C00655221 /* InteractionModel.h */,
-				3116142F179DE78C00655221 /* InteractionModel.m */,
+				C3B52154192A97D7003FF639 /* InteractionModel.h */,
+				C3B52155192A97D7003FF639 /* InteractionModel.m */,
 				310908EA17DE90CA004590A2 /* MovementConstraint.h */,
 				310908EB17DE90CA004590A2 /* MovementConstraint.m */,
 				310908ED17DE90DB004590A2 /* OrderConstraint.h */,
@@ -561,6 +561,7 @@
 				31AA5FAA175FB16500E9A9B3 /* LoginViewController.m in Sources */,
 				3115B1D11819AA0E007171E3 /* MenuItemImage.m in Sources */,
 				311646AE175FCFE100B483F0 /* Chapter.m in Sources */,
+				C3B52156192A97D7003FF639 /* InteractionModel.m in Sources */,
 				31C306C2183D900B0043DEDD /* Solution.m in Sources */,
 				311646B1175FD03F00B483F0 /* Activity.m in Sources */,
 				3183DA151761614500815211 /* BookHeaderView.m in Sources */,
@@ -576,7 +577,6 @@
 				312F5B13177A0F58000DAD2E /* MenuItemDataSource.m in Sources */,
 				3116142A179DE69400655221 /* Hotspot.m in Sources */,
 				3116142D179DE77B00655221 /* Constraint.m in Sources */,
-				31161430179DE78C00655221 /* InteractionModel.m in Sources */,
 				31161433179DE85E00655221 /* Relationship.m in Sources */,
 				C3B5215219254BA2003FF639 /* ActionStep.m in Sources */,
 				C3B5215319254BA2003FF639 /* PhysicalManipulationSolution.m in Sources */,
