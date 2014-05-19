@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "ActionStep.h"
+
 @interface Solution : NSObject
 
 @end

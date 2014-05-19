@@ -66,7 +66,7 @@
 		C3B5215219254BA2003FF639 /* ActionStep.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B5214F19254BA2003FF639 /* ActionStep.m */; };
 		C3B5215319254BA2003FF639 /* PhysicalManipulationSolution.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B5215119254BA2003FF639 /* PhysicalManipulationSolution.m */; };
 		C3B52156192A97D7003FF639 /* InteractionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B52155192A97D7003FF639 /* InteractionModel.m */; };
-		C3B52158192AB31A003FF639 /* EBookImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B52157192AB31A003FF639 /* EBookImporter.m */; };
+		C3B5215A192AB610003FF639 /* EBookImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B52159192AB610003FF639 /* EBookImporter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -180,7 +180,7 @@
 		C3B5215119254BA2003FF639 /* PhysicalManipulationSolution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhysicalManipulationSolution.m; sourceTree = "<group>"; };
 		C3B52154192A97D7003FF639 /* InteractionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InteractionModel.h; sourceTree = "<group>"; };
 		C3B52155192A97D7003FF639 /* InteractionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InteractionModel.m; sourceTree = "<group>"; };
-		C3B52157192AB31A003FF639 /* EBookImporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EBookImporter.m; sourceTree = "<group>"; };
+		C3B52159192AB610003FF639 /* EBookImporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EBookImporter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,7 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				31953E7F1729EDFF00570087 /* EBookImporter.h */,
-				C3B52157192AB31A003FF639 /* EBookImporter.m */,
+				C3B52159192AB610003FF639 /* EBookImporter.m */,
 				31953E821729EE4100570087 /* Book.h */,
 				31953E831729EE4100570087 /* Book.m */,
 				311646AC175FCFE100B483F0 /* Chapter.h */,
@@ -551,7 +551,7 @@
 				31953E791729ED5A00570087 /* ZipArchive.mm in Sources */,
 				31953E841729EE4100570087 /* Book.m in Sources */,
 				31953E871729EE5800570087 /* LibraryViewController.m in Sources */,
-				C3B52158192AB31A003FF639 /* EBookImporter.m in Sources */,
+				C3B5215A192AB610003FF639 /* EBookImporter.m in Sources */,
 				31953E8D1729EE6E00570087 /* BookCellView.m in Sources */,
 				31953E8F1729EE6E00570087 /* LibraryView.m in Sources */,
 				31953E951729EEB800570087 /* PMViewController.m in Sources */,

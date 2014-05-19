@@ -508,9 +508,9 @@ float const groupingProximity = 20.0;
             //NSLog(@"location pressed: (%f, %f)", location.x, location.y);
             
             //if it's an image that can be moved, then start moving it.
-            /* CONTROL CONDITION
-            if(imageAtPoint != nil && !stepsComplete) {*/
-            if(imageAtPoint != nil) {
+            /* CONTROL CONDITION */
+            if(imageAtPoint != nil && !stepsComplete) {
+            //if(imageAtPoint != nil) {
                 movingObject = TRUE;
                 movingObjectId = imageAtPoint;
                 
