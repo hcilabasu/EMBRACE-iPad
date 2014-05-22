@@ -692,6 +692,14 @@ function setSentenceNoUnderline(sentenceId) {
     sentenceId.style.textDecoration = "none";
 }
 
-//function setAudibleUnderline(sentenceId) {
-    //sentenceId.style.textDecoration = "underline";
+function getSentenceColor(sentenceId) {
+    return sentenceId.style.color;
+}
+
+//function underlineAudibleWords(sentenceId) {
+//    sentenceId.getElementsByClassName('audible').style.textDecoration = "underline";
+//}
+//function getObjectID(objectName)
+//{
+//    return document.getElementById('').id;
 //}

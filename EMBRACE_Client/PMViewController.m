@@ -9,6 +9,7 @@
 #import "PMViewController.h"
 #import "ContextualMenuDataSource.h"
 #import "PieContextualMenu.h"
+#import "Translation.h"
 
 @interface PMViewController () {
     NSString* currentPage; //The current page being shown, so that the next page can be requested. 
@@ -67,6 +68,12 @@ float const groupingProximity = 20.0;
     [super viewDidLoad];
     
     syn=[[AVSpeechSynthesizer alloc]init];
+    
+    translations = [NSDictionary dictionaryWithObjectsAndKeys:
+                    [NSString stringWithFormat:@"paja"], @"hay",
+                    [NSString stringWithFormat:@"carro"], @"cart",
+                    [NSString stringWithFormat:@"establo"], @"barn",
+                    [NSString stringWithFormat:@"pajar"], @"hayloft", nil];
     
     //Added to deal with ios7 view changes. This makes it so the UIWebView and the navigation bar do not overlap.
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
@@ -145,6 +152,9 @@ float const groupingProximity = 20.0;
         NSString* underlineSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
         [bookView stringByEvaluatingJavaScriptFromString:underlineSentence];
     }
+    
+    //NSString* underlineWords = [NSString stringWithFormat:@"underlineAudibleWords(s%d)", currentSentence];
+    //[bookView stringByEvaluatingJavaScriptFromString:underlineWords];
     
     //Set the opacity of all but the current sentence to .5
     //Color will default to blue. And be changed to green once it's been done. 
@@ -250,40 +260,60 @@ float const groupingProximity = 20.0;
         menuExpanded = FALSE;
     }
     else {
+        
         //Get the object at that point if it's a manipulation object.
         NSString* imageAtPoint = [self getManipulationObjectAtPoint:location];
+        
         NSLog(@"location pressed: (%f, %f)", location.x, location.y);
         
         //Retrieve the elements at this location and see if it's an element that is moveable.
         NSString* requestWordAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
         
-        NSString* requestWordAtPointClass = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).className", location.x, location.y];
+        //NSString* requestWordAtPointClass = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).className", location.x, location.y];
         
         imageAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestWordAtPoint];
-        NSString* imageAtPointClass = [bookView stringByEvaluatingJavaScriptFromString:requestWordAtPointClass];
         
-        if([imageAtPointClass isEqualToString:@"audible"]) {
+        //NSString* imageAtPointClass = [bookView stringByEvaluatingJavaScriptFromString:requestWordAtPointClass];
         
-            NSLog(@"Word: %@", imageAtPointClass);
+        //NSString* requestColorAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).style.color", location.x, location.y];
+        //NSString* sentenceColor = [bookView stringByEvaluatingJavaScriptFromString:requestColorAtPoint];
+        
+        
+        //if([imageAtPointClass isEqualToString:@"audible"]) {
             
-            /* Text to Speech */
+            //NSLog(@"Word: %@", imageAtPointClass);
+            //NSLog(@"Color: %@", sentenceColor);
+            
+            //Capture the clicked text
             NSString* requestSentenceText = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).innerHTML", location.x, location.y];
             NSString* sentenceText = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceText];
             
-            AVSpeechUtterance *utteranceEn = [[AVSpeechUtterance alloc]initWithString:sentenceText];
-            utteranceEn.rate = AVSpeechUtteranceMaximumSpeechRate/7;
-            utteranceEn.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"en-us"];
-            NSLog(@"Sentence: %@",sentenceText);
-            [syn speakUtterance:utteranceEn];
+            //Request object ID
             
-            //Spanish
-            //AVSpeechUtterance *utteranceEs = [[AVSpeechUtterance alloc]initWithString:sentenceText];
-            //utteranceEs.rate = AVSpeechUtteranceMaximumSpeechRate/7;
-            //utteranceEs.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"es-mx"];
-            //NSLog(@"Sentence: %@",sentenceText);
-            //[syn speakUtterance:utteranceEs];
-            /**********************************/
-        }
+            //NSString *requestObjectID = [NSString stringWithFormat:@"getObjectID(%@)", sentenceText];
+            //NSString *objectID = [bookView stringByEvaluatingJavaScriptFromString:requestObjectID];
+            //NSLog(@"Object ID: %@", objectID);
+        
+            //NSLog(@"%@",sentenceText);
+            if([translations objectForKey:sentenceText])
+            {
+        
+                //Highlight the tapped object
+                NSString* highlight = [NSString stringWithFormat:@"highlightObject(%@)", sentenceText];
+                [bookView stringByEvaluatingJavaScriptFromString:highlight];
+                
+                //Play word audio En
+                [self playWordAudioEn:sentenceText];
+                
+                //Play word audio Es
+                [self playWordAudioEs:translations[sentenceText]];
+                
+                //Clear highlighted object
+                [self performSelector:@selector(clearHighlightedObject) withObject:nil afterDelay:1.5];
+
+             }
+
+        //}
     }
 }
 
@@ -381,9 +411,12 @@ float const groupingProximity = 20.0;
 -(IBAction)panGesturePerformed:(UIPanGestureRecognizer *)recognizer {
     CGPoint location = [recognizer locationInView:self.view];
     
+    
     //This should work with requireGestureRecognizerToFail:pinchRecognizer but it doesn't currently.
     if(!pinching) {
+        
         if(recognizer.state == UIGestureRecognizerStateBegan) {
+            
             //NSLog(@"pan gesture began at location: (%f, %f)", location.x, location.y);
             
             //Get the object at that point if it's a manipulation object.
@@ -392,6 +425,7 @@ float const groupingProximity = 20.0;
             
             //if it's an image that can be moved, then start moving it.
             if(imageAtPoint != nil) {
+
                 movingObject = TRUE;
                 movingObjectId = imageAtPoint;
                 
@@ -400,6 +434,7 @@ float const groupingProximity = 20.0;
             }
         }
         else if(recognizer.state == UIGestureRecognizerStateEnded) {
+            
             //NSLog(@"pan gesture ended at location (%f, %f)", location.x, location.y);
             //if moving object, move object to final position.
             if(movingObject) {
@@ -492,6 +527,9 @@ float const groupingProximity = 20.0;
         }
         //If we're in the middle of moving the object, just call the JS to move it.
         else if(movingObject)  {
+            
+
+            
             [self moveObject:movingObjectId :location :delta];
             
             //If we're overlapping with another object, then we need to figure out which hotspots are currently active and highlight those hotspots.
@@ -500,6 +538,7 @@ float const groupingProximity = 20.0;
             NSString* overlapArrayString = [bookView stringByEvaluatingJavaScriptFromString:overlappingObjects];
             
             if(![overlapArrayString isEqualToString:@""]) {
+                
                 NSArray* overlappingWith = [overlapArrayString componentsSeparatedByString:@", "];
                             
                 for(NSString* objId in overlappingWith) {
@@ -1753,8 +1792,8 @@ float const groupingProximity = 20.0;
     //If it is an action sentence underline it
     if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
         
-        NSString* underlineSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
-        [bookView stringByEvaluatingJavaScriptFromString:underlineSentence];
+        NSString* colorSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
+        [bookView stringByEvaluatingJavaScriptFromString:colorSentence];
     }
     
     //Turn off underline for the previous sentence
@@ -1790,6 +1829,32 @@ float const groupingProximity = 20.0;
         if(interactionNum > maxMenuItems)
             break;
     }
+}
+
+-(void)clearHighlightedObject {
+    
+    NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
+    [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
+}
+
+-(void)playWordAudioEn:(NSString*) word {
+ 
+    AVSpeechUtterance *utteranceEn = [[AVSpeechUtterance alloc]initWithString:word];
+    utteranceEn.rate = AVSpeechUtteranceMaximumSpeechRate/7;
+    utteranceEn.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"en-us"];
+    NSLog(@"Sentence: %@", word);
+    NSLog(@"Volume: %f", utteranceEn.volume);
+    [syn speakUtterance:utteranceEn];
+}
+
+-(void)playWordAudioEs:(NSString*) word {
+    
+    AVSpeechUtterance *utteranceEs = [[AVSpeechUtterance alloc]initWithString:word];
+    utteranceEs.rate = AVSpeechUtteranceMaximumSpeechRate/6;
+    utteranceEs.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"es-mx"];
+    utteranceEs.volume = 10;
+    NSLog(@"Sentence: %@", word);
+    [syn speakUtterance:utteranceEs];
 }
 
 #pragma mark - PieContextualMenuDelegate
