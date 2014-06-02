@@ -69,12 +69,6 @@ float const groupingProximity = 20.0;
     
     syn=[[AVSpeechSynthesizer alloc]init];
     
-    translations = [NSDictionary dictionaryWithObjectsAndKeys:
-                    [NSString stringWithFormat:@"paja"], @"hay",
-                    [NSString stringWithFormat:@"carro"], @"cart",
-                    [NSString stringWithFormat:@"establo"], @"barn",
-                    [NSString stringWithFormat:@"pajar"], @"hayloft", nil];
-    
     //Added to deal with ios7 view changes. This makes it so the UIWebView and the navigation bar do not overlap.
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -294,19 +288,19 @@ float const groupingProximity = 20.0;
             //NSString *objectID = [bookView stringByEvaluatingJavaScriptFromString:requestObjectID];
             //NSLog(@"Object ID: %@", objectID);
         
-            //NSLog(@"%@",sentenceText);
-            if([translations objectForKey:sentenceText])
+            NSLog(@"%@",sentenceText);
+            if([[Translation translations] objectForKey:sentenceText])
             {
         
                 //Highlight the tapped object
-                NSString* highlight = [NSString stringWithFormat:@"highlightObject(%@)", sentenceText];
+                NSString* highlight = [NSString stringWithFormat:@"highlightObjectOnWordTap(%@)", sentenceText];
                 [bookView stringByEvaluatingJavaScriptFromString:highlight];
                 
                 //Play word audio En
                 [self playWordAudioEn:sentenceText];
                 
                 //Play word audio Es
-                [self playWordAudioEs:translations[sentenceText]];
+                [self playWordAudioEs:[Translation translations][sentenceText]];
                 
                 //Clear highlighted object
                 [self performSelector:@selector(clearHighlightedObject) withObject:nil afterDelay:1.5];

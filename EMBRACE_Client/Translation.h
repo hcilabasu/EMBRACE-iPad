@@ -8,10 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-NSDictionary *translations;
-
 @interface Translation : NSObject
 
-@property (nonatomic, retain) NSDictionary *translations;
++(NSDictionary *) translations;
 
 @end

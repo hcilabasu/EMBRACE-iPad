@@ -633,6 +633,7 @@ function clearAllHighlighted() {
     var context = canvas.getContext('2d');
     
     context.clearRect(0, 0, canvas.width, canvas.height);
+    document.getElementById('highlight').style.zIndex = "0";
     
 }
 
@@ -703,3 +704,51 @@ function getSentenceColor(sentenceId) {
 //{
 //    return document.getElementById('').id;
 //}
+
+function highlightObjectOnWordTap(object) {
+    highlightOnTap(object.offsetLeft, object.offsetTop, object.offsetWidth, object.offsetHeight);
+}
+
+function highlightOnTap(topleftX, topleftY, objectWidth, objectHeight) {
+
+    var canvas = document.getElementById('highlight');
+    
+    var context = canvas.getContext('2d');
+    
+    //Get the size of the image and add 50 px to make the oval larger than the image.
+    var width = objectWidth + 50;
+    var height = objectHeight + 50;
+    
+    //Get the top-left corner and subtract 25 px to make the oval larger than the image.
+    var x = topleftX - 25;
+    var y = topleftY - 25;
+    
+    //Figure out where our bezier points need to be.
+    var kappa = .5522848;
+    var ox = (width / 2) * kappa; // control point offset horizontal
+    var oy = (height / 2) * kappa; // control point offset vertical
+    var xe = x + width;           // x-end
+    var ye = y + height;          // y-end
+    var xm = x + width / 2;       // x-middle
+    var ym = y + height / 2;       // y-middle
+    
+    //Draw the oval.
+    context.beginPath();
+    //Create a halo effect.
+    context.strokeStyle = "rgba(250, 250, 210, .2)";
+    context.lineWidth = 5;
+    context.moveTo(x, ym);
+    context.bezierCurveTo(x, ym - oy, xm - ox, y, xm, y);
+    context.bezierCurveTo(xm + ox, y, xe, ym - oy, xe, ym);
+    context.bezierCurveTo(xe, ym + oy, xm + ox, ye, xm, ye);
+    context.bezierCurveTo(xm - ox, ye, x, ym + oy, x, ym);
+    context.closePath();
+    context.stroke();
+    context.fillStyle = "rgba(255, 250, 205, .4)";
+    context.fill();
+    
+    document.getElementById('highlight').style.zIndex = "100";
+}
+
+
+
