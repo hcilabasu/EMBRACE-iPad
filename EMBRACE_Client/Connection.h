@@ -28,5 +28,6 @@ typedef enum InteractionType {
 @property (nonatomic, strong) NSArray* hotspots;
 
 - (id)initWithValues:(InteractionType)type :(NSArray*) objs :(NSArray*) hotspts;
+- (BOOL)isEqualToConnection:(Connection*)connection;
 
 @end

@@ -37,4 +37,43 @@
     [connections addObject:connection];
 }
 
+- (BOOL)isEqualToPossibleInteraction:(PossibleInteraction *)interaction {
+    //Same PossbleInteraction objects
+    if (self == interaction) {
+        return YES;
+    }
+    
+    //Compare interaction types
+    if ([self interactionType] != [interaction interactionType]) {
+        return NO;
+    }
+    
+    //Compare connections arrays
+    if (![[self connections] isEqual:[interaction connections]]) {
+        return NO;
+    }
+    
+    return YES;
+}
+
+- (BOOL)isEqual:(id)other {
+    if (other == self)
+        return YES;
+    
+    if (!other || ![other isKindOfClass:[self class]])
+        return NO;
+    
+    return [self isEqualToPossibleInteraction:other];
+}
+
+- (NSUInteger)hash {
+    NSUInteger hash = [self interactionType];
+    
+    for (Connection* connection in [self connections]) {
+        hash = hash ^ [connection hash];
+    }
+    
+    return hash;
+}
+
 @end

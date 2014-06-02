@@ -22,5 +22,6 @@
 
 - (id)initWithInteractionType:(InteractionType)type;
 - (void)addConnection:(InteractionType)type :(NSArray*) objs :(NSArray*) hotspts;
+- (BOOL)isEqualToPossibleInteraction:(PossibleInteraction*) interaction;
 
 @end
