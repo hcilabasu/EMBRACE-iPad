@@ -39,9 +39,10 @@
     NSInteger MENU;
     NSInteger HOTSPOT;
     
+    BOOL pinchToUngroup; //TRUE if enabled; FALSE if disabled
+    
     NSInteger useSubject; //Determines which objects the user can manipulate as the subject
     NSInteger useObject; //Determines which objects the user can manipulate as the object
-    NSInteger pinchToUngroup; //Determines how pinch gesture is used
     
     NSInteger ALL_ENTITIES; //Any object can be used
     NSInteger ONLY_CORRECT; //Only the correct subject/object can be used
@@ -118,16 +119,16 @@ float const groupingProximity = 20.0;
     condition = MENU;
     useSubject = ALL_ENTITIES;
     useObject = ALL_ENTITIES;
-    pinchToUngroup = NO_ENTITIES;
+    pinchToUngroup = FALSE;
     
     currentGroupings = [[NSMutableDictionary alloc] init];
     
     //Create contextualMenuController
     menuDataSource = [[ContextualMenuDataSource alloc] init];
     
-    allPossibleGroupings = [[NSMutableArray alloc] init];
+    /*allPossibleGroupings = [[NSMutableArray alloc] init];
     uniquePossibleInteractions = [[NSMutableArray alloc] init];
-    ungroupInteractions = [[NSMutableArray alloc] init];
+    ungroupInteractions = [[NSMutableArray alloc] init];*/
     
     //Ensure that the pinch recognizer gets called before the pan gesture recognizer.
     //That way, if a user is trying to ungroup objects, they can do so without the objects moving as well.
@@ -256,11 +257,6 @@ float const groupingProximity = 20.0;
  * Moves to next step in a sentence if possible. The step is performed automatically if it is ungroup or move.
  */
 -(void) incrementCurrentStep {
-    /* Note: Created a global PMSolution variable to use instead
-    Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
-    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
-    PhysicalManipulationSolution* PMSolution = [PMActivity PMSolution]; //get PM solution*/
-    
     //Get number of steps for current sentence
     NSUInteger numSteps = [PMSolution getNumStepsForSentence:currentSentence];
     
@@ -275,14 +271,16 @@ float const groupingProximity = 20.0;
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
         //Automatically perform interaction if step is ungroup or move
-        if ([[currSolStep stepType] isEqualToString:@"ungroup"]) {
+        if (!pinchToUngroup && [[currSolStep stepType] isEqualToString:@"ungroup"]) {
             PossibleInteraction* correctUngrouping = [self getCorrectInteraction];
             
             [self performInteraction:correctUngrouping];
+            
             [self incrementCurrentStep];
         }
         else if ([[currSolStep stepType] isEqualToString:@"move"]) {
             [self moveObjectForSolution];
+            
             [self incrementCurrentStep];
         }
     }
@@ -414,8 +412,10 @@ float const groupingProximity = 20.0;
                 }
             }
             else {
-                //Snap the object back to its original location
-                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0)];
+                if ([interaction interactionType] != UNGROUP) {
+                    //Snap the object back to its original location
+                    [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0)];
+                }
             }
         }
         
@@ -456,12 +456,11 @@ float const groupingProximity = 20.0;
 
 /*
  * Pinch gesture. Used to ungroup two images from each other.
- * NOTE: This gesture will be disabled.
  */
 -(IBAction)pinchGesturePerformed:(UIPinchGestureRecognizer *)recognizer {
     CGPoint location = [recognizer locationInView:self.view];
     
-    if(recognizer.state == UIGestureRecognizerStateBegan && pinchToUngroup != NO_ENTITIES) {
+    if(recognizer.state == UIGestureRecognizerStateBegan && pinchToUngroup) {
         pinching = TRUE;
         
         NSString* imageAtPoint = [self getManipulationObjectAtPoint:location];
@@ -479,123 +478,69 @@ float const groupingProximity = 20.0;
         
         //If there is an array, split the array based on pairs.
         if(![groupedImages isEqualToString:@""]) {
-            /* //Create an array that will hold all the items in this group
-            NSMutableArray* groupedItemsArray = [[NSMutableArray alloc] init];
-            
             NSArray* itemPairArray = [groupedImages componentsSeparatedByString:@"; "];
+            
+            NSMutableArray* possibleInteractions = [[NSMutableArray alloc] init];
             
             for(NSString* pairStr in itemPairArray) {
+                //Create an array that will hold all the items in this group
+                NSMutableArray* groupedItemsArray = [[NSMutableArray alloc] init];
+                
                 //separate the objects in this pair and add them to our array of all items in this group.
                 [groupedItemsArray addObjectsFromArray:[pairStr componentsSeparatedByString:@", "]];
-            }
-            
-            //Check if correct subject and object are grouped together. If so, they can be ungrouped.
-            BOOL hasCorrectSubject = false;
-            BOOL hasCorrectObject = false;
-            
-            for(NSString* obj in groupedItemsArray) {
-                if ([self checkSolutionForSubject:obj]) {
-                    hasCorrectSubject = true;
-                }
                 
-                if ([self checkSolutionForObject:obj]) {
-                    hasCorrectObject = true;
-                }
-            }
-            
-            if (hasCorrectSubject && hasCorrectObject) {
-                PossibleInteraction* correctInteraction = [self getCorrectInteraction];
-                [self performInteraction:correctInteraction]; //performs solution step
+                //Check if correct subject and object are grouped together. If so, they can be ungrouped.
+                BOOL hasCorrectSubject = true;
+                BOOL hasCorrectObject = true;
                 
-                [self incrementCurrentStep];
-            }*/
-            
-            //Create an array that will hold all the items in this group
-            NSMutableArray* groupedItemsArray = [[NSMutableArray alloc] init];
-            
-            NSArray* itemPairArray = [groupedImages componentsSeparatedByString:@"; "];
-            
-            if ([itemPairArray count] == 1) {
-                //NSArray* pairStr = [[itemPairArray objectAtIndex:0] componentsSeparatedByString:@", "];
-                NSString* pairStr = [itemPairArray objectAtIndex:0];
-                
-                [groupedItemsArray addObjectsFromArray:[pairStr componentsSeparatedByString:@", "]];
-                
-                /*NSString* obj1 = [pairStr objectAtIndex:0]; //get object 1
-                NSString* obj2 = [pairStr objectAtIndex:1]; //get object 2
-                
-                [self ungroupObjects:obj1 :obj2]; //ungroup the objects.*/
-                
-                PossibleInteraction* interaction = [[PossibleInteraction alloc] initWithInteractionType:UNGROUP];
-                [interaction addConnection:UNGROUP :groupedItemsArray :nil];
-                
-                //Get correct interaction to compare
-                PossibleInteraction* correctInteraction = [self getCorrectInteraction];
-                
-                //Check if interaction is correct
-                if ([interaction isEqual:correctInteraction]) {
-                    [self performInteraction:interaction];
-                    
-                    [self incrementCurrentStep];
-                }
-            }
-            //Create the possible interactions array if there are multiple possible ungroupings.
-            else if([itemPairArray count] > 1) {
-                NSMutableArray* possibleInteractions = [[NSMutableArray alloc] init];
-                
-                for(NSString* pairStr in itemPairArray) {
-                    /*//separate the objects in this pair.
-                    NSArray *itemPair = [pairStr componentsSeparatedByString:@", "];*/
-                    
-                    //separate the objects in this pair and add them to our array of all items in this group.
-                    [groupedItemsArray addObjectsFromArray:[pairStr componentsSeparatedByString:@", "]];
-                    
-                    /*NSMutableArray* affectedItemIds = [[NSMutableArray alloc] init];
-                    
-                    for(NSString* objId in itemPair) {
-                        
-                        [affectedItemIds addObject:objId]; //This is one of the objects that will be affected by the ungroup.
+                for(NSString* obj in groupedItemsArray) {
+                    if (useSubject == ONLY_CORRECT) {
+                        if (![self checkSolutionForSubject:obj]) {
+                            hasCorrectSubject = false;
+                        }
                     }
                     
+                    if (useObject == ONLY_CORRECT) {
+                        if (![self checkSolutionForObject:obj]) {
+                            hasCorrectObject = false;
+                        }
+                    }
+                }
+                
+                if (hasCorrectSubject && hasCorrectObject) {
                     PossibleInteraction* interaction = [[PossibleInteraction alloc] initWithInteractionType:UNGROUP];
-                    [interaction addConnection:UNGROUP :affectedItemIds :nil];
+                    [interaction addConnection:UNGROUP :groupedItemsArray :nil];
                     
-                    [possibleInteractions addObject:interaction];*/
-                    
-                    //Check if correct subject and object are grouped together. If so, they can be ungrouped.
-                    BOOL hasCorrectSubject = false;
-                    BOOL hasCorrectObject = false;
-                    
-                    for(NSString* obj in groupedItemsArray) {
-                        if ([self checkSolutionForSubject:obj]) {
-                            hasCorrectSubject = true;
-                        }
+                    //Only one possible ungrouping found
+                    if ([itemPairArray count] == 1) {
+                        //Get correct interaction to compare
+                        PossibleInteraction* correctInteraction = [self getCorrectInteraction];
                         
-                        if ([self checkSolutionForObject:obj]) {
-                            hasCorrectObject = true;
+                        //Check if interaction is correct
+                        if ([interaction isEqual:correctInteraction]) {
+                            [self performInteraction:interaction];
+                            
+                            [self incrementCurrentStep];
                         }
                     }
-                    
-                    if (hasCorrectSubject && hasCorrectObject) {
-                        PossibleInteraction* interaction = [[PossibleInteraction alloc] initWithInteractionType:UNGROUP];
-                        [interaction addConnection:UNGROUP :groupedItemsArray :nil];
-                        
+                    //Multiple possible ungroupings found
+                    else {
                         [possibleInteractions addObject:interaction];
                     }
                 }
-                
+            }
+            
+            //Show the menu if multiple possible ungroupings are found
+            if ([itemPairArray count] > 1) {
                 //Populate the data source and expand the menu.
                 [self populateMenuDataSource:possibleInteractions];
                 
                 if(!menuExpanded)
                     [self expandMenu];
             }
-            else
-                NSLog(@"no items grouped");
         }
-        
-        /* //Move object to another object or waypoint
-        [self moveObjectForSolution];*/
+        else
+            NSLog(@"no items grouped");
         
         pinching = FALSE;
     }
@@ -1455,11 +1400,6 @@ float const groupingProximity = 20.0;
  * for group step types. Otherwise, it returns false.
  */
 -(BOOL) checkSolutionForSubject:(NSString*)subject {
-    /* Note: Created a global PMSolution variable to use instead
-    Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
-    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
-    PhysicalManipulationSolution* PMSolution = [PMActivity PMSolution]; //get PM solution*/
-    
     //Get number of steps for current sentence
     NSUInteger numSteps = [PMSolution getNumStepsForSentence:currentSentence];
     
@@ -1515,11 +1455,6 @@ float const groupingProximity = 20.0;
  * Otherwise, it returns false.
  */
 -(BOOL) checkSolutionForObject:(NSString*)overlappingObject {
-    /* Note: Created a global PMSolution variable to use instead
-    Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
-    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
-    PhysicalManipulationSolution* PMSolution = [PMActivity PMSolution]; //get PM solution*/
-    
     //Get number of steps for current sentence
     NSUInteger numSteps = [PMSolution getNumStepsForSentence:currentSentence];
     
@@ -1563,11 +1498,6 @@ float const groupingProximity = 20.0;
  * Moves an object to another object or waypoint for move step types
  */
 -(void) moveObjectForSolution {
-    /* Note: Created a global PMSolution variable to use instead
-    Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
-    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
-    PhysicalManipulationSolution* PMSolution = [PMActivity PMSolution]; //get PM solution*/
-    
     //Get number of steps for current sentence
     NSUInteger numSteps = [PMSolution getNumStepsForSentence:currentSentence];
     
@@ -1631,11 +1561,6 @@ float const groupingProximity = 20.0;
  * Otherwise, returns false.
  */
 -(BOOL) isHotspotInsideLocation {
-    /* Note: Created a global PMSolution variable to use instead
-    Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
-    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
-    PhysicalManipulationSolution* PMSolution = [PMActivity PMSolution]; //get PM solution*/
-    
     //Get number of steps for current sentence
     NSUInteger numSteps = [PMSolution getNumStepsForSentence:currentSentence];
     
@@ -1701,7 +1626,6 @@ float const groupingProximity = 20.0;
     [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
     
     if([imageAtPointClass isEqualToString:@"manipulationObject"]) {
-        //if (useSubject == ALL_SUBJECTS)
         if (useSubject == ALL_ENTITIES)
             return imageAtPoint;
         else if (useSubject == ONLY_CORRECT) {
@@ -1724,11 +1648,6 @@ float const groupingProximity = 20.0;
  */
 -(PossibleInteraction*) getCorrectInteraction {
     PossibleInteraction* correctInteraction;
-    
-    /* Note: Created a global PMSolution variable to use instead
-    Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
-    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
-    PhysicalManipulationSolution* PMSolution = [PMActivity PMSolution]; //get PM solution*/
     
     //Get number of steps for current sentence
     NSUInteger numSteps = [PMSolution getNumStepsForSentence:currentSentence];
@@ -1776,9 +1695,6 @@ float const groupingProximity = 20.0;
             NSArray* nextHotspotsForInteraction = [[NSArray alloc]initWithObjects:nextHotspot1, nextHotspot2, nil];
             
             [correctInteraction addConnection:GROUP :nextObjects :nextHotspotsForInteraction];
-            
-            //Increment step since we are combining two solution steps into one possible interaction
-            //[self incrementCurrentStep];
         }
         else if ([[currSolStep stepType] isEqualToString:@"transferAndDisappear"]) {
             correctInteraction = [[PossibleInteraction alloc]initWithInteractionType:TRANSFERANDDISAPPEAR];
@@ -1815,9 +1731,6 @@ float const groupingProximity = 20.0;
             NSArray* nextHotspotsForInteraction = [[NSArray alloc]initWithObjects:nextHotspot1, nextHotspot2, nil];
             
             [correctInteraction addConnection:DISAPPEAR :nextObjects :nextHotspotsForInteraction];
-            
-            //Increment step since we are combining two solution steps into one possible interaction
-            //[self incrementCurrentStep];
         }
         else {
             correctInteraction = [self convertActionStepToPossibleInteraction:currSolStep];
@@ -1838,8 +1751,9 @@ float const groupingProximity = 20.0;
     NSString *isContainedString = [bookView stringByEvaluatingJavaScriptFromString:isContained];
     
     //First object in array is contained in second object in array
-    if([isContainedString isEqualToString:@"true"])
+    if([isContainedString isEqualToString:@"true"]) {
         containedObject = objects[0];
+    }
     //Check the second object
     else if([isContainedString isEqualToString:@"false"]) {
         isContained = [NSString stringWithFormat:@"objectContainedInObject(%@,%@)", objects[1], objects[0]];
@@ -2456,28 +2370,19 @@ float const groupingProximity = 20.0;
                         else if(actionsMatch && ![isHotspotConnectedMovingObjectString isEqualToString:@""] && [isHotspotConnectedObjectString isEqualToString:@""] && !rolesMatch) {
                             NSLog(@"in first else");
                             
-                            //[groupings addObjectsFromArray:[self getPossibleTransferInteractionsforObjects:obj :isHotspotConnectedMovingObjectString :objId :hotspot]];
-                            
                             Hotspot* objectConnectedToHotspot = [model getHotspotforObjectWithActionAndRole:isHotspotConnectedMovingObjectString :[movingObjectHotspot action] :@"subject"];
                             
-                            /*Hotspot* objectConnectedToHotspot;
-                            
-                            if ([[movingObjectHotspot action] isEqualToString:@"receive"]) {
-                                objectConnectedToHotspot = [model getHotspotforObjectWithActionAndRole:isHotspotConnectedMovingObjectString :@"give" :@"subject"];
-                            }
-                            else {
-                                objectConnectedToHotspot = [model getHotspotforObjectWithActionAndRole:isHotspotConnectedMovingObjectString :[movingObjectHotspot action] :@"subject"];
-                            }*/
-                            
+                            //[groupings addObjectsFromArray:[self getPossibleTransferInteractionsforObjects:obj :isHotspotConnectedMovingObjectString :objId :hotspot]];
+                            //Changed hotspot to objectConnectedToHotspot
                             [groupings addObjectsFromArray:[self getPossibleTransferInteractionsforObjects:obj :isHotspotConnectedMovingObjectString :objId :objectConnectedToHotspot]];
                         }
                         else if(actionsMatch && [isHotspotConnectedMovingObjectString isEqualToString:@""] && ![isHotspotConnectedObjectString isEqualToString:@""] && !rolesMatch) {
                             NSLog(@"in second else");
                             
-                            //[groupings addObjectsFromArray:[self getPossibleTransferInteractionsforObjects:objId :isHotspotConnectedObjectString :obj :movingObjectHotspot]];
-                            
                             Hotspot* objectConnectedToHotspot = [model getHotspotforObjectWithActionAndRole:isHotspotConnectedObjectString :[hotspot action] :@"subject"];
                             
+                            //[groupings addObjectsFromArray:[self getPossibleTransferInteractionsforObjects:objId :isHotspotConnectedObjectString :obj :movingObjectHotspot]];
+                            //Changed movingObjectHotspot to objectConnectedToHotspot
                             [groupings addObjectsFromArray:[self getPossibleTransferInteractionsforObjects:objId :isHotspotConnectedObjectString :obj :objectConnectedToHotspot]];
                         }
                     }
@@ -2492,6 +2397,7 @@ float const groupingProximity = 20.0;
     return groupings;
 }
 
+//Modified so that objConnectedHotspot is now objConnectedToHotspot
 -(NSMutableArray*) getPossibleTransferInteractionsforObjects:(NSString*)objConnected :(NSString*)objConnectedTo :(NSString*)currentUnconnectedObj :(Hotspot*) objConnectedHotspot {
     NSMutableArray* groupings = [[NSMutableArray alloc] init];
     
@@ -2506,7 +2412,7 @@ float const groupingProximity = 20.0;
     //NSMutableArray* hotspotsForCurrentUnconnectedObject = [model getHotspotsForObject:currentUnconnectedObj OverlappingWithObject :objConnected];
     
     //NSMutableArray* hotspotsForObjConnectedTo = [model getHotspotsForObject:objConnectedTo OverlappingWithObject :currentUnconnectedObj]
-    //Changed to hotspotsForObjConnected
+    //Changed to represent hotspotsForObjConnected
     NSMutableArray* hotspotsForObjConnectedTo = [model getHotspotsForObject:objConnected OverlappingWithObject :currentUnconnectedObj];
     
     //NSLog(@"Comparing hotspots for %@ and %@", objConnectedTo, currentUnconnectedObj);
@@ -2885,6 +2791,7 @@ float const groupingProximity = 20.0;
 
 /*
  * Loads the solution steps of the current story and stores into an array
+ * Note: This function was previously named "generateSteps".
  */
 -(void) loadSolution {
     Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
@@ -2978,7 +2885,7 @@ float const groupingProximity = 20.0;
     NSString *objB ;
     Hotspot *hotspotA;
     Hotspot *hotspotB ;
-    NSString* action;
+    NSString *action;
     
     for (PossibleInteraction *interaction in possibleInteractions) {
         index++;
@@ -3446,11 +3353,6 @@ float const groupingProximity = 20.0;
             NSString* underlineSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
             [bookView stringByEvaluatingJavaScriptFromString:underlineSentence];
             
-            /* Note: Created a global PMSolution variable to use instead
-            Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
-            PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
-            PhysicalManipulationSolution* PMSolution = [PMActivity PMSolution]; //get PM solution*/
-            
             //Get steps for current sentence
             NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
             
@@ -3458,14 +3360,16 @@ float const groupingProximity = 20.0;
             ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
             
             //Automatically perform interaction if step is ungroup or move
-            if ([[currSolStep stepType] isEqualToString:@"ungroup"]) {
+            if (!pinchToUngroup && [[currSolStep stepType] isEqualToString:@"ungroup"]) {
                 PossibleInteraction* correctUngrouping = [self getCorrectInteraction];
                 
                 [self performInteraction:correctUngrouping];
+                
                 [self incrementCurrentStep];
             }
             else if ([[currSolStep stepType] isEqualToString:@"move"]) {
                 [self moveObjectForSolution];
+                
                 [self incrementCurrentStep];
             }
         }
