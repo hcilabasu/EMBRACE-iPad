@@ -30,11 +30,6 @@
         return YES;
     }
     
-    //Assume all UNGROUP connections are correct
-    if ([self interactionType] == UNGROUP) {
-        return YES;
-    }
-    
     //Compare interaction types
     if ([self interactionType] != [connection interactionType]) {
         return NO;
@@ -47,7 +42,13 @@
     
     //Compare hotspots arrays
     if (![[self hotspots] isEqualToArray:[connection hotspots]]) {
-        return NO;
+        //Assume the hotspots are correct for ungroup interactions because a Connection object from the solution does not include hotspots for ungroup steps
+        if ([self interactionType] == UNGROUP) {
+            return YES;
+        }
+        else {
+            return NO;
+        }
     }
     
     return YES;
