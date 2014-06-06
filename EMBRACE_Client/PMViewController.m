@@ -27,7 +27,7 @@
     BOOL pinching;
     
     PhysicalManipulationSolution* PMSolution; //PM solution for the current chapter
-    NSMutableArray* solutionSteps; //Stores all the steps involved in the solution
+    NSMutableArray* actionSteps; //Stores all the steps involved in the solution
     //NSMutableArray *stepsCompleted; //Stores which steps are completed in the current story
     
     NSMutableArray *allPossibleGroupings; //Stores all possible groupings
@@ -39,13 +39,13 @@
     NSInteger MENU;
     NSInteger HOTSPOT;
     
-    BOOL pinchToUngroup; //TRUE if enabled; FALSE if disabled
+    BOOL pinchToUngroup; //TRUE if pinch gesture is used to ungroup; FALSE otherwise
     
     NSInteger useSubject; //Determines which objects the user can manipulate as the subject
     NSInteger useObject; //Determines which objects the user can manipulate as the object
     
     NSInteger ALL_ENTITIES; //Any object can be used
-    NSInteger ONLY_CORRECT; //Only the correct subject/object can be used
+    NSInteger ONLY_CORRECT; //Only the correct object can be used
     NSInteger NO_ENTITIES; //No object can be used
     
     CGPoint startLocation; //initial location of an object before it is moved
@@ -177,7 +177,6 @@ float const groupingProximity = 20.0;
     }
     
     //Set the opacity of all but the current sentence to .5
-    //Color will default to blue. And be changed to green once it's been done.
     for(int i = currentSentence; i < totalSentences; i++) {
         NSString* setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, .5)", i + 1];
         [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
@@ -186,7 +185,7 @@ float const groupingProximity = 20.0;
     //Perform setup for activity
     [self performSetupForActivity];
     
-    //Load PMSolution
+    //Load solution for activity
     [self loadPhysicalManipulationSolution];
 }
 
@@ -275,12 +274,10 @@ float const groupingProximity = 20.0;
             PossibleInteraction* correctUngrouping = [self getCorrectInteraction];
             
             [self performInteraction:correctUngrouping];
-            
             [self incrementCurrentStep];
         }
         else if ([[currSolStep stepType] isEqualToString:@"move"]) {
             [self moveObjectForSolution];
-            
             [self incrementCurrentStep];
         }
     }
@@ -295,60 +292,29 @@ float const groupingProximity = 20.0;
 -(PossibleInteraction*) convertActionStepToPossibleInteraction:(ActionStep*)step {
     PossibleInteraction* interaction;
     
-    if ([[step stepType] isEqualToString:@"group"]) {
-        //Get step information
-        NSString* obj1Id = [step object1Id];
-        NSString* obj2Id = [step object2Id];
-        NSString* action = [step action];
-        
+    //Get step information
+    NSString* obj1Id = [step object1Id];
+    NSString* obj2Id = [step object2Id];
+    NSString* action = [step action];
+    
+    //Objects involved in interaction
+    NSArray* objects = [[NSArray alloc] initWithObjects:obj1Id, obj2Id, nil];
+    
+    //Get hotspots for both objects associated with action
+    Hotspot* hotspot1 = [model getHotspotforObjectWithActionAndRole:obj1Id :action :@"subject"];
+    Hotspot* hotspot2 = [model getHotspotforObjectWithActionAndRole:obj2Id :action :@"object"];
+    NSArray* hotspotsForInteraction = [[NSArray alloc]initWithObjects:hotspot1, hotspot2, nil];
+    
+    //The move case only applies if an object is being moved to another object, not a waypoint
+    if ([[step stepType] isEqualToString:@"group"] || [[step stepType] isEqualToString:@"move"]) {
         interaction = [[PossibleInteraction alloc]initWithInteractionType:GROUP];
-        
-        //Objects involved in group setup
-        NSArray* objects = [[NSArray alloc] initWithObjects:obj1Id, obj2Id, nil];
-        
-        //Get hotspots for both objects associated with action
-        Hotspot* hotspot1 = [model getHotspotforObjectWithActionAndRole:obj1Id :action :@"subject"];
-        Hotspot* hotspot2 = [model getHotspotforObjectWithActionAndRole:obj2Id :action :@"object"];
-        NSArray* hotspotsForInteraction = [[NSArray alloc]initWithObjects:hotspot1, hotspot2, nil];
         
         [interaction addConnection:GROUP :objects :hotspotsForInteraction];
     }
     else if ([[step stepType] isEqualToString:@"ungroup"]) {
-        //Get step information
-        NSString* obj1Id = [step object1Id];
-        NSString* obj2Id = [step object2Id];
-        NSString* action = [step action];
-        
         interaction = [[PossibleInteraction alloc]initWithInteractionType:UNGROUP];
         
-        //Objects involved in group setup
-        NSArray* objects = [[NSArray alloc] initWithObjects:obj1Id, obj2Id, nil];
-        
-        //Get hotspots for both objects associated with action
-        Hotspot* hotspot1 = [model getHotspotforObjectWithActionAndRole:obj1Id :action :@"subject"];
-        Hotspot* hotspot2 = [model getHotspotforObjectWithActionAndRole:obj2Id :action :@"object"];
-        NSArray* hotspotsForInteraction = [[NSArray alloc]initWithObjects:hotspot1, hotspot2, nil];
-        
         [interaction addConnection:UNGROUP :objects :hotspotsForInteraction];
-    }
-    //This case only applies if an object is being moved to another object, not a waypoint
-    else if ([[step stepType] isEqualToString:@"move"]) {
-        //Get step information
-        NSString* obj1Id = [step object1Id];
-        NSString* obj2Id = [step object2Id];
-        NSString* action = [step action];
-        
-        interaction = [[PossibleInteraction alloc]initWithInteractionType:GROUP];
-        
-        //Objects involved in group setup
-        NSArray* objects = [[NSArray alloc] initWithObjects:obj1Id, obj2Id, nil];
-        
-        //Get hotspots for both objects associated with action
-        Hotspot* hotspot1 = [model getHotspotforObjectWithActionAndRole:obj1Id :action :@"subject"];
-        Hotspot* hotspot2 = [model getHotspotforObjectWithActionAndRole:obj2Id :action :@"object"];
-        NSArray* hotspotsForInteraction = [[NSArray alloc]initWithObjects:hotspot1, hotspot2, nil];
-        
-        [interaction addConnection:GROUP :objects :hotspotsForInteraction];
     }
     
     return interaction;
@@ -403,11 +369,15 @@ float const groupingProximity = 20.0;
             //Check if selected interaction is correct
             if ([interaction isEqual:correctInteraction]) {
                 [self performInteraction:interaction];
-                
                 [self incrementCurrentStep];
                 
                 //Transference counts as two steps, so we must increment again
                 if ([interaction interactionType] == TRANSFERANDGROUP || [interaction interactionType] == TRANSFERANDDISAPPEAR) {
+                    [self incrementCurrentStep];
+                }
+                
+                //Check if object is in the correct location
+                if([self isHotspotInsideLocation]) {
                     [self incrementCurrentStep];
                 }
             }
@@ -486,28 +456,28 @@ float const groupingProximity = 20.0;
                 //Create an array that will hold all the items in this group
                 NSMutableArray* groupedItemsArray = [[NSMutableArray alloc] init];
                 
-                //separate the objects in this pair and add them to our array of all items in this group.
+                //Separate the objects in this pair and add them to our array of all items in this group.
                 [groupedItemsArray addObjectsFromArray:[pairStr componentsSeparatedByString:@", "]];
                 
-                //Check if correct subject and object are grouped together. If so, they can be ungrouped.
-                BOOL hasCorrectSubject = true;
-                BOOL hasCorrectObject = true;
+                //Only allow the correct subject and object to ungroup if necessary
+                BOOL allowSubjectToUngroup = true;
+                BOOL allowObjectToUngroup = true;
                 
                 for(NSString* obj in groupedItemsArray) {
                     if (useSubject == ONLY_CORRECT) {
                         if (![self checkSolutionForSubject:obj]) {
-                            hasCorrectSubject = false;
+                            allowSubjectToUngroup = false;
                         }
                     }
                     
                     if (useObject == ONLY_CORRECT) {
                         if (![self checkSolutionForObject:obj]) {
-                            hasCorrectObject = false;
+                            allowObjectToUngroup = false;
                         }
                     }
                 }
                 
-                if (hasCorrectSubject && hasCorrectObject) {
+                if (allowSubjectToUngroup && allowObjectToUngroup) {
                     PossibleInteraction* interaction = [[PossibleInteraction alloc] initWithInteractionType:UNGROUP];
                     [interaction addConnection:UNGROUP :groupedItemsArray :nil];
                     
@@ -516,10 +486,9 @@ float const groupingProximity = 20.0;
                         //Get correct interaction to compare
                         PossibleInteraction* correctInteraction = [self getCorrectInteraction];
                         
-                        //Check if interaction is correct
+                        //Check if interaction is correct before ungrouping
                         if ([interaction isEqual:correctInteraction]) {
                             [self performInteraction:interaction];
-                            
                             [self incrementCurrentStep];
                         }
                     }
@@ -569,7 +538,7 @@ float const groupingProximity = 20.0;
                 //Calculate offset between top-left corner of image and the point clicked.
                 delta = [self calculateDeltaForMovingObjectAtPoint:location];
                 
-                //Record the starting location of an object when it is selected
+                //Record the starting location of the object when it is selected
                 startLocation = CGPointMake(location.x - delta.x, location.y - delta.y);
             }
         }
@@ -587,7 +556,7 @@ float const groupingProximity = 20.0;
                 ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
                 
                 if ([[currSolStep stepType] isEqualToString:@"check"]) {
-                    //Checks if object is in the correct location
+                    //Check if object is in the correct location
                     if([self isHotspotInsideLocation]) {
                         [self incrementCurrentStep];
                     }
@@ -609,7 +578,7 @@ float const groupingProximity = 20.0;
                     //If the object was dropped, check if it's overlapping with any other objects that it could interact with.
                     NSMutableArray* possibleInteractions = [self getPossibleInteractions:useProximity];
                     
-                    /*[self loadSolution];
+                    /*[self generateSteps];
                      [self rankPossibleInteractions:(NSMutableArray*) possibleInteractions];
                      [self rankPossibleGroupings: (NSMutableArray*) possibleInteractions];
                      NSLog(@"sentence number:%i", currentSentence);*/
@@ -659,7 +628,6 @@ float const groupingProximity = 20.0;
                         //Check if interaction is correct
                         if ([interaction isEqual:correctInteraction]) {
                             [self performInteraction:interaction];
-                            
                             [self incrementCurrentStep];
                             
                             //Transference counts as two steps, so we must increment again
@@ -1137,8 +1105,6 @@ float const groupingProximity = 20.0;
     NSMutableArray* connectedObjects = [currentGroupings valueForKey:objs[0]];
     
     if (connectedObjects && [connectedObjects count] > 0) {
-        //NSLog(@"ERIN: simulateMultipleGroupings there are connected objects@");
-    
         //Get locations of all objects connected to object1
         MenuItemImage* obj3Image = [images objectForKey:connectedObjects[0]];
         CGFloat connectedObjectPositionX = [obj3Image boundingBoxImage].origin.x;
@@ -2874,12 +2840,11 @@ float const groupingProximity = 20.0;
 
 /*
  * Loads the solution steps of the current story and stores into an array
- * Note: This function was previously named "generateSteps".
  */
--(void) loadSolution {
+-(void) generateSteps {
     Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
     PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
-    solutionSteps = [[PMActivity PMSolution] solutionSteps];
+    actionSteps = [[PMActivity PMSolution] solutionSteps];
 }
 
 /*
@@ -2925,7 +2890,7 @@ float const groupingProximity = 20.0;
         if ([interaction interactionType] == TRANSFERANDGROUP || [interaction interactionType] == GROUP) {
             for (Connection *connection in [interaction connections]) {
                 if ([connection interactionType] == GROUP) {
-                    for (ActionStep *step in solutionSteps) {
+                    for (ActionStep *step in actionSteps) {
                         if ([step sentenceNumber] == currentSentence) {
                             if ([self isSimilar:step :connection]) {
                                 if (index1 == 0)
@@ -2985,7 +2950,7 @@ float const groupingProximity = 20.0;
                     objA = allPossibleGroupings[i][0];
                     objB = allPossibleGroupings[i][1];
                     
-                    //allPossibleGropings has only two hotspots but can have more than 2 objects
+                    //allPossibleGroupings has only two hotspots but can have more than 2 objects
                     hotspotA = allPossibleGroupings[i][count-2];
                     hotspotB = allPossibleGroupings[i][count-1];
                     action = [hotspotA action];
@@ -3447,12 +3412,10 @@ float const groupingProximity = 20.0;
                 PossibleInteraction* correctUngrouping = [self getCorrectInteraction];
                 
                 [self performInteraction:correctUngrouping];
-                
                 [self incrementCurrentStep];
             }
             else if ([[currSolStep stepType] isEqualToString:@"move"]) {
                 [self moveObjectForSolution];
-                
                 [self incrementCurrentStep];
             }
         }
@@ -3484,7 +3447,7 @@ float const groupingProximity = 20.0;
     
     for(PossibleInteraction* interaction in possibleInteractions) {
         [self simulatePossibleInteractionForMenuItem:interaction];
-        //TESTING interactionNum ++;
+        //interactionNum ++;
         //NSLog(@"%d", interactionNum);
         //If the number of interactions is greater than the max number of menu Items allowed, then stop.
         if(interactionNum > maxMenuItems)
