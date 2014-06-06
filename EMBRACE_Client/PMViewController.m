@@ -125,18 +125,16 @@ float const groupingProximity = 20.0;
     NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
     NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
 
-    //If it is an action sentence underline it
+    //If it is an action sentence, set sentence color to blue
     if ([sentenceClass isEqualToString: @"sentence actionSentence"]) {
-        
-        NSString* underlineSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
-        [bookView stringByEvaluatingJavaScriptFromString:underlineSentence];
+        setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
+        [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
     }
     else {
-        stepsComplete = TRUE;
+        stepsComplete = TRUE; //Steps are complete if it is not an action sentence
     }
 
     //Set the opacity of all but the current sentence to .5
-    //Color will default to blue. And be changed to green once it's been done. 
     for(int i = currentSentence; i < totalSentences; i++) {
         NSString* setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, .5)", i + 1];
         [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
@@ -230,60 +228,29 @@ float const groupingProximity = 20.0;
 -(PossibleInteraction*) convertActionStepToPossibleInteraction:(ActionStep*)step {
     PossibleInteraction* interaction;
     
-    if ([[step stepType] isEqualToString:@"group"]) {
-        //Get step information
-        NSString* obj1Id = [step object1Id];
-        NSString* obj2Id = [step object2Id];
-        NSString* action = [step action];
-        
+    //Get step information
+    NSString* obj1Id = [step object1Id];
+    NSString* obj2Id = [step object2Id];
+    NSString* action = [step action];
+    
+    //Objects involved in interaction
+    NSArray* objects = [[NSArray alloc] initWithObjects:obj1Id, obj2Id, nil];
+    
+    //Get hotspots for both objects associated with action
+    Hotspot* hotspot1 = [model getHotspotforObjectWithActionAndRole:obj1Id :action :@"subject"];
+    Hotspot* hotspot2 = [model getHotspotforObjectWithActionAndRole:obj2Id :action :@"object"];
+    NSArray* hotspotsForInteraction = [[NSArray alloc]initWithObjects:hotspot1, hotspot2, nil];
+    
+    //The move case only applies if an object is being moved to another object, not a waypoint
+    if ([[step stepType] isEqualToString:@"group"] || [[step stepType] isEqualToString:@"move"]) {
         interaction = [[PossibleInteraction alloc]initWithInteractionType:GROUP];
-        
-        //Objects involved in group setup
-        NSArray* objects = [[NSArray alloc] initWithObjects:obj1Id, obj2Id, nil];
-        
-        //Get hotspots for both objects associated with action
-        Hotspot* hotspot1 = [model getHotspotforObjectWithActionAndRole:obj1Id :action :@"subject"];
-        Hotspot* hotspot2 = [model getHotspotforObjectWithActionAndRole:obj2Id :action :@"object"];
-        NSArray* hotspotsForInteraction = [[NSArray alloc]initWithObjects:hotspot1, hotspot2, nil];
-        
+
         [interaction addConnection:GROUP :objects :hotspotsForInteraction];
     }
     else if ([[step stepType] isEqualToString:@"ungroup"]) {
-        //Get step information
-        NSString* obj1Id = [step object1Id];
-        NSString* obj2Id = [step object2Id];
-        NSString* action = [step action];
-        
         interaction = [[PossibleInteraction alloc]initWithInteractionType:UNGROUP];
-        
-        //Objects involved in group setup
-        NSArray* objects = [[NSArray alloc] initWithObjects:obj1Id, obj2Id, nil];
-        
-        //Get hotspots for both objects associated with action
-        Hotspot* hotspot1 = [model getHotspotforObjectWithActionAndRole:obj1Id :action :@"subject"];
-        Hotspot* hotspot2 = [model getHotspotforObjectWithActionAndRole:obj2Id :action :@"object"];
-        NSArray* hotspotsForInteraction = [[NSArray alloc]initWithObjects:hotspot1, hotspot2, nil];
-        
+
         [interaction addConnection:UNGROUP :objects :hotspotsForInteraction];
-    }
-    //This case only applies if an object is being moved to another object, not a waypoint
-    else if ([[step stepType] isEqualToString:@"move"]) {
-        //Get step information
-        NSString* obj1Id = [step object1Id];
-        NSString* obj2Id = [step object2Id];
-        NSString* action = [step action];
-        
-        interaction = [[PossibleInteraction alloc]initWithInteractionType:GROUP];
-        
-        //Objects involved in group setup
-        NSArray* objects = [[NSArray alloc] initWithObjects:obj1Id, obj2Id, nil];
-        
-        //Get hotspots for both objects associated with action
-        Hotspot* hotspot1 = [model getHotspotforObjectWithActionAndRole:obj1Id :action :@"subject"];
-        Hotspot* hotspot2 = [model getHotspotforObjectWithActionAndRole:obj2Id :action :@"object"];
-        NSArray* hotspotsForInteraction = [[NSArray alloc]initWithObjects:hotspot1, hotspot2, nil];
-        
-        [interaction addConnection:GROUP :objects :hotspotsForInteraction];
     }
     
     return interaction;
