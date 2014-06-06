@@ -15,6 +15,7 @@
 @synthesize pageNum;
 @synthesize pages;
 @synthesize solution;
+
 - (id) init {
     if (self = [super init]) {
         pages = [[NSMutableArray alloc] init];
