@@ -219,8 +219,8 @@ float const groupingProximity = 20.0;
     
     //If it is an action sentence, set its color to blue
     if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
-        NSString* underlineSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
-        [bookView stringByEvaluatingJavaScriptFromString:underlineSentence];
+        setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
+        [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
     }
     else {
         stepsComplete = TRUE; //no steps to complete for non-action sentence
