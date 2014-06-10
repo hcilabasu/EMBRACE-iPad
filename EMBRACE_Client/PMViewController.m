@@ -16,6 +16,8 @@
     NSUInteger currentSentence; //Active sentence to be completed.
     NSUInteger totalSentences; //Total number of sentences on this page.
     
+    PhysicalManipulationSolution* PMSolution; //Solution steps for current chapter
+    NSUInteger numSteps; //Number of steps for current sentence
     NSUInteger currentStep; //Active step to be completed.
     BOOL stepsComplete; //True if all steps have been completed for a sentence
     
@@ -26,7 +28,6 @@
     
     BOOL pinching;
     
-    PhysicalManipulationSolution* PMSolution; //PM solution for the current chapter
     NSMutableArray* actionSteps; //Stores all the steps involved in the solution
     //NSMutableArray *stepsCompleted; //Stores which steps are completed in the current story
     
@@ -159,22 +160,8 @@ float const groupingProximity = 20.0;
     NSString* sentenceCount = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount];
     totalSentences = [sentenceCount intValue];
     
-    //Set sentence color to black for first sentence.
-    NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence];
-    [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
-    
-    //Check to see if it is an action sentence
-    NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
-    NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
-    
-    //If it is an action sentence paint it blue
-    if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
-        NSString* underlineSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
-        [bookView stringByEvaluatingJavaScriptFromString:underlineSentence];
-    }
-    else {
-        stepsComplete = TRUE; //no steps to complete for non-action sentence
-    }
+    //Set up current sentence appearance and solution steps
+    [self setupCurrentSentence];
     
     //Set the opacity of all but the current sentence to .5
     for(int i = currentSentence; i < totalSentences; i++) {
@@ -184,11 +171,7 @@ float const groupingProximity = 20.0;
     
     //Perform setup for activity
     [self performSetupForActivity];
-    
-    //Load solution for activity
-    [self loadPhysicalManipulationSolution];
 }
-
 
 /*
  * Gets the book reference for the book that's been opened.
@@ -246,19 +229,68 @@ float const groupingProximity = 20.0;
     //[bookView becomeFirstResponder];
     
     currentSentence = 1;
+    self.title = chapterTitle;
+    
+    Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
+    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
+    PMSolution = [PMActivity PMSolution]; //get PM solution
+}
+
+/*
+ * Sets up the appearance of the current sentence by highlighting it as blue (if it is an action sentence)
+ * or as black (if it is a non-action sentence). Additionally, it gets the number of steps for the current
+ * sentence and sets the current step to 1. Steps are complete if it's a non-action sentence.
+ */
+-(void) setupCurrentSentence {
     currentStep = 1;
     stepsComplete = FALSE;
     
-    self.title = chapterTitle;
+    //Get number of steps for current sentence
+    numSteps = [PMSolution getNumStepsForSentence:currentSentence];
+    
+    //Highlight the sentence and set its color to black.
+    NSString* setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, 1.0)", currentSentence];
+    [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
+    
+    NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence];
+    [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
+    
+    //Check to see if it is an action sentence
+    NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
+    NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
+    
+    //If it is an action sentence, set its color to blue
+    if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
+        setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
+        [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
+        
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        //Automatically perform interaction if step is ungroup or move
+        if (!pinchToUngroup && [[currSolStep stepType] isEqualToString:@"ungroup"]) {
+            PossibleInteraction* correctUngrouping = [self getCorrectInteraction];
+            
+            [self performInteraction:correctUngrouping];
+            [self incrementCurrentStep];
+        }
+        else if ([[currSolStep stepType] isEqualToString:@"move"]) {
+            [self moveObjectForSolution];
+            [self incrementCurrentStep];
+        }
+    }
+    else {
+        stepsComplete = TRUE; //no steps to complete for non-action sentence
+    }
 }
 
 /*
  * Moves to next step in a sentence if possible. The step is performed automatically if it is ungroup or move.
  */
 -(void) incrementCurrentStep {
-    //Get number of steps for current sentence
-    NSUInteger numSteps = [PMSolution getNumStepsForSentence:currentSentence];
-    
     //Check if able to increment current step
     if (currentStep < numSteps) {
         currentStep++;
@@ -282,7 +314,7 @@ float const groupingProximity = 20.0;
         }
     }
     else {
-        stepsComplete = TRUE;
+        stepsComplete = TRUE; //no more steps to complete
     }
 }
 
@@ -335,16 +367,6 @@ float const groupingProximity = 20.0;
         [self performInteraction:interaction]; //groups the objects
     }
 }
-
-/*
- * Loads the PhysicalManipulationSolution for the current chapter
- */
--(void) loadPhysicalManipulationSolution {
-    Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
-    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
-    PMSolution = [PMActivity PMSolution]; //get PM solution
-}
-
 
 #pragma mark - Responding to gestures
 /*
@@ -1366,9 +1388,6 @@ float const groupingProximity = 20.0;
  * for group step types. Otherwise, it returns false.
  */
 -(BOOL) checkSolutionForSubject:(NSString*)subject {
-    //Get number of steps for current sentence
-    NSUInteger numSteps = [PMSolution getNumStepsForSentence:currentSentence];
-    
     //Check solution only if it exists for the sentence
     if (numSteps > 0 && !stepsComplete) {
         //Get steps for current sentence
@@ -1421,9 +1440,6 @@ float const groupingProximity = 20.0;
  * Otherwise, it returns false.
  */
 -(BOOL) checkSolutionForObject:(NSString*)overlappingObject {
-    //Get number of steps for current sentence
-    NSUInteger numSteps = [PMSolution getNumStepsForSentence:currentSentence];
-    
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
@@ -1464,9 +1480,6 @@ float const groupingProximity = 20.0;
  * Moves an object to another object or waypoint for move step types
  */
 -(void) moveObjectForSolution {
-    //Get number of steps for current sentence
-    NSUInteger numSteps = [PMSolution getNumStepsForSentence:currentSentence];
-    
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
@@ -1527,9 +1540,6 @@ float const groupingProximity = 20.0;
  * Otherwise, returns false.
  */
 -(BOOL) isHotspotInsideLocation {
-    //Get number of steps for current sentence
-    NSUInteger numSteps = [PMSolution getNumStepsForSentence:currentSentence];
-    
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
@@ -1614,10 +1624,7 @@ float const groupingProximity = 20.0;
  */
 -(PossibleInteraction*) getCorrectInteraction {
     PossibleInteraction* correctInteraction;
-    
-    //Get number of steps for current sentence
-    NSUInteger numSteps = [PMSolution getNumStepsForSentence:currentSentence];
-    
+
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
@@ -3377,51 +3384,12 @@ float const groupingProximity = 20.0;
         //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
         currentSentence ++;
         
-        //Reset current step to 1 when moving to next sentence
-        currentStep = 1;
-        stepsComplete = FALSE;
+        //Set up current sentence appearance and solution steps
+        [self setupCurrentSentence];
         
-        //Highlight the next sentence and set its color to black.
-        NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence];
+        //Set previous sentence color to grey
+        NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'grey')", currentSentence - 1];
         [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
-        
-        //Set previous sentence color to gray and reduce opacity
-        setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'grey')", currentSentence - 1];
-        [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
-        
-        NSString* setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, 1.0)", currentSentence];
-        [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
-        
-        //Check to see if it is an action sentence
-        NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
-        NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
-        
-        //If it is an action sentence underline it
-        if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
-            NSString* underlineSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
-            [bookView stringByEvaluatingJavaScriptFromString:underlineSentence];
-            
-            //Get steps for current sentence
-            NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-            
-            //Get current step to be completed
-            ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
-            
-            //Automatically perform interaction if step is ungroup or move
-            if (!pinchToUngroup && [[currSolStep stepType] isEqualToString:@"ungroup"]) {
-                PossibleInteraction* correctUngrouping = [self getCorrectInteraction];
-                
-                [self performInteraction:correctUngrouping];
-                [self incrementCurrentStep];
-            }
-            else if ([[currSolStep stepType] isEqualToString:@"move"]) {
-                [self moveObjectForSolution];
-                [self incrementCurrentStep];
-            }
-        }
-        else {
-            stepsComplete = TRUE;
-        }
         
         //currentSentence is 1 indexed.
         if(currentSentence > totalSentences) {
