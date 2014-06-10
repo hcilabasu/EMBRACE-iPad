@@ -1047,19 +1047,9 @@ float const groupingProximity = 20.0;
                 [self performInteraction:correctInteraction]; //performs solution step
             }
             else if (waypointId != nil) {
-                //Get the width and height of the object image
-                NSString* requestImageHeight = [NSString stringWithFormat:@"%@.height", object1Id];
-                NSString* requestImageWidth = [NSString stringWithFormat:@"%@.width", object1Id];
-                
-                float imageHeight = [[bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
-                float imageWidth = [[bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
-                
                 //Get position of hotspot in pixels based on the object image size
                 Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:object1Id :action :@"subject"];
-                CGPoint hotspotLoc = [hotspot location];
-                CGFloat hotspotX = hotspotLoc.x / 100.0 * imageWidth;
-                CGFloat hotspotY = hotspotLoc.y / 100.0 * imageHeight;
-                CGPoint hotspotLocation = CGPointMake(hotspotX, hotspotY);
+                CGPoint hotspotLocation = [self getHotspotLocationOnImage:hotspot];
                 
                 //Get position of waypoint in pixels based on the background size
                 Waypoint* waypoint = [model getWaypointWithId:waypointId];
@@ -1845,9 +1835,29 @@ float const groupingProximity = 20.0;
     return CGPointMake(-1, -1);
 }
 
-/* 
- * Calculates the location of the hotspot based on the bounding box provided. 
- * This function is used when simulating the locations of objects, since we can't pull the 
+/*
+ * Returns the hotspot location in pixels based on the object image size
+ */
+-(CGPoint) getHotspotLocationOnImage:(Hotspot*) hotspot {
+    //Get the width and height of the object image
+    NSString* requestImageHeight = [NSString stringWithFormat:@"%@.height", [hotspot objectId]];
+    NSString* requestImageWidth = [NSString stringWithFormat:@"%@.width", [hotspot objectId]];
+    
+    float imageHeight = [[bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
+    float imageWidth = [[bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
+    
+    //Get position of hotspot in pixels based on the object image size
+    CGPoint hotspotLoc = [hotspot location];
+    CGFloat hotspotX = hotspotLoc.x / 100.0 * imageWidth;
+    CGFloat hotspotY = hotspotLoc.y / 100.0 * imageHeight;
+    CGPoint hotspotLocation = CGPointMake(hotspotX, hotspotY);
+    
+    return hotspotLocation;
+}
+
+/*
+ * Calculates the location of the hotspot based on the bounding box provided.
+ * This function is used when simulating the locations of objects, since we can't pull the
  * current location and size of the image for this.
  */
 -(CGPoint) calculateHotspotLocationBasedOnBoundingBox:(Hotspot*)hotspot :(CGRect) boundingBox {
