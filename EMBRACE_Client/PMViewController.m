@@ -1159,8 +1159,8 @@ float const groupingProximity = 20.0;
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
-        if ([[currSolStep stepType] isEqualToString:@"transferAndGroup"]) {
-            correctInteraction = [[PossibleInteraction alloc]initWithInteractionType:TRANSFERANDGROUP];
+        if ([[currSolStep stepType] isEqualToString:@"transferAndGroup"] || [[currSolStep stepType] isEqualToString:@"transferAndDisappear"]) {
+            correctInteraction = [[PossibleInteraction alloc] init];
             
             //Get step information for current step
             NSString* currObj1Id = [currSolStep object1Id];
@@ -1193,46 +1193,15 @@ float const groupingProximity = 20.0;
             Hotspot* nextHotspot2 = [model getHotspotforObjectWithActionAndRole:nextObj2Id :nextAction :@"object"];
             NSArray* nextHotspotsForInteraction = [[NSArray alloc]initWithObjects:nextHotspot1, nextHotspot2, nil];
             
-            [correctInteraction addConnection:GROUP :nextObjects :nextHotspotsForInteraction];
-            
-            //Increment step since we are combining two solution steps into one possible interaction
-            [self incrementCurrentStep];
-        }
-        else if ([[currSolStep stepType] isEqualToString:@"transferAndDisappear"]) {
-            correctInteraction = [[PossibleInteraction alloc]initWithInteractionType:TRANSFERANDDISAPPEAR];
-            
-            //Get step information for current step
-            NSString* currObj1Id = [currSolStep object1Id];
-            NSString* currObj2Id = [currSolStep object2Id];
-            NSString* currAction = [currSolStep action];
-            
-            //Objects involved in group setup for current step
-            NSArray* currObjects = [[NSArray alloc] initWithObjects:currObj1Id, currObj2Id, nil];
-            
-            //Get hotspots for both objects associated with action for current step
-            Hotspot* currHotspot1 = [model getHotspotforObjectWithActionAndRole:currObj1Id :currAction :@"subject"];
-            Hotspot* currHotspot2 = [model getHotspotforObjectWithActionAndRole:currObj2Id :currAction :@"object"];
-            NSArray* currHotspotsForInteraction = [[NSArray alloc]initWithObjects:currHotspot1, currHotspot2, nil];
-            
-            [correctInteraction addConnection:UNGROUP :currObjects :currHotspotsForInteraction];
-            
-            //Get next step to be completed
-            ActionStep* nextSolStep = [currSolSteps objectAtIndex:currentStep];
-            
-            //Get step information for next step
-            NSString* nextObj1Id = [nextSolStep object1Id];
-            NSString* nextObj2Id = [nextSolStep object2Id];
-            NSString* nextAction = [nextSolStep action];
-            
-            //Objects involved in group setup for next step
-            NSArray* nextObjects = [[NSArray alloc] initWithObjects:nextObj1Id, nextObj2Id, nil];
-            
-            //Get hotspots for both objects associated with action for next step
-            Hotspot* nextHotspot1 = [model getHotspotforObjectWithActionAndRole:nextObj1Id :nextAction :@"subject"];
-            Hotspot* nextHotspot2 = [model getHotspotforObjectWithActionAndRole:nextObj2Id :nextAction :@"object"];
-            NSArray* nextHotspotsForInteraction = [[NSArray alloc]initWithObjects:nextHotspot1, nextHotspot2, nil];
-            
-            [correctInteraction addConnection:DISAPPEAR :nextObjects :nextHotspotsForInteraction];
+            //Add the group or disappear connection and set the interaction to the appropriate type
+            if ([[currSolStep stepType] isEqualToString:@"transferAndGroup"]) {
+                [correctInteraction addConnection:GROUP :nextObjects :nextHotspotsForInteraction];
+                [correctInteraction setInteractionType:TRANSFERANDGROUP];
+            }
+            else if ([[currSolStep stepType] isEqualToString:@"transferAndDisappear"]) {
+                [correctInteraction addConnection:DISAPPEAR :nextObjects :nextHotspotsForInteraction];
+                [correctInteraction setInteractionType:TRANSFERANDDISAPPEAR];
+            }
             
             //Increment step since we are combining two solution steps into one possible interaction
             [self incrementCurrentStep];
