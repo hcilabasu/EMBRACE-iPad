@@ -16,6 +16,8 @@
     NSUInteger currentSentence; //Active sentence to be completed.
     NSUInteger totalSentences; //Total number of sentences on this page.
     
+    PhysicalManipulationSolution* PMSolution; //Solution steps for current chapter
+    NSUInteger numSteps; //Number of steps for current sentence
     NSUInteger currentStep; //Active step to be completed.
     BOOL stepsComplete; //True if all steps have been completed for a sentence
     
@@ -59,8 +61,7 @@ float const groupingProximity = 20.0;
     bookView.frame = self.view.bounds;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     //Added to deal with ios7 view changes. This makes it so the UIWebView and the navigation bar do not overlap.
@@ -203,22 +204,25 @@ float const groupingProximity = 20.0;
     currentStep = 1;
     stepsComplete = FALSE;
     self.title = chapterTitle;
-}
-
--(void) incrementCurrentStep {
+    
     Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
     PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
-    PhysicalManipulationSolution* PMSolution = [PMActivity PMSolution]; //get PM solution
+    PMSolution = [PMActivity PMSolution]; //get PM solution
     
     //Get number of steps for current sentence
-    NSUInteger numSteps = [PMSolution getNumStepsForSentence:currentSentence];
-    
+    numSteps = [PMSolution getNumStepsForSentence:currentSentence];
+}
+
+/*
+ * Moves to next step in a sentence if possible.
+ */
+-(void) incrementCurrentStep {
     //Check if able to increment current step
     if (currentStep < numSteps) {
         currentStep++;
     }
     else {
-        stepsComplete = TRUE;
+        stepsComplete = TRUE; //no more steps to complete
     }
 }
 
@@ -370,7 +374,7 @@ float const groupingProximity = 20.0;
             if (hasCorrectSubject && hasCorrectObject) {
                 PossibleInteraction* correctInteraction = [self getCorrectInteraction];
                 [self performInteraction:correctInteraction]; //performs solution step
-                
+
                 [self incrementCurrentStep];
             }
         }
@@ -932,13 +936,6 @@ float const groupingProximity = 20.0;
  * for group step types. Otherwise, it returns false.
  */
 -(BOOL) checkSolutionForSubject:(NSString*)subject {
-    Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
-    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
-    PhysicalManipulationSolution* PMSolution = [PMActivity PMSolution]; //get PM solution
-    
-    //Get number of steps for current sentence
-    NSUInteger numSteps = [PMSolution getNumStepsForSentence:currentSentence];
-    
     //Check solution only if it exists for the sentence
     if (numSteps > 0 && !stepsComplete) {
         //Get steps for current sentence
@@ -960,8 +957,7 @@ float const groupingProximity = 20.0;
             }
             else {
                 //Check if selected object is in a group with the correct subject
-                BOOL isSubjectInGroup = [self isSubject:correctSubject ContainedInGroupWithObject:subject];
-                return isSubjectInGroup;
+                return [self isSubject:correctSubject ContainedInGroupWithObject:subject];
             }
         }
         else {
@@ -973,8 +969,7 @@ float const groupingProximity = 20.0;
             }
             else {
                 //Check if selected object is in a group with the correct subject
-                BOOL isSubjectInGroup = [self isSubject:correctSubject ContainedInGroupWithObject:subject];
-                return isSubjectInGroup;
+                return [self isSubject:correctSubject ContainedInGroupWithObject:subject];
             }
         }
     }
@@ -991,13 +986,6 @@ float const groupingProximity = 20.0;
  * Otherwise, it returns false.
  */
 -(BOOL) checkSolutionForObject:(NSString*)overlappingObject {
-    Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
-    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
-    PhysicalManipulationSolution* PMSolution = [PMActivity PMSolution]; //get PM solution
-    
-    //Get number of steps for current sentence
-    NSUInteger numSteps = [PMSolution getNumStepsForSentence:currentSentence];
-    
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
@@ -1038,13 +1026,6 @@ float const groupingProximity = 20.0;
  * Moves an object to another object or waypoint for move step types
  */
 -(void) moveObjectForSolution {
-    Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
-    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
-    PhysicalManipulationSolution* PMSolution = [PMActivity PMSolution]; //get PM solution
-    
-    //Get number of steps for current sentence
-    NSUInteger numSteps = [PMSolution getNumStepsForSentence:currentSentence];
-    
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
@@ -1105,13 +1086,6 @@ float const groupingProximity = 20.0;
  * Otherwise, returns false.
  */
 -(BOOL) isHotspotInsideLocation {
-    Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
-    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
-    PhysicalManipulationSolution* PMSolution = [PMActivity PMSolution]; //get PM solution
-    
-    //Get number of steps for current sentence
-    NSUInteger numSteps = [PMSolution getNumStepsForSentence:currentSentence];
-    
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
@@ -1189,13 +1163,6 @@ float const groupingProximity = 20.0;
  */
 -(PossibleInteraction*) getCorrectInteraction {
     PossibleInteraction* correctInteraction;
-    
-    Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
-    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
-    PhysicalManipulationSolution* PMSolution = [PMActivity PMSolution]; //get PM solution
-    
-    //Get number of steps for current sentence
-    NSUInteger numSteps = [PMSolution getNumStepsForSentence:currentSentence];
     
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
@@ -1945,13 +1912,15 @@ float const groupingProximity = 20.0;
         
         //If it is an action sentence underline it
         if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
-            
             NSString* underlineSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
             [bookView stringByEvaluatingJavaScriptFromString:underlineSentence];
         }
         else {
             stepsComplete = TRUE;
         }
+        
+        //Get number of steps for current sentence
+        numSteps = [PMSolution getNumStepsForSentence:currentSentence];
         
         //currentSentence is 1 indexed.
         if(currentSentence > totalSentences) {
