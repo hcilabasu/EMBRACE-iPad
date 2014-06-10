@@ -1053,10 +1053,7 @@ float const groupingProximity = 20.0;
                 
                 //Get position of waypoint in pixels based on the background size
                 Waypoint* waypoint = [model getWaypointWithId:waypointId];
-                CGPoint waypointLoc = [waypoint location];
-                CGFloat waypointX = waypointLoc.x / 100.0 * [bookView frame].size.width;
-                CGFloat waypointY = waypointLoc.y / 100.0 * [bookView frame].size.height;
-                CGPoint waypointLocation = CGPointMake(waypointX, waypointY);
+                CGPoint waypointLocation = [self getWaypointLocation:waypoint];
                 
                 //Move the object
                 [self moveObject:object1Id :waypointLocation :hotspotLocation];
@@ -1853,6 +1850,19 @@ float const groupingProximity = 20.0;
     CGPoint hotspotLocation = CGPointMake(hotspotX, hotspotY);
     
     return hotspotLocation;
+}
+
+/*
+ * Returns the waypoint location in pixels based on the background size
+ */
+-(CGPoint) getWaypointLocation:(Waypoint*) waypoint {
+    //Get position of waypoint in pixels based on the background size
+    CGPoint waypointLoc = [waypoint location];
+    CGFloat waypointX = waypointLoc.x / 100.0 * [bookView frame].size.width;
+    CGFloat waypointY = waypointLoc.y / 100.0 * [bookView frame].size.height;
+    CGPoint waypointLocation = CGPointMake(waypointX, waypointY);
+    
+    return waypointLocation;
 }
 
 /*
