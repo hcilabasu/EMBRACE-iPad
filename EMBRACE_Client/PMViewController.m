@@ -1501,26 +1501,13 @@ float const groupingProximity = 20.0;
                 [self performInteraction:correctInteraction]; //performs solution step
             }
             else if (waypointId != nil) {
-                //Get the width and height of the object image
-                NSString* requestImageHeight = [NSString stringWithFormat:@"%@.height", object1Id];
-                NSString* requestImageWidth = [NSString stringWithFormat:@"%@.width", object1Id];
-                
-                float imageHeight = [[bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
-                float imageWidth = [[bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
-                
                 //Get position of hotspot in pixels based on the object image size
                 Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:object1Id :action :@"subject"];
-                CGPoint hotspotLoc = [hotspot location];
-                CGFloat hotspotX = hotspotLoc.x / 100.0 * imageWidth;
-                CGFloat hotspotY = hotspotLoc.y / 100.0 * imageHeight;
-                CGPoint hotspotLocation = CGPointMake(hotspotX, hotspotY);
+                CGPoint hotspotLocation = [self getHotspotLocationOnImage:hotspot];
                 
                 //Get position of waypoint in pixels based on the background size
                 Waypoint* waypoint = [model getWaypointWithId:waypointId];
-                CGPoint waypointLoc = [waypoint location];
-                CGFloat waypointX = waypointLoc.x / 100.0 * [bookView frame].size.width;
-                CGFloat waypointY = waypointLoc.y / 100.0 * [bookView frame].size.height;
-                CGPoint waypointLocation = CGPointMake(waypointX, waypointY);
+                CGPoint waypointLocation = [self getWaypointLocation:waypoint];
                 
                 //Move the object
                 [self moveObject:object1Id :waypointLocation :hotspotLocation];
@@ -3336,6 +3323,39 @@ float const groupingProximity = 20.0;
     }
     
     return CGPointMake(-1, -1);
+}
+
+/*
+ * Returns the hotspot location in pixels based on the object image size
+ */
+-(CGPoint) getHotspotLocationOnImage:(Hotspot*) hotspot {
+    //Get the width and height of the object image
+    NSString* requestImageHeight = [NSString stringWithFormat:@"%@.height", [hotspot objectId]];
+    NSString* requestImageWidth = [NSString stringWithFormat:@"%@.width", [hotspot objectId]];
+    
+    float imageHeight = [[bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
+    float imageWidth = [[bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
+    
+    //Get position of hotspot in pixels based on the object image size
+    CGPoint hotspotLoc = [hotspot location];
+    CGFloat hotspotX = hotspotLoc.x / 100.0 * imageWidth;
+    CGFloat hotspotY = hotspotLoc.y / 100.0 * imageHeight;
+    CGPoint hotspotLocation = CGPointMake(hotspotX, hotspotY);
+    
+    return hotspotLocation;
+}
+
+/*
+ * Returns the waypoint location in pixels based on the background size
+ */
+-(CGPoint) getWaypointLocation:(Waypoint*) waypoint {
+    //Get position of waypoint in pixels based on the background size
+    CGPoint waypointLoc = [waypoint location];
+    CGFloat waypointX = waypointLoc.x / 100.0 * [bookView frame].size.width;
+    CGFloat waypointY = waypointLoc.y / 100.0 * [bookView frame].size.height;
+    CGPoint waypointLocation = CGPointMake(waypointX, waypointY);
+    
+    return waypointLocation;
 }
 
 /*
