@@ -538,7 +538,6 @@ function objectGroupedAtHotspot(object, x, y) {
  * Will return true if object1 is contained in object2.
  */
 function objectContainedWithinObject(object1, object2) {
-    
 //    alert(object1.offsetTop);
 //    alert(object1.offsetHeight);
 //    alert(object2.offsetTop);
@@ -547,7 +546,6 @@ function objectContainedWithinObject(object1, object2) {
 //    alert(object2.offsetLeft);
 //    alert(object1.offsetWidth);
 //    alert(object2.offsetWidth);
-    
     
     if(
        (object1.offsetTop + object1.offsetHeight <= object2.offsetTop + object2.offsetHeight) &&
@@ -565,7 +563,6 @@ function objectContainedWithinObject(object1, object2) {
  * Will return true if object1 is contained in object2.
  */
 function objectContainedInObject(object1, object2) {
-    
 //    alert(object1.offsetTop);
 //    alert(object1.offsetHeight);
 //    alert(object2.offsetTop);
@@ -575,13 +572,11 @@ function objectContainedInObject(object1, object2) {
 //    alert(object1.offsetWidth);
 //    alert(object2.offsetWidth);
     
-    
    if((object1.offsetTop >= object2.offsetTop) &&
       (object1.offsetTop + object1.offsetHeight <= object2.offsetTop + object2.offsetHeight) &&
       (object1.offsetLeft > object2.offsetLeft) &&
       (object1.offsetLeft + object1.offsetWidth <= object2.offsetLeft + object2.offsetWidth))
        
-    
        return true;
     else
         return false;
@@ -676,7 +671,6 @@ function clearAllHighlighted() {
     var context = canvas.getContext('2d');
     
     context.clearRect(0, 0, canvas.width, canvas.height);
-    
 }
 
 /* 
@@ -719,12 +713,10 @@ function clearAllHotspots() {
 
 // Gets the text of a sentence
 function getSentenceText(sentenceId){
-    
     return sentenceId.innerHTML;
 }
 
 // Gets the class of a sentence
 function getSentenceClass(sentenceId){
-    
     return sentenceId.className;
 }
