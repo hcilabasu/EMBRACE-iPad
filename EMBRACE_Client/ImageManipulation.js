@@ -681,10 +681,11 @@ function getSentenceClass(sentenceId){
     return sentenceId.className;
 }
 
-function setSentenceUnderline(sentenceId) {
-    sentenceId.style.textDecoration = "underline";
-}
-
-function setSentenceNoUnderline(sentenceId) {
-    sentenceId.style.textDecoration = "none";
+function toggleSentenceUnderline(sentenceId) {
+    if (sentenceId.style.textDecoration == "underline") {
+        sentenceId.style.textDecoration = "none";
+    }
+    else if (sentenceId.style.textDecoration == "none") {
+        sentenceId.style.textDecoration = "underline";
+    }
 }
