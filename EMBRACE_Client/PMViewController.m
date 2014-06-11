@@ -127,33 +127,26 @@ float const groupingProximity = 20.0;
     NSString* sentenceCount = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount];
     totalSentences = [sentenceCount intValue];
     
-    //Set sentence color to blue for first sentence.
+    //Set sentence color to black for first sentence.
+    //All sentences are black by default
     NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence];
     [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
     
-    //Bold sentence
-    //NSString* setSentenceWeight = [NSString stringWithFormat:@"setSentenceFontWeight(s%d, 'bold')", currentSentence];
-    //[bookView stringByEvaluatingJavaScriptFromString:setSentenceWeight];
-    
-
     //Check to see if it is an action sentence
     NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
     NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
 
-    //If it is an action sentence underline it
+    //If it is an action sentence turn it blue
     if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
         
         NSString* underlineSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
         [bookView stringByEvaluatingJavaScriptFromString:underlineSentence];
     }
     
-    //NSString* underlineWords = [NSString stringWithFormat:@"underlineAudibleWords(s%d)", currentSentence];
-    //[bookView stringByEvaluatingJavaScriptFromString:underlineWords];
-    
-    //Set the opacity of all but the current sentence to .5
-    //Color will default to blue. And be changed to green once it's been done. 
+    //Set the opacity of all but the current sentence to .2
+ 
     for(int i = currentSentence; i < totalSentences; i++) {
-        NSString* setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, .5)", i + 1];
+        NSString* setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, .2)", i + 1];
         [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
     }
 }
@@ -260,54 +253,33 @@ float const groupingProximity = 20.0;
         
         NSLog(@"location pressed: (%f, %f)", location.x, location.y);
         
-        //Retrieve the elements at this location and see if it's an element that is moveable.
+        //Retrieve the word at this location
         NSString* requestWordAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
         
-        //NSString* requestWordAtPointClass = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).className", location.x, location.y];
-        
         imageAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestWordAtPoint];
-        
-        //NSString* imageAtPointClass = [bookView stringByEvaluatingJavaScriptFromString:requestWordAtPointClass];
-        
-        //NSString* requestColorAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).style.color", location.x, location.y];
-        //NSString* sentenceColor = [bookView stringByEvaluatingJavaScriptFromString:requestColorAtPoint];
-        
-        
-        //if([imageAtPointClass isEqualToString:@"audible"]) {
             
-            //NSLog(@"Word: %@", imageAtPointClass);
-            //NSLog(@"Color: %@", sentenceColor);
-            
-            //Capture the clicked text
-            NSString* requestSentenceText = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).innerHTML", location.x, location.y];
-            NSString* sentenceText = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceText];
-            
-            //Request object ID
-            
-            //NSString *requestObjectID = [NSString stringWithFormat:@"getObjectID(%@)", sentenceText];
-            //NSString *objectID = [bookView stringByEvaluatingJavaScriptFromString:requestObjectID];
-            //NSLog(@"Object ID: %@", objectID);
+        //Capture the clicked text
+        NSString* requestSentenceText = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).innerHTML", location.x, location.y];
+        NSString* sentenceText = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceText];
         
-            NSLog(@"%@",sentenceText);
-            if([[Translation translations] objectForKey:sentenceText])
-            {
+        NSLog(@"%@",sentenceText);
         
-                //Highlight the tapped object
-                NSString* highlight = [NSString stringWithFormat:@"highlightObjectOnWordTap(%@)", sentenceText];
-                [bookView stringByEvaluatingJavaScriptFromString:highlight];
+        if([[Translation translations] objectForKey:sentenceText]) {
+        
+            //Highlight the tapped object
+            NSString* highlight = [NSString stringWithFormat:@"highlightObjectOnWordTap(%@)", sentenceText];
+            [bookView stringByEvaluatingJavaScriptFromString:highlight];
                 
-                //Play word audio En
-                [self playWordAudioEn:sentenceText];
+            //Play word audio En
+            [self playWordAudio:sentenceText : @"en-us"];
                 
-                //Play word audio Es
-                [self playWordAudioEs:[Translation translations][sentenceText]];
+            //Play word audio Es
+            [self playWordAudio:[Translation translations][sentenceText] : @"es-mx"];
                 
-                //Clear highlighted object
-                [self performSelector:@selector(clearHighlightedObject) withObject:nil afterDelay:1.5];
+            //Clear highlighted object
+            [self performSelector:@selector(clearHighlightedObject) withObject:nil afterDelay:1.5];
 
-             }
-
-        //}
+        }
     }
 }
 
@@ -405,7 +377,6 @@ float const groupingProximity = 20.0;
 -(IBAction)panGesturePerformed:(UIPanGestureRecognizer *)recognizer {
     CGPoint location = [recognizer locationInView:self.view];
     
-    
     //This should work with requireGestureRecognizerToFail:pinchRecognizer but it doesn't currently.
     if(!pinching) {
         
@@ -456,10 +427,10 @@ float const groupingProximity = 20.0;
                     NSLog(@"length of groupings array: %d", [setOfGroups count]);
                     
                     for(int i=0;i<[setOfGroups count];i++) {
+                        
                         CGPoint p1 =[self getHotspotLocation:setOfGroups[i][2]];
                         CGPoint p2 =[self getHotspotLocation:setOfGroups[i][3]];
                         NSLog(@"%d item: %@ %@ %@ %@ %@ %@ %f %f %f %f", i, setOfGroups[i][0], setOfGroups[i][1], [setOfGroups[i][2] role], [setOfGroups[i][2] action], [setOfGroups[i][3] role], [setOfGroups[i][3] action], p1.x, p1.y, p2.x, p2.y);
-                        
                     }
                     
                     //create possible interaction object from the setOfGroups array
@@ -1752,47 +1723,35 @@ float const groupingProximity = 20.0;
  * is correct, then it will move on to the next sentence. If the manipulation is not current, then feedback will be provided.
  */
 -(IBAction)pressedNext:(id)sender {
-    //Check to make sure the answer is correct and act appropriately.
-    //For the moment we assume the sentence is correct and set the sentence color to green.
-    NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'gray')", currentSentence];
+    //TO DO: Check to make sure the answer is correct and act appropriately.
+
+    // Color the current sentence black by default
+    NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence];
     [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
-    
-    //Unbold sentence
-    //NSString* setSentenceWeight = [NSString stringWithFormat:@"setSentenceFontWeight(s%d, 'normal')", currentSentence];
-    //[bookView stringByEvaluatingJavaScriptFromString:setSentenceWeight];
     
     //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
     currentSentence ++;
     
-    //Highlight the next sentence and set its color to blue.
+    //Set the color to black for the next sentence
     setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence];
     [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
     
-    //Bold sentence
-    //setSentenceWeight = [NSString stringWithFormat:@"setSentenceFontWeight(s%d, 'bold')", currentSentence];
-    //[bookView stringByEvaluatingJavaScriptFromString:setSentenceWeight];
-    
-    NSString* setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, 1.0)", currentSentence];
+    NSString* setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, 1)", currentSentence];
     [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
     
-    /*NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, \"blue\")", currentSentence];
-     
-     [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];*/
+    setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, .2)", currentSentence-1];
+    [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
     
     //Check to see if it is an action sentence
     NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
     NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
     
-    //If it is an action sentence underline it
+    //If it is an action sentence color it blue
     if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
         
         NSString* colorSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
         [bookView stringByEvaluatingJavaScriptFromString:colorSentence];
     }
-    
-    //Turn off underline for the previous sentence
-    //NSString* noUnderlineSentence = [NSString stringWithFormat:@"setSentenceNoUnderline(s%d)", currentSentence-1];
-    //[bookView stringByEvaluatingJavaScriptFromString:noUnderlineSentence];
     
     //currentSentence is 1 indexed.
     if(currentSentence > totalSentences) {
@@ -1831,25 +1790,35 @@ float const groupingProximity = 20.0;
     [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
 }
 
--(void)playWordAudioEn:(NSString*) word {
- 
+-(void)playWordAudio:(NSString*) word :(NSString*) lang {
+    
     AVSpeechUtterance *utteranceEn = [[AVSpeechUtterance alloc]initWithString:word];
     utteranceEn.rate = AVSpeechUtteranceMaximumSpeechRate/7;
-    utteranceEn.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"en-us"];
+    utteranceEn.voice = [AVSpeechSynthesisVoice voiceWithLanguage:lang];
     NSLog(@"Sentence: %@", word);
     NSLog(@"Volume: %f", utteranceEn.volume);
     [syn speakUtterance:utteranceEn];
 }
 
--(void)playWordAudioEs:(NSString*) word {
-    
-    AVSpeechUtterance *utteranceEs = [[AVSpeechUtterance alloc]initWithString:word];
-    utteranceEs.rate = AVSpeechUtteranceMaximumSpeechRate/6;
-    utteranceEs.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"es-mx"];
-    utteranceEs.volume = 10;
-    NSLog(@"Sentence: %@", word);
-    [syn speakUtterance:utteranceEs];
-}
+//-(void)playWordAudioEn:(NSString*) word {
+// 
+//    AVSpeechUtterance *utteranceEn = [[AVSpeechUtterance alloc]initWithString:word];
+//    utteranceEn.rate = AVSpeechUtteranceMaximumSpeechRate/7;
+//    utteranceEn.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"en-us"];
+//    NSLog(@"Sentence: %@", word);
+//    NSLog(@"Volume: %f", utteranceEn.volume);
+//    [syn speakUtterance:utteranceEn];
+//}
+//
+//-(void)playWordAudioEs:(NSString*) word {
+//    
+//    AVSpeechUtterance *utteranceEs = [[AVSpeechUtterance alloc]initWithString:word];
+//    utteranceEs.rate = AVSpeechUtteranceMaximumSpeechRate/6;
+//    utteranceEs.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"es-mx"];
+//    utteranceEs.volume = 10;
+//    NSLog(@"Sentence: %@", word);
+//    [syn speakUtterance:utteranceEs];
+//}
 
 #pragma mark - PieContextualMenuDelegate
 /*

@@ -685,25 +685,18 @@ function getSentenceClass(sentenceId){
     return sentenceId.className;
 }
 
-function setSentenceUnderline(sentenceId) {
-    sentenceId.style.textDecoration = "underline";
-}
-
-function setSentenceNoUnderline(sentenceId) {
-    sentenceId.style.textDecoration = "none";
+function toggleSentenceUnderline(sentenceId) {
+    if (sentenceId.style.textDecoration == "underline") {
+        sentenceId.style.textDecoration = "none";
+    }
+    else if (sentenceId.style.textDecoration == "none") {
+        sentenceId.style.textDecoration = "underline";
+    }
 }
 
 function getSentenceColor(sentenceId) {
     return sentenceId.style.color;
 }
-
-//function underlineAudibleWords(sentenceId) {
-//    sentenceId.getElementsByClassName('audible').style.textDecoration = "underline";
-//}
-//function getObjectID(objectName)
-//{
-//    return document.getElementById('').id;
-//}
 
 function highlightObjectOnWordTap(object) {
     highlightOnTap(object.offsetLeft, object.offsetTop, object.offsetWidth, object.offsetHeight);
@@ -712,7 +705,6 @@ function highlightObjectOnWordTap(object) {
 function highlightOnTap(topleftX, topleftY, objectWidth, objectHeight) {
 
     var canvas = document.getElementById('highlight');
-    
     var context = canvas.getContext('2d');
     
     //Get the size of the image and add 50 px to make the oval larger than the image.
@@ -749,6 +741,3 @@ function highlightOnTap(topleftX, topleftY, objectWidth, objectHeight) {
     
     document.getElementById('highlight').style.zIndex = "100";
 }
-
-
-
