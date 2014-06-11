@@ -688,7 +688,3 @@ function setSentenceUnderline(sentenceId) {
 function setSentenceNoUnderline(sentenceId) {
     sentenceId.style.textDecoration = "none";
 }
-
-//function setAudibleUnderline(sentenceId) {
-//sentenceId.style.textDecoration = "underline";
-//}
