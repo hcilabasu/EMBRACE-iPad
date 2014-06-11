@@ -633,7 +633,6 @@ function clearAllHighlighted() {
     var context = canvas.getContext('2d');
     
     context.clearRect(0, 0, canvas.width, canvas.height);
-    
 }
 
 /* 
@@ -675,12 +674,10 @@ function clearAllHotspots() {
 }
 
 function getSentenceText(sentenceId){
-    
     return sentenceId.innerHTML;
 }
 
 function getSentenceClass(sentenceId){
-    
     return sentenceId.className;
 }
 
