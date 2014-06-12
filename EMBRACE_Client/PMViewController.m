@@ -1800,26 +1800,6 @@ float const groupingProximity = 20.0;
     [syn speakUtterance:utteranceEn];
 }
 
-//-(void)playWordAudioEn:(NSString*) word {
-// 
-//    AVSpeechUtterance *utteranceEn = [[AVSpeechUtterance alloc]initWithString:word];
-//    utteranceEn.rate = AVSpeechUtteranceMaximumSpeechRate/7;
-//    utteranceEn.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"en-us"];
-//    NSLog(@"Sentence: %@", word);
-//    NSLog(@"Volume: %f", utteranceEn.volume);
-//    [syn speakUtterance:utteranceEn];
-//}
-//
-//-(void)playWordAudioEs:(NSString*) word {
-//    
-//    AVSpeechUtterance *utteranceEs = [[AVSpeechUtterance alloc]initWithString:word];
-//    utteranceEs.rate = AVSpeechUtteranceMaximumSpeechRate/6;
-//    utteranceEs.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"es-mx"];
-//    utteranceEs.volume = 10;
-//    NSLog(@"Sentence: %@", word);
-//    [syn speakUtterance:utteranceEs];
-//}
-
 #pragma mark - PieContextualMenuDelegate
 /*
  * Expands the contextual menu, allowing the user to select a possible grouping/ungrouping.
