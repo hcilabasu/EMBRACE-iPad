@@ -505,7 +505,7 @@ function areObjectsGrouped(object1, object2) {
  * does not quite match where the JS thinks it is based on the Connection. 
  */
 function objectGroupedAtHotspot(object, x, y) {
-    var MARGIN = 2;
+    var MARGIN = 3;
     //alert(object + " " + x + " " + y);
     for(var i = 0; i < groupings.length; i ++) {
         var group = groupings[i];
