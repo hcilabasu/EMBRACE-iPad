@@ -23,4 +23,5 @@
 - (id) initWithValues:(NSString*)objId :(CGPoint)loc;
 
 - (id) initWithValues:(NSString*)objId :(NSString*)act :(NSString*)objRole :(CGPoint)loc;
+
 @end

@@ -8,15 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "Hotspot.h"
-
 #import "Constraint.h"
 #import "MovementConstraint.h"
 #import "OrderConstraint.h"
-
 #import "Location.h"
-
 #import "Waypoint.h"
-
 #import "Relationship.h"
 
 @interface InteractionModel : NSObject {
