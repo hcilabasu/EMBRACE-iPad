@@ -721,7 +721,7 @@ float const groupingProximity = 20.0;
                          [self populateMenuDataSource:possibleInteractions];*/
                         
                         //First rank the interactions based on location to story.
-                        //[self rankPossibleInteractions:possibleInteractions];
+                        [self rankPossibleInteractions:possibleInteractions];
                         
                         //Populate the menu data source and expand the menu.
                         [self populateMenuDataSource:possibleInteractions];
@@ -2675,7 +2675,7 @@ float const groupingProximity = 20.0;
  * For now, the function makes sure the interaction which ensures going to the next step in the story is present in the top
  */
 -(void) rankPossibleInteractions:(NSMutableArray*)possibleInteractions {
-    int index = -1;
+    /*int index = -1;
     int index1 = 0;
     int index2 = 0;
     int index3 = 0;
@@ -2717,6 +2717,25 @@ float const groupingProximity = 20.0;
         
         if(index3 > 0)
             [possibleInteractions exchangeObjectAtIndex:2 withObjectAtIndex:index3];
+    }*/
+    
+    PossibleInteraction* correctInteraction = [self getCorrectInteraction];
+    
+    int correctIndex; //index to insert correct menu item
+    
+    //Generate a random index number up to the number of PossibleInteraction objects (if less than the maximum number of menu items) or up to the maximum number of menu items otherwise
+    if ([possibleInteractions count] < maxMenuItems) {
+        correctIndex = arc4random_uniform([possibleInteractions count]);
+    }
+    else {
+        correctIndex = arc4random_uniform(maxMenuItems);
+    }
+    
+    //Look for the correct interaction and swap it with the first element of the array
+    for (int i = 0; i < [possibleInteractions count]; i++) {
+        if ([[possibleInteractions objectAtIndex:i] isEqual:correctInteraction]) {
+            [possibleInteractions exchangeObjectAtIndex:i withObjectAtIndex:correctIndex];
+        }
     }
 }
 
@@ -3238,7 +3257,7 @@ float const groupingProximity = 20.0;
     
     for(PossibleInteraction* interaction in possibleInteractions) {
         [self simulatePossibleInteractionForMenuItem:interaction];
-        //interactionNum ++;
+        interactionNum ++;
         //NSLog(@"%d", interactionNum);
         //If the number of interactions is greater than the max number of menu Items allowed, then stop.
         if(interactionNum > maxMenuItems)
