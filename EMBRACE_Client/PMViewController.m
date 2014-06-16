@@ -2731,7 +2731,7 @@ float const groupingProximity = 20.0;
         correctIndex = arc4random_uniform(maxMenuItems);
     }
     
-    //Look for the correct interaction and swap it with the first element of the array
+    //Look for the correct interaction and swap it with the element at the correct index
     for (int i = 0; i < [possibleInteractions count]; i++) {
         if ([[possibleInteractions objectAtIndex:i] isEqual:correctInteraction]) {
             [possibleInteractions exchangeObjectAtIndex:i withObjectAtIndex:correctIndex];
