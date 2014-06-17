@@ -2252,8 +2252,8 @@ float const groupingProximity = 20.0;
                         //Make sure the two hotspots have the same action. It may also be necessary to ensure that the roles do not match. Also make sure neither of the hotspots are connected to another object.
                         if(actionsMatch && [isHotspotConnectedMovingObjectString isEqualToString:@""] && [isHotspotConnectedObjectString isEqualToString:@""] && !rolesMatch) {
                             //Although the matching hotspots are free, transference may still be possible if one of the objects is connected at a different hotspot that must be ungrouped first.
-                            NSString* objTransferringObj = [self getObjectPeformingTransference:obj :objId :@"object"];
-                            NSString* objTransferringObjId = [self getObjectPeformingTransference:objId :obj :@"subject"];
+                            NSString* objTransferringObj = [self getObjectPerformingTransference:obj :objId :@"object"];
+                            NSString* objTransferringObjId = [self getObjectPerformingTransference:objId :obj :@"subject"];
                             
                             //Transference is possible
                             if (objTransferringObj != nil && objTransferringObjId == nil) {
@@ -2317,7 +2317,7 @@ float const groupingProximity = 20.0;
  * connected to it using the role specified. Additionally, it must have strictly greater than one possible hotspot that matches with the
  * receiver object (i.e. the object accepting the transferred object).
  */
--(NSString*) getObjectPeformingTransference:(NSString*)transferredObj :(NSString*)receiverObj :(NSString*)role {
+-(NSString*) getObjectPerformingTransference:(NSString*)transferredObj :(NSString*)receiverObj :(NSString*)role {
     NSMutableArray* transferredObjHotspots = [model getHotspotsForObjectId:transferredObj];
 
     NSString* senderObj; //Object that is performing the transference
