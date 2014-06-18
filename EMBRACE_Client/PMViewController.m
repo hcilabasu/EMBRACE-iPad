@@ -640,8 +640,13 @@ float const groupingProximity = 20.0;
                      }
                      }*/
                     
+                    //No possible interactions were found
+                    if ([possibleInteractions count] == 0) {
+                        //Snap the object back to its original location
+                        [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0)];
+                    }
                     //If only 1 possible interaction was found, go ahead and perform that interaction if it's correct.
-                    if ([possibleInteractions count] == 1) {
+                    else if ([possibleInteractions count] == 1) {
                         PossibleInteraction* interaction = [possibleInteractions objectAtIndex:0];
                         
                         //Get correct interaction to compare
