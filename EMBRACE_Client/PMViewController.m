@@ -397,11 +397,6 @@ float const groupingProximity = 20.0;
                 if ([interaction interactionType] == TRANSFERANDGROUP || [interaction interactionType] == TRANSFERANDDISAPPEAR) {
                     [self incrementCurrentStep];
                 }
-                
-                /*//Check if object is in the correct location
-                if([self isHotspotInsideLocation]) {
-                    [self incrementCurrentStep];
-                }*/
             }
             else {
                 if ([interaction interactionType] != UNGROUP) {
