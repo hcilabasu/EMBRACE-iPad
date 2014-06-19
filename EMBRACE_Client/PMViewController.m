@@ -410,6 +410,11 @@ float const groupingProximity = 20.0;
                 }
             }
         }
+        //No menuItem was selected
+        else {
+            //Snap the object back to its original location
+            [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0)];
+        }
         
         //No longer moving object
         movingObject = FALSE;
@@ -590,149 +595,155 @@ float const groupingProximity = 20.0;
                     //Move object to another object or waypoint
                     [self moveObjectForSolution];
                 }
-                //Get possible interactions only if current step is not a check step
                 else {
-                    BOOL useProximity = YES;
+                    //Check if the object is overlapping anything
+                    NSString* overlappingObjects = [NSString stringWithFormat:@"checkObjectOverlapString(%@)", movingObjectId];
+                    NSString* overlapArrayString = [bookView stringByEvaluatingJavaScriptFromString:overlappingObjects];
                     
-                    if(condition == MENU)
-                        useProximity = NO;
-                    
-                    //If the object was dropped, check if it's overlapping with any other objects that it could interact with.
-                    NSMutableArray* possibleInteractions = [self getPossibleInteractions:useProximity];
-                    
-                    /*[self generateSteps];
-                     [self rankPossibleInteractions:(NSMutableArray*) possibleInteractions];
-                     [self rankPossibleGroupings: (NSMutableArray*) possibleInteractions];
-                     NSLog(@"sentence number:%i", currentSentence);*/
-                    
-                    /*//If only 1 possible interaction was found, go ahead and perform that interaction.
-                     if (([possibleInteractions count] == 1) || ((condition == HOTSPOT) && ([possibleInteractions count]>0))) {
-                     NSLog(@"possible interactions:%lu", (unsigned long)[possibleInteractions count]);
-                     //code to generate menu options for one interaction
-                     if (condition == MENU) {
-                     [self populateMenuDataSource:possibleInteractions];
-                     if (!menuExpanded)
-                     [self expandMenu];
-                     }
-                     else {
-                     NSString* repeatobj;
-                     int count=0;
-                     
-                     for (PossibleInteraction *interaction in possibleInteractions) {
-                     for (Connection* connection in [interaction connections]) {
-                     NSArray* objectIds = [connection objects]; //get the object Ids for this particular menuItem.
-                     NSString* obj1 = [objectIds objectAtIndex:0];
-                     
-                     if ([repeatobj isEqualToString:obj1]) {
-                     count = count + 1;
-                     }
-                     
-                     repeatobj = obj1;
-                     }
-                     
-                     if (count==0) {
-                     [self performInteraction:interaction];
-                     }
-                     else {
-                     count =0;
-                     }
-                     }
-                     }
-                     }*/
-                    
-                    //No possible interactions were found
-                    if ([possibleInteractions count] == 0) {
-                        //Snap the object back to its original location
-                        [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0)];
-                    }
-                    //If only 1 possible interaction was found, go ahead and perform that interaction if it's correct.
-                    else if ([possibleInteractions count] == 1) {
-                        PossibleInteraction* interaction = [possibleInteractions objectAtIndex:0];
+                    //Get possible interactions only if the object is overlapping something
+                    if(![overlapArrayString isEqualToString:@""]) {
+                        BOOL useProximity = YES;
                         
-                        //Get correct interaction to compare
-                        PossibleInteraction* correctInteraction = [self getCorrectInteraction];
+                        if(condition == MENU)
+                            useProximity = NO;
+
+                        //If the object was dropped, check if it's overlapping with any other objects that it could interact with.
+                        NSMutableArray* possibleInteractions = [self getPossibleInteractions:useProximity];
                         
-                        //Check if interaction is correct
-                        if ([interaction isEqual:correctInteraction]) {
-                            [self performInteraction:interaction];
-                            [self incrementCurrentStep];
-                            
-                            //Transference counts as two steps, so we must increment again
-                            if ([interaction interactionType] == TRANSFERANDGROUP || [interaction interactionType] == TRANSFERANDDISAPPEAR) {
-                                [self incrementCurrentStep];
-                            }
-                        }
-                        else {
+                        /*[self generateSteps];
+                         [self rankPossibleInteractions:(NSMutableArray*) possibleInteractions];
+                         [self rankPossibleGroupings: (NSMutableArray*) possibleInteractions];
+                         NSLog(@"sentence number:%i", currentSentence);*/
+                        
+                        /*//If only 1 possible interaction was found, go ahead and perform that interaction.
+                         if (([possibleInteractions count] == 1) || ((condition == HOTSPOT) && ([possibleInteractions count]>0))) {
+                         NSLog(@"possible interactions:%lu", (unsigned long)[possibleInteractions count]);
+                         //code to generate menu options for one interaction
+                         if (condition == MENU) {
+                         [self populateMenuDataSource:possibleInteractions];
+                         if (!menuExpanded)
+                         [self expandMenu];
+                         }
+                         else {
+                         NSString* repeatobj;
+                         int count=0;
+                         
+                         for (PossibleInteraction *interaction in possibleInteractions) {
+                         for (Connection* connection in [interaction connections]) {
+                         NSArray* objectIds = [connection objects]; //get the object Ids for this particular menuItem.
+                         NSString* obj1 = [objectIds objectAtIndex:0];
+                         
+                         if ([repeatobj isEqualToString:obj1]) {
+                         count = count + 1;
+                         }
+                         
+                         repeatobj = obj1;
+                         }
+                         
+                         if (count==0) {
+                         [self performInteraction:interaction];
+                         }
+                         else {
+                         count =0;
+                         }
+                         }
+                         }
+                         }*/
+                        
+                        //No possible interactions were found
+                        if ([possibleInteractions count] == 0) {
                             //Snap the object back to its original location
                             [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0)];
                         }
-                    }
-                    //If more than 1 was found, prompt the user to disambiguate.
-                    else if ([possibleInteractions count] > 1) {
-                        /*//New changed code added here
-                         NSLog(@"returned %d interactions as follows:", [possibleInteractions count]);
-                         NSLog(@"length of all possible groupings array: %d", [allPossibleGroupings count]);
-                         //int j=0;
-                         
-                         //Create possible interaction object from the allPossibleGroupings array
-                         for(int i = 0; i < [allPossibleGroupings count]; i++) {
-                         int cnt = [allPossibleGroupings[i] count];
-                         PossibleInteraction *pI = [[PossibleInteraction alloc] init];
-                         //NSString* type = setOfGroups[i][0];
-                         NSString *objA = allPossibleGroupings[i][0];
-                         NSString *objB = allPossibleGroupings[i][1];
-                         Hotspot *hotspotA = allPossibleGroupings[i][cnt-2];
-                         Hotspot *hotspotB = allPossibleGroupings[i][cnt-1];
-                         NSArray* groupObjects = [[NSArray alloc] initWithObjects:objA, objB, nil];
-                         NSArray* hotspotsForGrouping = [[NSArray alloc] initWithObjects:hotspotA, hotspotB, nil];
-                         
-                         NSLog(@"obj1:%@, obj2:%@, action:%@", objA, objB, [hotspotA action]);
-                         NSLog(@"ungroup:%i", [ungroupInteractions count]);
-                         
-                         for (int j = 0; j < [ungroupInteractions count]; j++) {
-                         if ([objA isEqualToString:ungroupInteractions[j][1]] && [objB isEqualToString:ungroupInteractions[j][2]]) {
-                         PossibleInteraction *pi = ungroupInteractions[j][0];
-                         Connection *conn = [pi connections][0];
-                         NSArray *objs = [conn objects];
-                         NSArray *hspts = [conn hotspots];
-                         
-                         [pI addConnection:UNGROUP :objs :hspts];
-                         NSLog(@"ungroup objects %@ %@", objs[0], objs[1]);
-                         }
-                         }
-                         
-                         if ([[hotspotA action] isEqualToString:@"receive"]) {
-                         [pI addConnection:DISAPPEAR :groupObjects :hotspotsForGrouping];
-                         [pI setInteractionType:TRANSFERANDDISAPPEAR];
-                         }
-                         else {
-                         [pI addConnection:GROUP :groupObjects :hotspotsForGrouping];
-                         [pI setInteractionType:TRANSFERANDGROUP];
-                         }
-                         
-                         //add each unique possible interaction into the array
-                         [uniquePossibleInteractions addObject:pI];
-                         }
-                         
-                         if ([uniquePossibleInteractions count] > 0) {
-                         //Needs to work on this
-                         //TODO: need to develop this function
-                         //[self rankPossibleInteractions:uniquePossibleInteractions];
-                         
-                         //Populate the menu data source and expand the menu.
-                         [self populateMenuDataSource:uniquePossibleInteractions];
-                         }
-                         else
-                         [self populateMenuDataSource:possibleInteractions];*/
-                        
-                        //First rank the interactions based on location to story.
-                        [self rankPossibleInteractions:possibleInteractions];
-                        
-                        //Populate the menu data source and expand the menu.
-                        [self populateMenuDataSource:possibleInteractions];
-                        
-                        if(!menuExpanded)
-                            [self expandMenu];
+                        //If only 1 possible interaction was found, go ahead and perform that interaction if it's correct.
+                        if ([possibleInteractions count] == 1) {
+                            PossibleInteraction* interaction = [possibleInteractions objectAtIndex:0];
+                            
+                            //Get correct interaction to compare
+                            PossibleInteraction* correctInteraction = [self getCorrectInteraction];
+                            
+                            //Check if interaction is correct
+                            if ([interaction isEqual:correctInteraction]) {
+                                [self performInteraction:interaction];
+                                [self incrementCurrentStep];
+                                
+                                //Transference counts as two steps, so we must increment again
+                                if ([interaction interactionType] == TRANSFERANDGROUP || [interaction interactionType] == TRANSFERANDDISAPPEAR) {
+                                    [self incrementCurrentStep];
+                                }
+                            }
+                            else {
+                                //Snap the object back to its original location
+                                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0)];
+                            }
+                        }
+                        //If more than 1 was found, prompt the user to disambiguate.
+                        else if ([possibleInteractions count] > 1) {
+                            /*//New changed code added here
+                             NSLog(@"returned %d interactions as follows:", [possibleInteractions count]);
+                             NSLog(@"length of all possible groupings array: %d", [allPossibleGroupings count]);
+                             //int j=0;
+                             
+                             //Create possible interaction object from the allPossibleGroupings array
+                             for(int i = 0; i < [allPossibleGroupings count]; i++) {
+                             int cnt = [allPossibleGroupings[i] count];
+                             PossibleInteraction *pI = [[PossibleInteraction alloc] init];
+                             //NSString* type = setOfGroups[i][0];
+                             NSString *objA = allPossibleGroupings[i][0];
+                             NSString *objB = allPossibleGroupings[i][1];
+                             Hotspot *hotspotA = allPossibleGroupings[i][cnt-2];
+                             Hotspot *hotspotB = allPossibleGroupings[i][cnt-1];
+                             NSArray* groupObjects = [[NSArray alloc] initWithObjects:objA, objB, nil];
+                             NSArray* hotspotsForGrouping = [[NSArray alloc] initWithObjects:hotspotA, hotspotB, nil];
+                             
+                             NSLog(@"obj1:%@, obj2:%@, action:%@", objA, objB, [hotspotA action]);
+                             NSLog(@"ungroup:%i", [ungroupInteractions count]);
+                             
+                             for (int j = 0; j < [ungroupInteractions count]; j++) {
+                             if ([objA isEqualToString:ungroupInteractions[j][1]] && [objB isEqualToString:ungroupInteractions[j][2]]) {
+                             PossibleInteraction *pi = ungroupInteractions[j][0];
+                             Connection *conn = [pi connections][0];
+                             NSArray *objs = [conn objects];
+                             NSArray *hspts = [conn hotspots];
+                             
+                             [pI addConnection:UNGROUP :objs :hspts];
+                             NSLog(@"ungroup objects %@ %@", objs[0], objs[1]);
+                             }
+                             }
+                             
+                             if ([[hotspotA action] isEqualToString:@"receive"]) {
+                             [pI addConnection:DISAPPEAR :groupObjects :hotspotsForGrouping];
+                             [pI setInteractionType:TRANSFERANDDISAPPEAR];
+                             }
+                             else {
+                             [pI addConnection:GROUP :groupObjects :hotspotsForGrouping];
+                             [pI setInteractionType:TRANSFERANDGROUP];
+                             }
+                             
+                             //add each unique possible interaction into the array
+                             [uniquePossibleInteractions addObject:pI];
+                             }
+                             
+                             if ([uniquePossibleInteractions count] > 0) {
+                             //Needs to work on this
+                             //TODO: need to develop this function
+                             //[self rankPossibleInteractions:uniquePossibleInteractions];
+                             
+                             //Populate the menu data source and expand the menu.
+                             [self populateMenuDataSource:uniquePossibleInteractions];
+                             }
+                             else
+                             [self populateMenuDataSource:possibleInteractions];*/
+                            
+                            //First rank the interactions based on location to story.
+                            [self rankPossibleInteractions:possibleInteractions];
+                            
+                            //Populate the menu data source and expand the menu.
+                            [self populateMenuDataSource:possibleInteractions];
+                            
+                            if(!menuExpanded)
+                                [self expandMenu];
+                        }
                     }
                 }
                 
@@ -2290,10 +2301,18 @@ float const groupingProximity = 20.0;
                                     else if([[relationshipBetweenObjects actionType] isEqualToString:@"disappear"]) {
                                         PossibleInteraction* interaction = [[PossibleInteraction alloc] initWithInteractionType:DISAPPEAR];
                                         
-                                        //Add both the object causing the disappearing and the one that is doing the disappearing.
+                                        /*//Add both the object causing the disappearing and the one that is doing the disappearing.
                                         //So we know which is which, the object doing the disappearing is going to be added first. That way if anything is grouped with the object causing the disappearing that we want to display as well, it can come afterwards.
                                         //TODO: Come back to this to see if it makes sense at all.
-                                        objects = [[NSArray alloc] initWithObjects:[relationshipBetweenObjects object2Id], [relationshipBetweenObjects object1Id], nil];
+                                        objects = [[NSArray alloc] initWithObjects:[relationshipBetweenObjects object2Id], [relationshipBetweenObjects object1Id], nil];*/
+                                        
+                                        //Add the subject of the disappear interaction before the object
+                                        if ([[movingObjectHotspot role] isEqualToString:@"subject"]) {
+                                            objects = [[NSArray alloc] initWithObjects:obj, objId, nil];
+                                        }
+                                        else if ([[movingObjectHotspot role] isEqualToString:@"object"]) {
+                                            objects = [[NSArray alloc] initWithObjects:objId, obj, nil];
+                                        }
                                         
                                         [interaction addConnection:DISAPPEAR :objects :hotspotsForInteraction];
                                         [groupings addObject:interaction];
