@@ -624,6 +624,7 @@ function highlight(topleftX, topleftY, objectWidth, objectHeight, canvasType) {
     context.fillStyle = "rgba(255, 250, 205, .4)";
     context.fill();
     
+    // If objects are being higlighted move the canvas to 100 on the z-index
     if (canvasType == "highlight")
         document.getElementById('highlight').style.zIndex = "100";
 }
@@ -636,6 +637,7 @@ function clearAllHighlighted() {
     var context = canvas.getContext('2d');
     
     context.clearRect(0, 0, canvas.width, canvas.height);
+    // Move the highlight canvas its original z-position (0)
     document.getElementById('highlight').style.zIndex = "0";
     
 }
@@ -663,6 +665,7 @@ function drawHotspot(x, y, color) {
     context.fillStyle = color;
     context.fill();
     
+    //Move the overlay canvas to 100 in order to display the hotspots on top of the objects
     document.getElementById('overlay').style.zIndex = "100";
 }
 
@@ -675,6 +678,7 @@ function clearAllHotspots() {
 
     context.clearRect(0, 0, canvas.width, canvas.height);
     
+    //Move the overlay canvas to its original z-index postion (0)
     document.getElementById('overlay').style.zIndex = "0";
 }
 
@@ -703,4 +707,12 @@ function getSentenceColor(sentenceId) {
 
 function highlightObjectOnWordTap(object) {
     highlight(object.offsetLeft, object.offsetTop, object.offsetWidth, object.offsetHeight, "highlight");
+}
+
+/*
+ * Sets the text of a sentence
+ */
+
+function setHTMLText (sentenceID, text) {
+    document.getElementById(sentenceID).innerHTML = text;
 }
