@@ -13,7 +13,7 @@
 @synthesize connections;
 @synthesize interactionType;
 
--(id) init {
+- (id) init {
     self = [super init];
     if (self) {
         connections = [[NSMutableArray alloc] init];
@@ -22,7 +22,10 @@
 
 }
 
--(id) initWithInteractionType:(InteractionType)type {
+/*
+ * Initializes a PossibleInteraction object with the specified interaction type
+ */
+- (id) initWithInteractionType:(InteractionType)type {
     self = [super init];
     if (self) {
         connections = [[NSMutableArray alloc] init];
@@ -32,11 +35,17 @@
     
 }
 
+/*
+ * Adds a Connection with the specified interaction type, objects, and hotspots to the PossibleInteraction
+ */
 - (void)addConnection:(InteractionType)type :(NSArray*) objs :(NSArray*) hotspts {
     Connection *connection = [[Connection alloc] initWithValues:type :objs :hotspts];
     [connections addObject:connection];
 }
 
+/*
+ * Checks for equality against another PossibleInteraction object by comparing interaction types and connections
+ */
 - (BOOL)isEqualToPossibleInteraction:(PossibleInteraction *)interaction {
     //Same PossbleInteraction objects
     if (self == interaction) {
@@ -56,6 +65,10 @@
     return YES;
 }
 
+/*
+ * Checks for equality against another object by performing a series of checks, ending with one that is
+ * specific to the PossibleInteraction class
+ */
 - (BOOL)isEqual:(id)other {
     if (other == self)
         return YES;
@@ -66,6 +79,10 @@
     return [self isEqualToPossibleInteraction:other];
 }
 
+/*
+ * Generates the same hash value (an integer) for two objects if isEqual determines that the two objects are equal.
+ * This method must be implemented if isEqual is overridden.
+ */
 - (NSUInteger)hash {
     NSUInteger hash = [self interactionType];
     
