@@ -288,6 +288,9 @@ typedef enum ScaleDimension {
     return imageCopy;
 }
 
+/*
+ * Returns an array with the menu item images sorted by z-position in ascending order
+ */
 -(NSArray*) sortMenuItemImagesByZPosition:(NSArray*) unsortedImages {
     NSSortDescriptor *sortDescriptor;   
     sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"zPosition"
