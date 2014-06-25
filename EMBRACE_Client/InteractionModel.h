@@ -18,7 +18,6 @@
 @interface InteractionModel : NSObject {
     NSMutableSet* relationships;
     NSMutableSet* constraints;
-    //NSMutableSet* hotspots;
     NSMutableDictionary* hotspots;
     NSMutableSet* locations;
     NSMutableSet* waypoints;
@@ -48,7 +47,6 @@
 
 - (NSMutableArray*) getAllHotspots; //Return all hotspots for all objects.
 - (NSMutableArray*) getHotspotsForObjectId:(NSString* )objId; //Return all hotspots for object with objId.
-//-(NSMutableArray*) getHotspotsForObjectOverlappingWithObject:(NSString*) obj1 :(NSString*) obj2;
 -(NSMutableArray*) getHotspotsForObject:(NSString*) obj1 OverlappingWithObject:(NSString*) obj2;
 -(Hotspot*) getHotspotforObjectWithActionAndRole:(NSString*)obj :(NSString*)action :(NSString*)role; //Returns the hotspot for the specified object relevant to the specified action and role. The assumption is that the combination of those three is unique.
 
