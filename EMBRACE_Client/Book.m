@@ -110,13 +110,17 @@
     return nil; //These is no chapter after this one.
 }
 
+/*
+ * Returns the Chapter object with the specified chapter title
+ */
 -(Chapter* ) getChapterWithTitle:(NSString* )chapterTitle {
     for(Chapter* chapter in chapters) {
-        //Chapter title matches setup story title
+        //Chapter title matches
         if ([[chapter title] isEqualToString:chapterTitle]) {
             return chapter;
         }
     }
+    
     return nil;
 }
 
