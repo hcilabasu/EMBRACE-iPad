@@ -259,28 +259,12 @@ float const groupingProximity = 20.0;
     NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
     NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
     
-    //If it is an action sentence, set its color to blue
+    //If it is an action sentence, set its color to blue and automatically perform solution steps if necessary
     if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
         setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
         [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
         
-        //Get steps for current sentence
-        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-        
-        //Get current step to be completed
-        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
-        
-        //Automatically perform interaction if step is ungroup or move
-        if (!pinchToUngroup && [[currSolStep stepType] isEqualToString:@"ungroup"]) {
-            PossibleInteraction* correctUngrouping = [self getCorrectInteraction];
-            
-            [self performInteraction:correctUngrouping];
-            [self incrementCurrentStep];
-        }
-        else if ([[currSolStep stepType] isEqualToString:@"move"]) {
-            [self moveObjectForSolution];
-            [self incrementCurrentStep];
-        }
+        [self performAutomaticSteps];
     }
     else {
         stepsComplete = TRUE; //no steps to complete for non-action sentence
@@ -295,23 +279,7 @@ float const groupingProximity = 20.0;
     if (currentStep < numSteps) {
         currentStep++;
         
-        //Get steps for current sentence
-        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-        
-        //Get current step to be completed
-        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
-        
-        //Automatically perform interaction if step is ungroup or move
-        if (!pinchToUngroup && [[currSolStep stepType] isEqualToString:@"ungroup"]) {
-            PossibleInteraction* correctUngrouping = [self getCorrectInteraction];
-            
-            [self performInteraction:correctUngrouping];
-            [self incrementCurrentStep];
-        }
-        else if ([[currSolStep stepType] isEqualToString:@"move"]) {
-            [self moveObjectForSolution];
-            [self incrementCurrentStep];
-        }
+        [self performAutomaticSteps]; //automatically perform ungroup or move steps if necessary
     }
     else {
         stepsComplete = TRUE; //no more steps to complete
@@ -365,6 +333,29 @@ float const groupingProximity = 20.0;
     for (ActionStep* setupStep in setupSteps) {
         PossibleInteraction* interaction = [self convertActionStepToPossibleInteraction:setupStep];
         [self performInteraction:interaction]; //groups the objects
+    }
+}
+
+/*
+ * Performs ungroup and move steps automatically
+ */
+-(void) performAutomaticSteps {
+    //Get steps for current sentence
+    NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+    
+    //Get current step to be completed
+    ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+    
+    //Automatically perform interaction if step is ungroup or move
+    if (!pinchToUngroup && [[currSolStep stepType] isEqualToString:@"ungroup"]) {
+        PossibleInteraction* correctUngrouping = [self getCorrectInteraction];
+        
+        [self performInteraction:correctUngrouping];
+        [self incrementCurrentStep];
+    }
+    else if ([[currSolStep stepType] isEqualToString:@"move"]) {
+        [self moveObjectForSolution];
+        [self incrementCurrentStep];
     }
 }
 
@@ -1631,6 +1622,8 @@ float const groupingProximity = 20.0;
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
+        //If step type involves transference, we must manually create the PossibleInteraction object.
+        //Otherwise, it can be directly converted.
         if ([[currSolStep stepType] isEqualToString:@"transferAndGroup"] || [[currSolStep stepType] isEqualToString:@"transferAndDisappear"]) {
             correctInteraction = [[PossibleInteraction alloc] init];
             
