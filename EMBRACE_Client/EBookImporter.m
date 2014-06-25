@@ -89,14 +89,12 @@
                         }
                     }
                 }
-                
             }
-            
         }
     }
+    
     //NSLog(@"at end of import library");
     return library;
-    //[filemgr release];
 }
 
 //Unzips the epub.
@@ -106,7 +104,6 @@
     epubFilePath = [epubFilePath stringByAppendingString:filename];
     
     NSString *epubDirectoryPath = [filepath stringByAppendingString:@"/epub/"];
-    //NSString *filepath = [[NSBundle mainBundle] pathForResource:@"ZipFileName" ofType:@"zip"];
     
     ZipArchive *zipArchive = [[ZipArchive alloc] init];
     
@@ -444,16 +441,7 @@
     //Read in the Constraints
     NSArray* constraintsElements = [metadataDoc nodesForXPath:@"//constraints" error:nil];
     GDataXMLElement *constraintsElement = (GDataXMLElement *) [constraintsElements objectAtIndex:0];
-    
-    //NSArray * constraints = [constraintsElement elementsForName:@"constraint"];
-    /*for(GDataXMLElement *constraint in constraints) {
-     NSString* action1 = [[constraint attributeForName:@"action1"] stringValue];
-     NSString* rule = [[constraint attributeForName:@"rule"] stringValue];
-     NSString* action2 = [[constraint attributeForName:@"action2"] stringValue];
-     
-     [model addConstraint:action1 :action2 :rule];
-     }*/
-    
+
     //Get movement constraints
     NSArray * movementConstraintsElements = [constraintsElement elementsForName:@"movementConstraints"];
     GDataXMLElement *movementConstraintsElement = (GDataXMLElement *) [movementConstraintsElements objectAtIndex:0];
@@ -614,35 +602,36 @@
                         NSString* obj1Id = [[step attributeForName:@"obj1Id"] stringValue];
                         NSString* action = [[step attributeForName:@"action"] stringValue];
                         
-                        //Group and ungroup also have an obj2Id
-                        //if([[step name] isEqualToString:@"group"] || [[step name] isEqualToString:@"ungroup"]) {
-                        if([[step name] isEqualToString:@"group"]) {
+                        //Group and disappear also have an obj2Id
+                        if([[step name] isEqualToString:@"group"] || [[step name] isEqualToString:@"disappear"]) {
                             NSString* obj2Id = [[step attributeForName:@"obj2Id"] stringValue];
                             
                             NSMutableArray* solutionSteps = [PMSolution solutionSteps];
                             ActionStep* previouslyAddedStep = [solutionSteps lastObject];
                             
-                            if (previouslyAddedStep != nil) {
-                                //Assume transference is required if previous step sentence and step number are the same and type was ungroup
-                                if (([previouslyAddedStep sentenceNumber] == sentenceNum) && ([previouslyAddedStep stepNumber] == stepNum) && [[previouslyAddedStep stepType] isEqualToString:@"ungroup"]) {
-                                    //Change previous previous and current step types to transfer and group
-                                    NSString* newType = @"transferAndGroup";
-                                    
-                                    previouslyAddedStep.stepType = newType;
-                                    
-                                    ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :newType :obj1Id :obj2Id :nil :nil :action];
-                                    [PMSolution addSolutionStep:solutionStep];
+                            //Assume transference is required if previous step sentence and step number are the same and type was ungroup
+                            if ((previouslyAddedStep != nil) && ([previouslyAddedStep sentenceNumber] == sentenceNum) && ([previouslyAddedStep stepNumber] == stepNum) && [[previouslyAddedStep stepType] isEqualToString:@"ungroup"]) {
+                                //Change previous and current step types to transfer and group or transfer and disappear
+                                NSString* newType;
+                                
+                                if ([[step name] isEqualToString:@"group"]) {
+                                    newType = @"transferAndGroup";
                                 }
-                                else {
-                                    ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :obj2Id :nil :nil :action];
-                                    [PMSolution addSolutionStep:solutionStep];
+                                else if ([[step name] isEqualToString:@"disappear"]) {
+                                    newType = @"transferAndDisappear";
                                 }
+                                
+                                previouslyAddedStep.stepType = newType;
+                                
+                                ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :newType :obj1Id :obj2Id :nil :nil :action];
+                                [PMSolution addSolutionStep:solutionStep];
                             }
                             else {
                                 ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :obj2Id :nil :nil :action];
                                 [PMSolution addSolutionStep:solutionStep];
                             }
                         }
+                        //Ungroup also has an obj2Id
                         else if([[step name] isEqualToString:@"ungroup"]) {
                             NSString* obj2Id = [[step attributeForName:@"obj2Id"] stringValue];
                             
@@ -670,34 +659,6 @@
                             
                             ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :locationId :nil :action];
                             [PMSolution addSolutionStep:solutionStep];
-                        }
-                        //Disappear also has an obj2Id
-                        else if([[step name] isEqualToString:@"disappear"]) {
-                            NSString* obj2Id = [[step attributeForName:@"obj2Id"] stringValue];
-                            
-                            NSMutableArray* solutionSteps = [PMSolution solutionSteps];
-                            ActionStep* previouslyAddedStep = [solutionSteps lastObject];
-                            
-                            if (previouslyAddedStep != nil) {
-                                //Assume transference is required if previous step sentence and step number are the same and type was ungroup
-                                if (([previouslyAddedStep sentenceNumber] == sentenceNum) && ([previouslyAddedStep stepNumber] == stepNum) && [[previouslyAddedStep stepType] isEqualToString:@"ungroup"]) {
-                                    //Change previous previous and current step types to transfer and group
-                                    NSString* newType = @"transferAndDisappear";
-                                    
-                                    previouslyAddedStep.stepType = newType;
-                                    
-                                    ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :newType :obj1Id :obj2Id :nil :nil :action];
-                                    [PMSolution addSolutionStep:solutionStep];
-                                }
-                                else {
-                                    ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :obj2Id :nil :nil :action];
-                                    [PMSolution addSolutionStep:solutionStep];
-                                }
-                            }
-                            else {
-                                ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :obj2Id :nil :nil :action];
-                                [PMSolution addSolutionStep:solutionStep];
-                            }
                         }
                     }
                 }
