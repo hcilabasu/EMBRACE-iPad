@@ -15,11 +15,12 @@
 
 - (id) init {
     self = [super init];
+    
     if (self) {
         connections = [[NSMutableArray alloc] init];
     }
+    
     return self;
-
 }
 
 /*
@@ -27,12 +28,13 @@
  */
 - (id) initWithInteractionType:(InteractionType)type {
     self = [super init];
+    
     if (self) {
         connections = [[NSMutableArray alloc] init];
         interactionType = type;
     }
-    return self;
     
+    return self;
 }
 
 /*

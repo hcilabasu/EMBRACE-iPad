@@ -16,11 +16,13 @@
 
 - (id)initWithValues:(InteractionType)type :(NSArray*) objs :(NSArray*) hotspts {
     self = [super init];
+    
     if (self) {
         interactionType = type;
         objects = objs;
         hotspots = hotspts;
     }
+    
     return self;
 }
 
