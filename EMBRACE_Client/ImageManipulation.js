@@ -633,7 +633,6 @@ function clearAllHighlighted() {
     var context = canvas.getContext('2d');
     
     context.clearRect(0, 0, canvas.width, canvas.height);
-    
 }
 
 /* 
@@ -672,4 +671,21 @@ function clearAllHotspots() {
     context.clearRect(0, 0, canvas.width, canvas.height);
     
     document.getElementById('overlay').style.zIndex = "0";
+}
+
+function getSentenceText(sentenceId){
+    return sentenceId.innerHTML;
+}
+
+function getSentenceClass(sentenceId){
+    return sentenceId.className;
+}
+
+function toggleSentenceUnderline(sentenceId) {
+    if (sentenceId.style.textDecoration == "underline") {
+        sentenceId.style.textDecoration = "none";
+    }
+    else if (sentenceId.style.textDecoration == "none") {
+        sentenceId.style.textDecoration = "underline";
+    }
 }

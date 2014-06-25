@@ -65,6 +65,8 @@
 		68E6C1E718E3AAFA006C3643 /* Solution.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E6C1E618E3AAFA006C3643 /* Solution.m */; };
 		C39B0E4218EA39B5001B8238 /* ActionStep.m in Sources */ = {isa = PBXBuildFile; fileRef = C39B0E4118EA39B5001B8238 /* ActionStep.m */; };
 		C39B0E4518EA6BB5001B8238 /* PhysicalManipulationSolution.m in Sources */ = {isa = PBXBuildFile; fileRef = C39B0E4418EA6BB5001B8238 /* PhysicalManipulationSolution.m */; };
+		C39B0E4818F8667A001B8238 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = C39B0E4718F8667A001B8238 /* Location.m */; };
+		C39B0E4B18F86AE2001B8238 /* Waypoint.m in Sources */ = {isa = PBXBuildFile; fileRef = C39B0E4A18F86AE2001B8238 /* Waypoint.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -173,6 +175,10 @@
 		C39B0E4118EA39B5001B8238 /* ActionStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionStep.m; sourceTree = "<group>"; };
 		C39B0E4318EA6BB5001B8238 /* PhysicalManipulationSolution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicalManipulationSolution.h; sourceTree = "<group>"; };
 		C39B0E4418EA6BB5001B8238 /* PhysicalManipulationSolution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhysicalManipulationSolution.m; sourceTree = "<group>"; };
+		C39B0E4618F8667A001B8238 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
+		C39B0E4718F8667A001B8238 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
+		C39B0E4918F86AE2001B8238 /* Waypoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Waypoint.h; sourceTree = "<group>"; };
+		C39B0E4A18F86AE2001B8238 /* Waypoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Waypoint.m; sourceTree = "<group>"; };
 		C3AAD2B618DCE7450061AE5E /* farm.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = farm.epub; sourceTree = "<group>"; };
 		C3AAD2B718DCE7450061AE5E /* house.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = house.epub; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -448,6 +454,10 @@
 				3115B1D31819C532007171E3 /* PossibleInteraction.m */,
 				31C306C3183E93A60043DEDD /* Connection.h */,
 				31C306C4183E93A60043DEDD /* Connection.m */,
+				C39B0E4618F8667A001B8238 /* Location.h */,
+				C39B0E4718F8667A001B8238 /* Location.m */,
+				C39B0E4918F86AE2001B8238 /* Waypoint.h */,
+				C39B0E4A18F86AE2001B8238 /* Waypoint.m */,
 			);
 			name = "Interaction Model";
 			sourceTree = "<group>";
@@ -533,6 +543,7 @@
 				68E6C1E718E3AAFA006C3643 /* Solution.m in Sources */,
 				31953E591729ECC100570087 /* AppDelegate.m in Sources */,
 				31953E741729ED5A00570087 /* GDataXMLNode.m in Sources */,
+				C39B0E4818F8667A001B8238 /* Location.m in Sources */,
 				31953E751729ED5A00570087 /* ioapi.c in Sources */,
 				31953E761729ED5A00570087 /* mztools.c in Sources */,
 				3115B1D41819C532007171E3 /* PossibleInteraction.m in Sources */,
@@ -556,6 +567,7 @@
 				3183DA151761614500815211 /* BookHeaderView.m in Sources */,
 				3183DA1A1762886300815211 /* TabView.m in Sources */,
 				31058C79176BE71C00595AAE /* PhysicalManipulationActivity.m in Sources */,
+				C39B0E4B18F86AE2001B8238 /* Waypoint.m in Sources */,
 				31058C7C176BE73D00595AAE /* ImagineManipulationActivity.m in Sources */,
 				C39B0E4218EA39B5001B8238 /* ActionStep.m in Sources */,
 				31058C7F176BE74B00595AAE /* AssessmentActivity.m in Sources */,

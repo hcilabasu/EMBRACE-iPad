@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface Constraint : NSObject {
     NSString* type;
 }
