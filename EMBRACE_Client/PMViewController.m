@@ -9,6 +9,7 @@
 #import "PMViewController.h"
 #import "ContextualMenuDataSource.h"
 #import "PieContextualMenu.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface PMViewController () {
     NSString* currentPage; //The current page being shown, so that the next page can be requested.
@@ -119,7 +120,7 @@ float const groupingProximity = 20.0;
     //Parameters for this instantiation
     condition = MENU;
     useSubject = ALL_ENTITIES;
-    useObject = ALL_ENTITIES;
+    useObject = ONLY_CORRECT;
     pinchToUngroup = FALSE;
     
     currentGroupings = [[NSMutableDictionary alloc] init];
@@ -361,6 +362,13 @@ float const groupingProximity = 20.0;
 
 #pragma mark - Responding to gestures
 /*
+ * Plays a noise for error feedback if the user performs a manipulation incorrectly
+ */
+- (IBAction) playErrorNoise {
+    AudioServicesPlaySystemSound(1053);
+}
+
+/*
  * Tap gesture. Currently only used for menu selection.
  */
 - (IBAction)tapGesturePerformed:(UITapGestureRecognizer *)recognizer {
@@ -376,25 +384,7 @@ float const groupingProximity = 20.0;
             MenuItemDataSource *dataForItem = [menuDataSource dataObjectAtIndex:menuItem];
             PossibleInteraction *interaction = [dataForItem interaction];
             
-            //Get correct interaction to compare
-            PossibleInteraction* correctInteraction = [self getCorrectInteraction];
-            
-            //Check if selected interaction is correct
-            if ([interaction isEqual:correctInteraction]) {
-                [self performInteraction:interaction];
-                [self incrementCurrentStep];
-                
-                //Transference counts as two steps, so we must increment again
-                if ([interaction interactionType] == TRANSFERANDGROUP || [interaction interactionType] == TRANSFERANDDISAPPEAR) {
-                    [self incrementCurrentStep];
-                }
-            }
-            else {
-                if ([interaction interactionType] != UNGROUP) {
-                    //Snap the object back to its original location
-                    [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0)];
-                }
-            }
+            [self checkSolutionForInteraction:interaction]; //check if selected interaction is correct
         }
         //No menuItem was selected
         else {
@@ -496,14 +486,7 @@ float const groupingProximity = 20.0;
                     
                     //Only one possible ungrouping found
                     if ([itemPairArray count] == 1) {
-                        //Get correct interaction to compare
-                        PossibleInteraction* correctInteraction = [self getCorrectInteraction];
-                        
-                        //Check if interaction is correct before ungrouping
-                        if ([interaction isEqual:correctInteraction]) {
-                            [self performInteraction:interaction];
-                            [self incrementCurrentStep];
-                        }
+                        [self checkSolutionForInteraction:interaction]; //check if interaction is correct before ungrouping
                     }
                     //Multiple possible ungroupings found
                     else {
@@ -574,6 +557,8 @@ float const groupingProximity = 20.0;
                         [self incrementCurrentStep];
                     }
                     else {
+                        [self playErrorNoise];
+                        
                         //Snap the object back to its original location
                         [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0)];
                     }
@@ -638,6 +623,8 @@ float const groupingProximity = 20.0;
                         
                         //No possible interactions were found
                         if ([possibleInteractions count] == 0) {
+                            [self playErrorNoise];
+                            
                             //Snap the object back to its original location
                             [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0)];
                         }
@@ -645,23 +632,7 @@ float const groupingProximity = 20.0;
                         if ([possibleInteractions count] == 1) {
                             PossibleInteraction* interaction = [possibleInteractions objectAtIndex:0];
                             
-                            //Get correct interaction to compare
-                            PossibleInteraction* correctInteraction = [self getCorrectInteraction];
-                            
-                            //Check if interaction is correct
-                            if ([interaction isEqual:correctInteraction]) {
-                                [self performInteraction:interaction];
-                                [self incrementCurrentStep];
-                                
-                                //Transference counts as two steps, so we must increment again
-                                if ([interaction interactionType] == TRANSFERANDGROUP || [interaction interactionType] == TRANSFERANDDISAPPEAR) {
-                                    [self incrementCurrentStep];
-                                }
-                            }
-                            else {
-                                //Snap the object back to its original location
-                                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0)];
-                            }
+                            [self checkSolutionForInteraction:interaction];
                         }
                         //If more than 1 was found, prompt the user to disambiguate.
                         else if ([possibleInteractions count] > 1) {
@@ -1677,6 +1648,34 @@ float const groupingProximity = 20.0;
     }
     
     return correctInteraction;
+}
+
+/*
+ * Checks if an interaction is correct by comparing it to the solution. If it is correct, the interaction is performed and the current step
+ * is incremented. If it is incorrect, an error noise is played, and the objects snap back to their original positions.
+ */
+-(void) checkSolutionForInteraction:(PossibleInteraction*)interaction {
+    //Get correct interaction to compare
+    PossibleInteraction* correctInteraction = [self getCorrectInteraction];
+    
+    //Check if selected interaction is correct
+    if ([interaction isEqual:correctInteraction]) {
+        [self performInteraction:interaction];
+        [self incrementCurrentStep];
+        
+        //Transference counts as two steps, so we must increment again
+        if ([interaction interactionType] == TRANSFERANDGROUP || [interaction interactionType] == TRANSFERANDDISAPPEAR) {
+            [self incrementCurrentStep];
+        }
+    }
+    else {
+        [self playErrorNoise]; //play noise if interaction is incorrect
+        
+        if ([interaction interactionType] != UNGROUP) {
+            //Snap the object back to its original location
+            [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0)];
+        }
+    }
 }
 
 /*
