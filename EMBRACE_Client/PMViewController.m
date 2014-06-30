@@ -444,17 +444,12 @@ float const groupingProximity = 20.0;
         }
     }
     else if(recognizer.state == UIGestureRecognizerStateEnded) {
-        //TODO: Check to see if any more of this code is duplicated elsewhere.
-        //Get other objects grouped with this object.
-        NSString* requestGroupedImages = [NSString stringWithFormat:@"getGroupedObjectsString(%@)", separatingObjectId];
-        NSString* groupedImages = [bookView stringByEvaluatingJavaScriptFromString:requestGroupedImages];
+        //Get pairs of other objects grouped with this object.
+        NSArray* itemPairArray = [self getObjectsGroupedWithObject:separatingObjectId];
         
-        //If there is an array, split the array based on pairs.
-        if(![groupedImages isEqualToString:@""]) {
-            NSArray* itemPairArray = [groupedImages componentsSeparatedByString:@"; "];
-            
+        if (itemPairArray != nil) {
             NSMutableArray* possibleInteractions = [[NSMutableArray alloc] init];
-            
+        
             for(NSString* pairStr in itemPairArray) {
                 //Create an array that will hold all the items in this group
                 NSMutableArray* groupedItemsArray = [[NSMutableArray alloc] init];
@@ -1324,22 +1319,12 @@ float const groupingProximity = 20.0;
  * specified object. Otherwise, returns false.
  */
 -(BOOL)isSubject:(NSString*)subject ContainedInGroupWithObject:(NSString*)object {
-    NSString* requestGroupedImages = [NSString stringWithFormat:@"getGroupedObjectsString(%@)", object];
+    //Get pairs of other objects grouped with this object
+    NSArray* itemPairArray = [self getObjectsGroupedWithObject:object];
     
-    /*
-     * Say the cart is connected to the tractor and the tractor is "connected" to the farmer,
-     * then groupedImages will be a string in the following format: "cart, tractor; tractor, farmer"
-     * if the only thing you currently have connected to the hay is the farmer, then you'll get
-     * a string back that is: "hay, farmer" or "farmer, hay"
-     */
-    NSString* groupedImages = [bookView stringByEvaluatingJavaScriptFromString:requestGroupedImages];
-    
-    //If there is an array, split the array based on pairs.
-    if(![groupedImages isEqualToString:@""]) {
+    if (itemPairArray != nil) {
         //Create an array that will hold all the items in this group
         NSMutableArray* groupedItemsArray = [[NSMutableArray alloc] init];
-        
-        NSArray* itemPairArray = [groupedImages componentsSeparatedByString:@"; "];
         
         for(NSString* pairStr in itemPairArray) {
             //Separate the objects in this pair and add them to our array of all items in this group.
@@ -1651,8 +1636,9 @@ float const groupingProximity = 20.0;
 }
 
 /*
- * Checks if an interaction is correct by comparing it to the solution. If it is correct, the interaction is performed and the current step
- * is incremented. If it is incorrect, an error noise is played, and the objects snap back to their original positions.
+ * Checks if an interaction is correct by comparing it to the solution. If it is correct, the interaction is performed and 
+ * the current step is incremented. If it is incorrect, an error noise is played, and the objects snap back to their 
+ * original positions.
  */
 -(void) checkSolutionForInteraction:(PossibleInteraction*)interaction {
     //Get correct interaction to compare
@@ -2172,16 +2158,12 @@ float const groupingProximity = 20.0;
 }
 
 -(NSMutableArray*) getPossibleInteractions:(BOOL)useProximity {
-    //Get the list of objects this is grouped with.
-    NSString* requestGroupedImages = [NSString stringWithFormat:@"getGroupedObjectsString(%@)", movingObjectId];
-    NSString* groupedImages = [bookView stringByEvaluatingJavaScriptFromString:requestGroupedImages];
+    //Get pairs of other objects grouped with this object
+    NSArray* itemPairArray = [self getObjectsGroupedWithObject:movingObjectId];
     
-    //If there is an array, split the array based on pairs.
-    if(![groupedImages isEqualToString:@""]) {
+    if (itemPairArray != nil) {
         NSMutableArray* groupings = [[NSMutableArray alloc] init];
         NSMutableSet* uniqueObjIds = [[NSMutableSet alloc] init];
-        
-        NSArray* itemPairArray = [groupedImages componentsSeparatedByString:@"; "];
         
         for(NSString* pairStr in itemPairArray) {
             //Separate the objects in this pair.
@@ -2430,6 +2412,31 @@ float const groupingProximity = 20.0;
     }
     
     return groupings;
+}
+
+/*
+ * Returns an array containing pairs of grouped objects (with the format "hay, farmer") connected to the object specified
+ */
+-(NSArray*) getObjectsGroupedWithObject:(NSString*)object {
+    NSArray* itemPairArray; //contains grouped objects split by pairs
+    
+    //Get other objects grouped with this object.
+    NSString* requestGroupedImages = [NSString stringWithFormat:@"getGroupedObjectsString(%@)", object];
+    
+    /*
+     * Say the cart is connected to the tractor and the tractor is "connected" to the farmer,
+     * then groupedImages will be a string in the following format: "cart, tractor; tractor, farmer"
+     * if the only thing you currently have connected to the hay is the farmer, then you'll get
+     * a string back that is: "hay, farmer" or "farmer, hay"
+     */
+    NSString* groupedImages = [bookView stringByEvaluatingJavaScriptFromString:requestGroupedImages];
+    
+    //If there is an array, split the array based on pairs.
+    if(![groupedImages isEqualToString:@""]) {
+        itemPairArray = [groupedImages componentsSeparatedByString:@"; "];
+    }
+    
+    return itemPairArray;
 }
 
 /*
@@ -3296,6 +3303,3 @@ float const groupingProximity = 20.0;
 }
 
 @end
-
-
-
