@@ -563,11 +563,10 @@ float const groupingProximity = 20.0;
                 }
                 else {
                     //Check if the object is overlapping anything
-                    NSString* overlappingObjects = [NSString stringWithFormat:@"checkObjectOverlapString(%@)", movingObjectId];
-                    NSString* overlapArrayString = [bookView stringByEvaluatingJavaScriptFromString:overlappingObjects];
+                    NSArray* overlappingWith = [self getObjectsOverlappingWithObject:movingObjectId];
                     
                     //Get possible interactions only if the object is overlapping something
-                    if(![overlapArrayString isEqualToString:@""]) {
+                    if (overlappingWith != nil) {
                         BOOL useProximity = YES;
                         
                         if(condition == MENU)
@@ -723,12 +722,9 @@ float const groupingProximity = 20.0;
             
             //If we're overlapping with another object, then we need to figure out which hotspots are currently active and highlight those hotspots.
             //When moving the object, we may have the JS return a list of all the objects that are currently grouped together so that we can process all of them.
-            NSString* overlappingObjects = [NSString stringWithFormat:@"checkObjectOverlapString(%@)", movingObjectId];
-            NSString* overlapArrayString = [bookView stringByEvaluatingJavaScriptFromString:overlappingObjects];
+            NSArray* overlappingWith = [self getObjectsOverlappingWithObject:movingObjectId];
             
-            if(![overlapArrayString isEqualToString:@""]) {
-                NSArray* overlappingWith = [overlapArrayString componentsSeparatedByString:@", "];
-                
+            if (overlappingWith != nil) {
                 for(NSString* objId in overlappingWith) {
                     //we have the list of objects it's overlapping with, we now have to figure out which hotspots to draw.
                     NSMutableArray* hotspots = [model getHotspotsForObject:objId OverlappingWithObject:movingObjectId];
@@ -2197,12 +2193,10 @@ float const groupingProximity = 20.0;
 -(NSMutableArray*) getPossibleInteractions:(BOOL)useProximity forObject:(NSString*)obj{
     NSMutableArray* groupings = [[NSMutableArray alloc] init];
     
-    NSString* overlappingObjects = [NSString stringWithFormat:@"checkObjectOverlapString(%@)", obj];
-    NSString* overlapArrayString = [bookView stringByEvaluatingJavaScriptFromString:overlappingObjects];
+    //Get the objects that this object is overlapping with
+    NSArray* overlappingWith = [self getObjectsOverlappingWithObject:obj];
     
-    if(![overlapArrayString isEqualToString:@""]) {
-        NSArray* overlappingWith = [overlapArrayString componentsSeparatedByString:@", "];
-        
+    if (overlappingWith != nil) {
         for(NSString* objId in overlappingWith) {
             //If only the correct object can be used, then check if the overlapping object is correct. If it is not, do not get any possible interactions for it.
             BOOL getInteractions = TRUE;
@@ -2437,6 +2431,23 @@ float const groupingProximity = 20.0;
     }
     
     return itemPairArray;
+}
+
+/*
+ * Returns an array containing objects that are overlapping with the object specified
+ */
+-(NSArray*) getObjectsOverlappingWithObject:(NSString*)object {
+    NSArray* overlappingWith; //contains overlapping objects
+    
+    //Check if object is overlapping anything
+    NSString* overlappingObjects = [NSString stringWithFormat:@"checkObjectOverlapString(%@)", movingObjectId];
+    NSString* overlapArrayString = [bookView stringByEvaluatingJavaScriptFromString:overlappingObjects];
+    
+    if(![overlapArrayString isEqualToString:@""]) {
+        overlappingWith = [overlapArrayString componentsSeparatedByString:@", "];
+    }
+    
+    return overlappingWith;
 }
 
 /*
