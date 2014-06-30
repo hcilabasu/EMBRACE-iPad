@@ -2701,7 +2701,8 @@ float const groupingProximity = 20.0;
 /*
  * Re-orders the possible interactions in place based on the location in the story at which the user is currently.
  * TODO: Pull up information from solution step and rank based on the location in the story and the current step
- * For now, the function makes sure the interaction which ensures going to the next step in the story is present in the top
+ * For now, the function makes sure the interaction which ensures going to the next step in the story is present
+ * somewhere in the first three (maximum menu items) indexes of the possibleInteractions array.
  */
 -(void) rankPossibleInteractions:(NSMutableArray*)possibleInteractions {
     /*int index = -1;
@@ -2752,7 +2753,7 @@ float const groupingProximity = 20.0;
     
     int correctIndex; //index to insert correct menu item
     
-    //Generate a random index number up to the number of PossibleInteraction objects (if less than the maximum number of menu items) or up to the maximum number of menu items otherwise
+    //Generate a random index number up to the number of PossibleInteraction objects (if less than the maximum number of menu items) or up to the maximum number of menu items otherwise. The index is random to ensure that the correct interaction won't always be at the same location on the menu.
     if ([possibleInteractions count] < maxMenuItems) {
         correctIndex = arc4random_uniform([possibleInteractions count]);
     }
