@@ -771,7 +771,7 @@ float const groupingProximity = 20.0;
                     //NSLog(@"number of hotspots:%d %d", [redHotspots count], [greenHotspots count]);
                     //Draw red hotspots first, then green ones.
                     [self drawHotspots:redHotspots :@"red"];
-                    [self drawHotspots:greenHotspots :@"blue"];
+                    [self drawHotspots:greenHotspots :@"green"];
                 }
             }
         }
