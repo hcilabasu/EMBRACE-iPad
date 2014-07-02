@@ -317,6 +317,11 @@ float const groupingProximity = 20.0;
         
         [interaction addConnection:UNGROUP :objects :hotspotsForInteraction];
     }
+    else if ([[step stepType] isEqualToString:@"disappear"]) {
+        interaction = [[PossibleInteraction alloc]initWithInteractionType:DISAPPEAR];
+        
+        [interaction addConnection:DISAPPEAR :objects :hotspotsForInteraction];
+    }
     
     return interaction;
 }
@@ -390,15 +395,15 @@ float const groupingProximity = 20.0;
         else {
             //Snap the object back to its original location
             [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0)];
+            
+            //Clear any remaining highlighting.
+            NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
+            [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
         }
         
         //No longer moving object
         movingObject = FALSE;
         movingObjectId = nil;
-        
-        //Clear any remaining highlighting.
-        NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
-        [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
         
         //Remove menu.
         [menu removeFromSuperview];
@@ -458,20 +463,26 @@ float const groupingProximity = 20.0;
                 [groupedItemsArray addObjectsFromArray:[pairStr componentsSeparatedByString:@", "]];
                 
                 //Only allow the correct subject and object to ungroup if necessary
-                BOOL allowSubjectToUngroup = true;
-                BOOL allowObjectToUngroup = true;
+                BOOL allowSubjectToUngroup = false;
+                BOOL allowObjectToUngroup = false;
                 
                 for(NSString* obj in groupedItemsArray) {
                     if (useSubject == ONLY_CORRECT) {
-                        if (![self checkSolutionForSubject:obj]) {
-                            allowSubjectToUngroup = false;
+                        if ([self checkSolutionForSubject:obj]) {
+                            allowSubjectToUngroup = true;
                         }
+                    }
+                    else if (useSubject == ALL_ENTITIES) {
+                        allowSubjectToUngroup = true;
                     }
                     
                     if (useObject == ONLY_CORRECT) {
-                        if (![self checkSolutionForObject:obj]) {
-                            allowObjectToUngroup = false;
+                        if ([self checkSolutionForObject:obj]) {
+                            allowObjectToUngroup = true;
                         }
+                    }
+                    else if (useObject == ALL_ENTITIES) {
+                        allowObjectToUngroup = true;
                     }
                 }
                 
@@ -1658,6 +1669,10 @@ float const groupingProximity = 20.0;
             [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0)];
         }
     }
+    
+    //Clear any remaining highlighting.
+    NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
+    [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
 }
 
 /*
