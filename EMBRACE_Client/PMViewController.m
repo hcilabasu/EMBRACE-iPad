@@ -22,36 +22,25 @@
     NSUInteger currentStep; //Active step to be completed.
     BOOL stepsComplete; //True if all steps have been completed for a sentence
     
+    NSMutableArray* actionSteps; //Stores all the steps involved in the solution
+    //NSMutableArray *stepsCompleted; //Stores which steps are completed in the current story
+    
     NSString *movingObjectId; //Object currently being moved.
     NSString *separatingObjectId; //Object identified when pinch gesture performed.
     BOOL movingObject; //True if an object is currently being moved, false otherwise.
     BOOL separatingObject; //True if two objects are currently being ungrouped, false otherwise.
     
     BOOL pinching;
-    
-    NSMutableArray* actionSteps; //Stores all the steps involved in the solution
-    //NSMutableArray *stepsCompleted; //Stores which steps are completed in the current story
+    BOOL pinchToUngroup; //TRUE if pinch gesture is used to ungroup; FALSE otherwise
     
     NSMutableArray *allPossibleGroupings; //Stores all possible groupings
     NSMutableArray *uniquePossibleInteractions; //Stores possible interactions with UNGROUP actions
     NSMutableArray *ungroupInteractions; //Stores all UNGROUP interactions
     NSMutableDictionary *currentGroupings;
     
-    NSInteger condition;
-    NSInteger MENU;
-    NSInteger HOTSPOT;
-    
-    BOOL pinchToUngroup; //TRUE if pinch gesture is used to ungroup; FALSE otherwise
-    
-    NSInteger useSubject; //Determines which objects the user can manipulate as the subject
-    NSInteger useObject; //Determines which objects the user can manipulate as the object
-    
-    NSInteger ALL_ENTITIES; //Any object can be used
-    NSInteger ONLY_CORRECT; //Only the correct object can be used
-    NSInteger NO_ENTITIES; //No object can be used
-    
+    BOOL allowSnapBack; //TRUE if object will snap back to original location upon error
+
     CGPoint startLocation; //initial location of an object before it is moved
-    
     CGPoint delta; //distance between the top-left corner of the image being moved and the point clicked.
     
     ContextualMenuDataSource *menuDataSource;
@@ -60,6 +49,10 @@
     BOOL menuExpanded;
     
     InteractionModel *model;
+    
+    Condition condition; //study condition to run the app (e.g. MENU, HOTSPOT, etc.)
+    InteractionRestriction useSubject; //Determines which objects the user can manipulate as the subject
+    InteractionRestriction useObject; //Determines which objects the user can interact with as the object
 }
 
 @property (nonatomic, strong) IBOutlet UIWebView *bookView;
@@ -110,18 +103,11 @@ float const groupingProximity = 20.0;
     
     currentPage = nil;
     
-    //Parameter settings
-    MENU = 1;
-    HOTSPOT = 2;
-    ALL_ENTITIES = 0;
-    ONLY_CORRECT = 1;
-    NO_ENTITIES = 2;
-    
-    //Parameters for this instantiation
     condition = MENU;
     useSubject = ALL_ENTITIES;
     useObject = ONLY_CORRECT;
     pinchToUngroup = FALSE;
+    allowSnapBack = FALSE;
     
     currentGroupings = [[NSMutableDictionary alloc] init];
     
@@ -705,6 +691,12 @@ float const groupingProximity = 20.0;
                             
                             if(!menuExpanded)
                                 [self expandMenu];
+                        }
+                    }
+                    else {
+                        if (allowSnapBack) {
+                            //Snap the object back to its original location
+                            [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0)];
                         }
                     }
                 }
@@ -2278,11 +2270,6 @@ float const groupingProximity = 20.0;
                                     }
                                     else if([[relationshipBetweenObjects actionType] isEqualToString:@"disappear"]) {
                                         PossibleInteraction* interaction = [[PossibleInteraction alloc] initWithInteractionType:DISAPPEAR];
-                                        
-                                        /*//Add both the object causing the disappearing and the one that is doing the disappearing.
-                                        //So we know which is which, the object doing the disappearing is going to be added first. That way if anything is grouped with the object causing the disappearing that we want to display as well, it can come afterwards.
-                                        //TODO: Come back to this to see if it makes sense at all.
-                                        objects = [[NSArray alloc] initWithObjects:[relationshipBetweenObjects object2Id], [relationshipBetweenObjects object1Id], nil];*/
                                         
                                         //Add the subject of the disappear interaction before the object
                                         if ([[movingObjectHotspot role] isEqualToString:@"subject"]) {
