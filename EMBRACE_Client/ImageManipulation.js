@@ -564,10 +564,11 @@ function setSentenceFontWeight(sentenceId, weight) {
 /*
  * Highlights only the specified object.
  * This function is called by the PMView controller to highlight overlapping objects that have relevant relationships
- * with object being moved.
+ * with object being moved. The parameter 'under' indicates that the highlighting should be performed
+ * under the object
  */
 function highlightObject(object) {
-    highlight(object.offsetLeft, object.offsetTop, object.offsetWidth, object.offsetHeight, "");
+    highlight(object.offsetLeft, object.offsetTop, object.offsetWidth, object.offsetHeight, "under");
 }
 
 /* 
@@ -578,7 +579,7 @@ function highlightObject(object) {
  * width and height will be the width and height of the entire group of objects.
  * TODO: Refine this so it looks a bit better. It seems to be slightly offset sometimes.
  */
-function highlight(topleftX, topleftY, objectWidth, objectHeight, canvasType) {
+function highlight(topleftX, topleftY, objectWidth, objectHeight, highlightType) {
     var canvas = document.getElementById('highlight');
     
     //Make sure the canvas is the size of the window. If not, make it the same size.
@@ -624,9 +625,12 @@ function highlight(topleftX, topleftY, objectWidth, objectHeight, canvasType) {
     context.fillStyle = "rgba(255, 250, 205, .4)";
     context.fill();
     
-    // If objects are being higlighted move the canvas to 100 on the z-index
-    if (canvasType == "highlight")
-        document.getElementById('highlight').style.zIndex = "100";
+    // If objects are being higlighted (over mode) move the canvas to 100 on the z-index
+    // Otherwise (under mode) keep the canvas position at 0
+    if (highlightType == "over")
+        canvas.style.zIndex = "100";
+    else if (highlightType == "under")
+        canvas.style.zIndex = "0";
 }
 
 /*
@@ -705,8 +709,14 @@ function getSentenceColor(sentenceId) {
     return sentenceId.style.color;
 }
 
+/*
+ * Highlights the specified object on word tap.
+ * This function is called by the PMView controller to highlight objects when their word has been clicked.
+ * The parameter 'over' indicates that the highlighting should be performed
+ * over the object
+ */
 function highlightObjectOnWordTap(object) {
-    highlight(object.offsetLeft, object.offsetTop, object.offsetWidth, object.offsetHeight, "highlight");
+    highlight(object.offsetLeft, object.offsetTop, object.offsetWidth, object.offsetHeight, "over");
 }
 
 /*
@@ -715,4 +725,5 @@ function highlightObjectOnWordTap(object) {
 
 function setHTMLText (sentenceID, text) {
     document.getElementById(sentenceID).innerHTML = text;
+    
 }
