@@ -501,6 +501,8 @@ float const groupingProximity = 20.0;
 
     //This should work with requireGestureRecognizerToFail:pinchRecognizer but it doesn't currently.
     if(!pinching) {
+        BOOL useProximity = NO;
+        
         if(recognizer.state == UIGestureRecognizerStateBegan) {
             //NSLog(@"pan gesture began at location: (%f, %f)", location.x, location.y);
             
@@ -544,9 +546,6 @@ float const groupingProximity = 20.0;
                         //Snap the object back to its original location
                         [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0)];
                     }
-                    
-                    /*//Move object to another object or waypoint
-                    [self moveObjectForSolution];*/
                 }
                 else {
                     //Check if the object is overlapping anything
@@ -554,10 +553,9 @@ float const groupingProximity = 20.0;
                     
                     //Get possible interactions only if the object is overlapping something
                     if (overlappingWith != nil) {
-                        BOOL useProximity = YES;
-                        
-                        if(condition == MENU)
-                            useProximity = NO;
+                        if (condition == HOTSPOT) {
+                            useProximity = YES;
+                        }
 
                         //If the object was dropped, check if it's overlapping with any other objects that it could interact with.
                         NSMutableArray* possibleInteractions = [self getPossibleInteractions:useProximity];
@@ -629,7 +627,7 @@ float const groupingProximity = 20.0;
                 }
                 
                 if (condition == HOTSPOT) {
-                    NSMutableArray* possibleInteractions = [self getPossibleInteractions:NO];
+                    NSMutableArray* possibleInteractions = [self getPossibleInteractions:useProximity];
                     
                     //Keep a list of all hotspots so that we know which ones should be drawn as green and which should be drawn as red. At the end, draw all hotspots together.
                     NSMutableArray* redHotspots = [[NSMutableArray alloc] init];
@@ -648,7 +646,7 @@ float const groupingProximity = 20.0;
                                 //NSLog(@"within proximity %hhd %u", areWithinProximity, [interaction interactionType]);
                                 
                                 //TODO: Make sure this is correct.
-                                if(areWithinProximity) {
+                                if(areWithinProximity || ([interaction interactionType] == TRANSFERANDGROUP) || ([interaction interactionType] == TRANSFERANDDISAPPEAR)) {
                                     [greenHotspots addObjectsFromArray:hotspots];
                                 }
                                 else {
