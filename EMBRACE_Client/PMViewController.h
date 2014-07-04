@@ -12,6 +12,19 @@
 #import "Book.h"
 #import "AVFoundation/AVSpeechSynthesis.h"
 
+typedef enum Condition {
+    MENU,
+    HOTSPOT,
+    CONTROL,
+    OTHER,
+} Condition;
+
+typedef enum InteractionRestriction {
+    ALL_ENTITIES, //Any object can be used
+    ONLY_CORRECT, //Only the correct object can be used
+    NO_ENTITIES //No object can be used
+} InteractionRestriction;
+
 @interface PMViewController : UIViewController <UIGestureRecognizerDelegate, UIScrollViewDelegate, PieContextualMenuDelegate> {
     EBookImporter *bookImporter;
     Book* book;

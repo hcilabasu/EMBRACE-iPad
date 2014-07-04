@@ -16,7 +16,7 @@
     
     NSString *coverImagePath; //Path of the book cover image.
     NSString *bookPath; //root path of the book:/Documents/<Author Folder>/<Book Folder>
-    NSString *mainContentPath; //the root path of where the content is stored. 
+    NSString *mainContentPath; //the root path of where the content is stored.
     
     NSDictionary *bookItems; //manifest items read in from opf file. The key is the id and the object is the href.
     NSMutableArray *itemOrder; //array that keeps track of the order the items should appear in. Stores the ids in order of the hrefs in bookItems.
@@ -54,4 +54,6 @@
 -(NSString*) getNextPageForChapterAndActivity:(NSString*)chapterTitle :(Mode) activity :(NSString*) currentPage; //Get the page number for the specified chapter and activity mode.
 
 -(NSString* ) getChapterAfterChapter:(NSString* )chapterTitle;
+
+-(Chapter* ) getChapterWithTitle:(NSString* )chapterTitle;
 @end

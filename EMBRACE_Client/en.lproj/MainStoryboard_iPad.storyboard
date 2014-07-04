@@ -360,7 +360,7 @@
         <!--Login View Controller-->
         <scene sceneID="OEV-5U-xhQ">
             <objects>
-                <viewController id="e9p-ZO-asL" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="e9p-ZO-asL" customClass="LoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="n4v-SG-WrY"/>
                         <viewControllerLayoutGuide type="bottom" id="itd-94-cm5"/>
@@ -533,6 +533,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="UAZ-I9-Wkj"/>
         <segue reference="y3V-Kf-tce"/>
         <segue reference="UAZ-I9-Wkj"/>
     </inferredMetricsTieBreakers>

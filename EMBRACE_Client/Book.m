@@ -42,7 +42,7 @@
     if(pageNum < [itemOrder count]) {
         NSString* idPage = [itemOrder objectAtIndex:pageNum];
         NSString* page = [bookItems objectForKey:idPage];
-    
+        
         NSString* filepath = [self.mainContentPath stringByAppendingString:page];
         
         return filepath;
@@ -51,7 +51,7 @@
 }
 
 -(NSString*) getPageForChapter:(NSString*)chapterTitle {
-    //Find the chapter so we can get the chapter ID. 
+    //Find the chapter so we can get the chapter ID.
     for(Chapter* chapter in chapters) {
         if([[chapter title] isEqualToString:chapterTitle]) {
             NSString* chapterId = [chapter chapterId];
@@ -63,7 +63,7 @@
             }
             else {
                 NSString* filepath = [self.mainContentPath stringByAppendingString:page];
-            
+                
                 return filepath;
             }
         }
@@ -80,7 +80,7 @@
     return url;
 }
 
-//Return total number of pages. 
+//Return total number of pages.
 -(NSInteger) totalPages {
     return [itemOrder count];
 }
@@ -108,6 +108,20 @@
     }
     
     return nil; //These is no chapter after this one.
+}
+
+/*
+ * Returns the Chapter object with the specified chapter title
+ */
+-(Chapter* ) getChapterWithTitle:(NSString* )chapterTitle {
+    for(Chapter* chapter in chapters) {
+        //Chapter title matches
+        if ([[chapter title] isEqualToString:chapterTitle]) {
+            return chapter;
+        }
+    }
+    
+    return nil;
 }
 
 @end

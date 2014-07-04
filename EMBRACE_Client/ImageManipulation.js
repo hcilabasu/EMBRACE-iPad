@@ -306,7 +306,7 @@ function animateUngrouping(group) {
     //Figure out which one is the correct one. Then figure out which direction to move them and which object we're moving if we're not moving both.
     //If object 1 is contained within object 2.
     if(objectContainedInObject(group.obj1, group.obj2)) {
-        //alert(group.obj1.id + " contained in " + group.obj2.id);
+        //alert("check 1" + group.obj1.id + " contained in " + group.obj2.id);
         //For now just move the object that's contained within the other object toward the left until it's no longer overlapping.
         //Also make sure you're not moving it off screen.
         while((group.obj1.offsetLeft + group.obj1.offsetWidth + GAP > group.obj2.offsetLeft) &&
@@ -316,11 +316,12 @@ function animateUngrouping(group) {
     }
     //If object 2 is contained within object 1.
     else if(objectContainedInObject(group.obj2, group.obj1)) {
-        //alert(group.obj2.id + " contained in " + group.obj1.id);
+        //alert("check 2" + group.obj2.id + " contained in " + group.obj1.id);
         //For now just move the object that's contained within the other object toward the left until it's no longer overlapping.
         //Also make sure you're not moving it off screen.
+        
         while((group.obj2.offsetLeft + group.obj2.offsetWidth + GAP > group.obj1.offsetLeft) &&
-              (grou.obj2.offsetLeft - STEP > 0)) {
+              (group.obj2.offsetLeft - STEP > 0)) {
             move(group.obj2, group.obj2.offsetLeft - STEP, group.obj2.offsetTop);
         }
     }
@@ -504,23 +505,26 @@ function areObjectsGrouped(object1, object2) {
  * does not quite match where the JS thinks it is based on the Connection. 
  */
 function objectGroupedAtHotspot(object, x, y) {
-    var MARGIN = 2;
-    
+    //var MARGIN = 3;
+    var MARGIN = 13;
+    //alert(object + " " + x + " " + y);
     for(var i = 0; i < groupings.length; i ++) {
         var group = groupings[i];
         
         if(object.id == group.obj1.id) {
-            var diffX = Math.abs(x - group.obj1x);
-            var diffY = Math.abs(y - group.obj1y);
-            
+            //alert("inside if");
+            var diffX = Math.abs(x - group.obj2x);
+            var diffY = Math.abs(y - group.obj2y);
+            //alert(diffX + " " + diffY);
             if(diffX < MARGIN && diffY < MARGIN) {
                 return group.obj2.id;
             }
         }
         else if(object.id == group.obj2.id) {
+            //alert("inside else");
             var diffX = Math.abs(x - group.obj1x);
             var diffY = Math.abs(y - group.obj1y);
-            
+            //alert(diffX + " " + diffY);
             if(diffX < MARGIN && diffY < MARGIN) {
                 return group.obj1.id;
             }

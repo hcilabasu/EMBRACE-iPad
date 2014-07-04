@@ -173,6 +173,7 @@
 {
 	BOOL success = YES;
 	int ret = unzGoToFirstFile( _unzFile );
+
 	unsigned char		buffer[4096] = {0};
 	NSFileManager* fman = [NSFileManager defaultManager];
 	if( ret!=UNZ_OK )
@@ -208,6 +209,8 @@
 		
 		// check if it contains directory
 		NSString * strPath = [NSString  stringWithCString:filename];
+        NSLog(@"UnzipOpenFile %@", strPath);
+
 		BOOL isDirectory = NO;
 		if( filename[fileInfo.size_filename-1]=='/' || filename[fileInfo.size_filename-1]=='\\')
 			isDirectory = YES;

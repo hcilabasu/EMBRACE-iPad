@@ -23,5 +23,5 @@
 
 -(NSMutableArray*) importLibrary;
 -(Book*) getBookWithTitle:(NSString*) bookTitle;
-
+-(void) readMetadataForBook:(Book*) book;
 @end
