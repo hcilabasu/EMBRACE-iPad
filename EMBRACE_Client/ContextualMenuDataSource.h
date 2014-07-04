@@ -14,6 +14,9 @@
 @interface ContextualMenuDataSource : NSObject <PieContextualMenuDataSource> {
 }
 
--(void) addMenuItem:(NSString*)relationship :(NSArray*) objectIds :(NSArray*)images;
+//Add a menu item with the following information. 
+-(void) addMenuItem:(PossibleInteraction*)possInteraction :(NSArray*) imageArray :(CGRect) box;
+
+-(void) clearMenuitems; //Clear all menu items so we can use this again for a new menu.
 
 @end

@@ -11,35 +11,28 @@
 @implementation MenuItemDataSource
 
 @synthesize images;
-@synthesize objectIds;
-@synthesize relationship;
+@synthesize interaction;
+@synthesize boundingBox;
 
 - (id)init {
     self = [super init];
+
     if (self) {
         images = [[NSArray alloc] init];
-        objectIds = [[NSArray alloc] init];
     }
+    
     return self;
 }
 
-- (id)initWithRelationship:(NSString*)strRelationship {
+-(id) initWithPossibleInteractionAndImages:(PossibleInteraction*)possInteraction :(NSArray*) imageArray :(CGRect) box {
     self = [super init];
+    
     if (self) {
-        images = [[NSArray alloc] init];
-        objectIds = [[NSArray alloc] init];
-        relationship = strRelationship;
-    }
-    return self;
-}
-
-- (id)initWithRelationshipAndImages:(NSString*)strRelationship :(NSArray*) ids :(NSArray*) imageArray {
-    self = [super init];
-    if (self) {
+        interaction = possInteraction;
         images = imageArray;
-        objectIds = ids;
-        relationship = strRelationship;
+        boundingBox = box;
     }
+    
     return self;
 }
 

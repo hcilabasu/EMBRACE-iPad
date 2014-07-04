@@ -25,4 +25,5 @@
 @property (nonatomic, strong) NSString* width;
 
 - (id) initWithValues:(NSString*)objectId :(NSString*)act :(NSString*)x :(NSString*)y :(NSString*)w :(NSString*)h;
+
 @end
