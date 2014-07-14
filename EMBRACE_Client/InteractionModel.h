@@ -13,6 +13,7 @@
 #import "OrderConstraint.h"
 #import "Location.h"
 #import "Waypoint.h"
+#import "AlternateImage.h"
 #import "Relationship.h"
 
 @interface InteractionModel : NSObject {
@@ -21,6 +22,7 @@
     NSMutableDictionary* hotspots;
     NSMutableSet* locations;
     NSMutableSet* waypoints;
+    NSMutableSet* alternateImages;
     NSMutableSet* sentenceMetadata;
     
     BOOL useRelationships;
@@ -32,6 +34,7 @@
 @property (nonatomic, strong) NSMutableDictionary* hotspots;
 @property (nonatomic, strong) NSMutableSet* locations;
 @property (nonatomic, strong) NSMutableSet* waypoints;
+@property (nonatomic, strong) NSMutableSet* alternateImages;
 @property (nonatomic, strong) NSMutableSet* sentenceMetadata;
 
 - (void) addHotspot:(NSString*)objId :(NSString*)act :(NSString*)objRole :(CGPoint)loc; //add hotspot to object with objectId at location loc.
@@ -44,6 +47,8 @@
 - (void) addLocation:(NSString*)locationId :(NSString*)originX :(NSString*)originY :(NSString*)height :(NSString*)width;
 
 - (void) addWaypoint:(NSString*)wayptId :(CGPoint)loc;
+
+- (void) addAlternateImage:(NSString*)objId :(NSString*)act :(NSString*)origSrc :(NSString*)altSrc :(NSString*)wdth :(CGPoint)loc;
 
 - (NSMutableArray*) getAllHotspots; //Return all hotspots for all objects.
 - (NSMutableArray*) getHotspotsForObjectId:(NSString* )objId; //Return all hotspots for object with objId.
@@ -59,5 +64,7 @@
 - (Location*) getLocationWithId:(NSString*)locId;
 
 - (Waypoint*) getWaypointWithId:(NSString*)wayptId;
+
+- (AlternateImage*) getAlternateImageWithAction:(NSString*)action;
 
 @end

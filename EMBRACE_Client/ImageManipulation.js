@@ -549,6 +549,20 @@ function objectContainedInObject(object1, object2) {
 }
 
 /*
+ * Swaps the current image src used by objectId for the alternateSrc and adjusts the image width and location
+ */
+function swapImageSrc(objectId, alternateSrc, width, left, top) {
+    var image = document.getElementById(objectId); //get the image
+    
+    image.src = "../Images/" + alternateSrc; //swap image
+    
+    //Adjust image width and location
+    image.style.width = width;
+    image.style.left = left + "%";
+    image.style.top = top + "%";
+}
+
+/*
  * This may be moved into a different js file, if there are more things to do when moving to the next sentence.
  * This function just sets the sentence opacity to the specified opacity.
  * It's used to setup the opacity when the activity loads, and when moving from one sentence to the next. 

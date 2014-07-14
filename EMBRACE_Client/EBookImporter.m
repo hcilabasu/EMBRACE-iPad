@@ -533,6 +533,33 @@
         [model addWaypoint:waypointId :location];
     }
     
+    //Read in any alternate image information
+    NSArray* altImageElements = [metadataDoc nodesForXPath:@"//alternateImages" error:nil];
+    
+    if ([altImageElements count] > 0) {
+        GDataXMLElement* altImageElement = (GDataXMLElement*)[altImageElements objectAtIndex:0];
+        
+        NSArray* altImages = [altImageElement elementsForName:@"alternateImage"];
+        
+        for (GDataXMLElement* altImage in altImages) {
+            NSString* objectId = [[altImage attributeForName:@"objId"] stringValue];
+            NSString* action = [[altImage attributeForName:@"action"] stringValue];
+            NSString* originalSrc = [[altImage attributeForName:@"originalSrc"] stringValue];
+            NSString* alternateSrc = [[altImage attributeForName:@"alternateSrc"] stringValue];
+            NSString* width = [[altImage attributeForName:@"width"] stringValue];
+            NSString* locationXString = [[altImage attributeForName:@"x"] stringValue];
+            NSString* locationYString = [[altImage attributeForName:@"y"] stringValue];
+            
+            //Find the range of "," in the location string.
+            CGFloat locX = [locationXString floatValue];
+            CGFloat locY = [locationYString floatValue];
+            
+            CGPoint location = CGPointMake(locX, locY);
+            
+            [model addAlternateImage:objectId :action :originalSrc :alternateSrc :width :location];
+        }
+    }
+    
     //Read in any setup information.
     NSArray* setupElements = [metadataDoc nodesForXPath:@"//setups" error:nil];
     GDataXMLElement* setupElement = (GDataXMLElement*)[setupElements objectAtIndex:0];
@@ -630,6 +657,11 @@
                             NSString* locationId = [[step attributeForName:@"locationId"] stringValue];
                             
                             ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :locationId :nil :action];
+                            [PMSolution addSolutionStep:solutionStep];
+                        }
+                        //swapImage only has obj1Id and action
+                        else if([[step name] isEqualToString:@"swapImage"]) {
+                            ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :action];
                             [PMSolution addSolutionStep:solutionStep];
                         }
                     }

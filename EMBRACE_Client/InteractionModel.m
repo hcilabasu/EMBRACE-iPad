@@ -15,6 +15,7 @@
 @synthesize hotspots;
 @synthesize locations;
 @synthesize waypoints;
+@synthesize alternateImages;
 @synthesize sentenceMetadata;
 
 - (id) init {
@@ -24,6 +25,7 @@
         hotspots = [[NSMutableDictionary alloc] init];
         locations = [[NSMutableSet alloc] init];
         waypoints = [[NSMutableSet alloc] init];
+        alternateImages = [[NSMutableSet alloc] init];
         sentenceMetadata = [[NSMutableSet alloc] init];
         useRelationships = TRUE;
         useConstraints = TRUE;
@@ -267,6 +269,28 @@
     for (Waypoint* waypoint in waypoints) {
         if ([[waypoint waypointId] isEqualToString:wayptId]) {
             return waypoint;
+        }
+    }
+    
+    return nil;
+}
+
+/*
+ * Adds an AlternateImage with the specified object id, action, original src, alternate src, alternate image width, 
+ * and alternate location (x-y coordinate of top left corner of image)
+ */
+- (void) addAlternateImage:(NSString *)objId :(NSString *)act :(NSString *)origSrc :(NSString *)altSrc :(NSString *)wdth :(CGPoint)loc {
+    AlternateImage* altImage = [[AlternateImage alloc] initWithValues:objId :act :origSrc :altSrc :wdth :loc];
+    [alternateImages addObject:altImage];
+}
+
+/*
+ * Returns the AlternateImage with the specified action
+ */
+- (AlternateImage*) getAlternateImageWithAction:(NSString *)action {
+    for (AlternateImage* altImage in alternateImages) {
+        if ([[altImage action] isEqualToString:action]) {
+            return altImage;
         }
     }
     

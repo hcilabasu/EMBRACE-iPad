@@ -344,6 +344,10 @@ float const groupingProximity = 20.0;
         [self moveObjectForSolution];
         [self incrementCurrentStep];
     }
+    else if ([[currSolStep stepType] isEqualToString:@"swapImage"]) {
+        [self swapObjectImage];
+        [self incrementCurrentStep];
+    }
 }
 
 #pragma mark - Responding to gestures
@@ -1215,6 +1219,38 @@ float const groupingProximity = 20.0;
                 NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
                 [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
             }
+        }
+    }
+}
+
+/*
+ * Calls the JS function to swap an object's image with its alternate one
+ */
+-(void) swapObjectImage {
+    //Check solution only if it exists for the sentence
+    if (numSteps > 0) {
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        if ([[currSolStep stepType] isEqualToString:@"swapImage"]) {
+            //Get information for swapImage step type
+            NSString* object1Id = [currSolStep object1Id];
+            NSString* action = [currSolStep action];
+            
+            //Get alternate image
+            AlternateImage* altImage = [model getAlternateImageWithAction:action];
+            
+            //Get alternate image information
+            NSString* altSrc = [altImage alternateSrc];
+            NSString* width = [altImage width];
+            CGPoint location = [altImage location];
+            
+            //Swap images using alternative src
+            NSString* swapImages = [NSString stringWithFormat:@"swapImageSrc('%@', '%@', '%@', %f, %f)", object1Id, altSrc, width, location.x, location.y];
+            [bookView stringByEvaluatingJavaScriptFromString:swapImages];
         }
     }
 }
