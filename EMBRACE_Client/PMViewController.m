@@ -390,6 +390,8 @@ float const groupingProximity = 20.0;
         movingObject = FALSE;
         movingObjectId = nil;
         
+        [self.view addGestureRecognizer:tapRecognizer];
+        
         //Remove menu.
         [menu removeFromSuperview];
         menu = nil;
