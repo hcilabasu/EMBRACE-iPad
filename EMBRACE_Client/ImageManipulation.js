@@ -600,10 +600,11 @@ function setSentenceFontWeight(sentenceId, weight) {
 /*
  * Highlights only the specified object.
  * This function is called by the PMView controller to highlight overlapping objects that have relevant relationships
- * with object being moved.
+ * with object being moved. The parameter 'under' indicates that the highlighting should be performed
+ * under the object
  */
 function highlightObject(object) {
-    highlight(object.offsetLeft, object.offsetTop, object.offsetWidth, object.offsetHeight);
+    highlight(object.offsetLeft, object.offsetTop, object.offsetWidth, object.offsetHeight, "under");
 }
 
 /* 
@@ -614,7 +615,7 @@ function highlightObject(object) {
  * width and height will be the width and height of the entire group of objects.
  * TODO: Refine this so it looks a bit better. It seems to be slightly offset sometimes.
  */
-function highlight(topleftX, topleftY, objectWidth, objectHeight) {
+function highlight(topleftX, topleftY, objectWidth, objectHeight, highlightType) {
     var canvas = document.getElementById('highlight');
     
     //Make sure the canvas is the size of the window. If not, make it the same size.
@@ -659,6 +660,13 @@ function highlight(topleftX, topleftY, objectWidth, objectHeight) {
     context.stroke();
     context.fillStyle = "rgba(255, 250, 205, .4)";
     context.fill();
+    
+    // If objects are being higlighted (over mode) move the canvas to 100 on the z-index
+    // Otherwise (under mode) keep the canvas position at 0
+    if (highlightType == "over")
+        canvas.style.zIndex = "100";
+    else if (highlightType == "under")
+        canvas.style.zIndex = "0";
 }
 
 /*
@@ -669,6 +677,9 @@ function clearAllHighlighted() {
     var context = canvas.getContext('2d');
     
     context.clearRect(0, 0, canvas.width, canvas.height);
+    // Move the highlight canvas its original z-position (0)
+    document.getElementById('highlight').style.zIndex = "0";
+    
 }
 
 /* 
@@ -694,6 +705,7 @@ function drawHotspot(x, y, color) {
     context.fillStyle = color;
     context.fill();
     
+    //Move the overlay canvas to 100 in order to display the hotspots on top of the objects
     document.getElementById('overlay').style.zIndex = "100";
 }
 
@@ -706,15 +718,48 @@ function clearAllHotspots() {
 
     context.clearRect(0, 0, canvas.width, canvas.height);
     
+    //Move the overlay canvas to its original z-index postion (0)
     document.getElementById('overlay').style.zIndex = "0";
 }
 
-// Gets the text of a sentence
 function getSentenceText(sentenceId){
+    
     return sentenceId.innerHTML;
 }
 
-// Gets the class of a sentence
 function getSentenceClass(sentenceId){
+    
     return sentenceId.className;
+}
+
+function toggleSentenceUnderline(sentenceId) {
+    if (sentenceId.style.textDecoration == "underline") {
+        sentenceId.style.textDecoration = "none";
+    }
+    else if (sentenceId.style.textDecoration == "none") {
+        sentenceId.style.textDecoration = "underline";
+    }
+}
+
+function getSentenceColor(sentenceId) {
+    return sentenceId.style.color;
+}
+
+/*
+ * Highlights the specified object on word tap.
+ * This function is called by the PMView controller to highlight objects when their word has been clicked.
+ * The parameter 'over' indicates that the highlighting should be performed
+ * over the object
+ */
+function highlightObjectOnWordTap(object) {
+    highlight(object.offsetLeft, object.offsetTop, object.offsetWidth, object.offsetHeight, "over");
+}
+
+/*
+ * Sets the text of a sentence
+ */
+
+function setHTMLText (sentenceID, text) {
+    document.getElementById(sentenceID).innerHTML = text;
+    
 }

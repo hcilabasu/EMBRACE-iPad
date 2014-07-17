@@ -10,6 +10,7 @@
 #import "PieContextualMenuDelegate.h"
 #import "EbookImporter.h"
 #import "Book.h"
+#import "AVFoundation/AVSpeechSynthesis.h"
 
 typedef enum Condition {
     MENU,
@@ -38,6 +39,7 @@ typedef enum InteractionRestriction {
 @property (nonatomic, strong) NSString *bookTitle;
 @property (nonatomic, strong) NSString *chapterTitle;
 @property (nonatomic, strong) Book* book;
+@property (nonatomic, strong) AVSpeechSynthesizer* syn;
 
 -(void) loadFirstPage;
 -(void) loadNextPage;
