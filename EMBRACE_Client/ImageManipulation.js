@@ -6,9 +6,9 @@ var animatingGrouping = false;
 /*
  * Moves the specified object to the new X,Y coordinated and takes care of all visual feedback.
  */
-function moveObject(object, newX, newY) {
+function moveObject(object, newX, newY, updateCon) {
     //Call the move function
-    move(object, newX, newY);
+    move(object, newX, newY, updateCon);
     
     //Highlight the object that is being moved. If it's part of a group of objects, highlight the entire group.
     //Note: It may be worth moving the group highlighting code into its own function and calling it from the PMView controller. If this is done, there's no need for a moveObject and a move function anymore, so these should be combined again.
@@ -31,7 +31,7 @@ function moveObject(object, newX, newY) {
  * If it is, all other objects it's grouped to are also moved.
  * This includes objects that are grouped to objects that it is grouped to.
  */
-function move(object, newX, newY) {
+function move(object, newX, newY, updateCon) {
     if(object == null)
         alert("object is null");
     
@@ -59,6 +59,24 @@ function move(object, newX, newY) {
         groupedWithObjects[i].style.left = groupedWithObjects[i].offsetLeft + deltaX + "px";
         groupedWithObjects[i].style.top =  groupedWithObjects[i].offsetTop + deltaY + "px";
     }
+    
+    //Update the Connection information if we are not updating it manually
+    if(!updateCon) {
+        updateConnection(object, deltaX, deltaY);
+    }
+}
+
+/*
+ * Function that updates the hotspot locations in the Connection containing the specified
+ * object. This is called manually after an object stops moving. Otherwise, the Connection
+ * information is updated while the object is moving in the move function.
+ */
+function updateConnection(object, deltaX, deltaY) {
+    //Get objects this object may be grouped with.
+    var groupedWithObjects = new Array();
+    groupedWithObjects[0] = object; //If we don't do this the original object will be added in the recursive method.
+    
+    getObjectsGroupedWithObject(object, groupedWithObjects);
     
     //Make sure we also update the Connection information for all objects that just got moved.
     //This is necessary for the objectGroupedAtHotspot function.
@@ -258,7 +276,7 @@ function animateGrouping(group) {
         group.obj1y = group.obj1y + changeY;
         
         //Move the object using the move function so that all other objects it's already connected to are moved with it.
-        move(group.obj1, group.obj1.offsetLeft + changeX, group.obj1.offsetTop + changeY);
+        move(group.obj1, group.obj1.offsetLeft + changeX, group.obj1.offsetTop + changeY, false);
         
         //Call the function again after a 200 ms delay. TODO: Figure out why the delay isn't working.
         setTimeout(animateGrouping(group), 5000);
@@ -311,7 +329,7 @@ function animateUngrouping(group) {
         //Also make sure you're not moving it off screen.
         while((group.obj1.offsetLeft + group.obj1.offsetWidth + GAP > group.obj2.offsetLeft) &&
               (group.obj1.offsetLeft - STEP > 0)) {
-            move(group.obj1, group.obj1.offsetLeft - STEP, group.obj1.offsetTop);
+            move(group.obj1, group.obj1.offsetLeft - STEP, group.obj1.offsetTop, false);
         }
     }
     //If object 2 is contained within object 1.
@@ -322,7 +340,7 @@ function animateUngrouping(group) {
         
         while((group.obj2.offsetLeft + group.obj2.offsetWidth + GAP > group.obj1.offsetLeft) &&
               (group.obj2.offsetLeft - STEP > 0)) {
-            move(group.obj2, group.obj2.offsetLeft - STEP, group.obj2.offsetTop);
+            move(group.obj2, group.obj2.offsetLeft - STEP, group.obj2.offsetTop, false);
         }
     }
     //Otherwise, partially overlapping or connected on the edges.
@@ -333,10 +351,10 @@ function animateUngrouping(group) {
             //Also make sure you're not moving either object offscreen.
             while(group.obj1.offsetLeft + group.obj1.offsetWidth + GAP > group.obj2.offsetLeft) {
                 if(group.obj1.offsetLeft - STEP > 0)
-                    move(group.obj1, group.obj1.offsetLeft - STEP, group.obj1.offsetTop);
+                    move(group.obj1, group.obj1.offsetLeft - STEP, group.obj1.offsetTop, false);
                 
                 if(group.obj2.offsetLeft + group.obj2.offsetWidth + STEP < window.innerWidth)
-                    move(group.obj2, group.obj2.offsetLeft + STEP, group.obj1.offsetTop);
+                    move(group.obj2, group.obj2.offsetLeft + STEP, group.obj1.offsetTop, false);
             }
         }
         else {
@@ -344,10 +362,10 @@ function animateUngrouping(group) {
             //Change the location of the object.
             while(group.obj2.offsetLeft + group.obj2.offsetWidth + GAP > group.obj1.offsetLeft) {
                 if(group.obj1.offsetLeft + group.obj1.offsetWidth + STEP < window.innerWidth)
-                    move(group.obj1, group.obj1.offsetLeft + STEP, group.obj1.offsetTop);
+                    move(group.obj1, group.obj1.offsetLeft + STEP, group.obj1.offsetTop, false);
                 
                 if(group.obj2.offsetLeft - STEP > 0)
-                    move(group.obj2, group.obj2.offsetLeft - STEP, group.obj2.offsetTop);
+                    move(group.obj2, group.obj2.offsetLeft - STEP, group.obj2.offsetTop, false);
             }
         }
     }

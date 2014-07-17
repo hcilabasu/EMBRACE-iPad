@@ -27,6 +27,7 @@
     BOOL movingObject; //True if an object is currently being moved, false otherwise.
     BOOL separatingObject; //True if two objects are currently being ungrouped, false otherwise.
     
+    BOOL panning;
     BOOL pinching;
     BOOL pinchToUngroup; //TRUE if pinch gesture is used to ungroup; FALSE otherwise
     
@@ -373,8 +374,7 @@ float const groupingProximity = 20.0;
         }
         //No menuItem was selected
         else {
-            //Snap the object back to its original location
-            [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0)];
+            [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
             
             //Clear any remaining highlighting.
             NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
@@ -509,6 +509,7 @@ float const groupingProximity = 20.0;
         
         if(recognizer.state == UIGestureRecognizerStateBegan) {
             //NSLog(@"pan gesture began at location: (%f, %f)", location.x, location.y);
+            panning = TRUE;
             
             //Get the object at that point if it's a manipulation object.
             NSString* imageAtPoint = [self getManipulationObjectAtPoint:location];
@@ -528,10 +529,11 @@ float const groupingProximity = 20.0;
         }
         else if(recognizer.state == UIGestureRecognizerStateEnded) {
             //NSLog(@"pan gesture ended at location (%f, %f)", location.x, location.y);
+            panning = FALSE;
             
             //if moving object, move object to final position.
             if(movingObject) {
-                [self moveObject:movingObjectId :location :delta];
+                [self moveObject:movingObjectId :location :delta :true];
                 
                 //Get steps for current sentence
                 NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
@@ -547,8 +549,7 @@ float const groupingProximity = 20.0;
                     else {
                         [self playErrorNoise];
                         
-                        //Snap the object back to its original location
-                        [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0)];
+                        [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
                     }
                 }
                 else {
@@ -568,8 +569,7 @@ float const groupingProximity = 20.0;
                         if ([possibleInteractions count] == 0) {
                             [self playErrorNoise];
                             
-                            //Snap the object back to its original location
-                            [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0)];
+                            [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
                         }
                         //If only 1 possible interaction was found, go ahead and perform that interaction if it's correct.
                         if ([possibleInteractions count] == 1) {
@@ -592,7 +592,7 @@ float const groupingProximity = 20.0;
                     else {
                         if (allowSnapBack) {
                             //Snap the object back to its original location
-                            [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0)];
+                            [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
                         }
                     }
                 }
@@ -612,7 +612,7 @@ float const groupingProximity = 20.0;
         }
         //If we're in the middle of moving the object, just call the JS to move it.
         else if(movingObject)  {
-            [self moveObject:movingObjectId :location :delta];
+            [self moveObject:movingObjectId :location :delta :true];
             
             //If we're overlapping with another object, then we need to figure out which hotspots are currently active and highlight those hotspots.
             //When moving the object, we may have the JS return a list of all the objects that are currently grouped together so that we can process all of them.
@@ -1180,7 +1180,7 @@ float const groupingProximity = 20.0;
                 CGPoint waypointLocation = [self getWaypointLocation:waypoint];
                 
                 //Move the object
-                [self moveObject:object1Id :waypointLocation :hotspotLocation];
+                [self moveObject:object1Id :waypointLocation :hotspotLocation :false];
                 
                 //Clear highlighting
                 NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
@@ -1397,7 +1397,7 @@ float const groupingProximity = 20.0;
         
         if ([interaction interactionType] != UNGROUP) {
             //Snap the object back to its original location
-            [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0)];
+            [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
         }
     }
     
@@ -1900,7 +1900,7 @@ float const groupingProximity = 20.0;
  * top-left corner of the image, which is the x,y coordate that's actually used when moving the object.
  * Also ensures that the image is not moved off screen or outside of any specified bounding boxes for the image.
  */
--(void) moveObject:(NSString*) object :(CGPoint) location :(CGPoint)offset {
+-(void) moveObject:(NSString*) object :(CGPoint) location :(CGPoint)offset :(BOOL)updateCon{
     //Change the location to accounting for the different between the point clicked and the top-left corner which is used to set the position of the image.
     CGPoint adjLocation = CGPointMake(location.x - offset.x, location.y - offset.y);
     
@@ -1953,8 +1953,18 @@ float const groupingProximity = 20.0;
     
     //NSLog(@"new location of %@: (%f, %f)", object, adjLocation.x, adjLocation.y);
     //Call the moveObject function in the js file.
-    NSString *move = [NSString stringWithFormat:@"moveObject(%@, %f, %f)", object, adjLocation.x, adjLocation.y];
+    NSString *move = [NSString stringWithFormat:@"moveObject(%@, %f, %f, %@)", object, adjLocation.x, adjLocation.y, updateCon ? @"true" : @"false"];
     [bookView stringByEvaluatingJavaScriptFromString:move];
+    
+    //Update the JS Connection manually only if we have stopped moving the object
+    if (updateCon && !panning) {
+        //Calculate difference between start and end positions of the object
+        float deltaX = adjLocation.x - startLocation.x;
+        float deltaY = adjLocation.y - startLocation.y;
+        
+        NSString* updateConnection = [NSString stringWithFormat:@"updateConnection(%@, %f, %f)", object, deltaX, deltaY];
+        [bookView stringByEvaluatingJavaScriptFromString:updateConnection];
+    }
 }
 
 /*
@@ -2053,7 +2063,7 @@ float const groupingProximity = 20.0;
                 CGPoint change = [self calculateDeltaForMovingObjectAtPoint:hiddenObjectHotspotLocation];
                 
                 //Now move the object taking into account the difference in change.
-                [self moveObject:disappearingObject :appearLocation :change];
+                [self moveObject:disappearingObject :appearLocation :change :false];
                 
                 //Clear all highlighting.
                 //TODO: Make sure this is where this should happen.
