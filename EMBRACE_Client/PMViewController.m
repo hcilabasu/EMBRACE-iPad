@@ -9,6 +9,7 @@
 #import "PMViewController.h"
 #import "ContextualMenuDataSource.h"
 #import "PieContextualMenu.h"
+#import "Translation.h"
 #import <AudioToolbox/AudioToolbox.h>
 
 @interface PMViewController () {
@@ -63,6 +64,8 @@
 @synthesize bookImporter;
 @synthesize bookView;
 
+@synthesize syn;
+
 //Used to determine the required proximity of 2 hotspots to group two items together.
 float const groupingProximity = 20.0;
 
@@ -74,6 +77,8 @@ float const groupingProximity = 20.0;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    syn = [[AVSpeechSynthesizer alloc] init];
     
     //Added to deal with ios7 view changes. This makes it so the UIWebView and the navigation bar do not overlap.
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
@@ -140,9 +145,9 @@ float const groupingProximity = 20.0;
     //Set up current sentence appearance and solution steps
     [self setupCurrentSentence];
     
-    //Set the opacity of all but the current sentence to .5
+    //Set the opacity of all but the current sentence to .2
     for(int i = currentSentence; i < totalSentences; i++) {
-        NSString* setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, .5)", i + 1];
+        NSString* setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, .2)", i + 1];
         [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
     }
     
@@ -385,6 +390,8 @@ float const groupingProximity = 20.0;
         movingObject = FALSE;
         movingObjectId = nil;
         
+        [self.view addGestureRecognizer:tapRecognizer];
+        
         //Remove menu.
         [menu removeFromSuperview];
         menu = nil;
@@ -392,8 +399,36 @@ float const groupingProximity = 20.0;
     }
     else {
         //Get the object at that point if it's a manipulation object.
-        //NSString* imageAtPoint = [self getManipulationObjectAtPoint:location];
-        //NSLog(@"HOLAlocation pressed: (%f, %f)", location.x, location.y);
+        NSString* imageAtPoint = [self getManipulationObjectAtPoint:location];
+        
+        NSLog(@"location pressed: (%f, %f)", location.x, location.y);
+        
+        //Retrieve the word at this location
+        NSString* requestWordAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
+        
+        imageAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestWordAtPoint];
+            
+        //Capture the clicked text
+        NSString* requestSentenceText = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).innerHTML", location.x, location.y];
+        NSString* sentenceText = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceText];
+        
+        NSLog(@"%@",sentenceText);
+        
+        if([[Translation translations] objectForKey:sentenceText]) {
+        
+            //Highlight the tapped object
+            NSString* highlight = [NSString stringWithFormat:@"highlightObjectOnWordTap(%@)", sentenceText];
+            [bookView stringByEvaluatingJavaScriptFromString:highlight];
+                
+            //Play word audio En
+            [self playWordAudio:sentenceText : @"en-us"];
+                
+            //Play word audio Es
+            [self playWordAudio:[Translation translations][sentenceText] : @"es-mx"];
+                
+            //Clear highlighted object
+            [self performSelector:@selector(clearHighlightedObject) withObject:nil afterDelay:1.5];
+        }
     }
 }
 
@@ -2255,6 +2290,20 @@ float const groupingProximity = 20.0;
         if(interactionNum > maxMenuItems)
             break;
     }
+}
+
+-(void)clearHighlightedObject {
+    NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
+    [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
+}
+
+-(void)playWordAudio:(NSString*) word :(NSString*) lang {
+    AVSpeechUtterance *utteranceEn = [[AVSpeechUtterance alloc]initWithString:word];
+    utteranceEn.rate = AVSpeechUtteranceMaximumSpeechRate/7;
+    utteranceEn.voice = [AVSpeechSynthesisVoice voiceWithLanguage:lang];
+    NSLog(@"Sentence: %@", word);
+    NSLog(@"Volume: %f", utteranceEn.volume);
+    [syn speakUtterance:utteranceEn];
 }
 
 #pragma mark - PieContextualMenuDelegate
