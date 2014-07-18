@@ -390,6 +390,7 @@ float const groupingProximity = 20.0;
         movingObject = FALSE;
         movingObjectId = nil;
         
+        //Re-add the tap gesture recognizer before the menu is removed
         [self.view addGestureRecognizer:tapRecognizer];
         
         //Remove menu.
