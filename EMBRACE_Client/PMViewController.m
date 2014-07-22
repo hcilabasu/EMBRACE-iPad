@@ -10,12 +10,15 @@
 #import "ContextualMenuDataSource.h"
 #import "PieContextualMenu.h"
 #import "Translation.h"
+#import <AVFoundation/AVFoundation.h>
+
 
 @interface PMViewController () {
     NSString* currentPage; //The current page being shown, so that the next page can be requested. 
     
     NSUInteger currentSentence; //Active sentence to be completed.
     NSUInteger totalSentences; //Total number of sentences on this page.
+    NSUInteger currentIntroStep; //Current step in the introduction
     
     NSString* movingObjectId; //Object currently being moved.
     NSString* separatingObjectId; //Object identified when pinch gesture performed.
@@ -36,9 +39,25 @@
     BOOL menuExpanded;
     
     InteractionModel *model;
+    NSMutableDictionary* introductions;
+    NSUInteger totalIntroSteps;
+    NSString* introLanguage;
+    NSMutableArray* currentIntroSteps;
+    BOOL pressedNextForIntro;
+    NSArray *performedActions;
+    
+    NSMutableDictionary* vocabularies;
+    NSUInteger currentVocabStep;
+    NSMutableArray* currentVocabSteps;
+    NSUInteger totalVocabSteps;
+    
+    NSString* actualPage;
+    NSString* actualWord;
+    NSTimer* timer;
 }
 
 @property (nonatomic, strong) IBOutlet UIWebView *bookView;
+@property (strong) AVAudioPlayer *audioPlayer;
 
 @end
 
@@ -56,6 +75,10 @@
 
 //Used to determine the required proximity of 2 hotspots to group two items together.
 float const groupingProximity = 20.0;
+
+NSUInteger const SELECTION = 0;
+NSUInteger const EXP_ACTION = 1;
+NSUInteger const INPUT = 2;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -127,24 +150,32 @@ float const groupingProximity = 20.0;
     NSString* sentenceCount = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount];
     totalSentences = [sentenceCount intValue];
     
-    //Set sentence color to black for first sentence.
-    //All sentences are black by default
-    NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence];
-    [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
+    //Load the first step for the current chapter (hard-coded for now)
+    if ([chapterTitle isEqualToString:@"Introduction At the Farm"]) {
+        performedActions = [self loadIntroStep];
+    }
+    
+    //Load the first vocabulary step for the current chapter (hard-coded for now)
+    if ([chapterTitle isEqualToString:@"At the Farm"] && [actualPage isEqualToString:currentPage]) {
+        performedActions = [self loadVocabStep];
+    }
     
     //Check to see if it is an action sentence
     NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
     NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
+    
+    //Set sentence color to black for first sentence.
+    //All sentences are black by default
+    NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence];
+    [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
 
     //If it is an action sentence turn it blue
     if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
-        
-        NSString* underlineSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
-        [bookView stringByEvaluatingJavaScriptFromString:underlineSentence];
+        NSString* setSentenceColor2 = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
+        [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor2];
     }
     
     //Set the opacity of all but the current sentence to .2
- 
     for(int i = currentSentence; i < totalSentences; i++) {
         NSString* setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, .2)", i + 1];
         [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
@@ -160,8 +191,25 @@ float const groupingProximity = 20.0;
 - (void) loadFirstPage {
     book = [bookImporter getBookWithTitle:bookTitle]; //Get the book reference.
     model = [book model];
-    
     currentPage = [book getNextPageForChapterAndActivity:chapterTitle :PM_MODE :nil];
+    
+    actualPage = currentPage;
+    
+    // introduction set-up
+    currentIntroStep = 1;
+    // load the introduction data
+    introductions = [model getIntroductions];
+    //Get the steps for the introduction of the current chapter
+    currentIntroSteps = [introductions objectForKey:chapterTitle];
+    totalIntroSteps = [currentIntroSteps count];
+    
+    //vocabulary setup
+    currentVocabStep = 1;
+    //load the vocabulary metada
+    vocabularies = [model getVocabularies];
+    //get the vocabulary steps (words) for the current story
+    currentVocabSteps = [vocabularies objectForKey:chapterTitle];
+    totalVocabSteps = [currentVocabSteps count];
     
     [self loadPage];
 }
@@ -171,7 +219,7 @@ float const groupingProximity = 20.0;
  * If the activity has multiple pages, it would load the next page in the activity. 
  * Otherwise, it will load the next chaper.
  */
--(void) loadNextPage {    
+-(void) loadNextPage {
     currentPage = [book getNextPageForChapterAndActivity:chapterTitle :PM_MODE :currentPage];
     
     while (currentPage == nil) {
@@ -208,8 +256,6 @@ float const groupingProximity = 20.0;
     
     currentSentence = 1;
     self.title = chapterTitle;
-    
-    //Perform setup for activity
 }
 
 /*
@@ -240,32 +286,79 @@ float const groupingProximity = 20.0;
             
             [self performInteraction:interaction];
         }
-        
-        //Remove menu. 
+        //Remove menu.
         [menu removeFromSuperview];
+        [self.view addGestureRecognizer:tapRecognizer];
         menu = nil;
         menuExpanded = FALSE;
     }
     else {
-        
         //Get the object at that point if it's a manipulation object.
         NSString* imageAtPoint = [self getManipulationObjectAtPoint:location];
         
         NSLog(@"location pressed: (%f, %f)", location.x, location.y);
         
-        //Retrieve the word at this location
-        NSString* requestWordAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
+        //Retrieve the name of the object at this location
+        NSString* requestNameAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
         
-        imageAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestWordAtPoint];
+        imageAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestNameAtPoint];
             
-        //Capture the clicked text
+        //Capture the clicked text, if it exists
         NSString* requestSentenceText = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).innerHTML", location.x, location.y];
         NSString* sentenceText = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceText];
         
-        NSLog(@"%@",sentenceText);
+        // convert to lowercase so the sentence text can be mapped to objects
+        sentenceText = [sentenceText lowercaseString];
         
-        if([[Translation translations] objectForKey:sentenceText]) {
-        
+        //Enable the introduction clicks on words and images, if it is intro mode
+        if ([chapterTitle isEqualToString:@"Introduction At the Farm"]) {
+            if (([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] &&
+                [sentenceText isEqualToString:[performedActions objectAtIndex:INPUT]]) ||
+                ([[performedActions objectAtIndex:SELECTION] isEqualToString:@"image"] &&
+                [imageAtPoint isEqualToString:[performedActions objectAtIndex:INPUT]])) {
+            if ([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"]) {
+                //Play word audio En
+                [self playWordAudio:sentenceText:@"en-us"];
+            }
+                currentIntroStep++;
+                performedActions = [self loadIntroStep];
+            }
+        }
+        //Vocabulary introduction mode
+        else if ([chapterTitle isEqualToString:@"At the Farm"] && [actualPage isEqualToString:currentPage]) {
+            //If the user clicked on the correct word or image
+            if (([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] &&
+                 [sentenceText isEqualToString:[performedActions objectAtIndex:INPUT]]) ||
+                ([[performedActions objectAtIndex:SELECTION] isEqualToString:@"image"] &&
+                 [imageAtPoint isEqualToString:[performedActions objectAtIndex:INPUT]])) {
+                [timer invalidate];
+                timer = nil;
+                actualWord = sentenceText;
+                //If the user clicked on a word
+                if ([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"]) {
+                    [self HiglhlightAndPlayAudio:sentenceText];
+                }
+                    
+                currentVocabStep++;
+            
+                if(currentVocabStep > totalVocabSteps) {
+                    [self loadNextPage];
+                } else {
+                    //If the user clicked on an image
+                    if ([[performedActions objectAtIndex:SELECTION] isEqualToString:@"image"]) {
+                        currentSentence++;
+                        [self colorSentencesUponNext];
+                    }
+                    performedActions = [self loadVocabStep];
+                }
+            }
+            //If the user clicked on an image that is not correct
+            else if ([[performedActions objectAtIndex:SELECTION] isEqualToString:@"image"] &&
+                     ![imageAtPoint isEqualToString:[performedActions objectAtIndex:INPUT]]) {
+                    [self HiglhlightAndPlayAudio:actualWord];
+            }
+        }
+        else if([[Translation translations] objectForKey:sentenceText]) {
             //Highlight the tapped object
             NSString* highlight = [NSString stringWithFormat:@"highlightObjectOnWordTap(%@)", sentenceText];
             [bookView stringByEvaluatingJavaScriptFromString:highlight];
@@ -278,7 +371,6 @@ float const groupingProximity = 20.0;
                 
             //Clear highlighted object
             [self performSelector:@selector(clearHighlightedObject) withObject:nil afterDelay:1.5];
-
         }
     }
 }
@@ -492,8 +584,6 @@ float const groupingProximity = 20.0;
         }
         //If we're in the middle of moving the object, just call the JS to move it.
         else if(movingObject)  {
-            
-
             
             [self moveObject:movingObjectId :location :delta];
             
@@ -1724,42 +1814,47 @@ float const groupingProximity = 20.0;
  */
 -(IBAction)pressedNext:(id)sender {
     //TO DO: Check to make sure the answer is correct and act appropriately.
-
-    // Color the current sentence black by default
-    NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence];
-    [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
     
-    //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
-    currentSentence ++;
-    
-    //Set the color to black for the next sentence
-    setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence];
-    [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
-    
-    NSString* setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, 1)", currentSentence];
-    [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
-    
-    setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, .2)", currentSentence-1];
-    [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
-    
-    //Check to see if it is an action sentence
-    NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
-    NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
-    
-    //If it is an action sentence color it blue
-    if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
-        
-        NSString* colorSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
-        [bookView stringByEvaluatingJavaScriptFromString:colorSentence];
+    if ([chapterTitle isEqualToString:@"Introduction At the Farm"]) {
+        // If the user pressed next
+        if ([[performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
+            currentIntroStep++;
+            // Load the next step and update the
+            performedActions = [self loadIntroStep];
+        }
+    } else if ([chapterTitle isEqualToString:@"At the Farm"] && [actualPage isEqualToString:currentPage]) {
+        // If the user pressed next
+        if ([[performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
+            [timer invalidate];
+            timer = nil;
+            currentVocabStep++;
+            
+            if(currentVocabStep > totalVocabSteps) {
+                [self loadNextPage];
+            } else {
+                // Load the next step and update the performed actions
+                performedActions = [self loadVocabStep];
+            }
+        }
+    } else {
+        //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
+        currentSentence ++;
     }
     
-    //currentSentence is 1 indexed.
-    if(currentSentence > totalSentences) {
-        [self loadNextPage];
-    }
+    //currentSentence ++;
+    
+    [self colorSentencesUponNext];
+    
+    //if ([chapterTitle isEqualToString:@"Introduction At the Farm"]) {
+        //currentSentence is 1 indexed.
+        if(currentSentence > totalSentences) {
+            NSLog(@"Current: %d Total: %d", currentSentence, totalSentences);
+            [self loadNextPage];
+        }
+    //}
 }
 
-/* 
+/*
  * Creates the menuDataSource from the list of possible interactions. 
  * This function assumes that the possible interactions are already rank ordered 
  * in cases where that's necessary.
@@ -1790,14 +1885,157 @@ float const groupingProximity = 20.0;
     [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
 }
 
--(void)playWordAudio:(NSString*) word :(NSString*) lang {
+-(void)playWordAudio:(NSString*) sentence :(NSString*) lang {
     
-    AVSpeechUtterance *utteranceEn = [[AVSpeechUtterance alloc]initWithString:word];
+    AVSpeechUtterance *utteranceEn = [[AVSpeechUtterance alloc]initWithString:sentence];
     utteranceEn.rate = AVSpeechUtteranceMaximumSpeechRate/7;
     utteranceEn.voice = [AVSpeechSynthesisVoice voiceWithLanguage:lang];
-    NSLog(@"Sentence: %@", word);
+    NSLog(@"Sentence: %@", sentence);
     NSLog(@"Volume: %f", utteranceEn.volume);
     [syn speakUtterance:utteranceEn];
+}
+
+-(void)playWordAudioTimed:(NSTimer *) wordAndLang {
+    NSDictionary *wrapper = (NSDictionary *)[wordAndLang userInfo];
+    NSString * obj1 = [wrapper objectForKey:@"Key1"];
+    NSString * obj2 = [wrapper objectForKey:@"Key2"];
+    
+    AVSpeechUtterance *utteranceEn = [[AVSpeechUtterance alloc]initWithString:obj1];
+    utteranceEn.rate = AVSpeechUtteranceMaximumSpeechRate/7;
+    utteranceEn.voice = [AVSpeechSynthesisVoice voiceWithLanguage:obj2];
+    NSLog(@"Sentence: %@", obj1);
+    NSLog(@"Volume: %f", utteranceEn.volume);
+    [syn speakUtterance:utteranceEn];
+}
+
+-(void) playAudioFile:(NSString*) path {
+    
+    NSString *soundFilePath = [NSString stringWithFormat:@"%@/%@",
+                               [[NSBundle mainBundle] resourcePath], path];
+    NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+    
+    _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL
+                                                          error:nil];
+    
+    [_audioPlayer play];
+}
+    
+-(NSArray*) loadIntroStep {
+    NSString* text;
+    NSString* audio;
+    NSString* expectedSelection;
+    NSString* expectedIntroAction;
+    NSString* expectedIntroInput;
+    
+    //Get current step to be read
+    IntroductionStep* currIntroStep = [currentIntroSteps objectAtIndex:currentIntroStep-1];
+    expectedSelection = [currIntroStep expectedSelection];
+    expectedIntroAction = [currIntroStep expectedAction];
+    expectedIntroInput = [currIntroStep expectedInput];
+    text = [currIntroStep englishText];
+    audio = [currIntroStep englishAudioFileName];
+    
+    if ([expectedSelection isEqualToString:@"word"]) {
+        //Format text to load on the textbox
+        NSString* formattedHTML = [self buildHTMLString:text:expectedSelection:expectedIntroInput];
+        NSString* addOuterHTML = [NSString stringWithFormat:@"setOuterHTMLText('%@', '%@')", @"s1", formattedHTML];
+        [bookView stringByEvaluatingJavaScriptFromString:addOuterHTML];
+    }
+    else {
+        //Add text to the text box, the sentence id is hard-coded for now
+        NSString* addInnerHTMLText = [NSString stringWithFormat:@"setInnerHTMLText('%@', '%@')", @"s1", text];
+        [bookView stringByEvaluatingJavaScriptFromString:addInnerHTMLText];
+    }
+
+    //Play introduction audio
+    //[self playAudioFile:audio];
+    NSString* actions = [NSString stringWithFormat:@"%@ %@ %@",expectedIntroAction,expectedIntroInput,expectedSelection];
+    [self playWordAudio:actions:@"en-us"];
+    
+    return [NSArray arrayWithObjects: expectedSelection, expectedIntroAction, expectedIntroInput, nil];
+}
+
+//Builds the format of the action sentence that allows words to be clickable
+-(NSString*) buildHTMLString:(NSString*)htmlText :(NSString*)selectionType :(NSString*)clickableWord {
+    //String to build
+    NSString* stringToBuild;
+    NSArray* splits = [htmlText componentsSeparatedByString:clickableWord];
+    stringToBuild = [NSString stringWithFormat:@"<span class=\"sentence actionSentence\" id=\"s1\">%@<span class=\"audible\">%@</span>%@</span>",splits[0],clickableWord,splits[1]];
+    return stringToBuild;
+}
+
+-(NSArray*) loadVocabStep {
+    NSString* text;
+    NSString* audio;
+    NSString* expectedSelection;
+    NSString* expectedIntroAction;
+    NSString* expectedIntroInput;
+    
+    //Get current step to be read
+    VocabularyStep* currVocabStep = [currentVocabSteps objectAtIndex:currentVocabStep-1];
+    expectedSelection = [currVocabStep expectedSelection];
+    expectedIntroAction = [currVocabStep expectedAction];
+    expectedIntroInput = [currVocabStep expectedInput];
+    text = [currVocabStep englishText];
+    audio = [currVocabStep englishAudioFileName];
+    
+    //Play introduction audio
+    //[self playAudioFile:audio];
+    NSString* actions = [NSString stringWithFormat:@"%@ %@ %@",expectedIntroAction,expectedIntroInput,expectedSelection];
+    [self playWordAudio:actions:@"en-us"];
+    
+    NSString *obj1 = actions;
+    NSString *obj2 = @"en-us";
+    NSDictionary *wrapper = [NSDictionary dictionaryWithObjectsAndKeys:obj1, @"Key1", obj2, @"Key2", nil];
+    timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(playWordAudioTimed:) userInfo:wrapper repeats:YES];
+    
+    return [NSArray arrayWithObjects: expectedSelection, expectedIntroAction, expectedIntroInput, nil];
+}
+
+-(void) colorSentencesUponNext {
+
+    // Color the current sentence black by default
+    NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence];
+    [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
+    
+    //Change the opacity to 1
+    NSString* setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, 1)", currentSentence];
+    [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
+    
+    //Set the color to black for the previous sentence also
+    setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence-1];
+    [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
+    
+    // Decrease the opacity of the previous sentence
+    setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, .2)", currentSentence-1];
+    [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
+    
+    //Get the sentence class
+    NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
+    NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
+    
+    //If it is an action sentence color it blue
+    if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
+        
+        NSString* colorSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
+        [bookView stringByEvaluatingJavaScriptFromString:colorSentence];
+    }
+}
+
+-(void) HiglhlightAndPlayAudio :sentenceText {
+    //Highlight the tapped object
+    NSString* highlight = [NSString stringWithFormat:@"highlightObjectOnWordTap(%@)", sentenceText];
+    [bookView stringByEvaluatingJavaScriptFromString:highlight];
+    //Play word audio En
+    [self playWordAudio:sentenceText:@"en-us"];
+    //Clear highlighted object
+    [self performSelector:@selector(clearHighlightedObject) withObject:nil afterDelay:1.5];
+}
+
+- (void) viewDidDisappear:(BOOL)animated
+{
+    [timer invalidate];
+    timer = nil;
 }
 
 #pragma mark - PieContextualMenuDelegate

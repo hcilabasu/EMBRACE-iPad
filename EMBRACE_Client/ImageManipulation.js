@@ -627,10 +627,12 @@ function highlight(topleftX, topleftY, objectWidth, objectHeight, highlightType)
     
     // If objects are being higlighted (over mode) move the canvas to 100 on the z-index
     // Otherwise (under mode) keep the canvas position at 0
-    if (highlightType == "over")
-        canvas.style.zIndex = "100";
-    else if (highlightType == "under")
-        canvas.style.zIndex = "0";
+    if (highlightType == "over") {
+        document.getElementById('highlight').style.zIndex = "100";
+    }
+    else if (highlightType == "under") {
+        document.getElementById('highlight').style.zIndex = "0";
+    }
 }
 
 /*
@@ -643,7 +645,6 @@ function clearAllHighlighted() {
     context.clearRect(0, 0, canvas.width, canvas.height);
     // Move the highlight canvas its original z-position (0)
     document.getElementById('highlight').style.zIndex = "0";
-    
 }
 
 /* 
@@ -723,7 +724,10 @@ function highlightObjectOnWordTap(object) {
  * Sets the text of a sentence
  */
 
-function setHTMLText (sentenceID, text) {
-    document.getElementById(sentenceID).innerHTML = text;
-    
+function setInnerHTMLText (sentenceID, text) {
+    document.getElementById(sentenceID).innerHTML = text;    
+}
+
+function setOuterHTMLText (sentenceID, text) {
+    document.getElementById(sentenceID).outerHTML = text;
 }

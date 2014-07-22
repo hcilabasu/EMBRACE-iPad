@@ -11,6 +11,7 @@
 #import "EbookImporter.h"
 #import "Book.h"
 #import "AVFoundation/AVSpeechSynthesis.h"
+#import "IntroductionViewController.h"
 
 @interface PMViewController : UIViewController <UIGestureRecognizerDelegate, UIScrollViewDelegate, PieContextualMenuDelegate> {
     EBookImporter *bookImporter;

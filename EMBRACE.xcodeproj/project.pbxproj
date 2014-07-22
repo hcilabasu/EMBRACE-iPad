@@ -63,8 +63,16 @@
 		31AA5FAA175FB16500E9A9B3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AA5FA9175FB16500E9A9B3 /* LoginViewController.m */; };
 		31C306C2183D900B0043DEDD /* Solution.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C306C1183D900B0043DEDD /* Solution.m */; };
 		31C306C5183E93A60043DEDD /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C306C4183E93A60043DEDD /* Connection.m */; };
+		5C2FBA56195209C300B3151D /* IntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2FBA55195209C200B3151D /* IntroductionViewController.m */; };
+		5C2FBA59195D090600B3151D /* step1ContestEnglish.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C2FBA57195CFB7E00B3151D /* step1ContestEnglish.m4a */; };
+		5C2FBA85196125B900B3151D /* step1ContestSpanish.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C2FBA84196125B900B3151D /* step1ContestSpanish.m4a */; };
 		5C466ADC192293290056EA4B /* Translation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C466ADB192293290056EA4B /* Translation.m */; };
 		5CC5FADB18FDFA3700D118B8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CC5FADA18FDFA3700D118B8 /* AVFoundation.framework */; };
+		5CD7CF3A196B6A08004E4630 /* step2ContestEnglish.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CD7CF39196B6A08004E4630 /* step2ContestEnglish.m4a */; };
+		5CD7CF3C196B84B9004E4630 /* step3ContestEnglish.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CD7CF3B196B84B9004E4630 /* step3ContestEnglish.m4a */; };
+		5CD7FE3519775C1C007A1E49 /* VocabularyStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD7FE3419775C1C007A1E49 /* VocabularyStep.m */; };
+		5CD7FE3819776403007A1E49 /* Introduction.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD7FE3719776403007A1E49 /* Introduction.m */; };
+		5CFA85AB1950EFDC00C7537D /* IntroductionStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFA85AA1950EFDC00C7537D /* IntroductionStep.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -171,9 +179,21 @@
 		31C306C1183D900B0043DEDD /* Solution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Solution.m; sourceTree = "<group>"; };
 		31C306C3183E93A60043DEDD /* Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Connection.h; sourceTree = "<group>"; };
 		31C306C4183E93A60043DEDD /* Connection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connection.m; sourceTree = "<group>"; };
+		5C2FBA54195209C200B3151D /* IntroductionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroductionViewController.h; sourceTree = "<group>"; };
+		5C2FBA55195209C200B3151D /* IntroductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroductionViewController.m; sourceTree = "<group>"; };
+		5C2FBA57195CFB7E00B3151D /* step1ContestEnglish.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = step1ContestEnglish.m4a; sourceTree = SOURCE_ROOT; };
+		5C2FBA84196125B900B3151D /* step1ContestSpanish.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = step1ContestSpanish.m4a; sourceTree = SOURCE_ROOT; };
 		5C466ADA192293290056EA4B /* Translation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Translation.h; sourceTree = "<group>"; };
 		5C466ADB192293290056EA4B /* Translation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Translation.m; sourceTree = "<group>"; };
 		5CC5FADA18FDFA3700D118B8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		5CD7CF39196B6A08004E4630 /* step2ContestEnglish.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = step2ContestEnglish.m4a; sourceTree = SOURCE_ROOT; };
+		5CD7CF3B196B84B9004E4630 /* step3ContestEnglish.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = step3ContestEnglish.m4a; sourceTree = SOURCE_ROOT; };
+		5CD7FE3319775C1C007A1E49 /* VocabularyStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VocabularyStep.h; sourceTree = "<group>"; };
+		5CD7FE3419775C1C007A1E49 /* VocabularyStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VocabularyStep.m; sourceTree = "<group>"; };
+		5CD7FE3619776403007A1E49 /* Introduction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Introduction.h; sourceTree = "<group>"; };
+		5CD7FE3719776403007A1E49 /* Introduction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Introduction.m; sourceTree = "<group>"; };
+		5CFA85A91950EFDC00C7537D /* IntroductionStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroductionStep.h; sourceTree = "<group>"; };
+		5CFA85AA1950EFDC00C7537D /* IntroductionStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroductionStep.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -311,6 +331,10 @@
 		31953E4F1729ECC100570087 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5CD7CF3B196B84B9004E4630 /* step3ContestEnglish.m4a */,
+				5CD7CF39196B6A08004E4630 /* step2ContestEnglish.m4a */,
+				5C2FBA84196125B900B3151D /* step1ContestSpanish.m4a */,
+				5C2FBA57195CFB7E00B3151D /* step1ContestEnglish.m4a */,
 				311096FE174AB08400B02BF7 /* house.epub */,
 				311096FC174AAA8F00B02BF7 /* farm.epub */,
 				31953E501729ECC100570087 /* EMBRACE-Info.plist */,
@@ -400,6 +424,8 @@
 			children = (
 				316CFADF1773A512004216D0 /* Physical Manipulation */,
 				311646B41760209200B483F0 /* IMViewController.h */,
+				5C2FBA54195209C200B3151D /* IntroductionViewController.h */,
+				5C2FBA55195209C200B3151D /* IntroductionViewController.m */,
 				311646B61760209200B483F0 /* IMViewController.m */,
 				31953E851729EE5800570087 /* LibraryViewController.h */,
 				31953E861729EE5800570087 /* LibraryViewController.m */,
@@ -431,6 +457,8 @@
 		31C5A6801799EFE600A084A3 /* Interaction Model */ = {
 			isa = PBXGroup;
 			children = (
+				5CD7FE3619776403007A1E49 /* Introduction.h */,
+				5CD7FE3719776403007A1E49 /* Introduction.m */,
 				31161428179DE69400655221 /* Hotspot.h */,
 				31161429179DE69400655221 /* Hotspot.m */,
 				3116142B179DE77B00655221 /* Constraint.h */,
@@ -447,6 +475,10 @@
 				3115B1D31819C532007171E3 /* PossibleInteraction.m */,
 				31C306C3183E93A60043DEDD /* Connection.h */,
 				31C306C4183E93A60043DEDD /* Connection.m */,
+				5CFA85A91950EFDC00C7537D /* IntroductionStep.h */,
+				5CFA85AA1950EFDC00C7537D /* IntroductionStep.m */,
+				5CD7FE3319775C1C007A1E49 /* VocabularyStep.h */,
+				5CD7FE3419775C1C007A1E49 /* VocabularyStep.m */,
 			);
 			name = "Interaction Model";
 			sourceTree = "<group>";
@@ -507,6 +539,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C2FBA59195D090600B3151D /* step1ContestEnglish.m4a in Resources */,
+				5CD7CF3C196B84B9004E4630 /* step3ContestEnglish.m4a in Resources */,
 				31953E531729ECC100570087 /* InfoPlist.strings in Resources */,
 				31953E5B1729ECC100570087 /* Default.png in Resources */,
 				31953E5D1729ECC100570087 /* Default@2x.png in Resources */,
@@ -514,6 +548,8 @@
 				31953E921729EE8100570087 /* MainStoryboard_iPad.storyboard in Resources */,
 				317FF1761742CCD100F1F160 /* ImageManipulation.js in Resources */,
 				311096FD174AAA8F00B02BF7 /* farm.epub in Resources */,
+				5C2FBA85196125B900B3151D /* step1ContestSpanish.m4a in Resources */,
+				5CD7CF3A196B6A08004E4630 /* step2ContestEnglish.m4a in Resources */,
 				311096FF174AB08400B02BF7 /* house.epub in Resources */,
 				31109702174AB35E00B02BF7 /* cover_default.png in Resources */,
 				31058C74176BCFF200595AAE /* logo114.png in Resources */,
@@ -532,8 +568,10 @@
 				31953E591729ECC100570087 /* AppDelegate.m in Sources */,
 				31953E741729ED5A00570087 /* GDataXMLNode.m in Sources */,
 				31953E751729ED5A00570087 /* ioapi.c in Sources */,
+				5CD7FE3819776403007A1E49 /* Introduction.m in Sources */,
 				31953E761729ED5A00570087 /* mztools.c in Sources */,
 				3115B1D41819C532007171E3 /* PossibleInteraction.m in Sources */,
+				5CD7FE3519775C1C007A1E49 /* VocabularyStep.m in Sources */,
 				31953E771729ED5A00570087 /* unzip.c in Sources */,
 				31953E781729ED5A00570087 /* zip.c in Sources */,
 				31953E791729ED5A00570087 /* ZipArchive.mm in Sources */,
@@ -541,12 +579,14 @@
 				31953E841729EE4100570087 /* Book.m in Sources */,
 				31953E871729EE5800570087 /* LibraryViewController.m in Sources */,
 				31953E8D1729EE6E00570087 /* BookCellView.m in Sources */,
+				5CFA85AB1950EFDC00C7537D /* IntroductionStep.m in Sources */,
 				31953E8F1729EE6E00570087 /* LibraryView.m in Sources */,
 				31953E951729EEB800570087 /* PMViewController.m in Sources */,
 				5C466ADC192293290056EA4B /* Translation.m in Sources */,
 				3193753A174185E000782C2B /* NavigationController.m in Sources */,
 				3193753D1741A76F00782C2B /* HelpViewController.m in Sources */,
 				3154982A174EAA22004521B1 /* Student.m in Sources */,
+				5C2FBA56195209C300B3151D /* IntroductionViewController.m in Sources */,
 				31AA5FAA175FB16500E9A9B3 /* LoginViewController.m in Sources */,
 				3115B1D11819AA0E007171E3 /* MenuItemImage.m in Sources */,
 				311646AE175FCFE100B483F0 /* Chapter.m in Sources */,

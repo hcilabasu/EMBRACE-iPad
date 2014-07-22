@@ -14,6 +14,9 @@
 #import "OrderConstraint.h"
 
 #import "Relationship.h"
+#import "Introduction.h"
+#import "IntroductionStep.h"
+#import "VocabularyStep.h"
 
 @interface InteractionModel : NSObject {
     NSMutableSet* relationships;
@@ -21,6 +24,8 @@
     //NSMutableSet* hotspots;
     NSMutableDictionary* hotspots;
     NSMutableSet* sentenceMetadata;
+    NSMutableDictionary* introductions;
+    NSMutableDictionary* vocabularies;
     
     BOOL useRelationships;
     BOOL useConstraints;
@@ -30,6 +35,8 @@
 @property (nonatomic, strong) NSMutableSet* constraints;
 @property (nonatomic, strong) NSMutableDictionary* hotspots;
 @property (nonatomic, strong) NSMutableSet* sentenceMetadata;
+@property (nonatomic, strong) NSMutableDictionary* introductions;
+@property (nonatomic, strong) NSMutableDictionary* vocabularies;
 
 - (void) addHotspot:(NSString*)objId :(NSString*)act :(NSString*)objRole :(CGPoint)loc; //add hotspot to object with objectId at location loc.
 - (void) addRelationship:(NSString*) obj1Id :(NSString*) can :(NSString*)type :(NSString*) obj2Id; //add relationship "can" between obj1 and obj2 of the specified type.
@@ -49,5 +56,13 @@
 -(NSMutableArray*) getRelationshipForObjectForAction:(NSString*) obj1Id :(NSString*)action; //Returns a list of the relationships between the specified object and all other objects with the given action.
 
 - (NSMutableArray*) getMovementConstraintsForObjectId:(NSString*)objId;
+
+- (void) addIntroduction:(NSString*) storyTitle :(NSMutableArray*) introductionSteps;
+
+- (NSMutableDictionary*) getIntroductions;
+
+- (void) addVocabulary:(NSString*) storyTitle :(NSMutableArray*) words;
+
+- (NSMutableDictionary*) getVocabularies;
 
 @end
