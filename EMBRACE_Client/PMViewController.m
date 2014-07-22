@@ -34,6 +34,7 @@
     
     NSMutableDictionary *currentGroupings;
     
+    BOOL replenishSupply; //TRUE if object should reappear after disappearing
     BOOL allowSnapBack; //TRUE if object will snap back to original location upon error
 
     CGPoint startLocation; //initial location of an object before it is moved
@@ -107,6 +108,7 @@ float const groupingProximity = 20.0;
     useSubject = ALL_ENTITIES;
     useObject = ONLY_CORRECT;
     pinchToUngroup = FALSE;
+    replenishSupply = FALSE;
     allowSnapBack = FALSE;
     
     currentGroupings = [[NSMutableDictionary alloc] init];
@@ -2063,64 +2065,64 @@ float const groupingProximity = 20.0;
  * TODO: Figure out how to deal with instances of transferGrouping + consumeAndReplenishSupply
  */
 - (void) consumeAndReplenishSupply:(NSString*)disappearingObject {
-    //First hide the object that needs to disappear.
-    NSString* hideObj = [NSString stringWithFormat:@"document.getElementById(%@).style.visibility = 'hidden';", disappearingObject];
-    [bookView stringByEvaluatingJavaScriptFromString:hideObj];
-    
-    //Next move the object to the "appear" hotspot location. This means finding the hotspot that specifies this information for the object, and also finding the relationship that links this object to the other object it's supposed to appear at/in.
-    Hotspot* hiddenObjectHotspot = [model getHotspotforObjectWithActionAndRole:disappearingObject :@"appear" :@"subject"];
-    
-    //Get the relationship between this object and the other object specifying where the object should appear. Even though the call is to a general function, there should only be 1 valid relationship returned.
-    //NSLog(@"disappearing object id: %@", disappearingObject);
-    
-    NSMutableArray* relationshipsForHiddenObject = [model getRelationshipForObjectForAction:disappearingObject :@"appear"];
-    //NSLog(@"number of relationships for Hidden Object: %d", [relationshipsForHiddenObject count]);
-    
-    //There should be one and only one valid relationship returned, but we'll double check anyway.
-    if([relationshipsForHiddenObject count] > 0) {
-        Relationship *appearRelation = [relationshipsForHiddenObject objectAtIndex:0];
+    //Replenish supply of disappearing object only if allowed
+    if (replenishSupply) {
+        //Move the object to the "appear" hotspot location. This means finding the hotspot that specifies this information for the object, and also finding the relationship that links this object to the other object it's supposed to appear at/in.
+        Hotspot* hiddenObjectHotspot = [model getHotspotforObjectWithActionAndRole:disappearingObject :@"appear" :@"subject"];
         
-        // NSLog(@"find hotspot in %@ for %@ to appear in", [appearRelation object2Id], disappearingObject);
+        //Get the relationship between this object and the other object specifying where the object should appear. Even though the call is to a general function, there should only be 1 valid relationship returned.
+        //NSLog(@"disappearing object id: %@", disappearingObject);
         
-        //Now we have to pull the hotspot at which this relationship occurs.
-        //Note: We may at one point want to programmatically determine the role, but for now, we'll hard code it in.
-        Hotspot* appearHotspot = [model getHotspotforObjectWithActionAndRole:[appearRelation object2Id] :@"appear" :@"object"];
+        NSMutableArray* relationshipsForHiddenObject = [model getRelationshipForObjectForAction:disappearingObject :@"appear"];
+        //NSLog(@"number of relationships for Hidden Object: %d", [relationshipsForHiddenObject count]);
         
-        //Make sure that the hotspot was found and returned.
-        if(appearHotspot != nil) {
-            //Use the hotspot returned to calculate the location at which the disappearing object should appear.
-            //The two hotspots need to match up, so we need to figure out how far away the top-left corner of the disappearing object needs to be from the location it needs to appear at.
-            CGPoint appearLocation = [self getHotspotLocation:appearHotspot];
+        //There should be one and only one valid relationship returned, but we'll double check anyway.
+        if([relationshipsForHiddenObject count] > 0) {
+            Relationship *appearRelation = [relationshipsForHiddenObject objectAtIndex:0];
             
-            //Next we have to move the apple to that location. Need the pixel location of the hotspot of the disappearing object.
-            //Again, double check to make sure this isn't nil.
-            if(hiddenObjectHotspot != nil) {
-                CGPoint hiddenObjectHotspotLocation = [self getHotspotLocation:hiddenObjectHotspot];
-                //NSLog(@"found hotspot on hidden object that we need to match to the other object.");
+            // NSLog(@"find hotspot in %@ for %@ to appear in", [appearRelation object2Id], disappearingObject);
+            
+            //Now we have to pull the hotspot at which this relationship occurs.
+            //Note: We may at one point want to programmatically determine the role, but for now, we'll hard code it in.
+            Hotspot* appearHotspot = [model getHotspotforObjectWithActionAndRole:[appearRelation object2Id] :@"appear" :@"object"];
+            
+            //Make sure that the hotspot was found and returned.
+            if(appearHotspot != nil) {
+                //Use the hotspot returned to calculate the location at which the disappearing object should appear.
+                //The two hotspots need to match up, so we need to figure out how far away the top-left corner of the disappearing object needs to be from the location it needs to appear at.
+                CGPoint appearLocation = [self getHotspotLocation:appearHotspot];
                 
-                //With both hotspot pixel values we can calcuate the distance between the top-left corner of the hidden object and it's hotspot.
-                CGPoint change = [self calculateDeltaForMovingObjectAtPoint:hiddenObjectHotspotLocation];
-                
-                //Now move the object taking into account the difference in change.
-                [self moveObject:disappearingObject :appearLocation :change :false];
-                
-                //Clear all highlighting.
-                //TODO: Make sure this is where this should happen.
-                NSString* clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
-                [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
-                
-                //Then show the object again.
-                NSString* showObj = [NSString stringWithFormat:@"document.getElementById(%@).style.visibility = 'visible';", disappearingObject];
-                [bookView stringByEvaluatingJavaScriptFromString:showObj];
+                //Next we have to move the apple to that location. Need the pixel location of the hotspot of the disappearing object.
+                //Again, double check to make sure this isn't nil.
+                if(hiddenObjectHotspot != nil) {
+                    CGPoint hiddenObjectHotspotLocation = [self getHotspotLocation:hiddenObjectHotspot];
+                    //NSLog(@"found hotspot on hidden object that we need to match to the other object.");
+                    
+                    //With both hotspot pixel values we can calcuate the distance between the top-left corner of the hidden object and it's hotspot.
+                    CGPoint change = [self calculateDeltaForMovingObjectAtPoint:hiddenObjectHotspotLocation];
+                    
+                    //Now move the object taking into account the difference in change.
+                    [self moveObject:disappearingObject :appearLocation :change :false];
+                    
+                    //Clear all highlighting.
+                    //TODO: Make sure this is where this should happen.
+                    NSString* clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
+                    [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
+                }
+            }
+            else {
+                NSLog(@"Uhoh, couldn't find relevant hotspot location to replenish the supply of: %@", disappearingObject);
             }
         }
+        //Should've been at least 1 relationship returned
         else {
-            NSLog(@"Uhoh, couldn't find relevant hotspot location to replenish the supply of: %@", disappearingObject);
+            NSLog(@"Oh, noes! We didn't find a relationship for the hidden object: %@", disappearingObject);
         }
     }
-    //Should've been at least 1 relationship returned
+    //Otherwise, just make the object disappear
     else {
-        NSLog(@"Oh, noes! We didn't find a relationship for the hidden object: %@", disappearingObject);
+        NSString* hideObj = [NSString stringWithFormat:@"document.getElementById('%@').style.display = 'none';", disappearingObject];
+        [bookView stringByEvaluatingJavaScriptFromString:hideObj];
     }
 }
 
