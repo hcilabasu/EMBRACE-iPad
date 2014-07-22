@@ -325,29 +325,32 @@ float const groupingProximity = 20.0;
 }
 
 /*
- * Performs ungroup and move steps automatically
+ * Performs ungroup, move, and swap image steps automatically
  */
 -(void) performAutomaticSteps {
-    //Get steps for current sentence
-    NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-    
-    //Get current step to be completed
-    ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
-    
-    //Automatically perform interaction if step is ungroup or move
-    if (!pinchToUngroup && [[currSolStep stepType] isEqualToString:@"ungroup"]) {
-        PossibleInteraction* correctUngrouping = [self getCorrectInteraction];
+    //Perform steps only if they exist for the sentence
+    if (numSteps > 0) {
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
         
-        [self performInteraction:correctUngrouping];
-        [self incrementCurrentStep];
-    }
-    else if ([[currSolStep stepType] isEqualToString:@"move"]) {
-        [self moveObjectForSolution];
-        [self incrementCurrentStep];
-    }
-    else if ([[currSolStep stepType] isEqualToString:@"swapImage"]) {
-        [self swapObjectImage];
-        [self incrementCurrentStep];
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        //Automatically perform interaction if step is ungroup or move
+        if (!pinchToUngroup && [[currSolStep stepType] isEqualToString:@"ungroup"]) {
+            PossibleInteraction* correctUngrouping = [self getCorrectInteraction];
+            
+            [self performInteraction:correctUngrouping];
+            [self incrementCurrentStep];
+        }
+        else if ([[currSolStep stepType] isEqualToString:@"move"]) {
+            [self moveObjectForSolution];
+            [self incrementCurrentStep];
+        }
+        else if ([[currSolStep stepType] isEqualToString:@"swapImage"]) {
+            [self swapObjectImage];
+            [self incrementCurrentStep];
+        }
     }
 }
 
