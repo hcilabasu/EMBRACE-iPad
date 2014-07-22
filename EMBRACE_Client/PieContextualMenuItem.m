@@ -71,7 +71,10 @@
     return self;
 }
 
-- (void)drawRect:(CGRect)rect {    
+- (void)drawRect:(CGRect)rect {
+    //TRUE if an X should be drawn over the disappearing object image
+    BOOL drawX = FALSE;
+    
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     //Draw outer circle.
@@ -225,16 +228,14 @@
                 [imageView setFrame:imageLoc]; //Set the location of the image.
                 [self addSubview:imageView]; //Add the image as a subview.
                 
-                //If this is an object that should be disappearing, go ahead and draw an X over it.
-                //That means this image corresponds to the first image in the unsorted array.
-                //TODO: Fix this based on the current changes.
-                //if((itemImage == [images objectAtIndex:0]) && ((type == DISAPPEAR) || (type == TRANSFERANDDISAPPEAR))) {
-                //If this is an object that should be disappearing, go ahead and draw an X over it.
-                //That means this image corresponds to the last image in the sorted array
-                if((itemImage == [sortedImages lastObject]) && ((type == DISAPPEAR) || (type == TRANSFERANDDISAPPEAR))) {
-                    //Create the view that paints the X over the top of the image.
-                    XView *xView = [[XView alloc] initWithFrame:CGRectMake(imageTopLeftX, imageTopLeftY, imageView.frame.size.width, imageView.frame.size.height)];
-                    [self addSubview:xView];
+                if (drawX) {
+                    //If this is an object that should be disappearing, go ahead and draw an X over it.
+                    //That means this image corresponds to the last image in the sorted array
+                    if((itemImage == [sortedImages lastObject]) && ((type == DISAPPEAR) || (type == TRANSFERANDDISAPPEAR))) {
+                        //Create the view that paints the X over the top of the image.
+                        XView *xView = [[XView alloc] initWithFrame:CGRectMake(imageTopLeftX, imageTopLeftY, imageView.frame.size.width, imageView.frame.size.height)];
+                        [self addSubview:xView];
+                    }
                 }
             }
         }
