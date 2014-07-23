@@ -327,6 +327,8 @@
             NSString* modeType = [[element attributeForName:@"class"] stringValue];
             NSString* pageId = [[element attributeForName:@"id"] stringValue]; //Get the ID.
             
+            //JONATAN: read in the subtype too, might need to change book structure
+            
             Page *currPage = [[Page alloc] init];
             [currPage setPageId:pageId];
             
@@ -669,6 +671,129 @@
             }
         }
     }
-}
+ 
+    //Read in the introduction information
+    NSArray* introductionElements = [metadataDoc nodesForXPath:@"//introductions" error:nil];
     
+    if ([introductionElements count] > 0) //TODO this may be being called twice, not sure why
+    {
+        GDataXMLElement *introductionElement = (GDataXMLElement *) [introductionElements objectAtIndex:0];
+        
+        NSArray* introductions = [introductionElement elementsForName:@"introduction"];
+        
+        for(GDataXMLElement* introduction in introductions) {
+            //Get story title.
+            NSString* title = [[introduction attributeForName:@"title"] stringValue];
+            NSArray* steps = [introduction elementsForName:@"introductionStep"];
+            NSMutableArray* introSteps = [[NSMutableArray alloc] init];
+            
+            for(GDataXMLElement* step in steps) {
+                //Get step number
+                int stepNum = [[[step attributeForName:@"number"] stringValue] integerValue];
+                
+                //Get English audio file name
+                NSArray* englishAudioFileNames = [step elementsForName:@"englishAudio"];
+                GDataXMLElement *gdataElement = (GDataXMLElement *)[englishAudioFileNames objectAtIndex:0];
+                NSString* englishAudioFileName = gdataElement.stringValue;
+                
+                //Get Spanish audio file name
+                NSArray* spanishAudioFileNames = [step elementsForName:@"spanishAudio"];
+                gdataElement = (GDataXMLElement *)[spanishAudioFileNames objectAtIndex:0];
+                NSString* spanishAudioFileName = gdataElement.stringValue;
+                
+                //Get English text
+                NSArray* englishTexts = [step elementsForName:@"englishText"];
+                gdataElement = (GDataXMLElement *)[englishTexts objectAtIndex:0];
+                NSString* englishText = gdataElement.stringValue;
+                
+                //Get Spanish text
+                NSArray* spanishTexts = [step elementsForName:@"spanishText"];
+                gdataElement = (GDataXMLElement *)[spanishTexts objectAtIndex:0];
+                NSString* spanishText = gdataElement.stringValue;
+                
+                // Ge the expected selection
+                NSArray* expectedSelections = [step elementsForName:@"expectedSelection"];
+                gdataElement = (GDataXMLElement *)[expectedSelections objectAtIndex:0];
+                NSString* expectedSelection = gdataElement.stringValue;
+                
+                //Get expected action
+                NSArray* expectedActions = [step elementsForName:@"expectedAction"];
+                gdataElement = (GDataXMLElement *)[expectedActions objectAtIndex:0];
+                NSString* expectedAction = gdataElement.stringValue;
+                
+                //Get expected input
+                NSArray* expectedInputs = [step elementsForName:@"expectedInput"];
+                gdataElement = (GDataXMLElement *)[expectedInputs objectAtIndex:0];
+                NSString* expectedInput = gdataElement.stringValue;
+                
+                IntroductionStep* introStep = [[IntroductionStep alloc] initWithValues:stepNum:englishAudioFileName:spanishAudioFileName:englishText:spanishText:expectedSelection:expectedAction: expectedInput];
+                [introSteps addObject:introStep];
+                
+            }
+            [model addIntroduction:title:introSteps];
+        }
+    }
+    
+    //Read in the vocabulary information
+    NSArray* vocabIntroductionElements = [metadataDoc nodesForXPath:@"//vocabularyIntroductions" error:nil];
+    
+    if ([vocabIntroductionElements count] > 0) //TODO this may be being called twice, not sure why
+    {
+        GDataXMLElement *vocabIntroductionElement = (GDataXMLElement *) [vocabIntroductionElements objectAtIndex:0];
+        
+        NSArray* vocabIntroductions = [vocabIntroductionElement elementsForName:@"vocabularyIntroduction"];
+        
+        for(GDataXMLElement* vocabIntroduction in vocabIntroductions) {
+            //Get story title.
+            NSString* storyTitle = [[vocabIntroduction attributeForName:@"story"] stringValue];
+            NSArray* words = [vocabIntroduction elementsForName:@"vocabularyIntroductionWord"];
+            NSMutableArray* storyWords = [[NSMutableArray alloc] init];
+            
+            for(GDataXMLElement* word in words) {
+                //Get step number
+                int wordNum = [[[word attributeForName:@"number"] stringValue] integerValue];
+                
+                //Get English audio file name
+                NSArray* englishAudioFileNames = [word elementsForName:@"englishWordAudio"];
+                GDataXMLElement *gdataElement = (GDataXMLElement *)[englishAudioFileNames objectAtIndex:0];
+                NSString* englishAudioFileName = gdataElement.stringValue;
+                
+                //Get Spanish audio file name
+                NSArray* spanishAudioFileNames = [word elementsForName:@"spanishWordAudio"];
+                gdataElement = (GDataXMLElement *)[spanishAudioFileNames objectAtIndex:0];
+                NSString* spanishAudioFileName = gdataElement.stringValue;
+                
+                //Get English text
+                NSArray* englishTexts = [word elementsForName:@"englishWordText"];
+                gdataElement = (GDataXMLElement *)[englishTexts objectAtIndex:0];
+                NSString* englishText = gdataElement.stringValue;
+                
+                //Get Spanish text
+                NSArray* spanishTexts = [word elementsForName:@"spanishWordText"];
+                gdataElement = (GDataXMLElement *)[spanishTexts objectAtIndex:0];
+                NSString* spanishText = gdataElement.stringValue;
+                
+                // Ge the expected selection
+                NSArray* expectedSelections = [word elementsForName:@"expectedSelection"];
+                gdataElement = (GDataXMLElement *)[expectedSelections objectAtIndex:0];
+                NSString* expectedSelection = gdataElement.stringValue;
+                
+                //Get expected action
+                NSArray* expectedActions = [word elementsForName:@"expectedAction"];
+                gdataElement = (GDataXMLElement *)[expectedActions objectAtIndex:0];
+                NSString* expectedAction = gdataElement.stringValue;
+                
+                //Get expected input
+                NSArray* expectedInputs = [word elementsForName:@"expectedInput"];
+                gdataElement = (GDataXMLElement *)[expectedInputs objectAtIndex:0];
+                NSString* expectedInput = gdataElement.stringValue;
+                
+                VocabularyStep* vocabStep = [[VocabularyStep alloc] initWithValues:wordNum:englishAudioFileName:spanishAudioFileName:englishText:spanishText:expectedSelection:expectedAction: expectedInput];
+                [storyWords addObject:vocabStep];
+                
+            }
+            [model addVocabulary:storyTitle:storyWords];
+        }
+    }
+}
 @end
