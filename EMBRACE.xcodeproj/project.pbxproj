@@ -65,6 +65,7 @@
 		5CC5FADB18FDFA3700D118B8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CC5FADA18FDFA3700D118B8 /* AVFoundation.framework */; };
 		C393881F195376490005279F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C393881E195376490005279F /* AudioToolbox.framework */; };
 		C3938821195CBB4B0005279F /* bestFarm.epub in Resources */ = {isa = PBXBuildFile; fileRef = C3938820195CBB4B0005279F /* bestFarm.epub */; };
+		C3B45C12197EE21D003CE36D /* circulatory.epub in Resources */ = {isa = PBXBuildFile; fileRef = C3B45C11197EE21D003CE36D /* circulatory.epub */; };
 		C3B5214C19254B0C003FF639 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B5214919254B0C003FF639 /* Location.m */; };
 		C3B5214D19254B0C003FF639 /* Waypoint.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B5214B19254B0C003FF639 /* Waypoint.m */; };
 		C3B5215219254BA2003FF639 /* ActionStep.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B5214F19254BA2003FF639 /* ActionStep.m */; };
@@ -180,6 +181,7 @@
 		5CC5FADA18FDFA3700D118B8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C393881E195376490005279F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		C3938820195CBB4B0005279F /* bestFarm.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = bestFarm.epub; sourceTree = SOURCE_ROOT; };
+		C3B45C11197EE21D003CE36D /* circulatory.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = circulatory.epub; sourceTree = SOURCE_ROOT; };
 		C3B5214819254B0C003FF639 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		C3B5214919254B0C003FF639 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		C3B5214A19254B0C003FF639 /* Waypoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Waypoint.h; sourceTree = "<group>"; };
@@ -336,6 +338,7 @@
 		31953E4F1729ECC100570087 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C3B45C11197EE21D003CE36D /* circulatory.epub */,
 				C3938820195CBB4B0005279F /* bestFarm.epub */,
 				311096FE174AB08400B02BF7 /* house.epub */,
 				311096FC174AAA8F00B02BF7 /* farm.epub */,
@@ -551,6 +554,7 @@
 				31109702174AB35E00B02BF7 /* cover_default.png in Resources */,
 				31058C74176BCFF200595AAE /* logo114.png in Resources */,
 				31058C76176BCFF900595AAE /* logo57.png in Resources */,
+				C3B45C12197EE21D003CE36D /* circulatory.epub in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

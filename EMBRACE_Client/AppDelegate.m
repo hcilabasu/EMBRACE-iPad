@@ -66,6 +66,16 @@
     newPath = [newPath stringByAppendingString:filename];
     [fileManager copyItemAtPath:filePath toPath:newPath error:nil];
     
+    //Copy the circulatory.epub file from the app bundle to the application support directory
+    filePath = [[NSBundle mainBundle] pathForResource:@"circulatory" ofType:@"epub"];
+    newPath = [documentsDirectory stringByAppendingPathComponent:@"/ASU/IntroToCirculatory"];
+    
+    [fileManager createDirectoryAtPath:newPath withIntermediateDirectories:YES attributes:nil error:nil];
+    
+    filename = [@"/" stringByAppendingString:[filePath lastPathComponent]];
+    newPath = [newPath stringByAppendingString:filename];
+    [fileManager copyItemAtPath:filePath toPath:newPath error:nil];
+    
     return YES;
 }
 
