@@ -396,23 +396,25 @@ NSUInteger const INPUT = 2;
     //Get steps for current sentence
     NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
     
-    //Get current step to be completed
-    ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
-    
-    //Automatically perform interaction if step is ungroup or move
-    if (!pinchToUngroup && [[currSolStep stepType] isEqualToString:@"ungroup"]) {
-        PossibleInteraction* correctUngrouping = [self getCorrectInteraction];
+    if ([currSolSteps count] > 1) {
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
-        [self performInteraction:correctUngrouping];
-        [self incrementCurrentStep];
-    }
-    else if ([[currSolStep stepType] isEqualToString:@"move"]) {
-        [self moveObjectForSolution];
-        [self incrementCurrentStep];
-    }
-    else if ([[currSolStep stepType] isEqualToString:@"swapImage"]) {
-        [self swapObjectImage];
-        [self incrementCurrentStep];
+        //Automatically perform interaction if step is ungroup or move
+        if (!pinchToUngroup && [[currSolStep stepType] isEqualToString:@"ungroup"]) {
+            PossibleInteraction* correctUngrouping = [self getCorrectInteraction];
+            
+            [self performInteraction:correctUngrouping];
+            [self incrementCurrentStep];
+        }
+        else if ([[currSolStep stepType] isEqualToString:@"move"]) {
+            [self moveObjectForSolution];
+            [self incrementCurrentStep];
+        }
+        else if ([[currSolStep stepType] isEqualToString:@"swapImage"]) {
+            [self swapObjectImage];
+            [self incrementCurrentStep];
+        }
     }
 }
 
@@ -2374,24 +2376,6 @@ NSUInteger const INPUT = 2;
  * is correct, then it will move on to the next sentence. If the manipulation is not current, then feedback will be provided.
  */
 -(IBAction)pressedNext:(id)sender {
-    if (stepsComplete) {
-        //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
-        currentSentence ++;
-        
-        //Set up current sentence appearance and solution steps
-        [self setupCurrentSentence];
-        
-        //Set previous sentence color to grey
-        NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'grey')", currentSentence - 1];
-        [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
-        
-        //currentSentence is 1 indexed.
-        if(currentSentence > totalSentences) {
-            [self loadNextPage];
-        }
-    }
-    //TO DO: Check to make sure the answer is correct and act appropriately.
-    
     if ([chapterTitle isEqualToString:@"Introduction At the Farm"]) {
         // If the user pressed next
         if ([[performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
@@ -2413,22 +2397,26 @@ NSUInteger const INPUT = 2;
                 performedActions = [self loadVocabStep];
             }
         }
-    } else {
+    } //else {
+        //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
+        //currentSentence ++;
+    //}
+    if (stepsComplete) {
         //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
         currentSentence ++;
-    }
-    
-    //currentSentence ++;
-    
-    [self colorSentencesUponNext];
-    
-    //if ([chapterTitle isEqualToString:@"Introduction At the Farm"]) {
+        
+        //Set up current sentence appearance and solution steps
+        [self setupCurrentSentence];
+        
+        //Set previous sentence color to grey
+        NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'grey')", currentSentence - 1];
+        [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
+        
         //currentSentence is 1 indexed.
         if(currentSentence > totalSentences) {
-            NSLog(@"Current: %d Total: %d", currentSentence, totalSentences);
             [self loadNextPage];
         }
-    //}
+    }
 }
 
 /*
@@ -2465,7 +2453,7 @@ NSUInteger const INPUT = 2;
     AVSpeechUtterance *utteranceEn = [[AVSpeechUtterance alloc]initWithString:word];
     utteranceEn.rate = AVSpeechUtteranceMaximumSpeechRate/7;
     utteranceEn.voice = [AVSpeechSynthesisVoice voiceWithLanguage:lang];
-    NSLog(@"Sentence: %@", sentence);
+    NSLog(@"Sentence: %@", word);
     NSLog(@"Volume: %f", utteranceEn.volume);
     [syn speakUtterance:utteranceEn];
 }
@@ -2484,14 +2472,9 @@ NSUInteger const INPUT = 2;
 }
 
 -(void) playAudioFile:(NSString*) path {
-    
-    NSString *soundFilePath = [NSString stringWithFormat:@"%@/%@",
-                               [[NSBundle mainBundle] resourcePath], path];
+    NSString *soundFilePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], path];
     NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
-    
-    _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL
-                                                          error:nil];
-    
+    _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
     [_audioPlayer play];
 }
     
@@ -2568,7 +2551,6 @@ NSUInteger const INPUT = 2;
 }
 
 -(void) colorSentencesUponNext {
-
     // Color the current sentence black by default
     NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence];
     [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
