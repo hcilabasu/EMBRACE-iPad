@@ -154,6 +154,9 @@ float const groupingProximity = 20.0;
         [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
     }
     
+    //Create UIView for textbox area to recognize swipe gesture
+    //[self createTextboxView];
+    
     //Perform setup for activity
     [self performSetupForActivity];
 }
@@ -418,7 +421,7 @@ float const groupingProximity = 20.0;
         NSString* requestSentenceText = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).innerHTML", location.x, location.y];
         NSString* sentenceText = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceText];
         
-        NSLog(@"%@",sentenceText);
+        //NSLog(@"%@",sentenceText);
         
         if([[Translation translations] objectForKey:sentenceText]) {
         
@@ -451,6 +454,70 @@ float const groupingProximity = 20.0;
      NSString* imageAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPoint];*/
     
     //NSLog(@"imageAtPoint: %@", imageAtPoint);
+}
+
+/*
+ * Swipe gesture. Only recognizes a downwards two finger swipe. Used to skip the current step
+ * to be performed according to the solution.
+ */
+-(IBAction)swipeGesturePerformed:(UISwipeGestureRecognizer *)recognizer {
+    NSLog(@"Swiper no swiping!");
+    
+    //Perform steps only if they exist for the sentence
+    if (numSteps > 0 && !stepsComplete) {
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        //Current step is check and involves moving an object to a location
+        if ([[currSolStep stepType] isEqualToString:@"check"]) {
+            //Get information for check step type
+            NSString* objectId = [currSolStep object1Id];
+            NSString* action = [currSolStep action];
+            NSString* locationId = [currSolStep locationId];
+            
+            //Get hotspot location of object
+            Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:objectId :action :@"subject"];
+            CGPoint hotspotLocation = [self getHotspotLocationOnImage:hotspot];
+            
+            //Get location that hotspot should be inside
+            Location* location = [model getLocationWithId:locationId];
+            
+            //Calculate the x,y coordinates and the width and height in pixels from %
+            float locationX = [location.originX floatValue] / 100.0 * [bookView frame].size.width;
+            float locationY = [location.originY floatValue] / 100.0 * [bookView frame].size.height;
+            float locationWidth = [location.width floatValue] / 100.0 * [bookView frame].size.width;
+            float locationHeight = [location.height floatValue] / 100.0 * [bookView frame].size.height;
+            
+            //Calculate the center point of the location
+            float midX = locationX + (locationWidth / 2);
+            float midY = locationY + (locationHeight / 2);
+            
+            CGPoint midpoint = CGPointMake(midX, midY);
+            
+            //Move the object to the center of the location
+            [self moveObject:objectId :midpoint :hotspotLocation :false];
+            
+            //Clear highlighting
+            NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
+            [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
+            
+            //Check if object is in the correct location
+            if([self isHotspotInsideLocation]) {
+                [self incrementCurrentStep];
+            }
+        }
+        //Current step is either group, ungroup, disappear, or transference
+        else {
+            //Get the interaction to be performed
+            PossibleInteraction* interaction = [self getCorrectInteraction];
+            
+            //Perform the interaction and increment the step
+            [self checkSolutionForInteraction:interaction];
+        }
+    }
 }
 
 /*
@@ -2281,6 +2348,33 @@ float const groupingProximity = 20.0;
             [self loadNextPage];
         }
     }
+}
+
+/*
+ * Creates a UIView for the textbox area to recognize swipe gestures
+ */
+-(void) createTextboxView {
+    //Get the textbox element
+    NSString* textbox = [NSString stringWithFormat:@"document.getElementsByClassName('textbox')[0]"];
+    
+    //Get the textbox x, y, width, and height
+    NSString* textboxXString = [NSString stringWithFormat:@"%@.offsetLeft", textbox];
+    NSString* textboxYString = [NSString stringWithFormat:@"%@.offsetTop", textbox];
+    NSString* textboxWidthString = [NSString stringWithFormat:@"%@.offsetWidth", textbox];
+    NSString* textboxHeightString = [NSString stringWithFormat:@"%@.offsetHeight", textbox];
+    
+    float textboxX = [[bookView stringByEvaluatingJavaScriptFromString:textboxXString] floatValue];
+    float textboxY = [[bookView stringByEvaluatingJavaScriptFromString:textboxYString] floatValue];
+    float textboxWidth = [[bookView stringByEvaluatingJavaScriptFromString:textboxWidthString] floatValue];
+    float textboxHeight = [[bookView stringByEvaluatingJavaScriptFromString:textboxHeightString] floatValue];
+    
+    //Create UIView over the textbox area
+    CGRect textboxRect = CGRectMake(textboxX, textboxY, textboxWidth, textboxHeight);
+    UIView* textboxView = [[UIView alloc] initWithFrame:textboxRect];
+    
+    //Add swipe gesture recognizer and add to the view
+    [textboxView addGestureRecognizer:swipeRecognizer];
+    [[self view] addSubview:textboxView];
 }
 
 /*
