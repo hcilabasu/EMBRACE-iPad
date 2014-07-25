@@ -780,10 +780,11 @@ float const groupingProximity = 20.0;
 
 /*
  * Gets the necessary information from the JS for this particular image id and creates a
- * MenuItemImage out of that information. If the image src isn't found, returns nil.
- * Otherwise, returned the MenuItemImage that was created.
+ * MenuItemImage out of that information. If FLIP is TRUE, the image will be horizontally 
+ * flipped. If the image src isn't found, returns nil. Otherwise, returned the MenuItemImage 
+ * that was created.
  */
--(MenuItemImage*) createMenuItemForImage:(NSString*) objId {
+-(MenuItemImage*) createMenuItemForImage:(NSString*) objId :(BOOL)FLIP {
     //NSLog(@"creating menu item for image with object id: %@", objId);
     
     NSString* requestImageSrc = [NSString stringWithFormat:@"%@.src", objId];
@@ -797,7 +798,17 @@ float const groupingProximity = 20.0;
     imagePath = [imagePath stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     //NSLog(@"createMenuItemForImage imagesrc %@", imagePath);
 
-    UIImage* image = [[UIImage alloc] initWithContentsOfFile:imagePath];
+    UIImage* rawImage = [[UIImage alloc] initWithContentsOfFile:imagePath];
+    UIImage* image = [UIImage alloc];
+    
+    //Horizontally flip the image
+    if (FLIP) {
+        image = [UIImage imageWithCGImage:rawImage.CGImage scale:rawImage.scale orientation:UIImageOrientationUpMirrored];
+    }
+    //Use the unflipped image
+    else {
+        image = rawImage;
+    }
     
     if(image == nil)
         NSLog(@"image is nil");
@@ -856,22 +867,36 @@ float const groupingProximity = 20.0;
             NSString* objId = objectIds[i];
             
             if ([images objectForKey:objId] == nil) {
-                MenuItemImage *itemImage = [self createMenuItemForImage:objId];
+                MenuItemImage *itemImage;
+                
+                //Horizontally flip the image of the subject performing a transfer and disappear interaction to make it look like it is giving an object to the receiver.
+                if ([interaction interactionType] == TRANSFERANDDISAPPEAR && [connection interactionType] == UNGROUP && objId == [[connection objects] objectAtIndex:0]) {
+                    itemImage = [self createMenuItemForImage:objId :TRUE];
+                }
+                //Otherwise, leave the image unflipped
+                else {
+                    itemImage = [self createMenuItemForImage:objId :FALSE];
+                }
+                
                 //NSLog(@"obj id:%@", objId);
+                
                 if(itemImage != nil)
                     [images setObject:itemImage forKey:objId];
             }
         }
-
-        //if objects are connected to another object, add it too. currently supporting only one object
-        //only do it using the first object
-        NSMutableArray *connectedObject = [currentGroupings objectForKey:objectIds[0]];
-
-        for (int i = 0; connectedObject && [connection interactionType] != UNGROUP && i < [connectedObject count]; i++) {
-            MenuItemImage *itemImage = [self createMenuItemForImage:connectedObject[i]];
+        
+        //If the objects are already connected to other objects, create images for those as well, if they haven't already been created
+        for (NSString* objectId in objectIds) {
+            NSMutableArray *connectedObject = [currentGroupings objectForKey:objectId];
             
-            if(itemImage != nil) {
-                [images setObject:itemImage forKey:connectedObject[i]];
+            for (int i = 0; connectedObject && [connection interactionType] != UNGROUP && i < [connectedObject count]; i++) {
+                if ([images objectForKey:connectedObject[i]] == nil) {
+                    MenuItemImage *itemImage = [self createMenuItemForImage:connectedObject[i] :FALSE];
+                    
+                    if(itemImage != nil) {
+                        [images setObject:itemImage forKey:connectedObject[i]];
+                    }
+                }
             }
         }
     }
@@ -891,10 +916,19 @@ float const groupingProximity = 20.0;
         Hotspot* connectedHotspot1;
         Hotspot* connectedHotspot2;
         
-        if([connection interactionType] == UNGROUP || [connection interactionType] == DISAPPEAR) {
-            [self simulateUngrouping:obj1 :obj2 :images];
+        if([connection interactionType] == UNGROUP) {
+            float GAP; //we want a pixel gap between objects to show that they're no longer grouped together.
+            
+            //The object performing a transfer and disappear interaction will be ungrouped from the object it is transferring, but we use a negative GAP value because we still want it to appear close enough to look as though it is giving the object to the receiver.
+            if ([interaction interactionType] == TRANSFERANDDISAPPEAR)
+                GAP = -25;
+            //For other ungroup interactions, we want a 10 pixel gap between objects to show they are separated
+            else
+                GAP = 10;
+            
+            [self simulateUngrouping:obj1 :obj2 :images :GAP];
         }
-        else if([connection interactionType] == GROUP) {
+        else if([connection interactionType] == GROUP || [connection interactionType] == DISAPPEAR) {
             //NSLog(@"simulating grouping between %@ and %@", obj1, obj2);
             
             //Get hotspots.
@@ -1037,8 +1071,7 @@ float const groupingProximity = 20.0;
     }
 }
 
--(void)simulateUngrouping:(NSString*)obj1 :(NSString*)obj2 :(NSMutableDictionary*)images {
-    float GAP = 10; //we want a 10 pixel gap between objects to show that they're no longer grouped together.
+-(void)simulateUngrouping:(NSString*)obj1 :(NSString*)obj2 :(NSMutableDictionary*)images :(float)GAP {
     //See if one object is contained in the other.
     NSString* requestObj1ContainedInObj2 = [NSString stringWithFormat:@"objectContainedInObject(%@, %@)", obj1, obj2];
     NSString* obj1ContainedInObj2 = [bookView stringByEvaluatingJavaScriptFromString:requestObj1ContainedInObj2];
@@ -1059,7 +1092,7 @@ float const groupingProximity = 20.0;
     CGFloat obj2Width = [obj2Image boundingBoxImage].size.width;
     
     if([obj1ContainedInObj2 isEqualToString:@"true"]) {
-        obj1FinalPosX = obj2PositionX - obj1Width - GAP;
+        obj1FinalPosX = obj2PositionX - obj2Width - GAP;
         obj2FinalPosX = obj2PositionX;
         //obj2FinalPosX = obj1PositionX - obj2Width - GAP;
         //obj1FinalPosX = obj1PositionX;
@@ -1067,7 +1100,7 @@ float const groupingProximity = 20.0;
     }
     else if([obj2ContainedInObj1 isEqualToString:@"true"]) {
         obj1FinalPosX = obj1PositionX;
-        obj2FinalPosX = obj1PositionX - obj1Width - GAP;
+        obj2FinalPosX = obj1PositionX + obj1Width + GAP;
         //NSLog(@"else %@ is contained in %@", obj2, obj1);
     }
     
@@ -1075,14 +1108,14 @@ float const groupingProximity = 20.0;
     else {
         //Figure out which is the leftmost object. Unlike the animate ungrouping function, we're just going to move the left most object to the left so that it's not overlapping with the other one.
         if(obj1PositionX < obj2PositionX) {
-            obj1FinalPosX = obj2PositionX - obj1Width - GAP;
+            obj1FinalPosX = obj2PositionX - obj2Width - GAP;
             obj2FinalPosX = obj2PositionX;
             //NSLog(@"%@ is the leftmost object", obj1);
             //NSLog(@"%@ width: %f", obj1, obj1Width);
         }
         else {
             obj1FinalPosX = obj1PositionX;
-            obj2FinalPosX = obj1PositionX - obj2Width - GAP;
+            obj2FinalPosX = obj1PositionX + obj1Width + GAP;
             //NSLog(@"%@ is the leftmost object", obj2);
         }
     }
@@ -1736,11 +1769,11 @@ float const groupingProximity = 20.0;
     //Compare their hotspots to determine where the two objects are currently grouped
     for(Hotspot* hotspot1 in hotspotsForObjConnectedTo) {
         for(Hotspot* hotspot2 in hotspotsForObjConnected) {
-            //Need to calculate exact pixel locations of both hotspots and then make sure they're within a specific distance of each other.
-            CGPoint hotspot2Loc = [self getHotspotLocation:hotspot2];
+            //Need to calculate exact pixel location of one of the hotspots and then make sure it is connected to the other object at that location
+            CGPoint hotspot1Loc = [self getHotspotLocation:hotspot1];
             
-            NSString *isConnectedObjHotspotConnected = [NSString stringWithFormat:@"objectGroupedAtHotspot(%@, %f, %f)", objConnected, hotspot2Loc.x, hotspot2Loc.y];
-            NSString* isConnectedObjHotspotConnectedString  = [bookView stringByEvaluatingJavaScriptFromString:isConnectedObjHotspotConnected];
+            NSString *isObjConnectedToHotspotConnected = [NSString stringWithFormat:@"objectGroupedAtHotspot(%@, %f, %f)", objConnectedTo, hotspot1Loc.x, hotspot1Loc.y];
+            NSString* isConnectedObjHotspotConnectedString  = [bookView stringByEvaluatingJavaScriptFromString:isObjConnectedToHotspotConnected];
             
             //Make sure the two hotspots have the same action and make sure the roles do not match (there are only two possibilities right now: subject and object). Also make sure the hotspots are connected to each other. If all is well, these objects can be ungrouped.
             bool rolesMatch = [[hotspot1 role] isEqualToString:[hotspot2 role]];
