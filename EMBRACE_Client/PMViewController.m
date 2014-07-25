@@ -643,64 +643,66 @@ float const groupingProximity = 20.0;
             if(movingObject) {
                 [self moveObject:movingObjectId :location :delta :true];
                 
-                //Get steps for current sentence
-                NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                
-                //Get current step to be completed
-                ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
-                
-                if ([[currSolStep stepType] isEqualToString:@"check"]) {
-                    //Check if object is in the correct location
-                    if([self isHotspotInsideLocation]) {
-                        [self incrementCurrentStep];
-                    }
-                    else {
-                        [self playErrorNoise];
-                        
-                        [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
-                    }
-                }
-                else {
-                    //Check if the object is overlapping anything
-                    NSArray* overlappingWith = [self getObjectsOverlappingWithObject:movingObjectId];
+                if (numSteps > 0) {
+                    //Get steps for current sentence
+                    NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
                     
-                    //Get possible interactions only if the object is overlapping something
-                    if (overlappingWith != nil) {
-                        if (condition == HOTSPOT) {
-                            useProximity = YES;
+                    //Get current step to be completed
+                    ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+                    
+                    if ([[currSolStep stepType] isEqualToString:@"check"]) {
+                        //Check if object is in the correct location
+                        if([self isHotspotInsideLocation]) {
+                            [self incrementCurrentStep];
                         }
-
-                        //If the object was dropped, check if it's overlapping with any other objects that it could interact with.
-                        NSMutableArray* possibleInteractions = [self getPossibleInteractions:useProximity];
-                        
-                        //No possible interactions were found
-                        if ([possibleInteractions count] == 0) {
+                        else {
                             [self playErrorNoise];
                             
                             [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
                         }
-                        //If only 1 possible interaction was found, go ahead and perform that interaction if it's correct.
-                        if ([possibleInteractions count] == 1) {
-                            PossibleInteraction* interaction = [possibleInteractions objectAtIndex:0];
-                            
-                            [self checkSolutionForInteraction:interaction];
-                        }
-                        //If more than 1 was found, prompt the user to disambiguate.
-                        else if ([possibleInteractions count] > 1) {
-                            //First rank the interactions based on location to story.
-                            [self rankPossibleInteractions:possibleInteractions];
-                            
-                            //Populate the menu data source and expand the menu.
-                            [self populateMenuDataSource:possibleInteractions];
-                            
-                            if(!menuExpanded)
-                                [self expandMenu];
-                        }
                     }
                     else {
-                        if (allowSnapBack) {
-                            //Snap the object back to its original location
-                            [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
+                        //Check if the object is overlapping anything
+                        NSArray* overlappingWith = [self getObjectsOverlappingWithObject:movingObjectId];
+                        
+                        //Get possible interactions only if the object is overlapping something
+                        if (overlappingWith != nil) {
+                            if (condition == HOTSPOT) {
+                                useProximity = YES;
+                            }
+                            
+                            //If the object was dropped, check if it's overlapping with any other objects that it could interact with.
+                            NSMutableArray* possibleInteractions = [self getPossibleInteractions:useProximity];
+                            
+                            //No possible interactions were found
+                            if ([possibleInteractions count] == 0) {
+                                [self playErrorNoise];
+                                
+                                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
+                            }
+                            //If only 1 possible interaction was found, go ahead and perform that interaction if it's correct.
+                            if ([possibleInteractions count] == 1) {
+                                PossibleInteraction* interaction = [possibleInteractions objectAtIndex:0];
+                                
+                                [self checkSolutionForInteraction:interaction];
+                            }
+                            //If more than 1 was found, prompt the user to disambiguate.
+                            else if ([possibleInteractions count] > 1) {
+                                //First rank the interactions based on location to story.
+                                [self rankPossibleInteractions:possibleInteractions];
+                                
+                                //Populate the menu data source and expand the menu.
+                                [self populateMenuDataSource:possibleInteractions];
+                                
+                                if(!menuExpanded)
+                                    [self expandMenu];
+                            }
+                        }
+                        else {
+                            if (allowSnapBack) {
+                                //Snap the object back to its original location
+                                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
+                            }
                         }
                     }
                 }
