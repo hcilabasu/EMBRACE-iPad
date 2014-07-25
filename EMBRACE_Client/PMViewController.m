@@ -111,8 +111,6 @@ float const groupingProximity = 20.0;
     replenishSupply = FALSE;
     allowSnapBack = FALSE;
     
-    currentGroupings = [[NSMutableDictionary alloc] init];
-    
     //Create contextualMenuController
     menuDataSource = [[ContextualMenuDataSource alloc] init];
     
@@ -139,6 +137,8 @@ float const groupingProximity = 20.0;
         NSString *jsString = [[NSMutableString alloc] initWithData:fileData encoding:NSUTF8StringEncoding];
         [bookView stringByEvaluatingJavaScriptFromString:jsString];
     }
+    
+    currentGroupings = [[NSMutableDictionary alloc] init];
     
     //Set the sentence count for this page.
     NSString* requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('sentence').length"];
