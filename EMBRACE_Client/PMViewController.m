@@ -35,14 +35,12 @@
     NSMutableDictionary *currentGroupings;
     
     BOOL replenishSupply; //TRUE if object should reappear after disappearing
-    BOOL allowSnapBack; //TRUE if object will snap back to original location upon error
 
     CGPoint startLocation; //initial location of an object before it is moved
     CGPoint delta; //distance between the top-left corner of the image being moved and the point clicked.
     
     ContextualMenuDataSource *menuDataSource;
     PieContextualMenu *menu;
-    
     BOOL menuExpanded;
     
     InteractionModel *model;
@@ -109,7 +107,6 @@ float const groupingProximity = 20.0;
     useObject = ONLY_CORRECT;
     pinchToUngroup = FALSE;
     replenishSupply = FALSE;
-    allowSnapBack = FALSE;
     
     //Create contextualMenuController
     menuDataSource = [[ContextualMenuDataSource alloc] init];
@@ -138,6 +135,7 @@ float const groupingProximity = 20.0;
         [bookView stringByEvaluatingJavaScriptFromString:jsString];
     }
     
+    //Start off with no objects grouped together
     currentGroupings = [[NSMutableDictionary alloc] init];
     
     //Set the sentence count for this page.
@@ -219,6 +217,7 @@ float const groupingProximity = 20.0;
     currentSentence = 1;
     self.title = chapterTitle;
     
+    //Get the solution steps for the current chapter
     Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
     PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
     PMSolution = [PMActivity PMSolution]; //get PM solution
@@ -260,7 +259,8 @@ float const groupingProximity = 20.0;
 }
 
 /*
- * Moves to next step in a sentence if possible. The step is performed automatically if it is ungroup or move.
+ * Moves to next step in a sentence if possible. The step is performed automatically 
+ * if it is ungroup, move, or swap image.
  */
 -(void) incrementCurrentStep {
     //Check if able to increment current step
@@ -341,7 +341,7 @@ float const groupingProximity = 20.0;
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
-        //Automatically perform interaction if step is ungroup or move
+        //Automatically perform interaction if step is ungroup, move, or swap image
         if (!pinchToUngroup && [[currSolStep stepType] isEqualToString:@"ungroup"]) {
             PossibleInteraction* correctUngrouping = [self getCorrectInteraction];
             
@@ -387,6 +387,7 @@ float const groupingProximity = 20.0;
         }
         //No menuItem was selected
         else {
+            //Snap the object back to its original location
             [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
             
             //Clear any remaining highlighting.
@@ -410,11 +411,10 @@ float const groupingProximity = 20.0;
         //Get the object at that point if it's a manipulation object.
         NSString* imageAtPoint = [self getManipulationObjectAtPoint:location];
         
-        NSLog(@"location pressed: (%f, %f)", location.x, location.y);
+        //NSLog(@"location pressed: (%f, %f)", location.x, location.y);
         
         //Retrieve the word at this location
         NSString* requestWordAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
-        
         imageAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestWordAtPoint];
             
         //Capture the clicked text
@@ -424,7 +424,6 @@ float const groupingProximity = 20.0;
         //NSLog(@"%@",sentenceText);
         
         if([[Translation translations] objectForKey:sentenceText]) {
-        
             //Highlight the tapped object
             NSString* highlight = [NSString stringWithFormat:@"highlightObjectOnWordTap(%@)", sentenceText];
             [bookView stringByEvaluatingJavaScriptFromString:highlight];
@@ -458,12 +457,12 @@ float const groupingProximity = 20.0;
 
 /*
  * Swipe gesture. Only recognizes a downwards two finger swipe. Used to skip the current step
- * to be performed according to the solution.
+ * by performing it automatically according to the solution.
  */
 -(IBAction)swipeGesturePerformed:(UISwipeGestureRecognizer *)recognizer {
     NSLog(@"Swiper no swiping!");
     
-    //Perform steps only if they exist for the sentence
+    //Perform steps only if they exist for the sentence and have not been completed
     if (numSteps > 0 && !stepsComplete) {
         //Get steps for current sentence
         NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
@@ -494,7 +493,6 @@ float const groupingProximity = 20.0;
             //Calculate the center point of the location
             float midX = locationX + (locationWidth / 2);
             float midY = locationY + (locationHeight / 2);
-            
             CGPoint midpoint = CGPointMake(midX, midY);
             
             //Move the object to the center of the location
@@ -504,7 +502,7 @@ float const groupingProximity = 20.0;
             NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
             [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
             
-            //Check if object is in the correct location
+            //Object should now be in the correct location, so the step can be incremented
             if([self isHotspotInsideLocation]) {
                 [self incrementCurrentStep];
             }
@@ -574,6 +572,7 @@ float const groupingProximity = 20.0;
                     }
                 }
                 
+                //Objects are allowed to ungroup
                 if (allowSubjectToUngroup && allowObjectToUngroup) {
                     PossibleInteraction* interaction = [[PossibleInteraction alloc] initWithInteractionType:UNGROUP];
                     [interaction addConnection:UNGROUP :groupedItemsArray :nil];
@@ -658,6 +657,7 @@ float const groupingProximity = 20.0;
                         else {
                             [self playErrorNoise];
                             
+                            //Snap the object back to its original location
                             [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
                         }
                     }
@@ -678,6 +678,7 @@ float const groupingProximity = 20.0;
                             if ([possibleInteractions count] == 0) {
                                 [self playErrorNoise];
                                 
+                                //Snap the object back to its original location
                                 [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
                             }
                             //If only 1 possible interaction was found, go ahead and perform that interaction if it's correct.
@@ -696,12 +697,6 @@ float const groupingProximity = 20.0;
                                 
                                 if(!menuExpanded)
                                     [self expandMenu];
-                            }
-                        }
-                        else {
-                            if (allowSnapBack) {
-                                //Snap the object back to its original location
-                                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
                             }
                         }
                     }
@@ -937,18 +932,21 @@ float const groupingProximity = 20.0;
             Hotspot *hotspot1 = [hotspots objectAtIndex:0];
             Hotspot *hotspot2 = [hotspots objectAtIndex:1];
             
-            // find all objects connected to the moving object
+            //Find all objects connected to the moving object
             for (int objectIndex = 2; objectIndex < [objectIds count]; objectIndex++) {
-                // for each object, find the hotspots that serve as the connection points
+                //For each object, find the hotspots that serve as the connection points
                 connectedObject = [objectIds objectAtIndex:objectIndex];
+                
                 NSMutableArray *movingObjectHotspots = [model getHotspotsForObject:obj1 OverlappingWithObject:connectedObject];
                 NSMutableArray *containedHotspots = [model getHotspotsForObject:connectedObject OverlappingWithObject:obj1];
+                
                 connectedHotspot1 = [self findConnectedHotspot:movingObjectHotspots :connectedObject];
                 connectedHotspot2 = [self findConnectedHotspot:containedHotspots :connectedObject];
                 
                 if (![[connectedHotspot2 objectId] isEqualToString:@""]) {
                     for (Hotspot *ht in containedHotspots) {
                         CGPoint hotspotLoc = [self getHotspotLocation:ht];
+                        
                         NSString *isHotspotConnectedMovingObject = [NSString stringWithFormat:@"objectGroupedAtHotspot(%@, %f, %f)", connectedObject, hotspotLoc.x, hotspotLoc.y];
                         NSString* isHotspotConnectedMovingObjectString = [bookView stringByEvaluatingJavaScriptFromString:isHotspotConnectedMovingObject];
                         
@@ -1042,7 +1040,6 @@ float const groupingProximity = 20.0;
     float deltaY = hotspot2Loc.y - hotspot1Loc.y;
     
     //Get the location of the top left corner of obj1.
-    //MenuItemImage* obj1Image = [images objectAtIndex:0];
     MenuItemImage* obj1Image = [images objectForKey:objs[0]];
     CGFloat positionX = [obj1Image boundingBoxImage].origin.x;
     CGFloat positionY = [obj1Image boundingBoxImage].origin.y;
@@ -1096,8 +1093,6 @@ float const groupingProximity = 20.0;
     if([obj1ContainedInObj2 isEqualToString:@"true"]) {
         obj1FinalPosX = obj2PositionX - obj2Width - GAP;
         obj2FinalPosX = obj2PositionX;
-        //obj2FinalPosX = obj1PositionX - obj2Width - GAP;
-        //obj1FinalPosX = obj1PositionX;
         //NSLog(@"if %@ is contained in %@", obj1, obj2);
     }
     else if([obj2ContainedInObj1 isEqualToString:@"true"]) {
@@ -1146,7 +1141,7 @@ float const groupingProximity = 20.0;
         
         if([connection interactionType] == UNGROUP) {
             //NSLog(@"ungrouping items");
-            
+
             [self ungroupObjects:obj1 :obj2]; //ungroup objects
         }
         else if([connection interactionType] == GROUP) {
@@ -1432,8 +1427,10 @@ float const groupingProximity = 20.0;
     [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
     
     if([imageAtPointClass isEqualToString:@"manipulationObject"]) {
+        //Any subject can be used, so just return the object id
         if (useSubject == ALL_ENTITIES)
             return imageAtPoint;
+        //Check if the subject is correct before returning the object id
         else if (useSubject == ONLY_CORRECT) {
             if ([self checkSolutionForSubject:imageAtPoint])
                 return imageAtPoint;
@@ -1946,68 +1943,6 @@ float const groupingProximity = 20.0;
 }
 
 /*
- * Something like this, though it may not be this easy.
- * This may not work because we need create the object array when adding the grouping but we won't have all the necessary information if we extract out only this part of the code.
- * How else can we extract code out to make it more readable?
- */
-/*-(void) addPossibleGroupingsBetweenObjects:(NSMutableArray*)groupings :(NSString*)obj1 :(NSString*)obj2 :(NSArray*)allObjs
- :(bool)checkProximity {
-    NSMutableArray* obj1Hotspots = [model getHotspotsForObject:obj1 OverlappingWithObject:obj2];
-    NSMutableArray* obj2Hotspots = [model getHotspotsForObject:obj2 OverlappingWithObject:obj1];
-    
-    //Compare hotspots of the two objects.
-    for(Hotspot* hotspot1 in obj1Hotspots) {
-        for(Hotspot* hotspot2 in obj2Hotspots) {
-            //Need to calculate exact pixel locations of both hotspots and then make sure they're within a specific distance of each other.
-            CGPoint hotspot1Loc = [self getHotspotLocation:hotspot1];
-            CGPoint hotspot2Loc = [self getHotspotLocation:hotspot2];
-            
-            NSString *isHotspot1Connected = [NSString stringWithFormat:@"objectGroupedAtHotspot(%@, %f, %f)", obj1, hotspot1Loc.x, hotspot1Loc.y];
-            NSString* isHotspot1ConnectedString  = [bookView stringByEvaluatingJavaScriptFromString:isHotspot1Connected];
-            
-            NSString *isHotspot2Connected = [NSString stringWithFormat:@"objectGroupedAtHotspot(%@, %f, %f)", obj2, hotspot2Loc.x, hotspot2Loc.y];
-            NSString* isHotspot2ConnectedString  = [bookView stringByEvaluatingJavaScriptFromString:isHotspot2Connected];
-            
-            //Make sure the two hotspots have the same action and make sure the roles do not match (there are only two possibilities right now: subject and object). Also make sure neither of the hotspots are connected to another object. If all is well, these objects can be connected together.
-            
-            bool rolesMatch = [[hotspot1 role] isEqualToString:[hotspot2 role]];
-            bool actionsMatch = [[hotspot1 action] isEqualToString:[hotspot2 action]];
-            
-            if(actionsMatch && [isHotspot1ConnectedString isEqualToString:@""] && [isHotspot2ConnectedString isEqualToString:@""] && !rolesMatch) {
-                
-                float deltaX = 0;
-                float deltaY = 0;
-                
-                //if we're checking to make sure the hotspots are within a certain distance of each other.
-                if(checkProximity) {
-                    //calculate delta between the two hotspot locations.
-                    deltaX = fabsf(hotspot2Loc.x - hotspot1Loc.x);
-                    deltaY = fabsf(hotspot2Loc.y - hotspot1Loc.y);
-                }
-                
-                //Get the relationship between these two objects so we can check to see what type of relationship it is.
-                Relationship* relationshipBetweenObjects = [model getRelationshipForObjectsForAction:obj1 :obj2 :[hotspot1 action]];
-                
-                //Check to make sure that the two hotspots are in close proximity to each other.
-                if(deltaX <= groupingProximity && deltaY <= groupingProximity) {
-                    
-                    //If so, add it to the list of possible interactions as a transfer.
-                    if([[relationshipBetweenObjects  actionType] isEqualToString:@"group"]) {
-                        NSArray* hotspotsForInteraction = [[NSArray alloc] initWithObjects:hotspot1,
-                                                           hotspot2, nil];
-                        [groupings addObject:[[PossibleInteraction alloc]   initWithValues:TRANSFERANDGROUP :allObjs :hotspotsForInteraction]];
-                    }
-                    else if([[relationshipBetweenObjects actionType] isEqualToString:@"disappear"]) {
-                        //In this case we do not need to pass any of the hotspot information as the relevant hotspots will be calculated later on.
-                        [groupings addObject:[[PossibleInteraction alloc] initWithValues:TRANSFERANDDISAPPEAR :allObjs :nil]];
-                    }
-                }
-            }
-        }
-    }
- }*/
-
-/*
  * Calculates the delta pixel change for the object that is being moved
  * and changes the lcoation from relative % to pixels if necessary.
  */
@@ -2042,6 +1977,7 @@ float const groupingProximity = 20.0;
  * Moves the object passeed in to the location given. Calculates the difference between the point touched and the
  * top-left corner of the image, which is the x,y coordate that's actually used when moving the object.
  * Also ensures that the image is not moved off screen or outside of any specified bounding boxes for the image.
+ * Updates the JS Connection hotspot locations if necessary.
  */
 -(void) moveObject:(NSString*) object :(CGPoint) location :(CGPoint)offset :(BOOL)updateCon{
     //Change the location to accounting for the different between the point clicked and the top-left corner which is used to set the position of the image.
@@ -2174,7 +2110,6 @@ float const groupingProximity = 20.0;
         
         //Get the relationship between this object and the other object specifying where the object should appear. Even though the call is to a general function, there should only be 1 valid relationship returned.
         //NSLog(@"disappearing object id: %@", disappearingObject);
-        
         NSMutableArray* relationshipsForHiddenObject = [model getRelationshipForObjectForAction:disappearingObject :@"appear"];
         //NSLog(@"number of relationships for Hidden Object: %d", [relationshipsForHiddenObject count]);
         
@@ -2386,7 +2321,8 @@ float const groupingProximity = 20.0;
 }
 
 /*
- * Creates a UIView for the textbox area to recognize swipe gestures
+ * Creates a UIView for the textbox area to recognize swipe gestures.
+ * NOTE: Currently not in use because it disables tap gesture recognition over the textbox area.
  */
 -(void) createTextboxView {
     //Get the textbox element
@@ -2431,7 +2367,7 @@ float const groupingProximity = 20.0;
         [self simulatePossibleInteractionForMenuItem:interaction];
         interactionNum ++;
         //NSLog(@"%d", interactionNum);
-        //If the number of interactions is greater than the max number of menu Items allowed, then stop.
+        //If the number of interactions is greater than the max number of menu items allowed, then stop.
         if(interactionNum > maxMenuItems)
             break;
     }
