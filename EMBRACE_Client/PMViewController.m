@@ -137,11 +137,22 @@ float const groupingProximity = 20.0;
     
     //Start off with no objects grouped together
     currentGroupings = [[NSMutableDictionary alloc] init];
-    
-    //Set the sentence count for this page.
+
+    //Get the number of sentences on the page
     NSString* requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('sentence').length"];
-    NSString* sentenceCount = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount];
-    totalSentences = [sentenceCount intValue];
+    int sentenceCount = [[bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount] intValue];
+    
+    //Get the id number of the last sentence on the page and set it equal to the total number of sentences. Because the PMActivity may have multiple pages, this id number may not match the sentence count for the page.
+    NSString* requestLastSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[%d - 1].id", sentenceCount];
+    NSString* lastSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
+    int lastSentenceIdNumber = [[lastSentenceId substringFromIndex:1] intValue];
+    totalSentences = lastSentenceIdNumber;
+    
+    //Get the id number of the first sentence on the page and set it equal to the current sentence number. Because the PMActivity may have multiple pages, the first sentence on the page is not necessarily sentence 1.
+    NSString* requestFirstSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[0].id"];
+    NSString* firstSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestFirstSentenceId];
+    int firstSentenceIdNumber = [[firstSentenceId substringFromIndex:1] intValue];
+    currentSentence = firstSentenceIdNumber;
     
     //Set up current sentence appearance and solution steps
     [self setupCurrentSentence];
@@ -187,7 +198,7 @@ float const groupingProximity = 20.0;
         
         if(chapterTitle == nil) { //no more chapters.
             [self.navigationController popViewControllerAnimated:YES];
-            break;
+            return;
         }
         
         currentPage = [book getNextPageForChapterAndActivity:chapterTitle :PM_MODE :nil];
@@ -214,7 +225,6 @@ float const groupingProximity = 20.0;
     [bookView stringByEvaluatingJavaScriptFromString:@"document.body.style.webkitTouchCallout='none';"];
     //[bookView becomeFirstResponder];
     
-    currentSentence = 1;
     self.title = chapterTitle;
     
     //Get the solution steps for the current chapter
