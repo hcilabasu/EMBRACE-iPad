@@ -26,6 +26,16 @@ typedef enum InteractionRestriction {
     NO_ENTITIES //No object can be used
 } InteractionRestriction;
 
+typedef enum Language {
+    ENGLISH,
+    BILINGUAL
+} Language;
+
+typedef enum InteractionMode {
+    NO_INTERACTION,
+    INTERACTION
+} InteractionMode;
+
 @interface PMViewController : UIViewController <UIGestureRecognizerDelegate, UIScrollViewDelegate, PieContextualMenuDelegate> {
     EBookImporter *bookImporter;
     Book* book;

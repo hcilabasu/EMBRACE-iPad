@@ -18,7 +18,9 @@
             @"hay": @"paja",
             @"cart": @"carro",
             @"barn": @"establo",
-            @"hayloft": @"pajar"
+            @"hayloft": @"pajar",
+            @"farmer": @"granjero",
+            @"corral": @"corral"
         };
     });
     return inst;

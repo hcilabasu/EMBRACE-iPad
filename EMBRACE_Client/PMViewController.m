@@ -54,7 +54,8 @@
     InteractionRestriction useObject; //Determines which objects the user can interact with as the object
     NSMutableDictionary* introductions;
     NSUInteger totalIntroSteps;
-    NSString* introLanguage;
+    
+    
     NSMutableArray* currentIntroSteps;
     BOOL pressedNextForIntro;
     NSArray *performedActions;
@@ -67,6 +68,7 @@
     NSString* actualPage;
     NSString* actualWord;
     NSTimer* timer;
+    NSString* languageString;
 }
 
 @property (nonatomic, strong) IBOutlet UIWebView *bookView;
@@ -92,6 +94,8 @@ float const groupingProximity = 20.0;
 NSUInteger const SELECTION = 0;
 NSUInteger const EXP_ACTION = 1;
 NSUInteger const INPUT = 2;
+int const STEPS_TO_SWITCH_LANGUAGES = 14;
+int language_condition = BILINGUAL;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -477,22 +481,40 @@ NSUInteger const INPUT = 2;
         //Capture the clicked text, if it exists
         NSString* requestSentenceText = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).innerHTML", location.x, location.y];
         NSString* sentenceText = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceText];
+
         
         // convert to lowercase so the sentence text can be mapped to objects
         sentenceText = [sentenceText lowercaseString];
+        NSString* englishSentenceText = sentenceText;
+        
+        if (language_condition == BILINGUAL) {
+            NSArray* keys = [[Translation translations] allKeysForObject:sentenceText];
+            if (keys != nil && [keys count] > 0)
+                englishSentenceText = [keys objectAtIndex:0];
+        }
         
         //Enable the introduction clicks on words and images, if it is intro mode
         if ([chapterTitle isEqualToString:@"Introduction At the Farm"]) {
             if (([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] &&
-                [sentenceText isEqualToString:[performedActions objectAtIndex:INPUT]]) ||
+                [englishSentenceText isEqualToString:[performedActions objectAtIndex:INPUT]]) ||
                 ([[performedActions objectAtIndex:SELECTION] isEqualToString:@"image"] &&
                 [imageAtPoint isEqualToString:[performedActions objectAtIndex:INPUT]])) {
-            if ([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"]) {
-                //Play word audio En
-                [self playWordAudio:sentenceText:@"en-us"];
-            }
-                currentIntroStep++;
-                performedActions = [self loadIntroStep];
+                    if ([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"]) {
+                        //Play word audio En TTS
+                        //[self playWordAudio:sentenceText:@"en-us"];
+                
+                
+                        [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]];
+                
+                        NSLog([NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]);
+                        currentIntroStep++;
+                        [self performSelector:@selector(loadIntroStep) withObject:nil afterDelay:2];
+                    }
+                    else
+                    {
+                        currentIntroStep++;
+                        [self loadIntroStep];
+                    }
             }
         }
         //Vocabulary introduction mode
@@ -2479,28 +2501,51 @@ NSUInteger const INPUT = 2;
 -(void) playAudioFile:(NSString*) path {
     NSString *soundFilePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], path];
     NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
-    _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
-    [_audioPlayer play];
+    NSLog(@"%@|", soundFilePath);
+    NSError *audioError;
+    _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&audioError];
+    if (_audioPlayer == nil)
+        NSLog([audioError description]);
+    else
+        [_audioPlayer play];
 }
     
 -(NSArray*) loadIntroStep {
-    NSString* text;
-    NSString* audio;
+    NSString* textEnglish;
+    NSString* audioEnglish;
+    NSString* textSpanish;
+    NSString* audioSpanish;
     NSString* expectedSelection;
     NSString* expectedIntroAction;
     NSString* expectedIntroInput;
+    NSString* underlinedVocabWord;
     
     //Get current step to be read
     IntroductionStep* currIntroStep = [currentIntroSteps objectAtIndex:currentIntroStep-1];
     expectedSelection = [currIntroStep expectedSelection];
     expectedIntroAction = [currIntroStep expectedAction];
     expectedIntroInput = [currIntroStep expectedInput];
-    text = [currIntroStep englishText];
-    audio = [currIntroStep englishAudioFileName];
+    textEnglish = [currIntroStep englishText];
+    audioEnglish = [currIntroStep englishAudioFileName];
+    textSpanish = [currIntroStep spanishText];
+    audioSpanish = [currIntroStep spanishAudioFileName];
+    
+    NSString* text = textEnglish;
+    NSString* audio = audioEnglish;
+    languageString = @"E";
+    underlinedVocabWord = expectedIntroInput;
+
+    if (language_condition == BILINGUAL && currentIntroStep < STEPS_TO_SWITCH_LANGUAGES)
+    {
+        text = textSpanish;
+        audio = audioSpanish;
+        languageString = @"S";
+        underlinedVocabWord = [[Translation translations] objectForKey:expectedIntroInput];
+    }
     
     if ([expectedSelection isEqualToString:@"word"]) {
         //Format text to load on the textbox
-        NSString* formattedHTML = [self buildHTMLString:text:expectedSelection:expectedIntroInput];
+        NSString* formattedHTML = [self buildHTMLString:text:expectedSelection:underlinedVocabWord];
         NSString* addOuterHTML = [NSString stringWithFormat:@"setOuterHTMLText('%@', '%@')", @"s1", formattedHTML];
         [bookView stringByEvaluatingJavaScriptFromString:addOuterHTML];
     }
@@ -2511,11 +2556,14 @@ NSUInteger const INPUT = 2;
     }
 
     //Play introduction audio
-    //[self playAudioFile:audio];
-    NSString* actions = [NSString stringWithFormat:@"%@ %@ %@",expectedIntroAction,expectedIntroInput,expectedSelection];
-    [self playWordAudio:actions:@"en-us"];
+    [self playAudioFile:audio];
     
-    return [NSArray arrayWithObjects: expectedSelection, expectedIntroAction, expectedIntroInput, nil];
+    // DEBUG code to play expected action
+    //NSString* actions = [NSString stringWithFormat:@"%@ %@ %@",expectedIntroAction,expectedIntroInput,expectedSelection];
+    //[self playWordAudio:actions:@"en-us"];
+    
+    performedActions = [NSArray arrayWithObjects: expectedSelection, expectedIntroAction, expectedIntroInput, nil];
+    return performedActions;
 }
 
 //Builds the format of the action sentence that allows words to be clickable
