@@ -85,7 +85,6 @@
 		5CCDF03E1986C5D500F76615 /* penE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF0371986C5D500F76615 /* penE.m4a */; };
 		5CCDF03F1986C5D500F76615 /* corralE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF0381986C5D500F76615 /* corralE.m4a */; };
 		5CCDF0411986D44800F76615 /* granjeroS.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF0401986D44800F76615 /* granjeroS.m4a */; };
-		5CCDF0561987668700F76615 /* BFCE_6.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF0421987668700F76615 /* BFCE_6.m4a */; };
 		5CCDF0571987668700F76615 /* BFCE_8.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF0431987668700F76615 /* BFCE_8.m4a */; };
 		5CCDF0581987668700F76615 /* BFCE_9.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF0441987668700F76615 /* BFCE_9.m4a */; };
 		5CCDF0591987668700F76615 /* BFCE_14.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF0451987668700F76615 /* BFCE_14.m4a */; };
@@ -94,7 +93,6 @@
 		5CCDF05C1987668700F76615 /* BFCS_8.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF0481987668700F76615 /* BFCS_8.m4a */; };
 		5CCDF05D1987668700F76615 /* BFCS_9.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF0491987668700F76615 /* BFCS_9.m4a */; };
 		5CCDF05E1987668700F76615 /* BFCS_14.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF04A1987668700F76615 /* BFCS_14.m4a */; };
-		5CCDF05F1987668700F76615 /* BFEE_10.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF04B1987668700F76615 /* BFEE_10.m4a */; };
 		5CCDF0601987668700F76615 /* BFEE_11.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF04C1987668700F76615 /* BFEE_11.m4a */; };
 		5CCDF0611987668700F76615 /* BFEE_12.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF04D1987668700F76615 /* BFEE_12.m4a */; };
 		5CCDF0621987668700F76615 /* BFEE_13.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF04E1987668700F76615 /* BFEE_13.m4a */; };
@@ -106,6 +104,9 @@
 		5CCDF0681987668700F76615 /* BFES_12.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF0541987668700F76615 /* BFES_12.m4a */; };
 		5CCDF0691987668700F76615 /* BFEE_21.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF0551987668700F76615 /* BFEE_21.m4a */; };
 		5CCDF06B1987680A00F76615 /* BFES_8.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF06A1987680A00F76615 /* BFES_8.m4a */; };
+		5CCDF06F19886DA900F76615 /* BFCE_6.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF06E19886DA900F76615 /* BFCE_6.m4a */; };
+		5CCDF07119886FEB00F76615 /* BFEE_8.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF07019886FEB00F76615 /* BFEE_8.m4a */; };
+		5CCDF07319889EE500F76615 /* BFEE_10.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF07219889EE500F76615 /* BFEE_10.m4a */; };
 		5CD7FE3519775C1C007A1E49 /* VocabularyStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD7FE3419775C1C007A1E49 /* VocabularyStep.m */; };
 		5CD7FE3819776403007A1E49 /* Introduction.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD7FE3719776403007A1E49 /* Introduction.m */; };
 		5CFA85AB1950EFDC00C7537D /* IntroductionStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFA85AA1950EFDC00C7537D /* IntroductionStep.m */; };
@@ -175,7 +176,7 @@
 		31937539174185E000782C2B /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		3193753B1741A76E00782C2B /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
 		3193753C1741A76E00782C2B /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
-		31953E451729ECC100570087 /* EMBRACE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EMBRACE.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		31953E451729ECC100570087 /* English.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = English.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31953E481729ECC100570087 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		31953E4A1729ECC100570087 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		31953E4C1729ECC100570087 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -223,8 +224,6 @@
 		31C306C4183E93A60043DEDD /* Connection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connection.m; sourceTree = "<group>"; };
 		5C2FBA54195209C200B3151D /* IntroductionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroductionViewController.h; sourceTree = "<group>"; };
 		5C2FBA55195209C200B3151D /* IntroductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroductionViewController.m; sourceTree = "<group>"; };
-		5C2FBA57195CFB7E00B3151D /* step1ContestEnglish.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = step1ContestEnglish.m4a; sourceTree = SOURCE_ROOT; };
-		5C2FBA84196125B900B3151D /* step1ContestSpanish.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = step1ContestSpanish.m4a; sourceTree = SOURCE_ROOT; };
 		5C466ADA192293290056EA4B /* Translation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Translation.h; sourceTree = "<group>"; };
 		5C466ADB192293290056EA4B /* Translation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Translation.m; sourceTree = "<group>"; };
 		5CC5FADA18FDFA3700D118B8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -249,7 +248,6 @@
 		5CCDF0371986C5D500F76615 /* penE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = penE.m4a; path = "../../Desktop/Farm (Jon)/penE.m4a"; sourceTree = SOURCE_ROOT; };
 		5CCDF0381986C5D500F76615 /* corralE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = corralE.m4a; path = "../../Desktop/Farm (Jon)/corralE.m4a"; sourceTree = SOURCE_ROOT; };
 		5CCDF0401986D44800F76615 /* granjeroS.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = granjeroS.m4a; path = "../../Desktop/Farm (Jon)/granjeroS.m4a"; sourceTree = SOURCE_ROOT; };
-		5CCDF0421987668700F76615 /* BFCE_6.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCE_6.m4a; path = "../../Desktop/Farm (Jon)/BFCE_6.m4a"; sourceTree = SOURCE_ROOT; };
 		5CCDF0431987668700F76615 /* BFCE_8.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCE_8.m4a; path = "../../Desktop/Farm (Jon)/BFCE_8.m4a"; sourceTree = SOURCE_ROOT; };
 		5CCDF0441987668700F76615 /* BFCE_9.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCE_9.m4a; path = "../../Desktop/Farm (Jon)/BFCE_9.m4a"; sourceTree = SOURCE_ROOT; };
 		5CCDF0451987668700F76615 /* BFCE_14.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCE_14.m4a; path = "../../Desktop/Farm (Jon)/BFCE_14.m4a"; sourceTree = SOURCE_ROOT; };
@@ -258,7 +256,6 @@
 		5CCDF0481987668700F76615 /* BFCS_8.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCS_8.m4a; path = "../../Desktop/Farm (Jon)/BFCS_8.m4a"; sourceTree = SOURCE_ROOT; };
 		5CCDF0491987668700F76615 /* BFCS_9.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCS_9.m4a; path = "../../Desktop/Farm (Jon)/BFCS_9.m4a"; sourceTree = SOURCE_ROOT; };
 		5CCDF04A1987668700F76615 /* BFCS_14.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCS_14.m4a; path = "../../Desktop/Farm (Jon)/BFCS_14.m4a"; sourceTree = SOURCE_ROOT; };
-		5CCDF04B1987668700F76615 /* BFEE_10.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFEE_10.m4a; path = "../../Desktop/Farm (Jon)/BFEE_10.m4a"; sourceTree = SOURCE_ROOT; };
 		5CCDF04C1987668700F76615 /* BFEE_11.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFEE_11.m4a; path = "../../Desktop/Farm (Jon)/BFEE_11.m4a"; sourceTree = SOURCE_ROOT; };
 		5CCDF04D1987668700F76615 /* BFEE_12.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFEE_12.m4a; path = "../../Desktop/Farm (Jon)/BFEE_12.m4a"; sourceTree = SOURCE_ROOT; };
 		5CCDF04E1987668700F76615 /* BFEE_13.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFEE_13.m4a; path = "../../Desktop/Farm (Jon)/BFEE_13.m4a"; sourceTree = SOURCE_ROOT; };
@@ -270,8 +267,9 @@
 		5CCDF0541987668700F76615 /* BFES_12.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFES_12.m4a; path = "../../Desktop/Farm (Jon)/BFES_12.m4a"; sourceTree = SOURCE_ROOT; };
 		5CCDF0551987668700F76615 /* BFEE_21.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFEE_21.m4a; path = "../../Desktop/Farm (Jon)/BFEE_21.m4a"; sourceTree = SOURCE_ROOT; };
 		5CCDF06A1987680A00F76615 /* BFES_8.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFES_8.m4a; path = "../../Desktop/Farm (Jon)/BFES_8.m4a"; sourceTree = SOURCE_ROOT; };
-		5CD7CF39196B6A08004E4630 /* step2ContestEnglish.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = step2ContestEnglish.m4a; sourceTree = SOURCE_ROOT; };
-		5CD7CF3B196B84B9004E4630 /* step3ContestEnglish.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = step3ContestEnglish.m4a; sourceTree = SOURCE_ROOT; };
+		5CCDF06E19886DA900F76615 /* BFCE_6.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCE_6.m4a; path = "../../../Desktop/Farm (Jon)/BFCE_6.m4a"; sourceTree = "<group>"; };
+		5CCDF07019886FEB00F76615 /* BFEE_8.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFEE_8.m4a; path = "../../Desktop/Farm (Jon)/BFEE_8.m4a"; sourceTree = SOURCE_ROOT; };
+		5CCDF07219889EE500F76615 /* BFEE_10.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFEE_10.m4a; path = "../../Desktop/Farm (Jon)/BFEE_10.m4a"; sourceTree = SOURCE_ROOT; };
 		5CD7FE3319775C1C007A1E49 /* VocabularyStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VocabularyStep.h; sourceTree = "<group>"; };
 		5CD7FE3419775C1C007A1E49 /* VocabularyStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VocabularyStep.m; sourceTree = "<group>"; };
 		5CD7FE3619776403007A1E49 /* Introduction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Introduction.h; sourceTree = "<group>"; };
@@ -399,7 +397,7 @@
 		31953E461729ECC100570087 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				31953E451729ECC100570087 /* EMBRACE.app */,
+				31953E451729ECC100570087 /* English.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -436,8 +434,10 @@
 		31953E4F1729ECC100570087 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5CCDF07219889EE500F76615 /* BFEE_10.m4a */,
+				5CCDF07019886FEB00F76615 /* BFEE_8.m4a */,
+				5CCDF06E19886DA900F76615 /* BFCE_6.m4a */,
 				5CCDF06A1987680A00F76615 /* BFES_8.m4a */,
-				5CCDF0421987668700F76615 /* BFCE_6.m4a */,
 				5CCDF0431987668700F76615 /* BFCE_8.m4a */,
 				5CCDF0441987668700F76615 /* BFCE_9.m4a */,
 				5CCDF0451987668700F76615 /* BFCE_14.m4a */,
@@ -446,7 +446,6 @@
 				5CCDF0481987668700F76615 /* BFCS_8.m4a */,
 				5CCDF0491987668700F76615 /* BFCS_9.m4a */,
 				5CCDF04A1987668700F76615 /* BFCS_14.m4a */,
-				5CCDF04B1987668700F76615 /* BFEE_10.m4a */,
 				5CCDF04C1987668700F76615 /* BFEE_11.m4a */,
 				5CCDF04D1987668700F76615 /* BFEE_12.m4a */,
 				5CCDF04E1987668700F76615 /* BFEE_13.m4a */,
@@ -478,10 +477,6 @@
 				5CCDF01B1986C10100F76615 /* BFCE_3.m4a */,
 				5CCDF01C1986C10100F76615 /* BFCE_4.m4a */,
 				5CCDF01D1986C10100F76615 /* BFCE_5.m4a */,
-				5CD7CF3B196B84B9004E4630 /* step3ContestEnglish.m4a */,
-				5CD7CF39196B6A08004E4630 /* step2ContestEnglish.m4a */,
-				5C2FBA84196125B900B3151D /* step1ContestSpanish.m4a */,
-				5C2FBA57195CFB7E00B3151D /* step1ContestEnglish.m4a */,
 				C3938820195CBB4B0005279F /* bestFarm.epub */,
 				311096FE174AB08400B02BF7 /* house.epub */,
 				311096FC174AAA8F00B02BF7 /* farm.epub */,
@@ -654,7 +649,7 @@
 			);
 			name = EMBRACE;
 			productName = EMBRACE_Client;
-			productReference = 31953E451729ECC100570087 /* EMBRACE.app */;
+			productReference = 31953E451729ECC100570087 /* English.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -711,7 +706,6 @@
 				5CCDF02A1986C12900F76615 /* BFCS_1.m4a in Resources */,
 				5CCDF05D1987668700F76615 /* BFCS_9.m4a in Resources */,
 				C3938821195CBB4B0005279F /* bestFarm.epub in Resources */,
-				5CCDF05F1987668700F76615 /* BFEE_10.m4a in Resources */,
 				31953E5F1729ECC100570087 /* Default-568h@2x.png in Resources */,
 				31953E921729EE8100570087 /* MainStoryboard_iPad.storyboard in Resources */,
 				5CCDF0681987668700F76615 /* BFES_12.m4a in Resources */,
@@ -721,15 +715,16 @@
 				5CCDF0671987668700F76615 /* BFES_11.m4a in Resources */,
 				311096FD174AAA8F00B02BF7 /* farm.epub in Resources */,
 				5CCDF0611987668700F76615 /* BFEE_12.m4a in Resources */,
-				5CCDF0561987668700F76615 /* BFCE_6.m4a in Resources */,
 				5CCDF0221986C10100F76615 /* BFCE_4.m4a in Resources */,
 				5CCDF05A1987668700F76615 /* BFCE_22.m4a in Resources */,
 				5CCDF0311986C5A500F76615 /* farmerE.m4a in Resources */,
 				5CCDF0591987668700F76615 /* BFCE_14.m4a in Resources */,
 				5CCDF0691987668700F76615 /* BFEE_21.m4a in Resources */,
+				5CCDF06F19886DA900F76615 /* BFCE_6.m4a in Resources */,
 				5CCDF03A1986C5D500F76615 /* saltoS.m4a in Resources */,
 				5CCDF05E1987668700F76615 /* BFCS_14.m4a in Resources */,
 				5CCDF03D1986C5D500F76615 /* jumpE.m4a in Resources */,
+				5CCDF07119886FEB00F76615 /* BFEE_8.m4a in Resources */,
 				5CCDF01F1986C10100F76615 /* BFCE_2A.m4a in Resources */,
 				5CCDF0211986C10100F76615 /* BFCE_3.m4a in Resources */,
 				5CCDF02D1986C12900F76615 /* BFCS_3.m4a in Resources */,
@@ -738,6 +733,7 @@
 				31109702174AB35E00B02BF7 /* cover_default.png in Resources */,
 				5CCDF06B1987680A00F76615 /* BFES_8.m4a in Resources */,
 				5CCDF0641987668700F76615 /* BFEE_19.m4a in Resources */,
+				5CCDF07319889EE500F76615 /* BFEE_10.m4a in Resources */,
 				5CCDF02E1986C12900F76615 /* BFCS_4.m4a in Resources */,
 				5CCDF02F1986C12900F76615 /* BFCS_5.m4a in Resources */,
 				5CCDF0631987668700F76615 /* BFEE_18.m4a in Resources */,
@@ -921,7 +917,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				OTHER_LDFLAGS = "-lxml2";
-				PRODUCT_NAME = EMBRACE;
+				PRODUCT_NAME = English;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -942,7 +938,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				OTHER_LDFLAGS = "-lxml2";
-				PRODUCT_NAME = EMBRACE;
+				PRODUCT_NAME = English;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};

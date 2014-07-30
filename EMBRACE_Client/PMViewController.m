@@ -95,7 +95,7 @@ NSUInteger const SELECTION = 0;
 NSUInteger const EXP_ACTION = 1;
 NSUInteger const INPUT = 2;
 int const STEPS_TO_SWITCH_LANGUAGES = 14;
-int language_condition = BILINGUAL;
+int language_condition = ENGLISH;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -176,12 +176,12 @@ int language_condition = BILINGUAL;
     
     //Load the first step for the current chapter (hard-coded for now)
     if ([chapterTitle isEqualToString:@"Introduction At the Farm"]) {
-        performedActions = [self loadIntroStep];
+        [self loadIntroStep];
     }
     
     //Load the first vocabulary step for the current chapter (hard-coded for now)
     if ([chapterTitle isEqualToString:@"At the Farm"] && [actualPage isEqualToString:currentPage]) {
-        performedActions = [self loadVocabStep];
+        [self loadVocabStep];
     }
     
     //Perform setup for activity
@@ -706,6 +706,7 @@ int language_condition = BILINGUAL;
             if(movingObject) {
                 [self moveObject:movingObjectId :location :delta :true];
                 
+                
                 //Get steps for current sentence
                 NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
                 
@@ -716,7 +717,16 @@ int language_condition = BILINGUAL;
                     if ([[currSolStep stepType] isEqualToString:@"check"]) {
                         //Check if object is in the correct location
                         if([self isHotspotInsideLocation]) {
-                            [self incrementCurrentStep];
+                            if ([chapterTitle isEqualToString:@"Introduction At the Farm"] &&
+                                [[performedActions objectAtIndex:INPUT] isEqualToString:
+                                 [NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep locationId]]]) {
+                                //[self incrementCurrentStep];
+                                currentIntroStep++;
+                                [self loadIntroStep];
+                            }
+                            //else {
+                                [self incrementCurrentStep];
+                           // }
                         }
                         else {
                             [self playErrorNoise];
@@ -1570,7 +1580,12 @@ int language_condition = BILINGUAL;
     //Check if selected interaction is correct
     if ([interaction isEqual:correctInteraction]) {
         [self performInteraction:interaction];
-        [self incrementCurrentStep];
+        if ([chapterTitle isEqualToString:@"Introduction At the Farm"]) {
+            currentIntroStep++;
+            [self loadIntroStep];
+        } else {
+            [self incrementCurrentStep];
+        }
         
         //Transference counts as two steps, so we must increment again
         if ([interaction interactionType] == TRANSFERANDGROUP || [interaction interactionType] == TRANSFERANDDISAPPEAR) {
@@ -2413,8 +2428,8 @@ int language_condition = BILINGUAL;
         // If the user pressed next
         if ([[performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
             currentIntroStep++;
-            // Load the next step and update the
-            performedActions = [self loadIntroStep];
+            // Load the next step
+            [self loadIntroStep];
             [self setupCurrentSentenceColor];
         }
     } else if ([chapterTitle isEqualToString:@"At the Farm"] && [actualPage isEqualToString:currentPage]) {
