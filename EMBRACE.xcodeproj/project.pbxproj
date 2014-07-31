@@ -107,6 +107,18 @@
 		5CCDF06F19886DA900F76615 /* BFCE_6.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF06E19886DA900F76615 /* BFCE_6.m4a */; };
 		5CCDF07119886FEB00F76615 /* BFEE_8.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF07019886FEB00F76615 /* BFEE_8.m4a */; };
 		5CCDF07319889EE500F76615 /* BFEE_10.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF07219889EE500F76615 /* BFEE_10.m4a */; };
+		5CCDF075198A0F0A00F76615 /* BFCE1_1G.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF074198A0F0A00F76615 /* BFCE1_1G.m4a */; };
+		5CCDF077198A0F6000F76615 /* BFCS1_1G.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF076198A0F6000F76615 /* BFCS1_1G.m4a */; };
+		5CCDF082198A162700F76615 /* barnE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF078198A162600F76615 /* barnE.m4a */; };
+		5CCDF083198A162700F76615 /* BFEE1_6.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF079198A162600F76615 /* BFEE1_6.m4a */; };
+		5CCDF084198A162700F76615 /* BFES1_6.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF07A198A162600F76615 /* BFES1_6.m4a */; };
+		5CCDF085198A162700F76615 /* carretaS.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF07B198A162600F76615 /* carretaS.m4a */; };
+		5CCDF086198A162700F76615 /* cartE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF07C198A162700F76615 /* cartE.m4a */; };
+		5CCDF087198A162700F76615 /* establoS.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF07D198A162700F76615 /* establoS.m4a */; };
+		5CCDF088198A162700F76615 /* hayE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF07E198A162700F76615 /* hayE.m4a */; };
+		5CCDF089198A162700F76615 /* hayloftE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF07F198A162700F76615 /* hayloftE.m4a */; };
+		5CCDF08A198A162700F76615 /* pajarS.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF080198A162700F76615 /* pajarS.m4a */; };
+		5CCDF08B198A162700F76615 /* pajaS.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF081198A162700F76615 /* pajaS.m4a */; };
 		5CD7FE3519775C1C007A1E49 /* VocabularyStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD7FE3419775C1C007A1E49 /* VocabularyStep.m */; };
 		5CD7FE3819776403007A1E49 /* Introduction.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD7FE3719776403007A1E49 /* Introduction.m */; };
 		5CFA85AB1950EFDC00C7537D /* IntroductionStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFA85AA1950EFDC00C7537D /* IntroductionStep.m */; };
@@ -176,7 +188,7 @@
 		31937539174185E000782C2B /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		3193753B1741A76E00782C2B /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
 		3193753C1741A76E00782C2B /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
-		31953E451729ECC100570087 /* English.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = English.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		31953E451729ECC100570087 /* Spanish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spanish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31953E481729ECC100570087 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		31953E4A1729ECC100570087 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		31953E4C1729ECC100570087 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -270,6 +282,18 @@
 		5CCDF06E19886DA900F76615 /* BFCE_6.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCE_6.m4a; path = "../../../Desktop/Farm (Jon)/BFCE_6.m4a"; sourceTree = "<group>"; };
 		5CCDF07019886FEB00F76615 /* BFEE_8.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFEE_8.m4a; path = "../../Desktop/Farm (Jon)/BFEE_8.m4a"; sourceTree = SOURCE_ROOT; };
 		5CCDF07219889EE500F76615 /* BFEE_10.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFEE_10.m4a; path = "../../Desktop/Farm (Jon)/BFEE_10.m4a"; sourceTree = SOURCE_ROOT; };
+		5CCDF074198A0F0A00F76615 /* BFCE1_1G.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCE1_1G.m4a; path = "../../Desktop/Farm (Jon)/BFCE1_1G.m4a"; sourceTree = SOURCE_ROOT; };
+		5CCDF076198A0F6000F76615 /* BFCS1_1G.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCS1_1G.m4a; path = "../../Desktop/Farm (Jon)/BFCS1_1G.m4a"; sourceTree = SOURCE_ROOT; };
+		5CCDF078198A162600F76615 /* barnE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = barnE.m4a; path = "../../Desktop/Farm (Jon)/barnE.m4a"; sourceTree = SOURCE_ROOT; };
+		5CCDF079198A162600F76615 /* BFEE1_6.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFEE1_6.m4a; path = "../../Desktop/Farm (Jon)/BFEE1_6.m4a"; sourceTree = SOURCE_ROOT; };
+		5CCDF07A198A162600F76615 /* BFES1_6.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFES1_6.m4a; path = "../../Desktop/Farm (Jon)/BFES1_6.m4a"; sourceTree = SOURCE_ROOT; };
+		5CCDF07B198A162600F76615 /* carretaS.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = carretaS.m4a; path = "../../Desktop/Farm (Jon)/carretaS.m4a"; sourceTree = SOURCE_ROOT; };
+		5CCDF07C198A162700F76615 /* cartE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = cartE.m4a; path = "../../Desktop/Farm (Jon)/cartE.m4a"; sourceTree = SOURCE_ROOT; };
+		5CCDF07D198A162700F76615 /* establoS.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = establoS.m4a; path = "../../Desktop/Farm (Jon)/establoS.m4a"; sourceTree = SOURCE_ROOT; };
+		5CCDF07E198A162700F76615 /* hayE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = hayE.m4a; path = "../../Desktop/Farm (Jon)/hayE.m4a"; sourceTree = SOURCE_ROOT; };
+		5CCDF07F198A162700F76615 /* hayloftE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = hayloftE.m4a; path = "../../Desktop/Farm (Jon)/hayloftE.m4a"; sourceTree = SOURCE_ROOT; };
+		5CCDF080198A162700F76615 /* pajarS.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = pajarS.m4a; path = "../../Desktop/Farm (Jon)/pajarS.m4a"; sourceTree = SOURCE_ROOT; };
+		5CCDF081198A162700F76615 /* pajaS.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = pajaS.m4a; path = "../../Desktop/Farm (Jon)/pajaS.m4a"; sourceTree = SOURCE_ROOT; };
 		5CD7FE3319775C1C007A1E49 /* VocabularyStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VocabularyStep.h; sourceTree = "<group>"; };
 		5CD7FE3419775C1C007A1E49 /* VocabularyStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VocabularyStep.m; sourceTree = "<group>"; };
 		5CD7FE3619776403007A1E49 /* Introduction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Introduction.h; sourceTree = "<group>"; };
@@ -397,7 +421,7 @@
 		31953E461729ECC100570087 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				31953E451729ECC100570087 /* English.app */,
+				31953E451729ECC100570087 /* Spanish.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -434,6 +458,18 @@
 		31953E4F1729ECC100570087 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5CCDF078198A162600F76615 /* barnE.m4a */,
+				5CCDF079198A162600F76615 /* BFEE1_6.m4a */,
+				5CCDF07A198A162600F76615 /* BFES1_6.m4a */,
+				5CCDF07B198A162600F76615 /* carretaS.m4a */,
+				5CCDF07C198A162700F76615 /* cartE.m4a */,
+				5CCDF07D198A162700F76615 /* establoS.m4a */,
+				5CCDF07E198A162700F76615 /* hayE.m4a */,
+				5CCDF07F198A162700F76615 /* hayloftE.m4a */,
+				5CCDF080198A162700F76615 /* pajarS.m4a */,
+				5CCDF081198A162700F76615 /* pajaS.m4a */,
+				5CCDF076198A0F6000F76615 /* BFCS1_1G.m4a */,
+				5CCDF074198A0F0A00F76615 /* BFCE1_1G.m4a */,
 				5CCDF07219889EE500F76615 /* BFEE_10.m4a */,
 				5CCDF07019886FEB00F76615 /* BFEE_8.m4a */,
 				5CCDF06E19886DA900F76615 /* BFCE_6.m4a */,
@@ -649,7 +685,7 @@
 			);
 			name = EMBRACE;
 			productName = EMBRACE_Client;
-			productReference = 31953E451729ECC100570087 /* English.app */;
+			productReference = 31953E451729ECC100570087 /* Spanish.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -690,22 +726,30 @@
 			files = (
 				5CCDF0231986C10100F76615 /* BFCE_5.m4a in Resources */,
 				5CCDF02B1986C12900F76615 /* BFCS_2A.m4a in Resources */,
+				5CCDF086198A162700F76615 /* cartE.m4a in Resources */,
+				5CCDF077198A0F6000F76615 /* BFCS1_1G.m4a in Resources */,
+				5CCDF089198A162700F76615 /* hayloftE.m4a in Resources */,
+				5CCDF087198A162700F76615 /* establoS.m4a in Resources */,
 				5CCDF0411986D44800F76615 /* granjeroS.m4a in Resources */,
 				5CCDF02C1986C12900F76615 /* BFCS_2B.m4a in Resources */,
 				5CCDF03F1986C5D500F76615 /* corralE.m4a in Resources */,
 				31953E531729ECC100570087 /* InfoPlist.strings in Resources */,
 				5CCDF0621987668700F76615 /* BFEE_13.m4a in Resources */,
+				5CCDF08A198A162700F76615 /* pajarS.m4a in Resources */,
 				31953E5B1729ECC100570087 /* Default.png in Resources */,
 				5CCDF05C1987668700F76615 /* BFCS_8.m4a in Resources */,
 				5CCDF0571987668700F76615 /* BFCE_8.m4a in Resources */,
 				5CCDF03C1986C5D500F76615 /* contestE.m4a in Resources */,
+				5CCDF08B198A162700F76615 /* pajaS.m4a in Resources */,
 				5CCDF0601987668700F76615 /* BFEE_11.m4a in Resources */,
 				31953E5D1729ECC100570087 /* Default@2x.png in Resources */,
+				5CCDF085198A162700F76615 /* carretaS.m4a in Resources */,
 				5CCDF0661987668700F76615 /* BFES_10.m4a in Resources */,
 				5CCDF0391986C5D500F76615 /* concursoS.m4a in Resources */,
 				5CCDF02A1986C12900F76615 /* BFCS_1.m4a in Resources */,
 				5CCDF05D1987668700F76615 /* BFCS_9.m4a in Resources */,
 				C3938821195CBB4B0005279F /* bestFarm.epub in Resources */,
+				5CCDF082198A162700F76615 /* barnE.m4a in Resources */,
 				31953E5F1729ECC100570087 /* Default-568h@2x.png in Resources */,
 				31953E921729EE8100570087 /* MainStoryboard_iPad.storyboard in Resources */,
 				5CCDF0681987668700F76615 /* BFES_12.m4a in Resources */,
@@ -721,10 +765,13 @@
 				5CCDF0591987668700F76615 /* BFCE_14.m4a in Resources */,
 				5CCDF0691987668700F76615 /* BFEE_21.m4a in Resources */,
 				5CCDF06F19886DA900F76615 /* BFCE_6.m4a in Resources */,
+				5CCDF083198A162700F76615 /* BFEE1_6.m4a in Resources */,
 				5CCDF03A1986C5D500F76615 /* saltoS.m4a in Resources */,
 				5CCDF05E1987668700F76615 /* BFCS_14.m4a in Resources */,
 				5CCDF03D1986C5D500F76615 /* jumpE.m4a in Resources */,
+				5CCDF075198A0F0A00F76615 /* BFCE1_1G.m4a in Resources */,
 				5CCDF07119886FEB00F76615 /* BFEE_8.m4a in Resources */,
+				5CCDF084198A162700F76615 /* BFES1_6.m4a in Resources */,
 				5CCDF01F1986C10100F76615 /* BFCE_2A.m4a in Resources */,
 				5CCDF0211986C10100F76615 /* BFCE_3.m4a in Resources */,
 				5CCDF02D1986C12900F76615 /* BFCS_3.m4a in Resources */,
@@ -743,6 +790,7 @@
 				5CCDF0201986C10100F76615 /* BFCE_2B.m4a in Resources */,
 				5CCDF03E1986C5D500F76615 /* penE.m4a in Resources */,
 				31058C76176BCFF900595AAE /* logo57.png in Resources */,
+				5CCDF088198A162700F76615 /* hayE.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -917,7 +965,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				OTHER_LDFLAGS = "-lxml2";
-				PRODUCT_NAME = English;
+				PRODUCT_NAME = Spanish;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -938,7 +986,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				OTHER_LDFLAGS = "-lxml2";
-				PRODUCT_NAME = English;
+				PRODUCT_NAME = Spanish;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};

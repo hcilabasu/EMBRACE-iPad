@@ -95,7 +95,8 @@ NSUInteger const SELECTION = 0;
 NSUInteger const EXP_ACTION = 1;
 NSUInteger const INPUT = 2;
 int const STEPS_TO_SWITCH_LANGUAGES = 14;
-int language_condition = ENGLISH;
+int language_condition = BILINGUAL;
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -512,6 +513,10 @@ int language_condition = ENGLISH;
                     }
                     else
                     {
+                        NSString* highlight = [NSString stringWithFormat:@"highlightObject(%@)", imageAtPoint];
+                        [bookView stringByEvaluatingJavaScriptFromString:highlight];
+                        //Clear highlighted object
+                        [self performSelector:@selector(clearHighlightedObject) withObject:nil afterDelay:1];
                         currentIntroStep++;
                         [self loadIntroStep];
                     }
@@ -524,12 +529,18 @@ int language_condition = ENGLISH;
                  [sentenceText isEqualToString:[performedActions objectAtIndex:INPUT]]) ||
                 ([[performedActions objectAtIndex:SELECTION] isEqualToString:@"image"] &&
                  [imageAtPoint isEqualToString:[performedActions objectAtIndex:INPUT]])) {
-                [timer invalidate];
-                timer = nil;
+                //[timer invalidate];
+                //timer = nil;
+                
                 actualWord = sentenceText;
                 //If the user clicked on a word
                 if ([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"]) {
-                    [self HiglhlightAndPlayAudio:sentenceText];
+                    //[self HiglhlightAndPlayAudio:sentenceText];
+                    NSString* highlight = [NSString stringWithFormat:@"highlightObject(%@)", sentenceText];
+                    [bookView stringByEvaluatingJavaScriptFromString:highlight];
+                    //Clear highlighted object
+                    [self performSelector:@selector(clearHighlightedObject) withObject:nil afterDelay:1.5];
+                    [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]];
                 }
                     
                 currentVocabStep++;
@@ -539,16 +550,28 @@ int language_condition = ENGLISH;
                 } else {
                     //If the user clicked on an image
                     if ([[performedActions objectAtIndex:SELECTION] isEqualToString:@"image"]) {
+                        //[self HiglhlightAndPlayAudio:actualWord];
+                        NSString* highlight = [NSString stringWithFormat:@"highlightObject(%@)", imageAtPoint];
+                        [bookView stringByEvaluatingJavaScriptFromString:highlight];
+                        //Clear highlighted object
+                        [self performSelector:@selector(clearHighlightedObject) withObject:nil afterDelay:1.5];
+                        [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",actualWord,languageString]];
                         currentSentence++;
                         [self colorSentencesUponNext];
                     }
-                    performedActions = [self loadVocabStep];
+                    [self loadVocabStep];
                 }
             }
             //If the user clicked on an image that is not correct
             else if ([[performedActions objectAtIndex:SELECTION] isEqualToString:@"image"] &&
                      ![imageAtPoint isEqualToString:[performedActions objectAtIndex:INPUT]]) {
-                    [self HiglhlightAndPlayAudio:actualWord];
+                
+                    //[self HiglhlightAndPlayAudio:actualWord];
+                    NSString* highlight = [NSString stringWithFormat:@"highlightObject(%@)", sentenceText];
+                    [bookView stringByEvaluatingJavaScriptFromString:highlight];
+                    //Clear highlighted object
+                    [self performSelector:@selector(clearHighlightedObject) withObject:nil afterDelay:1.5];
+                    [self playAudioFile:actualWord];
             }
         }
         else if([[Translation translations] objectForKey:sentenceText]) {
@@ -1583,9 +1606,9 @@ int language_condition = ENGLISH;
         if ([chapterTitle isEqualToString:@"Introduction At the Farm"]) {
             currentIntroStep++;
             [self loadIntroStep];
-        } else {
-            [self incrementCurrentStep];
         }
+        [self incrementCurrentStep];
+        
         
         //Transference counts as two steps, so we must increment again
         if ([interaction interactionType] == TRANSFERANDGROUP || [interaction interactionType] == TRANSFERANDDISAPPEAR) {
@@ -2435,15 +2458,15 @@ int language_condition = ENGLISH;
     } else if ([chapterTitle isEqualToString:@"At the Farm"] && [actualPage isEqualToString:currentPage]) {
         // If the user pressed next
         if ([[performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
-            [timer invalidate];
-            timer = nil;
+            //[timer invalidate];
+            //timer = nil;
             currentVocabStep++;
             
             if(currentVocabStep > totalVocabSteps) {
                 [self loadNextPage];
             } else {
                 // Load the next step and update the performed actions
-                performedActions = [self loadVocabStep];
+                [self loadVocabStep];
             }
         }
     } else if (stepsComplete) {
@@ -2606,16 +2629,18 @@ int language_condition = ENGLISH;
     audio = [currVocabStep englishAudioFileName];
     
     //Play introduction audio
-    //[self playAudioFile:audio];
-    NSString* actions = [NSString stringWithFormat:@"%@ %@ %@",expectedIntroAction,expectedIntroInput,expectedSelection];
-    [self playWordAudio:actions:@"en-us"];
+    [self playAudioFile:audio];
     
-    NSString *obj1 = actions;
-    NSString *obj2 = @"en-us";
-    NSDictionary *wrapper = [NSDictionary dictionaryWithObjectsAndKeys:obj1, @"Key1", obj2, @"Key2", nil];
-    timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(playWordAudioTimed:) userInfo:wrapper repeats:YES];
+    // DEBUG code to play expected action
+    //NSString* actions = [NSString stringWithFormat:@"%@ %@ %@",expectedIntroAction,expectedIntroInput,expectedSelection];
+    //[self playWordAudio:actions:@"en-us"];
     
-    return [NSArray arrayWithObjects: expectedSelection, expectedIntroAction, expectedIntroInput, nil];
+    //NSString *obj1 = actions;
+    //NSString *obj2 = @"en-us";
+    //NSDictionary *wrapper = [NSDictionary dictionaryWithObjectsAndKeys:obj1, @"Key1", obj2, @"Key2", nil];
+    //timer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(playWordAudioTimed:) userInfo:wrapper repeats:YES];
+    performedActions = [NSArray arrayWithObjects: expectedSelection, expectedIntroAction, expectedIntroInput, nil];
+    return performedActions;
 }
 
 -(void) colorSentencesUponNext {
