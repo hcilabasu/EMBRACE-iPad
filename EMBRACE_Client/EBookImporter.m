@@ -571,6 +571,9 @@
         NSString* storyTitle = [[storySetupElement attributeForName:@"title"] stringValue];
         Chapter* chapter = [book getChapterWithTitle:storyTitle];
         
+        //Get page id
+        NSString* pageId = [[storySetupElement attributeForName:@"page_id"] stringValue];
+        
         if(chapter != nil) {
             PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity only
             
@@ -587,7 +590,7 @@
                 NSString* obj2Id = [[storySetupStep attributeForName:@"obj2Id"] stringValue];
                 
                 ActionStep* setupStep = [[ActionStep alloc] initAsSetupStep:stepType :obj1Id :obj2Id :action];
-                [PMActivity addSetupStep:setupStep];
+                [PMActivity addSetupStep:setupStep forPageId:pageId];
             }
         }
     }

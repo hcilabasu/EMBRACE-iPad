@@ -14,6 +14,7 @@
 
 @interface PMViewController () {
     NSString* currentPage; //The current page being shown, so that the next page can be requested.
+    NSString* currentPageId; //The id of the current page being shown
     
     NSUInteger currentSentence; //Active sentence to be completed.
     NSUInteger totalSentences; //Total number of sentences on this page.
@@ -227,6 +228,9 @@ float const groupingProximity = 20.0;
     
     self.title = chapterTitle;
     
+    //Set the current page id
+    currentPageId = [book getIdForPageInChapterAndActivity:currentPage :chapterTitle :PM_MODE];
+    
     //Get the solution steps for the current chapter
     Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
     PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
@@ -324,14 +328,14 @@ float const groupingProximity = 20.0;
 }
 
 /*
- * Perform any necessary setup for this physical manipulation.
+ * Perform any necessary setup for this physical manipulation page.
  * For example, if the cart should be connected to the tractor at the beginning of the story,
  * then this function will connect the cart to the tractor.
  */
 -(void) performSetupForActivity {
     Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
     PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
-    NSMutableArray* setupSteps = [PMActivity setupSteps]; //get setup steps
+    NSMutableArray* setupSteps = [[PMActivity setupSteps] objectForKey:currentPageId]; //get setup steps for current page
     
     for (ActionStep* setupStep in setupSteps) {
         PossibleInteraction* interaction = [self convertActionStepToPossibleInteraction:setupStep];
