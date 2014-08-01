@@ -2316,7 +2316,7 @@ float const groupingProximity = 20.0;
  * is correct, then it will move on to the next sentence. If the manipulation is not current, then feedback will be provided.
  */
 -(IBAction)pressedNext:(id)sender {
-    if (stepsComplete) {
+    if (stepsComplete || numSteps == 0) {
         //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
         currentSentence ++;
         
