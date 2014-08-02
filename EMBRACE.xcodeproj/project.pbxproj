@@ -63,6 +63,12 @@
 		31C306C5183E93A60043DEDD /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C306C4183E93A60043DEDD /* Connection.m */; };
 		5C2FBA56195209C300B3151D /* IntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2FBA55195209C200B3151D /* IntroductionViewController.m */; };
 		5C466ADC192293290056EA4B /* Translation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C466ADB192293290056EA4B /* Translation.m */; };
+		5CA193BF198ABD0C0007ABF1 /* BFEE_11A.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CA193BD198ABD0C0007ABF1 /* BFEE_11A.m4a */; };
+		5CA193C0198ABD0C0007ABF1 /* BFES_11A.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CA193BE198ABD0C0007ABF1 /* BFES_11A.m4a */; };
+		5CA193C3198ACF730007ABF1 /* intentaDeNuevoS.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CA193C1198ACF720007ABF1 /* intentaDeNuevoS.m4a */; };
+		5CA193C4198ACF730007ABF1 /* tryAgainE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CA193C2198ACF730007ABF1 /* tryAgainE.m4a */; };
+		5CA193C7198AF73E0007ABF1 /* BFEE_18A.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CA193C5198AF73E0007ABF1 /* BFEE_18A.m4a */; };
+		5CA193C8198AF73E0007ABF1 /* BFEE_19A.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CA193C6198AF73E0007ABF1 /* BFEE_19A.m4a */; };
 		5CC5FADB18FDFA3700D118B8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CC5FADA18FDFA3700D118B8 /* AVFoundation.framework */; };
 		5CCDF01E1986C10100F76615 /* BFCE_1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF0181986C10100F76615 /* BFCE_1.m4a */; };
 		5CCDF01F1986C10100F76615 /* BFCE_2A.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CCDF0191986C10100F76615 /* BFCE_2A.m4a */; };
@@ -238,6 +244,12 @@
 		5C2FBA55195209C200B3151D /* IntroductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroductionViewController.m; sourceTree = "<group>"; };
 		5C466ADA192293290056EA4B /* Translation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Translation.h; sourceTree = "<group>"; };
 		5C466ADB192293290056EA4B /* Translation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Translation.m; sourceTree = "<group>"; };
+		5CA193BD198ABD0C0007ABF1 /* BFEE_11A.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFEE_11A.m4a; path = "../../Desktop/Farm (Jon)/BFEE_11A.m4a"; sourceTree = SOURCE_ROOT; };
+		5CA193BE198ABD0C0007ABF1 /* BFES_11A.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFES_11A.m4a; path = "../../Desktop/Farm (Jon)/BFES_11A.m4a"; sourceTree = SOURCE_ROOT; };
+		5CA193C1198ACF720007ABF1 /* intentaDeNuevoS.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = intentaDeNuevoS.m4a; path = "../../Desktop/Farm (Jon)/intentaDeNuevoS.m4a"; sourceTree = SOURCE_ROOT; };
+		5CA193C2198ACF730007ABF1 /* tryAgainE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = tryAgainE.m4a; path = "../../Desktop/Farm (Jon)/tryAgainE.m4a"; sourceTree = SOURCE_ROOT; };
+		5CA193C5198AF73E0007ABF1 /* BFEE_18A.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFEE_18A.m4a; path = "../../../Desktop/Farm (Jon)/BFEE_18A.m4a"; sourceTree = "<group>"; };
+		5CA193C6198AF73E0007ABF1 /* BFEE_19A.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFEE_19A.m4a; path = "../../../Desktop/Farm (Jon)/BFEE_19A.m4a"; sourceTree = "<group>"; };
 		5CC5FADA18FDFA3700D118B8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		5CCDF0181986C10100F76615 /* BFCE_1.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCE_1.m4a; path = "../../Desktop/Farm (Jon)/BFCE_1.m4a"; sourceTree = SOURCE_ROOT; };
 		5CCDF0191986C10100F76615 /* BFCE_2A.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCE_2A.m4a; path = "../../Desktop/Farm (Jon)/BFCE_2A.m4a"; sourceTree = SOURCE_ROOT; };
@@ -458,6 +470,12 @@
 		31953E4F1729ECC100570087 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5CA193C5198AF73E0007ABF1 /* BFEE_18A.m4a */,
+				5CA193C6198AF73E0007ABF1 /* BFEE_19A.m4a */,
+				5CA193C1198ACF720007ABF1 /* intentaDeNuevoS.m4a */,
+				5CA193C2198ACF730007ABF1 /* tryAgainE.m4a */,
+				5CA193BD198ABD0C0007ABF1 /* BFEE_11A.m4a */,
+				5CA193BE198ABD0C0007ABF1 /* BFES_11A.m4a */,
 				5CCDF078198A162600F76615 /* barnE.m4a */,
 				5CCDF079198A162600F76615 /* BFEE1_6.m4a */,
 				5CCDF07A198A162600F76615 /* BFES1_6.m4a */,
@@ -731,12 +749,14 @@
 				5CCDF089198A162700F76615 /* hayloftE.m4a in Resources */,
 				5CCDF087198A162700F76615 /* establoS.m4a in Resources */,
 				5CCDF0411986D44800F76615 /* granjeroS.m4a in Resources */,
+				5CA193C7198AF73E0007ABF1 /* BFEE_18A.m4a in Resources */,
 				5CCDF02C1986C12900F76615 /* BFCS_2B.m4a in Resources */,
 				5CCDF03F1986C5D500F76615 /* corralE.m4a in Resources */,
 				31953E531729ECC100570087 /* InfoPlist.strings in Resources */,
 				5CCDF0621987668700F76615 /* BFEE_13.m4a in Resources */,
 				5CCDF08A198A162700F76615 /* pajarS.m4a in Resources */,
 				31953E5B1729ECC100570087 /* Default.png in Resources */,
+				5CA193C0198ABD0C0007ABF1 /* BFES_11A.m4a in Resources */,
 				5CCDF05C1987668700F76615 /* BFCS_8.m4a in Resources */,
 				5CCDF0571987668700F76615 /* BFCE_8.m4a in Resources */,
 				5CCDF03C1986C5D500F76615 /* contestE.m4a in Resources */,
@@ -754,6 +774,7 @@
 				31953E921729EE8100570087 /* MainStoryboard_iPad.storyboard in Resources */,
 				5CCDF0681987668700F76615 /* BFES_12.m4a in Resources */,
 				5CCDF05B1987668700F76615 /* BFCS_6.m4a in Resources */,
+				5CA193C4198ACF730007ABF1 /* tryAgainE.m4a in Resources */,
 				5CCDF01E1986C10100F76615 /* BFCE_1.m4a in Resources */,
 				317FF1761742CCD100F1F160 /* ImageManipulation.js in Resources */,
 				5CCDF0671987668700F76615 /* BFES_11.m4a in Resources */,
@@ -776,6 +797,8 @@
 				5CCDF0211986C10100F76615 /* BFCE_3.m4a in Resources */,
 				5CCDF02D1986C12900F76615 /* BFCS_3.m4a in Resources */,
 				311096FF174AB08400B02BF7 /* house.epub in Resources */,
+				5CA193C8198AF73E0007ABF1 /* BFEE_19A.m4a in Resources */,
+				5CA193BF198ABD0C0007ABF1 /* BFEE_11A.m4a in Resources */,
 				5CCDF0651987668700F76615 /* BFEE_20.m4a in Resources */,
 				31109702174AB35E00B02BF7 /* cover_default.png in Resources */,
 				5CCDF06B1987680A00F76615 /* BFES_8.m4a in Resources */,
@@ -789,6 +812,7 @@
 				5CCDF03B1986C5D500F76615 /* corralS.m4a in Resources */,
 				5CCDF0201986C10100F76615 /* BFCE_2B.m4a in Resources */,
 				5CCDF03E1986C5D500F76615 /* penE.m4a in Resources */,
+				5CA193C3198ACF730007ABF1 /* intentaDeNuevoS.m4a in Resources */,
 				31058C76176BCFF900595AAE /* logo57.png in Resources */,
 				5CCDF088198A162700F76615 /* hayE.m4a in Resources */,
 			);

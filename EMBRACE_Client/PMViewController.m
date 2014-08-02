@@ -95,7 +95,7 @@ NSUInteger const SELECTION = 0;
 NSUInteger const EXP_ACTION = 1;
 NSUInteger const INPUT = 2;
 int const STEPS_TO_SWITCH_LANGUAGES = 14;
-int language_condition = BILINGUAL;
+int language_condition = ENGLISH;
 
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -507,7 +507,7 @@ int language_condition = BILINGUAL;
                 
                         [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]];
                 
-                        NSLog([NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]);
+                        //NSLog([NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]);
                         currentIntroStep++;
                         [self performSelector:@selector(loadIntroStep) withObject:nil afterDelay:2];
                     }
@@ -709,6 +709,10 @@ int language_condition = BILINGUAL;
             NSString* imageAtPoint = [self getManipulationObjectAtPoint:location];
             //NSLog(@"location pressed: (%f, %f)", location.x, location.y);
             
+            if ([chapterTitle isEqualToString:@"Introduction At the Farm"]) {
+                stepsComplete = false;
+            }
+            
             //if it's an image that can be moved, then start moving it.
             if(imageAtPoint != nil && !stepsComplete) {
                 movingObject = TRUE;
@@ -740,12 +744,11 @@ int language_condition = BILINGUAL;
                     if ([[currSolStep stepType] isEqualToString:@"check"]) {
                         //Check if object is in the correct location
                         if([self isHotspotInsideLocation]) {
-                            if ([chapterTitle isEqualToString:@"Introduction At the Farm"] &&
-                                [[performedActions objectAtIndex:INPUT] isEqualToString:
-                                 [NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep locationId]]]) {
-                                //[self incrementCurrentStep];
-                                currentIntroStep++;
-                                [self loadIntroStep];
+                            if ([chapterTitle isEqualToString:@"Introduction At the Farm"] && ([[performedActions objectAtIndex:INPUT] isEqualToString:[NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep locationId]]] ||
+                                [[performedActions objectAtIndex:INPUT] isEqualToString:[NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep object2Id]]])) {
+                                    //[self incrementCurrentStep];
+                                    currentIntroStep++;
+                                    [self loadIntroStep];
                             }
                             //else {
                                 [self incrementCurrentStep];
@@ -784,6 +787,13 @@ int language_condition = BILINGUAL;
                             }
                             //If more than 1 was found, prompt the user to disambiguate.
                             else if ([possibleInteractions count] > 1) {
+                                if ([chapterTitle isEqualToString:@"Introduction At the Farm"] &&
+                                    [[performedActions objectAtIndex:INPUT] isEqualToString:
+                                     [NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep object2Id]]]) {
+                                    currentIntroStep++;
+                                    [self loadIntroStep];
+                                }
+                                
                                 //First rank the interactions based on location to story.
                                 [self rankPossibleInteractions:possibleInteractions];
                                 
@@ -1616,7 +1626,15 @@ int language_condition = BILINGUAL;
         }
     }
     else {
-        [self playErrorNoise]; //play noise if interaction is incorrect
+        if ([chapterTitle isEqualToString:@"Introduction At the Farm"]) {
+            if (language_condition == ENGLISH)
+                [self playAudioFile:@"tryAgainE.m4a"];
+            else
+                [self playAudioFile:@"intentaDeNuevoS.m4a"];
+        }
+        else {
+            [self playErrorNoise]; //play noise if interaction is incorrect
+        }
         
         if ([interaction interactionType] != UNGROUP) {
             //Snap the object back to its original location
@@ -2451,9 +2469,14 @@ int language_condition = BILINGUAL;
         // If the user pressed next
         if ([[performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
             currentIntroStep++;
-            // Load the next step
-            [self loadIntroStep];
-            [self setupCurrentSentenceColor];
+            if (currentIntroStep > totalIntroSteps) {
+                [self loadNextPage];
+            }
+            else {
+                // Load the next step
+                [self loadIntroStep];
+                [self setupCurrentSentenceColor];
+            }
         }
     } else if ([chapterTitle isEqualToString:@"At the Farm"] && [actualPage isEqualToString:currentPage]) {
         // If the user pressed next
@@ -2461,7 +2484,6 @@ int language_condition = BILINGUAL;
             //[timer invalidate];
             //timer = nil;
             currentVocabStep++;
-            
             if(currentVocabStep > totalVocabSteps) {
                 [self loadNextPage];
             } else {
@@ -2543,7 +2565,7 @@ int language_condition = BILINGUAL;
     NSError *audioError;
     _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&audioError];
     if (_audioPlayer == nil)
-        NSLog([audioError description]);
+        NSLog(@"%@",[audioError description]);
     else
         [_audioPlayer play];
 }
