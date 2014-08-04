@@ -11,6 +11,7 @@
 #import "PieContextualMenu.h"
 #import "Translation.h"
 #import <AudioToolbox/AudioToolbox.h>
+#import "ServerCommunicationController.h"
 
 @interface PMViewController () {
     NSString* currentPage; //The current page being shown, so that the next page can be requested.
@@ -166,9 +167,17 @@ float const groupingProximity = 20.0;
     book = [bookImporter getBookWithTitle:bookTitle]; //Get the book reference.
     model = [book model];
     
+    //NSString *tempLastPage = currentPage;
     currentPage = [book getNextPageForChapterAndActivity:chapterTitle :PM_MODE :nil];
     
     [self loadPage];
+    
+    //add logging
+    
+    //log First Page load
+    //added by James for xml logging
+    [[ServerCommunicationController sharedManager] logNextChapterNavigation:bookTitle :@"Title Page" :currentPage :@"Load First Page" :bookTitle :chapterTitle : currentPage : [NSString stringWithFormat:@"%d", currentSentence] : [NSString stringWithFormat:@"%d", currentStep]];
+    //Logging Completes Here.
 }
 
 /*
@@ -177,17 +186,37 @@ float const groupingProximity = 20.0;
  * Otherwise, it will load the next chaper.
  */
 -(void) loadNextPage {
+    //stores last page
+    NSString *tempLastPage = currentPage;
     currentPage = [book getNextPageForChapterAndActivity:chapterTitle :PM_MODE :currentPage];
     
+    //logNextPage
+    //added by James for xml logging
+    [[ServerCommunicationController sharedManager] logNextPageNavigation:@"Next Button" :tempLastPage :currentPage :@"Next Page" :bookTitle :chapterTitle : currentPage : [NSString stringWithFormat:@"%d", currentSentence] : [NSString stringWithFormat:@"%d", currentStep]];
+    //Logging Completes Here.
+    
     while (currentPage == nil) {
+        
         chapterTitle = [book getChapterAfterChapter:chapterTitle];
         
         if(chapterTitle == nil) { //no more chapters.
             [self.navigationController popViewControllerAnimated:YES];
+            //logNextSentence
+            //added by James for xml logging
+            [[ServerCommunicationController sharedManager] logNextChapterNavigation:@"Next Button" :tempLastPage :currentPage :@"Next Page | No more Chapters" :bookTitle :chapterTitle : currentPage : [NSString stringWithFormat:@"%d", currentSentence] : [NSString stringWithFormat:@"%d", currentStep]];
+            //Logging Completes Here.
+            
             break;
         }
         
+        tempLastPage = currentPage;
         currentPage = [book getNextPageForChapterAndActivity:chapterTitle :PM_MODE :nil];
+        
+        //logNextSentence
+        //added by James for xml logging
+        [[ServerCommunicationController sharedManager] logNextChapterNavigation:@"Next Button" :tempLastPage :currentPage :@"Next Chapter" :bookTitle :chapterTitle : currentPage : [NSString stringWithFormat:@"%d", currentSentence] : [NSString stringWithFormat:@"%d", currentStep]];
+        //Logging Completes Here.
+
     }
     
     [self loadPage];
@@ -260,7 +289,13 @@ float const groupingProximity = 20.0;
 -(void) incrementCurrentStep {
     //Check if able to increment current step
     if (currentStep < numSteps) {
+        NSString *tempsteps = [NSString stringWithFormat:@"%d", currentStep];
         currentStep++;
+    
+        //logNextSentence
+        //added by James for xml logging
+        [[ServerCommunicationController sharedManager] logNextStepNavigation:@"Automatic Computer Action" :tempsteps :[NSString stringWithFormat:@"%d", currentStep] :@"Next Step" :bookTitle :chapterTitle : currentPage : [NSString stringWithFormat:@"%d", currentSentence] : tempsteps];
+        //Logging Completes Here.
         
         [self performAutomaticSteps]; //automatically perform ungroup or move steps if necessary
     }
@@ -324,6 +359,8 @@ float const groupingProximity = 20.0;
     }
 }
 
+
+//add logging for automatic computer action steps
 /*
  * Performs ungroup and move steps automatically
  */
@@ -339,14 +376,26 @@ float const groupingProximity = 20.0;
         PossibleInteraction* correctUngrouping = [self getCorrectInteraction];
         
         [self performInteraction:correctUngrouping];
+        
+        //add logging
+        //[[ServerCommunicationController sharedManager] logComputerGroupingObjects:<#(NSString *)#>]
+        
         [self incrementCurrentStep];
     }
     else if ([[currSolStep stepType] isEqualToString:@"move"]) {
         [self moveObjectForSolution];
+        
+        //add logging
+        //[[ServerCommunicationController sharedManager] logComputerGroupingObjects:<#(NSString *)#>]
+        
         [self incrementCurrentStep];
     }
     else if ([[currSolStep stepType] isEqualToString:@"swapImage"]) {
         [self swapObjectImage];
+
+        //add logging
+        //[[ServerCommunicationController sharedManager] logComputerGroupingObjects:<#(NSString *)#>]
+        
         [self incrementCurrentStep];
     }
 }
@@ -357,8 +406,12 @@ float const groupingProximity = 20.0;
  */
 - (IBAction) playErrorNoise {
     AudioServicesPlaySystemSound(1053);
+    
+    [[ServerCommunicationController sharedManager] logComputerPlayAudio:@"Error Noise"  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%d",currentSentence] :[NSString stringWithFormat: @"%d", currentStep]];
 }
 
+
+//add logging for menu item selection
 /*
  * Tap gesture. Currently only used for menu selection.
  */
@@ -376,6 +429,66 @@ float const groupingProximity = 20.0;
             PossibleInteraction *interaction = [dataForItem interaction];
             
             [self checkSolutionForInteraction:interaction]; //check if selected interaction is correct
+            
+            
+            NSInteger numMenuItems = [menuDataSource numberOfMenuItems];
+            NSMutableArray *menuItemInteractions = [[NSMutableArray alloc] init];
+            NSMutableArray *menuItemImages =[[NSMutableArray alloc] init];
+            
+            NSLog(@"Menu Items: %d",numMenuItems);
+            
+            for (int x=0; x<numMenuItems; x++) {
+                MenuItemDataSource *tempMenuItem = [menuDataSource dataObjectAtIndex:x];
+                PossibleInteraction *tempMenuInteraction =[tempMenuItem interaction];
+                
+                NSLog(@"Interaction Value as int: %d", tempMenuInteraction.interactionType );
+                
+                if(tempMenuInteraction.interactionType == DISAPPEAR)
+                {
+                    [menuItemInteractions addObject:@"Disappear"];
+                    NSLog(@"disappear: %d", DISAPPEAR);
+                }
+                if (tempMenuInteraction.interactionType == UNGROUP)
+                {
+                    [menuItemInteractions addObject:@"Ungroup"];
+                    NSLog(@"ungroup: %d", UNGROUP);
+                }
+                if (tempMenuInteraction.interactionType == GROUP)
+                {
+                    [menuItemInteractions addObject:@"Group"];
+                    NSLog(@"group: %d", GROUP);
+                }
+                if (tempMenuInteraction.interactionType == TRANSFERANDDISAPPEAR)
+                {
+                    [menuItemInteractions addObject:@"Transfer and Disappear"];
+                    NSLog(@"transferanddis: %d", TRANSFERANDDISAPPEAR);
+                }
+                if (tempMenuInteraction.interactionType == TRANSFERANDGROUP)
+                {
+                    [menuItemInteractions addObject:@"Transfer and Group"];
+                    NSLog(@"transferand group: %d", TRANSFERANDGROUP);
+                }
+                if(tempMenuInteraction.interactionType ==NONE)
+                {
+                    [menuItemInteractions addObject:@"None"];
+                    NSLog(@"none: %d", NONE);
+                }
+                
+                [menuItemImages addObject:[NSString stringWithFormat:@"%d", x]];
+                
+                for(int i=0; i< [tempMenuItem.images count]; i++)
+                {
+                    [menuItemImages addObject:tempMenuItem.images[0]];
+                }
+                
+            }
+            
+            NSLog(@"Total Interactions: %d", [menuItemInteractions count]);
+            
+            
+            //add logging menu item pressed
+            NSLog(@"Right before logmenuselection");
+            [[ServerCommunicationController sharedManager] logMenuSelection: [NSString stringWithFormat:@"%d", menuItem]: menuItemInteractions : menuItemImages :@"Menu Item Selected" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
         }
         //No menuItem was selected
         else {
@@ -533,6 +646,8 @@ float const groupingProximity = 20.0;
     }
 }
 
+
+//add logging for move object
 /*
  * Pan gesture. Used to move objects from one location to another.
  */
@@ -577,15 +692,24 @@ float const groupingProximity = 20.0;
                 //Get current step to be completed
                 ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
                 
+                [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  :startLocation.x :startLocation.y :location.x :location.y :@"Move Object" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+                
                 if ([[currSolStep stepType] isEqualToString:@"check"]) {
                     //Check if object is in the correct location
                     if([self isHotspotInsideLocation]) {
                         [self incrementCurrentStep];
+                        //moving an object to a location (barn, hay loft etc)
+                        //add logging for move object to hotspot correct
+                       
                     }
                     else {
                         [self playErrorNoise];
                         
                         [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
+                        //if incorrect location reset object to beginning of gesture
+                        
+                        //add logging for move object to hotspot incorrect
+                
                     }
                 }
                 else {
@@ -605,13 +729,21 @@ float const groupingProximity = 20.0;
                         if ([possibleInteractions count] == 0) {
                             [self playErrorNoise];
                             
-                            [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
+                            [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false
+                             ];
+                            //wrong because two objects cant interact with each other reset object
+                            
+                            //add logging move object to object incorrect
+                          
                         }
                         //If only 1 possible interaction was found, go ahead and perform that interaction if it's correct.
                         if ([possibleInteractions count] == 1) {
                             PossibleInteraction* interaction = [possibleInteractions objectAtIndex:0];
                             
+                            //checks solution and accomplishes action trace
                             [self checkSolutionForInteraction:interaction];
+                            //add logging move object to checkSolutionForInteraction
+                            //ie auto computer action log
                         }
                         //If more than 1 was found, prompt the user to disambiguate.
                         else if ([possibleInteractions count] > 1) {
@@ -623,12 +755,17 @@ float const groupingProximity = 20.0;
                             
                             if(!menuExpanded)
                                 [self expandMenu];
+                            
+                            //add logging move object, correct, display menu options
                         }
                     }
                     else {
                         if (allowSnapBack) {
                             //Snap the object back to its original location
                             [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
+                            //if no collisions with objects or hotspots reset if allowsnapback is true
+                            
+                            //add logging move object, not to hotspot or object
                         }
                     }
                 }
@@ -819,6 +956,7 @@ float const groupingProximity = 20.0;
         Hotspot* connectedHotspot1;
         Hotspot* connectedHotspot2;
         
+        //computer action log
         if([connection interactionType] == UNGROUP || [connection interactionType] == DISAPPEAR) {
             [self simulateUngrouping:obj1 :obj2 :images];
         }
@@ -1041,6 +1179,7 @@ float const groupingProximity = 20.0;
             //NSLog(@"ungrouping items");
             
             [self ungroupObjects:obj1 :obj2]; //ungroup objects
+            //add logging grouping, ungroup
         }
         else if([connection interactionType] == GROUP) {
             //NSLog(@"grouping items");
@@ -1053,11 +1192,15 @@ float const groupingProximity = 20.0;
             CGPoint hotspot2Loc = [self getHotspotLocation:hotspot2];
             
             [self groupObjects:obj1 :hotspot1Loc :obj2 :hotspot2Loc]; //group objects
+            //add logging grouping, group
+            [[ServerCommunicationController sharedManager] logComputerGroupingObjects:obj1 :obj2 :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%d", currentSentence] :[NSString stringWithFormat: @"%d", currentStep]];
         }
         else if([connection interactionType] == DISAPPEAR) {
             //NSLog(@"causing object to disappear");
             
             [self consumeAndReplenishSupply:obj2]; //make object disappear
+            //add logging grouping disappear
+            [[ServerCommunicationController sharedManager] logComputerDisappearObject:obj2 :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%d", currentSentence] :[NSString stringWithFormat: @"%d", currentStep]];
         }
     }
 }
@@ -1205,6 +1348,10 @@ float const groupingProximity = 20.0;
             if (object2Id != nil) {
                 PossibleInteraction* correctInteraction = [self getCorrectInteraction];
                 [self performInteraction:correctInteraction]; //performs solution step
+                
+                //logging to XML added by James
+                [[ServerCommunicationController sharedManager] logComputerMoveObject: object1Id : object2Id : startLocation.x : startLocation.y : startLocation.x : startLocation.y : waypointId : @"Move to Object" : bookTitle : chapterTitle : currentPage : [NSString stringWithFormat:@"%d", currentSentence] : [NSString stringWithFormat:@"%d" , currentStep]];
+                
             }
             else if (waypointId != nil) {
                 //Get position of hotspot in pixels based on the object image size
@@ -1218,6 +1365,9 @@ float const groupingProximity = 20.0;
                 //Move the object
                 [self moveObject:object1Id :waypointLocation :hotspotLocation :false];
                 
+                //logging to XML added by James
+                [[ServerCommunicationController sharedManager] logComputerMoveObject: object1Id : object2Id : startLocation.x : startLocation.y : startLocation.x : startLocation.y : waypointId : @"Move to Hotspot" : bookTitle : chapterTitle : currentPage : [NSString stringWithFormat:@"%d", currentSentence] : [NSString stringWithFormat:@"%d" , currentStep]];
+                
                 //Clear highlighting
                 NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
                 [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
@@ -1229,6 +1379,7 @@ float const groupingProximity = 20.0;
 /*
  * Calls the JS function to swap an object's image with its alternate one
  */
+//for logging record alternate source image
 -(void) swapObjectImage {
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
@@ -1254,6 +1405,9 @@ float const groupingProximity = 20.0;
             //Swap images using alternative src
             NSString* swapImages = [NSString stringWithFormat:@"swapImageSrc('%@', '%@', '%@', %f, %f)", object1Id, altSrc, width, location.x, location.y];
             [bookView stringByEvaluatingJavaScriptFromString:swapImages];
+            
+            //logging to XML added by James
+            [[ServerCommunicationController sharedManager] logComputerSwapImages : object1Id : altSrc: @"Swap Image" : bookTitle : chapterTitle : currentPage : [NSString stringWithFormat:@"%d", currentSentence] : [NSString stringWithFormat:@"%d" , currentStep]];
         }
     }
 }
@@ -1409,6 +1563,8 @@ float const groupingProximity = 20.0;
     return correctInteraction;
 }
 
+
+//add logging for menu selection and autocomplete
 /*
  * Checks if an interaction is correct by comparing it to the solution. If it is correct, the interaction is performed and 
  * the current step is incremented. If it is incorrect, an error noise is played, and the objects snap back to their 
@@ -1420,20 +1576,29 @@ float const groupingProximity = 20.0;
     
     //Check if selected interaction is correct
     if ([interaction isEqual:correctInteraction]) {
+        [[ServerCommunicationController sharedManager] logComputerVerification:true : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%d", currentSentence] :[NSString stringWithFormat:@"%d", currentStep]];
+        
         [self performInteraction:interaction];
         [self incrementCurrentStep];
         
         //Transference counts as two steps, so we must increment again
         if ([interaction interactionType] == TRANSFERANDGROUP || [interaction interactionType] == TRANSFERANDDISAPPEAR) {
             [self incrementCurrentStep];
+            //add logging move object automatically computer action
         }
     }
     else {
+        //add logging selection or move object incorrect
+        [[ServerCommunicationController sharedManager] logComputerVerification:false : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%d", currentSentence] :[NSString stringWithFormat:@"%d", currentStep]];
+        
         [self playErrorNoise]; //play noise if interaction is incorrect
         
         if ([interaction interactionType] != UNGROUP) {
             //Snap the object back to its original location
             [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
+            
+            //add logging selection or move object incorrect, now reset object
+            [[ServerCommunicationController sharedManager] logComputerResetObject : movingObjectId  :startLocation.x :startLocation.y : startLocation.x : startLocation.y : @"Reset" : bookTitle : chapterTitle : currentPage :[NSString stringWithFormat: @"%d", currentSentence] :[NSString stringWithFormat: @"%d", currentStep]];
         }
     }
     
@@ -2259,9 +2424,16 @@ float const groupingProximity = 20.0;
  * of the interaction is checked against the current sentence before moving on to the next sentence. If the manipulation
  * is correct, then it will move on to the next sentence. If the manipulation is not current, then feedback will be provided.
  */
+
+//logging for sentences and pages, 
 -(IBAction)pressedNext:(id)sender {
     if (stepsComplete) {
         //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
+        [[ServerCommunicationController sharedManager] logUserNextButtonPressed:@"Next Button" :@"Computer Load Next View" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%d",currentSentence] :[NSString stringWithFormat:@"%d", currentStep]];
+        
+        //added for logging
+        NSString *tempLastSentence = [NSString stringWithFormat:@"%d", currentSentence];
+        
         currentSentence ++;
         
         //Set up current sentence appearance and solution steps
@@ -2274,6 +2446,13 @@ float const groupingProximity = 20.0;
         //currentSentence is 1 indexed.
         if(currentSentence > totalSentences) {
             [self loadNextPage];
+            //logging done in loadNextPage
+        }
+        else{
+            //logNextSentence
+            //added by James for xml logging
+            [[ServerCommunicationController sharedManager] logNextSentenceNavigation:@"Next Button" :tempLastSentence : [NSString stringWithFormat:@"%d", currentSentence] :@"Next Sentence" :bookTitle :chapterTitle : currentPage : tempLastSentence : [NSString stringWithFormat:@"%d", currentStep]];
+            //Logging Completes Here.
         }
     }
 }
@@ -2294,6 +2473,7 @@ float const groupingProximity = 20.0;
     int interactionNum = 1;
     
     for(PossibleInteraction* interaction in possibleInteractions) {
+        //dig into simulatepossibleinteractionformenu to log populated menu
         [self simulatePossibleInteractionForMenuItem:interaction];
         interactionNum ++;
         //NSLog(@"%d", interactionNum);
@@ -2306,6 +2486,8 @@ float const groupingProximity = 20.0;
 -(void)clearHighlightedObject {
     NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
     [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
+    
+    //log clear
 }
 
 -(void)playWordAudio:(NSString*) word :(NSString*) lang {
@@ -2315,6 +2497,8 @@ float const groupingProximity = 20.0;
     NSLog(@"Sentence: %@", word);
     NSLog(@"Volume: %f", utteranceEn.volume);
     [syn speakUtterance:utteranceEn];
+    
+    //log play audio
 }
 
 #pragma mark - PieContextualMenuDelegate
