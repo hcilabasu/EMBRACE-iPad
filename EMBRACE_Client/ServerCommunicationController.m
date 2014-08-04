@@ -452,7 +452,7 @@ DDXMLElement *nodeStudy;
     [nodeComputerAction addChild:nodeInput];
     [nodeComputerAction addChild:nodeContext];
     
-    bool successfulWrite = [[ServerCommunicationController sharedManager] writeToFile:userNameString ofType:@"txt"];
+    [[ServerCommunicationController sharedManager] writeToFile:userNameString ofType:@"txt"];
     
 }
 
@@ -660,7 +660,7 @@ DDXMLElement *nodeStudy;
 }
 
 //logging audio: incorrect | introduction
--(void) logComputerPlayAudio: (NSString *) audioValue : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue
+-(void) logComputerPlayAudio: (NSString *) movingObjectID : (NSString *) audioValue : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue
 {
     /*
      Action Type:
@@ -681,7 +681,7 @@ DDXMLElement *nodeStudy;
     DDXMLElement *nodeUserActionID = [DDXMLElement elementWithName:@"User Action ID" stringValue:[NSString stringWithFormat:@"%d",UserActionIDTag]];
     
     //logging selection
-    NSString *objectSelected = @"tempObject";
+    NSString *objectSelected = movingObjectID;
     DDXMLElement *nodeSelection = [DDXMLElement elementWithName:@"Selection" stringValue:objectSelected];
     
     //logging Input
@@ -708,7 +708,7 @@ DDXMLElement *nodeStudy;
 }
 
 //logging displayMenuItems
--(void) logComputerDisplayMenuItems : (NSArray *) displayedMenuItems : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue
+-(void) logComputerDisplayMenuItems :  (NSString *) selectedMenuItemID : (NSArray *) displayedMenuInteractions :(NSArray *)displayedMenuImages : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue
 {
     /*
      Action Type:
@@ -734,17 +734,115 @@ DDXMLElement *nodeStudy;
     //[nodeInput addChild:nodeButtonPressed];
     DDXMLElement *nodeMenuOptions;
     
+    NSLog(@"after nodeselect");
     //logging Input
     DDXMLElement *nodeInput = [DDXMLElement elementWithName:@"Input"];
-    if([displayedMenuItems count] == 2)
+    DDXMLElement *nodeDisplayedMenuItem1;
+    DDXMLElement *nodeDisplayedMenuItem2;
+    DDXMLElement *nodeDisplayedMenuItem3;
+    
+    NSLog(@"before if statement, Num Interactions: %d", [displayedMenuInteractions count]);
+    if( [displayedMenuInteractions count] == 2 )
     {
-        nodeMenuOptions = [DDXMLElement elementWithName:@"Menu Options" stringValue:[NSString stringWithFormat:@"%@, %@", [displayedMenuItems objectAtIndex:0], [displayedMenuItems objectAtIndex:1]]];
+        NSLog(@"Gets to correct first Statement");
+        
+        NSString *menuItem;
+        
+        NSLog(@"Total Images: %d", [displayedMenuImages count]);
+        
+        for( int i=0; i<[displayedMenuImages count];i++ )
+        {
+            NSLog(@"%@", [displayedMenuImages objectAtIndex:i]);
+            if( [[displayedMenuImages objectAtIndex:i] isEqual:@"1"])
+            {
+                NSLog(@"gets to first function");
+                menuItem = [NSString stringWithFormat:@"%@", [displayedMenuImages objectAtIndex:1]];
+                
+                for (int j=1; j<i; j++)
+                {
+                    menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuImages objectAtIndex:i-j+1] ];
+                }
+                NSLog(@"MenuItem String: %@", menuItem);
+                
+                nodeDisplayedMenuItem1 = [DDXMLElement elementWithName:@"Menu Item 1" stringValue:[NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuInteractions objectAtIndex:0]]];
+                
+                NSLog(@"gets to second function");
+                menuItem = [NSString stringWithFormat:@"%@", [displayedMenuImages objectAtIndex:1]];
+                for (int j=i; j<[displayedMenuImages count]-1; j++)
+                {
+                    menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuImages objectAtIndex:j+1] ];
+                }
+                
+                NSLog(@"MenuItem String: %@", menuItem);
+                
+                nodeDisplayedMenuItem2 = [DDXMLElement elementWithName:@"Menu Item 2" stringValue:[NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuInteractions objectAtIndex:1]]];
+            }
+            
+        }
+        
+        //adding child nodes to Input parent
+        [nodeInput addChild:nodeDisplayedMenuItem1];
+        [nodeInput addChild:nodeDisplayedMenuItem2];
     }
     else
     {
-        nodeMenuOptions = [DDXMLElement elementWithName:@"Menu Options" stringValue:[NSString stringWithFormat:@"%@, %@, %@", [displayedMenuItems objectAtIndex:0], [displayedMenuItems objectAtIndex:1], [displayedMenuItems objectAtIndex:2]]];
+        NSLog(@"Gets to correct first Statement");
+        
+        NSString *menuItem;
+        
+        NSLog(@"Total Images: %d", [displayedMenuImages count]);
+        
+        int markMidmenu =0;
+        for( int i=0; i<[displayedMenuImages count];i++ )
+        {
+            NSLog(@"%@", [displayedMenuImages objectAtIndex:i]);
+            if ([[displayedMenuImages objectAtIndex:i] isEqual:@"1"])
+            {
+                markMidmenu = i;
+                NSLog(@"gets to first function for 3 images");
+                menuItem = [NSString stringWithFormat:@"%@", [displayedMenuImages objectAtIndex:1]];
+                
+                for (int j=1; j<i; j++)
+                {
+                    menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuImages objectAtIndex:i-j+1] ];
+                }
+                NSLog(@"MenuItem String: %@", menuItem);
+                
+                nodeDisplayedMenuItem1 = [DDXMLElement elementWithName:@"Menu Item 1" stringValue:[NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuInteractions objectAtIndex:0]]];
+            }
+            
+            if( [[displayedMenuImages objectAtIndex:i] isEqual:@"2"])
+            {
+                NSLog(@"gets to second function for 3 images");
+                menuItem = [NSString stringWithFormat:@"%@", [displayedMenuImages objectAtIndex:markMidmenu+1]];
+                
+                for (int j=markMidmenu; j<i-1; j++)
+                {
+                    menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuImages objectAtIndex:j+1] ];
+                }
+                NSLog(@"MenuItem String: %@", menuItem);
+                
+                nodeDisplayedMenuItem2 = [DDXMLElement elementWithName:@"Menu Item 2" stringValue:[NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuInteractions objectAtIndex:1]]];
+                
+                NSLog(@"gets to third function for images");
+                menuItem = [NSString stringWithFormat:@"%@", [displayedMenuImages objectAtIndex:i+1]];
+                for (int j=i; j<[displayedMenuImages count]-1; j++)
+                {
+                    menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuImages objectAtIndex:j+1] ];
+                }
+                
+                NSLog(@"MenuItem String: %@", menuItem);
+                
+                nodeDisplayedMenuItem3 = [DDXMLElement elementWithName:@"Menu Item 3" stringValue:[NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuInteractions objectAtIndex:2]]];
+            }
+            
+        }
+        
+        //adding child nodes to Input parent
+        [nodeInput addChild:nodeDisplayedMenuItem1];
+        [nodeInput addChild:nodeDisplayedMenuItem2];
+        [nodeInput addChild:nodeDisplayedMenuItem3];
     }
-    
     
     //adding child nodes to Input parent
     [nodeInput addChild:nodeMenuOptions];
@@ -857,7 +955,7 @@ DDXMLElement *nodeStudy;
     
     //logging Input
     DDXMLElement *nodeInput = [DDXMLElement elementWithName:@"Input"];
-    DDXMLElement *nodeButtonType = [DDXMLElement elementWithName:@"Button Type" stringValue:@"Story Button"];
+    DDXMLElement *nodeButtonType = [DDXMLElement elementWithName:@"Button Type" stringValue:chapterValue];
     /*
      DDXMLElement *nodeCurChapter = [DDXMLElement elementWithName:@"Current Chapter" stringValue:curChapterValue];
      DDXMLElement *nodeNextChapter = [DDXMLElement elementWithName:@"Next Chapter" stringValue:nextChapterValue];

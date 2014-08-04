@@ -407,7 +407,7 @@ float const groupingProximity = 20.0;
 - (IBAction) playErrorNoise {
     AudioServicesPlaySystemSound(1053);
     
-    [[ServerCommunicationController sharedManager] logComputerPlayAudio:@"Error Noise"  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%d",currentSentence] :[NSString stringWithFormat: @"%d", currentStep]];
+    [[ServerCommunicationController sharedManager] logComputerPlayAudio: movingObjectId:@"Error Noise"  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%d",currentSentence] :[NSString stringWithFormat: @"%d", currentStep]];
 }
 
 
@@ -700,9 +700,11 @@ float const groupingProximity = 20.0;
                         [self incrementCurrentStep];
                         //moving an object to a location (barn, hay loft etc)
                         //add logging for move object to hotspot correct
+                        [[ServerCommunicationController sharedManager] logComputerVerification:true : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%d", currentSentence] :[NSString stringWithFormat:@"%d", currentStep]];
                        
                     }
                     else {
+                        [[ServerCommunicationController sharedManager] logComputerVerification:false : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%d", currentSentence] :[NSString stringWithFormat:@"%d", currentStep]];
                         [self playErrorNoise];
                         
                         [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
@@ -727,6 +729,8 @@ float const groupingProximity = 20.0;
                         
                         //No possible interactions were found
                         if ([possibleInteractions count] == 0) {
+                            [[ServerCommunicationController sharedManager] logComputerVerification:false : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%d", currentSentence] :[NSString stringWithFormat:@"%d", currentStep]];
+                            
                             [self playErrorNoise];
                             
                             [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false
@@ -749,6 +753,8 @@ float const groupingProximity = 20.0;
                         else if ([possibleInteractions count] > 1) {
                             //First rank the interactions based on location to story.
                             [self rankPossibleInteractions:possibleInteractions];
+                            
+                            [[ServerCommunicationController sharedManager] logComputerVerification:true : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%d", currentSentence] :[NSString stringWithFormat:@"%d", currentStep]];
                             
                             //Populate the menu data source and expand the menu.
                             [self populateMenuDataSource:possibleInteractions];
@@ -1349,6 +1355,12 @@ float const groupingProximity = 20.0;
                 PossibleInteraction* correctInteraction = [self getCorrectInteraction];
                 [self performInteraction:correctInteraction]; //performs solution step
                 
+                //gets location of second object and passes into xml
+               /* NSArray* hotspots = [connection hotspots]; //Array of hotspot objects.
+                Hotspot* hotspot2 = [hotspots objectAtIndex:1];
+                CGPoint hotspot2Loc = [self getHotspotLocation:hotspot2];*/
+                
+                //fix logging
                 //logging to XML added by James
                 [[ServerCommunicationController sharedManager] logComputerMoveObject: object1Id : object2Id : startLocation.x : startLocation.y : startLocation.x : startLocation.y : waypointId : @"Move to Object" : bookTitle : chapterTitle : currentPage : [NSString stringWithFormat:@"%d", currentSentence] : [NSString stringWithFormat:@"%d" , currentStep]];
                 
@@ -1366,7 +1378,7 @@ float const groupingProximity = 20.0;
                 [self moveObject:object1Id :waypointLocation :hotspotLocation :false];
                 
                 //logging to XML added by James
-                [[ServerCommunicationController sharedManager] logComputerMoveObject: object1Id : object2Id : startLocation.x : startLocation.y : startLocation.x : startLocation.y : waypointId : @"Move to Hotspot" : bookTitle : chapterTitle : currentPage : [NSString stringWithFormat:@"%d", currentSentence] : [NSString stringWithFormat:@"%d" , currentStep]];
+                [[ServerCommunicationController sharedManager] logComputerMoveObject: object1Id : object2Id : startLocation.x : startLocation.y : waypointLocation.x : waypointLocation.y : waypointId : @"Move to Hotspot" : bookTitle : chapterTitle : currentPage : [NSString stringWithFormat:@"%d", currentSentence] : [NSString stringWithFormat:@"%d" , currentStep]];
                 
                 //Clear highlighting
                 NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];

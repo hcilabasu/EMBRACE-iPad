@@ -70,10 +70,10 @@
 -(void) logComputerVerification: (BOOL) verficationValue : (NSString *) objectSelected : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue;
 
 //logging audio: incorrect | introduction
--(void) logComputerPlayAudio: (NSString *) audioValue : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue;
+-(void) logComputerPlayAudio: (NSString *) movingObjectID : (NSString *) audioValue : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue;
 
 //logging displayMenuItems
--(void) logComputerDisplayMenuItems : (NSArray *) displayedMenuItems : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue;
+-(void) logComputerDisplayMenuItems : (NSString *) selectedMenuItemID : (NSArray *) displayedMenuInteractions :(NSArray *)displayedMenuImages : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue;
 
 
 //Logging User Actions
