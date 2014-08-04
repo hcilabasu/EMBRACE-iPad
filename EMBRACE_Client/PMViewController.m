@@ -300,11 +300,24 @@ float const groupingProximity = 20.0;
     NSString* action = [step action];
     
     //Objects involved in interaction
-    NSArray* objects = [[NSArray alloc] initWithObjects:obj1Id, obj2Id, nil];
+    NSArray* objects;
     
-    //Get hotspots for both objects associated with action
+    //Get hotspots for both objects associated with action, first assuming that obj1 is the subject of the interaction
     Hotspot* hotspot1 = [model getHotspotforObjectWithActionAndRole:obj1Id :action :@"subject"];
     Hotspot* hotspot2 = [model getHotspotforObjectWithActionAndRole:obj2Id :action :@"object"];
+    
+    //If no hotspots were found with obj1 as the subject, then assume obj1 is the object of the interaction
+    //Add the subject before the object to the interaction
+    if (hotspot1 == nil && hotspot2 == nil) {
+        objects = [[NSArray alloc] initWithObjects:obj2Id, obj1Id, nil];
+        
+        hotspot1 = [model getHotspotforObjectWithActionAndRole:obj2Id :action :@"subject"];
+        hotspot2 = [model getHotspotforObjectWithActionAndRole:obj1Id :action :@"object"];
+    }
+    else {
+        objects = [[NSArray alloc] initWithObjects:obj1Id, obj2Id, nil];
+    }
+    
     NSArray* hotspotsForInteraction = [[NSArray alloc]initWithObjects:hotspot1, hotspot2, nil];
     
     //The move case only applies if an object is being moved to another object, not a waypoint
@@ -1695,13 +1708,14 @@ float const groupingProximity = 20.0;
                                    !useProximity) {
                                     //Create necessary arrays for the interaction.
                                     NSArray* objects;
-                                    NSArray* hotspotsForInteraction = [[NSArray alloc] initWithObjects:movingObjectHotspot,
-                                                                       hotspot, nil];
+                                    NSArray* hotspotsForInteraction;
                                     
                                     if([[relationshipBetweenObjects actionType] isEqualToString:@"group"]) {
                                         PossibleInteraction* interaction = [[PossibleInteraction alloc] initWithInteractionType:GROUP];
                                         
                                         objects = [[NSArray alloc] initWithObjects:obj, objId, nil];
+                                        hotspotsForInteraction = [[NSArray alloc] initWithObjects:movingObjectHotspot, hotspot, nil];
+                                        
                                         [interaction addConnection:GROUP :objects :hotspotsForInteraction];
                                         [groupings addObject:interaction];
                                     }
@@ -1711,9 +1725,11 @@ float const groupingProximity = 20.0;
                                         //Add the subject of the disappear interaction before the object
                                         if ([[movingObjectHotspot role] isEqualToString:@"subject"]) {
                                             objects = [[NSArray alloc] initWithObjects:obj, objId, nil];
+                                            hotspotsForInteraction = [[NSArray alloc] initWithObjects:movingObjectHotspot, hotspot, nil];
                                         }
                                         else if ([[movingObjectHotspot role] isEqualToString:@"object"]) {
                                             objects = [[NSArray alloc] initWithObjects:objId, obj, nil];
+                                            hotspotsForInteraction = [[NSArray alloc] initWithObjects:hotspot, movingObjectHotspot, nil];
                                         }
                                         
                                         [interaction addConnection:DISAPPEAR :objects :hotspotsForInteraction];
