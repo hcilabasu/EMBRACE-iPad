@@ -478,7 +478,10 @@ float const groupingProximity = 20.0;
                 
                 for(int i=0; i< [tempMenuItem.images count]; i++)
                 {
-                    [menuItemImages addObject:tempMenuItem.images[0]];
+                    //[menuItemImages addObject:[tempMenuItem.images objectAtIndex:i]];
+                    
+                    MenuItemImage *tempimage =  [tempMenuItem.images objectAtIndex:i];
+                    [menuItemImages addObject:[tempimage.image accessibilityIdentifier]];
                 }
                 
             }
@@ -869,6 +872,8 @@ float const groupingProximity = 20.0;
     //NSLog(@"createMenuItemForImage imagesrc %@", imagePath);
 
     UIImage* image = [[UIImage alloc] initWithContentsOfFile:imagePath];
+    //added by James to extract image name
+    [image  setAccessibilityIdentifier:objId] ;
     
     if(image == nil)
         NSLog(@"image is nil");
