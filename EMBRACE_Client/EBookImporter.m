@@ -662,8 +662,8 @@
                             ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :locationId :nil :action];
                             [PMSolution addSolutionStep:solutionStep];
                         }
-                        //swapImage only has obj1Id and action
-                        else if([[step name] isEqualToString:@"swapImage"]) {
+                        //swapImage and checkAndSwap only have obj1Id and action
+                        else if([[step name] isEqualToString:@"swapImage"] || [[step name] isEqualToString:@"checkAndSwap"]) {
                             ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :action];
                             [PMSolution addSolutionStep:solutionStep];
                         }

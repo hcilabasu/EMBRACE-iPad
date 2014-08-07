@@ -435,8 +435,28 @@ float const groupingProximity = 20.0;
         menuExpanded = FALSE;
     }
     else {
+        if (numSteps > 0) {
+            //Get steps for current sentence
+            NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            
+            //Get current step to be completed
+            ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+            
+            //Current step is checkAndSwap
+            if ([[currSolStep stepType] isEqualToString:@"checkAndSwap"]) {
+                //Get the background object at that point
+                NSString* bgImageAtPoint = [self getObjectAtPoint:location ofType:@"backgroundObject"];
+                
+                //If the correct object was tapped, swap its image and increment the step
+                if ([self checkSolutionForSubject:bgImageAtPoint]) {
+                    [self swapObjectImage];
+                    [self incrementCurrentStep];
+                }
+            }
+        }
+        
         //Get the object at that point if it's a manipulation object.
-        NSString* imageAtPoint = [self getManipulationObjectAtPoint:location];
+        NSString* imageAtPoint = [self getObjectAtPoint:location ofType:@"manipulationObject"];
         
         //NSLog(@"location pressed: (%f, %f)", location.x, location.y);
         
@@ -534,6 +554,11 @@ float const groupingProximity = 20.0;
                 [self incrementCurrentStep];
             }
         }
+        //Current step is checkAndSwap and involves swapping an image
+        else if ([[currSolStep stepType] isEqualToString:@"checkAndSwap"]) {
+            [self swapObjectImage];
+            [self incrementCurrentStep];
+        }
         //Current step is either group, ungroup, disappear, or transference
         else {
             //Get the interaction to be performed
@@ -554,7 +579,7 @@ float const groupingProximity = 20.0;
     if(recognizer.state == UIGestureRecognizerStateBegan && pinchToUngroup) {
         pinching = TRUE;
         
-        NSString* imageAtPoint = [self getManipulationObjectAtPoint:location];
+        NSString* imageAtPoint = [self getObjectAtPoint:location ofType:@"manipulationObject"];
         
         //if it's an image that can be moved, then start moving it.
         if(imageAtPoint != nil && !stepsComplete) {
@@ -646,7 +671,7 @@ float const groupingProximity = 20.0;
             panning = TRUE;
             
             //Get the object at that point if it's a manipulation object.
-            NSString* imageAtPoint = [self getManipulationObjectAtPoint:location];
+            NSString* imageAtPoint = [self getObjectAtPoint:location ofType:@"manipulationObject"];
             //NSLog(@"location pressed: (%f, %f)", location.x, location.y);
             
             //if it's an image that can be moved, then start moving it.
@@ -1367,7 +1392,7 @@ float const groupingProximity = 20.0;
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
-        if ([[currSolStep stepType] isEqualToString:@"swapImage"]) {
+        if ([[currSolStep stepType] isEqualToString:@"swapImage"] || [[currSolStep stepType] isEqualToString:@"checkAndSwap"]) {
             //Get information for swapImage step type
             NSString* object1Id = [currSolStep object1Id];
             NSString* action = [currSolStep action];
@@ -1433,9 +1458,10 @@ float const groupingProximity = 20.0;
 /*
  * Sends the JS request for the element at the location provided, and takes care of moving any
  * canvas objects out of the way to get accurate information.
- * It also checks to make sure the object that is at that point is a manipulation object before returning it.
+ * It also checks to make sure the object that is at that point is of a certain class (manipulation or 
+ * background) before returning it.
  */
--(NSString*) getManipulationObjectAtPoint:(CGPoint) location {
+-(NSString*) getObjectAtPoint:(CGPoint) location ofType:(NSString*)class {
     //Temporarily hide the overlay canvas to get the object we need
     NSString* hideCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'none';", @"'overlay'"];
     [bookView stringByEvaluatingJavaScriptFromString:hideCanvas];
@@ -1453,7 +1479,7 @@ float const groupingProximity = 20.0;
     NSString* showCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'block';", @"'overlay'"];
     [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
     
-    if([imageAtPointClass isEqualToString:@"manipulationObject"]) {
+    if([imageAtPointClass isEqualToString:class]) {
         //Any subject can be used, so just return the object id
         if (useSubject == ALL_ENTITIES)
             return imageAtPoint;
