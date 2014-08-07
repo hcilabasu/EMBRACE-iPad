@@ -1308,13 +1308,25 @@ float const groupingProximity = 20.0;
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
-        //If current step requires transference and group, the correct object should be the object2 of the next step
+        //If current step requires transference and group, the correct object depends on the format used.
+        //transferAndGroup steps may be written in two different ways:
+        //   1. obj2Id is the same for both steps, so correct object is object1 of next step
+        //      (ex. farmer give bucket; cat accept bucket)
+        //   2. obj2Id of first step is obj1Id of second step, so correct object is object2 of next step
+        //      (ex. farmer putDown hay; hay getIn cart)
         if ([[currSolStep stepType] isEqualToString:@"transferAndGroup"]) {
             //Get next step
             ActionStep* nextSolStep = [currSolSteps objectAtIndex:currentStep];
-            
-            if ([overlappingObject isEqualToString:[nextSolStep object2Id]]) {
-                return true;
+
+            if ([[currSolStep object2Id] isEqualToString:[nextSolStep object2Id]]) {
+                if ([overlappingObject isEqualToString:[nextSolStep object1Id]]) {
+                    return true;
+                }
+            }
+            else {
+                if ([overlappingObject isEqualToString:[nextSolStep object2Id]]) {
+                    return true;
+                }
             }
         }
         //If current step requires transference and disapppear, the correct object should be the object1 of the next step
