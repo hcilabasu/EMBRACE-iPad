@@ -440,6 +440,7 @@ float const groupingProximity = 20.0;
             for (int x=0; x<numMenuItems; x++) {
                 MenuItemDataSource *tempMenuItem = [menuDataSource dataObjectAtIndex:x];
                 PossibleInteraction *tempMenuInteraction =[tempMenuItem interaction];
+                //Relationship *temprelationship = ;
                 
                 NSLog(@"Interaction Value as int: %d", tempMenuInteraction.interactionType );
                 

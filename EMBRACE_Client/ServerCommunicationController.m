@@ -758,19 +758,20 @@ DDXMLElement *nodeStudy;
                 NSLog(@"gets to first function");
                 menuItem = [NSString stringWithFormat:@"%@", [displayedMenuImages objectAtIndex:1]];
                 
-                for (int j=1; j<i; j++)
+                for (int j=2; j<i; j++)
                 {
-                    menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuImages objectAtIndex:i-j+1] ];
+                    menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuImages objectAtIndex:j] ];
+                    NSLog(@"MenuItem String: %@", menuItem);
                 }
                 NSLog(@"MenuItem String: %@", menuItem);
                 
                 nodeDisplayedMenuItem1 = [DDXMLElement elementWithName:@"Menu Item 1" stringValue:[NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuInteractions objectAtIndex:0]]];
                 
                 NSLog(@"gets to second function");
-                menuItem = [NSString stringWithFormat:@"%@", [displayedMenuImages objectAtIndex:1]];
-                for (int j=i; j<[displayedMenuImages count]-1; j++)
+                menuItem = [NSString stringWithFormat:@"%@", [displayedMenuImages objectAtIndex:i+1]];
+                for (int j=i+2; j<[displayedMenuImages count]; j++)
                 {
-                    menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuImages objectAtIndex:j+1] ];
+                    menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuImages objectAtIndex:j] ];
                 }
                 
                 NSLog(@"MenuItem String: %@", menuItem);
@@ -801,10 +802,12 @@ DDXMLElement *nodeStudy;
                 markMidmenu = i;
                 NSLog(@"gets to first function for 3 images");
                 menuItem = [NSString stringWithFormat:@"%@", [displayedMenuImages objectAtIndex:1]];
+                NSLog(@"MenuItem String: %@", menuItem);
                 
-                for (int j=1; j<i; j++)
+                for (int j=2; j<i; j++)
                 {
-                    menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuImages objectAtIndex:i-j+1] ];
+                    menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuImages objectAtIndex:j] ];
+                    NSLog(@"MenuItem String: %@", menuItem);
                 }
                 NSLog(@"MenuItem String: %@", menuItem);
                 
@@ -815,10 +818,12 @@ DDXMLElement *nodeStudy;
             {
                 NSLog(@"gets to second function for 3 images");
                 menuItem = [NSString stringWithFormat:@"%@", [displayedMenuImages objectAtIndex:markMidmenu+1]];
+                NSLog(@"MenuItem String: %@", menuItem);
                 
-                for (int j=markMidmenu; j<i-1; j++)
+                for (int j=markMidmenu+2; j<i; j++)
                 {
-                    menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuImages objectAtIndex:j+1] ];
+                    menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuImages objectAtIndex:j] ];
+                    NSLog(@"MenuItem String: %@", menuItem);
                 }
                 NSLog(@"MenuItem String: %@", menuItem);
                 
@@ -826,9 +831,9 @@ DDXMLElement *nodeStudy;
                 
                 NSLog(@"gets to third function for images");
                 menuItem = [NSString stringWithFormat:@"%@", [displayedMenuImages objectAtIndex:i+1]];
-                for (int j=i; j<[displayedMenuImages count]-1; j++)
+                for (int j=i+2; j<[displayedMenuImages count]; j++)
                 {
-                    menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuImages objectAtIndex:j+1] ];
+                    menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuImages objectAtIndex:j] ];
                 }
                 
                 NSLog(@"MenuItem String: %@", menuItem);
@@ -1134,23 +1139,24 @@ DDXMLElement *nodeStudy;
                 NSLog(@"gets to first function");
                 menuItem = [NSString stringWithFormat:@"%@", [displayedMenuImages objectAtIndex:1]];
                 
-                for (int j=1; j<i; j++)
+                for (int j=2; j<i; j++)
                 {
-                    menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuImages objectAtIndex:i-j+1] ];
+                    menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuImages objectAtIndex:j] ];
+                    NSLog(@"MenuItem String: %@", menuItem);
                 }
                 NSLog(@"MenuItem String: %@", menuItem);
                 
                 nodeDisplayedMenuItem1 = [DDXMLElement elementWithName:@"Menu Item 1" stringValue:[NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuInteractions objectAtIndex:0]]];
                 
                 NSLog(@"gets to second function");
-                menuItem = [NSString stringWithFormat:@"%@", [displayedMenuImages objectAtIndex:1]];
-                for (int j=i; j<[displayedMenuImages count]-1; j++)
+                menuItem = [NSString stringWithFormat:@"%@", [displayedMenuImages objectAtIndex:i+1]];
+                for (int j=i+2; j<[displayedMenuImages count]; j++)
                 {
-                    menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuImages objectAtIndex:j+1] ];
+                    menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuImages objectAtIndex:j] ];
                 }
                 
                 NSLog(@"MenuItem String: %@", menuItem);
-
+                
                 nodeDisplayedMenuItem2 = [DDXMLElement elementWithName:@"Menu Item 2" stringValue:[NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuInteractions objectAtIndex:1]]];
             }
             
@@ -1177,10 +1183,12 @@ DDXMLElement *nodeStudy;
                 markMidmenu = i;
                 NSLog(@"gets to first function for 3 images");
                 menuItem = [NSString stringWithFormat:@"%@", [displayedMenuImages objectAtIndex:1]];
+                NSLog(@"MenuItem String: %@", menuItem);
                 
-                for (int j=1; j<i; j++)
+                for (int j=2; j<i; j++)
                 {
-                    menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuImages objectAtIndex:i-j+1] ];
+                    menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuImages objectAtIndex:j] ];
+                    NSLog(@"MenuItem String: %@", menuItem);
                 }
                 NSLog(@"MenuItem String: %@", menuItem);
                 
@@ -1191,10 +1199,12 @@ DDXMLElement *nodeStudy;
             {
                 NSLog(@"gets to second function for 3 images");
                 menuItem = [NSString stringWithFormat:@"%@", [displayedMenuImages objectAtIndex:markMidmenu+1]];
+                NSLog(@"MenuItem String: %@", menuItem);
                 
-                for (int j=markMidmenu; j<i-1; j++)
+                for (int j=markMidmenu+2; j<i; j++)
                 {
-                    menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuImages objectAtIndex:j+1] ];
+                    menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuImages objectAtIndex:j] ];
+                    NSLog(@"MenuItem String: %@", menuItem);
                 }
                 NSLog(@"MenuItem String: %@", menuItem);
                 
@@ -1202,9 +1212,9 @@ DDXMLElement *nodeStudy;
                 
                 NSLog(@"gets to third function for images");
                 menuItem = [NSString stringWithFormat:@"%@", [displayedMenuImages objectAtIndex:i+1]];
-                for (int j=i; j<[displayedMenuImages count]-1; j++)
+                for (int j=i+2; j<[displayedMenuImages count]; j++)
                 {
-                    menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuImages objectAtIndex:j+1] ];
+                    menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuImages objectAtIndex:j] ];
                 }
                 
                 NSLog(@"MenuItem String: %@", menuItem);
@@ -1404,16 +1414,24 @@ DDXMLElement *nodeStudy;
 
 - (BOOL) writeToFile:(NSString *)fileName ofType:(NSString *)type
 {
+    NSString *fullFileName = [NSString stringWithFormat:@"%@%@", fileName, type];
+    NSString* filePath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString* fileAtPath = [filePath stringByAppendingPathComponent:fullFileName];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:fileAtPath]) {
+        [[NSFileManager defaultManager] createFileAtPath:fileAtPath contents:nil attributes:nil];
+    }
     
     //
-    NSData *xmlData = [xmlDocTemp XMLDataWithOptions:DDXMLNodePrettyPrint];
+    //NSData *xmlData = [xmlDocTemp XMLDataWithOptions:DDXMLNodePrettyPrint];
     NSString *stringxml = [xmlDocTemp XMLStringWithOptions:DDXMLNodePrettyPrint];
-    if (![xmlData writeToFile:fileName atomically:YES]) {
+    if (![stringxml writeToFile:fileAtPath atomically:YES]) {
         //NSBeep();
         NSLog(@"Could not write document out...");
         NSLog(@"%@", stringxml);
         return NO;
     }
+    NSLog(@"%@", stringxml);
+    NSLog(@"Successfully wrote to file");
     return YES;
 }
 
