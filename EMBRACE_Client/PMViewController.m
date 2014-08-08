@@ -970,10 +970,10 @@ float const groupingProximity = 20.0;
             
             //The object performing a transfer and disappear interaction will be ungrouped from the object it is transferring, but we use a negative GAP value because we still want it to appear close enough to look as though it is giving the object to the receiver.
             if ([interaction interactionType] == TRANSFERANDDISAPPEAR)
-                GAP = -25;
-            //For other ungroup interactions, we want a 10 pixel gap between objects to show they are separated
+                GAP = -15;
+            //For other ungroup interactions, we want a 15 pixel gap between objects to show they are separated
             else
-                GAP = 10;
+                GAP = 15;
             
             [self simulateUngrouping:obj1 :obj2 :images :GAP];
         }
@@ -1155,10 +1155,26 @@ float const groupingProximity = 20.0;
     
     //Otherwise, partially overlapping or connected on the edges.
     else {
-        //Figure out which is the leftmost object. Unlike the animate ungrouping function, we're just going to move the left most object to the left so that it's not overlapping with the other one.
+        //Figure out which is the leftmost object. Unlike the animate ungrouping function, we're just going to move the leftmost object to the left so that it's not overlapping with the other one unless it's a TRANSFERANDDISAPPEAR interaction
         if(obj1PositionX < obj2PositionX) {
             obj1FinalPosX = obj2PositionX - obj2Width - GAP;
-            obj2FinalPosX = obj2PositionX;
+            
+            //A negative GAP indicates a TRANSFERANDDISAPPEAR interaction, so we want to adjust the rightmost object so that it is slightly overlapping the right side of the leftmost object
+            if (GAP < 0) {
+                obj2FinalPosX = obj1FinalPosX + obj1Width + GAP;
+            }
+            //A positive GAP indicates a normal ungrouping interaction, so the leftmost object was moved to the left. If it's still overlapping, we move the rightmost object to the left of the leftmost object. Otherwise, we leave it alone.
+            else {
+                //Objects are overlapping
+                if (obj2PositionX < obj1FinalPosX + obj1Width) {
+                    obj2FinalPosX = obj1PositionX - obj1Width - GAP;
+                }
+                //Objects are not overlapping
+                else {
+                    obj2FinalPosX = obj2PositionX;
+                }
+            }
+            
             //NSLog(@"%@ is the leftmost object", obj1);
             //NSLog(@"%@ width: %f", obj1, obj1Width);
         }
