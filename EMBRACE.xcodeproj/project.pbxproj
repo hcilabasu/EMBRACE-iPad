@@ -129,7 +129,6 @@
 		5CA1948D199052AC0007ABF1 /* BFEE_19.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CA1940C199052AC0007ABF1 /* BFEE_19.m4a */; };
 		5CA1948E199052AC0007ABF1 /* BFEE_19A.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CA1940D199052AC0007ABF1 /* BFEE_19A.m4a */; };
 		5CA1948F199052AC0007ABF1 /* BFEE_20.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CA1940E199052AC0007ABF1 /* BFEE_20.m4a */; };
-		5CA19490199052AC0007ABF1 /* BFEE_20A.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CA1940F199052AC0007ABF1 /* BFEE_20A.m4a */; };
 		5CA19491199052AC0007ABF1 /* BFEE_21.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CA19410199052AC0007ABF1 /* BFEE_21.m4a */; };
 		5CA19492199052AC0007ABF1 /* BFEE_22A.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CA19411199052AC0007ABF1 /* BFEE_22A.m4a */; };
 		5CA19493199052AC0007ABF1 /* BFEE1_6.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CA19412199052AC0007ABF1 /* BFEE1_6.m4a */; };
@@ -196,6 +195,7 @@
 		5CD7FE3519775C1C007A1E49 /* VocabularyStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD7FE3419775C1C007A1E49 /* VocabularyStep.m */; };
 		5CD7FE3819776403007A1E49 /* Introduction.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD7FE3719776403007A1E49 /* Introduction.m */; };
 		5CFA85AB1950EFDC00C7537D /* IntroductionStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFA85AA1950EFDC00C7537D /* IntroductionStep.m */; };
+		68E074171994627F008BA3FC /* BFEE_20A.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 68E074161994627F008BA3FC /* BFEE_20A.m4a */; };
 		C393881F195376490005279F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C393881E195376490005279F /* AudioToolbox.framework */; };
 		C3938821195CBB4B0005279F /* bestFarm.epub in Resources */ = {isa = PBXBuildFile; fileRef = C3938820195CBB4B0005279F /* bestFarm.epub */; };
 		C3B5214C19254B0C003FF639 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B5214919254B0C003FF639 /* Location.m */; };
@@ -378,7 +378,6 @@
 		5CA1940C199052AC0007ABF1 /* BFEE_19.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFEE_19.m4a; path = EMBRACE_Client/BFEE_19.m4a; sourceTree = SOURCE_ROOT; };
 		5CA1940D199052AC0007ABF1 /* BFEE_19A.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFEE_19A.m4a; path = EMBRACE_Client/BFEE_19A.m4a; sourceTree = SOURCE_ROOT; };
 		5CA1940E199052AC0007ABF1 /* BFEE_20.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFEE_20.m4a; path = EMBRACE_Client/BFEE_20.m4a; sourceTree = SOURCE_ROOT; };
-		5CA1940F199052AC0007ABF1 /* BFEE_20A.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFEE_20A.m4a; path = EMBRACE_Client/BFEE_20A.m4a; sourceTree = SOURCE_ROOT; };
 		5CA19410199052AC0007ABF1 /* BFEE_21.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFEE_21.m4a; path = EMBRACE_Client/BFEE_21.m4a; sourceTree = SOURCE_ROOT; };
 		5CA19411199052AC0007ABF1 /* BFEE_22A.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFEE_22A.m4a; path = EMBRACE_Client/BFEE_22A.m4a; sourceTree = SOURCE_ROOT; };
 		5CA19412199052AC0007ABF1 /* BFEE1_6.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFEE1_6.m4a; path = EMBRACE_Client/BFEE1_6.m4a; sourceTree = SOURCE_ROOT; };
@@ -448,6 +447,7 @@
 		5CD7FE3719776403007A1E49 /* Introduction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Introduction.m; sourceTree = "<group>"; };
 		5CFA85A91950EFDC00C7537D /* IntroductionStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroductionStep.h; sourceTree = "<group>"; };
 		5CFA85AA1950EFDC00C7537D /* IntroductionStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroductionStep.m; sourceTree = "<group>"; };
+		68E074161994627F008BA3FC /* BFEE_20A.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFEE_20A.m4a; path = EMBRACE_Client/BFEE_20A.m4a; sourceTree = SOURCE_ROOT; };
 		C393881E195376490005279F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		C3938820195CBB4B0005279F /* bestFarm.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = bestFarm.epub; sourceTree = SOURCE_ROOT; };
 		C3B5214819254B0C003FF639 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
@@ -606,6 +606,7 @@
 		31953E4F1729ECC100570087 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				68E074161994627F008BA3FC /* BFEE_20A.m4a */,
 				5CA194D1199197710007ABF1 /* BFCE_1.m4a */,
 				5CA194CF199197460007ABF1 /* BFCE_22.m4a */,
 				5CA194CD199197280007ABF1 /* BFCS_2A.m4a */,
@@ -676,7 +677,6 @@
 				5CA1940C199052AC0007ABF1 /* BFEE_19.m4a */,
 				5CA1940D199052AC0007ABF1 /* BFEE_19A.m4a */,
 				5CA1940E199052AC0007ABF1 /* BFEE_20.m4a */,
-				5CA1940F199052AC0007ABF1 /* BFEE_20A.m4a */,
 				5CA19410199052AC0007ABF1 /* BFEE_21.m4a */,
 				5CA19411199052AC0007ABF1 /* BFEE_22A.m4a */,
 				5CA19412199052AC0007ABF1 /* BFEE1_6.m4a */,
@@ -963,7 +963,6 @@
 				5CA194AE199052AC0007ABF1 /* granjeroS.m4a in Resources */,
 				5CA194B8199052AC0007ABF1 /* nidoS.m4a in Resources */,
 				5CA1948F199052AC0007ABF1 /* BFEE_20.m4a in Resources */,
-				5CA19490199052AC0007ABF1 /* BFEE_20A.m4a in Resources */,
 				5CA19469199052AC0007ABF1 /* BFCS_3.m4a in Resources */,
 				5CA1945F199052AC0007ABF1 /* BFCE1_3.m4a in Resources */,
 				5CA194C4199052AC0007ABF1 /* saludableS.m4a in Resources */,
@@ -1020,6 +1019,7 @@
 				5CA19456199052AC0007ABF1 /* BFCE_10A.m4a in Resources */,
 				5CA1946F199052AC0007ABF1 /* BFCS_8A.m4a in Resources */,
 				5CA19455199052AC0007ABF1 /* BFCE_10.m4a in Resources */,
+				68E074171994627F008BA3FC /* BFEE_20A.m4a in Resources */,
 				5CA19485199052AC0007ABF1 /* BFEE_10A.m4a in Resources */,
 				5CA194AB199052AC0007ABF1 /* farmerE.m4a in Resources */,
 				5CA19468199052AC0007ABF1 /* BFCS_2B.m4a in Resources */,
