@@ -14,6 +14,7 @@
 
 @interface PMViewController () {
     NSString* currentPage; //The current page being shown, so that the next page can be requested.
+    NSString* currentPageId; //The id of the current page being shown
     
     NSUInteger currentSentence; //Active sentence to be completed.
     NSUInteger totalSentences; //Total number of sentences on this page.
@@ -34,14 +35,14 @@
     
     NSMutableDictionary *currentGroupings;
     
-    BOOL allowSnapBack; //TRUE if object will snap back to original location upon error
+    BOOL replenishSupply; //TRUE if object should reappear after disappearing
+    BOOL allowSnapback; //TRUE if objects should snap back to original location upon error
 
     CGPoint startLocation; //initial location of an object before it is moved
     CGPoint delta; //distance between the top-left corner of the image being moved and the point clicked.
     
     ContextualMenuDataSource *menuDataSource;
     PieContextualMenu *menu;
-    
     BOOL menuExpanded;
     
     InteractionModel *model;
@@ -107,9 +108,8 @@ float const groupingProximity = 20.0;
     useSubject = ALL_ENTITIES;
     useObject = ONLY_CORRECT;
     pinchToUngroup = FALSE;
-    allowSnapBack = FALSE;
-    
-    currentGroupings = [[NSMutableDictionary alloc] init];
+    replenishSupply = FALSE;
+    allowSnapback = TRUE;
     
     //Create contextualMenuController
     menuDataSource = [[ContextualMenuDataSource alloc] init];
@@ -138,10 +138,33 @@ float const groupingProximity = 20.0;
         [bookView stringByEvaluatingJavaScriptFromString:jsString];
     }
     
-    //Set the sentence count for this page.
+    //Start off with no objects grouped together
+    currentGroupings = [[NSMutableDictionary alloc] init];
+
+    //Get the number of sentences on the page
     NSString* requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('sentence').length"];
-    NSString* sentenceCount = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount];
-    totalSentences = [sentenceCount intValue];
+    int sentenceCount = [[bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount] intValue];
+    
+    //Get the id number of the last sentence on the page and set it equal to the total number of sentences.
+    //Because the PMActivity may have multiple pages, this id number may not match the sentence count for the page.
+    //   Ex. Page 1 may have three sentences: 1, 2, and 3. Page 2 may also have three sentences: 4, 5, and 6.
+    //   The total number of sentences is like a running total, so by page 2, there are 6 sentences instead of 3.
+    //This is to make sure we access the solution steps for the correct sentence on this page, and not a sentence on
+    //a previous page.
+    NSString* requestLastSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[%d - 1].id", sentenceCount];
+    NSString* lastSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
+    int lastSentenceIdNumber = [[lastSentenceId substringFromIndex:1] intValue];
+    totalSentences = lastSentenceIdNumber;
+    
+    //Get the id number of the first sentence on the page and set it equal to the current sentence number.
+    //Because the PMActivity may have multiple pages, the first sentence on the page is not necessarily sentence 1.
+    //   Ex. Page 1 may start at sentence 1, but page 2 may start at sentence 4.
+    //   Thus, the first sentence on page 2 is sentence 4, not 1.
+    //This is also to make sure we access the solution steps for the correct sentence.
+    NSString* requestFirstSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[0].id"];
+    NSString* firstSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestFirstSentenceId];
+    int firstSentenceIdNumber = [[firstSentenceId substringFromIndex:1] intValue];
+    currentSentence = firstSentenceIdNumber;
     
     //Set up current sentence appearance and solution steps
     [self setupCurrentSentence];
@@ -151,6 +174,9 @@ float const groupingProximity = 20.0;
         NSString* setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, .2)", i + 1];
         [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
     }
+    
+    //Create UIView for textbox area to recognize swipe gesture
+    //[self createTextboxView];
     
     //Perform setup for activity
     [self performSetupForActivity];
@@ -184,7 +210,7 @@ float const groupingProximity = 20.0;
         
         if(chapterTitle == nil) { //no more chapters.
             [self.navigationController popViewControllerAnimated:YES];
-            break;
+            return;
         }
         
         currentPage = [book getNextPageForChapterAndActivity:chapterTitle :PM_MODE :nil];
@@ -211,9 +237,12 @@ float const groupingProximity = 20.0;
     [bookView stringByEvaluatingJavaScriptFromString:@"document.body.style.webkitTouchCallout='none';"];
     //[bookView becomeFirstResponder];
     
-    currentSentence = 1;
     self.title = chapterTitle;
     
+    //Set the current page id
+    currentPageId = [book getIdForPageInChapterAndActivity:currentPage :chapterTitle :PM_MODE];
+    
+    //Get the solution steps for the current chapter
     Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
     PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
     PMSolution = [PMActivity PMSolution]; //get PM solution
@@ -255,7 +284,8 @@ float const groupingProximity = 20.0;
 }
 
 /*
- * Moves to next step in a sentence if possible. The step is performed automatically if it is ungroup or move.
+ * Moves to next step in a sentence if possible. The step is performed automatically 
+ * if it is ungroup, move, or swap image.
  */
 -(void) incrementCurrentStep {
     //Check if able to increment current step
@@ -281,11 +311,24 @@ float const groupingProximity = 20.0;
     NSString* action = [step action];
     
     //Objects involved in interaction
-    NSArray* objects = [[NSArray alloc] initWithObjects:obj1Id, obj2Id, nil];
+    NSArray* objects;
     
-    //Get hotspots for both objects associated with action
+    //Get hotspots for both objects associated with action, first assuming that obj1 is the subject of the interaction
     Hotspot* hotspot1 = [model getHotspotforObjectWithActionAndRole:obj1Id :action :@"subject"];
     Hotspot* hotspot2 = [model getHotspotforObjectWithActionAndRole:obj2Id :action :@"object"];
+    
+    //If no hotspots were found with obj1 as the subject, then assume obj1 is the object of the interaction
+    //Add the subject before the object to the interaction
+    if (hotspot1 == nil && hotspot2 == nil) {
+        objects = [[NSArray alloc] initWithObjects:obj2Id, obj1Id, nil];
+        
+        hotspot1 = [model getHotspotforObjectWithActionAndRole:obj2Id :action :@"subject"];
+        hotspot2 = [model getHotspotforObjectWithActionAndRole:obj1Id :action :@"object"];
+    }
+    else {
+        objects = [[NSArray alloc] initWithObjects:obj1Id, obj2Id, nil];
+    }
+    
     NSArray* hotspotsForInteraction = [[NSArray alloc]initWithObjects:hotspot1, hotspot2, nil];
     
     //The move case only applies if an object is being moved to another object, not a waypoint
@@ -309,14 +352,14 @@ float const groupingProximity = 20.0;
 }
 
 /*
- * Perform any necessary setup for this physical manipulation.
+ * Perform any necessary setup for this physical manipulation page.
  * For example, if the cart should be connected to the tractor at the beginning of the story,
  * then this function will connect the cart to the tractor.
  */
 -(void) performSetupForActivity {
     Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
     PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
-    NSMutableArray* setupSteps = [PMActivity setupSteps]; //get setup steps
+    NSMutableArray* setupSteps = [[PMActivity setupSteps] objectForKey:currentPageId]; //get setup steps for current page
     
     for (ActionStep* setupStep in setupSteps) {
         PossibleInteraction* interaction = [self convertActionStepToPossibleInteraction:setupStep];
@@ -325,29 +368,32 @@ float const groupingProximity = 20.0;
 }
 
 /*
- * Performs ungroup and move steps automatically
+ * Performs ungroup, move, and swap image steps automatically
  */
 -(void) performAutomaticSteps {
-    //Get steps for current sentence
-    NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-    
-    //Get current step to be completed
-    ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
-    
-    //Automatically perform interaction if step is ungroup or move
-    if (!pinchToUngroup && [[currSolStep stepType] isEqualToString:@"ungroup"]) {
-        PossibleInteraction* correctUngrouping = [self getCorrectInteraction];
+    //Perform steps only if they exist for the sentence
+    if (numSteps > 0) {
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
         
-        [self performInteraction:correctUngrouping];
-        [self incrementCurrentStep];
-    }
-    else if ([[currSolStep stepType] isEqualToString:@"move"]) {
-        [self moveObjectForSolution];
-        [self incrementCurrentStep];
-    }
-    else if ([[currSolStep stepType] isEqualToString:@"swapImage"]) {
-        [self swapObjectImage];
-        [self incrementCurrentStep];
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        //Automatically perform interaction if step is ungroup, move, or swap image
+        if (!pinchToUngroup && [[currSolStep stepType] isEqualToString:@"ungroup"]) {
+            PossibleInteraction* correctUngrouping = [self getCorrectInteraction];
+            
+            [self performInteraction:correctUngrouping];
+            [self incrementCurrentStep];
+        }
+        else if ([[currSolStep stepType] isEqualToString:@"move"]) {
+            [self moveObjectForSolution];
+            [self incrementCurrentStep];
+        }
+        else if ([[currSolStep stepType] isEqualToString:@"swapImage"]) {
+            [self swapObjectImage];
+            [self incrementCurrentStep];
+        }
     }
 }
 
@@ -379,11 +425,14 @@ float const groupingProximity = 20.0;
         }
         //No menuItem was selected
         else {
-            [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
-            
-            //Clear any remaining highlighting.
-            NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
-            [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
+            if (allowSnapback) {
+                //Snap the object back to its original location
+                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
+                
+                //Clear any remaining highlighting.
+                NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
+                [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
+            }
         }
         
         //No longer moving object
@@ -399,24 +448,42 @@ float const groupingProximity = 20.0;
         menuExpanded = FALSE;
     }
     else {
-        //Get the object at that point if it's a manipulation object.
-        NSString* imageAtPoint = [self getManipulationObjectAtPoint:location];
+        if (numSteps > 0) {
+            //Get steps for current sentence
+            NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            
+            //Get current step to be completed
+            ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+            
+            //Current step is checkAndSwap
+            if ([[currSolStep stepType] isEqualToString:@"checkAndSwap"]) {
+                //Get the object at this point
+                NSString* imageAtPoint = [self getObjectAtPoint:location ofType:nil];
+                
+                //If the correct object was tapped, swap its image and increment the step
+                if ([self checkSolutionForSubject:imageAtPoint]) {
+                    [self swapObjectImage];
+                    [self incrementCurrentStep];
+                }
+            }
+        }
         
-        NSLog(@"location pressed: (%f, %f)", location.x, location.y);
+        //Get the object at that point if it's a manipulation object.
+        NSString* imageAtPoint = [self getObjectAtPoint:location ofType:@"manipulationObject"];
+        
+        //NSLog(@"location pressed: (%f, %f)", location.x, location.y);
         
         //Retrieve the word at this location
         NSString* requestWordAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
-        
         imageAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestWordAtPoint];
             
         //Capture the clicked text
         NSString* requestSentenceText = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).innerHTML", location.x, location.y];
         NSString* sentenceText = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceText];
         
-        NSLog(@"%@",sentenceText);
+        //NSLog(@"%@",sentenceText);
         
         if([[Translation translations] objectForKey:sentenceText]) {
-        
             //Highlight the tapped object
             NSString* highlight = [NSString stringWithFormat:@"highlightObjectOnWordTap(%@)", sentenceText];
             [bookView stringByEvaluatingJavaScriptFromString:highlight];
@@ -449,6 +516,74 @@ float const groupingProximity = 20.0;
 }
 
 /*
+ * Swipe gesture. Only recognizes a downwards two finger swipe. Used to skip the current step
+ * by performing it automatically according to the solution.
+ */
+-(IBAction)swipeGesturePerformed:(UISwipeGestureRecognizer *)recognizer {
+    NSLog(@"Swiper no swiping!");
+    
+    //Perform steps only if they exist for the sentence and have not been completed
+    if (numSteps > 0 && !stepsComplete) {
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        //Current step is check and involves moving an object to a location
+        if ([[currSolStep stepType] isEqualToString:@"check"]) {
+            //Get information for check step type
+            NSString* objectId = [currSolStep object1Id];
+            NSString* action = [currSolStep action];
+            NSString* locationId = [currSolStep locationId];
+            
+            //Get hotspot location of object
+            Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:objectId :action :@"subject"];
+            CGPoint hotspotLocation = [self getHotspotLocationOnImage:hotspot];
+            
+            //Get location that hotspot should be inside
+            Location* location = [model getLocationWithId:locationId];
+            
+            //Calculate the x,y coordinates and the width and height in pixels from %
+            float locationX = [location.originX floatValue] / 100.0 * [bookView frame].size.width;
+            float locationY = [location.originY floatValue] / 100.0 * [bookView frame].size.height;
+            float locationWidth = [location.width floatValue] / 100.0 * [bookView frame].size.width;
+            float locationHeight = [location.height floatValue] / 100.0 * [bookView frame].size.height;
+            
+            //Calculate the center point of the location
+            float midX = locationX + (locationWidth / 2);
+            float midY = locationY + (locationHeight / 2);
+            CGPoint midpoint = CGPointMake(midX, midY);
+            
+            //Move the object to the center of the location
+            [self moveObject:objectId :midpoint :hotspotLocation :false];
+            
+            //Clear highlighting
+            NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
+            [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
+            
+            //Object should now be in the correct location, so the step can be incremented
+            if([self isHotspotInsideLocation]) {
+                [self incrementCurrentStep];
+            }
+        }
+        //Current step is checkAndSwap and involves swapping an image
+        else if ([[currSolStep stepType] isEqualToString:@"checkAndSwap"]) {
+            [self swapObjectImage];
+            [self incrementCurrentStep];
+        }
+        //Current step is either group, ungroup, disappear, or transference
+        else {
+            //Get the interaction to be performed
+            PossibleInteraction* interaction = [self getCorrectInteraction];
+            
+            //Perform the interaction and increment the step
+            [self checkSolutionForInteraction:interaction];
+        }
+    }
+}
+
+/*
  * Pinch gesture. Used to ungroup two images from each other.
  */
 -(IBAction)pinchGesturePerformed:(UIPinchGestureRecognizer *)recognizer {
@@ -457,7 +592,7 @@ float const groupingProximity = 20.0;
     if(recognizer.state == UIGestureRecognizerStateBegan && pinchToUngroup) {
         pinching = TRUE;
         
-        NSString* imageAtPoint = [self getManipulationObjectAtPoint:location];
+        NSString* imageAtPoint = [self getObjectAtPoint:location ofType:@"manipulationObject"];
         
         //if it's an image that can be moved, then start moving it.
         if(imageAtPoint != nil && !stepsComplete) {
@@ -502,6 +637,7 @@ float const groupingProximity = 20.0;
                     }
                 }
                 
+                //Objects are allowed to ungroup
                 if (allowSubjectToUngroup && allowObjectToUngroup) {
                     PossibleInteraction* interaction = [[PossibleInteraction alloc] initWithInteractionType:UNGROUP];
                     [interaction addConnection:UNGROUP :groupedItemsArray :nil];
@@ -548,7 +684,7 @@ float const groupingProximity = 20.0;
             panning = TRUE;
             
             //Get the object at that point if it's a manipulation object.
-            NSString* imageAtPoint = [self getManipulationObjectAtPoint:location];
+            NSString* imageAtPoint = [self getObjectAtPoint:location ofType:@"manipulationObject"];
             //NSLog(@"location pressed: (%f, %f)", location.x, location.y);
             
             //if it's an image that can be moved, then start moving it.
@@ -571,64 +707,66 @@ float const groupingProximity = 20.0;
             if(movingObject) {
                 [self moveObject:movingObjectId :location :delta :true];
                 
-                //Get steps for current sentence
-                NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                
-                //Get current step to be completed
-                ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
-                
-                if ([[currSolStep stepType] isEqualToString:@"check"]) {
-                    //Check if object is in the correct location
-                    if([self isHotspotInsideLocation]) {
-                        [self incrementCurrentStep];
-                    }
-                    else {
-                        [self playErrorNoise];
-                        
-                        [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
-                    }
-                }
-                else {
-                    //Check if the object is overlapping anything
-                    NSArray* overlappingWith = [self getObjectsOverlappingWithObject:movingObjectId];
+                if (numSteps > 0) {
+                    //Get steps for current sentence
+                    NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
                     
-                    //Get possible interactions only if the object is overlapping something
-                    if (overlappingWith != nil) {
-                        if (condition == HOTSPOT) {
-                            useProximity = YES;
+                    //Get current step to be completed
+                    ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+                    
+                    if ([[currSolStep stepType] isEqualToString:@"check"]) {
+                        //Check if object is in the correct location
+                        if([self isHotspotInsideLocation]) {
+                            [self incrementCurrentStep];
                         }
-
-                        //If the object was dropped, check if it's overlapping with any other objects that it could interact with.
-                        NSMutableArray* possibleInteractions = [self getPossibleInteractions:useProximity];
-                        
-                        //No possible interactions were found
-                        if ([possibleInteractions count] == 0) {
+                        else {
                             [self playErrorNoise];
                             
-                            [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
-                        }
-                        //If only 1 possible interaction was found, go ahead and perform that interaction if it's correct.
-                        if ([possibleInteractions count] == 1) {
-                            PossibleInteraction* interaction = [possibleInteractions objectAtIndex:0];
-                            
-                            [self checkSolutionForInteraction:interaction];
-                        }
-                        //If more than 1 was found, prompt the user to disambiguate.
-                        else if ([possibleInteractions count] > 1) {
-                            //First rank the interactions based on location to story.
-                            [self rankPossibleInteractions:possibleInteractions];
-                            
-                            //Populate the menu data source and expand the menu.
-                            [self populateMenuDataSource:possibleInteractions];
-                            
-                            if(!menuExpanded)
-                                [self expandMenu];
+                            if (allowSnapback) {
+                                //Snap the object back to its original location
+                                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
+                            }
                         }
                     }
                     else {
-                        if (allowSnapBack) {
-                            //Snap the object back to its original location
-                            [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
+                        //Check if the object is overlapping anything
+                        NSArray* overlappingWith = [self getObjectsOverlappingWithObject:movingObjectId];
+                        
+                        //Get possible interactions only if the object is overlapping something
+                        if (overlappingWith != nil) {
+                            if (condition == HOTSPOT) {
+                                useProximity = YES;
+                            }
+                            
+                            //If the object was dropped, check if it's overlapping with any other objects that it could interact with.
+                            NSMutableArray* possibleInteractions = [self getPossibleInteractions:useProximity];
+                            
+                            //No possible interactions were found
+                            if ([possibleInteractions count] == 0) {
+                                [self playErrorNoise];
+                                
+                                if (allowSnapback) {
+                                    //Snap the object back to its original location
+                                    [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
+                                }
+                            }
+                            //If only 1 possible interaction was found, go ahead and perform that interaction if it's correct.
+                            if ([possibleInteractions count] == 1) {
+                                PossibleInteraction* interaction = [possibleInteractions objectAtIndex:0];
+                                
+                                [self checkSolutionForInteraction:interaction];
+                            }
+                            //If more than 1 was found, prompt the user to disambiguate.
+                            else if ([possibleInteractions count] > 1) {
+                                //First rank the interactions based on location to story.
+                                [self rankPossibleInteractions:possibleInteractions];
+                                
+                                //Populate the menu data source and expand the menu.
+                                [self populateMenuDataSource:possibleInteractions];
+                                
+                                if(!menuExpanded)
+                                    [self expandMenu];
+                            }
                         }
                     }
                 }
@@ -708,10 +846,11 @@ float const groupingProximity = 20.0;
 
 /*
  * Gets the necessary information from the JS for this particular image id and creates a
- * MenuItemImage out of that information. If the image src isn't found, returns nil.
- * Otherwise, returned the MenuItemImage that was created.
+ * MenuItemImage out of that information. If FLIP is TRUE, the image will be horizontally 
+ * flipped. If the image src isn't found, returns nil. Otherwise, returned the MenuItemImage 
+ * that was created.
  */
--(MenuItemImage*) createMenuItemForImage:(NSString*) objId {
+-(MenuItemImage*) createMenuItemForImage:(NSString*) objId :(BOOL)FLIP {
     //NSLog(@"creating menu item for image with object id: %@", objId);
     
     NSString* requestImageSrc = [NSString stringWithFormat:@"%@.src", objId];
@@ -725,7 +864,17 @@ float const groupingProximity = 20.0;
     imagePath = [imagePath stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     //NSLog(@"createMenuItemForImage imagesrc %@", imagePath);
 
-    UIImage* image = [[UIImage alloc] initWithContentsOfFile:imagePath];
+    UIImage* rawImage = [[UIImage alloc] initWithContentsOfFile:imagePath];
+    UIImage* image = [UIImage alloc];
+    
+    //Horizontally flip the image
+    if (FLIP) {
+        image = [UIImage imageWithCGImage:rawImage.CGImage scale:rawImage.scale orientation:UIImageOrientationUpMirrored];
+    }
+    //Use the unflipped image
+    else {
+        image = rawImage;
+    }
     
     if(image == nil)
         NSLog(@"image is nil");
@@ -784,22 +933,38 @@ float const groupingProximity = 20.0;
             NSString* objId = objectIds[i];
             
             if ([images objectForKey:objId] == nil) {
-                MenuItemImage *itemImage = [self createMenuItemForImage:objId];
+                MenuItemImage *itemImage;
+                
+                //Horizontally flip the image of the subject performing a transfer and disappear interaction to make it look like it is giving an object to the receiver.
+                if ([interaction interactionType] == TRANSFERANDDISAPPEAR
+                    && [connection interactionType] == UNGROUP
+                    && objId == [[connection objects] objectAtIndex:0]) {
+                    itemImage = [self createMenuItemForImage:objId :TRUE];
+                }
+                //Otherwise, leave the image unflipped
+                else {
+                    itemImage = [self createMenuItemForImage:objId :FALSE];
+                }
+                
                 //NSLog(@"obj id:%@", objId);
+                
                 if(itemImage != nil)
                     [images setObject:itemImage forKey:objId];
             }
         }
-
-        //if objects are connected to another object, add it too. currently supporting only one object
-        //only do it using the first object
-        NSMutableArray *connectedObject = [currentGroupings objectForKey:objectIds[0]];
-
-        for (int i = 0; connectedObject && [connection interactionType] != UNGROUP && i < [connectedObject count]; i++) {
-            MenuItemImage *itemImage = [self createMenuItemForImage:connectedObject[i]];
+        
+        //If the objects are already connected to other objects, create images for those as well, if they haven't already been created
+        for (NSString* objectId in objectIds) {
+            NSMutableArray *connectedObject = [currentGroupings objectForKey:objectId];
             
-            if(itemImage != nil) {
-                [images setObject:itemImage forKey:connectedObject[i]];
+            for (int i = 0; connectedObject && [connection interactionType] != UNGROUP && i < [connectedObject count]; i++) {
+                if ([images objectForKey:connectedObject[i]] == nil) {
+                    MenuItemImage *itemImage = [self createMenuItemForImage:connectedObject[i] :FALSE];
+                    
+                    if(itemImage != nil) {
+                        [images setObject:itemImage forKey:connectedObject[i]];
+                    }
+                }
             }
         }
     }
@@ -819,28 +984,43 @@ float const groupingProximity = 20.0;
         Hotspot* connectedHotspot1;
         Hotspot* connectedHotspot2;
         
-        if([connection interactionType] == UNGROUP || [connection interactionType] == DISAPPEAR) {
-            [self simulateUngrouping:obj1 :obj2 :images];
+        if([connection interactionType] == UNGROUP) {
+            float GAP; //we want a pixel gap between objects to show that they're no longer grouped together.
+            
+            //The object performing a transfer and disappear interaction will be ungrouped from the object
+            //it is transferring, but we use a negative GAP value because we still want it to appear close
+            //enough to look as though it is giving the object to the receiver.
+            if ([interaction interactionType] == TRANSFERANDDISAPPEAR)
+                GAP = -15;
+            //For other ungroup interactions, we want a 15 pixel gap between objects to show they are separated
+            else
+                GAP = 15;
+            
+            [self simulateUngrouping:obj1 :obj2 :images :GAP];
         }
-        else if([connection interactionType] == GROUP) {
+        else if([connection interactionType] == GROUP || [connection interactionType] == DISAPPEAR) {
             //NSLog(@"simulating grouping between %@ and %@", obj1, obj2);
             
             //Get hotspots.
             Hotspot *hotspot1 = [hotspots objectAtIndex:0];
             Hotspot *hotspot2 = [hotspots objectAtIndex:1];
             
-            // find all objects connected to the moving object
+            //Find all objects connected to the moving object
             for (int objectIndex = 2; objectIndex < [objectIds count]; objectIndex++) {
-                // for each object, find the hotspots that serve as the connection points
+                //For each object, find the hotspots that serve as the connection points
                 connectedObject = [objectIds objectAtIndex:objectIndex];
+                
                 NSMutableArray *movingObjectHotspots = [model getHotspotsForObject:obj1 OverlappingWithObject:connectedObject];
                 NSMutableArray *containedHotspots = [model getHotspotsForObject:connectedObject OverlappingWithObject:obj1];
+                
                 connectedHotspot1 = [self findConnectedHotspot:movingObjectHotspots :connectedObject];
                 connectedHotspot2 = [self findConnectedHotspot:containedHotspots :connectedObject];
                 
+                //This object is connected to the moving object at a particular hotspot
                 if (![[connectedHotspot2 objectId] isEqualToString:@""]) {
                     for (Hotspot *ht in containedHotspots) {
                         CGPoint hotspotLoc = [self getHotspotLocation:ht];
+                        
                         NSString *isHotspotConnectedMovingObject = [NSString stringWithFormat:@"objectGroupedAtHotspot(%@, %f, %f)", connectedObject, hotspotLoc.x, hotspotLoc.y];
                         NSString* isHotspotConnectedMovingObjectString = [bookView stringByEvaluatingJavaScriptFromString:isHotspotConnectedMovingObject];
                         
@@ -934,7 +1114,6 @@ float const groupingProximity = 20.0;
     float deltaY = hotspot2Loc.y - hotspot1Loc.y;
     
     //Get the location of the top left corner of obj1.
-    //MenuItemImage* obj1Image = [images objectAtIndex:0];
     MenuItemImage* obj1Image = [images objectForKey:objs[0]];
     CGFloat positionX = [obj1Image boundingBoxImage].origin.x;
     CGFloat positionY = [obj1Image boundingBoxImage].origin.y;
@@ -965,8 +1144,7 @@ float const groupingProximity = 20.0;
     }
 }
 
--(void)simulateUngrouping:(NSString*)obj1 :(NSString*)obj2 :(NSMutableDictionary*)images {
-    float GAP = 10; //we want a 10 pixel gap between objects to show that they're no longer grouped together.
+-(void)simulateUngrouping:(NSString*)obj1 :(NSString*)obj2 :(NSMutableDictionary*)images :(float)GAP {
     //See if one object is contained in the other.
     NSString* requestObj1ContainedInObj2 = [NSString stringWithFormat:@"objectContainedInObject(%@, %@)", obj1, obj2];
     NSString* obj1ContainedInObj2 = [bookView stringByEvaluatingJavaScriptFromString:requestObj1ContainedInObj2];
@@ -987,30 +1165,44 @@ float const groupingProximity = 20.0;
     CGFloat obj2Width = [obj2Image boundingBoxImage].size.width;
     
     if([obj1ContainedInObj2 isEqualToString:@"true"]) {
-        obj1FinalPosX = obj2PositionX - obj1Width - GAP;
+        obj1FinalPosX = obj2PositionX - obj2Width - GAP;
         obj2FinalPosX = obj2PositionX;
-        //obj2FinalPosX = obj1PositionX - obj2Width - GAP;
-        //obj1FinalPosX = obj1PositionX;
         //NSLog(@"if %@ is contained in %@", obj1, obj2);
     }
     else if([obj2ContainedInObj1 isEqualToString:@"true"]) {
         obj1FinalPosX = obj1PositionX;
-        obj2FinalPosX = obj1PositionX - obj1Width - GAP;
+        obj2FinalPosX = obj1PositionX + obj1Width + GAP;
         //NSLog(@"else %@ is contained in %@", obj2, obj1);
     }
     
     //Otherwise, partially overlapping or connected on the edges.
     else {
-        //Figure out which is the leftmost object. Unlike the animate ungrouping function, we're just going to move the left most object to the left so that it's not overlapping with the other one.
+        //Figure out which is the leftmost object. Unlike the animate ungrouping function, we're just going to move the leftmost object to the left so that it's not overlapping with the other one unless it's a TRANSFERANDDISAPPEAR interaction
         if(obj1PositionX < obj2PositionX) {
-            obj1FinalPosX = obj2PositionX - obj1Width - GAP;
-            obj2FinalPosX = obj2PositionX;
+            obj1FinalPosX = obj2PositionX - obj2Width - GAP;
+            
+            //A negative GAP indicates a TRANSFERANDDISAPPEAR interaction, so we want to adjust the rightmost object so that it is slightly overlapping the right side of the leftmost object
+            if (GAP < 0) {
+                obj2FinalPosX = obj1FinalPosX + obj1Width + GAP;
+            }
+            //A positive GAP indicates a normal ungrouping interaction, so the leftmost object was moved to the left. If it's still overlapping, we move the rightmost object to the left of the leftmost object. Otherwise, we leave it alone.
+            else {
+                //Objects are overlapping
+                if (obj2PositionX < obj1FinalPosX + obj1Width) {
+                    obj2FinalPosX = obj1PositionX - obj1Width - GAP;
+                }
+                //Objects are not overlapping
+                else {
+                    obj2FinalPosX = obj2PositionX;
+                }
+            }
+            
             //NSLog(@"%@ is the leftmost object", obj1);
             //NSLog(@"%@ width: %f", obj1, obj1Width);
         }
         else {
             obj1FinalPosX = obj1PositionX;
-            obj2FinalPosX = obj1PositionX - obj2Width - GAP;
+            obj2FinalPosX = obj1PositionX + obj1Width + GAP;
             //NSLog(@"%@ is the leftmost object", obj2);
         }
     }
@@ -1039,7 +1231,7 @@ float const groupingProximity = 20.0;
         
         if([connection interactionType] == UNGROUP) {
             //NSLog(@"ungrouping items");
-            
+
             [self ungroupObjects:obj1 :obj2]; //ungroup objects
         }
         else if([connection interactionType] == GROUP) {
@@ -1154,13 +1346,25 @@ float const groupingProximity = 20.0;
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
-        //If current step requires transference and group, the correct object should be the object2 of the next step
+        //If current step requires transference and group, the correct object depends on the format used.
+        //transferAndGroup steps may be written in two different ways:
+        //   1. obj2Id is the same for both steps, so correct object is object1 of next step
+        //      (ex. farmer give bucket; cat accept bucket)
+        //   2. obj2Id of first step is obj1Id of second step, so correct object is object2 of next step
+        //      (ex. farmer putDown hay; hay getIn cart)
         if ([[currSolStep stepType] isEqualToString:@"transferAndGroup"]) {
             //Get next step
             ActionStep* nextSolStep = [currSolSteps objectAtIndex:currentStep];
-            
-            if ([overlappingObject isEqualToString:[nextSolStep object2Id]]) {
-                return true;
+
+            if ([[currSolStep object2Id] isEqualToString:[nextSolStep object2Id]]) {
+                if ([overlappingObject isEqualToString:[nextSolStep object1Id]]) {
+                    return true;
+                }
+            }
+            else {
+                if ([overlappingObject isEqualToString:[nextSolStep object2Id]]) {
+                    return true;
+                }
             }
         }
         //If current step requires transference and disapppear, the correct object should be the object1 of the next step
@@ -1238,7 +1442,7 @@ float const groupingProximity = 20.0;
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
-        if ([[currSolStep stepType] isEqualToString:@"swapImage"]) {
+        if ([[currSolStep stepType] isEqualToString:@"swapImage"] || [[currSolStep stepType] isEqualToString:@"checkAndSwap"]) {
             //Get information for swapImage step type
             NSString* object1Id = [currSolStep object1Id];
             NSString* action = [currSolStep action];
@@ -1304,9 +1508,10 @@ float const groupingProximity = 20.0;
 /*
  * Sends the JS request for the element at the location provided, and takes care of moving any
  * canvas objects out of the way to get accurate information.
- * It also checks to make sure the object that is at that point is a manipulation object before returning it.
+ * It also checks to make sure the object that is at that point is of a certain class (manipulation or 
+ * background) before returning it.
  */
--(NSString*) getManipulationObjectAtPoint:(CGPoint) location {
+-(NSString*) getObjectAtPoint:(CGPoint) location ofType:(NSString*)class {
     //Temporarily hide the overlay canvas to get the object we need
     NSString* hideCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'none';", @"'overlay'"];
     [bookView stringByEvaluatingJavaScriptFromString:hideCanvas];
@@ -1324,9 +1529,12 @@ float const groupingProximity = 20.0;
     NSString* showCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'block';", @"'overlay'"];
     [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
     
-    if([imageAtPointClass isEqualToString:@"manipulationObject"]) {
+    //Check if the object has the correct class, or if no class was specified before returning
+    if([imageAtPointClass isEqualToString:class] || class == nil) {
+        //Any subject can be used, so just return the object id
         if (useSubject == ALL_ENTITIES)
             return imageAtPoint;
+        //Check if the subject is correct before returning the object id
         else if (useSubject == ONLY_CORRECT) {
             if ([self checkSolutionForSubject:imageAtPoint])
                 return imageAtPoint;
@@ -1431,7 +1639,7 @@ float const groupingProximity = 20.0;
     else {
         [self playErrorNoise]; //play noise if interaction is incorrect
         
-        if ([interaction interactionType] != UNGROUP) {
+        if ([interaction interactionType] != UNGROUP && allowSnapback) {
             //Snap the object back to its original location
             [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
         }
@@ -1555,7 +1763,8 @@ float const groupingProximity = 20.0;
                         bool actionsMatch = [[hotspot action] isEqualToString:[movingObjectHotspot action]];
                         
                         //Make sure the two hotspots have the same action. It may also be necessary to ensure that the roles do not match. Also make sure neither of the hotspots are connected to another object.
-                        if(actionsMatch && [isHotspotConnectedMovingObjectString isEqualToString:@""] && [isHotspotConnectedObjectString isEqualToString:@""] && !rolesMatch) {
+                        if(actionsMatch && [isHotspotConnectedMovingObjectString isEqualToString:@""]
+                           && [isHotspotConnectedObjectString isEqualToString:@""] && !rolesMatch) {
                             //Although the matching hotspots are free, transference may still be possible if one of the objects is connected at a different hotspot that must be ungrouped first.
                             NSString* objTransferringObj = [self getObjectPerformingTransference:obj :objId :@"object"];
                             NSString* objTransferringObjId = [self getObjectPerformingTransference:objId :obj :@"subject"];
@@ -1573,17 +1782,18 @@ float const groupingProximity = 20.0;
                                 Relationship* relationshipBetweenObjects = [model getRelationshipForObjectsForAction:obj :objId :[movingObjectHotspot action]];
                                 
                                 //Check to make sure that the two hotspots are in close proximity to each other.
-                                if((useProximity && [self hotspotsWithinGroupingProximity:movingObjectHotspot :hotspot]) ||
-                                   !useProximity) {
+                                if((useProximity && [self hotspotsWithinGroupingProximity:movingObjectHotspot :hotspot])
+                                   || !useProximity) {
                                     //Create necessary arrays for the interaction.
                                     NSArray* objects;
-                                    NSArray* hotspotsForInteraction = [[NSArray alloc] initWithObjects:movingObjectHotspot,
-                                                                       hotspot, nil];
+                                    NSArray* hotspotsForInteraction;
                                     
                                     if([[relationshipBetweenObjects actionType] isEqualToString:@"group"]) {
                                         PossibleInteraction* interaction = [[PossibleInteraction alloc] initWithInteractionType:GROUP];
                                         
                                         objects = [[NSArray alloc] initWithObjects:obj, objId, nil];
+                                        hotspotsForInteraction = [[NSArray alloc] initWithObjects:movingObjectHotspot, hotspot, nil];
+                                        
                                         [interaction addConnection:GROUP :objects :hotspotsForInteraction];
                                         [groupings addObject:interaction];
                                     }
@@ -1593,9 +1803,11 @@ float const groupingProximity = 20.0;
                                         //Add the subject of the disappear interaction before the object
                                         if ([[movingObjectHotspot role] isEqualToString:@"subject"]) {
                                             objects = [[NSArray alloc] initWithObjects:obj, objId, nil];
+                                            hotspotsForInteraction = [[NSArray alloc] initWithObjects:movingObjectHotspot, hotspot, nil];
                                         }
                                         else if ([[movingObjectHotspot role] isEqualToString:@"object"]) {
                                             objects = [[NSArray alloc] initWithObjects:objId, obj, nil];
+                                            hotspotsForInteraction = [[NSArray alloc] initWithObjects:hotspot, movingObjectHotspot, nil];
                                         }
                                         
                                         [interaction addConnection:DISAPPEAR :objects :hotspotsForInteraction];
@@ -1605,10 +1817,12 @@ float const groupingProximity = 20.0;
                             }
                         }
                         //Otherwise, one of these is connected to another object...so we check to see if the other object can be connected with the unconnected one.
-                        else if(actionsMatch && ![isHotspotConnectedMovingObjectString isEqualToString:@""] && [isHotspotConnectedObjectString isEqualToString:@""] && !rolesMatch) {
+                        else if(actionsMatch && ![isHotspotConnectedMovingObjectString isEqualToString:@""]
+                                && [isHotspotConnectedObjectString isEqualToString:@""] && !rolesMatch) {
                             [groupings addObjectsFromArray:[self getPossibleTransferInteractionsforObjects:obj :isHotspotConnectedMovingObjectString :objId :movingObjectHotspot :hotspot]];
                         }
-                        else if(actionsMatch && [isHotspotConnectedMovingObjectString isEqualToString:@""] && ![isHotspotConnectedObjectString isEqualToString:@""] && !rolesMatch) {
+                        else if(actionsMatch && [isHotspotConnectedMovingObjectString isEqualToString:@""]
+                                && ![isHotspotConnectedObjectString isEqualToString:@""] && !rolesMatch) {
                             [groupings addObjectsFromArray:[self getPossibleTransferInteractionsforObjects:objId :isHotspotConnectedObjectString :obj :hotspot :movingObjectHotspot]];
                         }
                     }
@@ -1664,11 +1878,11 @@ float const groupingProximity = 20.0;
     //Compare their hotspots to determine where the two objects are currently grouped
     for(Hotspot* hotspot1 in hotspotsForObjConnectedTo) {
         for(Hotspot* hotspot2 in hotspotsForObjConnected) {
-            //Need to calculate exact pixel locations of both hotspots and then make sure they're within a specific distance of each other.
-            CGPoint hotspot2Loc = [self getHotspotLocation:hotspot2];
+            //Need to calculate exact pixel location of one of the hotspots and then make sure it is connected to the other object at that location
+            CGPoint hotspot1Loc = [self getHotspotLocation:hotspot1];
             
-            NSString *isConnectedObjHotspotConnected = [NSString stringWithFormat:@"objectGroupedAtHotspot(%@, %f, %f)", objConnected, hotspot2Loc.x, hotspot2Loc.y];
-            NSString* isConnectedObjHotspotConnectedString  = [bookView stringByEvaluatingJavaScriptFromString:isConnectedObjHotspotConnected];
+            NSString *isObjConnectedToHotspotConnected = [NSString stringWithFormat:@"objectGroupedAtHotspot(%@, %f, %f)", objConnectedTo, hotspot1Loc.x, hotspot1Loc.y];
+            NSString* isConnectedObjHotspotConnectedString  = [bookView stringByEvaluatingJavaScriptFromString:isObjConnectedToHotspotConnected];
             
             //Make sure the two hotspots have the same action and make sure the roles do not match (there are only two possibilities right now: subject and object). Also make sure the hotspots are connected to each other. If all is well, these objects can be ungrouped.
             bool rolesMatch = [[hotspot1 role] isEqualToString:[hotspot2 role]];
@@ -1839,68 +2053,6 @@ float const groupingProximity = 20.0;
 }
 
 /*
- * Something like this, though it may not be this easy.
- * This may not work because we need create the object array when adding the grouping but we won't have all the necessary information if we extract out only this part of the code.
- * How else can we extract code out to make it more readable?
- */
-/*-(void) addPossibleGroupingsBetweenObjects:(NSMutableArray*)groupings :(NSString*)obj1 :(NSString*)obj2 :(NSArray*)allObjs
- :(bool)checkProximity {
-    NSMutableArray* obj1Hotspots = [model getHotspotsForObject:obj1 OverlappingWithObject:obj2];
-    NSMutableArray* obj2Hotspots = [model getHotspotsForObject:obj2 OverlappingWithObject:obj1];
-    
-    //Compare hotspots of the two objects.
-    for(Hotspot* hotspot1 in obj1Hotspots) {
-        for(Hotspot* hotspot2 in obj2Hotspots) {
-            //Need to calculate exact pixel locations of both hotspots and then make sure they're within a specific distance of each other.
-            CGPoint hotspot1Loc = [self getHotspotLocation:hotspot1];
-            CGPoint hotspot2Loc = [self getHotspotLocation:hotspot2];
-            
-            NSString *isHotspot1Connected = [NSString stringWithFormat:@"objectGroupedAtHotspot(%@, %f, %f)", obj1, hotspot1Loc.x, hotspot1Loc.y];
-            NSString* isHotspot1ConnectedString  = [bookView stringByEvaluatingJavaScriptFromString:isHotspot1Connected];
-            
-            NSString *isHotspot2Connected = [NSString stringWithFormat:@"objectGroupedAtHotspot(%@, %f, %f)", obj2, hotspot2Loc.x, hotspot2Loc.y];
-            NSString* isHotspot2ConnectedString  = [bookView stringByEvaluatingJavaScriptFromString:isHotspot2Connected];
-            
-            //Make sure the two hotspots have the same action and make sure the roles do not match (there are only two possibilities right now: subject and object). Also make sure neither of the hotspots are connected to another object. If all is well, these objects can be connected together.
-            
-            bool rolesMatch = [[hotspot1 role] isEqualToString:[hotspot2 role]];
-            bool actionsMatch = [[hotspot1 action] isEqualToString:[hotspot2 action]];
-            
-            if(actionsMatch && [isHotspot1ConnectedString isEqualToString:@""] && [isHotspot2ConnectedString isEqualToString:@""] && !rolesMatch) {
-                
-                float deltaX = 0;
-                float deltaY = 0;
-                
-                //if we're checking to make sure the hotspots are within a certain distance of each other.
-                if(checkProximity) {
-                    //calculate delta between the two hotspot locations.
-                    deltaX = fabsf(hotspot2Loc.x - hotspot1Loc.x);
-                    deltaY = fabsf(hotspot2Loc.y - hotspot1Loc.y);
-                }
-                
-                //Get the relationship between these two objects so we can check to see what type of relationship it is.
-                Relationship* relationshipBetweenObjects = [model getRelationshipForObjectsForAction:obj1 :obj2 :[hotspot1 action]];
-                
-                //Check to make sure that the two hotspots are in close proximity to each other.
-                if(deltaX <= groupingProximity && deltaY <= groupingProximity) {
-                    
-                    //If so, add it to the list of possible interactions as a transfer.
-                    if([[relationshipBetweenObjects  actionType] isEqualToString:@"group"]) {
-                        NSArray* hotspotsForInteraction = [[NSArray alloc] initWithObjects:hotspot1,
-                                                           hotspot2, nil];
-                        [groupings addObject:[[PossibleInteraction alloc]   initWithValues:TRANSFERANDGROUP :allObjs :hotspotsForInteraction]];
-                    }
-                    else if([[relationshipBetweenObjects actionType] isEqualToString:@"disappear"]) {
-                        //In this case we do not need to pass any of the hotspot information as the relevant hotspots will be calculated later on.
-                        [groupings addObject:[[PossibleInteraction alloc] initWithValues:TRANSFERANDDISAPPEAR :allObjs :nil]];
-                    }
-                }
-            }
-        }
-    }
- }*/
-
-/*
  * Calculates the delta pixel change for the object that is being moved
  * and changes the lcoation from relative % to pixels if necessary.
  */
@@ -1935,6 +2087,7 @@ float const groupingProximity = 20.0;
  * Moves the object passeed in to the location given. Calculates the difference between the point touched and the
  * top-left corner of the image, which is the x,y coordate that's actually used when moving the object.
  * Also ensures that the image is not moved off screen or outside of any specified bounding boxes for the image.
+ * Updates the JS Connection hotspot locations if necessary.
  */
 -(void) moveObject:(NSString*) object :(CGPoint) location :(CGPoint)offset :(BOOL)updateCon{
     //Change the location to accounting for the different between the point clicked and the top-left corner which is used to set the position of the image.
@@ -2060,64 +2213,53 @@ float const groupingProximity = 20.0;
  * TODO: Figure out how to deal with instances of transferGrouping + consumeAndReplenishSupply
  */
 - (void) consumeAndReplenishSupply:(NSString*)disappearingObject {
-    //First hide the object that needs to disappear.
-    NSString* hideObj = [NSString stringWithFormat:@"document.getElementById(%@).style.visibility = 'hidden';", disappearingObject];
-    [bookView stringByEvaluatingJavaScriptFromString:hideObj];
-    
-    //Next move the object to the "appear" hotspot location. This means finding the hotspot that specifies this information for the object, and also finding the relationship that links this object to the other object it's supposed to appear at/in.
-    Hotspot* hiddenObjectHotspot = [model getHotspotforObjectWithActionAndRole:disappearingObject :@"appear" :@"subject"];
-    
-    //Get the relationship between this object and the other object specifying where the object should appear. Even though the call is to a general function, there should only be 1 valid relationship returned.
-    //NSLog(@"disappearing object id: %@", disappearingObject);
-    
-    NSMutableArray* relationshipsForHiddenObject = [model getRelationshipForObjectForAction:disappearingObject :@"appear"];
-    //NSLog(@"number of relationships for Hidden Object: %d", [relationshipsForHiddenObject count]);
-    
-    //There should be one and only one valid relationship returned, but we'll double check anyway.
-    if([relationshipsForHiddenObject count] > 0) {
-        Relationship *appearRelation = [relationshipsForHiddenObject objectAtIndex:0];
+    //Replenish supply of disappearing object only if allowed
+    if (replenishSupply) {
+        //Move the object to the "appear" hotspot location. This means finding the hotspot that specifies this information for the object, and also finding the relationship that links this object to the other object it's supposed to appear at/in.
+        Hotspot* hiddenObjectHotspot = [model getHotspotforObjectWithActionAndRole:disappearingObject :@"appear" :@"subject"];
         
-        // NSLog(@"find hotspot in %@ for %@ to appear in", [appearRelation object2Id], disappearingObject);
+        //Get the relationship between this object and the other object specifying where the object should appear. Even though the call is to a general function, there should only be 1 valid relationship returned.
+        NSMutableArray* relationshipsForHiddenObject = [model getRelationshipForObjectForAction:disappearingObject :@"appear"];
         
-        //Now we have to pull the hotspot at which this relationship occurs.
-        //Note: We may at one point want to programmatically determine the role, but for now, we'll hard code it in.
-        Hotspot* appearHotspot = [model getHotspotforObjectWithActionAndRole:[appearRelation object2Id] :@"appear" :@"object"];
-        
-        //Make sure that the hotspot was found and returned.
-        if(appearHotspot != nil) {
-            //Use the hotspot returned to calculate the location at which the disappearing object should appear.
-            //The two hotspots need to match up, so we need to figure out how far away the top-left corner of the disappearing object needs to be from the location it needs to appear at.
-            CGPoint appearLocation = [self getHotspotLocation:appearHotspot];
+        //There should be one and only one valid relationship returned, but we'll double check anyway.
+        if([relationshipsForHiddenObject count] > 0) {
+            Relationship *appearRelation = [relationshipsForHiddenObject objectAtIndex:0];
             
-            //Next we have to move the apple to that location. Need the pixel location of the hotspot of the disappearing object.
-            //Again, double check to make sure this isn't nil.
-            if(hiddenObjectHotspot != nil) {
-                CGPoint hiddenObjectHotspotLocation = [self getHotspotLocation:hiddenObjectHotspot];
-                //NSLog(@"found hotspot on hidden object that we need to match to the other object.");
+            //Now we have to pull the hotspot at which this relationship occurs.
+            //Note: We may at one point want to programmatically determine the role, but for now, we'll hard code it in.
+            Hotspot* appearHotspot = [model getHotspotforObjectWithActionAndRole:[appearRelation object2Id] :@"appear" :@"object"];
+            
+            //Make sure that the hotspot was found and returned.
+            if(appearHotspot != nil) {
+                //Use the hotspot returned to calculate the location at which the disappearing object should appear.
+                //The two hotspots need to match up, so we need to figure out how far away the top-left corner of the disappearing object needs to be from the location it needs to appear at.
+                CGPoint appearLocation = [self getHotspotLocation:appearHotspot];
                 
-                //With both hotspot pixel values we can calcuate the distance between the top-left corner of the hidden object and it's hotspot.
-                CGPoint change = [self calculateDeltaForMovingObjectAtPoint:hiddenObjectHotspotLocation];
-                
-                //Now move the object taking into account the difference in change.
-                [self moveObject:disappearingObject :appearLocation :change :false];
-                
-                //Clear all highlighting.
-                //TODO: Make sure this is where this should happen.
-                NSString* clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
-                [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
-                
-                //Then show the object again.
-                NSString* showObj = [NSString stringWithFormat:@"document.getElementById(%@).style.visibility = 'visible';", disappearingObject];
-                [bookView stringByEvaluatingJavaScriptFromString:showObj];
+                //Next we have to move the apple to that location. Need the pixel location of the hotspot of the disappearing object.
+                //Again, double check to make sure this isn't nil.
+                if(hiddenObjectHotspot != nil) {
+                    CGPoint hiddenObjectHotspotLocation = [self getHotspotLocation:hiddenObjectHotspot];
+                    
+                    //With both hotspot pixel values we can calcuate the distance between the top-left corner of the hidden object and it's hotspot.
+                    CGPoint change = [self calculateDeltaForMovingObjectAtPoint:hiddenObjectHotspotLocation];
+                    
+                    //Now move the object taking into account the difference in change.
+                    [self moveObject:disappearingObject :appearLocation :change :false];
+                }
+            }
+            else {
+                NSLog(@"Uhoh, couldn't find relevant hotspot location to replenish the supply of: %@", disappearingObject);
             }
         }
+        //Should've been at least 1 relationship returned
         else {
-            NSLog(@"Uhoh, couldn't find relevant hotspot location to replenish the supply of: %@", disappearingObject);
+            NSLog(@"Oh, noes! We didn't find a relationship for the hidden object: %@", disappearingObject);
         }
     }
-    //Should've been at least 1 relationship returned
+    //Otherwise, just make the object disappear
     else {
-        NSLog(@"Oh, noes! We didn't find a relationship for the hidden object: %@", disappearingObject);
+        NSString* hideObj = [NSString stringWithFormat:@"document.getElementById('%@').style.display = 'none';", disappearingObject];
+        [bookView stringByEvaluatingJavaScriptFromString:hideObj];
     }
 }
 
@@ -2260,7 +2402,7 @@ float const groupingProximity = 20.0;
  * is correct, then it will move on to the next sentence. If the manipulation is not current, then feedback will be provided.
  */
 -(IBAction)pressedNext:(id)sender {
-    if (stepsComplete) {
+    if (stepsComplete || numSteps == 0) {
         //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
         currentSentence ++;
         
@@ -2276,6 +2418,37 @@ float const groupingProximity = 20.0;
             [self loadNextPage];
         }
     }
+}
+
+/*
+ * Creates a UIView for the textbox area so that the swipe gesture can only be recognized when performed
+ * in this location. This would make it so that we can only skip forward in the story if
+ * we swipe the textbox and not anywhere else on the screen.
+ * NOTE: Currently not in use because it disables tap gesture recognition over the textbox area and we haven't
+ * found a way to fix this yet.
+ */
+-(void) createTextboxView {
+    //Get the textbox element
+    NSString* textbox = [NSString stringWithFormat:@"document.getElementsByClassName('textbox')[0]"];
+    
+    //Get the textbox x, y, width, and height
+    NSString* textboxXString = [NSString stringWithFormat:@"%@.offsetLeft", textbox];
+    NSString* textboxYString = [NSString stringWithFormat:@"%@.offsetTop", textbox];
+    NSString* textboxWidthString = [NSString stringWithFormat:@"%@.offsetWidth", textbox];
+    NSString* textboxHeightString = [NSString stringWithFormat:@"%@.offsetHeight", textbox];
+    
+    float textboxX = [[bookView stringByEvaluatingJavaScriptFromString:textboxXString] floatValue];
+    float textboxY = [[bookView stringByEvaluatingJavaScriptFromString:textboxYString] floatValue];
+    float textboxWidth = [[bookView stringByEvaluatingJavaScriptFromString:textboxWidthString] floatValue];
+    float textboxHeight = [[bookView stringByEvaluatingJavaScriptFromString:textboxHeightString] floatValue];
+    
+    //Create UIView over the textbox area
+    CGRect textboxRect = CGRectMake(textboxX, textboxY, textboxWidth, textboxHeight);
+    UIView* textboxView = [[UIView alloc] initWithFrame:textboxRect];
+    
+    //Add swipe gesture recognizer and add to the view
+    [textboxView addGestureRecognizer:swipeRecognizer];
+    [[self view] addSubview:textboxView];
 }
 
 /*
@@ -2297,7 +2470,7 @@ float const groupingProximity = 20.0;
         [self simulatePossibleInteractionForMenuItem:interaction];
         interactionNum ++;
         //NSLog(@"%d", interactionNum);
-        //If the number of interactions is greater than the max number of menu Items allowed, then stop.
+        //If the number of interactions is greater than the max number of menu items allowed, then stop.
         if(interactionNum > maxMenuItems)
             break;
     }
