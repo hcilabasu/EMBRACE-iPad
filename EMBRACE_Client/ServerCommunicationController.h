@@ -73,26 +73,16 @@
 -(void) logComputerPlayAudio: (NSString *) movingObjectID : (NSString *) audioValue : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue;
 
 //logging displayMenuItems
--(void) logComputerDisplayMenuItems : (NSString *) selectedMenuItemID : (NSArray *) displayedMenuInteractions :(NSArray *)displayedMenuImages : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue;
+-(void) logComputerDisplayMenuItems : (NSArray *) displayedMenuInteractions : (NSArray *)displayedMenuImages : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue;
 
 
 //Logging User Actions
 //logging move object
 - (void) logUserMoveObject : (NSString *)movingObjID : (float) startposx :(float) startposy :(float) endposx :(float) endposy : (NSString *) computerActionValue : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue;
-//maybe add drilled down moveObject
-//moveobject no collision
-//move object hotspot collision
-//move object object collision
-//computer action handles correctness
-
-//may no long be relevant because it is a computer action that occurs,
-//logging groupings
--(void) logGrouping: (NSString *)movingObjID : (NSString *) collisionObjID : (NSArray *) groupedObjects : (NSString *) computerActionValue : (NSString *) storyValue : (NSString *) pageValue : (NSString *) chapterValue : (NSString *) sentenceValue : (NSString *) stepValue;
 
 //logging menu selection
 - (void) logMenuSelection : (NSString *) selectedMenuItemID : (NSArray *) displayedMenuInteractions :(NSArray *)displayedMenuImages :(NSString *) computerActionValue : (NSString *) storyValue : (NSString *) pageValue : (NSString *) chapterValue : (NSString *) sentenceValue : (NSString *) stepValue;
 
-//logging ??
 
 //logging navigation
 //add logging should be called in NextButtonPressed
@@ -111,18 +101,10 @@
 //add logging emergency next
 //should be the same as logging navigation but some place should specify if it was user next, or experimenter emergency next
 
-//place holder for logging gesture 
-- (void) logGesture: (NSString * )gestureTypeValue :(NSString *)computerActionValue;
 
 //write xml file locally
 - (BOOL) writeToFile: (NSString *)fileName ofType:(NSString *)type;
 
-/***************************************************************************/
-/*                          out dated functions                            */
-/***************************************************************************/
-
-//for temp reference remove later
-- (void) logNavigation : (Student *) userDetails : (NSString *) buttonPressedValue :(NSString *) currentSentenceValue :(NSString *)curViewValue :(NSString *)nextViewValue :(NSString *) computerActionValue;
 @end
 
 
