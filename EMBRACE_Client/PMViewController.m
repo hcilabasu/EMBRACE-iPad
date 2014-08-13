@@ -501,8 +501,8 @@ int language_condition = ENGLISH;
                 [imageAtPoint isEqualToString:[performedActions objectAtIndex:INPUT]])) {
                     if ([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"]) {
                         // Destroy the timer to avoid playing the previous sound
-                        [timer invalidate];
-                        timer = nil;
+                        //[timer invalidate];
+                        //timer = nil;
                         
                         [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]];
                         [self highlightObject:sentenceText:1.5];
@@ -519,8 +519,8 @@ int language_condition = ENGLISH;
                  [sentenceText isEqualToString:[performedActions objectAtIndex:INPUT]]) ||
                 ([[performedActions objectAtIndex:SELECTION] isEqualToString:@"image"] &&
                  [imageAtPoint isEqualToString:[performedActions objectAtIndex:INPUT]])) {
-                [timer invalidate];
-                timer = nil;
+                //[timer invalidate];
+                //timer = nil;
                 actualWord = sentenceText;
                 
                 //If the user clicked on a word
@@ -709,8 +709,8 @@ int language_condition = ENGLISH;
                             if ([chapterTitle isEqualToString:@"Introduction At the Farm"] && ([[performedActions objectAtIndex:INPUT] isEqualToString:[NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep locationId]]] ||
                                 [[performedActions objectAtIndex:INPUT] isEqualToString:[NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep object2Id]]])) {
                                     // Destroy the timer to avoid playing the previous sound
-                                    [timer invalidate];
-                                    timer = nil;
+                                    //[timer invalidate];
+                                    //timer = nil;
                                     currentIntroStep++;
                                     [self loadIntroStep];
                             }
@@ -754,8 +754,8 @@ int language_condition = ENGLISH;
                                     [[performedActions objectAtIndex:INPUT] isEqualToString:
                                      [NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep object2Id]]]) {
                                     // Destroy the timer to avoid playing the previous sound
-                                    [timer invalidate];
-                                    timer = nil;
+                                    //[timer invalidate];
+                                    //timer = nil;
                                     currentIntroStep++;
                                     [self loadIntroStep];
                                 }
@@ -2435,8 +2435,8 @@ int language_condition = ENGLISH;
         // If the user pressed next
         if ([[performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
             // Destroy the timer to avoid playing the previous sound
-            [timer invalidate];
-            timer = nil;
+            //[timer invalidate];
+            //timer = nil;
             currentIntroStep++;
             if (currentIntroStep > totalIntroSteps) {
                 [self loadNextPage];
@@ -2451,8 +2451,8 @@ int language_condition = ENGLISH;
         // If the user pressed next
         if ([[performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
             // Destroy the timer to avoid playing the previous sound
-            [timer invalidate];
-            timer = nil;
+            //[timer invalidate];
+            //timer = nil;
             currentVocabStep++;
             if(currentVocabStep > totalVocabSteps) {
                 [self loadNextPage];
@@ -2629,7 +2629,7 @@ int language_condition = ENGLISH;
     }
     
     NSDictionary *wrapper = [NSDictionary dictionaryWithObjectsAndKeys:wrapperObj1, @"Key1", nil];
-    timer = [NSTimer scheduledTimerWithTimeInterval:17.5 target:self selector:@selector(playAudioFileTimed:) userInfo:wrapper repeats:YES];
+    //timer = [NSTimer scheduledTimerWithTimeInterval:17.5 target:self selector:@selector(playAudioFileTimed:) userInfo:wrapper repeats:YES];
     
     performedActions = [NSArray arrayWithObjects: expectedSelection, expectedIntroAction, expectedIntroInput, nil];
     return performedActions;
@@ -2686,7 +2686,7 @@ int language_condition = ENGLISH;
     }
     
     NSDictionary *wrapper = [NSDictionary dictionaryWithObjectsAndKeys:wrapperObj1, @"Key1", nil];
-    timer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(playAudioFileTimed:) userInfo:wrapper repeats:YES];
+    //timer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(playAudioFileTimed:) userInfo:wrapper repeats:YES];
     
     performedActions = [NSArray arrayWithObjects: expectedSelection, expectedIntroAction, expectedIntroInput, nil];
     return performedActions;
@@ -2732,8 +2732,8 @@ int language_condition = ENGLISH;
 
 - (void) viewDidDisappear:(BOOL)animated
 {
-    [timer invalidate];
-    timer = nil;
+    //[timer invalidate];
+    //timer = nil;
 }
 
 - (NSString*) getSpanishTranslation: (NSString*)sentence {
