@@ -16,7 +16,7 @@
     dispatch_once(&onceToken, ^{
         inst = @{
             @"hay": @"paja",
-            @"cart": @"carro",
+            @"cart": @"carreta",
             @"barn": @"establo",
             @"hayloft": @"pajar",
             @"farmer": @"granjero",
