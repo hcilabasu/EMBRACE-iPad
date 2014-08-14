@@ -13,7 +13,6 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import <AVFoundation/AVFoundation.h>
 
-
 @interface PMViewController () {
     NSString* currentPage; //The current page being shown, so that the next page can be requested.
     NSString* currentPageId; //The id of the current page being shown
@@ -56,7 +55,6 @@
     NSMutableDictionary* introductions;
     NSUInteger totalIntroSteps;
     
-    
     NSMutableArray* currentIntroSteps;
     BOOL pressedNextForIntro;
     NSArray *performedActions;
@@ -97,7 +95,6 @@ NSUInteger const EXP_ACTION = 1;
 NSUInteger const INPUT = 2;
 int const STEPS_TO_SWITCH_LANGUAGES = 14;
 int language_condition = BILINGUAL;
-
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -203,14 +200,14 @@ int language_condition = BILINGUAL;
         [self loadIntroStep];
     }
     
+    //Create UIView for textbox area to recognize swipe gesture
+    //[self createTextboxView];
+    
     //Load the first vocabulary step for the current chapter (hard-coded for now)
     if ([chapterTitle isEqualToString:@"At the Farm"] && [actualPage isEqualToString:currentPage]) {
         //The first word is in Spanish
         [self loadVocabStep];
     }
-    
-    //Create UIView for textbox area to recognize swipe gesture
-    //[self createTextboxView];
     
     //Perform setup for activity
     [self performSetupForActivity];
@@ -225,23 +222,28 @@ int language_condition = BILINGUAL;
 - (void) loadFirstPage {
     book = [bookImporter getBookWithTitle:bookTitle]; //Get the book reference.
     model = [book model];
+    
     currentPage = [book getNextPageForChapterAndActivity:chapterTitle :PM_MODE :nil];
     
     actualPage = currentPage;
     
-    // introduction set-up
+    //Introduction setup
     currentIntroStep = 1;
-    // load the introduction data
+    
+    //Load the introduction data
     introductions = [model getIntroductions];
+    
     //Get the steps for the introduction of the current chapter
     currentIntroSteps = [introductions objectForKey:chapterTitle];
     totalIntroSteps = [currentIntroSteps count];
     
-    //vocabulary setup
+    //Vocabulary setup
     currentVocabStep = 1;
-    //load the vocabulary metada
+    
+    //Load the vocabulary data
     vocabularies = [model getVocabularies];
-    //get the vocabulary steps (words) for the current story
+    
+    //Get the vocabulary steps (words) for the current story
     currentVocabSteps = [vocabularies objectForKey:chapterTitle];
     totalVocabSteps = [currentVocabSteps count];
     
@@ -439,14 +441,15 @@ int language_condition = BILINGUAL;
  * Performs ungroup, move, and swap image steps automatically
  */
 -(void) performAutomaticSteps {
-    //Get steps for current sentence
-    NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-    
-    if ([currSolSteps count] > 0) {
+    //Perform steps only if they exist for the sentence
+    if (numSteps > 0) {
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
-        //Automatically perform interaction if step is ungroup or move
+        //Automatically perform interaction if step is ungroup, move, or swap image
         if (!pinchToUngroup && [[currSolStep stepType] isEqualToString:@"ungroup"]) {
             PossibleInteraction* correctUngrouping = [self getCorrectInteraction];
             
@@ -511,7 +514,6 @@ int language_condition = BILINGUAL;
         
         //Remove menu.
         [menu removeFromSuperview];
-        [self.view addGestureRecognizer:tapRecognizer];
         menu = nil;
         menuExpanded = FALSE;
     }
@@ -551,7 +553,7 @@ int language_condition = BILINGUAL;
         NSString* sentenceText = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceText];
 
         
-        // convert to lowercase so the sentence text can be mapped to objects
+        //Convert to lowercase so the sentence text can be mapped to objects
         sentenceText = [sentenceText lowercaseString];
         NSString* englishSentenceText = sentenceText;
         
@@ -566,7 +568,7 @@ int language_condition = BILINGUAL;
                 ([[performedActions objectAtIndex:SELECTION] isEqualToString:@"image"] &&
                 [imageAtPoint isEqualToString:[performedActions objectAtIndex:INPUT]])) {
                     if ([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"]) {
-                        // Destroy the timer to avoid playing the previous sound
+                        //Destroy the timer to avoid playing the previous sound
                         //[timer invalidate];
                         //timer = nil;
                         
@@ -592,6 +594,7 @@ int language_condition = BILINGUAL;
                 //If the user clicked on a word
                 if ([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"]) {
                     [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]];
+                    
                     if ([languageString isEqualToString:@"S"]) {
                         sentenceText = [self getSpanishTranslation:sentenceText];
                     }
@@ -830,11 +833,10 @@ int language_condition = BILINGUAL;
             if(movingObject) {
                 [self moveObject:movingObjectId :location :delta :true];
                 
-                
-                //Get steps for current sentence
-                NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                
-                if ([currSolSteps count] > 0) {
+                if (numSteps > 0) {
+                    //Get steps for current sentence
+                    NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                    
                     //Get current step to be completed
                     ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
                     
@@ -854,7 +856,10 @@ int language_condition = BILINGUAL;
                         else {
                             [self playErrorNoise];
                             
-                            [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
+                            if (allowSnapback) {
+                                //Snap the object back to its original location
+                                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
+                            }
                         }
                     }
                     else {
@@ -866,7 +871,7 @@ int language_condition = BILINGUAL;
                             if (condition == HOTSPOT) {
                                 useProximity = YES;
                             }
-
+                            
                             //If the object was dropped, check if it's overlapping with any other objects that it could interact with.
                             NSMutableArray* possibleInteractions = [self getPossibleInteractions:useProximity];
                             
@@ -874,7 +879,10 @@ int language_condition = BILINGUAL;
                             if ([possibleInteractions count] == 0) {
                                 [self playErrorNoise];
                                 
-                                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
+                                if (allowSnapback) {
+                                    //Snap the object back to its original location
+                                    [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
+                                }
                             }
                             //If only 1 possible interaction was found, go ahead and perform that interaction if it's correct.
                             if ([possibleInteractions count] == 1) {
@@ -903,12 +911,6 @@ int language_condition = BILINGUAL;
                                 
                                 if(!menuExpanded)
                                     [self expandMenu];
-                            }
-                        }
-                        else {
-                            if (allowSnapBack) {
-                                //Snap the object back to its original location
-                                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
                             }
                         }
                     }
@@ -1434,39 +1436,37 @@ int language_condition = BILINGUAL;
         //Get steps for current sentence
         NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
         
-        if ([currSolSteps count] > 0) {
-            //Get current step to be completed
-            ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        if ([[currSolStep stepType] isEqualToString:@"transferAndGroup"]) {
+            //Get next sentence step
+            ActionStep* nextSolStep = [currSolSteps objectAtIndex:currentStep];
             
-            if ([[currSolStep stepType] isEqualToString:@"transferAndGroup"]) {
-                //Get next sentence step
-                ActionStep* nextSolStep = [currSolSteps objectAtIndex:currentStep];
-                
-                //Correct subject for a transfer and group step is the obj1 of the next transfer and group step
-                NSString* correctSubject = [nextSolStep object1Id];
-                
-                //Selected object is the correct subject
-                if ([correctSubject isEqualToString:subject]) {
-                    return true;
-                }
-                else {
-                    //Check if selected object is in a group with the correct subject
-                    BOOL isSubjectInGroup = [self isSubject:correctSubject ContainedInGroupWithObject:subject];
-                    return isSubjectInGroup;
-                }
+            //Correct subject for a transfer and group step is the obj1 of the next transfer and group step
+            NSString* correctSubject = [nextSolStep object1Id];
+            
+            //Selected object is the correct subject
+            if ([correctSubject isEqualToString:subject]) {
+                return true;
             }
             else {
-                NSString* correctSubject = [currSolStep object1Id];
-                
-                //Selected object is the correct subject
-                if ([correctSubject isEqualToString:subject]) {
-                    return true;
-                }
-                else {
-                    //Check if selected object is in a group with the correct subject
-                    BOOL isSubjectInGroup = [self isSubject:correctSubject ContainedInGroupWithObject:subject];
-                    return isSubjectInGroup;
-                }
+                //Check if selected object is in a group with the correct subject
+                BOOL isSubjectInGroup = [self isSubject:correctSubject ContainedInGroupWithObject:subject];
+                return isSubjectInGroup;
+            }
+        }
+        else {
+            NSString* correctSubject = [currSolStep object1Id];
+            
+            //Selected object is the correct subject
+            if ([correctSubject isEqualToString:subject]) {
+                return true;
+            }
+            else {
+                //Check if selected object is in a group with the correct subject
+                BOOL isSubjectInGroup = [self isSubject:correctSubject ContainedInGroupWithObject:subject];
+                return isSubjectInGroup;
             }
         }
     }
@@ -1488,32 +1488,42 @@ int language_condition = BILINGUAL;
         //Get steps for current sentence
         NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
         
-        if ([currSolSteps count] > 0) {
-            //Get current step to be completed
-            ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
-            
-            //If current step requires transference and group, the correct object should be the object2 of the next step
-            if ([[currSolStep stepType] isEqualToString:@"transferAndGroup"]) {
-                //Get next step
-                ActionStep* nextSolStep = [currSolSteps objectAtIndex:currentStep];
-                
-                if ([overlappingObject isEqualToString:[nextSolStep object2Id]]) {
-                    return true;
-                }
-            }
-            //If current step requires transference and disapppear, the correct object should be the object1 of the next step
-            else if ([[currSolStep stepType] isEqualToString:@"transferAndDisappear"]) {
-                //Get next step
-                ActionStep* nextSolStep = [currSolSteps objectAtIndex:currentStep];
-                
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        //If current step requires transference and group, the correct object depends on the format used.
+        //transferAndGroup steps may be written in two different ways:
+        //   1. obj2Id is the same for both steps, so correct object is object1 of next step
+        //      (ex. farmer give bucket; cat accept bucket)
+        //   2. obj2Id of first step is obj1Id of second step, so correct object is object2 of next step
+        //      (ex. farmer putDown hay; hay getIn cart)
+        if ([[currSolStep stepType] isEqualToString:@"transferAndGroup"]) {
+            //Get next step
+            ActionStep* nextSolStep = [currSolSteps objectAtIndex:currentStep];
+
+            if ([[currSolStep object2Id] isEqualToString:[nextSolStep object2Id]]) {
                 if ([overlappingObject isEqualToString:[nextSolStep object1Id]]) {
                     return true;
                 }
             }
             else {
-                if ([overlappingObject isEqualToString:[currSolStep object2Id]]) {
+                if ([overlappingObject isEqualToString:[nextSolStep object2Id]]) {
                     return true;
                 }
+            }
+        }
+        //If current step requires transference and disapppear, the correct object should be the object1 of the next step
+        else if ([[currSolStep stepType] isEqualToString:@"transferAndDisappear"]) {
+            //Get next step
+            ActionStep* nextSolStep = [currSolSteps objectAtIndex:currentStep];
+            
+            if ([overlappingObject isEqualToString:[nextSolStep object1Id]]) {
+                return true;
+            }
+        }
+        else {
+            if ([overlappingObject isEqualToString:[currSolStep object2Id]]) {
+                return true;
             }
         }
     }
@@ -1530,38 +1540,36 @@ int language_condition = BILINGUAL;
         //Get steps for current sentence
         NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
         
-        if ([currSolSteps count] > 0) {
-            //Get current step to be completed
-            ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        if ([[currSolStep stepType] isEqualToString:@"move"]) {
+            //Get information for move step type
+            NSString* object1Id = [currSolStep object1Id];
+            NSString* action = [currSolStep action];
+            NSString* object2Id = [currSolStep object2Id];
+            NSString* waypointId = [currSolStep waypointId];
             
-            if ([[currSolStep stepType] isEqualToString:@"move"]) {
-                //Get information for move step type
-                NSString* object1Id = [currSolStep object1Id];
-                NSString* action = [currSolStep action];
-                NSString* object2Id = [currSolStep object2Id];
-                NSString* waypointId = [currSolStep waypointId];
+            //Move either requires object1 to move to object2 (which creates a group interaction) or it requires object1 to move to a waypoint
+            if (object2Id != nil) {
+                PossibleInteraction* correctInteraction = [self getCorrectInteraction];
+                [self performInteraction:correctInteraction]; //performs solution step
+            }
+            else if (waypointId != nil) {
+                //Get position of hotspot in pixels based on the object image size
+                Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:object1Id :action :@"subject"];
+                CGPoint hotspotLocation = [self getHotspotLocationOnImage:hotspot];
                 
-                //Move either requires object1 to move to object2 (which creates a group interaction) or it requires object1 to move to a waypoint
-                if (object2Id != nil) {
-                    PossibleInteraction* correctInteraction = [self getCorrectInteraction];
-                    [self performInteraction:correctInteraction]; //performs solution step
-                }
-                else if (waypointId != nil) {
-                    //Get position of hotspot in pixels based on the object image size
-                    Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:object1Id :action :@"subject"];
-                    CGPoint hotspotLocation = [self getHotspotLocationOnImage:hotspot];
-                    
-                    //Get position of waypoint in pixels based on the background size
-                    Waypoint* waypoint = [model getWaypointWithId:waypointId];
-                    CGPoint waypointLocation = [self getWaypointLocation:waypoint];
-                    
-                    //Move the object
-                    [self moveObject:object1Id :waypointLocation :hotspotLocation :false];
-                    
-                    //Clear highlighting
-                    NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
-                    [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
-                }
+                //Get position of waypoint in pixels based on the background size
+                Waypoint* waypoint = [model getWaypointWithId:waypointId];
+                CGPoint waypointLocation = [self getWaypointLocation:waypoint];
+                
+                //Move the object
+                [self moveObject:object1Id :waypointLocation :hotspotLocation :false];
+                
+                //Clear highlighting
+                NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
+                [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
             }
         }
     }
@@ -1576,27 +1584,25 @@ int language_condition = BILINGUAL;
         //Get steps for current sentence
         NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
         
-        if ([currSolSteps count] > 0) {
-            //Get current step to be completed
-            ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        if ([[currSolStep stepType] isEqualToString:@"swapImage"] || [[currSolStep stepType] isEqualToString:@"checkAndSwap"]) {
+            //Get information for swapImage step type
+            NSString* object1Id = [currSolStep object1Id];
+            NSString* action = [currSolStep action];
             
-            if ([[currSolStep stepType] isEqualToString:@"swapImage"]) {
-                //Get information for swapImage step type
-                NSString* object1Id = [currSolStep object1Id];
-                NSString* action = [currSolStep action];
-                
-                //Get alternate image
-                AlternateImage* altImage = [model getAlternateImageWithAction:action];
-                
-                //Get alternate image information
-                NSString* altSrc = [altImage alternateSrc];
-                NSString* width = [altImage width];
-                CGPoint location = [altImage location];
-                
-                //Swap images using alternative src
-                NSString* swapImages = [NSString stringWithFormat:@"swapImageSrc('%@', '%@', '%@', %f, %f)", object1Id, altSrc, width, location.x, location.y];
-                [bookView stringByEvaluatingJavaScriptFromString:swapImages];
-            }
+            //Get alternate image
+            AlternateImage* altImage = [model getAlternateImageWithAction:action];
+            
+            //Get alternate image information
+            NSString* altSrc = [altImage alternateSrc];
+            NSString* width = [altImage width];
+            CGPoint location = [altImage location];
+            
+            //Swap images using alternative src
+            NSString* swapImages = [NSString stringWithFormat:@"swapImageSrc('%@', '%@', '%@', %f, %f)", object1Id, altSrc, width, location.x, location.y];
+            [bookView stringByEvaluatingJavaScriptFromString:swapImages];
         }
     }
 }
@@ -1611,34 +1617,32 @@ int language_condition = BILINGUAL;
         //Get steps for current sentence
         NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
         
-        if ([currSolSteps count] > 0) {
-            //Get current step to be completed
-            ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        if ([[currSolStep stepType] isEqualToString:@"check"]) {
+            //Get information for check step type
+            NSString* objectId = [currSolStep object1Id];
+            NSString* action = [currSolStep action];
+            NSString* locationId = [currSolStep locationId];
             
-            if ([[currSolStep stepType] isEqualToString:@"check"]) {
-                //Get information for check step type
-                NSString* objectId = [currSolStep object1Id];
-                NSString* action = [currSolStep action];
-                NSString* locationId = [currSolStep locationId];
-                
-                //Get hotspot location of correct subject
-                Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:objectId :action :@"subject"];
-                CGPoint hotspotLocation = [self getHotspotLocation:hotspot];
-                
-                //Get location that hotspot should be inside
-                Location* location = [model getLocationWithId:locationId];
-                
-                //Calculate the x,y coordinates and the width and height in pixels from %
-                float locationX = [location.originX floatValue] / 100.0 * [bookView frame].size.width;
-                float locationY = [location.originY floatValue] / 100.0 * [bookView frame].size.height;
-                float locationWidth = [location.width floatValue] / 100.0 * [bookView frame].size.width;
-                float locationHeight = [location.height floatValue] / 100.0 * [bookView frame].size.height;
-                
-                //Check if hotspot is inside location
-                if ((hotspotLocation.x < locationX + locationWidth) && (hotspotLocation.x > locationX)
-                    && (hotspotLocation.y < locationY + locationHeight) && (hotspotLocation.y > locationY)) {
-                    return true;
-                }
+            //Get hotspot location of correct subject
+            Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:objectId :action :@"subject"];
+            CGPoint hotspotLocation = [self getHotspotLocation:hotspot];
+            
+            //Get location that hotspot should be inside
+            Location* location = [model getLocationWithId:locationId];
+            
+            //Calculate the x,y coordinates and the width and height in pixels from %
+            float locationX = [location.originX floatValue] / 100.0 * [bookView frame].size.width;
+            float locationY = [location.originY floatValue] / 100.0 * [bookView frame].size.height;
+            float locationWidth = [location.width floatValue] / 100.0 * [bookView frame].size.width;
+            float locationHeight = [location.height floatValue] / 100.0 * [bookView frame].size.height;
+            
+            //Check if hotspot is inside location
+            if ((hotspotLocation.x < locationX + locationWidth) && (hotspotLocation.x > locationX)
+                && (hotspotLocation.y < locationY + locationHeight) && (hotspotLocation.y > locationY)) {
+                return true;
             }
         }
     }
@@ -1701,59 +1705,57 @@ int language_condition = BILINGUAL;
         //Get steps for current sentence
         NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
         
-        if ([currSolSteps count] > 0) {
-            //Get current step to be completed
-            ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        //If step type involves transference, we must manually create the PossibleInteraction object.
+        //Otherwise, it can be directly converted.
+        if ([[currSolStep stepType] isEqualToString:@"transferAndGroup"] || [[currSolStep stepType] isEqualToString:@"transferAndDisappear"]) {
+            correctInteraction = [[PossibleInteraction alloc] init];
             
-            //If step type involves transference, we must manually create the PossibleInteraction object.
-            //Otherwise, it can be directly converted.
-            if ([[currSolStep stepType] isEqualToString:@"transferAndGroup"] || [[currSolStep stepType] isEqualToString:@"transferAndDisappear"]) {
-                correctInteraction = [[PossibleInteraction alloc] init];
-                
-                //Get step information for current step
-                NSString* currObj1Id = [currSolStep object1Id];
-                NSString* currObj2Id = [currSolStep object2Id];
-                NSString* currAction = [currSolStep action];
-                
-                //Objects involved in group setup for current step
-                NSArray* currObjects = [[NSArray alloc] initWithObjects:currObj1Id, currObj2Id, nil];
-                
-                //Get hotspots for both objects associated with action for current step
-                Hotspot* currHotspot1 = [model getHotspotforObjectWithActionAndRole:currObj1Id :currAction :@"subject"];
-                Hotspot* currHotspot2 = [model getHotspotforObjectWithActionAndRole:currObj2Id :currAction :@"object"];
-                NSArray* currHotspotsForInteraction = [[NSArray alloc]initWithObjects:currHotspot1, currHotspot2, nil];
-                
-                [correctInteraction addConnection:UNGROUP :currObjects :currHotspotsForInteraction];
-                
-                //Get next step to be completed
-                ActionStep* nextSolStep = [currSolSteps objectAtIndex:currentStep];
-                
-                //Get step information for next step
-                NSString* nextObj1Id = [nextSolStep object1Id];
-                NSString* nextObj2Id = [nextSolStep object2Id];
-                NSString* nextAction = [nextSolStep action];
-                
-                //Objects involved in group setup for next step
-                NSArray* nextObjects = [[NSArray alloc] initWithObjects:nextObj1Id, nextObj2Id, nil];
-                
-                //Get hotspots for both objects associated with action for next step
-                Hotspot* nextHotspot1 = [model getHotspotforObjectWithActionAndRole:nextObj1Id :nextAction :@"subject"];
-                Hotspot* nextHotspot2 = [model getHotspotforObjectWithActionAndRole:nextObj2Id :nextAction :@"object"];
-                NSArray* nextHotspotsForInteraction = [[NSArray alloc]initWithObjects:nextHotspot1, nextHotspot2, nil];
-                
-                //Add the group or disappear connection and set the interaction to the appropriate type
-                if ([[currSolStep stepType] isEqualToString:@"transferAndGroup"]) {
-                    [correctInteraction addConnection:GROUP :nextObjects :nextHotspotsForInteraction];
-                    [correctInteraction setInteractionType:TRANSFERANDGROUP];
-                }
-                else if ([[currSolStep stepType] isEqualToString:@"transferAndDisappear"]) {
-                    [correctInteraction addConnection:DISAPPEAR :nextObjects :nextHotspotsForInteraction];
-                    [correctInteraction setInteractionType:TRANSFERANDDISAPPEAR];
-                }
+            //Get step information for current step
+            NSString* currObj1Id = [currSolStep object1Id];
+            NSString* currObj2Id = [currSolStep object2Id];
+            NSString* currAction = [currSolStep action];
+            
+            //Objects involved in group setup for current step
+            NSArray* currObjects = [[NSArray alloc] initWithObjects:currObj1Id, currObj2Id, nil];
+            
+            //Get hotspots for both objects associated with action for current step
+            Hotspot* currHotspot1 = [model getHotspotforObjectWithActionAndRole:currObj1Id :currAction :@"subject"];
+            Hotspot* currHotspot2 = [model getHotspotforObjectWithActionAndRole:currObj2Id :currAction :@"object"];
+            NSArray* currHotspotsForInteraction = [[NSArray alloc]initWithObjects:currHotspot1, currHotspot2, nil];
+            
+            [correctInteraction addConnection:UNGROUP :currObjects :currHotspotsForInteraction];
+            
+            //Get next step to be completed
+            ActionStep* nextSolStep = [currSolSteps objectAtIndex:currentStep];
+            
+            //Get step information for next step
+            NSString* nextObj1Id = [nextSolStep object1Id];
+            NSString* nextObj2Id = [nextSolStep object2Id];
+            NSString* nextAction = [nextSolStep action];
+            
+            //Objects involved in group setup for next step
+            NSArray* nextObjects = [[NSArray alloc] initWithObjects:nextObj1Id, nextObj2Id, nil];
+            
+            //Get hotspots for both objects associated with action for next step
+            Hotspot* nextHotspot1 = [model getHotspotforObjectWithActionAndRole:nextObj1Id :nextAction :@"subject"];
+            Hotspot* nextHotspot2 = [model getHotspotforObjectWithActionAndRole:nextObj2Id :nextAction :@"object"];
+            NSArray* nextHotspotsForInteraction = [[NSArray alloc]initWithObjects:nextHotspot1, nextHotspot2, nil];
+            
+            //Add the group or disappear connection and set the interaction to the appropriate type
+            if ([[currSolStep stepType] isEqualToString:@"transferAndGroup"]) {
+                [correctInteraction addConnection:GROUP :nextObjects :nextHotspotsForInteraction];
+                [correctInteraction setInteractionType:TRANSFERANDGROUP];
             }
-            else {
-                correctInteraction = [self convertActionStepToPossibleInteraction:currSolStep];
+            else if ([[currSolStep stepType] isEqualToString:@"transferAndDisappear"]) {
+                [correctInteraction addConnection:DISAPPEAR :nextObjects :nextHotspotsForInteraction];
+                [correctInteraction setInteractionType:TRANSFERANDDISAPPEAR];
             }
+        }
+        else {
+            correctInteraction = [self convertActionStepToPossibleInteraction:currSolStep];
         }
     }
     
@@ -1772,12 +1774,13 @@ int language_condition = BILINGUAL;
     //Check if selected interaction is correct
     if ([interaction isEqual:correctInteraction]) {
         [self performInteraction:interaction];
+        
         if ([chapterTitle isEqualToString:@"Introduction At the Farm"]) {
             currentIntroStep++;
             [self loadIntroStep];
         }
-        [self incrementCurrentStep];
         
+        [self incrementCurrentStep];
         
         //Transference counts as two steps, so we must increment again
         if ([interaction interactionType] == TRANSFERANDGROUP || [interaction interactionType] == TRANSFERANDDISAPPEAR) {
@@ -2565,6 +2568,7 @@ int language_condition = BILINGUAL;
             //[timer invalidate];
             //timer = nil;
             currentIntroStep++;
+            
             if (currentIntroStep > totalIntroSteps) {
                 [self loadNextPage];
             }
@@ -2574,31 +2578,37 @@ int language_condition = BILINGUAL;
                 [self setupCurrentSentenceColor];
             }
         }
-    } else if ([chapterTitle isEqualToString:@"At the Farm"] && [actualPage isEqualToString:currentPage]) {
+    }
+    else if ([chapterTitle isEqualToString:@"At the Farm"] && [actualPage isEqualToString:currentPage]) {
         // If the user pressed next
         if ([[performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
             // Destroy the timer to avoid playing the previous sound
             //[timer invalidate];
             //timer = nil;
             currentVocabStep++;
+            
             if(currentVocabStep > totalVocabSteps) {
                 [self loadNextPage];
-            } else {
+            }
+            else {
                 // Load the next step and update the performed actions
                 [self loadVocabStep];
             }
         }
-    } else if (stepsComplete) {
-        //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
-        currentSentence ++;
-        
-        //Set up current sentence appearance and solution steps
-        [self setupCurrentSentence];
-        [self colorSentencesUponNext];
-        
-        //currentSentence is 1 indexed.
-        if(currentSentence > totalSentences) {
-            [self loadNextPage];
+    }
+    else {
+        if (stepsComplete || numSteps == 0) {
+            //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
+            currentSentence ++;
+            
+            //Set up current sentence appearance and solution steps
+            [self setupCurrentSentence];
+            [self colorSentencesUponNext];
+            
+            //currentSentence is 1 indexed.
+            if(currentSentence > totalSentences) {
+                [self loadNextPage];
+            }
         }
     }
 }
@@ -2762,7 +2772,6 @@ int language_condition = BILINGUAL;
     
     //If it is an action sentence color it blue
     if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
-        
         NSString* colorSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
         [bookView stringByEvaluatingJavaScriptFromString:colorSentence];
     }
@@ -2770,22 +2779,27 @@ int language_condition = BILINGUAL;
     //Play introduction audio
     [self playAudioFile:audio];
     
-    // DEBUG code to play expected action
+    //DEBUG code to play expected action
     //NSString* actions = [NSString stringWithFormat:@"%@ %@ %@",expectedIntroAction,expectedIntroInput,expectedSelection];
     //[self playWordAudio:actions:@"en-us"];
     
     //The response audio file names are hard-coded for now
     if ([expectedIntroInput isEqualToString:@"next"]) {
         wrapperObj1 = @"TTNBTC.m4a";
-    } else if ([expectedIntroInput isEqualToString:@"next"] && language_condition == BILINGUAL) {
+    }
+    else if ([expectedIntroInput isEqualToString:@"next"] && language_condition == BILINGUAL) {
         wrapperObj1 = @"TEBNPC.m4a";
-    } else if ([expectedSelection isEqualToString:@"word"]) {
+    }
+    else if ([expectedSelection isEqualToString:@"word"]) {
         wrapperObj1 = @"BFCE_2B.m4a";
-    } else if ([expectedSelection isEqualToString:@"word"] && language_condition == BILINGUAL) {
+    }
+    else if ([expectedSelection isEqualToString:@"word"] && language_condition == BILINGUAL) {
         wrapperObj1 = @"BFCS_2B.m4a";
-    } else if ([expectedIntroAction isEqualToString:@"move"]) {
+    }
+    else if ([expectedIntroAction isEqualToString:@"move"]) {
         wrapperObj1 = @"BFEE_8.m4a";
-    } else if ([expectedIntroAction isEqualToString:@"move"] && language_condition == BILINGUAL) {
+    }
+    else if ([expectedIntroAction isEqualToString:@"move"] && language_condition == BILINGUAL) {
         wrapperObj1 = @"BFES_8.m4a";
     }
     
@@ -2793,21 +2807,28 @@ int language_condition = BILINGUAL;
     //timer = [NSTimer scheduledTimerWithTimeInterval:17.5 target:self selector:@selector(playAudioFileTimed:) userInfo:wrapper repeats:YES];
     
     performedActions = [NSArray arrayWithObjects: expectedSelection, expectedIntroAction, expectedIntroInput, nil];
+    
     return performedActions;
 }
 
-//Builds the format of the action sentence that allows words to be clickable
+/*
+ * Builds the format of the action sentence that allows words to be clickable
+ */
 -(NSString*) buildHTMLString:(NSString*)htmlText :(NSString*)selectionType :(NSString*)clickableWord :(NSString*) sentenceType {
     //String to build
     NSString* stringToBuild;
     NSArray* splits = [htmlText componentsSeparatedByString:clickableWord];
+    
     if ([sentenceType isEqualToString:@"move"] || [sentenceType isEqualToString:@"group"]) {
         stringToBuild = [NSString stringWithFormat:@"<span class=\"sentence actionSentence\" id=\"s1\">%@</span>",htmlText];
-    } else if ([selectionType isEqualToString:@"word"]){
+    }
+    else if ([selectionType isEqualToString:@"word"]){
         stringToBuild = [NSString stringWithFormat:@"<span class=\"sentence\" id=\"s1\">%@<span class=\"audible\">%@</span>%@</span>",splits[0],clickableWord,splits[1]];
-    } else {
+    }
+    else {
         stringToBuild = [NSString stringWithFormat:@"<span class=\"sentence\" id=\"s1\">%@</span>",htmlText];
     }
+    
     return stringToBuild;
 }
 
@@ -2835,14 +2856,16 @@ int language_condition = BILINGUAL;
     //Switch the language every step for the translation
     if ([languageString isEqualToString:@"S"]) {
         languageString = @"E";
-    } else {
+    }
+    else {
         languageString = @"S";
     }
     
     //The response audio file names are hard-coded for now
     if ([expectedIntroInput isEqualToString:@"next"]) {
         wrapperObj1 = @"TTNBTC.m4a";
-    } else if ([expectedIntroInput isEqualToString:@"next"] && language_condition == BILINGUAL) {
+    }
+    else if ([expectedIntroInput isEqualToString:@"next"] && language_condition == BILINGUAL) {
         wrapperObj1 = @"TEBNPC.m4a";
     }
     
@@ -2850,11 +2873,12 @@ int language_condition = BILINGUAL;
     //timer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(playAudioFileTimed:) userInfo:wrapper repeats:YES];
     
     performedActions = [NSArray arrayWithObjects: expectedSelection, expectedIntroAction, expectedIntroInput, nil];
+    
     return performedActions;
 }
 
 -(void) colorSentencesUponNext {
-    // Color the current sentence black by default
+    //Color the current sentence black by default
     NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence];
     [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
     
@@ -2866,7 +2890,7 @@ int language_condition = BILINGUAL;
     setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence-1];
     [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
     
-    // Decrease the opacity of the previous sentence
+    //Decrease the opacity of the previous sentence
     setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, .2)", currentSentence-1];
     [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
     
@@ -2876,7 +2900,6 @@ int language_condition = BILINGUAL;
     
     //If it is an action sentence color it blue
     if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
-        
         NSString* colorSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
         [bookView stringByEvaluatingJavaScriptFromString:colorSentence];
     }
@@ -2891,8 +2914,7 @@ int language_condition = BILINGUAL;
     [self performSelector:@selector(clearHighlightedObject) withObject:nil afterDelay:delay];
 }
 
-- (void) viewDidDisappear:(BOOL)animated
-{
+- (void) viewDidDisappear:(BOOL)animated {
     //[timer invalidate];
     //timer = nil;
 }

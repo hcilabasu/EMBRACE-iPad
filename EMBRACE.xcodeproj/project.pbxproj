@@ -737,6 +737,7 @@
 				5CA19447199052AC0007ABF1 /* trophyE.m4a */,
 				5CA19448199052AC0007ABF1 /* tryAgainE.m4a */,
 				5CA19449199052AC0007ABF1 /* weedsE.m4a */,
+				C3B45C11197EE21D003CE36D /* circulatory.epub */,
 				C3938820195CBB4B0005279F /* bestFarm.epub */,
 				311096FE174AB08400B02BF7 /* house.epub */,
 				311096FC174AAA8F00B02BF7 /* farm.epub */,
@@ -1088,6 +1089,7 @@
 				5CA194AC199052AC0007ABF1 /* gateE.m4a in Resources */,
 				5CA1944D199052AC0007ABF1 /* BFCE_2B.m4a in Resources */,
 				31058C76176BCFF900595AAE /* logo57.png in Resources */,
+				C3B45C12197EE21D003CE36D /* circulatory.epub in Resources */,
 				5CA194A2199052AC0007ABF1 /* cartE.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
