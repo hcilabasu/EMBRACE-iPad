@@ -43,6 +43,7 @@ typedef enum InteractionMode {
     IBOutlet UIPinchGestureRecognizer *pinchRecognizer;
     IBOutlet UIPanGestureRecognizer *panRecognizer;
     IBOutlet UITapGestureRecognizer *tapRecognizer;
+    IBOutlet UISwipeGestureRecognizer *swipeRecognizer;
 }
 
 @property (strong, nonatomic) id dataObject;

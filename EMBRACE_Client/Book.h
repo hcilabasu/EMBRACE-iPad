@@ -49,6 +49,8 @@
 
 - (NSString*) getPageForChapter:(NSString*)chapterTitle; //Get the first page of the chapter with the specified chapter title.
 
+- (NSString*) getIdForPageInChapterAndActivity:(NSString*)pagePath :(NSString*)chapterTitle :(Mode)activityMode; //Get the id for the specified page in the chapter with activity
+
 -(void) addChapter:(Chapter*)chapter; //Add a chapter to the book as we're reading it in.
 
 -(NSString*) getNextPageForChapterAndActivity:(NSString*)chapterTitle :(Mode) activity :(NSString*) currentPage; //Get the page number for the specified chapter and activity mode.
