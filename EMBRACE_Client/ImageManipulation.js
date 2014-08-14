@@ -2,7 +2,6 @@ var groupings = new Array(); //Stores objects that may be grouped together. This
 
 var STEP = 5; //Step size used for animation when grouping and ungrouping.
 
-var animatingGrouping = false;
 /*
  * Moves the specified object to the new X,Y coordinated and takes care of all visual feedback.
  */
@@ -80,15 +79,8 @@ function updateConnection(object, deltaX, deltaY) {
     
     //Make sure we also update the Connection information for all objects that just got moved.
     //This is necessary for the objectGroupedAtHotspot function.
-    //Skip the first object if we're animating a grouping, so that it doesn't get updated twice (it's already updated in the animateGrouping function.
-    //Why doesn't this group anymore when
-    if(animatingGrouping)
-        i = 1;
-    else
-        i = 0;
-    
     //TODO: This still doesn't seem like it's working completely, because I can have the farmer pick up the hay, and then put the farmer and hay in the cart, and the hay will be connected to the cart at the same location that the hay is connected to the farmer....why isn't this updating all the time? Not only that, but it crashes the systems. Either this isn't working, or the menu is showing possibilities for disconnecting items that aren't actually connected.
-    for(; i < groupedWithObjects.length; i ++) {
+    for(var i = 0; i < groupedWithObjects.length; i ++) {
         for(var j = 0; j < groupings.length; j ++) {
             var group = groupings[j];
             
@@ -222,9 +214,7 @@ function groupObjectsAtLoc(object1, x1, y1, object2, x2, y2) {
     var group = new Connection(object1, x1, y1, object2, x2, y2);
     
     //Animate the grouping before adding them to the grouped objects array so that they animate correctly.
-    animatingGrouping = true; //set our flag to true so hotspots get updated accordingly.
     animateGrouping(group);
-    animatingGrouping = false; //set our flag to false once we're done with the animation.
     
     //Add them to the grouped objects array.
     groupings[groupings.length] = group;
