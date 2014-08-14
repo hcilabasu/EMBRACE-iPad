@@ -95,7 +95,7 @@ NSUInteger const SELECTION = 0;
 NSUInteger const EXP_ACTION = 1;
 NSUInteger const INPUT = 2;
 int const STEPS_TO_SWITCH_LANGUAGES = 14;
-int language_condition = ENGLISH;
+int language_condition = BILINGUAL;
 
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -2588,6 +2588,9 @@ int language_condition = ENGLISH;
         audio = audioSpanish;
         languageString = @"S";
         underlinedVocabWord = [[Translation translations] objectForKey:expectedIntroInput];
+        if (!underlinedVocabWord) {
+            underlinedVocabWord = expectedIntroInput;
+        }
     }
     
     //Format text to load on the textbox
