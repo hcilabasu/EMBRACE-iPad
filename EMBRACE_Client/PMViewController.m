@@ -185,6 +185,8 @@ float const groupingProximity = 20.0;
     }
     
     //Create UIView for textbox area to recognize swipe gesture
+    //NOTE: Currently not in use because it disables tap gesture recognition over the textbox area and we haven't
+    //found a way to fix this yet.
     //[self createTextboxView];
     
     //Perform setup for activity
