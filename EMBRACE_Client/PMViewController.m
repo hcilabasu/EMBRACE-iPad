@@ -506,7 +506,7 @@ int language_condition = BILINGUAL;
                         
                         [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]];
                         [self highlightObject:sentenceText:1.5];
-                        //Bypass the image touching step
+                        //Bypass the image touching step in the XML
                         currentIntroStep+=2;
                         [self performSelector:@selector(loadIntroStep) withObject:nil afterDelay:2];
                     }
@@ -539,16 +539,14 @@ int language_condition = BILINGUAL;
             }
         }
         else if([[Translation translations] objectForKey:sentenceText]) {
-            [self highlightObject:sentenceText :0];
-                
             //Play word audio En
-            [self playWordAudio:sentenceText : @"en-us"];
+            [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,@"E"]];
+            [self highlightObject:sentenceText:1.5];
                 
-            //Play word audio Es
-            [self playWordAudio:[Translation translations][sentenceText] : @"es-mx"];
-                
-            //Clear highlighted object
-            [self performSelector:@selector(clearHighlightedObject) withObject:nil afterDelay:1.5];
+            if (language_condition == BILINGUAL) {
+                //Play word audio Sp
+                [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",[self getSpanishTranslation:sentenceText],@"S"]];
+            }
         }
     }
 }
