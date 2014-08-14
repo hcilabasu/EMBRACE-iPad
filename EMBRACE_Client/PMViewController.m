@@ -32,6 +32,7 @@
     BOOL panning;
     BOOL pinching;
     BOOL pinchToUngroup; //TRUE if pinch gesture is used to ungroup; FALSE otherwise
+    BOOL allowInteractions; //TRUE if objects can be manipulated; FALSE otherwise
     
     NSMutableDictionary *currentGroupings;
     
@@ -105,6 +106,14 @@ float const groupingProximity = 20.0;
     currentPage = nil;
     
     condition = MENU;
+    
+    if (condition == MENU) {
+        allowInteractions = TRUE;
+    }
+    else if (condition == CONTROL) {
+        allowInteractions = FALSE; //control condition allows user to read only; no manipulations
+    }
+    
     useSubject = ALL_ENTITIES;
     useObject = ONLY_CORRECT;
     pinchToUngroup = FALSE;
@@ -372,7 +381,7 @@ float const groupingProximity = 20.0;
  */
 -(void) performAutomaticSteps {
     //Perform steps only if they exist for the sentence
-    if (numSteps > 0) {
+    if (numSteps > 0 && allowInteractions) {
         //Get steps for current sentence
         NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
         
@@ -412,7 +421,7 @@ float const groupingProximity = 20.0;
     CGPoint location = [recognizer locationInView:self.view];
     
     //check to see if we have a menu open. If so, process menu click.
-    if(menu != nil) {
+    if(menu != nil && allowInteractions) {
         int menuItem = [menu pointInMenuItem:location];
         
         //If we've selected a menuItem.
@@ -448,7 +457,7 @@ float const groupingProximity = 20.0;
         menuExpanded = FALSE;
     }
     else {
-        if (numSteps > 0) {
+        if (numSteps > 0 && allowInteractions) {
             //Get steps for current sentence
             NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
             
@@ -523,7 +532,7 @@ float const groupingProximity = 20.0;
     NSLog(@"Swiper no swiping!");
     
     //Perform steps only if they exist for the sentence and have not been completed
-    if (numSteps > 0 && !stepsComplete) {
+    if (numSteps > 0 && !stepsComplete && allowInteractions) {
         //Get steps for current sentence
         NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
         
@@ -589,7 +598,7 @@ float const groupingProximity = 20.0;
 -(IBAction)pinchGesturePerformed:(UIPinchGestureRecognizer *)recognizer {
     CGPoint location = [recognizer locationInView:self.view];
     
-    if(recognizer.state == UIGestureRecognizerStateBegan && pinchToUngroup) {
+    if(recognizer.state == UIGestureRecognizerStateBegan && allowInteractions && pinchToUngroup) {
         pinching = TRUE;
         
         NSString* imageAtPoint = [self getObjectAtPoint:location ofType:@"manipulationObject"];
@@ -676,7 +685,7 @@ float const groupingProximity = 20.0;
     CGPoint location = [recognizer locationInView:self.view];
 
     //This should work with requireGestureRecognizerToFail:pinchRecognizer but it doesn't currently.
-    if(!pinching) {
+    if(!pinching && allowInteractions) {
         BOOL useProximity = NO;
         
         if(recognizer.state == UIGestureRecognizerStateBegan) {
@@ -2402,7 +2411,7 @@ float const groupingProximity = 20.0;
  * is correct, then it will move on to the next sentence. If the manipulation is not current, then feedback will be provided.
  */
 -(IBAction)pressedNext:(id)sender {
-    if (stepsComplete || numSteps == 0) {
+    if (stepsComplete || numSteps == 0 || !allowInteractions) {
         //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
         currentSentence ++;
         
