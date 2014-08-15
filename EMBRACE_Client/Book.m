@@ -72,6 +72,23 @@
     return nil; //Didn't find the chapter.
 }
 
+//Get the id for the specified page in the chapter with activity
+- (NSString*) getIdForPageInChapterAndActivity:(NSString*)pagePath :(NSString*)chapterTitle :(Mode)activityMode {
+    for (Chapter* chapter in chapters) {
+        if ([[chapter title] isEqualToString:chapterTitle]) {
+            Activity* activity = [chapter getActivityOfType:activityMode];
+            
+            for (Page* page in [activity pages]) {
+                if ([[page pagePath] isEqualToString:pagePath]) {
+                    return [page pageId];
+                }
+            }
+        }
+    }
+    
+    return nil;
+}
+
 //This is the base URL for the book.
 - (NSString*) getHTMLURL {
     NSString* idPage = [itemOrder objectAtIndex:0];

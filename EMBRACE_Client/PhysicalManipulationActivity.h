@@ -11,13 +11,13 @@
 #import "PhysicalManipulationSolution.h"
 
 @interface PhysicalManipulationActivity : Activity {
-    NSMutableArray *setupSteps;
+    NSMutableDictionary *setupSteps;
     PhysicalManipulationSolution *PMSolution;
 }
 
-@property (nonatomic, strong) NSMutableArray *setupSteps;
+@property (nonatomic, strong) NSMutableDictionary *setupSteps;
 @property (nonatomic, strong) PhysicalManipulationSolution *PMSolution;
 
-- (void) addSetupStep:(ActionStep*)setupStep;
+- (void) addSetupStep:(ActionStep*)setupStep forPageId:(NSString*)pageId;
 
 @end

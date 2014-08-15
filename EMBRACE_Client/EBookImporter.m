@@ -573,6 +573,9 @@
         NSString* storyTitle = [[storySetupElement attributeForName:@"title"] stringValue];
         Chapter* chapter = [book getChapterWithTitle:storyTitle];
         
+        //Get page id
+        NSString* pageId = [[storySetupElement attributeForName:@"page_id"] stringValue];
+        
         if(chapter != nil) {
             PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity only
             
@@ -589,7 +592,7 @@
                 NSString* obj2Id = [[storySetupStep attributeForName:@"obj2Id"] stringValue];
                 
                 ActionStep* setupStep = [[ActionStep alloc] initAsSetupStep:stepType :obj1Id :obj2Id :action];
-                [PMActivity addSetupStep:setupStep];
+                [PMActivity addSetupStep:setupStep forPageId:pageId];
             }
         }
     }
@@ -632,6 +635,11 @@
                         NSString* action = [[step attributeForName:@"action"] stringValue];
                         
                         //TransferAndGroup, transferAndDisappear, group, disappear, and ungroup also have an obj2Id
+                        //* TransferAndGroup and transferAndDisappear steps come in pairs. The first is treated as an ungroup step,
+                        //while the second may be either group or disappear.
+                        //* Group means that two objects should be connected.
+                        //* Disappear means that when two objects are close together, one should disappear.
+                        //* Ungroup means that two objects that were connected should be separated.
                         if([[step name] isEqualToString:@"transferAndGroup"] || [[step name] isEqualToString:@"transferAndDisappear"] || [[step name] isEqualToString:@"group"] || [[step name] isEqualToString:@"disappear"] ||
                            [[step name] isEqualToString:@"ungroup"]) {
                             NSString* obj2Id = [[step attributeForName:@"obj2Id"] stringValue];
@@ -640,6 +648,8 @@
                             [PMSolution addSolutionStep:solutionStep];
                         }
                         //Move also has either an obj2Id or waypointId
+                        //* Move is performed automatically and means that an object should be moved to group with another object
+                        //or to a waypoint on the background.
                         else if([[step name] isEqualToString:@"move"]) {
                             if([step attributeForName:@"obj2Id"]) {
                                 NSString* obj2Id = [[step attributeForName:@"obj2Id"] stringValue];
@@ -655,14 +665,20 @@
                             }
                         }
                         //Check also has a locationId
+                        //* Check means that an object should be moved to be inside a location (defined by a bounding box) on
+                        //the background.
                         else if([[step name] isEqualToString:@"check"]) {
                             NSString* locationId = [[step attributeForName:@"locationId"] stringValue];
                             
                             ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :locationId :nil :action];
                             [PMSolution addSolutionStep:solutionStep];
                         }
-                        //swapImage only has obj1Id and action
-                        else if([[step name] isEqualToString:@"swapImage"]) {
+                        //SwapImage and checkAndSwap only have obj1Id and action
+                        //* SwapImage is performed automatically and means that an object's image should be changed to its alternate
+                        //image.
+                        //* CheckAndSwap means that the correct object must be tapped by the user before changing to its alternate
+                        //image.
+                        else if([[step name] isEqualToString:@"swapImage"] || [[step name] isEqualToString:@"checkAndSwap"]) {
                             ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :action];
                             [PMSolution addSolutionStep:solutionStep];
                         }
