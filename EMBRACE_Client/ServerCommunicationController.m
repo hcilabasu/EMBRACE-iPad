@@ -35,7 +35,9 @@ DDXMLElement *nodeStudy;
 @synthesize UserActionIDTag;
 @synthesize studyConditionString;
 @synthesize studyExperimenterString;
+@synthesize studyDayString;
 @synthesize userNameString;
+@synthesize studyFileName;
 
 #pragma mark Singleton Methods
 
@@ -151,17 +153,18 @@ DDXMLElement *nodeStudy;
 //local XML logging starts here
 
 //stores general context of participant, condition and expermenter as global elements
--(void) logContext : (Student *) userdetails : (NSString *) studyCondition : (NSString *) studyExperimenter
+-(void) logContext : (Student *) userdetails
 {
     if(userdetails != nil) {
         
         //formats username string into "firstname lastname"
-        NSString *userNameValue = [NSString stringWithFormat:@"%@ %@",[userdetails firstName],[userdetails lastName]];
+        NSString *FileNameValue = [NSString stringWithFormat:@"%@ %@",[userdetails firstName],[userdetails lastName]];
         
         //sets global variables to be used by returnContext function
-        studyExperimenterString = studyExperimenter;
-        studyConditionString = studyCondition;
-        userNameString = userNameValue;
+        studyExperimenterString = [userdetails experimenterName];
+        studyConditionString = [userdetails firstName];
+        studyDayString = [userdetails lastName];
+        studyFileName = FileNameValue;
     }
 
 }
@@ -422,8 +425,7 @@ DDXMLElement *nodeStudy;
     [nodeComputerAction addChild:nodeContext];
     
     //upon going to next chapter store all chapter log data
-    [[ServerCommunicationController sharedManager] writeToFile:userNameString ofType:@"txt"];
-    
+    [[ServerCommunicationController sharedManager] writeToFile:studyFileName ofType:@"txt"];
 }
 
 /*
@@ -574,7 +576,7 @@ DDXMLElement *nodeStudy;
  Input: correctness, what action
  Context: story, chapter, page, sentence, step, username, condition, experimenter
  */
--(void) logComputerVerification: (BOOL) verificationValue : (NSString *) objectSelected : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue
+-(void) logComputerVerification: (NSString*)action : (BOOL) verificationValue : (NSString *) objectSelected : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue
 {
     //logging structure for user actions
     DDXMLElement *nodeComputerAction = [DDXMLElement elementWithName:@"Computer Action"];
@@ -605,7 +607,7 @@ DDXMLElement *nodeStudy;
     [nodeInput addChild:nodeVerficiation];
     
     //logging action
-    DDXMLElement *nodeAction = [DDXMLElement elementWithName:@"Action" stringValue:@"Display Menu"];
+    DDXMLElement *nodeAction = [DDXMLElement elementWithName:@"Action" stringValue:action];
     
     //logging Context
     DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext:storyValue :chapterValue :pageValue :sentenceValue :stepValue];
@@ -674,7 +676,7 @@ DDXMLElement *nodeStudy;
  Input: displayedMenuItems
  Context: story, chapter, page, sentence, step, username, condition, experimenter
  */
--(void) logComputerDisplayMenuItems :  (NSArray *) displayedMenuInteractions :(NSArray *)displayedMenuImages : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue
+-(void) logComputerDisplayMenuItems :  (NSArray *) displayedMenuInteractions :(NSArray *)displayedMenuImages : (NSArray*) displayedMenuRelationships : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue
 {
     UserActionIDTag++;
     
@@ -712,7 +714,7 @@ DDXMLElement *nodeStudy;
                     menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuImages objectAtIndex:j] ];
                 }
                 
-                nodeDisplayedMenuItem1 = [DDXMLElement elementWithName:@"Menu Item 1" stringValue:[NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuInteractions objectAtIndex:0]]];
+                nodeDisplayedMenuItem1 = [DDXMLElement elementWithName:@"Menu Item 1" stringValue:[NSString stringWithFormat:@"%@, %@, %@", menuItem, [displayedMenuInteractions objectAtIndex:0], [displayedMenuRelationships objectAtIndex:0]]];
                 
                 menuItem = [NSString stringWithFormat:@"%@", [displayedMenuImages objectAtIndex:i+1]];
                 
@@ -721,7 +723,7 @@ DDXMLElement *nodeStudy;
                     menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuImages objectAtIndex:j] ];
                 }
                 
-                nodeDisplayedMenuItem2 = [DDXMLElement elementWithName:@"Menu Item 2" stringValue:[NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuInteractions objectAtIndex:1]]];
+                nodeDisplayedMenuItem2 = [DDXMLElement elementWithName:@"Menu Item 2" stringValue:[NSString stringWithFormat:@"%@, %@, %@", menuItem, [displayedMenuInteractions objectAtIndex:1], [displayedMenuRelationships objectAtIndex:1]]];
             }
             
         }
@@ -747,7 +749,7 @@ DDXMLElement *nodeStudy;
                     menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuImages objectAtIndex:j] ];
                 }
                 
-                nodeDisplayedMenuItem1 = [DDXMLElement elementWithName:@"Menu Item 1" stringValue:[NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuInteractions objectAtIndex:0]]];
+                nodeDisplayedMenuItem1 = [DDXMLElement elementWithName:@"Menu Item 1" stringValue:[NSString stringWithFormat:@"%@, %@, %@", menuItem, [displayedMenuInteractions objectAtIndex:0], [displayedMenuRelationships objectAtIndex:0]]];
             }
             
             if( [[displayedMenuImages objectAtIndex:i] isEqual:@"2"])
@@ -759,7 +761,7 @@ DDXMLElement *nodeStudy;
                     menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuImages objectAtIndex:j] ];
                 }
                 
-                nodeDisplayedMenuItem2 = [DDXMLElement elementWithName:@"Menu Item 2" stringValue:[NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuInteractions objectAtIndex:1]]];
+                nodeDisplayedMenuItem2 = [DDXMLElement elementWithName:@"Menu Item 2" stringValue:[NSString stringWithFormat:@"%@, %@, %@", menuItem, [displayedMenuInteractions objectAtIndex:1], [displayedMenuRelationships objectAtIndex:1]]];
                 
                 menuItem = [NSString stringWithFormat:@"%@", [displayedMenuImages objectAtIndex:i+1]];
                 
@@ -768,7 +770,7 @@ DDXMLElement *nodeStudy;
                     menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuImages objectAtIndex:j] ];
                 }
                 
-                nodeDisplayedMenuItem3 = [DDXMLElement elementWithName:@"Menu Item 3" stringValue:[NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuInteractions objectAtIndex:2]]];
+                nodeDisplayedMenuItem3 = [DDXMLElement elementWithName:@"Menu Item 3" stringValue:[NSString stringWithFormat:@"%@, %@, %@", menuItem, [displayedMenuInteractions objectAtIndex:2], [displayedMenuRelationships objectAtIndex:2]]];
             }
             
         }
@@ -965,7 +967,7 @@ DDXMLElement *nodeStudy;
  Input: displayed menu items
  Context: story, chapter, page, sentence, step, username, condition, experimenter
  */
-- (void) logMenuSelection : (NSString *) selectedMenuItemID : (NSArray *) displayedMenuInteractions :(NSArray *)displayedMenuImages :(NSString *) computerActionValue : (NSString *) storyValue : (NSString *) pageValue : (NSString *) chapterValue : (NSString *) sentenceValue : (NSString *) stepValue
+- (void) logMenuSelection : (int) selectedMenuItemID : (NSArray *) displayedMenuInteractions :(NSArray *)displayedMenuImages : (NSArray *) menuRelationships : (NSString *) computerActionValue : (NSString *) storyValue : (NSString *) pageValue : (NSString *) chapterValue : (NSString *) sentenceValue : (NSString *) stepValue
 {
     UserActionIDTag++;
     
@@ -976,7 +978,7 @@ DDXMLElement *nodeStudy;
     DDXMLElement *nodeUserActionID = [DDXMLElement elementWithName:@"User Action ID" stringValue:[NSString stringWithFormat:@"%ld",(long)UserActionIDTag]];
     
     //logging selection
-    DDXMLElement *nodeSelection = [DDXMLElement elementWithName:@"Selection" stringValue:selectedMenuItemID];
+    DDXMLElement *nodeSelection = [DDXMLElement elementWithName:@"Selection" stringValue:@"Menu Item"];
     
     //logging Input
     DDXMLElement *nodeInput = [DDXMLElement elementWithName:@"Input"];
@@ -999,7 +1001,7 @@ DDXMLElement *nodeStudy;
                     menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuImages objectAtIndex:j] ];
                 }
                 
-                nodeDisplayedMenuItem1 = [DDXMLElement elementWithName:@"Menu Item 1" stringValue:[NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuInteractions objectAtIndex:0]]];
+                nodeDisplayedMenuItem1 = [DDXMLElement elementWithName:@"Menu Item 1" stringValue:[NSString stringWithFormat:@"%@, %@, %@", menuItem, [displayedMenuInteractions objectAtIndex:0], [menuRelationships objectAtIndex:0]]];
                 
                 menuItem = [NSString stringWithFormat:@"%@", [displayedMenuImages objectAtIndex:i+1]];
                 
@@ -1008,14 +1010,20 @@ DDXMLElement *nodeStudy;
                     menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuImages objectAtIndex:j] ];
                 }
                 
-                nodeDisplayedMenuItem2 = [DDXMLElement elementWithName:@"Menu Item 2" stringValue:[NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuInteractions objectAtIndex:1]]];
+                nodeDisplayedMenuItem2 = [DDXMLElement elementWithName:@"Menu Item 2" stringValue:[NSString stringWithFormat:@"%@, %@, %@", menuItem, [displayedMenuInteractions objectAtIndex:1], [menuRelationships objectAtIndex:1]]];
             }
             
         }
         
         //adding child nodes to Input parent
-        [nodeInput addChild:nodeDisplayedMenuItem1];
-        [nodeInput addChild:nodeDisplayedMenuItem2];
+        if (selectedMenuItemID == 0) {
+            [nodeInput addChild:nodeDisplayedMenuItem1];
+        }
+        if (selectedMenuItemID == 1)
+        {
+            [nodeInput addChild:nodeDisplayedMenuItem2];
+        }
+        
     }
     else
     {
@@ -1034,7 +1042,7 @@ DDXMLElement *nodeStudy;
                     menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuImages objectAtIndex:j] ];
                 }
                 
-                nodeDisplayedMenuItem1 = [DDXMLElement elementWithName:@"Menu Item 1" stringValue:[NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuInteractions objectAtIndex:0]]];
+                nodeDisplayedMenuItem1 = [DDXMLElement elementWithName:@"Menu Item 1" stringValue:[NSString stringWithFormat:@"%@, %@, %@", menuItem, [displayedMenuInteractions objectAtIndex:0], [menuRelationships objectAtIndex:0]]];
             }
             
             if( [[displayedMenuImages objectAtIndex:i] isEqual:@"2"])
@@ -1045,8 +1053,8 @@ DDXMLElement *nodeStudy;
                 {
                     menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuImages objectAtIndex:j] ];
                 }
-                
-                nodeDisplayedMenuItem2 = [DDXMLElement elementWithName:@"Menu Item 2" stringValue:[NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuInteractions objectAtIndex:1]]];
+            
+                nodeDisplayedMenuItem2 = [DDXMLElement elementWithName:@"Menu Item 2" stringValue:[NSString stringWithFormat:@"%@, %@, %@", menuItem, [displayedMenuInteractions objectAtIndex:1], [menuRelationships objectAtIndex:1]]];
                 menuItem = [NSString stringWithFormat:@"%@", [displayedMenuImages objectAtIndex:i+1]];
                 
                 for (int j=i+2; j<[displayedMenuImages count]; j++)
@@ -1054,15 +1062,22 @@ DDXMLElement *nodeStudy;
                     menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuImages objectAtIndex:j] ];
                 }
                 
-                nodeDisplayedMenuItem3 = [DDXMLElement elementWithName:@"Menu Item 3" stringValue:[NSString stringWithFormat:@"%@, %@", menuItem, [displayedMenuInteractions objectAtIndex:2]]];
+                nodeDisplayedMenuItem3 = [DDXMLElement elementWithName:@"Menu Item 3" stringValue:[NSString stringWithFormat:@"%@, %@, %@", menuItem, [displayedMenuInteractions objectAtIndex:2], [menuRelationships objectAtIndex:2]]];
             }
             
         }
         
         //adding child nodes to Input parent
-        [nodeInput addChild:nodeDisplayedMenuItem1];
-        [nodeInput addChild:nodeDisplayedMenuItem2];
-        [nodeInput addChild:nodeDisplayedMenuItem3];
+        if (selectedMenuItemID == 0) {
+            [nodeInput addChild:nodeDisplayedMenuItem1];
+        }
+        if (selectedMenuItemID == 1)
+        {
+            [nodeInput addChild:nodeDisplayedMenuItem2];
+        }
+        if (selectedMenuItemID ==2) {
+            [nodeInput addChild:nodeDisplayedMenuItem3];
+        }
     }
    
     //logging action
@@ -1084,6 +1099,17 @@ DDXMLElement *nodeStudy;
     //bool successfulWrite = [[ServerCommunicationController sharedManager] writeToFile:userNameString ofType:@"txt"];
 }
 
+//logging user word presses
+-(void) logUserPressWord : (NSString *) selectedWordID : (NSString *) computerActionValue : (NSString *) storyValue : (NSString *) pageValue : (NSString *) chapterValue : (NSString *) sentenceValue : (NSString *) stepValue
+{
+    
+}
+
+-(void) logUserEmergencyNext :(NSString *) computerActionValue : (NSString *) storyValue : (NSString *) pageValue : (NSString *) chapterValue : (NSString *) sentenceValue : (NSString *) stepValue
+{
+
+}
+
 -(DDXMLElement *) returnContext : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue
 {
     
@@ -1094,10 +1120,10 @@ DDXMLElement *nodeStudy;
     NSString *timeStampValue = [dateFormatter stringFromDate: currentTime];
     
     //logging Context
-    DDXMLElement *nodeUsername = [DDXMLElement elementWithName:@"Username" stringValue:userNameString];
+    DDXMLElement *nodeContext = [DDXMLElement elementWithName:@"Context"];
+    DDXMLElement *nodeDay = [DDXMLElement elementWithName:@"Day" stringValue:studyDayString];
     DDXMLElement *nodeCondition = [DDXMLElement elementWithName:@"Condition" stringValue:studyConditionString];
     DDXMLElement *nodeExperimenter = [DDXMLElement elementWithName:@"Experimenter" stringValue:studyExperimenterString];
-    DDXMLElement *nodeContext = [DDXMLElement elementWithName:@"Context"];
     DDXMLElement *nodeStory = [DDXMLElement elementWithName:@"Story" stringValue:storyValue];
     DDXMLElement *nodeChapter = [DDXMLElement elementWithName:@"Chapter" stringValue:chapterValue];
     DDXMLElement *nodePage = [DDXMLElement elementWithName:@"Page" stringValue:pageValue];
@@ -1106,8 +1132,8 @@ DDXMLElement *nodeStudy;
     DDXMLElement *nodeTimestamp = [DDXMLElement elementWithName:@"Timestamp" stringValue:timeStampValue];
     
     //adding children nodes to context parent
-    [nodeContext addChild:nodeUsername];
     [nodeContext addChild:nodeCondition];
+    [nodeContext addChild:nodeDay];
     [nodeContext addChild:nodeExperimenter];
     [nodeContext addChild:nodeStory];
     [nodeContext addChild:nodeChapter];
@@ -1121,17 +1147,25 @@ DDXMLElement *nodeStudy;
 
 - (BOOL) writeToFile:(NSString *)fileName ofType:(NSString *)type
 {
-    NSString *fullFileName = [NSString stringWithFormat:@"%@%@", fileName, type];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    //NSString *docsDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@", fileName, type]];
+    NSString *stringxml = [xmlDocTemp XMLStringWithOptions:DDXMLNodePrettyPrint];
+    
+    //[stringxml writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    /*
+    NSString *fullFileName = [NSString stringWithFormat:@"%@.%@", fileName, type];
     NSString* filePath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString* fileAtPath = [filePath stringByAppendingPathComponent:fullFileName];
     if (![[NSFileManager defaultManager] fileExistsAtPath:fileAtPath]) {
         [[NSFileManager defaultManager] createFileAtPath:fileAtPath contents:nil attributes:nil];
     }
-    
-    //
     //NSData *xmlData = [xmlDocTemp XMLDataWithOptions:DDXMLNodePrettyPrint];
-    NSString *stringxml = [xmlDocTemp XMLStringWithOptions:DDXMLNodePrettyPrint];
-    if (![stringxml writeToFile:fileAtPath atomically:YES]) {
+     */
+                      
+    
+    if (![stringxml writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil]) {
         //NSBeep();
         NSLog(@"Could not write document out...");
         NSLog(@"%@", stringxml);

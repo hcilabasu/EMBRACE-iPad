@@ -64,6 +64,7 @@
  */
 - (Relationship*) getRelationshipForObjectsForAction:(NSString*)obj1Id :(NSString*)obj2Id :(NSString*)action {
     for(Relationship *relation in relationships) {
+        
         if(([[relation object1Id] isEqualToString:obj1Id] && [[relation object2Id] isEqualToString:obj2Id]) || ([[relation object1Id] isEqualToString:obj2Id] && [[relation object2Id] isEqualToString:obj1Id])) {
  
             //Check to make sure the action is appropriate and filter based on valid action types.

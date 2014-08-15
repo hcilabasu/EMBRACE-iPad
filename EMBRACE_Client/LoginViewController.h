@@ -11,6 +11,7 @@
 @interface LoginViewController : UIViewController {
     IBOutlet UITextField *firstNameField;
     IBOutlet UITextField *lastNameField;
+    IBOutlet UITextField *experimenterField;
 }
 
 @end

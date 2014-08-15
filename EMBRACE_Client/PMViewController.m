@@ -25,7 +25,10 @@
     BOOL stepsComplete; //True if all steps have been completed for a sentence
     
     NSString *movingObjectId; //Object currently being moved.
+    NSString *collisionObjectId; //Object the moving object was moved to.
     NSString *separatingObjectId; //Object identified when pinch gesture performed.
+    Relationship *lastRelationship;//stores the most recent relationship between objects used
+    NSMutableArray *allRelationships;
     BOOL movingObject; //True if an object is currently being moved, false otherwise.
     BOOL separatingObject; //True if two objects are currently being ungrouped, false otherwise.
     
@@ -100,6 +103,9 @@ float const groupingProximity = 20.0;
     menuExpanded = FALSE;
     
     movingObjectId = nil;
+    collisionObjectId = nil;
+    lastRelationship = nil;
+    allRelationships = [[NSMutableArray alloc] init];
     separatingObjectId = nil;
     
     currentPage = nil;
@@ -424,16 +430,18 @@ float const groupingProximity = 20.0;
             
             [self checkSolutionForInteraction:interaction]; //check if selected interaction is correct
             
-            
             NSInteger numMenuItems = [menuDataSource numberOfMenuItems];
             NSMutableArray *menuItemInteractions = [[NSMutableArray alloc] init];
             NSMutableArray *menuItemImages =[[NSMutableArray alloc] init];
-            
+            NSMutableArray *menuItemRelationships = [[NSMutableArray alloc] init];
             
             for (int x=0; x<numMenuItems; x++) {
                 MenuItemDataSource *tempMenuItem = [menuDataSource dataObjectAtIndex:x];
                 PossibleInteraction *tempMenuInteraction =[tempMenuItem interaction];
-                //Relationship *temprelationship = ;
+                Relationship *tempMenuRelationship = [tempMenuItem menuRelationship];
+                
+                NSLog(@"%@", [tempMenuRelationship actionType]);
+                //[menuItemInteractions addObject:[tempMenuRelationship actionType]];
                 
                 if(tempMenuInteraction.interactionType == DISAPPEAR)
                 {
@@ -449,15 +457,15 @@ float const groupingProximity = 20.0;
                 }
                 if (tempMenuInteraction.interactionType == TRANSFERANDDISAPPEAR)
                 {
-                    [menuItemInteractions addObject:@"Transfer and Disappear"];
+                    [menuItemInteractions addObject:@"Transfer And Disappear"];
                 }
                 if (tempMenuInteraction.interactionType == TRANSFERANDGROUP)
                 {
-                    [menuItemInteractions addObject:@"Transfer and Group"];
+                    [menuItemInteractions addObject:@"Transfer And Group"];
                 }
                 if(tempMenuInteraction.interactionType ==NONE)
                 {
-                    [menuItemInteractions addObject:@"None"];
+                    [menuItemInteractions addObject:@"none"];
                 }
                 
                 [menuItemImages addObject:[NSString stringWithFormat:@"%d", x]];
@@ -468,10 +476,11 @@ float const groupingProximity = 20.0;
                     [menuItemImages addObject:[tempimage.image accessibilityIdentifier]];
                 }
                 
+                [menuItemRelationships addObject:tempMenuRelationship.action];
             }
             
             //Logging Add by James for Menu Selection
-            [[ServerCommunicationController sharedManager] logMenuSelection: [NSString stringWithFormat:@"%d", menuItem]: menuItemInteractions : menuItemImages :@"Menu Item Selected" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+            [[ServerCommunicationController sharedManager] logMenuSelection: menuItem: menuItemInteractions : menuItemImages : menuItemRelationships :@"Menu Item Selected" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
         }
         //No menuItem was selected
         else {
@@ -616,7 +625,7 @@ float const groupingProximity = 20.0;
             //Show the menu if multiple possible ungroupings are found
             if ([itemPairArray count] > 1) {
                 //Populate the data source and expand the menu.
-                [self populateMenuDataSource:possibleInteractions];
+                [self populateMenuDataSource:possibleInteractions:allRelationships];
                 
                 if(!menuExpanded)
                     [self expandMenu];
@@ -685,12 +694,12 @@ float const groupingProximity = 20.0;
                         //moving an object to a location (barn, hay loft etc)
                         
                         //Logging added by James for user Move Object to Hotspot Correct
-                        [[ServerCommunicationController sharedManager] logComputerVerification:true : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+                        [[ServerCommunicationController sharedManager] logComputerVerification: @"Move to Hotspot":true : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
                        
                     }
                     else {
                         //Logging added by James for user Move Object to Hotspot Incorrect
-                        [[ServerCommunicationController sharedManager] logComputerVerification:false : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+                        [[ServerCommunicationController sharedManager] logComputerVerification:@"Move to Hotspot" :false : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
                         [self playErrorNoise];
                         
                         [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
@@ -717,7 +726,7 @@ float const groupingProximity = 20.0;
                         if ([possibleInteractions count] == 0) {
                             
                             //Logging added by James for Verifying Move Object to object
-                            [[ServerCommunicationController sharedManager] logComputerVerification:false : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+                            [[ServerCommunicationController sharedManager] logComputerVerification: @"Move to Object":false : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
                             
                             [self playErrorNoise];
                             
@@ -740,10 +749,10 @@ float const groupingProximity = 20.0;
                             [self rankPossibleInteractions:possibleInteractions];
                             
                             //Logging added by James for Move Object to object Verification
-                            [[ServerCommunicationController sharedManager] logComputerVerification:true : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+                            [[ServerCommunicationController sharedManager] logComputerVerification: @"Move To object":true : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
                             
                             //Populate the menu data source and expand the menu.
-                            [self populateMenuDataSource:possibleInteractions];
+                            [self populateMenuDataSource:possibleInteractions:allRelationships];
                             
                             if(!menuExpanded)
                                 [self expandMenu];
@@ -903,7 +912,7 @@ float const groupingProximity = 20.0;
  * NOTE: This should be pushed to the JS so that all actual positioning information is in one place and we're not duplicating code that's in the JS in the objC as well. For now...we'll just do it here.
  * Come back to this...
  */
--(void) simulatePossibleInteractionForMenuItem:(PossibleInteraction*)interaction {
+-(void) simulatePossibleInteractionForMenuItem:(PossibleInteraction*)interaction : (Relationship*) relationship{
     NSMutableDictionary* images = [[NSMutableDictionary alloc] init];
     
     //Populate the mutable dictionary of menuItemImages.
@@ -950,7 +959,6 @@ float const groupingProximity = 20.0;
         Hotspot* connectedHotspot1;
         Hotspot* connectedHotspot2;
         
-        //computer action log
         if([connection interactionType] == UNGROUP || [connection interactionType] == DISAPPEAR) {
             [self simulateUngrouping:obj1 :obj2 :images];
         }
@@ -994,7 +1002,7 @@ float const groupingProximity = 20.0;
     //Calculate the bounding box for the group of objects being passed to the menu item.
     CGRect boundingBox = [self getBoundingBoxOfImages:imagesArray];
     
-    [menuDataSource addMenuItem:interaction :imagesArray :boundingBox];
+    [menuDataSource addMenuItem:interaction : relationship:imagesArray :boundingBox];
 }
 
 /*
@@ -1578,7 +1586,7 @@ float const groupingProximity = 20.0;
     //Check if selected interaction is correct
     if ([interaction isEqual:correctInteraction]) {
         //Logging added by James for Correct Interaction
-        [[ServerCommunicationController sharedManager] logComputerVerification:true : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+        [[ServerCommunicationController sharedManager] logComputerVerification:@"Selected Menu Item":true : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
         
         [self performInteraction:interaction];
         [self incrementCurrentStep];
@@ -1591,7 +1599,7 @@ float const groupingProximity = 20.0;
     }
     else {
         //Logging added by James for Incorrect Interaction
-        [[ServerCommunicationController sharedManager] logComputerVerification:false : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+        [[ServerCommunicationController sharedManager] logComputerVerification:@"Selected Menu Item":false : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
         
         [self playErrorNoise]; //play noise if interaction is incorrect
         
@@ -1688,6 +1696,8 @@ float const groupingProximity = 20.0;
     
     //Get the objects that this object is overlapping with
     NSArray* overlappingWith = [self getObjectsOverlappingWithObject:obj];
+    BOOL ObjectIDUsed = false;
+    NSString *tempCollisionObject = nil;
     
     if (overlappingWith != nil) {
         for(NSString* objId in overlappingWith) {
@@ -1697,10 +1707,17 @@ float const groupingProximity = 20.0;
             if (useObject == ONLY_CORRECT) {
                 if (![self checkSolutionForObject:objId]) {
                     getInteractions = FALSE;
+                    if (!ObjectIDUsed) {
+                        ObjectIDUsed = true;
+                        tempCollisionObject = objId;
+                    }
                 }
             }
             
             if (getInteractions) {
+                    ObjectIDUsed = true;
+                    tempCollisionObject = objId;
+                
                 NSMutableArray* hotspots = [model getHotspotsForObject:objId OverlappingWithObject:obj];
                 NSMutableArray* movingObjectHotspots = [model getHotspotsForObject:obj OverlappingWithObject:objId];
                 
@@ -1738,6 +1755,8 @@ float const groupingProximity = 20.0;
                             else {
                                 //Get the relationship between these two objects so we can check to see what type of relationship it is.
                                 Relationship* relationshipBetweenObjects = [model getRelationshipForObjectsForAction:obj :objId :[movingObjectHotspot action]];
+                                lastRelationship = relationshipBetweenObjects;
+                                [allRelationships addObject:lastRelationship];
                                 
                                 //Check to make sure that the two hotspots are in close proximity to each other.
                                 if((useProximity && [self hotspotsWithinGroupingProximity:movingObjectHotspot :hotspot]) ||
@@ -1784,6 +1803,7 @@ float const groupingProximity = 20.0;
         }
     }
     
+    collisionObjectId = tempCollisionObject;
     return groupings;
 }
 
@@ -1876,6 +1896,8 @@ float const groupingProximity = 20.0;
                 
                 //Get the relationship between the connected and currently unconnected objects so we can check to see what type of relationship it is.
                 Relationship* relationshipBetweenObjects = [model getRelationshipForObjectsForAction:objConnected :currentUnconnectedObj :[objConnectedHotspot action]];
+                lastRelationship = relationshipBetweenObjects;
+                [allRelationships addObject:lastRelationship];
                 
                 if([[relationshipBetweenObjects  actionType] isEqualToString:@"group"]) {
                     [interaction addConnection:GROUP :transferObjects :hotspotsForTransfer];
@@ -2465,22 +2487,25 @@ float const groupingProximity = 20.0;
  * If more possible interactions than the alloted number max menu items exists
  * the function will stop after the max number of menu items possible.
  */
--(void)populateMenuDataSource:(NSMutableArray*)possibleInteractions {
+-(void)populateMenuDataSource:(NSMutableArray*)possibleInteractions : (NSMutableArray*)relationships {
     //Clear the old data source.
     [menuDataSource clearMenuitems];
     
     //Create new data source for menu.
     //Go through and great a menuItem for every possible interaction
     int interactionNum = 1;
-    
+    int x=0;
     for(PossibleInteraction* interaction in possibleInteractions) {
-        //dig into simulatepossibleinteractionformenu to log populated menu
-        [self simulatePossibleInteractionForMenuItem:interaction];
-        interactionNum ++;
-        //NSLog(@"%d", interactionNum);
-        //If the number of interactions is greater than the max number of menu Items allowed, then stop.
-        if(interactionNum > maxMenuItems)
-            break;
+        NSLog(@"%@", interaction);
+        NSLog(@"%@",[relationships objectAtIndex:x]);
+        x++;
+            //dig into simulatepossibleinteractionformenu to log populated menu
+            [self simulatePossibleInteractionForMenuItem: interaction : [relationships objectAtIndex:x]];
+            interactionNum ++;
+            //NSLog(@"%d", interactionNum);
+            //If the number of interactions is greater than the max number of menu Items allowed, then stop.
+            if(interactionNum > maxMenuItems)
+                break;
     }
 }
 
@@ -2520,15 +2545,18 @@ float const groupingProximity = 20.0;
     [menu expandMenu:radius];
     menuExpanded = TRUE;
     
-    //needs testing
     NSInteger numMenuItems = [menuDataSource numberOfMenuItems];
     NSMutableArray *menuItemInteractions = [[NSMutableArray alloc] init];
     NSMutableArray *menuItemImages =[[NSMutableArray alloc] init];
+    NSMutableArray *menuItemRelationships = [[NSMutableArray alloc] init];
     
     for (int x=0; x<numMenuItems; x++) {
         MenuItemDataSource *tempMenuItem = [menuDataSource dataObjectAtIndex:x];
         PossibleInteraction *tempMenuInteraction =[tempMenuItem interaction];
-        //Relationship *temprelationship = ;
+        Relationship *tempMenuRelationship = [tempMenuItem menuRelationship];
+        
+        NSLog(@"%@", [tempMenuRelationship actionType]);
+        //[menuItemInteractions addObject:[tempMenuRelationship actionType]];
         
         if(tempMenuInteraction.interactionType == DISAPPEAR)
         {
@@ -2544,15 +2572,15 @@ float const groupingProximity = 20.0;
         }
         if (tempMenuInteraction.interactionType == TRANSFERANDDISAPPEAR)
         {
-            [menuItemInteractions addObject:@"Transfer and Disappear"];
+            [menuItemInteractions addObject:@"Transfer And Disappear"];
         }
         if (tempMenuInteraction.interactionType == TRANSFERANDGROUP)
         {
-            [menuItemInteractions addObject:@"Transfer and Group"];
+            [menuItemInteractions addObject:@"Transfer And Group"];
         }
         if(tempMenuInteraction.interactionType ==NONE)
         {
-            [menuItemInteractions addObject:@"None"];
+            [menuItemInteractions addObject:@"none"];
         }
         
         [menuItemImages addObject:[NSString stringWithFormat:@"%d", x]];
@@ -2563,10 +2591,11 @@ float const groupingProximity = 20.0;
             [menuItemImages addObject:[tempimage.image accessibilityIdentifier]];
         }
         
+        [menuItemRelationships addObject:tempMenuRelationship.action];
     }
     
-    //Logging Added by James for Menu Selection
-    [[ServerCommunicationController sharedManager] logComputerDisplayMenuItems : menuItemInteractions : menuItemImages : bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+    //Logging Added by James for Menu Display
+    [[ServerCommunicationController sharedManager] logComputerDisplayMenuItems : menuItemInteractions : menuItemImages : menuItemRelationships : bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
 }
 
 @end

@@ -12,11 +12,13 @@
 
 @synthesize firstName;
 @synthesize lastName;
+@synthesize experimenterName;
 
--(id)initWithName:(NSString*) first :(NSString*) last {
+-(id)initWithName:(NSString*) first :(NSString*) last : (NSString*) experimenter{
     if (self = [super init]) {
         firstName = first;
         lastName = last;
+        experimenterName = experimenter;
     }
     
     return self;

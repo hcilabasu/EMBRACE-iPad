@@ -32,9 +32,11 @@
 @property (nonatomic, retain) DDXMLElement *study;
 @property (nonatomic, retain) DDXMLDocument *xmlDoc;
 @property (nonatomic) NSInteger UserActionIDTag;
+@property(nonatomic, strong) NSString *studyDayString;
 @property (nonatomic, strong) NSString *userNameString;
 @property(nonatomic, strong) NSString *studyConditionString;
 @property (nonatomic, strong) NSString *studyExperimenterString;
+@property (nonatomic, strong) NSString *studyFileName;
 
 + (id)sharedManager;
 - (void) logUserName : (Student *) userdetails;
@@ -43,7 +45,7 @@
 
 //logging study context
 //add logging should be included for each log action, maybe use this funciton to set global properties and just draw from those for each function????
--(void) logContext : (Student *) userdetails : (NSString *) studyCondition : (NSString *) studyExperimenter;
+-(void) logContext : (Student *) userdetails;
 
 //Logging Computer Actions
 //logging object manipulation
@@ -67,13 +69,13 @@
 //logging none object manipulation actions
 
 //logging object verificiation: correct | incorrect
--(void) logComputerVerification: (BOOL) verficationValue : (NSString *) objectSelected : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue;
+-(void) logComputerVerification: (NSString*)action : (BOOL) verficationValue : (NSString *) objectSelected : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue;
 
 //logging audio: incorrect | introduction
 -(void) logComputerPlayAudio: (NSString *) movingObjectID : (NSString *) audioValue : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue;
 
 //logging displayMenuItems
--(void) logComputerDisplayMenuItems : (NSArray *) displayedMenuInteractions : (NSArray *)displayedMenuImages : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue;
+-(void) logComputerDisplayMenuItems : (NSArray *) displayedMenuInteractions : (NSArray *)displayedMenuImages : (NSArray*) displayedMenuRelationships : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue;
 
 
 //Logging User Actions
@@ -81,8 +83,13 @@
 - (void) logUserMoveObject : (NSString *)movingObjID : (float) startposx :(float) startposy :(float) endposx :(float) endposy : (NSString *) computerActionValue : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue;
 
 //logging menu selection
-- (void) logMenuSelection : (NSString *) selectedMenuItemID : (NSArray *) displayedMenuInteractions :(NSArray *)displayedMenuImages :(NSString *) computerActionValue : (NSString *) storyValue : (NSString *) pageValue : (NSString *) chapterValue : (NSString *) sentenceValue : (NSString *) stepValue;
+- (void) logMenuSelection : (int) selectedMenuItemID : (NSArray *) displayedMenuInteractions :(NSArray *)displayedMenuImages  : (NSArray *) menuRelationships : (NSString *) computerActionValue : (NSString *) storyValue : (NSString *) pageValue : (NSString *) chapterValue : (NSString *) sentenceValue : (NSString *) stepValue;
 
+//logging user word presses
+-(void) logUserPressWord : (NSString *) selectedWordID : (NSString *) computerActionValue : (NSString *) storyValue : (NSString *) pageValue : (NSString *) chapterValue : (NSString *) sentenceValue : (NSString *) stepValue;
+
+//logging experimenter emergency next swipe
+-(void) logUserEmergencyNext :(NSString *) computerActionValue : (NSString *) storyValue : (NSString *) pageValue : (NSString *) chapterValue : (NSString *) sentenceValue : (NSString *) stepValue;
 
 //logging navigation
 //add logging should be called in NextButtonPressed

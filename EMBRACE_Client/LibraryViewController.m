@@ -50,17 +50,19 @@
     if(student != nil) {
         
         //added by James for xml logging
-        [[ServerCommunicationController sharedManager] logContext:student :@"TempCondition" :@"TempExperimentor"];
+        [[ServerCommunicationController sharedManager] logContext:student];
         //Logging Completes Here.
         
-        self.title = [[@"Hi, " stringByAppendingString:[student firstName]] stringByAppendingString:@"!"];
+        self.title = @"Temp Condition";
     }
-    
-    student = [[Student alloc] initWithName:@"James" :@"Rodriguez"];
-    
-    //added by James for xml logging
-    [[ServerCommunicationController sharedManager] logContext:student :@"TempCondition" :@"TempExperimentor"];
-    //Logging Completes Here.
+    else
+    {
+        student = [[Student alloc] initWithName:@"Study Code" :@"Study Day":@"Experimenter"];
+        
+        //added by James for xml logging
+        //[[ServerCommunicationController sharedManager] logContext:student];
+        //Logging Completes Here.
+    }
     
     //initialize and book importer.
     self.bookImporter = [[EBookImporter alloc] init];
