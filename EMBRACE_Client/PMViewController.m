@@ -69,6 +69,8 @@
     NSString* actualWord;
     NSTimer* timer;
     NSString* languageString;
+    BOOL sameWordClicked;
+    BOOL actualWordStored;
 }
 
 @property (nonatomic, strong) IBOutlet UIWebView *bookView;
@@ -96,7 +98,6 @@ NSUInteger const EXP_ACTION = 1;
 NSUInteger const INPUT = 2;
 int const STEPS_TO_SWITCH_LANGUAGES = 14;
 int language_condition = BILINGUAL;
-
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -136,6 +137,9 @@ int language_condition = BILINGUAL;
     useObject = ONLY_CORRECT;
     pinchToUngroup = FALSE;
     allowSnapBack = FALSE;
+    
+    sameWordClicked = false;
+    actualWordStored = false;
     
     currentGroupings = [[NSMutableDictionary alloc] init];
     
@@ -484,7 +488,6 @@ int language_condition = BILINGUAL;
         NSString* requestSentenceText = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).innerHTML", location.x, location.y];
         NSString* sentenceText = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceText];
 
-        
         // convert to lowercase so the sentence text can be mapped to objects
         sentenceText = [sentenceText lowercaseString];
         NSString* englishSentenceText = sentenceText;
@@ -519,22 +522,23 @@ int language_condition = BILINGUAL;
                  [sentenceText isEqualToString:[performedActions objectAtIndex:INPUT]]) ||
                 ([[performedActions objectAtIndex:SELECTION] isEqualToString:@"image"] &&
                  [imageAtPoint isEqualToString:[performedActions objectAtIndex:INPUT]])) {
-                //[timer invalidate];
-                //timer = nil;
-                actualWord = sentenceText;
-                
-                //If the user clicked on a word
-                if ([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"]) {
-                    [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]];
-                    if ([languageString isEqualToString:@"S"]) {
-                        sentenceText = [self getSpanishTranslation:sentenceText];
-                    }
+                    //[timer invalidate];
+                    //timer = nil;
                     
-                    [self highlightObject:sentenceText :1.5];
-                    currentVocabStep++;
-                    [self performSelector:@selector(loadVocabStep) withObject:nil afterDelay:5];
-                    currentSentence++;
-                    [self performSelector:@selector(colorSentencesUponNext) withObject:nil afterDelay:4];
+                    //If the user clicked on a word
+                    if ([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] && !sameWordClicked) {
+                        sameWordClicked = true;
+                        
+                        [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]];
+                        if ([languageString isEqualToString:@"S"]) {
+                            sentenceText = [self getSpanishTranslation:sentenceText];
+                        }
+                        
+                        [self highlightObject:sentenceText :1.5];
+                        currentVocabStep++;
+                        [self performSelector:@selector(loadVocabStep) withObject:nil afterDelay:5];
+                        currentSentence++;
+                        [self performSelector:@selector(colorSentencesUponNext) withObject:nil afterDelay:4];
                 }
             }
         }
@@ -2658,6 +2662,8 @@ int language_condition = BILINGUAL;
     NSString* expectedIntroAction;
     NSString* expectedIntroInput;
     NSString* wrapperObj1;
+    
+    sameWordClicked = false;
     
     //Get current step to be read
     VocabularyStep* currVocabStep = [currentVocabSteps objectAtIndex:currentVocabStep-1];
