@@ -135,7 +135,8 @@ int language_condition = BILINGUAL;
     useSubject = ALL_ENTITIES;
     useObject = ONLY_CORRECT;
     pinchToUngroup = FALSE;
-    allowSnapBack = FALSE;
+    replenishSupply = FALSE;
+    allowSnapback = TRUE;
     
     sameWordClicked = false;
     actualWordStored = false;
@@ -558,7 +559,8 @@ int language_condition = BILINGUAL;
         NSString* requestSentenceText = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).innerHTML", location.x, location.y];
         NSString* sentenceText = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceText];
 
-        // convert to lowercase so the sentence text can be mapped to objects
+        
+        //Convert to lowercase so the sentence text can be mapped to objects
         sentenceText = [sentenceText lowercaseString];
         NSString* englishSentenceText = sentenceText;
         
