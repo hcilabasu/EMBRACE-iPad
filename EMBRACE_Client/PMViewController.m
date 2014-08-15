@@ -107,11 +107,11 @@ float const groupingProximity = 20.0;
     
     condition = MENU;
     
-    if (condition == MENU) {
-        allowInteractions = TRUE;
-    }
-    else if (condition == CONTROL) {
+    if (condition == CONTROL) {
         allowInteractions = FALSE; //control condition allows user to read only; no manipulations
+    }
+    else {
+        allowInteractions = TRUE;
     }
     
     useSubject = ALL_ENTITIES;
@@ -2428,6 +2428,10 @@ float const groupingProximity = 20.0;
         if(currentSentence > totalSentences) {
             [self loadNextPage];
         }
+    }
+    else {
+        //Play noise if not all steps have been completed
+        [self playErrorNoise];
     }
 }
 
