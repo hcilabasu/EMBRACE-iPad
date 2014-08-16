@@ -327,8 +327,6 @@
             NSString* modeType = [[element attributeForName:@"class"] stringValue];
             NSString* pageId = [[element attributeForName:@"id"] stringValue]; //Get the ID.
             
-            //JONATAN: read in the subtype too, might need to change book structure
-            
             Page *currPage = [[Page alloc] init];
             [currPage setPageId:pageId];
             
@@ -691,7 +689,7 @@
     //Read in the introduction information
     NSArray* introductionElements = [metadataDoc nodesForXPath:@"//introductions" error:nil];
     
-    if ([introductionElements count] > 0) //TODO this may be being called twice, not sure why
+    if ([introductionElements count] > 0)
     {
         GDataXMLElement *introductionElement = (GDataXMLElement *) [introductionElements objectAtIndex:0];
         
@@ -727,7 +725,7 @@
                 gdataElement = (GDataXMLElement *)[spanishTexts objectAtIndex:0];
                 NSString* spanishText = gdataElement.stringValue;
                 
-                // Ge the expected selection
+                //Get the expected selection
                 NSArray* expectedSelections = [step elementsForName:@"expectedSelection"];
                 gdataElement = (GDataXMLElement *)[expectedSelections objectAtIndex:0];
                 NSString* expectedSelection = gdataElement.stringValue;
@@ -753,7 +751,7 @@
     //Read in the vocabulary information
     NSArray* vocabIntroductionElements = [metadataDoc nodesForXPath:@"//vocabularyIntroductions" error:nil];
     
-    if ([vocabIntroductionElements count] > 0) //TODO this may be being called twice, not sure why
+    if ([vocabIntroductionElements count] > 0)
     {
         GDataXMLElement *vocabIntroductionElement = (GDataXMLElement *) [vocabIntroductionElements objectAtIndex:0];
         
@@ -789,7 +787,7 @@
                 gdataElement = (GDataXMLElement *)[spanishTexts objectAtIndex:0];
                 NSString* spanishText = gdataElement.stringValue;
                 
-                // Ge the expected selection
+                //Get the expected selection
                 NSArray* expectedSelections = [word elementsForName:@"expectedSelection"];
                 gdataElement = (GDataXMLElement *)[expectedSelections objectAtIndex:0];
                 NSString* expectedSelection = gdataElement.stringValue;

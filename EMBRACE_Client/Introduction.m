@@ -30,7 +30,7 @@
     NSMutableArray* stepsForIntroduction = [[NSMutableArray alloc] init];
     
     for (IntroductionStep* step in steps) {
-        //Step sentence number matches
+        //If the title matches it means the step belongs to the introduction being passed
         if ([title isEqualToString: introTitle]) {
             [stepsForIntroduction addObject:step];
         }

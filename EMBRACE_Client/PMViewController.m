@@ -49,27 +49,25 @@
     
     InteractionModel *model;
     
-    Condition condition; //study condition to run the app (e.g. MENU, HOTSPOT, etc.)
+    Condition condition; //Study condition to run the app (e.g. MENU, HOTSPOT, etc.)
     InteractionRestriction useSubject; //Determines which objects the user can manipulate as the subject
     InteractionRestriction useObject; //Determines which objects the user can interact with as the object
-    NSMutableDictionary* introductions;
-    NSUInteger totalIntroSteps;
     
-    NSMutableArray* currentIntroSteps;
-    BOOL pressedNextForIntro;
-    NSArray *performedActions;
+    NSMutableDictionary* introductions; //Stores the instances of the introductions from metadata.xml
+    NSUInteger totalIntroSteps; //Stores the total number of introduction steps for the current chapter
+    NSMutableArray* currentIntroSteps; //Stores the introduction steps for the current chapter
+    NSArray *performedActions; //Store the information of the current step
     
-    NSMutableDictionary* vocabularies;
-    NSUInteger currentVocabStep;
-    NSMutableArray* currentVocabSteps;
-    NSUInteger totalVocabSteps;
+    NSMutableDictionary* vocabularies; //Stores the instances of the vocabs from metadata.xml
+    NSUInteger currentVocabStep; //Stores the index of the current vocab step
+    NSMutableArray* currentVocabSteps; //Stores the vocab steps for the current chapter
+    NSUInteger totalVocabSteps; //Stores the total number of vocab steps for the current chapter
     
-    NSString* actualPage;
-    NSString* actualWord;
-    NSTimer* timer;
-    NSString* languageString;
-    BOOL sameWordClicked;
-    BOOL actualWordStored;
+    NSString* actualPage; //Stores the address of the current page we are at
+    NSString* actualWord; //Stores the current word that was clicked
+    NSTimer* timer; //Controls the timing of the audio file that is playing
+    NSString* languageString; //Defines the languange to be used 'E' for English 'S' for Spanish
+    BOOL sameWordClicked; //Defines if a word has been clicked or not
 }
 
 @property (nonatomic, strong) IBOutlet UIWebView *bookView;
@@ -92,9 +90,6 @@
 //Used to determine the required proximity of 2 hotspots to group two items together.
 float const groupingProximity = 20.0;
 
-NSUInteger const SELECTION = 0;
-NSUInteger const EXP_ACTION = 1;
-NSUInteger const INPUT = 2;
 int const STEPS_TO_SWITCH_LANGUAGES = 14;
 int language_condition = BILINGUAL;
 
@@ -139,7 +134,6 @@ int language_condition = BILINGUAL;
     allowSnapback = TRUE;
     
     sameWordClicked = false;
-    actualWordStored = false;
     
     currentGroupings = [[NSMutableDictionary alloc] init];
     
@@ -551,9 +545,9 @@ int language_condition = BILINGUAL;
         //NSLog(@"location pressed: (%f, %f)", location.x, location.y);
         
         //Retrieve the name of the object at this location
-        NSString* requestNameAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
+        NSString* requestImageAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
         
-        imageAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestNameAtPoint];
+        imageAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPoint];
             
         //Capture the clicked text, if it exists
         NSString* requestSentenceText = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).innerHTML", location.x, location.y];
@@ -571,20 +565,17 @@ int language_condition = BILINGUAL;
         //Enable the introduction clicks on words and images, if it is intro mode
         if ([chapterTitle isEqualToString:@"Introduction At the Farm"]) {
             if (([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] &&
-                [englishSentenceText isEqualToString:[performedActions objectAtIndex:INPUT]]) ||
-                ([[performedActions objectAtIndex:SELECTION] isEqualToString:@"image"] &&
-                [imageAtPoint isEqualToString:[performedActions objectAtIndex:INPUT]])) {
-                    if ([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"]) {
-                        //Destroy the timer to avoid playing the previous sound
-                        //[timer invalidate];
-                        //timer = nil;
-                        
-                        [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]];
-                        [self highlightObject:sentenceText:1.5];
-                        //Bypass the image touching step in the XML
-                        currentIntroStep+=2;
-                        [self performSelector:@selector(loadIntroStep) withObject:nil afterDelay:2];
-                    }
+                [englishSentenceText isEqualToString:[performedActions objectAtIndex:INPUT]])) {
+                //Destroy the timer to avoid playing the previous sound
+                //[timer invalidate];
+                //timer = nil;
+                
+                [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]];
+                [self highlightObject:sentenceText:1.5];
+                //Bypass the image-tap steps which are found after each word-tap step on the metadata
+                // since they are not needed anymore
+                currentIntroStep+=2;
+                [self performSelector:@selector(loadIntroStep) withObject:nil afterDelay:2];
             }
         }
         //Vocabulary introduction mode
@@ -848,13 +839,16 @@ int language_condition = BILINGUAL;
                     if ([[currSolStep stepType] isEqualToString:@"check"]) {
                         //Check if object is in the correct location
                         if([self isHotspotInsideLocation]) {
-                            if ([chapterTitle isEqualToString:@"Introduction At the Farm"] && ([[performedActions objectAtIndex:INPUT] isEqualToString:[NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep locationId]]] ||
-                                [[performedActions objectAtIndex:INPUT] isEqualToString:[NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep object2Id]]])) {
-                                    // Destroy the timer to avoid playing the previous sound
-                                    //[timer invalidate];
-                                    //timer = nil;
-                                    currentIntroStep++;
-                                    [self loadIntroStep];
+                            if ([chapterTitle isEqualToString:@"Introduction At the Farm"]) {
+                                /*Check to see if an object is at a certain location or is grouped with another object e.g. farmergetIncorralArea or farmerleadcow. These strings come from the solution steps */
+                                if([[performedActions objectAtIndex:INPUT] isEqualToString:[NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep locationId]]]
+                                   || [[performedActions objectAtIndex:INPUT] isEqualToString:[NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep object2Id]]]) {
+                                        // Destroy the timer to avoid playing the previous sound
+                                        //[timer invalidate];
+                                        //timer = nil;
+                                        currentIntroStep++;
+                                        [self loadIntroStep];
+                                }
                             }
                             [self incrementCurrentStep];
                         }
@@ -2674,11 +2668,13 @@ int language_condition = BILINGUAL;
     }
 }
 
+/* Clears the highlighting on the scene */
 -(void)clearHighlightedObject {
     NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
     [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
 }
 
+/* Plays a text-to-speech audio in a given language */
 -(void)playWordAudio:(NSString*) word :(NSString*) lang {
     AVSpeechUtterance *utteranceEn = [[AVSpeechUtterance alloc]initWithString:word];
     utteranceEn.rate = AVSpeechUtteranceMaximumSpeechRate/7;
@@ -2688,6 +2684,7 @@ int language_condition = BILINGUAL;
     [syn speakUtterance:utteranceEn];
 }
 
+/* Plays text-to-speech audio in a given language in a certain time */
 -(void)playWordAudioTimed:(NSTimer *) wordAndLang {
     NSDictionary *wrapper = (NSDictionary *)[wordAndLang userInfo];
     NSString * obj1 = [wrapper objectForKey:@"Key1"];
@@ -2701,6 +2698,7 @@ int language_condition = BILINGUAL;
     [syn speakUtterance:utteranceEn];
 }
 
+/* Plays an audio file after a given time defined in the timer call*/
 -(void)playAudioFileTimed:(NSTimer *) path {
     NSDictionary *wrapper = (NSDictionary *)[path userInfo];
     NSString * obj1 = [wrapper objectForKey:@"Key1"];
@@ -2717,6 +2715,7 @@ int language_condition = BILINGUAL;
         [_audioPlayer play];
 }
 
+/* Plays an audio file at a given path */
 -(void) playAudioFile:(NSString*) path {
     NSString *soundFilePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], path];
     NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
@@ -2730,6 +2729,7 @@ int language_condition = BILINGUAL;
         [_audioPlayer play];
 }
     
+// Loads the information of the currentIntroStep for the introduction
 -(NSArray*) loadIntroStep {
     NSString* textEnglish;
     NSString* audioEnglish;
@@ -2756,6 +2756,8 @@ int language_condition = BILINGUAL;
     languageString = @"E";
     underlinedVocabWord = expectedIntroInput;
 
+    // If the language condition for the app is BILINGUAL (English after Spanish) and the current intro
+    //step is lower than the step number to switch languages, load the Spanish information for the step
     if (language_condition == BILINGUAL && currentIntroStep < STEPS_TO_SWITCH_LANGUAGES) {
         text = textSpanish;
         audio = audioSpanish;
@@ -2808,7 +2810,7 @@ int language_condition = BILINGUAL;
         wrapperObj1 = @"BFES_8.m4a";
     }
     
-    NSDictionary *wrapper = [NSDictionary dictionaryWithObjectsAndKeys:wrapperObj1, @"Key1", nil];
+    //NSDictionary *wrapper = [NSDictionary dictionaryWithObjectsAndKeys:wrapperObj1, @"Key1", nil];
     //timer = [NSTimer scheduledTimerWithTimeInterval:17.5 target:self selector:@selector(playAudioFileTimed:) userInfo:wrapper repeats:YES];
     
     performedActions = [NSArray arrayWithObjects: expectedSelection, expectedIntroAction, expectedIntroInput, nil];
@@ -2855,6 +2857,8 @@ int language_condition = BILINGUAL;
     text = [currVocabStep englishText];
     audio = [currVocabStep englishAudioFileName];
     
+    // If we are ont the first step (1) ot the last step (9) which do not correspond to words
+    //play the corresponding intro or outro audio
     if (currentVocabStep == 1 || currentVocabStep == 9) {
         //Play introduction audio
         [self playAudioFile:audio];

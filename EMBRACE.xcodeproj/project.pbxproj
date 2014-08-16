@@ -15,8 +15,6 @@
 		31058C82176BEB6300595AAE /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = 31058C81176BEB6200595AAE /* Page.m */; };
 		310908EC17DE90CA004590A2 /* MovementConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 310908EB17DE90CA004590A2 /* MovementConstraint.m */; };
 		310908EF17DE90DB004590A2 /* OrderConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 310908EE17DE90DB004590A2 /* OrderConstraint.m */; };
-		311096FD174AAA8F00B02BF7 /* farm.epub in Resources */ = {isa = PBXBuildFile; fileRef = 311096FC174AAA8F00B02BF7 /* farm.epub */; };
-		311096FF174AB08400B02BF7 /* house.epub in Resources */ = {isa = PBXBuildFile; fileRef = 311096FE174AB08400B02BF7 /* house.epub */; };
 		31109702174AB35E00B02BF7 /* cover_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 31109701174AB35E00B02BF7 /* cover_default.png */; };
 		3115B1D11819AA0E007171E3 /* MenuItemImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3115B1D01819AA0E007171E3 /* MenuItemImage.m */; };
 		3115B1D41819C532007171E3 /* PossibleInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3115B1D31819C532007171E3 /* PossibleInteraction.m */; };
@@ -223,8 +221,6 @@
 		310908EB17DE90CA004590A2 /* MovementConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovementConstraint.m; sourceTree = "<group>"; };
 		310908ED17DE90DB004590A2 /* OrderConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderConstraint.h; sourceTree = "<group>"; };
 		310908EE17DE90DB004590A2 /* OrderConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderConstraint.m; sourceTree = "<group>"; };
-		311096FC174AAA8F00B02BF7 /* farm.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = farm.epub; sourceTree = SOURCE_ROOT; };
-		311096FE174AB08400B02BF7 /* house.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = house.epub; sourceTree = SOURCE_ROOT; };
 		31109701174AB35E00B02BF7 /* cover_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cover_default.png; sourceTree = "<group>"; };
 		3115B1CF1819AA0E007171E3 /* MenuItemImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuItemImage.h; sourceTree = "<group>"; };
 		3115B1D01819AA0E007171E3 /* MenuItemImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuItemImage.m; sourceTree = "<group>"; };
@@ -739,8 +735,6 @@
 				5CA19449199052AC0007ABF1 /* weedsE.m4a */,
 				C3B45C11197EE21D003CE36D /* circulatory.epub */,
 				C3938820195CBB4B0005279F /* bestFarm.epub */,
-				311096FE174AB08400B02BF7 /* house.epub */,
-				311096FC174AAA8F00B02BF7 /* farm.epub */,
 				31953E501729ECC100570087 /* EMBRACE-Info.plist */,
 				31953E511729ECC100570087 /* InfoPlist.strings */,
 				31953E541729ECC100570087 /* main.m */,
@@ -1016,7 +1010,6 @@
 				5CA1948A199052AC0007ABF1 /* BFEE_18.m4a in Resources */,
 				5CA19470199052AC0007ABF1 /* BFCS_9.m4a in Resources */,
 				5CA19471199052AC0007ABF1 /* BFCS_10.m4a in Resources */,
-				311096FD174AAA8F00B02BF7 /* farm.epub in Resources */,
 				5CA1945B199052AC0007ABF1 /* BFCE_REST.m4a in Resources */,
 				5CA1945C199052AC0007ABF1 /* BFCE1_1.m4a in Resources */,
 				5CA19456199052AC0007ABF1 /* BFCE_10A.m4a in Resources */,
@@ -1044,7 +1037,6 @@
 				5CA19488199052AC0007ABF1 /* BFEE_12.m4a in Resources */,
 				5CA19472199052AC0007ABF1 /* BFCS_10A.m4a in Resources */,
 				5CA19475199052AC0007ABF1 /* BFCS1_1.m4a in Resources */,
-				311096FF174AB08400B02BF7 /* house.epub in Resources */,
 				5CA1948E199052AC0007ABF1 /* BFEE_19A.m4a in Resources */,
 				5CA19474199052AC0007ABF1 /* BFCS_REST.m4a in Resources */,
 				5CA194BD199052AC0007ABF1 /* penE.m4a in Resources */,
