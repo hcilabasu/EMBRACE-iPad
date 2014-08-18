@@ -148,7 +148,7 @@
     //NSLog(@"chapter to Open: %@", self.chapterToOpen);
     
     //added by James for XML logging
-    [[ServerCommunicationController sharedManager] logStoryButtonPressed: self.bookToOpen : @"Load First Page" : self.bookToOpen : self.chapterToOpen : @"NULL" : @"NULL" : @"NULL"];
+    [[ServerCommunicationController sharedManager] logStoryButtonPressed: @"Library Icon" : @"Tap" : self.bookToOpen : self.chapterToOpen : @"NULL" : @"NULL" : @"NULL"];
     //logging ends here
     
     [destination loadFirstPage];

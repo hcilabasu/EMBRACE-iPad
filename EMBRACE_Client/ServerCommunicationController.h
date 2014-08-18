@@ -52,7 +52,7 @@
 
 //computer action -> recording why an action occured
 //which object(s), start, end location, which hotspots,context, userActionIDTag, why?
--(void) logComputerMoveObject : (NSString *) movingObjectID : (NSString *) collisionObjectID : (float) startPosX : (float) startPosY : (float) endPosX : (float) endPosY : (NSString *) hotspot : (NSString *) computerAction : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue;
+-(void) logComputerMoveObject : (NSString *) movingObjectID : (NSString *) collisionObjectOrLocationID : (float) startPosX : (float) startPosY : (float) endPosX : (float) endPosY : (NSString *) computerAction : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue;
 
 //which object(s), start, end location, which hotspots,context, userActionIDTag, why?
 -(void) logComputerResetObject : (NSString *) movingObjectID : (float) startPosX : (float) startPosY : (float) endPosX : (float) endPosY : (NSString *) storyValue : (NSString *) computerAction :(NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue;
@@ -64,7 +64,7 @@
 -(void) logComputerDisappearObject : (NSString *) objectID : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue;
 
 //which object(s), start, end location, which hotspots,context, userActionIDTag, why?
--(void) logComputerGroupingObjects : (NSString *) movingObjectID : (NSString *) collisionObjectID :(NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue;
+-(void) logComputerGroupingObjects : (NSString*) computerActionValue : (NSString *) movingObjectID : (NSString *) collisionObjectID :(NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue;
 
 //logging none object manipulation actions
 
@@ -80,7 +80,7 @@
 
 //Logging User Actions
 //logging move object
-- (void) logUserMoveObject : (NSString *)movingObjID : (float) startposx :(float) startposy :(float) endposx :(float) endposy : (NSString *) computerActionValue : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue;
+- (void) logUserMoveObject : (NSString *)movingObjID : (NSString*) toLocationOrObject :(float) startposx :(float) startposy :(float) endposx :(float) endposy : (NSString *) computerActionValue : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue;
 
 //logging menu selection
 - (void) logMenuSelection : (int) selectedMenuItemID : (NSArray *) displayedMenuInteractions :(NSArray *)displayedMenuImages  : (NSArray *) menuRelationships : (NSString *) computerActionValue : (NSString *) storyValue : (NSString *) pageValue : (NSString *) chapterValue : (NSString *) sentenceValue : (NSString *) stepValue;
@@ -93,7 +93,7 @@
 
 //logging navigation
 //add logging should be called in NextButtonPressed
--(void) logUserNextButtonPressed: (NSString *) buttonPressedValue :(NSString *) computerActionValue : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue;
+-(void) logUserNextButtonPressed: (NSString *) buttonPressedValue :(NSString *) computerActionValue :(NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue;
 
 //add logging should be called in load first page
 -(void) logStoryButtonPressed: (NSString *) buttonPressedValue :(NSString *) computerActionValue : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue;

@@ -182,7 +182,7 @@ DDXMLElement *nodeStudy;
  Input: What objects, start location, end location
  Context: story, chapter, page, sentence, step, username, condition, experimenter
  */
--(void) logComputerMoveObject : (NSString *) movingObjectID : (NSString *) collisionObjectID : (float) startPosX : (float) startPosY : (float) endPosX : (float) endPosY : (NSString *) hotspot : (NSString *) computerAction : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue
+-(void) logComputerMoveObject : (NSString *) movingObjectID : (NSString *) collisionObjectorLocationID : (float) startPosX : (float) startPosY : (float) endPosX : (float) endPosY : (NSString *) computerAction : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue
 {
     
     //logging structure for computer actions
@@ -200,18 +200,18 @@ DDXMLElement *nodeStudy;
     
     //creating input children
     DDXMLElement *nodeMovingObject = [DDXMLElement elementWithName:@"Object 1" stringValue:movingObjectID];
-    DDXMLElement *nodeCollisionObject = [DDXMLElement elementWithName:@"Object 2" stringValue:collisionObjectID];
+    DDXMLElement *nodeCollisionObjectOrLocation = [DDXMLElement elementWithName:@"Object/Location" stringValue:collisionObjectorLocationID];
     DDXMLElement *nodeStartPosition = [DDXMLElement elementWithName:@"Start Position" stringValue:[NSString stringWithFormat:@"%f, %f", startPosX, startPosY]];
     DDXMLElement *nodeEndPosition = [DDXMLElement elementWithName:@"End Position" stringValue:[NSString stringWithFormat:@"%f, %f", endPosX, endPosY]];
     
     //adding child nodes to Input parent
     [nodeInput addChild:nodeMovingObject];
-    [nodeInput addChild:nodeCollisionObject];
+    [nodeInput addChild:nodeCollisionObjectOrLocation];
     [nodeInput addChild:nodeStartPosition];
     [nodeInput addChild:nodeEndPosition];
     
     //logging action
-    DDXMLElement *nodeAction = [DDXMLElement elementWithName:@"Action" stringValue:@"Automatic Computer Move Object"];
+    DDXMLElement *nodeAction = [DDXMLElement elementWithName:@"Action" stringValue:computerAction];
     
     //logging Context
     DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext:storyValue :chapterValue :pageValue :sentenceValue :stepValue];
@@ -340,7 +340,7 @@ DDXMLElement *nodeStudy;
  Input: moving object, collision object
  Context: story, chapter, page, sentence, step, username, condition, experimenter
  */
--(void) logComputerGroupingObjects : (NSString *) movingObjectID : (NSString *) collisionObjectID :(NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue
+-(void) logComputerGroupingObjects : (NSString*) computerActionValue : (NSString *) movingObjectID : (NSString *) collisionObjectID :(NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue
 {
     //logging structure for computer actions
     DDXMLElement *nodeComputerAction = [DDXMLElement elementWithName:@"Computer Action"];
@@ -364,7 +364,7 @@ DDXMLElement *nodeStudy;
     [nodeInput addChild:nodeCollisionObj];
     
     //logging action
-    DDXMLElement *nodeAction = [DDXMLElement elementWithName:@"Action" stringValue:@"Group Objects"];
+    DDXMLElement *nodeAction = [DDXMLElement elementWithName:@"Action" stringValue:computerActionValue];
     
     //logging Context
     DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext:storyValue :chapterValue :pageValue :sentenceValue :stepValue];
@@ -404,11 +404,9 @@ DDXMLElement *nodeStudy;
     DDXMLElement *nodeInput = [DDXMLElement elementWithName:@"Input"];
     
     //creating input children nodes
-    DDXMLElement *nodeCurChapter = [DDXMLElement elementWithName:@"Current Chapter" stringValue:curChapterValue];
     DDXMLElement *nodeNextChapter = [DDXMLElement elementWithName:@"Next Chapter" stringValue:nextChapterValue];
     
     //adding child nodes to Input parent
-    [nodeInput addChild:nodeCurChapter];
     [nodeInput addChild:nodeNextChapter];
     
     //logging action
@@ -451,11 +449,9 @@ DDXMLElement *nodeStudy;
     DDXMLElement *nodeInput = [DDXMLElement elementWithName:@"Input"];
     
     //creating inpud children nodes
-    DDXMLElement *nodeCurPage = [DDXMLElement elementWithName:@"Current Page" stringValue:curPageValue];
     DDXMLElement *nodeNextPage = [DDXMLElement elementWithName:@"Next Page" stringValue:nextPageValue];
     
     //adding child nodes to Input parent
-    [nodeInput addChild:nodeCurPage];
     [nodeInput addChild:nodeNextPage];
     
     //logging action
@@ -497,11 +493,9 @@ DDXMLElement *nodeStudy;
     DDXMLElement *nodeInput = [DDXMLElement elementWithName:@"Input"];
     
     //creating input children nodes
-    DDXMLElement *nodeCurSentence = [DDXMLElement elementWithName:@"Current Sentence" stringValue:curSentenceValue];
     DDXMLElement *nodeNextSentence = [DDXMLElement elementWithName:@"Next Sentence" stringValue:nextSentenceValue];
     
     //adding child nodes to Input parent
-    [nodeInput addChild:nodeCurSentence];
     [nodeInput addChild:nodeNextSentence];
     
     //logging action
@@ -543,11 +537,9 @@ DDXMLElement *nodeStudy;
     DDXMLElement *nodeInput = [DDXMLElement elementWithName:@"Input"];
     
     //creating input children nodes
-    DDXMLElement *nodeCurStep = [DDXMLElement elementWithName:@"Current Step" stringValue:curStepValue];
     DDXMLElement *nodeNextStep = [DDXMLElement elementWithName:@"Next Step" stringValue:nextStepValue];
     
     //adding child nodes to Input parent
-    [nodeInput addChild:nodeCurStep];
     [nodeInput addChild:nodeNextStep];
     
     //logging action
@@ -821,13 +813,13 @@ DDXMLElement *nodeStudy;
     DDXMLElement *nodeUserActionID = [DDXMLElement elementWithName:@"User Action ID" stringValue:[NSString stringWithFormat:@"%ld",(long)UserActionIDTag]];
     
     //logging selection
-    DDXMLElement *nodeSelection = [DDXMLElement elementWithName:@"Selection" stringValue:buttonPressedValue];
+    DDXMLElement *nodeSelection = [DDXMLElement elementWithName:@"Selection" stringValue:@"Button"];
     
     //Input parent node
     DDXMLElement *nodeInput = [DDXMLElement elementWithName:@"Input"];
     
     //creating input children nodes
-    DDXMLElement *nodeButtonType = [DDXMLElement elementWithName:@"Button Type" stringValue:@"Next Button"];
+    DDXMLElement *nodeButtonType = [DDXMLElement elementWithName:@"Button Type" stringValue:@"Next"];
     
     //adding child nodes to Input parent
     [nodeInput addChild:nodeButtonType];
@@ -903,7 +895,7 @@ DDXMLElement *nodeStudy;
  Input: start location, end location
  Context: story, chapter, page, sentence, step, username, condition, experimenter
  */
-- (void) logUserMoveObject : (NSString *)movingObjID : (float) startposx :(float) startposy :(float) endposx :(float) endposy : (NSString *) computerActionValue : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue
+- (void) logUserMoveObject : (NSString *)movingObjID : (NSString*) toLocationOrObject : (float) startposx :(float) startposy :(float) endposx :(float) endposy : (NSString *) computerActionValue : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue
 {
     UserActionIDTag++;
     
@@ -916,7 +908,7 @@ DDXMLElement *nodeStudy;
     //logging selection
     DDXMLElement *nodeSelection;
     
-    nodeSelection = [DDXMLElement elementWithName:@"Selection" stringValue:movingObjID];
+    nodeSelection = [DDXMLElement elementWithName:@"Selection" stringValue:@"Image"];
     
      //checks if selected object is grouped if not use movingObjId for selection else groupedObjects array
    /* if([groupedObjects count] == 1)
@@ -935,10 +927,14 @@ DDXMLElement *nodeStudy;
     DDXMLElement *nodeInput = [DDXMLElement elementWithName:@"Input"];
     
     //creating input children nodes
+    DDXMLElement *nodeMovingObject = [DDXMLElement elementWithName:@"Moving Object" stringValue:movingObjID];
+    DDXMLElement *nodeToObjectOrLocation = [DDXMLElement elementWithName:@"Collision Object" stringValue:toLocationOrObject];
     DDXMLElement *nodeStartPosition = [DDXMLElement elementWithName:@"Start Position" stringValue:[NSString stringWithFormat:@"%f, %f", startposx, startposy]];
     DDXMLElement *nodeEndPosition = [DDXMLElement elementWithName:@"End Position" stringValue:[NSString stringWithFormat:@"%f, %f", endposx, endposy]];
     
     //adding child nodes to Input parent
+    [nodeInput addChild:nodeMovingObject];
+    [nodeInput addChild:nodeToObjectOrLocation];
     [nodeInput addChild:nodeStartPosition];
     [nodeInput addChild:nodeEndPosition];
     
@@ -1103,11 +1099,77 @@ DDXMLElement *nodeStudy;
 -(void) logUserPressWord : (NSString *) selectedWordID : (NSString *) computerActionValue : (NSString *) storyValue : (NSString *) pageValue : (NSString *) chapterValue : (NSString *) sentenceValue : (NSString *) stepValue
 {
     
+    UserActionIDTag++;
+    
+    //logging structure for user actions
+    DDXMLElement *nodeUserAction = [DDXMLElement elementWithName:@"User Action"];
+    [study addChild:nodeUserAction];
+    
+    //logging userAction relationship
+    DDXMLElement *nodeUserActionID = [DDXMLElement elementWithName:@"User Action ID" stringValue:[NSString stringWithFormat:@"%ld",(long)UserActionIDTag]];
+    
+    //logging selection
+    DDXMLElement *nodeSelection = [DDXMLElement elementWithName:@"Selection" stringValue:@"Word"];
+    
+    //Input parent node
+    DDXMLElement *nodeInput = [DDXMLElement elementWithName:@"Input"];
+    
+    //creating input children nodes
+    DDXMLElement *nodeSelectedWord = [DDXMLElement elementWithName:@"Word Pressed" stringValue:selectedWordID];
+    
+    //adding child nodes to Input parent
+    [nodeInput addChild:nodeSelectedWord];
+    
+    //logging action
+    DDXMLElement *nodeAction = [DDXMLElement elementWithName:@"Action" stringValue:computerActionValue];
+    
+    //logging Context
+    DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext:storyValue :chapterValue :pageValue :sentenceValue :stepValue];
+    
+    //add SAIC to UserAction parent
+    [nodeUserAction addChild:nodeUserActionID];
+    [nodeUserAction addChild:nodeSelection];
+    [nodeUserAction addChild:nodeAction];
+    [nodeUserAction addChild:nodeInput];
+    [nodeUserAction addChild:nodeContext];
 }
 
 -(void) logUserEmergencyNext :(NSString *) computerActionValue : (NSString *) storyValue : (NSString *) pageValue : (NSString *) chapterValue : (NSString *) sentenceValue : (NSString *) stepValue
 {
-
+    
+    UserActionIDTag++;
+    
+    //logging structure for user actions
+    DDXMLElement *nodeUserAction = [DDXMLElement elementWithName:@"User Action"];
+    [study addChild:nodeUserAction];
+    
+    //logging userAction relationship
+    DDXMLElement *nodeUserActionID = [DDXMLElement elementWithName:@"User Action ID" stringValue:[NSString stringWithFormat:@"%ld",(long)UserActionIDTag]];
+    
+    //logging selection
+    DDXMLElement *nodeSelection = [DDXMLElement elementWithName:@"Selection" stringValue:@"Button"];
+    
+    //Input parent node
+    DDXMLElement *nodeInput = [DDXMLElement elementWithName:@"Input"];
+    
+    //creating input children nodes
+    DDXMLElement *nodeButtonType = [DDXMLElement elementWithName:@"Action Type" stringValue:@"Emergency Next"];
+    
+    //adding child nodes to Input parent
+    [nodeInput addChild:nodeButtonType];
+    
+    //logging action
+    DDXMLElement *nodeAction = [DDXMLElement elementWithName:@"Action" stringValue:computerActionValue];
+    
+    //logging Context
+    DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext:storyValue :chapterValue :pageValue :sentenceValue :stepValue];
+    
+    //add SAIC to UserAction parent
+    [nodeUserAction addChild:nodeUserActionID];
+    [nodeUserAction addChild:nodeSelection];
+    [nodeUserAction addChild:nodeAction];
+    [nodeUserAction addChild:nodeInput];
+    [nodeUserAction addChild:nodeContext];
 }
 
 -(DDXMLElement *) returnContext : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue
