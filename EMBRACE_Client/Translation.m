@@ -15,12 +15,29 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         inst = @{
-            @"hay": @"paja",
-            @"cart": @"carreta",
-            @"barn": @"establo",
-            @"hayloft": @"pajar",
-            @"farmer": @"granjero",
-            @"corral": @"corral"
+                 @"barn": @"establo",
+                 @"bucket": @"cubeta",
+                 @"cart": @"carro",
+                 @"combed": @"peinado",
+                 @"contest": @"concurso",
+                 @"corral": @"corral",
+                 @"farm": @"granja",
+                 @"gate": @"puerta",
+                 @"hay": @"heno",
+                 @"hayloft": @"pajar",
+                 @"healthy": @"sano",
+                 @"judge": @"juez",
+                 @"jumped": @"saltó",
+                 @"nest": @"nido",
+                 @"owl": @"búho",
+                 @"pen": @"cuarto",
+                 @"prize": @"premio",
+                 @"pumpkins": @"calabazas",
+                 @"purr": @"ronronear",
+                 @"shiny": @"brillante",
+                 @"tractor": @"tractor",
+                 @"trophy": @"trofeo",
+                 @"weeds": @"mala hierba"
         };
     });
     return inst;

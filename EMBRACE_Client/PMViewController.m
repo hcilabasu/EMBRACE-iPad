@@ -91,7 +91,7 @@
 float const groupingProximity = 20.0;
 
 int const STEPS_TO_SWITCH_LANGUAGES = 14;
-int language_condition = BILINGUAL;
+int language_condition = ENGLISH;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -177,10 +177,15 @@ int language_condition = BILINGUAL;
     //   The total number of sentences is like a running total, so by page 2, there are 6 sentences instead of 3.
     //This is to make sure we access the solution steps for the correct sentence on this page, and not a sentence on
     //a previous page.
-    NSString* requestLastSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[%d - 1].id", sentenceCount];
-    NSString* lastSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
-    int lastSentenceIdNumber = [[lastSentenceId substringFromIndex:1] intValue];
-    totalSentences = lastSentenceIdNumber;
+    if (![chapterTitle isEqualToString:@"The Contest"]) {
+        NSString* requestLastSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[%d - 1].id", sentenceCount];
+        NSString* lastSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
+        int lastSentenceIdNumber = [[lastSentenceId substringFromIndex:1] intValue];
+        totalSentences = lastSentenceIdNumber;
+    }
+    else {
+        totalSentences = sentenceCount;
+    }
     
     //Get the id number of the first sentence on the page and set it equal to the current sentence number.
     //Because the PMActivity may have multiple pages, the first sentence on the page is not necessarily sentence 1.
@@ -197,7 +202,7 @@ int language_condition = BILINGUAL;
     [self setupCurrentSentenceColor];
     
     //Load the first step for the current chapter (hard-coded for now)
-    if ([chapterTitle isEqualToString:@"Introduction At the Farm"]) {
+    if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"]) {
         [self loadIntroStep];
     }
     
@@ -205,7 +210,7 @@ int language_condition = BILINGUAL;
     //[self createTextboxView];
     
     //Load the first vocabulary step for the current chapter (hard-coded for now)
-    if ([chapterTitle isEqualToString:@"At the Farm"] && [actualPage isEqualToString:currentPage]) {
+    if ([chapterTitle isEqualToString:@"The Contest"] && [actualPage isEqualToString:currentPage]) {
         //The first word is in Spanish
         [self loadVocabStep];
     }
@@ -237,16 +242,6 @@ int language_condition = BILINGUAL;
     //Get the steps for the introduction of the current chapter
     currentIntroSteps = [introductions objectForKey:chapterTitle];
     totalIntroSteps = [currentIntroSteps count];
-    
-    //Vocabulary setup
-    currentVocabStep = 1;
-    
-    //Load the vocabulary data
-    vocabularies = [model getVocabularies];
-    
-    //Get the vocabulary steps (words) for the current story
-    currentVocabSteps = [vocabularies objectForKey:chapterTitle];
-    totalVocabSteps = [currentVocabSteps count];
     
     [self loadPage];
 }
@@ -300,6 +295,16 @@ int language_condition = BILINGUAL;
     Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
     PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
     PMSolution = [PMActivity PMSolution]; //get PM solution
+    
+    //Vocabulary setup
+    currentVocabStep = 1;
+    
+    //Load the vocabulary data
+    vocabularies = [model getVocabularies];
+    
+    //Get the vocabulary steps (words) for the current story
+    currentVocabSteps = [vocabularies objectForKey:chapterTitle];
+    totalVocabSteps = [currentVocabSteps count];
 }
 
 /*
@@ -559,11 +564,11 @@ int language_condition = BILINGUAL;
         NSString* englishSentenceText = sentenceText;
         
         if (language_condition == BILINGUAL) {
-            englishSentenceText = [self getSpanishTranslation:sentenceText];
+            englishSentenceText = [self getEnglishTranslation:sentenceText];
         }
         
         //Enable the introduction clicks on words and images, if it is intro mode
-        if ([chapterTitle isEqualToString:@"Introduction At the Farm"]) {
+        if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"]) {
             if (([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] &&
                 [englishSentenceText isEqualToString:[performedActions objectAtIndex:INPUT]])) {
                 //Destroy the timer to avoid playing the previous sound
@@ -579,7 +584,7 @@ int language_condition = BILINGUAL;
             }
         }
         //Vocabulary introduction mode
-        else if ([chapterTitle isEqualToString:@"At the Farm"] && [actualPage isEqualToString:currentPage]) {
+        else if ([chapterTitle isEqualToString:@"The Contest"] && [actualPage isEqualToString:currentPage]) {
             //If the user clicked on the correct word or image
             if (([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] &&
                  [sentenceText isEqualToString:[performedActions objectAtIndex:INPUT]]) ||
@@ -593,9 +598,9 @@ int language_condition = BILINGUAL;
                         sameWordClicked = true;
                         
                         [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]];
-                        if ([languageString isEqualToString:@"S"]) {
-                            sentenceText = [self getSpanishTranslation:sentenceText];
-                        }
+                        //if ([languageString isEqualToString:@"S"]) {
+                            sentenceText = [self getEnglishTranslation:sentenceText];
+                        //}
                         
                         [self highlightObject:sentenceText :1.5];
                         currentVocabStep++;
@@ -612,7 +617,7 @@ int language_condition = BILINGUAL;
                 
             if (language_condition == BILINGUAL) {
                 //Play word audio Sp
-                [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",[self getSpanishTranslation:sentenceText],@"S"]];
+                [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",[self getEnglishTranslation:sentenceText],@"S"]];
             }
         }
     }
@@ -805,7 +810,7 @@ int language_condition = BILINGUAL;
             NSString* imageAtPoint = [self getObjectAtPoint:location ofType:@"manipulationObject"];
             //NSLog(@"location pressed: (%f, %f)", location.x, location.y);
             
-            if ([chapterTitle isEqualToString:@"Introduction At the Farm"]) {
+            if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"]) {
                 stepsComplete = false;
             }
             
@@ -839,7 +844,7 @@ int language_condition = BILINGUAL;
                     if ([[currSolStep stepType] isEqualToString:@"check"]) {
                         //Check if object is in the correct location
                         if([self isHotspotInsideLocation]) {
-                            if ([chapterTitle isEqualToString:@"Introduction At the Farm"]) {
+                            if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"]) {
                                 /*Check to see if an object is at a certain location or is grouped with another object e.g. farmergetIncorralArea or farmerleadcow. These strings come from the solution steps */
                                 if([[performedActions objectAtIndex:INPUT] isEqualToString:[NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep locationId]]]
                                    || [[performedActions objectAtIndex:INPUT] isEqualToString:[NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep object2Id]]]) {
@@ -892,7 +897,7 @@ int language_condition = BILINGUAL;
                             //If more than 1 was found, prompt the user to disambiguate.
                             else if ([possibleInteractions count] > 1) {
                                 //The chapter title hard-coded for now
-                                if ([chapterTitle isEqualToString:@"Introduction At the Farm"] &&
+                                if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"] &&
                                     [[performedActions objectAtIndex:INPUT] isEqualToString:
                                      [NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep object2Id]]]) {
                                     // Destroy the timer to avoid playing the previous sound
@@ -1774,7 +1779,7 @@ int language_condition = BILINGUAL;
     if ([interaction isEqual:correctInteraction]) {
         [self performInteraction:interaction];
         
-        if ([chapterTitle isEqualToString:@"Introduction At the Farm"]) {
+        if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"]) {
             currentIntroStep++;
             [self loadIntroStep];
         }
@@ -1787,7 +1792,7 @@ int language_condition = BILINGUAL;
         }
     }
     else {
-        if ([chapterTitle isEqualToString:@"Introduction At the Farm"]) {
+        if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"]) {
             if (language_condition == ENGLISH)
                 [self playAudioFile:@"tryAgainE.m4a"];
             else
@@ -2560,7 +2565,7 @@ int language_condition = BILINGUAL;
  * is correct, then it will move on to the next sentence. If the manipulation is not current, then feedback will be provided.
  */
 -(IBAction)pressedNext:(id)sender {
-    if ([chapterTitle isEqualToString:@"Introduction At the Farm"]) {
+    if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"]) {
         // If the user pressed next
         if ([[performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
             // Destroy the timer to avoid playing the previous sound
@@ -2578,7 +2583,7 @@ int language_condition = BILINGUAL;
             }
         }
     }
-    else if ([chapterTitle isEqualToString:@"At the Farm"] && [actualPage isEqualToString:currentPage]) {
+    else if ([chapterTitle isEqualToString:@"The Contest"] && [actualPage isEqualToString:currentPage]) {
         // If the user pressed next
         if ([[performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
             // Destroy the timer to avoid playing the previous sound
@@ -2824,6 +2829,12 @@ int language_condition = BILINGUAL;
 -(NSString*) buildHTMLString:(NSString*)htmlText :(NSString*)selectionType :(NSString*)clickableWord :(NSString*) sentenceType {
     //String to build
     NSString* stringToBuild;
+    
+    //If string contains the special character "'"
+    if ([htmlText rangeOfString:@"'"].location != NSNotFound) {
+        htmlText = [htmlText stringByReplacingCharactersInRange:NSMakeRange([htmlText rangeOfString:@"'"].location,1) withString:@"&#39;"];
+    }
+    
     NSArray* splits = [htmlText componentsSeparatedByString:clickableWord];
     
     if ([sentenceType isEqualToString:@"move"] || [sentenceType isEqualToString:@"group"]) {
@@ -2880,7 +2891,7 @@ int language_condition = BILINGUAL;
         wrapperObj1 = @"TEBNPC.m4a";
     }
     
-    NSDictionary *wrapper = [NSDictionary dictionaryWithObjectsAndKeys:wrapperObj1, @"Key1", nil];
+    //NSDictionary *wrapper = [NSDictionary dictionaryWithObjectsAndKeys:wrapperObj1, @"Key1", nil];
     //timer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(playAudioFileTimed:) userInfo:wrapper repeats:YES];
     
     performedActions = [NSArray arrayWithObjects: expectedSelection, expectedIntroAction, expectedIntroInput, nil];
@@ -2930,7 +2941,7 @@ int language_condition = BILINGUAL;
     //timer = nil;
 }
 
-- (NSString*) getSpanishTranslation: (NSString*)sentence {
+- (NSString*) getEnglishTranslation: (NSString*)sentence {
     NSArray* keys = [[Translation translations] allKeysForObject:sentence];
     if (keys != nil && [keys count] > 0)
         return [keys objectAtIndex:0];

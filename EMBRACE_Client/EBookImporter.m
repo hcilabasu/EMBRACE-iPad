@@ -725,6 +725,10 @@
                 gdataElement = (GDataXMLElement *)[spanishTexts objectAtIndex:0];
                 NSString* spanishText = gdataElement.stringValue;
                 
+                //Each step may or may not have an expected action, input and selection
+                //In some cases it could be the three of them e.g. tap farmer word
+                //In other cases it would just be two e.g. tap next
+                
                 //Get the expected selection
                 NSArray* expectedSelections = [step elementsForName:@"expectedSelection"];
                 gdataElement = (GDataXMLElement *)[expectedSelections objectAtIndex:0];
