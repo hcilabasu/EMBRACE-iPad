@@ -212,6 +212,8 @@
 		C393881F195376490005279F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C393881E195376490005279F /* AudioToolbox.framework */; };
 		C3938821195CBB4B0005279F /* bestFarm.epub in Resources */ = {isa = PBXBuildFile; fileRef = C3938820195CBB4B0005279F /* bestFarm.epub */; };
 		C3B45C12197EE21D003CE36D /* circulatory.epub in Resources */ = {isa = PBXBuildFile; fileRef = C3B45C11197EE21D003CE36D /* circulatory.epub */; };
+		C3B45CEA19A519AF003CE36D /* farm.epub in Resources */ = {isa = PBXBuildFile; fileRef = C3B45CE819A519AF003CE36D /* farm.epub */; };
+		C3B45CEB19A519AF003CE36D /* house.epub in Resources */ = {isa = PBXBuildFile; fileRef = C3B45CE919A519AF003CE36D /* house.epub */; };
 		C3B5214C19254B0C003FF639 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B5214919254B0C003FF639 /* Location.m */; };
 		C3B5214D19254B0C003FF639 /* Waypoint.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B5214B19254B0C003FF639 /* Waypoint.m */; };
 		C3B5215219254BA2003FF639 /* ActionStep.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B5214F19254BA2003FF639 /* ActionStep.m */; };
@@ -274,7 +276,7 @@
 		31937539174185E000782C2B /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		3193753B1741A76E00782C2B /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
 		3193753C1741A76E00782C2B /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
-		31953E451729ECC100570087 /* EMBRACE Spanish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EMBRACE Spanish.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		31953E451729ECC100570087 /* EMBRACE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EMBRACE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31953E481729ECC100570087 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		31953E4A1729ECC100570087 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		31953E4C1729ECC100570087 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -478,6 +480,8 @@
 		C393881E195376490005279F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		C3938820195CBB4B0005279F /* bestFarm.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = bestFarm.epub; sourceTree = SOURCE_ROOT; };
 		C3B45C11197EE21D003CE36D /* circulatory.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = circulatory.epub; sourceTree = SOURCE_ROOT; };
+		C3B45CE819A519AF003CE36D /* farm.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = farm.epub; sourceTree = "<group>"; };
+		C3B45CE919A519AF003CE36D /* house.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = house.epub; sourceTree = "<group>"; };
 		C3B5214819254B0C003FF639 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		C3B5214919254B0C003FF639 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		C3B5214A19254B0C003FF639 /* Waypoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Waypoint.h; sourceTree = "<group>"; };
@@ -597,7 +601,7 @@
 		31953E461729ECC100570087 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				31953E451729ECC100570087 /* EMBRACE Spanish.app */,
+				31953E451729ECC100570087 /* EMBRACE.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -949,7 +953,7 @@
 			);
 			name = EMBRACE;
 			productName = EMBRACE_Client;
-			productReference = 31953E451729ECC100570087 /* EMBRACE Spanish.app */;
+			productReference = 31953E451729ECC100570087 /* EMBRACE.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1052,6 +1056,7 @@
 				31953E5F1729ECC100570087 /* Default-568h@2x.png in Resources */,
 				31953E921729EE8100570087 /* MainStoryboard_iPad.storyboard in Resources */,
 				5CA194B9199052AC0007ABF1 /* owlE.m4a in Resources */,
+				C3B45CEA19A519AF003CE36D /* farm.epub in Resources */,
 				5CA194A1199052AC0007ABF1 /* carretaS.m4a in Resources */,
 				5CA19497199052AC0007ABF1 /* BFES_11A.m4a in Resources */,
 				5CA194C8199052AC0007ABF1 /* trophyE.m4a in Resources */,
@@ -1142,6 +1147,7 @@
 				5CA1944D199052AC0007ABF1 /* BFCE_2B.m4a in Resources */,
 				31058C76176BCFF900595AAE /* logo57.png in Resources */,
 				C3B45C12197EE21D003CE36D /* circulatory.epub in Resources */,
+				C3B45CEB19A519AF003CE36D /* house.epub in Resources */,
 				5CA194A2199052AC0007ABF1 /* cartE.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1317,7 +1323,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				OTHER_LDFLAGS = "-lxml2";
-				PRODUCT_NAME = "EMBRACE Spanish";
+				PRODUCT_NAME = EMBRACE;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1338,7 +1344,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				OTHER_LDFLAGS = "-lxml2";
-				PRODUCT_NAME = "EMBRACE Spanish";
+				PRODUCT_NAME = EMBRACE;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};

@@ -34,6 +34,7 @@
     BOOL panning;
     BOOL pinching;
     BOOL pinchToUngroup; //TRUE if pinch gesture is used to ungroup; FALSE otherwise
+    BOOL allowInteractions; //TRUE if objects can be manipulated; FALSE otherwise
     
     NSMutableDictionary *currentGroupings;
     
@@ -128,6 +129,14 @@ int language_condition = ENGLISH;
     currentPage = nil;
     
     condition = MENU;
+    
+    if (condition == CONTROL) {
+        allowInteractions = FALSE; //control condition allows user to read only; no manipulations
+    }
+    else {
+        allowInteractions = TRUE;
+    }
+    
     useSubject = ALL_ENTITIES;
     useObject = ONLY_CORRECT;
     pinchToUngroup = FALSE;
@@ -208,6 +217,8 @@ int language_condition = ENGLISH;
     }
     
     //Create UIView for textbox area to recognize swipe gesture
+    //NOTE: Currently not in use because it disables tap gesture recognition over the textbox area and we haven't
+    //found a way to fix this yet.
     //[self createTextboxView];
     
     //Load the first vocabulary step for the current chapter (hard-coded for now)
@@ -480,7 +491,7 @@ int language_condition = ENGLISH;
  */
 -(void) performAutomaticSteps {
     //Perform steps only if they exist for the sentence
-    if (numSteps > 0) {
+    if (numSteps > 0 && allowInteractions) {
         //Get steps for current sentence
         NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
         
@@ -520,7 +531,7 @@ int language_condition = ENGLISH;
     CGPoint location = [recognizer locationInView:self.view];
     
     //check to see if we have a menu open. If so, process menu click.
-    if(menu != nil) {
+    if(menu != nil && allowInteractions) {
         int menuItem = [menu pointInMenuItem:location];
         
         //If we've selected a menuItem.
@@ -556,7 +567,7 @@ int language_condition = ENGLISH;
         menuExpanded = FALSE;
     }
     else {
-        if (numSteps > 0) {
+        if (numSteps > 0 && allowInteractions) {
             //Get steps for current sentence
             NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
             
@@ -678,7 +689,7 @@ int language_condition = ENGLISH;
     NSLog(@"Swiper no swiping!");
     
     //Perform steps only if they exist for the sentence and have not been completed
-    if (numSteps > 0 && !stepsComplete) {
+    if (numSteps > 0 && !stepsComplete && allowInteractions) {
         //Get steps for current sentence
         NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
         
@@ -744,7 +755,7 @@ int language_condition = ENGLISH;
 -(IBAction)pinchGesturePerformed:(UIPinchGestureRecognizer *)recognizer {
     CGPoint location = [recognizer locationInView:self.view];
     
-    if(recognizer.state == UIGestureRecognizerStateBegan && pinchToUngroup) {
+    if(recognizer.state == UIGestureRecognizerStateBegan && allowInteractions && pinchToUngroup) {
         pinching = TRUE;
         
         NSString* imageAtPoint = [self getObjectAtPoint:location ofType:@"manipulationObject"];
@@ -831,7 +842,7 @@ int language_condition = ENGLISH;
     CGPoint location = [recognizer locationInView:self.view];
 
     //This should work with requireGestureRecognizerToFail:pinchRecognizer but it doesn't currently.
-    if(!pinching) {
+    if(!pinching && allowInteractions) {
         BOOL useProximity = NO;
         
         if(recognizer.state == UIGestureRecognizerStateBegan) {
@@ -2645,6 +2656,10 @@ int language_condition = ENGLISH;
             if(currentSentence > totalSentences) {
                 [self loadNextPage];
             }
+        }
+        else {
+            //Play noise if not all steps have been completed
+            [self playErrorNoise];
         }
     }
 }
