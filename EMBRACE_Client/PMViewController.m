@@ -90,6 +90,7 @@
 //Used to determine the required proximity of 2 hotspots to group two items together.
 float const groupingProximity = 20.0;
 
+//In the bilingual introduction there are 13 steps in Spanish before switching to English only
 int const STEPS_TO_SWITCH_LANGUAGES = 14;
 int language_condition = ENGLISH;
 
@@ -322,7 +323,7 @@ int language_condition = ENGLISH;
     NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
     NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
     
-    //If it is an action sentence, set its color to blue and automatically perform solution steps if necessary
+    //If it is an action sentence, perform its solution steps if necessary
     if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
         [self performAutomaticSteps];
     }
@@ -2761,8 +2762,8 @@ int language_condition = ENGLISH;
     languageString = @"E";
     underlinedVocabWord = expectedIntroInput;
 
-    // If the language condition for the app is BILINGUAL (English after Spanish) and the current intro
-    //step is lower than the step number to switch languages, load the Spanish information for the step
+    // If the language condition for the app is BILINGUAL (English after Spanish) and the current intro step
+    //is lower than the step number to switch languages, load the Spanish information for the step
     if (language_condition == BILINGUAL && currentIntroStep < STEPS_TO_SWITCH_LANGUAGES) {
         text = textSpanish;
         audio = audioSpanish;
@@ -2891,6 +2892,8 @@ int language_condition = ENGLISH;
         wrapperObj1 = @"TEBNPC.m4a";
     }
     
+    //The wrapper is a dictionary that stores the name of the file and a key.
+    //It is used to pass this information to the timer as one of its parameters.
     //NSDictionary *wrapper = [NSDictionary dictionaryWithObjectsAndKeys:wrapperObj1, @"Key1", nil];
     //timer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(playAudioFileTimed:) userInfo:wrapper repeats:YES];
     

@@ -37,7 +37,16 @@
                  @"shiny": @"brillante",
                  @"tractor": @"tractor",
                  @"trophy": @"trofeo",
-                 @"weeds": @"mala hierba"
+                 @"weeds": @"mala hierba",
+                 @"arteries": @"arterias",
+                 @"atoms": @"átomos",
+                 @"blood": @"sangre",
+                 @"carbon dioxide": @"dióxido de carbono",
+                 @"energy": @"energía",
+                 @"lungs": @"pulmones",
+                 @"molecule": @"molécula",
+                 @"oxygen": @"oxígeno",
+                 @"tubes": @"tubos"
         };
     });
     return inst;
