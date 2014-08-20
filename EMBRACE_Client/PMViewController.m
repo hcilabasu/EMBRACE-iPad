@@ -178,7 +178,7 @@ int language_condition = ENGLISH;
     //   The total number of sentences is like a running total, so by page 2, there are 6 sentences instead of 3.
     //This is to make sure we access the solution steps for the correct sentence on this page, and not a sentence on
     //a previous page.
-    if (![chapterTitle isEqualToString:@"The Contest"]) {
+    if (![vocabularies objectForKey:chapterTitle]) {
         NSString* requestLastSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[%d - 1].id", sentenceCount];
         NSString* lastSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
         int lastSentenceIdNumber = [[lastSentenceId substringFromIndex:1] intValue];
@@ -203,7 +203,7 @@ int language_condition = ENGLISH;
     [self setupCurrentSentenceColor];
     
     //Load the first step for the current chapter (hard-coded for now)
-    if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"]) {
+    if ([introductions objectForKey:chapterTitle]) {
         [self loadIntroStep];
     }
     
@@ -211,7 +211,7 @@ int language_condition = ENGLISH;
     //[self createTextboxView];
     
     //Load the first vocabulary step for the current chapter (hard-coded for now)
-    if ([chapterTitle isEqualToString:@"The Contest"] && [actualPage isEqualToString:currentPage]) {
+    if ([vocabularies objectForKey:chapterTitle] && [actualPage isEqualToString:currentPage]) {
         //The first word is in Spanish
         [self loadVocabStep];
     }
@@ -569,7 +569,7 @@ int language_condition = ENGLISH;
         }
         
         //Enable the introduction clicks on words and images, if it is intro mode
-        if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"]) {
+        if ([introductions objectForKey:chapterTitle]) {
             if (([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] &&
                 [englishSentenceText isEqualToString:[performedActions objectAtIndex:INPUT]])) {
                 //Destroy the timer to avoid playing the previous sound
@@ -585,7 +585,7 @@ int language_condition = ENGLISH;
             }
         }
         //Vocabulary introduction mode
-        else if ([chapterTitle isEqualToString:@"The Contest"] && [actualPage isEqualToString:currentPage]) {
+        else if ([vocabularies objectForKey:chapterTitle] && [actualPage isEqualToString:currentPage]) {
             //If the user clicked on the correct word or image
             if (([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] &&
                  [sentenceText isEqualToString:[performedActions objectAtIndex:INPUT]]) ||
@@ -599,9 +599,9 @@ int language_condition = ENGLISH;
                         sameWordClicked = true;
                         
                         [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]];
-                        //if ([languageString isEqualToString:@"S"]) {
+                        if (![languageString isEqualToString:@"E"]) {
                             sentenceText = [self getEnglishTranslation:sentenceText];
-                        //}
+                        }
                         
                         [self highlightObject:sentenceText :1.5];
                         currentVocabStep++;
@@ -811,7 +811,7 @@ int language_condition = ENGLISH;
             NSString* imageAtPoint = [self getObjectAtPoint:location ofType:@"manipulationObject"];
             //NSLog(@"location pressed: (%f, %f)", location.x, location.y);
             
-            if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"]) {
+            if ([introductions objectForKey:chapterTitle]) {
                 stepsComplete = false;
             }
             
@@ -845,7 +845,7 @@ int language_condition = ENGLISH;
                     if ([[currSolStep stepType] isEqualToString:@"check"]) {
                         //Check if object is in the correct location
                         if([self isHotspotInsideLocation]) {
-                            if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"]) {
+                            if ([introductions objectForKey:chapterTitle]) {
                                 /*Check to see if an object is at a certain location or is grouped with another object e.g. farmergetIncorralArea or farmerleadcow. These strings come from the solution steps */
                                 if([[performedActions objectAtIndex:INPUT] isEqualToString:[NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep locationId]]]
                                    || [[performedActions objectAtIndex:INPUT] isEqualToString:[NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep object2Id]]]) {
@@ -898,7 +898,7 @@ int language_condition = ENGLISH;
                             //If more than 1 was found, prompt the user to disambiguate.
                             else if ([possibleInteractions count] > 1) {
                                 //The chapter title hard-coded for now
-                                if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"] &&
+                                if ([introductions objectForKey:chapterTitle] &&
                                     [[performedActions objectAtIndex:INPUT] isEqualToString:
                                      [NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep object2Id]]]) {
                                     // Destroy the timer to avoid playing the previous sound
@@ -1780,7 +1780,7 @@ int language_condition = ENGLISH;
     if ([interaction isEqual:correctInteraction]) {
         [self performInteraction:interaction];
         
-        if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"]) {
+        if ([introductions objectForKey:chapterTitle]) {
             currentIntroStep++;
             [self loadIntroStep];
         }
@@ -1793,7 +1793,7 @@ int language_condition = ENGLISH;
         }
     }
     else {
-        if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"]) {
+        if ([introductions objectForKey:chapterTitle]) {
             if (language_condition == ENGLISH)
                 [self playAudioFile:@"tryAgainE.m4a"];
             else
@@ -2566,7 +2566,7 @@ int language_condition = ENGLISH;
  * is correct, then it will move on to the next sentence. If the manipulation is not current, then feedback will be provided.
  */
 -(IBAction)pressedNext:(id)sender {
-    if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"]) {
+    if ([introductions objectForKey:chapterTitle]) {
         // If the user pressed next
         if ([[performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
             // Destroy the timer to avoid playing the previous sound
@@ -2584,7 +2584,7 @@ int language_condition = ENGLISH;
             }
         }
     }
-    else if ([chapterTitle isEqualToString:@"The Contest"] && [actualPage isEqualToString:currentPage]) {
+    else if ([vocabularies objectForKey:chapterTitle] && [actualPage isEqualToString:currentPage]) {
         // If the user pressed next
         if ([[performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
             // Destroy the timer to avoid playing the previous sound

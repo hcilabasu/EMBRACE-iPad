@@ -193,6 +193,18 @@
 		5CD0E0FC19A30509000DE96C /* BFCE_5A.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CD0E0FB19A30509000DE96C /* BFCE_5A.m4a */; };
 		5CD0E0FD19A305DF000DE96C /* BFEE1_6.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CA19412199052AC0007ABF1 /* BFEE1_6.m4a */; };
 		5CD0E0FF19A30795000DE96C /* BFCE_22A.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CD0E0FE19A30795000DE96C /* BFCE_22A.m4a */; };
+		5CD0E12C19A469D7000DE96C /* átomosS.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CD0E12019A469D6000DE96C /* átomosS.m4a */; };
+		5CD0E12D19A469D7000DE96C /* atomsE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CD0E12119A469D6000DE96C /* atomsE.m4a */; };
+		5CD0E12E19A469D7000DE96C /* carbonE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CD0E12219A469D6000DE96C /* carbonE.m4a */; };
+		5CD0E12F19A469D7000DE96C /* carbonoS.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CD0E12319A469D6000DE96C /* carbonoS.m4a */; };
+		5CD0E13019A469D7000DE96C /* energíaS.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CD0E12419A469D6000DE96C /* energíaS.m4a */; };
+		5CD0E13119A469D7000DE96C /* energyE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CD0E12519A469D6000DE96C /* energyE.m4a */; };
+		5CD0E13219A469D7000DE96C /* lungsE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CD0E12619A469D6000DE96C /* lungsE.m4a */; };
+		5CD0E13319A469D7000DE96C /* moléculaS.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CD0E12719A469D6000DE96C /* moléculaS.m4a */; };
+		5CD0E13419A469D7000DE96C /* moleculeE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CD0E12819A469D7000DE96C /* moleculeE.m4a */; };
+		5CD0E13519A469D7000DE96C /* oxígenoS.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CD0E12919A469D7000DE96C /* oxígenoS.m4a */; };
+		5CD0E13619A469D7000DE96C /* oxygenE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CD0E12A19A469D7000DE96C /* oxygenE.m4a */; };
+		5CD0E13719A469D7000DE96C /* pulmonesS.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CD0E12B19A469D7000DE96C /* pulmonesS.m4a */; };
 		5CD7FE3519775C1C007A1E49 /* VocabularyStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD7FE3419775C1C007A1E49 /* VocabularyStep.m */; };
 		5CD7FE3819776403007A1E49 /* Introduction.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD7FE3719776403007A1E49 /* Introduction.m */; };
 		5CFA85AB1950EFDC00C7537D /* IntroductionStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFA85AA1950EFDC00C7537D /* IntroductionStep.m */; };
@@ -444,6 +456,18 @@
 		5CD0E0F919A304EF000DE96C /* BFCE_2AA.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCE_2AA.m4a; path = EMBRACE_Client/BFCE_2AA.m4a; sourceTree = SOURCE_ROOT; };
 		5CD0E0FB19A30509000DE96C /* BFCE_5A.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCE_5A.m4a; path = EMBRACE_Client/BFCE_5A.m4a; sourceTree = SOURCE_ROOT; };
 		5CD0E0FE19A30795000DE96C /* BFCE_22A.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCE_22A.m4a; path = EMBRACE_Client/BFCE_22A.m4a; sourceTree = SOURCE_ROOT; };
+		5CD0E12019A469D6000DE96C /* átomosS.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "átomosS.m4a"; path = "EMBRACE_Client/átomosS.m4a"; sourceTree = SOURCE_ROOT; };
+		5CD0E12119A469D6000DE96C /* atomsE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = atomsE.m4a; path = EMBRACE_Client/atomsE.m4a; sourceTree = SOURCE_ROOT; };
+		5CD0E12219A469D6000DE96C /* carbonE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = carbonE.m4a; path = EMBRACE_Client/carbonE.m4a; sourceTree = SOURCE_ROOT; };
+		5CD0E12319A469D6000DE96C /* carbonoS.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = carbonoS.m4a; path = EMBRACE_Client/carbonoS.m4a; sourceTree = SOURCE_ROOT; };
+		5CD0E12419A469D6000DE96C /* energíaS.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "energíaS.m4a"; path = "EMBRACE_Client/energíaS.m4a"; sourceTree = SOURCE_ROOT; };
+		5CD0E12519A469D6000DE96C /* energyE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = energyE.m4a; path = EMBRACE_Client/energyE.m4a; sourceTree = SOURCE_ROOT; };
+		5CD0E12619A469D6000DE96C /* lungsE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = lungsE.m4a; path = EMBRACE_Client/lungsE.m4a; sourceTree = SOURCE_ROOT; };
+		5CD0E12719A469D6000DE96C /* moléculaS.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "moléculaS.m4a"; path = "EMBRACE_Client/moléculaS.m4a"; sourceTree = SOURCE_ROOT; };
+		5CD0E12819A469D7000DE96C /* moleculeE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = moleculeE.m4a; path = EMBRACE_Client/moleculeE.m4a; sourceTree = SOURCE_ROOT; };
+		5CD0E12919A469D7000DE96C /* oxígenoS.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "oxígenoS.m4a"; path = "EMBRACE_Client/oxígenoS.m4a"; sourceTree = SOURCE_ROOT; };
+		5CD0E12A19A469D7000DE96C /* oxygenE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = oxygenE.m4a; path = EMBRACE_Client/oxygenE.m4a; sourceTree = SOURCE_ROOT; };
+		5CD0E12B19A469D7000DE96C /* pulmonesS.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = pulmonesS.m4a; path = EMBRACE_Client/pulmonesS.m4a; sourceTree = SOURCE_ROOT; };
 		5CD7FE3319775C1C007A1E49 /* VocabularyStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VocabularyStep.h; sourceTree = "<group>"; };
 		5CD7FE3419775C1C007A1E49 /* VocabularyStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VocabularyStep.m; sourceTree = "<group>"; };
 		5CD7FE3619776403007A1E49 /* Introduction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Introduction.h; sourceTree = "<group>"; };
@@ -610,6 +634,18 @@
 		31953E4F1729ECC100570087 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5CD0E12019A469D6000DE96C /* átomosS.m4a */,
+				5CD0E12119A469D6000DE96C /* atomsE.m4a */,
+				5CD0E12219A469D6000DE96C /* carbonE.m4a */,
+				5CD0E12319A469D6000DE96C /* carbonoS.m4a */,
+				5CD0E12419A469D6000DE96C /* energíaS.m4a */,
+				5CD0E12519A469D6000DE96C /* energyE.m4a */,
+				5CD0E12619A469D6000DE96C /* lungsE.m4a */,
+				5CD0E12719A469D6000DE96C /* moléculaS.m4a */,
+				5CD0E12819A469D7000DE96C /* moleculeE.m4a */,
+				5CD0E12919A469D7000DE96C /* oxígenoS.m4a */,
+				5CD0E12A19A469D7000DE96C /* oxygenE.m4a */,
+				5CD0E12B19A469D7000DE96C /* pulmonesS.m4a */,
 				5CD0E0FE19A30795000DE96C /* BFCE_22A.m4a */,
 				5CD0E0FB19A30509000DE96C /* BFCE_5A.m4a */,
 				5CD0E0F919A304EF000DE96C /* BFCE_2AA.m4a */,
@@ -959,6 +995,7 @@
 				5CA19477199052AC0007ABF1 /* BFCS1_2.m4a in Resources */,
 				5CA194A5199052AC0007ABF1 /* contestE.m4a in Resources */,
 				5CA1946C199052AC0007ABF1 /* BFCS_5A.m4a in Resources */,
+				5CD0E13319A469D7000DE96C /* moléculaS.m4a in Resources */,
 				5CA19467199052AC0007ABF1 /* BFCS_2AA.m4a in Resources */,
 				5CA194B2199052AC0007ABF1 /* intentaDeNuevoS.m4a in Resources */,
 				5CA19496199052AC0007ABF1 /* BFES_11.m4a in Resources */,
@@ -966,10 +1003,12 @@
 				5CA194BA199052AC0007ABF1 /* pajarS.m4a in Resources */,
 				5CA19454199052AC0007ABF1 /* BFCE_9.m4a in Resources */,
 				5CA19478199052AC0007ABF1 /* BFCS1_4.m4a in Resources */,
+				5CD0E13219A469D7000DE96C /* lungsE.m4a in Resources */,
 				5CA194AE199052AC0007ABF1 /* granjeroS.m4a in Resources */,
 				5CA194B8199052AC0007ABF1 /* nidoS.m4a in Resources */,
 				5CA1948F199052AC0007ABF1 /* BFEE_20.m4a in Resources */,
 				5CA19469199052AC0007ABF1 /* BFCS_3.m4a in Resources */,
+				5CD0E13419A469D7000DE96C /* moleculeE.m4a in Resources */,
 				5CA1945F199052AC0007ABF1 /* BFCE1_3.m4a in Resources */,
 				5CA194C4199052AC0007ABF1 /* saludableS.m4a in Resources */,
 				5CA1949A199052AC0007ABF1 /* BFS_CH1.m4a in Resources */,
@@ -993,19 +1032,23 @@
 				5CA194B1199052AC0007ABF1 /* healthyE.m4a in Resources */,
 				31953E5D1729ECC100570087 /* Default@2x.png in Resources */,
 				5CA1949E199052AC0007ABF1 /* bucketE.m4a in Resources */,
+				5CD0E12E19A469D7000DE96C /* carbonE.m4a in Resources */,
 				5CA194C1199052AC0007ABF1 /* pumpkinE.m4a in Resources */,
 				5CA19486199052AC0007ABF1 /* BFEE_11.m4a in Resources */,
+				5CD0E12D19A469D7000DE96C /* atomsE.m4a in Resources */,
 				5CA19479199052AC0007ABF1 /* BFCS1_5.m4a in Resources */,
 				5CA194CC199196F70007ABF1 /* BFCE_5.m4a in Resources */,
 				5CA1948C199052AC0007ABF1 /* BFEE_18AA.m4a in Resources */,
 				5CA194C5199052AC0007ABF1 /* shinyE.m4a in Resources */,
 				5CA194BF199052AC0007ABF1 /* prizeE.m4a in Resources */,
+				5CD0E12F19A469D7000DE96C /* carbonoS.m4a in Resources */,
 				5CA1949F199052AC0007ABF1 /* buhoS.m4a in Resources */,
 				5CA1944F199052AC0007ABF1 /* BFCE_4.m4a in Resources */,
 				C3938821195CBB4B0005279F /* bestFarm.epub in Resources */,
 				5CA194C2199052AC0007ABF1 /* purrE.m4a in Resources */,
 				5CA194C6199052AC0007ABF1 /* STWATTP.m4a in Resources */,
 				5CA194B6199052AC0007ABF1 /* malezaS.m4a in Resources */,
+				5CD0E13119A469D7000DE96C /* energyE.m4a in Resources */,
 				31953E5F1729ECC100570087 /* Default-568h@2x.png in Resources */,
 				31953E921729EE8100570087 /* MainStoryboard_iPad.storyboard in Resources */,
 				5CA194B9199052AC0007ABF1 /* owlE.m4a in Resources */,
@@ -1019,6 +1062,7 @@
 				317FF1761742CCD100F1F160 /* ImageManipulation.js in Resources */,
 				5CA1948A199052AC0007ABF1 /* BFEE_18.m4a in Resources */,
 				5CA19470199052AC0007ABF1 /* BFCS_9.m4a in Resources */,
+				5CD0E12C19A469D7000DE96C /* átomosS.m4a in Resources */,
 				5CA19471199052AC0007ABF1 /* BFCS_10.m4a in Resources */,
 				5CA1945B199052AC0007ABF1 /* BFCE_REST.m4a in Resources */,
 				5CA1945C199052AC0007ABF1 /* BFCE1_1.m4a in Resources */,
@@ -1034,6 +1078,7 @@
 				5CA194C3199052AC0007ABF1 /* saltoS.m4a in Resources */,
 				5CA1944E199052AC0007ABF1 /* BFCE_3.m4a in Resources */,
 				5CA1947F199052AC0007ABF1 /* BFE_S2.m4a in Resources */,
+				5CD0E13619A469D7000DE96C /* oxygenE.m4a in Resources */,
 				5CA194BE199052AC0007ABF1 /* premioS.m4a in Resources */,
 				5CA1944A199052AC0007ABF1 /* barnE.m4a in Resources */,
 				5CA1948B199052AC0007ABF1 /* BFEE_18A.m4a in Resources */,
@@ -1046,6 +1091,7 @@
 				5CA194A6199052AC0007ABF1 /* corralE.m4a in Resources */,
 				5CD0E0FF19A30795000DE96C /* BFCE_22A.m4a in Resources */,
 				5CA19488199052AC0007ABF1 /* BFEE_12.m4a in Resources */,
+				5CD0E13519A469D7000DE96C /* oxígenoS.m4a in Resources */,
 				5CA19472199052AC0007ABF1 /* BFCS_10A.m4a in Resources */,
 				5CA19475199052AC0007ABF1 /* BFCS1_1.m4a in Resources */,
 				5CA1948E199052AC0007ABF1 /* BFEE_19A.m4a in Resources */,
@@ -1054,6 +1100,7 @@
 				5CA194BD199052AC0007ABF1 /* penE.m4a in Resources */,
 				5CA1947D199052AC0007ABF1 /* BFE_CH1.m4a in Resources */,
 				5CA19451199052AC0007ABF1 /* BFCE_6.m4a in Resources */,
+				5CD0E13019A469D7000DE96C /* energíaS.m4a in Resources */,
 				5CA19480199052AC0007ABF1 /* BFEE_2AA.m4a in Resources */,
 				5CA19473199052AC0007ABF1 /* BFCS_14.m4a in Resources */,
 				5CA194A0199052AC0007ABF1 /* calabazaS.m4a in Resources */,
@@ -1089,6 +1136,7 @@
 				5CA194A4199052AC0007ABF1 /* concursoS.m4a in Resources */,
 				5CA19492199052AC0007ABF1 /* BFEE_22A.m4a in Resources */,
 				5CA194B0199052AC0007ABF1 /* hayloftE.m4a in Resources */,
+				5CD0E13719A469D7000DE96C /* pulmonesS.m4a in Resources */,
 				5CA1944C199052AC0007ABF1 /* BFCE_2A.m4a in Resources */,
 				5CA194AC199052AC0007ABF1 /* gateE.m4a in Resources */,
 				5CA1944D199052AC0007ABF1 /* BFCE_2B.m4a in Resources */,
