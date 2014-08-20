@@ -439,8 +439,39 @@ int language_condition = ENGLISH;
     NSMutableArray* setupSteps = [[PMActivity setupSteps] objectForKey:currentPageId]; //get setup steps for current page
     
     for (ActionStep* setupStep in setupSteps) {
-        PossibleInteraction* interaction = [self convertActionStepToPossibleInteraction:setupStep];
-        [self performInteraction:interaction]; //groups the objects
+        if ([[setupStep stepType] isEqualToString:@"group"]) {
+            PossibleInteraction* interaction = [self convertActionStepToPossibleInteraction:setupStep];
+            [self performInteraction:interaction]; //groups the objects
+        }
+        else if ([[setupStep stepType] isEqualToString:@"move"]) {
+            //Get information for move step type
+            NSString* object1Id = [setupStep object1Id];
+            NSString* action = [setupStep action];
+            NSString* object2Id = [setupStep object2Id];
+            NSString* waypointId = [setupStep waypointId];
+            
+            //Move either requires object1 to move to object2 (which creates a group interaction) or it requires object1 to move to a waypoint
+            if (object2Id != nil) {
+                PossibleInteraction* correctInteraction = [self getCorrectInteraction];
+                [self performInteraction:correctInteraction]; //performs solution step
+            }
+            else if (waypointId != nil) {
+                //Get position of hotspot in pixels based on the object image size
+                Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:object1Id :action :@"subject"];
+                CGPoint hotspotLocation = [self getHotspotLocationOnImage:hotspot];
+                
+                //Get position of waypoint in pixels based on the background size
+                Waypoint* waypoint = [model getWaypointWithId:waypointId];
+                CGPoint waypointLocation = [self getWaypointLocation:waypoint];
+                
+                //Move the object
+                [self moveObject:object1Id :waypointLocation :hotspotLocation :false];
+                
+                //Clear highlighting
+                NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
+                [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
+            }
+        }
     }
 }
 
