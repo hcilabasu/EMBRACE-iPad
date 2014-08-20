@@ -219,6 +219,12 @@
 		C3B52156192A97D7003FF639 /* InteractionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B52155192A97D7003FF639 /* InteractionModel.m */; };
 		C3B5215A192AB610003FF639 /* EBookImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B52159192AB610003FF639 /* EBookImporter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C3D79468196B1EC9004C26ED /* AlternateImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D79467196B1EC9004C26ED /* AlternateImage.m */; };
+		C680520D197ECD43002A5249 /* ServerCommunicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C680520C197ECD43002A5249 /* ServerCommunicationController.m */; };
+		C6805216197ECDE5002A5249 /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = C6805211197ECDE5002A5249 /* DDXMLDocument.m */; };
+		C6805217197ECDE5002A5249 /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = C6805213197ECDE5002A5249 /* DDXMLElement.m */; };
+		C6805218197ECDE5002A5249 /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C6805215197ECDE5002A5249 /* DDXMLNode.m */; };
+		C680521B197ECDF4002A5249 /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C680521A197ECDF4002A5249 /* DDXMLElementAdditions.m */; };
+		C680521E197ECE02002A5249 /* NSString+DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = C680521D197ECE02002A5249 /* NSString+DDXML.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -491,6 +497,20 @@
 		C3B52159192AB610003FF639 /* EBookImporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EBookImporter.m; sourceTree = "<group>"; };
 		C3D79466196B1EC9004C26ED /* AlternateImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlternateImage.h; sourceTree = "<group>"; };
 		C3D79467196B1EC9004C26ED /* AlternateImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlternateImage.m; sourceTree = "<group>"; };
+		C680520B197ECD42002A5249 /* ServerCommunicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerCommunicationController.h; sourceTree = "<group>"; };
+		C680520C197ECD43002A5249 /* ServerCommunicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerCommunicationController.m; sourceTree = "<group>"; };
+		C680520F197ECDE5002A5249 /* DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXML.h; sourceTree = "<group>"; };
+		C6805210197ECDE5002A5249 /* DDXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLDocument.h; sourceTree = "<group>"; };
+		C6805211197ECDE5002A5249 /* DDXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLDocument.m; sourceTree = "<group>"; };
+		C6805212197ECDE5002A5249 /* DDXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElement.h; sourceTree = "<group>"; };
+		C6805213197ECDE5002A5249 /* DDXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLElement.m; sourceTree = "<group>"; };
+		C6805214197ECDE5002A5249 /* DDXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLNode.h; sourceTree = "<group>"; };
+		C6805215197ECDE5002A5249 /* DDXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLNode.m; sourceTree = "<group>"; };
+		C6805219197ECDF4002A5249 /* DDXMLElementAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLElementAdditions.h; sourceTree = "<group>"; };
+		C680521A197ECDF4002A5249 /* DDXMLElementAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDXMLElementAdditions.m; sourceTree = "<group>"; };
+		C680521C197ECE02002A5249 /* NSString+DDXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DDXML.h"; sourceTree = "<group>"; };
+		C680521D197ECE02002A5249 /* NSString+DDXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DDXML.m"; sourceTree = "<group>"; };
+		C680521F197ECE0E002A5249 /* DDXMLPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLPrivate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -865,6 +885,7 @@
 		31953E7E1729ED8D00570087 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C680520E197ECDC7002A5249 /* DDXML */,
 				316CFADF1773A512004216D0 /* Physical Manipulation */,
 				311646B41760209200B483F0 /* IMViewController.h */,
 				5C2FBA54195209C200B3151D /* IntroductionViewController.h */,
@@ -880,6 +901,8 @@
 				31AA5FA9175FB16500E9A9B3 /* LoginViewController.m */,
 				31953E571729ECC100570087 /* AppDelegate.h */,
 				31953E581729ECC100570087 /* AppDelegate.m */,
+				C680520B197ECD42002A5249 /* ServerCommunicationController.h */,
+				C680520C197ECD43002A5249 /* ServerCommunicationController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -930,6 +953,25 @@
 				C3D79467196B1EC9004C26ED /* AlternateImage.m */,
 			);
 			name = "Interaction Model";
+			sourceTree = "<group>";
+		};
+		C680520E197ECDC7002A5249 /* DDXML */ = {
+			isa = PBXGroup;
+			children = (
+				C680521F197ECE0E002A5249 /* DDXMLPrivate.h */,
+				C680521C197ECE02002A5249 /* NSString+DDXML.h */,
+				C680521D197ECE02002A5249 /* NSString+DDXML.m */,
+				C6805219197ECDF4002A5249 /* DDXMLElementAdditions.h */,
+				C680521A197ECDF4002A5249 /* DDXMLElementAdditions.m */,
+				C680520F197ECDE5002A5249 /* DDXML.h */,
+				C6805210197ECDE5002A5249 /* DDXMLDocument.h */,
+				C6805211197ECDE5002A5249 /* DDXMLDocument.m */,
+				C6805212197ECDE5002A5249 /* DDXMLElement.h */,
+				C6805213197ECDE5002A5249 /* DDXMLElement.m */,
+				C6805214197ECDE5002A5249 /* DDXMLNode.h */,
+				C6805215197ECDE5002A5249 /* DDXMLNode.m */,
+			);
+			path = DDXML;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1203,6 +1245,12 @@
 				310908EC17DE90CA004590A2 /* MovementConstraint.m in Sources */,
 				310908EF17DE90DB004590A2 /* OrderConstraint.m in Sources */,
 				31C306C5183E93A60043DEDD /* Connection.m in Sources */,
+				C680520D197ECD43002A5249 /* ServerCommunicationController.m in Sources */,
+				C6805216197ECDE5002A5249 /* DDXMLDocument.m in Sources */,
+				C6805217197ECDE5002A5249 /* DDXMLElement.m in Sources */,
+				C6805218197ECDE5002A5249 /* DDXMLNode.m in Sources */,
+				C680521B197ECDF4002A5249 /* DDXMLElementAdditions.m in Sources */,
+				C680521E197ECE02002A5249 /* NSString+DDXML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1269,8 +1317,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-lxml2";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1294,8 +1344,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = "-lxml2";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

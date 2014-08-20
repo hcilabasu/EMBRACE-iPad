@@ -8,6 +8,7 @@
 
 #import "ContextualMenuDataSource.h"
 #import "PieContextualMenu.h"
+#import "Relationship.h"
 @interface ContextualMenuDataSource () {
     
 }
@@ -37,8 +38,8 @@
     return [data objectAtIndex:itemIndex];
 }
 
--(void) addMenuItem:(PossibleInteraction*)possInteraction :(NSArray*) imageArray :(CGRect) box {
-    MenuItemDataSource* currentMenuItem = [[MenuItemDataSource alloc] initWithPossibleInteractionAndImages:possInteraction :imageArray :box];
+-(void) addMenuItem:(PossibleInteraction*)possInteraction : (Relationship* ) relationship : (NSArray*) imageArray :(CGRect) box {
+    MenuItemDataSource* currentMenuItem = [[MenuItemDataSource alloc] initWithPossibleInteractionAndImages:possInteraction : relationship : imageArray :box];
     [data addObject:currentMenuItem];
 }
 

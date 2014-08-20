@@ -11,7 +11,7 @@
 @interface Student : NSObject {
     NSString* firstName;
     NSString* lastName;
-    
+    NSString* experimenterName;
     //Need some way to keep track of activities.
     //I need to know which activities were done in PM and IM and which are still locked.
     //Currently the Book represents the scenario: eg. Farm, House.
@@ -21,7 +21,9 @@
 
 @property (nonatomic, strong) NSString *firstName;
 @property (nonatomic, strong) NSString *lastName;
+@property (nonatomic, strong) NSString *experimenterName;
 
--(id)initWithName:(NSString*) first :(NSString*) last;
+
+-(id)initWithName:(NSString*) first :(NSString*) last : (NSString *) experimenter;
 
 @end

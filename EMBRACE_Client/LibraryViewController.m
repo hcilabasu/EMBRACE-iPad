@@ -10,8 +10,8 @@
 #import "BookCellView.h"
 #import "BookHeaderView.h"
 #import "Book.h"
-
 #import "PMViewController.h"
+#import "ServerCommunicationController.h"
 
 @interface LibraryViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout> {
     NSMutableArray *libraryImages;
@@ -48,7 +48,20 @@
     
     //Set the title to something personalized.
     if(student != nil) {
-        self.title = [[@"Hi, " stringByAppendingString:[student firstName]] stringByAppendingString:@"!"];
+        
+        //added by James for xml logging
+        [[ServerCommunicationController sharedManager] logContext:student];
+        //Logging Completes Here.
+        
+        self.title = @"Temp Condition";
+    }
+    else
+    {
+        student = [[Student alloc] initWithName:@"Study Code" :@"Study Day":@"Experimenter"];
+        
+        //added by James for xml logging
+        //[[ServerCommunicationController sharedManager] logContext:student];
+        //Logging Completes Here.
     }
     
     //initialize and book importer.
@@ -133,6 +146,10 @@
     
     //Instead of loading the first page, we're going to load the page that was selected.]
     //NSLog(@"chapter to Open: %@", self.chapterToOpen);
+    
+    //added by James for XML logging
+    [[ServerCommunicationController sharedManager] logStoryButtonPressed: @"Library Icon" : @"Tap" : self.bookToOpen : self.chapterToOpen : @"NULL" : @"NULL" : @"NULL"];
+    //logging ends here
     
     [destination loadFirstPage];
     
