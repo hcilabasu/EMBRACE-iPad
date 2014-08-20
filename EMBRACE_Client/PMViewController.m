@@ -11,6 +11,7 @@
 #import "PieContextualMenu.h"
 #import "Translation.h"
 #import <AudioToolbox/AudioToolbox.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface PMViewController () {
     NSString* currentPage; //The current page being shown, so that the next page can be requested.
@@ -18,6 +19,7 @@
     
     NSUInteger currentSentence; //Active sentence to be completed.
     NSUInteger totalSentences; //Total number of sentences on this page.
+    NSUInteger currentIntroStep; //Current step in the introduction
     
     PhysicalManipulationSolution* PMSolution; //Solution steps for current chapter
     NSUInteger numSteps; //Number of steps for current sentence
@@ -48,12 +50,29 @@
     
     InteractionModel *model;
     
-    Condition condition; //study condition to run the app (e.g. MENU, HOTSPOT, etc.)
+    Condition condition; //Study condition to run the app (e.g. MENU, HOTSPOT, etc.)
     InteractionRestriction useSubject; //Determines which objects the user can manipulate as the subject
     InteractionRestriction useObject; //Determines which objects the user can interact with as the object
+    
+    NSMutableDictionary* introductions; //Stores the instances of the introductions from metadata.xml
+    NSUInteger totalIntroSteps; //Stores the total number of introduction steps for the current chapter
+    NSMutableArray* currentIntroSteps; //Stores the introduction steps for the current chapter
+    NSArray *performedActions; //Store the information of the current step
+    
+    NSMutableDictionary* vocabularies; //Stores the instances of the vocabs from metadata.xml
+    NSUInteger currentVocabStep; //Stores the index of the current vocab step
+    NSMutableArray* currentVocabSteps; //Stores the vocab steps for the current chapter
+    NSUInteger totalVocabSteps; //Stores the total number of vocab steps for the current chapter
+    
+    NSString* actualPage; //Stores the address of the current page we are at
+    NSString* actualWord; //Stores the current word that was clicked
+    NSTimer* timer; //Controls the timing of the audio file that is playing
+    NSString* languageString; //Defines the languange to be used 'E' for English 'S' for Spanish
+    BOOL sameWordClicked; //Defines if a word has been clicked or not
 }
 
 @property (nonatomic, strong) IBOutlet UIWebView *bookView;
+@property (strong) AVAudioPlayer *audioPlayer;
 
 @end
 
@@ -71,6 +90,10 @@
 
 //Used to determine the required proximity of 2 hotspots to group two items together.
 float const groupingProximity = 20.0;
+
+//In the bilingual introduction there are 13 steps in Spanish before switching to English only
+int const STEPS_TO_SWITCH_LANGUAGES = 14;
+int language_condition = ENGLISH;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -120,6 +143,10 @@ float const groupingProximity = 20.0;
     replenishSupply = FALSE;
     allowSnapback = TRUE;
     
+    sameWordClicked = false;
+    
+    currentGroupings = [[NSMutableDictionary alloc] init];
+    
     //Create contextualMenuController
     menuDataSource = [[ContextualMenuDataSource alloc] init];
     
@@ -160,10 +187,15 @@ float const groupingProximity = 20.0;
     //   The total number of sentences is like a running total, so by page 2, there are 6 sentences instead of 3.
     //This is to make sure we access the solution steps for the correct sentence on this page, and not a sentence on
     //a previous page.
-    NSString* requestLastSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[%d - 1].id", sentenceCount];
-    NSString* lastSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
-    int lastSentenceIdNumber = [[lastSentenceId substringFromIndex:1] intValue];
-    totalSentences = lastSentenceIdNumber;
+    if (![chapterTitle isEqualToString:@"The Contest"]) {
+        NSString* requestLastSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[%d - 1].id", sentenceCount];
+        NSString* lastSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
+        int lastSentenceIdNumber = [[lastSentenceId substringFromIndex:1] intValue];
+        totalSentences = lastSentenceIdNumber;
+    }
+    else {
+        totalSentences = sentenceCount;
+    }
     
     //Get the id number of the first sentence on the page and set it equal to the current sentence number.
     //Because the PMActivity may have multiple pages, the first sentence on the page is not necessarily sentence 1.
@@ -177,17 +209,23 @@ float const groupingProximity = 20.0;
     
     //Set up current sentence appearance and solution steps
     [self setupCurrentSentence];
+    [self setupCurrentSentenceColor];
     
-    //Set the opacity of all but the current sentence to .2
-    for(int i = currentSentence; i < totalSentences; i++) {
-        NSString* setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, .2)", i + 1];
-        [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
+    //Load the first step for the current chapter (hard-coded for now)
+    if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"]) {
+        [self loadIntroStep];
     }
     
     //Create UIView for textbox area to recognize swipe gesture
     //NOTE: Currently not in use because it disables tap gesture recognition over the textbox area and we haven't
     //found a way to fix this yet.
     //[self createTextboxView];
+    
+    //Load the first vocabulary step for the current chapter (hard-coded for now)
+    if ([chapterTitle isEqualToString:@"The Contest"] && [actualPage isEqualToString:currentPage]) {
+        //The first word is in Spanish
+        [self loadVocabStep];
+    }
     
     //Perform setup for activity
     [self performSetupForActivity];
@@ -204,6 +242,18 @@ float const groupingProximity = 20.0;
     model = [book model];
     
     currentPage = [book getNextPageForChapterAndActivity:chapterTitle :PM_MODE :nil];
+    
+    actualPage = currentPage;
+    
+    //Introduction setup
+    currentIntroStep = 1;
+    
+    //Load the introduction data
+    introductions = [model getIntroductions];
+    
+    //Get the steps for the introduction of the current chapter
+    currentIntroSteps = [introductions objectForKey:chapterTitle];
+    totalIntroSteps = [currentIntroSteps count];
     
     [self loadPage];
 }
@@ -257,11 +307,20 @@ float const groupingProximity = 20.0;
     Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
     PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
     PMSolution = [PMActivity PMSolution]; //get PM solution
+    
+    //Vocabulary setup
+    currentVocabStep = 1;
+    
+    //Load the vocabulary data
+    vocabularies = [model getVocabularies];
+    
+    //Get the vocabulary steps (words) for the current story
+    currentVocabSteps = [vocabularies objectForKey:chapterTitle];
+    totalVocabSteps = [currentVocabSteps count];
 }
 
 /*
- * Sets up the appearance of the current sentence by highlighting it as blue (if it is an action sentence)
- * or as black (if it is a non-action sentence). Additionally, it gets the number of steps for the current
+ * Gets the number of steps for the current
  * sentence and sets the current step to 1. Steps are complete if it's a non-action sentence.
  */
 -(void) setupCurrentSentence {
@@ -271,6 +330,23 @@ float const groupingProximity = 20.0;
     //Get number of steps for current sentence
     numSteps = [PMSolution getNumStepsForSentence:currentSentence];
     
+    //Check to see if it is an action sentence
+    NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
+    NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
+    
+    //If it is an action sentence, perform its solution steps if necessary
+    if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
+        [self performAutomaticSteps];
+    }
+    else {
+        stepsComplete = TRUE; //no steps to complete for non-action sentence
+    }
+}
+
+/* Sets up the appearance of the current sentence by highlighting it as blue (if it is an action sentence)
+ * or as black (if it is a non-action sentence).
+ */
+-(void) setupCurrentSentenceColor {
     //Highlight the sentence and set its color to black.
     NSString* setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, 1.0)", currentSentence];
     [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
@@ -286,11 +362,12 @@ float const groupingProximity = 20.0;
     if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
         setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
         [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
-        
-        [self performAutomaticSteps];
     }
-    else {
-        stepsComplete = TRUE; //no steps to complete for non-action sentence
+    
+    //Set the opacity of all but the current sentence to .2
+    for(int i = currentSentence; i < totalSentences; i++) {
+        NSString* setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, .2)", i + 1];
+        [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
     }
 }
 
@@ -484,29 +561,76 @@ float const groupingProximity = 20.0;
         
         //NSLog(@"location pressed: (%f, %f)", location.x, location.y);
         
-        //Retrieve the word at this location
-        NSString* requestWordAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
-        imageAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestWordAtPoint];
+        //Retrieve the name of the object at this location
+        NSString* requestImageAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
+        
+        imageAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPoint];
             
-        //Capture the clicked text
+        //Capture the clicked text, if it exists
         NSString* requestSentenceText = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).innerHTML", location.x, location.y];
         NSString* sentenceText = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceText];
+
         
-        //NSLog(@"%@",sentenceText);
+        //Convert to lowercase so the sentence text can be mapped to objects
+        sentenceText = [sentenceText lowercaseString];
+        NSString* englishSentenceText = sentenceText;
         
-        if([[Translation translations] objectForKey:sentenceText]) {
-            //Highlight the tapped object
-            NSString* highlight = [NSString stringWithFormat:@"highlightObjectOnWordTap(%@)", sentenceText];
-            [bookView stringByEvaluatingJavaScriptFromString:highlight];
+        if (language_condition == BILINGUAL) {
+            englishSentenceText = [self getEnglishTranslation:sentenceText];
+        }
+        
+        //Enable the introduction clicks on words and images, if it is intro mode
+        if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"]) {
+            if (([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] &&
+                [englishSentenceText isEqualToString:[performedActions objectAtIndex:INPUT]])) {
+                //Destroy the timer to avoid playing the previous sound
+                //[timer invalidate];
+                //timer = nil;
                 
+                [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]];
+                [self highlightObject:sentenceText:1.5];
+                //Bypass the image-tap steps which are found after each word-tap step on the metadata
+                // since they are not needed anymore
+                currentIntroStep+=2;
+                [self performSelector:@selector(loadIntroStep) withObject:nil afterDelay:2];
+            }
+        }
+        //Vocabulary introduction mode
+        else if ([chapterTitle isEqualToString:@"The Contest"] && [actualPage isEqualToString:currentPage]) {
+            //If the user clicked on the correct word or image
+            if (([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] &&
+                 [sentenceText isEqualToString:[performedActions objectAtIndex:INPUT]]) ||
+                ([[performedActions objectAtIndex:SELECTION] isEqualToString:@"image"] &&
+                 [imageAtPoint isEqualToString:[performedActions objectAtIndex:INPUT]])) {
+                    //[timer invalidate];
+                    //timer = nil;
+                    
+                    //If the user clicked on a word
+                    if ([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] && !sameWordClicked) {
+                        sameWordClicked = true;
+                        
+                        [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]];
+                        //if ([languageString isEqualToString:@"S"]) {
+                            sentenceText = [self getEnglishTranslation:sentenceText];
+                        //}
+                        
+                        [self highlightObject:sentenceText :1.5];
+                        currentVocabStep++;
+                        [self performSelector:@selector(loadVocabStep) withObject:nil afterDelay:5];
+                        currentSentence++;
+                        [self performSelector:@selector(colorSentencesUponNext) withObject:nil afterDelay:4];
+                }
+            }
+        }
+        else if([[Translation translations] objectForKey:sentenceText]) {
             //Play word audio En
-            [self playWordAudio:sentenceText : @"en-us"];
+            [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,@"E"]];
+            [self highlightObject:sentenceText:1.5];
                 
-            //Play word audio Es
-            [self playWordAudio:[Translation translations][sentenceText] : @"es-mx"];
-                
-            //Clear highlighted object
-            [self performSelector:@selector(clearHighlightedObject) withObject:nil afterDelay:1.5];
+            if (language_condition == BILINGUAL) {
+                //Play word audio Sp
+                [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",[self getEnglishTranslation:sentenceText],@"S"]];
+            }
         }
     }
 }
@@ -698,6 +822,10 @@ float const groupingProximity = 20.0;
             NSString* imageAtPoint = [self getObjectAtPoint:location ofType:@"manipulationObject"];
             //NSLog(@"location pressed: (%f, %f)", location.x, location.y);
             
+            if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"]) {
+                stepsComplete = false;
+            }
+            
             //if it's an image that can be moved, then start moving it.
             if(imageAtPoint != nil && !stepsComplete) {
                 movingObject = TRUE;
@@ -728,6 +856,17 @@ float const groupingProximity = 20.0;
                     if ([[currSolStep stepType] isEqualToString:@"check"]) {
                         //Check if object is in the correct location
                         if([self isHotspotInsideLocation]) {
+                            if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"]) {
+                                /*Check to see if an object is at a certain location or is grouped with another object e.g. farmergetIncorralArea or farmerleadcow. These strings come from the solution steps */
+                                if([[performedActions objectAtIndex:INPUT] isEqualToString:[NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep locationId]]]
+                                   || [[performedActions objectAtIndex:INPUT] isEqualToString:[NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep object2Id]]]) {
+                                        // Destroy the timer to avoid playing the previous sound
+                                        //[timer invalidate];
+                                        //timer = nil;
+                                        currentIntroStep++;
+                                        [self loadIntroStep];
+                                }
+                            }
                             [self incrementCurrentStep];
                         }
                         else {
@@ -769,6 +908,17 @@ float const groupingProximity = 20.0;
                             }
                             //If more than 1 was found, prompt the user to disambiguate.
                             else if ([possibleInteractions count] > 1) {
+                                //The chapter title hard-coded for now
+                                if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"] &&
+                                    [[performedActions objectAtIndex:INPUT] isEqualToString:
+                                     [NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep object2Id]]]) {
+                                    // Destroy the timer to avoid playing the previous sound
+                                    //[timer invalidate];
+                                    //timer = nil;
+                                    currentIntroStep++;
+                                    [self loadIntroStep];
+                                }
+                                
                                 //First rank the interactions based on location to story.
                                 [self rankPossibleInteractions:possibleInteractions];
                                 
@@ -1640,6 +1790,12 @@ float const groupingProximity = 20.0;
     //Check if selected interaction is correct
     if ([interaction isEqual:correctInteraction]) {
         [self performInteraction:interaction];
+        
+        if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"]) {
+            currentIntroStep++;
+            [self loadIntroStep];
+        }
+        
         [self incrementCurrentStep];
         
         //Transference counts as two steps, so we must increment again
@@ -1648,7 +1804,15 @@ float const groupingProximity = 20.0;
         }
     }
     else {
-        [self playErrorNoise]; //play noise if interaction is incorrect
+        if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"]) {
+            if (language_condition == ENGLISH)
+                [self playAudioFile:@"tryAgainE.m4a"];
+            else
+                [self playAudioFile:@"intentaDeNuevoS.m4a"];
+        }
+        else {
+            [self playErrorNoise]; //play noise if interaction is incorrect
+        }
         
         if ([interaction interactionType] != UNGROUP && allowSnapback) {
             //Snap the object back to its original location
@@ -2491,11 +2655,13 @@ float const groupingProximity = 20.0;
     }
 }
 
+/* Clears the highlighting on the scene */
 -(void)clearHighlightedObject {
     NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
     [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
 }
 
+/* Plays a text-to-speech audio in a given language */
 -(void)playWordAudio:(NSString*) word :(NSString*) lang {
     AVSpeechUtterance *utteranceEn = [[AVSpeechUtterance alloc]initWithString:word];
     utteranceEn.rate = AVSpeechUtteranceMaximumSpeechRate/7;
@@ -2503,6 +2669,268 @@ float const groupingProximity = 20.0;
     NSLog(@"Sentence: %@", word);
     NSLog(@"Volume: %f", utteranceEn.volume);
     [syn speakUtterance:utteranceEn];
+}
+
+/* Plays text-to-speech audio in a given language in a certain time */
+-(void)playWordAudioTimed:(NSTimer *) wordAndLang {
+    NSDictionary *wrapper = (NSDictionary *)[wordAndLang userInfo];
+    NSString * obj1 = [wrapper objectForKey:@"Key1"];
+    NSString * obj2 = [wrapper objectForKey:@"Key2"];
+    
+    AVSpeechUtterance *utteranceEn = [[AVSpeechUtterance alloc]initWithString:obj1];
+    utteranceEn.rate = AVSpeechUtteranceMaximumSpeechRate/7;
+    utteranceEn.voice = [AVSpeechSynthesisVoice voiceWithLanguage:obj2];
+    NSLog(@"Sentence: %@", obj1);
+    NSLog(@"Volume: %f", utteranceEn.volume);
+    [syn speakUtterance:utteranceEn];
+}
+
+/* Plays an audio file after a given time defined in the timer call*/
+-(void)playAudioFileTimed:(NSTimer *) path {
+    NSDictionary *wrapper = (NSDictionary *)[path userInfo];
+    NSString * obj1 = [wrapper objectForKey:@"Key1"];
+    
+    NSString *soundFilePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], obj1];
+    NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+    NSError *audioError;
+    
+    _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&audioError];
+    
+    if (_audioPlayer == nil)
+        NSLog(@"%@",[audioError description]);
+    else
+        [_audioPlayer play];
+}
+
+/* Plays an audio file at a given path */
+-(void) playAudioFile:(NSString*) path {
+    NSString *soundFilePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], path];
+    NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+    NSError *audioError;
+    
+    _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&audioError];
+    
+    if (_audioPlayer == nil)
+        NSLog(@"%@",[audioError description]);
+    else
+        [_audioPlayer play];
+}
+    
+// Loads the information of the currentIntroStep for the introduction
+-(NSArray*) loadIntroStep {
+    NSString* textEnglish;
+    NSString* audioEnglish;
+    NSString* textSpanish;
+    NSString* audioSpanish;
+    NSString* expectedSelection;
+    NSString* expectedIntroAction;
+    NSString* expectedIntroInput;
+    NSString* underlinedVocabWord;
+    NSString* wrapperObj1;
+    
+    //Get current step to be read
+    IntroductionStep* currIntroStep = [currentIntroSteps objectAtIndex:currentIntroStep-1];
+    expectedSelection = [currIntroStep expectedSelection];
+    expectedIntroAction = [currIntroStep expectedAction];
+    expectedIntroInput = [currIntroStep expectedInput];
+    textEnglish = [currIntroStep englishText];
+    audioEnglish = [currIntroStep englishAudioFileName];
+    textSpanish = [currIntroStep spanishText];
+    audioSpanish = [currIntroStep spanishAudioFileName];
+    
+    NSString* text = textEnglish;
+    NSString* audio = audioEnglish;
+    languageString = @"E";
+    underlinedVocabWord = expectedIntroInput;
+
+    // If the language condition for the app is BILINGUAL (English after Spanish) and the current intro step
+    //is lower than the step number to switch languages, load the Spanish information for the step
+    if (language_condition == BILINGUAL && currentIntroStep < STEPS_TO_SWITCH_LANGUAGES) {
+        text = textSpanish;
+        audio = audioSpanish;
+        languageString = @"S";
+        underlinedVocabWord = [[Translation translations] objectForKey:expectedIntroInput];
+        if (!underlinedVocabWord) {
+            underlinedVocabWord = expectedIntroInput;
+        }
+    }
+    
+    //Format text to load on the textbox
+    NSString* formattedHTML = [self buildHTMLString:text:expectedSelection:underlinedVocabWord:expectedIntroAction];
+    NSString* addOuterHTML = [NSString stringWithFormat:@"setOuterHTMLText('%@', '%@')", @"s1", formattedHTML];
+    [bookView stringByEvaluatingJavaScriptFromString:addOuterHTML];
+    
+    //Get the sentence class
+    NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
+    NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
+    
+    //If it is an action sentence color it blue
+    if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
+        NSString* colorSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
+        [bookView stringByEvaluatingJavaScriptFromString:colorSentence];
+    }
+
+    //Play introduction audio
+    [self playAudioFile:audio];
+    
+    //DEBUG code to play expected action
+    //NSString* actions = [NSString stringWithFormat:@"%@ %@ %@",expectedIntroAction,expectedIntroInput,expectedSelection];
+    //[self playWordAudio:actions:@"en-us"];
+    
+    //The response audio file names are hard-coded for now
+    if ([expectedIntroInput isEqualToString:@"next"]) {
+        wrapperObj1 = @"TTNBTC.m4a";
+    }
+    else if ([expectedIntroInput isEqualToString:@"next"] && language_condition == BILINGUAL) {
+        wrapperObj1 = @"TEBNPC.m4a";
+    }
+    else if ([expectedSelection isEqualToString:@"word"]) {
+        wrapperObj1 = @"BFCE_2B.m4a";
+    }
+    else if ([expectedSelection isEqualToString:@"word"] && language_condition == BILINGUAL) {
+        wrapperObj1 = @"BFCS_2B.m4a";
+    }
+    else if ([expectedIntroAction isEqualToString:@"move"]) {
+        wrapperObj1 = @"BFEE_8.m4a";
+    }
+    else if ([expectedIntroAction isEqualToString:@"move"] && language_condition == BILINGUAL) {
+        wrapperObj1 = @"BFES_8.m4a";
+    }
+    
+    //NSDictionary *wrapper = [NSDictionary dictionaryWithObjectsAndKeys:wrapperObj1, @"Key1", nil];
+    //timer = [NSTimer scheduledTimerWithTimeInterval:17.5 target:self selector:@selector(playAudioFileTimed:) userInfo:wrapper repeats:YES];
+    
+    performedActions = [NSArray arrayWithObjects: expectedSelection, expectedIntroAction, expectedIntroInput, nil];
+    
+    return performedActions;
+}
+
+/*
+ * Builds the format of the action sentence that allows words to be clickable
+ */
+-(NSString*) buildHTMLString:(NSString*)htmlText :(NSString*)selectionType :(NSString*)clickableWord :(NSString*) sentenceType {
+    //String to build
+    NSString* stringToBuild;
+    
+    //If string contains the special character "'"
+    if ([htmlText rangeOfString:@"'"].location != NSNotFound) {
+        htmlText = [htmlText stringByReplacingCharactersInRange:NSMakeRange([htmlText rangeOfString:@"'"].location,1) withString:@"&#39;"];
+    }
+    
+    NSArray* splits = [htmlText componentsSeparatedByString:clickableWord];
+    
+    if ([sentenceType isEqualToString:@"move"] || [sentenceType isEqualToString:@"group"]) {
+        stringToBuild = [NSString stringWithFormat:@"<span class=\"sentence actionSentence\" id=\"s1\">%@</span>",htmlText];
+    }
+    else if ([selectionType isEqualToString:@"word"]){
+        stringToBuild = [NSString stringWithFormat:@"<span class=\"sentence\" id=\"s1\">%@<span class=\"audible\">%@</span>%@</span>",splits[0],clickableWord,splits[1]];
+    }
+    else {
+        stringToBuild = [NSString stringWithFormat:@"<span class=\"sentence\" id=\"s1\">%@</span>",htmlText];
+    }
+    
+    return stringToBuild;
+}
+
+-(NSArray*) loadVocabStep {
+    NSString* text;
+    NSString* audio;
+    NSString* expectedSelection;
+    NSString* expectedIntroAction;
+    NSString* expectedIntroInput;
+    NSString* wrapperObj1;
+    
+    sameWordClicked = false;
+    
+    //Get current step to be read
+    VocabularyStep* currVocabStep = [currentVocabSteps objectAtIndex:currentVocabStep-1];
+    expectedSelection = [currVocabStep expectedSelection];
+    expectedIntroAction = [currVocabStep expectedAction];
+    expectedIntroInput = [currVocabStep expectedInput];
+    text = [currVocabStep englishText];
+    audio = [currVocabStep englishAudioFileName];
+    
+    // If we are ont the first step (1) ot the last step (9) which do not correspond to words
+    //play the corresponding intro or outro audio
+    if (currentVocabStep == 1 || currentVocabStep == 9) {
+        //Play introduction audio
+        [self playAudioFile:audio];
+    }
+    
+    //Switch the language every step for the translation
+    if ([languageString isEqualToString:@"S"]) {
+        languageString = @"E";
+    }
+    else {
+        languageString = @"S";
+    }
+    
+    //The response audio file names are hard-coded for now
+    if ([expectedIntroInput isEqualToString:@"next"]) {
+        wrapperObj1 = @"TTNBTC.m4a";
+    }
+    else if ([expectedIntroInput isEqualToString:@"next"] && language_condition == BILINGUAL) {
+        wrapperObj1 = @"TEBNPC.m4a";
+    }
+    
+    //The wrapper is a dictionary that stores the name of the file and a key.
+    //It is used to pass this information to the timer as one of its parameters.
+    //NSDictionary *wrapper = [NSDictionary dictionaryWithObjectsAndKeys:wrapperObj1, @"Key1", nil];
+    //timer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(playAudioFileTimed:) userInfo:wrapper repeats:YES];
+    
+    performedActions = [NSArray arrayWithObjects: expectedSelection, expectedIntroAction, expectedIntroInput, nil];
+    
+    return performedActions;
+}
+
+-(void) colorSentencesUponNext {
+    //Color the current sentence black by default
+    NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence];
+    [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
+    
+    //Change the opacity to 1
+    NSString* setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, 1)", currentSentence];
+    [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
+    
+    //Set the color to black for the previous sentence also
+    setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence-1];
+    [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
+    
+    //Decrease the opacity of the previous sentence
+    setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, .2)", currentSentence-1];
+    [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
+    
+    //Get the sentence class
+    NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
+    NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
+    
+    //If it is an action sentence color it blue
+    if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
+        NSString* colorSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
+        [bookView stringByEvaluatingJavaScriptFromString:colorSentence];
+    }
+}
+
+-(void) highlightObject:(NSString*)object :(double)delay {
+    //Highlight the tapped object
+    NSString* highlight = [NSString stringWithFormat:@"highlightObjectOnWordTap(%@)", object];
+    [bookView stringByEvaluatingJavaScriptFromString:highlight];
+
+    //Clear highlighted object
+    [self performSelector:@selector(clearHighlightedObject) withObject:nil afterDelay:delay];
+}
+
+- (void) viewDidDisappear:(BOOL)animated {
+    //[timer invalidate];
+    //timer = nil;
+}
+
+- (NSString*) getEnglishTranslation: (NSString*)sentence {
+    NSArray* keys = [[Translation translations] allKeysForObject:sentence];
+    if (keys != nil && [keys count] > 0)
+        return [keys objectAtIndex:0];
+    else
+        return @"Translation not found";
 }
 
 #pragma mark - PieContextualMenuDelegate

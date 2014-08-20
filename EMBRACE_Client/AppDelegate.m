@@ -53,8 +53,8 @@
     [fileManager copyItemAtPath:filePath toPath:newPath error:nil];*/
     
     // Copy the bestFarm.epub file from the app bundle to the application support directory
-    filePath = [[NSBundle mainBundle] pathForResource:@"bestFarm" ofType:@"epub"];
-    newPath = [documentsDirectory stringByAppendingPathComponent:@"/ASU/IntroToBestFarm"];
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"bestFarm" ofType:@"epub"];
+    NSString *newPath = [documentsDirectory stringByAppendingPathComponent:@"/ASU/IntroToBestFarm"];
     
     [fileManager createDirectoryAtPath:newPath  withIntermediateDirectories:YES attributes:nil error:nil];
     

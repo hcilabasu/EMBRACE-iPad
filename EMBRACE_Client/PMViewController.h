@@ -11,7 +11,9 @@
 #import "EbookImporter.h"
 #import "Book.h"
 #import "AVFoundation/AVSpeechSynthesis.h"
+#import "IntroductionViewController.h"
 
+//Describes the condition in which the app will be deployed
 typedef enum Condition {
     MENU,
     HOTSPOT,
@@ -24,6 +26,25 @@ typedef enum InteractionRestriction {
     ONLY_CORRECT, //Only the correct object can be used
     NO_ENTITIES //No object can be used
 } InteractionRestriction;
+
+//Defines the types of language conditions to be used
+typedef enum Language {
+    ENGLISH,
+    BILINGUAL
+} Language;
+
+//This enum will be used in the future to define if a condition has or not image manipulation
+typedef enum InteractionMode {
+    NO_INTERACTION,
+    INTERACTION
+} InteractionMode;
+
+//This enum defines the action types that exist in every intro or vocab step
+typedef enum Action {
+    SELECTION,
+    EXP_ACTION,
+    INPUT
+}Action;
 
 @interface PMViewController : UIViewController <UIGestureRecognizerDelegate, UIScrollViewDelegate, PieContextualMenuDelegate> {
     EBookImporter *bookImporter;
