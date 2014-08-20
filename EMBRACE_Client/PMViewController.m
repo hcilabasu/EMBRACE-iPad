@@ -2577,25 +2577,59 @@ int language_condition = ENGLISH;
  * is correct, then it will move on to the next sentence. If the manipulation is not current, then feedback will be provided.
  */
 -(IBAction)pressedNext:(id)sender {
-    if (stepsComplete || numSteps == 0 || !allowInteractions) {
-        //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
-        currentSentence ++;
-        
-        //Set up current sentence appearance and solution steps
-        [self setupCurrentSentence];
-        
-        //Set previous sentence color to grey
-        NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'grey')", currentSentence - 1];
-        [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
-        
-        //currentSentence is 1 indexed.
-        if(currentSentence > totalSentences) {
-            [self loadNextPage];
+    if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"]) {
+        // If the user pressed next
+        if ([[performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
+            // Destroy the timer to avoid playing the previous sound
+            //[timer invalidate];
+            //timer = nil;
+            currentIntroStep++;
+            
+            if (currentIntroStep > totalIntroSteps) {
+                [self loadNextPage];
+            }
+            else {
+                // Load the next step
+                [self loadIntroStep];
+                [self setupCurrentSentenceColor];
+            }
+        }
+    }
+    else if ([chapterTitle isEqualToString:@"The Contest"] && [actualPage isEqualToString:currentPage]) {
+        // If the user pressed next
+        if ([[performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
+            // Destroy the timer to avoid playing the previous sound
+            //[timer invalidate];
+            //timer = nil;
+            currentVocabStep++;
+            
+            if(currentVocabStep > totalVocabSteps) {
+                [self loadNextPage];
+            }
+            else {
+                // Load the next step and update the performed actions
+                [self loadVocabStep];
+            }
         }
     }
     else {
-        //Play noise if not all steps have been completed
-        [self playErrorNoise];
+        if (stepsComplete || numSteps == 0) {
+            //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
+            currentSentence ++;
+            
+            //Set up current sentence appearance and solution steps
+            [self setupCurrentSentence];
+            [self colorSentencesUponNext];
+            
+            //currentSentence is 1 indexed.
+            if(currentSentence > totalSentences) {
+                [self loadNextPage];
+            }
+        }
+        else {
+            //Play noise if not all steps have been completed
+            [self playErrorNoise];
+        }
     }
 }
 
