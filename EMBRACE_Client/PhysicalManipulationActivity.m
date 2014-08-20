@@ -31,7 +31,8 @@
     if (setupStepsForKey == nil) {
         setupStepsForKey = [[NSMutableArray alloc] init];
         [setupStepsForKey addObject:setupStep];
-        [setupSteps setObject:setupStepsForKey forKey:pageId];
+        if ([pageId length] != 0)
+            [setupSteps setObject:setupStepsForKey forKey:pageId];
     }
     //If it does, we just add the setup step to the array.
     else {
