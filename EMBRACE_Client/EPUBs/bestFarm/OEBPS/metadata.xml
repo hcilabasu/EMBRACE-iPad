@@ -1,0 +1,1158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+  <relationships>
+    <relationship obj1Id="apple" can="appear" action="appear" obj2Id="appleBasket"/>
+    <relationship obj1Id="cart" can="hook" action="group" obj2Id="tractor"/>
+    <relationship obj1Id="cart" can="unhook" action="ungroup" obj2Id="tractor"/>
+    <!--<relationship obj1Id="cat" can="drink" action="group" obj2Id="bucket"/>-->
+    <relationship obj1Id="cat" can="finish" action="group" obj2Id="bucket"/>
+    <relationship obj1Id="cat" can="getIn" action="group" obj2Id="nest"/>
+    <relationship obj1Id="cat" can="getOff" action="ungroup" obj2Id="cow"/>
+    <relationship obj1Id="cat" can="getOff" action="ungroup" obj2Id="goat"/>
+    <relationship obj1Id="cat" can="getOff" action="ungroup" obj2Id="hay"/>
+    <relationship obj1Id="cat" can="getOff" action="ungroup" obj2Id="horse"/>
+    <relationship obj1Id="cat" can="getOff" action="ungroup" obj2Id="pig"/>
+    <relationship obj1Id="cat" can="getOff" action="ungroup" obj2Id="sheep"/>
+    <relationship obj1Id="cat" can="getOn" action="group" obj2Id="cow"/>
+    <relationship obj1Id="cat" can="getOn" action="group" obj2Id="goat"/>
+    <relationship obj1Id="cat" can="getOn" action="group" obj2Id="hay"/>
+    <relationship obj1Id="cat" can="getOn" action="group" obj2Id="horse"/>
+    <relationship obj1Id="cat" can="getOn" action="group" obj2Id="pig"/>
+    <relationship obj1Id="cat" can="getOn" action="group" obj2Id="sheep"/>
+    <relationship obj1Id="cat" can="jumpOff" action="ungroup" obj2Id="farmer"/>
+    <relationship obj1Id="cat" can="jumpOn" action="group" obj2Id="farmer"/>
+    <relationship obj1Id="cat" can="leave" action="ungroup" obj2Id="bucket"/>
+    <relationship obj1Id="cat" can="leave" action="ungroup" obj2Id="chicken"/>
+    <relationship obj1Id="cat" can="leave" action="ungroup" obj2Id="farmer"/>
+    <relationship obj1Id="cat" can="moveTo" action="group" obj2Id="chicken"/>
+    <!--<relationship obj1Id="cat" can="visit" action="group" obj2Id="chicken"/>-->
+    <relationship obj1Id="chicken" can="count" action="group" obj2Id="egg"/>
+    <relationship obj1Id="chicken" can="getIn" action="group" obj2Id="cart"/>
+    <relationship obj1Id="chicken" can="getIn" action="group" obj2Id="chickenNest"/>
+    <relationship obj1Id="chicken" can="getOff" action="ungroup" obj2Id="cow"/>
+    <relationship obj1Id="chicken" can="getOff" action="ungroup" obj2Id="goat"/>
+    <relationship obj1Id="chicken" can="getOff" action="ungroup" obj2Id="hay"/>
+    <relationship obj1Id="chicken" can="getOff" action="ungroup" obj2Id="horse"/>
+    <relationship obj1Id="chicken" can="getOff" action="ungroup" obj2Id="pig"/>
+    <relationship obj1Id="chicken" can="getOff" action="ungroup" obj2Id="sheep"/>
+    <relationship obj1Id="chicken" can="getOn" action="group" obj2Id="cow"/>
+    <relationship obj1Id="chicken" can="getOn" action="group" obj2Id="goat"/>
+    <relationship obj1Id="chicken" can="getOn" action="group" obj2Id="hay"/>
+    <relationship obj1Id="chicken" can="getOn" action="group" obj2Id="horse"/>
+    <relationship obj1Id="chicken" can="getOn" action="group" obj2Id="pig"/>
+    <relationship obj1Id="chicken" can="getOn" action="group" obj2Id="sheep"/>
+    <relationship obj1Id="chicken" can="getOut" action="ungroup" obj2Id="cart"/>
+    <relationship obj1Id="chicken" can="getOut" action="group" obj2Id="chickenNest"/>
+    <relationship obj1Id="chicken" can="lay" action="appear" obj2Id="eggs"/>
+    <relationship obj1Id="chicken" can="leave" action="ungroup" obj2Id="cat"/>
+    <relationship obj1Id="chicken" can="leave" action="ungroup" obj2Id="cow"/>
+    <relationship obj1Id="chicken" can="leave" action="ungroup" obj2Id="farmer"/>
+    <relationship obj1Id="chicken" can="leave" action="ungroup" obj2Id="pen2"/>
+    <relationship obj1Id="chicken" can="open" action="group" obj2Id="pen2"/>
+    <relationship obj1Id="chicken" can="stopCount" action="ungroup" obj2Id="egg"/>
+    <!--<relationship obj1Id="chicken" can="visit" action="group" obj2Id="cat"/>-->
+    <relationship obj1Id="chicken" can="visit" action="group" obj2Id="cow"/>
+    <relationship obj1Id="chicken" can="visit" action="group" obj2Id="farmer"/>
+    <relationship obj1Id="cow" can="getIn" action="group" obj2Id="cart"/>
+    <relationship obj1Id="cow" can="getIn" action="group" obj2Id="pen"/>
+    <relationship obj1Id="cow" can="getOut" action="ungroup" obj2Id="cart"/>
+    <relationship obj1Id="cow" can="getOut" action="ungroup" obj2Id="pen"/>
+    <relationship obj1Id="cow" can="leave" action="ungroup" obj2Id="horse"/>
+    <relationship obj1Id="cow" can="pickUp" action="group" obj2Id="apple"/>
+    <relationship obj1Id="cow" can="putDown" action="ungroup" obj2Id="apple"/>
+    <relationship obj1Id="cow" can="receive" action="disappear" obj2Id="apple"/>
+    <relationship obj1Id="cow" can="receive" action="disappear" obj2Id="hay"/>
+    <!--<relationship obj1Id="cow" can="visit" action="group" obj2Id="horse"/>-->
+    <relationship obj1Id="farmer" can="close" action="group" obj2Id="corralDoor"/>
+    <relationship obj1Id="farmer" can="close" action="group" obj2Id="pen1"/>
+    <relationship obj1Id="farmer" can="close" action="group" obj2Id="pen2"/>
+    <relationship obj1Id="farmer" can="close" action="group" obj2Id="pen3"/>
+    <relationship obj1Id="farmer" can="close" action="group" obj2Id="pen4"/>
+    <!--<relationship obj1Id="farmer" can="comb" action="group" obj2Id="goat"/>-->
+    <!--<relationship obj1Id="farmer" can="getIn" action="group" obj2Id="cart"/>-->
+    <relationship obj1Id="farmer" can="getIn" action="group" obj2Id="tractor"/>
+    <relationship obj1Id="farmer" can="getOff" action="ungroup" obj2Id="hay"/>
+		<relationship obj1Id="farmer" can="getOff" action="ungroup" obj2Id="cow"/>
+    <relationship obj1Id="farmer" can="getOn" action="group" obj2Id="hay"/>
+		<relationship obj1Id="farmer" can="getOn" action="group" obj2Id="cow"/>
+    <relationship obj1Id="farmer" can="getOut" action="ungroup" obj2Id="cart"/>
+    <relationship obj1Id="farmer" can="getOut" action="ungroup" obj2Id="tractor"/>
+    <relationship obj1Id="farmer" can="give" action="ungroup" obj2Id="apple"/>
+    <relationship obj1Id="farmer" can="give" action="ungroup" obj2Id="bucket"/>
+    <relationship obj1Id="farmer" can="give" action="ungroup" obj2Id="hay"/>
+    <relationship obj1Id="farmer" can="give" action="ungroup" obj2Id="pumpkin"/>
+    <!--<relationship obj1Id="farmer" can="grab" action="group" obj2Id="apple"/>-->
+    <relationship obj1Id="farmer" can="grab" action="group" obj2Id="bucket"/>
+    <relationship obj1Id="farmer" can="grab" action="group" obj2Id="cart"/>
+    <relationship obj1Id="farmer" can="grab" action="group" obj2Id="comb"/>
+    <relationship obj1Id="farmer" can="hat" action="group" obj2Id="cat"/>
+    <relationship obj1Id="farmer" can="lead" action="group" obj2Id="apple"/>
+    <relationship obj1Id="farmer" can="lead" action="group" obj2Id="cow"/>
+    <relationship obj1Id="farmer" can="lead" action="group" obj2Id="goat"/>
+    <relationship obj1Id="farmer" can="lead" action="group" obj2Id="horse"/>
+    <relationship obj1Id="farmer" can="lead" action="group" obj2Id="pig"/>
+    <relationship obj1Id="farmer" can="lead" action="group" obj2Id="sheep"/>
+    <relationship obj1Id="farmer" can="leave" action="ungroup" obj2Id="cow"/>
+    <relationship obj1Id="farmer" can="leave" action="ungroup" obj2Id="goat"/>
+    <relationship obj1Id="farmer" can="leave" action="ungroup" obj2Id="horse"/>
+    <relationship obj1Id="farmer" can="leave" action="ungroup" obj2Id="pig"/>
+    <relationship obj1Id="farmer" can="letGo" action="ungroup" obj2Id="corralDoor"/>
+    <relationship obj1Id="farmer" can="letGo" action="ungroup" obj2Id="pen1"/>
+    <relationship obj1Id="farmer" can="letGo" action="ungroup" obj2Id="pen2"/>
+    <relationship obj1Id="farmer" can="letGo" action="ungroup" obj2Id="pen3"/>
+    <relationship obj1Id="farmer" can="letGo" action="ungroup" obj2Id="pen4"/>
+    <!--<relationship obj1Id="farmer" can="moveTo" action="group" obj2Id="cat"/>-->
+    <!--<relationship obj1Id="farmer" can="moveTo" action="group" obj2Id="goat"/>-->
+    <relationship obj1Id="farmer" can="open" action="group" obj2Id="corralDoor"/>
+    <relationship obj1Id="farmer" can="open" action="group" obj2Id="pen1"/>
+    <relationship obj1Id="farmer" can="open" action="group" obj2Id="pen2"/>
+    <relationship obj1Id="farmer" can="open" action="group" obj2Id="pen3"/>
+    <relationship obj1Id="farmer" can="open" action="group" obj2Id="pen4"/>
+    <relationship obj1Id="farmer" can="pickUp" action="group" obj2Id="cart"/>
+    <!--<relationship obj1Id="farmer" can="pickUp" action="group" obj2Id="cat"/>-->
+    <relationship obj1Id="farmer" can="pickUp" action="group" obj2Id="chicken"/>
+    <relationship obj1Id="farmer" can="pickUp" action="group" obj2Id="hay"/>
+    <relationship obj1Id="farmer" can="pickUp" action="group" obj2Id="pumpkin"/>
+    <relationship obj1Id="farmer" can="putDown" action="ungroup" obj2Id="cart"/>
+    <relationship obj1Id="farmer" can="putDown" action="ungroup" obj2Id="cat"/>
+    <relationship obj1Id="farmer" can="putDown" action="ungroup" obj2Id="chicken"/>
+    <relationship obj1Id="farmer" can="putDown" action="ungroup" obj2Id="hay"/>
+    <relationship obj1Id="farmer" can="putDown" action="ungroup" obj2Id="pumpkin"/>
+    <relationship obj1Id="farmer" can="receive" action="group" obj2Id="award"/>
+    <relationship obj1Id="farmer" can="release" action="ungroup" obj2Id="apple"/>
+    <relationship obj1Id="farmer" can="release" action="ungroup" obj2Id="award"/>
+    <relationship obj1Id="farmer" can="release" action="ungroup" obj2Id="bucket"/>
+    <relationship obj1Id="farmer" can="release" action="ungroup" obj2Id="cart"/>
+    <relationship obj1Id="farmer" can="release" action="ungroup" obj2Id="comb"/>
+    <relationship obj1Id="farmer" can="stopComb" action="ungroup" obj2Id="goat"/>
+    <!--<relationship obj1Id="farmer" can="visit" action="group" obj2Id="cat"/>-->
+    <relationship obj1Id="goat" can="comb" action="disappear" obj2Id="comb"/>
+    <relationship obj1Id="goat" can="getIn" action="group" obj2Id="cart"/>
+    <relationship obj1Id="goat" can="getIn" action="group" obj2Id="pen"/>
+    <relationship obj1Id="goat" can="getOut" action="ungroup" obj2Id="cart"/>
+    <relationship obj1Id="goat" can="getOut" action="ungroup" obj2Id="pen"/>
+		<relationship obj1Id="goat" can="kick" action="group" obj2Id="apple"/>
+    <!--<relationship obj1Id="goat" can="pickUp" action="group" obj2Id="apple"/>-->
+    <relationship obj1Id="goat" can="putDown" action="ungroup" obj2Id="apple"/>
+    <relationship obj1Id="goat" can="receive" action="disappear" obj2Id="apple"/>
+    <relationship obj1Id="goat" can="receive" action="disappear" obj2Id="hay"/>
+    <relationship obj1Id="goat" can="receive" action="disappear" obj2Id="pumpkin"/>
+    <relationship obj1Id="goat" can="visit" action="group" obj2Id="cow"/> 
+    <relationship obj1Id="hay" can="appear" action="appear" obj2Id="haystack"/>
+    <relationship obj1Id="hay" can="getIn" action="group" obj2Id="cart"/>
+    <relationship obj1Id="hay" can="getOut" action="ungroup" obj2Id="cart"/>
+    <relationship obj1Id="horse" can="getIn" action="group" obj2Id="corral"/>
+    <relationship obj1Id="horse" can="getOut" action="ungroup" obj2Id="corral"/>
+    <relationship obj1Id="horse" can="give" action="ungroup" obj2Id="hay"/>
+    <relationship obj1Id="horse" can="leave" action="ungroup" obj2Id="pig"/>
+    <!--<relationship obj1Id="horse" can="pickUp" action="group" obj2Id="hay"/>-->
+    <relationship obj1Id="horse" can="push" action="group" obj2Id="hay"/>
+    <relationship obj1Id="horse" can="receive" action="disappear" obj2Id="apple"/>
+    <relationship obj1Id="horse" can="receive" action="disappear" obj2Id="hay"/>
+    <relationship obj1Id="horse" can="visit" action="group" obj2Id="cow"/>
+    <relationship obj1Id="horse" can="visit" action="group" obj2Id="judge"/>
+    <relationship obj1Id="judge" can="award" action="ungroup" obj2Id="award"/>
+    <relationship obj1Id="judge" can="award" action="group" obj2Id="farmer"/>
+    <relationship obj1Id="judge" can="count" action="group" obj2Id="eggs"/>
+    <relationship obj1Id="judge" can="finish" action="disappear" obj2Id="bucket"/>
+    <relationship obj1Id="judge" can="give" action="ungroup" obj2Id="award"/>
+    <relationship obj1Id="judge" can="grab" action="group" obj2Id="bucket"/>
+    <relationship obj1Id="judge" can="hold" action="group" obj2Id="award"/>
+    <relationship obj1Id="judge" can="leave" action="ungroup" obj2Id="bucket"/>
+    <relationship obj1Id="judge" can="leave" action="ungroup" obj2Id="cow"/>
+    <relationship obj1Id="judge" can="leave" action="ungroup" obj2Id="horse"/>
+    <relationship obj1Id="judge" can="leave" action="ungroup" obj2Id="pig"/>
+    <relationship obj1Id="judge" can="letGo" action="ungroup" obj2Id="pen4"/>
+    <relationship obj1Id="judge" can="open" action="group" obj2Id="corralDoor"/>
+    <relationship obj1Id="judge" can="open" action="group" obj2Id="pen2"/>
+    <relationship obj1Id="judge" can="release" action="ungroup" obj2Id="bucket"/>
+    <relationship obj1Id="judge" can="stopCount" action="ungroup" obj2Id="eggs"/>
+    <relationship obj1Id="judge" can="visit" action="group" obj2Id="cow"/>
+    <relationship obj1Id="judge" can="visit" action="group" obj2Id="pig"/>
+    <relationship obj1Id="owl" can="leave" action="ungroup" obj2Id="chicken"/>
+    <relationship obj1Id="owl" can="leave" action="ungroup" obj2Id="farmer"/>
+    <relationship obj1Id="owl" can="leave" action="ungroup" obj2Id="pig"/>
+    <relationship obj1Id="owl" can="moveTo" action="group" obj2Id="chicken"/>
+    <relationship obj1Id="owl" can="visit" action="group" obj2Id="farmer"/>  
+    <relationship obj1Id="owl" can="visit" action="group" obj2Id="pig"/>
+    <relationship obj1Id="pig" can="getIn" action="group" obj2Id="cart"/>
+    <relationship obj1Id="pig" can="getIn" action="group" obj2Id="pen"/>
+    <relationship obj1Id="pig" can="getOut" action="ungroup" obj2Id="cart"/>
+    <relationship obj1Id="pig" can="getOut" action="ungroup" obj2Id="pen"/>
+    <relationship obj1Id="pig" can="give" action="ungroup" obj2Id="apple"/>
+    <relationship obj1Id="pig" can="moveTo" action="group" obj2Id="horse"/>
+    <relationship obj1Id="pig" can="pickUp" action="group" obj2Id="apple"/>
+    <relationship obj1Id="pig" can="putDown" action="ungroup" obj2Id="apple"/>
+    <!--<relationship obj1Id="pig" can="receive" action="disappear" obj2Id="apple"/>-->
+    <relationship obj1Id="pig" can="receive" action="disappear" obj2Id="pumpkin"/>
+    <relationship obj1Id="pumpkin" can="appear" action="appear" obj2Id="pumpkinPatch"/>
+    <relationship obj1Id="pumpkin" can="getIn" action="group" obj2Id="cart"/>
+    <relationship obj1Id="pumpkin" can="getOut" action="ungroup" obj2Id="cart"/>
+    <relationship obj1Id="sheep" can="getIn" action="group" obj2Id="cart"/>
+    <relationship obj1Id="sheep" can="getIn" action="group" obj2Id="pen"/>
+    <relationship obj1Id="sheep" can="getOut" action="ungroup" obj2Id="cart"/>
+    <relationship obj1Id="sheep" can="getOut" action="ungroup" obj2Id="pen"/>
+    <relationship obj1Id="sheep" can="pickUp" action="group" obj2Id="apple"/>
+    <relationship obj1Id="sheep" can="putDown" action="ungroup" obj2Id="apple"/>
+    <relationship obj1Id="sheep" can="receive" action="disappear" obj2Id="apple"/>
+    <relationship obj1Id="sheep" can="receive" action="disappear" obj2Id="pumpkin"/>
+  </relationships>
+  <constraints>
+    <orderConstraints>
+      <constraint action1="count" rule="before" action2="stopCount"/>
+      <constraint action1="hook" rule="before" action2="unhook"/>
+      <constraint action1="getIn" rule="before" action2="getOut"/>
+      <constraint action1="getOn" rule="before" action2="getOff"/>
+      <constraint action1="give" rule="before" action2="receive"/>
+      <constraint action1="grab" rule="before" action2="give"/>
+      <constraint action1="grab" rule="before" action2="release"/>
+      <constraint action1="pickUp" rule="before" action2="give"/>
+      <constraint action1="pickUp" rule="before" action2="putDown"/>
+      </orderConstraints>
+    <movementConstraints>
+      <constraint objId="pen1" action="open" x="8.9%" y="39.25%" height="29%" width="12.1%"/>
+      <constraint objId="pen2" action="open" x="22%" y="39.25%" height="29%" width="12.1%"/>
+      <constraint objId="pen3" action="open" x="35%" y="39.25%" height="29%" width="12.1%"/>
+      <!--<constraint objId="pen4" action="open" x="50%" y="56.35%" height="11.7%" width="33%"/>-->
+    </movementConstraints>
+  </constraints>
+  <hotspots>
+    <hotspot objId="apple" action="appear" role="subject" x="50%" y="50%"/>
+    <hotspot objId="apple" action="eat" role="object" x="50%" y="50%"/>
+    <hotspot objId="apple" action="grab" role="object" x="50%" y="50%"/>
+    <hotspot objId="apple" action="getIn" role="subject" x="50%" y="50%"/>
+    <hotspot objId="apple" action="give" role="object" x="50%" y="50%"/>
+    <hotspot objId="apple" action="kick" role="object" x="50%" y="50%"/>
+    <hotspot objId="apple" action="lead" role="object" x="50%" y="50%"/>
+    <hotspot objId="apple" action="pickUp" role="object" x="50%" y="50%"/>
+    <hotspot objId="apple" action="receive" role="object" x="50%" y="50%"/>
+    <hotspot objId="appleBasket" action="appear" role="object" x="43%" y="7%"/>
+    <!--<hotspot objId="award" action="grab" role="object" x="50%" y="50%"/>-->
+    <hotspot objId="award" action="give" role="object" x="50%" y="50%"/>
+    <hotspot objId="award" action="hold" role="object" x="50%" y="50%"/>
+    <hotspot objId="award" action="receive" role="object" x="50%" y="50%"/>
+    <hotspot objId="bucket" action="finish" role="object" x="100%" y="100%"/>
+    <hotspot objId="bucket" action="give" role="object" x="50%" y="3%"/>
+    <hotspot objId="bucket" action="grab" role="object" x="50%" y="3%"/>
+    <hotspot objId="cart" action="getIn" role="object" x="34%" y="0%"/>
+    <hotspot objId="cart" action="getIn" role="subject" x="50%" y="50%"/>
+    <hotspot objId="cart" action="grab" role="object" x="95%" y="34%"/>
+    <hotspot objId="cart" action="hook" role="subject" x="95%" y="34%"/>
+    <hotspot objId="cat" action="finish" role="subject" x="0%" y="100%"/>
+    <hotspot objId="cat" action="getIn" role="subject" x="50%" y="50%"/>
+    <hotspot objId="cat" action="getOn" role="subject" x="50%" y="85%"/>
+    <hotspot objId="cat" action="hat" role="object" x="50%" y="85%"/>
+    <hotspot objId="cat" action="jumpOn" role="subject" x="50%" y="50%"/>
+    <hotspot objId="cat" action="moveTo" role="object" x="100%" y="100%"/>
+    <hotspot objId="cat" action="moveTo" role="subject" x="0%" y="100%"/>
+    <hotspot objId="cat" action="pickUp" role="object" x="50%" y="50%"/>
+    <hotspot objId="cat" action="visit" role="subject" x="100%" y="100%"/>
+    <hotspot objId="cat" action="visit" role="object" x="0%" y="100%"/>
+    <hotspot objId="chicken" action="count" role="subject" x="0%" y="100%"/>
+    <hotspot objId="chicken" action="getIn" role="subject" x="50%" y="50%"/>
+    <hotspot objId="chicken" action="getOn" role="subject" x="38%" y="86%"/>
+    <hotspot objId="chicken" action="lay" role="subject" x="0%" y="100%"/>
+    <hotspot objId="chicken" action="moveTo" role="object" x="100%" y="100%"/>
+    <hotspot objId="chicken" action="open" role="subject" x="50%" y="50%"/>
+    <hotspot objId="chicken" action="pickUp" role="object" x="50%" y="50%"/>
+    <hotspot objId="chicken" action="visit" role="object" x="0%" y="100%"/>
+    <hotspot objId="chicken" action="visit" role="subject" x="100%" y="100%"/>
+    <hotspot objId="chickenNest" action="getIn" role="object" x="50%" y="0%"/>
+    <hotspot objId="comb" action="grab" role="object" x="50%" y="50%"/>
+    <hotspot objId="corral" action="getIn" role="object" x="50%" y="50%"/>
+    <hotspot objId="corralDoor" action="open" role="object" x="100%" y="50%"/>
+    <hotspot objId="cow" action="getOn" role="object" x="50%" y="0%"/>
+    <hotspot objId="cow" action="getOn" role="subject" x="50%" y="90%"/>
+    <hotspot objId="cow" action="getIn" role="subject" x="50%" y="50%"/>
+    <hotspot objId="cow" action="lead" role="object" x="9%" y="65%"/>
+    <hotspot objId="cow" action="moveTo" role="object" x="100%" y="100%"/>
+    <hotspot objId="cow" action="pickUp" role="subject" x="22%" y="63%"/>
+    <hotspot objId="cow" action="receive" role="subject" x="22%" y="63%"/>
+    <hotspot objId="cow" action="visit" role="object" x="0%" y="100%"/>
+    <hotspot objId="cow" action="visit" role="subject" x="100%" y="100%"/>
+    <hotspot objId="egg" action="count" role="object" x="100%" y="100%"/>
+    <hotspot objId="eggs" action="count" role="object" x="100%" y="100%"/>
+    <hotspot objId="eggs" action="lay" role="object" x="100%" y="100%"/>
+    <hotspot objId="farmer" action="award" role="object" x="86%" y="65%"/>
+    <hotspot objId="farmer" action="comb" role="subject" x="100%" y="100%"/>
+    <hotspot objId="farmer" action="getIn" role="subject" x="50%" y="50%"/>
+    <hotspot objId="farmer" action="getOn" role="subject" x="50%" y="97%"/>
+    <hotspot objId="farmer" action="give" role="subject" x="13%" y="65%"/>
+    <hotspot objId="farmer" action="grab" role="subject" x="13%" y="65%"/>
+    <hotspot objId="farmer" action="hat" role="subject" x="50%" y="1%"/>
+    <hotspot objId="farmer" action="jumpOn" role="object" x="50%" y="63%"/>
+    <hotspot objId="farmer" action="lead" role="subject" x="86%" y="65%"/>
+    <hotspot objId="farmer" action="letGo" role="subject" x="13%" y="65%"/>
+    <hotspot objId="farmer" action="moveTo" role="subject" x="0%" y="100%"/>
+    <hotspot objId="farmer" action="open" role="subject" x="13%" y="65%"/>
+    <hotspot objId="farmer" action="pickUp" role="subject" x="50%" y="63%"/>
+    <hotspot objId="farmer" action="receive" role="subject" x="13%" y="65%"/>
+    <hotspot objId="farmer" action="visit" role="object" x="0%" y="100%"/>
+    <hotspot objId="farmer" action="visit" role="subject" x="100%" y="100%"/>
+    <hotspot objId="goat" action="comb" role="object" x="0%" y="100%"/>
+    <hotspot objId="goat" action="getIn" role="subject" x="50%" y="50%"/>
+    <hotspot objId="goat" action="getOn" role="object" x="50%" y="20%"/>
+    <hotspot objId="goat" action="getOn" role="subject" x="50%" y="82%"/>
+    <hotspot objId="goat" action="kick" role="subject" x="40%" y="82%"/>
+    <hotspot objId="goat" action="lead" role="object" x="10%" y="52%"/>
+    <hotspot objId="goat" action="moveTo" role="object" x="100" y="100"/>
+    <hotspot objId="goat" action="pickUp" role="subject" x="20%" y="52%"/>
+    <hotspot objId="goat" action="receive" role="subject" x="20%" y="52%"/>
+    <hotspot objId="goat" action="visit" role="object" x="0%" y="100%"/>
+    <hotspot objId="goat" action="visit" role="subject" x="100%" y="100%"/>
+    <hotspot objId="hay" action="appear" role="subject" x="50%" y="50%"/>
+    <hotspot objId="hay" action="getIn" role="subject" x="50%" y="50%"/>
+    <hotspot objId="hay" action="getOn" role="object" x="50%" y="0%"/>
+    <hotspot objId="hay" action="getOn" role="subject" x="50%" y="90%"/>
+    <hotspot objId="hay" action="pickUp" role="object" x="50%" y="50%"/>
+    <hotspot objId="hay" action="push" role="object" x="50%" y="50%"/>
+    <hotspot objId="hay" action="receive" role="object" x="50%" y="50%"/>
+    <hotspot objId="haystack" action="appear" role="object" x="58%" y="52%"/>
+    <hotspot objId="horse" action="getIn" role="subject" x="50%" y="50%"/>
+    <hotspot objId="horse" action="getOn" role="object" x="47%" y="24%"/>
+    <hotspot objId="horse" action="getOn" role="subject" x="52%" y="88%"/>
+    <hotspot objId="horse" action="give" role="subject" x="19%" y="92%"/>
+    <hotspot objId="horse" action="lead" role="object" x="4%" y="44%"/>
+    <hotspot objId="horse" action="moveTo" role="object" x="100%" y="100%"/>
+    <hotspot objId="horse" action="moveTo" role="subject" x="0%" y="100%"/>
+    <hotspot objId="horse" action="pickUp" role="subject" x="6%" y="42%"/>
+    <hotspot objId="horse" action="push" role="subject" x="19%" y="92%"/>
+    <hotspot objId="horse" action="receive" role="subject" x="6%" y="42%"/>
+    <hotspot objId="horse" action="visit" role="object" x="0%" y="100%"/>
+    <hotspot objId="horse" action="visit" role="subject" x="100%" y="100%"/>
+    <hotspot objId="judge" action="award" role="subject" x="11%" y="62%"/>
+    <hotspot objId="judge" action="count" role="subject" x="0%" y="100%"/>
+    <hotspot objId="judge" action="give" role="subject" x="11%" y="62%"/>
+    <hotspot objId="judge" action="grab" role="subject" x="89%" y="62%"/>
+    <hotspot objId="judge" action="hold" role="subject" x="11%" y="62%"/>
+    <hotspot objId="judge" action="open" role="subject" x="89%" y="62%"/>
+    <hotspot objId="judge" action="visit" role="object" x="0%" y="100%"/>
+    <hotspot objId="judge" action="visit" role="subject" x="100%" y="100%"/>
+    <hotspot objId="owl" action="moveTo" role="subject" x="0%" y="100%"/>
+    <hotspot objId="owl" action="visit" role="object" x="0%" y="100%"/>
+    <hotspot objId="owl" action="visit" role="subject" x="100%" y="100%"/>
+    <hotspot objId="pen" action="getIn" role="object" x="50%" y="50%"/>
+    <hotspot objId="pen1" action="open" role="object" x="100%" y="50%"/>
+    <hotspot objId="pen2" action="open" role="object" x="100%" y="50%"/>
+    <hotspot objId="pen3" action="open" role="object" x="100%" y="50%"/>
+    <hotspot objId="pen4" action="open" role="object" x="100%" y="50%"/>
+    <hotspot objId="pig" action="getIn" role="subject" x="50%" y="50%"/>
+    <hotspot objId="pig" action="getOn" role="object" x="42%" y="3%"/>
+    <hotspot objId="pig" action="getOn" role="subject" x="42%" y="85%"/>
+    <hotspot objId="pig" action="give" role="subject" x="29%" y="62%"/>
+    <hotspot objId="pig" action="lead" role="object" x="10%" y="65%"/>
+    <hotspot objId="pig" action="moveTo" role="subject" x="0%" y="100%"/>
+    <hotspot objId="pig" action="pickUp" role="subject" x="29%" y="62%"/>
+    <hotspot objId="pig" action="receive" role="subject" x="29%" y="62%"/>
+    <hotspot objId="pig" action="visit" role="object" x="0%" y="100%"/>
+    <hotspot objId="pig" action="visit" role="subject" x="100%" y="100%"/>
+    <hotspot objId="pumpkin" action="appear" role="subject" x="50%" y="50%"/>
+    <hotspot objId="pumpkin" action="getIn" role="subject" x="50%" y="50%"/>
+    <hotspot objId="pumpkin" action="getOn" role="object" x="50%" y="24%"/>
+    <hotspot objId="pumpkin" action="getOn" role="subject" x="50%" y="88%"/>
+    <hotspot objId="pumpkin" action="give" role="object" x="50%" y="50%"/>
+    <hotspot objId="pumpkin" action="pickUp" role="object" x="50%" y="50%"/>
+    <hotspot objId="pumpkin" action="receive" role="object" x="50%" y="50%"/>
+    <hotspot objId="pumpkinPatch" action="appear" role="object" x="30%" y="60%"/>
+    <hotspot objId="sheep" action="getIn" role="subject" x="50%" y="50%"/>
+    <hotspot objId="sheep" action="getOn" role="object" x="50%" y="9%"/>
+    <hotspot objId="sheep" action="getOn" role="subject" x="50%" y="85%"/>
+    <hotspot objId="sheep" action="lead" role="object" x="15%" y="68%"/>
+    <hotspot objId="sheep" action="pickUp" role="subject" x="25%" y="68%"/>
+    <hotspot objId="sheep" action="receive" role="subject" x="25%" y="68%"/>
+    <hotspot objId="sheep" action="visit" role="object" x="0%" y="100%"/>
+    <hotspot objId="sheep" action="visit" role="subject" x="100%" y="100%"/>
+    <hotspot objId="tractor" action="getIn" role="object" x="52%" y="36%"/>
+    <hotspot objId="tractor" action="getIn" role="subject" x="50%" y="50%"/>
+    <hotspot objId="tractor" action="getOn" role="object" x="50%" y="0%"/>
+    <hotspot objId="tractor" action="hook" role="object" x="2%" y="55%"/>
+  </hotspots>
+  <locations>
+    <location locationId="barn" x="6%" y="48%" height="26%" width="55%"/>
+    <location locationId="corral" x="62%" y="67%" height="25%" width="28%"/>
+    <location locationId="corralArea" x="50%" y="78%" height="30%" width="35%"/> 
+    <location locationId="cowPen" x="46%" y="53%" height="18%" width="22%"/>
+    <location locationId="farmerFall" x="6%" y="48%" height="100%" width="100%"/>
+    <location locationId="hayloft" x="28%" y="14%" height="23%" width="20%"/>
+    <location locationId="nearGoat" x="41%" y="74.25%" height="25%" width="20%"/>
+    <location locationId="nest" x="8%" y="14%" height="23%" width="20%"/>
+    <location locationId="pen1" x="9%" y="48%" height="20%" width="11%"/>
+    <location locationId="pen2" x="22%" y="48%" height="20%" width="11%"/>
+    <location locationId="pen3" x="35%" y="48%" height="20%" width="11%"/>
+    <location locationId="pen4" x="51%" y="48%" height="20%" width="15%"/>
+    <location locationId="pumpkinPatch" x="75%" y="55.5%" height="20%" width="35%"/>
+  </locations>
+  <waypoints>
+    <waypoint waypointId="atBarn" x="48%" y="68%"/>
+    <waypoint waypointId="cartNearBarn" x="23%" y="77%"/>
+    <waypoint waypointId="catDrink" x="35%" y="85%"/>
+    <waypoint waypointId="catInNest" x="23%" y="31%"/>
+    <waypoint waypointId="chickenInNest" x="14%" y="31%"/>
+    <waypoint waypointId="combGoat" x="53%" y="76.25%"/>
+		<waypoint waypointId="corralDoorClose" x="69%" y="80%"/>
+		<waypoint waypointId="corralDoorOpen" x="49%" y="80%"/>
+    <waypoint waypointId="cowInCorral" x="74%" y="84%"/>
+    <waypoint waypointId="dropApple" x="65%" y="92%"/>
+    <waypoint waypointId="dropBucket" x="50%" y="62%"/>
+    <waypoint waypointId="dropComb" x="45%" y="89%"/>
+    <waypoint waypointId="farmerFallPosition" x="36%" y="85%"/>
+    <waypoint waypointId="farmerFeedHorse" x="85%" y="92%"/>
+    <waypoint waypointId="farmerFeedPig" x="52%" y="90%"/>
+    <waypoint waypointId="farmerInHayloft" x="37%" y="27%"/>
+    <waypoint waypointId="farmerNearPig" x="33%" y="62%"/>
+    <waypoint waypointId="hayFallPosition" x="36%" y="90%"/>
+    <waypoint waypointId="horseInCorral" x="82%" y="83%"/>
+    <waypoint waypointId="horseFeedCow" x="70%" y="65%"/>
+    <waypoint waypointId="insideCowPen" x="59%" y="58%"/>
+    <waypoint waypointId="insidePen2" x="28%" y="60.25%"/>
+    <waypoint waypointId="nearBarn" x="36%" y="73%"/>
+    <waypoint waypointId="nearCorral" x="55%" y="78%"/>
+    <waypoint waypointId="nearCowPen" x="66%" y="62%"/>
+    <waypoint waypointId="nearGoatPen" x="47%" y="62%"/>
+    <waypoint waypointId="nearPigPen" x="40%" y="62%"/>
+    <waypoint waypointId="owlInHayloft" x="28.5%" y="25%"/>
+    <waypoint waypointId="pen2Close" x="35%" y="62%"/>
+    <waypoint waypointId="pen2Open" x="35%" y="44%"/>
+    <waypoint waypointId="pen3Close" x="43%" y="62%"/>
+    <waypoint waypointId="pen3Open" x="43%" y="44%"/>
+		<waypoint waypointId="pen4Close" x="50%" y="56%"/>
+		<waypoint waypointId="pen4Open" x="67%" y="56%"/>
+    <waypoint waypointId="pigNearHorse" x="60%" y="80%"/>
+    <waypoint waypointId="pumpkinNearBarn" x="33%" y="85%"/>
+    <waypoint waypointId="pumpkinPatch" x="75%" y="56.5%"/>
+  </waypoints>
+  <alternateImages>
+     <alternateImage objId="farmer" action="falling" originalSrc="farmer_large.png" alternateSrc="farmer_falling.png" width="125px" x="36%" y="85%"/>
+     <alternateImage objId="egg" action="lay" originalSrc="egg1.png" alternateSrc="egg4.png" width="50px" x="16%" y="32%"/>
+  </alternateImages>
+  <setups>
+    <story title="Getting Ready" page_id="story2-PM">
+      <group obj1Id="farmer" action="grab" obj2Id="comb"/>
+    </story>
+    <story title="The Best Farm Award" page_id="story7-PM">
+      <group obj1Id="judge" action="hold" obj2Id="award"/>
+    </story>
+  </setups>
+  <solutions>
+		<story title="Introduction to The Best Farm" activity_id="story0-PM">
+			<sentence number="1">
+				<step number="1">
+					<check obj1Id="farmer" action="getIn" locationId="corralArea"/>
+				</step>
+				<step number="2">
+					<group obj1Id="farmer" action="lead" obj2Id="cow"/>
+				</step>
+				<step number="3">
+					<check obj1Id="cow" action="getIn" locationId="pen4"/>
+           <ungroup obj1Id="farmer" action="release" obj2Id="cow"/>
+           <move obj1Id="cow" action="getIn" waypointId="insideCowPen"/>
+           <move obj1Id="pen4" action="close" waypointId="pen4Close"/>
+				</step>
+        <step number="4">
+            <group obj1Id="farmer" action="lead" obj2Id="apple"/>
+        </step>
+        <step number="5">
+            <transferAndDisappear obj1Id="farmer" action="give" obj2Id="apple"/>
+            <transferAndDisappear obj1Id="goat" action="receive" obj2Id="apple"/>
+        </step>
+			</sentence>
+		</story>
+    <story title="The Contest" activity_id="story1-PM">
+      <sentence number="2">
+        <step number="1">
+          <group obj1Id="farmer" action="open" obj2Id="pen4"/>
+          <ungroup obj1Id="farmer" action="letGo" obj2Id="pen4"/>
+          <move obj1Id="pen4" action="open" waypointId="pen4Open"/>
+          <move obj1Id="farmer" action="letGo" waypointId="nearCowPen"/>
+        </step>
+      </sentence>
+      <sentence number="3">
+        <step number="1">
+          <check obj1Id="cow" action="getIn" locationId="corralArea"/>
+          <move obj1Id="cow" action="getIn" waypointId="nearCorral"/>
+          <move obj1Id="pen4" action="close" waypointId="pen4Close"/>
+        </step>
+      </sentence>
+      <sentence number="4">
+        <step number="1">
+         <group obj1Id="farmer" action="open" obj2Id="pen3"/>
+         <ungroup obj1Id="farmer" action="letGo" obj2Id="pen3"/>
+         <move obj1Id="pen3" action="open" waypointId="pen3Open"/>
+         <move obj1Id="farmer" action="open" waypointId="nearGoatPen"/>
+        </step>
+        <step number="2">
+          <group obj1Id="goat" action="visit" obj2Id="cow"/>
+          <move obj1Id="pen3" action="close" waypointId="pen3Close"/>
+        </step>
+      </sentence>
+      <sentence number="5">
+        <step number="1">
+          <group obj1Id="chicken" action="getOn" obj2Id="cow"/>
+        </step>
+      </sentence>
+      <sentence number="10">
+        <step number="1">
+          <group obj1Id="cat" action="jumpOn" obj2Id="farmer"/>
+        </step>
+      </sentence>
+    </story>
+   <story title="Getting Ready" activity_id="story2-PM">
+      <sentence number="2">
+        <step number="1">
+          <check obj1Id="farmer" action="getIn" locationId="nearGoat"/>
+          <move obj1Id="farmer" action="getIn" waypointId="combGoat"/>
+        </step>
+      </sentence>
+      <sentence number="3">
+        <step number="1">
+          <ungroup obj1Id="farmer" action="release" obj2Id="comb"/>
+          <move obj1Id="comb" action="release" waypointId="dropComb"/>
+        </step>
+        <step number="2">
+          <group obj1Id="farmer" action="grab" obj2Id="bucket"/>
+        </step>
+        <step number="3">
+          <transferAndGroup obj1Id="farmer" action="give" obj2Id="bucket"/>
+          <transferAndGroup obj1Id="cat" action="finish" obj2Id="bucket"/>
+        </step>
+      </sentence>
+      <sentence number="4">
+        <step number="1">
+          <ungroup obj1Id="cat" action="leave" obj2Id="bucket"/>
+          <move obj1Id="cat" action="getIn" waypointId="catDrink"/>
+        </step>
+        <step number="2">
+          <group obj1Id="cat" action="finish" obj2Id="bucket"/>
+        </step>
+      </sentence>
+      <sentence number="5">
+        <step number="1">
+          <group obj1Id="farmer" action="lead" obj2Id="apple"/>
+        </step>
+        <step number="2">
+          <transferAndDisappear obj1Id="farmer" action="release" obj2Id="apple"/>
+          <transferAndDisappear obj1Id="horse" action="receive" obj2Id="apple"/>
+          <move obj1Id="farmer" action="getIn" waypointId="farmerFeedHorse"/>
+        </step>
+      </sentence>
+      <sentence number="7">
+        <step number="1">
+          <group obj1Id="farmer" action="grab" obj2Id="cart"/>
+        </step>
+        <step number="2">
+          <check obj1Id="farmer" action="getIn" locationId="pumpkinPatch"/>
+          <move obj1Id="farmer" action="getIn" waypointId="pumpkinPatch"/>
+        </step>
+      </sentence>
+      <sentence number="8">
+        <step number="1">
+          <ungroup obj1Id="farmer" action="release" obj2Id="cart"/>
+        </step>
+        <step number="2">
+          <group obj1Id="farmer" action="pickUp" obj2Id="pumpkin"/>
+        </step>
+        <step number="3">
+          <transferAndGroup obj1Id="farmer" action="putDown" obj2Id="pumpkin"/>
+          <transferAndGroup obj1Id="pumpkin" action="getIn" obj2Id="cart"/>
+          <move obj1Id="farmer" action="getIn" waypointId="pumpkinPatch"/>
+        </step>
+        <step number="4">
+          <group obj1Id="farmer" action="grab" obj2Id="cart"/>
+        </step>
+        <step number="5">
+          <check obj1Id="farmer" action="getIn" locationId="barn"/>
+          <move obj1Id="farmer" action="getIn" waypointId="nearBarn"/>
+        </step>
+      </sentence>
+      <sentence number="9">
+        <step number="1">
+          <ungroup obj1Id="farmer" action="release" obj2Id="cart"/>
+          <move obj1Id="cart" action="getIn" waypointId="cartNearBarn"/>
+        </step>
+        <step number="2">
+          <transferAndGroup obj1Id="pumpkin" action="getOut" obj2Id="cart"/>
+          <transferAndGroup obj1Id="farmer" action="pickUp" obj2Id="pumpkin"/>
+          <move obj1Id="cart" action="getIn" waypointId="cartNearBarn"/>
+          <move obj1Id="pumpkin" action="getIn" waypointId="pumpkinNearBarn"/>
+        </step>
+        <step number="3">
+          <transferAndDisappear obj1Id="farmer" action="give" obj2Id="pumpkin"/>
+          <transferAndDisappear obj1Id="pig" action="receive" obj2Id="pumpkin"/>
+          <move obj1Id="farmer" action="getIn" waypointId="farmerFeedPig"/>
+        </step>
+      </sentence>
+    </story>
+    <story title="Cleaning Up" activity_id="story3-PM">
+      <sentence number="3">
+        <step number="1">
+          <group obj1Id="farmer" action="lead" obj2Id="horse"/>
+        </step>
+        <step number="2">
+          <check obj1Id="horse" action="getIn" locationId="corral"/>
+          <move obj1Id="horse" action="getIn" waypointId="horseInCorral"/>
+        </step>
+        <step number="3">
+          <ungroup obj1Id="farmer" action="leave" obj2Id="horse"/>
+        </step>
+        <step number="4">
+          <group obj1Id="farmer" action="lead" obj2Id="cow"/>
+        </step>
+        <step number="5">
+          <check obj1Id="cow" action="getIn" locationId="corral"/>
+          <move obj1Id="cow" action="getIn" waypointId="cowInCorral"/>
+        </step>
+        <step number="6">
+          <ungroup obj1Id="farmer" action="leave" obj2Id="cow"/>
+          <move obj1Id="corralDoor" action="close" waypointId="corralDoorClose"/>
+        </step>
+      </sentence>
+      <sentence number="5">
+        <step number="1">
+          <group obj1Id="farmer" action="lead" obj2Id="pig"/>
+        </step>
+        <step number="2">
+          <check obj1Id="pig" action="getIn" locationId="pen2"/>
+        </step>
+        <step number="3">
+          <ungroup obj1Id="farmer" action="leave" obj2Id="pig"/>
+          <move obj1Id="pig" action="getIn" waypointId="insidePen2"/>
+          <move obj1Id="pen2" action="close" waypointId="pen2Close"/>
+          <move obj1Id="farmer" action="getIn" waypointId="farmerNearPig"/>
+        </step>
+      </sentence>
+      <sentence number="6">
+        <step number="1">
+          <check obj1Id="farmer" action="getIn" locationId="pumpkinPatch"/>
+          <move obj1Id="farmer" action="getIn" waypointId="pumpkinPatch"/>
+        </step>
+      </sentence>
+      <sentence number="8">
+        <step number="1">
+          <check obj1Id="farmer" action="getIn" locationId="barn"/>
+          <move obj1Id="farmer" action="getIn" waypointId="nearBarn"/>
+        </step>
+      </sentence>
+      <sentence number="9">
+        <step number="1">
+          <group obj1Id="farmer" action="pickUp" obj2Id="hay"/>
+        </step>
+        <step number="2">
+          <check obj1Id="farmer" action="getIn" locationId="hayloft"/>
+          <move obj1Id="farmer" action="getIn" waypointId="farmerInHayloft"/>
+        </step>
+      </sentence>
+      <sentence number="10">
+        <step number="1">
+          <check obj1Id="farmer" action="getIn" locationId="farmerFall"/>
+          <ungroup obj1Id="farmer" action="putDown" obj2Id="hay"/>
+        </step> 
+        <step number="2">
+          <swapImage obj1Id="farmer" action="falling"/>
+          <move obj1Id="farmer" action="getIn" waypointId="farmerFallPosition"/>
+          <move obj1Id="hay" action="getIn" waypointId="hayFallPosition"/>
+        </step>
+      </sentence>
+    </story>
+    <story title="Who is the Best Animal?" activity_id="story4-PM">
+      <sentence number="3">
+        <step number="1">
+          <group obj1Id="cat" action="moveTo" obj2Id="chicken"/>
+        </step>
+      </sentence>
+      <sentence number="8">
+        <step number="1">
+          <disappear obj1Id="goat" action="receive" obj2Id="apple"/>
+        </step>
+      </sentence>
+      <sentence number="11">
+        <step number="1">
+          <disappear obj1Id="horse" action="receive" obj2Id="hay"/>
+        </step>
+      </sentence>
+    </story>
+    <story title="The Wise Owl" activity_id="story5-PM">
+      <sentence number="3">
+        <step number="1">
+          <group obj1Id="owl" action="visit" obj2Id="farmer"/>
+        </step>
+      </sentence>
+      <sentence number="5">
+        <step number="1">
+          <ungroup obj1Id="owl" action="leave" obj2Id="farmer"/>
+          <move obj1Id="farmer" action="getIn" waypointId="farmerInHayloft"/>
+        </step>
+        <step number="2">
+          <group obj1Id="owl" action="moveTo" obj2Id="chicken"/>
+        </step>
+      </sentence>
+      <sentence number="6">
+        <step number="1">
+          <ungroup obj1Id="chicken" action="leave" obj2Id="owl"/>
+        </step>
+        <step number="2">
+          <group obj1Id="chicken" action="count" obj2Id="egg"/>
+        </step>
+      </sentence>
+      <sentence number="8">
+        <step number="1">
+          <group obj1Id="owl" action="visit" obj2Id="pig"/>
+        </step>
+      </sentence>
+      <sentence number="11">
+        <step number="1">
+          <ungroup obj1Id="owl" action="leave" obj2Id="pig"/>
+          <move obj1Id="pig" action="getIn" waypointId="insidePen2"/>
+        </step>
+        <step number="2">
+          <group obj1Id="owl" action="visit" obj2Id="farmer"/>
+        </step>
+      </sentence>
+    </story>
+    <story title="Everyone Helps" activity_id="story6-PM">
+      <sentence number="1">
+        <step number="1">
+          <group obj1Id="owl" action="moveTo" obj2Id="chicken"/>
+        </step>
+      </sentence>
+      <sentence number="2">
+        <step number="1">
+          <ungroup obj1Id="chicken" action="leave" obj2Id="owl"/>
+          <move obj1Id="owl" action="getIn" waypointId="owlInHayloft"/>
+        </step>
+        <step number="2">
+          <group obj1Id="chicken" action="open" obj2Id="pen2"/>
+          <ungroup obj1Id="chicken" action="leave" obj2Id="pen2"/>
+          <move obj1Id="pen2" action="open" waypointId="pen2Open"/>
+          <move obj1Id="chicken" action="leave" waypointId="nearPigPen"/>
+        </step>
+      </sentence>
+      <sentence number="3">
+        <step number="1">
+          <disappear obj1Id="pig" action="receive" obj2Id="pumpkin"/>
+          <move obj1Id="pen2" action="close" waypointId="pen2Close"/>
+        </step>
+      </sentence>
+      <sentence number="4">
+        <step number="1">
+          <group obj1Id="pig" action="pickUp" obj2Id="apple"/>
+        </step>
+        <step number="2">
+          <transferAndDisappear obj1Id="pig" action="give" obj2Id="apple"/>
+          <transferAndDisappear obj1Id="horse" action="receive" obj2Id="apple"/>
+          <move obj1Id="pig" action="getIn" waypointId="pigNearHorse"/>
+        </step>
+      </sentence>
+      <sentence number="5">
+        <step number="1">
+          <group obj1Id="horse" action="push" obj2Id="hay"/>
+          <move obj1Id="pen4" action="open" waypointId="pen4Open"/>
+        </step>
+        <step number="2">
+          <transferAndDisappear obj1Id="horse" action="give" obj2Id="hay"/>
+          <transferAndDisappear obj1Id="cow" action="receive" obj2Id="hay"/>
+          <move obj1Id="horse" action="getIn" waypointId="horseFeedCow"/>
+          </step>
+      </sentence>
+      <sentence number="7">
+        <step number="1">
+          <group obj1Id="cat" action="finish" obj2Id="bucket"/>
+        </step>
+      </sentence>
+      <sentence number="8">
+        <step number="1">
+          <ungroup obj1Id="cat" action="leave" obj2Id="bucket"/>
+        </step>
+        <step number="2">
+          <check obj1Id="cat" action="getIn" locationId="nest"/>
+          <move obj1Id="cat" action="getIn" waypointId="catInNest"/>
+        </step>
+      </sentence>
+      <sentence number="9">
+        <step number="1">
+          <check obj1Id="chicken" action="getIn" locationId="nest"/>
+          <move obj1Id="chicken" action="getIn" waypointId="chickenInNest"/>
+        </step>
+        <step number="2">
+          <swapImage obj1Id="egg" action="lay"/>
+        </step>
+      </sentence>
+    </story>
+    <story title="The Best Farm Award" activity_id="story7-PM">
+      <sentence number="1">
+        <step number="1">
+          <group obj1Id="judge" action="visit" obj2Id="cow"/>
+        </step>
+      </sentence>
+      <sentence number="2">
+        <step number="1">
+          <ungroup obj1Id="judge" action="leave" obj2Id="cow"/>
+        </step>
+        <step number="2">
+          <group obj1Id="judge" action="grab" obj2Id="bucket"/>
+        </step>
+      </sentence>
+      <sentence number="4">
+        <step number="1">
+          <ungroup obj1Id="judge" action="leave" obj2Id="bucket"/>
+          <move obj1Id="bucket" action="getin" waypointId="dropBucket"/>
+        </step>
+        <step number="2">
+          <group obj1Id="judge" action="count" obj2Id="eggs"/>
+        </step>
+      </sentence>
+      <sentence number="5">
+        <step number="1">
+          <ungroup obj1Id="judge" action="stopCount" obj2Id="eggs"/>
+        </step>
+        <step number="2">
+          <group obj1Id="judge" action="visit" obj2Id="pig"/>
+        </step>
+      </sentence>
+      <sentence number="7">
+        <step number="1">
+          <ungroup obj1Id="judge" action="leave" obj2Id="pig"/>
+          <move obj1Id="pig" action="getIn" waypointId="insidePen2"/>
+        </step>
+        <step number="2">
+          <group obj1Id="judge" action="open" obj2Id="corralDoor"/>
+          <move obj1Id="corralDoor" action="open" waypointId="corralDoorOpen"/>
+        </step>
+      </sentence>
+      <sentence number="8">
+        <step number="1">
+          <group obj1Id="horse" action="visit" obj2Id="judge"/>
+        </step>
+      </sentence>
+      <sentence number="10">
+        <step number="1">
+          <ungroup obj1Id="judge" action="letGo" obj2Id="corralDoor"/>
+        </step>
+        <step number="2">
+          <ungroup obj1Id="judge" action="leave" obj2Id="horse"/>
+        </step>
+        <step number="3">
+          <transferAndGroup obj1Id="judge" action="give" obj2Id="award"/>
+          <transferAndGroup obj1Id="farmer" action="receive" obj2Id="award"/>
+        </step>
+      </sentence>
+    </story>
+  </solutions>
+  <sentenceAnalyses>
+    <story title="At the Barn">
+      <sentence number="1">
+        <text>Ben puts the hay into the cart.</text>
+        <attributes words="7" openClass="4" closedClass="3" prepositions="1" pronouns="0" phrases="4" active="1"/>
+      </sentence>
+      <sentence number="2">
+        <text>He drives the cart into the barn.</text>
+        <attributes words="7" openClass="3" closedClass="4" prepositions="1" pronouns="1" phrases="4" active="1"/>
+      </sentence>
+      <sentence number="3">
+        <text>He needs to put the hay away.</text>
+        <attributes words="7" openClass="3" closedClass="4" prepositions="0" pronouns="1" phrases="4" state="1"/>
+      </sentence>
+      <sentence number="4">
+        <text>Later, he will use the hay to feed the animals.</text>
+        <attributes words="10" openClass="4" closedClass="6" prepositions="0" pronouns="1" phrases="5" active="1" future="1"/>
+      </sentence>
+      <sentence number="5">
+        <text>Ben puts the hay into the hayloft.</text>
+        <attributes words="7" openClass="4" closedClass="3" prepositions="1" pronouns="0" phrases="4" active="1"/>
+      </sentence>
+    </story>
+    <story title="Breakfast on the Farm">
+      <sentence number="1">
+        <text>The chicken is in her nest.</text>
+        <attributes words="6" openClass="2" closedClass="4" prepositions="1" pronouns="1" phrases="3" state="1"/>
+      </sentence>
+      <sentence number="2">
+        <text>Ben is in the hayloft.</text>
+        <attributes words="5" openClass="2" closedClass="3" prepositions="1" pronouns="0" phrases="3" state="1"/>
+      </sentence>
+      <sentence number="3">
+        <text>He throws the hay down to the goat.</text>
+        <attributes words="8" openClass="3" closedClass="5" prepositions="1" pronouns="1" phrases="4" active="1"/>
+      </sentence>
+      <sentence number="4">
+        <text>The goat eats the hay.</text>
+        <attributes words="5" openClass="3" closedClass="2" prepositions="0" pronouns="0" phrases="3" active="1"/>
+      </sentence>
+      <sentence number="5">
+        <text>Ben climbs down to the goat.</text>
+        <attributes words="6" openClass="3" closedClass="3" prepositions="1" pronouns="0" phrases="3" active="1"/>
+      </sentence>
+      <sentence number="6">
+        <text>He gives an apple to the sheep.</text>
+        <attributes words="7" openClass="3" closedClass="4" prepositions="1" pronouns="1" phrases="4" active="1"/>
+      </sentence>
+      <sentence number="7">
+        <text>He gives the pumpkins to the pig.</text>
+        <attributes words="7" openClass="3" closedClass="4" prepositions="1" pronouns="1" phrases="4" active="1"/>
+      </sentence>
+      <sentence number="8">
+        <text>The animals are happy now.</text>
+        <attributes words="5" openClass="2" closedClass="3" prepositions="0" pronouns="0" phrases="3" state="1"/>
+      </sentence>
+    </story>
+  </sentenceAnalyses>
+	<translations>
+		<translation>
+			<english>hay</english>
+			<spanish>paja</spanish>
+		</translation>
+		<translation>
+			<english>cart</english>
+			<spanish>carro</spanish>
+		</translation>
+		<translation>
+			<english>barn</english>
+			<spanish>establo</spanish>
+		</translation>
+		<translation>
+			<english>hayloft</english>
+			<spanish>pajar</spanish>
+		</translation>
+	</translations>
+	<introductions>
+		<introduction title= "Introduction to The Best Farm">
+			<introductionStep number="1">
+					<englishAudio>BFCE_1.m4a</englishAudio>
+					<spanishAudio>BFCS_1.m4a</spanishAudio>
+					<englishText>Hello!</englishText>
+					<spanishText>Hola!</spanishText>
+					<expectedSelection></expectedSelection>					
+					<expectedAction>tap</expectedAction>
+					<expectedInput>next</expectedInput>
+			</introductionStep>
+			<introductionStep number="2">
+					<englishAudio>BFCE_2AA.m4a</englishAudio>
+					<spanishAudio>BFCS_2AA.m4a</spanishAudio>
+					<englishText>The farmer's name is Manuel.</englishText>
+					<spanishText>El nombre del granjero es Manuel.</spanishText>
+					<expectedSelection></expectedSelection>					
+					<expectedAction>tap</expectedAction>
+					<expectedInput>next</expectedInput>
+			</introductionStep>
+			<introductionStep number="3">
+					<englishAudio>BFCE_2B.m4a</englishAudio>
+					<spanishAudio>BFCS_2B.m4a</spanishAudio>
+					<englishText>The farmer's name is Manuel.</englishText>
+					<spanishText>El nombre del granjero es Manuel.</spanishText>
+					<expectedSelection>word</expectedSelection>					
+					<expectedAction>tap</expectedAction>
+					<expectedInput>farmer</expectedInput>
+			</introductionStep>
+			<introductionStep number="4">
+					<englishAudio>BFCE_3.m4a</englishAudio>
+					<spanishAudio>BFCS_3.m4a</spanishAudio>
+					<englishText>The farmer's name is Manuel.</englishText>
+					<spanishText>El nombre del granjero es Manuel.</spanishText>
+					<expectedSelection>image</expectedSelection>					
+					<expectedAction>tap</expectedAction>
+					<expectedInput>farmer</expectedInput>
+			</introductionStep>
+			<introductionStep number="5">
+					<englishAudio>BFCE_4.m4a</englishAudio>
+					<spanishAudio>BFCS_4.m4a</spanishAudio>
+					<englishText>The farmer's name is Manuel.</englishText>
+					<spanishText>El nombre del granjero es Manuel.</spanishText>
+					<expectedSelection></expectedSelection>					
+					<expectedAction>tap</expectedAction>
+					<expectedInput>next</expectedInput>
+			</introductionStep>
+			<introductionStep number="6">
+					<englishAudio>BFCE_5A.m4a</englishAudio>
+					<spanishAudio>BFCS_5A.m4a</spanishAudio>
+					<englishText>The corral is a fenced area for animals.</englishText>
+					<spanishText>El corral es un sitio con una cerca para guardar a los animales.</spanishText>
+					<expectedSelection>word</expectedSelection>					
+					<expectedAction>tap</expectedAction>
+					<expectedInput>corral</expectedInput>
+			</introductionStep>
+			<introductionStep number="7">
+					<englishAudio>BFCE_6.m4a</englishAudio>
+					<spanishAudio>BFCS_6.m4a</spanishAudio>
+					<englishText>The corral is a fenced area for animals.</englishText>
+					<spanishText>El corral es un sitio con una cerca para guardar a los animales.</spanishText>
+					<expectedSelection>image</expectedSelection>					
+					<expectedAction>tap</expectedAction>
+					<expectedInput>corral</expectedInput>
+			</introductionStep>
+			<introductionStep number="8">
+					<englishAudio>BFEE_8A.m4a</englishAudio>
+					<spanishAudio>BFES_8A.m4a</spanishAudio>
+					<englishText>Manuel walks to the corral.</englishText>
+					<spanishText>Manuel va hacia el corral.</spanishText>
+					<expectedSelection>image</expectedSelection>					
+					<expectedAction>move</expectedAction>
+					<expectedInput>farmergetIncorralArea</expectedInput>
+			</introductionStep>
+			<introductionStep number="9">
+					<englishAudio>BFCE_9.m4a</englishAudio>
+					<spanishAudio>BFCS_9.m4a</spanishAudio>
+					<englishText>Good job!</englishText>
+					<spanishText>Qué bien trabajas!</spanishText>
+					<expectedSelection></expectedSelection>					
+					<expectedAction>tap</expectedAction>
+					<expectedInput>next</expectedInput>
+			</introductionStep>
+			<introductionStep number="10">
+					<englishAudio>BFEE_10A.m4a</englishAudio>
+					<spanishAudio>BFES_10A.m4a</spanishAudio>
+					<englishText>Manuel puts the cow into the pen.</englishText>
+					<spanishText>Manuel pone a la vaca en el establo.</spanishText>
+					<expectedSelection>image</expectedSelection>					
+					<expectedAction>group</expectedAction>
+					<expectedInput>farmerleadcow</expectedInput>
+			</introductionStep>
+			<introductionStep number="11">
+					<englishAudio>BFEE_11A.m4a</englishAudio>
+					<spanishAudio>BFES_11A.m4a</spanishAudio>
+					<englishText>Manuel puts the cow into the pen.</englishText>
+					<spanishText>Manuel pone a la vaca en el establo.</spanishText>
+					<expectedSelection>image</expectedSelection>					
+					<expectedAction>tap</expectedAction>
+					<expectedInput>menu</expectedInput>
+			</introductionStep>
+			<introductionStep number="12">
+					<englishAudio>BFEE_11.m4a</englishAudio>
+					<spanishAudio>BFES_11.m4a</spanishAudio>
+					<englishText>Manuel puts the cow into the pen.</englishText>
+					<spanishText>Manuel pone a la vaca el establo.</spanishText>
+					<expectedSelection>image</expectedSelection>					
+					<expectedAction>move</expectedAction>
+					<expectedInput>cowgetInpen4</expectedInput>
+			</introductionStep>
+			<introductionStep number="13">
+					<englishAudio>BFCE_14.m4a</englishAudio>
+					<spanishAudio>BFCS_14.m4a</spanishAudio>
+					<englishText>Let's do more.</englishText>
+					<spanishText>Ahora en Inglés.</spanishText>
+					<expectedSelection></expectedSelection>					
+					<expectedAction>tap</expectedAction>
+					<expectedInput>next</expectedInput>
+			</introductionStep>
+			<introductionStep number="14">
+					<englishAudio>BFEE_18AA.m4a</englishAudio>
+					<spanishAudio></spanishAudio>
+					<englishText>Manuel gives the goat an apple to eat.</englishText>
+					<spanishText>Manuel gives the goat an apple to eat.</spanishText>
+					<expectedSelection>image</expectedSelection>					
+					<expectedAction>group</expectedAction>
+					<expectedInput>farmergrabapple</expectedInput>
+			</introductionStep>			
+			<introductionStep number="15">
+					<englishAudio>BFEE_20A.m4a</englishAudio>
+					<spanishAudio></spanishAudio>
+					<englishText>Manuel gives the goat an apple to eat.</englishText>
+					<spanishText>Manuel gives the goat an apple to eat.</spanishText>
+					<expectedSelection>image</expectedSelection>					
+					<expectedAction>move</expectedAction>
+					<expectedInput>farmergiveapple</expectedInput>
+			</introductionStep>
+			<introductionStep number="16">
+					<englishAudio>BFEE_19A.m4a</englishAudio>
+					<spanishAudio></spanishAudio>
+					<englishText>Manuel gives the goat an apple to eat.</englishText>
+					<spanishText>Manuel gives the goat an apple to eat.</spanishText>
+					<expectedSelection>image</expectedSelection>					
+					<expectedAction>tap</expectedAction>
+					<expectedInput>menu</expectedInput>
+			</introductionStep>
+			<introductionStep number="17">
+					<englishAudio>BFCE_22A.m4a</englishAudio>
+					<spanishAudio></spanishAudio>
+					<englishText>You are ready!</englishText>
+					<spanishText>You are ready!</spanishText>
+					<expectedSelection></expectedSelection>					
+					<expectedAction>tap</expectedAction>
+					<expectedInput>next</expectedInput>
+			</introductionStep>
+		</introduction>
+	</introductions>
+	<vocabularyIntroductions>
+		<vocabularyIntroduction story="The Contest">
+			<vocabularyIntroductionWord number="1">
+				<englishWordAudio>BFCE1_1G.m4a</englishWordAudio>
+				<spanishWordAudio>BFCS1_1G.m4a</spanishWordAudio>
+				<englishWordText></englishWordText>
+				<spanishWordText></spanishWordText>
+				<expectedSelection>word</expectedSelection>
+				<expectedAction>tap</expectedAction>
+				<expectedInput>corral</expectedInput>
+			</vocabularyIntroductionWord>
+			<vocabularyIntroductionWord number="2">
+				<englishWordAudio>corralE.m4a</englishWordAudio>
+				<spanishWordAudio>corralS.m4a</spanishWordAudio>
+				<englishWordText>Corral</englishWordText>
+				<spanishWordText>Corral</spanishWordText>
+				<expectedSelection>word</expectedSelection>
+				<expectedAction>tap</expectedAction>
+				<expectedInput>corral</expectedInput>
+			</vocabularyIntroductionWord>
+			<vocabularyIntroductionWord number="3">
+				<englishWordAudio>judgeE.m4a</englishWordAudio>
+				<spanishWordAudio>juezS.m4a</spanishWordAudio>
+				<englishWordText>Judge</englishWordText>
+				<spanishWordText>Juez</spanishWordText>
+				<expectedSelection>word</expectedSelection>
+				<expectedAction>tap</expectedAction>
+				<expectedInput>juez</expectedInput>
+			</vocabularyIntroductionWord>
+			<vocabularyIntroductionWord number="4">
+				<englishWordAudio>judgeE.m4a</englishWordAudio>
+				<spanishWordAudio>judgeS.m4a</spanishWordAudio>
+				<englishWordText>Judge</englishWordText>
+				<spanishWordText>Juez</spanishWordText>
+				<expectedSelection>word</expectedSelection>
+				<expectedAction>tap</expectedAction>
+				<expectedInput>judge</expectedInput>
+			</vocabularyIntroductionWord>
+			<vocabularyIntroductionWord number="5">
+				<englishWordAudio>prizeE.m4a</englishWordAudio>
+				<spanishWordAudio>premioS.m4a</spanishWordAudio>
+				<englishWordText>Prize</englishWordText>
+				<spanishWordText>Premio</spanishWordText>
+				<expectedSelection>word</expectedSelection>
+				<expectedAction>tap</expectedAction>
+				<expectedInput>premio</expectedInput>
+			</vocabularyIntroductionWord>
+			<vocabularyIntroductionWord number="6">
+				<englishWordAudio>prizeE.m4a</englishWordAudio>
+				<spanishWordAudio>premioS.m4a</spanishWordAudio>
+				<englishWordText>Prize</englishWordText>
+				<spanishWordText>Premio</spanishWordText>
+				<expectedSelection>word</expectedSelection>
+				<expectedAction>tap</expectedAction>
+				<expectedInput>prize</expectedInput>
+			</vocabularyIntroductionWord>
+			<vocabularyIntroductionWord number="7">
+				<englishWordAudio>barnE.m4a</englishWordAudio>
+				<spanishWordAudio>establoS.m4a</spanishWordAudio>
+				<englishWordText>Barn</englishWordText>
+				<spanishWordText>Establo</spanishWordText>
+				<expectedSelection>word</expectedSelection>
+				<expectedAction>tap</expectedAction>
+				<expectedInput>establo</expectedInput>
+			</vocabularyIntroductionWord>
+			<vocabularyIntroductionWord number="8">
+				<englishWordAudio>barnE.m4a</englishWordAudio>
+				<spanishWordAudio>establoS.m4a</spanishWordAudio>
+				<englishWordText>Barn</englishWordText>
+				<spanishWordText>Establo</spanishWordText>
+				<expectedSelection>word</expectedSelection>
+				<expectedAction>tap</expectedAction>
+				<expectedInput>barn</expectedInput>
+			</vocabularyIntroductionWord>
+			<vocabularyIntroductionWord number="9">
+				<englishWordAudio>BFEE1_6.m4a</englishWordAudio>
+				<spanishWordAudio>BFES1_6.m4a</spanishWordAudio>
+				<englishWordText></englishWordText>
+				<spanishWordText></spanishWordText>
+				<expectedSelection></expectedSelection>
+				<expectedAction>tap</expectedAction>
+				<expectedInput>next</expectedInput>
+			</vocabularyIntroductionWord>
+		</vocabularyIntroduction>
+	</vocabularyIntroductions>
+</metadata>
