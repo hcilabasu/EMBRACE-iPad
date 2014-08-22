@@ -267,7 +267,7 @@
       </sentence>
     </story>
     <story title="Cigarette Smoke Hurts Your Lungs" activity_id="story5-PM-1">
-      <sentence number="2">
+      <sentence number="1">
         <step number="1">
             <check obj1Id="dirt_1" action="getIn" locationId="lung1"/>
             <move obj1Id="dirt_1" action="getIn" waypointId="lung1"/>
@@ -275,7 +275,7 @@
       </sentence>
     </story>
     <story title="Cigarette Smoke Hurts Your Lungs" activity_id="story5-PM-2">
-      <sentence number="3">
+      <sentence number="2">
         <step number="1">
             <check obj1Id="dirt_1" action="getIn" locationId="cilia"/>
             <move obj1Id="dirt_1" action="getIn" waypointId="cilia"/>
@@ -283,7 +283,7 @@
       </sentence>
     </story>
     <story title="Cigarette Smoke Hurts Your Lungs" activity_id="story5-PM-3">
-      <sentence number="4">
+      <sentence number="3">
         <step number="1">
             <check obj1Id="dirt_1" action="getIn" locationId="air"/>
             <move obj1Id="dirt_1" action="getIn" waypointId="air"/>
@@ -291,7 +291,7 @@
       </sentence>
     </story>
     <story title="Cigarette Smoke Hurts Your Lungs" activity_id="story5-PM-4">
-      <sentence number="7">
+      <sentence number="6">
         <step number="1">
             <disappear obj1Id="O2_1" action="receive" obj2Id="bloodcell_1"/>
             <swapImage obj1Id="bloodcell_1" action="oxygenate"/>
