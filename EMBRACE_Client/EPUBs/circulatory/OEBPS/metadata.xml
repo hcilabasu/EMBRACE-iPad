@@ -301,4 +301,125 @@
   </solutions>
   <sentenceAnalyses>
   </sentenceAnalyses>
+  <vocabularyIntroductions>
+      <vocabularyIntroduction story="Why We Breathe">
+          <vocabularyIntroductionWord number="1">
+              <englishWordAudio>BFCE1_1G.m4a</englishWordAudio>
+              <spanishWordAudio>BFCS1_1G.m4a</spanishWordAudio>
+              <englishWordText></englishWordText>
+              <spanishWordText></spanishWordText>
+              <expectedSelection>word</expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>molécula</expectedInput>
+          </vocabularyIntroductionWord>
+          <vocabularyIntroductionWord number="2">
+              <englishWordAudio>moleculeE.m4a</englishWordAudio>
+              <spanishWordAudio>moleculaS.m4a</spanishWordAudio>
+              <englishWordText>Molecule</englishWordText>
+              <spanishWordText>Molécula</spanishWordText>
+              <expectedSelection>word</expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>molecule</expectedInput>
+          </vocabularyIntroductionWord>
+          <vocabularyIntroductionWord number="3">
+              <englishWordAudio>oxygenE.m4a</englishWordAudio>
+              <spanishWordAudio>oxígenoS.m4a</spanishWordAudio>
+              <englishWordText>Oxygen</englishWordText>
+              <spanishWordText>Oxígeno</spanishWordText>
+              <expectedSelection>word</expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>oxígeno</expectedInput>
+          </vocabularyIntroductionWord>
+          <vocabularyIntroductionWord number="4">
+              <englishWordAudio>oxygenE.m4a</englishWordAudio>
+              <spanishWordAudio>oxígenoS.m4a</spanishWordAudio>
+              <englishWordText>Oxygen</englishWordText>
+              <spanishWordText>Oxígeno</spanishWordText>
+              <expectedSelection>word</expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>oxygen</expectedInput>
+          </vocabularyIntroductionWord>
+          <vocabularyIntroductionWord number="5">
+              <englishWordAudio>atomsE.m4a</englishWordAudio>
+              <spanishWordAudio>átomosS.m4a</spanishWordAudio>
+              <englishWordText>Atoms</englishWordText>
+              <spanishWordText>Átomos</spanishWordText>
+              <expectedSelection>word</expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>átomos</expectedInput>
+          </vocabularyIntroductionWord>
+          <vocabularyIntroductionWord number="6">
+              <englishWordAudio>atomsE.m4a</englishWordAudio>
+              <spanishWordAudio>átomosS.m4a</spanishWordAudio>
+              <englishWordText>Atoms</englishWordText>
+              <spanishWordText>Átomos</spanishWordText>
+              <expectedSelection>word</expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>atoms</expectedInput>
+          </vocabularyIntroductionWord>
+          <vocabularyIntroductionWord number="7">
+              <englishWordAudio>carbonE.m4a</englishWordAudio>
+              <spanishWordAudio>carbonoS.m4a</spanishWordAudio>
+              <englishWordText>Carbon</englishWordText>
+              <spanishWordText>Carbono</spanishWordText>
+              <expectedSelection>word</expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>carbono</expectedInput>
+          </vocabularyIntroductionWord>
+          <vocabularyIntroductionWord number="8">
+              <englishWordAudio>carbonE.m4a</englishWordAudio>
+              <spanishWordAudio>carbonoS.m4a</spanishWordAudio>
+              <englishWordText>Carbon</englishWordText>
+              <spanishWordText>Carbono</spanishWordText>
+              <expectedSelection>word</expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>carbon</expectedInput>
+          </vocabularyIntroductionWord>
+          <vocabularyIntroductionWord number="9">
+              <englishWordAudio>energy.m4a</englishWordAudio>
+              <spanishWordAudio>energía.m4a</spanishWordAudio>
+              <englishWordText>Energy</englishWordText>
+              <spanishWordText>Energía</spanishWordText>
+              <expectedSelection>word</expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>energía</expectedInput>
+          </vocabularyIntroductionWord>
+          <vocabularyIntroductionWord number="10">
+              <englishWordAudio>energy.m4a</englishWordAudio>
+              <spanishWordAudio>energía.m4a</spanishWordAudio>
+              <englishWordText>Energy</englishWordText>
+              <spanishWordText>Energía</spanishWordText>
+              <expectedSelection>word</expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>energy</expectedInput>
+          </vocabularyIntroductionWord>
+          <vocabularyIntroductionWord number="11">
+              <englishWordAudio>lungs.m4a</englishWordAudio>
+              <spanishWordAudio>pulmones.m4a</spanishWordAudio>
+              <englishWordText>Lungs</englishWordText>
+              <spanishWordText>Pulmones</spanishWordText>
+              <expectedSelection>word</expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>pulmones</expectedInput>
+          </vocabularyIntroductionWord>
+          <vocabularyIntroductionWord number="12">
+              <englishWordAudio>lungs.m4a</englishWordAudio>
+              <spanishWordAudio>pulmones.m4a</spanishWordAudio>
+              <englishWordText>Lungs</englishWordText>
+              <spanishWordText>Pulmones</spanishWordText>
+              <expectedSelection>word</expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>lungs</expectedInput>
+          </vocabularyIntroductionWord>
+          <vocabularyIntroductionWord number="13">
+              <englishWordAudio>CEE_14.m4a</englishWordAudio>
+              <spanishWordAudio></spanishWordAudio>
+              <englishWordText></englishWordText>
+              <spanishWordText></spanishWordText>
+              <expectedSelection></expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>next</expectedInput>
+          </vocabularyIntroductionWord>
+      </vocabularyIntroduction>
+  </vocabularyIntroductions>
 </metadata>
