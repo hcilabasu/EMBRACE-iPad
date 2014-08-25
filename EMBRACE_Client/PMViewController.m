@@ -2861,7 +2861,7 @@ int language_condition = BILINGUAL;
         }
     }
     else {
-        if (stepsComplete || numSteps == 0) {
+        if (stepsComplete || numSteps == 0 || !allowInteractions) {
             //Logging added by James for User pressing the Next button
             [[ServerCommunicationController sharedManager] logUserNextButtonPressed:@"Next" :@"Tap" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
             
