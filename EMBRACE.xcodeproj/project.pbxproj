@@ -166,7 +166,6 @@
 		5C7FE03F19A6B1B500CBBE0E /* Introduction-to-Circulatory-Characters-Title.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FDFB219A6B1B500CBBE0E /* Introduction-to-Circulatory-Characters-Title.xhtml */; };
 		5C7FE04019A6B1B500CBBE0E /* Story1-Why-We-Breathe-IM-1.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FDFB319A6B1B500CBBE0E /* Story1-Why-We-Breathe-IM-1.xhtml */; };
 		5C7FE04119A6B1B500CBBE0E /* Story1-Why-We-Breathe-IM-2.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FDFB419A6B1B500CBBE0E /* Story1-Why-We-Breathe-IM-2.xhtml */; };
-		5C7FE04219A6B1B500CBBE0E /* Story1-Why-We-Breathe-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FDFB519A6B1B500CBBE0E /* Story1-Why-We-Breathe-Intro-S.xhtml */; };
 		5C7FE04319A6B1B500CBBE0E /* Story1-Why-We-Breathe-PM-1.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FDFB619A6B1B500CBBE0E /* Story1-Why-We-Breathe-PM-1.xhtml */; };
 		5C7FE04419A6B1B500CBBE0E /* Story1-Why-We-Breathe-PM-2.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FDFB719A6B1B500CBBE0E /* Story1-Why-We-Breathe-PM-2.xhtml */; };
 		5C7FE04519A6B1B500CBBE0E /* Story1-Why-We-Breathe-PM-3.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FDFB819A6B1B500CBBE0E /* Story1-Why-We-Breathe-PM-3.xhtml */; };
@@ -344,8 +343,14 @@
 		B996065519A7FCA300BF17F4 /* Story1-Why-We-Breathe-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = B996065419A7FCA300BF17F4 /* Story1-Why-We-Breathe-Intro-E.xhtml */; };
 		B996065719A7FD0F00BF17F4 /* Story4-Getting-More-Oxygen-for-the-Muscles-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = B996065619A7FD0F00BF17F4 /* Story4-Getting-More-Oxygen-for-the-Muscles-Intro-E.xhtml */; };
 		B996065919A7FD8500BF17F4 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = B996065819A7FD8500BF17F4 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-Intro-E.xhtml */; };
+		B9CE447F19AD32F3003564CC /* Story2-Getting-Ready-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = B9CE447E19AD32F3003564CC /* Story2-Getting-Ready-Intro-E.xhtml */; };
+		B9CE448119AD3612003564CC /* Story3-Cleaning-Up-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = B9CE448019AD3612003564CC /* Story3-Cleaning-Up-Intro-E.xhtml */; };
+		B9CE448319AD364F003564CC /* Story4-Who-is-the-Best-Animal-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = B9CE448219AD364F003564CC /* Story4-Who-is-the-Best-Animal-Intro-E.xhtml */; };
+		B9CE448519AD368D003564CC /* Story5-The-Wise-Owl-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = B9CE448419AD368D003564CC /* Story5-The-Wise-Owl-Intro-E.xhtml */; };
+		B9CE448719AD36DE003564CC /* Story6-Everyone-Helps-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = B9CE448619AD36DE003564CC /* Story6-Everyone-Helps-Intro-E.xhtml */; };
+		B9CE448919AD3738003564CC /* Story7-The-Best-Farm-Award-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = B9CE448819AD3738003564CC /* Story7-The-Best-Farm-Award-Intro-E.xhtml */; };
+		B9CE448B19AD4A81003564CC /* bestFarm.epub in Resources */ = {isa = PBXBuildFile; fileRef = B9CE448A19AD4A81003564CC /* bestFarm.epub */; };
 		C393881F195376490005279F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C393881E195376490005279F /* AudioToolbox.framework */; };
-		C3938821195CBB4B0005279F /* bestFarm.epub in Resources */ = {isa = PBXBuildFile; fileRef = C3938820195CBB4B0005279F /* bestFarm.epub */; };
 		C3B5214C19254B0C003FF639 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B5214919254B0C003FF639 /* Location.m */; };
 		C3B5214D19254B0C003FF639 /* Waypoint.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B5214B19254B0C003FF639 /* Waypoint.m */; };
 		C3B5215219254BA2003FF639 /* ActionStep.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B5214F19254BA2003FF639 /* ActionStep.m */; };
@@ -563,7 +568,6 @@
 		5C7FDFB219A6B1B500CBBE0E /* Introduction-to-Circulatory-Characters-Title.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Introduction-to-Circulatory-Characters-Title.xhtml"; sourceTree = "<group>"; };
 		5C7FDFB319A6B1B500CBBE0E /* Story1-Why-We-Breathe-IM-1.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Why-We-Breathe-IM-1.xhtml"; sourceTree = "<group>"; };
 		5C7FDFB419A6B1B500CBBE0E /* Story1-Why-We-Breathe-IM-2.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Why-We-Breathe-IM-2.xhtml"; sourceTree = "<group>"; };
-		5C7FDFB519A6B1B500CBBE0E /* Story1-Why-We-Breathe-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Why-We-Breathe-Intro-S.xhtml"; sourceTree = "<group>"; };
 		5C7FDFB619A6B1B500CBBE0E /* Story1-Why-We-Breathe-PM-1.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Why-We-Breathe-PM-1.xhtml"; sourceTree = "<group>"; };
 		5C7FDFB719A6B1B500CBBE0E /* Story1-Why-We-Breathe-PM-2.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Why-We-Breathe-PM-2.xhtml"; sourceTree = "<group>"; };
 		5C7FDFB819A6B1B500CBBE0E /* Story1-Why-We-Breathe-PM-3.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Why-We-Breathe-PM-3.xhtml"; sourceTree = "<group>"; };
@@ -744,8 +748,14 @@
 		B996065419A7FCA300BF17F4 /* Story1-Why-We-Breathe-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Why-We-Breathe-Intro-E.xhtml"; sourceTree = "<group>"; };
 		B996065619A7FD0F00BF17F4 /* Story4-Getting-More-Oxygen-for-the-Muscles-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Getting-More-Oxygen-for-the-Muscles-Intro-E.xhtml"; sourceTree = "<group>"; };
 		B996065819A7FD8500BF17F4 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-Cigarette-Smoke-Hurts-Your-Lungs-Intro-E.xhtml"; sourceTree = "<group>"; };
+		B9CE447E19AD32F3003564CC /* Story2-Getting-Ready-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story2-Getting-Ready-Intro-E.xhtml"; sourceTree = "<group>"; };
+		B9CE448019AD3612003564CC /* Story3-Cleaning-Up-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story3-Cleaning-Up-Intro-E.xhtml"; sourceTree = "<group>"; };
+		B9CE448219AD364F003564CC /* Story4-Who-is-the-Best-Animal-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Who-is-the-Best-Animal-Intro-E.xhtml"; sourceTree = "<group>"; };
+		B9CE448419AD368D003564CC /* Story5-The-Wise-Owl-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-The-Wise-Owl-Intro-E.xhtml"; sourceTree = "<group>"; };
+		B9CE448619AD36DE003564CC /* Story6-Everyone-Helps-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story6-Everyone-Helps-Intro-E.xhtml"; sourceTree = "<group>"; };
+		B9CE448819AD3738003564CC /* Story7-The-Best-Farm-Award-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story7-The-Best-Farm-Award-Intro-E.xhtml"; sourceTree = "<group>"; };
+		B9CE448A19AD4A81003564CC /* bestFarm.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = bestFarm.epub; path = EPUBs/bestFarm/bestFarm.epub; sourceTree = "<group>"; };
 		C393881E195376490005279F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		C3938820195CBB4B0005279F /* bestFarm.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = bestFarm.epub; sourceTree = SOURCE_ROOT; };
 		C3B5214819254B0C003FF639 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		C3B5214919254B0C003FF639 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		C3B5214A19254B0C003FF639 /* Waypoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Waypoint.h; sourceTree = "<group>"; };
@@ -904,8 +914,8 @@
 			children = (
 				5C7FE06619A7E43B00CBBE0E /* sounds */,
 				5C7FDF3F19A6B1B500CBBE0E /* EPUBs */,
-				C3938820195CBB4B0005279F /* bestFarm.epub */,
 				B93DF1A519AC34EE00240F45 /* circulatory.epub */,
+				B9CE448A19AD4A81003564CC /* bestFarm.epub */,
 				31953E501729ECC100570087 /* EMBRACE-Info.plist */,
 				31953E511729ECC100570087 /* InfoPlist.strings */,
 				31953E541729ECC100570087 /* main.m */,
@@ -1160,8 +1170,6 @@
 				5C7FDF7419A6B1B500CBBE0E /* Story1-Introduction-At-the-Farm-PM.xhtml */,
 				5C7FDF7519A6B1B500CBBE0E /* Story1-The-Contest-IM-1.xhtml */,
 				5C7FDF7619A6B1B500CBBE0E /* Story1-The-Contest-IM-2.xhtml */,
-				5C7FDF7719A6B1B500CBBE0E /* Story1-The-Contest-Intro-E.xhtml */,
-				5C7FDF7819A6B1B500CBBE0E /* Story1-The-Contest-Intro-S.xhtml */,
 				5C7FDF7919A6B1B500CBBE0E /* Story1-The-Contest-PM.xhtml */,
 				5C7FDF7A19A6B1B500CBBE0E /* Story1-The-Contest-Title.xhtml */,
 				5C7FDF7B19A6B1B500CBBE0E /* Story2-Getting-Ready-IM-1.xhtml */,
@@ -1188,6 +1196,14 @@
 				5C7FDF9019A6B1B500CBBE0E /* Story7-The-Best-Farm-Award-IM-2.xhtml */,
 				5C7FDF9119A6B1B500CBBE0E /* Story7-The-Best-Farm-Award-PM.xhtml */,
 				5C7FDF9219A6B1B500CBBE0E /* Story7-The-Best-Farm-Award-Title.xhtml */,
+				5C7FDF7719A6B1B500CBBE0E /* Story1-The-Contest-Intro-E.xhtml */,
+				5C7FDF7819A6B1B500CBBE0E /* Story1-The-Contest-Intro-S.xhtml */,
+				B9CE447E19AD32F3003564CC /* Story2-Getting-Ready-Intro-E.xhtml */,
+				B9CE448019AD3612003564CC /* Story3-Cleaning-Up-Intro-E.xhtml */,
+				B9CE448219AD364F003564CC /* Story4-Who-is-the-Best-Animal-Intro-E.xhtml */,
+				B9CE448419AD368D003564CC /* Story5-The-Wise-Owl-Intro-E.xhtml */,
+				B9CE448619AD36DE003564CC /* Story6-Everyone-Helps-Intro-E.xhtml */,
+				B9CE448819AD3738003564CC /* Story7-The-Best-Farm-Award-Intro-E.xhtml */,
 			);
 			path = Text;
 			sourceTree = "<group>";
@@ -1263,7 +1279,6 @@
 				5C7FDFB219A6B1B500CBBE0E /* Introduction-to-Circulatory-Characters-Title.xhtml */,
 				5C7FDFB319A6B1B500CBBE0E /* Story1-Why-We-Breathe-IM-1.xhtml */,
 				5C7FDFB419A6B1B500CBBE0E /* Story1-Why-We-Breathe-IM-2.xhtml */,
-				5C7FDFB519A6B1B500CBBE0E /* Story1-Why-We-Breathe-Intro-S.xhtml */,
 				5C7FDFB619A6B1B500CBBE0E /* Story1-Why-We-Breathe-PM-1.xhtml */,
 				5C7FDFB719A6B1B500CBBE0E /* Story1-Why-We-Breathe-PM-2.xhtml */,
 				5C7FDFB819A6B1B500CBBE0E /* Story1-Why-We-Breathe-PM-3.xhtml */,
@@ -1524,6 +1539,7 @@
 				5C7FE0F419A7E43C00CBBE0E /* BFCE1_6B.m4a in Resources */,
 				5C7FE03D19A6B1B500CBBE0E /* PMStyle.css in Resources */,
 				5C7FE15C19A7E43C00CBBE0E /* nidoS.m4a in Resources */,
+				B9CE448919AD3738003564CC /* Story7-The-Best-Farm-Award-Intro-E.xhtml in Resources */,
 				5C7FE06019A6B1B500CBBE0E /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-PM-1.xhtml in Resources */,
 				5C7FE05C19A6B1B500CBBE0E /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-7.xhtml in Resources */,
 				5C7FE10D19A7E43C00CBBE0E /* BFCS1_5.m4a in Resources */,
@@ -1556,6 +1572,7 @@
 				5C7FE10A19A7E43C00CBBE0E /* BFCS1_1G.m4a in Resources */,
 				5C7FE13219A7E43C00CBBE0E /* BFEE_21.m4a in Resources */,
 				5C7FE12A19A7E43C00CBBE0E /* BFEE_13.m4a in Resources */,
+				B9CE447F19AD32F3003564CC /* Story2-Getting-Ready-Intro-E.xhtml in Resources */,
 				5C7FE0ED19A7E43C00CBBE0E /* BFCE1_1G.m4a in Resources */,
 				5C7FE12C19A7E43C00CBBE0E /* BFEE_18A.m4a in Resources */,
 				5C7FE14819A7E43C00CBBE0E /* concursoS.m4a in Resources */,
@@ -1608,6 +1625,7 @@
 				5C7FE00419A6B1B500CBBE0E /* PMStyle.css in Resources */,
 				5C7FDFF419A6B1B500CBBE0E /* judge.png in Resources */,
 				5C7FE05119A6B1B500CBBE0E /* Story3-Muscles-Use-Oxygen-PM-2.xhtml in Resources */,
+				B9CE448719AD36DE003564CC /* Story6-Everyone-Helps-Intro-E.xhtml in Resources */,
 				5C7FE04119A6B1B500CBBE0E /* Story1-Why-We-Breathe-IM-2.xhtml in Resources */,
 				5C7FE04819A6B1B500CBBE0E /* Story2-The-Amazing-Heart-IM-2.xhtml in Resources */,
 				5C7FE12319A7E43C00CBBE0E /* BFE_S2.m4a in Resources */,
@@ -1620,7 +1638,6 @@
 				5C7FE05819A6B1B500CBBE0E /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-3.xhtml in Resources */,
 				5C7FE16219A7E43C00CBBE0E /* premioS.m4a in Resources */,
 				5C7FDFDF19A6B1B500CBBE0E /* bucket.png in Resources */,
-				C3938821195CBB4B0005279F /* bestFarm.epub in Resources */,
 				31953E5F1729ECC100570087 /* Default-568h@2x.png in Resources */,
 				5C7FE10819A7E43C00CBBE0E /* BFCE_REST.m4a in Resources */,
 				5C7FE16119A7E43C00CBBE0E /* penE.m4a in Resources */,
@@ -1647,6 +1664,7 @@
 				5C7FE03E19A6B1B500CBBE0E /* Stylesheet.css in Resources */,
 				5C7FE05A19A6B1B500CBBE0E /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-5.xhtml in Resources */,
 				5C7FE00D19A6B1B500CBBE0E /* Story1-The-Contest-Title.xhtml in Resources */,
+				B9CE448B19AD4A81003564CC /* bestFarm.epub in Resources */,
 				5C7FDFF719A6B1B500CBBE0E /* pumpkin_large.png in Resources */,
 				5C7FE13E19A7E43C00CBBE0E /* BFS_CH1.m4a in Resources */,
 				5C7FE05E19A6B1B500CBBE0E /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-IM-1.xhtml in Resources */,
@@ -1690,6 +1708,7 @@
 				5C7FE02419A6B1B500CBBE0E /* Story7-The-Best-Farm-Award-PM.xhtml in Resources */,
 				5C7FE13719A7E43C00CBBE0E /* BFEE_8A.m4a in Resources */,
 				5C7FE05719A6B1B500CBBE0E /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-2.xhtml in Resources */,
+				B9CE448519AD368D003564CC /* Story5-The-Wise-Owl-Intro-E.xhtml in Resources */,
 				5C7FE10919A7E43C00CBBE0E /* BFCS1_1.m4a in Resources */,
 				5C7FE01E19A6B1B500CBBE0E /* Story6-Everyone-Helps-IM-1.xhtml in Resources */,
 				5C7FE03C19A6B1B500CBBE0E /* IMStyle.css in Resources */,
@@ -1715,6 +1734,7 @@
 				5C7FE0FC19A7E43C00CBBE0E /* BFCE_22A.m4a in Resources */,
 				5C7FE02119A6B1B500CBBE0E /* Story6-Everyone-Helps-Title.xhtml in Resources */,
 				5C7FE12819A7E43C00CBBE0E /* BFEE_11A.m4a in Resources */,
+				B9CE448319AD364F003564CC /* Story4-Who-is-the-Best-Animal-Intro-E.xhtml in Resources */,
 				5C7FE02219A6B1B500CBBE0E /* Story7-The-Best-Farm-Award-IM-1.xhtml in Resources */,
 				5C7FDFF119A6B1B500CBBE0E /* hay_large.png in Resources */,
 				5C7FE03B19A6B1B500CBBE0E /* metadata.xml in Resources */,
@@ -1737,11 +1757,11 @@
 				5C7FE11419A7E43C00CBBE0E /* BFCS_14.m4a in Resources */,
 				5C7FE05419A6B1B500CBBE0E /* Story4-Getting-More-Oxygen-for-the-Muscles-IM-1.xhtml in Resources */,
 				5C7FE0EB19A7E43C00CBBE0E /* barnE.m4a in Resources */,
-				5C7FE04219A6B1B500CBBE0E /* Story1-Why-We-Breathe-Intro-S.xhtml in Resources */,
 				5C7FE14119A7E43C00CBBE0E /* brillanteS.m4a in Resources */,
 				5C7FDFE419A6B1B500CBBE0E /* comb.png in Resources */,
 				5C7FE00519A6B1B500CBBE0E /* Stylesheet.css in Resources */,
 				5C7FDFE219A6B1B500CBBE0E /* chicken_large.png in Resources */,
+				B9CE448119AD3612003564CC /* Story3-Cleaning-Up-Intro-E.xhtml in Resources */,
 				5C7FE02C19A6B1B500CBBE0E /* background_3.png in Resources */,
 				5C7FE16E19A7E43C00CBBE0E /* weedsE.m4a in Resources */,
 				5C7FE0F519A7E43C00CBBE0E /* BFCE_1.m4a in Resources */,
