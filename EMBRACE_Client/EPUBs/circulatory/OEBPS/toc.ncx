@@ -70,7 +70,7 @@
         <navLabel>
             <text>The Amazing Heart - Intro</text>
         </navLabel>
-        <content src="Text/Story2-The-Amazing-Heart-E.xhtml"/>
+        <content src="Text/Story2-The-Amazing-Heart-Intro-E.xhtml"/>
 		</navPoint>
    <navPoint class="PM_MODE" id="story2-PM-1">
 		  <navLabel>
