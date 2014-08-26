@@ -342,12 +342,12 @@
 		5CF994C019AC34550080C32F /* Story7-The-Best-Farm-Award-Title.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CF9946E19AC34550080C32F /* Story7-The-Best-Farm-Award-Title.xhtml */; };
 		5CF994C119AC34550080C32F /* toc.ncx in Resources */ = {isa = PBXBuildFile; fileRef = 5CF9946F19AC34550080C32F /* toc.ncx */; };
 		5CFA85AB1950EFDC00C7537D /* IntroductionStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFA85AA1950EFDC00C7537D /* IntroductionStep.m */; };
+		B93DF1A619AC34EE00240F45 /* circulatory.epub in Resources */ = {isa = PBXBuildFile; fileRef = B93DF1A519AC34EE00240F45 /* circulatory.epub */; };
 		B996065119A7FAC400BF17F4 /* Story2-The-Amazing-Heart-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = B996065019A7FAC400BF17F4 /* Story2-The-Amazing-Heart-Intro-E.xhtml */; };
 		B996065319A7FBF400BF17F4 /* Story3-Muscles-Use-Oxygen-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = B996065219A7FBF400BF17F4 /* Story3-Muscles-Use-Oxygen-Intro-E.xhtml */; };
 		B996065519A7FCA300BF17F4 /* Story1-Why-We-Breathe-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = B996065419A7FCA300BF17F4 /* Story1-Why-We-Breathe-Intro-E.xhtml */; };
 		B996065719A7FD0F00BF17F4 /* Story4-Getting-More-Oxygen-for-the-Muscles-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = B996065619A7FD0F00BF17F4 /* Story4-Getting-More-Oxygen-for-the-Muscles-Intro-E.xhtml */; };
 		B996065919A7FD8500BF17F4 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = B996065819A7FD8500BF17F4 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-Intro-E.xhtml */; };
-		B996065B19A806C700BF17F4 /* circulatory.epub in Resources */ = {isa = PBXBuildFile; fileRef = B996065A19A806C700BF17F4 /* circulatory.epub */; };
 		C393881F195376490005279F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C393881E195376490005279F /* AudioToolbox.framework */; };
 		C3938821195CBB4B0005279F /* bestFarm.epub in Resources */ = {isa = PBXBuildFile; fileRef = C3938820195CBB4B0005279F /* bestFarm.epub */; };
 		C3B5214C19254B0C003FF639 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B5214919254B0C003FF639 /* Location.m */; };
@@ -746,12 +746,12 @@
 		5CF9946F19AC34550080C32F /* toc.ncx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = toc.ncx; sourceTree = "<group>"; };
 		5CFA85A91950EFDC00C7537D /* IntroductionStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroductionStep.h; sourceTree = "<group>"; };
 		5CFA85AA1950EFDC00C7537D /* IntroductionStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroductionStep.m; sourceTree = "<group>"; };
+		B93DF1A519AC34EE00240F45 /* circulatory.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = circulatory.epub; path = EPUBs/circulatory/circulatory.epub; sourceTree = "<group>"; };
 		B996065019A7FAC400BF17F4 /* Story2-The-Amazing-Heart-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story2-The-Amazing-Heart-Intro-E.xhtml"; sourceTree = "<group>"; };
 		B996065219A7FBF400BF17F4 /* Story3-Muscles-Use-Oxygen-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story3-Muscles-Use-Oxygen-Intro-E.xhtml"; sourceTree = "<group>"; };
 		B996065419A7FCA300BF17F4 /* Story1-Why-We-Breathe-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Why-We-Breathe-Intro-E.xhtml"; sourceTree = "<group>"; };
 		B996065619A7FD0F00BF17F4 /* Story4-Getting-More-Oxygen-for-the-Muscles-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Getting-More-Oxygen-for-the-Muscles-Intro-E.xhtml"; sourceTree = "<group>"; };
 		B996065819A7FD8500BF17F4 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-Cigarette-Smoke-Hurts-Your-Lungs-Intro-E.xhtml"; sourceTree = "<group>"; };
-		B996065A19A806C700BF17F4 /* circulatory.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = circulatory.epub; path = EPUBs/circulatory/circulatory.epub; sourceTree = "<group>"; };
 		C393881E195376490005279F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		C3938820195CBB4B0005279F /* bestFarm.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = bestFarm.epub; sourceTree = SOURCE_ROOT; };
 		C3B5214819254B0C003FF639 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
@@ -913,7 +913,7 @@
 				5C7FE06619A7E43B00CBBE0E /* sounds */,
 				5C7FDF3F19A6B1B500CBBE0E /* EPUBs */,
 				C3938820195CBB4B0005279F /* bestFarm.epub */,
-				B996065A19A806C700BF17F4 /* circulatory.epub */,
+				B93DF1A519AC34EE00240F45 /* circulatory.epub */,
 				31953E501729ECC100570087 /* EMBRACE-Info.plist */,
 				31953E511729ECC100570087 /* InfoPlist.strings */,
 				31953E541729ECC100570087 /* main.m */,
