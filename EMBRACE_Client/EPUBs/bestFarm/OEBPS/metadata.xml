@@ -910,4 +910,264 @@
       </sentence>
     </story>
   </sentenceAnalyses>
+  <translations>
+      <translation>
+          <english>hay</english>
+          <spanish>paja</spanish>
+      </translation>
+      <translation>
+          <english>cart</english>
+          <spanish>carro</spanish>
+      </translation>
+      <translation>
+          <english>barn</english>
+          <spanish>establo</spanish>
+      </translation>
+      <translation>
+          <english>hayloft</english>
+          <spanish>pajar</spanish>
+      </translation>
+  </translations>
+  <introductions>
+      <introduction title= "Introduction to The Best Farm">
+          <introductionStep number="1">
+              <englishAudio>BFCE_1.m4a</englishAudio>
+              <spanishAudio>BFCS_1.m4a</spanishAudio>
+              <englishText>Hello!</englishText>
+              <spanishText>Hola!</spanishText>
+              <expectedSelection></expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>next</expectedInput>
+          </introductionStep>
+          <introductionStep number="2">
+              <englishAudio>BFCE_2AA.m4a</englishAudio>
+              <spanishAudio>BFCS_2AA.m4a</spanishAudio>
+              <englishText>The farmer's name is Manuel.</englishText>
+              <spanishText>El nombre del granjero es Manuel.</spanishText>
+              <expectedSelection></expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>next</expectedInput>
+          </introductionStep>
+          <introductionStep number="3">
+              <englishAudio>BFCE_2B.m4a</englishAudio>
+              <spanishAudio>BFCS_2B.m4a</spanishAudio>
+              <englishText>The farmer's name is Manuel.</englishText>
+              <spanishText>El nombre del granjero es Manuel.</spanishText>
+              <expectedSelection>word</expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>farmer</expectedInput>
+          </introductionStep>
+          <introductionStep number="4">
+              <englishAudio>BFCE_3.m4a</englishAudio>
+              <spanishAudio>BFCS_3.m4a</spanishAudio>
+              <englishText>The farmer's name is Manuel.</englishText>
+              <spanishText>El nombre del granjero es Manuel.</spanishText>
+              <expectedSelection>image</expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>farmer</expectedInput>
+          </introductionStep>
+          <introductionStep number="5">
+              <englishAudio>BFCE_4.m4a</englishAudio>
+              <spanishAudio>BFCS_4.m4a</spanishAudio>
+              <englishText>The farmer's name is Manuel.</englishText>
+              <spanishText>El nombre del granjero es Manuel.</spanishText>
+              <expectedSelection></expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>next</expectedInput>
+          </introductionStep>
+          <introductionStep number="6">
+              <englishAudio>BFCE_5A.m4a</englishAudio>
+              <spanishAudio>BFCS_5A.m4a</spanishAudio>
+              <englishText>The corral is a fenced area for animals.</englishText>
+              <spanishText>El corral es un sitio con una cerca para guardar a los animales.</spanishText>
+              <expectedSelection>word</expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>corral</expectedInput>
+          </introductionStep>
+          <introductionStep number="7">
+              <englishAudio>BFCE_6.m4a</englishAudio>
+              <spanishAudio>BFCS_6.m4a</spanishAudio>
+              <englishText>The corral is a fenced area for animals.</englishText>
+              <spanishText>El corral es un sitio con una cerca para guardar a los animales.</spanishText>
+              <expectedSelection>image</expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>corral</expectedInput>
+          </introductionStep>
+          <introductionStep number="8">
+              <englishAudio>BFEE_8A.m4a</englishAudio>
+              <spanishAudio>BFES_8A.m4a</spanishAudio>
+              <englishText>Manuel walks to the corral.</englishText>
+              <spanishText>Manuel va hacia el corral.</spanishText>
+              <expectedSelection>image</expectedSelection>
+              <expectedAction>move</expectedAction>
+              <expectedInput>farmergetIncorralArea</expectedInput>
+          </introductionStep>
+          <introductionStep number="9">
+              <englishAudio>BFCE_9.m4a</englishAudio>
+              <spanishAudio>BFCS_9.m4a</spanishAudio>
+              <englishText>Good job!</englishText>
+              <spanishText>Qué bien trabajas!</spanishText>
+              <expectedSelection></expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>next</expectedInput>
+          </introductionStep>
+          <introductionStep number="10">
+              <englishAudio>BFEE_10A.m4a</englishAudio>
+              <spanishAudio>BFES_10A.m4a</spanishAudio>
+              <englishText>Manuel puts the cow into the pen.</englishText>
+              <spanishText>Manuel pone a la vaca en el establo.</spanishText>
+              <expectedSelection>image</expectedSelection>
+              <expectedAction>group</expectedAction>
+              <expectedInput>farmerleadcow</expectedInput>
+          </introductionStep>
+          <introductionStep number="11">
+              <englishAudio>BFEE_11A.m4a</englishAudio>
+              <spanishAudio>BFES_11A.m4a</spanishAudio>
+              <englishText>Manuel puts the cow into the pen.</englishText>
+              <spanishText>Manuel pone a la vaca en el establo.</spanishText>
+              <expectedSelection>image</expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>menu</expectedInput>
+          </introductionStep>
+          <introductionStep number="12">
+              <englishAudio>BFEE_11.m4a</englishAudio>
+              <spanishAudio>BFES_11.m4a</spanishAudio>
+              <englishText>Manuel puts the cow into the pen.</englishText>
+              <spanishText>Manuel pone a la vaca el establo.</spanishText>
+              <expectedSelection>image</expectedSelection>
+              <expectedAction>move</expectedAction>
+              <expectedInput>cowgetInpen4</expectedInput>
+          </introductionStep>
+          <introductionStep number="13">
+              <englishAudio>BFCE_14.m4a</englishAudio>
+              <spanishAudio>BFCS_14.m4a</spanishAudio>
+              <englishText>Let's do more.</englishText>
+              <spanishText>Ahora en Inglés.</spanishText>
+              <expectedSelection></expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>next</expectedInput>
+          </introductionStep>
+          <introductionStep number="14">
+              <englishAudio>BFEE_18AA.m4a</englishAudio>
+              <spanishAudio></spanishAudio>
+              <englishText>Manuel gives the goat an apple to eat.</englishText>
+              <spanishText>Manuel gives the goat an apple to eat.</spanishText>
+              <expectedSelection>image</expectedSelection>
+              <expectedAction>group</expectedAction>
+              <expectedInput>farmergrabapple</expectedInput>
+          </introductionStep>
+          <introductionStep number="15">
+              <englishAudio>BFEE_20A.m4a</englishAudio>
+              <spanishAudio></spanishAudio>
+              <englishText>Manuel gives the goat an apple to eat.</englishText>
+              <spanishText>Manuel gives the goat an apple to eat.</spanishText>
+              <expectedSelection>image</expectedSelection>
+              <expectedAction>move</expectedAction>
+              <expectedInput>farmergiveapple</expectedInput>
+          </introductionStep>
+          <introductionStep number="16">
+              <englishAudio>BFEE_19A.m4a</englishAudio>
+              <spanishAudio></spanishAudio>
+              <englishText>Manuel gives the goat an apple to eat.</englishText>
+              <spanishText>Manuel gives the goat an apple to eat.</spanishText>
+              <expectedSelection>image</expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>menu</expectedInput>
+          </introductionStep>
+          <introductionStep number="17">
+              <englishAudio>BFCE_22A.m4a</englishAudio>
+              <spanishAudio></spanishAudio>
+              <englishText>You are ready!</englishText>
+              <spanishText>You are ready!</spanishText>
+              <expectedSelection></expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>next</expectedInput>
+          </introductionStep>
+      </introduction>
+  </introductions>
+  <vocabularyIntroductions>
+      <vocabularyIntroduction story="The Contest">
+          <vocabularyIntroductionWord number="1">
+              <englishWordAudio>BFCE1_1G.m4a</englishWordAudio>
+              <spanishWordAudio>BFCS1_1G.m4a</spanishWordAudio>
+              <englishWordText></englishWordText>
+              <spanishWordText></spanishWordText>
+              <expectedSelection>word</expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>corral</expectedInput>
+          </vocabularyIntroductionWord>
+          <vocabularyIntroductionWord number="2">
+              <englishWordAudio>corralE.m4a</englishWordAudio>
+              <spanishWordAudio>corralS.m4a</spanishWordAudio>
+              <englishWordText>Corral</englishWordText>
+              <spanishWordText>Corral</spanishWordText>
+              <expectedSelection>word</expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>corral</expectedInput>
+          </vocabularyIntroductionWord>
+          <vocabularyIntroductionWord number="3">
+              <englishWordAudio>judgeE.m4a</englishWordAudio>
+              <spanishWordAudio>juezS.m4a</spanishWordAudio>
+              <englishWordText>Judge</englishWordText>
+              <spanishWordText>Juez</spanishWordText>
+              <expectedSelection>word</expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>juez</expectedInput>
+          </vocabularyIntroductionWord>
+          <vocabularyIntroductionWord number="4">
+              <englishWordAudio>judgeE.m4a</englishWordAudio>
+              <spanishWordAudio>judgeS.m4a</spanishWordAudio>
+              <englishWordText>Judge</englishWordText>
+              <spanishWordText>Juez</spanishWordText>
+              <expectedSelection>word</expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>judge</expectedInput>
+          </vocabularyIntroductionWord>
+          <vocabularyIntroductionWord number="5">
+              <englishWordAudio>prizeE.m4a</englishWordAudio>
+              <spanishWordAudio>premioS.m4a</spanishWordAudio>
+              <englishWordText>Prize</englishWordText>
+              <spanishWordText>Premio</spanishWordText>
+              <expectedSelection>word</expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>premio</expectedInput>
+          </vocabularyIntroductionWord>
+          <vocabularyIntroductionWord number="6">
+              <englishWordAudio>prizeE.m4a</englishWordAudio>
+              <spanishWordAudio>premioS.m4a</spanishWordAudio>
+              <englishWordText>Prize</englishWordText>
+              <spanishWordText>Premio</spanishWordText>
+              <expectedSelection>word</expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>prize</expectedInput>
+          </vocabularyIntroductionWord>
+          <vocabularyIntroductionWord number="7">
+              <englishWordAudio>barnE.m4a</englishWordAudio>
+              <spanishWordAudio>establoS.m4a</spanishWordAudio>
+              <englishWordText>Barn</englishWordText>
+              <spanishWordText>Establo</spanishWordText>
+              <expectedSelection>word</expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>establo</expectedInput>
+          </vocabularyIntroductionWord>
+          <vocabularyIntroductionWord number="8">
+              <englishWordAudio>barnE.m4a</englishWordAudio>
+              <spanishWordAudio>establoS.m4a</spanishWordAudio>
+              <englishWordText>Barn</englishWordText>
+              <spanishWordText>Establo</spanishWordText>
+              <expectedSelection>word</expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>barn</expectedInput>
+          </vocabularyIntroductionWord>
+          <vocabularyIntroductionWord number="9">
+              <englishWordAudio>BFEE1_6.m4a</englishWordAudio>
+              <spanishWordAudio>BFES1_6.m4a</spanishWordAudio>
+              <englishWordText></englishWordText>
+              <spanishWordText></spanishWordText>
+              <expectedSelection></expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>next</expectedInput>
+          </vocabularyIntroductionWord>
+      </vocabularyIntroduction>
+  </vocabularyIntroductions>
 </metadata>

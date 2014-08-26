@@ -53,7 +53,7 @@
         [[ServerCommunicationController sharedManager] logContext:student];
         //Logging Completes Here.
         
-        self.title = @"Temp Condition";
+        self.title = @"Control English";
     }
     else
     {
