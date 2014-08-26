@@ -97,7 +97,7 @@ float const groupingProximity = 20.0;
 
 //In the bilingual introduction there are 13 steps in Spanish before switching to English only
 int const STEPS_TO_SWITCH_LANGUAGES = 14;
-int language_condition = BILINGUAL;
+int language_condition = ENGLISH;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -135,7 +135,7 @@ int language_condition = BILINGUAL;
     
     currentPage = nil;
     
-    condition = MENU;
+    condition = CONTROL;
     
     if (condition == CONTROL) {
         allowInteractions = FALSE; //control condition allows user to read only; no manipulations
