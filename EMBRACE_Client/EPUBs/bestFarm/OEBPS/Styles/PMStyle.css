@@ -3,7 +3,7 @@
 }
 
 .manipulationObject {
- 	position: absolute;
+    position: absolute;
 	z-index: 1;
 }
 
@@ -14,32 +14,33 @@
 
 .textbox {
 	width:300px;
-	height:208px;
 	font-family:"GillSans";
+  font-size:130%;
 	margin-top: 10px;
 	margin-right: 10px;
-	margin-left: 10px;
-	margin-bottom: 10px;
 	float: right;
 	position: relative;
 	border: 1px solid white;
 	background-color: white;
-	padding-left:30px;
+	padding-left: 30px;
 	padding-right:30px;
-	padding-top: 18px;
-	padding-bottom: 18px;
+  padding-top:15px;
+  padding-bottom:15px;
 	opacity: 0.75;
-	line-height: 175%;
-	text-align: justify;
-	font-size: 130%;
-	z-index: 1;
-	overflow: hidden;
 }
 
 html {
 	height: 100%;
 	width: 100%;
 	background: white;
+} 
+
+p:first-child {
+	padding-left:30px;
+}
+
+p {
+	display:inline;
 }
 
 body {
@@ -68,15 +69,4 @@ canvas {
 	top: 0px; 
 	left: 0px;
 	z-index: 0; 
-}
-
-.audible {
-	border-bottom-style:solid;
-	border-bottom-width:1.5px;
-
-}
-
-.col-2 {
-    -webkit-column-count: 2;
-    -webkit-column-gap: 10px;
 }

@@ -3,28 +3,40 @@
   <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
     <dc:creator opf:role="aut" opf:file-as="Unknown-1">Unknown-1</dc:creator>
 <dc:identifier id="BookId" opf:scheme="UUID">urn:uuid:eece7575-28d0-4489-9868-0084485e93e6</dc:identifier>
-    <dc:contributor opf:role="bkp">calibre (1.30.0) [http://calibre-ebook.com]</dc:contributor>
+    <dc:contributor opf:role="bkp">calibre (1.31.0) [http://calibre-ebook.com]</dc:contributor>
     <dc:date>2014-07-30T07:00:00+00:00</dc:date>
-    <dc:date opf:event="modification">2014-08-18</dc:date>
+    <dc:date opf:event="modification">2014-08-19</dc:date>
     <meta content="0.7.4" name="Sigil version"/>
-    <meta content="Best Farm, The" name="calibre:title_sort"/>
+    <meta content="Best Farm with pages" name="calibre:title_sort"/>
     <meta content="{&quot;Unknown-1&quot;: &quot;&quot;}" name="calibre:author_link_map"/>
     <meta content="{}" name="calibre:user_categories"/>
-  <dc:title>The Best Farm</dc:title>
+  <dc:title>Best Farm with pages</dc:title>
 <dc:language>en</dc:language>
-<dc:identifier opf:scheme="calibre">f6ffe253-5a09-4836-92af-177100b76c99</dc:identifier>
+<dc:identifier opf:scheme="calibre">cc82906e-720b-427f-b0a2-363e72fe2bb6</dc:identifier>
 </metadata>
   <manifest>
     <item href="Text/Introduction-to-Best-Farm-Characters-Title.xhtml" id="Introduction-to-Best-Farm-Characters-Title.xhtml" media-type="application/xhtml+xml"/>
-    <item href="Text/Story1-Introduction-At-the-Farm-PM.xhtml" id="story0-PM" media-type="application/xhtml+xml"/>
-    <item href="Text/Story1-The-Contest-Intro-S.xhtml" id="story1-Intro" media-type="application/xhtml+xml"/>
-    <item href="Text/Story1-The-Contest-PM.xhtml" id="story1-PM" media-type="application/xhtml+xml"/>
-    <item href="Text/Story2-Getting-Ready-PM.xhtml" id="story2-PM" media-type="application/xhtml+xml"/>
-    <item href="Text/Story3-Cleaning-Up-PM.xhtml" id="story3-PM" media-type="application/xhtml+xml"/>
-    <item href="Text/Story4-Who-is-the-Best-Animal-PM.xhtml" id="story4-PM" media-type="application/xhtml+xml"/>
-    <item href="Text/Story5-The-Wise-Owl-PM.xhtml" id="story5-PM" media-type="application/xhtml+xml"/>
-    <item href="Text/Story6-Everyone-Helps-PM.xhtml" id="story6-PM" media-type="application/xhtml+xml"/>
-    <item href="Text/Story7-The-Best-Farm-Award-PM.xhtml" id="story7-PM" media-type="application/xhtml+xml"/>
+    <item href="Text/Story1-The-Contest-Title.xhtml" id="Chapter1Title" media-type="application/xhtml+xml"/>
+    <item href="Text/Story2-Getting-Ready-Title.xhtml" id="Chapter2Title" media-type="application/xhtml+xml"/>
+    <item href="Text/Story3-Cleaning-Up-Title.xhtml" id="Chapter3Title" media-type="application/xhtml+xml"/>
+    <item href="Text/Story4-Who-is-the-Best-Animal-Title.xhtml" id="Chapter4Title" media-type="application/xhtml+xml"/>
+    <item href="Text/Story5-The-Wise-Owl-Title.xhtml" id="Chapter5Title" media-type="application/xhtml+xml"/>
+    <item href="Text/Story6-Everyone-Helps-Title.xhtml" id="Chapter6Title" media-type="application/xhtml+xml"/>
+    <item href="Text/Story7-The-Best-Farm-Award-Title.xhtml" id="Chapter7Title" media-type="application/xhtml+xml"/>
+    <item href="Text/Story1-The-Contest-PM-1.xhtml" id="story1-PM-1" media-type="application/xhtml+xml"/>
+    <item href="Text/Story1-The-Contest-PM-2.xhtml" id="story1-PM-2" media-type="application/xhtml+xml"/>
+    <item href="Text/Story2-Getting-Ready-PM-1.xhtml" id="story2-PM-1" media-type="application/xhtml+xml"/>
+    <item href="Text/Story2-Getting-Ready-PM-2.xhtml" id="story2-PM-2" media-type="application/xhtml+xml"/>
+    <item href="Text/Story3-Cleaning-Up-PM-1.xhtml" id="story3-PM-1" media-type="application/xhtml+xml"/>
+    <item href="Text/Story3-Cleaning-Up-PM-2.xhtml" id="story3-PM-2" media-type="application/xhtml+xml"/>
+    <item href="Text/Story4-Who-is-the-Best-Animal-PM-1.xhtml" id="story4-PM-1" media-type="application/xhtml+xml"/>
+    <item href="Text/Story4-Who-is-the-Best-Animal-PM-2.xhtml" id="story4-PM-2" media-type="application/xhtml+xml"/>
+    <item href="Text/Story5-The-Wise-Owl-PM-1.xhtml" id="story5-PM-1" media-type="application/xhtml+xml"/>
+    <item href="Text/Story5-The-Wise-Owl-PM-2.xhtml" id="story5-PM-2" media-type="application/xhtml+xml"/>
+    <item href="Text/Story6-Everyone-Helps-PM-1.xhtml" id="story6-PM-1" media-type="application/xhtml+xml"/>
+    <item href="Text/Story6-Everyone-Helps-PM-2.xhtml" id="story6-PM-2" media-type="application/xhtml+xml"/>
+    <item href="Text/Story7-The-Best-Farm-Award-PM-1.xhtml" id="story7-PM-1" media-type="application/xhtml+xml"/>
+    <item href="Text/Story7-The-Best-Farm-Award-PM-2.xhtml" id="story7-PM-2" media-type="application/xhtml+xml"/>
     <item href="Text/Story1-The-Contest-IM-1.xhtml" id="story1-IM-1" media-type="application/xhtml+xml"/>
     <item href="Text/Story1-The-Contest-IM-2.xhtml" id="story1-IM-2" media-type="application/xhtml+xml"/>
     <item href="Text/Story2-Getting-Ready-IM-1.xhtml" id="story2-IM-1" media-type="application/xhtml+xml"/>
@@ -39,14 +51,6 @@
     <item href="Text/Story6-Everyone-Helps-IM-2.xhtml" id="story6-IM-2" media-type="application/xhtml+xml"/>
     <item href="Text/Story7-The-Best-Farm-Award-IM-1.xhtml" id="story7-IM-1" media-type="application/xhtml+xml"/>
     <item href="Text/Story7-The-Best-Farm-Award-IM-2.xhtml" id="story7-IM-2" media-type="application/xhtml+xml"/>
-    <item href="Text/Story1-The-Contest-Intro-E.xhtml" id="id1" media-type="application/xhtml+xml"/>
-    <item href="Text/Story1-The-Contest-Title.xhtml" id="Chapter1Title" media-type="application/xhtml+xml"/>
-    <item href="Text/Story2-Getting-Ready-Title.xhtml" id="Chapter2Title" media-type="application/xhtml+xml"/>
-    <item href="Text/Story3-Cleaning-Up-Title.xhtml" id="Chapter3Title" media-type="application/xhtml+xml"/>
-    <item href="Text/Story4-Who-is-the-Best-Animal-Title.xhtml" id="Chapter4Title" media-type="application/xhtml+xml"/>
-    <item href="Text/Story5-The-Wise-Owl-Title.xhtml" id="Chapter5Title" media-type="application/xhtml+xml"/>
-    <item href="Text/Story6-Everyone-Helps-Title.xhtml" id="Chapter6Title" media-type="application/xhtml+xml"/>
-    <item href="Text/Story7-The-Best-Farm-Award-Title.xhtml" id="Chapter7Title" media-type="application/xhtml+xml"/>
     <item href="toc.ncx" id="ncx" media-type="application/x-dtbncx+xml"/>
     <item href="Styles/IMStyle.css" id="IMStyle.css" media-type="text/css"/>
     <item href="Styles/PMStyle.css" id="PMStyle.css" media-type="text/css"/>
@@ -92,15 +96,27 @@
   </manifest>
   <spine toc="ncx">
     <itemref idref="Introduction-to-Best-Farm-Characters-Title.xhtml"/>
-    <itemref idref="story0-PM"/>
-    <itemref idref="story1-Intro"/>
-    <itemref idref="story1-PM"/>
-    <itemref idref="story2-PM"/>
-    <itemref idref="story3-PM"/>
-    <itemref idref="story4-PM"/>
-    <itemref idref="story5-PM"/>
-    <itemref idref="story6-PM"/>
-    <itemref idref="story7-PM"/>
+    <itemref idref="Chapter1Title"/>
+    <itemref idref="Chapter2Title"/>
+    <itemref idref="Chapter3Title"/>
+    <itemref idref="Chapter4Title"/>
+    <itemref idref="Chapter5Title"/>
+    <itemref idref="Chapter6Title"/>
+    <itemref idref="Chapter7Title"/>
+    <itemref idref="story1-PM-1"/>
+    <itemref idref="story1-PM-2"/>
+    <itemref idref="story2-PM-1"/>
+    <itemref idref="story2-PM-2"/>
+    <itemref idref="story3-PM-1"/>
+    <itemref idref="story3-PM-2"/>
+    <itemref idref="story4-PM-1"/>
+    <itemref idref="story4-PM-2"/>
+    <itemref idref="story5-PM-1"/>
+    <itemref idref="story5-PM-2"/>
+    <itemref idref="story6-PM-1"/>
+    <itemref idref="story6-PM-2"/>
+    <itemref idref="story7-PM-1"/>
+    <itemref idref="story7-PM-2"/>
     <itemref idref="story1-IM-1"/>
     <itemref idref="story1-IM-2"/>
     <itemref idref="story2-IM-1"/>
@@ -115,8 +131,6 @@
     <itemref idref="story6-IM-2"/>
     <itemref idref="story7-IM-1"/>
     <itemref idref="story7-IM-2"/>
-    <itemref idref="id"/>
-    <itemref idref="id1"/>
   </spine>
   <guide/>
 </package>
