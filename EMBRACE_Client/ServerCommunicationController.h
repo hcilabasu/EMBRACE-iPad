@@ -36,6 +36,8 @@
 @property (nonatomic, strong) NSString *userNameString;
 @property(nonatomic, strong) NSString *studyConditionString;
 @property (nonatomic, strong) NSString *studyExperimenterString;
+@property (nonatomic, strong) NSString *studyParticipantString;
+@property (nonatomic, strong) NSString *studySchoolString;
 @property (nonatomic, strong) NSString *studyFileName;
 
 + (id)sharedManager;

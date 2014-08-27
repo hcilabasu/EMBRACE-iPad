@@ -22,8 +22,9 @@
 @property (nonatomic, strong) NSString *firstName;
 @property (nonatomic, strong) NSString *lastName;
 @property (nonatomic, strong) NSString *experimenterName;
+@property (nonatomic, strong) NSString *schoolName;
 
 
--(id)initWithName:(NSString*) first :(NSString*) last : (NSString *) experimenter;
+-(id)initWithName: (NSString*) school : (NSString*) first :(NSString*) last : (NSString *) experimenter;
 
 @end

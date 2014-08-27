@@ -38,6 +38,8 @@ DDXMLElement *nodeStudy;
 @synthesize studyDayString;
 @synthesize userNameString;
 @synthesize studyFileName;
+@synthesize studyParticipantString;
+@synthesize studySchoolString;
 
 #pragma mark Singleton Methods
 
@@ -158,11 +160,13 @@ DDXMLElement *nodeStudy;
     if(userdetails != nil) {
         
         //formats username string into "firstname lastname"
-        NSString *FileNameValue = [NSString stringWithFormat:@"%@ %@",[userdetails firstName],[userdetails lastName]];
+        NSString *FileNameValue = [NSString stringWithFormat:@"%@ %@ %@",[userdetails schoolName],[userdetails firstName],[userdetails lastName]];
         
         //sets global variables to be used by returnContext function
+        studySchoolString = [userdetails schoolName];
         studyExperimenterString = [userdetails experimenterName];
-        studyConditionString = [userdetails firstName];
+        studyConditionString = @"Study Condition"; //this will need to be hard coded for each study condition
+        studyParticipantString = [userdetails firstName];
         studyDayString = [userdetails lastName];
         studyFileName = FileNameValue;
     }
@@ -1197,6 +1201,7 @@ DDXMLElement *nodeStudy;
     
     //logging Context
     DDXMLElement *nodeContext = [DDXMLElement elementWithName:@"Context"];
+    DDXMLElement *nodeSchool = [DDXMLElement elementWithName:@"School" stringValue:studySchoolString];
     DDXMLElement *nodeDay = [DDXMLElement elementWithName:@"Day" stringValue:studyDayString];
     DDXMLElement *nodeCondition = [DDXMLElement elementWithName:@"Condition" stringValue:studyConditionString];
     DDXMLElement *nodeExperimenter = [DDXMLElement elementWithName:@"Experimenter" stringValue:studyExperimenterString];
@@ -1208,6 +1213,7 @@ DDXMLElement *nodeStudy;
     DDXMLElement *nodeTimestamp = [DDXMLElement elementWithName:@"Timestamp" stringValue:timeStampValue];
     
     //adding children nodes to context parent
+    [nodeContext addChild:nodeSchool];
     [nodeContext addChild:nodeCondition];
     [nodeContext addChild:nodeDay];
     [nodeContext addChild:nodeExperimenter];
