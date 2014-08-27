@@ -72,7 +72,9 @@
     <!--<relationship obj1Id="farmer" can="getIn" action="group" obj2Id="cart"/>-->
     <relationship obj1Id="farmer" can="getIn" action="group" obj2Id="tractor"/>
     <relationship obj1Id="farmer" can="getOff" action="ungroup" obj2Id="hay"/>
+    <relationship obj1Id="farmer" can="getOff" action="ungroup" obj2Id="cow"/>
     <relationship obj1Id="farmer" can="getOn" action="group" obj2Id="hay"/>
+    <relationship obj1Id="farmer" can="getOn" action="group" obj2Id="cow"/>
     <relationship obj1Id="farmer" can="getOut" action="ungroup" obj2Id="cart"/>
     <relationship obj1Id="farmer" can="getOut" action="ungroup" obj2Id="tractor"/>
     <relationship obj1Id="farmer" can="give" action="ungroup" obj2Id="apple"/>
@@ -129,6 +131,7 @@
     <relationship obj1Id="goat" can="getIn" action="group" obj2Id="pen"/>
     <relationship obj1Id="goat" can="getOut" action="ungroup" obj2Id="cart"/>
     <relationship obj1Id="goat" can="getOut" action="ungroup" obj2Id="pen"/>
+    <relationship obj1Id="goat" can="kick" action="group" obj2Id="apple"/>
     <!--<relationship obj1Id="goat" can="pickUp" action="group" obj2Id="apple"/>-->
     <relationship obj1Id="goat" can="putDown" action="ungroup" obj2Id="apple"/>
     <relationship obj1Id="goat" can="receive" action="disappear" obj2Id="apple"/>
@@ -219,6 +222,7 @@
     <hotspot objId="apple" action="grab" role="object" x="50%" y="50%"/>
     <hotspot objId="apple" action="getIn" role="subject" x="50%" y="50%"/>
     <hotspot objId="apple" action="give" role="object" x="50%" y="50%"/>
+    <hotspot objId="apple" action="kick" role="object" x="50%" y="50%"/>
     <hotspot objId="apple" action="lead" role="object" x="50%" y="50%"/>
     <hotspot objId="apple" action="pickUp" role="object" x="50%" y="50%"/>
     <hotspot objId="apple" action="receive" role="object" x="50%" y="50%"/>
@@ -289,6 +293,7 @@
     <hotspot objId="goat" action="getIn" role="subject" x="50%" y="50%"/>
     <hotspot objId="goat" action="getOn" role="object" x="50%" y="20%"/>
     <hotspot objId="goat" action="getOn" role="subject" x="50%" y="82%"/>
+    <hotspot objId="goat" action="kick" role="subject" x="40%" y="82%"/>
     <hotspot objId="goat" action="lead" role="object" x="10%" y="52%"/>
     <hotspot objId="goat" action="moveTo" role="object" x="100" y="100"/>
     <hotspot objId="goat" action="pickUp" role="subject" x="20%" y="52%"/>
@@ -458,6 +463,29 @@
     </story>
   </setups>
   <solutions>
+    <story title="Introduction to The Best Farm" activity_id="story0-PM">
+      <sentence number="1">
+          <step number="1">
+              <check obj1Id="farmer" action="getIn" locationId="corralArea"/>
+          </step>
+          <step number="2">
+              <group obj1Id="farmer" action="lead" obj2Id="cow"/>
+          </step>
+          <step number="3">
+              <check obj1Id="cow" action="getIn" locationId="pen4"/>
+              <ungroup obj1Id="farmer" action="release" obj2Id="cow"/>
+              <move obj1Id="cow" action="getIn" waypointId="insideCowPen"/>
+              <move obj1Id="pen4" action="close" waypointId="pen4Close"/>
+          </step>
+          <step number="4">
+              <group obj1Id="farmer" action="lead" obj2Id="apple"/>
+          </step>
+          <step number="5">
+              <transferAndDisappear obj1Id="farmer" action="give" obj2Id="apple"/>
+              <transferAndDisappear obj1Id="goat" action="receive" obj2Id="apple"/>
+          </step>
+      </sentence>
+    </story>
     <story title="The Contest" activity_id="story1-PM-1">
       <sentence number="2">
         <step number="1">
@@ -958,15 +986,6 @@
               <expectedInput>farmer</expectedInput>
           </introductionStep>
           <introductionStep number="4">
-              <englishAudio>BFCE_3.m4a</englishAudio>
-              <spanishAudio>BFCS_3.m4a</spanishAudio>
-              <englishText>The farmer's name is Manuel.</englishText>
-              <spanishText>El nombre del granjero es Manuel.</spanishText>
-              <expectedSelection>image</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>farmer</expectedInput>
-          </introductionStep>
-          <introductionStep number="5">
               <englishAudio>BFCE_4.m4a</englishAudio>
               <spanishAudio>BFCS_4.m4a</spanishAudio>
               <englishText>The farmer's name is Manuel.</englishText>
@@ -975,7 +994,7 @@
               <expectedAction>tap</expectedAction>
               <expectedInput>next</expectedInput>
           </introductionStep>
-          <introductionStep number="6">
+          <introductionStep number="5">
               <englishAudio>BFCE_5A.m4a</englishAudio>
               <spanishAudio>BFCS_5A.m4a</spanishAudio>
               <englishText>The corral is a fenced area for animals.</englishText>
@@ -984,25 +1003,25 @@
               <expectedAction>tap</expectedAction>
               <expectedInput>corral</expectedInput>
           </introductionStep>
-          <introductionStep number="7">
-              <englishAudio>BFCE_6.m4a</englishAudio>
-              <spanishAudio>BFCS_6.m4a</spanishAudio>
-              <englishText>The corral is a fenced area for animals.</englishText>
-              <spanishText>El corral es un sitio con una cerca para guardar a los animales.</spanishText>
-              <expectedSelection>image</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>corral</expectedInput>
+          <introductionStep number="6">
+              <englishAudio>BFEE_8B.m4a</englishAudio>
+              <spanishAudio>BFES_8B.m4a</spanishAudio>
+              <englishText>Manuel walks to the corral.</englishText>
+              <spanishText>Manuel va hacia el corral.</spanishText>
+              <expectedSelection></expectedSelection>
+              <expectedAction>move</expectedAction>
+              <expectedInput>next</expectedInput>
           </introductionStep>
-          <introductionStep number="8">
-              <englishAudio>BFEE_8A.m4a</englishAudio>
-              <spanishAudio>BFES_8A.m4a</spanishAudio>
+          <introductionStep number="7">
+              <englishAudio>BFEE_8.m4a</englishAudio>
+              <spanishAudio>BFES_8.m4a</spanishAudio>
               <englishText>Manuel walks to the corral.</englishText>
               <spanishText>Manuel va hacia el corral.</spanishText>
               <expectedSelection>image</expectedSelection>
               <expectedAction>move</expectedAction>
               <expectedInput>farmergetIncorralArea</expectedInput>
           </introductionStep>
-          <introductionStep number="9">
+          <introductionStep number="8">
               <englishAudio>BFCE_9.m4a</englishAudio>
               <spanishAudio>BFCS_9.m4a</spanishAudio>
               <englishText>Good job!</englishText>
@@ -1011,9 +1030,18 @@
               <expectedAction>tap</expectedAction>
               <expectedInput>next</expectedInput>
           </introductionStep>
+          <introductionStep number="9">
+              <englishAudio>BFEE_10B.m4a</englishAudio>
+              <spanishAudio>BFES_10B.m4a</spanishAudio>
+              <englishText>Manuel puts the cow into the pen.</englishText>
+              <spanishText>Manuel pone a la vaca en el establo.</spanishText>
+              <expectedSelection></expectedSelection>
+              <expectedAction>move</expectedAction>
+              <expectedInput>next</expectedInput>
+          </introductionStep>
           <introductionStep number="10">
-              <englishAudio>BFEE_10A.m4a</englishAudio>
-              <spanishAudio>BFES_10A.m4a</spanishAudio>
+              <englishAudio>BFEE_10.m4a</englishAudio>
+              <spanishAudio>BFES_10.m4a</spanishAudio>
               <englishText>Manuel puts the cow into the pen.</englishText>
               <spanishText>Manuel pone a la vaca en el establo.</spanishText>
               <expectedSelection>image</expectedSelection>
@@ -1112,7 +1140,7 @@
               <spanishWordText>Juez</spanishWordText>
               <expectedSelection>word</expectedSelection>
               <expectedAction>tap</expectedAction>
-              <expectedInput>juez</expectedInput>
+              <expectedInput>judge</expectedInput>
           </vocabularyIntroductionWord>
           <vocabularyIntroductionWord number="4">
               <englishWordAudio>judgeE.m4a</englishWordAudio>
@@ -1130,7 +1158,7 @@
               <spanishWordText>Premio</spanishWordText>
               <expectedSelection>word</expectedSelection>
               <expectedAction>tap</expectedAction>
-              <expectedInput>premio</expectedInput>
+              <expectedInput>prize</expectedInput>
           </vocabularyIntroductionWord>
           <vocabularyIntroductionWord number="6">
               <englishWordAudio>prizeE.m4a</englishWordAudio>
@@ -1148,7 +1176,7 @@
               <spanishWordText>Establo</spanishWordText>
               <expectedSelection>word</expectedSelection>
               <expectedAction>tap</expectedAction>
-              <expectedInput>establo</expectedInput>
+              <expectedInput>barn</expectedInput>
           </vocabularyIntroductionWord>
           <vocabularyIntroductionWord number="8">
               <englishWordAudio>barnE.m4a</englishWordAudio>

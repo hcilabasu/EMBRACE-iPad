@@ -135,7 +135,7 @@ int language_condition = ENGLISH;
     
     currentPage = nil;
     
-    condition = CONTROL;
+    condition = MENU;
     
     if (condition == CONTROL) {
         allowInteractions = FALSE; //control condition allows user to read only; no manipulations
@@ -229,7 +229,7 @@ int language_condition = ENGLISH;
     //[self createTextboxView];
     
     //Load the first vocabulary step for the current chapter (hard-coded for now)
-    if ([vocabularies objectForKey:chapterTitle] && [actualPage isEqualToString:currentPage]) {
+    if ([vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
         //The first word is in Spanish
         [self loadVocabStep];
     }
@@ -726,14 +726,13 @@ int language_condition = ENGLISH;
                 
                 [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]];
                 [self highlightObject:sentenceText:1.5];
-                //Bypass the image-tap steps which are found after each word-tap step on the metadata
-                // since they are not needed anymore
-                currentIntroStep+=2;
+                //Increment the current introduction step
+                currentIntroStep+=1;
                 [self performSelector:@selector(loadIntroStep) withObject:nil afterDelay:2];
             }
         }
         //Vocabulary introduction mode
-        else if ([vocabularies objectForKey:chapterTitle] && [actualPage isEqualToString:currentPage]) {
+        else if ([vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
             //If the user clicked on the correct word or image
             if (([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] &&
                  [sentenceText isEqualToString:[performedActions objectAtIndex:INPUT]]) ||
@@ -793,6 +792,11 @@ int language_condition = ENGLISH;
  */
 -(IBAction)swipeGesturePerformed:(UISwipeGestureRecognizer *)recognizer {
     NSLog(@"Swiper no swiping!");
+    
+    // Emergency swipe to bypass the vocab intros
+    if ([vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
+        [self loadNextPage];
+    }
     
     //Perform steps only if they exist for the sentence and have not been completed
     if (numSteps > 0 && !stepsComplete && allowInteractions) {
@@ -1049,8 +1053,7 @@ int language_condition = ENGLISH;
                             }
                             
                             //resets allRelationship arrray
-                            if([allRelationships count])
-                            {
+                            if([allRelationships count]) {
                                 [allRelationships removeAllObjects];
                             }
                             
@@ -1086,7 +1089,7 @@ int language_condition = ENGLISH;
                             }
                             //If more than 1 was found, prompt the user to disambiguate.
                             else if ([possibleInteractions count] > 1) {
-                                //The chapter title hard-coded for now
+                                //If we are on the general introduction
                                 if ([introductions objectForKey:chapterTitle] &&
                                     [[performedActions objectAtIndex:INPUT] isEqualToString:
                                      [NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep object2Id]]]) {
@@ -2843,7 +2846,8 @@ int language_condition = ENGLISH;
             }
         }
     }
-    else if ([vocabularies objectForKey:chapterTitle] && [actualPage isEqualToString:currentPage]) {
+    // If there are vocabs for the chapter and the page is an intro page
+    else if ([vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
         // If the user pressed next
         if ([[performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
             // Destroy the timer to avoid playing the previous sound

@@ -36,7 +36,7 @@
             <navLabel>
                 <text>The Contest - Intro</text>
             </navLabel>
-            <content src="Text/Story1-The-Contest-Intro-S.xhtml"/>
+            <content src="Text/Story1-The-Contest-Intro-E.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story1-PM-1">
 		  <navLabel>
@@ -253,7 +253,7 @@
     </pageTarget>
     <pageTarget id="p2" type="normal" value="2">
     	<navLabel><text>Chapter 1 - The Contest - Physical Manipulation 1</text></navLabel>
-		<content src="Text/Story1-The-Contest-Intro-S"/>
+		<content src="Text/Story1-The-Contest-Intro-E"/>
 	</pageTarget>
 	<pageTarget id="p2" type="normal" value="2">
     	<navLabel><text>Chapter 1 - The Contest - Physical Manipulation 1</text></navLabel>
