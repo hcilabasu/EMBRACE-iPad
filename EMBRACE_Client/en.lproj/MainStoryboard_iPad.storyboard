@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="KdN-Nn-VnM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="12F45" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="KdN-Nn-VnM">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -188,6 +188,46 @@
             </objects>
             <point key="canvasLocation" x="3344" y="-2887"/>
         </scene>
+        <!--Introduction View Controller-->
+        <scene sceneID="DiR-F6-feM">
+            <objects>
+                <viewController storyboardIdentifier="IntroductionViewController" id="vpk-2b-xlU" customClass="IntroductionViewController" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="n6G-66-K6C">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="kJg-hJ-FTe" userLabel="Bar Button Item - Back"/>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="021-vN-Gg0" kind="push" id="PGe-Vh-msr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="neN-60-WVH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="58E-Ms-BP4">
+                    <rect key="frame" x="0.0" y="0.0" width="768" height="1004"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <webView contentMode="scaleToFill" id="wuG-0a-zVO">
+                            <rect key="frame" x="0.0" y="0.0" width="768" height="1004"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </webView>
+                        <view contentMode="scaleToFill" id="11N-z8-sTe" customClass="UIButton">
+                            <rect key="frame" x="940" y="270" width="75" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <accessibility key="accessibilityConfiguration">
+                                <accessibilityTraits key="traits" none="YES" button="YES"/>
+                                <bool key="isElement" value="YES"/>
+                            </accessibility>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                </view>
+                <tapGestureRecognizer id="ihe-d0-VsW"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="3Ue-qx-NbZ"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="hPP-96-hab"/>
+                <pinchGestureRecognizer id="82z-SG-iIg"/>
+            </objects>
+            <point key="canvasLocation" x="2091" y="-1320"/>
+        </scene>
         <!--PMView Controller-->
         <scene sceneID="OH6-RJ-2K5">
             <objects>
@@ -207,6 +247,7 @@
                         <outlet property="bookView" destination="1u8-HC-lY8" id="1pb-zc-vPH"/>
                         <outlet property="panRecognizer" destination="iaN-Wz-vgI" id="DDs-ye-s0g"/>
                         <outlet property="pinchRecognizer" destination="IG0-TB-X5w" id="ZYE-6c-rPe"/>
+                        <outlet property="swipeRecognizer" destination="skg-93-SYv" id="moo-tZ-moZ"/>
                         <outlet property="tapRecognizer" destination="6LS-gR-BKA" id="Rdy-ac-T01"/>
                         <outlet property="view" destination="erm-JD-CyO" id="O9j-oO-dyD"/>
                     </connections>
@@ -216,7 +257,7 @@
                     <rect key="frame" x="0.0" y="280" width="1024" height="724"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <webView clipsSubviews="YES" contentMode="TopLeft" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1u8-HC-lY8">
+                        <webView clipsSubviews="YES" contentMode="TopLeft" scalesPageToFit="YES" id="1u8-HC-lY8">
                             <rect key="frame" x="0.0" y="0.0" width="1024" height="724"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <dataDetectorType key="dataDetectorTypes"/>
@@ -226,14 +267,12 @@
                                 <outletCollection property="gestureRecognizers" destination="iaN-Wz-vgI" appends="YES" id="dF4-Pw-syc"/>
                                 <outletCollection property="gestureRecognizers" destination="j3h-7r-Imw" appends="YES" id="C29-MC-Toz"/>
                                 <outletCollection property="gestureRecognizers" destination="IG0-TB-X5w" appends="YES" id="VGC-g7-Rrx"/>
+                                <outletCollection property="gestureRecognizers" destination="skg-93-SYv" appends="YES" id="n1g-vr-H1M"/>
                             </connections>
                         </webView>
-                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u4R-ML-16W">
-                            <rect key="frame" x="939" y="650" width="75" height="49"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="49" id="w3Q-gN-iaM"/>
-                                <constraint firstAttribute="width" constant="75" id="yVF-fx-ObQ"/>
-                            </constraints>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="u4R-ML-16W">
+                            <rect key="frame" x="940" y="270" width="75" height="25"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="30"/>
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" title="Next"/>
@@ -243,12 +282,6 @@
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="1u8-HC-lY8" firstAttribute="leading" secondItem="erm-JD-CyO" secondAttribute="leading" id="7Ta-Tj-a8V"/>
-                        <constraint firstItem="1u8-HC-lY8" firstAttribute="top" secondItem="erm-JD-CyO" secondAttribute="top" id="FRx-Ra-7dA"/>
-                        <constraint firstItem="1u8-HC-lY8" firstAttribute="bottom" secondItem="erm-JD-CyO" secondAttribute="bottom" id="WsJ-j4-RLJ"/>
-                        <constraint firstItem="1u8-HC-lY8" firstAttribute="trailing" secondItem="erm-JD-CyO" secondAttribute="trailing" id="l4a-se-sV5"/>
-                    </constraints>
                 </view>
                 <tapGestureRecognizer id="6LS-gR-BKA">
                     <connections>
@@ -274,6 +307,12 @@
                         <outlet property="delegate" destination="NLI-lb-tHz" id="8BB-lf-QsE"/>
                     </connections>
                 </pinchGestureRecognizer>
+                <swipeGestureRecognizer direction="down" numberOfTouchesRequired="2" id="skg-93-SYv">
+                    <connections>
+                        <action selector="swipeGesturePerformed:" destination="NLI-lb-tHz" id="uQI-1o-ZEN"/>
+                        <outlet property="delegate" destination="NLI-lb-tHz" id="9RE-BD-CmE"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2091" y="-3439"/>
         </scene>

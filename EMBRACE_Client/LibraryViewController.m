@@ -80,7 +80,7 @@
     //TODO: Connect student specific stuff later. Right now we'll just go through and disable all but the first one.
     
     //Currently defaulting to PM_MODE
-    currentMode = PM_MODE;    
+    currentMode = PM_MODE;
 }
 
 /*public override bool ShouldHighlightItem (UICollectionView collectionView, NSIndexPath indexPath)

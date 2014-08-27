@@ -17,6 +17,8 @@
 @synthesize waypoints;
 @synthesize alternateImages;
 @synthesize sentenceMetadata;
+@synthesize introductions;
+@synthesize vocabularies;
 
 - (id) init {
     if (self = [super init]) {
@@ -29,6 +31,8 @@
         sentenceMetadata = [[NSMutableSet alloc] init];
         useRelationships = TRUE;
         useConstraints = TRUE;
+        introductions = [[NSMutableDictionary alloc] init];
+        vocabularies = [[NSMutableDictionary alloc] init];
     }
     
     return self;
@@ -296,6 +300,22 @@
     }
     
     return nil;
+}
+
+- (void) addIntroduction:(NSString*) introTitle : (NSMutableArray*) introductionSteps {
+    [introductions setObject:introductionSteps forKey:introTitle];
+}
+
+- (NSMutableDictionary*) getIntroductions {
+    return introductions;
+}
+
+- (void) addVocabulary:(NSString*) storyTitle :(NSMutableArray*) words {
+    [vocabularies setObject:words forKey:storyTitle];
+}
+
+- (NSMutableDictionary*) getVocabularies{
+    return vocabularies;
 }
 
 @end

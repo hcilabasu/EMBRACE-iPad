@@ -15,15 +15,29 @@
 
 - (id) init {
     if (self = [super init]) {
-        setupSteps = [[NSMutableArray alloc] init];
+        setupSteps = [[NSMutableDictionary alloc] init];
         PMSolution = [[PhysicalManipulationSolution alloc] init];
     }
     
     return self;
 }
 
-- (void) addSetupStep:(ActionStep*)setupStep {
-    [setupSteps addObject:setupStep];
+//Add setup step to specific page with id
+- (void) addSetupStep:(ActionStep*)setupStep forPageId:(NSString*)pageId {
+    //Check to see if the key (page id) exists.
+    //If it doesn't, we add the key with a new NSMutableArray that will contain the setup step created.
+    NSMutableArray* setupStepsForKey = [setupSteps objectForKey:pageId];
+    
+    if (setupStepsForKey == nil) {
+        setupStepsForKey = [[NSMutableArray alloc] init];
+        [setupStepsForKey addObject:setupStep];
+        if ([pageId length] != 0)
+            [setupSteps setObject:setupStepsForKey forKey:pageId];
+    }
+    //If it does, we just add the setup step to the array.
+    else {
+        [setupStepsForKey addObject:setupStep];
+    }
 }
 
 @end

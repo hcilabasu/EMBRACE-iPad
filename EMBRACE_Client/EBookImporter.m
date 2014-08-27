@@ -571,6 +571,9 @@
         NSString* storyTitle = [[storySetupElement attributeForName:@"title"] stringValue];
         Chapter* chapter = [book getChapterWithTitle:storyTitle];
         
+        //Get page id
+        NSString* pageId = [[storySetupElement attributeForName:@"page_id"] stringValue];
+        
         if(chapter != nil) {
             PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity only
             
@@ -587,7 +590,7 @@
                 NSString* obj2Id = [[storySetupStep attributeForName:@"obj2Id"] stringValue];
                 
                 ActionStep* setupStep = [[ActionStep alloc] initAsSetupStep:stepType :obj1Id :obj2Id :action];
-                [PMActivity addSetupStep:setupStep];
+                [PMActivity addSetupStep:setupStep forPageId:pageId];
             }
         }
     }
@@ -630,6 +633,11 @@
                         NSString* action = [[step attributeForName:@"action"] stringValue];
                         
                         //TransferAndGroup, transferAndDisappear, group, disappear, and ungroup also have an obj2Id
+                        //* TransferAndGroup and transferAndDisappear steps come in pairs. The first is treated as an ungroup step,
+                        //while the second may be either group or disappear.
+                        //* Group means that two objects should be connected.
+                        //* Disappear means that when two objects are close together, one should disappear.
+                        //* Ungroup means that two objects that were connected should be separated.
                         if([[step name] isEqualToString:@"transferAndGroup"] || [[step name] isEqualToString:@"transferAndDisappear"] || [[step name] isEqualToString:@"group"] || [[step name] isEqualToString:@"disappear"] ||
                            [[step name] isEqualToString:@"ungroup"]) {
                             NSString* obj2Id = [[step attributeForName:@"obj2Id"] stringValue];
@@ -638,6 +646,8 @@
                             [PMSolution addSolutionStep:solutionStep];
                         }
                         //Move also has either an obj2Id or waypointId
+                        //* Move is performed automatically and means that an object should be moved to group with another object
+                        //or to a waypoint on the background.
                         else if([[step name] isEqualToString:@"move"]) {
                             if([step attributeForName:@"obj2Id"]) {
                                 NSString* obj2Id = [[step attributeForName:@"obj2Id"] stringValue];
@@ -653,14 +663,20 @@
                             }
                         }
                         //Check also has a locationId
+                        //* Check means that an object should be moved to be inside a location (defined by a bounding box) on
+                        //the background.
                         else if([[step name] isEqualToString:@"check"]) {
                             NSString* locationId = [[step attributeForName:@"locationId"] stringValue];
                             
                             ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :locationId :nil :action];
                             [PMSolution addSolutionStep:solutionStep];
                         }
-                        //swapImage only has obj1Id and action
-                        else if([[step name] isEqualToString:@"swapImage"]) {
+                        //SwapImage and checkAndSwap only have obj1Id and action
+                        //* SwapImage is performed automatically and means that an object's image should be changed to its alternate
+                        //image.
+                        //* CheckAndSwap means that the correct object must be tapped by the user before changing to its alternate
+                        //image.
+                        else if([[step name] isEqualToString:@"swapImage"] || [[step name] isEqualToString:@"checkAndSwap"]) {
                             ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :action];
                             [PMSolution addSolutionStep:solutionStep];
                         }
@@ -669,6 +685,137 @@
             }
         }
     }
-}
+ 
+    //Read in the introduction information
+    NSArray* introductionElements = [metadataDoc nodesForXPath:@"//introductions" error:nil];
     
+    if ([introductionElements count] > 0)
+    {
+        GDataXMLElement *introductionElement = (GDataXMLElement *) [introductionElements objectAtIndex:0];
+        
+        NSArray* introductions = [introductionElement elementsForName:@"introduction"];
+        
+        for(GDataXMLElement* introduction in introductions) {
+            //Get story title.
+            NSString* title = [[introduction attributeForName:@"title"] stringValue];
+            NSArray* steps = [introduction elementsForName:@"introductionStep"];
+            NSMutableArray* introSteps = [[NSMutableArray alloc] init];
+            
+            for(GDataXMLElement* step in steps) {
+                //Get step number
+                int stepNum = [[[step attributeForName:@"number"] stringValue] integerValue];
+                
+                //Get English audio file name
+                NSArray* englishAudioFileNames = [step elementsForName:@"englishAudio"];
+                GDataXMLElement *gdataElement = (GDataXMLElement *)[englishAudioFileNames objectAtIndex:0];
+                NSString* englishAudioFileName = gdataElement.stringValue;
+                
+                //Get Spanish audio file name
+                NSArray* spanishAudioFileNames = [step elementsForName:@"spanishAudio"];
+                gdataElement = (GDataXMLElement *)[spanishAudioFileNames objectAtIndex:0];
+                NSString* spanishAudioFileName = gdataElement.stringValue;
+                
+                //Get English text
+                NSArray* englishTexts = [step elementsForName:@"englishText"];
+                gdataElement = (GDataXMLElement *)[englishTexts objectAtIndex:0];
+                NSString* englishText = gdataElement.stringValue;
+                
+                //Get Spanish text
+                NSArray* spanishTexts = [step elementsForName:@"spanishText"];
+                gdataElement = (GDataXMLElement *)[spanishTexts objectAtIndex:0];
+                NSString* spanishText = gdataElement.stringValue;
+                
+                //Each step may or may not have an expected action, input and selection
+                //In some cases it could be the three of them e.g. tap farmer word
+                //In other cases it would just be two e.g. tap next
+                
+                //Get the expected selection
+                NSArray* expectedSelections = [step elementsForName:@"expectedSelection"];
+                gdataElement = (GDataXMLElement *)[expectedSelections objectAtIndex:0];
+                NSString* expectedSelection = gdataElement.stringValue;
+                
+                //Get expected action
+                NSArray* expectedActions = [step elementsForName:@"expectedAction"];
+                gdataElement = (GDataXMLElement *)[expectedActions objectAtIndex:0];
+                NSString* expectedAction = gdataElement.stringValue;
+                
+                //Get expected input
+                NSArray* expectedInputs = [step elementsForName:@"expectedInput"];
+                gdataElement = (GDataXMLElement *)[expectedInputs objectAtIndex:0];
+                NSString* expectedInput = gdataElement.stringValue;
+                
+                IntroductionStep* introStep = [[IntroductionStep alloc] initWithValues:stepNum:englishAudioFileName:spanishAudioFileName:englishText:spanishText:expectedSelection:expectedAction: expectedInput];
+                [introSteps addObject:introStep];
+                
+            }
+            [model addIntroduction:title:introSteps];
+        }
+    }
+    
+    //Read in the vocabulary information
+    NSArray* vocabIntroductionElements = [metadataDoc nodesForXPath:@"//vocabularyIntroductions" error:nil];
+    
+    if ([vocabIntroductionElements count] > 0)
+    {
+        GDataXMLElement *vocabIntroductionElement = (GDataXMLElement *) [vocabIntroductionElements objectAtIndex:0];
+        
+        NSArray* vocabIntroductions = [vocabIntroductionElement elementsForName:@"vocabularyIntroduction"];
+        
+        for(GDataXMLElement* vocabIntroduction in vocabIntroductions) {
+            //Get story title.
+            NSString* storyTitle = [[vocabIntroduction attributeForName:@"story"] stringValue];
+            NSArray* words = [vocabIntroduction elementsForName:@"vocabularyIntroductionWord"];
+            NSMutableArray* storyWords = [[NSMutableArray alloc] init];
+            
+            for(GDataXMLElement* word in words) {
+                //Get step number
+                int wordNum = [[[word attributeForName:@"number"] stringValue] integerValue];
+                
+                //Get English audio file name
+                NSArray* englishAudioFileNames = [word elementsForName:@"englishWordAudio"];
+                GDataXMLElement *gdataElement = (GDataXMLElement *)[englishAudioFileNames objectAtIndex:0];
+                NSString* englishAudioFileName = gdataElement.stringValue;
+                
+                //Get Spanish audio file name
+                NSArray* spanishAudioFileNames = [word elementsForName:@"spanishWordAudio"];
+                gdataElement = (GDataXMLElement *)[spanishAudioFileNames objectAtIndex:0];
+                NSString* spanishAudioFileName = gdataElement.stringValue;
+                
+                //Get English text
+                NSArray* englishTexts = [word elementsForName:@"englishWordText"];
+                gdataElement = (GDataXMLElement *)[englishTexts objectAtIndex:0];
+                NSString* englishText = gdataElement.stringValue;
+                
+                //Get Spanish text
+                NSArray* spanishTexts = [word elementsForName:@"spanishWordText"];
+                gdataElement = (GDataXMLElement *)[spanishTexts objectAtIndex:0];
+                NSString* spanishText = gdataElement.stringValue;
+                
+                //Each step may or may not have an expected action, input and selection
+                //In some cases it could be the three of them e.g. tap farmer word
+                //In other cases it would just be two e.g. tap next
+                
+                //Get the expected selection
+                NSArray* expectedSelections = [word elementsForName:@"expectedSelection"];
+                gdataElement = (GDataXMLElement *)[expectedSelections objectAtIndex:0];
+                NSString* expectedSelection = gdataElement.stringValue;
+                
+                //Get expected action
+                NSArray* expectedActions = [word elementsForName:@"expectedAction"];
+                gdataElement = (GDataXMLElement *)[expectedActions objectAtIndex:0];
+                NSString* expectedAction = gdataElement.stringValue;
+                
+                //Get expected input
+                NSArray* expectedInputs = [word elementsForName:@"expectedInput"];
+                gdataElement = (GDataXMLElement *)[expectedInputs objectAtIndex:0];
+                NSString* expectedInput = gdataElement.stringValue;
+                
+                VocabularyStep* vocabStep = [[VocabularyStep alloc] initWithValues:wordNum:englishAudioFileName:spanishAudioFileName:englishText:spanishText:expectedSelection:expectedAction: expectedInput];
+                [storyWords addObject:vocabStep];
+                
+            }
+            [model addVocabulary:storyTitle:storyWords];
+        }
+    }
+}
 @end

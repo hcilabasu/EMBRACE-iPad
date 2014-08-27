@@ -15,6 +15,9 @@
 #import "Waypoint.h"
 #import "AlternateImage.h"
 #import "Relationship.h"
+#import "Introduction.h"
+#import "IntroductionStep.h"
+#import "VocabularyStep.h"
 
 @interface InteractionModel : NSObject {
     NSMutableSet* relationships;
@@ -24,6 +27,8 @@
     NSMutableSet* waypoints;
     NSMutableSet* alternateImages;
     NSMutableSet* sentenceMetadata;
+    NSMutableDictionary* introductions;
+    NSMutableDictionary* vocabularies;
     
     BOOL useRelationships;
     BOOL useConstraints;
@@ -36,6 +41,8 @@
 @property (nonatomic, strong) NSMutableSet* waypoints;
 @property (nonatomic, strong) NSMutableSet* alternateImages;
 @property (nonatomic, strong) NSMutableSet* sentenceMetadata;
+@property (nonatomic, strong) NSMutableDictionary* introductions;
+@property (nonatomic, strong) NSMutableDictionary* vocabularies;
 
 - (void) addHotspot:(NSString*)objId :(NSString*)act :(NSString*)objRole :(CGPoint)loc; //add hotspot to object with objectId at location loc.
 
@@ -66,5 +73,13 @@
 - (Waypoint*) getWaypointWithId:(NSString*)wayptId;
 
 - (AlternateImage*) getAlternateImageWithAction:(NSString*)action;
+
+- (void) addIntroduction:(NSString*) storyTitle :(NSMutableArray*) introductionSteps;
+
+- (NSMutableDictionary*) getIntroductions;
+
+- (void) addVocabulary:(NSString*) storyTitle :(NSMutableArray*) words;
+
+- (NSMutableDictionary*) getVocabularies;
 
 @end

@@ -16,6 +16,12 @@ typedef enum modeTypes {
     IM_MODE
 } Mode;
 
+typedef enum modePhase {
+    ACTION,
+    INTRODUCTION,
+    VOCAB
+} Phase;
+
 @interface Activity : NSObject {
     NSString* activityId;
     NSString* activityTitle;
