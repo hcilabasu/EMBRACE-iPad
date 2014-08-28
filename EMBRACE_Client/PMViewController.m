@@ -1964,13 +1964,34 @@ int language_condition = ENGLISH;
                                     NSArray* hotspotsForInteraction;
                                     
                                     if([[relationshipBetweenObjects actionType] isEqualToString:@"group"]) {
-                                        PossibleInteraction* interaction = [[PossibleInteraction alloc] initWithInteractionType:GROUP];
+                                        //Check if the moving object is already grouped with another
+                                        //object
+                                        NSArray* groupedObjects = [self getObjectsGroupedWithObject:movingObjectId];
                                         
-                                        objects = [[NSArray alloc] initWithObjects:obj, objId, nil];
-                                        hotspotsForInteraction = [[NSArray alloc] initWithObjects:movingObjectHotspot, hotspot, nil];
-                                        
-                                        [interaction addConnection:GROUP :objects :hotspotsForInteraction];
-                                        [groupings addObject:interaction];
+                                        //Object is already grouped to another object
+                                        if (groupedObjects != nil) {
+                                            //Check if this new grouping meets constraints before
+                                            //creating the PossibleInteraction object
+                                            if ([self doesObjectMeetComboConstraints:movingObjectId :movingObjectHotspot]) {
+                                                PossibleInteraction* interaction = [[PossibleInteraction alloc] initWithInteractionType:GROUP];
+                                                
+                                                objects = [[NSArray alloc] initWithObjects:obj, objId, nil];
+                                                hotspotsForInteraction = [[NSArray alloc] initWithObjects:movingObjectHotspot, hotspot, nil];
+                                                
+                                                [interaction addConnection:GROUP :objects :hotspotsForInteraction];
+                                                [groupings addObject:interaction];
+                                            }
+                                        }
+                                        //Object is not grouped to another object
+                                        else {
+                                            PossibleInteraction* interaction = [[PossibleInteraction alloc] initWithInteractionType:GROUP];
+                                            
+                                            objects = [[NSArray alloc] initWithObjects:obj, objId, nil];
+                                            hotspotsForInteraction = [[NSArray alloc] initWithObjects:movingObjectHotspot, hotspot, nil];
+                                            
+                                            [interaction addConnection:GROUP :objects :hotspotsForInteraction];
+                                            [groupings addObject:interaction];
+                                        }
                                     }
                                     else if([[relationshipBetweenObjects actionType] isEqualToString:@"disappear"]) {
                                         PossibleInteraction* interaction = [[PossibleInteraction alloc] initWithInteractionType:DISAPPEAR];
@@ -2181,6 +2202,105 @@ int language_condition = ENGLISH;
     }
     
     return connectedHotspot;
+}
+
+/*
+ * Determines whether the potential connection is allowed to take place (i.e. whether the
+ * hotspot can be used) based on the combo constraints.
+ *
+ * Ex. A combo constraint may specify that the farmer may not use the pickUp
+ * and lead hotspots at the same time. This function will look up the farmer's combo
+ * constraints, determine which hotspot is currently in use, and check whether the connected
+ * (pickUp) and potential (lead) hotspots are both restricted by the constraint.
+ *
+ * TODO: Currently, this only checks if any 2 hotspots (one connected, one potential) can be
+ * used at the same time. It should be able to check cases such as 3 hotspots exactly
+ * (2 connected, 1 potential).
+ */
+-(BOOL) doesObjectMeetComboConstraints:(NSString*)connectedObject :(Hotspot*)potentialConnection {
+    //Records whether the potential and connected hotspots are present in the list
+    //of combo constraints for an object contained in a group with connectedObject.
+    //If they both are, then this object does not meet the combo constraints.
+    BOOL potentialConstraint = FALSE;
+    BOOL connectedConstraint = FALSE;
+    
+    //Get pairs of other objects grouped with this object.
+    NSArray* itemPairArray = [self getObjectsGroupedWithObject:connectedObject];
+    
+    if (itemPairArray != nil) {
+        for(NSString* pairStr in itemPairArray) {
+            //Create an array that will hold all the items in this group
+            NSMutableArray* groupedItemsArray = [[NSMutableArray alloc] init];
+            
+            //Separate the objects in this pair and add them to our array of all items in this group.
+            [groupedItemsArray addObjectsFromArray:[pairStr componentsSeparatedByString:@", "]];
+            
+            for (NSString* object in groupedItemsArray) {
+                //Get the combo constraints for the object
+                NSMutableArray* objectComboConstraints = [model getComboConstraintsForObjectId:object];
+                
+                //The object has combo constraints
+                if ([objectComboConstraints count] > 0) {
+                    //Get the hotspots for the object
+                    NSMutableArray* objectHotspots = [model getHotspotsForObjectId:object];
+                    
+                    for (Hotspot* hotspot in objectHotspots) {
+                        //Get the hotspot location
+                        CGPoint hotspotLocation = [self getHotspotLocation:hotspot];
+                        
+                        //Check if this hotspot is currently connected to another object
+                        NSString *isHotspotConnected = [NSString stringWithFormat:@"objectGroupedAtHotspot(%@, %f, %f)", object, hotspotLocation.x, hotspotLocation.y];
+                        NSString* isHotspotConnectedString = [bookView stringByEvaluatingJavaScriptFromString:isHotspotConnected];
+                        
+                        //Hotspot is connected to another object
+                        if (![isHotspotConnectedString isEqualToString:@""]) {
+                            for (ComboConstraint* comboConstraint in objectComboConstraints) {
+                                //Get the list of actions for the combo constraint
+                                NSMutableArray* comboActions = [comboConstraint comboActions];
+                                
+                                for (NSString* comboAction in comboActions) {
+                                    //Get the hotspot associated with the action, assuming the
+                                    //role as subject. Also get the hotspot location.
+                                    Hotspot* comboHotspot = [model getHotspotforObjectWithActionAndRole:[comboConstraint objId] :comboAction :@"subject"];
+                                    CGPoint comboHotspotLocation;
+                                    
+                                    if (comboHotspot != nil) {
+                                        comboHotspotLocation = [self getHotspotLocation:comboHotspot];
+                                    }
+                                    else {
+                                        //If no hotspot was found assuming the role as subject,
+                                        //then the role must be object.
+                                        comboHotspot = [model getHotspotforObjectWithActionAndRole:[comboConstraint objId] :comboAction :@"object"];
+                                        comboHotspotLocation = [self getHotspotLocation:comboHotspot];
+                                    }
+                                    
+                                    //Check if the potential hotspot matches an action on the list
+                                    if ([[potentialConnection action] isEqualToString:comboAction]) {
+                                        potentialConstraint = TRUE;
+                                    }
+                                    
+                                    //Check if the connected hotspot matches an action on the list
+                                    //based on its name or location
+                                    if ([[hotspot action] isEqualToString:comboAction]
+                                        || CGPointEqualToPoint(hotspotLocation, comboHotspotLocation)) {
+                                        connectedConstraint = TRUE;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    //Both potential and connected hotspots were present in the list
+    if (potentialConstraint && connectedConstraint) {
+        return FALSE; //fails to meet combo constraint
+    }
+    else {
+        return TRUE; //meets combo constraint
+    }
 }
 
 /*

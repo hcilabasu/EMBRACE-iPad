@@ -212,6 +212,16 @@
       <constraint objId="pen3" action="open" x="35%" y="39.25%" height="29%" width="12.1%"/>
       <!--<constraint objId="pen4" action="open" x="50%" y="56.35%" height="11.7%" width="33%"/>-->
     </movementConstraints>
+    <comboConstraints>
+        <constraint objId="farmer">
+            <comboAction action="grab"/>
+            <comboAction action="jumpOn"/>
+        </constraint>
+        <constraint objId="farmer">
+            <comboAction action="pickUp"/>
+            <comboAction action="lead"/>
+        </constraint>
+    </comboConstraints>
   </constraints>
   <hotspots>
     <hotspot objId="apple" action="appear" role="subject" x="50%" y="50%"/>

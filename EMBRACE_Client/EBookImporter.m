@@ -458,6 +458,7 @@
         
         [model addMovementConstraint:objectId :action :originX :originY :width :height];
     }
+    
     //Get order constraints
     NSArray *orderConstraintsElements = [constraintsElement elementsForName:@"orderConstraints"];
     GDataXMLElement *orderConstraintsElement = (GDataXMLElement *) [orderConstraintsElements objectAtIndex:0];
@@ -470,6 +471,31 @@
         NSString* action2 = [[constraint attributeForName:@"action2"] stringValue];
         
         [model addOrderConstraint:action1 :action2 :rule];
+    }
+    
+    //Get combo constraints
+    NSArray *comboConstraintsElements = [constraintsElement elementsForName:@"comboConstraints"];
+    GDataXMLElement *comboConstraintsElement = (GDataXMLElement *) [comboConstraintsElements objectAtIndex:0];
+    
+    NSArray *comboConstraints = [comboConstraintsElement elementsForName:@"constraint"];
+    
+    for (GDataXMLElement *constraint in comboConstraints) {
+        //Get the object that this constraint applies to
+        NSString* objectId = [[constraint attributeForName:@"objId"] stringValue];
+        
+        //Create an array to hold all the actions/hotspots that cannot be used at the same time
+        NSMutableArray* comboActs = [[NSMutableArray alloc] init];
+        
+        NSArray *comboActions = [constraint elementsForName:@"comboAction"];
+        
+        for (GDataXMLElement *comboAction in comboActions) {
+            //Get the action
+            NSString* action = [[comboAction attributeForName:@"action"] stringValue];
+            
+            [comboActs addObject:action]; //add the action to the array
+        }
+        
+        [model addComboConstraint:objectId :comboActs];
     }
     
     //Reading in the hotspot information.
