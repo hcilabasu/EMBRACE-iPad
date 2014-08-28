@@ -57,7 +57,7 @@
     }
     else
     {
-        student = [[Student alloc] initWithName:@"Study Code" :@"Study Day":@"Experimenter"];
+        student = [[Student alloc] initWithName:@"Study Code" :@"Study Day":@"Experimenter":@"School Day"];
         
         //added by James for xml logging
         //[[ServerCommunicationController sharedManager] logContext:student];

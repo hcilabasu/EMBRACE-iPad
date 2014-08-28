@@ -509,7 +509,7 @@ int language_condition = ENGLISH;
                 CGPoint waypointLocation = [self getWaypointLocation:waypoint];
                 
                 //Move the object
-                [self moveObject:object1Id :waypointLocation :hotspotLocation :false];
+                [self moveObject:object1Id :waypointLocation :hotspotLocation :false:waypointId];
                 
                 //Clear highlighting
                 NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
@@ -799,6 +799,7 @@ int language_condition = ENGLISH;
     //NSLog(@"imageAtPoint: %@", imageAtPoint);
 }
 
+
 /*
  * Swipe gesture. Only recognizes a downwards two finger swipe. Used to skip the current step
  * by performing it automatically according to the solution.
@@ -810,74 +811,6 @@ int language_condition = ENGLISH;
     if ([vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
         [self loadNextPage];
     }
-    
-    //Perform steps only if they exist for the sentence and have not been completed
-    if (numSteps > 0 && !stepsComplete && allowInteractions) {
-        //Get steps for current sentence
-        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-        
-        //Get current step to be completed
-        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
-        
-        //Current step is check and involves moving an object to a location
-        if ([[currSolStep stepType] isEqualToString:@"check"]) {
-            //Get information for check step type
-            NSString* objectId = [currSolStep object1Id];
-            NSString* action = [currSolStep action];
-            NSString* locationId = [currSolStep locationId];
-            
-            //Get hotspot location of object
-            Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:objectId :action :@"subject"];
-            CGPoint hotspotLocation = [self getHotspotLocationOnImage:hotspot];
-            
-            //Get location that hotspot should be inside
-            Location* location = [model getLocationWithId:locationId];
-            
-            //Calculate the x,y coordinates and the width and height in pixels from %
-            float locationX = [location.originX floatValue] / 100.0 * [bookView frame].size.width;
-            float locationY = [location.originY floatValue] / 100.0 * [bookView frame].size.height;
-            float locationWidth = [location.width floatValue] / 100.0 * [bookView frame].size.width;
-            float locationHeight = [location.height floatValue] / 100.0 * [bookView frame].size.height;
-            
-            //Calculate the center point of the location
-            float midX = locationX + (locationWidth / 2);
-            float midY = locationY + (locationHeight / 2);
-            CGPoint midpoint = CGPointMake(midX, midY);
-            
-            //Move the object to the center of the location
-            [self moveObject:objectId :midpoint :hotspotLocation :false];
-            
-            //Clear highlighting
-            NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
-            [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
-            
-            //Object should now be in the correct location, so the step can be incremented
-            if([self isHotspotInsideLocation]) {
-                [self incrementCurrentStep];
-            }
-        }
-        //Current step is checkAndSwap and involves swapping an image
-        else if ([[currSolStep stepType] isEqualToString:@"checkAndSwap"]) {
-            [self swapObjectImage];
-            [self incrementCurrentStep];
-        }
-        //Current step is either group, ungroup, disappear, or transference
-        else {
-            //Get the interaction to be performed
-            PossibleInteraction* interaction = [self getCorrectInteraction];
-            
-            //Perform the interaction and increment the step
-            [self checkSolutionForInteraction:interaction];
-        }
-    }
-}
-
-/*
- * Swipe gesture. Only recognizes a downwards two finger swipe. Used to skip the current step
- * by performing it automatically according to the solution.
- */
--(IBAction)swipeGesturePerformed:(UISwipeGestureRecognizer *)recognizer {
-    NSLog(@"Swiper no swiping!");
     
     //Perform steps only if they exist for the sentence and have not been completed
     if (numSteps > 0 && !stepsComplete && allowInteractions) {
@@ -1140,72 +1073,6 @@ int language_condition = ENGLISH;
                             
                             //resets allRelationship arrray
                             if([allRelationships count]) {
-                                [allRelationships removeAllObjects];
-                            }
-                            
-                            //If the object was dropped, check if it's overlapping with any other objects that it could interact with.
-                            NSMutableArray* possibleInteractions = [self getPossibleInteractions:useProximity];
-                            
-                            //No possible interactions were found
-                            if ([possibleInteractions count] == 0) {
-                                //Logging added by James for User Move Object to object
-                                [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : collisionObjectId:startLocation.x :startLocation.y :location.x :location.y :@"Move Object" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
-                                
-                                //Logging added by James for Verifying Move Object to object
-                                [[ServerCommunicationController sharedManager] logComputerVerification: @"Move to Object":false : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
-                                
-                                [self playErrorNoise];
-                                
-                                if (allowSnapback) {
-                                    //Snap the object back to its original location
-                                    [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
-                                    //wrong because two objects cant interact with each other reset object
-                                }
-                            }
-                            //If only 1 possible interaction was found, go ahead and perform that interaction if it's correct.
-                            if ([possibleInteractions count] == 1) {
-                                PossibleInteraction* interaction = [possibleInteractions objectAtIndex:0];
-                                
-                                //Logging added by James for User Move Object to object
-                                [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : collisionObjectId:startLocation.x :startLocation.y :location.x :location.y :@"Move Object" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
-                                
-                                //checks solution and accomplishes action trace
-                                [self checkSolutionForInteraction:interaction];
-                                //add logging move object to checkSolutionForInteraction
-                            }
-                            //If more than 1 was found, prompt the user to disambiguate.
-                            else if ([possibleInteractions count] > 1) {
-                                //If we are on the general introduction
-                                if ([introductions objectForKey:chapterTitle] &&
-                                    [[performedActions objectAtIndex:INPUT] isEqualToString:
-                                     [NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep object2Id]]]) {
-                                    // Destroy the timer to avoid playing the previous sound
-                                    //[timer invalidate];
-                                    //timer = nil;
-                                    currentIntroStep++;
-                                    [self loadIntroStep];
-                                }
-                                
-                                //First rank the interactions based on location to story.
-                                [self rankPossibleInteractions:possibleInteractions];
-                                
-                                //Logging added by James for User Move Object to object
-                                [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : collisionObjectId:startLocation.x :startLocation.y :location.x :location.y :@"Move Object" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
-                                
-                                //Logging added by James for Move Object to object Verification
-                                [[ServerCommunicationController sharedManager] logComputerVerification: @"Move To object":true : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
-                                
-                                //Populate the menu data source and expand the menu.
-                                [self populateMenuDataSource:possibleInteractions:allRelationships];
-                                
-                                if(!menuExpanded)
-                                    [self expandMenu];
-                                
-                                //add logging move object, correct, display menu options
-                            }
-                            //resets allRelationship arrray
-                            if([allRelationships count])
-                            {
                                 [allRelationships removeAllObjects];
                             }
                             
@@ -3181,36 +3048,6 @@ int language_condition = ENGLISH;
             if(currentSentence > totalSentences) {
                 [self loadNextPage];
                 //logging done in loadNextPage
-            }
-            else {
-                //Logging added by James for Computer moving to next sentence
-                [[ServerCommunicationController sharedManager] logNextSentenceNavigation:@"Next Button" :tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :@"Next Sentence" :bookTitle :chapterTitle : currentPage : tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
-            }
-        }
-        else {
-            //Play noise if not all steps have been completed
-            [self playErrorNoise];
-        }
-    }
-    else {
-        if (stepsComplete || numSteps == 0) {
-            //Logging added by James for User pressing the Next button
-            [[ServerCommunicationController sharedManager] logUserNextButtonPressed:@"Next" :@"Tap" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
-            
-            //added for logging stores current sentence before incrementing
-            NSString *tempLastSentence = [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence];
-            
-            //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
-            currentSentence ++;
-            
-            //Set up current sentence appearance and solution steps
-            [self setupCurrentSentence];
-            [self colorSentencesUponNext];
-            
-            //currentSentence is 1 indexed.
-            if(currentSentence > totalSentences) {
-                [self loadNextPage];//logging done in loadNextPage
-                
             }
             else {
                 //Logging added by James for Computer moving to next sentence
