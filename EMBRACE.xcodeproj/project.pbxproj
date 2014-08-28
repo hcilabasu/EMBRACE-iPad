@@ -251,6 +251,12 @@
 		5CF655B319ACFE2B000AC913 /* Story1-The-Contest-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CF655B219ACFE2B000AC913 /* Story1-The-Contest-Intro-E.xhtml */; };
 		5CF655B519AD46A3000AC913 /* BFEE_8B.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CF655B419AD46A3000AC913 /* BFEE_8B.m4a */; };
 		5CF655B719AD6927000AC913 /* BFEE_10B.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CF655B619AD6927000AC913 /* BFEE_10B.m4a */; };
+		5CF655BE19AEACF0000AC913 /* Story2-Getting-Ready-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CF655B819AEACF0000AC913 /* Story2-Getting-Ready-Intro-E.xhtml */; };
+		5CF655BF19AEACF0000AC913 /* Story3-Cleaning-Up-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CF655B919AEACF0000AC913 /* Story3-Cleaning-Up-Intro-E.xhtml */; };
+		5CF655C019AEACF0000AC913 /* Story4-Who-is-the-Best-Animal-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CF655BA19AEACF0000AC913 /* Story4-Who-is-the-Best-Animal-Intro-E.xhtml */; };
+		5CF655C119AEACF0000AC913 /* Story5-The-Wise-Owl-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CF655BB19AEACF0000AC913 /* Story5-The-Wise-Owl-Intro-E.xhtml */; };
+		5CF655C219AEACF0000AC913 /* Story6-Everyone-Helps-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CF655BC19AEACF0000AC913 /* Story6-Everyone-Helps-Intro-E.xhtml */; };
+		5CF655C319AEACF0000AC913 /* Story7-The-Best-Farm-Award-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CF655BD19AEACF0000AC913 /* Story7-The-Best-Farm-Award-Intro-E.xhtml */; };
 		5CF9947019AC34550080C32F /* container.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5CF9941A19AC34550080C32F /* container.xml */; };
 		5CF9947119AC34550080C32F /* mimetype in Resources */ = {isa = PBXBuildFile; fileRef = 5CF9941B19AC34550080C32F /* mimetype */; };
 		5CF9947219AC34550080C32F /* content.opf in Resources */ = {isa = PBXBuildFile; fileRef = 5CF9941D19AC34550080C32F /* content.opf */; };
@@ -651,6 +657,12 @@
 		5CF655B219ACFE2B000AC913 /* Story1-The-Contest-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-The-Contest-Intro-E.xhtml"; sourceTree = "<group>"; };
 		5CF655B419AD46A3000AC913 /* BFEE_8B.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFEE_8B.m4a; path = EMBRACE_Client/sounds/BFEE_8B.m4a; sourceTree = SOURCE_ROOT; };
 		5CF655B619AD6927000AC913 /* BFEE_10B.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFEE_10B.m4a; path = EMBRACE_Client/sounds/BFEE_10B.m4a; sourceTree = SOURCE_ROOT; };
+		5CF655B819AEACF0000AC913 /* Story2-Getting-Ready-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story2-Getting-Ready-Intro-E.xhtml"; sourceTree = "<group>"; };
+		5CF655B919AEACF0000AC913 /* Story3-Cleaning-Up-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story3-Cleaning-Up-Intro-E.xhtml"; sourceTree = "<group>"; };
+		5CF655BA19AEACF0000AC913 /* Story4-Who-is-the-Best-Animal-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Who-is-the-Best-Animal-Intro-E.xhtml"; sourceTree = "<group>"; };
+		5CF655BB19AEACF0000AC913 /* Story5-The-Wise-Owl-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-The-Wise-Owl-Intro-E.xhtml"; sourceTree = "<group>"; };
+		5CF655BC19AEACF0000AC913 /* Story6-Everyone-Helps-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story6-Everyone-Helps-Intro-E.xhtml"; sourceTree = "<group>"; };
+		5CF655BD19AEACF0000AC913 /* Story7-The-Best-Farm-Award-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story7-The-Best-Farm-Award-Intro-E.xhtml"; sourceTree = "<group>"; };
 		5CF9941A19AC34550080C32F /* container.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = container.xml; sourceTree = "<group>"; };
 		5CF9941B19AC34550080C32F /* mimetype */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mimetype; sourceTree = "<group>"; };
 		5CF9941D19AC34550080C32F /* content.opf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = content.opf; sourceTree = "<group>"; };
@@ -1428,6 +1440,12 @@
 		5CF9944A19AC34550080C32F /* Text */ = {
 			isa = PBXGroup;
 			children = (
+				5CF655B819AEACF0000AC913 /* Story2-Getting-Ready-Intro-E.xhtml */,
+				5CF655B919AEACF0000AC913 /* Story3-Cleaning-Up-Intro-E.xhtml */,
+				5CF655BA19AEACF0000AC913 /* Story4-Who-is-the-Best-Animal-Intro-E.xhtml */,
+				5CF655BB19AEACF0000AC913 /* Story5-The-Wise-Owl-Intro-E.xhtml */,
+				5CF655BC19AEACF0000AC913 /* Story6-Everyone-Helps-Intro-E.xhtml */,
+				5CF655BD19AEACF0000AC913 /* Story7-The-Best-Farm-Award-Intro-E.xhtml */,
 				5CF655B219ACFE2B000AC913 /* Story1-The-Contest-Intro-E.xhtml */,
 				5CF655B019AC4BB4000AC913 /* Story1-The-Contest-Intro-S.xhtml */,
 				5CF655AE19AC49C2000AC913 /* Story1-Introduction-At-the-Farm-PM.xhtml */,
@@ -1593,6 +1611,7 @@
 				5CF994A419AC34550080C32F /* Story2-Getting-Ready-IM-2.xhtml in Resources */,
 				5CF9948D19AC34550080C32F /* pig_large.png in Resources */,
 				5C7FE16319A7E43C00CBBE0E /* prizeE.m4a in Resources */,
+				5CF655C219AEACF0000AC913 /* Story6-Everyone-Helps-Intro-E.xhtml in Resources */,
 				5C7FE03619A6B1B500CBBE0E /* p2_healthy_cilia.png in Resources */,
 				5C7FE10A19A7E43C00CBBE0E /* BFCS1_1G.m4a in Resources */,
 				5C7FE13219A7E43C00CBBE0E /* BFEE_21.m4a in Resources */,
@@ -1616,6 +1635,7 @@
 				5CF9949119AC34550080C32F /* Story-1-The-Contest.png in Resources */,
 				5C7FE04D19A6B1B500CBBE0E /* Story2-The-Amazing-Heart-Title.xhtml in Resources */,
 				5C7FE10419A7E43C00CBBE0E /* BFCE_6.m4a in Resources */,
+				5CF655C119AEACF0000AC913 /* Story5-The-Wise-Owl-Intro-E.xhtml in Resources */,
 				5C7FE0F319A7E43C00CBBE0E /* BFCE1_6A.m4a in Resources */,
 				5CF9947719AC34550080C32F /* cart_large.png in Resources */,
 				5C7FE14519A7E43C00CBBE0E /* carretaS.m4a in Resources */,
@@ -1644,6 +1664,7 @@
 				31953E5D1729ECC100570087 /* Default@2x.png in Resources */,
 				5C7FE04B19A6B1B500CBBE0E /* Story2-The-Amazing-Heart-PM-3.xhtml in Resources */,
 				5C7FE16719A7E43C00CBBE0E /* saltoS.m4a in Resources */,
+				5CF655BF19AEACF0000AC913 /* Story3-Cleaning-Up-Intro-E.xhtml in Resources */,
 				5CF9948319AC34550080C32F /* farm_pen.png in Resources */,
 				5C7FE10E19A7E43C00CBBE0E /* BFCS1_6.m4a in Resources */,
 				5C7FE15319A7E43C00CBBE0E /* hayE.m4a in Resources */,
@@ -1702,9 +1723,11 @@
 				5C7FE14A19A7E43C00CBBE0E /* corralE.m4a in Resources */,
 				5CF9947819AC34550080C32F /* cat_large.png in Resources */,
 				5C7FE0F119A7E43C00CBBE0E /* BFCE1_5.m4a in Resources */,
+				5CF655BE19AEACF0000AC913 /* Story2-Getting-Ready-Intro-E.xhtml in Resources */,
 				5C7FE12919A7E43C00CBBE0E /* BFEE_12.m4a in Resources */,
 				5C7FE06419A6B1B500CBBE0E /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-Title.xhtml in Resources */,
 				5C7FE04919A6B1B500CBBE0E /* Story2-The-Amazing-Heart-PM-1.xhtml in Resources */,
+				5CF655C319AEACF0000AC913 /* Story7-The-Best-Farm-Award-Intro-E.xhtml in Resources */,
 				5CF655B519AD46A3000AC913 /* BFEE_8B.m4a in Resources */,
 				5C7FE0F019A7E43C00CBBE0E /* BFCE1_4.m4a in Resources */,
 				5C7FE0F819A7E43C00CBBE0E /* BFCE_14.m4a in Resources */,
@@ -1714,6 +1737,7 @@
 				5C7FE16B19A7E43C00CBBE0E /* trofeoS.m4a in Resources */,
 				5C7FE11F19A7E43C00CBBE0E /* BFCS_9.m4a in Resources */,
 				5C7FE14619A7E43C00CBBE0E /* cartE.m4a in Resources */,
+				5CF655C019AEACF0000AC913 /* Story4-Who-is-the-Best-Animal-Intro-E.xhtml in Resources */,
 				5C7FE13119A7E43C00CBBE0E /* BFEE_20A.m4a in Resources */,
 				5CF9949719AC34550080C32F /* Story-7-The-Best-Farm-Award.png in Resources */,
 				5CF9948619AC34550080C32F /* farmer_large.png in Resources */,
