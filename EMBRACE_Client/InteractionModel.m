@@ -116,6 +116,15 @@
 }
 
 /*
+ * Adds a ComboConstraint tied to a specific object id with a list of actions/hotspots
+ * that cannot be used simultaneously
+ */
+- (void) addComboConstraint:(NSString*)objectId :(NSMutableArray*)comboActs {
+    Constraint *constraint = [[ComboConstraint alloc] initWithValues:objectId :comboActs];
+    [constraints addObject:constraint];
+}
+
+/*
  * Returns the MovementConstraint tied to the specified object id
  */
 - (NSMutableArray*) getMovementConstraintsForObjectId:(NSString*)objId {
@@ -131,6 +140,24 @@
     }
 
     return movementConstraintsForObject;
+}
+
+/*
+ * Returns the ComboConstraint tied to the specified object id
+ */
+- (NSMutableArray*) getComboConstraintsForObjectId:(NSString*)objId {
+    NSMutableArray* comboConstraintsForObject = [[NSMutableArray alloc] init];
+    
+    for (Constraint* constraint in constraints) {
+        if ([constraint class] == [ComboConstraint class]) {
+            ComboConstraint *cConstraint = (ComboConstraint*)constraint;
+            
+            if ([[cConstraint objId] isEqualToString:objId])
+                [comboConstraintsForObject addObject:cConstraint];
+        }
+    }
+    
+    return comboConstraintsForObject;
 }
 
 /* Add a hotspot to the dictionary with object ID: objId, action act, object role, orjRole and

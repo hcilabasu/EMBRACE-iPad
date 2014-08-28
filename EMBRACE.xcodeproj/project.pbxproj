@@ -752,7 +752,6 @@
 		B996065419A7FCA300BF17F4 /* Story1-Why-We-Breathe-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Why-We-Breathe-Intro-E.xhtml"; sourceTree = "<group>"; };
 		B996065619A7FD0F00BF17F4 /* Story4-Getting-More-Oxygen-for-the-Muscles-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Getting-More-Oxygen-for-the-Muscles-Intro-E.xhtml"; sourceTree = "<group>"; };
 		B996065819A7FD8500BF17F4 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-Cigarette-Smoke-Hurts-Your-Lungs-Intro-E.xhtml"; sourceTree = "<group>"; };
-		B996065A19A806C700BF17F4 /* circulatory.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = circulatory.epub; path = EPUBs/circulatory/circulatory.epub; sourceTree = "<group>"; };
 		C393881E195376490005279F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		C3938820195CBB4B0005279F /* bestFarm.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = bestFarm.epub; sourceTree = SOURCE_ROOT; };
 		C3B45C11197EE21D003CE36D /* circulatory.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = circulatory.epub; sourceTree = SOURCE_ROOT; };
@@ -930,7 +929,7 @@
 				5C7FDF3F19A6B1B500CBBE0E /* EPUBs */,
 				C3B45C11197EE21D003CE36D /* circulatory.epub */,
 				C3938820195CBB4B0005279F /* bestFarm.epub */,
-				B996065A19A806C700BF17F4 /* circulatory.epub */,
+				C3B45CF419AC3E52003CE36D /* circulatory.epub */,
 				31953E501729ECC100570087 /* EMBRACE-Info.plist */,
 				31953E511729ECC100570087 /* InfoPlist.strings */,
 				31953E541729ECC100570087 /* main.m */,
@@ -1082,6 +1081,8 @@
 				C3B5214B19254B0C003FF639 /* Waypoint.m */,
 				C3D79466196B1EC9004C26ED /* AlternateImage.h */,
 				C3D79467196B1EC9004C26ED /* AlternateImage.m */,
+				C3B45CF619AD33F6003CE36D /* ComboConstraint.h */,
+				C3B45CF719AD33F6003CE36D /* ComboConstraint.m */,
 			);
 			name = "Interaction Model";
 			sourceTree = "<group>";
@@ -1720,6 +1721,7 @@
 				5C7FE13E19A7E43C00CBBE0E /* BFS_CH1.m4a in Resources */,
 				5C7FE05E19A6B1B500CBBE0E /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-IM-1.xhtml in Resources */,
 				5C7FE14F19A7E43C00CBBE0E /* farmerE.m4a in Resources */,
+				C3B45CF519AC3E52003CE36D /* circulatory.epub in Resources */,
 				5C7FE14A19A7E43C00CBBE0E /* corralE.m4a in Resources */,
 				5CF9947819AC34550080C32F /* cat_large.png in Resources */,
 				5C7FE0F119A7E43C00CBBE0E /* BFCE1_5.m4a in Resources */,

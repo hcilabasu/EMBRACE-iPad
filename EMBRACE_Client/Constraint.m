@@ -10,6 +10,7 @@
 
 @class MovementConstraint;
 @class OrderConstraint;
+@class ComboConstraint;
 
 @implementation Constraint
 
