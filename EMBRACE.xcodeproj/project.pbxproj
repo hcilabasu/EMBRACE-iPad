@@ -243,6 +243,7 @@
 		5C7FE16D19A7E43C00CBBE0E /* tryAgainE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FE0E919A7E43C00CBBE0E /* tryAgainE.m4a */; };
 		5C7FE16E19A7E43C00CBBE0E /* weedsE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FE0EA19A7E43C00CBBE0E /* weedsE.m4a */; };
 		5CC5FADB18FDFA3700D118B8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CC5FADA18FDFA3700D118B8 /* AVFoundation.framework */; };
+		5CCEA48119AFD13C00FCBC2C /* ComboConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCEA48019AFD13C00FCBC2C /* ComboConstraint.m */; };
 		5CD7FE3519775C1C007A1E49 /* VocabularyStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD7FE3419775C1C007A1E49 /* VocabularyStep.m */; };
 		5CD7FE3819776403007A1E49 /* Introduction.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD7FE3719776403007A1E49 /* Introduction.m */; };
 		5CF655AF19AC49C2000AC913 /* Story1-Introduction-At-the-Farm-PM.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CF655AE19AC49C2000AC913 /* Story1-Introduction-At-the-Farm-PM.xhtml */; };
@@ -647,6 +648,8 @@
 		5C7FE0E919A7E43C00CBBE0E /* tryAgainE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = tryAgainE.m4a; path = EMBRACE_Client/sounds/tryAgainE.m4a; sourceTree = SOURCE_ROOT; };
 		5C7FE0EA19A7E43C00CBBE0E /* weedsE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = weedsE.m4a; path = EMBRACE_Client/sounds/weedsE.m4a; sourceTree = SOURCE_ROOT; };
 		5CC5FADA18FDFA3700D118B8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		5CCEA47F19AFD13C00FCBC2C /* ComboConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComboConstraint.h; sourceTree = "<group>"; };
+		5CCEA48019AFD13C00FCBC2C /* ComboConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComboConstraint.m; sourceTree = "<group>"; };
 		5CD7FE3319775C1C007A1E49 /* VocabularyStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VocabularyStep.h; sourceTree = "<group>"; };
 		5CD7FE3419775C1C007A1E49 /* VocabularyStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VocabularyStep.m; sourceTree = "<group>"; };
 		5CD7FE3619776403007A1E49 /* Introduction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Introduction.h; sourceTree = "<group>"; };
@@ -1051,6 +1054,8 @@
 		31C5A6801799EFE600A084A3 /* Interaction Model */ = {
 			isa = PBXGroup;
 			children = (
+				5CCEA47F19AFD13C00FCBC2C /* ComboConstraint.h */,
+				5CCEA48019AFD13C00FCBC2C /* ComboConstraint.m */,
 				5CD7FE3619776403007A1E49 /* Introduction.h */,
 				5CD7FE3719776403007A1E49 /* Introduction.m */,
 				31161428179DE69400655221 /* Hotspot.h */,
@@ -1879,6 +1884,7 @@
 				31C306C2183D900B0043DEDD /* Solution.m in Sources */,
 				311646B1175FD03F00B483F0 /* Activity.m in Sources */,
 				3183DA151761614500815211 /* BookHeaderView.m in Sources */,
+				5CCEA48119AFD13C00FCBC2C /* ComboConstraint.m in Sources */,
 				3183DA1A1762886300815211 /* TabView.m in Sources */,
 				C3B5214D19254B0C003FF639 /* Waypoint.m in Sources */,
 				31058C79176BE71C00595AAE /* PhysicalManipulationActivity.m in Sources */,
