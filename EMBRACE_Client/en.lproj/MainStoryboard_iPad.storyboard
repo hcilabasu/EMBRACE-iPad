@@ -420,7 +420,7 @@
                                     <action selector="login:" destination="e9p-ZO-asL" eventType="touchUpInside" id="HnY-wt-FrI"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Study Code" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kqd-k5-FuV">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Participant Code" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kqd-k5-FuV">
                                 <rect key="frame" x="362" y="255" width="300" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="KME-hh-zOH"/>
@@ -435,6 +435,11 @@
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Experimenter Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Adj-CD-O2S">
                                 <rect key="frame" x="362" y="378" width="300" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="School Code" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z07-gu-DJb">
+                                <rect key="frame" x="362" y="193" width="300" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -457,6 +462,7 @@
                         <outlet property="experimenterField" destination="Adj-CD-O2S" id="5wG-YA-rEA"/>
                         <outlet property="firstNameField" destination="kqd-k5-FuV" id="2Ca-8y-7vj"/>
                         <outlet property="lastNameField" destination="WYJ-TE-HlA" id="Bpa-Vx-AdO"/>
+                        <outlet property="schoolField" destination="Z07-gu-DJb" id="UfP-be-6tk"/>
                         <segue destination="5" kind="push" identifier="OpenLibrarySegue" id="UAZ-I9-Wkj"/>
                     </connections>
                 </viewController>

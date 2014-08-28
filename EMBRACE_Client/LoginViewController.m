@@ -21,12 +21,23 @@
     NSString* firstName = [firstNameField text];
     NSString* lastName = [lastNameField text];
     NSString* experimenter = [experimenterField text];
+    NSString* school = [schoolField text];
     
     //If they didn't, provide an error message.
-    if([firstName isEqualToString:@""]) {
+    if([school isEqualToString:@""]) {
         UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"First name missing!"
-                              message:@"Please enter your first name."
+                              initWithTitle:@"School Code missing!"
+                              message:@"Please enter the School Code."
+                              delegate:nil
+                              cancelButtonTitle:@"Ok"
+                              otherButtonTitles:nil];
+        
+        [alert show];
+    }
+    else if([firstName isEqualToString:@""]) {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Participant Code missing!"
+                              message:@"Please enter the Participant Code."
                               delegate:nil
                               cancelButtonTitle:@"Ok"
                               otherButtonTitles:nil];
@@ -35,8 +46,8 @@
     }
     else if([lastName isEqualToString:@""]) {
         UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"Last name missing!"
-                              message:@"Please enter your last name."
+                              initWithTitle:@"Study Day missing!"
+                              message:@"Please enter the Study Day."
                               delegate:nil
                               cancelButtonTitle:@"Ok"
                               otherButtonTitles:nil];
@@ -61,7 +72,7 @@
         //For the moment, assume student does not exist, and create a new student.
         
         NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-        NSString* tempFileName = [NSString stringWithFormat:@"%@ %@.txt", firstName, lastName];
+        NSString* tempFileName = [NSString stringWithFormat:@"%@ %@ %@.txt",school, firstName, lastName];
         NSString* doesFileExist = [documentsPath stringByAppendingPathComponent:tempFileName];
         BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:doesFileExist];
         
@@ -74,11 +85,11 @@
             [dateFormatter setDateFormat:@"MM-dd-yyyy'T'hh:mm.ss.SSS"];
             NSString *timeStampValue = [dateFormatter stringFromDate: currentTime];
             
-            student = [[Student alloc] initWithName:firstName :[NSString stringWithFormat:@"%@-%@", lastName, timeStampValue]: experimenter];
+            student = [[Student alloc] initWithName:school:firstName :[NSString stringWithFormat:@"%@-%@", lastName, timeStampValue]: experimenter];
         }
         else
         {
-            student = [[Student alloc] initWithName:firstName :lastName: experimenter];
+            student = [[Student alloc] initWithName: school:firstName :lastName: experimenter];
         }
         
         

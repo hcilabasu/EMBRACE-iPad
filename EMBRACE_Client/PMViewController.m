@@ -264,6 +264,7 @@ int language_condition = ENGLISH;
     
     [self loadPage];
     
+    //change logging to introduction??
     //Logging added by James for Loading First Page of selected Chapter form Library View
     [[ServerCommunicationController sharedManager] logNextChapterNavigation:bookTitle :@"Title Page" :currentPage :@"Load First Page" :bookTitle :chapterTitle : currentPage : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] : [NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
     //Logging Completes Here.
@@ -518,8 +519,6 @@ int language_condition = ENGLISH;
     }
 }
 
-
-//add logging for automatic computer action steps
 /*
  * Performs ungroup, move, and swap image steps automatically
  */
@@ -570,11 +569,10 @@ int language_condition = ENGLISH;
     AudioServicesPlaySystemSound(1053);
     
     //Logging added by James for Error Noise
-    [[ServerCommunicationController sharedManager] logComputerPlayAudio: movingObjectId:@"Error Noise"  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+    [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Error Audio" : @"NULL" :@"Error Noise"  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
 }
 
 
-//add logging for menu item selection
 /*
  * Tap gesture. Currently only used for menu selection.
  */
@@ -648,7 +646,7 @@ int language_condition = ENGLISH;
         else {
             if (allowSnapback) {
                 //Snap the object back to its original location
-                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
+                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
                 
                 //Clear any remaining highlighting.
                 NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
@@ -725,14 +723,19 @@ int language_condition = ENGLISH;
                 //timer = nil;
                 
                 [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]];
+                
+                //Logging added by James for Word Audio
+                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : languageString :[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+                
                 [self highlightObject:sentenceText:1.5];
-                //Increment the current introduction step
-                currentIntroStep+=1;
+                //Bypass the image-tap steps which are found after each word-tap step on the metadata
+                // since they are not needed anymore
+                currentIntroStep+=2;
                 [self performSelector:@selector(loadIntroStep) withObject:nil afterDelay:2];
             }
         }
         //Vocabulary introduction mode
-        else if ([vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
+        else if ([vocabularies objectForKey:chapterTitle] && [actualPage isEqualToString:currentPage]) {
             //If the user clicked on the correct word or image
             if (([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] &&
                  [sentenceText isEqualToString:[performedActions objectAtIndex:INPUT]]) ||
@@ -746,6 +749,10 @@ int language_condition = ENGLISH;
                         sameWordClicked = true;
                         
                         [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]];
+                        
+                        //Logging added by James for Word Audio
+                        [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : languageString :[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+                        
                         if (![languageString isEqualToString:@"E"]) {
                             sentenceText = [self getEnglishTranslation:sentenceText];
                         }
@@ -761,11 +768,17 @@ int language_condition = ENGLISH;
         else if([[Translation translations] objectForKey:sentenceText]) {
             //Play word audio En
             [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,@"E"]];
+            
+            //Logging added by James for Word Audio
+            [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"E" :[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
             [self highlightObject:sentenceText:1.5];
                 
             if (language_condition == BILINGUAL) {
                 //Play word audio Sp
                 [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",[self getEnglishTranslation:sentenceText],@"S"]];
+                
+                //Logging added by James for Word Audio
+                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"S" :[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
             }
         }
     }
@@ -833,6 +846,78 @@ int language_condition = ENGLISH;
             
             //Move the object to the center of the location
             [self moveObject:objectId :midpoint :hotspotLocation :false];
+            
+            //Clear highlighting
+            NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
+            [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
+            
+            //Object should now be in the correct location, so the step can be incremented
+            if([self isHotspotInsideLocation]) {
+                [self incrementCurrentStep];
+            }
+        }
+        //Current step is checkAndSwap and involves swapping an image
+        else if ([[currSolStep stepType] isEqualToString:@"checkAndSwap"]) {
+            [self swapObjectImage];
+            [self incrementCurrentStep];
+        }
+        //Current step is either group, ungroup, disappear, or transference
+        else {
+            //Get the interaction to be performed
+            PossibleInteraction* interaction = [self getCorrectInteraction];
+            
+            //Perform the interaction and increment the step
+            [self checkSolutionForInteraction:interaction];
+        }
+    }
+}
+
+/*
+ * Swipe gesture. Only recognizes a downwards two finger swipe. Used to skip the current step
+ * by performing it automatically according to the solution.
+ */
+-(IBAction)swipeGesturePerformed:(UISwipeGestureRecognizer *)recognizer {
+    NSLog(@"Swiper no swiping!");
+    
+    //Perform steps only if they exist for the sentence and have not been completed
+    if (numSteps > 0 && !stepsComplete && allowInteractions) {
+        
+        //Logging Added by James for Emergency Swipe
+        [[ServerCommunicationController sharedManager] logUserEmergencyNext:@"Emergency Swipe" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+        
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        //Current step is check and involves moving an object to a location
+        if ([[currSolStep stepType] isEqualToString:@"check"]) {
+            //Get information for check step type
+            NSString* objectId = [currSolStep object1Id];
+            NSString* action = [currSolStep action];
+            NSString* locationId = [currSolStep locationId];
+            
+            //Get hotspot location of object
+            Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:objectId :action :@"subject"];
+            CGPoint hotspotLocation = [self getHotspotLocationOnImage:hotspot];
+            
+            //Get location that hotspot should be inside
+            Location* location = [model getLocationWithId:locationId];
+            
+            //Calculate the x,y coordinates and the width and height in pixels from %
+            float locationX = [location.originX floatValue] / 100.0 * [bookView frame].size.width;
+            float locationY = [location.originY floatValue] / 100.0 * [bookView frame].size.height;
+            float locationWidth = [location.width floatValue] / 100.0 * [bookView frame].size.width;
+            float locationHeight = [location.height floatValue] / 100.0 * [bookView frame].size.height;
+            
+            //Calculate the center point of the location
+            float midX = locationX + (locationWidth / 2);
+            float midY = locationY + (locationHeight / 2);
+            CGPoint midpoint = CGPointMake(midX, midY);
+            
+            //Move the object to the center of the location
+            [self moveObject:objectId :midpoint :hotspotLocation :false : @"None"];
             
             //Clear highlighting
             NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
@@ -945,8 +1030,6 @@ int language_condition = ENGLISH;
     }
 }
 
-
-//add logging for move object
 /*
  * Pan gesture. Used to move objects from one location to another.
  */
@@ -971,6 +1054,9 @@ int language_condition = ENGLISH;
             
             //if it's an image that can be moved, then start moving it.
             if(imageAtPoint != nil && !stepsComplete) {
+                
+                //add logging: began object move ?
+                
                 movingObject = TRUE;
                 movingObjectId = imageAtPoint;
                 
@@ -987,7 +1073,8 @@ int language_condition = ENGLISH;
             
             //if moving object, move object to final position.
             if(movingObject) {
-                [self moveObject:movingObjectId :location :delta :true];
+                
+                [self moveObject:movingObjectId :location :delta :true: @"Ended"];
                 
                 if (numSteps > 0) {
                     //Get steps for current sentence
@@ -1017,7 +1104,7 @@ int language_condition = ENGLISH;
                             //gets hotspot id for logging
                             NSString* locationId = [currSolStep locationId];
                             //Logging added by James for User Move Object to object
-                            [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : locationId :startLocation.x :startLocation.y :location.x :location.y :@"Move Object" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+                            [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : locationId :startLocation.x :startLocation.y :location.x :location.y :@"Move to Hotspot" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
                             
                             //Logging added by James for user Move Object to Hotspot Correct
                             [[ServerCommunicationController sharedManager] logComputerVerification: @"Move to Hotspot":true : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
@@ -1026,7 +1113,7 @@ int language_condition = ENGLISH;
                             //gets hotspot id for logging
                             NSString* locationId = [currSolStep locationId];
                             //Logging added by James for User Move Object to object
-                            [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : locationId:startLocation.x :startLocation.y :location.x :location.y :@"Move Object" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+                            [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : locationId:startLocation.x :startLocation.y :location.x :location.y :@"Move to Hotspot" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
                             
                             //Logging added by James for user Move Object to Hotspot Incorrect
                             [[ServerCommunicationController sharedManager] logComputerVerification:@"Move to Hotspot" :false : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
@@ -1035,10 +1122,9 @@ int language_condition = ENGLISH;
                             
                             if (allowSnapback) {
                                 //Snap the object back to its original location
-                                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
+                                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
                                 //if incorrect location reset object to beginning of gesture
                                 
-                                //add logging for move object to hotspot incorrect
                             }
                         }
                     }
@@ -1117,6 +1203,77 @@ int language_condition = ENGLISH;
                                 
                                 //add logging move object, correct, display menu options
                             }
+                            //resets allRelationship arrray
+                            if([allRelationships count])
+                            {
+                                [allRelationships removeAllObjects];
+                            }
+                            
+                            //If the object was dropped, check if it's overlapping with any other objects that it could interact with.
+                            NSMutableArray* possibleInteractions = [self getPossibleInteractions:useProximity];
+                            
+                            //No possible interactions were found
+                            if ([possibleInteractions count] == 0) {
+                                //Logging added by James for User Move Object to object
+                                [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : collisionObjectId:startLocation.x :startLocation.y :location.x :location.y :@"Move to Object" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+                                
+                                //Logging added by James for Verifying Move Object to object
+                                [[ServerCommunicationController sharedManager] logComputerVerification: @"Move to Object":false : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+                                
+                                [self playErrorNoise];
+                                
+                                if (allowSnapback) {
+                                    //Snap the object back to its original location
+                                    [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
+                                    //wrong because two objects cant interact with each other reset object
+                                }
+                            }
+                            //If only 1 possible interaction was found, go ahead and perform that interaction if it's correct.
+                            if ([possibleInteractions count] == 1) {
+                                PossibleInteraction* interaction = [possibleInteractions objectAtIndex:0];
+                                
+                                //Logging added by James for User Move Object to object
+                                [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : collisionObjectId:startLocation.x :startLocation.y :location.x :location.y :@"Move to Object" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+                                
+                                //checks solution and accomplishes action trace
+                                [self checkSolutionForInteraction:interaction];
+                            }
+                            //If more than 1 was found, prompt the user to disambiguate.
+                            else if ([possibleInteractions count] > 1) {
+                                //The chapter title hard-coded for now
+                                if ([introductions objectForKey:chapterTitle] &&
+                                    [[performedActions objectAtIndex:INPUT] isEqualToString:
+                                     [NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep object2Id]]]) {
+                                    // Destroy the timer to avoid playing the previous sound
+                                    //[timer invalidate];
+                                    //timer = nil;
+                                    currentIntroStep++;
+                                    [self loadIntroStep];
+                                }
+                                
+                                //First rank the interactions based on location to story.
+                                [self rankPossibleInteractions:possibleInteractions];
+                                
+                                //Logging added by James for User Move Object to object
+                                [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : collisionObjectId:startLocation.x :startLocation.y :location.x :location.y :@"Move to Object" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+                                
+                                //Logging added by James for Move Object to object Verification
+                                [[ServerCommunicationController sharedManager] logComputerVerification: @"Move to Object":true : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+                                
+                                //Populate the menu data source and expand the menu.
+                                [self populateMenuDataSource:possibleInteractions:allRelationships];
+                                
+                                if(!menuExpanded)
+                                {
+                                    //Logging added by James for Move Object to object Verification
+                                        [[ServerCommunicationController sharedManager] logComputerVerification: @"Display Menu":true : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+                                    
+                                    [self expandMenu];
+                                
+                                }
+                                
+                                
+                            }
                         }
                     }
                 }
@@ -1136,7 +1293,7 @@ int language_condition = ENGLISH;
         }
         //If we're in the middle of moving the object, just call the JS to move it.
         else if(movingObject)  {
-            [self moveObject:movingObjectId :location :delta :true];
+            [self moveObject:movingObjectId :location :delta :true : @"isMoving"];
             
             //If we're overlapping with another object, then we need to figure out which hotspots are currently active and highlight those hotspots.
             //When moving the object, we may have the JS return a list of all the objects that are currently grouped together so that we can process all of them.
@@ -1591,10 +1748,8 @@ int language_condition = ENGLISH;
             //NSLog(@"ungrouping items");
 
             [self ungroupObjects:obj1 :obj2]; //ungroup objects
-            //add logging grouping, ungroup
-            
-            //Logging added by James for Grouping Objects
-            [[ServerCommunicationController sharedManager] logComputerGroupingObjects: @"Ungroup" :obj1 :obj2 :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+            //logging done in ungroupObjects
+           
         }
         else if([connection interactionType] == GROUP) {
             //NSLog(@"grouping items");
@@ -1607,17 +1762,14 @@ int language_condition = ENGLISH;
             CGPoint hotspot2Loc = [self getHotspotLocation:hotspot2];
             
             [self groupObjects:obj1 :hotspot1Loc :obj2 :hotspot2Loc]; //group objects
+            //logging done in groupObjects
             
-            //Logging added by James for Grouping Objects
-            [[ServerCommunicationController sharedManager] logComputerGroupingObjects: @"Group" :obj1 :obj2 :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
         }
         else if([connection interactionType] == DISAPPEAR) {
             //NSLog(@"causing object to disappear");
             
             [self consumeAndReplenishSupply:obj2]; //make object disappear
-            
-            //Logging added by James for Object Disappear
-            [[ServerCommunicationController sharedManager] logComputerDisappearObject:obj2 :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+            //logging done in consumeAndReplenishSupply
         }
     }
 }
@@ -1782,9 +1934,6 @@ int language_condition = ENGLISH;
                /* NSArray* hotspots = [connection hotspots]; //Array of hotspot objects.
                 Hotspot* hotspot2 = [hotspots objectAtIndex:1];
                 CGPoint hotspot2Loc = [self getHotspotLocation:hotspot2];*/
-            
-                //Logging added by James for Automatic Computer Move Object
-                [[ServerCommunicationController sharedManager] logComputerMoveObject: object1Id : object2Id : startLocation.x : startLocation.y : startLocation.x : startLocation.y : @"Snap to Object" : bookTitle : chapterTitle : currentPage : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] : [NSString stringWithFormat:@"%lu" , (unsigned long)currentStep]];
                 
             }
             else if (waypointId != nil) {
@@ -1797,10 +1946,7 @@ int language_condition = ENGLISH;
                 CGPoint waypointLocation = [self getWaypointLocation:waypoint];
                 
                 //Move the object
-                [self moveObject:object1Id :waypointLocation :hotspotLocation :false];
-                
-                //Logging added by James for Automatic Computer Move Object
-                [[ServerCommunicationController sharedManager] logComputerMoveObject: object1Id : waypointId: startLocation.x : startLocation.y : waypointLocation.x : waypointLocation.y  : @"Snap to Location" : bookTitle : chapterTitle : currentPage : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] : [NSString stringWithFormat:@"%lu" , (unsigned long)currentStep]];
+                [self moveObject:object1Id :waypointLocation :hotspotLocation :false: waypointId];
                 
                 //Clear highlighting
                 NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
@@ -2001,8 +2147,6 @@ int language_condition = ENGLISH;
     return correctInteraction;
 }
 
-
-//add logging for menu selection and autocomplete
 /*
  * Checks if an interaction is correct by comparing it to the solution. If it is correct, the interaction is performed and 
  * the current step is incremented. If it is incorrect, an error noise is played, and the objects snap back to their 
@@ -2029,15 +2173,24 @@ int language_condition = ENGLISH;
         //Transference counts as two steps, so we must increment again
         if ([interaction interactionType] == TRANSFERANDGROUP || [interaction interactionType] == TRANSFERANDDISAPPEAR) {
             [self incrementCurrentStep];
-            //add logging move object automatically computer action
         }
     }
     else {
         if ([introductions objectForKey:chapterTitle]) {
             if (language_condition == ENGLISH)
+            {
                 [self playAudioFile:@"tryAgainE.m4a"];
+                
+                //Logging added by James for Try Again
+                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Try Again" : @"E" : @"tryAgainE.m4a" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+            }
             else
+            {
                 [self playAudioFile:@"intentaDeNuevoS.m4a"];
+                
+                //Logging added by James for Try Again
+                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Try Again" : @"S" : @"intentaDeNuevoS.m4a" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+            }
         }
         else {
             //Logging added by James for Incorrect Interaction
@@ -2048,8 +2201,9 @@ int language_condition = ENGLISH;
         
         if ([interaction interactionType] != UNGROUP && allowSnapback) {
             //Snap the object back to its original location
-            [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
+            [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false:@"None"];
             
+            //move logging to moveObject
             //Logging added by James for Object Reset Location
             [[ServerCommunicationController sharedManager] logComputerResetObject : movingObjectId  :startLocation.x :startLocation.y : startLocation.x : startLocation.y : @"Reset" : bookTitle : chapterTitle : currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
         }
@@ -2633,7 +2787,7 @@ int language_condition = ENGLISH;
  * Also ensures that the image is not moved off screen or outside of any specified bounding boxes for the image.
  * Updates the JS Connection hotspot locations if necessary.
  */
--(void) moveObject:(NSString*) object :(CGPoint) location :(CGPoint)offset :(BOOL)updateCon{
+-(void) moveObject:(NSString*) object :(CGPoint) location :(CGPoint)offset :(BOOL)updateCon : (NSString*) waypointID{
     //Change the location to accounting for the different between the point clicked and the top-left corner which is used to set the position of the image.
     CGPoint adjLocation = CGPointMake(location.x - offset.x, location.y - offset.y);
     
@@ -2684,6 +2838,13 @@ int language_condition = ENGLISH;
     
     //May want to add code to keep objects from moving to the location that the text is taking up on screen.
     
+    //logs only if object is moved by computer action, user pan done outside of this function
+    if (![waypointID isEqualToString:@"isMoving"]) {
+        //Logging added by James for Automatic Computer Move Object
+        [[ServerCommunicationController sharedManager] logComputerMoveObject: object : waypointID: startLocation.x : startLocation.y : adjLocation.x : adjLocation.y : @"Snap to Hotspot" : bookTitle : chapterTitle : currentPage : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] : [NSString stringWithFormat:@"%lu" , (unsigned long)currentStep]];
+    }
+    
+    
     //NSLog(@"new location of %@: (%f, %f)", object, adjLocation.x, adjLocation.y);
     //Call the moveObject function in the js file.
     NSString *move = [NSString stringWithFormat:@"moveObject(%@, %f, %f, %@)", object, adjLocation.x, adjLocation.y, updateCon ? @"true" : @"false"];
@@ -2705,6 +2866,9 @@ int language_condition = ENGLISH;
  */
 -(void) groupObjects:(NSString*)object1 :(CGPoint)object1Hotspot :(NSString*)object2 :(CGPoint)object2Hotspot {
     NSString *groupObjects = [NSString stringWithFormat:@"groupObjectsAtLoc(%@, %f, %f, %@, %f, %f)", object1, object1Hotspot.x, object1Hotspot.y, object2, object2Hotspot.x, object2Hotspot.y];
+    
+    //Logging added by James for Grouping Objects
+    [[ServerCommunicationController sharedManager] logComputerGroupingObjects: @"Group" :object1 :object2 : groupObjects:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
     
     //maintain a list of current groupings, with the subject as a key. currently only supports two objects
     
@@ -2733,6 +2897,10 @@ int language_condition = ENGLISH;
 -(void) ungroupObjects:(NSString* )object1 :(NSString*) object2 {
     NSString* ungroup = [NSString stringWithFormat:@"ungroupObjects(%@, %@)", object1, object2];
 
+    //Logging added by James for Grouping Objects
+    [[ServerCommunicationController sharedManager] logComputerGroupingObjects: @"Ungroup" :object1 :object2 : ungroup:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+
+    
     //get the current groupings of the objects
     NSMutableArray *object1Groups = [currentGroupings objectForKey:object1];
     NSMutableArray *object2Groups = [currentGroupings objectForKey:object2];
@@ -2787,8 +2955,11 @@ int language_condition = ENGLISH;
                     //With both hotspot pixel values we can calcuate the distance between the top-left corner of the hidden object and it's hotspot.
                     CGPoint change = [self calculateDeltaForMovingObjectAtPoint:hiddenObjectHotspotLocation];
                     
+                    //Logging added by James for Object Disappear
+                    [[ServerCommunicationController sharedManager] logComputerDisappearObject: @"Appear Object":disappearingObject :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+                    
                     //Now move the object taking into account the difference in change.
-                    [self moveObject:disappearingObject :appearLocation :change :false];
+                    [self moveObject:disappearingObject :appearLocation :change :false:@"None"];
                 }
             }
             else {
@@ -2802,7 +2973,12 @@ int language_condition = ENGLISH;
     }
     //Otherwise, just make the object disappear
     else {
+        
         NSString* hideObj = [NSString stringWithFormat:@"document.getElementById('%@').style.display = 'none';", disappearingObject];
+        
+        //Logging added by James for Object Disappear
+        [[ServerCommunicationController sharedManager] logComputerDisappearObject: @"Disappear Object":disappearingObject :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+        
         [bookView stringByEvaluatingJavaScriptFromString:hideObj];
     }
 }
@@ -2945,8 +3121,6 @@ int language_condition = ENGLISH;
  * of the interaction is checked against the current sentence before moving on to the next sentence. If the manipulation
  * is correct, then it will move on to the next sentence. If the manipulation is not current, then feedback will be provided.
  */
-
-//logging for sentences and pages, 
 -(IBAction)pressedNext:(id)sender {
     if ([introductions objectForKey:chapterTitle]) {
         // If the user pressed next
@@ -2957,17 +3131,18 @@ int language_condition = ENGLISH;
             currentIntroStep++;
             
             if (currentIntroStep > totalIntroSteps) {
-                [self loadNextPage];
+                [self loadNextPage]; //logging done in loadNextPage
             }
             else {
                 // Load the next step
                 [self loadIntroStep];
                 [self setupCurrentSentenceColor];
+                
+                //add logging: next intro step
             }
         }
     }
-    // If there are vocabs for the chapter and the page is an intro page
-    else if ([vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
+    else if ([vocabularies objectForKey:chapterTitle] && [actualPage isEqualToString:currentPage]) {
         // If the user pressed next
         if ([[performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
             // Destroy the timer to avoid playing the previous sound
@@ -2976,11 +3151,14 @@ int language_condition = ENGLISH;
             currentVocabStep++;
             
             if(currentVocabStep > totalVocabSteps) {
-                [self loadNextPage];
+                [self loadNextPage]; //logging done in loadNextPage
+            
             }
             else {
                 // Load the next step and update the performed actions
                 [self loadVocabStep];
+                
+                //add logging: next vocab step
             }
         }
     }
@@ -3003,6 +3181,36 @@ int language_condition = ENGLISH;
             if(currentSentence > totalSentences) {
                 [self loadNextPage];
                 //logging done in loadNextPage
+            }
+            else {
+                //Logging added by James for Computer moving to next sentence
+                [[ServerCommunicationController sharedManager] logNextSentenceNavigation:@"Next Button" :tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :@"Next Sentence" :bookTitle :chapterTitle : currentPage : tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+            }
+        }
+        else {
+            //Play noise if not all steps have been completed
+            [self playErrorNoise];
+        }
+    }
+    else {
+        if (stepsComplete || numSteps == 0) {
+            //Logging added by James for User pressing the Next button
+            [[ServerCommunicationController sharedManager] logUserNextButtonPressed:@"Next" :@"Tap" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+            
+            //added for logging stores current sentence before incrementing
+            NSString *tempLastSentence = [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence];
+            
+            //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
+            currentSentence ++;
+            
+            //Set up current sentence appearance and solution steps
+            [self setupCurrentSentence];
+            [self colorSentencesUponNext];
+            
+            //currentSentence is 1 indexed.
+            if(currentSentence > totalSentences) {
+                [self loadNextPage];//logging done in loadNextPage
+                
             }
             else {
                 //Logging added by James for Computer moving to next sentence
@@ -3061,13 +3269,11 @@ int language_condition = ENGLISH;
     //Create new data source for menu.
     //Go through and great a menuItem for every possible interaction
     int interactionNum = 1;
-    int x=0;
     
     for(PossibleInteraction* interaction in possibleInteractions) {
         //dig into simulatepossibleinteractionformenu to log populated menu
-        [self simulatePossibleInteractionForMenuItem: interaction : [relationships objectAtIndex:x]];
+        [self simulatePossibleInteractionForMenuItem: interaction : [relationships objectAtIndex:interactionNum-1]];
         interactionNum ++;
-        x++;
         
         //If the number of interactions is greater than the max number of menu Items allowed, then stop.
         if(interactionNum > maxMenuItems)
@@ -3197,6 +3403,10 @@ int language_condition = ENGLISH;
     //Play introduction audio
     [self playAudioFile:audio];
     
+    //Logging added by James for Introduction Audio
+    [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Introduction Audio" : languageString :audio :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+    
+    
     //DEBUG code to play expected action
     //NSString* actions = [NSString stringWithFormat:@"%@ %@ %@",expectedIntroAction,expectedIntroInput,expectedSelection];
     //[self playWordAudio:actions:@"en-us"];
@@ -3279,6 +3489,9 @@ int language_condition = ENGLISH;
     if (currentVocabStep == 1 || currentVocabStep == 9) {
         //Play introduction audio
         [self playAudioFile:audio];
+        
+        //Logging added by James for Word Audio
+        [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Step Audio" : @"E" :audio  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
     }
     
     //Switch the language every step for the translation
