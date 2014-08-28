@@ -243,7 +243,6 @@
 		5C7FE16D19A7E43C00CBBE0E /* tryAgainE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FE0E919A7E43C00CBBE0E /* tryAgainE.m4a */; };
 		5C7FE16E19A7E43C00CBBE0E /* weedsE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FE0EA19A7E43C00CBBE0E /* weedsE.m4a */; };
 		5CC5FADB18FDFA3700D118B8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CC5FADA18FDFA3700D118B8 /* AVFoundation.framework */; };
-		5CD0E0FD19A305DF000DE96C /* (null) in Resources */ = {isa = PBXBuildFile; };
 		5CD7FE3519775C1C007A1E49 /* VocabularyStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD7FE3419775C1C007A1E49 /* VocabularyStep.m */; };
 		5CD7FE3819776403007A1E49 /* Introduction.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD7FE3719776403007A1E49 /* Introduction.m */; };
 		5CF655AF19AC49C2000AC913 /* Story1-Introduction-At-the-Farm-PM.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CF655AE19AC49C2000AC913 /* Story1-Introduction-At-the-Farm-PM.xhtml */; };
@@ -929,7 +928,6 @@
 				5C7FDF3F19A6B1B500CBBE0E /* EPUBs */,
 				C3B45C11197EE21D003CE36D /* circulatory.epub */,
 				C3938820195CBB4B0005279F /* bestFarm.epub */,
-				C3B45CF419AC3E52003CE36D /* circulatory.epub */,
 				31953E501729ECC100570087 /* EMBRACE-Info.plist */,
 				31953E511729ECC100570087 /* InfoPlist.strings */,
 				31953E541729ECC100570087 /* main.m */,
@@ -1081,8 +1079,6 @@
 				C3B5214B19254B0C003FF639 /* Waypoint.m */,
 				C3D79466196B1EC9004C26ED /* AlternateImage.h */,
 				C3D79467196B1EC9004C26ED /* AlternateImage.m */,
-				C3B45CF619AD33F6003CE36D /* ComboConstraint.h */,
-				C3B45CF719AD33F6003CE36D /* ComboConstraint.m */,
 			);
 			name = "Interaction Model";
 			sourceTree = "<group>";
@@ -1647,7 +1643,6 @@
 				5C7FE13519A7E43C00CBBE0E /* BFEE_5A.m4a in Resources */,
 				5C7FE13019A7E43C00CBBE0E /* BFEE_20.m4a in Resources */,
 				5C7FE12519A7E43C00CBBE0E /* BFEE_10.m4a in Resources */,
-				5CD0E0FD19A305DF000DE96C /* (null) in Resources */,
 				31953E531729ECC100570087 /* InfoPlist.strings in Resources */,
 				5CF994BD19AC34550080C32F /* Story7-The-Best-Farm-Award-IM-2.xhtml in Resources */,
 				5C7FE05019A6B1B500CBBE0E /* Story3-Muscles-Use-Oxygen-PM-1.xhtml in Resources */,
@@ -1721,7 +1716,6 @@
 				5C7FE13E19A7E43C00CBBE0E /* BFS_CH1.m4a in Resources */,
 				5C7FE05E19A6B1B500CBBE0E /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-IM-1.xhtml in Resources */,
 				5C7FE14F19A7E43C00CBBE0E /* farmerE.m4a in Resources */,
-				C3B45CF519AC3E52003CE36D /* circulatory.epub in Resources */,
 				5C7FE14A19A7E43C00CBBE0E /* corralE.m4a in Resources */,
 				5CF9947819AC34550080C32F /* cat_large.png in Resources */,
 				5C7FE0F119A7E43C00CBBE0E /* BFCE1_5.m4a in Resources */,
