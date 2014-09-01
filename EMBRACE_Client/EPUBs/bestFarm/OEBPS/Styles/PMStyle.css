@@ -37,10 +37,6 @@ html {
 	background: white;
 } 
 
-p:first-child {
-	padding-left:30px;
-}
-
 p {
 	display:inline;
 }

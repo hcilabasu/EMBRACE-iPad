@@ -73,6 +73,9 @@
     NSTimer* timer; //Controls the timing of the audio file that is playing
     NSString* languageString; //Defines the languange to be used 'E' for English 'S' for Spanish
     BOOL sameWordClicked; //Defines if a word has been clicked or not
+    NSString* vocabAudio; //Used to store the vocab audio file to be played
+    NSInteger lastStep; //Used to store the most recent intro step
+    NSString* nextIntro; //Used to store the most recent intro step
 }
 
 @property (nonatomic, strong) IBOutlet UIWebView *bookView;
@@ -136,6 +139,7 @@ int language_condition = ENGLISH;
     currentPage = nil;
     
     condition = MENU;
+    languageString = @"E";
     
     if (condition == CONTROL) {
         allowInteractions = FALSE; //control condition allows user to read only; no manipulations
@@ -338,6 +342,7 @@ int language_condition = ENGLISH;
     
     //Vocabulary setup
     currentVocabStep = 1;
+    lastStep = 1;
     
     //Load the vocabulary data
     vocabularies = [model getVocabularies];
@@ -700,6 +705,11 @@ int language_condition = ENGLISH;
         //Capture the clicked text, if it exists
         NSString* requestSentenceText = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).innerHTML", location.x, location.y];
         NSString* sentenceText = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceText];
+        
+        //Capture the clicked text id, if it exists
+        NSString* requestSentenceID = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
+        NSString* sentenceID = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceID];
+        int sentenceIDNum = [[sentenceID substringFromIndex:0] intValue];
 
         //Logs user Word Press
         [[ServerCommunicationController sharedManager] logUserPressWord:sentenceText :@"Tap" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
@@ -730,12 +740,12 @@ int language_condition = ENGLISH;
                 [self highlightObject:sentenceText:1.5];
                 //Bypass the image-tap steps which are found after each word-tap step on the metadata
                 // since they are not needed anymore
-                currentIntroStep+=2;
+                currentIntroStep+=1;
                 [self performSelector:@selector(loadIntroStep) withObject:nil afterDelay:2];
             }
         }
         //Vocabulary introduction mode
-        else if ([vocabularies objectForKey:chapterTitle] && [actualPage isEqualToString:currentPage]) {
+        else if ([vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
             //If the user clicked on the correct word or image
             if (([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] &&
                  [sentenceText isEqualToString:[performedActions objectAtIndex:INPUT]]) ||
@@ -745,10 +755,10 @@ int language_condition = ENGLISH;
                     //timer = nil;
                     
                     //If the user clicked on a word
-                    if ([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] && !sameWordClicked) {
-                        sameWordClicked = true;
+                    if ([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] && [[performedActions objectAtIndex:INPUT] isEqualToString:sentenceText] && !sameWordClicked && (currentSentence == sentenceIDNum)) {
                         
-                        [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]];
+                        sameWordClicked = true;
+                        [self playAudioFile:vocabAudio];
                         
                         //Logging added by James for Word Audio
                         [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : languageString :[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
@@ -758,10 +768,14 @@ int language_condition = ENGLISH;
                         }
                         
                         [self highlightObject:sentenceText :1.5];
-                        currentVocabStep++;
-                        [self performSelector:@selector(loadVocabStep) withObject:nil afterDelay:5];
+                        
                         currentSentence++;
                         [self performSelector:@selector(colorSentencesUponNext) withObject:nil afterDelay:4];
+                        
+                        currentVocabStep++;
+                        //lastStep = currentVocabStep;
+                        //[self loadVocabStep];
+                        [self performSelector:@selector(loadVocabStep) withObject:nil afterDelay:4];
                 }
             }
         }
@@ -3009,15 +3023,15 @@ int language_condition = ENGLISH;
             }
         }
     }
-    else if ([vocabularies objectForKey:chapterTitle] && [actualPage isEqualToString:currentPage]) {
+    else if ([vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
         // If the user pressed next
-        if ([[performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
+        if ([nextIntro isEqualToString:@"next"]) {
             // Destroy the timer to avoid playing the previous sound
             //[timer invalidate];
             //timer = nil;
             currentVocabStep++;
             
-            if(currentVocabStep > totalVocabSteps) {
+            if(currentVocabStep > totalVocabSteps-1) {
                 [self loadNextPage]; //logging done in loadNextPage
             
             }
@@ -3310,8 +3324,12 @@ int language_condition = ENGLISH;
     NSString* expectedIntroAction;
     NSString* expectedIntroInput;
     NSString* wrapperObj1;
+    NSString* nextAudio;
+    NSInteger stepNumber;
+    NSString* nextIntroInput;
     
     sameWordClicked = false;
+    //lastStep = currentVocabStep-1;
     
     //Get current step to be read
     VocabularyStep* currVocabStep = [currentVocabSteps objectAtIndex:currentVocabStep-1];
@@ -3320,24 +3338,37 @@ int language_condition = ENGLISH;
     expectedIntroInput = [currVocabStep expectedInput];
     text = [currVocabStep englishText];
     audio = [currVocabStep englishAudioFileName];
+    stepNumber = [currVocabStep wordNumber];
+    lastStep = stepNumber;
+    
+    //Get next step to be read
+    VocabularyStep* nextVocabStep = [currentVocabSteps objectAtIndex:currentVocabStep];
+    nextAudio = [nextVocabStep englishAudioFileName];
+    nextIntroInput = [nextVocabStep expectedInput];
+    vocabAudio = nextAudio;
+    nextIntro = nextIntroInput;
     
     // If we are ont the first step (1) ot the last step (9) which do not correspond to words
     //play the corresponding intro or outro audio
-    if (currentVocabStep == 1 || currentVocabStep == 9) {
+    if (currentVocabStep == 1) {
         //Play introduction audio
         [self playAudioFile:audio];
         
         //Logging added by James for Word Audio
-        [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Step Audio" : @"E" :audio  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+//        [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Step Audio" : @"E" :audio  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+    }
+    
+    if (currentVocabStep == totalVocabSteps-1) {
+        [self playAudioFile:nextAudio];
     }
     
     //Switch the language every step for the translation
-    if ([languageString isEqualToString:@"S"]) {
-        languageString = @"E";
-    }
-    else {
-        languageString = @"S";
-    }
+//    if ([languageString isEqualToString:@"S"]) {
+//        languageString = @"E";
+//    }
+//    else {
+//        languageString = @"S";
+//    }
     
     //The response audio file names are hard-coded for now
     if ([expectedIntroInput isEqualToString:@"next"]) {
