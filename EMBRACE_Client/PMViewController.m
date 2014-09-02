@@ -257,7 +257,7 @@ int language_condition = ENGLISH;
     actualPage = currentPage;
     
     //Introduction setup
-    currentIntroStep = 7;
+    currentIntroStep = 1;
     
     //Load the introduction data
     introductions = [model getIntroductions];
@@ -780,19 +780,26 @@ int language_condition = ENGLISH;
                             sentenceText = [self getEnglishTranslation:sentenceText];
                         }
                         
+                        // Since the name of the pen image is pen4 because there is more than one pen, its name is hard-coded
+                        if([sentenceText isEqualToString:@"pen"]) {
+                            sentenceText = @"pen4";
+                        }
+                        
                         [self highlightObject:sentenceText :1.5];
                         
                         currentSentence++;
                         [self performSelector:@selector(colorSentencesUponNext) withObject:nil afterDelay:4];
                         
                         currentVocabStep++;
-                        //lastStep = currentVocabStep;
-                        //[self loadVocabStep];
                         [self performSelector:@selector(loadVocabStep) withObject:nil afterDelay:4];
                 }
             }
         }
         else if([[Translation translations] objectForKey:sentenceText]) {
+            // Since the name of the pen image is pen4 because there is more than one pen, its name is hard-coded
+            if([sentenceText isEqualToString:@"pen"]) {
+                sentenceText = @"pen4";
+            }
             //Play word audio En
             [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,@"E"]];
             
@@ -836,6 +843,7 @@ int language_condition = ENGLISH;
     
     // Emergency swipe to bypass the vocab intros
     if ([vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
+        [_audioPlayer stop];
         [self loadNextPage];
     }
     
@@ -3045,6 +3053,7 @@ int language_condition = ENGLISH;
             currentVocabStep++;
             
             if(currentVocabStep > totalVocabSteps-1) {
+                [_audioPlayer stop];
                 [self loadNextPage]; //logging done in loadNextPage
             
             }
@@ -3368,7 +3377,7 @@ int language_condition = ENGLISH;
     
     // If we are ont the first step (1) ot the last step (9) which do not correspond to words
     //play the corresponding intro or outro audio
-    if (currentVocabStep == 1) {
+    if (currentVocabStep == 1 && [chapterTitle isEqualToString:@"The Contest"]) {
         //Play introduction audio
         [self playAudioFile:audio];
         
@@ -3376,7 +3385,7 @@ int language_condition = ENGLISH;
 //        [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Step Audio" : @"E" :audio  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
     }
     
-    if (currentVocabStep == totalVocabSteps-1) {
+    if (currentVocabStep == totalVocabSteps-1 && [chapterTitle isEqualToString:@"The Contest"]) {
         [self playAudioFile:nextAudio];
     }
     

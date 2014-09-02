@@ -1150,65 +1150,65 @@
               <spanishWordText>Corral</spanishWordText>
               <expectedSelection>word</expectedSelection>
               <expectedAction>tap</expectedAction>
-              <expectedInput>judge</expectedInput>
+              <expectedInput>pen</expectedInput>
           </vocabularyIntroductionWord>
           <vocabularyIntroductionWord number="4">
               <englishWordAudio>BFCE1_3.m4a</englishWordAudio>
               <spanishWordAudio>BFCS1_3.m4a</spanishWordAudio>
-              <englishWordText>Judge</englishWordText>
-              <spanishWordText>Juez</spanishWordText>
+              <englishWordText>Pen</englishWordText>
+              <spanishWordText>Cuarto</spanishWordText>
               <expectedSelection>word</expectedSelection>
               <expectedAction>tap</expectedAction>
-              <expectedInput>judge</expectedInput>
+              <expectedInput>pen</expectedInput>
           </vocabularyIntroductionWord>
           <vocabularyIntroductionWord number="5">
               <englishWordAudio>BFCE1_3.m4a</englishWordAudio>
               <spanishWordAudio>BFCS1_3.m4a</spanishWordAudio>
-              <englishWordText>Judge</englishWordText>
-              <spanishWordText>Juez</spanishWordText>
+              <englishWordText>Pen</englishWordText>
+              <spanishWordText>Cuarto</spanishWordText>
               <expectedSelection>word</expectedSelection>
               <expectedAction>tap</expectedAction>
-              <expectedInput>prize</expectedInput>
+              <expectedInput>jump</expectedInput>
           </vocabularyIntroductionWord>
           <vocabularyIntroductionWord number="6">
               <englishWordAudio>BFCE1_4.m4a</englishWordAudio>
               <spanishWordAudio>BFCS1_4.m4a</spanishWordAudio>
-              <englishWordText>Prize</englishWordText>
-              <spanishWordText>Premio</spanishWordText>
+              <englishWordText>Jump</englishWordText>
+              <spanishWordText>Salto</spanishWordText>
               <expectedSelection>word</expectedSelection>
               <expectedAction>tap</expectedAction>
-              <expectedInput>prize</expectedInput>
+              <expectedInput>jump</expectedInput>
           </vocabularyIntroductionWord>
           <vocabularyIntroductionWord number="7">
               <englishWordAudio>BFCE1_4.m4a</englishWordAudio>
               <spanishWordAudio>BFCS1_4.m4a</spanishWordAudio>
-              <englishWordText>Prize</englishWordText>
-              <spanishWordText>Premio</spanishWordText>
+              <englishWordText>Jump</englishWordText>
+              <spanishWordText>Salto</spanishWordText>
               <expectedSelection>word</expectedSelection>
               <expectedAction>tap</expectedAction>
-              <expectedInput>barn</expectedInput>
+              <expectedInput>contest</expectedInput>
           </vocabularyIntroductionWord>
           <vocabularyIntroductionWord number="8">
               <englishWordAudio>BFCE1_5.m4a</englishWordAudio>
               <spanishWordAudio>BFCS1_5.m4a</spanishWordAudio>
-              <englishWordText>Barn</englishWordText>
-              <spanishWordText>Establo</spanishWordText>
+              <englishWordText>Contest</englishWordText>
+              <spanishWordText>Concurso</spanishWordText>
               <expectedSelection>word</expectedSelection>
               <expectedAction>tap</expectedAction>
-              <expectedInput>barn</expectedInput>
+              <expectedInput>contest</expectedInput>
           </vocabularyIntroductionWord>
           <vocabularyIntroductionWord number="9">
               <englishWordAudio>BFCE1_5.m4a</englishWordAudio>
               <spanishWordAudio>BFCS1_5.m4a</spanishWordAudio>
-              <englishWordText>Barn</englishWordText>
-              <spanishWordText>Establo</spanishWordText>
+              <englishWordText>Contest</englishWordText>
+              <spanishWordText>Concurso</spanishWordText>
               <expectedSelection></expectedSelection>
               <expectedAction></expectedAction>
               <expectedInput></expectedInput>
           </vocabularyIntroductionWord>
           <vocabularyIntroductionWord number="10">
-              <englishWordAudio>BFEE1_6.m4a</englishWordAudio>
-              <spanishWordAudio>BFES1_6.m4a</spanishWordAudio>
+              <englishWordAudio>BFCE1_6C.m4a</englishWordAudio>
+              <spanishWordAudio>BFES1_6C.m4a</spanishWordAudio>
               <englishWordText></englishWordText>
               <spanishWordText></spanishWordText>
               <expectedSelection></expectedSelection>
