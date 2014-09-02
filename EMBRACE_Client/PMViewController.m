@@ -257,7 +257,7 @@ int language_condition = ENGLISH;
     actualPage = currentPage;
     
     //Introduction setup
-    currentIntroStep = 1;
+    currentIntroStep = 7;
     
     //Load the introduction data
     introductions = [model getIntroductions];
@@ -528,6 +528,11 @@ int language_condition = ENGLISH;
  * Performs ungroup, move, and swap image steps automatically
  */
 -(void) performAutomaticSteps {
+    
+    if([introductions objectForKey:chapterTitle] && [[performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
+        allowInteractions = TRUE;
+    }
+    
     //Perform steps only if they exist for the sentence
     if (numSteps > 0 && allowInteractions) {
         //Get steps for current sentence
@@ -564,6 +569,10 @@ int language_condition = ENGLISH;
             [self incrementCurrentStep];
         }
     }
+    
+    if([introductions objectForKey:chapterTitle] && [[performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
+        allowInteractions = FALSE;
+    }
 }
 
 #pragma mark - Responding to gestures
@@ -583,6 +592,10 @@ int language_condition = ENGLISH;
  */
 - (IBAction)tapGesturePerformed:(UITapGestureRecognizer *)recognizer {
     CGPoint location = [recognizer locationInView:self.view];
+    
+    if([introductions objectForKey:chapterTitle] && [[performedActions objectAtIndex:INPUT] isEqualToString:@"menu"]) {
+        allowInteractions = TRUE;
+    }
     
     //check to see if we have a menu open. If so, process menu click.
     if(menu != nil && allowInteractions) {
@@ -3209,6 +3222,8 @@ int language_condition = ENGLISH;
     NSString* underlinedVocabWord;
     NSString* wrapperObj1;
     
+    allowInteractions = FALSE;
+    
     //Get current step to be read
     IntroductionStep* currIntroStep = [currentIntroSteps objectAtIndex:currentIntroStep-1];
     expectedSelection = [currIntroStep expectedSelection];
@@ -3247,6 +3262,9 @@ int language_condition = ENGLISH;
     
     //If it is an action sentence color it blue
     if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
+        if(![expectedIntroInput isEqualToString:@"next"]) {
+            allowInteractions = TRUE;
+        }
         NSString* colorSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
         [bookView stringByEvaluatingJavaScriptFromString:colorSentence];
     }
