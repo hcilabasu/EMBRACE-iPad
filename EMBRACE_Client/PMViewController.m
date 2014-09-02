@@ -1223,6 +1223,15 @@ int language_condition = ENGLISH;
                                 
                             }
                         }
+                        //Not overlapping any object
+                        else {
+                            [self playErrorNoise];
+                            
+                            if (allowSnapback) {
+                                //Snap the object back to its original location
+                                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
+                            }
+                        }
                     }
                 }
                 
