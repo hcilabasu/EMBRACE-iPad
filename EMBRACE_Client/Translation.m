@@ -32,7 +32,7 @@
                  @"owl": @"búho",
                  @"pen": @"cuarto",
                  @"prize": @"premio",
-                 @"pumpkins": @"calabazas",
+                 @"pumpkin": @"calabaza",
                  @"purr": @"ronronear",
                  @"shiny": @"brillante",
                  @"tractor": @"tractor",

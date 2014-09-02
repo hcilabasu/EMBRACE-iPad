@@ -29,6 +29,7 @@
 	opacity: 0.75;
     text-align: justify;
     line-height: 150%;
+    z-index: 1;
 }
 
 html {

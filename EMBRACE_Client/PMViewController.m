@@ -73,9 +73,10 @@
     NSTimer* timer; //Controls the timing of the audio file that is playing
     NSString* languageString; //Defines the languange to be used 'E' for English 'S' for Spanish
     BOOL sameWordClicked; //Defines if a word has been clicked or not
-    NSString* vocabAudio; //Used to store the vocab audio file to be played
+    NSString* vocabAudio; //Used to store the next vocab audio file to be played
     NSInteger lastStep; //Used to store the most recent intro step
     NSString* nextIntro; //Used to store the most recent intro step
+    NSString* currentAudio; //Used to store the current vocab audio file to be played
 }
 
 @property (nonatomic, strong) IBOutlet UIWebView *bookView;
@@ -198,15 +199,15 @@ int language_condition = ENGLISH;
     //   The total number of sentences is like a running total, so by page 2, there are 6 sentences instead of 3.
     //This is to make sure we access the solution steps for the correct sentence on this page, and not a sentence on
     //a previous page.
-    if (![vocabularies objectForKey:chapterTitle]) {
+    //if (![vocabularies objectForKey:chapterTitle]) {
         NSString* requestLastSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[%d - 1].id", sentenceCount];
         NSString* lastSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
         int lastSentenceIdNumber = [[lastSentenceId substringFromIndex:1] intValue];
         totalSentences = lastSentenceIdNumber;
-    }
-    else {
-        totalSentences = sentenceCount;
-    }
+    //}
+    //else {
+        //totalSentences = sentenceCount;
+    //}
     
     //Get the id number of the first sentence on the page and set it equal to the current sentence number.
     //Because the PMActivity may have multiple pages, the first sentence on the page is not necessarily sentence 1.
@@ -350,6 +351,10 @@ int language_condition = ENGLISH;
     //Get the vocabulary steps (words) for the current story
     currentVocabSteps = [vocabularies objectForKey:chapterTitle];
     totalVocabSteps = [currentVocabSteps count];
+    
+    if (condition != CONTROL) {
+        allowInteractions = TRUE;
+    }
 }
 
 /*
@@ -689,18 +694,20 @@ int language_condition = ENGLISH;
             //Get steps for current sentence
             NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
             
-            //Get current step to be completed
-            ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
-            
-            //Current step is checkAndSwap
-            if ([[currSolStep stepType] isEqualToString:@"checkAndSwap"]) {
-                //Get the object at this point
-                NSString* imageAtPoint = [self getObjectAtPoint:location ofType:nil];
+            if ([currSolSteps count] > 0) {
+                //Get current step to be completed
+                ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
                 
-                //If the correct object was tapped, swap its image and increment the step
-                if ([self checkSolutionForSubject:imageAtPoint]) {
-                    [self swapObjectImage];
-                    [self incrementCurrentStep];
+                //Current step is checkAndSwap
+                if ([[currSolStep stepType] isEqualToString:@"checkAndSwap"]) {
+                    //Get the object at this point
+                    NSString* imageAtPoint = [self getObjectAtPoint:location ofType:nil];
+                    
+                    //If the correct object was tapped, swap its image and increment the step
+                    if ([self checkSolutionForSubject:imageAtPoint]) {
+                        [self swapObjectImage];
+                        [self incrementCurrentStep];
+                    }
                 }
             }
         }
@@ -771,7 +778,12 @@ int language_condition = ENGLISH;
                     if ([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] && [[performedActions objectAtIndex:INPUT] isEqualToString:sentenceText] && !sameWordClicked && (currentSentence == sentenceIDNum)) {
                         
                         sameWordClicked = true;
-                        [self playAudioFile:vocabAudio];
+                        if ([chapterTitle isEqualToString:@"The Contest"]) {
+                            [self playAudioFile:vocabAudio];
+                        }
+                        else {
+                            [self playAudioFile:currentAudio];
+                        }
                         
                         //Logging added by James for Word Audio
                         [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : languageString :[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
@@ -785,6 +797,22 @@ int language_condition = ENGLISH;
                             sentenceText = @"pen4";
                         }
                         
+                        
+                        // Since the name of the nest image is chickenNest, its name is hard-coded
+                        if([sentenceText isEqualToString:@"nest"]) {
+                            sentenceText = @"chickenNest";
+                        }
+                        
+                        // Since the name of the gate image is pen2, its name is hard-coded
+                        if([sentenceText isEqualToString:@"gate"]) {
+                            sentenceText = @"pen2";
+                        }
+                        
+                        // Since the name of the trophy image is award, its name is hard-coded
+                        if([sentenceText isEqualToString:@"trophy"]) {
+                            sentenceText = @"award";
+                        }
+                        
                         [self highlightObject:sentenceText :1.5];
                         
                         currentSentence++;
@@ -796,16 +824,12 @@ int language_condition = ENGLISH;
             }
         }
         else if([[Translation translations] objectForKey:sentenceText]) {
-            // Since the name of the pen image is pen4 because there is more than one pen, its name is hard-coded
-            if([sentenceText isEqualToString:@"pen"]) {
-                sentenceText = @"pen4";
-            }
+
             //Play word audio En
             [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,@"E"]];
             
             //Logging added by James for Word Audio
             [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"E" :[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
-            [self highlightObject:sentenceText:1.5];
                 
             if (language_condition == BILINGUAL) {
                 //Play word audio Sp
@@ -814,6 +838,28 @@ int language_condition = ENGLISH;
                 //Logging added by James for Word Audio
                 [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"S" :[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
             }
+            
+            // Since the name of the pen image is pen4 because there is more than one pen, its name is hard-coded
+            if([sentenceText isEqualToString:@"pen"]) {
+                sentenceText = @"pen4";
+            }
+            
+            // Since the name of the nest image is chickenNest, its name is hard-coded
+            if([sentenceText isEqualToString:@"nest"]) {
+                sentenceText = @"chickenNest";
+            }
+            
+            // Since the name of the gate image is pen2, its name is hard-coded
+            if([sentenceText isEqualToString:@"gate"]) {
+                sentenceText = @"pen2";
+            }
+            
+            // Since the name of the trophy image is award, its name is hard-coded
+            if([sentenceText isEqualToString:@"trophy"]) {
+                sentenceText = @"award";
+            }
+            
+            [self highlightObject:sentenceText:1.5];
         }
     }
 }
@@ -3045,8 +3091,16 @@ int language_condition = ENGLISH;
         }
     }
     else if ([vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
+        NSString* input;
+        
+        if([chapterTitle isEqualToString:@"The Contest"]) {
+            input = nextIntro;
+        }
+        else {
+            input = [performedActions objectAtIndex:INPUT];
+        }
         // If the user pressed next
-        if ([nextIntro isEqualToString:@"next"]) {
+        if ([input isEqualToString:@"next"]) {
             // Destroy the timer to avoid playing the previous sound
             //[timer invalidate];
             //timer = nil;
@@ -3356,7 +3410,6 @@ int language_condition = ENGLISH;
     NSString* nextIntroInput;
     
     sameWordClicked = false;
-    //lastStep = currentVocabStep-1;
     
     //Get current step to be read
     VocabularyStep* currVocabStep = [currentVocabSteps objectAtIndex:currentVocabStep-1];
@@ -3367,13 +3420,16 @@ int language_condition = ENGLISH;
     audio = [currVocabStep englishAudioFileName];
     stepNumber = [currVocabStep wordNumber];
     lastStep = stepNumber;
+    currentAudio = audio;
     
-    //Get next step to be read
-    VocabularyStep* nextVocabStep = [currentVocabSteps objectAtIndex:currentVocabStep];
-    nextAudio = [nextVocabStep englishAudioFileName];
-    nextIntroInput = [nextVocabStep expectedInput];
-    vocabAudio = nextAudio;
-    nextIntro = nextIntroInput;
+    if([chapterTitle isEqualToString:@"The Contest"]) {
+        //Get next step to be read
+        VocabularyStep* nextVocabStep = [currentVocabSteps objectAtIndex:currentVocabStep];
+        nextAudio = [nextVocabStep englishAudioFileName];
+        nextIntroInput = [nextVocabStep expectedInput];
+        vocabAudio = nextAudio;
+        nextIntro = nextIntroInput;
+    }
     
     // If we are ont the first step (1) ot the last step (9) which do not correspond to words
     //play the corresponding intro or outro audio
