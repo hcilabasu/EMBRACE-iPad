@@ -279,6 +279,7 @@
 		5CE29A2119B7F07800675CB0 /* BFTC8.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CE29A1E19B7F07800675CB0 /* BFTC8.m4a */; };
 		5CE29A2219B7F07800675CB0 /* BFTC9.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CE29A1F19B7F07800675CB0 /* BFTC9.m4a */; };
 		5CE29A2319B7F07800675CB0 /* BFTC10.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CE29A2019B7F07800675CB0 /* BFTC10.m4a */; };
+		5CE29A2519B9030F00675CB0 /* bestFarm.epub in Resources */ = {isa = PBXBuildFile; fileRef = 5CE29A2419B9030F00675CB0 /* bestFarm.epub */; };
 		5CF655AF19AC49C2000AC913 /* Story1-Introduction-At-the-Farm-PM.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CF655AE19AC49C2000AC913 /* Story1-Introduction-At-the-Farm-PM.xhtml */; };
 		5CF655B119AC4BB4000AC913 /* Story1-The-Contest-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CF655B019AC4BB4000AC913 /* Story1-The-Contest-Intro-S.xhtml */; };
 		5CF655B319ACFE2B000AC913 /* Story1-The-Contest-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CF655B219ACFE2B000AC913 /* Story1-The-Contest-Intro-E.xhtml */; };
@@ -365,7 +366,6 @@
 		B996065519A7FCA300BF17F4 /* Story1-Why-We-Breathe-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = B996065419A7FCA300BF17F4 /* Story1-Why-We-Breathe-Intro-E.xhtml */; };
 		B996065919A7FD8500BF17F4 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = B996065819A7FD8500BF17F4 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-Intro-E.xhtml */; };
 		C393881F195376490005279F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C393881E195376490005279F /* AudioToolbox.framework */; };
-		C3938821195CBB4B0005279F /* bestFarm.epub in Resources */ = {isa = PBXBuildFile; fileRef = C3938820195CBB4B0005279F /* bestFarm.epub */; };
 		C3B45C12197EE21D003CE36D /* circulatory.epub in Resources */ = {isa = PBXBuildFile; fileRef = C3B45C11197EE21D003CE36D /* circulatory.epub */; };
 		C3B5214C19254B0C003FF639 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B5214919254B0C003FF639 /* Location.m */; };
 		C3B5214D19254B0C003FF639 /* Waypoint.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B5214B19254B0C003FF639 /* Waypoint.m */; };
@@ -718,6 +718,7 @@
 		5CE29A1E19B7F07800675CB0 /* BFTC8.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFTC8.m4a; path = EMBRACE_Client/sounds/BFTC8.m4a; sourceTree = SOURCE_ROOT; };
 		5CE29A1F19B7F07800675CB0 /* BFTC9.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFTC9.m4a; path = EMBRACE_Client/sounds/BFTC9.m4a; sourceTree = SOURCE_ROOT; };
 		5CE29A2019B7F07800675CB0 /* BFTC10.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFTC10.m4a; path = EMBRACE_Client/sounds/BFTC10.m4a; sourceTree = SOURCE_ROOT; };
+		5CE29A2419B9030F00675CB0 /* bestFarm.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = bestFarm.epub; path = EMBRACE_Client/bestFarm.epub; sourceTree = SOURCE_ROOT; };
 		5CF655AE19AC49C2000AC913 /* Story1-Introduction-At-the-Farm-PM.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Introduction-At-the-Farm-PM.xhtml"; sourceTree = "<group>"; };
 		5CF655B019AC4BB4000AC913 /* Story1-The-Contest-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-The-Contest-Intro-S.xhtml"; sourceTree = "<group>"; };
 		5CF655B219ACFE2B000AC913 /* Story1-The-Contest-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-The-Contest-Intro-E.xhtml"; sourceTree = "<group>"; };
@@ -819,7 +820,6 @@
 		B996065619A7FD0F00BF17F4 /* Story4-Getting-More-Oxygen-for-the-Muscles-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Getting-More-Oxygen-for-the-Muscles-Intro-E.xhtml"; sourceTree = "<group>"; };
 		B996065819A7FD8500BF17F4 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-Cigarette-Smoke-Hurts-Your-Lungs-Intro-E.xhtml"; sourceTree = "<group>"; };
 		C393881E195376490005279F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		C3938820195CBB4B0005279F /* bestFarm.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = bestFarm.epub; sourceTree = SOURCE_ROOT; };
 		C3B45C11197EE21D003CE36D /* circulatory.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = circulatory.epub; sourceTree = SOURCE_ROOT; };
 		C3B5214819254B0C003FF639 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		C3B5214919254B0C003FF639 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
@@ -991,10 +991,10 @@
 		31953E4F1729ECC100570087 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5CE29A2419B9030F00675CB0 /* bestFarm.epub */,
 				5C7FE06619A7E43B00CBBE0E /* sounds */,
 				5C7FDF3F19A6B1B500CBBE0E /* EPUBs */,
 				C3B45C11197EE21D003CE36D /* circulatory.epub */,
-				C3938820195CBB4B0005279F /* bestFarm.epub */,
 				31953E501729ECC100570087 /* EMBRACE-Info.plist */,
 				31953E511729ECC100570087 /* InfoPlist.strings */,
 				31953E541729ECC100570087 /* main.m */,
@@ -1795,7 +1795,6 @@
 				5CF9948119AC34550080C32F /* farm.png in Resources */,
 				5C7FE05819A6B1B500CBBE0E /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-3.xhtml in Resources */,
 				5C7FE16219A7E43C00CBBE0E /* premioS.m4a in Resources */,
-				C3938821195CBB4B0005279F /* bestFarm.epub in Resources */,
 				31953E5F1729ECC100570087 /* Default-568h@2x.png in Resources */,
 				5CF994B419AC34550080C32F /* Story5-The-Wise-Owl-PM-1.xhtml in Resources */,
 				5C7FE10819A7E43C00CBBE0E /* BFCE_REST.m4a in Resources */,
@@ -1803,6 +1802,7 @@
 				5CF655B319ACFE2B000AC913 /* Story1-The-Contest-Intro-E.xhtml in Resources */,
 				5CF994AF19AC34550080C32F /* Story4-Who-is-the-Best-Animal-PM-1.xhtml in Resources */,
 				31953E921729EE8100570087 /* MainStoryboard_iPad.storyboard in Resources */,
+				5CE29A2519B9030F00675CB0 /* bestFarm.epub in Resources */,
 				5CF9947C19AC34550080C32F /* corral.png in Resources */,
 				5C7FE14D19A7E43C00CBBE0E /* establoS.m4a in Resources */,
 				5CF9947519AC34550080C32F /* award.png in Resources */,
