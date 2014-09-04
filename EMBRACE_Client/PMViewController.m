@@ -751,6 +751,26 @@ int language_condition = ENGLISH;
         sentenceText = [sentenceText lowercaseString];
         NSString* englishSentenceText = sentenceText;
         
+        // Since the name of the pen image is pen4 because there is more than one pen, its name is hard-coded
+        if([sentenceText isEqualToString:@"pen"]) {
+            sentenceText = @"pen4";
+        }
+        
+        // Since the name of the nest image is chickenNest, its name is hard-coded
+        if([sentenceText isEqualToString:@"nest"]) {
+            sentenceText = @"chickenNest";
+        }
+        
+        // Since the name of the gate image is pen2, its name is hard-coded
+        if([sentenceText isEqualToString:@"gate"]) {
+            sentenceText = @"pen2";
+        }
+        
+        // Since the name of the trophy image is award, its name is hard-coded
+        if([sentenceText isEqualToString:@"trophy"]) {
+            sentenceText = @"award";
+        }
+        
         if (language_condition == BILINGUAL) {
             englishSentenceText = [self getEnglishTranslation:sentenceText];
         }
@@ -803,27 +823,6 @@ int language_condition = ENGLISH;
                             sentenceText = [self getEnglishTranslation:sentenceText];
                         }
                         
-                        // Since the name of the pen image is pen4 because there is more than one pen, its name is hard-coded
-                        if([sentenceText isEqualToString:@"pen"]) {
-                            sentenceText = @"pen4";
-                        }
-                        
-                        
-                        // Since the name of the nest image is chickenNest, its name is hard-coded
-                        if([sentenceText isEqualToString:@"nest"]) {
-                            sentenceText = @"chickenNest";
-                        }
-                        
-                        // Since the name of the gate image is pen2, its name is hard-coded
-                        if([sentenceText isEqualToString:@"gate"]) {
-                            sentenceText = @"pen2";
-                        }
-                        
-                        // Since the name of the trophy image is award, its name is hard-coded
-                        if([sentenceText isEqualToString:@"trophy"]) {
-                            sentenceText = @"award";
-                        }
-                        
                         [self highlightObject:sentenceText :1.5];
                         
                         currentSentence++;
@@ -835,7 +834,6 @@ int language_condition = ENGLISH;
             }
         }
         else if([[Translation translations] objectForKey:sentenceText]) {
-
             //Play word audio En
             //[self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,@"E"]];
             
@@ -851,26 +849,6 @@ int language_condition = ENGLISH;
                 
                 //Logging added by James for Word Audio
                 [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"S" :[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
-            }
-            
-            // Since the name of the pen image is pen4 because there is more than one pen, its name is hard-coded
-            if([sentenceText isEqualToString:@"pen"]) {
-                sentenceText = @"pen4";
-            }
-            
-            // Since the name of the nest image is chickenNest, its name is hard-coded
-            if([sentenceText isEqualToString:@"nest"]) {
-                sentenceText = @"chickenNest";
-            }
-            
-            // Since the name of the gate image is pen2, its name is hard-coded
-            if([sentenceText isEqualToString:@"gate"]) {
-                sentenceText = @"pen2";
-            }
-            
-            // Since the name of the trophy image is award, its name is hard-coded
-            if([sentenceText isEqualToString:@"trophy"]) {
-                sentenceText = @"award";
             }
             
             [self highlightObject:sentenceText:1.5];
