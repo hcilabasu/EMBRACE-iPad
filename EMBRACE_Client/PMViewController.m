@@ -3131,6 +3131,7 @@ int language_condition = ENGLISH;
             
             if(currentVocabStep > totalVocabSteps-1) {
                 [_audioPlayer stop];
+                currentSentence = 1;
                 [self loadNextPage]; //logging done in loadNextPage
             
             }
