@@ -81,6 +81,7 @@
 
 @property (nonatomic, strong) IBOutlet UIWebView *bookView;
 @property (strong) AVAudioPlayer *audioPlayer;
+@property (strong) AVAudioPlayer *audioPlayerAfter; // Used to play sounds after the first audio player has finished playing
 
 @end
 
@@ -354,6 +355,16 @@ int language_condition = ENGLISH;
     
     if (condition != CONTROL) {
         allowInteractions = TRUE;
+    }
+    
+    //If we are on the first manipulation page of The Contest, play the audio of the first sentence
+    if ([chapterTitle isEqualToString:@"The Contest"] && [currentPageId rangeOfString:@"PM-1"].location != NSNotFound) {
+        [self playAudioFile:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
+    }
+    
+    //If we are on the second manipulation page of The Contest, play the audio of the first sentence
+    if ([chapterTitle isEqualToString:@"The Contest"] && [currentPageId rangeOfString:@"PM-2"].location != NSNotFound) {
+        [self playAudioFile:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
     }
 }
 
@@ -826,7 +837,10 @@ int language_condition = ENGLISH;
         else if([[Translation translations] objectForKey:sentenceText]) {
 
             //Play word audio En
-            [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,@"E"]];
+            //[self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,@"E"]];
+            
+            //Play En audio twice
+            [self playAudioInSequence:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,@"E"]:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,@"E"]];
             
             //Logging added by James for Word Audio
             [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"E" :[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
@@ -3151,6 +3165,16 @@ int language_condition = ENGLISH;
             else {
                 //Logging added by James for Computer moving to next sentence
                 [[ServerCommunicationController sharedManager] logNextSentenceNavigation:@"Next Button" :tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :@"Next Sentence" :bookTitle :chapterTitle : currentPage : tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+                
+                //If we are on the first manipulation page of The Contest, play the audio of the current sentence
+                if ([chapterTitle isEqualToString:@"The Contest"] && [currentPageId rangeOfString:@"PM-1"].location != NSNotFound) {
+                    [self playAudioFile:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
+                }
+                
+                //If we are on the second manipulation page of The Contest, play the audio of the current sentence
+                if ([chapterTitle isEqualToString:@"The Contest"] && [currentPageId rangeOfString:@"PM-2"].location != NSNotFound) {
+                    [self playAudioFile:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
+                }
             }
         }
         else {
@@ -3280,6 +3304,30 @@ int language_condition = ENGLISH;
         NSLog(@"%@",[audioError description]);
     else
         [_audioPlayer play];
+}
+
+/* Plays one audio file after the other */
+-(void) playAudioInSequence:(NSString*) path :(NSString*) path2 {
+    NSString *soundFilePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], path];
+    NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+    NSError *audioError;
+    
+    NSString *soundFilePath2 = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], path2];
+    NSURL *soundFileURL2 = [NSURL fileURLWithPath:soundFilePath2];
+    
+    _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&audioError];
+    _audioPlayerAfter = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL2 error:&audioError];
+    _audioPlayer.delegate = self;
+    
+    if (_audioPlayer == nil)
+        NSLog(@"%@",[audioError description]);
+    else
+        [_audioPlayer play];
+}
+
+/* Delegate for the AVAudioPlayer */
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag  {
+    [_audioPlayerAfter play];
 }
     
 // Loads the information of the currentIntroStep for the introduction
