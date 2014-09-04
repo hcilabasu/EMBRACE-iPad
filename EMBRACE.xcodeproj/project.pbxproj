@@ -279,7 +279,7 @@
 		5CE29A2119B7F07800675CB0 /* BFTC8.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CE29A1E19B7F07800675CB0 /* BFTC8.m4a */; };
 		5CE29A2219B7F07800675CB0 /* BFTC9.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CE29A1F19B7F07800675CB0 /* BFTC9.m4a */; };
 		5CE29A2319B7F07800675CB0 /* BFTC10.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CE29A2019B7F07800675CB0 /* BFTC10.m4a */; };
-		5CE29A2819B9087400675CB0 /* bestFarm.epub in Resources */ = {isa = PBXBuildFile; fileRef = 5CE29A2719B9087400675CB0 /* bestFarm.epub */; };
+		5CE29A2A19B908F700675CB0 /* bestFarm.epub in Resources */ = {isa = PBXBuildFile; fileRef = 5CE29A2919B908F700675CB0 /* bestFarm.epub */; };
 		5CF655AF19AC49C2000AC913 /* Story1-Introduction-At-the-Farm-PM.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CF655AE19AC49C2000AC913 /* Story1-Introduction-At-the-Farm-PM.xhtml */; };
 		5CF655B119AC4BB4000AC913 /* Story1-The-Contest-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CF655B019AC4BB4000AC913 /* Story1-The-Contest-Intro-S.xhtml */; };
 		5CF655B319ACFE2B000AC913 /* Story1-The-Contest-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CF655B219ACFE2B000AC913 /* Story1-The-Contest-Intro-E.xhtml */; };
@@ -718,7 +718,7 @@
 		5CE29A1E19B7F07800675CB0 /* BFTC8.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFTC8.m4a; path = EMBRACE_Client/sounds/BFTC8.m4a; sourceTree = SOURCE_ROOT; };
 		5CE29A1F19B7F07800675CB0 /* BFTC9.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFTC9.m4a; path = EMBRACE_Client/sounds/BFTC9.m4a; sourceTree = SOURCE_ROOT; };
 		5CE29A2019B7F07800675CB0 /* BFTC10.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFTC10.m4a; path = EMBRACE_Client/sounds/BFTC10.m4a; sourceTree = SOURCE_ROOT; };
-		5CE29A2719B9087400675CB0 /* bestFarm.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = bestFarm.epub; sourceTree = "<group>"; };
+		5CE29A2919B908F700675CB0 /* bestFarm.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = bestFarm.epub; sourceTree = "<group>"; };
 		5CF655AE19AC49C2000AC913 /* Story1-Introduction-At-the-Farm-PM.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Introduction-At-the-Farm-PM.xhtml"; sourceTree = "<group>"; };
 		5CF655B019AC4BB4000AC913 /* Story1-The-Contest-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-The-Contest-Intro-S.xhtml"; sourceTree = "<group>"; };
 		5CF655B219ACFE2B000AC913 /* Story1-The-Contest-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-The-Contest-Intro-E.xhtml"; sourceTree = "<group>"; };
@@ -991,10 +991,10 @@
 		31953E4F1729ECC100570087 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				5CE29A2719B9087400675CB0 /* bestFarm.epub */,
 				5C7FE06619A7E43B00CBBE0E /* sounds */,
 				5C7FDF3F19A6B1B500CBBE0E /* EPUBs */,
 				C3B45C11197EE21D003CE36D /* circulatory.epub */,
+				5CE29A2919B908F700675CB0 /* bestFarm.epub */,
 				31953E501729ECC100570087 /* EMBRACE-Info.plist */,
 				31953E511729ECC100570087 /* InfoPlist.strings */,
 				31953E541729ECC100570087 /* main.m */,
@@ -1802,7 +1802,7 @@
 				5CF655B319ACFE2B000AC913 /* Story1-The-Contest-Intro-E.xhtml in Resources */,
 				5CF994AF19AC34550080C32F /* Story4-Who-is-the-Best-Animal-PM-1.xhtml in Resources */,
 				31953E921729EE8100570087 /* MainStoryboard_iPad.storyboard in Resources */,
-				5CE29A2819B9087400675CB0 /* bestFarm.epub in Resources */,
+				5CE29A2A19B908F700675CB0 /* bestFarm.epub in Resources */,
 				5CF9947C19AC34550080C32F /* corral.png in Resources */,
 				5C7FE14D19A7E43C00CBBE0E /* establoS.m4a in Resources */,
 				5CF9947519AC34550080C32F /* award.png in Resources */,
