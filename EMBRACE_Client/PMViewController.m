@@ -789,7 +789,7 @@ int language_condition = ENGLISH;
                     if ([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] && [[performedActions objectAtIndex:INPUT] isEqualToString:sentenceText] && !sameWordClicked && (currentSentence == sentenceIDNum)) {
                         
                         sameWordClicked = true;
-                        if ([chapterTitle isEqualToString:@"The Contest"]) {
+                        if ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"]) {
                             [self playAudioFile:vocabAudio];
                         }
                         else {
@@ -853,6 +853,7 @@ int language_condition = ENGLISH;
             if([sentenceText isEqualToString:@"trophy"]) {
                 sentenceText = @"award";
             }
+            
             //Play word audio En
             //[self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,@"E"]];
             
@@ -870,6 +871,10 @@ int language_condition = ENGLISH;
                 [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"S" :[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
             }
             
+            // Since the name of the dirt image is dirt_1, its name is hard-coded for it to be highlighted
+            if([sentenceText isEqualToString:@"dirt"]) {
+                sentenceText = @"dirt_1";
+            }
             [self highlightObject:sentenceText:1.5];
         }
     }
@@ -905,7 +910,7 @@ int language_condition = ENGLISH;
     }
     
     //Perform steps only if they exist for the sentence and have not been completed
-    if (numSteps > 0 && !stepsComplete && allowInteractions) {
+    else if (numSteps > 0 && !stepsComplete && allowInteractions) {
         
         //Logging Added by James for Emergency Swipe
         [[ServerCommunicationController sharedManager] logUserEmergencyNext:@"Emergency Swipe" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
@@ -3113,7 +3118,7 @@ int language_condition = ENGLISH;
     else if ([vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
         NSString* input;
         
-        if([chapterTitle isEqualToString:@"The Contest"]) {
+        if([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"]) {
             input = nextIntro;
         }
         else {
@@ -3477,7 +3482,7 @@ int language_condition = ENGLISH;
     lastStep = stepNumber;
     currentAudio = audio;
     
-    if([chapterTitle isEqualToString:@"The Contest"]) {
+    if([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"]) {
         //Get next step to be read
         VocabularyStep* nextVocabStep = [currentVocabSteps objectAtIndex:currentVocabStep];
         nextAudio = [nextVocabStep englishAudioFileName];
@@ -3488,7 +3493,7 @@ int language_condition = ENGLISH;
     
     // If we are ont the first step (1) ot the last step (9) which do not correspond to words
     //play the corresponding intro or outro audio
-    if (currentVocabStep == 1 && [chapterTitle isEqualToString:@"The Contest"]) {
+    if (currentVocabStep == 1 && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
         //Play introduction audio
         [self playAudioFile:audio];
         
@@ -3496,7 +3501,7 @@ int language_condition = ENGLISH;
 //        [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Step Audio" : @"E" :audio  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
     }
     
-    if (currentVocabStep == totalVocabSteps-1 && [chapterTitle isEqualToString:@"The Contest"]) {
+    if (currentVocabStep == totalVocabSteps-1 && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
         [self playAudioFile:nextAudio];
     }
     
