@@ -27,10 +27,13 @@
         NSArray *directoryContents = [fileManager contentsOfDirectoryAtPath:documentsDirectory error:&error];
         if (error == nil) {
             for (NSString *path in directoryContents) {
-                NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:path];
-                BOOL removeSuccess = [fileManager removeItemAtPath:fullPath error:&error];
-                if (!removeSuccess) {
-                    NSLog(@"could not remove files in document directory");
+                //EPUB files are located in a folder called "ASU"
+                if ([path isEqualToString:@"ASU"]) {
+                    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:path];
+                    BOOL removeSuccess = [fileManager removeItemAtPath:fullPath error:&error];
+                    if (!removeSuccess) {
+                        NSLog(@"could not remove files in document directory");
+                    }
                 }
             }
         }
