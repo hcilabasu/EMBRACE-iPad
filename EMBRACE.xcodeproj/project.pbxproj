@@ -90,7 +90,6 @@
 		5C7FE02819A6B1B500CBBE0E /* mimetype in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FDF9719A6B1B500CBBE0E /* mimetype */; };
 		5C7FE02919A6B1B500CBBE0E /* content.opf in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FDF9919A6B1B500CBBE0E /* content.opf */; };
 		5C7FE02A19A6B1B500CBBE0E /* background_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FDF9B19A6B1B500CBBE0E /* background_1.png */; };
-		5C7FE02B19A6B1B500CBBE0E /* background_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FDF9C19A6B1B500CBBE0E /* background_2.png */; };
 		5C7FE02C19A6B1B500CBBE0E /* background_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FDF9D19A6B1B500CBBE0E /* background_3.png */; };
 		5C7FE02D19A6B1B500CBBE0E /* bloodcell_select.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FDF9E19A6B1B500CBBE0E /* bloodcell_select.png */; };
 		5C7FE02E19A6B1B500CBBE0E /* bloodcell_select_oxygenated.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FDF9F19A6B1B500CBBE0E /* bloodcell_select_oxygenated.png */; };
@@ -435,6 +434,7 @@
 		5CF994C019AC34550080C32F /* Story7-The-Best-Farm-Award-Title.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CF9946E19AC34550080C32F /* Story7-The-Best-Farm-Award-Title.xhtml */; };
 		5CF994C119AC34550080C32F /* toc.ncx in Resources */ = {isa = PBXBuildFile; fileRef = 5CF9946F19AC34550080C32F /* toc.ncx */; };
 		5CFA85AB1950EFDC00C7537D /* IntroductionStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFA85AA1950EFDC00C7537D /* IntroductionStep.m */; };
+		B9558D3719C24A4000BD5FC0 /* background_2.png in Resources */ = {isa = PBXBuildFile; fileRef = B9558D3619C24A4000BD5FC0 /* background_2.png */; };
 		B996065119A7FAC400BF17F4 /* Story2-The-Amazing-Heart-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = B996065019A7FAC400BF17F4 /* Story2-The-Amazing-Heart-Intro-E.xhtml */; };
 		B996065319A7FBF400BF17F4 /* Story3-Muscles-Use-Oxygen-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = B996065219A7FBF400BF17F4 /* Story3-Muscles-Use-Oxygen-Intro-E.xhtml */; };
 		B996065519A7FCA300BF17F4 /* Story1-Why-We-Breathe-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = B996065419A7FCA300BF17F4 /* Story1-Why-We-Breathe-Intro-E.xhtml */; };
@@ -589,7 +589,6 @@
 		5C7FDF9719A6B1B500CBBE0E /* mimetype */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mimetype; sourceTree = "<group>"; };
 		5C7FDF9919A6B1B500CBBE0E /* content.opf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = content.opf; sourceTree = "<group>"; };
 		5C7FDF9B19A6B1B500CBBE0E /* background_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_1.png; sourceTree = "<group>"; };
-		5C7FDF9C19A6B1B500CBBE0E /* background_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_2.png; sourceTree = "<group>"; };
 		5C7FDF9D19A6B1B500CBBE0E /* background_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_3.png; sourceTree = "<group>"; };
 		5C7FDF9E19A6B1B500CBBE0E /* bloodcell_select.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bloodcell_select.png; sourceTree = "<group>"; };
 		5C7FDF9F19A6B1B500CBBE0E /* bloodcell_select_oxygenated.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bloodcell_select_oxygenated.png; sourceTree = "<group>"; };
@@ -962,6 +961,7 @@
 		5CF9946F19AC34550080C32F /* toc.ncx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = toc.ncx; sourceTree = "<group>"; };
 		5CFA85A91950EFDC00C7537D /* IntroductionStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroductionStep.h; sourceTree = "<group>"; };
 		5CFA85AA1950EFDC00C7537D /* IntroductionStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroductionStep.m; sourceTree = "<group>"; };
+		B9558D3619C24A4000BD5FC0 /* background_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_2.png; sourceTree = "<group>"; };
 		B996065019A7FAC400BF17F4 /* Story2-The-Amazing-Heart-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story2-The-Amazing-Heart-Intro-E.xhtml"; sourceTree = "<group>"; };
 		B996065219A7FBF400BF17F4 /* Story3-Muscles-Use-Oxygen-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story3-Muscles-Use-Oxygen-Intro-E.xhtml"; sourceTree = "<group>"; };
 		B996065419A7FCA300BF17F4 /* Story1-Why-We-Breathe-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Why-We-Breathe-Intro-E.xhtml"; sourceTree = "<group>"; };
@@ -1343,8 +1343,8 @@
 		5C7FDF9A19A6B1B500CBBE0E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B9558D3619C24A4000BD5FC0 /* background_2.png */,
 				5C7FDF9B19A6B1B500CBBE0E /* background_1.png */,
-				5C7FDF9C19A6B1B500CBBE0E /* background_2.png */,
 				5C7FDF9D19A6B1B500CBBE0E /* background_3.png */,
 				5C7FDF9E19A6B1B500CBBE0E /* bloodcell_select.png */,
 				5C7FDF9F19A6B1B500CBBE0E /* bloodcell_select_oxygenated.png */,
@@ -2111,6 +2111,7 @@
 				5CAD060C19BE6A3E00F3F053 /* CCE1_7.m4a in Resources */,
 				5C7FE0F019A7E43C00CBBE0E /* BFCE1_4.m4a in Resources */,
 				5C7FE0F819A7E43C00CBBE0E /* BFCE_14.m4a in Resources */,
+				B9558D3719C24A4000BD5FC0 /* background_2.png in Resources */,
 				5CE299CF19B59CC400675CB0 /* farmE.m4a in Resources */,
 				5C7FE06119A6B1B500CBBE0E /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-PM-2.xhtml in Resources */,
 				5CAD05EA19BE6A3E00F3F053 /* CCE5_1.m4a in Resources */,
@@ -2159,7 +2160,6 @@
 				5C7FE03C19A6B1B500CBBE0E /* IMStyle.css in Resources */,
 				5CAD05EC19BE6A3E00F3F053 /* CCE4_8.m4a in Resources */,
 				5CAD065119BEB8AE00F3F053 /* heartE.m4a in Resources */,
-				5C7FE02B19A6B1B500CBBE0E /* background_2.png in Resources */,
 				5CF655AF19AC49C2000AC913 /* Story1-Introduction-At-the-Farm-PM.xhtml in Resources */,
 				5C7FE13A19A7E43C00CBBE0E /* BFES_11.m4a in Resources */,
 				5C7FE04F19A6B1B500CBBE0E /* Story3-Muscles-Use-Oxygen-IM-2.xhtml in Resources */,
