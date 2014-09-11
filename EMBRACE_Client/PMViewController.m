@@ -240,6 +240,16 @@ int language_condition = ENGLISH;
         [self loadVocabStep];
     }
     
+    //If we are on the first or second manipulation page of The Contest, play the audio of the first sentence
+    if ([chapterTitle isEqualToString:@"The Contest"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+        [self playAudioFile:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
+    }
+    
+    //If we are on the first or second manipulation page of Why We Breathe, play the audio of the first sentence
+    if ([chapterTitle isEqualToString:@"Why We Breathe"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
+        [self playAudioFile:[NSString stringWithFormat:@"CWWB%d.m4a",currentSentence]];
+    }
+    
     //Perform setup for activity
     [self performSetupForActivity];
 }
@@ -355,16 +365,6 @@ int language_condition = ENGLISH;
     
     if (condition != CONTROL) {
         allowInteractions = TRUE;
-    }
-    
-    //If we are on the first manipulation page of The Contest, play the audio of the first sentence
-    if ([chapterTitle isEqualToString:@"The Contest"] && [currentPageId rangeOfString:@"PM-1"].location != NSNotFound) {
-        [self playAudioFile:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
-    }
-    
-    //If we are on the second manipulation page of The Contest, play the audio of the first sentence
-    if ([chapterTitle isEqualToString:@"The Contest"] && [currentPageId rangeOfString:@"PM-2"].location != NSNotFound) {
-        [self playAudioFile:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
     }
 }
 
@@ -3169,14 +3169,14 @@ int language_condition = ENGLISH;
                 //Logging added by James for Computer moving to next sentence
                 [[ServerCommunicationController sharedManager] logNextSentenceNavigation:@"Next Button" :tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :@"Next Sentence" :bookTitle :chapterTitle : currentPage : tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
                 
-                //If we are on the first manipulation page of The Contest, play the audio of the current sentence
-                if ([chapterTitle isEqualToString:@"The Contest"] && [currentPageId rangeOfString:@"PM-1"].location != NSNotFound) {
+                //If we are on the first or second manipulation page of The Contest, play the audio of the current sentence
+                if ([chapterTitle isEqualToString:@"The Contest"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
                     [self playAudioFile:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
                 }
                 
-                //If we are on the second manipulation page of The Contest, play the audio of the current sentence
-                if ([chapterTitle isEqualToString:@"The Contest"] && [currentPageId rangeOfString:@"PM-2"].location != NSNotFound) {
-                    [self playAudioFile:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
+                //If we are on the first or second manipulation page of Why We Breathe, play the audio of the current sentence
+                if ([chapterTitle isEqualToString:@"Why We Breathe"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
+                    [self playAudioFile:[NSString stringWithFormat:@"CWWB%d.m4a",currentSentence]];
                 }
             }
         }

@@ -682,6 +682,7 @@
               <expectedSelection>word</expectedSelection>
               <expectedAction>tap</expectedAction>
               <expectedInput>around</expectedInput>
+          </vocabularyIntroductionWord>
           <vocabularyIntroductionWord number="19">
               <englishWordAudio></englishWordAudio>
               <spanishWordAudio></spanishWordAudio>
@@ -690,7 +691,6 @@
               <expectedSelection></expectedSelection>
               <expectedAction>tap</expectedAction>
               <expectedInput>next</expectedInput>
-          </vocabularyIntroductionWord>
           </vocabularyIntroductionWord>
       </vocabularyIntroduction>
       <vocabularyIntroduction story="Muscles Use Oxygen">
