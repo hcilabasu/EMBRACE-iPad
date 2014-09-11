@@ -45,7 +45,7 @@
                  @"beat": @"latir",
                  @"blood": @"sangre",
                  @"breathe": @"respirar",
-                 @"carbon": @"dioxide dióxido de carbono",
+                 @"carbon dioxide": @"dióxido de carbono",
                  @"chest": @"pecho",
                  @"cigarette": @"cigarrillo",
                  @"cilia": @"cilia",

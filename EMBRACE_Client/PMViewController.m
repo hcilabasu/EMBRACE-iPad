@@ -828,6 +828,11 @@ int language_condition = ENGLISH;
                             sentenceText = @"O2_1";
                         }
                         
+                        // Since the name of the carbon dioxide image is O2_1, its name is hard-coded
+                        if([sentenceText isEqualToString:@"carbon dioxide"]) {
+                            sentenceText = @"CO2_1";
+                        }
+                        
                         [self highlightObject:sentenceText :1.5];
                         
                         currentSentence++;
@@ -859,6 +864,11 @@ int language_condition = ENGLISH;
                 sentenceText = @"award";
             }
             
+            // Since the name of the carbon dioxide file is carbonDioxide, its name is hard-coded
+            if([sentenceText isEqualToString:@"carbon dioxide"]) {
+                sentenceText = @"carbonDioxide";
+            }
+            
             //Play word audio En
             //[self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,@"E"]];
             
@@ -876,10 +886,21 @@ int language_condition = ENGLISH;
                 [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"S" :[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
             }
             
+            // Since the name of the oxygen image is O2_1, its name is hard-coded
+            if([sentenceText isEqualToString:@"oxygen"]) {
+                sentenceText = @"O2_1";
+            }
+            
+            // Since the name of the carbon dioxide image is CO2_1, its name is hard-coded
+            if([sentenceText isEqualToString:@"carbonDioxide"]) {
+                sentenceText = @"CO2_1";
+            }
+            
             // Since the name of the dirt image is dirt_1, its name is hard-coded for it to be highlighted
             if([sentenceText isEqualToString:@"dirt"]) {
                 sentenceText = @"dirt_1";
             }
+            
             [self highlightObject:sentenceText:1.5];
         }
     }
