@@ -158,6 +158,13 @@
     [[self navigationItem] setBackBarButtonItem:backButton];
 }
 
+/*
+ * User pressed Logout button. Returns to login screen.
+ */
+-(IBAction)pressedLogout:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma mark - UICollectionViewDataSource
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)libraryView {
     //Each book is in its own section, with each chapter laid out.

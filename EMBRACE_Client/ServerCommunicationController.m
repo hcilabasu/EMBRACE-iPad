@@ -158,6 +158,7 @@ DDXMLElement *nodeStudy;
 -(void) logContext : (Student *) userdetails
 {
     if(userdetails != nil) {
+        [self init]; //start a new log file
         
         //formats username string into "firstname lastname"
         NSString *FileNameValue = [NSString stringWithFormat:@"%@ %@ %@",[userdetails schoolName],[userdetails firstName],[userdetails lastName]];
