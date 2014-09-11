@@ -823,6 +823,11 @@ int language_condition = ENGLISH;
                             sentenceText = @"award";
                         }
                         
+                        // Since the name of the oxygen image is O2_1, its name is hard-coded
+                        if([sentenceText isEqualToString:@"oxygen"]) {
+                            sentenceText = @"O2_1";
+                        }
+                        
                         [self highlightObject:sentenceText :1.5];
                         
                         currentSentence++;
