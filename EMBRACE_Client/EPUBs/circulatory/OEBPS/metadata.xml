@@ -731,6 +731,78 @@
               <expectedInput>veins</expectedInput>
           </vocabularyIntroductionWord>
           <vocabularyIntroductionWord number="5">
+              <englishWordAudio>CCE1_8.m4a</englishWordAudio>
+              <spanishWordAudio>CCS1_8.m4a</spanishWordAudio>
+              <englishWordText>Arteries</englishWordText>
+              <spanishWordText>Arterias</spanishWordText>
+              <expectedSelection>word</expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>arteries</expectedInput>
+          </vocabularyIntroductionWord>
+          <vocabularyIntroductionWord number="6">
+              <englishWordAudio>CCE1_8.m4a</englishWordAudio>
+              <spanishWordAudio>CCS1_8.m4a</spanishWordAudio>
+              <englishWordText>Arteries</englishWordText>
+              <spanishWordText>Arterias</spanishWordText>
+              <expectedSelection>word</expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>arteries</expectedInput>
+          </vocabularyIntroductionWord>
+          <vocabularyIntroductionWord number="7">
+              <englishWordAudio>CCE1_4.m4a</englishWordAudio>
+              <spanishWordAudio>CCS1_4.m4a</spanishWordAudio>
+              <englishWordText>Oxygen</englishWordText>
+              <spanishWordText>Oxígeno</spanishWordText>
+              <expectedSelection>word</expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>oxygen</expectedInput>
+          </vocabularyIntroductionWord>
+          <vocabularyIntroductionWord number="8">
+              <englishWordAudio>CCE1_4.m4a</englishWordAudio>
+              <spanishWordAudio>CCS1_4.m4a</spanishWordAudio>
+              <englishWordText>Oxygen</englishWordText>
+              <spanishWordText>Oxígeno</spanishWordText>
+              <expectedSelection>word</expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>oxygen</expectedInput>
+          </vocabularyIntroductionWord>
+          <vocabularyIntroductionWord number="9">
+              <englishWordAudio>CCE1_6.m4a</englishWordAudio>
+              <spanishWordAudio>CCS1_6.m4a</spanishWordAudio>
+              <englishWordText>Carbon Dioxide</englishWordText>
+              <spanishWordText>Dióxido de Carbono</spanishWordText>
+              <expectedSelection>word</expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>carbon dioxide</expectedInput>
+          </vocabularyIntroductionWord>
+          <vocabularyIntroductionWord number="10">
+              <englishWordAudio>CCE1_6.m4a</englishWordAudio>
+              <spanishWordAudio>CCS1_6.m4a</spanishWordAudio>
+              <englishWordText>Carbon Dioxide</englishWordText>
+              <spanishWordText>Dióxido de Carbono</spanishWordText>
+              <expectedSelection>word</expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>carbon dioxide</expectedInput>
+          </vocabularyIntroductionWord>
+          <vocabularyIntroductionWord number="11">
+              <englishWordAudio>CCE1_10.m4a</englishWordAudio>
+              <spanishWordAudio>CCS1_10m4a</spanishWordAudio>
+              <englishWordText>Energy</englishWordText>
+              <spanishWordText>Energía</spanishWordText>
+              <expectedSelection>word</expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>energy</expectedInput>
+          </vocabularyIntroductionWord>
+          <vocabularyIntroductionWord number="12">
+              <englishWordAudio>CCE1_10.m4a</englishWordAudio>
+              <spanishWordAudio>CCS1_10m4a</spanishWordAudio>
+              <englishWordText>Energy</englishWordText>
+              <spanishWordText>Energía</spanishWordText>
+              <expectedSelection>word</expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>energy</expectedInput>
+          </vocabularyIntroductionWord>
+          <vocabularyIntroductionWord number="13">
               <englishWordAudio></englishWordAudio>
               <spanishWordAudio></spanishWordAudio>
               <englishWordText></englishWordText>

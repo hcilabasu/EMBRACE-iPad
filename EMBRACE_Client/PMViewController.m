@@ -833,6 +833,11 @@ int language_condition = ENGLISH;
                             sentenceText = @"CO2_1";
                         }
                         
+                        // Since the name of the vale image is handle, its name is hard-coded
+                        if([sentenceText isEqualToString:@"valve"]) {
+                            sentenceText = @"handle";
+                        }
+                        
                         [self highlightObject:sentenceText :1.5];
                         
                         currentSentence++;
@@ -899,6 +904,11 @@ int language_condition = ENGLISH;
             // Since the name of the dirt image is dirt_1, its name is hard-coded for it to be highlighted
             if([sentenceText isEqualToString:@"dirt"]) {
                 sentenceText = @"dirt_1";
+            }
+            
+            // Since the name of the vale image is handle, its name is hard-coded
+            if([sentenceText isEqualToString:@"valve"]) {
+                sentenceText = @"handle";
             }
             
             [self highlightObject:sentenceText:1.5];
