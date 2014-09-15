@@ -61,7 +61,6 @@
 		31C306C5183E93A60043DEDD /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C306C4183E93A60043DEDD /* Connection.m */; };
 		5C2FBA56195209C300B3151D /* IntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2FBA55195209C200B3151D /* IntroductionViewController.m */; };
 		5C466ADC192293290056EA4B /* Translation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C466ADB192293290056EA4B /* Translation.m */; };
-		5C77690419C0C830000DBC65 /* bestFarm.epub in Resources */ = {isa = PBXBuildFile; fileRef = 5C77690319C0C830000DBC65 /* bestFarm.epub */; };
 		5C776A4219C17F39000DBC65 /* BFTC0.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C776A3719C17F39000DBC65 /* BFTC0.m4a */; };
 		5C776A4319C17F39000DBC65 /* BFTC1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C776A3819C17F39000DBC65 /* BFTC1.m4a */; };
 		5C776A4419C17F39000DBC65 /* BFTC2.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C776A3919C17F39000DBC65 /* BFTC2.m4a */; };
@@ -165,6 +164,8 @@
 		5C776B0119C674FA000DBC65 /* respirarS.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C776AB619C674FA000DBC65 /* respirarS.m4a */; };
 		5C776B0219C674FA000DBC65 /* respirarDEFS.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C776AB719C674FA000DBC65 /* respirarDEFS.m4a */; };
 		5C776B0419C69E55000DBC65 /* metadata.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5C776B0319C69E55000DBC65 /* metadata.xml */; };
+		5C776B0C19C6A884000DBC65 /* BFCE_4.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C776B0B19C6A884000DBC65 /* BFCE_4.m4a */; };
+		5C776B1319C6B67E000DBC65 /* bestFarm.epub in Resources */ = {isa = PBXBuildFile; fileRef = 5C776B1219C6B67E000DBC65 /* bestFarm.epub */; };
 		5C7FE02819A6B1B500CBBE0E /* mimetype in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FDF9719A6B1B500CBBE0E /* mimetype */; };
 		5C7FE02919A6B1B500CBBE0E /* content.opf in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FDF9919A6B1B500CBBE0E /* content.opf */; };
 		5C7FE02A19A6B1B500CBBE0E /* background_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FDF9B19A6B1B500CBBE0E /* background_1.png */; };
@@ -637,7 +638,6 @@
 		5C2FBA55195209C200B3151D /* IntroductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroductionViewController.m; sourceTree = "<group>"; };
 		5C466ADA192293290056EA4B /* Translation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Translation.h; sourceTree = "<group>"; };
 		5C466ADB192293290056EA4B /* Translation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Translation.m; sourceTree = "<group>"; };
-		5C77690319C0C830000DBC65 /* bestFarm.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = bestFarm.epub; sourceTree = SOURCE_ROOT; };
 		5C776A3719C17F39000DBC65 /* BFTC0.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = BFTC0.m4a; sourceTree = "<group>"; };
 		5C776A3819C17F39000DBC65 /* BFTC1.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = BFTC1.m4a; sourceTree = "<group>"; };
 		5C776A3919C17F39000DBC65 /* BFTC2.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = BFTC2.m4a; sourceTree = "<group>"; };
@@ -741,6 +741,8 @@
 		5C776AB619C674FA000DBC65 /* respirarS.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = respirarS.m4a; sourceTree = "<group>"; };
 		5C776AB719C674FA000DBC65 /* respirarDEFS.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = respirarDEFS.m4a; sourceTree = "<group>"; };
 		5C776B0319C69E55000DBC65 /* metadata.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = metadata.xml; sourceTree = "<group>"; };
+		5C776B0B19C6A884000DBC65 /* BFCE_4.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCE_4.m4a; path = EMBRACE_Client/sounds/BFCE_4.m4a; sourceTree = SOURCE_ROOT; };
+		5C776B1219C6B67E000DBC65 /* bestFarm.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = bestFarm.epub; sourceTree = SOURCE_ROOT; };
 		5C7FDF9619A6B1B500CBBE0E /* container.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = container.xml; sourceTree = "<group>"; };
 		5C7FDF9719A6B1B500CBBE0E /* mimetype */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mimetype; sourceTree = "<group>"; };
 		5C7FDF9919A6B1B500CBBE0E /* content.opf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = content.opf; sourceTree = "<group>"; };
@@ -823,7 +825,6 @@
 		5C7FE07A19A7E43C00CBBE0E /* BFCE_2AA.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCE_2AA.m4a; path = EMBRACE_Client/sounds/BFCE_2AA.m4a; sourceTree = SOURCE_ROOT; };
 		5C7FE07B19A7E43C00CBBE0E /* BFCE_2B.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCE_2B.m4a; path = EMBRACE_Client/sounds/BFCE_2B.m4a; sourceTree = SOURCE_ROOT; };
 		5C7FE07C19A7E43C00CBBE0E /* BFCE_3.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCE_3.m4a; path = EMBRACE_Client/sounds/BFCE_3.m4a; sourceTree = SOURCE_ROOT; };
-		5C7FE07D19A7E43C00CBBE0E /* BFCE_4.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCE_4.m4a; path = EMBRACE_Client/sounds/BFCE_4.m4a; sourceTree = SOURCE_ROOT; };
 		5C7FE07E19A7E43C00CBBE0E /* BFCE_5.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCE_5.m4a; path = EMBRACE_Client/sounds/BFCE_5.m4a; sourceTree = SOURCE_ROOT; };
 		5C7FE07F19A7E43C00CBBE0E /* BFCE_5A.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCE_5A.m4a; path = EMBRACE_Client/sounds/BFCE_5A.m4a; sourceTree = SOURCE_ROOT; };
 		5C7FE08019A7E43C00CBBE0E /* BFCE_6.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCE_6.m4a; path = EMBRACE_Client/sounds/BFCE_6.m4a; sourceTree = SOURCE_ROOT; };
@@ -1295,7 +1296,7 @@
 		31953E4F1729ECC100570087 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				5C77690319C0C830000DBC65 /* bestFarm.epub */,
+				5C776B1219C6B67E000DBC65 /* bestFarm.epub */,
 				5C7FE06619A7E43B00CBBE0E /* sounds */,
 				5C7FDF3F19A6B1B500CBBE0E /* EPUBs */,
 				C3B45C11197EE21D003CE36D /* circulatory.epub */,
@@ -1583,6 +1584,7 @@
 		5C7FE06619A7E43B00CBBE0E /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				5C776B0B19C6A884000DBC65 /* BFCE_4.m4a */,
 				5C776A6D19C674FA000DBC65 /* CPQR15.m4a */,
 				5C776A6E19C674FA000DBC65 /* CPQR14.m4a */,
 				5C776A6F19C674FA000DBC65 /* CPQR13.m4a */,
@@ -1805,7 +1807,6 @@
 				5C7FE07A19A7E43C00CBBE0E /* BFCE_2AA.m4a */,
 				5C7FE07B19A7E43C00CBBE0E /* BFCE_2B.m4a */,
 				5C7FE07C19A7E43C00CBBE0E /* BFCE_3.m4a */,
-				5C7FE07D19A7E43C00CBBE0E /* BFCE_4.m4a */,
 				5C7FE07E19A7E43C00CBBE0E /* BFCE_5.m4a */,
 				5C7FE07F19A7E43C00CBBE0E /* BFCE_5A.m4a */,
 				5C7FE08019A7E43C00CBBE0E /* BFCE_6.m4a */,
@@ -2138,6 +2139,7 @@
 				5C7FE02A19A6B1B500CBBE0E /* background_1.png in Resources */,
 				5C7FE12419A7E43C00CBBE0E /* BFEE1_6.m4a in Resources */,
 				5CF994A919AC34550080C32F /* Story3-Cleaning-Up-IM-2.xhtml in Resources */,
+				5C776B1319C6B67E000DBC65 /* bestFarm.epub in Resources */,
 				5CAD060219BE6A3E00F3F053 /* CCE2_1.m4a in Resources */,
 				5CE299D219B59E6000675CB0 /* BFCE3_5.m4a in Resources */,
 				5C776ADB19C674FA000DBC65 /* venasS.m4a in Resources */,
@@ -2197,7 +2199,6 @@
 				5C776A5F19C241EE000DBC65 /* CWWB2.m4a in Resources */,
 				5CF655C219AEACF0000AC913 /* Story6-Everyone-Helps-Intro-E.xhtml in Resources */,
 				5C776ACF19C674FA000DBC65 /* mugreS.m4a in Resources */,
-				5C77690419C0C830000DBC65 /* bestFarm.epub in Resources */,
 				5CE299CB19B5988700675CB0 /* pumpkinE.m4a in Resources */,
 				5C7FE03619A6B1B500CBBE0E /* p2_healthy_cilia.png in Resources */,
 				5C776AEA19C674FA000DBC65 /* valvulaDEFS.m4a in Resources */,
@@ -2255,6 +2256,7 @@
 				5C776AFC19C674FA000DBC65 /* oxigenoDEFS.m4a in Resources */,
 				5CF994BD19AC34550080C32F /* Story7-The-Best-Farm-Award-IM-2.xhtml in Resources */,
 				5C776AF419C674FA000DBC65 /* arteriaDEFS.m4a in Resources */,
+				5C776B0C19C6A884000DBC65 /* BFCE_4.m4a in Resources */,
 				5C7FE05019A6B1B500CBBE0E /* Story3-Muscles-Use-Oxygen-PM-1.xhtml in Resources */,
 				5CAD063619BEB8AE00F3F053 /* dustE.m4a in Resources */,
 				5CAD05FA19BE6A3E00F3F053 /* CCE2_5.m4a in Resources */,

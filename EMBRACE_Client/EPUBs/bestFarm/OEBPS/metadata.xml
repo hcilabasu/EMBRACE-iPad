@@ -1019,7 +1019,7 @@
               <englishText>Manuel walks to the corral.</englishText>
               <spanishText>Manuel va hacia el corral.</spanishText>
               <expectedSelection></expectedSelection>
-              <expectedAction>tap</expectedAction>
+              <expectedAction>move</expectedAction>
               <expectedInput>next</expectedInput>
           </introductionStep>
           <introductionStep number="7">
@@ -1037,7 +1037,7 @@
               <englishText>Manuel puts the cow into the pen.</englishText>
               <spanishText>Manuel pone a la vaca en el establo.</spanishText>
               <expectedSelection></expectedSelection>
-              <expectedAction>tap</expectedAction>
+              <expectedAction>move</expectedAction>
               <expectedInput>next</expectedInput>
           </introductionStep>
 		  <introductionStep number="9">
@@ -1059,12 +1059,12 @@
               <expectedInput>next</expectedInput>
           </introductionStep>
           <introductionStep number="11">
-              <englishAudio>BFCE_18.m4a</englishAudio>
+              <englishAudio>BFCE_18A.m4a</englishAudio>
               <spanishAudio></spanishAudio>
               <englishText>Manuel gives the goat an apple to eat.</englishText>
               <spanishText>Manuel gives the goat an apple to eat.</spanishText>
               <expectedSelection></expectedSelection>
-              <expectedAction>tap</expectedAction>
+              <expectedAction>move</expectedAction>
               <expectedInput>next</expectedInput>
           </introductionStep>
           <introductionStep number="12">

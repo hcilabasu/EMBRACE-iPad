@@ -161,7 +161,7 @@
       </sentence>
     </story>
     <story title="Muscles Use Oxygen" activity_id="story3-PM-1">
-      <sentence number="2">
+      <sentence number="1">
         <step number="1">
             <check obj1Id="bloodcell_2" action="getIn" locationId="muscle1"/>
             <move obj1Id="bloodcell_2" action="getIn" waypointId="muscle1"/>
