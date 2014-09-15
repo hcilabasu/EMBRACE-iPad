@@ -3506,6 +3506,7 @@ int language_condition = ENGLISH;
     NSString* nextIntroInput;
     
     sameWordClicked = false;
+    allowInteractions = FALSE;
     
     //Get current step to be read
     VocabularyStep* currVocabStep = [currentVocabSteps objectAtIndex:currentVocabStep-1];
