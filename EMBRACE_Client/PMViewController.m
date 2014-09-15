@@ -854,21 +854,6 @@ int language_condition = ENGLISH;
                 sentenceText = @"pen4";
             }
             
-            // Since the name of the nest image is chickenNest, its name is hard-coded
-            if([sentenceText isEqualToString:@"nest"]) {
-                sentenceText = @"chickenNest";
-            }
-            
-            // Since the name of the gate image is pen2, its name is hard-coded
-            if([sentenceText isEqualToString:@"gate"]) {
-                sentenceText = @"pen2";
-            }
-            
-            // Since the name of the trophy image is award, its name is hard-coded
-            if([sentenceText isEqualToString:@"trophy"]) {
-                sentenceText = @"award";
-            }
-            
             // Since the name of the carbon dioxide file is carbonDioxide, its name is hard-coded
             if([sentenceText isEqualToString:@"carbon dioxide"]) {
                 sentenceText = @"carbonDioxide";
@@ -889,6 +874,21 @@ int language_condition = ENGLISH;
                 
                 //Logging added by James for Word Audio
                 [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"S" :[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+            }
+            
+            // Since the name of the nest image is chickenNest, its name is hard-coded
+            if([sentenceText isEqualToString:@"nest"]) {
+                sentenceText = @"chickenNest";
+            }
+            
+            // Since the name of the gate image is pen2, its name is hard-coded
+            if([sentenceText isEqualToString:@"gate"]) {
+                sentenceText = @"pen2";
+            }
+            
+            // Since the name of the trophy image is award, its name is hard-coded
+            if([sentenceText isEqualToString:@"trophy"]) {
+                sentenceText = @"award";
             }
             
             // Since the name of the oxygen image is O2_1, its name is hard-coded
