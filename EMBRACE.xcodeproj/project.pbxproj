@@ -164,6 +164,7 @@
 		5C776B0019C674FA000DBC65 /* corazonDEFS.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C776AB519C674FA000DBC65 /* corazonDEFS.m4a */; };
 		5C776B0119C674FA000DBC65 /* respirarS.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C776AB619C674FA000DBC65 /* respirarS.m4a */; };
 		5C776B0219C674FA000DBC65 /* respirarDEFS.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C776AB719C674FA000DBC65 /* respirarDEFS.m4a */; };
+		5C776B0419C69E55000DBC65 /* metadata.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5C776B0319C69E55000DBC65 /* metadata.xml */; };
 		5C7FE02819A6B1B500CBBE0E /* mimetype in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FDF9719A6B1B500CBBE0E /* mimetype */; };
 		5C7FE02919A6B1B500CBBE0E /* content.opf in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FDF9919A6B1B500CBBE0E /* content.opf */; };
 		5C7FE02A19A6B1B500CBBE0E /* background_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FDF9B19A6B1B500CBBE0E /* background_1.png */; };
@@ -478,7 +479,7 @@
 		5CF9949619AC34550080C32F /* Story-6-Everyone-Helps.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CF9944219AC34550080C32F /* Story-6-Everyone-Helps.png */; };
 		5CF9949719AC34550080C32F /* Story-7-The-Best-Farm-Award.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CF9944319AC34550080C32F /* Story-7-The-Best-Farm-Award.png */; };
 		5CF9949819AC34550080C32F /* tractor_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CF9944419AC34550080C32F /* tractor_large.png */; };
-		5CF9949919AC34550080C32F /* metadata.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5CF9944519AC34550080C32F /* metadata.xml */; };
+		5CF9949919AC34550080C32F /* metadataEE.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5CF9944519AC34550080C32F /* metadataEE.xml */; };
 		5CF9949A19AC34550080C32F /* IMStyle.css in Resources */ = {isa = PBXBuildFile; fileRef = 5CF9944719AC34550080C32F /* IMStyle.css */; };
 		5CF9949B19AC34550080C32F /* PMStyle.css in Resources */ = {isa = PBXBuildFile; fileRef = 5CF9944819AC34550080C32F /* PMStyle.css */; };
 		5CF9949C19AC34550080C32F /* Stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = 5CF9944919AC34550080C32F /* Stylesheet.css */; };
@@ -586,7 +587,7 @@
 		31937539174185E000782C2B /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		3193753B1741A76E00782C2B /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
 		3193753C1741A76E00782C2B /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
-		31953E451729ECC100570087 /* Embrace E.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Embrace E.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		31953E451729ECC100570087 /* Control E.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Control E.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31953E481729ECC100570087 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		31953E4A1729ECC100570087 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		31953E4C1729ECC100570087 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -739,6 +740,7 @@
 		5C776AB519C674FA000DBC65 /* corazonDEFS.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = corazonDEFS.m4a; sourceTree = "<group>"; };
 		5C776AB619C674FA000DBC65 /* respirarS.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = respirarS.m4a; sourceTree = "<group>"; };
 		5C776AB719C674FA000DBC65 /* respirarDEFS.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = respirarDEFS.m4a; sourceTree = "<group>"; };
+		5C776B0319C69E55000DBC65 /* metadata.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = metadata.xml; sourceTree = "<group>"; };
 		5C7FDF9619A6B1B500CBBE0E /* container.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = container.xml; sourceTree = "<group>"; };
 		5C7FDF9719A6B1B500CBBE0E /* mimetype */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mimetype; sourceTree = "<group>"; };
 		5C7FDF9919A6B1B500CBBE0E /* content.opf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = content.opf; sourceTree = "<group>"; };
@@ -1072,7 +1074,7 @@
 		5CF9944219AC34550080C32F /* Story-6-Everyone-Helps.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Story-6-Everyone-Helps.png"; sourceTree = "<group>"; };
 		5CF9944319AC34550080C32F /* Story-7-The-Best-Farm-Award.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Story-7-The-Best-Farm-Award.png"; sourceTree = "<group>"; };
 		5CF9944419AC34550080C32F /* tractor_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tractor_large.png; sourceTree = "<group>"; };
-		5CF9944519AC34550080C32F /* metadata.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = metadata.xml; sourceTree = "<group>"; };
+		5CF9944519AC34550080C32F /* metadataEE.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = metadataEE.xml; sourceTree = "<group>"; };
 		5CF9944719AC34550080C32F /* IMStyle.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = IMStyle.css; sourceTree = "<group>"; };
 		5CF9944819AC34550080C32F /* PMStyle.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = PMStyle.css; sourceTree = "<group>"; };
 		5CF9944919AC34550080C32F /* Stylesheet.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = Stylesheet.css; sourceTree = "<group>"; };
@@ -1256,7 +1258,7 @@
 		31953E461729ECC100570087 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				31953E451729ECC100570087 /* Embrace E.app */,
+				31953E451729ECC100570087 /* Control E.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1922,9 +1924,10 @@
 		5CF9941C19AC34550080C32F /* OEBPS */ = {
 			isa = PBXGroup;
 			children = (
+				5C776B0319C69E55000DBC65 /* metadata.xml */,
 				5CF9941D19AC34550080C32F /* content.opf */,
 				5CF9941E19AC34550080C32F /* Images */,
-				5CF9944519AC34550080C32F /* metadata.xml */,
+				5CF9944519AC34550080C32F /* metadataEE.xml */,
 				5CF9944619AC34550080C32F /* Styles */,
 				5CF9944A19AC34550080C32F /* Text */,
 				5CF9946F19AC34550080C32F /* toc.ncx */,
@@ -2075,7 +2078,7 @@
 			);
 			name = EMBRACE;
 			productName = EMBRACE_Client;
-			productReference = 31953E451729ECC100570087 /* Embrace E.app */;
+			productReference = 31953E451729ECC100570087 /* Control E.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -2276,7 +2279,7 @@
 				5CE299AE19B13EB200675CB0 /* BFCS1_2A.m4a in Resources */,
 				5C776A5E19C241EE000DBC65 /* CWWB1.m4a in Resources */,
 				5C776A4719C17F39000DBC65 /* BFTC5.m4a in Resources */,
-				5CF9949919AC34550080C32F /* metadata.xml in Resources */,
+				5CF9949919AC34550080C32F /* metadataEE.xml in Resources */,
 				31953E5D1729ECC100570087 /* Default@2x.png in Resources */,
 				5C7FE04B19A6B1B500CBBE0E /* Story2-The-Amazing-Heart-PM-3.xhtml in Resources */,
 				5C7FE16719A7E43C00CBBE0E /* saltoS.m4a in Resources */,
@@ -2426,6 +2429,7 @@
 				5C776AE519C674FA000DBC65 /* fluyeS.m4a in Resources */,
 				5CAD064F19BEB8AE00F3F053 /* oxygenE.m4a in Resources */,
 				5C776A6119C241EE000DBC65 /* CWWB4.m4a in Resources */,
+				5C776B0419C69E55000DBC65 /* metadata.xml in Resources */,
 				5C7FE03219A6B1B500CBBE0E /* handle_open.png in Resources */,
 				5CE299D719B59F0D00675CB0 /* BFCE3_6.m4a in Resources */,
 				5CAD065019BEB8AE00F3F053 /* moleculesE.m4a in Resources */,
@@ -2759,7 +2763,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				OTHER_LDFLAGS = "-lxml2";
-				PRODUCT_NAME = "Embrace E";
+				PRODUCT_NAME = "Control E";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -2780,7 +2784,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				OTHER_LDFLAGS = "-lxml2";
-				PRODUCT_NAME = "Embrace E";
+				PRODUCT_NAME = "Control E";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
