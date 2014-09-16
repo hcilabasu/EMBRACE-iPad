@@ -101,8 +101,8 @@
 float const groupingProximity = 20.0;
 
 //In the bilingual introduction there are 13 steps in Spanish before switching to English only
-int const STEPS_TO_SWITCH_LANGUAGES = 14;
-int language_condition = ENGLISH;
+int const STEPS_TO_SWITCH_LANGUAGES = 12;
+int language_condition = BILINGUAL;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -140,7 +140,7 @@ int language_condition = ENGLISH;
     
     currentPage = nil;
     
-    condition = CONTROL;
+    condition = MENU;
     languageString = @"E";
     
     if (condition == CONTROL) {
@@ -752,7 +752,9 @@ int language_condition = ENGLISH;
         NSString* englishSentenceText = sentenceText;
         
         if (language_condition == BILINGUAL) {
-            englishSentenceText = [self getEnglishTranslation:sentenceText];
+            if(![[self getEnglishTranslation:sentenceText] isEqualToString:@"Translation not found"]) {
+                englishSentenceText = [self getEnglishTranslation:sentenceText];
+            }
         }
         
         //Enable the introduction clicks on words and images, if it is intro mode
@@ -763,12 +765,12 @@ int language_condition = ENGLISH;
                 //[timer invalidate];
                 //timer = nil;
                 
-                [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]];
+                [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,languageString]];
                 
                 //Logging added by James for Word Audio
-                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : languageString :[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : languageString :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
                 
-                [self highlightObject:sentenceText:1.5];
+                [self highlightObject:englishSentenceText:1.5];
                 //Bypass the image-tap steps which are found after each word-tap step on the metadata
                 // since they are not needed anymore
                 currentIntroStep+=1;
@@ -779,14 +781,14 @@ int language_condition = ENGLISH;
         else if ([vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
             //If the user clicked on the correct word or image
             if (([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] &&
-                 [sentenceText isEqualToString:[performedActions objectAtIndex:INPUT]]) ||
+                 [englishSentenceText isEqualToString:[performedActions objectAtIndex:INPUT]]) ||
                 ([[performedActions objectAtIndex:SELECTION] isEqualToString:@"image"] &&
                  [imageAtPoint isEqualToString:[performedActions objectAtIndex:INPUT]])) {
                     //[timer invalidate];
                     //timer = nil;
                     
                     //If the user clicked on a word
-                    if ([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] && [[performedActions objectAtIndex:INPUT] isEqualToString:sentenceText] && !sameWordClicked && (currentSentence == sentenceIDNum)) {
+                    if ([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] && [[performedActions objectAtIndex:INPUT] isEqualToString:englishSentenceText] && !sameWordClicked && (currentSentence == sentenceIDNum)) {
                         
                         sameWordClicked = true;
                         if ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"]) {
@@ -804,7 +806,7 @@ int language_condition = ENGLISH;
                         }
                         
                         // Since the name of the pen image is pen4 because there is more than one pen, its name is hard-coded
-                        if([sentenceText isEqualToString:@"pen"]) {
+                        if([sentenceText isEqualToString:@"pen"] || [sentenceText isEqualToString:@"cuarto"]) {
                             sentenceText = @"pen4";
                         }
                         
@@ -859,23 +861,21 @@ int language_condition = ENGLISH;
                 sentenceText = @"carbonDioxide";
             }
             
-            //Play word audio En
-            //[self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,@"E"]];
-            
-            //Play En audio twice
-            [self playAudioInSequence:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,@"E"]:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,@"E"]];
-            
-            //Logging added by James for Word Audio
-            [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"E" :[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
-                
             if (language_condition == BILINGUAL) {
                 //Play word audio Sp
-                [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",[self getEnglishTranslation:sentenceText],@"S"]];
+                [self playAudioInSequence:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,@"E"]:[NSString stringWithFormat:@"%@%@.m4a",[[Translation translations] objectForKey:sentenceText],@"S"]];
                 
                 //Logging added by James for Word Audio
                 [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"S" :[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
             }
-            
+            else {
+                //Play En audio twice
+                [self playAudioInSequence:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,@"E"]:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,@"E"]];
+                
+                //Logging added by James for Word Audio
+                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"E" :[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+            }
+
             // Since the name of the nest image is chickenNest, its name is hard-coded
             if([sentenceText isEqualToString:@"nest"]) {
                 sentenceText = @"chickenNest";
@@ -2186,7 +2186,7 @@ int language_condition = ENGLISH;
     }
     else {
         if ([introductions objectForKey:chapterTitle]) {
-            if (language_condition == ENGLISH)
+            if (language_condition == ENGLISH || currentIntroStep > STEPS_TO_SWITCH_LANGUAGES)
             {
                 [self playAudioFile:@"tryAgainE.m4a"];
                 
@@ -3504,6 +3504,8 @@ int language_condition = ENGLISH;
     NSString* nextAudio;
     NSInteger stepNumber;
     NSString* nextIntroInput;
+    NSString* audioSpanish;
+    NSString* nextAudioSpanish;
     
     sameWordClicked = false;
     allowInteractions = FALSE;
@@ -3516,30 +3518,52 @@ int language_condition = ENGLISH;
     text = [currVocabStep englishText];
     audio = [currVocabStep englishAudioFileName];
     stepNumber = [currVocabStep wordNumber];
+    audioSpanish = [currVocabStep spanishAudioFileName];
     lastStep = stepNumber;
-    currentAudio = audio;
+    
+    if((language_condition == BILINGUAL) && (stepNumber & 1)) {
+        currentAudio = audioSpanish;
+    }
+    else {
+        currentAudio = audio;
+    }
     
     if([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"]) {
         //Get next step to be read
         VocabularyStep* nextVocabStep = [currentVocabSteps objectAtIndex:currentVocabStep];
         nextAudio = [nextVocabStep englishAudioFileName];
+        nextAudioSpanish = [nextVocabStep spanishAudioFileName];
         nextIntroInput = [nextVocabStep expectedInput];
-        vocabAudio = nextAudio;
+        if(language_condition == BILINGUAL && (stepNumber & 1)) {
+            vocabAudio = nextAudioSpanish;
+        }
+        else {
+            vocabAudio = nextAudio;
+        }
         nextIntro = nextIntroInput;
     }
     
-    // If we are ont the first step (1) ot the last step (9) which do not correspond to words
+    // If we are ont the first step (1) or the last step (9) which do not correspond to words
     //play the corresponding intro or outro audio
     if (currentVocabStep == 1 && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
-        //Play introduction audio
-        [self playAudioFile:audio];
+        if(language_condition == BILINGUAL) {
+            [self playAudioFile:audioSpanish];
+        } else {
+            //Play introduction audio
+            [self playAudioFile:audio];
+        }
         
         //Logging added by James for Word Audio
 //        [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Step Audio" : @"E" :audio  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
     }
     
     if (currentVocabStep == totalVocabSteps-1 && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
-        [self playAudioFile:nextAudio];
+        if(language_condition == BILINGUAL) {
+            [self playAudioFile:nextAudioSpanish];
+        } else {
+            //Play introduction audio
+            [self playAudioFile:nextAudio];
+        }
     }
     
     //Switch the language every step for the translation
