@@ -300,25 +300,18 @@ int language_condition = BILINGUAL;
     [[ServerCommunicationController sharedManager] logNextPageNavigation:@"Next Button" :tempLastPage :currentPage :@"Next Page" :bookTitle :chapterTitle : currentPage : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] : [NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
     //Logging Completes Here.
     
-    while (currentPage == nil) {
+    //No more pages in chapter
+    if (currentPage == nil) {
         chapterTitle = [book getChapterAfterChapter:chapterTitle];
         
         if(chapterTitle == nil) { //no more chapters.
-            [self.navigationController popViewControllerAnimated:YES];
-            
             //Logging added by James for Computer Navigation when end of chapter is reached
             [[ServerCommunicationController sharedManager] logNextChapterNavigation:@"Next Button" :tempLastPage :currentPage :@"Next Page | No more Chapters" :bookTitle :chapterTitle : currentPage : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] : [NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
             //Logging Completes Here.
-            
-            return;
         }
         
-        tempLastPage = currentPage;
-        currentPage = [book getNextPageForChapterAndActivity:chapterTitle :PM_MODE :nil];
-        
-        //Logging added by James for Computer Navigation to next Chapter
-        [[ServerCommunicationController sharedManager] logNextChapterNavigation:@"Next Button" :tempLastPage :currentPage :@"Next Chapter" :bookTitle :chapterTitle : currentPage : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] : [NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
-        //Logging Completes Here.
+        [self.navigationController popViewControllerAnimated:YES]; //return to library view
+        return;
     }
     
     [self loadPage];
