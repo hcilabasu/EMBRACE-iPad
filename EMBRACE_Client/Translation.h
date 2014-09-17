@@ -12,6 +12,5 @@
 
 +(NSDictionary *) translationWords;
 +(NSDictionary *) translationImages;
-+(NSDictionary *) translationSounds;
 
 @end

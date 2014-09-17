@@ -802,45 +802,6 @@ int language_condition = BILINGUAL;
                         //Logging added by James for Word Audio
                         [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : languageString :[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
                         
-                        //if (![languageString isEqualToString:@"E"]) {
-                            //sentenceText = [self getEnglishTranslation:sentenceText];
-                        //}
-                        
-                        // Since the name of the pen image is pen4 because there is more than one pen, its name is hard-coded
-//                        if([sentenceText isEqualToString:@"pen"] || [sentenceText isEqualToString:@"cuarto"]) {
-//                            sentenceText = @"pen4";
-//                        }
-//                        
-//                        // Since the name of the nest image is chickenNest, its name is hard-coded
-//                        if([sentenceText isEqualToString:@"nest"]) {
-//                            sentenceText = @"chickenNest";
-//                        }
-//                        
-//                        // Since the name of the gate image is pen2, its name is hard-coded
-//                        if([sentenceText isEqualToString:@"gate"]) {
-//                            sentenceText = @"pen2";
-//                        }
-//                        
-//                        // Since the name of the trophy image is award, its name is hard-coded
-//                        if([sentenceText isEqualToString:@"trophy"]) {
-//                            sentenceText = @"award";
-//                        }
-//                        
-//                        // Since the name of the oxygen image is O2_1, its name is hard-coded
-//                        if([sentenceText isEqualToString:@"oxygen"]) {
-//                            sentenceText = @"O2_1";
-//                        }
-//                        
-//                        // Since the name of the carbon dioxide image is O2_1, its name is hard-coded
-//                        if([sentenceText isEqualToString:@"carbon dioxide"]) {
-//                            sentenceText = @"CO2_1";
-//                        }
-//                        
-//                        // Since the name of the vale image is handle, its name is hard-coded
-//                        if([sentenceText isEqualToString:@"valve"]) {
-//                            sentenceText = @"handle";
-//                        }
-                        
                         [self highlightObject:[[Translation translationImages] objectForKey:englishSentenceText]:1.5];
                         
                         currentSentence++;
@@ -852,15 +813,10 @@ int language_condition = BILINGUAL;
             }
         }
         else if([[Translation translationWords] objectForKey:englishSentenceText]) {
-            // Since the name of the pen image is pen4 because there is more than one pen, its name is hard-coded
-//            if([sentenceText isEqualToString:@"pen"]) {
-//                sentenceText = @"pen4";
-//            }
-            
             // Since the name of the carbon dioxide file is carbonDioxide, its name is hard-coded
-//            if([sentenceText isEqualToString:@"carbon dioxide"]) {
-//                sentenceText = @"carbonDioxide";
-//            }
+            if([sentenceText isEqualToString:@"carbon dioxide"]) {
+                sentenceText = @"carbonDioxide";
+            }
             
             if (language_condition == BILINGUAL && [chapterTitle isEqualToString:@"The Contest"]) {
                 //Play word audio Sp
@@ -883,41 +839,6 @@ int language_condition = BILINGUAL;
                 //Logging added by James for Word Audio
                 [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"E" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
             }
-
-            // Since the name of the nest image is chickenNest, its name is hard-coded
-//            if([sentenceText isEqualToString:@"nest"]) {
-//                sentenceText = @"chickenNest";
-//            }
-//            
-//            // Since the name of the gate image is pen2, its name is hard-coded
-//            if([sentenceText isEqualToString:@"gate"]) {
-//                sentenceText = @"pen2";
-//            }
-//            
-//            // Since the name of the trophy image is award, its name is hard-coded
-//            if([sentenceText isEqualToString:@"trophy"]) {
-//                sentenceText = @"award";
-//            }
-//            
-//            // Since the name of the oxygen image is O2_1, its name is hard-coded
-//            if([sentenceText isEqualToString:@"oxygen"]) {
-//                sentenceText = @"O2_1";
-//            }
-//            
-//            // Since the name of the carbon dioxide image is CO2_1, its name is hard-coded
-//            if([sentenceText isEqualToString:@"carbonDioxide"]) {
-//                sentenceText = @"CO2_1";
-//            }
-//            
-//            // Since the name of the dirt image is dirt_1, its name is hard-coded for it to be highlighted
-//            if([sentenceText isEqualToString:@"dirt"]) {
-//                sentenceText = @"dirt_1";
-//            }
-//            
-//            // Since the name of the vale image is handle, its name is hard-coded
-//            if([sentenceText isEqualToString:@"valve"]) {
-//                sentenceText = @"handle";
-//            }
             
             [self highlightObject:[[Translation translationImages] objectForKey:englishSentenceText]:1.5];
         }
