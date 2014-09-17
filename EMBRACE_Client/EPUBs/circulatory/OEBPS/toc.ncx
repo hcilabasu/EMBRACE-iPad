@@ -33,19 +33,19 @@
 		  <navLabel>
     		<text>Why We Breathe - PM</text>
 		  </navLabel>
-		  <content src="Text/Story1-Why-We-Breathe-PM-1.xhtml"/>
+		  <content src="Text/Story1-Why-We-Breathe-PM-1S.xhtml"/>
 		</navPoint>
     <navPoint class="PM_MODE" id="story1-PM-2">
       <navLabel>
       <text>Why We Breathe - PM</text>
       </navLabel>
-      <content src="Text/Story1-Why-We-Breathe-PM-2.xhtml"/>
+      <content src="Text/Story1-Why-We-Breathe-PM-2S.xhtml"/>
     </navPoint>
     <navPoint class="PM_MODE" id="story1-PM-3">
 		  <navLabel>
     		<text>Why We Breathe - PM</text>
 		  </navLabel>
-		  <content src="Text/Story1-Why-We-Breathe-PM-3.xhtml"/>
+		  <content src="Text/Story1-Why-We-Breathe-PM-3S.xhtml"/>
 		</navPoint>
 		<navPoint class="IM_MODE" id="story1-IM-1">
 		  <navLabel>
@@ -281,15 +281,15 @@
 	</pageTarget>  
 	<pageTarget id="p3" type="normal" value="3">
     	<navLabel><text>Chapter 1 - Why We Breathe - Physical Manipulation 1</text></navLabel>
-		<content src="Text/Story1-Why-We-Breathe-PM-1.xhtml"/>
+		<content src="Text/Story1-Why-We-Breathe-PM-1S.xhtml"/>
 	</pageTarget>    
    <pageTarget id="p4" type="normal" value="4">
     	<navLabel><text>Chapter 1 - Why We Breathe - Physical Manipulation 2</text></navLabel>
-		<content src="Text/Story1-Why-We-Breathe-PM-2.xhtml"/>
+		<content src="Text/Story1-Why-We-Breathe-PM-2S.xhtml"/>
 	</pageTarget>          
    <pageTarget id="p5" type="normal" value="5">
     	<navLabel><text>Chapter 1 - Why We Breathe - Physical Manipulation 3</text></navLabel>
-		<content src="Text/Story1-Why-We-Breathe-PM-3.xhtml"/>
+		<content src="Text/Story1-Why-We-Breathe-PM-3S.xhtml"/>
 	</pageTarget> 
    
    <pageTarget id="p6" type="normal" value="6">

@@ -10,6 +10,8 @@
 
 @interface Translation : NSObject
 
-+(NSDictionary *) translations;
++(NSDictionary *) translationWords;
++(NSDictionary *) translationImages;
++(NSDictionary *) translationSounds;
 
 @end

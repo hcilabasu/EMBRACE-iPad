@@ -241,8 +241,16 @@ int language_condition = BILINGUAL;
     }
     
     //If we are on the first or second manipulation page of The Contest, play the audio of the first sentence
+    if(language_condition == BILINGUAL) {
+    
+    }
     if ([chapterTitle isEqualToString:@"The Contest"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-        [self playAudioFile:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
+        if(language_condition == BILINGUAL) {
+                [self playAudioFile:[NSString stringWithFormat:@"BFEC%d.m4a",currentSentence]];
+        }
+        else {
+            [self playAudioFile:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
+        }
     }
     
     //If we are on the first or second manipulation page of Why We Breathe, play the audio of the first sentence
@@ -801,46 +809,46 @@ int language_condition = BILINGUAL;
                         //Logging added by James for Word Audio
                         [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : languageString :[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
                         
-                        if (![languageString isEqualToString:@"E"]) {
-                            sentenceText = [self getEnglishTranslation:sentenceText];
-                        }
+                        //if (![languageString isEqualToString:@"E"]) {
+                            //sentenceText = [self getEnglishTranslation:sentenceText];
+                        //}
                         
                         // Since the name of the pen image is pen4 because there is more than one pen, its name is hard-coded
-                        if([sentenceText isEqualToString:@"pen"] || [sentenceText isEqualToString:@"cuarto"]) {
-                            sentenceText = @"pen4";
-                        }
+//                        if([sentenceText isEqualToString:@"pen"] || [sentenceText isEqualToString:@"cuarto"]) {
+//                            sentenceText = @"pen4";
+//                        }
+//                        
+//                        // Since the name of the nest image is chickenNest, its name is hard-coded
+//                        if([sentenceText isEqualToString:@"nest"]) {
+//                            sentenceText = @"chickenNest";
+//                        }
+//                        
+//                        // Since the name of the gate image is pen2, its name is hard-coded
+//                        if([sentenceText isEqualToString:@"gate"]) {
+//                            sentenceText = @"pen2";
+//                        }
+//                        
+//                        // Since the name of the trophy image is award, its name is hard-coded
+//                        if([sentenceText isEqualToString:@"trophy"]) {
+//                            sentenceText = @"award";
+//                        }
+//                        
+//                        // Since the name of the oxygen image is O2_1, its name is hard-coded
+//                        if([sentenceText isEqualToString:@"oxygen"]) {
+//                            sentenceText = @"O2_1";
+//                        }
+//                        
+//                        // Since the name of the carbon dioxide image is O2_1, its name is hard-coded
+//                        if([sentenceText isEqualToString:@"carbon dioxide"]) {
+//                            sentenceText = @"CO2_1";
+//                        }
+//                        
+//                        // Since the name of the vale image is handle, its name is hard-coded
+//                        if([sentenceText isEqualToString:@"valve"]) {
+//                            sentenceText = @"handle";
+//                        }
                         
-                        // Since the name of the nest image is chickenNest, its name is hard-coded
-                        if([sentenceText isEqualToString:@"nest"]) {
-                            sentenceText = @"chickenNest";
-                        }
-                        
-                        // Since the name of the gate image is pen2, its name is hard-coded
-                        if([sentenceText isEqualToString:@"gate"]) {
-                            sentenceText = @"pen2";
-                        }
-                        
-                        // Since the name of the trophy image is award, its name is hard-coded
-                        if([sentenceText isEqualToString:@"trophy"]) {
-                            sentenceText = @"award";
-                        }
-                        
-                        // Since the name of the oxygen image is O2_1, its name is hard-coded
-                        if([sentenceText isEqualToString:@"oxygen"]) {
-                            sentenceText = @"O2_1";
-                        }
-                        
-                        // Since the name of the carbon dioxide image is O2_1, its name is hard-coded
-                        if([sentenceText isEqualToString:@"carbon dioxide"]) {
-                            sentenceText = @"CO2_1";
-                        }
-                        
-                        // Since the name of the vale image is handle, its name is hard-coded
-                        if([sentenceText isEqualToString:@"valve"]) {
-                            sentenceText = @"handle";
-                        }
-                        
-                        [self highlightObject:sentenceText :1.5];
+                        [self highlightObject:[[Translation translationImages] objectForKey:englishSentenceText]:1.5];
                         
                         currentSentence++;
                         [self performSelector:@selector(colorSentencesUponNext) withObject:nil afterDelay:4];
@@ -850,68 +858,75 @@ int language_condition = BILINGUAL;
                 }
             }
         }
-        else if([[Translation translations] objectForKey:sentenceText]) {
+        else if([[Translation translationWords] objectForKey:englishSentenceText]) {
             // Since the name of the pen image is pen4 because there is more than one pen, its name is hard-coded
-            if([sentenceText isEqualToString:@"pen"]) {
-                sentenceText = @"pen4";
-            }
+//            if([sentenceText isEqualToString:@"pen"]) {
+//                sentenceText = @"pen4";
+//            }
             
             // Since the name of the carbon dioxide file is carbonDioxide, its name is hard-coded
-            if([sentenceText isEqualToString:@"carbon dioxide"]) {
-                sentenceText = @"carbonDioxide";
-            }
+//            if([sentenceText isEqualToString:@"carbon dioxide"]) {
+//                sentenceText = @"carbonDioxide";
+//            }
             
-            if (language_condition == BILINGUAL) {
+            if (language_condition == BILINGUAL && [chapterTitle isEqualToString:@"The Contest"]) {
                 //Play word audio Sp
-                [self playAudioInSequence:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,@"E"]:[NSString stringWithFormat:@"%@%@.m4a",[[Translation translations] objectForKey:sentenceText],@"S"]];
+                [self playAudioInSequence:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"]:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
                 
                 //Logging added by James for Word Audio
-                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"S" :[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"S" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+            }
+            else if (language_condition == BILINGUAL) {
+                //Play word audio Sp
+                [self playAudioInSequence:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"]];
+                
+                //Logging added by James for Word Audio
+                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"S" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
             }
             else {
                 //Play En audio twice
-                [self playAudioInSequence:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,@"E"]:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,@"E"]];
+                [self playAudioInSequence:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
                 
                 //Logging added by James for Word Audio
-                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"E" :[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"E" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
             }
 
             // Since the name of the nest image is chickenNest, its name is hard-coded
-            if([sentenceText isEqualToString:@"nest"]) {
-                sentenceText = @"chickenNest";
-            }
+//            if([sentenceText isEqualToString:@"nest"]) {
+//                sentenceText = @"chickenNest";
+//            }
+//            
+//            // Since the name of the gate image is pen2, its name is hard-coded
+//            if([sentenceText isEqualToString:@"gate"]) {
+//                sentenceText = @"pen2";
+//            }
+//            
+//            // Since the name of the trophy image is award, its name is hard-coded
+//            if([sentenceText isEqualToString:@"trophy"]) {
+//                sentenceText = @"award";
+//            }
+//            
+//            // Since the name of the oxygen image is O2_1, its name is hard-coded
+//            if([sentenceText isEqualToString:@"oxygen"]) {
+//                sentenceText = @"O2_1";
+//            }
+//            
+//            // Since the name of the carbon dioxide image is CO2_1, its name is hard-coded
+//            if([sentenceText isEqualToString:@"carbonDioxide"]) {
+//                sentenceText = @"CO2_1";
+//            }
+//            
+//            // Since the name of the dirt image is dirt_1, its name is hard-coded for it to be highlighted
+//            if([sentenceText isEqualToString:@"dirt"]) {
+//                sentenceText = @"dirt_1";
+//            }
+//            
+//            // Since the name of the vale image is handle, its name is hard-coded
+//            if([sentenceText isEqualToString:@"valve"]) {
+//                sentenceText = @"handle";
+//            }
             
-            // Since the name of the gate image is pen2, its name is hard-coded
-            if([sentenceText isEqualToString:@"gate"]) {
-                sentenceText = @"pen2";
-            }
-            
-            // Since the name of the trophy image is award, its name is hard-coded
-            if([sentenceText isEqualToString:@"trophy"]) {
-                sentenceText = @"award";
-            }
-            
-            // Since the name of the oxygen image is O2_1, its name is hard-coded
-            if([sentenceText isEqualToString:@"oxygen"]) {
-                sentenceText = @"O2_1";
-            }
-            
-            // Since the name of the carbon dioxide image is CO2_1, its name is hard-coded
-            if([sentenceText isEqualToString:@"carbonDioxide"]) {
-                sentenceText = @"CO2_1";
-            }
-            
-            // Since the name of the dirt image is dirt_1, its name is hard-coded for it to be highlighted
-            if([sentenceText isEqualToString:@"dirt"]) {
-                sentenceText = @"dirt_1";
-            }
-            
-            // Since the name of the vale image is handle, its name is hard-coded
-            if([sentenceText isEqualToString:@"valve"]) {
-                sentenceText = @"handle";
-            }
-            
-            [self highlightObject:sentenceText:1.5];
+            [self highlightObject:[[Translation translationImages] objectForKey:englishSentenceText]:1.5];
         }
     }
 }
@@ -2195,10 +2210,10 @@ int language_condition = BILINGUAL;
             }
             else
             {
-                [self playAudioFile:@"intentaDeNuevoS.m4a"];
+                [self playAudioFile:@"tryAgainS.m4a"];
                 
                 //Logging added by James for Try Again
-                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Try Again" : @"S" : @"intentaDeNuevoS.m4a" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Try Again" : @"S" : @"tryAgainS.m4a" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
             }
         }
         else {
@@ -3207,12 +3222,22 @@ int language_condition = BILINGUAL;
                 
                 //If we are on the first or second manipulation page of The Contest, play the audio of the current sentence
                 if ([chapterTitle isEqualToString:@"The Contest"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-                    [self playAudioFile:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
+                    if(language_condition == BILINGUAL) {
+                        [self playAudioFile:[NSString stringWithFormat:@"BFEC%d.m4a",currentSentence]];
+                    }
+                    else {
+                        [self playAudioFile:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
+                    }
                 }
                 
                 //If we are on the first or second manipulation page of Why We Breathe, play the audio of the current sentence
                 if ([chapterTitle isEqualToString:@"Why We Breathe"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
-                    [self playAudioFile:[NSString stringWithFormat:@"CWWB%d.m4a",currentSentence]];
+                    if(language_condition == BILINGUAL) {
+                        [self playAudioFile:[NSString stringWithFormat:@"CPQR%d.m4a",currentSentence]];
+                    }
+                    else {
+                        [self playAudioFile:[NSString stringWithFormat:@"CWWB%d.m4a",currentSentence]];
+                    }
                 }
             }
         }
@@ -3404,7 +3429,7 @@ int language_condition = BILINGUAL;
         text = textSpanish;
         audio = audioSpanish;
         languageString = @"S";
-        underlinedVocabWord = [[Translation translations] objectForKey:expectedIntroInput];
+        underlinedVocabWord = [[Translation translationWords] objectForKey:expectedIntroInput];
         if (!underlinedVocabWord) {
             underlinedVocabWord = expectedIntroInput;
         }
@@ -3635,7 +3660,7 @@ int language_condition = BILINGUAL;
 }
 
 - (NSString*) getEnglishTranslation: (NSString*)sentence {
-    NSArray* keys = [[Translation translations] allKeysForObject:sentence];
+    NSArray* keys = [[Translation translationWords] allKeysForObject:sentence];
     if (keys != nil && [keys count] > 0)
         return [keys objectAtIndex:0];
     else
