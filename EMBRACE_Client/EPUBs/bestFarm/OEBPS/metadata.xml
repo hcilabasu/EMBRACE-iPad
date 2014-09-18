@@ -1760,7 +1760,7 @@
           </vocabularyIntroductionWord>
           <vocabularyIntroductionWord number="5">
               <englishWordAudio>BFCE1_2A.m4a</englishWordAudio>
-              <spanishWordAudio>corralDEFS.m4a</spanishWordAudio>
+              <spanishWordAudio>BFCS1_2A.m4a</spanishWordAudio>
               <englishWordText>Corral</englishWordText>
               <spanishWordText>Corral</spanishWordText>
               <expectedSelection>word</expectedSelection>
@@ -1769,7 +1769,7 @@
           </vocabularyIntroductionWord>
           <vocabularyIntroductionWord number="6">
               <englishWordAudio>BFCE1_2A.m4a</englishWordAudio>
-              <spanishWordAudio>corralDEFS.m4a</spanishWordAudio>
+              <spanishWordAudio>BFCS1_2A.m4a</spanishWordAudio>
               <englishWordText>Corral</englishWordText>
               <spanishWordText>Corral</spanishWordText>
               <expectedSelection>word</expectedSelection>
@@ -1778,7 +1778,7 @@
           </vocabularyIntroductionWord>
           <vocabularyIntroductionWord number="7">
               <englishWordAudio>BFCE7_4.m4a</englishWordAudio>
-              <spanishWordAudio>trophyS.m4a</spanishWordAudio>
+              <spanishWordAudio>trophyDEFS.m4a</spanishWordAudio>
               <englishWordText>Trophy</englishWordText>
               <spanishWordText>Trofeo</spanishWordText>
               <expectedSelection>word</expectedSelection>
@@ -1787,7 +1787,7 @@
           </vocabularyIntroductionWord>
           <vocabularyIntroductionWord number="8">
               <englishWordAudio>BFCE7_4.m4a</englishWordAudio>
-              <spanishWordAudio>trophyS.m4a</spanishWordAudio>
+              <spanishWordAudio>trophyDEFS.m4a</spanishWordAudio>
               <englishWordText>Trophy</englishWordText>
               <spanishWordText>Trofeo</spanishWordText>
               <expectedSelection>word</expectedSelection>

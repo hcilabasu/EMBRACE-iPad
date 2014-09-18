@@ -255,7 +255,12 @@ int language_condition = BILINGUAL;
     
     //If we are on the first or second manipulation page of Why We Breathe, play the audio of the first sentence
     if ([chapterTitle isEqualToString:@"Why We Breathe"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
-        [self playAudioFile:[NSString stringWithFormat:@"CWWB%d.m4a",currentSentence]];
+        if(language_condition == BILINGUAL) {
+            [self playAudioFile:[NSString stringWithFormat:@"CPQR%d.m4a",currentSentence]];
+        }
+        else {
+            [self playAudioFile:[NSString stringWithFormat:@"CWWB%d.m4a",currentSentence]];
+        }
     }
     
     //Perform setup for activity
@@ -814,11 +819,11 @@ int language_condition = BILINGUAL;
         }
         else if([[Translation translationWords] objectForKey:englishSentenceText]) {
             // Since the name of the carbon dioxide file is carbonDioxide, its name is hard-coded
-            if([sentenceText isEqualToString:@"carbon dioxide"]) {
-                sentenceText = @"carbonDioxide";
+            if([englishSentenceText isEqualToString:@"carbon dioxide"]) {
+                englishSentenceText = @"carbonDioxide";
             }
             
-            if (language_condition == BILINGUAL && [chapterTitle isEqualToString:@"The Contest"]) {
+            if (language_condition == BILINGUAL && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
                 //Play word audio Sp
                 [self playAudioInSequence:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"]:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
                 
@@ -838,6 +843,11 @@ int language_condition = BILINGUAL;
                 
                 //Logging added by James for Word Audio
                 [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"E" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+            }
+            
+            // Revert the carbon dioxide name for highlighting
+            if([englishSentenceText isEqualToString:@"carbonDioxide"]) {
+                englishSentenceText = @"carbon dioxide";
             }
             
             [self highlightObject:[[Translation translationImages] objectForKey:englishSentenceText]:1.5];
