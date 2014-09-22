@@ -101,7 +101,8 @@
 float const groupingProximity = 20.0;
 
 //In the bilingual introduction there are 13 steps in Spanish before switching to English only
-int const STEPS_TO_SWITCH_LANGUAGES = 12;
+int const STEPS_TO_SWITCH_LANGUAGES_EMBRACE = 12;
+int const STEPS_TO_SWITCH_LANGUAGES_CONTROL = 11;
 int language_condition = BILINGUAL;
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -140,7 +141,7 @@ int language_condition = BILINGUAL;
     
     currentPage = nil;
     
-    condition = MENU;
+    condition = CONTROL;
     languageString = @"E";
     
     if (condition == CONTROL) {
@@ -2125,7 +2126,7 @@ int language_condition = BILINGUAL;
     }
     else {
         if ([introductions objectForKey:chapterTitle]) {
-            if (language_condition == ENGLISH || currentIntroStep > STEPS_TO_SWITCH_LANGUAGES)
+            if (language_condition == ENGLISH || currentIntroStep > STEPS_TO_SWITCH_LANGUAGES_EMBRACE)
             {
                 [self playAudioFile:@"tryAgainE.m4a"];
                 
@@ -3349,7 +3350,16 @@ int language_condition = BILINGUAL;
 
     // If the language condition for the app is BILINGUAL (English after Spanish) and the current intro step
     //is lower than the step number to switch languages, load the Spanish information for the step
-    if (language_condition == BILINGUAL && currentIntroStep < STEPS_TO_SWITCH_LANGUAGES) {
+    if (language_condition == BILINGUAL && currentIntroStep < STEPS_TO_SWITCH_LANGUAGES_EMBRACE && condition == MENU) {
+        text = textSpanish;
+        audio = audioSpanish;
+        languageString = @"S";
+        underlinedVocabWord = [[Translation translationWords] objectForKey:expectedIntroInput];
+        if (!underlinedVocabWord) {
+            underlinedVocabWord = expectedIntroInput;
+        }
+    }
+    else if (language_condition == BILINGUAL && currentIntroStep < STEPS_TO_SWITCH_LANGUAGES_CONTROL && condition == CONTROL) {
         text = textSpanish;
         audio = audioSpanish;
         languageString = @"S";
