@@ -103,7 +103,7 @@ float const groupingProximity = 20.0;
 //In the bilingual introduction there are 13 steps in Spanish before switching to English only
 int const STEPS_TO_SWITCH_LANGUAGES_EMBRACE = 12;
 int const STEPS_TO_SWITCH_LANGUAGES_CONTROL = 11;
-int language_condition = BILINGUAL;
+int language_condition = ENGLISH;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -141,7 +141,7 @@ int language_condition = BILINGUAL;
     
     currentPage = nil;
     
-    condition = CONTROL;
+    condition = MENU;
     languageString = @"E";
     
     if (condition == CONTROL) {
@@ -225,7 +225,11 @@ int language_condition = BILINGUAL;
     [self setupCurrentSentence];
     [self setupCurrentSentenceColor];
     
-    //Load the first step for the current chapter (hard-coded for now)
+    if ([introductions objectForKey:chapterTitle] || ([vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound)) {
+        allowInteractions = FALSE;
+    }
+    
+    //Load the first step for the current chapter
     if ([introductions objectForKey:chapterTitle]) {
         [self loadIntroStep];
     }
@@ -3331,7 +3335,7 @@ int language_condition = BILINGUAL;
     NSString* underlinedVocabWord;
     NSString* wrapperObj1;
     
-    allowInteractions = FALSE;
+    //allowInteractions = FALSE;
     
     //Get current step to be read
     IntroductionStep* currIntroStep = [currentIntroSteps objectAtIndex:currentIntroStep-1];
@@ -3467,7 +3471,6 @@ int language_condition = BILINGUAL;
     NSString* nextAudioSpanish;
     
     sameWordClicked = false;
-    allowInteractions = FALSE;
     
     //Get current step to be read
     VocabularyStep* currVocabStep = [currentVocabSteps objectAtIndex:currentVocabStep-1];

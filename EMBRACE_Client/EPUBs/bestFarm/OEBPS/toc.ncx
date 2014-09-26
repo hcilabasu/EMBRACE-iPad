@@ -18,7 +18,7 @@
     <navPoint class="ChapterTitle" id="Chapter0Title" playOrder="0">
         <navLabel>
             <text>Introduction to The Best Farm</text>
-        </navLabel>The-Contest-PM-1S
+        </navLabel>
         <content src="Text/Introduction-to-Best-Farm-Characters-Title.xhtml"/>
         <navPoint class="PM_MODE" id="story0-PM">
             <navLabel>
@@ -36,19 +36,19 @@
             <navLabel>
                 <text>The Contest - Intro</text>
             </navLabel>
-            <content src="Text/Story1-The-Contest-Intro-S.xhtml"/>
+            <content src="Text/Story1-The-Contest-Intro-E.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story1-PM-1">
 		  <navLabel>
     		<text>The Contest - PM</text>
 		  </navLabel>
-		  <content src="Text/Story1-The-Contest-PM-1S.xhtml"/>
+		  <content src="Text/Story1-The-Contest-PM-1.xhtml"/>
 		</navPoint>
        <navPoint class="PM_MODE" id="story1-PM-2">
 		  <navLabel>
 	    	<text>The Contest - PM</text>
 		  </navLabel>
-		  <content src="Text/Story1-The-Contest-PM-2S.xhtml"/>
+		  <content src="Text/Story1-The-Contest-PM-2.xhtml"/>
 		</navPoint>
 		<navPoint class="IM_MODE" id="story1-IM-1">
 		  <navLabel>
@@ -72,7 +72,7 @@
             <navLabel>
                 <text>Getting Ready - Intro</text>
             </navLabel>
-            <content src="Text/Story2-Getting-Ready-Intro-S.xhtml"/>
+            <content src="Text/Story2-Getting-Ready-Intro-E.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story2-PM-1">
 		  <navLabel>
@@ -108,7 +108,7 @@
             <navLabel>
                 <text>Cleaning Up - Intro</text>
             </navLabel>
-            <content src="Text/Story3-Cleaning-Up-Intro-S.xhtml"/>
+            <content src="Text/Story3-Cleaning-Up-Intro-E.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story3-PM-1">
 		  <navLabel>
@@ -144,7 +144,7 @@
             <navLabel>
                 <text>Who is the Best Animal? - Intro</text>
             </navLabel>
-            <content src="Text/Story4-Who-is-the-Best-Animal-Intro-S.xhtml"/>
+            <content src="Text/Story4-Who-is-the-Best-Animal-Intro-E.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story4-PM-1">
 		  <navLabel>
@@ -180,7 +180,7 @@
             <navLabel>
                 <text>The Wise Owl - Intro</text>
             </navLabel>
-            <content src="Text/Story5-The-Wise-Owl-Intro-S.xhtml"/>
+            <content src="Text/Story5-The-Wise-Owl-Intro-E.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story5-PM-1">
 		  <navLabel>
@@ -216,7 +216,7 @@
             <navLabel>
                 <text>Everyone Helps - Intro</text>
             </navLabel>
-            <content src="Text/Story6-Everyone-Helps-Intro-S.xhtml"/>
+            <content src="Text/Story6-Everyone-Helps-Intro-E.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story6-PM-1">
 		  <navLabel>
@@ -252,7 +252,7 @@
             <navLabel>
                 <text>The Best Farm Award - Intro</text>
             </navLabel>
-            <content src="Text/Story7-The-Best-Farm-Award-Intro-S.xhtml"/>
+            <content src="Text/Story7-The-Best-Farm-Award-Intro-E.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story7-PM-1">
 		  <navLabel>
@@ -291,7 +291,7 @@
     </pageTarget>
     <pageTarget id="p2" type="normal" value="2">
     	<navLabel><text>Chapter 1 - The Contest - Introduction</text></navLabel>
-		<content src="Text/Story1-Contest-Intro-S.xhtml"/>
+		<content src="Text/Story1-Contest-Intro-E.xhtml"/>
 	</pageTarget>
 	<pageTarget id="p3" type="normal" value="3">
     	<navLabel><text>Chapter 1 - The Contest - Physical Manipulation</text></navLabel>
@@ -299,7 +299,7 @@
 	</pageTarget>
 	<pageTarget id="p4" type="normal" value="4">
     	<navLabel><text>Chapter 2 - Getting Ready - Introduction</text></navLabel>
-		<content src="Text/Story2-Getting-Ready-Intro-S.xhtml"/>
+		<content src="Text/Story2-Getting-Ready-Intro-E.xhtml"/>
 	</pageTarget>
     <pageTarget id="p5" type="normal" value="5">
     	<navLabel><text>Chapter 2 - Getting Ready - Physical Manipulation</text></navLabel>
@@ -307,7 +307,7 @@
 	</pageTarget>
 	<pageTarget id="p6" type="normal" value="6">
     	<navLabel><text>Chapter 3 - Cleaning Up - Introduction</text></navLabel>
-		<content src="Text/Story3-Cleaning-Up-Intro-S.xhtml"/>
+		<content src="Text/Story3-Cleaning-Up-Intro-E.xhtml"/>
 	</pageTarget>
     <pageTarget id="p7" type="normal" value="7">
     	<navLabel><text>Chapter 3 - Cleaning Up - Physical Manipulation</text></navLabel>
@@ -315,7 +315,7 @@
 	</pageTarget>
 	<pageTarget id="p8" type="normal" value="8">
     	<navLabel><text>Chapter 4 - Who is the Best Animal? - Introduction</text></navLabel>
-		<content src="Text/Story4-Who-is-the-Best-Animal-Intro-S.xhtml"/>
+		<content src="Text/Story4-Who-is-the-Best-Animal-Intro-E.xhtml"/>
 	</pageTarget>
     <pageTarget id="p9" type="normal" value="9">
     	<navLabel><text>Chapter 4 - Who is the Best Animal? - Physical Manipulation</text></navLabel>
@@ -323,7 +323,7 @@
 	</pageTarget>
 	<pageTarget id="p10" type="normal" value="10">
     	<navLabel><text>Chapter 5 - The Wise Owl - Introduction</text></navLabel>
-		<content src="Text/Story5-The-Wise-Owl-Intro-S.xhtml"/>
+		<content src="Text/Story5-The-Wise-Owl-Intro-E.xhtml"/>
 	</pageTarget>
     <pageTarget id="p11" type="normal" value="11">
     	<navLabel><text>Chapter 5 - The Wise Owl - Physical Manipulation</text></navLabel>
@@ -331,7 +331,7 @@
 	</pageTarget>
 	<pageTarget id="p12" type="normal" value="12">
     	<navLabel><text>Chapter 6 - Everyone Helps - Introduction</text></navLabel>
-		<content src="Text/Story6-Everyone-Helps-Intro-S.xhtml"/>
+		<content src="Text/Story6-Everyone-Helps-Intro-E.xhtml"/>
 	</pageTarget>
     <pageTarget id="p13" type="normal" value="13">
     	<navLabel><text>Chapter 6 - Everyone Helps - Physical Manipulation</text></navLabel>
@@ -339,7 +339,7 @@
 	</pageTarget>
 	<pageTarget id="p14" type="normal" value="14">
     	<navLabel><text>Chapter 7 - The Best Farm Award - Introduction</text></navLabel>
-		<content src="Text/Story7-The-Best-Farm-Award-Intro-S.xhtml"/>
+		<content src="Text/Story7-The-Best-Farm-Award-Intro-E.xhtml"/>
 	</pageTarget>
     <pageTarget id="p15" type="normal" value="15">
     	<navLabel><text>Chapter 7 - The Best Farm Award - Physical Manipulation</text></navLabel>
