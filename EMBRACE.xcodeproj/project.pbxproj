@@ -59,8 +59,8 @@
 		31AA5FAA175FB16500E9A9B3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AA5FA9175FB16500E9A9B3 /* LoginViewController.m */; };
 		31C306C2183D900B0043DEDD /* Solution.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C306C1183D900B0043DEDD /* Solution.m */; };
 		31C306C5183E93A60043DEDD /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C306C4183E93A60043DEDD /* Connection.m */; };
-		5C0274C119CFE80100BF4B1A /* metadataC.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5C0274C019CFE80100BF4B1A /* metadataC.xml */; };
-		5C0274C319D2299900BF4B1A /* metadataC.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5C0274C219D2299900BF4B1A /* metadataC.xml */; };
+		5C0274C119CFE80100BF4B1A /* metadata.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5C0274C019CFE80100BF4B1A /* metadata.xml */; };
+		5C0274C319D2299900BF4B1A /* metadata.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5C0274C219D2299900BF4B1A /* metadata.xml */; };
 		5C0274C819D22DA400BF4B1A /* BFCE1_6E.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C0274C419D22DA400BF4B1A /* BFCE1_6E.m4a */; };
 		5C0274C919D22DA400BF4B1A /* BFCS1_6E.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C0274C519D22DA400BF4B1A /* BFCS1_6E.m4a */; };
 		5C0274CA19D22DA400BF4B1A /* CCE_14B.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C0274C619D22DA400BF4B1A /* CCE_14B.m4a */; };
@@ -267,7 +267,7 @@
 		5C7FE03819A6B1B500CBBE0E /* p3_nosqueeze.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FDFA919A6B1B500CBBE0E /* p3_nosqueeze.png */; };
 		5C7FE03919A6B1B500CBBE0E /* p3_Rsqueeze.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FDFAA19A6B1B500CBBE0E /* p3_Rsqueeze.png */; };
 		5C7FE03A19A6B1B500CBBE0E /* p4.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FDFAB19A6B1B500CBBE0E /* p4.png */; };
-		5C7FE03B19A6B1B500CBBE0E /* metadata.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FDFAC19A6B1B500CBBE0E /* metadata.xml */; };
+		5C7FE03B19A6B1B500CBBE0E /* metadataE.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FDFAC19A6B1B500CBBE0E /* metadataE.xml */; };
 		5C7FE03C19A6B1B500CBBE0E /* IMStyle.css in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FDFAE19A6B1B500CBBE0E /* IMStyle.css */; };
 		5C7FE03D19A6B1B500CBBE0E /* PMStyle.css in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FDFAF19A6B1B500CBBE0E /* PMStyle.css */; };
 		5C7FE03E19A6B1B500CBBE0E /* Stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FDFB019A6B1B500CBBE0E /* Stylesheet.css */; };
@@ -540,7 +540,7 @@
 		5CF9949619AC34550080C32F /* Story-6-Everyone-Helps.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CF9944219AC34550080C32F /* Story-6-Everyone-Helps.png */; };
 		5CF9949719AC34550080C32F /* Story-7-The-Best-Farm-Award.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CF9944319AC34550080C32F /* Story-7-The-Best-Farm-Award.png */; };
 		5CF9949819AC34550080C32F /* tractor_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CF9944419AC34550080C32F /* tractor_large.png */; };
-		5CF9949919AC34550080C32F /* metadata.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5CF9944519AC34550080C32F /* metadata.xml */; };
+		5CF9949919AC34550080C32F /* metadataE.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5CF9944519AC34550080C32F /* metadataE.xml */; };
 		5CF9949A19AC34550080C32F /* IMStyle.css in Resources */ = {isa = PBXBuildFile; fileRef = 5CF9944719AC34550080C32F /* IMStyle.css */; };
 		5CF9949B19AC34550080C32F /* PMStyle.css in Resources */ = {isa = PBXBuildFile; fileRef = 5CF9944819AC34550080C32F /* PMStyle.css */; };
 		5CF9949C19AC34550080C32F /* Stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = 5CF9944919AC34550080C32F /* Stylesheet.css */; };
@@ -648,7 +648,7 @@
 		31937539174185E000782C2B /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		3193753B1741A76E00782C2B /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
 		3193753C1741A76E00782C2B /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
-		31953E451729ECC100570087 /* Embrace E.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Embrace E.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		31953E451729ECC100570087 /* Control E.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Control E.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31953E481729ECC100570087 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		31953E4A1729ECC100570087 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		31953E4C1729ECC100570087 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -694,8 +694,8 @@
 		31C306C1183D900B0043DEDD /* Solution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Solution.m; sourceTree = "<group>"; };
 		31C306C3183E93A60043DEDD /* Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Connection.h; sourceTree = "<group>"; };
 		31C306C4183E93A60043DEDD /* Connection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connection.m; sourceTree = "<group>"; };
-		5C0274C019CFE80100BF4B1A /* metadataC.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = metadataC.xml; sourceTree = "<group>"; };
-		5C0274C219D2299900BF4B1A /* metadataC.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = metadataC.xml; sourceTree = "<group>"; };
+		5C0274C019CFE80100BF4B1A /* metadata.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = metadata.xml; sourceTree = "<group>"; };
+		5C0274C219D2299900BF4B1A /* metadata.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = metadata.xml; sourceTree = "<group>"; };
 		5C0274C419D22DA400BF4B1A /* BFCE1_6E.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCE1_6E.m4a; path = EMBRACE_Client/sounds/BFCE1_6E.m4a; sourceTree = SOURCE_ROOT; };
 		5C0274C519D22DA400BF4B1A /* BFCS1_6E.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCS1_6E.m4a; path = EMBRACE_Client/sounds/BFCS1_6E.m4a; sourceTree = SOURCE_ROOT; };
 		5C0274C619D22DA400BF4B1A /* CCE_14B.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = CCE_14B.m4a; path = EMBRACE_Client/sounds/CCE_14B.m4a; sourceTree = SOURCE_ROOT; };
@@ -905,7 +905,7 @@
 		5C7FDFA919A6B1B500CBBE0E /* p3_nosqueeze.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = p3_nosqueeze.png; sourceTree = "<group>"; };
 		5C7FDFAA19A6B1B500CBBE0E /* p3_Rsqueeze.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = p3_Rsqueeze.png; sourceTree = "<group>"; };
 		5C7FDFAB19A6B1B500CBBE0E /* p4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = p4.png; sourceTree = "<group>"; };
-		5C7FDFAC19A6B1B500CBBE0E /* metadata.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = metadata.xml; sourceTree = "<group>"; };
+		5C7FDFAC19A6B1B500CBBE0E /* metadataE.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = metadataE.xml; sourceTree = "<group>"; };
 		5C7FDFAE19A6B1B500CBBE0E /* IMStyle.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = IMStyle.css; sourceTree = "<group>"; };
 		5C7FDFAF19A6B1B500CBBE0E /* PMStyle.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = PMStyle.css; sourceTree = "<group>"; };
 		5C7FDFB019A6B1B500CBBE0E /* Stylesheet.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = Stylesheet.css; sourceTree = "<group>"; };
@@ -1190,7 +1190,7 @@
 		5CF9944219AC34550080C32F /* Story-6-Everyone-Helps.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Story-6-Everyone-Helps.png"; sourceTree = "<group>"; };
 		5CF9944319AC34550080C32F /* Story-7-The-Best-Farm-Award.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Story-7-The-Best-Farm-Award.png"; sourceTree = "<group>"; };
 		5CF9944419AC34550080C32F /* tractor_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tractor_large.png; sourceTree = "<group>"; };
-		5CF9944519AC34550080C32F /* metadata.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = metadata.xml; sourceTree = "<group>"; };
+		5CF9944519AC34550080C32F /* metadataE.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = metadataE.xml; sourceTree = "<group>"; };
 		5CF9944719AC34550080C32F /* IMStyle.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = IMStyle.css; sourceTree = "<group>"; };
 		5CF9944819AC34550080C32F /* PMStyle.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = PMStyle.css; sourceTree = "<group>"; };
 		5CF9944919AC34550080C32F /* Stylesheet.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = Stylesheet.css; sourceTree = "<group>"; };
@@ -1374,7 +1374,7 @@
 		31953E461729ECC100570087 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				31953E451729ECC100570087 /* Embrace E.app */,
+				31953E451729ECC100570087 /* Control E.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1602,11 +1602,11 @@
 		5C7FDF9819A6B1B500CBBE0E /* OEBPS */ = {
 			isa = PBXGroup;
 			children = (
-				5C0274C219D2299900BF4B1A /* metadataC.xml */,
+				5C0274C219D2299900BF4B1A /* metadata.xml */,
 				5C776B3019C7E54F000DBC65 /* tocB.ncx */,
 				5C7FDF9919A6B1B500CBBE0E /* content.opf */,
 				5C7FDF9A19A6B1B500CBBE0E /* Images */,
-				5C7FDFAC19A6B1B500CBBE0E /* metadata.xml */,
+				5C7FDFAC19A6B1B500CBBE0E /* metadataE.xml */,
 				5C7FDFAD19A6B1B500CBBE0E /* Styles */,
 				5C7FDFB119A6B1B500CBBE0E /* Text */,
 				5C7FDFD819A6B1B500CBBE0E /* toc.ncx */,
@@ -2086,11 +2086,11 @@
 		5CF9941C19AC34550080C32F /* OEBPS */ = {
 			isa = PBXGroup;
 			children = (
-				5C0274C019CFE80100BF4B1A /* metadataC.xml */,
+				5C0274C019CFE80100BF4B1A /* metadata.xml */,
 				5C776B2E19C7E469000DBC65 /* tocB.ncx */,
 				5CF9941D19AC34550080C32F /* content.opf */,
 				5CF9941E19AC34550080C32F /* Images */,
-				5CF9944519AC34550080C32F /* metadata.xml */,
+				5CF9944519AC34550080C32F /* metadataE.xml */,
 				5CF9944619AC34550080C32F /* Styles */,
 				5CF9944A19AC34550080C32F /* Text */,
 				5CF9946F19AC34550080C32F /* toc.ncx */,
@@ -2249,7 +2249,7 @@
 			);
 			name = EMBRACE;
 			productName = EMBRACE_Client;
-			productReference = 31953E451729ECC100570087 /* Embrace E.app */;
+			productReference = 31953E451729ECC100570087 /* Control E.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -2332,7 +2332,7 @@
 				5C776A4619C17F39000DBC65 /* BFTC4.m4a in Resources */,
 				5CAD05EE19BE6A3E00F3F053 /* CCE3_2.m4a in Resources */,
 				5C776C4619C95480000DBC65 /* nestDEFS.m4a in Resources */,
-				5C0274C119CFE80100BF4B1A /* metadataC.xml in Resources */,
+				5C0274C119CFE80100BF4B1A /* metadata.xml in Resources */,
 				5CE299B519B5549600675CB0 /* BFCE1_6C.m4a in Resources */,
 				5C7FE14019A7E43C00CBBE0E /* BFS_CH1B.m4a in Resources */,
 				5C7FE11E19A7E43C00CBBE0E /* BFCS_8A.m4a in Resources */,
@@ -2467,7 +2467,7 @@
 				5CE299AE19B13EB200675CB0 /* BFCS1_2A.m4a in Resources */,
 				5C776A5E19C241EE000DBC65 /* CWWB1.m4a in Resources */,
 				5C776A4719C17F39000DBC65 /* BFTC5.m4a in Resources */,
-				5CF9949919AC34550080C32F /* metadata.xml in Resources */,
+				5CF9949919AC34550080C32F /* metadataE.xml in Resources */,
 				31953E5D1729ECC100570087 /* Default@2x.png in Resources */,
 				5C776C5319C95A13000DBC65 /* trophyS.m4a in Resources */,
 				5C776BE919C93E1E000DBC65 /* tubesDEFS.m4a in Resources */,
@@ -2714,7 +2714,7 @@
 				5C0274C819D22DA400BF4B1A /* BFCE1_6E.m4a in Resources */,
 				5CF9949B19AC34550080C32F /* PMStyle.css in Resources */,
 				5C7FE12819A7E43C00CBBE0E /* BFEE_11A.m4a in Resources */,
-				5C7FE03B19A6B1B500CBBE0E /* metadata.xml in Resources */,
+				5C7FE03B19A6B1B500CBBE0E /* metadataE.xml in Resources */,
 				5CE299E319B5AC2700675CB0 /* purrE.m4a in Resources */,
 				5CAD064319BEB8AE00F3F053 /* squeezeE.m4a in Resources */,
 				5CAD065219BEB8AE00F3F053 /* breatheE.m4a in Resources */,
@@ -2806,7 +2806,7 @@
 				5C776C1219C94504000DBC65 /* combedDEFS.m4a in Resources */,
 				5CF9947019AC34550080C32F /* container.xml in Resources */,
 				5CF9949319AC34550080C32F /* Story-3-Cleaning-Up.png in Resources */,
-				5C0274C319D2299900BF4B1A /* metadataC.xml in Resources */,
+				5C0274C319D2299900BF4B1A /* metadata.xml in Resources */,
 				5C776AC319C674FA000DBC65 /* CPQR4.m4a in Resources */,
 				C3B45C12197EE21D003CE36D /* circulatory.epub in Resources */,
 				5C776B3B19C7FB9A000DBC65 /* Story5-The-Wise-Owl-Intro-S.xhtml in Resources */,
@@ -2995,7 +2995,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				OTHER_LDFLAGS = "-lxml2";
-				PRODUCT_NAME = "Embrace E";
+				PRODUCT_NAME = "Control E";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -3016,7 +3016,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				OTHER_LDFLAGS = "-lxml2";
-				PRODUCT_NAME = "Embrace E";
+				PRODUCT_NAME = "Control E";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};

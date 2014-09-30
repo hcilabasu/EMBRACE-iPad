@@ -1014,13 +1014,13 @@
               <expectedInput>corral</expectedInput>
           </introductionStep>
           <introductionStep number="6">
-              <englishAudio>BFCE_8A.m4a</englishAudio>
-              <spanishAudio>BFCS_8A.m4a</spanishAudio>
+              <englishAudio>BFEE_8A.m4a</englishAudio>
+              <spanishAudio>BFES_8A.m4a</spanishAudio>
               <englishText>Manuel walks to the corral.</englishText>
-              <spanishText>Manuel va hacia el corral.</spanishText>
-              <expectedSelection></expectedSelection>
+              <spanishText>Manuel entra al corral.</spanishText>
+              <expectedSelection>image</expectedSelection>
               <expectedAction>move</expectedAction>
-              <expectedInput>next</expectedInput>
+              <expectedInput>farmergetIncorralArea</expectedInput>
           </introductionStep>
           <introductionStep number="7">
               <englishAudio>BFCE_9.m4a</englishAudio>
@@ -1032,24 +1032,33 @@
               <expectedInput>next</expectedInput>
           </introductionStep>
           <introductionStep number="8">
-              <englishAudio>BFCE_10A.m4a</englishAudio>
-              <spanishAudio>BFCS_10A.m4a</spanishAudio>
+              <englishAudio>BFEE_10A.m4a</englishAudio>
+              <spanishAudio>BFES_10A.m4a</spanishAudio>
               <englishText>Manuel puts the cow into the pen.</englishText>
               <spanishText>Manuel pone a la vaca en el establo.</spanishText>
-              <expectedSelection></expectedSelection>
-              <expectedAction>move</expectedAction>
-              <expectedInput>next</expectedInput>
+              <expectedSelection>image</expectedSelection>
+              <expectedAction>group</expectedAction>
+              <expectedInput>farmerleadcow</expectedInput>
           </introductionStep>
           <introductionStep number="9">
-              <englishAudio>BFCE_9.m4a</englishAudio>
-              <spanishAudio>BFCS_9.m4a</spanishAudio>
-              <englishText>Good job!</englishText>
-              <spanishText>Qué bien trabajas!</spanishText>
-              <expectedSelection></expectedSelection>
+              <englishAudio>BFEE_11A.m4a</englishAudio>
+              <spanishAudio>BFES_11A.m4a</spanishAudio>
+              <englishText>Manuel puts the cow into the pen.</englishText>
+              <spanishText>Manuel pone a la vaca en el establo.</spanishText>
+              <expectedSelection>image</expectedSelection>
               <expectedAction>tap</expectedAction>
-              <expectedInput>next</expectedInput>
+              <expectedInput>menu</expectedInput>
           </introductionStep>
           <introductionStep number="10">
+              <englishAudio>BFEE_11.m4a</englishAudio>
+              <spanishAudio>BFES_11.m4a</spanishAudio>
+              <englishText>Manuel puts the cow into the pen.</englishText>
+              <spanishText>Manuel pone a la vaca el establo.</spanishText>
+              <expectedSelection>image</expectedSelection>
+              <expectedAction>move</expectedAction>
+              <expectedInput>cowgetInpen4</expectedInput>
+          </introductionStep>
+          <introductionStep number="11">
               <englishAudio>BFCE_14.m4a</englishAudio>
               <spanishAudio>BFCS_14.m4a</spanishAudio>
               <englishText>Let's do more.</englishText>
@@ -1058,25 +1067,34 @@
               <expectedAction>tap</expectedAction>
               <expectedInput>next</expectedInput>
           </introductionStep>
-          <introductionStep number="11">
-              <englishAudio>BFCE_18A.m4a</englishAudio>
+          <introductionStep number="12">
+              <englishAudio>BFEE_18AA.m4a</englishAudio>
               <spanishAudio></spanishAudio>
               <englishText>Manuel gives the goat an apple to eat.</englishText>
               <spanishText>Manuel gives the goat an apple to eat.</spanishText>
-              <expectedSelection></expectedSelection>
-              <expectedAction>move</expectedAction>
-              <expectedInput>next</expectedInput>
-          </introductionStep>
-          <introductionStep number="12">
-              <englishAudio>BFCE_9.m4a</englishAudio>
-              <spanishAudio>BFCS_9.m4a</spanishAudio>
-              <englishText>Good job!</englishText>
-              <spanishText>Qué bien trabajas!</spanishText>
-              <expectedSelection></expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>next</expectedInput>
+              <expectedSelection>image</expectedSelection>
+              <expectedAction>group</expectedAction>
+              <expectedInput>farmergrabapple</expectedInput>
           </introductionStep>
           <introductionStep number="13">
+              <englishAudio>BFEE_20A.m4a</englishAudio>
+              <spanishAudio></spanishAudio>
+              <englishText>Manuel gives the goat an apple to eat.</englishText>
+              <spanishText>Manuel gives the goat an apple to eat.</spanishText>
+              <expectedSelection>image</expectedSelection>
+              <expectedAction>move</expectedAction>
+              <expectedInput>farmergiveapple</expectedInput>
+          </introductionStep>
+          <introductionStep number="14">
+              <englishAudio>BFEE_19A.m4a</englishAudio>
+              <spanishAudio></spanishAudio>
+              <englishText>Manuel gives the goat an apple to eat.</englishText>
+              <spanishText>Manuel gives the goat an apple to eat.</spanishText>
+              <expectedSelection>image</expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>menu</expectedInput>
+          </introductionStep>
+          <introductionStep number="15">
               <englishAudio>BFCE_22A.m4a</englishAudio>
               <spanishAudio></spanishAudio>
               <englishText>You are ready!</englishText>
@@ -1171,8 +1189,8 @@
               <expectedInput></expectedInput>
           </vocabularyIntroductionWord>
           <vocabularyIntroductionWord number="10">
-              <englishWordAudio>BFCE1_6E.m4a</englishWordAudio>
-              <spanishWordAudio>BFCS1_6E.m4a</spanishWordAudio>
+              <englishWordAudio>BFCE1_6C.m4a</englishWordAudio>
+              <spanishWordAudio>BFCS1_6A.m4a</spanishWordAudio>
               <englishWordText></englishWordText>
               <spanishWordText></spanishWordText>
               <expectedSelection></expectedSelection>
