@@ -141,7 +141,7 @@ int language_condition = ENGLISH;
     
     currentPage = nil;
     
-    condition = CONTROL;
+    condition = MENU;
     languageString = @"E";
     
     if (condition == CONTROL) {
