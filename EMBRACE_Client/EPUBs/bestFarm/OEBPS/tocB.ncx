@@ -18,7 +18,7 @@
     <navPoint class="ChapterTitle" id="Chapter0Title" playOrder="0">
         <navLabel>
             <text>Introduction to The Best Farm</text>
-        </navLabel>The-Contest-PM-1S
+        </navLabel>
         <content src="Text/Introduction-to-Best-Farm-Characters-Title.xhtml"/>
         <navPoint class="PM_MODE" id="story0-PM">
             <navLabel>
