@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
   <relationships>
-    <relationship obj1Id="bloodcell_1" can="receive" action="disappear" obj2Id="O2_1"/>
+    <!--<relationship obj1Id="bloodcell_1" can="receive" action="disappear" obj2Id="O2_1"/>-->
     <relationship obj1Id="CO2_1" can="attach" action="group" obj2Id="bloodcell_1"/>
     <relationship obj1Id="CO2_1" can="detach" action="ungroup" obj2Id="bloodcell_1"/> 
-    <relationship obj1Id="O2_1" can="appear" action="appear" obj2Id="bloodcell_1"/>   
+    <relationship obj1Id="O2_1" can="appear" action="appear" obj2Id="bloodcell_1"/>
+    <relationship obj1Id="O2_1" can="attach" action="group" obj2Id="bloodcell_1"/>
+    <relationship obj1Id="O2_1" can="detach" action="ungroup" obj2Id="bloodcell_1"/>
   </relationships>
   <constraints>
     <orderConstraints>
@@ -16,7 +18,7 @@
       <hotspot objId="bloodcell_1" action="appear" role="object" x="50%" y="50%"/>
       <hotspot objId="bloodcell_1" action="attach" role="object" x="50%" y="50%"/>
       <hotspot objId="bloodcell_1" action="getIn" role="subject" x="50%" y="50%"/>
-      <hotspot objId="bloodcell_1" action="receive" role="subject" x="50%" y="50%"/>
+      <!--<hotspot objId="bloodcell_1" action="receive" role="subject" x="50%" y="50%"/>-->
       <hotspot objId="bloodcell_2" action="getIn" role="subject" x="50%" y="50%"/>
       <hotspot objId="CO2_1" action="attach" role="subject" x="50%" y="50%"/>
       <hotspot objId="CO2_1" action="getIn" role="subject" x="50%" y="50%"/>
@@ -24,7 +26,7 @@
       <hotspot objId="O2_1" action="appear" role="subject" x="50%" y="50%"/>
       <hotspot objId="O2_1" action="attach" role="subject" x="50%" y="50%"/>
       <hotspot objId="O2_1" action="getIn" role="subject" x="50%" y="50%"/>
-      <hotspot objId="O2_1" action="receive" role="object" x="50%" y="50%"/>
+      <!--<hotspot objId="O2_1" action="receive" role="object" x="50%" y="50%"/>-->
   </hotspots>
   <locations>
     <location locationId="air" x="32%" y=".1%" height="66%" width="67%"/>
@@ -64,14 +66,32 @@
     <waypoint waypointId="vein" x="30%" y="79%"/>
   </waypoints>
   <alternateImages>
-     <alternateImage objId="bloodcell_1" action="oxygenate" originalSrc="bloodcell_select.png" alternateSrc="bloodcell_select_oxygenated.png" width="40px" x="34%" y="16%"/>
-     <alternateImage objId="bloodcell_2" action="deoxygenate" originalSrc="bloodcell_select_oxygenated.png" alternateSrc="bloodcell_select.png" width="40px" x="50%" y="50%"/>
+     <!--<alternateImage objId="bloodcell_1" action="oxygenate" originalSrc="bloodcell_select.png" alternateSrc="bloodcell_select_oxygenated.png" width="40px" x="34%" y="16%"/>-->
+     <!--<alternateImage objId="bloodcell_2" action="deoxygenate" originalSrc="bloodcell_select_oxygenated.png" alternateSrc="bloodcell_select.png" width="40px" x="50%" y="50%"/>-->
      <alternateImage objId="handle" action="open" originalSrc="handle_close.png" alternateSrc="handle_open.png" width="70px" x="41.5%" y="48%"/>
      <alternateImage objId="handle" action="close" originalSrc="handle_open.png" alternateSrc="handle_close.png" width="58px" x="42.5%" y="48%"/>
      <alternateImage objId="handle" action="open2" originalSrc="handle_close.png" alternateSrc="handle_open.png" width="72px" x="16.5%" y="62%"/>
      <alternateImage objId="handle" action="close2" originalSrc="handle_open.png" alternateSrc="handle_close.png" width="67px" x="17%" y="63%"/>
   </alternateImages>
   <setups>
+    <story title="Why We Breathe" page_id="story1-PM-3">
+      <group obj1Id="O2_1" action="attach" obj2Id="bloodcell_1"/>
+    </story>
+    <story title="The Amazing Heart" page_id="story2-PM-1">
+      <group obj1Id="O2_1" action="attach" obj2Id="bloodcell_1"/>
+    </story>
+    <story title="The Amazing Heart" page_id="story2-PM-2">
+      <group obj1Id="O2_1" action="attach" obj2Id="bloodcell_1"/>
+    </story>
+    <story title="The Amazing Heart" page_id="story2-PM-3">
+      <group obj1Id="O2_1" action="attach" obj2Id="bloodcell_1"/>
+    </story>
+    <story title="The Amazing Heart" page_id="story2-PM-4">
+      <group obj1Id="O2_1" action="attach" obj2Id="bloodcell_1"/>
+    </story>
+    <story title="Muscles Use Oxygen" page_id="story3-PM-1">
+      <group obj1Id="O2_1" action="attach" obj2Id="bloodcell_1"/>
+    </story>
     <story title="Muscles Use Oxygen" page_id="story3-PM-3">
       <group obj1Id="CO2_1" action="attach" obj2Id="bloodcell_1"/>
     </story>
@@ -83,6 +103,9 @@
     </story>
     <story title="Getting More Oxygen for the Muscles" page_id="story4-PM-3">
       <group obj1Id="CO2_1" action="attach" obj2Id="bloodcell_1"/>
+    </story>
+    <story title="Getting More Oxygen for the Muscles" page_id="story4-PM-7">
+        <group obj1Id="O2_1" action="attach" obj2Id="bloodcell_1"/>
     </story>
   </setups>
   <solutions>
@@ -109,8 +132,7 @@
       </sentence>
       <sentence number="11">
         <step number="1">
-           <disappear obj1Id="O2_1" action="receive" obj2Id="bloodcell_1"/>
-           <swapImage obj1Id="bloodcell_1" action="oxygenate"/>
+           <group obj1Id="O2_1" action="attach" obj2Id="bloodcell_1"/>
         </step>
       </sentence>
     </story>
@@ -123,16 +145,16 @@
       </sentence>
       <sentence number="13">
         <step number="1">
-            <check obj1Id="bloodcell_2" action="getIn" locationId="heart1"/>
-            <move obj1Id="bloodcell_2" action="getIn" waypointId="heart1"/>
+            <check obj1Id="bloodcell_1" action="getIn" locationId="heart1"/>
+            <move obj1Id="bloodcell_1" action="getIn" waypointId="heart1"/>
         </step>
       </sentence>
     </story>
     <story title="The Amazing Heart" activity_id="story2-PM-2">
       <sentence number="3">
         <step number="1">
-            <check obj1Id="bloodcell_2" action="getIn" locationId="leftAtrium"/>
-            <move obj1Id="bloodcell_2" action="getIn" waypointId="leftAtrium"/>
+            <check obj1Id="bloodcell_1" action="getIn" locationId="leftAtrium"/>
+            <move obj1Id="bloodcell_1" action="getIn" waypointId="leftAtrium"/>
         </step>
       </sentence>
       <sentence number="4">
@@ -142,8 +164,8 @@
       </sentence>
       <sentence number="5">
         <step number="1">
-            <check obj1Id="bloodcell_2" action="getIn" locationId="leftVentricle"/>
-            <move obj1Id="bloodcell_2" action="getIn" waypointId="leftVentricle"/>
+            <check obj1Id="bloodcell_1" action="getIn" locationId="leftVentricle"/>
+            <move obj1Id="bloodcell_1" action="getIn" waypointId="leftVentricle"/>
         </step>
       </sentence>
       <sentence number="6">
@@ -155,28 +177,25 @@
     <story title="The Amazing Heart" activity_id="story2-PM-4">
       <sentence number="8">
         <step number="1">
-            <check obj1Id="bloodcell_2" action="getIn" locationId="artery"/>
-            <move obj1Id="bloodcell_2" action="getIn" waypointId="artery"/>
+            <check obj1Id="bloodcell_1" action="getIn" locationId="artery"/>
+            <move obj1Id="bloodcell_1" action="getIn" waypointId="artery"/>
         </step>
       </sentence>
     </story>
     <story title="Muscles Use Oxygen" activity_id="story3-PM-1">
       <sentence number="1">
         <step number="1">
-            <check obj1Id="bloodcell_2" action="getIn" locationId="muscle1"/>
-            <move obj1Id="bloodcell_2" action="getIn" waypointId="muscle1"/>
+            <check obj1Id="bloodcell_1" action="getIn" locationId="muscle1"/>
+            <move obj1Id="bloodcell_1" action="getIn" waypointId="muscle1"/>
         </step>
       </sentence>
     </story>
     <story title="Muscles Use Oxygen" activity_id="story3-PM-2">
       <sentence number="5">
         <step number="1">
-            <swapImage obj1Id="bloodcell_2" action="deoxygenate"/>
-        </step>
-        <step number="2">
             <appear obj1Id="O2_1" action="appear" obj2Id="bloodcell_1"/>
         </step>
-        <step number="3">
+        <step number="2">
             <check obj1Id="O2_1" action="getIn" locationId="muscle2"/>
             <move obj1Id="O2_1" action="getIn" waypointId="muscle2"/>
             <move obj1Id="bloodcell_1" action="getIn" waypointId="vein"/>
@@ -253,16 +272,15 @@
     <story title="Getting More Oxygen for the Muscles" activity_id="story4-PM-6">
       <sentence number="11">
         <step number="1">
-            <disappear obj1Id="O2_1" action="receive" obj2Id="bloodcell_1"/>
-            <swapImage obj1Id="bloodcell_1" action="oxygenate"/>
+            <group obj1Id="O2_1" action="attach" obj2Id="bloodcell_1"/>
         </step>
       </sentence>
     </story>
     <story title="Getting More Oxygen for the Muscles" activity_id="story4-PM-7">
       <sentence number="12">
         <step number="1">
-            <check obj1Id="bloodcell_2" action="getIn" locationId="heart3"/>
-            <move obj1Id="bloodcell_2" action="getIn" waypointId="heart3"/>
+            <check obj1Id="bloodcell_1" action="getIn" locationId="heart3"/>
+            <move obj1Id="bloodcell_1" action="getIn" waypointId="heart3"/>
         </step>
       </sentence>
     </story>
@@ -293,8 +311,7 @@
     <story title="Cigarette Smoke Hurts Your Lungs" activity_id="story5-PM-4">
       <sentence number="6">
         <step number="1">
-            <disappear obj1Id="O2_1" action="receive" obj2Id="bloodcell_1"/>
-            <swapImage obj1Id="bloodcell_1" action="oxygenate"/>
+            <group obj1Id="O2_1" action="attach" obj2Id="bloodcell_1"/>
         </step>
       </sentence>
     </story>
