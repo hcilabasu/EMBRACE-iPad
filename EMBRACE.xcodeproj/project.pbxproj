@@ -578,8 +578,10 @@
 		B996065319A7FBF400BF17F4 /* Story3-Muscles-Use-Oxygen-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = B996065219A7FBF400BF17F4 /* Story3-Muscles-Use-Oxygen-Intro-E.xhtml */; };
 		B996065519A7FCA300BF17F4 /* Story1-Why-We-Breathe-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = B996065419A7FCA300BF17F4 /* Story1-Why-We-Breathe-Intro-E.xhtml */; };
 		B996065919A7FD8500BF17F4 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = B996065819A7FD8500BF17F4 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-Intro-E.xhtml */; };
+		B9B537B919F1D4AE00787A85 /* circulatory.epub in Resources */ = {isa = PBXBuildFile; fileRef = B9B537B819F1D4AE00787A85 /* circulatory.epub */; };
+		B9B537BB19F1D77B00787A85 /* gray_handle_open.png in Resources */ = {isa = PBXBuildFile; fileRef = B9B537BA19F1D77B00787A85 /* gray_handle_open.png */; };
+		B9B537BD19F1D79A00787A85 /* gray_handle_close.png in Resources */ = {isa = PBXBuildFile; fileRef = B9B537BC19F1D79A00787A85 /* gray_handle_close.png */; };
 		C393881F195376490005279F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C393881E195376490005279F /* AudioToolbox.framework */; };
-		C3B45C12197EE21D003CE36D /* circulatory.epub in Resources */ = {isa = PBXBuildFile; fileRef = C3B45C11197EE21D003CE36D /* circulatory.epub */; };
 		C3B5214C19254B0C003FF639 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B5214919254B0C003FF639 /* Location.m */; };
 		C3B5214D19254B0C003FF639 /* Waypoint.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B5214B19254B0C003FF639 /* Waypoint.m */; };
 		C3B5215219254BA2003FF639 /* ActionStep.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B5214F19254BA2003FF639 /* ActionStep.m */; };
@@ -1239,8 +1241,10 @@
 		B996065419A7FCA300BF17F4 /* Story1-Why-We-Breathe-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Why-We-Breathe-Intro-E.xhtml"; sourceTree = "<group>"; };
 		B996065619A7FD0F00BF17F4 /* Story4-Getting-More-Oxygen-for-the-Muscles-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Getting-More-Oxygen-for-the-Muscles-Intro-E.xhtml"; sourceTree = "<group>"; };
 		B996065819A7FD8500BF17F4 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-Cigarette-Smoke-Hurts-Your-Lungs-Intro-E.xhtml"; sourceTree = "<group>"; };
+		B9B537B819F1D4AE00787A85 /* circulatory.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = circulatory.epub; path = EPUBs/circulatory/circulatory.epub; sourceTree = "<group>"; };
+		B9B537BA19F1D77B00787A85 /* gray_handle_open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gray_handle_open.png; sourceTree = "<group>"; };
+		B9B537BC19F1D79A00787A85 /* gray_handle_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gray_handle_close.png; sourceTree = "<group>"; };
 		C393881E195376490005279F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		C3B45C11197EE21D003CE36D /* circulatory.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = circulatory.epub; sourceTree = SOURCE_ROOT; };
 		C3B5214819254B0C003FF639 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		C3B5214919254B0C003FF639 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		C3B5214A19254B0C003FF639 /* Waypoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Waypoint.h; sourceTree = "<group>"; };
@@ -1411,10 +1415,10 @@
 		31953E4F1729ECC100570087 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B9B537B819F1D4AE00787A85 /* circulatory.epub */,
 				5C776B1219C6B67E000DBC65 /* bestFarm.epub */,
 				5C7FE06619A7E43B00CBBE0E /* sounds */,
 				5C7FDF3F19A6B1B500CBBE0E /* EPUBs */,
-				C3B45C11197EE21D003CE36D /* circulatory.epub */,
 				31953E501729ECC100570087 /* EMBRACE-Info.plist */,
 				31953E511729ECC100570087 /* InfoPlist.strings */,
 				31953E541729ECC100570087 /* main.m */,
@@ -1617,6 +1621,8 @@
 		5C7FDF9A19A6B1B500CBBE0E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B9B537BC19F1D79A00787A85 /* gray_handle_close.png */,
+				B9B537BA19F1D77B00787A85 /* gray_handle_open.png */,
 				B9558D3619C24A4000BD5FC0 /* background_2.png */,
 				5C7FDF9B19A6B1B500CBBE0E /* background_1.png */,
 				5C7FDF9D19A6B1B500CBBE0E /* background_3.png */,
@@ -2475,6 +2481,7 @@
 				5C776C5719CA6EE6000DBC65 /* arteriesS.m4a in Resources */,
 				5CF655BF19AEACF0000AC913 /* Story3-Cleaning-Up-Intro-E.xhtml in Resources */,
 				5CF9948319AC34550080C32F /* farm_pen.png in Resources */,
+				B9B537BD19F1D79A00787A85 /* gray_handle_close.png in Resources */,
 				5C776B1719C776B5000DBC65 /* nestE.m4a in Resources */,
 				5C7FE10E19A7E43C00CBBE0E /* BFCS1_6.m4a in Resources */,
 				5CF9949419AC34550080C32F /* Story-4-Who-is-the-Best-Animal.png in Resources */,
@@ -2673,6 +2680,7 @@
 				5C776C6719CA75DB000DBC65 /* Story1-Why-We-Breathe-PM-1S.xhtml in Resources */,
 				5C776B3C19C7FB9A000DBC65 /* Story6-Everyone-Helps-Intro-S.xhtml in Resources */,
 				5C7FE02919A6B1B500CBBE0E /* content.opf in Resources */,
+				B9B537B919F1D4AE00787A85 /* circulatory.epub in Resources */,
 				5CF9949C19AC34550080C32F /* Stylesheet.css in Resources */,
 				5C7FE03719A6B1B500CBBE0E /* p3_Lsqueeze.png in Resources */,
 				5C776C1619C945D0000DBC65 /* bucketDEFS.m4a in Resources */,
@@ -2766,6 +2774,7 @@
 				5CF994A219AC34550080C32F /* Story1-The-Contest-Title.xhtml in Resources */,
 				5CF994A119AC34550080C32F /* Story1-The-Contest-PM-2.xhtml in Resources */,
 				5C7FE0EE19A7E43C00CBBE0E /* BFCE1_2.m4a in Resources */,
+				B9B537BB19F1D77B00787A85 /* gray_handle_open.png in Resources */,
 				5CF9949A19AC34550080C32F /* IMStyle.css in Resources */,
 				5CAD061219BE6A3E00F3F053 /* CCE1_4.m4a in Resources */,
 				5C7FE12E19A7E43C00CBBE0E /* BFEE_19.m4a in Resources */,
@@ -2808,7 +2817,6 @@
 				5CF9949319AC34550080C32F /* Story-3-Cleaning-Up.png in Resources */,
 				5C0274C319D2299900BF4B1A /* metadata.xml in Resources */,
 				5C776AC319C674FA000DBC65 /* CPQR4.m4a in Resources */,
-				C3B45C12197EE21D003CE36D /* circulatory.epub in Resources */,
 				5C776B3B19C7FB9A000DBC65 /* Story5-The-Wise-Owl-Intro-S.xhtml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
