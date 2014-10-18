@@ -528,8 +528,8 @@
               <expectedInput></expectedInput>
           </vocabularyIntroductionWord>
           <vocabularyIntroductionWord number="24">
-              <englishWordAudio>CCE_14B.m4a</englishWordAudio>
-              <spanishWordAudio>CCS_14B.m4a</spanishWordAudio>
+              <englishWordAudio>CEE_14.m4a</englishWordAudio>
+              <spanishWordAudio>CES_14.m4a</spanishWordAudio>
               <englishWordText></englishWordText>
               <spanishWordText></spanishWordText>
               <expectedSelection></expectedSelection>
