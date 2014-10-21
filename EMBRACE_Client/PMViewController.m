@@ -3075,6 +3075,9 @@ int language_condition = ENGLISH;
  * is correct, then it will move on to the next sentence. If the manipulation is not current, then feedback will be provided.
  */
 -(IBAction)pressedNext:(id)sender {
+    UIButton *buttonNext = (UIButton *) sender;
+    buttonNext.enabled = false;
+    
     if ([introductions objectForKey:chapterTitle]) {
         // If the user pressed next
         if ([[performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
@@ -3291,7 +3294,10 @@ int language_condition = ENGLISH;
     NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
     NSError *audioError;
     
+    allowInteractions = false;
+    
     _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&audioError];
+    _audioPlayer.delegate = self;
     
     if (_audioPlayer == nil)
         NSLog(@"%@",[audioError description]);
@@ -3320,6 +3326,7 @@ int language_condition = ENGLISH;
 
 /* Delegate for the AVAudioPlayer */
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag  {
+    allowInteractions = true;
     [_audioPlayerAfter play];
 }
     
