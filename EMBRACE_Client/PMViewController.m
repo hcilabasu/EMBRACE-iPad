@@ -103,7 +103,7 @@ float const groupingProximity = 20.0;
 //In the bilingual introduction there are 13 steps in Spanish before switching to English only
 int const STEPS_TO_SWITCH_LANGUAGES_EMBRACE = 12;
 int const STEPS_TO_SWITCH_LANGUAGES_CONTROL = 11;
-int language_condition = ENGLISH;
+int language_condition = BILINGUAL;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
