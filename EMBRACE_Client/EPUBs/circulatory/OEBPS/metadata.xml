@@ -72,6 +72,8 @@
      <alternateImage objId="handle" action="close" originalSrc="handle_open.png" alternateSrc="handle_close.png" width="58px" x="42.5%" y="48%"/>
      <alternateImage objId="handle" action="open2" originalSrc="handle_close.png" alternateSrc="handle_open.png" width="72px" x="16.5%" y="62%"/>
      <alternateImage objId="handle" action="close2" originalSrc="handle_open.png" alternateSrc="handle_close.png" width="67px" x="17%" y="63%"/>
+     <alternateImage objId="handle" action="open3" originalSrc="gray_handle_close.png" alternateSrc="gray_handle_open.png" width="70px" x="41.5%" y="48%"/>
+     <alternateImage objId="handle" action="close3" originalSrc="gray_handle_open.png" alternateSrc="gray_handle_close.png" width="58px" x="42.5%" y="48%"/>
   </alternateImages>
   <setups>
     <story title="Why We Breathe" page_id="story1-PM-3">
@@ -159,7 +161,7 @@
       </sentence>
       <sentence number="4">
         <step number="1">
-            <checkAndSwap obj1Id="handle" action="open"/>
+            <checkAndSwap obj1Id="handle" action="open3"/>
         </step>
       </sentence>
       <sentence number="5">
@@ -170,7 +172,7 @@
       </sentence>
       <sentence number="6">
         <step number="1">
-            <checkAndSwap obj1Id="handle" action="close"/>
+            <checkAndSwap obj1Id="handle" action="close3"/>
         </step>
       </sentence>
     </story>

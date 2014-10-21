@@ -53,7 +53,7 @@
         [[ServerCommunicationController sharedManager] logContext:student];
         //Logging Completes Here.
         
-        self.title = @"Control English";
+        self.title = @"Control Bilingual";
     }
     else
     {
