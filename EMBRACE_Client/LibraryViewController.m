@@ -12,6 +12,7 @@
 #import "Book.h"
 #import "PMViewController.h"
 #import "ServerCommunicationController.h"
+#import "ConditionSetup.h"
 
 @interface LibraryViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout> {
     NSMutableArray *libraryImages;
@@ -46,6 +47,8 @@
 {
     [super viewDidLoad];
     
+    ConditionSetup *conditionSetup = [[ConditionSetup alloc] init];
+    
     //Set the title to something personalized.
     if(student != nil) {
         
@@ -53,7 +56,7 @@
         [[ServerCommunicationController sharedManager] logContext:student];
         //Logging Completes Here.
         
-        self.title = @"Control Bilingual";
+        self.title = [NSString stringWithFormat:@"%@ %@",conditionSetup.condition, conditionSetup.language];
     }
     else
     {

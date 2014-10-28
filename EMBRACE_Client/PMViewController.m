@@ -13,6 +13,7 @@
 #import "ServerCommunicationController.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import <AVFoundation/AVFoundation.h>
+#import "ConditionSetup.h"
 
 @interface PMViewController () {
     NSString* currentPage; //The current page being shown, so that the next page can be requested.
@@ -54,7 +55,7 @@
     
     InteractionModel *model;
     
-    Condition condition; //Study condition to run the app (e.g. MENU, HOTSPOT, etc.)
+    //Condition condition; //Study condition to run the app (e.g. MENU, HOTSPOT, etc.)
     InteractionRestriction useSubject; //Determines which objects the user can manipulate as the subject
     InteractionRestriction useObject; //Determines which objects the user can interact with as the object
     
@@ -103,7 +104,9 @@ float const groupingProximity = 20.0;
 //In the bilingual introduction there are 13 steps in Spanish before switching to English only
 int const STEPS_TO_SWITCH_LANGUAGES_EMBRACE = 12;
 int const STEPS_TO_SWITCH_LANGUAGES_CONTROL = 11;
-int language_condition = BILINGUAL;
+//int language_condition = BILINGUAL;
+// Create an instance of  ConditionSetup
+ConditionSetup *conditionSetup;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -141,10 +144,11 @@ int language_condition = BILINGUAL;
     
     currentPage = nil;
     
-    condition = CONTROL;
+    conditionSetup = [[ConditionSetup alloc] init];
+    //condition = CONTROL;
     languageString = @"E";
     
-    if (condition == CONTROL) {
+    if ([conditionSetup.condition isEqualToString: @"Control"]) {
         allowInteractions = FALSE; //control condition allows user to read only; no manipulations
     }
     else {
@@ -246,11 +250,8 @@ int language_condition = BILINGUAL;
     }
     
     //If we are on the first or second manipulation page of The Contest, play the audio of the first sentence
-    if(language_condition == BILINGUAL) {
-    
-    }
     if ([chapterTitle isEqualToString:@"The Contest"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-        if(language_condition == BILINGUAL) {
+        if([conditionSetup.language isEqualToString: @"Bilingual"]) {
                 [self playAudioFile:[NSString stringWithFormat:@"BFEC%d.m4a",currentSentence]];
         }
         else {
@@ -260,7 +261,7 @@ int language_condition = BILINGUAL;
     
     //If we are on the first or second manipulation page of Why We Breathe, play the audio of the first sentence
     if ([chapterTitle isEqualToString:@"Why We Breathe"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
-        if(language_condition == BILINGUAL) {
+        if([conditionSetup.language isEqualToString: @"Bilingual"]) {
             [self playAudioFile:[NSString stringWithFormat:@"CPQR%d.m4a",currentSentence]];
         }
         else {
@@ -374,7 +375,7 @@ int language_condition = BILINGUAL;
     currentVocabSteps = [vocabularies objectForKey:chapterTitle];
     totalVocabSteps = [currentVocabSteps count];
     
-    if (condition != CONTROL) {
+    if (![conditionSetup.condition isEqualToString:@"Control"]) {
         allowInteractions = TRUE;
     }
 }
@@ -762,7 +763,7 @@ int language_condition = BILINGUAL;
         sentenceText = [sentenceText lowercaseString];
         NSString* englishSentenceText = sentenceText;
         
-        if (language_condition == BILINGUAL) {
+        if ([conditionSetup.language isEqualToString: @"Bilingual"]) {
             if(![[self getEnglishTranslation:sentenceText] isEqualToString:@"Translation not found"]) {
                 englishSentenceText = [self getEnglishTranslation:sentenceText];
             }
@@ -828,14 +829,14 @@ int language_condition = BILINGUAL;
                 englishSentenceText = @"carbonDioxide";
             }
             
-            if (language_condition == BILINGUAL && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
+            if ([conditionSetup.language isEqualToString: @"Bilingual"] && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
                 //Play word audio Sp
                 [self playAudioInSequence:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"]:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
                 
                 //Logging added by James for Word Audio
                 [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"S" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
             }
-            else if (language_condition == BILINGUAL) {
+            else if ([conditionSetup.language isEqualToString: @"Bilingual"]) {
                 //Play word audio Sp
                 [self playAudioInSequence:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"]];
                 
@@ -1144,7 +1145,7 @@ int language_condition = BILINGUAL;
                         
                         //Get possible interactions only if the object is overlapping something
                         if (overlappingWith != nil) {
-                            if (condition == HOTSPOT) {
+                            if ([conditionSetup.condition isEqualToString: @"Hotspot"]) {
                                 useProximity = YES;
                             }
                             
@@ -1264,7 +1265,7 @@ int language_condition = BILINGUAL;
                     }
                 }
                 
-                if (condition == HOTSPOT) {
+                if ([conditionSetup.condition isEqualToString: @"Hotspot"]) {
                     //resets allRelationship arrray
                     if([allRelationships count])
                     {
@@ -2130,7 +2131,7 @@ int language_condition = BILINGUAL;
     }
     else {
         if ([introductions objectForKey:chapterTitle]) {
-            if (language_condition == ENGLISH || currentIntroStep > STEPS_TO_SWITCH_LANGUAGES_EMBRACE)
+            if ([conditionSetup.language isEqualToString: @"English"] || currentIntroStep > STEPS_TO_SWITCH_LANGUAGES_EMBRACE)
             {
                 [self playAudioFile:@"tryAgainE.m4a"];
                 
@@ -3075,9 +3076,6 @@ int language_condition = BILINGUAL;
  * is correct, then it will move on to the next sentence. If the manipulation is not current, then feedback will be provided.
  */
 -(IBAction)pressedNext:(id)sender {
-    UIButton *buttonNext = (UIButton *) sender;
-    buttonNext.enabled = false;
-    
     if ([introductions objectForKey:chapterTitle]) {
         // If the user pressed next
         if ([[performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
@@ -3154,7 +3152,7 @@ int language_condition = BILINGUAL;
                 
                 //If we are on the first or second manipulation page of The Contest, play the audio of the current sentence
                 if ([chapterTitle isEqualToString:@"The Contest"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-                    if(language_condition == BILINGUAL) {
+                    if([conditionSetup.language isEqualToString: @"Bilingual"]) {
                         [self playAudioFile:[NSString stringWithFormat:@"BFEC%d.m4a",currentSentence]];
                     }
                     else {
@@ -3164,7 +3162,7 @@ int language_condition = BILINGUAL;
                 
                 //If we are on the first or second manipulation page of Why We Breathe, play the audio of the current sentence
                 if ([chapterTitle isEqualToString:@"Why We Breathe"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
-                    if(language_condition == BILINGUAL) {
+                    if([conditionSetup.language isEqualToString: @"Bilingual"]) {
                         [self playAudioFile:[NSString stringWithFormat:@"CPQR%d.m4a",currentSentence]];
                     }
                     else {
@@ -3295,6 +3293,7 @@ int language_condition = BILINGUAL;
     NSError *audioError;
     
     allowInteractions = false;
+    self.view.userInteractionEnabled = NO;
     
     _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&audioError];
     _audioPlayer.delegate = self;
@@ -3327,6 +3326,7 @@ int language_condition = BILINGUAL;
 /* Delegate for the AVAudioPlayer */
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag  {
     allowInteractions = true;
+    self.view.userInteractionEnabled = YES;
     [_audioPlayerAfter play];
 }
     
@@ -3361,7 +3361,7 @@ int language_condition = BILINGUAL;
 
     // If the language condition for the app is BILINGUAL (English after Spanish) and the current intro step
     //is lower than the step number to switch languages, load the Spanish information for the step
-    if (language_condition == BILINGUAL && currentIntroStep < STEPS_TO_SWITCH_LANGUAGES_EMBRACE && condition == MENU) {
+    if ([conditionSetup.language isEqualToString: @"Bilingual"] && currentIntroStep < STEPS_TO_SWITCH_LANGUAGES_EMBRACE && [conditionSetup.condition isEqualToString:@"Menu"]) {
         text = textSpanish;
         audio = audioSpanish;
         languageString = @"S";
@@ -3370,7 +3370,7 @@ int language_condition = BILINGUAL;
             underlinedVocabWord = expectedIntroInput;
         }
     }
-    else if (language_condition == BILINGUAL && currentIntroStep < STEPS_TO_SWITCH_LANGUAGES_CONTROL && condition == CONTROL) {
+    else if ([conditionSetup.language isEqualToString: @"Bilingual"] && currentIntroStep < STEPS_TO_SWITCH_LANGUAGES_CONTROL && [conditionSetup.condition isEqualToString:@"Control"]) {
         text = textSpanish;
         audio = audioSpanish;
         languageString = @"S";
@@ -3413,19 +3413,19 @@ int language_condition = BILINGUAL;
     if ([expectedIntroInput isEqualToString:@"next"]) {
         wrapperObj1 = @"TTNBTC.m4a";
     }
-    else if ([expectedIntroInput isEqualToString:@"next"] && language_condition == BILINGUAL) {
+    else if ([expectedIntroInput isEqualToString:@"next"] && [conditionSetup.language isEqualToString: @"Bilingual"]) {
         wrapperObj1 = @"TEBNPC.m4a";
     }
     else if ([expectedSelection isEqualToString:@"word"]) {
         wrapperObj1 = @"BFCE_2B.m4a";
     }
-    else if ([expectedSelection isEqualToString:@"word"] && language_condition == BILINGUAL) {
+    else if ([expectedSelection isEqualToString:@"word"] && [conditionSetup.language isEqualToString: @"Bilingual"]) {
         wrapperObj1 = @"BFCS_2B.m4a";
     }
     else if ([expectedIntroAction isEqualToString:@"move"]) {
         wrapperObj1 = @"BFEE_8.m4a";
     }
-    else if ([expectedIntroAction isEqualToString:@"move"] && language_condition == BILINGUAL) {
+    else if ([expectedIntroAction isEqualToString:@"move"] && [conditionSetup.language isEqualToString: @"Bilingual"]) {
         wrapperObj1 = @"BFES_8.m4a";
     }
     
@@ -3490,7 +3490,7 @@ int language_condition = BILINGUAL;
     audioSpanish = [currVocabStep spanishAudioFileName];
     lastStep = stepNumber;
     
-    if((language_condition == BILINGUAL) && (stepNumber & 1)) {
+    if(([conditionSetup.language isEqualToString: @"Bilingual"]) && (stepNumber & 1)) {
         currentAudio = audioSpanish;
     }
     else {
@@ -3503,7 +3503,7 @@ int language_condition = BILINGUAL;
         nextAudio = [nextVocabStep englishAudioFileName];
         nextAudioSpanish = [nextVocabStep spanishAudioFileName];
         nextIntroInput = [nextVocabStep expectedInput];
-        if(language_condition == BILINGUAL && (stepNumber & 1)) {
+        if([conditionSetup.language isEqualToString: @"Bilingual"] && (stepNumber & 1)) {
             vocabAudio = nextAudioSpanish;
         }
         else {
@@ -3515,7 +3515,7 @@ int language_condition = BILINGUAL;
     // If we are ont the first step (1) or the last step (9) which do not correspond to words
     //play the corresponding intro or outro audio
     if (currentVocabStep == 1 && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
-        if(language_condition == BILINGUAL) {
+        if([conditionSetup.language isEqualToString: @"Bilingual"]) {
             [self playAudioFile:audioSpanish];
         } else {
             //Play introduction audio
@@ -3526,12 +3526,37 @@ int language_condition = BILINGUAL;
 //        [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Step Audio" : @"E" :audio  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
     }
     
-    if (currentVocabStep == totalVocabSteps-1 && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
-        if(language_condition == BILINGUAL) {
-            [self playAudioFile:nextAudioSpanish];
-        } else {
-            //Play introduction audio
-            [self playAudioFile:nextAudio];
+    //while (!allowInteractions);
+    
+    if([conditionSetup.condition isEqualToString:@"Control"]){
+        if (currentVocabStep == totalVocabSteps-2 && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
+            if([conditionSetup.language isEqualToString: @"Bilingual"]) {
+                [self playAudioFile:nextAudioSpanish];
+            } else {
+                //Play introduction audio
+                [self playAudioFile:nextAudio];
+            }
+            currentVocabStep++;
+        }
+    }
+    
+    if([conditionSetup.condition isEqualToString:@"Embrace"]){
+        if (currentVocabStep == totalVocabSteps-2 && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
+            
+            currentVocabStep++;
+            //Get next step to be read
+            VocabularyStep* nextVocabStep = [currentVocabSteps objectAtIndex:currentVocabStep];
+            nextAudio = [nextVocabStep englishAudioFileName];
+            nextAudioSpanish = [nextVocabStep spanishAudioFileName];
+            nextIntroInput = [nextVocabStep expectedInput];
+            nextIntro = nextIntroInput;
+            
+            if([conditionSetup.language isEqualToString: @"Bilingual"]) {
+                [self playAudioFile:nextAudioSpanish];
+            } else {
+                //Play introduction audio
+                [self playAudioFile:nextAudio];
+            }
         }
     }
     
@@ -3547,7 +3572,7 @@ int language_condition = BILINGUAL;
     if ([expectedIntroInput isEqualToString:@"next"]) {
         wrapperObj1 = @"TTNBTC.m4a";
     }
-    else if ([expectedIntroInput isEqualToString:@"next"] && language_condition == BILINGUAL) {
+    else if ([expectedIntroInput isEqualToString:@"next"] && [conditionSetup.language isEqualToString: @"Bilingual"]) {
         wrapperObj1 = @"TEBNPC.m4a";
     }
     
