@@ -453,6 +453,7 @@
 		5CAD065219BEB8AE00F3F053 /* breatheE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CAD063519BEB8AE00F3F053 /* breatheE.m4a */; };
 		5CAD065419BECFFF00F3F053 /* cigaretteE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CAD065319BECFFF00F3F053 /* cigaretteE.m4a */; };
 		5CC5FADB18FDFA3700D118B8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CC5FADA18FDFA3700D118B8 /* AVFoundation.framework */; };
+		5CC854E719FAF37F00910237 /* ConditionSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC854E619FAF37F00910237 /* ConditionSetup.m */; };
 		5CCEA48119AFD13C00FCBC2C /* ComboConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCEA48019AFD13C00FCBC2C /* ComboConstraint.m */; };
 		5CD7FE3519775C1C007A1E49 /* VocabularyStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD7FE3419775C1C007A1E49 /* VocabularyStep.m */; };
 		5CD7FE3819776403007A1E49 /* Introduction.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD7FE3719776403007A1E49 /* Introduction.m */; };
@@ -1098,6 +1099,8 @@
 		5CAD063519BEB8AE00F3F053 /* breatheE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = breatheE.m4a; path = EMBRACE_Client/sounds/breatheE.m4a; sourceTree = SOURCE_ROOT; };
 		5CAD065319BECFFF00F3F053 /* cigaretteE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = cigaretteE.m4a; path = EMBRACE_Client/sounds/cigaretteE.m4a; sourceTree = SOURCE_ROOT; };
 		5CC5FADA18FDFA3700D118B8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		5CC854E519FAF37F00910237 /* ConditionSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConditionSetup.h; sourceTree = "<group>"; };
+		5CC854E619FAF37F00910237 /* ConditionSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConditionSetup.m; sourceTree = "<group>"; };
 		5CCEA47F19AFD13C00FCBC2C /* ComboConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComboConstraint.h; sourceTree = "<group>"; };
 		5CCEA48019AFD13C00FCBC2C /* ComboConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComboConstraint.m; sourceTree = "<group>"; };
 		5CD7FE3319775C1C007A1E49 /* VocabularyStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VocabularyStep.h; sourceTree = "<group>"; };
@@ -1400,6 +1403,7 @@
 		31953E4E1729ECC100570087 /* EMBRACE_iPad */ = {
 			isa = PBXGroup;
 			children = (
+				5CC854E419FAF32500910237 /* Condition Setup */,
 				31109700174AB35D00B02BF7 /* Images */,
 				31953E651729ED4500570087 /* External Libraries */,
 				31953E7C1729ED8300570087 /* Model */,
@@ -2069,6 +2073,15 @@
 				5C7FE0E919A7E43C00CBBE0E /* tryAgainE.m4a */,
 			);
 			path = sounds;
+			sourceTree = "<group>";
+		};
+		5CC854E419FAF32500910237 /* Condition Setup */ = {
+			isa = PBXGroup;
+			children = (
+				5CC854E519FAF37F00910237 /* ConditionSetup.h */,
+				5CC854E619FAF37F00910237 /* ConditionSetup.m */,
+			);
+			name = "Condition Setup";
 			sourceTree = "<group>";
 		};
 		5CF9941819AC34550080C32F /* bestFarm */ = {
@@ -2877,6 +2890,7 @@
 				C3B5215219254BA2003FF639 /* ActionStep.m in Sources */,
 				C3B5215319254BA2003FF639 /* PhysicalManipulationSolution.m in Sources */,
 				310908EC17DE90CA004590A2 /* MovementConstraint.m in Sources */,
+				5CC854E719FAF37F00910237 /* ConditionSetup.m in Sources */,
 				310908EF17DE90DB004590A2 /* OrderConstraint.m in Sources */,
 				31C306C5183E93A60043DEDD /* Connection.m in Sources */,
 				C680520D197ECD43002A5249 /* ServerCommunicationController.m in Sources */,

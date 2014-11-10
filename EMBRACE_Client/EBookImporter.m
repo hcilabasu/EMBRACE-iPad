@@ -14,10 +14,14 @@
 @synthesize dirPaths;
 @synthesize library;
 
+ConditionSetup *conditionSetup;
+
 - (id) init {
 	if (self = [super init]) {
         library = [[NSMutableArray alloc] init];
         [self findDocDir];
+        // Create an instance of  ConditionSetup
+        conditionSetup = [[ConditionSetup alloc] init];
 	}
 	
 	return self;
@@ -281,7 +285,12 @@
 //TOC file is always named toc.ncx
 -(void) readTOCForBook:(Book*)book {
     //NSLog(@"in beginning of TOC for book");
-    NSString *filepath = [[book mainContentPath] stringByAppendingString:@"toc.ncx"];
+    NSString *filepath = nil;
+    if([conditionSetup.language isEqualToString:@"Bilingual"]){
+        filepath = [[book mainContentPath] stringByAppendingString:@"toc.ncx"];
+    } else if ([conditionSetup.language isEqualToString:@"English"]) {
+        filepath = [[book mainContentPath] stringByAppendingString:@"tocE.ncx"];
+    }
     
     //Get xml data of the toc file.
     NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
@@ -711,15 +720,15 @@
             }
         }
     }
- 
+    
     //Read in the introduction information
     NSArray* introductionElements = [metadataDoc nodesForXPath:@"//introductions" error:nil];
     
     if ([introductionElements count] > 0)
     {
         GDataXMLElement *introductionElement = (GDataXMLElement *) [introductionElements objectAtIndex:0];
-        
-        NSArray* introductions = [introductionElement elementsForName:@"introduction"];
+
+        NSArray* introductions = [introductionElement elementsForName:[NSString stringWithFormat:@"%@%@",conditionSetup.condition,@"Introduction"]];
         
         for(GDataXMLElement* introduction in introductions) {
             //Get story title.

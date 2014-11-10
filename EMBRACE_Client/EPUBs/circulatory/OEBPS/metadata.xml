@@ -538,6 +538,15 @@
               <expectedAction>tap</expectedAction>
               <expectedInput>next</expectedInput>
           </vocabularyIntroductionWord>
+          <vocabularyIntroductionWord number="25">
+              <englishWordAudio>CEE_14.m4a</englishWordAudio>
+              <spanishWordAudio>CES_14.m4a</spanishWordAudio>
+              <englishWordText></englishWordText>
+              <spanishWordText></spanishWordText>
+              <expectedSelection></expectedSelection>
+              <expectedAction>tap</expectedAction>
+              <expectedInput>next</expectedInput>
+          </vocabularyIntroductionWord>
       </vocabularyIntroduction>
       <vocabularyIntroduction story="The Amazing Heart">
           <vocabularyIntroductionWord number="1">
