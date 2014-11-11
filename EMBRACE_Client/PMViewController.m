@@ -3296,6 +3296,7 @@ ConditionSetup *conditionSetup;
     self.view.userInteractionEnabled = NO;
     
     _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&audioError];
+    _audioPlayerAfter = nil;
     _audioPlayer.delegate = self;
     
     if (_audioPlayer == nil)
@@ -3309,6 +3310,9 @@ ConditionSetup *conditionSetup;
     NSString *soundFilePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], path];
     NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
     NSError *audioError;
+    
+    allowInteractions = false;
+    self.view.userInteractionEnabled = NO;
     
     NSString *soundFilePath2 = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], path2];
     NSURL *soundFileURL2 = [NSURL fileURLWithPath:soundFilePath2];
@@ -3325,17 +3329,23 @@ ConditionSetup *conditionSetup;
 
 /* Delegate for the AVAudioPlayer */
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag  {
-    if([conditionSetup.condition isEqualToString: @"Control"] && !([currentPageId rangeOfString:@"Intro"].location != NSNotFound)) {
+    
+    // Only play audio if there is a sequence
+    if (_audioPlayer != nil)
+        [_audioPlayerAfter play];
+    
+    // If we are on the control condition keep the interactions disabled
+    if([conditionSetup.condition isEqualToString: @"Control"]) {
         allowInteractions = false;
     }
     else {
-        allowInteractions = true;        
+        allowInteractions = true;
     }
+    
     // Enable all interactions again when the audio has finished playing
     self.view.userInteractionEnabled = YES;
-    [_audioPlayerAfter play];
 }
-    
+
 // Loads the information of the currentIntroStep for the introduction
 -(NSArray*) loadIntroStep {
     NSString* textEnglish;
