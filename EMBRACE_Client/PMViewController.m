@@ -3325,7 +3325,13 @@ ConditionSetup *conditionSetup;
 
 /* Delegate for the AVAudioPlayer */
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag  {
-    allowInteractions = true;
+    if([conditionSetup.condition isEqualToString: @"Control"] && !([currentPageId rangeOfString:@"Intro"].location != NSNotFound)) {
+        allowInteractions = false;
+    }
+    else {
+        allowInteractions = true;        
+    }
+    // Enable all interactions again when the audio has finished playing
     self.view.userInteractionEnabled = YES;
     [_audioPlayerAfter play];
 }

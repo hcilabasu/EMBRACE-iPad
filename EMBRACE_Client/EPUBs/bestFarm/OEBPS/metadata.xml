@@ -1015,9 +1015,9 @@
           </introductionStep>
           <introductionStep number="6">
               <englishAudio>BFCE_8A.m4a</englishAudio>
-              <spanishAudio>BFCS_8A.m4a</spanishAudio>
+              <spanishAudio>BFCS_8B.m4a</spanishAudio>
               <englishText>Manuel walks to the corral.</englishText>
-              <spanishText>Manuel va hacia el corral.</spanishText>
+              <spanishText>Manuel camina hacia el corral.</spanishText>
               <expectedSelection></expectedSelection>
               <expectedAction>move</expectedAction>
               <expectedInput>next</expectedInput>
@@ -1134,9 +1134,9 @@
           </introductionStep>
           <introductionStep number="6">
               <englishAudio>BFEE_8A.m4a</englishAudio>
-              <spanishAudio>BFES_8A.m4a</spanishAudio>
+              <spanishAudio>BFES_8B.m4a</spanishAudio>
               <englishText>Manuel walks to the corral.</englishText>
-              <spanishText>Manuel entra al corral.</spanishText>
+              <spanishText>Manuel camina hacia el corral.</spanishText>
               <expectedSelection>image</expectedSelection>
               <expectedAction>move</expectedAction>
               <expectedInput>farmergetIncorralArea</expectedInput>
