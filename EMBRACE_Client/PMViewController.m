@@ -245,7 +245,6 @@ ConditionSetup *conditionSetup;
     
     //Load the first vocabulary step for the current chapter (hard-coded for now)
     if ([vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
-        //The first word is in Spanish
         [self loadVocabStep];
     }
     
@@ -786,6 +785,7 @@ ConditionSetup *conditionSetup;
                 //Bypass the image-tap steps which are found after each word-tap step on the metadata
                 // since they are not needed anymore
                 currentIntroStep+=1;
+                // This delay is needed in order to be able to hear the clicked word
                 [self performSelector:@selector(loadIntroStep) withObject:nil afterDelay:2];
             }
         }
@@ -819,6 +819,8 @@ ConditionSetup *conditionSetup;
                         [self performSelector:@selector(colorSentencesUponNext) withObject:nil afterDelay:4];
                         
                         currentVocabStep++;
+                        
+                        // This delay is needed in order to be able to play the last definition on a vocabulary page
                         [self performSelector:@selector(loadVocabStep) withObject:nil afterDelay:4];
                 }
             }
@@ -3506,7 +3508,7 @@ ConditionSetup *conditionSetup;
     audioSpanish = [currVocabStep spanishAudioFileName];
     lastStep = stepNumber;
     
-    if(([conditionSetup.language isEqualToString: @"Bilingual"]) && (stepNumber & 1)) {
+    if(([conditionSetup.language isEqualToString: @"Bilingual"])) {
         currentAudio = audioSpanish;
     }
     else {
@@ -3541,8 +3543,6 @@ ConditionSetup *conditionSetup;
         //Logging added by James for Word Audio
 //        [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Step Audio" : @"E" :audio  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
     }
-    
-    //while (!allowInteractions);
     
     if([conditionSetup.condition isEqualToString:@"Control"]){
         if (currentVocabStep == totalVocabSteps-2 && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
