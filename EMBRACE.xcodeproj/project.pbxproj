@@ -575,6 +575,7 @@
 		5CF994C019AC34550080C32F /* Story7-The-Best-Farm-Award-Title.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CF9946E19AC34550080C32F /* Story7-The-Best-Farm-Award-Title.xhtml */; };
 		5CF994C119AC34550080C32F /* tocE.ncx in Resources */ = {isa = PBXBuildFile; fileRef = 5CF9946F19AC34550080C32F /* tocE.ncx */; };
 		5CFA85AB1950EFDC00C7537D /* IntroductionStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFA85AA1950EFDC00C7537D /* IntroductionStep.m */; };
+		B91218511A1970F900D5CB37 /* p3_Lsqueeze_with_valve.png in Resources */ = {isa = PBXBuildFile; fileRef = B91218501A1970F900D5CB37 /* p3_Lsqueeze_with_valve.png */; };
 		B9558D3719C24A4000BD5FC0 /* background_2.png in Resources */ = {isa = PBXBuildFile; fileRef = B9558D3619C24A4000BD5FC0 /* background_2.png */; };
 		B996065119A7FAC400BF17F4 /* Story2-The-Amazing-Heart-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = B996065019A7FAC400BF17F4 /* Story2-The-Amazing-Heart-Intro-E.xhtml */; };
 		B996065319A7FBF400BF17F4 /* Story3-Muscles-Use-Oxygen-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = B996065219A7FBF400BF17F4 /* Story3-Muscles-Use-Oxygen-Intro-E.xhtml */; };
@@ -1239,6 +1240,7 @@
 		5CF9946F19AC34550080C32F /* tocE.ncx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = tocE.ncx; sourceTree = "<group>"; };
 		5CFA85A91950EFDC00C7537D /* IntroductionStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroductionStep.h; sourceTree = "<group>"; };
 		5CFA85AA1950EFDC00C7537D /* IntroductionStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroductionStep.m; sourceTree = "<group>"; };
+		B91218501A1970F900D5CB37 /* p3_Lsqueeze_with_valve.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = p3_Lsqueeze_with_valve.png; sourceTree = "<group>"; };
 		B9558D3619C24A4000BD5FC0 /* background_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_2.png; sourceTree = "<group>"; };
 		B996065019A7FAC400BF17F4 /* Story2-The-Amazing-Heart-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story2-The-Amazing-Heart-Intro-E.xhtml"; sourceTree = "<group>"; };
 		B996065219A7FBF400BF17F4 /* Story3-Muscles-Use-Oxygen-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story3-Muscles-Use-Oxygen-Intro-E.xhtml"; sourceTree = "<group>"; };
@@ -1624,6 +1626,7 @@
 		5C7FDF9A19A6B1B500CBBE0E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B91218501A1970F900D5CB37 /* p3_Lsqueeze_with_valve.png */,
 				B9B537BC19F1D79A00787A85 /* gray_handle_close.png */,
 				B9B537BA19F1D77B00787A85 /* gray_handle_open.png */,
 				B9558D3619C24A4000BD5FC0 /* background_2.png */,
@@ -2646,6 +2649,7 @@
 				5CF9948219AC34550080C32F /* farm_night.png in Resources */,
 				5CF994B719AC34550080C32F /* Story6-Everyone-Helps-IM-1.xhtml in Resources */,
 				5CAD063919BEB8AE00F3F053 /* trappedE.m4a in Resources */,
+				B91218511A1970F900D5CB37 /* p3_Lsqueeze_with_valve.png in Resources */,
 				5C776BF619C93E1E000DBC65 /* heartS.m4a in Resources */,
 				5C776B2C19C7E0E4000DBC65 /* Story4-Getting-More-Oxygen-for-the-Muscles-Intro-S.xhtml in Resources */,
 				5CF994A819AC34550080C32F /* Story3-Cleaning-Up-IM-1.xhtml in Resources */,
