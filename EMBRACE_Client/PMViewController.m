@@ -78,6 +78,7 @@
     NSInteger lastStep; //Used to store the most recent intro step
     NSString* nextIntro; //Used to store the most recent intro step
     NSString* currentAudio; //Used to store the current vocab audio file to be played
+    BOOL isAudioLeft;
 }
 
 @property (nonatomic, strong) IBOutlet UIWebView *bookView;
@@ -247,6 +248,8 @@ ConditionSetup *conditionSetup;
     if ([vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
         [self loadVocabStep];
     }
+    
+    isAudioLeft = false;
     
     //If we are on the first or second manipulation page of The Contest, play the audio of the first sentence
     if ([chapterTitle isEqualToString:@"The Contest"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
@@ -3303,8 +3306,10 @@ ConditionSetup *conditionSetup;
     
     if (_audioPlayer == nil)
         NSLog(@"%@",[audioError description]);
-    else
+    else {
         [_audioPlayer play];
+        //_audioPlayer = nil;
+    }
 }
 
 /* Plays one audio file after the other */
@@ -3321,29 +3326,43 @@ ConditionSetup *conditionSetup;
     
     _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&audioError];
     _audioPlayerAfter = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL2 error:&audioError];
+    if (_audioPlayerAfter != nil) {
+        isAudioLeft = true;
+    }
     _audioPlayer.delegate = self;
     
     if (_audioPlayer == nil)
         NSLog(@"%@",[audioError description]);
-    else
+    else {
         [_audioPlayer play];
+        //_audioPlayer = nil;
+    }
 }
 
 /* Delegate for the AVAudioPlayer */
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag  {
     
     // Only play audio if there is a sequence
-    if (_audioPlayer != nil)
+    if (_audioPlayer != nil && isAudioLeft) {
+        isAudioLeft = false;
         [_audioPlayerAfter play];
-    
-    // If we are on the control condition keep the interactions disabled
-    if([conditionSetup.condition isEqualToString: @"Control"]) {
-        allowInteractions = false;
+        
+        NSLog(@"Entered first block %@ %@", _audioPlayer, _audioPlayerAfter);
     }
-    else {
-        allowInteractions = true;
+    else
+    {
+        NSLog(@"Entered second block");
+
+        // If we are on the control condition keep the interactions disabled
+        if([conditionSetup.condition isEqualToString: @"Control"]) {
+            allowInteractions = false;
+        }
+        else {
+            allowInteractions = true;
+        }
+        
+        
     }
-    
     // Enable all interactions again when the audio has finished playing
     self.view.userInteractionEnabled = YES;
 }
@@ -3507,8 +3526,8 @@ ConditionSetup *conditionSetup;
     stepNumber = [currVocabStep wordNumber];
     audioSpanish = [currVocabStep spanishAudioFileName];
     lastStep = stepNumber;
-    
-    if(([conditionSetup.language isEqualToString: @"Bilingual"])) {
+    // && (stepNumber & 1) alternates between true and false
+    if(([conditionSetup.language isEqualToString: @"Bilingual"]) && (stepNumber & 1)) {
         currentAudio = audioSpanish;
     }
     else {
@@ -3521,6 +3540,7 @@ ConditionSetup *conditionSetup;
         nextAudio = [nextVocabStep englishAudioFileName];
         nextAudioSpanish = [nextVocabStep spanishAudioFileName];
         nextIntroInput = [nextVocabStep expectedInput];
+        // && (stepNumber & 1) alternates between true and false
         if([conditionSetup.language isEqualToString: @"Bilingual"] && (stepNumber & 1)) {
             vocabAudio = nextAudioSpanish;
         }
