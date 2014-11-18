@@ -480,7 +480,7 @@ DDXMLElement *nodeStudy;
     [nodeComputerAction addChild:nodeInput];
     [nodeComputerAction addChild:nodeContext];
     
-    //bool successfulWrite = [[ServerCommunicationController sharedManager] writeToFile:userNameString ofType:@"txt"];
+    [[ServerCommunicationController sharedManager] writeToFile:studyFileName ofType:@"txt"];
 }
 
 /*

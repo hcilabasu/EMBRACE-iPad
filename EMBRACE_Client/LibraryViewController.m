@@ -162,9 +162,12 @@
 }
 
 /*
- * User pressed Logout button. Returns to login screen.
+ * User pressed Logout button. Writes data to log file and returns to login screen.
  */
 -(IBAction)pressedLogout:(id)sender {
+    //Write log data to file
+    [[ServerCommunicationController sharedManager] writeToFile:[[ServerCommunicationController sharedManager] studyFileName] ofType:@"txt"];
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
