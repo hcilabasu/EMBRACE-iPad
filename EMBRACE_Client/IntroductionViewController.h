@@ -13,6 +13,7 @@
 #import "Book.h"
 #import "BuildHTMLString.h"
 #import "PlayAudioFile.h"
+#import "ConditionSetup.h"
 
 //Defines the types of language conditions to be used
 typedef enum Language {
@@ -35,7 +36,7 @@ typedef enum Action {
 
 @property(nonatomic, strong) BuildHTMLString *buildHTMLStringClass;
 @property(nonatomic, strong) PlayAudioFile *playAudioFileClass;
-@property(nonatomic) int language_condition;
+//@property(nonatomic) int language_condition;
 @property(nonatomic) int STEPS_TO_SWITCH_LANGUAGES;
 @property(nonatomic) BOOL allowInteractions; //TRUE if objects can be manipulated; FALSE otherwise
 @property (nonatomic) NSArray *performedActions; //Store the information of the current step

@@ -57,7 +57,7 @@
     
     InteractionModel *model;
     
-    Condition condition; //Study condition to run the app (e.g. MENU, HOTSPOT, etc.)
+    //Condition condition; //Study condition to run the app (e.g. MENU, HOTSPOT, etc.)
     InteractionRestriction useSubject; //Determines which objects the user can manipulate as the subject
     InteractionRestriction useObject; //Determines which objects the user can interact with as the object
    
@@ -87,6 +87,9 @@
 
 //Used to determine the required proximity of 2 hotspots to group two items together.
 float const groupingProximity = 20.0;
+
+// Create an instance of  ConditionSetup
+ConditionSetup *conditionSetup;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -127,10 +130,12 @@ float const groupingProximity = 20.0;
     
     currentPage = nil;
     
-    condition = MENU;
+    conditionSetup = [[ConditionSetup alloc] init];
+    
+    //condition = MENU;
     IntroductionClass.languageString = @"E";
     
-    if (condition == CONTROL) {
+    if ([conditionSetup.condition isEqualToString: @"Control"]) {
         IntroductionClass.allowInteractions = FALSE; //control condition allows user to read only; no manipulations
     }
     else {
@@ -234,14 +239,23 @@ float const groupingProximity = 20.0;
     
     //If we are on the first or second manipulation page of The Contest, play the audio of the first sentence
     if ([chapterTitle isEqualToString:@"The Contest"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-        [playaudioClass playAudioFile:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
+        if([conditionSetup.language isEqualToString: @"Bilingual"]) {
+            [playaudioClass playAudioFile:[NSString stringWithFormat:@"BFEC%d.m4a",currentSentence]];
+        }
+        else {
+            [playaudioClass playAudioFile:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
+        }
     }
     
     //If we are on the first or second manipulation page of Why We Breathe, play the audio of the first sentence
     if ([chapterTitle isEqualToString:@"Why We Breathe"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
-        [playaudioClass playAudioFile:[NSString stringWithFormat:@"CWWB%d.m4a",currentSentence]];
+        if([conditionSetup.language isEqualToString: @"Bilingual"]) {
+            [playaudioClass playAudioFile:[NSString stringWithFormat:@"CPQR%d.m4a",currentSentence]];
+        }
+        else {
+            [playaudioClass playAudioFile:[NSString stringWithFormat:@"CWWB%d.m4a",currentSentence]];
+        }
     }
-    
     //Perform setup for activity
     [self performSetupForActivity];
 }
@@ -338,7 +352,7 @@ float const groupingProximity = 20.0;
     
     [IntroductionClass loadFirstPageVocabulary:model :chapterTitle];
     
-    if (condition != CONTROL) {
+    if ([conditionSetup.condition isEqualToString:@"Control"]) {
        IntroductionClass.allowInteractions = TRUE;
     }
 }
@@ -717,7 +731,7 @@ float const groupingProximity = 20.0;
         sentenceText = [sentenceText lowercaseString];
         NSString* englishSentenceText = sentenceText;
         
-        if (IntroductionClass.language_condition == BILINGUAL) {
+        if ([conditionSetup.language isEqualToString:@"Bilingual"]) {
             englishSentenceText = [self getEnglishTranslation:sentenceText];
         }
         
@@ -865,7 +879,7 @@ float const groupingProximity = 20.0;
             //Logging added by James for Word Audio
             [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"E" :[NSString stringWithFormat:@"%@%@.m4a",sentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
                 
-            if (IntroductionClass.language_condition == BILINGUAL) {
+            if ([conditionSetup.language isEqualToString:@"Bilingual"] ) {
                 //Play word audio Sp
                 [playaudioClass playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",[self getEnglishTranslation:sentenceText],@"S"]];
                 
@@ -1185,7 +1199,7 @@ float const groupingProximity = 20.0;
                         
                         //Get possible interactions only if the object is overlapping something
                         if (overlappingWith != nil) {
-                            if (condition == HOTSPOT) {
+                            if ([conditionSetup.condition isEqualToString:@"Hotspot"]) {
                                 useProximity = YES;
                             }
                             
@@ -1306,7 +1320,7 @@ float const groupingProximity = 20.0;
                     }
                 }
                 
-                if (condition == HOTSPOT) {
+                if ([conditionSetup.condition isEqualToString:@"Hotspot"]) {
                     //resets allRelationship arrray
                     if([allRelationships count])
                     {
@@ -2174,7 +2188,7 @@ float const groupingProximity = 20.0;
     //introduction: move to introduction class
     else {
         if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
-            if (IntroductionClass.language_condition == ENGLISH)
+            if ([conditionSetup.language isEqualToString:@"English"])
             {
                 [playaudioClass playAudioFile:@"tryAgainE.m4a"];
                 

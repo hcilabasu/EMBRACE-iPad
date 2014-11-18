@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A96CB3A1A1AB5F900D09793 /* ConditionSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A96CB391A1AB5F900D09793 /* ConditionSetup.m */; };
 		1AAD2C0D19F6DB840074664F /* BuildHTMLString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAD2C0C19F6DB840074664F /* BuildHTMLString.m */; };
 		1AAD2C1019F6DC1D0074664F /* PlayAudioFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAD2C0F19F6DC1D0074664F /* PlayAudioFile.m */; };
 		31058C74176BCFF200595AAE /* logo114.png in Resources */ = {isa = PBXBuildFile; fileRef = 31058C73176BCFF200595AAE /* logo114.png */; };
@@ -536,6 +537,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A96CB381A1AB5F900D09793 /* ConditionSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConditionSetup.h; sourceTree = "<group>"; };
+		1A96CB391A1AB5F900D09793 /* ConditionSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConditionSetup.m; sourceTree = "<group>"; };
 		1AAD2C0B19F6DB840074664F /* BuildHTMLString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildHTMLString.h; sourceTree = "<group>"; };
 		1AAD2C0C19F6DB840074664F /* BuildHTMLString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildHTMLString.m; sourceTree = "<group>"; };
 		1AAD2C0E19F6DC1D0074664F /* PlayAudioFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayAudioFile.h; sourceTree = "<group>"; };
@@ -1176,6 +1179,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A96CB3B1A1AB61700D09793 /* Condition */ = {
+			isa = PBXGroup;
+			children = (
+				1A96CB381A1AB5F900D09793 /* ConditionSetup.h */,
+				1A96CB391A1AB5F900D09793 /* ConditionSetup.m */,
+			);
+			name = Condition;
+			sourceTree = "<group>";
+		};
 		31109700174AB35D00B02BF7 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -1361,6 +1373,7 @@
 		31953E7C1729ED8300570087 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1A96CB3B1A1AB61700D09793 /* Condition */,
 				31C5A6801799EFE600A084A3 /* Interaction Model */,
 				311646B2175FD04F00B483F0 /* Student Model */,
 				311646B3175FD05E00B483F0 /* Book Model */,
@@ -2637,6 +2650,7 @@
 				31058C82176BEB6300595AAE /* Page.m in Sources */,
 				316CFADB1773A1E3004216D0 /* ContextualMenuDataSource.m in Sources */,
 				316CFADE1773A2A2004216D0 /* PieContextualMenu.m in Sources */,
+				1A96CB3A1A1AB5F900D09793 /* ConditionSetup.m in Sources */,
 				316CFAE81773BE56004216D0 /* PieContextualMenuItem.m in Sources */,
 				312F5B13177A0F58000DAD2E /* MenuItemDataSource.m in Sources */,
 				3116142A179DE69400655221 /* Hotspot.m in Sources */,

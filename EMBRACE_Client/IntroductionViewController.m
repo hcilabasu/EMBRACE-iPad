@@ -18,7 +18,7 @@
 @synthesize buildHTMLStringClass;
 @synthesize playAudioFileClass;
 @synthesize STEPS_TO_SWITCH_LANGUAGES;
-@synthesize language_condition;
+//@synthesize language_condition;
 @synthesize introductions;
 @synthesize performedActions;
 @synthesize lastStep;
@@ -40,6 +40,8 @@
 NSMutableArray* currentIntroSteps; //Stores the introduction steps for the current chapter
 NSUInteger currentIntroStep; //Current step in the introduction
 NSTimer* timer; //Controls the timing of the audio file that is playing
+// Create an instance of  ConditionSetup
+ConditionSetup *conditionSetup;
 
 - (id)init {
     self = [super init];
@@ -48,8 +50,9 @@ NSTimer* timer; //Controls the timing of the audio file that is playing
         buildHTMLStringClass = [[BuildHTMLString alloc]init];
         playAudioFileClass = [[PlayAudioFile alloc]init];
         STEPS_TO_SWITCH_LANGUAGES = 14;
-        language_condition = ENGLISH;
+        //language_condition = ENGLISH;
         languageString = @"E";
+        conditionSetup = [[ConditionSetup alloc] init];
     }
     
     return self;
@@ -117,7 +120,7 @@ NSTimer* timer; //Controls the timing of the audio file that is playing
     
     // If the language condition for the app is BILINGUAL (English after Spanish) and the current intro step
     //is lower than the step number to switch languages, load the Spanish information for the step
-    if (language_condition == BILINGUAL && currentIntroStep < STEPS_TO_SWITCH_LANGUAGES) {
+    if ([conditionSetup.language isEqualToString:@"Bilingual"] && currentIntroStep < STEPS_TO_SWITCH_LANGUAGES) {
         text = textSpanish;
         audio = audioSpanish;
         languageString = @"S";
@@ -161,19 +164,19 @@ NSTimer* timer; //Controls the timing of the audio file that is playing
     if ([expectedIntroInput isEqualToString:@"next"]) {
         wrapperObj1 = @"TTNBTC.m4a";
     }
-    else if ([expectedIntroInput isEqualToString:@"next"] && language_condition == BILINGUAL) {
+    else if ([expectedIntroInput isEqualToString:@"next"] && [conditionSetup.language isEqualToString:@"Bilingual"] ) {
         wrapperObj1 = @"TEBNPC.m4a";
     }
     else if ([expectedSelection isEqualToString:@"word"]) {
         wrapperObj1 = @"BFCE_2B.m4a";
     }
-    else if ([expectedSelection isEqualToString:@"word"] && language_condition == BILINGUAL) {
+    else if ([expectedSelection isEqualToString:@"word"] && [conditionSetup.language isEqualToString:@"Bilingual"]) {
         wrapperObj1 = @"BFCS_2B.m4a";
     }
     else if ([expectedIntroAction isEqualToString:@"move"]) {
         wrapperObj1 = @"BFEE_8.m4a";
     }
-    else if ([expectedIntroAction isEqualToString:@"move"] && language_condition == BILINGUAL) {
+    else if ([expectedIntroAction isEqualToString:@"move"] && [conditionSetup.language isEqualToString:@"Bilingual"]) {
         wrapperObj1 = @"BFES_8.m4a";
     }
     
@@ -236,7 +239,7 @@ NSTimer* timer; //Controls the timing of the audio file that is playing
     }
     
     //Switch the language every step for the translation
-    if(language_condition== BILINGUAL)
+    if([conditionSetup.language isEqualToString:@"Bilingual"])
     {    if ([languageString isEqualToString:@"S"]) {
             languageString = @"E";
         }
@@ -249,7 +252,7 @@ NSTimer* timer; //Controls the timing of the audio file that is playing
     if ([expectedIntroInput isEqualToString:@"next"]) {
         wrapperObj1 = @"TTNBTC.m4a";
     }
-    else if ([expectedIntroInput isEqualToString:@"next"] && language_condition == BILINGUAL) {
+    else if ([expectedIntroInput isEqualToString:@"next"] && [conditionSetup.language isEqualToString:@"Bilingual"]) {
         wrapperObj1 = @"TEBNPC.m4a";
     }
     

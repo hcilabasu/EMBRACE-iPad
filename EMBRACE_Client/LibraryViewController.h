@@ -10,6 +10,8 @@
 #import "EbookImporter.h"
 #import "Book.h"
 #import "Student.h"
+#import "ConditionSetup.h"
+
 
 //The mode enum will provide the information for what mode we're in.
 /*typedef enum modeTypes {

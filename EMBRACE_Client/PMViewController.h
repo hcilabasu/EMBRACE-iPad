@@ -14,6 +14,7 @@
 #import "IntroductionViewController.h"
 #import "BuildHTMLString.h"
 #import "PlayAudioFile.h"
+#import "ConditionSetup.h"
 
 //Describes the condition in which the app will be deployed
 typedef enum Condition {

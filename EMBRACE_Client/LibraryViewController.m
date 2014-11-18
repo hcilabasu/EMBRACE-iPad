@@ -46,6 +46,8 @@
 {
     [super viewDidLoad];
     
+    ConditionSetup *conditionSetup = [[ConditionSetup alloc] init];
+    
     //Set the title to something personalized.
     if(student != nil) {
         
@@ -53,7 +55,8 @@
         [[ServerCommunicationController sharedManager] logContext:student];
         //Logging Completes Here.
         
-        self.title = @"Embrace English";
+        self.title = [NSString stringWithFormat:@"%@ %@",conditionSetup.condition, conditionSetup.language];
+        
     }
     else
     {

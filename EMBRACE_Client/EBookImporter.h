@@ -10,6 +10,7 @@
 #import "GDataXMLNode.h"
 #import "ZipArchive.h"
 #import "Book.h"
+#import "ConditionSetup.h"
 
 @interface EBookImporter : NSObject {
     NSArray *dirPaths;
