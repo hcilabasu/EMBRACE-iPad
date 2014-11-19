@@ -323,13 +323,8 @@ ConditionSetup *conditionSetup;
     
     //No more pages in chapter
     if (currentPage == nil) {
-        chapterTitle = [book getChapterAfterChapter:chapterTitle];
-        
-        if(chapterTitle == nil) { //no more chapters.
-            //Logging added by James for Computer Navigation when end of chapter is reached
-            [[ServerCommunicationController sharedManager] logNextChapterNavigation:@"Next Button" :tempLastPage :currentPage :@"Next Page | No more Chapters" :bookTitle :chapterTitle : currentPage : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] : [NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
-            //Logging Completes Here.
-        }
+        //Log that chapter has been completed
+        [[ServerCommunicationController sharedManager] logNextChapterNavigation:@"Next Button" :tempLastPage :currentPage :@"Next Page | Chapter Finished" :bookTitle :chapterTitle : currentPage : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] : [NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
         
         [self.navigationController popViewControllerAnimated:YES]; //return to library view
         return;
@@ -606,6 +601,19 @@ ConditionSetup *conditionSetup;
 }
 
 #pragma mark - Responding to gestures
+/*
+ * User pressed Back button. Write log data to file.
+ */
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    if (![[self.navigationController viewControllers] containsObject:self])
+    {
+        [[ServerCommunicationController sharedManager] writeToFile:[[ServerCommunicationController sharedManager] studyFileName] ofType:@"txt"];
+    }
+}
+
 /*
  * Plays a noise for error feedback if the user performs a manipulation incorrectly
  */
