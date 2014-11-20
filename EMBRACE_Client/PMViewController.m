@@ -824,7 +824,26 @@ ConditionSetup *conditionSetup;
                         //Logging added by James for Word Audio
                         [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : languageString :[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
                         
-                        [self highlightObject:[[Translation translationImages] objectForKey:englishSentenceText]:1.5];
+                        NSObject *valueImage = [[Translation translationImages]objectForKey:englishSentenceText];
+                        
+                        NSString *imageHighlighted = @"";
+                        
+                        
+                        // If the key contains more than one value
+                        if ([valueImage isKindOfClass:[NSArray class]])
+                        {
+                            NSArray *imageArray = ((NSArray*)valueImage);
+                            for (int i = 0; i < [imageArray count]; i++)
+                            {
+                                imageHighlighted = imageArray[i];
+                                [self highlightObject:imageHighlighted:1.5];
+                            }
+                        }
+                        else
+                        {
+                            imageHighlighted = (NSString*)valueImage;
+                            [self highlightObject:imageHighlighted:1.5];
+                        }
                         
                         currentSentence++;
                         [self performSelector:@selector(colorSentencesUponNext) withObject:nil afterDelay:4];
@@ -869,7 +888,29 @@ ConditionSetup *conditionSetup;
                 englishSentenceText = @"carbon dioxide";
             }
             
-            [self highlightObject:[[Translation translationImages] objectForKey:englishSentenceText]:1.5];
+            // This code is duplicated for now, it will be moved to the highlightObject function
+            NSObject *valueImage = [[Translation translationImages]objectForKey:englishSentenceText];
+            
+            NSString *imageHighlighted = @"";
+            
+            
+            // If the key contains more than one value
+            if ([valueImage isKindOfClass:[NSArray class]])
+            {
+                NSArray *imageArray = ((NSArray*)valueImage);
+                for (int i = 0; i < [imageArray count]; i++)
+                {
+                    imageHighlighted = imageArray[i];
+                    [self highlightObject:imageHighlighted:1.5];
+                }
+            }
+            else
+            {
+                imageHighlighted = (NSString*)valueImage;
+                [self highlightObject:imageHighlighted:1.5];
+            }
+            
+            //[self highlightObject:[[Translation translationImages] objectForKey:englishSentenceText]:1.5];
         }
     }
 }

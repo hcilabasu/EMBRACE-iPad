@@ -1087,24 +1087,6 @@
               <expectedInput>dirt</expectedInput>
           </vocabularyIntroductionWord>
           <vocabularyIntroductionWord number="11">
-              <englishWordAudio>CCE5_8.m4a</englishWordAudio>
-              <spanishWordAudio>dustDEFS.m4a</spanishWordAudio>
-              <englishWordText>Dust</englishWordText>
-              <spanishWordText>Polvo</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>dust</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="12">
-              <englishWordAudio>CCE5_8.m4a</englishWordAudio>
-              <spanishWordAudio>dustDEFS.m4a</spanishWordAudio>
-              <englishWordText>Dust</englishWordText>
-              <spanishWordText>Polvo</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>dust</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="13">
               <englishWordAudio></englishWordAudio>
               <spanishWordAudio></spanishWordAudio>
               <englishWordText></englishWordText>

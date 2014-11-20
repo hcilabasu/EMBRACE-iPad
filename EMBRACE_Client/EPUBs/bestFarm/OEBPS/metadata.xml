@@ -1033,9 +1033,9 @@
           </introductionStep>
           <introductionStep number="8">
               <englishAudio>BFCE_10A.m4a</englishAudio>
-              <spanishAudio>BFCS_10A.m4a</spanishAudio>
+              <spanishAudio>BFCS_10B.m4a</spanishAudio>
               <englishText>Manuel puts the cow into the pen.</englishText>
-              <spanishText>Manuel pone a la vaca en el establo.</spanishText>
+              <spanishText>Manuel pone a la vaca en el cuarto.</spanishText>
               <expectedSelection></expectedSelection>
               <expectedAction>move</expectedAction>
               <expectedInput>next</expectedInput>
@@ -1152,9 +1152,9 @@
           </introductionStep>
           <introductionStep number="8">
               <englishAudio>BFEE_10A.m4a</englishAudio>
-              <spanishAudio>BFES_10A.m4a</spanishAudio>
+              <spanishAudio>BFES_10B.m4a</spanishAudio>
               <englishText>Manuel puts the cow into the pen.</englishText>
-              <spanishText>Manuel pone a la vaca en el establo.</spanishText>
+              <spanishText>Manuel pone a la vaca en el cuarto.</spanishText>
               <expectedSelection>image</expectedSelection>
               <expectedAction>group</expectedAction>
               <expectedInput>farmerleadcow</expectedInput>
