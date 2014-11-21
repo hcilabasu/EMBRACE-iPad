@@ -945,7 +945,7 @@ ConditionSetup *conditionSetup;
     }
     
     //Perform steps only if they exist for the sentence and have not been completed
-    else if (numSteps > 0 && !stepsComplete && allowInteractions) {
+    else if (numSteps > 0 && !stepsComplete && ![conditionSetup.condition isEqualToString: @"Control"]) {
         
         //Logging Added by James for Emergency Swipe
         [[ServerCommunicationController sharedManager] logUserEmergencyNext:@"Emergency Swipe" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
@@ -3357,7 +3357,6 @@ ConditionSetup *conditionSetup;
         NSLog(@"%@",[audioError description]);
     else {
         [_audioPlayer play];
-        //_audioPlayer = nil;
     }
 }
 
@@ -3384,7 +3383,6 @@ ConditionSetup *conditionSetup;
         NSLog(@"%@",[audioError description]);
     else {
         [_audioPlayer play];
-        //_audioPlayer = nil;
     }
 }
 
@@ -3395,25 +3393,18 @@ ConditionSetup *conditionSetup;
     if (_audioPlayerAfter != nil && isAudioLeft) {
         [_audioPlayerAfter play];
         isAudioLeft = false;
-        //NSLog(@"Entered first block %@ %@", _audioPlayer, _audioPlayerAfter);
     }
-    //else
-    //{
-        //NSLog(@"Entered second block");
 
-        // If we are on the control condition or on a vocab page keep the interactions disabled
-        if([conditionSetup.condition isEqualToString: @"Control"] || [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
-            allowInteractions = false;
-        }
-        else {
-            allowInteractions = true;
-        }
-        
-        
-    //}
+    // If we are on the control condition or on a vocab page keep the interactions disabled
+    if([conditionSetup.condition isEqualToString: @"Control"] || [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
+        allowInteractions = false;
+    }
+    else {
+        allowInteractions = true;
+    }
+
     // Enable all interactions when the audio has finished playing
-    //if(!isAudioLeft)
-        self.view.userInteractionEnabled = YES;
+    self.view.userInteractionEnabled = YES;
 }
 
 // Loads the information of the currentIntroStep for the introduction
