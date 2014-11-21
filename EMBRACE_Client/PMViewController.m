@@ -3392,18 +3392,17 @@ ConditionSetup *conditionSetup;
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag  {
     
     // Only play audio if there is a sequence
-    if (_audioPlayer != nil && isAudioLeft) {
-        isAudioLeft = false;
+    if (_audioPlayerAfter != nil && isAudioLeft) {
         [_audioPlayerAfter play];
-        
-        NSLog(@"Entered first block %@ %@", _audioPlayer, _audioPlayerAfter);
+        isAudioLeft = false;
+        //NSLog(@"Entered first block %@ %@", _audioPlayer, _audioPlayerAfter);
     }
-    else
-    {
-        NSLog(@"Entered second block");
+    //else
+    //{
+        //NSLog(@"Entered second block");
 
-        // If we are on the control condition keep the interactions disabled
-        if([conditionSetup.condition isEqualToString: @"Control"]) {
+        // If we are on the control condition or on a vocab page keep the interactions disabled
+        if([conditionSetup.condition isEqualToString: @"Control"] || [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
             allowInteractions = false;
         }
         else {
@@ -3411,9 +3410,10 @@ ConditionSetup *conditionSetup;
         }
         
         
-    }
-    // Enable all interactions again when the audio has finished playing
-    self.view.userInteractionEnabled = YES;
+    //}
+    // Enable all interactions when the audio has finished playing
+    //if(!isAudioLeft)
+        self.view.userInteractionEnabled = YES;
 }
 
 // Loads the information of the currentIntroStep for the introduction
