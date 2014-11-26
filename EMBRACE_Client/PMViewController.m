@@ -79,6 +79,8 @@
     NSString* nextIntro; //Used to store the most recent intro step
     NSString* currentAudio; //Used to store the current vocab audio file to be played
     BOOL isAudioLeft;
+    BOOL audioIsPlaying;
+    double duration;
 }
 
 @property (nonatomic, strong) IBOutlet UIWebView *bookView;
@@ -250,6 +252,8 @@ ConditionSetup *conditionSetup;
     }
     
     isAudioLeft = false;
+    audioIsPlaying = false;
+    duration = 0;
     
     //If we are on the first or second manipulation page of The Contest, play the audio of the first sentence
     if ([chapterTitle isEqualToString:@"The Contest"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
@@ -851,7 +855,7 @@ ConditionSetup *conditionSetup;
                         currentVocabStep++;
                         
                         // This delay is needed in order to be able to play the last definition on a vocabulary page
-                        [self performSelector:@selector(loadVocabStep) withObject:nil afterDelay:4];
+                        [self performSelector:@selector(loadVocabStep) withObject:nil afterDelay:duration];
                 }
             }
         }
@@ -3348,8 +3352,10 @@ ConditionSetup *conditionSetup;
     
     allowInteractions = false;
     self.view.userInteractionEnabled = NO;
+    audioIsPlaying = true;
     
     _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&audioError];
+    duration = _audioPlayer.duration;
     _audioPlayerAfter = nil;
     _audioPlayer.delegate = self;
     
@@ -3405,6 +3411,7 @@ ConditionSetup *conditionSetup;
 
     // Enable all interactions when the audio has finished playing
     self.view.userInteractionEnabled = YES;
+    audioIsPlaying = false;
 }
 
 // Loads the information of the currentIntroStep for the introduction
