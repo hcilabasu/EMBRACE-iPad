@@ -458,6 +458,7 @@
 		5CCEA48119AFD13C00FCBC2C /* ComboConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCEA48019AFD13C00FCBC2C /* ComboConstraint.m */; };
 		5CD7FE3519775C1C007A1E49 /* VocabularyStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD7FE3419775C1C007A1E49 /* VocabularyStep.m */; };
 		5CD7FE3819776403007A1E49 /* Introduction.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD7FE3719776403007A1E49 /* Introduction.m */; };
+		5CE011C81A25354400D6F510 /* CCE_14D.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CE011C71A25354400D6F510 /* CCE_14D.m4a */; };
 		5CE1E30E1A119DFC0070A7D6 /* circulatory.epub in Resources */ = {isa = PBXBuildFile; fileRef = 5CE1E30D1A119DFC0070A7D6 /* circulatory.epub */; };
 		5CE1E3101A119E120070A7D6 /* bestFarm.epub in Resources */ = {isa = PBXBuildFile; fileRef = 5CE1E30F1A119E120070A7D6 /* bestFarm.epub */; };
 		5CE1E3131A12D5080070A7D6 /* BFES_8B.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CE1E3111A12D5080070A7D6 /* BFES_8B.m4a */; };
@@ -655,7 +656,7 @@
 		31937539174185E000782C2B /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		3193753B1741A76E00782C2B /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
 		3193753C1741A76E00782C2B /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
-		31953E451729ECC100570087 /* Embrace B.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Embrace B.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		31953E451729ECC100570087 /* Control E.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Control E.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31953E481729ECC100570087 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		31953E4A1729ECC100570087 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		31953E4C1729ECC100570087 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -1112,6 +1113,7 @@
 		5CD7FE3419775C1C007A1E49 /* VocabularyStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VocabularyStep.m; sourceTree = "<group>"; };
 		5CD7FE3619776403007A1E49 /* Introduction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Introduction.h; sourceTree = "<group>"; };
 		5CD7FE3719776403007A1E49 /* Introduction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Introduction.m; sourceTree = "<group>"; };
+		5CE011C71A25354400D6F510 /* CCE_14D.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = CCE_14D.m4a; path = EMBRACE_Client/sounds/CCE_14D.m4a; sourceTree = SOURCE_ROOT; };
 		5CE1E30D1A119DFC0070A7D6 /* circulatory.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = circulatory.epub; path = EPUBs/circulatory/circulatory.epub; sourceTree = "<group>"; };
 		5CE1E30F1A119E120070A7D6 /* bestFarm.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = bestFarm.epub; path = EPUBs/bestFarm/bestFarm.epub; sourceTree = "<group>"; };
 		5CE1E3111A12D5080070A7D6 /* BFES_8B.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFES_8B.m4a; path = EMBRACE_Client/sounds/BFES_8B.m4a; sourceTree = SOURCE_ROOT; };
@@ -1389,7 +1391,7 @@
 		31953E461729ECC100570087 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				31953E451729ECC100570087 /* Embrace B.app */,
+				31953E451729ECC100570087 /* Control E.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1726,6 +1728,7 @@
 		5C7FE06619A7E43B00CBBE0E /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				5CE011C71A25354400D6F510 /* CCE_14D.m4a */,
 				5CC762221A1DB1F300A600CA /* jumpedS.m4a */,
 				5CC762201A1DB09400A600CA /* jumpedE.m4a */,
 				5CC7621E1A1C6E8000A600CA /* BFES_10B.m4a */,
@@ -2280,7 +2283,7 @@
 			);
 			name = EMBRACE;
 			productName = EMBRACE_Client;
-			productReference = 31953E451729ECC100570087 /* Embrace B.app */;
+			productReference = 31953E451729ECC100570087 /* Control E.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -2557,6 +2560,7 @@
 				5CE299E219B5AC2700675CB0 /* BFCE4_1.m4a in Resources */,
 				5CE299C019B5845200675CB0 /* BFCE2_3.m4a in Resources */,
 				5C7FE10519A7E43C00CBBE0E /* BFCE_8.m4a in Resources */,
+				5CE011C81A25354400D6F510 /* CCE_14D.m4a in Resources */,
 				5CAD063819BEB8AE00F3F053 /* stiffE.m4a in Resources */,
 				5CAD064419BEB8AE00F3F053 /* ventricleE.m4a in Resources */,
 				5C776B1619C776B5000DBC65 /* gateE.m4a in Resources */,
@@ -3033,7 +3037,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				OTHER_LDFLAGS = "-lxml2";
-				PRODUCT_NAME = "Embrace B";
+				PRODUCT_NAME = "Control E";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -3054,7 +3058,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				OTHER_LDFLAGS = "-lxml2";
-				PRODUCT_NAME = "Embrace B";
+				PRODUCT_NAME = "Control E";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
