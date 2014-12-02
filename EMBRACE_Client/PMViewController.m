@@ -80,7 +80,9 @@
     NSString* currentAudio; //Used to store the current vocab audio file to be played
     BOOL isAudioLeft;
     BOOL audioIsPlaying;
-    double duration;
+    double audioDuration;
+    BOOL onFirstVocabStep;
+    BOOL onLastVocabStep;
 }
 
 @property (nonatomic, strong) IBOutlet UIWebView *bookView;
@@ -253,7 +255,8 @@ ConditionSetup *conditionSetup;
     
     isAudioLeft = false;
     audioIsPlaying = false;
-    duration = 0;
+    audioDuration = 0;
+    onFirstVocabStep = true;
     
     //If we are on the first or second manipulation page of The Contest, play the audio of the first sentence
     if ([chapterTitle isEqualToString:@"The Contest"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
@@ -818,6 +821,11 @@ ConditionSetup *conditionSetup;
                     if ([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] && [[performedActions objectAtIndex:INPUT] isEqualToString:englishSentenceText] && !sameWordClicked && (currentSentence == sentenceIDNum)) {
                         
                         sameWordClicked = true;
+                        onFirstVocabStep = false;
+                        
+                        //currentSentence++;
+                        //currentVocabStep++;
+                        
                         if ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"]) {
                             [self playAudioFile:vocabAudio];
                         }
@@ -849,13 +857,23 @@ ConditionSetup *conditionSetup;
                             [self highlightObject:imageHighlighted:1.5];
                         }
                         
-                        currentSentence++;
-                        [self performSelector:@selector(colorSentencesUponNext) withObject:nil afterDelay:4];
+                        //if(!audioIsPlaying) {
+                            //currentSentence++;
+                            //[self performSelector:@selector(colorSentencesUponNext) withObject:nil afterDelay:audioDuration];
                         
-                        currentVocabStep++;
+                            //currentVocabStep++;
+                        //}
                         
-                        // This delay is needed in order to be able to play the last definition on a vocabulary page
-                        [self performSelector:@selector(loadVocabStep) withObject:nil afterDelay:duration];
+                        // This delay is needed in order to be able to play the last definition on a vocabulary page and to prevent the vocap steps to advance
+//                        if(currentVocabStep != totalVocabSteps-2) {
+//                            [self performSelector:@selector(loadVocabStep) withObject:nil afterDelay:4];
+//                        }
+//                        else {
+//                            [self performSelector:@selector(loadVocabStep) withObject:nil afterDelay:7];
+//                        }
+                        //if(audioIsPlaying)
+                            //[self performSelector:@selector(loadVocabStep) withObject:nil afterDelay:audioDuration];
+                        //NSLog(@"%f\n",audioDuration);
                 }
             }
         }
@@ -868,6 +886,10 @@ ConditionSetup *conditionSetup;
             if ([conditionSetup.language isEqualToString: @"Bilingual"] && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
                 //Play word audio Sp
                 [self playAudioInSequence:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"]:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
+                
+                //[self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"]];
+                
+                //[self performSelector:@selector(playAudioFile:) withObject:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"] afterDelay:audioDuration];
                 
                 //Logging added by James for Word Audio
                 [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"S" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
@@ -3355,7 +3377,7 @@ ConditionSetup *conditionSetup;
     audioIsPlaying = true;
     
     _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&audioError];
-    duration = _audioPlayer.duration;
+    audioDuration = _audioPlayer.duration;
     _audioPlayerAfter = nil;
     _audioPlayer.delegate = self;
     
@@ -3384,6 +3406,7 @@ ConditionSetup *conditionSetup;
         isAudioLeft = true;
     }
     _audioPlayer.delegate = self;
+    _audioPlayerAfter.delegate = self;
     
     if (_audioPlayer == nil)
         NSLog(@"%@",[audioError description]);
@@ -3395,23 +3418,33 @@ ConditionSetup *conditionSetup;
 /* Delegate for the AVAudioPlayer */
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag  {
     
-    // Only play audio if there is a sequence
-    if (_audioPlayerAfter != nil && isAudioLeft) {
-        [_audioPlayerAfter play];
-        isAudioLeft = false;
-    }
-
-    // If we are on the control condition or on a vocab page keep the interactions disabled
-    if([conditionSetup.condition isEqualToString: @"Control"] || [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
-        allowInteractions = false;
-    }
-    else {
-        allowInteractions = true;
-    }
-
-    // Enable all interactions when the audio has finished playing
-    self.view.userInteractionEnabled = YES;
-    audioIsPlaying = false;
+        if(!isAudioLeft && (player == _audioPlayer || player == _audioPlayerAfter)) {
+            // If we are on the control condition or on a vocab page keep the interactions disabled
+            if([conditionSetup.condition isEqualToString: @"Control"] || [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
+                allowInteractions = false;
+            }
+            else {
+                allowInteractions = true;
+            }
+            
+            // Enable all interactions when the audio has finished playing
+            self.view.userInteractionEnabled = YES;
+            audioIsPlaying = false;
+        }
+        else if (_audioPlayerAfter != nil && isAudioLeft) {
+            // Only play audio if there is a sequence
+            isAudioLeft = false;
+            [_audioPlayerAfter play];
+        }
+    
+        if (!onFirstVocabStep && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
+            if(currentVocabStep < totalVocabSteps-2) {
+                currentSentence++;
+                currentVocabStep++;
+                [self colorSentencesUponNext];
+                [self loadVocabStep];
+            }
+        }
 }
 
 // Loads the information of the currentIntroStep for the introduction
@@ -3581,6 +3614,21 @@ ConditionSetup *conditionSetup;
         currentAudio = audio;
     }
     
+    // If we are ont the first step or the last step which do not correspond to words
+    //play the corresponding intro or outro audio
+    if (currentVocabStep == 1 && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
+        onFirstVocabStep = true;
+        if([conditionSetup.language isEqualToString: @"Bilingual"]) {
+            [self playAudioFile:audioSpanish];
+        } else {
+            //Play introduction audio
+            [self playAudioFile:audio];
+        }
+        
+        //Logging added by James for Word Audio
+//        [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Step Audio" : @"E" :audio  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+    }
+    
     if([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"]) {
         //Get next step to be read
         VocabularyStep* nextVocabStep = [currentVocabSteps objectAtIndex:currentVocabStep];
@@ -3597,26 +3645,14 @@ ConditionSetup *conditionSetup;
         nextIntro = nextIntroInput;
     }
     
-    // If we are ont the first step (1) or the last step (9) which do not correspond to words
-    //play the corresponding intro or outro audio
-    if (currentVocabStep == 1 && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
-        if([conditionSetup.language isEqualToString: @"Bilingual"]) {
-            [self playAudioFile:audioSpanish];
-        } else {
-            //Play introduction audio
-            [self playAudioFile:audio];
-        }
-        
-        //Logging added by James for Word Audio
-//        [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Step Audio" : @"E" :audio  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
-    }
-    
     if([conditionSetup.condition isEqualToString:@"Control"]){
         if (currentVocabStep == totalVocabSteps-2 && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
             if([conditionSetup.language isEqualToString: @"Bilingual"]) {
+                //[self performSelector:@selector(playAudioFile:) withObject:nextAudioSpanish afterDelay:4];
                 [self playAudioFile:nextAudioSpanish];
             } else {
                 //Play introduction audio
+                //[self performSelector:@selector(playAudioFile:) withObject:nextAudio afterDelay:4];
                 [self playAudioFile:nextAudio];
             }
             currentVocabStep++;
@@ -3635,9 +3671,11 @@ ConditionSetup *conditionSetup;
             nextIntro = nextIntroInput;
             
             if([conditionSetup.language isEqualToString: @"Bilingual"]) {
+                //[self performSelector:@selector(playAudioFile:) withObject:nextAudioSpanish afterDelay:4];
                 [self playAudioFile:nextAudioSpanish];
             } else {
                 //Play introduction audio
+                //[self performSelector:@selector(playAudioFile:) withObject:nextAudio afterDelay:4];
                 [self playAudioFile:nextAudio];
             }
         }
