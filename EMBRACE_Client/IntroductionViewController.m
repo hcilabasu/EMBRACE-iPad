@@ -17,8 +17,8 @@
 
 @synthesize buildHTMLStringClass;
 @synthesize playAudioFileClass;
-@synthesize STEPS_TO_SWITCH_LANGUAGES;
-//@synthesize language_condition;
+@synthesize STEPS_TO_SWITCH_LANGUAGES_EMBRACE;
+@synthesize STEPS_TO_SWITCH_LANGUAGES_CONTROL;
 @synthesize introductions;
 @synthesize performedActions;
 @synthesize lastStep;
@@ -35,11 +35,10 @@
 @synthesize currentAudio;
 @synthesize languageString;
 
-//In the bilingual introduction there are 13 steps in Spanish before switching to English only
-
 NSMutableArray* currentIntroSteps; //Stores the introduction steps for the current chapter
 NSUInteger currentIntroStep; //Current step in the introduction
 NSTimer* timer; //Controls the timing of the audio file that is playing
+
 // Create an instance of  ConditionSetup
 ConditionSetup *conditionSetup;
 
@@ -49,10 +48,10 @@ ConditionSetup *conditionSetup;
     if (self) {
         buildHTMLStringClass = [[BuildHTMLString alloc]init];
         playAudioFileClass = [[PlayAudioFile alloc]init];
-        STEPS_TO_SWITCH_LANGUAGES = 14;
-        //language_condition = ENGLISH;
-        languageString = @"E";
         conditionSetup = [[ConditionSetup alloc] init];
+        STEPS_TO_SWITCH_LANGUAGES_CONTROL = 11;
+        STEPS_TO_SWITCH_LANGUAGES_EMBRACE = 12;
+        languageString = @"E";
     }
     
     return self;
@@ -62,6 +61,7 @@ ConditionSetup *conditionSetup;
     NSLog(@"IntroductionController.startIntroduction starting introduction");
 }
 
+//add comments
 -(void) loadFirstPageIntroduction: (InteractionModel *) model : (NSString *) chapterTitle
 {
     //Introduction setup
@@ -75,6 +75,7 @@ ConditionSetup *conditionSetup;
     totalIntroSteps = [currentIntroSteps count];
 }
 
+//add comments
 -(void)loadFirstPageVocabulary:(InteractionModel *)model :(NSString *)chapterTitle{
 
     //Vocabulary setup
@@ -91,6 +92,7 @@ ConditionSetup *conditionSetup;
 
 // Loads the information of the currentIntroStep for the introduction
 -(NSArray*) loadIntroStep: (UIWebView *) bookView : (NSUInteger) currentSentence{
+ 
     NSString* textEnglish;
     NSString* audioEnglish;
     NSString* textSpanish;
@@ -118,17 +120,26 @@ ConditionSetup *conditionSetup;
     languageString = @"E";
     underlinedVocabWord = expectedIntroInput;
     
-    // If the language condition for the app is BILINGUAL (English after Spanish) and the current intro step
-    //is lower than the step number to switch languages, load the Spanish information for the step
-    if ([conditionSetup.language isEqualToString:@"Bilingual"] && currentIntroStep < STEPS_TO_SWITCH_LANGUAGES) {
-        text = textSpanish;
-        audio = audioSpanish;
-        languageString = @"S";
-        underlinedVocabWord = [[Translation translations] objectForKey:expectedIntroInput];
-        if (!underlinedVocabWord) {
-            underlinedVocabWord = expectedIntroInput;
+        // If the language condition for the app is BILINGUAL (English after Spanish) and the current intro step
+        //is lower than the step number to switch languages, load the Spanish information for the step
+        if ([conditionSetup.language isEqualToString: @"Bilingual"] && currentIntroStep < STEPS_TO_SWITCH_LANGUAGES_EMBRACE && [conditionSetup.condition isEqualToString:@"Menu"]) {
+            text = textSpanish;
+            audio = audioSpanish;
+            languageString = @"S";
+            underlinedVocabWord = [[Translation translationWords] objectForKey:expectedIntroInput];
+            if (!underlinedVocabWord) {
+                underlinedVocabWord = expectedIntroInput;
+            }
         }
-    }
+        else if ([conditionSetup.language isEqualToString: @"Bilingual"] && currentIntroStep < STEPS_TO_SWITCH_LANGUAGES_CONTROL && [conditionSetup.condition isEqualToString:@"Control"]) {
+            text = textSpanish;
+            audio = audioSpanish;
+            languageString = @"S";
+            underlinedVocabWord = [[Translation translationWords] objectForKey:expectedIntroInput];
+            if (!underlinedVocabWord) {
+                underlinedVocabWord = expectedIntroInput;
+            }
+        }
     
     //Format text to load on the textbox
     NSString* formattedHTML = [buildHTMLStringClass buildHTMLString:text:expectedSelection:underlinedVocabWord:expectedIntroAction];
@@ -148,13 +159,11 @@ ConditionSetup *conditionSetup;
         [bookView stringByEvaluatingJavaScriptFromString:colorSentence];
     }
     
-    
     //Play introduction audio
     [playAudioFileClass playAudioFile:audio];
     
     //Logging added by James for Introduction Audio
     //[[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Introduction Audio" : languageString :audio :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
-    
     
     //DEBUG code to play expected action
     //NSString* actions = [NSString stringWithFormat:@"%@ %@ %@",expectedIntroAction,expectedIntroInput,expectedSelection];
@@ -188,83 +197,126 @@ ConditionSetup *conditionSetup;
     return performedActions;
 }
 
-
 //introduction: move to introduction class
 -(NSArray*) loadVocabStep: (UIWebView *) bookView : (NSUInteger) currentSentence :(NSString *) chapterTitle {
-    NSString* text;
-    NSString* audio;
-    NSString* expectedSelection;
-    NSString* expectedIntroAction;
-    NSString* expectedIntroInput;
-    NSString* wrapperObj1;
-    NSString* nextAudio;
-    NSInteger stepNumber;
-    NSString* nextIntroInput;
+        NSString* text;
+        NSString* audio;
+        NSString* expectedSelection;
+        NSString* expectedIntroAction;
+        NSString* expectedIntroInput;
+        NSString* wrapperObj1;
+        NSString* nextAudio;
+        NSInteger stepNumber;
+        NSString* nextIntroInput;
+        NSString* audioSpanish;
+        NSString* nextAudioSpanish;
     
-    sameWordClicked = false;
-    allowInteractions = FALSE;
+       sameWordClicked = false;
     
-    //Get current step to be read
-    VocabularyStep* currVocabStep = [currentVocabSteps objectAtIndex:currentVocabStep-1];
-    expectedSelection = [currVocabStep expectedSelection];
-    expectedIntroAction = [currVocabStep expectedAction];
-    expectedIntroInput = [currVocabStep expectedInput];
-    text = [currVocabStep englishText];
-    audio = [currVocabStep englishAudioFileName];
-    stepNumber = [currVocabStep wordNumber];
-    lastStep = stepNumber;
-    currentAudio = audio;
-    
-    if([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"]) {
-        //Get next step to be read
-        VocabularyStep* nextVocabStep = [currentVocabSteps objectAtIndex:currentVocabStep];
-        nextAudio = [nextVocabStep englishAudioFileName];
-        nextIntroInput = [nextVocabStep expectedInput];
-        vocabAudio = nextAudio;
-        nextIntro = nextIntroInput;
-    }
-    
-    // If we are ont the first step (1) ot the last step (9) which do not correspond to words
-    //play the corresponding intro or outro audio
-    if (currentVocabStep == 1 && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
-        //Play introduction audio
-        [playAudioFileClass playAudioFile:audio];
-        
-        //Logging added by James for Word Audio
-        //        [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Step Audio" : @"E" :audio  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
-    }
-    
-    if (currentVocabStep == totalVocabSteps-1 && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
-        [playAudioFileClass playAudioFile:nextAudio];
-    }
-    
-    //Switch the language every step for the translation
-    if([conditionSetup.language isEqualToString:@"Bilingual"])
-    {    if ([languageString isEqualToString:@"S"]) {
-            languageString = @"E";
+        //Get current step to be read
+        VocabularyStep* currVocabStep = [currentVocabSteps objectAtIndex:currentVocabStep-1];
+        expectedSelection = [currVocabStep expectedSelection];
+        expectedIntroAction = [currVocabStep expectedAction];
+        expectedIntroInput = [currVocabStep expectedInput];
+        text = [currVocabStep englishText];
+        audio = [currVocabStep englishAudioFileName];
+        stepNumber = [currVocabStep wordNumber];
+        audioSpanish = [currVocabStep spanishAudioFileName];
+        lastStep = stepNumber;
+        // && (stepNumber & 1) alternates between true and false
+        if(([conditionSetup.language isEqualToString: @"Bilingual"]) && (stepNumber & 1)) {
+            currentAudio = audioSpanish;
         }
         else {
-            languageString = @"S";
+            currentAudio = audio;
         }
-    }
     
-    //The response audio file names are hard-coded for now
-    if ([expectedIntroInput isEqualToString:@"next"]) {
-        wrapperObj1 = @"TTNBTC.m4a";
-    }
-    else if ([expectedIntroInput isEqualToString:@"next"] && [conditionSetup.language isEqualToString:@"Bilingual"]) {
-        wrapperObj1 = @"TEBNPC.m4a";
-    }
+        if([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"]) {
+            //Get next step to be read
+            VocabularyStep* nextVocabStep = [currentVocabSteps objectAtIndex:currentVocabStep];
+            nextAudio = [nextVocabStep englishAudioFileName];
+            nextAudioSpanish = [nextVocabStep spanishAudioFileName];
+            nextIntroInput = [nextVocabStep expectedInput];
+            // && (stepNumber & 1) alternates between true and false
+            if([conditionSetup.language isEqualToString: @"Bilingual"] && (stepNumber & 1)) {
+                vocabAudio = nextAudioSpanish;
+            }
+            else {
+               vocabAudio = nextAudio;
+            }
+            nextIntro = nextIntroInput;
+        }
     
-    //The wrapper is a dictionary that stores the name of the file and a key.
-    //It is used to pass this information to the timer as one of its parameters.
-    //NSDictionary *wrapper = [NSDictionary dictionaryWithObjectsAndKeys:wrapperObj1, @"Key1", nil];
-    //timer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(playAudioFileTimed:) userInfo:wrapper repeats:YES];
+        // If we are ont the first step (1) or the last step (9) which do not correspond to words
+        //play the corresponding intro or outro audio
+        if (currentVocabStep == 1 && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
+            if([conditionSetup.language isEqualToString: @"Bilingual"]) {
+                [playAudioFileClass playAudioFile:audioSpanish];
+            } else {
+                //Play introduction audio
+                [playAudioFileClass playAudioFile:audio];
+            }
     
-    performedActions = [NSArray arrayWithObjects: expectedSelection, expectedIntroAction, expectedIntroInput, nil];
+            //Logging added by James for Word Audio
+    //        [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Step Audio" : @"E" :audio  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+        }
     
-    return performedActions;
+        if([conditionSetup.condition isEqualToString:@"Control"]){
+            if (currentVocabStep == totalVocabSteps-2 && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
+                if([conditionSetup.language isEqualToString: @"Bilingual"]) {
+                    [playAudioFileClass playAudioFile:nextAudioSpanish];
+                } else {
+                    //Play introduction audio
+                    [playAudioFileClass playAudioFile:nextAudio];
+                }
+                currentVocabStep++;
+            }
+        }
+    
+        if([conditionSetup.condition isEqualToString:@"Embrace"]){
+            if (currentVocabStep == totalVocabSteps-2 && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
+    
+                currentVocabStep++;
+                //Get next step to be read
+                VocabularyStep* nextVocabStep = [currentVocabSteps objectAtIndex:currentVocabStep];
+                nextAudio = [nextVocabStep englishAudioFileName];
+                nextAudioSpanish = [nextVocabStep spanishAudioFileName];
+                nextIntroInput = [nextVocabStep expectedInput];
+                nextIntro = nextIntroInput;
+    
+                if([conditionSetup.language isEqualToString: @"Bilingual"]) {
+                    [playAudioFileClass playAudioFile:nextAudioSpanish];
+                } else {
+                    //Play introduction audio
+                    [playAudioFileClass playAudioFile:nextAudio];
+                }
+            }
+        }
+    
+        //Switch the language every step for the translation
+    //    if ([languageString isEqualToString:@"S"]) {
+    //        languageString = @"E";
+    //    }
+    //    else {
+    //        languageString = @"S";
+    //    }
+    
+        //The response audio file names are hard-coded for now
+        if ([expectedIntroInput isEqualToString:@"next"]) {
+            wrapperObj1 = @"TTNBTC.m4a";
+        }
+        else if ([expectedIntroInput isEqualToString:@"next"] && [conditionSetup.language isEqualToString: @"Bilingual"]) {
+            wrapperObj1 = @"TEBNPC.m4a";
+        }
+    
+        //The wrapper is a dictionary that stores the name of the file and a key.
+        //It is used to pass this information to the timer as one of its parameters.
+        //NSDictionary *wrapper = [NSDictionary dictionaryWithObjectsAndKeys:wrapperObj1, @"Key1", nil];
+        //timer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(playAudioFileTimed:) userInfo:wrapper repeats:YES];
+    
+        performedActions = [NSArray arrayWithObjects: expectedSelection, expectedIntroAction, expectedIntroInput, nil];
+    
+        return performedActions;
 }
-
 
 @end

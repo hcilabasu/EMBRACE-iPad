@@ -10,23 +10,25 @@
 
 @implementation Translation
 
-+(NSDictionary *) translations {
++(NSDictionary *) translationWords {
     static NSDictionary * inst = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         inst = @{
                  @"barn": @"establo",
                  @"bucket": @"cubeta",
-                 @"cart": @"carro",
-                 @"combed": @"peinado",
+                 @"cart": @"carreta",
+                 @"combed": @"peinar",
                  @"contest": @"concurso",
                  @"corral": @"corral",
                  @"farm": @"granja",
+                 @"farmer": @"granjero",
                  @"gate": @"puerta",
-                 @"hay": @"heno",
+                 @"hay": @"paja",
                  @"hayloft": @"pajar",
-                 @"healthy": @"sano",
+                 @"healthy": @"saludable",
                  @"judge": @"juez",
+                 @"jump": @"salto",
                  @"jumped": @"saltó",
                  @"nest": @"nido",
                  @"owl": @"búho",
@@ -37,7 +39,7 @@
                  @"shiny": @"brillante",
                  @"tractor": @"tractor",
                  @"trophy": @"trofeo",
-                 @"weeds": @"mala hierba",
+                 @"weeds": @"maleza",
                  @"around": @"alrededor",
                  @"arteries": @"arterias",
                  @"atoms": @"átomos",
@@ -48,7 +50,7 @@
                  @"carbon dioxide": @"dióxido de carbono",
                  @"chest": @"pecho",
                  @"cigarette": @"cigarrillo",
-                 @"cilia": @"cilia",
+                 @"cilia": @"cilias",
                  @"dirt": @"mugre",
                  @"dust": @"polvo",
                  @"energy": @"energía",
@@ -57,17 +59,80 @@
                  @"molecules": @"moléculas",
                  @"muscles": @"músculos",
                  @"oxygen": @"oxígeno",
-                 @"pumps": @"bombea",
-                 @"rushes": @"fluir",
+                 @"pumps": @"bombear",
+                 @"rushes": @"fluye",
                  @"squeeze": @"apretar",
-                 @"stiff": @"rigidos",
+                 @"stiff": @"rígido",
                  @"toward": @"hacia",
-                 @"trapped": @"atrapado",
+                 @"trapped": @"atrapada",
                  @"tubes": @"tubos",
                  @"valve": @"válvula",
                  @"veins": @"venas",
                  @"ventricle": @"ventrículo"
         };
+    });
+    return inst;
+}
+
++(NSDictionary *) translationImages {
+    static NSDictionary * inst = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        inst = @{
+                 @"barn": @"barn",
+                 @"bucket": @"bucket",
+                 @"cart": @"cart",
+                 @"combed": @"combed",
+                 @"contest": @"contest",
+                 @"corral": @"corral",
+                 @"farm": @"farm",
+                 @"farmer": @"farmer",
+                 @"gate": @"pen4",
+                 @"hay": @"hay",
+                 @"hayloft": @"hayloft",
+                 @"healthy": @"healthy",
+                 @"judge": @"judge",
+                 @"jump": @"jump",
+                 @"nest": @"chickenNest",
+                 @"owl": @"owl",
+                 @"pen": @"pen4",
+                 @"prize": @"prize",
+                 @"pumpkin": @"pumpkin",
+                 @"purr": @"purr",
+                 @"shiny": @"shiny",
+                 @"tractor": @"tractor",
+                 @"trophy": @"award",
+                 @"weeds": @"weeds",
+                 @"around": @"around",
+                 @"arteries": @"arteries",
+                 @"atoms": @"atoms",
+                 @"atrium": @"atrium",
+                 @"beat": @"beat",
+                 @"blood": @"bloodcell_1",
+                 @"breathe": @"breathe",
+                 @"carbon dioxide": @[@"CO2_1",@"CO2_2",@"CO2_3"],
+                 @"chest": @"chest",
+                 @"cigarette": @"cigarette",
+                 @"cilia": @"cilia",
+                 @"dirt": @[@"dirt_1",@"dirt_3",@"dirt_4",@"dirt_5",@"dirt_6",@"dirt_7"],
+                 @"dust": @"dust",
+                 @"energy": @"energy",
+                 @"heart": @"heart",
+                 @"lungs": @"lungs",
+                 @"molecules": @[@"CO2_1",@"CO2_2",@"CO2_3",@"O2_1"],
+                 @"muscles": @"muscles",
+                 @"oxygen": @"O2_1",
+                 @"pumps": @"pumps",
+                 @"rushes": @"rushes",
+                 @"squeeze": @"squeeze",
+                 @"stiff": @"stiff",
+                 @"toward": @"toward",
+                 @"trapped": @"trapped",
+                 @"tubes": @"tubes",
+                 @"valve": @[@"handle",@"handle_close",@"handle_1",@"gray_handle"],
+                 @"veins": @"veins",
+                 @"ventricle": @"ventricle"
+                 };
     });
     return inst;
 }

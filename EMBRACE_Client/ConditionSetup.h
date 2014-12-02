@@ -2,7 +2,7 @@
 //  ConditionSetup.h
 //  EMBRACE
 //
-//  Created by James Rodriguez on 11/17/14.
+//  Created by Jonatan Lemos Zuluaga (Student) on 10/24/14.
 //  Copyright (c) 2014 Andreea Danielescu. All rights reserved.
 //
 
@@ -25,7 +25,7 @@
 //NSString* condition = @"Control";
 
 @interface ConditionSetup : NSObject {
-    
+
     NSString *condition;
     NSString *language;
     
@@ -35,3 +35,5 @@
 @property (nonatomic,strong)  NSString * language;
 
 @end
+
+

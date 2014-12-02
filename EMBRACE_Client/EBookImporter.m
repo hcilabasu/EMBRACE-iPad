@@ -20,9 +20,8 @@ ConditionSetup *conditionSetup;
 	if (self = [super init]) {
         library = [[NSMutableArray alloc] init];
         [self findDocDir];
-        // Create an instance of ConditionSetup
+        // Create an instance of  ConditionSetup
         conditionSetup = [[ConditionSetup alloc] init];
-        
 	}
 	
 	return self;
@@ -287,7 +286,6 @@ ConditionSetup *conditionSetup;
 -(void) readTOCForBook:(Book*)book {
     //NSLog(@"in beginning of TOC for book");
     NSString *filepath = nil;
-    
     if([conditionSetup.language isEqualToString:@"Bilingual"]){
         filepath = [[book mainContentPath] stringByAppendingString:@"toc.ncx"];
     } else if ([conditionSetup.language isEqualToString:@"English"]) {
@@ -430,6 +428,9 @@ ConditionSetup *conditionSetup;
     
     NSError *error;
     //GDataXMLDocument *metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData options:0 error:&error];
+    
+    
+    //break out metadata file into seperate components
     GDataXMLDocument *metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:&error];
     
     InteractionModel *model = [book model];
@@ -722,14 +723,14 @@ ConditionSetup *conditionSetup;
             }
         }
     }
- 
+    
     //Read in the introduction information
     NSArray* introductionElements = [metadataDoc nodesForXPath:@"//introductions" error:nil];
     
     if ([introductionElements count] > 0)
     {
         GDataXMLElement *introductionElement = (GDataXMLElement *) [introductionElements objectAtIndex:0];
-        
+
         NSArray* introductions = [introductionElement elementsForName:[NSString stringWithFormat:@"%@%@",conditionSetup.condition,@"Introduction"]];
         
         for(GDataXMLElement* introduction in introductions) {

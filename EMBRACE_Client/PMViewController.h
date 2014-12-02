@@ -12,9 +12,6 @@
 #import "Book.h"
 #import "AVFoundation/AVSpeechSynthesis.h"
 #import "IntroductionViewController.h"
-#import "BuildHTMLString.h"
-#import "PlayAudioFile.h"
-#import "ConditionSetup.h"
 
 //Describes the condition in which the app will be deployed
 typedef enum Condition {
@@ -30,6 +27,11 @@ typedef enum InteractionRestriction {
     NO_ENTITIES //No object can be used
 } InteractionRestriction;
 
+//Defines the types of language conditions to be used
+//typedef enum Language {
+//    ENGLISH,
+//    BILINGUAL
+//} Language;
 
 //This enum will be used in the future to define if a condition has or not image manipulation
 typedef enum InteractionMode {
@@ -37,6 +39,12 @@ typedef enum InteractionMode {
     INTERACTION
 } InteractionMode;
 
+//This enum defines the action types that exist in every intro or vocab step
+//typedef enum Action {
+//    SELECTION,
+//    EXP_ACTION,
+//    INPUT
+//}Action;
 
 @interface PMViewController : UIViewController <UIGestureRecognizerDelegate, UIScrollViewDelegate, PieContextualMenuDelegate> {
     EBookImporter *bookImporter;
@@ -57,7 +65,6 @@ typedef enum InteractionMode {
 @property (nonatomic, strong) IntroductionViewController *IntroductionClass;
 @property (nonatomic, strong) BuildHTMLString *buildstringClass;
 @property(nonatomic,strong) PlayAudioFile *playaudioClass;
-
 
 -(void) loadFirstPage;
 -(void) loadNextPage;

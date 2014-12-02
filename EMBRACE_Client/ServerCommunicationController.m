@@ -166,7 +166,7 @@ DDXMLElement *nodeStudy;
         //sets global variables to be used by returnContext function
         studySchoolString = [userdetails schoolName];
         studyExperimenterString = [userdetails experimenterName];
-        studyConditionString = @"Study Condition"; //this will need to be hard coded for each study condition
+        studyConditionString = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"]; //comes from app name
         studyParticipantString = [userdetails firstName];
         studyDayString = [userdetails lastName];
         studyFileName = FileNameValue;
@@ -480,7 +480,7 @@ DDXMLElement *nodeStudy;
     [nodeComputerAction addChild:nodeInput];
     [nodeComputerAction addChild:nodeContext];
     
-    //bool successfulWrite = [[ServerCommunicationController sharedManager] writeToFile:userNameString ofType:@"txt"];
+    [[ServerCommunicationController sharedManager] writeToFile:studyFileName ofType:@"txt"];
 }
 
 /*
@@ -1205,6 +1205,7 @@ DDXMLElement *nodeStudy;
     DDXMLElement *nodeSchool = [DDXMLElement elementWithName:@"School" stringValue:studySchoolString];
     DDXMLElement *nodeDay = [DDXMLElement elementWithName:@"Day" stringValue:studyDayString];
     DDXMLElement *nodeCondition = [DDXMLElement elementWithName:@"Condition" stringValue:studyConditionString];
+    DDXMLElement *nodeParticipant = [DDXMLElement elementWithName:@"Participant" stringValue:studyParticipantString];
     DDXMLElement *nodeExperimenter = [DDXMLElement elementWithName:@"Experimenter" stringValue:studyExperimenterString];
     DDXMLElement *nodeStory = [DDXMLElement elementWithName:@"Story" stringValue:storyValue];
     DDXMLElement *nodeChapter = [DDXMLElement elementWithName:@"Chapter" stringValue:chapterValue];
@@ -1217,6 +1218,7 @@ DDXMLElement *nodeStudy;
     [nodeContext addChild:nodeSchool];
     [nodeContext addChild:nodeCondition];
     [nodeContext addChild:nodeDay];
+    [nodeContext addChild:nodeParticipant];
     [nodeContext addChild:nodeExperimenter];
     [nodeContext addChild:nodeStory];
     [nodeContext addChild:nodeChapter];

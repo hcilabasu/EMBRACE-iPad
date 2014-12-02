@@ -11,21 +11,19 @@
 #import "PieContextualMenu.h"
 #import "Translation.h"
 #import "ServerCommunicationController.h"
-#import "BuildHTMLString.h"
-#import "PlayAudioFile.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import <AVFoundation/AVFoundation.h>
-#import <dispatch/dispatch.h>
+#import "ConditionSetup.h"
+#import "IntroductionViewController.h"
 
 @interface PMViewController () {
-    
-    
     NSString* currentPage; //The current page being shown, so that the next page can be requested.
     NSString* currentPageId; //The id of the current page being shown
     
     NSUInteger currentSentence; //Active sentence to be completed.
     NSUInteger totalSentences; //Total number of sentences on this page.
-
+    //NSUInteger currentIntroStep; //Current step in the introduction
+    
     PhysicalManipulationSolution* PMSolution; //Solution steps for current chapter
     NSUInteger numSteps; //Number of steps for current sentence
     NSUInteger currentStep; //Active step to be completed.
@@ -42,6 +40,7 @@
     BOOL panning;
     BOOL pinching;
     BOOL pinchToUngroup; //TRUE if pinch gesture is used to ungroup; FALSE otherwise
+    //BOOL allowInteractions; //TRUE if objects can be manipulated; FALSE otherwise
     
     NSMutableDictionary *currentGroupings;
     
@@ -60,11 +59,27 @@
     //Condition condition; //Study condition to run the app (e.g. MENU, HOTSPOT, etc.)
     InteractionRestriction useSubject; //Determines which objects the user can manipulate as the subject
     InteractionRestriction useObject; //Determines which objects the user can interact with as the object
-   
+    
+//    //NSMutableDictionary* introductions; //Stores the instances of the introductions from metadata.xml
+//    NSUInteger totalIntroSteps; //Stores the total number of introduction steps for the current chapter
+//    NSMutableArray* currentIntroSteps; //Stores the introduction steps for the current chapter
+//    NSArray *performedActions; //Store the information of the current step
+//    
+//    NSMutableDictionary* vocabularies; //Stores the instances of the vocabs from metadata.xml
+//    NSUInteger currentVocabStep; //Stores the index of the current vocab step
+//    NSMutableArray* currentVocabSteps; //Stores the vocab steps for the current chapter
+//    NSUInteger totalVocabSteps; //Stores the total number of vocab steps for the current chapter
+//    
     NSString* actualPage; //Stores the address of the current page we are at
     NSString* actualWord; //Stores the current word that was clicked
     NSTimer* timer; //Controls the timing of the audio file that is playing
-   // NSString* languageString; //Defines the languange to be used 'E' for English 'S' for Spanish
+    //NSString* languageString; //Defines the languange to be used 'E' for English 'S' for Spanish
+    //BOOL sameWordClicked; //Defines if a word has been clicked or not
+    //NSString* vocabAudio; //Used to store the next vocab audio file to be played
+    //NSInteger lastStep; //Used to store the most recent intro step
+    //NSString* nextIntro; //Used to store the most recent intro step
+    //NSString* currentAudio; //Used to store the current vocab audio file to be played
+    BOOL isAudioLeft;
 }
 
 @property (nonatomic, strong) IBOutlet UIWebView *bookView;
@@ -76,18 +91,26 @@
 @implementation PMViewController
 
 @synthesize book;
+
 @synthesize bookTitle;
 @synthesize chapterTitle;
+
 @synthesize bookImporter;
 @synthesize bookView;
+
 @synthesize IntroductionClass;
 @synthesize buildstringClass;
 @synthesize playaudioClass;
+
 @synthesize syn;
 
 //Used to determine the required proximity of 2 hotspots to group two items together.
 float const groupingProximity = 20.0;
 
+//In the bilingual introduction there are 13 steps in Spanish before switching to English only
+//int const STEPS_TO_SWITCH_LANGUAGES_EMBRACE = 12;
+//int const STEPS_TO_SWITCH_LANGUAGES_CONTROL = 11;
+//int language_condition = BILINGUAL;
 // Create an instance of  ConditionSetup
 ConditionSetup *conditionSetup;
 
@@ -102,6 +125,12 @@ ConditionSetup *conditionSetup;
     
     //creates instance of introduction class
     IntroductionClass = [[IntroductionViewController alloc]init];
+    //creates an instance of condition setup class
+    conditionSetup = [[ConditionSetup alloc] init];
+    //creates an instance of buildstringclass
+    buildstringClass = [[BuildHTMLString alloc]init];
+    //creates an instance of playaudioclass
+    playaudioClass = [[PlayAudioFile alloc]init];
     
     syn = [[AVSpeechSynthesizer alloc] init];
     
@@ -130,9 +159,6 @@ ConditionSetup *conditionSetup;
     
     currentPage = nil;
     
-    conditionSetup = [[ConditionSetup alloc] init];
-    
-    //condition = MENU;
     IntroductionClass.languageString = @"E";
     
     if ([conditionSetup.condition isEqualToString: @"Control"]) {
@@ -158,14 +184,11 @@ ConditionSetup *conditionSetup;
     //Ensure that the pinch recognizer gets called before the pan gesture recognizer.
     //That way, if a user is trying to ungroup objects, they can do so without the objects moving as well.
     //TODO: Figure out how to get the pan gesture to still properly recognize the begin and continue actions.
-    //[panRecognizer requireGestureRecognizaerToFail:pinchRecognizer];
-    
-    buildstringClass = [[BuildHTMLString alloc]init];
-    playaudioClass = [[PlayAudioFile alloc]init];
+    //[panRecognizer requireGestureRecognizerToFail:pinchRecognizer];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    // Disable user selection
+    // Disable user sevlection
     [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitUserSelect='none';"];
     // Disable callout
     [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitTouchCallout='none';"];
@@ -219,8 +242,11 @@ ConditionSetup *conditionSetup;
     [self setupCurrentSentence];
     [self setupCurrentSentenceColor];
     
-    //introduction: move to introduction class
-    //Load the first step for the current chapter (hard-coded for now)
+    if ([IntroductionClass.introductions objectForKey:chapterTitle] || ([IntroductionClass.vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound)) {
+        IntroductionClass.allowInteractions = FALSE;
+    }
+    
+    //Load the first step for the current chapter
     if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
         [IntroductionClass loadIntroStep:bookView: currentSentence];
     }
@@ -230,17 +256,17 @@ ConditionSetup *conditionSetup;
     //found a way to fix this yet.
     //[self createTextboxView];
     
-    //introduction: move to introduction class
     //Load the first vocabulary step for the current chapter (hard-coded for now)
     if ([IntroductionClass.vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
-        //The first word is in Spanish
-        [IntroductionClass loadVocabStep: bookView: currentSentence: chapterTitle];
+        [IntroductionClass loadVocabStep:bookView: currentSentence: chapterTitle];
     }
+    
+    isAudioLeft = false;
     
     //If we are on the first or second manipulation page of The Contest, play the audio of the first sentence
     if ([chapterTitle isEqualToString:@"The Contest"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
         if([conditionSetup.language isEqualToString: @"Bilingual"]) {
-            [playaudioClass playAudioFile:[NSString stringWithFormat:@"BFEC%d.m4a",currentSentence]];
+                [playaudioClass playAudioFile:[NSString stringWithFormat:@"BFEC%d.m4a",currentSentence]];
         }
         else {
             [playaudioClass playAudioFile:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
@@ -256,6 +282,7 @@ ConditionSetup *conditionSetup;
             [playaudioClass playAudioFile:[NSString stringWithFormat:@"CWWB%d.m4a",currentSentence]];
         }
     }
+    
     //Perform setup for activity
     [self performSetupForActivity];
 }
@@ -263,7 +290,7 @@ ConditionSetup *conditionSetup;
 /*
  * Gets the book reference for the book that's been opened.
  * Also sets the reference to the interaction model of the book.
- * Sets the page to the one for the current chapter activity.
+ * Sets the page to the one for th current chapter activity.
  * Calls the function to load the html content for the activity.
  */
 - (void) loadFirstPage {
@@ -274,11 +301,12 @@ ConditionSetup *conditionSetup;
     
     actualPage = currentPage;
     
-    //instantiates all introduction elements
+    //instantiates all introduction variables
     [IntroductionClass loadFirstPageIntroduction:model :chapterTitle];
     
     [self loadPage];
     
+    //change logging to introduction??
     //Logging added by James for Loading First Page of selected Chapter form Library View
     [[ServerCommunicationController sharedManager] logNextChapterNavigation:bookTitle :@"Title Page" :currentPage :@"Load First Page" :bookTitle :chapterTitle : currentPage : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] : [NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
     //Logging Completes Here.
@@ -298,25 +326,13 @@ ConditionSetup *conditionSetup;
     [[ServerCommunicationController sharedManager] logNextPageNavigation:@"Next Button" :tempLastPage :currentPage :@"Next Page" :bookTitle :chapterTitle : currentPage : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] : [NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
     //Logging Completes Here.
     
-    while (currentPage == nil) {
-        chapterTitle = [book getChapterAfterChapter:chapterTitle];
+    //No more pages in chapter
+    if (currentPage == nil) {
+        //Log that chapter has been completed
+        [[ServerCommunicationController sharedManager] logNextChapterNavigation:@"Next Button" :tempLastPage :currentPage :@"Next Page | Chapter Finished" :bookTitle :chapterTitle : currentPage : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] : [NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
         
-        if(chapterTitle == nil) { //no more chapters.
-            [self.navigationController popViewControllerAnimated:YES];
-            
-            //Logging added by James for Computer Navigation when end of chapter is reached
-            [[ServerCommunicationController sharedManager] logNextChapterNavigation:@"Next Button" :tempLastPage :currentPage :@"Next Page | No more Chapters" :bookTitle :chapterTitle : currentPage : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] : [NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
-            //Logging Completes Here.
-            
-            return;
-        }
-        
-        tempLastPage = currentPage;
-        currentPage = [book getNextPageForChapterAndActivity:chapterTitle :PM_MODE :nil];
-        
-        //Logging added by James for Computer Navigation to next Chapter
-        [[ServerCommunicationController sharedManager] logNextChapterNavigation:@"Next Button" :tempLastPage :currentPage :@"Next Chapter" :bookTitle :chapterTitle : currentPage : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] : [NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
-        //Logging Completes Here.
+        [self.navigationController popViewControllerAnimated:YES]; //return to library view
+        return;
     }
     
     [self loadPage];
@@ -350,9 +366,10 @@ ConditionSetup *conditionSetup;
     PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
     PMSolution = [PMActivity PMSolution]; //get PM solution
     
+    //instantiates all vocab variables
     [IntroductionClass loadFirstPageVocabulary:model :chapterTitle];
     
-    if ([conditionSetup.condition isEqualToString:@"Control"]) {
+    if (![conditionSetup.condition isEqualToString:@"Control"]) {
        IntroductionClass.allowInteractions = TRUE;
     }
 }
@@ -534,7 +551,6 @@ ConditionSetup *conditionSetup;
  */
 -(void) performAutomaticSteps {
     
-    //introduction: perhaps replace this with a function call back
     if([IntroductionClass.introductions objectForKey:chapterTitle] && [[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
         IntroductionClass.allowInteractions = TRUE;
     }
@@ -576,11 +592,35 @@ ConditionSetup *conditionSetup;
         }
     }
     
-    //introduction: perhaps replace this with a function call back
     if([IntroductionClass.introductions objectForKey:chapterTitle] && [[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
         IntroductionClass.allowInteractions = FALSE;
     }
 }
+
+#pragma mark - Responding to gestures
+/*
+ * User pressed Back button. Write log data to file.
+ */
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    if (![[self.navigationController viewControllers] containsObject:self])
+    {
+        [[ServerCommunicationController sharedManager] writeToFile:[[ServerCommunicationController sharedManager] studyFileName] ofType:@"txt"];
+    }
+}
+
+/*
+ * Plays a noise for error feedback if the user performs a manipulation incorrectly
+ */
+- (IBAction) playErrorNoise {
+    AudioServicesPlaySystemSound(1053);
+    
+    //Logging added by James for Error Noise
+    [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Error Audio" : @"NULL" :@"Error Noise"  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+}
+
 
 /*
  * Tap gesture. Currently only used for menu selection.
@@ -588,7 +628,6 @@ ConditionSetup *conditionSetup;
 - (IBAction)tapGesturePerformed:(UITapGestureRecognizer *)recognizer {
     CGPoint location = [recognizer locationInView:self.view];
     
-    //introduction: perhaps replace this with a function call back
     if([IntroductionClass.introductions objectForKey:chapterTitle] && [[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:@"menu"]) {
         IntroductionClass.allowInteractions = TRUE;
     }
@@ -681,7 +720,7 @@ ConditionSetup *conditionSetup;
         menuExpanded = FALSE;
     }
     else {
-        if (numSteps > 0 &&  IntroductionClass.allowInteractions) {
+        if (numSteps > 0 && IntroductionClass.allowInteractions) {
             //Get steps for current sentence
             NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
             
@@ -731,11 +770,12 @@ ConditionSetup *conditionSetup;
         sentenceText = [sentenceText lowercaseString];
         NSString* englishSentenceText = sentenceText;
         
-        if ([conditionSetup.language isEqualToString:@"Bilingual"]) {
-            englishSentenceText = [self getEnglishTranslation:sentenceText];
+        if ([conditionSetup.language isEqualToString: @"Bilingual"]) {
+            if(![[self getEnglishTranslation:sentenceText] isEqualToString:@"Translation not found"]) {
+                englishSentenceText = [self getEnglishTranslation:sentenceText];
+            }
         }
         
-        //introduction: move to introductionclass
         //Enable the introduction clicks on words and images, if it is intro mode
         if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
             if (([[IntroductionClass.performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] &&
@@ -744,39 +784,35 @@ ConditionSetup *conditionSetup;
                 //[timer invalidate];
                 //timer = nil;
                 
-                [playaudioClass playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,IntroductionClass.languageString]];
+                [playaudioClass playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]];
                 
                 //Logging added by James for Word Audio
-                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : IntroductionClass.languageString :[NSString stringWithFormat:@"%@%@.m4a",sentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : IntroductionClass.languageString :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
                 
-                [self highlightObject:sentenceText:1.5];
+                [self highlightObject:englishSentenceText:1.5];
                 //Bypass the image-tap steps which are found after each word-tap step on the metadata
                 // since they are not needed anymore
                 IntroductionClass.currentIntroStep+=1;
-                
+                // This delay is needed in order to be able to hear the clicked word
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW,2*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                     [IntroductionClass loadIntroStep:bookView:currentSentence];
-                    
                 });
-                    //[IntroductionClass performSelector: ([IntroductionClass loadIntroStep:bookView]) withObject:nil afterDelay:2];
-                   
             }
         }
-        //introduction: move to introduction class
         //Vocabulary introduction mode
         else if ([IntroductionClass.vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
             //If the user clicked on the correct word or image
             if (([[IntroductionClass.performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] &&
-                 [sentenceText isEqualToString:[IntroductionClass.performedActions objectAtIndex:INPUT]]) ||
+                 [englishSentenceText isEqualToString:[IntroductionClass.performedActions objectAtIndex:INPUT]]) ||
                 ([[IntroductionClass.performedActions objectAtIndex:SELECTION] isEqualToString:@"image"] &&
                  [imageAtPoint isEqualToString:[IntroductionClass.performedActions objectAtIndex:INPUT]])) {
                     //[timer invalidate];
                     //timer = nil;
                     
                     //If the user clicked on a word
-                    if ([[IntroductionClass.performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] && [[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:sentenceText] && !IntroductionClass.sameWordClicked && (currentSentence == sentenceIDNum)) {
+                    if ([[IntroductionClass.performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] && [[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:englishSentenceText] && !IntroductionClass.sameWordClicked && (currentSentence == sentenceIDNum)) {
                         
-                        IntroductionClass.sameWordClicked = true;
+                         IntroductionClass.sameWordClicked = true;
                         if ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"]) {
                             [playaudioClass playAudioFile:IntroductionClass.vocabAudio];
                         }
@@ -787,127 +823,96 @@ ConditionSetup *conditionSetup;
                         //Logging added by James for Word Audio
                         [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : IntroductionClass.languageString :[NSString stringWithFormat:@"%@%@.m4a",sentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
                         
-                        if (![IntroductionClass.languageString isEqualToString:@"E"]) {
-                            sentenceText = [self getEnglishTranslation:sentenceText];
-                        }
+                        NSObject *valueImage = [[Translation translationImages]objectForKey:englishSentenceText];
                         
-                        // Since the name of the pen image is pen4 because there is more than one pen, its name is hard-coded
-                        if([sentenceText isEqualToString:@"pen"]) {
-                            sentenceText = @"pen4";
-                        }
+                        NSString *imageHighlighted = @"";
                         
-                        // Since the name of the nest image is chickenNest, its name is hard-coded
-                        if([sentenceText isEqualToString:@"nest"]) {
-                            sentenceText = @"chickenNest";
-                        }
                         
-                        // Since the name of the gate image is pen2, its name is hard-coded
-                        if([sentenceText isEqualToString:@"gate"]) {
-                            sentenceText = @"pen2";
+                        // If the key contains more than one value
+                        if ([valueImage isKindOfClass:[NSArray class]])
+                        {
+                            NSArray *imageArray = ((NSArray*)valueImage);
+                            for (int i = 0; i < [imageArray count]; i++)
+                            {
+                                imageHighlighted = imageArray[i];
+                                [self highlightObject:imageHighlighted:1.5];
+                            }
                         }
-                        
-                        // Since the name of the trophy image is award, its name is hard-coded
-                        if([sentenceText isEqualToString:@"trophy"]) {
-                            sentenceText = @"award";
+                        else
+                        {
+                            imageHighlighted = (NSString*)valueImage;
+                            [self highlightObject:imageHighlighted:1.5];
                         }
-                        
-                        // Since the name of the oxygen image is O2_1, its name is hard-coded
-                        if([sentenceText isEqualToString:@"oxygen"]) {
-                            sentenceText = @"O2_1";
-                        }
-                        
-                        // Since the name of the carbon dioxide image is O2_1, its name is hard-coded
-                        if([sentenceText isEqualToString:@"carbon dioxide"]) {
-                            sentenceText = @"CO2_1";
-                        }
-                        
-                        // Since the name of the vale image is handle, its name is hard-coded
-                        if([sentenceText isEqualToString:@"valve"]) {
-                            sentenceText = @"handle";
-                        }
-                        
-                        [self highlightObject:sentenceText :1.5];
                         
                         currentSentence++;
                         [self performSelector:@selector(colorSentencesUponNext) withObject:nil afterDelay:4];
                         
                         IntroductionClass.currentVocabStep++;
                         
-                        
+                        // This delay is needed in order to be able to play the last definition on a vocabulary page
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW,4*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                             [IntroductionClass loadVocabStep:bookView:currentSentence:chapterTitle];
                             
                         });
-                        
-                        //[self performSelector:@selector(loadVocabStep) withObject:nil afterDelay:4];
                 }
             }
         }
-        //ask what this function does
-        else if([[Translation translations] objectForKey:sentenceText]) {
-            // Since the name of the pen image is pen4 because there is more than one pen, its name is hard-coded
-            if([sentenceText isEqualToString:@"pen"]) {
-                sentenceText = @"pen4";
-            }
-            
-            // Since the name of the nest image is chickenNest, its name is hard-coded
-            if([sentenceText isEqualToString:@"nest"]) {
-                sentenceText = @"chickenNest";
-            }
-            
-            // Since the name of the gate image is pen2, its name is hard-coded
-            if([sentenceText isEqualToString:@"gate"]) {
-                sentenceText = @"pen2";
-            }
-            
-            // Since the name of the trophy image is award, its name is hard-coded
-            if([sentenceText isEqualToString:@"trophy"]) {
-                sentenceText = @"award";
-            }
-            
+        else if([[Translation translationWords] objectForKey:englishSentenceText]) {
             // Since the name of the carbon dioxide file is carbonDioxide, its name is hard-coded
-            if([sentenceText isEqualToString:@"carbon dioxide"]) {
-                sentenceText = @"carbonDioxide";
+            if([englishSentenceText isEqualToString:@"carbon dioxide"]) {
+                englishSentenceText = @"carbonDioxide";
             }
             
-            //Play word audio En
-            //[self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,@"E"]];
-            
-            //Play En audio twice
-            [playaudioClass playAudioInSequence:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,@"E"]:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,@"E"]];
-            
-            //Logging added by James for Word Audio
-            [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"E" :[NSString stringWithFormat:@"%@%@.m4a",sentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
-                
-            if ([conditionSetup.language isEqualToString:@"Bilingual"] ) {
+            if ([conditionSetup.language isEqualToString: @"Bilingual"] && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
                 //Play word audio Sp
-                [playaudioClass playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",[self getEnglishTranslation:sentenceText],@"S"]];
+                [playaudioClass playAudioInSequence:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"]:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
                 
                 //Logging added by James for Word Audio
-                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"S" :[NSString stringWithFormat:@"%@%@.m4a",sentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"S" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+            }
+            else if ([conditionSetup.language isEqualToString: @"Bilingual"]) {
+                //Play word audio Sp
+                [playaudioClass playAudioInSequence:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"]];
+                
+                //Logging added by James for Word Audio
+                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"S" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+            }
+            else {
+                //Play En audio twice
+                [playaudioClass playAudioInSequence:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
+                
+                //Logging added by James for Word Audio
+                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"E" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
             }
             
-            // Since the name of the oxygen image is O2_1, its name is hard-coded
-            if([sentenceText isEqualToString:@"oxygen"]) {
-                sentenceText = @"O2_1";
+            // Revert the carbon dioxide name for highlighting
+            if([englishSentenceText isEqualToString:@"carbonDioxide"]) {
+                englishSentenceText = @"carbon dioxide";
             }
             
-            // Since the name of the carbon dioxide image is CO2_1, its name is hard-coded
-            if([sentenceText isEqualToString:@"carbonDioxide"]) {
-                sentenceText = @"CO2_1";
+            // This code is duplicated for now, it will be moved to the highlightObject function
+            NSObject *valueImage = [[Translation translationImages]objectForKey:englishSentenceText];
+            
+            NSString *imageHighlighted = @"";
+            
+            
+            // If the key contains more than one value
+            if ([valueImage isKindOfClass:[NSArray class]])
+            {
+                NSArray *imageArray = ((NSArray*)valueImage);
+                for (int i = 0; i < [imageArray count]; i++)
+                {
+                    imageHighlighted = imageArray[i];
+                    [self highlightObject:imageHighlighted:1.5];
+                }
+            }
+            else
+            {
+                imageHighlighted = (NSString*)valueImage;
+                [self highlightObject:imageHighlighted:1.5];
             }
             
-            // Since the name of the dirt image is dirt_1, its name is hard-coded for it to be highlighted
-            if([sentenceText isEqualToString:@"dirt"]) {
-                sentenceText = @"dirt_1";
-            }
-            
-            // Since the name of the vale image is handle, its name is hard-coded
-            if([sentenceText isEqualToString:@"valve"]) {
-                sentenceText = @"handle";
-            }
-            
-            [self highlightObject:sentenceText:1.5];
+            //[self highlightObject:[[Translation translationImages] objectForKey:englishSentenceText]:1.5];
         }
     }
 }
@@ -935,7 +940,6 @@ ConditionSetup *conditionSetup;
 -(IBAction)swipeGesturePerformed:(UISwipeGestureRecognizer *)recognizer {
     NSLog(@"Swiper no swiping!");
     
-    //introduction: move to introduction class
     // Emergency swipe to bypass the vocab intros
     if ([IntroductionClass.vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
         [_audioPlayer stop];
@@ -943,7 +947,7 @@ ConditionSetup *conditionSetup;
     }
     
     //Perform steps only if they exist for the sentence and have not been completed
-    else if (numSteps > 0 && !stepsComplete && IntroductionClass.allowInteractions) {
+    else if (numSteps > 0 && !stepsComplete && ![conditionSetup.condition isEqualToString: @"Control"]) {
         
         //Logging Added by James for Emergency Swipe
         [[ServerCommunicationController sharedManager] logUserEmergencyNext:@"Emergency Swipe" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
@@ -1111,7 +1115,6 @@ ConditionSetup *conditionSetup;
             NSString* imageAtPoint = [self getObjectAtPoint:location ofType:@"manipulationObject"];
             //NSLog(@"location pressed: (%f, %f)", location.x, location.y);
             
-            //introduction: move to introduction class
             if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
                 stepsComplete = false;
             }
@@ -1147,7 +1150,6 @@ ConditionSetup *conditionSetup;
                     //Get current step to be completed
                     ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
                     
-                    //introduction: move to introduction class
                     if ([[currSolStep stepType] isEqualToString:@"check"]) {
                         //Check if object is in the correct location
                         if([self isHotspotInsideLocation]) {
@@ -1158,8 +1160,8 @@ ConditionSetup *conditionSetup;
                                         // Destroy the timer to avoid playing the previous sound
                                         //[timer invalidate];
                                         //timer = nil;
-                                       IntroductionClass.currentIntroStep++;
-                                    [IntroductionClass loadIntroStep:bookView:currentSentence];//[self loadintrostep]
+                                        IntroductionClass.currentIntroStep++;
+                                    [IntroductionClass loadIntroStep:bookView: currentSentence];
                                 }
                             }
                             
@@ -1183,7 +1185,7 @@ ConditionSetup *conditionSetup;
                             //Logging added by James for user Move Object to Hotspot Incorrect
                             [[ServerCommunicationController sharedManager] logComputerVerification:@"Move to Hotspot" :false : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
                             
-                            [playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentStep];
+                            [self playErrorNoise];
                             
                             if (allowSnapback) {
                                 //Snap the object back to its original location
@@ -1199,7 +1201,7 @@ ConditionSetup *conditionSetup;
                         
                         //Get possible interactions only if the object is overlapping something
                         if (overlappingWith != nil) {
-                            if ([conditionSetup.condition isEqualToString:@"Hotspot"]) {
+                            if ([conditionSetup.condition isEqualToString: @"Hotspot"]) {
                                 useProximity = YES;
                             }
                             
@@ -1219,7 +1221,7 @@ ConditionSetup *conditionSetup;
                                 //Logging added by James for Verifying Move Object to object
                                 [[ServerCommunicationController sharedManager] logComputerVerification: @"Move to Object":false : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
                                 
-                                [playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentStep];
+                                [self playErrorNoise];
                                 
                                 if (allowSnapback) {
                                     //Snap the object back to its original location
@@ -1240,7 +1242,6 @@ ConditionSetup *conditionSetup;
                             //If more than 1 was found, prompt the user to disambiguate.
                             else if ([possibleInteractions count] > 1) {
                                 //The chapter title hard-coded for now
-                                //introduction: move to introduction class
                                 if ([IntroductionClass.introductions objectForKey:chapterTitle] &&
                                     [[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:
                                      [NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep object2Id]]]) {
@@ -1248,7 +1249,7 @@ ConditionSetup *conditionSetup;
                                     //[timer invalidate];
                                     //timer = nil;
                                     IntroductionClass.currentIntroStep++;
-                                        [IntroductionClass loadIntroStep:bookView:currentSentence];//[self loadintrostep]
+                                        [IntroductionClass loadIntroStep:bookView: currentSentence];
                                 }
                                 
                                 //First rank the interactions based on location to story.
@@ -1277,7 +1278,7 @@ ConditionSetup *conditionSetup;
                         }
                         //Not overlapping any object
                         else {
-                            [playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentStep];
+                            [self playErrorNoise];
                             
                             if (allowSnapback) {
                                 //Snap the object back to its original location
@@ -1320,7 +1321,7 @@ ConditionSetup *conditionSetup;
                     }
                 }
                 
-                if ([conditionSetup.condition isEqualToString:@"Hotspot"]) {
+                if ([conditionSetup.condition isEqualToString: @"Hotspot"]) {
                     //resets allRelationship arrray
                     if([allRelationships count])
                     {
@@ -2172,10 +2173,9 @@ ConditionSetup *conditionSetup;
         
         [self performInteraction:interaction];
         
-        //introduction: move to introduction class
         if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
             IntroductionClass.currentIntroStep++;
-            [IntroductionClass loadIntroStep:bookView:currentSentence];//[self loadintrostep]
+            [IntroductionClass loadIntroStep:bookView: currentSentence];
         }
         
         [self incrementCurrentStep];
@@ -2185,10 +2185,9 @@ ConditionSetup *conditionSetup;
             [self incrementCurrentStep];
         }
     }
-    //introduction: move to introduction class
     else {
         if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
-            if ([conditionSetup.language isEqualToString:@"English"])
+            if ([conditionSetup.language isEqualToString: @"English"] || IntroductionClass.currentIntroStep > IntroductionClass.STEPS_TO_SWITCH_LANGUAGES_EMBRACE)
             {
                 [playaudioClass playAudioFile:@"tryAgainE.m4a"];
                 
@@ -2197,17 +2196,17 @@ ConditionSetup *conditionSetup;
             }
             else
             {
-                [playaudioClass playAudioFile:@"intentaDeNuevoS.m4a"];
+                [playaudioClass playAudioFile:@"tryAgainS.m4a"];
                 
                 //Logging added by James for Try Again
-                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Try Again" : @"S" : @"intentaDeNuevoS.m4a" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Try Again" : @"S" : @"tryAgainS.m4a" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
             }
         }
         else {
             //Logging added by James for Incorrect Interaction
             [[ServerCommunicationController sharedManager] logComputerVerification:@"Perform Interaction":false : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
             
-            [playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentStep]; //play noise if interaction is incorrect
+            [self playErrorNoise]; //play noise if interaction is incorrect
         }
         
         if ([interaction interactionType] != UNGROUP && allowSnapback) {
@@ -3133,7 +3132,6 @@ ConditionSetup *conditionSetup;
  * is correct, then it will move on to the next sentence. If the manipulation is not current, then feedback will be provided.
  */
 -(IBAction)pressedNext:(id)sender {
-    //introduction: move to introduction class
     if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
         // If the user pressed next
         if ([[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
@@ -3147,14 +3145,13 @@ ConditionSetup *conditionSetup;
             }
             else {
                 // Load the next step
-                [IntroductionClass loadIntroStep:bookView:currentSentence];//[self introsteps]
+                [IntroductionClass loadIntroStep:bookView: currentSentence];
                 [self setupCurrentSentenceColor];
                 
                 //add logging: next intro step
             }
         }
     }
-    //introduction: move to introduction class
     else if ([IntroductionClass.vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
         NSString* input;
         
@@ -3179,7 +3176,7 @@ ConditionSetup *conditionSetup;
             }
             else {
                 // Load the next step and update the performed actions
-                [IntroductionClass loadVocabStep: bookView: currentSentence : chapterTitle];
+                [IntroductionClass loadVocabStep:bookView:currentSentence:chapterTitle];
                 
                 //add logging: next vocab step
             }
@@ -3211,18 +3208,28 @@ ConditionSetup *conditionSetup;
                 
                 //If we are on the first or second manipulation page of The Contest, play the audio of the current sentence
                 if ([chapterTitle isEqualToString:@"The Contest"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-                    [playaudioClass playAudioFile:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
+                    if([conditionSetup.language isEqualToString: @"Bilingual"]) {
+                        [playaudioClass playAudioFile:[NSString stringWithFormat:@"BFEC%d.m4a",currentSentence]];
+                    }
+                    else {
+                        [playaudioClass playAudioFile:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
+                    }
                 }
                 
                 //If we are on the first or second manipulation page of Why We Breathe, play the audio of the current sentence
                 if ([chapterTitle isEqualToString:@"Why We Breathe"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
-                    [playaudioClass playAudioFile:[NSString stringWithFormat:@"CWWB%d.m4a",currentSentence]];
+                    if([conditionSetup.language isEqualToString: @"Bilingual"]) {
+                        [playaudioClass playAudioFile:[NSString stringWithFormat:@"CPQR%d.m4a",currentSentence]];
+                    }
+                    else {
+                        [playaudioClass playAudioFile:[NSString stringWithFormat:@"CWWB%d.m4a",currentSentence]];
+                    }
                 }
             }
         }
         else {
             //Play noise if not all steps have been completed
-            [playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentStep];
+            [self playErrorNoise];
         }
     }
 }
@@ -3291,6 +3298,371 @@ ConditionSetup *conditionSetup;
     
     //log clear
 }
+//
+///* Plays a text-to-speech audio in a given language */
+//-(void)playWordAudio:(NSString*) word :(NSString*) lang {
+//    AVSpeechUtterance *utteranceEn = [[AVSpeechUtterance alloc]initWithString:word];
+//    utteranceEn.rate = AVSpeechUtteranceMaximumSpeechRate/7;
+//    utteranceEn.voice = [AVSpeechSynthesisVoice voiceWithLanguage:lang];
+//    NSLog(@"Sentence: %@", word);
+//    NSLog(@"Volume: %f", utteranceEn.volume);
+//    [syn speakUtterance:utteranceEn];
+//    
+//    //log play audio
+//}
+//
+///* Plays text-to-speech audio in a given language in a certain time */
+//-(void)playWordAudioTimed:(NSTimer *) wordAndLang {
+//    NSDictionary *wrapper = (NSDictionary *)[wordAndLang userInfo];
+//    NSString * obj1 = [wrapper objectForKey:@"Key1"];
+//    NSString * obj2 = [wrapper objectForKey:@"Key2"];
+//    
+//    AVSpeechUtterance *utteranceEn = [[AVSpeechUtterance alloc]initWithString:obj1];
+//    utteranceEn.rate = AVSpeechUtteranceMaximumSpeechRate/7;
+//    utteranceEn.voice = [AVSpeechSynthesisVoice voiceWithLanguage:obj2];
+//    NSLog(@"Sentence: %@", obj1);
+//    NSLog(@"Volume: %f", utteranceEn.volume);
+//    [syn speakUtterance:utteranceEn];
+//}
+//
+///* Plays an audio file after a given time defined in the timer call*/
+//-(void)playAudioFileTimed:(NSTimer *) path {
+//    NSDictionary *wrapper = (NSDictionary *)[path userInfo];
+//    NSString * obj1 = [wrapper objectForKey:@"Key1"];
+//    
+//    NSString *soundFilePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], obj1];
+//    NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+//    NSError *audioError;
+//    
+//    _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&audioError];
+//    
+//    if (_audioPlayer == nil)
+//        NSLog(@"%@",[audioError description]);
+//    else
+//        [_audioPlayer play];
+//}
+//
+///* Plays an audio file at a given path */
+//-(void) playAudioFile:(NSString*) path {
+//    NSString *soundFilePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], path];
+//    NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+//    NSError *audioError;
+//    
+//    IntroductionClass.allowInteractions = false;
+//    self.view.userInteractionEnabled = NO;
+//    
+//    _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&audioError];
+//    _audioPlayerAfter = nil;
+//    _audioPlayer.delegate = self;
+//    
+//    if (_audioPlayer == nil)
+//        NSLog(@"%@",[audioError description]);
+//    else {
+//        [_audioPlayer play];
+//    }
+//}
+//
+///* Plays one audio file after the other */
+//-(void) playAudioInSequence:(NSString*) path :(NSString*) path2 {
+//    NSString *soundFilePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], path];
+//    NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+//    NSError *audioError;
+//    
+//    allowInteractions = false;
+//    self.view.userInteractionEnabled = NO;
+//    
+//    NSString *soundFilePath2 = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], path2];
+//    NSURL *soundFileURL2 = [NSURL fileURLWithPath:soundFilePath2];
+//    
+//    _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&audioError];
+//    _audioPlayerAfter = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL2 error:&audioError];
+//    if (_audioPlayerAfter != nil) {
+//        isAudioLeft = true;
+//    }
+//    _audioPlayer.delegate = self;
+//    
+//    if (_audioPlayer == nil)
+//        NSLog(@"%@",[audioError description]);
+//    else {
+//        [_audioPlayer play];
+//    }
+//}
+//
+///* Delegate for the AVAudioPlayer */
+//- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag  {
+//    
+//    // Only play audio if there is a sequence
+//    if (_audioPlayerAfter != nil && isAudioLeft) {
+//        [_audioPlayerAfter play];
+//        isAudioLeft = false;
+//    }
+//
+//    // If we are on the control condition or on a vocab page keep the interactions disabled
+//    if([conditionSetup.condition isEqualToString: @"Control"] || [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
+//        allowInteractions = false;
+//    }
+//    else {
+//        allowInteractions = true;
+//    }
+//
+//    // Enable all interactions when the audio has finished playing
+//    self.view.userInteractionEnabled = YES;
+//}
+
+// Loads the information of the currentIntroStep for the introduction
+//-(NSArray*) loadIntroStep {
+//    NSString* textEnglish;
+//    NSString* audioEnglish;
+//    NSString* textSpanish;
+//    NSString* audioSpanish;
+//    NSString* expectedSelection;
+//    NSString* expectedIntroAction;
+//    NSString* expectedIntroInput;
+//    NSString* underlinedVocabWord;
+//    NSString* wrapperObj1;
+//    
+//    //allowInteractions = FALSE;
+//    
+//    //Get current step to be read
+//    IntroductionStep* currIntroStep = [currentIntroSteps objectAtIndex:currentIntroStep-1];
+//    expectedSelection = [currIntroStep expectedSelection];
+//    expectedIntroAction = [currIntroStep expectedAction];
+//    expectedIntroInput = [currIntroStep expectedInput];
+//    textEnglish = [currIntroStep englishText];
+//    audioEnglish = [currIntroStep englishAudioFileName];
+//    textSpanish = [currIntroStep spanishText];
+//    audioSpanish = [currIntroStep spanishAudioFileName];
+//    
+//    NSString* text = textEnglish;
+//    NSString* audio = audioEnglish;
+//    languageString = @"E";
+//    underlinedVocabWord = expectedIntroInput;
+//
+//    // If the language condition for the app is BILINGUAL (English after Spanish) and the current intro step
+//    //is lower than the step number to switch languages, load the Spanish information for the step
+//    if ([conditionSetup.language isEqualToString: @"Bilingual"] && currentIntroStep < STEPS_TO_SWITCH_LANGUAGES_EMBRACE && [conditionSetup.condition isEqualToString:@"Menu"]) {
+//        text = textSpanish;
+//        audio = audioSpanish;
+//        languageString = @"S";
+//        underlinedVocabWord = [[Translation translationWords] objectForKey:expectedIntroInput];
+//        if (!underlinedVocabWord) {
+//            underlinedVocabWord = expectedIntroInput;
+//        }
+//    }
+//    else if ([conditionSetup.language isEqualToString: @"Bilingual"] && currentIntroStep < STEPS_TO_SWITCH_LANGUAGES_CONTROL && [conditionSetup.condition isEqualToString:@"Control"]) {
+//        text = textSpanish;
+//        audio = audioSpanish;
+//        languageString = @"S";
+//        underlinedVocabWord = [[Translation translationWords] objectForKey:expectedIntroInput];
+//        if (!underlinedVocabWord) {
+//            underlinedVocabWord = expectedIntroInput;
+//        }
+//    }
+//    
+//    //Format text to load on the textbox
+//    NSString* formattedHTML = [self buildHTMLString:text:expectedSelection:underlinedVocabWord:expectedIntroAction];
+//    NSString* addOuterHTML = [NSString stringWithFormat:@"setOuterHTMLText('%@', '%@')", @"s1", formattedHTML];
+//    [bookView stringByEvaluatingJavaScriptFromString:addOuterHTML];
+//    
+//    //Get the sentence class
+//    NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
+//    NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
+//    
+//    //If it is an action sentence color it blue
+//    if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
+//        if(![expectedIntroInput isEqualToString:@"next"]) {
+//            allowInteractions = TRUE;
+//        }
+//        NSString* colorSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
+//        [bookView stringByEvaluatingJavaScriptFromString:colorSentence];
+//    }
+//
+//    //Play introduction audio
+//    [self playAudioFile:audio];
+//    
+//    //Logging added by James for Introduction Audio
+//    [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Introduction Audio" : languageString :audio :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+//    
+//    
+//    //DEBUG code to play expected action
+//    //NSString* actions = [NSString stringWithFormat:@"%@ %@ %@",expectedIntroAction,expectedIntroInput,expectedSelection];
+//    //[self playWordAudio:actions:@"en-us"];
+//    
+//    //The response audio file names are hard-coded for now
+//    if ([expectedIntroInput isEqualToString:@"next"]) {
+//        wrapperObj1 = @"TTNBTC.m4a";
+//    }
+//    else if ([expectedIntroInput isEqualToString:@"next"] && [conditionSetup.language isEqualToString: @"Bilingual"]) {
+//        wrapperObj1 = @"TEBNPC.m4a";
+//    }
+//    else if ([expectedSelection isEqualToString:@"word"]) {
+//        wrapperObj1 = @"BFCE_2B.m4a";
+//    }
+//    else if ([expectedSelection isEqualToString:@"word"] && [conditionSetup.language isEqualToString: @"Bilingual"]) {
+//        wrapperObj1 = @"BFCS_2B.m4a";
+//    }
+//    else if ([expectedIntroAction isEqualToString:@"move"]) {
+//        wrapperObj1 = @"BFEE_8.m4a";
+//    }
+//    else if ([expectedIntroAction isEqualToString:@"move"] && [conditionSetup.language isEqualToString: @"Bilingual"]) {
+//        wrapperObj1 = @"BFES_8.m4a";
+//    }
+//    
+//    //NSDictionary *wrapper = [NSDictionary dictionaryWithObjectsAndKeys:wrapperObj1, @"Key1", nil];
+//    //timer = [NSTimer scheduledTimerWithTimeInterval:17.5 target:self selector:@selector(playAudioFileTimed:) userInfo:wrapper repeats:YES];
+//    
+//    performedActions = [NSArray arrayWithObjects: expectedSelection, expectedIntroAction, expectedIntroInput, nil];
+//    
+//    return performedActions;
+//}
+//
+/*
+ * Builds the format of the action sentence that allows words to be clickable
+ */
+//-(NSString*) buildHTMLString:(NSString*)htmlText :(NSString*)selectionType :(NSString*)clickableWord :(NSString*) sentenceType {
+//    //String to build
+//    NSString* stringToBuild;
+//    
+//    //If string contains the special character "'"
+//    if ([htmlText rangeOfString:@"'"].location != NSNotFound) {
+//        htmlText = [htmlText stringByReplacingCharactersInRange:NSMakeRange([htmlText rangeOfString:@"'"].location,1) withString:@"&#39;"];
+//    }
+//    
+//    NSArray* splits = [htmlText componentsSeparatedByString:clickableWord];
+//    
+//    if ([sentenceType isEqualToString:@"move"] || [sentenceType isEqualToString:@"group"]) {
+//        stringToBuild = [NSString stringWithFormat:@"<span class=\"sentence actionSentence\" id=\"s1\">%@</span>",htmlText];
+//    }
+//    else if ([selectionType isEqualToString:@"word"]){
+//        stringToBuild = [NSString stringWithFormat:@"<span class=\"sentence\" id=\"s1\">%@<span class=\"audible\">%@</span>%@</span>",splits[0],clickableWord,splits[1]];
+//    }
+//    else {
+//        stringToBuild = [NSString stringWithFormat:@"<span class=\"sentence\" id=\"s1\">%@</span>",htmlText];
+//    }
+//    
+//    return stringToBuild;
+//}
+
+//-(NSArray*) loadVocabStep {
+//    NSString* text;
+//    NSString* audio;
+//    NSString* expectedSelection;
+//    NSString* expectedIntroAction;
+//    NSString* expectedIntroInput;
+//    NSString* wrapperObj1;
+//    NSString* nextAudio;
+//    NSInteger stepNumber;
+//    NSString* nextIntroInput;
+//    NSString* audioSpanish;
+//    NSString* nextAudioSpanish;
+//    
+//    sameWordClicked = false;
+//    
+//    //Get current step to be read
+//    VocabularyStep* currVocabStep = [currentVocabSteps objectAtIndex:currentVocabStep-1];
+//    expectedSelection = [currVocabStep expectedSelection];
+//    expectedIntroAction = [currVocabStep expectedAction];
+//    expectedIntroInput = [currVocabStep expectedInput];
+//    text = [currVocabStep englishText];
+//    audio = [currVocabStep englishAudioFileName];
+//    stepNumber = [currVocabStep wordNumber];
+//    audioSpanish = [currVocabStep spanishAudioFileName];
+//    lastStep = stepNumber;
+//    // && (stepNumber & 1) alternates between true and false
+//    if(([conditionSetup.language isEqualToString: @"Bilingual"]) && (stepNumber & 1)) {
+//        currentAudio = audioSpanish;
+//    }
+//    else {
+//        currentAudio = audio;
+//    }
+//    
+//    if([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"]) {
+//        //Get next step to be read
+//        VocabularyStep* nextVocabStep = [currentVocabSteps objectAtIndex:currentVocabStep];
+//        nextAudio = [nextVocabStep englishAudioFileName];
+//        nextAudioSpanish = [nextVocabStep spanishAudioFileName];
+//        nextIntroInput = [nextVocabStep expectedInput];
+//        // && (stepNumber & 1) alternates between true and false
+//        if([conditionSetup.language isEqualToString: @"Bilingual"] && (stepNumber & 1)) {
+//            vocabAudio = nextAudioSpanish;
+//        }
+//        else {
+//            vocabAudio = nextAudio;
+//        }
+//        nextIntro = nextIntroInput;
+//    }
+//    
+//    // If we are ont the first step (1) or the last step (9) which do not correspond to words
+//    //play the corresponding intro or outro audio
+//    if (currentVocabStep == 1 && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
+//        if([conditionSetup.language isEqualToString: @"Bilingual"]) {
+//            [self playAudioFile:audioSpanish];
+//        } else {
+//            //Play introduction audio
+//            [self playAudioFile:audio];
+//        }
+//        
+//        //Logging added by James for Word Audio
+////        [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Step Audio" : @"E" :audio  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+//    }
+//    
+//    if([conditionSetup.condition isEqualToString:@"Control"]){
+//        if (currentVocabStep == totalVocabSteps-2 && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
+//            if([conditionSetup.language isEqualToString: @"Bilingual"]) {
+//                [self playAudioFile:nextAudioSpanish];
+//            } else {
+//                //Play introduction audio
+//                [self playAudioFile:nextAudio];
+//            }
+//            currentVocabStep++;
+//        }
+//    }
+//    
+//    if([conditionSetup.condition isEqualToString:@"Embrace"]){
+//        if (currentVocabStep == totalVocabSteps-2 && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
+//            
+//            currentVocabStep++;
+//            //Get next step to be read
+//            VocabularyStep* nextVocabStep = [currentVocabSteps objectAtIndex:currentVocabStep];
+//            nextAudio = [nextVocabStep englishAudioFileName];
+//            nextAudioSpanish = [nextVocabStep spanishAudioFileName];
+//            nextIntroInput = [nextVocabStep expectedInput];
+//            nextIntro = nextIntroInput;
+//            
+//            if([conditionSetup.language isEqualToString: @"Bilingual"]) {
+//                [self playAudioFile:nextAudioSpanish];
+//            } else {
+//                //Play introduction audio
+//                [self playAudioFile:nextAudio];
+//            }
+//        }
+//    }
+//    
+//    //Switch the language every step for the translation
+////    if ([languageString isEqualToString:@"S"]) {
+////        languageString = @"E";
+////    }
+////    else {
+////        languageString = @"S";
+////    }
+//    
+//    //The response audio file names are hard-coded for now
+//    if ([expectedIntroInput isEqualToString:@"next"]) {
+//        wrapperObj1 = @"TTNBTC.m4a";
+//    }
+//    else if ([expectedIntroInput isEqualToString:@"next"] && [conditionSetup.language isEqualToString: @"Bilingual"]) {
+//        wrapperObj1 = @"TEBNPC.m4a";
+//    }
+//    
+//    //The wrapper is a dictionary that stores the name of the file and a key.
+//    //It is used to pass this information to the timer as one of its parameters.
+//    //NSDictionary *wrapper = [NSDictionary dictionaryWithObjectsAndKeys:wrapperObj1, @"Key1", nil];
+//    //timer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(playAudioFileTimed:) userInfo:wrapper repeats:YES];
+//    
+//    performedActions = [NSArray arrayWithObjects: expectedSelection, expectedIntroAction, expectedIntroInput, nil];
+//    
+//    return performedActions;
+//}
 
 -(void) colorSentencesUponNext {
     //Color the current sentence black by default
@@ -3334,9 +3706,8 @@ ConditionSetup *conditionSetup;
     //timer = nil;
 }
 
-
 - (NSString*) getEnglishTranslation: (NSString*)sentence {
-    NSArray* keys = [[Translation translations] allKeysForObject:sentence];
+    NSArray* keys = [[Translation translationWords] allKeysForObject:sentence];
     if (keys != nil && [keys count] > 0)
         return [keys objectAtIndex:0];
     else

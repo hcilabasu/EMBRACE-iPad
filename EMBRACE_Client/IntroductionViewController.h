@@ -37,7 +37,8 @@ typedef enum Action {
 @property(nonatomic, strong) BuildHTMLString *buildHTMLStringClass;
 @property(nonatomic, strong) PlayAudioFile *playAudioFileClass;
 //@property(nonatomic) int language_condition;
-@property(nonatomic) int STEPS_TO_SWITCH_LANGUAGES;
+@property(nonatomic) int STEPS_TO_SWITCH_LANGUAGES_EMBRACE;
+@property(nonatomic) int STEPS_TO_SWITCH_LANGUAGES_CONTROL;
 @property(nonatomic) BOOL allowInteractions; //TRUE if objects can be manipulated; FALSE otherwise
 @property (nonatomic) NSArray *performedActions; //Store the information of the current step
 
