@@ -3445,6 +3445,12 @@ ConditionSetup *conditionSetup;
                 [self loadVocabStep];
             }
         }
+        else if ([vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
+            currentSentence++;
+            currentVocabStep++;
+            [self colorSentencesUponNext];
+            [self loadVocabStep];
+        }
 }
 
 // Loads the information of the currentIntroStep for the introduction
