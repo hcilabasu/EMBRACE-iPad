@@ -3445,7 +3445,7 @@ ConditionSetup *conditionSetup;
                 [self loadVocabStep];
             }
         }
-        else if ([vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
+        else if (!onFirstVocabStep && ([vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound)) {
             currentSentence++;
             currentVocabStep++;
             [self colorSentencesUponNext];
