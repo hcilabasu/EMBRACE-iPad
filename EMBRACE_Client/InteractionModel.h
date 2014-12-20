@@ -19,6 +19,7 @@
 #import "Introduction.h"
 #import "IntroductionStep.h"
 #import "VocabularyStep.h"
+#import "AssessmentActivity.h"
 
 @interface InteractionModel : NSObject {
     NSMutableSet* relationships;
@@ -30,11 +31,12 @@
     NSMutableSet* sentenceMetadata;
     NSMutableDictionary* introductions;
     NSMutableDictionary* vocabularies;
+    NSMutableDictionary *assessmentActivities;
     
     BOOL useRelationships;
     BOOL useConstraints;
 }
-
+@property (nonatomic, strong) NSMutableDictionary *assessmentActivities;
 @property (nonatomic, strong) NSMutableSet* relationships;
 @property (nonatomic, strong) NSMutableSet* constraints;
 @property (nonatomic, strong) NSMutableDictionary* hotspots;
@@ -44,6 +46,9 @@
 @property (nonatomic, strong) NSMutableSet* sentenceMetadata;
 @property (nonatomic, strong) NSMutableDictionary* introductions;
 @property (nonatomic, strong) NSMutableDictionary* vocabularies;
+
+- (NSMutableDictionary*) getAssessmentActivity;
+- (void) addAssessmentActivity:(NSString*) storyTitle :(NSMutableArray*) questions;
 
 - (void) addHotspot:(NSString*)objId :(NSString*)act :(NSString*)objRole :(CGPoint)loc; //add hotspot to object with objectId at location loc.
 

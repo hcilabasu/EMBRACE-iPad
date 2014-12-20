@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <ActivityAssessment>
+        <Questions title= "Introduction to The Best Farm">
+            <Question number="1">
+                <QuestionText>This is a sample Question</QuestionText>
+                <Answer1>Sample Answer 1</Answer1>
+                <Answer2>Sample Answer 2 - This is the correct answer</Answer2>
+                <Answer3>Sample Answer 3</Answer3>
+                <Answer4>Sample Answer 4</Answer4>
+                <expectedSelection>2</expectedSelection>
+            </Question>
+            <Question number="2">
+                <QuestionText>This is a sample Question</QuestionText>
+                <Answer1>Sample Answer 1</Answer1>
+                <Answer2>Sample Answer 2</Answer2>
+                <Answer3>Sample Answer 3 - This is the correct answer</Answer3>
+                <Answer4>Sample Answer 4</Answer4>
+                <expectedSelection>3</expectedSelection>
+            </Question>
+            <Question number="3">
+                <QuestionText>This is a sample Question</QuestionText>
+                <Answer1>Sample Answer 1</Answer1>
+                <Answer2>Sample Answer 2</Answer2>
+                <Answer3>Sample Answer 3</Answer3>
+                <Answer4>Sample Answer 4 - This is the correct answer</Answer4>
+                <expectedSelection>4</expectedSelection>
+            </Question>
+    </Questions>
+        <Questions title= "The Contest">
+            <Question number="1">
+                <QuestionText>This is a sample Question</QuestionText>
+                <Answer1>Sample Answer 1</Answer1>
+                <Answer2>Sample Answer 2 - This is the correct answer</Answer2>
+                <Answer3>Sample Answer 3</Answer3>
+                <Answer4>Sample Answer 4</Answer4>
+                <expectedSelection>2</expectedSelection>
+            </Question>
+            <Question number="2">
+                <QuestionText>This is a sample Question</QuestionText>
+                <Answer1>Sample Answer 1</Answer1>
+                <Answer2>Sample Answer 2</Answer2>
+                <Answer3>Sample Answer 3 - This is the correct answer</Answer3>
+                <Answer4>Sample Answer 4</Answer4>
+                <expectedSelection>3</expectedSelection>
+            </Question>
+            <Question number="3">
+                <QuestionText>This is a sample Question</QuestionText>
+                <Answer1>Sample Answer 1</Answer1>
+                <Answer2>Sample Answer 2</Answer2>
+                <Answer3>Sample Answer 3</Answer3>
+                <Answer4>Sample Answer 4 - This is the correct answer</Answer4>
+                <expectedSelection>4</expectedSelection>
+            </Question>
+            </Questions>
+    </ActivityAssessment>
+</metadata>

@@ -15,12 +15,6 @@
 #import "PlayAudioFile.h"
 #import "ConditionSetup.h"
 
-//Defines the types of language conditions to be used
-typedef enum Language {
-    ENGLISH,
-    BILINGUAL
-} Language;
-
 //This enum defines the action types that exist in every intro or vocab step
 typedef enum Action {
     SELECTION,

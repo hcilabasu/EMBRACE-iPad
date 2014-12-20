@@ -122,7 +122,7 @@ ConditionSetup *conditionSetup;
     
         // If the language condition for the app is BILINGUAL (English after Spanish) and the current intro step
         //is lower than the step number to switch languages, load the Spanish information for the step
-        if ([conditionSetup.language isEqualToString: @"Bilingual"] && currentIntroStep < STEPS_TO_SWITCH_LANGUAGES_EMBRACE && [conditionSetup.condition isEqualToString:@"Menu"]) {
+        if ((conditionSetup.language == BILINGUAL) && currentIntroStep < STEPS_TO_SWITCH_LANGUAGES_EMBRACE && (conditionSetup.condition ==MENU)) {
             text = textSpanish;
             audio = audioSpanish;
             languageString = @"S";
@@ -131,7 +131,7 @@ ConditionSetup *conditionSetup;
                 underlinedVocabWord = expectedIntroInput;
             }
         }
-        else if ([conditionSetup.language isEqualToString: @"Bilingual"] && currentIntroStep < STEPS_TO_SWITCH_LANGUAGES_CONTROL && [conditionSetup.condition isEqualToString:@"Control"]) {
+        else if ((conditionSetup.language ==BILINGUAL) && currentIntroStep < STEPS_TO_SWITCH_LANGUAGES_CONTROL && (conditionSetup.condition ==CONTROL)) {
             text = textSpanish;
             audio = audioSpanish;
             languageString = @"S";
@@ -173,19 +173,19 @@ ConditionSetup *conditionSetup;
     if ([expectedIntroInput isEqualToString:@"next"]) {
         wrapperObj1 = @"TTNBTC.m4a";
     }
-    else if ([expectedIntroInput isEqualToString:@"next"] && [conditionSetup.language isEqualToString:@"Bilingual"] ) {
+    else if ([expectedIntroInput isEqualToString:@"next"] && (conditionSetup.language ==BILINGUAL)) {
         wrapperObj1 = @"TEBNPC.m4a";
     }
     else if ([expectedSelection isEqualToString:@"word"]) {
         wrapperObj1 = @"BFCE_2B.m4a";
     }
-    else if ([expectedSelection isEqualToString:@"word"] && [conditionSetup.language isEqualToString:@"Bilingual"]) {
+    else if ([expectedSelection isEqualToString:@"word"] && (conditionSetup.language ==BILINGUAL)) {
         wrapperObj1 = @"BFCS_2B.m4a";
     }
     else if ([expectedIntroAction isEqualToString:@"move"]) {
         wrapperObj1 = @"BFEE_8.m4a";
     }
-    else if ([expectedIntroAction isEqualToString:@"move"] && [conditionSetup.language isEqualToString:@"Bilingual"]) {
+    else if ([expectedIntroAction isEqualToString:@"move"] && (conditionSetup.language ==BILINGUAL)) {
         wrapperObj1 = @"BFES_8.m4a";
     }
     
@@ -224,7 +224,7 @@ ConditionSetup *conditionSetup;
         audioSpanish = [currVocabStep spanishAudioFileName];
         lastStep = stepNumber;
         // && (stepNumber & 1) alternates between true and false
-        if(([conditionSetup.language isEqualToString: @"Bilingual"]) && (stepNumber & 1)) {
+        if(((conditionSetup.language ==BILINGUAL)) && (stepNumber & 1)) {
             currentAudio = audioSpanish;
         }
         else {
@@ -238,7 +238,7 @@ ConditionSetup *conditionSetup;
             nextAudioSpanish = [nextVocabStep spanishAudioFileName];
             nextIntroInput = [nextVocabStep expectedInput];
             // && (stepNumber & 1) alternates between true and false
-            if([conditionSetup.language isEqualToString: @"Bilingual"] && (stepNumber & 1)) {
+            if((conditionSetup.language ==BILINGUAL) && (stepNumber & 1)) {
                 vocabAudio = nextAudioSpanish;
             }
             else {
@@ -250,7 +250,7 @@ ConditionSetup *conditionSetup;
         // If we are ont the first step (1) or the last step (9) which do not correspond to words
         //play the corresponding intro or outro audio
         if (currentVocabStep == 1 && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
-            if([conditionSetup.language isEqualToString: @"Bilingual"]) {
+            if((conditionSetup.language ==BILINGUAL)) {
                 [playAudioFileClass playAudioFile:audioSpanish];
             } else {
                 //Play introduction audio
@@ -261,9 +261,9 @@ ConditionSetup *conditionSetup;
     //        [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Step Audio" : @"E" :audio  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
         }
     
-        if([conditionSetup.condition isEqualToString:@"Control"]){
+        if((conditionSetup.condition ==CONTROL)){
             if (currentVocabStep == totalVocabSteps-2 && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
-                if([conditionSetup.language isEqualToString: @"Bilingual"]) {
+                if((conditionSetup.language == BILINGUAL)) {
                     [playAudioFileClass playAudioFile:nextAudioSpanish];
                 } else {
                     //Play introduction audio
@@ -273,7 +273,7 @@ ConditionSetup *conditionSetup;
             }
         }
     
-        if([conditionSetup.condition isEqualToString:@"Embrace"]){
+        if((conditionSetup.condition ==EMBRACE)){
             if (currentVocabStep == totalVocabSteps-2 && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
     
                 currentVocabStep++;
@@ -284,7 +284,7 @@ ConditionSetup *conditionSetup;
                 nextIntroInput = [nextVocabStep expectedInput];
                 nextIntro = nextIntroInput;
     
-                if([conditionSetup.language isEqualToString: @"Bilingual"]) {
+                if((conditionSetup.language ==BILINGUAL)) {
                     [playAudioFileClass playAudioFile:nextAudioSpanish];
                 } else {
                     //Play introduction audio
@@ -305,7 +305,7 @@ ConditionSetup *conditionSetup;
         if ([expectedIntroInput isEqualToString:@"next"]) {
             wrapperObj1 = @"TTNBTC.m4a";
         }
-        else if ([expectedIntroInput isEqualToString:@"next"] && [conditionSetup.language isEqualToString: @"Bilingual"]) {
+        else if ([expectedIntroInput isEqualToString:@"next"] && (conditionSetup.language ==BILINGUAL)) {
             wrapperObj1 = @"TEBNPC.m4a";
         }
     

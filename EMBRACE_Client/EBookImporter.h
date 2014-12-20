@@ -16,6 +16,7 @@
     NSArray *dirPaths;
     NSString *docsDir;
     NSMutableArray *library;
+    
 }
 
 @property (nonatomic,strong) NSString *docsDir;

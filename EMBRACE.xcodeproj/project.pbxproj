@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1ABC75F71A3FBFC500FAF003 /* AssessmentActivities-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1ABC75F61A3FBFC500FAF003 /* AssessmentActivities-MetaData.xml */; };
 		1AD3CC861A251C5300E18B1C /* IntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3CC851A251C5300E18B1C /* IntroductionViewController.m */; };
 		1AD3CC891A251CBA00E18B1C /* BuildHTMLString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3CC881A251CBA00E18B1C /* BuildHTMLString.m */; };
 		1AD3CC8C1A251CE600E18B1C /* PlayAudioFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3CC8B1A251CE600E18B1C /* PlayAudioFile.m */; };
+		1AF3815B1A40A4C600D967FD /* AssessmentActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF381591A40A4C600D967FD /* AssessmentActivityViewController.m */; };
+		1AF3815C1A40A4C600D967FD /* AssessmentActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AF3815A1A40A4C600D967FD /* AssessmentActivityViewController.xib */; };
 		31058C74176BCFF200595AAE /* logo114.png in Resources */ = {isa = PBXBuildFile; fileRef = 31058C73176BCFF200595AAE /* logo114.png */; };
 		31058C76176BCFF900595AAE /* logo57.png in Resources */ = {isa = PBXBuildFile; fileRef = 31058C75176BCFF900595AAE /* logo57.png */; };
 		31058C79176BE71C00595AAE /* PhysicalManipulationActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 31058C78176BE71C00595AAE /* PhysicalManipulationActivity.m */; };
@@ -605,12 +608,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1ABC75F61A3FBFC500FAF003 /* AssessmentActivities-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivities-MetaData.xml"; sourceTree = "<group>"; };
 		1AD3CC841A251C5300E18B1C /* IntroductionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroductionViewController.h; sourceTree = "<group>"; };
 		1AD3CC851A251C5300E18B1C /* IntroductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroductionViewController.m; sourceTree = "<group>"; };
 		1AD3CC871A251CBA00E18B1C /* BuildHTMLString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildHTMLString.h; sourceTree = "<group>"; };
 		1AD3CC881A251CBA00E18B1C /* BuildHTMLString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildHTMLString.m; sourceTree = "<group>"; };
 		1AD3CC8A1A251CE600E18B1C /* PlayAudioFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayAudioFile.h; sourceTree = "<group>"; };
 		1AD3CC8B1A251CE600E18B1C /* PlayAudioFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayAudioFile.m; sourceTree = "<group>"; };
+		1AF381581A40A4C600D967FD /* AssessmentActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssessmentActivityViewController.h; sourceTree = "<group>"; };
+		1AF381591A40A4C600D967FD /* AssessmentActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssessmentActivityViewController.m; sourceTree = "<group>"; };
+		1AF3815A1A40A4C600D967FD /* AssessmentActivityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AssessmentActivityViewController.xib; sourceTree = "<group>"; };
 		31058C73176BCFF200595AAE /* logo114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo114.png; path = ../../logo114.png; sourceTree = "<group>"; };
 		31058C75176BCFF900595AAE /* logo57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo57.png; path = ../../logo57.png; sourceTree = "<group>"; };
 		31058C77176BE71C00595AAE /* PhysicalManipulationActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicalManipulationActivity.h; sourceTree = "<group>"; };
@@ -1344,8 +1351,6 @@
 				31058C78176BE71C00595AAE /* PhysicalManipulationActivity.m */,
 				31058C7A176BE73C00595AAE /* ImagineManipulationActivity.h */,
 				31058C7B176BE73D00595AAE /* ImagineManipulationActivity.m */,
-				31058C7D176BE74B00595AAE /* AssessmentActivity.h */,
-				31058C7E176BE74B00595AAE /* AssessmentActivity.m */,
 				31058C80176BEB6200595AAE /* Page.h */,
 				31058C81176BEB6200595AAE /* Page.m */,
 				31C306C0183D900B0043DEDD /* Solution.h */,
@@ -1544,6 +1549,9 @@
 				31953E581729ECC100570087 /* AppDelegate.m */,
 				C680520B197ECD42002A5249 /* ServerCommunicationController.h */,
 				C680520C197ECD43002A5249 /* ServerCommunicationController.m */,
+				1AF381581A40A4C600D967FD /* AssessmentActivityViewController.h */,
+				1AF381591A40A4C600D967FD /* AssessmentActivityViewController.m */,
+				1AF3815A1A40A4C600D967FD /* AssessmentActivityViewController.xib */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1576,6 +1584,8 @@
 				31161432179DE85E00655221 /* Relationship.m */,
 				C3B52154192A97D7003FF639 /* InteractionModel.h */,
 				C3B52155192A97D7003FF639 /* InteractionModel.m */,
+				31058C7D176BE74B00595AAE /* AssessmentActivity.h */,
+				31058C7E176BE74B00595AAE /* AssessmentActivity.m */,
 				310908EA17DE90CA004590A2 /* MovementConstraint.h */,
 				310908EB17DE90CA004590A2 /* MovementConstraint.m */,
 				310908ED17DE90DB004590A2 /* OrderConstraint.h */,
@@ -2128,6 +2138,7 @@
 		5CF9941C19AC34550080C32F /* OEBPS */ = {
 			isa = PBXGroup;
 			children = (
+				1ABC75F61A3FBFC500FAF003 /* AssessmentActivities-MetaData.xml */,
 				5C0274C019CFE80100BF4B1A /* metadata.xml */,
 				5C776B2E19C7E469000DBC65 /* toc.ncx */,
 				5CF9941D19AC34550080C32F /* content.opf */,
@@ -2482,6 +2493,7 @@
 				5C776B0C19C6A884000DBC65 /* BFCE_4.m4a in Resources */,
 				5C7FE05019A6B1B500CBBE0E /* Story3-Muscles-Use-Oxygen-PM-1.xhtml in Resources */,
 				5CAD063619BEB8AE00F3F053 /* dustE.m4a in Resources */,
+				1AF3815C1A40A4C600D967FD /* AssessmentActivityViewController.xib in Resources */,
 				5CAD05FA19BE6A3E00F3F053 /* CCE2_5.m4a in Resources */,
 				5CAD060A19BE6A3E00F3F053 /* CCE1_8.m4a in Resources */,
 				5C776B4F19C8C623000DBC65 /* Story1-The-Contest-PM-2S.xhtml in Resources */,
@@ -2746,6 +2758,7 @@
 				5C7FE06519A6B1B500CBBE0E /* tocE.ncx in Resources */,
 				5C776B4519C80E71000DBC65 /* BFES_10A.m4a in Resources */,
 				5C776C5F19CA710B000DBC65 /* musclesS.m4a in Resources */,
+				1ABC75F71A3FBFC500FAF003 /* AssessmentActivities-MetaData.xml in Resources */,
 				5CF9948519AC34550080C32F /* farmer_falling.png in Resources */,
 				5C7FE11819A7E43C00CBBE0E /* BFCS_3.m4a in Resources */,
 				5C776C3A19C952A6000DBC65 /* purrDEFS.m4a in Resources */,
@@ -2884,6 +2897,7 @@
 				1AD3CC8C1A251CE600E18B1C /* PlayAudioFile.m in Sources */,
 				31953E871729EE5800570087 /* LibraryViewController.m in Sources */,
 				C3B5215A192AB610003FF639 /* EBookImporter.m in Sources */,
+				1AF3815B1A40A4C600D967FD /* AssessmentActivityViewController.m in Sources */,
 				31953E8D1729EE6E00570087 /* BookCellView.m in Sources */,
 				5CFA85AB1950EFDC00C7537D /* IntroductionStep.m in Sources */,
 				31953E8F1729EE6E00570087 /* LibraryView.m in Sources */,

@@ -286,9 +286,10 @@ ConditionSetup *conditionSetup;
 -(void) readTOCForBook:(Book*)book {
     //NSLog(@"in beginning of TOC for book");
     NSString *filepath = nil;
-    if([conditionSetup.language isEqualToString:@"Bilingual"]){
+
+    if(conditionSetup.language == BILINGUAL){
         filepath = [[book mainContentPath] stringByAppendingString:@"toc.ncx"];
-    } else if ([conditionSetup.language isEqualToString:@"English"]) {
+    } else if (conditionSetup.language == ENGLISH) {
         filepath = [[book mainContentPath] stringByAppendingString:@"tocE.ncx"];
     }
     
@@ -731,7 +732,7 @@ ConditionSetup *conditionSetup;
     {
         GDataXMLElement *introductionElement = (GDataXMLElement *) [introductionElements objectAtIndex:0];
 
-        NSArray* introductions = [introductionElement elementsForName:[NSString stringWithFormat:@"%@%@",conditionSetup.condition,@"Introduction"]];
+        NSArray* introductions = [introductionElement elementsForName:[NSString stringWithFormat:@"%@%@",[conditionSetup ReturnConditionEnumToString:conditionSetup.condition], @"Introduction"]];
         
         for(GDataXMLElement* introduction in introductions) {
             //Get story title.
@@ -855,5 +856,150 @@ ConditionSetup *conditionSetup;
             [model addVocabulary:storyTitle:storyWords];
         }
     }
+    
+    //NSLog(@"at beginning of read metadata for book");
+    filepath = [[book mainContentPath] stringByAppendingString:@"AssessmentActivities-MetaData.xml"];
+    
+    NSLog(filepath);
+    //Get xml data of the metadata file.
+    xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
+    
+    GDataXMLDocument *assessmentMetadataDoc;
+    //break out metadata file into seperate components
+    assessmentMetadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:nil];
+    
+    //Read in the assessment activity information
+    NSArray* AssessmentActivityElements = [assessmentMetadataDoc nodesForXPath:@"//ActivityAssessment" error:nil];
+    
+    if ([AssessmentActivityElements count] > 0)
+    {
+        GDataXMLElement *AssessmentActivityElement = (GDataXMLElement *) [AssessmentActivityElements objectAtIndex:0];
+        
+        NSArray* AssessmentActivities = [AssessmentActivityElement elementsForName:@"Questions"];
+        
+        for(GDataXMLElement* activity in AssessmentActivities) {
+            //Get story title.
+            NSString* title = [[activity attributeForName:@"title"] stringValue];
+            NSArray* questions = [activity elementsForName:@"Question"];
+            NSMutableArray* StoryQuestions = [[NSMutableArray alloc] init];
+            
+            for(GDataXMLElement* question in questions) {
+                
+                //Get Answer number
+                int QuestionNum = [[[question attributeForName:@"number"] stringValue] integerValue];
+                
+                //Get Question Text
+                NSArray* questionText = [question elementsForName:@"QuestionText"];
+                GDataXMLElement *gdataElement = (GDataXMLElement *)[questionText objectAtIndex:0];
+                NSString* QuestionText = gdataElement.stringValue;
+                
+                //Get 1st Answer
+                NSArray* answer1 = [question elementsForName:@"Answer1"];
+                gdataElement = (GDataXMLElement *)[answer1 objectAtIndex:0];
+                NSString* Answer1 = gdataElement.stringValue;
+                
+                //Get 2nd Answer
+                NSArray* answer2 = [question elementsForName:@"Answer2"];
+                gdataElement = (GDataXMLElement *)[answer2 objectAtIndex:0];
+                NSString* Answer2 = gdataElement.stringValue;
+                
+                //Get 3rd Answer
+                NSArray* answer3 = [question elementsForName:@"Answer3"];
+                gdataElement = (GDataXMLElement *)[answer3 objectAtIndex:0];
+                NSString* Answer3 = gdataElement.stringValue;
+                
+                //Get 4th Answer
+                NSArray* answer4 = [question elementsForName:@"Answer4"];
+                gdataElement = (GDataXMLElement *)[answer4 objectAtIndex:0];
+                NSString* Answer4 = gdataElement.stringValue;
+                
+                //Get the expected selection
+                NSArray* expectedSelections = [question elementsForName:@"expectedSelection"];
+                gdataElement = (GDataXMLElement *)[expectedSelections objectAtIndex:0];
+                NSInteger expectedSelection = [gdataElement.stringValue integerValue];
+                
+                AssessmentActivity* storyquestion = [[AssessmentActivity alloc] initWithValues:QuestionNum:QuestionText:Answer1:Answer2:Answer3:Answer4:expectedSelection];
+                [StoryQuestions addObject:storyquestion];
+                
+            }
+            [model addAssessmentActivity:title:StoryQuestions];
+        }
+    }
+
+    
 }
+
+-(void)readAssessmentActivitiesForBook: (Book *) book{
+    //NSLog(@"at beginning of read metadata for book");
+    NSString *filepath = [[book mainContentPath] stringByAppendingString:@"AssessmentActivities-MetaData.xml"];
+    
+    //Get xml data of the metadata file.
+    NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
+    
+    NSError *error;
+    
+    //break out metadata file into seperate components
+    GDataXMLDocument *metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:&error];
+    
+    InteractionModel *model = [book model];
+    
+    //Read in the assessment activity information
+    NSArray* AssessmentActivityElements = [metadataDoc nodesForXPath:@"//AssessmentActivity" error:nil];
+    
+    if ([AssessmentActivityElements count] > 0)
+    {
+        GDataXMLElement *AssessmentActivityElement = (GDataXMLElement *) [AssessmentActivityElements objectAtIndex:0];
+        
+        NSArray* AssessmentActivities = [AssessmentActivityElement elementsForName:@"Questions"];
+        
+        for(GDataXMLElement* activity in AssessmentActivities) {
+            //Get story title.
+            NSString* title = [[activity attributeForName:@"title"] stringValue];
+            NSArray* questions = [activity elementsForName:@"Question"];
+            NSMutableArray* StoryQuestions = [[NSMutableArray alloc] init];
+            
+            for(GDataXMLElement* question in questions) {
+                
+                //Get Answer number
+                int QuestionNum = [[[question attributeForName:@"number"] stringValue] integerValue];
+                
+                //Get Question Text
+                NSArray* questionText = [question elementsForName:@"QuestionText"];
+                GDataXMLElement *gdataElement = (GDataXMLElement *)[questionText objectAtIndex:0];
+                NSString* QuestionText = gdataElement.stringValue;
+                
+                //Get 1st Answer
+                NSArray* answer1 = [question elementsForName:@"Answer1"];
+                gdataElement = (GDataXMLElement *)[answer1 objectAtIndex:0];
+                NSString* Answer1 = gdataElement.stringValue;
+                
+                //Get 2nd Answer
+                NSArray* answer2 = [question elementsForName:@"Answer2"];
+                gdataElement = (GDataXMLElement *)[answer2 objectAtIndex:0];
+                NSString* Answer2 = gdataElement.stringValue;
+                
+                //Get 3rd Answer
+                NSArray* answer3 = [question elementsForName:@"Answer3"];
+                gdataElement = (GDataXMLElement *)[answer3 objectAtIndex:0];
+                NSString* Answer3 = gdataElement.stringValue;
+                
+                //Get 4th Answer
+                NSArray* answer4 = [question elementsForName:@"Answer4"];
+                gdataElement = (GDataXMLElement *)[answer4 objectAtIndex:0];
+                NSString* Answer4 = gdataElement.stringValue;
+                
+                //Get the expected selection
+                NSArray* expectedSelections = [question elementsForName:@"expectedSelection"];
+                gdataElement = (GDataXMLElement *)[expectedSelections objectAtIndex:0];
+                NSInteger expectedSelection = [gdataElement.stringValue integerValue];
+        
+                AssessmentActivity* storyquestion = [[AssessmentActivity alloc] initWithValues:QuestionNum:QuestionText:Answer1:Answer2:Answer3:Answer4:expectedSelection];
+                [StoryQuestions addObject:storyquestion];
+                
+            }
+            [model addAssessmentActivity:title:StoryQuestions];
+        }
+    }
+}
+    
 @end

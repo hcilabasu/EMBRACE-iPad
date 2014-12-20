@@ -19,6 +19,7 @@
 @synthesize sentenceMetadata;
 @synthesize introductions;
 @synthesize vocabularies;
+@synthesize assessmentActivities;
 
 - (id) init {
     if (self = [super init]) {
@@ -33,9 +34,18 @@
         useConstraints = TRUE;
         introductions = [[NSMutableDictionary alloc] init];
         vocabularies = [[NSMutableDictionary alloc] init];
+        assessmentActivities = [[NSMutableDictionary alloc] init];
     }
     
     return self;
+}
+
+- (void) addAssessmentActivity:(NSString*) storyTitle :(NSMutableArray*) questions {
+    [assessmentActivities setObject:questions forKey:storyTitle];
+}
+
+- (NSMutableDictionary*) getAssessmentActivity{
+    return assessmentActivities;
 }
 
 /*

@@ -56,7 +56,7 @@
         [[ServerCommunicationController sharedManager] logContext:student];
         //Logging Completes Here.
         
-        self.title = [NSString stringWithFormat:@"%@ %@",conditionSetup.condition, conditionSetup.language];
+        self.title = [NSString stringWithFormat:@"%@ %@",[conditionSetup ReturnConditionEnumToString:conditionSetup.condition],[conditionSetup ReturnLanguageEnumtoString: conditionSetup.language]];
     }
     else
     {
@@ -146,6 +146,7 @@
     destination.bookImporter = bookImporter;
     destination.bookTitle = self.bookToOpen;
     destination.chapterTitle = self.chapterToOpen;
+    destination.libraryViewController = self;
     
     //Instead of loading the first page, we're going to load the page that was selected.]
     //NSLog(@"chapter to Open: %@", self.chapterToOpen);

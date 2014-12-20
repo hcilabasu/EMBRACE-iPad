@@ -12,26 +12,13 @@
 #import "Book.h"
 #import "AVFoundation/AVSpeechSynthesis.h"
 #import "IntroductionViewController.h"
-
-//Describes the condition in which the app will be deployed
-typedef enum Condition {
-    MENU,
-    HOTSPOT,
-    CONTROL,
-    OTHER,
-} Condition;
+#import "AssessmentActivityViewController.h"
 
 typedef enum InteractionRestriction {
     ALL_ENTITIES, //Any object can be used
     ONLY_CORRECT, //Only the correct object can be used
     NO_ENTITIES //No object can be used
 } InteractionRestriction;
-
-//Defines the types of language conditions to be used
-//typedef enum Language {
-//    ENGLISH,
-//    BILINGUAL
-//} Language;
 
 //This enum will be used in the future to define if a condition has or not image manipulation
 typedef enum InteractionMode {
@@ -65,7 +52,9 @@ typedef enum InteractionMode {
 @property (nonatomic, strong) IntroductionViewController *IntroductionClass;
 @property (nonatomic, strong) BuildHTMLString *buildstringClass;
 @property(nonatomic,strong) PlayAudioFile *playaudioClass;
+@property(nonatomic, strong) UIViewController *libraryViewController;
 
+-(void)loadAssessmentActivity;
 -(void) loadFirstPage;
 -(void) loadNextPage;
 -(void) loadPage;
