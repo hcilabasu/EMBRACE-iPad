@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1ABC75F71A3FBFC500FAF003 /* AssessmentActivities-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1ABC75F61A3FBFC500FAF003 /* AssessmentActivities-MetaData.xml */; };
+		1ABD84AE1A49F54B0043A685 /* PlayAudioIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABD84AD1A49F54B0043A685 /* PlayAudioIcon.png */; };
 		1AD3CC861A251C5300E18B1C /* IntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3CC851A251C5300E18B1C /* IntroductionViewController.m */; };
 		1AD3CC891A251CBA00E18B1C /* BuildHTMLString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3CC881A251CBA00E18B1C /* BuildHTMLString.m */; };
 		1AD3CC8C1A251CE600E18B1C /* PlayAudioFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3CC8B1A251CE600E18B1C /* PlayAudioFile.m */; };
@@ -609,6 +610,7 @@
 
 /* Begin PBXFileReference section */
 		1ABC75F61A3FBFC500FAF003 /* AssessmentActivities-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivities-MetaData.xml"; sourceTree = "<group>"; };
+		1ABD84AD1A49F54B0043A685 /* PlayAudioIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayAudioIcon.png; sourceTree = "<group>"; };
 		1AD3CC841A251C5300E18B1C /* IntroductionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroductionViewController.h; sourceTree = "<group>"; };
 		1AD3CC851A251C5300E18B1C /* IntroductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroductionViewController.m; sourceTree = "<group>"; };
 		1AD3CC871A251CBA00E18B1C /* BuildHTMLString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildHTMLString.h; sourceTree = "<group>"; };
@@ -1319,6 +1321,7 @@
 		31109700174AB35D00B02BF7 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				1ABD84AD1A49F54B0043A685 /* PlayAudioIcon.png */,
 				31109701174AB35E00B02BF7 /* cover_default.png */,
 				31058C75176BCFF900595AAE /* logo57.png */,
 				31058C73176BCFF200595AAE /* logo114.png */,
@@ -2525,6 +2528,7 @@
 				31953E5D1729ECC100570087 /* Default@2x.png in Resources */,
 				5C776C5319C95A13000DBC65 /* trophyS.m4a in Resources */,
 				5C776BE919C93E1E000DBC65 /* tubesDEFS.m4a in Resources */,
+				1ABD84AE1A49F54B0043A685 /* PlayAudioIcon.png in Resources */,
 				5C7FE04B19A6B1B500CBBE0E /* Story2-The-Amazing-Heart-PM-3.xhtml in Resources */,
 				5C776C5719CA6EE6000DBC65 /* arteriesS.m4a in Resources */,
 				5CF655BF19AEACF0000AC913 /* Story3-Cleaning-Up-Intro-E.xhtml in Resources */,

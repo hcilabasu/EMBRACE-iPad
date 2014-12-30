@@ -860,7 +860,7 @@ ConditionSetup *conditionSetup;
     //NSLog(@"at beginning of read metadata for book");
     filepath = [[book mainContentPath] stringByAppendingString:@"AssessmentActivities-MetaData.xml"];
     
-    NSLog(filepath);
+    //NSLog(filepath);
     //Get xml data of the metadata file.
     xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
     
@@ -893,32 +893,52 @@ ConditionSetup *conditionSetup;
                 GDataXMLElement *gdataElement = (GDataXMLElement *)[questionText objectAtIndex:0];
                 NSString* QuestionText = gdataElement.stringValue;
                 
+                NSArray* questionAudio = [question elementsForName:@"QuestionAudio"];
+                gdataElement = (GDataXMLElement *)[questionAudio objectAtIndex:0];
+                NSString* QuestionAudio = gdataElement.stringValue;
+                
                 //Get 1st Answer
                 NSArray* answer1 = [question elementsForName:@"Answer1"];
                 gdataElement = (GDataXMLElement *)[answer1 objectAtIndex:0];
                 NSString* Answer1 = gdataElement.stringValue;
+                
+                NSArray* answer1Audio = [question elementsForName:@"Answer1Audio"];
+                gdataElement = (GDataXMLElement *)[answer1Audio objectAtIndex:0];
+                NSString* Answer1Audio = gdataElement.stringValue;
                 
                 //Get 2nd Answer
                 NSArray* answer2 = [question elementsForName:@"Answer2"];
                 gdataElement = (GDataXMLElement *)[answer2 objectAtIndex:0];
                 NSString* Answer2 = gdataElement.stringValue;
                 
+                NSArray* answer2Audio = [question elementsForName:@"Answer2Audio"];
+                gdataElement = (GDataXMLElement *)[answer2Audio objectAtIndex:0];
+                NSString* Answer2Audio = gdataElement.stringValue;
+                
                 //Get 3rd Answer
                 NSArray* answer3 = [question elementsForName:@"Answer3"];
                 gdataElement = (GDataXMLElement *)[answer3 objectAtIndex:0];
                 NSString* Answer3 = gdataElement.stringValue;
+                
+                NSArray* answer3Audio = [question elementsForName:@"Answer3Audio"];
+                gdataElement = (GDataXMLElement *)[answer3Audio objectAtIndex:0];
+                NSString* Answer3Audio = gdataElement.stringValue;
                 
                 //Get 4th Answer
                 NSArray* answer4 = [question elementsForName:@"Answer4"];
                 gdataElement = (GDataXMLElement *)[answer4 objectAtIndex:0];
                 NSString* Answer4 = gdataElement.stringValue;
                 
+                NSArray* answer4Audio = [question elementsForName:@"Answer4Audio"];
+                gdataElement = (GDataXMLElement *)[answer4Audio objectAtIndex:0];
+                NSString* Answer4Audio = gdataElement.stringValue;
+                
                 //Get the expected selection
                 NSArray* expectedSelections = [question elementsForName:@"expectedSelection"];
                 gdataElement = (GDataXMLElement *)[expectedSelections objectAtIndex:0];
                 NSInteger expectedSelection = [gdataElement.stringValue integerValue];
                 
-                AssessmentActivity* storyquestion = [[AssessmentActivity alloc] initWithValues:QuestionNum:QuestionText:Answer1:Answer2:Answer3:Answer4:expectedSelection];
+                AssessmentActivity* storyquestion = [[AssessmentActivity alloc] initWithValues:QuestionNum:QuestionText:QuestionAudio:Answer1:Answer1Audio:Answer2:Answer2Audio:Answer3:Answer3Audio:Answer4:Answer4Audio:expectedSelection];
                 [StoryQuestions addObject:storyquestion];
                 
             }
@@ -929,6 +949,7 @@ ConditionSetup *conditionSetup;
     
 }
 
+/*
 -(void)readAssessmentActivitiesForBook: (Book *) book{
     //NSLog(@"at beginning of read metadata for book");
     NSString *filepath = [[book mainContentPath] stringByAppendingString:@"AssessmentActivities-MetaData.xml"];
@@ -1001,5 +1022,5 @@ ConditionSetup *conditionSetup;
         }
     }
 }
-    
+*/
 @end

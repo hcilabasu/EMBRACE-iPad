@@ -4,54 +4,338 @@
         <Questions title= "Introduction to The Best Farm">
             <Question number="1">
                 <QuestionText>This is a sample Question</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
                 <Answer1>Sample Answer 1</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
                 <Answer2>Sample Answer 2 - This is the correct answer</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
                 <Answer3>Sample Answer 3</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>Sample Answer 4</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
                 <expectedSelection>2</expectedSelection>
             </Question>
             <Question number="2">
                 <QuestionText>This is a sample Question</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
                 <Answer1>Sample Answer 1</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
                 <Answer2>Sample Answer 2</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
                 <Answer3>Sample Answer 3 - This is the correct answer</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>Sample Answer 4</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
                 <expectedSelection>3</expectedSelection>
             </Question>
             <Question number="3">
                 <QuestionText>This is a sample Question</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
                 <Answer1>Sample Answer 1</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
                 <Answer2>Sample Answer 2</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
                 <Answer3>Sample Answer 3</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>Sample Answer 4 - This is the correct answer</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
                 <expectedSelection>4</expectedSelection>
             </Question>
     </Questions>
-        <Questions title= "The Contest">
-            <Question number="1">
+                
+                <Questions title= "The Contest">
+                    <Question number="1">
                 <QuestionText>This is a sample Question</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
                 <Answer1>Sample Answer 1</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
                 <Answer2>Sample Answer 2 - This is the correct answer</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
                 <Answer3>Sample Answer 3</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>Sample Answer 4</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
                 <expectedSelection>2</expectedSelection>
             </Question>
             <Question number="2">
                 <QuestionText>This is a sample Question</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
                 <Answer1>Sample Answer 1</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
                 <Answer2>Sample Answer 2</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
                 <Answer3>Sample Answer 3 - This is the correct answer</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>Sample Answer 4</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
                 <expectedSelection>3</expectedSelection>
             </Question>
             <Question number="3">
                 <QuestionText>This is a sample Question</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
                 <Answer1>Sample Answer 1</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
                 <Answer2>Sample Answer 2</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
                 <Answer3>Sample Answer 3</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>Sample Answer 4 - This is the correct answer</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
                 <expectedSelection>4</expectedSelection>
             </Question>
-            </Questions>
+        </Questions>
+                        
+                <Questions title= "Getting Ready">
+                    <Question number="1">
+                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>Sample Answer 1</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>Sample Answer 2 - This is the correct answer</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>Sample Answer 3</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>Sample Answer 4</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>2</expectedSelection>
+            </Question>
+            <Question number="2">
+                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>Sample Answer 1</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>Sample Answer 2</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>Sample Answer 3 - This is the correct answer</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>Sample Answer 4</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>3</expectedSelection>
+            </Question>
+            <Question number="3">
+                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>Sample Answer 1</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>Sample Answer 2</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>Sample Answer 3</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>Sample Answer 4 - This is the correct answer</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>4</expectedSelection>
+            </Question>
+                </Questions>
+                        
+                <Questions title= "Cleaning Up">
+                   <Question number="1">
+                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>Sample Answer 1</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>Sample Answer 2 - This is the correct answer</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>Sample Answer 3</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>Sample Answer 4</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>2</expectedSelection>
+            </Question>
+            <Question number="2">
+                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>Sample Answer 1</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>Sample Answer 2</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>Sample Answer 3 - This is the correct answer</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>Sample Answer 4</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>3</expectedSelection>
+            </Question>
+            <Question number="3">
+                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>Sample Answer 1</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>Sample Answer 2</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>Sample Answer 3</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>Sample Answer 4 - This is the correct answer</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>4</expectedSelection>
+            </Question>
+        </Questions>
+                
+                <Questions title= "Who is the Best Animal?">
+                    <Question number="1">
+                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>Sample Answer 1</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>Sample Answer 2 - This is the correct answer</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>Sample Answer 3</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>Sample Answer 4</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>2</expectedSelection>
+            </Question>
+            <Question number="2">
+                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>Sample Answer 1</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>Sample Answer 2</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>Sample Answer 3 - This is the correct answer</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>Sample Answer 4</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>3</expectedSelection>
+            </Question>
+            <Question number="3">
+                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>Sample Answer 1</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>Sample Answer 2</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>Sample Answer 3</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>Sample Answer 4 - This is the correct answer</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>4</expectedSelection>
+            </Question>
+        </Questions>
+                        
+                <Questions title= "The Wise Owl">
+                  <Question number="1">
+                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>Sample Answer 1</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>Sample Answer 2 - This is the correct answer</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>Sample Answer 3</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>Sample Answer 4</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>2</expectedSelection>
+            </Question>
+            <Question number="2">
+                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>Sample Answer 1</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>Sample Answer 2</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>Sample Answer 3 - This is the correct answer</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>Sample Answer 4</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>3</expectedSelection>
+            </Question>
+            <Question number="3">
+                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>Sample Answer 1</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>Sample Answer 2</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>Sample Answer 3</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>Sample Answer 4 - This is the correct answer</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>4</expectedSelection>
+            </Question>
+                </Questions>
+                
+                <Questions title= "Everyone Helps">
+                   <Question number="1">
+                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>Sample Answer 1</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>Sample Answer 2 - This is the correct answer</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>Sample Answer 3</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>Sample Answer 4</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>2</expectedSelection>
+            </Question>
+            <Question number="2">
+                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>Sample Answer 1</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>Sample Answer 2</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>Sample Answer 3 - This is the correct answer</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>Sample Answer 4</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>3</expectedSelection>
+            </Question>
+            <Question number="3">
+                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>Sample Answer 1</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>Sample Answer 2</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>Sample Answer 3</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>Sample Answer 4 - This is the correct answer</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>4</expectedSelection>
+            </Question>
+                </Questions>
+                
+                <Questions title= "The Best Farm Award">
+                    <Question number="1">
+                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>Sample Answer 1</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>Sample Answer 2 - This is the correct answer</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>Sample Answer 3</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>Sample Answer 4</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>2</expectedSelection>
+            </Question>
+            <Question number="2">
+                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>Sample Answer 1</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>Sample Answer 2</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>Sample Answer 3 - This is the correct answer</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>Sample Answer 4</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>3</expectedSelection>
+            </Question>
+            <Question number="3">
+                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>Sample Answer 1</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>Sample Answer 2</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>Sample Answer 3</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>Sample Answer 4 - This is the correct answer</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>4</expectedSelection>
+            </Question>
+                </Questions>
+                        
     </ActivityAssessment>
 </metadata>

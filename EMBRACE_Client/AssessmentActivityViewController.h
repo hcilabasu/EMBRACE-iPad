@@ -12,8 +12,18 @@
 @interface AssessmentActivityViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *AnswerList;
+@property(nonatomic,strong) IBOutlet UILabel *ChapterTitleLabel;
+@property(nonatomic,strong) IBOutlet UIButton *nextButton;
+@property(nonatomic,strong) NSString *ChapterTitle;
 
-- (id)initWithModel:(InteractionModel*) model : (NSString*) chapterTitle:(UIViewController*) libraryViewController;
+@property(nonatomic,strong) IBOutlet UIButton *questionButton;
+@property(nonatomic,strong) IBOutlet UIButton *answer1Button;
+@property(nonatomic,strong) IBOutlet UIButton *answer2Button;
+@property(nonatomic,strong) IBOutlet UIButton *answer3Button;
+@property(nonatomic,strong) IBOutlet UIButton *answer4Button;
+
+- (id)initWithModel:(InteractionModel*) model : (NSString*) chapterTitle : (UIViewController*) libraryViewController;
 -(void)loadNextAssessmentActivityQuestion;
+
 
 @end

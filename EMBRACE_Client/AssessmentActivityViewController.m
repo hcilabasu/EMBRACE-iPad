@@ -14,8 +14,14 @@
 
 NSInteger AnswerSelection[4];
 NSMutableArray *AnswerOptions;
-NSArray *AnswerOptionEnglishAudio;
-NSArray *AnswerOptionSpanishAudio;
+NSString *AnswerOption1EnglishAudio;
+NSString *AnswerOption1SpanishAudio;
+NSString *AnswerOption2EnglishAudio;
+NSString *AnswerOption2SpanishAudio;
+NSString *AnswerOption3EnglishAudio;
+NSString *AnswerOption3SpanishAudio;
+NSString *AnswerOption4EnglishAudio;
+NSString *AnswerOption4SpanishAudio;
 NSString *Question;
 NSString *QuestionAudio;
 NSInteger questionNum;
@@ -28,11 +34,10 @@ UIViewController *libraryView;
 
 @implementation AssessmentActivityViewController
 @synthesize AnswerList;
+@synthesize nextButton;
+@synthesize ChapterTitleLabel;
 //@synthesize model;
-//@synthesize chapterTitle;
-
-
-
+@synthesize ChapterTitle;
 
 - (id)initWithModel:(InteractionModel*) model : (NSString*)chapterTitle : (UIViewController*)libraryViewController
 {
@@ -50,6 +55,8 @@ UIViewController *libraryView;
         AnswerSelection[2] = 0;
         AnswerSelection[3] = 0;
         
+        ChapterTitle =chapterTitle;
+        
         assessmentActivities =  [model getAssessmentActivity];
         currentAssessmentActivitySteps = [assessmentActivities objectForKey:chapterTitle];
         totalAssessmentActivitySteps = [currentAssessmentActivitySteps count];
@@ -57,12 +64,17 @@ UIViewController *libraryView;
         AssessmentActivity* currAssessmentActivityStep = [currentAssessmentActivitySteps objectAtIndex:currentAssessmentActivityStep-1];
         correctSelection = [currAssessmentActivityStep expectedSelection];
         Question = [currAssessmentActivityStep QuestionText];
+        QuestionAudio = [currAssessmentActivityStep QuestionAudio];
         questionNum = [currAssessmentActivityStep QuestionNumber];
         AnswerOptions =[[NSMutableArray alloc] init];
         [AnswerOptions addObject:[currAssessmentActivityStep Answer1]];
+        AnswerOption1EnglishAudio = [currAssessmentActivityStep Answer1Audio];
         [AnswerOptions addObject:[currAssessmentActivityStep Answer2]];
+        AnswerOption2EnglishAudio = [currAssessmentActivityStep Answer2Audio];
         [AnswerOptions addObject:[currAssessmentActivityStep Answer3]];
+        AnswerOption3EnglishAudio = [currAssessmentActivityStep Answer3Audio];
         [AnswerOptions addObject:[currAssessmentActivityStep Answer4]];
+        AnswerOption4EnglishAudio = [currAssessmentActivityStep Answer4Audio];
         
     }
     return self;
@@ -72,6 +84,9 @@ UIViewController *libraryView;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    nextButton.hidden =true;
+    
+    ChapterTitleLabel.text = ChapterTitle;
 }
 
 - (void)didReceiveMemoryWarning
@@ -79,7 +94,6 @@ UIViewController *libraryView;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 -(void)loadNextAssessmentActivityQuestion{
     
@@ -111,6 +125,31 @@ UIViewController *libraryView;
     }
 }
 
+-(IBAction)PlayQuestionAudioPressed:(id)sender
+{
+    
+}
+
+-(IBAction)PlayAnswer1AudioPressed:(id)sender
+{
+    
+}
+
+-(IBAction)PlayAnswer2AudioPressed:(id)sender
+{
+    
+}
+
+-(IBAction)PlayAnswer3AudioPressed:(id)sender
+{
+    
+}
+
+-(IBAction)PlayAnswer4AudioPressed:(id)sender
+{
+    
+}
+
 - (IBAction)NextButtonPressed:(id)sender {
     //move to next question -> load next set of question paramters
     //reset table row colors
@@ -120,6 +159,7 @@ UIViewController *libraryView;
     
     if(currentAssessmentActivityStep<=totalAssessmentActivitySteps)
     {
+        nextButton.hidden = true;
         
         //AnswerList = [[UITableView alloc]init];
         AnswerSelection[0] = 0;
@@ -146,6 +186,7 @@ UIViewController *libraryView;
             UITableViewCell *tempCell = [AnswerList cellForRowAtIndexPath:cells[i]];
             tempCell.contentView.alpha = 1;
             tempCell.backgroundColor = [UIColor whiteColor];
+            tempCell.backgroundView.alpha = 1;
             tempCell.alpha = 1;
             tempCell.accessoryType = UITableViewCellAccessoryNone;
             i++;
@@ -156,9 +197,6 @@ UIViewController *libraryView;
     }
     else
     {
-        //[super.navigationController dismissViewControllerAnimated:YES completion:nil];
-        //[self.navigationController popViewControllerAnimated:YES]; //return to pmview
-        //[self.navigationController popViewControllerAnimated:YES]; //return to library view
         [self.navigationController popToViewController:libraryView animated:YES];
     }
 }
@@ -204,33 +242,40 @@ UIViewController *libraryView;
             //checks if option is correct else gray out
             if(([indexPath row]+1) == correctSelection)
             {
+                
                 //gray out other options
                 int i=0;
                 while(i<[AnswerOptions count])
                 {
+                    
                     if (i!=(correctSelection-1)) {
                         //gray out option
                         
                         UITableViewCell *tempCell = [tableView cellForRowAtIndexPath:cells[i]];
                         AnswerSelection[i] = 1;
-                        tempCell.contentView.alpha=.2;
-                        tempCell.backgroundColor = [UIColor grayColor];
-                        tempCell.alpha =.2;
+                        //tempCell.contentView.alpha=.2;
+                        //tempCell.backgroundColor = [UIColor grayColor];
+                        //tempCell.alpha =.2;
                         
                     }
                     else{
                         cell.accessoryType = UITableViewCellAccessoryCheckmark;
+                        cell.backgroundColor= [UIColor blueColor];
+                        nextButton.hidden = false;
                     }
                     i++;
+                
                 }
+                
                 //show next button
             }
             else
             {
                 //gray out option
-                cell.contentView.alpha=.2;
-                cell.backgroundColor = [UIColor grayColor];
-                cell.alpha =.2;
+                //cell.contentView.alpha=.2;
+                cell.backgroundColor = [UIColor lightGrayColor];
+                cell.backgroundView.alpha = .2;
+                //cell.alpha =.2;
             }
      }
     
@@ -241,6 +286,18 @@ UIViewController *libraryView;
     // The header for the section is the region name -- get this from the region at the section index.
     //AssessmentArrray *question = [questions objectAtIndex:section];
     return [NSString stringWithFormat:@"%d. %@", questionNum,Question];
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UILabel *myLabel = [[UILabel alloc]init];
+    myLabel.frame = CGRectMake(5, 0, 791, 62);
+    myLabel.font = [UIFont boldSystemFontOfSize:18];
+    myLabel.text = [self tableView:tableView titleForHeaderInSection:section];
+    UIView *headerView = [[UIView alloc]init];
+    headerView.backgroundColor = [UIColor lightTextColor];
+    [headerView addSubview:myLabel];
+    
+    return headerView;
 }
 
 @end
