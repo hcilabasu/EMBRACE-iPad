@@ -87,7 +87,7 @@
                  @"corral": @"corral",
                  @"farm": @"farm",
                  @"farmer": @"farmer",
-                 @"gate": @"pen4",
+                 @"gate": @"pen2",
                  @"hay": @"hay",
                  @"hayloft": @"hayloft",
                  @"healthy": @"healthy",
