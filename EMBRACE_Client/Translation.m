@@ -106,7 +106,7 @@
                  @"around": @"around",
                  @"arteries": @"arteries",
                  @"atoms": @"atoms",
-                 @"atrium": @"atrium",
+                 @"atrium": @[@"atrium_1",@"atrium_2"],
                  @"beat": @"beat",
                  @"blood": @"bloodcell_1",
                  @"breathe": @"breathe",
