@@ -14,7 +14,7 @@
 
 - (id) init {
     condition = @"Embrace";
-    language = @"English";
+    language = @"Bilingual";
     return self;
 }
 

@@ -3484,7 +3484,7 @@ ConditionSetup *conditionSetup;
 
     // If the language condition for the app is BILINGUAL (English after Spanish) and the current intro step
     //is lower than the step number to switch languages, load the Spanish information for the step
-    if ([conditionSetup.language isEqualToString: @"Bilingual"] && currentIntroStep < STEPS_TO_SWITCH_LANGUAGES_EMBRACE && [conditionSetup.condition isEqualToString:@"Menu"]) {
+    if ([conditionSetup.language isEqualToString: @"Bilingual"] && currentIntroStep < STEPS_TO_SWITCH_LANGUAGES_EMBRACE && [conditionSetup.condition isEqualToString:@"Embrace"]) {
         text = textSpanish;
         audio = audioSpanish;
         languageString = @"S";
