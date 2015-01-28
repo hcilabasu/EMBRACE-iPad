@@ -60,7 +60,7 @@
                 <step number="1">
                     <group obj1Id="farmer" action="pickUp" obj2Id="pumpkin"/>
                     <group obj1Id="farmer" action="pickUp" obj2Id="apple"/>
-                    <ungroup obj2Id="farmer" action="release" obj2Id="pumpkin"/>
+                    <ungroup obj1Id="farmer" action="release" obj2Id="pumpkin"/>
                 </step>
             </sentence>
         </story>
@@ -141,7 +141,6 @@
                     <group obj1Id="horse" action="push" obj2Id="hay"/>
                     <group obj1Id="horse" action="push" obj2Id="apple"/>
                     <disappear obj1Id="horse" action="give" obj2Id="hay"/>
-                    </>
                 </step>
             </sentence>
         </story>

@@ -50,6 +50,10 @@
     
     ContextualMenuDataSource *menuDataSource;
     PieContextualMenu *menu;
+    
+    //imcode
+    UIView *IMViewMenu;
+    
     BOOL menuExpanded;
     
     InteractionModel *model;
@@ -631,7 +635,12 @@ ConditionSetup *conditionSetup;
     if([IntroductionClass.introductions objectForKey:chapterTitle] && [[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:@"menu"]) {
         IntroductionClass.allowInteractions = TRUE;
     }
-    
+    //im code
+    if(conditionSetup.condition == EMBRACE && !IntroductionClass.allowInteractions)
+    {
+            IntroductionClass.allowInteractions = true;
+            allowSnapback = false;
+    }
     
     //check to see if we have a menu open. If so, process menu click.
     if(menu != nil && IntroductionClass.allowInteractions) {
@@ -696,6 +705,14 @@ ConditionSetup *conditionSetup;
             
             [self checkSolutionForInteraction:interaction]; //check if selected interaction is correct
             
+            //im code
+            if(conditionSetup.condition == EMBRACE && IntroductionClass.allowInteractions)
+            {
+                    IntroductionClass.allowInteractions = FALSE;
+                    allowSnapback = true;
+            }
+            //end imcode
+            
         }
         //No menuItem was selected
         else {
@@ -720,6 +737,12 @@ ConditionSetup *conditionSetup;
         [menu removeFromSuperview];
         menu = nil;
         menuExpanded = FALSE;
+        
+        //imcode
+        if (IMViewMenu !=nil) {
+            [IMViewMenu removeFromSuperview];
+        }
+        //end imcode
         
     }
     else {
@@ -2174,8 +2197,61 @@ ConditionSetup *conditionSetup;
         //Logging added by James for Correct Interaction
         [[ServerCommunicationController sharedManager] logComputerVerification:@"Perform Interaction":true : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
         
-            //imcode?
-            [self performInteraction:interaction];
+            //imcode
+            if (conditionSetup.condition ==EMBRACE) {
+            
+                //Logging added by James for User pressing the Next button
+                [[ServerCommunicationController sharedManager] logUserNextButtonPressed:@"Next" :@"Tap" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+            
+                //added for logging
+                NSString *tempLastSentence = [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence];
+            
+                //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
+                currentSentence++;
+            
+                //Set up current sentence appearance and solution steps
+                [self setupCurrentSentence];
+                [self colorSentencesUponNext];
+            
+                //currentSentence is 1 indexed.
+                if(currentSentence > totalSentences) {
+                        [self loadNextPage];
+                        //logging done in loadNextPage
+                }
+                else {
+                        //Logging added by James for Computer moving to next sentence
+                        [[ServerCommunicationController sharedManager] logNextSentenceNavigation:@"Next Button" :tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :@"Next Sentence" :bookTitle :chapterTitle : currentPage : tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+                
+                        //If we are on the first or second manipulation page of The Contest, play the audio of the current sentence
+                        if ([chapterTitle isEqualToString:@"The Contest"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+                            
+                                if((conditionSetup.language ==BILINGUAL)) {
+                                        [playaudioClass playAudioFile:[NSString stringWithFormat:@"BFEC%d.m4a",currentSentence]];
+                                }
+                                else {
+                                        [playaudioClass playAudioFile:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
+                                }
+                        }
+                    
+                        //If we are on the first or second manipulation page of Why We Breathe, play the audio of the current sentence
+                        if ([chapterTitle isEqualToString:@"Why We Breathe"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
+                            
+                                if((conditionSetup.language ==BILINGUAL)) {
+                                        [playaudioClass playAudioFile:[NSString stringWithFormat:@"CPQR%d.m4a",currentSentence]];
+                                }
+                                else {
+                                        [playaudioClass playAudioFile:[NSString stringWithFormat:@"CWWB%d.m4a",currentSentence]];
+                                }
+                        }
+                }
+            }
+            else
+            {
+                [self performInteraction:interaction];
+            }
+            //end imcode
+        
+            //[self performInteraction:interaction];
         
         if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
             IntroductionClass.currentIntroStep++;
@@ -3194,8 +3270,114 @@ ConditionSetup *conditionSetup;
     }
     else {
         
+        //imcode
+        /*somewhere in here need to add the ability for subview and within that subview should have subviewed menu items based on the current sentence and only if it is an action sentence, need to figure out how to populate the menu item data source, should require knowing what the correct solution is, upon return should close the menu items, log if it was correct or not, and load next sentence*/
         
-        if (stepsComplete || numSteps == 0 || !IntroductionClass.allowInteractions) {
+        	        //if (stepsComplete || numSteps == 0 || !IntroductionClass.allowInteractions) {
+                        //IMCode
+            	         NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
+            	         NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
+            
+            	         if((conditionSetup.condition == EMBRACE) && [sentenceClass  isEqualToString: @"sentence actionSentence"])
+                        {
+                            //resets allRelationship arrray
+                            if([allRelationships count])
+                            {
+                                [allRelationships removeAllObjects];
+                            }
+                            
+                            //Get steps for current sentence
+                            NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                            PossibleInteraction* interaction;
+                            NSMutableArray *interactions = [[NSMutableArray alloc]init ];
+                    
+                            if (currSolSteps.count!=0) {
+                                
+                                for (ActionStep* currSolStep in currSolSteps) {
+                        
+                                    //[allRelationships addObject:@"dummydata"];
+                        
+                                    interaction = [self convertActionStepToPossibleInteraction:currSolStep];
+                                    [interactions addObject:interaction];
+                                    Relationship* relationshipBetweenObjects = [[Relationship alloc] initWithValues:[currSolStep object1Id] :[currSolStep action] :[currSolStep stepType] :[currSolStep object2Id]];
+                                    [allRelationships addObject:relationshipBetweenObjects];
+                                }
+                                
+                                
+                                //Relationship* newrel = [[Relationship alloc] initWithValues:[currSolStep object1Id] :[currSolStep action] :[currSolStep stepType] :[currSolStep objectId2]];
+                                
+                                //Populate the menu data source and expand the menu.
+                                [self populateMenuDataSource:interactions:allRelationships];
+                                
+                                //add subview to hide story
+                                IMViewMenu = [[UIView alloc] initWithFrame:[bookView frame]];
+                                //[menu addGestureRecognizer:tapRecognizer];
+                                IMViewMenu.backgroundColor = [UIColor whiteColor];
+                                UILabel *IMinstructions = [[UILabel alloc] initWithFrame:CGRectMake(200, 10, 600, 40)];
+                                IMinstructions.text = @"Select the menu option that best matches what you imagined.";
+                                IMinstructions.textColor = [UIColor blackColor];
+                                
+                                //IMinstructions.font = [UIFont fontWithName:u size:20];
+                                [IMViewMenu addSubview:IMinstructions];
+                                //add sentence instructions
+                                [[self view] addSubview:IMViewMenu];
+                                
+                                //expand menu
+                                [self expandMenu];
+                            }
+                            else
+                            {
+                            //move to next sentence
+                                //Logging added by James for User pressing the Next button
+                                [[ServerCommunicationController sharedManager] logUserNextButtonPressed:@"Next" :@"Tap" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+                                
+                                //added for logging
+                                NSString *tempLastSentence = [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence];
+                                
+                                //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
+                                currentSentence++;
+                                
+                                //Set up current sentence appearance and solution steps
+                                [self setupCurrentSentence];
+                                [self colorSentencesUponNext];
+                                
+                                //currentSentence is 1 indexed.
+                                if(currentSentence > totalSentences) {
+                                    [self loadNextPage];
+                                    //logging done in loadNextPage
+                                }
+                                else {
+                                    //Logging added by James for Computer moving to next sentence
+                                    [[ServerCommunicationController sharedManager] logNextSentenceNavigation:@"Next Button" :tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :@"Next Sentence" :bookTitle :chapterTitle : currentPage : tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+                                    
+                                    //If we are on the first or second manipulation page of The Contest, play the audio of the current sentence
+                                    if ([chapterTitle isEqualToString:@"The Contest"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+                                        if((conditionSetup.language ==BILINGUAL)) {
+                                            [playaudioClass playAudioFile:[NSString stringWithFormat:@"BFEC%d.m4a",currentSentence]];
+                                        }
+                                        else {
+                                            [playaudioClass playAudioFile:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
+                                        }
+                                    }
+                                    
+                                    //If we are on the first or second manipulation page of Why We Breathe, play the audio of the current sentence
+                                    if ([chapterTitle isEqualToString:@"Why We Breathe"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
+                                        if((conditionSetup.language ==BILINGUAL)) {
+                                            [playaudioClass playAudioFile:[NSString stringWithFormat:@"CPQR%d.m4a",currentSentence]];
+                                        }
+                                        else {
+                                            [playaudioClass playAudioFile:[NSString stringWithFormat:@"CWWB%d.m4a",currentSentence]];
+                                        }
+                                    }
+                                }
+                            }
+
+                            }
+                    //}
+        else if (stepsComplete || numSteps == 0 || !IntroductionClass.allowInteractions) {
+        //end imcode
+        
+        //if (stepsComplete || numSteps == 0 || !IntroductionClass.allowInteractions) {
             //Logging added by James for User pressing the Next button
             [[ServerCommunicationController sharedManager] logUserNextButtonPressed:@"Next" :@"Tap" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
             
@@ -3245,6 +3427,7 @@ ConditionSetup *conditionSetup;
         }
     }
 }
+
 
 /*
  * Creates a UIView for the textbox area so that the swipe gesture can only be recognized when performed
@@ -3370,7 +3553,16 @@ ConditionSetup *conditionSetup;
     menu = [[PieContextualMenu alloc] initWithFrame:[bookView frame]];
     [menu addGestureRecognizer:tapRecognizer];
     
-    [[self view] addSubview:menu];
+    //imcode
+    if (conditionSetup.condition== EMBRACE) {
+        [IMViewMenu addSubview:menu];
+    }
+    else {
+        [[self view] addSubview:menu];
+    }
+    //end imcode
+    
+    //[[self view] addSubview:menu];
     
     menu.delegate = self;
     menu.dataSource = menuDataSource;

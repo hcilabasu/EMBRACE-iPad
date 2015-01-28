@@ -687,10 +687,15 @@ ConditionSetup *conditionSetup;
             }
         }
     }
-    
-    
+
     //set file path to access introduction metadata
-    filepath = [[book mainContentPath] stringByAppendingString:@"Solutions-MetaData.xml"];
+    if (conditionSetup.condition ==EMBRACE) {
+        filepath = [[book mainContentPath] stringByAppendingString:@"IMSolutions-MetaData.xml"];
+    }
+    else
+    {
+        filepath = [[book mainContentPath] stringByAppendingString:@"Solutions-MetaData.xml"];
+    }
     
     //Get xml data of the metadata file.
     xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
