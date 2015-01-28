@@ -131,7 +131,7 @@
                  @"tubes": @"tubes",
                  @"valve": @[@"handle",@"handle_close",@"handle_1",@"gray_handle"],
                  @"veins": @"veins",
-                 @"ventricle": @"ventricle"
+                 @"ventricle": @[@"ventricle_1",@"ventricle_2"]
                  };
     });
     return inst;
