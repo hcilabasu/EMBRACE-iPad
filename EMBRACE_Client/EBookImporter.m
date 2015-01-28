@@ -422,7 +422,7 @@ ConditionSetup *conditionSetup;
 
 -(void) readMetadataForBook:(Book*) book {
     //NSLog(@"at beginning of read metadata for book");
-    NSString *filepath = [[book mainContentPath] stringByAppendingString:@"metadata.xml"];
+    NSString *filepath = [[book mainContentPath] stringByAppendingString:@"Relationships-metaData.xml"];
     
     //Get xml data of the metadata file.
     NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
@@ -450,6 +450,15 @@ ConditionSetup *conditionSetup;
         
         [model addRelationship:obj1Id :can :type :obj2Id];
     }
+    
+    //set file path to access introduction metadata
+    filepath = [[book mainContentPath] stringByAppendingString:@"Constraints-MetaData.xml"];
+    
+    //Get xml data of the metadata file.
+    xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
+    
+    //break out metadata file into seperate components
+    metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:nil];
     
     //Read in the Constraints
     NSArray* constraintsElements = [metadataDoc nodesForXPath:@"//constraints" error:nil];
@@ -511,6 +520,15 @@ ConditionSetup *conditionSetup;
         [model addComboConstraint:objectId :comboActs];
     }
     
+    //set file path to access introduction metadata
+    filepath = [[book mainContentPath] stringByAppendingString:@"Hotspots-MetaData.xml"];
+    
+    //Get xml data of the metadata file.
+    xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
+    
+    //break out metadata file into seperate components
+    metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:nil];
+    
     //Reading in the hotspot information.
     NSArray* hotspotsElements = [metadataDoc nodesForXPath:@"//hotspots" error:nil];
     GDataXMLElement *hotspotsElement = (GDataXMLElement *)[hotspotsElements objectAtIndex:0];
@@ -534,6 +552,15 @@ ConditionSetup *conditionSetup;
         [model addHotspot:objectId :action :role :location];
     }
     
+    //set file path to access introduction metadata
+    filepath = [[book mainContentPath] stringByAppendingString:@"Locations-MetaData.xml"];
+    
+    //Get xml data of the metadata file.
+    xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
+    
+    //break out metadata file into seperate components
+    metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:nil];
+    
     //Reading in the location information.
     NSArray* locationElements = [metadataDoc nodesForXPath:@"//locations" error:nil];
     GDataXMLElement* locationElement = (GDataXMLElement*)[locationElements objectAtIndex:0];
@@ -550,6 +577,15 @@ ConditionSetup *conditionSetup;
         
         [model addLocation:locationId :originX :originY :height :width];
     }
+    
+    //set file path to access introduction metadata
+    filepath = [[book mainContentPath] stringByAppendingString:@"Waypoints-MetaData.xml"];
+    
+    //Get xml data of the metadata file.
+    xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
+    
+    //break out metadata file into seperate components
+    metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:nil];
     
     //Reading in the waypoint information.
     NSArray* waypointElements = [metadataDoc nodesForXPath:@"//waypoints" error:nil];
@@ -572,6 +608,15 @@ ConditionSetup *conditionSetup;
         [model addWaypoint:waypointId :location];
     }
     
+    
+    //set file path to access introduction metadata
+    filepath = [[book mainContentPath] stringByAppendingString:@"AlternateImages-MetaData.xml"];
+    
+    //Get xml data of the metadata file.
+    xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
+    
+    //break out metadata file into seperate components
+    metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:nil];
     //Read in any alternate image information
     NSArray* altImageElements = [metadataDoc nodesForXPath:@"//alternateImages" error:nil];
     
@@ -598,6 +643,15 @@ ConditionSetup *conditionSetup;
             [model addAlternateImage:objectId :action :originalSrc :alternateSrc :width :location];
         }
     }
+    
+    //set file path to access introduction metadata
+    filepath = [[book mainContentPath] stringByAppendingString:@"Setups-MetaData.xml"];
+    
+    //Get xml data of the metadata file.
+    xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
+    
+    //break out metadata file into seperate components
+    metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:nil];
     
     //Read in any setup information.
     NSArray* setupElements = [metadataDoc nodesForXPath:@"//setups" error:nil];
@@ -633,6 +687,16 @@ ConditionSetup *conditionSetup;
             }
         }
     }
+    
+    
+    //set file path to access introduction metadata
+    filepath = [[book mainContentPath] stringByAppendingString:@"Solutions-MetaData.xml"];
+    
+    //Get xml data of the metadata file.
+    xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
+    
+    //break out metadata file into seperate components
+    metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:nil];
     
     //Read in the solutions and add them to the PhysicalManipulationActivity they belong to.
     NSArray* solutionsElements = [metadataDoc nodesForXPath:@"//solutions" error:nil];
@@ -725,6 +789,16 @@ ConditionSetup *conditionSetup;
         }
     }
     
+    
+    //set file path to access introduction metadata
+    filepath = [[book mainContentPath] stringByAppendingString:@"Introductions-MetaData.xml"];
+    
+    //Get xml data of the metadata file.
+    xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
+    
+    //break out metadata file into seperate components
+    metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:nil];
+    
     //Read in the introduction information
     NSArray* introductionElements = [metadataDoc nodesForXPath:@"//introductions" error:nil];
     
@@ -790,6 +864,15 @@ ConditionSetup *conditionSetup;
             [model addIntroduction:title:introSteps];
         }
     }
+    
+    //set file path to access Vocabulary introduction metadata
+    filepath = [[book mainContentPath] stringByAppendingString:@"VocabularyIntroductions-MetaData.xml"];
+    
+    //Get xml data of the metadata file.
+    xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
+    
+    //break out metadata file into seperate components
+    metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:nil];
     
     //Read in the vocabulary information
     NSArray* vocabIntroductionElements = [metadataDoc nodesForXPath:@"//vocabularyIntroductions" error:nil];
