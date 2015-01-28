@@ -12,6 +12,19 @@
 		1AD3CC861A251C5300E18B1C /* IntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3CC851A251C5300E18B1C /* IntroductionViewController.m */; };
 		1AD3CC891A251CBA00E18B1C /* BuildHTMLString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3CC881A251CBA00E18B1C /* BuildHTMLString.m */; };
 		1AD3CC8C1A251CE600E18B1C /* PlayAudioFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3CC8B1A251CE600E18B1C /* PlayAudioFile.m */; };
+		1AE0F5FC1A7965EC00C5B67D /* Relationships-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AE0F5FB1A7965EC00C5B67D /* Relationships-MetaData.xml */; };
+		1AE0F5FE1A79665A00C5B67D /* Constraints-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AE0F5FD1A79665A00C5B67D /* Constraints-MetaData.xml */; };
+		1AE0F6021A79671A00C5B67D /* Locations-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AE0F6011A79671A00C5B67D /* Locations-MetaData.xml */; };
+		1AE0F6041A79675A00C5B67D /* Waypoints-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AE0F6031A79675A00C5B67D /* Waypoints-MetaData.xml */; };
+		1AE0F6061A79679600C5B67D /* AlternateImages-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AE0F6051A79679600C5B67D /* AlternateImages-MetaData.xml */; };
+		1AE0F6081A7967D100C5B67D /* Setups-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AE0F6071A7967D100C5B67D /* Setups-MetaData.xml */; };
+		1AE0F60A1A79681A00C5B67D /* Solutions-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AE0F6091A79681A00C5B67D /* Solutions-MetaData.xml */; };
+		1AE0F60C1A79686A00C5B67D /* SentenceAnalysis-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AE0F60B1A79686A00C5B67D /* SentenceAnalysis-MetaData.xml */; };
+		1AE0F60E1A7968A500C5B67D /* Translations-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AE0F60D1A7968A500C5B67D /* Translations-MetaData.xml */; };
+		1AE0F6101A7968D400C5B67D /* Introductions-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AE0F60F1A7968D400C5B67D /* Introductions-MetaData.xml */; };
+		1AE0F6121A79691D00C5B67D /* VocabularyIntroductions-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AE0F6111A79691D00C5B67D /* VocabularyIntroductions-MetaData.xml */; };
+		1AE0F6141A79697500C5B67D /* Hotspots-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AE0F6131A79697500C5B67D /* Hotspots-MetaData.xml */; };
+		1AE0F6161A7969F900C5B67D /* IMSolutions-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AE0F6151A7969F900C5B67D /* IMSolutions-MetaData.xml */; };
 		1AF3815B1A40A4C600D967FD /* AssessmentActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF381591A40A4C600D967FD /* AssessmentActivityViewController.m */; };
 		1AF3815C1A40A4C600D967FD /* AssessmentActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AF3815A1A40A4C600D967FD /* AssessmentActivityViewController.xib */; };
 		31058C74176BCFF200595AAE /* logo114.png in Resources */ = {isa = PBXBuildFile; fileRef = 31058C73176BCFF200595AAE /* logo114.png */; };
@@ -617,6 +630,19 @@
 		1AD3CC881A251CBA00E18B1C /* BuildHTMLString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildHTMLString.m; sourceTree = "<group>"; };
 		1AD3CC8A1A251CE600E18B1C /* PlayAudioFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayAudioFile.h; sourceTree = "<group>"; };
 		1AD3CC8B1A251CE600E18B1C /* PlayAudioFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayAudioFile.m; sourceTree = "<group>"; };
+		1AE0F5FB1A7965EC00C5B67D /* Relationships-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Relationships-MetaData.xml"; sourceTree = "<group>"; };
+		1AE0F5FD1A79665A00C5B67D /* Constraints-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Constraints-MetaData.xml"; sourceTree = "<group>"; };
+		1AE0F6011A79671A00C5B67D /* Locations-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Locations-MetaData.xml"; sourceTree = "<group>"; };
+		1AE0F6031A79675A00C5B67D /* Waypoints-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Waypoints-MetaData.xml"; sourceTree = "<group>"; };
+		1AE0F6051A79679600C5B67D /* AlternateImages-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AlternateImages-MetaData.xml"; sourceTree = "<group>"; };
+		1AE0F6071A7967D100C5B67D /* Setups-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Setups-MetaData.xml"; sourceTree = "<group>"; };
+		1AE0F6091A79681A00C5B67D /* Solutions-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Solutions-MetaData.xml"; sourceTree = "<group>"; };
+		1AE0F60B1A79686A00C5B67D /* SentenceAnalysis-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "SentenceAnalysis-MetaData.xml"; sourceTree = "<group>"; };
+		1AE0F60D1A7968A500C5B67D /* Translations-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Translations-MetaData.xml"; sourceTree = "<group>"; };
+		1AE0F60F1A7968D400C5B67D /* Introductions-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Introductions-MetaData.xml"; sourceTree = "<group>"; };
+		1AE0F6111A79691D00C5B67D /* VocabularyIntroductions-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "VocabularyIntroductions-MetaData.xml"; sourceTree = "<group>"; };
+		1AE0F6131A79697500C5B67D /* Hotspots-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Hotspots-MetaData.xml"; sourceTree = "<group>"; };
+		1AE0F6151A7969F900C5B67D /* IMSolutions-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "IMSolutions-MetaData.xml"; sourceTree = "<group>"; };
 		1AF381581A40A4C600D967FD /* AssessmentActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssessmentActivityViewController.h; sourceTree = "<group>"; };
 		1AF381591A40A4C600D967FD /* AssessmentActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssessmentActivityViewController.m; sourceTree = "<group>"; };
 		1AF3815A1A40A4C600D967FD /* AssessmentActivityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AssessmentActivityViewController.xib; sourceTree = "<group>"; };
@@ -2141,6 +2167,19 @@
 		5CF9941C19AC34550080C32F /* OEBPS */ = {
 			isa = PBXGroup;
 			children = (
+				1AE0F5FB1A7965EC00C5B67D /* Relationships-MetaData.xml */,
+				1AE0F5FD1A79665A00C5B67D /* Constraints-MetaData.xml */,
+				1AE0F6011A79671A00C5B67D /* Locations-MetaData.xml */,
+				1AE0F6131A79697500C5B67D /* Hotspots-MetaData.xml */,
+				1AE0F6031A79675A00C5B67D /* Waypoints-MetaData.xml */,
+				1AE0F6051A79679600C5B67D /* AlternateImages-MetaData.xml */,
+				1AE0F6071A7967D100C5B67D /* Setups-MetaData.xml */,
+				1AE0F6091A79681A00C5B67D /* Solutions-MetaData.xml */,
+				1AE0F6151A7969F900C5B67D /* IMSolutions-MetaData.xml */,
+				1AE0F60B1A79686A00C5B67D /* SentenceAnalysis-MetaData.xml */,
+				1AE0F60D1A7968A500C5B67D /* Translations-MetaData.xml */,
+				1AE0F60F1A7968D400C5B67D /* Introductions-MetaData.xml */,
+				1AE0F6111A79691D00C5B67D /* VocabularyIntroductions-MetaData.xml */,
 				1ABC75F61A3FBFC500FAF003 /* AssessmentActivities-MetaData.xml */,
 				5C0274C019CFE80100BF4B1A /* metadata.xml */,
 				5C776B2E19C7E469000DBC65 /* toc.ncx */,
@@ -2357,6 +2396,7 @@
 				5C776AC719C674FA000DBC65 /* CPQR0.m4a in Resources */,
 				5C7FE0FF19A7E43C00CBBE0E /* BFCE_2B.m4a in Resources */,
 				5C776A5D19C241EE000DBC65 /* CWWB0.m4a in Resources */,
+				1AE0F6081A7967D100C5B67D /* Setups-MetaData.xml in Resources */,
 				5CAD063A19BEB8AE00F3F053 /* ciliaE.m4a in Resources */,
 				5CE299B919B581CB00675CB0 /* combedE.m4a in Resources */,
 				5C7FE02A19A6B1B500CBBE0E /* background_1.png in Resources */,
@@ -2424,6 +2464,7 @@
 				5CF9948D19AC34550080C32F /* pig_large.png in Resources */,
 				5C7FE16319A7E43C00CBBE0E /* prizeE.m4a in Resources */,
 				5C776A5F19C241EE000DBC65 /* CWWB2.m4a in Resources */,
+				1AE0F6061A79679600C5B67D /* AlternateImages-MetaData.xml in Resources */,
 				5CF655C219AEACF0000AC913 /* Story6-Everyone-Helps-Intro-E.xhtml in Resources */,
 				5C776BE719C93E1E000DBC65 /* energyDEFS.m4a in Resources */,
 				5CE299CB19B5988700675CB0 /* pumpkinE.m4a in Resources */,
@@ -2468,6 +2509,7 @@
 				5C776AC119C674FA000DBC65 /* CPQR6.m4a in Resources */,
 				5C776BE019C93E1E000DBC65 /* valveS.m4a in Resources */,
 				5C776BF019C93E1E000DBC65 /* atomsS.m4a in Resources */,
+				1AE0F6021A79671A00C5B67D /* Locations-MetaData.xml in Resources */,
 				5CE299C819B586A400675CB0 /* BFCE2_5.m4a in Resources */,
 				5C776C2719C94EDF000DBC65 /* farmS.m4a in Resources */,
 				5CF655C119AEACF0000AC913 /* Story5-The-Wise-Owl-Intro-E.xhtml in Resources */,
@@ -2566,6 +2608,7 @@
 				5CF655B319ACFE2B000AC913 /* Story1-The-Contest-Intro-E.xhtml in Resources */,
 				5C776A4C19C17F39000DBC65 /* BFTC10.m4a in Resources */,
 				5C776A6919C241EE000DBC65 /* CWWB12.m4a in Resources */,
+				1AE0F60E1A7968A500C5B67D /* Translations-MetaData.xml in Resources */,
 				5CF994AF19AC34550080C32F /* Story4-Who-is-the-Best-Animal-PM-1.xhtml in Resources */,
 				31953E921729EE8100570087 /* MainStoryboard_iPad.storyboard in Resources */,
 				5C776BC519C93E1E000DBC65 /* dustDEFS.m4a in Resources */,
@@ -2590,6 +2633,7 @@
 				5CF9947919AC34550080C32F /* chicken_large.png in Resources */,
 				5CAD05E219BE6A3E00F3F053 /* CCE5_7.m4a in Resources */,
 				5C7FE03F19A6B1B500CBBE0E /* Introduction-to-Circulatory-Characters-Title.xhtml in Resources */,
+				1AE0F6041A79675A00C5B67D /* Waypoints-MetaData.xml in Resources */,
 				5CF655B719AD6927000AC913 /* BFEE_10B.m4a in Resources */,
 				5CAD061419BE6A3E00F3F053 /* CCE1_3.m4a in Resources */,
 				5C776ABD19C674FA000DBC65 /* CPQR10.m4a in Resources */,
@@ -2651,6 +2695,7 @@
 				5C7FE06119A6B1B500CBBE0E /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-PM-2.xhtml in Resources */,
 				5CAD05EA19BE6A3E00F3F053 /* CCE5_1.m4a in Resources */,
 				5C7FE13F19A7E43C00CBBE0E /* BFS_CH1A.m4a in Resources */,
+				1AE0F6121A79691D00C5B67D /* VocabularyIntroductions-MetaData.xml in Resources */,
 				5CE299E619B5ACDA00675CB0 /* BFCE4_2.m4a in Resources */,
 				5C7FE11F19A7E43C00CBBE0E /* BFCS_9.m4a in Resources */,
 				5CF655C019AEACF0000AC913 /* Story4-Who-is-the-Best-Animal-Intro-E.xhtml in Resources */,
@@ -2659,6 +2704,7 @@
 				5CF9948619AC34550080C32F /* farmer_large.png in Resources */,
 				5C7FE06319A6B1B500CBBE0E /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-PM-4.xhtml in Resources */,
 				5C776C1E19C94D69000DBC65 /* cartDEFS.m4a in Resources */,
+				1AE0F60A1A79681A00C5B67D /* Solutions-MetaData.xml in Resources */,
 				5C776BE619C93E1E000DBC65 /* energyS.m4a in Resources */,
 				5C7FE04C19A6B1B500CBBE0E /* Story2-The-Amazing-Heart-PM-4.xhtml in Resources */,
 				5CAD061819BE6A3E00F3F053 /* CCE1_1.m4a in Resources */,
@@ -2684,6 +2730,7 @@
 				5C776BCE19C93E1E000DBC65 /* cigaretteS.m4a in Resources */,
 				5CF9948219AC34550080C32F /* farm_night.png in Resources */,
 				5CF994B719AC34550080C32F /* Story6-Everyone-Helps-IM-1.xhtml in Resources */,
+				1AE0F5FC1A7965EC00C5B67D /* Relationships-MetaData.xml in Resources */,
 				5CAD063919BEB8AE00F3F053 /* trappedE.m4a in Resources */,
 				B91218511A1970F900D5CB37 /* p3_Lsqueeze_with_valve.png in Resources */,
 				5C776BF619C93E1E000DBC65 /* heartS.m4a in Resources */,
@@ -2706,6 +2753,7 @@
 				5CF9948C19AC34550080C32F /* owl.png in Resources */,
 				5C776A6719C241EE000DBC65 /* CWWB10.m4a in Resources */,
 				5C7FE13719A7E43C00CBBE0E /* BFEE_8A.m4a in Resources */,
+				1AE0F6141A79697500C5B67D /* Hotspots-MetaData.xml in Resources */,
 				5C776BCD19C93E1E000DBC65 /* ciliaDEFS.m4a in Resources */,
 				5C776C3B19C952A6000DBC65 /* purrS.m4a in Resources */,
 				5C776C2F19C9508B000DBC65 /* barnS.m4a in Resources */,
@@ -2805,6 +2853,7 @@
 				5CAD05F219BE6A3E00F3F053 /* CCE2_9.m4a in Resources */,
 				5C776C3219C95106000DBC65 /* hayDEFS.m4a in Resources */,
 				5CAD060819BE6A3E00F3F053 /* CCE1_9.m4a in Resources */,
+				1AE0F6101A7968D400C5B67D /* Introductions-MetaData.xml in Resources */,
 				5CF9949619AC34550080C32F /* Story-6-Everyone-Helps.png in Resources */,
 				5C776BF119C93E1E000DBC65 /* atomsDEFS.m4a in Resources */,
 				5C776C6219CA74AB000DBC65 /* moleculesDEFS.m4a in Resources */,
@@ -2824,6 +2873,7 @@
 				5C776C1B19C94C8C000DBC65 /* shinyS.m4a in Resources */,
 				5CF9947119AC34550080C32F /* mimetype in Resources */,
 				5C7FE0FB19A7E43C00CBBE0E /* BFCE_22.m4a in Resources */,
+				1AE0F6161A7969F900C5B67D /* IMSolutions-MetaData.xml in Resources */,
 				5C776BCF19C93E1E000DBC65 /* cigaretteDEFS.m4a in Resources */,
 				5CF994A219AC34550080C32F /* Story1-The-Contest-Title.xhtml in Resources */,
 				5CF994A119AC34550080C32F /* Story1-The-Contest-PM-2.xhtml in Resources */,
@@ -2832,6 +2882,7 @@
 				B9B537BB19F1D77B00787A85 /* gray_handle_open.png in Resources */,
 				5CF9949A19AC34550080C32F /* IMStyle.css in Resources */,
 				5CAD061219BE6A3E00F3F053 /* CCE1_4.m4a in Resources */,
+				1AE0F5FE1A79665A00C5B67D /* Constraints-MetaData.xml in Resources */,
 				5C7FE12E19A7E43C00CBBE0E /* BFEE_19.m4a in Resources */,
 				5C7FE13619A7E43C00CBBE0E /* BFEE_8.m4a in Resources */,
 				5C776BCC19C93E1E000DBC65 /* ciliaS.m4a in Resources */,
@@ -2850,6 +2901,7 @@
 				5C7FE13919A7E43C00CBBE0E /* BFES_10.m4a in Resources */,
 				5C7FE11D19A7E43C00CBBE0E /* BFCS_8.m4a in Resources */,
 				5C776BED19C93E1E000DBC65 /* lungsDEFS.m4a in Resources */,
+				1AE0F60C1A79686A00C5B67D /* SentenceAnalysis-MetaData.xml in Resources */,
 				5CF9947619AC34550080C32F /* bucket.png in Resources */,
 				31058C74176BCFF200595AAE /* logo114.png in Resources */,
 				31058C76176BCFF900595AAE /* logo57.png in Resources */,
@@ -3053,6 +3105,10 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EMBRACE_Client/EMBRACE-Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
@@ -3074,6 +3130,10 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EMBRACE_Client/EMBRACE-Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;

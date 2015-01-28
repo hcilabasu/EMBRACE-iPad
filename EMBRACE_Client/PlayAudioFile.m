@@ -13,7 +13,6 @@
 @implementation PlayAudioFile
 @synthesize syn;
 
-
 //+(void)playWordAudioTimed:(NSTimer *)wordAndLang{
   //  [self playWordAudioTimed:wordAndLang];
 //}
@@ -113,5 +112,15 @@
     [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Error Audio" : @"NULL" :@"Error Noise"  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
 }
 
+-(void) textToSpeech: (NSString *) text
+{
+    syn = [[AVSpeechSynthesizer alloc] init];
+    AVSpeechUtterance *utteranceEn = [[AVSpeechUtterance alloc]initWithString:text];
+    utteranceEn.rate = AVSpeechUtteranceMaximumSpeechRate/7;
+    //utteranceEn.voice = [AVSpeechSynthesisVoice voiceWithLanguage:obj2];
+    [syn speakUtterance:utteranceEn];
+    
+    //[[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Audio" : @"TTS" :text:bookTitle :chapterTitle :currentPage:currentSentence :currentStep];
+}
 
 @end

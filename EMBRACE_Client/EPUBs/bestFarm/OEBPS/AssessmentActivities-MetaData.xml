@@ -3,127 +3,283 @@
     <ActivityAssessment>
         <Questions title= "Introduction to The Best Farm">
             <Question number="1">
-                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionText>What is the name of the farmer?</QuestionText>
                 <QuestionAudio>audioFile</QuestionAudio>
-                <Answer1>Sample Answer 1</Answer1>
+                <Answer1>Ben</Answer1>
                 <Answer1Audio>audioFile</Answer1Audio>
-                <Answer2>Sample Answer 2 - This is the correct answer</Answer2>
+                <Answer2>Manuel</Answer2>
                 <Answer2Audio>audioFile</Answer2Audio>
-                <Answer3>Sample Answer 3</Answer3>
+                <Answer3>Michael</Answer3>
                 <Answer3Audio>audioFile</Answer3Audio>
-                <Answer4>Sample Answer 4</Answer4>
+                <Answer4>Jose</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
                 <expectedSelection>2</expectedSelection>
             </Question>
             <Question number="2">
-                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionText>On what day does the judge come?</QuestionText>
                 <QuestionAudio>audioFile</QuestionAudio>
-                <Answer1>Sample Answer 1</Answer1>
+                <Answer1>Saturday</Answer1>
                 <Answer1Audio>audioFile</Answer1Audio>
-                <Answer2>Sample Answer 2</Answer2>
+                <Answer2>Monday</Answer2>
                 <Answer2Audio>audioFile</Answer2Audio>
-                <Answer3>Sample Answer 3 - This is the correct answer</Answer3>
+                <Answer3>Sunday</Answer3>
                 <Answer3Audio>audioFile</Answer3Audio>
-                <Answer4>Sample Answer 4</Answer4>
+                <Answer4>Friday</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
                 <expectedSelection>3</expectedSelection>
             </Question>
             <Question number="3">
-                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionText>Which animal jumped into Manuel's arms?</QuestionText>
                 <QuestionAudio>audioFile</QuestionAudio>
-                <Answer1>Sample Answer 1</Answer1>
+                <Answer1>Owl</Answer1>
                 <Answer1Audio>audioFile</Answer1Audio>
-                <Answer2>Sample Answer 2</Answer2>
+                <Answer2>Cow</Answer2>
                 <Answer2Audio>audioFile</Answer2Audio>
-                <Answer3>Sample Answer 3</Answer3>
+                <Answer3>Chicken</Answer3>
                 <Answer3Audio>audioFile</Answer3Audio>
-                <Answer4>Sample Answer 4 - This is the correct answer</Answer4>
+                <Answer4>Cat</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
                 <expectedSelection>4</expectedSelection>
+            </Question>
+            <Question number="4">
+                <QuestionText>On which animal did the chicken sit?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>Owl</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>Cow</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>Goat</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>Cat</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>2</expectedSelection>
+            </Question>
+            <Question number="5">
+                <QuestionText>Why does Manuel want to work hard this week?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>To get the prize for best farm</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>To have a picnic</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>To get a prize for best animals</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>To go on vacation</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="6">
+                <QuestionText>After the goat walked to the cow, what other animal was nearby?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>Goat</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>Cow</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>Pig</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>Horse</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>4</expectedSelection>
+            </Question>
+            <Question number="7">
+                <QuestionText>How did the goat get out of its pen?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>The cow opened it</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>The farmer opened it</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>The horse opened it</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>The goat jumped out</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>2</expectedSelection>
             </Question>
     </Questions>
-                
+        
                 <Questions title= "The Contest">
                     <Question number="1">
-                <QuestionText>This is a sample Question</QuestionText>
-                <QuestionAudio>audioFile</QuestionAudio>
-                <Answer1>Sample Answer 1</Answer1>
-                <Answer1Audio>audioFile</Answer1Audio>
-                <Answer2>Sample Answer 2 - This is the correct answer</Answer2>
-                <Answer2Audio>audioFile</Answer2Audio>
-                <Answer3>Sample Answer 3</Answer3>
-                <Answer3Audio>audioFile</Answer3Audio>
-                <Answer4>Sample Answer 4</Answer4>
-                <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>2</expectedSelection>
-            </Question>
-            <Question number="2">
-                <QuestionText>This is a sample Question</QuestionText>
-                <QuestionAudio>audioFile</QuestionAudio>
-                <Answer1>Sample Answer 1</Answer1>
-                <Answer1Audio>audioFile</Answer1Audio>
-                <Answer2>Sample Answer 2</Answer2>
-                <Answer2Audio>audioFile</Answer2Audio>
-                <Answer3>Sample Answer 3 - This is the correct answer</Answer3>
-                <Answer3Audio>audioFile</Answer3Audio>
-                <Answer4>Sample Answer 4</Answer4>
-                <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>3</expectedSelection>
-            </Question>
-            <Question number="3">
-                <QuestionText>This is a sample Question</QuestionText>
-                <QuestionAudio>audioFile</QuestionAudio>
-                <Answer1>Sample Answer 1</Answer1>
-                <Answer1Audio>audioFile</Answer1Audio>
-                <Answer2>Sample Answer 2</Answer2>
-                <Answer2Audio>audioFile</Answer2Audio>
-                <Answer3>Sample Answer 3</Answer3>
-                <Answer3Audio>audioFile</Answer3Audio>
-                <Answer4>Sample Answer 4 - This is the correct answer</Answer4>
-                <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>4</expectedSelection>
-            </Question>
-        </Questions>
+                        <QuestionText>What is the name of the farmer?</QuestionText>
+                        <QuestionAudio>audioFile</QuestionAudio>
+                        <Answer1>Manuel</Answer1>
+                        <Answer1Audio>audioFile</Answer1Audio>
+                        <Answer2>Ben</Answer2>
+                        <Answer2Audio>audioFile</Answer2Audio>
+                        <Answer3>David</Answer3>
+                        <Answer3Audio>audioFile</Answer3Audio>
+                        <Answer4>Betty</Answer4>
+                        <Answer4Audio>audioFile</Answer4Audio>
+                        <expectedSelection>1</expectedSelection>
+                    </Question>
+                    <Question number="2">
+                        <QuestionText>On what day does the judge come?</QuestionText>
+                        <QuestionAudio>audioFile</QuestionAudio>
+                        <Answer1>Sunday</Answer1>
+                        <Answer1Audio>audioFile</Answer1Audio>
+                        <Answer2>Monday</Answer2>
+                        <Answer2Audio>audioFile</Answer2Audio>
+                        <Answer3>Tuesday</Answer3>
+                        <Answer3Audio>audioFile</Answer3Audio>
+                        <Answer4>Christmas</Answer4>
+                        <Answer4Audio>audioFile</Answer4Audio>
+                        <expectedSelection>1</expectedSelection>
+                    </Question>
+                    <Question number="3">
+                        <QuestionText>Which animal jumped into Manuel's arms?</QuestionText>
+                        <QuestionAudio>audioFile</QuestionAudio>
+                        <Answer1>Cat</Answer1>
+                        <Answer1Audio>audioFile</Answer1Audio>
+                        <Answer2>Chicken</Answer2>
+                        <Answer2Audio>audioFile</Answer2Audio>
+                        <Answer3>Owl</Answer3>
+                        <Answer3Audio>audioFile</Answer3Audio>
+                        <Answer4>Hippo</Answer4>
+                        <Answer4Audio>audioFile</Answer4Audio>
+                        <expectedSelection>1</expectedSelection>
+                    </Question>
+                    <Question number="4">
+                        <QuestionText>On which animal did the chicken sit?</QuestionText>
+                        <QuestionAudio>audioFile</QuestionAudio>
+                        <Answer1>Cow</Answer1>
+                        <Answer1Audio>audioFile</Answer1Audio>
+                        <Answer2>Goat</Answer2>
+                        <Answer2Audio>audioFile</Answer2Audio>
+                        <Answer3>Horse</Answer3>
+                        <Answer3Audio>audioFile</Answer3Audio>
+                        <Answer4>Bug</Answer4>
+                        <Answer4Audio>audioFile</Answer4Audio>
+                        <expectedSelection>1</expectedSelection>
+                    </Question>
+                    <Question number="5">
+                        <QuestionText>Why does Manuel want to work hard this week?</QuestionText>
+                        <QuestionAudio>audioFile</QuestionAudio>
+                        <Answer1>to win the prize for best farm</Answer1>
+                        <Answer1Audio>audioFile</Answer1Audio>
+                        <Answer2>to have a picnic</Answer2>
+                        <Answer2Audio>audioFile</Answer2Audio>
+                        <Answer3>to earn money</Answer3>
+                        <Answer3Audio>audioFile</Answer3Audio>
+                        <Answer4>because his dad told him to</Answer4>
+                        <Answer4Audio>audioFile</Answer4Audio>
+                        <expectedSelection>1</expectedSelection>
+                    </Question>
+                    <Question number="6">
+                        <QuestionText>After the goat walked to the cow, what other animal was nearby?</QuestionText>
+                        <QuestionAudio>audioFile</QuestionAudio>
+                        <Answer1>Horse</Answer1>
+                        <Answer1Audio>audioFile</Answer1Audio>
+                        <Answer2>Pig</Answer2>
+                        <Answer2Audio>audioFile</Answer2Audio>
+                        <Answer3>Owl</Answer3>
+                        <Answer3Audio>audioFile</Answer3Audio>
+                        <Answer4>Zebra</Answer4>
+                        <Answer4Audio>audioFile</Answer4Audio>
+                        <expectedSelection>1</expectedSelection>
+                    </Question>
+                    <Question number="7">
+                        <QuestionText>How did the goat get out of its pen?</QuestionText>
+                        <QuestionAudio>audioFile</QuestionAudio>
+                        <Answer1>Farmer Manuel opened it.</Answer1>
+                        <Answer1Audio>audioFile</Answer1Audio>
+                        <Answer2>The goat jumped out.</Answer2>
+                        <Answer2Audio>audioFile</Answer2Audio>
+                        <Answer3>The chicken opened it.</Answer3>
+                        <Answer3Audio>audioFile</Answer3Audio>
+                        <Answer4>The pen disappeared.</Answer4>
+                        <Answer4Audio>audioFile</Answer4Audio>
+                        <expectedSelection>1</expectedSelection>
+                    </Question>
+                </Questions>
                         
                 <Questions title= "Getting Ready">
                     <Question number="1">
-                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionText>How does the milk help the cat's fur?'</QuestionText>
                 <QuestionAudio>audioFile</QuestionAudio>
-                <Answer1>Sample Answer 1</Answer1>
+                <Answer1>The milk makes her fur shiny.</Answer1>
                 <Answer1Audio>audioFile</Answer1Audio>
-                <Answer2>Sample Answer 2 - This is the correct answer</Answer2>
+                <Answer2>The milk cleans her fur.</Answer2>
                 <Answer2Audio>audioFile</Answer2Audio>
-                <Answer3>Sample Answer 3</Answer3>
+                <Answer3>The milk helps her fur to grow.</Answer3>
                 <Answer3Audio>audioFile</Answer3Audio>
-                <Answer4>Sample Answer 4</Answer4>
+                <Answer4>The milk makes her fur fall out.</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>2</expectedSelection>
+                <expectedSelection>1</expectedSelection>
             </Question>
             <Question number="2">
-                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionText>How does eating apple help the horse's teeth?</QuestionText>
                 <QuestionAudio>audioFile</QuestionAudio>
-                <Answer1>Sample Answer 1</Answer1>
+                <Answer1>Eating an apple cleans the horse's teeth.</Answer1>
                 <Answer1Audio>audioFile</Answer1Audio>
-                <Answer2>Sample Answer 2</Answer2>
+                <Answer2>Eating an apple makes the horse's teeth dirty.'</Answer2>
                 <Answer2Audio>audioFile</Answer2Audio>
-                <Answer3>Sample Answer 3 - This is the correct answer</Answer3>
+                <Answer3>Eating an apple makes the horses's teeth stronger.'</Answer3>
                 <Answer3Audio>audioFile</Answer3Audio>
-                <Answer4>Sample Answer 4</Answer4>
+                <Answer4>Eating an apple gives the horse bad breath.</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>3</expectedSelection>
+                <expectedSelection>1</expectedSelection>
             </Question>
             <Question number="3">
-                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionText>How did Manuel help the goat to look good?</QuestionText>
                 <QuestionAudio>audioFile</QuestionAudio>
-                <Answer1>Sample Answer 1</Answer1>
+                <Answer1>Manuel combed the goat's fur.'</Answer1>
                 <Answer1Audio>audioFile</Answer1Audio>
-                <Answer2>Sample Answer 2</Answer2>
+                <Answer2>Manuel gave the goat a pumpkin.</Answer2>
                 <Answer2Audio>audioFile</Answer2Audio>
-                <Answer3>Sample Answer 3</Answer3>
+                <Answer3>Manuel carried the milk bucket to the goat.</Answer3>
                 <Answer3Audio>audioFile</Answer3Audio>
-                <Answer4>Sample Answer 4 - This is the correct answer</Answer4>
+                <Answer4>Manuel painted the goat's hooves.'</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>4</expectedSelection>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="4">
+                <QuestionText>Which animal drank the milk?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>Cat</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>Pig</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>Goat</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>Goldfish</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="5">
+                <QuestionText>What did Manuel put in the cart?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>Pumpkin</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>Apple</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>Milk Bucket</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>Candy</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="6">
+                <QuestionText>Why did Manuel want the animals to look good?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>to win the prize for best farm</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>to take a picture</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>to win the raffle</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>to bring them to the ballet</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="7">
+                <QuestionText>Why did Manuel put the pumpkin in the cart?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>to give to the pig</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>to give to the horse</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>to show the judge</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>to carve for Halloween</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
             </Question>
                 </Questions>
                         

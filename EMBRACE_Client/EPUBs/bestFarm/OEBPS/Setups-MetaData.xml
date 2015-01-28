@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+<setups>
+    <story title="Cleaning Up" page_id="story3-PM-2">
+        <move obj1Id="horse" action="getIn" waypointId="horseInCorral"/>
+        <move obj1Id="cow" action="getIn" waypointId="cowInCorral"/>
+        <move obj1Id="corralDoor" action="close" waypointId="corralDoorClose"/>
+        <move obj1Id="pig" action="getIn" waypointId="insidePen2"/>
+        <move obj1Id="pen2" action="close" waypointId="pen2Close"/>
+        <move obj1Id="farmer" action="getIn" waypointId="farmerNearPig"/>
+    </story>
+    <story title="Everyone Helps" page_id="story6-PM-2">
+        <group obj1Id="owl" action="visit" obj2Id="farmer"/>
+        <move obj1Id="chicken" action="leave" waypointId="nearPigPen"/>
+        <move obj1Id="pig" action="getIn" waypointId="pigNearHorse"/>
+    </story>
+    <story title="Getting Ready" page_id="story2-PM-1">
+        <group obj1Id="farmer" action="grab" obj2Id="comb"/>
+    </story>
+    <story title="Getting Ready" page_id="story2-PM-2">
+        <group obj1Id="cat" action="finish" obj2Id="bucket"/>
+        <move obj1Id="comb" action="release" waypointId="dropComb"/>
+    </story>
+    <story title="The Best Farm Award" page_id="story7-PM-1">
+        <group obj1Id="judge" action="hold" obj2Id="award"/>
+    </story>
+    <story title="The Best Farm Award" page_id="story7-PM-2">
+        <group obj1Id="judge" action="hold" obj2Id="award"/>
+    </story>
+    <story title="The Contest" page_id="story1-PM-2">
+        <group obj1Id="chicken" action="getOn" obj2Id="cow"/>
+        <group obj1Id="goat" action="visit" obj2Id="cow"/>
+        <move obj1Id="cow" action="getIn" waypointId="nearCorral"/>
+        <move obj1Id="farmer" action="open" waypointId="nearGoatPen"/>
+    </story>
+    <story title="Who is the Best Animal?" page_id="story4-PM-2">
+        <group obj1Id="cat" action="moveTo" obj2Id="chicken"/>
+    </story>
+</setups>
+</metadata>

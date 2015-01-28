@@ -583,7 +583,7 @@ DDXMLElement *nodeStudy;
  Selection: objectID
  Action: Action Verification
  Input: correctness, what action
- Context: story, chapter, page, sentence, step, username, condition, experimenter
+ Context: story, chapter, Assessment step, username, condition, experimenter
  */
 -(void) logComputerVerification: (NSString*)action : (BOOL) verificationValue : (NSString *) objectSelected : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue
 {
@@ -681,8 +681,8 @@ DDXMLElement *nodeStudy;
 
 /*
  UserActionIDTag: current useractionID
- Selection: ??
- Action: Display Menu Items
+ Selection: Image
+ Action: Display Menu
  Input: displayedMenuItems
  Context: story, chapter, page, sentence, step, username, condition, experimenter
  */
@@ -814,8 +814,8 @@ DDXMLElement *nodeStudy;
 /*
  UserActionID : current UserActionIDTag
  Selection: Next Button
- Action: Call Computer Navigation
- Input: Button Type: Next Button
+ Action: Tap
+ Input: Button Type: Next
  Context: story, chapter, page, sentence, step, username, condition, experimenter
  */
 -(void) logUserNextButtonPressed: (NSString *) buttonPressedValue :(NSString *) computerActionValue : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue
@@ -1191,6 +1191,251 @@ DDXMLElement *nodeStudy;
     [nodeUserAction addChild:nodeContext];
 }
 
+//log assessment activities
+//log loading next assessment activity step
+-(void) logComputerAssessmentLoadNextActivityStep : (NSString*) buttonPressedValue : (NSString *) computerActionValue : (NSString*) currAssesmentActivityStepValue : (NSString*) nextAssessmentActivityStepValue : (NSString *) storyValue : (NSString *) chapterValue : (NSString*) currentAssessmentStep
+{
+    //logging structure for user actions
+    DDXMLElement *nodeComputerAction = [DDXMLElement elementWithName:@"Computer Action"];
+    [study addChild:nodeComputerAction];
+    
+    //logging userAction relationship
+    DDXMLElement *nodeUserActionID = [DDXMLElement elementWithName:@"User Action ID" stringValue:[NSString stringWithFormat:@"%ld",(long)UserActionIDTag]];
+    
+    //logging selection
+    DDXMLElement *nodeSelection = [DDXMLElement elementWithName:@"Selection" stringValue:@"Button"];
+    
+    //Input parent node
+    DDXMLElement *nodeInput = [DDXMLElement elementWithName:@"Input"];
+    
+    //creating input children nodes
+    DDXMLElement *nodeButtonType = [DDXMLElement elementWithName:@"Button Type" stringValue:@"Next"];
+    
+    DDXMLElement *nodeCurrAssessmentStep = [DDXMLElement elementWithName:@"Current Assessment" stringValue:currAssesmentActivityStepValue];
+    
+    DDXMLElement *nodeNextAssessmentStep = [DDXMLElement elementWithName:@"Next Assessment" stringValue:nextAssessmentActivityStepValue];
+    
+    //adding child nodes to Input parent
+    [nodeInput addChild:nodeButtonType];
+    [nodeInput addChild:nodeCurrAssessmentStep];
+    [nodeInput addChild:nodeNextAssessmentStep];
+    
+    //logging action
+    DDXMLElement *nodeAction = [DDXMLElement elementWithName:@"Action" stringValue:computerActionValue];
+    //Next Assessment | End Assessment
+    
+    //logging Context
+    DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnAssessmentContext:storyValue :chapterValue :currentAssessmentStep];
+    
+    //add SAIC to UserAction parent
+    [nodeComputerAction addChild:nodeUserActionID];
+    [nodeComputerAction addChild:nodeSelection];
+    [nodeComputerAction addChild:nodeAction];
+    [nodeComputerAction addChild:nodeInput];
+    [nodeComputerAction addChild:nodeContext];
+    
+    [[ServerCommunicationController sharedManager] writeToFile:studyFileName ofType:@"txt"];
+}
+
+/*UserActionID : current UserActionIDTag
+Selection: Next Button
+Action: Tap
+Input: Button Type: Next
+Context:
+*/
+-(void) logUserAssessmentPressedNext : (NSString*) buttonPressedVaue : (NSString *) computerActionValue : (NSString *) storyValue : (NSString *) chapterValue : (NSString*) currentAssessmentStep
+{
+    UserActionIDTag++;
+    
+    //logging structure for user actions
+    DDXMLElement *nodeUserAction = [DDXMLElement elementWithName:@"User Action"];
+    [study addChild:nodeUserAction];
+    
+    //logging userAction relationship
+    DDXMLElement *nodeUserActionID = [DDXMLElement elementWithName:@"User Action ID" stringValue:[NSString stringWithFormat:@"%ld",(long)UserActionIDTag]];
+    
+    //logging selection
+    DDXMLElement *nodeSelection = [DDXMLElement elementWithName:@"Selection" stringValue:@"Button"];
+    
+    //Input parent node
+    DDXMLElement *nodeInput = [DDXMLElement elementWithName:@"Input"];
+    
+    //creating input children nodes
+    DDXMLElement *nodeButtonType = [DDXMLElement elementWithName:@"Button Type" stringValue:@"Next"];
+    
+    //adding child nodes to Input parent
+    [nodeInput addChild:nodeButtonType];
+    
+    //logging action
+    DDXMLElement *nodeAction = [DDXMLElement elementWithName:@"Action" stringValue:@"Tap"];
+    
+    //logging Context
+    DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnAssessmentContext:storyValue :chapterValue :currentAssessmentStep];
+    
+    //add SAIC to UserAction parent
+    [nodeUserAction addChild:nodeUserActionID];
+    [nodeUserAction addChild:nodeSelection];
+    [nodeUserAction addChild:nodeAction];
+    [nodeUserAction addChild:nodeInput];
+    [nodeUserAction addChild:nodeContext];
+}
+
+/*UserActionID : current UserActionIDTag
+ Selection: Button
+ Action: Tap
+ Input: Button Type: Answer Option
+ Context:
+ */
+-(void) logUserAssessmentPressedAnswerOption : (NSString*) questionText :  (NSInteger) answerOptionSelected : (NSArray*) answerOptions : (NSString*) buttonPressedVaue : (NSString *) computerActionValue : (NSString *) storyValue : (NSString *) chapterValue : (NSString*) currentAssessmentStep
+{
+    UserActionIDTag++;
+    
+    //logging structure for user actions
+    DDXMLElement *nodeUserAction = [DDXMLElement elementWithName:@"User Action"];
+    [study addChild:nodeUserAction];
+    
+    //logging userAction relationship
+    DDXMLElement *nodeUserActionID = [DDXMLElement elementWithName:@"User Action ID" stringValue:[NSString stringWithFormat:@"%ld",(long)UserActionIDTag]];
+    
+    //logging selection
+    DDXMLElement *nodeSelection = [DDXMLElement elementWithName:@"Selection" stringValue:@"Button"];
+    
+    //Input parent node
+    DDXMLElement *nodeInput = [DDXMLElement elementWithName:@"Input"];
+    
+    //creating input children nodes
+    DDXMLElement *nodeButtonType = [DDXMLElement elementWithName:@"Action Type" stringValue:@"Verification"];
+    
+    DDXMLElement *nodeQuestionText = [DDXMLElement elementWithName:@"Question Text" stringValue:questionText];
+    
+    DDXMLElement *nodeAnswerOptions = [DDXMLElement elementWithName:@"Answer Options" stringValue:[NSString stringWithFormat:@"%@, %@, %@, %@", answerOptions[0],answerOptions[1],answerOptions[2],answerOptions[3]]];
+    
+    DDXMLElement *nodeAnswerOptionSelected = [DDXMLElement elementWithName:@"Selected Option" stringValue:[NSString stringWithFormat:@"%d", answerOptionSelected]];
+    
+    //adding child nodes to Input parent
+    [nodeInput addChild:nodeButtonType];
+    [nodeInput addChild:nodeQuestionText];
+    [nodeInput addChild:nodeAnswerOptions];
+    [nodeInput addChild:nodeAnswerOptionSelected];
+    
+    //logging action
+    DDXMLElement *nodeAction = [DDXMLElement elementWithName:@"Action" stringValue:@"Tap"];
+    
+    //logging Context
+    DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnAssessmentContext:storyValue :chapterValue :currentAssessmentStep];
+    
+    //add SAIC to UserAction parent
+    [nodeUserAction addChild:nodeUserActionID];
+    [nodeUserAction addChild:nodeSelection];
+    [nodeUserAction addChild:nodeAction];
+    [nodeUserAction addChild:nodeInput];
+    [nodeUserAction addChild:nodeContext];
+}
+
+/*UserActionIDTag: current useractionID
+ Selection: Answer Option
+ Action: Verification
+ Input: correctness, Answer Option Selected
+ Context:
+ */
+//log if answer selection was correct or incorrect and what they selected
+-(void) logComputerAssessmentAnswerVerification : (BOOL) verificationValue : (NSString*) questionText :  (NSInteger) answerOptionSelected : (NSArray*) answerOptions : (NSString*) buttonPressedVaue : (NSString *) computerActionValue : (NSString *) storyValue : (NSString *) chapterValue : (NSString*) currentAssessmentStep
+{
+    //logging structure for user actions
+    DDXMLElement *nodeComputerAction = [DDXMLElement elementWithName:@"Computer Action"];
+    [study addChild:nodeComputerAction];
+    
+    //logging userAction relationship
+    DDXMLElement *nodeUserActionID = [DDXMLElement elementWithName:@"User Action ID" stringValue:[NSString stringWithFormat:@"%ld",(long)UserActionIDTag]];
+    
+    //logging selection
+    DDXMLElement *nodeSelection = [DDXMLElement elementWithName:@"Selection" stringValue:[NSString stringWithFormat:@"%d",answerOptionSelected]];
+    
+    //Input parent node
+    DDXMLElement *nodeInput = [DDXMLElement elementWithName:@"Input"];
+    
+    //creating input children nodes
+    DDXMLElement *nodeVerficiation;
+    //logging Input
+    if (verificationValue)
+    {
+        nodeVerficiation = [DDXMLElement elementWithName:@"Verification" stringValue:@"Correct"];
+    }
+    else
+    {
+        nodeVerficiation = [DDXMLElement elementWithName:@"Verification" stringValue:@"Incorrect"];
+    }
+    
+    //adding child nodes to Input parent
+    [nodeInput addChild:nodeVerficiation];
+    
+    //logging action
+    DDXMLElement *nodeAction = [DDXMLElement elementWithName:@"Action" stringValue:@"Select Answer Option"];
+    
+    //logging Context
+    DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnAssessmentContext:storyValue :chapterValue :currentAssessmentStep];
+    
+    //add SAIC to UserAction parent
+    [nodeComputerAction addChild:nodeUserActionID];
+    [nodeComputerAction addChild:nodeSelection];
+    [nodeComputerAction addChild:nodeAction];
+    [nodeComputerAction addChild:nodeInput];
+    [nodeComputerAction addChild:nodeContext];
+}
+
+/*
+ UserActionIDTag: current useractionID
+ Selection:
+ Action: Display Answers Options
+ Input: displayed Answer Options
+ Context:
+ */
+-(void) logComputerAssessmentDisplayStep : (NSString*) questionText : (NSArray*) answerOptions : (NSString*) buttonPressedVaue : (NSString *) computerActionValue : (NSString *) storyValue : (NSString *) chapterValue : (NSString*) currentAssessmentStep
+{
+    
+     //UserActionIDTag++;
+     
+     //logging structure for user actions
+     DDXMLElement *nodeComputerAction = [DDXMLElement elementWithName:@"Computer Action"];
+     [study addChild:nodeComputerAction];
+     
+     //logging userAction relationship
+     DDXMLElement *nodeUserActionID = [DDXMLElement elementWithName:@"User Action ID" stringValue:[NSString stringWithFormat:@"%ld",(long)UserActionIDTag]];
+     
+     //logging selection
+     DDXMLElement *nodeSelection = [DDXMLElement elementWithName:@"Selection" stringValue:@"Button"];
+     
+     //Input parent node
+     DDXMLElement *nodeInput = [DDXMLElement elementWithName:@"Input"];
+     
+     //creating input children nodes
+     DDXMLElement *nodeButtonType = [DDXMLElement elementWithName:@"Action Type" stringValue:@"Next"];
+     
+     DDXMLElement *nodeQuestionText = [DDXMLElement elementWithName:@"Question Text" stringValue:questionText];
+     
+     DDXMLElement *nodeAnswerOptions = [DDXMLElement elementWithName:@"Answer Options" stringValue:[NSString stringWithFormat:@"%@, %@, %@, %@", answerOptions[0],answerOptions[1],answerOptions[2],answerOptions[3]]];
+     
+     //adding child nodes to Input parent
+     [nodeInput addChild:nodeButtonType];
+     [nodeInput addChild:nodeQuestionText];
+     [nodeInput addChild:nodeAnswerOptions];
+     
+     //logging action
+     DDXMLElement *nodeAction = [DDXMLElement elementWithName:@"Action" stringValue:@"Display Assessment"];
+     
+     //logging Context
+     DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnAssessmentContext:storyValue :chapterValue :currentAssessmentStep];
+    
+     //add SAIC to UserAction parent
+     [nodeComputerAction addChild:nodeUserActionID];
+     [nodeComputerAction addChild:nodeSelection];
+     [nodeComputerAction addChild:nodeAction];
+     [nodeComputerAction addChild:nodeInput];
+     [nodeComputerAction addChild:nodeContext];
+    
+}
+
+
 -(DDXMLElement *) returnContext : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue
 {
     
@@ -1225,6 +1470,42 @@ DDXMLElement *nodeStudy;
     [nodeContext addChild:nodePage];
     [nodeContext addChild:nodeSentence];
     [nodeContext addChild:nodeStep];
+    [nodeContext addChild:nodeTimestamp];
+    
+    return nodeContext;
+}
+
+
+-(DDXMLElement *) returnAssessmentContext : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) assessmentStepValue
+{
+    
+    //timestamp
+    NSDate *currentTime = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM-dd-yyyy'T'hh:mm.ss.SSS"];
+    NSString *timeStampValue = [dateFormatter stringFromDate: currentTime];
+    
+    //logging Context
+    DDXMLElement *nodeContext = [DDXMLElement elementWithName:@"Context"];
+    DDXMLElement *nodeSchool = [DDXMLElement elementWithName:@"School" stringValue:studySchoolString];
+    DDXMLElement *nodeDay = [DDXMLElement elementWithName:@"Day" stringValue:studyDayString];
+    DDXMLElement *nodeCondition = [DDXMLElement elementWithName:@"Condition" stringValue:studyConditionString];
+    DDXMLElement *nodeParticipant = [DDXMLElement elementWithName:@"Participant" stringValue:studyParticipantString];
+    DDXMLElement *nodeExperimenter = [DDXMLElement elementWithName:@"Experimenter" stringValue:studyExperimenterString];
+    DDXMLElement *nodeStory = [DDXMLElement elementWithName:@"Story" stringValue:storyValue];
+    DDXMLElement *nodeChapter = [DDXMLElement elementWithName:@"Chapter" stringValue:chapterValue];
+    DDXMLElement *nodeAssessmentStep = [DDXMLElement elementWithName:@"Assessment Step" stringValue:assessmentStepValue];
+    DDXMLElement *nodeTimestamp = [DDXMLElement elementWithName:@"Timestamp" stringValue:timeStampValue];
+    
+    //adding children nodes to context parent
+    [nodeContext addChild:nodeSchool];
+    [nodeContext addChild:nodeCondition];
+    [nodeContext addChild:nodeDay];
+    [nodeContext addChild:nodeParticipant];
+    [nodeContext addChild:nodeExperimenter];
+    [nodeContext addChild:nodeStory];
+    [nodeContext addChild:nodeChapter];
+    [nodeContext addChild:nodeAssessmentStep];
     [nodeContext addChild:nodeTimestamp];
     
     return nodeContext;

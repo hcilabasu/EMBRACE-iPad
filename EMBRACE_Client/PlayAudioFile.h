@@ -23,5 +23,6 @@
 -(void) playAudioInSequence:(NSString*) path :(NSString*) path2;
 -(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag;
 -(IBAction) playErrorNoise: (NSString *) bookTitle : (NSString *) chapterTitle : (NSString *) currentPage : (NSUInteger) currentSentence : (NSUInteger) currentStep;
+-(void) textToSpeech: (NSString *) text;
 
 @end

@@ -161,6 +161,7 @@ ConditionSetup *conditionSetup;
     //Create contextualMenuController
     menuDataSource = [[ContextualMenuDataSource alloc] init];
     
+    
     //Ensure that the pinch recognizer gets called before the pan gesture recognizer.
     //That way, if a user is trying to ungroup objects, they can do so without the objects moving as well.
     //TODO: Figure out how to get the pan gesture to still properly recognize the begin and continue actions.
@@ -311,10 +312,17 @@ ConditionSetup *conditionSetup;
         //Log that chapter has been completed
         [[ServerCommunicationController sharedManager] logNextChapterNavigation:@"Next Button" :tempLastPage :currentPage :@"Next Page | Chapter Finished" :bookTitle :chapterTitle : currentPage : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] : [NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
         
-        //[self.navigationController popViewControllerAnimated:YES]; //return to library view
+        //return to library view
         //load assessment activity screen
-        [self loadAssessmentActivity];
-        return;
+        if([chapterTitle isEqualToString:@"Introduction to The Best Farm"])
+        {   [self.navigationController popViewControllerAnimated:YES];
+            return;
+        }
+        else
+        {
+            [self loadAssessmentActivity];
+            return;
+        }
     }
     
     [self loadPage];
@@ -433,7 +441,8 @@ ConditionSetup *conditionSetup;
  *displays the assessment activity view controller
  */
 -(void)loadAssessmentActivity{
-    AssessmentActivityViewController *assessmentActivityViewController = [[AssessmentActivityViewController alloc]initWithModel:model:chapterTitle:libraryViewController];
+    AssessmentActivityViewController *assessmentActivityViewController = [[AssessmentActivityViewController alloc]initWithModel:model: libraryViewController:bookTitle :chapterTitle : currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] : [NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+    
     //[self.navigationController presentViewController:assessmentActivityViewController animated:YES completion:nil];
     [self.navigationController pushViewController:assessmentActivityViewController animated:YES];
 }
@@ -623,6 +632,7 @@ ConditionSetup *conditionSetup;
         IntroductionClass.allowInteractions = TRUE;
     }
     
+    
     //check to see if we have a menu open. If so, process menu click.
     if(menu != nil && IntroductionClass.allowInteractions) {
         int menuItem = [menu pointInMenuItem:location];
@@ -685,6 +695,7 @@ ConditionSetup *conditionSetup;
             [[ServerCommunicationController sharedManager] logMenuSelection: menuItem: menuItemInteractions : menuItemImages : menuItemRelationships :@"Menu Item Selected" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
             
             [self checkSolutionForInteraction:interaction]; //check if selected interaction is correct
+            
         }
         //No menuItem was selected
         else {
@@ -709,6 +720,7 @@ ConditionSetup *conditionSetup;
         [menu removeFromSuperview];
         menu = nil;
         menuExpanded = FALSE;
+        
     }
     else {
         if (numSteps > 0 && IntroductionClass.allowInteractions) {
@@ -2162,18 +2174,23 @@ ConditionSetup *conditionSetup;
         //Logging added by James for Correct Interaction
         [[ServerCommunicationController sharedManager] logComputerVerification:@"Perform Interaction":true : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
         
-        [self performInteraction:interaction];
+            //imcode?
+            [self performInteraction:interaction];
         
         if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
             IntroductionClass.currentIntroStep++;
             [IntroductionClass loadIntroStep:bookView: currentSentence];
         }
         
+         if (conditionSetup.condition != EMBRACE) {
         [self incrementCurrentStep];
+         }
         
         //Transference counts as two steps, so we must increment again
         if ([interaction interactionType] == TRANSFERANDGROUP || [interaction interactionType] == TRANSFERANDDISAPPEAR) {
-            [self incrementCurrentStep];
+            if (conditionSetup.condition != EMBRACE) {
+                [self incrementCurrentStep];
+            }
         }
     }
     else {
@@ -2213,6 +2230,7 @@ ConditionSetup *conditionSetup;
     //Clear any remaining highlighting.
     NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
     [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
+    
 }
 
 /*
@@ -2277,7 +2295,8 @@ ConditionSetup *conditionSetup;
 /*
  * Returns all possible interactions that can occur between the object being moved and any other objects it's overlapping with.
  * This function takes into account all hotspots, both available and unavailable. It checks cases in which all hotspots are
- * available, as well as instances in which one hotspots is already taken up by a grouping but the other is not. The function
+ * available, as well as instances in which one hotspots is already taken up by a grouping but the other is not. The func
+ tion
  * checks both group and disappear interaction types.
  
  * TODO: Figure out how to return all possible interactions robustly. Currently if the student drags the hay and the farmer (when grouped) by the hay, then the interaction will not be identified.
@@ -2582,7 +2601,7 @@ ConditionSetup *conditionSetup;
         overlappingWith = [overlapArrayString componentsSeparatedByString:@", "];
     }
     
-    return overlappingWith;
+        return overlappingWith;
 }
 
 /*
@@ -3174,6 +3193,8 @@ ConditionSetup *conditionSetup;
         }
     }
     else {
+        
+        
         if (stepsComplete || numSteps == 0 || !IntroductionClass.allowInteractions) {
             //Logging added by James for User pressing the Next button
             [[ServerCommunicationController sharedManager] logUserNextButtonPressed:@"Next" :@"Tap" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
@@ -3182,7 +3203,7 @@ ConditionSetup *conditionSetup;
             NSString *tempLastSentence = [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence];
             
             //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
-            currentSentence ++;
+            currentSentence++;
             
             //Set up current sentence appearance and solution steps
             [self setupCurrentSentence];
@@ -3268,7 +3289,7 @@ ConditionSetup *conditionSetup;
     [menuDataSource clearMenuitems];
     
     //Create new data source for menu.
-    //Go through and great a menuItem for every possible interaction
+    //Go through and create a menuItem for every possible interaction
     int interactionNum = 1;
     
     for(PossibleInteraction* interaction in possibleInteractions) {
@@ -3713,6 +3734,7 @@ ConditionSetup *conditionSetup;
 -(void) expandMenu {
     menu = [[PieContextualMenu alloc] initWithFrame:[bookView frame]];
     [menu addGestureRecognizer:tapRecognizer];
+    
     [[self view] addSubview:menu];
     
     menu.delegate = self;

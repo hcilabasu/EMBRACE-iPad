@@ -7,6 +7,7 @@
 //
 
 #import "AssessmentActivityViewController.h"
+#import "ServerCommunicationController.h"
 
 @interface AssessmentActivityViewController ()
 
@@ -32,19 +33,32 @@ NSInteger totalAssessmentActivitySteps;
 NSInteger currentAssessmentActivityStep;
 UIViewController *libraryView;
 
+//Context variables
+NSString *BookTitle;
+NSString *CurrentPage;
+NSString *CurrentSentence;
+NSString *CurrentStep;
+
 @implementation AssessmentActivityViewController
 @synthesize AnswerList;
 @synthesize nextButton;
 @synthesize ChapterTitleLabel;
 //@synthesize model;
 @synthesize ChapterTitle;
+@synthesize playAudioFileClass;
 
-- (id)initWithModel:(InteractionModel*) model : (NSString*)chapterTitle : (UIViewController*)libraryViewController
+- (id)initWithModel:(InteractionModel*) model : (UIViewController*) libraryViewController : (NSString*) bookTitle : (NSString*) chapterTitle : (NSString*) currentPage : (NSString*)currentSentence :(NSString*) currentStep
 {
     self=[super init];//self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         
         libraryView=libraryViewController;
+        
+        //context variables for logging
+        BookTitle = bookTitle;
+        CurrentPage = currentPage;
+        CurrentSentence=currentSentence;
+        CurrentStep = currentStep;
         
         currentAssessmentActivityStep = 1;
         
@@ -76,6 +90,11 @@ UIViewController *libraryView;
         [AnswerOptions addObject:[currAssessmentActivityStep Answer4]];
         AnswerOption4EnglishAudio = [currAssessmentActivityStep Answer4Audio];
         
+        playAudioFileClass = [[PlayAudioFile alloc]init];
+        
+        //log loading assessment activity
+        [[ServerCommunicationController sharedManager] logComputerAssessmentDisplayStep:Question :AnswerOptions :@"Next" :@"Start Assessment" :BookTitle :ChapterTitle : @"1"];
+        
     }
     return self;
 }
@@ -95,6 +114,7 @@ UIViewController *libraryView;
     // Dispose of any resources that can be recreated.
 }
 
+//not being used currently may delete
 -(void)loadNextAssessmentActivityQuestion{
     
     currentAssessmentActivityStep++;
@@ -118,47 +138,63 @@ UIViewController *libraryView;
         [AnswerOptions addObject:[currAssessmentActivityStep Answer3]];
         [AnswerOptions addObject:[currAssessmentActivityStep Answer4]];
         
+        //log load next assessment activity step
+        [[ServerCommunicationController sharedManager] logComputerAssessmentDisplayStep:Question :AnswerOptions :@"Next" :@"Display Assessment" :BookTitle :ChapterTitle : [NSString stringWithFormat:@"%d", currentAssessmentActivityStep]];
+        
     }
     else
     {
+        //log end of assessment activity
+        
         [super.navigationController popViewControllerAnimated:YES]; //return to library view
     }
 }
 
+
+//log user pressed play audio
 -(IBAction)PlayQuestionAudioPressed:(id)sender
 {
-    
+    //[playAudioFileClass playAudioFile:QuestionAudio];
+    [playAudioFileClass textToSpeech:Question];//Question:BookTitle:ChapterTitle:CurrentPage:CurrentSentence:CurrentStep];
 }
 
 -(IBAction)PlayAnswer1AudioPressed:(id)sender
 {
-    
+    //[playAudioFileClass playAudioFile:AnswerOption1EnglishAudio];
+    [playAudioFileClass textToSpeech:AnswerOptions[0]];
 }
 
 -(IBAction)PlayAnswer2AudioPressed:(id)sender
 {
-    
+    //[playAudioFileClass playAudioFile:AnswerOption2EnglishAudio];
+    [playAudioFileClass textToSpeech:AnswerOptions[1]];
 }
 
 -(IBAction)PlayAnswer3AudioPressed:(id)sender
 {
-    
+    //[playAudioFileClass playAudioFile:AnswerOption3EnglishAudio];
+    [playAudioFileClass textToSpeech:AnswerOptions[2]];
 }
 
 -(IBAction)PlayAnswer4AudioPressed:(id)sender
 {
-    
+    //[playAudioFileClass playAudioFile:AnswerOption4EnglishAudio];
+    [playAudioFileClass textToSpeech:AnswerOptions[3]];
 }
 
 - (IBAction)NextButtonPressed:(id)sender {
-    //move to next question -> load next set of question paramters
-    //reset table row colors
-    //hide next button
+    
     //[self loadNextAssessmentActivityQuestion];
+    
+    //log user pressed next button
+    [[ServerCommunicationController sharedManager] logUserAssessmentPressedNext:@"Next" :@"Next Assessment" :BookTitle :ChapterTitle :[NSString stringWithFormat:@"%d",  currentAssessmentActivityStep]];
+    
     currentAssessmentActivityStep++;
     
     if(currentAssessmentActivityStep<=totalAssessmentActivitySteps)
     {
+        [[ServerCommunicationController sharedManager] logComputerAssessmentLoadNextActivityStep:@"Next" :@"Next Assessment" :[NSString stringWithFormat:@"%d", (currentAssessmentActivityStep-1)] :[NSString stringWithFormat:@"%d", currentAssessmentActivityStep] :BookTitle :ChapterTitle :[NSString stringWithFormat:@"%d",(currentAssessmentActivityStep-1)]];
+        
         nextButton.hidden = true;
         
         //AnswerList = [[UITableView alloc]init];
@@ -180,8 +216,7 @@ UIViewController *libraryView;
         //reset tableview cells, reload tableview
         NSArray *cells = [AnswerList indexPathsForVisibleRows];
         
-        int i=0;
-        while(i<[AnswerOptions count])
+        for (int i=0; i<[AnswerOptions count]; i++)
         {
             UITableViewCell *tempCell = [AnswerList cellForRowAtIndexPath:cells[i]];
             tempCell.contentView.alpha = 1;
@@ -189,14 +224,19 @@ UIViewController *libraryView;
             tempCell.backgroundView.alpha = 1;
             tempCell.alpha = 1;
             tempCell.accessoryType = UITableViewCellAccessoryNone;
-            i++;
         }
         
         [AnswerList reloadData];
         
+        //log Display assessment activity
+        [[ServerCommunicationController sharedManager] logComputerAssessmentDisplayStep:Question :AnswerOptions :@"Next" :@"Display Assessment" :BookTitle :ChapterTitle : [NSString stringWithFormat:@"%d", currentAssessmentActivityStep]];
+        
     }
     else
     {
+        //log return to library ie log end of assessment
+        [[ServerCommunicationController sharedManager] logComputerAssessmentLoadNextActivityStep:@"Next" :@"End Assessment" :[NSString stringWithFormat:@"%d", (currentAssessmentActivityStep-1)] :@"End of Assessment" :BookTitle :ChapterTitle :[NSString stringWithFormat:@"%d",(currentAssessmentActivityStep-1)]];
+        
         [self.navigationController popToViewController:libraryView animated:YES];
     }
 }
@@ -235,23 +275,28 @@ UIViewController *libraryView;
      
             AnswerSelection[[indexPath row]] =1;
      
-            //UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"MyCell%d", [indexPath row]]];
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        NSArray *cells = [tableView indexPathsForVisibleRows];
+        
+        //log user pressed answer option
+        [[ServerCommunicationController sharedManager] logUserAssessmentPressedAnswerOption:Question :([indexPath row]+1) :AnswerOptions :@"Answer Option" :@"Verification" :BookTitle :ChapterTitle :[NSString stringWithFormat:@"%d",currentAssessmentActivityStep]];
         
             //checks if option is correct else gray out
             if(([indexPath row]+1) == correctSelection)
             {
+                //log correct answer selected
+                [[ServerCommunicationController sharedManager] logComputerAssessmentAnswerVerification:true : Question :([indexPath row]+1) :AnswerOptions :@"Answer Option" :@"Verification" :BookTitle :ChapterTitle :[NSString stringWithFormat:@"%d", currentAssessmentActivityStep]];
+                
+                [playAudioFileClass textToSpeech:@"Good Job!"];
                 
                 //gray out other options
-                int i=0;
-                while(i<[AnswerOptions count])
+                
+                for(int i=0;i<[AnswerOptions count];i++)
                 {
                     
                     if (i!=(correctSelection-1)) {
                         //gray out option
                         
-                        UITableViewCell *tempCell = [tableView cellForRowAtIndexPath:cells[i]];
+                        //UITableViewCell *tempCell = [tableView cellForRowAtIndexPath:cells[i]];
                         AnswerSelection[i] = 1;
                         //tempCell.contentView.alpha=.2;
                         //tempCell.backgroundColor = [UIColor grayColor];
@@ -262,15 +307,16 @@ UIViewController *libraryView;
                         cell.accessoryType = UITableViewCellAccessoryCheckmark;
                         cell.backgroundColor= [UIColor blueColor];
                         nextButton.hidden = false;
+                        
                     }
-                    i++;
-                
                 }
                 
-                //show next button
             }
             else
             {
+                //log incorrect answer selected
+                [[ServerCommunicationController sharedManager] logComputerAssessmentAnswerVerification:false : Question :([indexPath row]+1) :AnswerOptions :@"Answer Option" :@"Verification" :BookTitle :ChapterTitle :[NSString stringWithFormat:@"%d", currentAssessmentActivityStep]];
+                
                 //gray out option
                 //cell.contentView.alpha=.2;
                 cell.backgroundColor = [UIColor lightGrayColor];

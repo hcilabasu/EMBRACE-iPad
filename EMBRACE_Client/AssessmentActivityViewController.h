@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "InteractionModel.h"
+#import "PlayAudioFile.h"
 
 @interface AssessmentActivityViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
@@ -21,8 +22,9 @@
 @property(nonatomic,strong) IBOutlet UIButton *answer2Button;
 @property(nonatomic,strong) IBOutlet UIButton *answer3Button;
 @property(nonatomic,strong) IBOutlet UIButton *answer4Button;
+@property(nonatomic, strong) PlayAudioFile *playAudioFileClass;
 
-- (id)initWithModel:(InteractionModel*) model : (NSString*) chapterTitle : (UIViewController*) libraryViewController;
+- (id)initWithModel:(InteractionModel*) model : (UIViewController*) libraryViewController : (NSString*) bookTitle : (NSString*) chapterTitle : (NSString*) currentPage : (NSString*)currentSentence :(NSString*) currentStep;
 -(void)loadNextAssessmentActivityQuestion;
 
 
