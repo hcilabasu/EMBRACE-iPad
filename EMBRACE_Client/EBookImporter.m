@@ -286,9 +286,9 @@ ConditionSetup *conditionSetup;
 -(void) readTOCForBook:(Book*)book {
     //NSLog(@"in beginning of TOC for book");
     NSString *filepath = nil;
-    if([conditionSetup.language isEqualToString:@"Bilingual"]){
+    if(conditionSetup.language == BILINGUAL){
         filepath = [[book mainContentPath] stringByAppendingString:@"toc.ncx"];
-    } else if ([conditionSetup.language isEqualToString:@"English"]) {
+    } else if (conditionSetup.language == ENGLISH) {
         filepath = [[book mainContentPath] stringByAppendingString:@"tocE.ncx"];
     }
     
@@ -728,7 +728,7 @@ ConditionSetup *conditionSetup;
     {
         GDataXMLElement *introductionElement = (GDataXMLElement *) [introductionElements objectAtIndex:0];
 
-        NSArray* introductions = [introductionElement elementsForName:[NSString stringWithFormat:@"%@%@",conditionSetup.condition,@"Introduction"]];
+        NSArray* introductions = [introductionElement elementsForName:[NSString stringWithFormat:@"%@%@",[conditionSetup ReturnConditionEnumToString:conditionSetup.condition],@"Introduction"]];
         
         for(GDataXMLElement* introduction in introductions) {
             //Get story title.

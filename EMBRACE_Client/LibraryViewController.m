@@ -56,7 +56,7 @@
         [[ServerCommunicationController sharedManager] logContext:student];
         //Logging Completes Here.
         
-        self.title = [NSString stringWithFormat:@"%@ %@",conditionSetup.condition, conditionSetup.language];
+        self.title = [NSString stringWithFormat:@"%@ %@",[conditionSetup ReturnConditionEnumToString:conditionSetup.condition],[conditionSetup ReturnLanguageEnumtoString: conditionSetup.language]];
     }
     else
     {

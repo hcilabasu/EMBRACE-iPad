@@ -8,31 +8,33 @@
 
 #import <Foundation/Foundation.h>
 
-////Describes the condition in which the app will be deployed
-//typedef enum Condition {
-//    MENU,
-//    HOTSPOT,
-//    CONTROL,
-//    OTHER,
-//} Condition;
-//
-////Defines the types of language conditions to be used
-//typedef enum Language {
-//    ENGLISH,
-//    BILINGUAL
-//} Language;
+//Describes the condition in which the app will be deployed
+typedef enum Condition {
+    MENU,
+    HOTSPOT,
+    CONTROL,
+    OTHER,
+    EMBRACE
+} Condition;
 
-//NSString* condition = @"Control";
+//Defines the types of language conditions to be used
+typedef enum Language {
+    ENGLISH,
+    BILINGUAL
+} Language;
 
 @interface ConditionSetup : NSObject {
 
-    NSString *condition;
-    NSString *language;
+    Condition condition;
+    Language language;
     
 }
 
-@property (nonatomic,strong)  NSString * condition;
-@property (nonatomic,strong)  NSString * language;
+@property (nonatomic) Condition condition;
+@property (nonatomic) Language language;
+
+-(NSString*)ReturnLanguageEnumtoString:(Language) type;
+-(NSString*)ReturnConditionEnumToString:(Condition) type;
 
 @end
 
