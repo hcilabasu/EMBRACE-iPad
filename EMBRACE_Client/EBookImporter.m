@@ -14,10 +14,14 @@
 @synthesize dirPaths;
 @synthesize library;
 
+ConditionSetup *conditionSetup;
+
 - (id) init {
 	if (self = [super init]) {
         library = [[NSMutableArray alloc] init];
         [self findDocDir];
+        // Create an instance of  ConditionSetup
+        conditionSetup = [[ConditionSetup alloc] init];
 	}
 	
 	return self;
@@ -281,7 +285,12 @@
 //TOC file is always named toc.ncx
 -(void) readTOCForBook:(Book*)book {
     //NSLog(@"in beginning of TOC for book");
-    NSString *filepath = [[book mainContentPath] stringByAppendingString:@"toc.ncx"];
+    NSString *filepath = nil;
+    if(conditionSetup.language == BILINGUAL){
+        filepath = [[book mainContentPath] stringByAppendingString:@"toc.ncx"];
+    } else if (conditionSetup.language == ENGLISH) {
+        filepath = [[book mainContentPath] stringByAppendingString:@"tocE.ncx"];
+    }
     
     //Get xml data of the toc file.
     NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
@@ -458,6 +467,7 @@
         
         [model addMovementConstraint:objectId :action :originX :originY :width :height];
     }
+    
     //Get order constraints
     NSArray *orderConstraintsElements = [constraintsElement elementsForName:@"orderConstraints"];
     GDataXMLElement *orderConstraintsElement = (GDataXMLElement *) [orderConstraintsElements objectAtIndex:0];
@@ -470,6 +480,31 @@
         NSString* action2 = [[constraint attributeForName:@"action2"] stringValue];
         
         [model addOrderConstraint:action1 :action2 :rule];
+    }
+    
+    //Get combo constraints
+    NSArray *comboConstraintsElements = [constraintsElement elementsForName:@"comboConstraints"];
+    GDataXMLElement *comboConstraintsElement = (GDataXMLElement *) [comboConstraintsElements objectAtIndex:0];
+    
+    NSArray *comboConstraints = [comboConstraintsElement elementsForName:@"constraint"];
+    
+    for (GDataXMLElement *constraint in comboConstraints) {
+        //Get the object that this constraint applies to
+        NSString* objectId = [[constraint attributeForName:@"objId"] stringValue];
+        
+        //Create an array to hold all the actions/hotspots that cannot be used at the same time
+        NSMutableArray* comboActs = [[NSMutableArray alloc] init];
+        
+        NSArray *comboActions = [constraint elementsForName:@"comboAction"];
+        
+        for (GDataXMLElement *comboAction in comboActions) {
+            //Get the action
+            NSString* action = [[comboAction attributeForName:@"action"] stringValue];
+            
+            [comboActs addObject:action]; //add the action to the array
+        }
+        
+        [model addComboConstraint:objectId :comboActs];
     }
     
     //Reading in the hotspot information.
@@ -685,15 +720,15 @@
             }
         }
     }
- 
+    
     //Read in the introduction information
     NSArray* introductionElements = [metadataDoc nodesForXPath:@"//introductions" error:nil];
     
     if ([introductionElements count] > 0)
     {
         GDataXMLElement *introductionElement = (GDataXMLElement *) [introductionElements objectAtIndex:0];
-        
-        NSArray* introductions = [introductionElement elementsForName:@"introduction"];
+
+        NSArray* introductions = [introductionElement elementsForName:[NSString stringWithFormat:@"%@%@",[conditionSetup ReturnConditionEnumToString:conditionSetup.condition],@"Introduction"]];
         
         for(GDataXMLElement* introduction in introductions) {
             //Get story title.

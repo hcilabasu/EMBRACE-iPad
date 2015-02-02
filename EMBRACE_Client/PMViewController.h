@@ -13,25 +13,11 @@
 #import "AVFoundation/AVSpeechSynthesis.h"
 #import "IntroductionViewController.h"
 
-//Describes the condition in which the app will be deployed
-typedef enum Condition {
-    MENU,
-    HOTSPOT,
-    CONTROL,
-    OTHER,
-} Condition;
-
 typedef enum InteractionRestriction {
     ALL_ENTITIES, //Any object can be used
     ONLY_CORRECT, //Only the correct object can be used
     NO_ENTITIES //No object can be used
 } InteractionRestriction;
-
-//Defines the types of language conditions to be used
-typedef enum Language {
-    ENGLISH,
-    BILINGUAL
-} Language;
 
 //This enum will be used in the future to define if a condition has or not image manipulation
 typedef enum InteractionMode {

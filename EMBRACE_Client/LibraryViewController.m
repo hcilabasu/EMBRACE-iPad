@@ -10,8 +10,9 @@
 #import "BookCellView.h"
 #import "BookHeaderView.h"
 #import "Book.h"
-
 #import "PMViewController.h"
+#import "ServerCommunicationController.h"
+#import "ConditionSetup.h"
 
 @interface LibraryViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout> {
     NSMutableArray *libraryImages;
@@ -46,9 +47,24 @@
 {
     [super viewDidLoad];
     
+    ConditionSetup *conditionSetup = [[ConditionSetup alloc] init];
+    
     //Set the title to something personalized.
     if(student != nil) {
-        self.title = [[@"Hi, " stringByAppendingString:[student firstName]] stringByAppendingString:@"!"];
+        
+        //added by James for xml logging
+        [[ServerCommunicationController sharedManager] logContext:student];
+        //Logging Completes Here.
+        
+        self.title = [NSString stringWithFormat:@"%@ %@",[conditionSetup ReturnConditionEnumToString:conditionSetup.condition],[conditionSetup ReturnLanguageEnumtoString: conditionSetup.language]];
+    }
+    else
+    {
+        student = [[Student alloc] initWithName:@"Study Code" :@"Study Day":@"Experimenter":@"School Day"];
+        
+        //added by James for xml logging
+        //[[ServerCommunicationController sharedManager] logContext:student];
+        //Logging Completes Here.
     }
     
     //initialize and book importer.
@@ -134,11 +150,25 @@
     //Instead of loading the first page, we're going to load the page that was selected.]
     //NSLog(@"chapter to Open: %@", self.chapterToOpen);
     
+    //added by James for XML logging
+    [[ServerCommunicationController sharedManager] logStoryButtonPressed: @"Library Icon" : @"Tap" : self.bookToOpen : self.chapterToOpen : @"NULL" : @"NULL" : @"NULL"];
+    //logging ends here
+    
     [destination loadFirstPage];
     
     //Change the back button so that it doesn't show the LibraryView's title and instead shows "Back"
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle: @"Back" style: UIBarButtonItemStyleBordered target: nil action: nil];
     [[self navigationItem] setBackBarButtonItem:backButton];
+}
+
+/*
+ * User pressed Logout button. Writes data to log file and returns to login screen.
+ */
+-(IBAction)pressedLogout:(id)sender {
+    //Write log data to file
+    [[ServerCommunicationController sharedManager] writeToFile:[[ServerCommunicationController sharedManager] studyFileName] ofType:@"txt"];
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - UICollectionViewDataSource

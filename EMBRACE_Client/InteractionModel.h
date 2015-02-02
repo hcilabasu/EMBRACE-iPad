@@ -11,6 +11,7 @@
 #import "Constraint.h"
 #import "MovementConstraint.h"
 #import "OrderConstraint.h"
+#import "ComboConstraint.h"
 #import "Location.h"
 #import "Waypoint.h"
 #import "AlternateImage.h"
@@ -50,6 +51,7 @@
 
 - (void) addMovementConstraint:(NSString*) objectId :(NSString*) action :(NSString*) originX :(NSString*) originY :(NSString*) height :(NSString*)width;
 - (void) addOrderConstraint:(NSString*)action1 :(NSString*) action2 :(NSString*) ruleType;
+- (void) addComboConstraint:(NSString*)objectId :(NSMutableArray*)comboActs;
 
 - (void) addLocation:(NSString*)locationId :(NSString*)originX :(NSString*)originY :(NSString*)height :(NSString*)width;
 
@@ -67,6 +69,7 @@
 - (NSMutableArray*) getRelationshipForObjectForAction:(NSString*) obj1Id :(NSString*)action; //Returns a list of the relationships between the specified object and all other objects with the given action.
 
 - (NSMutableArray*) getMovementConstraintsForObjectId:(NSString*)objId;
+- (NSMutableArray*) getComboConstraintsForObjectId:(NSString*)objId;
 
 - (Location*) getLocationWithId:(NSString*)locId;
 

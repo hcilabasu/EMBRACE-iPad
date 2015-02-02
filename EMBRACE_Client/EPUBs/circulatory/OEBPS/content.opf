@@ -71,6 +71,7 @@
     <item href="Images/p2_damaged.png" id="p2_damaged.png" media-type="image/png"/>
     <item href="Images/p2_healthy_cilia.png" id="p2_healthy_cilia.png" media-type="image/png"/>
     <item href="Images/p3_Lsqueeze.png" id="p3_Lsqueeze.png" media-type="image/png"/>
+    <item href="Images/p3_Lsqueeze_with_valve.png" id="p3_Lsqueeze_with_valve.png" media-type="image/png"/>
     <item href="Images/p3_nosqueeze.png" id="p3_nosqueeze.png" media-type="image/png"/>
     <item href="Images/p3_Rsqueeze.png" id="p3_Rsqueeze.png" media-type="image/png"/>
     <item href="Images/p4.png" id="p4.png" media-type="image/png"/>
