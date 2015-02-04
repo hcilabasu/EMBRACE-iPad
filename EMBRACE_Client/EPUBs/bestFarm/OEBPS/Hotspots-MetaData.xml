@@ -52,6 +52,7 @@
         <hotspot objId="cow" action="moveTo" role="object" x="100%" y="100%"/>
         <hotspot objId="cow" action="pickUp" role="subject" x="22%" y="63%"/>
         <hotspot objId="cow" action="receive" role="subject" x="22%" y="63%"/>
+        <hotspot objId="cow" action="jumpOn" role="object" x="50%" y="50%"/>
         <hotspot objId="cow" action="visit" role="object" x="0%" y="100%"/>
         <hotspot objId="cow" action="visit" role="subject" x="100%" y="100%"/>
         <hotspot objId="egg" action="count" role="object" x="100%" y="100%"/>
