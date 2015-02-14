@@ -284,214 +284,408 @@
                 </Questions>
                         
                 <Questions title= "Cleaning Up">
-                   <Question number="1">
-                <QuestionText>This is a sample Question</QuestionText>
+                <Question number="1">
+                <QuestionText>Why did Manuel want the farm to be clean?</QuestionText>
                 <QuestionAudio>audioFile</QuestionAudio>
-                <Answer1>Sample Answer 1</Answer1>
+                <Answer1>to win the Best Farm Award</Answer1>
                 <Answer1Audio>audioFile</Answer1Audio>
-                <Answer2>Sample Answer 2 - This is the correct answer</Answer2>
+                <Answer2>for a picture</Answer2>
                 <Answer2Audio>audioFile</Answer2Audio>
-                <Answer3>Sample Answer 3</Answer3>
+                <Answer3>to make it safer</Answer3>
                 <Answer3Audio>audioFile</Answer3Audio>
-                <Answer4>Sample Answer 4</Answer4>
+                <Answer4>because it was strinky</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>2</expectedSelection>
+                <expectedSelection>1</expectedSelection>
             </Question>
             <Question number="2">
-                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionText>Why did Manuel put some animals into the corral?</QuestionText>
                 <QuestionAudio>audioFile</QuestionAudio>
-                <Answer1>Sample Answer 1</Answer1>
+                <Answer1>so he can clean better</Answer1>
                 <Answer1Audio>audioFile</Answer1Audio>
-                <Answer2>Sample Answer 2</Answer2>
+                <Answer2>to feed them</Answer2>
                 <Answer2Audio>audioFile</Answer2Audio>
-                <Answer3>Sample Answer 3 - This is the correct answer</Answer3>
+                <Answer3>so they could sleep</Answer3>
                 <Answer3Audio>audioFile</Answer3Audio>
-                <Answer4>Sample Answer 4</Answer4>
+                <Answer4>because they were fighting</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>3</expectedSelection>
+                <expectedSelection>1</expectedSelection>
             </Question>
             <Question number="3">
-                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionText>Where did Manuel put the pig?</QuestionText>
                 <QuestionAudio>audioFile</QuestionAudio>
-                <Answer1>Sample Answer 1</Answer1>
+                <Answer1>in its pen</Answer1>
                 <Answer1Audio>audioFile</Answer1Audio>
-                <Answer2>Sample Answer 2</Answer2>
+                <Answer2>in the corral</Answer2>
                 <Answer2Audio>audioFile</Answer2Audio>
-                <Answer3>Sample Answer 3</Answer3>
+                <Answer3>in the cart</Answer3>
                 <Answer3Audio>audioFile</Answer3Audio>
-                <Answer4>Sample Answer 4 - This is the correct answer</Answer4>
+                <Answer4>on the roof</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>4</expectedSelection>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="4">
+                <QuestionText>What did Manuel check the Pumpkins for?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>weeds</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>hay</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>mold</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>bubbles</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="5">
+                <QuestionText>Where did Manuel put the hay?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>in the hayloft</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>in the carrol</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>in the chicken's nest</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>in his mouth</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="6">
+                <QuestionText>At the end of the story, how did Manuel feel?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>hurt</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>happy</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>hungry</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>like singing</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
             </Question>
         </Questions>
                 
                 <Questions title= "Who is the Best Animal?">
                     <Question number="1">
-                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionText>Why couldn't the car purr?</QuestionText>
                 <QuestionAudio>audioFile</QuestionAudio>
-                <Answer1>Sample Answer 1</Answer1>
+                <Answer1>She was thirsty</Answer1>
                 <Answer1Audio>audioFile</Answer1Audio>
-                <Answer2>Sample Answer 2 - This is the correct answer</Answer2>
+                <Answer2>She was hurt</Answer2>
                 <Answer2Audio>audioFile</Answer2Audio>
-                <Answer3>Sample Answer 3</Answer3>
+                <Answer3>She was tired</Answer3>
                 <Answer3Audio>audioFile</Answer3Audio>
-                <Answer4>Sample Answer 4</Answer4>
+                <Answer4>There was a frog in her throat</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>2</expectedSelection>
+                <expectedSelection>1</expectedSelection>
             </Question>
             <Question number="2">
-                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionText>Which animal ate the apple?</QuestionText>
                 <QuestionAudio>audioFile</QuestionAudio>
-                <Answer1>Sample Answer 1</Answer1>
+                <Answer1>goat</Answer1>
                 <Answer1Audio>audioFile</Answer1Audio>
-                <Answer2>Sample Answer 2</Answer2>
+                <Answer2>horse</Answer2>
                 <Answer2Audio>audioFile</Answer2Audio>
-                <Answer3>Sample Answer 3 - This is the correct answer</Answer3>
+                <Answer3>cow</Answer3>
                 <Answer3Audio>audioFile</Answer3Audio>
-                <Answer4>Sample Answer 4</Answer4>
+                <Answer4>worm</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>3</expectedSelection>
+                <expectedSelection>1</expectedSelection>
             </Question>
             <Question number="3">
-                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionText>Which animal ate the hay?</QuestionText>
                 <QuestionAudio>audioFile</QuestionAudio>
-                <Answer1>Sample Answer 1</Answer1>
+                <Answer1>horse</Answer1>
                 <Answer1Audio>audioFile</Answer1Audio>
-                <Answer2>Sample Answer 2</Answer2>
+                <Answer2>cow</Answer2>
                 <Answer2Audio>audioFile</Answer2Audio>
-                <Answer3>Sample Answer 3</Answer3>
+                <Answer3>chicken</Answer3>
                 <Answer3Audio>audioFile</Answer3Audio>
-                <Answer4>Sample Answer 4 - This is the correct answer</Answer4>
+                <Answer4>donkey</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>4</expectedSelection>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="4">
+                <QuestionText>What did the chicken want the cat to do?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>purr</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>drink milk</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>bring an apple</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>catch the mouse</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="5">
+                <QuestionText>Which animal jumped up to the chicken's nest?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>cat</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>goat</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>owl</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>giraffe</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="6">
+                <QuestionText>Which animal was near the hay?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>horse</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>cow</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>chicken</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>monkey</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
             </Question>
         </Questions>
                         
                 <Questions title= "The Wise Owl">
                   <Question number="1">
-                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionText>Who called the owl?</QuestionText>
                 <QuestionAudio>audioFile</QuestionAudio>
-                <Answer1>Sample Answer 1</Answer1>
+                <Answer1>Farmer Manuel</Answer1>
                 <Answer1Audio>audioFile</Answer1Audio>
-                <Answer2>Sample Answer 2 - This is the correct answer</Answer2>
+                <Answer2>chicken</Answer2>
                 <Answer2Audio>audioFile</Answer2Audio>
-                <Answer3>Sample Answer 3</Answer3>
+                <Answer3>pig</Answer3>
                 <Answer3Audio>audioFile</Answer3Audio>
-                <Answer4>Sample Answer 4</Answer4>
+                <Answer4>teacher</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>2</expectedSelection>
+                <expectedSelection>1</expectedSelection>
             </Question>
             <Question number="2">
-                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionText>Why was the chicken sad?</QuestionText>
                 <QuestionAudio>audioFile</QuestionAudio>
-                <Answer1>Sample Answer 1</Answer1>
+                <Answer1>because she couldn't be the best with only one egg</Answer1>
                 <Answer1Audio>audioFile</Answer1Audio>
-                <Answer2>Sample Answer 2</Answer2>
+                <Answer2>because she was hungry</Answer2>
                 <Answer2Audio>audioFile</Answer2Audio>
-                <Answer3>Sample Answer 3 - This is the correct answer</Answer3>
+                <Answer3>because she couldn't get to the pumkpkins</Answer3>
                 <Answer3Audio>audioFile</Answer3Audio>
-                <Answer4>Sample Answer 4</Answer4>
+                <Answer4>because she misses her mom</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>3</expectedSelection>
+                <expectedSelection>1</expectedSelection>
             </Question>
             <Question number="3">
-                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionText>Which animal did the owl fly to first?</QuestionText>
                 <QuestionAudio>audioFile</QuestionAudio>
-                <Answer1>Sample Answer 1</Answer1>
+                <Answer1>chicken</Answer1>
                 <Answer1Audio>audioFile</Answer1Audio>
-                <Answer2>Sample Answer 2</Answer2>
+                <Answer2>pig</Answer2>
                 <Answer2Audio>audioFile</Answer2Audio>
-                <Answer3>Sample Answer 3</Answer3>
+                <Answer3>cat</Answer3>
                 <Answer3Audio>audioFile</Answer3Audio>
-                <Answer4>Sample Answer 4 - This is the correct answer</Answer4>
+                <Answer4>puppy</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>4</expectedSelection>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="4">
+                <QuestionText>What did the chicken do when the owl visited?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>flew to her nest to count her eggs</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>hopped on the cow's back</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>flew to the pig</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>did the chicken dance</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="5">
+                <QuestionText>Why couldn't the pig eat pumkpkins?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>He was locked in his pen</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>He was thirsty</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>He only had one egg</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>He was on a diet</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="6">
+                <QuestionText>Who did the owl talk to last?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>Farmer Manuel</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>pig</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>chicken</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>Queen Elsa</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
             </Question>
                 </Questions>
                 
                 <Questions title= "Everyone Helps">
                    <Question number="1">
-                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionText>Which animal pushed hay to the cow?</QuestionText>
                 <QuestionAudio>audioFile</QuestionAudio>
-                <Answer1>Sample Answer 1</Answer1>
+                <Answer1>Horse</Answer1>
                 <Answer1Audio>audioFile</Answer1Audio>
-                <Answer2>Sample Answer 2 - This is the correct answer</Answer2>
+                <Answer2>cow</Answer2>
                 <Answer2Audio>audioFile</Answer2Audio>
-                <Answer3>Sample Answer 3</Answer3>
+                <Answer3>pig</Answer3>
                 <Answer3Audio>audioFile</Answer3Audio>
-                <Answer4>Sample Answer 4</Answer4>
+                <Answer4>Ninja turtle</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>2</expectedSelection>
+                <expectedSelection>1</expectedSelection>
             </Question>
             <Question number="2">
-                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionText>At the begginning of the story, which animal wanted to eat a pumpkin?</QuestionText>
                 <QuestionAudio>audioFile</QuestionAudio>
-                <Answer1>Sample Answer 1</Answer1>
+                <Answer1>pig</Answer1>
                 <Answer1Audio>audioFile</Answer1Audio>
-                <Answer2>Sample Answer 2</Answer2>
+                <Answer2>horse</Answer2>
                 <Answer2Audio>audioFile</Answer2Audio>
-                <Answer3>Sample Answer 3 - This is the correct answer</Answer3>
+                <Answer3>cow</Answer3>
                 <Answer3Audio>audioFile</Answer3Audio>
-                <Answer4>Sample Answer 4</Answer4>
+                <Answer4>lizard</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>3</expectedSelection>
+                <expectedSelection>1</expectedSelection>
             </Question>
             <Question number="3">
-                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionText>What did the pig bring to the horse?</QuestionText>
                 <QuestionAudio>audioFile</QuestionAudio>
-                <Answer1>Sample Answer 1</Answer1>
+                <Answer1>apple</Answer1>
                 <Answer1Audio>audioFile</Answer1Audio>
-                <Answer2>Sample Answer 2</Answer2>
+                <Answer2>pumpkin</Answer2>
                 <Answer2Audio>audioFile</Answer2Audio>
-                <Answer3>Sample Answer 3</Answer3>
+                <Answer3>milk bucket</Answer3>
                 <Answer3Audio>audioFile</Answer3Audio>
-                <Answer4>Sample Answer 4 - This is the correct answer</Answer4>
+                <Answer4>milkshake</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>4</expectedSelection>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="4">
+                <QuestionText>Who called the cat to drink milk fmor the bucket?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>cow</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>chicken</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>horse</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>batman</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="5">
+                <QuestionText>What did the chicken do after listening to the cat purr?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>laid eggs</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>opened the pig's pen</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>pushed the hay to the cow</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>crossed the road</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="6">
+                <QuestionText>Where did the cat go after drinking milk?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>to the chicken's nest</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>to the hayloft</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>to visit the cow</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>over the moon</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
             </Question>
                 </Questions>
                 
                 <Questions title= "The Best Farm Award">
                     <Question number="1">
-                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionText>Which animal did the judge walk to first?</QuestionText>
                 <QuestionAudio>audioFile</QuestionAudio>
-                <Answer1>Sample Answer 1</Answer1>
+                <Answer1>cow</Answer1>
                 <Answer1Audio>audioFile</Answer1Audio>
-                <Answer2>Sample Answer 2 - This is the correct answer</Answer2>
+                <Answer2>horse</Answer2>
                 <Answer2Audio>audioFile</Answer2Audio>
-                <Answer3>Sample Answer 3</Answer3>
+                <Answer3>pig</Answer3>
                 <Answer3Audio>audioFile</Answer3Audio>
-                <Answer4>Sample Answer 4</Answer4>
+                <Answer4>panda</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>2</expectedSelection>
+                <expectedSelection>1</expectedSelection>
             </Question>
             <Question number="2">
-                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionText>How many eggs were in the chicken's nest?</QuestionText>
                 <QuestionAudio>audioFile</QuestionAudio>
-                <Answer1>Sample Answer 1</Answer1>
+                <Answer1>4</Answer1>
                 <Answer1Audio>audioFile</Answer1Audio>
-                <Answer2>Sample Answer 2</Answer2>
+                <Answer2>6</Answer2>
                 <Answer2Audio>audioFile</Answer2Audio>
-                <Answer3>Sample Answer 3 - This is the correct answer</Answer3>
+                <Answer3>2</Answer3>
                 <Answer3Audio>audioFile</Answer3Audio>
-                <Answer4>Sample Answer 4</Answer4>
+                <Answer4>100</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>3</expectedSelection>
+                <expectedSelection>1</expectedSelection>
             </Question>
             <Question number="3">
-                <QuestionText>This is a sample Question</QuestionText>
+                <QuestionText>Which animal was fat?</QuestionText>
                 <QuestionAudio>audioFile</QuestionAudio>
-                <Answer1>Sample Answer 1</Answer1>
+                <Answer1>pig</Answer1>
                 <Answer1Audio>audioFile</Answer1Audio>
-                <Answer2>Sample Answer 2</Answer2>
+                <Answer2>cow</Answer2>
                 <Answer2Audio>audioFile</Answer2Audio>
-                <Answer3>Sample Answer 3</Answer3>
+                <Answer3>horse</Answer3>
                 <Answer3Audio>audioFile</Answer3Audio>
-                <Answer4>Sample Answer 4 - This is the correct answer</Answer4>
+                <Answer4>cheetah</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>4</expectedSelection>
+                <expectedSelection>1</expectedSelection>
             </Question>
-                </Questions>
-                        
+            <Question number="4">
+                <QuestionText>Which animal ran fast?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>horse</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>chicken</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>cow</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>snail</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="5">
+                <QuestionText>To whom did the judge give the award?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>Farmer Manuel</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>pig</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>horse</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>Old MacDonald</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="6">
+                <QuestionText>At the end of the story, who was close to the judge?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>Farmer Manuel</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>horse</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>pig</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>wizard</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+        </Questions>
     </ActivityAssessment>
 </metadata>

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <solutions>
+        <story title="Why We Breathe" activity_id="story1-PM-1">
+            <sentence number="7">
+                <step number="1">
+                    <check obj1Id="O2_1" action="getIn" locationId="nose"/>
+                    <move obj1Id="O2_1" action="getIn" waypointId="nose"/>
+                </step>
+            </sentence>
+            <sentence number="8">
+                <step number="1">
+                    <check obj1Id="O2_1" action="getIn" locationId="lung1"/>
+                    <move obj1Id="O2_1" action="getIn" waypointId="lung1"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Why We Breathe" activity_id="story1-PM-2">
+            <sentence number="10">
+                <step number="1">
+                    <check obj1Id="CO2_1" action="getIn" locationId="lung2"/>
+                    <move obj1Id="CO2_1" action="getIn" waypointId="lung2"/>
+                </step>
+            </sentence>
+            <sentence number="11">
+                <step number="1">
+                    <group obj1Id="O2_1" action="attach" obj2Id="bloodcell_1"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Why We Breathe" activity_id="story1-PM-3">
+            <sentence number="12">
+                <step number="1">
+                    <check obj1Id="CO2_1" action="getIn" locationId="air"/>
+                    <move obj1Id="CO2_1" action="getIn" waypointId="air"/>
+                </step>
+            </sentence>
+            <sentence number="13">
+                <step number="1">
+                    <check obj1Id="bloodcell_1" action="getIn" locationId="heart1"/>
+                    <move obj1Id="bloodcell_1" action="getIn" waypointId="heart1"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="The Amazing Heart" activity_id="story2-PM-2">
+            <sentence number="3">
+                <step number="1">
+                    <check obj1Id="bloodcell_1" action="getIn" locationId="leftAtrium"/>
+                    <move obj1Id="bloodcell_1" action="getIn" waypointId="leftAtrium"/>
+                </step>
+            </sentence>
+            <sentence number="4">
+                <step number="1">
+                    <checkAndSwap obj1Id="handle" action="open3"/>
+                </step>
+            </sentence>
+            <sentence number="5">
+                <step number="1">
+                    <check obj1Id="bloodcell_1" action="getIn" locationId="leftVentricle"/>
+                    <move obj1Id="bloodcell_1" action="getIn" waypointId="leftVentricle"/>
+                </step>
+            </sentence>
+            <sentence number="6">
+                <step number="1">
+                    <checkAndSwap obj1Id="handle" action="close3"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="The Amazing Heart" activity_id="story2-PM-4">
+            <sentence number="8">
+                <step number="1">
+                    <check obj1Id="bloodcell_1" action="getIn" locationId="artery"/>
+                    <move obj1Id="bloodcell_1" action="getIn" waypointId="artery"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Muscles Use Oxygen" activity_id="story3-PM-1">
+            <sentence number="1">
+                <step number="1">
+                    <check obj1Id="bloodcell_1" action="getIn" locationId="muscle1"/>
+                    <move obj1Id="bloodcell_1" action="getIn" waypointId="muscle1"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Muscles Use Oxygen" activity_id="story3-PM-2">
+            <sentence number="5">
+                <step number="1">
+                    <appear obj1Id="O2_1" action="appear" obj2Id="bloodcell_1"/>
+                </step>
+                <step number="2">
+                    <check obj1Id="O2_1" action="getIn" locationId="muscle2"/>
+                    <move obj1Id="O2_1" action="getIn" waypointId="muscle2"/>
+                    <move obj1Id="bloodcell_1" action="getIn" waypointId="vein"/>
+                </step>
+            </sentence>
+            <sentence number="7">
+                <step number="1">
+                    <group obj1Id="CO2_1" action="attach" obj2Id="bloodcell_1"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Muscles Use Oxygen" activity_id="story3-PM-3">
+            <sentence number="8">
+                <step number="1">
+                    <check obj1Id="bloodcell_1" action="getIn" locationId="heart2"/>
+                    <move obj1Id="bloodcell_1" action="getIn" waypointId="heart2"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Getting More Oxygen for the Muscles" activity_id="story4-PM-1">
+            <sentence number="2">
+                <step number="1">
+                    <check obj1Id="bloodcell_1" action="getIn" locationId="rightAtrium"/>
+                    <move obj1Id="bloodcell_1" action="getIn" waypointId="rightAtrium"/>
+                </step>
+            </sentence>
+            <sentence number="3">
+                <step number="1">
+                    <checkAndSwap obj1Id="handle" action="open2"/>
+                </step>
+            </sentence>
+            <sentence number="4">
+                <step number="1">
+                    <check obj1Id="bloodcell_1" action="getIn" locationId="rightVentricle"/>
+                    <move obj1Id="bloodcell_1" action="getIn" waypointId="rightVentricle"/>
+                </step>
+            </sentence>
+            <sentence number="5">
+                <step number="1">
+                    <checkAndSwap obj1Id="handle" action="close2"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Getting More Oxygen for the Muscles" activity_id="story4-PM-3">
+            <sentence number="7">
+                <step number="1">
+                    <check obj1Id="bloodcell_1" action="getIn" locationId="lung3"/>
+                    <move obj1Id="bloodcell_1" action="getIn" waypointId="lung3"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Getting More Oxygen for the Muscles" activity_id="story4-PM-4">
+            <sentence number="8">
+                <step number="1">
+                    <check obj1Id="CO2_1" action="getIn" locationId="lung2"/>
+                    <move obj1Id="CO2_1" action="getIn" waypointId="lung2"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Getting More Oxygen for the Muscles" activity_id="story4-PM-5">
+            <sentence number="9">
+                <step number="1">
+                    <check obj1Id="CO2_1" action="getIn" locationId="air"/>
+                    <move obj1Id="CO2_1" action="getIn" waypointId="air"/>
+                </step>
+            </sentence>
+            <sentence number="10">
+                <step number="1">
+                    <check obj1Id="O2_1" action="getIn" locationId="lung1"/>
+                    <move obj1Id="O2_1" action="getIn" waypointId="lung1"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Getting More Oxygen for the Muscles" activity_id="story4-PM-6">
+            <sentence number="11">
+                <step number="1">
+                    <group obj1Id="O2_1" action="attach" obj2Id="bloodcell_1"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Getting More Oxygen for the Muscles" activity_id="story4-PM-7">
+            <sentence number="12">
+                <step number="1">
+                    <check obj1Id="bloodcell_1" action="getIn" locationId="heart3"/>
+                    <move obj1Id="bloodcell_1" action="getIn" waypointId="heart3"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Cigarette Smoke Hurts Your Lungs" activity_id="story5-PM-1">
+            <sentence number="1">
+                <step number="1">
+                    <check obj1Id="dirt_1" action="getIn" locationId="lung1"/>
+                    <move obj1Id="dirt_1" action="getIn" waypointId="lung1"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Cigarette Smoke Hurts Your Lungs" activity_id="story5-PM-2">
+            <sentence number="2">
+                <step number="1">
+                    <check obj1Id="dirt_1" action="getIn" locationId="cilia"/>
+                    <move obj1Id="dirt_1" action="getIn" waypointId="cilia"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Cigarette Smoke Hurts Your Lungs" activity_id="story5-PM-3">
+            <sentence number="3">
+                <step number="1">
+                    <check obj1Id="dirt_1" action="getIn" locationId="air"/>
+                    <move obj1Id="dirt_1" action="getIn" waypointId="air"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Cigarette Smoke Hurts Your Lungs" activity_id="story5-PM-4">
+            <sentence number="6">
+                <step number="1">
+                    <group obj1Id="O2_1" action="attach" obj2Id="bloodcell_1"/>
+                </step>
+            </sentence>
+        </story>
+    </solutions>
+</metadata>

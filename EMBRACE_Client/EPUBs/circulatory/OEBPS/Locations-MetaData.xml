@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <locations>
+        <location locationId="air" x="32%" y=".1%" height="66%" width="67%"/>
+        <location locationId="artery" x="24%" y="15%" height="44%" width="59%"/>
+        <location locationId="cilia" x="35%" y="62%" height="24%" width="20%"/>
+        <location locationId="heart1" x="4%" y="63%" height="26%" width="19%"/>
+        <location locationId="heart2" x="3%" y="29%" height="54%" width="40%"/>
+        <location locationId="heart3" x="3%" y="29%" height="50%" width="50%"/>
+        <location locationId="leftAtrium" x="29%" y="23%" height="28%" width="22%"/>
+        <location locationId="leftVentricle" x="33%" y="45%" height="39%" width="23%"/>
+        <location locationId="lung1" x="0.1%" y="53%" height="46%" width="34%"/>
+        <location locationId="lung2" x="20%" y="21%" height="66%" width="35%"/>
+        <location locationId="lung3" x="0.1%" y="53%" height="46%" width="34%"/>
+        <location locationId="muscle1" x="71%" y="33%" height="37%" width="30%"/>
+        <location locationId="muscle2" x="18%" y="7%" height="69%" width="46%"/>
+        <location locationId="nose" x="24%" y="15%" height="10%" width="11%"/>
+        <location locationId="rightAtrium" x="10%" y="38%" height="25%" width="18%"/>
+        <location locationId="rightVentricle" x="18%" y="62%" height="30%" width="33%"/>
+    </locations>
+</metadata>

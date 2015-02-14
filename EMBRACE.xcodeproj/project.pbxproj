@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1AB935671A8932A0000CAE21 /* AssessmentActivities-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AB935661A8932A0000CAE21 /* AssessmentActivities-MetaData.xml */; };
+		1AB935691A895582000CAE21 /* Relationships-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AB935681A895582000CAE21 /* Relationships-MetaData.xml */; };
+		1AB9356B1A89559A000CAE21 /* Constraints-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AB9356A1A89559A000CAE21 /* Constraints-MetaData.xml */; };
+		1AB9356D1A8955AD000CAE21 /* Locations-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AB9356C1A8955AD000CAE21 /* Locations-MetaData.xml */; };
+		1AB9356F1A8955C2000CAE21 /* Hotspots-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AB9356E1A8955C2000CAE21 /* Hotspots-MetaData.xml */; };
+		1AB935711A8955E0000CAE21 /* Waypoints-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AB935701A8955E0000CAE21 /* Waypoints-MetaData.xml */; };
+		1AB935731A8955F4000CAE21 /* AlternateImages-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AB935721A8955F4000CAE21 /* AlternateImages-MetaData.xml */; };
+		1AB935751A895603000CAE21 /* Setups-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AB935741A895603000CAE21 /* Setups-MetaData.xml */; };
+		1AB935771A895617000CAE21 /* Solutions-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AB935761A895617000CAE21 /* Solutions-MetaData.xml */; };
+		1AB935791A89562F000CAE21 /* IMSolutions-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AB935781A89562F000CAE21 /* IMSolutions-MetaData.xml */; };
+		1AB9357B1A895650000CAE21 /* SentenceAnalysis-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AB9357A1A895650000CAE21 /* SentenceAnalysis-MetaData.xml */; };
+		1AB9357D1A895681000CAE21 /* Translations-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AB9357C1A895681000CAE21 /* Translations-MetaData.xml */; };
+		1AB9357F1A8956AB000CAE21 /* Introductions-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AB9357E1A8956AB000CAE21 /* Introductions-MetaData.xml */; };
+		1AB935811A8956C8000CAE21 /* VocabularyIntroductions-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AB935801A8956C8000CAE21 /* VocabularyIntroductions-MetaData.xml */; };
 		1ABC75F71A3FBFC500FAF003 /* AssessmentActivities-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1ABC75F61A3FBFC500FAF003 /* AssessmentActivities-MetaData.xml */; };
 		1ABD84AE1A49F54B0043A685 /* PlayAudioIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABD84AD1A49F54B0043A685 /* PlayAudioIcon.png */; };
 		1AD3CC861A251C5300E18B1C /* IntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3CC851A251C5300E18B1C /* IntroductionViewController.m */; };
@@ -622,6 +636,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1AB935661A8932A0000CAE21 /* AssessmentActivities-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivities-MetaData.xml"; sourceTree = "<group>"; };
+		1AB935681A895582000CAE21 /* Relationships-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Relationships-MetaData.xml"; sourceTree = "<group>"; };
+		1AB9356A1A89559A000CAE21 /* Constraints-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Constraints-MetaData.xml"; sourceTree = "<group>"; };
+		1AB9356C1A8955AD000CAE21 /* Locations-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Locations-MetaData.xml"; sourceTree = "<group>"; };
+		1AB9356E1A8955C2000CAE21 /* Hotspots-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Hotspots-MetaData.xml"; sourceTree = "<group>"; };
+		1AB935701A8955E0000CAE21 /* Waypoints-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Waypoints-MetaData.xml"; sourceTree = "<group>"; };
+		1AB935721A8955F4000CAE21 /* AlternateImages-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AlternateImages-MetaData.xml"; sourceTree = "<group>"; };
+		1AB935741A895603000CAE21 /* Setups-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Setups-MetaData.xml"; sourceTree = "<group>"; };
+		1AB935761A895617000CAE21 /* Solutions-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Solutions-MetaData.xml"; sourceTree = "<group>"; };
+		1AB935781A89562F000CAE21 /* IMSolutions-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "IMSolutions-MetaData.xml"; sourceTree = "<group>"; };
+		1AB9357A1A895650000CAE21 /* SentenceAnalysis-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "SentenceAnalysis-MetaData.xml"; sourceTree = "<group>"; };
+		1AB9357C1A895681000CAE21 /* Translations-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Translations-MetaData.xml"; sourceTree = "<group>"; };
+		1AB9357E1A8956AB000CAE21 /* Introductions-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Introductions-MetaData.xml"; sourceTree = "<group>"; };
+		1AB935801A8956C8000CAE21 /* VocabularyIntroductions-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "VocabularyIntroductions-MetaData.xml"; sourceTree = "<group>"; };
 		1ABC75F61A3FBFC500FAF003 /* AssessmentActivities-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivities-MetaData.xml"; sourceTree = "<group>"; };
 		1ABD84AD1A49F54B0043A685 /* PlayAudioIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayAudioIcon.png; sourceTree = "<group>"; };
 		1AD3CC841A251C5300E18B1C /* IntroductionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroductionViewController.h; sourceTree = "<group>"; };
@@ -1667,6 +1695,20 @@
 		5C7FDF9819A6B1B500CBBE0E /* OEBPS */ = {
 			isa = PBXGroup;
 			children = (
+				1AB935681A895582000CAE21 /* Relationships-MetaData.xml */,
+				1AB9356A1A89559A000CAE21 /* Constraints-MetaData.xml */,
+				1AB9356C1A8955AD000CAE21 /* Locations-MetaData.xml */,
+				1AB9356E1A8955C2000CAE21 /* Hotspots-MetaData.xml */,
+				1AB935701A8955E0000CAE21 /* Waypoints-MetaData.xml */,
+				1AB935721A8955F4000CAE21 /* AlternateImages-MetaData.xml */,
+				1AB935741A895603000CAE21 /* Setups-MetaData.xml */,
+				1AB935761A895617000CAE21 /* Solutions-MetaData.xml */,
+				1AB935781A89562F000CAE21 /* IMSolutions-MetaData.xml */,
+				1AB9357A1A895650000CAE21 /* SentenceAnalysis-MetaData.xml */,
+				1AB9357C1A895681000CAE21 /* Translations-MetaData.xml */,
+				1AB9357E1A8956AB000CAE21 /* Introductions-MetaData.xml */,
+				1AB935801A8956C8000CAE21 /* VocabularyIntroductions-MetaData.xml */,
+				1AB935661A8932A0000CAE21 /* AssessmentActivities-MetaData.xml */,
 				5C0274C219D2299900BF4B1A /* metadata.xml */,
 				5C776B3019C7E54F000DBC65 /* toc.ncx */,
 				5C7FDF9919A6B1B500CBBE0E /* content.opf */,
@@ -2417,6 +2459,7 @@
 				5C7FE06019A6B1B500CBBE0E /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-PM-1.xhtml in Resources */,
 				5C7FE05C19A6B1B500CBBE0E /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-7.xhtml in Resources */,
 				5C776B6319C90DA1000DBC65 /* BFEC2.m4a in Resources */,
+				1AB935671A8932A0000CAE21 /* AssessmentActivities-MetaData.xml in Resources */,
 				5C7FE10D19A7E43C00CBBE0E /* BFCS1_5.m4a in Resources */,
 				5C776C2319C94E4F000DBC65 /* pumpkinS.m4a in Resources */,
 				5C776ABC19C674FA000DBC65 /* CPQR11.m4a in Resources */,
@@ -2441,6 +2484,7 @@
 				5C7FE03019A6B1B500CBBE0E /* dirt.png in Resources */,
 				5CAD064719BEB8AE00F3F053 /* pumpsE.m4a in Resources */,
 				5C776AC619C674FA000DBC65 /* CPQR1.m4a in Resources */,
+				1AB935751A895603000CAE21 /* Setups-MetaData.xml in Resources */,
 				5C7FE11919A7E43C00CBBE0E /* BFCS_4.m4a in Resources */,
 				5C776B6A19C90DA1000DBC65 /* BFEC9.m4a in Resources */,
 				5C7FE04019A6B1B500CBBE0E /* Story1-Why-We-Breathe-IM-1.xhtml in Resources */,
@@ -2500,8 +2544,10 @@
 				5CF9947419AC34550080C32F /* apple_large.png in Resources */,
 				5CE299B819B581CB00675CB0 /* BFCE2_1.m4a in Resources */,
 				5CF9949119AC34550080C32F /* Story-1-The-Contest.png in Resources */,
+				1AB935731A8955F4000CAE21 /* AlternateImages-MetaData.xml in Resources */,
 				5C776BF919C93E1E000DBC65 /* breatheDEFS.m4a in Resources */,
 				5CAD05E819BE6A3E00F3F053 /* CCE5_3.m4a in Resources */,
+				1AB935711A8955E0000CAE21 /* Waypoints-MetaData.xml in Resources */,
 				5C7FE04D19A6B1B500CBBE0E /* Story2-The-Amazing-Heart-Title.xhtml in Resources */,
 				5C776B4319C80919000DBC65 /* BFES_8A.m4a in Resources */,
 				5C7FE10419A7E43C00CBBE0E /* BFCE_6.m4a in Resources */,
@@ -2534,6 +2580,7 @@
 				5C776C3E19C9537D000DBC65 /* healthyDEFS.m4a in Resources */,
 				5C776BD819C93E1E000DBC65 /* chestS.m4a in Resources */,
 				31953E531729ECC100570087 /* InfoPlist.strings in Resources */,
+				1AB9356B1A89559A000CAE21 /* Constraints-MetaData.xml in Resources */,
 				5CF994BD19AC34550080C32F /* Story7-The-Best-Farm-Award-IM-2.xhtml in Resources */,
 				5C776B0C19C6A884000DBC65 /* BFCE_4.m4a in Resources */,
 				5C7FE05019A6B1B500CBBE0E /* Story3-Muscles-Use-Oxygen-PM-1.xhtml in Resources */,
@@ -2610,6 +2657,7 @@
 				5C776A6919C241EE000DBC65 /* CWWB12.m4a in Resources */,
 				1AE0F60E1A7968A500C5B67D /* Translations-MetaData.xml in Resources */,
 				5CF994AF19AC34550080C32F /* Story4-Who-is-the-Best-Animal-PM-1.xhtml in Resources */,
+				1AB9357F1A8956AB000CAE21 /* Introductions-MetaData.xml in Resources */,
 				31953E921729EE8100570087 /* MainStoryboard_iPad.storyboard in Resources */,
 				5C776BC519C93E1E000DBC65 /* dustDEFS.m4a in Resources */,
 				5C776C2619C94EDF000DBC65 /* farmDEFS.m4a in Resources */,
@@ -2619,6 +2667,7 @@
 				5C776BCB19C93E1E000DBC65 /* trappedDEFS.m4a in Resources */,
 				5C776A6819C241EE000DBC65 /* CWWB11.m4a in Resources */,
 				5C776C1319C94504000DBC65 /* combedS.m4a in Resources */,
+				1AB935691A895582000CAE21 /* Relationships-MetaData.xml in Resources */,
 				5C776B4B19C833CD000DBC65 /* Story1-Why-We-Breathe-Intro-S.xhtml in Resources */,
 				5CF9949219AC34550080C32F /* Story-2-Getting-Ready.png in Resources */,
 				5C776C1F19C94D69000DBC65 /* cartS.m4a in Resources */,
@@ -2641,6 +2690,7 @@
 				5C776B2D19C7E0E4000DBC65 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-Intro-S.xhtml in Resources */,
 				5CF994AB19AC34550080C32F /* Story3-Cleaning-Up-PM-2.xhtml in Resources */,
 				5C7FE16A19A7E43C00CBBE0E /* STWATTP.m4a in Resources */,
+				1AB935771A895617000CAE21 /* Solutions-MetaData.xml in Resources */,
 				5C776BD919C93E1E000DBC65 /* chestDEFS.m4a in Resources */,
 				5C776BEF19C93E1E000DBC65 /* carbonDioxideDEFS.m4a in Resources */,
 				5C776C6819CA75DB000DBC65 /* Story1-Why-We-Breathe-PM-2S.xhtml in Resources */,
@@ -2670,6 +2720,7 @@
 				5CAD063719BEB8AE00F3F053 /* dirtE.m4a in Resources */,
 				5C776A4519C17F39000DBC65 /* BFTC3.m4a in Resources */,
 				5C7FE14F19A7E43C00CBBE0E /* farmerE.m4a in Resources */,
+				1AB935791A89562F000CAE21 /* IMSolutions-MetaData.xml in Resources */,
 				5C7FE14A19A7E43C00CBBE0E /* corralE.m4a in Resources */,
 				5CF9947819AC34550080C32F /* cat_large.png in Resources */,
 				5CAD063E19BEB8AE00F3F053 /* musclesE.m4a in Resources */,
@@ -2682,6 +2733,7 @@
 				5C7FE12919A7E43C00CBBE0E /* BFEE_12.m4a in Resources */,
 				5C7FE06419A6B1B500CBBE0E /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-Title.xhtml in Resources */,
 				5C7FE04919A6B1B500CBBE0E /* Story2-The-Amazing-Heart-PM-1.xhtml in Resources */,
+				1AB9356D1A8955AD000CAE21 /* Locations-MetaData.xml in Resources */,
 				5C776B1919C77893000DBC65 /* trophyE.m4a in Resources */,
 				5CF655C319AEACF0000AC913 /* Story7-The-Best-Farm-Award-Intro-E.xhtml in Resources */,
 				5CF655B519AD46A3000AC913 /* BFEE_8B.m4a in Resources */,
@@ -2777,6 +2829,7 @@
 				5C7FE0F619A7E43C00CBBE0E /* BFCE_10.m4a in Resources */,
 				5CE299FA19B5C71E00675CB0 /* BFCE7_4.m4a in Resources */,
 				5C776BEE19C93E1E000DBC65 /* carbonDioxideS.m4a in Resources */,
+				1AB9357D1A895681000CAE21 /* Translations-MetaData.xml in Resources */,
 				5C7FE04E19A6B1B500CBBE0E /* Story3-Muscles-Use-Oxygen-IM-1.xhtml in Resources */,
 				5C776C6719CA75DB000DBC65 /* Story1-Why-We-Breathe-PM-1S.xhtml in Resources */,
 				5C776B3C19C7FB9A000DBC65 /* Story6-Everyone-Helps-Intro-S.xhtml in Resources */,
@@ -2828,6 +2881,7 @@
 				5CE299E319B5AC2700675CB0 /* purrE.m4a in Resources */,
 				5CAD064319BEB8AE00F3F053 /* squeezeE.m4a in Resources */,
 				5CAD065219BEB8AE00F3F053 /* breatheE.m4a in Resources */,
+				1AB9357B1A895650000CAE21 /* SentenceAnalysis-MetaData.xml in Resources */,
 				5C7FE10719A7E43C00CBBE0E /* BFCE_9.m4a in Resources */,
 				5C7FE03419A6B1B500CBBE0E /* p1.png in Resources */,
 				5C7FE13319A7E43C00CBBE0E /* BFEE_22A.m4a in Resources */,
@@ -2842,6 +2896,7 @@
 				5C7FE12219A7E43C00CBBE0E /* BFE_S1.m4a in Resources */,
 				5C776B3F19C7FDED000DBC65 /* BFCS_2AA.m4a in Resources */,
 				5CF9949E19AC34550080C32F /* Story1-The-Contest-IM-1.xhtml in Resources */,
+				1AB9356F1A8955C2000CAE21 /* Hotspots-MetaData.xml in Resources */,
 				5C776BD319C93E1E000DBC65 /* veinsDEFS.m4a in Resources */,
 				5C7FE05519A6B1B500CBBE0E /* Story4-Getting-More-Oxygen-for-the-Muscles-IM-2.xhtml in Resources */,
 				5CAD063D19BEB8AE00F3F053 /* veinsE.m4a in Resources */,
@@ -2893,6 +2948,7 @@
 				5CF9948F19AC34550080C32F /* pumpkin_patch.png in Resources */,
 				5C776C0E19C93E1E000DBC65 /* jumpS.m4a in Resources */,
 				5C776C3F19C9537D000DBC65 /* healthyS.m4a in Resources */,
+				1AB935811A8956C8000CAE21 /* VocabularyIntroductions-MetaData.xml in Resources */,
 				B996065119A7FAC400BF17F4 /* Story2-The-Amazing-Heart-Intro-E.xhtml in Resources */,
 				5C776A4B19C17F39000DBC65 /* BFTC9.m4a in Resources */,
 				5C776C4719C95480000DBC65 /* nestS.m4a in Resources */,

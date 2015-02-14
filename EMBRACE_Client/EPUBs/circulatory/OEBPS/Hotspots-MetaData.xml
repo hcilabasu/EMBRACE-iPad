@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <hotspots>
+        <hotspot objId="bloodcell_1" action="appear" role="object" x="50%" y="50%"/>
+        <hotspot objId="bloodcell_1" action="attach" role="object" x="50%" y="50%"/>
+        <hotspot objId="bloodcell_1" action="getIn" role="subject" x="50%" y="50%"/>
+        <!--<hotspot objId="bloodcell_1" action="receive" role="subject" x="50%" y="50%"/>-->
+        <hotspot objId="bloodcell_2" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="CO2_1" action="attach" role="subject" x="50%" y="50%"/>
+        <hotspot objId="CO2_1" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="dirt_1" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="O2_1" action="appear" role="subject" x="50%" y="50%"/>
+        <hotspot objId="O2_1" action="attach" role="subject" x="50%" y="50%"/>
+        <hotspot objId="O2_1" action="getIn" role="subject" x="50%" y="50%"/>
+        <!--<hotspot objId="O2_1" action="receive" role="object" x="50%" y="50%"/>-->
+    </hotspots>
+</metadata>

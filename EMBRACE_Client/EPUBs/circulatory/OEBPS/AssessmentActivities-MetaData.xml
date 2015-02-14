@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <ActivityAssessment>
+        <Questions title= "Why We Breathe">
+            <Question number="1">
+                <QuestionText>How many atoms does an oxygen molecule have?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>2</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>1</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>3</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>100</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="2">
+                <QuestionText>When we breathe, where does the oxygen go first?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>nose</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>lungs</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>blood</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>toenail</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="3">
+                <QuestionText>Where do carbon dioxide molecules go when we breathe out?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>air</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>lungs</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>blood</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>earlobe</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="4">
+                <QuestionText>When blood with oxygen leaves the lungs, where does it go first?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>heart</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>nose</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>air</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>eyeball</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="5">
+                <QuestionText>The oxygen in the blood helps to turn food into energy so that we can...?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>live</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>make molecules</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>breathe in</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>snore</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+        </Questions>
+        
+        <Questions title= "The Amazing Heart">
+            <Question number="1">
+                <QuestionText>What does the valve do to stop blood from flowing back to the atrium?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>closes</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>beats</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>opens</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>stands on its head</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="2">
+                <QuestionText>When the left ventricle squeezes hard, what happens to the blood?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>rushes out to the body</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>rushes to the lungs</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>goes to the left atrium</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>gets lost</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="3">
+                <QuestionText>How do you tell if a person is alive?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>The heart beats</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>The lungs are blue</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>The heart valve is open</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>smell them</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="4">
+                <QuestionText>What do arteries do?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>take blood fmor the heart to the body</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>take blood to the atrium</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>closes the valves</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>go to school</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="5">
+                <QuestionText>How many times a minute does the left ventricle squeeze hard?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>80 to 100</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>200 to 300</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>8 to 10</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>8675309</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+        </Questions>
+        
+        <Questions title= "Muscles Use Oxygen">
+            <Question number="1">
+                <QuestionText>Muscles use oxygen and what else to make energy?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>food</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>arteries</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>blood</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>silly putty</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="2">
+                <QuestionText>What is left over form making energy?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>carbon dioxide</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>oxygen</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>veins</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>fairy dust</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="3">
+                <QuestionText>After leaving the muscle, where does carbon dioxide go?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>into the blood in the veins</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>to the arteries</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>into the air</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>to the park</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="4">
+                <QuestionText>When the heart beats, where does blood frmo the muscles go to first?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>heart</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>lungs</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>arteries</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>the bus stop</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="5">
+                <QuestionText>Why do you think blood goes to your leg muscles?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>to bring food and oxygen for energy</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>to bring carbon dioxide</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>to stop the blood form flowing back to the atrium</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>to play hide and seek</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+        </Questions>
+        
+        <Questions title= "Getting More Oxygen for the Muscles">
+            <Question number="1">
+                <QuestionText>What does the valve do to help the blood flow into the right ventricle?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>opens</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>squeezes</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>closes</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>gives CPR</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="2">
+                <QuestionText>What does the right ventricle do to push the blood toward the lungs?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>squeezes hard</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>gets bigger</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>closes</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>jumps rope</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="3">
+                <QuestionText>when carbon dioxide leaves the blood, where does it go first?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>lungs</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>atrium</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>air</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>shoulder</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="4">
+                <QuestionText>Where does carbon dioxide go when you breathe out?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>air</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>blood</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>muscles</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>Neverland</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="5">
+                <QuestionText>Which molecule goes into the blood after you breathe in?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>oxygen</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>energy</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>carbon dioxide</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>draculin</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="6">
+                <QuestionText>Why does blood in the right ventricle first go to the lungs and not the muscles?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>The blood needs to get more oxygen first</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>The blood needs to get more food first</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>The blood doesn't have enough carbon dioxide</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>The blood and lungs are BFFs</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+        </Questions>
+        
+        <Questions title= "Cigarette Smoke Hurts Your Lungs">
+            <Question number="1">
+                <QuestionText>What do cilia in the lungs do to dirt?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>push on it</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>make it stiff and black</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>kill it</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>turn it into a yo yo</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="2">
+                <QuestionText>What does cigarette smoke do to cilia?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>kills the cilia</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>squeezes the cilia</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>cleans the cilia</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>hugs the cilia</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="3">
+                <QuestionText>Why does your heart have to work harder when there is less oxygen in the blood?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>to get enough oxygen to the muscles</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>to clean the cilia</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>to get enough carbon dioxide to the lungs</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>to get a raise</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="4">
+                <QuestionText>What color does cigarette smoke turn the lungs?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>black</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>pink</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>blue</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>rainbow</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="5">
+                <QuestionText>Where does oxygen have trouble going when people smoke cigarettes?</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>blood</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>air</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>cilia</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>the land of OZ</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+            <Question number="6">
+                <QuestionText>What can people do to clean their cilia and lungs</QuestionText>
+                <QuestionAudio>audioFile</QuestionAudio>
+                <Answer1>stop smoking</Answer1>
+                <Answer1Audio>audioFile</Answer1Audio>
+                <Answer2>start smoking</Answer2>
+                <Answer2Audio>audioFile</Answer2Audio>
+                <Answer3>drink water</Answer3>
+                <Answer3Audio>audioFile</Answer3Audio>
+                <Answer4>give the cilia and lungs a bath</Answer4>
+                <Answer4Audio>audioFile</Answer4Audio>
+                <expectedSelection>1</expectedSelection>
+            </Question>
+        </Questions>
+    </ActivityAssessment>
+</metadata>
