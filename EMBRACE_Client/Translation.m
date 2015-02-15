@@ -88,6 +88,7 @@
                  @"farm": @"farm",
                  @"farmer": @"farmer",
                  @"gate": @"pen4",
+                 @"gate": @"pen2",
                  @"hay": @"hay",
                  @"hayloft": @"hayloft",
                  @"healthy": @"healthy",
@@ -107,6 +108,7 @@
                  @"arteries": @"arteries",
                  @"atoms": @"atoms",
                  @"atrium": @"atrium",
+                 @"atrium": @[@"atrium_1",@"atrium_2"],
                  @"beat": @"beat",
                  @"blood": @"bloodcell_1",
                  @"breathe": @"breathe",
@@ -131,7 +133,8 @@
                  @"tubes": @"tubes",
                  @"valve": @[@"handle",@"handle_close",@"handle_1",@"gray_handle"],
                  @"veins": @"veins",
-                 @"ventricle": @"ventricle"
+                 @"ventricle": @"ventricle",
+                 @"ventricle": @[@"ventricle_1", @"ventricle_2"]
                  };
     });
     return inst;

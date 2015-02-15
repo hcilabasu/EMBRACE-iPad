@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+//describes the condition in which the app will be deployed
 typedef enum Condition{
     MENU,
     HOTSPOT,
