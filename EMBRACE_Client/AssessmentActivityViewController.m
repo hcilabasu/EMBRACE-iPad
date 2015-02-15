@@ -286,7 +286,7 @@ NSString *CurrentStep;
                 //log correct answer selected
                 [[ServerCommunicationController sharedManager] logComputerAssessmentAnswerVerification:true : Question :([indexPath row]+1) :AnswerOptions :@"Answer Option" :@"Verification" :BookTitle :ChapterTitle :[NSString stringWithFormat:@"%d", currentAssessmentActivityStep]];
                 
-                [playAudioFileClass textToSpeech:@"Good Job!"];
+                //[playAudioFileClass textToSpeech:@"Good Job!"];
                 
                 //gray out other options
                 

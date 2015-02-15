@@ -363,7 +363,8 @@ ConditionSetup *conditionSetup;
     //instantiates all vocab variables
     [IntroductionClass loadFirstPageVocabulary:model :chapterTitle];
     
-    if (!conditionSetup.condition ==CONTROL) {
+    //
+    if (conditionSetup.condition != CONTROL) {
        IntroductionClass.allowInteractions = TRUE;
     }
 }
@@ -636,7 +637,7 @@ ConditionSetup *conditionSetup;
         IntroductionClass.allowInteractions = TRUE;
     }
     //im code
-    if(conditionSetup.condition == EMBRACE && !IntroductionClass.allowInteractions)
+    if((conditionSetup.condition == CONTROL) && (!IntroductionClass.allowInteractions))
     {
             IntroductionClass.allowInteractions = true;
             allowSnapback = false;
@@ -706,7 +707,7 @@ ConditionSetup *conditionSetup;
             [self checkSolutionForInteraction:interaction]; //check if selected interaction is correct
             
             //im code
-            if(conditionSetup.condition == EMBRACE && IntroductionClass.allowInteractions)
+            if((conditionSetup.condition == CONTROL) && (IntroductionClass.allowInteractions))
             {
                     IntroductionClass.allowInteractions = FALSE;
                     allowSnapback = true;
@@ -2198,7 +2199,7 @@ ConditionSetup *conditionSetup;
         [[ServerCommunicationController sharedManager] logComputerVerification:@"Perform Interaction":true : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
         
             //imcode
-            if (conditionSetup.condition ==EMBRACE) {
+            if (conditionSetup.condition ==CONTROL) {
             
                 //Logging added by James for User pressing the Next button
                 [[ServerCommunicationController sharedManager] logUserNextButtonPressed:@"Next" :@"Tap" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
@@ -2258,13 +2259,13 @@ ConditionSetup *conditionSetup;
             [IntroductionClass loadIntroStep:bookView: currentSentence];
         }
         
-         if (conditionSetup.condition != EMBRACE) {
+         if (conditionSetup.condition != CONTROL) {
         [self incrementCurrentStep];
          }
         
         //Transference counts as two steps, so we must increment again
         if ([interaction interactionType] == TRANSFERANDGROUP || [interaction interactionType] == TRANSFERANDDISAPPEAR) {
-            if (conditionSetup.condition != EMBRACE) {
+            if (conditionSetup.condition != CONTROL) {
                 [self incrementCurrentStep];
             }
         }
@@ -3278,7 +3279,7 @@ ConditionSetup *conditionSetup;
             	         NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
             	         NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
             
-            	         if((conditionSetup.condition == EMBRACE) && [sentenceClass  isEqualToString: @"sentence actionSentence"])
+            	         if((conditionSetup.condition == CONTROL) && [sentenceClass  isEqualToString: @"sentence actionSentence"])
                         {
                             //resets allRelationship arrray
                             if([allRelationships count])
@@ -3554,7 +3555,7 @@ ConditionSetup *conditionSetup;
     [menu addGestureRecognizer:tapRecognizer];
     
     //imcode
-    if (conditionSetup.condition== EMBRACE) {
+    if (conditionSetup.condition== CONTROL) {
         [IMViewMenu addSubview:menu];
     }
     else {

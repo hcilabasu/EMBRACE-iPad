@@ -689,7 +689,7 @@ ConditionSetup *conditionSetup;
     }
 
     //set file path to access introduction metadata
-    if (conditionSetup.condition ==EMBRACE) {
+    if (conditionSetup.condition ==CONTROL) {
         filepath = [[book mainContentPath] stringByAppendingString:@"IMSolutions-MetaData.xml"];
     }
     else
