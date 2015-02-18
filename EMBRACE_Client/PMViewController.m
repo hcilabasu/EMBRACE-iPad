@@ -619,12 +619,13 @@ ConditionSetup *conditionSetup;
 /*
  * Plays a noise for error feedback if the user performs a manipulation incorrectly
  */
+/*
 - (IBAction) playErrorNoise {
     AudioServicesPlaySystemSound(1053);
     
     //Logging added by James for Error Noise
     [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Error Audio" : @"NULL" :@"Error Noise"  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
-}
+}*/
 
 
 /*
@@ -1212,7 +1213,8 @@ ConditionSetup *conditionSetup;
                             //Logging added by James for user Move Object to Hotspot Incorrect
                             [[ServerCommunicationController sharedManager] logComputerVerification:@"Move to Hotspot" :false : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
                             
-                            [self playErrorNoise];
+                            [playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentStep];
+                            //[self playErrorNoise];
                             
                             if (allowSnapback) {
                                 //Snap the object back to its original location
@@ -1248,7 +1250,8 @@ ConditionSetup *conditionSetup;
                                 //Logging added by James for Verifying Move Object to object
                                 [[ServerCommunicationController sharedManager] logComputerVerification: @"Move to Object":false : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
                                 
-                                [self playErrorNoise];
+                                [playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentStep];
+                                //[self playErrorNoise];
                                 
                                 if (allowSnapback) {
                                     //Snap the object back to its original location
@@ -1305,7 +1308,9 @@ ConditionSetup *conditionSetup;
                         }
                         //Not overlapping any object
                         else {
-                            [self playErrorNoise];
+                            
+                            [playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentStep];
+                            //[self playErrorNoise];
                             
                             if (allowSnapback) {
                                 //Snap the object back to its original location
@@ -2291,7 +2296,8 @@ ConditionSetup *conditionSetup;
             //Logging added by James for Incorrect Interaction
             [[ServerCommunicationController sharedManager] logComputerVerification:@"Perform Interaction":false : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
             
-            [self playErrorNoise]; //play noise if interaction is incorrect
+            [playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentStep];
+            //[self playErrorNoise]; //play noise if interaction is incorrect
         }
         
         if ([interaction interactionType] != UNGROUP && allowSnapback) {
@@ -3424,7 +3430,8 @@ ConditionSetup *conditionSetup;
         }
         else {
             //Play noise if not all steps have been completed
-            [self playErrorNoise];
+            [playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentStep];
+            //[self playErrorNoise];
         }
     }
 }
