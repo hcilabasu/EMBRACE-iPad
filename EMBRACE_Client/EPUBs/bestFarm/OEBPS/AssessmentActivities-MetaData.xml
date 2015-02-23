@@ -191,7 +191,7 @@
                         
                 <Questions title= "Getting Ready">
                     <Question number="1">
-                <QuestionText>How does the milk help the cat's fur?'</QuestionText>
+                <QuestionText>How does the milk help the cat's fur?</QuestionText>
                 <QuestionAudio>audioFile</QuestionAudio>
                 <Answer1>The milk makes her fur shiny.</Answer1>
                 <Answer1Audio>audioFile</Answer1Audio>
@@ -208,9 +208,9 @@
                 <QuestionAudio>audioFile</QuestionAudio>
                 <Answer1>Eating an apple cleans the horse's teeth.</Answer1>
                 <Answer1Audio>audioFile</Answer1Audio>
-                <Answer2>Eating an apple makes the horse's teeth dirty.'</Answer2>
+                <Answer2>Eating an apple makes the horse's teeth dirty.</Answer2>
                 <Answer2Audio>audioFile</Answer2Audio>
-                <Answer3>Eating an apple makes the horses's teeth stronger.'</Answer3>
+                <Answer3>Eating an apple makes the horses's teeth stronger.</Answer3>
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>Eating an apple gives the horse bad breath.</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
@@ -219,13 +219,13 @@
             <Question number="3">
                 <QuestionText>How did Manuel help the goat to look good?</QuestionText>
                 <QuestionAudio>audioFile</QuestionAudio>
-                <Answer1>Manuel combed the goat's fur.'</Answer1>
+                <Answer1>Manuel combed the goat's fur.</Answer1>
                 <Answer1Audio>audioFile</Answer1Audio>
                 <Answer2>Manuel gave the goat a pumpkin.</Answer2>
                 <Answer2Audio>audioFile</Answer2Audio>
                 <Answer3>Manuel carried the milk bucket to the goat.</Answer3>
                 <Answer3Audio>audioFile</Answer3Audio>
-                <Answer4>Manuel painted the goat's hooves.'</Answer4>
+                <Answer4>Manuel painted the goat's hooves.</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
                 <expectedSelection>1</expectedSelection>
             </Question>
@@ -293,7 +293,7 @@
                 <Answer2Audio>audioFile</Answer2Audio>
                 <Answer3>to make it safer</Answer3>
                 <Answer3Audio>audioFile</Answer3Audio>
-                <Answer4>because it was strinky</Answer4>
+                <Answer4>because it was stinky</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
                 <expectedSelection>1</expectedSelection>
             </Question>
@@ -341,7 +341,7 @@
                 <QuestionAudio>audioFile</QuestionAudio>
                 <Answer1>in the hayloft</Answer1>
                 <Answer1Audio>audioFile</Answer1Audio>
-                <Answer2>in the carrol</Answer2>
+                <Answer2>in the corral</Answer2>
                 <Answer2Audio>audioFile</Answer2Audio>
                 <Answer3>in the chicken's nest</Answer3>
                 <Answer3Audio>audioFile</Answer3Audio>
@@ -567,7 +567,7 @@
                 <expectedSelection>1</expectedSelection>
             </Question>
             <Question number="4">
-                <QuestionText>Who called the cat to drink milk fmor the bucket?</QuestionText>
+                <QuestionText>Who called the cat to drink milk from the bucket?</QuestionText>
                 <QuestionAudio>audioFile</QuestionAudio>
                 <Answer1>cow</Answer1>
                 <Answer1Audio>audioFile</Answer1Audio>

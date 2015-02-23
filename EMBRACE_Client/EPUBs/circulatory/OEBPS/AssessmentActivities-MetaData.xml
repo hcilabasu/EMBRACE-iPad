@@ -112,7 +112,7 @@
             <Question number="4">
                 <QuestionText>What do arteries do?</QuestionText>
                 <QuestionAudio>audioFile</QuestionAudio>
-                <Answer1>take blood fmor the heart to the body</Answer1>
+                <Answer1>take blood from the heart to the body</Answer1>
                 <Answer1Audio>audioFile</Answer1Audio>
                 <Answer2>take blood to the atrium</Answer2>
                 <Answer2Audio>audioFile</Answer2Audio>
@@ -152,7 +152,7 @@
                 <expectedSelection>1</expectedSelection>
             </Question>
             <Question number="2">
-                <QuestionText>What is left over form making energy?</QuestionText>
+                <QuestionText>What is left over from making energy?</QuestionText>
                 <QuestionAudio>audioFile</QuestionAudio>
                 <Answer1>carbon dioxide</Answer1>
                 <Answer1Audio>audioFile</Answer1Audio>
@@ -197,7 +197,7 @@
                 <Answer1Audio>audioFile</Answer1Audio>
                 <Answer2>to bring carbon dioxide</Answer2>
                 <Answer2Audio>audioFile</Answer2Audio>
-                <Answer3>to stop the blood form flowing back to the atrium</Answer3>
+                <Answer3>to stop the blood from flowing back to the atrium</Answer3>
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>to play hide and seek</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
