@@ -13,7 +13,7 @@
     @synthesize language;
 
 - (id) init {
-    condition = EMBRACE;
+    condition = CONTROL;
     language = ENGLISH;
     return self;
 }

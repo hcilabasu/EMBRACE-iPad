@@ -735,16 +735,23 @@ ConditionSetup *conditionSetup;
         //Re-add the tap gesture recognizer before the menu is removed
         [self.view addGestureRecognizer:tapRecognizer];
         
-        //Remove menu.
-        [menu removeFromSuperview];
-        menu = nil;
-        menuExpanded = FALSE;
         
-        //imcode
+        if (conditionSetup.condition !=CONTROL) {
+            //Remove menu.
+            [menu removeFromSuperview];
+            menu = nil;
+            menuExpanded = FALSE;
+        }
+        
+        /*
+         moved to check solution for interaction, if it is correct it will close the menu,
+         if it is wrong menu will remain open.
+        //im code
         if (IMViewMenu !=nil) {
             [IMViewMenu removeFromSuperview];
         }
         //end imcode
+         */
         
     }
     else {
@@ -2200,11 +2207,24 @@ ConditionSetup *conditionSetup;
     
     //Check if selected interaction is correct
     if ([interaction isEqual:correctInteraction]) {
+        
         //Logging added by James for Correct Interaction
         [[ServerCommunicationController sharedManager] logComputerVerification:@"Perform Interaction":true : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
         
             //imcode
             if (conditionSetup.condition ==CONTROL) {
+                
+                //imcode
+                //Remove menu.
+                [menu removeFromSuperview];
+                menu = nil;
+                menuExpanded = FALSE;
+                
+                //im code
+                if (IMViewMenu !=nil) {
+                    [IMViewMenu removeFromSuperview];
+                }
+                //end imcode
             
                 //Logging added by James for User pressing the Next button
                 [[ServerCommunicationController sharedManager] logUserNextButtonPressed:@"Next" :@"Tap" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
