@@ -14,7 +14,7 @@
 
 - (id) init {
     condition = EMBRACE;
-    language = ENGLISH;
+    language = BILINGUAL;
     return self;
 }
 

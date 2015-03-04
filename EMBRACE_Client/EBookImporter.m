@@ -611,7 +611,7 @@ ConditionSetup *conditionSetup;
     
     //set file path to access introduction metadata
     filepath = [[book mainContentPath] stringByAppendingString:@"AlternateImages-MetaData.xml"];
-    
+    //NSLog("filepath: %@", filepath);
     //Get xml data of the metadata file.
     xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
     
