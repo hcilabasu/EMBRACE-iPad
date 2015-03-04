@@ -728,7 +728,7 @@
 		31937539174185E000782C2B /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		3193753B1741A76E00782C2B /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
 		3193753C1741A76E00782C2B /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
-		31953E451729ECC100570087 /* Embrace Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Embrace Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		31953E451729ECC100570087 /* Embrace ITS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Embrace ITS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31953E481729ECC100570087 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		31953E4A1729ECC100570087 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		31953E4C1729ECC100570087 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -1464,7 +1464,7 @@
 		31953E461729ECC100570087 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				31953E451729ECC100570087 /* Embrace Test.app */,
+				31953E451729ECC100570087 /* Embrace ITS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2393,7 +2393,7 @@
 			);
 			name = EMBRACE;
 			productName = EMBRACE_Client;
-			productReference = 31953E451729ECC100570087 /* Embrace Test.app */;
+			productReference = 31953E451729ECC100570087 /* Embrace ITS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -3185,7 +3185,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				OTHER_LDFLAGS = "-lxml2";
-				PRODUCT_NAME = "Embrace Test";
+				PRODUCT_NAME = "Embrace ITS";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -3210,7 +3210,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				OTHER_LDFLAGS = "-lxml2";
-				PRODUCT_NAME = "Embrace Test";
+				PRODUCT_NAME = "Embrace ITS";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
