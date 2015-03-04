@@ -756,3 +756,36 @@ function setInnerHTMLText (sentenceID, text) {
 function setOuterHTMLText (sentenceID, text) {
     document.getElementById(sentenceID).outerHTML = text;
 }
+
+/*
+ * Removes sentence with the specified sentence id
+ */
+function removeSentence(sentenceId) {
+    var sentence = document.getElementById(sentenceId);
+    sentence.parentNode.removeChild(sentence);
+}
+
+/*
+ * Adds sentence with the specified sentence id, action information (whether it is
+ * an action sentence or not), and text
+ */
+function addSentence(sentenceId, action, text) {
+    var textbox = document.getElementsByClassName('textbox')[0]; //get textbox element
+    var newSentence = document.createElement("p"); //create new sentence
+    var newText = document.createTextNode(text); //create text for sentence
+    var space = document.createTextNode(" "); //create space that goes after the sentence text
+    
+    newSentence.id = sentenceId; //set sentence id
+    newSentence.className = "sentence"; //set sentence class
+    
+    //Add actionSentence class if sentence requires manipulation
+    if (action) {
+        newSentence.className = newSentence.className + " actionSentence";
+    }
+    
+    //Add text and space to sentence
+    newSentence.appendChild(newText);
+    newSentence.appendChild(space);
+    
+    textbox.appendChild(newSentence); //add sentence to textbox
+}

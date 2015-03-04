@@ -22,6 +22,7 @@
     
     NSUInteger currentSentence; //Active sentence to be completed.
     NSUInteger totalSentences; //Total number of sentences on this page.
+    NSMutableArray* pageSentences; //AlternateSentences on current page
     
     PhysicalManipulationSolution* PMSolution; //Solution steps for current chapter
     NSUInteger numSteps; //Number of steps for current sentence
@@ -192,8 +193,53 @@ ConditionSetup *conditionSetup;
     
     //Start off with no objects grouped together
     currentGroupings = [[NSMutableDictionary alloc] init];
-
-    //Get the number of sentences on the page
+    
+    //Show menu for non-intro pages only
+    if ([currentPageId rangeOfString:@"Intro"].location == NSNotFound) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Choose sentence complexity" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"Simple", @"Current", @"Complex", nil];
+        [alert show];
+        
+        //pageSentences = [[NSMutableArray alloc] init];
+        //[self swapSentencesOnPage:1];
+    }
+    else {
+        //Get the number of sentences on the page
+        NSString* requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('sentence').length"];
+        int sentenceCount = [[bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount] intValue];
+        
+        //Get the id number of the last sentence on the page and set it equal to the total number of sentences.
+        //Because the PMActivity may have multiple pages, this id number may not match the sentence count for the page.
+        //   Ex. Page 1 may have three sentences: 1, 2, and 3. Page 2 may also have three sentences: 4, 5, and 6.
+        //   The total number of sentences is like a running total, so by page 2, there are 6 sentences instead of 3.
+        //This is to make sure we access the solution steps for the correct sentence on this page, and not a sentence on
+        //a previous page.
+        //if (![vocabularies objectForKey:chapterTitle]) {
+        NSString* requestLastSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[%d - 1].id", sentenceCount];
+        NSString* lastSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
+        int lastSentenceIdNumber = [[lastSentenceId substringFromIndex:1] intValue];
+        totalSentences = lastSentenceIdNumber;
+        //}
+        //else {
+        //totalSentences = sentenceCount;
+        //}
+        
+        //Get the id number of the first sentence on the page and set it equal to the current sentence number.
+        //Because the PMActivity may have multiple pages, the first sentence on the page is not necessarily sentence 1.
+        //   Ex. Page 1 may start at sentence 1, but page 2 may start at sentence 4.
+        //   Thus, the first sentence on page 2 is sentence 4, not 1.
+        //This is also to make sure we access the solution steps for the correct sentence.
+        NSString* requestFirstSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[0].id"];
+        NSString* firstSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestFirstSentenceId];
+        int firstSentenceIdNumber = [[firstSentenceId substringFromIndex:1] intValue];
+        currentSentence = firstSentenceIdNumber;
+        
+        //Set up current sentence appearance and solution steps
+        [self setupCurrentSentence];
+        [self setupCurrentSentenceColor];
+    }
+    
+    //NOTE: Temporarily moved below code to alertView function
+    /*//Get the number of sentences on the page
     NSString* requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('sentence').length"];
     int sentenceCount = [[bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount] intValue];
     
@@ -225,7 +271,7 @@ ConditionSetup *conditionSetup;
     
     //Set up current sentence appearance and solution steps
     [self setupCurrentSentence];
-    [self setupCurrentSentenceColor];
+    [self setupCurrentSentenceColor];*/
     
     if ([IntroductionClass.introductions objectForKey:chapterTitle] || ([IntroductionClass.vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound)) {
         IntroductionClass.allowInteractions = FALSE;
@@ -270,6 +316,59 @@ ConditionSetup *conditionSetup;
     
     //Perform setup for activity
     [self performSetupForActivity];
+}
+
+//Temporary menu to select complexity of sentences on page
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    pageSentences = [[NSMutableArray alloc] init];
+    
+    if (buttonIndex == 0) {
+        //Swap sentences for specified complexity level
+        [self swapSentencesOnPage:1];
+    }
+    else if (buttonIndex == 1) {
+        //Swap sentences for specified complexity level
+        [self swapSentencesOnPage:2];
+    }
+    else if (buttonIndex == 2) {
+        //Swap sentences for specified complexity level
+        [self swapSentencesOnPage:3];
+    }
+    
+    //Get the number of sentences on the page
+    NSString* requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('sentence').length"];
+    int sentenceCount = [[bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount] intValue];
+    
+    //Get the id number of the last sentence on the page and set it equal to the total number of sentences.
+    //Because the PMActivity may have multiple pages, this id number may not match the sentence count for the page.
+    //   Ex. Page 1 may have three sentences: 1, 2, and 3. Page 2 may also have three sentences: 4, 5, and 6.
+    //   The total number of sentences is like a running total, so by page 2, there are 6 sentences instead of 3.
+    //This is to make sure we access the solution steps for the correct sentence on this page, and not a sentence on
+    //a previous page.
+    //if (![vocabularies objectForKey:chapterTitle]) {
+    NSString* requestLastSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[%d - 1].id", sentenceCount];
+    NSString* lastSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
+    int lastSentenceIdNumber = [[lastSentenceId substringFromIndex:1] intValue];
+    totalSentences = lastSentenceIdNumber;
+    //}
+    //else {
+    //totalSentences = sentenceCount;
+    //}
+    
+    //Get the id number of the first sentence on the page and set it equal to the current sentence number.
+    //Because the PMActivity may have multiple pages, the first sentence on the page is not necessarily sentence 1.
+    //   Ex. Page 1 may start at sentence 1, but page 2 may start at sentence 4.
+    //   Thus, the first sentence on page 2 is sentence 4, not 1.
+    //This is also to make sure we access the solution steps for the correct sentence.
+    NSString* requestFirstSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[0].id"];
+    NSString* firstSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestFirstSentenceId];
+    int firstSentenceIdNumber = [[firstSentenceId substringFromIndex:1] intValue];
+    currentSentence = firstSentenceIdNumber;
+    
+    //Set up current sentence appearance and solution steps
+    [self setupCurrentSentence];
+    [self setupCurrentSentenceColor];
 }
 
 /*
@@ -378,7 +477,15 @@ ConditionSetup *conditionSetup;
     stepsComplete = FALSE;
     
     //Get number of steps for current sentence
-    numSteps = [PMSolution getNumStepsForSentence:currentSentence];
+    //numSteps = [PMSolution getNumStepsForSentence:currentSentence];
+    if ([currentPageId rangeOfString:@"Intro"].location == NSNotFound) {
+        if (currentSentence > 0) {
+            numSteps = [[[pageSentences objectAtIndex:currentSentence - 1] solutionSteps] count];
+        }
+        else {
+            numSteps = 0;
+        }
+    }
     
     //Check to see if it is an action sentence
     NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
@@ -563,7 +670,8 @@ ConditionSetup *conditionSetup;
     //Perform steps only if they exist for the sentence
     if (numSteps > 0 && IntroductionClass.allowInteractions) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        //NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        NSMutableArray* currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -619,13 +727,12 @@ ConditionSetup *conditionSetup;
 /*
  * Plays a noise for error feedback if the user performs a manipulation incorrectly
  */
-/*
 - (IBAction) playErrorNoise {
     AudioServicesPlaySystemSound(1053);
     
     //Logging added by James for Error Noise
     [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Error Audio" : @"NULL" :@"Error Noise"  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
-}*/
+}
 
 
 /*
@@ -750,7 +857,8 @@ ConditionSetup *conditionSetup;
     else {
         if (numSteps > 0 && IntroductionClass.allowInteractions) {
             //Get steps for current sentence
-            NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            //NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            NSMutableArray* currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
             
             if ([currSolSteps count] > 0) {
                 //Get current step to be completed
@@ -981,7 +1089,8 @@ ConditionSetup *conditionSetup;
         [[ServerCommunicationController sharedManager] logUserEmergencyNext:@"Emergency Swipe" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
         
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        //NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        NSMutableArray* currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -1173,7 +1282,8 @@ ConditionSetup *conditionSetup;
                 
                 if (numSteps > 0) {
                     //Get steps for current sentence
-                    NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                    //NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                    NSMutableArray* currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
                     
                     //Get current step to be completed
                     ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -1851,7 +1961,8 @@ ConditionSetup *conditionSetup;
     //Check solution only if it exists for the sentence
     if (numSteps > 0 && !stepsComplete) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        //NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        NSMutableArray* currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -1903,7 +2014,8 @@ ConditionSetup *conditionSetup;
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        //NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        NSMutableArray* currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -1955,7 +2067,8 @@ ConditionSetup *conditionSetup;
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        //NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        NSMutableArray* currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -2006,7 +2119,8 @@ ConditionSetup *conditionSetup;
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        //NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        NSMutableArray* currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -2042,7 +2156,8 @@ ConditionSetup *conditionSetup;
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        //NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        NSMutableArray* currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -2130,7 +2245,8 @@ ConditionSetup *conditionSetup;
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        //NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        NSMutableArray* currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -3294,7 +3410,8 @@ ConditionSetup *conditionSetup;
                             }
                             
                             //Get steps for current sentence
-                            NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                            //NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                            NSMutableArray* currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
                             PossibleInteraction* interaction;
                             NSMutableArray *interactions = [[NSMutableArray alloc]init ];
                     
@@ -3345,8 +3462,8 @@ ConditionSetup *conditionSetup;
                                 currentSentence++;
                                 
                                 //Set up current sentence appearance and solution steps
-                                [self setupCurrentSentence];
-                                [self colorSentencesUponNext];
+                                //[self setupCurrentSentence];
+                                //[self colorSentencesUponNext];
                                 
                                 //currentSentence is 1 indexed.
                                 if(currentSentence > totalSentences) {
@@ -3354,6 +3471,10 @@ ConditionSetup *conditionSetup;
                                     //logging done in loadNextPage
                                 }
                                 else {
+                                    //Set up current sentence appearance and solution steps
+                                    [self setupCurrentSentence];
+                                    [self colorSentencesUponNext];
+                                    
                                     //Logging added by James for Computer moving to next sentence
                                     [[ServerCommunicationController sharedManager] logNextSentenceNavigation:@"Next Button" :tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :@"Next Sentence" :bookTitle :chapterTitle : currentPage : tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
                                     
@@ -3395,8 +3516,8 @@ ConditionSetup *conditionSetup;
             currentSentence++;
             
             //Set up current sentence appearance and solution steps
-            [self setupCurrentSentence];
-            [self colorSentencesUponNext];
+            //[self setupCurrentSentence];
+            //[self colorSentencesUponNext];
             
             //currentSentence is 1 indexed.
             if(currentSentence > totalSentences) {
@@ -3404,6 +3525,10 @@ ConditionSetup *conditionSetup;
                 //logging done in loadNextPage
             }
             else {
+                //Set up current sentence appearance and solution steps
+                [self setupCurrentSentence];
+                [self colorSentencesUponNext];
+                
                 //Logging added by James for Computer moving to next sentence
                 [[ServerCommunicationController sharedManager] logNextSentenceNavigation:@"Next Button" :tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :@"Next Sentence" :bookTitle :chapterTitle : currentPage : tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
                 
@@ -3466,6 +3591,61 @@ ConditionSetup *conditionSetup;
     //Add swipe gesture recognizer and add to the view
     [textboxView addGestureRecognizer:swipeRecognizer];
     [[self view] addSubview:textboxView];
+}
+
+/*
+ * Swaps all sentences on the current page for the versions with the specified level of complexity
+ */
+-(void) swapSentencesOnPage:(NSUInteger)complexity {
+    Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
+    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
+    NSMutableArray* alternateSentences = [[PMActivity alternateSentences] objectForKey:currentPageId]; //get alternate sentences for current page
+    
+    if ([alternateSentences count] > 0) {
+        //Get the number of sentences on the page
+        NSString* requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('sentence').length"];
+        int sentenceCount = [[bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount] intValue];
+        
+        //Get the id number of the last sentence on the page
+        NSString* requestLastSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[%d - 1].id", sentenceCount];
+        NSString* lastSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
+        int lastSentenceIdNumber = [[lastSentenceId substringFromIndex:1] intValue];
+        
+        //Get the id number of the first sentence on the page
+        NSString* requestFirstSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[0].id"];
+        NSString* firstSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestFirstSentenceId];
+        int firstSentenceIdNumber = [[firstSentenceId substringFromIndex:1] intValue];
+        
+        NSString* removeSentenceString;
+        
+        //Remove all sentences on page
+        for (int i = firstSentenceIdNumber; i <= lastSentenceIdNumber; i++) {
+            //Skip the title (sentence 0) if it's the first on the page
+            if (i > 0) {
+                removeSentenceString = [NSString stringWithFormat:@"removeSentence('s%d')", i];
+                [bookView stringByEvaluatingJavaScriptFromString:removeSentenceString];
+            }
+        }
+        
+        NSString* addSentenceString;
+        int sentenceNumber = 1; //used for assigning sentence ids
+        
+        for (AlternateSentence* altSent in alternateSentences) {
+            //Find alternate sentences with the specified level of complexity
+            if ([altSent complexity] == complexity) {
+                //Get alternate sentence information
+                BOOL action = [altSent actionSentence];
+                NSString* text = [altSent text];
+                
+                //Add alternate sentence to page
+                addSentenceString = [NSString stringWithFormat:@"addSentence('s%d', %@, \"%@\")", sentenceNumber++, action ? @"true" : @"false", text];
+                [bookView stringByEvaluatingJavaScriptFromString:addSentenceString];
+                
+                //Add alternate sentence to array
+                [pageSentences addObject:altSent];
+            }
+        }
+    }
 }
 
 /*

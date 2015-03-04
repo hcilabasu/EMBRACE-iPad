@@ -17,5 +17,6 @@
 -(void) addSolutionStep:(ActionStep*)solStep;
 -(NSMutableArray*) getStepsForSentence:(NSUInteger)sentNum;
 -(NSUInteger) getNumStepsForSentence:(NSUInteger)sentNum;
+-(NSMutableArray*) getStepsWithNumber:(NSUInteger)stepNum;
 
 @end

@@ -56,4 +56,20 @@
     return numberOfSteps;
 }
 
+/*
+ * Returns an array containing the ActionSteps associated with the specified step number
+ */
+-(NSMutableArray*) getStepsWithNumber:(NSUInteger)stepNum {
+    NSMutableArray* steps = [[NSMutableArray alloc] init];
+    
+    for (ActionStep* step in solutionSteps) {
+        //Step number matches
+        if ([step stepNumber] == stepNum) {
+            [steps addObject:step];
+        }
+    }
+    
+    return steps;
+}
+
 @end

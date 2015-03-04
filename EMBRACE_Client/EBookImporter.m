@@ -422,7 +422,7 @@ ConditionSetup *conditionSetup;
 
 -(void) readMetadataForBook:(Book*) book {
     //NSLog(@"at beginning of read metadata for book");
-    NSString *filepath = [[book mainContentPath] stringByAppendingString:@"Relationships-metaData.xml"];
+    NSString *filepath = [[book mainContentPath] stringByAppendingString:@"Relationships-MetaData.xml"];
     
     //Get xml data of the metadata file.
     NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
