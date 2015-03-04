@@ -718,7 +718,8 @@ ConditionSetup *conditionSetup;
             PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity only
             PhysicalManipulationSolution* PMSolution = [PMActivity PMSolution]; //get PM solution
             
-            NSArray* sentenceSolutions = [solution elementsForName:@"sentence"];
+            //NSArray* sentenceSolutions = [solution elementsForName:@"sentence"];
+            NSArray* sentenceSolutions = [solution elementsForName:@"idea"];
                 
             for(GDataXMLElement* sentence in sentenceSolutions) {
                 //Get sentence number
@@ -794,6 +795,95 @@ ConditionSetup *conditionSetup;
         }
     }
     
+    //Set file path to access alternate sentence metadata
+    filepath = [[book mainContentPath] stringByAppendingString:@"AlternateSentences-MetaData.xml"];
+    
+    //Get xml data of the metadata file
+    xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
+    
+    //Break out metadata file into separate components
+    metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:nil];
+    
+    //Read in the alternate sentences information
+    NSArray* alternateSentenceElements = [metadataDoc nodesForXPath:@"//alternateSentences" error:nil];
+    
+    if ([alternateSentenceElements count] > 0)
+    {
+        GDataXMLElement* alternateSentenceElement = (GDataXMLElement*) [alternateSentenceElements objectAtIndex:0];
+        
+        NSArray* storyAlternateSentenceElements = [alternateSentenceElement elementsForName:@"story"];
+        
+        for(GDataXMLElement* storyAlternateSentenceElement in storyAlternateSentenceElements) {
+            //Get story title
+            NSString* storyTitle = [[storyAlternateSentenceElement attributeForName:@"title"] stringValue];
+            Chapter* chapter = [book getChapterWithTitle:storyTitle];
+            
+            //Get page id
+            NSString* pageId = [[storyAlternateSentenceElement attributeForName:@"page_id"] stringValue];
+            
+            if(chapter != nil) {
+                PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity only
+                
+                NSArray* storyAlternateSentences = [storyAlternateSentenceElement elementsForName:@"sentence"];
+                
+                for (GDataXMLElement* storyAlternateSentence in storyAlternateSentences)
+                {
+                    //Get sentence number
+                    NSUInteger sentenceNum = [[[storyAlternateSentence attributeForName:@"number"] stringValue] intValue];
+                    
+                    //Get sentence action (i.e., whether sentence requires manipulation)
+                    NSString* actionString = [[storyAlternateSentence attributeForName:@"action"] stringValue];
+                    
+                    BOOL action = TRUE; //initially assume sentence requires manipulation
+                    
+                    if ([actionString isEqualToString:@"no"])
+                    {
+                        action = FALSE;
+                    }
+                    
+                    //Get sentence attributes
+                    NSArray* storyAlternateSentenceAttributes = [storyAlternateSentence elementsForName:@"attributes"];
+                    GDataXMLElement* alternateSentenceAttributes = [storyAlternateSentenceAttributes objectAtIndex:0];
+                    
+                    //Get sentence complexity
+                    NSUInteger complexity = [[[alternateSentenceAttributes attributeForName:@"complexity"] stringValue] intValue];
+                    
+                    //Get sentence text
+                    NSArray* storyAlternateSentenceText = [storyAlternateSentence elementsForName:@"text"];
+                    GDataXMLElement* alternateSentenceText = [storyAlternateSentenceText objectAtIndex:0];
+                    NSString* text = alternateSentenceText.stringValue;
+                    
+                    //Get sentence solution (if it exists)
+                    NSArray* storyAlternateSentenceSolution = [storyAlternateSentence elementsForName:@"solution"];
+                    
+                    //Create array to store solution step numbers
+                    NSMutableArray* solutionSteps = [[NSMutableArray alloc] init];
+                    
+                    if ([storyAlternateSentenceSolution count] > 0) {
+                        GDataXMLElement* alternateSentenceSolution = [storyAlternateSentenceSolution objectAtIndex:0];
+
+                        NSArray* alternateSentenceSteps = [alternateSentenceSolution elementsForName:@"step"];
+                        
+                        for (GDataXMLElement* alternateSentenceStep in alternateSentenceSteps) {
+                            //Get step number
+                            NSUInteger stepNum = [[[alternateSentenceStep attributeForName:@"number"] stringValue] intValue];
+                            
+                            //Get associated ActionStep
+                            NSMutableArray* step = [[PMActivity PMSolution] getStepsWithNumber:stepNum];
+                            
+                            for (ActionStep* as in step) {
+                                [solutionSteps addObject:as];
+                            }
+                        }
+                    }
+                    
+                    //Create alternate sentence and add to PMActivity
+                    AlternateSentence* altSent = [[AlternateSentence alloc] initWithValues:sentenceNum :action :complexity :text :solutionSteps];
+                    [PMActivity addAlternateSentence:altSent forPageId:pageId];
+                }
+            }
+        }
+    }
     
     //set file path to access introduction metadata
     filepath = [[book mainContentPath] stringByAppendingString:@"Introductions-MetaData.xml"];
