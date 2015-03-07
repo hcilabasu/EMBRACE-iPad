@@ -304,8 +304,9 @@ NSString *CurrentStep;
                         
                     }
                     else{
+                        UIColor *LightBlueColor = [UIColor colorWithRed: 135.0/255.0 green: 180.0/255.0 blue:225.0/255.0 alpha: 1.0];
                         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-                        cell.backgroundColor= [UIColor blueColor];
+                        cell.backgroundColor= LightBlueColor;
                         nextButton.hidden = false;
                         
                     }
