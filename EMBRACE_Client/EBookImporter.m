@@ -718,8 +718,13 @@ ConditionSetup *conditionSetup;
             PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity only
             PhysicalManipulationSolution* PMSolution = [PMActivity PMSolution]; //get PM solution
             
-            //NSArray* sentenceSolutions = [solution elementsForName:@"sentence"];
+            //Solution metadata will change to include "idea" instead of "sentence" but
+            //some epubs may still be using "sentence"
             NSArray* sentenceSolutions = [solution elementsForName:@"idea"];
+            
+            if ([sentenceSolutions count] == 0) {
+                sentenceSolutions = [solution elementsForName:@"sentence"];
+            }
                 
             for(GDataXMLElement* sentence in sentenceSolutions) {
                 //Get sentence number

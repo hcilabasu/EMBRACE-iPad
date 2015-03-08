@@ -194,13 +194,12 @@ ConditionSetup *conditionSetup;
     //Start off with no objects grouped together
     currentGroupings = [[NSMutableDictionary alloc] init];
     
-    //Show menu for non-intro pages only
-    if ([currentPageId rangeOfString:@"Intro"].location == NSNotFound) {
+    NSLog(@"bookTitle: %@", bookTitle);
+    
+    //Show menu for non-intro pages of The Best Farm story only
+    if ([currentPageId rangeOfString:@"Intro"].location == NSNotFound && ![chapterTitle isEqualToString:@"Introduction to The Best Farm"] && [bookTitle rangeOfString:@"The Circulatory System"].location == NSNotFound) {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Choose sentence complexity" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"Simple", @"Current", @"Complex", nil];
         [alert show];
-        
-        //pageSentences = [[NSMutableArray alloc] init];
-        //[self swapSentencesOnPage:1];
     }
     else {
         //Get the number of sentences on the page
@@ -477,14 +476,16 @@ ConditionSetup *conditionSetup;
     stepsComplete = FALSE;
     
     //Get number of steps for current sentence
-    //numSteps = [PMSolution getNumStepsForSentence:currentSentence];
-    if ([currentPageId rangeOfString:@"Intro"].location == NSNotFound) {
+    if ([pageSentences count] > 0 && [currentPageId rangeOfString:@"Intro"].location == NSNotFound) {
         if (currentSentence > 0) {
             numSteps = [[[pageSentences objectAtIndex:currentSentence - 1] solutionSteps] count];
         }
         else {
             numSteps = 0;
         }
+    }
+    else {
+        numSteps = [PMSolution getNumStepsForSentence:currentSentence];
     }
     
     //Check to see if it is an action sentence
@@ -670,8 +671,11 @@ ConditionSetup *conditionSetup;
     //Perform steps only if they exist for the sentence
     if (numSteps > 0 && IntroductionClass.allowInteractions) {
         //Get steps for current sentence
-        //NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
         NSMutableArray* currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+        
+        if ([currSolSteps count] == 0) {
+            currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        }
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -1289,8 +1293,11 @@ ConditionSetup *conditionSetup;
                 
                 if (numSteps > 0) {
                     //Get steps for current sentence
-                    //NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
                     NSMutableArray* currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+                    
+                    if ([currSolSteps count] == 0) {
+                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                    }
                     
                     //Get current step to be completed
                     ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -1968,8 +1975,11 @@ ConditionSetup *conditionSetup;
     //Check solution only if it exists for the sentence
     if (numSteps > 0 && !stepsComplete) {
         //Get steps for current sentence
-        //NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
         NSMutableArray* currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+        
+        if ([currSolSteps count] == 0) {
+            currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        }
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -2021,8 +2031,11 @@ ConditionSetup *conditionSetup;
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        //NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
         NSMutableArray* currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+        
+        if ([currSolSteps count] == 0) {
+            currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        }
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -2074,8 +2087,11 @@ ConditionSetup *conditionSetup;
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        //NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
         NSMutableArray* currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+        
+        if ([currSolSteps count] == 0) {
+            currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        }
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -2126,8 +2142,11 @@ ConditionSetup *conditionSetup;
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        //NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
         NSMutableArray* currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+        
+        if ([currSolSteps count] == 0) {
+            currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        }
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -2163,8 +2182,11 @@ ConditionSetup *conditionSetup;
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        //NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
         NSMutableArray* currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+        
+        if ([currSolSteps count] == 0) {
+            currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        }
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -2252,8 +2274,11 @@ ConditionSetup *conditionSetup;
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        //NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
         NSMutableArray* currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+        
+        if ([currSolSteps count] == 0) {
+            currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        }
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -3430,8 +3455,10 @@ ConditionSetup *conditionSetup;
                             }
                             
                             //Get steps for current sentence
-                            //NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
                             NSMutableArray* currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+                            if ([currSolSteps count] == 0) {
+                                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                            }
                             PossibleInteraction* interaction;
                             NSMutableArray *interactions = [[NSMutableArray alloc]init ];
                     
