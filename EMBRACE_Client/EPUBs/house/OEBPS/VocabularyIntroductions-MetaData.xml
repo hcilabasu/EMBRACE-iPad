@@ -1,5 +1,413 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <vocabularyIntroductions>
+        <vocabularyIntroduction story="The Lopez Family">
+        <vocabularyIntroductionWord number="1">
+            <englishWordAudio>BFCE1_1G.m4a</englishWordAudio>
+            <spanishWordAudio>BFCS1_1G.m4a</spanishWordAudio>
+            <englishWordText>Hook</englishWordText>
+            <spanishWordText>Gancho</spanishWordText>
+            <expectedSelection>word</expectedSelection>
+            <expectedAction>tap</expectedAction>
+            <expectedInput>hook</expectedInput>
+        </vocabularyIntroductionWord>
+        <vocabularyIntroductionWord number="2">
+            <englishWordAudio>BFCE1_2A.m4a</englishWordAudio>
+            <spanishWordAudio>BFCS1_2A.m4a</spanishWordAudio>
+            <englishWordText>Hook</englishWordText>
+            <spanishWordText>Gancho</spanishWordText>
+            <expectedSelection>word</expectedSelection>
+            <expectedAction>tap</expectedAction>
+            <expectedInput>hook</expectedInput>
+        </vocabularyIntroductionWord>
+        <vocabularyIntroductionWord number="3">
+            <englishWordAudio>BFCE1_1G.m4a</englishWordAudio>
+            <spanishWordAudio>BFCS1_1G.m4a</spanishWordAudio>
+            <englishWordText>Lawyer</englishWordText>
+            <spanishWordText>Abogado?</spanishWordText>
+            <expectedSelection>word</expectedSelection>
+            <expectedAction>tap</expectedAction>
+            <expectedInput>lawyer</expectedInput>
+        </vocabularyIntroductionWord>
+        <vocabularyIntroductionWord number="4">
+            <englishWordAudio>BFCE1_2A.m4a</englishWordAudio>
+            <spanishWordAudio>BFCS1_2A.m4a</spanishWordAudio>
+            <englishWordText>Lawyer</englishWordText>
+            <spanishWordText>Abogado?</spanishWordText>
+            <expectedSelection>word</expectedSelection>
+            <expectedAction>tap</expectedAction>
+            <expectedInput>lawyer</expectedInput>
+        </vocabularyIntroductionWord>
+        <vocabularyIntroductionWord number="5">
+            <englishWordAudio>BFCE1_1G.m4a</englishWordAudio>
+            <spanishWordAudio>BFCS1_1G.m4a</spanishWordAudio>
+            <englishWordText>Pets</englishWordText>
+            <spanishWordText>Mascotas</spanishWordText>
+            <expectedSelection>word</expectedSelection>
+            <expectedAction>tap</expectedAction>
+            <expectedInput>pets</expectedInput>
+        </vocabularyIntroductionWord>
+        <vocabularyIntroductionWord number="6">
+            <englishWordAudio>BFCE1_2A.m4a</englishWordAudio>
+            <spanishWordAudio>BFCS1_2A.m4a</spanishWordAudio>
+            <englishWordText>Pets</englishWordText>
+            <spanishWordText>Mascotas</spanishWordText>
+            <expectedSelection>word</expectedSelection>
+            <expectedAction>tap</expectedAction>
+            <expectedInput>pets</expectedInput>
+        </vocabularyIntroductionWord>
+        <vocabularyIntroductionWord number="7">
+            <englishWordAudio>BFCE1_1G.m4a</englishWordAudio>
+            <spanishWordAudio>BFCS1_1G.m4a</spanishWordAudio>
+            <englishWordText>Mystery</englishWordText>
+            <spanishWordText>Misterio</spanishWordText>
+            <expectedSelection>word</expectedSelection>
+            <expectedAction>tap</expectedAction>
+            <expectedInput>mystery</expectedInput>
+        </vocabularyIntroductionWord>
+        <vocabularyIntroductionWord number="8">
+            <englishWordAudio>BFCE1_2A.m4a</englishWordAudio>
+            <spanishWordAudio>BFCS1_2A.m4a</spanishWordAudio>
+            <englishWordText>Mystery</englishWordText>
+            <spanishWordText>Misterio</spanishWordText>
+            <expectedSelection>word</expectedSelection>
+            <expectedAction>tap</expectedAction>
+            <expectedInput>mystery</expectedInput>
+        </vocabularyIntroductionWord>
+        <vocabularyIntroductionWord number="9">
+            <englishWordAudio>BFCE1_1G.m4a</englishWordAudio>
+            <spanishWordAudio>BFCS1_1G.m4a</spanishWordAudio>
+            <englishWordText>Solve</englishWordText>
+            <spanishWordText>Resolver</spanishWordText>
+            <expectedSelection>word</expectedSelection>
+            <expectedAction>tap</expectedAction>
+            <expectedInput>solve</expectedInput>
+        </vocabularyIntroductionWord>
+        <vocabularyIntroductionWord number="10">
+            <englishWordAudio>BFCE1_2A.m4a</englishWordAudio>
+            <spanishWordAudio>BFCS1_2A.m4a</spanishWordAudio>
+            <englishWordText>Solve</englishWordText>
+            <spanishWordText>Resolver</spanishWordText>
+            <expectedSelection>word</expectedSelection>
+            <expectedAction>tap</expectedAction>
+            <expectedInput>solve</expectedInput>
+        </vocabularyIntroductionWord>
+        <vocabularyIntroductionWord number="11">
+            <englishWordAudio></englishWordAudio>
+            <spanishWordAudio></spanishWordAudio>
+            <englishWordText></englishWordText>
+            <spanishWordText></spanishWordText>
+            <expectedSelection></expectedSelection>
+            <expectedAction>tap</expectedAction>
+            <expectedInput>next</expectedInput>
+        </vocabularyIntroductionWord>
+        </vocabularyIntroduction>
+        <vocabularyIntroduction story="Missing Keys">
+            <vocabularyIntroductionWord number="1">
+                <englishWordAudio>BFCE1_1G.m4a</englishWordAudio>
+                <spanishWordAudio>BFCS1_1G.m4a</spanishWordAudio>
+                <englishWordText>Highchair</englishWordText>
+                <spanishWordText>Silla alta?</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>highchair</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="2">
+                <englishWordAudio>BFCE1_2A.m4a</englishWordAudio>
+                <spanishWordAudio>BFCS1_2A.m4a</spanishWordAudio>
+                <englishWordText>Highchair</englishWordText>
+                <spanishWordText>Silla alta?</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>highchair</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="3">
+                <englishWordAudio>BFCE1_1G.m4a</englishWordAudio>
+                <spanishWordAudio>BFCS1_1G.m4a</spanishWordAudio>
+                <englishWordText>Hook</englishWordText>
+                <spanishWordText>Gancho</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>hook</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="4">
+                <englishWordAudio>BFCE1_2A.m4a</englishWordAudio>
+                <spanishWordAudio>BFCS1_2A.m4a</spanishWordAudio>
+                <englishWordText>Hook</englishWordText>
+                <spanishWordText>Gancho</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>hook</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="5">
+                <englishWordAudio>BFCE1_1G.m4a</englishWordAudio>
+                <spanishWordAudio>BFCS1_1G.m4a</spanishWordAudio>
+                <englishWordText>Sniffed</englishWordText>
+                <spanishWordText>Olfatear</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>sniffed</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="6">
+                <englishWordAudio>BFCE1_2A.m4a</englishWordAudio>
+                <spanishWordAudio>BFCS1_2A.m4a</spanishWordAudio>
+                <englishWordText>Sniffed</englishWordText>
+                <spanishWordText>Olfatear</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>sniffed</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="7">
+                <englishWordAudio></englishWordAudio>
+                <spanishWordAudio></spanishWordAudio>
+                <englishWordText></englishWordText>
+                <spanishWordText></spanishWordText>
+                <expectedSelection></expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>next</expectedInput>
+            </vocabularyIntroductionWord>
+        </vocabularyIntroduction>
+        <vocabularyIntroduction story="Is Paco a Thief">
+            <vocabularyIntroductionWord number="1">
+                <englishWordAudio>BFCE1_1G.m4a</englishWordAudio>
+                <spanishWordAudio>BFCS1_1G.m4a</spanishWordAudio>
+                <englishWordText>Sniffed</englishWordText>
+                <spanishWordText>Olfatear</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>sniffed</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="2">
+                <englishWordAudio>BFCE1_2A.m4a</englishWordAudio>
+                <spanishWordAudio>BFCS1_2A.m4a</spanishWordAudio>
+                <englishWordText>Sniffed</englishWordText>
+                <spanishWordText>Olfatear</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>sniffed</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="3">
+                <englishWordAudio>BFCE1_1G.m4a</englishWordAudio>
+                <spanishWordAudio>BFCS1_1G.m4a</spanishWordAudio>
+                <englishWordText>Thief</englishWordText>
+                <spanishWordText>Ladron</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>thief</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="4">
+                <englishWordAudio>BFCE1_2A.m4a</englishWordAudio>
+                <spanishWordAudio>BFCS1_2A.m4a</spanishWordAudio>
+                <englishWordText>Thief</englishWordText>
+                <spanishWordText>Ladron</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>thief</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="5">
+                <englishWordAudio>BFCE1_1G.m4a</englishWordAudio>
+                <spanishWordAudio>BFCS1_1G.m4a</spanishWordAudio>
+                <englishWordText>Stealing</englishWordText>
+                <spanishWordText>Robar</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>stealing</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="6">
+                <englishWordAudio>BFCE1_2A.m4a</englishWordAudio>
+                <spanishWordAudio>BFCS1_2A.m4a</spanishWordAudio>
+                <englishWordText>Stealing</englishWordText>
+                <spanishWordText>Robar</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>stealing</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="7">
+                <englishWordAudio></englishWordAudio>
+                <spanishWordAudio></spanishWordAudio>
+                <englishWordText></englishWordText>
+                <spanishWordText></spanishWordText>
+                <expectedSelection></expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>next</expectedInput>
+            </vocabularyIntroductionWord>
+        </vocabularyIntroduction>
+        <vocabularyIntroduction story="More is Missing">
+            <vocabularyIntroductionWord number="1">
+                <englishWordAudio>BFCE1_1G.m4a</englishWordAudio>
+                <spanishWordAudio>BFCS1_1G.m4a</spanishWordAudio>
+                <englishWordText>Silver</englishWordText>
+                <spanishWordText>Plateado</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>silver</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="2">
+                <englishWordAudio>BFCE1_2A.m4a</englishWordAudio>
+                <spanishWordAudio>BFCS1_2A.m4a</spanishWordAudio>
+                <englishWordText>Silver</englishWordText>
+                <spanishWordText>Plateado</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>silver</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="3">
+                <englishWordAudio></englishWordAudio>
+                <spanishWordAudio></spanishWordAudio>
+                <englishWordText></englishWordText>
+                <spanishWordText></spanishWordText>
+                <expectedSelection></expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>next</expectedInput>
+            </vocabularyIntroductionWord>
+        </vocabularyIntroduction>
+        <vocabularyIntroduction story="The Family is Rattled">
+            <vocabularyIntroductionWord number="1">
+                <englishWordAudio>BFCE1_1G.m4a</englishWordAudio>
+                <spanishWordAudio>BFCS1_1G.m4a</spanishWordAudio>
+                <englishWordText>Rattle</englishWordText>
+                <spanishWordText>Sonaja</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>rattle</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="2">
+                <englishWordAudio>BFCE1_2A.m4a</englishWordAudio>
+                <spanishWordAudio>BFCS1_2A.m4a</spanishWordAudio>
+                <englishWordText>Rattle</englishWordText>
+                <spanishWordText>Sonaja</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>rattle</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="3">
+                <englishWordAudio>BFCE1_1G.m4a</englishWordAudio>
+                <spanishWordAudio>BFCS1_1G.m4a</spanishWordAudio>
+                <englishWordText>Comfort</englishWordText>
+                <spanishWordText>Calmar</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>comfort</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="4">
+                <englishWordAudio>BFCE1_2A.m4a</englishWordAudio>
+                <spanishWordAudio>BFCS1_2A.m4a</spanishWordAudio>
+                <englishWordText>Comfort</englishWordText>
+                <spanishWordText>Calmar</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>comfort</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="5">
+                <englishWordAudio>BFCE1_1G.m4a</englishWordAudio>
+                <spanishWordAudio>BFCS1_1G.m4a</spanishWordAudio>
+                <englishWordText>Rattled</englishWordText>
+                <spanishWordText>Angustiado</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>rattled</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="6">
+                <englishWordAudio>BFCE1_2A.m4a</englishWordAudio>
+                <spanishWordAudio>BFCS1_2A.m4a</spanishWordAudio>
+                <englishWordText>Rattled</englishWordText>
+                <spanishWordText>Angustiado</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>rattled</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="7">
+                <englishWordAudio></englishWordAudio>
+                <spanishWordAudio></spanishWordAudio>
+                <englishWordText></englishWordText>
+                <spanishWordText></spanishWordText>
+                <expectedSelection></expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>next</expectedInput>
+            </vocabularyIntroductionWord>
+        </vocabularyIntroduction>
+        <vocabularyIntroduction story="The Mystery is Solved">
+            <vocabularyIntroductionWord number="1">
+                <englishWordAudio>BFCE1_1G.m4a</englishWordAudio>
+                <spanishWordAudio>BFCS1_1G.m4a</spanishWordAudio>
+                <englishWordText>Hook</englishWordText>
+                <spanishWordText>Gancho</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>hook</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="2">
+                <englishWordAudio>BFCE1_2A.m4a</englishWordAudio>
+                <spanishWordAudio>BFCS1_2A.m4a</spanishWordAudio>
+                <englishWordText>Hook</englishWordText>
+                <spanishWordText>Gancho</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>hook</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="3">
+                <englishWordAudio>BFCE1_1G.m4a</englishWordAudio>
+                <spanishWordAudio>BFCS1_1G.m4a</spanishWordAudio>
+                <englishWordText>Thief</englishWordText>
+                <spanishWordText>Ladron</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>thief</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="4">
+                <englishWordAudio>BFCE1_2A.m4a</englishWordAudio>
+                <spanishWordAudio>BFCS1_2A.m4a</spanishWordAudio>
+                <englishWordText>Thief</englishWordText>
+                <spanishWordText>Ladron</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>thief</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="5">
+                <englishWordAudio>BFCE1_1G.m4a</englishWordAudio>
+                <spanishWordAudio>BFCS1_1G.m4a</spanishWordAudio>
+                <englishWordText>Rattle</englishWordText>
+                <spanishWordText>Sonaja</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>rattle</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="6">
+                <englishWordAudio>BFCE1_2A.m4a</englishWordAudio>
+                <spanishWordAudio>BFCS1_2A.m4a</spanishWordAudio>
+                <englishWordText>Rattle</englishWordText>
+                <spanishWordText>Sonaja</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>rattle</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="7">
+                <englishWordAudio>BFCE1_1G.m4a</englishWordAudio>
+                <spanishWordAudio>BFCS1_1G.m4a</spanishWordAudio>
+                <englishWordText>Shiny</englishWordText>
+                <spanishWordText>Brillante</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>shiny</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="8">
+                <englishWordAudio>BFCE1_2A.m4a</englishWordAudio>
+                <spanishWordAudio>BFCS1_2A.m4a</spanishWordAudio>
+                <englishWordText>Shiny</englishWordText>
+                <spanishWordText>Brillante</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>shiny</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="9">
+                <englishWordAudio></englishWordAudio>
+                <spanishWordAudio></spanishWordAudio>
+                <englishWordText></englishWordText>
+                <spanishWordText></spanishWordText>
+                <expectedSelection></expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>next</expectedInput>
+            </vocabularyIntroductionWord>
+        </vocabularyIntroduction>
     </vocabularyIntroductions>
 </metadata>
