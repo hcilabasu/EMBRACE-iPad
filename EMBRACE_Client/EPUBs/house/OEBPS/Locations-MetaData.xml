@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <locations>
+        <location locationId="bathroom" x="32%" y="33%" height="26%" width="23%"/>
+        <location locationId="crib" x="23%" y="49%" height="9%" width="8.2%"/>
+        <location locationId="frontHouse" x="1%" y="75%" height="26%" width="60%"/>
+        <location locationId="kitchen" x="8%" y="59%" height="25%" width="24%"/>
+        <location locationId="kitchenSink" x="8%" y="60%" height="26%" width="9%"/>
+        <location locationId="livingRoom" x="32%" y="59%" height="26%" width="23%"/>
+        <location locationId="nearHook" x="16%" y="63%" height="22%" width="10%"/>
+        <location locationId="nearTree" x="65%" y="67%" height="34%" width="35%"/>
+        <location locationId="nest" x="79%" y="50%" height="16%" width="14%"/>
+        <location locationId="outside" x="56%" y="59%" height="39%" width="44%"/>
+        <location locationId="playRoom" x="7%" y="15%" height="17%" width="48%"/>
+    </locations>
+</metadata>

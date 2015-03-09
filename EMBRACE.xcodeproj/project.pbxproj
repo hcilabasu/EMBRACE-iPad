@@ -91,6 +91,20 @@
 		1A2D70D71AAA74FA009E7B5B /* Story6-The-Mystery-is-Solved-PM-2.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1A2D70831AAA74FA009E7B5B /* Story6-The-Mystery-is-Solved-PM-2.xhtml */; };
 		1A2D70D81AAA74FA009E7B5B /* Story6-The-Mystery-is-Solved-Title.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1A2D70841AAA74FA009E7B5B /* Story6-The-Mystery-is-Solved-Title.xhtml */; };
 		1A2D70D91AAA74FA009E7B5B /* toc.ncx in Resources */ = {isa = PBXBuildFile; fileRef = 1A2D70851AAA74FA009E7B5B /* toc.ncx */; };
+		1A2D70DB1AAA8122009E7B5B /* Relationships-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A2D70DA1AAA8122009E7B5B /* Relationships-MetaData.xml */; };
+		1A2D70DD1AAA8155009E7B5B /* Constraints-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A2D70DC1AAA8155009E7B5B /* Constraints-MetaData.xml */; };
+		1A2D70DF1AAA8174009E7B5B /* Locations-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A2D70DE1AAA8174009E7B5B /* Locations-MetaData.xml */; };
+		1A2D70E11AAA8180009E7B5B /* Hotspots-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A2D70E01AAA8180009E7B5B /* Hotspots-MetaData.xml */; };
+		1A2D70E51AAA81C4009E7B5B /* Waypoints-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A2D70E41AAA81C4009E7B5B /* Waypoints-MetaData.xml */; };
+		1A2D70E71AAA81DA009E7B5B /* AlternateImages-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A2D70E61AAA81DA009E7B5B /* AlternateImages-MetaData.xml */; };
+		1A2D70E91AAA81E9009E7B5B /* Setups-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A2D70E81AAA81E9009E7B5B /* Setups-MetaData.xml */; };
+		1A2D70EB1AAA81FB009E7B5B /* Solutions-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A2D70EA1AAA81FB009E7B5B /* Solutions-MetaData.xml */; };
+		1A2D70ED1AAA8207009E7B5B /* IMSolutions-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A2D70EC1AAA8207009E7B5B /* IMSolutions-MetaData.xml */; };
+		1A2D70EF1AAA821A009E7B5B /* SentenceAnalysis-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A2D70EE1AAA821A009E7B5B /* SentenceAnalysis-MetaData.xml */; };
+		1A2D70F11AAA8230009E7B5B /* Translations-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A2D70F01AAA8230009E7B5B /* Translations-MetaData.xml */; };
+		1A2D70F31AAA8245009E7B5B /* Introductions-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A2D70F21AAA8245009E7B5B /* Introductions-MetaData.xml */; };
+		1A2D70F51AAA8263009E7B5B /* AssessmentActivities-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A2D70F41AAA8263009E7B5B /* AssessmentActivities-MetaData.xml */; };
+		1A2D70F71AAA827D009E7B5B /* VocabularyIntroductions-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A2D70F61AAA827D009E7B5B /* VocabularyIntroductions-MetaData.xml */; };
 		1AB935671A8932A0000CAE21 /* AssessmentActivities-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AB935661A8932A0000CAE21 /* AssessmentActivities-MetaData.xml */; };
 		1AB935691A895582000CAE21 /* Relationships-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AB935681A895582000CAE21 /* Relationships-MetaData.xml */; };
 		1AB9356B1A89559A000CAE21 /* Constraints-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AB9356A1A89559A000CAE21 /* Constraints-MetaData.xml */; };
@@ -110,6 +124,7 @@
 		1AD3CC861A251C5300E18B1C /* IntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3CC851A251C5300E18B1C /* IntroductionViewController.m */; };
 		1AD3CC891A251CBA00E18B1C /* BuildHTMLString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3CC881A251CBA00E18B1C /* BuildHTMLString.m */; };
 		1AD3CC8C1A251CE600E18B1C /* PlayAudioFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3CC8B1A251CE600E18B1C /* PlayAudioFile.m */; };
+		1ADB01A31AAD211C006C5256 /* house.epub in Resources */ = {isa = PBXBuildFile; fileRef = 1ADB01A21AAD211C006C5256 /* house.epub */; };
 		1AE0F5FC1A7965EC00C5B67D /* Relationships-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AE0F5FB1A7965EC00C5B67D /* Relationships-MetaData.xml */; };
 		1AE0F5FE1A79665A00C5B67D /* Constraints-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AE0F5FD1A79665A00C5B67D /* Constraints-MetaData.xml */; };
 		1AE0F6021A79671A00C5B67D /* Locations-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AE0F6011A79671A00C5B67D /* Locations-MetaData.xml */; };
@@ -804,6 +819,20 @@
 		1A2D70831AAA74FA009E7B5B /* Story6-The-Mystery-is-Solved-PM-2.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story6-The-Mystery-is-Solved-PM-2.xhtml"; sourceTree = "<group>"; };
 		1A2D70841AAA74FA009E7B5B /* Story6-The-Mystery-is-Solved-Title.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story6-The-Mystery-is-Solved-Title.xhtml"; sourceTree = "<group>"; };
 		1A2D70851AAA74FA009E7B5B /* toc.ncx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = toc.ncx; sourceTree = "<group>"; };
+		1A2D70DA1AAA8122009E7B5B /* Relationships-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Relationships-MetaData.xml"; sourceTree = "<group>"; };
+		1A2D70DC1AAA8155009E7B5B /* Constraints-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Constraints-MetaData.xml"; sourceTree = "<group>"; };
+		1A2D70DE1AAA8174009E7B5B /* Locations-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Locations-MetaData.xml"; sourceTree = "<group>"; };
+		1A2D70E01AAA8180009E7B5B /* Hotspots-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Hotspots-MetaData.xml"; sourceTree = "<group>"; };
+		1A2D70E41AAA81C4009E7B5B /* Waypoints-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Waypoints-MetaData.xml"; sourceTree = "<group>"; };
+		1A2D70E61AAA81DA009E7B5B /* AlternateImages-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AlternateImages-MetaData.xml"; sourceTree = "<group>"; };
+		1A2D70E81AAA81E9009E7B5B /* Setups-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Setups-MetaData.xml"; sourceTree = "<group>"; };
+		1A2D70EA1AAA81FB009E7B5B /* Solutions-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Solutions-MetaData.xml"; sourceTree = "<group>"; };
+		1A2D70EC1AAA8207009E7B5B /* IMSolutions-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "IMSolutions-MetaData.xml"; sourceTree = "<group>"; };
+		1A2D70EE1AAA821A009E7B5B /* SentenceAnalysis-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "SentenceAnalysis-MetaData.xml"; sourceTree = "<group>"; };
+		1A2D70F01AAA8230009E7B5B /* Translations-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Translations-MetaData.xml"; sourceTree = "<group>"; };
+		1A2D70F21AAA8245009E7B5B /* Introductions-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Introductions-MetaData.xml"; sourceTree = "<group>"; };
+		1A2D70F41AAA8263009E7B5B /* AssessmentActivities-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivities-MetaData.xml"; sourceTree = "<group>"; };
+		1A2D70F61AAA827D009E7B5B /* VocabularyIntroductions-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "VocabularyIntroductions-MetaData.xml"; sourceTree = "<group>"; };
 		1AB935661A8932A0000CAE21 /* AssessmentActivities-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivities-MetaData.xml"; sourceTree = "<group>"; };
 		1AB935681A895582000CAE21 /* Relationships-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Relationships-MetaData.xml"; sourceTree = "<group>"; };
 		1AB9356A1A89559A000CAE21 /* Constraints-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Constraints-MetaData.xml"; sourceTree = "<group>"; };
@@ -826,6 +855,7 @@
 		1AD3CC881A251CBA00E18B1C /* BuildHTMLString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildHTMLString.m; sourceTree = "<group>"; };
 		1AD3CC8A1A251CE600E18B1C /* PlayAudioFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayAudioFile.h; sourceTree = "<group>"; };
 		1AD3CC8B1A251CE600E18B1C /* PlayAudioFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayAudioFile.m; sourceTree = "<group>"; };
+		1ADB01A21AAD211C006C5256 /* house.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = house.epub; path = EPUBs/house/house.epub; sourceTree = "<group>"; };
 		1AE0F5FB1A7965EC00C5B67D /* Relationships-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Relationships-MetaData.xml"; sourceTree = "<group>"; };
 		1AE0F5FD1A79665A00C5B67D /* Constraints-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Constraints-MetaData.xml"; sourceTree = "<group>"; };
 		1AE0F6011A79671A00C5B67D /* Locations-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Locations-MetaData.xml"; sourceTree = "<group>"; };
@@ -1562,6 +1592,20 @@
 		1A2D70311AAA74FA009E7B5B /* OEBPS */ = {
 			isa = PBXGroup;
 			children = (
+				1A2D70DA1AAA8122009E7B5B /* Relationships-MetaData.xml */,
+				1A2D70DC1AAA8155009E7B5B /* Constraints-MetaData.xml */,
+				1A2D70DE1AAA8174009E7B5B /* Locations-MetaData.xml */,
+				1A2D70E01AAA8180009E7B5B /* Hotspots-MetaData.xml */,
+				1A2D70E41AAA81C4009E7B5B /* Waypoints-MetaData.xml */,
+				1A2D70E61AAA81DA009E7B5B /* AlternateImages-MetaData.xml */,
+				1A2D70E81AAA81E9009E7B5B /* Setups-MetaData.xml */,
+				1A2D70EA1AAA81FB009E7B5B /* Solutions-MetaData.xml */,
+				1A2D70EC1AAA8207009E7B5B /* IMSolutions-MetaData.xml */,
+				1A2D70EE1AAA821A009E7B5B /* SentenceAnalysis-MetaData.xml */,
+				1A2D70F01AAA8230009E7B5B /* Translations-MetaData.xml */,
+				1A2D70F21AAA8245009E7B5B /* Introductions-MetaData.xml */,
+				1A2D70F61AAA827D009E7B5B /* VocabularyIntroductions-MetaData.xml */,
+				1A2D70F41AAA8263009E7B5B /* AssessmentActivities-MetaData.xml */,
 				1A2D70321AAA74FA009E7B5B /* content.opf */,
 				1A2D70331AAA74FA009E7B5B /* Images */,
 				1A2D70591AAA74FA009E7B5B /* metadata.xml */,
@@ -1793,6 +1837,7 @@
 		31953E4F1729ECC100570087 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1ADB01A21AAD211C006C5256 /* house.epub */,
 				5CE1E30F1A119E120070A7D6 /* bestFarm.epub */,
 				5CE1E30D1A119DFC0070A7D6 /* circulatory.epub */,
 				5C7FE06619A7E43B00CBBE0E /* sounds */,
@@ -2763,6 +2808,7 @@
 				5C7FE05C19A6B1B500CBBE0E /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-7.xhtml in Resources */,
 				5C776B6319C90DA1000DBC65 /* BFEC2.m4a in Resources */,
 				1A2D709F1AAA74FA009E7B5B /* nest_night.png in Resources */,
+				1A2D70E51AAA81C4009E7B5B /* Waypoints-MetaData.xml in Resources */,
 				1AB935671A8932A0000CAE21 /* AssessmentActivities-MetaData.xml in Resources */,
 				5C7FE10D19A7E43C00CBBE0E /* BFCS1_5.m4a in Resources */,
 				5C776C2319C94E4F000DBC65 /* pumpkinS.m4a in Resources */,
@@ -2824,15 +2870,18 @@
 				1A2D70AC1AAA74FA009E7B5B /* tree_day.png in Resources */,
 				5C7FE03619A6B1B500CBBE0E /* p2_healthy_cilia.png in Resources */,
 				5C776BC619C93E1E000DBC65 /* dirtS.m4a in Resources */,
+				1A2D70DF1AAA8174009E7B5B /* Locations-MetaData.xml in Resources */,
 				5C7FE10A19A7E43C00CBBE0E /* BFCS1_1G.m4a in Resources */,
 				5C776A4819C17F39000DBC65 /* BFTC6.m4a in Resources */,
 				5C776B6819C90DA1000DBC65 /* BFEC7.m4a in Resources */,
 				5C7FE13219A7E43C00CBBE0E /* BFEE_21.m4a in Resources */,
+				1A2D70F31AAA8245009E7B5B /* Introductions-MetaData.xml in Resources */,
 				5C7FE12A19A7E43C00CBBE0E /* BFEE_13.m4a in Resources */,
 				5C7FE0ED19A7E43C00CBBE0E /* BFCE1_1G.m4a in Resources */,
 				5CF9949F19AC34550080C32F /* Story1-The-Contest-IM-2.xhtml in Resources */,
 				5C7FE12C19A7E43C00CBBE0E /* BFEE_18A.m4a in Resources */,
 				1A2D70D91AAA74FA009E7B5B /* toc.ncx in Resources */,
+				1A2D70DB1AAA8122009E7B5B /* Relationships-MetaData.xml in Resources */,
 				5C776B6B19C90DA1000DBC65 /* BFEC10.m4a in Resources */,
 				5C7FE05619A6B1B500CBBE0E /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-1.xhtml in Resources */,
 				5C7FE02D19A6B1B500CBBE0E /* bloodcell_select.png in Resources */,
@@ -2867,6 +2916,7 @@
 				5C776B4319C80919000DBC65 /* BFES_8A.m4a in Resources */,
 				5C7FE10419A7E43C00CBBE0E /* BFCE_6.m4a in Resources */,
 				5CE299EB19B5B3D600675CB0 /* owlE.m4a in Resources */,
+				1ADB01A31AAD211C006C5256 /* house.epub in Resources */,
 				5C776AC119C674FA000DBC65 /* CPQR6.m4a in Resources */,
 				1A2D709B1AAA74FA009E7B5B /* keys.png in Resources */,
 				5C776BE019C93E1E000DBC65 /* valveS.m4a in Resources */,
@@ -2882,6 +2932,7 @@
 				5C7FE0F319A7E43C00CBBE0E /* BFCE1_6A.m4a in Resources */,
 				5CF9947719AC34550080C32F /* cart_large.png in Resources */,
 				5C776AC019C674FA000DBC65 /* CPQR7.m4a in Resources */,
+				1A2D70EB1AAA81FB009E7B5B /* Solutions-MetaData.xml in Resources */,
 				5CAD05DE19BE6A3E00F3F053 /* CEE_14.m4a in Resources */,
 				5C7FE12619A7E43C00CBBE0E /* BFEE_10A.m4a in Resources */,
 				5CE299EA19B5B3D600675CB0 /* BFCE5_1.m4a in Resources */,
@@ -2937,6 +2988,7 @@
 				5C776B3A19C7FB9A000DBC65 /* Story4-Who-is-the-Best-Animal-Intro-S.xhtml in Resources */,
 				5CE299AE19B13EB200675CB0 /* BFCS1_2A.m4a in Resources */,
 				5C776A5E19C241EE000DBC65 /* CWWB1.m4a in Resources */,
+				1A2D70F11AAA8230009E7B5B /* Translations-MetaData.xml in Resources */,
 				5C776A4719C17F39000DBC65 /* BFTC5.m4a in Resources */,
 				31953E5D1729ECC100570087 /* Default@2x.png in Resources */,
 				5C776C5319C95A13000DBC65 /* trophyS.m4a in Resources */,
@@ -2988,6 +3040,7 @@
 				5CF994AF19AC34550080C32F /* Story4-Who-is-the-Best-Animal-PM-1.xhtml in Resources */,
 				1AB9357F1A8956AB000CAE21 /* Introductions-MetaData.xml in Resources */,
 				31953E921729EE8100570087 /* MainStoryboard_iPad.storyboard in Resources */,
+				1A2D70F71AAA827D009E7B5B /* VocabularyIntroductions-MetaData.xml in Resources */,
 				5C776BC519C93E1E000DBC65 /* dustDEFS.m4a in Resources */,
 				5C776C2619C94EDF000DBC65 /* farmDEFS.m4a in Resources */,
 				1A2D70A11AAA74FA009E7B5B /* rattle.png in Resources */,
@@ -3093,9 +3146,11 @@
 				5CE299CF19B59CC400675CB0 /* farmE.m4a in Resources */,
 				5C7FE06119A6B1B500CBBE0E /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-PM-2.xhtml in Resources */,
 				5CAD05EA19BE6A3E00F3F053 /* CCE5_1.m4a in Resources */,
+				1A2D70E91AAA81E9009E7B5B /* Setups-MetaData.xml in Resources */,
 				5C7FE13F19A7E43C00CBBE0E /* BFS_CH1A.m4a in Resources */,
 				1AE0F6121A79691D00C5B67D /* VocabularyIntroductions-MetaData.xml in Resources */,
 				5CE299E619B5ACDA00675CB0 /* BFCE4_2.m4a in Resources */,
+				1A2D70E71AAA81DA009E7B5B /* AlternateImages-MetaData.xml in Resources */,
 				5C7FE11F19A7E43C00CBBE0E /* BFCS_9.m4a in Resources */,
 				5CF655C019AEACF0000AC913 /* Story4-Who-is-the-Best-Animal-Intro-E.xhtml in Resources */,
 				5C7FE13119A7E43C00CBBE0E /* BFEE_20A.m4a in Resources */,
@@ -3133,6 +3188,7 @@
 				5C776AC819C674FA000DBC65 /* CES_14.m4a in Resources */,
 				5C776C0919C93E1E000DBC65 /* prizeS.m4a in Resources */,
 				5C776BCE19C93E1E000DBC65 /* cigaretteS.m4a in Resources */,
+				1A2D70EF1AAA821A009E7B5B /* SentenceAnalysis-MetaData.xml in Resources */,
 				5CF9948219AC34550080C32F /* farm_night.png in Resources */,
 				5CF994B719AC34550080C32F /* Story6-Everyone-Helps-IM-1.xhtml in Resources */,
 				1AE0F5FC1A7965EC00C5B67D /* Relationships-MetaData.xml in Resources */,
@@ -3144,6 +3200,7 @@
 				5C7FE05919A6B1B500CBBE0E /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-4.xhtml in Resources */,
 				5C776B2A19C7E0E4000DBC65 /* Story2-The-Amazing-Heart-Intro-S.xhtml in Resources */,
 				5CAD064F19BEB8AE00F3F053 /* oxygenE.m4a in Resources */,
+				1A2D70DD1AAA8155009E7B5B /* Constraints-MetaData.xml in Resources */,
 				5C776A6119C241EE000DBC65 /* CWWB4.m4a in Resources */,
 				5C776C5219C95A13000DBC65 /* trophyDEFS.m4a in Resources */,
 				1A2D70A71AAA74FA009E7B5B /* Story-5-Cleaning-Day.png in Resources */,
@@ -3236,11 +3293,13 @@
 				5C776BC019C93E1E000DBC65 /* ventricleS.m4a in Resources */,
 				5C776C2E19C9508B000DBC65 /* barnDEFS.m4a in Resources */,
 				5CE299DE19B5A00D00675CB0 /* BFCE3_8.m4a in Resources */,
+				1A2D70ED1AAA8207009E7B5B /* IMSolutions-MetaData.xml in Resources */,
 				5C776ABB19C674FA000DBC65 /* CPQR12.m4a in Resources */,
 				5C776BCA19C93E1E000DBC65 /* trappedS.m4a in Resources */,
 				5C7FE0FC19A7E43C00CBBE0E /* BFCE_22A.m4a in Resources */,
 				5C0274C819D22DA400BF4B1A /* BFCE1_6E.m4a in Resources */,
 				5CF9949B19AC34550080C32F /* PMStyle.css in Resources */,
+				1A2D70E11AAA8180009E7B5B /* Hotspots-MetaData.xml in Resources */,
 				5C7FE12819A7E43C00CBBE0E /* BFEE_11A.m4a in Resources */,
 				5CE299E319B5AC2700675CB0 /* purrE.m4a in Resources */,
 				5CAD064319BEB8AE00F3F053 /* squeezeE.m4a in Resources */,
@@ -3252,6 +3311,7 @@
 				5C7FE03419A6B1B500CBBE0E /* p1.png in Resources */,
 				5C7FE13319A7E43C00CBBE0E /* BFEE_22A.m4a in Resources */,
 				1A2D70C81AAA74FA009E7B5B /* Story4-More-is-Missing-IM-2.xhtml in Resources */,
+				1A2D70F51AAA8263009E7B5B /* AssessmentActivities-MetaData.xml in Resources */,
 				5CE299B119B54E6700675CB0 /* BFCS1_3.m4a in Resources */,
 				5C7FE12B19A7E43C00CBBE0E /* BFEE_18.m4a in Resources */,
 				5C7FE12019A7E43C00CBBE0E /* BFCS_REST.m4a in Resources */,

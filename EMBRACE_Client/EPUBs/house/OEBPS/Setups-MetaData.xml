@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <setups>
+        <story title="The Lopez Family" page_id="story1-PM-2">
+            <group obj1Id="man" action="getIn" obj2Id="car"/>
+        </story>
+        <story title="Missing Keys" page_id="story2-PM-2">
+            <group obj1Id="baby" action="getIn" obj2Id="highchair"/>
+        </story>
+        <story title="Is Paco a Thief?" page_id="story3-PM-1">
+            <group obj1Id="baby" action="getIn" obj2Id="highchair"/>
+        </story>
+        <story title="The Family is Rattled" page_id="story5-PM-2">
+            <group obj1Id="rabbit" action="sit" obj2Id="baby"/>
+        </story>
+        <story title="The Mystery is Solved" page_id="story6-PM-1">
+            <group obj1Id="man" action="getIn" obj2Id="car"/>
+            <group obj1Id="keys" action="grab" obj2Id="man"/>
+            <group obj1Id="woman" action="pickUp" obj2Id="baby"/>
+        </story>
+        <story title="The Mystery is Solved" page_id="story6-PM-2">
+            <group obj1Id="woman" action="pickUp" obj2Id="baby"/>
+        </story>
+    </setups>
+</metadata>
