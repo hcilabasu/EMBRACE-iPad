@@ -318,7 +318,7 @@ ConditionSetup *conditionSetup;
         
         //return to library view
         //load assessment activity screen
-        if([chapterTitle isEqualToString:@"Introduction to The Best Farm"])
+        if([chapterTitle isEqualToString:@"Introduction to The Best Farm"] || [chapterTitle isEqualToString:@"Introduction to The House"])
         {   [self.navigationController popViewControllerAnimated:YES];
             return;
         }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
-    <AssessmentActivities>
+    <ActivityAssessment>
         <Questions title= "The Lopez Family">
             <Question number="1">
                 <QuestionText>How many pets does the Lopez family have?</QuestionText>
@@ -546,5 +546,5 @@
                 <expectedSelection>1</expectedSelection>
             </Question>
         </Questions>
-    </AssessmentActivities>
+    </ActivityAssessment>
 </metadata>
