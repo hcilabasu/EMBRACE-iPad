@@ -36,7 +36,7 @@
             <navLabel>
                 <text>The Lopez Family - Intro</text>
             </navLabel>
-            <content src="Text/Story1-The-Lopez-Family-Intro-S.xhtml"/>
+            <content src="Text/Story1-The-Lopez-Family-Intro-E.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story1-PM-1">
 		  <navLabel>
@@ -72,7 +72,7 @@
             <navLabel>
                 <text>Missing Keys - Intro</text>
             </navLabel>
-            <content src="Text/Story2-Missing-Keys-Intro-S.xhtml"/>
+            <content src="Text/Story2-Missing-Keys-Intro-E.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story2-PM-1">
 		  <navLabel>
@@ -108,7 +108,7 @@
             <navLabel>
                 <text>Is Paco a Thief? - Intro</text>
             </navLabel>
-            <content src="Text/Story3-Is-Paco-a-Thief-Intro-S.xhtml"/>
+            <content src="Text/Story3-Is-Paco-a-Thief-Intro-E.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story3-PM-1">
 		  <navLabel>
@@ -144,7 +144,7 @@
             <navLabel>
                 <text>More is Missing! - Intro</text>
             </navLabel>
-            <content src="Text/Story4-More-is-Missing-Intro-S.xhtml"/>
+            <content src="Text/Story4-More-is-Missing-Intro-E.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story4-PM-1">
 		  <navLabel>
@@ -180,7 +180,7 @@
             <navLabel>
                 <text>The Family is Rattled - Intro</text>
             </navLabel>
-            <content src="Text/Story5-The-Family-is-Rattled-Intro-S.xhtml"/>
+            <content src="Text/Story5-The-Family-is-Rattled-Intro-E.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story5-PM-1">
 		  <navLabel>
@@ -216,7 +216,7 @@
             <navLabel>
                 <text>The Mystery is Solved - Intro</text>
             </navLabel>
-            <content src="Text/Story6-The-Mystery-is-Solved-Intro-S.xhtml"/>
+            <content src="Text/Story6-The-Mystery-is-Solved-Intro-E.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story6-PM-1">
 		  <navLabel>
@@ -255,7 +255,7 @@
   </pageTarget>
   <pageTarget id="p2" type="normal" value="2">
     	<navLabel><text>Chapter 1 - The Lopez Family - Introduction</text></navLabel>
-		<content src="Text/Story1-The-Lopez-Family-Intro-S.xhtml"/>
+		<content src="Text/Story1-The-Lopez-Family-Intro-E.xhtml"/>
 	</pageTarget>
 	<pageTarget id="p3" type="normal" value="3">
     	<navLabel><text>Chapter 1 - The Lopez Family - Physical Manipulation 1</text></navLabel>
@@ -267,7 +267,7 @@
 	</pageTarget>
 	<pageTarget id="p5" type="normal" value="5">
     	<navLabel><text>Chapter 2 - Missing Keys - Introduction</text></navLabel>
-		<content src="Text/Story2-Missing-Keys-Intro-S.xhtml"/>
+		<content src="Text/Story2-Missing-Keys-Intro-E.xhtml"/>
 	</pageTarget>
   <pageTarget id="p6" type="normal" value="6">
     	<navLabel><text>Chapter 2 - Missing Keys - Physical Manipulation 1</text></navLabel>
@@ -279,7 +279,7 @@
 	</pageTarget>
 	<pageTarget id="p8" type="normal" value="8">
     	<navLabel><text>Chapter 3 - Is Paco a Thief? - Introduction</text></navLabel>
-		<content src="Text/Story3-Is-Paco-a-Thief-Intro-S.xhtml"/>
+		<content src="Text/Story3-Is-Paco-a-Thief-Intro-E.xhtml"/>
 	</pageTarget>
   <pageTarget id="p9" type="normal" value="9">
     	<navLabel><text>Chapter 3 - Is Paco a Thief? - Physical Manipulation 1</text></navLabel>
@@ -291,7 +291,7 @@
 	</pageTarget>
 	<pageTarget id="p11" type="normal" value="11">
     	<navLabel><text>Chapter 4 - More is Missing! - Introduction</text></navLabel>
-		<content src="Text/Story4-More-is-Missing-Intro-S.xhtml"/>
+		<content src="Text/Story4-More-is-Missing-Intro-E.xhtml"/>
 	</pageTarget>
   <pageTarget id="p12" type="normal" value="12">
     	<navLabel><text>Chapter 4 - More is Missing! - Physical Manipulation 1</text></navLabel>
@@ -303,7 +303,7 @@
 	</pageTarget>
 	<pageTarget id="p14" type="normal" value="14">
     	<navLabel><text>Chapter 5 - The Family is Rattled - Introduction</text></navLabel>
-		<content src="Text/Story5-The-Family-is-Rattled-Intro-S.xhtml"/>
+		<content src="Text/Story5-The-Family-is-Rattled-Intro-E.xhtml"/>
 	</pageTarget>
   <pageTarget id="p15" type="normal" value="15">
     	<navLabel><text>Chapter 5 - The Family is Rattled - Physical Manipulation 1</text></navLabel>
@@ -315,7 +315,7 @@
 	</pageTarget>
 	<pageTarget id="p17" type="normal" value="17">
     	<navLabel><text>Chapter 6 - The Mystery is Solved - Introduction</text></navLabel>
-		<content src="Text/Story6-The-Mystery-is-Solved-Intro-S.xhtml"/>
+		<content src="Text/Story6-The-Mystery-is-Solved-Intro-E.xhtml"/>
 	</pageTarget>
   <pageTarget id="p18" type="normal" value="18">
     	<navLabel><text>Chapter 6 - The Mystery is Solved - Physical Manipulation 1</text></navLabel>
