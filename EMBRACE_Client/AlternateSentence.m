@@ -14,15 +14,17 @@
 @synthesize actionSentence;
 @synthesize complexity;
 @synthesize text;
+@synthesize ideas;
 @synthesize solutionSteps;
 
-- (id) initWithValues:(NSUInteger)sentNum :(BOOL)action :(NSUInteger)complex :(NSString*)txt :(NSMutableArray*)solSteps{
+- (id) initWithValues:(NSUInteger)sentNum :(BOOL)action :(NSUInteger)complex :(NSString*)txt :(NSMutableArray*)ideaNums :(NSMutableArray*)solSteps {
     if(self = [super init]) {
         sentenceNumber = sentNum;
         actionSentence = action;
         complexity = complex;
         text = txt;
         solutionSteps = solSteps;
+        ideas = ideaNums;
     }
     
     return self;

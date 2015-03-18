@@ -13,6 +13,7 @@
     BOOL actionSentence; //TRUE if sentence requires manipulation; FALSE otherwise
     NSUInteger complexity; //value from 1 (simplest) to 3 (most complex)
     NSString* text; //sentence text
+    NSMutableArray* ideas; //contains idea numbers associated with this sentence
     NSMutableArray* solutionSteps; //contains step numbers that are part of solution
 }
 
@@ -20,8 +21,9 @@
 @property (nonatomic, assign) BOOL actionSentence;
 @property (nonatomic, assign) NSUInteger complexity;
 @property (nonatomic, strong) NSString* text;
+@property (nonatomic, strong) NSMutableArray* ideas;
 @property (nonatomic, strong) NSMutableArray* solutionSteps;
 
-- (id) initWithValues:(NSUInteger)sentNum :(BOOL)action :(NSUInteger)complex :(NSString*)txt :(NSMutableArray*)solSteps;
+- (id) initWithValues:(NSUInteger)sentNum :(BOOL)action :(NSUInteger)complex :(NSString*)txt :(NSMutableArray*)ideaNums :(NSMutableArray*)solSteps;
 
 @end

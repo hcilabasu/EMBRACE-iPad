@@ -732,6 +732,12 @@ ConditionSetup *conditionSetup;
                 
                 NSArray* stepSolutions = [sentence elementsForName:@"step"];
                 
+                //Add idea without any steps (used for non-manipulation sentences)
+                if ([stepSolutions count] == 0) {
+                    ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :nil :nil :nil :nil :nil :nil :nil];
+                    [PMSolution addSolutionStep:solutionStep];
+                }
+                
                 for(GDataXMLElement* stepSolution in stepSolutions) {
                     //Get step number
                     NSUInteger stepNum = [[[stepSolution attributeForName:@"number"] stringValue] integerValue];
@@ -858,6 +864,19 @@ ConditionSetup *conditionSetup;
                     GDataXMLElement* alternateSentenceText = [storyAlternateSentenceText objectAtIndex:0];
                     NSString* text = alternateSentenceText.stringValue;
                     
+                    //Get sentence ideas
+                    GDataXMLElement* storyAlternateSentenceIdeas = [[storyAlternateSentence elementsForName:@"ideas"] objectAtIndex:0];
+                    NSArray* alternateSentenceIdeas = [storyAlternateSentenceIdeas elementsForName:@"idea"];
+                    
+                    //Create array to store idea numbers
+                    NSMutableArray* ideaNums = [[NSMutableArray alloc] init];
+                    
+                    for (GDataXMLElement* alternateSentenceIdea in alternateSentenceIdeas) {
+                        //Get idea number
+                        NSUInteger ideaNum = [[[alternateSentenceIdea attributeForName:@"number"] stringValue] intValue];
+                        [ideaNums addObject:[NSNumber numberWithInteger:ideaNum]];
+                    }
+                    
                     //Get sentence solution (if it exists)
                     NSArray* storyAlternateSentenceSolution = [storyAlternateSentence elementsForName:@"solution"];
                     
@@ -883,7 +902,7 @@ ConditionSetup *conditionSetup;
                     }
                     
                     //Create alternate sentence and add to PMActivity
-                    AlternateSentence* altSent = [[AlternateSentence alloc] initWithValues:sentenceNum :action :complexity :text :solutionSteps];
+                    AlternateSentence* altSent = [[AlternateSentence alloc] initWithValues:sentenceNum :action :complexity :text :ideaNums :solutionSteps];
                     [PMActivity addAlternateSentence:altSent forPageId:pageId];
                 }
             }

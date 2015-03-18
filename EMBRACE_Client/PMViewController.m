@@ -3677,19 +3677,52 @@ ConditionSetup *conditionSetup;
         NSString* addSentenceString;
         int sentenceNumber = 1; //used for assigning sentence ids
         
-        for (AlternateSentence* altSent in alternateSentences) {
-            //Find alternate sentences with the specified level of complexity
-            if ([altSent complexity] == complexity) {
+        NSMutableArray* ideaNums = [PMSolution getIdeaNumbers]; //get list of idea numbers
+        
+        //Add alternate sentences associated with each idea
+        for (NSNumber* ideaNum in ideaNums) {
+            BOOL foundIdea = false; //flag to check if there is a sentence with the specified complexity for the idea number
+            
+            //Create an array to hold sentences that will be added to the page
+            NSMutableArray* sentencesToAdd = [[NSMutableArray alloc] init];
+            
+            //Look for alternate sentences that match the idea number and complexity
+            for (AlternateSentence* altSent in alternateSentences) {
+                if ([[altSent ideas] containsObject:ideaNum] && [altSent complexity] == complexity) {
+                    foundIdea = true;
+                    
+                    //Only add the sentence if it hasn't already been added to the page
+                    if (![pageSentences containsObject:altSent]) {
+                        [sentencesToAdd addObject:altSent];
+                    }
+                }
+            }
+            
+            //If a sentence with the specified complexity was not found for the idea number, look for a
+            //sentence with complexity level 2
+            if (!foundIdea) {
+                for (AlternateSentence* altSent in alternateSentences) {
+                    if ([[altSent ideas] containsObject:ideaNum] && [altSent complexity] == 2) {
+                        //Only add the sentence if it hasn't already been added
+                        if (![pageSentences containsObject:altSent]) {
+                            foundIdea = true;
+                            [sentencesToAdd addObject:altSent];
+                        }
+                    }
+                }
+            }
+            
+            for (AlternateSentence* sentenceToAdd in sentencesToAdd) {
                 //Get alternate sentence information
-                BOOL action = [altSent actionSentence];
-                NSString* text = [altSent text];
+                BOOL action = [sentenceToAdd actionSentence];
+                NSString* text = [sentenceToAdd text];
                 
                 //Add alternate sentence to page
                 addSentenceString = [NSString stringWithFormat:@"addSentence('s%d', %@, \"%@\")", sentenceNumber++, action ? @"true" : @"false", text];
                 [bookView stringByEvaluatingJavaScriptFromString:addSentenceString];
                 
                 //Add alternate sentence to array
-                [pageSentences addObject:altSent];
+                [pageSentences addObject:sentenceToAdd];
             }
         }
     }
