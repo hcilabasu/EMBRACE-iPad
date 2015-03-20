@@ -373,7 +373,7 @@
                 <expectedSelection>1</expectedSelection>
             </Question>
         </Questions>
-        <Questions title= "The Family is Rattled">
+        <Questions title= "The Baby's Rattle is Gone, Too!">
             <Question number="1">
                 <QuestionText>Who looked in the living room for the rattle?</QuestionText>
                 <QuestionAudio>audioFile</QuestionAudio>
