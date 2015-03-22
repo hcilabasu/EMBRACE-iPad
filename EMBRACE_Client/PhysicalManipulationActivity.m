@@ -12,13 +12,13 @@
 
 @synthesize setupSteps;
 @synthesize alternateSentences;
-@synthesize PMSolution;
+@synthesize PMSolutions;
 
 - (id) init {
     if (self = [super init]) {
         setupSteps = [[NSMutableDictionary alloc] init];
         alternateSentences = [[NSMutableDictionary alloc] init];
-        PMSolution = [[PhysicalManipulationSolution alloc] init];
+        PMSolutions = [[NSMutableDictionary alloc] init];
     }
     
     return self;
@@ -58,6 +58,25 @@
     //If it does, we just add the alternate sentence to the array.
     else {
         [altSentsForKey addObject:altSent];
+    }
+}
+
+//Add PhysicalManipulationSolution to specific activity (page) with id
+- (void) addPMSolution:(PhysicalManipulationSolution*)PMSolution forActivityId:(NSString*)activityId {
+    //Check to see if the key (activity id) exists.
+    //If it doesn't, we add the key with a new NSMutableArray that will contain the PMSolution created.
+    NSMutableArray* PMSolutionsForKey = [PMSolutions objectForKey:activityId];
+    
+    if (PMSolutionsForKey == nil) {
+        PMSolutionsForKey = [[NSMutableArray alloc] init];
+        [PMSolutionsForKey addObject:PMSolution];
+        
+        if ([activityId length] != 0)
+            [PMSolutions setObject:PMSolutionsForKey forKey:activityId];
+    }
+    //If it does, we just add the PMSolution to the array.
+    else {
+        [PMSolutionsForKey addObject:PMSolution];
     }
 }
 

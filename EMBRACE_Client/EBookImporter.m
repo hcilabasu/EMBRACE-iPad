@@ -714,9 +714,12 @@ ConditionSetup *conditionSetup;
         NSString* title = [[solution attributeForName:@"title"] stringValue];
         Chapter* chapter = [book getChapterWithTitle:title];
         
+        //Get activity id
+        NSString* activityId = [[solution attributeForName:@"activity_id"] stringValue];
+        
         if (chapter != nil) {
             PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity only
-            PhysicalManipulationSolution* PMSolution = [PMActivity PMSolution]; //get PM solution
+            PhysicalManipulationSolution* PMSolution = [[PhysicalManipulationSolution alloc] init];
             
             //Solution metadata will change to include "idea" instead of "sentence" but
             //some epubs may still be using "sentence"
@@ -803,6 +806,9 @@ ConditionSetup *conditionSetup;
                     }
                 }
             }
+            
+            //Add PMSolution to page
+            [PMActivity addPMSolution:PMSolution forActivityId:activityId];
         }
     }
     
@@ -834,6 +840,7 @@ ConditionSetup *conditionSetup;
             
             if(chapter != nil) {
                 PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity only
+                PhysicalManipulationSolution* PMSolution = [[[PMActivity PMSolutions] objectForKey:pageId] objectAtIndex:0]; //get PMSolution
                 
                 NSArray* storyAlternateSentences = [storyAlternateSentenceElement elementsForName:@"sentence"];
                 
@@ -893,7 +900,7 @@ ConditionSetup *conditionSetup;
                             NSUInteger stepNum = [[[alternateSentenceStep attributeForName:@"number"] stringValue] intValue];
                             
                             //Get associated ActionStep
-                            NSMutableArray* step = [[PMActivity PMSolution] getStepsWithNumber:stepNum];
+                            NSMutableArray* step = [PMSolution getStepsWithNumber:stepNum];
                             
                             for (ActionStep* as in step) {
                                 [solutionSteps addObject:as];

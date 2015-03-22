@@ -14,14 +14,15 @@
 @interface PhysicalManipulationActivity : Activity {
     NSMutableDictionary *setupSteps;
     NSMutableDictionary *alternateSentences;
-    PhysicalManipulationSolution *PMSolution;
+    NSMutableDictionary *PMSolutions;
 }
 
 @property (nonatomic, strong) NSMutableDictionary *setupSteps;
 @property (nonatomic, strong) NSMutableDictionary *alternateSentences;
-@property (nonatomic, strong) PhysicalManipulationSolution *PMSolution;
+@property (nonatomic, strong) NSMutableDictionary *PMSolutions;
 
 - (void) addSetupStep:(ActionStep*)setupStep forPageId:(NSString*)pageId;
 - (void) addAlternateSentence:(AlternateSentence*)altSent forPageId:(NSString*)pageId;
+- (void) addPMSolution:(PhysicalManipulationSolution*)PMSolution forActivityId:(NSString*)activityId;
 
 @end
