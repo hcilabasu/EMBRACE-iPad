@@ -1024,7 +1024,7 @@ ConditionSetup *conditionSetup;
                 //Get the expected selection
                 NSArray* expectedSelections = [question elementsForName:@"expectedSelection"];
                 gdataElement = (GDataXMLElement *)[expectedSelections objectAtIndex:0];
-                NSInteger expectedSelection = [gdataElement.stringValue integerValue];
+                NSString* expectedSelection = gdataElement.stringValue;
                 
                 AssessmentActivity* storyquestion = [[AssessmentActivity alloc] initWithValues:QuestionNum:QuestionText:QuestionAudio:Answer1:Answer1Audio:Answer2:Answer2Audio:Answer3:Answer3Audio:Answer4:Answer4Audio:expectedSelection];
                 [StoryQuestions addObject:storyquestion];

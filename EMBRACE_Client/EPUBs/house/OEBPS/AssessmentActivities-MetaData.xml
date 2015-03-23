@@ -13,7 +13,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>half of a pet</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>two pets</expectedSelection>
             </Question>
             <Question number="2">
                 <QuestionText>What does Martin grab from the kitchen?</QuestionText>
@@ -26,7 +26,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>his magic wand</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>his keys</expectedSelection>
             </Question>
             <Question number="3">
                 <QuestionText>Who visits the baby</QuestionText>
@@ -39,7 +39,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>the boogie man</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>Lola</expectedSelection>
             </Question>
             <Question number="4">
                 <QuestionText>Where does Martin drive his car?</QuestionText>
@@ -52,7 +52,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>to outer space</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>to the front of the house</expectedSelection>
             </Question>
             <Question number="5">
                 <QuestionText>What will the family be doing soon?</QuestionText>
@@ -65,7 +65,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>swimming with sharks</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>solving a mystery</expectedSelection>
             </Question>
             <Question number="6">
                 <QuestionText>Why does Martin grab his keys?</QuestionText>
@@ -78,7 +78,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>to type on his computer</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>to drive his car</expectedSelection>
             </Question>
             <Question number="7">
                 <QuestionText>Why does Rosa work from home?</QuestionText>
@@ -91,7 +91,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>because her boss is stinky</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>to take care of the baby</expectedSelection>
             </Question>
         </Questions>
         <Questions title= "Missing Keys">
@@ -106,7 +106,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>to her castle</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>to the highchair in the kitchen</expectedSelection>
             </Question>
             <Question number="2">
                 <QuestionText>Where does the baby sometimes play?</QuestionText>
@@ -119,7 +119,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>in the nest</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>on the top floor</expectedSelection>
             </Question>
             <Question number="3">
                 <QuestionText>Who looked for the keys on the top floor?</QuestionText>
@@ -132,7 +132,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>the Mad Hatter</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>Lola</expectedSelection>
             </Question>
             <Question number="4">
                 <QuestionText>Why did Martin go to the living room?</QuestionText>
@@ -145,7 +145,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>to look for Santa in the chimney</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>to look for the keys</expectedSelection>
             </Question>
             <Question number="5">
                 <QuestionText>Why did Martin put the baby in the highchair?</QuestionText>
@@ -158,7 +158,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>so she could play with the computer</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>so she could eat breakfast</expectedSelection>
             </Question>
             <Question number="6">
                 <QuestionText>How did Paco try to help Martin?</QuestionText>
@@ -171,7 +171,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>Paco left Martin a nice surprise in the yard</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>Paco sniffed for the keys outside</expectedSelection>
             </Question>
         </Questions>
         <Questions title= "Is Paco a Thief?">
@@ -186,7 +186,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>his own breath</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>keys</expectedSelection>
             </Question>
             <Question number="2">
                 <QuestionText>Why did Martin go outside?</QuestionText>
@@ -199,7 +199,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>because Paco kicked him out</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>because he heard barking</expectedSelection>
             </Question>
             <Question number="3">
                 <QuestionText>Why did Martin think Paco was a bad dog?</QuestionText>
@@ -212,7 +212,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>for saying a bad word</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>for stealing the keys</expectedSelection>
             </Question>
             <Question number="4">
                 <QuestionText>How did Paco feel at the end of his chapter?</QuestionText>
@@ -225,7 +225,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>like catching a squirrel</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>sad</expectedSelection>
             </Question>
             <Question number="5">
                 <QuestionText>How did Martin punish Paco?</QuestionText>
@@ -238,7 +238,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>by giving him more homework</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>by making him stay outside all day</expectedSelection>
             </Question>
             <Question number="6">
                 <QuestionText>Where did Paco find the keys?</QuestionText>
@@ -251,7 +251,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>on the piano</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>in the tree</expectedSelection>
             </Question>
             <Question number="7">
                 <QuestionText>What did Paco do when he saw the keys?</QuestionText>
@@ -264,7 +264,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>took a picture and posted it on facebook</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>barked and barked</expectedSelection>
             </Question>
         </Questions>
         <Questions title= "More is Missing!">
@@ -279,7 +279,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>time to play ball</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>morning</expectedSelection>
             </Question>
             <Question number="2">
                 <QuestionText>What did Rosa think her family wanted in the morning?</QuestionText>
@@ -292,7 +292,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>to sleep longer</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>breakfast</expectedSelection>
             </Question>
             <Question number="3">
                 <QuestionText>What did Rosa want to use the spoon for?</QuestionText>
@@ -305,7 +305,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>show and tell</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>stirring</expectedSelection>
             </Question>
             <Question number="4">
                 <QuestionText>What was missing from the sink?</QuestionText>
@@ -318,7 +318,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>Mrs. Potts</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>spoon</expectedSelection>
             </Question>
             <Question number="5">
                 <QuestionText>Why did Rosa go into the living room?</QuestionText>
@@ -331,7 +331,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>to take a nap</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>to talk to Paco the dog</expectedSelection>
             </Question>
             <Question number="6">
                 <QuestionText>Who found the spoon?</QuestionText>
@@ -344,7 +344,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>the Pink Panther</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>Paco</expectedSelection>
             </Question>
             <Question number="7">
                 <QuestionText>What happened to the spoon when Paco barked?</QuestionText>
@@ -357,7 +357,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>it flew away</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>it dropped to the ground</expectedSelection>
             </Question>
             <Question number="8">
                 <QuestionText>Who did Rosa blame for stealing the spoon?</QuestionText>
@@ -370,7 +370,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>Captain Hook</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>Paco</expectedSelection>
             </Question>
         </Questions>
         <Questions title= "The Family is Rattled">
@@ -385,7 +385,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>Pinocchio</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>the baby</expectedSelection>
             </Question>
             <Question number="2">
                 <QuestionText>Why did Lola jump in the baby's lap?</QuestionText>
@@ -398,7 +398,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>to beg for a carrot</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>to comfort the baby</expectedSelection>
             </Question>
             <Question number="3">
                 <QuestionText>Why was the baby sad?</QuestionText>
@@ -411,7 +411,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>she lost her imaginary friend</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>she could't find her rattle</expectedSelection>
             </Question>
             <Question number="4">
                 <QuestionText>What did Paco hear?</QuestionText>
@@ -424,7 +424,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>his favorite song on the radio</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>the baby cry</expectedSelection>
             </Question>
             <Question number="5">
                 <QuestionText>What did Rosa hear outside?</QuestionText>
@@ -437,7 +437,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>Thomas the Train</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>Paco barking</expectedSelection>
             </Question>
             <Question number="6">
                 <QuestionText>How did the baby get outside?</QuestionText>
@@ -450,7 +450,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>with her magic carpet</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>Rosa carried her</expectedSelection>
             </Question>
         </Questions>
         <Questions title= "The Mystery is Solved">
@@ -465,7 +465,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>Sponge Bob</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>bird</expectedSelection>
             </Question>
             <Question number="2">
                 <QuestionText>Why was Paco a hero?</QuestionText>
@@ -478,7 +478,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>for having a superpower</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>for helping the family solve the mystery</expectedSelection>
             </Question>
             <Question number="3">
                 <QuestionText>What was the mysterty?</QuestionText>
@@ -491,7 +491,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>finding out who drank all of the chocolate milk</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>finding out who stole the shiny things</expectedSelection>
             </Question>
             <Question number="4">
                 <QuestionText>How was Paco rewarded</QuestionText>
@@ -504,7 +504,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>with catnip</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>with a big steak dinner</expectedSelection>
             </Question>
             <Question number="5">
                 <QuestionText>Who put the keys on the hook?</QuestionText>
@@ -517,7 +517,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>the unicorn</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>Martin</expectedSelection>
             </Question>
             <Question number="6">
                 <QuestionText>Why did the bird fly into the kitchen?</QuestionText>
@@ -530,7 +530,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>to say hello to Lola the bunny</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>to get the keys</expectedSelection>
             </Question>
             <Question number="7">
                 <QuestionText>What did the bird like about the things it took?</QuestionText>
@@ -543,7 +543,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>they tasted like worms</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>they were shiny</expectedSelection>
             </Question>
         </Questions>
     </ActivityAssessment>

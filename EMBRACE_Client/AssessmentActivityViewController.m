@@ -26,7 +26,7 @@ NSString *AnswerOption4SpanishAudio;
 NSString *Question;
 NSString *QuestionAudio;
 NSInteger questionNum;
-NSInteger correctSelection;
+NSString* correctSelection;
 NSMutableDictionary *assessmentActivities;
 NSMutableArray *currentAssessmentActivitySteps;
 NSInteger totalAssessmentActivitySteps;
@@ -81,6 +81,7 @@ NSString *CurrentStep;
         QuestionAudio = [currAssessmentActivityStep QuestionAudio];
         questionNum = [currAssessmentActivityStep QuestionNumber];
         AnswerOptions =[[NSMutableArray alloc] init];
+        
         [AnswerOptions addObject:[currAssessmentActivityStep Answer1]];
         AnswerOption1EnglishAudio = [currAssessmentActivityStep Answer1Audio];
         [AnswerOptions addObject:[currAssessmentActivityStep Answer2]];
@@ -90,6 +91,8 @@ NSString *CurrentStep;
         [AnswerOptions addObject:[currAssessmentActivityStep Answer4]];
         AnswerOption4EnglishAudio = [currAssessmentActivityStep Answer4Audio];
         
+        [self shuffleAnswers];
+        
         playAudioFileClass = [[PlayAudioFile alloc]init];
         
         //log loading assessment activity
@@ -97,6 +100,15 @@ NSString *CurrentStep;
         
     }
     return self;
+}
+
+-(void)shuffleAnswers{
+    NSUInteger count = [AnswerOptions count];
+    for (NSUInteger i=0; i<count; ++i) {
+        NSInteger remainingCount = count-i;
+        NSInteger exchangeIndex = i+ arc4random_uniform((u_int32_t)remainingCount);
+        [AnswerOptions exchangeObjectAtIndex:i withObjectAtIndex:exchangeIndex];
+    }
 }
 
 - (void)viewDidLoad
@@ -213,6 +225,8 @@ NSString *CurrentStep;
         [AnswerOptions addObject:[currAssessmentActivityStep Answer3]];
         [AnswerOptions addObject:[currAssessmentActivityStep Answer4]];
         
+        [self shuffleAnswers];
+        
         //reset tableview cells, reload tableview
         NSArray *cells = [AnswerList indexPathsForVisibleRows];
         
@@ -281,7 +295,7 @@ NSString *CurrentStep;
         [[ServerCommunicationController sharedManager] logUserAssessmentPressedAnswerOption:Question :([indexPath row]+1) :AnswerOptions :@"Answer Option" :@"Verification" :BookTitle :ChapterTitle :[NSString stringWithFormat:@"%d",currentAssessmentActivityStep]];
         
             //checks if option is correct else gray out
-            if(([indexPath row]+1) == correctSelection)
+            if([cell.textLabel.text isEqualToString: correctSelection])
             {
                 //log correct answer selected
                 [[ServerCommunicationController sharedManager] logComputerAssessmentAnswerVerification:true : Question :([indexPath row]+1) :AnswerOptions :@"Answer Option" :@"Verification" :BookTitle :ChapterTitle :[NSString stringWithFormat:@"%d", currentAssessmentActivityStep]];
@@ -293,7 +307,13 @@ NSString *CurrentStep;
                 for(int i=0;i<[AnswerOptions count];i++)
                 {
                     
-                    if (i!=(correctSelection-1)) {
+                    if ([AnswerOptions[i] isEqualToString:correctSelection]) {
+                        UIColor *LightBlueColor = [UIColor colorWithRed: 135.0/255.0 green: 180.0/255.0 blue:225.0/255.0 alpha: 1.0];
+                        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+                        cell.backgroundColor= LightBlueColor;
+                        nextButton.hidden = false;
+                    }
+                    else{
                         //gray out option
                         
                         //UITableViewCell *tempCell = [tableView cellForRowAtIndexPath:cells[i]];
@@ -301,14 +321,6 @@ NSString *CurrentStep;
                         //tempCell.contentView.alpha=.2;
                         //tempCell.backgroundColor = [UIColor grayColor];
                         //tempCell.alpha =.2;
-                        
-                    }
-                    else{
-                        UIColor *LightBlueColor = [UIColor colorWithRed: 135.0/255.0 green: 180.0/255.0 blue:225.0/255.0 alpha: 1.0];
-                        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-                        cell.backgroundColor= LightBlueColor;
-                        nextButton.hidden = false;
-                        
                     }
                 }
                 

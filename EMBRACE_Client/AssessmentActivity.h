@@ -24,7 +24,7 @@
 @property (nonatomic,assign)  NSString *Answer3Audio;
 @property (nonatomic, assign) NSString *Answer4;
 @property (nonatomic,assign)  NSString *Answer4Audio;
-@property (nonatomic, assign) NSInteger expectedSelection;
+@property (nonatomic, assign) NSString *expectedSelection;
 
-- (id) initWithValues:(NSInteger)QuestionNum :(NSString*)questiontext : (NSString*)questionAudio :(NSString*)answer1 : (NSString*)answer1Audio : (NSString*)answer2 : (NSString*)answer2Audio :(NSString*)answer3 : (NSString*)answer3Audio : (NSString *)answer4 : (NSString*)answer4Audio : (NSInteger)selection;
+- (id) initWithValues:(NSInteger)QuestionNum :(NSString*)questiontext : (NSString*)questionAudio :(NSString*)answer1 : (NSString*)answer1Audio : (NSString*)answer2 : (NSString*)answer2Audio :(NSString*)answer3 : (NSString*)answer3Audio : (NSString *)answer4 : (NSString*)answer4Audio : (NSString*)selection;
 @end

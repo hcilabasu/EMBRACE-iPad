@@ -107,7 +107,7 @@
                 <englishWordAudio>Highchair_def_E.mp3</englishWordAudio>
                 <spanishWordAudio>Highchair_def_S.mp3</spanishWordAudio>
                 <englishWordText>Highchair</englishWordText>
-                <spanishWordText>Silla alta?</spanishWordText>
+                <spanishWordText>Silla alta</spanishWordText>
                 <expectedSelection>word</expectedSelection>
                 <expectedAction>tap</expectedAction>
                 <expectedInput>highchair</expectedInput>
@@ -116,7 +116,7 @@
                 <englishWordAudio>Highchair_def_E.mp3</englishWordAudio>
                 <spanishWordAudio>Highchair_def_S.mp3</spanishWordAudio>
                 <englishWordText>Highchair</englishWordText>
-                <spanishWordText>Silla alta?</spanishWordText>
+                <spanishWordText>Silla alta</spanishWordText>
                 <expectedSelection>word</expectedSelection>
                 <expectedAction>tap</expectedAction>
                 <expectedInput>highchair</expectedInput>

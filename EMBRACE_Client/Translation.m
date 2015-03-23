@@ -68,7 +68,22 @@
                  @"tubes": @"tubos",
                  @"valve": @"válvula",
                  @"veins": @"venas",
-                 @"ventricle": @"ventrículo"
+                 @"ventricle": @"ventrículo",
+                 @"hook": @"gancho",
+                 @"lawyer": @"abogado",
+                 @"pets": @"mascotas",
+                 @"mystery": @"misterio",
+                 @"solve": @"resolver",
+                 @"highchair": @"silla alta",
+                 @"sniffed": @"olfatear",
+                 @"thief": @"ladron",
+                 @"stealing": @"robar",
+                 @"rattle": @"sonaja",
+                 @"silver": @"plateado",
+                 @"comfort": @"calmar",
+                 @"rattled": @"angustiado",
+                 @"shiny": @"brillante"
+                 
         };
     });
     return inst;

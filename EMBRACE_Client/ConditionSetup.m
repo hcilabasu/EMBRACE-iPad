@@ -14,7 +14,7 @@
 
 - (id) init {
     condition = CONTROL;
-    language = ENGLISH;
+    language = BILINGUAL;
     return self;
 }
 
