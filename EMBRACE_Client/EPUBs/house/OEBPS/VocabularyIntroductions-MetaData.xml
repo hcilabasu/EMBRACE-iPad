@@ -167,7 +167,7 @@
                 <expectedInput>next</expectedInput>
             </vocabularyIntroductionWord>
         </vocabularyIntroduction>
-        <vocabularyIntroduction story="Is Paco a Thief">
+        <vocabularyIntroduction story="Is Paco a Thief?">
             <vocabularyIntroductionWord number="1">
                 <englishWordAudio>Sniffed_def_E.mp3</englishWordAudio>
                 <spanishWordAudio>Sniffed_def_S.mp3</spanishWordAudio>

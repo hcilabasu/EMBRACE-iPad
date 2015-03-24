@@ -136,7 +136,7 @@
 		1AC489801AC083DF00784D77 /* Stealing_def_S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AC489721AC083DF00784D77 /* Stealing_def_S.mp3 */; };
 		1AC489811AC083DF00784D77 /* thief_def_S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AC489731AC083DF00784D77 /* thief_def_S.mp3 */; };
 		1ACF870A1AAFC9E500F81567 /* tocE.ncx in Resources */ = {isa = PBXBuildFile; fileRef = 1ACF87091AAFC9E500F81567 /* tocE.ncx */; };
-		1ACF870C1AB26E5800F81567 /* Story1-The-Lopex-Family-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1ACF870B1AB26E5800F81567 /* Story1-The-Lopex-Family-Intro-S.xhtml */; };
+		1ACF870C1AB26E5800F81567 /* Story1-The-Lopez-Family-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1ACF870B1AB26E5800F81567 /* Story1-The-Lopez-Family-Intro-S.xhtml */; };
 		1ACF870E1AB26F0400F81567 /* Story2-Missing-Keys-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1ACF870D1AB26F0400F81567 /* Story2-Missing-Keys-Intro-S.xhtml */; };
 		1ACF87101AB26F6D00F81567 /* Story3-Is-Paco-a-Thief-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1ACF870F1AB26F6D00F81567 /* Story3-Is-Paco-a-Thief-Intro-S.xhtml */; };
 		1ACF87121AB26FB500F81567 /* Story4-More-is-Missing-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1ACF87111AB26FB500F81567 /* Story4-More-is-Missing-Intro-S.xhtml */; };
@@ -899,7 +899,7 @@
 		1AC489721AC083DF00784D77 /* Stealing_def_S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Stealing_def_S.mp3; sourceTree = "<group>"; };
 		1AC489731AC083DF00784D77 /* thief_def_S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = thief_def_S.mp3; sourceTree = "<group>"; };
 		1ACF87091AAFC9E500F81567 /* tocE.ncx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tocE.ncx; sourceTree = "<group>"; };
-		1ACF870B1AB26E5800F81567 /* Story1-The-Lopex-Family-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-The-Lopex-Family-Intro-S.xhtml"; sourceTree = "<group>"; };
+		1ACF870B1AB26E5800F81567 /* Story1-The-Lopez-Family-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-The-Lopez-Family-Intro-S.xhtml"; sourceTree = "<group>"; };
 		1ACF870D1AB26F0400F81567 /* Story2-Missing-Keys-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story2-Missing-Keys-Intro-S.xhtml"; sourceTree = "<group>"; };
 		1ACF870F1AB26F6D00F81567 /* Story3-Is-Paco-a-Thief-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story3-Is-Paco-a-Thief-Intro-S.xhtml"; sourceTree = "<group>"; };
 		1ACF87111AB26FB500F81567 /* Story4-More-is-Missing-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-More-is-Missing-Intro-S.xhtml"; sourceTree = "<group>"; };
@@ -1749,7 +1749,7 @@
 				1A2D70611AAA74FA009E7B5B /* Story1-The-Lopez-Family-IM-1.xhtml */,
 				1A2D70621AAA74FA009E7B5B /* Story1-The-Lopez-Family-IM-2.xhtml */,
 				1A2D70631AAA74FA009E7B5B /* Story1-The-Lopez-Family-Intro-E.xhtml */,
-				1ACF870B1AB26E5800F81567 /* Story1-The-Lopex-Family-Intro-S.xhtml */,
+				1ACF870B1AB26E5800F81567 /* Story1-The-Lopez-Family-Intro-S.xhtml */,
 				1A2D70641AAA74FA009E7B5B /* Story1-The-Lopez-Family-PM-1.xhtml */,
 				1A2D70651AAA74FA009E7B5B /* Story1-The-Lopez-Family-PM-2.xhtml */,
 				1A2D70661AAA74FA009E7B5B /* Story1-The-Lopez-Family-Title.xhtml */,
@@ -3411,7 +3411,7 @@
 				5C776BC419C93E1E000DBC65 /* dustS.m4a in Resources */,
 				1A2D70BE1AAA74FA009E7B5B /* Story2-Missing-Keys-PM-1.xhtml in Resources */,
 				5C7FE13D19A7E43C00CBBE0E /* BFES_8.m4a in Resources */,
-				1ACF870C1AB26E5800F81567 /* Story1-The-Lopex-Family-Intro-S.xhtml in Resources */,
+				1ACF870C1AB26E5800F81567 /* Story1-The-Lopez-Family-Intro-S.xhtml in Resources */,
 				5CF994B619AC34550080C32F /* Story5-The-Wise-Owl-Title.xhtml in Resources */,
 				5C7FE06519A6B1B500CBBE0E /* tocE.ncx in Resources */,
 				1A2D70CB1AAA74FA009E7B5B /* Story4-More-is-Missing-PM-2.xhtml in Resources */,
