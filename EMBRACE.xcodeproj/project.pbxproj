@@ -617,6 +617,7 @@
 		5CAD065219BEB8AE00F3F053 /* breatheE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CAD063519BEB8AE00F3F053 /* breatheE.m4a */; };
 		5CAD065419BECFFF00F3F053 /* cigaretteE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CAD065319BECFFF00F3F053 /* cigaretteE.m4a */; };
 		5CC5FADB18FDFA3700D118B8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CC5FADA18FDFA3700D118B8 /* AVFoundation.framework */; };
+		5CC6D2451AC7C9EE00755F75 /* Animator.js in Sources */ = {isa = PBXBuildFile; fileRef = 5CC6D2441AC7C9EE00755F75 /* Animator.js */; };
 		5CC7621D1A1C6D6B00A600CA /* BFCS_10B.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CC7621C1A1C6D6B00A600CA /* BFCS_10B.m4a */; };
 		5CC7621F1A1C6E8000A600CA /* BFES_10B.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CC7621E1A1C6E8000A600CA /* BFES_10B.m4a */; };
 		5CC762211A1DB09400A600CA /* jumpedE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CC762201A1DB09400A600CA /* jumpedE.m4a */; };
@@ -994,7 +995,7 @@
 		31937539174185E000782C2B /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		3193753B1741A76E00782C2B /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
 		3193753C1741A76E00782C2B /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
-		31953E451729ECC100570087 /* Embrace B.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Embrace B.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		31953E451729ECC100570087 /* Animations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Animations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31953E481729ECC100570087 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		31953E4A1729ECC100570087 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		31953E4C1729ECC100570087 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -1437,6 +1438,7 @@
 		5CAD063519BEB8AE00F3F053 /* breatheE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = breatheE.m4a; path = EMBRACE_Client/sounds/breatheE.m4a; sourceTree = SOURCE_ROOT; };
 		5CAD065319BECFFF00F3F053 /* cigaretteE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = cigaretteE.m4a; path = EMBRACE_Client/sounds/cigaretteE.m4a; sourceTree = SOURCE_ROOT; };
 		5CC5FADA18FDFA3700D118B8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		5CC6D2441AC7C9EE00755F75 /* Animator.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Animator.js; sourceTree = "<group>"; };
 		5CC7621C1A1C6D6B00A600CA /* BFCS_10B.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCS_10B.m4a; path = EMBRACE_Client/sounds/BFCS_10B.m4a; sourceTree = SOURCE_ROOT; };
 		5CC7621E1A1C6E8000A600CA /* BFES_10B.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFES_10B.m4a; path = EMBRACE_Client/sounds/BFES_10B.m4a; sourceTree = SOURCE_ROOT; };
 		5CC762201A1DB09400A600CA /* jumpedE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = jumpedE.m4a; path = EMBRACE_Client/sounds/jumpedE.m4a; sourceTree = SOURCE_ROOT; };
@@ -1860,6 +1862,7 @@
 		317FF1731742C02D00F1F160 /* JavaScript Event Handling */ = {
 			isa = PBXGroup;
 			children = (
+				5CC6D2441AC7C9EE00755F75 /* Animator.js */,
 				317FF1741742C8DE00F1F160 /* ImageManipulation.js */,
 			);
 			name = "JavaScript Event Handling";
@@ -1877,7 +1880,7 @@
 		31953E461729ECC100570087 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				31953E451729ECC100570087 /* Embrace B.app */,
+				31953E451729ECC100570087 /* Animations.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2835,7 +2838,7 @@
 			);
 			name = EMBRACE;
 			productName = EMBRACE_Client;
-			productReference = 31953E451729ECC100570087 /* Embrace B.app */;
+			productReference = 31953E451729ECC100570087 /* Animations.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -3607,6 +3610,7 @@
 				311646AE175FCFE100B483F0 /* Chapter.m in Sources */,
 				C3B52156192A97D7003FF639 /* InteractionModel.m in Sources */,
 				31C306C2183D900B0043DEDD /* Solution.m in Sources */,
+				5CC6D2451AC7C9EE00755F75 /* Animator.js in Sources */,
 				311646B1175FD03F00B483F0 /* Activity.m in Sources */,
 				3183DA151761614500815211 /* BookHeaderView.m in Sources */,
 				5CCEA48119AFD13C00FCBC2C /* ComboConstraint.m in Sources */,
@@ -3759,7 +3763,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				OTHER_LDFLAGS = "-lxml2";
-				PRODUCT_NAME = "Embrace B";
+				PRODUCT_NAME = Animations;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -3784,7 +3788,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				OTHER_LDFLAGS = "-lxml2";
-				PRODUCT_NAME = "Embrace B";
+				PRODUCT_NAME = Animations;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};

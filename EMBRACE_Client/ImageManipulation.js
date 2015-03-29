@@ -756,3 +756,18 @@ function setInnerHTMLText (sentenceID, text) {
 function setOuterHTMLText (sentenceID, text) {
     document.getElementById(sentenceID).outerHTML = text;
 }
+
+function getImagePosition (object) {
+    var position = new Array();
+    position[0] = object.offsetLeft;
+    position[1] = object.offsetTop;
+    
+    if(position.length > 0) {
+        var overlapString = "";
+        overlapString = overlapString + position[0].toString() + ", " ;
+        overlapString = overlapString + position[1].toString();
+        return overlapString;
+    }
+    else
+        return null;
+}

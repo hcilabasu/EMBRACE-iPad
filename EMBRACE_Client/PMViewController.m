@@ -190,6 +190,18 @@ ConditionSetup *conditionSetup;
         [bookView stringByEvaluatingJavaScriptFromString:jsString];
     }
     
+    // Load the animator js file
+    NSString* animatorFilePath = [[NSBundle mainBundle] pathForResource:@"Animator" ofType:@"js"];
+    
+    if(animatorFilePath == nil) {
+        NSLog(@"Cannot find js file: Animator");
+    }
+    else {
+        NSData *animatorFileData = [NSData dataWithContentsOfFile:animatorFilePath];
+        NSString *animatorJsString = [[NSMutableString alloc] initWithData:animatorFileData encoding:NSUTF8StringEncoding];
+        [bookView stringByEvaluatingJavaScriptFromString:animatorJsString];
+    }
+    
     //Start off with no objects grouped together
     currentGroupings = [[NSMutableDictionary alloc] init];
 
@@ -595,10 +607,70 @@ ConditionSetup *conditionSetup;
             
             [self incrementCurrentStep];
         }
+        else if([[currSolStep stepType] isEqualToString:@"animate"]) {
+            [self animateObject];
+            [self incrementCurrentStep];
+        }
     }
     
     if([IntroductionClass.introductions objectForKey:chapterTitle] && [[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
         IntroductionClass.allowInteractions = FALSE;
+    }
+}
+
+/*
+ * Returns a CGPoint containing the x and y coordinates of the position of an object
+ */
+-(CGPoint) getObjectPosition:(NSString*)object {
+    NSArray* position;
+    
+    NSString* positionObject = [NSString stringWithFormat:@"getImagePosition(%@)", object];
+    NSString* positionString = [bookView stringByEvaluatingJavaScriptFromString:positionObject];
+    
+    if(![positionString isEqualToString:@""]) {
+        position = [positionString componentsSeparatedByString:@", "];
+    }
+    
+    return CGPointMake([position[0] floatValue], [position[1] floatValue]);
+}
+
+-(void) animateObject {
+    //Check solution only if it exists for the sentence
+    if (numSteps > 0) {
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        if ([[currSolStep stepType] isEqualToString:@"animate"]) {
+            //Get information for animation step type
+            NSString* object1Id = [currSolStep object1Id];
+            NSString* action = [currSolStep action];
+            NSString* waypointId = [currSolStep waypointId];
+            
+            CGPoint imageLocation = [self getObjectPosition:object1Id];
+            
+            //Calculate offset between top-left corner of image and the point clicked.
+            delta = [self calculateDeltaForMovingObjectAtPoint:imageLocation];
+            
+            //Change the location to accounting for the difference between the point clicked and the top-left corner which is used to set the position of the image.
+            CGPoint adjLocation = CGPointMake(imageLocation.x - delta.x, imageLocation.y - delta.y);
+            
+            CGPoint waypointLocation;
+            if ([waypointId isEqualToString:@""]) {
+                waypointLocation.x = 0;
+                waypointLocation.y = 0;
+            }
+            else {
+                Waypoint* waypoint = [model getWaypointWithId:waypointId];
+                waypointLocation = [self getWaypointLocation:waypoint];
+            }
+            
+            //Call the animateObject function in the js file.
+            NSString *animate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@')", object1Id, adjLocation.x, adjLocation.y, waypointLocation.x, waypointLocation.y, action];
+            [bookView stringByEvaluatingJavaScriptFromString:animate];
+        }
     }
 }
 

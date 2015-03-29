@@ -92,6 +92,7 @@
             </step>
             <step number="2">
                 <group obj1Id="cat" action="finish" obj2Id="bucket"/>
+                <animate obj1Id="cat" action="bobAnimation" waypointId="catDrink"/>
             </step>
         </sentence>
     </story>
@@ -212,17 +213,17 @@
             <step number="2">
                 <check obj1Id="farmer" action="getIn" locationId="hayloft"/>
                 <move obj1Id="farmer" action="getIn" waypointId="farmerInHayloft"/>
+                <ungroup obj1Id="farmer" action="putDown" obj2Id="hay"/>
             </step>
         </sentence>
         <sentence number="10">
             <step number="1">
                 <check obj1Id="farmer" action="getIn" locationId="farmerFall"/>
-                <ungroup obj1Id="farmer" action="putDown" obj2Id="hay"/>
             </step>
             <step number="2">
                 <swapImage obj1Id="farmer" action="falling"/>
                 <move obj1Id="farmer" action="getIn" waypointId="farmerFallPosition"/>
-                <move obj1Id="hay" action="getIn" waypointId="hayFallPosition"/>
+                <animate obj1Id="hay" action="fallAnimation" waypointId="hayFallPosition"/>
             </step>
         </sentence>
     </story>
@@ -353,6 +354,7 @@
             </step>
             <step number="2">
                 <swapImage obj1Id="egg" action="lay"/>
+                <animate obj1Id="chicken" action="bobAnimation" waypointId="chickenInNest"/>
             </step>
         </sentence>
     </story>
@@ -414,6 +416,13 @@
             <step number="3">
                 <transferAndGroup obj1Id="judge" action="give" obj2Id="award"/>
                 <transferAndGroup obj1Id="farmer" action="receive" obj2Id="award"/>
+                <animate obj1Id="chicken" action="cheerAnimation" waypointId=""/>
+                <animate obj1Id="owl" action="cheerAnimation" waypointId=""/>
+                <animate obj1Id="sheep" action="cheerAnimation" waypointId=""/>
+                <animate obj1Id="pig" action="cheerAnimation" waypointId=""/>
+                <animate obj1Id="goat" action="cheerAnimation" waypointId=""/>
+                <animate obj1Id="cow" action="cheerAnimation" waypointId=""/>
+                <animate obj1Id="horse" action="cheerAnimation" waypointId=""/>
             </step>
         </sentence>
     </story>

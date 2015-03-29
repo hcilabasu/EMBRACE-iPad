@@ -788,6 +788,15 @@ ConditionSetup *conditionSetup;
                             ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :action];
                             [PMSolution addSolutionStep:solutionStep];
                         }
+                        
+                        else if([[step name] isEqualToString:@"animate"]) {
+                            if([step attributeForName:@"waypointId"]) {
+                                NSString* waypointId = [[step attributeForName:@"waypointId"] stringValue];
+                                
+                                ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :waypointId :action];
+                                [PMSolution addSolutionStep:solutionStep];
+                            }
+                        }
                     }
                 }
             }
