@@ -198,7 +198,7 @@ ConditionSetup *conditionSetup;
     
     //Show menu for non-intro pages of The Best Farm story only
     if ([currentPageId rangeOfString:@"Intro"].location == NSNotFound && ![chapterTitle isEqualToString:@"Introduction to The Best Farm"] && [bookTitle rangeOfString:@"The Circulatory System"].location == NSNotFound) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Choose sentence complexity" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"Simple", @"Current", @"Complex", nil];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Choose sentence complexity levels" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"60% Simple   20% Medium   20% Complex", @"20% Simple   60% Medium   20% Complex", @"20% Simple   20% Medium   60% Complex", nil];
         [alert show];
     }
     else {
@@ -324,15 +324,15 @@ ConditionSetup *conditionSetup;
     
     if (buttonIndex == 0) {
         //Swap sentences for specified complexity level
-        [self swapSentencesOnPage:1];
+        [self swapSentencesOnPage:60 :20 :20];
     }
     else if (buttonIndex == 1) {
         //Swap sentences for specified complexity level
-        [self swapSentencesOnPage:2];
+        [self swapSentencesOnPage:20 :60 :20];
     }
     else if (buttonIndex == 2) {
         //Swap sentences for specified complexity level
-        [self swapSentencesOnPage:3];
+        [self swapSentencesOnPage:20 :20 :60];
     }
     
     //Get the number of sentences on the page
@@ -3643,7 +3643,7 @@ ConditionSetup *conditionSetup;
 /*
  * Swaps all sentences on the current page for the versions with the specified level of complexity
  */
--(void) swapSentencesOnPage:(NSUInteger)complexity {
+-(void) swapSentencesOnPage:(double)simple :(double)medium :(double)complex {
     Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
     PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
     NSMutableArray* alternateSentences = [[PMActivity alternateSentences] objectForKey:currentPageId]; //get alternate sentences for current page
@@ -3676,53 +3676,67 @@ ConditionSetup *conditionSetup;
         
         NSString* addSentenceString;
         int sentenceNumber = 1; //used for assigning sentence ids
+        int previousIdeaNum = 0; //used for making sure same idea does not get repeated
         
-        NSMutableArray* ideaNums = [PMSolution getIdeaNumbers]; //get list of idea numbers
+        NSMutableArray* ideaNums = [PMSolution getIdeaNumbers]; //get list of idea numbers on the page
+        
+        double sumOfComplexities[3]; //running sum of complexity parameters used to randomly choose complexity
+        sumOfComplexities[0] = simple;
+        sumOfComplexities[1] = sumOfComplexities[0] + medium;
+        sumOfComplexities[2] = sumOfComplexities[1] + complex;
         
         //Add alternate sentences associated with each idea
         for (NSNumber* ideaNum in ideaNums) {
-            BOOL foundIdea = false; //flag to check if there is a sentence with the specified complexity for the idea number
-            
-            //Create an array to hold sentences that will be added to the page
-            NSMutableArray* sentencesToAdd = [[NSMutableArray alloc] init];
-            
-            //Look for alternate sentences that match the idea number and complexity
-            for (AlternateSentence* altSent in alternateSentences) {
-                if ([[altSent ideas] containsObject:ideaNum] && [altSent complexity] == complexity) {
-                    foundIdea = true;
-                    
-                    //Only add the sentence if it hasn't already been added to the page
-                    if (![pageSentences containsObject:altSent]) {
-                        [sentencesToAdd addObject:altSent];
+            if ([ideaNum intValue] > previousIdeaNum) {
+                NSUInteger complexity = 0;
+                double generateComplexity = ((double) arc4random() / 0x100000000) * 100; //randomly choose complexity
+                
+                for (int i = 0; i < 3; i++) {
+                    if (generateComplexity <= sumOfComplexities[i]) {
+                        complexity = i + 1;
+                        break;
                     }
                 }
-            }
-            
-            //If a sentence with the specified complexity was not found for the idea number, look for a
-            //sentence with complexity level 2
-            if (!foundIdea) {
+                NSLog(@"generateComplexity: %f  complexity: %d", generateComplexity, complexity);
+                
+                BOOL foundIdea = false; //flag to check if there is a sentence with the specified complexity for the idea number
+                
+                //Create an array to hold sentences that will be added to the page
+                NSMutableArray* sentencesToAdd = [[NSMutableArray alloc] init];
+                
+                //Look for alternate sentences that match the idea number and complexity
                 for (AlternateSentence* altSent in alternateSentences) {
-                    if ([[altSent ideas] containsObject:ideaNum] && [altSent complexity] == 2) {
-                        //Only add the sentence if it hasn't already been added
-                        if (![pageSentences containsObject:altSent]) {
+                    if ([[[altSent ideas] objectAtIndex:0] isEqualToNumber:ideaNum] && [altSent complexity] == complexity) {
+                        foundIdea = true;
+                        [sentencesToAdd addObject:altSent];
+                        previousIdeaNum = [[[altSent ideas] lastObject] intValue];
+                    }
+                }
+                
+                //If a sentence with the specified complexity was not found for the idea number, look for a
+                //sentence with complexity level 2
+                if (!foundIdea) {
+                    for (AlternateSentence* altSent in alternateSentences) {
+                        if ([[[altSent ideas] objectAtIndex:0] isEqualToNumber:ideaNum] && [altSent complexity] == 2) {
                             foundIdea = true;
                             [sentencesToAdd addObject:altSent];
+                            previousIdeaNum = [[[altSent ideas] lastObject] intValue];
                         }
                     }
                 }
-            }
-            
-            for (AlternateSentence* sentenceToAdd in sentencesToAdd) {
-                //Get alternate sentence information
-                BOOL action = [sentenceToAdd actionSentence];
-                NSString* text = [sentenceToAdd text];
                 
-                //Add alternate sentence to page
-                addSentenceString = [NSString stringWithFormat:@"addSentence('s%d', %@, \"%@\")", sentenceNumber++, action ? @"true" : @"false", text];
-                [bookView stringByEvaluatingJavaScriptFromString:addSentenceString];
-                
-                //Add alternate sentence to array
-                [pageSentences addObject:sentenceToAdd];
+                for (AlternateSentence* sentenceToAdd in sentencesToAdd) {
+                    //Get alternate sentence information
+                    BOOL action = [sentenceToAdd actionSentence];
+                    NSString* text = [sentenceToAdd text];
+                    
+                    //Add alternate sentence to page
+                    addSentenceString = [NSString stringWithFormat:@"addSentence('s%d', %@, \"%@\")", sentenceNumber++, action ? @"true" : @"false", text];
+                    [bookView stringByEvaluatingJavaScriptFromString:addSentenceString];
+                    
+                    //Add alternate sentence to array
+                    [pageSentences addObject:sentenceToAdd];
+                }
             }
         }
     }
