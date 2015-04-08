@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13B42" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="KdN-Nn-VnM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="KdN-Nn-VnM">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -107,11 +107,12 @@
                         <outlet property="libraryView" destination="aSi-Zv-eMG" id="RDA-WP-kCm"/>
                         <segue destination="NLI-lb-tHz" kind="push" identifier="OpenPMActivitySegue" id="Z12-Kb-24m"/>
                         <segue destination="3Sz-rj-6wY" kind="push" identifier="OpenIMActivitySegue" id="0xy-ba-a1I"/>
+                        <segue destination="QFo-Zh-1Dd" kind="push" identifier="OpenAuthoringSegue" id="cG3-iJ-IqP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="844" y="-2887"/>
+            <point key="canvasLocation" x="884" y="-2959"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1zI-VA-WYc">
@@ -190,7 +191,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jym-OZ-SdO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3344" y="-2887"/>
+            <point key="canvasLocation" x="3656" y="-2919"/>
         </scene>
         <!--Introduction View Controller-->
         <scene sceneID="DiR-F6-feM">
@@ -317,7 +318,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2091" y="-3439"/>
+            <point key="canvasLocation" x="2111" y="-3491"/>
         </scene>
         <!--IMView Controller-->
         <scene sceneID="aA6-Bo-4E4">
@@ -579,6 +580,89 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m9a-nD-0ne" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="850" y="-1999"/>
+        </scene>
+        <!--AuthoringModeView Controller-->
+        <scene sceneID="9Fm-1p-NH5">
+            <objects>
+                <pageViewController storyboardIdentifier="AuthoringModeViewController" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="QFo-Zh-1Dd" userLabel="AuthoringModeView Controller" customClass="AuthoringModeViewController" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="2bG-uL-X12">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="gfp-S4-XTB"/>
+                        <barButtonItem key="rightBarButtonItem" title="Help" id="oAq-KU-f0a"/>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="bookView" destination="JtE-y6-WfF" id="elC-Wa-K7C"/>
+                        <outlet property="panRecognizer" destination="3lx-dn-kmx" id="yRV-Oi-OhM"/>
+                        <outlet property="pinchRecognizer" destination="jXS-r4-1mn" id="bwO-fS-uBx"/>
+                        <outlet property="swipeRecognizer" destination="E8f-cP-J3R" id="pC3-tT-9fF"/>
+                        <outlet property="tapRecognizer" destination="9Jg-zS-Brp" id="sY3-6I-VFD"/>
+                        <outlet property="view" destination="VLK-a8-DsE" id="zni-ta-hdv"/>
+                    </connections>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZcN-MQ-Kmp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view clipsSubviews="YES" contentMode="scaleToFill" id="VLK-a8-DsE">
+                    <rect key="frame" x="0.0" y="0.0" width="1024" height="724"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <webView clipsSubviews="YES" contentMode="TopLeft" fixedFrame="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JtE-y6-WfF">
+                            <rect key="frame" x="0.0" y="0.0" width="1024" height="724"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <dataDetectorType key="dataDetectorTypes"/>
+                            <connections>
+                                <outlet property="delegate" destination="QFo-Zh-1Dd" id="qux-EV-sas"/>
+                                <outletCollection property="gestureRecognizers" destination="9Jg-zS-Brp" appends="YES" id="G2X-WX-gB3"/>
+                                <outletCollection property="gestureRecognizers" destination="3lx-dn-kmx" appends="YES" id="1Ki-kG-KPz"/>
+                                <outletCollection property="gestureRecognizers" destination="1bW-df-NqF" appends="YES" id="IVo-WZ-crC"/>
+                                <outletCollection property="gestureRecognizers" destination="jXS-r4-1mn" appends="YES" id="r8s-xW-Fq4"/>
+                                <outletCollection property="gestureRecognizers" destination="E8f-cP-J3R" appends="YES" id="5A7-XI-Sfv"/>
+                            </connections>
+                        </webView>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YYH-Pt-7Sc">
+                            <rect key="frame" x="940" y="685" width="75" height="25"/>
+                            <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="30"/>
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="Next"/>
+                            <connections>
+                                <action selector="pressedNext:" destination="QFo-Zh-1Dd" eventType="touchUpInside" id="CVf-xo-T48"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                </view>
+                <tapGestureRecognizer id="9Jg-zS-Brp">
+                    <connections>
+                        <action selector="tapGesturePerformed:" destination="QFo-Zh-1Dd" id="4ss-TU-l0k"/>
+                        <outlet property="delegate" destination="QFo-Zh-1Dd" id="dvd-pJ-P1j"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="3lx-dn-kmx">
+                    <connections>
+                        <action selector="panGesturePerformed:" destination="QFo-Zh-1Dd" id="y7h-YF-ROJ"/>
+                        <outlet property="delegate" destination="QFo-Zh-1Dd" id="YJm-IN-pNg"/>
+                    </connections>
+                </panGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="1bW-df-NqF">
+                    <connections>
+                        <action selector="longPressGesturePerformed:" destination="QFo-Zh-1Dd" id="uSe-dP-q7l"/>
+                        <outlet property="delegate" destination="QFo-Zh-1Dd" id="Xxw-cJ-9OA"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pinchGestureRecognizer id="jXS-r4-1mn">
+                    <connections>
+                        <action selector="pinchGesturePerformed:" destination="QFo-Zh-1Dd" id="Slu-bG-54j"/>
+                        <outlet property="delegate" destination="QFo-Zh-1Dd" id="t1n-Jc-rp7"/>
+                    </connections>
+                </pinchGestureRecognizer>
+                <swipeGestureRecognizer direction="down" numberOfTouchesRequired="2" id="E8f-cP-J3R">
+                    <connections>
+                        <action selector="swipeGesturePerformed:" destination="QFo-Zh-1Dd" id="amV-Cw-bnb"/>
+                        <outlet property="delegate" destination="QFo-Zh-1Dd" id="jH7-TT-VxZ"/>
+                    </connections>
+                </swipeGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2119" y="-4451"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

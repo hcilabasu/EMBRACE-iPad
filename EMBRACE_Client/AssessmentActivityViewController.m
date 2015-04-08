@@ -15,6 +15,7 @@
 
 NSInteger AnswerSelection[4];
 NSMutableArray *AnswerOptions;
+NSMutableArray *AnswerAudios;
 NSString *AnswerOption1EnglishAudio;
 NSString *AnswerOption1SpanishAudio;
 NSString *AnswerOption2EnglishAudio;
@@ -81,15 +82,16 @@ NSString *CurrentStep;
         QuestionAudio = [currAssessmentActivityStep QuestionAudio];
         questionNum = [currAssessmentActivityStep QuestionNumber];
         AnswerOptions =[[NSMutableArray alloc] init];
+        AnswerAudios = [[NSMutableArray alloc] init];
         
         [AnswerOptions addObject:[currAssessmentActivityStep Answer1]];
-        AnswerOption1EnglishAudio = [currAssessmentActivityStep Answer1Audio];
+        [AnswerAudios addObject:[currAssessmentActivityStep Answer1Audio]];
         [AnswerOptions addObject:[currAssessmentActivityStep Answer2]];
-        AnswerOption2EnglishAudio = [currAssessmentActivityStep Answer2Audio];
+        [AnswerAudios addObject:[currAssessmentActivityStep Answer2Audio]];
         [AnswerOptions addObject:[currAssessmentActivityStep Answer3]];
-        AnswerOption3EnglishAudio = [currAssessmentActivityStep Answer3Audio];
+        [AnswerAudios addObject:[currAssessmentActivityStep Answer3Audio]];
         [AnswerOptions addObject:[currAssessmentActivityStep Answer4]];
-        AnswerOption4EnglishAudio = [currAssessmentActivityStep Answer4Audio];
+        [AnswerAudios addObject:[currAssessmentActivityStep Answer4Audio]];
         
         [self shuffleAnswers];
         
@@ -108,6 +110,7 @@ NSString *CurrentStep;
         NSInteger remainingCount = count-i;
         NSInteger exchangeIndex = i+ arc4random_uniform((u_int32_t)remainingCount);
         [AnswerOptions exchangeObjectAtIndex:i withObjectAtIndex:exchangeIndex];
+        [AnswerAudios exchangeObjectAtIndex:i withObjectAtIndex:exchangeIndex];
     }
 }
 
@@ -166,32 +169,32 @@ NSString *CurrentStep;
 //log user pressed play audio
 -(IBAction)PlayQuestionAudioPressed:(id)sender
 {
-    //[playAudioFileClass playAudioFile:QuestionAudio];
-    [playAudioFileClass textToSpeech:Question];//Question:BookTitle:ChapterTitle:CurrentPage:CurrentSentence:CurrentStep];
+    [playAudioFileClass playAudioFile:QuestionAudio];
+    //[playAudioFileClass textToSpeech:Question];//Question:BookTitle:ChapterTitle:CurrentPage:CurrentSentence:CurrentStep];
 }
 
 -(IBAction)PlayAnswer1AudioPressed:(id)sender
 {
-    //[playAudioFileClass playAudioFile:AnswerOption1EnglishAudio];
-    [playAudioFileClass textToSpeech:AnswerOptions[0]];
+    [playAudioFileClass playAudioFile:AnswerAudios[0]];
+    //[playAudioFileClass textToSpeech:AnswerOptions[0]];
 }
 
 -(IBAction)PlayAnswer2AudioPressed:(id)sender
 {
-    //[playAudioFileClass playAudioFile:AnswerOption2EnglishAudio];
-    [playAudioFileClass textToSpeech:AnswerOptions[1]];
+    [playAudioFileClass playAudioFile:AnswerAudios[1]];
+    //[playAudioFileClass textToSpeech:AnswerOptions[1]];
 }
 
 -(IBAction)PlayAnswer3AudioPressed:(id)sender
 {
-    //[playAudioFileClass playAudioFile:AnswerOption3EnglishAudio];
-    [playAudioFileClass textToSpeech:AnswerOptions[2]];
+    [playAudioFileClass playAudioFile:AnswerAudios[2]];
+    //[playAudioFileClass textToSpeech:AnswerOptions[2]];
 }
 
 -(IBAction)PlayAnswer4AudioPressed:(id)sender
 {
-    //[playAudioFileClass playAudioFile:AnswerOption4EnglishAudio];
-    [playAudioFileClass textToSpeech:AnswerOptions[3]];
+    [playAudioFileClass playAudioFile:AnswerAudios[3]];
+    //[playAudioFileClass textToSpeech:AnswerOptions[3]];
 }
 
 - (IBAction)NextButtonPressed:(id)sender {
@@ -218,12 +221,19 @@ NSString *CurrentStep;
         AssessmentActivity* currAssessmentActivityStep = [currentAssessmentActivitySteps objectAtIndex:currentAssessmentActivityStep-1];
         correctSelection = [currAssessmentActivityStep expectedSelection];
         Question = [currAssessmentActivityStep QuestionText];
+        QuestionAudio =[currAssessmentActivityStep QuestionAudio];
         questionNum = [currAssessmentActivityStep QuestionNumber];
         [AnswerOptions removeAllObjects];
+        [AnswerAudios removeAllObjects];
+        
         [AnswerOptions addObject:[currAssessmentActivityStep Answer1]];
+        [AnswerAudios addObject:[currAssessmentActivityStep Answer1Audio]];
         [AnswerOptions addObject:[currAssessmentActivityStep Answer2]];
+        [AnswerAudios addObject:[currAssessmentActivityStep Answer2Audio]];
         [AnswerOptions addObject:[currAssessmentActivityStep Answer3]];
+        [AnswerAudios addObject:[currAssessmentActivityStep Answer3Audio]];
         [AnswerOptions addObject:[currAssessmentActivityStep Answer4]];
+        [AnswerAudios addObject:[currAssessmentActivityStep Answer4Audio]];
         
         [self shuffleAnswers];
         

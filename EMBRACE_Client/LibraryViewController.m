@@ -11,6 +11,7 @@
 #import "BookHeaderView.h"
 #import "Book.h"
 #import "PMViewController.h"
+#import "AuthoringModeViewController.h"
 #import "ServerCommunicationController.h"
 #import "ConditionSetup.h"
 
@@ -42,12 +43,12 @@
 
 @synthesize libraryImages;
 @synthesize libraryTitles;
-
+ConditionSetup *conditionSetup;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    ConditionSetup *conditionSetup = [[ConditionSetup alloc] init];
+     conditionSetup = [[ConditionSetup alloc] init];
     
     //Set the title to something personalized.
     if(student != nil) {
@@ -141,21 +142,31 @@
 
 //Segue prep to go from LibraryViewController to BookView Controller. 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    PMViewController *destination = [segue destinationViewController];
-    
-    destination.bookImporter = bookImporter;
-    destination.bookTitle = self.bookToOpen;
-    destination.chapterTitle = self.chapterToOpen;
-    destination.libraryViewController = self;
-    
-    //Instead of loading the first page, we're going to load the page that was selected.]
-    //NSLog(@"chapter to Open: %@", self.chapterToOpen);
-    
-    //added by James for XML logging
-    [[ServerCommunicationController sharedManager] logStoryButtonPressed: @"Library Icon" : @"Tap" : self.bookToOpen : self.chapterToOpen : @"NULL" : @"NULL" : @"NULL"];
-    //logging ends here
-    
-    [destination loadFirstPage];
+    if (conditionSetup.appmode == Authoring) {
+        AuthoringModeViewController *destination = [segue destinationViewController];
+        destination.bookImporter = bookImporter;
+        destination.bookTitle = self.bookToOpen;
+        destination.chapterTitle = self.chapterToOpen;
+        destination.libraryViewController = self;
+        
+        [destination loadFirstPage];
+    }
+    else
+    {
+        PMViewController *destination = [segue destinationViewController];
+        destination.bookImporter = bookImporter;
+        destination.bookTitle = self.bookToOpen;
+        destination.chapterTitle = self.chapterToOpen;
+        destination.libraryViewController = self;
+        //Instead of loading the first page, we're going to load the page that was selected.]
+        //NSLog(@"chapter to Open: %@", self.chapterToOpen);
+        
+        //added by James for XML logging
+        [[ServerCommunicationController sharedManager] logStoryButtonPressed: @"Library Icon" : @"Tap" : self.bookToOpen : self.chapterToOpen : @"NULL" : @"NULL" : @"NULL"];
+        //logging ends here
+        
+        [destination loadFirstPage];
+    }
     
     //Change the back button so that it doesn't show the LibraryView's title and instead shows "Back"
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle: @"Back" style: UIBarButtonItemStyleBordered target: nil action: nil];
@@ -224,7 +235,9 @@
     [self.libraryView deselectItemAtIndexPath:indexPath animated:YES];
     
     //Send the notification to open that mode for the particular book and activity chosen.
-    if(currentMode == PM_MODE)
+    if (conditionSetup.appmode == Authoring)
+        [self performSegueWithIdentifier:@"OpenAuthoringSegue" sender:self];
+    else if(currentMode == PM_MODE)
         [self performSegueWithIdentifier: @"OpenPMActivitySegue" sender:self];
     else if(currentMode == IM_MODE)
         [self performSegueWithIdentifier: @"OpenIMActivitySegue" sender:self];
