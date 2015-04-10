@@ -579,6 +579,50 @@ ConditionSetup *conditionSetup;
     }
     
     //set file path to access introduction metadata
+    filepath = [[book mainContentPath] stringByAppendingString:@"Areas-MetaData.xml"];
+    
+    //Get xml data of the metadata file.
+    xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
+    
+    //break out metadata file into seperate components
+    metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:nil];
+    
+    //Reading in the location information.
+    NSArray* areaElements = [metadataDoc nodesForXPath:@"//areas" error:nil];
+    GDataXMLElement* areaElement = (GDataXMLElement*)[areaElements objectAtIndex:0];
+    
+    NSArray* areas = [areaElement elementsForName:@"area"];
+    bool isFirstPoint = true;
+    
+    //Read in the location information.
+    for (GDataXMLElement* area in areas) {
+        UIBezierPath *aPath = [UIBezierPath bezierPath];
+        NSMutableDictionary* areaDictionary = [[NSMutableDictionary alloc] init];
+        NSString* areaId = [[area attributeForName:@"areaId"] stringValue];
+        NSArray* points = [area elementsForName:@"point"];
+        isFirstPoint = true;
+        
+        for (GDataXMLElement* point in points) {
+            NSString* pointX = [[point attributeForName:@"x"] stringValue];
+            NSString* pointY = [[point attributeForName:@"y"] stringValue];
+            areaDictionary[areaId] = pointX;
+            areaDictionary[areaId] = pointY;
+            if (isFirstPoint) {
+                // Set the starting point of the shape.
+                [aPath moveToPoint:CGPointMake([pointX floatValue], [pointY floatValue])];
+                isFirstPoint = false;
+            }
+            else {
+                [aPath addLineToPoint:CGPointMake([pointX floatValue], [pointY floatValue])];
+            }
+        }
+        
+        [aPath closePath];
+        
+        [model addArea:areaId :aPath :areaDictionary];
+    }
+    
+    //set file path to access introduction metadata
     filepath = [[book mainContentPath] stringByAppendingString:@"Waypoints-MetaData.xml"];
     
     //Get xml data of the metadata file.

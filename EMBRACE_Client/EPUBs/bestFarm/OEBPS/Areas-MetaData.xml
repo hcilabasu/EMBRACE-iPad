@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <areas>
+        <area areaId="barn">
+            <point x="6%" y="48%"/>
+            <point x="61%" y="48%"/>
+            <point x="61%" y="74%"/>
+            <point x="6%" y="74%"/>
+        </area>
+    </areas>
+</metadata>

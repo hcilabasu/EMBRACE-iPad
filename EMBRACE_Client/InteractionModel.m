@@ -20,6 +20,7 @@
 @synthesize introductions;
 @synthesize vocabularies;
 @synthesize assessmentActivities;
+@synthesize areas;
 
 - (id) init {
     if (self = [super init]) {
@@ -35,6 +36,7 @@
         introductions = [[NSMutableDictionary alloc] init];
         vocabularies = [[NSMutableDictionary alloc] init];
         assessmentActivities = [[NSMutableDictionary alloc] init];
+        areas = [[NSMutableSet alloc] init];
     }
     
     return self;
@@ -353,6 +355,27 @@
 
 - (NSMutableDictionary*) getVocabularies{
     return vocabularies;
+}
+
+/*
+ * Adds an area with the specified id and its set of points
+ */
+- (void) addArea:(NSString*)areaId :(UIBezierPath *)path :(NSMutableDictionary*)points {
+    Area *area = [[Area alloc] initWithValues:areaId :path :points];
+    [areas addObject:area];
+}
+
+/*
+ * Returns the area with the specified id
+ */
+- (Area*) getAreaWithId:(NSString*)aId {
+    for (Area* area in areas) {
+        if ([[area areaId] isEqualToString:aId]) {
+            return area;
+        }
+    }
+    
+    return nil;
 }
 
 @end

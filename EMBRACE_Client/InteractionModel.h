@@ -20,6 +20,7 @@
 #import "IntroductionStep.h"
 #import "VocabularyStep.h"
 #import "AssessmentActivity.h"
+#import "Area.h"
 
 @interface InteractionModel : NSObject {
     NSMutableSet* relationships;
@@ -35,7 +36,10 @@
     
     BOOL useRelationships;
     BOOL useConstraints;
+    
+    NSMutableSet* areas;
 }
+
 @property (nonatomic, strong) NSMutableDictionary *assessmentActivities;
 @property (nonatomic, strong) NSMutableSet* relationships;
 @property (nonatomic, strong) NSMutableSet* constraints;
@@ -46,6 +50,7 @@
 @property (nonatomic, strong) NSMutableSet* sentenceMetadata;
 @property (nonatomic, strong) NSMutableDictionary* introductions;
 @property (nonatomic, strong) NSMutableDictionary* vocabularies;
+@property (nonatomic, strong) NSMutableSet* areas;
 
 - (NSMutableDictionary*) getAssessmentActivity;
 - (void) addAssessmentActivity:(NSString*) storyTitle :(NSMutableArray*) questions;
@@ -89,5 +94,8 @@
 - (void) addVocabulary:(NSString*) storyTitle :(NSMutableArray*) words;
 
 - (NSMutableDictionary*) getVocabularies;
+
+- (void) addArea:(NSString*)areaId :(UIBezierPath *)path :(NSMutableDictionary*)points;
+- (Area*) getAreaWithId:(NSString*)aId;
 
 @end

@@ -666,6 +666,8 @@
 		5CE299F619B5C5C500675CB0 /* BFCE7_1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CE299F419B5C5C500675CB0 /* BFCE7_1.m4a */; };
 		5CE299F719B5C5C500675CB0 /* judgeE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CE299F519B5C5C500675CB0 /* judgeE.m4a */; };
 		5CE299FA19B5C71E00675CB0 /* BFCE7_4.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CE299F819B5C71E00675CB0 /* BFCE7_4.m4a */; };
+		5CEEBFA81ACA05F4002AACC4 /* Area.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEEBFA71ACA05F4002AACC4 /* Area.m */; };
+		5CEEBFAA1ACA1386002AACC4 /* Areas-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5CEEBFA91ACA1386002AACC4 /* Areas-MetaData.xml */; };
 		5CF655AF19AC49C2000AC913 /* Story1-Introduction-At-the-Farm-PM.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CF655AE19AC49C2000AC913 /* Story1-Introduction-At-the-Farm-PM.xhtml */; };
 		5CF655B119AC4BB4000AC913 /* Story1-The-Contest-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CF655B019AC4BB4000AC913 /* Story1-The-Contest-Intro-S.xhtml */; };
 		5CF655B319ACFE2B000AC913 /* Story1-The-Contest-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CF655B219ACFE2B000AC913 /* Story1-The-Contest-Intro-E.xhtml */; };
@@ -1491,6 +1493,9 @@
 		5CE299F419B5C5C500675CB0 /* BFCE7_1.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCE7_1.m4a; path = EMBRACE_Client/sounds/BFCE7_1.m4a; sourceTree = SOURCE_ROOT; };
 		5CE299F519B5C5C500675CB0 /* judgeE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = judgeE.m4a; path = EMBRACE_Client/sounds/judgeE.m4a; sourceTree = SOURCE_ROOT; };
 		5CE299F819B5C71E00675CB0 /* BFCE7_4.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCE7_4.m4a; path = EMBRACE_Client/sounds/BFCE7_4.m4a; sourceTree = SOURCE_ROOT; };
+		5CEEBFA61ACA05F4002AACC4 /* Area.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Area.h; sourceTree = "<group>"; };
+		5CEEBFA71ACA05F4002AACC4 /* Area.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Area.m; sourceTree = "<group>"; };
+		5CEEBFA91ACA1386002AACC4 /* Areas-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Areas-MetaData.xml"; sourceTree = "<group>"; };
 		5CF655AE19AC49C2000AC913 /* Story1-Introduction-At-the-Farm-PM.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Introduction-At-the-Farm-PM.xhtml"; sourceTree = "<group>"; };
 		5CF655B019AC4BB4000AC913 /* Story1-The-Contest-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-The-Contest-Intro-S.xhtml"; sourceTree = "<group>"; };
 		5CF655B219ACFE2B000AC913 /* Story1-The-Contest-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-The-Contest-Intro-E.xhtml"; sourceTree = "<group>"; };
@@ -2085,6 +2090,8 @@
 				C3B5214B19254B0C003FF639 /* Waypoint.m */,
 				C3D79466196B1EC9004C26ED /* AlternateImage.h */,
 				C3D79467196B1EC9004C26ED /* AlternateImage.m */,
+				5CEEBFA61ACA05F4002AACC4 /* Area.h */,
+				5CEEBFA71ACA05F4002AACC4 /* Area.m */,
 			);
 			name = "Interaction Model";
 			sourceTree = "<group>";
@@ -2662,6 +2669,7 @@
 		5CF9941C19AC34550080C32F /* OEBPS */ = {
 			isa = PBXGroup;
 			children = (
+				5CEEBFA91ACA1386002AACC4 /* Areas-MetaData.xml */,
 				1AE0F5FB1A7965EC00C5B67D /* Relationships-MetaData.xml */,
 				1AE0F5FD1A79665A00C5B67D /* Constraints-MetaData.xml */,
 				1AE0F6011A79671A00C5B67D /* Locations-MetaData.xml */,
@@ -3545,6 +3553,7 @@
 				31058C76176BCFF900595AAE /* logo57.png in Resources */,
 				5C776C4219C9540A000DBC65 /* owlDEFS.m4a in Resources */,
 				5CF994A719AC34550080C32F /* Story2-Getting-Ready-Title.xhtml in Resources */,
+				5CEEBFAA1ACA1386002AACC4 /* Areas-MetaData.xml in Resources */,
 				1A2D70C11AAA74FA009E7B5B /* Story3-Is-Paco-a-Thief-IM-1.xhtml in Resources */,
 				5C7FE0FA19A7E43C00CBBE0E /* BFCE_18A.m4a in Resources */,
 				5CF9948E19AC34550080C32F /* pumpkin_large.png in Resources */,
@@ -3579,6 +3588,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CEEBFA81ACA05F4002AACC4 /* Area.m in Sources */,
 				31953E551729ECC100570087 /* main.m in Sources */,
 				31953E591729ECC100570087 /* AppDelegate.m in Sources */,
 				31953E741729ED5A00570087 /* GDataXMLNode.m in Sources */,
