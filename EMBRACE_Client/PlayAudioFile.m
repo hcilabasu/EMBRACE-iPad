@@ -52,12 +52,6 @@
         [_audioPlayer play];
 }
 
-
-//+(void)playAudioFile:(NSString *)path{
-  //  [self playAudioFile:path];
-
-//}
-
 /* Plays an audio file at a given path */
 -(void) playAudioFile:(NSString*) path {
     NSString *soundFilePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], path];

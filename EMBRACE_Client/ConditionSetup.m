@@ -11,12 +11,18 @@
 @implementation ConditionSetup
     @synthesize condition;
     @synthesize language;
+    @synthesize appmode;
 
 - (id) init {
     condition = EMBRACE;
     language = BILINGUAL;
     return self;
 }
+
+-(NSString*)ReturnModeEnumToString:(AppMode)type{
+    return @"Authoring";
+}
+
 
 //Returns a string with the current value of the condition enumeration
 -(NSString*)ReturnConditionEnumToString:(Condition)type{

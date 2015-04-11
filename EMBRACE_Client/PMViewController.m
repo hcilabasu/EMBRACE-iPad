@@ -280,6 +280,16 @@ ConditionSetup *conditionSetup;
         }
     }
     
+    //If we are on the first or second manipulation page of The Lopez Family, play the audio of the first sentence
+    if ([chapterTitle isEqualToString:@"The Lopez Family"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
+        if(conditionSetup.language ==BILINGUAL) {
+            [playaudioClass playAudioFile:[NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3",currentSentence]];
+        }
+        else {
+            [playaudioClass playAudioFile:[NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3",currentSentence]];
+        }
+    }
+    
     //Perform setup for activity
     [self performSetupForActivity];
 }
@@ -2341,6 +2351,17 @@ ConditionSetup *conditionSetup;
                                         [playaudioClass playAudioFile:[NSString stringWithFormat:@"CWWB%d.m4a",currentSentence]];
                                 }
                         }
+                    
+                    //If we are on the first or second manipulation page of The Lopez Family, play the current sentence
+                    if ([chapterTitle isEqualToString:@"The Lopez Family"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
+                        if(conditionSetup.language ==BILINGUAL) {
+                            [playaudioClass playAudioFile:[NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3",currentSentence]];
+                        }
+                        else {
+                            [playaudioClass playAudioFile:[NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3",currentSentence]];
+                        }
+                    }
+                    
                 }
             }
             else
@@ -3468,6 +3489,18 @@ ConditionSetup *conditionSetup;
                                             [playaudioClass playAudioFile:[NSString stringWithFormat:@"CWWB%d.m4a",currentSentence]];
                                         }
                                     }
+                                    
+                                    //If we are on the first or second manipulation page of The Lopez Family, play the current sentence
+                                    if ([chapterTitle isEqualToString:@"The Lopez Family"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
+                                        if(conditionSetup.language ==BILINGUAL) {
+                                            [playaudioClass playAudioFile:[NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3",currentSentence]];
+                                        }
+                                        else {
+                                            [playaudioClass playAudioFile:[NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3",currentSentence]];
+                                        }
+                                    }
+                                    
+                                    
                                 }
                             }
 
@@ -3516,6 +3549,16 @@ ConditionSetup *conditionSetup;
                     }
                     else {
                         [playaudioClass playAudioFile:[NSString stringWithFormat:@"CWWB%d.m4a",currentSentence]];
+                    }
+                }
+                
+                //If we are on the first or second manipulation page of The Lopez Family, play the current sentence
+                if ([chapterTitle isEqualToString:@"The Lopez Family"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
+                    if(conditionSetup.language ==BILINGUAL) {
+                        [playaudioClass playAudioFile:[NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3",currentSentence]];
+                    }
+                    else {
+                        [playaudioClass playAudioFile:[NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3",currentSentence]];
                     }
                 }
             }
