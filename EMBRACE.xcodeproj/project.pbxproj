@@ -293,6 +293,7 @@
 		5C0274C919D22DA400BF4B1A /* BFCS1_6E.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C0274C519D22DA400BF4B1A /* BFCS1_6E.m4a */; };
 		5C0274CA19D22DA400BF4B1A /* CCE_14B.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C0274C619D22DA400BF4B1A /* CCE_14B.m4a */; };
 		5C0274CB19D22DA400BF4B1A /* CCS_14B.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C0274C719D22DA400BF4B1A /* CCS_14B.m4a */; };
+		5C27CB351ADB4CCC00E6DC0D /* dog_labradoodle_bark_twice_001.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C27CB341ADB4CCC00E6DC0D /* dog_labradoodle_bark_twice_001.mp3 */; };
 		5C466ADC192293290056EA4B /* Translation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C466ADB192293290056EA4B /* Translation.m */; };
 		5C776A4219C17F39000DBC65 /* BFTC0.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C776A3719C17F39000DBC65 /* BFTC0.m4a */; };
 		5C776A4319C17F39000DBC65 /* BFTC1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C776A3819C17F39000DBC65 /* BFTC1.m4a */; };
@@ -683,6 +684,8 @@
 		5CC762211A1DB09400A600CA /* jumpedE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CC762201A1DB09400A600CA /* jumpedE.m4a */; };
 		5CC762231A1DB1F300A600CA /* jumpedS.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CC762221A1DB1F300A600CA /* jumpedS.m4a */; };
 		5CC854E719FAF37F00910237 /* ConditionSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC854E619FAF37F00910237 /* ConditionSetup.m */; };
+		5CCBF7391AD89D28000C94DE /* Areas-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5CCBF7381AD89D28000C94DE /* Areas-MetaData.xml */; };
+		5CCBF73B1AD89E1C000C94DE /* Areas-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5CCBF73A1AD89E1C000C94DE /* Areas-MetaData.xml */; };
 		5CCEA48119AFD13C00FCBC2C /* ComboConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCEA48019AFD13C00FCBC2C /* ComboConstraint.m */; };
 		5CD7FE3519775C1C007A1E49 /* VocabularyStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD7FE3419775C1C007A1E49 /* VocabularyStep.m */; };
 		5CD7FE3819776403007A1E49 /* Introduction.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD7FE3719776403007A1E49 /* Introduction.m */; };
@@ -1170,6 +1173,7 @@
 		5C0274C519D22DA400BF4B1A /* BFCS1_6E.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCS1_6E.m4a; path = EMBRACE_Client/sounds/BFCS1_6E.m4a; sourceTree = SOURCE_ROOT; };
 		5C0274C619D22DA400BF4B1A /* CCE_14B.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = CCE_14B.m4a; path = EMBRACE_Client/sounds/CCE_14B.m4a; sourceTree = SOURCE_ROOT; };
 		5C0274C719D22DA400BF4B1A /* CCS_14B.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = CCS_14B.m4a; path = EMBRACE_Client/sounds/CCS_14B.m4a; sourceTree = SOURCE_ROOT; };
+		5C27CB341ADB4CCC00E6DC0D /* dog_labradoodle_bark_twice_001.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dog_labradoodle_bark_twice_001.mp3; sourceTree = "<group>"; };
 		5C466ADA192293290056EA4B /* Translation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Translation.h; sourceTree = "<group>"; };
 		5C466ADB192293290056EA4B /* Translation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Translation.m; sourceTree = "<group>"; };
 		5C776A3719C17F39000DBC65 /* BFTC0.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = BFTC0.m4a; sourceTree = "<group>"; };
@@ -1568,6 +1572,8 @@
 		5CC762221A1DB1F300A600CA /* jumpedS.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = jumpedS.m4a; path = EMBRACE_Client/sounds/jumpedS.m4a; sourceTree = SOURCE_ROOT; };
 		5CC854E519FAF37F00910237 /* ConditionSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConditionSetup.h; sourceTree = "<group>"; };
 		5CC854E619FAF37F00910237 /* ConditionSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConditionSetup.m; sourceTree = "<group>"; };
+		5CCBF7381AD89D28000C94DE /* Areas-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Areas-MetaData.xml"; sourceTree = "<group>"; };
+		5CCBF73A1AD89E1C000C94DE /* Areas-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Areas-MetaData.xml"; sourceTree = "<group>"; };
 		5CCEA47F19AFD13C00FCBC2C /* ComboConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComboConstraint.h; sourceTree = "<group>"; };
 		5CCEA48019AFD13C00FCBC2C /* ComboConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComboConstraint.m; sourceTree = "<group>"; };
 		5CD7FE3319775C1C007A1E49 /* VocabularyStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VocabularyStep.h; sourceTree = "<group>"; };
@@ -1811,6 +1817,7 @@
 				1A2D705E1AAA74FA009E7B5B /* Text */,
 				1A2D70851AAA74FA009E7B5B /* toc.ncx */,
 				1ACF87091AAFC9E500F81567 /* tocE.ncx */,
+				5CCBF7381AD89D28000C94DE /* Areas-MetaData.xml */,
 			);
 			path = OEBPS;
 			sourceTree = "<group>";
@@ -2273,6 +2280,7 @@
 				5C7FDFAD19A6B1B500CBBE0E /* Styles */,
 				5C7FDFB119A6B1B500CBBE0E /* Text */,
 				5C7FDFD819A6B1B500CBBE0E /* tocE.ncx */,
+				5CCBF73A1AD89E1C000C94DE /* Areas-MetaData.xml */,
 			);
 			path = OEBPS;
 			sourceTree = "<group>";
@@ -2374,6 +2382,7 @@
 		5C7FE06619A7E43B00CBBE0E /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				5C27CB341ADB4CCC00E6DC0D /* dog_labradoodle_bark_twice_001.mp3 */,
 				1A695CA31AD4EB9B006A2284 /* TheLopezFamilyQ1.mp3 */,
 				1A695CA41AD4EB9B006A2284 /* TheLopezFamilyQ1A1.mp3 */,
 				1A695CA51AD4EB9B006A2284 /* TheLopezFamilyQ1A2.mp3 */,
@@ -3144,6 +3153,7 @@
 				5C776AC619C674FA000DBC65 /* CPQR1.m4a in Resources */,
 				1AB935751A895603000CAE21 /* Setups-MetaData.xml in Resources */,
 				1A2D70A81AAA74FA009E7B5B /* Story-6-Going-for-a-Walk.png in Resources */,
+				5CCBF7391AD89D28000C94DE /* Areas-MetaData.xml in Resources */,
 				5C7FE11919A7E43C00CBBE0E /* BFCS_4.m4a in Resources */,
 				5C776B6A19C90DA1000DBC65 /* BFEC9.m4a in Resources */,
 				5C7FE04019A6B1B500CBBE0E /* Story1-Why-We-Breathe-IM-1.xhtml in Resources */,
@@ -3677,6 +3687,7 @@
 				1A2D70E11AAA8180009E7B5B /* Hotspots-MetaData.xml in Resources */,
 				5C7FE12819A7E43C00CBBE0E /* BFEE_11A.m4a in Resources */,
 				5CE299E319B5AC2700675CB0 /* purrE.m4a in Resources */,
+				5C27CB351ADB4CCC00E6DC0D /* dog_labradoodle_bark_twice_001.mp3 in Resources */,
 				5CAD064319BEB8AE00F3F053 /* squeezeE.m4a in Resources */,
 				5CAD065219BEB8AE00F3F053 /* breatheE.m4a in Resources */,
 				1A2D70931AAA74FA009E7B5B /* cribf.png in Resources */,
@@ -3745,6 +3756,7 @@
 				5CF9947119AC34550080C32F /* mimetype in Resources */,
 				5C7FE0FB19A7E43C00CBBE0E /* BFCE_22.m4a in Resources */,
 				1AE0F6161A7969F900C5B67D /* IMSolutions-MetaData.xml in Resources */,
+				5CCBF73B1AD89E1C000C94DE /* Areas-MetaData.xml in Resources */,
 				5C776BCF19C93E1E000DBC65 /* cigaretteDEFS.m4a in Resources */,
 				1A695CCE1AD4EB9C006A2284 /* TheLopezFamilyQ2A3.mp3 in Resources */,
 				5CF994A219AC34550080C32F /* Story1-The-Contest-Title.xhtml in Resources */,
@@ -3791,6 +3803,7 @@
 				31058C76176BCFF900595AAE /* logo57.png in Resources */,
 				5C776C4219C9540A000DBC65 /* owlDEFS.m4a in Resources */,
 				5CF994A719AC34550080C32F /* Story2-Getting-Ready-Title.xhtml in Resources */,
+				1A695C9B1AD4D9C1006A2284 /* TheLopezFamilyS7S.mp3 in Resources */,
 				5CEEBFAA1ACA1386002AACC4 /* Areas-MetaData.xml in Resources */,
 				1A2D70C11AAA74FA009E7B5B /* Story3-Is-Paco-a-Thief-IM-1.xhtml in Resources */,
 				5C7FE0FA19A7E43C00CBBE0E /* BFCE_18A.m4a in Resources */,

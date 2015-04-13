@@ -87,8 +87,10 @@
             </sentence>
             <sentence number="4">
                 <step number="1">
-                    <check obj1Id="keys" action="getIn" locationId="nearTree"/>
-                    <move obj1Id="keys" action="getIn" waypointId="nearTree"/>
+                    <tapToAnimate obj1Id="dog" action=""/>
+                </step>
+                <step number="2">
+                    <animate obj1Id="keys" action="fallAnimation" waypointId="nearTree"/>
                 </step>
             </sentence>
         </story>
@@ -142,8 +144,10 @@
             </sentence>
             <sentence number="7">
                 <step number="1">
-                    <check obj1Id="spoon" action="getIn" locationId="nearTree"/>
-                    <move obj1Id="spoon" action="getIn" waypointId="nearTree"/>
+                    <tapToAnimate obj1Id="dog" action=""/>
+                </step>
+                <step number="2">
+                    <animate obj1Id="spoon" action="fallAnimation" waypointId="nearTree"/>
                 </step>
             </sentence>
             <sentence number="8">
@@ -191,8 +195,10 @@
             </sentence>
             <sentence number="9">
                 <step number="1">
-                    <check obj1Id="rattle" action="getIn" locationId="nearTree"/>
-                    <move obj1Id="rattle" action="getIn" waypointId="nearTree"/>
+                    <tapToAnimate obj1Id="dog" action=""/>
+                </step>
+                <step number="2">
+                    <animate obj1Id="rattle" action="fallAnimation" waypointId="nearTree"/>
                 </step>
             </sentence>
             <sentence number="10">
@@ -259,8 +265,10 @@
             </sentence>
             <sentence number="7">
                 <step number="1">
-                    <check obj1Id="keys" action="getIn" locationId="nearTree"/>
-                    <move obj1Id="keys" action="getIn" waypointId="nearTree"/>
+                    <tapToAnimate obj1Id="dog" action=""/>
+                </step>
+                <step number="2">
+                    <animate obj1Id="keys" action="fallAnimation" waypointId="nearTree"/>
                 </step>
             </sentence>
         </story>

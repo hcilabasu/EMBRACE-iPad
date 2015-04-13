@@ -841,6 +841,11 @@ ConditionSetup *conditionSetup;
                                 [PMSolution addSolutionStep:solutionStep];
                             }
                         }
+                        
+                        else if([[step name] isEqualToString:@"tapToAnimate"]) {
+                            ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :action];
+                            [PMSolution addSolutionStep:solutionStep];
+                        }
                     }
                 }
             }

@@ -856,6 +856,18 @@ ConditionSetup *conditionSetup;
                         [self incrementCurrentStep];
                     }
                 }
+                
+                else if ([[currSolStep stepType] isEqualToString:@"tapToAnimate"]) {
+                    //Get the object at this point
+                    NSString* imageAtPoint = [self getObjectAtPoint:location ofType:nil];
+                    
+                    //If the correct object was tapped, swap its image and increment the step
+                    if ([self checkSolutionForSubject:imageAtPoint]) {
+                        // Hard-coded for now
+                        [playaudioClass playAudioFile:@"dog_labradoodle_bark_twice_001.mp3"];
+                        [self incrementCurrentStep];
+                    }
+                }
             }
         }
         
@@ -1115,6 +1127,10 @@ ConditionSetup *conditionSetup;
         //Current step is checkAndSwap and involves swapping an image
         else if ([[currSolStep stepType] isEqualToString:@"checkAndSwap"]) {
             [self swapObjectImage];
+            [self incrementCurrentStep];
+        }
+        //Current step involves tapping an image
+        else if ([[currSolStep stepType] isEqualToString:@"tapToAnimate"]) {
             [self incrementCurrentStep];
         }
         //Current step is either group, ungroup, disappear, or transference
