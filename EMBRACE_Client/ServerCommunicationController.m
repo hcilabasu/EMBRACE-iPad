@@ -1454,7 +1454,10 @@ Context:
     DDXMLElement *nodeExperimenter = [DDXMLElement elementWithName:@"Experimenter" stringValue:studyExperimenterString];
     DDXMLElement *nodeStory = [DDXMLElement elementWithName:@"Story" stringValue:storyValue];
     DDXMLElement *nodeChapter = [DDXMLElement elementWithName:@"Chapter" stringValue:chapterValue];
-    DDXMLElement *nodePage = [DDXMLElement elementWithName:@"Page" stringValue:pageValue];
+    
+    //removes file path and extracts filename of the page
+    NSString* pageFileName = [NSString stringWithFormat:@"%@%@",[pageValue lastPathComponent], @"copy"];
+    DDXMLElement *nodePage = [DDXMLElement elementWithName:@"Page" stringValue:pageFileName];
     DDXMLElement *nodeSentence = [DDXMLElement elementWithName:@"Sentence" stringValue:sentenceValue];
     DDXMLElement *nodeStep = [DDXMLElement elementWithName:@"Step" stringValue:stepValue];
     DDXMLElement *nodeTimestamp = [DDXMLElement elementWithName:@"Timestamp" stringValue:timeStampValue];
