@@ -105,6 +105,13 @@ typedef enum InteractionMode {
 @synthesize buildstringClass;
 @synthesize playaudioClass;
 
+@synthesize ImageOptions;
+@synthesize picker;
+@synthesize TapLocationX;
+@synthesize TapLocationY;
+
+@synthesize entryview;
+
 @synthesize syn;
 
 // Create an instance of  ConditionSetup
@@ -118,6 +125,15 @@ ConditionSetup *conditionSetup;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    CGRect pickerFrame = CGRectMake(200, 200, 320, 400);
+    picker = [[UIPickerView alloc] initWithFrame:pickerFrame];
+    picker.delegate=self;
+    picker.showsSelectionIndicator = YES;
+    TapLocationX = 0;
+    TapLocationY = 0;
+    
+    self.ImageOptions = [NSArray arrayWithObjects: @"Save Waypoint", @"Save Hotspot", @"Save Location", @"Save Z-Index", @"Save Width", @"Save Height", @"Save Manipulation Type", nil];
     
     //creates instance of introduction class
     IntroductionClass = [[IntroductionViewController alloc]init];
@@ -179,6 +195,7 @@ ConditionSetup *conditionSetup;
     //That way, if a user is trying to ungroup objects, they can do so without the objects moving as well.
     //TODO: Figure out how to get the pan gesture to still properly recognize the begin and continue actions.
     //[panRecognizer requireGestureRecognizerToFail:pinchRecognizer];
+    
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
@@ -558,10 +575,201 @@ ConditionSetup *conditionSetup;
 }
 
 
+
+-(void)saveHotspot: (NSString *)objectID : (NSString *)action : (NSString *)role : (NSInteger)xcord : (NSInteger)ycord  {
+    
+    NSString* hotspot = [NSString stringWithFormat:@"<hotspot objId=\"%@\" action=\"%@\" role=\"%@\" x=\"%d\" y=\"%d\"/>", objectID, action, role, xcord, ycord];
+}
+
+-(void)saveWaypoint: (NSString*)waypointID : (NSInteger)xcord : (NSInteger)ycord {
+    
+    NSString* waypoint = [NSString stringWithFormat:@"<waypoint waypointId=\"%@\" x=\"%d\" y=\"d%\"/>", waypointID, xcord, ycord];
+    
+}
+
+-(void)saveLocation: (NSString*)locationID : (NSInteger)xcord : (NSInteger)ycord : (NSInteger)height : (NSInteger)width{
+
+        NSString* location = [NSString stringWithFormat:@"<location locationId=\"%@\" x=\"%d\" y=\"%d\" height=\"%d\" width=\"%d\"/>", locationID, xcord, ycord, height, width];
+}
+
+-(void)changeZIndex: (NSInteger)zindex{
+
+    
+}
+
+-(void)changeWidth: (NSInteger)widthVal{
+
+}
+
+-(void)changeHeight: (NSInteger)heightVal{
+
+}
+
+-(void)changeManipulationType: (NSString*)manipulationType {
+    
+}
+
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    return [ImageOptions count];
+}
+
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    return  [ImageOptions objectAtIndex:row];
+}
+
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    /*@"Save Waypoint", @"Save Hotspot", @"Save Location", @"Save Z-Index", @"Save Width", @"Save Height", @"Save Manipulation Type"*/
+    
+    /*
+     textbox subview
+     */
+    
+    [pickerView removeFromSuperview];
+    
+    /*add an if statement to see if x and y cords will cause the picker to go off the screen if it will adjust size appropriately for x and y cords*/
+    entryview = [[UIView alloc] initWithFrame:CGRectMake(TapLocationX-150, TapLocationY-150, 200, 200)];
+    entryview.backgroundColor = [UIColor whiteColor];
+    
+    UIView *HotspotEntry = [[UIView alloc] initWithFrame:CGRectMake(200, 200, 200, 200)];
+    HotspotEntry.backgroundColor = [UIColor whiteColor];
+    UIView *LocationEntry = [[UIView alloc] initWithFrame:CGRectMake(200, 200, 200, 200)];
+    LocationEntry.backgroundColor = [UIColor whiteColor];
+    UIView *SingleEntry = [[UIView alloc] initWithFrame:CGRectMake(200, 200, 200, 200)];
+    SingleEntry.backgroundColor = [UIColor whiteColor];
+    UITextField *xcord = [[UITextField alloc] initWithFrame:CGRectMake(10, 100, 180, 30)];
+    xcord.text = @"X Coordinate";
+    xcord.textColor = [UIColor blackColor];
+    xcord.borderStyle = UITextBorderStyleRoundedRect;
+    UITextField *ycord = [[UITextField alloc] initWithFrame:CGRectMake(10, 60, 180, 30)];
+    ycord.text = @"Y Coordinate";
+    ycord.textColor = [UIColor blackColor];
+    ycord.borderStyle = UITextBorderStyleRoundedRect;
+    UITextField *waypointID = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 180, 30)];
+    waypointID.text = @"WaypointID";
+    waypointID.textColor = [UIColor blackColor];
+    waypointID.borderStyle = UITextBorderStyleRoundedRect;
+    UITextField *locationID = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 30, 30)];
+    UITextField *hotspotID = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 30, 30)];
+    UITextField *width = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 30, 30)];
+    UITextField *height = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 30, 30)];
+    UITextField *zindex = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 30, 30)];
+    
+    UIButton *cancel = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [cancel addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
+    cancel.frame = CGRectMake(10, 140, 80, 50);
+    [cancel setTitle:@"Cancel" forState:UIControlStateNormal];
+    UIButton *save = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    //[save addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
+    save.frame = CGRectMake(100, 140, 80, 50);
+    [save setTitle:@"Save" forState:UIControlStateNormal];
+    
+    UIView *WaypointEntry = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
+    WaypointEntry.backgroundColor = [UIColor whiteColor];
+    [WaypointEntry addSubview:waypointID];
+    [WaypointEntry addSubview:xcord];
+    [WaypointEntry addSubview:ycord];
+    [WaypointEntry addSubview:cancel];
+    [WaypointEntry addSubview:save];
+    
+    if (row == 0) {
+        //save waypoint
+        /*
+         add new sub view with textboxes, cancel button, and save button
+         */
+        [entryview addSubview:WaypointEntry];
+        [self.view addSubview:entryview];
+        
+    }
+    else if (row ==1)
+    {
+        //save hotspot
+        /*
+         add new sub view with textboxes, cancel button, and save button
+         */
+    }
+    else if (row ==2)
+    {
+        //sve location
+        /*
+         add new sub view with textboxes, cancel button, and save button
+         */
+    }
+    else if (row ==3)
+    {
+        //save z-index
+        /*
+         add new sub view with textboxes, cancel button, and save button
+         */
+    }
+    else if (row ==4)
+    {
+        //save width
+        /*
+         add new sub view with textboxes, cancel button, and save button
+         */
+    }
+    else if (row ==5)
+    {
+        //save height
+        /*
+         add new sub view with textboxes, cancel button, and save button
+         */
+    }
+    else if (row ==6)
+    {
+        //save manipulaiton type
+        /*
+         add new sub view with textboxes, cancel button, and save button
+         */
+    }
+    
+    
+}
+
+-(void)save:(id)sender{
+
+}
+
+-(void)cancel:(id)sender{
+    [entryview removeFromSuperview];
+}
+
 /*
  * Tap gesture. Currently only used for menu selection.
  */
 - (IBAction)tapGesturePerformed:(UITapGestureRecognizer *)recognizer {
+    CGPoint location = [recognizer locationInView:self.view];
+    
+    TapLocationX = location.x;
+    TapLocationY = location.y;
+    
+    /*add an if statement to see if x and y cords will cause the picker to go off the screen if it will adjust size appropriately for x and y cords*/
+    picker.frame = CGRectMake(TapLocationX-150, TapLocationY-150, 320, 400);
+    [self.view addSubview:picker];
+    
+    /*
+     when tapping anywhere on screen see if it is an object, if it is pop up a new menu
+     
+     New menu: 
+     
+     If background
+     Save as Waypoint: saves current position and prompts for waypointid name,x, y
+     Save as Location: saves current position and prompts for locationid name, x,y height, width
+     
+     If Image object
+     Change Z-Index: enter any number
+     Change Height:
+     Change Width:
+     Change Manipulation type: backgroundObject/manipulationObject
+     Save as Hotspot:obj1id(return name of tapped image), action(getIn/pickUp/sit/grab/moveTo/visit) role(subject/object), x, y
+     
+     */
+    
     
     /*CGPoint location = [recognizer locationInView:self.view];
     
@@ -804,6 +1012,7 @@ ConditionSetup *conditionSetup;
 }
 
 -(void)saveCurrentStep{
+    
     /*
      steps should already be saved
      */

@@ -22,7 +22,7 @@
 //    INPUT
 //}Action;
 
-@interface AuthoringModeViewController : UIViewController <UIGestureRecognizerDelegate, UIScrollViewDelegate> {
+@interface AuthoringModeViewController : UIViewController <UIGestureRecognizerDelegate, UIScrollViewDelegate, UIPickerViewDelegate>{
     EBookImporter *bookImporter;
     Book* book;
     
@@ -42,6 +42,11 @@
 @property (nonatomic, strong) BuildHTMLString *buildstringClass;
 @property(nonatomic,strong) PlayAudioFile *playaudioClass;
 @property(nonatomic, strong) UIViewController *libraryViewController;
+@property(nonatomic, strong) UIPickerView *picker;
+@property(nonatomic, retain) NSArray *ImageOptions;
+@property(nonatomic, strong) UIView *entryview;
+@property(nonatomic) NSInteger TapLocationX;
+@property(nonatomic) NSInteger TapLocationY;
 
 -(void) loadFirstPage;
 -(void) loadNextPage;
