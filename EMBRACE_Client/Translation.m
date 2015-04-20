@@ -122,7 +122,6 @@
                  @"around": @"around",
                  @"arteries": @"arteries",
                  @"atoms": @"atoms",
-                 @"atrium": @"atrium",
                  @"atrium": @[@"atrium_1",@"atrium_2"],
                  @"beat": @"beat",
                  @"blood": @"bloodcell_1",
@@ -130,7 +129,7 @@
                  @"carbon dioxide": @[@"CO2_1",@"CO2_2",@"CO2_3"],
                  @"chest": @"chest",
                  @"cigarette": @"cigarette",
-                 @"cilia": @"cilia",
+                 @"cilia": @[@"cilia1",@"cilia2"],
                  @"dirt": @[@"dirt_1",@"dirt_3",@"dirt_4",@"dirt_5",@"dirt_6",@"dirt_7"],
                  @"dust": @"dust",
                  @"energy": @"energy",
@@ -148,7 +147,6 @@
                  @"tubes": @"tubes",
                  @"valve": @[@"handle",@"handle_close",@"handle_1",@"gray_handle"],
                  @"veins": @"veins",
-                 @"ventricle": @"ventricle",
                  @"ventricle": @[@"ventricle_1", @"ventricle_2"]
                  };
     });
