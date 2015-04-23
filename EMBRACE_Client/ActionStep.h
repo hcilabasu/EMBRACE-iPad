@@ -18,6 +18,7 @@
     NSString *waypointId;
     NSString *action;
     NSString *areaId;
+    NSString *fileName;
 }
 
 @property (nonatomic, assign) NSUInteger sentenceNumber;
@@ -29,9 +30,10 @@
 @property (nonatomic, strong) NSString *waypointId;
 @property (nonatomic, strong) NSString *action;
 @property (nonatomic, strong) NSString *areaId;
+@property (nonatomic, strong) NSString *fileName;
 
 - (id) initAsSetupStep:(NSString*)type :(NSString*)obj1Id :(NSString*) obj2Id :(NSString*)act;
-- (id) initAsSolutionStep:(NSUInteger)sentNum :(NSUInteger)stepNum :(NSString*)type :(NSString*)obj1Id :(NSString*) obj2Id :(NSString*)loc :(NSString*)waypt :(NSString*)act :(NSString*)area;
+- (id) initAsSolutionStep:(NSUInteger)sentNum :(NSUInteger)stepNum :(NSString*)type :(NSString*)obj1Id :(NSString*) obj2Id :(NSString*)loc :(NSString*)waypt :(NSString*)act :(NSString*)area :(NSString*)file;
 
 @end
 

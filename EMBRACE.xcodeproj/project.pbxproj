@@ -293,7 +293,6 @@
 		5C0274C919D22DA400BF4B1A /* BFCS1_6E.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C0274C519D22DA400BF4B1A /* BFCS1_6E.m4a */; };
 		5C0274CA19D22DA400BF4B1A /* CCE_14B.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C0274C619D22DA400BF4B1A /* CCE_14B.m4a */; };
 		5C0274CB19D22DA400BF4B1A /* CCS_14B.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C0274C719D22DA400BF4B1A /* CCS_14B.m4a */; };
-		5C27CB351ADB4CCC00E6DC0D /* dog_labradoodle_bark_twice_001.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C27CB341ADB4CCC00E6DC0D /* dog_labradoodle_bark_twice_001.mp3 */; };
 		5C466ADC192293290056EA4B /* Translation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C466ADB192293290056EA4B /* Translation.m */; };
 		5C776A4219C17F39000DBC65 /* BFTC0.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C776A3719C17F39000DBC65 /* BFTC0.m4a */; };
 		5C776A4319C17F39000DBC65 /* BFTC1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C776A3819C17F39000DBC65 /* BFTC1.m4a */; };
@@ -687,6 +686,7 @@
 		5CCBF7391AD89D28000C94DE /* Areas-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5CCBF7381AD89D28000C94DE /* Areas-MetaData.xml */; };
 		5CCBF73B1AD89E1C000C94DE /* Areas-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5CCBF73A1AD89E1C000C94DE /* Areas-MetaData.xml */; };
 		5CCEA48119AFD13C00FCBC2C /* ComboConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCEA48019AFD13C00FCBC2C /* ComboConstraint.m */; };
+		5CD08DF51AE87CC000B655B3 /* dog_labradoodle_bark_twice_001.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C27CB341ADB4CCC00E6DC0D /* dog_labradoodle_bark_twice_001.mp3 */; };
 		5CD7FE3519775C1C007A1E49 /* VocabularyStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD7FE3419775C1C007A1E49 /* VocabularyStep.m */; };
 		5CD7FE3819776403007A1E49 /* Introduction.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD7FE3719776403007A1E49 /* Introduction.m */; };
 		5CE1E30E1A119DFC0070A7D6 /* circulatory.epub in Resources */ = {isa = PBXBuildFile; fileRef = 5CE1E30D1A119DFC0070A7D6 /* circulatory.epub */; };
@@ -3687,7 +3687,7 @@
 				1A2D70E11AAA8180009E7B5B /* Hotspots-MetaData.xml in Resources */,
 				5C7FE12819A7E43C00CBBE0E /* BFEE_11A.m4a in Resources */,
 				5CE299E319B5AC2700675CB0 /* purrE.m4a in Resources */,
-				5C27CB351ADB4CCC00E6DC0D /* dog_labradoodle_bark_twice_001.mp3 in Resources */,
+				5CD08DF51AE87CC000B655B3 /* dog_labradoodle_bark_twice_001.mp3 in Resources */,
 				5CAD064319BEB8AE00F3F053 /* squeezeE.m4a in Resources */,
 				5CAD065219BEB8AE00F3F053 /* breatheE.m4a in Resources */,
 				1A2D70931AAA74FA009E7B5B /* cribf.png in Resources */,

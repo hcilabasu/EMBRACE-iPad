@@ -637,6 +637,12 @@ ConditionSetup *conditionSetup;
             [self animateObject];
             [self incrementCurrentStep];
         }
+        else if ([[currSolStep stepType] isEqualToString:@"playSound"]) {
+            NSString * file = [currSolStep fileName];
+            [playaudioClass playAudioFile:file];
+            [self incrementCurrentStep];
+        }
+        
     }
     
     if([IntroductionClass.introductions objectForKey:chapterTitle] && [[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
@@ -879,8 +885,6 @@ ConditionSetup *conditionSetup;
                     
                     //If the correct object was tapped, swap its image and increment the step
                     if ([self checkSolutionForSubject:imageAtPoint]) {
-                        // Hard-coded for now
-                        [playaudioClass playAudioFile:@"dog_labradoodle_bark_twice_001.mp3"];
                         [self incrementCurrentStep];
                     }
                 }
