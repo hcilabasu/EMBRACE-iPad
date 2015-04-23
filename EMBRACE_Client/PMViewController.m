@@ -290,6 +290,22 @@ ConditionSetup *conditionSetup;
         }
     }
     
+    // Draw area
+    if ([chapterTitle isEqualToString:@"Getting Ready"]) {
+        //Get area that hotspot should be inside
+        Area* area = [model getAreaWithId:@"barn"];
+        
+        //apply path to shapelayer
+        CAShapeLayer* greenPath = [CAShapeLayer layer];
+        greenPath.lineWidth = 10.0;
+        greenPath.path = area.aPath.CGPath;
+        [greenPath setFillColor:[UIColor clearColor].CGColor];
+        [greenPath setStrokeColor:[UIColor greenColor].CGColor];
+        
+        //add shape layer to view's layer
+        [[self.view layer] addSublayer:greenPath];
+    }
+    
     //Perform setup for activity
     [self performSetupForActivity];
 }
@@ -1090,39 +1106,49 @@ ConditionSetup *conditionSetup;
         //Current step is check and involves moving an object to a location
         if ([[currSolStep stepType] isEqualToString:@"check"]) {
             //Get information for check step type
-            NSString* objectId = [currSolStep object1Id];
-            NSString* action = [currSolStep action];
-            NSString* locationId = [currSolStep locationId];
+            //NSString* objectId = [currSolStep object1Id];
+            //NSString* action = [currSolStep action];
+            //NSString* locationId = [currSolStep locationId];
+            //NSString* waypointId = [currSolStep waypointId];
             
             //Get hotspot location of object
-            Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:objectId :action :@"subject"];
-            CGPoint hotspotLocation = [self getHotspotLocationOnImage:hotspot];
+            //Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:objectId :action :@"subject"];
+            //CGPoint hotspotLocation = [self getHotspotLocationOnImage:hotspot];
             
             //Get location that hotspot should be inside
-            Location* location = [model getLocationWithId:locationId];
+            //Location* location = [model getLocationWithId:locationId];
             
             //Calculate the x,y coordinates and the width and height in pixels from %
-            float locationX = [location.originX floatValue] / 100.0 * [bookView frame].size.width;
-            float locationY = [location.originY floatValue] / 100.0 * [bookView frame].size.height;
-            float locationWidth = [location.width floatValue] / 100.0 * [bookView frame].size.width;
-            float locationHeight = [location.height floatValue] / 100.0 * [bookView frame].size.height;
+            //float locationX = [location.originX floatValue] / 100.0 * [bookView frame].size.width;
+            //float locationY = [location.originY floatValue] / 100.0 * [bookView frame].size.height;
+            //float locationWidth = [location.width floatValue] / 100.0 * [bookView frame].size.width;
+            //float locationHeight = [location.height floatValue] / 100.0 * [bookView frame].size.height;
             
             //Calculate the center point of the location
-            float midX = locationX + (locationWidth / 2);
-            float midY = locationY + (locationHeight / 2);
-            CGPoint midpoint = CGPointMake(midX, midY);
+            //float midX = locationX + (locationWidth / 2);
+            //float midY = locationY + (locationHeight / 2);
+            //CGPoint midpoint = CGPointMake(midX, midY);
             
-            //Move the object to the center of the location
-            [self moveObject:objectId :midpoint :hotspotLocation :false : @"None"];
+            //Get position of waypoint in pixels based on the background size
+            //Waypoint* waypoint = [model getWaypointWithId:waypointId];
+            //CGPoint waypointLocation = [self getWaypointLocation:waypoint];
+            
+            //if ([locationId isEqualToString:@""]) {
+                //[self moveObject:objectId :waypointLocation :hotspotLocation :false : @"None"];
+            //}
+            //else {
+                //Move the object to the center of the location
+                //[self moveObject:objectId :midpoint :hotspotLocation :false : @"None"];
+            //}
             
             //Clear highlighting
-            NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
-            [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
+            //NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
+            //[bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
             
             //Object should now be in the correct location, so the step can be incremented
-            if([self isHotspotInsideLocation]) {
+            //if([self isHotspotInsideLocation] || [self isHotspotInsideArea]) {
                 [self incrementCurrentStep];
-            }
+            //}
         }
         //Current step is checkAndSwap and involves swapping an image
         else if ([[currSolStep stepType] isEqualToString:@"checkAndSwap"]) {
@@ -1285,7 +1311,7 @@ ConditionSetup *conditionSetup;
                     
                     if ([[currSolStep stepType] isEqualToString:@"check"]) {
                         //Check if object is in the correct location
-                        if([self isHotspotInsideLocation]) {
+                        if([self isHotspotInsideLocation] || [self isHotspotInsideArea]) {
                             if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
                                 /*Check to see if an object is at a certain location or is grouped with another object e.g. farmergetIncorralArea or farmerleadcow. These strings come from the solution steps */
                                 if([[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:[NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep locationId]]]
@@ -2171,9 +2197,47 @@ ConditionSetup *conditionSetup;
             float locationWidth = [location.width floatValue] / 100.0 * [bookView frame].size.width;
             float locationHeight = [location.height floatValue] / 100.0 * [bookView frame].size.height;
             
+            //NSLog(@"Width: %f Height: %f", [bookView frame].size.width, [bookView frame].size.height);
+            
             //Check if hotspot is inside location
             if ((hotspotLocation.x < locationX + locationWidth) && (hotspotLocation.x > locationX)
                 && (hotspotLocation.y < locationY + locationHeight) && (hotspotLocation.y > locationY)) {
+                return true;
+            }
+        }
+    }
+    
+    return false;
+}
+
+/*
+ * Returns true if the hotspot of an object (for a check step type) is inside the correct area. Otherwise, returns false.
+ */
+-(BOOL) isHotspotInsideArea {
+    //Check solution only if it exists for the sentence
+    if (numSteps > 0) {
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        if ([[currSolStep stepType] isEqualToString:@"check"]) {
+            //Get information for check step type
+            NSString* objectId = [currSolStep object1Id];
+            NSString* action = [currSolStep action];
+            
+            NSString* areaId = [currSolStep areaId];
+            
+            //Get hotspot location of correct subject
+            Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:objectId :action :@"subject"];
+            CGPoint hotspotLocation = [self getHotspotLocation:hotspot];
+            
+            //Get area that hotspot should be inside
+            Area* area = [model getAreaWithId:areaId];
+            
+            if ([area.aPath containsPoint:hotspotLocation])
+            {
                 return true;
             }
         }

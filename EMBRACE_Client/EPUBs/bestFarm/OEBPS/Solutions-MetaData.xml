@@ -132,7 +132,7 @@
                 <group obj1Id="farmer" action="grab" obj2Id="cart"/>
             </step>
             <step number="5">
-                <check obj1Id="farmer" action="getIn" locationId="barn"/>
+                <check obj1Id="farmer" action="getIn" locationId="" areaId="barn"/>
                 <move obj1Id="farmer" action="getIn" waypointId="nearBarn"/>
             </step>
         </sentence>

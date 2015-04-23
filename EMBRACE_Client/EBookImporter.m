@@ -607,13 +607,20 @@ ConditionSetup *conditionSetup;
             NSString* pointY = [[point attributeForName:@"y"] stringValue];
             areaDictionary[areaId] = pointX;
             areaDictionary[areaId] = pointY;
+            
+            //[bookView frame].size.width = 1024 hard-coded for now
+            float locationX = [pointX floatValue] / 100.0 * 1024;
+            //[bookView frame].size.height = 704 hard-coded for now
+            float locationY = [pointY floatValue] / 100.0 * 704;
+            
+            
             if (isFirstPoint) {
                 // Set the starting point of the shape.
-                [aPath moveToPoint:CGPointMake([pointX floatValue], [pointY floatValue])];
+                [aPath moveToPoint:CGPointMake(locationX, locationY)];
                 isFirstPoint = false;
             }
             else {
-                [aPath addLineToPoint:CGPointMake([pointX floatValue], [pointY floatValue])];
+                [aPath addLineToPoint:CGPointMake(locationX, locationY)];
             }
         }
         
@@ -794,7 +801,7 @@ ConditionSetup *conditionSetup;
                            [[step name] isEqualToString:@"ungroup"]) {
                             NSString* obj2Id = [[step attributeForName:@"obj2Id"] stringValue];
                             
-                            ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :obj2Id :nil :nil :action];
+                            ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :obj2Id :nil :nil :action :nil];
                             [PMSolution addSolutionStep:solutionStep];
                         }
                         //Move also has either an obj2Id or waypointId
@@ -804,13 +811,13 @@ ConditionSetup *conditionSetup;
                             if([step attributeForName:@"obj2Id"]) {
                                 NSString* obj2Id = [[step attributeForName:@"obj2Id"] stringValue];
                                 
-                                ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :obj2Id :nil :nil :action];
+                                ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :obj2Id :nil :nil :action :nil];
                                 [PMSolution addSolutionStep:solutionStep];
                             }
                             else if([step attributeForName:@"waypointId"]) {
                                 NSString* waypointId = [[step attributeForName:@"waypointId"] stringValue];
                                 
-                                ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :waypointId :action];
+                                ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :waypointId :action :nil];
                                 [PMSolution addSolutionStep:solutionStep];
                             }
                         }
@@ -819,8 +826,9 @@ ConditionSetup *conditionSetup;
                         //the background.
                         else if([[step name] isEqualToString:@"check"]) {
                             NSString* locationId = [[step attributeForName:@"locationId"] stringValue];
+                            NSString* areaId = [[step attributeForName:@"areaId"] stringValue];
                             
-                            ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :locationId :nil :action];
+                            ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :locationId :nil :action :areaId];
                             [PMSolution addSolutionStep:solutionStep];
                         }
                         //SwapImage and checkAndSwap only have obj1Id and action
@@ -829,7 +837,7 @@ ConditionSetup *conditionSetup;
                         //* CheckAndSwap means that the correct object must be tapped by the user before changing to its alternate
                         //image.
                         else if([[step name] isEqualToString:@"swapImage"] || [[step name] isEqualToString:@"checkAndSwap"]) {
-                            ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :action];
+                            ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :action :nil];
                             [PMSolution addSolutionStep:solutionStep];
                         }
                         
@@ -837,13 +845,13 @@ ConditionSetup *conditionSetup;
                             if([step attributeForName:@"waypointId"]) {
                                 NSString* waypointId = [[step attributeForName:@"waypointId"] stringValue];
                                 
-                                ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :waypointId :action];
+                                ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :waypointId :action :nil];
                                 [PMSolution addSolutionStep:solutionStep];
                             }
                         }
                         
                         else if([[step name] isEqualToString:@"tapToAnimate"]) {
-                            ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :action];
+                            ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :action :nil];
                             [PMSolution addSolutionStep:solutionStep];
                         }
                     }

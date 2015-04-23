@@ -3,6 +3,7 @@
     <areas>
         <area areaId="barn">
             <point x="6%" y="48%"/>
+            <point x="27%" y="26%"/>
             <point x="61%" y="48%"/>
             <point x="61%" y="74%"/>
             <point x="6%" y="74%"/>
