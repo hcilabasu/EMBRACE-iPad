@@ -767,13 +767,38 @@ function removeSentence(sentenceId) {
 
 /*
  * Adds sentence with the specified sentence id, action information (whether it is
- * an action sentence or not), and text
+ * an action sentence or not), text, and vocabulary words (if any)
  */
-function addSentence(sentenceId, action, text) {
+function addSentence(sentenceId, action, splitTextArray, wordsArray) {
     var textbox = document.getElementsByClassName('textbox')[0]; //get textbox element
     var newSentence = document.createElement("p"); //create new sentence
-    var newText = document.createTextNode(text); //create text for sentence
-    var space = document.createTextNode(" "); //create space that goes after the sentence text
+    
+    //Sentence text was split, so it contains vocabulary word(s)
+    if (splitTextArray.length > 1) {
+        //Piece the new sentence together by adding a split text followed by a vocabulary word
+        for (var i = 0; i < wordsArray.length; i++) {
+            //Split text
+            var newText = document.createTextNode(splitTextArray[i]);
+            
+            //Vocabulary word
+            var newWord = document.createElement("p");
+            newWord.className = "audible";
+            newWord.appendChild(document.createTextNode(wordsArray[i]));
+            
+            newSentence.appendChild(newText);
+            newSentence.appendChild(newWord);
+        }
+        
+        //Make sure to add remaining split text
+        var newText = document.createTextNode(splitTextArray[splitTextArray.length - 1]);
+        newSentence.appendChild(newText);
+    }
+    //Sentence text does not contain vocabulary word(s)
+    else {
+        //Just create new sentence from text like normal
+        var newText = document.createTextNode(splitTextArray[0]);
+        newSentence.appendChild(newText);
+    }
     
     newSentence.id = sentenceId; //set sentence id
     newSentence.className = "sentence"; //set sentence class
@@ -782,10 +807,6 @@ function addSentence(sentenceId, action, text) {
     if (action) {
         newSentence.className = newSentence.className + " actionSentence";
     }
-    
-    //Add text and space to sentence
-    newSentence.appendChild(newText);
-    newSentence.appendChild(space);
     
     textbox.appendChild(newSentence); //add sentence to textbox
 }

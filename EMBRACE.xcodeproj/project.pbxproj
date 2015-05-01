@@ -622,6 +622,7 @@
 		C36473EB1A9AA4FE00FD7494 /* AlternateSentences-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = C36473EA1A9AA4FE00FD7494 /* AlternateSentences-MetaData.xml */; };
 		C36473EE1A9AA5C100FD7494 /* AlternateSentence.m in Sources */ = {isa = PBXBuildFile; fileRef = C36473ED1A9AA5C100FD7494 /* AlternateSentence.m */; };
 		C393881F195376490005279F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C393881E195376490005279F /* AudioToolbox.framework */; };
+		C3B10B3A1AF2F54F003195F5 /* Statistics.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B10B391AF2F54F003195F5 /* Statistics.m */; };
 		C3B5214C19254B0C003FF639 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B5214919254B0C003FF639 /* Location.m */; };
 		C3B5214D19254B0C003FF639 /* Waypoint.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B5214B19254B0C003FF639 /* Waypoint.m */; };
 		C3B5215219254BA2003FF639 /* ActionStep.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B5214F19254BA2003FF639 /* ActionStep.m */; };
@@ -1330,6 +1331,8 @@
 		C36473EC1A9AA5C100FD7494 /* AlternateSentence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlternateSentence.h; sourceTree = "<group>"; };
 		C36473ED1A9AA5C100FD7494 /* AlternateSentence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlternateSentence.m; sourceTree = "<group>"; };
 		C393881E195376490005279F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		C3B10B381AF2F54F003195F5 /* Statistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Statistics.h; sourceTree = "<group>"; };
+		C3B10B391AF2F54F003195F5 /* Statistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Statistics.m; sourceTree = "<group>"; };
 		C3B5214819254B0C003FF639 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		C3B5214919254B0C003FF639 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		C3B5214A19254B0C003FF639 /* Waypoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Waypoint.h; sourceTree = "<group>"; };
@@ -1394,6 +1397,8 @@
 			children = (
 				31549828174EAA22004521B1 /* Student.h */,
 				31549829174EAA22004521B1 /* Student.m */,
+				C3B10B381AF2F54F003195F5 /* Statistics.h */,
+				C3B10B391AF2F54F003195F5 /* Statistics.m */,
 			);
 			name = "Student Model";
 			sourceTree = "<group>";
@@ -3002,6 +3007,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				31953E551729ECC100570087 /* main.m in Sources */,
+				C3B10B3A1AF2F54F003195F5 /* Statistics.m in Sources */,
 				31953E591729ECC100570087 /* AppDelegate.m in Sources */,
 				31953E741729ED5A00570087 /* GDataXMLNode.m in Sources */,
 				31953E751729ED5A00570087 /* ioapi.c in Sources */,

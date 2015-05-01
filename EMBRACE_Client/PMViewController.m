@@ -15,14 +15,22 @@
 #import <AVFoundation/AVFoundation.h>
 #import "ConditionSetup.h"
 #import "IntroductionViewController.h"
+#import "Statistics.h"
 
 @interface PMViewController () {
     NSString* currentPage; //The current page being shown, so that the next page can be requested.
     NSString* currentPageId; //The id of the current page being shown
     
-    NSUInteger currentSentence; //Active sentence to be completed.
+    NSUInteger currentSentence; //Active sentence to be completed
+    NSUInteger currentIdea; //Current idea number to be completed
     NSUInteger totalSentences; //Total number of sentences on this page.
     NSMutableArray* pageSentences; //AlternateSentences on current page
+    
+    BOOL chooseComplexity; //TRUE if using alternate sentences
+    NSMutableDictionary* pageStatistics;
+    NSUInteger currentComplexity; //complexity level of current sentence
+    NSDate* startTime;
+    NSDate* endTime;
     
     PhysicalManipulationSolution* PMSolution; //Solution steps for current chapter
     NSUInteger numSteps; //Number of steps for current sentence
@@ -166,6 +174,8 @@ ConditionSetup *conditionSetup;
     //Create contextualMenuController
     menuDataSource = [[ContextualMenuDataSource alloc] init];
     
+    pageStatistics = [[NSMutableDictionary alloc] init];
+    chooseComplexity = TRUE;
     
     //Ensure that the pinch recognizer gets called before the pan gesture recognizer.
     //That way, if a user is trying to ungroup objects, they can do so without the objects moving as well.
@@ -196,8 +206,8 @@ ConditionSetup *conditionSetup;
     
     NSLog(@"bookTitle: %@", bookTitle);
     
-    //Show menu for non-intro pages of The Best Farm story only
-    if ([currentPageId rangeOfString:@"Intro"].location == NSNotFound && ![chapterTitle isEqualToString:@"Introduction to The Best Farm"] && [bookTitle rangeOfString:@"The Circulatory System"].location == NSNotFound) {
+    //Show menu to choose complexity level for non-intro pages of The Best Farm story only
+    if (chooseComplexity && [currentPageId rangeOfString:@"Intro"].location == NSNotFound && ![chapterTitle isEqualToString:@"Introduction to The Best Farm"] && [bookTitle rangeOfString:@"The Circulatory System"].location == NSNotFound) {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Choose sentence complexity levels" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"60% Simple   20% Medium   20% Complex", @"20% Simple   60% Medium   20% Complex", @"20% Simple   20% Medium   60% Complex", nil];
         [alert show];
     }
@@ -236,41 +246,6 @@ ConditionSetup *conditionSetup;
         [self setupCurrentSentence];
         [self setupCurrentSentenceColor];
     }
-    
-    //NOTE: Temporarily moved below code to alertView function
-    /*//Get the number of sentences on the page
-    NSString* requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('sentence').length"];
-    int sentenceCount = [[bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount] intValue];
-    
-    //Get the id number of the last sentence on the page and set it equal to the total number of sentences.
-    //Because the PMActivity may have multiple pages, this id number may not match the sentence count for the page.
-    //   Ex. Page 1 may have three sentences: 1, 2, and 3. Page 2 may also have three sentences: 4, 5, and 6.
-    //   The total number of sentences is like a running total, so by page 2, there are 6 sentences instead of 3.
-    //This is to make sure we access the solution steps for the correct sentence on this page, and not a sentence on
-    //a previous page.
-    //if (![vocabularies objectForKey:chapterTitle]) {
-        NSString* requestLastSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[%d - 1].id", sentenceCount];
-        NSString* lastSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
-        int lastSentenceIdNumber = [[lastSentenceId substringFromIndex:1] intValue];
-        totalSentences = lastSentenceIdNumber;
-    //}
-    //else {
-        //totalSentences = sentenceCount;
-    //}
-    
-    //Get the id number of the first sentence on the page and set it equal to the current sentence number.
-    //Because the PMActivity may have multiple pages, the first sentence on the page is not necessarily sentence 1.
-    //   Ex. Page 1 may start at sentence 1, but page 2 may start at sentence 4.
-    //   Thus, the first sentence on page 2 is sentence 4, not 1.
-    //This is also to make sure we access the solution steps for the correct sentence.
-    NSString* requestFirstSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[0].id"];
-    NSString* firstSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestFirstSentenceId];
-    int firstSentenceIdNumber = [[firstSentenceId substringFromIndex:1] intValue];
-    currentSentence = firstSentenceIdNumber;
-    
-    //Set up current sentence appearance and solution steps
-    [self setupCurrentSentence];
-    [self setupCurrentSentenceColor];*/
     
     if ([IntroductionClass.introductions objectForKey:chapterTitle] || ([IntroductionClass.vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound)) {
         IntroductionClass.allowInteractions = FALSE;
@@ -317,57 +292,83 @@ ConditionSetup *conditionSetup;
     [self performSetupForActivity];
 }
 
-//Temporary menu to select complexity of sentences on page
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    pageSentences = [[NSMutableArray alloc] init];
-    
-    if (buttonIndex == 0) {
-        //Swap sentences for specified complexity level
-        [self swapSentencesOnPage:60 :20 :20];
+//Temporary menu to select complexity of sentences on page or to dismiss page statistics
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if ([[alertView title] isEqualToString:@"Choose sentence complexity levels"]) {
+        Statistics* statistics = [[Statistics alloc] init];
+        [pageStatistics setObject:statistics forKey:currentPageId];
+        
+        pageSentences = [[pageStatistics objectForKey:currentPageId] pageSentences];
+        
+        if (buttonIndex == 0) {
+            //Swap sentences for specified complexity level
+            [self swapSentencesOnPage:60 :20 :20];
+        }
+        else if (buttonIndex == 1) {
+            //Swap sentences for specified complexity level
+            [self swapSentencesOnPage:20 :60 :20];
+        }
+        else if (buttonIndex == 2) {
+            //Swap sentences for specified complexity level
+            [self swapSentencesOnPage:20 :20 :60];
+        }
+        
+        //Get the number of sentences on the page
+        NSString* requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('sentence').length"];
+        int sentenceCount = [[bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount] intValue];
+        
+        //Get the id number of the last sentence on the page and set it equal to the total number of sentences.
+        //Because the PMActivity may have multiple pages, this id number may not match the sentence count for the page.
+        //   Ex. Page 1 may have three sentences: 1, 2, and 3. Page 2 may also have three sentences: 4, 5, and 6.
+        //   The total number of sentences is like a running total, so by page 2, there are 6 sentences instead of 3.
+        //This is to make sure we access the solution steps for the correct sentence on this page, and not a sentence on
+        //a previous page.
+        //if (![vocabularies objectForKey:chapterTitle]) {
+        NSString* requestLastSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[%d - 1].id", sentenceCount];
+        NSString* lastSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
+        int lastSentenceIdNumber = [[lastSentenceId substringFromIndex:1] intValue];
+        totalSentences = lastSentenceIdNumber;
+        //}
+        //else {
+        //totalSentences = sentenceCount;
+        //}
+        
+        //Get the id number of the first sentence on the page and set it equal to the current sentence number.
+        //Because the PMActivity may have multiple pages, the first sentence on the page is not necessarily sentence 1.
+        //   Ex. Page 1 may start at sentence 1, but page 2 may start at sentence 4.
+        //   Thus, the first sentence on page 2 is sentence 4, not 1.
+        //This is also to make sure we access the solution steps for the correct sentence.
+        NSString* requestFirstSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[0].id"];
+        NSString* firstSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestFirstSentenceId];
+        int firstSentenceIdNumber = [[firstSentenceId substringFromIndex:1] intValue];
+        currentSentence = firstSentenceIdNumber;
+        
+        //Set up current sentence appearance and solution steps
+        [self setupCurrentSentence];
+        [self setupCurrentSentenceColor];
     }
-    else if (buttonIndex == 1) {
-        //Swap sentences for specified complexity level
-        [self swapSentencesOnPage:20 :60 :20];
+    else if ([[alertView title] isEqualToString:@"Page Statistics"]) {
+        if (buttonIndex == 0) {
+            [self loadNextPage];
+        }
     }
-    else if (buttonIndex == 2) {
-        //Swap sentences for specified complexity level
-        [self swapSentencesOnPage:20 :20 :60];
-    }
+}
+
+//Temporary function to show page statistics
+- (void) showPageStatistics {
+    Statistics* statistics = [pageStatistics objectForKey:currentPageId];
     
-    //Get the number of sentences on the page
-    NSString* requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('sentence').length"];
-    int sentenceCount = [[bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount] intValue];
+    NSString* numStepsString = [NSString stringWithFormat:@"Number of steps:\nSimple: %d\nMedium: %d\nComplex: %d", [statistics getNumStepsForComplexity:0], [statistics getNumStepsForComplexity:1], [statistics getNumStepsForComplexity:2]];
+    NSString* numErrorsString = [NSString stringWithFormat:@"Number of errors:\nSimple: %d\nMedium: %d\nComplex: %d", [statistics getNumErrorsForComplexity:0], [statistics getNumErrorsForComplexity:1], [statistics getNumErrorsForComplexity:2]];
+    NSString* timeString = [NSString stringWithFormat:@"Average time per step:\nSimple: %f\nMedium: %f\nComplex: %f", [statistics calculateAverageTimePerStepForComplexity:0], [statistics calculateAverageTimePerStepForComplexity:1], [statistics calculateAverageTimePerStepForComplexity:2]];
+    NSString* numNonActSentsString = [NSString stringWithFormat:@"Number of non-action sentences:\nSimple: %d\nMedium: %d\nComplex: %d", [statistics getNumNonActSentsForComplexity:0], [statistics getNumNonActSentsForComplexity:1], [statistics getNumNonActSentsForComplexity:2]];
+    NSString* timeForNonActsSentsString = [NSString stringWithFormat:@"Average time per non-action sentence:\nSimple: %f\nMedium: %f\nComplex: %f", [statistics calculateAverageTimePerNonActSentForComplexity:0], [statistics calculateAverageTimePerNonActSentForComplexity:1], [statistics calculateAverageTimePerNonActSentForComplexity:2]];
+    NSString* numVocabRequestsString = [NSString stringWithFormat:@"Number of vocabulary requests:\nSimple: %d\nMedium: %d\nComplex: %d", [statistics getNumVocabTapsForComplexity:0], [statistics getNumVocabTapsForComplexity:1], [statistics getNumVocabTapsForComplexity:2]];
     
-    //Get the id number of the last sentence on the page and set it equal to the total number of sentences.
-    //Because the PMActivity may have multiple pages, this id number may not match the sentence count for the page.
-    //   Ex. Page 1 may have three sentences: 1, 2, and 3. Page 2 may also have three sentences: 4, 5, and 6.
-    //   The total number of sentences is like a running total, so by page 2, there are 6 sentences instead of 3.
-    //This is to make sure we access the solution steps for the correct sentence on this page, and not a sentence on
-    //a previous page.
-    //if (![vocabularies objectForKey:chapterTitle]) {
-    NSString* requestLastSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[%d - 1].id", sentenceCount];
-    NSString* lastSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
-    int lastSentenceIdNumber = [[lastSentenceId substringFromIndex:1] intValue];
-    totalSentences = lastSentenceIdNumber;
-    //}
-    //else {
-    //totalSentences = sentenceCount;
-    //}
+    NSString* message = [NSString stringWithFormat:@"%@\n\n%@\n\n%@\n\n%@\n\n%@\n\n%@", numStepsString, numErrorsString, timeString, numNonActSentsString, timeForNonActsSentsString, numVocabRequestsString];
     
-    //Get the id number of the first sentence on the page and set it equal to the current sentence number.
-    //Because the PMActivity may have multiple pages, the first sentence on the page is not necessarily sentence 1.
-    //   Ex. Page 1 may start at sentence 1, but page 2 may start at sentence 4.
-    //   Thus, the first sentence on page 2 is sentence 4, not 1.
-    //This is also to make sure we access the solution steps for the correct sentence.
-    NSString* requestFirstSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[0].id"];
-    NSString* firstSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestFirstSentenceId];
-    int firstSentenceIdNumber = [[firstSentenceId substringFromIndex:1] intValue];
-    currentSentence = firstSentenceIdNumber;
-    
-    //Set up current sentence appearance and solution steps
-    [self setupCurrentSentence];
-    [self setupCurrentSentenceColor];
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Page Statistics" message:message delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+    [alert show];
 }
 
 /*
@@ -457,6 +458,7 @@ ConditionSetup *conditionSetup;
     Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
     PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
     PMSolution = [[[PMActivity PMSolutions] objectForKey:currentPageId] objectAtIndex:0]; //get PM solution
+    currentIdea = [[[PMSolution solutionSteps] objectAtIndex:0] sentenceNumber];
     
     //instantiates all vocab variables
     [IntroductionClass loadFirstPageVocabulary:model :chapterTitle];
@@ -476,16 +478,25 @@ ConditionSetup *conditionSetup;
     stepsComplete = FALSE;
     
     //Get number of steps for current sentence
-    if ([pageSentences count] > 0 && [currentPageId rangeOfString:@"Intro"].location == NSNotFound) {
+    if (chooseComplexity && [pageSentences count] > 0) {
         if (currentSentence > 0) {
             numSteps = [[[pageSentences objectAtIndex:currentSentence - 1] solutionSteps] count];
+            
+            //Set current complexity based on sentence
+            currentComplexity = [[pageSentences objectAtIndex:currentSentence - 1] complexity];
         }
         else {
-            numSteps = 0;
+            numSteps = 0; //sentence 0 is the title, so it has no steps
         }
     }
     else {
-        numSteps = [PMSolution getNumStepsForSentence:currentSentence];
+        //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+        if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+            numSteps = [PMSolution getNumStepsForSentence:currentIdea];
+        }
+        else {
+            numSteps = [PMSolution getNumStepsForSentence:currentSentence];
+        }
     }
     
     //Check to see if it is an action sentence
@@ -499,6 +510,8 @@ ConditionSetup *conditionSetup;
     else {
         stepsComplete = TRUE; //no steps to complete for non-action sentence
     }
+    
+    startTime = [NSDate date]; //for page statistics
 }
 
 /* Sets up the appearance of the current sentence by highlighting it as blue (if it is an action sentence)
@@ -534,6 +547,38 @@ ConditionSetup *conditionSetup;
  * if it is ungroup, move, or swap image.
  */
 -(void) incrementCurrentStep {
+    //Get steps for current sentence
+    NSMutableArray* currSolSteps;
+    
+    if (chooseComplexity) {
+        currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+    }
+    else {
+        //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+        if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+            currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+        }
+        else {
+            currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        }
+    }
+    
+    //Get current step to be completed
+    ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+    
+    if (chooseComplexity) {
+        //Not automatic step
+        if (!([[currSolStep stepType] isEqualToString:@"ungroup"] || [[currSolStep stepType] isEqualToString:@"move"] || [[currSolStep stepType] isEqualToString:@"swapImage"])) {
+            endTime = [NSDate date];
+            double elapsedTime = [endTime timeIntervalSinceDate:startTime];
+            
+            //Record time for complexity
+            [[pageStatistics objectForKey:currentPageId] addTime:elapsedTime ForComplexity:(currentComplexity - 1)];
+            
+            startTime = [NSDate date];
+        }
+    }
+    
     //Check if able to increment current step
     if (currentStep < numSteps) {
         NSString *tempsteps = [NSString stringWithFormat:@"%lu", (unsigned long)currentStep];
@@ -671,10 +716,19 @@ ConditionSetup *conditionSetup;
     //Perform steps only if they exist for the sentence
     if (numSteps > 0 && IntroductionClass.allowInteractions) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+        NSMutableArray* currSolSteps;
         
-        if ([currSolSteps count] == 0) {
-            currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        if (chooseComplexity) {
+            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+        }
+        else {
+            //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+            if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+            }
+            else {
+                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            }
         }
         
         //Get current step to be completed
@@ -868,9 +922,21 @@ ConditionSetup *conditionSetup;
     else {
         if (numSteps > 0 && IntroductionClass.allowInteractions) {
             //Get steps for current sentence
-            //NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-            NSMutableArray* currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+            NSMutableArray* currSolSteps;
             
+            if (chooseComplexity) {
+                currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+            }
+            else {
+                //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+                if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                    currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+                }
+                else {
+                    currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                }
+            }
+
             if ([currSolSteps count] > 0) {
                 //Get current step to be completed
                 ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -908,6 +974,11 @@ ConditionSetup *conditionSetup;
         NSString* sentenceID = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceID];
         int sentenceIDNum = [[sentenceID substringFromIndex:0] intValue];
 
+        if (chooseComplexity) {
+            //Record vocabulary request for complexity
+            [[pageStatistics objectForKey:currentPageId] addVocabTapForComplexity:(currentComplexity - 1)];
+        }
+        
         //Logs user Word Press
         [[ServerCommunicationController sharedManager] logUserPressWord:sentenceText :@"Tap" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
         
@@ -1100,8 +1171,20 @@ ConditionSetup *conditionSetup;
         [[ServerCommunicationController sharedManager] logUserEmergencyNext:@"Emergency Swipe" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
         
         //Get steps for current sentence
-        //NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-        NSMutableArray* currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+        NSMutableArray* currSolSteps;
+        
+        if (chooseComplexity) {
+            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+        }
+        else {
+            //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+            if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+            }
+            else {
+                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            }
+        }
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -1293,10 +1376,19 @@ ConditionSetup *conditionSetup;
                 
                 if (numSteps > 0) {
                     //Get steps for current sentence
-                    NSMutableArray* currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+                    NSMutableArray* currSolSteps;
                     
-                    if ([currSolSteps count] == 0) {
-                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                    if (chooseComplexity) {
+                        currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+                    }
+                    else {
+                        //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+                        if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                            currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+                        }
+                        else {
+                            currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                        }
                     }
                     
                     //Get current step to be completed
@@ -1340,6 +1432,11 @@ ConditionSetup *conditionSetup;
                             [playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentStep];
                             //[self playErrorNoise];
                             
+                            if (chooseComplexity) {
+                                //Record error for complexity
+                                [[pageStatistics objectForKey:currentPageId] addErrorForComplexity:(currentComplexity - 1)];
+                            }
+                            
                             if (allowSnapback) {
                                 //Snap the object back to its original location
                                 [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
@@ -1381,6 +1478,11 @@ ConditionSetup *conditionSetup;
                                     //Snap the object back to its original location
                                     [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
                                     //wrong because two objects cant interact with each other reset object
+                                }
+                                
+                                if (chooseComplexity) {
+                                    //Record error for complexity
+                                    [[pageStatistics objectForKey:currentPageId] addErrorForComplexity:(currentComplexity - 1)];
                                 }
                             }
                             //If only 1 possible interaction was found, go ahead and perform that interaction if it's correct.
@@ -1975,10 +2077,19 @@ ConditionSetup *conditionSetup;
     //Check solution only if it exists for the sentence
     if (numSteps > 0 && !stepsComplete) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+        NSMutableArray* currSolSteps;
         
-        if ([currSolSteps count] == 0) {
-            currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        if (chooseComplexity) {
+            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+        }
+        else {
+            //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+            if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+            }
+            else {
+                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            }
         }
         
         //Get current step to be completed
@@ -2031,10 +2142,19 @@ ConditionSetup *conditionSetup;
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+        NSMutableArray* currSolSteps;
         
-        if ([currSolSteps count] == 0) {
-            currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        if (chooseComplexity) {
+            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+        }
+        else {
+            //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+            if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+            }
+            else {
+                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            }
         }
         
         //Get current step to be completed
@@ -2087,10 +2207,19 @@ ConditionSetup *conditionSetup;
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+        NSMutableArray* currSolSteps;
         
-        if ([currSolSteps count] == 0) {
-            currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        if (chooseComplexity) {
+            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+        }
+        else {
+            //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+            if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+            }
+            else {
+                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            }
         }
         
         //Get current step to be completed
@@ -2142,10 +2271,19 @@ ConditionSetup *conditionSetup;
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+        NSMutableArray* currSolSteps;
         
-        if ([currSolSteps count] == 0) {
-            currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        if (chooseComplexity) {
+            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+        }
+        else {
+            //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+            if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+            }
+            else {
+                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            }
         }
         
         //Get current step to be completed
@@ -2182,10 +2320,19 @@ ConditionSetup *conditionSetup;
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+        NSMutableArray* currSolSteps;
         
-        if ([currSolSteps count] == 0) {
-            currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        if (chooseComplexity) {
+            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+        }
+        else {
+            //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+            if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+            }
+            else {
+                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            }
         }
         
         //Get current step to be completed
@@ -2274,10 +2421,19 @@ ConditionSetup *conditionSetup;
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+        NSMutableArray* currSolSteps;
         
-        if ([currSolSteps count] == 0) {
-            currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        if (chooseComplexity) {
+            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+        }
+        else {
+            //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+            if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+            }
+            else {
+                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            }
         }
         
         //Get current step to be completed
@@ -2374,6 +2530,10 @@ ConditionSetup *conditionSetup;
                 NSString *tempLastSentence = [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence];
             
                 //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
+                if (currentSentence > 0) {
+                    currentIdea++;
+                }
+                
                 currentSentence++;
             
                 //Set up current sentence appearance and solution steps
@@ -2459,6 +2619,11 @@ ConditionSetup *conditionSetup;
             
             [playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentStep];
             //[self playErrorNoise]; //play noise if interaction is incorrect
+            
+            if (chooseComplexity) {
+                //Record error for complexity
+                [[pageStatistics objectForKey:currentPageId] addErrorForComplexity:(currentComplexity - 1)];
+            }
         }
         
         if ([interaction interactionType] != UNGROUP && allowSnapback) {
@@ -3455,10 +3620,21 @@ ConditionSetup *conditionSetup;
                             }
                             
                             //Get steps for current sentence
-                            NSMutableArray* currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-                            if ([currSolSteps count] == 0) {
-                                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                            NSMutableArray* currSolSteps;
+                            
+                            if (chooseComplexity) {
+                                currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
                             }
+                            else {
+                                //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+                                if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                                    currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+                                }
+                                else {
+                                    currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                                }
+                            }
+
                             PossibleInteraction* interaction;
                             NSMutableArray *interactions = [[NSMutableArray alloc]init ];
                     
@@ -3506,6 +3682,10 @@ ConditionSetup *conditionSetup;
                                 NSString *tempLastSentence = [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence];
                                 
                                 //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
+                                if (currentSentence > 0) {
+                                    currentIdea++;
+                                }
+                                
                                 currentSentence++;
                                 
                                 //Set up current sentence appearance and solution steps
@@ -3560,6 +3740,10 @@ ConditionSetup *conditionSetup;
             NSString *tempLastSentence = [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence];
             
             //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
+            if (currentSentence > 0) {
+                currentIdea++;
+            }
+            
             currentSentence++;
             
             //Set up current sentence appearance and solution steps
@@ -3568,10 +3752,23 @@ ConditionSetup *conditionSetup;
             
             //currentSentence is 1 indexed.
             if(currentSentence > totalSentences) {
-                [self loadNextPage];
-                //logging done in loadNextPage
+                if (chooseComplexity) {
+                    [self showPageStatistics]; //show popup window with page statistics
+                }
+                else {
+                    [self loadNextPage];
+                    //logging done in loadNextPage
+                }
             }
             else {
+                //For page statistics
+                if (chooseComplexity && numSteps == 0) {
+                    endTime = [NSDate date];
+                    
+                    //Record time for non-action sentence for complexity
+                    [[pageStatistics objectForKey:currentPageId] addTimeForNonActSents:[endTime timeIntervalSinceDate:startTime] ForComplexity:(currentComplexity - 1)];
+                }
+                
                 //Set up current sentence appearance and solution steps
                 [self setupCurrentSentence];
                 [self colorSentencesUponNext];
@@ -3697,7 +3894,6 @@ ConditionSetup *conditionSetup;
                         break;
                     }
                 }
-                NSLog(@"generateComplexity: %f  complexity: %d", generateComplexity, complexity);
                 
                 BOOL foundIdea = false; //flag to check if there is a sentence with the specified complexity for the idea number
                 
@@ -3730,12 +3926,93 @@ ConditionSetup *conditionSetup;
                     BOOL action = [sentenceToAdd actionSentence];
                     NSString* text = [sentenceToAdd text];
                     
+                    //Split sentence text into individual tokens (words)
+                    NSArray* textTokens = [text componentsSeparatedByString:@" "];
+                    
+                    //Contains the vocabulary words that appear in the sentence
+                    NSMutableArray* words = [[NSMutableArray alloc] init];
+                    
+                    //Contains the sentence text split around vocabulary words
+                    NSMutableArray* splitText = [[NSMutableArray alloc] init];
+                    
+                    //Combines tokens into the split sentence text
+                    NSString* currentSplit = @"";
+                    
+                    for (NSString* textToken in textTokens) {
+                        NSString* modifiedTextToken = textToken;
+                        
+                        //Replaces the ' character if it exists in the token
+                        if ([modifiedTextToken rangeOfString:@"'"].location != NSNotFound) {
+                            modifiedTextToken = [modifiedTextToken stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
+                        }
+                        
+                        BOOL addedWord = false; //whether token contains vocabulary word
+                        
+                        for (NSString* vocab in [[Translation translationWords] allKeys]) {
+                            //Match the whole vocabulary word only
+                            NSString* regex = [NSString stringWithFormat:@"\\b%@\\b", vocab];
+                            
+                            //Token contains vocabulary word
+                            if ([modifiedTextToken rangeOfString:regex options:NSRegularExpressionSearch].location != NSNotFound) {
+                                [words addObject:vocab]; //add word to list
+                                addedWord = true;
+                                
+                                [splitText addObject:currentSplit];
+                                
+                                //Reset current split to be anything that appears after the vocabulary word and add a space in the beginning
+                                currentSplit = [[modifiedTextToken stringByReplacingOccurrencesOfString:vocab withString:@""] stringByAppendingString:@" "];
+                                
+                                break;
+                            }
+                        }
+                        
+                        //Token does not contain vocabulary word
+                        if (!addedWord) {
+                            //Add token to current split with a space after it
+                            NSString* textTokenSpace = [NSString stringWithFormat:@"%@ ", modifiedTextToken];
+                            currentSplit = [currentSplit stringByAppendingString:textTokenSpace];
+                        }
+                    }
+                    
+                    [splitText addObject:currentSplit]; //make sure to add the last split
+                    
+                    //Create array strings for vocabulary and split text to send to JS function
+                    NSString* wordsArrayString = [words componentsJoinedByString:@"','"];
+                    NSString* splitTextArrayString = [splitText componentsJoinedByString:@"','"];
+                    
                     //Add alternate sentence to page
-                    addSentenceString = [NSString stringWithFormat:@"addSentence('s%d', %@, \"%@\")", sentenceNumber++, action ? @"true" : @"false", text];
+                    addSentenceString = [NSString stringWithFormat:@"addSentence('s%d', %@, ['%@'], ['%@'])", sentenceNumber++, action ? @"true" : @"false", splitTextArrayString, wordsArrayString];
                     [bookView stringByEvaluatingJavaScriptFromString:addSentenceString];
                     
                     //Add alternate sentence to array
                     [pageSentences addObject:sentenceToAdd];
+                    
+                    BOOL transference = FALSE;
+                    
+                    //Count number of user steps for page statistics
+                    for (ActionStep* as in [sentenceToAdd solutionSteps]) {
+                        if (!([[as stepType] isEqualToString:@"ungroup"] || [[as stepType] isEqualToString:@"move"] || [[as stepType] isEqualToString:@"swapImage"])) {
+                            //Make sure transference steps don't get counted twice
+                            if ([[as stepType] isEqualToString:@"transferAndGroup"] || [[as stepType] isEqualToString:@"transferAndDisappear"]) {
+                                if (!transference) {
+                                    [[pageStatistics objectForKey:currentPageId] addStepForComplexity:([sentenceToAdd complexity] - 1)];
+                                    
+                                    transference = TRUE;
+                                }
+                                else {
+                                    transference = FALSE;
+                                }
+                            }
+                            else {
+                                [[pageStatistics objectForKey:currentPageId] addStepForComplexity:([sentenceToAdd complexity] - 1)];
+                            }
+                        }
+                    }
+                    
+                    //Count number of non-action sentences for each complexity
+                    if ([sentenceToAdd actionSentence] == FALSE) {
+                        [[pageStatistics objectForKey:currentPageId] addNonActSentForComplexity:([sentenceToAdd complexity] - 1)];
+                    }
                 }
             }
         }
