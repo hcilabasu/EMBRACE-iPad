@@ -13,7 +13,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>100</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>2</expectedSelection>
             </Question>
             <Question number="2">
                 <QuestionText>When we breathe, where does the oxygen go first?</QuestionText>
@@ -26,7 +26,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>toenail</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>nose</expectedSelection>
             </Question>
             <Question number="3">
                 <QuestionText>Where do carbon dioxide molecules go when we breathe out?</QuestionText>
@@ -39,7 +39,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>earlobe</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>air</expectedSelection>
             </Question>
             <Question number="4">
                 <QuestionText>When blood with oxygen leaves the lungs, where does it go first?</QuestionText>
@@ -52,7 +52,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>eyeball</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>heart</expectedSelection>
             </Question>
             <Question number="5">
                 <QuestionText>The oxygen in the blood helps to turn food into energy so that we can...?</QuestionText>
@@ -65,7 +65,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>snore</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>live</expectedSelection>
             </Question>
         </Questions>
         
@@ -81,7 +81,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>stands on its head</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>closes</expectedSelection>
             </Question>
             <Question number="2">
                 <QuestionText>When the left ventricle squeezes hard, what happens to the blood?</QuestionText>
@@ -94,7 +94,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>gets lost</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>rushes out to the body</expectedSelection>
             </Question>
             <Question number="3">
                 <QuestionText>How do you tell if a person is alive?</QuestionText>
@@ -107,7 +107,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>smell them</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>The heart beats</expectedSelection>
             </Question>
             <Question number="4">
                 <QuestionText>What do arteries do?</QuestionText>
@@ -120,7 +120,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>go to school</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>take blood from the heart to the body</expectedSelection>
             </Question>
             <Question number="5">
                 <QuestionText>How many times a minute does the left ventricle squeeze hard?</QuestionText>
@@ -133,7 +133,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>8675309</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>80 to 100</expectedSelection>
             </Question>
         </Questions>
         
@@ -149,7 +149,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>silly putty</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>food</expectedSelection>
             </Question>
             <Question number="2">
                 <QuestionText>What is left over from making energy?</QuestionText>
@@ -162,7 +162,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>fairy dust</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>carbon dioxide</expectedSelection>
             </Question>
             <Question number="3">
                 <QuestionText>After leaving the muscle, where does carbon dioxide go?</QuestionText>
@@ -175,7 +175,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>to the park</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>into the blood in the veins</expectedSelection>
             </Question>
             <Question number="4">
                 <QuestionText>When the heart beats, where does blood frmo the muscles go to first?</QuestionText>
@@ -188,7 +188,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>the bus stop</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>heart</expectedSelection>
             </Question>
             <Question number="5">
                 <QuestionText>Why do you think blood goes to your leg muscles?</QuestionText>
@@ -201,7 +201,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>to play hide and seek</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>to bring food and oxygen for energy</expectedSelection>
             </Question>
         </Questions>
         
@@ -217,7 +217,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>gives CPR</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>opens</expectedSelection>
             </Question>
             <Question number="2">
                 <QuestionText>What does the right ventricle do to push the blood toward the lungs?</QuestionText>
@@ -230,7 +230,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>jumps rope</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>squeezes hard</expectedSelection>
             </Question>
             <Question number="3">
                 <QuestionText>when carbon dioxide leaves the blood, where does it go first?</QuestionText>
@@ -243,7 +243,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>shoulder</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>lungs</expectedSelection>
             </Question>
             <Question number="4">
                 <QuestionText>Where does carbon dioxide go when you breathe out?</QuestionText>
@@ -256,7 +256,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>Neverland</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>air</expectedSelection>
             </Question>
             <Question number="5">
                 <QuestionText>Which molecule goes into the blood after you breathe in?</QuestionText>
@@ -269,7 +269,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>draculin</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>oxygen</expectedSelection>
             </Question>
             <Question number="6">
                 <QuestionText>Why does blood in the right ventricle first go to the lungs and not the muscles?</QuestionText>
@@ -282,7 +282,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>The blood and lungs are BFFs</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>The blood needs to get more oxygen first</expectedSelection>
             </Question>
         </Questions>
         
@@ -298,7 +298,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>turn it into a yo yo</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>push on it</expectedSelection>
             </Question>
             <Question number="2">
                 <QuestionText>What does cigarette smoke do to cilia?</QuestionText>
@@ -311,7 +311,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>hugs the cilia</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>kills the cilia</expectedSelection>
             </Question>
             <Question number="3">
                 <QuestionText>Why does your heart have to work harder when there is less oxygen in the blood?</QuestionText>
@@ -324,7 +324,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>to get a raise</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>to get enough oxygen to the muscles</expectedSelection>
             </Question>
             <Question number="4">
                 <QuestionText>What color does cigarette smoke turn the lungs?</QuestionText>
@@ -337,7 +337,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>rainbow</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>black</expectedSelection>
             </Question>
             <Question number="5">
                 <QuestionText>Where does oxygen have trouble going when people smoke cigarettes?</QuestionText>
@@ -350,7 +350,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>the land of OZ</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>blood</expectedSelection>
             </Question>
             <Question number="6">
                 <QuestionText>What can people do to clean their cilia and lungs</QuestionText>
@@ -363,7 +363,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>give the cilia and lungs a bath</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>stop smoking</expectedSelection>
             </Question>
         </Questions>
     </ActivityAssessment>

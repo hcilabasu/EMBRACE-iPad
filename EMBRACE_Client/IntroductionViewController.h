@@ -26,7 +26,7 @@ typedef enum Action {
 //int const STEPS_TO_SWITCH_LANGUAGES = 14;
 //int language_condition = ENGLISH;
 
-@interface IntroductionViewController : UIViewController <UIGestureRecognizerDelegate, UIScrollViewDelegate, PieContextualMenuDelegate>{}
+@interface IntroductionViewController : UIViewController <UIGestureRecognizerDelegate, UIScrollViewDelegate>{}
 
 @property(nonatomic, strong) BuildHTMLString *buildHTMLStringClass;
 @property(nonatomic, strong) PlayAudioFile *playAudioFileClass;

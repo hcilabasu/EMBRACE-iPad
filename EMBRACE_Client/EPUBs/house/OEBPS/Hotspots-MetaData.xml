@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <hotspots>
+        <hotspot objId="baby" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="baby" action="pickUp" role="object" x="75%" y="40%"/>
+        <hotspot objId="baby" action="pickUp" role="subject" x="75%" y="40%"/>
+        <hotspot objId="baby" action="sit" role="object" x="25%" y="70%"/>
+        <hotspot objId="bird" action="getIn" role="subject" x="0%" y="0%"/>
+        <hotspot objId="bird" action="pickUp" role="subject" x="5%" y="10%"/>
+        <hotspot objId="car" action="getIn" role="object" x="50%" y="50%"/>
+        <hotspot objId="car" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="dog" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="dog" action="pickUp" role="subject" x="92%" y="16.5%"/>
+        <hotspot objId="dog" action="visit" role="subject" x="100%" y="100%"/>
+        <hotspot objId="highchair" action="getIn" role="object" x="50%" y="20%"/>
+        <hotspot objId="keys" action="getIn" role="subject" x="50%" y="1%"/>
+        <hotspot objId="keys" action="grab" role="object" x="42.5%" y="18.3%"/>
+        <hotspot objId="keys" action="grab" role="subject" x="42.5%" y="18.3%"/>
+        <hotspot objId="keys" action="pickUp" role="object" x="42.5%" y="18.3%"/>
+        <hotspot objId="man" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="man" action="grab" role="object" x="85%" y="69%"/>
+        <hotspot objId="man" action="grab" role="subject" x="85%" y="69%"/>
+        <hotspot objId="man" action="pickUp" role="subject" x="50%" y="50%"/>
+        <hotspot objId="rabbit" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="rabbit" action="sit" role="subject" x="50%" y="50%"/>
+        <hotspot objId="rattle" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="spoon" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="spoon" action="pickUp" role="object" x="50%" y="50%"/>
+        <hotspot objId="table" action="moveTo" role="obbject" x="100%" y="100%"/>
+        <hotspot objId="tree" action="getIn" role="subject" x="0%" y="100%"/>
+        <hotspot objId="tree" action="visit" role="object" x="25%" y="100%"/>
+        <hotspot objId="woman" action="getIn" role="object" x="50%" y="66%"/>
+        <hotspot objId="woman" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="woman" action="moveTo" role="subject" x="0%" y="100%"/>
+        <hotspot objId="woman" action="pickUp" role="subject" x="50%" y="50%"/>
+    </hotspots>
+</metadata>

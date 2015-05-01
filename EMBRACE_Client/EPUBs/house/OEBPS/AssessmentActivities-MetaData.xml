@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <ActivityAssessment>
+        <Questions title= "The Lopez Family">
+            <Question number="1">
+                <QuestionText>How many pets does the Lopez family have?</QuestionText>
+                <QuestionAudio>TheLopezFamilyQ1.mp3</QuestionAudio>
+                <Answer1>two pets</Answer1>
+                <Answer1Audio>TheLopezFamilyQ1A1.mp3</Answer1Audio>
+                <Answer2>one pet</Answer2>
+                <Answer2Audio>TheLopezFamilyQ1A2.mp3</Answer2Audio>
+                <Answer3>four pets</Answer3>
+                <Answer3Audio>TheLopezFamilyQ1A3.mp3</Answer3Audio>
+                <Answer4>half of a pet</Answer4>
+                <Answer4Audio>TheLopezFamilyQ1A4.mp3</Answer4Audio>
+                <expectedSelection>two pets</expectedSelection>
+            </Question>
+            <Question number="2">
+                <QuestionText>What does Martin grab from the kitchen?</QuestionText>
+                <QuestionAudio>TheLopezFamilyQ2.mp3</QuestionAudio>
+                <Answer1>his keys</Answer1>
+                <Answer1Audio>TheLopezFamilyQ2A1.mp3</Answer1Audio>
+                <Answer2>the baby</Answer2>
+                <Answer2Audio>TheLopezFamilyQ2A2.mp3</Answer2Audio>
+                <Answer3>lunch for work</Answer3>
+                <Answer3Audio>TheLopezFamilyQ2A3.mp3</Answer3Audio>
+                <Answer4>his magic wand</Answer4>
+                <Answer4Audio>TheLopezFamilyQ2A4.mp3</Answer4Audio>
+                <expectedSelection>his keys</expectedSelection>
+            </Question>
+            <Question number="3">
+                <QuestionText>Who visits the baby?</QuestionText>
+                <QuestionAudio>TheLopezFamilyQ3.mp3</QuestionAudio>
+                <Answer1>Lola</Answer1>
+                <Answer1Audio>TheLopezFamilyQ3A1.mp3</Answer1Audio>
+                <Answer2>Paco</Answer2>
+                <Answer2Audio>TheLopezFamilyQ3A2.mp3</Answer2Audio>
+                <Answer3>Rosa</Answer3>
+                <Answer3Audio>TheLopezFamilyQ3A3.mp3</Answer3Audio>
+                <Answer4>the boogie man</Answer4>
+                <Answer4Audio>TheLopezFamilyQ3A4.mp3</Answer4Audio>
+                <expectedSelection>Lola</expectedSelection>
+            </Question>
+            <Question number="4">
+                <QuestionText>Where does Martin drive his car?</QuestionText>
+                <QuestionAudio>TheLopezFamilyQ4.mp3</QuestionAudio>
+                <Answer1>to the front of the house</Answer1>
+                <Answer1Audio>TheLopezFamilyQ4A1.mp3</Answer1Audio>
+                <Answer2>to the store</Answer2>
+                <Answer2Audio>TheLopezFamilyQ4A2.mp3</Answer2Audio>
+                <Answer3>around the block</Answer3>
+                <Answer3Audio>TheLopezFamilyQ4A3.mp3</Answer3Audio>
+                <Answer4>to outer space</Answer4>
+                <Answer4Audio>TheLopezFamilyQ4A4.mp3</Answer4Audio>
+                <expectedSelection>to the front of the house</expectedSelection>
+            </Question>
+            <Question number="5">
+                <QuestionText>What will the family be doing soon?</QuestionText>
+                <QuestionAudio>TheLopezFamilyQ5.mp3</QuestionAudio>
+                <Answer1>solving a mystery</Answer1>
+                <Answer1Audio>TheLopezFamilyQ5A1.mp3</Answer1Audio>
+                <Answer2>going to the park</Answer2>
+                <Answer2Audio>TheLopezFamilyQ5A2.mp3</Answer2Audio>
+                <Answer3>playing a game</Answer3>
+                <Answer3Audio>TheLopezFamilyQ5A3.mp3</Answer3Audio>
+                <Answer4>swimming with sharks</Answer4>
+                <Answer4Audio>TheLopezFamilyQ5A4.mp3</Answer4Audio>
+                <expectedSelection>solving a mystery</expectedSelection>
+            </Question>
+            <Question number="6">
+                <QuestionText>Why does Martin grab his keys?</QuestionText>
+                <QuestionAudio>TheLopezFamilyQ6.mp3</QuestionAudio>
+                <Answer1>to drive his car</Answer1>
+                <Answer1Audio>TheLopezFamilyQ6A1.mp3</Answer1Audio>
+                <Answer2>to open the front door</Answer2>
+                <Answer2Audio>TheLopezFamilyQ6A2.mp3</Answer2Audio>
+                <Answer3>to let the baby play with them</Answer3>
+                <Answer3Audio>TheLopezFamilyQ6A3.mp3</Answer3Audio>
+                <Answer4>to type on his computer</Answer4>
+                <Answer4Audio>TheLopezFamilyQ6A4.mp3</Answer4Audio>
+                <expectedSelection>to drive his car</expectedSelection>
+            </Question>
+            <Question number="7">
+                <QuestionText>Why does Rosa work from home?</QuestionText>
+                <QuestionAudio>TheLopezFamilyQ7.mp3</QuestionAudio>
+                <Answer1>to take care of the baby</Answer1>
+                <Answer1Audio>TheLopezFamilyQ7A1.mp3</Answer1Audio>
+                <Answer2>to take care of Paco</Answer2>
+                <Answer2Audio>TheLopezFamilyQ7A2.mp3</Answer2Audio>
+                <Answer3>because her work is too far away</Answer3>
+                <Answer3Audio>TheLopezFamilyQ7A3.mp3</Answer3Audio>
+                <Answer4>because her boss is stinky</Answer4>
+                <Answer4Audio>TheLopezFamilyQ7A4.mp3</Answer4Audio>
+                <expectedSelection>to take care of the baby</expectedSelection>
+            </Question>
+        </Questions>
+        <Questions title= "Missing Keys">
+            <Question number="1">
+                <QuestionText>Where did Martin bring the baby?</QuestionText>
+                <QuestionAudio>MissingKeysQ1.mp3</QuestionAudio>
+                <Answer1>to the highchair in the kitchen</Answer1>
+                <Answer1Audio>MissingKeysQ1A1.mp3</Answer1Audio>
+                <Answer2>to the tub in the bathroom</Answer2>
+                <Answer2Audio>MissingKeysQ1A2.mp3</Answer2Audio>
+                <Answer3>to the couch in the living</Answer3>
+                <Answer3Audio>MissingKeysQ1A3.mp3</Answer3Audio>
+                <Answer4>to her castle</Answer4>
+                <Answer4Audio>MissingKeysQ1A4.mp3</Answer4Audio>
+                <expectedSelection>to the highchair in the kitchen</expectedSelection>
+            </Question>
+            <Question number="2">
+                <QuestionText>Where does the baby sometimes play?</QuestionText>
+                <QuestionAudio>MissingKeysQ2.mp3</QuestionAudio>
+                <Answer1>on the top floor</Answer1>
+                <Answer1Audio>MissingKeysQ2A1.mp3</Answer1Audio>
+                <Answer2>outside</Answer2>
+                <Answer2Audio>MissingKeysQ2A2.mp3</Answer2Audio>
+                <Answer3>in the kitchen</Answer3>
+                <Answer3Audio>MissingKeysQ2A3.mp3</Answer3Audio>
+                <Answer4>in the nest</Answer4>
+                <Answer4Audio>MissingKeysQ2A4.mp3</Answer4Audio>
+                <expectedSelection>on the top floor</expectedSelection>
+            </Question>
+            <Question number="3">
+                <QuestionText>Who looked for the keys on the top floor?</QuestionText>
+                <QuestionAudio>MissingKeysQ3.mp3</QuestionAudio>
+                <Answer1>Lola</Answer1>
+                <Answer1Audio>MissingKeysQ3A1.mp3</Answer1Audio>
+                <Answer2>Paco</Answer2>
+                <Answer2Audio>MissingKeysQ3A2.mp3</Answer2Audio>
+                <Answer3>Rosa</Answer3>
+                <Answer3Audio>MissingKeysQ3A3.mp3</Answer3Audio>
+                <Answer4>the Mad Hatter</Answer4>
+                <Answer4Audio>MissingKeysQ3A4.mp3</Answer4Audio>
+                <expectedSelection>Lola</expectedSelection>
+            </Question>
+            <Question number="4">
+                <QuestionText>Why did Martin go to the living room?</QuestionText>
+                <QuestionAudio>MissingKeysQ4.mp3</QuestionAudio>
+                <Answer1>to look for the keys</Answer1>
+                <Answer1Audio>MissingKeysQ4A1.mp3</Answer1Audio>
+                <Answer2>to look for Lola</Answer2>
+                <Answer2Audio>MissingKeysQ4A2.mp3</Answer2Audio>
+                <Answer3>to pet Paco</Answer3>
+                <Answer3Audio>MissingKeysQ4A3.mp3</Answer3Audio>
+                <Answer4>to look for Santa in the chimney</Answer4>
+                <Answer4Audio>MissingKeysQ4A4.mp3</Answer4Audio>
+                <expectedSelection>to look for the keys</expectedSelection>
+            </Question>
+            <Question number="5">
+                <QuestionText>Why did Martin put the baby in the highchair?</QuestionText>
+                <QuestionAudio>MissingKeysQ5.mp3</QuestionAudio>
+                <Answer1>so she could eat breakfast</Answer1>
+                <Answer1Audio>MissingKeysQ5A1.mp3</Answer1Audio>
+                <Answer2>so she could help look for the keys</Answer2>
+                <Answer2Audio>MissingKeysQ5A2.mp3</Answer2Audio>
+                <Answer3>so she could eat dinner</Answer3>
+                <Answer3Audio>MissingKeysQ5A3.mp3</Answer3Audio>
+                <Answer4>so she could play with the computer</Answer4>
+                <Answer4Audio>MissingKeysQ5A4.mp3</Answer4Audio>
+                <expectedSelection>so she could eat breakfast</expectedSelection>
+            </Question>
+            <Question number="6">
+                <QuestionText>How did Paco try to help Martin?</QuestionText>
+                <QuestionAudio>MissingKeysQ6.mp3</QuestionAudio>
+                <Answer1>Paco sniffed for the keys outside</Answer1>
+                <Answer1Audio>MissingKeysQ6A1.mp3</Answer1Audio>
+                <Answer2>Paco looked for the keys on the top floor</Answer2>
+                <Answer2Audio>MissingKeysQ6A2.mp3</Answer2Audio>
+                <Answer3>Paco brought in the mail</Answer3>
+                <Answer3Audio>MissingKeysQ6A3.mp3</Answer3Audio>
+                <Answer4>Paco left Martin a nice surprise in the yard</Answer4>
+                <Answer4Audio>MissingKeysQ6A4.mp3</Answer4Audio>
+                <expectedSelection>Paco sniffed for the keys outside</expectedSelection>
+            </Question>
+        </Questions>
+        <Questions title= "Is Paco a Thief?">
+            <Question number="1">
+                <QuestionText>What did Paco smell?</QuestionText>
+                <QuestionAudio>IsPacoAThiefQ1.mp3</QuestionAudio>
+                <Answer1>keys</Answer1>
+                <Answer1Audio>IsPacoAThiefQ1A1.mp3</Answer1Audio>
+                <Answer2>food</Answer2>
+                <Answer2Audio>IsPacoAThiefQ1A2.mp3</Answer2Audio>
+                <Answer3>flowers</Answer3>
+                <Answer3Audio>IsPacoAThiefQ1A3.mp3</Answer3Audio>
+                <Answer4>his own breath</Answer4>
+                <Answer4Audio>IsPacoAThiefQ1A4.mp3</Answer4Audio>
+                <expectedSelection>keys</expectedSelection>
+            </Question>
+            <Question number="2">
+                <QuestionText>Why did Martin go outside?</QuestionText>
+                <QuestionAudio>IsPacoAThiefQ2.mp3</QuestionAudio>
+                <Answer1>because he heard barking</Answer1>
+                <Answer1Audio>IsPacoAThiefQ2A1.mp3</Answer1Audio>
+                <Answer2>to get in his car</Answer2>
+                <Answer2Audio>IsPacoAThiefQ2A2.mp3</Answer2Audio>
+                <Answer3>to get the mail</Answer3>
+                <Answer3Audio>IsPacoAThiefQ2A3.mp3</Answer3Audio>
+                <Answer4>because Paco kicked him out</Answer4>
+                <Answer4Audio>IsPacoAThiefQ2A4.mp3</Answer4Audio>
+                <expectedSelection>because he heard barking</expectedSelection>
+            </Question>
+            <Question number="3">
+                <QuestionText>Why did Martin think Paco was a bad dog?</QuestionText>
+                <QuestionAudio>IsPacoAThiefQ3.mp3</QuestionAudio>
+                <Answer1>for stealing the keys</Answer1>
+                <Answer1Audio>IsPacoAThiefQ3A1.mp3</Answer1Audio>
+                <Answer2>for barking</Answer2>
+                <Answer2Audio>IsPacoAThiefQ3A2.mp3</Answer2Audio>
+                <Answer3>for not listening</Answer3>
+                <Answer3Audio>IsPacoAThiefQ3A3.mp3</Answer3Audio>
+                <Answer4>for saying a bad word</Answer4>
+                <Answer4Audio>IsPacoAThiefQ3A4.mp3</Answer4Audio>
+                <expectedSelection>for stealing the keys</expectedSelection>
+            </Question>
+            <Question number="4">
+                <QuestionText>How did Paco feel at the end of his chapter?</QuestionText>
+                <QuestionAudio>IsPacoAThiefQ4.mp3</QuestionAudio>
+                <Answer1>sad</Answer1>
+                <Answer1Audio>IsPacoAThiefQ4A1.mp3</Answer1Audio>
+                <Answer2>hungry</Answer2>
+                <Answer2Audio>IsPacoAThiefQ4A2.mp3</Answer2Audio>
+                <Answer3>tired</Answer3>
+                <Answer3Audio>IsPacoAThiefQ4A3.mp3</Answer3Audio>
+                <Answer4>like catching a squirrel</Answer4>
+                <Answer4Audio>IsPacoAThiefQ4A4.mp3</Answer4Audio>
+                <expectedSelection>sad</expectedSelection>
+            </Question>
+            <Question number="5">
+                <QuestionText>How did Martin punish Paco?</QuestionText>
+                <QuestionAudio>IsPacoAThiefQ5.mp3</QuestionAudio>
+                <Answer1>by making him stay outside all day</Answer1>
+                <Answer1Audio>IsPacoAThiefQ5A1.mp3</Answer1Audio>
+                <Answer2>by making him stay inside all day</Answer2>
+                <Answer2Audio>IsPacoAThiefQ5A2.mp3</Answer2Audio>
+                <Answer3>by taking away his treats</Answer3>
+                <Answer3Audio>IsPacoAThiefQ5A3.mp3</Answer3Audio>
+                <Answer4>by giving him more homework</Answer4>
+                <Answer4Audio>IsPacoAThiefQ5A4.mp3</Answer4Audio>
+                <expectedSelection>by making him stay outside all day</expectedSelection>
+            </Question>
+            <Question number="6">
+                <QuestionText>Where did Paco find the keys?</QuestionText>
+                <QuestionAudio>IsPacoAThiefQ6.mp3</QuestionAudio>
+                <Answer1>in the tree</Answer1>
+                <Answer1Audio>IsPacoAThiefQ6A1.mp3</Answer1Audio>
+                <Answer2>in the baby's crib</Answer2>
+                <Answer2Audio>IsPacoAThiefQ6A2.mp3</Answer2Audio>
+                <Answer3>on the top floor</Answer3>
+                <Answer3Audio>IsPacoAThiefQ6A3.mp3</Answer3Audio>
+                <Answer4>on the piano</Answer4>
+                <Answer4Audio>IsPacoAThiefQ6A4.mp3</Answer4Audio>
+                <expectedSelection>in the tree</expectedSelection>
+            </Question>
+            <Question number="7">
+                <QuestionText>What did Paco do when he saw the keys?</QuestionText>
+                <QuestionAudio>IsPacoAThiefQ7.mp3</QuestionAudio>
+                <Answer1>barked and barked</Answer1>
+                <Answer1Audio>IsPacoAThiefQ7A1.mp3</Answer1Audio>
+                <Answer2>jumped up and down</Answer2>
+                <Answer2Audio>IsPacoAThiefQ7A2.mp3</Answer2Audio>
+                <Answer3>ran into the house</Answer3>
+                <Answer3Audio>IsPacoAThiefQ7A3.mp3</Answer3Audio>
+                <Answer4>took a picture and posted it on facebook</Answer4>
+                <Answer4Audio>IsPacoAThiefQ7A4.mp3</Answer4Audio>
+                <expectedSelection>barked and barked</expectedSelection>
+            </Question>
+        </Questions>
+        <Questions title= "More is Missing!">
+            <Question number="1">
+                <QuestionText>What time of day was it?</QuestionText>
+                <QuestionAudio>MoreIsMissingQ1.mp3</QuestionAudio>
+                <Answer1>morning</Answer1>
+                <Answer1Audio>MoreIsMissingQ1A1.mp3</Answer1Audio>
+                <Answer2>afternoon</Answer2>
+                <Answer2Audio>MoreIsMissingQ1A2.mp3</Answer2Audio>
+                <Answer3>evening</Answer3>
+                <Answer3Audio>MoreIsMissingQ1A3.mp3</Answer3Audio>
+                <Answer4>time to play ball</Answer4>
+                <Answer4Audio>MoreIsMissingQ1A4.mp3</Answer4Audio>
+                <expectedSelection>morning</expectedSelection>
+            </Question>
+            <Question number="2">
+                <QuestionText>What did Rosa think her family wanted in the morning?</QuestionText>
+                <QuestionAudio>MoreIsMissingQ2.mp3</QuestionAudio>
+                <Answer1>breakfast</Answer1>
+                <Answer1Audio>MoreIsMissingQ2A1.mp3</Answer1Audio>
+                <Answer2>to wash up</Answer2>
+                <Answer2Audio>MoreIsMissingQ2A2.mp3</Answer2Audio>
+                <Answer3>to play</Answer3>
+                <Answer3Audio>MoreIsMissingQ2A3.mp3</Answer3Audio>
+                <Answer4>to sleep longer</Answer4>
+                <Answer4Audio>MoreIsMissingQ2A4.mp3</Answer4Audio>
+                <expectedSelection>breakfast</expectedSelection>
+            </Question>
+            <Question number="3">
+                <QuestionText>What did Rosa want to use the spoon for?</QuestionText>
+                <QuestionAudio>MoreIsMissingQ3.mp3</QuestionAudio>
+                <Answer1>stirring</Answer1>
+                <Answer1Audio>MoreIsMissingQ3A1.mp3</Answer1Audio>
+                <Answer2>scooping</Answer2>
+                <Answer2Audio>MoreIsMissingQ3A2.mp3</Answer2Audio>
+                <Answer3>eating</Answer3>
+                <Answer3Audio>MoreIsMissingQ3A3.mp3</Answer3Audio>
+                <Answer4>show and tell</Answer4>
+                <Answer4Audio>MoreIsMissingQ3A4.mp3</Answer4Audio>
+                <expectedSelection>stirring</expectedSelection>
+            </Question>
+            <Question number="4">
+                <QuestionText>What was missing from the sink?</QuestionText>
+                <QuestionAudio>MoreIsMissingQ4.mp3</QuestionAudio>
+                <Answer1>spoon</Answer1>
+                <Answer1Audio>MoreIsMissingQ4A1.mp3</Answer1Audio>
+                <Answer2>fork</Answer2>
+                <Answer2Audio>MoreIsMissingQ4A2.mp3</Answer2Audio>
+                <Answer3>cup</Answer3>
+                <Answer3Audio>MoreIsMissingQ4A3.mp3</Answer3Audio>
+                <Answer4>Mrs. Potts</Answer4>
+                <Answer4Audio>MoreIsMissingQ4A4.mp3</Answer4Audio>
+                <expectedSelection>spoon</expectedSelection>
+            </Question>
+            <Question number="5">
+                <QuestionText>Why did Rosa go into the living room?</QuestionText>
+                <QuestionAudio>MoreIsMissingQ5.mp3</QuestionAudio>
+                <Answer1>to talk to Paco the dog</Answer1>
+                <Answer1Audio>MoreIsMissingQ5A1.mp3</Answer1Audio>
+                <Answer2>to look for the spoon</Answer2>
+                <Answer2Audio>MoreIsMissingQ5A2.mp3</Answer2Audio>
+                <Answer3>because Lola the rabbit needed help</Answer3>
+                <Answer3Audio>MoreIsMissingQ5A3.mp3</Answer3Audio>
+                <Answer4>to take a nap</Answer4>
+                <Answer4Audio>MoreIsMissingQ5A4.mp3</Answer4Audio>
+                <expectedSelection>to talk to Paco the dog</expectedSelection>
+            </Question>
+            <Question number="6">
+                <QuestionText>Who found the spoon?</QuestionText>
+                <QuestionAudio>MoreIsMissingQ6.mp3</QuestionAudio>
+                <Answer1>Paco</Answer1>
+                <Answer1Audio>MoreIsMissingQ6A1.mp3</Answer1Audio>
+                <Answer2>Rosa</Answer2>
+                <Answer2Audio>MoreIsMissingQ6A2.mp3</Answer2Audio>
+                <Answer3>the baby</Answer3>
+                <Answer3Audio>MoreIsMissingQ6A3.mp3</Answer3Audio>
+                <Answer4>the Pink Panther</Answer4>
+                <Answer4Audio>MoreIsMissingQ6A4.mp3</Answer4Audio>
+                <expectedSelection>Paco</expectedSelection>
+            </Question>
+            <Question number="7">
+                <QuestionText>What happened to the spoon when Paco barked?</QuestionText>
+                <QuestionAudio>MoreIsMissingQ7.mp3</QuestionAudio>
+                <Answer1>it dropped to the ground</Answer1>
+                <Answer1Audio>MoreIsMissingQ7A1.mp3</Answer1Audio>
+                <Answer2>it disappeared</Answer2>
+                <Answer2Audio>MoreIsMissingQ7A2.mp3</Answer2Audio>
+                <Answer3>it got stuck in the tree</Answer3>
+                <Answer3Audio>MoreIsMissingQ7A3.mp3</Answer3Audio>
+                <Answer4>it flew away</Answer4>
+                <Answer4Audio>MoreIsMissingQ7A4.mp3</Answer4Audio>
+                <expectedSelection>it dropped to the ground</expectedSelection>
+            </Question>
+            <Question number="8">
+                <QuestionText>Who did Rosa blame for stealing the spoon?</QuestionText>
+                <QuestionAudio>MoreIsMissingQ8.mp3</QuestionAudio>
+                <Answer1>Paco</Answer1>
+                <Answer1Audio>MoreIsMissingQ8A1.mp3</Answer1Audio>
+                <Answer2>Lola</Answer2>
+                <Answer2Audio>MoreIsMissingQ8A2.mp3</Answer2Audio>
+                <Answer3>the baby</Answer3>
+                <Answer3Audio>MoreIsMissingQ8A3.mp3</Answer3Audio>
+                <Answer4>Captain Hook</Answer4>
+                <Answer4Audio>MoreIsMissingQ8A4.mp3</Answer4Audio>
+                <expectedSelection>Paco</expectedSelection>
+            </Question>
+        </Questions>
+        <Questions title= "The Family is Rattled">
+            <Question number="1">
+                <QuestionText>Who looked in the living room for the rattle?</QuestionText>
+                <QuestionAudio>TheFamilyIsRattledQ1.mp3</QuestionAudio>
+                <Answer1>the baby</Answer1>
+                <Answer1Audio>TheFamilyIsRattledQ1A1.mp3</Answer1Audio>
+                <Answer2>Lola</Answer2>
+                <Answer2Audio>TheFamilyIsRattledQ1A2.mp3</Answer2Audio>
+                <Answer3>Rosa</Answer3>
+                <Answer3Audio>TheFamilyIsRattledQ1A3.mp3</Answer3Audio>
+                <Answer4>Pinocchio</Answer4>
+                <Answer4Audio>TheFamilyIsRattledQ1A4.mp3</Answer4Audio>
+                <expectedSelection>the baby</expectedSelection>
+            </Question>
+            <Question number="2">
+                <QuestionText>Why did Lola jump in the baby's lap?</QuestionText>
+                <QuestionAudio>TheFamilyIsRattledQ2.mp3</QuestionAudio>
+                <Answer1>to comfort the baby</Answer1>
+                <Answer1Audio>TheFamilyIsRattledQ2A1.mp3</Answer1Audio>
+                <Answer2>because Lola was scared</Answer2>
+                <Answer2Audio>TheFamilyIsRattledQ2A2.mp3</Answer2Audio>
+                <Answer3>to take a nap</Answer3>
+                <Answer3Audio>TheFamilyIsRattledQ2A3.mp3</Answer3Audio>
+                <Answer4>to beg for a carrot</Answer4>
+                <Answer4Audio>TheFamilyIsRattledQ2A4.mp3</Answer4Audio>
+                <expectedSelection>to comfort the baby</expectedSelection>
+            </Question>
+            <Question number="3">
+                <QuestionText>Why was the baby sad?</QuestionText>
+                <QuestionAudio>TheFamilyIsRattledQ3.mp3</QuestionAudio>
+                <Answer1>she could't find her rattle</Answer1>
+                <Answer1Audio>TheFamilyIsRattledQ3A1.mp3</Answer1Audio>
+                <Answer2>she was hurt</Answer2>
+                <Answer2Audio>TheFamilyIsRattledQ3A2.mp3</Answer2Audio>
+                <Answer3>she missed her father</Answer3>
+                <Answer3Audio>TheFamilyIsRattledQ3A3.mp3</Answer3Audio>
+                <Answer4>she lost her imaginary friend</Answer4>
+                <Answer4Audio>TheFamilyIsRattledQ3A4.mp3</Answer4Audio>
+                <expectedSelection>she could't find her rattle</expectedSelection>
+            </Question>
+            <Question number="4">
+                <QuestionText>What did Paco hear?</QuestionText>
+                <QuestionAudio>TheFamilyIsRattledQ4.mp3</QuestionAudio>
+                <Answer1>the baby cry</Answer1>
+                <Answer1Audio>TheFamilyIsRattledQ4A1.mp3</Answer1Audio>
+                <Answer2>something in the tree</Answer2>
+                <Answer2Audio>TheFamilyIsRattledQ4A2.mp3</Answer2Audio>
+                <Answer3>the baby giggle</Answer3>
+                <Answer3Audio>TheFamilyIsRattledQ4A3.mp3</Answer3Audio>
+                <Answer4>his favorite song on the radio</Answer4>
+                <Answer4Audio>TheFamilyIsRattledQ4A4.mp3</Answer4Audio>
+                <expectedSelection>the baby cry</expectedSelection>
+            </Question>
+            <Question number="5">
+                <QuestionText>What did Rosa hear outside?</QuestionText>
+                <QuestionAudio>TheFamilyIsRattledQ5.mp3</QuestionAudio>
+                <Answer1>Paco barking</Answer1>
+                <Answer1Audio>TheFamilyIsRattledQ5A1.mp3</Answer1Audio>
+                <Answer2>a bird chirping</Answer2>
+                <Answer2Audio>TheFamilyIsRattledQ5A2.mp3</Answer2Audio>
+                <Answer3>the baby cry</Answer3>
+                <Answer3Audio>TheFamilyIsRattledQ5A3.mp3</Answer3Audio>
+                <Answer4>Thomas the Train</Answer4>
+                <Answer4Audio>TheFamilyIsRattledQ5A4.mp3</Answer4Audio>
+                <expectedSelection>Paco barking</expectedSelection>
+            </Question>
+            <Question number="6">
+                <QuestionText>How did the baby get outside?</QuestionText>
+                <QuestionAudio>TheFamilyIsRattledQ6.mp3</QuestionAudio>
+                <Answer1>Rosa carried her</Answer1>
+                <Answer1Audio>TheFamilyIsRattledQ6A1.mp3</Answer1Audio>
+                <Answer2>Paco carried her</Answer2>
+                <Answer2Audio>TheFamilyIsRattledQ6A2.mp3</Answer2Audio>
+                <Answer3>she crawled out</Answer3>
+                <Answer3Audio>TheFamilyIsRattledQ6A3.mp3</Answer3Audio>
+                <Answer4>with her magic carpet</Answer4>
+                <Answer4Audio>TheFamilyIsRattledQ6A4.mp3</Answer4Audio>
+                <expectedSelection>Rosa carried her</expectedSelection>
+            </Question>
+        </Questions>
+        <Questions title= "The Mystery is Solved">
+            <Question number="1">
+                <QuestionText>Who stole the rattle?</QuestionText>
+                <QuestionAudio>TheMysteryIsSolvedQ1.mp3</QuestionAudio>
+                <Answer1>bird</Answer1>
+                <Answer1Audio>TheMysteryIsSolvedQ1A1.mp3</Answer1Audio>
+                <Answer2>Paco</Answer2>
+                <Answer2Audio>TheMysteryIsSolvedQ1A2.mp3</Answer2Audio>
+                <Answer3>the baby</Answer3>
+                <Answer3Audio>TheMysteryIsSolvedQ1A3.mp3</Answer3Audio>
+                <Answer4>Sponge Bob</Answer4>
+                <Answer4Audio>TheMysteryIsSolvedQ1A4.mp3</Answer4Audio>
+                <expectedSelection>bird</expectedSelection>
+            </Question>
+            <Question number="2">
+                <QuestionText>Why was Paco a hero?</QuestionText>
+                <QuestionAudio>TheMysteryIsSolvedQ2.mp3</QuestionAudio>
+                <Answer1>for helping the family solve the mystery</Answer1>
+                <Answer1Audio>TheMysteryIsSolvedQ2A1.mp3</Answer1Audio>
+                <Answer2>for returning the things he stole</Answer2>
+                <Answer2Audio>TheMysteryIsSolvedQ2A2.mp3</Answer2Audio>
+                <Answer3>for rescuing Lola</Answer3>
+                <Answer3Audio>TheMysteryIsSolvedQ2A3.mp3</Answer3Audio>
+                <Answer4>for having a superpower</Answer4>
+                <Answer4Audio>TheMysteryIsSolvedQ2A4.mp3</Answer4Audio>
+                <expectedSelection>for helping the family solve the mystery</expectedSelection>
+            </Question>
+            <Question number="3">
+                <QuestionText>What was the mysterty?</QuestionText>
+                <QuestionAudio>TheMysteryIsSolvedQ3.mp3</QuestionAudio>
+                <Answer1>finding out who stole the shiny things</Answer1>
+                <Answer1Audio>TheMysteryIsSolvedQ3A1.mp3</Answer1Audio>
+                <Answer2>finding out why the baby was crying</Answer2>
+                <Answer2Audio>TheMysteryIsSolvedQ3A2.mp3</Answer2Audio>
+                <Answer3>finding out where the bird came from</Answer3>
+                <Answer3Audio>TheMysteryIsSolvedQ3A3.mp3</Answer3Audio>
+                <Answer4>finding out who drank all of the chocolate milk</Answer4>
+                <Answer4Audio>TheMysteryIsSolvedQ3A4.mp3</Answer4Audio>
+                <expectedSelection>finding out who stole the shiny things</expectedSelection>
+            </Question>
+            <Question number="4">
+                <QuestionText>How was Paco rewarded?</QuestionText>
+                <QuestionAudio>TheMysteryIsSolvedQ4.mp3</QuestionAudio>
+                <Answer1>with a big steak dinner</Answer1>
+                <Answer1Audio>TheMysteryIsSolvedQ4A1.mp3</Answer1Audio>
+                <Answer2>with a chew toy</Answer2>
+                <Answer2Audio>TheMysteryIsSolvedQ4A2.mp3</Answer2Audio>
+                <Answer3>with a long walk</Answer3>
+                <Answer3Audio>TheMysteryIsSolvedQ4A3.mp3</Answer3Audio>
+                <Answer4>with catnip</Answer4>
+                <Answer4Audio>TheMysteryIsSolvedQ4A4.mp3</Answer4Audio>
+                <expectedSelection>with a big steak dinner</expectedSelection>
+            </Question>
+            <Question number="5">
+                <QuestionText>Who put the keys on the hook?</QuestionText>
+                <QuestionAudio>TheMysteryIsSolvedQ5.mp3</QuestionAudio>
+                <Answer1>Martin</Answer1>
+                <Answer1Audio>TheMysteryIsSolvedQ5A1.mp3</Answer1Audio>
+                <Answer2>Rosa</Answer2>
+                <Answer2Audio>TheMysteryIsSolvedQ5A2.mp3</Answer2Audio>
+                <Answer3>the bird</Answer3>
+                <Answer3Audio>TheMysteryIsSolvedQ5A3.mp3</Answer3Audio>
+                <Answer4>the unicorn</Answer4>
+                <Answer4Audio>TheMysteryIsSolvedQ5A4.mp3</Answer4Audio>
+                <expectedSelection>Martin</expectedSelection>
+            </Question>
+            <Question number="6">
+                <QuestionText>Why did the bird fly into the kitchen?</QuestionText>
+                <QuestionAudio>TheMysteryIsSolvedQ6.mp3</QuestionAudio>
+                <Answer1>to get the keys</Answer1>
+                <Answer1Audio>TheMysteryIsSolvedQ6A1.mp3</Answer1Audio>
+                <Answer2>to get some food</Answer2>
+                <Answer2Audio>TheMysteryIsSolvedQ6A2.mp3</Answer2Audio>
+                <Answer3>to escape from Paco</Answer3>
+                <Answer3Audio>TheMysteryIsSolvedQ6A3.mp3</Answer3Audio>
+                <Answer4>to say hello to Lola the bunny</Answer4>
+                <Answer4Audio>TheMysteryIsSolvedQ6A4.mp3</Answer4Audio>
+                <expectedSelection>to get the keys</expectedSelection>
+            </Question>
+            <Question number="7">
+                <QuestionText>What did the bird like about the things it took?</QuestionText>
+                <QuestionAudio>TheMysteryIsSolvedQ7.mp3</QuestionAudio>
+                <Answer1>they were shiny</Answer1>
+                <Answer1Audio>TheMysteryIsSolvedQ7A1.mp3</Answer1Audio>
+                <Answer2>they were small</Answer2>
+                <Answer2Audio>TheMysteryIsSolvedQ7A2.mp3</Answer2Audio>
+                <Answer3>they were colorful</Answer3>
+                <Answer3Audio>TheMysteryIsSolvedQ7A3.mp3</Answer3Audio>
+                <Answer4>they tasted like worms</Answer4>
+                <Answer4Audio>TheMysteryIsSolvedQ7A4.mp3</Answer4Audio>
+                <expectedSelection>they were shiny</expectedSelection>
+            </Question>
+        </Questions>
+    </ActivityAssessment>
+</metadata>

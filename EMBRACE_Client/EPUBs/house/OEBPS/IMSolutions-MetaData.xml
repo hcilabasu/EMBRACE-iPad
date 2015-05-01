@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <solutions>
+        <story title="The Mystery is Solved" activity_id="story6-PM-1">
+            <sentence number="1">
+                <step number="1">
+                    <ungroup obj1Id="man" action="getOut" obj2Id="car"/>
+                </step>
+            </sentence>
+        </story>
+    </solutions>
+</metadata>

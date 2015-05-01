@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <waypoints>
+        <waypoint waypointId="crib" x="27%" y="50%"/>
+        <waypoint waypointId="fridge" x="26%" y="60%"/>
+        <waypoint waypointId="frontHouse" x="26%" y="87%"/>
+        <waypoint waypointId="frontHouse2" x="30%" y="90%"/>
+        <waypoint waypointId="frontHouse3" x="14%" y="86%"/>
+        <waypoint waypointId="frontHouse4" x="22%" y="86%"/>
+        <waypoint waypointId="frontHouse5" x="35%" y="85%"/>
+        <waypoint waypointId="ground" x="25%" y="90%"/>
+        <waypoint waypointId="kitchenSink" x="14%" y="75%"/>
+        <waypoint waypointId="livingRoom" x="45%" y="76%"/>
+        <waypoint waypointId="livingRoom2" x="37%" y="78%"/>
+        <waypoint waypointId="livingRoom3" x="39%" y="79.5%"/>
+        <waypoint waypointId="livingRoom4" x="34%" y="81.5%"/>
+        <waypoint waypointId="nearChair" x="14%" y="75%"/>
+        <waypoint waypointId="nearCrib" x="27%" y="47%"/>
+        <waypoint waypointId="nearKeys" x="22%" y="75%"/>
+        <waypoint waypointId="nearKeys2" x="24%" y="75%"/>
+        <waypoint waypointId="nearTree" x="84%" y="88%"/>
+        <waypoint waypointId="nearTree2" x="74%" y="86%"/>
+        <waypoint waypointId="nest" x="83%" y="49.5%"/>
+        <waypoint waypointId="nest2" x="83.5%" y="49.5%"/>
+        <waypoint waypointId="nextToCar" x="8%" y="80%"/>
+        <waypoint waypointId="onHook" x="20.5%" y="65%"/>
+        <waypoint waypointId="parkCar" x="32%" y="88%"/>
+        <waypoint waypointId="playRoom" x="36%" y="28%"/>
+        <waypoint waypointId="rightOfHouse" x="63%" y="79%"/>
+        <waypoint waypointId="rightOfHouse2" x="60%" y="68%"/>
+        <waypoint waypointId="rightOfHouse3" x="71%" y="76%"/>
+        <waypoint waypointId="rightOfHouse4" x="67%" y="63.5%"/>
+        <waypoint waypointId="sink" x="35.5%" y="49%"/>
+        <waypoint waypointId="treePosition" x="68%" y="92%"/>
+    </waypoints>
+</metadata>

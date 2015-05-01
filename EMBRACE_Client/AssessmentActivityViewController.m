@@ -15,6 +15,7 @@
 
 NSInteger AnswerSelection[4];
 NSMutableArray *AnswerOptions;
+NSMutableArray *AnswerAudios;
 NSString *AnswerOption1EnglishAudio;
 NSString *AnswerOption1SpanishAudio;
 NSString *AnswerOption2EnglishAudio;
@@ -26,7 +27,7 @@ NSString *AnswerOption4SpanishAudio;
 NSString *Question;
 NSString *QuestionAudio;
 NSInteger questionNum;
-NSInteger correctSelection;
+NSString* correctSelection;
 NSMutableDictionary *assessmentActivities;
 NSMutableArray *currentAssessmentActivitySteps;
 NSInteger totalAssessmentActivitySteps;
@@ -81,14 +82,18 @@ NSString *CurrentStep;
         QuestionAudio = [currAssessmentActivityStep QuestionAudio];
         questionNum = [currAssessmentActivityStep QuestionNumber];
         AnswerOptions =[[NSMutableArray alloc] init];
+        AnswerAudios = [[NSMutableArray alloc] init];
+        
         [AnswerOptions addObject:[currAssessmentActivityStep Answer1]];
-        AnswerOption1EnglishAudio = [currAssessmentActivityStep Answer1Audio];
+        [AnswerAudios addObject:[currAssessmentActivityStep Answer1Audio]];
         [AnswerOptions addObject:[currAssessmentActivityStep Answer2]];
-        AnswerOption2EnglishAudio = [currAssessmentActivityStep Answer2Audio];
+        [AnswerAudios addObject:[currAssessmentActivityStep Answer2Audio]];
         [AnswerOptions addObject:[currAssessmentActivityStep Answer3]];
-        AnswerOption3EnglishAudio = [currAssessmentActivityStep Answer3Audio];
+        [AnswerAudios addObject:[currAssessmentActivityStep Answer3Audio]];
         [AnswerOptions addObject:[currAssessmentActivityStep Answer4]];
-        AnswerOption4EnglishAudio = [currAssessmentActivityStep Answer4Audio];
+        [AnswerAudios addObject:[currAssessmentActivityStep Answer4Audio]];
+        
+        [self shuffleAnswers];
         
         playAudioFileClass = [[PlayAudioFile alloc]init];
         
@@ -97,6 +102,16 @@ NSString *CurrentStep;
         
     }
     return self;
+}
+
+-(void)shuffleAnswers{
+    NSUInteger count = [AnswerOptions count];
+    for (NSUInteger i=0; i<count; ++i) {
+        NSInteger remainingCount = count-i;
+        NSInteger exchangeIndex = i+ arc4random_uniform((u_int32_t)remainingCount);
+        [AnswerOptions exchangeObjectAtIndex:i withObjectAtIndex:exchangeIndex];
+        [AnswerAudios exchangeObjectAtIndex:i withObjectAtIndex:exchangeIndex];
+    }
 }
 
 - (void)viewDidLoad
@@ -154,32 +169,32 @@ NSString *CurrentStep;
 //log user pressed play audio
 -(IBAction)PlayQuestionAudioPressed:(id)sender
 {
-    //[playAudioFileClass playAudioFile:QuestionAudio];
-    [playAudioFileClass textToSpeech:Question];//Question:BookTitle:ChapterTitle:CurrentPage:CurrentSentence:CurrentStep];
+    [playAudioFileClass playAudioFile:QuestionAudio];
+    //[playAudioFileClass textToSpeech:Question];//Question:BookTitle:ChapterTitle:CurrentPage:CurrentSentence:CurrentStep];
 }
 
 -(IBAction)PlayAnswer1AudioPressed:(id)sender
 {
-    //[playAudioFileClass playAudioFile:AnswerOption1EnglishAudio];
-    [playAudioFileClass textToSpeech:AnswerOptions[0]];
+    [playAudioFileClass playAudioFile:AnswerAudios[0]];
+    //[playAudioFileClass textToSpeech:AnswerOptions[0]];
 }
 
 -(IBAction)PlayAnswer2AudioPressed:(id)sender
 {
-    //[playAudioFileClass playAudioFile:AnswerOption2EnglishAudio];
-    [playAudioFileClass textToSpeech:AnswerOptions[1]];
+    [playAudioFileClass playAudioFile:AnswerAudios[1]];
+    //[playAudioFileClass textToSpeech:AnswerOptions[1]];
 }
 
 -(IBAction)PlayAnswer3AudioPressed:(id)sender
 {
-    //[playAudioFileClass playAudioFile:AnswerOption3EnglishAudio];
-    [playAudioFileClass textToSpeech:AnswerOptions[2]];
+    [playAudioFileClass playAudioFile:AnswerAudios[2]];
+    //[playAudioFileClass textToSpeech:AnswerOptions[2]];
 }
 
 -(IBAction)PlayAnswer4AudioPressed:(id)sender
 {
-    //[playAudioFileClass playAudioFile:AnswerOption4EnglishAudio];
-    [playAudioFileClass textToSpeech:AnswerOptions[3]];
+    [playAudioFileClass playAudioFile:AnswerAudios[3]];
+    //[playAudioFileClass textToSpeech:AnswerOptions[3]];
 }
 
 - (IBAction)NextButtonPressed:(id)sender {
@@ -206,12 +221,21 @@ NSString *CurrentStep;
         AssessmentActivity* currAssessmentActivityStep = [currentAssessmentActivitySteps objectAtIndex:currentAssessmentActivityStep-1];
         correctSelection = [currAssessmentActivityStep expectedSelection];
         Question = [currAssessmentActivityStep QuestionText];
+        QuestionAudio =[currAssessmentActivityStep QuestionAudio];
         questionNum = [currAssessmentActivityStep QuestionNumber];
         [AnswerOptions removeAllObjects];
+        [AnswerAudios removeAllObjects];
+        
         [AnswerOptions addObject:[currAssessmentActivityStep Answer1]];
+        [AnswerAudios addObject:[currAssessmentActivityStep Answer1Audio]];
         [AnswerOptions addObject:[currAssessmentActivityStep Answer2]];
+        [AnswerAudios addObject:[currAssessmentActivityStep Answer2Audio]];
         [AnswerOptions addObject:[currAssessmentActivityStep Answer3]];
+        [AnswerAudios addObject:[currAssessmentActivityStep Answer3Audio]];
         [AnswerOptions addObject:[currAssessmentActivityStep Answer4]];
+        [AnswerAudios addObject:[currAssessmentActivityStep Answer4Audio]];
+        
+        [self shuffleAnswers];
         
         //reset tableview cells, reload tableview
         NSArray *cells = [AnswerList indexPathsForVisibleRows];
@@ -281,7 +305,7 @@ NSString *CurrentStep;
         [[ServerCommunicationController sharedManager] logUserAssessmentPressedAnswerOption:Question :([indexPath row]+1) :AnswerOptions :@"Answer Option" :@"Verification" :BookTitle :ChapterTitle :[NSString stringWithFormat:@"%d",currentAssessmentActivityStep]];
         
             //checks if option is correct else gray out
-            if(([indexPath row]+1) == correctSelection)
+            if([cell.textLabel.text isEqualToString: correctSelection])
             {
                 //log correct answer selected
                 [[ServerCommunicationController sharedManager] logComputerAssessmentAnswerVerification:true : Question :([indexPath row]+1) :AnswerOptions :@"Answer Option" :@"Verification" :BookTitle :ChapterTitle :[NSString stringWithFormat:@"%d", currentAssessmentActivityStep]];
@@ -293,7 +317,13 @@ NSString *CurrentStep;
                 for(int i=0;i<[AnswerOptions count];i++)
                 {
                     
-                    if (i!=(correctSelection-1)) {
+                    if ([AnswerOptions[i] isEqualToString:correctSelection]) {
+                        UIColor *LightBlueColor = [UIColor colorWithRed: 135.0/255.0 green: 180.0/255.0 blue:225.0/255.0 alpha: 1.0];
+                        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+                        cell.backgroundColor= LightBlueColor;
+                        nextButton.hidden = false;
+                    }
+                    else{
                         //gray out option
                         
                         //UITableViewCell *tempCell = [tableView cellForRowAtIndexPath:cells[i]];
@@ -301,13 +331,6 @@ NSString *CurrentStep;
                         //tempCell.contentView.alpha=.2;
                         //tempCell.backgroundColor = [UIColor grayColor];
                         //tempCell.alpha =.2;
-                        
-                    }
-                    else{
-                        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-                        cell.backgroundColor= [UIColor blueColor];
-                        nextButton.hidden = false;
-                        
                     }
                 }
                 

@@ -13,7 +13,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>Jose</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>2</expectedSelection>
+                <expectedSelection>Manuel</expectedSelection>
             </Question>
             <Question number="2">
                 <QuestionText>On what day does the judge come?</QuestionText>
@@ -26,7 +26,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>Friday</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>3</expectedSelection>
+                <expectedSelection>Sunday</expectedSelection>
             </Question>
             <Question number="3">
                 <QuestionText>Which animal jumped into Manuel's arms?</QuestionText>
@@ -39,7 +39,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>Cat</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>4</expectedSelection>
+                <expectedSelection>Cat</expectedSelection>
             </Question>
             <Question number="4">
                 <QuestionText>On which animal did the chicken sit?</QuestionText>
@@ -52,7 +52,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>Cat</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>2</expectedSelection>
+                <expectedSelection>Cow</expectedSelection>
             </Question>
             <Question number="5">
                 <QuestionText>Why does Manuel want to work hard this week?</QuestionText>
@@ -65,7 +65,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>To go on vacation</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>To get the prize for best farm</expectedSelection>
             </Question>
             <Question number="6">
                 <QuestionText>After the goat walked to the cow, what other animal was nearby?</QuestionText>
@@ -78,7 +78,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>Horse</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>4</expectedSelection>
+                <expectedSelection>Horse</expectedSelection>
             </Question>
             <Question number="7">
                 <QuestionText>How did the goat get out of its pen?</QuestionText>
@@ -91,7 +91,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>The goat jumped out</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>2</expectedSelection>
+                <expectedSelection>The farmer opened it</expectedSelection>
             </Question>
     </Questions>
         
@@ -107,7 +107,7 @@
                         <Answer3Audio>audioFile</Answer3Audio>
                         <Answer4>Betty</Answer4>
                         <Answer4Audio>audioFile</Answer4Audio>
-                        <expectedSelection>1</expectedSelection>
+                        <expectedSelection>Manuel</expectedSelection>
                     </Question>
                     <Question number="2">
                         <QuestionText>On what day does the judge come?</QuestionText>
@@ -120,7 +120,7 @@
                         <Answer3Audio>audioFile</Answer3Audio>
                         <Answer4>Christmas</Answer4>
                         <Answer4Audio>audioFile</Answer4Audio>
-                        <expectedSelection>1</expectedSelection>
+                        <expectedSelection>Sunday</expectedSelection>
                     </Question>
                     <Question number="3">
                         <QuestionText>Which animal jumped into Manuel's arms?</QuestionText>
@@ -133,7 +133,7 @@
                         <Answer3Audio>audioFile</Answer3Audio>
                         <Answer4>Hippo</Answer4>
                         <Answer4Audio>audioFile</Answer4Audio>
-                        <expectedSelection>1</expectedSelection>
+                        <expectedSelection>Cat</expectedSelection>
                     </Question>
                     <Question number="4">
                         <QuestionText>On which animal did the chicken sit?</QuestionText>
@@ -146,7 +146,7 @@
                         <Answer3Audio>audioFile</Answer3Audio>
                         <Answer4>Bug</Answer4>
                         <Answer4Audio>audioFile</Answer4Audio>
-                        <expectedSelection>1</expectedSelection>
+                        <expectedSelection>Cow</expectedSelection>
                     </Question>
                     <Question number="5">
                         <QuestionText>Why does Manuel want to work hard this week?</QuestionText>
@@ -159,7 +159,7 @@
                         <Answer3Audio>audioFile</Answer3Audio>
                         <Answer4>because his dad told him to</Answer4>
                         <Answer4Audio>audioFile</Answer4Audio>
-                        <expectedSelection>1</expectedSelection>
+                        <expectedSelection>to win the prize for best farm</expectedSelection>
                     </Question>
                     <Question number="6">
                         <QuestionText>After the goat walked to the cow, what other animal was nearby?</QuestionText>
@@ -172,7 +172,7 @@
                         <Answer3Audio>audioFile</Answer3Audio>
                         <Answer4>Zebra</Answer4>
                         <Answer4Audio>audioFile</Answer4Audio>
-                        <expectedSelection>1</expectedSelection>
+                        <expectedSelection>Horse</expectedSelection>
                     </Question>
                     <Question number="7">
                         <QuestionText>How did the goat get out of its pen?</QuestionText>
@@ -185,7 +185,7 @@
                         <Answer3Audio>audioFile</Answer3Audio>
                         <Answer4>The pen disappeared.</Answer4>
                         <Answer4Audio>audioFile</Answer4Audio>
-                        <expectedSelection>1</expectedSelection>
+                        <expectedSelection>Farmer Manuel opened it.</expectedSelection>
                     </Question>
                 </Questions>
                         
@@ -201,7 +201,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>The milk makes her fur fall out.</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>The milk makes her fur shiny.</expectedSelection>
             </Question>
             <Question number="2">
                 <QuestionText>How does eating apple help the horse's teeth?</QuestionText>
@@ -214,7 +214,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>Eating an apple gives the horse bad breath.</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>Eating an apple cleans the horse's teeth.</expectedSelection>
             </Question>
             <Question number="3">
                 <QuestionText>How did Manuel help the goat to look good?</QuestionText>
@@ -227,7 +227,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>Manuel painted the goat's hooves.</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>Manuel combed the goat's fur.</expectedSelection>
             </Question>
             <Question number="4">
                 <QuestionText>Which animal drank the milk?</QuestionText>
@@ -240,7 +240,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>Goldfish</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>Cat</expectedSelection>
             </Question>
             <Question number="5">
                 <QuestionText>What did Manuel put in the cart?</QuestionText>
@@ -253,7 +253,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>Candy</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>Pumpkin</expectedSelection>
             </Question>
             <Question number="6">
                 <QuestionText>Why did Manuel want the animals to look good?</QuestionText>
@@ -266,7 +266,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>to bring them to the ballet</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>to win the prize for best farm</expectedSelection>
             </Question>
             <Question number="7">
                 <QuestionText>Why did Manuel put the pumpkin in the cart?</QuestionText>
@@ -279,7 +279,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>to carve for Halloween</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>to give to the pig</expectedSelection>
             </Question>
                 </Questions>
                         
@@ -295,7 +295,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>because it was stinky</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>to win the Best Farm Award</expectedSelection>
             </Question>
             <Question number="2">
                 <QuestionText>Why did Manuel put some animals into the corral?</QuestionText>
@@ -308,7 +308,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>because they were fighting</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>so he can clean better</expectedSelection>
             </Question>
             <Question number="3">
                 <QuestionText>Where did Manuel put the pig?</QuestionText>
@@ -321,7 +321,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>on the roof</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>in its pen</expectedSelection>
             </Question>
             <Question number="4">
                 <QuestionText>What did Manuel check the Pumpkins for?</QuestionText>
@@ -334,7 +334,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>bubbles</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>weeds</expectedSelection>
             </Question>
             <Question number="5">
                 <QuestionText>Where did Manuel put the hay?</QuestionText>
@@ -347,7 +347,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>in his mouth</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>in the hayloft</expectedSelection>
             </Question>
             <Question number="6">
                 <QuestionText>At the end of the story, how did Manuel feel?</QuestionText>
@@ -360,7 +360,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>like singing</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>hurt</expectedSelection>
             </Question>
         </Questions>
                 
@@ -376,7 +376,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>There was a frog in her throat</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>She was thirsty</expectedSelection>
             </Question>
             <Question number="2">
                 <QuestionText>Which animal ate the apple?</QuestionText>
@@ -389,7 +389,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>worm</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>goat</expectedSelection>
             </Question>
             <Question number="3">
                 <QuestionText>Which animal ate the hay?</QuestionText>
@@ -402,7 +402,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>donkey</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>horse</expectedSelection>
             </Question>
             <Question number="4">
                 <QuestionText>What did the chicken want the cat to do?</QuestionText>
@@ -415,7 +415,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>catch the mouse</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>purr</expectedSelection>
             </Question>
             <Question number="5">
                 <QuestionText>Which animal jumped up to the chicken's nest?</QuestionText>
@@ -428,7 +428,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>giraffe</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>cat</expectedSelection>
             </Question>
             <Question number="6">
                 <QuestionText>Which animal was near the hay?</QuestionText>
@@ -441,7 +441,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>monkey</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>horse</expectedSelection>
             </Question>
         </Questions>
                         
@@ -457,7 +457,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>teacher</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>Farmer Manuel</expectedSelection>
             </Question>
             <Question number="2">
                 <QuestionText>Why was the chicken sad?</QuestionText>
@@ -470,7 +470,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>because she misses her mom</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>because she couldn't be the best with only one egg</expectedSelection>
             </Question>
             <Question number="3">
                 <QuestionText>Which animal did the owl fly to first?</QuestionText>
@@ -483,7 +483,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>puppy</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>chicken</expectedSelection>
             </Question>
             <Question number="4">
                 <QuestionText>What did the chicken do when the owl visited?</QuestionText>
@@ -496,7 +496,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>did the chicken dance</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>flew to her nest to count her eggs</expectedSelection>
             </Question>
             <Question number="5">
                 <QuestionText>Why couldn't the pig eat pumkpkins?</QuestionText>
@@ -509,7 +509,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>He was on a diet</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>He was locked in his pen</expectedSelection>
             </Question>
             <Question number="6">
                 <QuestionText>Who did the owl talk to last?</QuestionText>
@@ -522,7 +522,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>Queen Elsa</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>Farmer Manuel</expectedSelection>
             </Question>
                 </Questions>
                 
@@ -538,7 +538,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>Ninja turtle</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>Horse</expectedSelection>
             </Question>
             <Question number="2">
                 <QuestionText>At the begginning of the story, which animal wanted to eat a pumpkin?</QuestionText>
@@ -551,7 +551,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>lizard</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>pig</expectedSelection>
             </Question>
             <Question number="3">
                 <QuestionText>What did the pig bring to the horse?</QuestionText>
@@ -564,7 +564,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>milkshake</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>apple</expectedSelection>
             </Question>
             <Question number="4">
                 <QuestionText>Who called the cat to drink milk from the bucket?</QuestionText>
@@ -577,7 +577,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>batman</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>cow</expectedSelection>
             </Question>
             <Question number="5">
                 <QuestionText>What did the chicken do after listening to the cat purr?</QuestionText>
@@ -590,7 +590,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>crossed the road</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>laid eggs</expectedSelection>
             </Question>
             <Question number="6">
                 <QuestionText>Where did the cat go after drinking milk?</QuestionText>
@@ -603,7 +603,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>over the moon</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>to the chicken's nest</expectedSelection>
             </Question>
                 </Questions>
                 
@@ -619,7 +619,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>panda</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>cow</expectedSelection>
             </Question>
             <Question number="2">
                 <QuestionText>How many eggs were in the chicken's nest?</QuestionText>
@@ -632,7 +632,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>100</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>4</expectedSelection>
             </Question>
             <Question number="3">
                 <QuestionText>Which animal was fat?</QuestionText>
@@ -645,7 +645,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>cheetah</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>pig</expectedSelection>
             </Question>
             <Question number="4">
                 <QuestionText>Which animal ran fast?</QuestionText>
@@ -658,7 +658,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>snail</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>horse</expectedSelection>
             </Question>
             <Question number="5">
                 <QuestionText>To whom did the judge give the award?</QuestionText>
@@ -671,7 +671,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>Old MacDonald</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>Farmer Manuel</expectedSelection>
             </Question>
             <Question number="6">
                 <QuestionText>At the end of the story, who was close to the judge?</QuestionText>
@@ -684,7 +684,7 @@
                 <Answer3Audio>audioFile</Answer3Audio>
                 <Answer4>wizard</Answer4>
                 <Answer4Audio>audioFile</Answer4Audio>
-                <expectedSelection>1</expectedSelection>
+                <expectedSelection>Farmer Manuel</expectedSelection>
             </Question>
         </Questions>
     </ActivityAssessment>
