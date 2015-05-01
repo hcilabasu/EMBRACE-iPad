@@ -175,7 +175,7 @@ ConditionSetup *conditionSetup;
     menuDataSource = [[ContextualMenuDataSource alloc] init];
     
     pageStatistics = [[NSMutableDictionary alloc] init];
-    chooseComplexity = TRUE;
+    chooseComplexity = FALSE;
     
     //Ensure that the pinch recognizer gets called before the pan gesture recognizer.
     //That way, if a user is trying to ungroup objects, they can do so without the objects moving as well.
@@ -3785,7 +3785,7 @@ ConditionSetup *conditionSetup;
             
             //currentSentence is 1 indexed.
             if(currentSentence > totalSentences) {
-                if (chooseComplexity) {
+                if (chooseComplexity && [currentPageId rangeOfString:@"Intro"].location == NSNotFound && ![chapterTitle isEqualToString:@"Introduction to The Best Farm"] && [bookTitle rangeOfString:@"The Circulatory System"].location == NSNotFound) {
                     [self showPageStatistics]; //show popup window with page statistics
                 }
                 else {

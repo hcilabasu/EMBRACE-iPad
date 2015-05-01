@@ -399,7 +399,8 @@ ConditionSetup *conditionSetup;
     //Get the solution steps for the current chapter
     Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
     PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
-    PMSolution = [PMActivity PMSolution]; //get PM solution
+    //PMSolution = [PMActivity PMSolution]; //get PM solution
+    PMSolution = [[[PMActivity PMSolutions] objectForKey:currentPageId] objectAtIndex:0]; //get PM solution
     
     //instantiates all vocab variables
     [IntroductionClass loadFirstPageVocabulary:model :chapterTitle];
