@@ -175,7 +175,7 @@ ConditionSetup *conditionSetup;
     menuDataSource = [[ContextualMenuDataSource alloc] init];
     
     pageStatistics = [[NSMutableDictionary alloc] init];
-    chooseComplexity = FALSE;
+    chooseComplexity = TRUE;
     
     //Ensure that the pinch recognizer gets called before the pan gesture recognizer.
     //That way, if a user is trying to ungroup objects, they can do so without the objects moving as well.
@@ -3795,7 +3795,7 @@ ConditionSetup *conditionSetup;
             }
             else {
                 //For page statistics
-                if (chooseComplexity && numSteps == 0) {
+                if (chooseComplexity && numSteps == 0 && currentComplexity > 0) {
                     endTime = [NSDate date];
                     
                     //Record time for non-action sentence for complexity
