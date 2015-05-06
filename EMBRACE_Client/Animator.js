@@ -27,6 +27,7 @@ function AnimationObject(object, posX, posY, endX, endY, animName) {
 }
 
 function animateObject(objectName, posX, posY, endX, endY, animName) {
+    alert("Entered animateObject!");
     animName = String(animName);
     
     var animationObject = new AnimationObject(objectName, posX, posY, endX, endY, animName);
@@ -49,6 +50,7 @@ function animFrame(object){
         fall(object);
     }
     if(object.animName == "bobAnimation") {
+        alert("Entered animFrame!");
         bob(object);
     }
     if(object.animName == "cheerAnimation") {
@@ -93,6 +95,7 @@ function fall(aniObject) {
 }
 
 function bob(aniObject) {
+    alert("Entered bob!");
     var t1 = new Date().getTime();
     aniObject.dt = 0.001*(t1-aniObject.t0);
     var seconds = Math.round(aniObject.dt % 60);

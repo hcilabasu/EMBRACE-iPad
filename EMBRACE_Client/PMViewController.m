@@ -290,10 +290,18 @@ ConditionSetup *conditionSetup;
         }
     }
     
-    // Draw area
-    if ([chapterTitle isEqualToString:@"Getting Ready"]) {
+    
+    // Draw area (hard-coded for now)
+    [self drawArea:@"outside" forChapter:@"Missing Keys"];
+    
+    //Perform setup for activity
+    [self performSetupForActivity];
+}
+
+-(void) drawArea:(NSString *)areaName forChapter:(NSString *) chapter {
+    if ([chapterTitle isEqualToString:chapter]) {
         //Get area that hotspot should be inside
-        Area* area = [model getAreaWithId:@"barn"];
+        Area* area = [model getAreaWithId:areaName];
         
         //apply path to shapelayer
         CAShapeLayer* greenPath = [CAShapeLayer layer];
@@ -305,9 +313,6 @@ ConditionSetup *conditionSetup;
         //add shape layer to view's layer
         [[self.view layer] addSublayer:greenPath];
     }
-    
-    //Perform setup for activity
-    [self performSetupForActivity];
 }
 
 /*

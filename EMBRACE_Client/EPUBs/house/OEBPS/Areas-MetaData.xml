@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <areas>
-        <area areaId="">
-            <point x="" y=""/>
+        <area areaId="outside">
+            <point x="0%" y="60%"/>
+            <point x="7%" y="60%"/>
+            <point x="7%" y="85%"/>
+            <point x="55%" y="85%"/>
+            <point x="55%" y="60%"/>
+            <point x="64%" y="60%"/>
+            <point x="64%" y="100%"/>
+            <point x="0%" y="100%"/>
         </area>
     </areas>
 </metadata>

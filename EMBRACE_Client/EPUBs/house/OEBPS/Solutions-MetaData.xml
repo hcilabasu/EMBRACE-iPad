@@ -68,7 +68,7 @@
             </sentence>
             <sentence number="6">
                 <step number="1">
-                    <check obj1Id="dog" action="getIn" locationId="outside"/>
+                    <check obj1Id="dog" action="getIn" locationId="" areaId="outside"/>
                     <move obj1Id="dog" action="getIn" waypointId="rightOfHouse"/>
                 </step>
             </sentence>
@@ -217,13 +217,13 @@
                     <move obj1Id="woman" action="getIn" waypointId="livingRoom"/>
                 </step>
                 <step number="3">
-                    <check obj1Id="woman" action="getIn" locationId="outside"/>
+                    <check obj1Id="woman" action="getIn" locationId="" areaId="outside"/>
                     <move obj1Id="woman" action="getIn" waypointId="rightOfHouse2"/>
                 </step>
             </sentence>
             <sentence number="11">
                 <step number="1">
-                    <check obj1Id="rabbit" action="getIn" locationId="outside"/>
+                    <check obj1Id="rabbit" action="getIn" locationId="" areaId="outside"/>
                     <move obj1Id="rabbit" action="getIn" waypointId="rightOfHouse3"/>
                 </step>
             </sentence>
@@ -245,7 +245,7 @@
             </sentence>
             <sentence number="2">
                 <step number="1">
-                    <check obj1Id="man" action="getIn" locationId="outside"/>
+                    <check obj1Id="man" action="getIn" locationId="" areaId="outside"/>
                     <move obj1Id="man" action="getIn" waypointId="rightOfHouse4"/>
                 </step>
             </sentence>
