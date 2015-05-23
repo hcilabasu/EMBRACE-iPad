@@ -115,6 +115,8 @@ typedef enum InteractionMode {
 
 @synthesize entryview;
 @synthesize isEntryViewVisible;
+@synthesize isAreaViewVisible;
+@synthesize areaSpace;
 @synthesize HotspotEntry;
 @synthesize SingleEntry;
 @synthesize LocationEntry;
@@ -644,6 +646,11 @@ ConditionSetup *conditionSetup;
         NSLog(@"%@",newHotspot);
         [entryview removeFromSuperview];
         isEntryViewVisible = false;
+        
+        if (isAreaViewVisible == true) {
+            [areaSpace removeFromSuperview];
+            self.isAreaViewVisible = false;
+        }
     }
     
 }
@@ -701,6 +708,11 @@ ConditionSetup *conditionSetup;
         NSLog(@"%@",newWaypoint);
         [entryview removeFromSuperview];
         isEntryViewVisible = false;
+        
+        if (isAreaViewVisible == true) {
+            [areaSpace removeFromSuperview];
+            self.isAreaViewVisible = false;
+        }
     }
 }
 
@@ -759,6 +771,11 @@ ConditionSetup *conditionSetup;
         NSLog(@"%@",newLocation);
         [entryview removeFromSuperview];
         isEntryViewVisible = false;
+        
+        if (isAreaViewVisible == true) {
+            [areaSpace removeFromSuperview];
+            self.isAreaViewVisible = false;
+        }
     }
     
     
@@ -841,13 +858,14 @@ ConditionSetup *conditionSetup;
     
     [pickerView removeFromSuperview];
     isEntryViewVisible = true;
+    isAreaViewVisible = false;
     
     if (row == 0) {
         //save waypoint
         /*
          add new sub view with textboxes, cancel button, and save button
          */
-        entryview = [[UIView alloc] initWithFrame:CGRectMake(TapLocationX-150, TapLocationY-150, 200, 200)];
+        entryview = [[UIView alloc] initWithFrame:CGRectMake(650, 20, 200, 200)];
         entryview.backgroundColor = [UIColor whiteColor];
 
         waypointID = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 180, 30)];
@@ -865,14 +883,24 @@ ConditionSetup *conditionSetup;
         ycord.textColor = [UIColor blackColor];
         ycord.borderStyle = UITextBorderStyleRoundedRect;
         
+        width = [[UITextField alloc] initWithFrame:CGRectMake(10, 60, 180, 30)];
+        width.text = @"25";
+        height = [[UITextField alloc] initWithFrame:CGRectMake(10, 60, 180, 30)];
+        height.text = @"25";
+        
         UIButton *cancel = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [cancel addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
         cancel.frame = CGRectMake(10, 140, 80, 50);
         [cancel setTitle:@"Cancel" forState:UIControlStateNormal];
         
+        UIButton *createVisibleArea = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [createVisibleArea addTarget:self action:@selector(Create:) forControlEvents:UIControlEventTouchUpInside];
+        createVisibleArea.frame = CGRectMake(65, 140, 80, 50);
+        [createVisibleArea setTitle:@"Create" forState:UIControlStateNormal];
+        
         UIButton *save = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [save addTarget:self action:@selector(saveWaypoint:) forControlEvents:UIControlEventTouchUpInside];
-        save.frame = CGRectMake(100, 140, 80, 50);
+        save.frame = CGRectMake(115, 140, 80, 50);
         [save setTitle:@"Save" forState:UIControlStateNormal];
         
         WaypointEntry = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
@@ -881,6 +909,7 @@ ConditionSetup *conditionSetup;
         [WaypointEntry addSubview:xcord];
         [WaypointEntry addSubview:ycord];
         [WaypointEntry addSubview:cancel];
+        [WaypointEntry addSubview:createVisibleArea];
         [WaypointEntry addSubview:save];
         [entryview addSubview:WaypointEntry];
         [self.view addSubview:entryview];
@@ -893,7 +922,7 @@ ConditionSetup *conditionSetup;
          add new sub view with textboxes, cancel button, and save button
          //NSString* hotspot = [NSString stringWithFormat:@"<hotspot objId=\"%@\" action=\"%@\" role=\"%@\" x=\"%d\" y=\"%d\"/>", hotspotID.text, action, role, xcord.text, ycord.text];
          */
-        entryview = [[UIView alloc] initWithFrame:CGRectMake(TapLocationX-150, TapLocationY-150, 200, 290)];
+        entryview = [[UIView alloc] initWithFrame:CGRectMake(650, 20, 200, 290)];
         entryview.backgroundColor = [UIColor whiteColor];
         
         hotspotID = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 180, 30)];
@@ -941,14 +970,24 @@ ConditionSetup *conditionSetup;
         ycord.textColor = [UIColor blackColor];
         ycord.borderStyle = UITextBorderStyleRoundedRect;
         
+        width = [[UITextField alloc] initWithFrame:CGRectMake(10, 60, 180, 30)];
+        width.text = @"25";
+        height = [[UITextField alloc] initWithFrame:CGRectMake(10, 60, 180, 30)];
+        height.text = @"25";
+        
         UIButton *cancel = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [cancel addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
         cancel.frame = CGRectMake(10, 220, 80, 50);
         [cancel setTitle:@"Cancel" forState:UIControlStateNormal];
         
+        UIButton *createVisibleArea = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [createVisibleArea addTarget:self action:@selector(Create:) forControlEvents:UIControlEventTouchUpInside];
+        createVisibleArea.frame = CGRectMake(65, 220, 80, 50);
+        [createVisibleArea setTitle:@"Create" forState:UIControlStateNormal];
+        
         UIButton *save = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [save addTarget:self action:@selector(saveHotspot:) forControlEvents:UIControlEventTouchUpInside];
-        save.frame = CGRectMake(100, 220, 80, 50);
+        save.frame = CGRectMake(115, 220, 80, 50);
         [save setTitle:@"Save" forState:UIControlStateNormal];
         
         HotspotEntry = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 290)];
@@ -959,6 +998,7 @@ ConditionSetup *conditionSetup;
         [HotspotEntry addSubview:xcord];
         [HotspotEntry addSubview:ycord];
         [HotspotEntry addSubview:cancel];
+        [HotspotEntry addSubview:createVisibleArea];
         [HotspotEntry addSubview:save];
         [entryview addSubview:HotspotEntry];
         [self.view addSubview:entryview];
@@ -971,7 +1011,7 @@ ConditionSetup *conditionSetup;
          add new sub view with textboxes, cancel button, and save button
          locationid, xcord, ycord, height, width
          */
-        entryview = [[UIView alloc] initWithFrame:CGRectMake(TapLocationX-150, TapLocationY-150, 200, 290)];
+        entryview = [[UIView alloc] initWithFrame:CGRectMake(650, 20, 200, 290)];
         entryview.backgroundColor = [UIColor whiteColor];
 
         locationID = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 180, 30)];
@@ -1004,9 +1044,14 @@ ConditionSetup *conditionSetup;
         cancel.frame = CGRectMake(10, 220, 80, 50);
         [cancel setTitle:@"Cancel" forState:UIControlStateNormal];
         
+        UIButton *createVisibleArea = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [createVisibleArea addTarget:self action:@selector(Create:) forControlEvents:UIControlEventTouchUpInside];
+        createVisibleArea.frame = CGRectMake(65, 220, 80, 50);
+        [createVisibleArea setTitle:@"Create" forState:UIControlStateNormal];
+        
         UIButton *save = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [save addTarget:self action:@selector(saveLocation:) forControlEvents:UIControlEventTouchUpInside];
-        save.frame = CGRectMake(100, 220, 80, 50);
+        save.frame = CGRectMake(115, 220, 80, 50);
         [save setTitle:@"Save" forState:UIControlStateNormal];
         
         LocationEntry = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 290)];
@@ -1017,6 +1062,7 @@ ConditionSetup *conditionSetup;
         [LocationEntry addSubview:width];
         [LocationEntry addSubview:height];
         [LocationEntry addSubview:cancel];
+        [LocationEntry addSubview:createVisibleArea];
         [LocationEntry addSubview:save];
         [entryview addSubview:LocationEntry];
         [self.view addSubview:entryview];
@@ -1089,7 +1135,7 @@ ConditionSetup *conditionSetup;
         
         UIButton *save = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [save addTarget:self action:@selector(changeZIndex:) forControlEvents:UIControlEventTouchUpInside];
-        save.frame = CGRectMake(100, 100, 80, 50);
+        save.frame = CGRectMake(115, 100, 80, 50);
         [save setTitle:@"Save" forState:UIControlStateNormal];
         
         SingleEntry = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 160)];
@@ -1280,9 +1326,27 @@ ConditionSetup *conditionSetup;
 
 }
 
+-(void)Create:(id)sender{
+    if (isAreaViewVisible != false) {
+        [areaSpace removeFromSuperview];
+    }
+    
+    areaSpace = [[UIView alloc]initWithFrame:CGRectMake([xcord.text floatValue], [ycord.text floatValue], [width.text floatValue], [height.text floatValue])];
+    areaSpace.backgroundColor = [UIColor whiteColor];
+    self.isAreaViewVisible = true;
+    [self.view addSubview:areaSpace];
+    
+    
+}
+
 -(void)cancel:(id)sender{
     [entryview removeFromSuperview];
     self.isEntryViewVisible = false;
+    
+    if (isAreaViewVisible == true) {
+        [areaSpace removeFromSuperview];
+        self.isAreaViewVisible = false;
+    }
 }
 
 /*

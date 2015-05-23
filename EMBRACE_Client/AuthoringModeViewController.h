@@ -45,6 +45,7 @@
 @property(nonatomic, strong) UIPickerView *picker;
 @property(nonatomic, retain) NSArray *ImageOptions;
 @property(nonatomic, strong) UIView *entryview;
+@property(nonatomic, strong) UIView *areaSpace;
 @property(nonatomic) NSInteger TapLocationX;
 @property(nonatomic) NSInteger TapLocationY;
 @property(nonatomic, strong) UIView *HotspotEntry;
@@ -63,6 +64,7 @@
 @property(nonatomic, strong) UITextField *action;
 @property(nonatomic, strong) UITextField *role;
 @property(nonatomic) BOOL isEntryViewVisible;
+@property(nonatomic) BOOL isAreaViewVisible;
 
 -(void) loadFirstPage;
 -(void) loadNextPage;
