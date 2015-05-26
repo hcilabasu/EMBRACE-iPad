@@ -861,6 +861,12 @@ ConditionSetup *conditionSetup;
                             ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :action :nil :fileName];
                             [PMSolution addSolutionStep:solutionStep];
                         }
+                        
+                        else if([[step name] isEqualToString:@"shakeOrTap"]) {
+                            NSString* areaId = [[step attributeForName:@"areaId"] stringValue];
+                            ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :action :areaId :nil];
+                            [PMSolution addSolutionStep:solutionStep];
+                        }
                     }
                 }
             }

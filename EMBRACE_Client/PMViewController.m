@@ -292,7 +292,8 @@ ConditionSetup *conditionSetup;
     
     
     // Draw area (hard-coded for now)
-    [self drawArea:@"outside" forChapter:@"Missing Keys"];
+    [self drawArea:@"outside" forChapter:@"The Lopez Family"];
+    [self drawArea:@"aroundPaco" forChapter:@"Is Paco a Thief?"];
     
     //Perform setup for activity
     [self performSetupForActivity];
@@ -884,11 +885,12 @@ ConditionSetup *conditionSetup;
                     }
                 }
                 
-                else if ([[currSolStep stepType] isEqualToString:@"tapToAnimate"]) {
+                else if ([[currSolStep stepType] isEqualToString:@"tapToAnimate"] ||
+                         [[currSolStep stepType] isEqualToString:@"shakeOrTap"]) {
                     //Get the object at this point
                     NSString* imageAtPoint = [self getObjectAtPoint:location ofType:nil];
                     
-                    //If the correct object was tapped, swap its image and increment the step
+                    //If the correct object was tapped, increment the step
                     if ([self checkSolutionForSubject:imageAtPoint]) {
                         [self incrementCurrentStep];
                     }
@@ -1343,6 +1345,30 @@ ConditionSetup *conditionSetup;
                             
                             //Logging added by James for user Move Object to Hotspot Correct
                             [[ServerCommunicationController sharedManager] logComputerVerification: @"Move to Hotspot":true : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+                        }
+                        else {
+                            //gets hotspot id for logging
+                            NSString* locationId = [currSolStep locationId];
+                            //Logging added by James for User Move Object to object
+                            [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : locationId:startLocation.x :startLocation.y :location.x :location.y :@"Move to Hotspot" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+                            
+                            //Logging added by James for user Move Object to Hotspot Incorrect
+                            [[ServerCommunicationController sharedManager] logComputerVerification:@"Move to Hotspot" :false : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+                            
+                            [playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentStep];
+                            //[self playErrorNoise];
+                            
+                            if (allowSnapback) {
+                                //Snap the object back to its original location
+                                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
+                                //if incorrect location reset object to beginning of gesture
+                                
+                            }
+                        }
+                    }
+                    else if ([[currSolStep stepType] isEqualToString:@"shakeOrTap"]) {
+                        if([self areHotspotsInsideArea]) {
+                            [self incrementCurrentStep];
                         }
                         else {
                             //gets hotspot id for logging
@@ -2246,6 +2272,42 @@ ConditionSetup *conditionSetup;
             Area* area = [model getAreaWithId:areaId];
             
             if ([area.aPath containsPoint:hotspotLocation])
+            {
+                return true;
+            }
+        }
+    }
+    
+    return false;
+}
+
+/*
+ * Returns true if the start location and the end location of an object are within the same area. Otherwise, returns false.
+ */
+-(BOOL) areHotspotsInsideArea {
+    //Check solution only if it exists for the sentence
+    if (numSteps > 0) {
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        if ([[currSolStep stepType] isEqualToString:@"shakeOrTap"]) {
+            //Get information for check step type
+            NSString* objectId = [currSolStep object1Id];
+            NSString* action = [currSolStep action];
+            
+            NSString* areaId = [currSolStep areaId];
+            
+            //Get hotspot location of correct subject
+            Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:objectId :action :@"subject"];
+            CGPoint hotspotLocation = [self getHotspotLocation:hotspot];
+            
+            //Get area that hotspot should be inside
+            Area* area = [model getAreaWithId:areaId];
+            
+            if ([area.aPath containsPoint:hotspotLocation] && [area.aPath containsPoint:startLocation])
             {
                 return true;
             }
@@ -3854,6 +3916,22 @@ ConditionSetup *conditionSetup;
     
     //Logging Added by James for Menu Display
     [[ServerCommunicationController sharedManager] logComputerDisplayMenuItems : menuItemInteractions : menuItemImages : menuItemRelationships : bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+}
+
+- (BOOL)webView:(UIWebView *)webView2
+shouldStartLoadWithRequest:(NSURLRequest *)request
+ navigationType:(UIWebViewNavigationType)navigationType {
+    
+    NSString *requestString = [[[request URL] absoluteString] stringByReplacingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
+    //NSLog(requestString);
+    
+    if ([requestString hasPrefix:@"ios-log:"]) {
+        NSString* logString = [[requestString componentsSeparatedByString:@":#iOS#"] objectAtIndex:1];
+        NSLog(@"UIWebView console: %@", logString);
+        return NO;
+    }
+    
+    return YES;
 }
 
 @end

@@ -2,6 +2,13 @@
 <metadata>
     <solutions>
         <story title="Why We Breathe" activity_id="story1-PM-1">
+            <sentence number="0">
+                <step number="1">
+                    <animate obj1Id="O2_1" action="floatAnimation" waypointId=""/>
+                    <animate obj1Id="CO2_2" action="floatAnimation" waypointId=""/>
+                    <animate obj1Id="CO2_3" action="floatAnimation" waypointId=""/>
+                </step>
+            </sentence>
             <sentence number="7">
                 <step number="1">
                     <check obj1Id="O2_1" action="getIn" locationId="nose"/>

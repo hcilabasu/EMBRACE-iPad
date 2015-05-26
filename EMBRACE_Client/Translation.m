@@ -147,7 +147,18 @@
                  @"tubes": @"tubes",
                  @"valve": @[@"handle",@"handle_close",@"handle_1",@"gray_handle"],
                  @"veins": @"veins",
-                 @"ventricle": @[@"ventricle_1", @"ventricle_2"]
+                 @"ventricle": @[@"ventricle_1", @"ventricle_2"],
+                 @"baby": @"baby",
+                 @"car": @"car",
+                 @"highchair": @"highchairb",
+                 @"hook": @"hook",
+                 @"keys": @"keys2",
+                 @"lola": @"rabbit",
+                 @"martin": @"man",
+                 @"paco": @"dog",
+                 @"pets": @[@"dog", @"rabbit"],
+                 @"rattle": @"rattle",
+                 @"rosa": @"woman"
                  };
     });
     return inst;

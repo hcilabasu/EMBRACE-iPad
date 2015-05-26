@@ -87,7 +87,10 @@
             </sentence>
             <sentence number="4">
                 <step number="1">
-                    <tapToAnimate obj1Id="dog" action=""/>
+                    <ungroup obj1Id="dog" action="leave" obj2Id="tree"/>
+                    <move obj1Id="dog" action="getIn" waypointId="nearTree2"/>
+                    <move obj1Id="tree" action="getIn" waypointId="treePosition"/>
+                    <shakeOrTap obj1Id="dog" action="getIn" areaId="aroundPaco"/>
                     <playSound fileName="dog_labradoodle_bark_twice_001.mp3"/>
                 </step>
                 <step number="2">
@@ -140,9 +143,8 @@
             </sentence>
             <sentence number="6">
                 <step number="1">
-                    <tapToAnimate obj1Id="dog" action=""/>
-                    <playSound fileName="dog_labradoodle_bark_twice_001.mp3"/>
                     <group obj1Id="dog" action="visit" obj2Id="tree"/>
+                    <playSound fileName="dog_labradoodle_bark_twice_001.mp3"/>
                 </step>
             </sentence>
             <sentence number="7">

@@ -7,9 +7,15 @@
             <point x="7%" y="85%"/>
             <point x="55%" y="85%"/>
             <point x="55%" y="60%"/>
-            <point x="64%" y="60%"/>
-            <point x="64%" y="100%"/>
+            <point x="100%" y="60%"/>
+            <point x="100%" y="100%"/>
             <point x="0%" y="100%"/>
+        </area>
+        <area areaId="aroundPaco">
+            <point x="62.5%" y="70%"/>
+            <point x="77.5%" y="70%"/>
+            <point x="77.5%" y="95%"/>
+            <point x="62.5%" y="95%"/>
         </area>
     </areas>
 </metadata>
