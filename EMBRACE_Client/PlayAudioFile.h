@@ -16,11 +16,12 @@
 @property (strong) AVAudioPlayer *audioPlayer;
 @property (strong) AVAudioPlayer *audioPlayerAfter; // Used to play sounds after the first audio player has finished playing
 @property (nonatomic, strong) AVSpeechSynthesizer* syn;
+@property (nonatomic, strong) UIViewController* PmviewController;
 
 -(void)playWordAudioTimed:(NSTimer *) wordAndLang;
 -(void)playAudioFileTimed:(NSTimer *) path;
--(void) playAudioFile:(NSString*) path;
--(void) playAudioInSequence:(NSString*) path :(NSString*) path2;
+-(void) playAudioFile: (UIViewController *) viewController : (NSString*) path;
+-(void) playAudioInSequence: (UIViewController*) viewController : (NSString*) path :(NSString*) path2;
 -(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag;
 -(IBAction) playErrorNoise: (NSString *) bookTitle : (NSString *) chapterTitle : (NSString *) currentPage : (NSUInteger) currentSentence : (NSUInteger) currentStep;
 -(void) textToSpeech: (NSString *) text;
