@@ -645,7 +645,7 @@ ConditionSetup *conditionSetup;
         }
         else if ([[currSolStep stepType] isEqualToString:@"playSound"]) {
             NSString * file = [currSolStep fileName];
-            [playaudioClass playAudioFile:file];
+            [playaudioClass playAudioFile:self:file];
             [self incrementCurrentStep];
         }
         
