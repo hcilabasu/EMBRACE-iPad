@@ -407,7 +407,7 @@
                 <Answer1Audio>TheFamilyIsRattledQ3A1.mp3</Answer1Audio>
                 <Answer2>she was hurt</Answer2>
                 <Answer2Audio>TheFamilyIsRattledQ3A2.mp3</Answer2Audio>
-                <Answer3>she misseed her father</Answer3>
+                <Answer3>she missed her father</Answer3>
                 <Answer3Audio>TheFamilyIsRattledQ3A3.mp3</Answer3Audio>
                 <Answer4>she lost her imaginary friend</Answer4>
                 <Answer4Audio>TheFamilyIsRattledQ3A4.mp3</Answer4Audio>
@@ -494,7 +494,7 @@
                 <expectedSelection>finding out who stole the shiny things</expectedSelection>
             </Question>
             <Question number="4">
-                <QuestionText>How was Paco rewarded</QuestionText>
+                <QuestionText>How was Paco rewarded?</QuestionText>
                 <QuestionAudio>TheMysteryIsSolvedQ4.mp3</QuestionAudio>
                 <Answer1>with a big steak dinner</Answer1>
                 <Answer1Audio>TheMysteryIsSolvedQ4A1.mp3</Answer1Audio>
@@ -526,7 +526,7 @@
                 <Answer1Audio>TheMysteryIsSolvedQ6A1.mp3</Answer1Audio>
                 <Answer2>to get some food</Answer2>
                 <Answer2Audio>TheMysteryIsSolvedQ6A2.mp3</Answer2Audio>
-                <Answer3>to escape form Paco</Answer3>
+                <Answer3>to escape from Paco</Answer3>
                 <Answer3Audio>TheMysteryIsSolvedQ6A3.mp3</Answer3Audio>
                 <Answer4>to say hello to Lola the bunny</Answer4>
                 <Answer4Audio>TheMysteryIsSolvedQ6A4.mp3</Answer4Audio>

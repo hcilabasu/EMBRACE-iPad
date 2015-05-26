@@ -22,7 +22,7 @@
 //    INPUT
 //}Action;
 
-@interface AuthoringModeViewController : UIViewController <UIGestureRecognizerDelegate, UIScrollViewDelegate> {
+@interface AuthoringModeViewController : UIViewController <UIGestureRecognizerDelegate, UIScrollViewDelegate, UIPickerViewDelegate>{
     EBookImporter *bookImporter;
     Book* book;
     
@@ -42,9 +42,33 @@
 @property (nonatomic, strong) BuildHTMLString *buildstringClass;
 @property(nonatomic,strong) PlayAudioFile *playaudioClass;
 @property(nonatomic, strong) UIViewController *libraryViewController;
+@property(nonatomic, strong) UIPickerView *picker;
+@property(nonatomic, retain) NSArray *ImageOptions;
+@property(nonatomic, strong) UIView *entryview;
+@property(nonatomic, strong) UIView *areaSpace;
+@property(nonatomic) NSInteger TapLocationX;
+@property(nonatomic) NSInteger TapLocationY;
+@property(nonatomic, strong) UIView *HotspotEntry;
+@property(nonatomic, strong) UIView *LocationEntry;
+@property(nonatomic, strong) UIView *WaypointEntry;
+@property(nonatomic, strong) UIView *SingleEntry;
+@property(nonatomic, strong) UITextField *xcord;
+@property(nonatomic, strong) UITextField *ycord;
+@property(nonatomic, strong) UITextField *waypointID;
+@property(nonatomic, strong) UITextField *locationID;
+@property(nonatomic, strong) UITextField *hotspotID;
+@property(nonatomic, strong) UITextField *width;
+@property(nonatomic, strong) UITextField *height;
+@property(nonatomic, strong) UITextField *zindex;
+@property(nonatomic, strong) UITextField *objectID;
+@property(nonatomic, strong) UITextField *action;
+@property(nonatomic, strong) UITextField *role;
+@property(nonatomic) BOOL isEntryViewVisible;
+@property(nonatomic) BOOL isAreaViewVisible;
 
 -(void) loadFirstPage;
 -(void) loadNextPage;
 -(void) loadPage;
+- (BOOL) writeToFile:(NSString*) toLocation : (NSString *)fileName ofType:(NSString *)type;
 
 @end

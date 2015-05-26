@@ -106,21 +106,19 @@
         </story>
         
         <story title="The Wise Owl" activity_id="story5-PM-1">
-            <sentence number="3">
+            <sentence number="6">
                 <step number="1">
-                    <group obj1Id="owl" action="visit" obj2Id="farmer"/>
-                    <group obj1Id="owl" acton="visit" obj2Id="pig"/>
-                    <ungroup obj1Id="owl" action="leave" obj2Id="farmer"/>
+                    <group obj1Id="chicken" action="visit" obj2Id="farmer"/>
+                    <group obj1Id="chicken" acton="visit" obj2Id="pig"/>
                 </step>
             </sentence>
         </story>
         
         <story title="The Wise Owl" activity_id="story5-PM-2">
-            <sentence number="8">
+            <sentence number="9">
                 <step number="1">
-                    <group obj1Id="owl" action="visit" obj2Id="pig"/>
-                    <group obj1Id="owl" action="visit" obj2Id="farmer"/>
-                    <ungroup obj1Id="owl" action="leave" obj2Id="pig"/>
+                    <group obj1Id="pig" action="visit" obj2Id="pen"/>
+                    <ungroup obj1Id="pig" action="leave" obj2Id="pen"/>
                 </step>
             </sentence>
         </story>
@@ -130,27 +128,24 @@
                 <step number="1">
                     <group obj1Id="pig" action="pickUp" obj2Id="apple"/>
                     <group obj1Id="pig" action="pickUp" obj2Id="pumpkin"/>
-                    <disappear obj1Id="pig" action="recieve" obj2Id="apple"/>
                 </step>
             </sentence>
         </story>
         
         <story title="Everyone Helps" activity_id="story6-PM-2">
-            <sentence number="5">
+            <sentence number="6">
                 <step number="1">
-                    <group obj1Id="horse" action="push" obj2Id="hay"/>
-                    <group obj1Id="horse" action="push" obj2Id="apple"/>
-                    <disappear obj1Id="horse" action="give" obj2Id="hay"/>
+                    <group obj1Id="cat" action="visit" obj2Id="bucket"/>
+                    <ungroup obj1Id="cat" action="leave" obj2Id="bucket"/>
                 </step>
             </sentence>
         </story>
         
         <story title="The Best Farm Award" activity_id="story7-PM-1">
-            <sentence number="2">
+            <sentence number="1">
                 <step number="1">
-                    <group obj1Id="judge" action="grab" obj2Id="bucket"/>
-                    <group obj1Id="judge" action="hold" obj2Id="award"/>
-                    <ungroup obj1Id="judge" action="leave" obj2Id="bucket"/>
+                    <group obj1Id="judge" action="visit" obj2Id="cow"/>
+                    <ungroup obj1Id="judge" action="leave" obj2Id="cow"/>
                 </step>
             </sentence>
         </story>
@@ -160,7 +155,6 @@
                 <step number="1">
                     <group obj1Id="horse" action="visit" obj2Id="judge"/>
                     <group obj1Id="horse" action="visit" obj2Id="farmer"/>
-                    <ungroup obj1Id="horse" action="leave" obj2Id="judge"/>
                 </step>
             </sentence>
         </story>

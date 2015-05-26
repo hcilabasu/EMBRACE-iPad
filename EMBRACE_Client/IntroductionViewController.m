@@ -160,7 +160,7 @@ ConditionSetup *conditionSetup;
     }
     
     //Play introduction audio
-    [playAudioFileClass playAudioFile:audio];
+    [playAudioFileClass playAudioFile:self:audio];
     
     //Logging added by James for Introduction Audio
     //[[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Introduction Audio" : languageString :audio :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
@@ -254,10 +254,10 @@ ConditionSetup *conditionSetup;
         //play the corresponding intro or outro audio
         if (currentVocabStep == 1 && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
             if((conditionSetup.language ==BILINGUAL)) {
-                [playAudioFileClass playAudioFile:audioSpanish];
+                [playAudioFileClass playAudioFile:self:audioSpanish];
             } else {
                 //Play introduction audio
-                [playAudioFileClass playAudioFile:audio];
+                [playAudioFileClass playAudioFile:self:audio];
             }
     
             //Logging added by James for Word Audio
@@ -268,10 +268,10 @@ ConditionSetup *conditionSetup;
             //add for house story?
             if (currentVocabStep == totalVocabSteps-2 && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
                 if((conditionSetup.language == BILINGUAL)) {
-                    [playAudioFileClass playAudioFile:nextAudioSpanish];
+                    [playAudioFileClass playAudioFile:self:nextAudioSpanish];
                 } else {
                     //Play introduction audio
-                    [playAudioFileClass playAudioFile:nextAudio];
+                    [playAudioFileClass playAudioFile:self:nextAudio];
                 }
                 currentVocabStep++;
             }
@@ -290,10 +290,10 @@ ConditionSetup *conditionSetup;
                 nextIntro = nextIntroInput;
     
                 if((conditionSetup.language ==BILINGUAL)) {
-                    [playAudioFileClass playAudioFile:nextAudioSpanish];
+                    [playAudioFileClass playAudioFile:self:nextAudioSpanish];
                 } else {
                     //Play introduction audio
-                    [playAudioFileClass playAudioFile:nextAudio];
+                    [playAudioFileClass playAudioFile:self:nextAudio];
                 }
             }
         }

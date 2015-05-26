@@ -12,6 +12,8 @@
 
 @implementation PlayAudioFile
 @synthesize syn;
+@synthesize PmviewController;
+
 
 //+(void)playWordAudioTimed:(NSTimer *)wordAndLang{
   //  [self playWordAudioTimed:wordAndLang];
@@ -53,12 +55,18 @@
 }
 
 /* Plays an audio file at a given path */
--(void) playAudioFile:(NSString*) path {
+-(void) playAudioFile:(UIViewController*) viewController : (NSString*) path {
     NSString *soundFilePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], path];
     NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
     NSError *audioError;
     
+    PmviewController = [[UIViewController alloc] init];
+    PmviewController = viewController;
+    [viewController.view setUserInteractionEnabled:NO];
+    
     _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&audioError];
+    _audioPlayerAfter = nil;
+    _audioPlayer.delegate = self;
     
     if (_audioPlayer == nil)
         NSLog(@"%@",[audioError description]);
@@ -67,13 +75,17 @@
 }
 
 /* Plays one audio file after the other */
--(void) playAudioInSequence:(NSString*) path :(NSString*) path2 {
+-(void) playAudioInSequence: (UIViewController*) viewController : (NSString*) path :(NSString*) path2 {
     NSString *soundFilePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], path];
     NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
     NSError *audioError;
     
     NSString *soundFilePath2 = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], path2];
     NSURL *soundFileURL2 = [NSURL fileURLWithPath:soundFilePath2];
+    
+    PmviewController = [[UIViewController alloc] init];
+    PmviewController = viewController;
+    [viewController.view setUserInteractionEnabled:NO];
     
     _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&audioError];
     _audioPlayerAfter = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL2 error:&audioError];
@@ -89,7 +101,13 @@
 
 /* Delegate for the AVAudioPlayer */
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag  {
+    
     [_audioPlayerAfter play];
+    
+    if(PmviewController != nil)
+    {
+        [PmviewController.view setUserInteractionEnabled:YES];
+    }
 }
 
 

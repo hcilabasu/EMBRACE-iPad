@@ -169,31 +169,31 @@ NSString *CurrentStep;
 //log user pressed play audio
 -(IBAction)PlayQuestionAudioPressed:(id)sender
 {
-    [playAudioFileClass playAudioFile:QuestionAudio];
+    [playAudioFileClass playAudioFile:self:QuestionAudio];
     //[playAudioFileClass textToSpeech:Question];//Question:BookTitle:ChapterTitle:CurrentPage:CurrentSentence:CurrentStep];
 }
 
 -(IBAction)PlayAnswer1AudioPressed:(id)sender
 {
-    [playAudioFileClass playAudioFile:AnswerAudios[0]];
+    [playAudioFileClass playAudioFile:self:AnswerAudios[0]];
     //[playAudioFileClass textToSpeech:AnswerOptions[0]];
 }
 
 -(IBAction)PlayAnswer2AudioPressed:(id)sender
 {
-    [playAudioFileClass playAudioFile:AnswerAudios[1]];
+    [playAudioFileClass playAudioFile:self:AnswerAudios[1]];
     //[playAudioFileClass textToSpeech:AnswerOptions[1]];
 }
 
 -(IBAction)PlayAnswer3AudioPressed:(id)sender
 {
-    [playAudioFileClass playAudioFile:AnswerAudios[2]];
+    [playAudioFileClass playAudioFile:self:AnswerAudios[2]];
     //[playAudioFileClass textToSpeech:AnswerOptions[2]];
 }
 
 -(IBAction)PlayAnswer4AudioPressed:(id)sender
 {
-    [playAudioFileClass playAudioFile:AnswerAudios[3]];
+    [playAudioFileClass playAudioFile:self:AnswerAudios[3]];
     //[playAudioFileClass textToSpeech:AnswerOptions[3]];
 }
 
