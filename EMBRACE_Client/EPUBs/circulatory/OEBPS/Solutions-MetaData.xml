@@ -4,9 +4,9 @@
         <story title="Why We Breathe" activity_id="story1-PM-1">
             <sentence number="0">
                 <step number="1">
-                    <animate obj1Id="O2_1" action="floatAnimation" waypointId=""/>
                     <animate obj1Id="CO2_2" action="floatAnimation" waypointId=""/>
                     <animate obj1Id="CO2_3" action="floatAnimation" waypointId=""/>
+                    <animate obj1Id="O2_1" action="floatAnimation" waypointId=""/>
                 </step>
             </sentence>
             <sentence number="7">
@@ -76,7 +76,7 @@
         <story title="The Amazing Heart" activity_id="story2-PM-4">
             <sentence number="8">
                 <step number="1">
-                    <check obj1Id="bloodcell_1" action="getIn" locationId="artery"/>
+                    <check obj1Id="bloodcell_1" action="getIn" locationId="" areaId="aorta"/>
                     <move obj1Id="bloodcell_1" action="getIn" waypointId="artery"/>
                 </step>
             </sentence>

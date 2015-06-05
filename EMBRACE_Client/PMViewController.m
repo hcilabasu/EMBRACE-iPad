@@ -292,15 +292,19 @@ ConditionSetup *conditionSetup;
     
     
     // Draw area (hard-coded for now)
-    [self drawArea:@"outside" forChapter:@"The Lopez Family"];
-    [self drawArea:@"aroundPaco" forChapter:@"Is Paco a Thief?"];
+    //[self drawArea:@"outside":@"The Lopez Family"];
+    //[self drawArea:@"aroundPaco":@"Is Paco a Thief?"];
+    [self drawArea:@"aorta":@"The Amazing Heart":@"story2-PM-4"];
+    [self drawArea:@"aortaPath":@"The Amazing Heart":@"story2-PM-4"];
+    
+    //NSLog(@"CURRENT PAGE ID: %@", currentPageId);
     
     //Perform setup for activity
     [self performSetupForActivity];
 }
 
--(void) drawArea:(NSString *)areaName forChapter:(NSString *) chapter {
-    if ([chapterTitle isEqualToString:chapter]) {
+-(void) drawArea : (NSString *)areaName : (NSString *) chapter : (NSString *) pageId {
+    if ([chapterTitle isEqualToString:chapter] && [currentPageId isEqualToString:pageId]) {
         //Get area that hotspot should be inside
         Area* area = [model getAreaWithId:areaName];
         
@@ -309,7 +313,14 @@ ConditionSetup *conditionSetup;
         greenPath.lineWidth = 10.0;
         greenPath.path = area.aPath.CGPath;
         [greenPath setFillColor:[UIColor clearColor].CGColor];
-        [greenPath setStrokeColor:[UIColor greenColor].CGColor];
+        
+        if([areaName rangeOfString:@"Path"].location == NSNotFound) {
+            [greenPath setStrokeColor:[UIColor greenColor].CGColor];
+        }
+        else {
+            // If it is a path, paint it red
+            [greenPath setStrokeColor:[UIColor redColor].CGColor];
+        }
         
         //add shape layer to view's layer
         [[self.view layer] addSublayer:greenPath];
@@ -1336,7 +1347,17 @@ ConditionSetup *conditionSetup;
                                 }
                             }
                             
-                            [self incrementCurrentStep];
+                            //Get the object at this point
+                            NSString* imageAtPoint = [self getObjectAtPoint:location ofType:nil];
+                            
+                            //If the correct object was tapped, swap its image and increment the step
+                            if ([self checkSolutionForSubject:imageAtPoint]) {
+                                //Call the cancelAnimation function in the js file.
+                                NSString *cancelAnimate = [NSString stringWithFormat:@"cancelAnimation('%@')", imageAtPoint];
+                                [bookView stringByEvaluatingJavaScriptFromString:cancelAnimate];
+                                [self incrementCurrentStep];
+                            }
+                            
                             //moving an object to a location (barn, hay loft etc)
                             
                             //gets hotspot id for logging

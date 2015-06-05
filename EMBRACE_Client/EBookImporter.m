@@ -624,7 +624,9 @@ ConditionSetup *conditionSetup;
             }
         }
         
-        [aPath closePath];
+        if([areaId rangeOfString:@"Path"].location == NSNotFound) {
+            [aPath closePath];
+        }
         
         [model addArea:areaId :aPath :areaDictionary];
     }
