@@ -26,7 +26,8 @@ typedef enum Language{
 //defines the types of mode conditions to be used
 typedef enum AppMode{
     Authoring,
-    Study
+    Study,
+    ITS
 } AppMode;
 
 @interface ConditionSetup : NSObject {

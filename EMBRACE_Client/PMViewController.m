@@ -208,7 +208,7 @@ ConditionSetup *conditionSetup;
     
     //Show menu to choose complexity level for non-intro pages of The Best Farm story only
     if (chooseComplexity && [currentPageId rangeOfString:@"Intro"].location == NSNotFound && ![chapterTitle isEqualToString:@"Introduction to The Best Farm"] && [bookTitle rangeOfString:@"The Circulatory System"].location == NSNotFound) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Choose sentence complexity levels" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"60% Simple   20% Medium   20% Complex", @"20% Simple   60% Medium   20% Complex", @"20% Simple   20% Medium   60% Complex", nil];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Choose sentence complexity levels" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"60% Simple   20% Medium   20% Complex", @"20% Simple   60% Medium   20% Complex", @"20% Simple   20% Medium   60% Complex", @"0% Simple 100% Medium 0% Complex", nil];
         [alert show];
     }
     else {
@@ -321,6 +321,11 @@ ConditionSetup *conditionSetup;
         else if (buttonIndex == 2) {
             //Swap sentences for specified complexity level
             [self swapSentencesOnPage:20 :20 :60];
+        }
+        else if (buttonIndex ==3)
+        {
+            //keeps current sentences
+            [self swapSentencesOnPage:0 :100 :0];
         }
         
         //Get the number of sentences on the page
