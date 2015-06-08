@@ -757,7 +757,6 @@ function setOuterHTMLText (sentenceID, text) {
     document.getElementById(sentenceID).outerHTML = text;
 }
 
-
 /*
  * Removes sentence with the specified sentence id
  */
