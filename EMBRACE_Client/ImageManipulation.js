@@ -811,8 +811,6 @@ function addSentence(sentenceId, action, splitTextArray, wordsArray) {
     textbox.appendChild(newSentence); //add sentence to textbox
 }
 
-
-
 function getImagePosition (object) {
     var position = new Array();
     position[0] = object.offsetLeft;
