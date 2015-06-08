@@ -524,8 +524,6 @@
 		1A80372A1B0B1C62004A164A /* WhoIsTheBestAnimalQ6A2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A80362B1B0B1C61004A164A /* WhoIsTheBestAnimalQ6A2.mp3 */; };
 		1A80372B1B0B1C62004A164A /* WhoIsTheBestAnimalQ6A3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A80362C1B0B1C61004A164A /* WhoIsTheBestAnimalQ6A3.mp3 */; };
 		1A80372C1B0B1C62004A164A /* WhoIsTheBestAnimalQ6A4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A80362D1B0B1C61004A164A /* WhoIsTheBestAnimalQ6A4.mp3 */; };
-		1A8F07981B25328D00037669 /* Statistics.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8F07971B25328D00037669 /* Statistics.m */; };
-		1A8F079B1B2532A700037669 /* AlternateSentence.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8F079A1B2532A700037669 /* AlternateSentence.m */; };
 		1AB028FC1ACF0890006CC916 /* AuthoringModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB028FB1ACF0890006CC916 /* AuthoringModeViewController.m */; };
 		1AB935671A8932A0000CAE21 /* AssessmentActivities-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AB935661A8932A0000CAE21 /* AssessmentActivities-MetaData.xml */; };
 		1AB935691A895582000CAE21 /* Relationships-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AB935681A895582000CAE21 /* Relationships-MetaData.xml */; };
@@ -1780,10 +1778,6 @@
 		1A80362B1B0B1C61004A164A /* WhoIsTheBestAnimalQ6A2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WhoIsTheBestAnimalQ6A2.mp3; sourceTree = "<group>"; };
 		1A80362C1B0B1C61004A164A /* WhoIsTheBestAnimalQ6A3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WhoIsTheBestAnimalQ6A3.mp3; sourceTree = "<group>"; };
 		1A80362D1B0B1C61004A164A /* WhoIsTheBestAnimalQ6A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WhoIsTheBestAnimalQ6A4.mp3; sourceTree = "<group>"; };
-		1A8F07961B25328D00037669 /* Statistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Statistics.h; sourceTree = "<group>"; };
-		1A8F07971B25328D00037669 /* Statistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Statistics.m; sourceTree = "<group>"; };
-		1A8F07991B2532A700037669 /* AlternateSentence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlternateSentence.h; sourceTree = "<group>"; };
-		1A8F079A1B2532A700037669 /* AlternateSentence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlternateSentence.m; sourceTree = "<group>"; };
 		1AB028FA1ACF0890006CC916 /* AuthoringModeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthoringModeViewController.h; sourceTree = "<group>"; };
 		1AB028FB1ACF0890006CC916 /* AuthoringModeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthoringModeViewController.m; sourceTree = "<group>"; };
 		1AB935661A8932A0000CAE21 /* AssessmentActivities-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivities-MetaData.xml"; sourceTree = "<group>"; };
@@ -2800,8 +2794,6 @@
 		311646B2175FD04F00B483F0 /* Student Model */ = {
 			isa = PBXGroup;
 			children = (
-				1A8F07961B25328D00037669 /* Statistics.h */,
-				1A8F07971B25328D00037669 /* Statistics.m */,
 				31549828174EAA22004521B1 /* Student.h */,
 				31549829174EAA22004521B1 /* Student.m */,
 			);
@@ -2833,8 +2825,6 @@
 				C3B5215119254BA2003FF639 /* PhysicalManipulationSolution.m */,
 				5C466ADA192293290056EA4B /* Translation.h */,
 				5C466ADB192293290056EA4B /* Translation.m */,
-				1A8F07991B2532A700037669 /* AlternateSentence.h */,
-				1A8F079A1B2532A700037669 /* AlternateSentence.m */,
 			);
 			name = "Book Model";
 			sourceTree = "<group>";
@@ -5570,7 +5560,6 @@
 				1AD3CC8C1A251CE600E18B1C /* PlayAudioFile.m in Sources */,
 				31953E871729EE5800570087 /* LibraryViewController.m in Sources */,
 				C3B5215A192AB610003FF639 /* EBookImporter.m in Sources */,
-				1A8F07981B25328D00037669 /* Statistics.m in Sources */,
 				1AB028FC1ACF0890006CC916 /* AuthoringModeViewController.m in Sources */,
 				1AF3815B1A40A4C600D967FD /* AssessmentActivityViewController.m in Sources */,
 				31953E8D1729EE6E00570087 /* BookCellView.m in Sources */,
@@ -5612,7 +5601,6 @@
 				C680520D197ECD43002A5249 /* ServerCommunicationController.m in Sources */,
 				C6805216197ECDE5002A5249 /* DDXMLDocument.m in Sources */,
 				C6805217197ECDE5002A5249 /* DDXMLElement.m in Sources */,
-				1A8F079B1B2532A700037669 /* AlternateSentence.m in Sources */,
 				1AD3CC861A251C5300E18B1C /* IntroductionViewController.m in Sources */,
 				C6805218197ECDE5002A5249 /* DDXMLNode.m in Sources */,
 				C680521B197ECDF4002A5249 /* DDXMLElementAdditions.m in Sources */,
