@@ -757,6 +757,61 @@ function setOuterHTMLText (sentenceID, text) {
     document.getElementById(sentenceID).outerHTML = text;
 }
 
+
+/*
+ * Removes sentence with the specified sentence id
+ */
+function removeSentence(sentenceId) {
+    var sentence = document.getElementById(sentenceId);
+    sentence.parentNode.removeChild(sentence);
+}
+
+/*
+ * Adds sentence with the specified sentence id, action information (whether it is
+ * an action sentence or not), text, and vocabulary words (if any)
+ */
+function addSentence(sentenceId, action, splitTextArray, wordsArray) {
+    var textbox = document.getElementsByClassName('textbox')[0]; //get textbox element
+    var newSentence = document.createElement("p"); //create new sentence
+    
+    //Sentence text was split, so it contains vocabulary word(s)
+    if (splitTextArray.length > 1) {
+        //Piece the new sentence together by adding a split text followed by a vocabulary word
+        for (var i = 0; i < wordsArray.length; i++) {
+            //Split text
+            var newText = document.createTextNode(splitTextArray[i]);
+            
+            //Vocabulary word
+            var newWord = document.createElement("p");
+            newWord.className = "audible";
+            newWord.appendChild(document.createTextNode(wordsArray[i]));
+            
+            newSentence.appendChild(newText);
+            newSentence.appendChild(newWord);
+        }
+        
+        //Make sure to add remaining split text
+        var newText = document.createTextNode(splitTextArray[splitTextArray.length - 1]);
+        newSentence.appendChild(newText);
+    }
+    //Sentence text does not contain vocabulary word(s)
+    else {
+        //Just create new sentence from text like normal
+        var newText = document.createTextNode(splitTextArray[0]);
+        newSentence.appendChild(newText);
+    }
+    
+    newSentence.id = sentenceId; //set sentence id
+    newSentence.className = "sentence"; //set sentence class
+    
+    //Add actionSentence class if sentence requires manipulation
+    if (action) {
+        newSentence.className = newSentence.className + " actionSentence";
+    }
+    
+    textbox.appendChild(newSentence); //add sentence to textbox
+}
+
 function getImagePosition (object) {
     var position = new Array();
     position[0] = object.offsetLeft;
