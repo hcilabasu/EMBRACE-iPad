@@ -790,7 +790,7 @@ ConditionSetup *conditionSetup;
                 
                 //Add idea without any steps (used for non-manipulation sentences)
                 if ([stepSolutions count] == 0) {
-                    ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :nil :nil :nil :nil :nil :nil :nil];
+                    ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum : nil : nil : nil : nil : nil: nil : nil : nil : nil];
                     [PMSolution addSolutionStep:solutionStep];
                 }
                 
