@@ -1,0 +1,1396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <alternateSentences>
+        <story title="The Contest" page_id="story1-PM-1">
+            <sentence number="1" action="no">
+                <attributes complexity="2"/>
+                <text>Farmer Manuel got all of the animals.</text>
+                <ideas>
+                    <idea number="2"/>
+                </ideas>
+            </sentence>
+            <sentence number="2" action="yes">
+                <attributes complexity="2"/>
+                <text>He opened the door to the cow's pen.</text>
+                <ideas>
+                    <idea number="3"/>
+                </ideas>
+                <solution>
+                    <step number="6"/>
+                </solution>
+            </sentence>
+            <sentence number="3" action="yes">
+                <attributes complexity="2"/>
+                <text>The cow walked to the corral.</text>
+                <ideas>
+                    <idea number="4"/>
+                </ideas>
+                <solution>
+                    <step number="7"/>
+                </solution>
+            </sentence>
+            <sentence number="4" action="yes">
+                <attributes complexity="2"/>
+                <text>Manuel opened the goat's pen, and the goat walked to the cow.</text>
+                <ideas>
+                    <idea number="5"/>
+                </ideas>
+                <solution>
+                    <step number="8"/>
+                    <step number="9"/>
+                </solution>
+            </sentence>
+            <sentence number="5" action="yes">
+                <attributes complexity="2"/>
+                <text>The chicken flew down and sat on the cow's back.</text>
+                <ideas>
+                    <idea number="6"/>
+                </ideas>
+                <solution>
+                    <step number="10"/>
+                </solution>
+            </sentence>
+            <sentence number="6" action="yes">
+                <attributes complexity="1"/>
+                <text>Manuel opened the goat's pen.</text>
+                <ideas>
+                    <idea number="5"/>
+                </ideas>
+                <solution>
+                    <step number="8"/>
+                </solution>
+            </sentence>
+            <sentence number="7" action="yes">
+                <attributes complexity="1"/>
+                <text>The goat walked to the cow.</text>
+                <ideas>
+                    <idea number="5"/>
+                </ideas>
+                <solution>
+                    <step number="9"/>
+                </solution>
+            </sentence>
+            <sentence number="8" action="yes">
+                <attributes complexity="1"/>
+                <text>The chicken flew down.</text>
+                <ideas>
+                    <idea number="6"/>
+                </ideas>
+            </sentence>
+            <sentence number="9" action="yes">
+                <attributes complexity="1"/>
+                <text>Then the chicken sat on the cow's back.</text>
+                <ideas>
+                    <idea number="6"/>
+                </ideas>
+                <solution>
+                    <step number="10"/>
+                </solution>
+            </sentence>
+            <sentence number="10" action="no">
+                <attributes complexity="3"/>
+                <text>Farmer Manuel gathered all of the animals.</text>
+                <ideas>
+                    <idea number="2"/>
+                </ideas>
+            </sentence>
+            <sentence number="11" action="yes">
+                <attributes complexity="3"/>
+                <text>When he opened the door to the cow's pen, the cow walked to the corral.</text>
+                <ideas>
+                    <idea number="3"/>
+                    <idea number="4"/>
+                </ideas>
+                <solution>
+                    <step number="6"/>
+                    <step number="7"/>
+                </solution>
+            </sentence>
+            <sentence number="12" action="yes">
+                <attributes complexity="3"/>
+                <text>Then, Manuel opened the goat's pen, and the goat walked to the cow.</text>
+                <ideas>
+                    <idea number="5"/>
+                </ideas>
+                <solution>
+                    <step number="8"/>
+                    <step number="9"/>
+                </solution>
+            </sentence>
+            <sentence number="13" action="yes">
+                <attributes complexity="3"/>
+                <text>Then after the chicken flew down, she sat on the cow's back.</text>
+                <ideas>
+                    <idea number="6"/>
+                </ideas>
+                <solution>
+                    <step number="10"/>
+                </solution>
+            </sentence>
+        </story>
+        <story title="The Contest" page_id="story1-PM-2">
+            <sentence number="1" action="no">
+                <attributes complexity="2"/>
+                <text>Manuel said, \"Today is Monday.</text>
+                <ideas>
+                    <idea number="7"/>
+                </ideas>
+            </sentence>
+            <sentence number="2" action="no">
+                <attributes complexity="2"/>
+                <text>On Sunday a judge comes to see if we are the best farm.</text>
+                <ideas>
+                    <idea number="8"/>
+                </ideas>
+            </sentence>
+            <sentence number="3" action="no">
+                <attributes complexity="2"/>
+                <text>Let's work hard this week to get the prize for the best farm!</text>
+                <ideas>
+                    <idea number="9"/>
+                </ideas>
+            </sentence>
+            <sentence number="4" action="no">
+                <attributes complexity="2"/>
+                <text>We need to clean up and look good.\"</text>
+                <ideas>
+                    <idea number="10"/>
+                </ideas>
+            </sentence>
+            <sentence number="5" action="yes">
+                <attributes complexity="2"/>
+                <text>The cat was so excited that she jumped into Manuel's arms.</text>
+                <ideas>
+                    <idea number="11"/>
+                </ideas>
+                <solution>
+                    <step number="11"/>
+                </solution>
+            </sentence>
+            <sentence number="6" action="no">
+                <attributes complexity="1"/>
+                <text>On Sunday a judge comes.</text>
+                <ideas>
+                    <idea number="8"/>
+                </ideas>
+            </sentence>
+            <sentence number="7" action="no">
+                <attributes complexity="1"/>
+                <text>The judge will see if we are the best farm.</text>
+                <ideas>
+                    <idea number="8"/>
+                </ideas>
+            </sentence>
+            <sentence number="8" action="no">
+                <attributes complexity="1"/>
+                <text>The cat was so excited.</text>
+                <ideas>
+                    <idea number="11"/>
+                </ideas>
+            </sentence>
+            <sentence number="9" action="yes">
+                <attributes complexity="1"/>
+                <text>The cat jumped into Manuel's arms.</text>
+                <ideas>
+                    <idea number="11"/>
+                </ideas>
+                <solution>
+                    <step number="11"/>
+                </solution>
+            </sentence>
+            <sentence number="10" action="no">
+                <attributes complexity="3"/>
+                <text>Manuel said, \"Today is Monday,</text>
+                <ideas>
+                    <idea number="7"/>
+                </ideas>
+            </sentence>
+            <sentence number="11" action="no">
+                <attributes complexity="3"/>
+                <text>and on Sunday a judge comes to see if we are the best farm.</text>
+                <ideas>
+                    <idea number="8"/>
+                </ideas>
+            </sentence>
+            <sentence number="12" action="no">
+                <attributes complexity="3"/>
+                <text>We need to clean up, so we can look good.\"</text>
+                <ideas>
+                    <idea number="10"/>
+                </ideas>
+            </sentence>
+        </story>
+        <story title="Getting Ready" page_id="story2-PM-1">
+            <sentence number="1" action="no">
+                <attributes complexity="2"/>
+                <text>On Tuesday, Farmer Manuel helped the animals to look good.</text>
+                <ideas>
+                    <idea number="12"/>
+                </ideas>
+            </sentence>
+            <sentence number="2" action="yes">
+                <attributes complexity="2"/>
+                <text>He combed the goat's fur to make it clean and soft.</text>
+                <ideas>
+                    <idea number="13"/>
+                </ideas>
+                <solution>
+                    <step number="12"/>
+                </solution>
+            </sentence>
+            <sentence number="3" action="yes">
+                <attributes complexity="2"/>
+                <text>He carried the milk bucket to the cat.</text>
+                <ideas>
+                    <idea number="14"/>
+                </ideas>
+                <solution>
+                    <step number="13"/>
+                    <step number="14"/>
+                    <step number="15"/>
+                </solution>
+            </sentence>
+            <sentence number="4" action="yes">
+                <attributes complexity="2"/>
+                <text>The cat drank the milk which makes her fur shiny.</text>
+                <ideas>
+                    <idea number="15"/>
+                </ideas>
+                <solution>
+                    <step number="16"/>
+                    <step number="17"/>
+                </solution>
+            </sentence>
+            <sentence number="5" action="yes">
+                <attributes complexity="1"/>
+                <text>He combed the goat's fur.</text>
+                <ideas>
+                    <idea number="13"/>
+                </ideas>
+                <solution>
+                    <step number="12"/>
+                </solution>
+            </sentence>
+            <sentence number="6" action="no">
+                <attributes complexity="1"/>
+                <text>Combing makes the fur clean and soft.</text>
+                <ideas>
+                    <idea number="13"/>
+                </ideas>
+            </sentence>
+            <sentence number="7" action="yes">
+                <attributes complexity="1"/>
+                <text>Manuel carried the milk bucket to the cat.</text>
+                <ideas>
+                    <idea number="14"/>
+                </ideas>
+                <solution>
+                    <step number="13"/>
+                    <step number="14"/>
+                    <step number="15"/>
+                </solution>
+            </sentence>
+            <sentence number="8" action="yes">
+                <attributes complexity="1"/>
+                <text>The cat drank the milk.</text>
+                <ideas>
+                    <idea number="15"/>
+                </ideas>
+                <solution>
+                    <step number="16"/>
+                    <step number="17"/>
+                </solution>
+            </sentence>
+            <sentence number="9" action="no">
+                <attributes complexity="1"/>
+                <text>The milk makes the cat's fur shiny.</text>
+                <ideas>
+                    <idea number="15"/>
+                </ideas>
+            </sentence>
+            <sentence number="10" action="yes">
+                <attributes complexity="3"/>
+                <text>Then, he carried the milk bucket, which was full of milk to the cat.</text>
+                <ideas>
+                    <idea number="14"/>
+                </ideas>
+                <solution>
+                    <step number="13"/>
+                    <step number="14"/>
+                    <step number="15"/>
+                </solution>
+            </sentence>
+        </story>
+        <story title="Getting Ready" page_id="story2-PM-2">
+            <sentence number="1" action="yes">
+                <attributes complexity="2"/>
+                <text>Next, Manuel gave an apple to the horse.</text>
+                <ideas>
+                    <idea number="16"/>
+                </ideas>
+                <solution>
+                    <step number="18"/>
+                    <step number="19"/>
+                </solution>
+            </sentence>
+            <sentence number="2" action="no">
+                <attributes complexity="2"/>
+                <text>Eating an apple cleans the horse's teeth.</text>
+                <ideas>
+                    <idea number="17"/>
+                </ideas>
+            </sentence>
+            <sentence number="3" action="yes">
+                <attributes complexity="2"/>
+                <text>Manuel pulled the cart to the pumpkins.</text>
+                <ideas>
+                    <idea number="18"/>
+                </ideas>
+                <solution>
+                    <step number="20"/>
+                    <step number="21"/>
+                </solution>
+            </sentence>
+            <sentence number="4" action="yes">
+                <attributes complexity="2"/>
+                <text>Then, he put a pumpkin in the cart and pulled the cart back to the barn.</text>
+                <ideas>
+                    <idea number="19"/>
+                </ideas>
+                <solution>
+                    <step number="22"/>
+                    <step number="23"/>
+                    <step number="24"/>
+                    <step number="25"/>
+                    <step number="26"/>
+                </solution>
+            </sentence>
+            <sentence number="5" action="yes">
+                <attributes complexity="2"/>
+                <text>Last, Manuel gave the pig the pumpkin to eat to make him fat.</text>
+                <ideas>
+                    <idea number="20"/>
+                </ideas>
+                <solution>
+                    <step number="27"/>
+                    <step number="28"/>
+                    <step number="29"/>
+                </solution>
+            </sentence>
+            <sentence number="6" action="no">
+                <attributes complexity="2"/>
+                <text>All of the animals were happy.</text>
+                <ideas>
+                    <idea number="21"/>
+                </ideas>
+            </sentence>
+            <sentence number="7" action="yes">
+                <attributes complexity="1"/>
+                <text>Then, he put a pumpkin in the cart.</text>
+                <ideas>
+                    <idea number="19"/>
+                </ideas>
+                <solution>
+                    <step number="22"/>
+                    <step number="23"/>
+                    <step number="24"/>
+                </solution>
+            </sentence>
+            <sentence number="8" action="yes">
+                <attributes complexity="1"/>
+                <text>Manuel pulled the cart back to the barn.</text>
+                <ideas>
+                    <idea number="19"/>
+                </ideas>
+                <solution>
+                    <step number="25"/>
+                    <step number="26"/>
+                </solution>
+            </sentence>
+            <sentence number="9" action="yes">
+                <attributes complexity="1"/>
+                <text>Last, Manuel gave the pig the pumpkin to eat.</text>
+                <ideas>
+                    <idea number="20"/>
+                </ideas>
+                <solution>
+                    <step number="27"/>
+                    <step number="28"/>
+                    <step number="29"/>
+                </solution>
+            </sentence>
+            <sentence number="10" action="no">
+                <attributes complexity="1"/>
+                <text>Eating pumpkins make the pig fat.</text>
+                <ideas>
+                    <idea number="20"/>
+                </ideas>
+            </sentence>
+            <sentence number="11" action="yes">
+                <attributes complexity="3"/>
+                <text>Next, Manuel gave an apple to the horse because eating an apple cleans the horse's teeth.</text>
+                <ideas>
+                    <idea number="16"/>
+                    <idea number="17"/>
+                </ideas>
+                <solution>
+                    <step number="18"/>
+                    <step number="19"/>
+                </solution>
+            </sentence>
+            <sentence number="12" action="yes">
+                <attributes complexity="3"/>
+                <text>Manuel pulled the empty cart to the pumpkins.</text>
+                <ideas>
+                    <idea number="18"/>
+                </ideas>
+                <solution>
+                    <step number="20"/>
+                    <step number="21"/>
+                </solution>
+            </sentence>
+            <sentence number="13" action="yes">
+                <attributes complexity="3"/>
+                <text>Then, he put a pumpkin in the cart and pulled the heavy cart back to the barn.</text>
+                <ideas>
+                    <idea number="19"/>
+                </ideas>
+                <solution>
+                    <step number="22"/>
+                    <step number="23"/>
+                    <step number="24"/>
+                    <step number="25"/>
+                    <step number="26"/>
+                </solution>
+            </sentence>
+        </story>
+        <story title="Cleaning Up" page_id="story3-PM-1">
+            <sentence number="1" action="no">
+                <attributes complexity="2"/>
+                <text>On Wednesday, Farmer Manuel cleaned the farm.</text>
+                <ideas>
+                    <idea number="22"/>
+                </ideas>
+            </sentence>
+            <sentence number="2" action="no">
+                <attributes complexity="2"/>
+                <text>He told the animals that to win the Best Farm Award the farm has to be clean.</text>
+                <ideas>
+                    <idea number="23"/>
+                </ideas>
+            </sentence>
+            <sentence number="3" action="yes">
+                <attributes complexity="2"/>
+                <text>Manuel first put the horse into the corral, and then he put the cow into the corral.</text>
+                <ideas>
+                    <idea number="24"/>
+                </ideas>
+                <solution>
+                    <step number="30"/>
+                    <step number="31"/>
+                    <step number="32"/>
+                    <step number="33"/>
+                    <step number="34"/>
+                    <step number="35"/>
+                </solution>
+            </sentence>
+            <sentence number="4" action="no">
+                <attributes complexity="2"/>
+                <text>He can clean the barn better with big animals in the corral.</text>
+                <ideas>
+                    <idea number="25"/>
+                </ideas>
+            </sentence>
+            <sentence number="5" action="yes">
+                <attributes complexity="2"/>
+                <text>Then he put the pig into its pen.</text>
+                <ideas>
+                    <idea number="26"/>
+                </ideas>
+                <solution>
+                    <step number="36"/>
+                    <step number="37"/>
+                    <step number="38"/>
+                </solution>
+            </sentence>
+            <sentence number="6" action="no">
+                <attributes complexity="1"/>
+                <text>To win the Best Farm Award, the farm has to be clean.</text>
+                <ideas>
+                    <idea number="23"/>
+                </ideas>
+            </sentence>
+            <sentence number="7" action="no">
+                <attributes complexity="1"/>
+                <text>To clean the barn, Manuel puts the big animals in the corral.</text>
+                <ideas>
+                    <idea number="25"/>
+                </ideas>
+            </sentence>
+            <sentence number="8" action="yes">
+                <attributes complexity="1"/>
+                <text>Manuel put the horse into the corral.</text>
+                <ideas>
+                    <idea number="24"/>
+                </ideas>
+                <solution>
+                    <step number="30"/>
+                    <step number="31"/>
+                </solution>
+            </sentence>
+            <sentence number="9" action="yes">
+                <attributes complexity="1"/>
+                <text>Then Manuel put the cow into the corral.</text>
+                <ideas>
+                    <idea number="24"/>
+                </ideas>
+                <solution>
+                    <step number="32"/>
+                    <step number="33"/>
+                    <step number="34"/>
+                    <step number="35"/>
+                </solution>
+            </sentence>
+            <sentence number="10" action="no">
+                <attributes complexity="3"/>
+                <text>On Wednesday, Farmer Manuel wanted to clean the farm very well and tidy it up.</text>
+                <ideas>
+                    <idea number="22"/>
+                </ideas>
+            </sentence>
+            <sentence number="11" action="no">
+                <attributes complexity="3"/>
+                <text>He told all the animals that to win the Best Farm Award, all the tools must be in place and the farm has to be sparkly clean.</text>
+                <ideas>
+                    <idea number="23"/>
+                </ideas>
+            </sentence>
+            <sentence number="12" action="yes">
+                <attributes complexity="3"/>
+                <text>Manuel first put the horse and the cow into the corral, because he can clean the barn better with the big animals in the corral.</text>
+                <ideas>
+                    <idea number="24"/>
+                    <idea number="25"/>
+                </ideas>
+                <solution>
+                    <step number="30"/>
+                    <step number="31"/>
+                    <step number="32"/>
+                    <step number="33"/>
+                    <step number="34"/>
+                    <step number="35"/>
+                </solution>
+            </sentence>
+        </story>
+        <story title="Cleaning Up" page_id="story3-PM-2">
+            <sentence number="1" action="yes">
+                <attributes complexity="2"/>
+                <text>Manuel walked to the pumpkins.</text>
+                <ideas>
+                    <idea number="27"/>
+                </ideas>
+                <solution>
+                    <step number="39"/>
+                </solution>
+            </sentence>
+            <sentence number="2" action="no">
+                <attributes complexity="2"/>
+                <text>He wanted to be sure that there were no weeds in the pumpkin field.</text>
+                <ideas>
+                    <idea number="28"/>
+                </ideas>
+            </sentence>
+            <sentence number="3" action="yes">
+                <attributes complexity="2"/>
+                <text>After checking the pumpkins, Manuel walked back to the barn.</text>
+                <ideas>
+                    <idea number="29"/>
+                </ideas>
+                <solution>
+                    <step number="40"/>
+                </solution>
+            </sentence>
+            <sentence number="4" action="yes">
+                <attributes complexity="2"/>
+                <text>He picked up the hay and carried it to the hayloft.</text>
+                <ideas>
+                    <idea number="30"/>
+                </ideas>
+                <solution>
+                    <step number="41"/>
+                    <step number="42"/>
+                </solution>
+            </sentence>
+            <sentence number="5" action="yes">
+                <attributes complexity="2"/>
+                <text>Oh no! Manuel fell off the hayloft, and the hay fell too.</text>
+                <ideas>
+                    <idea number="31"/>
+                </ideas>
+                <solution>
+                    <step number="43"/>
+                    <step number="44"/>
+                </solution>
+            </sentence>
+            <sentence number="6" action="no">
+                <attributes complexity="2"/>
+                <text>Manuel will have to rest inside for the next 3 days.</text>
+                <ideas>
+                    <idea number="32"/>
+                </ideas>
+            </sentence>
+            <sentence number="7" action="no">
+                <attributes complexity="1"/>
+                <text>Manuel checked the pumpkins.</text>
+                <ideas>
+                    <idea number="29"/>
+                </ideas>
+            </sentence>
+            <sentence number="8" action="yes">
+                <attributes complexity="1"/>
+                <text>Then Manuel walked back to the barn.</text>
+                <ideas>
+                    <idea number="29"/>
+                </ideas>
+                <solution>
+                    <step number="40"/>
+                </solution>
+            </sentence>
+            <sentence number="9" action="yes">
+                <attributes complexity="1"/>
+                <text>Manuel picked up the hay.</text>
+                <ideas>
+                    <idea number="30"/>
+                </ideas>
+                <solution>
+                    <step number="41"/>
+                </solution>
+            </sentence>
+            <sentence number="10" action="yes">
+                <attributes complexity="1"/>
+                <text>He carried the hay to the hayloft.</text>
+                <ideas>
+                    <idea number="30"/>
+                </ideas>
+                <solution>
+                    <step number="42"/>
+                </solution>
+            </sentence>
+            <sentence number="11" action="yes">
+                <attributes complexity="1"/>
+                <text>Oh no! Manuel fell off the hayloft.</text>
+                <ideas>
+                    <idea number="31"/>
+                </ideas>
+                <solution>
+                    <step number="43"/>
+                    <step number="44"/>
+                </solution>
+            </sentence>
+            <sentence number="12" action="yes">
+                <attributes complexity="1"/>
+                <text>The hay fell too.</text>
+                <ideas>
+                    <idea number="31"/>
+                </ideas>
+            </sentence>
+            <sentence number="13" action="yes">
+                <attributes complexity="3"/>
+                <text>Manuel walked to the pumpkins to be sure that there were no weeds in the pumpkin field.</text>
+                <ideas>
+                    <idea number="27"/>
+                    <idea number="28"/>
+                </ideas>
+                <solution>
+                    <step number="39"/>
+                </solution>
+            </sentence>
+            <sentence number="14" action="yes">
+                <attributes complexity="3"/>
+                <text>After checking the pumpkins for weeds and other messes, Manuel walked back to the barn.</text>
+                <ideas>
+                    <idea number="29"/>
+                </ideas>
+                <solution>
+                    <step number="40"/>
+                </solution>
+            </sentence>
+            <sentence number="15" action="yes">
+                <attributes complexity="3"/>
+                <text>After more cleaning around the floor in the barn, he picked up the hay and carried it to the hayloft.</text>
+                <ideas>
+                    <idea number="30"/>
+                </ideas>
+                <solution>
+                    <step number="41"/>
+                    <step number="42"/>
+                </solution>
+            </sentence>
+            <sentence number="16" action="yes">
+                <attributes complexity="3"/>
+                <text>Oh no! When he got to the top, Manuel fell off the hayloft, and the hay fell too.</text>
+                <ideas>
+                    <idea number="31"/>
+                </ideas>
+                <solution>
+                    <step number="43"/>
+                    <step number="44"/>
+                </solution>
+            </sentence>
+            <sentence number="17" action="no">
+                <attributes complexity="3"/>
+                <text>Because of his injury, Manuel has to rest inside the farm for the next 3 days.</text>
+                <ideas>
+                    <idea number="32"/>
+                </ideas>
+            </sentence>
+        </story>
+        <story title="Who is the Best Animal?" page_id="story4-PM-1">
+            <sentence number="1" action="no">
+                <attributes complexity="2"/>
+                <text>The chicken said, \"Cat, cat, come here and purr to me so that I can lay eggs.</text>
+                <ideas>
+                    <idea number="33"/>
+                </ideas>
+            </sentence>
+            <sentence number="2" action="no">
+                <attributes complexity="2"/>
+                <text>I want to be the best animal.\"</text>
+                <ideas>
+                    <idea number="34"/>
+                </ideas>
+            </sentence>
+            <sentence number="3" action="yes">
+                <attributes complexity="2"/>
+                <text>The cat jumped up to the chicken's nest.</text>
+                <ideas>
+                    <idea number="35"/>
+                </ideas>
+                <solution>
+                    <step number="45"/>
+                </solution>
+            </sentence>
+            <sentence number="4" action="no">
+                <attributes complexity="2"/>
+                <text>The cat said, \"I cannot purr to you because I am thirsty.\"</text>
+                <ideas>
+                    <idea number="36"/>
+                </ideas>
+            </sentence>
+            <sentence number="5" action="no">
+                <attributes complexity="2"/>
+                <text>The horse said, \"Goat, goat, come here and bring me an apple.</text>
+                <ideas>
+                    <idea number="37"/>
+                </ideas>
+            </sentence>
+            <sentence number="6" action="no">
+                <attributes complexity="2"/>
+                <text>I want to be the best animal.\"</text>
+                <ideas>
+                    <idea number="38"/>
+                </ideas>
+            </sentence>
+            <sentence number="7" action="no">
+                <attributes complexity="3"/>
+                <text>The chicken said to the cat, \"Come here and purr to me so that I can lay eggs.</text>
+                <ideas>
+                    <idea number="33"/>
+                </ideas>
+            </sentence>
+            <sentence number="8" action="no">
+                <attributes complexity="3"/>
+                <text>But then the cat said, \"I cannot purr to you because I am thirsty,\" which made the chicken sad.</text>
+                <ideas>
+                    <idea number="36"/>
+                </ideas>
+            </sentence>
+            <sentence number="9" action="no">
+                <attributes complexity="3"/>
+                <text>The horse then said to the goat, \"Come here and bring me an apple to clean my teeth and make them sparkly.</text>
+                <ideas>
+                    <idea number="37"/>
+                </ideas>
+            </sentence>
+        </story>
+        <story title="Who is the Best Animal?" page_id="story4-PM-2">
+            <sentence number="1" action="no">
+                <attributes complexity="2"/>
+                <text>But the goat said, \"You cannot have my apple because I am hungry, too.\"</text>
+                <ideas>
+                    <idea number="39"/>
+                </ideas>
+            </sentence>
+            <sentence number="2" action="yes">
+                <attributes complexity="2"/>
+                <text>Then, the goat ate the apple.</text>
+                <ideas>
+                    <idea number="40"/>
+                </ideas>
+                <solution>
+                    <step number="46"/>
+                </solution>
+            </sentence>
+            <sentence number="3" action="no">
+                <attributes complexity="2"/>
+                <text>The cow said to the horse, \"Bring me some hay so I can look healthy and strong.</text>
+                <ideas>
+                    <idea number="41"/>
+                </ideas>
+            </sentence>
+            <sentence number="4" action="no">
+                <attributes complexity="2"/>
+                <text>I want to be the best animal.\"</text>
+                <ideas>
+                    <idea number="42"/>
+                </ideas>
+            </sentence>
+            <sentence number="5" action="yes">
+                <attributes complexity="2"/>
+                <text>But the horse ate the hay.</text>
+                <ideas>
+                    <idea number="43"/>
+                </ideas>
+                <solution>
+                    <step number="47"/>
+                </solution>
+            </sentence>
+            <sentence number="6" action="no">
+                <attributes complexity="2"/>
+                <text>The horse said, \"I will eat hay until I get my apple.\"</text>
+                <ideas>
+                    <idea number="44"/>
+                </ideas>
+            </sentence>
+            <sentence number="7" action="no">
+                <attributes complexity="2"/>
+                <text>So now, all of the animals were sad.</text>
+                <ideas>
+                    <idea number="45"/>
+                </ideas>
+            </sentence>
+            <sentence number="8" action="yes">
+                <attributes complexity="3"/>
+                <text>Then, the goat ate the apple, which upset the horse.</text>
+                <ideas>
+                    <idea number="40"/>
+                </ideas>
+                <solution>
+                    <step number="46"/>
+                </solution>
+            </sentence>
+            <sentence number="9" action="yes">
+                <attributes complexity="3"/>
+                <text>But the horse ate the hay, which angered the cow.</text>
+                <ideas>
+                    <idea number="43"/>
+                </ideas>
+                <solution>
+                    <step number="47"/>
+                </solution>
+            </sentence>
+        </story>
+        <story title="The Wise Owl" page_id="story5-PM-1">
+            <sentence number="1" action="no">
+                <attributes complexity="2"/>
+                <text>Manuel wanted to make the animals happy again.</text>
+                <ideas>
+                    <idea number="46"/>
+                </ideas>
+            </sentence>
+            <sentence number="2" action="no">
+                <attributes complexity="2"/>
+                <text>He called his friend, the wise owl.</text>
+                <ideas>
+                    <idea number="47"/>
+                </ideas>
+            </sentence>
+            <sentence number="3" action="yes">
+                <attributes complexity="2"/>
+                <text>The owl flew to Manuel.</text>
+                <ideas>
+                    <idea number="48"/>
+                </ideas>
+                <solution>
+                    <step number="48"/>
+                </solution>
+            </sentence>
+            <sentence number="4" action="no">
+                <attributes complexity="2"/>
+                <text>Manuel asked the owl to find out why the animals were sad.</text>
+                <ideas>
+                    <idea number="49"/>
+                </ideas>
+            </sentence>
+            <sentence number="5" action="yes">
+                <attributes complexity="2"/>
+                <text>First, the owl flew to the chicken and said, \"Why are you sad?\"</text>
+                <ideas>
+                    <idea number="50"/>
+                </ideas>
+                <solution>
+                    <step number="49"/>
+                    <step number="50"/>
+                </solution>
+            </sentence>
+            <sentence number="6" action="no">
+                <attributes complexity="3"/>
+                <text>After resting from his injury, Manuel wanted to make the animals happy again.</text>
+                <ideas>
+                    <idea number="46"/>
+                </ideas>
+            </sentence>
+            <sentence number="7" action="no">
+                <attributes complexity="3"/>
+                <text>He called his friend, the wise owl, to help him solve the problem with the sad animals.</text>
+                <ideas>
+                    <idea number="47"/>
+                </ideas>
+            </sentence>
+        </story>
+        <story title="The Wise Owl" page_id="story5-PM-2">
+            <sentence number="1" action="yes">
+                <attributes complexity="2"/>
+                <text>The chicken flew to her nest and counted her eggs.</text>
+                <ideas>
+                    <idea number="51"/>
+                </ideas>
+                <solution>
+                    <step number="51"/>
+                    <step number="52"/>
+                </solution>
+            </sentence>
+            <sentence number="2" action="no">
+                <attributes complexity="2"/>
+                <text>The chicken said, \"I cannot be the best animal with only one egg.\"</text>
+                <ideas>
+                    <idea number="52"/>
+                </ideas>
+            </sentence>
+            <sentence number="3" action="yes">
+                <attributes complexity="2"/>
+                <text>Then the owl flew to the pig and said, \"Why are you sad?\"</text>
+                <ideas>
+                    <idea number="53"/>
+                </ideas>
+                <solution>
+                    <step number="53"/>
+                </solution>
+            </sentence>
+            <sentence number="4" action="no">
+                <attributes complexity="2"/>
+                <text>The pig said, \"I cannot be the best pig without eating pumpkins.</text>
+                <ideas>
+                    <idea number="54"/>
+                </ideas>
+            </sentence>
+            <sentence number="5" action="no">
+                <attributes complexity="2"/>
+                <text>But, I am locked in my pen and cannot get to the pumpkins.\"</text>
+                <ideas>
+                    <idea number="55"/>
+                </ideas>
+            </sentence>
+            <sentence number="6" action="yes">
+                <attributes complexity="2"/>
+                <text>The wise owl flew to Manuel and said, \"I have an idea.\"</text>
+                <ideas>
+                    <idea number="56"/>
+                </ideas>
+                <solution>
+                    <step number="54"/>
+                    <step number="55"/>
+                </solution>
+            </sentence>
+            <sentence number="7" action="no">
+                <attributes complexity="3"/>
+                <text>But, I am locked in my pen and therefore, I cannot get to the pumpkins to make me fat.\"</text>
+                <ideas>
+                    <idea number="55"/>
+                </ideas>
+            </sentence>
+        </story>
+        <story title="Everyone Helps" page_id="story6-PM-1">
+            <sentence number="1" action="yes">
+                <attributes complexity="2"/>
+                <text>The owl flew to the chicken and whispered in her ear.</text>
+                <ideas>
+                    <idea number="57"/>
+                </ideas>
+                <solution>
+                    <step number="56"/>
+                </solution>
+            </sentence>
+            <sentence number="2" action="yes">
+                <attributes complexity="2"/>
+                <text>The chicken hopped to the pig's pen and opened the gate.</text>
+                <ideas>
+                    <idea number="58"/>
+                </ideas>
+                <solution>
+                    <step number="57"/>
+                    <step number="58"/>
+                </solution>
+            </sentence>
+            <sentence number="3" action="yes">
+                <attributes complexity="2"/>
+                <text>The pig ran to the pumpkins and ate one.</text>
+                <ideas>
+                    <idea number="59"/>
+                </ideas>
+                <solution>
+                    <step number="59"/>
+                </solution>
+            </sentence>
+            <sentence number="4" action="yes">
+                <attributes complexity="2"/>
+                <text>Then the pig took an apple to the horse.</text>
+                <ideas>
+                    <idea number="60"/>
+                </ideas>
+                <solution>
+                    <step number="60"/>
+                    <step number="61"/>
+                </solution>
+            </sentence>
+            <sentence number="5" action="yes">
+                <attributes complexity="3"/>
+                <text>The wise owl flew to the chicken and whispered in her ear how to help the pig.</text>
+                <ideas>
+                    <idea number="57"/>
+                </ideas>
+                <solution>
+                    <step number="56"/>
+                </solution>
+            </sentence>
+            <sentence number="6" action="yes">
+                <attributes complexity="3"/>
+                <text>Then the chicken hopped to the pig's pen and opened the gate so he could get out.</text>
+                <ideas>
+                    <idea number="58"/>
+                </ideas>
+                <solution>
+                    <step number="57"/>
+                    <step number="58"/>
+                </solution>
+            </sentence>
+            <sentence number="7" action="yes">
+                <attributes complexity="3"/>
+                <text>The pig then ran to the pumpkins and ate the best looking one.</text>
+                <ideas>
+                    <idea number="59"/>
+                </ideas>
+                <solution>
+                    <step number="59"/>
+                </solution>
+            </sentence>
+            <sentence number="8" action="yes">
+                <attributes complexity="3"/>
+                <text>Then the pig took an apple to the horse because it would help clean its teeth.</text>
+                <ideas>
+                    <idea number="60"/>
+                </ideas>
+                <solution>
+                    <step number="60"/>
+                    <step number="61"/>
+                </solution>
+            </sentence>
+        </story>
+        <story title="Everyone Helps" page_id="story6-PM-2">
+            <sentence number="1" action="yes">
+                <attributes complexity="2"/>
+                <text>The horse pushed the hay to the cow.</text>
+                <ideas>
+                    <idea number="61"/>
+                </ideas>
+                <solution>
+                    <step number="62"/>
+                    <step number="63"/>
+                </solution>
+            </sentence>
+            <sentence number="2" action="no">
+                <attributes complexity="2"/>
+                <text>The cow said, \"Cat, come and get some milk from the bucket.\"</text>
+                <ideas>
+                    <idea number="62"/>
+                </ideas>
+            </sentence>
+            <sentence number="3" action="yes">
+                <attributes complexity="2"/>
+                <text>The cat ran to the bucket and licked the milk.</text>
+                <ideas>
+                    <idea number="63"/>
+                </ideas>
+                <solution>
+                    <step number="64"/>
+                </solution>
+            </sentence>
+            <sentence number="4" action="yes">
+                <attributes complexity="2"/>
+                <text>The cat was so happy that she jumped up to the chicken's nest and started to purr.</text>
+                <ideas>
+                    <idea number="64"/>
+                </ideas>
+                <solution>
+                    <step number="65"/>
+                    <step number="66"/>
+                </solution>
+            </sentence>
+            <sentence number="5" action="yes">
+                <attributes complexity="2"/>
+                <text>The chicken went back to her nest, listened to the cat, and started to lay eggs.</text>
+                <ideas>
+                    <idea number="65"/>
+                </ideas>
+                <solution>
+                    <step number="67"/>
+                    <step number="68"/>
+                </solution>
+            </sentence>
+            <sentence number="6" action="yes">
+                <attributes complexity="3"/>
+                <text>Then the horse pushed the hay to the cow.</text>
+                <ideas>
+                    <idea number="61"/>
+                </ideas>
+                <solution>
+                    <step number="62"/>
+                    <step number="63"/>
+                </solution>
+            </sentence>
+            <sentence number="7" action="no">
+                <attributes complexity="3"/>
+                <text>The cow called the cat to come and get some milk from the bucket.</text>
+                <ideas>
+                    <idea number="62"/>
+                </ideas>
+            </sentence>
+            <sentence number="8" action="yes">
+                <attributes complexity="3"/>
+                <text>The cat ran to the bucket and licked all the milk to make her fur shiny.</text>
+                <ideas>
+                    <idea number="63"/>
+                </ideas>
+                <solution>
+                    <step number="64"/>
+                </solution>
+            </sentence>
+            <sentence number="9" action="yes">
+                <attributes complexity="3"/>
+                <text>The chicken went back to her nest to listen to the cat, which helped her lay many eggs.</text>
+                <ideas>
+                    <idea number="65"/>
+                </ideas>
+                <solution>
+                    <step number="67"/>
+                    <step number="68"/>
+                </solution>
+            </sentence>
+        </story>
+        <story title="The Best Farm Award" page_id="story7-PM-1">
+            <sentence number="1" action="yes">
+                <attributes complexity="2"/>
+                <text>It was Sunday. The judge walked to the cow.</text>
+                <ideas>
+                    <idea number="66"/>
+                </ideas>
+                <solution>
+                    <step number="69"/>
+                </solution>
+            </sentence>
+            <sentence number="2" action="yes">
+                <attributes complexity="2"/>
+                <text>She tasted the cow's milk from the bucket.</text>
+                <ideas>
+                    <idea number="67"/>
+                </ideas>
+                <solution>
+                    <step number="70"/>
+                    <step number="71"/>
+                </solution>
+            </sentence>
+            <sentence number="3" action="no">
+                <attributes complexity="2"/>
+                <text>\"Mmmm, that's really good milk,\" she said.</text>
+                <ideas>
+                    <idea number="68"/>
+                </ideas>
+            </sentence>
+            <sentence number="4" action="yes">
+                <attributes complexity="2"/>
+                <text>Then the judge counted the chicken's eggs, \"One, two, three, four!\"</text>
+                <ideas>
+                    <idea number="69"/>
+                </ideas>
+                <solution>
+                    <step number="72"/>
+                    <step number="73"/>
+                </solution>
+            </sentence>
+            <sentence number="5" action="yes">
+                <attributes complexity="2"/>
+                <text>Next the judge walked to the pig.</text>
+                <ideas>
+                    <idea number="70"/>
+                </ideas>
+                <solution>
+                    <step number="74"/>
+                    <step number="75"/>
+                </solution>
+            </sentence>
+            <sentence number="6" action="no">
+                <attributes complexity="2"/>
+                <text>\"You are the fattest pig in the world,\" she said.</text>
+                <ideas>
+                    <idea number="71"/>
+                </ideas>
+            </sentence>
+            <sentence number="7" action="yes">
+                <attributes complexity="3"/>
+                <text>It was finally Sunday, judgment day. The judge walked to the cow to examine it carefully.</text>
+                <ideas>
+                    <idea number="66"/>
+                </ideas>
+                <solution>
+                    <step number="69"/>
+                </solution>
+            </sentence>
+            <sentence number="8" action="yes">
+                <attributes complexity="3"/>
+                <text>Then, she tasted the cow's milk from the bucket.</text>
+                <ideas>
+                    <idea number="67"/>
+                </ideas>
+                <solution>
+                    <step number="70"/>
+                    <step number="71"/>
+                </solution>
+            </sentence>
+            <sentence number="9" action="no">
+                <attributes complexity="3"/>
+                <text>The judge thought to herself out loud \"Mmmm, that's really good milk\".</text>
+                <ideas>
+                    <idea number="68"/>
+                </ideas>
+            </sentence>
+            <sentence number="10" action="yes">
+                <attributes complexity="3"/>
+                <text>Then the judge went to the hayloft and counted the chicken's eggs, \"One, two, three, four!\"</text>
+                <ideas>
+                    <idea number="69"/>
+                </ideas>
+                <solution>
+                    <step number="72"/>
+                    <step number="73"/>
+                </solution>
+            </sentence>
+            <sentence number="11" action="yes">
+                <attributes complexity="3"/>
+                <text>Next the judge wanted to inspect the pig, so she walked to its pen.</text>
+                <ideas>
+                    <idea number="70"/>
+                </ideas>
+                <solution>
+                    <step number="74"/>
+                    <step number="75"/>
+                </solution>
+            </sentence>
+            <sentence number="12" action="no">
+                <attributes complexity="3"/>
+                <text>She thought out loud \"You are the fattest pig in the world\".</text>
+                <ideas>
+                    <idea number="71"/>
+                </ideas>
+            </sentence>
+        </story>
+        <story title="The Best Farm Award" page_id="story7-PM-2">
+            <sentence number="1" action="yes">
+                <attributes complexity="2"/>
+                <text>The judge walked to the corral door.</text>
+                <ideas>
+                    <idea number="72"/>
+                </ideas>
+                <solution>
+                    <step number="76"/>
+                    <step number="77"/>
+                </solution>
+            </sentence>
+            <sentence number="2" action="yes">
+                <attributes complexity="2"/>
+                <text>The horse ran as fast as the wind and stopped next to the judge.</text>
+                <ideas>
+                    <idea number="73"/>
+                </ideas>
+                <solution>
+                    <step number="78"/>
+                </solution>
+            </sentence>
+            <sentence number="3" action="no">
+                <attributes complexity="2"/>
+                <text>The judge said to Farmer Manuel, \"You have the best animals and the best farm in the country.\"</text>
+                <ideas>
+                    <idea number="74"/>
+                </ideas>
+            </sentence>
+            <sentence number="4" action="yes">
+                <attributes complexity="2"/>
+                <text>She gave Manuel the beautiful trophy.</text>
+                <ideas>
+                    <idea number="75"/>
+                </ideas>
+                <solution>
+                    <step number="79"/>
+                    <step number="80"/>
+                    <step number="81"/>
+                </solution>
+            </sentence>
+            <sentence number="5" action="no">
+                <attributes complexity="2"/>
+                <text>All of the animals cheered. They had worked together to become the best farm!</text>
+                <ideas>
+                    <idea number="76"/>
+                </ideas>
+            </sentence>
+            <sentence number="6" action="yes">
+                <attributes complexity="3"/>
+                <text>The judge walked to the corral door to check the horse.</text>
+                <ideas>
+                    <idea number="72"/>
+                </ideas>
+                <solution>
+                    <step number="76"/>
+                    <step number="77"/>
+                </solution>
+            </sentence>
+            <sentence number="7" action="yes">
+                <attributes complexity="3"/>
+                <text>To show off its grace and speed, the horse ran as fast as the wind and stopped next to the judge.</text>
+                <ideas>
+                    <idea number="73"/>
+                </ideas>
+                <solution>
+                    <step number="78"/>
+                </solution>
+            </sentence>
+            <sentence number="8" action="yes">
+                <attributes complexity="3"/>
+                <text>She then proceeded to give Manuel the most beautiful trophy that the animals had ever seen.</text>
+                <ideas>
+                    <idea number="75"/>
+                </ideas>
+                <solution>
+                    <step number="79"/>
+                    <step number="80"/>
+                    <step number="81"/>
+                </solution>
+            </sentence>
+            <sentence number="9" action="no">
+                <attributes complexity="3"/>
+                <text>All of the animals cheered because they had worked together to become the best farm! And thus, as a team they accomplished their lofty goal.</text>
+                <ideas>
+                    <idea number="76"/>
+                </ideas>
+            </sentence>
+        </story>
+    </alternateSentences>
+</metadata>
