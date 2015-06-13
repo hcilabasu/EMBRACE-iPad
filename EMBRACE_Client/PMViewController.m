@@ -303,27 +303,27 @@ ConditionSetup *conditionSetup;
     [self performSetupForActivity];
 }
 
--(void) drawArea : (NSString *)areaName : (NSString *) chapter : (NSString *) pageId {
+-(void) drawArea : (NSString *) areaName : (NSString *) chapter : (NSString *) pageId {
     if ([chapterTitle isEqualToString:chapter] && [currentPageId isEqualToString:pageId]) {
         //Get area that hotspot should be inside
         Area* area = [model getAreaWithId:areaName];
         
         //apply path to shapelayer
-        CAShapeLayer* greenPath = [CAShapeLayer layer];
-        greenPath.lineWidth = 10.0;
-        greenPath.path = area.aPath.CGPath;
-        [greenPath setFillColor:[UIColor clearColor].CGColor];
+        CAShapeLayer* path = [CAShapeLayer layer];
+        path.lineWidth = 10.0;
+        path.path = area.aPath.CGPath;
+        [path setFillColor:[UIColor clearColor].CGColor];
         
         if([areaName rangeOfString:@"Path"].location == NSNotFound) {
-            [greenPath setStrokeColor:[UIColor greenColor].CGColor];
+            [path setStrokeColor:[UIColor greenColor].CGColor];
         }
         else {
             // If it is a path, paint it red
-            [greenPath setStrokeColor:[UIColor redColor].CGColor];
+            [path setStrokeColor:[UIColor redColor].CGColor];
         }
         
         //add shape layer to view's layer
-        [[self.view layer] addSublayer:greenPath];
+        [[self.view layer] addSublayer:path];
     }
 }
 
@@ -697,6 +697,7 @@ ConditionSetup *conditionSetup;
             NSString* object1Id = [currSolStep object1Id];
             NSString* action = [currSolStep action];
             NSString* waypointId = [currSolStep waypointId];
+            NSString* areaId = [currSolStep areaId];
             
             CGPoint imageLocation = [self getObjectPosition:object1Id];
             
@@ -715,6 +716,23 @@ ConditionSetup *conditionSetup;
                 Waypoint* waypoint = [model getWaypointWithId:waypointId];
                 waypointLocation = [self getWaypointLocation:waypoint];
             }
+            
+            if ([areaId rangeOfString:@"Path"].location != NSNotFound) {
+                Area* area = [model getAreaWithId:areaId];
+                for (int i=0; i < area.points.count/2; i++) {
+                    NSString* xCoord = [area.points objectForKey:[NSString stringWithFormat:@"x%d", i]];
+                    
+                    NSString* yCoord = [area.points objectForKey:[NSString stringWithFormat:@"y%d", i]];
+                    
+                    //NSLog(@"X: %@ Y: %@", xCoord, yCoord);
+                    
+                    NSString *buildPath = [NSString stringWithFormat:@"buildPath(%f, %f)", [xCoord floatValue], [yCoord floatValue]];
+                    [bookView stringByEvaluatingJavaScriptFromString:buildPath];
+                }
+            }
+            
+            //NSString *showPath = @"showPath()";
+            //[bookView stringByEvaluatingJavaScriptFromString:showPath];
             
             //Call the animateObject function in the js file.
             NSString *animate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@')", object1Id, adjLocation.x, adjLocation.y, waypointLocation.x, waypointLocation.y, action];

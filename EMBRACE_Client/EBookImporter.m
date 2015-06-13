@@ -602,17 +602,19 @@ ConditionSetup *conditionSetup;
         NSArray* points = [area elementsForName:@"point"];
         isFirstPoint = true;
         
+        int pointID = 0;
         for (GDataXMLElement* point in points) {
             NSString* pointX = [[point attributeForName:@"x"] stringValue];
             NSString* pointY = [[point attributeForName:@"y"] stringValue];
-            areaDictionary[areaId] = pointX;
-            areaDictionary[areaId] = pointY;
             
             //[bookView frame].size.width = 1024 hard-coded for now
             float locationX = [pointX floatValue] / 100.0 * 1024;
             //[bookView frame].size.height = 704 hard-coded for now
             float locationY = [pointY floatValue] / 100.0 * 704;
             
+            areaDictionary[[NSString stringWithFormat:@"x%d", pointID]] = [NSString stringWithFormat:@"%f", locationX];
+            areaDictionary[[NSString stringWithFormat:@"y%d", pointID]] = [NSString stringWithFormat:@"%f", locationY];
+            pointID++;
             
             if (isFirstPoint) {
                 // Set the starting point of the shape.
@@ -847,8 +849,9 @@ ConditionSetup *conditionSetup;
                         else if([[step name] isEqualToString:@"animate"]) {
                             if([step attributeForName:@"waypointId"]) {
                                 NSString* waypointId = [[step attributeForName:@"waypointId"] stringValue];
+                                NSString* areaId = [[step attributeForName:@"areaId"] stringValue];
                                 
-                                ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :waypointId :action :nil :nil];
+                                ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :waypointId :action :areaId :nil];
                                 [PMSolution addSolutionStep:solutionStep];
                             }
                         }

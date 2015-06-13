@@ -8,6 +8,8 @@ var animatingObjects = new Array();
 var animatingObjectsIndex = -1;
 var requestId;
 var cancelOnce = true;
+var path = new Array(10);
+var pathIndex = 0;
 
 function AnimationObject(object, posX, posY, endX, endY, animName) {
     this.object = object;
@@ -74,7 +76,10 @@ function animFrame(object){
         cheer(object);
     }
     else if(object.animName == "floatAnimation") {
-        float(object);
+        floatAnim(object);
+    }
+    else if(object.animName == "followAnimation") {
+        follow(object);
     }
 }
 
@@ -156,7 +161,7 @@ function cheer(aniObject) {
     }
 }
 
-function float(aniObject) {
+function floatAnim(aniObject) {
     //alert("Floating");
 
     //for (var i=0; i<animatingObjects.length; i++) {
@@ -232,70 +237,110 @@ function checkEdges(aniObject) {
     }
 }
 
+function buildPath(x, y) {
+    path[pathIndex] = new Array(2);
+    path[pathIndex] = [parseFloat(x), parseFloat(y)];
+    //console.log("X: " + x + "Y: " + y);
+    pathIndex++;
+}
+
 function Path(points) {
     this.points = new Array();
     this.points = points;
 }
 
-function follow(aniObject, path) {
+function showPath() {
+    for (var i = 0; i < pathIndex; i++) {
+        console.log("X: " + path[i][0] + " Y: " + path[i][1]);
+    }
+}
+
+function follow(aniObject) {
+    //console.log("CALLING FOLLOW");
     var predictVelX = aniObject.vx;
-    var predictVelY = animateObject.vy;
+    var predictVelY = aniObject.vy;
+    
     //diffX = diffX / Math.sqrt(Math.pow(diffX, 2) + Math.pow(diffY, 2));
-    predictVelX = predictVelX / Math.sqrt(Math.pow(predictVelX, 2) + Math.pow(predictVelX, 2));
-    predictVelY = predictVelY / Math.sqrt(Math.pow(predictVelY, 2) + Math.pow(predictVelY, 2));
+    predictVelX = predictVelX / Math.sqrt(Math.pow(predictVelX, 2) + Math.pow(predictVelY, 2));
+    predictVelY = predictVelY / Math.sqrt(Math.pow(predictVelX, 2) + Math.pow(predictVelY, 2));
     predictVelX *= 50;
     predictVelY *= 50;
-    
+    //console.log("X: " + predictVelX + " Y: " + predictVelY);
     var predictLocX = aniObject.x + predictVelX;
     var predictLocY = aniObject.y + predictVelY;
     
-    var normal;
-    var target;
+    //console.log("X: " + predictLocX + " Y: " + predictLocY);
+    
+    var normal = new Array(2);
+    var target = new Array(2);
     var distanceToPath = 1000000;
     
-    for (var i = 0; points.length-1; i++) {
-        var aX = points[i].x;
-        var aY = points[i].y;
-        var bX = points[i+1].x;
-        var bY = points[i+1].y;
+    //console.log("Path Index: " + pathIndex);
+    
+    for (var i = 0; i < pathIndex-1; i++) {
+        var aX = path[i][0];
+        var aY = path[i][1];
+        var bX = path[i+1][0];
+        var bY = path[i+1][1];
         
         var normalPoint = getNormalPoint(predictLocX, predictLocY, aX, aY, bX, bY);
+        
+        //console.log("X: " + normalPoint[0] + " Y: " + normalPoint[1]);
+        
         if (normalPoint[0] < aX || normalPoint[1] > bX) {
             normalPoint[0] = bX;
             normalPoint[1] = bY;
         }
         
         var distance = Math.sqrt(Math.pow((predictLocX-normalPoint[0]), 2) + Math.pow((predictLocY-normalPoint[1]), 2) );
+        
+        //console.log("Distance : " + distance);
+        
         if (distance < distanceToPath) {
             distanceToPath = distance;
             normal = normalPoint;
             var dirX = bX-aX;
             var dirY = bY-aY;
-            dirX = dirX / Math.sqrt(Math.pow(dirX, 2) + Math.pow(dirX, 2));
-            dirY = dirY / Math.sqrt(Math.pow(dirY, 2) + Math.pow(dirY, 2));
+            dirX = dirX / Math.sqrt(Math.pow(dirX, 2) + Math.pow(dirY, 2));
+            dirY = dirY / Math.sqrt(Math.pow(dirX, 2) + Math.pow(dirY, 2));
+            
+            //console.log("X: " + dirX + " Y: " + dirY);
             
             dirX *= 10;
             dirY *= 10;
             target = normalPoint;
             target[0] += dirX;
             target[1] += dirY;
+            
+            //console.log("X: " + target[0] + " Y: " + target[1]);
         }
     }
     
+    console.log("Y ahora estoy aqui");
+    
     if (distanceToPath > radius) {
-        seek(target);
+        seekAnim(target, aniObject);
     }
+    
+    aniObject.vx += aniObject.ax;
+    aniObject.vy += aniObject.ay;
+    aniObject.x += aniObject.vx;
+    aniObject.object.style.left = aniObject.x + "px";
+    aniObject.y += aniObject.vy;
+    aniObject.object.style.top = aniObject.y + "px";
+    aniObject.ax *= 0;
+    aniObject.ay *= 0;
 }
 
-function seek(target, aniObject) {
+function seekAnim(target, aniObject) {
     var desiredX = target[0] - aniObject.x;
     var desiredY = target[1] - aniObject.y;
     
     if (desiredX == 0 || desiredY == 0)
         return;
     
-    desiredX = desiredX / Math.sqrt(Math.pow(desiredX, 2) + Math.pow(desiredX, 2));
-    desiredY = desiredY / Math.sqrt(Math.pow(desiredY, 2) + Math.pow(desiredY, 2));
+    desiredX = desiredX / Math.sqrt(Math.pow(desiredX, 2) + Math.pow(desiredY, 2));
+    desiredY = desiredY / Math.sqrt(Math.pow(desiredX, 2) + Math.pow(desiredY, 2));
     
     desiredX *= aniObject.maxSpeed;
     desiredY *= aniObject.maxSpeed;
@@ -308,14 +353,14 @@ function seek(target, aniObject) {
 }
 
 function getNormalPoint(pX, pY, aX, aY, bX, bY) {
-    apX = pX - aX;
-    apY = pY - aY;
+    var apX = pX - aX;
+    var apY = pY - aY;
     
-    abX = bX - aX;
-    abY = bY - aY;
+    var abX = bX - aX;
+    var abY = bY - aY;
     
-    abX = abX / Math.sqrt(Math.pow(abX, 2) + Math.pow(abX, 2));
-    abY = abY / Math.sqrt(Math.pow(abY, 2) + Math.pow(abY, 2));
+    abX = abX / Math.sqrt(Math.pow(abX, 2) + Math.pow(abY, 2));
+    abY = abY / Math.sqrt(Math.pow(abX, 2) + Math.pow(abY, 2));
     
     var ary1 = [apX, apY];
     var ary2 = [abX, abY];
