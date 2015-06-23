@@ -8,8 +8,10 @@ var animatingObjects = new Array();
 var animatingObjectsIndex = -1;
 var requestId;
 var cancelOnce = true;
-var path = new Array(10);
+var path = new Array(100);
 var pathIndex = 0;
+var pathRadius = 20;
+var followIndex = 0;
 
 function AnimationObject(object, posX, posY, endX, endY, animName) {
     this.object = object;
@@ -25,8 +27,8 @@ function AnimationObject(object, posX, posY, endX, endY, animName) {
     this.tempY = 0;
     this.ix = posX;
     this.iy = posY;
-    this.maxSpeed = 3;
-    this.maxForce = 0.2;
+    this.maxSpeed = 2;
+    this.maxForce = 0.06;
     this.ax = 0;
     this.ay = 0;
 }
@@ -53,8 +55,12 @@ function animateObject(objectName, posX, posY, endX, endY, animName) {
             tempVelY = -0.25;
         }
         animatingObjects[animatingObjectsIndex].vx = tempVelX;
-        
         animatingObjects[animatingObjectsIndex].vy = tempVelY;
+    }
+    else if (animatingObjects[animatingObjectsIndex].animName == "followAnimation") {
+        
+        animatingObjects[animatingObjectsIndex].vx = animatingObjects[animatingObjectsIndex].maxSpeed;
+        animatingObjects[animatingObjectsIndex].vy = 0;
     }
     
     animFrame(animatingObjects[animatingObjectsIndex]);
@@ -256,7 +262,9 @@ function showPath() {
 }
 
 function follow(aniObject) {
+    
     //console.log("CALLING FOLLOW");
+    //console.log("Vx: " + aniObject.vx + " Vy: " + aniObject.vy);
     var predictVelX = aniObject.vx;
     var predictVelY = aniObject.vy;
     
@@ -276,18 +284,18 @@ function follow(aniObject) {
     var distanceToPath = 1000000;
     
     //console.log("Path Index: " + pathIndex);
-    
     for (var i = 0; i < pathIndex-1; i++) {
+        
         var aX = path[i][0];
         var aY = path[i][1];
         var bX = path[i+1][0];
         var bY = path[i+1][1];
-        
-        var normalPoint = getNormalPoint(predictLocX, predictLocY, aX, aY, bX, bY);
+    
+        var normalPoint = getNormalPoint(predictLocX, predictLocY, aX, aY, bX, bY).concat();
         
         //console.log("X: " + normalPoint[0] + " Y: " + normalPoint[1]);
         
-        if (normalPoint[0] < aX || normalPoint[1] > bX) {
+        if (normalPoint[0] < aX || normalPoint[0] > bX) {
             normalPoint[0] = bX;
             normalPoint[1] = bY;
         }
@@ -298,7 +306,8 @@ function follow(aniObject) {
         
         if (distance < distanceToPath) {
             distanceToPath = distance;
-            normal = normalPoint;
+            normal = normalPoint.concat();
+            
             var dirX = bX-aX;
             var dirY = bY-aY;
             dirX = dirX / Math.sqrt(Math.pow(dirX, 2) + Math.pow(dirY, 2));
@@ -308,7 +317,7 @@ function follow(aniObject) {
             
             dirX *= 10;
             dirY *= 10;
-            target = normalPoint;
+            target = normalPoint.concat();
             target[0] += dirX;
             target[1] += dirY;
             
@@ -316,27 +325,37 @@ function follow(aniObject) {
         }
     }
     
-    console.log("Y ahora estoy aqui");
+    //console.log("Y ahora estoy aqui");
     
-    if (distanceToPath > radius) {
+    //console.log("Distance: " + distanceToPath + "Radius: " + pathRadius);
+    
+    if (distanceToPath > pathRadius) {
         seekAnim(target, aniObject);
     }
     
     aniObject.vx += aniObject.ax;
     aniObject.vy += aniObject.ay;
+    
     aniObject.x += aniObject.vx;
     aniObject.object.style.left = aniObject.x + "px";
     aniObject.y += aniObject.vy;
     aniObject.object.style.top = aniObject.y + "px";
+    
     aniObject.ax *= 0;
     aniObject.ay *= 0;
+    
+    //console.log("X: " + aniObject.x + "PathX: " + path[pathIndex-1][0]);
+    
+    if (aniObject.x > path[pathIndex-1][0]) {
+        cancelAnimationFrame(requestId);
+    }
 }
 
 function seekAnim(target, aniObject) {
     var desiredX = target[0] - aniObject.x;
     var desiredY = target[1] - aniObject.y;
     
-    if (desiredX == 0 || desiredY == 0)
+    if (Math.sqrt(Math.pow(desiredX, 2) + Math.pow(desiredY, 2)) == 0)
         return;
     
     desiredX = desiredX / Math.sqrt(Math.pow(desiredX, 2) + Math.pow(desiredY, 2));
