@@ -731,8 +731,8 @@ ConditionSetup *conditionSetup;
                 }
             }
             
-            //NSString *showPath = @"showPath()";
-            //[bookView stringByEvaluatingJavaScriptFromString:showPath];
+            NSString *showPath = @"showPath()";
+            [bookView stringByEvaluatingJavaScriptFromString:showPath];
             
             //Call the animateObject function in the js file.
             NSString *animate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@')", object1Id, adjLocation.x, adjLocation.y, waypointLocation.x, waypointLocation.y, action];
@@ -1301,13 +1301,18 @@ ConditionSetup *conditionSetup;
  * Pan gesture. Used to move objects from one location to another.
  */
 -(IBAction)panGesturePerformed:(UIPanGestureRecognizer *)recognizer {
+    
     CGPoint location = [recognizer locationInView:self.view];
 
     //This should work with requireGestureRecognizerToFail:pinchRecognizer but it doesn't currently.
     if(!pinching && IntroductionClass.allowInteractions) {
         BOOL useProximity = NO;
         
+        static UIBezierPath *path = nil;
+        static CAShapeLayer *shapeLayer = nil;
+        
         if(recognizer.state == UIGestureRecognizerStateBegan) {
+            
             //NSLog(@"pan gesture began at location: (%f, %f)", location.x, location.y);
             panning = TRUE;
             
@@ -1335,6 +1340,14 @@ ConditionSetup *conditionSetup;
             }
         }
         else if(recognizer.state == UIGestureRecognizerStateEnded) {
+            
+            // Clears the drawn path
+            //if (recognizer.state == UIGestureRecognizerStateEnded) {
+                [shapeLayer removeFromSuperlayer];
+                shapeLayer = nil;
+                path = nil;
+            //}
+            
             //NSLog(@"pan gesture ended at location (%f, %f)", location.x, location.y);
             panning = FALSE;
             
@@ -1541,6 +1554,28 @@ ConditionSetup *conditionSetup;
         }
         //If we're in the middle of moving the object, just call the JS to move it.
         else if(movingObject)  {
+            // The name of the chapter is hard-coded for now
+            if ([chapterTitle isEqualToString:@"Muscles Use Oxygen"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound)) {
+                
+                // Start drawing the path
+                CGPoint pointLocation = [recognizer locationInView:recognizer.view];
+                
+                if (!path) {
+                    path = [UIBezierPath bezierPath];
+                    [path moveToPoint:pointLocation];
+                    shapeLayer = [[CAShapeLayer alloc] init];
+                    shapeLayer.strokeColor = [UIColor redColor].CGColor;
+                    shapeLayer.fillColor = [UIColor clearColor].CGColor;
+                    shapeLayer.lineWidth = 10.0;
+                    [recognizer.view.layer addSublayer:shapeLayer];
+                }
+                else {
+                    [path addLineToPoint:pointLocation];
+                    shapeLayer.path = path.CGPath;
+                }
+            }
+            
+            
             [self moveObject:movingObjectId :location :delta :true : @"isMoving"];
             
             //If we're overlapping with another object, then we need to figure out which hotspots are currently active and highlight those hotspots.
@@ -1558,7 +1593,7 @@ ConditionSetup *conditionSetup;
                         [bookView stringByEvaluatingJavaScriptFromString:highlight];
                     }
                 }
-                
+         
                 if (conditionSetup.condition ==HOTSPOT) {
                     //resets allRelationship arrray
                     if([allRelationships count])
@@ -1599,6 +1634,7 @@ ConditionSetup *conditionSetup;
                     [self drawHotspots:redHotspots :@"red"];
                     [self drawHotspots:greenHotspots :@"green"];
                 }
+         
             }
         }
     }
