@@ -84,7 +84,7 @@
         <story title="Muscles Use Oxygen" activity_id="story3-PM-1">
             <sentence number="1">
                 <step number="1">
-                    <check obj1Id="bloodcell_1" action="getIn" locationId="muscle1"/>
+                    <checkPath obj1Id="bloodcell_1" action="getIn" locationId="muscle1" areaId="aortaMuscle"/>
                     <move obj1Id="bloodcell_1" action="getIn" waypointId="muscle1"/>
                 </step>
             </sentence>

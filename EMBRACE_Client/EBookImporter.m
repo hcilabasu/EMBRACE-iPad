@@ -872,6 +872,13 @@ ConditionSetup *conditionSetup;
                             ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :action :areaId :nil];
                             [PMSolution addSolutionStep:solutionStep];
                         }
+                        
+                        else if([[step name] isEqualToString:@"checkPath"]) {
+                            NSString* locationId = [[step attributeForName:@"locationId"] stringValue];
+                            NSString* areaId = [[step attributeForName:@"areaId"] stringValue];
+                            ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :locationId :nil :action :areaId :nil];
+                            [PMSolution addSolutionStep:solutionStep];
+                        }
                     }
                 }
             }

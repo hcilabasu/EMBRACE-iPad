@@ -98,6 +98,8 @@ float const groupingProximity = 20.0;
 // Create an instance of  ConditionSetup
 ConditionSetup *conditionSetup;
 
+BOOL wasPathFollowed = false;
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -296,6 +298,7 @@ ConditionSetup *conditionSetup;
     //[self drawArea:@"aroundPaco":@"Is Paco a Thief?"];
     [self drawArea:@"aorta":@"The Amazing Heart":@"story2-PM-4"];
     [self drawArea:@"aortaPath":@"The Amazing Heart":@"story2-PM-4"];
+    [self drawArea:@"aortaMuscle":@"Muscles Use Oxygen":@"story3-PM-1"];
     
     //NSLog(@"CURRENT PAGE ID: %@", currentPageId);
     
@@ -1297,6 +1300,16 @@ ConditionSetup *conditionSetup;
     }
 }
 
+-(UIColor *)generateRandomColor {
+    NSInteger aRedValue = arc4random()%255;
+    NSInteger aGreenValue = arc4random()%255;
+    NSInteger aBlueValue = arc4random()%255;
+    
+    UIColor *randColor = [UIColor colorWithRed:aRedValue/255.0f green:aGreenValue/255.0f blue:aBlueValue/255.0f alpha:1.0f];
+    
+    return randColor;
+}
+
 /*
  * Pan gesture. Used to move objects from one location to another.
  */
@@ -1312,6 +1325,9 @@ ConditionSetup *conditionSetup;
         static CAShapeLayer *shapeLayer = nil;
         
         if(recognizer.state == UIGestureRecognizerStateBegan) {
+            
+            //Starts true because the object starts within the area
+            wasPathFollowed = true;
             
             //NSLog(@"pan gesture began at location: (%f, %f)", location.x, location.y);
             panning = TRUE;
@@ -1342,11 +1358,9 @@ ConditionSetup *conditionSetup;
         else if(recognizer.state == UIGestureRecognizerStateEnded) {
             
             // Clears the drawn path
-            //if (recognizer.state == UIGestureRecognizerStateEnded) {
-                [shapeLayer removeFromSuperlayer];
-                shapeLayer = nil;
-                path = nil;
-            //}
+            //[shapeLayer removeFromSuperlayer];
+            //shapeLayer = nil;
+            path = nil;
             
             //NSLog(@"pan gesture ended at location (%f, %f)", location.x, location.y);
             panning = FALSE;
@@ -1364,8 +1378,10 @@ ConditionSetup *conditionSetup;
                     ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
                     
                     if ([[currSolStep stepType] isEqualToString:@"check"]) {
-                        //Check if object is in the correct location
+                        
+                        //Check if object is in the correct location or area
                         if([self isHotspotInsideLocation] || [self isHotspotInsideArea]) {
+                            
                             if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
                                 /*Check to see if an object is at a certain location or is grouped with another object e.g. farmergetIncorralArea or farmerleadcow. These strings come from the solution steps */
                                 if([[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:[NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep locationId]]]
@@ -1421,6 +1437,30 @@ ConditionSetup *conditionSetup;
                     }
                     else if ([[currSolStep stepType] isEqualToString:@"shakeOrTap"]) {
                         if([self areHotspotsInsideArea]) {
+                            [self incrementCurrentStep];
+                        }
+                        else {
+                            //gets hotspot id for logging
+                            NSString* locationId = [currSolStep locationId];
+                            //Logging added by James for User Move Object to object
+                            [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : locationId:startLocation.x :startLocation.y :location.x :location.y :@"Move to Hotspot" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+                            
+                            //Logging added by James for user Move Object to Hotspot Incorrect
+                            [[ServerCommunicationController sharedManager] logComputerVerification:@"Move to Hotspot" :false : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+                            
+                            [playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentStep];
+                            //[self playErrorNoise];
+                            
+                            if (allowSnapback) {
+                                //Snap the object back to its original location
+                                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
+                                //if incorrect location reset object to beginning of gesture
+                                
+                            }
+                        }
+                    }
+                    else if ([[currSolStep stepType] isEqualToString:@"checkPath"]) {
+                        if([self isHotspotInsideLocation] && wasPathFollowed) {
                             [self incrementCurrentStep];
                         }
                         else {
@@ -1564,7 +1604,7 @@ ConditionSetup *conditionSetup;
                     path = [UIBezierPath bezierPath];
                     [path moveToPoint:pointLocation];
                     shapeLayer = [[CAShapeLayer alloc] init];
-                    shapeLayer.strokeColor = [UIColor redColor].CGColor;
+                    shapeLayer.strokeColor = [self generateRandomColor].CGColor;
                     shapeLayer.fillColor = [UIColor clearColor].CGColor;
                     shapeLayer.lineWidth = 10.0;
                     [recognizer.view.layer addSublayer:shapeLayer];
@@ -1573,8 +1613,11 @@ ConditionSetup *conditionSetup;
                     [path addLineToPoint:pointLocation];
                     shapeLayer.path = path.CGPath;
                 }
+                
+                if (![self isHotspotInsideArea]) {
+                    wasPathFollowed = false;
+                }
             }
-            
             
             [self moveObject:movingObjectId :location :delta :true : @"isMoving"];
             
@@ -2289,7 +2332,7 @@ ConditionSetup *conditionSetup;
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
-        if ([[currSolStep stepType] isEqualToString:@"check"]) {
+        if ([[currSolStep stepType] isEqualToString:@"check"] || [[currSolStep stepType] isEqualToString:@"checkPath"]) {
             //Get information for check step type
             NSString* objectId = [currSolStep object1Id];
             NSString* action = [currSolStep action];
@@ -2333,7 +2376,7 @@ ConditionSetup *conditionSetup;
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
-        if ([[currSolStep stepType] isEqualToString:@"check"]) {
+        if ([[currSolStep stepType] isEqualToString:@"check"] || [[currSolStep stepType] isEqualToString:@"checkPath"]) {
             //Get information for check step type
             NSString* objectId = [currSolStep object1Id];
             NSString* action = [currSolStep action];
@@ -2390,6 +2433,40 @@ ConditionSetup *conditionSetup;
         }
     }
     
+    return false;
+}
+
+/*
+ * Returns true if a location belongs to an area path. Otherwise, returns false.
+ */
+- (BOOL) isHotspotOnPath {
+    //Check solution only if it exists for the sentence
+    if (numSteps > 0) {
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        if ([[currSolStep stepType] isEqualToString:@"checkPath"]) {
+            //Get information for check step type
+            NSString* objectId = [currSolStep object1Id];
+            NSString* action = [currSolStep action];
+            
+            NSString* areaId = [currSolStep areaId];
+            
+            //Get hotspot location of correct subject
+            Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:objectId :action :@"subject"];
+            CGPoint hotspotLocation = [self getHotspotLocation:hotspot];
+            
+            //Get area that hotspot should be inside
+            Area* area = [model getAreaWithId:areaId];
+            
+            if ([area.aPath containsPoint:hotspotLocation]){
+                return true;
+            }
+        }
+    }
     return false;
 }
 
