@@ -1042,6 +1042,7 @@
 		5C7FE16319A7E43C00CBBE0E /* prizeE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FE0DF19A7E43C00CBBE0E /* prizeE.m4a */; };
 		5C7FE16A19A7E43C00CBBE0E /* STWATTP.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FE0E619A7E43C00CBBE0E /* STWATTP.m4a */; };
 		5C7FE16D19A7E43C00CBBE0E /* tryAgainE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FE0E919A7E43C00CBBE0E /* tryAgainE.m4a */; };
+		5C80A4E71B4E1F7A00CAC13E /* disasters.epub in Resources */ = {isa = PBXBuildFile; fileRef = 5C80A4E61B4E1F7A00CAC13E /* disasters.epub */; };
 		5CAD05DE19BE6A3E00F3F053 /* CEE_14.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CAD05A319BE6A3E00F3F053 /* CEE_14.m4a */; };
 		5CAD05E019BE6A3E00F3F053 /* CCE5_8.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CAD05A519BE6A3E00F3F053 /* CCE5_8.m4a */; };
 		5CAD05E219BE6A3E00F3F053 /* CCE5_7.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CAD05A719BE6A3E00F3F053 /* CCE5_7.m4a */; };
@@ -1965,7 +1966,7 @@
 		31937539174185E000782C2B /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		3193753B1741A76E00782C2B /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
 		3193753C1741A76E00782C2B /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
-		31953E451729ECC100570087 /* Embrace B.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Embrace B.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		31953E451729ECC100570087 /* Authoring.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Authoring.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31953E481729ECC100570087 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		31953E4A1729ECC100570087 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		31953E4C1729ECC100570087 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -2348,6 +2349,7 @@
 		5C7FE0DF19A7E43C00CBBE0E /* prizeE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = prizeE.m4a; path = EMBRACE_Client/sounds/prizeE.m4a; sourceTree = SOURCE_ROOT; };
 		5C7FE0E619A7E43C00CBBE0E /* STWATTP.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = STWATTP.m4a; path = EMBRACE_Client/sounds/STWATTP.m4a; sourceTree = SOURCE_ROOT; };
 		5C7FE0E919A7E43C00CBBE0E /* tryAgainE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = tryAgainE.m4a; path = EMBRACE_Client/sounds/tryAgainE.m4a; sourceTree = SOURCE_ROOT; };
+		5C80A4E61B4E1F7A00CAC13E /* disasters.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = disasters.epub; sourceTree = "<group>"; };
 		5CAD05A319BE6A3E00F3F053 /* CEE_14.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = CEE_14.m4a; path = EMBRACE_Client/sounds/CEE_14.m4a; sourceTree = SOURCE_ROOT; };
 		5CAD05A519BE6A3E00F3F053 /* CCE5_8.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = CCE5_8.m4a; path = EMBRACE_Client/sounds/CCE5_8.m4a; sourceTree = SOURCE_ROOT; };
 		5CAD05A719BE6A3E00F3F053 /* CCE5_7.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = CCE5_7.m4a; path = EMBRACE_Client/sounds/CCE5_7.m4a; sourceTree = SOURCE_ROOT; };
@@ -2852,7 +2854,7 @@
 		31953E461729ECC100570087 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				31953E451729ECC100570087 /* Embrace B.app */,
+				31953E451729ECC100570087 /* Authoring.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2889,6 +2891,7 @@
 		31953E4F1729ECC100570087 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5C80A4E61B4E1F7A00CAC13E /* disasters.epub */,
 				1ADB01A21AAD211C006C5256 /* house.epub */,
 				5CE1E30F1A119E120070A7D6 /* bestFarm.epub */,
 				5CE1E30D1A119DFC0070A7D6 /* circulatory.epub */,
@@ -4292,7 +4295,7 @@
 			);
 			name = EMBRACE;
 			productName = EMBRACE_Client;
-			productReference = 31953E451729ECC100570087 /* Embrace B.app */;
+			productReference = 31953E451729ECC100570087 /* Authoring.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -4666,6 +4669,7 @@
 				5C776B0C19C6A884000DBC65 /* BFCE_4.m4a in Resources */,
 				5C7FE05019A6B1B500CBBE0E /* Story3-Muscles-Use-Oxygen-PM-1.xhtml in Resources */,
 				5CAD063619BEB8AE00F3F053 /* dustE.m4a in Resources */,
+				5C80A4E71B4E1F7A00CAC13E /* disasters.epub in Resources */,
 				1AF3815C1A40A4C600D967FD /* AssessmentActivityViewController.xib in Resources */,
 				5CAD05FA19BE6A3E00F3F053 /* CCE2_5.m4a in Resources */,
 				1A8036FD1B0B1C62004A164A /* TheWiseOwlQ3A2.mp3 in Resources */,
@@ -5701,7 +5705,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				OTHER_LDFLAGS = "-lxml2";
-				PRODUCT_NAME = "Embrace B";
+				PRODUCT_NAME = Authoring;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -5726,7 +5730,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				OTHER_LDFLAGS = "-lxml2";
-				PRODUCT_NAME = "Embrace B";
+				PRODUCT_NAME = Authoring;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
