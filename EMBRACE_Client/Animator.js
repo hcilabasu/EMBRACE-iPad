@@ -36,10 +36,13 @@ function AnimationObject(object, posX, posY, endX, endY, animName) {
     this.maxForce = 0.06;
     this.ax = 0;
     this.ay = 0;
+    this.location = createVector(this.x, this.y);
+    this.velocity = createVector(this.vx, this.vy);
+    this.acceleration = createVector(this.ax, this.ay);
 }
 
 function animateObject(objectName, posX, posY, endX, endY, animName) {
-    
+    //console.log("CALLING ANIMATE OBJECT");
     percentage = 0;
     increment = 0;
     
@@ -69,8 +72,8 @@ function animateObject(objectName, posX, posY, endX, endY, animName) {
     else if (animatingObjects[animatingObjectsIndex].animName == "followAnimation") {
         
         //animatingObjects[animatingObjectsIndex].vx = animatingObjects[animatingObjectsIndex].maxSpeed;
-        animatingObjects[animatingObjectsIndex].vx = 0.2;
-        animatingObjects[animatingObjectsIndex].vy = 0;
+        animatingObjects[animatingObjectsIndex].velocity.x = 0.2;
+        animatingObjects[animatingObjectsIndex].velocity.y = 0;
     }
     
     animFrame(animatingObjects[animatingObjectsIndex]);
@@ -279,6 +282,50 @@ function showPath() {
 }
 
 function follow(aniObject) {
+    //console.log("CALLING FOLLOW");
+    var predict = aniObject.velocity.copy();
+    //console.log(predict.x);
+    predict.normalize();
+    predict.mult(50);
+    //console.log(predict.x);
+    var predictLoc = add(aniObject.location, predict);
+    //console.log(predictLoc.x);
+    
+    var normal = null;
+    var target = null;
+    var distanceToPath = 1000000;
+    
+    for (var i = 0; i < pathIndex-1; i++) {
+        var a = createVector(path[i][0], path[i][1]);
+        var b = createVector(path[i+1][0], path[i+1][1]);
+        
+        var normalPoint = getNormalPoint(predictLoc, a, b);
+        //console.log(normalPoint.x);
+        
+        if (normalPoint.x < a.x || normalPoint.x > b.x) {
+            normalPoint = b.copy();
+        }
+        
+        var distance = dist(predictLoc, normalPoint);
+        
+        if (distance < distanceToPath) {
+            distanceToPath = distance;
+            normal = normalPoint;
+            
+            var dir = sub(b, a);
+            dir.normalize();
+            
+            dir.mult(10);
+            target = normalPoint.copy();
+            target.add(dir);
+        }
+    }
+    
+    if (distanceToPath > pathRadius) {
+        seekAnim(target, aniObject);
+    }
+    
+    /*
     
     //console.log("CALLING FOLLOW");
     //console.log("Vx: " + aniObject.vx + " Vy: " + aniObject.vy);
@@ -352,25 +399,51 @@ function follow(aniObject) {
         seekAnim(target, aniObject);
     }
     
-    aniObject.vx += aniObject.ax;
-    aniObject.vy += aniObject.ay;
+    */
     
-    aniObject.x += aniObject.vx;
-    aniObject.object.style.left = aniObject.x + "px";
-    aniObject.y += aniObject.vy;
-    aniObject.object.style.top = aniObject.y + "px";
+    aniObject.velocity.add(aniObject.acceleration);
+    aniObject.velocity.limit(aniObject.maxSpeed);
     
-    aniObject.ax *= 0;
-    aniObject.ay *= 0;
+    //aniObject.velocity.x += aniObject.acceleration.x;
+    //aniObject.velocity.y += aniObject.acceleration.y;
+    
+    aniObject.location.x += aniObject.velocity.x;
+    aniObject.object.style.left = aniObject.location.x + "px";
+    aniObject.location.y += aniObject.velocity.y;
+    aniObject.object.style.top = aniObject.location.y + "px";
+    
+    //console.log("X: " + aniObject.location.x + " Y: " + aniObject.location.y);
+    
+    aniObject.acceleration.mult(0);
+    //aniObject.acceleration.x *= 0;
+    //aniObject.acceleration.y *= 0;
     
     //console.log("X: " + aniObject.x + "PathX: " + path[pathIndex-1][0]);
     
-    if (aniObject.x > path[pathIndex-1][0]) {
+    //if (aniObject.x > path[pathIndex-1][0]) {
+        //cancelAnimationFrame(requestId);
+    //}
+    
+    if (aniObject.location.x > path[pathIndex-1][0]) {
         cancelAnimationFrame(requestId);
     }
 }
 
 function seekAnim(target, aniObject) {
+    //console.log(aniObject.location);
+    var desired = sub(target, aniObject.location);
+    //console.log("Calling seek");
+    if (desired.mag() == 0) return;
+    
+    desired.normalize();
+    desired.mult(aniObject.maxSpeed);
+    
+    var steer = sub(desired, aniObject.velocity);
+    steer.limit(aniObject.maxForce);
+    //console.log("Calling seek");
+    aniObject.acceleration.add(steer);
+    
+    /*
     var desiredX = target[0] - aniObject.x;
     var desiredY = target[1] - aniObject.y;
     
@@ -388,9 +461,20 @@ function seekAnim(target, aniObject) {
     
     aniObject.ax += steerX;
     aniObject.ay += steerY;
+    */
 }
 
-function getNormalPoint(pX, pY, aX, aY, bX, bY) {
+function getNormalPoint(p, a ,b) {
+    //console.log("Calling getNormal");
+    var ap = sub(p, a);
+    var ab = sub(b, a);
+    ab.normalize();
+    
+    ab.mult(ap.dot(ab));
+    var normalPoint = add(a, ab);
+    return normalPoint;
+    
+    /*
     var apX = pX - aX;
     var apY = pY - aY;
     
@@ -409,6 +493,7 @@ function getNormalPoint(pX, pY, aX, aY, bX, bY) {
     var normalPointY = aY + abY;
     var normalPoint = [normalPointX, normalPointY];
     return normalPoint;
+     */
 }
 
 function dot(ary1, ary2) {

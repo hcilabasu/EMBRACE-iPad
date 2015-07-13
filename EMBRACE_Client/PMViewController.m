@@ -204,6 +204,18 @@ BOOL wasPathFollowed = false;
         [bookView stringByEvaluatingJavaScriptFromString:animatorJsString];
     }
     
+    // Load the vector js file
+    NSString* vectorFilePath = [[NSBundle mainBundle] pathForResource:@"Vector" ofType:@"js"];
+    
+    if(vectorFilePath == nil) {
+        NSLog(@"Cannot find js file: Vector");
+    }
+    else {
+        NSData *vectorFileData = [NSData dataWithContentsOfFile:vectorFilePath];
+        NSString *vectorJsString = [[NSMutableString alloc] initWithData:vectorFileData encoding:NSUTF8StringEncoding];
+        [bookView stringByEvaluatingJavaScriptFromString:vectorJsString];
+    }
+    
     //Start off with no objects grouped together
     currentGroupings = [[NSMutableDictionary alloc] init];
 
