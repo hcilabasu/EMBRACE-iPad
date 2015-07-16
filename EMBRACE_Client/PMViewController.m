@@ -66,6 +66,9 @@
     NSString* actualWord; //Stores the current word that was clicked
     NSTimer* timer; //Controls the timing of the audio file that is playing
     BOOL isAudioLeft;
+    NSMutableDictionary* animatingObjects;
+    BOOL containsAnimatingObject;
+    NSString* previousStep;
 }
 
 @property (nonatomic, strong) IBOutlet UIWebView *bookView;
@@ -135,7 +138,6 @@ BOOL wasPathFollowed = false;
     
     movingObject = FALSE;
     pinching = FALSE;
-    menuExpanded = FALSE;
     
     movingObjectId = nil;
     collisionObjectId = nil;
@@ -303,7 +305,6 @@ BOOL wasPathFollowed = false;
             [playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3",currentSentence]];
         }
     }
-    
     
     // Draw area (hard-coded for now)
     //[self drawArea:@"outside":@"The Lopez Family"];
@@ -499,6 +500,11 @@ BOOL wasPathFollowed = false;
     //Check if able to increment current step
     if (currentStep < numSteps) {
         NSString *tempsteps = [NSString stringWithFormat:@"%lu", (unsigned long)currentStep];
+        
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        ActionStep* prevSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        previousStep = [prevSolStep stepType];
+        
         currentStep++;
     
         //Logging added by James for Computer Navigation to next Step
@@ -752,6 +758,9 @@ BOOL wasPathFollowed = false;
             //Call the animateObject function in the js file.
             NSString *animate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@')", object1Id, adjLocation.x, adjLocation.y, waypointLocation.x, waypointLocation.y, action];
             [bookView stringByEvaluatingJavaScriptFromString:animate];
+            
+            animatingObjects = [[NSMutableDictionary alloc] init];
+            [animatingObjects setObject:@YES forKey:object1Id];
         }
     }
 }
@@ -1215,6 +1224,10 @@ BOOL wasPathFollowed = false;
         else if ([[currSolStep stepType] isEqualToString:@"tapToAnimate"]) {
             [self incrementCurrentStep];
         }
+        //Current step involves following a path
+        else if ([[currSolStep stepType] isEqualToString:@"checkPath"]) {
+            [self incrementCurrentStep];
+        }
         //Current step is either group, ungroup, disappear, or transference
         else {
             //Get the interaction to be performed
@@ -1312,16 +1325,6 @@ BOOL wasPathFollowed = false;
     }
 }
 
--(UIColor *)generateRandomColor {
-    NSInteger aRedValue = arc4random()%255;
-    NSInteger aGreenValue = arc4random()%255;
-    NSInteger aBlueValue = arc4random()%255;
-    
-    UIColor *randColor = [UIColor colorWithRed:aRedValue/255.0f green:aGreenValue/255.0f blue:aBlueValue/255.0f alpha:1.0f];
-    
-    return randColor;
-}
-
 /*
  * Pan gesture. Used to move objects from one location to another.
  */
@@ -1365,6 +1368,13 @@ BOOL wasPathFollowed = false;
                 
                 //Record the starting location of the object when it is selected
                 startLocation = CGPointMake(location.x - delta.x, location.y - delta.y);
+                
+                if ([animatingObjects objectForKey:imageAtPoint] && [[animatingObjects objectForKey:imageAtPoint]  isEqual: @YES]) {
+                    //Call the cancelAnimation function in the js file.
+                    NSString *cancelAnimate = [NSString stringWithFormat:@"cancelAnimation('%@')", imageAtPoint];
+                    [bookView stringByEvaluatingJavaScriptFromString:cancelAnimate];
+                    [animatingObjects setObject:@NO forKey:imageAtPoint];
+                }
             }
         }
         else if(recognizer.state == UIGestureRecognizerStateEnded) {
@@ -1414,6 +1424,7 @@ BOOL wasPathFollowed = false;
                                 //Call the cancelAnimation function in the js file.
                                 NSString *cancelAnimate = [NSString stringWithFormat:@"cancelAnimation('%@')", imageAtPoint];
                                 [bookView stringByEvaluatingJavaScriptFromString:cancelAnimate];
+                                [animatingObjects setObject:@NO forKey:imageAtPoint];
                                 [self incrementCurrentStep];
                             }
                             
@@ -1442,8 +1453,14 @@ BOOL wasPathFollowed = false;
                             if (allowSnapback) {
                                 //Snap the object back to its original location
                                 [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
-                                //if incorrect location reset object to beginning of gesture
                                 
+                                // If it was an animation object, animate it again after snapping back
+                                if ([animatingObjects objectForKey:movingObjectId] && [previousStep isEqualToString:@"animate"]) {
+                                    //Call the animateObject function in the js file.
+                                    NSString *animate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"floatAnimation"];
+                                    [bookView stringByEvaluatingJavaScriptFromString:animate];
+                                    [animatingObjects setObject:@YES forKey:movingObjectId];
+                                }
                             }
                         }
                     }
@@ -1693,6 +1710,16 @@ BOOL wasPathFollowed = false;
             }
         }
     }
+}
+
+-(UIColor *)generateRandomColor {
+    NSInteger aRedValue = arc4random()%255;
+    NSInteger aGreenValue = arc4random()%255;
+    NSInteger aBlueValue = arc4random()%255;
+    
+    UIColor *randColor = [UIColor colorWithRed:aRedValue/255.0f green:aGreenValue/255.0f blue:aBlueValue/255.0f alpha:1.0f];
+    
+    return randColor;
 }
 
 /*

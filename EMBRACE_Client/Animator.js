@@ -8,7 +8,7 @@ var speed;
 var animatingObjects = new Array();
 var animatingObjectsIndex = -1;
 var requestId;
-var cancelOnce = true;
+//var cancelOnce = true;
 var path = new Array(100);
 var pathIndex = 0;
 var pathRadius = 20;
@@ -39,6 +39,8 @@ function AnimationObject(object, posX, posY, endX, endY, animName) {
     this.location = createVector(this.x, this.y);
     this.velocity = createVector(this.vx, this.vy);
     this.acceleration = createVector(this.ax, this.ay);
+    //this.width = object.offsetWidth * 100 / canvas.width;
+    //this.height = object.offsetHeight * 100 / canvas.height;
 }
 
 function animateObject(objectName, posX, posY, endX, endY, animName) {
@@ -72,7 +74,7 @@ function animateObject(objectName, posX, posY, endX, endY, animName) {
     else if (animatingObjects[animatingObjectsIndex].animName == "followAnimation") {
         
         //animatingObjects[animatingObjectsIndex].vx = animatingObjects[animatingObjectsIndex].maxSpeed;
-        animatingObjects[animatingObjectsIndex].velocity.x = 0.2;
+        animatingObjects[animatingObjectsIndex].velocity.x = 0.3;
         animatingObjects[animatingObjectsIndex].velocity.y = 0;
     }
     
@@ -103,10 +105,10 @@ function animFrame(object){
 }
 
 function cancelAnimation (objectName) {
-    if(cancelOnce) {
+    //if(cancelOnce) {
         cancelAnimationFrame(requestId);
-        cancelOnce = false;
-    }
+        //cancelOnce = false;
+    //}
 }
 
 function bounce(aniObject) {
@@ -408,8 +410,10 @@ function follow(aniObject) {
     //aniObject.velocity.y += aniObject.acceleration.y;
     
     aniObject.location.x += aniObject.velocity.x;
+    //aniObject.location.x = aniObject.location.x - aniObject.width / 2;
     aniObject.object.style.left = aniObject.location.x + "px";
     aniObject.location.y += aniObject.velocity.y;
+    //aniObject.location.y = aniObject.location.y - aniObject.height / 2;
     aniObject.object.style.top = aniObject.location.y + "px";
     
     //console.log("X: " + aniObject.location.x + " Y: " + aniObject.location.y);
