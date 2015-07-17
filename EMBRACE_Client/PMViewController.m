@@ -311,7 +311,7 @@ BOOL wasPathFollowed = false;
     //[self drawArea:@"aroundPaco":@"Is Paco a Thief?"];
     [self drawArea:@"aorta":@"The Amazing Heart":@"story2-PM-4"];
     [self drawArea:@"aortaPath":@"The Amazing Heart":@"story2-PM-4"];
-    //[self drawArea:@"aortaStart":@"The Amazing Heart":@"story2-PM-4"];
+    [self drawArea:@"aortaStart":@"The Amazing Heart":@"story2-PM-4"];
     [self drawArea:@"aortaMuscle":@"Muscles Use Oxygen":@"story3-PM-1"];
     
     //NSLog(@"CURRENT PAGE ID: %@", currentPageId);

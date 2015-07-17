@@ -73,8 +73,8 @@ function animateObject(objectName, posX, posY, endX, endY, animName) {
     }
     else if (animatingObjects[animatingObjectsIndex].animName == "followAnimation") {
         
-        //animatingObjects[animatingObjectsIndex].vx = animatingObjects[animatingObjectsIndex].maxSpeed;
-        animatingObjects[animatingObjectsIndex].velocity.x = 3;
+        animatingObjects[animatingObjectsIndex].velocity.x = animatingObjects[animatingObjectsIndex].maxSpeed;
+        //animatingObjects[animatingObjectsIndex].velocity.x = 2;
         animatingObjects[animatingObjectsIndex].velocity.y = 0;
     }
     
@@ -434,6 +434,19 @@ function follow(aniObject) {
     
     //if (aniObject.x > path[pathIndex-1][0]) {
         //cancelAnimationFrame(requestId);
+    //}
+    
+    var groupedWithObjects = new Array();
+    groupedWithObjects[0] = aniObject.object;
+    
+    getObjectsGroupedWithObject(aniObject.object, groupedWithObjects);
+    
+    //If it's grouped with other objects, move those as well.
+    //Skip the object at location 1, because that's our original object that we've already moved.
+    
+    //for(var i = 1; i < groupedWithObjects.length; i ++) {
+        groupedWithObjects[1].style.left = aniObject.location.x + "px";
+        groupedWithObjects[1].style.top = aniObject.location.y + "px";
     //}
     
     if (aniObject.location.x > path[pathIndex-1][0]) {
