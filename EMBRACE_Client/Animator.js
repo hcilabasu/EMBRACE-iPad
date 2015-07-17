@@ -74,7 +74,7 @@ function animateObject(objectName, posX, posY, endX, endY, animName) {
     else if (animatingObjects[animatingObjectsIndex].animName == "followAnimation") {
         
         //animatingObjects[animatingObjectsIndex].vx = animatingObjects[animatingObjectsIndex].maxSpeed;
-        animatingObjects[animatingObjectsIndex].velocity.x = 0.3;
+        animatingObjects[animatingObjectsIndex].velocity.x = 3;
         animatingObjects[animatingObjectsIndex].velocity.y = 0;
     }
     
@@ -84,6 +84,7 @@ function animateObject(objectName, posX, posY, endX, endY, animName) {
 
 function animFrame(object){
     requestId = requestAnimationFrame(function() { animFrame(object); }, canvas);
+    
     if(object.animName == "bounceAnimation") {
         bounce(object);
     }
@@ -104,12 +105,19 @@ function animFrame(object){
     }
 }
 
-function cancelAnimation (objectName) {
-    //if(cancelOnce) {
+function cancelAnimation(objectName) {
+    //console.log("OBJECT: " + this.object + " NAME:" + objectName);
+    //if(this.object == objectName) {
         cancelAnimationFrame(requestId);
-        //cancelOnce = false;
     //}
 }
+
+//function cancelAnimation (objectName) {
+    //if(cancelOnce) {
+        //cancelAnimationFrame(requestId);
+        //cancelOnce = false;
+    //}
+//}
 
 function bounce(aniObject) {
     var t1 = new Date().getTime(); // current time in milliseconds since midnight on 1 Jan 1970
@@ -277,7 +285,7 @@ function showPath() {
     ctx.strokeStyle = 'blue';
     ctx.moveTo(path[0][0], path[0][1]);
     for (var i = 1; i < pathIndex; i++) {
-        //console.log("X: " + path[i][0] + " Y: " + path[i][1]);
+        console.log("X: " + path[i][0] + " Y: " + path[i][1]);
         ctx.lineTo(path[i][0], path[i][1]);
     }
     ctx.stroke();

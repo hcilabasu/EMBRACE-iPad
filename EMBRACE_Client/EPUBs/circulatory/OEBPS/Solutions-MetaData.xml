@@ -76,8 +76,9 @@
         <story title="The Amazing Heart" activity_id="story2-PM-4">
             <sentence number="8">
                 <step number="1">
-                    <check obj1Id="bloodcell_1" action="getIn" locationId="leftAtrium2"/>
+                    <check obj1Id="bloodcell_1" action="getIn" locationId="" areaId="aortaStart"/>
                     <animate obj1Id="bloodcell_1" action="followAnimation" waypointId="" areaId="aortaPath"/>
+                    <animate obj1Id="O2_1" action="followAnimation" waypointId="" areaId="aortaPath"/>
                 </step>
             </sentence>
         </story>
