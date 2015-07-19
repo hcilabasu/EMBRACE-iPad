@@ -194,6 +194,12 @@
 		  </navLabel>
 		  <content src="Text/Story5-The-Wise-Owl-PM-2.xhtml"/>
 		</navPoint>
+       <navPoint class="IM_MODE" id="story5-Intro">
+           <navLabel>
+               <text>The Wise Owl - Intro</text>
+           </navLabel>
+           <content src="Text/Story5-The-Wise-Owl-Intro-E.xhtml"/>
+       </navPoint>
 		<navPoint class="IM_MODE" id="story5-IM-1">
 		  <navLabel>
     		<text>The Wise Owl - IM</text>

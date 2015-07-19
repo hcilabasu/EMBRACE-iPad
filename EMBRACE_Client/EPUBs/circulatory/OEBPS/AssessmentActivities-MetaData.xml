@@ -4,7 +4,7 @@
         <Questions title= "Why We Breathe">
             <Question number="1">
                 <QuestionText>How many atoms does an oxygen molecule have?</QuestionText>
-                <QuestionDudio>WhyWeBreatheQ1.mp3</QuestionAudio>
+                <QuestionAudio>WhyWeBreatheQ1.mp3</QuestionAudio>
                 <Answer1>2</Answer1>
                 <Answer1Audio>WhyWeBreatheQ1A1</Answer1Audio>
                 <Answer2>1</Answer2>
@@ -17,7 +17,7 @@
             </Question>
             <Question number="2">
                 <QuestionText>When we breathe, where does the oxygen go first?</QuestionText>
-                <QuestionDudio>WhyWeBreatheQ2.mp3</QuestionAudio>
+                <QuestionAudio>WhyWeBreatheQ2.mp3</QuestionAudio>
                 <Answer1>nose</Answer1>
                 <Answer1Audio>WhyWeBreatheQ2A1</Answer1Audio>
                 <Answer2>lungs</Answer2>
@@ -30,7 +30,7 @@
             </Question>
             <Question number="3">
                 <QuestionText>Where do carbon dioxide molecules go when we breathe out?</QuestionText>
-                <QuestionDudio>WhyWeBreatheQ3.mp3</QuestionAudio>
+                <QuestionAudio>WhyWeBreatheQ3.mp3</QuestionAudio>
                 <Answer1>air</Answer1>
                 <Answer1Audio>WhyWeBreatheQ3A1</Answer1Audio>
                 <Answer2>lungs</Answer2>
@@ -43,7 +43,7 @@
             </Question>
             <Question number="4">
                 <QuestionText>When blood with oxygen leaves the lungs, where does it go first?</QuestionText>
-                <QuestionDudio>WhyWeBreatheQ4.mp3</QuestionAudio>
+                <QuestionAudio>WhyWeBreatheQ4.mp3</QuestionAudio>
                 <Answer1>heart</Answer1>
                 <Answer1Audio>WhyWeBreatheQ4A1</Answer1Audio>
                 <Answer2>nose</Answer2>
@@ -56,7 +56,7 @@
             </Question>
             <Question number="5">
                 <QuestionText>The oxygen in the blood helps to turn food into energy so that we can...?</QuestionText>
-                <QuestionDudio>WhyWeBreatheQ5.mp3</QuestionAudio>
+                <QuestionAudio>WhyWeBreatheQ5.mp3</QuestionAudio>
                 <Answer1>live</Answer1>
                 <Answer1Audio>WhyWeBreatheQ5A1</Answer1Audio>
                 <Answer2>make molecules</Answer2>

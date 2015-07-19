@@ -58,5 +58,6 @@ typedef enum InteractionMode {
 -(void) loadFirstPage;
 -(void) loadNextPage;
 -(void) loadPage;
+-(UIImage*) getBackgroundImage;
 
 @end

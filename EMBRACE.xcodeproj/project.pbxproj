@@ -210,6 +210,10 @@
 		1A3594521AE76129003B3B41 /* TheMysteryIsSolvedQ7A2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A3593E91AE76129003B3B41 /* TheMysteryIsSolvedQ7A2.mp3 */; };
 		1A3594531AE76129003B3B41 /* TheMysteryIsSolvedQ7A3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A3593EA1AE76129003B3B41 /* TheMysteryIsSolvedQ7A3.mp3 */; };
 		1A3594541AE76129003B3B41 /* TheMysteryIsSolvedQ7A4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A3593EB1AE76129003B3B41 /* TheMysteryIsSolvedQ7A4.mp3 */; };
+		1A5476E91B350673003801A5 /* bg_heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A5476E51B350673003801A5 /* bg_heart.png */; };
+		1A5476EA1B350673003801A5 /* bg_veins.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A5476E61B350673003801A5 /* bg_veins.png */; };
+		1A5476EB1B350673003801A5 /* p2_cilia.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A5476E71B350673003801A5 /* p2_cilia.png */; };
+		1A5476EC1B350673003801A5 /* p2_no_cilia.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A5476E81B350673003801A5 /* p2_no_cilia.png */; };
 		1A695C7E1AD4C8B0006A2284 /* TheLopezFamilyS0E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A695C731AD4C8B0006A2284 /* TheLopezFamilyS0E.mp3 */; };
 		1A695C7F1AD4C8B0006A2284 /* TheLopezFamilyS1E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A695C741AD4C8B0006A2284 /* TheLopezFamilyS1E.mp3 */; };
 		1A695C801AD4C8B0006A2284 /* TheLopezFamilyS2E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A695C751AD4C8B0006A2284 /* TheLopezFamilyS2E.mp3 */; };
@@ -525,6 +529,12 @@
 		1A80372B1B0B1C62004A164A /* WhoIsTheBestAnimalQ6A3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A80362C1B0B1C61004A164A /* WhoIsTheBestAnimalQ6A3.mp3 */; };
 		1A80372C1B0B1C62004A164A /* WhoIsTheBestAnimalQ6A4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A80362D1B0B1C61004A164A /* WhoIsTheBestAnimalQ6A4.mp3 */; };
 		1AB028FC1ACF0890006CC916 /* AuthoringModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB028FB1ACF0890006CC916 /* AuthoringModeViewController.m */; };
+		1AB2AEFB1B55F8A7001564A1 /* farm_pen_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AB2AEFA1B55F8A7001564A1 /* farm_pen_large.png */; };
+		1AB2AEFF1B55F8C0001564A1 /* bloodcell_select_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AB2AEFC1B55F8C0001564A1 /* bloodcell_select_large.png */; };
+		1AB2AF001B55F8C0001564A1 /* CO2_select_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AB2AEFD1B55F8C0001564A1 /* CO2_select_large.png */; };
+		1AB2AF011B55F8C0001564A1 /* O2_select_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AB2AEFE1B55F8C0001564A1 /* O2_select_large.png */; };
+		1AB2AF031B55FA69001564A1 /* judge_walkingright.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AB2AF021B55FA69001564A1 /* judge_walkingright.png */; };
+		1AB2AF051B55FA71001564A1 /* judge_walkingleft.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AB2AF041B55FA71001564A1 /* judge_walkingleft.png */; };
 		1AB935671A8932A0000CAE21 /* AssessmentActivities-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AB935661A8932A0000CAE21 /* AssessmentActivities-MetaData.xml */; };
 		1AB935691A895582000CAE21 /* Relationships-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AB935681A895582000CAE21 /* Relationships-MetaData.xml */; };
 		1AB9356B1A89559A000CAE21 /* Constraints-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AB9356A1A89559A000CAE21 /* Constraints-MetaData.xml */; };
@@ -660,6 +670,7 @@
 		1AEE55381ADE028100DFC6B0 /* MissingKeysQ6A4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AEE54F71ADE028100DFC6B0 /* MissingKeysQ6A4.mp3 */; };
 		1AF3815B1A40A4C600D967FD /* AssessmentActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF381591A40A4C600D967FD /* AssessmentActivityViewController.m */; };
 		1AF3815C1A40A4C600D967FD /* AssessmentActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AF3815A1A40A4C600D967FD /* AssessmentActivityViewController.xib */; };
+		1AFCB5B61B4E1FA000BAF89D /* lungs_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AFCB5B51B4E1FA000BAF89D /* lungs_1.png */; };
 		31058C74176BCFF200595AAE /* logo114.png in Resources */ = {isa = PBXBuildFile; fileRef = 31058C73176BCFF200595AAE /* logo114.png */; };
 		31058C76176BCFF900595AAE /* logo57.png in Resources */ = {isa = PBXBuildFile; fileRef = 31058C75176BCFF900595AAE /* logo57.png */; };
 		31058C79176BE71C00595AAE /* PhysicalManipulationActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 31058C78176BE71C00595AAE /* PhysicalManipulationActivity.m */; };
@@ -1244,7 +1255,6 @@
 		B996065919A7FD8500BF17F4 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = B996065819A7FD8500BF17F4 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-Intro-E.xhtml */; };
 		B9B537BB19F1D77B00787A85 /* gray_handle_open.png in Resources */ = {isa = PBXBuildFile; fileRef = B9B537BA19F1D77B00787A85 /* gray_handle_open.png */; };
 		B9B537BD19F1D79A00787A85 /* gray_handle_close.png in Resources */ = {isa = PBXBuildFile; fileRef = B9B537BC19F1D79A00787A85 /* gray_handle_close.png */; };
-		C36473EB1A9AA4FE00FD7494 /* AlternateSentences-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = C36473EA1A9AA4FE00FD7494 /* AlternateSentences-MetaData.xml */; };
 		C36473EE1A9AA5C100FD7494 /* AlternateSentence.m in Sources */ = {isa = PBXBuildFile; fileRef = C36473ED1A9AA5C100FD7494 /* AlternateSentence.m */; };
 		C393881F195376490005279F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C393881E195376490005279F /* AudioToolbox.framework */; };
 		C3B10B3A1AF2F54F003195F5 /* Statistics.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B10B391AF2F54F003195F5 /* Statistics.m */; };
@@ -1467,6 +1477,10 @@
 		1A3593E91AE76129003B3B41 /* TheMysteryIsSolvedQ7A2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheMysteryIsSolvedQ7A2.mp3; sourceTree = "<group>"; };
 		1A3593EA1AE76129003B3B41 /* TheMysteryIsSolvedQ7A3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheMysteryIsSolvedQ7A3.mp3; sourceTree = "<group>"; };
 		1A3593EB1AE76129003B3B41 /* TheMysteryIsSolvedQ7A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheMysteryIsSolvedQ7A4.mp3; sourceTree = "<group>"; };
+		1A5476E51B350673003801A5 /* bg_heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_heart.png; sourceTree = "<group>"; };
+		1A5476E61B350673003801A5 /* bg_veins.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_veins.png; sourceTree = "<group>"; };
+		1A5476E71B350673003801A5 /* p2_cilia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = p2_cilia.png; sourceTree = "<group>"; };
+		1A5476E81B350673003801A5 /* p2_no_cilia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = p2_no_cilia.png; sourceTree = "<group>"; };
 		1A695C731AD4C8B0006A2284 /* TheLopezFamilyS0E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLopezFamilyS0E.mp3; sourceTree = "<group>"; };
 		1A695C741AD4C8B0006A2284 /* TheLopezFamilyS1E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLopezFamilyS1E.mp3; sourceTree = "<group>"; };
 		1A695C751AD4C8B0006A2284 /* TheLopezFamilyS2E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLopezFamilyS2E.mp3; sourceTree = "<group>"; };
@@ -1783,6 +1797,12 @@
 		1A80362D1B0B1C61004A164A /* WhoIsTheBestAnimalQ6A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WhoIsTheBestAnimalQ6A4.mp3; sourceTree = "<group>"; };
 		1AB028FA1ACF0890006CC916 /* AuthoringModeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthoringModeViewController.h; sourceTree = "<group>"; };
 		1AB028FB1ACF0890006CC916 /* AuthoringModeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthoringModeViewController.m; sourceTree = "<group>"; };
+		1AB2AEFA1B55F8A7001564A1 /* farm_pen_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = farm_pen_large.png; sourceTree = "<group>"; };
+		1AB2AEFC1B55F8C0001564A1 /* bloodcell_select_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bloodcell_select_large.png; sourceTree = "<group>"; };
+		1AB2AEFD1B55F8C0001564A1 /* CO2_select_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CO2_select_large.png; sourceTree = "<group>"; };
+		1AB2AEFE1B55F8C0001564A1 /* O2_select_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = O2_select_large.png; sourceTree = "<group>"; };
+		1AB2AF021B55FA69001564A1 /* judge_walkingright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = judge_walkingright.png; sourceTree = "<group>"; };
+		1AB2AF041B55FA71001564A1 /* judge_walkingleft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = judge_walkingleft.png; sourceTree = "<group>"; };
 		1AB935661A8932A0000CAE21 /* AssessmentActivities-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivities-MetaData.xml"; sourceTree = "<group>"; };
 		1AB935681A895582000CAE21 /* Relationships-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Relationships-MetaData.xml"; sourceTree = "<group>"; };
 		1AB9356A1A89559A000CAE21 /* Constraints-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Constraints-MetaData.xml"; sourceTree = "<group>"; };
@@ -1922,6 +1942,7 @@
 		1AF381581A40A4C600D967FD /* AssessmentActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssessmentActivityViewController.h; sourceTree = "<group>"; };
 		1AF381591A40A4C600D967FD /* AssessmentActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssessmentActivityViewController.m; sourceTree = "<group>"; };
 		1AF3815A1A40A4C600D967FD /* AssessmentActivityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AssessmentActivityViewController.xib; sourceTree = "<group>"; };
+		1AFCB5B51B4E1FA000BAF89D /* lungs_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lungs_1.png; sourceTree = "<group>"; };
 		31058C73176BCFF200595AAE /* logo114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo114.png; path = ../../logo114.png; sourceTree = "<group>"; };
 		31058C75176BCFF900595AAE /* logo57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo57.png; path = ../../logo57.png; sourceTree = "<group>"; };
 		31058C77176BE71C00595AAE /* PhysicalManipulationActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicalManipulationActivity.h; sourceTree = "<group>"; };
@@ -3150,6 +3171,14 @@
 		5C7FDF9A19A6B1B500CBBE0E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				1AFCB5B51B4E1FA000BAF89D /* lungs_1.png */,
+				1A5476E51B350673003801A5 /* bg_heart.png */,
+				1A5476E61B350673003801A5 /* bg_veins.png */,
+				1A5476E71B350673003801A5 /* p2_cilia.png */,
+				1A5476E81B350673003801A5 /* p2_no_cilia.png */,
+				1AB2AEFC1B55F8C0001564A1 /* bloodcell_select_large.png */,
+				1AB2AEFD1B55F8C0001564A1 /* CO2_select_large.png */,
+				1AB2AEFE1B55F8C0001564A1 /* O2_select_large.png */,
 				B91218501A1970F900D5CB37 /* p3_Lsqueeze_with_valve.png */,
 				B9B537BC19F1D79A00787A85 /* gray_handle_close.png */,
 				B9B537BA19F1D77B00787A85 /* gray_handle_open.png */,
@@ -4196,10 +4225,13 @@
 				5CF9942F19AC34550080C32F /* farm_pen.png */,
 				5CF9943019AC34550080C32F /* farm_pen2.png */,
 				5CF9943119AC34550080C32F /* farmer_falling.png */,
+				1AB2AEFA1B55F8A7001564A1 /* farm_pen_large.png */,
 				5CF9943219AC34550080C32F /* farmer_large.png */,
+				1AB2AF041B55FA71001564A1 /* judge_walkingleft.png */,
 				5CF9943319AC34550080C32F /* goat_large.png */,
 				5CF9943419AC34550080C32F /* hay_large.png */,
 				5CF9943519AC34550080C32F /* hayloft.png */,
+				1AB2AF021B55FA69001564A1 /* judge_walkingright.png */,
 				5CF9943619AC34550080C32F /* horse_large.png */,
 				5CF9943719AC34550080C32F /* judge.png */,
 				5CF9943819AC34550080C32F /* owl.png */,
@@ -4390,6 +4422,7 @@
 				1A3594361AE76129003B3B41 /* TheMysteryIsSolvedQ1A4.mp3 in Resources */,
 				B996065319A7FBF400BF17F4 /* Story3-Muscles-Use-Oxygen-Intro-E.xhtml in Resources */,
 				5CC762211A1DB09400A600CA /* jumpedE.m4a in Resources */,
+				1AB2AEFF1B55F8C0001564A1 /* bloodcell_select_large.png in Resources */,
 				1A3594011AE76129003B3B41 /* MoreIsMissingQ5A1.mp3 in Resources */,
 				1A8036CA1B0B1C62004A164A /* TheBestFarmAwardQ6A1.mp3 in Resources */,
 				1A8037241B0B1C62004A164A /* WhoIsTheBestAnimalQ5A1.mp3 in Resources */,
@@ -4473,6 +4506,7 @@
 				1A80369F1B0B1C62004A164A /* IntroductionToTheBestFarmQ4A3.mp3 in Resources */,
 				1A35942C1AE76129003B3B41 /* TheFamilyIsRattledQ5A4.mp3 in Resources */,
 				1AEE55231ADE028100DFC6B0 /* MissingKeysQ2A3.mp3 in Resources */,
+				1AB2AEFB1B55F8A7001564A1 /* farm_pen_large.png in Resources */,
 				1A8037101B0B1C62004A164A /* WhoIsTheBestAnimalQ1A1.mp3 in Resources */,
 				5CE299B519B5549600675CB0 /* BFCE1_6C.m4a in Resources */,
 				5C7FE14019A7E43C00CBBE0E /* BFS_CH1B.m4a in Resources */,
@@ -4507,6 +4541,7 @@
 				5C776AB819C674FA000DBC65 /* CPQR15.m4a in Resources */,
 				5C776A4A19C17F39000DBC65 /* BFTC8.m4a in Resources */,
 				1A8037001B0B1C62004A164A /* TheWiseOwlQ4.mp3 in Resources */,
+				1A5476EC1B350673003801A5 /* p2_no_cilia.png in Resources */,
 				5C7FE02E19A6B1B500CBBE0E /* bloodcell_select_oxygenated.png in Resources */,
 				5CE299DB19B59F9900675CB0 /* hayE.m4a in Resources */,
 				1A80368E1B0B1C62004A164A /* IntroductionToTheBestFarmQ1A1.mp3 in Resources */,
@@ -4919,6 +4954,7 @@
 				1A8036A51B0B1C62004A164A /* IntroductionToTheBestFarmQ5A4.mp3 in Resources */,
 				5CAD061019BE6A3E00F3F053 /* CCE1_5.m4a in Resources */,
 				1A8036791B0B1C62004A164A /* GettingReadyQ4.mp3 in Resources */,
+				1AB2AF051B55FA71001564A1 /* judge_walkingleft.png in Resources */,
 				1A3594511AE76129003B3B41 /* TheMysteryIsSolvedQ7A1.mp3 in Resources */,
 				5CAD05E619BE6A3E00F3F053 /* CCE5_5.m4a in Resources */,
 				1A2D70AE1AAA74FA009E7B5B /* woman.png in Resources */,
@@ -5006,6 +5042,7 @@
 				5CE299CF19B59CC400675CB0 /* farmE.m4a in Resources */,
 				5C7FE06119A6B1B500CBBE0E /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-PM-2.xhtml in Resources */,
 				5CAD05EA19BE6A3E00F3F053 /* CCE5_1.m4a in Resources */,
+				1A5476EB1B350673003801A5 /* p2_cilia.png in Resources */,
 				1A2D70E91AAA81E9009E7B5B /* Setups-MetaData.xml in Resources */,
 				5C7FE13F19A7E43C00CBBE0E /* BFS_CH1A.m4a in Resources */,
 				1AE0F6121A79691D00C5B67D /* VocabularyIntroductions-MetaData.xml in Resources */,
@@ -5014,6 +5051,7 @@
 				1A2D70E71AAA81DA009E7B5B /* AlternateImages-MetaData.xml in Resources */,
 				1A3593F81AE76129003B3B41 /* MoreIsMissingQ3A2.mp3 in Resources */,
 				1A80364A1B0B1C62004A164A /* CleaningUpQ6A3.mp3 in Resources */,
+				1AB2AF011B55F8C0001564A1 /* O2_select_large.png in Resources */,
 				5C7FE11F19A7E43C00CBBE0E /* BFCS_9.m4a in Resources */,
 				5CF655C019AEACF0000AC913 /* Story4-Who-is-the-Best-Animal-Intro-E.xhtml in Resources */,
 				5C7FE13119A7E43C00CBBE0E /* BFEE_20A.m4a in Resources */,
@@ -5095,6 +5133,7 @@
 				1A8036361B0B1C62004A164A /* CleaningUpQ2A3.mp3 in Resources */,
 				1A695C961AD4D9C1006A2284 /* TheLopezFamilyS2S.mp3 in Resources */,
 				5C776AC819C674FA000DBC65 /* CES_14.m4a in Resources */,
+				1AFCB5B61B4E1FA000BAF89D /* lungs_1.png in Resources */,
 				1A8036EF1B0B1C62004A164A /* TheContestQ7A3.mp3 in Resources */,
 				1A80365F1B0B1C62004A164A /* EveryoneHelpsQ4A4.mp3 in Resources */,
 				5C776C0919C93E1E000DBC65 /* prizeS.m4a in Resources */,
@@ -5107,6 +5146,7 @@
 				1A35940B1AE76129003B3B41 /* MoreIsMissingQ7A1.mp3 in Resources */,
 				1A8036551B0B1C62004A164A /* EveryoneHelpsQ2A4.mp3 in Resources */,
 				5CF994B719AC34550080C32F /* Story6-Everyone-Helps-IM-1.xhtml in Resources */,
+				1AB2AF001B55F8C0001564A1 /* CO2_select_large.png in Resources */,
 				1AE0F5FC1A7965EC00C5B67D /* Relationships-MetaData.xml in Resources */,
 				1A3594501AE76129003B3B41 /* TheMysteryIsSolvedQ7.mp3 in Resources */,
 				5CAD063919BEB8AE00F3F053 /* trappedE.m4a in Resources */,
@@ -5204,6 +5244,7 @@
 				5CAD05F619BE6A3E00F3F053 /* CCE2_7.m4a in Resources */,
 				1A2D70AB1AAA74FA009E7B5B /* table.png in Resources */,
 				5C7FE10019A7E43C00CBBE0E /* BFCE_3.m4a in Resources */,
+				1A5476EA1B350673003801A5 /* bg_veins.png in Resources */,
 				1AEE55071ADE028100DFC6B0 /* IsPacoAThiefQ4.mp3 in Resources */,
 				5CF994A019AC34550080C32F /* Story1-The-Contest-PM-1.xhtml in Resources */,
 				1A3593EE1AE76129003B3B41 /* MoreIsMissingQ1A2.mp3 in Resources */,
@@ -5326,6 +5367,7 @@
 				1A2D70C81AAA74FA009E7B5B /* Story4-More-is-Missing-IM-2.xhtml in Resources */,
 				1A80369A1B0B1C62004A164A /* IntroductionToTheBestFarmQ3A3.mp3 in Resources */,
 				1A8036671B0B1C62004A164A /* EveryoneHelpsQ6A2.mp3 in Resources */,
+				1AB2AF031B55FA69001564A1 /* judge_walkingright.png in Resources */,
 				1A2D70F51AAA8263009E7B5B /* AssessmentActivities-MetaData.xml in Resources */,
 				5CE299B119B54E6700675CB0 /* BFCS1_3.m4a in Resources */,
 				5C7FE12B19A7E43C00CBBE0E /* BFEE_18.m4a in Resources */,
@@ -5403,6 +5445,7 @@
 				5CF9947B19AC34550080C32F /* comb.png in Resources */,
 				5C776AB919C674FA000DBC65 /* CPQR14.m4a in Resources */,
 				5CE299F219B5B9C000675CB0 /* BFCE6_3.m4a in Resources */,
+				1A5476E91B350673003801A5 /* bg_heart.png in Resources */,
 				5C7FE02C19A6B1B500CBBE0E /* background_3.png in Resources */,
 				1A2D70D51AAA74FA009E7B5B /* Story6-The-Mystery-is-Solved-Intro-E.xhtml in Resources */,
 				1AEE55371ADE028100DFC6B0 /* MissingKeysQ6A3.mp3 in Resources */,

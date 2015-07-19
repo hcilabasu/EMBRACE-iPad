@@ -46,7 +46,7 @@
         if((mode == PM_MODE) && ([activity isKindOfClass:[PhysicalManipulationActivity class]])) {
             return [self getNextPageInActivity:activity :currentPage];
         }
-        else if((mode == IM_MODE) && ([activity isKindOfClass:[ImagineManipulationActivity class]])) {
+        else if(mode == IM_MODE && ([activity isKindOfClass:[ImagineManipulationActivity class]])) {
             return [self getNextPageInActivity:activity :currentPage];
         }
     }

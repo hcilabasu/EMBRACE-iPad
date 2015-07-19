@@ -13,9 +13,10 @@
 @interface AssessmentActivityViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *AnswerList;
-@property(nonatomic,strong) IBOutlet UILabel *ChapterTitleLabel;
+@property (strong, nonatomic) IBOutlet UIView *transparentLayer;
 @property(nonatomic,strong) IBOutlet UIButton *nextButton;
 @property(nonatomic,strong) NSString *ChapterTitle;
+
 
 @property(nonatomic,strong) IBOutlet UIButton *questionButton;
 @property(nonatomic,strong) IBOutlet UIButton *answer1Button;
@@ -24,7 +25,7 @@
 @property(nonatomic,strong) IBOutlet UIButton *answer4Button;
 @property(nonatomic, strong) PlayAudioFile *playAudioFileClass;
 
-- (id)initWithModel:(InteractionModel*) model : (UIViewController*) libraryViewController : (NSString*) bookTitle : (NSString*) chapterTitle : (NSString*) currentPage : (NSString*)currentSentence :(NSString*) currentStep;
+- (id)initWithModel:(InteractionModel*) model : (UIViewController*) libraryViewController : (UIImage *) backgroundImage : (NSString*) bookTitle : (NSString*) chapterTitle : (NSString*) currentPage : (NSString*)currentSentence :(NSString*) currentStep;
 -(void)loadNextAssessmentActivityQuestion;
 
 

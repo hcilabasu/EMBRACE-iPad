@@ -8,7 +8,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AssessmentActivityViewController">
             <connections>
                 <outlet property="AnswerList" destination="npr-Pi-Ieg" id="aw9-nN-xlQ"/>
-                <outlet property="ChapterTitleLabel" destination="PBN-ym-IOi" id="K92-lh-eB9"/>
                 <outlet property="answer1Button" destination="ZrD-o2-hMN" id="LTv-rR-ah4"/>
                 <outlet property="answer2Button" destination="Rzu-PW-XKY" id="arA-Pr-KN2"/>
                 <outlet property="answer3Button" destination="RO3-mx-SDg" id="U7S-ei-lDq"/>
@@ -23,15 +22,74 @@
             <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="62" sectionHeaderHeight="62" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="npr-Pi-Ieg">
-                    <rect key="frame" x="117" y="144" width="791" height="400"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="lPU-jw-PQ7"/>
-                        <outlet property="delegate" destination="-1" id="nU9-n8-U5x"/>
-                    </connections>
-                </tableView>
+                <view contentMode="center" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1hC-6X-aKa">
+                    <rect key="frame" x="88" y="217" width="848" height="343"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="62" sectionHeaderHeight="62" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="npr-Pi-Ieg">
+                            <rect key="frame" x="52" y="5" width="791" height="333"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="separatorColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                            <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="lPU-jw-PQ7"/>
+                                <outlet property="delegate" destination="-1" id="nU9-n8-U5x"/>
+                            </connections>
+                        </tableView>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IQX-Lx-UOI" userLabel="Button - Answer4">
+                            <rect key="frame" x="5" y="260" width="45" height="45"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Question" image="PlayAudioIcon.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="PlayAnswer4AudioPressed:" destination="-1" eventType="touchUpInside" id="j3r-80-4jT"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RO3-mx-SDg" userLabel="Button - Answer3">
+                            <rect key="frame" x="5" y="200" width="45" height="45"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Question" image="PlayAudioIcon.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="PlayAnswer3AudioPressed:" destination="-1" eventType="touchUpInside" id="ZCa-zo-wb5"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rzu-PW-XKY" userLabel="Button - Answer2">
+                            <rect key="frame" x="5" y="136" width="45" height="45"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Question" image="PlayAudioIcon.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="PlayAnswer2AudioPressed:" destination="-1" eventType="touchUpInside" id="hUP-uJ-uGz"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZrD-o2-hMN" userLabel="Button - Answer1">
+                            <rect key="frame" x="5" y="76" width="45" height="45"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Question" image="PlayAudioIcon.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="PlayAnswer1AudioPressed:" destination="-1" eventType="touchUpInside" id="zui-Wt-qfI"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xeE-R2-vKq">
+                            <rect key="frame" x="5" y="15" width="45" height="45"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Question" image="PlayAudioIcon.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="PlayQuestionAudioPressed:" destination="-1" eventType="touchUpInside" id="iYU-pe-d0r"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.11660422168426197" blue="0.66472061820652173" alpha="0.71999999999999997" colorSpace="calibratedRGB"/>
+                </view>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8YV-Vg-Btg">
                     <rect key="frame" x="847" y="706" width="61" height="42"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -43,65 +101,15 @@
                         <action selector="NextButtonPressed:" destination="-1" eventType="touchUpInside" id="3fF-OK-kSq"/>
                     </connections>
                 </button>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ChapterTitleLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PBN-ym-IOi">
-                    <rect key="frame" x="312" y="112" width="400" height="24"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please select the best answer:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SeL-jA-shZ">
+                    <rect key="frame" x="373" y="111" width="278" height="24"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xeE-R2-vKq">
-                    <rect key="frame" x="55" y="212" width="50" height="50"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Question" image="PlayAudioIcon.png">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="PlayQuestionAudioPressed:" destination="-1" eventType="touchUpInside" id="iYU-pe-d0r"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZrD-o2-hMN" userLabel="Button - Answer1">
-                    <rect key="frame" x="55" y="283" width="50" height="50"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Question" image="PlayAudioIcon.png">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="PlayAnswer1AudioPressed:" destination="-1" eventType="touchUpInside" id="zui-Wt-qfI"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rzu-PW-XKY" userLabel="Button - Answer2">
-                    <rect key="frame" x="55" y="341" width="50" height="50"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Question" image="PlayAudioIcon.png">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="PlayAnswer2AudioPressed:" destination="-1" eventType="touchUpInside" id="hUP-uJ-uGz"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RO3-mx-SDg" userLabel="Button - Answer3">
-                    <rect key="frame" x="55" y="399" width="50" height="50"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Question" image="PlayAudioIcon.png">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="PlayAnswer3AudioPressed:" destination="-1" eventType="touchUpInside" id="ZCa-zo-wb5"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IQX-Lx-UOI" userLabel="Button - Answer4">
-                    <rect key="frame" x="55" y="457" width="50" height="50"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Question" image="PlayAudioIcon.png">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="PlayAnswer4AudioPressed:" destination="-1" eventType="touchUpInside" id="j3r-80-4jT"/>
-                    </connections>
-                </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
         </view>

@@ -105,20 +105,18 @@
             </sentence>
         </story>
         
-        <story title="The Wise Owl" activity_id="story5-PM-1">
-            <sentence number="6">
-                <step number="1">
-                    <group obj1Id="chicken" action="visit" obj2Id="farmer"/>
-                    <group obj1Id="chicken" acton="visit" obj2Id="pig"/>
-                </step>
-            </sentence>
-        </story>
         
         <story title="The Wise Owl" activity_id="story5-PM-2">
-            <sentence number="9">
+            <sentence number="6">
                 <step number="1">
-                    <group obj1Id="pig" action="visit" obj2Id="pen"/>
-                    <ungroup obj1Id="pig" action="leave" obj2Id="pen"/>
+                    <group obj1Id="chicken" action="visit" obj2Id="egg"/>
+                    <group obj1Id="chicken" action="visit" obj2Id="egg4"/>
+                </step>
+            </sentence>
+            <sentence number="10">
+                <step number="1">
+                    <group obj1Id="pig" action="getIn" obj2Id="pen"/>
+                    <group obj1Id="pen" action="getIn" obj2Id="pig"/>
                 </step>
             </sentence>
         </story>
@@ -133,10 +131,10 @@
         </story>
         
         <story title="Everyone Helps" activity_id="story6-PM-2">
-            <sentence number="6">
+            <sentence number="7">
                 <step number="1">
                     <group obj1Id="cat" action="visit" obj2Id="bucket"/>
-                    <ungroup obj1Id="cat" action="leave" obj2Id="bucket"/>
+                    <group obj1Id="cat" action="flip" obj2Id="bucket"/>
                 </step>
             </sentence>
         </story>
@@ -144,8 +142,8 @@
         <story title="The Best Farm Award" activity_id="story7-PM-1">
             <sentence number="1">
                 <step number="1">
-                    <group obj1Id="judge" action="visit" obj2Id="cow"/>
-                    <ungroup obj1Id="judge" action="leave" obj2Id="cow"/>
+                    <group obj1Id="judge_right_IM" action="visit" obj2Id="cow"/>
+                    <group obj1Id="judge_left_IM" action="visit" obj2Id="cow"/>
                 </step>
             </sentence>
         </story>

@@ -75,6 +75,8 @@
     NSString* actualWord; //Stores the current word that was clicked
     NSTimer* timer; //Controls the timing of the audio file that is playing
     BOOL isAudioLeft;
+    Mode currentMode;
+    
 }
 
 @property (nonatomic, strong) IBOutlet UIWebView *bookView;
@@ -124,6 +126,14 @@ ConditionSetup *conditionSetup;
     buildstringClass = [[BuildHTMLString alloc]init];
     //creates an instance of playaudioclass
     playaudioClass = [[PlayAudioFile alloc]init];
+    
+    if (conditionSetup.condition == CONTROL) {
+        currentMode = IM_MODE;
+    }
+    else
+    {
+        currentMode = PM_MODE;
+    }
     
     syn = [[AVSpeechSynthesizer alloc] init];
     
@@ -219,7 +229,7 @@ ConditionSetup *conditionSetup;
     NSLog(@"bookTitle: %@", bookTitle);
     
     //Show menu to choose complexity level for non-intro pages of The Best Farm story only
-    if (chooseComplexity && [currentPageId rangeOfString:@"Intro"].location == NSNotFound && ![chapterTitle isEqualToString:@"Introduction to The Best Farm"] && [bookTitle rangeOfString:@"The Circulatory System"].location == NSNotFound) {
+    if (conditionSetup.appmode == ITS && [currentPageId rangeOfString:@"Intro"].location == NSNotFound && ![chapterTitle isEqualToString:@"Introduction to The Best Farm"] && [bookTitle rangeOfString:@"The Circulatory System"].location == NSNotFound) {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Choose sentence complexity levels" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"60% Simple   20% Medium   20% Complex", @"20% Simple   60% Medium   20% Complex", @"20% Simple   20% Medium   60% Complex", @"0% Simple 100% Medium 0% Complex", nil];
         [alert show];
     }
@@ -539,7 +549,7 @@ ConditionSetup *conditionSetup;
     stepsComplete = FALSE;
     
     //Get number of steps for current sentence
-    if (chooseComplexity && [pageSentences count] > 0) {
+    if (conditionSetup.appmode == ITS && [pageSentences count] > 0) {
         if (currentSentence > 0) {
             numSteps = [[[pageSentences objectAtIndex:currentSentence - 1] solutionSteps] count];
             
@@ -552,7 +562,7 @@ ConditionSetup *conditionSetup;
     }
     else {
         //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-        if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+        if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound && conditionSetup.condition!=CONTROL) {
             numSteps = [PMSolution getNumStepsForSentence:currentIdea];
         }
         else {
@@ -611,7 +621,7 @@ ConditionSetup *conditionSetup;
     //Get steps for current sentence
     NSMutableArray* currSolSteps;
     
-    if (chooseComplexity) {
+    if (conditionSetup.appmode == ITS) {
         currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
     }
     else {
@@ -627,7 +637,7 @@ ConditionSetup *conditionSetup;
     //Get current step to be completed
     ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
     
-    if (chooseComplexity) {
+    if (conditionSetup.appmode == ITS) {
         //Not automatic step
         if (!([[currSolStep stepType] isEqualToString:@"ungroup"] || [[currSolStep stepType] isEqualToString:@"move"] || [[currSolStep stepType] isEqualToString:@"swapImage"])) {
             endTime = [NSDate date];
@@ -660,7 +670,9 @@ ConditionSetup *conditionSetup;
  *displays the assessment activity view controller
  */
 -(void)loadAssessmentActivity{
-    AssessmentActivityViewController *assessmentActivityViewController = [[AssessmentActivityViewController alloc]initWithModel:model: libraryViewController:bookTitle :chapterTitle : currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] : [NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+    UIImage *background = [self getBackgroundImage];
+    
+    AssessmentActivityViewController *assessmentActivityViewController = [[AssessmentActivityViewController alloc]initWithModel:model: libraryViewController:background:bookTitle :chapterTitle : currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] : [NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
     
     //[self.navigationController presentViewController:assessmentActivityViewController animated:YES completion:nil];
     [self.navigationController pushViewController:assessmentActivityViewController animated:YES];
@@ -779,7 +791,7 @@ ConditionSetup *conditionSetup;
         //Get steps for current sentence
         NSMutableArray* currSolSteps;
         
-        if (chooseComplexity) {
+        if (conditionSetup.appmode == ITS) {
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
@@ -1058,7 +1070,7 @@ ConditionSetup *conditionSetup;
             //Get steps for current sentence
             NSMutableArray* currSolSteps;
             
-            if (chooseComplexity) {
+            if (conditionSetup.appmode == ITS) {
                 currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
             }
             else {
@@ -1119,7 +1131,7 @@ ConditionSetup *conditionSetup;
         NSString* sentenceID = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceID];
         int sentenceIDNum = [[sentenceID substringFromIndex:0] intValue];
 
-        if (chooseComplexity) {
+        if (conditionSetup.appmode == ITS) {
             //Record vocabulary request for complexity
             [[pageStatistics objectForKey:currentPageId] addVocabTapForComplexity:(currentComplexity - 1)];
         }
@@ -1319,7 +1331,7 @@ ConditionSetup *conditionSetup;
         //Get steps for current sentence
         NSMutableArray* currSolSteps;
         
-        if (chooseComplexity) {
+        if (conditionSetup.appmode == ITS) {
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
@@ -1538,7 +1550,7 @@ ConditionSetup *conditionSetup;
                     //Get steps for current sentence
                     NSMutableArray* currSolSteps;
                     
-                    if (chooseComplexity) {
+                    if (conditionSetup.appmode == ITS) {
                         currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
                     }
                     else {
@@ -1602,7 +1614,7 @@ ConditionSetup *conditionSetup;
                             [playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentStep];
                             //[self playErrorNoise];
                             
-                            if (chooseComplexity) {
+                            if (conditionSetup.appmode == ITS) {
                                 //Record error for complexity
                                 [[pageStatistics objectForKey:currentPageId] addErrorForComplexity:(currentComplexity - 1)];
                             }
@@ -1674,7 +1686,7 @@ ConditionSetup *conditionSetup;
                                     //wrong because two objects cant interact with each other reset object
                                 }
                                 
-                                if (chooseComplexity) {
+                                if (conditionSetup.appmode == ITS) {
                                     //Record error for complexity
                                     [[pageStatistics objectForKey:currentPageId] addErrorForComplexity:(currentComplexity - 1)];
                                 }
@@ -1818,13 +1830,28 @@ ConditionSetup *conditionSetup;
     }
 }
 
+-(UIImage*) getBackgroundImage{
+    NSString* imageSrc = [bookView stringByEvaluatingJavaScriptFromString:@"document.body.background"];
+    NSString* imageFileName = [imageSrc substringFromIndex:10];
+    imageFileName = [imageFileName substringToIndex:[imageFileName length]-4];
+    //NSString *url = [[NSBundle mainBundle] resourcePath];
+    
+    NSString *url = [[NSBundle mainBundle] pathForResource:imageFileName ofType:@"png"];
+    
+    NSString *imagePath = [url stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    UIImage* rawImage = [[UIImage alloc] initWithContentsOfFile:imagePath];
+    
+    return rawImage;
+}
+
 /*
  * Gets the necessary information from the JS for this particular image id and creates a
  * MenuItemImage out of that information. If FLIP is TRUE, the image will be horizontally 
  * flipped. If the image src isn't found, returns nil. Otherwise, returned the MenuItemImage 
  * that was created.
  */
--(MenuItemImage*) createMenuItemForImage:(NSString*) objId :(BOOL)FLIP {
+-(MenuItemImage*) createMenuItemForImage:(NSString*) objId :(NSString*)FLIP {
     //NSLog(@"creating menu item for image with object id: %@", objId);
     
     NSString* requestImageSrc = [NSString stringWithFormat:@"%@.src", objId];
@@ -1842,7 +1869,11 @@ ConditionSetup *conditionSetup;
     UIImage* image = [UIImage alloc];
     
     //Horizontally flip the image
-    if (FLIP) {
+    if ([FLIP isEqualToString:@"rotate"]) {
+        image = [UIImage imageWithCGImage:rawImage.CGImage scale:rawImage.scale orientation:UIImageOrientationUpMirrored];
+    }
+    else if([FLIP isEqualToString:@"flipHorizontal"])
+    {
         image = [UIImage imageWithCGImage:rawImage.CGImage scale:rawImage.scale orientation:UIImageOrientationUpMirrored];
     }
     //Use the unflipped image
@@ -1916,11 +1947,15 @@ ConditionSetup *conditionSetup;
                 if ([interaction interactionType] == TRANSFERANDDISAPPEAR
                     && [connection interactionType] == UNGROUP
                     && objId == [[connection objects] objectAtIndex:0]) {
-                    itemImage = [self createMenuItemForImage:objId :TRUE];
+                    itemImage = [self createMenuItemForImage:objId :@"rotate"];
+                }
+                else if([[relationship action] isEqualToString:@"flip"])
+                {
+                    itemImage = [self createMenuItemForImage:objId : @"flipHorizontal"];
                 }
                 //Otherwise, leave the image unflipped
                 else {
-                    itemImage = [self createMenuItemForImage:objId :FALSE];
+                    itemImage = [self createMenuItemForImage:objId : @"normal"];
                 }
                 
                 //NSLog(@"obj id:%@", objId);
@@ -1936,7 +1971,7 @@ ConditionSetup *conditionSetup;
             
             for (int i = 0; connectedObject && [connection interactionType] != UNGROUP && i < [connectedObject count]; i++) {
                 if ([images objectForKey:connectedObject[i]] == nil) {
-                    MenuItemImage *itemImage = [self createMenuItemForImage:connectedObject[i] :FALSE];
+                    MenuItemImage *itemImage = [self createMenuItemForImage:connectedObject[i] :@"normal"];
                     
                     if(itemImage != nil) {
                         [images setObject:itemImage forKey:connectedObject[i]];
@@ -1944,6 +1979,7 @@ ConditionSetup *conditionSetup;
                 }
             }
         }
+        
     }
     
     //NSLog(@"images count:%d", [images count]);
@@ -2273,7 +2309,7 @@ ConditionSetup *conditionSetup;
         //Get steps for current sentence
         NSMutableArray* currSolSteps;
         
-        if (chooseComplexity) {
+        if (conditionSetup.appmode == ITS) {
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
@@ -2338,7 +2374,7 @@ ConditionSetup *conditionSetup;
         //Get steps for current sentence
         NSMutableArray* currSolSteps;
         
-        if (chooseComplexity) {
+        if (conditionSetup.appmode == ITS) {
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
@@ -2403,7 +2439,7 @@ ConditionSetup *conditionSetup;
         //Get steps for current sentence
         NSMutableArray* currSolSteps;
         
-        if (chooseComplexity) {
+        if (conditionSetup.appmode == ITS) {
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
@@ -2467,7 +2503,7 @@ ConditionSetup *conditionSetup;
         //Get steps for current sentence
         NSMutableArray* currSolSteps;
         
-        if (chooseComplexity) {
+        if (conditionSetup.appmode == ITS) {
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
@@ -2516,7 +2552,7 @@ ConditionSetup *conditionSetup;
         //Get steps for current sentence
         NSMutableArray* currSolSteps;
         
-        if (chooseComplexity) {
+        if (conditionSetup.appmode == ITS) {
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
@@ -2705,12 +2741,12 @@ ConditionSetup *conditionSetup;
         //Get steps for current sentence
         NSMutableArray* currSolSteps;
         
-        if (chooseComplexity) {
+        if (conditionSetup.appmode == ITS) {
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
             //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-            if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+            if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound && conditionSetup.condition!=CONTROL) {
                 currSolSteps = [PMSolution getStepsForSentence:currentIdea];
             }
             else {
@@ -2913,7 +2949,7 @@ ConditionSetup *conditionSetup;
             [playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentStep];
             //[self playErrorNoise]; //play noise if interaction is incorrect
             
-            if (chooseComplexity) {
+            if (conditionSetup.appmode == ITS) {
                 //Record error for complexity
                 [[pageStatistics objectForKey:currentPageId] addErrorForComplexity:(currentComplexity - 1)];
             }
@@ -3859,7 +3895,7 @@ ConditionSetup *conditionSetup;
                 // Load the next step
                 [IntroductionClass loadIntroStep:bookView: currentSentence];
                 [self setupCurrentSentenceColor];
-                
+            
                 //add logging: next intro step
             }
         }
@@ -3897,14 +3933,12 @@ ConditionSetup *conditionSetup;
     else {
         
         //imcode
-        /*somewhere in here need to add the ability for subview and within that subview should have subviewed menu items based on the current sentence and only if it is an action sentence, need to figure out how to populate the menu item data source, should require knowing what the correct solution is, upon return should close the menu items, log if it was correct or not, and load next sentence*/
-        
         	        //if (stepsComplete || numSteps == 0 || !IntroductionClass.allowInteractions) {
                         //IMCode
             	         NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
             	         NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
             
-            	         if((conditionSetup.condition == CONTROL) && [sentenceClass  isEqualToString: @"sentence actionSentence"])
+            	         if((conditionSetup.condition == CONTROL) && ([sentenceClass  isEqualToString: @"sentence actionSentence"] || [sentenceClass  isEqualToString: @"sentence IMactionSentence"]))
                         {
                             //resets allRelationship arrray
                             if([allRelationships count])
@@ -3915,12 +3949,12 @@ ConditionSetup *conditionSetup;
                             //Get steps for current sentence
                             NSMutableArray* currSolSteps;
                             
-                            if (chooseComplexity) {
+                            if (conditionSetup.appmode == ITS) {
                                 currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
                             }
                             else {
                                 //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                                if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                                if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound && conditionSetup.condition != CONTROL) {
                                     currSolSteps = [PMSolution getStepsForSentence:currentIdea];
                                 }
                                 else {
@@ -3951,19 +3985,23 @@ ConditionSetup *conditionSetup;
                                 
                                 //add subview to hide story
                                 IMViewMenu = [[UIView alloc] initWithFrame:[bookView frame]];
-                                //[menu addGestureRecognizer:tapRecognizer];
                                 IMViewMenu.backgroundColor = [UIColor whiteColor];
-                                UILabel *IMinstructions = [[UILabel alloc] initWithFrame:CGRectMake(200, 10, 600, 40)];
-                                IMinstructions.text = @"Select the menu option that best matches what you imagined.";
+                                UILabel *IMinstructions = [[UILabel alloc] initWithFrame:CGRectMake(200, 10, IMViewMenu.frame.size.width, 40)];
+                            
+                                IMinstructions.center = CGPointMake(IMViewMenu.frame.size.width  / 2, 40);
+                                IMinstructions.text = @"Which did you imagine?";
+                                IMinstructions.textAlignment = NSTextAlignmentCenter;
                                 IMinstructions.textColor = [UIColor blackColor];
-                                
-                                //IMinstructions.font = [UIFont fontWithName:u size:20];
+                                IMinstructions.font = [UIFont fontWithName:@"GillSans" size:28];
                                 [IMViewMenu addSubview:IMinstructions];
+                                IMViewMenu.backgroundColor =  [UIColor colorWithRed: 165.0/255.0 green: 203.0/255.0 blue:231.0/255.0 alpha: 1.0];
+                                //[UIColor colorWithPatternImage: [self getBackgroundImage]];
                                 //add sentence instructions
                                 [[self view] addSubview:IMViewMenu];
                                 
                                 //expand menu
                                 [self expandMenu];
+                                 [IMViewMenu bringSubviewToFront:IMinstructions];
                             }
                             else
                             {
@@ -4057,7 +4095,7 @@ ConditionSetup *conditionSetup;
             
             //currentSentence is 1 indexed.
             if(currentSentence > totalSentences) {
-                if (chooseComplexity && [currentPageId rangeOfString:@"Intro"].location == NSNotFound && ![chapterTitle isEqualToString:@"Introduction to The Best Farm"] && [bookTitle rangeOfString:@"The Circulatory System"].location == NSNotFound) {
+                if (conditionSetup.appmode == ITS && [currentPageId rangeOfString:@"Intro"].location == NSNotFound && ![chapterTitle isEqualToString:@"Introduction to The Best Farm"] && [bookTitle rangeOfString:@"The Circulatory System"].location == NSNotFound) {
                     [self showPageStatistics]; //show popup window with page statistics
                 }
                 else {
@@ -4067,7 +4105,7 @@ ConditionSetup *conditionSetup;
             }
             else {
                 //For page statistics
-                if (chooseComplexity && numSteps == 0 && currentComplexity > 0) {
+                if (conditionSetup.appmode == ITS && numSteps == 0 && currentComplexity > 0) {
                     endTime = [NSDate date];
                     
                     //Record time for non-action sentence for complexity
@@ -4392,7 +4430,11 @@ ConditionSetup *conditionSetup;
     NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
     
     //If it is an action sentence color it blue
-    if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
+    if ([sentenceClass  isEqualToString: @"sentence actionSentence"] && conditionSetup.condition == EMBRACE) {
+        NSString* colorSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
+        [bookView stringByEvaluatingJavaScriptFromString:colorSentence];
+    }
+    if ([sentenceClass  isEqualToString: @"sentence IMactionSentence"] && conditionSetup.condition == CONTROL) {
         NSString* colorSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
         [bookView stringByEvaluatingJavaScriptFromString:colorSentence];
     }

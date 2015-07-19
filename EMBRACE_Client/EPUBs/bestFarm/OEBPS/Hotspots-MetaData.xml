@@ -18,6 +18,8 @@
         <hotspot objId="bucket" action="finish" role="object" x="100%" y="100%"/>
         <hotspot objId="bucket" action="give" role="object" x="50%" y="3%"/>
         <hotspot objId="bucket" action="grab" role="object" x="50%" y="3%"/>
+        <hotspot objId="bucket" action="flip" role="object" x="100%" y="100%"/>
+        <hotspot objId="bucket" action="visit" role="object" x="100%" y="100%"/>
         <hotspot objId="cart" action="getIn" role="object" x="34%" y="0%"/>
         <hotspot objId="cart" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="cart" action="grab" role="object" x="95%" y="34%"/>
@@ -31,6 +33,8 @@
         <hotspot objId="cat" action="moveTo" role="subject" x="0%" y="100%"/>
         <hotspot objId="cat" action="pickUp" role="object" x="50%" y="50%"/>
         <hotspot objId="cat" action="visit" role="subject" x="100%" y="100%"/>
+        <hotspot objId="cat" action="flip" role="subject" x="0%" y="100%"/>
+        <hotspot objId="cat" action="visit" role="subject" x="0%" y="100%"/>
         <hotspot objId="cat" action="visit" role="object" x="0%" y="100%"/>
         <hotspot objId="chicken" action="count" role="subject" x="0%" y="100%"/>
         <hotspot objId="chicken" action="getIn" role="subject" x="50%" y="50%"/>
@@ -41,6 +45,10 @@
         <hotspot objId="chicken" action="pickUp" role="object" x="50%" y="50%"/>
         <hotspot objId="chicken" action="visit" role="object" x="0%" y="100%"/>
         <hotspot objId="chicken" action="visit" role="subject" x="100%" y="100%"/>
+        <hotspot objId="egg" action="visit" role="object" x="0%" y="100%"/>
+        <hotspot objId="egg4" action="visit" role="object" x="0%" y="100%"/>
+        <hotspot objId="egg" action="visit" role="subject" x="100%" y="100%"/>
+        <hotspot objId="egg4" action="visit" role="subject" x="100%" y="100%"/>
         <hotspot objId="chickenNest" action="getIn" role="object" x="50%" y="0%"/>
         <hotspot objId="comb" action="grab" role="object" x="50%" y="50%"/>
         <hotspot objId="corral" action="getIn" role="object" x="50%" y="50%"/>
@@ -54,6 +62,7 @@
         <hotspot objId="cow" action="receive" role="subject" x="22%" y="63%"/>
         <hotspot objId="cow" action="jumpOn" role="object" x="50%" y="50%"/>
         <hotspot objId="cow" action="visit" role="object" x="0%" y="100%"/>
+        <hotspot objId="cow" action="leave" role="object" x="0%" y="100%"/>
         <hotspot objId="cow" action="visit" role="subject" x="100%" y="100%"/>
         <hotspot objId="egg" action="count" role="object" x="100%" y="100%"/>
         <hotspot objId="eggs" action="count" role="object" x="100%" y="100%"/>
@@ -80,7 +89,7 @@
         <hotspot objId="goat" action="getOn" role="subject" x="50%" y="82%"/>
         <hotspot objId="goat" action="kick" role="subject" x="40%" y="82%"/>
         <hotspot objId="goat" action="lead" role="object" x="10%" y="52%"/>
-        <hotspot objId="goat" action="moveTo" role="object" x="100" y="100"/>
+        <hotspot objId="goat" action="moveTo" role="object" x="100%" y="100%"/>
         <hotspot objId="goat" action="pickUp" role="subject" x="20%" y="52%"/>
         <hotspot objId="goat" action="receive" role="subject" x="20%" y="52%"/>
         <hotspot objId="goat" action="visit" role="object" x="0%" y="100%"/>
@@ -113,15 +122,23 @@
         <hotspot objId="judge" action="open" role="subject" x="89%" y="62%"/>
         <hotspot objId="judge" action="visit" role="object" x="0%" y="100%"/>
         <hotspot objId="judge" action="visit" role="subject" x="100%" y="100%"/>
+        <hotspot objId="judge_right_IM" action="visit" role="subject" x="100%" y="100%"/>
+        <hotspot objId="judge_left_IM" action="visit" role="subject" x="100%" y="100%"/>
+        <hotspot objId="judge" action="leave" role="subject" x="100%" y="100%"/>
         <hotspot objId="owl" action="moveTo" role="subject" x="0%" y="100%"/>
         <hotspot objId="owl" action="visit" role="object" x="0%" y="100%"/>
         <hotspot objId="owl" action="visit" role="subject" x="100%" y="100%"/>
+        <hotspot objId="pen" action="getOut" role="subject" x="50%" y="50%"/>
+        <hotspot objId="pen" action="getOut" role="object" x="50%" y="50%"/>
+        <hotspot objId="pen" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="pen" action="getIn" role="object" x="50%" y="50%"/>
         <hotspot objId="pen1" action="open" role="object" x="100%" y="50%"/>
         <hotspot objId="pen2" action="open" role="object" x="100%" y="50%"/>
         <hotspot objId="pen3" action="open" role="object" x="100%" y="50%"/>
         <hotspot objId="pen4" action="open" role="object" x="100%" y="50%"/>
+        <hotspot objId="pig" action="getOut" role="subject" x="50%" y="50%"/>
         <hotspot objId="pig" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="pig" action="getIn" role="object" x="50%" y="50%"/>
         <hotspot objId="pig" action="getOn" role="object" x="42%" y="3%"/>
         <hotspot objId="pig" action="getOn" role="subject" x="42%" y="85%"/>
         <hotspot objId="pig" action="give" role="subject" x="29%" y="62%"/>

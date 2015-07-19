@@ -40,18 +40,21 @@ NSString *CurrentPage;
 NSString *CurrentSentence;
 NSString *CurrentStep;
 
+UIImage *BackgroundImage;
+
 @implementation AssessmentActivityViewController
 @synthesize AnswerList;
+@synthesize transparentLayer;
 @synthesize nextButton;
-@synthesize ChapterTitleLabel;
 //@synthesize model;
 @synthesize ChapterTitle;
 @synthesize playAudioFileClass;
 
-- (id)initWithModel:(InteractionModel*) model : (UIViewController*) libraryViewController : (NSString*) bookTitle : (NSString*) chapterTitle : (NSString*) currentPage : (NSString*)currentSentence :(NSString*) currentStep
+- (id)initWithModel:(InteractionModel*) model : (UIViewController*) libraryViewController : (UIImage*) backgroundImage : (NSString*) bookTitle : (NSString*) chapterTitle : (NSString*) currentPage : (NSString*)currentSentence :(NSString*) currentStep
 {
     self=[super init];//self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        
         
         libraryView=libraryViewController;
         
@@ -61,10 +64,14 @@ NSString *CurrentStep;
         CurrentSentence=currentSentence;
         CurrentStep = currentStep;
         
+        BackgroundImage = backgroundImage;
+        
         currentAssessmentActivityStep = 1;
         
         // Custom initialization
         //AnswerList = [[UITableView alloc]init];
+        AnswerList.backgroundColor = [UIColor clearColor];
+        AnswerList.backgroundView.backgroundColor = [UIColor clearColor];
         AnswerSelection[0] = 0;
         AnswerSelection[1] = 0;
         AnswerSelection[2] = 0;
@@ -119,8 +126,11 @@ NSString *CurrentStep;
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     nextButton.hidden =true;
-    
-    ChapterTitleLabel.text = ChapterTitle;
+    self.view.backgroundColor = [UIColor colorWithRed: 165.0/255.0 green: 203.0/255.0 blue:231.0/255.0 alpha: 1.0];
+    transparentLayer.backgroundColor = [UIColor whiteColor];
+    transparentLayer.alpha = .5;
+    AnswerList.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
 - (void)didReceiveMemoryWarning
@@ -170,31 +180,26 @@ NSString *CurrentStep;
 -(IBAction)PlayQuestionAudioPressed:(id)sender
 {
     [playAudioFileClass playAudioFile:self:QuestionAudio];
-    //[playAudioFileClass textToSpeech:Question];//Question:BookTitle:ChapterTitle:CurrentPage:CurrentSentence:CurrentStep];
 }
 
 -(IBAction)PlayAnswer1AudioPressed:(id)sender
 {
     [playAudioFileClass playAudioFile:self:AnswerAudios[0]];
-    //[playAudioFileClass textToSpeech:AnswerOptions[0]];
 }
 
 -(IBAction)PlayAnswer2AudioPressed:(id)sender
 {
     [playAudioFileClass playAudioFile:self:AnswerAudios[1]];
-    //[playAudioFileClass textToSpeech:AnswerOptions[1]];
 }
 
 -(IBAction)PlayAnswer3AudioPressed:(id)sender
 {
     [playAudioFileClass playAudioFile:self:AnswerAudios[2]];
-    //[playAudioFileClass textToSpeech:AnswerOptions[2]];
 }
 
 -(IBAction)PlayAnswer4AudioPressed:(id)sender
 {
     [playAudioFileClass playAudioFile:self:AnswerAudios[3]];
-    //[playAudioFileClass textToSpeech:AnswerOptions[3]];
 }
 
 - (IBAction)NextButtonPressed:(id)sender {
@@ -244,9 +249,10 @@ NSString *CurrentStep;
         {
             UITableViewCell *tempCell = [AnswerList cellForRowAtIndexPath:cells[i]];
             tempCell.contentView.alpha = 1;
-            tempCell.backgroundColor = [UIColor whiteColor];
-            tempCell.backgroundView.alpha = 1;
-            tempCell.alpha = 1;
+            tempCell.backgroundColor = [UIColor clearColor];
+            tempCell.backgroundView.alpha = .5;
+            tempCell.backgroundView.backgroundColor = [UIColor clearColor];
+            tempCell.alpha = .5;
             tempCell.accessoryType = UITableViewCellAccessoryNone;
         }
         
@@ -282,6 +288,10 @@ NSString *CurrentStep;
     if(cell==nil)
     {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell.backgroundColor = [UIColor clearColor];
+        cell.backgroundView.backgroundColor = [UIColor clearColor];
+        //AnswerList.alpha = 0;
+        
         //cell.accessoryType = UITableViewCellAccessoryCheckmark;
         //cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
@@ -353,20 +363,35 @@ NSString *CurrentStep;
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     // The header for the section is the region name -- get this from the region at the section index.
-    //AssessmentArrray *question = [questions objectAtIndex:section];
-    return [NSString stringWithFormat:@"%d. %@", questionNum,Question];
+    return [NSString stringWithFormat:@"%d. %@      ", questionNum,Question];
 }
 
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    UILabel *myLabel = [[UILabel alloc]init];
-    myLabel.frame = CGRectMake(5, 0, 791, 62);
-    myLabel.font = [UIFont boldSystemFontOfSize:18];
-    myLabel.text = [self tableView:tableView titleForHeaderInSection:section];
-    UIView *headerView = [[UIView alloc]init];
-    headerView.backgroundColor = [UIColor lightTextColor];
-    [headerView addSubview:myLabel];
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
+    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
     
-    return headerView;
+    header.textLabel.font = [UIFont fontWithName:@"GillSans" size:22];
+    CGRect headerFrame = header.frame;
+    header.textLabel.frame = headerFrame;
 }
+
+/*
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 20)];
+    UILabel *myLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 20)];
+    
+    [myLabel setFont:[UIFont boldSystemFontOfSize:18]];
+    [myLabel setText:[self tableView:tableView titleForHeaderInSection:section]];
+    [view addSubview:myLabel];
+    
+    //UILabel *chapterTitle = [[UILabel alloc] initWithFrame:CGRectMake(5, 10, tableView.frame.size.width, 22)];
+    //chapterTitle.center = CGPointMake(tableView.frame.size.width  / 2, 0);
+    //[chapterTitle setFont:[UIFont boldSystemFontOfSize:20]];
+    //[chapterTitle setText:ChapterTitle];
+    //[view addSubview:chapterTitle];
+    
+    return view;
+}
+ */
 
 @end

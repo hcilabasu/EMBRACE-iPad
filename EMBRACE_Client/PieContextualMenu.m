@@ -23,9 +23,9 @@
 @synthesize center;
 @synthesize radius;
 
-float const itemRadius = 100.0; //radius of each menu item.
+float const itemRadius = 200.0; //radius of each menu item.
 float const minAngle = 5.0; //minimum angle in degrees.
-float const menuBoundingBox = 400.0; // The bounding box of the large for the menu.
+float const menuBoundingBox = 700.0; // The bounding box of the large for the menu.
 int const maxMenuItems = 3; //Total number of items the menu will display. changed to 3 from 6
 
 - (id)initWithFrame:(CGRect)frame
@@ -34,10 +34,10 @@ int const maxMenuItems = 3; //Total number of items the menu will display. chang
         [self setBackgroundColor:[[UIColor whiteColor] colorWithAlphaComponent:.5]];
         
         float boxSize = [self frame].size.height - (itemRadius * 2) - 50.0;
-        float originX = ([self frame].size.width - boxSize) / 2;
-        float originY = ([self frame].size.height - boxSize) / 2;
-        circleBounds = CGRectMake(originX, originY, boxSize, boxSize);
-        circleRadius = boxSize / 2;
+        float originX = ([self frame].size.width - boxSize/.6) / 2;
+        float originY = ([self frame].size.height - boxSize/.6) / 2;
+        circleBounds = CGRectMake(originX, originY, boxSize/.6, boxSize/.6);
+        circleRadius = boxSize;
     }
     return self;
 }

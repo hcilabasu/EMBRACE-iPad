@@ -24,5 +24,18 @@
         <relationship obj1Id="spoon" can="getIn" action="group" obj2Id="woman"/>
         <relationship obj1Id="woman" can="moveTo" action="group" obj2Id="table"/>
         <relationship obj1Id="woman" can="pickUp" action="group" obj2Id="baby"/>
+        
+        <relationship obj1Id="baby_IM" can="getIn" action="group" obj2Id="crib_IM"/>
+        <relationship obj1Id="baby_IM" can="getOut" action="group" obj2Id="crib_IM"/>
+        
+        <relationship obj1Id="bird_IM" can="pickUp" action="group" obj2Id="keys_IM"/>
+        <relationship obj1Id="bird_IM" can="pickUp" action="group" obj2Id="spoon_IM"/>
+        
+        <relationship obj1Id="keys_IM" can="on" action="group" obj2Id="hook_IM"/>
+        <relationship obj1Id="keys_IM" can="off" action="group" obj2Id="hook_IM"/>
+        
+        <relationship obj1Id="tree_IM" can="flip" action="group" obj2Id="dog_IM"/>
+        <relationship obj1Id="rabbit_IM" can="visit" action="group" obj2Id="tree_IM"/>
+        
     </relationships>
 </metadata>
