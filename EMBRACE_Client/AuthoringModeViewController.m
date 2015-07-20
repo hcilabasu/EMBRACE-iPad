@@ -1461,8 +1461,11 @@ ConditionSetup *conditionSetup;
             
             //Get the object at that point if it's a manipulation object.
             NSString* imageAtPoint = [self getObjectAtPoint:location ofType:@"manipulationObject"];
-            //NSLog(@"location pressed: (%f, %f)", location.x, location.y);
             
+            if(imageAtPoint == nil)
+            {
+                imageAtPoint = [self getObjectAtPoint:location ofType:@"backgroundObject"];
+            }
             //if it's an image that can be moved, then start moving it.
             if(imageAtPoint != nil ) {
                 
@@ -1561,7 +1564,13 @@ ConditionSetup *conditionSetup;
 -(NSString*) getObjectAtPoint:(CGPoint) location ofType:(NSString*)class {
     //Temporarily hide the overlay canvas to get the object we need
     NSString* hideCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'none';", @"'overlay'"];
+    //temporarily hide the textbox
+    NSString* hideTextbox = [NSString stringWithFormat:@"document.getElementsByClassName(%@).style.display = 'none';", @"'textbox'"];
+    //
+    
+    
     [bookView stringByEvaluatingJavaScriptFromString:hideCanvas];
+    [bookView stringByEvaluatingJavaScriptFromString:hideTextbox];
     
     //Retrieve the elements at this location and see if it's an element that is moveable.
     NSString* requestImageAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
@@ -1720,7 +1729,7 @@ ConditionSetup *conditionSetup;
         //
         NSString *documentsDirectory = [paths objectAtIndex:0];
     
-        NSString* fileName = [NSString stringWithFormat:@"%@%@",[pageContents lastPathComponent], @"copy"];
+        NSString* fileName = [NSString stringWithFormat:@"%@%@",[currentPage lastPathComponent], @"copy"];
     
         //file path to save to
         NSString *path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@", fileName, @"xhtml"]];
