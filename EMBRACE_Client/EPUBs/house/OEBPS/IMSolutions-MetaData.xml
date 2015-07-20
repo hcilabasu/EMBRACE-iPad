@@ -13,7 +13,7 @@
         <story title="The Family is Rattled" activity_id="story5-PM-2">
             <sentence number="8">
                 <step number="1">
-                    <group obj1Id="tree_IM" action="flip" obj2Id="dog_IM"/>
+                    <group obj1Id="tree_IM" action="visit" obj2Id="dog_IM"/>
                     <group obj1Id="rabbit_IM" action="visit" obj2Id="tree_IM"/>
                 </step>
             </sentence>

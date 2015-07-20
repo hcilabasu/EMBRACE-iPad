@@ -35,16 +35,16 @@
         <hotspot objId="woman" action="pickUp" role="subject" x="50%" y="50%"/>
         
         <hotspot objId="baby_IM" action="getIn" role="subject" x="100%" y="50%"/>
-        <hotspot objId="baby_IM" action="getOut" role="subject" x="50%" y="50%"/>
+        <hotspot objId="baby_IM" action="getOut" role="subject" x="90%" y="50%"/>
             
-        <hotspot objId="crib_IM" action="getIn" role="object" x="50%" y="50%"/>
+        <hotspot objId="crib_IM" action="getIn" role="object" x="70%" y="50%"/>
         <hotspot objId="crib_IM" action="getOut" role="object" x="0%" y="50%"/>
         
-        <hotspot objId="dog_IM" action="flip" role="object" x="100%" y="100%"/>
+        <hotspot objId="dog_IM" action="visit" role="object" x="100%" y="100%"/>
         <hotspot objId="rabbit_IM" action="visit" role="subject" x="100%" y="100%"/>
         
         <hotspot objId="tree_IM" action="visit" role="object" x="100%" y="100%"/>
-        <hotspot objId="tree_IM" action="flip" role="subject" x="100%" y="100%"/>
+        <hotspot objId="tree_IM" action="visit" role="subject" x="100%" y="100%"/>
             
         <hotspot objId="keys_IM" action="on" role="subject" x="50%" y="50%"/>
         <hotspot objId="keys_IM" action="off" role="subject" x="100%" y="50%"/>
@@ -56,7 +56,7 @@
         <hotspot objId="bird_IM" action="pickUp" role="subject" x="50%" y="50%"/>
             
         <hotspot objId="keys_IM" action="pickUp" role="object" x="50%" y="20%"/>
-        <hotspot objId="spoon_IM" action="pickUp" role="object" x="50%" y="70%"/>
+        <hotspot objId="spoon_IM" action="pickUp" role="object" x="50%" y="15%"/>
         
         
     </hotspots>

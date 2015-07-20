@@ -34,7 +34,7 @@
         <relationship obj1Id="keys_IM" can="on" action="group" obj2Id="hook_IM"/>
         <relationship obj1Id="keys_IM" can="off" action="group" obj2Id="hook_IM"/>
         
-        <relationship obj1Id="tree_IM" can="flip" action="group" obj2Id="dog_IM"/>
+        <relationship obj1Id="tree_IM" can="visit" action="group" obj2Id="dog_IM"/>
         <relationship obj1Id="rabbit_IM" can="visit" action="group" obj2Id="tree_IM"/>
         
     </relationships>
