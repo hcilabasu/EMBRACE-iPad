@@ -660,7 +660,7 @@ ConditionSetup *conditionSetup;
     NSString *xcordPercent = [NSString stringWithFormat:@"%f", ([xcord.text integerValue] / [bookView frame].size.width * 100)];
     NSString *ycordPercent = [NSString stringWithFormat:@"%f", ([ycord.text integerValue] / [bookView frame].size.height * 100)];
     
-    NSString* newWaypoint = [NSString stringWithFormat:@"waypoint waypointId=\"%@\" x=\"%@%%\" y=\"%@%%\"", waypointID.text, xcordPercent, ycordPercent];
+    NSString* newWaypoint = [NSString stringWithFormat:@"<waypoint waypointId=\"%@\" x=\"%@%%\" y=\"%@%%\"/>", waypointID.text, xcordPercent, ycordPercent];
     NSLog(@"%@", newWaypoint);
     
     //set file path to access introduction metadata
@@ -723,7 +723,7 @@ ConditionSetup *conditionSetup;
     NSString *ycordPercent = [NSString stringWithFormat:@"%f", ([ycord.text integerValue] / [bookView frame].size.height * 100)];
     NSString *heightPercent = [NSString stringWithFormat:@"%f", ([height.text integerValue] / [bookView frame].size.width * 100)];
     NSString *widthPercent = [NSString stringWithFormat:@"%f", ([width.text integerValue] / [bookView frame].size.width * 100)];
-    NSString* newLocation = [NSString stringWithFormat:@"location locationId=\"%@\" x=\"%@%%\" y=\"%@%%\" height=\"%@%%\" width=\"%@%%\"", locationID.text, xcordPercent, ycordPercent, heightPercent, widthPercent];
+    NSString* newLocation = [NSString stringWithFormat:@"<location locationId=\"%@\" x=\"%@%%\" y=\"%@%%\" height=\"%@%%\" width=\"%@%%\"/>", locationID.text, xcordPercent, ycordPercent, heightPercent, widthPercent];
 
      //set file path to access introduction metadata
      NSString *filepath = [[book mainContentPath] stringByAppendingString:@"Locations-MetaData.xml"];
