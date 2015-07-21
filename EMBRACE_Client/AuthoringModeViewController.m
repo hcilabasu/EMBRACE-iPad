@@ -1729,7 +1729,7 @@ ConditionSetup *conditionSetup;
         //
         NSString *documentsDirectory = [paths objectAtIndex:0];
     
-        NSString* fileName = [NSString stringWithFormat:@"%@%@",[currentPage lastPathComponent], @"copy"];
+        NSString* fileName = [NSString stringWithFormat:@"%@%@",[[currentPage lastPathComponent] substringToIndex:[currentPage lastPathComponent].length-6], @"copy"];
     
         //file path to save to
         NSString *path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@", fileName, @"xhtml"]];
