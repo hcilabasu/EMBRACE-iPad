@@ -591,6 +591,15 @@ function loadImage(objectId, source, width, left, top, className) {
 }
 
 /*
+ Removes an image as specified on the metadata
+ */
+
+function removeImage(objectId) {
+    var image = document.getElementById(objectId);
+    image.parentNode.removeChild(image);
+}
+
+/*
  * This may be moved into a different js file, if there are more things to do when moving to the next sentence.
  * This function just sets the sentence opacity to the specified opacity.
  * It's used to setup the opacity when the activity loads, and when moving from one sentence to the next. 

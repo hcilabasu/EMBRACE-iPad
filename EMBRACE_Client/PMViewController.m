@@ -609,6 +609,10 @@ ConditionSetup *conditionSetup;
             [self loadImage];
             [self incrementCurrentStep];
         }
+        else if ([[currSolStep stepType] isEqualToString:@"disappear"]) {
+            [self hideImage];
+            [self incrementCurrentStep];
+        }
     }
     
     if([IntroductionClass.introductions objectForKey:chapterTitle] && [[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
@@ -2084,6 +2088,27 @@ ConditionSetup *conditionSetup;
             //Swap images using alternative src
             NSString* loadImage = [NSString stringWithFormat:@"loadImage('%@', '%@', '%@', %f, %f, '%@')", object1Id, altSrc, width, location.x, location.y, className];
             [bookView stringByEvaluatingJavaScriptFromString:loadImage];
+        }
+    }
+}
+
+/*
+ Calls the removeImage from the ImageManipulation.js file
+ */
+-(void) hideImage {
+    if (numSteps > 0) {
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        if ([[currSolStep stepType] isEqualToString:@"disappear"]) {
+            NSString* object1Id = [currSolStep object1Id];
+            
+            //Hide image
+            NSString* hideImage = [NSString stringWithFormat:@"removeImage('%@')", object1Id];
+            [bookView stringByEvaluatingJavaScriptFromString:hideImage];
         }
     }
 }

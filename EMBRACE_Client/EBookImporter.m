@@ -749,10 +749,16 @@ ConditionSetup *conditionSetup;
                         //* Ungroup means that two objects that were connected should be separated.
                         if([[step name] isEqualToString:@"transferAndGroup"] || [[step name] isEqualToString:@"transferAndDisappear"] || [[step name] isEqualToString:@"group"] || [[step name] isEqualToString:@"disappear"] ||
                            [[step name] isEqualToString:@"ungroup"]) {
-                            NSString* obj2Id = [[step attributeForName:@"obj2Id"] stringValue];
-                            
-                            ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :obj2Id :nil :nil :action];
-                            [PMSolution addSolutionStep:solutionStep];
+                            if([step attributeForName:@"obj2Id"]) {
+                                NSString* obj2Id = [[step attributeForName:@"obj2Id"] stringValue];
+                                
+                                ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep :sentenceNum :stepNum :stepType :obj1Id :obj2Id :nil :nil :action];
+                                [PMSolution addSolutionStep:solutionStep];
+                            }
+                            else {
+                                ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :action];
+                                [PMSolution addSolutionStep:solutionStep];
+                            }
                         }
                         //Move also has either an obj2Id or waypointId
                         //* Move is performed automatically and means that an object should be moved to group with another object
