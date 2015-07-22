@@ -607,6 +607,7 @@ ConditionSetup *conditionSetup;
         }
         else if ([[currSolStep stepType] isEqualToString:@"appear"]) {
             [self loadImage];
+            [self incrementCurrentStep];
         }
     }
     
