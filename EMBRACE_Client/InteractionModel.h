@@ -62,7 +62,7 @@
 
 - (void) addWaypoint:(NSString*)wayptId :(CGPoint)loc;
 
-- (void) addAlternateImage:(NSString*)objId :(NSString*)act :(NSString*)origSrc :(NSString*)altSrc :(NSString*)wdth :(CGPoint)loc;
+- (void) addAlternateImage:(NSString*)objId :(NSString*)act :(NSString*)origSrc :(NSString*)altSrc :(NSString*)wdth :(CGPoint)loc : (NSString*)cls;
 
 - (NSMutableArray*) getAllHotspots; //Return all hotspots for all objects.
 - (NSMutableArray*) getHotspotsForObjectId:(NSString* )objId; //Return all hotspots for object with objId.

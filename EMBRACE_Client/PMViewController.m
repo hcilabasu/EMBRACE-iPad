@@ -605,6 +605,9 @@ ConditionSetup *conditionSetup;
             
             [self incrementCurrentStep];
         }
+        else if ([[currSolStep stepType] isEqualToString:@"appear"]) {
+            [self loadImage];
+        }
     }
     
     if([IntroductionClass.introductions objectForKey:chapterTitle] && [[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
@@ -2047,6 +2050,42 @@ ConditionSetup *conditionSetup;
             
             //Logging added by James for Swap Images
             [[ServerCommunicationController sharedManager] logComputerSwapImages : object1Id : altSrc: @"Swap Image" : bookTitle : chapterTitle : currentPage : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] : [NSString stringWithFormat:@"%lu" , (unsigned long)currentStep]];
+        }
+    }
+}
+
+/*
+ Loads an image calling the loadImage JS function and using the AlternateImage class
+ */
+-(void) loadImage {
+    if (numSteps > 0) {
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        if ([[currSolStep stepType] isEqualToString:@"appear"]) {
+            //Get information for appear step type
+            NSString* object1Id = [currSolStep object1Id];
+            NSString* action = [currSolStep action];
+            NSString* waypointId = [currSolStep waypointId];
+            
+            Waypoint* waypoint = [model getWaypointWithId:waypointId];
+            //CGPoint waypointLocation = [self getWaypointLocation:waypoint];
+            
+            //Get alternate image
+            AlternateImage* altImage = [model getAlternateImageWithAction:action];
+            
+            //Get alternate image information
+            NSString* altSrc = [altImage alternateSrc];
+            NSString* width = [altImage width];
+            //CGPoint location = [altImage location];
+            NSString* className = [altImage className];
+            
+            //Swap images using alternative src
+            NSString* loadImage = [NSString stringWithFormat:@"loadImage('%@', '%@', '%@', %f, %f, '%@')", object1Id, altSrc, width, waypoint.location.x, waypoint.location.y, className];
+            [bookView stringByEvaluatingJavaScriptFromString:loadImage];
         }
     }
 }

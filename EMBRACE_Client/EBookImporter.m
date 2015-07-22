@@ -633,6 +633,7 @@ ConditionSetup *conditionSetup;
             NSString* width = [[altImage attributeForName:@"width"] stringValue];
             NSString* locationXString = [[altImage attributeForName:@"x"] stringValue];
             NSString* locationYString = [[altImage attributeForName:@"y"] stringValue];
+            NSString* className = [[altImage attributeForName:@"class"] stringValue];
             
             //Find the range of "," in the location string.
             CGFloat locX = [locationXString floatValue];
@@ -640,7 +641,7 @@ ConditionSetup *conditionSetup;
             
             CGPoint location = CGPointMake(locX, locY);
             
-            [model addAlternateImage:objectId :action :originalSrc :alternateSrc :width :location];
+            [model addAlternateImage:objectId :action :originalSrc :alternateSrc :width :location :className];
         }
     }
     
@@ -756,7 +757,8 @@ ConditionSetup *conditionSetup;
                         //Move also has either an obj2Id or waypointId
                         //* Move is performed automatically and means that an object should be moved to group with another object
                         //or to a waypoint on the background.
-                        else if([[step name] isEqualToString:@"move"]) {
+                        else if([[step name] isEqualToString:@"move"] ||
+                                [[step name] isEqualToString:@"appear"]) {
                             if([step attributeForName:@"obj2Id"]) {
                                 NSString* obj2Id = [[step attributeForName:@"obj2Id"] stringValue];
                                 
