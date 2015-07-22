@@ -2069,10 +2069,6 @@ ConditionSetup *conditionSetup;
             //Get information for appear step type
             NSString* object1Id = [currSolStep object1Id];
             NSString* action = [currSolStep action];
-            NSString* waypointId = [currSolStep waypointId];
-            
-            Waypoint* waypoint = [model getWaypointWithId:waypointId];
-            //CGPoint waypointLocation = [self getWaypointLocation:waypoint];
             
             //Get alternate image
             AlternateImage* altImage = [model getAlternateImageWithAction:action];
@@ -2080,11 +2076,12 @@ ConditionSetup *conditionSetup;
             //Get alternate image information
             NSString* altSrc = [altImage alternateSrc];
             NSString* width = [altImage width];
-            //CGPoint location = [altImage location];
+            CGPoint location = [altImage location];
             NSString* className = [altImage className];
             
+            
             //Swap images using alternative src
-            NSString* loadImage = [NSString stringWithFormat:@"loadImage('%@', '%@', '%@', %f, %f, '%@')", object1Id, altSrc, width, waypoint.location.x, waypoint.location.y, className];
+            NSString* loadImage = [NSString stringWithFormat:@"loadImage('%@', '%@', '%@', %f, %f, '%@')", object1Id, altSrc, width, location.x, location.y, className];
             [bookView stringByEvaluatingJavaScriptFromString:loadImage];
         }
     }

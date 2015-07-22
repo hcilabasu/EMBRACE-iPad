@@ -771,6 +771,10 @@ ConditionSetup *conditionSetup;
                                 ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :waypointId :action];
                                 [PMSolution addSolutionStep:solutionStep];
                             }
+                            else {
+                                ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :action];
+                                [PMSolution addSolutionStep:solutionStep];
+                            }
                         }
                         //Check also has a locationId
                         //* Check means that an object should be moved to be inside a location (defined by a bounding box) on
