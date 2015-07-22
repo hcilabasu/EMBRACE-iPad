@@ -588,8 +588,6 @@ function loadImage(objectId, source, width, left, top, className) {
     
     var images = document.getElementById('images');
     images.appendChild(image);
-    
-    images.innerHTML = images.innerHTML + "<br />"; // This line was added given the layout of the HTML files but I think it is not necessary
 }
 
 /*
