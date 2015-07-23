@@ -598,14 +598,24 @@ ConditionSetup *conditionSetup;
     NSString *ycordPercent = [NSString stringWithFormat:@"%f", ([ycord.text integerValue] / [bookView frame].size.height * 100)];
     
     
-    NSString* newHotspot = [NSString stringWithFormat:@"<hotspot objId=\"%@\" action=\"%@\" role=\"%@\" x=\"%@%%\" y=\"%@%%\"/>", hotspotID.text, action.text, role.text, xcordPercent, ycordPercent];
+    NSString* newHotspot = [NSString stringWithFormat:@"hotspot objId=\"%@\" action=\"%@\" role=\"%@\" x=\"%@%%\" y=\"%@%%\"", hotspotID.text, action.text, role.text, xcordPercent, ycordPercent];
     NSLog(@"%@", newHotspot);
     
     //set file path to access introduction metadata
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"Hotspots-MetaData.xml"];
+    
     NSString *filepath = [[book mainContentPath] stringByAppendingString:@"Hotspots-MetaData.xml"];
     
     //Get xml data of the metadata file.
-    NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
+    NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:path];
+    
+    if (xmlData == NULL)
+    {
+        xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
+    }
+    
     
     NSError *error;
     
@@ -660,16 +670,23 @@ ConditionSetup *conditionSetup;
     NSString *xcordPercent = [NSString stringWithFormat:@"%f", ([xcord.text integerValue] / [bookView frame].size.width * 100)];
     NSString *ycordPercent = [NSString stringWithFormat:@"%f", ([ycord.text integerValue] / [bookView frame].size.height * 100)];
     
-    NSString* newWaypoint = [NSString stringWithFormat:@"<waypoint waypointId=\"%@\" x=\"%@%%\" y=\"%@%%\"/>", waypointID.text, xcordPercent, ycordPercent];
+    NSString* newWaypoint = [NSString stringWithFormat:@"waypoint waypointId=\"%@\" x=\"%@%%\" y=\"%@%%\"", waypointID.text, xcordPercent, ycordPercent];
     NSLog(@"%@", newWaypoint);
     
     //set file path to access introduction metadata
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"Waypoints-MetaData.xml"];
+    
     NSString *filepath = [[book mainContentPath] stringByAppendingString:@"Waypoints-MetaData.xml"];
     
     //Get xml data of the metadata file.
-    NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
+    NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:path];
     
-    NSError *error;
+    if (xmlData == NULL)
+    {
+        xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
+    }
     
     //break out metadata file into seperate components
     GDataXMLDocument *metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:nil];
@@ -723,15 +740,22 @@ ConditionSetup *conditionSetup;
     NSString *ycordPercent = [NSString stringWithFormat:@"%f", ([ycord.text integerValue] / [bookView frame].size.height * 100)];
     NSString *heightPercent = [NSString stringWithFormat:@"%f", ([height.text integerValue] / [bookView frame].size.width * 100)];
     NSString *widthPercent = [NSString stringWithFormat:@"%f", ([width.text integerValue] / [bookView frame].size.width * 100)];
-    NSString* newLocation = [NSString stringWithFormat:@"<location locationId=\"%@\" x=\"%@%%\" y=\"%@%%\" height=\"%@%%\" width=\"%@%%\"/>", locationID.text, xcordPercent, ycordPercent, heightPercent, widthPercent];
+    NSString* newLocation = [NSString stringWithFormat:@"location locationId=\"%@\" x=\"%@%%\" y=\"%@%%\" height=\"%@%%\" width=\"%@%%\"", locationID.text, xcordPercent, ycordPercent, heightPercent, widthPercent];
 
-     //set file path to access introduction metadata
-     NSString *filepath = [[book mainContentPath] stringByAppendingString:@"Locations-MetaData.xml"];
-     
-     //Get xml data of the metadata file.
-     NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
+    //set file path to access introduction metadata
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"Locations-MetaData.xml"];
     
-     NSError *error;
+    NSString *filepath = [[book mainContentPath] stringByAppendingString:@"Locations-MetaData.xml"];
+    
+    //Get xml data of the metadata file.
+    NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:path];
+    
+    if (xmlData == NULL)
+    {
+        xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
+    }
     
      //break out metadata file into seperate components
      GDataXMLDocument *metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:nil];
