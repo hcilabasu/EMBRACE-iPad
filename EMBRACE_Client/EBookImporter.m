@@ -688,6 +688,7 @@ ConditionSetup *conditionSetup;
             NSString* width = [[altImage attributeForName:@"width"] stringValue];
             NSString* locationXString = [[altImage attributeForName:@"x"] stringValue];
             NSString* locationYString = [[altImage attributeForName:@"y"] stringValue];
+            NSString* className = [[altImage attributeForName:@"class"] stringValue];
             
             //Find the range of "," in the location string.
             CGFloat locX = [locationXString floatValue];
@@ -695,7 +696,7 @@ ConditionSetup *conditionSetup;
             
             CGPoint location = CGPointMake(locX, locY);
             
-            [model addAlternateImage:objectId :action :originalSrc :alternateSrc :width :location];
+            [model addAlternateImage:objectId :action :originalSrc :alternateSrc :width :location :className];
         }
     }
     
@@ -804,15 +805,22 @@ ConditionSetup *conditionSetup;
                         //* Ungroup means that two objects that were connected should be separated.
                         if([[step name] isEqualToString:@"transferAndGroup"] || [[step name] isEqualToString:@"transferAndDisappear"] || [[step name] isEqualToString:@"group"] || [[step name] isEqualToString:@"disappear"] ||
                            [[step name] isEqualToString:@"ungroup"]) {
-                            NSString* obj2Id = [[step attributeForName:@"obj2Id"] stringValue];
-                            
-                            ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :obj2Id :nil :nil :action :nil :nil];
-                            [PMSolution addSolutionStep:solutionStep];
+                            if([step attributeForName:@"obj2Id"]) {
+                                NSString* obj2Id = [[step attributeForName:@"obj2Id"] stringValue];
+                                
+                                ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :obj2Id :nil :nil :action :nil :nil];
+                                [PMSolution addSolutionStep:solutionStep];
+                            }
+                            else {
+                                ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :action :nil :nil];
+                                [PMSolution addSolutionStep:solutionStep];
+                            }
                         }
                         //Move also has either an obj2Id or waypointId
                         //* Move is performed automatically and means that an object should be moved to group with another object
                         //or to a waypoint on the background.
-                        else if([[step name] isEqualToString:@"move"]) {
+                        else if([[step name] isEqualToString:@"move"] ||
+                                [[step name] isEqualToString:@"appear"]) {
                             if([step attributeForName:@"obj2Id"]) {
                                 NSString* obj2Id = [[step attributeForName:@"obj2Id"] stringValue];
                                 
@@ -823,6 +831,10 @@ ConditionSetup *conditionSetup;
                                 NSString* waypointId = [[step attributeForName:@"waypointId"] stringValue];
                                 
                                 ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :waypointId :action :nil :nil];
+                                [PMSolution addSolutionStep:solutionStep];
+                            }
+                            else {
+                                ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :action :nil :nil];
                                 [PMSolution addSolutionStep:solutionStep];
                             }
                         }

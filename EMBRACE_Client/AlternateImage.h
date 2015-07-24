@@ -15,6 +15,7 @@
     NSString* alternateSrc;
     NSString* width;
     CGPoint location;
+    NSString* className;
 }
 
 @property (nonatomic, strong) NSString* objectId;
@@ -23,7 +24,8 @@
 @property (nonatomic, strong) NSString* alternateSrc;
 @property (nonatomic, strong) NSString* width;
 @property (nonatomic, assign) CGPoint location;
+@property (nonatomic, strong) NSString* className;
 
-- (id) initWithValues:(NSString*)objId :(NSString*)act :(NSString*)origSrc :(NSString*)altSrc :(NSString*)wdth :(CGPoint)loc;
+- (id) initWithValues:(NSString*)objId :(NSString*)act :(NSString*)origSrc :(NSString*)altSrc :(NSString*)wdth :(CGPoint)loc :(NSString*)cls;
 
 @end

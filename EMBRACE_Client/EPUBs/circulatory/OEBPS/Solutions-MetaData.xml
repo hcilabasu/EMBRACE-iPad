@@ -85,7 +85,7 @@
             <sentence number="1">
                 <step number="1">
                     <checkPath obj1Id="bloodcell_1" action="getIn" locationId="muscle1" areaId="aortaMuscle"/>
-                    <move obj1Id="bloodcell_1" action="getIn" waypointId="muscle1"/>
+                    <animate obj1Id="bloodcell_1" action="followAnimation" waypointId="" areaId="aortaPath2"/>
                 </step>
             </sentence>
         </story>
@@ -141,8 +141,8 @@
         <story title="Getting More Oxygen for the Muscles" activity_id="story4-PM-3">
             <sentence number="7">
                 <step number="1">
-                    <check obj1Id="bloodcell_1" action="getIn" locationId="lung3"/>
-                    <move obj1Id="bloodcell_1" action="getIn" waypointId="lung3"/>
+                    <check obj1Id="bloodcell_1" action="getIn" locationId="" areaId="vein1"/>
+                    <animate obj1Id="bloodcell_1" action="followAnimation" waypointId="" areaId="veinPath"/>
                 </step>
             </sentence>
         </story>

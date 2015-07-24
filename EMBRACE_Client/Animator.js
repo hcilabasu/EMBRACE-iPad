@@ -449,9 +449,10 @@ function follow(aniObject) {
         groupedWithObjects[1].style.top = aniObject.location.y + "px";
     //}
     
-    if (aniObject.location.x > path[pathIndex-1][0]) {
-        cancelAnimationFrame(requestId);
-    }
+    //if (aniObject.location.x > path[pathIndex-1][0]) {
+        //cancelAnimationFrame(requestId);
+    //}
+    checkEnding(aniObject);
 }
 
 function seekAnim(target, aniObject) {
@@ -526,6 +527,18 @@ function dot(ary1, ary2) {
     for (var i = 0; i < ary1.length; i++)
         dotProd += ary1[i] * ary2[i];
     return dotProd;
+}
+
+function checkEnding(aniObject) {
+    // (x - center_x)^2 + (y - center_y)^2 < radius^2
+    if (Math.pow((aniObject.location.x - path[pathIndex-1][0]),2)
+        +
+        Math.pow((aniObject.location.y - path[pathIndex-1][1]),2)
+        <
+        Math.pow(pathRadius,2)
+        ) {
+        cancelAnimationFrame(requestId);
+    }
 }
 
 // Debug

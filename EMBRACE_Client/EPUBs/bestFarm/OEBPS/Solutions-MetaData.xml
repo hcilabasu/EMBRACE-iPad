@@ -68,8 +68,10 @@
     <story title="Getting Ready" activity_id="story2-PM-1">
         <sentence number="2">
             <step number="1">
+                <appear obj1Id="egg" action="appear"/>
                 <check obj1Id="farmer" action="getIn" locationId="nearGoat"/>
                 <move obj1Id="farmer" action="getIn" waypointId="combGoat"/>
+                <disappear obj1Id="egg" action="disappear" obj2Id=""/>
             </step>
         </sentence>
         <sentence number="3">

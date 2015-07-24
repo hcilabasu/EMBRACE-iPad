@@ -313,6 +313,9 @@ BOOL wasPathFollowed = false;
     [self drawArea:@"aortaPath":@"The Amazing Heart":@"story2-PM-4"];
     [self drawArea:@"aortaStart":@"The Amazing Heart":@"story2-PM-4"];
     [self drawArea:@"aortaMuscle":@"Muscles Use Oxygen":@"story3-PM-1"];
+    [self drawArea:@"aortaPath2":@"Muscles Use Oxygen":@"story3-PM-1"];
+    [self drawArea:@"veinPath":@"Getting More Oxygen for the Muscles":@"story4-PM-3"];
+    [self drawArea:@"vein1":@"Getting More Oxygen for the Muscles":@"story4-PM-3"];
     
     //NSLog(@"CURRENT PAGE ID: %@", currentPageId);
     
@@ -681,7 +684,14 @@ BOOL wasPathFollowed = false;
             [playaudioClass playAudioFile:self:file];
             [self incrementCurrentStep];
         }
-        
+        else if ([[currSolStep stepType] isEqualToString:@"appear"]) {
+            [self loadImage];
+            [self incrementCurrentStep];
+        }
+        else if ([[currSolStep stepType] isEqualToString:@"disappear"]) {
+            [self hideImage];
+            [self incrementCurrentStep];
+        }
     }
     
     if([IntroductionClass.introductions objectForKey:chapterTitle] && [[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
@@ -740,17 +750,7 @@ BOOL wasPathFollowed = false;
             }
             
             if ([areaId rangeOfString:@"Path"].location != NSNotFound) {
-                Area* area = [model getAreaWithId:areaId];
-                for (int i=0; i < area.points.count/2; i++) {
-                    NSString* xCoord = [area.points objectForKey:[NSString stringWithFormat:@"x%d", i]];
-                    
-                    NSString* yCoord = [area.points objectForKey:[NSString stringWithFormat:@"y%d", i]];
-                    
-                    //NSLog(@"X: %@ Y: %@", xCoord, yCoord);
-                    
-                    NSString *buildPath = [NSString stringWithFormat:@"buildPath(%f, %f)", [xCoord floatValue], [yCoord floatValue]];
-                    [bookView stringByEvaluatingJavaScriptFromString:buildPath];
-                }
+                [self buildPath:areaId];
             }
             
             //NSString *showPath = @"showPath()";
@@ -763,6 +763,21 @@ BOOL wasPathFollowed = false;
             animatingObjects = [[NSMutableDictionary alloc] init];
             [animatingObjects setObject:@YES forKey:object1Id];
         }
+    }
+}
+
+/*
+ Calls the builPath fucntion on the JS file
+ Sends all the points in an area or path to the the JS to load them in memory
+ */
+-(void)buildPath:(NSString*)areaId {
+    Area* area = [model getAreaWithId:areaId];
+    for (int i=0; i < area.points.count/2; i++) {
+        NSString* xCoord = [area.points objectForKey:[NSString stringWithFormat:@"x%d", i]];
+        NSString* yCoord = [area.points objectForKey:[NSString stringWithFormat:@"y%d", i]];
+        
+        NSString *buildPath = [NSString stringWithFormat:@"buildPath(%f, %f)", [xCoord floatValue], [yCoord floatValue]];
+        [bookView stringByEvaluatingJavaScriptFromString:buildPath];
     }
 }
 
@@ -1486,7 +1501,7 @@ BOOL wasPathFollowed = false;
                         }
                     }
                     else if ([[currSolStep stepType] isEqualToString:@"checkPath"]) {
-                        if([self isHotspotInsideLocation] && wasPathFollowed) {
+                        if(/*[self isHotspotInsideLocation] &&*/ wasPathFollowed) {
                             [self incrementCurrentStep];
                         }
                         else {
@@ -2351,6 +2366,59 @@ BOOL wasPathFollowed = false;
             
             //Logging added by James for Swap Images
             [[ServerCommunicationController sharedManager] logComputerSwapImages : object1Id : altSrc: @"Swap Image" : bookTitle : chapterTitle : currentPage : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] : [NSString stringWithFormat:@"%lu" , (unsigned long)currentStep]];
+        }
+    }
+}
+
+/*
+ Loads an image calling the loadImage JS function and using the AlternateImage class
+ */
+-(void) loadImage {
+    if (numSteps > 0) {
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        if ([[currSolStep stepType] isEqualToString:@"appear"]) {
+            //Get information for appear step type
+            NSString* object1Id = [currSolStep object1Id];
+            NSString* action = [currSolStep action];
+            
+            //Get alternate image
+            AlternateImage* altImage = [model getAlternateImageWithAction:action];
+            
+            //Get alternate image information
+            NSString* altSrc = [altImage alternateSrc];
+            NSString* width = [altImage width];
+            CGPoint location = [altImage location];
+            NSString* className = [altImage className];
+            
+            //Load image using alternative src
+            NSString* loadImage = [NSString stringWithFormat:@"loadImage('%@', '%@', '%@', %f, %f, '%@')", object1Id, altSrc, width, location.x, location.y, className];
+            [bookView stringByEvaluatingJavaScriptFromString:loadImage];
+        }
+    }
+}
+
+/*
+ Calls the removeImage from the ImageManipulation.js file
+ */
+-(void) hideImage {
+    if (numSteps > 0) {
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        if ([[currSolStep stepType] isEqualToString:@"disappear"]) {
+            NSString* object1Id = [currSolStep object1Id];
+            
+            //Hide image
+            NSString* hideImage = [NSString stringWithFormat:@"removeImage('%@')", object1Id];
+            [bookView stringByEvaluatingJavaScriptFromString:hideImage];
         }
     }
 }
@@ -4006,9 +4074,17 @@ BOOL wasPathFollowed = false;
 }
 
 -(void) highlightObject:(NSString*)object :(double)delay {
-    //Highlight the tapped object
-    NSString* highlight = [NSString stringWithFormat:@"highlightObjectOnWordTap(%@)", object];
-    [bookView stringByEvaluatingJavaScriptFromString:highlight];
+    if([model getAreaWithId:object]) {
+        [self buildPath:object];
+        //Highlight the tapped object
+        NSString* highlight = [NSString stringWithFormat:@"highlightArea()"];
+        [bookView stringByEvaluatingJavaScriptFromString:highlight];
+    }
+    else {
+        //Highlight the tapped object
+        NSString* highlight = [NSString stringWithFormat:@"highlightObjectOnWordTap(%@)", object];
+        [bookView stringByEvaluatingJavaScriptFromString:highlight];
+    }
 
     //Clear highlighted object
     [self performSelector:@selector(clearHighlightedObject) withObject:nil afterDelay:delay];

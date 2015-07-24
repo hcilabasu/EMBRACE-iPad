@@ -570,6 +570,36 @@ function swapImageSrc(objectId, alternateSrc, width, left, top) {
 }
 
 /*
+ Loads an image at a given location
+ */
+function loadImage(objectId, source, width, left, top, className) {
+    var image = document.createElement("img");
+    
+    image.src = "../Images/" + source; //load image
+    
+    //Adjust image style    
+    image.style.width = width;
+    image.style.left = left + "%";
+    image.style.top = top + "%";
+    
+    image.alt = objectId;
+    image.className = className;
+    image.id = objectId;
+    
+    var images = document.getElementById('images');
+    images.appendChild(image);
+}
+
+/*
+ Removes an image as specified on the metadata
+ */
+
+function removeImage(objectId) {
+    var image = document.getElementById(objectId);
+    image.parentNode.removeChild(image);
+}
+
+/*
  * This may be moved into a different js file, if there are more things to do when moving to the next sentence.
  * This function just sets the sentence opacity to the specified opacity.
  * It's used to setup the opacity when the activity loads, and when moving from one sentence to the next. 
@@ -737,12 +767,38 @@ function getSentenceColor(sentenceId) {
 
 /*
  * Highlights the specified object on word tap.
- * This function is called by the PMView controller to highlight objects when their word has been clicked.
+ * This function is called by the PMView controller to highlight objects when their word has been clicked on.
  * The parameter 'over' indicates that the highlighting should be performed
  * over the object
  */
 function highlightObjectOnWordTap(object) {
     highlight(object.offsetLeft, object.offsetTop, object.offsetWidth, object.offsetHeight, "over");
+}
+
+/*
+ * Highlights the specified area on word tap.
+ * This function is called by the PMView controller to highlight areas when their word has been clicked on.
+ * The parameter 'over' indicates that the highlighting should be performed
+ * over the object
+ */
+function highlightArea() {
+    //console.log("CALLING HIGHLIGHT");
+    var canvas = document.getElementById('highlight');
+    var context = canvas.getContext('2d');
+    
+    context.beginPath();
+    context.strokeStyle = "rgba(250, 250, 210, .2)";
+    context.lineWidth = 5;
+    context.moveTo(path[0][0], path[0][1]);
+    for (var i = 1; i < pathIndex; i++) {
+        context.lineTo(path[i][0], path[i][1]);
+    }
+    context.closePath();
+    context.stroke();
+    context.fillStyle = "rgba(255, 250, 205, .4)";
+    context.fill();
+    
+    document.getElementById('highlight').style.zIndex = "100";
 }
 
 /*
