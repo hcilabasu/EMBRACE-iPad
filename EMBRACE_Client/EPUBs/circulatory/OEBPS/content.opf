@@ -75,6 +75,11 @@
     <item href="Images/p3_nosqueeze.png" id="p3_nosqueeze.png" media-type="image/png"/>
     <item href="Images/p3_Rsqueeze.png" id="p3_Rsqueeze.png" media-type="image/png"/>
     <item href="Images/p4.png" id="p4.png" media-type="image/png"/>
+    <item href="Images/ch5_icon.png" id="ch5_icon.png" media-type="image/png"/>
+    <item href="Images/ch4_select_icon.png" id="ch4_select_icon.png" media-type="image/png"/>
+    <item href="Images/ch3_select.png" id="ch3_select.png" media-type="image/png"/>
+    <item href="Images/ch2_icon.png" id="ch2_icon.png" media-type="image/png"/>
+    <item href="Images/ch1_icon.png" id="ch1_icon.png" media-type="image/png"/>
   </manifest>
   <spine toc="ncx">
     <itemref idref="Introduction-to-Circulatory-Characters-Title.xhtml"/>
