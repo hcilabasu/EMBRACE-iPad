@@ -1743,6 +1743,56 @@ ConditionSetup *conditionSetup;
     NSString* currentHMTL = [bookView stringByEvaluatingJavaScriptFromString:returnHTML];
     NSLog(@"%@", currentHMTL);
     
+    int startIndex =  [currentHMTL rangeOfString:@"<div class=\"images\">"].location+20;
+    int endIndex = [[currentHMTL substringFromIndex:startIndex] rangeOfString:@"<br>"].location;
+    
+    NSString *newImages = [currentHMTL substringFromIndex:startIndex];
+    newImages = [newImages substringToIndex:endIndex];
+    
+    NSString *concatenatedString = @"";
+    
+    for(int i =0; i<newImages.length; i++)
+    {
+        NSString *curChar = [NSString stringWithFormat:@"%c", [newImages characterAtIndex:i]];
+        
+        if([curChar isEqualToString:@"<"])
+        {
+            for(int j = i; j<newImages.length; j++)
+            {
+            
+                NSString *nextChar = [NSString stringWithFormat:@"%c", [newImages characterAtIndex:j]];
+                
+                if ([nextChar isEqualToString:@">"]) {
+                    concatenatedString = [concatenatedString stringByAppendingString:@"/"];
+                    concatenatedString = [concatenatedString stringByAppendingString:nextChar];
+                    i=j;
+                    j=newImages.length;
+                }
+                else
+                {
+                    concatenatedString = [concatenatedString stringByAppendingString:nextChar];
+                }
+            }
+        }
+        else
+        {
+            concatenatedString = [concatenatedString stringByAppendingString:curChar];
+        }
+    }
+    
+    NSLog(@"%@", concatenatedString);
+    
+    startIndex = [pageContents rangeOfString:@"<div class=\"images\">"].location+20;
+    endIndex = [[pageContents substringFromIndex:startIndex] rangeOfString:@"<br/>"].location+startIndex;
+    NSString *finalHTML = [pageContents substringToIndex:startIndex];
+    NSLog(@"%@", finalHTML);
+    finalHTML = [finalHTML stringByAppendingString:concatenatedString];
+    NSLog(@"%@", finalHTML);
+    NSString *tempString = [pageContents substringFromIndex:endIndex];
+    NSLog(@"%@", tempString);
+    finalHTML = [finalHTML stringByAppendingString:tempString];
+    NSLog(@"%@", finalHTML);
+    
     //saves current state of html page with updated locations and overides file (overidding currently turned off to not loose data for finished stories and instead saves a copy into the same directly as the log files)
     //eventually will be changed to simply write to same directory that file actually exists in and will override it
     //will still have to rebuild the epubs inorder to see the new changes to the xhtml file
@@ -1760,12 +1810,12 @@ ConditionSetup *conditionSetup;
         //toggle to switch between saving at logging location or to overide file
         //NSString *path = [book mainContentPath] stringByAppendingString:fileName];
     
-        if (![currentHMTL writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil]) {
+        if (![finalHTML writeToFile:path atomically:YES encoding:NSUTF32StringEncoding error:nil]) {
             NSLog(@"Could not write document out...");
-            NSLog(@"%@", currentHMTL);
+            NSLog(@"%@", finalHTML);
         }
     
-        NSLog(@"%@", currentHMTL);
+        NSLog(@"%@", finalHTML);
         NSLog(@"Successfully wrote file");
 }
 

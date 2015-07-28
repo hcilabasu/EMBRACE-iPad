@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="BookId" version="2.0">
+    <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+        <dc:identifier id="BookId" opf:scheme="UUID">urn:uuid:f0fe710e-44d7-4626-8b59-20cd5fe9699f</dc:identifier>
+        <dc:date opf:event="modification">2015-07-06</dc:date>
+        <meta content="0.7.2" name="Sigil version" />
+        <dc:title>Natural Disasters</dc:title>
+    </metadata>
+  <manifest>
+    <item href="toc.ncx" id="ncx" media-type="application/x-dtbncx+xml" />
+    <item href="Text/Introduction-to-Natural-Disasters-Title.xhtml" id="Introduction-to-Natural-Disasters-Title.xhtml" media-type="application/xhtml+xml" />
+    <item href="Images/eurasia.png" id="eurasia.png" media-type="image/png" />
+    <item href="Images/pangea_test.png" id="pangea_test.png" media-type="image/png" />
+    <item href="Images/pangea_test2.png" id="pangea_test2.png" media-type="image/png" />
+    <item href="Images/india_himalayas.png" id="india_himalayas.png" media-type="image/png" />
+    <item href="Images/africa.png" id="africa.png" media-type="image/png" />
+    <item href="Images/north_america2.png" id="north_america2.png" media-type="image/png" />
+    <item href="Images/california2.png" id="california2.png" media-type="image/png" />
+    <item href="Images/india_whole.png" id="india_whole.png" media-type="image/png" />
+    <item href="Images/india_half.png" id="india_half.png" media-type="image/png" />
+    <item href="Images/australia.png" id="australia.png" media-type="image/png" />
+    <item href="Images/antartica.png" id="antartica.png" media-type="image/png" />
+    <item href="Images/california.png" id="california.png" media-type="image/png" />
+    <item href="Images/north_america.png" id="north_america.png" media-type="image/png" />
+    <item href="Images/south_america.png" id="south_america.png" media-type="image/png" />
+    <item href="Images/ch2_bg.png" id="ch2_bg.png" media-type="image/png" />
+    <item href="Images/ch1_bg.png" id="ch1_bg.png" media-type="image/png" />
+    <item href="Images/ocean_wave_move.png" id="ocean_wave_move.png" media-type="image/png" />
+    <item href="Images/ocean_wave_together.png" id="ocean_wave_together.png" media-type="image/png" />
+    <item href="Images/ocean_flatwave.png" id="ocean_flatwave.png" media-type="image/png" />
+    <item href="Images/plate_01.png" id="plate_01.png" media-type="image/png" />
+    <item href="Images/ch3_bg.png" id="ch3_bg.png" media-type="image/png" />
+    <item href="Images/bg_test.png" id="bg_test.png" media-type="image/png" />
+    <item href="Images/clouds.png" id="clouds.png" media-type="image/png" />
+    <item href="Images/buildings.png" id="buildings.png" media-type="image/png" />
+    <item href="Images/ocean_wave.png" id="ocean_wave.png" media-type="image/png" />
+    <item href="Images/ocean_bulge.png" id="ocean_bulge.png" media-type="image/png" />
+    <item href="Images/ocean_flat.png" id="ocean_flat.png" media-type="image/png" />
+    <item href="Images/plate_bulge2.png" id="plate_bulge2.png" media-type="image/png" />
+    <item href="Images/plate_bulge.png" id="plate_bulge.png" media-type="image/png" />
+    <item href="Images/plate_02.png" id="plate_02.png" media-type="image/png" />
+    <item href="Images/california_nofault.png" id="california_nofault.png" media-type="image/png" />
+    <item href="Images/houses.png" id="houses.png" media-type="image/png" />
+    <item href="Images/north_america_fault.png" id="north_america_fault.png" media-type="image/png" />
+    <item href="Images/north_america_nofault.png" id="north_america_nofault.png" media-type="image/png" />
+    <item href="Text/Story1-Introduction-PM.xhtml" id="story0-PM" media-type="application/xhtml+xml" />
+    <item href="Text/Story1-The-Moving-Earth-Intro-E.xhtml" id="story1-Intro" media-type="application/xhtml+xml" />
+    <item href="Text/Story1-The-Moving-Earth-PM-1.xhtml" id="story1-PM-1" media-type="application/xhtml+xml" />
+    <item href="Text/Story1-The-Moving-Earth-PM-2.xhtml" id="story1-PM-2" media-type="application/xhtml+xml" />
+    <item href="Text/Story1-The-Moving-Earth-Title.xhtml" id="Chapter1Title" media-type="application/xhtml+xml" />
+    <item href="Text/Story2-Earthquakes-Intro-E.xhtml" id="story2-Intro" media-type="application/xhtml+xml" />
+    <item href="Text/Story2-Earthquakes-PM-1.xhtml" id="story2-PM-1" media-type="application/xhtml+xml" />
+    <item href="Text/Story2-Earthquakes-PM-2.xhtml" id="story2-PM-2" media-type="application/xhtml+xml" />
+    <item href="Text/Story2-Earthquakes-Title.xhtml" id="Chapter2Title" media-type="application/xhtml+xml" />
+    <item href="Text/Story3-Tsunamis-Intro-E.xhtml" id="story3-Intro" media-type="application/xhtml+xml" />
+    <item href="Text/Story3-Tsunamis-PM-1.xhtml" id="story3-PM-1" media-type="application/xhtml+xml" />
+    <item href="Text/Story3-Tsunamis-PM-2.xhtml" id="story3-PM-2" media-type="application/xhtml+xml" />
+    <item href="Text/Story3-Tsunamis-Title.xhtml" id="Chapter3Title" media-type="application/xhtml+xml" />
+    <item href="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-Intro-E.xhtml" id="story4-Intro" media-type="application/xhtml+xml" />
+    <item href="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-PM-1.xhtml" id="story4-PM-1" media-type="application/xhtml+xml" />
+    <item href="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-PM-2.xhtml" id="story4-PM-2" media-type="application/xhtml+xml" />
+    <item href="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-Title.xhtml" id="Chapter4Title" media-type="application/xhtml+xml" />
+    <item href="Text/Story5-Tornados-Intro-E.xhtml" id="story5-Intro" media-type="application/xhtml+xml" />
+    <item href="Text/Story5-Tornados-PM-1.xhtml" id="story5-PM-1" media-type="application/xhtml+xml" />
+    <item href="Text/Story5-Tornados-PM-2.xhtml" id="story5-PM-2" media-type="application/xhtml+xml" />
+    <item href="Text/Story5-Tornados-Title.xhtml" id="Chapter5Title" media-type="application/xhtml+xml" />
+    <item href="Styles/PMStyle.css" id="PMStyle.css" media-type="text/css" />
+    <item href="Styles/IMStyle.css" id="IMStyle.css" media-type="text/css" />
+    <item href="Styles/Stylesheet.css" id="Stylesheet.css" media-type="text/css" />
+    <item href="Text/Story1-The-Moving-Earth-PM-3.xhtml" id="story1-PM-3" media-type="application/xhtml+xml" />
+    <item href="Text/Story2-Earthquakes-PM-3.xhtml" id="story2-PM-3" media-type="application/xhtml+xml" />
+    <item href="Text/Story3-Tsunamis-PM-3.xhtml" id="story3-PM-3" media-type="application/xhtml+xml" />
+    <item href="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-PM-3.xhtml" id="story4-PM-3" media-type="application/xhtml+xml" />
+    <item href="Text/Story5-Tornados-PM-3.xhtml" id="story5-PM-3" media-type="application/xhtml+xml" />
+    <item href="Images/land_main.png" id="land_main.png" media-type="image/png" />
+    <item href="Images/california_fault.png" id="california_fault.png" media-type="image/png" />
+    <item href="Images/lava_cooled.png" id="lava_cooled.png" media-type="image/png" />
+    <item href="Images/ash_01.png" id="ash_01.png" media-type="image/png" />
+    <item href="Images/ash_03.png" id="ash_03.png" media-type="image/png" />
+    <item href="Images/ash_02.png" id="ash_02.png" media-type="image/png" />
+    <item href="Images/ash_00.png" id="ash_00.png" media-type="image/png" />
+    <item href="Images/lava_ball.png" id="lava_ball.png" media-type="image/png" />
+    <item href="Images/lava_molaka.png" id="lava_molaka.png" media-type="image/png" />
+    <item href="Images/lava_oahu.png" id="lava_oahu.png" media-type="image/png" />
+    <item href="Images/lava_kauai.png" id="lava_kauai.png" media-type="image/png" />
+    <item href="Images/land_kauai.png" id="land_kauai.png" media-type="image/png" />
+    <item href="Images/land_oahu.png" id="land_oahu.png" media-type="image/png" />
+    <item href="Images/land_molaka.png" id="land_molaka.png" media-type="image/png" />
+    <item href="Images/lava_hawaii.png" id="lava_hawaii.png" media-type="image/png" />
+    <item href="Images/land_hawaii.png" id="land_hawaii.png" media-type="image/png" />
+    <item href="Images/ch4_bg_lava.png" id="ch4_bg_lava.png" media-type="image/png" />
+    <item href="Images/ch4_bg_plume02.png" id="ch4_bg_plume02.png" media-type="image/png" />
+    <item href="Images/ch4_bg_plume01.png" id="ch4_bg_plume01.png" media-type="image/png" />
+    <item href="Images/ch4_bg.png" id="ch4_bg.png" media-type="image/png" />
+    <item href="Images/ch4_test_09.png" id="ch4_test_09.png" media-type="image/png" />
+    <item href="Images/ch4_test_08.png" id="ch4_test_08.png" media-type="image/png" />
+    <item href="Images/ch4_test_07.png" id="ch4_test_07.png" media-type="image/png" />
+    <item href="Images/ch4_test_06.png" id="ch4_test_06.png" media-type="image/png" />
+    <item href="Images/ch4_test_05.png" id="ch4_test_05.png" media-type="image/png" />
+    <item href="Images/ch4_test_04.png" id="ch4_test_04.png" media-type="image/png" />
+    <item href="Images/ch4_test_03.png" id="ch4_test_03.png" media-type="image/png" />
+    <item href="Images/ch4_test_02.png" id="ch4_test_02.png" media-type="image/png" />
+    <item href="Images/ch4_test_01.png" id="ch4_test_01.png" media-type="image/png" />
+    <item href="Images/small_house01.png" id="small_house01.png" media-type="image/png" />
+    <item href="Images/small_house02.png" id="small_house02.png" media-type="image/png" />
+    <item href="Images/small_house03.png" id="small_house03.png" media-type="image/png" />
+    <item href="Images/small_house04.png" id="small_house04.png" media-type="image/png" />
+    <item href="Images/building_01.png" id="building_01.png" media-type="image/png" />
+    <item href="Images/building_02.png" id="building_02.png" media-type="image/png" />
+    <item href="Images/buildings_transparent.png" id="buildings_transparent.png" media-type="image/png" />
+    <item href="Images/large_person.png" id="large_person.png" media-type="image/png" />
+    <item href="Images/magnifyglass.png" id="magnifyglass.png" media-type="image/png" />
+    <item href="Images/mainland.png" id="mainland.png" media-type="image/png" />
+    <item href="Images/moveable_plate01.png" id="moveable_plate01.png" media-type="image/png" />
+    <item href="Images/bulge.png" id="bulge.png" media-type="image/png" />
+    <item href="Images/plate_bulge3.png" id="plate_bulge3.png" media-type="image/png" />
+    <item href="Images/tornado_grass.png" id="tornado_grass.png" media-type="image/png" />
+    <item href="Images/tornado_bg.png" id="tornado_bg.png" media-type="image/png" />
+    <item href="Images/dirt.png" id="dirt.png" media-type="image/png" />
+    <item href="Images/dirt_move.png" id="dirt_move.png" media-type="image/png" />
+    <item href="Images/house_whole.png" id="house_whole.png" media-type="image/png" />
+    <item href="Images/house_noroof.png" id="house_noroof.png" media-type="image/png" />
+    <item href="Images/house_roof.png" id="house_roof.png" media-type="image/png" />
+    <item href="Images/dark_clouds.png" id="dark_clouds.png" media-type="image/png" />
+    <item href="Images/dirt_tornado.png" id="dirt_tornado.png" media-type="image/png" />
+    <item href="Images/tornado_01.png" id="tornado_01.png" media-type="image/png" />
+    <item href="Images/droplet_group.png" id="droplet_group.png" media-type="image/png" />
+    <item href="Images/droplet_single.png" id="droplet_single.png" media-type="image/png" />
+    <item href="Images/air_red.png" id="air_red.png" media-type="image/png" />
+    <item href="Images/air_blue.png" id="air_blue.png" media-type="image/png" />
+    <item href="Images/house_noroof2.png" id="house_noroof2.png" media-type="image/png" />
+    <item href="Images/house_roof2.png" id="house_roof2.png" media-type="image/png" />
+    <item href="Images/intro_icon.png" id="intro_icon.png" media-type="image/png" />
+    <item href="Images/Tornado_icon.png" id="Tornado_icon.png" media-type="image/png" />
+    <item href="Images/Tsunami_icon.png" id="Tsunami_icon.png" media-type="image/png" />
+    <item href="Images/Earthquake_icon.png" id="Earthquake_icon.png" media-type="image/png" />
+    <item href="Images/Volcano_icon.png" id="Volcano_icon.png" media-type="image/png" />
+    <item href="Images/Pangea_icon.png" id="Pangea_icon.png" media-type="image/png" />
+    <item href="Images/small_house01_fall.png" id="small_house01_fall.png" media-type="image/png" />
+    <item href="Images/intro_background.png" id="intro_background.png" media-type="image/png" />
+  </manifest>
+  <spine toc="ncx">
+    <itemref idref="story0-PM" />
+    <itemref idref="story1-Intro" />
+    <itemref idref="story2-Intro" />
+    <itemref idref="story3-Intro" />
+    <itemref idref="story4-Intro" />
+    <itemref idref="story5-Intro" />
+    <itemref idref="Introduction-to-Natural-Disasters-Title.xhtml" />
+    <itemref idref="Chapter1Title" />
+    <itemref idref="Chapter2Title" />
+    <itemref idref="Chapter3Title" />
+    <itemref idref="Chapter4Title" />
+    <itemref idref="Chapter5Title" />
+    <itemref idref="story1-PM-1" />
+    <itemref idref="story1-PM-2" />
+    <itemref idref="story1-PM-3" />
+    <itemref idref="story2-PM-1" />
+    <itemref idref="story2-PM-2" />
+    <itemref idref="story2-PM-3" />
+    <itemref idref="story3-PM-1" />
+    <itemref idref="story3-PM-2" />
+    <itemref idref="story3-PM-3" />
+    <itemref idref="story4-PM-1" />
+    <itemref idref="story4-PM-2" />
+    <itemref idref="story4-PM-3" />
+    <itemref idref="story5-PM-1" />
+    <itemref idref="story5-PM-2" />
+    <itemref idref="story5-PM-3" />
+  </spine>
+  <guide/>
+</package>
