@@ -572,7 +572,7 @@ function swapImageSrc(objectId, alternateSrc, width, left, top) {
 /*
  Loads an image at a given location
  */
-function loadImage(objectId, source, width, left, top, className) {
+function loadImage(objectId, source, width, left, top, className, zPosition) {
     var image = document.createElement("img");
     
     image.src = "../Images/" + source; //load image
@@ -581,6 +581,7 @@ function loadImage(objectId, source, width, left, top, className) {
     image.style.width = width;
     image.style.left = left + "%";
     image.style.top = top + "%";
+    image.style.zIndex = zPosition;
     
     image.alt = objectId;
     image.className = className;

@@ -2083,10 +2083,10 @@ ConditionSetup *conditionSetup;
             NSString* width = [altImage width];
             CGPoint location = [altImage location];
             NSString* className = [altImage className];
-            
+            NSString* zPosition = [altImage zPosition];
             
             //Swap images using alternative src
-            NSString* loadImage = [NSString stringWithFormat:@"loadImage('%@', '%@', '%@', %f, %f, '%@')", object1Id, altSrc, width, location.x, location.y, className];
+            NSString* loadImage = [NSString stringWithFormat:@"loadImage('%@', '%@', '%@', %f, %f, '%@')", object1Id, altSrc, width, location.x, location.y, className, zPosition.intValue];
             [bookView stringByEvaluatingJavaScriptFromString:loadImage];
         }
     }
