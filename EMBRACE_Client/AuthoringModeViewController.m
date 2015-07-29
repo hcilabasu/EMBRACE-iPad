@@ -1743,7 +1743,7 @@ ConditionSetup *conditionSetup;
     NSString* currentHMTL = [bookView stringByEvaluatingJavaScriptFromString:returnHTML];
     NSLog(@"%@", currentHMTL);
     
-    int startIndex =  [currentHMTL rangeOfString:@"<div class=\"images\">"].location+20;
+    int startIndex =  [currentHMTL rangeOfString:@"<div id=\"images\" class=\"images\">"].location+20;
     int endIndex = [[currentHMTL substringFromIndex:startIndex] rangeOfString:@"</div>"].location;
     
     NSString *newImages = [currentHMTL substringFromIndex:startIndex];
@@ -1782,7 +1782,7 @@ ConditionSetup *conditionSetup;
     
     NSLog(@"%@", concatenatedString);
     
-    startIndex = [pageContents rangeOfString:@"<div class=\"images\">"].location+20;
+    startIndex = [pageContents rangeOfString:@"<div id=\"images\" class=\"images\">"].location+20;
     endIndex = [[pageContents substringFromIndex:startIndex] rangeOfString:@"</div>"].location+startIndex;
     NSString *finalHTML = [pageContents substringToIndex:startIndex];
     NSLog(@"%@", finalHTML);
