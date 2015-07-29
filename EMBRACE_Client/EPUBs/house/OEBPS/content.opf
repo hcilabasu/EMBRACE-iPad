@@ -101,7 +101,6 @@
     <item href="Images/icon_keys.png" id="icon_keys.png" media-type="image/png"/>
   </manifest>
   <spine toc="ncx">
-    <itemref idref="story0-PM"/>
     <itemref idref="story1-Intro"/>
     <itemref idref="story2-Intro"/>
     <itemref idref="story3-Intro"/>
