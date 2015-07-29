@@ -689,6 +689,7 @@ ConditionSetup *conditionSetup;
             NSString* locationXString = [[altImage attributeForName:@"x"] stringValue];
             NSString* locationYString = [[altImage attributeForName:@"y"] stringValue];
             NSString* className = [[altImage attributeForName:@"class"] stringValue];
+            NSString* locationZString = [[altImage attributeForName:@"z"] stringValue];
             
             //Find the range of "," in the location string.
             CGFloat locX = [locationXString floatValue];
@@ -696,7 +697,7 @@ ConditionSetup *conditionSetup;
             
             CGPoint location = CGPointMake(locX, locY);
             
-            [model addAlternateImage:objectId :action :originalSrc :alternateSrc :width :location :className];
+            [model addAlternateImage:objectId :action :originalSrc :alternateSrc :width :location :className :locationZString];
         }
     }
     

@@ -312,7 +312,7 @@ BOOL wasPathFollowed = false;
     [self drawArea:@"aorta":@"The Amazing Heart":@"story2-PM-4"];
     [self drawArea:@"aortaPath":@"The Amazing Heart":@"story2-PM-4"];
     [self drawArea:@"aortaStart":@"The Amazing Heart":@"story2-PM-4"];
-    [self drawArea:@"aortaMuscle":@"Muscles Use Oxygen":@"story3-PM-1"];
+    [self drawArea:@"arteries":@"Muscles Use Oxygen":@"story3-PM-1"];
     [self drawArea:@"aortaPath2":@"Muscles Use Oxygen":@"story3-PM-1"];
     [self drawArea:@"veinPath":@"Getting More Oxygen for the Muscles":@"story4-PM-3"];
     [self drawArea:@"vein1":@"Getting More Oxygen for the Muscles":@"story4-PM-3"];
@@ -2394,9 +2394,10 @@ BOOL wasPathFollowed = false;
             NSString* width = [altImage width];
             CGPoint location = [altImage location];
             NSString* className = [altImage className];
+            NSString* zPosition = [altImage zPosition];
             
             //Load image using alternative src
-            NSString* loadImage = [NSString stringWithFormat:@"loadImage('%@', '%@', '%@', %f, %f, '%@')", object1Id, altSrc, width, location.x, location.y, className];
+            NSString* loadImage = [NSString stringWithFormat:@"loadImage('%@', '%@', '%@', %f, %f, '%@', %d)", object1Id, altSrc, width, location.x, location.y, className, zPosition.intValue];
             [bookView stringByEvaluatingJavaScriptFromString:loadImage];
         }
     }

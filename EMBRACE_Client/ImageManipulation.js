@@ -572,7 +572,7 @@ function swapImageSrc(objectId, alternateSrc, width, left, top) {
 /*
  Loads an image at a given location
  */
-function loadImage(objectId, source, width, left, top, className) {
+function loadImage(objectId, source, width, left, top, className, zPosition) {
     var image = document.createElement("img");
     
     image.src = "../Images/" + source; //load image
@@ -581,6 +581,7 @@ function loadImage(objectId, source, width, left, top, className) {
     image.style.width = width;
     image.style.left = left + "%";
     image.style.top = top + "%";
+    image.style.zIndex = zPosition;
     
     image.alt = objectId;
     image.className = className;
@@ -781,6 +782,85 @@ function highlightObjectOnWordTap(object) {
  * The parameter 'over' indicates that the highlighting should be performed
  * over the object
  */
+function highlightArea2() {
+    console.log("CALLING HIGHLIGHT");
+    var smooth_value = .5522848;
+    
+    var canvas = document.getElementById('highlight');
+    var context = canvas.getContext('2d');
+    
+    context.beginPath();
+    context.strokeStyle = "rgba(250, 250, 210, .2)";
+    context.lineWidth = 5;
+    //context.moveTo(path[0][0], path[0][1]);
+    context.moveTo(path[1][0], path[1][1]);
+    
+    //var i = 2;
+    for (var i = 3; i < pathIndex; i++) {
+        
+        // Adapted from:
+        // http://www.antigrain.com/research/bezier_interpolation/
+        
+        // Assume we need to calculate the control
+        // points between (x1,y1) and (x2,y2).
+        // Then x0,y0 - the previous vertex,
+        //      x3,y3 - the next one.
+        
+        var x0 = path[i-3][0];
+        var y0 = path[i-3][1];
+        var x1 = path[i-2][0];
+        var y1 = path[i-2][1];
+        var x2 = path[i-1][0];
+        var y2 = path[i-1][1];
+        var x3 = path[i][0];
+        var y3 = path[i][1];
+    
+        //console.log("X0: " + x0 + " Y0: " + y0 + " X1: " + x1 + " Y1: " + y1 + " X2: " + x2 + " Y2: " + y2 + " X3: " + x3 + " Y3: " + y3);
+    
+        var xc1 = (x0 + x1) / 2.0;
+        var yc1 = (y0 + y1) / 2.0;
+        var xc2 = (x1 + x2) / 2.0;
+        var yc2 = (y1 + y2) / 2.0;
+        var xc3 = (x2 + x3) / 2.0;
+        var yc3 = (y2 + y3) / 2.0;
+    
+        //console.log("XC1: " + xc1 + " YC1: " + yc1 + " XC2: " + xc2 + " YC2: " + yc2 + " XC3: " + xc3 + " YC3: " + yc3);
+    
+        var len1 = Math.sqrt((x1-x0) * (x1-x0) + (y1-y0) * (y1-y0));
+        var len2 = Math.sqrt((x2-x1) * (x2-x1) + (y2-y1) * (y2-y1));
+        var len3 = Math.sqrt((x3-x2) * (x3-x2) + (y3-y2) * (y3-y2));
+    
+        //console.log("LEN1: " + len1 + " LEN2: " + len2 + " LEN3: " + len3);
+    
+        var k1 = len1 / (len1 + len2);
+        var k2 = len2 / (len2 + len3);
+        
+        var xm1 = xc1 + (xc2 - xc1) * k1;
+        var ym1 = yc1 + (yc2 - yc1) * k1;
+        
+        var xm2 = xc2 + (xc3 - xc2) * k2;
+        var ym2 = yc2 + (yc3 - yc2) * k2;
+        
+        // Resulting control points. Here smooth_value is mentioned
+        // above coefficient K whose value should be in range [0...1].
+        var ctrl1_x = xm1 + (xc2 - xm1) * smooth_value + x1 - xm1;
+        var ctrl1_y = ym1 + (yc2 - ym1) * smooth_value + y1 - ym1;
+        
+        var ctrl2_x = xm2 + (xc2 - xm2) * smooth_value + x2 - xm2;
+        var ctrl2_y = ym2 + (yc2 - ym2) * smooth_value + y2 - ym2;
+
+        //console.log("1: " + ctrl1_x + " 2: " + ctrl1_y + " 3: " + ctrl2_x + " 4: " + ctrl2_y);
+        context.bezierCurveTo(ctrl1_x, ctrl1_y, ctrl2_x, ctrl2_y, path[i-1][0], path[i-1][1]);
+    
+    }
+    context.closePath();
+    context.stroke();
+    context.fillStyle = "rgba(255, 250, 205, .4)";
+    context.fill();
+    
+    document.getElementById('highlight').style.zIndex = "100";
+}
+
 function highlightArea() {
     //console.log("CALLING HIGHLIGHT");
     var canvas = document.getElementById('highlight');
