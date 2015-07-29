@@ -1744,7 +1744,7 @@ ConditionSetup *conditionSetup;
     NSLog(@"%@", currentHMTL);
     
     int startIndex =  [currentHMTL rangeOfString:@"<div class=\"images\">"].location+20;
-    int endIndex = [[currentHMTL substringFromIndex:startIndex] rangeOfString:@"<br>"].location;
+    int endIndex = [[currentHMTL substringFromIndex:startIndex] rangeOfString:@"</div>"].location;
     
     NSString *newImages = [currentHMTL substringFromIndex:startIndex];
     newImages = [newImages substringToIndex:endIndex];
@@ -1783,7 +1783,7 @@ ConditionSetup *conditionSetup;
     NSLog(@"%@", concatenatedString);
     
     startIndex = [pageContents rangeOfString:@"<div class=\"images\">"].location+20;
-    endIndex = [[pageContents substringFromIndex:startIndex] rangeOfString:@"<br/>"].location+startIndex;
+    endIndex = [[pageContents substringFromIndex:startIndex] rangeOfString:@"</div>"].location+startIndex;
     NSString *finalHTML = [pageContents substringToIndex:startIndex];
     NSLog(@"%@", finalHTML);
     finalHTML = [finalHTML stringByAppendingString:concatenatedString];
