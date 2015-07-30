@@ -781,9 +781,12 @@ function highlightObjectOnWordTap(object) {
  * This function is called by the PMView controller to highlight areas when their word has been clicked on.
  * The parameter 'over' indicates that the highlighting should be performed
  * over the object
+ * In order for the highlighting to work properly, the first and the second points have to be added
+ * at the end of the area points in the metadata. This allows the calculation of the control points
+ * for the curve of the closing segment of the area.
  */
-function highlightArea2() {
-    console.log("CALLING HIGHLIGHT");
+function highlightArea(areaName) {
+    //console.log("CALLING HIGHLIGHT FOR: " + areaName);
     var smooth_value = .5522848;
     
     var canvas = document.getElementById('highlight');
@@ -793,10 +796,9 @@ function highlightArea2() {
     context.strokeStyle = "rgba(250, 250, 210, .2)";
     context.lineWidth = 5;
     //context.moveTo(path[0][0], path[0][1]);
-    context.moveTo(path[1][0], path[1][1]);
+    context.moveTo(paths[areaName].path[1][0], paths[areaName].path[1][1]);
     
-    //var i = 2;
-    for (var i = 3; i < pathIndex; i++) {
+    for (var i = 1; i < paths[areaName].pathIndex-2; i++) {
         
         // Adapted from:
         // http://www.antigrain.com/research/bezier_interpolation/
@@ -806,14 +808,14 @@ function highlightArea2() {
         // Then x0,y0 - the previous vertex,
         //      x3,y3 - the next one.
         
-        var x0 = path[i-3][0];
-        var y0 = path[i-3][1];
-        var x1 = path[i-2][0];
-        var y1 = path[i-2][1];
-        var x2 = path[i-1][0];
-        var y2 = path[i-1][1];
-        var x3 = path[i][0];
-        var y3 = path[i][1];
+        var x0 = paths[areaName].path[i-1][0];
+        var y0 = paths[areaName].path[i-1][1];
+        var x1 = paths[areaName].path[i][0];
+        var y1 = paths[areaName].path[i][1];
+        var x2 = paths[areaName].path[i+1][0];
+        var y2 = paths[areaName].path[i+1][1];
+        var x3 = paths[areaName].path[i+2][0];
+        var y3 = paths[areaName].path[i+2][1];
     
         //console.log("X0: " + x0 + " Y0: " + y0 + " X1: " + x1 + " Y1: " + y1 + " X2: " + x2 + " Y2: " + y2 + " X3: " + x3 + " Y3: " + y3);
     
@@ -850,7 +852,7 @@ function highlightArea2() {
         var ctrl2_y = ym2 + (yc2 - ym2) * smooth_value + y2 - ym2;
 
         //console.log("1: " + ctrl1_x + " 2: " + ctrl1_y + " 3: " + ctrl2_x + " 4: " + ctrl2_y);
-        context.bezierCurveTo(ctrl1_x, ctrl1_y, ctrl2_x, ctrl2_y, path[i-1][0], path[i-1][1]);
+        context.bezierCurveTo(ctrl1_x, ctrl1_y, ctrl2_x, ctrl2_y, paths[areaName].path[i+1][0], paths[areaName].path[i+1][1]);
     
     }
     context.closePath();
@@ -861,7 +863,7 @@ function highlightArea2() {
     document.getElementById('highlight').style.zIndex = "100";
 }
 
-function highlightArea() {
+function highlightArea2() {
     //console.log("CALLING HIGHLIGHT");
     var canvas = document.getElementById('highlight');
     var context = canvas.getContext('2d');

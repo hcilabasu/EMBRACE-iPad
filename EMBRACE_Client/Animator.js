@@ -9,14 +9,29 @@ var animatingObjects = new Array();
 var animatingObjectsIndex = -1;
 var requestId;
 //var cancelOnce = true;
-var path = new Array(100);
-var pathIndex = 0;
-var pathRadius = 20;
+//var path = new Array(100);
+//var pathIndex = 0;
+//var pathRadius = 20;
 var followIndex = 0;
 
 var percentage;
 var direction = 1;
 var increment;
+
+var paths = {};
+
+function Path(name){
+    this.pathRadius = 20;
+    this.pathName = name;
+    this.pathIndex = 0;
+    this.path = new Array(100);
+}
+
+function createPath(name) {
+    //console.log("CALLING CREATE PATH");
+    var path = new Path(name);
+    paths[name] = path;
+}
 
 function AnimationObject(object, posX, posY, endX, endY, animName) {
     this.object = object;
@@ -266,19 +281,25 @@ function checkEdges(aniObject) {
     }
 }
 
-function buildPath(x, y) {
-    path[pathIndex] = new Array(2);
-    path[pathIndex] = [parseFloat(x), parseFloat(y)];
+function buildPath(name, x, y) {
+    //console.log("CALLING BULDPATH");
+    paths[name].buildPath(x,y);
+}
+
+Path.prototype.buildPath = function (x, y) {
+    //console.log("CALLING BULDPATH");
+    this.path[this.pathIndex] = new Array(2);
+    this.path[this.pathIndex] = [parseFloat(x), parseFloat(y)];
     //console.log("X: " + x + "Y: " + y);
-    pathIndex++;
+    this.pathIndex++;
 }
 
-function Path(points) {
-    this.points = new Array();
-    this.points = points;
-}
+//function Path(points) {
+    //this.points = new Array();
+    //this.points = points;
+//}
 
-function showPath() {
+Path.prototype.showPath = function () {
     //console.log("Showing path...");
     ctx.lineWidth = 50;
     ctx.beginPath();

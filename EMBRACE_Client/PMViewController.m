@@ -306,16 +306,27 @@ BOOL wasPathFollowed = false;
         }
     }
     
+    
+    // If there is at least one area/path to build
+    if ([model getAreaWithPageId:currentPageId]) {
+        // Build area/path
+        for (Area* area in [model areas]) {
+            if([area.pageId isEqualToString:currentPageId]) {
+                [self buildPath:area.areaId];
+            }
+        }
+    }
+    
     // Draw area (hard-coded for now)
     //[self drawArea:@"outside":@"The Lopez Family"];
     //[self drawArea:@"aroundPaco":@"Is Paco a Thief?"];
     [self drawArea:@"aorta":@"The Amazing Heart":@"story2-PM-4"];
     [self drawArea:@"aortaPath":@"The Amazing Heart":@"story2-PM-4"];
     [self drawArea:@"aortaStart":@"The Amazing Heart":@"story2-PM-4"];
-    [self drawArea:@"arteries":@"Muscles Use Oxygen":@"story3-PM-1"];
-    [self drawArea:@"aortaPath2":@"Muscles Use Oxygen":@"story3-PM-1"];
+    //[self drawArea:@"arteries":@"Muscles Use Oxygen":@"story3-PM-1"];
+    //[self drawArea:@"aortaPath2":@"Muscles Use Oxygen":@"story3-PM-1"];
     [self drawArea:@"veinPath":@"Getting More Oxygen for the Muscles":@"story4-PM-3"];
-    [self drawArea:@"vein1":@"Getting More Oxygen for the Muscles":@"story4-PM-3"];
+    [self drawArea:@"vein":@"Getting More Oxygen for the Muscles":@"story4-PM-3"];
     
     //NSLog(@"CURRENT PAGE ID: %@", currentPageId);
     
@@ -729,7 +740,7 @@ BOOL wasPathFollowed = false;
             NSString* object1Id = [currSolStep object1Id];
             NSString* action = [currSolStep action];
             NSString* waypointId = [currSolStep waypointId];
-            NSString* areaId = [currSolStep areaId];
+            //NSString* areaId = [currSolStep areaId];
             
             CGPoint imageLocation = [self getObjectPosition:object1Id];
             
@@ -749,9 +760,9 @@ BOOL wasPathFollowed = false;
                 waypointLocation = [self getWaypointLocation:waypoint];
             }
             
-            if ([areaId rangeOfString:@"Path"].location != NSNotFound) {
-                [self buildPath:areaId];
-            }
+            //if ([areaId rangeOfString:@"Path"].location != NSNotFound) {
+                //[self buildPath:areaId];
+            //}
             
             //NSString *showPath = @"showPath()";
             //[bookView stringByEvaluatingJavaScriptFromString:showPath];
@@ -772,11 +783,15 @@ BOOL wasPathFollowed = false;
  */
 -(void)buildPath:(NSString*)areaId {
     Area* area = [model getAreaWithId:areaId];
+    
+    NSString *createPath = [NSString stringWithFormat:@"createPath('%@')", areaId];
+    [bookView stringByEvaluatingJavaScriptFromString:createPath];
+    
     for (int i=0; i < area.points.count/2; i++) {
         NSString* xCoord = [area.points objectForKey:[NSString stringWithFormat:@"x%d", i]];
         NSString* yCoord = [area.points objectForKey:[NSString stringWithFormat:@"y%d", i]];
         
-        NSString *buildPath = [NSString stringWithFormat:@"buildPath(%f, %f)", [xCoord floatValue], [yCoord floatValue]];
+        NSString *buildPath = [NSString stringWithFormat:@"buildPath('%@', %f, %f)", areaId, [xCoord floatValue], [yCoord floatValue]];
         [bookView stringByEvaluatingJavaScriptFromString:buildPath];
     }
 }
@@ -4076,9 +4091,9 @@ BOOL wasPathFollowed = false;
 
 -(void) highlightObject:(NSString*)object :(double)delay {
     if([model getAreaWithId:object]) {
-        [self buildPath:object];
+        //[self buildPath:object];
         //Highlight the tapped object
-        NSString* highlight = [NSString stringWithFormat:@"highlightArea()"];
+        NSString* highlight = [NSString stringWithFormat:@"highlightArea('%@')", object];
         [bookView stringByEvaluatingJavaScriptFromString:highlight];
     }
     else {

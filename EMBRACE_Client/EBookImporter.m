@@ -601,6 +601,7 @@ ConditionSetup *conditionSetup;
         NSString* areaId = [[area attributeForName:@"areaId"] stringValue];
         NSArray* points = [area elementsForName:@"point"];
         isFirstPoint = true;
+        NSString* pageId = [[area attributeForName:@"pageId"] stringValue];
         
         int pointID = 0;
         for (GDataXMLElement* point in points) {
@@ -630,7 +631,7 @@ ConditionSetup *conditionSetup;
             [aPath closePath];
         }
         
-        [model addArea:areaId :aPath :areaDictionary];
+        [model addArea:areaId :aPath :areaDictionary :pageId];
     }
     
     //set file path to access introduction metadata
