@@ -740,7 +740,7 @@ BOOL wasPathFollowed = false;
             NSString* object1Id = [currSolStep object1Id];
             NSString* action = [currSolStep action];
             NSString* waypointId = [currSolStep waypointId];
-            //NSString* areaId = [currSolStep areaId];
+            NSString* areaId = [currSolStep areaId];
             
             CGPoint imageLocation = [self getObjectPosition:object1Id];
             
@@ -768,7 +768,7 @@ BOOL wasPathFollowed = false;
             //[bookView stringByEvaluatingJavaScriptFromString:showPath];
             
             //Call the animateObject function in the js file.
-            NSString *animate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@')", object1Id, adjLocation.x, adjLocation.y, waypointLocation.x, waypointLocation.y, action];
+            NSString *animate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", object1Id, adjLocation.x, adjLocation.y, waypointLocation.x, waypointLocation.y, action, areaId];
             [bookView stringByEvaluatingJavaScriptFromString:animate];
             
             animatingObjects = [[NSMutableDictionary alloc] init];
@@ -1484,7 +1484,7 @@ BOOL wasPathFollowed = false;
                                 // If it was an animation object, animate it again after snapping back
                                 if ([animatingObjects objectForKey:movingObjectId] && [previousStep isEqualToString:@"animate"]) {
                                     //Call the animateObject function in the js file.
-                                    NSString *animate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"floatAnimation"];
+                                    NSString *animate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"floatAnimation", @""];
                                     [bookView stringByEvaluatingJavaScriptFromString:animate];
                                     [animatingObjects setObject:@YES forKey:movingObjectId];
                                 }

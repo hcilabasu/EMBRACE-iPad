@@ -28,12 +28,12 @@ function Path(name){
 }
 
 function createPath(name) {
-    //console.log("CALLING CREATE PATH");
+    //console.log("PATH NAME: " + name);
     var path = new Path(name);
     paths[name] = path;
 }
 
-function AnimationObject(object, posX, posY, endX, endY, animName) {
+function AnimationObject(object, posX, posY, endX, endY, animName, pathToFollow) {
     this.object = object;
     this.x = posX;
     this.y = posY;
@@ -56,15 +56,17 @@ function AnimationObject(object, posX, posY, endX, endY, animName) {
     this.acceleration = createVector(this.ax, this.ay);
     //this.width = object.offsetWidth * 100 / canvas.width;
     //this.height = object.offsetHeight * 100 / canvas.height;
+    this.pathToFollow = pathToFollow;
 }
 
-function animateObject(objectName, posX, posY, endX, endY, animName) {
+function animateObject(objectName, posX, posY, endX, endY, animName, pathToFollow) {
     //console.log("CALLING ANIMATE OBJECT");
     percentage = 0;
     increment = 0;
     
     animName = String(animName);
-    var animationObject = new AnimationObject(objectName, posX, posY, endX, endY, animName);
+    pathToFollow = String(pathToFollow);
+    var animationObject = new AnimationObject(objectName, posX, posY, endX, endY, animName, pathToFollow);
     
     animatingObjects.push(animationObject);
    
@@ -284,14 +286,16 @@ function checkEdges(aniObject) {
 function buildPath(name, x, y) {
     //console.log("CALLING BULDPATH");
     paths[name].buildPath(x,y);
+    //console.log("PATH NAME: " + name);
 }
 
 Path.prototype.buildPath = function (x, y) {
-    //console.log("CALLING BULDPATH");
+    //console.log("CALLING BULDPATH" + this.pathIndex);
     this.path[this.pathIndex] = new Array(2);
     this.path[this.pathIndex] = [parseFloat(x), parseFloat(y)];
     //console.log("X: " + x + "Y: " + y);
     this.pathIndex++;
+    //console.log("PATH INDEX: " + this.pathIndex);
 }
 
 //function Path(points) {
@@ -326,9 +330,12 @@ function follow(aniObject) {
     var target = null;
     var distanceToPath = 1000000;
     
-    for (var i = 0; i < pathIndex-1; i++) {
-        var a = createVector(path[i][0], path[i][1]);
-        var b = createVector(path[i+1][0], path[i+1][1]);
+    //console.log(paths[String(aniObject.pathToFollow)].path[0][0]);
+    //console.log(Object.keys(paths));
+    
+    for (var i = 0; i < paths[String(aniObject.pathToFollow)].pathIndex-1; i++) {
+        var a = createVector(paths[String(aniObject.pathToFollow)].path[i][0], paths[String(aniObject.pathToFollow)].path[i][1]);
+        var b = createVector(paths[String(aniObject.pathToFollow)].path[i+1][0], paths[String(aniObject.pathToFollow)].path[i+1][1]);
         
         var normalPoint = getNormalPoint(predictLoc, a, b);
         //console.log(normalPoint.x);
@@ -352,7 +359,8 @@ function follow(aniObject) {
         }
     }
     
-    if (distanceToPath > pathRadius) {
+    //console.log(paths[String(aniObject.pathToFollow)].pathRadius);
+    if (distanceToPath > paths[String(aniObject.pathToFollow)].pathRadius) {
         seekAnim(target, aniObject);
     }
     
@@ -552,11 +560,11 @@ function dot(ary1, ary2) {
 
 function checkEnding(aniObject) {
     // (x - center_x)^2 + (y - center_y)^2 < radius^2
-    if (Math.pow((aniObject.location.x - path[pathIndex-1][0]),2)
+    if (Math.pow((aniObject.location.x - paths[String(aniObject.pathToFollow)].path[paths[String(aniObject.pathToFollow)].pathIndex-1][0]),2)
         +
-        Math.pow((aniObject.location.y - path[pathIndex-1][1]),2)
+        Math.pow((aniObject.location.y - paths[String(aniObject.pathToFollow)].path[paths[String(aniObject.pathToFollow)].pathIndex-1][1]),2)
         <
-        Math.pow(pathRadius,2)
+        Math.pow(paths[String(aniObject.pathToFollow)].pathRadius,2)
         ) {
         cancelAnimationFrame(requestId);
     }
