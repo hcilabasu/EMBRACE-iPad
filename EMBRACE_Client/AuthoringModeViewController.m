@@ -1810,7 +1810,7 @@ ConditionSetup *conditionSetup;
         //toggle to switch between saving at logging location or to overide file
         //NSString *path = [book mainContentPath] stringByAppendingString:fileName];
     
-        if (![finalHTML writeToFile:path atomically:YES encoding:NSUTF32StringEncoding error:nil]) {
+        if (![finalHTML writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil]) {
             NSLog(@"Could not write document out...");
             NSLog(@"%@", finalHTML);
         }
