@@ -229,12 +229,6 @@
 		1A2D70CA1AAA74FA009E7B5B /* Story4-More-is-Missing-PM-1.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1A2D70761AAA74FA009E7B5B /* Story4-More-is-Missing-PM-1.xhtml */; };
 		1A2D70CB1AAA74FA009E7B5B /* Story4-More-is-Missing-PM-2.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1A2D70771AAA74FA009E7B5B /* Story4-More-is-Missing-PM-2.xhtml */; };
 		1A2D70CC1AAA74FA009E7B5B /* Story4-More-is-Missing-Title.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1A2D70781AAA74FA009E7B5B /* Story4-More-is-Missing-Title.xhtml */; };
-		1A2D70CD1AAA74FA009E7B5B /* Story5-The-Family-is-Rattled-IM-1.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1A2D70791AAA74FA009E7B5B /* Story5-The-Family-is-Rattled-IM-1.xhtml */; };
-		1A2D70CE1AAA74FA009E7B5B /* Story5-The-Family-is-Rattled-IM-2.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1A2D707A1AAA74FA009E7B5B /* Story5-The-Family-is-Rattled-IM-2.xhtml */; };
-		1A2D70CF1AAA74FA009E7B5B /* Story5-The-Family-is-Rattled-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1A2D707B1AAA74FA009E7B5B /* Story5-The-Family-is-Rattled-Intro-E.xhtml */; };
-		1A2D70D01AAA74FA009E7B5B /* Story5-The-Family-is-Rattled-PM-1.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1A2D707C1AAA74FA009E7B5B /* Story5-The-Family-is-Rattled-PM-1.xhtml */; };
-		1A2D70D11AAA74FA009E7B5B /* Story5-The-Family-is-Rattled-PM-2.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1A2D707D1AAA74FA009E7B5B /* Story5-The-Family-is-Rattled-PM-2.xhtml */; };
-		1A2D70D21AAA74FA009E7B5B /* Story5-The-Family-is-Rattled-Title.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1A2D707E1AAA74FA009E7B5B /* Story5-The-Family-is-Rattled-Title.xhtml */; };
 		1A2D70D31AAA74FA009E7B5B /* Story6-The-Mystery-is-Solved-IM-1.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1A2D707F1AAA74FA009E7B5B /* Story6-The-Mystery-is-Solved-IM-1.xhtml */; };
 		1A2D70D41AAA74FA009E7B5B /* Story6-The-Mystery-is-Solved-IM-2.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1A2D70801AAA74FA009E7B5B /* Story6-The-Mystery-is-Solved-IM-2.xhtml */; };
 		1A2D70D51AAA74FA009E7B5B /* Story6-The-Mystery-is-Solved-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1A2D70811AAA74FA009E7B5B /* Story6-The-Mystery-is-Solved-Intro-E.xhtml */; };
@@ -811,6 +805,12 @@
 		1AEE55381ADE028100DFC6B0 /* MissingKeysQ6A4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AEE54F71ADE028100DFC6B0 /* MissingKeysQ6A4.mp3 */; };
 		1AF3815B1A40A4C600D967FD /* AssessmentActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF381591A40A4C600D967FD /* AssessmentActivityViewController.m */; };
 		1AF3815C1A40A4C600D967FD /* AssessmentActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AF3815A1A40A4C600D967FD /* AssessmentActivityViewController.xib */; };
+		1AFA240D1B6C4AE300C0AA53 /* Story5-The-Baby's-Rattle-is-Gone-Too-IM-1.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1AFA24071B6C4AE300C0AA53 /* Story5-The-Baby's-Rattle-is-Gone-Too-IM-1.xhtml */; };
+		1AFA240E1B6C4AE300C0AA53 /* Story5-The-Baby's-Rattle-is-Gone-Too-IM-2.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1AFA24081B6C4AE300C0AA53 /* Story5-The-Baby's-Rattle-is-Gone-Too-IM-2.xhtml */; };
+		1AFA240F1B6C4AE300C0AA53 /* Story5-The-Baby's-Rattle-is-Gone-Too-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1AFA24091B6C4AE300C0AA53 /* Story5-The-Baby's-Rattle-is-Gone-Too-Intro-E.xhtml */; };
+		1AFA24101B6C4AE300C0AA53 /* Story5-The-Baby's-Rattle-is-Gone-Too-PM-1.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1AFA240A1B6C4AE300C0AA53 /* Story5-The-Baby's-Rattle-is-Gone-Too-PM-1.xhtml */; };
+		1AFA24111B6C4AE300C0AA53 /* Story5-The-Baby's-Rattle-is-Gone-Too-PM-2.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1AFA240B1B6C4AE300C0AA53 /* Story5-The-Baby's-Rattle-is-Gone-Too-PM-2.xhtml */; };
+		1AFA24121B6C4AE300C0AA53 /* Story5-The-Baby's-Rattle-is-Gone-Too-Title.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1AFA240C1B6C4AE300C0AA53 /* Story5-The-Baby's-Rattle-is-Gone-Too-Title.xhtml */; };
 		31058C74176BCFF200595AAE /* logo114.png in Resources */ = {isa = PBXBuildFile; fileRef = 31058C73176BCFF200595AAE /* logo114.png */; };
 		31058C76176BCFF900595AAE /* logo57.png in Resources */ = {isa = PBXBuildFile; fileRef = 31058C75176BCFF900595AAE /* logo57.png */; };
 		31058C79176BE71C00595AAE /* PhysicalManipulationActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 31058C78176BE71C00595AAE /* PhysicalManipulationActivity.m */; };
@@ -1628,12 +1628,6 @@
 		1A2D70761AAA74FA009E7B5B /* Story4-More-is-Missing-PM-1.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-More-is-Missing-PM-1.xhtml"; sourceTree = "<group>"; };
 		1A2D70771AAA74FA009E7B5B /* Story4-More-is-Missing-PM-2.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-More-is-Missing-PM-2.xhtml"; sourceTree = "<group>"; };
 		1A2D70781AAA74FA009E7B5B /* Story4-More-is-Missing-Title.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-More-is-Missing-Title.xhtml"; sourceTree = "<group>"; };
-		1A2D70791AAA74FA009E7B5B /* Story5-The-Family-is-Rattled-IM-1.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-The-Family-is-Rattled-IM-1.xhtml"; sourceTree = "<group>"; };
-		1A2D707A1AAA74FA009E7B5B /* Story5-The-Family-is-Rattled-IM-2.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-The-Family-is-Rattled-IM-2.xhtml"; sourceTree = "<group>"; };
-		1A2D707B1AAA74FA009E7B5B /* Story5-The-Family-is-Rattled-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-The-Family-is-Rattled-Intro-E.xhtml"; sourceTree = "<group>"; };
-		1A2D707C1AAA74FA009E7B5B /* Story5-The-Family-is-Rattled-PM-1.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-The-Family-is-Rattled-PM-1.xhtml"; sourceTree = "<group>"; };
-		1A2D707D1AAA74FA009E7B5B /* Story5-The-Family-is-Rattled-PM-2.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-The-Family-is-Rattled-PM-2.xhtml"; sourceTree = "<group>"; };
-		1A2D707E1AAA74FA009E7B5B /* Story5-The-Family-is-Rattled-Title.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-The-Family-is-Rattled-Title.xhtml"; sourceTree = "<group>"; };
 		1A2D707F1AAA74FA009E7B5B /* Story6-The-Mystery-is-Solved-IM-1.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story6-The-Mystery-is-Solved-IM-1.xhtml"; sourceTree = "<group>"; };
 		1A2D70801AAA74FA009E7B5B /* Story6-The-Mystery-is-Solved-IM-2.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story6-The-Mystery-is-Solved-IM-2.xhtml"; sourceTree = "<group>"; };
 		1A2D70811AAA74FA009E7B5B /* Story6-The-Mystery-is-Solved-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story6-The-Mystery-is-Solved-Intro-E.xhtml"; sourceTree = "<group>"; };
@@ -2215,6 +2209,12 @@
 		1AF381581A40A4C600D967FD /* AssessmentActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssessmentActivityViewController.h; sourceTree = "<group>"; };
 		1AF381591A40A4C600D967FD /* AssessmentActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssessmentActivityViewController.m; sourceTree = "<group>"; };
 		1AF3815A1A40A4C600D967FD /* AssessmentActivityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AssessmentActivityViewController.xib; sourceTree = "<group>"; };
+		1AFA24071B6C4AE300C0AA53 /* Story5-The-Baby's-Rattle-is-Gone-Too-IM-1.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-The-Baby's-Rattle-is-Gone-Too-IM-1.xhtml"; sourceTree = "<group>"; };
+		1AFA24081B6C4AE300C0AA53 /* Story5-The-Baby's-Rattle-is-Gone-Too-IM-2.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-The-Baby's-Rattle-is-Gone-Too-IM-2.xhtml"; sourceTree = "<group>"; };
+		1AFA24091B6C4AE300C0AA53 /* Story5-The-Baby's-Rattle-is-Gone-Too-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-The-Baby's-Rattle-is-Gone-Too-Intro-E.xhtml"; sourceTree = "<group>"; };
+		1AFA240A1B6C4AE300C0AA53 /* Story5-The-Baby's-Rattle-is-Gone-Too-PM-1.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-The-Baby's-Rattle-is-Gone-Too-PM-1.xhtml"; sourceTree = "<group>"; };
+		1AFA240B1B6C4AE300C0AA53 /* Story5-The-Baby's-Rattle-is-Gone-Too-PM-2.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-The-Baby's-Rattle-is-Gone-Too-PM-2.xhtml"; sourceTree = "<group>"; };
+		1AFA240C1B6C4AE300C0AA53 /* Story5-The-Baby's-Rattle-is-Gone-Too-Title.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-The-Baby's-Rattle-is-Gone-Too-Title.xhtml"; sourceTree = "<group>"; };
 		31058C73176BCFF200595AAE /* logo114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo114.png; path = ../../logo114.png; sourceTree = "<group>"; };
 		31058C75176BCFF900595AAE /* logo57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo57.png; path = ../../logo57.png; sourceTree = "<group>"; };
 		31058C77176BE71C00595AAE /* PhysicalManipulationActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicalManipulationActivity.h; sourceTree = "<group>"; };
@@ -3246,13 +3246,13 @@
 				1A2D70761AAA74FA009E7B5B /* Story4-More-is-Missing-PM-1.xhtml */,
 				1A2D70771AAA74FA009E7B5B /* Story4-More-is-Missing-PM-2.xhtml */,
 				1A2D70781AAA74FA009E7B5B /* Story4-More-is-Missing-Title.xhtml */,
-				1A2D70791AAA74FA009E7B5B /* Story5-The-Family-is-Rattled-IM-1.xhtml */,
-				1A2D707A1AAA74FA009E7B5B /* Story5-The-Family-is-Rattled-IM-2.xhtml */,
-				1A2D707B1AAA74FA009E7B5B /* Story5-The-Family-is-Rattled-Intro-E.xhtml */,
+				1AFA24071B6C4AE300C0AA53 /* Story5-The-Baby's-Rattle-is-Gone-Too-IM-1.xhtml */,
+				1AFA24081B6C4AE300C0AA53 /* Story5-The-Baby's-Rattle-is-Gone-Too-IM-2.xhtml */,
+				1AFA24091B6C4AE300C0AA53 /* Story5-The-Baby's-Rattle-is-Gone-Too-Intro-E.xhtml */,
+				1AFA240A1B6C4AE300C0AA53 /* Story5-The-Baby's-Rattle-is-Gone-Too-PM-1.xhtml */,
+				1AFA240B1B6C4AE300C0AA53 /* Story5-The-Baby's-Rattle-is-Gone-Too-PM-2.xhtml */,
+				1AFA240C1B6C4AE300C0AA53 /* Story5-The-Baby's-Rattle-is-Gone-Too-Title.xhtml */,
 				1ACF87131AB26FF800F81567 /* Story5-The-Family-is-Rattled-Intro-S.xhtml */,
-				1A2D707C1AAA74FA009E7B5B /* Story5-The-Family-is-Rattled-PM-1.xhtml */,
-				1A2D707D1AAA74FA009E7B5B /* Story5-The-Family-is-Rattled-PM-2.xhtml */,
-				1A2D707E1AAA74FA009E7B5B /* Story5-The-Family-is-Rattled-Title.xhtml */,
 				1A2D707F1AAA74FA009E7B5B /* Story6-The-Mystery-is-Solved-IM-1.xhtml */,
 				1A2D70801AAA74FA009E7B5B /* Story6-The-Mystery-is-Solved-IM-2.xhtml */,
 				1A2D70811AAA74FA009E7B5B /* Story6-The-Mystery-is-Solved-Intro-E.xhtml */,
@@ -5048,6 +5048,7 @@
 				1A8037221B0B1C62004A164A /* WhoIsTheBestAnimalQ4A4.mp3 in Resources */,
 				1A3594091AE76129003B3B41 /* MoreIsMissingQ6A4.mp3 in Resources */,
 				1A8036311B0B1C62004A164A /* CleaningUpQ1A3.mp3 in Resources */,
+				1AFA240E1B6C4AE300C0AA53 /* Story5-The-Baby's-Rattle-is-Gone-Too-IM-2.xhtml in Resources */,
 				1A093A9B1B67411200547E9F /* Story2-Earthquakes-Intro-E.xhtml in Resources */,
 				5C7FE03619A6B1B500CBBE0E /* p2_healthy_cilia.png in Resources */,
 				5C776BC619C93E1E000DBC65 /* dirtS.m4a in Resources */,
@@ -5108,6 +5109,7 @@
 				5C776C6919CA75DB000DBC65 /* Story1-Why-We-Breathe-PM-3S.xhtml in Resources */,
 				5C7FE02F19A6B1B500CBBE0E /* CO2_select.png in Resources */,
 				1A2D70C51AAA74FA009E7B5B /* Story3-Is-Paco-a-Thief-PM-2.xhtml in Resources */,
+				1AFA24121B6C4AE300C0AA53 /* Story5-The-Baby's-Rattle-is-Gone-Too-Title.xhtml in Resources */,
 				1A3594101AE76129003B3B41 /* MoreIsMissingQ8A1.mp3 in Resources */,
 				1A8037291B0B1C62004A164A /* WhoIsTheBestAnimalQ6A1.mp3 in Resources */,
 				5C7FE10F19A7E43C00CBBE0E /* BFCS1_6A.m4a in Resources */,
@@ -5174,7 +5176,6 @@
 				1A3594531AE76129003B3B41 /* TheMysteryIsSolvedQ7A3.mp3 in Resources */,
 				1A695C981AD4D9C1006A2284 /* TheLopezFamilyS4S.mp3 in Resources */,
 				1A3594391AE76129003B3B41 /* TheMysteryIsSolvedQ2A2.mp3 in Resources */,
-				1A2D70D01AAA74FA009E7B5B /* Story5-The-Family-is-Rattled-PM-1.xhtml in Resources */,
 				5C776A4219C17F39000DBC65 /* BFTC0.m4a in Resources */,
 				1A695CD81AD4EB9C006A2284 /* TheLopezFamilyQ4A3.mp3 in Resources */,
 				1A8036C91B0B1C62004A164A /* TheBestFarmAwardQ6.mp3 in Resources */,
@@ -5259,6 +5260,7 @@
 				1A695C861AD4C8B0006A2284 /* TheLopezFamilyS8E.mp3 in Resources */,
 				5CE299E719B5ACDA00675CB0 /* healthyE.m4a in Resources */,
 				5C776BD219C93E1E000DBC65 /* veinsS.m4a in Resources */,
+				1AFA240D1B6C4AE300C0AA53 /* Story5-The-Baby's-Rattle-is-Gone-Too-IM-1.xhtml in Resources */,
 				1A80362F1B0B1C62004A164A /* CleaningUpQ1A1.mp3 in Resources */,
 				1A093A5F1B67411200547E9F /* land_main.png in Resources */,
 				1A093A4D1B67411200547E9F /* dirt_tornado.png in Resources */,
@@ -5356,7 +5358,6 @@
 				1A80365A1B0B1C62004A164A /* EveryoneHelpsQ3A4.mp3 in Resources */,
 				5CF994B419AC34550080C32F /* Story5-The-Wise-Owl-PM-1.xhtml in Resources */,
 				1A093A801B67411200547E9F /* small_house03.png in Resources */,
-				1A2D70CD1AAA74FA009E7B5B /* Story5-The-Family-is-Rattled-IM-1.xhtml in Resources */,
 				5C7FE10819A7E43C00CBBE0E /* BFCE_REST.m4a in Resources */,
 				5C7FE16119A7E43C00CBBE0E /* pen4E.m4a in Resources */,
 				5CF655B319ACFE2B000AC913 /* Story1-The-Contest-Intro-E.xhtml in Resources */,
@@ -5409,7 +5410,6 @@
 				5CE299C019B5845200675CB0 /* BFCE2_3.m4a in Resources */,
 				1A695CC61AD4EB9C006A2284 /* TheLopezFamilyQ1.mp3 in Resources */,
 				5C7FE10519A7E43C00CBBE0E /* BFCE_8.m4a in Resources */,
-				1A2D70D11AAA74FA009E7B5B /* Story5-The-Family-is-Rattled-PM-2.xhtml in Resources */,
 				5CAD063819BEB8AE00F3F053 /* stiffE.m4a in Resources */,
 				5CAD064419BEB8AE00F3F053 /* ventricleE.m4a in Resources */,
 				1A8036E11B0B1C62004A164A /* TheContestQ4A4.mp3 in Resources */,
@@ -5507,7 +5507,6 @@
 				1A093A831B67411200547E9F /* tornado_01.png in Resources */,
 				5CAD064C19BEB8AE00F3F053 /* lungsE.m4a in Resources */,
 				1A2D70C91AAA74FA009E7B5B /* Story4-More-is-Missing-Intro-E.xhtml in Resources */,
-				1A2D70CF1AAA74FA009E7B5B /* Story5-The-Family-is-Rattled-Intro-E.xhtml in Resources */,
 				5C776BE119C93E1E000DBC65 /* valveDEFS.m4a in Resources */,
 				5C7FE0F119A7E43C00CBBE0E /* BFCE1_5.m4a in Resources */,
 				5C776C0D19C93E1E000DBC65 /* contestS.m4a in Resources */,
@@ -5515,7 +5514,6 @@
 				1A2D70A21AAA74FA009E7B5B /* spoon.png in Resources */,
 				1A3593F51AE76129003B3B41 /* MoreIsMissingQ2A4.mp3 in Resources */,
 				5CAD065419BECFFF00F3F053 /* cigaretteE.m4a in Resources */,
-				1A2D70D21AAA74FA009E7B5B /* Story5-The-Family-is-Rattled-Title.xhtml in Resources */,
 				1AEE552B1ADE028100DFC6B0 /* MissingKeysQ4A1.mp3 in Resources */,
 				1A8036D91B0B1C62004A164A /* TheContestQ3A1.mp3 in Resources */,
 				5CF655BE19AEACF0000AC913 /* Story2-Getting-Ready-Intro-E.xhtml in Resources */,
@@ -5769,7 +5767,6 @@
 				1A093A411B67411200547E9F /* ch4_test_02.png in Resources */,
 				1A3593FD1AE76129003B3B41 /* MoreIsMissingQ4A2.mp3 in Resources */,
 				1A8036A61B0B1C62004A164A /* IntroductionToTheBestFarmQ6.mp3 in Resources */,
-				1A2D70CE1AAA74FA009E7B5B /* Story5-The-Family-is-Rattled-IM-2.xhtml in Resources */,
 				1A093A231B67411200547E9F /* Constraints-MetaData.xml in Resources */,
 				1A093AA71B67411200547E9F /* Story4-Volcanoes-and-the-Making-of-Hawaii-PM-2.xhtml in Resources */,
 				5CAD05F619BE6A3E00F3F053 /* CCE2_7.m4a in Resources */,
@@ -5875,6 +5872,7 @@
 				5C776BC019C93E1E000DBC65 /* ventricleS.m4a in Resources */,
 				1A35944E1AE76129003B3B41 /* TheMysteryIsSolvedQ6A3.mp3 in Resources */,
 				1A8036C51B0B1C62004A164A /* TheBestFarmAwardQ5A1.mp3 in Resources */,
+				1AFA24101B6C4AE300C0AA53 /* Story5-The-Baby's-Rattle-is-Gone-Too-PM-1.xhtml in Resources */,
 				5C776C2E19C9508B000DBC65 /* barnDEFS.m4a in Resources */,
 				1A8036951B0B1C62004A164A /* IntroductionToTheBestFarmQ2A3.mp3 in Resources */,
 				5CE299DE19B5A00D00675CB0 /* BFCE3_8.m4a in Resources */,
@@ -5930,6 +5928,7 @@
 				1AEE55301ADE028100DFC6B0 /* MissingKeysQ5A1.mp3 in Resources */,
 				1A8037251B0B1C62004A164A /* WhoIsTheBestAnimalQ5A2.mp3 in Resources */,
 				5CAD05FC19BE6A3E00F3F053 /* CCE2_4.m4a in Resources */,
+				1AFA240F1B6C4AE300C0AA53 /* Story5-The-Baby's-Rattle-is-Gone-Too-Intro-E.xhtml in Resources */,
 				5C776ABF19C674FA000DBC65 /* CPQR8.m4a in Resources */,
 				1A80367D1B0B1C62004A164A /* GettingReadyQ4A4.mp3 in Resources */,
 				1A695CA21AD4DA70006A2284 /* Story1-The-Lopez-Family-PM-2S.xhtml in Resources */,
@@ -5975,6 +5974,7 @@
 				1A8036B41B0B1C62004A164A /* TheBestFarmAwardQ1A4.mp3 in Resources */,
 				1A35943A1AE76129003B3B41 /* TheMysteryIsSolvedQ2A3.mp3 in Resources */,
 				1AEE552C1ADE028100DFC6B0 /* MissingKeysQ4A2.mp3 in Resources */,
+				1AFA24111B6C4AE300C0AA53 /* Story5-The-Baby's-Rattle-is-Gone-Too-PM-2.xhtml in Resources */,
 				1A093A521B67411200547E9F /* house_noroof.png in Resources */,
 				1AE0F6101A7968D400C5B67D /* Introductions-MetaData.xml in Resources */,
 				1A8036891B0B1C62004A164A /* GettingReadyQ7A1.mp3 in Resources */,
