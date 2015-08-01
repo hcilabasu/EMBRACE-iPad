@@ -303,7 +303,7 @@
 	</pageTarget>
 	<pageTarget id="p14" type="normal" value="14">
     	<navLabel><text>Chapter 5 - The Baby's Rattle is Gone, Too! - Introduction</text></navLabel>
-		<content src="Text/Story5-The-Family-is-Rattled-Intro-E.xhtml"/>
+		<content src="Text/Story5-The-Baby's-Rattle-is-Gone-Too-Intro-E.xhtml"/>
 	</pageTarget>
   <pageTarget id="p15" type="normal" value="15">
     	<navLabel><text>Chapter 5 - The Baby's Rattle is Gone, Too! - Physical Manipulation 1</text></navLabel>
@@ -311,7 +311,7 @@
 	</pageTarget>
   <pageTarget id="p16" type="normal" value="16">
     	<navLabel><text>Chapter 5 - The Baby's Rattle is Gone, Too! - Physical Manipulation 2</text></navLabel>
-		<content src="Text/Story5-The-Family-is-Rattled-PM-2.xhtml"/>
+		<content src="Text/Story5-The-Baby's-Rattle-is-Gone-Too-PM-2.xhtml"/>
 	</pageTarget>
 	<pageTarget id="p17" type="normal" value="17">
     	<navLabel><text>Chapter 6 - The Mystery is Solved - Introduction</text></navLabel>
@@ -359,11 +359,11 @@
 	</pageTarget>
 	<pageTarget id="p28" type="normal" value="28">
     	<navLabel><text>Chapter 5 - The Baby's Rattle is Gone, Too! - Imagine Manipulation 1</text></navLabel>
-		<content src="Text/Story5-The-Family-is-Rattled-IM-1.xhtml"/>
+		<content src="Text/Story5-The-Baby's-Rattle-is-Gone-Too-IM-1.xhtml"/>
 	</pageTarget>
 	<pageTarget id="p29" type="normal" value="29">
     	<navLabel><text>Chapter 5 - The Baby's Rattle is Gone, Too! - Imagine Manipulation 2</text></navLabel>
-		<content src="Text/Story5-The-Family-is-Rattled-IM-2.xhtml"/>
+		<content src="Text/Story5-The-Baby's-Rattle-is-Gone-Too-IM-2.xhtml"/>
 	</pageTarget>
 	<pageTarget id="p30" type="normal" value="30">
     	<navLabel><text>Chapter 6 - The Mystery is Solved - Imagine Manipulation 1</text></navLabel>
