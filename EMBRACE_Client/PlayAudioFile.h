@@ -23,7 +23,7 @@
 -(void) playAudioFile: (UIViewController *) viewController : (NSString*) path;
 -(void) playAudioInSequence: (UIViewController*) viewController : (NSString*) path :(NSString*) path2;
 -(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag;
--(IBAction) playErrorNoise: (NSString *) bookTitle : (NSString *) chapterTitle : (NSString *) currentPage : (NSUInteger) currentSentence : (NSUInteger) currentStep;
+-(IBAction) playErrorNoise: (NSString *) storyName : (NSString *) chapterFilePath : (NSString*) pageFilePath : (NSInteger) sentenceNumber : (NSString *) sentenceText : (NSInteger) stepNumber : (NSInteger) ideaNumber;
 -(void) textToSpeech: (NSString *) text;
 
 @end

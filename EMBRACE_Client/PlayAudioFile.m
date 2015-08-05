@@ -115,13 +115,13 @@
 /*
  * Plays a noise for error feedback if the user performs a manipulation incorrectly
  */
--(IBAction) playErrorNoise: (NSString *) bookTitle : (NSString *) chapterTitle : (NSString *) currentPage : (NSUInteger) currentSentence : (NSUInteger) currentStep
+-(IBAction) playErrorNoise: (NSString *) storyName : (NSString *) chapterFilePath : (NSString*) pageFilePath : (NSInteger) sentenceNumber : (NSString *) sentenceText : (NSInteger) stepNumber : (NSInteger) ideaNumber
 {
    
     AudioServicesPlaySystemSound(1053);
     
     //Logging added by James for Error Noise
-    [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Error Audio" : @"NULL" :@"Error Noise"  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+    [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Error Audio" : @"NULL" :@"Error Noise"  :storyName: chapterFilePath: pageFilePath:sentenceNumber: sentenceText: stepNumber: ideaNumber];
 }
 
 -(void) textToSpeech: (NSString *) text

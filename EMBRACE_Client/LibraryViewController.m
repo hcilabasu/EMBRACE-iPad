@@ -162,7 +162,7 @@ ConditionSetup *conditionSetup;
         //NSLog(@"chapter to Open: %@", self.chapterToOpen);
         
         //added by James for XML logging
-        [[ServerCommunicationController sharedManager] logStoryButtonPressed: @"Library Icon" : @"Tap" : self.bookToOpen : self.chapterToOpen : @"NULL" : @"NULL" : @"NULL"];
+        [[ServerCommunicationController sharedManager] logStoryButtonPressed: @"Library Icon" : @"Tap" : self.bookToOpen : self.chapterToOpen : @"NULL" : -1 : @"NULL": -1: -1];
         //logging ends here
         
         [destination loadFirstPage];

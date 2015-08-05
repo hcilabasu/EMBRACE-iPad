@@ -187,7 +187,7 @@ DDXMLElement *nodeStudy;
  Input: What objects, start location, end location
  Context: story, chapter, page, sentence, step, username, condition, experimenter
  */
--(void) logComputerMoveObject : (NSString *) movingObjectID : (NSString *) collisionObjectorLocationID : (float) startPosX : (float) startPosY : (float) endPosX : (float) endPosY : (NSString *) computerAction : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue
+-(void) logComputerMoveObject : (NSString *) movingObjectID : (NSString *) collisionObjectorLocationID : (float) startPosX : (float) startPosY : (float) endPosX : (float) endPosY : (NSString *) computerAction : (NSString *) storyName : (NSString *) chapterFilePath : (NSString*) pageFilePath : (NSInteger) sentenceNumber : (NSString *) sentenceText : (NSInteger) stepNumber : (NSInteger) ideaNumber
 {
     
     //logging structure for computer actions
@@ -220,7 +220,7 @@ DDXMLElement *nodeStudy;
     //move to waypoint/move to object/move to location
     
     //logging Context
-    DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext:storyValue :chapterValue :pageValue :sentenceValue :stepValue];
+    DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext: storyName : chapterFilePath :  pageFilePath :  sentenceNumber : sentenceText :  stepNumber : ideaNumber];
     
     //add SAIC to UserAction parent
     [nodeComputerAction addChild:nodeUserActionID];
@@ -240,10 +240,8 @@ DDXMLElement *nodeStudy;
  Input: What object(s), start location, end location
  Context: story, chapter, page, sentence, step, username, condition, experimenter
  */
--(void) logComputerResetObject : (NSString *) movingObjectID : (float) startPosX : (float) startPosY : (float) endPosX : (float) endPosY : (NSString *) computerAction :(NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue
+-(void) logComputerResetObject : (NSString *) movingObjectID : (float) startPosX : (float) startPosY : (float) endPosX : (float) endPosY : (NSString *) computerAction :(NSString *) storyName : (NSString *) chapterFilePath : (NSString*) pageFilePath : (NSInteger) sentenceNumber : (NSString *) sentenceText : (NSInteger) stepNumber : (NSInteger) ideaNumber
 {
-    
-    
     //logging structure for computer actions
     DDXMLElement *nodeComputerAction = [DDXMLElement elementWithName:@"Computer_Action"];
     [study addChild:nodeComputerAction];
@@ -271,7 +269,7 @@ DDXMLElement *nodeStudy;
     DDXMLElement *nodeAction = [DDXMLElement elementWithName:@"Action" stringValue:@"Reset Object"];
     
     //logging Context
-    DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext:storyValue :chapterValue :pageValue :sentenceValue :stepValue];
+    DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext: storyName : chapterFilePath :  pageFilePath :  sentenceNumber : sentenceText :  stepNumber : ideaNumber];
     
     //add SAIC to UserAction parent
     [nodeComputerAction addChild:nodeUserActionID];
@@ -290,7 +288,7 @@ DDXMLElement *nodeStudy;
  Input: What object(s)
  Context: story, chapter, page, sentence, step, username, condition, experimenter
  */
--(void) logComputerDisappearObject : (NSString *) computerAction : (NSString *) objectID : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue
+-(void) logComputerDisappearObject : (NSString *) computerAction : (NSString *) objectID : (NSString *) storyName : (NSString *) chapterFilePath : (NSString*) pageFilePath : (NSInteger) sentenceNumber : (NSString *) sentenceText : (NSInteger) stepNumber : (NSInteger) ideaNumber
 {
     //logging structure for computer actions
     DDXMLElement *nodeComputerAction = [DDXMLElement elementWithName:@"Computer_Action"];
@@ -316,7 +314,7 @@ DDXMLElement *nodeStudy;
     //disappear or appear object
     
     //logging Context
-    DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext:storyValue :chapterValue :pageValue :sentenceValue :stepValue];
+     DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext: storyName : chapterFilePath :  pageFilePath :  sentenceNumber : sentenceText :  stepNumber : ideaNumber];
     
     //add SAIC to UserAction parent
     [nodeComputerAction addChild:nodeUserActionID];
@@ -335,7 +333,7 @@ DDXMLElement *nodeStudy;
  Input: What Image, original image source, new image source
  Context: story, chapter, page, sentence, step, username, condition, experimenter
  */
--(void) logComputerSwapImages : (NSString *) objectID : (NSString *) swapImageID  : (NSString *) computerAction : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue :(NSString *) sentenceValue : (NSString *) stepValue
+-(void) logComputerSwapImages : (NSString *) objectID : (NSString *) swapImageID  : (NSString *) computerAction : (NSString *) storyName : (NSString *) chapterFilePath : (NSString*) pageFilePath : (NSInteger) sentenceNumber : (NSString *) sentenceText : (NSInteger) stepNumber : (NSInteger) ideaNumber;
 {
 
 }
@@ -347,7 +345,7 @@ DDXMLElement *nodeStudy;
  Input: moving object, collision object
  Context: story, chapter, page, sentence, step, username, condition, experimenter
  */
--(void) logComputerGroupingObjects : (NSString*) computerActionValue : (NSString *) movingObjectID : (NSString *) collisionObjectID : (NSString *) groupAtLocation :(NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue
+-(void) logComputerGroupingObjects : (NSString*) computerActionValue : (NSString *) movingObjectID : (NSString *) collisionObjectID : (NSString *) groupAtLocation :(NSString *) storyName : (NSString *) chapterFilePath : (NSString*) pageFilePath : (NSInteger) sentenceNumber : (NSString *) sentenceText : (NSInteger) stepNumber : (NSInteger) ideaNumber
 {
     //logging structure for computer actions
     DDXMLElement *nodeComputerAction = [DDXMLElement elementWithName:@"Computer_Action"];
@@ -376,7 +374,7 @@ DDXMLElement *nodeStudy;
     DDXMLElement *nodeAction = [DDXMLElement elementWithName:@"Action" stringValue:computerActionValue]; // computerActionValue can be group/ungroup
     
     //logging Context
-    DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext:storyValue :chapterValue :pageValue :sentenceValue :stepValue];
+   DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext: storyName : chapterFilePath :  pageFilePath :  sentenceNumber : sentenceText :  stepNumber : ideaNumber];
     
     //add SAIC to ComputerAction parent
     [nodeComputerAction addChild:nodeUserActionID];
@@ -397,7 +395,7 @@ DDXMLElement *nodeStudy;
  Input: current chapter, next chapter
  Context: story, chapter, page, sentence, step, username, condition, experimenter
  */
-- (void) logNextChapterNavigation : (NSString *) buttonPressedValue :(NSString *) curChapterValue :(NSString *) nextChapterValue :(NSString *) computerActionValue :(NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue
+- (void) logNextChapterNavigation : (NSString *) buttonPressedValue :(NSString *) curChapterValue :(NSString *) nextChapterValue :(NSString *) computerActionValue :(NSString *) storyName : (NSString *) chapterFilePath : (NSString*) pageFilePath : (NSInteger) sentenceNumber : (NSString *) sentenceText : (NSInteger) stepNumber : (NSInteger) ideaNumber
 {
     //logging structure for computer actions
     DDXMLElement *nodeComputerAction = [DDXMLElement elementWithName:@"Computer_Action"];
@@ -424,7 +422,7 @@ DDXMLElement *nodeStudy;
     DDXMLElement *nodeAction = [DDXMLElement elementWithName:@"Action" stringValue:computerActionValue];// computerActionValue can be load first page/no chapters left/load next chapter
     
     //logging Context
-    DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext:storyValue :chapterValue :pageValue :sentenceValue :stepValue];
+     DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext: storyName : chapterFilePath :  pageFilePath :  sentenceNumber : sentenceText :  stepNumber : ideaNumber];
     
     //add SAIC to UserAction parent
     [nodeComputerAction addChild:nodeUserActionID];
@@ -444,7 +442,7 @@ DDXMLElement *nodeStudy;
  Input: curent page number, next page number
  Context: story, chapter, page, sentence, step, username, condition, experimenter
  */
-- (void) logNextPageNavigation : (NSString *) buttonPressedValue :(NSString *) curPageValue : (NSString *) nextPageValue :(NSString *) computerActionValue :(NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue
+- (void) logNextPageNavigation : (NSString *) buttonPressedValue :(NSString *) curPageValue : (NSString *) nextPageValue :(NSString *) computerActionValue :(NSString *) storyName : (NSString *) chapterFilePath : (NSString*) pageFilePath : (NSInteger) sentenceNumber : (NSString *) sentenceText : (NSInteger) stepNumber : (NSInteger) ideaNumber
 {
     //logging structure for user actions
     DDXMLElement *nodeComputerAction = [DDXMLElement elementWithName:@"Computer_Action"];
@@ -471,7 +469,7 @@ DDXMLElement *nodeStudy;
     DDXMLElement *nodeAction = [DDXMLElement elementWithName:@"Action" stringValue:@"Load Next Page"];
     
     //logging Context
-    DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext:storyValue :chapterValue :pageValue :sentenceValue :stepValue];
+    DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext: storyName : chapterFilePath :  pageFilePath :  sentenceNumber : sentenceText :  stepNumber : ideaNumber];
     
     //add SAIC to UserAction parent
     [nodeComputerAction addChild:nodeUserActionID];
@@ -490,7 +488,7 @@ DDXMLElement *nodeStudy;
  Input: curent sentence, next sentence
  Context: story, chapter, page, sentence, step, username, condition, experimenter
  */
-- (void) logNextSentenceNavigation : (NSString *) buttonPressedValue :(NSString *) curSentenceValue :(NSString *)nextSentenceValue :(NSString *) computerActionValue : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue
+- (void) logNextSentenceNavigation : (NSString *) buttonPressedValue :(NSString *) curSentenceValue :(NSString *)nextSentenceValue :(NSString *) computerActionValue : (NSString *) storyName : (NSString *) chapterFilePath : (NSString*) pageFilePath : (NSInteger) sentenceNumber : (NSString *) sentenceText : (NSInteger) stepNumber : (NSInteger) ideaNumber
 {
     //logging structure for computer action
     DDXMLElement *nodeComputerAction = [DDXMLElement elementWithName:@"Computer_Action"];
@@ -517,7 +515,7 @@ DDXMLElement *nodeStudy;
     DDXMLElement *nodeAction = [DDXMLElement elementWithName:@"Action" stringValue:@"Load Next Sentence"];
     
     //logging Context
-    DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext:storyValue :chapterValue :pageValue :sentenceValue :stepValue];
+    DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext: storyName : chapterFilePath :  pageFilePath :  sentenceNumber : sentenceText :  stepNumber : ideaNumber];
     
     //add SAIC to UserAction parent
     [nodeComputerAction addChild:nodeUserActionID];
@@ -536,7 +534,7 @@ DDXMLElement *nodeStudy;
  Input: from where to where
  Context: story, chapter, page, sentence, step, username, condition, experimenter
  */
-- (void) logNextStepNavigation : (NSString *) buttonPressedValue : (NSString *) curStepValue :(NSString *) nextStepValue :(NSString *) computerActionValue : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue
+- (void) logNextStepNavigation : (NSString *) buttonPressedValue : (NSString *) curStepValue :(NSString *) nextStepValue :(NSString *) computerActionValue : (NSString *) storyName : (NSString *) chapterFilePath : (NSString*) pageFilePath : (NSInteger) sentenceNumber : (NSString *) sentenceText : (NSInteger) stepNumber : (NSInteger) ideaNumber
 {
     //logging structure for computer actions
     DDXMLElement *nodeComputerAction = [DDXMLElement elementWithName:@"Computer_Action"];
@@ -563,7 +561,7 @@ DDXMLElement *nodeStudy;
     DDXMLElement *nodeAction = [DDXMLElement elementWithName:@"Action" stringValue:@"Load Next Step"];
     
     //logging Context
-    DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext:storyValue :chapterValue :pageValue :sentenceValue :stepValue];
+    DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext: storyName : chapterFilePath :  pageFilePath :  sentenceNumber : sentenceText :  stepNumber : ideaNumber];
     
     //add SAIC to UserAction parent
     [nodeComputerAction addChild:nodeUserActionID];
@@ -585,7 +583,7 @@ DDXMLElement *nodeStudy;
  Input: correctness, what action
  Context: story, chapter, Assessment step, username, condition, experimenter
  */
--(void) logComputerVerification: (NSString*)action : (BOOL) verificationValue : (NSString *) objectSelected : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue
+-(void) logComputerVerification: (NSString*)action : (BOOL) verificationValue : (NSString *) objectSelected : (NSString *) storyName : (NSString *) chapterFilePath : (NSString*) pageFilePath : (NSInteger) sentenceNumber : (NSString *) sentenceText : (NSInteger) stepNumber : (NSInteger) ideaNumber
 {
     //logging structure for user actions
     DDXMLElement *nodeComputerAction = [DDXMLElement elementWithName:@"Computer_Action"];
@@ -619,7 +617,7 @@ DDXMLElement *nodeStudy;
     DDXMLElement *nodeAction = [DDXMLElement elementWithName:@"Action" stringValue:action];//moving object to hotspot/move object to object/menu item selected
     
     //logging Context
-    DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext:storyValue :chapterValue :pageValue :sentenceValue :stepValue];
+     DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext: storyName : chapterFilePath :  pageFilePath :  sentenceNumber : sentenceText :  stepNumber : ideaNumber];
     
     //add SAIC to UserAction parent
     [nodeComputerAction addChild:nodeUserActionID];
@@ -638,7 +636,7 @@ DDXMLElement *nodeStudy;
  Input: AudioValue
  Context: story, chapter, page, sentence, step, username, condition, experimenter
  */
--(void) logComputerPlayAudio: (NSString *) computerAction : (NSString *)  LanguageType : (NSString *) audioFileName : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue
+-(void) logComputerPlayAudio: (NSString *) computerAction : (NSString *)  LanguageType : (NSString *) audioFileName : (NSString *) storyName : (NSString *) chapterFilePath : (NSString*) pageFilePath : (NSInteger) sentenceNumber : (NSString *) sentenceText : (NSInteger) stepNumber : (NSInteger) ideaNumber
 {
     UserActionIDTag++;
     
@@ -667,7 +665,7 @@ DDXMLElement *nodeStudy;
     DDXMLElement *nodeAction = [DDXMLElement elementWithName:@"Action" stringValue:computerAction];
     
     //logging Context
-    DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext:storyValue :chapterValue :pageValue :sentenceValue :stepValue];
+    DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext: storyName : chapterFilePath :  pageFilePath :  sentenceNumber : sentenceText :  stepNumber : ideaNumber];
     
     //add SAIC to UserAction parent
     [nodeComputerAction addChild:nodeUserActionID];
@@ -686,7 +684,7 @@ DDXMLElement *nodeStudy;
  Input: displayedMenuItems
  Context: story, chapter, page, sentence, step, username, condition, experimenter
  */
--(void) logComputerDisplayMenuItems :  (NSArray *) displayedMenuInteractions :(NSArray *)displayedMenuImages : (NSArray*) displayedMenuRelationships : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue
+-(void) logComputerDisplayMenuItems :  (NSArray *) displayedMenuInteractions :(NSArray *)displayedMenuImages : (NSArray*) displayedMenuRelationships : (NSString *) storyName : (NSString *) chapterFilePath : (NSString*) pageFilePath : (NSInteger) sentenceNumber : (NSString *) sentenceText : (NSInteger) stepNumber : (NSInteger) ideaNumber
 {
     UserActionIDTag++;
     
@@ -795,7 +793,7 @@ DDXMLElement *nodeStudy;
     DDXMLElement *nodeAction = [DDXMLElement elementWithName:@"Action" stringValue:@"Display Menu"];
     
     //logging Context
-    DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext:storyValue :chapterValue :pageValue :sentenceValue :stepValue];
+    DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext: storyName : chapterFilePath :  pageFilePath :  sentenceNumber : sentenceText :  stepNumber : ideaNumber];
     
     //add SAIC to UserAction parent
     [nodeComputerAction addChild:nodeUserActionID];
@@ -818,7 +816,7 @@ DDXMLElement *nodeStudy;
  Input: Button Type: Next
  Context: story, chapter, page, sentence, step, username, condition, experimenter
  */
--(void) logUserNextButtonPressed: (NSString *) buttonPressedValue :(NSString *) computerActionValue : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue
+-(void) logUserNextButtonPressed: (NSString *) buttonPressedValue :(NSString *) computerActionValue : (NSString *) storyName : (NSString *) chapterFilePath : (NSString*) pageFilePath : (NSInteger) sentenceNumber : (NSString *) sentenceText : (NSInteger) stepNumber : (NSInteger) ideaNumber
 {
     
     UserActionIDTag++;
@@ -846,7 +844,7 @@ DDXMLElement *nodeStudy;
     DDXMLElement *nodeAction = [DDXMLElement elementWithName:@"Action" stringValue:@"Tap"];
     
     //logging Context
-    DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext:storyValue :chapterValue :pageValue :sentenceValue :stepValue];
+    DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext: storyName : chapterFilePath :  pageFilePath :  sentenceNumber : sentenceText :  stepNumber : ideaNumber];
     
     //add SAIC to UserAction parent
     [nodeUserAction addChild:nodeUserActionID];
@@ -865,7 +863,7 @@ DDXMLElement *nodeStudy;
  Input: Button Type: chapterbuttonID
  Context: story, chapter, page: 1, sentence: 1, step: 1, username, condition, experimenter
  */
--(void) logStoryButtonPressed: (NSString *) buttonPressedValue :(NSString *) computerActionValue : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue
+-(void) logStoryButtonPressed: (NSString *) buttonPressedValue :(NSString *) computerActionValue : (NSString *) storyName : (NSString *) chapterFilePath : (NSString*) pageFilePath : (NSInteger) sentenceNumber : (NSString *) sentenceText : (NSInteger) stepNumber : (NSInteger) ideaNumber
 {
     UserActionIDTag++;
     
@@ -883,7 +881,7 @@ DDXMLElement *nodeStudy;
     DDXMLElement *nodeInput = [DDXMLElement elementWithName:@"Input"];
     
     //creating input children nodes
-    DDXMLElement *nodeButtonType = [DDXMLElement elementWithName:@"Button_Type" stringValue:chapterValue];
+    DDXMLElement *nodeButtonType = [DDXMLElement elementWithName:@"Button_Type" stringValue:chapterFilePath];
     
     //adding child nodes to Input parent
     [nodeInput addChild:nodeButtonType];
@@ -892,7 +890,7 @@ DDXMLElement *nodeStudy;
     DDXMLElement *nodeAction = [DDXMLElement elementWithName:@"Action" stringValue:@"Tap"];
     
     //logging Context
-    DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext:storyValue :chapterValue :pageValue :sentenceValue :stepValue];
+    DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext: storyName : chapterFilePath :  pageFilePath :  sentenceNumber : sentenceText :  stepNumber : ideaNumber];
     
     //add SAIC to UserAction parent
     [nodeUserAction addChild:nodeUserActionID];
@@ -913,7 +911,7 @@ DDXMLElement *nodeStudy;
  Input: start location, end location
  Context: story, chapter, page, sentence, step, username, condition, experimenter
  */
-- (void) logUserMoveObject : (NSString *)movingObjID : (NSString*) toLocationOrObject : (float) startposx :(float) startposy :(float) endposx :(float) endposy : (NSString *) computerActionValue : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue
+- (void) logUserMoveObject : (NSString *)movingObjID : (NSString*) toLocationOrObject : (float) startposx :(float) startposy :(float) endposx :(float) endposy : (NSString *) computerActionValue : (NSString *) storyName : (NSString *) chapterFilePath : (NSString*) pageFilePath : (NSInteger) sentenceNumber : (NSString *) sentenceText : (NSInteger) stepNumber : (NSInteger) ideaNumber
 {
     UserActionIDTag++;
     
@@ -961,7 +959,7 @@ DDXMLElement *nodeStudy;
     //move to hotspot/move to object/move to location
     
     //logging Context
-    DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext:storyValue :chapterValue :pageValue :sentenceValue :stepValue];
+    DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext: storyName : chapterFilePath :  pageFilePath :  sentenceNumber : sentenceText :  stepNumber : ideaNumber];
     
     //add SAIC to UserAction parent
     [nodeUserAction addChild:nodeUserActionID];
@@ -982,7 +980,7 @@ DDXMLElement *nodeStudy;
  Input: displayed menu items
  Context: story, chapter, page, sentence, step, username, condition, experimenter
  */
-- (void) logMenuSelection : (int) selectedMenuItemID : (NSArray *) displayedMenuInteractions :(NSArray *)displayedMenuImages : (NSArray *) menuRelationships : (NSString *) computerActionValue : (NSString *) storyValue : (NSString *) pageValue : (NSString *) chapterValue : (NSString *) sentenceValue : (NSString *) stepValue
+- (void) logMenuSelection : (int) selectedMenuItemID : (NSArray *) displayedMenuInteractions :(NSArray *)displayedMenuImages : (NSArray *) menuRelationships : (NSString *) computerActionValue : (NSString *) storyName : (NSString *) chapterFilePath : (NSString*) pageFilePath : (NSInteger) sentenceNumber : (NSString *) sentenceText : (NSInteger) stepNumber : (NSInteger) ideaNumber
 {
     UserActionIDTag++;
     
@@ -1099,7 +1097,7 @@ DDXMLElement *nodeStudy;
     DDXMLElement *nodeAction = [DDXMLElement elementWithName:@"Action" stringValue:@"Tap"];
     
     //logging Context
-     DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext:storyValue :chapterValue :pageValue :sentenceValue :stepValue];
+   DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext: storyName : chapterFilePath :  pageFilePath :  sentenceNumber : sentenceText :  stepNumber : ideaNumber];
     
     //add SAIC to UserAction parent
     [nodeUserAction addChild:nodeUserActionID];
@@ -1115,7 +1113,7 @@ DDXMLElement *nodeStudy;
 }
 
 //logging user word presses
--(void) logUserPressWord : (NSString *) selectedWordID : (NSString *) computerActionValue : (NSString *) storyValue : (NSString *) pageValue : (NSString *) chapterValue : (NSString *) sentenceValue : (NSString *) stepValue
+-(void) logUserPressWord : (NSString *) selectedWordID : (NSString *) computerActionValue : (NSString *) storyName : (NSString *) chapterFilePath : (NSString*) pageFilePath : (NSInteger) sentenceNumber : (NSString *) sentenceText : (NSInteger) stepNumber : (NSInteger) ideaNumber
 {
     
     UserActionIDTag++;
@@ -1143,7 +1141,7 @@ DDXMLElement *nodeStudy;
     DDXMLElement *nodeAction = [DDXMLElement elementWithName:@"Action" stringValue:@"Tap"];
     
     //logging Context
-    DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext:storyValue :chapterValue :pageValue :sentenceValue :stepValue];
+    DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext: storyName : chapterFilePath :  pageFilePath :  sentenceNumber : sentenceText :  stepNumber : ideaNumber];
     
     //add SAIC to UserAction parent
     [nodeUserAction addChild:nodeUserActionID];
@@ -1153,7 +1151,7 @@ DDXMLElement *nodeStudy;
     [nodeUserAction addChild:nodeContext];
 }
 
--(void) logUserEmergencyNext :(NSString *) computerActionValue : (NSString *) storyValue : (NSString *) pageValue : (NSString *) chapterValue : (NSString *) sentenceValue : (NSString *) stepValue
+-(void) logUserEmergencyNext :(NSString *) computerActionValue : (NSString *) storyName : (NSString *) chapterFilePath : (NSString*) pageFilePath : (NSInteger) sentenceNumber : (NSString *) sentenceText : (NSInteger) stepNumber : (NSInteger) ideaNumber
 {
     
     UserActionIDTag++;
@@ -1181,7 +1179,7 @@ DDXMLElement *nodeStudy;
     DDXMLElement *nodeAction = [DDXMLElement elementWithName:@"Action" stringValue:@"Two Finger Swipe"];
     
     //logging Context
-    DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext:storyValue :chapterValue :pageValue :sentenceValue :stepValue];
+    DDXMLElement *nodeContext = [[ServerCommunicationController sharedManager] returnContext: storyName : chapterFilePath :  pageFilePath :  sentenceNumber : sentenceText :  stepNumber : ideaNumber];
     
     //add SAIC to UserAction parent
     [nodeUserAction addChild:nodeUserActionID];
@@ -1436,8 +1434,9 @@ Context:
 }
 
 
--(DDXMLElement *) returnContext : (NSString *) storyValue : (NSString *) chapterValue : (NSString *) pageValue : (NSString *) sentenceValue : (NSString *) stepValue
+-(DDXMLElement *) returnContext : (NSString *) storyName : (NSString *) chapterFilePath : (NSString*) pageFilePath : (NSInteger) sentenceNumber : (NSString *) sentenceText : (NSInteger) stepNumber : (NSInteger) ideaNumber
 {
+    //bookTitle :chapterTitle : currentPage : currentSentence : currentStep];
     
     //timestamp
     NSDate *currentTime = [NSDate date];
@@ -1450,19 +1449,89 @@ Context:
     DDXMLElement *nodeSchool = [DDXMLElement elementWithName:@"School" stringValue:studySchoolString];
     DDXMLElement *nodeDay = [DDXMLElement elementWithName:@"Day" stringValue:studyDayString];
     DDXMLElement *nodeCondition = [DDXMLElement elementWithName:@"Condition" stringValue:studyConditionString];
-    DDXMLElement *nodeParticipant = [DDXMLElement elementWithName:@"Participant" stringValue:studyParticipantString];
+    DDXMLElement *nodeParticipant = [DDXMLElement elementWithName:@"Participant_ID" stringValue:studyParticipantString];
     DDXMLElement *nodeExperimenter = [DDXMLElement elementWithName:@"Experimenter" stringValue:studyExperimenterString];
-    DDXMLElement *nodeStory = [DDXMLElement elementWithName:@"Story" stringValue:storyValue];
+    DDXMLElement *nodeStory = [DDXMLElement elementWithName:@"Story" stringValue:storyName];
+    
+    
+    //story#-(story name)-(im/pm/intro)-(#/#s/E/S).xhtml
+    NSString *chapterNumber = @"NULL";
+    NSString *pageNumber = @"NULL";
+    NSString *pageName = @"NULL";
+    NSString *pageMode = @"NULL";
+    NSString *pageLanguageType = @"NULL";
+    
+    //Parse the page file path string
+    if(![pageFilePath isEqualToString:@"NULL"])
+    {
+        NSString* pageFileName = [NSString stringWithFormat:@"%@",[pageFilePath lastPathComponent]];
+        
+        //Set page mode
+        if ([pageFileName rangeOfString:@"im"].location != NSNotFound)
+        {
+            pageMode = @"IM";
+        }
+        else if([pageFileName rangeOfString:@"pm"].location != NSNotFound)
+        {
+            pageMode = @"PM";
+        }
+        else if([pageFileName rangeOfString:@"intro"].location != NSNotFound)
+        {
+            pageMode = @"INTRO";
+            pageNumber = @"0";
+        }// no else needed: use default null value
+        
+        //Set page language type, number, and name
+        if ([pageFileName rangeOfString:@"S.xhtml"].location != NSNotFound)
+        {
+            pageLanguageType = @"S";
+            NSRange range = [pageFileName rangeOfString:@"S.xhmtl"];
+            range.length = 1;
+            range.location = range.location -1;
+            pageNumber = [pageFileName substringWithRange:range];
+            
+            //set page name
+            pageName = [pageFileName substringToIndex:range.location];
+            pageName = [pageName substringFromIndex:5];
+            pageName = [pageName stringByReplacingOccurrencesOfString:@"-" withString:@" "];
+        }
+        else
+        {
+            pageLanguageType = @"E";
+            NSRange range = [pageFileName rangeOfString:@".xhmtl"];
+            range.length = 1;
+            range.location = range.location -1;
+            pageNumber = [pageFileName substringWithRange:range];
+            
+            //set page name
+            pageName = [pageFileName substringToIndex:range.location];
+            pageName = [pageName substringFromIndex:5];
+            pageName = [pageName stringByReplacingOccurrencesOfString:@"-" withString:@" "];
+        }
+        
+        //set chapter number
+        chapterNumber = [pageFileName substringToIndex:5];
+        chapterNumber = [chapterNumber substringFromIndex:5];
+        
+        pageName = @"NULL";
+    }
     
     //removes file path and extracts filename of the page
-    NSString* chapterFileName = [NSString stringWithFormat:@"%@",[chapterValue lastPathComponent]];
-    DDXMLElement *nodeChapter = [DDXMLElement elementWithName:@"Chapter" stringValue:chapterFileName];
+    NSString* chapterName = [NSString stringWithFormat:@"%@",[chapterFilePath lastPathComponent]];
+    DDXMLElement *nodeChapterNumber = [DDXMLElement elementWithName:@"Chapter_Number" stringValue:chapterNumber];
+    DDXMLElement *nodeChapterName = [DDXMLElement elementWithName:@"Chapter_Name" stringValue:chapterName];
     
     //removes file path and extracts filename of the page
-    NSString* pageFileName = [NSString stringWithFormat:@"%@",[pageValue lastPathComponent]];
-    DDXMLElement *nodePage = [DDXMLElement elementWithName:@"Page" stringValue:pageFileName];
-    DDXMLElement *nodeSentence = [DDXMLElement elementWithName:@"Sentence" stringValue:sentenceValue];
-    DDXMLElement *nodeStep = [DDXMLElement elementWithName:@"Step" stringValue:stepValue];
+    DDXMLElement *nodePageNumber = [DDXMLElement elementWithName:@"Page_Number" stringValue:pageNumber];
+    DDXMLElement *nodePageName = [DDXMLElement elementWithName:@"Page_Name" stringValue:pageName];
+    
+    DDXMLElement *nodeSentenceNumber = [DDXMLElement elementWithName:@"Sentence_Number" stringValue:[NSString stringWithFormat:@"%d", sentenceNumber]];
+    DDXMLElement *nodeSentenceText = [DDXMLElement elementWithName:@"Sentence_Text" stringValue:sentenceText];
+    
+    DDXMLElement *nodeStepNumber = [DDXMLElement elementWithName:@"Step_Number" stringValue:[NSString stringWithFormat:@"%d", stepNumber]];
+    
+    //DDXMLElement *nodeIdeaNumber = [DDXMLElement elementWithName:@"Idea_Number" stringValue:ideaNumber];
+    
     DDXMLElement *nodeTimestamp = [DDXMLElement elementWithName:@"Timestamp" stringValue:timeStampValue];
     
     //adding children nodes to context parent
@@ -1472,10 +1541,14 @@ Context:
     [nodeContext addChild:nodeParticipant];
     [nodeContext addChild:nodeExperimenter];
     [nodeContext addChild:nodeStory];
-    [nodeContext addChild:nodeChapter];
-    [nodeContext addChild:nodePage];
-    [nodeContext addChild:nodeSentence];
-    [nodeContext addChild:nodeStep];
+    [nodeContext addChild:nodeChapterNumber];
+    [nodeContext addChild:nodeChapterName];
+    [nodeContext addChild:nodePageNumber];
+    [nodeContext addChild:nodePageName];
+    [nodeContext addChild:nodeSentenceNumber];
+    [nodeContext addChild:nodeSentenceText];
+    [nodeContext addChild:nodeStepNumber];
+    //user step
     [nodeContext addChild:nodeTimestamp];
     
     return nodeContext;

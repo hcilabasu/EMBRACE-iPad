@@ -39,6 +39,7 @@ typedef enum InteractionMode {
     
     NSUInteger currentSentence; //Active sentence to be completed.
     NSUInteger totalSentences; //Total number of sentences on this page.
+    NSString *currentSentenceText;
     
     PhysicalManipulationSolution* PMSolution; //Solution steps for current chapter
     NSUInteger numSteps; //Number of steps for current sentence
@@ -1829,14 +1830,6 @@ ConditionSetup *conditionSetup;
         adjLocation.y = [bookView frame].size.height - imageHeight;
     else if(adjLocation.y < 0)
         adjLocation.y = 0;
-    
-    //May want to add code to keep objects from moving to the location that the text is taking up on screen.
-    
-    //logs only if object is moved by computer action, user pan done outside of this function
-    if (![waypointID isEqualToString:@"isMoving"]) {
-        //Logging added by James for Automatic Computer Move Object
-        [[ServerCommunicationController sharedManager] logComputerMoveObject: object : waypointID: startLocation.x : startLocation.y : adjLocation.x : adjLocation.y : @"Snap to Hotspot" : bookTitle : chapterTitle : currentPage : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] : [NSString stringWithFormat:@"%lu" , (unsigned long)currentStep]];
-    }
     
     
     //NSLog(@"new location of %@: (%f, %f)", object, adjLocation.x, adjLocation.y);

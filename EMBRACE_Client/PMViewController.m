@@ -21,6 +21,8 @@
     NSString* currentPage; //The current page being shown, so that the next page can be requested.
     NSString* currentPageId; //The id of the current page being shown
     
+    NSString* currentSentenceText;
+    
     NSUInteger currentSentence; //Active sentence to be completed
     NSUInteger currentIdea; //Current idea number to be completed
     NSUInteger totalSentences; //Total number of sentences on this page.
@@ -76,7 +78,6 @@
     NSTimer* timer; //Controls the timing of the audio file that is playing
     BOOL isAudioLeft;
     Mode currentMode;
-    
 }
 
 @property (nonatomic, strong) IBOutlet UIWebView *bookView;
@@ -263,6 +264,7 @@ ConditionSetup *conditionSetup;
         NSString* firstSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestFirstSentenceId];
         int firstSentenceIdNumber = [[firstSentenceId substringFromIndex:1] intValue];
         currentSentence = firstSentenceIdNumber;
+        currentSentenceText = [NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",firstSentenceIdNumber];
         
         //Set up current sentence appearance and solution steps
         [self setupCurrentSentence];
@@ -463,7 +465,9 @@ ConditionSetup *conditionSetup;
     
     //change logging to introduction??
     //Logging added by James for Loading First Page of selected Chapter form Library View
-    [[ServerCommunicationController sharedManager] logNextChapterNavigation:bookTitle :@"Title Page" :currentPage :@"Load First Page" :bookTitle :chapterTitle : currentPage : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] : [NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+    [[ServerCommunicationController sharedManager] logNextChapterNavigation:bookTitle :@"Title Page" :currentPage :@"Load First Page" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+    //storyName : chapterNumber : chapterName : pageNumber : pageName :  pageMode : pageLanguageType : sentenceNumber : sentenceText :  stepNumber : ideaNumber
+    
     //Logging Completes Here.
 }
 
@@ -478,13 +482,13 @@ ConditionSetup *conditionSetup;
     currentPage = [book getNextPageForChapterAndActivity:chapterTitle :PM_MODE :currentPage];
     
     //Logging added by James for Computer Navigation to next Page
-    [[ServerCommunicationController sharedManager] logNextPageNavigation:@"Next Button" :tempLastPage :currentPage :@"Next Page" :bookTitle :chapterTitle : currentPage : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] : [NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+    [[ServerCommunicationController sharedManager] logNextPageNavigation:@"Next Button" :tempLastPage :currentPage :@"Next Page" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
     //Logging Completes Here.
     
     //No more pages in chapter
     if (currentPage == nil) {
         //Log that chapter has been completed
-        [[ServerCommunicationController sharedManager] logNextChapterNavigation:@"Next Button" :tempLastPage :currentPage :@"Next Page | Chapter Finished" :bookTitle :chapterTitle : currentPage : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] : [NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+        [[ServerCommunicationController sharedManager] logNextChapterNavigation:@"Next Button" :tempLastPage :currentPage :@"Next Page | Chapter Finished" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
         
         //return to library view
         //load assessment activity screen
@@ -656,7 +660,7 @@ ConditionSetup *conditionSetup;
         currentStep++;
     
         //Logging added by James for Computer Navigation to next Step
-        [[ServerCommunicationController sharedManager] logNextStepNavigation:@"Automatic Computer Action" :tempsteps :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep] :@"Next Step" :bookTitle :chapterTitle : currentPage : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :tempsteps];
+        [[ServerCommunicationController sharedManager] logNextStepNavigation:@"Automatic Computer Action" :tempsteps :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep] :@"Next Step" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
         //Logging Completes Here.
         
         [self performAutomaticSteps]; //automatically perform ungroup or move steps if necessary
@@ -935,7 +939,7 @@ ConditionSetup *conditionSetup;
     AudioServicesPlaySystemSound(1053);
     
     //Logging added by James for Error Noise
-    [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Error Audio" : @"NULL" :@"Error Noise"  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+    [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Error Audio" : @"NULL" :@"Error Noise"  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
 }
 
 
@@ -1014,7 +1018,7 @@ ConditionSetup *conditionSetup;
             }
             
             //Logging Add by James for Menu Selection
-            [[ServerCommunicationController sharedManager] logMenuSelection: menuItem: menuItemInteractions : menuItemImages : menuItemRelationships :@"Menu Item Selected" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+            [[ServerCommunicationController sharedManager] logMenuSelection: menuItem: menuItemInteractions : menuItemImages : menuItemRelationships :@"Menu Item Selected" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
             
             [self checkSolutionForInteraction:interaction]; //check if selected interaction is correct
             
@@ -1138,7 +1142,7 @@ ConditionSetup *conditionSetup;
         
         //Logs user Word Press
         //this logs any tap on any words even if they are not audible, it logs taps on sentences,
-        [[ServerCommunicationController sharedManager] logUserPressWord:sentenceText :@"Tap" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+        [[ServerCommunicationController sharedManager] logUserPressWord:sentenceText :@"Tap" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
         
         NSLog(@"%@",sentenceText);
         
@@ -1163,7 +1167,7 @@ ConditionSetup *conditionSetup;
                 [playaudioClass playAudioFile: self: [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]];
                 
                 //Logging added by James for Word Audio
-                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : IntroductionClass.languageString :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : IntroductionClass.languageString :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                 
                 [self highlightObject:englishSentenceText:1.5];
                 //Bypass the image-tap steps which are found after each word-tap step on the metadata
@@ -1197,7 +1201,7 @@ ConditionSetup *conditionSetup;
                         }
                         
                         //Logging added by James for Word Audio
-                        [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : IntroductionClass.languageString :[NSString stringWithFormat:@"%@%@.m4a",sentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+                        [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : IntroductionClass.languageString :[NSString stringWithFormat:@"%@%@.m4a",sentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                         
                         NSObject *valueImage = [[Translation translationImages]objectForKey:englishSentenceText];
                         
@@ -1221,6 +1225,7 @@ ConditionSetup *conditionSetup;
                         }
                         
                         currentSentence++;
+                        currentSentenceText = [NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence];
                         [self performSelector:@selector(colorSentencesUponNext) withObject:nil afterDelay:4];
                         
                         IntroductionClass.currentVocabStep++;
@@ -1244,21 +1249,21 @@ ConditionSetup *conditionSetup;
                 [playaudioClass playAudioInSequence:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"]:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
                 
                 //Logging added by James for Word Audio
-                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"S" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"S" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
             }
             else if (conditionSetup.language ==BILINGUAL) {
                 //Play word audio Sp
                 [playaudioClass playAudioInSequence:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"]];
                 
                 //Logging added by James for Word Audio
-                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"S" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"S" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
             }
             else {
                 //Play En audio twice
                 [playaudioClass playAudioInSequence:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
                 
                 //Logging added by James for Word Audio
-                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"E" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"E" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
             }
             
             // Revert the carbon dioxide name for highlighting
@@ -1326,7 +1331,7 @@ ConditionSetup *conditionSetup;
     else if (numSteps > 0 && !stepsComplete && !(conditionSetup.condition == CONTROL)) {
         
         //Logging Added by James for Emergency Swipe
-        [[ServerCommunicationController sharedManager] logUserEmergencyNext:@"Emergency Swipe" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+        [[ServerCommunicationController sharedManager] logUserEmergencyNext:@"Emergency Swipe" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
         
         //Get steps for current sentence
         NSMutableArray* currSolSteps;
@@ -1597,21 +1602,21 @@ ConditionSetup *conditionSetup;
                             //gets hotspot id for logging
                             NSString* locationId = [currSolStep locationId];
                             //Logging added by James for User Move Object to object
-                            [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : locationId :startLocation.x :startLocation.y :location.x :location.y :@"Move to Hotspot" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+                            [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : locationId :startLocation.x :startLocation.y :location.x :location.y :@"Move to Hotspot" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                             
                             //Logging added by James for user Move Object to Hotspot Correct
-                            [[ServerCommunicationController sharedManager] logComputerVerification: @"Move to Hotspot":true : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+                            [[ServerCommunicationController sharedManager] logComputerVerification: @"Move to Hotspot":true : movingObjectId:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                         }
                         else {
                             //gets hotspot id for logging
                             NSString* locationId = [currSolStep locationId];
                             //Logging added by James for User Move Object to object
-                            [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : locationId:startLocation.x :startLocation.y :location.x :location.y :@"Move to Hotspot" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+                            [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : locationId:startLocation.x :startLocation.y :location.x :location.y :@"Move to Hotspot" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                             
                             //Logging added by James for user Move Object to Hotspot Incorrect
-                            [[ServerCommunicationController sharedManager] logComputerVerification:@"Move to Hotspot" :false : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+                            [[ServerCommunicationController sharedManager] logComputerVerification:@"Move to Hotspot" :false : movingObjectId:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                             
-                            [playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentStep];
+                            [playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                             //[self playErrorNoise];
                             
                             if (conditionSetup.appmode == ITS) {
@@ -1635,12 +1640,12 @@ ConditionSetup *conditionSetup;
                             //gets hotspot id for logging
                             NSString* locationId = [currSolStep locationId];
                             //Logging added by James for User Move Object to object
-                            [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : locationId:startLocation.x :startLocation.y :location.x :location.y :@"Move to Hotspot" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+                            [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : locationId:startLocation.x :startLocation.y :location.x :location.y :@"Move to Hotspot" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                             
                             //Logging added by James for user Move Object to Hotspot Incorrect
-                            [[ServerCommunicationController sharedManager] logComputerVerification:@"Move to Hotspot" :false : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+                            [[ServerCommunicationController sharedManager] logComputerVerification:@"Move to Hotspot" :false : movingObjectId:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                             
-                            [playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentStep];
+                            [playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                             //[self playErrorNoise];
                             
                             if (allowSnapback) {
@@ -1672,12 +1677,12 @@ ConditionSetup *conditionSetup;
                             //No possible interactions were found
                             if ([possibleInteractions count] == 0) {
                                 //Logging added by James for User Move Object to object
-                                [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : collisionObjectId:startLocation.x :startLocation.y :location.x :location.y :@"Move to Object" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+                                [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : collisionObjectId:startLocation.x :startLocation.y :location.x :location.y :@"Move to Object" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                                 
                                 //Logging added by James for Verifying Move Object to object
-                                [[ServerCommunicationController sharedManager] logComputerVerification: @"Move to Object":false : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+                                [[ServerCommunicationController sharedManager] logComputerVerification: @"Move to Object":false : movingObjectId:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                                 
-                                [playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentStep];
+                                [playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                                 //[self playErrorNoise];
                                 
                                 if (allowSnapback) {
@@ -1696,7 +1701,7 @@ ConditionSetup *conditionSetup;
                                 PossibleInteraction* interaction = [possibleInteractions objectAtIndex:0];
                                 
                                 //Logging added by James for User Move Object to object
-                                [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : collisionObjectId:startLocation.x :startLocation.y :location.x :location.y :@"Move to Object" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+                                [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : collisionObjectId:startLocation.x :startLocation.y :location.x :location.y :@"Move to Object" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                                 
                                 //checks solution and accomplishes action trace
                                 [self checkSolutionForInteraction:interaction];
@@ -1718,10 +1723,10 @@ ConditionSetup *conditionSetup;
                                 [self rankPossibleInteractions:possibleInteractions];
                                 
                                 //Logging added by James for User Move Object to object
-                                [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : collisionObjectId:startLocation.x :startLocation.y :location.x :location.y :@"Move to Object" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+                                [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : collisionObjectId:startLocation.x :startLocation.y :location.x :location.y :@"Move to Object" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                                 
                                 //Logging added by James for Move Object to object Verification
-                                [[ServerCommunicationController sharedManager] logComputerVerification: @"Move to Object":true : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+                                [[ServerCommunicationController sharedManager] logComputerVerification: @"Move to Object":true : movingObjectId:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                                 
                                 //Populate the menu data source and expand the menu.
                                 [self populateMenuDataSource:possibleInteractions:allRelationships];
@@ -1729,7 +1734,7 @@ ConditionSetup *conditionSetup;
                                 if(!menuExpanded)
                                 {
                                     //Logging added by James for Move Object to object Verification
-                                        [[ServerCommunicationController sharedManager] logComputerVerification: @"Display Menu":true : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+                                        [[ServerCommunicationController sharedManager] logComputerVerification: @"Display Menu":true : movingObjectId:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                                     
                                     [self expandMenu];
                                 
@@ -1741,7 +1746,7 @@ ConditionSetup *conditionSetup;
                         //Not overlapping any object
                         else {
                             
-                            [playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentStep];
+                            [playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                             //[self playErrorNoise];
                             
                             if (allowSnapback) {
@@ -2537,7 +2542,7 @@ ConditionSetup *conditionSetup;
             [bookView stringByEvaluatingJavaScriptFromString:swapImages];
             
             //Logging added by James for Swap Images
-            [[ServerCommunicationController sharedManager] logComputerSwapImages : object1Id : altSrc: @"Swap Image" : bookTitle : chapterTitle : currentPage : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] : [NSString stringWithFormat:@"%lu" , (unsigned long)currentStep]];
+            [[ServerCommunicationController sharedManager] logComputerSwapImages : object1Id : altSrc: @"Swap Image" : bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
         }
     }
 }
@@ -2824,7 +2829,7 @@ ConditionSetup *conditionSetup;
     if ([interaction isEqual:correctInteraction]) {
         
         //Logging added by James for Correct Interaction
-        [[ServerCommunicationController sharedManager] logComputerVerification:@"Perform Interaction":true : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+        [[ServerCommunicationController sharedManager] logComputerVerification:@"Perform Interaction":true : movingObjectId:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
         
             //imcode
             if (conditionSetup.condition ==CONTROL) {
@@ -2842,7 +2847,7 @@ ConditionSetup *conditionSetup;
                 //end imcode
             
                 //Logging added by James for User pressing the Next button
-                [[ServerCommunicationController sharedManager] logUserNextButtonPressed:@"Next" :@"Tap" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+                [[ServerCommunicationController sharedManager] logUserNextButtonPressed:@"Next" :@"Tap" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
             
                 //added for logging
                 NSString *tempLastSentence = [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence];
@@ -2853,6 +2858,7 @@ ConditionSetup *conditionSetup;
                 }
                 
                 currentSentence++;
+                currentSentenceText = [NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence];
             
                 //Set up current sentence appearance and solution steps
                 [self setupCurrentSentence];
@@ -2865,7 +2871,7 @@ ConditionSetup *conditionSetup;
                 }
                 else {
                         //Logging added by James for Computer moving to next sentence
-                        [[ServerCommunicationController sharedManager] logNextSentenceNavigation:@"Next Button" :tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :@"Next Sentence" :bookTitle :chapterTitle : currentPage : tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+                        [[ServerCommunicationController sharedManager] logNextSentenceNavigation:@"Next Button" :tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :@"Next Sentence" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                 
                         //If we are on the first or second manipulation page of The Contest, play the audio of the current sentence
                         if ([chapterTitle isEqualToString:@"The Contest"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
@@ -2932,21 +2938,21 @@ ConditionSetup *conditionSetup;
                 [playaudioClass playAudioFile:self:@"tryAgainE.m4a"];
                 
                 //Logging added by James for Try Again
-                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Try Again" : @"E" : @"tryAgainE.m4a" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Try Again" : @"E" : @"tryAgainE.m4a" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
             }
             else
             {
                 [playaudioClass playAudioFile:self:@"tryAgainS.m4a"];
                 
                 //Logging added by James for Try Again
-                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Try Again" : @"S" : @"tryAgainS.m4a" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Try Again" : @"S" : @"tryAgainS.m4a" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
             }
         }
         else {
             //Logging added by James for Incorrect Interaction
-            [[ServerCommunicationController sharedManager] logComputerVerification:@"Perform Interaction":false : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+            [[ServerCommunicationController sharedManager] logComputerVerification:@"Perform Interaction":false : movingObjectId:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
             
-            [playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentStep];
+            [playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
             //[self playErrorNoise]; //play noise if interaction is incorrect
             
             if (conditionSetup.appmode == ITS) {
@@ -2961,7 +2967,7 @@ ConditionSetup *conditionSetup;
             
             //move logging to moveObject
             //Logging added by James for Object Reset Location
-            [[ServerCommunicationController sharedManager] logComputerResetObject : movingObjectId  :startLocation.x :startLocation.y : startLocation.x : startLocation.y : @"Reset" : bookTitle : chapterTitle : currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+            [[ServerCommunicationController sharedManager] logComputerResetObject : movingObjectId  :startLocation.x :startLocation.y : startLocation.x : startLocation.y : @"Reset" : bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
         }
     }
     
@@ -3599,7 +3605,7 @@ ConditionSetup *conditionSetup;
     //logs only if object is moved by computer action, user pan done outside of this function
     if (![waypointID isEqualToString:@"isMoving"]) {
         //Logging added by James for Automatic Computer Move Object
-        [[ServerCommunicationController sharedManager] logComputerMoveObject: object : waypointID: startLocation.x : startLocation.y : adjLocation.x : adjLocation.y : @"Snap to Hotspot" : bookTitle : chapterTitle : currentPage : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] : [NSString stringWithFormat:@"%lu" , (unsigned long)currentStep]];
+        [[ServerCommunicationController sharedManager] logComputerMoveObject: object : waypointID: startLocation.x : startLocation.y : adjLocation.x : adjLocation.y : @"Snap to Hotspot" : bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
     }
     
     
@@ -3626,7 +3632,7 @@ ConditionSetup *conditionSetup;
     NSString *groupObjects = [NSString stringWithFormat:@"groupObjectsAtLoc(%@, %f, %f, %@, %f, %f)", object1, object1Hotspot.x, object1Hotspot.y, object2, object2Hotspot.x, object2Hotspot.y];
     
     //Logging added by James for Grouping Objects
-    [[ServerCommunicationController sharedManager] logComputerGroupingObjects: @"Group" :object1 :object2 : groupObjects:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+    [[ServerCommunicationController sharedManager] logComputerGroupingObjects: @"Group" :object1 :object2 : groupObjects:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
     
     //maintain a list of current groupings, with the subject as a key. currently only supports two objects
     
@@ -3656,7 +3662,7 @@ ConditionSetup *conditionSetup;
     NSString* ungroup = [NSString stringWithFormat:@"ungroupObjects(%@, %@)", object1, object2];
 
     //Logging added by James for Grouping Objects
-    [[ServerCommunicationController sharedManager] logComputerGroupingObjects: @"Ungroup" :object1 :object2 : ungroup:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+    [[ServerCommunicationController sharedManager] logComputerGroupingObjects: @"Ungroup" :object1 :object2 : ungroup:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
 
     
     //get the current groupings of the objects
@@ -3714,7 +3720,7 @@ ConditionSetup *conditionSetup;
                     CGPoint change = [self calculateDeltaForMovingObjectAtPoint:hiddenObjectHotspotLocation];
                     
                     //Logging added by James for Object Disappear
-                    [[ServerCommunicationController sharedManager] logComputerDisappearObject: @"Appear Object":disappearingObject :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+                    [[ServerCommunicationController sharedManager] logComputerDisappearObject: @"Appear Object":disappearingObject :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                     
                     //Now move the object taking into account the difference in change.
                     [self moveObject:disappearingObject :appearLocation :change :false:@"None"];
@@ -3735,7 +3741,7 @@ ConditionSetup *conditionSetup;
         NSString* hideObj = [NSString stringWithFormat:@"document.getElementById('%@').style.display = 'none';", disappearingObject];
         
         //Logging added by James for Object Disappear
-        [[ServerCommunicationController sharedManager] logComputerDisappearObject: @"Disappear Object":disappearingObject :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+        [[ServerCommunicationController sharedManager] logComputerDisappearObject: @"Disappear Object":disappearingObject :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
         
         [bookView stringByEvaluatingJavaScriptFromString:hideObj];
     }
@@ -4007,7 +4013,7 @@ ConditionSetup *conditionSetup;
                             {
                             //move to next sentence
                                 //Logging added by James for User pressing the Next button
-                                [[ServerCommunicationController sharedManager] logUserNextButtonPressed:@"Next" :@"Tap" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+                                [[ServerCommunicationController sharedManager] logUserNextButtonPressed:@"Next" :@"Tap" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                                 
                                 //added for logging
                                 NSString *tempLastSentence = [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence];
@@ -4018,6 +4024,8 @@ ConditionSetup *conditionSetup;
                                 }
                                 
                                 currentSentence++;
+                                currentSentenceText = [NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence];
+
                                 
                                 //Set up current sentence appearance and solution steps
                                 //[self setupCurrentSentence];
@@ -4034,7 +4042,7 @@ ConditionSetup *conditionSetup;
                                     [self colorSentencesUponNext];
                                     
                                     //Logging added by James for Computer moving to next sentence
-                                    [[ServerCommunicationController sharedManager] logNextSentenceNavigation:@"Next Button" :tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :@"Next Sentence" :bookTitle :chapterTitle : currentPage : tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+                                    [[ServerCommunicationController sharedManager] logNextSentenceNavigation:@"Next Button" :tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :@"Next Sentence" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                                     
                                     //If we are on the first or second manipulation page of The Contest, play the audio of the current sentence
                                     if ([chapterTitle isEqualToString:@"The Contest"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
@@ -4077,7 +4085,7 @@ ConditionSetup *conditionSetup;
         
         //if (stepsComplete || numSteps == 0 || !IntroductionClass.allowInteractions) {
             //Logging added by James for User pressing the Next button
-            [[ServerCommunicationController sharedManager] logUserNextButtonPressed:@"Next" :@"Tap" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+            [[ServerCommunicationController sharedManager] logUserNextButtonPressed:@"Next" :@"Tap" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
             
             //added for logging
             NSString *tempLastSentence = [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence];
@@ -4088,6 +4096,7 @@ ConditionSetup *conditionSetup;
             }
             
             currentSentence++;
+            currentSentenceText = [NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence];
             
             //Set up current sentence appearance and solution steps
             //[self setupCurrentSentence];
@@ -4117,7 +4126,7 @@ ConditionSetup *conditionSetup;
                 [self colorSentencesUponNext];
                 
                 //Logging added by James for Computer moving to next sentence
-                [[ServerCommunicationController sharedManager] logNextSentenceNavigation:@"Next Button" :tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :@"Next Sentence" :bookTitle :chapterTitle : currentPage : tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+                [[ServerCommunicationController sharedManager] logNextSentenceNavigation:@"Next Button" :tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :@"Next Sentence" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                 
                 //If we are on the first or second manipulation page of The Contest, play the audio of the current sentence
                 if ([chapterTitle isEqualToString:@"The Contest"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
@@ -4152,7 +4161,7 @@ ConditionSetup *conditionSetup;
         }
         else {
             //Play noise if not all steps have been completed
-            [playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentStep];
+            [playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
             //[self playErrorNoise];
         }
     }
@@ -4539,7 +4548,7 @@ ConditionSetup *conditionSetup;
     }
     
     //Logging Added by James for Menu Display
-    [[ServerCommunicationController sharedManager] logComputerDisplayMenuItems : menuItemInteractions : menuItemImages : menuItemRelationships : bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+    [[ServerCommunicationController sharedManager] logComputerDisplayMenuItems : menuItemInteractions : menuItemImages : menuItemRelationships : bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
 }
 
 - (BOOL)webView:(UIWebView *)webView2
