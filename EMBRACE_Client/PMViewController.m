@@ -264,7 +264,7 @@ ConditionSetup *conditionSetup;
         NSString* firstSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestFirstSentenceId];
         int firstSentenceIdNumber = [[firstSentenceId substringFromIndex:1] intValue];
         currentSentence = firstSentenceIdNumber;
-        currentSentenceText = [NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",firstSentenceIdNumber];
+        currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",firstSentenceIdNumber]];
         
         //Set up current sentence appearance and solution steps
         [self setupCurrentSentence];
@@ -481,19 +481,16 @@ ConditionSetup *conditionSetup;
     NSString *tempLastPage = currentPage;
     currentPage = [book getNextPageForChapterAndActivity:chapterTitle :PM_MODE :currentPage];
     
-    //Logging added by James for Computer Navigation to next Page
-    [[ServerCommunicationController sharedManager] logNextPageNavigation:@"Next Button" :tempLastPage :currentPage :@"Next Page" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-    //Logging Completes Here.
-    
     //No more pages in chapter
     if (currentPage == nil) {
         //Log that chapter has been completed
-        [[ServerCommunicationController sharedManager] logNextChapterNavigation:@"Next Button" :tempLastPage :currentPage :@"Next Page | Chapter Finished" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+        [[ServerCommunicationController sharedManager] logNextChapterNavigation:@"Next Button" :tempLastPage :currentPage :@"Next Page | Chapter Finished" :bookTitle :chapterTitle : @"Page Finished" :currentSentence : currentSentenceText: currentStep : currentIdea];
         
         //return to library view
         //load assessment activity screen
         if([chapterTitle isEqualToString:@"Introduction to The Best Farm"] || [chapterTitle isEqualToString:@"Introduction to The House"])
-        {   [self.navigationController popViewControllerAnimated:YES];
+        {
+            [self.navigationController popViewControllerAnimated:YES];
             return;
         }
         else
@@ -501,6 +498,12 @@ ConditionSetup *conditionSetup;
             [self loadAssessmentActivity];
             return;
         }
+    }
+    else
+    {
+        //Logging added by James for Computer Navigation to next Page
+        [[ServerCommunicationController sharedManager] logNextPageNavigation:@"Next Button" :tempLastPage :currentPage :@"Next Page" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+        //Logging Completes Here.
     }
     
     [self loadPage];
@@ -1225,7 +1228,8 @@ ConditionSetup *conditionSetup;
                         }
                         
                         currentSentence++;
-                        currentSentenceText = [NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence];
+                        currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence]];
+                        
                         [self performSelector:@selector(colorSentencesUponNext) withObject:nil afterDelay:4];
                         
                         IntroductionClass.currentVocabStep++;
@@ -2858,7 +2862,7 @@ ConditionSetup *conditionSetup;
                 }
                 
                 currentSentence++;
-                currentSentenceText = [NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence];
+                currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence]];
             
                 //Set up current sentence appearance and solution steps
                 [self setupCurrentSentence];
@@ -3629,7 +3633,7 @@ ConditionSetup *conditionSetup;
  * Calls the JS function to group two objects at the specified hotspots.
  */
 -(void) groupObjects:(NSString*)object1 :(CGPoint)object1Hotspot :(NSString*)object2 :(CGPoint)object2Hotspot {
-    NSString *groupObjects = [NSString stringWithFormat:@"groupObjectsAtLoc(%@, %f, %f, %@, %f, %f)", object1, object1Hotspot.x, object1Hotspot.y, object2, object2Hotspot.x, object2Hotspot.y];
+    NSString *groupObjects = [NSString stringWithFormat:@"groupObjectsAtLoc(%@, %f, %f: %@, %f, %f)", object1, object1Hotspot.x, object1Hotspot.y, object2, object2Hotspot.x, object2Hotspot.y];
     
     //Logging added by James for Grouping Objects
     [[ServerCommunicationController sharedManager] logComputerGroupingObjects: @"Group" :object1 :object2 : groupObjects:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
@@ -4024,7 +4028,9 @@ ConditionSetup *conditionSetup;
                                 }
                                 
                                 currentSentence++;
-                                currentSentenceText = [NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence];
+                                currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence]];
+                                
+                                
 
                                 
                                 //Set up current sentence appearance and solution steps
@@ -4096,7 +4102,7 @@ ConditionSetup *conditionSetup;
             }
             
             currentSentence++;
-            currentSentenceText = [NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence];
+            currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence]];
             
             //Set up current sentence appearance and solution steps
             //[self setupCurrentSentence];
@@ -4538,7 +4544,7 @@ ConditionSetup *conditionSetup;
         
         [menuItemImages addObject:[NSString stringWithFormat:@"%d", x]];
         
-        for(int i=0; i< [tempMenuItem.images count]; i++)
+        for(int i=0; i< [tempMenuItem.images count]; i++)   
         {
             MenuItemImage *tempimage =  [tempMenuItem.images objectAtIndex:i];
             [menuItemImages addObject:[tempimage.image accessibilityIdentifier]];

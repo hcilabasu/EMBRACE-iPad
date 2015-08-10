@@ -312,15 +312,14 @@ UIImage *BackgroundImage;
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         
         //log user pressed answer option
-        [[ServerCommunicationController sharedManager] logUserAssessmentPressedAnswerOption:Question :([indexPath row]+1) :AnswerOptions :@"Answer Option" :@"Verification" :BookTitle :ChapterTitle :[NSString stringWithFormat:@"%d",currentAssessmentActivityStep]];
+        [[ServerCommunicationController sharedManager] logUserAssessmentPressedAnswerOption:Question :([indexPath row]+1) :AnswerOptions :@"Answer Option" :@"Verification" :BookTitle :ChapterTitle :[NSString stringWithFormat:@"%d",currentAssessmentActivityStep] : cell.textLabel.text];
         
             //checks if option is correct else gray out
             if([cell.textLabel.text isEqualToString: correctSelection])
             {
                 //log correct answer selected
-                [[ServerCommunicationController sharedManager] logComputerAssessmentAnswerVerification:true : Question :([indexPath row]+1) :AnswerOptions :@"Answer Option" :@"Verification" :BookTitle :ChapterTitle :[NSString stringWithFormat:@"%d", currentAssessmentActivityStep]];
+                [[ServerCommunicationController sharedManager] logComputerAssessmentAnswerVerification:true : Question :([indexPath row]+1) :AnswerOptions :@"Answer Option" :@"Verification" :BookTitle :ChapterTitle :[NSString stringWithFormat:@"%d", currentAssessmentActivityStep] : cell.textLabel.text];
                 
-                //[playAudioFileClass textToSpeech:@"Good Job!"];
                 
                 //gray out other options
                 
@@ -348,7 +347,7 @@ UIImage *BackgroundImage;
             else
             {
                 //log incorrect answer selected
-                [[ServerCommunicationController sharedManager] logComputerAssessmentAnswerVerification:false : Question :([indexPath row]+1) :AnswerOptions :@"Answer Option" :@"Verification" :BookTitle :ChapterTitle :[NSString stringWithFormat:@"%d", currentAssessmentActivityStep]];
+                [[ServerCommunicationController sharedManager] logComputerAssessmentAnswerVerification:false : Question :([indexPath row]+1) :AnswerOptions :@"Answer Option" :@"Verification" :BookTitle :ChapterTitle :[NSString stringWithFormat:@"%d", currentAssessmentActivityStep] : cell.textLabel.text];
                 
                 //gray out option
                 //cell.contentView.alpha=.2;

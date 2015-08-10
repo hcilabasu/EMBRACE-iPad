@@ -411,7 +411,7 @@ DDXMLElement *nodeStudy;
     DDXMLElement *nodeInput = [DDXMLElement elementWithName:@"Input"];
     
     //creating input children nodes
-    DDXMLElement *nodeNextChapter = [DDXMLElement elementWithName:@"Next_Chapter" stringValue:nextChapterValue];
+    DDXMLElement *nodeNextChapter = [DDXMLElement elementWithName:@"Next_Chapter" stringValue:[nextChapterValue lastPathComponent]];
     DDXMLElement *nodeButtonValue = [DDXMLElement elementWithName:@"Button_Type" stringValue:buttonPressedValue];
     
     //adding child nodes to Input parent
@@ -458,7 +458,7 @@ DDXMLElement *nodeStudy;
     DDXMLElement *nodeInput = [DDXMLElement elementWithName:@"Input"];
     
     //creating inpud children nodes
-    DDXMLElement *nodeNextPage = [DDXMLElement elementWithName:@"Next_Page" stringValue:nextPageValue];
+    DDXMLElement *nodeNextPage = [DDXMLElement elementWithName:@"Next_Page" stringValue:[nextPageValue lastPathComponent]];
     DDXMLElement *nodeButtonValue = [DDXMLElement elementWithName:@"Button_Type" stringValue:buttonPressedValue];
     
     //adding child nodes to Input parent
@@ -1284,7 +1284,7 @@ Context:
  Input: Button Type: Answer Option
  Context:
  */
--(void) logUserAssessmentPressedAnswerOption : (NSString*) questionText :  (NSInteger) answerOptionSelected : (NSArray*) answerOptions : (NSString*) buttonPressedVaue : (NSString *) computerActionValue : (NSString *) storyValue : (NSString *) chapterValue : (NSString*) currentAssessmentStep
+-(void) logUserAssessmentPressedAnswerOption : (NSString*) questionText :  (NSInteger) answerOptionSelected : (NSArray*) answerOptions : (NSString*) buttonPressedVaue : (NSString *) computerActionValue : (NSString *) storyValue : (NSString *) chapterValue : (NSString*) currentAssessmentStep : (NSString *) answerText
 {
     UserActionIDTag++;
     
@@ -1308,7 +1308,7 @@ Context:
     
     DDXMLElement *nodeAnswerOptions = [DDXMLElement elementWithName:@"Answer_Options" stringValue:[NSString stringWithFormat:@"%@, %@, %@, %@", answerOptions[0],answerOptions[1],answerOptions[2],answerOptions[3]]];
     
-    DDXMLElement *nodeAnswerOptionSelected = [DDXMLElement elementWithName:@"Selected_Option" stringValue:[NSString stringWithFormat:@"%d", answerOptionSelected]];
+    DDXMLElement *nodeAnswerOptionSelected = [DDXMLElement elementWithName:@"Selected_Option" stringValue:[NSString stringWithFormat:@"%d", answerText]];
     
     //adding child nodes to Input parent
     [nodeInput addChild:nodeButtonType];
@@ -1337,7 +1337,7 @@ Context:
  Context:
  */
 //log if answer selection was correct or incorrect and what they selected
--(void) logComputerAssessmentAnswerVerification : (BOOL) verificationValue : (NSString*) questionText :  (NSInteger) answerOptionSelected : (NSArray*) answerOptions : (NSString*) buttonPressedVaue : (NSString *) computerActionValue : (NSString *) storyValue : (NSString *) chapterValue : (NSString*) currentAssessmentStep
+-(void) logComputerAssessmentAnswerVerification : (BOOL) verificationValue : (NSString*) questionText :  (NSInteger) answerOptionSelected : (NSArray*) answerOptions : (NSString*) buttonPressedVaue : (NSString *) computerActionValue : (NSString *) storyValue : (NSString *) chapterValue : (NSString*) currentAssessmentStep : (NSString *) answerText
 {
     //logging structure for user actions
     DDXMLElement *nodeComputerAction = [DDXMLElement elementWithName:@"Computer_Action"];
@@ -1347,7 +1347,7 @@ Context:
     DDXMLElement *nodeUserActionID = [DDXMLElement elementWithName:@"User_Action_ID" stringValue:[NSString stringWithFormat:@"%ld",(long)UserActionIDTag]];
     
     //logging selection
-    DDXMLElement *nodeSelection = [DDXMLElement elementWithName:@"Selection" stringValue:[NSString stringWithFormat:@"%d",answerOptionSelected]];
+    DDXMLElement *nodeSelection = [DDXMLElement elementWithName:@"Selection" stringValue:answerText];
     
     //Input parent node
     DDXMLElement *nodeInput = [DDXMLElement elementWithName:@"Input"];
@@ -1462,20 +1462,20 @@ Context:
     NSString *pageLanguageType = @"NULL";
     
     //Parse the page file path string
-    if(![pageFilePath isEqualToString:@"NULL"])
+    if(![pageFilePath isEqualToString:@"NULL"] && ![pageFilePath isEqualToString:@"Page Finished"])
     {
         NSString* pageFileName = [NSString stringWithFormat:@"%@",[pageFilePath lastPathComponent]];
         
         //Set page mode
-        if ([pageFileName rangeOfString:@"im"].location != NSNotFound)
+        if ([pageFileName rangeOfString:@"IM"].location != NSNotFound)
         {
             pageMode = @"IM";
         }
-        else if([pageFileName rangeOfString:@"pm"].location != NSNotFound)
+        else if([pageFileName rangeOfString:@"PM"].location != NSNotFound)
         {
             pageMode = @"PM";
         }
-        else if([pageFileName rangeOfString:@"intro"].location != NSNotFound)
+        else if([pageFileName rangeOfString:@"Intro"].location != NSNotFound)
         {
             pageMode = @"INTRO";
             pageNumber = @"0";
@@ -1498,10 +1498,15 @@ Context:
         else
         {
             pageLanguageType = @"E";
-            NSRange range = [pageFileName rangeOfString:@".xhmtl"];
+            NSRange range = [pageFileName rangeOfString:@".xhtml"];
             range.length = 1;
             range.location = range.location -1;
             pageNumber = [pageFileName substringWithRange:range];
+            
+            if([pageNumber isEqualToString:@"E"] || [pageNumber isEqualToString:@"S"])
+            {
+                pageNumber = @"NULL";
+            }
             
             //set page name
             pageName = [pageFileName substringToIndex:range.location];
@@ -1510,10 +1515,8 @@ Context:
         }
         
         //set chapter number
-        chapterNumber = [pageFileName substringToIndex:5];
+        chapterNumber = [pageFileName substringToIndex:6];
         chapterNumber = [chapterNumber substringFromIndex:5];
-        
-        pageName = @"NULL";
     }
     
     //removes file path and extracts filename of the page
@@ -1524,13 +1527,16 @@ Context:
     //removes file path and extracts filename of the page
     DDXMLElement *nodePageNumber = [DDXMLElement elementWithName:@"Page_Number" stringValue:pageNumber];
     DDXMLElement *nodePageName = [DDXMLElement elementWithName:@"Page_Name" stringValue:pageName];
+    DDXMLElement *nodePageLanguageType = [DDXMLElement elementWithName:@"Page_Language_Type" stringValue:pageLanguageType];
+    DDXMLElement *nodePageMode = [DDXMLElement elementWithName:@"Page_Mode" stringValue:pageMode];
+    
     
     DDXMLElement *nodeSentenceNumber = [DDXMLElement elementWithName:@"Sentence_Number" stringValue:[NSString stringWithFormat:@"%d", sentenceNumber]];
     DDXMLElement *nodeSentenceText = [DDXMLElement elementWithName:@"Sentence_Text" stringValue:sentenceText];
     
     DDXMLElement *nodeStepNumber = [DDXMLElement elementWithName:@"Step_Number" stringValue:[NSString stringWithFormat:@"%d", stepNumber]];
     
-    //DDXMLElement *nodeIdeaNumber = [DDXMLElement elementWithName:@"Idea_Number" stringValue:ideaNumber];
+    DDXMLElement *nodeIdeaNumber = [DDXMLElement elementWithName:@"Idea_Number" stringValue: [NSString stringWithFormat:@"%d", ideaNumber]];
     
     DDXMLElement *nodeTimestamp = [DDXMLElement elementWithName:@"Timestamp" stringValue:timeStampValue];
     
@@ -1545,9 +1551,12 @@ Context:
     [nodeContext addChild:nodeChapterName];
     [nodeContext addChild:nodePageNumber];
     [nodeContext addChild:nodePageName];
+    [nodeContext addChild:nodePageLanguageType];
+    [nodeContext addChild:nodePageMode];
     [nodeContext addChild:nodeSentenceNumber];
     [nodeContext addChild:nodeSentenceText];
     [nodeContext addChild:nodeStepNumber];
+    [nodeContext addChild:nodeIdeaNumber];
     //user step
     [nodeContext addChild:nodeTimestamp];
     
