@@ -70,7 +70,9 @@
     <item href="Text/Story1-The-Moving-Earth-PM-3.xhtml" id="story1-PM-3" media-type="application/xhtml+xml" />
     <item href="Text/Story2-Earthquakes-PM-3.xhtml" id="story2-PM-3" media-type="application/xhtml+xml" />
     <item href="Text/Story3-Tsunamis-PM-3.xhtml" id="story3-PM-3" media-type="application/xhtml+xml" />
+    <item href="Text/Story3-Tsunamis-PM-4.xhtml" id="story3-PM-4" media-type="application/xhtml+xml" />
     <item href="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-PM-3.xhtml" id="story4-PM-3" media-type="application/xhtml+xml" />
+    <item href="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-PM-4.xhtml" id="story4-PM-4" media-type="application/xhtml+xml" />
     <item href="Text/Story5-Tornados-PM-3.xhtml" id="story5-PM-3" media-type="application/xhtml+xml" />
     <item href="Images/land_main.png" id="land_main.png" media-type="image/png" />
     <item href="Images/california_fault.png" id="california_fault.png" media-type="image/png" />
@@ -130,6 +132,17 @@
     <item href="Images/air_blue.png" id="air_blue.png" media-type="image/png" />
     <item href="Images/house_noroof2.png" id="house_noroof2.png" media-type="image/png" />
     <item href="Images/house_roof2.png" id="house_roof2.png" media-type="image/png" />
+    <item href="Images/intro_icon.png" id="intro_icon.png" media-type="image/png" />
+    <item href="Images/Tornado_icon.png" id="Tornado_icon.png" media-type="image/png" />
+    <item href="Images/Tsunami_icon.png" id="Tsunami_icon.png" media-type="image/png" />
+    <item href="Images/Earthquake_icon.png" id="Earthquake_icon.png" media-type="image/png" />
+    <item href="Images/Volcano_icon.png" id="Volcano_icon.png" media-type="image/png" />
+    <item href="Images/Pangea_icon.png" id="Pangea_icon.png" media-type="image/png" />
+    <item href="Images/small_house01_fall.png" id="small_house01_fall.png" media-type="image/png" />
+    <item href="Images/intro_background.png" id="intro_background.png" media-type="image/png" />
+    <item href="Images/houses_fall.png" id="houses_fall.png" media-type="image/png" />
+    <item href="Images/plate_bulge3.png" id="plate_bulge3.png" media-type="image/png" />
+    <item href="Images/ocean_flatbulge.png" id="ocean_flatbulge.png" media-type="image/png" />
   </manifest>
   <spine toc="ncx">
     <itemref idref="story0-PM" />
@@ -153,9 +166,11 @@
     <itemref idref="story3-PM-1" />
     <itemref idref="story3-PM-2" />
     <itemref idref="story3-PM-3" />
+    <itemref idref="story3-PM-4" />
     <itemref idref="story4-PM-1" />
     <itemref idref="story4-PM-2" />
     <itemref idref="story4-PM-3" />
+    <itemref idref="story4-PM-4" />
     <itemref idref="story5-PM-1" />
     <itemref idref="story5-PM-2" />
     <itemref idref="story5-PM-3" />

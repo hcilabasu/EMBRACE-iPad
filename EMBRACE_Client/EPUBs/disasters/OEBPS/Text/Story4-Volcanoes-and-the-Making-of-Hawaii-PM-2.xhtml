@@ -5,9 +5,10 @@
 </head>
 
 <body background="../Images/ch4_bg_plume02.png">
-  <canvas height="768px" id="overlay" width="1024px"/>
+    <canvas height="768px" id="overlay" width="1024px"></canvas>
+    
+    <canvas height="768px" id="highlight" width="1024px"></canvas>
 
-  <canvas height="768px" id="highlight" width="1024px"/>
 
   <div class="textbox">
     <p class="sentence" id="s6">When the lava hits the ocean, it cools off and becomes rock.</p>
@@ -16,14 +17,15 @@
 
     <p class="sentence" id="s8">As enough lava forms rocks, the volcano makes an island.  </p>
     
-    <p class="sentence" id="s9">The picture shows  the Hawaiian island of Kaua’i that was made about five million years ago.</p>
+    <p class="sentence" id="s9">The picture shows  the Hawaiian island of Kaua'i that was made about five million years ago.</p>
 
     <p class="sentence actionSentence" id="s10">But remember, the Pacific plate is moving to the left in the picture.</p>
 
   </div>
 
-  <div class="images">
-    <img alt="lava" class="manipulationObject" id="lava" src="../Images/lava_ball.png" style="top:71%; left:63.75%; z-index:0"/> <img alt="lava" class="manipulationObject" id="lava" src="../Images/lava_cooled.png" style="top:41%; left:8.75%; z-index:0"/> <br/>
+  <div id="images" class="images">
+    <img alt="lava" class="manipulationObject" id="lava" src="../Images/lava_ball.png" style="top:71%; left:63.75%; z-index:0"/>
+    <img alt="lava" class="manipulationObject" id="lava" src="../Images/lava_cooled.png" style="top:41%; left:8.75%; z-index:0"/> 
   </div>
 </body>
 </html>

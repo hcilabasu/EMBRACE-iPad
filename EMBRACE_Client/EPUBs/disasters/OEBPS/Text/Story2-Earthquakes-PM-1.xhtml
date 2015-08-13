@@ -5,17 +5,18 @@
 </head>
 
 <body background="../Images/ch2_bg.png">
-  <canvas height="768px" id="overlay" width="1024px"/>
+    <canvas height="768px" id="overlay" width="1024px"></canvas>
+    
+    <canvas height="768px" id="highlight" width="1024px"></canvas>
 
-  <canvas height="768px" id="highlight" width="1024px"/>
 
   <div class="textbox">
     <p class="sentence" id="s0"><b>Earthquakes</b><br/>
     <br/></p>
 
-    <p class="sentence actionSentence" id="s1">The land shakes…the buildings move…the earth cracks open…</p>
+    <p class="sentence actionSentence" id="s1">The land shakes...the buildings move...the earth cracks open...</p>
 
-    <p class="sentence" id="s2">It’s an earthquake!</p>
+    <p class="sentence" id="s2">It's an earthquake!</p>
 
     <p class="sentence" id="s3">Why do earthquakes happen?</p>
 
@@ -26,8 +27,10 @@
  
   </div>
 
-  <div class="images">
-    <img alt="california" class="manipulationObject" id="california" src="../Images/california_nofault.png" style="top:5%; left:5%; z-index:0"/> <img alt="houses" class="manipulationObject" id="houses" src="../Images/houses.png" style="top:10%; left:10%; z-index:0"/> <img alt="north_america" class="manipulationObject" id="north_america" src="../Images/north_america_nofault.png" style="top:1%; left:20%; z-index:0"/> <br/>
+  <div id="images" class="images">
+    <img alt="california" class="manipulationObject" id="california" src="../Images/california_nofault.png" style="top:5%; left:5%; z-index:0"/>
+    <img alt="houses" class="manipulationObject" id="houses" src="../Images/houses.png" style="top:10%; left:10%; z-index:0"/>
+    <img alt="north_america" class="manipulationObject" id="north_america" src="../Images/north_america_nofault.png" style="top:0%; left:20%; z-index:0"/> 
   </div>
 </body>
 </html>

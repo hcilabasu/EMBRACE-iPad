@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <waypoints>
+        <waypoint waypointId="africa_away" x="50%" y="50%"/>
+        <waypoint waypointId="air_down" x="50%" y="50%"/>
+        <waypoint waypointId="air_up" x="50%" y="50%"/>
+        <waypoint waypointId="california_boom" x="50%" y="50%"/>
+        <waypoint waypointId="california_up" x="50%" y="50%"/>
+        <waypoint waypointId="california_up2" x="50%" y="50%"/>
+        <waypoint waypointId="gap" x="50%" y="50%"/>
+        <waypoint waypointId="india_away" x="50%" y="50%"/>
+        <waypoint waypointId="india_near_eurasia" x="50%" y="50%"/>
+        <waypoint waypointId="india_ungrouped" x="50%" y="50%"/>
+        <waypoint waypointId="ocean" x="50%" y="50%"/>
+        <waypoint waypointId="plate_big_move" x="50%" y="50%"/>
+        <waypoint waypointId="plate_small_move" x="50%" y="50%"/>
+        <waypoint waypointId="upHill" x="50%" y="50%"/>
     </waypoints>
-</metadata>
+</metadata>/Users/James/Desktop/EMBRACE-iPad/EMBRACE_Client/AuthoringModeViewController.m

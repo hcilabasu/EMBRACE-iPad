@@ -1,6 +1,9 @@
 var canvas = document.getElementById('overlay');
 var ctx = canvas.getContext('2d');
 
+var animCanvas = document.getElementById('animation');
+var animCtx = animCanvas.getContext('2d');
+
 var g = 0.1;
 var radius = 20;
 var amplitude = 100;
@@ -19,6 +22,13 @@ var direction = 1;
 var increment;
 
 var paths = {};
+
+var movRadius = 50; // outer radius
+var factor = 1;	// slipping/sliding factor
+var w = 1;	// angular velocity in radians per second
+var dt = 30/1000; // timestep = 1/FPS
+var vel = factor*movRadius*w;	// v = r w
+var angle = 0;
 
 function Path(name){
     this.pathRadius = 20;
@@ -119,6 +129,9 @@ function animFrame(object){
     }
     else if(object.animName == "followAnimation") {
         follow(object);
+    }
+    else if(object.animName == "rollAnimation") {
+        roll(object);
     }
 }
 
@@ -671,4 +684,17 @@ function CubicN(pct, a, b, c, d) {
     var t2 = pct * pct;
     var t3 = t2 * pct;
     return a + (-a * 3 + pct * (3 * a - a * pct)) * pct + (3 * b + pct * (-6 * b + b * 3 * pct)) * pct + (c * 3 - c * 3 * pct) * t2 + d * t3;
+}
+
+function roll(aniObject) {
+    aniObject.location.x += vel*dt;
+	angle += w*dt;
+	animCtx.clearRect(0, 0, animCanvas.width, animCanvas.height);
+	animCtx.save();
+	animCtx.translate(aniObject.location.x, aniObject.location.y);
+	animCtx.rotate(angle);
+	animCtx.translate(-aniObject.location.x, -aniObject.location.y);
+    animCtx.drawImage(aniObject.object,aniObject.location.x,aniObject.location.y);
+	animCtx.restore();
+    document.getElementById('animation').style.zIndex = "100";
 }

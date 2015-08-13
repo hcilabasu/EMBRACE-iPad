@@ -5,9 +5,10 @@
 </head>
 
 <body background="../Images/ch4_bg_plume02.png">
-  <canvas height="768px" id="overlay" width="1024px"/>
+    <canvas height="768px" id="overlay" width="1024px"></canvas>
+    
+    <canvas height="768px" id="highlight" width="1024px"></canvas>
 
-  <canvas height="768px" id="highlight" width="1024px"/>
 
   <div class="textbox">
     <p class="sentence" id="s0"><b>Volcanoes and the Making of Hawai'i</b><br/>
@@ -19,14 +20,14 @@
 
     <p class="sentence" id="s3">Volcanoes are often found where plates meet, but sometimes a hotspot lets lava spew up in the middle of a plate.</p>
 
-    <p class="sentence" id="s4">The islands of Hawai’i were formed while the Pacific plate moved over a hotspot.</p>
+    <p class="sentence" id="s4">The islands of Hawai'i were formed while the Pacific plate moved over a hotspot.</p>
 
 <p class="sentence actionSentence" id="s5">In the picture, the lava moves up from a hotspot from deep in the earth.</p>
 
   </div>
 
-  <div class="images">
-    <img alt="lava" class="manipulationObject" id="lava" src="../Images/lava_ball.png" style="top:41%; left:8.75%; z-index:0"/> <br/>
+  <div id="images" class="images">
+    <img alt="lava" class="manipulationObject" id="lava" src="../Images/lava_ball.png" style="top:41%; left:8.75%; z-index:0"/> 
   </div>
 </body>
 </html>
