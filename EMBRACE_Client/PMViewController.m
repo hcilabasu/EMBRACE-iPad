@@ -841,6 +841,14 @@ ConditionSetup *conditionSetup;
             
             [self incrementCurrentStep];
         }
+        else if ([[currSolStep stepType] isEqualToString:@"appear"]) {
+            [self loadImage];
+            [self incrementCurrentStep];
+        }
+        else if ([[currSolStep stepType] isEqualToString:@"disappear"]) {
+            [self hideImage];
+            [self incrementCurrentStep];
+        }
         else if([[currSolStep stepType] isEqualToString:@"animate"]) {
             [self animateObject];
             [self incrementCurrentStep];
@@ -2547,6 +2555,60 @@ ConditionSetup *conditionSetup;
             
             //Logging added by James for Swap Images
             [[ServerCommunicationController sharedManager] logComputerSwapImages : object1Id : altSrc: @"Swap Image" : bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+        }
+    }
+}
+
+/*
+ Loads an image calling the loadImage JS function and using the AlternateImage class
+ */
+-(void) loadImage {
+    if (numSteps > 0) {
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        if ([[currSolStep stepType] isEqualToString:@"appear"]) {
+            //Get information for appear step type
+            NSString* object1Id = [currSolStep object1Id];
+            NSString* action = [currSolStep action];
+            
+            //Get alternate image
+            AlternateImage* altImage = [model getAlternateImageWithAction:action];
+            
+            //Get alternate image information
+            NSString* altSrc = [altImage alternateSrc];
+            NSString* width = [altImage width];
+            CGPoint location = [altImage location];
+            NSString* className = [altImage className];
+            NSString* zPosition = [altImage zPosition];
+            
+            //Swap images using alternative src
+            NSString* loadImage = [NSString stringWithFormat:@"loadImage('%@', '%@', '%@', %f, %f, '%@', %d)", object1Id, altSrc, width, location.x, location.y, className, zPosition.intValue];
+            [bookView stringByEvaluatingJavaScriptFromString:loadImage];
+        }
+    }
+}
+
+/*
+ Calls the removeImage from the ImageManipulation.js file
+ */
+-(void) hideImage {
+    if (numSteps > 0) {
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        if ([[currSolStep stepType] isEqualToString:@"disappear"]) {
+            NSString* object1Id = [currSolStep object1Id];
+            
+            //Hide image
+            NSString* hideImage = [NSString stringWithFormat:@"removeImage('%@')", object1Id];
+            [bookView stringByEvaluatingJavaScriptFromString:hideImage];
         }
     }
 }

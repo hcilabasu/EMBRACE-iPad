@@ -15,18 +15,6 @@
         </navLabel>
         <content src="Text/Introduction-to-Lopez-House-Mystery-Characters-Title.xhtml"/>
     </navPoint>
-    <navPoint class="ChapterTitle" id="Chapter0Title" playOrder="0">
-        <navLabel>
-            <text>Introduction to The Lopez House Mystery</text>
-        </navLabel>
-        <content src="Text/Introduction-to-Lopez-House-Mystery-Characters-Title.xhtml"/>
-        <navPoint class="PM_MODE" id="story0-PM">
-            <navLabel>
-                <text>Introduction to The Lopez House Mystery - PM</text>
-            </navLabel>
-            <content src="Text/Story1-Introduction-At-the-House-PM.xhtml"/>
-        </navPoint>
-    </navPoint>
     <navPoint class="ChapterTitle" id="Chapter1Title" playOrder="1">
 		<navLabel>
 			<text>The Lopez Family</text>
@@ -245,10 +233,6 @@
 	</navPoint>
 </navMap>
 <pageList>
-	<pageTarget id="p0" type="normal" value="0">
-    	<navLabel><text>Chapter 1 - Introduction to The Lopez House Mystery - Physical Manipulation</text></navLabel>
-		<content src="Text/Story1-Introduction-At-the-House-PM.xhtml"/>
-	</pageTarget>
 	<pageTarget id="p1" type="normal" value="1">
     	<navLabel><text>Title - Introduction to Lopez House Mystery Characters</text></navLabel>
         <content src="Text/Introduction-to-Lopez-House-Mystery-Characters-Title.xhtml"/>

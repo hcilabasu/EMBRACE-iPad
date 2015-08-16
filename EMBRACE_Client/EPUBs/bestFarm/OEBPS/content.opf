@@ -95,6 +95,7 @@
     <item href="Images/Story-6-Everyone-Helps.png" id="Story-6-Everyone-Helps.png" media-type="image/png"/>
     <item href="Images/Story-7-The-Best-Farm-Award.png" id="Story-7-The-Best-Farm-Award.png" media-type="image/png"/>
     <item href="Images/tractor_large.png" id="tractor_large.png" media-type="image/png"/>
+    <item href="Images/farm_icon.png" id="farm_icon.png" media-type="image/png"/>
   </manifest>
   <spine toc="ncx">
     <itemref idref="Introduction-to-Best-Farm-Characters-Title.xhtml"/>

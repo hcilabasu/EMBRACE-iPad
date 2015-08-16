@@ -39,7 +39,6 @@ typedef enum InteractionMode {
     
     NSUInteger currentSentence; //Active sentence to be completed.
     NSUInteger totalSentences; //Total number of sentences on this page.
-    NSString *currentSentenceText;
     
     PhysicalManipulationSolution* PMSolution; //Solution steps for current chapter
     NSUInteger numSteps; //Number of steps for current sentence
@@ -197,13 +196,13 @@ ConditionSetup *conditionSetup;
     IntroductionClass.languageString = @"E";
     IntroductionClass.allowInteractions = TRUE;
     IntroductionClass.sameWordClicked = false;
-
+    
     useSubject = ALL_ENTITIES;
     useObject = ONLY_CORRECT;
     pinchToUngroup = FALSE;
     replenishSupply = FALSE;
     allowSnapback = TRUE;
-
+    
     currentGroupings = [[NSMutableDictionary alloc] init];
     
     //Create contextualMenuController
@@ -322,7 +321,7 @@ ConditionSetup *conditionSetup;
             
             //Move either requires object1 to move to object2 (which creates a group interaction) or it requires object1 to move to a waypoint
             if (object2Id != nil) {
-              //  PossibleInteraction* correctInteraction = [self getCorrectInteraction];
+                //  PossibleInteraction* correctInteraction = [self getCorrectInteraction];
                 //[self performInteraction:correctInteraction]; //performs solution step
             }
             else if (waypointId != nil) {
@@ -512,85 +511,85 @@ ConditionSetup *conditionSetup;
  */
 -(IBAction)pinchGesturePerformed:(UIPinchGestureRecognizer *)recognizer {
     /*CGPoint location = [recognizer locationInView:self.view];
-    
-    if(recognizer.state == UIGestureRecognizerStateBegan && IntroductionClass.allowInteractions && pinchToUngroup) {
-        pinching = TRUE;
-        
-        NSString* imageAtPoint = [self getObjectAtPoint:location ofType:@"manipulationObject"];
-        
-        //if it's an image that can be moved, then start moving it.
-        if(imageAtPoint != nil && !stepsComplete) {
-            separatingObjectId = imageAtPoint;
-        }
-    }
-    else if(recognizer.state == UIGestureRecognizerStateEnded) {
-        //Get pairs of other objects grouped with this object.
-        NSArray* itemPairArray = [self getObjectsGroupedWithObject:separatingObjectId];
-        
-        if (itemPairArray != nil) {
-            NSMutableArray* possibleInteractions = [[NSMutableArray alloc] init];
-            
-            for(NSString* pairStr in itemPairArray) {
-                //Create an array that will hold all the items in this group
-                NSMutableArray* groupedItemsArray = [[NSMutableArray alloc] init];
-                
-                //Separate the objects in this pair and add them to our array of all items in this group.
-                [groupedItemsArray addObjectsFromArray:[pairStr componentsSeparatedByString:@", "]];
-                
-                //Only allow the correct subject and object to ungroup if necessary
-                BOOL allowSubjectToUngroup = false;
-                BOOL allowObjectToUngroup = false;
-                
-                for(NSString* obj in groupedItemsArray) {
-                    if (useSubject == ONLY_CORRECT) {
-                        if ([self checkSolutionForSubject:obj]) {
-                            allowSubjectToUngroup = true;
-                        }
-                    }
-                    else if (useSubject == ALL_ENTITIES) {
-                        allowSubjectToUngroup = true;
-                    }
-                    
-                    if (useObject == ONLY_CORRECT) {
-                        if ([self checkSolutionForObject:obj]) {
-                            allowObjectToUngroup = true;
-                        }
-                    }
-                    else if (useObject == ALL_ENTITIES) {
-                        allowObjectToUngroup = true;
-                    }
-                }
-                
-                //Objects are allowed to ungroup
-                if (allowSubjectToUngroup && allowObjectToUngroup) {
-                    PossibleInteraction* interaction = [[PossibleInteraction alloc] initWithInteractionType:UNGROUP];
-                    [interaction addConnection:UNGROUP :groupedItemsArray :nil];
-                    
-                    //Only one possible ungrouping found
-                    if ([itemPairArray count] == 1) {
-                        [self checkSolutionForInteraction:interaction]; //check if interaction is correct before ungrouping
-                    }
-                    //Multiple possible ungroupings found
-                    else {
-                        [possibleInteractions addObject:interaction];
-                    }
-                }
-            }
-            
-            //Show the menu if multiple possible ungroupings are found
-            if ([itemPairArray count] > 1) {
-                //Populate the data source and expand the menu.
-                [self populateMenuDataSource:possibleInteractions:allRelationships];
-                
-                if(!menuExpanded)
-                    [self expandMenu];
-            }
-        }
-        else
-            NSLog(@"no items grouped");
-        
-        pinching = FALSE;
-    }
+     
+     if(recognizer.state == UIGestureRecognizerStateBegan && IntroductionClass.allowInteractions && pinchToUngroup) {
+     pinching = TRUE;
+     
+     NSString* imageAtPoint = [self getObjectAtPoint:location ofType:@"manipulationObject"];
+     
+     //if it's an image that can be moved, then start moving it.
+     if(imageAtPoint != nil && !stepsComplete) {
+     separatingObjectId = imageAtPoint;
+     }
+     }
+     else if(recognizer.state == UIGestureRecognizerStateEnded) {
+     //Get pairs of other objects grouped with this object.
+     NSArray* itemPairArray = [self getObjectsGroupedWithObject:separatingObjectId];
+     
+     if (itemPairArray != nil) {
+     NSMutableArray* possibleInteractions = [[NSMutableArray alloc] init];
+     
+     for(NSString* pairStr in itemPairArray) {
+     //Create an array that will hold all the items in this group
+     NSMutableArray* groupedItemsArray = [[NSMutableArray alloc] init];
+     
+     //Separate the objects in this pair and add them to our array of all items in this group.
+     [groupedItemsArray addObjectsFromArray:[pairStr componentsSeparatedByString:@", "]];
+     
+     //Only allow the correct subject and object to ungroup if necessary
+     BOOL allowSubjectToUngroup = false;
+     BOOL allowObjectToUngroup = false;
+     
+     for(NSString* obj in groupedItemsArray) {
+     if (useSubject == ONLY_CORRECT) {
+     if ([self checkSolutionForSubject:obj]) {
+     allowSubjectToUngroup = true;
+     }
+     }
+     else if (useSubject == ALL_ENTITIES) {
+     allowSubjectToUngroup = true;
+     }
+     
+     if (useObject == ONLY_CORRECT) {
+     if ([self checkSolutionForObject:obj]) {
+     allowObjectToUngroup = true;
+     }
+     }
+     else if (useObject == ALL_ENTITIES) {
+     allowObjectToUngroup = true;
+     }
+     }
+     
+     //Objects are allowed to ungroup
+     if (allowSubjectToUngroup && allowObjectToUngroup) {
+     PossibleInteraction* interaction = [[PossibleInteraction alloc] initWithInteractionType:UNGROUP];
+     [interaction addConnection:UNGROUP :groupedItemsArray :nil];
+     
+     //Only one possible ungrouping found
+     if ([itemPairArray count] == 1) {
+     [self checkSolutionForInteraction:interaction]; //check if interaction is correct before ungrouping
+     }
+     //Multiple possible ungroupings found
+     else {
+     [possibleInteractions addObject:interaction];
+     }
+     }
+     }
+     
+     //Show the menu if multiple possible ungroupings are found
+     if ([itemPairArray count] > 1) {
+     //Populate the data source and expand the menu.
+     [self populateMenuDataSource:possibleInteractions:allRelationships];
+     
+     if(!menuExpanded)
+     [self expandMenu];
+     }
+     }
+     else
+     NSLog(@"no items grouped");
+     
+     pinching = FALSE;
+     }
      */
 }
 
@@ -600,14 +599,24 @@ ConditionSetup *conditionSetup;
     NSString *ycordPercent = [NSString stringWithFormat:@"%f", ([ycord.text integerValue] / [bookView frame].size.height * 100)];
     
     
-    NSString* newHotspot = [NSString stringWithFormat:@"<hotspot objId=\"%@\" action=\"%@\" role=\"%@\" x=\"%@%%\" y=\"%@%%\"/>", hotspotID.text, action.text, role.text, xcordPercent, ycordPercent];
+    NSString* newHotspot = [NSString stringWithFormat:@"hotspot objId=\"%@\" action=\"%@\" role=\"%@\" x=\"%@%%\" y=\"%@%%\"", hotspotID.text, action.text, role.text, xcordPercent, ycordPercent];
     NSLog(@"%@", newHotspot);
     
     //set file path to access introduction metadata
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"Hotspots-MetaData.xml"];
+    
     NSString *filepath = [[book mainContentPath] stringByAppendingString:@"Hotspots-MetaData.xml"];
     
     //Get xml data of the metadata file.
-    NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
+    NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:path];
+    
+    if (xmlData == NULL)
+    {
+        xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
+    }
+    
     
     NSError *error;
     
@@ -666,12 +675,19 @@ ConditionSetup *conditionSetup;
     NSLog(@"%@", newWaypoint);
     
     //set file path to access introduction metadata
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"Waypoints-MetaData.xml"];
+    
     NSString *filepath = [[book mainContentPath] stringByAppendingString:@"Waypoints-MetaData.xml"];
     
     //Get xml data of the metadata file.
-    NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
+    NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:path];
     
-    NSError *error;
+    if (xmlData == NULL)
+    {
+        xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
+    }
     
     //break out metadata file into seperate components
     GDataXMLDocument *metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:nil];
@@ -726,42 +742,49 @@ ConditionSetup *conditionSetup;
     NSString *heightPercent = [NSString stringWithFormat:@"%f", ([height.text integerValue] / [bookView frame].size.width * 100)];
     NSString *widthPercent = [NSString stringWithFormat:@"%f", ([width.text integerValue] / [bookView frame].size.width * 100)];
     NSString* newLocation = [NSString stringWithFormat:@"location locationId=\"%@\" x=\"%@%%\" y=\"%@%%\" height=\"%@%%\" width=\"%@%%\"", locationID.text, xcordPercent, ycordPercent, heightPercent, widthPercent];
-
-     //set file path to access introduction metadata
-     NSString *filepath = [[book mainContentPath] stringByAppendingString:@"Locations-MetaData.xml"];
-     
-     //Get xml data of the metadata file.
-     NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
     
-     NSError *error;
+    //set file path to access introduction metadata
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"Locations-MetaData.xml"];
     
-     //break out metadata file into seperate components
-     GDataXMLDocument *metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:nil];
+    NSString *filepath = [[book mainContentPath] stringByAppendingString:@"Locations-MetaData.xml"];
     
-     xmlDocTemp = [[DDXMLDocument alloc] initWithData:xmlData options:0 error:nil];
+    //Get xml data of the metadata file.
+    NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:path];
     
-     //Reading in the location information.
-     NSArray* locationElements = [metadataDoc nodesForXPath:@"//locations" error:nil];
-     GDataXMLElement* locationElement = (GDataXMLElement*)[locationElements objectAtIndex:0];
-     
-     NSArray* locations = [locationElement elementsForName:@"location"];
+    if (xmlData == NULL)
+    {
+        xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
+    }
     
-     bool doesLocationExist = false;
+    //break out metadata file into seperate components
+    GDataXMLDocument *metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:nil];
     
-     //Read in the location information.
-     for (GDataXMLElement* location in locations) {
-         NSLog(@"%@", [location XMLString]);
+    xmlDocTemp = [[DDXMLDocument alloc] initWithData:xmlData options:0 error:nil];
+    
+    //Reading in the location information.
+    NSArray* locationElements = [metadataDoc nodesForXPath:@"//locations" error:nil];
+    GDataXMLElement* locationElement = (GDataXMLElement*)[locationElements objectAtIndex:0];
+    
+    NSArray* locations = [locationElement elementsForName:@"location"];
+    
+    bool doesLocationExist = false;
+    
+    //Read in the location information.
+    for (GDataXMLElement* location in locations) {
+        NSLog(@"%@", [location XMLString]);
         
-         if ([[location XMLString] isEqualToString:newLocation]) {
-             NSLog(@"Error: Location already exists");
-             NSLog(@"%@",newLocation);
-             doesLocationExist = true;
-             return;
-         }
-     }
+        if ([[location XMLString] isEqualToString:newLocation]) {
+            NSLog(@"Error: Location already exists");
+            NSLog(@"%@",newLocation);
+            doesLocationExist = true;
+            return;
+        }
+    }
     
     if (doesLocationExist == false) {
-       
+        
         NSArray *locations = [xmlDocTemp nodesForXPath:@"//locations" error:nil];
         DDXMLElement *locationElement = (DDXMLElement*)[locations objectAtIndex:0];
         DDXMLElement *newXMLLocation = [DDXMLElement elementWithName:newLocation];
@@ -869,7 +892,7 @@ ConditionSetup *conditionSetup;
          */
         entryview = [[UIView alloc] initWithFrame:CGRectMake(650, 20, 200, 200)];
         entryview.backgroundColor = [UIColor whiteColor];
-
+        
         waypointID = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 180, 30)];
         waypointID.text = @"WaypointID";
         waypointID.textColor = [UIColor blackColor];
@@ -1015,7 +1038,7 @@ ConditionSetup *conditionSetup;
          */
         entryview = [[UIView alloc] initWithFrame:CGRectMake(650, 20, 200, 290)];
         entryview.backgroundColor = [UIColor whiteColor];
-
+        
         locationID = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 180, 30)];
         locationID.text = @"LocationID";
         locationID.textColor = [UIColor blackColor];
@@ -1110,7 +1133,7 @@ ConditionSetup *conditionSetup;
         zindexOfObjectAtPoint = [self getzindexOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"manipulationObject"];
         
         if (zindexOfObjectAtPoint == nil) {
-           zindexOfObjectAtPoint = [self getzindexOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"backgroundObject"];
+            zindexOfObjectAtPoint = [self getzindexOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"backgroundObject"];
             
             if (objectAtPoint == nil) {
                 zindex.text = @"zindex";
@@ -1155,7 +1178,7 @@ ConditionSetup *conditionSetup;
         /*
          add new sub view with textboxes, cancel button, and save button
          */
-       
+        
         entryview = [[UIView alloc] initWithFrame:CGRectMake(TapLocationX-150, TapLocationY-150, 200, 160)];
         entryview.backgroundColor = [UIColor whiteColor];
         
@@ -1325,7 +1348,7 @@ ConditionSetup *conditionSetup;
 }
 
 -(void)save:(id)sender{
-
+    
 }
 
 -(void)Create:(id)sender{
@@ -1370,7 +1393,7 @@ ConditionSetup *conditionSetup;
     /*
      when tapping anywhere on screen see if it is an object, if it is pop up a new menu
      
-     New menu: 
+     New menu:
      
      If background
      Save as Waypoint: saves current position and prompts for waypointid name,x, y
@@ -1387,38 +1410,38 @@ ConditionSetup *conditionSetup;
     
     
     /*CGPoint location = [recognizer locationInView:self.view];
-    
-        IntroductionClass.allowInteractions = true;
-        allowSnapback = false;
-    
-        
-        //No longer moving object
-        movingObject = FALSE;
-        movingObjectId = nil;
-        
-        //Re-add the tap gesture recognizer before the menu is removed
-        [self.view addGestureRecognizer:tapRecognizer];
-    
-        
-        //Get the object at that point if it's a manipulation object.
-        NSString* imageAtPoint = [self getObjectAtPoint:location ofType:@"manipulationObject"];
-        
-        //NSLog(@"location pressed: (%f, %f)", location.x, location.y);
-        
-        //Retrieve the name of the object at this location
-        NSString* requestImageAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
-        
-        imageAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPoint];
-        
-        //Capture the clicked text, if it exists
-        NSString* requestSentenceText = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).innerHTML", location.x, location.y];
-        NSString* sentenceText = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceText];
-        
-        //Capture the clicked text id, if it exists
-        NSString* requestSentenceID = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
-        NSString* sentenceID = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceID];
-        int sentenceIDNum = [[sentenceID substringFromIndex:0] intValue];
-    */
+     
+     IntroductionClass.allowInteractions = true;
+     allowSnapback = false;
+     
+     
+     //No longer moving object
+     movingObject = FALSE;
+     movingObjectId = nil;
+     
+     //Re-add the tap gesture recognizer before the menu is removed
+     [self.view addGestureRecognizer:tapRecognizer];
+     
+     
+     //Get the object at that point if it's a manipulation object.
+     NSString* imageAtPoint = [self getObjectAtPoint:location ofType:@"manipulationObject"];
+     
+     //NSLog(@"location pressed: (%f, %f)", location.x, location.y);
+     
+     //Retrieve the name of the object at this location
+     NSString* requestImageAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
+     
+     imageAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPoint];
+     
+     //Capture the clicked text, if it exists
+     NSString* requestSentenceText = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).innerHTML", location.x, location.y];
+     NSString* sentenceText = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceText];
+     
+     //Capture the clicked text id, if it exists
+     NSString* requestSentenceID = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
+     NSString* sentenceID = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceID];
+     int sentenceIDNum = [[sentenceID substringFromIndex:0] intValue];
+     */
 }
 
 /*
@@ -1444,7 +1467,7 @@ ConditionSetup *conditionSetup;
 -(IBAction)swipeGesturePerformed:(UISwipeGestureRecognizer *)recognizer {
     NSLog(@"Swiper no swiping!");
     
-        [self loadNextPage];
+    [self loadNextPage];
 }
 
 /*
@@ -1463,8 +1486,11 @@ ConditionSetup *conditionSetup;
             
             //Get the object at that point if it's a manipulation object.
             NSString* imageAtPoint = [self getObjectAtPoint:location ofType:@"manipulationObject"];
-            //NSLog(@"location pressed: (%f, %f)", location.x, location.y);
             
+            if(imageAtPoint == nil)
+            {
+                imageAtPoint = [self getObjectAtPoint:location ofType:@"backgroundObject"];
+            }
             //if it's an image that can be moved, then start moving it.
             if(imageAtPoint != nil ) {
                 
@@ -1563,7 +1589,13 @@ ConditionSetup *conditionSetup;
 -(NSString*) getObjectAtPoint:(CGPoint) location ofType:(NSString*)class {
     //Temporarily hide the overlay canvas to get the object we need
     NSString* hideCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'none';", @"'overlay'"];
+    //temporarily hide the textbox
+    NSString* hideTextbox = [NSString stringWithFormat:@"document.getElementsByClassName(%@).style.display = 'none';", @"'textbox'"];
+    //
+    
+    
     [bookView stringByEvaluatingJavaScriptFromString:hideCanvas];
+    [bookView stringByEvaluatingJavaScriptFromString:hideTextbox];
     
     //Retrieve the elements at this location and see if it's an element that is moveable.
     NSString* requestImageAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
@@ -1605,9 +1637,9 @@ ConditionSetup *conditionSetup;
     NSString* imageAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPoint];
     
     NSString* requestZindexAtPoint = [NSString stringWithFormat:@"%@.style.zIndex", imageAtPoint];
-                                      
+    
     NSString *zindexAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestZindexAtPoint];
-                                      
+    
     NSString* imageAtPointClass = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointClass];
     
     //Bring the canvas back to where it should be.
@@ -1712,30 +1744,80 @@ ConditionSetup *conditionSetup;
     NSString* currentHMTL = [bookView stringByEvaluatingJavaScriptFromString:returnHTML];
     NSLog(@"%@", currentHMTL);
     
+    int startIndex =  [currentHMTL rangeOfString:@"<div id=\"images\" class=\"images\">"].location+20;
+    int endIndex = [[currentHMTL substringFromIndex:startIndex] rangeOfString:@"</div>"].location;
+    
+    NSString *newImages = [currentHMTL substringFromIndex:startIndex];
+    newImages = [newImages substringToIndex:endIndex];
+    
+    NSString *concatenatedString = @"";
+    
+    for(int i =0; i<newImages.length; i++)
+    {
+        NSString *curChar = [NSString stringWithFormat:@"%c", [newImages characterAtIndex:i]];
+        
+        if([curChar isEqualToString:@"<"])
+        {
+            for(int j = i; j<newImages.length; j++)
+            {
+                
+                NSString *nextChar = [NSString stringWithFormat:@"%c", [newImages characterAtIndex:j]];
+                
+                if ([nextChar isEqualToString:@">"]) {
+                    concatenatedString = [concatenatedString stringByAppendingString:@"/"];
+                    concatenatedString = [concatenatedString stringByAppendingString:nextChar];
+                    i=j;
+                    j=newImages.length;
+                }
+                else
+                {
+                    concatenatedString = [concatenatedString stringByAppendingString:nextChar];
+                }
+            }
+        }
+        else
+        {
+            concatenatedString = [concatenatedString stringByAppendingString:curChar];
+        }
+    }
+    
+    NSLog(@"%@", concatenatedString);
+    
+    startIndex = [pageContents rangeOfString:@"<div id=\"images\" class=\"images\">"].location+20;
+    endIndex = [[pageContents substringFromIndex:startIndex] rangeOfString:@"</div>"].location+startIndex;
+    NSString *finalHTML = [pageContents substringToIndex:startIndex];
+    NSLog(@"%@", finalHTML);
+    finalHTML = [finalHTML stringByAppendingString:concatenatedString];
+    NSLog(@"%@", finalHTML);
+    NSString *tempString = [pageContents substringFromIndex:endIndex];
+    NSLog(@"%@", tempString);
+    finalHTML = [finalHTML stringByAppendingString:tempString];
+    NSLog(@"%@", finalHTML);
+    
     //saves current state of html page with updated locations and overides file (overidding currently turned off to not loose data for finished stories and instead saves a copy into the same directly as the log files)
     //eventually will be changed to simply write to same directory that file actually exists in and will override it
     //will still have to rebuild the epubs inorder to see the new changes to the xhtml file
     
-        //
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    //
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     
-        //
-        NSString *documentsDirectory = [paths objectAtIndex:0];
+    //
+    NSString *documentsDirectory = [paths objectAtIndex:0];
     
-        NSString* fileName = [NSString stringWithFormat:@"%@%@",[pageContents lastPathComponent], @"copy"];
+    NSString* fileName = [NSString stringWithFormat:@"%@%@",[[currentPage lastPathComponent] substringToIndex:[currentPage lastPathComponent].length-6], @"copy"];
     
-        //file path to save to
-        NSString *path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@", fileName, @"xhtml"]];
-        //toggle to switch between saving at logging location or to overide file
-        //NSString *path = [book mainContentPath] stringByAppendingString:fileName];
+    //file path to save to
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@", fileName, @"xhtml"]];
+    //toggle to switch between saving at logging location or to overide file
+    //NSString *path = [book mainContentPath] stringByAppendingString:fileName];
     
-        if (![currentHMTL writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil]) {
-            NSLog(@"Could not write document out...");
-            NSLog(@"%@", currentHMTL);
-        }
+    if (![finalHTML writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil]) {
+        NSLog(@"Could not write document out...");
+        NSLog(@"%@", finalHTML);
+    }
     
-        NSLog(@"%@", currentHMTL);
-        NSLog(@"Successfully wrote file");
+    NSLog(@"%@", finalHTML);
+    NSLog(@"Successfully wrote file");
 }
 
 -(void)saveCurrentStep{
@@ -1830,6 +1912,14 @@ ConditionSetup *conditionSetup;
         adjLocation.y = [bookView frame].size.height - imageHeight;
     else if(adjLocation.y < 0)
         adjLocation.y = 0;
+    
+    //May want to add code to keep objects from moving to the location that the text is taking up on screen.
+    
+    //logs only if object is moved by computer action, user pan done outside of this function
+    if (![waypointID isEqualToString:@"isMoving"]) {
+        //Logging added by James for Automatic Computer Move Object
+        //[[ServerCommunicationController sharedManager] logComputerMoveObject: object : waypointID: startLocation.x : startLocation.y : adjLocation.x : adjLocation.y : @"Snap to Hotspot" : bookTitle : chapterTitle : currentPage : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] : [NSString stringWithFormat:@"%lu" , (unsigned long)currentStep]];
+    }
     
     
     //NSLog(@"new location of %@: (%f, %f)", object, adjLocation.x, adjLocation.y);
@@ -1989,37 +2079,37 @@ ConditionSetup *conditionSetup;
 -(IBAction)pressedNext:(id)sender {
     if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
         // If the user pressed next
-            if (IntroductionClass.currentIntroStep > IntroductionClass.totalIntroSteps) {
-                [self loadNextPage]; //logging done in loadNextPage
-            }
-            else {
-                // Load the next step
-                [IntroductionClass loadIntroStep:bookView: currentSentence];
-                [self setupCurrentSentenceColor];
-                
-                //add logging: next intro step
-            }
+        if (IntroductionClass.currentIntroStep > IntroductionClass.totalIntroSteps) {
+            [self loadNextPage]; //logging done in loadNextPage
+        }
+        else {
+            // Load the next step
+            [IntroductionClass loadIntroStep:bookView: currentSentence];
+            [self setupCurrentSentenceColor];
+            
+            //add logging: next intro step
+        }
     }
     else if ([IntroductionClass.vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
-    
-            [self loadNextPage]; //logging done in loadNextPage
+        
+        [self loadNextPage]; //logging done in loadNextPage
     }
     
     //else if (stepsComplete || numSteps == 0 || !IntroductionClass.allowInteractions) {
-        else{
-            //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
-            currentSentence++;
-            
-            //Set up current sentence appearance and solution steps
-            [self saveCurrentHTML];
-            [self setupCurrentSentence];
-            [self colorSentencesUponNext];
-            
-            //currentSentence is 1 indexed.
-            if(currentSentence > totalSentences) {
-                [self loadNextPage];
-                //logging done in loadNextPage
-            }
+    else{
+        //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
+        currentSentence++;
+        
+        //Set up current sentence appearance and solution steps
+        [self saveCurrentHTML];
+        [self setupCurrentSentence];
+        [self colorSentencesUponNext];
+        
+        //currentSentence is 1 indexed.
+        if(currentSentence > totalSentences) {
+            [self loadNextPage];
+            //logging done in loadNextPage
+        }
     }
 }
 

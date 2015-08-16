@@ -570,6 +570,36 @@ function swapImageSrc(objectId, alternateSrc, width, left, top) {
 }
 
 /*
+ * Loads an image at a given location
+ */
+function loadImage(objectId, source, width, left, top, className, zPosition) {
+    var image = document.createElement("img");
+    
+    imag.src = "../Images/" + source; //load image
+    
+    //Adjust image style
+    image.style.width = width;
+    image.style.left = left + "%";
+    image.style.top = top + "%";
+    image.style.zIndex = zPosition;
+    
+    image.alt = objectId;
+    image.className = className;
+    image.id = objectId;
+    
+    var images = document.getElementById('images');
+    images.appendChild(image);
+}
+
+/*
+ * Removes an image as specified on the metadata
+ */
+function removeImage(objectId) {
+    var image = document.getElementById(objectId);
+    image.parentNode.removeChild(image);
+}
+
+/*
  * This may be moved into a different js file, if there are more things to do when moving to the next sentence.
  * This function just sets the sentence opacity to the specified opacity.
  * It's used to setup the opacity when the activity loads, and when moving from one sentence to the next. 
