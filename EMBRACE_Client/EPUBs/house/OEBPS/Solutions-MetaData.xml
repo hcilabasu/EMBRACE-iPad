@@ -94,7 +94,7 @@
                     <playSound fileName="dog_labradoodle_bark_twice_001.mp3"/>
                 </step>
                 <step number="2">
-                    <animate obj1Id="keys" action="fallAnimation" waypointId="nearTree"/>
+                    <animate obj1Id="keys" action="fallAnimation" waypointId="nearTree" areaId=""/>
                 </step>
             </sentence>
         </story>
@@ -153,7 +153,7 @@
                     <playSound fileName="dog_labradoodle_bark_twice_001.mp3"/>
                 </step>
                 <step number="2">
-                    <animate obj1Id="spoon" action="fallAnimation" waypointId="nearTree"/>
+                    <animate obj1Id="spoon" action="fallAnimation" waypointId="nearTree" areaId=""/>
                 </step>
             </sentence>
             <sentence number="8">
@@ -205,7 +205,7 @@
                     <playSound fileName="dog_labradoodle_bark_twice_001.mp3"/>
                 </step>
                 <step number="2">
-                    <animate obj1Id="rattle" action="fallAnimation" waypointId="nearTree"/>
+                    <animate obj1Id="rattle" action="fallAnimation" waypointId="nearTree" areaId=""/>
                 </step>
             </sentence>
             <sentence number="10">
@@ -276,7 +276,7 @@
                     <playSound fileName="dog_labradoodle_bark_twice_001.mp3"/>
                 </step>
                 <step number="2">
-                    <animate obj1Id="keys" action="fallAnimation" waypointId="nearTree"/>
+                    <animate obj1Id="keys" action="fallAnimation" waypointId="nearTree" areaId=""/>
                 </step>
             </sentence>
         </story>

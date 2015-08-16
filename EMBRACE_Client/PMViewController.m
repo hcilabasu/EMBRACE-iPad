@@ -110,6 +110,8 @@ float const groupingProximity = 20.0;
 // Create an instance of  ConditionSetup
 ConditionSetup *conditionSetup;
 
+BOOL wasPathFollowed = false;
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -153,7 +155,6 @@ ConditionSetup *conditionSetup;
     
     movingObject = FALSE;
     pinching = FALSE;
-    menuExpanded = FALSE;
     
     movingObjectId = nil;
     collisionObjectId = nil;
@@ -222,6 +223,18 @@ ConditionSetup *conditionSetup;
         NSData *animatorFileData = [NSData dataWithContentsOfFile:animatorFilePath];
         NSString *animatorJsString = [[NSMutableString alloc] initWithData:animatorFileData encoding:NSUTF8StringEncoding];
         [bookView stringByEvaluatingJavaScriptFromString:animatorJsString];
+    }
+    
+    // Load the vector js file
+    NSString* vectorFilePath = [[NSBundle mainBundle] pathForResource:@"Vector" ofType:@"js"];
+    
+    if(vectorFilePath == nil) {
+        NSLog(@"Cannot find js file: Vector");
+    }
+    else {
+        NSData *vectorFileData = [NSData dataWithContentsOfFile:vectorFilePath];
+        NSString *vectorJsString = [[NSMutableString alloc] initWithData:vectorFileData encoding:NSUTF8StringEncoding];
+        [bookView stringByEvaluatingJavaScriptFromString:vectorJsString];
     }
     
     //Start off with no objects grouped together
@@ -323,11 +336,26 @@ ConditionSetup *conditionSetup;
     }
     
     
+    // If there is at least one area/path to build
+    if ([model getAreaWithPageId:currentPageId]) {
+        // Build area/path
+        for (Area* area in [model areas]) {
+            if([area.pageId isEqualToString:currentPageId]) {
+                [self buildPath:area.areaId];
+            }
+        }
+    }
+    
     // Draw area (hard-coded for now)
     //[self drawArea:@"outside":@"The Lopez Family"];
     //[self drawArea:@"aroundPaco":@"Is Paco a Thief?"];
     [self drawArea:@"aorta":@"The Amazing Heart":@"story2-PM-4"];
     [self drawArea:@"aortaPath":@"The Amazing Heart":@"story2-PM-4"];
+    [self drawArea:@"aortaStart":@"The Amazing Heart":@"story2-PM-4"];
+    //[self drawArea:@"arteries":@"Muscles Use Oxygen":@"story3-PM-1"];
+    //[self drawArea:@"aortaPath2":@"Muscles Use Oxygen":@"story3-PM-1"];
+    [self drawArea:@"veinPath":@"Getting More Oxygen for the Muscles":@"story4-PM-3"];
+    [self drawArea:@"vein":@"Getting More Oxygen for the Muscles":@"story4-PM-3"];
     
     //NSLog(@"CURRENT PAGE ID: %@", currentPageId);
     
@@ -335,27 +363,27 @@ ConditionSetup *conditionSetup;
     [self performSetupForActivity];
 }
 
--(void) drawArea : (NSString *)areaName : (NSString *) chapter : (NSString *) pageId {
+-(void) drawArea : (NSString *) areaName : (NSString *) chapter : (NSString *) pageId {
     if ([chapterTitle isEqualToString:chapter] && [currentPageId isEqualToString:pageId]) {
         //Get area that hotspot should be inside
         Area* area = [model getAreaWithId:areaName];
         
         //apply path to shapelayer
-        CAShapeLayer* greenPath = [CAShapeLayer layer];
-        greenPath.lineWidth = 10.0;
-        greenPath.path = area.aPath.CGPath;
-        [greenPath setFillColor:[UIColor clearColor].CGColor];
+        CAShapeLayer* path = [CAShapeLayer layer];
+        path.lineWidth = 10.0;
+        path.path = area.aPath.CGPath;
+        [path setFillColor:[UIColor clearColor].CGColor];
         
         if([areaName rangeOfString:@"Path"].location == NSNotFound) {
-            [greenPath setStrokeColor:[UIColor greenColor].CGColor];
+            [path setStrokeColor:[UIColor greenColor].CGColor];
         }
         else {
             // If it is a path, paint it red
-            [greenPath setStrokeColor:[UIColor redColor].CGColor];
+            [path setStrokeColor:[UIColor redColor].CGColor];
         }
         
         //add shape layer to view's layer
-        [[self.view layer] addSublayer:greenPath];
+        [[self.view layer] addSublayer:path];
     }
 }
 
@@ -660,6 +688,11 @@ ConditionSetup *conditionSetup;
     //Check if able to increment current step
     if (currentStep < numSteps) {
         NSString *tempsteps = [NSString stringWithFormat:@"%lu", (unsigned long)currentStep];
+        
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        ActionStep* prevSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        previousStep = [prevSolStep stepType];
+        
         currentStep++;
     
         //Logging added by James for Computer Navigation to next Step
@@ -858,7 +891,14 @@ ConditionSetup *conditionSetup;
             [playaudioClass playAudioFile:self:file];
             [self incrementCurrentStep];
         }
-        
+        else if ([[currSolStep stepType] isEqualToString:@"appear"]) {
+            [self loadImage];
+            [self incrementCurrentStep];
+        }
+        else if ([[currSolStep stepType] isEqualToString:@"disappear"]) {
+            [self hideImage];
+            [self incrementCurrentStep];
+        }
     }
     
     if([IntroductionClass.introductions objectForKey:chapterTitle] && [[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
@@ -903,6 +943,7 @@ ConditionSetup *conditionSetup;
             NSString* object1Id = [currSolStep object1Id];
             NSString* action = [currSolStep action];
             NSString* waypointId = [currSolStep waypointId];
+            NSString* areaId = [currSolStep areaId];
             
             CGPoint imageLocation = [self getObjectPosition:object1Id];
             
@@ -922,10 +963,39 @@ ConditionSetup *conditionSetup;
                 waypointLocation = [self getWaypointLocation:waypoint];
             }
             
+            //if ([areaId rangeOfString:@"Path"].location != NSNotFound) {
+                //[self buildPath:areaId];
+            //}
+            
+            //NSString *showPath = @"showPath()";
+            //[bookView stringByEvaluatingJavaScriptFromString:showPath];
+            
             //Call the animateObject function in the js file.
-            NSString *animate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@')", object1Id, adjLocation.x, adjLocation.y, waypointLocation.x, waypointLocation.y, action];
+            NSString *animate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", object1Id, adjLocation.x, adjLocation.y, waypointLocation.x, waypointLocation.y, action, areaId];
             [bookView stringByEvaluatingJavaScriptFromString:animate];
+            
+            animatingObjects = [[NSMutableDictionary alloc] init];
+            [animatingObjects setObject:@YES forKey:object1Id];
         }
+    }
+}
+
+/*
+ Calls the builPath fucntion on the JS file
+ Sends all the points in an area or path to the the JS to load them in memory
+ */
+-(void)buildPath:(NSString*)areaId {
+    Area* area = [model getAreaWithId:areaId];
+    
+    NSString *createPath = [NSString stringWithFormat:@"createPath('%@')", areaId];
+    [bookView stringByEvaluatingJavaScriptFromString:createPath];
+    
+    for (int i=0; i < area.points.count/2; i++) {
+        NSString* xCoord = [area.points objectForKey:[NSString stringWithFormat:@"x%d", i]];
+        NSString* yCoord = [area.points objectForKey:[NSString stringWithFormat:@"y%d", i]];
+        
+        NSString *buildPath = [NSString stringWithFormat:@"buildPath('%@', %f, %f)", areaId, [xCoord floatValue], [yCoord floatValue]];
+        [bookView stringByEvaluatingJavaScriptFromString:buildPath];
     }
 }
 
@@ -1420,6 +1490,10 @@ ConditionSetup *conditionSetup;
         else if ([[currSolStep stepType] isEqualToString:@"tapToAnimate"]) {
             [self incrementCurrentStep];
         }
+        //Current step involves following a path
+        else if ([[currSolStep stepType] isEqualToString:@"checkPath"]) {
+            [self incrementCurrentStep];
+        }
         //Current step is either group, ungroup, disappear, or transference
         else {
             //Get the interaction to be performed
@@ -1521,13 +1595,21 @@ ConditionSetup *conditionSetup;
  * Pan gesture. Used to move objects from one location to another.
  */
 -(IBAction)panGesturePerformed:(UIPanGestureRecognizer *)recognizer {
+    
     CGPoint location = [recognizer locationInView:self.view];
 
     //This should work with requireGestureRecognizerToFail:pinchRecognizer but it doesn't currently.
     if(!pinching && IntroductionClass.allowInteractions) {
         BOOL useProximity = NO;
         
+        static UIBezierPath *path = nil;
+        static CAShapeLayer *shapeLayer = nil;
+        
         if(recognizer.state == UIGestureRecognizerStateBegan) {
+            
+            //Starts true because the object starts within the area
+            wasPathFollowed = true;
+            
             //NSLog(@"pan gesture began at location: (%f, %f)", location.x, location.y);
             panning = TRUE;
             
@@ -1552,9 +1634,22 @@ ConditionSetup *conditionSetup;
                 
                 //Record the starting location of the object when it is selected
                 startLocation = CGPointMake(location.x - delta.x, location.y - delta.y);
+                
+                if ([animatingObjects objectForKey:imageAtPoint] && [[animatingObjects objectForKey:imageAtPoint]  isEqual: @YES]) {
+                    //Call the cancelAnimation function in the js file.
+                    NSString *cancelAnimate = [NSString stringWithFormat:@"cancelAnimation('%@')", imageAtPoint];
+                    [bookView stringByEvaluatingJavaScriptFromString:cancelAnimate];
+                    [animatingObjects setObject:@NO forKey:imageAtPoint];
+                }
             }
         }
         else if(recognizer.state == UIGestureRecognizerStateEnded) {
+            
+            // Clears the drawn path
+            //[shapeLayer removeFromSuperlayer];
+            //shapeLayer = nil;
+            path = nil;
+            
             //NSLog(@"pan gesture ended at location (%f, %f)", location.x, location.y);
             panning = FALSE;
             
@@ -1584,8 +1679,10 @@ ConditionSetup *conditionSetup;
                     ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
                     
                     if ([[currSolStep stepType] isEqualToString:@"check"]) {
-                        //Check if object is in the correct location
+                        
+                        //Check if object is in the correct location or area
                         if([self isHotspotInsideLocation] || [self isHotspotInsideArea]) {
+                            
                             if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
                                 /*Check to see if an object is at a certain location or is grouped with another object e.g. farmergetIncorralArea or farmerleadcow. These strings come from the solution steps */
                                 if([[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:[NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep locationId]]]
@@ -1603,9 +1700,6 @@ ConditionSetup *conditionSetup;
                             
                             //If the correct object was tapped, swap its image and increment the step
                             if ([self checkSolutionForSubject:imageAtPoint]) {
-                                //Call the cancelAnimation function in the js file.
-                                NSString *cancelAnimate = [NSString stringWithFormat:@"cancelAnimation('%@')", imageAtPoint];
-                                [bookView stringByEvaluatingJavaScriptFromString:cancelAnimate];
                                 [self incrementCurrentStep];
                             }
                             
@@ -1639,8 +1733,14 @@ ConditionSetup *conditionSetup;
                             if (allowSnapback) {
                                 //Snap the object back to its original location
                                 [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
-                                //if incorrect location reset object to beginning of gesture
                                 
+                                // If it was an animation object, animate it again after snapping back
+                                if ([animatingObjects objectForKey:movingObjectId] && [previousStep isEqualToString:@"animate"]) {
+                                    //Call the animateObject function in the js file.
+                                    NSString *animate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"floatAnimation", @""];
+                                    [bookView stringByEvaluatingJavaScriptFromString:animate];
+                                    [animatingObjects setObject:@YES forKey:movingObjectId];
+                                }
                             }
                         }
                     }
@@ -1658,6 +1758,30 @@ ConditionSetup *conditionSetup;
                             [[ServerCommunicationController sharedManager] logComputerVerification:@"Move to Hotspot" :false : movingObjectId:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                             
                             [playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+                            //[self playErrorNoise];
+                            
+                            if (allowSnapback) {
+                                //Snap the object back to its original location
+                                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
+                                //if incorrect location reset object to beginning of gesture
+                                
+                            }
+                        }
+                    }
+                    else if ([[currSolStep stepType] isEqualToString:@"checkPath"]) {
+                        if(/*[self isHotspotInsideLocation] &&*/ wasPathFollowed) {
+                            [self incrementCurrentStep];
+                        }
+                        else {
+                            //gets hotspot id for logging
+                            NSString* locationId = [currSolStep locationId];
+                            //Logging added by James for User Move Object to object
+                            [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : locationId:startLocation.x :startLocation.y :location.x :location.y :@"Move to Hotspot" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+                            
+                            //Logging added by James for user Move Object to Hotspot Incorrect
+                            [[ServerCommunicationController sharedManager] logComputerVerification:@"Move to Hotspot" :false : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+                            
+                            [playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentStep];
                             //[self playErrorNoise];
                             
                             if (allowSnapback) {
@@ -1784,6 +1908,31 @@ ConditionSetup *conditionSetup;
         }
         //If we're in the middle of moving the object, just call the JS to move it.
         else if(movingObject)  {
+            // The name of the chapter is hard-coded for now
+            if ([chapterTitle isEqualToString:@"Muscles Use Oxygen"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound)) {
+                
+                // Start drawing the path
+                CGPoint pointLocation = [recognizer locationInView:recognizer.view];
+                
+                if (!path) {
+                    path = [UIBezierPath bezierPath];
+                    [path moveToPoint:pointLocation];
+                    shapeLayer = [[CAShapeLayer alloc] init];
+                    shapeLayer.strokeColor = [self generateRandomColor].CGColor;
+                    shapeLayer.fillColor = [UIColor clearColor].CGColor;
+                    shapeLayer.lineWidth = 10.0;
+                    [recognizer.view.layer addSublayer:shapeLayer];
+                }
+                else {
+                    [path addLineToPoint:pointLocation];
+                    shapeLayer.path = path.CGPath;
+                }
+                
+                if (![self isHotspotInsideArea]) {
+                    wasPathFollowed = false;
+                }
+            }
+            
             [self moveObject:movingObjectId :location :delta :true : @"isMoving"];
             
             //If we're overlapping with another object, then we need to figure out which hotspots are currently active and highlight those hotspots.
@@ -1801,7 +1950,7 @@ ConditionSetup *conditionSetup;
                         [bookView stringByEvaluatingJavaScriptFromString:highlight];
                     }
                 }
-                
+         
                 if (conditionSetup.condition ==HOTSPOT) {
                     //resets allRelationship arrray
                     if([allRelationships count])
@@ -1842,6 +1991,7 @@ ConditionSetup *conditionSetup;
                     [self drawHotspots:redHotspots :@"red"];
                     [self drawHotspots:greenHotspots :@"green"];
                 }
+         
             }
         }
     }
@@ -2614,6 +2764,60 @@ ConditionSetup *conditionSetup;
 }
 
 /*
+ Loads an image calling the loadImage JS function and using the AlternateImage class
+ */
+-(void) loadImage {
+    if (numSteps > 0) {
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        if ([[currSolStep stepType] isEqualToString:@"appear"]) {
+            //Get information for appear step type
+            NSString* object1Id = [currSolStep object1Id];
+            NSString* action = [currSolStep action];
+            
+            //Get alternate image
+            AlternateImage* altImage = [model getAlternateImageWithAction:action];
+            
+            //Get alternate image information
+            NSString* altSrc = [altImage alternateSrc];
+            NSString* width = [altImage width];
+            CGPoint location = [altImage location];
+            NSString* className = [altImage className];
+            NSString* zPosition = [altImage zPosition];
+            
+            //Load image using alternative src
+            NSString* loadImage = [NSString stringWithFormat:@"loadImage('%@', '%@', '%@', %f, %f, '%@', %d)", object1Id, altSrc, width, location.x, location.y, className, zPosition.intValue];
+            [bookView stringByEvaluatingJavaScriptFromString:loadImage];
+        }
+    }
+}
+
+/*
+ Calls the removeImage from the ImageManipulation.js file
+ */
+-(void) hideImage {
+    if (numSteps > 0) {
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        if ([[currSolStep stepType] isEqualToString:@"disappear"]) {
+            NSString* object1Id = [currSolStep object1Id];
+            
+            //Hide image
+            NSString* hideImage = [NSString stringWithFormat:@"removeImage('%@')", object1Id];
+            [bookView stringByEvaluatingJavaScriptFromString:hideImage];
+        }
+    }
+}
+
+/*
  * Returns true if the hotspot of an object (for a check step type) is inside the correct location.
  * Otherwise, returns false.
  */
@@ -2639,7 +2843,7 @@ ConditionSetup *conditionSetup;
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
-        if ([[currSolStep stepType] isEqualToString:@"check"]) {
+        if ([[currSolStep stepType] isEqualToString:@"check"] || [[currSolStep stepType] isEqualToString:@"checkPath"]) {
             //Get information for check step type
             NSString* objectId = [currSolStep object1Id];
             NSString* action = [currSolStep action];
@@ -2690,7 +2894,7 @@ ConditionSetup *conditionSetup;
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
-        if ([[currSolStep stepType] isEqualToString:@"check"]) {
+        if ([[currSolStep stepType] isEqualToString:@"check"] || [[currSolStep stepType] isEqualToString:@"checkPath"]) {
             //Get information for check step type
             NSString* objectId = [currSolStep object1Id];
             NSString* action = [currSolStep action];
@@ -2754,6 +2958,40 @@ ConditionSetup *conditionSetup;
         }
     }
     
+    return false;
+}
+
+/*
+ * Returns true if a location belongs to an area path. Otherwise, returns false.
+ */
+- (BOOL) isHotspotOnPath {
+    //Check solution only if it exists for the sentence
+    if (numSteps > 0) {
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        if ([[currSolStep stepType] isEqualToString:@"checkPath"]) {
+            //Get information for check step type
+            NSString* objectId = [currSolStep object1Id];
+            NSString* action = [currSolStep action];
+            
+            NSString* areaId = [currSolStep areaId];
+            
+            //Get hotspot location of correct subject
+            Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:objectId :action :@"subject"];
+            CGPoint hotspotLocation = [self getHotspotLocation:hotspot];
+            
+            //Get area that hotspot should be inside
+            Area* area = [model getAreaWithId:areaId];
+            
+            if ([area.aPath containsPoint:hotspotLocation]){
+                return true;
+            }
+        }
+    }
     return false;
 }
 
@@ -4518,9 +4756,17 @@ ConditionSetup *conditionSetup;
 }
 
 -(void) highlightObject:(NSString*)object :(double)delay {
-    //Highlight the tapped object
-    NSString* highlight = [NSString stringWithFormat:@"highlightObjectOnWordTap(%@)", object];
-    [bookView stringByEvaluatingJavaScriptFromString:highlight];
+    if([model getAreaWithId:object]) {
+        //[self buildPath:object];
+        //Highlight the tapped object
+        NSString* highlight = [NSString stringWithFormat:@"highlightArea('%@')", object];
+        [bookView stringByEvaluatingJavaScriptFromString:highlight];
+    }
+    else {
+        //Highlight the tapped object
+        NSString* highlight = [NSString stringWithFormat:@"highlightObjectOnWordTap(%@)", object];
+        [bookView stringByEvaluatingJavaScriptFromString:highlight];
+    }
 
     //Clear highlighted object
     [self performSelector:@selector(clearHighlightedObject) withObject:nil afterDelay:delay];

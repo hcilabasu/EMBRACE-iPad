@@ -97,5 +97,6 @@
 
 - (void) addArea:(NSString*)areaId :(UIBezierPath *)path :(NSMutableDictionary*)points;
 - (Area*) getAreaWithId:(NSString*)aId;
+- (Area*) getAreaWithPageId:(NSString*)pId;
 
 @end

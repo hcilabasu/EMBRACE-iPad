@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <alternateImages>
+        <alternateImage objId="air_blue" action="changeZIndex" originalSrc="air_blue.png" alternateSrc="air_blue" width="200px" x="50%" y="50%" class="manipulationObject" z="4"/>
+        <alternateImage objId="bulge" action="appear" originalSrc="bulge.png" alternateSrc="" width="363px" x="50%" y="50%" class="manipulationObject" z=""/>
+        <alternateImage objId="bulge" action="forms_bulge" originalSrc="ocean_wave_move.png" alternateSrc="bulge.png" width="363px" x="50%" y="50%" class="manipulationObject" z=""/>
+        <alternateImage objId="bulge" action="forms_wave" originalSrc="bulge.png" alternateSrc="ocean_wave_move.png" width="520px" x="50%" y="50%" class="manipulationObject" z=""/>
+        <alternateImage objId="california" action="crack" originalSrc="california_nofault.png" alternateSrc="california_fault.png" width="114px" x="50%" y="50%" class="manipulationObject" z=""/>
+        <alternateImage objId="dirt_tornado" action="appear" originalSrc="dirt_tornado.png" alternateSrc="" width="364px" x="50%" y="50%" class="manipulationObject" z=""/>
+        <alternateImage objId="dirt_tornado" action="shrink" originalSrc="dirt_tornado.png" alternateSrc="dirt_tornado.png" width="264px" x="50%" y="50%" class="manipulationObject" z=""/>
+        <alternateImage objId="india" action="push" originalSrc="india_whole.png" alternateSrc="india_himalayas.png" width="160px" x="50%" y="50%" class="manipulationObject" z=""/>
+        <alternateImage objId="lava" action="forms_island" originalSrc="lava_ball.png" alternateSrc="lava_kauai.png" width="271px" x="50%" y="50%" class="manipulationObject" z=""/>
+        <alternateImage objId="lava" action="forms_oahu" originalSrc="lava_ball.png" alternateSrc="lava_oahu.png" width="271px" x="50%" y="50%" class="manipulationObject" z=""/>
+        <alternateImage objId="lava" action="forms_rock" originalSrc="lava_ball.png" alternateSrc="lava_cooled.png" width="81px" x="50%" y="50%" class="manipulationObject" z=""/>
+        <alternateImage objId="lava" action="forms_rock_Hawaii" originalSrc="lava_ball.png" alternateSrc="lava_cooled.png" width="81px" x="50%" y="50%" class="manipulationObject" z=""/>
+        <alternateImage objId="north_america" action="crack" originalSrc="north_america_nofault.png" alternateSrc="north_america_fault.png" width="595px" x="50%" y="50%" class="manipulationObject" z=""/>
+        <alternateImage objId="houses" action="fall" originalSrc="houses.png" alternateSrc="houses_fall.png" width="47px" x="50%" y="50%" class="manipulationObject" z=""/>
+    </alternateImages>
+</metadata>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <relationships>
+        <relationship obj1Id="africa" can="touch" action="group" obj2Id="india"/>
+        <relationship obj1Id="air_red" can="disappear" action="disappear" obj2Id=""/>
+        <relationship obj1Id="australia" can="touch" action="group" obj2Id="antartica"/>
+        <relationship obj1Id="california" can="touch" action="group" obj2Id="north_america"/>
+        <relationship obj1Id="dirt_move" can="pull" action="group" obj2Id="air_red"/>
+        <relationship obj1Id="dirt_move" can="disappear" action="disappear" obj2Id=""/>
+        <relationship obj1Id="house_roof2" can="disappear" action="disappear" obj2Id=""/>
+        <relationship obj1Id="house_roof2" can="pull" action="group" obj2Id="dirt_tornado"/>
+        <relationship obj1Id="india" can="hit" action="group" obj2Id="eurasia"/>
+        <relationship obj1Id="india" can="leave" action="ungroup" obj2Id="eurasia"/>
+        <relationship obj1Id="india" can="touch" action="group" obj2Id="australia"/>
+        <relationship obj1Id="north_america" can="leave" action="ungroup" obj2Id="california"/>
+    </relationships>
+</metadata>

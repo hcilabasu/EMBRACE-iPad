@@ -15,6 +15,8 @@
     NSString* alternateSrc;
     NSString* width;
     CGPoint location;
+    NSString* className;
+    NSString* zPosition;
 }
 
 @property (nonatomic, strong) NSString* objectId;
