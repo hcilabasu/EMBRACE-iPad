@@ -598,7 +598,6 @@ console.log = function(log) {
 console.debug = console.log;
 console.info = console.log;
 console.warn = console.log;
-console.error = console.log;
 
 // draw the current frame based on sliderValue
 function follow2(aniObject) {
@@ -697,4 +696,4 @@ function roll(aniObject) {
     animCtx.drawImage(aniObject.object,aniObject.location.x,aniObject.location.y);
 	animCtx.restore();
     document.getElementById('animation').style.zIndex = "100";
-}
+}console.error = console.log;

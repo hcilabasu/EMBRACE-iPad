@@ -74,6 +74,7 @@
         <idea number="12"/>
         <idea number="13">
             <step number="12">
+                <appear obj1Id="egg" action="appear"/>
                 <check obj1Id="farmer" action="getIn" locationId="nearGoat"/>
                 <move obj1Id="farmer" action="getIn" waypointId="combGoat"/>
                 <disappear obj1Id="egg" action="disappear" obj2Id=""/>

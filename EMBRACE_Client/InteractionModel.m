@@ -323,7 +323,7 @@
  * Adds an AlternateImage with the specified object id, action, original src, alternate src, alternate image width, 
  * and alternate location (x-y coordinate of top left corner of image)
  */
-- (void) addAlternateImage:(NSString *)objId :(NSString *)act :(NSString *)origSrc :(NSString *)altSrc :(NSString *)wdth :(CGPoint)loc : (NSString*)cls :(NSString*)zpos {
+- (void) addAlternateImage:(NSString *)objId :(NSString *)act :(NSString *)origSrc :(NSString *)altSrc :(NSString *)wdth :(CGPoint)loc :(NSString *)cls :(NSString *)zpos {
     AlternateImage* altImage = [[AlternateImage alloc] initWithValues:objId :act :origSrc :altSrc :wdth :loc :cls :zpos];
     [alternateImages addObject:altImage];
 }

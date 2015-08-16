@@ -698,7 +698,7 @@ ConditionSetup *conditionSetup;
             
             CGPoint location = CGPointMake(locX, locY);
             
-            [model addAlternateImage:objectId :action :originalSrc :alternateSrc :width :location:className: locationZString];
+            [model addAlternateImage:objectId :action :originalSrc :alternateSrc :width :location :className :locationZString];
         }
     }
     
@@ -822,15 +822,13 @@ ConditionSetup *conditionSetup;
                         //* Ungroup means that two objects that were connected should be separated.
                         if([[step name] isEqualToString:@"transferAndGroup"] || [[step name] isEqualToString:@"transferAndDisappear"] || [[step name] isEqualToString:@"group"] || [[step name] isEqualToString:@"disappear"] ||
                            [[step name] isEqualToString:@"ungroup"]) {
-                            if([step attributeForName:@"obj2Id"])
-                            {
+                            if([step attributeForName:@"obj2Id"]) {
                                 NSString* obj2Id = [[step attributeForName:@"obj2Id"] stringValue];
                                 
                                 ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :obj2Id :nil :nil :action :nil :nil];
                                 [PMSolution addSolutionStep:solutionStep];
                             }
-                            else
-                            {
+                            else {
                                 ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :action :nil :nil];
                                 [PMSolution addSolutionStep:solutionStep];
                             }
@@ -852,8 +850,7 @@ ConditionSetup *conditionSetup;
                                 ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :waypointId :action :nil :nil];
                                 [PMSolution addSolutionStep:solutionStep];
                             }
-                            else
-                            {
+                            else {
                                 ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :action :nil :nil];
                                 [PMSolution addSolutionStep:solutionStep];
                             }
