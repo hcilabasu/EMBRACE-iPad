@@ -705,7 +705,6 @@
 		1ACF870E1AB26F0400F81567 /* Story2-Missing-Keys-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1ACF870D1AB26F0400F81567 /* Story2-Missing-Keys-Intro-S.xhtml */; };
 		1ACF87101AB26F6D00F81567 /* Story3-Is-Paco-a-Thief-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1ACF870F1AB26F6D00F81567 /* Story3-Is-Paco-a-Thief-Intro-S.xhtml */; };
 		1ACF87121AB26FB500F81567 /* Story4-More-is-Missing-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1ACF87111AB26FB500F81567 /* Story4-More-is-Missing-Intro-S.xhtml */; };
-		1ACF87141AB26FF800F81567 /* Story5-The-Family-is-Rattled-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1ACF87131AB26FF800F81567 /* Story5-The-Family-is-Rattled-Intro-S.xhtml */; };
 		1ACF87161AB2705E00F81567 /* Story6-The-Mystery-is-Solved-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1ACF87151AB2705E00F81567 /* Story6-The-Mystery-is-Solved-Intro-S.xhtml */; };
 		1AD3CC861A251C5300E18B1C /* IntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3CC851A251C5300E18B1C /* IntroductionViewController.m */; };
 		1AD3CC891A251CBA00E18B1C /* BuildHTMLString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3CC881A251CBA00E18B1C /* BuildHTMLString.m */; };
@@ -1383,6 +1382,7 @@
 		5CFA85AB1950EFDC00C7537D /* IntroductionStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFA85AA1950EFDC00C7537D /* IntroductionStep.m */; };
 		B91218511A1970F900D5CB37 /* p3_Lsqueeze_with_valve.png in Resources */ = {isa = PBXBuildFile; fileRef = B91218501A1970F900D5CB37 /* p3_Lsqueeze_with_valve.png */; };
 		B9558D3719C24A4000BD5FC0 /* background_2.png in Resources */ = {isa = PBXBuildFile; fileRef = B9558D3619C24A4000BD5FC0 /* background_2.png */; };
+		B98C2FF21B86D7B600763AF8 /* Story5-The-Baby's-Rattle-is-Gone-Too-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = B98C2FF11B86D7B600763AF8 /* Story5-The-Baby's-Rattle-is-Gone-Too-Intro-S.xhtml */; };
 		B996065119A7FAC400BF17F4 /* Story2-The-Amazing-Heart-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = B996065019A7FAC400BF17F4 /* Story2-The-Amazing-Heart-Intro-E.xhtml */; };
 		B996065319A7FBF400BF17F4 /* Story3-Muscles-Use-Oxygen-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = B996065219A7FBF400BF17F4 /* Story3-Muscles-Use-Oxygen-Intro-E.xhtml */; };
 		B996065519A7FCA300BF17F4 /* Story1-Why-We-Breathe-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = B996065419A7FCA300BF17F4 /* Story1-Why-We-Breathe-Intro-E.xhtml */; };
@@ -2105,7 +2105,6 @@
 		1ACF870D1AB26F0400F81567 /* Story2-Missing-Keys-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story2-Missing-Keys-Intro-S.xhtml"; sourceTree = "<group>"; };
 		1ACF870F1AB26F6D00F81567 /* Story3-Is-Paco-a-Thief-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story3-Is-Paco-a-Thief-Intro-S.xhtml"; sourceTree = "<group>"; };
 		1ACF87111AB26FB500F81567 /* Story4-More-is-Missing-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-More-is-Missing-Intro-S.xhtml"; sourceTree = "<group>"; };
-		1ACF87131AB26FF800F81567 /* Story5-The-Family-is-Rattled-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-The-Family-is-Rattled-Intro-S.xhtml"; sourceTree = "<group>"; };
 		1ACF87151AB2705E00F81567 /* Story6-The-Mystery-is-Solved-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story6-The-Mystery-is-Solved-Intro-S.xhtml"; sourceTree = "<group>"; };
 		1AD3CC841A251C5300E18B1C /* IntroductionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroductionViewController.h; sourceTree = "<group>"; };
 		1AD3CC851A251C5300E18B1C /* IntroductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroductionViewController.m; sourceTree = "<group>"; };
@@ -2858,6 +2857,7 @@
 		5CFA85AA1950EFDC00C7537D /* IntroductionStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroductionStep.m; sourceTree = "<group>"; };
 		B91218501A1970F900D5CB37 /* p3_Lsqueeze_with_valve.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = p3_Lsqueeze_with_valve.png; sourceTree = "<group>"; };
 		B9558D3619C24A4000BD5FC0 /* background_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_2.png; sourceTree = "<group>"; };
+		B98C2FF11B86D7B600763AF8 /* Story5-The-Baby's-Rattle-is-Gone-Too-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-The-Baby's-Rattle-is-Gone-Too-Intro-S.xhtml"; sourceTree = "<group>"; };
 		B996065019A7FAC400BF17F4 /* Story2-The-Amazing-Heart-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story2-The-Amazing-Heart-Intro-E.xhtml"; sourceTree = "<group>"; };
 		B996065219A7FBF400BF17F4 /* Story3-Muscles-Use-Oxygen-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story3-Muscles-Use-Oxygen-Intro-E.xhtml"; sourceTree = "<group>"; };
 		B996065419A7FCA300BF17F4 /* Story1-Why-We-Breathe-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Why-We-Breathe-Intro-E.xhtml"; sourceTree = "<group>"; };
@@ -3252,7 +3252,7 @@
 				1AFA240A1B6C4AE300C0AA53 /* Story5-The-Baby's-Rattle-is-Gone-Too-PM-1.xhtml */,
 				1AFA240B1B6C4AE300C0AA53 /* Story5-The-Baby's-Rattle-is-Gone-Too-PM-2.xhtml */,
 				1AFA240C1B6C4AE300C0AA53 /* Story5-The-Baby's-Rattle-is-Gone-Too-Title.xhtml */,
-				1ACF87131AB26FF800F81567 /* Story5-The-Family-is-Rattled-Intro-S.xhtml */,
+				B98C2FF11B86D7B600763AF8 /* Story5-The-Baby's-Rattle-is-Gone-Too-Intro-S.xhtml */,
 				1A2D707F1AAA74FA009E7B5B /* Story6-The-Mystery-is-Solved-IM-1.xhtml */,
 				1A2D70801AAA74FA009E7B5B /* Story6-The-Mystery-is-Solved-IM-2.xhtml */,
 				1A2D70811AAA74FA009E7B5B /* Story6-The-Mystery-is-Solved-Intro-E.xhtml */,
@@ -5882,6 +5882,7 @@
 				5C776ABB19C674FA000DBC65 /* CPQR12.m4a in Resources */,
 				5C776BCA19C93E1E000DBC65 /* trappedS.m4a in Resources */,
 				1ACF87101AB26F6D00F81567 /* Story3-Is-Paco-a-Thief-Intro-S.xhtml in Resources */,
+				B98C2FF21B86D7B600763AF8 /* Story5-The-Baby's-Rattle-is-Gone-Too-Intro-S.xhtml in Resources */,
 				1A3594321AE76129003B3B41 /* TheMysteryIsSolvedQ1.mp3 in Resources */,
 				5C7FE0FC19A7E43C00CBBE0E /* BFCE_22A.m4a in Resources */,
 				5C0274C819D22DA400BF4B1A /* BFCE1_6E.m4a in Resources */,
@@ -5944,7 +5945,6 @@
 				1A2D709A1AAA74FA009E7B5B /* house_night.png in Resources */,
 				5C776BD319C93E1E000DBC65 /* veinsDEFS.m4a in Resources */,
 				1A093A741B67411200547E9F /* ocean_wave_move.png in Resources */,
-				1ACF87141AB26FF800F81567 /* Story5-The-Family-is-Rattled-Intro-S.xhtml in Resources */,
 				5C7FE05519A6B1B500CBBE0E /* Story4-Getting-More-Oxygen-for-the-Muscles-IM-2.xhtml in Resources */,
 				1A80363D1B0B1C62004A164A /* CleaningUpQ4.mp3 in Resources */,
 				1A35942E1AE76129003B3B41 /* TheFamilyIsRattledQ6A1.mp3 in Resources */,
