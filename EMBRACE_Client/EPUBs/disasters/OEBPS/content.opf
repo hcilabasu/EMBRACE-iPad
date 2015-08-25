@@ -143,6 +143,13 @@
     <item href="Images/houses_fall.png" id="houses_fall.png" media-type="image/png" />
     <item href="Images/plate_bulge3.png" id="plate_bulge3.png" media-type="image/png" />
     <item href="Images/ocean_flatbulge.png" id="ocean_flatbulge.png" media-type="image/png" />
+    <item href="Images/island_Hawaii.png" id="island_Hawaii.png" media-type="image/png" />
+    <item href="Images/island_Kauai.png" id="island_Kauai.png" media-type="image/png" />
+    <item href="Images/island_Molokai.png" id="island_Molokai.png" media-type="image/png" />
+    <item href="Images/island_Oahu.png" id="island_Oahu.png" media-type="image/png" />
+    <item href="Images/grey_plate_kauai.png" id="grey_plate_kauai.png" media-type="image/png" />
+    <item href="Images/lava2.png" id="lava2.png" media-type="image/png" />
+    <item href="Images/bg_volcano.png" id="bg_volcano.png" media-type="image/png" />
   </manifest>
   <spine toc="ncx">
     <itemref idref="story0-PM" />
