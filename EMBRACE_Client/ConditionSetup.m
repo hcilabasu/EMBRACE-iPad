@@ -14,7 +14,7 @@
     @synthesize appmode;
 
 - (id) init {
-    condition = CONTROL;
+    condition = EMBRACE;
     language = ENGLISH;
     appmode = Study;
     return self;

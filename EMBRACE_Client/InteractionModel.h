@@ -95,7 +95,7 @@
 
 - (NSMutableDictionary*) getVocabularies;
 
-- (void) addArea:(NSString*)areaId :(UIBezierPath *)path :(NSMutableDictionary*)points;
+- (void) addArea:(NSString*)areaId :(UIBezierPath *)path :(NSMutableDictionary*)points :(NSString*)pageId ;
 - (Area*) getAreaWithId:(NSString*)aId;
 - (Area*) getAreaWithPageId:(NSString*)pId;
 

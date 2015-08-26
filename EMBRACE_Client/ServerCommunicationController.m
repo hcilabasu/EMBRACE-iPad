@@ -1308,7 +1308,7 @@ Context:
     
     DDXMLElement *nodeAnswerOptions = [DDXMLElement elementWithName:@"Answer_Options" stringValue:[NSString stringWithFormat:@"%@, %@, %@, %@", answerOptions[0],answerOptions[1],answerOptions[2],answerOptions[3]]];
     
-    DDXMLElement *nodeAnswerOptionSelected = [DDXMLElement elementWithName:@"Selected_Option" stringValue:[NSString stringWithFormat:@"%d", answerText]];
+    DDXMLElement *nodeAnswerOptionSelected = [DDXMLElement elementWithName:@"Selected_Option" stringValue:[NSString stringWithFormat:@"%@", answerText]];
     
     //adding child nodes to Input parent
     [nodeInput addChild:nodeButtonType];

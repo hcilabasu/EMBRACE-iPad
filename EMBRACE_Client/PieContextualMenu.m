@@ -23,9 +23,15 @@
 @synthesize center;
 @synthesize radius;
 
-float const itemRadius = 200.0; //radius of each menu item.
+ConditionSetup *conditionSetup;
+
+float const itemRadiusIM = 200.0; //radius of each menu item.
+float const menuBoundingBoxIM = 700.0; // The bounding box of the large for the menu.
+
+float const itemRadiusPM = 100.0; //radius of each menu item.
+float const menuBoundingBoxPM = 400.0; // The bounding box of the large for the menu.
+
 float const minAngle = 5.0; //minimum angle in degrees.
-float const menuBoundingBox = 700.0; // The bounding box of the large for the menu.
 int const maxMenuItems = 3; //Total number of items the menu will display. changed to 3 from 6
 
 - (id)initWithFrame:(CGRect)frame
@@ -33,12 +39,27 @@ int const maxMenuItems = 3; //Total number of items the menu will display. chang
     if (self = [super initWithFrame:frame]) {
         [self setBackgroundColor:[[UIColor whiteColor] colorWithAlphaComponent:.5]];
         
-        float boxSize = [self frame].size.height - (itemRadius * 2) - 50.0;
-        float originX = ([self frame].size.width - boxSize/.6) / 2;
-        float originY = ([self frame].size.height - boxSize/.6) / 2;
-        circleBounds = CGRectMake(originX, originY, boxSize/.6, boxSize/.6);
-        circleRadius = boxSize;
+        conditionSetup = [[ConditionSetup alloc] init];
+        
+        //IM Condition
+        if (conditionSetup.condition == CONTROL) {
+            float boxSize = [self frame].size.height - (itemRadiusIM * 2) - 50.0;
+            float originX = ([self frame].size.width - boxSize/.6) / 2;
+            float originY = ([self frame].size.height - boxSize/.6) / 2;
+            circleBounds = CGRectMake(originX, originY, boxSize/.6, boxSize/.6);
+            circleRadius = boxSize;
+        }
+        //PM Condition
+        else
+        {
+            float boxSize = [self frame].size.height - (itemRadiusPM * 2) - 50.0;
+            float originX = ([self frame].size.width - boxSize) / 2;
+            float originY = ([self frame].size.height - boxSize) / 2;
+            circleBounds = CGRectMake(originX, originY, boxSize, boxSize);
+            circleRadius = boxSize / 2;
+        }
     }
+    
     return self;
 }
 
@@ -61,7 +82,20 @@ int const maxMenuItems = 3; //Total number of items the menu will display. chang
         CGFloat currY = center.y + radius * sin(angle);
         
         //NSLog(@"current X & Y: (%f, %f)", currX, currY);
-        CGRect rect = CGRectMake(currX - itemRadius, currY - itemRadius, itemRadius * 2, itemRadius * 2);
+        
+        CGRect rect;
+        
+        //IM Condition
+        if (conditionSetup.condition == CONTROL)
+        {
+            rect = CGRectMake(currX - itemRadiusIM, currY - itemRadiusIM, itemRadiusIM * 2, itemRadiusIM * 2);
+        }
+        //PM Condition
+        else
+        {
+            rect = CGRectMake(currX - itemRadiusPM, currY - itemRadiusPM, itemRadiusPM * 2, itemRadiusPM * 2);
+        }
+        
         //PieContextualMenuItem *item = [[PieContextualMenuItem alloc] initWithFrame:rect];
         PieContextualMenuItem *item = [[PieContextualMenuItem alloc]
                                        initWithFrameAndData:rect :angle :[[self dataSource] dataObjectAtIndex:i]];

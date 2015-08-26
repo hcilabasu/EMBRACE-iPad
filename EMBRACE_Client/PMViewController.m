@@ -3878,7 +3878,7 @@ BOOL wasPathFollowed = false;
  * Calls the JS function to group two objects at the specified hotspots.
  */
 -(void) groupObjects:(NSString*)object1 :(CGPoint)object1Hotspot :(NSString*)object2 :(CGPoint)object2Hotspot {
-    NSString *groupObjects = [NSString stringWithFormat:@"groupObjectsAtLoc(%@, %f, %f: %@, %f, %f)", object1, object1Hotspot.x, object1Hotspot.y, object2, object2Hotspot.x, object2Hotspot.y];
+    NSString *groupObjects = [NSString stringWithFormat:@"groupObjectsAtLoc(%@, %f, %f, %@, %f, %f)", object1, object1Hotspot.x, object1Hotspot.y, object2, object2Hotspot.x, object2Hotspot.y];
     
     //Logging added by James for Grouping Objects
     [[ServerCommunicationController sharedManager] logComputerGroupingObjects: @"Group" :object1 :object2 : groupObjects:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
@@ -4752,8 +4752,22 @@ BOOL wasPathFollowed = false;
     menu.delegate = self;
     menu.dataSource = menuDataSource;
     
-    //Calculate the radius of the circle
-    CGFloat radius = (menuBoundingBox -  (itemRadius * 2)) / 2;
+    CGFloat radius;
+    
+    //IM Condition
+    if(conditionSetup.condition == CONTROL)
+    {
+        //Calculate the radius of the circle
+         radius = (menuBoundingBoxIM -  (itemRadiusIM * 2)) / 2;
+    }
+    //PM Condition
+    else
+    {
+        //Calculate the radius of the circle
+        radius = (menuBoundingBoxPM -  (itemRadiusPM * 2)) / 2;
+    }
+    
+    
     [menu expandMenu:radius];
     menuExpanded = TRUE;
     

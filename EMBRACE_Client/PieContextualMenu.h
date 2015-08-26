@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PieContextualMenuDataSource.h"
+#import "ConditionSetup.h"
 
 @protocol PieContextualMenuDelegate;
 @protocol PieContextualMenuDataSource;
@@ -20,9 +21,11 @@
 @property (nonatomic, assign) CGFloat radius;
 
 //Constants for the menu
-extern float const itemRadius; 
+extern float const itemRadiusIM;
+extern float const itemRadiusPM;
+extern float const menuBoundingBoxIM;
+extern float const menuBoundingBoxPM;
 extern float const minAngle;
-extern float const menuBoundingBox;
 extern int const maxMenuItems;
 
 -(void) expandMenu:(CGFloat) circleRadius;
