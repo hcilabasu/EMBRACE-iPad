@@ -16,10 +16,8 @@
 @synthesize alternateSrc;
 @synthesize width;
 @synthesize location;
-@synthesize className;
-@synthesize zPosition;
 
-- (id) initWithValues:(NSString*)objId :(NSString*)act :(NSString*)origSrc :(NSString*)altSrc :(NSString*)wdth :(CGPoint)loc :(NSString*)cls :(NSString*)zpos{
+- (id) initWithValues:(NSString*)objId :(NSString*)act :(NSString*)origSrc :(NSString*)altSrc :(NSString*)wdth :(CGPoint)loc {
     if (self = [super init]) {
         objectId = objId;
         action = act;
@@ -27,8 +25,6 @@
         alternateSrc = altSrc;
         width = wdth;
         location = loc;
-        className = cls;
-        zPosition = zpos;
     }
     
     return self;
