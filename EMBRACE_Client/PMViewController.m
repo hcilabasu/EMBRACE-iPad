@@ -77,9 +77,6 @@
     NSString* actualWord; //Stores the current word that was clicked
     NSTimer* timer; //Controls the timing of the audio file that is playing
     BOOL isAudioLeft;
-    NSMutableDictionary* animatingObjects;
-    BOOL containsAnimatingObject;
-    NSString* previousStep;
     Mode currentMode;
 }
 
@@ -691,6 +688,11 @@ BOOL wasPathFollowed = false;
     //Check if able to increment current step
     if (currentStep < numSteps) {
         NSString *tempsteps = [NSString stringWithFormat:@"%lu", (unsigned long)currentStep];
+        
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        ActionStep* prevSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        previousStep = [prevSolStep stepType];
+        
         currentStep++;
     
         //Logging added by James for Computer Navigation to next Step
@@ -889,7 +891,14 @@ BOOL wasPathFollowed = false;
             [playaudioClass playAudioFile:self:file];
             [self incrementCurrentStep];
         }
-        
+        else if ([[currSolStep stepType] isEqualToString:@"appear"]) {
+            [self loadImage];
+            [self incrementCurrentStep];
+        }
+        else if ([[currSolStep stepType] isEqualToString:@"disappear"]) {
+            [self hideImage];
+            [self incrementCurrentStep];
+        }
     }
     
     if([IntroductionClass.introductions objectForKey:chapterTitle] && [[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
@@ -1767,12 +1776,12 @@ BOOL wasPathFollowed = false;
                             //gets hotspot id for logging
                             NSString* locationId = [currSolStep locationId];
                             //Logging added by James for User Move Object to object
-                            //[[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : locationId:startLocation.x :startLocation.y :location.x :location.y :@"Move to Hotspot" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+                            [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : locationId:startLocation.x :startLocation.y :location.x :location.y :@"Move to Hotspot" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
                             
                             //Logging added by James for user Move Object to Hotspot Incorrect
-                            //[[ServerCommunicationController sharedManager] logComputerVerification:@"Move to Hotspot" :false : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+                            [[ServerCommunicationController sharedManager] logComputerVerification:@"Move to Hotspot" :false : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
                             
-                            //[playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentStep];
+                            [playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentStep];
                             //[self playErrorNoise];
                             
                             if (allowSnapback) {
@@ -1982,19 +1991,10 @@ BOOL wasPathFollowed = false;
                     [self drawHotspots:redHotspots :@"red"];
                     [self drawHotspots:greenHotspots :@"green"];
                 }
+         
             }
         }
     }
-}
-
--(UIColor *)generateRandomColor {
-    NSInteger aRedValue = arc4random()%255;
-    NSInteger aGreenValue = arc4random()%255;
-    NSInteger aBlueValue = arc4random()%255;
-    
-    UIColor *randColor = [UIColor colorWithRed:aRedValue/255.0f green:aGreenValue/255.0f blue:aBlueValue/255.0f alpha:1.0f];
-    
-    return randColor;
 }
 
 -(UIImage*) getBackgroundImage{
@@ -2146,6 +2146,7 @@ BOOL wasPathFollowed = false;
                 }
             }
         }
+        
     }
     
     //NSLog(@"images count:%d", [images count]);
@@ -2704,6 +2705,60 @@ BOOL wasPathFollowed = false;
             
             //Logging added by James for Swap Images
             [[ServerCommunicationController sharedManager] logComputerSwapImages : object1Id : altSrc: @"Swap Image" : bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+        }
+    }
+}
+
+/*
+ Loads an image calling the loadImage JS function and using the AlternateImage class
+ */
+-(void) loadImage {
+    if (numSteps > 0) {
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        if ([[currSolStep stepType] isEqualToString:@"appear"]) {
+            //Get information for appear step type
+            NSString* object1Id = [currSolStep object1Id];
+            NSString* action = [currSolStep action];
+            
+            //Get alternate image
+            AlternateImage* altImage = [model getAlternateImageWithAction:action];
+            
+            //Get alternate image information
+            NSString* altSrc = [altImage alternateSrc];
+            NSString* width = [altImage width];
+            CGPoint location = [altImage location];
+            NSString* className = [altImage className];
+            NSString* zPosition = [altImage zPosition];
+            
+            //Swap images using alternative src
+            NSString* loadImage = [NSString stringWithFormat:@"loadImage('%@', '%@', '%@', %f, %f, '%@', %d)", object1Id, altSrc, width, location.x, location.y, className, zPosition.intValue];
+            [bookView stringByEvaluatingJavaScriptFromString:loadImage];
+        }
+    }
+}
+
+/*
+ Calls the removeImage from the ImageManipulation.js file
+ */
+-(void) hideImage {
+    if (numSteps > 0) {
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        if ([[currSolStep stepType] isEqualToString:@"disappear"]) {
+            NSString* object1Id = [currSolStep object1Id];
+            
+            //Hide image
+            NSString* hideImage = [NSString stringWithFormat:@"removeImage('%@')", object1Id];
+            [bookView stringByEvaluatingJavaScriptFromString:hideImage];
         }
     }
 }
@@ -4449,6 +4504,7 @@ BOOL wasPathFollowed = false;
     [textboxView addGestureRecognizer:swipeRecognizer];
     [[self view] addSubview:textboxView];
 }
+
 
 /*
  * Swaps all sentences on the current page for the versions with the specified level of complexity

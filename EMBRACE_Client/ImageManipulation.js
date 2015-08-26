@@ -575,7 +575,7 @@ function swapImageSrc(objectId, alternateSrc, width, left, top) {
 function loadImage(objectId, source, width, left, top, className, zPosition) {
     var image = document.createElement("img");
     
-    image.src = "../Images/" + source; //load image
+    imag.src = "../Images/" + source; //load image
     
     //Adjust image style
     image.style.width = width;
@@ -594,7 +594,6 @@ function loadImage(objectId, source, width, left, top, className, zPosition) {
 /*
  * Removes an image as specified on the metadata
  */
-
 function removeImage(objectId) {
     var image = document.getElementById(objectId);
     image.parentNode.removeChild(image);
