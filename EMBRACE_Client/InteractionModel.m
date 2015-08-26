@@ -360,8 +360,8 @@
 /*
  * Adds an area with the specified id and its set of points
  */
-- (void) addArea:(NSString*)areaId :(UIBezierPath *)path :(NSMutableDictionary*)points :(NSString*)pageId {
-    Area *area = [[Area alloc] initWithValues:areaId :path :points: pageId];
+- (void) addArea:(NSString*)areaId :(UIBezierPath *)path :(NSMutableDictionary*)points {
+    Area *area = [[Area alloc] initWithValues:areaId :path :points];
     [areas addObject:area];
 }
 
@@ -371,19 +371,6 @@
 - (Area*) getAreaWithId:(NSString*)aId {
     for (Area* area in areas) {
         if ([[area areaId] isEqualToString:aId]) {
-            return area;
-        }
-    }
-    
-    return nil;
-}
-
-/*
- * Returns the area with the specified page id
- */
-- (Area*) getAreaWithPageId:(NSString*)pId {
-    for (Area* area in areas) {
-        if ([[area pageId] isEqualToString:pId]) {
             return area;
         }
     }

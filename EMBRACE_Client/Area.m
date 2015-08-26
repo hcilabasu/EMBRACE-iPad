@@ -13,14 +13,12 @@
 @synthesize areaId;
 @synthesize aPath;
 @synthesize points;
-@synthesize pageId;
 
-- (id) initWithValues:(NSString*)aId :(UIBezierPath *)path :(NSMutableDictionary *)aPoints :(NSString*)pId {
+- (id) initWithValues:(NSString*)aId :(UIBezierPath *)path :(NSMutableDictionary *)aPoints {
     if(self = [super init]) {
         areaId = aId;
         aPath = path;
         points = aPoints;
-        pageId = pId;
     }
     
     return self;

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <areas>
-        <area areaId="aorta" pageId="story2-PM-4">
+        <area areaId="aorta">
             <point x="24.5%" y="64.7%"/>
             <point x="15.2%" y="48.8%"/>
             <point x="11.7%" y="37.5%"/>
             <point x="15.2%" y="23.7%"/>
             <point x="19.3%" y="22.6%"/>
+            <point x="24.2%" y="23.8%"/>
             <point x="28.9%" y="18.3%"/>
             <point x="33.4%" y="16.2%"/>
             <point x="44.1%" y="17.1%"/>
@@ -24,88 +25,19 @@
             <point x="17.1%" y="37.5%"/>
             <point x="28.1%" y="58.4%"/>
         </area>
-        <area areaId="aortaPath" pageId="story2-PM-4">
-            <point x="23.3%" y="57.4%"/>
+        <area areaId="aortaPath">
+            <point x="24.2%" y="58.8%"/>
             <point x="18.1%" y="48.0%"/>
             <point x="14.5%" y="38.1%"/>
             <point x="14.2%" y="34.6%"/>
             <point x="17.2%" y="25.6%"/>
             <point x="21.3%" y="25.4%"/>
+            <point x="24.8%" y="25.6%"/>
             <point x="30.3%" y="20.5%"/>
             <point x="33.9%" y="18.7%"/>
             <point x="40.6%" y="19.1%"/>
             <point x="46.1%" y="20.7%"/>
             <point x="58.3%" y="29.9%"/>
-        </area>
-        <area areaId="aortaPath2" pageId="story3-PM-1">
-            <point x="23.3%" y="57.4%"/>
-            <point x="18.1%" y="48.0%"/>
-            <point x="14.5%" y="38.1%"/>
-            <point x="14.2%" y="34.6%"/>
-            <point x="17.2%" y="25.6%"/>
-            <point x="21.3%" y="25.4%"/>
-            <point x="30.3%" y="20.5%"/>
-            <point x="33.9%" y="18.7%"/>
-            <point x="40.6%" y="19.1%"/>
-            <point x="46.1%" y="20.7%"/>
-            <point x="58.3%" y="29.9%"/>
-            <point x="68.5%" y="39.8%"/>
-            <point x="76.9%" y="50.0%"/>
-        </area>
-        <area areaId="arteries" pageId="story3-PM-1">
-            <point x="38.0%" y="74.0%"/>
-            <point x="24.5%" y="67.7%"/>
-            <point x="13.6%" y="50.3%"/>
-            <point x="10.5%" y="38.2%"/>
-            <point x="13.0%" y="25.2%"/>
-            <point x="22.3%" y="18.0%"/>
-            <point x="38.4%" y="13.8%"/>
-            <point x="55.3%" y="21.3%"/>
-            <point x="61.2%" y="26.8%"/>
-            <point x="67.4%" y="32.4%"/>
-            <point x="80.9%" y="48.0%"/>
-            <point x="80.9%" y="63.5%"/>
-            <point x="61.4%" y="40.9%"/>
-            <point x="52.7%" y="33.5%"/>
-            <point x="40.3%" y="28.0%"/>
-            <point x="28.7%" y="30.0%"/>
-            <point x="22.3%" y="32.8%"/>
-            <point x="20.7%" y="41.0%"/>
-            <point x="28.1%" y="55.4%"/>
-            <point x="38.0%" y="60.0%"/>
-            <point x="38.0%" y="74.0%"/>
-            <point x="24.5%" y="67.7%"/>
-        </area>
-        <area areaId="aortaStart" pageId="story2-PM-4">
-            <point x="17.8%" y="54.5%"/>
-            <point x="22.2%" y="47.5%"/>
-            <point x="29.6%" y="58.8%"/>
-            <point x="24.8%" y="66.4%"/>
-        </area>
-        <area areaId="veinPath" pageId="story4-PM-3">
-            <point x="10.8%" y="77.6%"/>
-            <point x="12.5%" y="64.8%"/>
-            <point x="21.6%" y="64.7%"/>
-            <point x="26.6%" y="66.6%"/>
-            <point x="28.0%" y="80.0%"/>
-            <point x="26.4%" y="88.3%"/>
-        </area>
-        <area areaId="vein" pageId="story4-PM-3">
-            <point x="8.3%" y="80.1%"/>
-            <point x="9.1%" y="69.9%"/>
-            <point x="10.5%" y="62.3%"/>
-            <point x="21.6%" y="62.3%"/>
-            <point x="29.1%" y="64.1%"/>
-            <point x="30.3%" y="71.7%"/>
-            <point x="31.0%" y="80.0%"/>
-            <point x="29.3%" y="93.3%"/>
-            <point x="23.4%" y="93.3%"/>
-            <point x="24.5%" y="80.0%"/>
-            <point x="23.3%" y="71.7%"/>
-            <point x="23.1%" y="69.1%"/>
-            <point x="15.0%" y="68.3%"/>
-            <point x="13.8%" y="69.9%"/>
-            <point x="13.3%" y="80.1%"/>
         </area>
     </areas>
 </metadata>
