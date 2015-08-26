@@ -323,8 +323,8 @@
  * Adds an AlternateImage with the specified object id, action, original src, alternate src, alternate image width, 
  * and alternate location (x-y coordinate of top left corner of image)
  */
-- (void) addAlternateImage:(NSString *)objId :(NSString *)act :(NSString *)origSrc :(NSString *)altSrc :(NSString *)wdth :(CGPoint)loc {
-    AlternateImage* altImage = [[AlternateImage alloc] initWithValues:objId :act :origSrc :altSrc :wdth :loc];
+- (void) addAlternateImage:(NSString *)objId :(NSString *)act :(NSString *)origSrc :(NSString *)altSrc :(NSString *)wdth :(CGPoint)loc :(NSString *)cls :(NSString *)zpos {
+    AlternateImage* altImage = [[AlternateImage alloc] initWithValues:objId :act :origSrc :altSrc :wdth :loc :cls :zpos];
     [alternateImages addObject:altImage];
 }
 
@@ -360,8 +360,8 @@
 /*
  * Adds an area with the specified id and its set of points
  */
-- (void) addArea:(NSString*)areaId :(UIBezierPath *)path :(NSMutableDictionary*)points {
-    Area *area = [[Area alloc] initWithValues:areaId :path :points];
+- (void) addArea:(NSString*)areaId :(UIBezierPath *)path :(NSMutableDictionary*)points :(NSString*)pageId {
+    Area *area = [[Area alloc] initWithValues:areaId :path :points: pageId];
     [areas addObject:area];
 }
 
@@ -371,6 +371,19 @@
 - (Area*) getAreaWithId:(NSString*)aId {
     for (Area* area in areas) {
         if ([[area areaId] isEqualToString:aId]) {
+            return area;
+        }
+    }
+    
+    return nil;
+}
+
+/*
+ * Returns the area with the specified page id
+ */
+- (Area*) getAreaWithPageId:(NSString*)pId {
+    for (Area* area in areas) {
+        if ([[area pageId] isEqualToString:pId]) {
             return area;
         }
     }

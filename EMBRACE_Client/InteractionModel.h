@@ -67,7 +67,7 @@
 
 - (void) addWaypoint:(NSString*)wayptId :(CGPoint)loc;
 
-- (void) addAlternateImage:(NSString*)objId :(NSString*)act :(NSString*)origSrc :(NSString*)altSrc :(NSString*)wdth :(CGPoint)loc;
+- (void) addAlternateImage:(NSString*)objId :(NSString*)act :(NSString*)origSrc :(NSString*)altSrc :(NSString*)wdth :(CGPoint)loc : (NSString*)cls :(NSString*)zpos;
 
 - (NSMutableArray*) getAllHotspots; //Return all hotspots for all objects.
 - (NSMutableArray*) getHotspotsForObjectId:(NSString* )objId; //Return all hotspots for object with objId.
@@ -97,5 +97,6 @@
 
 - (void) addArea:(NSString*)areaId :(UIBezierPath *)path :(NSMutableDictionary*)points;
 - (Area*) getAreaWithId:(NSString*)aId;
+- (Area*) getAreaWithPageId:(NSString*)pId;
 
 @end

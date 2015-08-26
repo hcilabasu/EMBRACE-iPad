@@ -8,6 +8,7 @@
         <location locationId="heart2" x="3%" y="29%" height="54%" width="40%"/>
         <location locationId="heart3" x="3%" y="29%" height="50%" width="50%"/>
         <location locationId="leftAtrium" x="29%" y="23%" height="28%" width="22%"/>
+        <location locationId="leftAtrium2" x="19.3%" y="52.8%" height="12.6%" width="10.4%"/>
         <location locationId="leftVentricle" x="33%" y="45%" height="39%" width="23%"/>
         <location locationId="lung1" x="0.1%" y="53%" height="46%" width="34%"/>
         <location locationId="lung2" x="20%" y="21%" height="66%" width="35%"/>
