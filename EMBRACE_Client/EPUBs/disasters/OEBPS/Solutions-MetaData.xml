@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <solutions>
-        <story title="The Moving Earth" activity_id="story1-PM-1">
-            <sentence number="2">
-                <step number="1">
-                    <check obj1Id="africa" action="getIn" locationId="africa_away"/>
-                    <move obj1Id="africa" action="getIn" waypointId="africa_away"/>
-                </step>
-            </sentence>
-        </story>
+        
     </solutions>
 </metadata>

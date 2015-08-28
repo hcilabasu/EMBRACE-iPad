@@ -1,21 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <locations>
-        <location locationId="africa_away" x="50%" y="50%" height="50%" width="50%"/>
-        <location locationId="air_down" x="50%" y="50%" height="50%" width="50%"/>
-        <location locationId="air_up" x="50%" y="50%" height="50%" width="50%"/>
-        <location locationId="anywhere" x="50%" y="50%" height="50%" width="50%"/>
-        <location locationId="california_up" x="50%" y="50%" height="50%" width="50%"/>
-        <location locationId="california_up2" x="50%" y="50%" height="50%" width="50%"/>
-        <location locationId="gap" x="50%" y="50%" height="50%" width="50%"/>
-        <location locationId="india_away" x="50%" y="50%" height="50%" width="50%"/>
-        <location locationId="india_near_eurasia" x="50%" y="50%" height="50%" width="50%"/>
-        <location locationId="land" x="50%" y="50%" height="50%" width="50%"/>
-        <location locationId="lavaUp" x="50%" y="50%" height="50%" width="50%"/>
-        <location locationId="lavaUpHawaii" x="50%" y="50%" height="50%" width="50%"/>
-        <location locationId="ocean" x="50%" y="50%" height="50%" width="50%"/>
-        <location locationId="plate_move" x="50%" y="50%" height="50%" width="50%"/>
-        <location locationId="tornado" x="50%" y="50%" height="50%" width="50%"/>
-        <location locationId="upHill" x="50%" y="50%" height="50%" width="50%"/>
-    </locations>
+            </locations>
 </metadata>
