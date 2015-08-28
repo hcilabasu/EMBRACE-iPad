@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <setups>
+        <story title="The Moving Earth" page_id="story1-PM-1">
+            <group obj1Id="africa" action="touch" obj2Id="india"/>
+            <group obj1Id="india" action="touch" obj2Id="australia"/>
+            <group obj1Id="australia" action="touch" obj2Id="antartica"/>
+        </story>
+        <story title="Earthquakes" page_id="story2-PM-1">
+            <group obj1Id="california" action="touch" obj2Id="north_america"/>
+        </story>
     </setups>
 </metadata>
