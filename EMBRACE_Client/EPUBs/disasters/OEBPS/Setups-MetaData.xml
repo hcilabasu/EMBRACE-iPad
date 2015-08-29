@@ -9,5 +9,12 @@
         <story title="Earthquakes" page_id="story2-PM-1">
             <group obj1Id="california" action="touch" obj2Id="north_america"/>
         </story>
+        <story title="Volcanoes and the Making of Hawaii" page_id="story4-PM-3">
+            <group obj1Id="grey_plate_kauai" action="touch" obj2Id="kauai"/>
+        </story>
+        <story title="Volcanoes and the Making of Hawaii" page_id="story4-PM-4">
+            <group obj1Id="grey_plate_kauai" action="touch" obj2Id="kauai"/>
+            <group obj1Id="grey_plate_kauai" action="touch" obj2Id="oahu"/>
+        </story>
     </setups>
 </metadata>

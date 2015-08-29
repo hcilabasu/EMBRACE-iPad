@@ -12,6 +12,7 @@
         <location locationId="land" x="50%" y="50%" height="50%" width="50%"/>
         <location locationId="lavaUp" x="50%" y="50%" height="50%" width="50%"/>
         <location locationId="lavaUpHawaii" x="50%" y="50%" height="50%" width="50%"/>
+        <location locationId="left" x="50%" y="50%" height="50%" width="50%"/>
         <location locationId="ocean" x="50%" y="50%" height="50%" width="50%"/>
         <location locationId="plate_move" x="50%" y="50%" height="50%" width="50%"/>
         <location locationId="tornado" x="50%" y="50%" height="50%" width="50%"/>

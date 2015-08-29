@@ -11,6 +11,8 @@
         <waypoint waypointId="gap" x="50%" y="50%"/>
         <waypoint waypointId="india_near_eurasia" x="50%" y="50%"/>
         <waypoint waypointId="india_ungrouped" x="50%" y="50%"/>
+        <waypoint waypointId="left" x="50%" y="50%"/>
+        <waypoint waypointId="left2" x="50%" y="50%"/>
         <waypoint waypointId="ocean" x="50%" y="50%"/>
         <waypoint waypointId="ocean_down" x="50%" y="50%"/>
         <waypoint waypointId="plate_move" x="50%" y="50%"/>

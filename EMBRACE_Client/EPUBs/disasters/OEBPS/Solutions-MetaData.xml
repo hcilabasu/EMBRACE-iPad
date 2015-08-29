@@ -108,6 +108,52 @@
                 </step>
             </sentence>
         </story>
+        <story title="Volcanoes and the Making of Hawaii" activity_id="story4-PM-1">
+            <sentence number="5">
+                <step number="1">
+                    <check obj1Id="lava" action="getIn" locationId="lavaUp"/>
+                    <swapImage obj1Id="lava" action="forms_rock"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Volcanoes and the Making of Hawaii" activity_id="story4-PM-2">
+            <sentence number="7">
+                <step number="1">
+                    <check obj1Id="lava" action="getIn" locationId="lavaUp"/>
+                    <swapImage obj1Id="lava" action="forms_island"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Volcanoes and the Making of Hawaii" activity_id="story4-PM-3">
+            <sentence number="10">
+                <step number="1">
+                    <check obj1Id="grey_plate_kauai" action="getIn" locationId="left"/>
+                    <move obj1Id="grey_plate_kauai" action="getIn" waypointId="left"/>
+                </step>
+            </sentence>
+            <sentence number="11">
+                <step number="1">
+                    <check obj1Id="lava" action="getIn" locationId="lavaUp"/>
+                    <swapImage obj1Id="lava" action="forms_Oahu"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Volcanoes and the Making of Hawaii" activity_id="story4-PM-4">
+            <sentence number="13">
+                <step number="1">
+                    <check obj1Id="grey_plate_kauai" action="getIn" locationId="left"/>
+                    <move obj1Id="grey_plate_kauai" action="getIn" waypointId="left2"/>
+                    <appear obj1Id="molokai" action="appear"/>
+                    <appear obj1Id="hawaii" action="appear"/>
+                </step>
+            </sentence>
+            <sentence number="15">
+                <step number="1">
+                    <check obj1Id="lava" action="getIn" locationId="lavaUpHawaii"/>
+                    <swapImage obj1Id="lava" action="forms_rock_Hawaii"/>
+                </step>
+            </sentence>
+        </story>
         <story title="Tornados" activity_id="story5-PM-1">
             <sentence number="3">
                 <step number="1">

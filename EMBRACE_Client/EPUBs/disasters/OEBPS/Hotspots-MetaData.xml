@@ -15,15 +15,19 @@
         <hotspot objId="dirt_move" action="pull" role="subject" x="50%" y="50%"/>
         <hotspot objId="dirt_tornado" action="pull" role="object" x="50%" y="50%"/>
         <hotspot objId="eurasia" action="hit" role="object" x="50%" y="50%"/>
+        <hotspot objId="grey_plate_kauai" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="grey_plate_kauai" action="touch" role="subject" x="50%" y="50%"/>
         <hotspot objId="house_roof2" action="pull" role="subject" x="50%" y="50%"/>
         <hotspot objId="houses" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="india" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="india" action="hit" role="subject" x="50%" y="50%"/>
         <hotspot objId="india" action="touch" role="object" x="50%" y="50%"/>
         <hotspot objId="india" action="touch" role="subject" x="50%" y="50%"/>
+        <hotspot objId="kauai" action="touch" role="object" x="50%" y="50%"/>
         <hotspot objId="lava" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="north_america" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="north_america" action="touch" role="object" x="50%" y="50%"/>
+        <hotspot objId="oahu" action="touch" role="object" x="50%" y="50%"/>
         <hotspot objId="ocean" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="person" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="plate" action="getIn" role="subject" x="50%" y="50%"/>
