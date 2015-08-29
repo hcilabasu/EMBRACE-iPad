@@ -108,6 +108,51 @@
                 </step>
             </sentence>
         </story>
+        <story title="Tornados" activity_id="story5-PM-1">
+            <sentence number="3">
+                <step number="1">
+                    <shakeOrTap obj1Id="air_blue" action="getIn" locationId="anywhere"/>
+                </step>
+            </sentence>
+            <sentence number="4">
+                <step number="1">
+                    <check obj1Id="air_blue" action="getIn" locationId="air_down"/>
+                    <move obj1Id="air_blue" action="getIn" waypointId="air_down"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Tornados" activity_id="story5-PM-2">
+            <sentence number="5">
+                <step number="1">
+                    <check obj1Id="air_red" action="getIn" locationId="air_up"/>
+                    <move obj1Id="air_red" action="getIn" waypointId="air_up"/>
+                </step>
+            </sentence>
+            <sentence number="6">
+                <step number="1">
+                    <group obj1Id="dirt_move" action="pull" obj2Id="air_red"/>
+                    <appear obj1Id="dirt_tornado" action="appear"/>
+                    <disappear obj1Id="dirt_move" action="disappear" obj2Id=""/>
+                </step>
+            </sentence>
+            <sentence number="8">
+                <step number="1">
+                    <group obj1Id="house_roof2" action="pull" obj2Id="dirt_tornado"/>
+                    <disappear obj1Id="house_roof2" action="disappear" obj2Id=""/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Tornados" activity_id="story5-PM-3">
+            <sentence number="9">
+                <step number="1">
+                    <check obj1Id="air_blue" action="getIn" locationId="tornado"/>
+                    <swapImage obj1Id="air_blue" action="changeZIndex"/>
+                    <disappear obj1Id="air_red" action="disappear" obj2Id=""/>
+                    <swapImage obj1Id="dirt_tornado" action="shrink"/>
+                </step>
+            </sentence>
+        </story>
+
 
 
 

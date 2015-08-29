@@ -1239,7 +1239,6 @@
 		B996065919A7FD8500BF17F4 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = B996065819A7FD8500BF17F4 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-Intro-E.xhtml */; };
 		B9B537BB19F1D77B00787A85 /* gray_handle_open.png in Resources */ = {isa = PBXBuildFile; fileRef = B9B537BA19F1D77B00787A85 /* gray_handle_open.png */; };
 		B9B537BD19F1D79A00787A85 /* gray_handle_close.png in Resources */ = {isa = PBXBuildFile; fileRef = B9B537BC19F1D79A00787A85 /* gray_handle_close.png */; };
-		B9C9E9861B8EA0A800AFC328 /* disasters.epub in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E8DE1B8EA0A700AFC328 /* disasters.epub */; };
 		B9C9E9871B8EA0A800AFC328 /* container.xml in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E8E01B8EA0A700AFC328 /* container.xml */; };
 		B9C9E9881B8EA0A800AFC328 /* mimetype in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E8E11B8EA0A700AFC328 /* mimetype */; };
 		B9C9E9891B8EA0A800AFC328 /* AlternateImages-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E8E31B8EA0A700AFC328 /* AlternateImages-MetaData.xml */; };
@@ -2728,7 +2727,6 @@
 		B996065819A7FD8500BF17F4 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-Cigarette-Smoke-Hurts-Your-Lungs-Intro-E.xhtml"; sourceTree = "<group>"; };
 		B9B537BA19F1D77B00787A85 /* gray_handle_open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gray_handle_open.png; sourceTree = "<group>"; };
 		B9B537BC19F1D79A00787A85 /* gray_handle_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gray_handle_close.png; sourceTree = "<group>"; };
-		B9C9E8DE1B8EA0A700AFC328 /* disasters.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = disasters.epub; sourceTree = "<group>"; };
 		B9C9E8E01B8EA0A700AFC328 /* container.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = container.xml; sourceTree = "<group>"; };
 		B9C9E8E11B8EA0A700AFC328 /* mimetype */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mimetype; sourceTree = "<group>"; };
 		B9C9E8E31B8EA0A700AFC328 /* AlternateImages-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AlternateImages-MetaData.xml"; sourceTree = "<group>"; };
@@ -4589,7 +4587,6 @@
 		B9C9E8DD1B8EA0A700AFC328 /* disasters */ = {
 			isa = PBXGroup;
 			children = (
-				B9C9E8DE1B8EA0A700AFC328 /* disasters.epub */,
 				B9C9E8DF1B8EA0A700AFC328 /* META-INF */,
 				B9C9E8E11B8EA0A700AFC328 /* mimetype */,
 				B9C9E8E21B8EA0A700AFC328 /* OEBPS */,
@@ -4955,7 +4952,6 @@
 				B9C9EA041B8EA0A800AFC328 /* IMStyle.css in Resources */,
 				5CE299D319B59E6000675CB0 /* weedsE.m4a in Resources */,
 				5C7FE06019A6B1B500CBBE0E /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-PM-1.xhtml in Resources */,
-				B9C9E9861B8EA0A800AFC328 /* disasters.epub in Resources */,
 				B9C9EA011B8EA0A800AFC328 /* SentenceAnalysis-MetaData.xml in Resources */,
 				5C7FE05C19A6B1B500CBBE0E /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-7.xhtml in Resources */,
 				5C776B6319C90DA1000DBC65 /* BFEC2.m4a in Resources */,
