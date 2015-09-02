@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <locations>
-        <location locationId="africa_away" x="50%" y="50%" height="50%" width="50%"/>
-        <location locationId="air_down" x="50%" y="50%" height="50%" width="50%"/>
-        <location locationId="air_up" x="50%" y="50%" height="50%" width="50%"/>
-        <location locationId="anywhere" x="50%" y="50%" height="50%" width="50%"/>
-        <location locationId="bulge_left" x="50%" y="50%" height="50%" width="50%"/>
-        <location locationId="california_up" x="50%" y="50%" height="50%" width="50%"/>
-        <location locationId="california_up2" x="50%" y="50%" height="50%" width="50%"/>
-        <location locationId="india_near_eurasia" x="50%" y="50%" height="50%" width="50%"/>
-        <location locationId="land" x="50%" y="50%" height="50%" width="50%"/>
+        <location locationId="africa_away" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="air_down" x="40%" y="8%" height="100%" width="45%"/>
+        <location locationId="air_up" x="38%" y="0%" height="66.5%" width="40%"/>
+        <location locationId="anywhere" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="bulge_left" x="0%" y="46%" height="30%" width="76%"/>
+        <location locationId="california_up" x="3%" y="0%" height="32.5%" width="12%"/>
+        <location locationId="california_up2" x="13%" y="0%" height="64%" width="29%"/>
+        <location locationId="land" x="34%" y="35%" height="50%" width="100%"/>
         <location locationId="lavaUp" x="50%" y="50%" height="50%" width="50%"/>
         <location locationId="lavaUpHawaii" x="50%" y="50%" height="50%" width="50%"/>
         <location locationId="left" x="0%" y="50%" height="100%" width="100%"/>
-        <location locationId="ocean" x="50%" y="50%" height="50%" width="50%"/>
-        <location locationId="plate_move" x="50%" y="50%" height="50%" width="50%"/>
-        <location locationId="tornado" x="50%" y="50%" height="50%" width="50%"/>
-        <location locationId="upHill" x="50%" y="50%" height="50%" width="50%"/>
+        <location locationId="ocean" x="0%" y="47%" height="39%" width="61%"/>
+        <location locationId="plate_move" x="13%" y="62%" height="30%" width="93%"/>
+        <location locationId="tornado" x="30%" y="27%" height="50%" width="50%"/>
+        <location locationId="upHill" x="30%" y="17%" height="24.4%" width="26.4%"/>
     </locations>
 </metadata>

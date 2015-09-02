@@ -2,20 +2,20 @@
 <metadata>
     <waypoints>
         <waypoint waypointId="africa_away" x="32.08%" y="40.32%"/>
-        <waypoint waypointId="air_down" x="45.31%" y="37.87%"/>
-        <waypoint waypointId="air_up" x="50%" y="50%"/>
-        <waypoint waypointId="bulge_left" x="3%" y="62%"/>
-        <waypoint waypointId="california_boom" x="20.9%" y="39.77%"/>
-        <waypoint waypointId="california_up" x="4.5%" y="20%"/>
-        <waypoint waypointId="california_up2" x="21.53%" y="39.77%"/>
+        <waypoint waypointId="air_down" x="54.5%" y="50.5%"/>
+        <waypoint waypointId="air_up" x="54.5%" y="60%"/>
+        <waypoint waypointId="bulge_left" x="10%" y="69.5%"/>
+        <waypoint waypointId="california_boom" x="26.2%" y="62%"/>
+        <waypoint waypointId="california_up" x="9.5%" y="31%"/>
+        <waypoint waypointId="california_up2" x="26.9%" y="62%"/>
         <waypoint waypointId="gap" x="50%" y="50%"/>
         <waypoint waypointId="india_near_eurasia" x="54.74%" y="31.7%"/>
         <waypoint waypointId="india_ungrouped" x="52.1%" y="56.49%"/>
-        <waypoint waypointId="left" x="6.1%" y="52.19%"/>
-        <waypoint waypointId="left2" x="0%" y="52.19%"/>
-        <waypoint waypointId="ocean" x="19.04%" y="57.01"/>
-        <waypoint waypointId="ocean_down" x="0%" y="61.5%"/>
-        <waypoint waypointId="plate_move" x="50%" y="80%"/>
-        <waypoint waypointId="upHill" x="47%" y="28%"/>
+        <waypoint waypointId="left" x="50%" y="55%"/>
+        <waypoint waypointId="left2" x="45%" y="55%"/>
+        <waypoint waypointId="ocean" x="35%" y="69%"/>
+        <waypoint waypointId="ocean_down" x="50%" y="79%"/>
+        <waypoint waypointId="plate_move" x="74%" y="90%"/>
+        <waypoint waypointId="upHill" x="47%" y="34%"/>
     </waypoints>
 </metadata>

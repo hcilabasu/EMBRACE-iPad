@@ -17,7 +17,8 @@
                     <move obj1Id="india" action="getIn" waypointId="india_ungrouped"/>
                 </step>
                 <step number="2">
-                    <check obj1Id="india" action="getIn" locationId="india_near_eurasia"/>
+                    <group obj1Id="india" action="hit" obj2Id="eurasia"/>
+                    <ungroup obj1Id="india" action="leave" obj2Id="eurasia"/>
                     <move obj1Id="india" action="getIn" waypointId="india_near_eurasia"/>
                 </step>
             </sentence>
