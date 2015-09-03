@@ -2,11 +2,11 @@
 <metadata>
     <hotspots>
         <hotspot objId="africa" action="getIn" role="subject" x="0%" y="0%"/>
-        <hotspot objId="africa" action="touch" role="subject" x="92.8%" y="30.9%"/>
+        <hotspot objId="africa" action="touch" role="subject" x="92.5%" y="31%"/>
         <hotspot objId="air_blue" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="air_red" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="air_red" action="pull" role="object" x="50%" y="50%"/>
-        <hotspot objId="antartica" action="touch" role="object" x="50%" y="50%"/>
+        <hotspot objId="antartica" action="touch" role="object" x="87.2%" y="82.2%"/>
         <hotspot objId="australia" action="touch" role="object" x="26.8%" y="2.3%"/>
         <hotspot objId="australia" action="touch" role="subject" x="15%" y="85.7%"/>
         <hotspot objId="bulge" action="getIn" role="subject" x="50%" y="50%"/>
@@ -22,7 +22,7 @@
         <hotspot objId="india" action="getIn" role="subject" x="0%" y="0%"/>
         <hotspot objId="india" action="hit" role="subject" x="50%" y="50%"/>
         <hotspot objId="india" action="touch" role="object" x="16.9%" y="5.6%"/>
-        <hotspot objId="india" action="touch" role="subject" x="95%" y="23.4%"/>
+        <hotspot objId="india" action="touch" role="subject" x="94.7%" y="23.4%"/>
         <hotspot objId="kauai" action="touch" role="subject" x="50%" y="50%"/>
         <hotspot objId="lava" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="north_america" action="getIn" role="subject" x="0%" y="0%"/>
