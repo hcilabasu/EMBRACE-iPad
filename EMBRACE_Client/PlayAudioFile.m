@@ -69,7 +69,10 @@
     _audioPlayer.delegate = self;
     
     if (_audioPlayer == nil)
+    {
         NSLog(@"%@",[audioError description]);
+        [PmviewController.view setUserInteractionEnabled:YES];
+    }
     else
         [_audioPlayer play];
 }
@@ -94,7 +97,10 @@
     _audioPlayer.delegate = self;
     
     if (_audioPlayer == nil)
+    {
         NSLog(@"%@",[audioError description]);
+        [PmviewController.view setUserInteractionEnabled:YES];
+    }
     else
         [_audioPlayer play];
 }
