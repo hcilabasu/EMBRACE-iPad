@@ -2024,6 +2024,19 @@ ConditionSetup *conditionSetup;
         
         if([curChar isEqualToString:@"<"])
         {
+            NSRange range = NSMakeRange(i, newImages.length-i);
+            int topStartIndex = [newImages rangeOfString:@"top:" options:0 range:range].location;
+            int topEndIndex = [[newImages substringFromIndex:topStartIndex+4] rangeOfString:@";"].location;
+            NSString *topString = [newImages substringFromIndex:topStartIndex+4];
+            topString = [topString substringToIndex:topEndIndex-2];
+            [topString stringByReplacingOccurrencesOfString:@" " withString:@""];
+            
+            int leftStartIndex = [newImages rangeOfString:@"left:" options:0 range:range].location;
+            int leftEndIndex = [[newImages substringFromIndex:leftStartIndex+5] rangeOfString:@";"].location;
+            NSString *leftString = [newImages substringFromIndex:leftStartIndex+5];
+            leftString = [leftString substringToIndex:leftEndIndex-2];
+            [leftString stringByReplacingOccurrencesOfString:@" " withString:@""];
+            
             for(int j = i; j<newImages.length; j++)
             {
             
@@ -2034,6 +2047,24 @@ ConditionSetup *conditionSetup;
                     concatenatedString = [concatenatedString stringByAppendingString:nextChar];
                     i=j;
                     j=newImages.length;
+                }
+                else if(j==topStartIndex)
+                {
+                    float topPixelValue = [topString floatValue];
+                    float topPercentValue = ((topPixelValue / [bookView frame].size.height)*100);
+                    NSString *topPercentValueString = [NSString stringWithFormat:@"top: %f%%",topPercentValue];
+                    
+                    concatenatedString = [concatenatedString stringByAppendingString:topPercentValueString];
+                    j=topEndIndex+topStartIndex+3;
+                }
+                else if(j == leftStartIndex)
+                {
+                    float leftPixelValue = [leftString floatValue];
+                    float leftPercentValue = ((leftPixelValue / [bookView frame].size.width)*100);
+                    NSString *leftPercentValueString = [NSString stringWithFormat:@"left: %f%%",leftPercentValue];
+                    
+                    concatenatedString = [concatenatedString stringByAppendingString:leftPercentValueString];
+                    j=leftEndIndex+leftStartIndex+4;
                 }
                 else
                 {
