@@ -606,14 +606,14 @@ ConditionSetup *conditionSetup;
     NSString *xcordPercent = [NSString stringWithFormat:@"%ld", (long)[xcord.text integerValue]];
     NSString *ycordPercent = [NSString stringWithFormat:@"%ld", (long)[ycord.text integerValue]];
     
-    NSInteger hleft = [hotspotLeft.text integerValue];
-    NSInteger htop = [hotspotTop.text integerValue];
-    NSInteger hwidth = [hotspotWidth.text integerValue];
-    NSInteger hheight = [hotspotHeight.text integerValue];
-    NSInteger xpercent = hleft + hwidth * [xcordPercent integerValue]/100;
-    NSInteger ypercent = htop + hheight * [ycordPercent integerValue]/100;
+    //NSInteger hleft = [hotspotLeft.text integerValue];
+    //NSInteger htop = [hotspotTop.text integerValue];
+    //NSInteger hwidth = [hotspotWidth.text integerValue];
+    //NSInteger hheight = [hotspotHeight.text integerValue];
+    //NSInteger xpercent = hleft + hwidth * [xcordPercent integerValue]/100;
+    //NSInteger ypercent = htop + hheight * [ycordPercent integerValue]/100;
     
-    NSString* newHotspot = [NSString stringWithFormat:@"hotspot objId=\"%@\" action=\"%@\" role=\"%@\" x=\"%ld%%\" y=\"%ld%%\"", hotspotID.text, action.text, role.text, (long)xpercent, (long)ypercent];
+    NSString* newHotspot = [NSString stringWithFormat:@"hotspot objId=\"%@\" action=\"%@\" role=\"%@\" x=\"%@%%\" y=\"%@%%\"", hotspotID.text, action.text, role.text, xcordPercent, ycordPercent];
     NSLog(@"%@", newHotspot);
     
     //set file path to access introduction metadata
