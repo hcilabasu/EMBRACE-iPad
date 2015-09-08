@@ -1674,8 +1674,24 @@ ConditionSetup *conditionSetup;
                 movingObject = TRUE;
                 movingObjectId = imageAtPoint;
                 
-                //Calculate offset between top-left corner of image and the point clicked.
-                delta = [self calculateDeltaForMovingObjectAtPoint:location];
+                
+                 NSString* requestImageMarginLeft = [NSString stringWithFormat:@"%@.style.marginLeft", movingObjectId];
+                 NSString* requestImageMarginTop = [NSString stringWithFormat:@"%@.style.marginTop", movingObjectId];
+                 
+                 NSString* imageMarginLeft = [bookView stringByEvaluatingJavaScriptFromString:requestImageMarginLeft];
+                 NSString* imageMarginTop = [bookView stringByEvaluatingJavaScriptFromString:requestImageMarginTop];
+                 
+                 if(![imageMarginLeft isEqualToString:@""] && ![imageMarginTop isEqualToString:@""])
+                 {
+                     //Calulate offset between top-left corner of image and the point clicked for centered images
+                    delta = [self calculateDeltaForMovingObjectAtPointWithCenter:movingObjectId :location];
+                 }
+                 else
+                 {
+                 
+                     //Calculate offset between top-left corner of image and the point clicked.
+                     delta = [self calculateDeltaForMovingObjectAtPoint:location];
+                 }
                 
                 //Record the starting location of the object when it is selected
                 startLocation = CGPointMake(location.x - delta.x, location.y - delta.y);
@@ -2156,6 +2172,45 @@ ConditionSetup *conditionSetup;
 }
 
 /*
+ * Calculates the delta pixel change for the object that is being moved
+ * and changes the lcoation from relative % to pixels if necessary.
+ */
+-(CGPoint) calculateDeltaForMovingObjectAtPointWithCenter:(NSString*) object :(CGPoint) location {
+    CGPoint change;
+    
+    //Calculate offset between top-left corner of image and the point clicked.
+    NSString* requestImageAtPointTop = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).offsetTop", location.x, location.y];
+    NSString* requestImageAtPointLeft = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).offsetLeft", location.x, location.y];
+    
+    NSString* imageAtPointTop = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointTop];
+    NSString* imageAtPointLeft = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointLeft];
+    
+    //Get the width and height of the image to ensure that the image is not being moved off screen and that the image is being moved in accordance with all movement constraints.
+    NSString* requestImageHeight = [NSString stringWithFormat:@"%@.height", object];
+    NSString* requestImageWidth = [NSString stringWithFormat:@"%@.width", object];
+    
+    float imageHeight = [[bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
+    float imageWidth = [[bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
+    
+    //Check to see if the locations returned are in percentages. If they are, change them to pixel values based on the size of the screen.
+    NSRange rangePercentTop = [imageAtPointTop rangeOfString:@"%"];
+    NSRange rangePercentLeft = [imageAtPointLeft rangeOfString:@"%"];
+    
+    if(rangePercentTop.location != NSNotFound)
+        change.y = location.y - ([imageAtPointTop floatValue] / 100.0 * [bookView frame].size.height) -(imageHeight/2);
+    else
+        change.y = location.y - [imageAtPointTop floatValue]-(imageHeight/2);
+    
+    if(rangePercentLeft.location != NSNotFound)
+        change.x = location.x - ([imageAtPointLeft floatValue] / 100.0 * [bookView frame].size.width) -(imageWidth/2);
+    else
+        change.x = location.x - [imageAtPointLeft floatValue]-(imageWidth/2);
+    
+    return change;
+}
+
+
+/*
  * Moves the object passeed in to the location given. Calculates the difference between the point touched and the
  * top-left corner of the image, which is the x,y coordate that's actually used when moving the object.
  * Also ensures that the image is not moved off screen or outside of any specified bounding boxes for the image.
@@ -2200,15 +2255,36 @@ ConditionSetup *conditionSetup;
             adjLocation.y = boxY;
     }
     
-    //Check to see if the image is being moved off screen. If it is, change it so that the image cannot be moved off screen.
-    if(adjLocation.x + imageWidth > [bookView frame].size.width)
-        adjLocation.x = [bookView frame].size.width - imageWidth;
-    else if(adjLocation.x < 0)
-        adjLocation.x = 0;
-    if(adjLocation.y + imageHeight > [bookView frame].size.height)
-        adjLocation.y = [bookView frame].size.height - imageHeight;
-    else if(adjLocation.y < 0)
-        adjLocation.y = 0;
+    NSString* requestImageMarginLeft = [NSString stringWithFormat:@"%@.style.marginLeft", movingObjectId];
+    NSString* requestImageMarginTop = [NSString stringWithFormat:@"%@.style.marginTop", movingObjectId];
+    
+    NSString* imageMarginLeft = [bookView stringByEvaluatingJavaScriptFromString:requestImageMarginLeft];
+    NSString* imageMarginTop = [bookView stringByEvaluatingJavaScriptFromString:requestImageMarginTop];
+    
+    if(![imageMarginLeft isEqualToString:@""] && ![imageMarginTop isEqualToString:@""])
+    {
+        //Check to see if the image is being moved off screen. If it is, change it so that the image cannot be moved off screen.
+        if(adjLocation.x + (imageWidth/2) > [bookView frame].size.width)
+            adjLocation.x = [bookView frame].size.width - (imageWidth/2);
+        else if(adjLocation.x-(imageWidth/2)  < 0)
+            adjLocation.x = (imageWidth/2);
+        if(adjLocation.y + (imageHeight/2) > [bookView frame].size.height)
+            adjLocation.y = [bookView frame].size.height - (imageHeight/2);
+        else if(adjLocation.y-(imageHeight/2) < 0)
+            adjLocation.y = (imageHeight/2);
+    }
+    else
+    {
+        //Check to see if the image is being moved off screen. If it is, change it so that the image cannot be moved off screen.
+        if(adjLocation.x + imageWidth > [bookView frame].size.width)
+            adjLocation.x = [bookView frame].size.width - imageWidth;
+        else if(adjLocation.x < 0)
+            adjLocation.x = 0;
+        if(adjLocation.y + imageHeight > [bookView frame].size.height)
+            adjLocation.y = [bookView frame].size.height - imageHeight;
+        else if(adjLocation.y < 0)
+            adjLocation.y = 0;
+    }
     
     //May want to add code to keep objects from moving to the location that the text is taking up on screen.
     
