@@ -1514,7 +1514,7 @@ ConditionSetup *conditionSetup;
     self.isAreaViewVisible = true;
     [self.view addSubview:areaSpace];
     
-    
+    [self.view bringSubviewToFront:entryview];
 }
 
 -(void)CreateHotspot:(id)sender{
