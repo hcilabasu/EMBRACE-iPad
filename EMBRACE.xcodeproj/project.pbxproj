@@ -193,6 +193,18 @@
 		1A2D70F21AAA8245009E7B5B /* Introductions-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Introductions-MetaData.xml"; sourceTree = "<group>"; };
 		1A2D70F41AAA8263009E7B5B /* AssessmentActivities-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivities-MetaData.xml"; sourceTree = "<group>"; };
 		1A2D70F61AAA827D009E7B5B /* VocabularyIntroductions-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "VocabularyIntroductions-MetaData.xml"; sourceTree = "<group>"; };
+		1A3330D41BA0EA9D00C8293A /* bg3_popup_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg3_popup_circle.png; sourceTree = "<group>"; };
+		1A3330D51BA0EA9D00C8293A /* big_magnifying_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = big_magnifying_circle.png; sourceTree = "<group>"; };
+		1A3330D61BA0EA9D00C8293A /* circle_empty_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle_empty_circle.png; sourceTree = "<group>"; };
+		1A3330D71BA0EA9D00C8293A /* lungs_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lungs_circle.png; sourceTree = "<group>"; };
+		1A3330D81BA0EA9D00C8293A /* p2_cilia_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = p2_cilia_circle.png; sourceTree = "<group>"; };
+		1A3330D91BA0EA9D00C8293A /* p2_cilia_damaged_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = p2_cilia_damaged_circle.png; sourceTree = "<group>"; };
+		1A3330DA1BA0EA9D00C8293A /* p2_cilia_damaged2_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = p2_cilia_damaged2_circle.png; sourceTree = "<group>"; };
+		1A3330DB1BA0EA9D00C8293A /* p2_no_cilia_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = p2_no_cilia_circle.png; sourceTree = "<group>"; };
+		1A3330DC1BA0EA9D00C8293A /* p3_Lsqueeze_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = p3_Lsqueeze_circle.png; sourceTree = "<group>"; };
+		1A3330DD1BA0EA9D00C8293A /* p3_no_squeeze_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = p3_no_squeeze_circle.png; sourceTree = "<group>"; };
+		1A3330DE1BA0EA9D00C8293A /* p3_Rsequeeze_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = p3_Rsequeeze_circle.png; sourceTree = "<group>"; };
+		1A3330DF1BA0EA9D00C8293A /* p4_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = p4_circle.png; sourceTree = "<group>"; };
 		1A3593831AE76128003B3B41 /* MoreIsMissingQ1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MoreIsMissingQ1.mp3; sourceTree = "<group>"; };
 		1A3593841AE76128003B3B41 /* MoreIsMissingQ1A1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MoreIsMissingQ1A1.mp3; sourceTree = "<group>"; };
 		1A3593851AE76128003B3B41 /* MoreIsMissingQ1A2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MoreIsMissingQ1A2.mp3; sourceTree = "<group>"; };
@@ -2167,6 +2179,18 @@
 			isa = PBXGroup;
 			children = (
 				1AFCB5B51B4E1FA000BAF89D /* lungs_1.png */,
+				1A3330D41BA0EA9D00C8293A /* bg3_popup_circle.png */,
+				1A3330D51BA0EA9D00C8293A /* big_magnifying_circle.png */,
+				1A3330D61BA0EA9D00C8293A /* circle_empty_circle.png */,
+				1A3330D71BA0EA9D00C8293A /* lungs_circle.png */,
+				1A3330D81BA0EA9D00C8293A /* p2_cilia_circle.png */,
+				1A3330D91BA0EA9D00C8293A /* p2_cilia_damaged_circle.png */,
+				1A3330DA1BA0EA9D00C8293A /* p2_cilia_damaged2_circle.png */,
+				1A3330DB1BA0EA9D00C8293A /* p2_no_cilia_circle.png */,
+				1A3330DC1BA0EA9D00C8293A /* p3_Lsqueeze_circle.png */,
+				1A3330DD1BA0EA9D00C8293A /* p3_no_squeeze_circle.png */,
+				1A3330DE1BA0EA9D00C8293A /* p3_Rsequeeze_circle.png */,
+				1A3330DF1BA0EA9D00C8293A /* p4_circle.png */,
 				1A9068211B801C270005CC6D /* ch1_icon.png */,
 				1A9068171B8019E20005CC6D /* ch2_icon.png */,
 				1A9068181B8019E20005CC6D /* ch3_select.png */,
