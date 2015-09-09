@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <ActivityAssessment>
+        <Questions title= "Introduction to Natural Disasters">
+            <Question number="1">
+                <QuestionText>How many pets does the Lopez family have?</QuestionText>
+                <QuestionAudio>TheLopezFamilyQ1.mp3</QuestionAudio>
+                <Answer1>two pets</Answer1>
+                <Answer1Audio>TheLopezFamilyQ1A1.mp3</Answer1Audio>
+                <Answer2>one pet</Answer2>
+                <Answer2Audio>TheLopezFamilyQ1A2.mp3</Answer2Audio>
+                <Answer3>four pets</Answer3>
+                <Answer3Audio>TheLopezFamilyQ1A3.mp3</Answer3Audio>
+                <Answer4>half of a pet</Answer4>
+                <Answer4Audio>TheLopezFamilyQ1A4.mp3</Answer4Audio>
+                <expectedSelection>two pets</expectedSelection>
+            </Question>
+        </Questions>
+        <Questions title= "The Moving Earth">
+            <Question number="1">
+                <QuestionText>Where did Martin bring the baby?</QuestionText>
+                <QuestionAudio>MissingKeysQ1.mp3</QuestionAudio>
+                <Answer1>to the highchair in the kitchen</Answer1>
+                <Answer1Audio>MissingKeysQ1A1.mp3</Answer1Audio>
+                <Answer2>to the tub in the bathroom</Answer2>
+                <Answer2Audio>MissingKeysQ1A2.mp3</Answer2Audio>
+                <Answer3>to the couch in the living</Answer3>
+                <Answer3Audio>MissingKeysQ1A3.mp3</Answer3Audio>
+                <Answer4>to her castle</Answer4>
+                <Answer4Audio>MissingKeysQ1A4.mp3</Answer4Audio>
+                <expectedSelection>to the highchair in the kitchen</expectedSelection>
+            </Question>
+        </Questions>
+        <Questions title= "Earthquakes">
+            <Question number="1">
+                <QuestionText>What did Paco smell?</QuestionText>
+                <QuestionAudio>IsPacoAThiefQ1.mp3</QuestionAudio>
+                <Answer1>keys</Answer1>
+                <Answer1Audio>IsPacoAThiefQ1A1.mp3</Answer1Audio>
+                <Answer2>food</Answer2>
+                <Answer2Audio>IsPacoAThiefQ1A2.mp3</Answer2Audio>
+                <Answer3>flowers</Answer3>
+                <Answer3Audio>IsPacoAThiefQ1A3.mp3</Answer3Audio>
+                <Answer4>his own breath</Answer4>
+                <Answer4Audio>IsPacoAThiefQ1A4.mp3</Answer4Audio>
+                <expectedSelection>keys</expectedSelection>
+            </Question>
+        </Questions>
+        <Questions title= "Tsunamis">
+            <Question number="1">
+                <QuestionText>What time of day was it?</QuestionText>
+                <QuestionAudio>MoreIsMissingQ1.mp3</QuestionAudio>
+                <Answer1>morning</Answer1>
+                <Answer1Audio>MoreIsMissingQ1A1.mp3</Answer1Audio>
+                <Answer2>afternoon</Answer2>
+                <Answer2Audio>MoreIsMissingQ1A2.mp3</Answer2Audio>
+                <Answer3>evening</Answer3>
+                <Answer3Audio>MoreIsMissingQ1A3.mp3</Answer3Audio>
+                <Answer4>time to play ball</Answer4>
+                <Answer4Audio>MoreIsMissingQ1A4.mp3</Answer4Audio>
+                <expectedSelection>morning</expectedSelection>
+            </Question>
+        </Questions>
+        <Questions title= "Volcanoes and the Making of Hawaii">
+            <Question number="1">
+                <QuestionText>Who looked in the living room for the rattle?</QuestionText>
+                <QuestionAudio>TheFamilyIsRattledQ1.mp3</QuestionAudio>
+                <Answer1>the baby</Answer1>
+                <Answer1Audio>TheFamilyIsRattledQ1A1.mp3</Answer1Audio>
+                <Answer2>Lola</Answer2>
+                <Answer2Audio>TheFamilyIsRattledQ1A2.mp3</Answer2Audio>
+                <Answer3>Rosa</Answer3>
+                <Answer3Audio>TheFamilyIsRattledQ1A3.mp3</Answer3Audio>
+                <Answer4>Pinocchio</Answer4>
+                <Answer4Audio>TheFamilyIsRattledQ1A4.mp3</Answer4Audio>
+                <expectedSelection>the baby</expectedSelection>
+            </Question>
+        </Questions>
+        <Questions title= "Tornados">
+            <Question number="1">
+                <QuestionText>Who stole the rattle?</QuestionText>
+                <QuestionAudio>TheMysteryIsSolvedQ1.mp3</QuestionAudio>
+                <Answer1>bird</Answer1>
+                <Answer1Audio>TheMysteryIsSolvedQ1A1.mp3</Answer1Audio>
+                <Answer2>Paco</Answer2>
+                <Answer2Audio>TheMysteryIsSolvedQ1A2.mp3</Answer2Audio>
+                <Answer3>the baby</Answer3>
+                <Answer3Audio>TheMysteryIsSolvedQ1A3.mp3</Answer3Audio>
+                <Answer4>Sponge Bob</Answer4>
+                <Answer4Audio>TheMysteryIsSolvedQ1A4.mp3</Answer4Audio>
+                <expectedSelection>bird</expectedSelection>
+            </Question>
+        </Questions>
+    </ActivityAssessment>
+</metadata>
