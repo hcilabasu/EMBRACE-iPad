@@ -184,7 +184,7 @@
             </sentence>
             <sentence number="8">
                 <step number="1">
-                    <group obj1Id="house_roof2" action="pull" obj2Id="dirt_tornado"/>
+                    <group obj1Id="dirt_tornado" action="pull" obj2Id="house_roof2"/>
                     <disappear obj1Id="house_roof2" action="disappear" obj2Id=""/>
                 </step>
             </sentence>
