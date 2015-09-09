@@ -162,7 +162,7 @@ ConditionSetup *conditionSetup;
     TapLocationY = 0;
     isEntryViewVisible = false;
     
-    self.ImageOptions = [NSArray arrayWithObjects: @"Save Waypoint", @"Save Hotspot", @"Save Location", @"Save Z-Index", @"Save Width", @"Save Height", @"Save Manipulation Type", nil];
+    self.ImageOptions = [NSArray arrayWithObjects: @"Save Waypoint", @"Save Hotspot", @"Save Location", @"Save Z-Index", @"Save Width", @"Save Height", @"Save Manipulation Type", @"FR: Save Animation", nil];
     
     //creates instance of introduction class
     IntroductionClass = [[IntroductionViewController alloc]init];
@@ -1496,6 +1496,14 @@ ConditionSetup *conditionSetup;
         [SingleEntry addSubview:save];
         [entryview addSubview:SingleEntry];
         [self.view addSubview:entryview];
+        
+    }
+    else if(row == 7)
+    {
+        /*
+         TODO: add functionality to save animations
+         
+         */
         
     }
 }
