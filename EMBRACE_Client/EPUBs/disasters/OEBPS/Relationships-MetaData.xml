@@ -7,8 +7,8 @@
         <relationship obj1Id="california" can="touch" action="group" obj2Id="north_america"/>
         <relationship obj1Id="dirt_move" can="pull" action="group" obj2Id="air_red"/>
         <relationship obj1Id="dirt_move" can="disappear" action="disappear" obj2Id=""/>
+        <relationship obj1Id="dirt_tornado" can="pull" action="group" obj2Id="house_roof2"/>
         <relationship obj1Id="house_roof2" can="disappear" action="disappear" obj2Id=""/>
-        <relationship obj1Id="house_roof2" can="pull" action="group" obj2Id="dirt_tornado"/>
         <relationship obj1Id="india" can="hit" action="group" obj2Id="eurasia"/>
         <relationship obj1Id="india" can="leave" action="ungroup" obj2Id="eurasia"/>
         <relationship obj1Id="india" can="touch" action="group" obj2Id="australia"/>
