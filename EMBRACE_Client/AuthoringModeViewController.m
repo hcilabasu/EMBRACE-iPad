@@ -2075,7 +2075,8 @@ ConditionSetup *conditionSetup;
                 else if(j==topStartIndex)
                 {
                     float topPixelValue = [topString floatValue];
-                    float topPercentValue = ((topPixelValue / [bookView frame].size.height)*100);
+                
+                    float topPercentValue = ((topPixelValue / ([bookView frame].size.height-20))*100);
                     NSString *topPercentValueString = [NSString stringWithFormat:@"top: %f%%",topPercentValue];
                     
                     concatenatedString = [concatenatedString stringByAppendingString:topPercentValueString];
