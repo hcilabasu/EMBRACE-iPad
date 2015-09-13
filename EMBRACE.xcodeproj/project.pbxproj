@@ -536,6 +536,7 @@
 		1A80372A1B0B1C62004A164A /* WhoIsTheBestAnimalQ6A2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A80362B1B0B1C61004A164A /* WhoIsTheBestAnimalQ6A2.mp3 */; };
 		1A80372B1B0B1C62004A164A /* WhoIsTheBestAnimalQ6A3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A80362C1B0B1C61004A164A /* WhoIsTheBestAnimalQ6A3.mp3 */; };
 		1A80372C1B0B1C62004A164A /* WhoIsTheBestAnimalQ6A4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A80362D1B0B1C61004A164A /* WhoIsTheBestAnimalQ6A4.mp3 */; };
+		1A9B9DFF1BA5EDCE0031188A /* bottled.epub in Resources */ = {isa = PBXBuildFile; fileRef = 1A9B9DFE1BA5EDCE0031188A /* bottled.epub */; };
 		1AB028FC1ACF0890006CC916 /* AuthoringModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB028FB1ACF0890006CC916 /* AuthoringModeViewController.m */; };
 		1AB935671A8932A0000CAE21 /* AssessmentActivities-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AB935661A8932A0000CAE21 /* AssessmentActivities-MetaData.xml */; };
 		1AB935691A895582000CAE21 /* Relationships-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AB935681A895582000CAE21 /* Relationships-MetaData.xml */; };
@@ -2040,6 +2041,7 @@
 		1A80362B1B0B1C61004A164A /* WhoIsTheBestAnimalQ6A2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WhoIsTheBestAnimalQ6A2.mp3; sourceTree = "<group>"; };
 		1A80362C1B0B1C61004A164A /* WhoIsTheBestAnimalQ6A3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WhoIsTheBestAnimalQ6A3.mp3; sourceTree = "<group>"; };
 		1A80362D1B0B1C61004A164A /* WhoIsTheBestAnimalQ6A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WhoIsTheBestAnimalQ6A4.mp3; sourceTree = "<group>"; };
+		1A9B9DFE1BA5EDCE0031188A /* bottled.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = bottled.epub; path = EPUBs/bottled/bottled.epub; sourceTree = "<group>"; };
 		1AB028FA1ACF0890006CC916 /* AuthoringModeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthoringModeViewController.h; sourceTree = "<group>"; };
 		1AB028FB1ACF0890006CC916 /* AuthoringModeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthoringModeViewController.m; sourceTree = "<group>"; };
 		1AB935661A8932A0000CAE21 /* AssessmentActivities-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivities-MetaData.xml"; sourceTree = "<group>"; };
@@ -3401,6 +3403,7 @@
 		31953E4F1729ECC100570087 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1A9B9DFE1BA5EDCE0031188A /* bottled.epub */,
 				1A0939811B67411200547E9F /* disasters.epub */,
 				1ADB01A21AAD211C006C5256 /* house.epub */,
 				5CE1E30F1A119E120070A7D6 /* bestFarm.epub */,
@@ -5871,6 +5874,7 @@
 				1A8036AB1B0B1C62004A164A /* IntroductionToTheBestFarmQ7.mp3 in Resources */,
 				B9C9E9EC1B8EA0A800AFC328 /* plate_02.png in Resources */,
 				5CF9947E19AC34550080C32F /* cow_large.png in Resources */,
+				1A9B9DFF1BA5EDCE0031188A /* bottled.epub in Resources */,
 				5C7FE05219A6B1B500CBBE0E /* Story3-Muscles-Use-Oxygen-PM-3.xhtml in Resources */,
 				5C7FE11A19A7E43C00CBBE0E /* BFCS_5.m4a in Resources */,
 				1A695CE21AD4EB9C006A2284 /* TheLopezFamilyQ6A3.mp3 in Resources */,
