@@ -2053,15 +2053,16 @@ ConditionSetup *conditionSetup;
             int topEndIndex = [[newImages substringFromIndex:topStartIndex+4] rangeOfString:@";"].location;
             NSString *topString = [newImages substringFromIndex:topStartIndex+4];
             BOOL needsConversion = nil;
+            topString = [topString substringToIndex:topEndIndex];
             
             if ([topString rangeOfString:@"px"].location != NSNotFound) {
                 needsConversion = true;
-                topString = [topString substringToIndex:topEndIndex-2];
+                topString = [topString substringToIndex:topString.length-2];
             }
             else
             {
                 needsConversion = false;
-                topString = [topString substringToIndex:topEndIndex-1];
+                topString = [topString substringToIndex:topString.length-1];
             }
             
             [topString stringByReplacingOccurrencesOfString:@" " withString:@""];
@@ -2069,15 +2070,16 @@ ConditionSetup *conditionSetup;
             int leftStartIndex = [newImages rangeOfString:@"left:" options:0 range:range].location;
             int leftEndIndex = [[newImages substringFromIndex:leftStartIndex+5] rangeOfString:@";"].location;
             NSString *leftString = [newImages substringFromIndex:leftStartIndex+5];
+            leftString = [leftString substringToIndex:leftEndIndex];
             
             if ([leftString rangeOfString:@"px"].location != NSNotFound) {
                 needsConversion = true;
-                leftString = [leftString substringToIndex:-2];
+                leftString = [leftString substringToIndex:leftString.length-2];
             }
             else
             {
                 needsConversion=false;
-                leftString = [leftString substringToIndex:leftEndIndex-1];
+                leftString = [leftString substringToIndex:leftString.length-1];
             }
             
             [leftString stringByReplacingOccurrencesOfString:@" " withString:@""];
