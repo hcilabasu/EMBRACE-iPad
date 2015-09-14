@@ -2052,13 +2052,34 @@ ConditionSetup *conditionSetup;
             int topStartIndex = [newImages rangeOfString:@"top:" options:0 range:range].location;
             int topEndIndex = [[newImages substringFromIndex:topStartIndex+4] rangeOfString:@";"].location;
             NSString *topString = [newImages substringFromIndex:topStartIndex+4];
-            topString = [topString substringToIndex:topEndIndex-2];
+            BOOL needsConversion = nil;
+            
+            if ([topString rangeOfString:@"px"].location != NSNotFound) {
+                needsConversion = true;
+                topString = [topString substringToIndex:topEndIndex-2];
+            }
+            else
+            {
+                needsConversion = false;
+                topString = [topString substringToIndex:topEndIndex-1];
+            }
+            
             [topString stringByReplacingOccurrencesOfString:@" " withString:@""];
             
             int leftStartIndex = [newImages rangeOfString:@"left:" options:0 range:range].location;
             int leftEndIndex = [[newImages substringFromIndex:leftStartIndex+5] rangeOfString:@";"].location;
             NSString *leftString = [newImages substringFromIndex:leftStartIndex+5];
-            leftString = [leftString substringToIndex:leftEndIndex-2];
+            
+            if ([leftString rangeOfString:@"px"].location != NSNotFound) {
+                needsConversion = true;
+                leftString = [leftString substringToIndex:-2];
+            }
+            else
+            {
+                needsConversion=false;
+                leftString = [leftString substringToIndex:leftEndIndex-1];
+            }
+            
             [leftString stringByReplacingOccurrencesOfString:@" " withString:@""];
             
             for(int j = i; j<newImages.length; j++)
@@ -2075,9 +2096,16 @@ ConditionSetup *conditionSetup;
                 else if(j==topStartIndex)
                 {
                     float topPixelValue = [topString floatValue];
-                
-                    float topPercentValue = ((topPixelValue / ([bookView frame].size.height-20))*100);
-                    NSString *topPercentValueString = [NSString stringWithFormat:@"top: %f%%",topPercentValue];
+                    NSString *topPercentValueString;
+                    
+                    if (needsConversion) {
+                        Float32  topPercentValue = ((topPixelValue / ([bookView frame].size.height-32))*100);
+                        topPercentValueString = [NSString stringWithFormat:@"top: %f%%",topPercentValue];
+                    }
+                    else
+                    {
+                        topPercentValueString = [NSString stringWithFormat:@"top: %f%%",topPixelValue];
+                    }
                     
                     concatenatedString = [concatenatedString stringByAppendingString:topPercentValueString];
                     j=topEndIndex+topStartIndex+3;
@@ -2085,8 +2113,17 @@ ConditionSetup *conditionSetup;
                 else if(j == leftStartIndex)
                 {
                     float leftPixelValue = [leftString floatValue];
-                    float leftPercentValue = ((leftPixelValue / [bookView frame].size.width)*100);
-                    NSString *leftPercentValueString = [NSString stringWithFormat:@"left: %f%%",leftPercentValue];
+                    NSString *leftPercentValueString;
+                    
+                    if (needsConversion) {
+                        Float32 leftPercentValue = ((leftPixelValue / ([bookView frame].size.width-12))*100);
+                        leftPercentValueString = [NSString stringWithFormat:@"left: %f%%",leftPercentValue];
+                    }
+                    else
+                    {
+                        leftPercentValueString = [NSString stringWithFormat:@"left: %f%%",leftPixelValue];
+                    }
+                    
                     
                     concatenatedString = [concatenatedString stringByAppendingString:leftPercentValueString];
                     j=leftEndIndex+leftStartIndex+4;
