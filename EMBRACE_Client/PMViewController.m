@@ -801,6 +801,16 @@ ConditionSetup *conditionSetup;
                         [self incrementCurrentStep];
                     }
                 }
+                else if([[currSolStep stepType] isEqualToString:@"shakeOrTap"])
+                {
+                    //get the object at this point
+                    NSString* imageAtPoint = [self getObjectAtPoint:location ofType:nil];
+                    
+                    if ([self checkSolutionForSubject:imageAtPoint]) {
+                        [self incrementCurrentStep];
+                    }
+                    
+                }
             }
         }
         
@@ -1258,6 +1268,27 @@ ConditionSetup *conditionSetup;
                             }
                         }
                     }
+                    /*
+                    else if([[currSolStep stepType] isEqualToString:@"shakeOrTap"])
+                    {
+                        if ([self areHotspotsInsideArea]) {
+                            [self incrementCurrentStep];
+                        }
+                        else
+                        {
+                            //gets hotspot id for logging
+                            NSString* locationId = [currSolStep locationId];
+                            //Logging added by James for User Move Object to object
+                            
+                            [playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentStep];
+                            
+                            if(allowSnapback)
+                            {
+                                //snap the object back to its original location
+                                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false :@"None"];
+                            }
+                        }
+                    }*/
                     else {
                         //Check if the object is overlapping anything
                         NSArray* overlappingWith = [self getObjectsOverlappingWithObject:movingObjectId];
@@ -1827,6 +1858,10 @@ ConditionSetup *conditionSetup;
             //logging done in ungroupObjects
            
         }
+        else if( [connection interactionType] == UNGROUPANDSTAY)
+        {
+            [self ungroupObjectsAndStay:obj1 :obj2];
+        }
         else if([connection interactionType] == GROUP) {
             //NSLog(@"grouping items");
             
@@ -2057,9 +2092,10 @@ ConditionSetup *conditionSetup;
             NSString* altSrc = [altImage alternateSrc];
             NSString* width = [altImage width];
             CGPoint location = [altImage location];
+            NSString* zIndex = [altImage zPosition];
             
             //Swap images using alternative src
-            NSString* swapImages = [NSString stringWithFormat:@"swapImageSrc('%@', '%@', '%@', %f, %f)", object1Id, altSrc, width, location.x, location.y];
+            NSString* swapImages = [NSString stringWithFormat:@"swapImageSrc('%@', '%@', '%@', %f, %f, %@)", object1Id, altSrc, width, location.x, location.y, zIndex];
             [bookView stringByEvaluatingJavaScriptFromString:swapImages];
             
             //Logging added by James for Swap Images
@@ -2085,10 +2121,10 @@ ConditionSetup *conditionSetup;
             NSString* action = [currSolStep action];
             
             //Get alternate image
-            AlternateImage* altImage = [model getAlternateImageWithAction:action];
+            AlternateImage* altImage = [model getAlternateImageWithActionAndObjectID:action:object1Id];
             
             //Get alternate image information
-            NSString* altSrc = [altImage alternateSrc];
+            NSString* altSrc = [altImage originalSrc];
             NSString* width = [altImage width];
             CGPoint location = [altImage location];
             NSString* className = [altImage className];
@@ -2134,16 +2170,25 @@ ConditionSetup *conditionSetup;
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
         if ([[currSolStep stepType] isEqualToString:@"changeZIndex"]) {
+            //Get information for appear step type
             NSString* object1Id = [currSolStep object1Id];
-            NSString* zIndex = [currSolStep zIndex];
+            NSString* action = [currSolStep action];
             
-            //Change z index of image
-            NSString* changeZindexOfObject = [NSString stringWithFormat:@"%@.style.zIndex = %@", object1Id, zIndex];
-            [bookView stringByEvaluatingJavaScriptFromString:changeZindexOfObject];
+            //Get alternate image
+            AlternateImage* altImage = [model getAlternateImageWithAction:action];
+            
+            //Get alternate image information
+            NSString* altSrc = [altImage alternateSrc];
+            NSString* width = [altImage width];
+            CGPoint location = [altImage location];
+            NSString* className = [altImage className];
+            NSString* zPosition = [altImage zPosition];
+            
+            //Swap images using alternative src
+            NSString* loadImage = [NSString stringWithFormat:@"loadImage('%@', '%@', '%@', %f, %f, '%@', %d)", object1Id, altSrc, width, location.x, location.y, className, zPosition.intValue];
+            [bookView stringByEvaluatingJavaScriptFromString:loadImage];
         }
     }
-    
-    
 }
 
 /*
@@ -2186,6 +2231,39 @@ ConditionSetup *conditionSetup;
         }
     }
     
+    return false;
+}
+
+/*
+ *      Returns true if the start location and the end location of an object are within the same area. otherwise, returns false.
+ */
+-(BOOL) areHotspotsInsideArea {
+    /*
+    //Check steps for current sentence
+    NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+    
+    //Get current step to be completed
+    ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep -1];
+    
+    if([[currSolStep stepType] isEqualToString:@"shakeOrTap"])
+    {
+        //Get information for check step type
+        NSString* objectId = [currSolStep object1Id];
+        NSString* action = [currSolStep action];
+        //NSString* areaId = [currSolStep areaId];
+        
+        //Get hotspot location of correct subject
+        Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:objectId :action :@"subject"];
+        CGPoint hotspotLocation = [self getHotspotLocation:hotspot];
+        
+        Get area that hotspot should be inside
+        Area* area = [model getAreaWithId:areaId];
+        
+        if ([area.aPath containsPoint: hotspotLocation] && [area.aPath containsPoint: startLocation]) {
+            return true;
+        }
+    }
+    */
     return false;
 }
 
@@ -3138,7 +3216,33 @@ ConditionSetup *conditionSetup;
 
     //Logging added by James for Grouping Objects
     [[ServerCommunicationController sharedManager] logComputerGroupingObjects: @"Ungroup" :object1 :object2 : ungroup:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+    
+    //get the current groupings of the objects
+    NSMutableArray *object1Groups = [currentGroupings objectForKey:object1];
+    NSMutableArray *object2Groups = [currentGroupings objectForKey:object2];
+    
+    if ([object1Groups containsObject:object2]) {
+        [object1Groups removeObject:object2];
+        [currentGroupings setValue:object1Groups forKey:object1];
+        //add the array back
+    }
+    if ([object2Groups containsObject:object1]) {
+        [object2Groups removeObject:object1];
+        [currentGroupings setValue:object2Groups forKey:object2];
+        //add the array back
+    }
+    
+    [bookView stringByEvaluatingJavaScriptFromString:ungroup];
+}
 
+/*
+ * Calls the JS function to ungroup two objects.
+ */
+-(void) ungroupObjectsAndStay:(NSString* )object1 :(NSString*) object2 {
+    NSString* ungroup = [NSString stringWithFormat:@"ungroupObjectsAndStay(%@, %@)", object1, object2];
+    
+    //Logging added by James for Grouping Objects
+    [[ServerCommunicationController sharedManager] logComputerGroupingObjects: @"Ungroup" :object1 :object2 : ungroup:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
     
     //get the current groupings of the objects
     NSMutableArray *object1Groups = [currentGroupings objectForKey:object1];

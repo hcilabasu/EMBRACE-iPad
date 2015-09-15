@@ -339,6 +339,20 @@
     return nil;
 }
 
+/*
+ * Returns the AlternateImage with the specified action && ObjectID
+ */
+- (AlternateImage*) getAlternateImageWithActionAndObjectID:(NSString *)action : (NSString *) objectId {
+    for (AlternateImage* altImage in alternateImages) {
+        if ([[altImage action] isEqualToString:action] && [[altImage objectId] isEqualToString:objectId]) {
+            return altImage;
+        }
+    }
+    
+    return nil;
+}
+
+
 - (void) addIntroduction:(NSString*) introTitle : (NSMutableArray*) introductionSteps {
     [introductions setObject:introductionSteps forKey:introTitle];
 }
