@@ -17,6 +17,7 @@
     NSString *locationId;
     NSString *waypointId;
     NSString *action;
+    NSString *zIndex;
 }
 
 @property (nonatomic, assign) NSUInteger sentenceNumber;
@@ -27,6 +28,7 @@
 @property (nonatomic, strong) NSString *locationId;
 @property (nonatomic, strong) NSString *waypointId;
 @property (nonatomic, strong) NSString *action;
+@property (nonatomic, strong) NSString *zIndex;
 
 - (id) initAsSetupStep:(NSString*)type :(NSString*)obj1Id :(NSString*) obj2Id :(NSString*)act;
 - (id) initAsSolutionStep:(NSUInteger)sentNum :(NSUInteger)stepNum :(NSString*)type :(NSString*)obj1Id :(NSString*) obj2Id :(NSString*)loc :(NSString*)waypt :(NSString*)act;

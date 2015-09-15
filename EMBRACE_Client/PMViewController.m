@@ -589,7 +589,8 @@ ConditionSetup *conditionSetup;
             
             [self incrementCurrentStep];
         }
-        else if ([[currSolStep stepType] isEqualToString:@"move"]) {
+        else if ([[currSolStep stepType] isEqualToString:@"move"])
+        {
             [self moveObjectForSolution];
             
             //add logging
@@ -597,7 +598,8 @@ ConditionSetup *conditionSetup;
             
             [self incrementCurrentStep];
         }
-        else if ([[currSolStep stepType] isEqualToString:@"swapImage"]) {
+        else if ([[currSolStep stepType] isEqualToString:@"swapImage"])
+        {
             [self swapObjectImage];
             
             //add logging
@@ -605,12 +607,19 @@ ConditionSetup *conditionSetup;
             
             [self incrementCurrentStep];
         }
-        else if ([[currSolStep stepType] isEqualToString:@"appear"]) {
+        else if ([[currSolStep stepType] isEqualToString:@"appear"])
+        {
             [self loadImage];
             [self incrementCurrentStep];
         }
-        else if ([[currSolStep stepType] isEqualToString:@"disappear"]) {
+        else if ([[currSolStep stepType] isEqualToString:@"disappear"])
+        {
             [self hideImage];
+            [self incrementCurrentStep];
+        }
+        else if([[currSolStep stepType] isEqualToString:@"changeZIndex"])
+        {
+            [self changeZIndex];
             [self incrementCurrentStep];
         }
     }
@@ -2111,6 +2120,30 @@ ConditionSetup *conditionSetup;
             [bookView stringByEvaluatingJavaScriptFromString:hideImage];
         }
     }
+}
+
+/*
+ *  Calls the changeZIndex from ImageManipulation.js file
+ */
+-(void)changeZIndex{
+    if (numSteps > 0) {
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        if ([[currSolStep stepType] isEqualToString:@"changeZIndex"]) {
+            NSString* object1Id = [currSolStep object1Id];
+            NSString* zIndex = [currSolStep zIndex];
+            
+            //Change z index of image
+            NSString* changeZindexOfObject = [NSString stringWithFormat:@"%@.style.zIndex = %@", object1Id, zIndex];
+            [bookView stringByEvaluatingJavaScriptFromString:changeZindexOfObject];
+        }
+    }
+    
+    
 }
 
 /*

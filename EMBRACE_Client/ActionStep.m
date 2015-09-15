@@ -18,6 +18,7 @@
 @synthesize locationId;
 @synthesize waypointId;
 @synthesize action;
+@synthesize zIndex;
 
 - (id) initAsSetupStep:(NSString*)type :(NSString*)obj1Id :(NSString*) obj2Id :(NSString*)act {
     if(self = [super init]) {
