@@ -500,7 +500,7 @@ ConditionSetup *conditionSetup;
         
         [interaction addConnection:GROUP :objects :hotspotsForInteraction];
     }
-    else if ([[step stepType] isEqualToString:@"ungroup"]) {
+    else if ([[step stepType] isEqualToString:@"ungroup"] || [[step stepType] isEqualToString:@"ungroupAndStay"]) {
         interaction = [[PossibleInteraction alloc]initWithInteractionType:UNGROUP];
         
         [interaction addConnection:UNGROUP :objects :hotspotsForInteraction];
@@ -579,7 +579,7 @@ ConditionSetup *conditionSetup;
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
         //Automatically perform interaction if step is ungroup, move, or swap image
-        if (!pinchToUngroup && [[currSolStep stepType] isEqualToString:@"ungroup"]) {
+        if (!pinchToUngroup && ([[currSolStep stepType] isEqualToString:@"ungroup"] || [[currSolStep stepType] isEqualToString:@"ungroupAndStay"])) {
             PossibleInteraction* correctUngrouping = [self getCorrectInteraction];
             
             [self performInteraction:correctUngrouping];
@@ -1850,21 +1850,17 @@ ConditionSetup *conditionSetup;
         //Get object 1 and object 2
         NSString* obj1 = [objectIds objectAtIndex:0];
         NSString* obj2 = [objectIds objectAtIndex:1];
-        
-        if([connection interactionType] == UNGROUP) {
-            //NSLog(@"ungrouping items");
-
-            [self ungroupObjects:obj1 :obj2]; //ungroup objects
-            //logging done in ungroupObjects
-           
-        }
-        else if( [connection interactionType] == UNGROUPANDSTAY)
+        if( [connection interactionType] == UNGROUP && [[self getCurrentSolutionStep] isEqualToString:@"ungroupAndStay"])
         {
             [self ungroupObjectsAndStay:obj1 :obj2];
         }
-        else if([connection interactionType] == GROUP) {
-            //NSLog(@"grouping items");
-            
+        else if([connection interactionType] == UNGROUP)
+        {
+            [self ungroupObjects:obj1 :obj2]; //ungroup objects
+            //logging done in ungroupObjects
+        }
+        else if([connection interactionType] == GROUP)
+        {
             //Get hotspots.
             Hotspot* hotspot1 = [hotspots objectAtIndex:0];
             Hotspot* hotspot2 = [hotspots objectAtIndex:1];
@@ -1874,7 +1870,6 @@ ConditionSetup *conditionSetup;
             
             [self groupObjects:obj1 :hotspot1Loc :obj2 :hotspot2Loc]; //group objects
             //logging done in groupObjects
-            
         }
         else if([connection interactionType] == DISAPPEAR) {
             //NSLog(@"causing object to disappear");
@@ -2308,6 +2303,27 @@ ConditionSetup *conditionSetup;
     }
     else
         return nil;
+}
+
+/*
+ * Gets the current solution step and returns it
+ */
+-(NSString*) getCurrentSolutionStep{
+    if (numSteps > 0) {
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        //If step type involves transference, we must manually create the PossibleInteraction object.
+        //Otherwise, it can be directly converted.
+        return [currSolStep stepType];
+    }
+    else
+    {
+        return nil;
+    }
 }
 
 /*
