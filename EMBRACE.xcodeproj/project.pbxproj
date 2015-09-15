@@ -737,6 +737,7 @@
 		5C0274CA19D22DA400BF4B1A /* CCE_14B.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C0274C619D22DA400BF4B1A /* CCE_14B.m4a */; };
 		5C0274CB19D22DA400BF4B1A /* CCS_14B.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C0274C719D22DA400BF4B1A /* CCS_14B.m4a */; };
 		5C466ADC192293290056EA4B /* Translation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C466ADB192293290056EA4B /* Translation.m */; };
+		5C5E954C1BA786CF005F6AD2 /* rattle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C5E954B1BA786CF005F6AD2 /* rattle.png */; };
 		5C776A4219C17F39000DBC65 /* BFTC0.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C776A3719C17F39000DBC65 /* BFTC0.m4a */; };
 		5C776A4319C17F39000DBC65 /* BFTC1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C776A3819C17F39000DBC65 /* BFTC1.m4a */; };
 		5C776A4419C17F39000DBC65 /* BFTC2.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C776A3919C17F39000DBC65 /* BFTC2.m4a */; };
@@ -2294,6 +2295,7 @@
 		5C0274C719D22DA400BF4B1A /* CCS_14B.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = CCS_14B.m4a; path = EMBRACE_Client/sounds/CCS_14B.m4a; sourceTree = SOURCE_ROOT; };
 		5C466ADA192293290056EA4B /* Translation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Translation.h; sourceTree = "<group>"; };
 		5C466ADB192293290056EA4B /* Translation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Translation.m; sourceTree = "<group>"; };
+		5C5E954B1BA786CF005F6AD2 /* rattle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rattle.png; sourceTree = "<group>"; };
 		5C776A3719C17F39000DBC65 /* BFTC0.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = BFTC0.m4a; sourceTree = "<group>"; };
 		5C776A3819C17F39000DBC65 /* BFTC1.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = BFTC1.m4a; sourceTree = "<group>"; };
 		5C776A3919C17F39000DBC65 /* BFTC2.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = BFTC2.m4a; sourceTree = "<group>"; };
@@ -4878,6 +4880,7 @@
 		B952291D1BA0D8F800093528 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5C5E954B1BA786CF005F6AD2 /* rattle.png */,
 				B95229581BA1162600093528 /* cup_full.png */,
 				B95229591BA1162600093528 /* cup_empty.png */,
 				B952295A1BA1162600093528 /* hug.png */,
@@ -5409,6 +5412,7 @@
 				1A80365B1B0B1C62004A164A /* EveryoneHelpsQ4.mp3 in Resources */,
 				5C776BE719C93E1E000DBC65 /* energyDEFS.m4a in Resources */,
 				5CE299CB19B5988700675CB0 /* pumpkinE.m4a in Resources */,
+				5C5E954C1BA786CF005F6AD2 /* rattle.png in Resources */,
 				1A35941E1AE76129003B3B41 /* TheFamilyIsRattledQ3.mp3 in Resources */,
 				1AEE55221ADE028100DFC6B0 /* MissingKeysQ2A2.mp3 in Resources */,
 				1A3594341AE76129003B3B41 /* TheMysteryIsSolvedQ1A2.mp3 in Resources */,

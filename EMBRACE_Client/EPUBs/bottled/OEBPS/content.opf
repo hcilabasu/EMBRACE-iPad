@@ -39,6 +39,7 @@
     <item href="Images/cup_full.png" id="cup_full.png" media-type="image/png" />
     <item href="Images/cup_empty.png" id="cup_empty.png" media-type="image/png" />
     <item href="Images/hug.png" id="hug.png" media-type="image/png" />
+    <item href="Images/rattle.png" id="rattle.png" media-type="image/png" />
     
     <item href="toc.ncx" id="ncx" media-type="application/x-dtbncx+xml" />
     <item href="Styles/PMStyle.css" id="PMStyle.css" media-type="text/css" />
