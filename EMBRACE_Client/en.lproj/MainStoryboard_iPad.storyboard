@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13F1077" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="KdN-Nn-VnM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13F1112" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="KdN-Nn-VnM">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -377,7 +377,7 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="Ubx-qn-Yia" secondAttribute="trailing" constant="10" id="ElM-OL-xay"/>
+                        <constraint firstAttribute="trailing" secondItem="Ubx-qn-Yia" secondAttribute="trailing" constant="9" id="ElM-OL-xay"/>
                         <constraint firstItem="6aj-gV-asA" firstAttribute="leading" secondItem="Jqi-Zg-Bmj" secondAttribute="leading" id="HkF-GY-I8p"/>
                         <constraint firstAttribute="bottom" secondItem="Ubx-qn-Yia" secondAttribute="bottom" constant="9" id="Q88-vY-i7X"/>
                         <constraint firstItem="6aj-gV-asA" firstAttribute="bottom" secondItem="Jqi-Zg-Bmj" secondAttribute="bottom" id="mQC-YU-zDp"/>
@@ -602,11 +602,11 @@
                     </connections>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZcN-MQ-Kmp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view clipsSubviews="YES" contentMode="scaleToFill" id="VLK-a8-DsE">
+                <view clipsSubviews="YES" contentMode="scaleAspectFit" id="VLK-a8-DsE">
                     <rect key="frame" x="0.0" y="0.0" width="1024" height="724"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <webView clipsSubviews="YES" contentMode="TopLeft" fixedFrame="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JtE-y6-WfF">
+                        <webView clipsSubviews="YES" contentMode="scaleAspectFit" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JtE-y6-WfF">
                             <rect key="frame" x="0.0" y="0.0" width="1024" height="724"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <dataDetectorType key="dataDetectorTypes"/>
@@ -619,8 +619,12 @@
                                 <outletCollection property="gestureRecognizers" destination="E8f-cP-J3R" appends="YES" id="5A7-XI-Sfv"/>
                             </connections>
                         </webView>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YYH-Pt-7Sc">
+                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YYH-Pt-7Sc">
                             <rect key="frame" x="940" y="685" width="75" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="25" id="Itb-XB-muc"/>
+                                <constraint firstAttribute="width" constant="75" id="Nnh-Iw-7Jm"/>
+                            </constraints>
                             <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="30"/>
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" title="Next"/>
@@ -630,6 +634,13 @@
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="JtE-y6-WfF" firstAttribute="top" secondItem="VLK-a8-DsE" secondAttribute="top" id="3AP-Pq-MPb"/>
+                        <constraint firstAttribute="trailing" secondItem="YYH-Pt-7Sc" secondAttribute="trailing" constant="20" id="M74-aW-JhJ"/>
+                        <constraint firstAttribute="bottom" secondItem="JtE-y6-WfF" secondAttribute="bottom" id="ecj-Iy-mA8"/>
+                        <constraint firstItem="JtE-y6-WfF" firstAttribute="leading" secondItem="VLK-a8-DsE" secondAttribute="leading" id="huw-yY-AdZ"/>
+                        <constraint firstAttribute="trailing" secondItem="JtE-y6-WfF" secondAttribute="trailing" id="iuh-qV-avt"/>
+                    </constraints>
                 </view>
                 <tapGestureRecognizer id="9Jg-zS-Brp">
                     <connections>
