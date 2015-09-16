@@ -82,6 +82,12 @@
                 </navLabel>
                 <content src="Text/Story3-Baby-Brother-PM-2.xhtml"/>
             </navPoint>
+            <navPoint class="PM_MODE" id="story3-PM-3">
+                <navLabel>
+                    <text>Baby Brother - PM</text>
+                </navLabel>
+                <content src="Text/Story3-Baby-Brother-PM-3.xhtml"/>
+            </navPoint>
         </navPoint>
         
         <navPoint class="ChapterTitle" id="Chapter4Title" playOrder="4">
@@ -107,6 +113,12 @@
                 </navLabel>
                 <content src="Text/Story4-Words-of-Wisdom-PM-2.xhtml"/>
             </navPoint>
+            <navPoint class="PM_MODE" id="story4-PM-3">
+                <navLabel>
+                    <text>Words of Wisdom - PM</text>
+                </navLabel>
+                <content src="Text/Story4-Words-of-Wisdom-PM-3.xhtml"/>
+            </navPoint>
         </navPoint>
         
         <navPoint class="ChapterTitle" id="Chapter5Title" playOrder="5">
@@ -131,6 +143,12 @@
                     <text>Catch! - PM</text>
                 </navLabel>
                 <content src="Text/Story5-Catch-PM-2.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story5-PM-3">
+                <navLabel>
+                    <text>Catch! - PM</text>
+                </navLabel>
+                <content src="Text/Story5-Catch-PM-3.xhtml"/>
             </navPoint>
         </navPoint>
         
@@ -173,28 +191,40 @@
             <content src="Text/Story3-Baby-Brother-PM-2.xhtml"/>
         </pageTarget>
         <pageTarget id="p10" type="normal" value="10">
+            <navLabel><text>Chapter 3 - Baby Brother - Physical Manipulation 3</text></navLabel>
+            <content src="Text/Story3-Baby-Brother-PM-3.xhtml"/>
+        </pageTarget>
+        <pageTarget id="p11" type="normal" value="11">
             <navLabel><text>Chapter 4 - Words of Wisdom - Introduction</text></navLabel>
             <content src="Text/Story4-Words-of-Wisdom-Intro-E.xhtml"/>
         </pageTarget>
-        <pageTarget id="p11" type="normal" value="11">
+        <pageTarget id="p12" type="normal" value="12">
             <navLabel><text>Chapter 4 - Words of Wisdom - Physical Manipulation 1</text></navLabel>
             <content src="Text/Story4-Words-of-Wisdom-PM-1.xhtml"/>
         </pageTarget>
-        <pageTarget id="p12" type="normal" value="12">
+        <pageTarget id="p13" type="normal" value="13">
             <navLabel><text>Chapter 4 - Words of Wisdom - Physical Manipulation 2</text></navLabel>
             <content src="Text/Story4-Words-of-Wisdom-PM-2.xhtml"/>
         </pageTarget>
-        <pageTarget id="p13" type="normal" value="13">
+        <pageTarget id="p14" type="normal" value="14">
+            <navLabel><text>Chapter 4 - Words of Wisdom - Physical Manipulation 2</text></navLabel>
+            <content src="Text/Story4-Words-of-Wisdom-PM-2.xhtml"/>
+        </pageTarget>
+        <pageTarget id="p15" type="normal" value="15">
             <navLabel><text>Chapter 5 - Catch! - Introduction</text></navLabel>
             <content src="Text/Story5-Catch-Intro-E.xhtml"/>
         </pageTarget>
-        <pageTarget id="p14" type="normal" value="14">
+        <pageTarget id="p16" type="normal" value="16">
             <navLabel><text>Chapter 5 - Catch! - Physical Manipulation 1</text></navLabel>
             <content src="Text/Story5-Catch-PM-1.xhtml"/>
         </pageTarget>
-        <pageTarget id="p15" type="normal" value="15">
+        <pageTarget id="p17" type="normal" value="17">
             <navLabel><text>Chapter 5 - Catch! - Physical Manipulation 2</text></navLabel>
             <content src="Text/Story5-Catch-PM-2.xhtml"/>
+        </pageTarget>
+        <pageTarget id="p18" type="normal" value="18">
+            <navLabel><text>Chapter 5 - Catch! - Physical Manipulation 3</text></navLabel>
+            <content src="Text/Story5-Catch-PM-3.xhtml"/>
         </pageTarget>
         
     </pageList>

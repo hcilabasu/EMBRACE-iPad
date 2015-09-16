@@ -1061,6 +1061,9 @@
 		5C7FE16319A7E43C00CBBE0E /* prizeE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FE0DF19A7E43C00CBBE0E /* prizeE.m4a */; };
 		5C7FE16A19A7E43C00CBBE0E /* STWATTP.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FE0E619A7E43C00CBBE0E /* STWATTP.m4a */; };
 		5C7FE16D19A7E43C00CBBE0E /* tryAgainE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FE0E919A7E43C00CBBE0E /* tryAgainE.m4a */; };
+		5CA53EAE1BA8D49100D2FF5C /* Story5-Catch-PM-3.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CA53EAD1BA8D49100D2FF5C /* Story5-Catch-PM-3.xhtml */; };
+		5CA53EB01BA8D6BB00D2FF5C /* Story3-Baby-Brother-PM-3.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CA53EAF1BA8D6BB00D2FF5C /* Story3-Baby-Brother-PM-3.xhtml */; };
+		5CA53EB21BA8EA5600D2FF5C /* Story4-Words-of-Wisdom-PM-3.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CA53EB11BA8EA5600D2FF5C /* Story4-Words-of-Wisdom-PM-3.xhtml */; };
 		5CAD05DE19BE6A3E00F3F053 /* CEE_14.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CAD05A319BE6A3E00F3F053 /* CEE_14.m4a */; };
 		5CAD05E019BE6A3E00F3F053 /* CCE5_8.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CAD05A519BE6A3E00F3F053 /* CCE5_8.m4a */; };
 		5CAD05E219BE6A3E00F3F053 /* CCE5_7.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CAD05A719BE6A3E00F3F053 /* CCE5_7.m4a */; };
@@ -2625,6 +2628,9 @@
 		5C7FE0DF19A7E43C00CBBE0E /* prizeE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = prizeE.m4a; path = EMBRACE_Client/sounds/prizeE.m4a; sourceTree = SOURCE_ROOT; };
 		5C7FE0E619A7E43C00CBBE0E /* STWATTP.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = STWATTP.m4a; path = EMBRACE_Client/sounds/STWATTP.m4a; sourceTree = SOURCE_ROOT; };
 		5C7FE0E919A7E43C00CBBE0E /* tryAgainE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = tryAgainE.m4a; path = EMBRACE_Client/sounds/tryAgainE.m4a; sourceTree = SOURCE_ROOT; };
+		5CA53EAD1BA8D49100D2FF5C /* Story5-Catch-PM-3.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-Catch-PM-3.xhtml"; sourceTree = "<group>"; };
+		5CA53EAF1BA8D6BB00D2FF5C /* Story3-Baby-Brother-PM-3.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story3-Baby-Brother-PM-3.xhtml"; sourceTree = "<group>"; };
+		5CA53EB11BA8EA5600D2FF5C /* Story4-Words-of-Wisdom-PM-3.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Words-of-Wisdom-PM-3.xhtml"; sourceTree = "<group>"; };
 		5CAD05A319BE6A3E00F3F053 /* CEE_14.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = CEE_14.m4a; path = EMBRACE_Client/sounds/CEE_14.m4a; sourceTree = SOURCE_ROOT; };
 		5CAD05A519BE6A3E00F3F053 /* CCE5_8.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = CCE5_8.m4a; path = EMBRACE_Client/sounds/CCE5_8.m4a; sourceTree = SOURCE_ROOT; };
 		5CAD05A719BE6A3E00F3F053 /* CCE5_7.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = CCE5_7.m4a; path = EMBRACE_Client/sounds/CCE5_7.m4a; sourceTree = SOURCE_ROOT; };
@@ -4864,14 +4870,17 @@
 				B95228641BA0CDAB00093528 /* Story3-Baby-Brother-Intro-E.xhtml */,
 				B95228651BA0CDAB00093528 /* Story3-Baby-Brother-PM-1.xhtml */,
 				B95228661BA0CDAB00093528 /* Story3-Baby-Brother-PM-2.xhtml */,
+				5CA53EAF1BA8D6BB00D2FF5C /* Story3-Baby-Brother-PM-3.xhtml */,
 				B95228691BA0CDAB00093528 /* Story3-Baby-Brother-Title.xhtml */,
 				B952286A1BA0CDAB00093528 /* Story4-Words-of-Wisdom-Intro-E.xhtml */,
 				B952286B1BA0CDAB00093528 /* Story4-Words-of-Wisdom-PM-1.xhtml */,
 				B952286C1BA0CDAB00093528 /* Story4-Words-of-Wisdom-PM-2.xhtml */,
+				5CA53EB11BA8EA5600D2FF5C /* Story4-Words-of-Wisdom-PM-3.xhtml */,
 				B952286F1BA0CDAB00093528 /* Story4-Words-of-Wisdom-Title.xhtml */,
 				B95228701BA0CDAB00093528 /* Story5-Catch-Intro-E.xhtml */,
 				B95228711BA0CDAB00093528 /* Story5-Catch-PM-1.xhtml */,
 				B95228721BA0CDAB00093528 /* Story5-Catch-PM-2.xhtml */,
+				5CA53EAD1BA8D49100D2FF5C /* Story5-Catch-PM-3.xhtml */,
 				B95228741BA0CDAB00093528 /* Story5-Catch-Title.xhtml */,
 			);
 			path = Text;
@@ -5626,6 +5635,7 @@
 				1A8036331B0B1C62004A164A /* CleaningUpQ2.mp3 in Resources */,
 				B9C9E9E61B8EA0A800AFC328 /* ocean_wave_move.png in Resources */,
 				1AEE551E1ADE028100DFC6B0 /* MissingKeysQ1A3.mp3 in Resources */,
+				5CA53EB01BA8D6BB00D2FF5C /* Story3-Baby-Brother-PM-3.xhtml in Resources */,
 				5CAD060A19BE6A3E00F3F053 /* CCE1_8.m4a in Resources */,
 				1A3594041AE76129003B3B41 /* MoreIsMissingQ5A4.mp3 in Resources */,
 				B9C9E9981B8EA0A800AFC328 /* bg_test.png in Resources */,
@@ -5732,6 +5742,7 @@
 				B9C9EA1C1B8EA0A800AFC328 /* Story4-Volcanoes-and-the-Making-of-Hawaii-PM-3.xhtml in Resources */,
 				B9C9E9EB1B8EA0A800AFC328 /* plate_01.png in Resources */,
 				1AEE55251ADE028100DFC6B0 /* MissingKeysQ3.mp3 in Resources */,
+				5CA53EAE1BA8D49100D2FF5C /* Story5-Catch-PM-3.xhtml in Resources */,
 				1AEE551C1ADE028100DFC6B0 /* MissingKeysQ1A1.mp3 in Resources */,
 				5C776BBE19C93E1E000DBC65 /* gateS.m4a in Resources */,
 				1AEE55281ADE028100DFC6B0 /* MissingKeysQ3A3.mp3 in Resources */,
@@ -6535,6 +6546,7 @@
 				1A2D70B51AAA74FA009E7B5B /* Story1-The-Lopez-Family-IM-1.xhtml in Resources */,
 				5CF9948F19AC34550080C32F /* pumpkin_patch.png in Resources */,
 				1A2D70A51AAA74FA009E7B5B /* Story-3-Time-for-Bed.png in Resources */,
+				5CA53EB21BA8EA5600D2FF5C /* Story4-Words-of-Wisdom-PM-3.xhtml in Resources */,
 				B9C9EA061B8EA0A800AFC328 /* Stylesheet.css in Resources */,
 				1AC4897D1AC083DF00784D77 /* Silver_def_S.mp3 in Resources */,
 				1A695C811AD4C8B0006A2284 /* TheLopezFamilyS3E.mp3 in Resources */,

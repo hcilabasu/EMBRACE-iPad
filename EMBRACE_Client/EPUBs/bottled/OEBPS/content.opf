@@ -56,14 +56,17 @@
     <item href="Text/Story3-Baby-Brother-Intro-E.xhtml" id="story3-Intro" media-type="application/xhtml+xml" />
     <item href="Text/Story3-Baby-Brother-PM-1.xhtml" id="story3-PM-1" media-type="application/xhtml+xml" />
     <item href="Text/Story3-Baby-Brother-PM-2.xhtml" id="story3-PM-2" media-type="application/xhtml+xml" />
+    <item href="Text/Story3-Baby-Brother-PM-3.xhtml" id="story3-PM-3" media-type="application/xhtml+xml" />
     <item href="Text/Story3-Baby-Brother-Title.xhtml" id="Chapter3Title" media-type="application/xhtml+xml" />
     <item href="Text/Story4-Words-of-Wisdom-Intro-E.xhtml" id="story4-Intro" media-type="application/xhtml+xml" />
     <item href="Text/Story4-Words-of-Wisdom-PM-1.xhtml" id="story4-PM-1" media-type="application/xhtml+xml" />
     <item href="Text/Story4-Words-of-Wisdom-PM-2.xhtml" id="story4-PM-2" media-type="application/xhtml+xml" />
+    <item href="Text/Story4-Words-of-Wisdom-PM-3.xhtml" id="story4-PM-3" media-type="application/xhtml+xml" />
     <item href="Text/Story4-Words-of-Wisdom-Title.xhtml" id="Chapter4Title" media-type="application/xhtml+xml" />
     <item href="Text/Story5-Catch-Intro-E.xhtml" id="story5-Intro" media-type="application/xhtml+xml" />
     <item href="Text/Story5-Catch-PM-1.xhtml" id="story5-PM-1" media-type="application/xhtml+xml" />
     <item href="Text/Story5-Catch-PM-2.xhtml" id="story5-PM-2" media-type="application/xhtml+xml" />
+    <item href="Text/Story5-Catch-PM-3.xhtml" id="story5-PM-3" media-type="application/xhtml+xml" />
     <item href="Text/Story5-Catch-Title.xhtml" id="Chapter5Title" media-type="application/xhtml+xml" />
     
     
@@ -86,10 +89,13 @@
     <itemref idref="story2-PM-2" />
     <itemref idref="story3-PM-1" />
     <itemref idref="story3-PM-2" />
+    <itemref idref="story3-PM-3" />
     <itemref idref="story4-PM-1" />
     <itemref idref="story4-PM-2" />
+    <itemref idref="story4-PM-3" />
     <itemref idref="story5-PM-1" />
     <itemref idref="story5-PM-2" />
+    <itemref idref="story5-PM-3" />
   </spine>
   <guide/>
 </package>
