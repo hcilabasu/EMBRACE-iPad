@@ -207,8 +207,8 @@
 		<content src="Text/Story4-Words-of-Wisdom-PM-2.xhtml"/>
   </pageTarget>
   <pageTarget id="p14" type="normal" value="14">
-      <navLabel><text>Chapter 4 - Words of Wisdom - Physical Manipulation 2</text></navLabel>
-      <content src="Text/Story4-Words-of-Wisdom-PM-2.xhtml"/>
+      <navLabel><text>Chapter 4 - Words of Wisdom - Physical Manipulation 3</text></navLabel>
+      <content src="Text/Story4-Words-of-Wisdom-PM-3.xhtml"/>
   </pageTarget>
   <pageTarget id="p15" type="normal" value="15">
     	<navLabel><text>Chapter 5 - Catch! - Introduction</text></navLabel>

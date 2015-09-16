@@ -1,5 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <solutions>
+        <story title="The Lucky Stone" activity_id="story1-PM-1">
+            <sentence number="2">
+                <step number="1">
+                    <check obj1Id="lucas" action="getIn" locationId="riverSide"/>
+                    <swapImage obj1Id="lucas" action="movesCloser"/>
+                </step>
+            </sentence>
+            <sentence number="4">
+                <step number="1">
+                    <group obj1Id="lucas" action="grabRight" obj2Id="bottle"/>
+                    <move obj1Id="lucas" action="getIn" waypointId="lucasRiver"/>
+                </step>
+                <step number="2">
+                    <check obj1Id="lucas" action="getIn" locationId="nearHouse"/>
+                    <swapImage obj1Id="lucas" action="movesAway"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="The Lucky Stone" activity_id="story1-PM-2">
+            <sentence number="6">
+                <step number="1">
+                    <shakeOrTap obj1Id="bottle" action="getIn" locationId="anywhere"/>
+                    <swapImage obj1Id="bottle" action="empty"/>
+                    <appear obj1Id="note" action="appear"/>
+                    <appear obj1Id="stone" action="appear"/>
+                </step>
+            </sentence>
+            <sentence number="8">
+                <step number="1">
+                    <group obj1Id="papa" action="grabRight" obj2Id="note"/>
+                    <move obj1Id="papa" action="getIn" waypointId="papaLivingRoom"/>
+                </step>
+            </sentence>
+            <sentence number="10">
+                <step number="1">
+                    <group obj1Id="lucas" action="grabRight" obj2Id="stone"/>
+                    <move obj1Id="lucas" action="getIn" waypointId="lucasLivingRoom"/>
+                </step>
+            </sentence>
+        </story>
     </solutions>
 </metadata>

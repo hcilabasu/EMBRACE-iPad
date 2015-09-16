@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <relationships>
+        <relationship obj1Id="lucas" can="grabRight" action="group" obj2Id="bottle"/>
+        <relationship obj1Id="lucas" can="grabRight" action="group" obj2Id="stone"/>
+        <relationship obj1Id="papa" can="grabRight" action="group" obj2Id="note"/>
     </relationships>
 </metadata>

@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <hotspots>
-            </hotspots>
+        <hotspot objId="bottle" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="bottle" action="grabRight" role="object" x="50%" y="50%"/>
+        <hotspot objId="lucas" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="lucas" action="grabRight" role="subject" x="50%" y="50%"/>
+        <hotspot objId="note" action="grabRight" role="object" x="50%" y="50%"/>
+        <hotspot objId="papa" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="papa" action="grabRight" role="subject" x="50%" y="50%"/>
+        <hotspot objId="stone" action="grabRight" role="object" x="50%" y="50%"/>
+    </hotspots>
 </metadata>

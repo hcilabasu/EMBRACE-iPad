@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <vocabularyIntroductions>
-        <vocabularyIntroduction story="The Moving Earth">
+        <vocabularyIntroduction story="The Lucky Stone">
             <vocabularyIntroductionWord number="1">
                 <englishWordAudio>Hook_def_E.mp3</englishWordAudio>
                 <spanishWordAudio>Hook_def_S.mp3</spanishWordAudio>
@@ -103,7 +103,7 @@
             </vocabularyIntroductionWord>
         </vocabularyIntroduction>
         
-        <vocabularyIntroduction story="Earthquakes">
+        <vocabularyIntroduction story="Magic Toys">
             <vocabularyIntroductionWord number="1">
                 <englishWordAudio>Hook_def_E.mp3</englishWordAudio>
                 <spanishWordAudio>Hook_def_S.mp3</spanishWordAudio>
@@ -205,7 +205,7 @@
             </vocabularyIntroductionWord>
         </vocabularyIntroduction>
         
-        <vocabularyIntroduction story="Tsunamis">
+        <vocabularyIntroduction story="Baby Brother">
             <vocabularyIntroductionWord number="1">
                 <englishWordAudio>Hook_def_E.mp3</englishWordAudio>
                 <spanishWordAudio>Hook_def_S.mp3</spanishWordAudio>
@@ -307,7 +307,7 @@
             </vocabularyIntroductionWord>
         </vocabularyIntroduction>
 
-<vocabularyIntroduction story="Volcanoes and the Making of Hawaii">
+<vocabularyIntroduction story="Words of Wisdom">
     <vocabularyIntroductionWord number="1">
         <englishWordAudio>Hook_def_E.mp3</englishWordAudio>
         <spanishWordAudio>Hook_def_S.mp3</spanishWordAudio>
@@ -409,7 +409,7 @@
     </vocabularyIntroductionWord>
 </vocabularyIntroduction>
 
-<vocabularyIntroduction story="Tornados">
+<vocabularyIntroduction story="Catch!">
     <vocabularyIntroductionWord number="1">
         <englishWordAudio>Hook_def_E.mp3</englishWordAudio>
         <spanishWordAudio>Hook_def_S.mp3</spanishWordAudio>

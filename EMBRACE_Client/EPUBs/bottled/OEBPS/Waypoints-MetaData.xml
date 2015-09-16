@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <waypoints>
-            </waypoints>
+        <waypoint waypointId="lucasLivingRoom" x="50%" y="50%"/>
+        <waypoint waypointId="lucasRiver" x="50%" y="50%"/>
+        <waypoint waypointId="papaLivingRoom" x="50%" y="50%"/>
+    </waypoints>
 </metadata>

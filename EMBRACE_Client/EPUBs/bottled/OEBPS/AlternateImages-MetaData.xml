@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <alternateImages>
+        <alternateImage objId="bottle" action="empty" originalSrc="bottle_noteandstone.png" alternateSrc="bottle_empty.png" width="16px" x="50%" y="50%" class="manipulationObject" z="1"/>
+        <alternateImage objId="lucas" action="movesAway" originalSrc="michael2.png" alternateSrc="michael2.png" width="41px" x="50%" y="50%" class="manipulationObject" z=""/>
+        <alternateImage objId="lucas" action="movesCloser" originalSrc="michael2.png" alternateSrc="michael2.png" width="82px" x="50%" y="50%" class="manipulationObject" z=""/>
+        <alternateImage objId="note" action="appear" originalSrc="note.png" alternateSrc="" width="35px" x="50%" y="50%" class="manipulationObject" z="1"/>
+        <alternateImage objId="stone" action="appear" originalSrc="stone.png" alternateSrc="" width="25px" x="50%" y="50%" class="manipulationObject" z="1"/>
     </alternateImages>
 </metadata>
