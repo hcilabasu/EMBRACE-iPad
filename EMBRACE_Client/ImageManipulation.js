@@ -587,7 +587,10 @@ function swapImageSrc(objectId, alternateSrc, width, left, top, zPosition) {
     image.style.width = width;
     image.style.left = left + "%";
     image.style.top = top + "%";
-    image.style.zIndex = zPosition;
+    if(zPosition != "")
+    {
+        image.style.zIndex = zPosition;
+    }
 }
 
 /*

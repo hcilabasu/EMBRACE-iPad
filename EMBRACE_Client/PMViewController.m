@@ -2090,7 +2090,7 @@ ConditionSetup *conditionSetup;
             NSString* zIndex = [altImage zPosition];
             
             //Swap images using alternative src
-            NSString* swapImages = [NSString stringWithFormat:@"swapImageSrc('%@', '%@', '%@', %f, %f, %@)", object1Id, altSrc, width, location.x, location.y, zIndex];
+            NSString* swapImages = [NSString stringWithFormat:@"swapImageSrc('%@', '%@', '%@', %f, %f, '%@')", object1Id, altSrc, width, location.x, location.y, zIndex];
             [bookView stringByEvaluatingJavaScriptFromString:swapImages];
             
             //Logging added by James for Swap Images
@@ -2119,7 +2119,7 @@ ConditionSetup *conditionSetup;
             AlternateImage* altImage = [model getAlternateImageWithActionAndObjectID:action:object1Id];
             
             //Get alternate image information
-            NSString* altSrc = [altImage originalSrc];
+            NSString* altSrc = [altImage alternateSrc];
             NSString* width = [altImage width];
             CGPoint location = [altImage location];
             NSString* className = [altImage className];

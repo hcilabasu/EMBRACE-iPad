@@ -187,6 +187,8 @@ ConditionSetup *conditionSetup;
     
     [[bookView scrollView] setBounces: NO];
     [[bookView scrollView] setScrollEnabled:NO];
+    [bookView scrollView].clipsToBounds = YES;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
     movingObject = FALSE;
     pinching = FALSE;
@@ -2101,7 +2103,7 @@ ConditionSetup *conditionSetup;
                     NSString *topPercentValueString;
                     
                     if (needsConversion) {
-                        Float32  topPercentValue = ((topPixelValue / ([bookView frame].size.height-32))*100);
+                        Float32  topPercentValue = ((topPixelValue / ([bookView frame].size.height-32))*100); //-32
                         topPercentValueString = [NSString stringWithFormat:@"top: %f%%",topPercentValue];
                     }
                     else
@@ -2118,7 +2120,7 @@ ConditionSetup *conditionSetup;
                     NSString *leftPercentValueString;
                     
                     if (needsConversion) {
-                        Float32 leftPercentValue = ((leftPixelValue / ([bookView frame].size.width-12))*100);
+                        Float32 leftPercentValue = ((leftPixelValue / ([bookView frame].size.width))*100);//-12
                         leftPercentValueString = [NSString stringWithFormat:@"left: %f%%",leftPercentValue];
                     }
                     else
