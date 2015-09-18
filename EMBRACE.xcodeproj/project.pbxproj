@@ -1474,7 +1474,6 @@
 		C3B5215319254BA2003FF639 /* PhysicalManipulationSolution.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B5215119254BA2003FF639 /* PhysicalManipulationSolution.m */; };
 		C3B52156192A97D7003FF639 /* InteractionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B52155192A97D7003FF639 /* InteractionModel.m */; };
 		C3B5215A192AB610003FF639 /* EBookImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B52159192AB610003FF639 /* EBookImporter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		C3B66A831BAC9151005DF0AC /* ballroll.gif in Resources */ = {isa = PBXBuildFile; fileRef = C3B66A821BAC9151005DF0AC /* ballroll.gif */; };
 		C3D79468196B1EC9004C26ED /* AlternateImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D79467196B1EC9004C26ED /* AlternateImage.m */; };
 		C680520D197ECD43002A5249 /* ServerCommunicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C680520C197ECD43002A5249 /* ServerCommunicationController.m */; };
 		C6805216197ECDE5002A5249 /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = C6805211197ECDE5002A5249 /* DDXMLDocument.m */; };
@@ -2243,7 +2242,7 @@
 		31937539174185E000782C2B /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		3193753B1741A76E00782C2B /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
 		3193753C1741A76E00782C2B /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
-		31953E451729ECC100570087 /* Animations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Animations.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		31953E451729ECC100570087 /* Embrace E.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Embrace E.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31953E481729ECC100570087 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		31953E4A1729ECC100570087 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		31953E4C1729ECC100570087 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -3009,7 +3008,6 @@
 		C3B52154192A97D7003FF639 /* InteractionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InteractionModel.h; sourceTree = "<group>"; };
 		C3B52155192A97D7003FF639 /* InteractionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InteractionModel.m; sourceTree = "<group>"; };
 		C3B52159192AB610003FF639 /* EBookImporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EBookImporter.m; sourceTree = "<group>"; };
-		C3B66A821BAC9151005DF0AC /* ballroll.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ballroll.gif; sourceTree = "<group>"; };
 		C3D79466196B1EC9004C26ED /* AlternateImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlternateImage.h; sourceTree = "<group>"; };
 		C3D79467196B1EC9004C26ED /* AlternateImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlternateImage.m; sourceTree = "<group>"; };
 		C680520B197ECD42002A5249 /* ServerCommunicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerCommunicationController.h; sourceTree = "<group>"; };
@@ -3309,7 +3307,7 @@
 		31953E461729ECC100570087 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				31953E451729ECC100570087 /* Animations.app */,
+				31953E451729ECC100570087 /* Embrace E.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -4829,7 +4827,6 @@
 		5CF9941E19AC34550080C32F /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				C3B66A821BAC9151005DF0AC /* ballroll.gif */,
 				5CF9941F19AC34550080C32F /* apple_basket.png */,
 				5CF9942019AC34550080C32F /* apple_large.png */,
 				1A90681F1B801C1A0005CC6D /* farm_icon.png */,
@@ -4982,7 +4979,7 @@
 			);
 			name = EMBRACE;
 			productName = EMBRACE_Client;
-			productReference = 31953E451729ECC100570087 /* Animations.app */;
+			productReference = 31953E451729ECC100570087 /* Embrace E.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -6186,7 +6183,6 @@
 				C30D04BC1BABBFE800DF53F1 /* CPQR13.m4a in Resources */,
 				C30D04BD1BABBFE800DF53F1 /* CPQR12.m4a in Resources */,
 				C30D04BE1BABBFE800DF53F1 /* CPQR11.m4a in Resources */,
-				C3B66A831BAC9151005DF0AC /* ballroll.gif in Resources */,
 				C30D04BF1BABBFE800DF53F1 /* CPQR10.m4a in Resources */,
 				C30D04C01BABBFE800DF53F1 /* CPQR9.m4a in Resources */,
 				C30D04C11BABBFE800DF53F1 /* CPQR8.m4a in Resources */,
@@ -6621,7 +6617,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				OTHER_LDFLAGS = "-lxml2";
-				PRODUCT_NAME = Animations;
+				PRODUCT_NAME = "Embrace E";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -6646,7 +6642,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				OTHER_LDFLAGS = "-lxml2";
-				PRODUCT_NAME = Animations;
+				PRODUCT_NAME = "Embrace E";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
