@@ -179,13 +179,13 @@
                 <step number="1">
                     <group obj1Id="dirt_move" action="pull" obj2Id="air_red"/>
                     <appear obj1Id="dirt_tornado" action="appear"/>
-                    <disappear obj1Id="dirt_move" action="disappear" obj2Id=""/>
+                    <disappear obj1Id="dirt_move" action="disappear" obj2Id="dirt_move"/>
                 </step>
             </sentence>
             <sentence number="8">
                 <step number="1">
                     <group obj1Id="dirt_tornado" action="pull" obj2Id="house_roof2"/>
-                    <disappear obj1Id="house_roof2" action="disappear" obj2Id=""/>
+                    <disappear obj1Id="house_roof2" action="disappear" obj2Id="house_roof2"/>
                 </step>
             </sentence>
         </story>
@@ -194,7 +194,7 @@
                 <step number="1">
                     <check obj1Id="air_blue" action="getIn" locationId="tornado"/>
                     <swapImage obj1Id="air_blue" action="changeZIndex"/>
-                    <disappear obj1Id="air_red" action="disappear" obj2Id=""/>
+                    <disappear obj1Id="air_red" action="disappear" obj2Id="air_red"/>
                     <swapImage obj1Id="dirt_tornado" action="shrink"/>
                 </step>
             </sentence>

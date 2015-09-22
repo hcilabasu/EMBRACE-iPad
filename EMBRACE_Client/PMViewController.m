@@ -612,7 +612,8 @@ ConditionSetup *conditionSetup;
             [self loadImage];
             [self incrementCurrentStep];
         }
-        else if ([[currSolStep stepType] isEqualToString:@"disappear"])
+        
+        else if ([[currSolStep stepType] isEqualToString:@"disappearAuto"])
         {
             [self hideImage];
             [self incrementCurrentStep];
@@ -2143,11 +2144,11 @@ ConditionSetup *conditionSetup;
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
-        if ([[currSolStep stepType] isEqualToString:@"disappear"]) {
-            NSString* object1Id = [currSolStep object1Id];
+        if ([[currSolStep stepType] isEqualToString:@"disappearAuto"]) {
+            NSString* object2Id = [currSolStep object2Id];
             
             //Hide image
-            NSString* hideImage = [NSString stringWithFormat:@"removeImage('%@')", object1Id];
+            NSString* hideImage = [NSString stringWithFormat:@"removeImage('%@')", object2Id];
             [bookView stringByEvaluatingJavaScriptFromString:hideImage];
         }
     }
@@ -3176,7 +3177,6 @@ ConditionSetup *conditionSetup;
         //Logging added by James for Automatic Computer Move Object
         [[ServerCommunicationController sharedManager] logComputerMoveObject: object : waypointID: startLocation.x : startLocation.y : adjLocation.x : adjLocation.y : @"Snap to Hotspot" : bookTitle : chapterTitle : currentPage : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] : [NSString stringWithFormat:@"%lu" , (unsigned long)currentStep]];
     }
-    
     
     //NSLog(@"new location of %@: (%f, %f)", object, adjLocation.x, adjLocation.y);
     //Call the moveObject function in the js file.

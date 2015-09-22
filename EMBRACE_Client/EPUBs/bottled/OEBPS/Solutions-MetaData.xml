@@ -192,8 +192,8 @@
                 <step number="1">
                     <group obj1Id="lucas" action="hug" obj2Id="papa"/>
                     <appear obj1Id="hug" action="appear"/>
-                    <disappear obj1Id="lucas" action="disappear" obj2Id=""/>
-                    <disappear obj1Id="papa" action="disappear" obj2Id=""/>
+                    <disappearAuto obj1Id="lucas" action="disappear" obj2Id="lucas"/>
+                    <disappearAuto obj1Id="papa" action="disappear" obj2Id="papa"/>
                 </step>
             </sentence>
             <sentence number="7">

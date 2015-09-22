@@ -16,7 +16,7 @@
 - (id) init {
     condition = EMBRACE;
     language = ENGLISH;
-    appmode = Authoring;
+    appmode = Study;
     return self;
 }
 

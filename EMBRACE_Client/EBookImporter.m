@@ -753,7 +753,8 @@ ConditionSetup *conditionSetup;
                            [[step name] isEqualToString:@"group"] ||
                            [[step name] isEqualToString:@"disappear"] ||
                            [[step name] isEqualToString:@"ungroup"] ||
-                           [[step name] isEqualToString:@"ungroupAndStay"])
+                           [[step name] isEqualToString:@"ungroupAndStay"] ||
+                           [[step name] isEqualToString:@"disappearAuto"])
                         {
                             if([step attributeForName:@"obj2Id"]) {
                                 NSString* obj2Id = [[step attributeForName:@"obj2Id"] stringValue];

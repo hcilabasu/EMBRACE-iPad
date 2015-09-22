@@ -161,18 +161,18 @@
 	</navPoint>
 	<navPoint class="ChapterTitle" id="Chapter5Title" playOrder="5">
 		<navLabel>
-			<text>The Baby's Rattle is Gone Too!</text>
+			<text>The Baby's Rattle is Gone, Too!</text>
 		</navLabel>
 		<content src="Text/Story5-The-Baby's-Rattle-is-Gone-Too-Title.xhtml"/>
 		<navPoint class="PM_MODE" id="story5-Intro">
             <navLabel>
-                <text>The Baby's Rattle is Gone Too! - Intro</text>
+                <text>The Baby's Rattle is Gone, Too! - Intro</text>
             </navLabel>
             <content src="Text/Story5-The-Baby's-Rattle-is-Gone-Too-Intro-E.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story5-PM-1">
 		  <navLabel>
-    		<text>The Baby's Rattle is Gone Too! - PM</text>
+    		<text>The Baby's Rattle is Gone, Too! - PM</text>
 		  </navLabel>
 		  <content src="Text/Story5-The-Baby's-Rattle-is-Gone-Too-PM-1.xhtml"/>
 		</navPoint>
@@ -286,15 +286,15 @@
 		<content src="Text/Story4-More-is-Missing-PM-2.xhtml"/>
 	</pageTarget>
 	<pageTarget id="p14" type="normal" value="14">
-    	<navLabel><text>Chapter 5 - The Baby's Rattle is Gone Too! - Introduction</text></navLabel>
+    	<navLabel><text>Chapter 5 - The Baby's Rattle is Gone, Too! - Introduction</text></navLabel>
 		<content src="Text/Story5-The-Baby's-Rattle-is-Gone-Too-Intro-E.xhtml"/>
 	</pageTarget>
   <pageTarget id="p15" type="normal" value="15">
-    	<navLabel><text>Chapter 5 - The Baby's Rattle is Gone Too! - Physical Manipulation 1</text></navLabel>
+    	<navLabel><text>Chapter 5 - The Baby's Rattle is Gone, Too! - Physical Manipulation 1</text></navLabel>
 		<content src="Text/Story5-The-Baby's-Rattle-is-Gone-Too-PM-1.xhtml"/>
 	</pageTarget>
   <pageTarget id="p16" type="normal" value="16">
-    	<navLabel><text>Chapter 5 - The Baby's Rattle is Gone Too! - Physical Manipulation 2</text></navLabel>
+    	<navLabel><text>Chapter 5 - The Baby's Rattle is Gone, Too! - Physical Manipulation 2</text></navLabel>
 		<content src="Text/Story5-The-Baby's-Rattle-is-Gone-Too-PM-2.xhtml"/>
 	</pageTarget>
 	<pageTarget id="p17" type="normal" value="17">
