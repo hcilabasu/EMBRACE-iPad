@@ -2,6 +2,12 @@
 <metadata>
     <locations>
         <location locationId="anywhere" x="50%" y="50%" height="50%" width="50%"/>
+        <location locationId="bedroom" x="50%" y="50%" height="50%" width="50%"/>
+        <location locationId="bedroom" x="50%" y="50%" height="50%" width="50%"/>
+        <location locationId="bench" x="50%" y="50%" height="50%" width="50%"/>
+        <location locationId="bush" x="50%" y="50%" height="50%" width="50%"/>
+        <location locationId="chair" x="50%" y="50%" height="50%" width="50%"/>
+        <location locationId="livingRoom" x="50%" y="50%" height="50%" width="50%"/>
         <location locationId="nearHouse" x="50%" y="50%" height="50%" width="50%"/>
         <location locationId="riverSide" x="50%" y="50%" height="50%" width="50%"/>
     </locations>

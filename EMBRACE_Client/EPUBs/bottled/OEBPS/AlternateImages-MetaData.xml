@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <alternateImages>
-        <alternateImage objId="bottle" action="empty" originalSrc="bottle_noteandstone.png" alternateSrc="bottle_empty.png" width="16px" x="50%" y="50%" class="manipulationObject" z="1"/>
-        <alternateImage objId="lucas" action="movesAway" originalSrc="michael2.png" alternateSrc="michael2.png" width="41px" x="50%" y="50%" class="manipulationObject" z=""/>
-        <alternateImage objId="lucas" action="movesCloser" originalSrc="michael2.png" alternateSrc="michael2.png" width="82px" x="50%" y="50%" class="manipulationObject" z=""/>
-        <alternateImage objId="note" action="appear" originalSrc="note.png" alternateSrc="" width="35px" x="50%" y="50%" class="manipulationObject" z="1"/>
-        <alternateImage objId="stone" action="appear" originalSrc="stone.png" alternateSrc="" width="25px" x="50%" y="50%" class="manipulationObject" z="1"/>
+        <alternateImage objId="babybrother" action="movesAway" originalSrc="babybrother.png" alternateSrc="babybrother.png" width="33.1px" x="50%" y="50%" class="manipulationObject" z="1"/>
+        <alternateImage objId="babybrother" action="movesCloser" originalSrc="babybrother.png" alternateSrc="babybrother.png" width="66.3px" x="50%" y="50%" class="manipulationObject" z="1"/>
+        <alternateImage objId="ball" action="movesCloser" originalSrc="ball.png" alternateSrc="ball.png" width="58.5px" x="50%" y="50%" class="manipulationObject" z="1"/>
+        <alternateImage objId="boardgame_open" action="appear" originalSrc="boardgame_open.png" alternateSrc="" width="148px" x="50%" y="50%" class="manipulationObject" z="1"/>
+        <alternateImage objId="bottle" action="empty" originalSrc="bottle_noteandstone.png" alternateSrc="bottle_empty.png" width="16px" x="22.95%" y="84.01%" class="manipulationObject" z="1"/>
+        <alternateImage objId="bottle" action="movesCloser" originalSrc="bottle_noteandstone.png" alternateSrc="bottle_noteandstone.png" width="24px" x="50%" y="50%" class="manipulationObject" z="1"/>
+        <alternateImage objId="bottle" action="movesCloser2" originalSrc="bottle_noteandstone.png" alternateSrc="bottle_noteandstone.png" width="24px" x="50%" y="50%" class="manipulationObject" z="1"/>
+        <alternateImage objId="cup" action="full" originalSrc="cup_empty.png" alternateSrc="cup_full.png" width="30px" x="50%" y="50%" class="manipulationObject" z="1"/>
+        <alternateImage objId="cup" action="movesCloser" originalSrc="cup_empty.png" alternateSrc="cup_empty.png.png" width="30px" x="50%" y="50%" class="manipulationObject" z="1"/>
+        <alternateImage objId="hug" action="appear" originalSrc="hug.png" alternateSrc="" width="120px" x="50%" y="50%" class="manipulationObject" z=""/>
+        <alternateImage objId="lucas" action="movesAway" originalSrc="michael2.png" alternateSrc="michael2.png" width="41px" x="40.57%" y="35.36%" class="manipulationObject" z=""/>
+        <alternateImage objId="lucas" action="movesCloser" originalSrc="michael2.png" alternateSrc="michael2.png" width="82px" x="33.97%" y="82.42%" class="manipulationObject" z=""/>
+        <alternateImage objId="lucas" action="nap" originalSrc="michael2.png" alternateSrc="michael_napping.png" width="135px" x="50%" y="50%" class="manipulationObject" z=""/>
+        <alternateImage objId="lucas" action="sitOnBench" originalSrc="michael2.png" alternateSrc="michael_sittingonbench.png" width="84px" x="50%" y="50%" class="manipulationObject" z=""/>
+        <alternateImage objId="lucas" action="sitOnChair" originalSrc="michael2.png" alternateSrc="michael_sitting.png" width="54px" x="50%" y="50%" class="manipulationObject" z=""/>
+        <alternateImage objId="lucas" action="stand" originalSrc="michael_sitting.png" alternateSrc="michael2.png" width="54.7px" x="50%" y="50%" class="manipulationObject" z=""/>
+        <alternateImage objId="lucas" action="wake" originalSrc="michael_napping.png" alternateSrc="michael2.png" width="54.7px" x="50%" y="50%" class="manipulationObject" z=""/>
+        <alternateImage objId="note" action="appear" originalSrc="note.png" alternateSrc="" width="35px" x="25%" y="92%" class="manipulationObject" z="1"/>
+        <alternateImage objId="olivia" action="movesCloser" originalSrc="olivia2.png" alternateSrc="olivia2.png" width="82px" x="50%" y="50%" class="manipulationObject" z=""/>
+        <alternateImage objId="papa" action="movesCloser" originalSrc="papa2.png" alternateSrc="papa2.png" width="119px" x="50%" y="50%" class="manipulationObject" z=""/>
+        <alternateImage objId="stone" action="appear" originalSrc="stone.png" alternateSrc="" width="25px" x="31%" y="93%" class="manipulationObject" z="1"/>
     </alternateImages>
 </metadata>
