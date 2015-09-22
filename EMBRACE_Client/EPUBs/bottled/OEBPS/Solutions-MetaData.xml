@@ -22,15 +22,16 @@
         <story title="The Lucky Stone" activity_id="story1-PM-2">
             <sentence number="6">
                 <step number="1">
-                    <shakeOrTap obj1Id="bottle" action="getIn" locationId="anywhere"/>
+                    <shakeOrTap obj1Id="papa" action="getIn" locationId="anywhere"/>
                     <swapImage obj1Id="bottle" action="empty"/>
+                    <groupAuto obj1Id="papa" action="grabRight" obj2Id="bottle"/>
                     <appear obj1Id="note" action="appear"/>
                     <appear obj1Id="stone" action="appear"/>
                 </step>
             </sentence>
             <sentence number="8">
                 <step number="1">
-                    <group obj1Id="papa" action="grabRight" obj2Id="note"/>
+                    <group obj1Id="papa" action="grabLeft" obj2Id="note"/>
                     <move obj1Id="papa" action="getIn" waypointId="papaLivingRoom"/>
                 </step>
             </sentence>

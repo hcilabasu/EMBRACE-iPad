@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <setups>
+        <story title="The Lucky Stone" page_id="story1-PM-2">
+            <group obj1Id="papa" action="grabRight" obj2Id="bottle"/>
+        </story>
         <story title="Baby Brother" page_id="story3-PM-3">
             <group obj1Id="lucas" action="grabRight" obj2Id="babybrother"/>
         </story>
