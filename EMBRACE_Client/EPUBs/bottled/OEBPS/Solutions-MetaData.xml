@@ -52,7 +52,7 @@
             <sentence number="2">
                 <step number="1">
                     <check obj1Id="lucas" action="getIn" locationId="bench"/>
-                    <swapImage obj1Id="lucas" action="sitOnBench"/>
+                    <swapImage obj1Id="lucas" action="sitOnBench" />
                 </step>
             </sentence>
         </story>

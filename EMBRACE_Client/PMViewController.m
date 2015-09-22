@@ -2082,7 +2082,7 @@ ConditionSetup *conditionSetup;
             NSString* action = [currSolStep action];
             
             //Get alternate image
-            AlternateImage* altImage = [model getAlternateImageWithAction:action];
+            AlternateImage* altImage = [model getAlternateImageWithActionAndObjectID:action:object1Id];
             
             //Get alternate image information
             NSString* altSrc = [altImage alternateSrc];
@@ -2171,7 +2171,7 @@ ConditionSetup *conditionSetup;
             NSString* action = [currSolStep action];
             
             //Get alternate image
-            AlternateImage* altImage = [model getAlternateImageWithAction:action];
+            AlternateImage* altImage = [model getAlternateImageWithActionAndObjectID:action:object1Id];
             
             //Get alternate image information
             NSString* altSrc = [altImage alternateSrc];
