@@ -510,7 +510,7 @@ ConditionSetup *conditionSetup;
     
     if (![[self.navigationController viewControllers] containsObject:self])
     {
-        [[ServerCommunicationController sharedManager] writeToFile:[[ServerCommunicationController sharedManager] studyFileName] ofType:@"txt"];
+        
     }
 }
 
@@ -2102,8 +2102,16 @@ ConditionSetup *conditionSetup;
                     float topPixelValue = [topString floatValue];
                     NSString *topPercentValueString;
                     
+                    float viewH = [self areaSpace].frame.size.height;
+                    float viewW = [self areaSpace].frame.size.width;
+                    float bookH = [bookView frame].size.height;
+                    float bookW = [bookView frame].size.width;
+                    NSString *htmlH = [bookView stringByEvaluatingJavaScriptFromString:@"document.innerWidth"];
+                    NSString *htmlW = [bookView stringByEvaluatingJavaScriptFromString:@"document.innerHeight"];
+                    
+                    
                     if (needsConversion) {
-                        Float32  topPercentValue = ((topPixelValue / ([bookView frame].size.height-32))*100); //-32
+                        Float32  topPercentValue = ((topPixelValue / ([bookView frame].size.height))*100); //-32
                         topPercentValueString = [NSString stringWithFormat:@"top: %f%%",topPercentValue];
                     }
                     else
@@ -2341,7 +2349,7 @@ ConditionSetup *conditionSetup;
     //logs only if object is moved by computer action, user pan done outside of this function
     if (![waypointID isEqualToString:@"isMoving"]) {
         //Logging added by James for Automatic Computer Move Object
-        [[ServerCommunicationController sharedManager] logComputerMoveObject: object : waypointID: startLocation.x : startLocation.y : adjLocation.x : adjLocation.y : @"Snap to Hotspot" : bookTitle : chapterTitle : currentPage : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] : [NSString stringWithFormat:@"%lu" , (unsigned long)currentStep]];
+        
     }
     
     
@@ -2503,6 +2511,7 @@ ConditionSetup *conditionSetup;
     if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
         // If the user pressed next
             if (IntroductionClass.currentIntroStep > IntroductionClass.totalIntroSteps) {
+                [self saveCurrentHTML];
                 [self loadNextPage]; //logging done in loadNextPage
             }
             else {
@@ -2515,10 +2524,9 @@ ConditionSetup *conditionSetup;
     }
     else if ([IntroductionClass.vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
     
+            [self saveCurrentHTML];
             [self loadNextPage]; //logging done in loadNextPage
     }
-    
-    //else if (stepsComplete || numSteps == 0 || !IntroductionClass.allowInteractions) {
         else{
             //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
             currentSentence++;
