@@ -1061,6 +1061,9 @@
 		5C7FE16319A7E43C00CBBE0E /* prizeE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FE0DF19A7E43C00CBBE0E /* prizeE.m4a */; };
 		5C7FE16A19A7E43C00CBBE0E /* STWATTP.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FE0E619A7E43C00CBBE0E /* STWATTP.m4a */; };
 		5C7FE16D19A7E43C00CBBE0E /* tryAgainE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FE0E919A7E43C00CBBE0E /* tryAgainE.m4a */; };
+		5C913BDD1BB24190000A2E32 /* grey_plate_kauai.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C913BDC1BB24190000A2E32 /* grey_plate_kauai.png */; };
+		5C913BDF1BB2443D000A2E32 /* houses_burn.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C913BDE1BB2443D000A2E32 /* houses_burn.png */; };
+		5C913BE11BB261A0000A2E32 /* island_lava_Hawaii.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C913BE01BB261A0000A2E32 /* island_lava_Hawaii.png */; };
 		5CA53EAE1BA8D49100D2FF5C /* Story5-Catch-PM-3.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CA53EAD1BA8D49100D2FF5C /* Story5-Catch-PM-3.xhtml */; };
 		5CA53EB01BA8D6BB00D2FF5C /* Story3-Baby-Brother-PM-3.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CA53EAF1BA8D6BB00D2FF5C /* Story3-Baby-Brother-PM-3.xhtml */; };
 		5CA53EB21BA8EA5600D2FF5C /* Story4-Words-of-Wisdom-PM-3.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CA53EB11BA8EA5600D2FF5C /* Story4-Words-of-Wisdom-PM-3.xhtml */; };
@@ -1392,7 +1395,6 @@
 		B9C9E9B91B8EA0A800AFC328 /* droplet_single.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E9141B8EA0A700AFC328 /* droplet_single.png */; };
 		B9C9E9BA1B8EA0A800AFC328 /* Earthquake_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E9151B8EA0A700AFC328 /* Earthquake_icon.png */; };
 		B9C9E9BB1B8EA0A800AFC328 /* eurasia.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E9161B8EA0A700AFC328 /* eurasia.png */; };
-		B9C9E9BC1B8EA0A800AFC328 /* grey_plate_kauai.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E9171B8EA0A700AFC328 /* grey_plate_kauai.png */; };
 		B9C9E9BD1B8EA0A800AFC328 /* house_noroof.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E9181B8EA0A700AFC328 /* house_noroof.png */; };
 		B9C9E9BE1B8EA0A800AFC328 /* house_noroof2.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E9191B8EA0A700AFC328 /* house_noroof2.png */; };
 		B9C9E9BF1B8EA0A800AFC328 /* house_roof.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E91A1B8EA0A700AFC328 /* house_roof.png */; };
@@ -2628,6 +2630,9 @@
 		5C7FE0DF19A7E43C00CBBE0E /* prizeE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = prizeE.m4a; path = EMBRACE_Client/sounds/prizeE.m4a; sourceTree = SOURCE_ROOT; };
 		5C7FE0E619A7E43C00CBBE0E /* STWATTP.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = STWATTP.m4a; path = EMBRACE_Client/sounds/STWATTP.m4a; sourceTree = SOURCE_ROOT; };
 		5C7FE0E919A7E43C00CBBE0E /* tryAgainE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = tryAgainE.m4a; path = EMBRACE_Client/sounds/tryAgainE.m4a; sourceTree = SOURCE_ROOT; };
+		5C913BDC1BB24190000A2E32 /* grey_plate_kauai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grey_plate_kauai.png; sourceTree = "<group>"; };
+		5C913BDE1BB2443D000A2E32 /* houses_burn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = houses_burn.png; sourceTree = "<group>"; };
+		5C913BE01BB261A0000A2E32 /* island_lava_Hawaii.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = island_lava_Hawaii.png; sourceTree = "<group>"; };
 		5CA53EAD1BA8D49100D2FF5C /* Story5-Catch-PM-3.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-Catch-PM-3.xhtml"; sourceTree = "<group>"; };
 		5CA53EAF1BA8D6BB00D2FF5C /* Story3-Baby-Brother-PM-3.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story3-Baby-Brother-PM-3.xhtml"; sourceTree = "<group>"; };
 		5CA53EB11BA8EA5600D2FF5C /* Story4-Words-of-Wisdom-PM-3.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Words-of-Wisdom-PM-3.xhtml"; sourceTree = "<group>"; };
@@ -2978,7 +2983,6 @@
 		B9C9E9141B8EA0A700AFC328 /* droplet_single.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = droplet_single.png; sourceTree = "<group>"; };
 		B9C9E9151B8EA0A700AFC328 /* Earthquake_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Earthquake_icon.png; sourceTree = "<group>"; };
 		B9C9E9161B8EA0A700AFC328 /* eurasia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eurasia.png; sourceTree = "<group>"; };
-		B9C9E9171B8EA0A700AFC328 /* grey_plate_kauai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grey_plate_kauai.png; sourceTree = "<group>"; };
 		B9C9E9181B8EA0A700AFC328 /* house_noroof.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = house_noroof.png; sourceTree = "<group>"; };
 		B9C9E9191B8EA0A700AFC328 /* house_noroof2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = house_noroof2.png; sourceTree = "<group>"; };
 		B9C9E91A1B8EA0A700AFC328 /* house_roof.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = house_roof.png; sourceTree = "<group>"; };
@@ -4976,6 +4980,9 @@
 		B9C9E8E91B8EA0A700AFC328 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5C913BE01BB261A0000A2E32 /* island_lava_Hawaii.png */,
+				5C913BDE1BB2443D000A2E32 /* houses_burn.png */,
+				5C913BDC1BB24190000A2E32 /* grey_plate_kauai.png */,
 				B98B6CB21B96817800B04AFC /* dirt_tornado.png */,
 				B98D2F5F1B94DE8C002B71EE /* houses_fall.png */,
 				B98D2F601B94DE8C002B71EE /* houses.png */,
@@ -5023,7 +5030,6 @@
 				B9C9E9141B8EA0A700AFC328 /* droplet_single.png */,
 				B9C9E9151B8EA0A700AFC328 /* Earthquake_icon.png */,
 				B9C9E9161B8EA0A700AFC328 /* eurasia.png */,
-				B9C9E9171B8EA0A700AFC328 /* grey_plate_kauai.png */,
 				B9C9E9181B8EA0A700AFC328 /* house_noroof.png */,
 				B9C9E9191B8EA0A700AFC328 /* house_noroof2.png */,
 				B9C9E91A1B8EA0A700AFC328 /* house_roof.png */,
@@ -5302,6 +5308,7 @@
 				5CE299D319B59E6000675CB0 /* weedsE.m4a in Resources */,
 				5C7FE06019A6B1B500CBBE0E /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-PM-1.xhtml in Resources */,
 				B9C9EA011B8EA0A800AFC328 /* SentenceAnalysis-MetaData.xml in Resources */,
+				5C913BDD1BB24190000A2E32 /* grey_plate_kauai.png in Resources */,
 				5C7FE05C19A6B1B500CBBE0E /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-7.xhtml in Resources */,
 				5C776B6319C90DA1000DBC65 /* BFEC2.m4a in Resources */,
 				1A2D709F1AAA74FA009E7B5B /* nest_night.png in Resources */,
@@ -5720,7 +5727,6 @@
 				1AEE551B1ADE028100DFC6B0 /* MissingKeysQ1.mp3 in Resources */,
 				5C776C5719CA6EE6000DBC65 /* arteriesS.m4a in Resources */,
 				5CF655BF19AEACF0000AC913 /* Story3-Cleaning-Up-Intro-E.xhtml in Resources */,
-				B9C9E9BC1B8EA0A800AFC328 /* grey_plate_kauai.png in Resources */,
 				B9C9E9FC1B8EA0A800AFC328 /* IMSolutions-MetaData.xml in Resources */,
 				B95229331BA111A100093528 /* bush.png in Resources */,
 				1A8037161B0B1C62004A164A /* WhoIsTheBestAnimalQ2A2.mp3 in Resources */,
@@ -5903,6 +5909,7 @@
 				5CAD061019BE6A3E00F3F053 /* CCE1_5.m4a in Resources */,
 				1A8036791B0B1C62004A164A /* GettingReadyQ4.mp3 in Resources */,
 				B95228F71BA0CDAB00093528 /* IMStyle.css in Resources */,
+				5C913BDF1BB2443D000A2E32 /* houses_burn.png in Resources */,
 				1A3594511AE76129003B3B41 /* TheMysteryIsSolvedQ7A1.mp3 in Resources */,
 				5CAD05E619BE6A3E00F3F053 /* CCE5_5.m4a in Resources */,
 				1A2D70AE1AAA74FA009E7B5B /* woman.png in Resources */,
@@ -6235,6 +6242,7 @@
 				1A80368C1B0B1C62004A164A /* GettingReadyQ7A4.mp3 in Resources */,
 				1A8036BB1B0B1C62004A164A /* TheBestFarmAwardQ3A1.mp3 in Resources */,
 				1A695CD21AD4EB9C006A2284 /* TheLopezFamilyQ3A2.mp3 in Resources */,
+				5C913BE11BB261A0000A2E32 /* island_lava_Hawaii.png in Resources */,
 				B9C9E98A1B8EA0A800AFC328 /* Areas-MetaData.xml in Resources */,
 				B95229161BA0CDAB00093528 /* Story5-Catch-Title.xhtml in Resources */,
 				1A35943C1AE76129003B3B41 /* TheMysteryIsSolvedQ3.mp3 in Resources */,

@@ -122,6 +122,7 @@
                 <step number="1">
                     <check obj1Id="lava" action="getIn" locationId="lavaUp"/>
                     <swapImage obj1Id="lava" action="forms_island"/>
+                    <disappearAuto obj1Id="lava_cooled" action="disappear" obj2Id="lava_cooled"/>
                 </step>
             </sentence>
         </story>
@@ -151,7 +152,8 @@
             <sentence number="15">
                 <step number="1">
                     <check obj1Id="lava" action="getIn" locationId="lavaUpHawaii"/>
-                    <swapImage obj1Id="lava" action="forms_rock_Hawaii"/>
+                    <disappearAuto obj1Id="lava" action="disappear" obj2Id="lava"/>
+                    <swapImage obj1Id="hawaii" action="erupts"/>
                 </step>
             </sentence>
         </story>
@@ -186,6 +188,7 @@
                 <step number="1">
                     <group obj1Id="dirt_tornado" action="pull" obj2Id="house_roof2"/>
                     <disappearAuto obj1Id="house_roof2" action="disappear" obj2Id="house_roof2"/>
+                    <move obj1Id="dirt_tornado" action="getIn" waypointId="tornado"/>
                 </step>
             </sentence>
         </story>

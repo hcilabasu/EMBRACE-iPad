@@ -5,17 +5,18 @@
         <waypoint waypointId="air_down" x="54.5%" y="50.5%"/>
         <waypoint waypointId="air_up" x="54.5%" y="60%"/>
         <waypoint waypointId="bulge_left" x="10%" y="69.5%"/>
-        <waypoint waypointId="california_boom" x="26.2%" y="62%"/>
+        <waypoint waypointId="california_boom" x="27.2%" y="62%"/>
         <waypoint waypointId="california_up" x="9.5%" y="31%"/>
         <waypoint waypointId="california_up2" x="26.9%" y="62%"/>
         <waypoint waypointId="gap" x="50%" y="50%"/>
         <waypoint waypointId="india_near_eurasia" x="54.74%" y="31.7%"/>
         <waypoint waypointId="india_ungrouped" x="52.1%" y="56.49%"/>
         <waypoint waypointId="left" x="50%" y="55%"/>
-        <waypoint waypointId="left2" x="45%" y="55%"/>
+        <waypoint waypointId="left2" x="44%" y="55%"/>
         <waypoint waypointId="ocean" x="35%" y="69%"/>
         <waypoint waypointId="ocean_down" x="50%" y="79%"/>
         <waypoint waypointId="plate_move" x="74%" y="90%"/>
+        <waypoint waypointId="tornado" x="43.5%" y="12%"/>
         <waypoint waypointId="upHill" x="47%" y="34%"/>
     </waypoints>
 </metadata>
