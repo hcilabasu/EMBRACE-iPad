@@ -495,17 +495,23 @@ ConditionSetup *conditionSetup;
     NSArray* hotspotsForInteraction = [[NSArray alloc]initWithObjects:hotspot1, hotspot2, nil];
     
     //The move case only applies if an object is being moved to another object, not a waypoint
-    if ([[step stepType] isEqualToString:@"group"] || [[step stepType] isEqualToString:@"move"]) {
+    if ([[step stepType] isEqualToString:@"group"] ||
+        [[step stepType] isEqualToString:@"move"] ||
+        [[step stepType] isEqualToString:@"groupAuto"])
+    {
         interaction = [[PossibleInteraction alloc]initWithInteractionType:GROUP];
         
         [interaction addConnection:GROUP :objects :hotspotsForInteraction];
     }
-    else if ([[step stepType] isEqualToString:@"ungroup"] || [[step stepType] isEqualToString:@"ungroupAndStay"]) {
+    else if ([[step stepType] isEqualToString:@"ungroup"] ||
+             [[step stepType] isEqualToString:@"ungroupAndStay"])
+    {
         interaction = [[PossibleInteraction alloc]initWithInteractionType:UNGROUP];
         
         [interaction addConnection:UNGROUP :objects :hotspotsForInteraction];
     }
-    else if ([[step stepType] isEqualToString:@"disappear"]) {
+    else if ([[step stepType] isEqualToString:@"disappear"])
+    {
         interaction = [[PossibleInteraction alloc]initWithInteractionType:DISAPPEAR];
         
         [interaction addConnection:DISAPPEAR :objects :hotspotsForInteraction];
@@ -587,6 +593,12 @@ ConditionSetup *conditionSetup;
             //add logging to performInteraction maybe add a log here for perform atomic steps to distinguish automatic steps are being done and then just use performinterction to show the interaction
             //[[ServerCommunicationController sharedManager] logComputerGroupingObjects:<#(NSString *)#>]
             
+            [self incrementCurrentStep];
+        }
+        else if([[currSolStep stepType] isEqualToString:@"groupAuto"])
+        {
+            PossibleInteraction* correctGrouping = [self getCorrectInteraction];
+            [self performInteraction:correctGrouping];
             [self incrementCurrentStep];
         }
         else if ([[currSolStep stepType] isEqualToString:@"move"])

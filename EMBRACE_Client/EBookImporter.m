@@ -751,6 +751,7 @@ ConditionSetup *conditionSetup;
                         if([[step name] isEqualToString:@"transferAndGroup"] ||
                            [[step name] isEqualToString:@"transferAndDisappear"] ||
                            [[step name] isEqualToString:@"group"] ||
+                           [[step name] isEqualToString:@"groupAuto"] ||
                            [[step name] isEqualToString:@"disappear"] ||
                            [[step name] isEqualToString:@"ungroup"] ||
                            [[step name] isEqualToString:@"ungroupAndStay"] ||
