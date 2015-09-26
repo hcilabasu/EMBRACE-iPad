@@ -15,6 +15,6 @@
         <location locationId="ocean" x="0%" y="47%" height="39%" width="61%"/>
         <location locationId="plate_move" x="13%" y="62%" height="30%" width="93%"/>
         <location locationId="tornado" x="30%" y="27%" height="50%" width="50%"/>
-        <location locationId="upHill" x="30%" y="17%" height="24.4%" width="26.4%"/>
+        <location locationId="upHill" x="30%" y="17%" height="30.4%" width="28.4%"/>
     </locations>
 </metadata>

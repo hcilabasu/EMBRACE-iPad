@@ -11,7 +11,7 @@
         <alternateImage objId="hawaii" action="erupts" originalSrc="island_Hawaii.png" alternateSrc="island_lava_Hawaii.png" width="377px" x="50%" y="50%" class="manipulationObject" z="2"/>
         <alternateImage objId="hawaii" action="appear" originalSrc="island_Hawaii.png" alternateSrc="island_Hawaii.png" width="377px" x="50%" y="50%" class="manipulationObject" z="2"/>
         <alternateImage objId="houses" action="fall" originalSrc="houses.png" alternateSrc="houses_burn.png" width="70px" x="30%" y="55%" class="manipulationObject" z=""/>
-        <alternateImage objId="india" action="push" originalSrc="india_whole.png" alternateSrc="india_himalayas.png" width="160px" x="57.74%" y="32.7%" class="manipulationObject" z=""/>
+        <alternateImage objId="india" action="push" originalSrc="india_whole.png" alternateSrc="india_himalayas.png" width="160px" x="54.74%" y="31.7%" class="manipulationObject" z=""/>
         <alternateImage objId="lava" action="forms_island" originalSrc="lava_ball.png" alternateSrc="island_Kauai.png" width="171px" x="50%" y="50%" class="manipulationObject" z=""/>
         <alternateImage objId="lava" action="forms_Oahu" originalSrc="lava_ball.png" alternateSrc="island_Oahu.png" width="171px" x="50%" y="50%" class="manipulationObject" z=""/>
         <alternateImage objId="lava" action="forms_rock" originalSrc="lava_ball.png" alternateSrc="lava_cooled.png" width="81px" x="50%" y="50%" class="manipulationObject" z=""/>

@@ -736,6 +736,12 @@
 		5C0274C919D22DA400BF4B1A /* BFCS1_6E.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C0274C519D22DA400BF4B1A /* BFCS1_6E.m4a */; };
 		5C0274CA19D22DA400BF4B1A /* CCE_14B.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C0274C619D22DA400BF4B1A /* CCE_14B.m4a */; };
 		5C0274CB19D22DA400BF4B1A /* CCS_14B.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C0274C719D22DA400BF4B1A /* CCS_14B.m4a */; };
+		5C4515A71BB60CFD00DC1B07 /* grey_plate_hawaii.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4515A31BB60CFD00DC1B07 /* grey_plate_hawaii.png */; };
+		5C4515A81BB60CFD00DC1B07 /* grey_plate_kauai.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4515A41BB60CFD00DC1B07 /* grey_plate_kauai.png */; };
+		5C4515A91BB60CFD00DC1B07 /* grey_plate_molokai.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4515A51BB60CFD00DC1B07 /* grey_plate_molokai.png */; };
+		5C4515AA1BB60CFD00DC1B07 /* grey_plate_oahu.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4515A61BB60CFD00DC1B07 /* grey_plate_oahu.png */; };
+		5C4515AD1BB6105A00DC1B07 /* mainland.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4515AB1BB6105A00DC1B07 /* mainland.png */; };
+		5C4515AE1BB6105A00DC1B07 /* plate_bulge3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4515AC1BB6105A00DC1B07 /* plate_bulge3.png */; };
 		5C466ADC192293290056EA4B /* Translation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C466ADB192293290056EA4B /* Translation.m */; };
 		5C5E954C1BA786CF005F6AD2 /* rattle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C5E954B1BA786CF005F6AD2 /* rattle.png */; };
 		5C776A4219C17F39000DBC65 /* BFTC0.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C776A3719C17F39000DBC65 /* BFTC0.m4a */; };
@@ -1061,7 +1067,6 @@
 		5C7FE16319A7E43C00CBBE0E /* prizeE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FE0DF19A7E43C00CBBE0E /* prizeE.m4a */; };
 		5C7FE16A19A7E43C00CBBE0E /* STWATTP.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FE0E619A7E43C00CBBE0E /* STWATTP.m4a */; };
 		5C7FE16D19A7E43C00CBBE0E /* tryAgainE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FE0E919A7E43C00CBBE0E /* tryAgainE.m4a */; };
-		5C913BDD1BB24190000A2E32 /* grey_plate_kauai.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C913BDC1BB24190000A2E32 /* grey_plate_kauai.png */; };
 		5C913BDF1BB2443D000A2E32 /* houses_burn.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C913BDE1BB2443D000A2E32 /* houses_burn.png */; };
 		5C913BE11BB261A0000A2E32 /* island_lava_Hawaii.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C913BE01BB261A0000A2E32 /* island_lava_Hawaii.png */; };
 		5CA53EAE1BA8D49100D2FF5C /* Story5-Catch-PM-3.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CA53EAD1BA8D49100D2FF5C /* Story5-Catch-PM-3.xhtml */; };
@@ -1423,7 +1428,6 @@
 		B9C9E9D81B8EA0A800AFC328 /* lava_molaka.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E9331B8EA0A700AFC328 /* lava_molaka.png */; };
 		B9C9E9D91B8EA0A800AFC328 /* lava_oahu.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E9341B8EA0A700AFC328 /* lava_oahu.png */; };
 		B9C9E9DA1B8EA0A800AFC328 /* magnifyglass.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E9351B8EA0A700AFC328 /* magnifyglass.png */; };
-		B9C9E9DB1B8EA0A800AFC328 /* mainland.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E9361B8EA0A700AFC328 /* mainland.png */; };
 		B9C9E9DC1B8EA0A800AFC328 /* moveable_plate01.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E9371B8EA0A700AFC328 /* moveable_plate01.png */; };
 		B9C9E9DD1B8EA0A800AFC328 /* north_america.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E9381B8EA0A700AFC328 /* north_america.png */; };
 		B9C9E9DE1B8EA0A800AFC328 /* north_america2.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E9391B8EA0A700AFC328 /* north_america2.png */; };
@@ -1443,7 +1447,6 @@
 		B9C9E9EC1B8EA0A800AFC328 /* plate_02.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E9471B8EA0A700AFC328 /* plate_02.png */; };
 		B9C9E9ED1B8EA0A800AFC328 /* plate_bulge.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E9481B8EA0A700AFC328 /* plate_bulge.png */; };
 		B9C9E9EE1B8EA0A800AFC328 /* plate_bulge2.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E9491B8EA0A700AFC328 /* plate_bulge2.png */; };
-		B9C9E9EF1B8EA0A800AFC328 /* plate_bulge3.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E94A1B8EA0A700AFC328 /* plate_bulge3.png */; };
 		B9C9E9F01B8EA0A800AFC328 /* small_house01.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E94B1B8EA0A700AFC328 /* small_house01.png */; };
 		B9C9E9F11B8EA0A800AFC328 /* small_house01_fall.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E94C1B8EA0A700AFC328 /* small_house01_fall.png */; };
 		B9C9E9F21B8EA0A800AFC328 /* small_house02.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E94D1B8EA0A700AFC328 /* small_house02.png */; };
@@ -2298,6 +2301,12 @@
 		5C0274C519D22DA400BF4B1A /* BFCS1_6E.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCS1_6E.m4a; path = EMBRACE_Client/sounds/BFCS1_6E.m4a; sourceTree = SOURCE_ROOT; };
 		5C0274C619D22DA400BF4B1A /* CCE_14B.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = CCE_14B.m4a; path = EMBRACE_Client/sounds/CCE_14B.m4a; sourceTree = SOURCE_ROOT; };
 		5C0274C719D22DA400BF4B1A /* CCS_14B.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = CCS_14B.m4a; path = EMBRACE_Client/sounds/CCS_14B.m4a; sourceTree = SOURCE_ROOT; };
+		5C4515A31BB60CFD00DC1B07 /* grey_plate_hawaii.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grey_plate_hawaii.png; sourceTree = "<group>"; };
+		5C4515A41BB60CFD00DC1B07 /* grey_plate_kauai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grey_plate_kauai.png; sourceTree = "<group>"; };
+		5C4515A51BB60CFD00DC1B07 /* grey_plate_molokai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grey_plate_molokai.png; sourceTree = "<group>"; };
+		5C4515A61BB60CFD00DC1B07 /* grey_plate_oahu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grey_plate_oahu.png; sourceTree = "<group>"; };
+		5C4515AB1BB6105A00DC1B07 /* mainland.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainland.png; sourceTree = "<group>"; };
+		5C4515AC1BB6105A00DC1B07 /* plate_bulge3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plate_bulge3.png; sourceTree = "<group>"; };
 		5C466ADA192293290056EA4B /* Translation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Translation.h; sourceTree = "<group>"; };
 		5C466ADB192293290056EA4B /* Translation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Translation.m; sourceTree = "<group>"; };
 		5C5E954B1BA786CF005F6AD2 /* rattle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rattle.png; sourceTree = "<group>"; };
@@ -2630,7 +2639,6 @@
 		5C7FE0DF19A7E43C00CBBE0E /* prizeE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = prizeE.m4a; path = EMBRACE_Client/sounds/prizeE.m4a; sourceTree = SOURCE_ROOT; };
 		5C7FE0E619A7E43C00CBBE0E /* STWATTP.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = STWATTP.m4a; path = EMBRACE_Client/sounds/STWATTP.m4a; sourceTree = SOURCE_ROOT; };
 		5C7FE0E919A7E43C00CBBE0E /* tryAgainE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = tryAgainE.m4a; path = EMBRACE_Client/sounds/tryAgainE.m4a; sourceTree = SOURCE_ROOT; };
-		5C913BDC1BB24190000A2E32 /* grey_plate_kauai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grey_plate_kauai.png; sourceTree = "<group>"; };
 		5C913BDE1BB2443D000A2E32 /* houses_burn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = houses_burn.png; sourceTree = "<group>"; };
 		5C913BE01BB261A0000A2E32 /* island_lava_Hawaii.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = island_lava_Hawaii.png; sourceTree = "<group>"; };
 		5CA53EAD1BA8D49100D2FF5C /* Story5-Catch-PM-3.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-Catch-PM-3.xhtml"; sourceTree = "<group>"; };
@@ -3011,7 +3019,6 @@
 		B9C9E9331B8EA0A700AFC328 /* lava_molaka.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lava_molaka.png; sourceTree = "<group>"; };
 		B9C9E9341B8EA0A700AFC328 /* lava_oahu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lava_oahu.png; sourceTree = "<group>"; };
 		B9C9E9351B8EA0A700AFC328 /* magnifyglass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = magnifyglass.png; sourceTree = "<group>"; };
-		B9C9E9361B8EA0A700AFC328 /* mainland.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainland.png; sourceTree = "<group>"; };
 		B9C9E9371B8EA0A700AFC328 /* moveable_plate01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moveable_plate01.png; sourceTree = "<group>"; };
 		B9C9E9381B8EA0A700AFC328 /* north_america.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = north_america.png; sourceTree = "<group>"; };
 		B9C9E9391B8EA0A700AFC328 /* north_america2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = north_america2.png; sourceTree = "<group>"; };
@@ -3031,7 +3038,6 @@
 		B9C9E9471B8EA0A700AFC328 /* plate_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plate_02.png; sourceTree = "<group>"; };
 		B9C9E9481B8EA0A700AFC328 /* plate_bulge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plate_bulge.png; sourceTree = "<group>"; };
 		B9C9E9491B8EA0A700AFC328 /* plate_bulge2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plate_bulge2.png; sourceTree = "<group>"; };
-		B9C9E94A1B8EA0A700AFC328 /* plate_bulge3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plate_bulge3.png; sourceTree = "<group>"; };
 		B9C9E94B1B8EA0A700AFC328 /* small_house01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = small_house01.png; sourceTree = "<group>"; };
 		B9C9E94C1B8EA0A700AFC328 /* small_house01_fall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = small_house01_fall.png; sourceTree = "<group>"; };
 		B9C9E94D1B8EA0A700AFC328 /* small_house02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = small_house02.png; sourceTree = "<group>"; };
@@ -4980,9 +4986,14 @@
 		B9C9E8E91B8EA0A700AFC328 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5C4515AB1BB6105A00DC1B07 /* mainland.png */,
+				5C4515AC1BB6105A00DC1B07 /* plate_bulge3.png */,
+				5C4515A31BB60CFD00DC1B07 /* grey_plate_hawaii.png */,
+				5C4515A41BB60CFD00DC1B07 /* grey_plate_kauai.png */,
+				5C4515A51BB60CFD00DC1B07 /* grey_plate_molokai.png */,
+				5C4515A61BB60CFD00DC1B07 /* grey_plate_oahu.png */,
 				5C913BE01BB261A0000A2E32 /* island_lava_Hawaii.png */,
 				5C913BDE1BB2443D000A2E32 /* houses_burn.png */,
-				5C913BDC1BB24190000A2E32 /* grey_plate_kauai.png */,
 				B98B6CB21B96817800B04AFC /* dirt_tornado.png */,
 				B98D2F5F1B94DE8C002B71EE /* houses_fall.png */,
 				B98D2F601B94DE8C002B71EE /* houses.png */,
@@ -5058,7 +5069,6 @@
 				B9C9E9331B8EA0A700AFC328 /* lava_molaka.png */,
 				B9C9E9341B8EA0A700AFC328 /* lava_oahu.png */,
 				B9C9E9351B8EA0A700AFC328 /* magnifyglass.png */,
-				B9C9E9361B8EA0A700AFC328 /* mainland.png */,
 				B9C9E9371B8EA0A700AFC328 /* moveable_plate01.png */,
 				B9C9E9381B8EA0A700AFC328 /* north_america.png */,
 				B9C9E9391B8EA0A700AFC328 /* north_america2.png */,
@@ -5078,7 +5088,6 @@
 				B9C9E9471B8EA0A700AFC328 /* plate_02.png */,
 				B9C9E9481B8EA0A700AFC328 /* plate_bulge.png */,
 				B9C9E9491B8EA0A700AFC328 /* plate_bulge2.png */,
-				B9C9E94A1B8EA0A700AFC328 /* plate_bulge3.png */,
 				B9C9E94B1B8EA0A700AFC328 /* small_house01.png */,
 				B9C9E94C1B8EA0A700AFC328 /* small_house01_fall.png */,
 				B9C9E94D1B8EA0A700AFC328 /* small_house02.png */,
@@ -5308,7 +5317,6 @@
 				5CE299D319B59E6000675CB0 /* weedsE.m4a in Resources */,
 				5C7FE06019A6B1B500CBBE0E /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-PM-1.xhtml in Resources */,
 				B9C9EA011B8EA0A800AFC328 /* SentenceAnalysis-MetaData.xml in Resources */,
-				5C913BDD1BB24190000A2E32 /* grey_plate_kauai.png in Resources */,
 				5C7FE05C19A6B1B500CBBE0E /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-7.xhtml in Resources */,
 				5C776B6319C90DA1000DBC65 /* BFEC2.m4a in Resources */,
 				1A2D709F1AAA74FA009E7B5B /* nest_night.png in Resources */,
@@ -5351,6 +5359,7 @@
 				5C7FE14019A7E43C00CBBE0E /* BFS_CH1B.m4a in Resources */,
 				B9C9E9DC1B8EA0A800AFC328 /* moveable_plate01.png in Resources */,
 				5C7FE11E19A7E43C00CBBE0E /* BFCS_8A.m4a in Resources */,
+				5C4515A71BB60CFD00DC1B07 /* grey_plate_hawaii.png in Resources */,
 				5CE1E30E1A119DFC0070A7D6 /* circulatory.epub in Resources */,
 				5CF994C119AC34550080C32F /* tocE.ncx in Resources */,
 				5C0274CA19D22DA400BF4B1A /* CCE_14B.m4a in Resources */,
@@ -5470,6 +5479,7 @@
 				5C7FE05619A6B1B500CBBE0E /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-1.xhtml in Resources */,
 				5C7FE02D19A6B1B500CBBE0E /* bloodcell_select.png in Resources */,
 				5C7FE04619A6B1B500CBBE0E /* Story1-Why-We-Breathe-Title.xhtml in Resources */,
+				5C4515AE1BB6105A00DC1B07 /* plate_bulge3.png in Resources */,
 				B9C9E9D41B8EA0A800AFC328 /* lava_ball.png in Resources */,
 				5C7FE12719A7E43C00CBBE0E /* BFEE_11.m4a in Resources */,
 				1A8036D81B0B1C62004A164A /* TheContestQ3.mp3 in Resources */,
@@ -5477,7 +5487,6 @@
 				5C776BD619C93E1E000DBC65 /* aroundS.m4a in Resources */,
 				B9C9E9A21B8EA0A800AFC328 /* california_nofault.png in Resources */,
 				1A8037201B0B1C62004A164A /* WhoIsTheBestAnimalQ4A2.mp3 in Resources */,
-				B9C9E9DB1B8EA0A800AFC328 /* mainland.png in Resources */,
 				5C776C3719C95165000DBC65 /* hayloftS.m4a in Resources */,
 				5CAD064B19BEB8AE00F3F053 /* arteriesE.m4a in Resources */,
 				B9C9E9C71B8EA0A800AFC328 /* intro_background.png in Resources */,
@@ -5716,7 +5725,6 @@
 				B95229501BA1149700093528 /* boardgame_box.png in Resources */,
 				5C776C5319C95A13000DBC65 /* trophyS.m4a in Resources */,
 				1A2D70BA1AAA74FA009E7B5B /* Story1-The-Lopez-Family-Title.xhtml in Resources */,
-				B9C9E9EF1B8EA0A800AFC328 /* plate_bulge3.png in Resources */,
 				5C776BE919C93E1E000DBC65 /* tubesDEFS.m4a in Resources */,
 				1ABD84AE1A49F54B0043A685 /* PlayAudioIcon.png in Resources */,
 				5C7FE04B19A6B1B500CBBE0E /* Story2-The-Amazing-Heart-PM-3.xhtml in Resources */,
@@ -5821,6 +5829,7 @@
 				5CF9947C19AC34550080C32F /* corral.png in Resources */,
 				1A3330C71BA0E90A00C8293A /* ch3_select.png in Resources */,
 				5CF9947519AC34550080C32F /* award.png in Resources */,
+				5C4515A81BB60CFD00DC1B07 /* grey_plate_kauai.png in Resources */,
 				B9C9EA1D1B8EA0A800AFC328 /* Story4-Volcanoes-and-the-Making-of-Hawaii-PM-4.xhtml in Resources */,
 				1A3593FF1AE76129003B3B41 /* MoreIsMissingQ4A4.mp3 in Resources */,
 				1A3330C81BA0E90A00C8293A /* ch4_select_icon.png in Resources */,
@@ -6180,6 +6189,7 @@
 				1A2D70A41AAA74FA009E7B5B /* Story-2-End-of-the-Day.png in Resources */,
 				1A8036391B0B1C62004A164A /* CleaningUpQ3A1.mp3 in Resources */,
 				B9C9E9C01B8EA0A800AFC328 /* house_roof2.png in Resources */,
+				5C4515A91BB60CFD00DC1B07 /* grey_plate_molokai.png in Resources */,
 				5CE299D719B59F0D00675CB0 /* BFCE3_6.m4a in Resources */,
 				1A8036D61B0B1C62004A164A /* TheContestQ2A3.mp3 in Resources */,
 				5C776C4A19C9565E000DBC65 /* penDEFS.m4a in Resources */,
@@ -6280,6 +6290,7 @@
 				1A2D70B01AAA74FA009E7B5B /* IMStyle.css in Resources */,
 				5C7FE10319A7E43C00CBBE0E /* BFCE_5A.m4a in Resources */,
 				1A8036EE1B0B1C62004A164A /* TheContestQ7A2.mp3 in Resources */,
+				5C4515AD1BB6105A00DC1B07 /* mainland.png in Resources */,
 				1A8036F71B0B1C62004A164A /* TheWiseOwlQ2A1.mp3 in Resources */,
 				1A35940C1AE76129003B3B41 /* MoreIsMissingQ7A2.mp3 in Resources */,
 				5CAD064619BEB8AE00F3F053 /* atriumE.m4a in Resources */,
@@ -6312,6 +6323,7 @@
 				5CE299D619B59F0D00675CB0 /* barnE.m4a in Resources */,
 				1A8036F51B0B1C62004A164A /* TheWiseOwlQ1A4.mp3 in Resources */,
 				1A80368B1B0B1C62004A164A /* GettingReadyQ7A3.mp3 in Resources */,
+				5C4515AA1BB60CFD00DC1B07 /* grey_plate_oahu.png in Resources */,
 				1A8036621B0B1C62004A164A /* EveryoneHelpsQ5A2.mp3 in Resources */,
 				1A695CDD1AD4EB9C006A2284 /* TheLopezFamilyQ5A3.mp3 in Resources */,
 				5C776BF319C93E1E000DBC65 /* oxygenDEFS.m4a in Resources */,
