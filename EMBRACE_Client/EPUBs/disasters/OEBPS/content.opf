@@ -73,6 +73,7 @@
     <item href="Text/Story3-Tsunamis-PM-4.xhtml" id="story3-PM-4" media-type="application/xhtml+xml" />
     <item href="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-PM-3.xhtml" id="story4-PM-3" media-type="application/xhtml+xml" />
     <item href="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-PM-4.xhtml" id="story4-PM-4" media-type="application/xhtml+xml" />
+    <item href="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-PM-5.xhtml" id="story4-PM-5" media-type="application/xhtml+xml" />
     <item href="Text/Story5-Tornados-PM-3.xhtml" id="story5-PM-3" media-type="application/xhtml+xml" />
     <item href="Images/land_main.png" id="land_main.png" media-type="image/png" />
     <item href="Images/california_fault.png" id="california_fault.png" media-type="image/png" />
@@ -183,6 +184,7 @@
     <itemref idref="story4-PM-2" />
     <itemref idref="story4-PM-3" />
     <itemref idref="story4-PM-4" />
+    <itemref idref="story4-PM-5" />
     <itemref idref="story5-PM-1" />
     <itemref idref="story5-PM-2" />
     <itemref idref="story5-PM-3" />

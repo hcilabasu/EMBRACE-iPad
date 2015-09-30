@@ -743,6 +743,8 @@
 		5C4515AD1BB6105A00DC1B07 /* mainland.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4515AB1BB6105A00DC1B07 /* mainland.png */; };
 		5C4515AE1BB6105A00DC1B07 /* plate_bulge3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4515AC1BB6105A00DC1B07 /* plate_bulge3.png */; };
 		5C466ADC192293290056EA4B /* Translation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C466ADB192293290056EA4B /* Translation.m */; };
+		5C4EC3EB1BBB53BE009D9E82 /* lava2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4EC3EA1BBB53BE009D9E82 /* lava2.png */; };
+		5C4EC3ED1BBB89C1009D9E82 /* Story4-Volcanoes-and-the-Making-of-Hawaii-PM-5.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C4EC3EC1BBB89C1009D9E82 /* Story4-Volcanoes-and-the-Making-of-Hawaii-PM-5.xhtml */; };
 		5C5E954C1BA786CF005F6AD2 /* rattle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C5E954B1BA786CF005F6AD2 /* rattle.png */; };
 		5C776A4219C17F39000DBC65 /* BFTC0.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C776A3719C17F39000DBC65 /* BFTC0.m4a */; };
 		5C776A4319C17F39000DBC65 /* BFTC1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C776A3819C17F39000DBC65 /* BFTC1.m4a */; };
@@ -1420,7 +1422,6 @@
 		B9C9E9D01B8EA0A800AFC328 /* land_molaka.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E92B1B8EA0A700AFC328 /* land_molaka.png */; };
 		B9C9E9D11B8EA0A800AFC328 /* land_oahu.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E92C1B8EA0A700AFC328 /* land_oahu.png */; };
 		B9C9E9D21B8EA0A800AFC328 /* large_person.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E92D1B8EA0A700AFC328 /* large_person.png */; };
-		B9C9E9D31B8EA0A800AFC328 /* lava2.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E92E1B8EA0A700AFC328 /* lava2.png */; };
 		B9C9E9D41B8EA0A800AFC328 /* lava_ball.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E92F1B8EA0A700AFC328 /* lava_ball.png */; };
 		B9C9E9D51B8EA0A800AFC328 /* lava_cooled.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E9301B8EA0A700AFC328 /* lava_cooled.png */; };
 		B9C9E9D61B8EA0A800AFC328 /* lava_hawaii.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E9311B8EA0A700AFC328 /* lava_hawaii.png */; };
@@ -2309,6 +2310,8 @@
 		5C4515AC1BB6105A00DC1B07 /* plate_bulge3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plate_bulge3.png; sourceTree = "<group>"; };
 		5C466ADA192293290056EA4B /* Translation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Translation.h; sourceTree = "<group>"; };
 		5C466ADB192293290056EA4B /* Translation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Translation.m; sourceTree = "<group>"; };
+		5C4EC3EA1BBB53BE009D9E82 /* lava2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lava2.png; sourceTree = "<group>"; };
+		5C4EC3EC1BBB89C1009D9E82 /* Story4-Volcanoes-and-the-Making-of-Hawaii-PM-5.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Volcanoes-and-the-Making-of-Hawaii-PM-5.xhtml"; sourceTree = "<group>"; };
 		5C5E954B1BA786CF005F6AD2 /* rattle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rattle.png; sourceTree = "<group>"; };
 		5C776A3719C17F39000DBC65 /* BFTC0.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = BFTC0.m4a; sourceTree = "<group>"; };
 		5C776A3819C17F39000DBC65 /* BFTC1.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = BFTC1.m4a; sourceTree = "<group>"; };
@@ -3011,7 +3014,6 @@
 		B9C9E92B1B8EA0A700AFC328 /* land_molaka.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = land_molaka.png; sourceTree = "<group>"; };
 		B9C9E92C1B8EA0A700AFC328 /* land_oahu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = land_oahu.png; sourceTree = "<group>"; };
 		B9C9E92D1B8EA0A700AFC328 /* large_person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = large_person.png; sourceTree = "<group>"; };
-		B9C9E92E1B8EA0A700AFC328 /* lava2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lava2.png; sourceTree = "<group>"; };
 		B9C9E92F1B8EA0A700AFC328 /* lava_ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lava_ball.png; sourceTree = "<group>"; };
 		B9C9E9301B8EA0A700AFC328 /* lava_cooled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lava_cooled.png; sourceTree = "<group>"; };
 		B9C9E9311B8EA0A700AFC328 /* lava_hawaii.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lava_hawaii.png; sourceTree = "<group>"; };
@@ -4986,6 +4988,7 @@
 		B9C9E8E91B8EA0A700AFC328 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5C4EC3EA1BBB53BE009D9E82 /* lava2.png */,
 				5C4515AB1BB6105A00DC1B07 /* mainland.png */,
 				5C4515AC1BB6105A00DC1B07 /* plate_bulge3.png */,
 				5C4515A31BB60CFD00DC1B07 /* grey_plate_hawaii.png */,
@@ -5061,7 +5064,6 @@
 				B9C9E92B1B8EA0A700AFC328 /* land_molaka.png */,
 				B9C9E92C1B8EA0A700AFC328 /* land_oahu.png */,
 				B9C9E92D1B8EA0A700AFC328 /* large_person.png */,
-				B9C9E92E1B8EA0A700AFC328 /* lava2.png */,
 				B9C9E92F1B8EA0A700AFC328 /* lava_ball.png */,
 				B9C9E9301B8EA0A700AFC328 /* lava_cooled.png */,
 				B9C9E9311B8EA0A700AFC328 /* lava_hawaii.png */,
@@ -5140,6 +5142,7 @@
 				B9C9E9781B8EA0A800AFC328 /* Story4-Volcanoes-and-the-Making-of-Hawaii-PM-2.xhtml */,
 				B9C9E9791B8EA0A800AFC328 /* Story4-Volcanoes-and-the-Making-of-Hawaii-PM-3.xhtml */,
 				B9C9E97A1B8EA0A800AFC328 /* Story4-Volcanoes-and-the-Making-of-Hawaii-PM-4.xhtml */,
+				5C4EC3EC1BBB89C1009D9E82 /* Story4-Volcanoes-and-the-Making-of-Hawaii-PM-5.xhtml */,
 				B9C9E97B1B8EA0A800AFC328 /* Story4-Volcanoes-and-the-Making-of-Hawaii-Title.xhtml */,
 				B9C9E97C1B8EA0A800AFC328 /* Story5-Tornados-Intro-E.xhtml */,
 				B9C9E97D1B8EA0A800AFC328 /* Story5-Tornados-PM-1.xhtml */,
@@ -5281,7 +5284,6 @@
 				5CAD063A19BEB8AE00F3F053 /* ciliaE.m4a in Resources */,
 				5CE299B919B581CB00675CB0 /* combedE.m4a in Resources */,
 				B9C9E9DA1B8EA0A800AFC328 /* magnifyglass.png in Resources */,
-				B9C9E9D31B8EA0A800AFC328 /* lava2.png in Resources */,
 				5C7FE02A19A6B1B500CBBE0E /* background_1.png in Resources */,
 				5C7FE12419A7E43C00CBBE0E /* BFEE1_6.m4a in Resources */,
 				1A8036FB1B0B1C62004A164A /* TheWiseOwlQ3.mp3 in Resources */,
@@ -6078,6 +6080,7 @@
 				1A35943D1AE76129003B3B41 /* TheMysteryIsSolvedQ3A1.mp3 in Resources */,
 				B9C9E9941B8EA0A800AFC328 /* ash_01.png in Resources */,
 				1A695CCA1AD4EB9C006A2284 /* TheLopezFamilyQ1A4.mp3 in Resources */,
+				5C4EC3EB1BBB53BE009D9E82 /* lava2.png in Resources */,
 				1A8036CC1B0B1C62004A164A /* TheBestFarmAwardQ6A3.mp3 in Resources */,
 				1A8037191B0B1C62004A164A /* WhoIsTheBestAnimalQ3.mp3 in Resources */,
 				1A8036B11B0B1C62004A164A /* TheBestFarmAwardQ1A1.mp3 in Resources */,
@@ -6110,6 +6113,7 @@
 				5C776C3319C95106000DBC65 /* hayS.m4a in Resources */,
 				1AC489771AC083DF00784D77 /* Lawyer_def_S.mp3 in Resources */,
 				1A80363B1B0B1C62004A164A /* CleaningUpQ3A3.mp3 in Resources */,
+				5C4EC3ED1BBB89C1009D9E82 /* Story4-Volcanoes-and-the-Making-of-Hawaii-PM-5.xhtml in Resources */,
 				5C0274C919D22DA400BF4B1A /* BFCS1_6E.m4a in Resources */,
 				1A8036E01B0B1C62004A164A /* TheContestQ4A3.mp3 in Resources */,
 				5C776C2B19C94F9B000DBC65 /* weedsS.m4a in Resources */,

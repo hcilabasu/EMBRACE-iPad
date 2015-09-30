@@ -123,6 +123,7 @@
                     <check obj1Id="lava" action="getIn" locationId="lavaUp"/>
                     <swapImage obj1Id="lava" action="forms_island"/>
                     <disappearAuto obj1Id="lava_cooled" action="disappear" obj2Id="lava_cooled"/>
+                    <groupAuto obj1Id="lava" action="touchAsKauai" obj2Id="grey_plate_kauai"/>
                 </step>
             </sentence>
         </story>
@@ -137,6 +138,7 @@
                 <step number="1">
                     <check obj1Id="lava" action="getIn" locationId="lavaUp"/>
                     <swapImage obj1Id="lava" action="forms_Oahu"/>
+                    <groupAuto obj1Id="lava" action="touchAsOahu" obj2Id="grey_plate_kauai"/>
                 </step>
             </sentence>
         </story>
@@ -149,9 +151,11 @@
                     <appear obj1Id="hawaii" action="appear"/>
                 </step>
             </sentence>
+        </story>
+        <story title="Volcanoes and the Making of Hawaii" activity_id="story4-PM-5">
             <sentence number="15">
                 <step number="1">
-                    <check obj1Id="lava" action="getIn" locationId="lavaUpHawaii"/>
+                    <group obj1Id="lava" action="getIn" obj2Id="hawaii"/>
                     <disappearAuto obj1Id="lava" action="disappear" obj2Id="lava"/>
                     <swapImage obj1Id="hawaii" action="erupts"/>
                 </step>

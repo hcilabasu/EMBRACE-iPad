@@ -162,6 +162,12 @@
                 </navLabel>
                 <content src="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-PM-4.xhtml"/>
             </navPoint>
+            <navPoint class="PM_MODE" id="story4-PM-5">
+                <navLabel>
+                    <text>Volcanoes and the Making of Hawaii - PM</text>
+                </navLabel>
+                <content src="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-PM-5.xhtml"/>
+            </navPoint>
         </navPoint>
         
         <navPoint class="ChapterTitle" id="Chapter5Title" playOrder="5">
@@ -278,18 +284,22 @@
             <content src="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-PM-4.xhtml"/>
         </pageTarget>
         <pageTarget id="p20" type="normal" value="20">
+            <navLabel><text>Chapter 4 - Volcanoes and the Making of Hawaii - Physical Manipulation 5</text></navLabel>
+            <content src="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-PM-5.xhtml"/>
+        </pageTarget>
+        <pageTarget id="p21" type="normal" value="21">
             <navLabel><text>Chapter 5 - Tornados - Introduction</text></navLabel>
             <content src="Text/Story5-Tornados-Intro-E.xhtml"/>
         </pageTarget>
-        <pageTarget id="p21" type="normal" value="21">
+        <pageTarget id="p22" type="normal" value="22">
             <navLabel><text>Chapter 5 - Tornados - Physical Manipulation 1</text></navLabel>
             <content src="Text/Story5-Tornados-PM-1.xhtml"/>
         </pageTarget>
-        <pageTarget id="p22" type="normal" value="22">
+        <pageTarget id="p23" type="normal" value="23">
             <navLabel><text>Chapter 5 - Tornados - Physical Manipulation 2</text></navLabel>
             <content src="Text/Story5-Tornados-PM-2.xhtml"/>
         </pageTarget>
-        <pageTarget id="p23" type="normal" value="23">
+        <pageTarget id="p24" type="normal" value="24">
             <navLabel><text>Chapter 5 - Tornados - Physical Manipulation 3</text></navLabel>
             <content src="Text/Story5-Tornados-PM-3.xhtml"/>
         </pageTarget>
