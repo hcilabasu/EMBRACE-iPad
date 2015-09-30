@@ -8,7 +8,7 @@
         <location locationId="bush" x="50%" y="50%" height="50%" width="50%"/>
         <location locationId="chair" x="50%" y="50%" height="50%" width="50%"/>
         <location locationId="livingRoom" x="50%" y="50%" height="50%" width="50%"/>
-        <location locationId="nearHouse" x="50%" y="50%" height="50%" width="50%"/>
-        <location locationId="riverSide" x="50%" y="50%" height="50%" width="50%"/>
+        <location locationId="nearHouse" x="30.7%" y="8.3%" height="32.2%" width="37%"/>
+        <location locationId="riverSide" x="0%" y="50%" height="50%" width="100%"/>
     </locations>
 </metadata>

@@ -16,6 +16,8 @@
                 <step number="2">
                     <check obj1Id="lucas" action="getIn" locationId="nearHouse"/>
                     <swapImage obj1Id="lucas" action="movesAway"/>
+                    <swapImage obj1Id="bottle" action="movesAway"/>
+                    <groupAuto obj1Id="lucas" action="grabRight" obj2Id="bottle"/>
                 </step>
             </sentence>
         </story>
