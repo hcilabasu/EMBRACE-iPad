@@ -4847,13 +4847,13 @@
 				B95228501BA0CDAB00093528 /* SentenceAnalysis-MetaData.xml */,
 				B95228511BA0CDAB00093528 /* Setups-MetaData.xml */,
 				B95228521BA0CDAB00093528 /* Solutions-MetaData.xml */,
+				B95228791BA0CDAB00093528 /* Waypoints-MetaData.xml */,
+				B95228781BA0CDAB00093528 /* VocabularyIntroductions-MetaData.xml */,
+				B95228771BA0CDAB00093528 /* Translations-MetaData.xml */,
 				B95228531BA0CDAB00093528 /* Styles */,
 				B95228571BA0CDAB00093528 /* Text */,
 				B95228751BA0CDAB00093528 /* toc.ncx */,
 				B95228761BA0CDAB00093528 /* tocE.ncx */,
-				B95228771BA0CDAB00093528 /* Translations-MetaData.xml */,
-				B95228781BA0CDAB00093528 /* VocabularyIntroductions-MetaData.xml */,
-				B95228791BA0CDAB00093528 /* Waypoints-MetaData.xml */,
 			);
 			path = OEBPS;
 			sourceTree = "<group>";

@@ -556,6 +556,22 @@ ConditionSetup *conditionSetup;
                 Waypoint* waypoint = [model getWaypointWithId:waypointId];
                 CGPoint waypointLocation = [self getWaypointLocation:waypoint];
                 
+                NSString* objectClassName = [NSString stringWithFormat:@"document.getElementById(%@).className", object1Id];
+                objectClassName = [bookView stringByEvaluatingJavaScriptFromString:objectClassName];
+                
+                if ([objectClassName rangeOfString:@"center"].location != NSNotFound) {
+                    
+                NSString* requestImageHeight = [NSString stringWithFormat:@"%@.height", object1Id];
+                NSString* requestImageWidth = [NSString stringWithFormat:@"%@.width", object1Id];
+                
+                float imageHeight = [[bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
+                float imageWidth = [[bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
+                
+                waypointLocation.x = waypointLocation.x -imageWidth/2;
+                waypointLocation.y = waypointLocation.y-imageHeight/2;
+                
+                }
+                
                 //Move the object
                 [self moveObject:object1Id :waypointLocation :hotspotLocation :false:waypointId];
                 
@@ -2079,6 +2095,22 @@ ConditionSetup *conditionSetup;
                 Waypoint* waypoint = [model getWaypointWithId:waypointId];
                 CGPoint waypointLocation = [self getWaypointLocation:waypoint];
                 
+                NSString* objectClassName = [NSString stringWithFormat:@"document.getElementById('%@').className", object1Id];
+                objectClassName = [bookView stringByEvaluatingJavaScriptFromString:objectClassName];
+                
+                if ([objectClassName rangeOfString:@"center"].location != NSNotFound) {
+                
+                NSString* requestImageHeight = [NSString stringWithFormat:@"%@.height", object1Id];
+                NSString* requestImageWidth = [NSString stringWithFormat:@"%@.width", object1Id];
+                
+                float imageHeight = [[bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
+                float imageWidth = [[bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
+                
+                waypointLocation.x = waypointLocation.x -imageWidth/2;
+                waypointLocation.y = waypointLocation.y-imageHeight/2;
+                
+                }
+                
                 //Move the object
                 [self moveObject:object1Id :waypointLocation :hotspotLocation :false: waypointId];
                 
@@ -2315,7 +2347,7 @@ ConditionSetup *conditionSetup;
     [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
     
     //Check if the object has the correct class, or if no class was specified before returning
-    if([imageAtPointClass isEqualToString:class] || class == nil) {
+    if(([imageAtPointClass rangeOfString:class].location != NSNotFound) || class == nil) {
         //Any subject can be used, so just return the object id
         if (useSubject == ALL_ENTITIES)
             return imageAtPoint;
@@ -3484,8 +3516,8 @@ ConditionSetup *conditionSetup;
             locY = [imageTop floatValue];
         
         //Now we've got the location of the top left corner of the image, the size of the image and the relative position of the hotspot. Need to calculate the pixel location of the hotspot and call the js to draw the hotspot.
-        float hotspotX = locX + (imageWidth * [hotspot location].x / 100.0);
-        float hotspotY = locY + (imageHeight * [hotspot location].y / 100.0);
+        float hotspotX = locX  + (imageWidth * ([hotspot location].x / 100.0) );
+        float hotspotY = locY + (imageHeight * ([hotspot location].y / 100.0) );
         
         return CGPointMake(hotspotX, hotspotY);
     }
