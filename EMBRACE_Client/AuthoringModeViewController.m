@@ -684,8 +684,8 @@ ConditionSetup *conditionSetup;
 
 -(void)saveWaypoint:(id)sender {
     /*convert px values to percentages*/
-    NSString *xcordPercent = [NSString stringWithFormat:@"%f", ([xcord.text integerValue] / [bookView frame].size.width * 100)];
-    NSString *ycordPercent = [NSString stringWithFormat:@"%f", ([ycord.text integerValue] / [bookView frame].size.height * 100)];
+    NSString *xcordPercent = [NSString stringWithFormat:@"%ld", (long)[xcord.text integerValue]];
+    NSString *ycordPercent = [NSString stringWithFormat:@"%ld", (long)[ycord.text integerValue]];
     
     NSString* newWaypoint = [NSString stringWithFormat:@"waypoint waypointId=\"%@\" x=\"%@%%\" y=\"%@%%\"", waypointID.text, xcordPercent, ycordPercent];
     NSLog(@"%@", newWaypoint);
@@ -917,12 +917,12 @@ ConditionSetup *conditionSetup;
         waypointID.borderStyle = UITextBorderStyleRoundedRect;
         
         xcord = [[UITextField alloc] initWithFrame:CGRectMake(10, 60, 180, 30)];
-        xcord.text = [NSString stringWithFormat:@"%d", TapLocationX];
+        xcord.text = @"x%";
         xcord.textColor = [UIColor blackColor];
         xcord.borderStyle = UITextBorderStyleRoundedRect;
         
         ycord = [[UITextField alloc] initWithFrame:CGRectMake(10, 100, 180, 30)];
-        ycord.text = [NSString stringWithFormat:@"%d",TapLocationY];
+        ycord.text = @"y%";
         ycord.textColor = [UIColor blackColor];
         ycord.borderStyle = UITextBorderStyleRoundedRect;
         
@@ -937,7 +937,7 @@ ConditionSetup *conditionSetup;
         [cancel setTitle:@"Cancel" forState:UIControlStateNormal];
         
         UIButton *createVisibleArea = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [createVisibleArea addTarget:self action:@selector(Create:) forControlEvents:UIControlEventTouchUpInside];
+        [createVisibleArea addTarget:self action:@selector(CreateWaypoint:) forControlEvents:UIControlEventTouchUpInside];
         createVisibleArea.frame = CGRectMake(65, 140, 80, 50);
         [createVisibleArea setTitle:@"Create" forState:UIControlStateNormal];
         
@@ -1129,12 +1129,12 @@ ConditionSetup *conditionSetup;
         locationID.borderStyle = UITextBorderStyleRoundedRect;
         
         xcord = [[UITextField alloc] initWithFrame:CGRectMake(10, 60, 180, 30)];
-        xcord.text = [NSString stringWithFormat:@"%d", TapLocationX];
+        xcord.text = @"x%";
         xcord.textColor = [UIColor blackColor];
         xcord.borderStyle = UITextBorderStyleRoundedRect;
         
         ycord = [[UITextField alloc] initWithFrame:CGRectMake(10, 100, 180, 30)];
-        ycord.text = [NSString stringWithFormat:@"%d",TapLocationY];
+        ycord.text = @"y%";
         ycord.textColor = [UIColor blackColor];
         ycord.borderStyle = UITextBorderStyleRoundedRect;
         
@@ -1519,12 +1519,25 @@ ConditionSetup *conditionSetup;
         [areaSpace removeFromSuperview];
     }
     
-    areaSpace = [[UIView alloc]initWithFrame:CGRectMake([xcord.text floatValue], [ycord.text floatValue], [width.text floatValue], [height.text floatValue])];
+    areaSpace = [[UIView alloc]initWithFrame:CGRectMake(([bookView frame].size.width * [xcord.text floatValue]/100) , ([bookView frame].size.height * [ycord.text floatValue]/100), [width.text floatValue], [height.text floatValue])];
     areaSpace.backgroundColor = [UIColor whiteColor];
     self.isAreaViewVisible = true;
-    [self.view addSubview:areaSpace];
+    [bookView addSubview:areaSpace];
     
-    [self.view bringSubviewToFront:entryview];
+    [bookView bringSubviewToFront:entryview];
+}
+
+-(void)CreateWaypoint:(id)sender{
+    if (isAreaViewVisible != false) {
+        [areaSpace removeFromSuperview];
+    }
+    
+    areaSpace = [[UIView alloc]initWithFrame:CGRectMake(([bookView frame].size.width * [xcord.text floatValue]/100)-[width.text floatValue]/2 , ([bookView frame].size.height * [ycord.text floatValue]/100)-[height.text floatValue]/2, [width.text floatValue], [height.text floatValue])];
+    areaSpace.backgroundColor = [UIColor whiteColor];
+    self.isAreaViewVisible = true;
+    [bookView addSubview:areaSpace];
+    
+    [bookView bringSubviewToFront:entryview];
 }
 
 -(void)CreateHotspot:(id)sender{
@@ -1545,7 +1558,7 @@ ConditionSetup *conditionSetup;
     areaSpace = [[UIView alloc]initWithFrame:CGRectMake(xpercent, ypercent, [width.text floatValue], [height.text floatValue])];
     areaSpace.backgroundColor = [UIColor whiteColor];
     self.isAreaViewVisible = true;
-    [self.view addSubview:areaSpace];
+    [bookView addSubview:areaSpace];
     
 }
 
@@ -1812,7 +1825,7 @@ ConditionSetup *conditionSetup;
     [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
     
     //Check if the object has the correct class, or if no class was specified before returning
-    if([imageAtPointClass isEqualToString:class] || class == nil) {
+    if(([imageAtPointClass rangeOfString:class].location != NSNotFound) || class == nil) {
         //Any subject can be used, so just return the object id
         if (useSubject == ALL_ENTITIES)
             return imageAtPoint;
@@ -1849,7 +1862,7 @@ ConditionSetup *conditionSetup;
     [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
     
     //Check if the object has the correct class, or if no class was specified before returning
-    if([imageAtPointClass isEqualToString:class] || class == nil) {
+    if(([imageAtPointClass rangeOfString:class].location != NSNotFound) || class == nil) {
         //Any subject can be used, so just return the object id
         if (useSubject == ALL_ENTITIES)
             return zindexAtPoint;
@@ -1887,7 +1900,7 @@ ConditionSetup *conditionSetup;
     [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
     
     //Check if the object has the correct class, or if no class was specified before returning
-    if([imageAtPointClass isEqualToString:class] || class == nil) {
+    if(([imageAtPointClass rangeOfString:class].location != NSNotFound) || class == nil) {
         //Any subject can be used, so just return the object id
         if (useSubject == ALL_ENTITIES)
             return widthAtPoint;
@@ -1923,7 +1936,7 @@ ConditionSetup *conditionSetup;
     [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
     
     //Check if the object has the correct class, or if no class was specified before returning
-    if([imageAtPointClass isEqualToString:class] || class == nil) {
+    if(([imageAtPointClass rangeOfString:class].location != NSNotFound) || class == nil) {
         //Any subject can be used, so just return the object id
         if (useSubject == ALL_ENTITIES)
             return heightAtPoint;
@@ -1958,7 +1971,7 @@ ConditionSetup *conditionSetup;
     [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
     
     //Check if the object has the correct class, or if no class was specified before returning
-    if([imageAtPointClass isEqualToString:class] || class == nil) {
+    if(([imageAtPointClass rangeOfString:class].location != NSNotFound) || class == nil) {
         //Any subject can be used, so just return the object id
         if (useSubject == ALL_ENTITIES)
             return topAtPoint;
@@ -1993,7 +2006,7 @@ ConditionSetup *conditionSetup;
     [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
     
     //Check if the object has the correct class, or if no class was specified before returning
-    if([imageAtPointClass isEqualToString:class] || class == nil) {
+    if(([imageAtPointClass rangeOfString:class].location != NSNotFound) || class == nil) {
         //Any subject can be used, so just return the object id
         if (useSubject == ALL_ENTITIES)
             return leftAtPoint;
