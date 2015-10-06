@@ -9,9 +9,9 @@
         <waypoint waypointId="lucasBedroom" x="50%" y="50%"/>
         <waypoint waypointId="lucasBench" x="50%" y="50%"/>
         <waypoint waypointId="lucasBush" x="50%" y="50%"/>
-        <waypoint waypointId="lucasLivingRoom" x="33.97%" y="82.42%"/>
+        <waypoint waypointId="lucasLivingRoom" x="31.966404%" y="80.419075%%"/>
         <waypoint waypointId="lucasNearBoardgame" x="50%" y="50%"/>
-        <waypoint waypointId="lucasRiver" x="33.97%" y="82.42%"/>
+        <waypoint waypointId="lucasRiver" x="50%" y="50%"/>
         <waypoint waypointId="oliviaBush" x="50%" y="50%"/>
         <waypoint waypointId="papaLivingRoom" x="20.33%" y="79.31%"/>
         <waypoint waypointId="papaRiver" x="50%" y="50%"/>
