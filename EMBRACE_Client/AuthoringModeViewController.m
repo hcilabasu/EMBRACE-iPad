@@ -1532,7 +1532,7 @@ ConditionSetup *conditionSetup;
         [areaSpace removeFromSuperview];
     }
     
-    areaSpace = [[UIView alloc]initWithFrame:CGRectMake(([bookView frame].size.width * [xcord.text floatValue]/100)-[width.text floatValue]/2 , ([bookView frame].size.height * [ycord.text floatValue]/100)-[height.text floatValue]/2, [width.text floatValue], [height.text floatValue])];
+    areaSpace = [[UIView alloc]initWithFrame:CGRectMake(([bookView frame].size.width * [xcord.text floatValue]/100) , ([bookView frame].size.height * [ycord.text floatValue]/100), [width.text floatValue], [height.text floatValue])];
     areaSpace.backgroundColor = [UIColor whiteColor];
     self.isAreaViewVisible = true;
     [bookView addSubview:areaSpace];
