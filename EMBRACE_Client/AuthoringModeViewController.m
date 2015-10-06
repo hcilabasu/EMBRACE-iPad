@@ -753,10 +753,10 @@ ConditionSetup *conditionSetup;
 -(void)saveLocation:(id)sender{
     
     /*convert px values to percentages*/
-    NSString *xcordPercent = [NSString stringWithFormat:@"%f", ([xcord.text integerValue] / [bookView frame].size.width * 100)];
-    NSString *ycordPercent = [NSString stringWithFormat:@"%f", ([ycord.text integerValue] / [bookView frame].size.height * 100)];
-    NSString *heightPercent = [NSString stringWithFormat:@"%f", ([height.text integerValue] / [bookView frame].size.width * 100)];
-    NSString *widthPercent = [NSString stringWithFormat:@"%f", ([width.text integerValue] / [bookView frame].size.width * 100)];
+    NSString *xcordPercent = [NSString stringWithFormat:@"%ld", (long)[xcord.text integerValue]];
+    NSString *ycordPercent = [NSString stringWithFormat:@"%ld", (long)[ycord.text integerValue]];
+    NSString *heightPercent = [NSString stringWithFormat:@"%ld", (long)[height.text integerValue]];
+    NSString *widthPercent = [NSString stringWithFormat:@"%ld", (long)[width.text integerValue]];
     NSString* newLocation = [NSString stringWithFormat:@"location locationId=\"%@\" x=\"%@%%\" y=\"%@%%\" height=\"%@%%\" width=\"%@%%\"", locationID.text, xcordPercent, ycordPercent, heightPercent, widthPercent];
 
     //set file path to access introduction metadata

@@ -556,19 +556,23 @@ ConditionSetup *conditionSetup;
                 Waypoint* waypoint = [model getWaypointWithId:waypointId];
                 CGPoint waypointLocation = [self getWaypointLocation:waypoint];
                 
+                
                 NSString* objectClassName = [NSString stringWithFormat:@"document.getElementById(%@).className", object1Id];
                 objectClassName = [bookView stringByEvaluatingJavaScriptFromString:objectClassName];
                 
                 if ([objectClassName rangeOfString:@"center"].location != NSNotFound) {
                     
-                NSString* requestImageHeight = [NSString stringWithFormat:@"%@.height", object1Id];
-                NSString* requestImageWidth = [NSString stringWithFormat:@"%@.width", object1Id];
+                //NSString* requestImageHeight = [NSString stringWithFormat:@"%@.height", object1Id];
+                //NSString* requestImageWidth = [NSString stringWithFormat:@"%@.width", object1Id];
                 
-                float imageHeight = [[bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
-                float imageWidth = [[bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
+                //float imageHeight = [[bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
+                //float imageWidth = [[bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
                 
-                waypointLocation.x = waypointLocation.x -imageWidth/2;
-                waypointLocation.y = waypointLocation.y-imageHeight/2;
+                //waypointLocation.x = waypointLocation.x -imageWidth/2;
+                //waypointLocation.y = waypointLocation.y-imageHeight/2;
+                    
+                    hotspotLocation.x=0;
+                    hotspotLocation.y=0;
                 
                 }
                 
@@ -2100,16 +2104,19 @@ ConditionSetup *conditionSetup;
                 
                 if ([objectClassName rangeOfString:@"center"].location != NSNotFound) {
                 
-                NSString* requestImageHeight = [NSString stringWithFormat:@"%@.height", object1Id];
-                NSString* requestImageWidth = [NSString stringWithFormat:@"%@.width", object1Id];
+                //NSString* requestImageHeight = [NSString stringWithFormat:@"%@.height", object1Id];
+                //NSString* requestImageWidth = [NSString stringWithFormat:@"%@.width", object1Id];
                 
-                float imageHeight = [[bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
-                float imageWidth = [[bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
+                //float imageHeight = [[bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
+                //float imageWidth = [[bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
                 
-                waypointLocation.x = waypointLocation.x -imageWidth/2;
-                waypointLocation.y = waypointLocation.y-imageHeight/2;
-                
+                //waypointLocation.x = waypointLocation.x -imageWidth/2;
+                //waypointLocation.y = waypointLocation.y-imageHeight/2;
+                    
+                    hotspotLocation.x=0;
+                    hotspotLocation.y=0;
                 }
+                
                 
                 //Move the object
                 [self moveObject:object1Id :waypointLocation :hotspotLocation :false: waypointId];
