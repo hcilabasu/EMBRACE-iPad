@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <hotspots>
-        <hotspot objId="babybrother" action="getIn" role="object" x="50%" y="50%"/>
+        <hotspot objId="babybrother" action="getIn" role="object" x="50%" y="70%"/>
         <hotspot objId="babybrother" action="getIn" role="subject" x="50%" y="50%"/>
-        <hotspot objId="babybrother" action="grabRight" role="object" x="50%" y="50%"/>
+        <hotspot objId="babybrother" action="grabRight" role="object" x="50%" y="70%"/>
+        <hotspot objId="babybrother" action="grabRight" role="subject" x="50%" y="70%"/>
         <hotspot objId="ball" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="ball" action="grabRight" role="object" x="50%" y="50%"/>
         <hotspot objId="ball" action="grabRight" role="subject" x="50%" y="50%"/>
@@ -12,9 +13,11 @@
         <hotspot objId="bottle" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="bottle" action="grabLeft" role="object" x="50%" y="50%"/>
         <hotspot objId="bottle" action="grabRight" role="object" x="50%" y="50%"/>
+        <hotspot objId="cup" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="cup" action="grabLeft" role="subject" x="50%" y="50%"/>
         <hotspot objId="lucas" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="lucas" action="grabLeft" role="subject" x="87.8%" y="74.7%"/>
+        <hotspot objId="lucas" action="grabRight" role="object" x="30.5%" y="74.7%"/>
         <hotspot objId="lucas" action="grabRight" role="subject" x="30.5%" y="74.7%"/>
         <hotspot objId="lucas" action="hug" role="subject" x="50%" y="50%"/>
         <hotspot objId="note" action="grabLeft" role="object" x="50%" y="50%"/>

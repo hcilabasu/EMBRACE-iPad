@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <waypoints>
-        <waypoint waypointId="babyBedroom" x="50%" y="50%"/>
-        <waypoint waypointId="ballBedroom" x="50%" y="50%"/>
-        <waypoint waypointId="boardgame" x="50%" y="50%"/>
+        <waypoint waypointId="babyBedroom" x="36%" y="40%"/>
+        <waypoint waypointId="ballBedroom" x="53.211464%" y="37.716763%"/>
+        <waypoint waypointId="boardgame" x="55%" y="41%"/>
         <waypoint waypointId="bottleBush" x="50%" y="50%"/>
         <waypoint waypointId="bottleRiver" x="50%" y="50%"/>
-        <waypoint waypointId="lucasBedroom" x="50%" y="50%"/>
+        <waypoint waypointId="cupRiver" x="50%" y="50%"/>
+        <waypoint waypointId="lucasBedroom" x="56.542969%" y="29.687500%"/>
         <waypoint waypointId="lucasBench" x="50%" y="50%"/>
         <waypoint waypointId="lucasBush" x="50%" y="50%"/>
-        <waypoint waypointId="lucasLivingRoom" x="31.966404%" y="80.419075%%"/>
-        <waypoint waypointId="lucasNearBoardgame" x="50%" y="50%"/>
-        <waypoint waypointId="lucasRiver" x="50%" y="50%"/>
+        <waypoint waypointId="lucasLivingRoom" x="28.759766%" y="71.875000%"/>
+        <waypoint waypointId="lucasRiver" x="31.347656%" y="46.022728%"/>
         <waypoint waypointId="oliviaBush" x="50%" y="50%"/>
-        <waypoint waypointId="papaLivingRoom" x="20.33%" y="79.31%"/>
-        <waypoint waypointId="papaRiver" x="50%" y="50%"/>
+        <waypoint waypointId="papaLivingRoom" x="14.843750%" y="63.352276%"/>
+        <waypoint waypointId="papaRiver" x="19.335938%" y="29.403410%"/>
         <waypoint waypointId="pastBaby" x="50%" y="50%"/>
     </waypoints>
 </metadata>

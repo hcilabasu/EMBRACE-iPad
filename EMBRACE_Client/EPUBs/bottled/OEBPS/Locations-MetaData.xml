@@ -2,7 +2,7 @@
 <metadata>
     <locations>
         <location locationId="anywhere" x="50%" y="50%" height="50%" width="50%"/>
-        <location locationId="bedroom" x="50%" y="50%" height="50%" width="50%"/>
+        <location locationId="bed" x="50%" y="50%" height="50%" width="50%"/>
         <location locationId="bedroom" x="50%" y="50%" height="50%" width="50%"/>
         <location locationId="bench" x="50%" y="50%" height="50%" width="50%"/>
         <location locationId="bush" x="50%" y="50%" height="50%" width="50%"/>
