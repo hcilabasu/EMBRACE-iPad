@@ -80,6 +80,7 @@ ConditionSetup *conditionSetup;
     //Create data source for collection view.
     [self createCollectionLayoutDataSource];
     
+    self.navigationController.navigationBar.hidden = NO;
     //Disable all activities that need to be disabled based on the student information.
     //TODO: Connect student specific stuff later. Right now we'll just go through and disable all but the first one.
     
@@ -169,7 +170,7 @@ ConditionSetup *conditionSetup;
     }
     
     //Change the back button so that it doesn't show the LibraryView's title and instead shows "Back"
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle: @"Back" style: UIBarButtonItemStyleBordered target: nil action: nil];
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle: @"Library" style: UIBarButtonItemStyleBordered target: nil action: nil];
     [[self navigationItem] setBackBarButtonItem:backButton];
 }
 

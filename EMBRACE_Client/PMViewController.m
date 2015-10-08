@@ -710,10 +710,12 @@ BOOL wasPathFollowed = false;
 -(void)loadAssessmentActivity{
     UIImage *background = [self getBackgroundImage];
     
+    //create an instance of the assessment activity view controller
     AssessmentActivityViewController *assessmentActivityViewController = [[AssessmentActivityViewController alloc]initWithModel:model: libraryViewController:background:bookTitle :chapterTitle : currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] : [NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
     
-    //[self.navigationController presentViewController:assessmentActivityViewController animated:YES completion:nil];
+    //push the assessment view controller as the top controller
     [self.navigationController pushViewController:assessmentActivityViewController animated:YES];
+    
 }
 
 /*

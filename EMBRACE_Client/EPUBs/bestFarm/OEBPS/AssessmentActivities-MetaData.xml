@@ -204,11 +204,11 @@
                 <expectedSelection>The milk makes her fur shiny.</expectedSelection>
             </Question>
             <Question number="2">
-                <QuestionText>How does eating apple help the horse's teeth?</QuestionText>
+                <QuestionText>How does eating an apple help the horse's teeth?</QuestionText>
                 <QuestionAudio>GettingReadyQ2.mp3</QuestionAudio>
                 <Answer1>Eating an apple cleans the horse's teeth.</Answer1>
                 <Answer1Audio>GettingReadyQ2A1.mp3</Answer1Audio>
-                <Answer2>Eating an apple makes the horse's teeth dirty.</Answer2>
+                <Answer2>Eating an apple makes the horses's teeth dirty.</Answer2>
                 <Answer2Audio>GettingReadyQ2A2.mp3</Answer2Audio>
                 <Answer3>Eating an apple makes the horses's teeth stronger.</Answer3>
                 <Answer3Audio>GettingReadyQ2A3.mp3</Answer3Audio>
@@ -324,7 +324,7 @@
                 <expectedSelection>in its pen</expectedSelection>
             </Question>
             <Question number="4">
-                <QuestionText>What did Manuel check the Pumpkins for?</QuestionText>
+                <QuestionText>What did Manuel check the pumpkins for?</QuestionText>
                 <QuestionAudio>CleaningUpQ4.mp3</QuestionAudio>
                 <Answer1>weeds</Answer1>
                 <Answer1Audio>CleaningUpQ4A1.mp3</Answer1Audio>
@@ -466,7 +466,7 @@
                 <Answer1Audio>TheWiseOwlQ2A1.mp3</Answer1Audio>
                 <Answer2>because she was hungry</Answer2>
                 <Answer2Audio>TheWiseOwlQ2A2.mp3</Answer2Audio>
-                <Answer3>because she couldn't get to the pumkpkins</Answer3>
+                <Answer3>because she couldn't get to the pumpkins</Answer3>
                 <Answer3Audio>TheWiseOwlQ2A3.mp3</Answer3Audio>
                 <Answer4>because she misses her mom</Answer4>
                 <Answer4Audio>TheWiseOwlQ2A4.mp3</Answer4Audio>
@@ -499,7 +499,7 @@
                 <expectedSelection>flew to her nest to count her eggs</expectedSelection>
             </Question>
             <Question number="5">
-                <QuestionText>Why couldn't the pig eat pumkpkins?</QuestionText>
+                <QuestionText>Why couldn't the pig eat pumpkins?</QuestionText>
                 <QuestionAudio>TheWiseOwlQ5.mp3</QuestionAudio>
                 <Answer1>He was locked in his pen</Answer1>
                 <Answer1Audio>TheWiseOwlQ5A1.mp3</Answer1Audio>

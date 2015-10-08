@@ -102,7 +102,7 @@
                 <Answer1Audio>MissingKeysQ1A1.mp3</Answer1Audio>
                 <Answer2>to the tub in the bathroom</Answer2>
                 <Answer2Audio>MissingKeysQ1A2.mp3</Answer2Audio>
-                <Answer3>to the couch in the living</Answer3>
+                <Answer3>to the couch in the living room</Answer3>
                 <Answer3Audio>MissingKeysQ1A3.mp3</Answer3Audio>
                 <Answer4>to her castle</Answer4>
                 <Answer4Audio>MissingKeysQ1A4.mp3</Answer4Audio>
@@ -215,7 +215,7 @@
                 <expectedSelection>for stealing the keys</expectedSelection>
             </Question>
             <Question number="4">
-                <QuestionText>How did Paco feel at the end of his chapter?</QuestionText>
+                <QuestionText>How did Paco feel at the end of this chapter?</QuestionText>
                 <QuestionAudio>IsPacoAThiefQ4.mp3</QuestionAudio>
                 <Answer1>sad</Answer1>
                 <Answer1Audio>IsPacoAThiefQ4A1.mp3</Answer1Audio>
@@ -403,7 +403,7 @@
             <Question number="3">
                 <QuestionText>Why was the baby sad?</QuestionText>
                 <QuestionAudio>TheFamilyIsRattledQ3.mp3</QuestionAudio>
-                <Answer1>she could't find her rattle</Answer1>
+                <Answer1>she couldn't find her rattle</Answer1>
                 <Answer1Audio>TheFamilyIsRattledQ3A1.mp3</Answer1Audio>
                 <Answer2>she was hurt</Answer2>
                 <Answer2Audio>TheFamilyIsRattledQ3A2.mp3</Answer2Audio>

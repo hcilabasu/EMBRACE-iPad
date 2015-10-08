@@ -13,26 +13,27 @@
 
 @end
 
-NSInteger AnswerSelection[4];
-NSMutableArray *AnswerOptions;
-NSMutableArray *AnswerAudios;
-NSString *AnswerOption1EnglishAudio;
-NSString *AnswerOption1SpanishAudio;
-NSString *AnswerOption2EnglishAudio;
-NSString *AnswerOption2SpanishAudio;
-NSString *AnswerOption3EnglishAudio;
-NSString *AnswerOption3SpanishAudio;
-NSString *AnswerOption4EnglishAudio;
-NSString *AnswerOption4SpanishAudio;
-NSString *Question;
-NSString *QuestionAudio;
-NSInteger questionNum;
-NSString* correctSelection;
-NSMutableDictionary *assessmentActivities;
-NSMutableArray *currentAssessmentActivitySteps;
-NSInteger totalAssessmentActivitySteps;
-NSInteger currentAssessmentActivityStep;
-UIViewController *libraryView;
+
+NSInteger AnswerSelection[4];           //Array of answers selected
+NSMutableArray *AnswerOptions;          //Array of Answer options
+NSMutableArray *AnswerAudios;           //Array of Answer Audio file names
+NSString *AnswerOption1EnglishAudio;    //English Audio file for Answer 1
+NSString *AnswerOption1SpanishAudio;    //Spanish Audio file for Answer 1
+NSString *AnswerOption2EnglishAudio;    //English Audio file for Answer 2
+NSString *AnswerOption2SpanishAudio;    //Spanish Audio file for Answer 2
+NSString *AnswerOption3EnglishAudio;    //English Audio file for Answer 3
+NSString *AnswerOption3SpanishAudio;    //Spanish Audio file for Answer 3
+NSString *AnswerOption4EnglishAudio;    //English Audio file for Answer 4
+NSString *AnswerOption4SpanishAudio;    //Spanish Audio file for Answer 4
+NSString *Question;                     //Question Text
+NSString *QuestionAudio;                //Question audio file name
+NSInteger questionNum;                  //Current Question Number
+NSString* correctSelection;             //correct Selection text
+NSMutableDictionary *assessmentActivities;          //
+NSMutableArray *currentAssessmentActivitySteps;     //
+NSInteger totalAssessmentActivitySteps;             //
+NSInteger currentAssessmentActivityStep;            //
+UIViewController *libraryView;                      //
 
 //Context variables
 NSString *BookTitle;
@@ -40,7 +41,7 @@ NSString *CurrentPage;
 NSString *CurrentSentence;
 NSString *CurrentStep;
 
-UIImage *BackgroundImage;
+UIImage *BackgroundImage;   //The background image related to the story
 
 @implementation AssessmentActivityViewController
 @synthesize AnswerList;
@@ -52,24 +53,26 @@ UIImage *BackgroundImage;
 
 - (id)initWithModel:(InteractionModel*) model : (UIViewController*) libraryViewController : (UIImage*) backgroundImage : (NSString*) bookTitle : (NSString*) chapterTitle : (NSString*) currentPage : (NSString*)currentSentence :(NSString*) currentStep
 {
-    self=[super init];//self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self=[super init];
     if (self) {
         
-        
+        //local instance of library view controller
         libraryView=libraryViewController;
         
         //context variables for logging
         BookTitle = bookTitle;
+        ChapterTitle =chapterTitle;
         CurrentPage = currentPage;
         CurrentSentence=currentSentence;
         CurrentStep = currentStep;
         
+        //local instance of background image for story
         BackgroundImage = backgroundImage;
         
+        //Instantiate current assessment step
         currentAssessmentActivityStep = 1;
         
-        // Custom initialization
-        //AnswerList = [[UITableView alloc]init];
+        //Instantiate answer selection array
         AnswerList.backgroundColor = [UIColor clearColor];
         AnswerList.backgroundView.backgroundColor = [UIColor clearColor];
         AnswerSelection[0] = 0;
@@ -77,17 +80,19 @@ UIImage *BackgroundImage;
         AnswerSelection[2] = 0;
         AnswerSelection[3] = 0;
         
-        ChapterTitle =chapterTitle;
-        
+        //Load the assessment activity for the current chapter
         assessmentActivities =  [model getAssessmentActivity];
         currentAssessmentActivitySteps = [assessmentActivities objectForKey:chapterTitle];
         totalAssessmentActivitySteps = [currentAssessmentActivitySteps count];
-        
         AssessmentActivity* currAssessmentActivityStep = [currentAssessmentActivitySteps objectAtIndex:currentAssessmentActivityStep-1];
         correctSelection = [currAssessmentActivityStep expectedSelection];
+        
+        /*Set the current question, question number and answer options with their
+        audio file names*/
         Question = [currAssessmentActivityStep QuestionText];
         QuestionAudio = [currAssessmentActivityStep QuestionAudio];
         questionNum = [currAssessmentActivityStep QuestionNumber];
+        
         AnswerOptions =[[NSMutableArray alloc] init];
         AnswerAudios = [[NSMutableArray alloc] init];
         
@@ -100,6 +105,7 @@ UIImage *BackgroundImage;
         [AnswerOptions addObject:[currAssessmentActivityStep Answer4]];
         [AnswerAudios addObject:[currAssessmentActivityStep Answer4Audio]];
         
+        //Randomizes answer options
         [self shuffleAnswers];
         
         playAudioFileClass = [[PlayAudioFile alloc]init];
@@ -111,6 +117,9 @@ UIImage *BackgroundImage;
     return self;
 }
 
+/*
+ Randomizer function that randomizes the answer options
+ */
 -(void)shuffleAnswers{
     NSUInteger count = [AnswerOptions count];
     for (NSUInteger i=0; i<count; ++i) {
@@ -124,13 +133,19 @@ UIImage *BackgroundImage;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view from its nib.
+    
+    //Set up design
     nextButton.hidden =true;
     self.view.backgroundColor = [UIColor colorWithRed: 165.0/255.0 green: 203.0/255.0 blue:231.0/255.0 alpha: 1.0];
     transparentLayer.backgroundColor = [UIColor whiteColor];
     transparentLayer.alpha = .5;
     AnswerList.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    //Hide the navigation bar to force completion
+    self.navigationController.navigationBar.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -170,13 +185,15 @@ UIImage *BackgroundImage;
     else
     {
         //log end of assessment activity
-        
+        self.navigationController.navigationBar.hidden = NO;
         [super.navigationController popViewControllerAnimated:YES]; //return to library view
     }
 }
 
 
-//log user pressed play audio
+/*
+ Play Audio functions that will play the matching text in english or spanish
+ */
 -(IBAction)PlayQuestionAudioPressed:(id)sender
 {
     [playAudioFileClass playAudioFile:self:QuestionAudio];
@@ -204,25 +221,28 @@ UIImage *BackgroundImage;
 
 - (IBAction)NextButtonPressed:(id)sender {
     
-    //[self loadNextAssessmentActivityQuestion];
-    
     //log user pressed next button
     [[ServerCommunicationController sharedManager] logUserAssessmentPressedNext:@"Next" :@"Next Assessment" :BookTitle :ChapterTitle :[NSString stringWithFormat:@"%d",  currentAssessmentActivityStep]];
     
+    //Increment the current Assessment activity step
     currentAssessmentActivityStep++;
     
+    //if there are more questions
     if(currentAssessmentActivityStep<=totalAssessmentActivitySteps)
     {
+        //Log Automatic computer action: Next Assessment
         [[ServerCommunicationController sharedManager] logComputerAssessmentLoadNextActivityStep:@"Next" :@"Next Assessment" :[NSString stringWithFormat:@"%d", (currentAssessmentActivityStep-1)] :[NSString stringWithFormat:@"%d", currentAssessmentActivityStep] :BookTitle :ChapterTitle :[NSString stringWithFormat:@"%d",(currentAssessmentActivityStep-1)]];
         
+        //Disable next button
         nextButton.hidden = true;
         
-        //AnswerList = [[UITableView alloc]init];
+        //Reset selected answers to unselected
         AnswerSelection[0] = 0;
         AnswerSelection[1] = 0;
         AnswerSelection[2] = 0;
         AnswerSelection[3] = 0;
         
+        //Load the next assessment activity step
         AssessmentActivity* currAssessmentActivityStep = [currentAssessmentActivitySteps objectAtIndex:currentAssessmentActivityStep-1];
         correctSelection = [currAssessmentActivityStep expectedSelection];
         Question = [currAssessmentActivityStep QuestionText];
@@ -240,9 +260,10 @@ UIImage *BackgroundImage;
         [AnswerOptions addObject:[currAssessmentActivityStep Answer4]];
         [AnswerAudios addObject:[currAssessmentActivityStep Answer4Audio]];
         
+        //Randomize answer options
         [self shuffleAnswers];
         
-        //reset tableview cells, reload tableview
+        //reset tableview cells and reload tableview to be unselected
         NSArray *cells = [AnswerList indexPathsForVisibleRows];
         
         for (int i=0; i<[AnswerOptions count]; i++)
@@ -258,15 +279,16 @@ UIImage *BackgroundImage;
         
         [AnswerList reloadData];
         
-        //log Display assessment activity
+        //log Automatic computer step: Display assessment activity
         [[ServerCommunicationController sharedManager] logComputerAssessmentDisplayStep:Question :AnswerOptions :@"Next" :@"Display Assessment" :BookTitle :ChapterTitle : [NSString stringWithFormat:@"%d", currentAssessmentActivityStep]];
         
     }
     else
     {
-        //log return to library ie log end of assessment
+        //log end of assessment and return to library view
         [[ServerCommunicationController sharedManager] logComputerAssessmentLoadNextActivityStep:@"Next" :@"End Assessment" :[NSString stringWithFormat:@"%d", (currentAssessmentActivityStep-1)] :@"End of Assessment" :BookTitle :ChapterTitle :[NSString stringWithFormat:@"%d",(currentAssessmentActivityStep-1)]];
         
+        self.navigationController.navigationBar.hidden = NO;
         [self.navigationController popToViewController:libraryView animated:YES];
     }
 }
