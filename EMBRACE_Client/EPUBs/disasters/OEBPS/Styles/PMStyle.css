@@ -13,12 +13,10 @@
 }
 
 .textbox {
-	width:300px;
 	font-family:"GillSans";
     font-size:130%;
 	margin-top: 10px;
 	margin-right: 10px;
-	float: right;
 	position: relative;
 	border: 1px solid white;
 	background-color: white;
@@ -30,6 +28,17 @@
     line-height: 150%;
     z-index: 3;
     text-align: justify;
+}
+
+.textbox.custom
+{
+
+}
+
+.textbox.normal
+{
+    width:300px;
+    float: right;
 }
 
 html {
