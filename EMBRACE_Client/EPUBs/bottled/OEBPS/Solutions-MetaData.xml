@@ -137,7 +137,7 @@
             </sentence>
             <sentence number="12">
                 <step number="1">
-                    <ungroupAndSave obj1Id="lucas" action="drop" obj2Id="ball"/>
+                    <ungroupAndStay obj1Id="lucas" action="drop" obj2Id="ball"/>
                     <shakeOrTap obj1Id="ball" action="getIn" locationId="bedroom"/>
                     <move obj1Id="ball" action="getIn" waypointId="pastBaby"/>
                 </step>
@@ -175,7 +175,7 @@
             </sentence>
             <sentence number="3">
                 <step number="1">
-                    <ungroupAndSave obj1Id="lucas" action="drop" obj2Id="bottle"/>
+                    <ungroupAndStay obj1Id="lucas" action="drop" obj2Id="bottle"/>
                     <shakeOrTap obj1Id="lucas" action="getIn" locationId="anywhere"/>
                     <move obj1Id="lucas" action="getIn" waypointId="lucasRiver"/>
                     <move obj1Id="bottle" action="getIn" waypointId="bottleRiver"/>

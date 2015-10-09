@@ -9,7 +9,7 @@
         </story>
         <story title="Words of Wisdom" page_id="story4-PM-1">
             <group obj1Id="cup" action="grabLeft" obj2Id="papa"/>
-            <group obj1Id="lucas" action="grableft" obj2Id="bottle"/>
+            <group obj1Id="lucas" action="grabLeft" obj2Id="bottle"/>
             <group obj1Id="papa" action="grabRight" obj2Id="babybrother"/>
         </story>
         <story title="Words of Wisdom" page_id="story4-PM-2">
