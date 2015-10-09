@@ -239,7 +239,7 @@
                     <check obj1Id="olivia" action="getIn" locationId="riverSide"/>
                     <swapImage obj1Id="olivia" action="movesCloser"/>
                     <swapImage obj1Id="bottle" action="movesCloser2"/>
-                    <groupAuto obj1Id="olivia" action="grabRight" obj2Id="bottle"/>
+                    <groupAuto obj1Id="bottle" action="getIn" obj2Id="olivia"/>
                 </step>
             </sentence>
         </story>
@@ -267,7 +267,7 @@
                 <step number="1">
                     <shakeOrTap obj1Id="lucas" action="getIn" locationId="anywhere"/>
                     <ungroup obj1Id="lucas" action="drop" obj2Id="ball"/>
-                    <move obj1Id="lucas" action="getIn" waypointId="lucasBench"/>
+                    <move obj1Id="lucas" action="getIn" waypointId="lucasLast"/>
                     <groupAuto obj1Id="ball" action="grabRight" obj2Id="olivia"/>
                 </step>
             </sentence>
