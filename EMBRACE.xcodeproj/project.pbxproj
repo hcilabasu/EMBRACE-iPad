@@ -55,10 +55,6 @@
 		31AA5FAA175FB16500E9A9B3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AA5FA9175FB16500E9A9B3 /* LoginViewController.m */; };
 		31C306C2183D900B0043DEDD /* Solution.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C306C1183D900B0043DEDD /* Solution.m */; };
 		31C306C5183E93A60043DEDD /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C306C4183E93A60043DEDD /* Connection.m */; };
-		5C07AC6C1BC8766B008C7D48 /* átomosS.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C07AC681BC8766B008C7D48 /* átomosS.m4a */; };
-		5C07AC6D1BC8766B008C7D48 /* energíaS.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C07AC691BC8766B008C7D48 /* energíaS.m4a */; };
-		5C07AC6E1BC8766B008C7D48 /* moléculaS.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C07AC6A1BC8766B008C7D48 /* moléculaS.m4a */; };
-		5C07AC6F1BC8766B008C7D48 /* oxígenoS.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C07AC6B1BC8766B008C7D48 /* oxígenoS.m4a */; };
 		5C466ADC192293290056EA4B /* Translation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C466ADB192293290056EA4B /* Translation.m */; };
 		5CC5FADB18FDFA3700D118B8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CC5FADA18FDFA3700D118B8 /* AVFoundation.framework */; };
 		5CC854E719FAF37F00910237 /* ConditionSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC854E619FAF37F00910237 /* ConditionSetup.m */; };
@@ -2298,10 +2294,6 @@
 		5C0274C519D22DA400BF4B1A /* BFCS1_6E.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCS1_6E.m4a; path = EMBRACE_Client/sounds/BFCS1_6E.m4a; sourceTree = SOURCE_ROOT; };
 		5C0274C619D22DA400BF4B1A /* CCE_14B.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = CCE_14B.m4a; path = EMBRACE_Client/sounds/CCE_14B.m4a; sourceTree = SOURCE_ROOT; };
 		5C0274C719D22DA400BF4B1A /* CCS_14B.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = CCS_14B.m4a; path = EMBRACE_Client/sounds/CCS_14B.m4a; sourceTree = SOURCE_ROOT; };
-		5C07AC681BC8766B008C7D48 /* átomosS.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "átomosS.m4a"; sourceTree = "<group>"; };
-		5C07AC691BC8766B008C7D48 /* energíaS.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "energíaS.m4a"; sourceTree = "<group>"; };
-		5C07AC6A1BC8766B008C7D48 /* moléculaS.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "moléculaS.m4a"; sourceTree = "<group>"; };
-		5C07AC6B1BC8766B008C7D48 /* oxígenoS.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "oxígenoS.m4a"; sourceTree = "<group>"; };
 		5C27CB341ADB4CCC00E6DC0D /* dog_labradoodle_bark_twice_001.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dog_labradoodle_bark_twice_001.mp3; sourceTree = "<group>"; };
 		5C466ADA192293290056EA4B /* Translation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Translation.h; sourceTree = "<group>"; };
 		5C466ADB192293290056EA4B /* Translation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Translation.m; sourceTree = "<group>"; };
@@ -3352,10 +3344,6 @@
 		31953E4F1729ECC100570087 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				5C07AC681BC8766B008C7D48 /* átomosS.m4a */,
-				5C07AC691BC8766B008C7D48 /* energíaS.m4a */,
-				5C07AC6A1BC8766B008C7D48 /* moléculaS.m4a */,
-				5C07AC6B1BC8766B008C7D48 /* oxígenoS.m4a */,
 				5CCAE22C1B4C42C600445020 /* disasters.epub */,
 				1ADB01A21AAD211C006C5256 /* house.epub */,
 				5CE1E30F1A119E120070A7D6 /* bestFarm.epub */,
@@ -5270,7 +5258,6 @@
 				C30D06EB1BABC07300DF53F1 /* Story1-The-Contest-PM-2S.xhtml in Resources */,
 				C30D06EC1BABC07300DF53F1 /* Story2-Getting-Ready-Intro-S.xhtml in Resources */,
 				C30D06ED1BABC07300DF53F1 /* Story3-Cleaning-Up-Intro-S.xhtml in Resources */,
-				5C07AC6D1BC8766B008C7D48 /* energíaS.m4a in Resources */,
 				C30D06EE1BABC07300DF53F1 /* Story4-Who-is-the-Best-Animal-Intro-S.xhtml in Resources */,
 				C30D06EF1BABC07300DF53F1 /* Story5-The-Wise-Owl-Intro-S.xhtml in Resources */,
 				C30D06F01BABC07300DF53F1 /* Story6-Everyone-Helps-Intro-S.xhtml in Resources */,
@@ -5306,7 +5293,6 @@
 				C30D070E1BABC07300DF53F1 /* Story4-Who-is-the-Best-Animal-PM-2.xhtml in Resources */,
 				C30D070F1BABC07300DF53F1 /* Story4-Who-is-the-Best-Animal-Title.xhtml in Resources */,
 				C30D07101BABC07300DF53F1 /* Story5-The-Wise-Owl-IM-1.xhtml in Resources */,
-				5C07AC6F1BC8766B008C7D48 /* oxígenoS.m4a in Resources */,
 				C30D07111BABC07300DF53F1 /* Story5-The-Wise-Owl-IM-2.xhtml in Resources */,
 				C30D07121BABC07300DF53F1 /* Story5-The-Wise-Owl-PM-1.xhtml in Resources */,
 				C30D07131BABC07300DF53F1 /* Story5-The-Wise-Owl-PM-2.xhtml in Resources */,
@@ -5827,7 +5813,6 @@
 				C30D034A1BABBFE800DF53F1 /* MoreIsMissingQ4A1.mp3 in Resources */,
 				C30D034B1BABBFE800DF53F1 /* MoreIsMissingQ4A2.mp3 in Resources */,
 				C30D034C1BABBFE800DF53F1 /* MoreIsMissingQ4A3.mp3 in Resources */,
-				5C07AC6C1BC8766B008C7D48 /* átomosS.m4a in Resources */,
 				C30D034D1BABBFE800DF53F1 /* MoreIsMissingQ4A4.mp3 in Resources */,
 				C30D034E1BABBFE800DF53F1 /* MoreIsMissingQ5.mp3 in Resources */,
 				C30D034F1BABBFE800DF53F1 /* MoreIsMissingQ5A1.mp3 in Resources */,
@@ -5865,7 +5850,6 @@
 				C30D036F1BABBFE800DF53F1 /* TheFamilyIsRattledQ3A3.mp3 in Resources */,
 				C30D03701BABBFE800DF53F1 /* TheFamilyIsRattledQ3A4.mp3 in Resources */,
 				C30D03711BABBFE800DF53F1 /* TheFamilyIsRattledQ4.mp3 in Resources */,
-				5C07AC6E1BC8766B008C7D48 /* moléculaS.m4a in Resources */,
 				C30D03721BABBFE800DF53F1 /* TheFamilyIsRattledQ4A1.mp3 in Resources */,
 				C30D03731BABBFE800DF53F1 /* TheFamilyIsRattledQ4A2.mp3 in Resources */,
 				C30D03741BABBFE800DF53F1 /* TheFamilyIsRattledQ4A3.mp3 in Resources */,
