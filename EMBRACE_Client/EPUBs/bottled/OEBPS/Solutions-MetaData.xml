@@ -162,6 +162,8 @@
             <sentence number="1">
                 <step number="1">
                     <check obj1Id="papa" action="getIn" locationId="riverSide"/>
+                    <ungroup obj1Id="cup" action="drop" obj2Id="papa"/>
+                    <ungroup obj1Id="lucas" action="drop" obj2Id="bottle"/>
                     <swapImage obj1Id="papa" action="movesCloser"/>
                     <swapImage obj1Id="lucas" action="movesCloser"/>
                     <swapImage obj1Id="babybrother" action="movesCloser"/>
