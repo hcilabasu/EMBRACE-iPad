@@ -17,11 +17,11 @@
         </story>
         <story title="Catch!" page_id="story5-PM-1">
             <group obj1Id="lucas" action="grabRight" obj2Id="ball"/>
-            <group obj1Id="olivia" action="grabRight" obj2Id="bottle"/>
+            <group obj1Id="bottle" action="getIn" obj2Id="olivia"/>
         </story>
         <story title="Catch!" page_id="story5-PM-2">
             <group obj1Id="lucas" action="grabRight" obj2Id="ball"/>
-            <group obj1Id="olivia" action="grabRight" obj2Id="bottle"/>
+            <group obj1Id="bottle" action="getIn" obj2Id="olivia"/>
         </story>
         <story title="Catch!" page_id="story5-PM-3">
             <group obj1Id="lucas" action="grabRight" obj2Id="ball"/>
