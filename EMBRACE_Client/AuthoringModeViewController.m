@@ -147,6 +147,7 @@ ConditionSetup *conditionSetup;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //Creates the picker view for editing options
     CGRect pickerFrame = CGRectMake(200, 200, 320, 216);
     picker = [[UIPickerView alloc] initWithFrame:pickerFrame];
     picker.delegate=self;
@@ -154,7 +155,6 @@ ConditionSetup *conditionSetup;
     TapLocationX = 0;
     TapLocationY = 0;
     isEntryViewVisible = false;
-    
     self.ImageOptions = [NSArray arrayWithObjects: @"Save Waypoint", @"Save Hotspot", @"Save Location", @"Save Z-Index", @"Save Width", @"Save Height", @"Save Manipulation Type", nil];
     
     //creates instance of introduction class
@@ -291,7 +291,8 @@ ConditionSetup *conditionSetup;
     
     isAudioLeft = false;
     
-    //Perform setup for activity
+    //Perform setup for activity: currently commented out for authoring mode
+    //TODO: implement solution step simulation in authoring mode
     //[self performSetupForActivity];
     
 }
@@ -376,16 +377,8 @@ ConditionSetup *conditionSetup;
     //No more pages in chapter
     if (currentPage == nil) {
         //return to library view
-        //load assessment activity screen
-        if([chapterTitle isEqualToString:@"Introduction to The Best Farm"] || [chapterTitle isEqualToString:@"Introduction to The House"])
-        {   [self.navigationController popViewControllerAnimated:YES];
+          [self.navigationController popViewControllerAnimated:YES];
             return;
-        }
-        else
-        {
-            [self.navigationController popViewControllerAnimated:YES];
-            return;
-        }
     }
     
     [self loadPage];
@@ -510,95 +503,20 @@ ConditionSetup *conditionSetup;
  * Pinch gesture. Used to ungroup two images from each other.
  */
 -(IBAction)pinchGesturePerformed:(UIPinchGestureRecognizer *)recognizer {
-    /*CGPoint location = [recognizer locationInView:self.view];
-     
-     if(recognizer.state == UIGestureRecognizerStateBegan && IntroductionClass.allowInteractions && pinchToUngroup) {
-     pinching = TRUE;
-     
-     NSString* imageAtPoint = [self getObjectAtPoint:location ofType:@"manipulationObject"];
-     
-     //if it's an image that can be moved, then start moving it.
-     if(imageAtPoint != nil && !stepsComplete) {
-     separatingObjectId = imageAtPoint;
-     }
-     }
-     else if(recognizer.state == UIGestureRecognizerStateEnded) {
-     //Get pairs of other objects grouped with this object.
-     NSArray* itemPairArray = [self getObjectsGroupedWithObject:separatingObjectId];
-     
-     if (itemPairArray != nil) {
-     NSMutableArray* possibleInteractions = [[NSMutableArray alloc] init];
-     
-     for(NSString* pairStr in itemPairArray) {
-     //Create an array that will hold all the items in this group
-     NSMutableArray* groupedItemsArray = [[NSMutableArray alloc] init];
-     
-     //Separate the objects in this pair and add them to our array of all items in this group.
-     [groupedItemsArray addObjectsFromArray:[pairStr componentsSeparatedByString:@", "]];
-     
-     //Only allow the correct subject and object to ungroup if necessary
-     BOOL allowSubjectToUngroup = false;
-     BOOL allowObjectToUngroup = false;
-     
-     for(NSString* obj in groupedItemsArray) {
-     if (useSubject == ONLY_CORRECT) {
-     if ([self checkSolutionForSubject:obj]) {
-     allowSubjectToUngroup = true;
-     }
-     }
-     else if (useSubject == ALL_ENTITIES) {
-     allowSubjectToUngroup = true;
-     }
-     
-     if (useObject == ONLY_CORRECT) {
-     if ([self checkSolutionForObject:obj]) {
-     allowObjectToUngroup = true;
-     }
-     }
-     else if (useObject == ALL_ENTITIES) {
-     allowObjectToUngroup = true;
-     }
-     }
-     
-     //Objects are allowed to ungroup
-     if (allowSubjectToUngroup && allowObjectToUngroup) {
-     PossibleInteraction* interaction = [[PossibleInteraction alloc] initWithInteractionType:UNGROUP];
-     [interaction addConnection:UNGROUP :groupedItemsArray :nil];
-     
-     //Only one possible ungrouping found
-     if ([itemPairArray count] == 1) {
-     [self checkSolutionForInteraction:interaction]; //check if interaction is correct before ungrouping
-     }
-     //Multiple possible ungroupings found
-     else {
-     [possibleInteractions addObject:interaction];
-     }
-     }
-     }
-     
-     //Show the menu if multiple possible ungroupings are found
-     if ([itemPairArray count] > 1) {
-     //Populate the data source and expand the menu.
-     [self populateMenuDataSource:possibleInteractions:allRelationships];
-     
-     if(!menuExpanded)
-     [self expandMenu];
-     }
-     }
-     else
-     NSLog(@"no items grouped");
-     
-     pinching = FALSE;
-     }
-     */
+    /*Current Function not used in authoring mode See PMViewController if needed*/
 }
 
+/*
+ * Takes the current hotspot value as a percentage and converts the percentages into
+ * a hotspot. The function then checks if the hotspot already exists in the Hotspot-MetaData.xml file
+ * if it does not, then it adds it to the file, otherwise it ignores the request to save the hotspot
+ */
 -(void)saveHotspot:(id)sender{
     /*convert px values to percentages*/
     NSString *xcordPercent = [NSString stringWithFormat:@"%f", ([xcord.text integerValue] / [bookView frame].size.width * 100)];
     NSString *ycordPercent = [NSString stringWithFormat:@"%f", ([ycord.text integerValue] / [bookView frame].size.height * 100)];
     
-    
+    //Converts inputed elements into a hotspot
     NSString* newHotspot = [NSString stringWithFormat:@"hotspot objId=\"%@\" action=\"%@\" role=\"%@\" x=\"%@%%\" y=\"%@%%\"", hotspotID.text, action.text, role.text, xcordPercent, ycordPercent];
     NSLog(@"%@", newHotspot);
     
@@ -616,7 +534,6 @@ ConditionSetup *conditionSetup;
     {
         xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
     }
-    
     
     NSError *error;
     
@@ -645,6 +562,7 @@ ConditionSetup *conditionSetup;
         }
     }
     
+    //if the hotspot doesnt already exist save it
     if (doesHotspotExist == false) {
         NSArray *hotspots = [xmlDocTemp nodesForXPath:@"//hotspots" error:nil];
         DDXMLElement *hotspotElement = (DDXMLElement*)[hotspots objectAtIndex:0];
@@ -658,6 +576,7 @@ ConditionSetup *conditionSetup;
         [entryview removeFromSuperview];
         isEntryViewVisible = false;
         
+        //remove the picker view
         if (isAreaViewVisible == true) {
             [areaSpace removeFromSuperview];
             self.isAreaViewVisible = false;
@@ -666,11 +585,17 @@ ConditionSetup *conditionSetup;
     
 }
 
+/*
+ * Takes the current waypoint value as a percentage and converts the percentages into
+ * a waypoint. The function then checks if the waypoint already exists in the waypoint-MetaData.xml file
+ * if it does not, then it adds it to the file, otherwise it ignores the request to save the waypoint
+ */
 -(void)saveWaypoint:(id)sender {
     /*convert px values to percentages*/
     NSString *xcordPercent = [NSString stringWithFormat:@"%f", ([xcord.text integerValue] / [bookView frame].size.width * 100)];
     NSString *ycordPercent = [NSString stringWithFormat:@"%f", ([ycord.text integerValue] / [bookView frame].size.height * 100)];
     
+    //convert inputted data in a waypoint in xml format
     NSString* newWaypoint = [NSString stringWithFormat:@"waypoint waypointId=\"%@\" x=\"%@%%\" y=\"%@%%\"", waypointID.text, xcordPercent, ycordPercent];
     NSLog(@"%@", newWaypoint);
     
@@ -714,6 +639,7 @@ ConditionSetup *conditionSetup;
         }
     }
     
+    //if the waypoint doesnt already exist, save it
     if (doesWaypointExist == false) {
         NSArray *waypoints = [xmlDocTemp nodesForXPath:@"//waypoints" error:nil];
         DDXMLElement *waypointElement = (DDXMLElement*)[waypoints objectAtIndex:0];
@@ -727,6 +653,7 @@ ConditionSetup *conditionSetup;
         [entryview removeFromSuperview];
         isEntryViewVisible = false;
         
+        //remove the pickerview
         if (isAreaViewVisible == true) {
             [areaSpace removeFromSuperview];
             self.isAreaViewVisible = false;
@@ -734,6 +661,11 @@ ConditionSetup *conditionSetup;
     }
 }
 
+/*
+ * Takes the current location value as a percentage and converts the percentages into
+ * a location. The function then checks if the location already exists in the location-MetaData.xml file
+ * if it does not, then it adds it to the file, otherwise it ignores the request to save the location
+ */
 -(void)saveLocation:(id)sender{
     
     /*convert px values to percentages*/
@@ -783,6 +715,7 @@ ConditionSetup *conditionSetup;
         }
     }
     
+    //if the locaiton doesn't already exist, add it
     if (doesLocationExist == false) {
         
         NSArray *locations = [xmlDocTemp nodesForXPath:@"//locations" error:nil];
@@ -797,6 +730,7 @@ ConditionSetup *conditionSetup;
         [entryview removeFromSuperview];
         isEntryViewVisible = false;
         
+        //remove the pickerview
         if (isAreaViewVisible == true) {
             [areaSpace removeFromSuperview];
             self.isAreaViewVisible = false;
@@ -806,6 +740,9 @@ ConditionSetup *conditionSetup;
     
 }
 
+/*
+ * Function changes the z-index of the selected object
+ */
 -(void)changeZIndex:(id)sender{
     
     NSString* changeZindexAtPoint = [NSString stringWithFormat:@"%@.style.zIndex = %@", objectID.text, zindex.text];
@@ -816,6 +753,9 @@ ConditionSetup *conditionSetup;
     isEntryViewVisible = false;
 }
 
+/*
+ *  Function changes the width of the select object
+ */
 -(void)changeWidth:(id)sender{
     NSString* changeWidthAtPoint = [NSString stringWithFormat:@"%@.style.width = \"%@px\"", objectID.text, width.text];
     NSString *WidthAtPoint = [bookView stringByEvaluatingJavaScriptFromString:changeWidthAtPoint];
@@ -824,6 +764,9 @@ ConditionSetup *conditionSetup;
     isEntryViewVisible = false;
 }
 
+/*
+ *  Function changes the height of the selected object
+ */
 -(void)changeHeight:(id)sender{
     NSString* changeHeightAtPoint = [NSString stringWithFormat:@"%@.style.height = \"%@px\"", objectID.text, height.text];
     NSString *HeightAtPoint = [bookView stringByEvaluatingJavaScriptFromString:changeHeightAtPoint];
@@ -832,54 +775,64 @@ ConditionSetup *conditionSetup;
     isEntryViewVisible = false;
 }
 
+/*
+ *  Function changes the manipulation type of the selected object
+ */
 -(void)changeManipulationType:(id)sender {
     
     [entryview removeFromSuperview];
     isEntryViewVisible = false;
 }
 
-
+/*
+ *  Writes file to the document directory to be retrieved
+ */
 - (BOOL) writeToFile:(NSString *) toLocation : (NSString *)fileName ofType:(NSString *)type
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     
-    //
+    //Writes to document directory to avoid overwritting current metadata files
     NSString *path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@", fileName, type]];
     //toggle for saving to logging location or to overide current file
     //NSString *path = toLocation;
     
     NSString *stringxml = [xmlDocTemp XMLStringWithOptions:DDXMLNodeCompactEmptyElement];
     
+    //attempt to write file to path
     if (![stringxml writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil]) {
         NSLog(@"Could not write document out...");
         NSLog(@"%@", stringxml);
         return NO;
     }
+    
     NSLog(@"%@", stringxml);
     NSLog(@"Successfully wrote to file");
     return YES;
 }
 
+//Default number of components in picker view
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 1;
 }
 
+//Returns the number of options for editing
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
     return [ImageOptions count];
 }
 
+//returns the title of the row
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
     return  [ImageOptions objectAtIndex:row];
 }
 
+/*
+ *  When a row is selected create the new appropate menu with relevant input options.
+ */
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     /*@"Save Waypoint", @"Save Hotspot", @"Save Location", @"Save Z-Index", @"Save Width", @"Save Height", @"Save Manipulation Type"*/
     
-    /*
-     textbox subview
-     */
     
     [pickerView removeFromSuperview];
     isEntryViewVisible = true;
@@ -1340,17 +1293,17 @@ ConditionSetup *conditionSetup;
         /*
          add new sub view with textboxes, cancel button, and save button
          */
-        
-        
     }
     
     
 }
 
+
 -(void)save:(id)sender{
     
 }
 
+//Create a visible area for the current menu option
 -(void)Create:(id)sender{
     if (isAreaViewVisible != false) {
         [areaSpace removeFromSuperview];
@@ -1364,6 +1317,7 @@ ConditionSetup *conditionSetup;
     
 }
 
+//Close the current menu option
 -(void)cancel:(id)sender{
     [entryview removeFromSuperview];
     self.isEntryViewVisible = false;
@@ -1389,74 +1343,13 @@ ConditionSetup *conditionSetup;
     if (isEntryViewVisible == false) {
         [self.view addSubview:picker];
     }
-    
-    /*
-     when tapping anywhere on screen see if it is an object, if it is pop up a new menu
-     
-     New menu:
-     
-     If background
-     Save as Waypoint: saves current position and prompts for waypointid name,x, y
-     Save as Location: saves current position and prompts for locationid name, x,y height, width
-     
-     If Image object
-     Change Z-Index: enter any number
-     Change Height:
-     Change Width:
-     Change Manipulation type: backgroundObject/manipulationObject
-     Save as Hotspot:obj1id(return name of tapped image), action(getIn/pickUp/sit/grab/moveTo/visit) role(subject/object), x, y
-     
-     */
-    
-    
-    /*CGPoint location = [recognizer locationInView:self.view];
-     
-     IntroductionClass.allowInteractions = true;
-     allowSnapback = false;
-     
-     
-     //No longer moving object
-     movingObject = FALSE;
-     movingObjectId = nil;
-     
-     //Re-add the tap gesture recognizer before the menu is removed
-     [self.view addGestureRecognizer:tapRecognizer];
-     
-     
-     //Get the object at that point if it's a manipulation object.
-     NSString* imageAtPoint = [self getObjectAtPoint:location ofType:@"manipulationObject"];
-     
-     //NSLog(@"location pressed: (%f, %f)", location.x, location.y);
-     
-     //Retrieve the name of the object at this location
-     NSString* requestImageAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
-     
-     imageAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPoint];
-     
-     //Capture the clicked text, if it exists
-     NSString* requestSentenceText = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).innerHTML", location.x, location.y];
-     NSString* sentenceText = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceText];
-     
-     //Capture the clicked text id, if it exists
-     NSString* requestSentenceID = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
-     NSString* sentenceID = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceID];
-     int sentenceIDNum = [[sentenceID substringFromIndex:0] intValue];
-     */
 }
 
 /*
  * Long press gesture. Either tap or long press can be used for definitions.
  */
 -(IBAction)longPressGesturePerformed:(UILongPressGestureRecognizer *)recognizer {
-    //This is the location of the point in the parent UIView, not in the UIWebView.
-    //These two coordinate systems may be different.
-    /*CGPoint location = [recognizer locationInView:self.view];
-     
-     NSString* requestImageAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
-     
-     NSString* imageAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPoint];*/
     
-    //NSLog(@"imageAtPoint: %@", imageAtPoint);
 }
 
 
@@ -1465,7 +1358,6 @@ ConditionSetup *conditionSetup;
  * by performing it automatically according to the solution.
  */
 -(IBAction)swipeGesturePerformed:(UISwipeGestureRecognizer *)recognizer {
-    NSLog(@"Swiper no swiping!");
     
     [self loadNextPage];
 }
@@ -1622,7 +1514,9 @@ ConditionSetup *conditionSetup;
         return nil;
 }
 
-//
+/*
+ *  Request the zindex of the object at the current location
+ */
 -(NSString*) getzindexOfObjectAtPoint:(CGPoint) location ofType:(NSString*)class {
     //Temporarily hide the overlay canvas to get the object we need
     NSString* hideCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'none';", @"'overlay'"];
@@ -1660,7 +1554,9 @@ ConditionSetup *conditionSetup;
 }
 
 
-//
+/*
+ *  Get the current width of the obeject at the point
+ */
 -(NSString*) getwidthOfObjectAtPoint:(CGPoint) location ofType:(NSString*)class {
     //Temporarily hide the overlay canvas to get the object we need
     NSString* hideCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'none';", @"'overlay'"];
@@ -1697,7 +1593,9 @@ ConditionSetup *conditionSetup;
         return nil;
 }
 
-//
+/*
+ *  Get the current height of the object at the point
+ */
 -(NSString*) getheightOfObjectAtPoint:(CGPoint) location ofType:(NSString*)class {
     //Temporarily hide the overlay canvas to get the object we need
     NSString* hideCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'none';", @"'overlay'"];
@@ -1821,9 +1719,8 @@ ConditionSetup *conditionSetup;
 }
 
 -(void)saveCurrentStep{
-    
     /*
-     steps should already be saved
+     steps should already be saved: Todo: add functionality to save steps and run them
      */
 }
 

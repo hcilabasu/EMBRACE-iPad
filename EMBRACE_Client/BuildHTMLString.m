@@ -13,11 +13,6 @@
 /*
  * Builds the format of the action sentence that allows words to be clickable
  */
-
-//+(NSString*) buildHTMLString:(NSString *)htmlText :(NSString *)selectionType :(NSString *)clickableWord :(NSString *)sentenceType{
- //   return [self buildHTMLString:htmlText :selectionType :clickableWord :sentenceType];
-//}
-
 -(NSString*) buildHTMLString:(NSString*)htmlText :(NSString*)selectionType :(NSString*)clickableWord :(NSString*) sentenceType {
     //String to build
     NSString* stringToBuild;

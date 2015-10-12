@@ -14,11 +14,6 @@
 @synthesize syn;
 @synthesize PmviewController;
 
-
-//+(void)playWordAudioTimed:(NSTimer *)wordAndLang{
-  //  [self playWordAudioTimed:wordAndLang];
-//}
-
 /* Plays text-to-speech audio in a given language in a certain time */
 -(void)playWordAudioTimed:(NSTimer *) wordAndLang {
     NSDictionary *wrapper = (NSDictionary *)[wordAndLang userInfo];
@@ -32,10 +27,6 @@
     NSLog(@"Volume: %f", utteranceEn.volume);
     [syn speakUtterance:utteranceEn];
 }
-
-//+(void)playAudioFileTimed:(NSTimer *)path{
-  //  [self playAudioFileTimed:path];
-//}
 
 /* Plays an audio file after a given time defined in the timer call*/
 -(void)playAudioFileTimed:(NSTimer *) path {

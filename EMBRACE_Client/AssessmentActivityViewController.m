@@ -29,11 +29,11 @@ NSString *Question;                     //Question Text
 NSString *QuestionAudio;                //Question audio file name
 NSInteger questionNum;                  //Current Question Number
 NSString* correctSelection;             //correct Selection text
-NSMutableDictionary *assessmentActivities;          //
-NSMutableArray *currentAssessmentActivitySteps;     //
-NSInteger totalAssessmentActivitySteps;             //
-NSInteger currentAssessmentActivityStep;            //
-UIViewController *libraryView;                      //
+NSMutableDictionary *assessmentActivities;          //the total assessment activity steps details
+NSMutableArray *currentAssessmentActivitySteps;     //the current assessment activity step details
+NSInteger totalAssessmentActivitySteps;             //the total assessment activity steps
+NSInteger currentAssessmentActivityStep;            //the current assessment activity step
+UIViewController *libraryView;                      //Local instance of the library view controller
 
 //Context variables
 NSString *BookTitle;
@@ -159,10 +159,9 @@ UIImage *BackgroundImage;   //The background image related to the story
     
     currentAssessmentActivityStep++;
     
+    //If there are more questions load the next question
     if(currentAssessmentActivityStep<totalAssessmentActivitySteps)
     {
-        
-        //AnswerList = [[UITableView alloc]init];
         AnswerSelection[0] = 0;
         AnswerSelection[1] = 0;
         AnswerSelection[2] = 0;
@@ -182,6 +181,7 @@ UIImage *BackgroundImage;   //The background image related to the story
         [[ServerCommunicationController sharedManager] logComputerAssessmentDisplayStep:Question :AnswerOptions :@"Next" :@"Display Assessment" :BookTitle :ChapterTitle : [NSString stringWithFormat:@"%d", currentAssessmentActivityStep]];
         
     }
+    //return to the library view
     else
     {
         //log end of assessment activity
@@ -219,6 +219,9 @@ UIImage *BackgroundImage;   //The background image related to the story
     [playAudioFileClass playAudioFile:self:AnswerAudios[3]];
 }
 
+/*
+ *  Increments the next question, resets the visual aspects of the question and answer options,
+ */
 - (IBAction)NextButtonPressed:(id)sender {
     
     //log user pressed next button
@@ -283,6 +286,7 @@ UIImage *BackgroundImage;   //The background image related to the story
         [[ServerCommunicationController sharedManager] logComputerAssessmentDisplayStep:Question :AnswerOptions :@"Next" :@"Display Assessment" :BookTitle :ChapterTitle : [NSString stringWithFormat:@"%d", currentAssessmentActivityStep]];
         
     }
+    //return to the library view
     else
     {
         //log end of assessment and return to library view
@@ -299,10 +303,12 @@ UIImage *BackgroundImage;   //The background image related to the story
     return 1;
 }
 
+//Default 4 answer options
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 4;
 }
 
+//set the answer option text for each row
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString *CellIdentifier =  [NSString stringWithFormat:@"MyCell%d", [indexPath row]];
     UITableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -312,10 +318,6 @@ UIImage *BackgroundImage;   //The background image related to the story
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         cell.backgroundColor = [UIColor clearColor];
         cell.backgroundView.backgroundColor = [UIColor clearColor];
-        //AnswerList.alpha = 0;
-        
-        //cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        //cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     int row = [indexPath row];
@@ -324,6 +326,10 @@ UIImage *BackgroundImage;   //The background image related to the story
     return cell;
 }
 
+/*
+ *  If the user selects the correct answer highlight the answer and make the next button appear, otherwise
+ *  show the answer as incorrect.
+ */
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     //checks if option has already been selected else do nothing
@@ -344,7 +350,6 @@ UIImage *BackgroundImage;   //The background image related to the story
                 
                 
                 //gray out other options
-                
                 for(int i=0;i<[AnswerOptions count];i++)
                 {
                     
@@ -356,12 +361,7 @@ UIImage *BackgroundImage;   //The background image related to the story
                     }
                     else{
                         //gray out option
-                        
-                        //UITableViewCell *tempCell = [tableView cellForRowAtIndexPath:cells[i]];
                         AnswerSelection[i] = 1;
-                        //tempCell.contentView.alpha=.2;
-                        //tempCell.backgroundColor = [UIColor grayColor];
-                        //tempCell.alpha =.2;
                     }
                 }
                 
@@ -372,21 +372,21 @@ UIImage *BackgroundImage;   //The background image related to the story
                 [[ServerCommunicationController sharedManager] logComputerAssessmentAnswerVerification:false : Question :([indexPath row]+1) :AnswerOptions :@"Answer Option" :@"Verification" :BookTitle :ChapterTitle :[NSString stringWithFormat:@"%d", currentAssessmentActivityStep] : cell.textLabel.text];
                 
                 //gray out option
-                //cell.contentView.alpha=.2;
                 cell.backgroundColor = [UIColor lightGrayColor];
                 cell.backgroundView.alpha = .2;
-                //cell.alpha =.2;
             }
      }
     
     [tableView reloadData];
 }
 
+//Add the quesiton number and text
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     // The header for the section is the region name -- get this from the region at the section index.
     return [NSString stringWithFormat:@"%d. %@      ", questionNum,Question];
 }
 
+//Custom field to change the font style and size of the header
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
     UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
     
