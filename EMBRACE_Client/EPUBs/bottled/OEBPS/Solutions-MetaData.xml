@@ -118,7 +118,7 @@
                 <step number="1">
                     <swapImage obj1Id="lucas" action="stand"/>
                     <check obj1Id="lucas" action="getIn" locationId="livingRoom"/>
-                    <move obj1Id="lucas" action="getIn" waypointId="lucasLivingRoom"/>
+                    <move obj1Id="lucas" action="getIn" waypointId="lucasChair"/>
                 </step>
             </sentence>
         </story>
@@ -226,6 +226,7 @@
             <sentence number="8">
                 <step number="1">
                     <group obj1Id="lucas" action="grabRight" obj2Id="rattle"/>
+                    <move obj1Id="lucas" action="getIn" waypointId="lucasRattle"/>
                     <transferAndGroup obj1Id="lucas" action="drop" obj2Id="rattle"/>
                     <transferAndGroup obj1Id="rattle" action="getIn" obj2Id="babybrother"/>
                     <move obj1Id="lucas" action="getIn" waypointId="lucasLivingRoom"/>
