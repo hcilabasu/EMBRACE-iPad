@@ -195,8 +195,10 @@
             <sentence number="8">
                 <step number="1">
                     <group obj1Id="dirt_tornado" action="pull" obj2Id="house_roof2"/>
-                    <disappearAuto obj1Id="house_roof2" action="disappear" obj2Id="house_roof2"/>
+                    <ungroup obj1Id="house_roof2" action="leave" obj2Id="dirt_tornado"/>
+                    <swapImage obj1Id="house_roof2" action="flip"/>
                     <move obj1Id="dirt_tornado" action="getIn" waypointId="tornado"/>
+                    <swapImage obj1Id="house_noroof2" action="damage"/>
                 </step>
             </sentence>
         </story>
