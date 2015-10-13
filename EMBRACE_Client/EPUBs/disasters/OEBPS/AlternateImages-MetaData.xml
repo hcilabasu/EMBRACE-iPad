@@ -8,15 +8,17 @@
         <alternateImage objId="california" action="crack" originalSrc="california_nofault.png" alternateSrc="california_fault.png" width="114px" x="19.19%" y="41.35%" class="manipulationObject" z=""/>
         <alternateImage objId="dirt_tornado" action="appear" originalSrc="dirt_tornado.png" alternateSrc="dirt_tornado.png" width="289px" x="43.5%" y="12%" class="manipulationObject" z="1"/>
         <alternateImage objId="dirt_tornado" action="shrink" originalSrc="dirt_tornado.png" alternateSrc="dirt_tornado.png" width="200px" x="43.5%" y="26%" class="manipulationObject" z="1"/>
+        <alternateImage objId="grey_plate_kauai" action="left" originalSrc="scene1.png" alternateSrc="scene2.png" width="786.94px" x="23.242188%" y="54.048294%" class="manipulationObject" z="1"/>
+        <alternateImage objId="grey_plate_kauai" action="left2" originalSrc="scene2.png" alternateSrc="scene3.png" width="1012.34px" x="1.171875%" y="53.764206%" class="manipulationObject" z="1"/>
         <alternateImage objId="hawaii" action="erupts" originalSrc="island_Hawaii.png" alternateSrc="island_lava_Hawaii.png" width="377px" x="70%" y="35.3%" class="manipulationObject" z="4"/>
-        <alternateImage objId="hawaii" action="appear" originalSrc="island_Hawaii.png" alternateSrc="island_Hawaii.png" width="377px" x="70%" y="33.3%" class="manipulationObject" z="2"/>
+        <alternateImage objId="hawaii" action="appear" originalSrc="island_Hawaii.png" alternateSrc="island_Hawaii.png" width="400px" x="70%" y="33.3%" class="manipulationObject" z="2"/>
         <alternateImage objId="houses" action="fall" originalSrc="houses.png" alternateSrc="houses_burn.png" width="70px" x="30%" y="55%" class="manipulationObject" z=""/>
         <alternateImage objId="india" action="push" originalSrc="india_whole.png" alternateSrc="india_himalayas.png" width="160px" x="54.74%" y="31.7%" class="manipulationObject" z=""/>
-        <alternateImage objId="lava" action="forms_island" originalSrc="lava_ball.png" alternateSrc="island_Kauai.png" width="171px" x="56%" y="45%" class="manipulationObject" z=""/>
-        <alternateImage objId="lava" action="forms_Oahu" originalSrc="lava_ball.png" alternateSrc="island_Oahu.png" width="171px" x="50%" y="50%" class="manipulationObject" z=""/>
-        <alternateImage objId="lava" action="forms_rock" originalSrc="lava_ball.png" alternateSrc="lava_cooled.png" width="81px" x="56%" y="47%" class="manipulationObject" z=""/>
+        <alternateImage objId="lava" action="forms_island" originalSrc="lava_ball.png" alternateSrc="island_Kauai.png" width="300px" x="56%" y="45%" class="manipulationObject" z=""/>
+        <alternateImage objId="lava" action="forms_Oahu" originalSrc="lava_ball.png" alternateSrc="island_Oahu.png" width="300px" x="50%" y="50%" class="manipulationObject" z=""/>
+        <alternateImage objId="lava" action="forms_rock" originalSrc="lava_ball.png" alternateSrc="lava_cooled.png" width="81px" x="79.345703%" y="48.366478%" class="manipulationObject" z=""/>
         <alternateImage objId="lava" action="forms_rock_Hawaii" originalSrc="lava_ball.png" alternateSrc="lava_cooled.png" width="81px" x="50%" y="50%" class="manipulationObject" z=""/>
-        <alternateImage objId="molokai" action="appear" originalSrc="island_Molokai.png" alternateSrc="island_Molokai.png" width="305px" x="50%" y="33.7%" class="manipulationObject" z="2"/>
+        <alternateImage objId="molokai" action="appear" originalSrc="island_Molokai.png" alternateSrc="island_Molokai.png" width="400px" x="50%" y="33.7%" class="manipulationObject" z="2"/>
         <alternateImage objId="north_america" action="crack" originalSrc="north_america_nofault.png" alternateSrc="north_america_fault.png" width="595px" x="17%" y="0%" class="manipulationObject" z=""/>
     </alternateImages>
 </metadata>

@@ -1071,6 +1071,12 @@
 		5C7FE16D19A7E43C00CBBE0E /* tryAgainE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FE0E919A7E43C00CBBE0E /* tryAgainE.m4a */; };
 		5C913BDF1BB2443D000A2E32 /* houses_burn.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C913BDE1BB2443D000A2E32 /* houses_burn.png */; };
 		5C913BE11BB261A0000A2E32 /* island_lava_Hawaii.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C913BE01BB261A0000A2E32 /* island_lava_Hawaii.png */; };
+		5C9835741BCC660D00E94691 /* Picture1resized.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9835701BCC660D00E94691 /* Picture1resized.png */; };
+		5C9835751BCC660D00E94691 /* scene1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9835711BCC660D00E94691 /* scene1.png */; };
+		5C9835761BCC660D00E94691 /* scene2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9835721BCC660D00E94691 /* scene2.png */; };
+		5C9835771BCC660D00E94691 /* scene3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9835731BCC660D00E94691 /* scene3.png */; };
+		5C98357A1BCC673500E94691 /* house_noroof2_damaged.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9835781BCC673500E94691 /* house_noroof2_damaged.png */; };
+		5C98357B1BCC673500E94691 /* house_roof2_damaged.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9835791BCC673500E94691 /* house_roof2_damaged.png */; };
 		5CA53EAE1BA8D49100D2FF5C /* Story5-Catch-PM-3.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CA53EAD1BA8D49100D2FF5C /* Story5-Catch-PM-3.xhtml */; };
 		5CA53EB01BA8D6BB00D2FF5C /* Story3-Baby-Brother-PM-3.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CA53EAF1BA8D6BB00D2FF5C /* Story3-Baby-Brother-PM-3.xhtml */; };
 		5CA53EB21BA8EA5600D2FF5C /* Story4-Words-of-Wisdom-PM-3.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CA53EB11BA8EA5600D2FF5C /* Story4-Words-of-Wisdom-PM-3.xhtml */; };
@@ -2644,6 +2650,12 @@
 		5C7FE0E919A7E43C00CBBE0E /* tryAgainE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = tryAgainE.m4a; path = EMBRACE_Client/sounds/tryAgainE.m4a; sourceTree = SOURCE_ROOT; };
 		5C913BDE1BB2443D000A2E32 /* houses_burn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = houses_burn.png; sourceTree = "<group>"; };
 		5C913BE01BB261A0000A2E32 /* island_lava_Hawaii.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = island_lava_Hawaii.png; sourceTree = "<group>"; };
+		5C9835701BCC660D00E94691 /* Picture1resized.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Picture1resized.png; sourceTree = "<group>"; };
+		5C9835711BCC660D00E94691 /* scene1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scene1.png; sourceTree = "<group>"; };
+		5C9835721BCC660D00E94691 /* scene2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scene2.png; sourceTree = "<group>"; };
+		5C9835731BCC660D00E94691 /* scene3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scene3.png; sourceTree = "<group>"; };
+		5C9835781BCC673500E94691 /* house_noroof2_damaged.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = house_noroof2_damaged.png; sourceTree = "<group>"; };
+		5C9835791BCC673500E94691 /* house_roof2_damaged.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = house_roof2_damaged.png; sourceTree = "<group>"; };
 		5CA53EAD1BA8D49100D2FF5C /* Story5-Catch-PM-3.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-Catch-PM-3.xhtml"; sourceTree = "<group>"; };
 		5CA53EAF1BA8D6BB00D2FF5C /* Story3-Baby-Brother-PM-3.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story3-Baby-Brother-PM-3.xhtml"; sourceTree = "<group>"; };
 		5CA53EB11BA8EA5600D2FF5C /* Story4-Words-of-Wisdom-PM-3.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Words-of-Wisdom-PM-3.xhtml"; sourceTree = "<group>"; };
@@ -4988,6 +5000,12 @@
 		B9C9E8E91B8EA0A700AFC328 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5C9835781BCC673500E94691 /* house_noroof2_damaged.png */,
+				5C9835791BCC673500E94691 /* house_roof2_damaged.png */,
+				5C9835701BCC660D00E94691 /* Picture1resized.png */,
+				5C9835711BCC660D00E94691 /* scene1.png */,
+				5C9835721BCC660D00E94691 /* scene2.png */,
+				5C9835731BCC660D00E94691 /* scene3.png */,
 				5C4EC3EA1BBB53BE009D9E82 /* lava2.png */,
 				5C4515AB1BB6105A00DC1B07 /* mainland.png */,
 				5C4515AC1BB6105A00DC1B07 /* plate_bulge3.png */,
@@ -5497,6 +5515,7 @@
 				B9C9E9A41B8EA0A800AFC328 /* ch2_bg.png in Resources */,
 				1A8036751B0B1C62004A164A /* GettingReadyQ3A1.mp3 in Resources */,
 				5C776BDB19C93E1E000DBC65 /* beatDEFS.m4a in Resources */,
+				5C9835761BCC660D00E94691 /* scene2.png in Resources */,
 				5CE1E3131A12D5080070A7D6 /* BFES_8B.m4a in Resources */,
 				1A8036A91B0B1C62004A164A /* IntroductionToTheBestFarmQ6A3.mp3 in Resources */,
 				B9C9E9BE1B8EA0A800AFC328 /* house_noroof2.png in Resources */,
@@ -5627,6 +5646,7 @@
 				1A8037181B0B1C62004A164A /* WhoIsTheBestAnimalQ2A4.mp3 in Resources */,
 				1AEE54FE1ADE028100DFC6B0 /* IsPacoAThiefQ2A1.mp3 in Resources */,
 				1AC4897A1AC083DF00784D77 /* Rattle_def_S.mp3 in Resources */,
+				5C9835771BCC660D00E94691 /* scene3.png in Resources */,
 				1A695CE01AD4EB9C006A2284 /* TheLopezFamilyQ6A1.mp3 in Resources */,
 				5C7FE12519A7E43C00CBBE0E /* BFEE_10.m4a in Resources */,
 				5C776C3E19C9537D000DBC65 /* healthyDEFS.m4a in Resources */,
@@ -5712,6 +5732,7 @@
 				B9C9E9F71B8EA0A800AFC328 /* tornado_bg.png in Resources */,
 				1ACF870E1AB26F0400F81567 /* Story2-Missing-Keys-Intro-S.xhtml in Resources */,
 				B9C9EA0D1B8EA0A800AFC328 /* Story1-The-Moving-Earth-Title.xhtml in Resources */,
+				5C98357A1BCC673500E94691 /* house_noroof2_damaged.png in Resources */,
 				5C776B3A19C7FB9A000DBC65 /* Story4-Who-is-the-Best-Animal-Intro-S.xhtml in Resources */,
 				1A8036D31B0B1C62004A164A /* TheContestQ2.mp3 in Resources */,
 				1A80372A1B0B1C62004A164A /* WhoIsTheBestAnimalQ6A2.mp3 in Resources */,
@@ -5874,6 +5895,7 @@
 				1A3594171AE76129003B3B41 /* TheFamilyIsRattledQ1A3.mp3 in Resources */,
 				5CAD05E219BE6A3E00F3F053 /* CCE5_7.m4a in Resources */,
 				5C7FE03F19A6B1B500CBBE0E /* Introduction-to-Circulatory-Characters-Title.xhtml in Resources */,
+				5C9835741BCC660D00E94691 /* Picture1resized.png in Resources */,
 				1AE0F6041A79675A00C5B67D /* Waypoints-MetaData.xml in Resources */,
 				5CF655B719AD6927000AC913 /* BFEE_10B.m4a in Resources */,
 				1A35943B1AE76129003B3B41 /* TheMysteryIsSolvedQ2A4.mp3 in Resources */,
@@ -6204,6 +6226,7 @@
 				5C776BF219C93E1E000DBC65 /* oxygenS.m4a in Resources */,
 				5C7FE0F719A7E43C00CBBE0E /* BFCE_10A.m4a in Resources */,
 				B95228FD1BA0CDAB00093528 /* Story1-The-Lucky-Stone-PM-1.xhtml in Resources */,
+				5C9835751BCC660D00E94691 /* scene1.png in Resources */,
 				1A8036801B0B1C62004A164A /* GettingReadyQ5A2.mp3 in Resources */,
 				1A8036741B0B1C62004A164A /* GettingReadyQ3.mp3 in Resources */,
 				5C776A6319C241EE000DBC65 /* CWWB6.m4a in Resources */,
@@ -6498,6 +6521,7 @@
 				5C776A6019C241EE000DBC65 /* CWWB3.m4a in Resources */,
 				B95229191BA0CDAB00093528 /* Translations-MetaData.xml in Resources */,
 				1A8036A31B0B1C62004A164A /* IntroductionToTheBestFarmQ5A2.mp3 in Resources */,
+				5C98357B1BCC673500E94691 /* house_roof2_damaged.png in Resources */,
 				B9C9E9CB1B8EA0A800AFC328 /* island_Molokai.png in Resources */,
 				1A2D70C71AAA74FA009E7B5B /* Story4-More-is-Missing-IM-1.xhtml in Resources */,
 				B95229411BA1130100093528 /* picture.png in Resources */,

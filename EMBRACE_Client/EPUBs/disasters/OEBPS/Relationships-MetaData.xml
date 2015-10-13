@@ -9,11 +9,14 @@
         <relationship obj1Id="india" can="hit" action="group" obj2Id="eurasia"/>
         <relationship obj1Id="india" can="leave" action="ungroup" obj2Id="eurasia"/>
         <relationship obj1Id="india" can="touch" action="group" obj2Id="australia"/>
+        <relationship obj1Id="kauai" can="leave" action="ungroup" obj2Id="grey_plate_kauai"/>
         <relationship obj1Id="kauai" can="touchAsKauai" action="group" obj2Id="grey_plate_kauai"/>
+        <relationship obj1Id="kauai" can="touchAsKauai2" action="group" obj2Id="grey_plate_kauai"/>
         <relationship obj1Id="lava" can="getIn" action="group" obj2Id="hawaii"/>
         <relationship obj1Id="lava" can="touchAsKauai" action="group" obj2Id="grey_plate_kauai"/>
         <relationship obj1Id="lava" can="touchAsOahu" action="group" obj2Id="grey_plate_kauai"/>
         <relationship obj1Id="north_america" can="leave" action="ungroup" obj2Id="california"/>
+        <relationship obj1Id="oahu" can="leave" action="ungroup" obj2Id="grey_plate_kauai"/>
         <relationship obj1Id="oahu" can="touchAsOahu" action="group" obj2Id="grey_plate_kauai"/>
     </relationships>
 </metadata>

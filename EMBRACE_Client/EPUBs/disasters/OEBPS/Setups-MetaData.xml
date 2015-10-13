@@ -13,12 +13,11 @@
             <group obj1Id="kauai" action="touchAsKauai" obj2Id="grey_plate_kauai"/>
         </story>
         <story title="Volcanoes and the Making of Hawaii" page_id="story4-PM-4">
-            <group obj1Id="kauai" action="touchAsKauai" obj2Id="grey_plate_kauai"/>
+            <group obj1Id="kauai" action="touchAsKauai2" obj2Id="grey_plate_kauai"/>
             <group obj1Id="oahu" action="touchAsOahu" obj2Id="grey_plate_kauai"/>
         </story>
         <story title="Volcanoes and the Making of Hawaii" page_id="story4-PM-5">
-            <group obj1Id="kauai" action="touchAsKauai" obj2Id="grey_plate_kauai"/>
-            <group obj1Id="oahu" action="touchAsOahu" obj2Id="grey_plate_kauai"/>
+            <group obj1Id="kauai" action="touchAsKauai2" obj2Id="grey_plate_kauai"/>
         </story>
     </setups>
 </metadata>

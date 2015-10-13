@@ -156,6 +156,12 @@
     <item href="Images/grey_plate_hawaii.png" id="grey_plate_hawaii.png" media-type="image/png" />
     <item href="Images/grey_plate_molokai.png" id="grey_plate_molokai.png" media-type="image/png" />
     <item href="Images/grey_plate_oahu.png" id="grey_plate_oahu.png" media-type="image/png" />
+    <item href="Images/house_noroof2_damaged.png" id="house_noroof2_damaged.png" media-type="image/png" />
+    <item href="Images/house_roof2_damaged.png" id="house_roof2_damaged.png" media-type="image/png" />
+    <item href="Images/Picture1resized.png" id="Picture1resized.png" media-type="image/png" />
+    <item href="Images/scene1.png" id="scene1.png" media-type="image/png" />
+    <item href="Images/scene2.png" id="scene2.png" media-type="image/png" />
+    <item href="Images/scene3.png" id="scene3.png" media-type="image/png" />
   </manifest>
   <spine toc="ncx">
     <itemref idref="story0-PM" />
