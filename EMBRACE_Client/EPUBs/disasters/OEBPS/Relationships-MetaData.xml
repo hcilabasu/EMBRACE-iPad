@@ -13,6 +13,7 @@
         <relationship obj1Id="kauai" can="leave" action="ungroup" obj2Id="grey_plate_kauai"/>
         <relationship obj1Id="kauai" can="touchAsKauai" action="group" obj2Id="grey_plate_kauai"/>
         <relationship obj1Id="kauai" can="touchAsKauai2" action="group" obj2Id="grey_plate_kauai"/>
+        <relationship obj1Id="kauai" can="touchAsKauai3" action="group" obj2Id="grey_plate_kauai"/>
         <relationship obj1Id="lava" can="getIn" action="group" obj2Id="hawaii"/>
         <relationship obj1Id="lava" can="touchAsKauai" action="group" obj2Id="grey_plate_kauai"/>
         <relationship obj1Id="lava" can="touchAsOahu" action="group" obj2Id="grey_plate_kauai"/>

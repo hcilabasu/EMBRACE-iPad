@@ -18,7 +18,8 @@
         <hotspot objId="eurasia" action="hit" role="object" x="50%" y="50%"/>
         <hotspot objId="grey_plate_kauai" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="grey_plate_kauai" action="touchAsKauai" role="object" x="60%" y="0%"/>
-        <hotspot objId="grey_plate_kauai" action="touchAsKauai2" role="object" x="0%" y="0%"/>
+        <hotspot objId="grey_plate_kauai" action="touchAsKauai2" role="object" x="20%" y="0%"/>
+        <hotspot objId="grey_plate_kauai" action="touchAsKauai3" role="object" x="10%" y="0%"/>
         <hotspot objId="grey_plate_kauai" action="touchAsOahu" role="object" x="80%" y="0%"/>
         <hotspot objId="house_roof2" action="pull" role="object" x="50%" y="50%"/>
         <hotspot objId="houses" action="getIn" role="subject" x="0%" y="0%"/>
@@ -29,6 +30,7 @@
         <hotspot objId="india" action="touch" role="subject" x="94.7%" y="23.4%"/>
         <hotspot objId="kauai" action="touchAsKauai" role="subject" x="50%" y="89%"/>
         <hotspot objId="kauai" action="touchAsKauai2" role="subject" x="0%" y="89%"/>
+        <hotspot objId="kauai" action="touchAsKauai3" role="subject" x="0%" y="89%"/>
         <hotspot objId="lava" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="lava" action="touchAsKauai" role="subject" x="50%" y="95%"/>
         <hotspot objId="lava" action="touchAsOahu" role="subject" x="50%" y="95%"/>

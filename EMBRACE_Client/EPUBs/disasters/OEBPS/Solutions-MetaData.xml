@@ -149,10 +149,12 @@
                 <step number="1">
                     <check obj1Id="grey_plate_kauai" action="getIn" locationId="left"/>
                     <ungroupAndStay obj1Id="oahu" action="leave" obj2Id="grey_plate_kauai"/>
+                    <ungroupAndStay obj1Id="kauai" action="leave" obj2Id="grey_plate_kauai"/>
                     <swapImage obj1Id="grey_plate_kauai" action="left2"/>
                     <move obj1Id="oahu" action="getIn" waypointId="oahu_left"/>
                     <appear obj1Id="molokai" action="appear"/>
                     <appear obj1Id="hawaii" action="appear"/>
+                    <groupAuto obj1Id="kauai" action="touchAsKauai3" obj2Id="grey_plate_kauai"/>
                 </step>
             </sentence>
         </story>
