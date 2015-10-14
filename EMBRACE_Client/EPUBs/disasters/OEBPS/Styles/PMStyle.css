@@ -32,7 +32,8 @@
 
 .textbox.custom
 {
-
+    width:300px;
+    float: left;
 }
 
 .textbox.normal

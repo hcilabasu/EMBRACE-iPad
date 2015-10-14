@@ -6,7 +6,7 @@
         <alternateImage objId="bulge" action="forms_bulge" originalSrc="ocean_wave_move.png" alternateSrc="bulge.png" width="363px" x="50%" y="60%" class="manipulationObject" z=""/>
         <alternateImage objId="bulge" action="forms_wave" originalSrc="bulge.png" alternateSrc="ocean_wave_move.png" width="520px" x="50%" y="31%" class="manipulationObject" z=""/>
         <alternateImage objId="california" action="crack" originalSrc="california_nofault.png" alternateSrc="california_fault.png" width="114px" x="19.19%" y="41.35%" class="manipulationObject" z=""/>
-        <alternateImage objId="dirt_tornado" action="appear" originalSrc="dirt_tornado.png" alternateSrc="dirt_tornado.png" width="289px" x="43.5%" y="12%" class="manipulationObject" z="1"/>
+        <alternateImage objId="dirt_tornado" action="appear" originalSrc="dirt_tornado.png" alternateSrc="dirt_tornado.png" width="289px" x="71.777344%" y="11.505682%" class="manipulationObject" z="1"/>
         <alternateImage objId="dirt_tornado" action="shrink" originalSrc="dirt_tornado.png" alternateSrc="dirt_tornado.png" width="200px" x="43.5%" y="26%" class="manipulationObject" z="1"/>
         <alternateImage objId="grey_plate_kauai" action="left" originalSrc="scene1.png" alternateSrc="scene2.png" width="786.94px" x="23.242188%" y="54.048294%" class="manipulationObject" z="1"/>
         <alternateImage objId="grey_plate_kauai" action="left2" originalSrc="scene2.png" alternateSrc="scene3.png" width="1012.34px" x="1.171875%" y="53.764206%" class="manipulationObject" z="1"/>

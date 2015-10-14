@@ -175,8 +175,8 @@
             </sentence>
             <sentence number="4">
                 <step number="1">
-                    <check obj1Id="air_blue" action="getIn" locationId="air_down"/>
-                    <move obj1Id="air_blue" action="getIn" waypointId="air_down"/>
+                    <check obj1Id="droplet_group" action="getIn" locationId="rain_down"/>
+                    <move obj1Id="droplet_group" action="getIn" waypointId="rain_down"/>
                 </step>
             </sentence>
         </story>
@@ -190,8 +190,11 @@
             <sentence number="6">
                 <step number="1">
                     <group obj1Id="dirt_move" action="pull" obj2Id="air_red"/>
+                    <ungroupAndStay obj1Id="dirt_move" action="leave" obj2Id="air_red"/>
                     <appear obj1Id="dirt_tornado" action="appear"/>
                     <disappearAuto obj1Id="dirt_move" action="disappear" obj2Id="dirt_move"/>
+                    <groupAuto obj1Id="air_red" action="touch" obj2Id="dirt_tornado"/>
+                    <groupAuto obj1Id="droplet_group" action="touch2" obj2Id="dirt_tornado"/>
                 </step>
             </sentence>
             <sentence number="8">

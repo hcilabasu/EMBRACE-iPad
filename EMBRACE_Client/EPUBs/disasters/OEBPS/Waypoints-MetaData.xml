@@ -3,7 +3,7 @@
     <waypoints>
         <waypoint waypointId="africa_away" x="32.08%" y="40.32%"/>
         <waypoint waypointId="air_down" x="54.5%" y="50.5%"/>
-        <waypoint waypointId="air_up" x="54.5%" y="60%"/>
+        <waypoint waypointId="air_up" x="80%" y="46%"/>
         <waypoint waypointId="bulge_left" x="10%" y="69.5%"/>
         <waypoint waypointId="california_boom" x="27.2%" y="62%"/>
         <waypoint waypointId="california_up" x="9.5%" y="31%"/>
@@ -15,6 +15,7 @@
         <waypoint waypointId="ocean" x="35%" y="69%"/>
         <waypoint waypointId="ocean_down" x="50%" y="79%"/>
         <waypoint waypointId="plate_move" x="74%" y="90%"/>
+        <waypoint waypointId="rain_down" x="79.003906%" y="49.5%"/>
         <waypoint waypointId="tornado" x="43.5%" y="12%"/>
         <waypoint waypointId="upHill" x="47%" y="34%"/>
     </waypoints>

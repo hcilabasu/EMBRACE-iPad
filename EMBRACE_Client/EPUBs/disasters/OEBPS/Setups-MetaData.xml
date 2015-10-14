@@ -19,5 +19,11 @@
         <story title="Volcanoes and the Making of Hawaii" page_id="story4-PM-5">
             <group obj1Id="kauai" action="touchAsKauai3" obj2Id="grey_plate_kauai"/>
         </story>
+        <story title="Tornados" page_id="story5-PM-1">
+            <group obj1Id="air_blue" action="touch" obj2Id="droplet_group"/>
+        </story>
+        <story title="Tornados" page_id="story5-PM-2">
+            <group obj1Id="air_blue" action="touch" obj2Id="droplet_group"/>
+        </story>
     </setups>
 </metadata>
