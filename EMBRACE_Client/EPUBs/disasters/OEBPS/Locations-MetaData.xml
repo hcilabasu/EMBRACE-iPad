@@ -3,7 +3,7 @@
     <locations>
         <location locationId="africa_away" x="0%" y="0%" height="100%" width="100%"/>
         <location locationId="air_down" x="40%" y="8%" height="100%" width="45%"/>
-        <location locationId="air_up" x="38%" y="0%" height="66.5%" width="40%"/>
+        <location locationId="air_up" x="70%" y="25%" height="37%" width="30%"/>
         <location locationId="anywhere" x="0%" y="0%" height="100%" width="100%"/>
         <location locationId="bulge_left" x="0%" y="46%" height="30%" width="76%"/>
         <location locationId="california_up" x="3%" y="0%" height="32.5%" width="12%"/>
