@@ -1139,12 +1139,12 @@ ConditionSetup *conditionSetup;
         ycord.borderStyle = UITextBorderStyleRoundedRect;
         
         width = [[UITextField alloc] initWithFrame:CGRectMake(10, 140, 180, 30)];
-        width.text= @"Width";
+        width.text= @"Width%";
         width.textColor = [UIColor blackColor];
         width.borderStyle = UITextBorderStyleRoundedRect;
         
         height = [[UITextField alloc] initWithFrame:CGRectMake(10, 180, 180, 30)];
-        height.text= @"Height";
+        height.text= @"Height%";
         height.textColor = [UIColor blackColor];
         height.borderStyle = UITextBorderStyleRoundedRect;
         
@@ -1519,7 +1519,7 @@ ConditionSetup *conditionSetup;
         [areaSpace removeFromSuperview];
     }
     
-    areaSpace = [[UIView alloc]initWithFrame:CGRectMake(([bookView frame].size.width * [xcord.text floatValue]/100) , ([bookView frame].size.height * [ycord.text floatValue]/100), [width.text floatValue], [height.text floatValue])];
+    areaSpace = [[UIView alloc]initWithFrame:CGRectMake(([bookView frame].size.width * [xcord.text floatValue]/100) , ([bookView frame].size.height * [ycord.text floatValue]/100), [bookView frame].size.width * [width.text floatValue]/100, [bookView frame].size.height * [height.text floatValue]/100)];
     areaSpace.backgroundColor = [UIColor whiteColor];
     self.isAreaViewVisible = true;
     [bookView addSubview:areaSpace];
