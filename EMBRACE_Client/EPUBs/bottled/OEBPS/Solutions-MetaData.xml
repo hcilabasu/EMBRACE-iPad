@@ -114,7 +114,7 @@
                     <swapImage obj1Id="lucas" action="sitOnChair"/>
                 </step>
             </sentence>
-            <sentence number="8">
+            <sentence number="9">
                 <step number="1">
                     <swapImage obj1Id="lucas" action="stand"/>
                     <check obj1Id="lucas" action="getIn" locationId="livingRoom"/>
@@ -123,7 +123,7 @@
             </sentence>
         </story>
         <story title="Baby Brother" activity_id="story3-PM-3">
-            <sentence number="10">
+            <sentence number="11">
                 <step number="1">
                     <check obj1Id="lucas" action="getIn" locationId="bedroom"/>
                     <ungroup obj1Id="lucas" action="drop" obj2Id="babybrother"/>
@@ -131,20 +131,20 @@
                     <move obj1Id="babybrother" action="getIn" waypointId="babyBedroom"/>
                 </step>
             </sentence>
-            <sentence number="11">
+            <sentence number="12">
                 <step number="1">
                     <group obj1Id="lucas" action="grabRight" obj2Id="ball"/>
                     <move obj1Id="lucas" action="getIn" waypointId="lucasBedroom"/>
                 </step>
             </sentence>
-            <sentence number="12">
+            <sentence number="13">
                 <step number="1">
                     <ungroupAndStay obj1Id="lucas" action="drop" obj2Id="ball"/>
                     <shakeOrTap obj1Id="ball" action="getIn" locationId="bedroom"/>
                     <move obj1Id="ball" action="getIn" waypointId="pastBaby"/>
                 </step>
             </sentence>
-            <sentence number="13">
+            <sentence number="14">
                 <step number="1">
                     <group obj1Id="lucas" action="grabRight" obj2Id="boardgame"/>
                     <ungroup obj1Id="lucas" action="drop" obj2Id="boardgame"/>
@@ -153,7 +153,7 @@
                     <appear obj1Id="boardgame_open" action="appear"/>
                 </step>
             </sentence>
-            <sentence number="15">
+            <sentence number="16">
                 <step number="1">
                     <check obj1Id="lucas" action="getIn" locationId="livingRoom"/>
                     <move obj1Id="lucas" action="getIn" waypointId="lucasLivingRoom"/>
@@ -196,7 +196,7 @@
                     <move obj1Id="papa" action="getIn" waypointId="papaRiver"/>
                 </step>
             </sentence>
-            <sentence number="6">
+            <sentence number="7">
                 <step number="1">
                     <group obj1Id="lucas" action="hug" obj2Id="papa"/>
                     <ungroup obj1Id="lucas" action="leave" obj2Id="papa"/>
@@ -206,7 +206,7 @@
                     <disappearAuto obj1Id="papa" action="disappear" obj2Id="papa"/>
                 </step>
             </sentence>
-            <sentence number="7">
+            <sentence number="8">
                 <step number="1">
                     <disappearAuto obj1Id="hug" action="disappear" obj2Id="hug"/>
                     <appear obj1Id="lucas" action="appear"/>
@@ -223,7 +223,7 @@
             </sentence>
         </story>
         <story title="Words of Wisdom" activity_id="story4-PM-3">
-            <sentence number="8">
+            <sentence number="9">
                 <step number="1">
                     <group obj1Id="lucas" action="grabRight" obj2Id="rattle"/>
                     <move obj1Id="lucas" action="getIn" waypointId="lucasRattle"/>
