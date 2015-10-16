@@ -7,7 +7,7 @@
         <location locationId="anywhere" x="0%" y="0%" height="100%" width="100%"/>
         <location locationId="bulge_left" x="0%" y="46%" height="30%" width="76%"/>
         <location locationId="california_up" x="3%" y="0%" height="32.5%" width="12%"/>
-        <location locationId="california_up2" x="13%" y="0%" height="64%" width="29%"/>
+        <location locationId="california_up2" x="3%" y="0%" height="63%" width="15%"/>
         <location locationId="land" x="34%" y="35%" height="50%" width="100%"/>
         <location locationId="lavaUp" x="75%" y="43%" height="21%" width="16%"/>
         <location locationId="lavaUpHawaii" x="75%" y="25%" height="21%" width="16%"/>
