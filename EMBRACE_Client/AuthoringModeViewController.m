@@ -162,7 +162,8 @@ ConditionSetup *conditionSetup;
     TapLocationX = 0;
     TapLocationY = 0;
     isEntryViewVisible = false;
-    self.ImageOptions = [NSArray arrayWithObjects: @"Save Waypoint", @"Save Hotspot", @"Save Location", @"Save Z-Index", @"Save Width", @"Save Height", @"Save Manipulation Type", nil];
+    
+    self.ImageOptions = [NSArray arrayWithObjects: @"Save Waypoint", @"Save Hotspot", @"Save Location", @"Save Z-Index", @"Save Width", @"Save Height", @"Save Manipulation Type", @"FR: Save Animation", nil];
     
     //creates instance of introduction class
     IntroductionClass = [[IntroductionViewController alloc]init];
@@ -523,7 +524,17 @@ ConditionSetup *conditionSetup;
 -(void)saveHotspot:(id)sender{
     /*convert px values to percentages*/
     
-    //Converts inputed elements into a hotspot
+    /*recieve the height and width of the object and convert */
+    NSString *xcordPercent = [NSString stringWithFormat:@"%ld", (long)[xcord.text integerValue]];
+    NSString *ycordPercent = [NSString stringWithFormat:@"%ld", (long)[ycord.text integerValue]];
+    
+    //NSInteger hleft = [hotspotLeft.text integerValue];
+    //NSInteger htop = [hotspotTop.text integerValue];
+    //NSInteger hwidth = [hotspotWidth.text integerValue];
+    //NSInteger hheight = [hotspotHeight.text integerValue];
+    //NSInteger xpercent = hleft + hwidth * [xcordPercent integerValue]/100;
+    //NSInteger ypercent = htop + hheight * [ycordPercent integerValue]/100;
+    
     NSString* newHotspot = [NSString stringWithFormat:@"hotspot objId=\"%@\" action=\"%@\" role=\"%@\" x=\"%@%%\" y=\"%@%%\"", hotspotID.text, action.text, role.text, xcordPercent, ycordPercent];
     NSLog(@"%@", newHotspot);
     
@@ -541,6 +552,7 @@ ConditionSetup *conditionSetup;
     {
         xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
     }
+    
     
     NSError *error;
     
@@ -681,7 +693,7 @@ ConditionSetup *conditionSetup;
     NSString *heightPercent = [NSString stringWithFormat:@"%ld", (long)[height.text integerValue]];
     NSString *widthPercent = [NSString stringWithFormat:@"%ld", (long)[width.text integerValue]];
     NSString* newLocation = [NSString stringWithFormat:@"location locationId=\"%@\" x=\"%@%%\" y=\"%@%%\" height=\"%@%%\" width=\"%@%%\"", locationID.text, xcordPercent, ycordPercent, heightPercent, widthPercent];
-    
+
     //set file path to access introduction metadata
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -697,30 +709,30 @@ ConditionSetup *conditionSetup;
         xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
     }
     
-    //break out metadata file into seperate components
-    GDataXMLDocument *metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:nil];
+     //break out metadata file into seperate components
+     GDataXMLDocument *metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:nil];
     
-    xmlDocTemp = [[DDXMLDocument alloc] initWithData:xmlData options:0 error:nil];
+     xmlDocTemp = [[DDXMLDocument alloc] initWithData:xmlData options:0 error:nil];
     
-    //Reading in the location information.
-    NSArray* locationElements = [metadataDoc nodesForXPath:@"//locations" error:nil];
-    GDataXMLElement* locationElement = (GDataXMLElement*)[locationElements objectAtIndex:0];
+     //Reading in the location information.
+     NSArray* locationElements = [metadataDoc nodesForXPath:@"//locations" error:nil];
+     GDataXMLElement* locationElement = (GDataXMLElement*)[locationElements objectAtIndex:0];
+     
+     NSArray* locations = [locationElement elementsForName:@"location"];
     
-    NSArray* locations = [locationElement elementsForName:@"location"];
+     bool doesLocationExist = false;
     
-    bool doesLocationExist = false;
-    
-    //Read in the location information.
-    for (GDataXMLElement* location in locations) {
-        NSLog(@"%@", [location XMLString]);
+     //Read in the location information.
+     for (GDataXMLElement* location in locations) {
+         NSLog(@"%@", [location XMLString]);
         
-        if ([[location XMLString] isEqualToString:newLocation]) {
-            NSLog(@"Error: Location already exists");
-            NSLog(@"%@",newLocation);
-            doesLocationExist = true;
-            return;
-        }
-    }
+         if ([[location XMLString] isEqualToString:newLocation]) {
+             NSLog(@"Error: Location already exists");
+             NSLog(@"%@",newLocation);
+             doesLocationExist = true;
+             return;
+         }
+     }
     
     //if the locaiton doesn't already exist, add it
     if (doesLocationExist == false) {
@@ -1207,8 +1219,8 @@ ConditionSetup *conditionSetup;
         /*
          add new sub view with textboxes, cancel button, and save button
          */
-        
-        entryview = [[UIView alloc] initWithFrame:CGRectMake(TapLocationX-150, TapLocationY-150, 200, 160)];
+       
+        entryview = [[UIView alloc] initWithFrame:CGRectMake(670, 10, 200, 160)];
         entryview.backgroundColor = [UIColor whiteColor];
         
         objectID = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 180, 30)];
@@ -1369,6 +1381,89 @@ ConditionSetup *conditionSetup;
         /*
          add new sub view with textboxes, cancel button, and save button
          */
+        
+        entryview = [[UIView alloc] initWithFrame:CGRectMake(670, 10, 200, 160)];
+        entryview.backgroundColor = [UIColor whiteColor];
+        
+        objectID = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 180, 30)];
+        
+        NSString *objectAtPoint= nil;
+        objectAtPoint = [self getObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"manipulationObject"];
+        
+        if (objectAtPoint == nil) {
+            objectAtPoint = [self getObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"backgroundObject"];
+            
+            if (objectAtPoint == nil) {
+                objectID.text = @"HotspotID";
+                //may actually just want to return at this point because we did not press on any manipulation or background object
+            }
+            else
+            {
+                objectID.text = objectAtPoint;
+            }
+        }
+        else
+        {
+            objectID.text = objectAtPoint;
+        }
+        
+        objectID.textColor = [UIColor blackColor];
+        objectID.borderStyle = UITextBorderStyleRoundedRect;
+        
+        manipulationType = [[UITextField alloc] initWithFrame:CGRectMake(10, 60, 180, 30)];
+        
+        //need to return current manipulation type
+        NSString *manipulationTypeOfObjectAtPoint= nil;
+        manipulationTypeOfObjectAtPoint = [self getManipulationTypeOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY)];
+        
+        if (manipulationTypeOfObjectAtPoint == nil) {
+            
+            if (objectAtPoint == nil)
+            {
+                manipulationType.text = @"manipulationType";
+                //may actually just want to return at this point because we did not press on any manipulation or background object
+            }
+            else
+            {
+                manipulationType.text = manipulationTypeOfObjectAtPoint;
+            }
+        }
+        else
+        {
+            manipulationType.text = manipulationTypeOfObjectAtPoint;
+        }
+        
+        
+        manipulationType.textColor = [UIColor blackColor];
+        manipulationType.borderStyle = UITextBorderStyleRoundedRect;
+        
+        UIButton *cancel = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [cancel addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
+        cancel.frame = CGRectMake(10, 100, 80, 50);
+        [cancel setTitle:@"Cancel" forState:UIControlStateNormal];
+        
+        UIButton *save = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [save addTarget:self action:@selector(changeManipulationType:) forControlEvents:UIControlEventTouchUpInside];
+        save.frame = CGRectMake(100, 100, 80, 50);
+        [save setTitle:@"Save" forState:UIControlStateNormal];
+        
+        SingleEntry = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 160)];
+        SingleEntry.backgroundColor = [UIColor whiteColor];
+        [SingleEntry addSubview:objectID];
+        [SingleEntry addSubview:manipulationType];
+        [SingleEntry addSubview:cancel];
+        [SingleEntry addSubview:save];
+        [entryview addSubview:SingleEntry];
+        [self.view addSubview:entryview];
+        
+    }
+    else if(row == 7)
+    {
+        /*
+         TODO: add functionality to save animations
+         
+         */
+        
     }
 }
 
@@ -1426,7 +1521,6 @@ ConditionSetup *conditionSetup;
     
 }
 
-//Close the current menu option
 -(void)cancel:(id)sender{
     [entryview removeFromSuperview];
     self.isEntryViewVisible = false;
@@ -1872,9 +1966,45 @@ ConditionSetup *conditionSetup;
         
         if([curChar isEqualToString:@"<"])
         {
+            NSRange range = NSMakeRange(i, newImages.length-i);
+            int topStartIndex = [newImages rangeOfString:@"top:" options:0 range:range].location;
+            int topEndIndex = [[newImages substringFromIndex:topStartIndex+4] rangeOfString:@";"].location;
+            NSString *topString = [newImages substringFromIndex:topStartIndex+4];
+            BOOL needsConversion = nil;
+            topString = [topString substringToIndex:topEndIndex];
+            
+            if ([topString rangeOfString:@"px"].location != NSNotFound) {
+                needsConversion = true;
+                topString = [topString substringToIndex:topString.length-2];
+            }
+            else
+            {
+                needsConversion = false;
+                topString = [topString substringToIndex:topString.length-1];
+            }
+            
+            [topString stringByReplacingOccurrencesOfString:@" " withString:@""];
+            
+            int leftStartIndex = [newImages rangeOfString:@"left:" options:0 range:range].location;
+            int leftEndIndex = [[newImages substringFromIndex:leftStartIndex+5] rangeOfString:@";"].location;
+            NSString *leftString = [newImages substringFromIndex:leftStartIndex+5];
+            leftString = [leftString substringToIndex:leftEndIndex];
+            
+            if ([leftString rangeOfString:@"px"].location != NSNotFound) {
+                needsConversion = true;
+                leftString = [leftString substringToIndex:leftString.length-2];
+            }
+            else
+            {
+                needsConversion=false;
+                leftString = [leftString substringToIndex:leftString.length-1];
+            }
+            
+            [leftString stringByReplacingOccurrencesOfString:@" " withString:@""];
+            
             for(int j = i; j<newImages.length; j++)
             {
-                
+            
                 NSString *nextChar = [NSString stringWithFormat:@"%c", [newImages characterAtIndex:j]];
                 
                 if ([nextChar isEqualToString:@">"]) {
@@ -1882,6 +2012,49 @@ ConditionSetup *conditionSetup;
                     concatenatedString = [concatenatedString stringByAppendingString:nextChar];
                     i=j;
                     j=newImages.length;
+                }
+                else if(j==topStartIndex)
+                {
+                    float topPixelValue = [topString floatValue];
+                    NSString *topPercentValueString;
+                    
+                    float viewH = [self areaSpace].frame.size.height;
+                    float viewW = [self areaSpace].frame.size.width;
+                    float bookH = [bookView frame].size.height;
+                    float bookW = [bookView frame].size.width;
+                    NSString *htmlH = [bookView stringByEvaluatingJavaScriptFromString:@"document.innerWidth"];
+                    NSString *htmlW = [bookView stringByEvaluatingJavaScriptFromString:@"document.innerHeight"];
+                    
+                    
+                    if (needsConversion) {
+                        Float32  topPercentValue = ((topPixelValue / ([bookView frame].size.height))*100); //-32
+                        topPercentValueString = [NSString stringWithFormat:@"top: %f%%",topPercentValue];
+                    }
+                    else
+                    {
+                        topPercentValueString = [NSString stringWithFormat:@"top: %f%%",topPixelValue];
+                    }
+                    
+                    concatenatedString = [concatenatedString stringByAppendingString:topPercentValueString];
+                    j=topEndIndex+topStartIndex+3;
+                }
+                else if(j == leftStartIndex)
+                {
+                    float leftPixelValue = [leftString floatValue];
+                    NSString *leftPercentValueString;
+                    
+                    if (needsConversion) {
+                        Float32 leftPercentValue = ((leftPixelValue / ([bookView frame].size.width))*100);//-12
+                        leftPercentValueString = [NSString stringWithFormat:@"left: %f%%",leftPercentValue];
+                    }
+                    else
+                    {
+                        leftPercentValueString = [NSString stringWithFormat:@"left: %f%%",leftPixelValue];
+                    }
+                    
+                    
+                    concatenatedString = [concatenatedString stringByAppendingString:leftPercentValueString];
+                    j=leftEndIndex+leftStartIndex+4;
                 }
                 else
                 {
@@ -1918,20 +2091,20 @@ ConditionSetup *conditionSetup;
     //
     NSString *documentsDirectory = [paths objectAtIndex:0];
     
-    NSString* fileName = [NSString stringWithFormat:@"%@%@",[[currentPage lastPathComponent] substringToIndex:[currentPage lastPathComponent].length-6], @"copy"];
+        NSString* fileName = [NSString stringWithFormat:@"%@%@",[[currentPage lastPathComponent] substringToIndex:[currentPage lastPathComponent].length-6], @"copy"];
     
     //file path to save to
     NSString *path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@", fileName, @"xhtml"]];
     //toggle to switch between saving at logging location or to overide file
     //NSString *path = [book mainContentPath] stringByAppendingString:fileName];
     
-    if (![finalHTML writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil]) {
-        NSLog(@"Could not write document out...");
-        NSLog(@"%@", finalHTML);
-    }
+        if (![finalHTML writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil]) {
+            NSLog(@"Could not write document out...");
+            NSLog(@"%@", finalHTML);
+        }
     
-    NSLog(@"%@", finalHTML);
-    NSLog(@"Successfully wrote file");
+        NSLog(@"%@", finalHTML);
+        NSLog(@"Successfully wrote file");
 }
 
 -(void)saveCurrentStep{
@@ -2091,7 +2264,7 @@ ConditionSetup *conditionSetup;
     //logs only if object is moved by computer action, user pan done outside of this function
     if (![waypointID isEqualToString:@"isMoving"]) {
         //Logging added by James for Automatic Computer Move Object
-        //[[ServerCommunicationController sharedManager] logComputerMoveObject: object : waypointID: startLocation.x : startLocation.y : adjLocation.x : adjLocation.y : @"Snap to Hotspot" : bookTitle : chapterTitle : currentPage : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] : [NSString stringWithFormat:@"%lu" , (unsigned long)currentStep]];
+        
     }
     
     
@@ -2252,37 +2425,37 @@ ConditionSetup *conditionSetup;
 -(IBAction)pressedNext:(id)sender {
     if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
         // If the user pressed next
-        if (IntroductionClass.currentIntroStep > IntroductionClass.totalIntroSteps) {
-            [self loadNextPage]; //logging done in loadNextPage
-        }
-        else {
-            // Load the next step
-            [IntroductionClass loadIntroStep:bookView: currentSentence];
-            [self setupCurrentSentenceColor];
-            
-            //add logging: next intro step
-        }
+            if (IntroductionClass.currentIntroStep > IntroductionClass.totalIntroSteps) {
+                [self saveCurrentHTML];
+                [self loadNextPage]; //logging done in loadNextPage
+            }
+            else {
+                // Load the next step
+                [IntroductionClass loadIntroStep:bookView: currentSentence];
+                [self setupCurrentSentenceColor];
+                
+                //add logging: next intro step
+            }
     }
     else if ([IntroductionClass.vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
-        
-        [self loadNextPage]; //logging done in loadNextPage
-    }
     
-    //else if (stepsComplete || numSteps == 0 || !IntroductionClass.allowInteractions) {
-    else{
-        //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
-        currentSentence++;
-        
-        //Set up current sentence appearance and solution steps
-        [self saveCurrentHTML];
-        [self setupCurrentSentence];
-        [self colorSentencesUponNext];
-        
-        //currentSentence is 1 indexed.
-        if(currentSentence > totalSentences) {
-            [self loadNextPage];
-            //logging done in loadNextPage
-        }
+            [self saveCurrentHTML];
+            [self loadNextPage]; //logging done in loadNextPage
+    }
+        else{
+            //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
+            currentSentence++;
+            
+            //Set up current sentence appearance and solution steps
+            [self saveCurrentHTML];
+            [self setupCurrentSentence];
+            [self colorSentencesUponNext];
+            
+            //currentSentence is 1 indexed.
+            if(currentSentence > totalSentences) {
+                [self loadNextPage];
+                //logging done in loadNextPage
+            }
     }
 }
 

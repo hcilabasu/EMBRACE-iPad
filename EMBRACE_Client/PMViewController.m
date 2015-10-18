@@ -908,12 +908,20 @@ BOOL wasPathFollowed = false;
             
             [self incrementCurrentStep];
         }
-        else if ([[currSolStep stepType] isEqualToString:@"appear"]) {
+        else if ([[currSolStep stepType] isEqualToString:@"appear"])
+        {
             [self loadImage];
             [self incrementCurrentStep];
         }
-        else if ([[currSolStep stepType] isEqualToString:@"disappear"]) {
+        
+        else if ([[currSolStep stepType] isEqualToString:@"disappearAuto"])
+        {
             [self hideImage];
+            [self incrementCurrentStep];
+        }
+        else if([[currSolStep stepType] isEqualToString:@"changeZIndex"])
+        {
+            [self changeZIndex];
             [self incrementCurrentStep];
         }
         else if([[currSolStep stepType] isEqualToString:@"animate"]) {
@@ -1220,6 +1228,7 @@ BOOL wasPathFollowed = false;
                     if ([self checkSolutionForSubject:imageAtPoint]) {
                         [self incrementCurrentStep];
                     }
+                    
                 }
             }
         }
@@ -1834,27 +1843,6 @@ BOOL wasPathFollowed = false;
                             }
                         }
                     }
-                    /*
-                    else if([[currSolStep stepType] isEqualToString:@"shakeOrTap"])
-                    {
-                        if ([self areHotspotsInsideArea]) {
-                            [self incrementCurrentStep];
-                        }
-                        else
-                        {
-                            //gets hotspot id for logging
-                            NSString* locationId = [currSolStep locationId];
-                            //Logging added by James for User Move Object to object
-                            
-                            [playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentStep];
-                            
-                            if(allowSnapback)
-                            {
-                                //snap the object back to its original location
-                                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false :@"None"];
-                            }
-                        }
-                    }*/
                     else {
                         //Check if the object is overlapping anything
                         NSArray* overlappingWith = [self getObjectsOverlappingWithObject:movingObjectId];
@@ -2719,6 +2707,25 @@ BOOL wasPathFollowed = false;
                 Waypoint* waypoint = [model getWaypointWithId:waypointId];
                 CGPoint waypointLocation = [self getWaypointLocation:waypoint];
                 
+                NSString* objectClassName = [NSString stringWithFormat:@"document.getElementById('%@').className", object1Id];
+                objectClassName = [bookView stringByEvaluatingJavaScriptFromString:objectClassName];
+                
+                if ([objectClassName rangeOfString:@"center"].location != NSNotFound) {
+                
+                //NSString* requestImageHeight = [NSString stringWithFormat:@"%@.height", object1Id];
+                //NSString* requestImageWidth = [NSString stringWithFormat:@"%@.width", object1Id];
+                
+                //float imageHeight = [[bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
+                //float imageWidth = [[bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
+                
+                //waypointLocation.x = waypointLocation.x -imageWidth/2;
+                //waypointLocation.y = waypointLocation.y-imageHeight/2;
+                    
+                    hotspotLocation.x=0;
+                    hotspotLocation.y=0;
+                }
+                
+                
                 //Move the object
                 [self moveObject:object1Id :waypointLocation :hotspotLocation :false: waypointId];
                 
@@ -2762,15 +2769,16 @@ BOOL wasPathFollowed = false;
             NSString* action = [currSolStep action];
             
             //Get alternate image
-            AlternateImage* altImage = [model getAlternateImageWithAction:action];
+            AlternateImage* altImage = [model getAlternateImageWithActionAndObjectID:action:object1Id];
             
             //Get alternate image information
             NSString* altSrc = [altImage alternateSrc];
             NSString* width = [altImage width];
             CGPoint location = [altImage location];
+            NSString* zIndex = [altImage zPosition];
             
             //Swap images using alternative src
-            NSString* swapImages = [NSString stringWithFormat:@"swapImageSrc('%@', '%@', '%@', %f, %f)", object1Id, altSrc, width, location.x, location.y];
+            NSString* swapImages = [NSString stringWithFormat:@"swapImageSrc('%@', '%@', '%@', %f, %f, '%@')", object1Id, altSrc, width, location.x, location.y, zIndex];
             [bookView stringByEvaluatingJavaScriptFromString:swapImages];
             
             //Logging added by James for Swap Images
@@ -2796,7 +2804,7 @@ BOOL wasPathFollowed = false;
             NSString* action = [currSolStep action];
             
             //Get alternate image
-            AlternateImage* altImage = [model getAlternateImageWithAction:action];
+            AlternateImage* altImage = [model getAlternateImageWithActionAndObjectID:action:object1Id];
             
             //Get alternate image information
             NSString* altSrc = [altImage alternateSrc];
@@ -2805,7 +2813,7 @@ BOOL wasPathFollowed = false;
             NSString* className = [altImage className];
             NSString* zPosition = [altImage zPosition];
             
-            //Load image using alternative src
+            //Swap images using alternative src
             NSString* loadImage = [NSString stringWithFormat:@"loadImage('%@', '%@', '%@', %f, %f, '%@', %d)", object1Id, altSrc, width, location.x, location.y, className, zPosition.intValue];
             [bookView stringByEvaluatingJavaScriptFromString:loadImage];
         }
@@ -2823,12 +2831,45 @@ BOOL wasPathFollowed = false;
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
-        if ([[currSolStep stepType] isEqualToString:@"disappear"]) {
-            NSString* object1Id = [currSolStep object1Id];
+        if ([[currSolStep stepType] isEqualToString:@"disappearAuto"]) {
+            NSString* object2Id = [currSolStep object2Id];
             
             //Hide image
-            NSString* hideImage = [NSString stringWithFormat:@"removeImage('%@')", object1Id];
+            NSString* hideImage = [NSString stringWithFormat:@"removeImage('%@')", object2Id];
             [bookView stringByEvaluatingJavaScriptFromString:hideImage];
+        }
+    }
+}
+
+/*
+ *  Calls the changeZIndex from ImageManipulation.js file
+ */
+-(void)changeZIndex{
+    if (numSteps > 0) {
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        if ([[currSolStep stepType] isEqualToString:@"changeZIndex"]) {
+            //Get information for appear step type
+            NSString* object1Id = [currSolStep object1Id];
+            NSString* action = [currSolStep action];
+            
+            //Get alternate image
+            AlternateImage* altImage = [model getAlternateImageWithActionAndObjectID:action:object1Id];
+            
+            //Get alternate image information
+            NSString* altSrc = [altImage alternateSrc];
+            NSString* width = [altImage width];
+            CGPoint location = [altImage location];
+            NSString* className = [altImage className];
+            NSString* zPosition = [altImage zPosition];
+            
+            //Swap images using alternative src
+            NSString* loadImage = [NSString stringWithFormat:@"loadImage('%@', '%@', '%@', %f, %f, '%@', %d)", object1Id, altSrc, width, location.x, location.y, className, zPosition.intValue];
+            [bookView stringByEvaluatingJavaScriptFromString:loadImage];
         }
     }
 }
@@ -3008,39 +3049,6 @@ BOOL wasPathFollowed = false;
             }
         }
     }
-    return false;
-}
-
-/*
- *      Returns true if the start location and the end location of an object are within the same area. otherwise, returns false.
- */
--(BOOL) areHotspotsInsideArea {
-    /*
-    //Check steps for current sentence
-    NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-    
-    //Get current step to be completed
-    ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep -1];
-    
-    if([[currSolStep stepType] isEqualToString:@"shakeOrTap"])
-    {
-        //Get information for check step type
-        NSString* objectId = [currSolStep object1Id];
-        NSString* action = [currSolStep action];
-        //NSString* areaId = [currSolStep areaId];
-        
-        //Get hotspot location of correct subject
-        Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:objectId :action :@"subject"];
-        CGPoint hotspotLocation = [self getHotspotLocation:hotspot];
-        
-        Get area that hotspot should be inside
-        Area* area = [model getAreaWithId:areaId];
-        
-        if ([area.aPath containsPoint: hotspotLocation] && [area.aPath containsPoint: startLocation]) {
-            return true;
-        }
-    }
-    */
     return false;
 }
 
@@ -4095,7 +4103,25 @@ BOOL wasPathFollowed = false;
     NSString* ungroup = [NSString stringWithFormat:@"ungroupObjects(%@, %@)", object1, object2];
 
     //Logging added by James for Grouping Objects
-    [[ServerCommunicationController sharedManager] logComputerGroupingObjects: @"Ungroup" :object1 :object2 : ungroup:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+    //[[ServerCommunicationController sharedManager] logComputerGroupingObjects: @"Ungroup" :object1 :object2 : ungroup:bookTitle :chapterTitle :currentPage :currentSentence :currentStep ];
+    
+    //get the current groupings of the objects
+    NSMutableArray *object1Groups = [currentGroupings objectForKey:object1];
+    NSMutableArray *object2Groups = [currentGroupings objectForKey:object2];
+    
+    if ([object1Groups containsObject:object2]) {
+        [object1Groups removeObject:object2];
+        [currentGroupings setValue:object1Groups forKey:object1];
+        //add the array back
+    }
+    if ([object2Groups containsObject:object1]) {
+        [object2Groups removeObject:object1];
+        [currentGroupings setValue:object2Groups forKey:object2];
+        //add the array back
+    }
+    
+    [bookView stringByEvaluatingJavaScriptFromString:ungroup];
+}
 
 /*
  * Calls the JS function to ungroup two objects.
@@ -4104,7 +4130,7 @@ BOOL wasPathFollowed = false;
     NSString* ungroup = [NSString stringWithFormat:@"ungroupObjectsAndStay(%@, %@)", object1, object2];
     
     //Logging added by James for Grouping Objects
-    [[ServerCommunicationController sharedManager] logComputerGroupingObjects: @"Ungroup" :object1 :object2 : ungroup:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+    //[[ServerCommunicationController sharedManager] logComputerGroupingObjects: @"Ungroup" :object1 :object2 : ungroup:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
     
     //get the current groupings of the objects
     NSMutableArray *object1Groups = [currentGroupings objectForKey:object1];

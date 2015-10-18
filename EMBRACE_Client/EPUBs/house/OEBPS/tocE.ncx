@@ -15,7 +15,7 @@
         </navLabel>
         <content src="Text/Introduction-to-Lopez-House-Mystery-Characters-Title.xhtml"/>
     </navPoint>
-    <navPoint class="ChapterTitle" id="Chapter1Title" playOrder="1">
+        <navPoint class="ChapterTitle" id="Chapter1Title" playOrder="1">
 		<navLabel>
 			<text>The Lopez Family</text>
 		</navLabel>
