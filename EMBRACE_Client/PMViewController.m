@@ -3025,7 +3025,14 @@ BOOL wasPathFollowed = false;
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        NSMutableArray* currSolSteps;
+        
+        if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+            currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+        }
+        else {
+            currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        }
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -3077,7 +3084,7 @@ BOOL wasPathFollowed = false;
     [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
     
     //Check if the object has the correct class, or if no class was specified before returning
-    if(([imageAtPointClass rangeOfString:class].location != NSNotFound) || class == nil) {
+    if((![imageAtPointClass isEqualToString:@""] || [imageAtPointClass rangeOfString:class].location != NSNotFound) || class == nil) {
         //Any subject can be used, so just return the object id
         if (useSubject == ALL_ENTITIES)
             return imageAtPoint;
@@ -3101,7 +3108,14 @@ BOOL wasPathFollowed = false;
 -(NSString*) getCurrentSolutionStep{
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        NSMutableArray* currSolSteps;
+        
+        if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+            currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+        }
+        else {
+            currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        }
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
