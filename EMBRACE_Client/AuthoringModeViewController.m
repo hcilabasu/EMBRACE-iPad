@@ -128,8 +128,15 @@ typedef enum InteractionMode {
 @synthesize locationID;
 @synthesize width;
 @synthesize height;
+@synthesize top;
+@synthesize left;
+@synthesize hotspotWidth;
+@synthesize hotspotHeight;
+@synthesize hotspotTop;
+@synthesize hotspotLeft;
 @synthesize zindex;
 @synthesize objectID;
+@synthesize manipulationType;
 @synthesize action;
 @synthesize role;
 
@@ -180,6 +187,8 @@ ConditionSetup *conditionSetup;
     
     [[bookView scrollView] setBounces: NO];
     [[bookView scrollView] setScrollEnabled:NO];
+    [bookView scrollView].clipsToBounds = YES;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
     movingObject = FALSE;
     pinching = FALSE;
@@ -495,7 +504,7 @@ ConditionSetup *conditionSetup;
     
     if (![[self.navigationController viewControllers] containsObject:self])
     {
-        [[ServerCommunicationController sharedManager] writeToFile:[[ServerCommunicationController sharedManager] studyFileName] ofType:@"txt"];
+        
     }
 }
 
@@ -513,8 +522,6 @@ ConditionSetup *conditionSetup;
  */
 -(void)saveHotspot:(id)sender{
     /*convert px values to percentages*/
-    NSString *xcordPercent = [NSString stringWithFormat:@"%f", ([xcord.text integerValue] / [bookView frame].size.width * 100)];
-    NSString *ycordPercent = [NSString stringWithFormat:@"%f", ([ycord.text integerValue] / [bookView frame].size.height * 100)];
     
     //Converts inputed elements into a hotspot
     NSString* newHotspot = [NSString stringWithFormat:@"hotspot objId=\"%@\" action=\"%@\" role=\"%@\" x=\"%@%%\" y=\"%@%%\"", hotspotID.text, action.text, role.text, xcordPercent, ycordPercent];
@@ -538,7 +545,7 @@ ConditionSetup *conditionSetup;
     NSError *error;
     
     //break out metadata file into seperate components
-    GDataXMLDocument *metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:nil];
+    GDataXMLDocument *metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:&error];
     
     xmlDocTemp = [[DDXMLDocument alloc] initWithData:xmlData options:0 error:nil];
     
@@ -592,8 +599,8 @@ ConditionSetup *conditionSetup;
  */
 -(void)saveWaypoint:(id)sender {
     /*convert px values to percentages*/
-    NSString *xcordPercent = [NSString stringWithFormat:@"%f", ([xcord.text integerValue] / [bookView frame].size.width * 100)];
-    NSString *ycordPercent = [NSString stringWithFormat:@"%f", ([ycord.text integerValue] / [bookView frame].size.height * 100)];
+    NSString *xcordPercent = [NSString stringWithFormat:@"%ld", (long)[xcord.text integerValue]];
+    NSString *ycordPercent = [NSString stringWithFormat:@"%ld", (long)[ycord.text integerValue]];
     
     //convert inputted data in a waypoint in xml format
     NSString* newWaypoint = [NSString stringWithFormat:@"waypoint waypointId=\"%@\" x=\"%@%%\" y=\"%@%%\"", waypointID.text, xcordPercent, ycordPercent];
@@ -669,10 +676,10 @@ ConditionSetup *conditionSetup;
 -(void)saveLocation:(id)sender{
     
     /*convert px values to percentages*/
-    NSString *xcordPercent = [NSString stringWithFormat:@"%f", ([xcord.text integerValue] / [bookView frame].size.width * 100)];
-    NSString *ycordPercent = [NSString stringWithFormat:@"%f", ([ycord.text integerValue] / [bookView frame].size.height * 100)];
-    NSString *heightPercent = [NSString stringWithFormat:@"%f", ([height.text integerValue] / [bookView frame].size.width * 100)];
-    NSString *widthPercent = [NSString stringWithFormat:@"%f", ([width.text integerValue] / [bookView frame].size.width * 100)];
+    NSString *xcordPercent = [NSString stringWithFormat:@"%ld", (long)[xcord.text integerValue]];
+    NSString *ycordPercent = [NSString stringWithFormat:@"%ld", (long)[ycord.text integerValue]];
+    NSString *heightPercent = [NSString stringWithFormat:@"%ld", (long)[height.text integerValue]];
+    NSString *widthPercent = [NSString stringWithFormat:@"%ld", (long)[width.text integerValue]];
     NSString* newLocation = [NSString stringWithFormat:@"location locationId=\"%@\" x=\"%@%%\" y=\"%@%%\" height=\"%@%%\" width=\"%@%%\"", locationID.text, xcordPercent, ycordPercent, heightPercent, widthPercent];
     
     //set file path to access introduction metadata
@@ -779,6 +786,9 @@ ConditionSetup *conditionSetup;
  *  Function changes the manipulation type of the selected object
  */
 -(void)changeManipulationType:(id)sender {
+    NSString* changeManipulationType = [NSString stringWithFormat:@"%@.className = \"%@\";", objectID.text, manipulationType.text];
+    NSString* ManipulationType = [bookView stringByEvaluatingJavaScriptFromString:changeManipulationType];
+    NSLog(@"%@", ManipulationType);
     
     [entryview removeFromSuperview];
     isEntryViewVisible = false;
@@ -843,7 +853,7 @@ ConditionSetup *conditionSetup;
         /*
          add new sub view with textboxes, cancel button, and save button
          */
-        entryview = [[UIView alloc] initWithFrame:CGRectMake(650, 20, 200, 200)];
+        entryview = [[UIView alloc] initWithFrame:CGRectMake(670, 10, 200, 200)];
         entryview.backgroundColor = [UIColor whiteColor];
         
         waypointID = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 180, 30)];
@@ -852,12 +862,12 @@ ConditionSetup *conditionSetup;
         waypointID.borderStyle = UITextBorderStyleRoundedRect;
         
         xcord = [[UITextField alloc] initWithFrame:CGRectMake(10, 60, 180, 30)];
-        xcord.text = [NSString stringWithFormat:@"%d", TapLocationX];
+        xcord.text = @"x%";
         xcord.textColor = [UIColor blackColor];
         xcord.borderStyle = UITextBorderStyleRoundedRect;
         
         ycord = [[UITextField alloc] initWithFrame:CGRectMake(10, 100, 180, 30)];
-        ycord.text = [NSString stringWithFormat:@"%d",TapLocationY];
+        ycord.text = @"y%";
         ycord.textColor = [UIColor blackColor];
         ycord.borderStyle = UITextBorderStyleRoundedRect;
         
@@ -872,7 +882,7 @@ ConditionSetup *conditionSetup;
         [cancel setTitle:@"Cancel" forState:UIControlStateNormal];
         
         UIButton *createVisibleArea = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [createVisibleArea addTarget:self action:@selector(Create:) forControlEvents:UIControlEventTouchUpInside];
+        [createVisibleArea addTarget:self action:@selector(CreateWaypoint:) forControlEvents:UIControlEventTouchUpInside];
         createVisibleArea.frame = CGRectMake(65, 140, 80, 50);
         [createVisibleArea setTitle:@"Create" forState:UIControlStateNormal];
         
@@ -900,7 +910,7 @@ ConditionSetup *conditionSetup;
          add new sub view with textboxes, cancel button, and save button
          //NSString* hotspot = [NSString stringWithFormat:@"<hotspot objId=\"%@\" action=\"%@\" role=\"%@\" x=\"%d\" y=\"%d\"/>", hotspotID.text, action, role, xcord.text, ycord.text];
          */
-        entryview = [[UIView alloc] initWithFrame:CGRectMake(650, 20, 200, 290)];
+        entryview = [[UIView alloc] initWithFrame:CGRectMake(670, 10, 200, 290)];
         entryview.backgroundColor = [UIColor whiteColor];
         
         hotspotID = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 180, 30)];
@@ -910,6 +920,39 @@ ConditionSetup *conditionSetup;
         
         if (objectAtPoint == nil) {
             objectAtPoint = [self getObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"backgroundObject"];
+            
+            NSString *objectWidth = [self getwidthOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"manipulationObject"];
+            NSString *objectHeight = [self getheightOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"manipulationObject"];
+            NSString *objectTop = [self getTopOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"manipulationObject"];
+            NSString *objectLeft = [self getLeftOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"manipulationObject"];
+            
+            if (objectWidth == nil && objectHeight == nil && objectTop == nil && objectLeft == nil)
+            {
+                objectWidth = [self getwidthOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"backgroundObject"];
+                objectHeight = [self getheightOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"backgroundObject"];
+                objectTop = [self getTopOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"backgroundObject"];
+                objectLeft = [self getLeftOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"backgroundObject"];
+                
+                hotspotTop = [[UITextField alloc] initWithFrame:CGRectMake(1, 1, 1, 1)];
+                hotspotLeft = [[UITextField alloc] initWithFrame:CGRectMake(1, 1, 1, 1)];
+                hotspotWidth = [[UITextField alloc] initWithFrame:CGRectMake(1, 1, 1, 1)];
+                hotspotHeight = [[UITextField alloc] initWithFrame:CGRectMake(1, 1, 1, 1)];
+                hotspotTop.text = objectTop;
+                hotspotLeft.text = objectLeft;
+                hotspotWidth.text = objectWidth;
+                hotspotHeight.text = objectHeight;
+            }
+            else
+            {
+                hotspotTop = [[UITextField alloc] initWithFrame:CGRectMake(1, 1, 1, 1)];
+                hotspotLeft = [[UITextField alloc] initWithFrame:CGRectMake(1, 1, 1, 1)];
+                hotspotWidth = [[UITextField alloc] initWithFrame:CGRectMake(1, 1, 1, 1)];
+                hotspotHeight = [[UITextField alloc] initWithFrame:CGRectMake(1, 1, 1, 1)];
+                hotspotTop.text = objectTop;
+                hotspotLeft.text = objectLeft;
+                hotspotWidth.text = objectWidth;
+                hotspotHeight.text = objectHeight;
+            }
             
             if (objectAtPoint == nil) {
                 hotspotID.text = @"HotspotID";
@@ -923,6 +966,39 @@ ConditionSetup *conditionSetup;
         else
         {
             hotspotID.text = objectAtPoint;
+            
+            NSString *objectWidth = [self getwidthOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"manipulationObject"];
+            NSString *objectHeight = [self getheightOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"manipulationObject"];
+            NSString *objectTop = [self getTopOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"manipulationObject"];
+            NSString *objectLeft = [self getLeftOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"manipulationObject"];
+            
+            if (objectWidth == nil && objectHeight == nil && objectTop == nil && objectLeft == nil)
+            {
+                objectWidth = [self getwidthOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"backgroundObject"];
+                objectHeight = [self getheightOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"backgroundObject"];
+                objectTop = [self getTopOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"backgroundObject"];
+                objectLeft = [self getLeftOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"backgroundObject"];
+                
+                hotspotTop = [[UITextField alloc] initWithFrame:CGRectMake(1, 1, 1, 1)];
+                hotspotLeft = [[UITextField alloc] initWithFrame:CGRectMake(1, 1, 1, 1)];
+                hotspotWidth = [[UITextField alloc] initWithFrame:CGRectMake(1, 1, 1, 1)];
+                hotspotHeight = [[UITextField alloc] initWithFrame:CGRectMake(1, 1, 1, 1)];
+                hotspotTop.text = objectTop;
+                hotspotLeft.text = objectLeft;
+                hotspotWidth.text = objectWidth;
+                hotspotHeight.text = objectHeight;
+            }
+            else
+            {
+                hotspotTop = [[UITextField alloc] initWithFrame:CGRectMake(1, 1, 1, 1)];
+                hotspotLeft = [[UITextField alloc] initWithFrame:CGRectMake(1, 1, 1, 1)];
+                hotspotWidth = [[UITextField alloc] initWithFrame:CGRectMake(1, 1, 1, 1)];
+                hotspotHeight = [[UITextField alloc] initWithFrame:CGRectMake(1, 1, 1, 1)];
+                hotspotTop.text = objectTop;
+                hotspotLeft.text = objectLeft;
+                hotspotWidth.text = objectWidth;
+                hotspotHeight.text = objectHeight;
+            }
         }
         
         hotspotID.textColor = [UIColor blackColor];
@@ -939,12 +1015,12 @@ ConditionSetup *conditionSetup;
         role.borderStyle = UITextBorderStyleRoundedRect;
         
         xcord = [[UITextField alloc] initWithFrame:CGRectMake(10, 140, 180, 30)];
-        xcord.text = [NSString stringWithFormat:@"%d", TapLocationX];
+        xcord.text = @"X%";//[NSString stringWithFormat:@"%d", xcordLocationOnObject];
         xcord.textColor = [UIColor blackColor];
         xcord.borderStyle = UITextBorderStyleRoundedRect;
         
         ycord = [[UITextField alloc] initWithFrame:CGRectMake(10, 180, 180, 30)];
-        ycord.text = [NSString stringWithFormat:@"%d",TapLocationY];
+        ycord.text = @"Y%";//[NSString stringWithFormat:@"%d", ycordLocationOnObject];
         ycord.textColor = [UIColor blackColor];
         ycord.borderStyle = UITextBorderStyleRoundedRect;
         
@@ -959,7 +1035,7 @@ ConditionSetup *conditionSetup;
         [cancel setTitle:@"Cancel" forState:UIControlStateNormal];
         
         UIButton *createVisibleArea = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [createVisibleArea addTarget:self action:@selector(Create:) forControlEvents:UIControlEventTouchUpInside];
+        [createVisibleArea addTarget:self action:@selector(CreateHotspot:) forControlEvents:UIControlEventTouchUpInside];
         createVisibleArea.frame = CGRectMake(65, 220, 80, 50);
         [createVisibleArea setTitle:@"Create" forState:UIControlStateNormal];
         
@@ -989,7 +1065,7 @@ ConditionSetup *conditionSetup;
          add new sub view with textboxes, cancel button, and save button
          locationid, xcord, ycord, height, width
          */
-        entryview = [[UIView alloc] initWithFrame:CGRectMake(650, 20, 200, 290)];
+        entryview = [[UIView alloc] initWithFrame:CGRectMake(670, 10, 200, 290)];
         entryview.backgroundColor = [UIColor whiteColor];
         
         locationID = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 180, 30)];
@@ -998,22 +1074,22 @@ ConditionSetup *conditionSetup;
         locationID.borderStyle = UITextBorderStyleRoundedRect;
         
         xcord = [[UITextField alloc] initWithFrame:CGRectMake(10, 60, 180, 30)];
-        xcord.text = [NSString stringWithFormat:@"%d", TapLocationX];
+        xcord.text = @"x%";
         xcord.textColor = [UIColor blackColor];
         xcord.borderStyle = UITextBorderStyleRoundedRect;
         
         ycord = [[UITextField alloc] initWithFrame:CGRectMake(10, 100, 180, 30)];
-        ycord.text = [NSString stringWithFormat:@"%d",TapLocationY];
+        ycord.text = @"y%";
         ycord.textColor = [UIColor blackColor];
         ycord.borderStyle = UITextBorderStyleRoundedRect;
         
         width = [[UITextField alloc] initWithFrame:CGRectMake(10, 140, 180, 30)];
-        width.text= @"Width";
+        width.text= @"Width%";
         width.textColor = [UIColor blackColor];
         width.borderStyle = UITextBorderStyleRoundedRect;
         
         height = [[UITextField alloc] initWithFrame:CGRectMake(10, 180, 180, 30)];
-        height.text= @"Height";
+        height.text= @"Height%";
         height.textColor = [UIColor blackColor];
         height.borderStyle = UITextBorderStyleRoundedRect;
         
@@ -1051,7 +1127,7 @@ ConditionSetup *conditionSetup;
         /*
          add new sub view with textboxes, cancel button, and save button
          */
-        entryview = [[UIView alloc] initWithFrame:CGRectMake(TapLocationX-150, TapLocationY-150, 200, 160)];
+        entryview = [[UIView alloc] initWithFrame:CGRectMake(670, 10, 200, 160)];
         entryview.backgroundColor = [UIColor whiteColor];
         
         objectID = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 180, 30)];
@@ -1213,7 +1289,7 @@ ConditionSetup *conditionSetup;
          add new sub view with textboxes, cancel button, and save button
          */
         
-        entryview = [[UIView alloc] initWithFrame:CGRectMake(TapLocationX-150, TapLocationY-150, 200, 160)];
+        entryview = [[UIView alloc] initWithFrame:CGRectMake(670, 10, 200, 160)];
         entryview.backgroundColor = [UIColor whiteColor];
         
         objectID = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 180, 30)];
@@ -1287,15 +1363,13 @@ ConditionSetup *conditionSetup;
         [entryview addSubview:SingleEntry];
         [self.view addSubview:entryview];
     }
-    else if (row ==6)
+    else if (row == 6)
     {
         //save manipulaiton type
         /*
          add new sub view with textboxes, cancel button, and save button
          */
     }
-    
-    
 }
 
 
@@ -1309,11 +1383,46 @@ ConditionSetup *conditionSetup;
         [areaSpace removeFromSuperview];
     }
     
-    areaSpace = [[UIView alloc]initWithFrame:CGRectMake([xcord.text floatValue], [ycord.text floatValue], [width.text floatValue], [height.text floatValue])];
+    areaSpace = [[UIView alloc]initWithFrame:CGRectMake(([bookView frame].size.width * [xcord.text floatValue]/100) , ([bookView frame].size.height * [ycord.text floatValue]/100), [bookView frame].size.width * [width.text floatValue]/100, [bookView frame].size.height * [height.text floatValue]/100)];
     areaSpace.backgroundColor = [UIColor whiteColor];
     self.isAreaViewVisible = true;
-    [self.view addSubview:areaSpace];
+    [bookView addSubview:areaSpace];
     
+    [bookView bringSubviewToFront:entryview];
+}
+
+-(void)CreateWaypoint:(id)sender{
+    if (isAreaViewVisible != false) {
+        [areaSpace removeFromSuperview];
+    }
+    
+    areaSpace = [[UIView alloc]initWithFrame:CGRectMake(([bookView frame].size.width * [xcord.text floatValue]/100) , ([bookView frame].size.height * [ycord.text floatValue]/100), [width.text floatValue], [height.text floatValue])];
+    areaSpace.backgroundColor = [UIColor whiteColor];
+    self.isAreaViewVisible = true;
+    [bookView addSubview:areaSpace];
+    
+    [bookView bringSubviewToFront:entryview];
+}
+
+-(void)CreateHotspot:(id)sender{
+    if (isAreaViewVisible != false) {
+        [areaSpace removeFromSuperview];
+    }
+    
+    NSString *xcordPercent = [NSString stringWithFormat:@"%ld", (long)[xcord.text integerValue]];
+    NSString *ycordPercent = [NSString stringWithFormat:@"%ld", (long)[ycord.text integerValue]];
+    
+    NSInteger hleft = [hotspotLeft.text integerValue];
+    NSInteger htop = [hotspotTop.text integerValue];
+    NSInteger hwidth = [hotspotWidth.text integerValue];
+    NSInteger hheight = [hotspotHeight.text integerValue];
+    NSInteger xpercent = hleft + hwidth * [xcordPercent integerValue]/100;
+    NSInteger ypercent = htop + hheight * [ycordPercent integerValue]/100;
+    
+    areaSpace = [[UIView alloc]initWithFrame:CGRectMake(xpercent, ypercent, [width.text floatValue], [height.text floatValue])];
+    areaSpace.backgroundColor = [UIColor whiteColor];
+    self.isAreaViewVisible = true;
+    [bookView addSubview:areaSpace];
     
 }
 
@@ -1338,7 +1447,7 @@ ConditionSetup *conditionSetup;
     TapLocationY = location.y;
     
     /*add an if statement to see if x and y cords will cause the picker to go off the screen if it will adjust size appropriately for x and y cords*/
-    picker.frame = CGRectMake(TapLocationX-150, TapLocationY-150, 320, 216);
+    picker.frame = CGRectMake(670, 10, 320, 216);
     
     if (isEntryViewVisible == false) {
         [self.view addSubview:picker];
@@ -1391,8 +1500,24 @@ ConditionSetup *conditionSetup;
                 movingObject = TRUE;
                 movingObjectId = imageAtPoint;
                 
-                //Calculate offset between top-left corner of image and the point clicked.
-                delta = [self calculateDeltaForMovingObjectAtPoint:location];
+                
+                 NSString* requestImageMarginLeft = [NSString stringWithFormat:@"%@.style.marginLeft", movingObjectId];
+                 NSString* requestImageMarginTop = [NSString stringWithFormat:@"%@.style.marginTop", movingObjectId];
+                 
+                 NSString* imageMarginLeft = [bookView stringByEvaluatingJavaScriptFromString:requestImageMarginLeft];
+                 NSString* imageMarginTop = [bookView stringByEvaluatingJavaScriptFromString:requestImageMarginTop];
+                 
+                 if(![imageMarginLeft isEqualToString:@""] && ![imageMarginTop isEqualToString:@""])
+                 {
+                     //Calulate offset between top-left corner of image and the point clicked for centered images
+                    delta = [self calculateDeltaForMovingObjectAtPointWithCenter:movingObjectId :location];
+                 }
+                 else
+                 {
+                 
+                     //Calculate offset between top-left corner of image and the point clicked.
+                     delta = [self calculateDeltaForMovingObjectAtPoint:location];
+                 }
                 
                 //Record the starting location of the object when it is selected
                 startLocation = CGPointMake(location.x - delta.x, location.y - delta.y);
@@ -1503,7 +1628,7 @@ ConditionSetup *conditionSetup;
     [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
     
     //Check if the object has the correct class, or if no class was specified before returning
-    if([imageAtPointClass isEqualToString:class] || class == nil) {
+    if(([imageAtPointClass rangeOfString:class].location != NSNotFound) || class == nil) {
         //Any subject can be used, so just return the object id
         if (useSubject == ALL_ENTITIES)
             return imageAtPoint;
@@ -1542,7 +1667,7 @@ ConditionSetup *conditionSetup;
     [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
     
     //Check if the object has the correct class, or if no class was specified before returning
-    if([imageAtPointClass isEqualToString:class] || class == nil) {
+    if(([imageAtPointClass rangeOfString:class].location != NSNotFound) || class == nil) {
         //Any subject can be used, so just return the object id
         if (useSubject == ALL_ENTITIES)
             return zindexAtPoint;
@@ -1582,7 +1707,7 @@ ConditionSetup *conditionSetup;
     [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
     
     //Check if the object has the correct class, or if no class was specified before returning
-    if([imageAtPointClass isEqualToString:class] || class == nil) {
+    if(([imageAtPointClass rangeOfString:class].location != NSNotFound) || class == nil) {
         //Any subject can be used, so just return the object id
         if (useSubject == ALL_ENTITIES)
             return widthAtPoint;
@@ -1620,7 +1745,7 @@ ConditionSetup *conditionSetup;
     [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
     
     //Check if the object has the correct class, or if no class was specified before returning
-    if([imageAtPointClass isEqualToString:class] || class == nil) {
+    if(([imageAtPointClass rangeOfString:class].location != NSNotFound) || class == nil) {
         //Any subject can be used, so just return the object id
         if (useSubject == ALL_ENTITIES)
             return heightAtPoint;
@@ -1629,6 +1754,97 @@ ConditionSetup *conditionSetup;
     }
     else
         return nil;
+}
+
+-(NSString*) getTopOfObjectAtPoint:(CGPoint) location ofType:(NSString*)class {
+    //Temporarily hide the overlay canvas to get the object we need
+    NSString* hideCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'none';", @"'overlay'"];
+    [bookView stringByEvaluatingJavaScriptFromString:hideCanvas];
+    
+    //Retrieve the elements at this location and see if it's an element that is moveable.
+    NSString* requestImageAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
+    
+    NSString* requestImageAtPointClass = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).className", location.x, location.y];
+    
+    NSString* imageAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPoint];
+    
+    NSString* requestTopAtPoint = [NSString stringWithFormat:@"%@.offsetTop", imageAtPoint];
+    
+    NSString *topAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestTopAtPoint];
+    
+    NSString* imageAtPointClass = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointClass];
+    
+    //Bring the canvas back to where it should be.
+    //NSString* showCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.zIndex = 100;", @"'overlay'"];
+    NSString* showCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'block';", @"'overlay'"];
+    [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
+    
+    //Check if the object has the correct class, or if no class was specified before returning
+    if(([imageAtPointClass rangeOfString:class].location != NSNotFound) || class == nil) {
+        //Any subject can be used, so just return the object id
+        if (useSubject == ALL_ENTITIES)
+            return topAtPoint;
+        else
+            return nil;
+    }
+    else
+        return nil;
+}
+
+-(NSString*) getLeftOfObjectAtPoint:(CGPoint) location ofType:(NSString*)class {
+    //Temporarily hide the overlay canvas to get the object we need
+    NSString* hideCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'none';", @"'overlay'"];
+    [bookView stringByEvaluatingJavaScriptFromString:hideCanvas];
+    
+    //Retrieve the elements at this location and see if it's an element that is moveable.
+    NSString* requestImageAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
+    
+    NSString* requestImageAtPointClass = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).className", location.x, location.y];
+    
+    NSString* imageAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPoint];
+    
+    NSString* requestLeftAtPoint = [NSString stringWithFormat:@"%@.offsetLeft", imageAtPoint];
+    
+    NSString *leftAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestLeftAtPoint];
+    
+    NSString* imageAtPointClass = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointClass];
+    
+    //Bring the canvas back to where it should be.
+    //NSString* showCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.zIndex = 100;", @"'overlay'"];
+    NSString* showCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'block';", @"'overlay'"];
+    [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
+    
+    //Check if the object has the correct class, or if no class was specified before returning
+    if(([imageAtPointClass rangeOfString:class].location != NSNotFound) || class == nil) {
+        //Any subject can be used, so just return the object id
+        if (useSubject == ALL_ENTITIES)
+            return leftAtPoint;
+        else
+            return nil;
+    }
+    else
+        return nil;
+}
+
+
+-(NSString*) getManipulationTypeOfObjectAtPoint:(CGPoint) location {
+    //Temporarily hide the overlay canvas to get the object we need
+    NSString* hideCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'none';", @"'overlay'"];
+    [bookView stringByEvaluatingJavaScriptFromString:hideCanvas];
+    
+    NSString* requestImageAtPointClass = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).className", location.x, location.y];
+    
+    NSString* imageAtPointClass = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointClass];
+    
+    //Bring the canvas back to where it should be.
+    NSString* showCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'block';", @"'overlay'"];
+    [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
+    
+        //Any subject can be used, so just return the object id
+        if (useSubject == ALL_ENTITIES)
+            return imageAtPointClass;
+        else
+            return nil;
 }
 
 //save the current state of the xhtml page and overides the loaded page
@@ -1756,6 +1972,45 @@ ConditionSetup *conditionSetup;
 }
 
 /*
+ * Calculates the delta pixel change for the object that is being moved
+ * and changes the lcoation from relative % to pixels if necessary.
+ */
+-(CGPoint) calculateDeltaForMovingObjectAtPointWithCenter:(NSString*) object :(CGPoint) location {
+    CGPoint change;
+    
+    //Calculate offset between top-left corner of image and the point clicked.
+    NSString* requestImageAtPointTop = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).offsetTop", location.x, location.y];
+    NSString* requestImageAtPointLeft = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).offsetLeft", location.x, location.y];
+    
+    NSString* imageAtPointTop = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointTop];
+    NSString* imageAtPointLeft = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointLeft];
+    
+    //Get the width and height of the image to ensure that the image is not being moved off screen and that the image is being moved in accordance with all movement constraints.
+    NSString* requestImageHeight = [NSString stringWithFormat:@"%@.height", object];
+    NSString* requestImageWidth = [NSString stringWithFormat:@"%@.width", object];
+    
+    float imageHeight = [[bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
+    float imageWidth = [[bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
+    
+    //Check to see if the locations returned are in percentages. If they are, change them to pixel values based on the size of the screen.
+    NSRange rangePercentTop = [imageAtPointTop rangeOfString:@"%"];
+    NSRange rangePercentLeft = [imageAtPointLeft rangeOfString:@"%"];
+    
+    if(rangePercentTop.location != NSNotFound)
+        change.y = location.y - ([imageAtPointTop floatValue] / 100.0 * [bookView frame].size.height) -(imageHeight/2);
+    else
+        change.y = location.y - [imageAtPointTop floatValue]-(imageHeight/2);
+    
+    if(rangePercentLeft.location != NSNotFound)
+        change.x = location.x - ([imageAtPointLeft floatValue] / 100.0 * [bookView frame].size.width) -(imageWidth/2);
+    else
+        change.x = location.x - [imageAtPointLeft floatValue]-(imageWidth/2);
+    
+    return change;
+}
+
+
+/*
  * Moves the object passeed in to the location given. Calculates the difference between the point touched and the
  * top-left corner of the image, which is the x,y coordate that's actually used when moving the object.
  * Also ensures that the image is not moved off screen or outside of any specified bounding boxes for the image.
@@ -1800,15 +2055,36 @@ ConditionSetup *conditionSetup;
             adjLocation.y = boxY;
     }
     
-    //Check to see if the image is being moved off screen. If it is, change it so that the image cannot be moved off screen.
-    if(adjLocation.x + imageWidth > [bookView frame].size.width)
-        adjLocation.x = [bookView frame].size.width - imageWidth;
-    else if(adjLocation.x < 0)
-        adjLocation.x = 0;
-    if(adjLocation.y + imageHeight > [bookView frame].size.height)
-        adjLocation.y = [bookView frame].size.height - imageHeight;
-    else if(adjLocation.y < 0)
-        adjLocation.y = 0;
+    NSString* requestImageMarginLeft = [NSString stringWithFormat:@"%@.style.marginLeft", movingObjectId];
+    NSString* requestImageMarginTop = [NSString stringWithFormat:@"%@.style.marginTop", movingObjectId];
+    
+    NSString* imageMarginLeft = [bookView stringByEvaluatingJavaScriptFromString:requestImageMarginLeft];
+    NSString* imageMarginTop = [bookView stringByEvaluatingJavaScriptFromString:requestImageMarginTop];
+    
+    if(![imageMarginLeft isEqualToString:@""] && ![imageMarginTop isEqualToString:@""])
+    {
+        //Check to see if the image is being moved off screen. If it is, change it so that the image cannot be moved off screen.
+        if(adjLocation.x + (imageWidth/2) > [bookView frame].size.width)
+            adjLocation.x = [bookView frame].size.width - (imageWidth/2);
+        else if(adjLocation.x-(imageWidth/2)  < 0)
+            adjLocation.x = (imageWidth/2);
+        if(adjLocation.y + (imageHeight/2) > [bookView frame].size.height)
+            adjLocation.y = [bookView frame].size.height - (imageHeight/2);
+        else if(adjLocation.y-(imageHeight/2) < 0)
+            adjLocation.y = (imageHeight/2);
+    }
+    else
+    {
+        //Check to see if the image is being moved off screen. If it is, change it so that the image cannot be moved off screen.
+        if(adjLocation.x + imageWidth > [bookView frame].size.width)
+            adjLocation.x = [bookView frame].size.width - imageWidth;
+        else if(adjLocation.x < 0)
+            adjLocation.x = 0;
+        if(adjLocation.y + imageHeight > [bookView frame].size.height)
+            adjLocation.y = [bookView frame].size.height - imageHeight;
+        else if(adjLocation.y < 0)
+            adjLocation.y = 0;
+    }
     
     //May want to add code to keep objects from moving to the location that the text is taking up on screen.
     

@@ -261,7 +261,7 @@
                 <expectedInput>next</expectedInput>
             </vocabularyIntroductionWord>
         </vocabularyIntroduction>
-        <vocabularyIntroduction story="The Family is Rattled">
+        <vocabularyIntroduction story="The Baby's Rattle is Gone Too!">
             <vocabularyIntroductionWord number="1">
                 <englishWordAudio>Rattle_def_E.mp3</englishWordAudio>
                 <spanishWordAudio>Rattle_def_S.mp3</spanishWordAudio>

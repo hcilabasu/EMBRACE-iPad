@@ -296,6 +296,26 @@ function ungroupObjects(object1, object2) {
 }
 
 /*
+ * Ungroups 2 objects from each other.
+ */
+function ungroupObjectsAndStay(object1, object2) {
+    //Get the index at which the objects are grouped.
+    var areGrouped = areObjectsGrouped(object1, object2);
+    
+    //Make sure they are grouped, and if they are, ungroup them.
+    if(areGrouped > -1) {
+        //Grab the reference to the connection that needs to be removed so that animation can occur.
+        var group = groupings[areGrouped];
+        
+        //Remove the connection.
+        groupings.splice(areGrouped, 1);
+    }
+    
+    clearAllHighlighted();
+}
+
+
+/*
  * Animate the ungrouping by moving the objects away from each other.
  * Do so by ensuring that the objects no longer overlap and by putting a 10 pixel space in between them.
  * Keep in mind that objects should not be moved off screen when doing so.
@@ -558,7 +578,7 @@ function objectContainedInObject(object1, object2) {
 /*
  * Swaps the current image src used by objectId for the alternateSrc and adjusts the image width and location
  */
-function swapImageSrc(objectId, alternateSrc, width, left, top) {
+function swapImageSrc(objectId, alternateSrc, width, left, top, zPosition) {
     var image = document.getElementById(objectId); //get the image
     
     image.src = "../Images/" + alternateSrc; //swap image
@@ -567,6 +587,41 @@ function swapImageSrc(objectId, alternateSrc, width, left, top) {
     image.style.width = width;
     image.style.left = left + "%";
     image.style.top = top + "%";
+    if(zPosition != "")
+    {
+        image.style.zIndex = zPosition;
+    }
+}
+
+/*
+ Loads an image at a given location
+ */
+function loadImage(objectId, source, width, left, top, className, zPosition) {
+    var image = document.createElement("img");
+    
+    image.src = "../Images/" + source; //load image
+    
+    //Adjust image style
+    image.style.width = width;
+    image.style.left = left + "%";
+    image.style.top = top + "%";
+    image.style.zIndex = zPosition;
+    
+    image.alt = objectId;
+    image.className = className;
+    image.id = objectId;
+    
+    var images = document.getElementById('images');
+    images.appendChild(image);
+}
+
+/*
+ Removes an image as specified on the metadata
+ */
+
+function removeImage(objectId) {
+    var image = document.getElementById(objectId);
+    image.parentNode.removeChild(image);
 }
 
 /*

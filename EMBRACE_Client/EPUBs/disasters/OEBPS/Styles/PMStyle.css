@@ -1,0 +1,90 @@
+.mainRunner {
+    position: absolute;
+}
+
+.manipulationObject {
+    position: fixed;
+	z-index: 1;
+}
+
+.backgroundObject {
+	position: fixed;
+	z-index: 0;
+}
+
+.textbox {
+	font-family:"GillSans";
+    font-size:130%;
+	margin-top: 10px;
+	margin-right: 10px;
+	position: relative;
+	border: 1px solid white;
+	background-color: white;
+	padding-left: 30px;
+	padding-right:30px;
+    padding-top:17.5px;
+    padding-bottom:17.5px;
+	opacity: 0.75;
+    line-height: 150%;
+    z-index: 3;
+    text-align: justify;
+}
+
+.textbox.custom
+{
+
+}
+
+.textbox.normal
+{
+    width:300px;
+    float: right;
+}
+
+html {
+	height: 100%;
+	width: 100%;
+	background: white;
+} 
+
+p {
+	display:inline;
+}
+
+body {
+	background-repeat: no-repeat;
+	padding: 0px 0px 0px 0px;
+	margin: 0px 0px;
+	height: 100%;
+	width: 100%;
+	background-size: 100% 100%;
+	min-height: 704px;
+	min-width: 1024px;
+}
+
+.background {
+	z-index: -1;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	padding: 0px 0px 0px 0px;
+	margin: 0px 0px;
+}
+
+canvas {
+  background-color: transparent;
+  position: absolute; 
+	top: 0px; 
+	left: 0px;
+	z-index: 0; 
+}
+
+.audible {
+	border-bottom-style:solid;
+	border-bottom-width:1.5px;
+}
+
+.col-2 {
+    -webkit-column-count: 2;
+    -webkit-column-gap: 10px;
+}

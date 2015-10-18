@@ -844,7 +844,8 @@ ConditionSetup *conditionSetup;
                                 ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :obj2Id :nil :nil :action :nil :nil];
                                 [PMSolution addSolutionStep:solutionStep];
                             }
-                            else if([step attributeForName:@"waypointId"]) {
+                            else if([step attributeForName:@"waypointId"])
+                            {
                                 NSString* waypointId = [[step attributeForName:@"waypointId"] stringValue];
                                 
                                 ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :waypointId :action :nil :nil];
@@ -854,11 +855,17 @@ ConditionSetup *conditionSetup;
                                 ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :action :nil :nil];
                                 [PMSolution addSolutionStep:solutionStep];
                             }
+                            else
+                            {
+                                ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :action];
+                                [PMSolution addSolutionStep:solutionStep];
+                            }
                         }
                         //Check also has a locationId
                         //* Check means that an object should be moved to be inside a location (defined by a bounding box) on
                         //the background.
-                        else if([[step name] isEqualToString:@"check"]) {
+                        else if([[step name] isEqualToString:@"check"])
+                        {
                             NSString* locationId = [[step attributeForName:@"locationId"] stringValue];
                             NSString* areaId = [[step attributeForName:@"areaId"] stringValue];
                             

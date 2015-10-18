@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <hotspots>
+        <hotspot objId="africa" action="getIn" role="subject" x="0%" y="0%"/>
+        <hotspot objId="africa" action="touch" role="subject" x="92.5%" y="31%"/>
+        <hotspot objId="air_blue" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="air_blue" action="touch" role="subject" x="50%" y="80%"/>
+        <hotspot objId="air_red" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="air_red" action="pull" role="object" x="50%" y="50%"/>
+        <hotspot objId="air_red" action="touch" role="subject" x="50%" y="50%"/>
+        <hotspot objId="antartica" action="touch" role="object" x="87.2%" y="82.2%"/>
+        <hotspot objId="australia" action="touch" role="object" x="26.8%" y="2.3%"/>
+        <hotspot objId="australia" action="touch" role="subject" x="15%" y="85.7%"/>
+        <hotspot objId="bulge" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="california" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="california" action="touch" role="subject" x="47.37%" y="6.77%"/>
+        <hotspot objId="dirt_move" action="pull" role="subject" x="50%" y="50%"/>
+        <hotspot objId="dirt_tornado" action="getIn" role="subject" x="0%" y="0%"/>
+        <hotspot objId="dirt_tornado" action="pull" role="subject" x="50%" y="50%"/>
+        <hotspot objId="dirt_tornado" action="touch" role="object" x="50%" y="60%"/>
+        <hotspot objId="dirt_tornado" action="touch2" role="object" x="50%" y="50%"/>
+        <hotspot objId="droplet_group" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="droplet_group" action="touch" role="object" x="50%" y="0%"/>
+        <hotspot objId="droplet_group" action="touch2" role="subject" x="50%" y="50%"/>
+        <hotspot objId="eurasia" action="hit" role="object" x="50%" y="50%"/>
+        <hotspot objId="grey_plate_kauai" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="grey_plate_kauai" action="touchAsKauai" role="object" x="60%" y="0%"/>
+        <hotspot objId="grey_plate_kauai" action="touchAsKauai2" role="object" x="20%" y="0%"/>
+        <hotspot objId="grey_plate_kauai" action="touchAsKauai3" role="object" x="10%" y="0%"/>
+        <hotspot objId="grey_plate_kauai" action="touchAsOahu" role="object" x="80%" y="0%"/>
+        <hotspot objId="house_roof2" action="pull" role="object" x="50%" y="50%"/>
+        <hotspot objId="houses" action="getIn" role="subject" x="0%" y="0%"/>
+        <hotspot objId="hawaii" action="getIn" role="object" x="50%" y="50%"/>
+        <hotspot objId="india" action="getIn" role="subject" x="0%" y="0%"/>
+        <hotspot objId="india" action="hit" role="subject" x="50%" y="50%"/>
+        <hotspot objId="india" action="touch" role="object" x="16.9%" y="5.6%"/>
+        <hotspot objId="india" action="touch" role="subject" x="94.7%" y="23.4%"/>
+        <hotspot objId="kauai" action="touchAsKauai" role="subject" x="50%" y="89%"/>
+        <hotspot objId="kauai" action="touchAsKauai2" role="subject" x="0%" y="89%"/>
+        <hotspot objId="kauai" action="touchAsKauai3" role="subject" x="0%" y="89%"/>
+        <hotspot objId="lava" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="lava" action="touchAsKauai" role="subject" x="50%" y="95%"/>
+        <hotspot objId="lava" action="touchAsOahu" role="subject" x="50%" y="95%"/>
+        <hotspot objId="north_america" action="getIn" role="subject" x="0%" y="0%"/>
+        <hotspot objId="north_america" action="touch" role="object" x="10.93%" y="38.42%"/>
+        <hotspot objId="oahu" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="oahu" action="touchAsOahu" role="subject" x="50%" y="89%"/>
+        <hotspot objId="ocean" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="person" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="plate" action="getIn" role="subject" x="50%" y="50%"/>
+    </hotspots>
+</metadata>
