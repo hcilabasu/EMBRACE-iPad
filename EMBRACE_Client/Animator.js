@@ -23,13 +23,6 @@ var increment;
 
 var paths = {};
 
-var movRadius = 50; // outer radius
-var factor = 1;	// slipping/sliding factor
-var w = 1;	// angular velocity in radians per second
-var dt = 30/1000; // timestep = 1/FPS
-var vel = factor*movRadius*w;	// v = r w
-var angle = 0;
-
 function Path(name){
     this.pathRadius = 20;
     this.pathName = name;
@@ -67,6 +60,13 @@ function AnimationObject(object, posX, posY, endX, endY, animName, pathToFollow)
     //this.width = object.offsetWidth * 100 / canvas.width;
     //this.height = object.offsetHeight * 100 / canvas.height;
     this.pathToFollow = pathToFollow;
+    
+    this.cirRadius = 25;
+    this.slFactor = 1;
+    this.angVel = 1;
+    this.linVel = this.cirRadius * this.slFactor * this.angVel;
+    this.angle = 0;
+    this.timestep = 30/1000;
 }
 
 function animateObject(objectName, posX, posY, endX, endY, animName, pathToFollow) {
@@ -79,9 +79,9 @@ function animateObject(objectName, posX, posY, endX, endY, animName, pathToFollo
     var animationObject = new AnimationObject(objectName, posX, posY, endX, endY, animName, pathToFollow);
     
     animatingObjects.push(animationObject);
-   
+    
     animatingObjectsIndex++;
-
+    
     animatingObjects[animatingObjectsIndex].tempY = animatingObjects[animatingObjectsIndex].y;
     animatingObjects[animatingObjectsIndex].t0 = new Date().getTime(); // initialize value of t0
     
@@ -138,15 +138,15 @@ function animFrame(object){
 function cancelAnimation(objectName) {
     //console.log("OBJECT: " + this.object + " NAME:" + objectName);
     //if(this.object == objectName) {
-        cancelAnimationFrame(requestId);
+    cancelAnimationFrame(requestId);
     //}
 }
 
 //function cancelAnimation (objectName) {
-    //if(cancelOnce) {
-        //cancelAnimationFrame(requestId);
-        //cancelOnce = false;
-    //}
+//if(cancelOnce) {
+//cancelAnimationFrame(requestId);
+//cancelOnce = false;
+//}
 //}
 
 function bounce(aniObject) {
@@ -189,7 +189,7 @@ function bob(aniObject) {
     var t1 = new Date().getTime();
     aniObject.dt = 0.001*(t1-aniObject.t0);
     var seconds = Math.round(aniObject.dt % 60);
-
+    
     if (seconds < 4) {
         var waveHeight = Math.sin(aniObject.tempY);
         waveHeight = waveHeight/4;
@@ -206,7 +206,7 @@ function cheer(aniObject) {
     var t1 = new Date().getTime();
     aniObject.dt = 0.001*(t1-aniObject.t0);
     var seconds = Math.round(aniObject.dt % 60);
-
+    
     if (seconds < 4) {
         var waveHeight = Math.sin(aniObject.tempY);
         aniObject.tempY += 0.1;
@@ -215,32 +215,32 @@ function cheer(aniObject) {
     }
     else {
         if(aniObject.y == aniObject.iy) {
-           cancelAnimationFrame(requestId);
+            cancelAnimationFrame(requestId);
         }
     }
 }
 
 function floatAnim(aniObject) {
     //alert("Floating");
-
+    
     //for (var i=0; i<animatingObjects.length; i++) {
-        
-        //separate(animatingObjects[i]);
-        //velocity.add(acceleration);
-        aniObject.vx += aniObject.ax;
-        aniObject.vy += aniObject.ay;
-        //velocity.limit(maxspeed);
-        //console.log("Speed X: " + Math.max(aniObject.vx, maxSpeed));
-        //console.log("Speed Y: " + Math.max(aniObject.vy, maxSpeed));
-        //location.add(velocity);
-        aniObject.x += aniObject.vx;
-        aniObject.object.style.left = aniObject.x + "px";
-        aniObject.y += aniObject.vy;
-        aniObject.object.style.top = aniObject.y + "px";
-        //acceleration.mult(0);
-        aniObject.ax *= 0;
-        aniObject.ay *= 0;
-        checkEdges(aniObject);
+    
+    //separate(animatingObjects[i]);
+    //velocity.add(acceleration);
+    aniObject.vx += aniObject.ax;
+    aniObject.vy += aniObject.ay;
+    //velocity.limit(maxspeed);
+    //console.log("Speed X: " + Math.max(aniObject.vx, maxSpeed));
+    //console.log("Speed Y: " + Math.max(aniObject.vy, maxSpeed));
+    //location.add(velocity);
+    aniObject.x += aniObject.vx;
+    aniObject.object.style.left = aniObject.x + "px";
+    aniObject.y += aniObject.vy;
+    aniObject.object.style.top = aniObject.y + "px";
+    //acceleration.mult(0);
+    aniObject.ax *= 0;
+    aniObject.ay *= 0;
+    checkEdges(aniObject);
     //}
 }
 
@@ -312,8 +312,8 @@ Path.prototype.buildPath = function (x, y) {
 }
 
 //function Path(points) {
-    //this.points = new Array();
-    //this.points = points;
+//this.points = new Array();
+//this.points = points;
 //}
 
 Path.prototype.showPath = function () {
@@ -378,80 +378,80 @@ function follow(aniObject) {
     }
     
     /*
-    
-    //console.log("CALLING FOLLOW");
-    //console.log("Vx: " + aniObject.vx + " Vy: " + aniObject.vy);
-    var predictVelX = aniObject.vx;
-    var predictVelY = aniObject.vy;
-    
-    //diffX = diffX / Math.sqrt(Math.pow(diffX, 2) + Math.pow(diffY, 2));
-    predictVelX = predictVelX / Math.sqrt(Math.pow(predictVelX, 2) + Math.pow(predictVelY, 2));
-    predictVelY = predictVelY / Math.sqrt(Math.pow(predictVelX, 2) + Math.pow(predictVelY, 2));
-    predictVelX *= 50;
-    predictVelY *= 50;
-    //console.log("X: " + predictVelX + " Y: " + predictVelY);
-    var predictLocX = aniObject.x + predictVelX;
-    var predictLocY = aniObject.y + predictVelY;
-    
-    //console.log("X: " + predictLocX + " Y: " + predictLocY);
-    
-    var normal = new Array(2);
-    var target = new Array(2);
-    var distanceToPath = 1000000;
-    
-    //console.log("Path Index: " + pathIndex);
-    for (var i = 0; i < pathIndex-1; i++) {
-        
-        var aX = path[i][0];
-        var aY = path[i][1];
-        var bX = path[i+1][0];
-        var bY = path[i+1][1];
-    
-        var normalPoint = new Array(2);
-        
-        normalPoint = getNormalPoint(predictLocX, predictLocY, aX, aY, bX, bY).concat();
-        
-        //console.log("X: " + normalPoint[0] + " Y: " + normalPoint[1]);
-        
-        if (normalPoint[0] < aX || normalPoint[0] > bX) {
-            normalPoint[0] = bX;
-            normalPoint[1] = bY;
-        }
-        
-        var distance = Math.sqrt(Math.pow((predictLocX-normalPoint[0]), 2) + Math.pow((predictLocY-normalPoint[1]), 2) );
-        
-        //console.log("Distance : " + distance);
-        
-        if (distance < distanceToPath) {
-            distanceToPath = distance;
-            normal = normalPoint.concat();
-            
-            var dirX = bX-aX;
-            var dirY = bY-aY;
-            dirX = dirX / Math.sqrt(Math.pow(dirX, 2) + Math.pow(dirY, 2));
-            dirY = dirY / Math.sqrt(Math.pow(dirX, 2) + Math.pow(dirY, 2));
-            
-            //console.log("X: " + dirX + " Y: " + dirY);
-            
-            dirX *= 10;
-            dirY *= 10;
-            target = normalPoint.concat();
-            target[0] += dirX;
-            target[1] += dirY;
-            
-            //console.log("X: " + target[0] + " Y: " + target[1]);
-        }
-    }
-    
-    //console.log("Y ahora estoy aqui");
-    
-    //console.log("Distance: " + distanceToPath + "Radius: " + pathRadius);
-    
-    if (distanceToPath > pathRadius) {
-        seekAnim(target, aniObject);
-    }
-    
-    */
+     
+     //console.log("CALLING FOLLOW");
+     //console.log("Vx: " + aniObject.vx + " Vy: " + aniObject.vy);
+     var predictVelX = aniObject.vx;
+     var predictVelY = aniObject.vy;
+     
+     //diffX = diffX / Math.sqrt(Math.pow(diffX, 2) + Math.pow(diffY, 2));
+     predictVelX = predictVelX / Math.sqrt(Math.pow(predictVelX, 2) + Math.pow(predictVelY, 2));
+     predictVelY = predictVelY / Math.sqrt(Math.pow(predictVelX, 2) + Math.pow(predictVelY, 2));
+     predictVelX *= 50;
+     predictVelY *= 50;
+     //console.log("X: " + predictVelX + " Y: " + predictVelY);
+     var predictLocX = aniObject.x + predictVelX;
+     var predictLocY = aniObject.y + predictVelY;
+     
+     //console.log("X: " + predictLocX + " Y: " + predictLocY);
+     
+     var normal = new Array(2);
+     var target = new Array(2);
+     var distanceToPath = 1000000;
+     
+     //console.log("Path Index: " + pathIndex);
+     for (var i = 0; i < pathIndex-1; i++) {
+     
+     var aX = path[i][0];
+     var aY = path[i][1];
+     var bX = path[i+1][0];
+     var bY = path[i+1][1];
+     
+     var normalPoint = new Array(2);
+     
+     normalPoint = getNormalPoint(predictLocX, predictLocY, aX, aY, bX, bY).concat();
+     
+     //console.log("X: " + normalPoint[0] + " Y: " + normalPoint[1]);
+     
+     if (normalPoint[0] < aX || normalPoint[0] > bX) {
+     normalPoint[0] = bX;
+     normalPoint[1] = bY;
+     }
+     
+     var distance = Math.sqrt(Math.pow((predictLocX-normalPoint[0]), 2) + Math.pow((predictLocY-normalPoint[1]), 2) );
+     
+     //console.log("Distance : " + distance);
+     
+     if (distance < distanceToPath) {
+     distanceToPath = distance;
+     normal = normalPoint.concat();
+     
+     var dirX = bX-aX;
+     var dirY = bY-aY;
+     dirX = dirX / Math.sqrt(Math.pow(dirX, 2) + Math.pow(dirY, 2));
+     dirY = dirY / Math.sqrt(Math.pow(dirX, 2) + Math.pow(dirY, 2));
+     
+     //console.log("X: " + dirX + " Y: " + dirY);
+     
+     dirX *= 10;
+     dirY *= 10;
+     target = normalPoint.concat();
+     target[0] += dirX;
+     target[1] += dirY;
+     
+     //console.log("X: " + target[0] + " Y: " + target[1]);
+     }
+     }
+     
+     //console.log("Y ahora estoy aqui");
+     
+     //console.log("Distance: " + distanceToPath + "Radius: " + pathRadius);
+     
+     if (distanceToPath > pathRadius) {
+     seekAnim(target, aniObject);
+     }
+     
+     */
     
     aniObject.velocity.add(aniObject.acceleration);
     aniObject.velocity.limit(aniObject.maxSpeed);
@@ -475,7 +475,7 @@ function follow(aniObject) {
     //console.log("X: " + aniObject.x + "PathX: " + path[pathIndex-1][0]);
     
     //if (aniObject.x > path[pathIndex-1][0]) {
-        //cancelAnimationFrame(requestId);
+    //cancelAnimationFrame(requestId);
     //}
     
     var groupedWithObjects = new Array();
@@ -487,12 +487,12 @@ function follow(aniObject) {
     //Skip the object at location 1, because that's our original object that we've already moved.
     
     //for(var i = 1; i < groupedWithObjects.length; i ++) {
-        groupedWithObjects[1].style.left = aniObject.location.x + "px";
-        groupedWithObjects[1].style.top = aniObject.location.y + "px";
+    groupedWithObjects[1].style.left = aniObject.location.x + "px";
+    groupedWithObjects[1].style.top = aniObject.location.y + "px";
     //}
     
     //if (aniObject.location.x > path[pathIndex-1][0]) {
-        //cancelAnimationFrame(requestId);
+    //cancelAnimationFrame(requestId);
     //}
     checkEnding(aniObject);
 }
@@ -512,24 +512,24 @@ function seekAnim(target, aniObject) {
     aniObject.acceleration.add(steer);
     
     /*
-    var desiredX = target[0] - aniObject.x;
-    var desiredY = target[1] - aniObject.y;
-    
-    if (Math.sqrt(Math.pow(desiredX, 2) + Math.pow(desiredY, 2)) == 0)
-        return;
-    
-    desiredX = desiredX / Math.sqrt(Math.pow(desiredX, 2) + Math.pow(desiredY, 2));
-    desiredY = desiredY / Math.sqrt(Math.pow(desiredX, 2) + Math.pow(desiredY, 2));
-    
-    desiredX *= aniObject.maxSpeed;
-    desiredY *= aniObject.maxSpeed;
-    
-    var steerX = desiredX - aniObject.vx;
-    var steerY = desiredY - aniObject.vy;
-    
-    aniObject.ax += steerX;
-    aniObject.ay += steerY;
-    */
+     var desiredX = target[0] - aniObject.x;
+     var desiredY = target[1] - aniObject.y;
+     
+     if (Math.sqrt(Math.pow(desiredX, 2) + Math.pow(desiredY, 2)) == 0)
+     return;
+     
+     desiredX = desiredX / Math.sqrt(Math.pow(desiredX, 2) + Math.pow(desiredY, 2));
+     desiredY = desiredY / Math.sqrt(Math.pow(desiredX, 2) + Math.pow(desiredY, 2));
+     
+     desiredX *= aniObject.maxSpeed;
+     desiredY *= aniObject.maxSpeed;
+     
+     var steerX = desiredX - aniObject.vx;
+     var steerY = desiredY - aniObject.vy;
+     
+     aniObject.ax += steerX;
+     aniObject.ay += steerY;
+     */
 }
 
 function getNormalPoint(p, a ,b) {
@@ -543,24 +543,24 @@ function getNormalPoint(p, a ,b) {
     return normalPoint;
     
     /*
-    var apX = pX - aX;
-    var apY = pY - aY;
-    
-    var abX = bX - aX;
-    var abY = bY - aY;
-    
-    abX = abX / Math.sqrt(Math.pow(abX, 2) + Math.pow(abY, 2));
-    abY = abY / Math.sqrt(Math.pow(abX, 2) + Math.pow(abY, 2));
-    
-    var ary1 = [apX, apY];
-    var ary2 = [abX, abY];
-    var dotProd = dot(ary1, ary2);
-    abX *= dotProd;
-    abY *= dotProd;
-    var normalPointX = aX + abX;
-    var normalPointY = aY + abY;
-    var normalPoint = [normalPointX, normalPointY];
-    return normalPoint;
+     var apX = pX - aX;
+     var apY = pY - aY;
+     
+     var abX = bX - aX;
+     var abY = bY - aY;
+     
+     abX = abX / Math.sqrt(Math.pow(abX, 2) + Math.pow(abY, 2));
+     abY = abY / Math.sqrt(Math.pow(abX, 2) + Math.pow(abY, 2));
+     
+     var ary1 = [apX, apY];
+     var ary2 = [abX, abY];
+     var dotProd = dot(ary1, ary2);
+     abX *= dotProd;
+     abY *= dotProd;
+     var normalPointX = aX + abX;
+     var normalPointY = aY + abY;
+     var normalPoint = [normalPointX, normalPointY];
+     return normalPoint;
      */
 }
 
@@ -583,6 +583,30 @@ function checkEnding(aniObject) {
     }
 }
 
+function roll(aniObject) {
+    aniObject.location.x += aniObject.linVel * aniObject.timestep;
+	aniObject.angle += aniObject.angVel * aniObject.timestep;
+	animCtx.clearRect(0, 0, animCanvas.width, animCanvas.height);
+	animCtx.save();
+	animCtx.translate(aniObject.location.x, aniObject.location.y);
+	animCtx.rotate(aniObject.angle);
+	animCtx.translate(-aniObject.location.x, -aniObject.location.y);
+    // Image width and height hard-coded for now for the lava image
+    animCtx.drawImage(aniObject.object,aniObject.location.x,aniObject.location.y, 40, 40);
+	animCtx.restore();
+    document.getElementById('animation').style.zIndex = "100";
+    checkEndingForRoll(aniObject);
+}
+
+function checkEndingForRoll(aniObject) {
+    // The ending value is hard-coded for now, it should be gotten from the ending waypoint for the object
+    if(aniObject.location.x > 578) {
+        //aniObject.location.x = aniObject.ix;
+        //aniObject.location.y = aniObject.iy;
+        cancelAnimationFrame(requestId);
+    }
+}
+
 // Debug
 // Use console.log(message); message is of type string
 console = new Object();
@@ -598,102 +622,4 @@ console.log = function(log) {
 console.debug = console.log;
 console.info = console.log;
 console.warn = console.log;
-
-// draw the current frame based on sliderValue
-function follow2(aniObject) {
-    
-    //console.log("ESTE ES P: " + percentage);
-    // set the animation position (0-100)
-    increment += 1;
-    console.log("increment: " + increment);
-    //console.log("ESTE ES P: " + percentage + " ESTE ES D: " + direction);
-    
-    //console.log("Distance: " + distance);
-    
-    var xy;
-    
-    if (increment < 100) {
-        var distance = Math.sqrt(Math.pow((path[followIndex+1][0]-path[followIndex][0]), 2) + Math.pow((path[followIndex+1][1]-path[followIndex][1]), 2) );
-        
-        var percent = increment / 99;
-        //var percent = increment/distance;
-    
-        console.log("X: " + path[followIndex][0] + " Y: " + path[followIndex][1]);
-        console.log("X+1: " + path[followIndex+1][0] + " Y+1: " + path[followIndex+1][1]);
-        
-        xy = getLineXYatPercent({
-                                x: path[followIndex][0],
-                                y: path[followIndex][1]
-                                }, {
-                                x: path[followIndex+1][0],
-                                y: path[followIndex+1][1]
-                                }, percent);
-        aniObject.x = xy.x;
-        aniObject.object.style.left = aniObject.x + "px";
-        aniObject.y = xy.y;
-        aniObject.object.style.top = aniObject.y + "px";
-        
-    }
-    else {
-        if (followIndex < pathIndex-1) {
-            console.log("ENTRO");
-            increment = 0;
-            followIndex++;
-        }
-        else {
-            cancelAnimationFrame(requestId);
-        }
-    }
-}
-
-// line: percent is 0-1
-function getLineXYatPercent(startPt, endPt, percent) {
-    var dx = endPt.x - startPt.x;
-    var dy = endPt.y - startPt.y;
-    var X = startPt.x + dx * percent;
-    var Y = startPt.y + dy * percent;
-    return ({
-            x: X,
-            y: Y
-            });
-}
-
-// quadratic bezier: percent is 0-1
-function getQuadraticBezierXYatPercent(startPt, controlPt, endPt, percent) {
-    var x = Math.pow(1 - percent, 2) * startPt.x + 2 * (1 - percent) * percent * controlPt.x + Math.pow(percent, 2) * endPt.x;
-    var y = Math.pow(1 - percent, 2) * startPt.y + 2 * (1 - percent) * percent * controlPt.y + Math.pow(percent, 2) * endPt.y;
-    return ({
-            x: x,
-            y: y
-            });
-}
-
-// cubic bezier percent is 0-1
-function getCubicBezierXYatPercent(startPt, controlPt1, controlPt2, endPt, percent) {
-    var x = CubicN(percent, startPt.x, controlPt1.x, controlPt2.x, endPt.x);
-    var y = CubicN(percent, startPt.y, controlPt1.y, controlPt2.y, endPt.y);
-    return ({
-            x: x,
-            y: y
-            });
-}
-
-// cubic helper formula at percent distance
-function CubicN(pct, a, b, c, d) {
-    var t2 = pct * pct;
-    var t3 = t2 * pct;
-    return a + (-a * 3 + pct * (3 * a - a * pct)) * pct + (3 * b + pct * (-6 * b + b * 3 * pct)) * pct + (c * 3 - c * 3 * pct) * t2 + d * t3;
-}
-
-function roll(aniObject) {
-    aniObject.location.x += vel*dt;
-	angle += w*dt;
-	animCtx.clearRect(0, 0, animCanvas.width, animCanvas.height);
-	animCtx.save();
-	animCtx.translate(aniObject.location.x, aniObject.location.y);
-	animCtx.rotate(angle);
-	animCtx.translate(-aniObject.location.x, -aniObject.location.y);
-    animCtx.drawImage(aniObject.object,aniObject.location.x,aniObject.location.y);
-	animCtx.restore();
-    document.getElementById('animation').style.zIndex = "100";
-}console.error = console.log;
+console.error = console.log;
