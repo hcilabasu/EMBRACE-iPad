@@ -4,70 +4,88 @@
         <dc:identifier id="BookId" opf:scheme="UUID">urn:uuid:f0fe710e-44d7-4626-8b59-20cd5fe9699f</dc:identifier>
         <dc:date opf:event="modification">2015-07-06</dc:date>
         <meta content="0.7.2" name="Sigil version" />
-        <dc:title>Bottled Up Joy</dc:title>
+        <dc:title>How Objects Move</dc:title>
     </metadata>
   <manifest>
-    <item href="Images/chapter1.png" id="chapter1.png" media-type="image/png" />
-    <item href="Images/chapter2.png" id="chapter2.png" media-type="image/png" />
-    <item href="Images/chapter3.png" id="chapter3.png" media-type="image/png" />
-    <item href="Images/chapter4.png" id="chapter4.png" media-type="image/png" />
-    <item href="Images/chapter5.png" id="chapter5.png" media-type="image/png" />
-    <item href="Images/papa2.png" id="papa2.png" media-type="image/png" />
-    <item href="Images/michael2.png" id="michael2.png" media-type="image/png" />
-    <item href="Images/olivia2.png" id="olivia2.png" media-type="image/png" />
-    <item href="Images/hillatsunset.jpg" id="hillatsunset.jpg" media-type="image/jpg" />
-    <item href="Images/michael_sittingonbench.png" id="michael_sittingonbench.png" media-type="image/png" />
-    <item href="Images/bush.png" id="bush.png" media-type="image/png" />
-    <item href="Images/toy_train.png" id="toy_train.png" media-type="image/png" />
-    <item href="Images/toy_rocket.png" id="toy_rocket.png" media-type="image/png" />
-    <item href="Images/toy_robot.png" id="toy_robot.png" media-type="image/png" />
-    <item href="Images/toy_chick.png" id="toy_chick.png" media-type="image/png" />
-    <item href="Images/toy_bear.png" id="toy_bear.png" media-type="image/png" />
-    <item href="Images/stone.png" id="stone.png" media-type="image/png" />
-    <item href="Images/picture.png" id="picture.png" media-type="image/png" />
-    <item href="Images/openhouse.jpg" id="openhouse.jpg" media-type="image/jpg" />
-    <item href="Images/note.png" id="note.png" media-type="image/png" />
-    <item href="Images/bottle_picture.png" id="bottle_picture.png" media-type="image/png" />
-    <item href="Images/bottle_noteandstone.png" id="bottle_noteandstone.png" media-type="image/png" />
-    <item href="Images/bottle_empty.png" id="bottle_empty.png" media-type="image/png" />
-    <item href="Images/boardgame_open.png" id="boardgame_open.png" media-type="image/png" />
-    <item href="Images/boardgame_box.png" id="boardgame_box.png" media-type="image/png" />
+    <item href="Images/ch1.png" id="ch1.png" media-type="image/png" />
+    <item href="Images/ch2.png" id="ch2.png" media-type="image/png" />
+    <item href="Images/ch3.png" id="ch3.png" media-type="image/png" />
+    <item href="Images/ch4.png" id="ch4.png" media-type="image/png" />
+    <item href="Images/ch5.png" id="ch5.png" media-type="image/png" />
+    <item href="Images/ch6.png" id="ch6.png" media-type="image/png" />
+    <item href="Images/ch7.png" id="ch7.png" media-type="image/png" />
+    <item href="Images/maria_fall.png" id="maria_fall.png" media-type="image/png" />
+    <item href="Images/maria_ground.png" id="maria_ground.png" media-type="image/png" />
+    <item href="Images/maria_push.png" id="maria_push.png" media-type="image/png" />
+    <item href="Images/skateboard.png" id="skateboard.png" media-type="image/png" />
+    <item href="Images/toycar.png" id="toycar.png" media-type="image/png" />
+    <item href="Images/background_Ch7_V2.png" id="background_Ch7_V2.png" media-type="image/png" />
+    <item href="Images/background_Ch7.png" id="background_Ch7.png" media-type="image/png" />
+    <item href="Images/juan_rowing.png" id="juan_rowing.png" media-type="image/png" />
+    <item href="Images/maria_skateboard.png" id="maria_skateboard.png" media-type="image/png" />
+    <item href="Images/push.png" id="push.png" media-type="image/png" />
+    <item href="Images/rocket_flame.png" id="rocket_flame.png" media-type="image/png" />
+    <item href="Images/sara_skateboard.png" id="sara_skateboard.png" media-type="image/png" />
+    <item href="Images/sara.png" id="sara.png" media-type="image/png" />
+    <item href="Images/cart.png" id="cart.png" media-type="image/png" />
+    <item href="Images/dog_cart.png" id="dog_cart.png" media-type="image/png" />
+    <item href="Images/dog_cartempty.png" id="dog_cartempty.png" media-type="image/png" />
+    <item href="Images/dog_harness.png" id="dog_harness.png" media-type="image/png" />
+    <item href="Images/horse_cart.png" id="horse_cart.png" media-type="image/png" />
+    <item href="Images/horse_noharness.png" id="horse_noharness.png" media-type="image/png" />
+    <item href="Images/horse.png" id="horse.png" media-type="image/png" />
+    <item href="Images/wood.png" id="wood.png" media-type="image/png" />
     <item href="Images/ball.png" id="ball.png" media-type="image/png" />
-    <item href="Images/babybrother.png" id="babybrother.png" media-type="image/png" />
-    <item href="Images/michael_sitting.png" id="michael_sitting.png" media-type="image/png" />
-    <item href="Images/michael_napping.png" id="michael_napping.png" media-type="image/png" />
-    <item href="Images/cup_full.png" id="cup_full.png" media-type="image/png" />
-    <item href="Images/cup_empty.png" id="cup_empty.png" media-type="image/png" />
-    <item href="Images/hug.png" id="hug.png" media-type="image/png" />
-    <item href="Images/rattle.png" id="rattle.png" media-type="image/png" />
+    <item href="Images/bigrocket.png" id="bigrocket.png" media-type="image/png" />
+    <item href="Images/juan.png" id="juan.png" media-type="image/png" />
+    <item href="Images/maria.png" id="maria.png" media-type="image/png" />
+    <item href="Images/background.jpg" id="background.jpg" media-type="image/jpg" />
+    <item href="Images/boat.png" id="boat.png" media-type="image/png" />
+    <item href="Images/boat_ropetaut.png" id="boat_ropetaut.png" media-type="image/png" />
+    <item href="Images/dog.png" id="dog.png" media-type="image/png" />
+    <item href="Images/person1.png" id="person1.png" media-type="image/png" />
+    <item href="Images/person2.png" id="person2.png" media-type="image/png" />
+    <item href="Images/person3.png" id="person3.png" media-type="image/png" />
+    <item href="Images/smallrocket.png" id="smallrocket.png" media-type="image/png" />
+    
     
     <item href="toc.ncx" id="ncx" media-type="application/x-dtbncx+xml" />
     <item href="Styles/PMStyle.css" id="PMStyle.css" media-type="text/css" />
     <item href="Styles/IMStyle.css" id="IMStyle.css" media-type="text/css" />
     <item href="Styles/Stylesheet.css" id="Stylesheet.css" media-type="text/css" />
-    <item href="Text/Story1-The-Lucky-Stone-Intro-E.xhtml" id="story1-Intro" media-type="application/xhtml+xml" />
-    <item href="Text/Story1-The-Lucky-Stone-PM-1.xhtml" id="story1-PM-1" media-type="application/xhtml+xml" />
-    <item href="Text/Story1-The-Lucky-Stone-PM-2.xhtml" id="story1-PM-2" media-type="application/xhtml+xml" />
-    <item href="Text/Story1-The-Lucky-Stone-Title.xhtml" id="Chapter1Title" media-type="application/xhtml+xml" />
-    <item href="Text/Story2-Magic-Toys-Intro-E.xhtml" id="story2-Intro" media-type="application/xhtml+xml" />
-    <item href="Text/Story2-Magic-Toys-PM-1.xhtml" id="story2-PM-1" media-type="application/xhtml+xml" />
-    <item href="Text/Story2-Magic-Toys-PM-2.xhtml" id="story2-PM-2" media-type="application/xhtml+xml" />
-    <item href="Text/Story2-Magic-Toys-Title.xhtml" id="Chapter2Title" media-type="application/xhtml+xml" />
-    <item href="Text/Story3-Baby-Brother-Intro-E.xhtml" id="story3-Intro" media-type="application/xhtml+xml" />
-    <item href="Text/Story3-Baby-Brother-PM-1.xhtml" id="story3-PM-1" media-type="application/xhtml+xml" />
-    <item href="Text/Story3-Baby-Brother-PM-2.xhtml" id="story3-PM-2" media-type="application/xhtml+xml" />
-    <item href="Text/Story3-Baby-Brother-PM-3.xhtml" id="story3-PM-3" media-type="application/xhtml+xml" />
-    <item href="Text/Story3-Baby-Brother-Title.xhtml" id="Chapter3Title" media-type="application/xhtml+xml" />
-    <item href="Text/Story4-Words-of-Wisdom-Intro-E.xhtml" id="story4-Intro" media-type="application/xhtml+xml" />
-    <item href="Text/Story4-Words-of-Wisdom-PM-1.xhtml" id="story4-PM-1" media-type="application/xhtml+xml" />
-    <item href="Text/Story4-Words-of-Wisdom-PM-2.xhtml" id="story4-PM-2" media-type="application/xhtml+xml" />
-    <item href="Text/Story4-Words-of-Wisdom-PM-3.xhtml" id="story4-PM-3" media-type="application/xhtml+xml" />
-    <item href="Text/Story4-Words-of-Wisdom-Title.xhtml" id="Chapter4Title" media-type="application/xhtml+xml" />
-    <item href="Text/Story5-Catch-Intro-E.xhtml" id="story5-Intro" media-type="application/xhtml+xml" />
-    <item href="Text/Story5-Catch-PM-1.xhtml" id="story5-PM-1" media-type="application/xhtml+xml" />
-    <item href="Text/Story5-Catch-PM-2.xhtml" id="story5-PM-2" media-type="application/xhtml+xml" />
-    <item href="Text/Story5-Catch-PM-3.xhtml" id="story5-PM-3" media-type="application/xhtml+xml" />
-    <item href="Text/Story5-Catch-Title.xhtml" id="Chapter5Title" media-type="application/xhtml+xml" />
+    
+    <item href="Text/Story1-How-do-Objects-Move-Intro-E.xhtml" id="story1-Intro" media-type="application/xhtml+xml" />
+    <item href="Text/Story1-How-do-Objects-Move-PM-1.xhtml" id="story1-PM-1" media-type="application/xhtml+xml" />
+    <item href="Text/Story1-How-do-Objects-Move-PM-2.xhtml" id="story1-PM-2" media-type="application/xhtml+xml" />
+    <item href="Text/Story1-How-do-Objects-Move-Title.xhtml" id="Chapter1Title" media-type="application/xhtml+xml" />
+    <item href="Text/Story2-Newton's-First-Law-Intro-E.xhtml" id="story2-Intro" media-type="application/xhtml+xml" />
+    <item href="Text/Story2-Newton's-First-Law-PM-1.xhtml" id="story2-PM-1" media-type="application/xhtml+xml" />
+    <item href="Text/Story2-Newton's-First-Law-PM-2.xhtml" id="story2-PM-2" media-type="application/xhtml+xml" />
+    <item href="Text/Story2-Newton's-First-Law-Title.xhtml" id="Chapter2Title" media-type="application/xhtml+xml" />
+    <item href="Text/Story3-Newton's-First-Law-on-Earth-Intro-E.xhtml" id="story3-Intro" media-type="application/xhtml+xml" />
+    <item href="Text/Story3-Newton's-First-Law-on-Earth-PM-1.xhtml" id="story3-PM-1" media-type="application/xhtml+xml" />
+    <item href="Text/Story3-Newton's-First-Law-on-Earth-PM-2.xhtml" id="story3-PM-2" media-type="application/xhtml+xml" />
+    <item href="Text/Story3-Newton's-First-Law-on-Earth-PM-3.xhtml" id="story3-PM-3" media-type="application/xhtml+xml" />
+    <item href="Text/Story3-Newton's-First-Law-on-Earth-Title.xhtml" id="Chapter3Title" media-type="application/xhtml+xml" />
+    <item href="Text/Story4-Newton's-Second-Law-Acceleration-Intro-E.xhtml" id="story4-Intro" media-type="application/xhtml+xml" />
+    <item href="Text/Story4-Newton's-Second-Law-Acceleration-PM-1.xhtml" id="story4-PM-1" media-type="application/xhtml+xml" />
+    <item href="Text/Story4-Newton's-Second-Law-Acceleration-PM-2.xhtml" id="story4-PM-2" media-type="application/xhtml+xml" />
+    <item href="Text/Story4-Newton's-Second-Law-Acceleration-PM-3.xhtml" id="story4-PM-3" media-type="application/xhtml+xml" />
+    <item href="Text/Story4-Newton's-Second-Law-Acceleration-Title.xhtml" id="Chapter4Title" media-type="application/xhtml+xml" />
+    <item href="Text/Story5-Newton's-Law-of-Acceleration-on-Earth-Intro-E.xhtml" id="story5-Intro" media-type="application/xhtml+xml" />
+    <item href="Text/Story5-Newton's-Law-of-Acceleration-on-Earth-PM-1.xhtml" id="story5-PM-1" media-type="application/xhtml+xml" />
+    <item href="Text/Story5-Newton's-Law-of-Acceleration-on-Earth-PM-2.xhtml" id="story5-PM-2" media-type="application/xhtml+xml" />
+    <item href="Text/Story5-Newton's-Law-of-Acceleration-on-Earth-PM-3.xhtml" id="story5-PM-3" media-type="application/xhtml+xml" />
+    <item href="Text/Story5-Newton's-Law-of-Acceleration-on-Earth-Title.xhtml" id="Chapter5Title" media-type="application/xhtml+xml" />
+    <item href="Text/Story6-Newton's-Third-Law-Forces-are-Paired-Intro-E.xhtml" id="story6-Intro" media-type="application/xhtml+xml" />
+    <item href="Text/Story6-Newton's-Third-Law-Forces-are-Paired-PM-1.xhtml" id="story6-PM-1" media-type="application/xhtml+xml" />
+    <item href="Text/Story6-Newton's-Third-Law-Forces-are-Paired-PM-2.xhtml" id="story6-PM-2" media-type="application/xhtml+xml" />
+    <item href="Text/Story6-Newton's-Third-Law-Forces-are-Paired-Title.xhtml" id="Chapter6Title" media-type="application/xhtml+xml" />
+    <item href="Text/Story7-The-Three-Laws-Work-Together-Intro-E.xhtml" id="story7-Intro" media-type="application/xhtml+xml" />
+    <item href="Text/Story7-The-Three-Laws-Work-Together-PM-1.xhtml" id="story7-PM-1" media-type="application/xhtml+xml" />
+    <item href="Text/Story7-The-Three-Laws-Work-Together-PM-2.xhtml" id="story7-PM-2" media-type="application/xhtml+xml" />
+    <item href="Text/Story7-The-Three-Laws-Work-Together-Title.xhtml" id="Chapter7Title" media-type="application/xhtml+xml" />
+
     
     
     
@@ -78,11 +96,15 @@
     <itemref idref="story3-Intro" />
     <itemref idref="story4-Intro" />
     <itemref idref="story5-Intro" />
+    <itemref idref="story6-Intro" />
+    <itemref idref="story7-Intro" />
     <itemref idref="Chapter1Title" />
     <itemref idref="Chapter2Title" />
     <itemref idref="Chapter3Title" />
     <itemref idref="Chapter4Title" />
     <itemref idref="Chapter5Title" />
+    <itemref idref="Chapter6Title" />
+    <itemref idref="Chapter7Title" />
     <itemref idref="story1-PM-1" />
     <itemref idref="story1-PM-2" />
     <itemref idref="story2-PM-1" />
@@ -96,6 +118,12 @@
     <itemref idref="story5-PM-1" />
     <itemref idref="story5-PM-2" />
     <itemref idref="story5-PM-3" />
+    <itemref idref="story6-PM-1" />
+    <itemref idref="story6-PM-2" />
+    <itemref idref="story7-PM-1" />
+    <itemref idref="story7-PM-2" />
+
+    
   </spine>
   <guide/>
 </package>
