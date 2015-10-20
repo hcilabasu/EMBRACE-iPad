@@ -105,6 +105,15 @@
     newPath = [newPath stringByAppendingString:filename];
     [fileManager copyItemAtPath:filePath toPath:newPath error:nil];
     
+    filePath = [[NSBundle mainBundle] pathForResource:@"physics" ofType:@"epub"];
+    newPath = [documentsDirectory stringByAppendingPathComponent:@"/ASU/IntroToPhysics"];
+    
+    [fileManager createDirectoryAtPath:newPath withIntermediateDirectories:YES attributes:nil error:nil];
+    
+    filename = [@"/" stringByAppendingString:[filePath lastPathComponent]];
+    newPath = [newPath stringByAppendingString:filename];
+    [fileManager copyItemAtPath:filePath toPath:newPath error:nil];
+    
     return YES;
 }
 
