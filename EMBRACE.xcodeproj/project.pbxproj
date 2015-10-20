@@ -536,7 +536,7 @@
 		1A80372A1B0B1C62004A164A /* WhoIsTheBestAnimalQ6A2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A80362B1B0B1C61004A164A /* WhoIsTheBestAnimalQ6A2.mp3 */; };
 		1A80372B1B0B1C62004A164A /* WhoIsTheBestAnimalQ6A3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A80362C1B0B1C61004A164A /* WhoIsTheBestAnimalQ6A3.mp3 */; };
 		1A80372C1B0B1C62004A164A /* WhoIsTheBestAnimalQ6A4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A80362D1B0B1C61004A164A /* WhoIsTheBestAnimalQ6A4.mp3 */; };
-		1A9B9DFF1BA5EDCE0031188A /* bottled.epub in Resources */ = {isa = PBXBuildFile; fileRef = 1A9B9DFE1BA5EDCE0031188A /* bottled.epub */; };
+		1A9B9DFF1BA5EDCE0031188A /* bottled1.epub in Resources */ = {isa = PBXBuildFile; fileRef = 1A9B9DFE1BA5EDCE0031188A /* bottled1.epub */; };
 		1AB028FC1ACF0890006CC916 /* AuthoringModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB028FB1ACF0890006CC916 /* AuthoringModeViewController.m */; };
 		1AB935671A8932A0000CAE21 /* AssessmentActivities-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AB935661A8932A0000CAE21 /* AssessmentActivities-MetaData.xml */; };
 		1AB935691A895582000CAE21 /* Relationships-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AB935681A895582000CAE21 /* Relationships-MetaData.xml */; };
@@ -1164,6 +1164,7 @@
 		5C8C01501BD59C4B007D4CF0 /* ch5.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C01491BD59C4B007D4CF0 /* ch5.png */; };
 		5C8C01511BD59C4B007D4CF0 /* ch6.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C014A1BD59C4B007D4CF0 /* ch6.png */; };
 		5C8C01521BD59C4B007D4CF0 /* ch7.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C014B1BD59C4B007D4CF0 /* ch7.png */; };
+		5C8C01541BD5F562007D4CF0 /* bottled.epub in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C01531BD5F562007D4CF0 /* bottled.epub */; };
 		5C913BDF1BB2443D000A2E32 /* houses_burn.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C913BDE1BB2443D000A2E32 /* houses_burn.png */; };
 		5C913BE11BB261A0000A2E32 /* island_lava_Hawaii.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C913BE01BB261A0000A2E32 /* island_lava_Hawaii.png */; };
 		5C9835741BCC660D00E94691 /* Picture1resized.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9835701BCC660D00E94691 /* Picture1resized.png */; };
@@ -2152,7 +2153,7 @@
 		1A80362B1B0B1C61004A164A /* WhoIsTheBestAnimalQ6A2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WhoIsTheBestAnimalQ6A2.mp3; sourceTree = "<group>"; };
 		1A80362C1B0B1C61004A164A /* WhoIsTheBestAnimalQ6A3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WhoIsTheBestAnimalQ6A3.mp3; sourceTree = "<group>"; };
 		1A80362D1B0B1C61004A164A /* WhoIsTheBestAnimalQ6A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WhoIsTheBestAnimalQ6A4.mp3; sourceTree = "<group>"; };
-		1A9B9DFE1BA5EDCE0031188A /* bottled.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = bottled.epub; path = EPUBs/bottled/bottled.epub; sourceTree = "<group>"; };
+		1A9B9DFE1BA5EDCE0031188A /* bottled1.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = bottled1.epub; path = EPUBs/bottled/bottled1.epub; sourceTree = "<group>"; };
 		1AB028FA1ACF0890006CC916 /* AuthoringModeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthoringModeViewController.h; sourceTree = "<group>"; };
 		1AB028FB1ACF0890006CC916 /* AuthoringModeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthoringModeViewController.m; sourceTree = "<group>"; };
 		1AB935661A8932A0000CAE21 /* AssessmentActivities-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivities-MetaData.xml"; sourceTree = "<group>"; };
@@ -2838,6 +2839,7 @@
 		5C8C01491BD59C4B007D4CF0 /* ch5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ch5.png; sourceTree = "<group>"; };
 		5C8C014A1BD59C4B007D4CF0 /* ch6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ch6.png; sourceTree = "<group>"; };
 		5C8C014B1BD59C4B007D4CF0 /* ch7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ch7.png; sourceTree = "<group>"; };
+		5C8C01531BD5F562007D4CF0 /* bottled.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = bottled.epub; path = EPUBs/physics/bottled.epub; sourceTree = "<group>"; };
 		5C913BDE1BB2443D000A2E32 /* houses_burn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = houses_burn.png; sourceTree = "<group>"; };
 		5C913BE01BB261A0000A2E32 /* island_lava_Hawaii.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = island_lava_Hawaii.png; sourceTree = "<group>"; };
 		5C9835701BCC660D00E94691 /* Picture1resized.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Picture1resized.png; sourceTree = "<group>"; };
@@ -3625,7 +3627,8 @@
 		31953E4F1729ECC100570087 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				1A9B9DFE1BA5EDCE0031188A /* bottled.epub */,
+				5C8C01531BD5F562007D4CF0 /* bottled.epub */,
+				1A9B9DFE1BA5EDCE0031188A /* bottled1.epub */,
 				1A0939811B67411200547E9F /* disasters.epub */,
 				1ADB01A21AAD211C006C5256 /* house.epub */,
 				5CE1E30F1A119E120070A7D6 /* bestFarm.epub */,
@@ -6304,7 +6307,7 @@
 				B9C9E9EC1B8EA0A800AFC328 /* plate_02.png in Resources */,
 				5C8C00FB1BD5974E007D4CF0 /* Story7-The-Three-Laws-Work-Together-Intro-E.xhtml in Resources */,
 				5CF9947E19AC34550080C32F /* cow_large.png in Resources */,
-				1A9B9DFF1BA5EDCE0031188A /* bottled.epub in Resources */,
+				1A9B9DFF1BA5EDCE0031188A /* bottled1.epub in Resources */,
 				5C7FE05219A6B1B500CBBE0E /* Story3-Muscles-Use-Oxygen-PM-3.xhtml in Resources */,
 				5C7FE11A19A7E43C00CBBE0E /* BFCS_5.m4a in Resources */,
 				1A695CE21AD4EB9C006A2284 /* TheLopezFamilyQ6A3.mp3 in Resources */,
@@ -6620,6 +6623,7 @@
 				5C7FE02819A6B1B500CBBE0E /* mimetype in Resources */,
 				5C776BF219C93E1E000DBC65 /* oxygenS.m4a in Resources */,
 				5C7FE0F719A7E43C00CBBE0E /* BFCE_10A.m4a in Resources */,
+				5C8C01541BD5F562007D4CF0 /* bottled.epub in Resources */,
 				B95228FD1BA0CDAB00093528 /* Story1-The-Lucky-Stone-PM-1.xhtml in Resources */,
 				5C9835751BCC660D00E94691 /* scene1.png in Resources */,
 				1A8036801B0B1C62004A164A /* GettingReadyQ5A2.mp3 in Resources */,
