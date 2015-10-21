@@ -1286,6 +1286,7 @@
 		5CE299F619B5C5C500675CB0 /* BFCE7_1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CE299F419B5C5C500675CB0 /* BFCE7_1.m4a */; };
 		5CE299F719B5C5C500675CB0 /* judgeE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CE299F519B5C5C500675CB0 /* judgeE.m4a */; };
 		5CE299FA19B5C71E00675CB0 /* BFCE7_4.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CE299F819B5C71E00675CB0 /* BFCE7_4.m4a */; };
+		5CE8AE091BD7439300C40907 /* Story2-Newton's-First-Law-PM-3.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CE8AE081BD7439300C40907 /* Story2-Newton's-First-Law-PM-3.xhtml */; };
 		5CF655AF19AC49C2000AC913 /* Story1-Introduction-At-the-Farm-PM.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CF655AE19AC49C2000AC913 /* Story1-Introduction-At-the-Farm-PM.xhtml */; };
 		5CF655B119AC4BB4000AC913 /* Story1-The-Contest-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CF655B019AC4BB4000AC913 /* Story1-The-Contest-Intro-S.xhtml */; };
 		5CF655B319ACFE2B000AC913 /* Story1-The-Contest-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CF655B219ACFE2B000AC913 /* Story1-The-Contest-Intro-E.xhtml */; };
@@ -2965,6 +2966,7 @@
 		5CE299F419B5C5C500675CB0 /* BFCE7_1.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCE7_1.m4a; path = EMBRACE_Client/sounds/BFCE7_1.m4a; sourceTree = SOURCE_ROOT; };
 		5CE299F519B5C5C500675CB0 /* judgeE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = judgeE.m4a; path = EMBRACE_Client/sounds/judgeE.m4a; sourceTree = SOURCE_ROOT; };
 		5CE299F819B5C71E00675CB0 /* BFCE7_4.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCE7_4.m4a; path = EMBRACE_Client/sounds/BFCE7_4.m4a; sourceTree = SOURCE_ROOT; };
+		5CE8AE081BD7439300C40907 /* Story2-Newton's-First-Law-PM-3.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story2-Newton's-First-Law-PM-3.xhtml"; sourceTree = "<group>"; };
 		5CF655AE19AC49C2000AC913 /* Story1-Introduction-At-the-Farm-PM.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Introduction-At-the-Farm-PM.xhtml"; sourceTree = "<group>"; };
 		5CF655B019AC4BB4000AC913 /* Story1-The-Contest-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-The-Contest-Intro-S.xhtml"; sourceTree = "<group>"; };
 		5CF655B219ACFE2B000AC913 /* Story1-The-Contest-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-The-Contest-Intro-E.xhtml"; sourceTree = "<group>"; };
@@ -4914,6 +4916,7 @@
 				5C8C008A1BD5927B007D4CF0 /* Story2-Newton's-First-Law-Intro-E.xhtml */,
 				5C8C008B1BD5927B007D4CF0 /* Story2-Newton's-First-Law-PM-1.xhtml */,
 				5C8C008C1BD5927B007D4CF0 /* Story2-Newton's-First-Law-PM-2.xhtml */,
+				5CE8AE081BD7439300C40907 /* Story2-Newton's-First-Law-PM-3.xhtml */,
 				5C8C008D1BD5927B007D4CF0 /* Story2-Newton's-First-Law-Title.xhtml */,
 				5C8C008E1BD5927B007D4CF0 /* Story3-Newton's-First-Law-on-Earth-Intro-E.xhtml */,
 				5C8C008F1BD5927B007D4CF0 /* Story3-Newton's-First-Law-on-Earth-PM-1.xhtml */,
@@ -6210,6 +6213,7 @@
 				1ADAB6F51ABA0AC900E1AB37 /* Rattle_def_E.mp3 in Resources */,
 				1AB9357F1A8956AB000CAE21 /* Introductions-MetaData.xml in Resources */,
 				31953E921729EE8100570087 /* MainStoryboard_iPad.storyboard in Resources */,
+				5CE8AE091BD7439300C40907 /* Story2-Newton's-First-Law-PM-3.xhtml in Resources */,
 				1A2D70F71AAA827D009E7B5B /* VocabularyIntroductions-MetaData.xml in Resources */,
 				B9C9E9E71B8EA0A800AFC328 /* ocean_wave_together.png in Resources */,
 				1A695CD71AD4EB9C006A2284 /* TheLopezFamilyQ4A2.mp3 in Resources */,
