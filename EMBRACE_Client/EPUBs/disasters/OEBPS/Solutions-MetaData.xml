@@ -140,6 +140,8 @@
                 <step number="1">
                     <check obj1Id="lava" action="getIn" locationId="lavaUp"/>
                     <swapImage obj1Id="lava" action="forms_Oahu"/>
+                    <appear obj1Id="label_oahu" action="appear"/>
+                    <groupAuto obj1Id="label_oahu" action="label" obj2Id="lava"/>
                     <groupAuto obj1Id="lava" action="touchAsOahu" obj2Id="grey_plate_kauai"/>
                 </step>
             </sentence>

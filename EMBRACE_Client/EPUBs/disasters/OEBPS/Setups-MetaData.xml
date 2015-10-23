@@ -10,6 +10,7 @@
             <group obj1Id="california" action="touch" obj2Id="north_america"/>
         </story>
         <story title="Volcanoes and the Making of Hawaii" page_id="story4-PM-3">
+            <group obj1Id="label_kauai" action="label" obj2Id="kauai"/>
             <group obj1Id="kauai" action="touchAsKauai" obj2Id="grey_plate_kauai"/>
         </story>
         <story title="Volcanoes and the Making of Hawaii" page_id="story4-PM-4">

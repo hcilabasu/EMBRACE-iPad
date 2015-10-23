@@ -35,15 +35,20 @@
         <hotspot objId="india" action="hit" role="subject" x="50%" y="50%"/>
         <hotspot objId="india" action="touch" role="object" x="16.9%" y="5.6%"/>
         <hotspot objId="india" action="touch" role="subject" x="94.7%" y="23.4%"/>
-        <hotspot objId="kauai" action="touchAsKauai" role="subject" x="50%" y="89%"/>
-        <hotspot objId="kauai" action="touchAsKauai2" role="subject" x="0%" y="89%"/>
-        <hotspot objId="kauai" action="touchAsKauai3" role="subject" x="0%" y="89%"/>
+        <hotspot objId="kauai" action="label" role="object" x="50%" y="0%"/>
+        <hotspot objId="kauai" action="touchAsKauai" role="subject" x="50%" y="82%"/>
+        <hotspot objId="kauai" action="touchAsKauai2" role="subject" x="0%" y="82%"/>
+        <hotspot objId="kauai" action="touchAsKauai3" role="subject" x="0%" y="82%"/>
+        <hotspot objId="label_kauai" action="label" role="subject" x="50%" y="100%"/>
+        <hotspot objId="label_oahu" action="label" role="subject" x="50%" y="100%"/>
         <hotspot objId="lava" action="getIn" role="subject" x="50%" y="50%"/>
-        <hotspot objId="lava" action="touchAsKauai" role="subject" x="50%" y="95%"/>
-        <hotspot objId="lava" action="touchAsOahu" role="subject" x="50%" y="95%"/>
+        <hotspot objId="lava" action="label" role="object" x="50%" y="0%"/>
+        <hotspot objId="lava" action="touchAsKauai" role="subject" x="50%" y="30%"/>
+        <hotspot objId="lava" action="touchAsOahu" role="subject" x="50%" y="30%"/>
         <hotspot objId="north_america" action="getIn" role="subject" x="0%" y="0%"/>
         <hotspot objId="north_america" action="touch" role="object" x="10.93%" y="38.42%"/>
         <hotspot objId="oahu" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="oahu" action="label" role="object" x="50%" y="0%"/>
         <hotspot objId="oahu" action="touchAsOahu" role="subject" x="50%" y="89%"/>
         <hotspot objId="ocean" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="person" action="getIn" role="subject" x="50%" y="50%"/>

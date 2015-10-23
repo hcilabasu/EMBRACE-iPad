@@ -1131,23 +1131,18 @@
 		5C8C010F1BD59A23007D4CF0 /* person1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C01071BD59A23007D4CF0 /* person1.png */; };
 		5C8C01101BD59A23007D4CF0 /* person2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C01081BD59A23007D4CF0 /* person2.png */; };
 		5C8C01111BD59A23007D4CF0 /* person3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C01091BD59A23007D4CF0 /* person3.png */; };
-		5C8C01121BD59A23007D4CF0 /* smallrocket.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C010A1BD59A23007D4CF0 /* smallrocket.png */; };
 		5C8C01171BD59AA6007D4CF0 /* ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C01131BD59AA6007D4CF0 /* ball.png */; };
-		5C8C01181BD59AA6007D4CF0 /* bigrocket.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C01141BD59AA6007D4CF0 /* bigrocket.png */; };
 		5C8C01191BD59AA6007D4CF0 /* juan.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C01151BD59AA6007D4CF0 /* juan.png */; };
 		5C8C011A1BD59AA6007D4CF0 /* maria.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C01161BD59AA6007D4CF0 /* maria.png */; };
 		5C8C01231BD59B02007D4CF0 /* cart.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C011B1BD59B02007D4CF0 /* cart.png */; };
 		5C8C01241BD59B02007D4CF0 /* dog_cart.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C011C1BD59B02007D4CF0 /* dog_cart.png */; };
 		5C8C01251BD59B02007D4CF0 /* dog_cartempty.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C011D1BD59B02007D4CF0 /* dog_cartempty.png */; };
 		5C8C01261BD59B02007D4CF0 /* dog_harness.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C011E1BD59B02007D4CF0 /* dog_harness.png */; };
-		5C8C01271BD59B02007D4CF0 /* horse_cart.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C011F1BD59B02007D4CF0 /* horse_cart.png */; };
 		5C8C01281BD59B02007D4CF0 /* horse_noharness.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C01201BD59B02007D4CF0 /* horse_noharness.png */; };
-		5C8C01291BD59B02007D4CF0 /* horse.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C01211BD59B02007D4CF0 /* horse.png */; };
 		5C8C012A1BD59B02007D4CF0 /* wood.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C01221BD59B02007D4CF0 /* wood.png */; };
 		5C8C01311BD59B41007D4CF0 /* juan_rowing.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C012B1BD59B41007D4CF0 /* juan_rowing.png */; };
 		5C8C01321BD59B41007D4CF0 /* maria_skateboard.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C012C1BD59B41007D4CF0 /* maria_skateboard.png */; };
 		5C8C01331BD59B41007D4CF0 /* push.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C012D1BD59B41007D4CF0 /* push.png */; };
-		5C8C01341BD59B41007D4CF0 /* rocket_flame.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C012E1BD59B41007D4CF0 /* rocket_flame.png */; };
 		5C8C01351BD59B41007D4CF0 /* sara_skateboard.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C012F1BD59B41007D4CF0 /* sara_skateboard.png */; };
 		5C8C01361BD59B41007D4CF0 /* sara.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C01301BD59B41007D4CF0 /* sara.png */; };
 		5C8C01391BD59C05007D4CF0 /* background_Ch7_V2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C01371BD59C05007D4CF0 /* background_Ch7_V2.png */; };
@@ -1166,7 +1161,6 @@
 		5C8C01521BD59C4B007D4CF0 /* ch7.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C014B1BD59C4B007D4CF0 /* ch7.png */; };
 		5C8C01541BD5F562007D4CF0 /* physics.epub in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C01531BD5F562007D4CF0 /* physics.epub */; };
 		5C913BDF1BB2443D000A2E32 /* houses_burn.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C913BDE1BB2443D000A2E32 /* houses_burn.png */; };
-		5C913BE11BB261A0000A2E32 /* island_lava_Hawaii.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C913BE01BB261A0000A2E32 /* island_lava_Hawaii.png */; };
 		5C9835741BCC660D00E94691 /* Picture1resized.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9835701BCC660D00E94691 /* Picture1resized.png */; };
 		5C9835751BCC660D00E94691 /* scene1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9835711BCC660D00E94691 /* scene1.png */; };
 		5C9835761BCC660D00E94691 /* scene2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9835721BCC660D00E94691 /* scene2.png */; };
@@ -1286,6 +1280,21 @@
 		5CE299F619B5C5C500675CB0 /* BFCE7_1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CE299F419B5C5C500675CB0 /* BFCE7_1.m4a */; };
 		5CE299F719B5C5C500675CB0 /* judgeE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CE299F519B5C5C500675CB0 /* judgeE.m4a */; };
 		5CE299FA19B5C71E00675CB0 /* BFCE7_4.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CE299F819B5C71E00675CB0 /* BFCE7_4.m4a */; };
+		5CE5D2731BD9A2900053B038 /* bigrocket.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CE5D2701BD9A2900053B038 /* bigrocket.png */; };
+		5CE5D2741BD9A2900053B038 /* rocket_flame.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CE5D2711BD9A2900053B038 /* rocket_flame.png */; };
+		5CE5D2751BD9A2900053B038 /* smallrocket.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CE5D2721BD9A2900053B038 /* smallrocket.png */; };
+		5CE5D2771BD9A9990053B038 /* cart_flipped.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CE5D2761BD9A9990053B038 /* cart_flipped.png */; };
+		5CE5D2791BD9A9C00053B038 /* horse.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CE5D2781BD9A9C00053B038 /* horse.png */; };
+		5CE5D27B1BD9A9ED0053B038 /* horse_cart.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CE5D27A1BD9A9ED0053B038 /* horse_cart.png */; };
+		5CE5D27D1BD9BA3E0053B038 /* Hawaii.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CE5D27C1BD9BA3E0053B038 /* Hawaii.png */; };
+		5CE5D2811BD9BA730053B038 /* Kauai.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CE5D27E1BD9BA730053B038 /* Kauai.png */; };
+		5CE5D2821BD9BA730053B038 /* Molokai.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CE5D27F1BD9BA730053B038 /* Molokai.png */; };
+		5CE5D2831BD9BA730053B038 /* Oahu.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CE5D2801BD9BA730053B038 /* Oahu.png */; };
+		5CE5D2861BD9BB3E0053B038 /* island_Hawaii.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CE5D2841BD9BB3E0053B038 /* island_Hawaii.png */; };
+		5CE5D2871BD9BB3E0053B038 /* island_Kauai.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CE5D2851BD9BB3E0053B038 /* island_Kauai.png */; };
+		5CE5D28A1BD9BB4F0053B038 /* island_Molokai.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CE5D2881BD9BB4F0053B038 /* island_Molokai.png */; };
+		5CE5D28B1BD9BB4F0053B038 /* island_Oahu.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CE5D2891BD9BB4F0053B038 /* island_Oahu.png */; };
+		5CE5D28D1BD9BC020053B038 /* island_lava_Hawaii.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CE5D28C1BD9BC020053B038 /* island_lava_Hawaii.png */; };
 		5CE8AE091BD7439300C40907 /* Story2-Newton's-First-Law-PM-3.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CE8AE081BD7439300C40907 /* Story2-Newton's-First-Law-PM-3.xhtml */; };
 		5CF655AF19AC49C2000AC913 /* Story1-Introduction-At-the-Farm-PM.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CF655AE19AC49C2000AC913 /* Story1-Introduction-At-the-Farm-PM.xhtml */; };
 		5CF655B119AC4BB4000AC913 /* Story1-The-Contest-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CF655B019AC4BB4000AC913 /* Story1-The-Contest-Intro-S.xhtml */; };
@@ -1517,10 +1526,6 @@
 		B9C9E9C61B8EA0A800AFC328 /* india_whole.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E9211B8EA0A700AFC328 /* india_whole.png */; };
 		B9C9E9C71B8EA0A800AFC328 /* intro_background.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E9221B8EA0A700AFC328 /* intro_background.png */; };
 		B9C9E9C81B8EA0A800AFC328 /* intro_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E9231B8EA0A700AFC328 /* intro_icon.png */; };
-		B9C9E9C91B8EA0A800AFC328 /* island_Hawaii.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E9241B8EA0A700AFC328 /* island_Hawaii.png */; };
-		B9C9E9CA1B8EA0A800AFC328 /* island_Kauai.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E9251B8EA0A700AFC328 /* island_Kauai.png */; };
-		B9C9E9CB1B8EA0A800AFC328 /* island_Molokai.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E9261B8EA0A700AFC328 /* island_Molokai.png */; };
-		B9C9E9CC1B8EA0A800AFC328 /* island_Oahu.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E9271B8EA0A700AFC328 /* island_Oahu.png */; };
 		B9C9E9CD1B8EA0A800AFC328 /* land_hawaii.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E9281B8EA0A700AFC328 /* land_hawaii.png */; };
 		B9C9E9CE1B8EA0A800AFC328 /* land_kauai.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E9291B8EA0A700AFC328 /* land_kauai.png */; };
 		B9C9E9CF1B8EA0A800AFC328 /* land_main.png in Resources */ = {isa = PBXBuildFile; fileRef = B9C9E92A1B8EA0A700AFC328 /* land_main.png */; };
@@ -2807,23 +2812,18 @@
 		5C8C01071BD59A23007D4CF0 /* person1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = person1.png; sourceTree = "<group>"; };
 		5C8C01081BD59A23007D4CF0 /* person2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = person2.png; sourceTree = "<group>"; };
 		5C8C01091BD59A23007D4CF0 /* person3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = person3.png; sourceTree = "<group>"; };
-		5C8C010A1BD59A23007D4CF0 /* smallrocket.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallrocket.png; sourceTree = "<group>"; };
 		5C8C01131BD59AA6007D4CF0 /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball.png; sourceTree = "<group>"; };
-		5C8C01141BD59AA6007D4CF0 /* bigrocket.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigrocket.png; sourceTree = "<group>"; };
 		5C8C01151BD59AA6007D4CF0 /* juan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = juan.png; sourceTree = "<group>"; };
 		5C8C01161BD59AA6007D4CF0 /* maria.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = maria.png; sourceTree = "<group>"; };
 		5C8C011B1BD59B02007D4CF0 /* cart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cart.png; sourceTree = "<group>"; };
 		5C8C011C1BD59B02007D4CF0 /* dog_cart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dog_cart.png; sourceTree = "<group>"; };
 		5C8C011D1BD59B02007D4CF0 /* dog_cartempty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dog_cartempty.png; sourceTree = "<group>"; };
 		5C8C011E1BD59B02007D4CF0 /* dog_harness.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dog_harness.png; sourceTree = "<group>"; };
-		5C8C011F1BD59B02007D4CF0 /* horse_cart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = horse_cart.png; sourceTree = "<group>"; };
 		5C8C01201BD59B02007D4CF0 /* horse_noharness.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = horse_noharness.png; sourceTree = "<group>"; };
-		5C8C01211BD59B02007D4CF0 /* horse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = horse.png; sourceTree = "<group>"; };
 		5C8C01221BD59B02007D4CF0 /* wood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wood.png; sourceTree = "<group>"; };
 		5C8C012B1BD59B41007D4CF0 /* juan_rowing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = juan_rowing.png; sourceTree = "<group>"; };
 		5C8C012C1BD59B41007D4CF0 /* maria_skateboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = maria_skateboard.png; sourceTree = "<group>"; };
 		5C8C012D1BD59B41007D4CF0 /* push.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = push.png; sourceTree = "<group>"; };
-		5C8C012E1BD59B41007D4CF0 /* rocket_flame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rocket_flame.png; sourceTree = "<group>"; };
 		5C8C012F1BD59B41007D4CF0 /* sara_skateboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sara_skateboard.png; sourceTree = "<group>"; };
 		5C8C01301BD59B41007D4CF0 /* sara.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sara.png; sourceTree = "<group>"; };
 		5C8C01371BD59C05007D4CF0 /* background_Ch7_V2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_Ch7_V2.png; sourceTree = "<group>"; };
@@ -2842,7 +2842,6 @@
 		5C8C014B1BD59C4B007D4CF0 /* ch7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ch7.png; sourceTree = "<group>"; };
 		5C8C01531BD5F562007D4CF0 /* physics.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = physics.epub; path = EPUBs/physics/physics.epub; sourceTree = "<group>"; };
 		5C913BDE1BB2443D000A2E32 /* houses_burn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = houses_burn.png; sourceTree = "<group>"; };
-		5C913BE01BB261A0000A2E32 /* island_lava_Hawaii.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = island_lava_Hawaii.png; sourceTree = "<group>"; };
 		5C9835701BCC660D00E94691 /* Picture1resized.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Picture1resized.png; sourceTree = "<group>"; };
 		5C9835711BCC660D00E94691 /* scene1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scene1.png; sourceTree = "<group>"; };
 		5C9835721BCC660D00E94691 /* scene2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scene2.png; sourceTree = "<group>"; };
@@ -2966,6 +2965,21 @@
 		5CE299F419B5C5C500675CB0 /* BFCE7_1.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCE7_1.m4a; path = EMBRACE_Client/sounds/BFCE7_1.m4a; sourceTree = SOURCE_ROOT; };
 		5CE299F519B5C5C500675CB0 /* judgeE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = judgeE.m4a; path = EMBRACE_Client/sounds/judgeE.m4a; sourceTree = SOURCE_ROOT; };
 		5CE299F819B5C71E00675CB0 /* BFCE7_4.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCE7_4.m4a; path = EMBRACE_Client/sounds/BFCE7_4.m4a; sourceTree = SOURCE_ROOT; };
+		5CE5D2701BD9A2900053B038 /* bigrocket.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigrocket.png; sourceTree = "<group>"; };
+		5CE5D2711BD9A2900053B038 /* rocket_flame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rocket_flame.png; sourceTree = "<group>"; };
+		5CE5D2721BD9A2900053B038 /* smallrocket.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallrocket.png; sourceTree = "<group>"; };
+		5CE5D2761BD9A9990053B038 /* cart_flipped.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cart_flipped.png; sourceTree = "<group>"; };
+		5CE5D2781BD9A9C00053B038 /* horse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = horse.png; sourceTree = "<group>"; };
+		5CE5D27A1BD9A9ED0053B038 /* horse_cart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = horse_cart.png; sourceTree = "<group>"; };
+		5CE5D27C1BD9BA3E0053B038 /* Hawaii.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Hawaii.png; sourceTree = "<group>"; };
+		5CE5D27E1BD9BA730053B038 /* Kauai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Kauai.png; sourceTree = "<group>"; };
+		5CE5D27F1BD9BA730053B038 /* Molokai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Molokai.png; sourceTree = "<group>"; };
+		5CE5D2801BD9BA730053B038 /* Oahu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Oahu.png; sourceTree = "<group>"; };
+		5CE5D2841BD9BB3E0053B038 /* island_Hawaii.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = island_Hawaii.png; sourceTree = "<group>"; };
+		5CE5D2851BD9BB3E0053B038 /* island_Kauai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = island_Kauai.png; sourceTree = "<group>"; };
+		5CE5D2881BD9BB4F0053B038 /* island_Molokai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = island_Molokai.png; sourceTree = "<group>"; };
+		5CE5D2891BD9BB4F0053B038 /* island_Oahu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = island_Oahu.png; sourceTree = "<group>"; };
+		5CE5D28C1BD9BC020053B038 /* island_lava_Hawaii.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = island_lava_Hawaii.png; sourceTree = "<group>"; };
 		5CE8AE081BD7439300C40907 /* Story2-Newton's-First-Law-PM-3.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story2-Newton's-First-Law-PM-3.xhtml"; sourceTree = "<group>"; };
 		5CF655AE19AC49C2000AC913 /* Story1-Introduction-At-the-Farm-PM.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Introduction-At-the-Farm-PM.xhtml"; sourceTree = "<group>"; };
 		5CF655B019AC4BB4000AC913 /* Story1-The-Contest-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-The-Contest-Intro-S.xhtml"; sourceTree = "<group>"; };
@@ -3212,10 +3226,6 @@
 		B9C9E9211B8EA0A700AFC328 /* india_whole.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = india_whole.png; sourceTree = "<group>"; };
 		B9C9E9221B8EA0A700AFC328 /* intro_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = intro_background.png; sourceTree = "<group>"; };
 		B9C9E9231B8EA0A700AFC328 /* intro_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = intro_icon.png; sourceTree = "<group>"; };
-		B9C9E9241B8EA0A700AFC328 /* island_Hawaii.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = island_Hawaii.png; sourceTree = "<group>"; };
-		B9C9E9251B8EA0A700AFC328 /* island_Kauai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = island_Kauai.png; sourceTree = "<group>"; };
-		B9C9E9261B8EA0A700AFC328 /* island_Molokai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = island_Molokai.png; sourceTree = "<group>"; };
-		B9C9E9271B8EA0A700AFC328 /* island_Oahu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = island_Oahu.png; sourceTree = "<group>"; };
 		B9C9E9281B8EA0A700AFC328 /* land_hawaii.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = land_hawaii.png; sourceTree = "<group>"; };
 		B9C9E9291B8EA0A700AFC328 /* land_kauai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = land_kauai.png; sourceTree = "<group>"; };
 		B9C9E92A1B8EA0A700AFC328 /* land_main.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = land_main.png; sourceTree = "<group>"; };
@@ -4948,6 +4958,12 @@
 		5C8C01021BD59A23007D4CF0 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5CE5D27A1BD9A9ED0053B038 /* horse_cart.png */,
+				5CE5D2781BD9A9C00053B038 /* horse.png */,
+				5CE5D2761BD9A9990053B038 /* cart_flipped.png */,
+				5CE5D2701BD9A2900053B038 /* bigrocket.png */,
+				5CE5D2711BD9A2900053B038 /* rocket_flame.png */,
+				5CE5D2721BD9A2900053B038 /* smallrocket.png */,
 				5C8C01451BD59C4B007D4CF0 /* ch1.png */,
 				5C8C01461BD59C4B007D4CF0 /* ch2.png */,
 				5C8C01471BD59C4B007D4CF0 /* ch3.png */,
@@ -4965,19 +4981,15 @@
 				5C8C012B1BD59B41007D4CF0 /* juan_rowing.png */,
 				5C8C012C1BD59B41007D4CF0 /* maria_skateboard.png */,
 				5C8C012D1BD59B41007D4CF0 /* push.png */,
-				5C8C012E1BD59B41007D4CF0 /* rocket_flame.png */,
 				5C8C012F1BD59B41007D4CF0 /* sara_skateboard.png */,
 				5C8C01301BD59B41007D4CF0 /* sara.png */,
 				5C8C011B1BD59B02007D4CF0 /* cart.png */,
 				5C8C011C1BD59B02007D4CF0 /* dog_cart.png */,
 				5C8C011D1BD59B02007D4CF0 /* dog_cartempty.png */,
 				5C8C011E1BD59B02007D4CF0 /* dog_harness.png */,
-				5C8C011F1BD59B02007D4CF0 /* horse_cart.png */,
 				5C8C01201BD59B02007D4CF0 /* horse_noharness.png */,
-				5C8C01211BD59B02007D4CF0 /* horse.png */,
 				5C8C01221BD59B02007D4CF0 /* wood.png */,
 				5C8C01131BD59AA6007D4CF0 /* ball.png */,
-				5C8C01141BD59AA6007D4CF0 /* bigrocket.png */,
 				5C8C01151BD59AA6007D4CF0 /* juan.png */,
 				5C8C01161BD59AA6007D4CF0 /* maria.png */,
 				5C8C01031BD59A23007D4CF0 /* background.jpg */,
@@ -4987,7 +4999,6 @@
 				5C8C01071BD59A23007D4CF0 /* person1.png */,
 				5C8C01081BD59A23007D4CF0 /* person2.png */,
 				5C8C01091BD59A23007D4CF0 /* person3.png */,
-				5C8C010A1BD59A23007D4CF0 /* smallrocket.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -5339,6 +5350,15 @@
 		B9C9E8E91B8EA0A700AFC328 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5CE5D28C1BD9BC020053B038 /* island_lava_Hawaii.png */,
+				5CE5D2881BD9BB4F0053B038 /* island_Molokai.png */,
+				5CE5D2891BD9BB4F0053B038 /* island_Oahu.png */,
+				5CE5D2841BD9BB3E0053B038 /* island_Hawaii.png */,
+				5CE5D2851BD9BB3E0053B038 /* island_Kauai.png */,
+				5CE5D27E1BD9BA730053B038 /* Kauai.png */,
+				5CE5D27F1BD9BA730053B038 /* Molokai.png */,
+				5CE5D2801BD9BA730053B038 /* Oahu.png */,
+				5CE5D27C1BD9BA3E0053B038 /* Hawaii.png */,
 				5CCC37EE1BD07B2A005C159B /* north_america_fault.png */,
 				5CCC37EF1BD07B2A005C159B /* north_america_nofault.png */,
 				5C9835781BCC673500E94691 /* house_noroof2_damaged.png */,
@@ -5354,7 +5374,6 @@
 				5C4515A41BB60CFD00DC1B07 /* grey_plate_kauai.png */,
 				5C4515A51BB60CFD00DC1B07 /* grey_plate_molokai.png */,
 				5C4515A61BB60CFD00DC1B07 /* grey_plate_oahu.png */,
-				5C913BE01BB261A0000A2E32 /* island_lava_Hawaii.png */,
 				5C913BDE1BB2443D000A2E32 /* houses_burn.png */,
 				B98B6CB21B96817800B04AFC /* dirt_tornado.png */,
 				B98D2F5F1B94DE8C002B71EE /* houses_fall.png */,
@@ -5413,10 +5432,6 @@
 				B9C9E9211B8EA0A700AFC328 /* india_whole.png */,
 				B9C9E9221B8EA0A700AFC328 /* intro_background.png */,
 				B9C9E9231B8EA0A700AFC328 /* intro_icon.png */,
-				B9C9E9241B8EA0A700AFC328 /* island_Hawaii.png */,
-				B9C9E9251B8EA0A700AFC328 /* island_Kauai.png */,
-				B9C9E9261B8EA0A700AFC328 /* island_Molokai.png */,
-				B9C9E9271B8EA0A700AFC328 /* island_Oahu.png */,
 				B9C9E9281B8EA0A700AFC328 /* land_hawaii.png */,
 				B9C9E9291B8EA0A700AFC328 /* land_kauai.png */,
 				B9C9E92A1B8EA0A700AFC328 /* land_main.png */,
@@ -5672,6 +5687,7 @@
 				5C7FE0F419A7E43C00CBBE0E /* BFCE1_6B.m4a in Resources */,
 				5CF9949519AC34550080C32F /* Story-5-The-Wise-Owl.png in Resources */,
 				5C7FE03D19A6B1B500CBBE0E /* PMStyle.css in Resources */,
+				5CE5D2811BD9BA730053B038 /* Kauai.png in Resources */,
 				1A695CE31AD4EB9C006A2284 /* TheLopezFamilyQ6A4.mp3 in Resources */,
 				B9C9EA041B8EA0A800AFC328 /* IMStyle.css in Resources */,
 				5CE299D319B59E6000675CB0 /* weedsE.m4a in Resources */,
@@ -5734,7 +5750,6 @@
 				5C7FE03819A6B1B500CBBE0E /* p3_nosqueeze.png in Resources */,
 				B9C9EA0A1B8EA0A800AFC328 /* Story1-The-Moving-Earth-PM-1.xhtml in Resources */,
 				5C7FE03019A6B1B500CBBE0E /* dirt.png in Resources */,
-				B9C9E9CA1B8EA0A800AFC328 /* island_Kauai.png in Resources */,
 				B952293B1BA1130100093528 /* toy_train.png in Resources */,
 				1ADAB6FC1ABA0AC900E1AB37 /* Thief_def_E.mp3 in Resources */,
 				1A35940E1AE76129003B3B41 /* MoreIsMissingQ7A4.mp3 in Resources */,
@@ -5781,6 +5796,7 @@
 				B9C9EA1A1B8EA0A800AFC328 /* Story4-Volcanoes-and-the-Making-of-Hawaii-PM-1.xhtml in Resources */,
 				5C7FE11B19A7E43C00CBBE0E /* BFCS_5A.m4a in Resources */,
 				5CE299BD19B5837000675CB0 /* bucketE.m4a in Resources */,
+				5CE5D2791BD9A9C00053B038 /* horse.png in Resources */,
 				1A80367F1B0B1C62004A164A /* GettingReadyQ5A1.mp3 in Resources */,
 				5CE299C519B5852F00675CB0 /* cartE.m4a in Resources */,
 				5C776BC319C93E1E000DBC65 /* atriumDEFS.m4a in Resources */,
@@ -5946,7 +5962,6 @@
 				1A2D70A61AAA74FA009E7B5B /* Story-4-Good-Morning-Smiths.png in Resources */,
 				1A2D709D1AAA74FA009E7B5B /* man.png in Resources */,
 				1A3593F31AE76129003B3B41 /* MoreIsMissingQ2A2.mp3 in Resources */,
-				B9C9E9CC1B8EA0A800AFC328 /* island_Oahu.png in Resources */,
 				1A35940A1AE76129003B3B41 /* MoreIsMissingQ7.mp3 in Resources */,
 				1A3330C31BA0E90A00C8293A /* bg3_popup_circle.png in Resources */,
 				B9C9E9D71B8EA0A800AFC328 /* lava_kauai.png in Resources */,
@@ -5974,11 +5989,11 @@
 				1A8036C81B0B1C62004A164A /* TheBestFarmAwardQ5A4.mp3 in Resources */,
 				5C8C00F01BD5927B007D4CF0 /* VocabularyIntroductions-MetaData.xml in Resources */,
 				5CAD05DE19BE6A3E00F3F053 /* CEE_14.m4a in Resources */,
+				5CE5D27B1BD9A9ED0053B038 /* horse_cart.png in Resources */,
 				5C7FE12619A7E43C00CBBE0E /* BFEE_10A.m4a in Resources */,
 				1AEE55081ADE028100DFC6B0 /* IsPacoAThiefQ4A1.mp3 in Resources */,
 				B95229261BA0D90700093528 /* chapter4.png in Resources */,
 				5CE299EA19B5B3D600675CB0 /* BFCE5_1.m4a in Resources */,
-				5C8C01121BD59A23007D4CF0 /* smallrocket.png in Resources */,
 				1A3594531AE76129003B3B41 /* TheMysteryIsSolvedQ7A3.mp3 in Resources */,
 				B95229251BA0D90700093528 /* chapter5.png in Resources */,
 				1A695C981AD4D9C1006A2284 /* TheLopezFamilyS4S.mp3 in Resources */,
@@ -6060,6 +6075,7 @@
 				5CF994AD19AC34550080C32F /* Story4-Who-is-the-Best-Animal-IM-1.xhtml in Resources */,
 				B9C9EA0B1B8EA0A800AFC328 /* Story1-The-Moving-Earth-PM-2.xhtml in Resources */,
 				5C7FE11C19A7E43C00CBBE0E /* BFCS_6.m4a in Resources */,
+				5CE5D2831BD9BA730053B038 /* Oahu.png in Resources */,
 				1A3593F71AE76129003B3B41 /* MoreIsMissingQ3A1.mp3 in Resources */,
 				5C776A6519C241EE000DBC65 /* CWWB8.m4a in Resources */,
 				1A695C7F1AD4C8B0006A2284 /* TheLopezFamilyS1E.mp3 in Resources */,
@@ -6183,6 +6199,7 @@
 				5C8C00D41BD5927B007D4CF0 /* PMStyle.css in Resources */,
 				5C7FE05D19A6B1B500CBBE0E /* Story4-Getting-More-Oxygen-for-the-Muscles-Title.xhtml in Resources */,
 				5CF994B019AC34550080C32F /* Story4-Who-is-the-Best-Animal-PM-2.xhtml in Resources */,
+				5CE5D28D1BD9BC020053B038 /* island_lava_Hawaii.png in Resources */,
 				1A695C801AD4C8B0006A2284 /* TheLopezFamilyS2E.mp3 in Resources */,
 				5CC7621F1A1C6E8000A600CA /* BFES_10B.m4a in Resources */,
 				5CF9948119AC34550080C32F /* farm.png in Resources */,
@@ -6276,6 +6293,7 @@
 				5C7FE03F19A6B1B500CBBE0E /* Introduction-to-Circulatory-Characters-Title.xhtml in Resources */,
 				5C9835741BCC660D00E94691 /* Picture1resized.png in Resources */,
 				1AE0F6041A79675A00C5B67D /* Waypoints-MetaData.xml in Resources */,
+				5CE5D2741BD9A2900053B038 /* rocket_flame.png in Resources */,
 				5CF655B719AD6927000AC913 /* BFEE_10B.m4a in Resources */,
 				1A35943B1AE76129003B3B41 /* TheMysteryIsSolvedQ2A4.mp3 in Resources */,
 				1A695CCD1AD4EB9C006A2284 /* TheLopezFamilyQ2A2.mp3 in Resources */,
@@ -6296,7 +6314,6 @@
 				B95228801BA0CDAB00093528 /* content.opf in Resources */,
 				5CF994AB19AC34550080C32F /* Story3-Cleaning-Up-PM-2.xhtml in Resources */,
 				5C7FE16A19A7E43C00CBBE0E /* STWATTP.m4a in Resources */,
-				5C8C01271BD59B02007D4CF0 /* horse_cart.png in Resources */,
 				5C8C01421BD59C13007D4CF0 /* maria_push.png in Resources */,
 				1AB935771A895617000CAE21 /* Solutions-MetaData.xml in Resources */,
 				5C776BD919C93E1E000DBC65 /* chestDEFS.m4a in Resources */,
@@ -6466,6 +6483,7 @@
 				5C8C00D11BD5927B007D4CF0 /* Setups-MetaData.xml in Resources */,
 				1A80369D1B0B1C62004A164A /* IntroductionToTheBestFarmQ4A1.mp3 in Resources */,
 				1ADAB6F21ABA0AC900E1AB37 /* Lawyer_def_E.mp3 in Resources */,
+				5CE5D28B1BD9BB4F0053B038 /* island_Oahu.png in Resources */,
 				1AEE55261ADE028100DFC6B0 /* MissingKeysQ3A1.mp3 in Resources */,
 				1AEE55311ADE028100DFC6B0 /* MissingKeysQ5A2.mp3 in Resources */,
 				5CF9948619AC34550080C32F /* farmer_large.png in Resources */,
@@ -6493,6 +6511,7 @@
 				1A8036AA1B0B1C62004A164A /* IntroductionToTheBestFarmQ6A4.mp3 in Resources */,
 				B952287A1BA0CDAB00093528 /* container.xml in Resources */,
 				B9C9E9FA1B8EA0A800AFC328 /* Tsunami_icon.png in Resources */,
+				5CE5D2861BD9BB3E0053B038 /* island_Hawaii.png in Resources */,
 				5CAD061819BE6A3E00F3F053 /* CCE1_1.m4a in Resources */,
 				1AEE552A1ADE028100DFC6B0 /* MissingKeysQ4.mp3 in Resources */,
 				1A35943D1AE76129003B3B41 /* TheMysteryIsSolvedQ3A1.mp3 in Resources */,
@@ -6514,7 +6533,6 @@
 				B9C9EA091B8EA0A800AFC328 /* Story1-The-Moving-Earth-Intro-E.xhtml in Resources */,
 				1A8036531B0B1C62004A164A /* EveryoneHelpsQ2A2.mp3 in Resources */,
 				1A2D70861AAA74FA009E7B5B /* calibre_bookmarks.txt in Resources */,
-				5C8C01341BD59B41007D4CF0 /* rocket_flame.png in Resources */,
 				5C776BD719C93E1E000DBC65 /* aroundDEFS.m4a in Resources */,
 				5C7FE06219A6B1B500CBBE0E /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-PM-3.xhtml in Resources */,
 				5C776B6619C90DA1000DBC65 /* BFEC5.m4a in Resources */,
@@ -6571,6 +6589,7 @@
 				1A8036D21B0B1C62004A164A /* TheContestQ1A4.mp3 in Resources */,
 				B9C9E9AE1B8EA0A800AFC328 /* ch4_test_05.png in Resources */,
 				1A80371E1B0B1C62004A164A /* WhoIsTheBestAnimalQ4.mp3 in Resources */,
+				5CE5D2871BD9BB3E0053B038 /* island_Kauai.png in Resources */,
 				1AC489791AC083DF00784D77 /* Pets_def_S.mp3 in Resources */,
 				1A35940B1AE76129003B3B41 /* MoreIsMissingQ7A1.mp3 in Resources */,
 				1A8036551B0B1C62004A164A /* EveryoneHelpsQ2A4.mp3 in Resources */,
@@ -6622,8 +6641,8 @@
 				5C776C4A19C9565E000DBC65 /* penDEFS.m4a in Resources */,
 				5CAD065019BEB8AE00F3F053 /* moleculesE.m4a in Resources */,
 				B9C9E9CD1B8EA0A800AFC328 /* land_hawaii.png in Resources */,
+				5CE5D28A1BD9BB4F0053B038 /* island_Molokai.png in Resources */,
 				1A80370F1B0B1C62004A164A /* WhoIsTheBestAnimalQ1.mp3 in Resources */,
-				5C8C01181BD59AA6007D4CF0 /* bigrocket.png in Resources */,
 				5C7FE02819A6B1B500CBBE0E /* mimetype in Resources */,
 				5C776BF219C93E1E000DBC65 /* oxygenS.m4a in Resources */,
 				5C7FE0F719A7E43C00CBBE0E /* BFCE_10A.m4a in Resources */,
@@ -6678,13 +6697,13 @@
 				1A3594251AE76129003B3B41 /* TheFamilyIsRattledQ4A2.mp3 in Resources */,
 				5CF655AF19AC49C2000AC913 /* Story1-Introduction-At-the-Farm-PM.xhtml in Resources */,
 				1A3594271AE76129003B3B41 /* TheFamilyIsRattledQ4A4.mp3 in Resources */,
+				5CE5D2731BD9A2900053B038 /* bigrocket.png in Resources */,
 				5C7FE13A19A7E43C00CBBE0E /* BFES_11.m4a in Resources */,
 				1A35944F1AE76129003B3B41 /* TheMysteryIsSolvedQ6A4.mp3 in Resources */,
 				1A8037111B0B1C62004A164A /* WhoIsTheBestAnimalQ1A2.mp3 in Resources */,
 				1A80368C1B0B1C62004A164A /* GettingReadyQ7A4.mp3 in Resources */,
 				1A8036BB1B0B1C62004A164A /* TheBestFarmAwardQ3A1.mp3 in Resources */,
 				1A695CD21AD4EB9C006A2284 /* TheLopezFamilyQ3A2.mp3 in Resources */,
-				5C913BE11BB261A0000A2E32 /* island_lava_Hawaii.png in Resources */,
 				B9C9E98A1B8EA0A800AFC328 /* Areas-MetaData.xml in Resources */,
 				B95229161BA0CDAB00093528 /* Story5-Catch-Title.xhtml in Resources */,
 				1A35943C1AE76129003B3B41 /* TheMysteryIsSolvedQ3.mp3 in Resources */,
@@ -6696,6 +6715,7 @@
 				5C8C00A91BD5927B007D4CF0 /* Hotspots-MetaData.xml in Resources */,
 				B9C9E9A51B8EA0A800AFC328 /* ch3_bg.png in Resources */,
 				5C7FE10019A7E43C00CBBE0E /* BFCE_3.m4a in Resources */,
+				5CE5D2771BD9A9990053B038 /* cart_flipped.png in Resources */,
 				1AEE55071ADE028100DFC6B0 /* IsPacoAThiefQ4.mp3 in Resources */,
 				5CF994A019AC34550080C32F /* Story1-The-Contest-PM-1.xhtml in Resources */,
 				1A3593EE1AE76129003B3B41 /* MoreIsMissingQ1A2.mp3 in Resources */,
@@ -6825,6 +6845,7 @@
 				1A3594431AE76129003B3B41 /* TheMysteryIsSolvedQ4A2.mp3 in Resources */,
 				5C7FE12819A7E43C00CBBE0E /* BFEE_11A.m4a in Resources */,
 				5CE299E319B5AC2700675CB0 /* purrE.m4a in Resources */,
+				5CE5D2821BD9BA730053B038 /* Molokai.png in Resources */,
 				B952291A1BA0CDAB00093528 /* VocabularyIntroductions-MetaData.xml in Resources */,
 				5C8C00DC1BD5927B007D4CF0 /* Story2-Newton's-First-Law-PM-2.xhtml in Resources */,
 				5C8C00F31BD595BF007D4CF0 /* Story6-Newton's-Third-Law-Forces-are-Paired-Intro-E.xhtml in Resources */,
@@ -6885,12 +6906,12 @@
 				5C8C01511BD59C4B007D4CF0 /* ch6.png in Resources */,
 				5C7FE05519A6B1B500CBBE0E /* Story4-Getting-More-Oxygen-for-the-Muscles-IM-2.xhtml in Resources */,
 				B9C9E9B11B8EA0A800AFC328 /* ch4_test_08.png in Resources */,
+				5CE5D2751BD9A2900053B038 /* smallrocket.png in Resources */,
 				1A80363D1B0B1C62004A164A /* CleaningUpQ4.mp3 in Resources */,
 				5C8C01441BD59C13007D4CF0 /* toycar.png in Resources */,
 				1A35942E1AE76129003B3B41 /* TheFamilyIsRattledQ6A1.mp3 in Resources */,
 				1A2D70D71AAA74FA009E7B5B /* Story6-The-Mystery-is-Solved-PM-2.xhtml in Resources */,
 				1AEE55381ADE028100DFC6B0 /* MissingKeysQ6A4.mp3 in Resources */,
-				B9C9E9C91B8EA0A800AFC328 /* island_Hawaii.png in Resources */,
 				5CAD063D19BEB8AE00F3F053 /* veinsE.m4a in Resources */,
 				1ADAB6FB1ABA0AC900E1AB37 /* Stealing_def_E.mp3 in Resources */,
 				5C8C014D1BD59C4B007D4CF0 /* ch2.png in Resources */,
@@ -6946,7 +6967,6 @@
 				B95229191BA0CDAB00093528 /* Translations-MetaData.xml in Resources */,
 				1A8036A31B0B1C62004A164A /* IntroductionToTheBestFarmQ5A2.mp3 in Resources */,
 				5C98357B1BCC673500E94691 /* house_roof2_damaged.png in Resources */,
-				B9C9E9CB1B8EA0A800AFC328 /* island_Molokai.png in Resources */,
 				1A2D70C71AAA74FA009E7B5B /* Story4-More-is-Missing-IM-1.xhtml in Resources */,
 				B95229411BA1130100093528 /* picture.png in Resources */,
 				1A8036991B0B1C62004A164A /* IntroductionToTheBestFarmQ3A2.mp3 in Resources */,
@@ -6983,6 +7003,7 @@
 				1A695CCE1AD4EB9C006A2284 /* TheLopezFamilyQ2A3.mp3 in Resources */,
 				1A80367E1B0B1C62004A164A /* GettingReadyQ5.mp3 in Resources */,
 				5CF994A219AC34550080C32F /* Story1-The-Contest-Title.xhtml in Resources */,
+				5CE5D27D1BD9BA3E0053B038 /* Hawaii.png in Resources */,
 				5CF994A119AC34550080C32F /* Story1-The-Contest-PM-2.xhtml in Resources */,
 				1A8036E31B0B1C62004A164A /* TheContestQ5A1.mp3 in Resources */,
 				1A3593EC1AE76129003B3B41 /* MoreIsMissingQ1.mp3 in Resources */,
@@ -7057,7 +7078,6 @@
 				5C7FE13919A7E43C00CBBE0E /* BFES_10.m4a in Resources */,
 				1A8036F91B0B1C62004A164A /* TheWiseOwlQ2A3.mp3 in Resources */,
 				5C7FE11D19A7E43C00CBBE0E /* BFCS_8.m4a in Resources */,
-				5C8C01291BD59B02007D4CF0 /* horse.png in Resources */,
 				5C776BED19C93E1E000DBC65 /* lungsDEFS.m4a in Resources */,
 				1A8036761B0B1C62004A164A /* GettingReadyQ3A2.mp3 in Resources */,
 				1AE0F60C1A79686A00C5B67D /* SentenceAnalysis-MetaData.xml in Resources */,

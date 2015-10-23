@@ -162,6 +162,10 @@
     <item href="Images/scene1.png" id="scene1.png" media-type="image/png" />
     <item href="Images/scene2.png" id="scene2.png" media-type="image/png" />
     <item href="Images/scene3.png" id="scene3.png" media-type="image/png" />
+    <item href="Images/Kauai.png" id="Kauai.png" media-type="image/png" />
+    <item href="Images/Molokai.png" id="Molokai.png" media-type="image/png" />
+    <item href="Images/Oahu.png" id="Oahu.png" media-type="image/png" />
+    <item href="Images/Hawaii.png" id="Hawaii.png" media-type="image/png" />
   </manifest>
   <spine toc="ncx">
     <itemref idref="story0-PM" />

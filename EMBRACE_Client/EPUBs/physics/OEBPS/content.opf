@@ -28,6 +28,7 @@
     <item href="Images/sara_skateboard.png" id="sara_skateboard.png" media-type="image/png" />
     <item href="Images/sara.png" id="sara.png" media-type="image/png" />
     <item href="Images/cart.png" id="cart.png" media-type="image/png" />
+    <item href="Images/cart_flipped.png" id="cart_flipped.png" media-type="image/png" />
     <item href="Images/dog_cart.png" id="dog_cart.png" media-type="image/png" />
     <item href="Images/dog_cartempty.png" id="dog_cartempty.png" media-type="image/png" />
     <item href="Images/dog_harness.png" id="dog_harness.png" media-type="image/png" />
