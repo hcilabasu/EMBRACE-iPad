@@ -122,7 +122,9 @@
                 <step number="1">
                     <check obj1Id="lava" action="getIn" locationId="lavaUp"/>
                     <swapImage obj1Id="lava" action="forms_island"/>
+                    <appear obj1Id="label_kauai" action="appear"/>
                     <disappearAuto obj1Id="lava_cooled" action="disappear" obj2Id="lava_cooled"/>
+                    <groupAuto obj1Id="label_kauai" action="label" obj2Id="lava"/>
                     <groupAuto obj1Id="lava" action="touchAsKauai" obj2Id="grey_plate_kauai"/>
                 </step>
             </sentence>
@@ -156,6 +158,10 @@
                     <move obj1Id="oahu" action="getIn" waypointId="oahu_left"/>
                     <appear obj1Id="molokai" action="appear"/>
                     <appear obj1Id="hawaii" action="appear"/>
+                    <appear obj1Id="label_molokai" action="appear"/>
+                    <appear obj1Id="label_hawaii" action="appear"/>
+                    <groupAuto obj1Id="label_molokai" action="label" obj2Id="molokai"/>
+                    <groupAuto obj1Id="label_hawaii" action="label" obj2Id="hawaii"/>
                     <groupAuto obj1Id="kauai" action="touchAsKauai3" obj2Id="grey_plate_kauai"/>
                 </step>
             </sentence>
