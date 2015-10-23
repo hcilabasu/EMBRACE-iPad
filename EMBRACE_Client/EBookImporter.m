@@ -820,15 +820,24 @@ ConditionSetup *conditionSetup;
                         //* Group means that two objects should be connected.
                         //* Disappear means that when two objects are close together, one should disappear.
                         //* Ungroup means that two objects that were connected should be separated.
-                        if([[step name] isEqualToString:@"transferAndGroup"] || [[step name] isEqualToString:@"transferAndDisappear"] || [[step name] isEqualToString:@"group"] || [[step name] isEqualToString:@"disappear"] ||
-                           [[step name] isEqualToString:@"ungroup"]) {
-                            if([step attributeForName:@"obj2Id"]) {
+                        if([[step name] isEqualToString:@"transferAndGroup"] ||
+                           [[step name] isEqualToString:@"transferAndDisappear"] ||
+                           [[step name] isEqualToString:@"group"] ||
+                           [[step name] isEqualToString:@"groupAuto"] ||
+                           [[step name] isEqualToString:@"disappear"] ||
+                           [[step name] isEqualToString:@"disappearAuto"] ||
+                           [[step name] isEqualToString:@"ungroup"] ||
+                           [[step name] isEqualToString:@"ungroupAndStay"])
+                        {
+                            if([step attributeForName:@"obj2Id"])
+                            {
                                 NSString* obj2Id = [[step attributeForName:@"obj2Id"] stringValue];
                                 
                                 ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :obj2Id :nil :nil :action :nil :nil];
                                 [PMSolution addSolutionStep:solutionStep];
                             }
-                            else {
+                            else
+                            {
                                 ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :action :nil :nil];
                                 [PMSolution addSolutionStep:solutionStep];
                             }
@@ -837,8 +846,10 @@ ConditionSetup *conditionSetup;
                         //* Move is performed automatically and means that an object should be moved to group with another object
                         //or to a waypoint on the background.
                         else if([[step name] isEqualToString:@"move"] ||
-                                [[step name] isEqualToString:@"appear"]) {
-                            if([step attributeForName:@"obj2Id"]) {
+                                [[step name] isEqualToString:@"appear"])
+                        {
+                            if([step attributeForName:@"obj2Id"])
+                            {
                                 NSString* obj2Id = [[step attributeForName:@"obj2Id"] stringValue];
                                 
                                 ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :obj2Id :nil :nil :action :nil :nil];
@@ -851,7 +862,8 @@ ConditionSetup *conditionSetup;
                                 ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :waypointId :action :nil :nil];
                                 [PMSolution addSolutionStep:solutionStep];
                             }
-                            else {
+                            else
+                            {
                                 ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :action :nil :nil];
                                 [PMSolution addSolutionStep:solutionStep];
                             }
@@ -872,13 +884,17 @@ ConditionSetup *conditionSetup;
                         //image.
                         //* CheckAndSwap means that the correct object must be tapped by the user before changing to its alternate
                         //image.
-                        else if([[step name] isEqualToString:@"swapImage"] || [[step name] isEqualToString:@"checkAndSwap"]) {
+                        else if([[step name] isEqualToString:@"swapImage"] ||
+                                [[step name] isEqualToString:@"checkAndSwap"])
+                        {
                             ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :action :nil :nil];
                             [PMSolution addSolutionStep:solutionStep];
                         }
                         
-                        else if([[step name] isEqualToString:@"animate"]) {
-                            if([step attributeForName:@"waypointId"]) {
+                        else if([[step name] isEqualToString:@"animate"])
+                        {
+                            if([step attributeForName:@"waypointId"])
+                            {
                                 NSString* waypointId = [[step attributeForName:@"waypointId"] stringValue];
                                 NSString* areaId = [[step attributeForName:@"areaId"] stringValue];
                                 
@@ -887,24 +903,28 @@ ConditionSetup *conditionSetup;
                             }
                         }
                         
-                        else if([[step name] isEqualToString:@"tapToAnimate"]) {
+                        else if([[step name] isEqualToString:@"tapToAnimate"])
+                        {
                             ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :action :nil :nil];
                             [PMSolution addSolutionStep:solutionStep];
                         }
                         
-                        else if([[step name] isEqualToString:@"playSound"]) {
+                        else if([[step name] isEqualToString:@"playSound"])
+                        {
                             NSString* fileName = [[step attributeForName:@"fileName"] stringValue];
                             ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :action :nil :fileName];
                             [PMSolution addSolutionStep:solutionStep];
                         }
                         
-                        else if([[step name] isEqualToString:@"shakeOrTap"]) {
+                        else if([[step name] isEqualToString:@"shakeOrTap"])
+                        {
                             NSString* areaId = [[step attributeForName:@"areaId"] stringValue];
                             ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :action :areaId :nil];
                             [PMSolution addSolutionStep:solutionStep];
                         }
                         
-                        else if([[step name] isEqualToString:@"checkPath"]) {
+                        else if([[step name] isEqualToString:@"checkPath"])
+                        {
                             NSString* locationId = [[step attributeForName:@"locationId"] stringValue];
                             NSString* areaId = [[step attributeForName:@"areaId"] stringValue];
                             ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :locationId :nil :action :areaId :nil];

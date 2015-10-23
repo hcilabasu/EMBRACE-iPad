@@ -874,7 +874,8 @@ BOOL wasPathFollowed = false;
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
         //Automatically perform interaction if step is ungroup, move, or swap image
-        if (!pinchToUngroup && ([[currSolStep stepType] isEqualToString:@"ungroup"] || [[currSolStep stepType] isEqualToString:@"ungroupAndStay"])) {
+        if (!pinchToUngroup && ([[currSolStep stepType] isEqualToString:@"ungroup"] ||
+                                [[currSolStep stepType] isEqualToString:@"ungroupAndStay"])) {
             PossibleInteraction* correctUngrouping = [self getCorrectInteraction];
             
             [self performInteraction:correctUngrouping];
