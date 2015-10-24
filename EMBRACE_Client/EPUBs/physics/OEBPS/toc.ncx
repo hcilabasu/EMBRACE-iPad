@@ -150,12 +150,6 @@
 		  </navLabel>
 		  <content src="Text/Story5-Newton's-Law-of-Acceleration-on-Earth-PM-2.xhtml"/>
 		</navPoint>
-       <navPoint class="PM_MODE" id="story5-PM-3">
-           <navLabel>
-               <text>Newton's Law of Acceleration on Earth - PM</text>
-           </navLabel>
-           <content src="Text/Story5-Newton's-Law-of-Acceleration-on-Earth-PM-3.xhtml"/>
-       </navPoint>
 	</navPoint>
     
     <navPoint class="ChapterTitle" id="Chapter6Title" playOrder="6">
@@ -181,8 +175,19 @@
             </navLabel>
             <content src="Text/Story6-Newton's-Third-Law-Forces-are-Paired-PM-2.xhtml"/>
 		</navPoint>
+        <navPoint class="PM_MODE" id="story6-PM-3">
+            <navLabel>
+                <text>Newton's Third Law: Forces are Paired - PM</text>
+            </navLabel>
+            <content src="Text/Story6-Newton's-Third-Law-Forces-are-Paired-PM-3.xhtml"/>
+        </navPoint>
+        <navPoint class="PM_MODE" id="story6-PM-4">
+            <navLabel>
+                <text>Newton's Third Law: Forces are Paired - PM</text>
+            </navLabel>
+            <content src="Text/Story6-Newton's-Third-Law-Forces-are-Paired-PM-4.xhtml"/>
+        </navPoint>
 	</navPoint>
-    
     
     <navPoint class="ChapterTitle" id="Chapter7Title" playOrder="7">
 		<navLabel>
@@ -207,6 +212,12 @@
             </navLabel>
             <content src="Text/Story7-The-Three-Laws-Work-Together-PM-2.xhtml"/>
 		</navPoint>
+        <navPoint class="PM_MODE" id="story7-PM-3">
+            <navLabel>
+                <text>The Three Laws Work Together - PM</text>
+            </navLabel>
+            <content src="Text/Story7-The-Three-Laws-Work-Together-PM-3.xhtml"/>
+        </navPoint>
 	</navPoint>
 
 	
@@ -236,12 +247,10 @@
     	<navLabel><text>Chapter 2 - Newton's First Law - Physical Manipulation 2</text></navLabel>
 		<content src="Text/Story2-Newton's-First-Law-PM-2.xhtml"/>
   </pageTarget>
-  
   <pageTarget id="p7" type="normal" value="7">
       <navLabel><text>Chapter 2 - Newton's First Law - Physical Manipulation 3</text></navLabel>
       <content src="Text/Story2-Newton's-First-Law-PM-3.xhtml"/>
   </pageTarget>
-
   <pageTarget id="p8" type="normal" value="8">
     	<navLabel><text>Chapter 3 - Newton's First Law on Earth - Introduction</text></navLabel>
 		<content src="Text/Story3-Newton's-First-Law-on-Earth-Intro-E.xhtml"/>
@@ -287,35 +296,42 @@
 		<content src="Text/Story5-Newton's-Law-of-Acceleration-on-Earth-PM-2.xhtml"/>
   </pageTarget>
   <pageTarget id="p19" type="normal" value="19">
-        <navLabel><text>Chapter 5 - Newton's Law of Acceleration on Earth - Physical Manipulation 3</text></navLabel>
-        <content src="Text/Story5-Newton's-Law-of-Acceleration-on-Earth-PM-3.xhtml"/>
-  </pageTarget>
-  
-  <pageTarget id="p20" type="normal" value="20">
       <navLabel><text>Chapter 6 - Newton's Third Law: Forces are Paired - Introduction</text></navLabel>
       <content src="Text/Story6-Newton's-Third-Law-Forces-are-Paired-Intro-E.xhtml"/>
   </pageTarget>
-  <pageTarget id="p21" type="normal" value="21">
+  <pageTarget id="p20" type="normal" value="20">
       <navLabel><text>Chapter 6 - Newton's Third Law: Forces are Paired - Physical Manipulation 1</text></navLabel>
       <content src="Text/Story6-Newton's-Third-Law-Forces-are-Paired-PM-1.xhtml"/>
   </pageTarget>
-  <pageTarget id="p22" type="normal" value="22">
+  <pageTarget id="p21" type="normal" value="21">
       <navLabel><text>Chapter 6 - Newton's Third Law: Forces are Paired - Physical Manipulation 2</text></navLabel>
       <content src="Text/Story6-Newton's-Third-Law-Forces-are-Paired-PM-2.xhtml"/>
   </pageTarget>
-  
+  <pageTarget id="p22" type="normal" value="22">
+      <navLabel><text>Chapter 6 - Newton's Third Law: Forces are Paired - Physical Manipulation 3</text></navLabel>
+      <content src="Text/Story6-Newton's-Third-Law-Forces-are-Paired-PM-3.xhtml"/>
+  </pageTarget>
   <pageTarget id="p23" type="normal" value="23">
+      <navLabel><text>Chapter 6 - Newton's Third Law: Forces are Paired - Physical Manipulation 4</text></navLabel>
+      <content src="Text/Story6-Newton's-Third-Law-Forces-are-Paired-PM-4.xhtml"/>
+  </pageTarget>
+  <pageTarget id="p24" type="normal" value="24">
       <navLabel><text>Chapter 7 - The Three Laws Work Together - Introduction</text></navLabel>
       <content src="Text/Story7-The-Three-Laws-Work-Together-Intro-E.xhtml"/>
   </pageTarget>
-  <pageTarget id="p24" type="normal" value="24">
+  <pageTarget id="p25" type="normal" value="25">
       <navLabel><text>Chapter 7 - The Three Laws Work Together - Physical Manipulation 1</text></navLabel>
       <content src="Text/Story7-The-Three-Laws-Work-Together-PM-1.xhtml"/>
   </pageTarget>
-  <pageTarget id="p25" type="normal" value="25">
+  <pageTarget id="p26" type="normal" value="26">
       <navLabel><text>Chapter 7 - The Three Laws Work Together - Physical Manipulation 2</text></navLabel>
       <content src="Text/Story7-The-Three-Laws-Work-Together-PM-2.xhtml"/>
   </pageTarget>
+  <pageTarget id="p27" type="normal" value="27">
+      <navLabel><text>Chapter 7 - The Three Laws Work Together - Physical Manipulation 3</text></navLabel>
+      <content src="Text/Story7-The-Three-Laws-Work-Together-PM-3.xhtml"/>
+  </pageTarget>
+
 	
 </pageList>
 </ncx>

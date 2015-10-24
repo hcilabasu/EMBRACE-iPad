@@ -77,15 +77,17 @@
     <item href="Text/Story5-Newton's-Law-of-Acceleration-on-Earth-Intro-E.xhtml" id="story5-Intro" media-type="application/xhtml+xml" />
     <item href="Text/Story5-Newton's-Law-of-Acceleration-on-Earth-PM-1.xhtml" id="story5-PM-1" media-type="application/xhtml+xml" />
     <item href="Text/Story5-Newton's-Law-of-Acceleration-on-Earth-PM-2.xhtml" id="story5-PM-2" media-type="application/xhtml+xml" />
-    <item href="Text/Story5-Newton's-Law-of-Acceleration-on-Earth-PM-3.xhtml" id="story5-PM-3" media-type="application/xhtml+xml" />
     <item href="Text/Story5-Newton's-Law-of-Acceleration-on-Earth-Title.xhtml" id="Chapter5Title" media-type="application/xhtml+xml" />
     <item href="Text/Story6-Newton's-Third-Law-Forces-are-Paired-Intro-E.xhtml" id="story6-Intro" media-type="application/xhtml+xml" />
     <item href="Text/Story6-Newton's-Third-Law-Forces-are-Paired-PM-1.xhtml" id="story6-PM-1" media-type="application/xhtml+xml" />
     <item href="Text/Story6-Newton's-Third-Law-Forces-are-Paired-PM-2.xhtml" id="story6-PM-2" media-type="application/xhtml+xml" />
+    <item href="Text/Story6-Newton's-Third-Law-Forces-are-Paired-PM-3.xhtml" id="story6-PM-3" media-type="application/xhtml+xml" />
+    <item href="Text/Story6-Newton's-Third-Law-Forces-are-Paired-PM-4.xhtml" id="story6-PM-4" media-type="application/xhtml+xml" />
     <item href="Text/Story6-Newton's-Third-Law-Forces-are-Paired-Title.xhtml" id="Chapter6Title" media-type="application/xhtml+xml" />
     <item href="Text/Story7-The-Three-Laws-Work-Together-Intro-E.xhtml" id="story7-Intro" media-type="application/xhtml+xml" />
     <item href="Text/Story7-The-Three-Laws-Work-Together-PM-1.xhtml" id="story7-PM-1" media-type="application/xhtml+xml" />
     <item href="Text/Story7-The-Three-Laws-Work-Together-PM-2.xhtml" id="story7-PM-2" media-type="application/xhtml+xml" />
+    <item href="Text/Story7-The-Three-Laws-Work-Together-PM-3.xhtml" id="story7-PM-3" media-type="application/xhtml+xml" />
     <item href="Text/Story7-The-Three-Laws-Work-Together-Title.xhtml" id="Chapter7Title" media-type="application/xhtml+xml" />
 
     
@@ -120,11 +122,13 @@
     <itemref idref="story4-PM-3" />
     <itemref idref="story5-PM-1" />
     <itemref idref="story5-PM-2" />
-    <itemref idref="story5-PM-3" />
     <itemref idref="story6-PM-1" />
     <itemref idref="story6-PM-2" />
+    <itemref idref="story6-PM-3" />
+    <itemref idref="story6-PM-4" />
     <itemref idref="story7-PM-1" />
     <itemref idref="story7-PM-2" />
+    <itemref idref="story7-PM-3" />
 
     
   </spine>
