@@ -1,30 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <relationships>
-        <relationship obj1Id="ball" can="grabRight" action="group" obj2Id="olivia"/>
-        <relationship obj1Id="bottle" can="getIn" action="group" obj2Id="olivia"/>
-        <relationship obj1Id="cup" can="grabLeft" action="group" obj2Id="papa"/>
-        <relationship obj1Id="cup" can="drop" action="ungroup" obj2Id="papa"/>
-        <relationship obj1Id="lucas" can="drop" action="ungroup" obj2Id="babybrother"/>
-        <relationship obj1Id="lucas" can="drop" action="ungroup" obj2Id="ball"/>
-        <relationship obj1Id="lucas" can="drop" action="ungroup" obj2Id="boardgame"/>
-        <relationship obj1Id="lucas" can="drop" action="ungroup" obj2Id="bottle"/>
-        <relationship obj1Id="lucas" can="drop" action="ungroup" obj2Id="rattle"/>
-        <relationship obj1Id="lucas" can="grabLeft" action="group" obj2Id="bottle"/>
-        <relationship obj1Id="lucas" can="grabRight" action="group" obj2Id="babybrother"/>
-        <relationship obj1Id="lucas" can="grabRight" action="group" obj2Id="ball"/>
-        <relationship obj1Id="lucas" can="grabRight" action="group" obj2Id="boardgame"/>
-        <relationship obj1Id="lucas" can="grabRight" action="group" obj2Id="rattle"/>
-        <relationship obj1Id="lucas" can="grabRight" action="group" obj2Id="stone"/>
-        <relationship obj1Id="lucas" can="hug" action="group" obj2Id="papa"/>
-        <relationship obj1Id="lucas" can="leave" action="ungroup" obj2Id="babybrother"/>
-        <relationship obj1Id="lucas" can="leave" action="ungroup" obj2Id="papa"/>
-        <relationship obj1Id="olivia" can="drop" action="ungroup" obj2Id="bottle"/>
-        <relationship obj1Id="olivia" can="grabRight" action="group" obj2Id="bottle"/>
-        <relationship obj1Id="papa" can="drop" action="ungroup" obj2Id="bottle"/>
-        <relationship obj1Id="papa" can="grabLeft" action="group" obj2Id="note"/>
-        <relationship obj1Id="papa" can="grabRight" action="group" obj2Id="babybrother"/>
-        <relationship obj1Id="papa" can="grabRight" action="group" obj2Id="bottle"/>
-        <relationship obj1Id="rattle" can="getIn" action="group" obj2Id="babybrother"/>
+        <relationship obj1Id="dog" can="leave" action="ungroup" obj2Id="maria"/>
+        <relationship obj1Id="dog" can="tie" action="group" obj2Id="cart"/>
+        <relationship obj1Id="dog" can="untie" action="ungroup" obj2Id="cart"/>
+        <relationship obj1Id="dog" can="visit" action="group" obj2Id="maria"/>
+        <relationship obj1Id="horse" can="leave" action="ungroup" obj2Id="cart"/>
+        <relationship obj1Id="horse" can="leave" action="ungroup" obj2Id="juan"/>
+        <relationship obj1Id="horse" can="tie" action="group" obj2Id="cart"/>
+        <relationship obj1Id="horse" can="visit" action="group" obj2Id="juan"/>
+        <relationship obj1Id="juan" can="kick" action="group" obj2Id="ball"/>
+        <relationship obj1Id="juan" can="lead" action="group" obj2Id="dog"/>
+        <relationship obj1Id="juan" can="leave" action="ungroup" obj2Id="ball"/>
+        <relationship obj1Id="juan" can="leave" action="ungroup" obj2Id="dog"/>
+        <relationship obj1Id="maria" can="drop" action="ungroup" obj2Id="ball"/>
+        <relationship obj1Id="maria" can="drop" action="ungroup" obj2Id="wood"/>
+        <relationship obj1Id="maria" can="lead" action="group" obj2Id="horse"/>
+        <relationship obj1Id="maria" can="leave" action="ungroup" obj2Id="dog"/>
+        <relationship obj1Id="maria" can="leave" action="ungroup" obj2Id="horse"/>
+        <relationship obj1Id="maria" can="pickUp" action="group" obj2Id="ball"/>
+        <relationship obj1Id="maria" can="pickUp" action="group" obj2Id="wood"/>
+        <relationship obj1Id="maria" can="unties" action="group" obj2Id="dog"/>
+        <relationship obj1Id="wood" can="getIn" action="group" obj2Id="dog"/>
+        <relationship obj1Id="wood" can="getOut" action="ungroup" obj2Id="dog"/>
     </relationships>
 </metadata>

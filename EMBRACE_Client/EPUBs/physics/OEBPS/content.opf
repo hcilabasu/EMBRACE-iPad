@@ -48,8 +48,13 @@
     <item href="Images/person2.png" id="person2.png" media-type="image/png" />
     <item href="Images/person3.png" id="person3.png" media-type="image/png" />
     <item href="Images/smallrocket.png" id="smallrocket.png" media-type="image/png" />
-    
-    
+    <item href="Images/wagon_withwood.png" id="wagon_withwood.png" media-type="image/png" />
+    <item href="Images/wave.png" id="wave.png" media-type="image/png" />
+    <item href="Images/maria_helmet.png" id="maria_helmet.png" media-type="image/png" />
+    <item href="Images/juan_rowing2.png" id="juan_rowing2.png" media-type="image/png" />
+    <item href="Images/maria_leg.png" id="maria_leg.png" media-type="image/png" />
+    <item href="Images/sara_helmet.png" id="sara_helmet.png" media-type="image/png" />
+    <item href="Images/skateboard_sara.png" id="skateboard_sara.png" media-type="image/png" />
     <item href="toc.ncx" id="ncx" media-type="application/x-dtbncx+xml" />
     <item href="Styles/PMStyle.css" id="PMStyle.css" media-type="text/css" />
     <item href="Styles/IMStyle.css" id="IMStyle.css" media-type="text/css" />

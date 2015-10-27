@@ -743,6 +743,13 @@
 		5C4515AD1BB6105A00DC1B07 /* mainland.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4515AB1BB6105A00DC1B07 /* mainland.png */; };
 		5C4515AE1BB6105A00DC1B07 /* plate_bulge3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4515AC1BB6105A00DC1B07 /* plate_bulge3.png */; };
 		5C466ADC192293290056EA4B /* Translation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C466ADB192293290056EA4B /* Translation.m */; };
+		5C4ADDE31BDED9B800F8EF37 /* maria_helmet.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4ADDDE1BDED9B800F8EF37 /* maria_helmet.png */; };
+		5C4ADDE41BDED9B800F8EF37 /* juan_rowing2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4ADDDF1BDED9B800F8EF37 /* juan_rowing2.png */; };
+		5C4ADDE51BDED9B800F8EF37 /* maria_leg.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4ADDE01BDED9B800F8EF37 /* maria_leg.png */; };
+		5C4ADDE61BDED9B800F8EF37 /* sara_helmet.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4ADDE11BDED9B800F8EF37 /* sara_helmet.png */; };
+		5C4ADDE71BDED9B800F8EF37 /* skateboard_sara.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4ADDE21BDED9B800F8EF37 /* skateboard_sara.png */; };
+		5C4ADDEB1BDED9C500F8EF37 /* wave.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4ADDE91BDED9C500F8EF37 /* wave.png */; };
+		5C4ADDED1BDF4AE100F8EF37 /* wagon_withwood.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4ADDEC1BDF4AE100F8EF37 /* wagon_withwood.png */; };
 		5C4EC3EB1BBB53BE009D9E82 /* lava2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4EC3EA1BBB53BE009D9E82 /* lava2.png */; };
 		5C4EC3ED1BBB89C1009D9E82 /* Story4-Volcanoes-and-the-Making-of-Hawaii-PM-5.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C4EC3EC1BBB89C1009D9E82 /* Story4-Volcanoes-and-the-Making-of-Hawaii-PM-5.xhtml */; };
 		5C5E954C1BA786CF005F6AD2 /* rattle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C5E954B1BA786CF005F6AD2 /* rattle.png */; };
@@ -2420,6 +2427,13 @@
 		5C4515AC1BB6105A00DC1B07 /* plate_bulge3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plate_bulge3.png; sourceTree = "<group>"; };
 		5C466ADA192293290056EA4B /* Translation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Translation.h; sourceTree = "<group>"; };
 		5C466ADB192293290056EA4B /* Translation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Translation.m; sourceTree = "<group>"; };
+		5C4ADDDE1BDED9B800F8EF37 /* maria_helmet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = maria_helmet.png; sourceTree = "<group>"; };
+		5C4ADDDF1BDED9B800F8EF37 /* juan_rowing2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = juan_rowing2.png; sourceTree = "<group>"; };
+		5C4ADDE01BDED9B800F8EF37 /* maria_leg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = maria_leg.png; sourceTree = "<group>"; };
+		5C4ADDE11BDED9B800F8EF37 /* sara_helmet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sara_helmet.png; sourceTree = "<group>"; };
+		5C4ADDE21BDED9B800F8EF37 /* skateboard_sara.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skateboard_sara.png; sourceTree = "<group>"; };
+		5C4ADDE91BDED9C500F8EF37 /* wave.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wave.png; sourceTree = "<group>"; };
+		5C4ADDEC1BDF4AE100F8EF37 /* wagon_withwood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wagon_withwood.png; sourceTree = "<group>"; };
 		5C4EC3EA1BBB53BE009D9E82 /* lava2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lava2.png; sourceTree = "<group>"; };
 		5C4EC3EC1BBB89C1009D9E82 /* Story4-Volcanoes-and-the-Making-of-Hawaii-PM-5.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Volcanoes-and-the-Making-of-Hawaii-PM-5.xhtml"; sourceTree = "<group>"; };
 		5C5E954B1BA786CF005F6AD2 /* rattle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rattle.png; sourceTree = "<group>"; };
@@ -4964,6 +4978,13 @@
 		5C8C01021BD59A23007D4CF0 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5C4ADDEC1BDF4AE100F8EF37 /* wagon_withwood.png */,
+				5C4ADDE91BDED9C500F8EF37 /* wave.png */,
+				5C4ADDDE1BDED9B800F8EF37 /* maria_helmet.png */,
+				5C4ADDDF1BDED9B800F8EF37 /* juan_rowing2.png */,
+				5C4ADDE01BDED9B800F8EF37 /* maria_leg.png */,
+				5C4ADDE11BDED9B800F8EF37 /* sara_helmet.png */,
+				5C4ADDE21BDED9B800F8EF37 /* skateboard_sara.png */,
 				5CE5D27A1BD9A9ED0053B038 /* horse_cart.png */,
 				5CE5D2781BD9A9C00053B038 /* horse.png */,
 				5CE5D2761BD9A9990053B038 /* cart_flipped.png */,
@@ -5951,6 +5972,7 @@
 				5CE299EB19B5B3D600675CB0 /* owlE.m4a in Resources */,
 				B9C9E9FE1B8EA0A800AFC328 /* Locations-MetaData.xml in Resources */,
 				1ADB01A31AAD211C006C5256 /* house.epub in Resources */,
+				5C4ADDE51BDED9B800F8EF37 /* maria_leg.png in Resources */,
 				5C776AC119C674FA000DBC65 /* CPQR6.m4a in Resources */,
 				1A2D709B1AAA74FA009E7B5B /* keys.png in Resources */,
 				5C776BE019C93E1E000DBC65 /* valveS.m4a in Resources */,
@@ -6010,6 +6032,7 @@
 				1A8036C91B0B1C62004A164A /* TheBestFarmAwardQ6.mp3 in Resources */,
 				5C8C014C1BD59C4B007D4CF0 /* ch1.png in Resources */,
 				B996065919A7FD8500BF17F4 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-Intro-E.xhtml in Resources */,
+				5C4ADDED1BDF4AE100F8EF37 /* wagon_withwood.png in Resources */,
 				B9C9E9B01B8EA0A800AFC328 /* ch4_test_07.png in Resources */,
 				5C776BC719C93E1E000DBC65 /* dirtDEFS.m4a in Resources */,
 				5C776B2F19C7E469000DBC65 /* toc.ncx in Resources */,
@@ -6076,6 +6099,7 @@
 				5C776C3619C95165000DBC65 /* hayloftDEFS.m4a in Resources */,
 				5C7FE05F19A6B1B500CBBE0E /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-IM-2.xhtml in Resources */,
 				1A3594281AE76129003B3B41 /* TheFamilyIsRattledQ5.mp3 in Resources */,
+				5C4ADDE41BDED9B800F8EF37 /* juan_rowing2.png in Resources */,
 				1A695C7E1AD4C8B0006A2284 /* TheLopezFamilyS0E.mp3 in Resources */,
 				B9C9E99A1B8EA0A800AFC328 /* building_01.png in Resources */,
 				5CF994AD19AC34550080C32F /* Story4-Who-is-the-Best-Animal-IM-1.xhtml in Resources */,
@@ -6584,6 +6608,7 @@
 				1A8037141B0B1C62004A164A /* WhoIsTheBestAnimalQ2.mp3 in Resources */,
 				1AEE54F91ADE028100DFC6B0 /* IsPacoAThiefQ1A1.mp3 in Resources */,
 				1A8036361B0B1C62004A164A /* CleaningUpQ2A3.mp3 in Resources */,
+				5C4ADDE71BDED9B800F8EF37 /* skateboard_sara.png in Resources */,
 				1A695C961AD4D9C1006A2284 /* TheLopezFamilyS2S.mp3 in Resources */,
 				5C776AC819C674FA000DBC65 /* CES_14.m4a in Resources */,
 				1A8036EF1B0B1C62004A164A /* TheContestQ7A3.mp3 in Resources */,
@@ -6723,6 +6748,7 @@
 				5C8C00A91BD5927B007D4CF0 /* Hotspots-MetaData.xml in Resources */,
 				B9C9E9A51B8EA0A800AFC328 /* ch3_bg.png in Resources */,
 				5C7FE10019A7E43C00CBBE0E /* BFCE_3.m4a in Resources */,
+				5C4ADDE31BDED9B800F8EF37 /* maria_helmet.png in Resources */,
 				5CE5D2771BD9A9990053B038 /* cart_flipped.png in Resources */,
 				1AEE55071ADE028100DFC6B0 /* IsPacoAThiefQ4.mp3 in Resources */,
 				5CF994A019AC34550080C32F /* Story1-The-Contest-PM-1.xhtml in Resources */,
@@ -7007,6 +7033,7 @@
 				1AE0F6161A7969F900C5B67D /* IMSolutions-MetaData.xml in Resources */,
 				5C776BCF19C93E1E000DBC65 /* cigaretteDEFS.m4a in Resources */,
 				1A3593F61AE76129003B3B41 /* MoreIsMissingQ3.mp3 in Resources */,
+				5C4ADDEB1BDED9C500F8EF37 /* wave.png in Resources */,
 				B9C9EA071B8EA0A800AFC328 /* Introduction-to-Natural-Disasters-Title.xhtml in Resources */,
 				1A695CCE1AD4EB9C006A2284 /* TheLopezFamilyQ2A3.mp3 in Resources */,
 				1A80367E1B0B1C62004A164A /* GettingReadyQ5.mp3 in Resources */,
@@ -7157,6 +7184,7 @@
 				5C776AC319C674FA000DBC65 /* CPQR4.m4a in Resources */,
 				B95229321BA111A100093528 /* michael_sittingonbench.png in Resources */,
 				B9C9E9C11B8EA0A800AFC328 /* house_whole.png in Resources */,
+				5C4ADDE61BDED9B800F8EF37 /* sara_helmet.png in Resources */,
 				1AC489781AC083DF00784D77 /* Mystery_def_S.mp3 in Resources */,
 				5C776B3B19C7FB9A000DBC65 /* Story5-The-Wise-Owl-Intro-S.xhtml in Resources */,
 			);
