@@ -2,9 +2,12 @@
 <metadata>
     <locations>
         <location locationId="anywhere" x="0%" y="0%" height="100%" width="100%"/>
-        <location locationId="back" x="0%" y="0%" height="100%" width="100%"/>
-        <location locationId="boat_left" x="0%" y="0%" height="100%" width="100%"/>
-        <location locationId="down" x="0%" y="0%" height="100%" width="100%"/>
-        <location locationId="up" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="big_forward" x="8%" y="19%" height="35%" width="92%"/>
+        <location locationId="boat_left" x="0%" y="50%" height="23%" width="63%"/>
+        <location locationId="forward" x="10%" y="0%" height="35%" width="90%"/>
+        <location locationId="near_cart" x="0%" y="50%" height="30%" width="55%"/>
+        <location locationId="near_cart2" x="40%" y="66%" height="34%" width="60%"/>
+        <location locationId="near_maria" x="40%" y="60%" height="40%" width="40%"/>
+        <location locationId="up" x="0%" y="0%" height="17.5%" width="100%"/>
     </locations>
 </metadata>

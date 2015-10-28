@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <alternateImages>
-        <alternateImage objId="cart" action="appear" originalSrc="wagon_withwood.png" alternateSrc="wagon_withwood.png" width="400px" x="50%" y="65%" class="manipulationObject" z=""/>
-        <alternateImage objId="dog" action="withCart" originalSrc="dog_harness.png" alternateSrc="dog_cartempty.png" width="455px" x="0%" y="65.980110%" class="manipulationObject" z=""/>
-        <alternateImage objId="dog" action="withoutCart" originalSrc="dog_cart.png" alternateSrc="dog_harness.png" width="100px" x="75%" y="80%" class="manipulationObject" z=""/>
-        <alternateImage objId="dog" action="withWood" originalSrc="dog_cartempty.png" alternateSrc="dog_cart.png" width="455px" x="39.843750%" y="75.781250%" class="manipulationObject" z=""/>
-        <alternateImage objId="horse" action="withCart" originalSrc="horse.png" alternateSrc="horse_cart.png" width="500px" x="35%" y="55%" class="manipulationObject" z=""/>
+        <alternateImage objId="cart" action="appear" originalSrc="wagon_withwood.png" alternateSrc="wagon_withwood.png" width="400px" x="60%" y="65%" class="manipulationObject" z="2"/>
+        <alternateImage objId="dog" action="withCart" originalSrc="dog_harness.png" alternateSrc="dog_cartempty.png" width="455px" x="0%" y="65.980110%" class="manipulationObject" z="3"/>
+        <alternateImage objId="dog" action="withoutCart" originalSrc="dog_cart.png" alternateSrc="dog_harness.png" width="100px" x="75%" y="80%" class="manipulationObject" z="3"/>
+        <alternateImage objId="dog" action="withWood" originalSrc="dog_cartempty.png" alternateSrc="dog_cart.png" width="455px" x="39.843750%" y="75.781250%" class="manipulationObject" z="2"/>
+        <alternateImage objId="horse" action="withCart" originalSrc="horse.png" alternateSrc="horse_cart.png" width="500px" x="50%" y="43%" class="manipulationObject" z="2"/>
     </alternateImages>
 </metadata>

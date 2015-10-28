@@ -12,7 +12,7 @@
         <story title="How do Objects Move?" activity_id="story1-PM-2">
             <sentence number="5">
                 <step number="1">
-                    <check obj1Id="smallrocket" action="getIn" locationId="anywhere"/>
+                    <check obj1Id="smallrocket" action="getIn" locationId="forward"/>
                 </step>
             </sentence>
         </story>
@@ -24,12 +24,12 @@
             </sentence>
             <sentence number="6">
                 <step number="1">
-                    <check obj1Id="smallrocket" action="getIn" locationId="down"/>
+                    <shakeOrTap obj1Id="smallrocket" action="getIn" locationId="anywhere"/>
                 </step>
             </sentence>
             <sentence number="7">
                 <step number="1">
-                    <check obj1Id="smallrocket" action="getIn" locationId="back"/>
+                    <shakeOrTap obj1Id="smallrocket" action="getIn" locationId="anywhere"/>
                 </step>
             </sentence>
         </story>
@@ -38,6 +38,7 @@
                 <step number="1">
                     <group obj1Id="juan" action="kick" obj2Id="ball"/>
                     <ungroupAndStay obj1Id="juan" action="leave" obj2Id="ball"/>
+                    <move obj1Id="juan" action="getIn" waypointId="juan_kick"/>
                     <move obj1Id="ball" action="getIn" waypointId="ball_right"/>
                 </step>
             </sentence>
@@ -48,30 +49,31 @@
                     <group obj1Id="maria" action="pickUp" obj2Id="ball"/>
                     <ungroupAndStay obj1Id="maria" action="drop" obj2Id="ball"/>
                     <move obj1Id="ball" action="getIn" waypointId="ball_drop"/>
+                    <move obj1Id="maria" action="getIn" waypointId="near_ball"/>
                 </step>
             </sentence>
         </story>
         <story title="Newton's Second Law: Acceleration" activity_id="story4-PM-2">
             <sentence number="4">
                 <step number="1">
-                    <check obj1Id="smallrocket" action="getIn" locationId="anywhere"/>
+                    <check obj1Id="smallrocket" action="getIn" locationId="forward"/>
                 </step>
             </sentence>
             <sentence number="6">
                 <step number="1">
-                    <check obj1Id="bigrocket" action="getIn" locationId="anywhere"/>
+                    <check obj1Id="bigrocket" action="getIn" locationId="big_forward"/>
                 </step>
             </sentence>
         </story>
         <story title="Newton's Second Law: Acceleration" activity_id="story4-PM-3">
             <sentence number="8">
                 <step number="1">
-                    <check obj1Id="bigrocket" action="getIn" locationId="anywhere"/>
+                    <shakeOrTap obj1Id="bigrocket" action="getIn" locationId="anywhere"/>
                 </step>
             </sentence>
             <sentence number="9">
                 <step number="1">
-                    <check obj1Id="bigrocket" action="getIn" locationId="anywhere"/>
+                    <shakeOrTap obj1Id="bigrocket" action="getIn" locationId="anywhere"/>
                 </step>
             </sentence>
         </story>
@@ -81,17 +83,16 @@
                     <group obj1Id="juan" action="lead" obj2Id="dog"/>
                 </step>
                 <step number="2">
-                    <transferAndGroup obj1Id="juan" action="leave" obj2Id="dog"/>
-                    <transferAndGroup obj1Id="dog" action="tie" obj2Id="cart"/>
-                    <ungroup obj1Id="dog" action="untie" obj2Id="cart"/>
+                    <check obj1Id="juan" action="getIn" locationId="near_cart"/>
+                    <ungroupAndStay obj1Id="juan" action="leave" obj2Id="dog"/>
+                    <move obj1Id="juan" action="getIn" waypointId="near_cart"/>
                     <disappearAuto obj1Id="cart" action="disappear" obj2Id="cart"/>
                     <swapImage obj1Id="dog" action="withCart"/>
                 </step>
             </sentence>
             <sentence number="2">
                 <step number="1">
-                    <group obj1Id="dog" action="visit" obj2Id="maria"/>
-                    <ungroupAndStay obj1Id="dog" action="leave" obj2Id="maria"/>
+                    <check obj1Id="dog" action="getIn" locationId="near_maria"/>
                     <move obj1Id="dog" action="getIn" waypointId="near_maria"/>
                 </step>
             </sentence>
@@ -102,6 +103,7 @@
                 <step number="2">
                     <transferAndGroup obj1Id="maria" action="drop" obj2Id="wood"/>
                     <transferAndGroup obj1Id="wood" action="getIn" obj2Id="dog"/>
+                    <move obj1Id="maria" action="getIn" waypointId="maria_near_cart"/>
                     <ungroupAndStay obj1Id="wood" action="getOut" obj2Id="dog"/>
                     <disappearAuto obj1Id="wood" action="disappear" obj2Id="wood"/>
                     <swapImage obj1Id="dog" action="withWood"/>
@@ -113,14 +115,17 @@
                 <step number="1">
                     <group obj1Id="maria" action="unties" obj2Id="dog"/>
                     <ungroupAndStay obj1Id="maria" action="leave" obj2Id="dog"/>
+                    <move obj1Id="maria" action="getIn" waypointId="after_untie"/>
                     <swapImage obj1Id="dog" action="withoutCart"/>
                     <appear obj1Id="cart" action="appear"/>
                 </step>
                 <step number="2">
                     <group obj1Id="maria" action="lead" obj2Id="horse"/>
-                    <transferAndGroup obj1Id="maria" action="leave" obj2Id="horse"/>
-                    <transferAndGroup obj1Id="horse" action="tie" obj2Id="cart"/>
-                    <ungroupAndStay obj1Id="horse" action="leave" obj2Id="cart"/>
+                </step>
+                <step number="3">
+                    <check obj1Id="maria" action="getIn" locationId="near_cart2"/>
+                    <ungroupAndStay obj1Id="maria" action="leave" obj2Id="horse"/>
+                    <move obj1Id="maria" action="getIn" waypointId="after_horse_tie"/>
                     <disappearAuto obj1Id="cart" action="disappear" obj2Id="cart"/>
                     <swapImage obj1Id="horse" action="withCart"/>
                 </step>

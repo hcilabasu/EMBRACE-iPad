@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <relationships>
-        <relationship obj1Id="dog" can="leave" action="ungroup" obj2Id="maria"/>
-        <relationship obj1Id="dog" can="tie" action="group" obj2Id="cart"/>
-        <relationship obj1Id="dog" can="untie" action="ungroup" obj2Id="cart"/>
-        <relationship obj1Id="dog" can="visit" action="group" obj2Id="maria"/>
         <relationship obj1Id="horse" can="leave" action="ungroup" obj2Id="cart"/>
         <relationship obj1Id="horse" can="leave" action="ungroup" obj2Id="juan"/>
         <relationship obj1Id="horse" can="tie" action="group" obj2Id="cart"/>
