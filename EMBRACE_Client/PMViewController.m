@@ -1223,7 +1223,7 @@ BOOL wasPathFollowed = false;
                     NSString* imageAtPoint = [self getObjectAtPoint:location ofType:nil];
                     
                     //If the correct object was tapped, swap its image and increment the step
-                    if ([self checkSolutionForSubject:imageAtPoint]) {
+                    if ([self checkSolutionForSubject:movingObjectId]) {
                         [self swapObjectImage];
                         [self incrementCurrentStep];
                     }
@@ -1235,7 +1235,7 @@ BOOL wasPathFollowed = false;
                     NSString* imageAtPoint = [self getObjectAtPoint:location ofType:nil];
                     
                     //If the correct object was tapped, increment the step
-                    if ([self checkSolutionForSubject:imageAtPoint]) {
+                    if ([self checkSolutionForSubject:movingObjectId]) {
                         [self incrementCurrentStep];
                     }
                     
@@ -1523,9 +1523,9 @@ BOOL wasPathFollowed = false;
             //[bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
             
             //Object should now be in the correct location, so the step can be incremented
-            //if([self isHotspotInsideLocation] || [self isHotspotInsideArea]) {
+            if([self isHotspotInsideLocation] || [self isHotspotInsideArea]) {
                 [self incrementCurrentStep];
-            //}
+            }
         }
         //Current step is checkAndSwap and involves swapping an image
         else if ([[currSolStep stepType] isEqualToString:@"checkAndSwap"]) {
@@ -1760,7 +1760,7 @@ BOOL wasPathFollowed = false;
                             NSString* imageAtPoint = [self getObjectAtPoint:location ofType:nil];
                             
                             //If the correct object was tapped, swap its image and increment the step
-                            if ([self checkSolutionForSubject:imageAtPoint]) {
+                            if ([self checkSolutionForSubject:movingObjectId]) {
                                 [self incrementCurrentStep];
                             }
                             
@@ -1806,7 +1806,7 @@ BOOL wasPathFollowed = false;
                         }
                     }
                     else if ([[currSolStep stepType] isEqualToString:@"shakeOrTap"]) {
-                        if([self areHotspotsInsideArea]) {
+                        if([self areHotspotsInsideArea] || [self isHotspotInsideLocation]) {
                             [self incrementCurrentStep];
                         }
                         else {
@@ -2950,7 +2950,9 @@ BOOL wasPathFollowed = false;
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
-        if ([[currSolStep stepType] isEqualToString:@"check"] || [[currSolStep stepType] isEqualToString:@"checkPath"]) {
+        if ([[currSolStep stepType] isEqualToString:@"check"] ||
+            [[currSolStep stepType] isEqualToString:@"checkPath"] ||
+            [[currSolStep stepType] isEqualToString:@"shakeOrTap"]) {
             //Get information for check step type
             NSString* objectId = [currSolStep object1Id];
             NSString* action = [currSolStep action];

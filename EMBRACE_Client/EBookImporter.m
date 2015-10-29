@@ -919,7 +919,9 @@ ConditionSetup *conditionSetup;
                         else if([[step name] isEqualToString:@"shakeOrTap"])
                         {
                             NSString* areaId = [[step attributeForName:@"areaId"] stringValue];
-                            ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :action :areaId :nil];
+                            NSString* locationId = [[step attributeForName:@"locationId"] stringValue];
+                        
+                            ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :locationId :nil :action :areaId :nil];
                             [PMSolution addSolutionStep:solutionStep];
                         }
                         
