@@ -7,6 +7,7 @@
 //
 
 #import "LibraryViewController.h"
+#import "LibraryCellView.h"
 #import "BookCellView.h"
 #import "BookHeaderView.h"
 #import "Book.h"
@@ -16,15 +17,18 @@
 #import "ConditionSetup.h"
 
 @interface LibraryViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout> {
-    NSMutableArray *libraryImages;
-    NSMutableArray *libraryTitles;
+    NSMutableArray* bookImages;
+    NSMutableArray* bookTitles;
+    NSMutableArray* chapterImages;
+    NSMutableArray* chapterTitles;
 }
 
 @property (nonatomic, strong) IBOutlet UICollectionView *libraryView;
-//@property (strong, nonatomic) IBOutlet UILabel *libraryLabel;
 
-@property (nonatomic, strong) NSMutableArray *libraryImages;
-@property (nonatomic, strong) NSMutableArray *libraryTitles;
+@property (nonatomic, strong) NSMutableArray* bookImages;
+@property (nonatomic, strong) NSMutableArray* bookTitles;
+@property (nonatomic, strong) NSMutableArray* chapterImages;
+@property (nonatomic, strong) NSMutableArray* chapterTitles;
 
 @property (nonatomic, strong) EBookImporter *bookImporter;
 
@@ -32,6 +36,9 @@
 
 @property (nonatomic, strong) NSString* bookToOpen;
 @property (nonatomic, strong) NSString* chapterToOpen;
+
+@property (nonatomic, assign) NSInteger selectedBookIndex;
+@property (nonatomic, assign) BOOL showBooks;
 
 @end
 
@@ -41,106 +48,111 @@
 @synthesize books;
 @synthesize student;
 
-@synthesize libraryImages;
-@synthesize libraryTitles;
+@synthesize bookImages;
+@synthesize bookTitles;
+@synthesize chapterImages;
+@synthesize chapterTitles;
+
 ConditionSetup *conditionSetup;
-- (void)viewDidLoad
-{
+
+- (void) viewDidLoad {
     [super viewDidLoad];
     
-     conditionSetup = [[ConditionSetup alloc] init];
+    //Add background image
+    UIImageView* backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"library_background"]];
+    [backgroundImageView setFrame:CGRectMake(0, 0, self.libraryView.frame.size.height, self.libraryView.frame.size.width)];
+    [self.libraryView addSubview:backgroundImageView];
+    [self.libraryView sendSubviewToBack:backgroundImageView];
     
-    //Set the title to something personalized.
-    if(student != nil) {
-        
-        //added by James for xml logging
+    [self.libraryView registerClass:[LibraryCellView class] forCellWithReuseIdentifier:@"LibraryCellView"];
+    [self.libraryView registerClass:[BookCellView class] forCellWithReuseIdentifier:@"BookCellView"];
+    
+    conditionSetup = [[ConditionSetup alloc] init];
+    currentMode = PM_MODE;
+    
+    if (student != nil) {
         [[ServerCommunicationController sharedManager] logContext:student];
-        //Logging Completes Here.
         
+        //Set title to display condition and language (e.g., EMBRACE English)
         self.title = [NSString stringWithFormat:@"%@ %@",[conditionSetup ReturnConditionEnumToString:conditionSetup.condition],[conditionSetup ReturnLanguageEnumtoString: conditionSetup.language]];
     }
-    else
-    {
+    else {
         student = [[Student alloc] initWithName:@"Study Code" :@"Study Day":@"Experimenter":@"School Day"];
-        
-        //added by James for xml logging
-        //[[ServerCommunicationController sharedManager] logContext:student];
-        //Logging Completes Here.
     }
     
-    //initialize and book importer.
+    //Initialize book importer
     self.bookImporter = [[EBookImporter alloc] init];
     
-    //find the documents directory and start reading book.
+    //Find the documents directory and start reading book
     self.books = [bookImporter importLibrary];
     
-    //set the background color to something that looks like a library.
-    //self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"ibooks_waller_vertical.png"]];
-    
-    //Create data source for collection view.
+    //Create data source for collection view
     [self createCollectionLayoutDataSource];
     
-    //Disable all activities that need to be disabled based on the student information.
-    //TODO: Connect student specific stuff later. Right now we'll just go through and disable all but the first one.
-    
-    //Currently defaulting to PM_MODE
-    currentMode = PM_MODE;
+    self.selectedBookIndex = 0;
+    self.showBooks = TRUE; //initially show books
 }
 
-/*public override bool ShouldHighlightItem (UICollectionView collectionView, NSIndexPath indexPath)
-{
-    return false;
-}*/
-
-//Goes through the imported books and pulls the  data necessary to display the books and their associated chapters.
+/*
+ * Goes through the imported books and pulls the data necessary to display the books and their associated chapters
+ */
 - (void) createCollectionLayoutDataSource {
-    //Setup the collection view information
-    libraryImages = [[NSMutableArray alloc] init];
-    libraryTitles = [[NSMutableArray alloc] init];
+    bookImages = [[NSMutableArray alloc] init];
+    bookTitles = [[NSMutableArray alloc] init];
+    chapterImages = [[NSMutableArray alloc] init];
+    chapterTitles = [[NSMutableArray alloc] init];
     
-    for (Book *book in books) {
-        NSMutableArray *imagesForBook = [[NSMutableArray alloc] init];
-        NSMutableArray *titlesForBook = [[NSMutableArray alloc] init];
+    for (Book* book in books) {
+        //Use the image for the first chapter as the image for the book
+        NSString* bookImagePath = [[[book chapters] objectAtIndex:0] chapterImagePath];
         
-        //Go through the chapters and get the title of the chapters and their associated images.
-        for(Chapter *chapter in [book chapters]) {
-            NSString *chapterTitle = [chapter title];
-            
-            NSString* coverImagePath = [chapter chapterImagePath];
-            UIImage *chapterImage;
-            
-            //Create an book cover image that displays the title and author in case book has no book cover.
-            if(coverImagePath != nil) {
-                chapterImage = [[UIImage alloc] initWithContentsOfFile:coverImagePath];
-            }
-
-            //If for some reason the path to the image is broken, or if we didn't have a cover image.
-            if(coverImagePath == nil || chapterImage == nil) {
-                chapterImage = [[UIImage alloc] init];
-                chapterImage = [UIImage imageNamed:@"cover_default"];
-            }
-            
-            //For now, each book is its own section and has no chapters.
-            [titlesForBook addObject:chapterTitle];
-            [imagesForBook addObject:chapterImage];            
+        UIImage* bookImage;
+        
+        if (bookImagePath != nil) {
+            bookImage = [[UIImage alloc] initWithContentsOfFile:bookImagePath];
         }
         
-        //Each book is it's own section and gets its own array of chapters.
-        [self.libraryImages addObject:imagesForBook];
-        [self.libraryTitles addObject:titlesForBook];
+        //Add book image and title
+        [bookImages addObject:bookImage];
+        [bookTitles addObject:[book title]];
+        
+        //Create temporary arrays to hold chapter images and titles for the book
+        NSMutableArray* bookChapterImages = [[NSMutableArray alloc] init];
+        NSMutableArray* bookChapterTitles = [[NSMutableArray alloc] init];
+        
+        for (Chapter* chapter in [book chapters]) {
+            //Get image for chapter
+            NSString* chapterImagePath = [chapter chapterImagePath];
+            
+            UIImage* chapterImage;
+            
+            if (chapterImagePath != nil) {
+                chapterImage = [[UIImage alloc] initWithContentsOfFile:chapterImagePath];
+            }
+            
+            //Add chapter image and title
+            [bookChapterImages addObject:chapterImage];
+            [bookChapterTitles addObject:[chapter title]];
+        }
+        
+        //Add chapter image and title arrays
+        [chapterImages addObject:bookChapterImages];
+        [chapterTitles addObject:bookChapterTitles];
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void) didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 
-    // Dispose of any resources that can be recreated.
+    //Dispose of any resources that can be recreated
     self.libraryView = nil;
-    self.libraryImages = nil;
+    self.bookImages = nil;
+    self.chapterImages = nil;
 }
 
-//Segue prep to go from LibraryViewController to BookView Controller. 
+/*
+ * Segue prep to go from LibraryViewController to BookView Controller.
+ */
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if (conditionSetup.appmode == Authoring) {
         AuthoringModeViewController *destination = [segue destinationViewController];
@@ -151,19 +163,14 @@ ConditionSetup *conditionSetup;
         
         [destination loadFirstPage];
     }
-    else
-    {
+    else {
         PMViewController *destination = [segue destinationViewController];
         destination.bookImporter = bookImporter;
         destination.bookTitle = self.bookToOpen;
         destination.chapterTitle = self.chapterToOpen;
         destination.libraryViewController = self;
-        //Instead of loading the first page, we're going to load the page that was selected.]
-        //NSLog(@"chapter to Open: %@", self.chapterToOpen);
-        
-        //added by James for XML logging
+
         [[ServerCommunicationController sharedManager] logStoryButtonPressed: @"Library Icon" : @"Tap" : self.bookToOpen : self.chapterToOpen : @"NULL" : -1 : @"NULL": -1: -1];
-        //logging ends here
         
         [destination loadFirstPage];
     }
@@ -174,9 +181,20 @@ ConditionSetup *conditionSetup;
 }
 
 /*
+ * User pressed Books button. Switches to show books instead of chapters.
+ */
+- (IBAction) pressedBooks:(id)sender {
+    self.showBooks = TRUE;
+    
+    [self.libraryView reloadSections:[NSIndexSet indexSetWithIndex:0]];
+    
+    [booksButton setEnabled:FALSE];
+}
+
+/*
  * User pressed Logout button. Writes data to log file and returns to login screen.
  */
--(IBAction)pressedLogout:(id)sender {
+- (IBAction) pressedLogout:(id)sender {
     //Write log data to file
     [[ServerCommunicationController sharedManager] writeToFile:[[ServerCommunicationController sharedManager] studyFileName] ofType:@"txt"];
     
@@ -184,63 +202,84 @@ ConditionSetup *conditionSetup;
 }
 
 #pragma mark - UICollectionViewDataSource
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)libraryView {
-    //Each book is in its own section, with each chapter laid out.
-    
-    //NSLog(@"number of books: %d", [books count]);
-    return [books count];
+- (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)libraryView {
+    return 1;
 }
 
--(NSInteger)collectionView:(UICollectionView *)libraryView numberOfItemsInSection:(NSInteger)section {
-    NSMutableArray *sectionArray = [self.libraryImages objectAtIndex:section];
-
-    //NSLog(@"number of chapters in book: %d", [sectionArray count]);
-    return [sectionArray count]; //Return the number of chapters in each book section. 
+- (NSInteger)collectionView:(UICollectionView *)libraryView numberOfItemsInSection:(NSInteger)section {
+    //Books
+    if (self.showBooks) {
+        return [books count];
+    }
+    //Chapters
+    else {
+        return [[chapterImages objectAtIndex:self.selectedBookIndex] count];
+    }
+    
+    return 0;
 }
 
--(UICollectionViewCell *)collectionView:(UICollectionView *)libraryView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    //Create cell
-    BookCellView *cell = (BookCellView *)[libraryView dequeueReusableCellWithReuseIdentifier:@"BookCellView" forIndexPath:indexPath];
-
-    //Set image.
-    NSMutableArray *images = [self.libraryImages objectAtIndex:indexPath.section];
-    UIImage *image = [images objectAtIndex:indexPath.row];
-    [cell.coverImage setImage:image];
-
-    //Set title. 
-    NSMutableArray *titles = [self.libraryTitles objectAtIndex:indexPath.section];
-    NSString *title = [titles objectAtIndex:indexPath.row];
-    [cell.coverTitle setText:title]; 
+- (UICollectionViewCell *)collectionView:(UICollectionView *)libraryView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    LibraryCellView* cell = (LibraryCellView*) [libraryView dequeueReusableCellWithReuseIdentifier:@"LibraryCellView" forIndexPath:indexPath];
     
-    // Return the cell
+    UIImage* image;
+    NSString* title;
+
+    //Books
+    if (self.showBooks) {
+        cell = (BookCellView*) [libraryView dequeueReusableCellWithReuseIdentifier:@"BookCellView" forIndexPath:indexPath];
+        
+        image = [bookImages objectAtIndex:indexPath.row];
+        title = [bookTitles objectAtIndex:indexPath.row];
+        
+        [[cell coverImage] setImage:image];
+        [[cell coverTitle] setText:title];
+    }
+    //Chapters
+    else {
+        image = [[chapterImages objectAtIndex:self.selectedBookIndex] objectAtIndex:indexPath.row];
+        title = [[chapterTitles objectAtIndex:self.selectedBookIndex] objectAtIndex:indexPath.row];
+        
+        [[cell coverImage] setImage:image];
+        [[cell coverTitle] setText:title];
+    }
+    
     return cell;
 }
 
 #pragma mark - UICollectionViewDelegate
-- (void)collectionView:(UICollectionView *)libraryView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    //Ge the title that was selected and set that title to the book that needs to be opened.
-    //NSMutableArray *titles = [self.libraryTitles objectAtIndex:indexPath.section];
-    //NSString *title = [titles objectAtIndex:indexPath.row];
-
-    Book* book = [books objectAtIndex:indexPath.section];
-
-    NSString *title = [[book title] stringByAppendingString:@" - "];
-    title = [title stringByAppendingString:[book author]];
-    
-    self.bookToOpen = title;
-    self.chapterToOpen = [[[book chapters] objectAtIndex:indexPath.row] title];
-    
-    //Deselect the cell so that it doesn't show as being selected when the user comes back to the library.
-    [self.libraryView deselectItemAtIndexPath:indexPath animated:YES];
-    
-    //Send the notification to open that mode for the particular book and activity chosen.
-    if (conditionSetup.appmode == Authoring)
-        [self performSegueWithIdentifier:@"OpenAuthoringSegue" sender:self];
-    else if(currentMode == PM_MODE)
-        [self performSegueWithIdentifier: @"OpenPMActivitySegue" sender:self];
-    else if(currentMode == IM_MODE)
-        [self performSegueWithIdentifier: @"OpenIMActivitySegue" sender:self];
+- (void)collectionView:(UICollectionView *)libraryView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    //Books
+    if (self.showBooks) {
+        self.selectedBookIndex = indexPath.row;
+        self.showBooks = FALSE;
+        
+        [libraryView reloadSections:[NSIndexSet indexSetWithIndex:0]]; //load chapters
+        
+        [booksButton setEnabled:TRUE];
+    }
+    //Chapters
+    else {
+        //Get selected book
+        Book* book = [books objectAtIndex:self.selectedBookIndex];
+        
+        NSString* title = [[book title] stringByAppendingString:@" - "];
+        title = [title stringByAppendingString:[book author]];
+        
+        self.bookToOpen = title;
+        self.chapterToOpen = [[[book chapters] objectAtIndex:indexPath.row] title];
+        
+        //Send the notification to open that mode for the particular book and activity chosen
+        if (conditionSetup.appmode == Authoring) {
+            [self performSegueWithIdentifier:@"OpenAuthoringSegue" sender:self];
+        }
+        else if (currentMode == PM_MODE) {
+            [self performSegueWithIdentifier: @"OpenPMActivitySegue" sender:self];
+        }
+        else if (currentMode == IM_MODE) {
+            [self performSegueWithIdentifier: @"OpenIMActivitySegue" sender:self];
+        }
+    }
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -251,19 +290,50 @@ ConditionSetup *conditionSetup;
 }
 
 #pragma mark – UICollectionViewDelegateFlowLayout
-- (UIEdgeInsets)collectionView:
-(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(-6, 16, 15, 16);
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    NSInteger edgeInsets = 0;
+    NSInteger cellWidth = 175;
+    
+    //Books
+    if (self.showBooks) {
+        edgeInsets = (self.view.frame.size.width - ([books count] * cellWidth)) / 2;
+    }
+    //Chapters
+    else {
+        NSInteger numberOfChapters = [[chapterImages objectAtIndex:self.selectedBookIndex] count];
+        NSInteger maxChaptersPerRow = 5;
+        
+        if (numberOfChapters <= maxChaptersPerRow) {
+            edgeInsets = (self.view.frame.size.width - (numberOfChapters * cellWidth)) / 2;
+        }
+        else {
+            edgeInsets = (self.view.frame.size.width - (maxChaptersPerRow * cellWidth)) / 2;
+        }
+
+    }
+    
+    return UIEdgeInsetsMake(0, edgeInsets, 15, edgeInsets);
 }
 
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-{
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     UICollectionReusableView *reusableview = nil;
     
     if (kind == UICollectionElementKindSectionHeader) {        
         BookHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"BookHeaderView" forIndexPath:indexPath];
         
-        NSString *title = [[books objectAtIndex:indexPath.section] title];
+        NSString* title;
+
+        //Books
+        if (self.showBooks) {
+            title = @"Books";
+            headerView.backgroundImage.image = [UIImage imageNamed:@"library_header1"];
+        }
+        //Chapters
+        else {
+            title = @"Chapters";
+            headerView.backgroundImage.image = [UIImage imageNamed:@"library_header2"];
+        }
+        
         headerView.bookTitle.text = title;
         
         reusableview = headerView;
