@@ -5852,6 +5852,8 @@
 				C30D06641BABC07300DF53F1 /* rabbit.png in Resources */,
 				C30D06651BABC07300DF53F1 /* rattle.png in Resources */,
 				C30D06661BABC07300DF53F1 /* spoon.png in Resources */,
+				1A880E6B1BD6E4980020F93B /* TheAmazingHeartQ5A1.mp3 in Resources */,
+				1A5BB0D61BD327D1002D1AEA /* boardgame_open.png in Resources */,
 				C30D066E1BABC07300DF53F1 /* stroller.png in Resources */,
 				C30D066F1BABC07300DF53F1 /* table.png in Resources */,
 				C30D06701BABC07300DF53F1 /* tree_day.png in Resources */,
@@ -6301,6 +6303,7 @@
 				C30D05F81BABC04400DF53F1 /* plate_bulge.png in Resources */,
 				C30D05F91BABC04400DF53F1 /* plate_bulge2.png in Resources */,
 				C3B66AAF1BC59CC5005DF0AC /* Story-7-Family-Fun.png in Resources */,
+				1A880E0B1BD6E4980020F93B /* CigaretteSmokeHurtsYourLungsQ3.mp3 in Resources */,
 				C30D05FA1BABC04400DF53F1 /* small_house01.png in Resources */,
 				C30D05FB1BABC04400DF53F1 /* small_house02.png in Resources */,
 				C30D05FC1BABC04400DF53F1 /* small_house03.png in Resources */,
@@ -7581,7 +7584,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				OTHER_LDFLAGS = "-lxml2";
-				PRODUCT_NAME = "EMBRACE English";
+				PRODUCT_NAME = "Embrace E";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
