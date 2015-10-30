@@ -787,6 +787,11 @@ ConditionSetup *conditionSetup;
  *  Function changes the height of the selected object
  */
 -(void)changeHeight:(id)sender{
+    //set the width first before changing the height
+    NSString* changeWidthAtPoint = [NSString stringWithFormat:@"%@.style.width = \"%@px\"", objectID.text, width.text];
+    NSString *WidthAtPoint = [bookView stringByEvaluatingJavaScriptFromString:changeWidthAtPoint];
+    NSLog(@"%@", WidthAtPoint);
+    
     NSString* changeHeightAtPoint = [NSString stringWithFormat:@"%@.style.height = \"%@px\"", objectID.text, height.text];
     NSString *HeightAtPoint = [bookView stringByEvaluatingJavaScriptFromString:changeHeightAtPoint];
     NSLog(@"%@", HeightAtPoint);
@@ -1249,26 +1254,33 @@ ConditionSetup *conditionSetup;
         objectID.borderStyle = UITextBorderStyleRoundedRect;
         
         width = [[UITextField alloc] initWithFrame:CGRectMake(10, 60, 180, 30)];
+        height = [[UITextField alloc] initWithFrame:CGRectMake(10, 60, 180, 30)];
         
         //need to return current width
         NSString *widthOfObjectAtPoint= nil;
+        NSString *heightOfObjectAtPoint = nil;
         widthOfObjectAtPoint = [self getwidthOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"manipulationObject"];
+        heightOfObjectAtPoint = [self getheightOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"manipulationObject"];
         
         if (widthOfObjectAtPoint == nil) {
             widthOfObjectAtPoint = [self getwidthOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"backgroundObject"];
+            heightOfObjectAtPoint = [self getheightOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"backgroundObject"];
             
             if (objectAtPoint == nil) {
                 width.text = @"width";
+                height.text = @"height";
                 //may actually just want to return at this point because we did not press on any manipulation or background object
             }
             else
             {
                 width.text = widthOfObjectAtPoint;
+                height.text = heightOfObjectAtPoint;
             }
         }
         else
         {
             width.text = widthOfObjectAtPoint;
+            height.text = heightOfObjectAtPoint;
         }
         
         
@@ -1330,13 +1342,17 @@ ConditionSetup *conditionSetup;
         objectID.borderStyle = UITextBorderStyleRoundedRect;
         
         height = [[UITextField alloc] initWithFrame:CGRectMake(10, 60, 180, 30)];
+        width = [[UITextField alloc] initWithFrame:CGRectMake(10, 60, 180, 30)];
         
         //need to return current width
         NSString *heightOfObjectAtPoint= nil;
+        NSString *widthOfObjectAtPoint = nil;
         heightOfObjectAtPoint = [self getheightOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"manipulationObject"];
+        widthOfObjectAtPoint = [self getwidthOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"manipulationObject"];
         
         if (heightOfObjectAtPoint == nil) {
             heightOfObjectAtPoint = [self getheightOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"backgroundObject"];
+            widthOfObjectAtPoint = [self getwidthOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"backgroundObject"];
             
             if (objectAtPoint == nil) {
                 height.text = @"width";
@@ -1345,11 +1361,13 @@ ConditionSetup *conditionSetup;
             else
             {
                 height.text = heightOfObjectAtPoint;
+                width.text = widthOfObjectAtPoint;
             }
         }
         else
         {
             height.text = heightOfObjectAtPoint;
+            width.text = widthOfObjectAtPoint;
         }
         
         

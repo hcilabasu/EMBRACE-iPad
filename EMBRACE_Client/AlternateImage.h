@@ -23,6 +23,7 @@
 @property (nonatomic, strong) NSString* action;
 @property (nonatomic, strong) NSString* originalSrc;
 @property (nonatomic, strong) NSString* alternateSrc;
+@property (nonatomic, strong) NSString* height;
 @property (nonatomic, strong) NSString* width;
 @property (nonatomic, assign) CGPoint location;
 @property (nonatomic, strong) NSString* className;

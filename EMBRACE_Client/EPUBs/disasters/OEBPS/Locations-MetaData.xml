@@ -17,5 +17,6 @@
         <location locationId="rain_down" x="70%" y="31%" height="69%" width="30%"/>
         <location locationId="tornado" x="30%" y="27%" height="50%" width="50%"/>
         <location locationId="upHill" x="30%" y="17%" height="30.4%" width="28.4%"/>
+        <location locationId="house" x="20%" y="40%" height="35%" width="57%"/>
     </locations>
 </metadata>

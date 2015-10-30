@@ -698,6 +698,7 @@ BOOL wasPathFollowed = false;
         //Logging Completes Here.
         
         [self performAutomaticSteps]; //automatically perform ungroup or move steps if necessary
+        
     }
     else {
         stepsComplete = TRUE; //no more steps to complete
@@ -1762,6 +1763,22 @@ BOOL wasPathFollowed = false;
                             //If the correct object was tapped, swap its image and increment the step
                             if ([self checkSolutionForSubject:movingObjectId]) {
                                 [self incrementCurrentStep];
+                            }
+                            //reset object location
+                            else
+                            {
+                                if (allowSnapback) {
+                                    //Snap the object back to its original location
+                                    [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
+                                    
+                                    // If it was an animation object, animate it again after snapping back
+                                    if ([animatingObjects objectForKey:movingObjectId] && [previousStep isEqualToString:@"animate"]) {
+                                        //Call the animateObject function in the js file.
+                                        NSString *animate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"floatAnimation", @""];
+                                        [bookView stringByEvaluatingJavaScriptFromString:animate];
+                                        [animatingObjects setObject:@YES forKey:movingObjectId];
+                                    }
+                                }
                             }
                             
                             //moving an object to a location (barn, hay loft etc)
@@ -3236,7 +3253,8 @@ BOOL wasPathFollowed = false;
         
         //If step type involves transference, we must manually create the PossibleInteraction object.
         //Otherwise, it can be directly converted.
-        if ([[currSolStep stepType] isEqualToString:@"transferAndGroup"] || [[currSolStep stepType] isEqualToString:@"transferAndDisappear"]) {
+        if ([[currSolStep stepType] isEqualToString:@"transferAndGroup"] ||
+            [[currSolStep stepType] isEqualToString:@"transferAndDisappear"]) {
             correctInteraction = [[PossibleInteraction alloc] init];
             
             //Get step information for current step
@@ -4326,11 +4344,15 @@ BOOL wasPathFollowed = false;
  */
 - (CGPoint) getHotspotLocation:(Hotspot*) hotspot {
     //Get the height and width of the image.
-    NSString* requestImageHeight = [NSString stringWithFormat:@"%@.height", [hotspot objectId]];
-    NSString* requestImageWidth = [NSString stringWithFormat:@"%@.width", [hotspot objectId]];
+    NSString* requestImageHeight = [NSString stringWithFormat:@"%@.offsetHeight", [hotspot objectId]];
+    NSString* requestImageWidth = [NSString stringWithFormat:@"%@.offsetWidth", [hotspot objectId]];
     
     float imageWidth = [[bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
     float imageHeight = [[bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
+    
+    if ([[hotspot objectId] isEqualToString:@"dirt_tornado"]) {
+        imageHeight = 598;
+    }
     
     //if image height and width are 0 then the image doesn't exist on this page.
     if(imageWidth > 0 && imageHeight > 0) {
@@ -4911,10 +4933,16 @@ BOOL wasPathFollowed = false;
                     BOOL transference = FALSE;
                     
                     //Count number of user steps for page statistics
-                    for (ActionStep* as in [sentenceToAdd solutionSteps]) {
-                        if (!([[as stepType] isEqualToString:@"ungroup"] || [[as stepType] isEqualToString:@"move"] || [[as stepType] isEqualToString:@"swapImage"])) {
+                    for (ActionStep* as in [sentenceToAdd solutionSteps])
+                    {
+                        if (!([[as stepType] isEqualToString:@"ungroup"] ||
+                              [[as stepType] isEqualToString:@"move"] ||
+                              [[as stepType] isEqualToString:@"swapImage"]))
+                        {
                             //Make sure transference steps don't get counted twice
-                            if ([[as stepType] isEqualToString:@"transferAndGroup"] || [[as stepType] isEqualToString:@"transferAndDisappear"]) {
+                            if ([[as stepType] isEqualToString:@"transferAndGroup"] ||
+                                [[as stepType] isEqualToString:@"transferAndDisappear"])
+                            {
                                 if (!transference) {
                                     [[pageStatistics objectForKey:currentPageId] addStepForComplexity:([sentenceToAdd complexity] - 1)];
                                     
