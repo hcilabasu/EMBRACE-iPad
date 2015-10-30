@@ -698,6 +698,7 @@ BOOL wasPathFollowed = false;
         //Logging Completes Here.
         
         [self performAutomaticSteps]; //automatically perform ungroup or move steps if necessary
+        
     }
     else {
         stepsComplete = TRUE; //no more steps to complete
@@ -710,10 +711,12 @@ BOOL wasPathFollowed = false;
 -(void)loadAssessmentActivity{
     UIImage *background = [self getBackgroundImage];
     
+    //create an instance of the assessment activity view controller
     AssessmentActivityViewController *assessmentActivityViewController = [[AssessmentActivityViewController alloc]initWithModel:model: libraryViewController:background:bookTitle :chapterTitle : currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] : [NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
     
-    //[self.navigationController presentViewController:assessmentActivityViewController animated:YES completion:nil];
+    //push the assessment view controller as the top controller
     [self.navigationController pushViewController:assessmentActivityViewController animated:YES];
+    
 }
 
 /*
@@ -749,17 +752,23 @@ BOOL wasPathFollowed = false;
     NSArray* hotspotsForInteraction = [[NSArray alloc]initWithObjects:hotspot1, hotspot2, nil];
     
     //The move case only applies if an object is being moved to another object, not a waypoint
-    if ([[step stepType] isEqualToString:@"group"] || [[step stepType] isEqualToString:@"move"]) {
+    if ([[step stepType] isEqualToString:@"group"] ||
+        [[step stepType] isEqualToString:@"move"] ||
+        [[step stepType] isEqualToString:@"groupAuto"])
+    {
         interaction = [[PossibleInteraction alloc]initWithInteractionType:GROUP];
         
         [interaction addConnection:GROUP :objects :hotspotsForInteraction];
     }
-    else if ([[step stepType] isEqualToString:@"ungroup"]) {
+    else if ([[step stepType] isEqualToString:@"ungroup"] ||
+             [[step stepType] isEqualToString:@"ungroupAndStay"])
+    {
         interaction = [[PossibleInteraction alloc]initWithInteractionType:UNGROUP];
         
         [interaction addConnection:UNGROUP :objects :hotspotsForInteraction];
     }
-    else if ([[step stepType] isEqualToString:@"disappear"]) {
+    else if ([[step stepType] isEqualToString:@"disappear"])
+    {
         interaction = [[PossibleInteraction alloc]initWithInteractionType:DISAPPEAR];
         
         [interaction addConnection:DISAPPEAR :objects :hotspotsForInteraction];
@@ -804,6 +813,26 @@ BOOL wasPathFollowed = false;
                 Waypoint* waypoint = [model getWaypointWithId:waypointId];
                 CGPoint waypointLocation = [self getWaypointLocation:waypoint];
                 
+                
+                NSString* objectClassName = [NSString stringWithFormat:@"document.getElementById(%@).className", object1Id];
+                objectClassName = [bookView stringByEvaluatingJavaScriptFromString:objectClassName];
+                
+                if ([objectClassName rangeOfString:@"center"].location != NSNotFound) {
+                    
+                //NSString* requestImageHeight = [NSString stringWithFormat:@"%@.height", object1Id];
+                //NSString* requestImageWidth = [NSString stringWithFormat:@"%@.width", object1Id];
+                
+                //float imageHeight = [[bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
+                //float imageWidth = [[bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
+                
+                //waypointLocation.x = waypointLocation.x -imageWidth/2;
+                //waypointLocation.y = waypointLocation.y-imageHeight/2;
+                    
+                    hotspotLocation.x=0;
+                    hotspotLocation.y=0;
+                
+                }
+                
                 //Move the object
                 [self moveObject:object1Id :waypointLocation :hotspotLocation :false:waypointId];
                 
@@ -846,7 +875,8 @@ BOOL wasPathFollowed = false;
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
         //Automatically perform interaction if step is ungroup, move, or swap image
-        if (!pinchToUngroup && [[currSolStep stepType] isEqualToString:@"ungroup"]) {
+        if (!pinchToUngroup && ([[currSolStep stepType] isEqualToString:@"ungroup"] ||
+                                [[currSolStep stepType] isEqualToString:@"ungroupAndStay"])) {
             PossibleInteraction* correctUngrouping = [self getCorrectInteraction];
             
             [self performInteraction:correctUngrouping];
@@ -856,7 +886,14 @@ BOOL wasPathFollowed = false;
             
             [self incrementCurrentStep];
         }
-        else if ([[currSolStep stepType] isEqualToString:@"move"]) {
+        else if([[currSolStep stepType] isEqualToString:@"groupAuto"])
+        {
+            PossibleInteraction* correctGrouping = [self getCorrectInteraction];
+            [self performInteraction:correctGrouping];
+            [self incrementCurrentStep];
+        }
+        else if ([[currSolStep stepType] isEqualToString:@"move"])
+        {
             [self moveObjectForSolution];
             
             //add logging
@@ -864,7 +901,8 @@ BOOL wasPathFollowed = false;
             
             [self incrementCurrentStep];
         }
-        else if ([[currSolStep stepType] isEqualToString:@"swapImage"]) {
+        else if ([[currSolStep stepType] isEqualToString:@"swapImage"])
+        {
             [self swapObjectImage];
             
             //add logging
@@ -872,12 +910,20 @@ BOOL wasPathFollowed = false;
             
             [self incrementCurrentStep];
         }
-        else if ([[currSolStep stepType] isEqualToString:@"appear"]) {
+        else if ([[currSolStep stepType] isEqualToString:@"appear"])
+        {
             [self loadImage];
             [self incrementCurrentStep];
         }
-        else if ([[currSolStep stepType] isEqualToString:@"disappear"]) {
+        
+        else if ([[currSolStep stepType] isEqualToString:@"disappearAuto"])
+        {
             [self hideImage];
+            [self incrementCurrentStep];
+        }
+        else if([[currSolStep stepType] isEqualToString:@"changeZIndex"])
+        {
+            [self changeZIndex];
             [self incrementCurrentStep];
         }
         else if([[currSolStep stepType] isEqualToString:@"animate"]) {
@@ -917,13 +963,19 @@ BOOL wasPathFollowed = false;
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps; //= [PMSolution getStepsForSentence:currentSentence];
+        NSMutableArray* currSolSteps;
         
-        if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-            currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+        if (conditionSetup.appmode == ITS) {
+            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
-            currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+            if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+            }
+            else {
+                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            }
         }
         
         //Get current step to be completed
@@ -935,6 +987,9 @@ BOOL wasPathFollowed = false;
             NSString* action = [currSolStep action];
             NSString* waypointId = [currSolStep waypointId];
             NSString* areaId = [currSolStep areaId];
+            if ([areaId isEqualToString:@""]) {
+                areaId = @"area";
+            }
             
             CGPoint imageLocation = [self getObjectPosition:object1Id];
             
@@ -1169,7 +1224,7 @@ BOOL wasPathFollowed = false;
                     NSString* imageAtPoint = [self getObjectAtPoint:location ofType:nil];
                     
                     //If the correct object was tapped, swap its image and increment the step
-                    if ([self checkSolutionForSubject:imageAtPoint]) {
+                    if ([self checkSolutionForSubject:movingObjectId]) {
                         [self swapObjectImage];
                         [self incrementCurrentStep];
                     }
@@ -1181,9 +1236,10 @@ BOOL wasPathFollowed = false;
                     NSString* imageAtPoint = [self getObjectAtPoint:location ofType:nil];
                     
                     //If the correct object was tapped, increment the step
-                    if ([self checkSolutionForSubject:imageAtPoint]) {
+                    if ([self checkSolutionForSubject:movingObjectId]) {
                         [self incrementCurrentStep];
                     }
+                    
                 }
             }
         }
@@ -1468,9 +1524,9 @@ BOOL wasPathFollowed = false;
             //[bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
             
             //Object should now be in the correct location, so the step can be incremented
-            //if([self isHotspotInsideLocation] || [self isHotspotInsideArea]) {
+            if([self isHotspotInsideLocation] || [self isHotspotInsideArea]) {
                 [self incrementCurrentStep];
-            //}
+            }
         }
         //Current step is checkAndSwap and involves swapping an image
         else if ([[currSolStep stepType] isEqualToString:@"checkAndSwap"]) {
@@ -1620,8 +1676,23 @@ BOOL wasPathFollowed = false;
                 movingObject = TRUE;
                 movingObjectId = imageAtPoint;
                 
-                //Calculate offset between top-left corner of image and the point clicked.
-                delta = [self calculateDeltaForMovingObjectAtPoint:location];
+                NSString* requestImageMarginLeft = [NSString stringWithFormat:@"%@.style.marginLeft", movingObjectId];
+                NSString* requestImageMarginTop = [NSString stringWithFormat:@"%@.style.marginTop", movingObjectId];
+                
+                NSString* imageMarginLeft = [bookView stringByEvaluatingJavaScriptFromString:requestImageMarginLeft];
+                NSString* imageMarginTop = [bookView stringByEvaluatingJavaScriptFromString:requestImageMarginTop];
+                
+                if(![imageMarginLeft isEqualToString:@""] && ![imageMarginTop isEqualToString:@""])
+                {
+                    //Calulate offset between top-left corner of image and the point clicked for centered images
+                    delta = [self calculateDeltaForMovingObjectAtPointWithCenter:movingObjectId :location];
+                }
+                else
+                {
+                    
+                    //Calculate offset between top-left corner of image and the point clicked.
+                    delta = [self calculateDeltaForMovingObjectAtPoint:location];
+                }
                 
                 //Record the starting location of the object when it is selected
                 startLocation = CGPointMake(location.x - delta.x, location.y - delta.y);
@@ -1690,8 +1761,24 @@ BOOL wasPathFollowed = false;
                             NSString* imageAtPoint = [self getObjectAtPoint:location ofType:nil];
                             
                             //If the correct object was tapped, swap its image and increment the step
-                            if ([self checkSolutionForSubject:imageAtPoint]) {
+                            if ([self checkSolutionForSubject:movingObjectId]) {
                                 [self incrementCurrentStep];
+                            }
+                            //reset object location
+                            else
+                            {
+                                if (allowSnapback) {
+                                    //Snap the object back to its original location
+                                    [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
+                                    
+                                    // If it was an animation object, animate it again after snapping back
+                                    if ([animatingObjects objectForKey:movingObjectId] && [previousStep isEqualToString:@"animate"]) {
+                                        //Call the animateObject function in the js file.
+                                        NSString *animate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"floatAnimation", @""];
+                                        [bookView stringByEvaluatingJavaScriptFromString:animate];
+                                        [animatingObjects setObject:@YES forKey:movingObjectId];
+                                    }
+                                }
                             }
                             
                             //moving an object to a location (barn, hay loft etc)
@@ -1736,7 +1823,7 @@ BOOL wasPathFollowed = false;
                         }
                     }
                     else if ([[currSolStep stepType] isEqualToString:@"shakeOrTap"]) {
-                        if([self areHotspotsInsideArea]) {
+                        if([self areHotspotsInsideArea] || [self isHotspotInsideLocation]) {
                             [self incrementCurrentStep];
                         }
                         else {
@@ -2407,17 +2494,17 @@ BOOL wasPathFollowed = false;
         //Get object 1 and object 2
         NSString* obj1 = [objectIds objectAtIndex:0];
         NSString* obj2 = [objectIds objectAtIndex:1];
-        
-        if([connection interactionType] == UNGROUP) {
-            //NSLog(@"ungrouping items");
-
+        if( [connection interactionType] == UNGROUP && [[self getCurrentSolutionStep] isEqualToString:@"ungroupAndStay"])
+        {
+            [self ungroupObjectsAndStay:obj1 :obj2];
+        }
+        else if([connection interactionType] == UNGROUP)
+        {
             [self ungroupObjects:obj1 :obj2]; //ungroup objects
             //logging done in ungroupObjects
-           
         }
-        else if([connection interactionType] == GROUP) {
-            //NSLog(@"grouping items");
-            
+        else if([connection interactionType] == GROUP)
+        {
             //Get hotspots.
             Hotspot* hotspot1 = [hotspots objectAtIndex:0];
             Hotspot* hotspot2 = [hotspots objectAtIndex:1];
@@ -2427,7 +2514,6 @@ BOOL wasPathFollowed = false;
             
             [self groupObjects:obj1 :hotspot1Loc :obj2 :hotspot2Loc]; //group objects
             //logging done in groupObjects
-            
         }
         else if([connection interactionType] == DISAPPEAR) {
             //NSLog(@"causing object to disappear");
@@ -2648,6 +2734,25 @@ BOOL wasPathFollowed = false;
                 Waypoint* waypoint = [model getWaypointWithId:waypointId];
                 CGPoint waypointLocation = [self getWaypointLocation:waypoint];
                 
+                NSString* objectClassName = [NSString stringWithFormat:@"document.getElementById('%@').className", object1Id];
+                objectClassName = [bookView stringByEvaluatingJavaScriptFromString:objectClassName];
+                
+                if ([objectClassName rangeOfString:@"center"].location != NSNotFound) {
+                
+                //NSString* requestImageHeight = [NSString stringWithFormat:@"%@.height", object1Id];
+                //NSString* requestImageWidth = [NSString stringWithFormat:@"%@.width", object1Id];
+                
+                //float imageHeight = [[bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
+                //float imageWidth = [[bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
+                
+                //waypointLocation.x = waypointLocation.x -imageWidth/2;
+                //waypointLocation.y = waypointLocation.y-imageHeight/2;
+                    
+                    hotspotLocation.x=0;
+                    hotspotLocation.y=0;
+                }
+                
+                
                 //Move the object
                 [self moveObject:object1Id :waypointLocation :hotspotLocation :false: waypointId];
                 
@@ -2691,15 +2796,16 @@ BOOL wasPathFollowed = false;
             NSString* action = [currSolStep action];
             
             //Get alternate image
-            AlternateImage* altImage = [model getAlternateImageWithAction:action];
+            AlternateImage* altImage = [model getAlternateImageWithActionAndObjectID:action:object1Id];
             
             //Get alternate image information
             NSString* altSrc = [altImage alternateSrc];
             NSString* width = [altImage width];
             CGPoint location = [altImage location];
+            NSString* zIndex = [altImage zPosition];
             
             //Swap images using alternative src
-            NSString* swapImages = [NSString stringWithFormat:@"swapImageSrc('%@', '%@', '%@', %f, %f)", object1Id, altSrc, width, location.x, location.y];
+            NSString* swapImages = [NSString stringWithFormat:@"swapImageSrc('%@', '%@', '%@', %f, %f, '%@')", object1Id, altSrc, width, location.x, location.y, zIndex];
             [bookView stringByEvaluatingJavaScriptFromString:swapImages];
             
             //Logging added by James for Swap Images
@@ -2714,7 +2820,20 @@ BOOL wasPathFollowed = false;
 -(void) loadImage {
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        NSMutableArray* currSolSteps;
+        
+        if (conditionSetup.appmode == ITS) {
+            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+        }
+        else {
+            //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+            if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+            }
+            else {
+                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            }
+        }
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -2725,7 +2844,7 @@ BOOL wasPathFollowed = false;
             NSString* action = [currSolStep action];
             
             //Get alternate image
-            AlternateImage* altImage = [model getAlternateImageWithAction:action];
+            AlternateImage* altImage = [model getAlternateImageWithActionAndObjectID:action:object1Id];
             
             //Get alternate image information
             NSString* altSrc = [altImage alternateSrc];
@@ -2734,7 +2853,7 @@ BOOL wasPathFollowed = false;
             NSString* className = [altImage className];
             NSString* zPosition = [altImage zPosition];
             
-            //Load image using alternative src
+            //Swap images using alternative src
             NSString* loadImage = [NSString stringWithFormat:@"loadImage('%@', '%@', '%@', %f, %f, '%@', %d)", object1Id, altSrc, width, location.x, location.y, className, zPosition.intValue];
             [bookView stringByEvaluatingJavaScriptFromString:loadImage];
         }
@@ -2747,17 +2866,77 @@ BOOL wasPathFollowed = false;
 -(void) hideImage {
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        NSMutableArray* currSolSteps;
+        
+        if (conditionSetup.appmode == ITS) {
+            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+        }
+        else {
+            //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+            if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+            }
+            else {
+                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            }
+        }
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
-        if ([[currSolStep stepType] isEqualToString:@"disappear"]) {
-            NSString* object1Id = [currSolStep object1Id];
+        if ([[currSolStep stepType] isEqualToString:@"disappearAuto"]) {
+            NSString* object2Id = [currSolStep object2Id];
             
             //Hide image
-            NSString* hideImage = [NSString stringWithFormat:@"removeImage('%@')", object1Id];
+            NSString* hideImage = [NSString stringWithFormat:@"removeImage('%@')", object2Id];
             [bookView stringByEvaluatingJavaScriptFromString:hideImage];
+        }
+    }
+}
+
+/*
+ *  Calls the changeZIndex from ImageManipulation.js file
+ */
+-(void)changeZIndex{
+    if (numSteps > 0) {
+        //Get steps for current sentence
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps;
+        
+        if (conditionSetup.appmode == ITS) {
+            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+        }
+        else {
+            //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+            if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+            }
+            else {
+                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            }
+        }
+        
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        if ([[currSolStep stepType] isEqualToString:@"changeZIndex"]) {
+            //Get information for appear step type
+            NSString* object1Id = [currSolStep object1Id];
+            NSString* action = [currSolStep action];
+            
+            //Get alternate image
+            AlternateImage* altImage = [model getAlternateImageWithActionAndObjectID:action:object1Id];
+            
+            //Get alternate image information
+            NSString* altSrc = [altImage alternateSrc];
+            NSString* width = [altImage width];
+            CGPoint location = [altImage location];
+            NSString* className = [altImage className];
+            NSString* zPosition = [altImage zPosition];
+            
+            //Swap images using alternative src
+            NSString* loadImage = [NSString stringWithFormat:@"loadImage('%@', '%@', '%@', %f, %f, '%@', %d)", object1Id, altSrc, width, location.x, location.y, className, zPosition.intValue];
+            [bookView stringByEvaluatingJavaScriptFromString:loadImage];
         }
     }
 }
@@ -2788,7 +2967,9 @@ BOOL wasPathFollowed = false;
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
-        if ([[currSolStep stepType] isEqualToString:@"check"] || [[currSolStep stepType] isEqualToString:@"checkPath"]) {
+        if ([[currSolStep stepType] isEqualToString:@"check"] ||
+            [[currSolStep stepType] isEqualToString:@"checkPath"] ||
+            [[currSolStep stepType] isEqualToString:@"shakeOrTap"]) {
             //Get information for check step type
             NSString* objectId = [currSolStep object1Id];
             NSString* action = [currSolStep action];
@@ -2827,13 +3008,19 @@ BOOL wasPathFollowed = false;
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps; //= [PMSolution getStepsForSentence:currentSentence];
+        NSMutableArray* currSolSteps;
         
-        if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-            currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+        if (conditionSetup.appmode == ITS) {
+            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
-            currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+            if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+            }
+            else {
+                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            }
         }
         
         //Get current step to be completed
@@ -2870,13 +3057,19 @@ BOOL wasPathFollowed = false;
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps; //= [PMSolution getStepsForSentence:currentSentence];
+        NSMutableArray* currSolSteps;
         
-        if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-            currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+        if (conditionSetup.appmode == ITS) {
+            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
-            currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+            if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+            }
+            else {
+                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            }
         }
         
         //Get current step to be completed
@@ -2913,7 +3106,20 @@ BOOL wasPathFollowed = false;
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        NSMutableArray* currSolSteps;
+        
+        if (conditionSetup.appmode == ITS) {
+            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+        }
+        else {
+            //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+            if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+            }
+            else {
+                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            }
+        }
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -2965,7 +3171,7 @@ BOOL wasPathFollowed = false;
     [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
     
     //Check if the object has the correct class, or if no class was specified before returning
-    if([imageAtPointClass isEqualToString:class] || class == nil) {
+    if((![imageAtPointClass isEqualToString:@""] || [imageAtPointClass rangeOfString:class].location != NSNotFound) || class == nil) {
         //Any subject can be used, so just return the object id
         if (useSubject == ALL_ENTITIES)
             return imageAtPoint;
@@ -2981,6 +3187,40 @@ BOOL wasPathFollowed = false;
     }
     else
         return nil;
+}
+
+/*
+ * Gets the current solution step and returns it
+ */
+-(NSString*) getCurrentSolutionStep{
+    if (numSteps > 0) {
+        //Get steps for current sentence
+        NSMutableArray* currSolSteps;
+        
+        if (conditionSetup.appmode == ITS) {
+            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+        }
+        else {
+            //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+            if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+            }
+            else {
+                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            }
+        }
+        
+        //Get current step to be completed
+        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        //If step type involves transference, we must manually create the PossibleInteraction object.
+        //Otherwise, it can be directly converted.
+        return [currSolStep stepType];
+    }
+    else
+    {
+        return nil;
+    }
 }
 
 /*
@@ -3013,7 +3253,8 @@ BOOL wasPathFollowed = false;
         
         //If step type involves transference, we must manually create the PossibleInteraction object.
         //Otherwise, it can be directly converted.
-        if ([[currSolStep stepType] isEqualToString:@"transferAndGroup"] || [[currSolStep stepType] isEqualToString:@"transferAndDisappear"]) {
+        if ([[currSolStep stepType] isEqualToString:@"transferAndGroup"] ||
+            [[currSolStep stepType] isEqualToString:@"transferAndDisappear"]) {
             correctInteraction = [[PossibleInteraction alloc] init];
             
             //Get step information for current step
@@ -3795,6 +4036,44 @@ BOOL wasPathFollowed = false;
 }
 
 /*
+ * Calculates the delta pixel change for the object that is being moved
+ * and changes the lcoation from relative % to pixels if necessary.
+ */
+-(CGPoint) calculateDeltaForMovingObjectAtPointWithCenter:(NSString*) object :(CGPoint) location {
+    CGPoint change;
+    
+    //Calculate offset between top-left corner of image and the point clicked.
+    NSString* requestImageAtPointTop = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).offsetTop", location.x, location.y];
+    NSString* requestImageAtPointLeft = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).offsetLeft", location.x, location.y];
+    
+    NSString* imageAtPointTop = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointTop];
+    NSString* imageAtPointLeft = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointLeft];
+    
+    //Get the width and height of the image to ensure that the image is not being moved off screen and that the image is being moved in accordance with all movement constraints.
+    NSString* requestImageHeight = [NSString stringWithFormat:@"%@.height", object];
+    NSString* requestImageWidth = [NSString stringWithFormat:@"%@.width", object];
+    
+    float imageHeight = [[bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
+    float imageWidth = [[bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
+    
+    //Check to see if the locations returned are in percentages. If they are, change them to pixel values based on the size of the screen.
+    NSRange rangePercentTop = [imageAtPointTop rangeOfString:@"%"];
+    NSRange rangePercentLeft = [imageAtPointLeft rangeOfString:@"%"];
+    
+    if(rangePercentTop.location != NSNotFound)
+        change.y = location.y - ([imageAtPointTop floatValue] / 100.0 * [bookView frame].size.height) -(imageHeight/2);
+    else
+        change.y = location.y - [imageAtPointTop floatValue]-(imageHeight/2);
+    
+    if(rangePercentLeft.location != NSNotFound)
+        change.x = location.x - ([imageAtPointLeft floatValue] / 100.0 * [bookView frame].size.width) -(imageWidth/2);
+    else
+        change.x = location.x - [imageAtPointLeft floatValue]-(imageWidth/2);
+    
+    return change;
+}
+
+/*
  * Moves the object passeed in to the location given. Calculates the difference between the point touched and the
  * top-left corner of the image, which is the x,y coordate that's actually used when moving the object.
  * Also ensures that the image is not moved off screen or outside of any specified bounding boxes for the image.
@@ -3839,15 +4118,37 @@ BOOL wasPathFollowed = false;
             adjLocation.y = boxY;
     }
     
-    //Check to see if the image is being moved off screen. If it is, change it so that the image cannot be moved off screen.
-    if(adjLocation.x + imageWidth > [bookView frame].size.width)
-        adjLocation.x = [bookView frame].size.width - imageWidth;
-    else if(adjLocation.x < 0)
-        adjLocation.x = 0;
-    if(adjLocation.y + imageHeight > [bookView frame].size.height)
-        adjLocation.y = [bookView frame].size.height - imageHeight;
-    else if(adjLocation.y < 0)
-        adjLocation.y = 0;
+    
+    NSString* requestImageMarginLeft = [NSString stringWithFormat:@"%@.style.marginLeft", movingObjectId];
+    NSString* requestImageMarginTop = [NSString stringWithFormat:@"%@.style.marginTop", movingObjectId];
+    
+    NSString* imageMarginLeft = [bookView stringByEvaluatingJavaScriptFromString:requestImageMarginLeft];
+    NSString* imageMarginTop = [bookView stringByEvaluatingJavaScriptFromString:requestImageMarginTop];
+    
+    if(![imageMarginLeft isEqualToString:@""] && ![imageMarginTop isEqualToString:@""])
+    {
+        //Check to see if the image is being moved off screen. If it is, change it so that the image cannot be moved off screen.
+        if(adjLocation.x + (imageWidth/2) > [bookView frame].size.width)
+            adjLocation.x = [bookView frame].size.width - (imageWidth/2);
+        else if(adjLocation.x-(imageWidth/2)  < 0)
+            adjLocation.x = (imageWidth/2);
+        if(adjLocation.y + (imageHeight/2) > [bookView frame].size.height)
+            adjLocation.y = [bookView frame].size.height - (imageHeight/2);
+        else if(adjLocation.y-(imageHeight/2) < 0)
+            adjLocation.y = (imageHeight/2);
+    }
+    else
+    {
+        //Check to see if the image is being moved off screen. If it is, change it so that the image cannot be moved off screen.
+        if(adjLocation.x + imageWidth > [bookView frame].size.width)
+            adjLocation.x = [bookView frame].size.width - imageWidth;
+        else if(adjLocation.x < 0)
+            adjLocation.x = 0;
+        if(adjLocation.y + imageHeight > [bookView frame].size.height)
+            adjLocation.y = [bookView frame].size.height - imageHeight;
+        else if(adjLocation.y < 0)
+            adjLocation.y = 0;
+    }
     
     //May want to add code to keep objects from moving to the location that the text is taking up on screen.
     
@@ -3856,7 +4157,6 @@ BOOL wasPathFollowed = false;
         //Logging added by James for Automatic Computer Move Object
         [[ServerCommunicationController sharedManager] logComputerMoveObject: object : waypointID: startLocation.x : startLocation.y : adjLocation.x : adjLocation.y : @"Snap to Hotspot" : bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
     }
-    
     
     //NSLog(@"new location of %@: (%f, %f)", object, adjLocation.x, adjLocation.y);
     //Call the moveObject function in the js file.
@@ -3911,8 +4211,34 @@ BOOL wasPathFollowed = false;
     NSString* ungroup = [NSString stringWithFormat:@"ungroupObjects(%@, %@)", object1, object2];
 
     //Logging added by James for Grouping Objects
-    [[ServerCommunicationController sharedManager] logComputerGroupingObjects: @"Ungroup" :object1 :object2 : ungroup:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+    //[[ServerCommunicationController sharedManager] logComputerGroupingObjects: @"Ungroup" :object1 :object2 : ungroup:bookTitle :chapterTitle :currentPage :currentSentence :currentStep ];
+    
+    //get the current groupings of the objects
+    NSMutableArray *object1Groups = [currentGroupings objectForKey:object1];
+    NSMutableArray *object2Groups = [currentGroupings objectForKey:object2];
+    
+    if ([object1Groups containsObject:object2]) {
+        [object1Groups removeObject:object2];
+        [currentGroupings setValue:object1Groups forKey:object1];
+        //add the array back
+    }
+    if ([object2Groups containsObject:object1]) {
+        [object2Groups removeObject:object1];
+        [currentGroupings setValue:object2Groups forKey:object2];
+        //add the array back
+    }
+    
+    [bookView stringByEvaluatingJavaScriptFromString:ungroup];
+}
 
+/*
+ * Calls the JS function to ungroup two objects.
+ */
+-(void) ungroupObjectsAndStay:(NSString* )object1 :(NSString*) object2 {
+    NSString* ungroup = [NSString stringWithFormat:@"ungroupObjectsAndStay(%@, %@)", object1, object2];
+    
+    //Logging added by James for Grouping Objects
+    //[[ServerCommunicationController sharedManager] logComputerGroupingObjects: @"Ungroup" :object1 :object2 : ungroup:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
     
     //get the current groupings of the objects
     NSMutableArray *object1Groups = [currentGroupings objectForKey:object1];
@@ -4018,11 +4344,15 @@ BOOL wasPathFollowed = false;
  */
 - (CGPoint) getHotspotLocation:(Hotspot*) hotspot {
     //Get the height and width of the image.
-    NSString* requestImageHeight = [NSString stringWithFormat:@"%@.height", [hotspot objectId]];
-    NSString* requestImageWidth = [NSString stringWithFormat:@"%@.width", [hotspot objectId]];
+    NSString* requestImageHeight = [NSString stringWithFormat:@"%@.offsetHeight", [hotspot objectId]];
+    NSString* requestImageWidth = [NSString stringWithFormat:@"%@.offsetWidth", [hotspot objectId]];
     
     float imageWidth = [[bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
     float imageHeight = [[bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
+    
+    if ([[hotspot objectId] isEqualToString:@"dirt_tornado"]) {
+        imageHeight = 598;
+    }
     
     //if image height and width are 0 then the image doesn't exist on this page.
     if(imageWidth > 0 && imageHeight > 0) {
@@ -4051,8 +4381,8 @@ BOOL wasPathFollowed = false;
             locY = [imageTop floatValue];
         
         //Now we've got the location of the top left corner of the image, the size of the image and the relative position of the hotspot. Need to calculate the pixel location of the hotspot and call the js to draw the hotspot.
-        float hotspotX = locX + (imageWidth * [hotspot location].x / 100.0);
-        float hotspotY = locY + (imageHeight * [hotspot location].y / 100.0);
+        float hotspotX = locX  + (imageWidth * ([hotspot location].x / 100.0) );
+        float hotspotY = locY + (imageHeight * ([hotspot location].y / 100.0) );
         
         return CGPointMake(hotspotX, hotspotY);
     }
@@ -4603,10 +4933,16 @@ BOOL wasPathFollowed = false;
                     BOOL transference = FALSE;
                     
                     //Count number of user steps for page statistics
-                    for (ActionStep* as in [sentenceToAdd solutionSteps]) {
-                        if (!([[as stepType] isEqualToString:@"ungroup"] || [[as stepType] isEqualToString:@"move"] || [[as stepType] isEqualToString:@"swapImage"])) {
+                    for (ActionStep* as in [sentenceToAdd solutionSteps])
+                    {
+                        if (!([[as stepType] isEqualToString:@"ungroup"] ||
+                              [[as stepType] isEqualToString:@"move"] ||
+                              [[as stepType] isEqualToString:@"swapImage"]))
+                        {
                             //Make sure transference steps don't get counted twice
-                            if ([[as stepType] isEqualToString:@"transferAndGroup"] || [[as stepType] isEqualToString:@"transferAndDisappear"]) {
+                            if ([[as stepType] isEqualToString:@"transferAndGroup"] ||
+                                [[as stepType] isEqualToString:@"transferAndDisappear"])
+                            {
                                 if (!transference) {
                                     [[pageStatistics objectForKey:currentPageId] addStepForComplexity:([sentenceToAdd complexity] - 1)];
                                     

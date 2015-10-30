@@ -73,6 +73,7 @@
     <item href="Text/Story3-Tsunamis-PM-4.xhtml" id="story3-PM-4" media-type="application/xhtml+xml" />
     <item href="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-PM-3.xhtml" id="story4-PM-3" media-type="application/xhtml+xml" />
     <item href="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-PM-4.xhtml" id="story4-PM-4" media-type="application/xhtml+xml" />
+    <item href="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-PM-5.xhtml" id="story4-PM-5" media-type="application/xhtml+xml" />
     <item href="Text/Story5-Tornados-PM-3.xhtml" id="story5-PM-3" media-type="application/xhtml+xml" />
     <item href="Images/land_main.png" id="land_main.png" media-type="image/png" />
     <item href="Images/california_fault.png" id="california_fault.png" media-type="image/png" />
@@ -143,6 +144,24 @@
     <item href="Images/houses_fall.png" id="houses_fall.png" media-type="image/png" />
     <item href="Images/plate_bulge3.png" id="plate_bulge3.png" media-type="image/png" />
     <item href="Images/ocean_flatbulge.png" id="ocean_flatbulge.png" media-type="image/png" />
+    <item href="Images/island_Hawaii.png" id="island_Hawaii.png" media-type="image/png" />
+    <item href="Images/island_Kauai.png" id="island_Kauai.png" media-type="image/png" />
+    <item href="Images/island_Molokai.png" id="island_Molokai.png" media-type="image/png" />
+    <item href="Images/island_Oahu.png" id="island_Oahu.png" media-type="image/png" />
+    <item href="Images/lava2.png" id="lava2.png" media-type="image/png" />
+    <item href="Images/bg_volcano.png" id="bg_volcano.png" media-type="image/png" />
+    <item href="Images/houses_burn.png" id="houses_burn.png" media-type="image/png" />
+    <item href="Images/island_lava_Hawaii.png" id="island_lava_Hawaii.png" media-type="image/png" />
+    <item href="Images/grey_plate_kauai.png" id="grey_plate_kauai.png" media-type="image/png" />
+    <item href="Images/grey_plate_hawaii.png" id="grey_plate_hawaii.png" media-type="image/png" />
+    <item href="Images/grey_plate_molokai.png" id="grey_plate_molokai.png" media-type="image/png" />
+    <item href="Images/grey_plate_oahu.png" id="grey_plate_oahu.png" media-type="image/png" />
+    <item href="Images/house_noroof2_damaged.png" id="house_noroof2_damaged.png" media-type="image/png" />
+    <item href="Images/house_roof2_damaged.png" id="house_roof2_damaged.png" media-type="image/png" />
+    <item href="Images/Picture1resized.png" id="Picture1resized.png" media-type="image/png" />
+    <item href="Images/scene1.png" id="scene1.png" media-type="image/png" />
+    <item href="Images/scene2.png" id="scene2.png" media-type="image/png" />
+    <item href="Images/scene3.png" id="scene3.png" media-type="image/png" />
   </manifest>
   <spine toc="ncx">
     <itemref idref="story0-PM" />
@@ -171,6 +190,7 @@
     <itemref idref="story4-PM-2" />
     <itemref idref="story4-PM-3" />
     <itemref idref="story4-PM-4" />
+    <itemref idref="story4-PM-5" />
     <itemref idref="story5-PM-1" />
     <itemref idref="story5-PM-2" />
     <itemref idref="story5-PM-3" />

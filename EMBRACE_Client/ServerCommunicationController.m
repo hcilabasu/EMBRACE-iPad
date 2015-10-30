@@ -1485,9 +1485,10 @@ Context:
         if ([pageFileName rangeOfString:@"S.xhtml"].location != NSNotFound)
         {
             pageLanguageType = @"S";
-            NSRange range = [pageFileName rangeOfString:@"S.xhmtl"];
+            NSRange range = [pageFileName rangeOfString:@"S.xhtml"];
             range.length = 1;
             range.location = range.location -1;
+            
             pageNumber = [pageFileName substringWithRange:range];
             
             //set page name

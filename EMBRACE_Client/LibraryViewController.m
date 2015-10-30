@@ -176,7 +176,7 @@ ConditionSetup *conditionSetup;
     }
     
     //Change the back button so that it doesn't show the LibraryView's title and instead shows "Back"
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle: @"Back" style: UIBarButtonItemStyleBordered target: nil action: nil];
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle: @"Library" style: UIBarButtonItemStyleBordered target: nil action: nil];
     [[self navigationItem] setBackBarButtonItem:backButton];
 }
 

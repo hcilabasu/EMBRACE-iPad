@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <relationships>
+        <relationship obj1Id="ball" can="grabRight" action="group" obj2Id="olivia"/>
+        <relationship obj1Id="bottle" can="getIn" action="group" obj2Id="olivia"/>
+        <relationship obj1Id="cup" can="grabLeft" action="group" obj2Id="papa"/>
+        <relationship obj1Id="cup" can="drop" action="ungroup" obj2Id="papa"/>
+        <relationship obj1Id="lucas" can="drop" action="ungroup" obj2Id="babybrother"/>
+        <relationship obj1Id="lucas" can="drop" action="ungroup" obj2Id="ball"/>
+        <relationship obj1Id="lucas" can="drop" action="ungroup" obj2Id="boardgame"/>
+        <relationship obj1Id="lucas" can="drop" action="ungroup" obj2Id="bottle"/>
+        <relationship obj1Id="lucas" can="drop" action="ungroup" obj2Id="rattle"/>
+        <relationship obj1Id="lucas" can="grabLeft" action="group" obj2Id="bottle"/>
+        <relationship obj1Id="lucas" can="grabRight" action="group" obj2Id="babybrother"/>
+        <relationship obj1Id="lucas" can="grabRight" action="group" obj2Id="ball"/>
+        <relationship obj1Id="lucas" can="grabRight" action="group" obj2Id="boardgame"/>
+        <relationship obj1Id="lucas" can="grabRight" action="group" obj2Id="rattle"/>
+        <relationship obj1Id="lucas" can="grabRight" action="group" obj2Id="stone"/>
+        <relationship obj1Id="lucas" can="hug" action="group" obj2Id="papa"/>
+        <relationship obj1Id="lucas" can="leave" action="ungroup" obj2Id="babybrother"/>
+        <relationship obj1Id="lucas" can="leave" action="ungroup" obj2Id="papa"/>
+        <relationship obj1Id="olivia" can="drop" action="ungroup" obj2Id="bottle"/>
+        <relationship obj1Id="olivia" can="grabRight" action="group" obj2Id="bottle"/>
+        <relationship obj1Id="papa" can="drop" action="ungroup" obj2Id="bottle"/>
+        <relationship obj1Id="papa" can="grabLeft" action="group" obj2Id="note"/>
+        <relationship obj1Id="papa" can="grabRight" action="group" obj2Id="babybrother"/>
+        <relationship obj1Id="papa" can="grabRight" action="group" obj2Id="bottle"/>
+        <relationship obj1Id="rattle" can="getIn" action="group" obj2Id="babybrother"/>
+    </relationships>
+</metadata>

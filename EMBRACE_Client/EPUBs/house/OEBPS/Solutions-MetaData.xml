@@ -170,7 +170,7 @@
                 </step>
             </sentence>
         </story>
-        <story title="The Family is Rattled" activity_id="story5-PM-1">
+        <story title="The Baby's Rattle is Gone, Too!" activity_id="story5-PM-1">
             <sentence number="2">
                 <step number="1">
                     <check obj1Id="baby" action="getIn" locationId="crib"/>
@@ -192,7 +192,7 @@
                 </step>
             </sentence>
         </story>
-        <story title="The Family is Rattled" activity_id="story5-PM-2">
+        <story title="The Baby's Rattle is Gone, Too!" activity_id="story5-PM-2">
             <sentence number="6">
                 <step number="1">
                     <check obj1Id="woman" action="getIn" locationId="livingRoom"/>

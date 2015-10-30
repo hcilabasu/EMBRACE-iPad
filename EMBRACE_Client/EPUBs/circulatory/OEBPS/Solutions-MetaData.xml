@@ -91,9 +91,7 @@
         </story>
         <story title="Muscles Use Oxygen" activity_id="story3-PM-2">
             <sentence number="5">
-                <step number="1">
-                    <appear obj1Id="O2_1" action="appear" obj2Id="bloodcell_1"/>
-                </step>
+                
                 <step number="2">
                     <check obj1Id="O2_1" action="getIn" locationId="muscle2"/>
                     <move obj1Id="O2_1" action="getIn" waypointId="muscle2"/>

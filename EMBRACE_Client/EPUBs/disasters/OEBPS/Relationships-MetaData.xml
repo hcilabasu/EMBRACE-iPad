@@ -2,16 +2,27 @@
 <metadata>
     <relationships>
         <relationship obj1Id="africa" can="touch" action="group" obj2Id="india"/>
-        <relationship obj1Id="air_red" can="disappear" action="disappear" obj2Id=""/>
+        <relationship obj1Id="air_blue" can="touch" action="group" obj2Id="droplet_group"/>
+        <relationship obj1Id="air_red" can="touch" action="group" obj2Id="dirt_tornado"/>
         <relationship obj1Id="australia" can="touch" action="group" obj2Id="antartica"/>
         <relationship obj1Id="california" can="touch" action="group" obj2Id="north_america"/>
+        <relationship obj1Id="dirt_move" can="leave" action="ungroup" obj2Id="air_red"/>
         <relationship obj1Id="dirt_move" can="pull" action="group" obj2Id="air_red"/>
-        <relationship obj1Id="dirt_move" can="disappear" action="disappear" obj2Id=""/>
-        <relationship obj1Id="house_roof2" can="disappear" action="disappear" obj2Id=""/>
-        <relationship obj1Id="house_roof2" can="pull" action="group" obj2Id="dirt_tornado"/>
+        <relationship obj1Id="dirt_tornado" can="pull" action="group" obj2Id="house_roof2"/>
+        <relationship obj1Id="droplet_group" can="touch2" action="group" obj2Id="dirt_tornado"/>
+        <relationship obj1Id="house_roof2" can="leave" action="ungroup" obj2Id="dirt_tornado"/>
         <relationship obj1Id="india" can="hit" action="group" obj2Id="eurasia"/>
         <relationship obj1Id="india" can="leave" action="ungroup" obj2Id="eurasia"/>
         <relationship obj1Id="india" can="touch" action="group" obj2Id="australia"/>
+        <relationship obj1Id="kauai" can="leave" action="ungroup" obj2Id="grey_plate_kauai"/>
+        <relationship obj1Id="kauai" can="touchAsKauai" action="group" obj2Id="grey_plate_kauai"/>
+        <relationship obj1Id="kauai" can="touchAsKauai2" action="group" obj2Id="grey_plate_kauai"/>
+        <relationship obj1Id="kauai" can="touchAsKauai3" action="group" obj2Id="grey_plate_kauai"/>
+        <relationship obj1Id="lava" can="getIn" action="group" obj2Id="hawaii"/>
+        <relationship obj1Id="lava" can="touchAsKauai" action="group" obj2Id="grey_plate_kauai"/>
+        <relationship obj1Id="lava" can="touchAsOahu" action="group" obj2Id="grey_plate_kauai"/>
         <relationship obj1Id="north_america" can="leave" action="ungroup" obj2Id="california"/>
+        <relationship obj1Id="oahu" can="leave" action="ungroup" obj2Id="grey_plate_kauai"/>
+        <relationship obj1Id="oahu" can="touchAsOahu" action="group" obj2Id="grey_plate_kauai"/>
     </relationships>
 </metadata>

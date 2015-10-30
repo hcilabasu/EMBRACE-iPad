@@ -20,14 +20,14 @@
     <item href="Text/Story2-Missing-Keys-Intro-E.xhtml" id="story2-Intro" media-type="application/xhtml+xml"/>
     <item href="Text/Story3-Is-Paco-a-Thief-Intro-E.xhtml" id="story3-Intro" media-type="application/xhtml+xml"/>
     <item href="Text/Story4-More-is-Missing-Intro-E.xhtml" id="story4-Intro" media-type="application/xhtml+xml"/>
-    <item href="Text/Story5-The-Family-is-Rattled-Intro-E.xhtml" id="story5-Intro" media-type="application/xhtml+xml"/>
+    <item href="Text/Story5-The-Baby's-Rattle-is-Gone-Too-Intro-E.xhtml" id="story5-Intro" media-type="application/xhtml+xml"/>
     <item href="Text/Story6-The-Mystery-is-Solved-Intro-E.xhtml" id="story6-Intro" media-type="application/xhtml+xml"/>
     <item href="Text/Introduction-to-Lopez-House-Mystery-Characters-Title.xhtml" id="Introduction-to-Lopez-House-Mystery-Characters-Title.xhtml" media-type="application/xhtml+xml"/>
     <item href="Text/Story1-The-Lopez-Family-Title.xhtml" id="Chapter1Title" media-type="application/xhtml+xml"/>
     <item href="Text/Story2-Missing-Keys-Title.xhtml" id="Chapter2Title" media-type="application/xhtml+xml"/>
     <item href="Text/Story3-Is-Paco-a-Thief-Title.xhtml" id="Chapter3Title" media-type="application/xhtml+xml"/>
     <item href="Text/Story4-More-is-Missing-Title.xhtml" id="Chapter4Title" media-type="application/xhtml+xml"/>
-    <item href="Text/Story5-The-Family-is-Rattled-Title.xhtml" id="Chapter5Title" media-type="application/xhtml+xml"/>
+    <item href="Text/Story5-The-Baby's-Rattle-is-Gone-Too-Title.xhtml" id="Chapter5Title" media-type="application/xhtml+xml"/>
     <item href="Text/Story6-The-Mystery-is-Solved-Title.xhtml" id="Chapter6Title" media-type="application/xhtml+xml"/>
     <item href="Text/Story1-The-Lopez-Family-IM-1.xhtml" id="story1-IM-1" media-type="application/xhtml+xml"/>
     <item href="Text/Story1-The-Lopez-Family-IM-2.xhtml" id="story1-IM-2" media-type="application/xhtml+xml"/>
@@ -37,8 +37,8 @@
     <item href="Text/Story3-Is-Paco-a-Thief-IM-2.xhtml" id="story3-IM-2" media-type="application/xhtml+xml"/>
     <item href="Text/Story4-More-is-Missing-IM-1.xhtml" id="story4-IM-1" media-type="application/xhtml+xml"/>
     <item href="Text/Story4-More-is-Missing-IM-2.xhtml" id="story4-IM-2" media-type="application/xhtml+xml"/>
-    <item href="Text/Story5-The-Family-is-Rattled-IM-1.xhtml" id="story5-IM-1" media-type="application/xhtml+xml"/>
-    <item href="Text/Story5-The-Family-is-Rattled-IM-2.xhtml" id="story5-IM-2" media-type="application/xhtml+xml"/>
+    <item href="Text/Story5-The-Baby's-Rattle-is-Gone-Too-IM-1.xhtml" id="story5-IM-1" media-type="application/xhtml+xml"/>
+    <item href="Text/Story5-The-Baby's-Rattle-is-Gone-Too-IM-2.xhtml" id="story5-IM-2" media-type="application/xhtml+xml"/>
     <item href="Text/Story6-The-Mystery-is-Solved-IM-1.xhtml" id="story6-IM-1" media-type="application/xhtml+xml"/>
     <item href="Text/Story6-The-Mystery-is-Solved-IM-2.xhtml" id="story6-IM-2" media-type="application/xhtml+xml"/>
     <item href="Text/Story1-The-Lopez-Family-PM-1.xhtml" id="story1-PM-1" media-type="application/xhtml+xml"/>
@@ -49,8 +49,8 @@
     <item href="Text/Story3-Is-Paco-a-Thief-PM-2.xhtml" id="story3-PM-2" media-type="application/xhtml+xml"/>
     <item href="Text/Story4-More-is-Missing-PM-1.xhtml" id="story4-PM-1" media-type="application/xhtml+xml"/>
     <item href="Text/Story4-More-is-Missing-PM-2.xhtml" id="story4-PM-2" media-type="application/xhtml+xml"/>
-    <item href="Text/Story5-The-Family-is-Rattled-PM-1.xhtml" id="story5-PM-1" media-type="application/xhtml+xml"/>
-    <item href="Text/Story5-The-Family-is-Rattled-PM-2.xhtml" id="story5-PM-2" media-type="application/xhtml+xml"/>
+    <item href="Text/Story5-The-Baby's-Rattle-is-Gone-Too-PM-1.xhtml" id="story5-PM-1" media-type="application/xhtml+xml"/>
+    <item href="Text/Story5-The-Baby's-Rattle-is-Gone-Too-PM-2.xhtml" id="story5-PM-2" media-type="application/xhtml+xml"/>
     <item href="Text/Story6-The-Mystery-is-Solved-PM-1.xhtml" id="story6-PM-1" media-type="application/xhtml+xml"/>
     <item href="Text/Story6-The-Mystery-is-Solved-PM-2.xhtml" id="story6-PM-2" media-type="application/xhtml+xml"/>
     <item href="toc.ncx" id="ncx" media-type="application/x-dtbncx+xml"/>

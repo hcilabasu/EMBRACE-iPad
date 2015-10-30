@@ -15,7 +15,7 @@
         </navLabel>
         <content src="Text/Introduction-to-Lopez-House-Mystery-Characters-Title.xhtml"/>
     </navPoint>
-    <navPoint class="ChapterTitle" id="Chapter1Title" playOrder="1">
+        <navPoint class="ChapterTitle" id="Chapter1Title" playOrder="1">
 		<navLabel>
 			<text>The Lopez Family</text>
 		</navLabel>
@@ -161,38 +161,38 @@
 	</navPoint>
 	<navPoint class="ChapterTitle" id="Chapter5Title" playOrder="5">
 		<navLabel>
-			<text>The Family is Rattled</text>
+			<text>The Baby's Rattle is Gone, Too!</text>
 		</navLabel>
-		<content src="Text/Story5-The-Family-is-Rattled-Title.xhtml"/>
+		<content src="Text/Story5-The-Baby's-Rattle-is-Gone-Too-Title.xhtml"/>
 		<navPoint class="PM_MODE" id="story5-Intro">
             <navLabel>
-                <text>The Family is Rattled - Intro</text>
+                <text>The Baby's Rattle is Gone, Too! - Intro</text>
             </navLabel>
-            <content src="Text/Story5-The-Family-is-Rattled-Intro-E.xhtml"/>
+            <content src="Text/Story5-The-Baby's-Rattle-is-Gone-Too-Intro-E.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story5-PM-1">
 		  <navLabel>
-    		<text>The Family is Rattled - PM</text>
+    		<text>The Baby's Rattle is Gone, Too! - PM</text>
 		  </navLabel>
-		  <content src="Text/Story5-The-Family-is-Rattled-PM-1.xhtml"/>
+		  <content src="Text/Story5-The-Baby's-Rattle-is-Gone-Too-PM-1.xhtml"/>
 		</navPoint>
        <navPoint class="PM_MODE" id="story5-PM-2">
 		  <navLabel>
-	    	<text>The Family is Rattled - PM</text>
+	    	<text>The Baby's Rattle is Gone Too! - PM</text>
 		  </navLabel>
-		  <content src="Text/Story5-The-Family-is-Rattled-PM-2.xhtml"/>
+		  <content src="Text/Story5-The-Baby's-Rattle-is-Gone-Too-PM-2.xhtml"/>
 		</navPoint>
 		<navPoint class="IM_MODE" id="story5-IM-1">
 		  <navLabel>
-    		<text>The Family is Rattled - IM</text>
+    		<text>The Baby's Rattle is Gone Too! - IM</text>
 		  </navLabel>
-		  <content src="Text/Story5-The-Family-is-Rattled-IM-1.xhtml"/>
+		  <content src="Text/Story5-The-Baby's-Rattle-is-Gone-Too-IM-1.xhtml"/>
 		</navPoint>
 		<navPoint class="IM_MODE" id="story5-IM-2">
 		  <navLabel>
-	    	<text>The Family is Rattled - IM</text>
+	    	<text>The Baby's Rattle is Gone Too! - IM</text>
 		  </navLabel>
-		  <content src="Text/Story5-The-Family-is-Rattled-IM-2.xhtml"/>
+		  <content src="Text/Story5-The-Baby's-Rattle-is-Gone-Too-IM-2.xhtml"/>
 		</navPoint>
 	</navPoint>
 	<navPoint class="ChapterTitle" id="Chapter6Title" playOrder="6">
@@ -286,16 +286,16 @@
 		<content src="Text/Story4-More-is-Missing-PM-2.xhtml"/>
 	</pageTarget>
 	<pageTarget id="p14" type="normal" value="14">
-    	<navLabel><text>Chapter 5 - The Family is Rattled - Introduction</text></navLabel>
-		<content src="Text/Story5-The-Family-is-Rattled-Intro-E.xhtml"/>
+    	<navLabel><text>Chapter 5 - The Baby's Rattle is Gone, Too! - Introduction</text></navLabel>
+		<content src="Text/Story5-The-Baby's-Rattle-is-Gone-Too-Intro-E.xhtml"/>
 	</pageTarget>
   <pageTarget id="p15" type="normal" value="15">
-    	<navLabel><text>Chapter 5 - The Family is Rattled - Physical Manipulation 1</text></navLabel>
-		<content src="Text/Story5-The-Family-is-Rattled-PM-1.xhtml"/>
+    	<navLabel><text>Chapter 5 - The Baby's Rattle is Gone, Too! - Physical Manipulation 1</text></navLabel>
+		<content src="Text/Story5-The-Baby's-Rattle-is-Gone-Too-PM-1.xhtml"/>
 	</pageTarget>
   <pageTarget id="p16" type="normal" value="16">
-    	<navLabel><text>Chapter 5 - The Family is Rattled - Physical Manipulation 2</text></navLabel>
-		<content src="Text/Story5-The-Family-is-Rattled-PM-2.xhtml"/>
+    	<navLabel><text>Chapter 5 - The Baby's Rattle is Gone, Too! - Physical Manipulation 2</text></navLabel>
+		<content src="Text/Story5-The-Baby's-Rattle-is-Gone-Too-PM-2.xhtml"/>
 	</pageTarget>
 	<pageTarget id="p17" type="normal" value="17">
     	<navLabel><text>Chapter 6 - The Mystery is Solved - Introduction</text></navLabel>
@@ -342,12 +342,12 @@
 		<content src="Text/Story4-More-is-Missing-IM-2.xhtml"/>
 	</pageTarget>
 	<pageTarget id="p28" type="normal" value="28">
-    	<navLabel><text>Chapter 5 - The Family is Rattled - Imagine Manipulation 1</text></navLabel>
-		<content src="Text/Story5-The-Family-is-Rattled-IM-1.xhtml"/>
+    	<navLabel><text>Chapter 5 - The Baby's Rattle is Gone Too! - Imagine Manipulation 1</text></navLabel>
+		<content src="Text/Story5-The-Baby's-Rattle-is-Gone-Too-IM-1.xhtml"/>
 	</pageTarget>
 	<pageTarget id="p29" type="normal" value="29">
-    	<navLabel><text>Chapter 5 - The Family is Rattled - Imagine Manipulation 2</text></navLabel>
-		<content src="Text/Story5-The-Family-is-Rattled-IM-2.xhtml"/>
+    	<navLabel><text>Chapter 5 - The Baby's Rattle is Gone Too! - Imagine Manipulation 2</text></navLabel>
+		<content src="Text/Story5-The-Baby's-Rattle-is-Gone-Too-IM-2.xhtml"/>
 	</pageTarget>
 	<pageTarget id="p30" type="normal" value="30">
     	<navLabel><text>Chapter 6 - The Mystery is Solved - Imagine Manipulation 1</text></navLabel>

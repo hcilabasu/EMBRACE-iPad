@@ -86,6 +86,7 @@
 - (Waypoint*) getWaypointWithId:(NSString*)wayptId;
 
 - (AlternateImage*) getAlternateImageWithAction:(NSString*)action;
+- (AlternateImage*) getAlternateImageWithActionAndObjectID:(NSString *)action : (NSString *) objectId;
 
 - (void) addIntroduction:(NSString*) storyTitle :(NSMutableArray*) introductionSteps;
 

@@ -128,8 +128,15 @@ typedef enum InteractionMode {
 @synthesize locationID;
 @synthesize width;
 @synthesize height;
+@synthesize top;
+@synthesize left;
+@synthesize hotspotWidth;
+@synthesize hotspotHeight;
+@synthesize hotspotTop;
+@synthesize hotspotLeft;
 @synthesize zindex;
 @synthesize objectID;
+@synthesize manipulationType;
 @synthesize action;
 @synthesize role;
 
@@ -147,6 +154,7 @@ ConditionSetup *conditionSetup;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //Creates the picker view for editing options
     CGRect pickerFrame = CGRectMake(200, 200, 320, 216);
     picker = [[UIPickerView alloc] initWithFrame:pickerFrame];
     picker.delegate=self;
@@ -155,7 +163,7 @@ ConditionSetup *conditionSetup;
     TapLocationY = 0;
     isEntryViewVisible = false;
     
-    self.ImageOptions = [NSArray arrayWithObjects: @"Save Waypoint", @"Save Hotspot", @"Save Location", @"Save Z-Index", @"Save Width", @"Save Height", @"Save Manipulation Type", nil];
+    self.ImageOptions = [NSArray arrayWithObjects: @"Save Waypoint", @"Save Hotspot", @"Save Location", @"Save Z-Index", @"Save Width", @"Save Height", @"Save Manipulation Type", @"FR: Save Animation", nil];
     
     //creates instance of introduction class
     IntroductionClass = [[IntroductionViewController alloc]init];
@@ -180,6 +188,8 @@ ConditionSetup *conditionSetup;
     
     [[bookView scrollView] setBounces: NO];
     [[bookView scrollView] setScrollEnabled:NO];
+    [bookView scrollView].clipsToBounds = YES;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
     movingObject = FALSE;
     pinching = FALSE;
@@ -291,7 +301,8 @@ ConditionSetup *conditionSetup;
     
     isAudioLeft = false;
     
-    //Perform setup for activity
+    //Perform setup for activity: currently commented out for authoring mode
+    //TODO: implement solution step simulation in authoring mode
     //[self performSetupForActivity];
     
 }
@@ -376,16 +387,8 @@ ConditionSetup *conditionSetup;
     //No more pages in chapter
     if (currentPage == nil) {
         //return to library view
-        //load assessment activity screen
-        if([chapterTitle isEqualToString:@"Introduction to The Best Farm"] || [chapterTitle isEqualToString:@"Introduction to The House"])
-        {   [self.navigationController popViewControllerAnimated:YES];
+          [self.navigationController popViewControllerAnimated:YES];
             return;
-        }
-        else
-        {
-            [self.navigationController popViewControllerAnimated:YES];
-            return;
-        }
     }
     
     [self loadPage];
@@ -502,7 +505,7 @@ ConditionSetup *conditionSetup;
     
     if (![[self.navigationController viewControllers] containsObject:self])
     {
-        [[ServerCommunicationController sharedManager] writeToFile:[[ServerCommunicationController sharedManager] studyFileName] ofType:@"txt"];
+        
     }
 }
 
@@ -510,94 +513,27 @@ ConditionSetup *conditionSetup;
  * Pinch gesture. Used to ungroup two images from each other.
  */
 -(IBAction)pinchGesturePerformed:(UIPinchGestureRecognizer *)recognizer {
-    /*CGPoint location = [recognizer locationInView:self.view];
-     
-     if(recognizer.state == UIGestureRecognizerStateBegan && IntroductionClass.allowInteractions && pinchToUngroup) {
-     pinching = TRUE;
-     
-     NSString* imageAtPoint = [self getObjectAtPoint:location ofType:@"manipulationObject"];
-     
-     //if it's an image that can be moved, then start moving it.
-     if(imageAtPoint != nil && !stepsComplete) {
-     separatingObjectId = imageAtPoint;
-     }
-     }
-     else if(recognizer.state == UIGestureRecognizerStateEnded) {
-     //Get pairs of other objects grouped with this object.
-     NSArray* itemPairArray = [self getObjectsGroupedWithObject:separatingObjectId];
-     
-     if (itemPairArray != nil) {
-     NSMutableArray* possibleInteractions = [[NSMutableArray alloc] init];
-     
-     for(NSString* pairStr in itemPairArray) {
-     //Create an array that will hold all the items in this group
-     NSMutableArray* groupedItemsArray = [[NSMutableArray alloc] init];
-     
-     //Separate the objects in this pair and add them to our array of all items in this group.
-     [groupedItemsArray addObjectsFromArray:[pairStr componentsSeparatedByString:@", "]];
-     
-     //Only allow the correct subject and object to ungroup if necessary
-     BOOL allowSubjectToUngroup = false;
-     BOOL allowObjectToUngroup = false;
-     
-     for(NSString* obj in groupedItemsArray) {
-     if (useSubject == ONLY_CORRECT) {
-     if ([self checkSolutionForSubject:obj]) {
-     allowSubjectToUngroup = true;
-     }
-     }
-     else if (useSubject == ALL_ENTITIES) {
-     allowSubjectToUngroup = true;
-     }
-     
-     if (useObject == ONLY_CORRECT) {
-     if ([self checkSolutionForObject:obj]) {
-     allowObjectToUngroup = true;
-     }
-     }
-     else if (useObject == ALL_ENTITIES) {
-     allowObjectToUngroup = true;
-     }
-     }
-     
-     //Objects are allowed to ungroup
-     if (allowSubjectToUngroup && allowObjectToUngroup) {
-     PossibleInteraction* interaction = [[PossibleInteraction alloc] initWithInteractionType:UNGROUP];
-     [interaction addConnection:UNGROUP :groupedItemsArray :nil];
-     
-     //Only one possible ungrouping found
-     if ([itemPairArray count] == 1) {
-     [self checkSolutionForInteraction:interaction]; //check if interaction is correct before ungrouping
-     }
-     //Multiple possible ungroupings found
-     else {
-     [possibleInteractions addObject:interaction];
-     }
-     }
-     }
-     
-     //Show the menu if multiple possible ungroupings are found
-     if ([itemPairArray count] > 1) {
-     //Populate the data source and expand the menu.
-     [self populateMenuDataSource:possibleInteractions:allRelationships];
-     
-     if(!menuExpanded)
-     [self expandMenu];
-     }
-     }
-     else
-     NSLog(@"no items grouped");
-     
-     pinching = FALSE;
-     }
-     */
+    /*Current Function not used in authoring mode See PMViewController if needed*/
 }
 
+/*
+ * Takes the current hotspot value as a percentage and converts the percentages into
+ * a hotspot. The function then checks if the hotspot already exists in the Hotspot-MetaData.xml file
+ * if it does not, then it adds it to the file, otherwise it ignores the request to save the hotspot
+ */
 -(void)saveHotspot:(id)sender{
     /*convert px values to percentages*/
-    NSString *xcordPercent = [NSString stringWithFormat:@"%f", ([xcord.text integerValue] / [bookView frame].size.width * 100)];
-    NSString *ycordPercent = [NSString stringWithFormat:@"%f", ([ycord.text integerValue] / [bookView frame].size.height * 100)];
     
+    /*recieve the height and width of the object and convert */
+    NSString *xcordPercent = [NSString stringWithFormat:@"%ld", (long)[xcord.text integerValue]];
+    NSString *ycordPercent = [NSString stringWithFormat:@"%ld", (long)[ycord.text integerValue]];
+    
+    //NSInteger hleft = [hotspotLeft.text integerValue];
+    //NSInteger htop = [hotspotTop.text integerValue];
+    //NSInteger hwidth = [hotspotWidth.text integerValue];
+    //NSInteger hheight = [hotspotHeight.text integerValue];
+    //NSInteger xpercent = hleft + hwidth * [xcordPercent integerValue]/100;
+    //NSInteger ypercent = htop + hheight * [ycordPercent integerValue]/100;
     
     NSString* newHotspot = [NSString stringWithFormat:@"hotspot objId=\"%@\" action=\"%@\" role=\"%@\" x=\"%@%%\" y=\"%@%%\"", hotspotID.text, action.text, role.text, xcordPercent, ycordPercent];
     NSLog(@"%@", newHotspot);
@@ -621,7 +557,7 @@ ConditionSetup *conditionSetup;
     NSError *error;
     
     //break out metadata file into seperate components
-    GDataXMLDocument *metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:nil];
+    GDataXMLDocument *metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:&error];
     
     xmlDocTemp = [[DDXMLDocument alloc] initWithData:xmlData options:0 error:nil];
     
@@ -645,6 +581,7 @@ ConditionSetup *conditionSetup;
         }
     }
     
+    //if the hotspot doesnt already exist save it
     if (doesHotspotExist == false) {
         NSArray *hotspots = [xmlDocTemp nodesForXPath:@"//hotspots" error:nil];
         DDXMLElement *hotspotElement = (DDXMLElement*)[hotspots objectAtIndex:0];
@@ -658,6 +595,7 @@ ConditionSetup *conditionSetup;
         [entryview removeFromSuperview];
         isEntryViewVisible = false;
         
+        //remove the picker view
         if (isAreaViewVisible == true) {
             [areaSpace removeFromSuperview];
             self.isAreaViewVisible = false;
@@ -666,11 +604,17 @@ ConditionSetup *conditionSetup;
     
 }
 
+/*
+ * Takes the current waypoint value as a percentage and converts the percentages into
+ * a waypoint. The function then checks if the waypoint already exists in the waypoint-MetaData.xml file
+ * if it does not, then it adds it to the file, otherwise it ignores the request to save the waypoint
+ */
 -(void)saveWaypoint:(id)sender {
     /*convert px values to percentages*/
-    NSString *xcordPercent = [NSString stringWithFormat:@"%f", ([xcord.text integerValue] / [bookView frame].size.width * 100)];
-    NSString *ycordPercent = [NSString stringWithFormat:@"%f", ([ycord.text integerValue] / [bookView frame].size.height * 100)];
+    NSString *xcordPercent = [NSString stringWithFormat:@"%ld", (long)[xcord.text integerValue]];
+    NSString *ycordPercent = [NSString stringWithFormat:@"%ld", (long)[ycord.text integerValue]];
     
+    //convert inputted data in a waypoint in xml format
     NSString* newWaypoint = [NSString stringWithFormat:@"waypoint waypointId=\"%@\" x=\"%@%%\" y=\"%@%%\"", waypointID.text, xcordPercent, ycordPercent];
     NSLog(@"%@", newWaypoint);
     
@@ -714,6 +658,7 @@ ConditionSetup *conditionSetup;
         }
     }
     
+    //if the waypoint doesnt already exist, save it
     if (doesWaypointExist == false) {
         NSArray *waypoints = [xmlDocTemp nodesForXPath:@"//waypoints" error:nil];
         DDXMLElement *waypointElement = (DDXMLElement*)[waypoints objectAtIndex:0];
@@ -727,6 +672,7 @@ ConditionSetup *conditionSetup;
         [entryview removeFromSuperview];
         isEntryViewVisible = false;
         
+        //remove the pickerview
         if (isAreaViewVisible == true) {
             [areaSpace removeFromSuperview];
             self.isAreaViewVisible = false;
@@ -734,15 +680,20 @@ ConditionSetup *conditionSetup;
     }
 }
 
+/*
+ * Takes the current location value as a percentage and converts the percentages into
+ * a location. The function then checks if the location already exists in the location-MetaData.xml file
+ * if it does not, then it adds it to the file, otherwise it ignores the request to save the location
+ */
 -(void)saveLocation:(id)sender{
     
     /*convert px values to percentages*/
-    NSString *xcordPercent = [NSString stringWithFormat:@"%f", ([xcord.text integerValue] / [bookView frame].size.width * 100)];
-    NSString *ycordPercent = [NSString stringWithFormat:@"%f", ([ycord.text integerValue] / [bookView frame].size.height * 100)];
-    NSString *heightPercent = [NSString stringWithFormat:@"%f", ([height.text integerValue] / [bookView frame].size.width * 100)];
-    NSString *widthPercent = [NSString stringWithFormat:@"%f", ([width.text integerValue] / [bookView frame].size.width * 100)];
+    NSString *xcordPercent = [NSString stringWithFormat:@"%ld", (long)[xcord.text integerValue]];
+    NSString *ycordPercent = [NSString stringWithFormat:@"%ld", (long)[ycord.text integerValue]];
+    NSString *heightPercent = [NSString stringWithFormat:@"%ld", (long)[height.text integerValue]];
+    NSString *widthPercent = [NSString stringWithFormat:@"%ld", (long)[width.text integerValue]];
     NSString* newLocation = [NSString stringWithFormat:@"location locationId=\"%@\" x=\"%@%%\" y=\"%@%%\" height=\"%@%%\" width=\"%@%%\"", locationID.text, xcordPercent, ycordPercent, heightPercent, widthPercent];
-    
+
     //set file path to access introduction metadata
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -758,31 +709,32 @@ ConditionSetup *conditionSetup;
         xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
     }
     
-    //break out metadata file into seperate components
-    GDataXMLDocument *metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:nil];
+     //break out metadata file into seperate components
+     GDataXMLDocument *metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:nil];
     
-    xmlDocTemp = [[DDXMLDocument alloc] initWithData:xmlData options:0 error:nil];
+     xmlDocTemp = [[DDXMLDocument alloc] initWithData:xmlData options:0 error:nil];
     
-    //Reading in the location information.
-    NSArray* locationElements = [metadataDoc nodesForXPath:@"//locations" error:nil];
-    GDataXMLElement* locationElement = (GDataXMLElement*)[locationElements objectAtIndex:0];
+     //Reading in the location information.
+     NSArray* locationElements = [metadataDoc nodesForXPath:@"//locations" error:nil];
+     GDataXMLElement* locationElement = (GDataXMLElement*)[locationElements objectAtIndex:0];
+     
+     NSArray* locations = [locationElement elementsForName:@"location"];
     
-    NSArray* locations = [locationElement elementsForName:@"location"];
+     bool doesLocationExist = false;
     
-    bool doesLocationExist = false;
-    
-    //Read in the location information.
-    for (GDataXMLElement* location in locations) {
-        NSLog(@"%@", [location XMLString]);
+     //Read in the location information.
+     for (GDataXMLElement* location in locations) {
+         NSLog(@"%@", [location XMLString]);
         
-        if ([[location XMLString] isEqualToString:newLocation]) {
-            NSLog(@"Error: Location already exists");
-            NSLog(@"%@",newLocation);
-            doesLocationExist = true;
-            return;
-        }
-    }
+         if ([[location XMLString] isEqualToString:newLocation]) {
+             NSLog(@"Error: Location already exists");
+             NSLog(@"%@",newLocation);
+             doesLocationExist = true;
+             return;
+         }
+     }
     
+    //if the locaiton doesn't already exist, add it
     if (doesLocationExist == false) {
         
         NSArray *locations = [xmlDocTemp nodesForXPath:@"//locations" error:nil];
@@ -797,6 +749,7 @@ ConditionSetup *conditionSetup;
         [entryview removeFromSuperview];
         isEntryViewVisible = false;
         
+        //remove the pickerview
         if (isAreaViewVisible == true) {
             [areaSpace removeFromSuperview];
             self.isAreaViewVisible = false;
@@ -806,6 +759,9 @@ ConditionSetup *conditionSetup;
     
 }
 
+/*
+ * Function changes the z-index of the selected object
+ */
 -(void)changeZIndex:(id)sender{
     
     NSString* changeZindexAtPoint = [NSString stringWithFormat:@"%@.style.zIndex = %@", objectID.text, zindex.text];
@@ -816,6 +772,9 @@ ConditionSetup *conditionSetup;
     isEntryViewVisible = false;
 }
 
+/*
+ *  Function changes the width of the select object
+ */
 -(void)changeWidth:(id)sender{
     NSString* changeWidthAtPoint = [NSString stringWithFormat:@"%@.style.width = \"%@px\"", objectID.text, width.text];
     NSString *WidthAtPoint = [bookView stringByEvaluatingJavaScriptFromString:changeWidthAtPoint];
@@ -824,7 +783,15 @@ ConditionSetup *conditionSetup;
     isEntryViewVisible = false;
 }
 
+/*
+ *  Function changes the height of the selected object
+ */
 -(void)changeHeight:(id)sender{
+    //set the width first before changing the height
+    NSString* changeWidthAtPoint = [NSString stringWithFormat:@"%@.style.width = \"%@px\"", objectID.text, width.text];
+    NSString *WidthAtPoint = [bookView stringByEvaluatingJavaScriptFromString:changeWidthAtPoint];
+    NSLog(@"%@", WidthAtPoint);
+    
     NSString* changeHeightAtPoint = [NSString stringWithFormat:@"%@.style.height = \"%@px\"", objectID.text, height.text];
     NSString *HeightAtPoint = [bookView stringByEvaluatingJavaScriptFromString:changeHeightAtPoint];
     NSLog(@"%@", HeightAtPoint);
@@ -832,54 +799,67 @@ ConditionSetup *conditionSetup;
     isEntryViewVisible = false;
 }
 
+/*
+ *  Function changes the manipulation type of the selected object
+ */
 -(void)changeManipulationType:(id)sender {
+    NSString* changeManipulationType = [NSString stringWithFormat:@"%@.className = \"%@\";", objectID.text, manipulationType.text];
+    NSString* ManipulationType = [bookView stringByEvaluatingJavaScriptFromString:changeManipulationType];
+    NSLog(@"%@", ManipulationType);
     
     [entryview removeFromSuperview];
     isEntryViewVisible = false;
 }
 
-
+/*
+ *  Writes file to the document directory to be retrieved
+ */
 - (BOOL) writeToFile:(NSString *) toLocation : (NSString *)fileName ofType:(NSString *)type
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     
-    //
+    //Writes to document directory to avoid overwritting current metadata files
     NSString *path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@", fileName, type]];
     //toggle for saving to logging location or to overide current file
     //NSString *path = toLocation;
     
     NSString *stringxml = [xmlDocTemp XMLStringWithOptions:DDXMLNodeCompactEmptyElement];
     
+    //attempt to write file to path
     if (![stringxml writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil]) {
         NSLog(@"Could not write document out...");
         NSLog(@"%@", stringxml);
         return NO;
     }
+    
     NSLog(@"%@", stringxml);
     NSLog(@"Successfully wrote to file");
     return YES;
 }
 
+//Default number of components in picker view
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 1;
 }
 
+//Returns the number of options for editing
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
     return [ImageOptions count];
 }
 
+//returns the title of the row
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
     return  [ImageOptions objectAtIndex:row];
 }
 
+/*
+ *  When a row is selected create the new appropate menu with relevant input options.
+ */
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     /*@"Save Waypoint", @"Save Hotspot", @"Save Location", @"Save Z-Index", @"Save Width", @"Save Height", @"Save Manipulation Type"*/
     
-    /*
-     textbox subview
-     */
     
     [pickerView removeFromSuperview];
     isEntryViewVisible = true;
@@ -890,7 +870,7 @@ ConditionSetup *conditionSetup;
         /*
          add new sub view with textboxes, cancel button, and save button
          */
-        entryview = [[UIView alloc] initWithFrame:CGRectMake(650, 20, 200, 200)];
+        entryview = [[UIView alloc] initWithFrame:CGRectMake(670, 10, 200, 200)];
         entryview.backgroundColor = [UIColor whiteColor];
         
         waypointID = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 180, 30)];
@@ -899,12 +879,12 @@ ConditionSetup *conditionSetup;
         waypointID.borderStyle = UITextBorderStyleRoundedRect;
         
         xcord = [[UITextField alloc] initWithFrame:CGRectMake(10, 60, 180, 30)];
-        xcord.text = [NSString stringWithFormat:@"%d", TapLocationX];
+        xcord.text = @"x%";
         xcord.textColor = [UIColor blackColor];
         xcord.borderStyle = UITextBorderStyleRoundedRect;
         
         ycord = [[UITextField alloc] initWithFrame:CGRectMake(10, 100, 180, 30)];
-        ycord.text = [NSString stringWithFormat:@"%d",TapLocationY];
+        ycord.text = @"y%";
         ycord.textColor = [UIColor blackColor];
         ycord.borderStyle = UITextBorderStyleRoundedRect;
         
@@ -919,7 +899,7 @@ ConditionSetup *conditionSetup;
         [cancel setTitle:@"Cancel" forState:UIControlStateNormal];
         
         UIButton *createVisibleArea = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [createVisibleArea addTarget:self action:@selector(Create:) forControlEvents:UIControlEventTouchUpInside];
+        [createVisibleArea addTarget:self action:@selector(CreateWaypoint:) forControlEvents:UIControlEventTouchUpInside];
         createVisibleArea.frame = CGRectMake(65, 140, 80, 50);
         [createVisibleArea setTitle:@"Create" forState:UIControlStateNormal];
         
@@ -947,7 +927,7 @@ ConditionSetup *conditionSetup;
          add new sub view with textboxes, cancel button, and save button
          //NSString* hotspot = [NSString stringWithFormat:@"<hotspot objId=\"%@\" action=\"%@\" role=\"%@\" x=\"%d\" y=\"%d\"/>", hotspotID.text, action, role, xcord.text, ycord.text];
          */
-        entryview = [[UIView alloc] initWithFrame:CGRectMake(650, 20, 200, 290)];
+        entryview = [[UIView alloc] initWithFrame:CGRectMake(670, 10, 200, 290)];
         entryview.backgroundColor = [UIColor whiteColor];
         
         hotspotID = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 180, 30)];
@@ -957,6 +937,39 @@ ConditionSetup *conditionSetup;
         
         if (objectAtPoint == nil) {
             objectAtPoint = [self getObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"backgroundObject"];
+            
+            NSString *objectWidth = [self getwidthOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"manipulationObject"];
+            NSString *objectHeight = [self getheightOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"manipulationObject"];
+            NSString *objectTop = [self getTopOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"manipulationObject"];
+            NSString *objectLeft = [self getLeftOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"manipulationObject"];
+            
+            if (objectWidth == nil && objectHeight == nil && objectTop == nil && objectLeft == nil)
+            {
+                objectWidth = [self getwidthOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"backgroundObject"];
+                objectHeight = [self getheightOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"backgroundObject"];
+                objectTop = [self getTopOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"backgroundObject"];
+                objectLeft = [self getLeftOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"backgroundObject"];
+                
+                hotspotTop = [[UITextField alloc] initWithFrame:CGRectMake(1, 1, 1, 1)];
+                hotspotLeft = [[UITextField alloc] initWithFrame:CGRectMake(1, 1, 1, 1)];
+                hotspotWidth = [[UITextField alloc] initWithFrame:CGRectMake(1, 1, 1, 1)];
+                hotspotHeight = [[UITextField alloc] initWithFrame:CGRectMake(1, 1, 1, 1)];
+                hotspotTop.text = objectTop;
+                hotspotLeft.text = objectLeft;
+                hotspotWidth.text = objectWidth;
+                hotspotHeight.text = objectHeight;
+            }
+            else
+            {
+                hotspotTop = [[UITextField alloc] initWithFrame:CGRectMake(1, 1, 1, 1)];
+                hotspotLeft = [[UITextField alloc] initWithFrame:CGRectMake(1, 1, 1, 1)];
+                hotspotWidth = [[UITextField alloc] initWithFrame:CGRectMake(1, 1, 1, 1)];
+                hotspotHeight = [[UITextField alloc] initWithFrame:CGRectMake(1, 1, 1, 1)];
+                hotspotTop.text = objectTop;
+                hotspotLeft.text = objectLeft;
+                hotspotWidth.text = objectWidth;
+                hotspotHeight.text = objectHeight;
+            }
             
             if (objectAtPoint == nil) {
                 hotspotID.text = @"HotspotID";
@@ -970,6 +983,39 @@ ConditionSetup *conditionSetup;
         else
         {
             hotspotID.text = objectAtPoint;
+            
+            NSString *objectWidth = [self getwidthOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"manipulationObject"];
+            NSString *objectHeight = [self getheightOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"manipulationObject"];
+            NSString *objectTop = [self getTopOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"manipulationObject"];
+            NSString *objectLeft = [self getLeftOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"manipulationObject"];
+            
+            if (objectWidth == nil && objectHeight == nil && objectTop == nil && objectLeft == nil)
+            {
+                objectWidth = [self getwidthOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"backgroundObject"];
+                objectHeight = [self getheightOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"backgroundObject"];
+                objectTop = [self getTopOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"backgroundObject"];
+                objectLeft = [self getLeftOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"backgroundObject"];
+                
+                hotspotTop = [[UITextField alloc] initWithFrame:CGRectMake(1, 1, 1, 1)];
+                hotspotLeft = [[UITextField alloc] initWithFrame:CGRectMake(1, 1, 1, 1)];
+                hotspotWidth = [[UITextField alloc] initWithFrame:CGRectMake(1, 1, 1, 1)];
+                hotspotHeight = [[UITextField alloc] initWithFrame:CGRectMake(1, 1, 1, 1)];
+                hotspotTop.text = objectTop;
+                hotspotLeft.text = objectLeft;
+                hotspotWidth.text = objectWidth;
+                hotspotHeight.text = objectHeight;
+            }
+            else
+            {
+                hotspotTop = [[UITextField alloc] initWithFrame:CGRectMake(1, 1, 1, 1)];
+                hotspotLeft = [[UITextField alloc] initWithFrame:CGRectMake(1, 1, 1, 1)];
+                hotspotWidth = [[UITextField alloc] initWithFrame:CGRectMake(1, 1, 1, 1)];
+                hotspotHeight = [[UITextField alloc] initWithFrame:CGRectMake(1, 1, 1, 1)];
+                hotspotTop.text = objectTop;
+                hotspotLeft.text = objectLeft;
+                hotspotWidth.text = objectWidth;
+                hotspotHeight.text = objectHeight;
+            }
         }
         
         hotspotID.textColor = [UIColor blackColor];
@@ -986,12 +1032,12 @@ ConditionSetup *conditionSetup;
         role.borderStyle = UITextBorderStyleRoundedRect;
         
         xcord = [[UITextField alloc] initWithFrame:CGRectMake(10, 140, 180, 30)];
-        xcord.text = [NSString stringWithFormat:@"%d", TapLocationX];
+        xcord.text = @"X%";//[NSString stringWithFormat:@"%d", xcordLocationOnObject];
         xcord.textColor = [UIColor blackColor];
         xcord.borderStyle = UITextBorderStyleRoundedRect;
         
         ycord = [[UITextField alloc] initWithFrame:CGRectMake(10, 180, 180, 30)];
-        ycord.text = [NSString stringWithFormat:@"%d",TapLocationY];
+        ycord.text = @"Y%";//[NSString stringWithFormat:@"%d", ycordLocationOnObject];
         ycord.textColor = [UIColor blackColor];
         ycord.borderStyle = UITextBorderStyleRoundedRect;
         
@@ -1006,7 +1052,7 @@ ConditionSetup *conditionSetup;
         [cancel setTitle:@"Cancel" forState:UIControlStateNormal];
         
         UIButton *createVisibleArea = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [createVisibleArea addTarget:self action:@selector(Create:) forControlEvents:UIControlEventTouchUpInside];
+        [createVisibleArea addTarget:self action:@selector(CreateHotspot:) forControlEvents:UIControlEventTouchUpInside];
         createVisibleArea.frame = CGRectMake(65, 220, 80, 50);
         [createVisibleArea setTitle:@"Create" forState:UIControlStateNormal];
         
@@ -1036,7 +1082,7 @@ ConditionSetup *conditionSetup;
          add new sub view with textboxes, cancel button, and save button
          locationid, xcord, ycord, height, width
          */
-        entryview = [[UIView alloc] initWithFrame:CGRectMake(650, 20, 200, 290)];
+        entryview = [[UIView alloc] initWithFrame:CGRectMake(670, 10, 200, 290)];
         entryview.backgroundColor = [UIColor whiteColor];
         
         locationID = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 180, 30)];
@@ -1045,22 +1091,22 @@ ConditionSetup *conditionSetup;
         locationID.borderStyle = UITextBorderStyleRoundedRect;
         
         xcord = [[UITextField alloc] initWithFrame:CGRectMake(10, 60, 180, 30)];
-        xcord.text = [NSString stringWithFormat:@"%d", TapLocationX];
+        xcord.text = @"x%";
         xcord.textColor = [UIColor blackColor];
         xcord.borderStyle = UITextBorderStyleRoundedRect;
         
         ycord = [[UITextField alloc] initWithFrame:CGRectMake(10, 100, 180, 30)];
-        ycord.text = [NSString stringWithFormat:@"%d",TapLocationY];
+        ycord.text = @"y%";
         ycord.textColor = [UIColor blackColor];
         ycord.borderStyle = UITextBorderStyleRoundedRect;
         
         width = [[UITextField alloc] initWithFrame:CGRectMake(10, 140, 180, 30)];
-        width.text= @"Width";
+        width.text= @"Width%";
         width.textColor = [UIColor blackColor];
         width.borderStyle = UITextBorderStyleRoundedRect;
         
         height = [[UITextField alloc] initWithFrame:CGRectMake(10, 180, 180, 30)];
-        height.text= @"Height";
+        height.text= @"Height%";
         height.textColor = [UIColor blackColor];
         height.borderStyle = UITextBorderStyleRoundedRect;
         
@@ -1098,7 +1144,7 @@ ConditionSetup *conditionSetup;
         /*
          add new sub view with textboxes, cancel button, and save button
          */
-        entryview = [[UIView alloc] initWithFrame:CGRectMake(TapLocationX-150, TapLocationY-150, 200, 160)];
+        entryview = [[UIView alloc] initWithFrame:CGRectMake(670, 10, 200, 160)];
         entryview.backgroundColor = [UIColor whiteColor];
         
         objectID = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 180, 30)];
@@ -1178,8 +1224,8 @@ ConditionSetup *conditionSetup;
         /*
          add new sub view with textboxes, cancel button, and save button
          */
-        
-        entryview = [[UIView alloc] initWithFrame:CGRectMake(TapLocationX-150, TapLocationY-150, 200, 160)];
+       
+        entryview = [[UIView alloc] initWithFrame:CGRectMake(670, 10, 200, 160)];
         entryview.backgroundColor = [UIColor whiteColor];
         
         objectID = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 180, 30)];
@@ -1208,26 +1254,33 @@ ConditionSetup *conditionSetup;
         objectID.borderStyle = UITextBorderStyleRoundedRect;
         
         width = [[UITextField alloc] initWithFrame:CGRectMake(10, 60, 180, 30)];
+        height = [[UITextField alloc] initWithFrame:CGRectMake(10, 60, 180, 30)];
         
         //need to return current width
         NSString *widthOfObjectAtPoint= nil;
+        NSString *heightOfObjectAtPoint = nil;
         widthOfObjectAtPoint = [self getwidthOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"manipulationObject"];
+        heightOfObjectAtPoint = [self getheightOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"manipulationObject"];
         
         if (widthOfObjectAtPoint == nil) {
             widthOfObjectAtPoint = [self getwidthOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"backgroundObject"];
+            heightOfObjectAtPoint = [self getheightOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"backgroundObject"];
             
             if (objectAtPoint == nil) {
                 width.text = @"width";
+                height.text = @"height";
                 //may actually just want to return at this point because we did not press on any manipulation or background object
             }
             else
             {
                 width.text = widthOfObjectAtPoint;
+                height.text = heightOfObjectAtPoint;
             }
         }
         else
         {
             width.text = widthOfObjectAtPoint;
+            height.text = heightOfObjectAtPoint;
         }
         
         
@@ -1260,7 +1313,7 @@ ConditionSetup *conditionSetup;
          add new sub view with textboxes, cancel button, and save button
          */
         
-        entryview = [[UIView alloc] initWithFrame:CGRectMake(TapLocationX-150, TapLocationY-150, 200, 160)];
+        entryview = [[UIView alloc] initWithFrame:CGRectMake(670, 10, 200, 160)];
         entryview.backgroundColor = [UIColor whiteColor];
         
         objectID = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 180, 30)];
@@ -1289,13 +1342,17 @@ ConditionSetup *conditionSetup;
         objectID.borderStyle = UITextBorderStyleRoundedRect;
         
         height = [[UITextField alloc] initWithFrame:CGRectMake(10, 60, 180, 30)];
+        width = [[UITextField alloc] initWithFrame:CGRectMake(10, 60, 180, 30)];
         
         //need to return current width
         NSString *heightOfObjectAtPoint= nil;
+        NSString *widthOfObjectAtPoint = nil;
         heightOfObjectAtPoint = [self getheightOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"manipulationObject"];
+        widthOfObjectAtPoint = [self getwidthOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"manipulationObject"];
         
         if (heightOfObjectAtPoint == nil) {
             heightOfObjectAtPoint = [self getheightOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"backgroundObject"];
+            widthOfObjectAtPoint = [self getwidthOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"backgroundObject"];
             
             if (objectAtPoint == nil) {
                 height.text = @"width";
@@ -1304,11 +1361,13 @@ ConditionSetup *conditionSetup;
             else
             {
                 height.text = heightOfObjectAtPoint;
+                width.text = widthOfObjectAtPoint;
             }
         }
         else
         {
             height.text = heightOfObjectAtPoint;
+            width.text = widthOfObjectAtPoint;
         }
         
         
@@ -1334,33 +1393,149 @@ ConditionSetup *conditionSetup;
         [entryview addSubview:SingleEntry];
         [self.view addSubview:entryview];
     }
-    else if (row ==6)
+    else if (row == 6)
     {
         //save manipulaiton type
         /*
          add new sub view with textboxes, cancel button, and save button
          */
         
+        entryview = [[UIView alloc] initWithFrame:CGRectMake(670, 10, 200, 160)];
+        entryview.backgroundColor = [UIColor whiteColor];
+        
+        objectID = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 180, 30)];
+        
+        NSString *objectAtPoint= nil;
+        objectAtPoint = [self getObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"manipulationObject"];
+        
+        if (objectAtPoint == nil) {
+            objectAtPoint = [self getObjectAtPoint:CGPointMake(TapLocationX, TapLocationY) ofType:@"backgroundObject"];
+            
+            if (objectAtPoint == nil) {
+                objectID.text = @"HotspotID";
+                //may actually just want to return at this point because we did not press on any manipulation or background object
+            }
+            else
+            {
+                objectID.text = objectAtPoint;
+            }
+        }
+        else
+        {
+            objectID.text = objectAtPoint;
+        }
+        
+        objectID.textColor = [UIColor blackColor];
+        objectID.borderStyle = UITextBorderStyleRoundedRect;
+        
+        manipulationType = [[UITextField alloc] initWithFrame:CGRectMake(10, 60, 180, 30)];
+        
+        //need to return current manipulation type
+        NSString *manipulationTypeOfObjectAtPoint= nil;
+        manipulationTypeOfObjectAtPoint = [self getManipulationTypeOfObjectAtPoint:CGPointMake(TapLocationX, TapLocationY)];
+        
+        if (manipulationTypeOfObjectAtPoint == nil) {
+            
+            if (objectAtPoint == nil)
+            {
+                manipulationType.text = @"manipulationType";
+                //may actually just want to return at this point because we did not press on any manipulation or background object
+            }
+            else
+            {
+                manipulationType.text = manipulationTypeOfObjectAtPoint;
+            }
+        }
+        else
+        {
+            manipulationType.text = manipulationTypeOfObjectAtPoint;
+        }
+        
+        
+        manipulationType.textColor = [UIColor blackColor];
+        manipulationType.borderStyle = UITextBorderStyleRoundedRect;
+        
+        UIButton *cancel = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [cancel addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
+        cancel.frame = CGRectMake(10, 100, 80, 50);
+        [cancel setTitle:@"Cancel" forState:UIControlStateNormal];
+        
+        UIButton *save = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [save addTarget:self action:@selector(changeManipulationType:) forControlEvents:UIControlEventTouchUpInside];
+        save.frame = CGRectMake(100, 100, 80, 50);
+        [save setTitle:@"Save" forState:UIControlStateNormal];
+        
+        SingleEntry = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 160)];
+        SingleEntry.backgroundColor = [UIColor whiteColor];
+        [SingleEntry addSubview:objectID];
+        [SingleEntry addSubview:manipulationType];
+        [SingleEntry addSubview:cancel];
+        [SingleEntry addSubview:save];
+        [entryview addSubview:SingleEntry];
+        [self.view addSubview:entryview];
         
     }
-    
-    
+    else if(row == 7)
+    {
+        /*
+         TODO: add functionality to save animations
+         
+         */
+        
+    }
 }
+
 
 -(void)save:(id)sender{
     
 }
 
+//Create a visible area for the current menu option
 -(void)Create:(id)sender{
     if (isAreaViewVisible != false) {
         [areaSpace removeFromSuperview];
     }
     
-    areaSpace = [[UIView alloc]initWithFrame:CGRectMake([xcord.text floatValue], [ycord.text floatValue], [width.text floatValue], [height.text floatValue])];
+    areaSpace = [[UIView alloc]initWithFrame:CGRectMake(([bookView frame].size.width * [xcord.text floatValue]/100) , ([bookView frame].size.height * [ycord.text floatValue]/100), [bookView frame].size.width * [width.text floatValue]/100, [bookView frame].size.height * [height.text floatValue]/100)];
     areaSpace.backgroundColor = [UIColor whiteColor];
     self.isAreaViewVisible = true;
-    [self.view addSubview:areaSpace];
+    [bookView addSubview:areaSpace];
     
+    [bookView bringSubviewToFront:entryview];
+}
+
+-(void)CreateWaypoint:(id)sender{
+    if (isAreaViewVisible != false) {
+        [areaSpace removeFromSuperview];
+    }
+    
+    areaSpace = [[UIView alloc]initWithFrame:CGRectMake(([bookView frame].size.width * [xcord.text floatValue]/100) , ([bookView frame].size.height * [ycord.text floatValue]/100), [width.text floatValue], [height.text floatValue])];
+    areaSpace.backgroundColor = [UIColor whiteColor];
+    self.isAreaViewVisible = true;
+    [bookView addSubview:areaSpace];
+    
+    [bookView bringSubviewToFront:entryview];
+}
+
+-(void)CreateHotspot:(id)sender{
+    if (isAreaViewVisible != false) {
+        [areaSpace removeFromSuperview];
+    }
+    
+    NSString *xcordPercent = [NSString stringWithFormat:@"%ld", (long)[xcord.text integerValue]];
+    NSString *ycordPercent = [NSString stringWithFormat:@"%ld", (long)[ycord.text integerValue]];
+    
+    NSInteger hleft = [hotspotLeft.text integerValue];
+    NSInteger htop = [hotspotTop.text integerValue];
+    NSInteger hwidth = [hotspotWidth.text integerValue];
+    NSInteger hheight = [hotspotHeight.text integerValue];
+    NSInteger xpercent = hleft + hwidth * [xcordPercent integerValue]/100;
+    NSInteger ypercent = htop + hheight * [ycordPercent integerValue]/100;
+    
+    areaSpace = [[UIView alloc]initWithFrame:CGRectMake(xpercent, ypercent, [width.text floatValue], [height.text floatValue])];
+    areaSpace.backgroundColor = [UIColor whiteColor];
+    self.isAreaViewVisible = true;
+    [bookView addSubview:areaSpace];
     
 }
 
@@ -1384,79 +1559,18 @@ ConditionSetup *conditionSetup;
     TapLocationY = location.y;
     
     /*add an if statement to see if x and y cords will cause the picker to go off the screen if it will adjust size appropriately for x and y cords*/
-    picker.frame = CGRectMake(TapLocationX-150, TapLocationY-150, 320, 216);
+    picker.frame = CGRectMake(670, 10, 320, 216);
     
     if (isEntryViewVisible == false) {
         [self.view addSubview:picker];
     }
-    
-    /*
-     when tapping anywhere on screen see if it is an object, if it is pop up a new menu
-     
-     New menu:
-     
-     If background
-     Save as Waypoint: saves current position and prompts for waypointid name,x, y
-     Save as Location: saves current position and prompts for locationid name, x,y height, width
-     
-     If Image object
-     Change Z-Index: enter any number
-     Change Height:
-     Change Width:
-     Change Manipulation type: backgroundObject/manipulationObject
-     Save as Hotspot:obj1id(return name of tapped image), action(getIn/pickUp/sit/grab/moveTo/visit) role(subject/object), x, y
-     
-     */
-    
-    
-    /*CGPoint location = [recognizer locationInView:self.view];
-     
-     IntroductionClass.allowInteractions = true;
-     allowSnapback = false;
-     
-     
-     //No longer moving object
-     movingObject = FALSE;
-     movingObjectId = nil;
-     
-     //Re-add the tap gesture recognizer before the menu is removed
-     [self.view addGestureRecognizer:tapRecognizer];
-     
-     
-     //Get the object at that point if it's a manipulation object.
-     NSString* imageAtPoint = [self getObjectAtPoint:location ofType:@"manipulationObject"];
-     
-     //NSLog(@"location pressed: (%f, %f)", location.x, location.y);
-     
-     //Retrieve the name of the object at this location
-     NSString* requestImageAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
-     
-     imageAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPoint];
-     
-     //Capture the clicked text, if it exists
-     NSString* requestSentenceText = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).innerHTML", location.x, location.y];
-     NSString* sentenceText = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceText];
-     
-     //Capture the clicked text id, if it exists
-     NSString* requestSentenceID = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
-     NSString* sentenceID = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceID];
-     int sentenceIDNum = [[sentenceID substringFromIndex:0] intValue];
-     */
 }
 
 /*
  * Long press gesture. Either tap or long press can be used for definitions.
  */
 -(IBAction)longPressGesturePerformed:(UILongPressGestureRecognizer *)recognizer {
-    //This is the location of the point in the parent UIView, not in the UIWebView.
-    //These two coordinate systems may be different.
-    /*CGPoint location = [recognizer locationInView:self.view];
-     
-     NSString* requestImageAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
-     
-     NSString* imageAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPoint];*/
     
-    //NSLog(@"imageAtPoint: %@", imageAtPoint);
 }
 
 
@@ -1465,7 +1579,6 @@ ConditionSetup *conditionSetup;
  * by performing it automatically according to the solution.
  */
 -(IBAction)swipeGesturePerformed:(UISwipeGestureRecognizer *)recognizer {
-    NSLog(@"Swiper no swiping!");
     
     [self loadNextPage];
 }
@@ -1499,8 +1612,24 @@ ConditionSetup *conditionSetup;
                 movingObject = TRUE;
                 movingObjectId = imageAtPoint;
                 
-                //Calculate offset between top-left corner of image and the point clicked.
-                delta = [self calculateDeltaForMovingObjectAtPoint:location];
+                
+                 NSString* requestImageMarginLeft = [NSString stringWithFormat:@"%@.style.marginLeft", movingObjectId];
+                 NSString* requestImageMarginTop = [NSString stringWithFormat:@"%@.style.marginTop", movingObjectId];
+                 
+                 NSString* imageMarginLeft = [bookView stringByEvaluatingJavaScriptFromString:requestImageMarginLeft];
+                 NSString* imageMarginTop = [bookView stringByEvaluatingJavaScriptFromString:requestImageMarginTop];
+                 
+                 if(![imageMarginLeft isEqualToString:@""] && ![imageMarginTop isEqualToString:@""])
+                 {
+                     //Calulate offset between top-left corner of image and the point clicked for centered images
+                    delta = [self calculateDeltaForMovingObjectAtPointWithCenter:movingObjectId :location];
+                 }
+                 else
+                 {
+                 
+                     //Calculate offset between top-left corner of image and the point clicked.
+                     delta = [self calculateDeltaForMovingObjectAtPoint:location];
+                 }
                 
                 //Record the starting location of the object when it is selected
                 startLocation = CGPointMake(location.x - delta.x, location.y - delta.y);
@@ -1611,7 +1740,7 @@ ConditionSetup *conditionSetup;
     [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
     
     //Check if the object has the correct class, or if no class was specified before returning
-    if([imageAtPointClass isEqualToString:class] || class == nil) {
+    if(([imageAtPointClass rangeOfString:class].location != NSNotFound) || class == nil) {
         //Any subject can be used, so just return the object id
         if (useSubject == ALL_ENTITIES)
             return imageAtPoint;
@@ -1622,7 +1751,9 @@ ConditionSetup *conditionSetup;
         return nil;
 }
 
-//
+/*
+ *  Request the zindex of the object at the current location
+ */
 -(NSString*) getzindexOfObjectAtPoint:(CGPoint) location ofType:(NSString*)class {
     //Temporarily hide the overlay canvas to get the object we need
     NSString* hideCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'none';", @"'overlay'"];
@@ -1648,7 +1779,7 @@ ConditionSetup *conditionSetup;
     [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
     
     //Check if the object has the correct class, or if no class was specified before returning
-    if([imageAtPointClass isEqualToString:class] || class == nil) {
+    if(([imageAtPointClass rangeOfString:class].location != NSNotFound) || class == nil) {
         //Any subject can be used, so just return the object id
         if (useSubject == ALL_ENTITIES)
             return zindexAtPoint;
@@ -1660,7 +1791,9 @@ ConditionSetup *conditionSetup;
 }
 
 
-//
+/*
+ *  Get the current width of the obeject at the point
+ */
 -(NSString*) getwidthOfObjectAtPoint:(CGPoint) location ofType:(NSString*)class {
     //Temporarily hide the overlay canvas to get the object we need
     NSString* hideCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'none';", @"'overlay'"];
@@ -1686,7 +1819,7 @@ ConditionSetup *conditionSetup;
     [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
     
     //Check if the object has the correct class, or if no class was specified before returning
-    if([imageAtPointClass isEqualToString:class] || class == nil) {
+    if(([imageAtPointClass rangeOfString:class].location != NSNotFound) || class == nil) {
         //Any subject can be used, so just return the object id
         if (useSubject == ALL_ENTITIES)
             return widthAtPoint;
@@ -1697,7 +1830,9 @@ ConditionSetup *conditionSetup;
         return nil;
 }
 
-//
+/*
+ *  Get the current height of the object at the point
+ */
 -(NSString*) getheightOfObjectAtPoint:(CGPoint) location ofType:(NSString*)class {
     //Temporarily hide the overlay canvas to get the object we need
     NSString* hideCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'none';", @"'overlay'"];
@@ -1722,7 +1857,7 @@ ConditionSetup *conditionSetup;
     [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
     
     //Check if the object has the correct class, or if no class was specified before returning
-    if([imageAtPointClass isEqualToString:class] || class == nil) {
+    if(([imageAtPointClass rangeOfString:class].location != NSNotFound) || class == nil) {
         //Any subject can be used, so just return the object id
         if (useSubject == ALL_ENTITIES)
             return heightAtPoint;
@@ -1731,6 +1866,97 @@ ConditionSetup *conditionSetup;
     }
     else
         return nil;
+}
+
+-(NSString*) getTopOfObjectAtPoint:(CGPoint) location ofType:(NSString*)class {
+    //Temporarily hide the overlay canvas to get the object we need
+    NSString* hideCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'none';", @"'overlay'"];
+    [bookView stringByEvaluatingJavaScriptFromString:hideCanvas];
+    
+    //Retrieve the elements at this location and see if it's an element that is moveable.
+    NSString* requestImageAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
+    
+    NSString* requestImageAtPointClass = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).className", location.x, location.y];
+    
+    NSString* imageAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPoint];
+    
+    NSString* requestTopAtPoint = [NSString stringWithFormat:@"%@.offsetTop", imageAtPoint];
+    
+    NSString *topAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestTopAtPoint];
+    
+    NSString* imageAtPointClass = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointClass];
+    
+    //Bring the canvas back to where it should be.
+    //NSString* showCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.zIndex = 100;", @"'overlay'"];
+    NSString* showCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'block';", @"'overlay'"];
+    [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
+    
+    //Check if the object has the correct class, or if no class was specified before returning
+    if(([imageAtPointClass rangeOfString:class].location != NSNotFound) || class == nil) {
+        //Any subject can be used, so just return the object id
+        if (useSubject == ALL_ENTITIES)
+            return topAtPoint;
+        else
+            return nil;
+    }
+    else
+        return nil;
+}
+
+-(NSString*) getLeftOfObjectAtPoint:(CGPoint) location ofType:(NSString*)class {
+    //Temporarily hide the overlay canvas to get the object we need
+    NSString* hideCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'none';", @"'overlay'"];
+    [bookView stringByEvaluatingJavaScriptFromString:hideCanvas];
+    
+    //Retrieve the elements at this location and see if it's an element that is moveable.
+    NSString* requestImageAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
+    
+    NSString* requestImageAtPointClass = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).className", location.x, location.y];
+    
+    NSString* imageAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPoint];
+    
+    NSString* requestLeftAtPoint = [NSString stringWithFormat:@"%@.offsetLeft", imageAtPoint];
+    
+    NSString *leftAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestLeftAtPoint];
+    
+    NSString* imageAtPointClass = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointClass];
+    
+    //Bring the canvas back to where it should be.
+    //NSString* showCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.zIndex = 100;", @"'overlay'"];
+    NSString* showCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'block';", @"'overlay'"];
+    [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
+    
+    //Check if the object has the correct class, or if no class was specified before returning
+    if(([imageAtPointClass rangeOfString:class].location != NSNotFound) || class == nil) {
+        //Any subject can be used, so just return the object id
+        if (useSubject == ALL_ENTITIES)
+            return leftAtPoint;
+        else
+            return nil;
+    }
+    else
+        return nil;
+}
+
+
+-(NSString*) getManipulationTypeOfObjectAtPoint:(CGPoint) location {
+    //Temporarily hide the overlay canvas to get the object we need
+    NSString* hideCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'none';", @"'overlay'"];
+    [bookView stringByEvaluatingJavaScriptFromString:hideCanvas];
+    
+    NSString* requestImageAtPointClass = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).className", location.x, location.y];
+    
+    NSString* imageAtPointClass = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointClass];
+    
+    //Bring the canvas back to where it should be.
+    NSString* showCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'block';", @"'overlay'"];
+    [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
+    
+        //Any subject can be used, so just return the object id
+        if (useSubject == ALL_ENTITIES)
+            return imageAtPointClass;
+        else
+            return nil;
 }
 
 //save the current state of the xhtml page and overides the loaded page
@@ -1758,9 +1984,45 @@ ConditionSetup *conditionSetup;
         
         if([curChar isEqualToString:@"<"])
         {
+            NSRange range = NSMakeRange(i, newImages.length-i);
+            int topStartIndex = [newImages rangeOfString:@"top:" options:0 range:range].location;
+            int topEndIndex = [[newImages substringFromIndex:topStartIndex+4] rangeOfString:@";"].location;
+            NSString *topString = [newImages substringFromIndex:topStartIndex+4];
+            BOOL needsConversion = nil;
+            topString = [topString substringToIndex:topEndIndex];
+            
+            if ([topString rangeOfString:@"px"].location != NSNotFound) {
+                needsConversion = true;
+                topString = [topString substringToIndex:topString.length-2];
+            }
+            else
+            {
+                needsConversion = false;
+                topString = [topString substringToIndex:topString.length-1];
+            }
+            
+            [topString stringByReplacingOccurrencesOfString:@" " withString:@""];
+            
+            int leftStartIndex = [newImages rangeOfString:@"left:" options:0 range:range].location;
+            int leftEndIndex = [[newImages substringFromIndex:leftStartIndex+5] rangeOfString:@";"].location;
+            NSString *leftString = [newImages substringFromIndex:leftStartIndex+5];
+            leftString = [leftString substringToIndex:leftEndIndex];
+            
+            if ([leftString rangeOfString:@"px"].location != NSNotFound) {
+                needsConversion = true;
+                leftString = [leftString substringToIndex:leftString.length-2];
+            }
+            else
+            {
+                needsConversion=false;
+                leftString = [leftString substringToIndex:leftString.length-1];
+            }
+            
+            [leftString stringByReplacingOccurrencesOfString:@" " withString:@""];
+            
             for(int j = i; j<newImages.length; j++)
             {
-                
+            
                 NSString *nextChar = [NSString stringWithFormat:@"%c", [newImages characterAtIndex:j]];
                 
                 if ([nextChar isEqualToString:@">"]) {
@@ -1768,6 +2030,49 @@ ConditionSetup *conditionSetup;
                     concatenatedString = [concatenatedString stringByAppendingString:nextChar];
                     i=j;
                     j=newImages.length;
+                }
+                else if(j==topStartIndex)
+                {
+                    float topPixelValue = [topString floatValue];
+                    NSString *topPercentValueString;
+                    
+                    float viewH = [self areaSpace].frame.size.height;
+                    float viewW = [self areaSpace].frame.size.width;
+                    float bookH = [bookView frame].size.height;
+                    float bookW = [bookView frame].size.width;
+                    NSString *htmlH = [bookView stringByEvaluatingJavaScriptFromString:@"document.innerWidth"];
+                    NSString *htmlW = [bookView stringByEvaluatingJavaScriptFromString:@"document.innerHeight"];
+                    
+                    
+                    if (needsConversion) {
+                        Float32  topPercentValue = ((topPixelValue / ([bookView frame].size.height))*100); //-32
+                        topPercentValueString = [NSString stringWithFormat:@"top: %f%%",topPercentValue];
+                    }
+                    else
+                    {
+                        topPercentValueString = [NSString stringWithFormat:@"top: %f%%",topPixelValue];
+                    }
+                    
+                    concatenatedString = [concatenatedString stringByAppendingString:topPercentValueString];
+                    j=topEndIndex+topStartIndex+3;
+                }
+                else if(j == leftStartIndex)
+                {
+                    float leftPixelValue = [leftString floatValue];
+                    NSString *leftPercentValueString;
+                    
+                    if (needsConversion) {
+                        Float32 leftPercentValue = ((leftPixelValue / ([bookView frame].size.width))*100);//-12
+                        leftPercentValueString = [NSString stringWithFormat:@"left: %f%%",leftPercentValue];
+                    }
+                    else
+                    {
+                        leftPercentValueString = [NSString stringWithFormat:@"left: %f%%",leftPixelValue];
+                    }
+                    
+                    
+                    concatenatedString = [concatenatedString stringByAppendingString:leftPercentValueString];
+                    j=leftEndIndex+leftStartIndex+4;
                 }
                 else
                 {
@@ -1804,26 +2109,25 @@ ConditionSetup *conditionSetup;
     //
     NSString *documentsDirectory = [paths objectAtIndex:0];
     
-    NSString* fileName = [NSString stringWithFormat:@"%@%@",[[currentPage lastPathComponent] substringToIndex:[currentPage lastPathComponent].length-6], @"copy"];
+        NSString* fileName = [NSString stringWithFormat:@"%@%@",[[currentPage lastPathComponent] substringToIndex:[currentPage lastPathComponent].length-6], @"copy"];
     
     //file path to save to
     NSString *path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@", fileName, @"xhtml"]];
     //toggle to switch between saving at logging location or to overide file
     //NSString *path = [book mainContentPath] stringByAppendingString:fileName];
     
-    if (![finalHTML writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil]) {
-        NSLog(@"Could not write document out...");
-        NSLog(@"%@", finalHTML);
-    }
+        if (![finalHTML writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil]) {
+            NSLog(@"Could not write document out...");
+            NSLog(@"%@", finalHTML);
+        }
     
-    NSLog(@"%@", finalHTML);
-    NSLog(@"Successfully wrote file");
+        NSLog(@"%@", finalHTML);
+        NSLog(@"Successfully wrote file");
 }
 
 -(void)saveCurrentStep{
-    
     /*
-     steps should already be saved
+     steps should already be saved: Todo: add functionality to save steps and run them
      */
 }
 
@@ -1857,6 +2161,45 @@ ConditionSetup *conditionSetup;
     
     return change;
 }
+
+/*
+ * Calculates the delta pixel change for the object that is being moved
+ * and changes the lcoation from relative % to pixels if necessary.
+ */
+-(CGPoint) calculateDeltaForMovingObjectAtPointWithCenter:(NSString*) object :(CGPoint) location {
+    CGPoint change;
+    
+    //Calculate offset between top-left corner of image and the point clicked.
+    NSString* requestImageAtPointTop = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).offsetTop", location.x, location.y];
+    NSString* requestImageAtPointLeft = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).offsetLeft", location.x, location.y];
+    
+    NSString* imageAtPointTop = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointTop];
+    NSString* imageAtPointLeft = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointLeft];
+    
+    //Get the width and height of the image to ensure that the image is not being moved off screen and that the image is being moved in accordance with all movement constraints.
+    NSString* requestImageHeight = [NSString stringWithFormat:@"%@.height", object];
+    NSString* requestImageWidth = [NSString stringWithFormat:@"%@.width", object];
+    
+    float imageHeight = [[bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
+    float imageWidth = [[bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
+    
+    //Check to see if the locations returned are in percentages. If they are, change them to pixel values based on the size of the screen.
+    NSRange rangePercentTop = [imageAtPointTop rangeOfString:@"%"];
+    NSRange rangePercentLeft = [imageAtPointLeft rangeOfString:@"%"];
+    
+    if(rangePercentTop.location != NSNotFound)
+        change.y = location.y - ([imageAtPointTop floatValue] / 100.0 * [bookView frame].size.height) -(imageHeight/2);
+    else
+        change.y = location.y - [imageAtPointTop floatValue]-(imageHeight/2);
+    
+    if(rangePercentLeft.location != NSNotFound)
+        change.x = location.x - ([imageAtPointLeft floatValue] / 100.0 * [bookView frame].size.width) -(imageWidth/2);
+    else
+        change.x = location.x - [imageAtPointLeft floatValue]-(imageWidth/2);
+    
+    return change;
+}
+
 
 /*
  * Moves the object passeed in to the location given. Calculates the difference between the point touched and the
@@ -1903,22 +2246,43 @@ ConditionSetup *conditionSetup;
             adjLocation.y = boxY;
     }
     
-    //Check to see if the image is being moved off screen. If it is, change it so that the image cannot be moved off screen.
-    if(adjLocation.x + imageWidth > [bookView frame].size.width)
-        adjLocation.x = [bookView frame].size.width - imageWidth;
-    else if(adjLocation.x < 0)
-        adjLocation.x = 0;
-    if(adjLocation.y + imageHeight > [bookView frame].size.height)
-        adjLocation.y = [bookView frame].size.height - imageHeight;
-    else if(adjLocation.y < 0)
-        adjLocation.y = 0;
+    NSString* requestImageMarginLeft = [NSString stringWithFormat:@"%@.style.marginLeft", movingObjectId];
+    NSString* requestImageMarginTop = [NSString stringWithFormat:@"%@.style.marginTop", movingObjectId];
+    
+    NSString* imageMarginLeft = [bookView stringByEvaluatingJavaScriptFromString:requestImageMarginLeft];
+    NSString* imageMarginTop = [bookView stringByEvaluatingJavaScriptFromString:requestImageMarginTop];
+    
+    if(![imageMarginLeft isEqualToString:@""] && ![imageMarginTop isEqualToString:@""])
+    {
+        //Check to see if the image is being moved off screen. If it is, change it so that the image cannot be moved off screen.
+        if(adjLocation.x + (imageWidth/2) > [bookView frame].size.width)
+            adjLocation.x = [bookView frame].size.width - (imageWidth/2);
+        else if(adjLocation.x-(imageWidth/2)  < 0)
+            adjLocation.x = (imageWidth/2);
+        if(adjLocation.y + (imageHeight/2) > [bookView frame].size.height)
+            adjLocation.y = [bookView frame].size.height - (imageHeight/2);
+        else if(adjLocation.y-(imageHeight/2) < 0)
+            adjLocation.y = (imageHeight/2);
+    }
+    else
+    {
+        //Check to see if the image is being moved off screen. If it is, change it so that the image cannot be moved off screen.
+        if(adjLocation.x + imageWidth > [bookView frame].size.width)
+            adjLocation.x = [bookView frame].size.width - imageWidth;
+        else if(adjLocation.x < 0)
+            adjLocation.x = 0;
+        if(adjLocation.y + imageHeight > [bookView frame].size.height)
+            adjLocation.y = [bookView frame].size.height - imageHeight;
+        else if(adjLocation.y < 0)
+            adjLocation.y = 0;
+    }
     
     //May want to add code to keep objects from moving to the location that the text is taking up on screen.
     
     //logs only if object is moved by computer action, user pan done outside of this function
     if (![waypointID isEqualToString:@"isMoving"]) {
         //Logging added by James for Automatic Computer Move Object
-        //[[ServerCommunicationController sharedManager] logComputerMoveObject: object : waypointID: startLocation.x : startLocation.y : adjLocation.x : adjLocation.y : @"Snap to Hotspot" : bookTitle : chapterTitle : currentPage : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] : [NSString stringWithFormat:@"%lu" , (unsigned long)currentStep]];
+        
     }
     
     
@@ -2079,37 +2443,37 @@ ConditionSetup *conditionSetup;
 -(IBAction)pressedNext:(id)sender {
     if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
         // If the user pressed next
-        if (IntroductionClass.currentIntroStep > IntroductionClass.totalIntroSteps) {
-            [self loadNextPage]; //logging done in loadNextPage
-        }
-        else {
-            // Load the next step
-            [IntroductionClass loadIntroStep:bookView: currentSentence];
-            [self setupCurrentSentenceColor];
-            
-            //add logging: next intro step
-        }
+            if (IntroductionClass.currentIntroStep > IntroductionClass.totalIntroSteps) {
+                [self saveCurrentHTML];
+                [self loadNextPage]; //logging done in loadNextPage
+            }
+            else {
+                // Load the next step
+                [IntroductionClass loadIntroStep:bookView: currentSentence];
+                [self setupCurrentSentenceColor];
+                
+                //add logging: next intro step
+            }
     }
     else if ([IntroductionClass.vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
-        
-        [self loadNextPage]; //logging done in loadNextPage
-    }
     
-    //else if (stepsComplete || numSteps == 0 || !IntroductionClass.allowInteractions) {
-    else{
-        //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
-        currentSentence++;
-        
-        //Set up current sentence appearance and solution steps
-        [self saveCurrentHTML];
-        [self setupCurrentSentence];
-        [self colorSentencesUponNext];
-        
-        //currentSentence is 1 indexed.
-        if(currentSentence > totalSentences) {
-            [self loadNextPage];
-            //logging done in loadNextPage
-        }
+            [self saveCurrentHTML];
+            [self loadNextPage]; //logging done in loadNextPage
+    }
+        else{
+            //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
+            currentSentence++;
+            
+            //Set up current sentence appearance and solution steps
+            [self saveCurrentHTML];
+            [self setupCurrentSentence];
+            [self colorSentencesUponNext];
+            
+            //currentSentence is 1 indexed.
+            if(currentSentence > totalSentences) {
+                [self loadNextPage];
+                //logging done in loadNextPage
+            }
     }
 }
 

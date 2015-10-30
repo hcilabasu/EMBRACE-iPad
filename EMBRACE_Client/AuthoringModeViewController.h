@@ -59,8 +59,15 @@
 @property(nonatomic, strong) UITextField *hotspotID;
 @property(nonatomic, strong) UITextField *width;
 @property(nonatomic, strong) UITextField *height;
+@property(nonatomic, strong) UITextField *top;
+@property(nonatomic, strong) UITextField *left;
+@property(nonatomic, strong) UITextField *hotspotWidth;
+@property(nonatomic, strong) UITextField *hotspotHeight;
+@property(nonatomic, strong) UITextField *hotspotTop;
+@property(nonatomic, strong) UITextField *hotspotLeft;
 @property(nonatomic, strong) UITextField *zindex;
 @property(nonatomic, strong) UITextField *objectID;
+@property(nonatomic, strong) UITextField *manipulationType;
 @property(nonatomic, strong) UITextField *action;
 @property(nonatomic, strong) UITextField *role;
 @property(nonatomic) BOOL isEntryViewVisible;

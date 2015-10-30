@@ -24,7 +24,6 @@
     return @"Authoring";
 }
 
-
 //Returns a string with the current value of the condition enumeration
 -(NSString*)ReturnConditionEnumToString:(Condition)type{
     NSString *result =nil;

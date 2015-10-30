@@ -15,6 +15,7 @@
 @synthesize originalSrc;
 @synthesize alternateSrc;
 @synthesize width;
+@synthesize height;
 @synthesize location;
 @synthesize className;
 @synthesize zPosition;

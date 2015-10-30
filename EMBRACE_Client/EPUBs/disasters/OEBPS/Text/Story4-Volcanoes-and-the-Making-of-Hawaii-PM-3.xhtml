@@ -4,26 +4,25 @@
   <link href="../Styles/PMStyle.css" rel="stylesheet" type="text/css"/>
 </head>
 
-<body background="../Images/ch4_bg_plume02.png">
-    <canvas height="768px" id="overlay" width="1024px"></canvas>
+<body background="../Images/bg_volcano.png">
+    <canvas height="704px" id="overlay" width="1024px"></canvas>
+    <canvas height="704px" id="animation" width="1024px"></canvas>
+    <canvas height="704px" id="highlight" width="1024px"></canvas>
+
+
+  <div class="textbox custom" style="float:left; left:10px; width:300px">
+    <p class="sentence actionSentence" id="s10">But remember, the Pacific plate is moving to the left in the picture.</p>
     
-    <canvas height="768px" id="highlight" width="1024px"></canvas>
-
-
-  <div class="textbox">
-    <p class="sentence actionSentence" id="s11">After the plate moves, the hotspot spews up lava to form a new island.</p>
+    <p class="sentence actionSentence" id="s11">After the plate moves, the plume spews up lava to form a new island.</p>
 
     <p class="sentence" id="s12">This is the island of Oahu that was made about three million years ago.</p>
-
-    <p class="sentence actionSentence" id="s13">The Pacific plate kept moving and made all of the other Hawaiian Islands.</p>
-
-    <p class="sentence" id="s14">The hotspot is still there, and it is adding rock to the Big Island (also called Hawai'i).</p>
-
   </div>
 
-  <div id="images" class="images">
-    <img alt="lava" class="manipulationObject" id="lava" src="../Images/lava_ball.png" style="top:71%; left:63.75%; z-index:0"/>
-    <img alt="kauai" class="manipulationObject" id="kauai" src="../Images/lava_kauai.png" style="top:41%; left:20.75%; z-index:0"/> 
-  </div>
+<div id="images" class="images">
+    <img alt="grey_plate_kauai" class="manipulationObject center" id="grey_plate_kauai" src="../Images/scene1.png" style="top: 54.190342%; left: 48.437500%; z-index: 1;" width="528.22px"/>
+    <img alt="kauai" class="manipulationObject center" id="kauai" src="../Images/island_Kauai.png" style="top: 30.113638%; left: 50.537109%; z-index: 2;" width="300px"/>
+    <img alt="lava" class="manipulationObject center" id="lava" src="../Images/lava_ball.png" style="top: 87.926140%; left: 82.958984%; z-index: 3;"/>
+    <img alt="lava2" class="backgroundObject center" id="lava2" src="../Images/lava2.png" style="top: 7.812500%; left: 0.000000%; z-index: 0;" width="1024px"/>
+</div>
 </body>
 </html>
