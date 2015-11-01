@@ -159,9 +159,9 @@
                 <Answer2>oxygen</Answer2>
                 <Answer2Audio>MusclesUseOxygenQ2A2.mp3</Answer2Audio>
                 <Answer3>veins</Answer3>
-                <Answer3Audio>MusclesUseOxygenQ3A3.mp3</Answer3Audio>
+                <Answer3Audio>MusclesUseOxygenQ2A3.mp3</Answer3Audio>
                 <Answer4>fairy dust</Answer4>
-                <Answer4Audio>MusclesUseOxygenQ4A4.mp3</Answer4Audio>
+                <Answer4Audio>MusclesUseOxygenQ2A4.mp3</Answer4Audio>
                 <expectedSelection>carbon dioxide</expectedSelection>
             </Question>
             <Question number="3">
