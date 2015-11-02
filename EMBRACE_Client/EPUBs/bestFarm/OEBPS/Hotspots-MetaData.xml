@@ -18,7 +18,8 @@
         <hotspot objId="bucket" action="finish" role="object" x="100%" y="100%"/>
         <hotspot objId="bucket" action="give" role="object" x="50%" y="3%"/>
         <hotspot objId="bucket" action="grab" role="object" x="50%" y="3%"/>
-        <hotspot objId="bucket" action="flip" role="object" x="100%" y="100%"/>
+        <hotspot objId="bucketIM" action="flip" role="object" x="100%" y="100%"/>
+        <hotspot objId="bucketIM" action="visit" role="object" x="100%" y="100%"/>
         <hotspot objId="bucket" action="visit" role="object" x="100%" y="100%"/>
         <hotspot objId="cart" action="getIn" role="object" x="34%" y="0%"/>
         <hotspot objId="cart" action="getIn" role="subject" x="50%" y="50%"/>
@@ -33,8 +34,8 @@
         <hotspot objId="cat" action="moveTo" role="subject" x="0%" y="100%"/>
         <hotspot objId="cat" action="pickUp" role="object" x="50%" y="50%"/>
         <hotspot objId="cat" action="visit" role="subject" x="100%" y="100%"/>
-        <hotspot objId="cat" action="flip" role="subject" x="0%" y="100%"/>
-        <hotspot objId="cat" action="visit" role="subject" x="0%" y="100%"/>
+        <hotspot objId="catIM" action="flip" role="subject" x="0%" y="100%"/>
+        <hotspot objId="catIM" action="visit" role="subject" x="0%" y="100%"/>
         <hotspot objId="cat" action="visit" role="object" x="0%" y="100%"/>
         <hotspot objId="chicken" action="count" role="subject" x="0%" y="100%"/>
         <hotspot objId="chicken" action="getIn" role="subject" x="50%" y="50%"/>

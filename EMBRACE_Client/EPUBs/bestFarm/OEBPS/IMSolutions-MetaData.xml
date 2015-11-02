@@ -133,8 +133,8 @@
         <story title="Everyone Helps" activity_id="story6-PM-2">
             <sentence number="7">
                 <step number="1">
-                    <group obj1Id="cat" action="visit" obj2Id="bucket"/>
-                    <group obj1Id="cat" action="flip" obj2Id="bucket"/>
+                    <group obj1Id="catIM" action="visit" obj2Id="bucketIM"/>
+                    <group obj1Id="catIM" action="flip" obj2Id="bucketIM"/>
                 </step>
             </sentence>
         </story>

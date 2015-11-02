@@ -26,7 +26,7 @@
         <relationship obj1Id="cat" can="leave" action="ungroup" obj2Id="chicken"/>
         <relationship obj1Id="cat" can="leave" action="ungroup" obj2Id="farmer"/>
         <relationship obj1Id="cat" can="moveTo" action="group" obj2Id="chicken"/>
-        <relationship obj1Id="cat" can="flip" action="group" obj2Id="bucket"/>
+        <relationship obj1Id="catIM" can="flip" action="group" obj2Id="bucketIM"/>
         <relationship obj1Id="cat" can="visit" action="group" obj2Id="bucket"/>
         <!--<relationship obj1Id="cat" can="visit" action="group" obj2Id="chicken"/>-->
         <relationship obj1Id="chicken" can="count" action="group" obj2Id="egg"/>
