@@ -5,18 +5,26 @@
         <relationship obj1Id="horse" can="leave" action="ungroup" obj2Id="juan"/>
         <relationship obj1Id="horse" can="tie" action="group" obj2Id="cart"/>
         <relationship obj1Id="horse" can="visit" action="group" obj2Id="juan"/>
+        <relationship obj1Id="juan" can="getIn" action="group" obj2Id="boat"/>
+        <relationship obj1Id="juan" can="getOut" action="ungroup" obj2Id="boat"/>
         <relationship obj1Id="juan" can="kick" action="group" obj2Id="ball"/>
         <relationship obj1Id="juan" can="lead" action="group" obj2Id="dog"/>
         <relationship obj1Id="juan" can="leave" action="ungroup" obj2Id="ball"/>
         <relationship obj1Id="juan" can="leave" action="ungroup" obj2Id="dog"/>
         <relationship obj1Id="maria" can="drop" action="ungroup" obj2Id="ball"/>
         <relationship obj1Id="maria" can="drop" action="ungroup" obj2Id="wood"/>
+        <relationship obj1Id="maria" can="getOff" action="ungroup" obj2Id="skateboard_maria"/>
+        <relationship obj1Id="maria" can="getOn" action="group" obj2Id="skateboard_maria"/>
         <relationship obj1Id="maria" can="lead" action="group" obj2Id="horse"/>
         <relationship obj1Id="maria" can="leave" action="ungroup" obj2Id="dog"/>
         <relationship obj1Id="maria" can="leave" action="ungroup" obj2Id="horse"/>
+        <relationship obj1Id="maria" can="leave" action="ungroup" obj2Id="sara"/>
         <relationship obj1Id="maria" can="pickUp" action="group" obj2Id="ball"/>
         <relationship obj1Id="maria" can="pickUp" action="group" obj2Id="wood"/>
+        <relationship obj1Id="maria" can="push" action="group" obj2Id="sara"/>
         <relationship obj1Id="maria" can="unties" action="group" obj2Id="dog"/>
+        <relationship obj1Id="sara" can="getOff" action="ungroup" obj2Id="skateboard_sara"/>
+        <relationship obj1Id="sara" can="getOn" action="group" obj2Id="skateboard_sara"/>
         <relationship obj1Id="wood" can="getIn" action="group" obj2Id="dog"/>
         <relationship obj1Id="wood" can="getOut" action="ungroup" obj2Id="dog"/>
     </relationships>

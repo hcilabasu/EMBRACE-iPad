@@ -138,6 +138,56 @@
                 </step>
             </sentence>
         </story>
+        <story title="Newton's Third Law: Forces are Paired" activity_id="story6-PM-1">
+            <sentence number="2">
+                <step number="1">
+                    <group obj1Id="maria" action="getOn" obj2Id="skateboard_maria"/>
+                    <ungroupAndStay obj1Id="maria" action="getOff" obj2Id="skateboard_maria"/>
+                    <swapImage obj1Id="maria" action="withSkateboard"/>
+                    <disappearAuto obj1Id="skateboard_maria" action="disappear" obj2Id="skateboard_maria"/>
+                </step>
+                <step number="1">
+                    <group obj1Id="sara" action="getOn" obj2Id="skateboard_sara"/>
+                    <ungroupAndStay obj1Id="sara" action="getOff" obj2Id="skateboard_sara"/>
+                    <swapImage obj1Id="sara" action="withSkateboard"/>
+                    <disappearAuto obj1Id="skateboard_sara" action="disappear" obj2Id="skateboard_sara"/>
+                </step>
+            </sentence>
+            <sentence number="3">
+                <step number="1">
+                    <group obj1Id="maria" action="push" obj2Id="sara"/>
+                    <ungroupAndStay obj1Id="maria" action="leave" obj2Id="sara"/>
+                    <move obj1Id="maria" action="getIn" waypointId="maria_push"/>
+                    <move obj1Id="sara" action="getIn" waypointId="sara_push"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Newton's Third Law: Forces are Paired" activity_id="story6-PM-2">
+            <sentence number="7">
+                <step number="1">
+                    <group obj1Id="juan" action="getIn" obj2Id="boat"/>
+                    <ungroupAndStay obj1Id="juan" action="getOut" obj2Id="boat"/>
+                    <disappearAuto obj1Id="boat" action="disappear" obj2Id="boat"/>
+                    <disappearAuto obj1Id="juan" action="disappear" obj2Id="juan"/>
+                    <appear obj1Id="juan_rowing" action="appear"/>
+                </step>
+            </sentence>
+            <sentence number="8">
+                <step number="1">
+                    <shakeOrTap obj1Id="juan_rowing" action="getIn" locationId="water"/>
+                    <swapImage obj1Id="juan_rowing" action="pushBack"/>
+                    <move obj1Id="wave" action="getIn" waypointId="wave_back"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Newton's Third Law: Forces are Paired" activity_id="story6-PM-4">
+            <sentence number="14">
+                <step number="1">
+                    <shakeOrTap obj1Id="smallrocket" action="getIn" locationId="anywhere"/>
+                    <swapImage obj1Id="smallrocket" action="shootFlame"/>
+                </step>
+            </sentence>
+        </story>
     </solutions>
 </metadata>
 
