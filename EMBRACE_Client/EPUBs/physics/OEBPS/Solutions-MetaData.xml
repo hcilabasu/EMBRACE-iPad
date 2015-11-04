@@ -188,6 +188,38 @@
                 </step>
             </sentence>
         </story>
+        <story title="The Three Laws Work Together" activity_id="story7-PM-1">
+            <sentence number="1">
+                <step number="1">
+                    <group obj1Id="maria" action="getOn" obj2Id="skateboard_maria"/>
+                    <ungroupAndStay obj1Id="maria" action="getOff" obj2Id="skateboard_maria"/>
+                    <swapImage obj1Id="maria" action="footOnGround"/>
+                    <disappearAuto obj1Id="skateboard_maria" action="disappear" obj2Id="skateboard_maria"/>
+                </step>
+            </sentence>
+            <sentence number="3">
+                <step number="1">
+                    <shakeOrTap obj1Id="maria" action="getIn" locationId="bottom_quarter"/>
+                    <swapImage obj1Id="maria" action="footBack"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="The Three Laws Work Together" activity_id="story7-PM-2">
+            <sentence number="5">
+                <step number="1">
+                    <check obj1Id="maria" action="getIn" locationId="hill"/>
+                    <move obj1Id="maria" action="getIn" waypointId="hill"/>
+                </step>
+            </sentence>
+            <sentence number="7">
+                <step number="1">
+                    <check obj1Id="toycar" action="getIn" locationId="road"/>
+                    <move obj1Id="toycar" action="getIn" waypointId="road"/>
+                    <swapImage obj1Id="maria" action="fall"/>
+                    <appear obj1Id="skateboard_maria" action="appear"/>
+                </step>
+            </sentence>
+        </story>
     </solutions>
 </metadata>
 

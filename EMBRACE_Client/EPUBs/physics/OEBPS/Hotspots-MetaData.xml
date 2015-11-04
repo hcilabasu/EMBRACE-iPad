@@ -33,6 +33,7 @@
         <hotspot objId="skateboard_maria" action="getOn" role="object" x="50%" y="50%"/>
         <hotspot objId="skateboard_sara" action="getOn" role="object" x="50%" y="50%"/>
         <hotspot objId="smallrocket" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="toycar" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="wave" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="wood" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="wood" action="pickUp" role="object" x="50%" y="50%"/>

@@ -6,6 +6,7 @@
         <waypoint waypointId="ball_drop" x="74.218750%" y="77.414772%"/>
         <waypoint waypointId="ball_right" x="76.660156%" y="72.230110%"/>
         <waypoint waypointId="boat_left" x="22%" y="50%"/>
+        <waypoint waypointId="hill" x="34.814453%" y="40.198864%"/>
         <waypoint waypointId="juan_kick" x="27.539062%" y="42.613636%"/>
         <waypoint waypointId="maria_near_cart" x="62.060547%" y="49.715908%"/>
         <waypoint waypointId="maria_push" x="3.369141%" y="59.730114%"/>
@@ -13,6 +14,7 @@
         <waypoint waypointId="near_cart" x="23.283203%" y="39.843750%"/>
         <waypoint waypointId="near_juan" x="2%" y="43%"/>
         <waypoint waypointId="near_maria" x="39.843750%" y="75.781250%"/>
+        <waypoint waypointId="road" x="46.337891%" y="70.241478%"/>
         <waypoint waypointId="sara_push" x="78.808594%" y="63.352276%"/>
         <waypoint waypointId="wave_back" x="12.744141%" y="62.215908%"/>
     </waypoints>
