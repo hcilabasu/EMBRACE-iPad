@@ -10,7 +10,7 @@
         <location locationId="near_cart" x="0%" y="50%" height="30%" width="55%"/>
         <location locationId="near_cart2" x="40%" y="66%" height="34%" width="60%"/>
         <location locationId="near_maria" x="40%" y="60%" height="40%" width="40%"/>
-        <location locationId="road" x="0%" y="65%" height="35%" width="55%"/>
+        <location locationId="road" x="0%" y="65%" height="35%" width="58%"/>
         <location locationId="up" x="0%" y="0%" height="17.5%" width="100%"/>
         <location locationId="water" x="0%" y="50%" height="23%" width="100%"/>
     </locations>
