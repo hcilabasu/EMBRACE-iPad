@@ -166,6 +166,7 @@
     <item href="Images/Molokai.png" id="Molokai.png" media-type="image/png" />
     <item href="Images/Oahu.png" id="Oahu.png" media-type="image/png" />
     <item href="Images/Hawaii.png" id="Hawaii.png" media-type="image/png" />
+    <item href="Images/ocean_bulge2.png" id="ocean_bulge2.png" media-type="image/png" />
   </manifest>
   <spine toc="ncx">
     <itemref idref="story0-PM" />

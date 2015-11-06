@@ -82,7 +82,7 @@
             <sentence number="7">
                 <step number="1">
                     <check obj1Id="bulge" action="getIn" locationId="bulge_left"/>
-                    <move obj1Id="bulge" action="getIn" waypointId="bulge_left"/>
+                    <swapImage obj1Id="bulge" action="whole"/>
                 </step>
             </sentence>
         </story>

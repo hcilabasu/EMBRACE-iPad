@@ -854,6 +854,7 @@
 		5C24BC401BE9C0CB00455B3C /* vase_flower.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24BC381BE9C0CB00455B3C /* vase_flower.png */; };
 		5C24BC411BE9C0CB00455B3C /* vase_water.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24BC391BE9C0CB00455B3C /* vase_water.png */; };
 		5C24BC421BE9C0CB00455B3C /* counter_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24BC3A1BE9C0CB00455B3C /* counter_empty.png */; };
+		5C25BA121BEC28FF00F032CD /* ocean_bulge2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C25BA111BEC28FF00F032CD /* ocean_bulge2.png */; };
 		5C4515A71BB60CFD00DC1B07 /* grey_plate_hawaii.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4515A31BB60CFD00DC1B07 /* grey_plate_hawaii.png */; };
 		5C4515A81BB60CFD00DC1B07 /* grey_plate_kauai.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4515A41BB60CFD00DC1B07 /* grey_plate_kauai.png */; };
 		5C4515A91BB60CFD00DC1B07 /* grey_plate_molokai.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4515A51BB60CFD00DC1B07 /* grey_plate_molokai.png */; };
@@ -2655,6 +2656,7 @@
 		5C24BC381BE9C0CB00455B3C /* vase_flower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vase_flower.png; sourceTree = "<group>"; };
 		5C24BC391BE9C0CB00455B3C /* vase_water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vase_water.png; sourceTree = "<group>"; };
 		5C24BC3A1BE9C0CB00455B3C /* counter_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = counter_empty.png; sourceTree = "<group>"; };
+		5C25BA111BEC28FF00F032CD /* ocean_bulge2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ocean_bulge2.png; sourceTree = "<group>"; };
 		5C4515A31BB60CFD00DC1B07 /* grey_plate_hawaii.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grey_plate_hawaii.png; sourceTree = "<group>"; };
 		5C4515A41BB60CFD00DC1B07 /* grey_plate_kauai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grey_plate_kauai.png; sourceTree = "<group>"; };
 		5C4515A51BB60CFD00DC1B07 /* grey_plate_molokai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grey_plate_molokai.png; sourceTree = "<group>"; };
@@ -5779,6 +5781,7 @@
 		B9C9E8E91B8EA0A700AFC328 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5C25BA111BEC28FF00F032CD /* ocean_bulge2.png */,
 				5CE5D28C1BD9BC020053B038 /* island_lava_Hawaii.png */,
 				5CE5D2881BD9BB4F0053B038 /* island_Molokai.png */,
 				5CE5D2891BD9BB4F0053B038 /* island_Oahu.png */,
@@ -7032,6 +7035,7 @@
 				1A8036411B0B1C62004A164A /* CleaningUpQ4A4.mp3 in Resources */,
 				5CAD05E019BE6A3E00F3F053 /* CCE5_8.m4a in Resources */,
 				1A8036971B0B1C62004A164A /* IntroductionToTheBestFarmQ3.mp3 in Resources */,
+				5C25BA121BEC28FF00F032CD /* ocean_bulge2.png in Resources */,
 				1AC4897B1AC083DF00784D77 /* Rattled_def_S.mp3 in Resources */,
 				5C8C01101BD59A23007D4CF0 /* person2.png in Resources */,
 				B9C9EA091B8EA0A800AFC328 /* Story1-The-Moving-Earth-Intro-E.xhtml in Resources */,
