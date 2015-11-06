@@ -1079,6 +1079,7 @@ BOOL wasPathFollowed = false;
     if([IntroductionClass.introductions objectForKey:chapterTitle] && [[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:@"menu"]) {
         IntroductionClass.allowInteractions = TRUE;
     }
+    
     //im code
     if((conditionSetup.condition == CONTROL) && (!IntroductionClass.allowInteractions))
     {
@@ -1160,6 +1161,8 @@ BOOL wasPathFollowed = false;
         }
         //No menuItem was selected
         else {
+            
+            
             if (allowSnapback) {
                 //Snap the object back to its original location
                 [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
@@ -1224,19 +1227,18 @@ BOOL wasPathFollowed = false;
                     NSString* imageAtPoint = [self getObjectAtPoint:location ofType:nil];
                     
                     //If the correct object was tapped, swap its image and increment the step
-                    if ([self checkSolutionForSubject:movingObjectId]) {
+                    if ([self checkSolutionForSubject:imageAtPoint]) {
                         [self swapObjectImage];
                         [self incrementCurrentStep];
                     }
                 }
-                
                 else if ([[currSolStep stepType] isEqualToString:@"tapToAnimate"] ||
                          [[currSolStep stepType] isEqualToString:@"shakeOrTap"]) {
                     //Get the object at this point
                     NSString* imageAtPoint = [self getObjectAtPoint:location ofType:nil];
                     
                     //If the correct object was tapped, increment the step
-                    if ([self checkSolutionForSubject:movingObjectId]) {
+                    if ([self checkSolutionForSubject:imageAtPoint]) {
                         [self incrementCurrentStep];
                     }
                     
