@@ -53,6 +53,8 @@
 @synthesize chapterImages;
 @synthesize chapterTitles;
 
+@synthesize booksButton;
+
 ConditionSetup *conditionSetup;
 
 - (void) viewDidLoad {
@@ -244,6 +246,17 @@ ConditionSetup *conditionSetup;
         [[cell coverTitle] setText:title];
     }
     
+    //TEST: Display progress indicator
+    if (indexPath.row < 2) {
+        [cell displayIndicator:COMPLETED];
+    }
+    else if (indexPath.row == 2) {
+        [cell displayIndicator:IN_PROGRESS];
+    }
+    else {
+        [cell displayIndicator:INCOMPLETE];
+    }
+    
     return cell;
 }
 
@@ -269,6 +282,9 @@ ConditionSetup *conditionSetup;
         self.bookToOpen = title;
         self.chapterToOpen = [[[book chapters] objectAtIndex:indexPath.row] title];
         
+        //Deselect the cell so that it doesn't show as being selected when the user comes back to the library
+        [libraryView deselectItemAtIndexPath:indexPath animated:YES];
+        
         //Send the notification to open that mode for the particular book and activity chosen
         if (conditionSetup.appmode == Authoring) {
             [self performSegueWithIdentifier:@"OpenAuthoringSegue" sender:self];
@@ -292,27 +308,28 @@ ConditionSetup *conditionSetup;
 #pragma mark – UICollectionViewDelegateFlowLayout
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     NSInteger edgeInsets = 0;
-    NSInteger cellWidth = 175;
+    NSInteger cellWidth = 200;
+    
+    NSInteger maxCellsPerRow = 4;
+    NSInteger numberOfCells = 0;
     
     //Books
     if (self.showBooks) {
-        edgeInsets = (self.view.frame.size.width - ([books count] * cellWidth)) / 2;
+        numberOfCells = [books count];
     }
     //Chapters
     else {
-        NSInteger numberOfChapters = [[chapterImages objectAtIndex:self.selectedBookIndex] count];
-        NSInteger maxChaptersPerRow = 5;
-        
-        if (numberOfChapters <= maxChaptersPerRow) {
-            edgeInsets = (self.view.frame.size.width - (numberOfChapters * cellWidth)) / 2;
-        }
-        else {
-            edgeInsets = (self.view.frame.size.width - (maxChaptersPerRow * cellWidth)) / 2;
-        }
-
+        numberOfCells = [[chapterImages objectAtIndex:self.selectedBookIndex] count];
     }
     
-    return UIEdgeInsetsMake(0, edgeInsets, 15, edgeInsets);
+    if (numberOfCells <= maxCellsPerRow) {
+        edgeInsets = (self.view.frame.size.width - (numberOfCells * cellWidth)) / 2;
+    }
+    else {
+        edgeInsets = (self.view.frame.size.width - (maxCellsPerRow * cellWidth)) / 2;
+    }
+    
+    return UIEdgeInsetsMake(0, edgeInsets, 0, edgeInsets);
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
@@ -326,11 +343,14 @@ ConditionSetup *conditionSetup;
         //Books
         if (self.showBooks) {
             title = @"Books";
+            
             headerView.backgroundImage.image = [UIImage imageNamed:@"library_header1"];
         }
         //Chapters
         else {
-            title = @"Chapters";
+            Book* book = [books objectAtIndex:self.selectedBookIndex];
+            title = [book title]; //Set title to title of book
+            
             headerView.backgroundImage.image = [UIImage imageNamed:@"library_header2"];
         }
         

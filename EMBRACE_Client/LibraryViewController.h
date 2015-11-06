@@ -11,17 +11,24 @@
 #import "Book.h"
 #import "Student.h"
 
+//Student's current status on a chapter
+typedef enum ChapterStatus {
+    IN_PROGRESS,
+    COMPLETED,
+    INCOMPLETE
+} ChapterStatus;
+
 @interface LibraryViewController : UIViewController {
     EBookImporter *bookImporter;
     NSMutableArray* books;
     
     Student *student;
     Mode currentMode;
-    
-    IBOutlet UIBarButtonItem* booksButton;
 }
 
 @property (strong, nonatomic) id dataObject;
 @property (nonatomic, strong) Student* student;
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *booksButton;
 
 @end

@@ -34,6 +34,9 @@
         CALayer* imageLayer = [coverImage layer];
         [imageLayer setBorderWidth:2];
         [imageLayer setMasksToBounds:YES];
+        
+        self.progressIndicator = [[UIImageView alloc] init];
+        self.progressIconY = 10.5;
     }
     
     return self;

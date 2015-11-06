@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LibraryViewController.h"
 
 @interface LibraryCellView : UICollectionViewCell
 
 @property (nonatomic, strong) IBOutlet UIImageView *coverImage;
-@property (nonatomic, strong) IBOutlet UILabel* coverTitle;
+@property (nonatomic, strong) IBOutlet UILabel *coverTitle;
+@property (nonatomic, strong) UIImageView *progressIndicator;
+@property (nonatomic, assign) float progressIconY;
+
+- (void) displayIndicator:(ChapterStatus)status;
 
 @end

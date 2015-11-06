@@ -13,6 +13,8 @@
 
 @synthesize coverImage;
 @synthesize coverTitle;
+@synthesize progressIndicator;
+@synthesize progressIconY;
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -35,31 +37,37 @@
         [imageLayer setBorderWidth:2];
         [imageLayer setMasksToBounds:YES];
         
-        int randomNum = arc4random_uniform(3);
-        
-        UIImageView* progressIcon;
-        float progressIconY = 9.5;
-        int progressIconWidth = 45;
-        int progressIconHeight = 45;
-        
-        if (randomNum == 0) {            
-            progressIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"checkmark"]];
-        }
-        else if (randomNum == 1) {
-            progressIconWidth = 33;
-            progressIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bookmark"]];
-        }
-        else if (randomNum == 2) {
-            progressIconWidth = 38;
-            progressIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"lock"]];
-        }
-        
-        int progressIconX = self.frame.size.width - progressIconWidth;
-        progressIcon.frame = CGRectMake(progressIconX, progressIconY, progressIconWidth, progressIconHeight);
-        [self addSubview:progressIcon];
+        progressIndicator = [[UIImageView alloc] init];
+        progressIconY = 14.5;
     }
     
     return self;
+}
+
+/*
+ * Displays progress indicator (i.e., checkmark, bookmark, lock) for the
+ * corresponding chapter status
+ */
+- (void) displayIndicator:(ChapterStatus)status {
+    int progressIconWidth = 45;
+    int progressIconHeight = 45;
+    
+    if (status == COMPLETED) {
+        [progressIndicator setImage:[UIImage imageNamed:@"checkmark"]];
+    }
+    else if (status == IN_PROGRESS) {
+        progressIconWidth = 33;
+        [progressIndicator setImage:[UIImage imageNamed:@"bookmark"]];
+    }
+    else if (status == INCOMPLETE) {
+        progressIconWidth = 38;
+        [progressIndicator setImage:[UIImage imageNamed:@"lock"]];
+    }
+    
+    int progressIconX = self.coverImage.frame.size.width - progressIconWidth / 1.75;
+    CGRect frame = CGRectMake(progressIconX, self.progressIconY, progressIconWidth, progressIconHeight);
+    [progressIndicator setFrame:frame];
+    [self addSubview:progressIndicator];
 }
 
 @end
