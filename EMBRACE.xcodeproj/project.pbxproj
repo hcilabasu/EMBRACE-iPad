@@ -591,7 +591,6 @@
 		1ADAB6FA1ABA0AC900E1AB37 /* Solve_def_E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1ADAB6ED1ABA0AC900E1AB37 /* Solve_def_E.mp3 */; };
 		1ADAB6FB1ABA0AC900E1AB37 /* Stealing_def_E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1ADAB6EE1ABA0AC900E1AB37 /* Stealing_def_E.mp3 */; };
 		1ADAB6FC1ABA0AC900E1AB37 /* Thief_def_E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1ADAB6EF1ABA0AC900E1AB37 /* Thief_def_E.mp3 */; };
-		1ADB01A31AAD211C006C5256 /* house.epub in Resources */ = {isa = PBXBuildFile; fileRef = 1ADB01A21AAD211C006C5256 /* house.epub */; };
 		1AE0F5FC1A7965EC00C5B67D /* Relationships-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AE0F5FB1A7965EC00C5B67D /* Relationships-MetaData.xml */; };
 		1AE0F5FE1A79665A00C5B67D /* Constraints-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AE0F5FD1A79665A00C5B67D /* Constraints-MetaData.xml */; };
 		1AE0F6021A79671A00C5B67D /* Locations-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AE0F6011A79671A00C5B67D /* Locations-MetaData.xml */; };
@@ -870,6 +869,15 @@
 		5C72DFFA1BDB2FFA0058D8D3 /* Story6-Newton's-Third-Law-Forces-are-Paired-PM-3.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C72DFF91BDB2FFA0058D8D3 /* Story6-Newton's-Third-Law-Forces-are-Paired-PM-3.xhtml */; };
 		5C72DFFC1BDB33830058D8D3 /* Story6-Newton's-Third-Law-Forces-are-Paired-PM-4.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C72DFFB1BDB33830058D8D3 /* Story6-Newton's-Third-Law-Forces-are-Paired-PM-4.xhtml */; };
 		5C72DFFE1BDB4C690058D8D3 /* Story7-The-Three-Laws-Work-Together-PM-3.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C72DFFD1BDB4C690058D8D3 /* Story7-The-Three-Laws-Work-Together-PM-3.xhtml */; };
+		5C735D281BED8E1300F2295A /* bg_balloon_kitchen_door.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C735D261BED8E1300F2295A /* bg_balloon_kitchen_door.png */; };
+		5C735D291BED8E1300F2295A /* bg_kitchen_balloons.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C735D271BED8E1300F2295A /* bg_kitchen_balloons.png */; };
+		5C735D301BED8E2500F2295A /* icon_balloons.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C735D2A1BED8E2500F2295A /* icon_balloons.png */; };
+		5C735D311BED8E2500F2295A /* icon_Emilio.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C735D2B1BED8E2500F2295A /* icon_Emilio.png */; };
+		5C735D321BED8E2500F2295A /* icon_key_ingredients.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C735D2C1BED8E2500F2295A /* icon_key_ingredients.png */; };
+		5C735D331BED8E2500F2295A /* icon_mancha.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C735D2D1BED8E2500F2295A /* icon_mancha.png */; };
+		5C735D341BED8E2500F2295A /* icon_roses.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C735D2E1BED8E2500F2295A /* icon_roses.png */; };
+		5C735D351BED8E2500F2295A /* icon_scale.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C735D2F1BED8E2500F2295A /* icon_scale.png */; };
+		5C735D371BEDB02800F2295A /* house.epub in Resources */ = {isa = PBXBuildFile; fileRef = 5C735D361BEDB02800F2295A /* house.epub */; };
 		5C776A4219C17F39000DBC65 /* BFTC0.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C776A3719C17F39000DBC65 /* BFTC0.m4a */; };
 		5C776A4319C17F39000DBC65 /* BFTC1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C776A3819C17F39000DBC65 /* BFTC1.m4a */; };
 		5C776A4419C17F39000DBC65 /* BFTC2.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C776A3919C17F39000DBC65 /* BFTC2.m4a */; };
@@ -2341,7 +2349,6 @@
 		1ADAB6ED1ABA0AC900E1AB37 /* Solve_def_E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Solve_def_E.mp3; sourceTree = "<group>"; };
 		1ADAB6EE1ABA0AC900E1AB37 /* Stealing_def_E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Stealing_def_E.mp3; sourceTree = "<group>"; };
 		1ADAB6EF1ABA0AC900E1AB37 /* Thief_def_E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Thief_def_E.mp3; sourceTree = "<group>"; };
-		1ADB01A21AAD211C006C5256 /* house.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = house.epub; path = EPUBs/house/house.epub; sourceTree = "<group>"; };
 		1AE0F5FB1A7965EC00C5B67D /* Relationships-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Relationships-MetaData.xml"; sourceTree = "<group>"; };
 		1AE0F5FD1A79665A00C5B67D /* Constraints-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Constraints-MetaData.xml"; sourceTree = "<group>"; };
 		1AE0F6011A79671A00C5B67D /* Locations-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Locations-MetaData.xml"; sourceTree = "<group>"; };
@@ -2668,6 +2675,15 @@
 		5C72DFF91BDB2FFA0058D8D3 /* Story6-Newton's-Third-Law-Forces-are-Paired-PM-3.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story6-Newton's-Third-Law-Forces-are-Paired-PM-3.xhtml"; sourceTree = "<group>"; };
 		5C72DFFB1BDB33830058D8D3 /* Story6-Newton's-Third-Law-Forces-are-Paired-PM-4.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story6-Newton's-Third-Law-Forces-are-Paired-PM-4.xhtml"; sourceTree = "<group>"; };
 		5C72DFFD1BDB4C690058D8D3 /* Story7-The-Three-Laws-Work-Together-PM-3.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story7-The-Three-Laws-Work-Together-PM-3.xhtml"; sourceTree = "<group>"; };
+		5C735D261BED8E1300F2295A /* bg_balloon_kitchen_door.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_balloon_kitchen_door.png; sourceTree = "<group>"; };
+		5C735D271BED8E1300F2295A /* bg_kitchen_balloons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_kitchen_balloons.png; sourceTree = "<group>"; };
+		5C735D2A1BED8E2500F2295A /* icon_balloons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_balloons.png; sourceTree = "<group>"; };
+		5C735D2B1BED8E2500F2295A /* icon_Emilio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_Emilio.png; sourceTree = "<group>"; };
+		5C735D2C1BED8E2500F2295A /* icon_key_ingredients.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_key_ingredients.png; sourceTree = "<group>"; };
+		5C735D2D1BED8E2500F2295A /* icon_mancha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_mancha.png; sourceTree = "<group>"; };
+		5C735D2E1BED8E2500F2295A /* icon_roses.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_roses.png; sourceTree = "<group>"; };
+		5C735D2F1BED8E2500F2295A /* icon_scale.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_scale.png; sourceTree = "<group>"; };
+		5C735D361BEDB02800F2295A /* house.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = house.epub; path = EPUBs/celebration/house.epub; sourceTree = "<group>"; };
 		5C776A3719C17F39000DBC65 /* BFTC0.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = BFTC0.m4a; sourceTree = "<group>"; };
 		5C776A3819C17F39000DBC65 /* BFTC1.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = BFTC1.m4a; sourceTree = "<group>"; };
 		5C776A3919C17F39000DBC65 /* BFTC2.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = BFTC2.m4a; sourceTree = "<group>"; };
@@ -3886,9 +3902,9 @@
 			isa = PBXGroup;
 			children = (
 				5C8C01531BD5F562007D4CF0 /* physics.epub */,
+				5C735D361BEDB02800F2295A /* house.epub */,
 				1A9B9DFE1BA5EDCE0031188A /* bottled.epub */,
 				1A0939811B67411200547E9F /* disasters.epub */,
-				1ADB01A21AAD211C006C5256 /* house.epub */,
 				5CE1E30F1A119E120070A7D6 /* bestFarm.epub */,
 				5CE1E30D1A119DFC0070A7D6 /* circulatory.epub */,
 				5C7FE06619A7E43B00CBBE0E /* sounds */,
@@ -4110,6 +4126,14 @@
 		5C24BAEA1BE9902B00455B3C /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5C735D2A1BED8E2500F2295A /* icon_balloons.png */,
+				5C735D2B1BED8E2500F2295A /* icon_Emilio.png */,
+				5C735D2C1BED8E2500F2295A /* icon_key_ingredients.png */,
+				5C735D2D1BED8E2500F2295A /* icon_mancha.png */,
+				5C735D2E1BED8E2500F2295A /* icon_roses.png */,
+				5C735D2F1BED8E2500F2295A /* icon_scale.png */,
+				5C735D261BED8E1300F2295A /* bg_balloon_kitchen_door.png */,
+				5C735D271BED8E1300F2295A /* bg_kitchen_balloons.png */,
 				5C24BC071BE9C02A00455B3C /* 50_pesos.png */,
 				5C24BBCB1BE9BECE00455B3C /* bag.png */,
 				5C24BBDD1BE9BF1800455B3C /* bg_barn.png */,
@@ -6211,6 +6235,7 @@
 				1A8036781B0B1C62004A164A /* GettingReadyQ3A4.mp3 in Resources */,
 				1A8036C41B0B1C62004A164A /* TheBestFarmAwardQ5.mp3 in Resources */,
 				5C8C01501BD59C4B007D4CF0 /* ch5.png in Resources */,
+				5C735D331BED8E2500F2295A /* icon_mancha.png in Resources */,
 				5CF9948419AC34550080C32F /* farm_pen2.png in Resources */,
 				B95229271BA0D90700093528 /* chapter3.png in Resources */,
 				1AEE551F1ADE028100DFC6B0 /* MissingKeysQ1A4.mp3 in Resources */,
@@ -6386,7 +6411,6 @@
 				5CE299EB19B5B3D600675CB0 /* owlE.m4a in Resources */,
 				5C24BC031BE9BF9500455B3C /* horse_unmounted.png in Resources */,
 				B9C9E9FE1B8EA0A800AFC328 /* Locations-MetaData.xml in Resources */,
-				1ADB01A31AAD211C006C5256 /* house.epub in Resources */,
 				5C4ADDE51BDED9B800F8EF37 /* maria_leg.png in Resources */,
 				5C776AC119C674FA000DBC65 /* CPQR6.m4a in Resources */,
 				1A2D709B1AAA74FA009E7B5B /* keys.png in Resources */,
@@ -6413,6 +6437,7 @@
 				1A8036DA1B0B1C62004A164A /* TheContestQ3A2.mp3 in Resources */,
 				1A695C881AD4C8B0006A2284 /* TheLopezFamilyS10E.mp3 in Resources */,
 				1AEE55111ADE028100DFC6B0 /* IsPacoAThiefQ6.mp3 in Resources */,
+				5C735D321BED8E2500F2295A /* icon_key_ingredients.png in Resources */,
 				1A2D70921AAA74FA009E7B5B /* cribb.png in Resources */,
 				1A8036DF1B0B1C62004A164A /* TheContestQ4A2.mp3 in Resources */,
 				1A2D70BF1AAA74FA009E7B5B /* Story2-Missing-Keys-PM-2.xhtml in Resources */,
@@ -6594,6 +6619,7 @@
 				5C8C01011BD59774007D4CF0 /* Story7-The-Three-Laws-Work-Together-Title.xhtml in Resources */,
 				1A2D70F11AAA8230009E7B5B /* Translations-MetaData.xml in Resources */,
 				5C776A4719C17F39000DBC65 /* BFTC5.m4a in Resources */,
+				5C735D371BEDB02800F2295A /* house.epub in Resources */,
 				31953E5D1729ECC100570087 /* Default@2x.png in Resources */,
 				B95229501BA1149700093528 /* boardgame_box.png in Resources */,
 				5C776C5319C95A13000DBC65 /* trophyS.m4a in Resources */,
@@ -6810,6 +6836,7 @@
 				5C8C01391BD59C05007D4CF0 /* background_Ch7_V2.png in Resources */,
 				5C776C1719C945D0000DBC65 /* bucketS.m4a in Resources */,
 				5C776A6A19C241EE000DBC65 /* CWWB13.m4a in Resources */,
+				5C735D351BED8E2500F2295A /* icon_scale.png in Resources */,
 				B9C9E9D81B8EA0A800AFC328 /* lava_molaka.png in Resources */,
 				5C8C00DD1BD5927B007D4CF0 /* Story2-Newton's-First-Law-Title.xhtml in Resources */,
 				B95228F91BA0CDAB00093528 /* Stylesheet.css in Resources */,
@@ -6825,6 +6852,7 @@
 				5CAD05E619BE6A3E00F3F053 /* CCE5_5.m4a in Resources */,
 				1A2D70AE1AAA74FA009E7B5B /* woman.png in Resources */,
 				B9C9EA271B8EA0A800AFC328 /* VocabularyIntroductions-MetaData.xml in Resources */,
+				5C735D281BED8E1300F2295A /* bg_balloon_kitchen_door.png in Resources */,
 				5C776BE419C93E1E000DBC65 /* bloodS.m4a in Resources */,
 				1A8036AC1B0B1C62004A164A /* IntroductionToTheBestFarmQ7A1.mp3 in Resources */,
 				317FF1761742CCD100F1F160 /* ImageManipulation.js in Resources */,
@@ -6949,6 +6977,7 @@
 				5CE299E619B5ACDA00675CB0 /* BFCE4_2.m4a in Resources */,
 				1A2D70E71AAA81DA009E7B5B /* AlternateImages-MetaData.xml in Resources */,
 				5C24BBA81BE9902B00455B3C /* Story5-A-Gift-for-the-Bride-Title.xhtml in Resources */,
+				5C735D291BED8E1300F2295A /* bg_kitchen_balloons.png in Resources */,
 				1A3593F81AE76129003B3B41 /* MoreIsMissingQ3A2.mp3 in Resources */,
 				B9C9E9B91B8EA0A800AFC328 /* droplet_single.png in Resources */,
 				1A3330D01BA0E90A00C8293A /* p3_Lsqueeze_circle.png in Resources */,
@@ -7164,6 +7193,7 @@
 				1AEE550C1ADE028100DFC6B0 /* IsPacoAThiefQ5.mp3 in Resources */,
 				5C7FE13719A7E43C00CBBE0E /* BFEE_8A.m4a in Resources */,
 				1A2D70C61AAA74FA009E7B5B /* Story3-Is-Paco-a-Thief-Title.xhtml in Resources */,
+				5C735D311BED8E2500F2295A /* icon_Emilio.png in Resources */,
 				1AE0F6141A79697500C5B67D /* Hotspots-MetaData.xml in Resources */,
 				5C776BCD19C93E1E000DBC65 /* ciliaDEFS.m4a in Resources */,
 				5C776C3B19C952A6000DBC65 /* purrS.m4a in Resources */,
@@ -7394,6 +7424,7 @@
 				31109702174AB35E00B02BF7 /* cover_default.png in Resources */,
 				5C776A6619C241EE000DBC65 /* CWWB9.m4a in Resources */,
 				1AEE55301ADE028100DFC6B0 /* MissingKeysQ5A1.mp3 in Resources */,
+				5C735D301BED8E2500F2295A /* icon_balloons.png in Resources */,
 				B95229241BA0D90700093528 /* chapter1.png in Resources */,
 				1A8037251B0B1C62004A164A /* WhoIsTheBestAnimalQ5A2.mp3 in Resources */,
 				5CAD05FC19BE6A3E00F3F053 /* CCE2_4.m4a in Resources */,
@@ -7557,6 +7588,7 @@
 				5C7FE12E19A7E43C00CBBE0E /* BFEE_19.m4a in Resources */,
 				1A2D70CC1AAA74FA009E7B5B /* Story4-More-is-Missing-Title.xhtml in Resources */,
 				1A3594491AE76129003B3B41 /* TheMysteryIsSolvedQ5A3.mp3 in Resources */,
+				5C735D341BED8E2500F2295A /* icon_roses.png in Resources */,
 				5C7FE13619A7E43C00CBBE0E /* BFEE_8.m4a in Resources */,
 				B9C9E9B81B8EA0A800AFC328 /* droplet_group.png in Resources */,
 				5C776BCC19C93E1E000DBC65 /* ciliaS.m4a in Resources */,

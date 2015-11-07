@@ -9,12 +9,14 @@
   <manifest>
     <item href="Images/50_pesos.png" id="50_pesos.png" media-type="image/png" />
     <item href="Images/bag.png" id="bag.png" media-type="image/png" />
+    <item href="Images/bg_balloon_kitchen_door.png" id="bg_balloon_kitchen_door.png" media-type="image/png" />
     <item href="Images/bg_barn.png" id="bg_barn.png" media-type="image/png" />
     <item href="Images/bg_ch3.png" id="bg_ch3.png" media-type="image/png" />
     <item href="Images/bg_dirt_road.png" id="bg_dirt_road.png" media-type="image/png" />
     <item href="Images/bg_faucet_on.png" id="bg_faucet_on.png" media-type="image/png" />
     <item href="Images/bg_kitchen_door.png" id="bg_kitchen_door.png" media-type="image/png" />
     <item href="Images/bg_kitchen.png" id="bg_kitchen.png" media-type="image/png" />
+    <item href="Images/bg_kitchen_balloons.png" id="bg_kitchen_balloons.png" media-type="image/png" />
     <item href="Images/bg_market.png" id="bg_market.png" media-type="image/png" />
     <item href="Images/bridle.png" id="bridle.png" media-type="image/png" />
     <item href="Images/calf.png" id="calf.png" media-type="image/png" />
@@ -33,6 +35,12 @@
     <item href="Images/gate_closed.png" id="gate_closed.png" media-type="image/png" />
     <item href="Images/gate_open.png" id="gate_open.png" media-type="image/png" />
     <item href="Images/horse_unmounted.png" id="horse_unmounted.png" media-type="image/png" />
+    <item href="Images/icon_balloons.png" id="icon_balloons.png" media-type="image/png" />
+    <item href="Images/icon_Emilio.png" id="icon_Emilio.png" media-type="image/png" />
+    <item href="Images/icon_key_ingredients.png" id="icon_key_ingredients.png" media-type="image/png" />
+    <item href="Images/icon_mancha.png" id="icon_mancha.png" media-type="image/png" />
+    <item href="Images/icon_roses.png" id="icon_roses.png" media-type="image/png" />
+    <item href="Images/icon_scale.png" id="icon_scale.png" media-type="image/png" />
     <item href="Images/list.png" id="list.png" media-type="image/png" />
     <item href="Images/mancha_blue_saddlebag_open.png" id="mancha_blue_saddlebag_open.png" media-type="image/png" />
     <item href="Images/mancha_eating_grass.png" id="mancha_eating_grass.png" media-type="image/png" />
