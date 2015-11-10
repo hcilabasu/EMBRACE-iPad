@@ -114,6 +114,15 @@
     newPath = [newPath stringByAppendingString:filename];
     [fileManager copyItemAtPath:filePath toPath:newPath error:nil];
     
+    filePath = [[NSBundle mainBundle] pathForResource:@"celebration" ofType:@"epub"];
+    newPath = [documentsDirectory stringByAppendingPathComponent:@"/ASU/IntroToCelebration"];
+    
+    [fileManager createDirectoryAtPath:newPath withIntermediateDirectories:YES attributes:nil error:nil];
+    
+    filename = [@"/" stringByAppendingString:[filePath lastPathComponent]];
+    newPath = [newPath stringByAppendingString:filename];
+    [fileManager copyItemAtPath:filePath toPath:newPath error:nil];
+    
     return YES;
 }
 
