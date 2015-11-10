@@ -293,7 +293,7 @@ BOOL wasPathFollowed = false;
     
     //Load the first step for the current chapter
     if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
-        [IntroductionClass loadIntroStep:bookView: currentSentence];
+        [IntroductionClass loadIntroStep:bookView:self: currentSentence];
     }
     
     //Create UIView for textbox area to recognize swipe gesture
@@ -303,7 +303,7 @@ BOOL wasPathFollowed = false;
     
     //Load the first vocabulary step for the current chapter (hard-coded for now)
     if ([IntroductionClass.vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
-        [IntroductionClass loadVocabStep:bookView: currentSentence: chapterTitle];
+        [IntroductionClass loadVocabStep:bookView:self: currentSentence: chapterTitle];
     }
     
     isAudioLeft = false;
@@ -311,30 +311,30 @@ BOOL wasPathFollowed = false;
     //If we are on the first or second manipulation page of The Contest, play the audio of the first sentence
     if ([chapterTitle isEqualToString:@"The Contest"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
         if(conditionSetup.language ==BILINGUAL) {
-            [playaudioClass playAudioFile : self:[NSString stringWithFormat:@"BFEC%d.m4a",currentSentence]];
+            [self.playaudioClass playAudioFile : self:[NSString stringWithFormat:@"BFEC%d.m4a",currentSentence]];
         }
         else {
-            [playaudioClass playAudioFile: self:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
+            [self.playaudioClass playAudioFile: self:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
         }
     }
     
     //If we are on the first or second manipulation page of Why We Breathe, play the audio of the first sentence
     if ([chapterTitle isEqualToString:@"Why We Breathe"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
         if(conditionSetup.language ==BILINGUAL) {
-            [playaudioClass playAudioFile:self:[NSString stringWithFormat:@"CPQR%d.m4a",currentSentence]];
+            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"CPQR%d.m4a",currentSentence]];
         }
         else {
-            [playaudioClass playAudioFile:self:[NSString stringWithFormat:@"CWWB%d.m4a",currentSentence]];
+            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"CWWB%d.m4a",currentSentence]];
         }
     }
     
     //If we are on the first or second manipulation page of The Lopez Family, play the audio of the first sentence
     if ([chapterTitle isEqualToString:@"The Lopez Family"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
         if(conditionSetup.language ==BILINGUAL) {
-            [playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3",currentSentence]];
+            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3",currentSentence]];
         }
         else {
-            [playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3",currentSentence]];
+            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3",currentSentence]];
         }
     }
     
@@ -932,7 +932,7 @@ BOOL wasPathFollowed = false;
         }
         else if ([[currSolStep stepType] isEqualToString:@"playSound"]) {
             NSString * file = [currSolStep fileName];
-            [playaudioClass playAudioFile:self:file];
+            [self.playaudioClass playAudioFile:self:file];
             [self incrementCurrentStep];
         }
         
@@ -1051,6 +1051,7 @@ BOOL wasPathFollowed = false;
  */
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [self.playaudioClass stopPlayAudioFile];
     [super viewWillDisappear:animated];
     
     if (![[self.navigationController viewControllers] containsObject:self])
@@ -1294,7 +1295,7 @@ BOOL wasPathFollowed = false;
                 //[timer invalidate];
                 //timer = nil;
                 
-                [playaudioClass playAudioFile: self: [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]];
+                [self.playaudioClass playAudioFile: self: [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]];
                 
                 //Logging added by James for Word Audio
                 [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : IntroductionClass.languageString :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
@@ -1305,7 +1306,7 @@ BOOL wasPathFollowed = false;
                 IntroductionClass.currentIntroStep+=1;
                 // This delay is needed in order to be able to hear the clicked word
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW,2*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                    [IntroductionClass loadIntroStep:bookView:currentSentence];
+                    [IntroductionClass loadIntroStep:bookView:self:currentSentence];
                 });
             }
         }
@@ -1324,10 +1325,10 @@ BOOL wasPathFollowed = false;
                         
                          IntroductionClass.sameWordClicked = true;
                         if ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"]) {
-                            [playaudioClass playAudioFile:self:IntroductionClass.vocabAudio];
+                            [self.playaudioClass playAudioFile:self:IntroductionClass.vocabAudio];
                         }
                         else {
-                            [playaudioClass playAudioFile:self:IntroductionClass.currentAudio];
+                            [self.playaudioClass playAudioFile:self:IntroductionClass.currentAudio];
                         }
                         
                         //Logging added by James for Word Audio
@@ -1363,7 +1364,7 @@ BOOL wasPathFollowed = false;
                         
                         // This delay is needed in order to be able to play the last definition on a vocabulary page
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW,4*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                            [IntroductionClass loadVocabStep:bookView:currentSentence:chapterTitle];
+                            [IntroductionClass loadVocabStep:bookView:self:currentSentence:chapterTitle];
                             
                         });
                 }
@@ -1377,21 +1378,21 @@ BOOL wasPathFollowed = false;
             
             if ((conditionSetup.language ==BILINGUAL) && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
                 //Play word audio Sp
-                [playaudioClass playAudioInSequence:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"]:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
+                [self.playaudioClass playAudioInSequence:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"]:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
                 
                 //Logging added by James for Word Audio
                 [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"S" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
             }
             else if (conditionSetup.language ==BILINGUAL) {
                 //Play word audio Sp
-                [playaudioClass playAudioInSequence:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"]];
+                [self.playaudioClass playAudioInSequence:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"]];
                 
                 //Logging added by James for Word Audio
                 [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"S" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
             }
             else {
                 //Play En audio twice
-                [playaudioClass playAudioInSequence:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
+                [self.playaudioClass playAudioInSequence:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
                 
                 //Logging added by James for Word Audio
                 [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"E" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
@@ -1755,7 +1756,7 @@ BOOL wasPathFollowed = false;
                                         //[timer invalidate];
                                         //timer = nil;
                                         IntroductionClass.currentIntroStep++;
-                                    [IntroductionClass loadIntroStep:bookView: currentSentence];
+                                    [IntroductionClass loadIntroStep:bookView:self: currentSentence];
                                 }
                             }
                             
@@ -1802,7 +1803,7 @@ BOOL wasPathFollowed = false;
                             //Logging added by James for user Move Object to Hotspot Incorrect
                             [[ServerCommunicationController sharedManager] logComputerVerification:@"Move to Hotspot" :false : movingObjectId:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                             
-                            [playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+                            [self.playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                             //[self playErrorNoise];
                             
                             if (conditionSetup.appmode == ITS) {
@@ -1837,7 +1838,7 @@ BOOL wasPathFollowed = false;
                             //Logging added by James for user Move Object to Hotspot Incorrect
                             [[ServerCommunicationController sharedManager] logComputerVerification:@"Move to Hotspot" :false : movingObjectId:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                             
-                            [playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+                            [self.playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                             //[self playErrorNoise];
                             
                             if (allowSnapback) {
@@ -1861,7 +1862,7 @@ BOOL wasPathFollowed = false;
                             //Logging added by James for user Move Object to Hotspot Incorrect
                             //[[ServerCommunicationController sharedManager] logComputerVerification:@"Move to Hotspot" :false : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
                             
-                            //[playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentStep];
+                            //[self.playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentStep];
                             //[self playErrorNoise];
                             
                             if (allowSnapback) {
@@ -1898,7 +1899,7 @@ BOOL wasPathFollowed = false;
                                 //Logging added by James for Verifying Move Object to object
                                 [[ServerCommunicationController sharedManager] logComputerVerification: @"Move to Object":false : movingObjectId:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                                 
-                                [playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+                                [self.playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                                 //[self playErrorNoise];
                                 
                                 if (allowSnapback) {
@@ -1932,7 +1933,7 @@ BOOL wasPathFollowed = false;
                                     //[timer invalidate];
                                     //timer = nil;
                                     IntroductionClass.currentIntroStep++;
-                                        [IntroductionClass loadIntroStep:bookView: currentSentence];
+                                        [IntroductionClass loadIntroStep:bookView:self: currentSentence];
                                 }
                                 
                                 //First rank the interactions based on location to story.
@@ -1962,7 +1963,7 @@ BOOL wasPathFollowed = false;
                         //Not overlapping any object
                         else {
                             
-                            [playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+                            [self.playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                             //[self playErrorNoise];
                             
                             if (allowSnapback) {
@@ -3173,7 +3174,7 @@ BOOL wasPathFollowed = false;
     [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
     
     //Check if the object has the correct class, or if no class was specified before returning
-    if((![imageAtPointClass isEqualToString:@""] || [imageAtPointClass rangeOfString:class].location != NSNotFound) || class == nil) {
+    if(( (class == nil) || (![imageAtPointClass isEqualToString:@""] && [imageAtPointClass rangeOfString:class].location != NSNotFound))) {
         //Any subject can be used, so just return the object id
         if (useSubject == ALL_ENTITIES)
             return imageAtPoint;
@@ -3369,10 +3370,10 @@ BOOL wasPathFollowed = false;
                         if ([chapterTitle isEqualToString:@"The Contest"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
                             
                                 if((conditionSetup.language ==BILINGUAL)) {
-                                    [playaudioClass playAudioFile:self:[NSString stringWithFormat:@"BFEC%d.m4a",currentSentence]];
+                                    [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"BFEC%d.m4a",currentSentence]];
                                 }
                                 else {
-                                    [playaudioClass playAudioFile:self:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
+                                    [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
                                 }
                         }
                     
@@ -3380,20 +3381,20 @@ BOOL wasPathFollowed = false;
                         if ([chapterTitle isEqualToString:@"Why We Breathe"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
                             
                                 if((conditionSetup.language ==BILINGUAL)) {
-                                    [playaudioClass playAudioFile:self:[NSString stringWithFormat:@"CPQR%d.m4a",currentSentence]];
+                                    [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"CPQR%d.m4a",currentSentence]];
                                 }
                                 else {
-                                    [playaudioClass playAudioFile:self:[NSString stringWithFormat:@"CWWB%d.m4a",currentSentence]];
+                                    [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"CWWB%d.m4a",currentSentence]];
                                 }
                         }
                     
                     //If we are on the first or second manipulation page of The Lopez Family, play the current sentence
                     if ([chapterTitle isEqualToString:@"The Lopez Family"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
                         if(conditionSetup.language ==BILINGUAL) {
-                            [playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3",currentSentence]];
+                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3",currentSentence]];
                         }
                         else {
-                            [playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3",currentSentence]];
+                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3",currentSentence]];
                         }
                     }
                     
@@ -3409,7 +3410,7 @@ BOOL wasPathFollowed = false;
         
         if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
             IntroductionClass.currentIntroStep++;
-            [IntroductionClass loadIntroStep:bookView: currentSentence];
+            [IntroductionClass loadIntroStep:bookView:self: currentSentence];
         }
         
          if (conditionSetup.condition != CONTROL) {
@@ -3427,14 +3428,14 @@ BOOL wasPathFollowed = false;
         if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
             if ((conditionSetup.language ==ENGLISH) || IntroductionClass.currentIntroStep > IntroductionClass.STEPS_TO_SWITCH_LANGUAGES_EMBRACE)
             {
-                [playaudioClass playAudioFile:self:@"tryAgainE.m4a"];
+                [self.playaudioClass playAudioFile:self:@"tryAgainE.m4a"];
                 
                 //Logging added by James for Try Again
                 [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Try Again" : @"E" : @"tryAgainE.m4a" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
             }
             else
             {
-                [playaudioClass playAudioFile:self:@"tryAgainS.m4a"];
+                [self.playaudioClass playAudioFile:self:@"tryAgainS.m4a"];
                 
                 //Logging added by James for Try Again
                 [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Try Again" : @"S" : @"tryAgainS.m4a" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
@@ -3444,7 +3445,7 @@ BOOL wasPathFollowed = false;
             //Logging added by James for Incorrect Interaction
             [[ServerCommunicationController sharedManager] logComputerVerification:@"Perform Interaction":false : movingObjectId:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
             
-            [playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+            [self.playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
             //[self playErrorNoise]; //play noise if interaction is incorrect
             
             if (conditionSetup.appmode == ITS) {
@@ -4480,7 +4481,7 @@ BOOL wasPathFollowed = false;
             }
             else {
                 // Load the next step
-                [IntroductionClass loadIntroStep:bookView: currentSentence];
+                [IntroductionClass loadIntroStep:bookView:self: currentSentence];
                 [self setupCurrentSentenceColor];
             
                 //add logging: next intro step
@@ -4511,7 +4512,7 @@ BOOL wasPathFollowed = false;
             }
             else {
                 // Load the next step and update the performed actions
-                [IntroductionClass loadVocabStep:bookView:currentSentence:chapterTitle];
+                [IntroductionClass loadVocabStep:bookView:self:currentSentence:chapterTitle];
                 
                 //add logging: next vocab step
             }
@@ -4630,30 +4631,30 @@ BOOL wasPathFollowed = false;
                                     //If we are on the first or second manipulation page of The Contest, play the audio of the current sentence
                                     if ([chapterTitle isEqualToString:@"The Contest"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
                                         if((conditionSetup.language ==BILINGUAL)) {
-                                            [playaudioClass playAudioFile:self:[NSString stringWithFormat:@"BFEC%d.m4a",currentSentence]];
+                                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"BFEC%d.m4a",currentSentence]];
                                         }
                                         else {
-                                            [playaudioClass playAudioFile:self:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
+                                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
                                         }
                                     }
                                     
                                     //If we are on the first or second manipulation page of Why We Breathe, play the audio of the current sentence
                                     if ([chapterTitle isEqualToString:@"Why We Breathe"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
                                         if((conditionSetup.language ==BILINGUAL)) {
-                                            [playaudioClass playAudioFile:self:[NSString stringWithFormat:@"CPQR%d.m4a",currentSentence]];
+                                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"CPQR%d.m4a",currentSentence]];
                                         }
                                         else {
-                                            [playaudioClass playAudioFile:self:[NSString stringWithFormat:@"CWWB%d.m4a",currentSentence]];
+                                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"CWWB%d.m4a",currentSentence]];
                                         }
                                     }
                                     
                                     //If we are on the first or second manipulation page of The Lopez Family, play the current sentence
                                     if ([chapterTitle isEqualToString:@"The Lopez Family"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
                                         if(conditionSetup.language ==BILINGUAL) {
-                                            [playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3",currentSentence]];
+                                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3",currentSentence]];
                                         }
                                         else {
-                                            [playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3",currentSentence]];
+                                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3",currentSentence]];
                                         }
                                     }
                                     
@@ -4714,37 +4715,37 @@ BOOL wasPathFollowed = false;
                 //If we are on the first or second manipulation page of The Contest, play the audio of the current sentence
                 if ([chapterTitle isEqualToString:@"The Contest"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
                     if((conditionSetup.language ==BILINGUAL)) {
-                        [playaudioClass playAudioFile:self:[NSString stringWithFormat:@"BFEC%d.m4a",currentSentence]];
+                        [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"BFEC%d.m4a",currentSentence]];
                     }
                     else {
-                        [playaudioClass playAudioFile:self:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
+                        [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
                     }
                 }
                 
                 //If we are on the first or second manipulation page of Why We Breathe, play the audio of the current sentence
                 if ([chapterTitle isEqualToString:@"Why We Breathe"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
                     if((conditionSetup.language ==BILINGUAL)) {
-                        [playaudioClass playAudioFile:self:[NSString stringWithFormat:@"CPQR%d.m4a",currentSentence]];
+                        [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"CPQR%d.m4a",currentSentence]];
                     }
                     else {
-                        [playaudioClass playAudioFile:self:[NSString stringWithFormat:@"CWWB%d.m4a",currentSentence]];
+                        [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"CWWB%d.m4a",currentSentence]];
                     }
                 }
                 
                 //If we are on the first or second manipulation page of The Lopez Family, play the current sentence
                 if ([chapterTitle isEqualToString:@"The Lopez Family"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
                     if(conditionSetup.language ==BILINGUAL) {
-                        [playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3",currentSentence]];
+                        [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3",currentSentence]];
                     }
                     else {
-                        [playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3",currentSentence]];
+                        [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3",currentSentence]];
                     }
                 }
             }
         }
         else {
             //Play noise if not all steps have been completed
-            [playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+            [self.playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
             //[self playErrorNoise];
         }
     }

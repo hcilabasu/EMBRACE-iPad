@@ -530,18 +530,18 @@
                    <Question number="1">
                 <QuestionText>Which animal pushed hay to the cow?</QuestionText>
                 <QuestionAudio>EveryoneHelpsQ1.mp3</QuestionAudio>
-                <Answer1>Horse</Answer1>
+                <Answer1>horse</Answer1>
                 <Answer1Audio>EveryoneHelpsQ1A1.mp3</Answer1Audio>
                 <Answer2>cow</Answer2>
                 <Answer2Audio>EveryoneHelpsQ1A2.mp3</Answer2Audio>
                 <Answer3>pig</Answer3>
                 <Answer3Audio>EveryoneHelpsQ1A3.mp3</Answer3Audio>
-                <Answer4>Ninja turtle</Answer4>
+                <Answer4>ninja turtle</Answer4>
                 <Answer4Audio>EveryoneHelpsQ1A4.mp3</Answer4Audio>
                 <expectedSelection>Horse</expectedSelection>
             </Question>
             <Question number="2">
-                <QuestionText>At the begginning of the story, which animal wanted to eat a pumpkin?</QuestionText>
+                <QuestionText>At the beginning of the story, which animal wanted to eat a pumpkin?</QuestionText>
                 <QuestionAudio>EveryoneHelpsQ2.mp3</QuestionAudio>
                 <Answer1>pig</Answer1>
                 <Answer1Audio>EveryoneHelpsQ2A1.mp3</Answer1Audio>
