@@ -84,6 +84,7 @@
     <item href="Text/Story1-Key-Ingredients-Intro-E.xhtml" id="story1-Intro" media-type="application/xhtml+xml" />
     <item href="Text/Story1-Key-Ingredients-PM-1.xhtml" id="story1-PM-1" media-type="application/xhtml+xml" />
     <item href="Text/Story1-Key-Ingredients-PM-2.xhtml" id="story1-PM-2" media-type="application/xhtml+xml" />
+    <item href="Text/Story1-Key-Ingredients-PM-3.xhtml" id="story1-PM-3" media-type="application/xhtml+xml" />
     <item href="Text/Story1-Key-Ingredients-Title.xhtml" id="Chapter1Title" media-type="application/xhtml+xml" />
     <item href="Text/Story2-Mancha-the-Horse-Intro-E.xhtml" id="story2-Intro" media-type="application/xhtml+xml" />
     <item href="Text/Story2-Mancha-the-Horse-PM-1.xhtml" id="story2-PM-1" media-type="application/xhtml+xml" />
@@ -99,10 +100,13 @@
     <item href="Text/Story4-Shopping-at-the-Market-PM-1.xhtml" id="story4-PM-1" media-type="application/xhtml+xml" />
     <item href="Text/Story4-Shopping-at-the-Market-PM-2.xhtml" id="story4-PM-2" media-type="application/xhtml+xml" />
     <item href="Text/Story4-Shopping-at-the-Market-PM-3.xhtml" id="story4-PM-3" media-type="application/xhtml+xml" />
+    <item href="Text/Story4-Shopping-at-the-Market-PM-4.xhtml" id="story4-PM-4" media-type="application/xhtml+xml" />
     <item href="Text/Story4-Shopping-at-the-Market-Title.xhtml" id="Chapter4Title" media-type="application/xhtml+xml" />
     <item href="Text/Story5-A-Gift-for-the-Bride-Intro-E.xhtml" id="story5-Intro" media-type="application/xhtml+xml" />
     <item href="Text/Story5-A-Gift-for-the-Bride-PM-1.xhtml" id="story5-PM-1" media-type="application/xhtml+xml" />
     <item href="Text/Story5-A-Gift-for-the-Bride-PM-2.xhtml" id="story5-PM-2" media-type="application/xhtml+xml" />
+    <item href="Text/Story5-A-Gift-for-the-Bride-PM-3.xhtml" id="story5-PM-3" media-type="application/xhtml+xml" />
+    <item href="Text/Story5-A-Gift-for-the-Bride-PM-4.xhtml" id="story5-PM-4" media-type="application/xhtml+xml" />
     <item href="Text/Story5-A-Gift-for-the-Bride-Title.xhtml" id="Chapter5Title" media-type="application/xhtml+xml" />
     <item href="Text/Story6-Homecoming-Intro-E.xhtml" id="story6-Intro" media-type="application/xhtml+xml" />
     <item href="Text/Story6-Homecoming-PM-1.xhtml" id="story6-PM-1" media-type="application/xhtml+xml" />
@@ -130,6 +134,7 @@
     <itemref idref="Chapter6Title" />
     <itemref idref="story1-PM-1" />
     <itemref idref="story1-PM-2" />
+    <itemref idref="story1-PM-3" />
     <itemref idref="story2-PM-1" />
     <itemref idref="story2-PM-2" />
     <itemref idref="story2-PM-3" />
@@ -139,8 +144,11 @@
     <itemref idref="story4-PM-1" />
     <itemref idref="story4-PM-2" />
     <itemref idref="story4-PM-3" />
+    <itemref idref="story4-PM-4" />
     <itemref idref="story5-PM-1" />
     <itemref idref="story5-PM-2" />
+    <itemref idref="story5-PM-3" />
+    <itemref idref="story5-PM-4" />
     <itemref idref="story6-PM-1" />
     <itemref idref="story6-PM-2" />
     <itemref idref="story6-PM-3" />

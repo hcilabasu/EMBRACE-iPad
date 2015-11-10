@@ -1371,6 +1371,10 @@
 		5CCEA48119AFD13C00FCBC2C /* ComboConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCEA48019AFD13C00FCBC2C /* ComboConstraint.m */; };
 		5CD7FE3519775C1C007A1E49 /* VocabularyStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD7FE3419775C1C007A1E49 /* VocabularyStep.m */; };
 		5CD7FE3819776403007A1E49 /* Introduction.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD7FE3719776403007A1E49 /* Introduction.m */; };
+		5CD959261BF18A1E0048337E /* Story1-Key-Ingredients-PM-3.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CD959251BF18A1E0048337E /* Story1-Key-Ingredients-PM-3.xhtml */; };
+		5CD959281BF18EFA0048337E /* Story4-Shopping-at-the-Market-PM-4.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CD959271BF18EFA0048337E /* Story4-Shopping-at-the-Market-PM-4.xhtml */; };
+		5CD9592A1BF192240048337E /* Story5-A-Gift-for-the-Bride-PM-3.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CD959291BF192240048337E /* Story5-A-Gift-for-the-Bride-PM-3.xhtml */; };
+		5CD9592C1BF192FD0048337E /* Story5-A-Gift-for-the-Bride-PM-4.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CD9592B1BF192FD0048337E /* Story5-A-Gift-for-the-Bride-PM-4.xhtml */; };
 		5CE1E30E1A119DFC0070A7D6 /* circulatory.epub in Resources */ = {isa = PBXBuildFile; fileRef = 5CE1E30D1A119DFC0070A7D6 /* circulatory.epub */; };
 		5CE1E3101A119E120070A7D6 /* bestFarm.epub in Resources */ = {isa = PBXBuildFile; fileRef = 5CE1E30F1A119E120070A7D6 /* bestFarm.epub */; };
 		5CE1E3131A12D5080070A7D6 /* BFES_8B.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CE1E3111A12D5080070A7D6 /* BFES_8B.m4a */; };
@@ -3187,6 +3191,10 @@
 		5CD7FE3419775C1C007A1E49 /* VocabularyStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VocabularyStep.m; sourceTree = "<group>"; };
 		5CD7FE3619776403007A1E49 /* Introduction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Introduction.h; sourceTree = "<group>"; };
 		5CD7FE3719776403007A1E49 /* Introduction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Introduction.m; sourceTree = "<group>"; };
+		5CD959251BF18A1E0048337E /* Story1-Key-Ingredients-PM-3.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Key-Ingredients-PM-3.xhtml"; sourceTree = "<group>"; };
+		5CD959271BF18EFA0048337E /* Story4-Shopping-at-the-Market-PM-4.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Shopping-at-the-Market-PM-4.xhtml"; sourceTree = "<group>"; };
+		5CD959291BF192240048337E /* Story5-A-Gift-for-the-Bride-PM-3.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-A-Gift-for-the-Bride-PM-3.xhtml"; sourceTree = "<group>"; };
+		5CD9592B1BF192FD0048337E /* Story5-A-Gift-for-the-Bride-PM-4.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-A-Gift-for-the-Bride-PM-4.xhtml"; sourceTree = "<group>"; };
 		5CE1E30D1A119DFC0070A7D6 /* circulatory.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = circulatory.epub; path = EPUBs/circulatory/circulatory.epub; sourceTree = "<group>"; };
 		5CE1E30F1A119E120070A7D6 /* bestFarm.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = bestFarm.epub; path = EPUBs/bestFarm/bestFarm.epub; sourceTree = "<group>"; };
 		5CE1E3111A12D5080070A7D6 /* BFES_8B.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFES_8B.m4a; path = EMBRACE_Client/sounds/BFES_8B.m4a; sourceTree = SOURCE_ROOT; };
@@ -4214,6 +4222,7 @@
 				5C24BB281BE9902B00455B3C /* Story1-Key-Ingredients-Intro-E.xhtml */,
 				5C24BB291BE9902B00455B3C /* Story1-Key-Ingredients-PM-1.xhtml */,
 				5C24BB2A1BE9902B00455B3C /* Story1-Key-Ingredients-PM-2.xhtml */,
+				5CD959251BF18A1E0048337E /* Story1-Key-Ingredients-PM-3.xhtml */,
 				5C24BB2B1BE9902B00455B3C /* Story1-Key-Ingredients-Title.xhtml */,
 				5C24BB2C1BE9902B00455B3C /* Story2-Mancha-the-Horse-Intro-E.xhtml */,
 				5C24BB2D1BE9902B00455B3C /* Story2-Mancha-the-Horse-PM-1.xhtml */,
@@ -4229,10 +4238,13 @@
 				5C24BB371BE9902B00455B3C /* Story4-Shopping-at-the-Market-PM-1.xhtml */,
 				5C24BB381BE9902B00455B3C /* Story4-Shopping-at-the-Market-PM-2.xhtml */,
 				5C24BB391BE9902B00455B3C /* Story4-Shopping-at-the-Market-PM-3.xhtml */,
+				5CD959271BF18EFA0048337E /* Story4-Shopping-at-the-Market-PM-4.xhtml */,
 				5C24BB3A1BE9902B00455B3C /* Story4-Shopping-at-the-Market-Title.xhtml */,
 				5C24BB3B1BE9902B00455B3C /* Story5-A-Gift-for-the-Bride-Intro-E.xhtml */,
 				5C24BB3C1BE9902B00455B3C /* Story5-A-Gift-for-the-Bride-PM-1.xhtml */,
 				5C24BB3D1BE9902B00455B3C /* Story5-A-Gift-for-the-Bride-PM-2.xhtml */,
+				5CD959291BF192240048337E /* Story5-A-Gift-for-the-Bride-PM-3.xhtml */,
+				5CD9592B1BF192FD0048337E /* Story5-A-Gift-for-the-Bride-PM-4.xhtml */,
 				5C24BB3E1BE9902B00455B3C /* Story5-A-Gift-for-the-Bride-Title.xhtml */,
 				5C24BB3F1BE9902B00455B3C /* Story6-Homecoming-Intro-E.xhtml */,
 				5C24BB401BE9902B00455B3C /* Story6-Homecoming-PM-1.xhtml */,
@@ -6289,6 +6301,7 @@
 				1A3594091AE76129003B3B41 /* MoreIsMissingQ6A4.mp3 in Resources */,
 				1A8036311B0B1C62004A164A /* CleaningUpQ1A3.mp3 in Resources */,
 				B95228F51BA0CDAB00093528 /* Setups-MetaData.xml in Resources */,
+				5CD959261BF18A1E0048337E /* Story1-Key-Ingredients-PM-3.xhtml in Resources */,
 				5C24BBD61BE9BECE00455B3C /* champoorado.png in Resources */,
 				B952290D1BA0CDAB00093528 /* Story4-Words-of-Wisdom-PM-1.xhtml in Resources */,
 				1AFA240E1B6C4AE300C0AA53 /* Story5-The-Baby's-Rattle-is-Gone-Too-IM-2.xhtml in Resources */,
@@ -6349,6 +6362,7 @@
 				1A8036A91B0B1C62004A164A /* IntroductionToTheBestFarmQ6A3.mp3 in Resources */,
 				B9C9E9BE1B8EA0A800AFC328 /* house_noroof2.png in Resources */,
 				B952294C1BA1149700093528 /* bottle_picture.png in Resources */,
+				5CD959281BF18EFA0048337E /* Story4-Shopping-at-the-Market-PM-4.xhtml in Resources */,
 				1A80366E1B0B1C62004A164A /* GettingReadyQ1A4.mp3 in Resources */,
 				1A3594411AE76129003B3B41 /* TheMysteryIsSolvedQ4.mp3 in Resources */,
 				1A3594061AE76129003B3B41 /* MoreIsMissingQ6A1.mp3 in Resources */,
@@ -6595,6 +6609,7 @@
 				1A3330D21BA0E90A00C8293A /* p3_Rsequeeze_circle.png in Resources */,
 				1A80362F1B0B1C62004A164A /* CleaningUpQ1A1.mp3 in Resources */,
 				1A8036F01B0B1C62004A164A /* TheContestQ7A4.mp3 in Resources */,
+				5CD9592A1BF192240048337E /* Story5-A-Gift-for-the-Bride-PM-3.xhtml in Resources */,
 				5C7FE10C19A7E43C00CBBE0E /* BFCS1_4.m4a in Resources */,
 				1A80367C1B0B1C62004A164A /* GettingReadyQ4A3.mp3 in Resources */,
 				5C7FE03119A6B1B500CBBE0E /* handle_close.png in Resources */,
@@ -6748,6 +6763,7 @@
 				5CF9947519AC34550080C32F /* award.png in Resources */,
 				5C72DFFE1BDB4C690058D8D3 /* Story7-The-Three-Laws-Work-Together-PM-3.xhtml in Resources */,
 				5C4515A81BB60CFD00DC1B07 /* grey_plate_kauai.png in Resources */,
+				5CD9592C1BF192FD0048337E /* Story5-A-Gift-for-the-Bride-PM-4.xhtml in Resources */,
 				B9C9EA1D1B8EA0A800AFC328 /* Story4-Volcanoes-and-the-Making-of-Hawaii-PM-4.xhtml in Resources */,
 				1A3593FF1AE76129003B3B41 /* MoreIsMissingQ4A4.mp3 in Resources */,
 				1A3330C81BA0E90A00C8293A /* ch4_select_icon.png in Resources */,

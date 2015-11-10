@@ -32,6 +32,12 @@
                 </navLabel>
                 <content src="Text/Story1-Key-Ingredients-PM-2.xhtml"/>
             </navPoint>
+            <navPoint class="PM_MODE" id="story1-PM-3">
+                <navLabel>
+                    <text>Key Ingredients - PM</text>
+                </navLabel>
+                <content src="Text/Story1-Key-Ingredients-PM-3.xhtml"/>
+            </navPoint>
         </navPoint>
         
         <navPoint class="ChapterTitle" id="Chapter2Title" playOrder="2">
@@ -125,6 +131,12 @@
                 </navLabel>
                 <content src="Text/Story4-Shopping-at-the-Market-PM-3.xhtml"/>
             </navPoint>
+            <navPoint class="PM_MODE" id="story4-PM-4">
+                <navLabel>
+                    <text>Shopping at the Market - PM</text>
+                </navLabel>
+                <content src="Text/Story4-Shopping-at-the-Market-PM-4.xhtml"/>
+            </navPoint>
         </navPoint>
         
         <navPoint class="ChapterTitle" id="Chapter5Title" playOrder="5">
@@ -149,6 +161,18 @@
                     <text>A Gift for the Bride - PM</text>
                 </navLabel>
                 <content src="Text/Story5-A-Gift-for-the-Bride-PM-2.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story5-PM-3">
+                <navLabel>
+                    <text>A Gift for the Bride - PM</text>
+                </navLabel>
+                <content src="Text/Story5-A-Gift-for-the-Bride-PM-3.xhtml"/>
+            </navPoint>
+            <navPoint class="PM_MODE" id="story5-PM-4">
+                <navLabel>
+                    <text>A Gift for the Bride - PM</text>
+                </navLabel>
+                <content src="Text/Story5-A-Gift-for-the-Bride-PM-4.xhtml"/>
             </navPoint>
         </navPoint>
         
@@ -203,88 +227,104 @@
             <navLabel><text>Chapter 1 - Key Ingredients - Physical Manipulation 2</text></navLabel>
             <content src="Text/Story1-Key-Ingredients-PM-2.xhtml"/>
         </pageTarget>
-        
         <pageTarget id="p4" type="normal" value="4">
+            <navLabel><text>Chapter 1 - Key Ingredients - Physical Manipulation 3</text></navLabel>
+            <content src="Text/Story1-Key-Ingredients-PM-3.xhtml"/>
+        </pageTarget>
+        
+        <pageTarget id="p5" type="normal" value="5">
             <navLabel><text>Chapter 2 - Mancha the Horse - Introduction</text></navLabel>
             <content src="Text/Story2-Mancha-the-Horse-Intro-E.xhtml"/>
         </pageTarget>
-        <pageTarget id="p5" type="normal" value="5">
+        <pageTarget id="p6" type="normal" value="6">
             <navLabel><text>Chapter 2 - Mancha the Horse - Physical Manipulation 1</text></navLabel>
             <content src="Text/Story2-Mancha-the-Horse-PM-1.xhtml"/>
         </pageTarget>
-        <pageTarget id="p6" type="normal" value="6">
+        <pageTarget id="p7" type="normal" value="7">
             <navLabel><text>Chapter 2 - Mancha the Horse - Physical Manipulation 2</text></navLabel>
             <content src="Text/Story2-Mancha-the-Horse-PM-2.xhtml"/>
         </pageTarget>
-        <pageTarget id="p7" type="normal" value="7">
+        <pageTarget id="p8" type="normal" value="8">
             <navLabel><text>Chapter 2 - Mancha the Horse - Physical Manipulation 3</text></navLabel>
             <content src="Text/Story2-Mancha-the-Horse-PM-3.xhtml"/>
         </pageTarget>
         
-        <pageTarget id="p8" type="normal" value="8">
+        <pageTarget id="p9" type="normal" value="9">
             <navLabel><text>Chapter 3 - A Friend in Need - Introduction</text></navLabel>
             <content src="Text/Story3-A-Friend-in-Need-Intro-E.xhtml"/>
         </pageTarget>
-        <pageTarget id="p9" type="normal" value="9">
+        <pageTarget id="p10" type="normal" value="10">
             <navLabel><text>Chapter 3 - A Friend in Need - Physical Manipulation 1</text></navLabel>
             <content src="Text/Story3-A-Friend-in-Need-PM-1.xhtml"/>
         </pageTarget>
-        <pageTarget id="p10" type="normal" value="10">
+        <pageTarget id="p11" type="normal" value="11">
             <navLabel><text>Chapter 3 - A Friend in Need - Physical Manipulation 2</text></navLabel>
             <content src="Text/Story3-A-Friend-in-Need-PM-2.xhtml"/>
         </pageTarget>
-        <pageTarget id="p11" type="normal" value="11">
+        <pageTarget id="p12" type="normal" value="12">
             <navLabel><text>Chapter 3 - A Friend in Need - Physical Manipulation 3</text></navLabel>
             <content src="Text/Story3-A-Friend-in-Need-PM-3.xhtml"/>
         </pageTarget>
         
-        <pageTarget id="p12" type="normal" value="12">
+        <pageTarget id="p13" type="normal" value="13">
             <navLabel><text>Chapter 4 - Shopping at the Market - Introduction</text></navLabel>
             <content src="Text/Story4-Shopping-at-the-Market-Intro-E.xhtml"/>
         </pageTarget>
-        <pageTarget id="p13" type="normal" value="13">
+        <pageTarget id="p14" type="normal" value="14">
             <navLabel><text>Chapter 4 - Shopping at the Market - Physical Manipulation 1</text></navLabel>
             <content src="Text/Story4-Shopping-at-the-Market-PM-1.xhtml"/>
         </pageTarget>
-        <pageTarget id="p14" type="normal" value="14">
+        <pageTarget id="p15" type="normal" value="15">
             <navLabel><text>Chapter 4 - Shopping at the Market - Physical Manipulation 2</text></navLabel>
             <content src="Text/Story4-Shopping-at-the-Market-PM-2.xhtml"/>
         </pageTarget>
-        <pageTarget id="p15" type="normal" value="15">
+        <pageTarget id="p16" type="normal" value="16">
             <navLabel><text>Chapter 4 - Shopping at the Market - Physical Manipulation 3</text></navLabel>
             <content src="Text/Story4-Shopping-at-the-Market-PM-3.xhtml"/>
         </pageTarget>
+        <pageTarget id="p17" type="normal" value="17">
+            <navLabel><text>Chapter 4 - Shopping at the Market - Physical Manipulation 4</text></navLabel>
+            <content src="Text/Story4-Shopping-at-the-Market-PM-4.xhtml"/>
+        </pageTarget>
         
-        <pageTarget id="p16" type="normal" value="16">
+        <pageTarget id="p18" type="normal" value="18">
             <navLabel><text>Chapter 5 - A Gift for the Bride - Introduction</text></navLabel>
             <content src="Text/Story5-A-Gift-for-the-Bride-Intro-E.xhtml"/>
         </pageTarget>
-        <pageTarget id="p17" type="normal" value="17">
+        <pageTarget id="p19" type="normal" value="19">
             <navLabel><text>Chapter 5 - A Gift for the Bride - Physical Manipulation 1</text></navLabel>
             <content src="Text/Story5-A-Gift-for-the-Bride-PM-1.xhtml"/>
         </pageTarget>
-        <pageTarget id="p18" type="normal" value="18">
+        <pageTarget id="p20" type="normal" value="20">
             <navLabel><text>Chapter 5 - A Gift for the Bride - Physical Manipulation 2</text></navLabel>
             <content src="Text/Story5-A-Gift-for-the-Bride-PM-2.xhtml"/>
         </pageTarget>
+        <pageTarget id="p21" type="normal" value="21">
+            <navLabel><text>Chapter 5 - A Gift for the Bride - Physical Manipulation 3</text></navLabel>
+            <content src="Text/Story5-A-Gift-for-the-Bride-PM-3.xhtml"/>
+        </pageTarget>
+        <pageTarget id="p22" type="normal" value="22">
+            <navLabel><text>Chapter 5 - A Gift for the Bride - Physical Manipulation 4</text></navLabel>
+            <content src="Text/Story5-A-Gift-for-the-Bride-PM-4.xhtml"/>
+        </pageTarget>
         
-        <pageTarget id="p19" type="normal" value="19">
+        <pageTarget id="p23" type="normal" value="23">
             <navLabel><text>Chapter 6 - Homecoming - Introduction</text></navLabel>
             <content src="Text/Story6-Homecoming-Intro-E.xhtml"/>
         </pageTarget>
-        <pageTarget id="p20" type="normal" value="20">
+        <pageTarget id="p24" type="normal" value="24">
             <navLabel><text>Chapter 6 - Homecoming - Physical Manipulation 1</text></navLabel>
             <content src="Text/Story6-Homecoming-PM-1.xhtml"/>
         </pageTarget>
-        <pageTarget id="p21" type="normal" value="21">
+        <pageTarget id="p25" type="normal" value="25">
             <navLabel><text>Chapter 6 - Homecoming - Physical Manipulation 2</text></navLabel>
             <content src="Text/Story6-Homecoming-PM-2.xhtml"/>
         </pageTarget>
-        <pageTarget id="p22" type="normal" value="22">
+        <pageTarget id="p26" type="normal" value="26">
             <navLabel><text>Chapter 6 - Homecoming - Physical Manipulation 3</text></navLabel>
             <content src="Text/Story6-Homecoming-PM-3.xhtml"/>
         </pageTarget>
-        <pageTarget id="p23" type="normal" value="23">
+        <pageTarget id="p27" type="normal" value="27">
             <navLabel><text>Chapter 6 - Homecoming - Physical Manipulation 4</text></navLabel>
             <content src="Text/Story6-Homecoming-PM-4.xhtml"/>
         </pageTarget>
