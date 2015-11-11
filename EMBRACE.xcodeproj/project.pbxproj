@@ -880,6 +880,7 @@
 		5C64311D1BF2BFBD00FD7E2D /* rocketflame_rotate.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C6431181BF2BFBD00FD7E2D /* rocketflame_rotate.png */; };
 		5C64311E1BF2BFBD00FD7E2D /* skateboard_rotate.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C6431191BF2BFBD00FD7E2D /* skateboard_rotate.png */; };
 		5C64311F1BF2BFBD00FD7E2D /* smallrocket_rotate.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C64311A1BF2BFBD00FD7E2D /* smallrocket_rotate.png */; };
+		5C6431211BF2F77700FD7E2D /* calf_flipped.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C6431201BF2F77700FD7E2D /* calf_flipped.png */; };
 		5C72DFFA1BDB2FFA0058D8D3 /* Story6-Newton's-Third-Law-Forces-are-Paired-PM-3.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C72DFF91BDB2FFA0058D8D3 /* Story6-Newton's-Third-Law-Forces-are-Paired-PM-3.xhtml */; };
 		5C72DFFC1BDB33830058D8D3 /* Story6-Newton's-Third-Law-Forces-are-Paired-PM-4.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C72DFFB1BDB33830058D8D3 /* Story6-Newton's-Third-Law-Forces-are-Paired-PM-4.xhtml */; };
 		5C72DFFE1BDB4C690058D8D3 /* Story7-The-Three-Laws-Work-Together-PM-3.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C72DFFD1BDB4C690058D8D3 /* Story7-The-Three-Laws-Work-Together-PM-3.xhtml */; };
@@ -2704,6 +2705,7 @@
 		5C6431181BF2BFBD00FD7E2D /* rocketflame_rotate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rocketflame_rotate.png; sourceTree = "<group>"; };
 		5C6431191BF2BFBD00FD7E2D /* skateboard_rotate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skateboard_rotate.png; sourceTree = "<group>"; };
 		5C64311A1BF2BFBD00FD7E2D /* smallrocket_rotate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallrocket_rotate.png; sourceTree = "<group>"; };
+		5C6431201BF2F77700FD7E2D /* calf_flipped.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calf_flipped.png; sourceTree = "<group>"; };
 		5C72DFF91BDB2FFA0058D8D3 /* Story6-Newton's-Third-Law-Forces-are-Paired-PM-3.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story6-Newton's-Third-Law-Forces-are-Paired-PM-3.xhtml"; sourceTree = "<group>"; };
 		5C72DFFB1BDB33830058D8D3 /* Story6-Newton's-Third-Law-Forces-are-Paired-PM-4.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story6-Newton's-Third-Law-Forces-are-Paired-PM-4.xhtml"; sourceTree = "<group>"; };
 		5C72DFFD1BDB4C690058D8D3 /* Story7-The-Three-Laws-Work-Together-PM-3.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story7-The-Three-Laws-Work-Together-PM-3.xhtml"; sourceTree = "<group>"; };
@@ -4163,6 +4165,7 @@
 		5C24BAEA1BE9902B00455B3C /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5C6431201BF2F77700FD7E2D /* calf_flipped.png */,
 				5C6431081BF2B2A800FD7E2D /* mom_full_hands_out.png */,
 				5C6431091BF2B2A800FD7E2D /* mom_tote.png */,
 				5C64310A1BF2B2A800FD7E2D /* sofia_hands_out.png */,
@@ -7098,6 +7101,7 @@
 				5C64311B1BF2BFBD00FD7E2D /* bigrocket_rotate.png in Resources */,
 				B9C9E9941B8EA0A800AFC328 /* ash_01.png in Resources */,
 				1A695CCA1AD4EB9C006A2284 /* TheLopezFamilyQ1A4.mp3 in Resources */,
+				5C6431211BF2F77700FD7E2D /* calf_flipped.png in Resources */,
 				5C4EC3EB1BBB53BE009D9E82 /* lava2.png in Resources */,
 				5C24BB8B1BE9902B00455B3C /* Relationships-MetaData.xml in Resources */,
 				1A8036CC1B0B1C62004A164A /* TheBestFarmAwardQ6A3.mp3 in Resources */,

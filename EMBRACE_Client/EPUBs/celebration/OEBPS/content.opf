@@ -20,6 +20,7 @@
     <item href="Images/bg_market.png" id="bg_market.png" media-type="image/png" />
     <item href="Images/bridle.png" id="bridle.png" media-type="image/png" />
     <item href="Images/calf.png" id="calf.png" media-type="image/png" />
+    <item href="Images/calf_flipped.png" id="calf_flipped.png" media-type="image/png" />
     <item href="Images/champoorado.png" id="champoorado.png" media-type="image/png" />
     <item href="Images/chili.png" id="chili.png" media-type="image/png" />
     <item href="Images/counter_empty.png" id="counter_empty.png" media-type="image/png" />
