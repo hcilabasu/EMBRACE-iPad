@@ -20,11 +20,13 @@
             <sentence number="5">
                 <step number="1">
                     <check obj1Id="smallrocket" action="getIn" locationId="up"/>
+                    <swapImage obj1Id="smallrocket" action="rotateUp"/>
                 </step>
             </sentence>
             <sentence number="6">
                 <step number="1">
                     <shakeOrTap obj1Id="smallrocket" action="getIn" locationId="anywhere"/>
+                    <swapImage obj1Id="smallrocket" action="rotateDown"/>
                 </step>
             </sentence>
             <sentence number="7">

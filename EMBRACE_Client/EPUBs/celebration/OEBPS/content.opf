@@ -53,6 +53,8 @@
     <item href="Images/milk.png" id="milk.png" media-type="image/png" />
     <item href="Images/mom_counter.png" id="mom_counter.png" media-type="image/png" />
     <item href="Images/mom_full.png" id="mom_full.png" media-type="image/png" />
+    <item href="Images/mom_full_hands_out.png" id="mom_full_hands_out.png" media-type="image/png" />
+    <item href="Images/mom_tote.png" id="mom_tote.png" media-type="image/png" />
     <item href="Images/money.png" id="money.png" media-type="image/png" />
     <item href="Images/notebook.png" id="notebook.png" media-type="image/png" />
     <item href="Images/roses_pink.png" id="roses_pink.png" media-type="image/png" />
@@ -62,14 +64,19 @@
     <item href="Images/scale_weighed_down.png" id="scale_weighed_down.png" media-type="image/png" />
     <item href="Images/sofia_empty_tote.png" id="sofia_empty_tote.png" media-type="image/png" />
     <item href="Images/sofia_full_tote.png" id="sofia_full_tote.png" media-type="image/png" />
+    <item href="Images/sofia_hands_out.png" id="sofia_hands_out.png" media-type="image/png" />
     <item href="Images/sofia_horse.png" id="sofia_horse.png" media-type="image/png" />
     <item href="Images/sofia_on_horse2.png" id="sofia_on_horse2.png" media-type="image/png" />
     <item href="Images/sofia_on_mancha.png" id="sofia_on_mancha.png" media-type="image/png" />
     <item href="Images/sofia_spoon.png" id="sofia_spoon.png" media-type="image/png" />
+    <item href="Images/sofia_spoon_down.png" id="sofia_spoon_down.png" media-type="image/png" />
+    <item href="Images/sofia_spoon_up.png" id="sofia_spoon_up.png" media-type="image/png" />
     <item href="Images/sofia_standing.png" id="sofia_standing.png" media-type="image/png" />
+    <item href="Images/sofia_standing2.png" id="sofia_standing2.png" media-type="image/png" />
     <item href="Images/sofia_stool.png" id="sofia_stool.png" media-type="image/png" />
     <item href="Images/sofia.png" id="sofia.png" media-type="image/png" />
     <item href="Images/spinach.png" id="spinach.png" media-type="image/png" />
+    <item href="Images/stool.png" id="stool.png" media-type="image/png" />
     <item href="Images/tomatillos.png" id="tomatillos.png" media-type="image/png" />
     <item href="Images/tote_for_scale.png" id="tote_for_scale.png" media-type="image/png" />
     <item href="Images/vase_empty.png" id="vase_empty.png" media-type="image/png" />

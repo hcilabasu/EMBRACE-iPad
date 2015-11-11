@@ -8,12 +8,14 @@
         <alternateImage objId="horse" action="withCart" originalSrc="horse.png" alternateSrc="horse_cart.png" width="500px" x="50%" y="43%" class="manipulationObject" z="2"/>
         <alternateImage objId="juan_rowing" action="appear" originalSrc="juan_rowing2.png" alternateSrc="juan_rowing2.png" width="262px" x="7.666016%" y="41.903408%" class="manipulationObject" z=""/>
         <alternateImage objId="juan_rowing" action="pushBack" originalSrc="juan_rowing2.png" alternateSrc="juan_rowing.png" width="262px" x="56.445312%" y="41.903408%" class="manipulationObject" z=""/>
-        <alternateImage objId="maria" action="fall" originalSrc="maria_skateboard.png" alternateSrc="maria_fall.png" width="221.2px" x="37.814453%" y="40.198864%" class="manipulationObject" z="1"/>
+        <alternateImage objId="maria" action="fall" originalSrc="maria_rotate.png" alternateSrc="maria_fall.png" width="221.2px" x="37.814453%" y="40.198864%" class="manipulationObject" z="1"/>
         <alternateImage objId="maria" action="footBack" originalSrc="maria_push.png" alternateSrc="maria_leg.png" width="152px" x="11.767578%" y="34.872158%" class="manipulationObject" z=""/>
         <alternateImage objId="maria" action="footOnGround" originalSrc="maria_helmet.png" alternateSrc="maria_push.png" width="133.6px" x="0%" y="36%" class="manipulationObject" z=""/>
         <alternateImage objId="maria" action="withSkateboard" originalSrc="maria_helmet.png" alternateSrc="maria_skateboard.png" width="133.6px" x="29.345703%" y="59.730114%" class="manipulationObject" z=""/>
         <alternateImage objId="sara" action="withSkateboard" originalSrc="sara_helmet.png" alternateSrc="sara_skateboard.png" width="142.4px" x="51.904297%" y="63.352276%" class="manipulationObject" z=""/>
-        <alternateImage objId="skateboard_maria" action="appear" originalSrc="skateboard.png" alternateSrc="skateboard.png" width="115.2px" x="35.351562%" y="74.076706%" class="manipulationObject" z=""/>
+        <alternateImage objId="skateboard_maria" action="appear" originalSrc="skateboard_rotate.png" alternateSrc="skateboard_rotate.png" width="115.2px" x="35.351562%" y="74.076706%" class="manipulationObject" z=""/>
+        <alternateImage objId="smallrocket" action="rotateDown" originalSrc="smallrocket_rotate.png" alternateSrc="smallrocket.png" width="50px" x="6.542969%" y="16.832386%" class="manipulationObject" z=""/>
+        <alternateImage objId="smallrocket" action="rotateUp" originalSrc="smallrocket.png" alternateSrc="smallrocket_rotate.png" width="35.42px" x="6.542969%" y="16.832386%" class="manipulationObject" z=""/>
         <alternateImage objId="smallrocket" action="shootFlame" originalSrc="smallrocket.png" alternateSrc="rocket_flame.png" width="139.16px" x="6.542969%" y="16.832386%" class="manipulationObject" z=""/>
     </alternateImages>
 </metadata>
