@@ -42,17 +42,16 @@ NSTimer* timer; //Controls the timing of the audio file that is playing
 // Create an instance of  ConditionSetup
 ConditionSetup *conditionSetup;
 
-- (id)init {
+-(id)initWithParams:(PlayAudioFile*) audioPlayerClass : (BuildHTMLString*) buildStringClass : (ConditionSetup*) conditionSetupClass{
     self = [super init];
     
     if (self) {
-        buildHTMLStringClass = [[BuildHTMLString alloc]init];
-        playAudioFileClass = [[PlayAudioFile alloc]init];
-        conditionSetup = [[ConditionSetup alloc] init];
+        buildHTMLStringClass = buildStringClass;
+        playAudioFileClass = audioPlayerClass;
+        conditionSetup = conditionSetupClass;
         STEPS_TO_SWITCH_LANGUAGES_CONTROL = 11;
         STEPS_TO_SWITCH_LANGUAGES_EMBRACE = 12;
         languageString = @"E";
-        
     }
     
     return self;
@@ -161,7 +160,7 @@ ConditionSetup *conditionSetup;
     }
     
     //Play introduction audio
-    [playAudioFileClass playAudioFile:pmviewController:audio];
+    [self.playAudioFileClass playAudioFile:pmviewController:audio];
     
     //Logging added by James for Introduction Audio
     //[[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Introduction Audio" : languageString :audio :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
@@ -256,10 +255,10 @@ ConditionSetup *conditionSetup;
         if (currentVocabStep == 1 && ([chapterTitle isEqualToString:@"The Contest"] ||
                                       [chapterTitle isEqualToString:@"Why We Breathe"])) {
             if((conditionSetup.language ==BILINGUAL)) {
-                [playAudioFileClass playAudioFile:pmviewController:audioSpanish];
+                [self.playAudioFileClass playAudioFile:pmviewController:audioSpanish];
             } else {
                 //Play introduction audio
-                [playAudioFileClass playAudioFile:pmviewController:audio];
+                [self.playAudioFileClass playAudioFile:pmviewController:audio];
             }
     
             //Logging added by James for Word Audio
@@ -274,12 +273,12 @@ ConditionSetup *conditionSetup;
             {
                 if((conditionSetup.language == BILINGUAL))
                 {
-                    [playAudioFileClass playAudioFile:pmviewController:nextAudioSpanish];
+                    [self.playAudioFileClass playAudioFile:pmviewController:nextAudioSpanish];
                 }
                 else
                 {
                     //Play introduction audio
-                    [playAudioFileClass playAudioFile:pmviewController:nextAudio];
+                    [self.playAudioFileClass playAudioFile:pmviewController:nextAudio];
                 }
                 currentVocabStep++;
             }
@@ -298,10 +297,10 @@ ConditionSetup *conditionSetup;
                 nextIntro = nextIntroInput;
     
                 if((conditionSetup.language ==BILINGUAL)) {
-                    [playAudioFileClass playAudioFile:pmviewController:nextAudioSpanish];
+                    [self.playAudioFileClass playAudioFile:pmviewController:nextAudioSpanish];
                 } else {
                     //Play introduction audio
-                    [playAudioFileClass playAudioFile:pmviewController:nextAudio];
+                    [self.playAudioFileClass playAudioFile:pmviewController:nextAudio];
                 }
             }
         }
@@ -330,6 +329,16 @@ ConditionSetup *conditionSetup;
         performedActions = [NSArray arrayWithObjects: expectedSelection, expectedIntroAction, expectedIntroInput, nil];
     
         return performedActions;
+}
+
+#pragma mark - Responding to gestures
+/*
+ * User pressed Back button. Write log data to file.
+ */
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.playAudioFileClass stopPlayAudioFile];
+    [super viewWillDisappear:animated];
 }
 
 @end

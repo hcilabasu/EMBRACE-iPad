@@ -62,8 +62,8 @@
 
 /* Plays an audio file at a given path */
 -(void) playAudioFile:(UIViewController*) viewController : (NSString*) path {
-    PmviewController = [[UIViewController alloc] init];
-    PmviewController = viewController;
+    //PmviewController = [[UIViewController alloc] init];
+    self.PmviewController = viewController;
     [viewController.view setUserInteractionEnabled:NO];
     
     [self initPlayer:path];
@@ -94,8 +94,8 @@
     NSString *soundFilePath2 = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], path2];
     NSURL *soundFileURL2 = [NSURL fileURLWithPath:soundFilePath2];
     
-    PmviewController = [[UIViewController alloc] init];
-    PmviewController = viewController;
+    //PmviewController = [[UIViewController alloc] init];
+    self.PmviewController = viewController;
     [viewController.view setUserInteractionEnabled:NO];
     
     self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&audioError];
