@@ -820,7 +820,7 @@
 		5C24BC041BE9BF9500455B3C /* sofia_horse.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24BBF81BE9BF9500455B3C /* sofia_horse.png */; };
 		5C24BC051BE9BF9500455B3C /* cow2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24BBF91BE9BF9500455B3C /* cow2.png */; };
 		5C24BC061BE9BF9500455B3C /* emilio_horse.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24BBFA1BE9BF9500455B3C /* emilio_horse.png */; };
-		5C24BC191BE9C02A00455B3C /* 50_pesos.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24BC071BE9C02A00455B3C /* 50_pesos.png */; };
+		5C24BC191BE9C02A00455B3C /* pesos.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24BC071BE9C02A00455B3C /* pesos.png */; };
 		5C24BC1A1BE9C02A00455B3C /* bg_market.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24BC081BE9C02A00455B3C /* bg_market.png */; };
 		5C24BC1B1BE9C02A00455B3C /* garlic.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24BC091BE9C02A00455B3C /* garlic.png */; };
 		5C24BC1C1BE9C02A00455B3C /* mancha_eating_grass.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24BC0A1BE9C02A00455B3C /* mancha_eating_grass.png */; };
@@ -1429,6 +1429,7 @@
 		5CE299F619B5C5C500675CB0 /* BFCE7_1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CE299F419B5C5C500675CB0 /* BFCE7_1.m4a */; };
 		5CE299F719B5C5C500675CB0 /* judgeE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CE299F519B5C5C500675CB0 /* judgeE.m4a */; };
 		5CE299FA19B5C71E00675CB0 /* BFCE7_4.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5CE299F819B5C71E00675CB0 /* BFCE7_4.m4a */; };
+		5CE301631BF5645C007B9A17 /* cow_bw_flipped.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CE301621BF5645C007B9A17 /* cow_bw_flipped.png */; };
 		5CE5D2731BD9A2900053B038 /* bigrocket.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CE5D2701BD9A2900053B038 /* bigrocket.png */; };
 		5CE5D2741BD9A2900053B038 /* rocket_flame.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CE5D2711BD9A2900053B038 /* rocket_flame.png */; };
 		5CE5D2751BD9A2900053B038 /* smallrocket.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CE5D2721BD9A2900053B038 /* smallrocket.png */; };
@@ -2643,7 +2644,7 @@
 		5C24BBF81BE9BF9500455B3C /* sofia_horse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sofia_horse.png; sourceTree = "<group>"; };
 		5C24BBF91BE9BF9500455B3C /* cow2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cow2.png; sourceTree = "<group>"; };
 		5C24BBFA1BE9BF9500455B3C /* emilio_horse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emilio_horse.png; sourceTree = "<group>"; };
-		5C24BC071BE9C02A00455B3C /* 50_pesos.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 50_pesos.png; sourceTree = "<group>"; };
+		5C24BC071BE9C02A00455B3C /* pesos.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pesos.png; sourceTree = "<group>"; };
 		5C24BC081BE9C02A00455B3C /* bg_market.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_market.png; sourceTree = "<group>"; };
 		5C24BC091BE9C02A00455B3C /* garlic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = garlic.png; sourceTree = "<group>"; };
 		5C24BC0A1BE9C02A00455B3C /* mancha_eating_grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mancha_eating_grass.png; sourceTree = "<group>"; };
@@ -3264,6 +3265,7 @@
 		5CE299F419B5C5C500675CB0 /* BFCE7_1.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCE7_1.m4a; path = EMBRACE_Client/sounds/BFCE7_1.m4a; sourceTree = SOURCE_ROOT; };
 		5CE299F519B5C5C500675CB0 /* judgeE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = judgeE.m4a; path = EMBRACE_Client/sounds/judgeE.m4a; sourceTree = SOURCE_ROOT; };
 		5CE299F819B5C71E00675CB0 /* BFCE7_4.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFCE7_4.m4a; path = EMBRACE_Client/sounds/BFCE7_4.m4a; sourceTree = SOURCE_ROOT; };
+		5CE301621BF5645C007B9A17 /* cow_bw_flipped.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cow_bw_flipped.png; sourceTree = "<group>"; };
 		5CE5D2701BD9A2900053B038 /* bigrocket.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigrocket.png; sourceTree = "<group>"; };
 		5CE5D2711BD9A2900053B038 /* rocket_flame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rocket_flame.png; sourceTree = "<group>"; };
 		5CE5D2721BD9A2900053B038 /* smallrocket.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallrocket.png; sourceTree = "<group>"; };
@@ -4165,15 +4167,8 @@
 		5C24BAEA1BE9902B00455B3C /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				5C6431201BF2F77700FD7E2D /* calf_flipped.png */,
-				5C6431081BF2B2A800FD7E2D /* mom_full_hands_out.png */,
-				5C6431091BF2B2A800FD7E2D /* mom_tote.png */,
-				5C64310A1BF2B2A800FD7E2D /* sofia_hands_out.png */,
-				5C64310B1BF2B2A800FD7E2D /* sofia_spoon_down.png */,
-				5C64310C1BF2B2A800FD7E2D /* sofia_spoon_up.png */,
-				5C64310D1BF2B2A800FD7E2D /* sofia_standing2.png */,
-				5C64310E1BF2B2A800FD7E2D /* stool.png */,
-				5C24BC071BE9C02A00455B3C /* 50_pesos.png */,
+				5CE301621BF5645C007B9A17 /* cow_bw_flipped.png */,
+				5C24BC071BE9C02A00455B3C /* pesos.png */,
 				5C24BBCB1BE9BECE00455B3C /* bag.png */,
 				5C735D261BED8E1300F2295A /* bg_balloon_kitchen_door.png */,
 				5C24BBDD1BE9BF1800455B3C /* bg_barn.png */,
@@ -4185,6 +4180,7 @@
 				5C24BBCC1BE9BECE00455B3C /* bg_kitchen.png */,
 				5C24BC081BE9C02A00455B3C /* bg_market.png */,
 				5C24BBDE1BE9BF1800455B3C /* bridle.png */,
+				5C6431201BF2F77700FD7E2D /* calf_flipped.png */,
 				5C24BBF01BE9BF9500455B3C /* calf.png */,
 				5C24BBCD1BE9BECE00455B3C /* champoorado.png */,
 				5C24BBCE1BE9BECE00455B3C /* chili.png */,
@@ -4218,7 +4214,9 @@
 				5C24BC0E1BE9C02A00455B3C /* mangos.png */,
 				5C24BC0F1BE9C02A00455B3C /* milk.png */,
 				5C24BBD01BE9BECE00455B3C /* mom_counter.png */,
+				5C6431081BF2B2A800FD7E2D /* mom_full_hands_out.png */,
 				5C24BC351BE9C0CB00455B3C /* mom_full.png */,
+				5C6431091BF2B2A800FD7E2D /* mom_tote.png */,
 				5C24BBD11BE9BECE00455B3C /* money.png */,
 				5C24BBD21BE9BECE00455B3C /* notebook.png */,
 				5C24BC2D1BE9C08D00455B3C /* roses_pink.png */,
@@ -4228,14 +4226,19 @@
 				5C24BC151BE9C02A00455B3C /* scale_weighed_down.png */,
 				5C24BC161BE9C02A00455B3C /* sofia_empty_tote.png */,
 				5C24BC171BE9C02A00455B3C /* sofia_full_tote.png */,
+				5C64310A1BF2B2A800FD7E2D /* sofia_hands_out.png */,
 				5C24BBF81BE9BF9500455B3C /* sofia_horse.png */,
 				5C24BC101BE9C02A00455B3C /* sofia_on_horse2.png */,
 				5C24BBE41BE9BF1800455B3C /* sofia_on_mancha.png */,
+				5C64310B1BF2B2A800FD7E2D /* sofia_spoon_down.png */,
+				5C64310C1BF2B2A800FD7E2D /* sofia_spoon_up.png */,
 				5C24BBD31BE9BECE00455B3C /* sofia_spoon.png */,
 				5C24BC181BE9C02A00455B3C /* sofia_standing.png */,
+				5C64310D1BF2B2A800FD7E2D /* sofia_standing2.png */,
 				5C24BC361BE9C0CB00455B3C /* sofia_stool.png */,
 				5C24BBE51BE9BF1800455B3C /* sofia.png */,
 				5C24BC111BE9C02A00455B3C /* spinach.png */,
+				5C64310E1BF2B2A800FD7E2D /* stool.png */,
 				5C24BC121BE9C02A00455B3C /* tomatillos.png */,
 				5C24BC131BE9C02A00455B3C /* tote_for_scale.png */,
 				5C24BC371BE9C0CB00455B3C /* vase_empty.png */,
@@ -6485,7 +6488,7 @@
 				5CF655C119AEACF0000AC913 /* Story5-The-Wise-Owl-Intro-E.xhtml in Resources */,
 				B9C9E9B21B8EA0A800AFC328 /* ch4_test_09.png in Resources */,
 				1A3594301AE76129003B3B41 /* TheFamilyIsRattledQ6A3.mp3 in Resources */,
-				5C24BC191BE9C02A00455B3C /* 50_pesos.png in Resources */,
+				5C24BC191BE9C02A00455B3C /* pesos.png in Resources */,
 				1A2D70A61AAA74FA009E7B5B /* Story-4-Good-Morning-Smiths.png in Resources */,
 				1A2D709D1AAA74FA009E7B5B /* man.png in Resources */,
 				1A3593F31AE76129003B3B41 /* MoreIsMissingQ2A2.mp3 in Resources */,
@@ -7624,6 +7627,7 @@
 				1A695C941AD4D9C1006A2284 /* TheLopezFamilyS0S.mp3 in Resources */,
 				1A3593F41AE76129003B3B41 /* MoreIsMissingQ2A3.mp3 in Resources */,
 				5C7FE0F519A7E43C00CBBE0E /* BFCE_1.m4a in Resources */,
+				5CE301631BF5645C007B9A17 /* cow_bw_flipped.png in Resources */,
 				5C24BB8F1BE9902B00455B3C /* IMStyle.css in Resources */,
 				5C776C1B19C94C8C000DBC65 /* shinyS.m4a in Resources */,
 				5CF9947119AC34550080C32F /* mimetype in Resources */,

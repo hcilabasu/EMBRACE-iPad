@@ -7,7 +7,6 @@
         <dc:title>A Celebration to Remember</dc:title>
     </metadata>
   <manifest>
-    <item href="Images/50_pesos.png" id="50_pesos.png" media-type="image/png" />
     <item href="Images/bag.png" id="bag.png" media-type="image/png" />
     <item href="Images/bg_balloon_kitchen_door.png" id="bg_balloon_kitchen_door.png" media-type="image/png" />
     <item href="Images/bg_barn.png" id="bg_barn.png" media-type="image/png" />
@@ -25,6 +24,7 @@
     <item href="Images/chili.png" id="chili.png" media-type="image/png" />
     <item href="Images/counter_empty.png" id="counter_empty.png" media-type="image/png" />
     <item href="Images/cow_bw.png" id="cow_bw.png" media-type="image/png" />
+    <item href="Images/cow_bw_flipped.png" id="cow_bw_flipped.png" media-type="image/png" />
     <item href="Images/cow2.png" id="cow2.png" media-type="image/png" />
     <item href="Images/cow3.png" id="cow3.png" media-type="image/png" />
     <item href="Images/cow4.png" id="cow4.png" media-type="image/png" />
@@ -58,6 +58,7 @@
     <item href="Images/mom_tote.png" id="mom_tote.png" media-type="image/png" />
     <item href="Images/money.png" id="money.png" media-type="image/png" />
     <item href="Images/notebook.png" id="notebook.png" media-type="image/png" />
+    <item href="Images/pesos.png" id="pesos.png" media-type="image/png" />
     <item href="Images/roses_pink.png" id="roses_pink.png" media-type="image/png" />
     <item href="Images/roses_white.png" id="roses_white.png" media-type="image/png" />
     <item href="Images/saddle.png" id="saddle.png" media-type="image/png" />
