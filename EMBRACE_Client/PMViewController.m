@@ -124,14 +124,15 @@ BOOL wasPathFollowed = false;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //creates instance of introduction class
-    IntroductionClass = [[IntroductionViewController alloc]init];
+    
     //creates an instance of condition setup class
     conditionSetup = [[ConditionSetup alloc] init];
     //creates an instance of buildstringclass
     buildstringClass = [[BuildHTMLString alloc]init];
     //creates an instance of playaudioclass
     playaudioClass = [[PlayAudioFile alloc]init];
+    //creates instance of introduction class
+    IntroductionClass = [[IntroductionViewController alloc]initWithParams:playaudioClass : buildstringClass : conditionSetup];
     
     if (conditionSetup.condition == CONTROL) {
         currentMode = IM_MODE;
@@ -386,7 +387,7 @@ BOOL wasPathFollowed = false;
         }
         
         //add shape layer to view's layer
-        [[self.view layer] addSublayer:path];
+        //[[self.view layer] addSublayer:path];
     }
 }
 
@@ -1363,7 +1364,7 @@ BOOL wasPathFollowed = false;
                         IntroductionClass.currentVocabStep++;
                         
                         // This delay is needed in order to be able to play the last definition on a vocabulary page
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW,4*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW,7*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                             [IntroductionClass loadVocabStep:bookView:self:currentSentence:chapterTitle];
                             
                         });
@@ -1996,13 +1997,16 @@ BOOL wasPathFollowed = false;
                 CGPoint pointLocation = [recognizer locationInView:recognizer.view];
                 
                 if (!path) {
+                    
                     path = [UIBezierPath bezierPath];
                     [path moveToPoint:pointLocation];
+                    /*
                     shapeLayer = [[CAShapeLayer alloc] init];
                     shapeLayer.strokeColor = [self generateRandomColor].CGColor;
                     shapeLayer.fillColor = [UIColor clearColor].CGColor;
                     shapeLayer.lineWidth = 10.0;
                     [recognizer.view.layer addSublayer:shapeLayer];
+                     */
                 }
                 else {
                     [path addLineToPoint:pointLocation];

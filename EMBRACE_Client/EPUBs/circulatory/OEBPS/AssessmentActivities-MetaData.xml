@@ -178,7 +178,7 @@
                 <expectedSelection>into the blood in the veins</expectedSelection>
             </Question>
             <Question number="4">
-                <QuestionText>When the heart beats, where does blood frmo the muscles go to first?</QuestionText>
+                <QuestionText>When the heart beats, where does blood from the muscles go to first?</QuestionText>
                 <QuestionAudio>MusclesUseOxygenQ4.mp3</QuestionAudio>
                 <Answer1>heart</Answer1>
                 <Answer1Audio>MusclesUseOxygenQ4A1.mp3</Answer1Audio>

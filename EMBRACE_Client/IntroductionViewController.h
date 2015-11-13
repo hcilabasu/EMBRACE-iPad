@@ -53,6 +53,7 @@ typedef enum Action {
 @property(nonatomic, strong) NSString* currentAudio; //Used to store the current vocab audio file to be played
 @property(nonatomic,strong) NSString* languageString; //Defines the languange to be used 'E' for English 'S' for Spanish
 
+-(id) initWithParams: (PlayAudioFile*) audplayer : (BuildHTMLString*) buildStringClass : (ConditionSetup*) conditionSetupClass;
 -(void) startIntroduction;
 -(void) loadFirstPageIntroduction: (InteractionModel *) model : (NSString *) chapterTitle;
 -(void) loadFirstPageVocabulary: (InteractionModel *) model : (NSString *) chapterTitle;
