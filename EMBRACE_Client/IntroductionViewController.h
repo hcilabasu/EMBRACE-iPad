@@ -56,8 +56,8 @@ typedef enum Action {
 -(void) startIntroduction;
 -(void) loadFirstPageIntroduction: (InteractionModel *) model : (NSString *) chapterTitle;
 -(void) loadFirstPageVocabulary: (InteractionModel *) model : (NSString *) chapterTitle;
--(NSArray*) loadIntroStep: (UIWebView *) bookView : (NSUInteger) currentSentence;
--(NSArray*) loadVocabStep: (UIWebView *) bookView : (NSUInteger) currentSentence : (NSString *) chapterTitle;
+-(NSArray*) loadIntroStep: (UIWebView *) bookView : (UIViewController*) pmviewController : (NSUInteger) currentSentence;
+-(NSArray*) loadVocabStep: (UIWebView *) bookView : (UIViewController*) pmviewController : (NSUInteger) currentSentence : (NSString *) chapterTitle;
 
 
 @end

@@ -223,6 +223,7 @@
 		1A880E851BD6E4980020F93B /* WhyWeBreatheQ5A2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A880DFE1BD6E4980020F93B /* WhyWeBreatheQ5A2.mp3 */; };
 		1A880E861BD6E4980020F93B /* WhyWeBreatheQ5A3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A880DFF1BD6E4980020F93B /* WhyWeBreatheQ5A3.mp3 */; };
 		1A880E871BD6E4980020F93B /* WhyWeBreatheQ5A4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A880E001BD6E4980020F93B /* WhyWeBreatheQ5A4.mp3 */; };
+		1A9BFD541BF29B1D006FD1CC /* penE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 1A9BFD531BF29B1D006FD1CC /* penE.m4a */; };
 		1AB028FC1ACF0890006CC916 /* AuthoringModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB028FB1ACF0890006CC916 /* AuthoringModeViewController.m */; };
 		1AD3CC861A251C5300E18B1C /* IntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3CC851A251C5300E18B1C /* IntroductionViewController.m */; };
 		1AD3CC891A251CBA00E18B1C /* BuildHTMLString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3CC881A251CBA00E18B1C /* BuildHTMLString.m */; };
@@ -2470,6 +2471,7 @@
 		1A9068251B801C3A0005CC6D /* icon_keys.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_keys.png; sourceTree = "<group>"; };
 		1A9068261B801C3A0005CC6D /* icon_sad_dog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_sad_dog.png; sourceTree = "<group>"; };
 		1A9068271B801C3A0005CC6D /* icon_surprisemom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_surprisemom.png; sourceTree = "<group>"; };
+		1A9BFD531BF29B1D006FD1CC /* penE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = penE.m4a; sourceTree = "<group>"; };
 		1AA631AA1B68128F0093BA06 /* keys_large_high_res.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keys_large_high_res.png; sourceTree = "<group>"; };
 		1AB028FA1ACF0890006CC916 /* AuthoringModeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthoringModeViewController.h; sourceTree = "<group>"; };
 		1AB028FB1ACF0890006CC916 /* AuthoringModeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthoringModeViewController.m; sourceTree = "<group>"; };
@@ -4286,6 +4288,7 @@
 			children = (
 				1A880D7A1BD6E4950020F93B /* CigaretteSmokeHurtsYourLungsQ1.mp3 */,
 				1A880D7B1BD6E4950020F93B /* CigaretteSmokeHurtsYourLungsQ1A1.mp3 */,
+				1A9BFD531BF29B1D006FD1CC /* penE.m4a */,
 				1A880D7C1BD6E4950020F93B /* CigaretteSmokeHurtsYourLungsQ1A2.mp3 */,
 				1A880D7D1BD6E4950020F93B /* CigaretteSmokeHurtsYourLungsQ1A3.mp3 */,
 				1A880D7E1BD6E4950020F93B /* CigaretteSmokeHurtsYourLungsQ1A4.mp3 */,
@@ -6652,6 +6655,7 @@
 				C30D034D1BABBFE800DF53F1 /* MoreIsMissingQ4A4.mp3 in Resources */,
 				1A880E7E1BD6E4980020F93B /* WhyWeBreatheQ4.mp3 in Resources */,
 				1A5BB0E01BD327D1002D1AEA /* cup_empty.png in Resources */,
+				1A9BFD541BF29B1D006FD1CC /* penE.m4a in Resources */,
 				C30D034E1BABBFE800DF53F1 /* MoreIsMissingQ5.mp3 in Resources */,
 				C30D034F1BABBFE800DF53F1 /* MoreIsMissingQ5A1.mp3 in Resources */,
 				C30D03501BABBFE800DF53F1 /* MoreIsMissingQ5A2.mp3 in Resources */,
@@ -7545,6 +7549,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -7570,6 +7575,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

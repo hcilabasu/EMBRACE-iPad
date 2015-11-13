@@ -286,7 +286,7 @@ ConditionSetup *conditionSetup;
     
     //Load the first step for the current chapter
     if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
-        [IntroductionClass loadIntroStep:bookView: currentSentence];
+        [IntroductionClass loadIntroStep:bookView:self: currentSentence];
     }
     
     //Create UIView for textbox area to recognize swipe gesture
@@ -296,7 +296,7 @@ ConditionSetup *conditionSetup;
     
     //Load the first vocabulary step for the current chapter (hard-coded for now)
     if ([IntroductionClass.vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
-        [IntroductionClass loadVocabStep:bookView: currentSentence: chapterTitle];
+        [IntroductionClass loadVocabStep:bookView: self:currentSentence: chapterTitle];
     }
     
     isAudioLeft = false;
@@ -2449,7 +2449,7 @@ ConditionSetup *conditionSetup;
             }
             else {
                 // Load the next step
-                [IntroductionClass loadIntroStep:bookView: currentSentence];
+                [IntroductionClass loadIntroStep:bookView:self: currentSentence];
                 [self setupCurrentSentenceColor];
                 
                 //add logging: next intro step

@@ -52,6 +52,7 @@ ConditionSetup *conditionSetup;
         STEPS_TO_SWITCH_LANGUAGES_CONTROL = 11;
         STEPS_TO_SWITCH_LANGUAGES_EMBRACE = 12;
         languageString = @"E";
+        
     }
     
     return self;
@@ -91,7 +92,7 @@ ConditionSetup *conditionSetup;
 }
 
 // Loads the information of the currentIntroStep for the introduction
--(NSArray*) loadIntroStep: (UIWebView *) bookView : (NSUInteger) currentSentence{
+-(NSArray*) loadIntroStep: (UIWebView *) bookView : (UIViewController *) pmviewController: (NSUInteger) currentSentence{
  
     NSString* textEnglish;
     NSString* audioEnglish;
@@ -160,7 +161,7 @@ ConditionSetup *conditionSetup;
     }
     
     //Play introduction audio
-    [playAudioFileClass playAudioFile:self:audio];
+    [playAudioFileClass playAudioFile:pmviewController:audio];
     
     //Logging added by James for Introduction Audio
     //[[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Introduction Audio" : languageString :audio :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
@@ -198,7 +199,7 @@ ConditionSetup *conditionSetup;
 }
 
 //introduction: move to introduction class
--(NSArray*) loadVocabStep: (UIWebView *) bookView : (NSUInteger) currentSentence :(NSString *) chapterTitle {
+-(NSArray*) loadVocabStep: (UIWebView *) bookView : (UIViewController *) pmviewController : (NSUInteger) currentSentence :(NSString *) chapterTitle {
         NSString* text;
         NSString* audio;
         NSString* expectedSelection;
@@ -252,12 +253,13 @@ ConditionSetup *conditionSetup;
         //add for house story?
         // If we are ont the first step (1) or the last step (9) which do not correspond to words
         //play the corresponding intro or outro audio
-        if (currentVocabStep == 1 && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
+        if (currentVocabStep == 1 && ([chapterTitle isEqualToString:@"The Contest"] ||
+                                      [chapterTitle isEqualToString:@"Why We Breathe"])) {
             if((conditionSetup.language ==BILINGUAL)) {
-                [playAudioFileClass playAudioFile:self:audioSpanish];
+                [playAudioFileClass playAudioFile:pmviewController:audioSpanish];
             } else {
                 //Play introduction audio
-                [playAudioFileClass playAudioFile:self:audio];
+                [playAudioFileClass playAudioFile:pmviewController:audio];
             }
     
             //Logging added by James for Word Audio
@@ -266,12 +268,18 @@ ConditionSetup *conditionSetup;
     
         if((conditionSetup.condition ==CONTROL)){
             //add for house story?
-            if (currentVocabStep == totalVocabSteps-2 && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
-                if((conditionSetup.language == BILINGUAL)) {
-                    [playAudioFileClass playAudioFile:self:nextAudioSpanish];
-                } else {
+            if (currentVocabStep == totalVocabSteps-2 &&
+                ([chapterTitle isEqualToString:@"The Contest"] ||
+                 [chapterTitle isEqualToString:@"Why We Breathe"]))
+            {
+                if((conditionSetup.language == BILINGUAL))
+                {
+                    [playAudioFileClass playAudioFile:pmviewController:nextAudioSpanish];
+                }
+                else
+                {
                     //Play introduction audio
-                    [playAudioFileClass playAudioFile:self:nextAudio];
+                    [playAudioFileClass playAudioFile:pmviewController:nextAudio];
                 }
                 currentVocabStep++;
             }
@@ -290,10 +298,10 @@ ConditionSetup *conditionSetup;
                 nextIntro = nextIntroInput;
     
                 if((conditionSetup.language ==BILINGUAL)) {
-                    [playAudioFileClass playAudioFile:self:nextAudioSpanish];
+                    [playAudioFileClass playAudioFile:pmviewController:nextAudioSpanish];
                 } else {
                     //Play introduction audio
-                    [playAudioFileClass playAudioFile:self:nextAudio];
+                    [playAudioFileClass playAudioFile:pmviewController:nextAudio];
                 }
             }
         }
