@@ -1,31 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <relationships>
-        <relationship obj1Id="horse" can="leave" action="ungroup" obj2Id="cart"/>
-        <relationship obj1Id="horse" can="leave" action="ungroup" obj2Id="juan"/>
-        <relationship obj1Id="horse" can="tie" action="group" obj2Id="cart"/>
-        <relationship obj1Id="horse" can="visit" action="group" obj2Id="juan"/>
-        <relationship obj1Id="juan" can="getIn" action="group" obj2Id="boat"/>
-        <relationship obj1Id="juan" can="getOut" action="ungroup" obj2Id="boat"/>
-        <relationship obj1Id="juan" can="kick" action="group" obj2Id="ball"/>
-        <relationship obj1Id="juan" can="lead" action="group" obj2Id="dog"/>
-        <relationship obj1Id="juan" can="leave" action="ungroup" obj2Id="ball"/>
-        <relationship obj1Id="juan" can="leave" action="ungroup" obj2Id="dog"/>
-        <relationship obj1Id="maria" can="drop" action="ungroup" obj2Id="ball"/>
-        <relationship obj1Id="maria" can="drop" action="ungroup" obj2Id="wood"/>
-        <relationship obj1Id="maria" can="getOff" action="ungroup" obj2Id="skateboard_maria"/>
-        <relationship obj1Id="maria" can="getOn" action="group" obj2Id="skateboard_maria"/>
-        <relationship obj1Id="maria" can="lead" action="group" obj2Id="horse"/>
-        <relationship obj1Id="maria" can="leave" action="ungroup" obj2Id="dog"/>
-        <relationship obj1Id="maria" can="leave" action="ungroup" obj2Id="horse"/>
-        <relationship obj1Id="maria" can="leave" action="ungroup" obj2Id="sara"/>
-        <relationship obj1Id="maria" can="pickUp" action="group" obj2Id="ball"/>
-        <relationship obj1Id="maria" can="pickUp" action="group" obj2Id="wood"/>
-        <relationship obj1Id="maria" can="push" action="group" obj2Id="sara"/>
-        <relationship obj1Id="maria" can="unties" action="group" obj2Id="dog"/>
-        <relationship obj1Id="sara" can="getOff" action="ungroup" obj2Id="skateboard_sara"/>
-        <relationship obj1Id="sara" can="getOn" action="group" obj2Id="skateboard_sara"/>
-        <relationship obj1Id="wood" can="getIn" action="group" obj2Id="dog"/>
-        <relationship obj1Id="wood" can="getOut" action="ungroup" obj2Id="dog"/>
+        <relationship obj1Id="chili" can="getIn" action="group" obj2Id="mom"/>
+        <relationship obj1Id="list" can="getIn" action="group" obj2Id="mom"/>
+        <relationship obj1Id="mom" can="drop" action="ungroup" obj2Id="bag"/>
+        <relationship obj1Id="mom" can="drop" action="ungroup" obj2Id="pesos"/>
+        <relationship obj1Id="mom" can="grabRight" action="group" obj2Id="bag"/>
+        <relationship obj1Id="mom" can="grabRight" action="group" obj2Id="pesos"/>
+        <relationship obj1Id="mom" can="leave" action="ungroup" obj2Id="sofia"/>
+        <relationship obj1Id="mom" can="moveTo" action="group" obj2Id="sofia"/>
+        <relationship obj1Id="notebook" can="getIn" action="group" obj2Id="mom"/>
+        <relationship obj1Id="notebook" can="getOut" action="ungroup" obj2Id="mom"/>
+        <relationship obj1Id="pesos" can="getIn" action="group" obj2Id="sofia"/>
+        <relationship obj1Id="sofia" can="grabLeft" action="group" obj2Id="notebook"/>
+        <relationship obj1Id="sofia" can="pickUp" action="group" obj2Id="champoorado"/>
+        <relationship obj1Id="sofia" can="pickUp" action="group" obj2Id="chili"/>
+        <relationship obj1Id="sofia" can="putDown" action="ungroup" obj2Id="chili"/>
+        <relationship obj1Id="sofia" can="putDown" action="ungroup" obj2Id="notebook"/>
     </relationships>
 </metadata>
