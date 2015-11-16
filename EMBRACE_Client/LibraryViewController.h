@@ -11,13 +11,6 @@
 #import "Book.h"
 #import "Student.h"
 
-//Student's current status on a chapter
-typedef enum ChapterStatus {
-    IN_PROGRESS,
-    COMPLETED,
-    INCOMPLETE
-} ChapterStatus;
-
 @interface LibraryViewController : UIViewController {
     EBookImporter *bookImporter;
     NSMutableArray* books;

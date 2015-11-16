@@ -15,6 +15,7 @@
 #import "AuthoringModeViewController.h"
 #import "ServerCommunicationController.h"
 #import "ConditionSetup.h"
+#import "Progress.h"
 
 @interface LibraryViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout> {
     NSMutableArray* bookImages;

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LibraryViewController.h"
+#import "Progress.h"
 
 @interface LibraryCellView : UICollectionViewCell
 
@@ -16,6 +16,6 @@
 @property (nonatomic, strong) UIImageView *progressIndicator;
 @property (nonatomic, assign) float progressIconY;
 
-- (void) displayIndicator:(ChapterStatus)status;
+- (void) displayIndicator:(Status)status;
 
 @end

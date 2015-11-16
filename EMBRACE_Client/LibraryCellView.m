@@ -48,7 +48,7 @@
  * Displays progress indicator (i.e., checkmark, bookmark, lock) for the
  * corresponding chapter status
  */
-- (void) displayIndicator:(ChapterStatus)status {
+- (void) displayIndicator:(Status)status {
     int progressIconWidth = 45;
     int progressIconHeight = 45;
     

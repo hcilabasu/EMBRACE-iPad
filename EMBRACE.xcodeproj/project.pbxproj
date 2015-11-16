@@ -1675,6 +1675,7 @@
 		C30D07A41BABC0B400DF53F1 /* UIKit.framework in Resources */ = {isa = PBXBuildFile; fileRef = 31953E481729ECC100570087 /* UIKit.framework */; };
 		C30D07A51BABC0B400DF53F1 /* Foundation.framework in Resources */ = {isa = PBXBuildFile; fileRef = 31953E4A1729ECC100570087 /* Foundation.framework */; };
 		C30D07A61BABC0B400DF53F1 /* CoreGraphics.framework in Resources */ = {isa = PBXBuildFile; fileRef = 31953E4C1729ECC100570087 /* CoreGraphics.framework */; };
+		C32DA0E11BF92A52006C2418 /* Progress.m in Sources */ = {isa = PBXBuildFile; fileRef = C32DA0E01BF92A52006C2418 /* Progress.m */; };
 		C35F427C1BDAAD3600B4BCF0 /* bookmark.png in Resources */ = {isa = PBXBuildFile; fileRef = C35F42791BDAAD3600B4BCF0 /* bookmark.png */; };
 		C35F427D1BDAAD3600B4BCF0 /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = C35F427A1BDAAD3600B4BCF0 /* checkmark.png */; };
 		C35F427E1BDAAD3600B4BCF0 /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = C35F427B1BDAAD3600B4BCF0 /* lock.png */; };
@@ -3422,6 +3423,8 @@
 		B996065819A7FD8500BF17F4 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-Cigarette-Smoke-Hurts-Your-Lungs-Intro-E.xhtml"; sourceTree = "<group>"; };
 		B9B537BA19F1D77B00787A85 /* gray_handle_open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gray_handle_open.png; sourceTree = "<group>"; };
 		B9B537BC19F1D79A00787A85 /* gray_handle_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gray_handle_close.png; sourceTree = "<group>"; };
+		C32DA0DF1BF92A52006C2418 /* Progress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Progress.h; sourceTree = "<group>"; };
+		C32DA0E01BF92A52006C2418 /* Progress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Progress.m; sourceTree = "<group>"; };
 		C35F42791BDAAD3600B4BCF0 /* bookmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bookmark.png; sourceTree = "<group>"; };
 		C35F427A1BDAAD3600B4BCF0 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
 		C35F427B1BDAAD3600B4BCF0 /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
@@ -3810,6 +3813,8 @@
 				31549829174EAA22004521B1 /* Student.m */,
 				C3B10B381AF2F54F003195F5 /* Statistics.h */,
 				C3B10B391AF2F54F003195F5 /* Statistics.m */,
+				C32DA0DF1BF92A52006C2418 /* Progress.h */,
+				C32DA0E01BF92A52006C2418 /* Progress.m */,
 			);
 			name = "Student Model";
 			sourceTree = "<group>";
@@ -7388,6 +7393,7 @@
 				C3D79468196B1EC9004C26ED /* AlternateImage.m in Sources */,
 				3115B1D41819C532007171E3 /* PossibleInteraction.m in Sources */,
 				5CD7FE3519775C1C007A1E49 /* VocabularyStep.m in Sources */,
+				C32DA0E11BF92A52006C2418 /* Progress.m in Sources */,
 				31953E771729ED5A00570087 /* unzip.c in Sources */,
 				31953E781729ED5A00570087 /* zip.c in Sources */,
 				31953E791729ED5A00570087 /* ZipArchive.mm in Sources */,
