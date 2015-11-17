@@ -38,8 +38,9 @@
                     <move obj1Id="notebook" action="getIn" waypointId="notebookCounter"/>
                     <appear obj1Id="list" action="appear"/>
                     <groupAuto obj1Id="list" action="getIn" obj2Id="mom"/>
-                    <group obj1Id="mom" action="grabRight" obj2Id="bag"/>
+                    <group obj1Id="mom" action="grabLeft" obj2Id="bag"/>
                     <ungroupAndStay obj1Id="mom" action="drop" obj2Id="bag"/>
+                    <ungroupAndStay obj1Id="list" action="getOut" obj2Id="mom"/>
                     <disappearAuto obj1Id="bag" action="disappear" obj2Id="bag"/>
                     <disappearAuto obj1Id="list" action="disappear" obj2Id="list"/>
                     <swapImage obj1Id="mom" action="tote"/>
@@ -55,17 +56,83 @@
             </sentence>
             <sentence number="12">
                 <step number="1">
-                    <group obj1Id="mom" action="grabRight" obj2Id="pesos"/>
+                    <group obj1Id="mom" action="grabLeft" obj2Id="pesos"/>
+                    <move obj1Id="mom" action="getIn" waypointId="nearPesos"/>
                 </step>
                 <step number="2">
                     <transferAndGroup obj1Id="mom" action="drop" obj2Id="pesos"/>
                     <transferAndGroup obj1Id="pesos" action="getIn" obj2Id="sofia"/>
+                    <move obj1Id="mom" action="getIn" waypointId="nearPesos"/>
                 </step>
             </sentence>
             <sentence number="13">
                 <step number="1">
                     <check obj1Id="sofia" action="getIn" locationId="door"/>
                     <swapImage obj1Id="sofia" action="door"/>
+                    <disappearAuto obj1Id="pesos" action="disappear" obj2Id="pesos"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Mancha the Horse" activity_id="story2-PM-1">
+            <sentence number="1">
+                <step number="1">
+                    <check obj1Id="sofia" action="getIn" locationId="corral"/>
+                    <move obj1Id="sofia" action="getIn" waypointId="fence"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Mancha the Horse" activity_id="story2-PM-2">
+            <sentence number="4">
+                <step number="1">
+                    <check obj1Id="sofia" action="getIn" locationId="shed"/>
+                    <groupAuto obj1Id="saddle" action="getIn" obj2Id="sofia"/>
+                    <groupAuto obj1Id="sofia" action="grabFist" obj2Id="bridle"/>
+                    <move obj1Id="sofia" action="getIn" waypointId="shed"/>
+                </step>
+            </sentence>
+            <sentence number="5">
+                <step number="1">
+                    <check obj1Id="sofia" action="getIn" locationId="nearHorse"/>
+                    <ungroupAndStay obj1Id="saddle" action="leave" obj2Id="sofia"/>
+                    <move obj1Id="saddle" action="getIn" waypointId="onHorse"/>
+                    <move obj1Id="sofia" action="getIn" waypointId="fence2"/>
+                </step>
+            </sentence>
+            <sentence number="6">
+                <step number="1">
+                    <check obj1Id="sofia" action="getIn" locationId="nearHorse"/>
+                    <swapImage obj1Id="mancha" action="equip"/>
+                    <disappearAuto obj1Id="saddle" action="disappear" obj2Id="saddle"/>
+                    <disappearAuto obj1Id="bridle" action="disappear" obj2Id="bridle"/>
+                    <move obj1Id="sofia" action="getIn" waypointId="fence2"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Mancha the Horse" activity_id="story2-PM-3">
+            <sentence number="7">
+                <step number="1">
+                    <check obj1Id="sofia" action="getIn" locationId="nearTote"/>
+                    <move obj1Id="sofia" action="getIn" waypointId="shed"/>
+                    <appear obj1Id="list2" action="appear"/>
+                    <groupAuto obj1Id="list2" action="getIn" obj2Id="sofia"/>
+                </step>
+            </sentence>
+            <sentence number="9">
+                <step number="1">
+                    <check obj1Id="sofia" action="getIn" locationId="nearTote"/>
+                    <ungroupAndStay obj1Id="list2" action="getOut" obj2Id="sofia"/>
+                    <disappearAuto obj1Id="list2" action="disappear" obj2Id="list2"/>
+                    <disappearAuto obj1Id="bag" action="disappear" obj2Id="bag"/>
+                    <swapImage obj1Id="sofia" action="tote2"/>
+                </step>
+                <step number="2">
+                    <check obj1Id="sofia" action="getIn" locationId="nearHorse"/>
+                    <disappearAuto obj1Id="mancha" action="disappear" obj2Id="mancha"/>
+                    <swapImage obj1Id="sofia" action="horse"/>
+                </step>
+                <step number="3">
+                    <check obj1Id="sofia" action="getIn" locationId="outCorral"/>
+                    <move obj1Id="sofia" action="getIn" waypointId="outCorral"/>
                 </step>
             </sentence>
         </story>

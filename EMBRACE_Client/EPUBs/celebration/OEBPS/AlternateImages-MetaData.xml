@@ -2,10 +2,14 @@
 <metadata>
     <alternateImages>
         <alternateImage objId="list" action="appear" originalSrc="list.png" alternateSrc="list.png" width="80px" x="50%" y="50%" class="manipulationObject" z="2"/>
-        <alternateImage objId="mom" action="noTote" originalSrc="mom_tote.png" alternateSrc="mom_full.png" width="230px" x="72.412109%" y="29.545454%" class="manipulationObject" z="1"/>
+        <alternateImage objId="list2" action="appear" originalSrc="list.png" alternateSrc="list.png" width="53px" x="50%" y="50%" class="manipulationObject" z="1"/>
+        <alternateImage objId="mancha" action="equip" originalSrc="mancha_naked.png" alternateSrc="mancha_equiped.png" width="250px" x="70.068359%" y="27.343750%" class="manipulationObject" z="0"/>
+        <alternateImage objId="mom" action="noTote" originalSrc="mom_tote.png" alternateSrc="mom_full_hands_out.png" width="230px" x="72.412109%" y="29.545454%" class="manipulationObject" z="1"/>
         <alternateImage objId="mom" action="tote" originalSrc="mom_full_hands_out.png" alternateSrc="mom_tote.png" width="230px" x="72.412109%" y="29.545454%" class="manipulationObject" z="1"/>
-        <alternateImage objId="sofia" action="door" originalSrc="sofia_empty_tote.png" alternateSrc="sofia_empty_tote.png" width="50px" x="80%" y="40%" class="manipulationObject" z="0"/>
-        <alternateImage objId="sofia" action="spoon" originalSrc="sofia_hands_out.png" alternateSrc="sofia_spoon_down.png" width="137.728px" x="38.378906%" y="32.173298%" class="manipulationObject" z="1"/>
+        <alternateImage objId="sofia" action="door" originalSrc="sofia_empty_tote.png" alternateSrc="sofia_empty_tote.png" width="100px" x="86%" y="40%" class="manipulationObject" z="0"/>
+        <alternateImage objId="sofia" action="spoon" originalSrc="sofia_hands_out.png" alternateSrc="sofia_spoon_down.png" width="137.728px" x="36%" y="32.173298%" class="manipulationObject" z="1"/>
         <alternateImage objId="sofia" action="tote" originalSrc="sofia_hands_out.png" alternateSrc="sofia_empty_tote.png" width="190px" x="59.082031%" y="46.093750%" class="manipulationObject" z="1"/>
+        <alternateImage objId="sofia" action="tote2" originalSrc="sofia_standing.png" alternateSrc="sofia_empty_tote.png" width="150px" x="12.353516%" y="51.278408%" class="manipulationObject" z="1"/>
+        <alternateImage objId="sofia" action="horse" originalSrc="sofia_standing.png" alternateSrc="sofia_on_mancha.png" width="330px" x="61.962891%" y="18.323864%" class="manipulationObject" z="1"/>
     </alternateImages>
 </metadata>

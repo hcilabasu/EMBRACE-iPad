@@ -2,22 +2,28 @@
 <metadata>
     <hotspots>
         
-        <hotspot objId="bag" action="grabRight" role="object" x="50%" y="50%"/>
+        <hotspot objId="bag" action="grabLeft" role="object" x="50%" y="50%"/>
+        <hotspot objId="bridle" action="grabFist" role="object" x="50%" y="40.4%"/>
+        <hotspot objId="champoorado" action="pickUp" role="object" x="50%" y="50%"/>
         <hotspot objId="chili" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="chili" action="pickUp" role="object" x="50%" y="50%"/>
         <hotspot objId="list" action="getIn" role="subject" x="50%" y="50%"/>
-        <hotspot objId="mom" action="getIn" role="object" x="50%" y="50%"/>
-        <hotspot objId="mom" action="grabRight" role="subject" x="50%" y="50%"/>
+        <hotspot objId="list2" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="mom" action="getIn" role="object" x="19%" y="66%"/>
+        <hotspot objId="mom" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="mom" action="grabLeft" role="subject" x="74.4%" y="66%"/>
         <hotspot objId="mom" action="moveTo" role="subject" x="0%" y="100%"/>
         <hotspot objId="notebook" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="notebook" action="grabLeft" role="object" x="50%" y="50%"/>
         <hotspot objId="pesos" action="getIn" role="subject" x="50%" y="50%"/>
-        <hotspot objId="pesos" action="grabRight" role="object" x="50%" y="50%"/>
-        <hotspot objId="sofia" action="getIn" role="object" x="50%" y="50%"/>
+        <hotspot objId="pesos" action="grabLeft" role="object" x="50%" y="50%"/>
+        <hotspot objId="saddle" action="getIn" role="subject" x="25%" y="30%"/>
+        <hotspot objId="sofia" action="getIn" role="object" x="88.9%" y="38.5%"/>
         <hotspot objId="sofia" action="getIn" role="subject" x="50%" y="50%"/>
-        <hotspot objId="sofia" action="grabLeft" role="subject" x="50%" y="50%"/>
+        <hotspot objId="sofia" action="grabFist" role="subject" x="36.2%" y="56.5%"/>
+        <hotspot objId="sofia" action="grabLeft" role="subject" x="78.9%" y="60.6%"/>
         <hotspot objId="sofia" action="moveTo" role="object" x="100%" y="100%"/>
-        <hotspot objId="sofia" action="pickUp" role="subject" x="50%" y="50%"/>
+        <hotspot objId="sofia" action="pickUp" role="subject" x="50%" y="60%"/>
         
     </hotspots>
 </metadata>

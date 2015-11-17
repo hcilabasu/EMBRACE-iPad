@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <locations>
+        <location locationId="corral" x="0%" y="0%" height="100%" width="100%"/>
         <location locationId="door" x="0%" y="0%" height="100%" width="100%"/>
         <location locationId="nearChampoorado" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="nearHorse" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="nearTote" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="outCorral" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="shed" x="0%" y="0%" height="100%" width="100%"/>
     </locations>
 </metadata>

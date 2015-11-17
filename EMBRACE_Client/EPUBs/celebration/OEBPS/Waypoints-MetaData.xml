@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <waypoints>
-        <waypoint waypointId="nearChili" x="50%" y="50%"/>
+        <waypoint waypointId="fence" x="71.484375%" y="53.693180%"/>
+        <waypoint waypointId="fence2" x="62%" y="48%"/>
+        <waypoint waypointId="nearChili" x="25%" y="50%"/>
         <waypoint waypointId="nearMom" x="59.082031%" y="46.093750%"/>
-        <waypoint waypointId="notebookCounter" x="50%" y="50%"/>
+        <waypoint waypointId="nearPesos" x="35%" y="29.545454%"/>
+        <waypoint waypointId="notebookCounter" x="66%" y="82.650566%"/>
+        <waypoint waypointId="onHorse" x="75.000000%" y="41.690342%"/>
+        <waypoint waypointId="outCorral" x="64.111328%" y="41.761364%"/>
+        <waypoint waypointId="shed" x="12.353516%" y="51.278408%"/>
     </waypoints>
 </metadata>
