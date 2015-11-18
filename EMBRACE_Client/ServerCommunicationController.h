@@ -129,6 +129,9 @@
 //write xml file locally
 - (BOOL) writeToFile: (NSString *)fileName ofType:(NSString *)type;
 
+- (Progress*) loadProgress:(Student*)student;
+- (void) saveProgress:(Student*)student :(Progress*)progress;
+
 @end
 
 

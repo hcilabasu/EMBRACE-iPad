@@ -1631,5 +1631,25 @@ Context:
     return YES;
 }
 
+/*
+ * Loads the progress information from file for the given student
+ */
+- (Progress*) loadProgress:(Student*)student {
+    NSString *progressFileName = [NSString stringWithFormat:@"%@ %@ %@ Progress", [student schoolName],[student firstName],[student lastName]];
+    
+    //TODO: Check if progress file exists
+    //TODO: Read progress file and store data in new Progress object to return
+    
+    return nil;
+}
+
+/*
+ * Saves the progress information to file for the given student
+ */
+- (void) saveProgress:(Student*)student :(Progress*)progress {
+    NSString *progressFileName = [NSString stringWithFormat:@"%@ %@ %@ Progress", [student schoolName],[student firstName],[student lastName]];
+    
+    //TODO: Write progress information to file
+}
 
 @end

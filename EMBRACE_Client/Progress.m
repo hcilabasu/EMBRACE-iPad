@@ -50,7 +50,7 @@
 /*
  * Sets array of chapter titles from a book with the given status
  */
-- (void) setChapters:(NSMutableArray*)chapters fromBook:(NSString*)bookTitle withStatus:(Status)status {
+- (void) loadChapters:(NSMutableArray*)chapters fromBook:(NSString*)bookTitle withStatus:(Status)status {
     if (status == COMPLETED) {
         [chaptersCompleted setObject:chapters forKey:bookTitle];
     }
@@ -66,9 +66,9 @@
  * Returns current status of book
  */
 - (Status) getStatusOfBook:(NSString*)bookTitle {
-    BOOL hasCompletedChapters = ![[chaptersCompleted objectForKey:bookTitle] isEmpty];
-    BOOL hasInProgressChapters = ![[chaptersInProgress objectForKey:bookTitle] isEmpty];
-    BOOL hasIncompleteChapters = ![[chaptersIncomplete objectForKey:bookTitle] isEmpty];
+    BOOL hasCompletedChapters = [[chaptersCompleted objectForKey:bookTitle] count] > 0;
+    BOOL hasInProgressChapters = [[chaptersInProgress objectForKey:bookTitle] count] > 0;
+    BOOL hasIncompleteChapters = [[chaptersIncomplete objectForKey:bookTitle] count] > 0;
     
     //All chapters of book are completed
     if (hasCompletedChapters && !hasInProgressChapters && !hasIncompleteChapters) {
@@ -129,6 +129,32 @@
     }
     else if (status == INCOMPLETE) {
         [[chaptersIncomplete objectForKey:bookTitle] addObject:chapterTitle];
+    }
+}
+
+/*
+ * Sets the status of the next incomplete chapter in the specified book to in progress.
+ * Returns true if chapter was set or an in progress chapter already exists. Returns false otherwise.
+ */
+- (BOOL) setNextChapterInProgressForBook:(NSString*)bookTitle {
+    //No chapters are in progress
+    if ([[chaptersInProgress objectForKey:bookTitle] count] == 0) {
+        NSMutableArray* incompleteChapters = [chaptersIncomplete objectForKey:bookTitle];
+        
+        //Incomplete chapters exist
+        if ([incompleteChapters count] > 0) {
+            [self setStatusOfChapter:[incompleteChapters objectAtIndex:0] :IN_PROGRESS fromBook:bookTitle];
+            
+            return true;
+        }
+        //No incomplete chapters exist, so this book must be completed
+        else {
+            return false;
+        }
+    }
+    //A chapter is already in progress
+    else {
+        return true;
     }
 }
 
