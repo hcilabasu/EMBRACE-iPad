@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <waypoints>
+        <waypoint waypointId="calfAway" x="20%" y="54.545456%"/>
+        <waypoint waypointId="calfCorral" x="62.890625%" y="47.088070%"/>
+        <waypoint waypointId="cowAway" x="33.203125%" y="22.869318%"/>
+        <waypoint waypointId="cowBwCorral" x="70.507812%" y="51.349430%"/>
+        <waypoint waypointId="dirtRoad" x="29.443359%" y="46.235798%"/>
         <waypoint waypointId="fence" x="71.484375%" y="53.693180%"/>
         <waypoint waypointId="fence2" x="62%" y="48%"/>
+        <waypoint waypointId="gate" x="53.222656%" y="49.5%"/>
         <waypoint waypointId="nearChili" x="25%" y="50%"/>
         <waypoint waypointId="nearMom" x="59.082031%" y="46.093750%"/>
         <waypoint waypointId="nearPesos" x="35%" y="29.545454%"/>

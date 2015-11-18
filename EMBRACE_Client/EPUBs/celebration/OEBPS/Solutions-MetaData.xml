@@ -136,5 +136,83 @@
                 </step>
             </sentence>
         </story>
+        <story title="A Friend in Need" activity_id="story3-PM-1">
+            <sentence number="1">
+                <step number="1">
+                    <check obj1Id="sofia_on_mancha" action="getIn" locationId="dirtRoad"/>
+                    <move obj1Id="sofia_on_mancha" action="getIn" waypointId="dirtRoad"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="A Friend in Need" activity_id="story3-PM-2">
+            <sentence number="7">
+                <step number="1">
+                    <check obj1Id="sofia_on_mancha" action="getIn" locationId="herd"/>
+                    <swapImage obj1Id="sofia_on_mancha" action="flip"/>
+                </step>
+            </sentence>
+            <sentence number="8">
+                <step number="1">
+                    <check obj1Id="cow_bw" action="getIn" locationId="cowAway"/>
+                    <move obj1Id="cow_bw" action="getIn" waypointId="cowAway"/>
+                </step>
+            </sentence>
+            <sentence number="9">
+                <step number="1">
+                    <check obj1Id="sofia_on_mancha" action="getIn" locationId="nearCow"/>
+                    <swapImage obj1Id="sofia_on_mancha" action="flipBack"/>
+                    <swapImage obj1Id="cow_bw" action="flip"/>
+                </step>
+            </sentence>
+            <sentence number="10">
+                <step number="1">
+                    <swapImage obj1Id="cow_bw" action="flipBack"/>
+                    <check obj1Id="cow_bw" action="getIn" locationId="cowCorral"/>
+                    <move obj1Id="cow_bw" action="getIn" waypointId="cowBwCorral"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="A Friend in Need" activity_id="story3-PM-3">
+            <sentence number="11">
+                <step number="1">
+                    <check obj1Id="calf" action="getIn" locationId="calfAway"/>
+                    <move obj1Id="calf" action="getIn" waypointId="calfAway"/>
+                </step>
+            </sentence>
+            <sentence number="12">
+                <step number="1">
+                    <check obj1Id="sofia_on_mancha" action="getIn" locationId="nearCalf"/>
+                    <swapImage obj1Id="sofia_on_mancha" action="flip2"/>
+                    <swapImage obj1Id="calf" action="flip"/>
+                </step>
+            </sentence>
+            <sentence number="13">
+                <step number="1">
+                    <check obj1Id="calf" action="getIn" locationId="cowCorral"/>
+                    <move obj1Id="calf" action="getIn" waypointId="calfCorral"/>
+                </step>
+            </sentence>
+            <sentence number="15">
+                <step number="1">
+                    <shakeOrTap obj1Id="emilio_horse" action="getIn" locationId="anywhere"/>
+                    <disappearAuto obj1Id="emilio_horse" action="disappear" obj2Id="emilio_horse"/>
+                    <appear obj1Id="emilio" action="appear"/>
+                    <appear obj1Id="horse" action="appear"/>
+                </step>
+                <step number="2">
+                    <check obj1Id="emilio" action="getIn" locationId="gate"/>
+                    <move obj1Id="emilio" action="getIn" waypointId="gate"/>
+                    <swapImage obj1Id="gate" action="close"/>
+                </step>
+            </sentence>
+        </story>
     </solutions>
 </metadata>
+
+
+
+
+
+
+
+
