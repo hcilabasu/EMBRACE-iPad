@@ -284,6 +284,26 @@ ConditionSetup *conditionSetup;
 }
 
 /*
+ * Shows a message to indicate that a selected book/chapter is locked
+ */
+- (void) showLockedMessage {
+    NSString* itemType = @"item";
+    
+    if (showBooks) {
+        itemType = @"book";
+    }
+    else {
+        itemType = @"chapter";
+    }
+    
+    NSString* title = [NSString stringWithFormat:@"This %@ is locked.", itemType];
+    NSString* message = [NSString stringWithFormat:@"Please select a %@ with a red bookmark icon.", itemType];
+    
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+    [alertView show];
+}
+
+/*
  * Displays prompt to enter password to unlock books and chapters
  */
 - (void) showPasswordPrompt {
@@ -384,6 +404,9 @@ ConditionSetup *conditionSetup;
             
             [booksButton setEnabled:TRUE];
         }
+        else {
+            [self showLockedMessage];
+        }
     }
     //Chapters
     else {
@@ -408,6 +431,9 @@ ConditionSetup *conditionSetup;
             else if (currentMode == IM_MODE) {
                 [self performSegueWithIdentifier: @"OpenIMActivitySegue" sender:self];
             }
+        }
+        else {
+            [self showLockedMessage];
         }
     }
     
