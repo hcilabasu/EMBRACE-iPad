@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <setups>
+        <story title="Shopping at the Market" page_id="story4-PM-4">
+            <group obj1Id="pesos" action="getIn" obj2Id="sofia"/>
+        </story>
     </setups>
 </metadata>

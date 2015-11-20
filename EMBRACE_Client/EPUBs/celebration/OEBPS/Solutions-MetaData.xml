@@ -113,15 +113,15 @@
                 <step number="1">
                     <check obj1Id="sofia" action="getIn" locationId="nearTote"/>
                     <move obj1Id="sofia" action="getIn" waypointId="shed"/>
-                    <appear obj1Id="list2" action="appear"/>
-                    <groupAuto obj1Id="list2" action="getIn" obj2Id="sofia"/>
+                    <appear obj1Id="list" action="appear2"/>
+                    <groupAuto obj1Id="list" action="getIn" obj2Id="sofia"/>
                 </step>
             </sentence>
             <sentence number="9">
                 <step number="1">
                     <check obj1Id="sofia" action="getIn" locationId="nearTote"/>
-                    <ungroupAndStay obj1Id="list2" action="getOut" obj2Id="sofia"/>
-                    <disappearAuto obj1Id="list2" action="disappear" obj2Id="list2"/>
+                    <ungroupAndStay obj1Id="list" action="getOut" obj2Id="sofia"/>
+                    <disappearAuto obj1Id="list" action="disappear" obj2Id="list"/>
                     <disappearAuto obj1Id="bag" action="disappear" obj2Id="bag"/>
                     <swapImage obj1Id="sofia" action="tote2"/>
                 </step>
@@ -203,6 +203,98 @@
                     <check obj1Id="emilio" action="getIn" locationId="gate"/>
                     <move obj1Id="emilio" action="getIn" waypointId="gate"/>
                     <swapImage obj1Id="gate" action="close"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Shopping at the Market" activity_id="story4-PM-1">
+            <sentence number="1">
+                <step number="1">
+                    <check obj1Id="sofia_on_mancha" action="getIn" locationId="market"/>
+                    <move obj1Id="sofia_on_mancha" action="getIn" waypointId="market"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Shopping at the Market" activity_id="story4-PM-2">
+            <sentence number="2">
+                <step number="1">
+                    <shakeOrTap obj1Id="sofia_on_mancha" action="getIn" locationId="anywhere"/>
+                    <disappearAuto obj1Id="sofia_on_mancha" action="disappear" obj2Id="sofia_on_mancha"/>
+                    <appear obj1Id="sofia" action="appear"/>
+                    <appear obj1Id="mancha" action="appear"/>
+                </step>
+                <step number="2">
+                    <check obj1Id="sofia" action="getIn" locationId="nearPost"/>
+                    <move obj1Id="sofia" action="getIn" waypointId="nearPost"/>
+                    <swapImage obj1Id="mancha" action="tied"/>
+                </step>
+            </sentence>
+            <sentence number="3">
+                <step number="1">
+                    <shakeOrTap obj1Id="mancha" action="getIn" locationId="anywhere"/>
+                    <swapImage obj1Id="mancha" action="eating"/>
+                </step>
+            </sentence>
+            <sentence number="4">
+                <step number="1">
+                    <check obj1Id="sofia" action="getIn" locationId="tomatillos"/>
+                    <swapImage obj1Id="sofia" action="fullTote"/>
+                    <groupAuto obj1Id="tomatillos" action="getIn" obj2Id="sofia"/>
+                </step>
+            </sentence>
+            <sentence number="5">
+                <step number="1">
+                    <ungroupAndStay obj1Id="tomatillos" action="getOut" obj2Id="sofia"/>
+                    <disappearAuto obj1Id="tomatillos" action="disappear" obj2Id="tomatillos"/>
+                    <group obj1Id="sofia" action="getIn" obj2Id="scale"/>
+                    <ungroupAndStay obj1Id="sofia" action="getOut" obj2Id="scale"/>
+                    <swapImage obj1Id="sofia" action="noTote"/>
+                    <swapImage obj1Id="scale" action="kilo"/>
+                    <appear obj1Id="bag" action="appear"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Shopping at the Market" activity_id="story4-PM-3">
+            <sentence number="6">
+                <step number="1">
+                    <group obj1Id="sofia" action="grabHigh" obj2Id="spinach"/>
+                    <ungroupAndStay obj1Id="sofia" action="drop" obj2Id="spinach"/>
+                    <disappearAuto obj1Id="spinach" action="disappear" obj2Id="spinach"/>
+                    <move obj1Id="sofia" action="getIn" waypointId="spinach"/>
+                </step>
+                <step number="2">
+                    <group obj1Id="sofia" action="grabHigh" obj2Id="mangos"/>
+                    <ungroupAndStay obj1Id="sofia" action="drop" obj2Id="mangos"/>
+                    <disappearAuto obj1Id="mangos" action="disappear" obj2Id="mangos"/>
+                    <move obj1Id="sofia" action="getIn" waypointId="produce"/>
+                </step>
+                <step number="3">
+                    <group obj1Id="sofia" action="grabHigh" obj2Id="garlic"/>
+                    <ungroupAndStay obj1Id="sofia" action="drop" obj2Id="garlic"/>
+                    <disappearAuto obj1Id="garlic" action="disappear" obj2Id="garlic"/>
+                    <move obj1Id="sofia" action="getIn" waypointId="produce"/>
+                </step>
+            </sentence>
+            <sentence number="7">
+                <step number="1">
+                    <group obj1Id="sofia" action="grabHigh" obj2Id="milk"/>
+                    <move obj1Id="sofia" action="getIn" waypointId="milk"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Shopping at the Market" activity_id="story4-PM-4">
+            <sentence number="8">
+                <step number="1">
+                    <check obj1Id="sofia" action="getIn" locationId="cashier"/>
+                    <ungroupAndStay obj1Id="pesos" action="getOut" obj2Id="sofia"/>
+                    <move obj1Id="sofia" action="getIn" waypointId="cashier"/>
+                    <move obj1Id="pesos" action="getIn" waypointId="msPena"/>
+                </step>
+            </sentence>
+            <sentence number="9">
+                <step number="1">
+                    <check obj1Id="sofia" action="getIn" locationId="nearPost"/>
+                    <swapImage obj1Id="sofia" action="noTote2"/>
+                    <swapImage obj1Id="mancha" action="brownSaddlebag"/>
                 </step>
             </sentence>
         </story>
