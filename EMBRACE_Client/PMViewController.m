@@ -640,7 +640,7 @@ BOOL wasPathFollowed = false;
     NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
     
     //If it is an action sentence, set its color to blue and automatically perform solution steps if necessary
-    if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
+    if ([sentenceClass  isEqualToString: @"sentence actionSentence"] && currentSentence !=0) {
         setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
         [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
     }
@@ -1355,16 +1355,16 @@ BOOL wasPathFollowed = false;
                             imageHighlighted = (NSString*)valueImage;
                             [self highlightObject:imageHighlighted:1.5];
                         }
-                        
+                    
                         currentSentence++;
                         currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence]];
                         
-                        [self performSelector:@selector(colorSentencesUponNext) withObject:nil afterDelay:4];
+                        [self performSelector:@selector(colorSentencesUponNext) withObject:nil afterDelay:([self.playaudioClass audioPlayer].duration)];
                         
                         IntroductionClass.currentVocabStep++;
                         
                         // This delay is needed in order to be able to play the last definition on a vocabulary page
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW,7*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW,([self.playaudioClass audioPlayer].duration)*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                             [IntroductionClass loadVocabStep:bookView:self:currentSentence:chapterTitle];
                             
                         });
@@ -1394,6 +1394,9 @@ BOOL wasPathFollowed = false;
             else {
                 //Play En audio twice
                 [self.playaudioClass playAudioInSequence:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
+                
+                //if error try mp3 format
+                [self.playaudioClass playAudioInSequence:self:[NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"_def_E"]:[NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"_def_E"]];
                 
                 //Logging added by James for Word Audio
                 [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"E" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
@@ -4487,7 +4490,7 @@ BOOL wasPathFollowed = false;
                 // Load the next step
                 [IntroductionClass loadIntroStep:bookView:self: currentSentence];
                 [self setupCurrentSentenceColor];
-            
+                
                 //add logging: next intro step
             }
         }
@@ -4512,7 +4515,7 @@ BOOL wasPathFollowed = false;
                 [_audioPlayer stop];
                 currentSentence = 1;
                 [self loadNextPage]; //logging done in loadNextPage
-            
+                
             }
             else {
                 // Load the next step and update the performed actions
@@ -4525,153 +4528,153 @@ BOOL wasPathFollowed = false;
     else {
         
         //imcode
-        	        //if (stepsComplete || numSteps == 0 || !IntroductionClass.allowInteractions) {
-                        //IMCode
-            	         NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
-            	         NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
-            
-            	         if((conditionSetup.condition == CONTROL) && ([sentenceClass  isEqualToString: @"sentence actionSentence"] || [sentenceClass  isEqualToString: @"sentence IMactionSentence"]))
-                        {
-                            //resets allRelationship arrray
-                            if([allRelationships count])
-                            {
-                                [allRelationships removeAllObjects];
-                            }
-                            
-                            //Get steps for current sentence
-                            NSMutableArray* currSolSteps;
-                            
-                            if (conditionSetup.appmode == ITS) {
-                                currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-                            }
-                            else {
-                                //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                                if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound && conditionSetup.condition != CONTROL) {
-                                    currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                                }
-                                else {
-                                    currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                                }
-                            }
-
-                            PossibleInteraction* interaction;
-                            NSMutableArray *interactions = [[NSMutableArray alloc]init ];
-                    
-                            if (currSolSteps.count!=0) {
-                                
-                                for (ActionStep* currSolStep in currSolSteps) {
-                        
-                                    //[allRelationships addObject:@"dummydata"];
-                        
-                                    interaction = [self convertActionStepToPossibleInteraction:currSolStep];
-                                    [interactions addObject:interaction];
-                                    Relationship* relationshipBetweenObjects = [[Relationship alloc] initWithValues:[currSolStep object1Id] :[currSolStep action] :[currSolStep stepType] :[currSolStep object2Id]];
-                                    [allRelationships addObject:relationshipBetweenObjects];
-                                }
-                                
-                                
-                                //Relationship* newrel = [[Relationship alloc] initWithValues:[currSolStep object1Id] :[currSolStep action] :[currSolStep stepType] :[currSolStep objectId2]];
-                                
-                                //Populate the menu data source and expand the menu.
-                                [self populateMenuDataSource:interactions:allRelationships];
-                                
-                                //add subview to hide story
-                                IMViewMenu = [[UIView alloc] initWithFrame:[bookView frame]];
-                                IMViewMenu.backgroundColor = [UIColor whiteColor];
-                                UILabel *IMinstructions = [[UILabel alloc] initWithFrame:CGRectMake(200, 10, IMViewMenu.frame.size.width, 40)];
-                            
-                                IMinstructions.center = CGPointMake(IMViewMenu.frame.size.width  / 2, 40);
-                                IMinstructions.text = @"Which did you imagine?";
-                                IMinstructions.textAlignment = NSTextAlignmentCenter;
-                                IMinstructions.textColor = [UIColor blackColor];
-                                IMinstructions.font = [UIFont fontWithName:@"GillSans" size:28];
-                                [IMViewMenu addSubview:IMinstructions];
-                                IMViewMenu.backgroundColor =  [UIColor colorWithRed: 165.0/255.0 green: 203.0/255.0 blue:231.0/255.0 alpha: 1.0];
-                                //[UIColor colorWithPatternImage: [self getBackgroundImage]];
-                                //add sentence instructions
-                                [[self view] addSubview:IMViewMenu];
-                                
-                                //expand menu
-                                [self expandMenu];
-                                 [IMViewMenu bringSubviewToFront:IMinstructions];
-                            }
-                            else
-                            {
-                            //move to next sentence
-                                //Logging added by James for User pressing the Next button
-                                [[ServerCommunicationController sharedManager] logUserNextButtonPressed:@"Next" :@"Tap" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                                
-                                //added for logging
-                                NSString *tempLastSentence = [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence];
-                                
-                                //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
-                                if (currentSentence > 0) {
-                                    currentIdea++;
-                                }
-                                
-                                currentSentence++;
-                                currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence]];
-                                
-                                
-
-                                
-                                //Set up current sentence appearance and solution steps
-                                //[self setupCurrentSentence];
-                                //[self colorSentencesUponNext];
-                                
-                                //currentSentence is 1 indexed.
-                                if(currentSentence > totalSentences) {
-                                    [self loadNextPage];
-                                    //logging done in loadNextPage
-                                }
-                                else {
-                                    //Set up current sentence appearance and solution steps
-                                    [self setupCurrentSentence];
-                                    [self colorSentencesUponNext];
-                                    
-                                    //Logging added by James for Computer moving to next sentence
-                                    [[ServerCommunicationController sharedManager] logNextSentenceNavigation:@"Next Button" :tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :@"Next Sentence" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                                    
-                                    //If we are on the first or second manipulation page of The Contest, play the audio of the current sentence
-                                    if ([chapterTitle isEqualToString:@"The Contest"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-                                        if((conditionSetup.language ==BILINGUAL)) {
-                                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"BFEC%d.m4a",currentSentence]];
-                                        }
-                                        else {
-                                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
-                                        }
-                                    }
-                                    
-                                    //If we are on the first or second manipulation page of Why We Breathe, play the audio of the current sentence
-                                    if ([chapterTitle isEqualToString:@"Why We Breathe"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
-                                        if((conditionSetup.language ==BILINGUAL)) {
-                                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"CPQR%d.m4a",currentSentence]];
-                                        }
-                                        else {
-                                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"CWWB%d.m4a",currentSentence]];
-                                        }
-                                    }
-                                    
-                                    //If we are on the first or second manipulation page of The Lopez Family, play the current sentence
-                                    if ([chapterTitle isEqualToString:@"The Lopez Family"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
-                                        if(conditionSetup.language ==BILINGUAL) {
-                                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3",currentSentence]];
-                                        }
-                                        else {
-                                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3",currentSentence]];
-                                        }
-                                    }
-                                    
-                                    
-                                }
-                            }
-
-                            }
-                    //}
-        else if (stepsComplete || numSteps == 0 || !IntroductionClass.allowInteractions) {
-        //end imcode
-        
         //if (stepsComplete || numSteps == 0 || !IntroductionClass.allowInteractions) {
+        //IMCode
+        NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
+        NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
+        
+        if((conditionSetup.condition == CONTROL) && ([sentenceClass  isEqualToString: @"sentence actionSentence"] || [sentenceClass  isEqualToString: @"sentence IMactionSentence"]))
+        {
+            //resets allRelationship arrray
+            if([allRelationships count])
+            {
+                [allRelationships removeAllObjects];
+            }
+            
+            //Get steps for current sentence
+            NSMutableArray* currSolSteps;
+            
+            if (conditionSetup.appmode == ITS) {
+                currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+            }
+            else {
+                //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+                if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound && conditionSetup.condition != CONTROL) {
+                    currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+                }
+                else {
+                    currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                }
+            }
+            
+            PossibleInteraction* interaction;
+            NSMutableArray *interactions = [[NSMutableArray alloc]init ];
+            
+            if (currSolSteps.count!=0) {
+                
+                for (ActionStep* currSolStep in currSolSteps) {
+                    
+                    //[allRelationships addObject:@"dummydata"];
+                    
+                    interaction = [self convertActionStepToPossibleInteraction:currSolStep];
+                    [interactions addObject:interaction];
+                    Relationship* relationshipBetweenObjects = [[Relationship alloc] initWithValues:[currSolStep object1Id] :[currSolStep action] :[currSolStep stepType] :[currSolStep object2Id]];
+                    [allRelationships addObject:relationshipBetweenObjects];
+                }
+                
+                
+                //Relationship* newrel = [[Relationship alloc] initWithValues:[currSolStep object1Id] :[currSolStep action] :[currSolStep stepType] :[currSolStep objectId2]];
+                
+                //Populate the menu data source and expand the menu.
+                [self populateMenuDataSource:interactions:allRelationships];
+                
+                //add subview to hide story
+                IMViewMenu = [[UIView alloc] initWithFrame:[bookView frame]];
+                IMViewMenu.backgroundColor = [UIColor whiteColor];
+                UILabel *IMinstructions = [[UILabel alloc] initWithFrame:CGRectMake(200, 10, IMViewMenu.frame.size.width, 40)];
+                
+                IMinstructions.center = CGPointMake(IMViewMenu.frame.size.width  / 2, 40);
+                IMinstructions.text = @"Which did you imagine?";
+                IMinstructions.textAlignment = NSTextAlignmentCenter;
+                IMinstructions.textColor = [UIColor blackColor];
+                IMinstructions.font = [UIFont fontWithName:@"GillSans" size:28];
+                [IMViewMenu addSubview:IMinstructions];
+                IMViewMenu.backgroundColor =  [UIColor colorWithRed: 165.0/255.0 green: 203.0/255.0 blue:231.0/255.0 alpha: 1.0];
+                //[UIColor colorWithPatternImage: [self getBackgroundImage]];
+                //add sentence instructions
+                [[self view] addSubview:IMViewMenu];
+                
+                //expand menu
+                [self expandMenu];
+                [IMViewMenu bringSubviewToFront:IMinstructions];
+            }
+            else
+            {
+                //move to next sentence
+                //Logging added by James for User pressing the Next button
+                [[ServerCommunicationController sharedManager] logUserNextButtonPressed:@"Next" :@"Tap" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+                
+                //added for logging
+                NSString *tempLastSentence = [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence];
+                
+                //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
+                if (currentSentence > 0) {
+                    currentIdea++;
+                }
+                
+                currentSentence++;
+                currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence]];
+                
+                
+                
+                
+                //Set up current sentence appearance and solution steps
+                //[self setupCurrentSentence];
+                //[self colorSentencesUponNext];
+                
+                //currentSentence is 1 indexed.
+                if(currentSentence > totalSentences) {
+                    [self loadNextPage];
+                    //logging done in loadNextPage
+                }
+                else {
+                    //Set up current sentence appearance and solution steps
+                    [self setupCurrentSentence];
+                    [self colorSentencesUponNext];
+                    
+                    //Logging added by James for Computer moving to next sentence
+                    [[ServerCommunicationController sharedManager] logNextSentenceNavigation:@"Next Button" :tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :@"Next Sentence" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+                    
+                    //If we are on the first or second manipulation page of The Contest, play the audio of the current sentence
+                    if ([chapterTitle isEqualToString:@"The Contest"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+                        if((conditionSetup.language ==BILINGUAL)) {
+                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"BFEC%d.m4a",currentSentence]];
+                        }
+                        else {
+                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
+                        }
+                    }
+                    
+                    //If we are on the first or second manipulation page of Why We Breathe, play the audio of the current sentence
+                    if ([chapterTitle isEqualToString:@"Why We Breathe"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
+                        if((conditionSetup.language ==BILINGUAL)) {
+                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"CPQR%d.m4a",currentSentence]];
+                        }
+                        else {
+                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"CWWB%d.m4a",currentSentence]];
+                        }
+                    }
+                    
+                    //If we are on the first or second manipulation page of The Lopez Family, play the current sentence
+                    if ([chapterTitle isEqualToString:@"The Lopez Family"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
+                        if(conditionSetup.language ==BILINGUAL) {
+                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3",currentSentence]];
+                        }
+                        else {
+                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3",currentSentence]];
+                        }
+                    }
+                    
+                    
+                }
+            }
+            
+        }
+        //}
+        else if (stepsComplete || numSteps == 0 || !IntroductionClass.allowInteractions) {
+            //end imcode
+            
+            //if (stepsComplete || numSteps == 0 || !IntroductionClass.allowInteractions) {
             //Logging added by James for User pressing the Next button
             [[ServerCommunicationController sharedManager] logUserNextButtonPressed:@"Next" :@"Tap" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
             
