@@ -14,7 +14,7 @@
         <waypoint waypointId="near_cart" x="23.283203%" y="39.843750%"/>
         <waypoint waypointId="near_juan" x="2%" y="43%"/>
         <waypoint waypointId="near_maria" x="39.843750%" y="75.781250%"/>
-        <waypoint waypointId="road" x="46.337891%" y="70.241478%"/>
+        <waypoint waypointId="road" x="46.337891%" y="72.241478%"/>
         <waypoint waypointId="sara_push" x="78.808594%" y="63.352276%"/>
         <waypoint waypointId="wave_back" x="12.744141%" y="62.215908%"/>
     </waypoints>

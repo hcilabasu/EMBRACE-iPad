@@ -796,7 +796,7 @@
 		5C24BBD71BE9BECE00455B3C /* chili.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24BBCE1BE9BECE00455B3C /* chili.png */; };
 		5C24BBD81BE9BECE00455B3C /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24BBCF1BE9BECE00455B3C /* list.png */; };
 		5C24BBD91BE9BECE00455B3C /* mom_counter.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24BBD01BE9BECE00455B3C /* mom_counter.png */; };
-		5C24BBDA1BE9BECE00455B3C /* money.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24BBD11BE9BECE00455B3C /* money.png */; };
+		5C24BBDA1BE9BECE00455B3C /* pesos.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24BBD11BE9BECE00455B3C /* pesos.png */; };
 		5C24BBDB1BE9BECE00455B3C /* notebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24BBD21BE9BECE00455B3C /* notebook.png */; };
 		5C24BBDC1BE9BECE00455B3C /* sofia_spoon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24BBD31BE9BECE00455B3C /* sofia_spoon.png */; };
 		5C24BBE61BE9BF1800455B3C /* bg_barn.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24BBDD1BE9BF1800455B3C /* bg_barn.png */; };
@@ -820,7 +820,6 @@
 		5C24BC041BE9BF9500455B3C /* sofia_horse.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24BBF81BE9BF9500455B3C /* sofia_horse.png */; };
 		5C24BC051BE9BF9500455B3C /* cow2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24BBF91BE9BF9500455B3C /* cow2.png */; };
 		5C24BC061BE9BF9500455B3C /* emilio_horse.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24BBFA1BE9BF9500455B3C /* emilio_horse.png */; };
-		5C24BC191BE9C02A00455B3C /* pesos.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24BC071BE9C02A00455B3C /* pesos.png */; };
 		5C24BC1A1BE9C02A00455B3C /* bg_market.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24BC081BE9C02A00455B3C /* bg_market.png */; };
 		5C24BC1B1BE9C02A00455B3C /* garlic.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24BC091BE9C02A00455B3C /* garlic.png */; };
 		5C24BC1C1BE9C02A00455B3C /* mancha_eating_grass.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24BC0A1BE9C02A00455B3C /* mancha_eating_grass.png */; };
@@ -844,7 +843,6 @@
 		5C24BC321BE9C08D00455B3C /* roses_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24BC2E1BE9C08D00455B3C /* roses_white.png */; };
 		5C24BC3B1BE9C0CB00455B3C /* bg_faucet_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24BC331BE9C0CB00455B3C /* bg_faucet_on.png */; };
 		5C24BC3C1BE9C0CB00455B3C /* bg_kitchen_door.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24BC341BE9C0CB00455B3C /* bg_kitchen_door.png */; };
-		5C24BC3D1BE9C0CB00455B3C /* mom_full.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24BC351BE9C0CB00455B3C /* mom_full.png */; };
 		5C24BC3E1BE9C0CB00455B3C /* sofia_stool.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24BC361BE9C0CB00455B3C /* sofia_stool.png */; };
 		5C24BC3F1BE9C0CB00455B3C /* vase_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24BC371BE9C0CB00455B3C /* vase_empty.png */; };
 		5C24BC401BE9C0CB00455B3C /* vase_flower.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24BC381BE9C0CB00455B3C /* vase_flower.png */; };
@@ -868,8 +866,6 @@
 		5C4EC3EB1BBB53BE009D9E82 /* lava2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4EC3EA1BBB53BE009D9E82 /* lava2.png */; };
 		5C4EC3ED1BBB89C1009D9E82 /* Story4-Volcanoes-and-the-Making-of-Hawaii-PM-5.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C4EC3EC1BBB89C1009D9E82 /* Story4-Volcanoes-and-the-Making-of-Hawaii-PM-5.xhtml */; };
 		5C5E954C1BA786CF005F6AD2 /* rattle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C5E954B1BA786CF005F6AD2 /* rattle.png */; };
-		5C64310F1BF2B2A800FD7E2D /* mom_full_hands_out.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C6431081BF2B2A800FD7E2D /* mom_full_hands_out.png */; };
-		5C6431101BF2B2A800FD7E2D /* mom_tote.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C6431091BF2B2A800FD7E2D /* mom_tote.png */; };
 		5C6431111BF2B2A800FD7E2D /* sofia_hands_out.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C64310A1BF2B2A800FD7E2D /* sofia_hands_out.png */; };
 		5C6431121BF2B2A800FD7E2D /* sofia_spoon_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C64310B1BF2B2A800FD7E2D /* sofia_spoon_down.png */; };
 		5C6431131BF2B2A800FD7E2D /* sofia_spoon_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C64310C1BF2B2A800FD7E2D /* sofia_spoon_up.png */; };
@@ -1296,7 +1292,6 @@
 		5C8C01411BD59C13007D4CF0 /* maria_ground.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C013C1BD59C13007D4CF0 /* maria_ground.png */; };
 		5C8C01421BD59C13007D4CF0 /* maria_push.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C013D1BD59C13007D4CF0 /* maria_push.png */; };
 		5C8C01431BD59C13007D4CF0 /* skateboard.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C013E1BD59C13007D4CF0 /* skateboard.png */; };
-		5C8C01441BD59C13007D4CF0 /* toycar.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C013F1BD59C13007D4CF0 /* toycar.png */; };
 		5C8C014C1BD59C4B007D4CF0 /* ch1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C01451BD59C4B007D4CF0 /* ch1.png */; };
 		5C8C014D1BD59C4B007D4CF0 /* ch2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C01461BD59C4B007D4CF0 /* ch2.png */; };
 		5C8C014E1BD59C4B007D4CF0 /* ch3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C01471BD59C4B007D4CF0 /* ch3.png */; };
@@ -1312,6 +1307,10 @@
 		5C9835771BCC660D00E94691 /* scene3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9835731BCC660D00E94691 /* scene3.png */; };
 		5C98357A1BCC673500E94691 /* house_noroof2_damaged.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9835781BCC673500E94691 /* house_noroof2_damaged.png */; };
 		5C98357B1BCC673500E94691 /* house_roof2_damaged.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9835791BCC673500E94691 /* house_roof2_damaged.png */; };
+		5C9B6DA01C03B2D100926CFA /* toycar.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9B6D9F1C03B2D100926CFA /* toycar.png */; };
+		5C9B6DA41C03B53E00926CFA /* mom_full_hands_out.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9B6DA11C03B53E00926CFA /* mom_full_hands_out.png */; };
+		5C9B6DA51C03B53E00926CFA /* mom_tote.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9B6DA21C03B53E00926CFA /* mom_tote.png */; };
+		5C9B6DA61C03B53E00926CFA /* mom_full.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9B6DA31C03B53E00926CFA /* mom_full.png */; };
 		5CA53EAE1BA8D49100D2FF5C /* Story5-Catch-PM-3.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CA53EAD1BA8D49100D2FF5C /* Story5-Catch-PM-3.xhtml */; };
 		5CA53EB01BA8D6BB00D2FF5C /* Story3-Baby-Brother-PM-3.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CA53EAF1BA8D6BB00D2FF5C /* Story3-Baby-Brother-PM-3.xhtml */; };
 		5CA53EB21BA8EA5600D2FF5C /* Story4-Words-of-Wisdom-PM-3.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CA53EB11BA8EA5600D2FF5C /* Story4-Words-of-Wisdom-PM-3.xhtml */; };
@@ -2620,7 +2619,7 @@
 		5C24BBCE1BE9BECE00455B3C /* chili.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chili.png; sourceTree = "<group>"; };
 		5C24BBCF1BE9BECE00455B3C /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
 		5C24BBD01BE9BECE00455B3C /* mom_counter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mom_counter.png; sourceTree = "<group>"; };
-		5C24BBD11BE9BECE00455B3C /* money.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = money.png; sourceTree = "<group>"; };
+		5C24BBD11BE9BECE00455B3C /* pesos.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pesos.png; sourceTree = "<group>"; };
 		5C24BBD21BE9BECE00455B3C /* notebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notebook.png; sourceTree = "<group>"; };
 		5C24BBD31BE9BECE00455B3C /* sofia_spoon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sofia_spoon.png; sourceTree = "<group>"; };
 		5C24BBDD1BE9BF1800455B3C /* bg_barn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_barn.png; sourceTree = "<group>"; };
@@ -2644,7 +2643,6 @@
 		5C24BBF81BE9BF9500455B3C /* sofia_horse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sofia_horse.png; sourceTree = "<group>"; };
 		5C24BBF91BE9BF9500455B3C /* cow2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cow2.png; sourceTree = "<group>"; };
 		5C24BBFA1BE9BF9500455B3C /* emilio_horse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emilio_horse.png; sourceTree = "<group>"; };
-		5C24BC071BE9C02A00455B3C /* pesos.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pesos.png; sourceTree = "<group>"; };
 		5C24BC081BE9C02A00455B3C /* bg_market.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_market.png; sourceTree = "<group>"; };
 		5C24BC091BE9C02A00455B3C /* garlic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = garlic.png; sourceTree = "<group>"; };
 		5C24BC0A1BE9C02A00455B3C /* mancha_eating_grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mancha_eating_grass.png; sourceTree = "<group>"; };
@@ -2668,7 +2666,6 @@
 		5C24BC2E1BE9C08D00455B3C /* roses_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = roses_white.png; sourceTree = "<group>"; };
 		5C24BC331BE9C0CB00455B3C /* bg_faucet_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_faucet_on.png; sourceTree = "<group>"; };
 		5C24BC341BE9C0CB00455B3C /* bg_kitchen_door.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_kitchen_door.png; sourceTree = "<group>"; };
-		5C24BC351BE9C0CB00455B3C /* mom_full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mom_full.png; sourceTree = "<group>"; };
 		5C24BC361BE9C0CB00455B3C /* sofia_stool.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sofia_stool.png; sourceTree = "<group>"; };
 		5C24BC371BE9C0CB00455B3C /* vase_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vase_empty.png; sourceTree = "<group>"; };
 		5C24BC381BE9C0CB00455B3C /* vase_flower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vase_flower.png; sourceTree = "<group>"; };
@@ -2694,8 +2691,6 @@
 		5C4EC3EC1BBB89C1009D9E82 /* Story4-Volcanoes-and-the-Making-of-Hawaii-PM-5.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Volcanoes-and-the-Making-of-Hawaii-PM-5.xhtml"; sourceTree = "<group>"; };
 		5C5E954B1BA786CF005F6AD2 /* rattle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rattle.png; sourceTree = "<group>"; };
 		5C6431071BF2A9D300FD7E2D /* house.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = house.epub; path = EPUBs/house/house.epub; sourceTree = "<group>"; };
-		5C6431081BF2B2A800FD7E2D /* mom_full_hands_out.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mom_full_hands_out.png; sourceTree = "<group>"; };
-		5C6431091BF2B2A800FD7E2D /* mom_tote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mom_tote.png; sourceTree = "<group>"; };
 		5C64310A1BF2B2A800FD7E2D /* sofia_hands_out.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sofia_hands_out.png; sourceTree = "<group>"; };
 		5C64310B1BF2B2A800FD7E2D /* sofia_spoon_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sofia_spoon_down.png; sourceTree = "<group>"; };
 		5C64310C1BF2B2A800FD7E2D /* sofia_spoon_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sofia_spoon_up.png; sourceTree = "<group>"; };
@@ -3128,7 +3123,6 @@
 		5C8C013C1BD59C13007D4CF0 /* maria_ground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = maria_ground.png; sourceTree = "<group>"; };
 		5C8C013D1BD59C13007D4CF0 /* maria_push.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = maria_push.png; sourceTree = "<group>"; };
 		5C8C013E1BD59C13007D4CF0 /* skateboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skateboard.png; sourceTree = "<group>"; };
-		5C8C013F1BD59C13007D4CF0 /* toycar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toycar.png; sourceTree = "<group>"; };
 		5C8C01451BD59C4B007D4CF0 /* ch1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ch1.png; sourceTree = "<group>"; };
 		5C8C01461BD59C4B007D4CF0 /* ch2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ch2.png; sourceTree = "<group>"; };
 		5C8C01471BD59C4B007D4CF0 /* ch3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ch3.png; sourceTree = "<group>"; };
@@ -3144,6 +3138,10 @@
 		5C9835731BCC660D00E94691 /* scene3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scene3.png; sourceTree = "<group>"; };
 		5C9835781BCC673500E94691 /* house_noroof2_damaged.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = house_noroof2_damaged.png; sourceTree = "<group>"; };
 		5C9835791BCC673500E94691 /* house_roof2_damaged.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = house_roof2_damaged.png; sourceTree = "<group>"; };
+		5C9B6D9F1C03B2D100926CFA /* toycar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toycar.png; sourceTree = "<group>"; };
+		5C9B6DA11C03B53E00926CFA /* mom_full_hands_out.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mom_full_hands_out.png; sourceTree = "<group>"; };
+		5C9B6DA21C03B53E00926CFA /* mom_tote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mom_tote.png; sourceTree = "<group>"; };
+		5C9B6DA31C03B53E00926CFA /* mom_full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mom_full.png; sourceTree = "<group>"; };
 		5CA53EAD1BA8D49100D2FF5C /* Story5-Catch-PM-3.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-Catch-PM-3.xhtml"; sourceTree = "<group>"; };
 		5CA53EAF1BA8D6BB00D2FF5C /* Story3-Baby-Brother-PM-3.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story3-Baby-Brother-PM-3.xhtml"; sourceTree = "<group>"; };
 		5CA53EB11BA8EA5600D2FF5C /* Story4-Words-of-Wisdom-PM-3.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Words-of-Wisdom-PM-3.xhtml"; sourceTree = "<group>"; };
@@ -4167,8 +4165,10 @@
 		5C24BAEA1BE9902B00455B3C /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5C9B6DA11C03B53E00926CFA /* mom_full_hands_out.png */,
+				5C9B6DA21C03B53E00926CFA /* mom_tote.png */,
+				5C9B6DA31C03B53E00926CFA /* mom_full.png */,
 				5CE301621BF5645C007B9A17 /* cow_bw_flipped.png */,
-				5C24BC071BE9C02A00455B3C /* pesos.png */,
 				5C24BBCB1BE9BECE00455B3C /* bag.png */,
 				5C735D261BED8E1300F2295A /* bg_balloon_kitchen_door.png */,
 				5C24BBDD1BE9BF1800455B3C /* bg_barn.png */,
@@ -4214,10 +4214,7 @@
 				5C24BC0E1BE9C02A00455B3C /* mangos.png */,
 				5C24BC0F1BE9C02A00455B3C /* milk.png */,
 				5C24BBD01BE9BECE00455B3C /* mom_counter.png */,
-				5C6431081BF2B2A800FD7E2D /* mom_full_hands_out.png */,
-				5C24BC351BE9C0CB00455B3C /* mom_full.png */,
-				5C6431091BF2B2A800FD7E2D /* mom_tote.png */,
-				5C24BBD11BE9BECE00455B3C /* money.png */,
+				5C24BBD11BE9BECE00455B3C /* pesos.png */,
 				5C24BBD21BE9BECE00455B3C /* notebook.png */,
 				5C24BC2D1BE9C08D00455B3C /* roses_pink.png */,
 				5C24BC2E1BE9C08D00455B3C /* roses_white.png */,
@@ -5445,6 +5442,7 @@
 		5C8C01021BD59A23007D4CF0 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5C9B6D9F1C03B2D100926CFA /* toycar.png */,
 				5C6431161BF2BFBD00FD7E2D /* bigrocket_rotate.png */,
 				5C6431171BF2BFBD00FD7E2D /* maria_rotate.png */,
 				5C6431181BF2BFBD00FD7E2D /* rocketflame_rotate.png */,
@@ -5494,7 +5492,6 @@
 				5C4ADDE21BDED9B800F8EF37 /* skateboard_sara.png */,
 				5C8C013E1BD59C13007D4CF0 /* skateboard.png */,
 				5CE5D2721BD9A2900053B038 /* smallrocket.png */,
-				5C8C013F1BD59C13007D4CF0 /* toycar.png */,
 				5C4ADDEC1BDF4AE100F8EF37 /* wagon_withwood.png */,
 				5C4ADDE91BDED9C500F8EF37 /* wave.png */,
 				5C8C01221BD59B02007D4CF0 /* wood.png */,
@@ -6114,6 +6111,7 @@
 				5CF994B119AC34550080C32F /* Story4-Who-is-the-Best-Animal-Title.xhtml in Resources */,
 				B95229571BA1158C00093528 /* babybrother.png in Resources */,
 				1A8036D41B0B1C62004A164A /* TheContestQ2A1.mp3 in Resources */,
+				5C9B6DA61C03B53E00926CFA /* mom_full.png in Resources */,
 				5C776BDD19C93E1E000DBC65 /* rushesDEFS.m4a in Resources */,
 				1A80365E1B0B1C62004A164A /* EveryoneHelpsQ4A3.mp3 in Resources */,
 				5CF994B219AC34550080C32F /* Story5-The-Wise-Owl-IM-1.xhtml in Resources */,
@@ -6344,6 +6342,7 @@
 				1A3594341AE76129003B3B41 /* TheMysteryIsSolvedQ1A2.mp3 in Resources */,
 				B9C9EA171B8EA0A800AFC328 /* Story3-Tsunamis-PM-4.xhtml in Resources */,
 				1A2D70AC1AAA74FA009E7B5B /* tree_day.png in Resources */,
+				5C9B6DA51C03B53E00926CFA /* mom_tote.png in Resources */,
 				1A8037221B0B1C62004A164A /* WhoIsTheBestAnimalQ4A4.mp3 in Resources */,
 				1A3594091AE76129003B3B41 /* MoreIsMissingQ6A4.mp3 in Resources */,
 				1A8036311B0B1C62004A164A /* CleaningUpQ1A3.mp3 in Resources */,
@@ -6396,7 +6395,6 @@
 				1A8037201B0B1C62004A164A /* WhoIsTheBestAnimalQ4A2.mp3 in Resources */,
 				5C8C01281BD59B02007D4CF0 /* horse_noharness.png in Resources */,
 				5C776C3719C95165000DBC65 /* hayloftS.m4a in Resources */,
-				5C6431101BF2B2A800FD7E2D /* mom_tote.png in Resources */,
 				5CAD064B19BEB8AE00F3F053 /* arteriesE.m4a in Resources */,
 				B9C9E9C71B8EA0A800AFC328 /* intro_background.png in Resources */,
 				1A8036E81B0B1C62004A164A /* TheContestQ6A1.mp3 in Resources */,
@@ -6434,6 +6432,7 @@
 				5C7FE10F19A7E43C00CBBE0E /* BFCS1_6A.m4a in Resources */,
 				1A695CD51AD4EB9C006A2284 /* TheLopezFamilyQ4.mp3 in Resources */,
 				5CE299DA19B59F9900675CB0 /* BFCE3_7.m4a in Resources */,
+				5C9B6DA01C03B2D100926CFA /* toycar.png in Resources */,
 				5CF9947419AC34550080C32F /* apple_large.png in Resources */,
 				B952295C1BA1162600093528 /* cup_empty.png in Resources */,
 				B9C9E9D51B8EA0A800AFC328 /* lava_cooled.png in Resources */,
@@ -6488,7 +6487,6 @@
 				5CF655C119AEACF0000AC913 /* Story5-The-Wise-Owl-Intro-E.xhtml in Resources */,
 				B9C9E9B21B8EA0A800AFC328 /* ch4_test_09.png in Resources */,
 				1A3594301AE76129003B3B41 /* TheFamilyIsRattledQ6A3.mp3 in Resources */,
-				5C24BC191BE9C02A00455B3C /* pesos.png in Resources */,
 				1A2D70A61AAA74FA009E7B5B /* Story-4-Good-Morning-Smiths.png in Resources */,
 				1A2D709D1AAA74FA009E7B5B /* man.png in Resources */,
 				1A3593F31AE76129003B3B41 /* MoreIsMissingQ2A2.mp3 in Resources */,
@@ -6830,6 +6828,7 @@
 				1AB935691A895582000CAE21 /* Relationships-MetaData.xml in Resources */,
 				5C776B4B19C833CD000DBC65 /* Story1-Why-We-Breathe-Intro-S.xhtml in Resources */,
 				5CF9949219AC34550080C32F /* Story-2-Getting-Ready.png in Resources */,
+				5C9B6DA41C03B53E00926CFA /* mom_full_hands_out.png in Resources */,
 				1A2D70AA1AAA74FA009E7B5B /* stroller.png in Resources */,
 				5C776C1F19C94D69000DBC65 /* cartS.m4a in Resources */,
 				B9C9E98D1B8EA0A800AFC328 /* content.opf in Resources */,
@@ -7020,7 +7019,6 @@
 				5CF655B519AD46A3000AC913 /* BFEE_8B.m4a in Resources */,
 				5CE299BC19B5837000675CB0 /* BFCE2_2.m4a in Resources */,
 				B952287F1BA0CDAB00093528 /* Constraints-MetaData.xml in Resources */,
-				5C24BC3D1BE9C0CB00455B3C /* mom_full.png in Resources */,
 				5C24BC021BE9BF9500455B3C /* gate_open.png in Resources */,
 				5CAD060C19BE6A3E00F3F053 /* CCE1_7.m4a in Resources */,
 				5C7FE0F019A7E43C00CBBE0E /* BFCE1_4.m4a in Resources */,
@@ -7223,7 +7221,6 @@
 				1A2D70A71AAA74FA009E7B5B /* Story-5-Cleaning-Day.png in Resources */,
 				1A8036571B0B1C62004A164A /* EveryoneHelpsQ3A1.mp3 in Resources */,
 				B9C9EA051B8EA0A800AFC328 /* PMStyle.css in Resources */,
-				5C64310F1BF2B2A800FD7E2D /* mom_full_hands_out.png in Resources */,
 				1A8036AD1B0B1C62004A164A /* IntroductionToTheBestFarmQ7A2.mp3 in Resources */,
 				5C7FE03219A6B1B500CBBE0E /* handle_open.png in Resources */,
 				1A3593ED1AE76129003B3B41 /* MoreIsMissingQ1A1.mp3 in Resources */,
@@ -7505,7 +7502,7 @@
 				1A8037251B0B1C62004A164A /* WhoIsTheBestAnimalQ5A2.mp3 in Resources */,
 				5CAD05FC19BE6A3E00F3F053 /* CCE2_4.m4a in Resources */,
 				1AFA240F1B6C4AE300C0AA53 /* Story5-The-Baby's-Rattle-is-Gone-Too-Intro-E.xhtml in Resources */,
-				5C24BBDA1BE9BECE00455B3C /* money.png in Resources */,
+				5C24BBDA1BE9BECE00455B3C /* pesos.png in Resources */,
 				5C776ABF19C674FA000DBC65 /* CPQR8.m4a in Resources */,
 				1A80367D1B0B1C62004A164A /* GettingReadyQ4A4.mp3 in Resources */,
 				1A695CA21AD4DA70006A2284 /* Story1-The-Lopez-Family-PM-2S.xhtml in Resources */,
@@ -7531,7 +7528,6 @@
 				B9C9E9B11B8EA0A800AFC328 /* ch4_test_08.png in Resources */,
 				5CE5D2751BD9A2900053B038 /* smallrocket.png in Resources */,
 				1A80363D1B0B1C62004A164A /* CleaningUpQ4.mp3 in Resources */,
-				5C8C01441BD59C13007D4CF0 /* toycar.png in Resources */,
 				5C24BC001BE9BF9500455B3C /* emilio_standing.png in Resources */,
 				1A35942E1AE76129003B3B41 /* TheFamilyIsRattledQ6A1.mp3 in Resources */,
 				1A2D70D71AAA74FA009E7B5B /* Story6-The-Mystery-is-Solved-PM-2.xhtml in Resources */,

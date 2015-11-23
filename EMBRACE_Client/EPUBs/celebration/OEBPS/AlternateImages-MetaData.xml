@@ -15,8 +15,8 @@
         <alternateImage objId="mancha" action="eating" originalSrc="mancha_tied.png" alternateSrc="mancha_eating_grass.png" width="300px" x="4.492188%" y="34.801136%" class="manipulationObject center" z="0"/>
         <alternateImage objId="mancha" action="equip" originalSrc="mancha_naked.png" alternateSrc="mancha_equiped.png" width="250px" x="70.068359%" y="27.343750%" class="manipulationObject center" z="0"/>
         <alternateImage objId="mancha" action="tied" originalSrc="mancha_loose_reins.png" alternateSrc="mancha_tied.png" width="300px" x="1.367188%" y="33.451702%" class="manipulationObject center" z="0"/>
-        <alternateImage objId="mom" action="noTote" originalSrc="mom_tote.png" alternateSrc="mom_full_hands_out.png" width="230px" x="72.412109%" y="29.545454%" class="manipulationObject center" z="1"/>
-        <alternateImage objId="mom" action="tote" originalSrc="mom_full_hands_out.png" alternateSrc="mom_tote.png" width="230px" x="72.412109%" y="29.545454%" class="manipulationObject center" z="1"/>
+        <alternateImage objId="mom" action="noTote" originalSrc="mom_tote.png" alternateSrc="mom_full_hands_out.png" width="195px" x="72.705078%" y="30.681818%" class="manipulationObject center" z="1"/>
+        <alternateImage objId="mom" action="tote" originalSrc="mom_full_hands_out.png" alternateSrc="mom_tote.png" width="230px" x="72.705078%" y="30.681818%" class="manipulationObject center" z="1"/>
         <alternateImage objId="scale" action="kilo" originalSrc="scale_no_weight.png" alternateSrc="scale_weighed_down.png" width="100px" x="29.394531%" y="28.338068%" class="manipulationObject center" z="0"/>
         <alternateImage objId="sofia" action="appear" originalSrc="sofia_empty_tote.png" alternateSrc="sofia_empty_tote.png" width="100px" x="7.617188%" y="65.980110%" class="manipulationObject center" z="1"/>
         <alternateImage objId="sofia" action="door" originalSrc="sofia_empty_tote.png" alternateSrc="sofia_empty_tote.png" width="100px" x="86%" y="40%" class="manipulationObject center" z="0"/>

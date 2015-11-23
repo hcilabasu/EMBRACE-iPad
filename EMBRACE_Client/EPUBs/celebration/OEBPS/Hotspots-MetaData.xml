@@ -18,7 +18,7 @@
         <hotspot objId="milk" action="grabHigh" role="object" x="50%" y="50%"/>
         <hotspot objId="mom" action="getIn" role="object" x="19%" y="66%"/>
         <hotspot objId="mom" action="getIn" role="subject" x="50%" y="50%"/>
-        <hotspot objId="mom" action="grabLeft" role="subject" x="74.4%" y="66%"/>
+        <hotspot objId="mom" action="grabLeft" role="subject" x="86%" y="64.3%"/>
         <hotspot objId="mom" action="moveTo" role="subject" x="0%" y="100%"/>
         <hotspot objId="notebook" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="notebook" action="grabLeft" role="object" x="50%" y="50%"/>
