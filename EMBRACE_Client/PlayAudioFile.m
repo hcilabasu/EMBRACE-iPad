@@ -116,7 +116,10 @@
 /* Delegate for the AVAudioPlayer */
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag  {
     
-    [self.audioPlayerAfter play];
+    // This delay is needed in order to be able to play the last definition on a vocabulary page
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW,2*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [self.audioPlayerAfter play];
+    });
     
     if(PmviewController != nil)
     {

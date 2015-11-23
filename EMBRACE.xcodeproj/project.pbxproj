@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A50C74A1BFBBCEC00C2BA8F /* Story5-The-Baby's-Rattle-is-Gone-Too-IM-1.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1A50C7441BFBBCEC00C2BA8F /* Story5-The-Baby's-Rattle-is-Gone-Too-IM-1.xhtml */; };
+		1A50C74B1BFBBCEC00C2BA8F /* Story5-The-Baby's-Rattle-is-Gone-Too-IM-2.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1A50C7451BFBBCEC00C2BA8F /* Story5-The-Baby's-Rattle-is-Gone-Too-IM-2.xhtml */; };
+		1A50C74C1BFBBCEC00C2BA8F /* Story5-The-Baby's-Rattle-is-Gone-Too-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1A50C7461BFBBCEC00C2BA8F /* Story5-The-Baby's-Rattle-is-Gone-Too-Intro-E.xhtml */; };
+		1A50C74D1BFBBCEC00C2BA8F /* Story5-The-Baby's-Rattle-is-Gone-Too-PM-1.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1A50C7471BFBBCEC00C2BA8F /* Story5-The-Baby's-Rattle-is-Gone-Too-PM-1.xhtml */; };
+		1A50C74E1BFBBCEC00C2BA8F /* Story5-The-Baby's-Rattle-is-Gone-Too-PM-2.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1A50C7481BFBBCEC00C2BA8F /* Story5-The-Baby's-Rattle-is-Gone-Too-PM-2.xhtml */; };
+		1A50C74F1BFBBCEC00C2BA8F /* Story5-The-Baby's-Rattle-is-Gone-Too-Title.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1A50C7491BFBBCEC00C2BA8F /* Story5-The-Baby's-Rattle-is-Gone-Too-Title.xhtml */; };
 		1A5BB0CA1BD327D1002D1AEA /* bottled.epub in Resources */ = {isa = PBXBuildFile; fileRef = 1A5BB0741BD327D1002D1AEA /* bottled.epub */; };
 		1A5BB0CB1BD327D1002D1AEA /* container.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A5BB0761BD327D1002D1AEA /* container.xml */; };
 		1A5BB0CC1BD327D1002D1AEA /* mimetype in Resources */ = {isa = PBXBuildFile; fileRef = 1A5BB0771BD327D1002D1AEA /* mimetype */; };
@@ -1927,6 +1933,12 @@
 		1A3593E91AE76129003B3B41 /* TheMysteryIsSolvedQ7A2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheMysteryIsSolvedQ7A2.mp3; sourceTree = "<group>"; };
 		1A3593EA1AE76129003B3B41 /* TheMysteryIsSolvedQ7A3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheMysteryIsSolvedQ7A3.mp3; sourceTree = "<group>"; };
 		1A3593EB1AE76129003B3B41 /* TheMysteryIsSolvedQ7A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheMysteryIsSolvedQ7A4.mp3; sourceTree = "<group>"; };
+		1A50C7441BFBBCEC00C2BA8F /* Story5-The-Baby's-Rattle-is-Gone-Too-IM-1.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-The-Baby's-Rattle-is-Gone-Too-IM-1.xhtml"; sourceTree = "<group>"; };
+		1A50C7451BFBBCEC00C2BA8F /* Story5-The-Baby's-Rattle-is-Gone-Too-IM-2.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-The-Baby's-Rattle-is-Gone-Too-IM-2.xhtml"; sourceTree = "<group>"; };
+		1A50C7461BFBBCEC00C2BA8F /* Story5-The-Baby's-Rattle-is-Gone-Too-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-The-Baby's-Rattle-is-Gone-Too-Intro-E.xhtml"; sourceTree = "<group>"; };
+		1A50C7471BFBBCEC00C2BA8F /* Story5-The-Baby's-Rattle-is-Gone-Too-PM-1.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-The-Baby's-Rattle-is-Gone-Too-PM-1.xhtml"; sourceTree = "<group>"; };
+		1A50C7481BFBBCEC00C2BA8F /* Story5-The-Baby's-Rattle-is-Gone-Too-PM-2.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-The-Baby's-Rattle-is-Gone-Too-PM-2.xhtml"; sourceTree = "<group>"; };
+		1A50C7491BFBBCEC00C2BA8F /* Story5-The-Baby's-Rattle-is-Gone-Too-Title.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-The-Baby's-Rattle-is-Gone-Too-Title.xhtml"; sourceTree = "<group>"; };
 		1A5476E51B350673003801A5 /* bg_heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_heart.png; sourceTree = "<group>"; };
 		1A5476E61B350673003801A5 /* bg_veins.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_veins.png; sourceTree = "<group>"; };
 		1A5476E71B350673003801A5 /* p2_cilia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = p2_cilia.png; sourceTree = "<group>"; };
@@ -3618,6 +3630,12 @@
 			children = (
 				1A2D705F1AAA74FA009E7B5B /* Introduction-to-Lopez-House-Mystery-Characters-Title.xhtml */,
 				1A2D70601AAA74FA009E7B5B /* Story1-Introduction-At-the-House-PM.xhtml */,
+				1A50C7441BFBBCEC00C2BA8F /* Story5-The-Baby's-Rattle-is-Gone-Too-IM-1.xhtml */,
+				1A50C7451BFBBCEC00C2BA8F /* Story5-The-Baby's-Rattle-is-Gone-Too-IM-2.xhtml */,
+				1A50C7461BFBBCEC00C2BA8F /* Story5-The-Baby's-Rattle-is-Gone-Too-Intro-E.xhtml */,
+				1A50C7471BFBBCEC00C2BA8F /* Story5-The-Baby's-Rattle-is-Gone-Too-PM-1.xhtml */,
+				1A50C7481BFBBCEC00C2BA8F /* Story5-The-Baby's-Rattle-is-Gone-Too-PM-2.xhtml */,
+				1A50C7491BFBBCEC00C2BA8F /* Story5-The-Baby's-Rattle-is-Gone-Too-Title.xhtml */,
 				1A2D70611AAA74FA009E7B5B /* Story1-The-Lopez-Family-IM-1.xhtml */,
 				1A2D70621AAA74FA009E7B5B /* Story1-The-Lopez-Family-IM-2.xhtml */,
 				1A2D70631AAA74FA009E7B5B /* Story1-The-Lopez-Family-Intro-E.xhtml */,
@@ -5778,6 +5796,7 @@
 				C30D061A1BABC07200DF53F1 /* Story3-Tsunamis-PM-1.xhtml in Resources */,
 				C30D061B1BABC07200DF53F1 /* Story3-Tsunamis-PM-2.xhtml in Resources */,
 				C30D061C1BABC07200DF53F1 /* Story3-Tsunamis-PM-3.xhtml in Resources */,
+				1A50C74D1BFBBCEC00C2BA8F /* Story5-The-Baby's-Rattle-is-Gone-Too-PM-1.xhtml in Resources */,
 				C30D061D1BABC07200DF53F1 /* Story3-Tsunamis-Title.xhtml in Resources */,
 				C30D061E1BABC07200DF53F1 /* Story4-Volcanoes-and-the-Making-of-Hawaii-Intro-E.xhtml in Resources */,
 				C30D061F1BABC07200DF53F1 /* Story4-Volcanoes-and-the-Making-of-Hawaii-PM-1.xhtml in Resources */,
@@ -5818,6 +5837,7 @@
 				C30D063E1BABC07300DF53F1 /* content.opf in Resources */,
 				1A880E4B1BD6E4980020F93B /* MusclesUseOxygenQ3A4.mp3 in Resources */,
 				C30D063F1BABC07300DF53F1 /* baby.png in Resources */,
+				1A50C74B1BFBBCEC00C2BA8F /* Story5-The-Baby's-Rattle-is-Gone-Too-IM-2.xhtml in Resources */,
 				C30D06401BABC07300DF53F1 /* icon_babycry2.png in Resources */,
 				C30D06411BABC07300DF53F1 /* icon_dogdetective.png in Resources */,
 				C30D06421BABC07300DF53F1 /* icon_keys.png in Resources */,
@@ -6121,6 +6141,7 @@
 				C30D07481BABC07300DF53F1 /* O2_select large_high_res.png in Resources */,
 				1A5BB1111BD327D1002D1AEA /* Story5-Catch-Intro-E.xhtml in Resources */,
 				C30D07491BABC07300DF53F1 /* bg_heart.png in Resources */,
+				1A50C74E1BFBBCEC00C2BA8F /* Story5-The-Baby's-Rattle-is-Gone-Too-PM-2.xhtml in Resources */,
 				1A5BB0E91BD327D1002D1AEA /* olivia2.png in Resources */,
 				C30D074A1BABC07300DF53F1 /* bg_veins.png in Resources */,
 				C30D074B1BABC07300DF53F1 /* p2_cilia.png in Resources */,
@@ -6401,6 +6422,7 @@
 				C30D026F1BABBFE700DF53F1 /* EveryoneHelpsQ5A2.mp3 in Resources */,
 				C30D02701BABBFE700DF53F1 /* EveryoneHelpsQ5A3.mp3 in Resources */,
 				C30D02711BABBFE700DF53F1 /* EveryoneHelpsQ5A4.mp3 in Resources */,
+				1A50C74F1BFBBCEC00C2BA8F /* Story5-The-Baby's-Rattle-is-Gone-Too-Title.xhtml in Resources */,
 				C30D02721BABBFE700DF53F1 /* EveryoneHelpsQ6.mp3 in Resources */,
 				C30D02731BABBFE700DF53F1 /* EveryoneHelpsQ6A1.mp3 in Resources */,
 				C30D02741BABBFE700DF53F1 /* EveryoneHelpsQ6A2.mp3 in Resources */,
@@ -7012,6 +7034,7 @@
 				C30D04741BABBFE800DF53F1 /* dirtS.m4a in Resources */,
 				C30D04751BABBFE800DF53F1 /* dirtDEFS.m4a in Resources */,
 				1A880E0F1BD6E4980020F93B /* CigaretteSmokeHurtsYourLungsQ3A4.mp3 in Resources */,
+				1A50C74A1BFBBCEC00C2BA8F /* Story5-The-Baby's-Rattle-is-Gone-Too-IM-1.xhtml in Resources */,
 				C30D04761BABBFE800DF53F1 /* stiffS.m4a in Resources */,
 				C30D04771BABBFE800DF53F1 /* stiffDEFS.m4a in Resources */,
 				C30D04781BABBFE800DF53F1 /* trappedS.m4a in Resources */,

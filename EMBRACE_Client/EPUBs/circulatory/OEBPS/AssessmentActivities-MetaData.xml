@@ -6,65 +6,65 @@
                 <QuestionText>How many atoms does an oxygen molecule have?</QuestionText>
                 <QuestionAudio>WhyWeBreatheQ1.mp3</QuestionAudio>
                 <Answer1>2</Answer1>
-                <Answer1Audio>WhyWeBreatheQ1A1</Answer1Audio>
+                <Answer1Audio>WhyWeBreatheQ1A1.mp3</Answer1Audio>
                 <Answer2>1</Answer2>
-                <Answer2Audio>WhyWeBreatheQ1A2</Answer2Audio>
+                <Answer2Audio>WhyWeBreatheQ1A2.mp3</Answer2Audio>
                 <Answer3>3</Answer3>
-                <Answer3Audio>WhyWeBreatheQ1A3</Answer3Audio>
+                <Answer3Audio>WhyWeBreatheQ1A3.mp3</Answer3Audio>
                 <Answer4>100</Answer4>
-                <Answer4Audio>WhyWeBreatheQ1A4</Answer4Audio>
+                <Answer4Audio>WhyWeBreatheQ1A4.mp3</Answer4Audio>
                 <expectedSelection>2</expectedSelection>
             </Question>
             <Question number="2">
                 <QuestionText>When we breathe, where does the oxygen go first?</QuestionText>
                 <QuestionAudio>WhyWeBreatheQ2.mp3</QuestionAudio>
                 <Answer1>nose</Answer1>
-                <Answer1Audio>WhyWeBreatheQ2A1</Answer1Audio>
+                <Answer1Audio>WhyWeBreatheQ2A1.mp3</Answer1Audio>
                 <Answer2>lungs</Answer2>
-                <Answer2Audio>WhyWeBreatheQ2A2</Answer2Audio>
+                <Answer2Audio>WhyWeBreatheQ2A2.mp3</Answer2Audio>
                 <Answer3>blood</Answer3>
-                <Answer3Audio>WhyWeBreatheQ2A3</Answer3Audio>
+                <Answer3Audio>WhyWeBreatheQ2A3.mp3</Answer3Audio>
                 <Answer4>toenail</Answer4>
-                <Answer4Audio>WhyWeBreatheQ2A4</Answer4Audio>
+                <Answer4Audio>WhyWeBreatheQ2A4.mp3</Answer4Audio>
                 <expectedSelection>nose</expectedSelection>
             </Question>
             <Question number="3">
                 <QuestionText>Where do carbon dioxide molecules go when we breathe out?</QuestionText>
                 <QuestionAudio>WhyWeBreatheQ3.mp3</QuestionAudio>
                 <Answer1>air</Answer1>
-                <Answer1Audio>WhyWeBreatheQ3A1</Answer1Audio>
+                <Answer1Audio>WhyWeBreatheQ3A1.mp3</Answer1Audio>
                 <Answer2>lungs</Answer2>
-                <Answer2Audio>WhyWeBreatheQ3A2</Answer2Audio>
+                <Answer2Audio>WhyWeBreatheQ3A2.mp3</Answer2Audio>
                 <Answer3>blood</Answer3>
-                <Answer3Audio>WhyWeBreatheQ3A3</Answer3Audio>
+                <Answer3Audio>WhyWeBreatheQ3A3.mp3</Answer3Audio>
                 <Answer4>earlobe</Answer4>
-                <Answer4Audio>WhyWeBreatheQ3A4</Answer4Audio>
+                <Answer4Audio>WhyWeBreatheQ3A4.mp3</Answer4Audio>
                 <expectedSelection>air</expectedSelection>
             </Question>
             <Question number="4">
                 <QuestionText>When blood with oxygen leaves the lungs, where does it go first?</QuestionText>
                 <QuestionAudio>WhyWeBreatheQ4.mp3</QuestionAudio>
                 <Answer1>heart</Answer1>
-                <Answer1Audio>WhyWeBreatheQ4A1</Answer1Audio>
+                <Answer1Audio>WhyWeBreatheQ4A1.mp3</Answer1Audio>
                 <Answer2>nose</Answer2>
-                <Answer2Audio>WhyWeBreatheQ4A2</Answer2Audio>
+                <Answer2Audio>WhyWeBreatheQ4A2.mp3</Answer2Audio>
                 <Answer3>air</Answer3>
-                <Answer3Audio>WhyWeBreatheQ4A3</Answer3Audio>
+                <Answer3Audio>WhyWeBreatheQ4A3.mp3</Answer3Audio>
                 <Answer4>eyeball</Answer4>
-                <Answer4Audio>WhyWeBreatheQ4A4</Answer4Audio>
+                <Answer4Audio>WhyWeBreatheQ4A4.mp3</Answer4Audio>
                 <expectedSelection>heart</expectedSelection>
             </Question>
             <Question number="5">
                 <QuestionText>The oxygen in the blood helps to turn food into energy so that we can...?</QuestionText>
                 <QuestionAudio>WhyWeBreatheQ5.mp3</QuestionAudio>
                 <Answer1>live</Answer1>
-                <Answer1Audio>WhyWeBreatheQ5A1</Answer1Audio>
+                <Answer1Audio>WhyWeBreatheQ5A1.mp3</Answer1Audio>
                 <Answer2>make molecules</Answer2>
-                <Answer2Audio>WhyWeBreatheQ5A2</Answer2Audio>
+                <Answer2Audio>WhyWeBreatheQ5A2.mp3</Answer2Audio>
                 <Answer3>breathe in</Answer3>
-                <Answer3Audio>WhyWeBreatheQ5A3</Answer3Audio>
+                <Answer3Audio>WhyWeBreatheQ5A3.mp3</Answer3Audio>
                 <Answer4>snore</Answer4>
-                <Answer4Audio>WhyWeBreatheQ5A4</Answer4Audio>
+                <Answer4Audio>WhyWeBreatheQ5A4.mp3</Answer4Audio>
                 <expectedSelection>live</expectedSelection>
             </Question>
         </Questions>
@@ -353,7 +353,7 @@
                 <expectedSelection>blood</expectedSelection>
             </Question>
             <Question number="6">
-                <QuestionText>What can people do to clean their cilia and lungs</QuestionText>
+                <QuestionText>What can people do to clean their cilia and lungs?</QuestionText>
                 <QuestionAudio>CigaretteSmokeHurtsYourLungsQ6.mp3</QuestionAudio>
                 <Answer1>stop smoking</Answer1>
                 <Answer1Audio>CigaretteSmokeHurtsYourLungsQ6A1.mp3</Answer1Audio>
