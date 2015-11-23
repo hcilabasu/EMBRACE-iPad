@@ -522,6 +522,9 @@ BOOL wasPathFollowed = false;
         //load assessment activity screen
         if([chapterTitle isEqualToString:@"Introduction to The Best Farm"] || [chapterTitle isEqualToString:@"Introduction to The House"])
         {
+            //Set introduction as completed
+            [[(LibraryViewController*) libraryViewController studentProgress] setStatusOfChapter:chapterTitle :COMPLETED fromBook:[bookTitle stringByReplacingOccurrencesOfString:@" - Unknown-1" withString:@""]];
+            
             [self.navigationController popViewControllerAnimated:YES];
             return;
         }

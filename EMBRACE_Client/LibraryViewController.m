@@ -113,6 +113,9 @@ ConditionSetup *conditionSetup;
     
     //Update progress indicators
     [self.libraryView reloadSections:[NSIndexSet indexSetWithIndex:0]];
+    
+    //Save progress to file
+    [[ServerCommunicationController sharedManager] saveProgress:student :studentProgress];
 }
 
 /*
@@ -251,6 +254,9 @@ ConditionSetup *conditionSetup;
     //Write log data to file
     [[ServerCommunicationController sharedManager] writeToFile:[[ServerCommunicationController sharedManager] studyFileName] ofType:@"txt"];
     
+    //Save progress to file
+    [[ServerCommunicationController sharedManager] saveProgress:student :studentProgress];
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -332,6 +338,9 @@ ConditionSetup *conditionSetup;
             
             //Update progress indicators
             [self.libraryView reloadSections:[NSIndexSet indexSetWithIndex:0]];
+            
+            //Save progress to file
+            [[ServerCommunicationController sharedManager] saveProgress:student :studentProgress];
         }
     }
 }
