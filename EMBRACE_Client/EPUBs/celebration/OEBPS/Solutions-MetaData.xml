@@ -294,7 +294,84 @@
                 <step number="1">
                     <check obj1Id="sofia" action="getIn" locationId="nearPost"/>
                     <swapImage obj1Id="sofia" action="noTote2"/>
+                    <swapImage obj1Id="mancha" action="blueSaddlebag"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="A Gift for the Bride" activity_id="story5-PM-1">
+            <sentence number="1">
+                <step number="1">
+                    <check obj1Id="sofia" action="getIn" locationId="nearHorse2"/>
+                    <disappearAuto obj1Id="sofia" action="disappear" obj2Id="sofia"/>
+                    <disappearAuto obj1Id="mancha" action="disappear" obj2Id="mancha"/>
+                    <appear obj1Id="sofia_on_mancha" action="appear"/>
+                </step>
+                <step number="2">
+                    <check obj1Id="sofia_on_mancha" action="getIn" locationId="dirtRoad2"/>
+                    <move obj1Id="sofia_on_mancha" action="getIn" waypointId="dirtRoad2"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="A Gift for the Bride" activity_id="story5-PM-2">
+            <sentence number="4">
+                <step number="1">
+                    <check obj1Id="sofia_on_mancha" action="getIn" locationId="market"/>
+                    <move obj1Id="sofia_on_mancha" action="getIn" waypointId="market"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="A Gift for the Bride" activity_id="story5-PM-3">
+            <sentence number="5">
+                <step number="1">
+                    <check obj1Id="sofia" action="getIn" locationId="nearPost"/>
+                    <move obj1Id="sofia" action="getIn" waypointId="nearPost"/>
+                    <swapImage obj1Id="mancha" action="tied"/>
+                </step>
+                <step number="2">
+                    <check obj1Id="sofia" action="getIn" locationId="inMarket"/>
+                    <move obj1Id="sofia" action="getIn" waypointId="inMarket"/>
+                </step>
+            </sentence>
+            <sentence number="6">
+                <step number="1">
+                    <group obj1Id="sofia" action="pickUp" obj2Id="roses_pink"/>
+                    <move obj1Id="sofia" action="getIn" waypointId="rosesPink"/>
+                </step>
+                <step number="2">
+                    <check obj1Id="sofia" action="getIn" locationId="rosesWhite"/>
+                    <groupAuto obj1Id="roses_white" action="getIn" obj2Id="sofia"/>
+                    <move obj1Id="sofia" action="getIn" waypointId="rosesWhite"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="A Gift for the Bride" activity_id="story5-PM-4">
+            <sentence number="8">
+                <step number="1">
+                    <check obj1Id="sofia" action="getIn" locationId="cashier"/>
+                    <move obj1Id="sofia" action="getIn" waypointId="cashier"/>
+                </step>
+            </sentence>
+            <sentence number="10">
+                <step number="1">
+                    <check obj1Id="sofia" action="getIn" locationId="nearPost"/>
+                    <move obj1Id="sofia" action="getIn" waypointId="nearPost"/>
+                    <disappearAuto obj1Id="roses_pink" action="disappear" obj2Id="roses_pink"/>
+                    <disappearAuto obj1Id="roses_white" action="disappear" obj2Id="roses_white"/>
                     <swapImage obj1Id="mancha" action="brownSaddlebag"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="A Gift for the Bride" activity_id="story5-PM-5">
+            <sentence number="11">
+                <step number="1">
+                    <check obj1Id="sofia" action="getIn" locationId="nearHorse2"/>
+                    <disappearAuto obj1Id="sofia" action="disappear" obj2Id="sofia"/>
+                    <disappearAuto obj1Id="mancha" action="disappear" obj2Id="mancha"/>
+                    <appear obj1Id="sofia_on_mancha" action="appear"/>
+                </step>
+                <step number="2">
+                    <check obj1Id="sofia_on_mancha" action="getIn" locationId="dirtRoad2"/>
+                    <move obj1Id="sofia_on_mancha" action="getIn" waypointId="dirtRoad2"/>
                 </step>
             </sentence>
         </story>

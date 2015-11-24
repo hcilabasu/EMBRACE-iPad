@@ -1311,6 +1311,7 @@
 		5C9B6DA41C03B53E00926CFA /* mom_full_hands_out.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9B6DA11C03B53E00926CFA /* mom_full_hands_out.png */; };
 		5C9B6DA51C03B53E00926CFA /* mom_tote.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9B6DA21C03B53E00926CFA /* mom_tote.png */; };
 		5C9B6DA61C03B53E00926CFA /* mom_full.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9B6DA31C03B53E00926CFA /* mom_full.png */; };
+		5C9B6DA81C03FA5E00926CFA /* Story5-A-Gift-for-the-Bride-PM-5.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C9B6DA71C03FA5E00926CFA /* Story5-A-Gift-for-the-Bride-PM-5.xhtml */; };
 		5CA53EAE1BA8D49100D2FF5C /* Story5-Catch-PM-3.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CA53EAD1BA8D49100D2FF5C /* Story5-Catch-PM-3.xhtml */; };
 		5CA53EB01BA8D6BB00D2FF5C /* Story3-Baby-Brother-PM-3.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CA53EAF1BA8D6BB00D2FF5C /* Story3-Baby-Brother-PM-3.xhtml */; };
 		5CA53EB21BA8EA5600D2FF5C /* Story4-Words-of-Wisdom-PM-3.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CA53EB11BA8EA5600D2FF5C /* Story4-Words-of-Wisdom-PM-3.xhtml */; };
@@ -3142,6 +3143,7 @@
 		5C9B6DA11C03B53E00926CFA /* mom_full_hands_out.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mom_full_hands_out.png; sourceTree = "<group>"; };
 		5C9B6DA21C03B53E00926CFA /* mom_tote.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mom_tote.png; sourceTree = "<group>"; };
 		5C9B6DA31C03B53E00926CFA /* mom_full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mom_full.png; sourceTree = "<group>"; };
+		5C9B6DA71C03FA5E00926CFA /* Story5-A-Gift-for-the-Bride-PM-5.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-A-Gift-for-the-Bride-PM-5.xhtml"; sourceTree = "<group>"; };
 		5CA53EAD1BA8D49100D2FF5C /* Story5-Catch-PM-3.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-Catch-PM-3.xhtml"; sourceTree = "<group>"; };
 		5CA53EAF1BA8D6BB00D2FF5C /* Story3-Baby-Brother-PM-3.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story3-Baby-Brother-PM-3.xhtml"; sourceTree = "<group>"; };
 		5CA53EB11BA8EA5600D2FF5C /* Story4-Words-of-Wisdom-PM-3.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Words-of-Wisdom-PM-3.xhtml"; sourceTree = "<group>"; };
@@ -4284,6 +4286,7 @@
 				5C24BB3D1BE9902B00455B3C /* Story5-A-Gift-for-the-Bride-PM-2.xhtml */,
 				5CD959291BF192240048337E /* Story5-A-Gift-for-the-Bride-PM-3.xhtml */,
 				5CD9592B1BF192FD0048337E /* Story5-A-Gift-for-the-Bride-PM-4.xhtml */,
+				5C9B6DA71C03FA5E00926CFA /* Story5-A-Gift-for-the-Bride-PM-5.xhtml */,
 				5C24BB3E1BE9902B00455B3C /* Story5-A-Gift-for-the-Bride-Title.xhtml */,
 				5C24BB3F1BE9902B00455B3C /* Story6-Homecoming-Intro-E.xhtml */,
 				5C24BB401BE9902B00455B3C /* Story6-Homecoming-PM-1.xhtml */,
@@ -7014,6 +7017,7 @@
 				B9C9E9ED1B8EA0A800AFC328 /* plate_bulge.png in Resources */,
 				5C776B1919C77893000DBC65 /* trophyE.m4a in Resources */,
 				5CF655C319AEACF0000AC913 /* Story7-The-Best-Farm-Award-Intro-E.xhtml in Resources */,
+				5C9B6DA81C03FA5E00926CFA /* Story5-A-Gift-for-the-Bride-PM-5.xhtml in Resources */,
 				5CCC37F01BD07B2A005C159B /* north_america_fault.png in Resources */,
 				5C24BBB51BE9902B00455B3C /* tocE.ncx in Resources */,
 				5CF655B519AD46A3000AC913 /* BFEE_8B.m4a in Resources */,

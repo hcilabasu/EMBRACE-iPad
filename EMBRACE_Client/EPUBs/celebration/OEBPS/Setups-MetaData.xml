@@ -4,5 +4,9 @@
         <story title="Shopping at the Market" page_id="story4-PM-4">
             <group obj1Id="pesos" action="getIn" obj2Id="sofia"/>
         </story>
+        <story title="A Gift for the Bride" page_id="story5-PM-4">
+            <group obj1Id="roses_white" action="getIn" obj2Id="sofia"/>
+            <group obj1Id="sofia" action="pickUp" obj2Id="roses_pink"/>
+        </story>
     </setups>
 </metadata>

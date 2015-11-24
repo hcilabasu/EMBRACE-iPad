@@ -11,7 +11,8 @@
         <alternateImage objId="list" action="appear" originalSrc="list.png" alternateSrc="list.png" width="80px" x="50%" y="50%" class="manipulationObject center" z="2"/>
         <alternateImage objId="list" action="appear2" originalSrc="list.png" alternateSrc="list.png" width="53px" x="50%" y="50%" class="manipulationObject center" z="1"/>
         <alternateImage objId="mancha" action="appear" originalSrc="mancha_loose_reins.png" alternateSrc="mancha_loose_reins.png" width="300px" x="1.367188%" y="33.451702%" class="manipulationObject center" z="0"/>
-        <alternateImage objId="mancha" action="brownSaddlebag" originalSrc="mancha_eating_grass.png" alternateSrc="mancha_open_saddlebag.png" width="300px" x="1.367188%" y="33.451702%" class="manipulationObject center" z="0"/>
+        <alternateImage objId="mancha" action="blueSaddlebag" originalSrc="mancha_eating_grass.png" alternateSrc="mancha_blue_saddlebag_open.png" width="300px" x="4.492188%" y="34.801136%" class="manipulationObject center" z="0"/>
+        <alternateImage objId="mancha" action="brownSaddlebag" originalSrc="mancha_tied.png" alternateSrc="mancha_open_saddlebag.png" width="300px" x="1.367188%" y="33.451702%" class="manipulationObject center" z="0"/>
         <alternateImage objId="mancha" action="eating" originalSrc="mancha_tied.png" alternateSrc="mancha_eating_grass.png" width="300px" x="4.492188%" y="34.801136%" class="manipulationObject center" z="0"/>
         <alternateImage objId="mancha" action="equip" originalSrc="mancha_naked.png" alternateSrc="mancha_equiped.png" width="250px" x="70.068359%" y="27.343750%" class="manipulationObject center" z="0"/>
         <alternateImage objId="mancha" action="tied" originalSrc="mancha_loose_reins.png" alternateSrc="mancha_tied.png" width="300px" x="1.367188%" y="33.451702%" class="manipulationObject center" z="0"/>
@@ -27,6 +28,7 @@
         <alternateImage objId="sofia" action="tote" originalSrc="sofia_hands_out.png" alternateSrc="sofia_empty_tote.png" width="190px" x="59.082031%" y="46.093750%" class="manipulationObject center" z="1"/>
         <alternateImage objId="sofia" action="tote2" originalSrc="sofia_standing.png" alternateSrc="sofia_empty_tote.png" width="150px" x="12.353516%" y="51.278408%" class="manipulationObject center" z="1"/>
         <alternateImage objId="sofia" action="horse" originalSrc="sofia_standing.png" alternateSrc="sofia_on_mancha.png" width="330px" x="61.962891%" y="18.323864%" class="manipulationObject center" z="1"/>
+        <alternateImage objId="sofia_on_mancha" action="appear" originalSrc="sofia_on_mancha.png" alternateSrc="sofia_on_mancha.png" width="100px" x="53.759766%" y="12.642045%" class="manipulationObject center" z="0"/>
         <alternateImage objId="sofia_on_mancha" action="flip" originalSrc="sofia_on_mancha.png" alternateSrc="sofia_on_horse2.png" width="150px" x="0.732422%" y="26.349432%" class="manipulationObject center" z="0"/>
         <alternateImage objId="sofia_on_mancha" action="flip2" originalSrc="sofia_on_mancha.png" alternateSrc="sofia_on_horse2.png" width="150px" x="0%" y="40%" class="manipulationObject center" z="0"/>
         <alternateImage objId="sofia_on_mancha" action="flipBack" originalSrc="sofia_on_horse2.png" alternateSrc="sofia_on_mancha.png" width="150px" x="36%" y="12%" class="manipulationObject center" z="0"/>

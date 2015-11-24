@@ -115,6 +115,7 @@
     <item href="Text/Story5-A-Gift-for-the-Bride-PM-2.xhtml" id="story5-PM-2" media-type="application/xhtml+xml" />
     <item href="Text/Story5-A-Gift-for-the-Bride-PM-3.xhtml" id="story5-PM-3" media-type="application/xhtml+xml" />
     <item href="Text/Story5-A-Gift-for-the-Bride-PM-4.xhtml" id="story5-PM-4" media-type="application/xhtml+xml" />
+    <item href="Text/Story5-A-Gift-for-the-Bride-PM-5.xhtml" id="story5-PM-5" media-type="application/xhtml+xml" />
     <item href="Text/Story5-A-Gift-for-the-Bride-Title.xhtml" id="Chapter5Title" media-type="application/xhtml+xml" />
     <item href="Text/Story6-Homecoming-Intro-E.xhtml" id="story6-Intro" media-type="application/xhtml+xml" />
     <item href="Text/Story6-Homecoming-PM-1.xhtml" id="story6-PM-1" media-type="application/xhtml+xml" />
@@ -157,6 +158,7 @@
     <itemref idref="story5-PM-2" />
     <itemref idref="story5-PM-3" />
     <itemref idref="story5-PM-4" />
+    <itemref idref="story5-PM-5" />
     <itemref idref="story6-PM-1" />
     <itemref idref="story6-PM-2" />
     <itemref idref="story6-PM-3" />
