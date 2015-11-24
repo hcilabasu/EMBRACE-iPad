@@ -25,6 +25,7 @@
         <waypoint waypointId="produce" x="43.945312%" y="26.207388%"/>
         <waypoint waypointId="rosesPink" x="60%" y="40%"/>
         <waypoint waypointId="rosesWhite" x="67.871094%" y="29.048296%"/>
+        <waypoint waypointId="saddleShed" x="20.019531%" y="50.852276%"/>
         <waypoint waypointId="shed" x="12.353516%" y="51.278408%"/>
         <waypoint waypointId="spinach" x="35.791016%" y="31.250000%"/>
     </waypoints>

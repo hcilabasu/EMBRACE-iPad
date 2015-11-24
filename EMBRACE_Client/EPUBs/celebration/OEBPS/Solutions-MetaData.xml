@@ -375,6 +375,31 @@
                 </step>
             </sentence>
         </story>
+        <story title="Homecoming" activity_id="story6-PM-1">
+            <sentence number="1">
+                <step number="1">
+                    <check obj1Id="sofia_on_mancha" action="getIn" locationId="corral"/>
+                    <disappearAuto obj1Id="sofia_on_mancha" action="disappear" obj2Id="sofia_on_mancha"/>
+                    <appear obj1Id="sofia" action="appear2"/>
+                    <appear obj1Id="mancha" action="appear2"/>
+                </step>
+            </sentence>
+            <sentence number="2">
+                <step number="1">
+                    <check obj1Id="sofia" action="getIn" locationId="nearHorse"/>
+                    <swapImage obj1Id="mancha" action="naked"/>
+                    <appear obj1Id="saddle" action="appear"/>
+                    <groupAuto obj1Id="saddle" action="getIn" obj2Id="sofia"/>
+                    <move obj1Id="sofia" action="getIn" waypointId="fence2"/>
+                </step>
+                <step number="2">
+                    <check obj1Id="sofia" action="getIn" locationId="shed"/>
+                    <ungroupAndStay obj1Id="saddle" action="leave" obj2Id="sofia"/>
+                    <move obj1Id="sofia" action="getIn" waypointId="shed"/>
+                    <move obj1Id="saddle" action="getIn" waypointId="saddleShed"/>
+                </step>
+            </sentence>
+        </story>
     </solutions>
 </metadata>
 
