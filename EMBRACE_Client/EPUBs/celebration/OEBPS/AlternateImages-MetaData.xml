@@ -2,10 +2,14 @@
 <metadata>
     <alternateImages>
         <alternateImage objId="bag" action="appear" originalSrc="tote_for_scale.png" alternateSrc="tote_for_scale.png" width="95px" x="29.199219%" y="20.525568%" class="manipulationObject center" z="0"/>
+        <alternateImage objId="bag" action="appear2" originalSrc="bag.png" alternateSrc="bag.png" width="120px" x="60.839844%" y="70.383522%" class="manipulationObject center" z="2"/>
+        <alternateImage objId="bridle" action="appear" originalSrc="bridle.png" alternateSrc="bridle.png" width="50px" x="50%" y="50%" class="manipulationObject center" z="2"/>
+        <alternateImage objId="bridle" action="changeZ" originalSrc="bridle.png" alternateSrc="bridle.png" width="50px" x="12.646484%" y="50.213070%" class="manipulationObject center" z="0"/>
         <alternateImage objId="calf" action="flip" originalSrc="calf_flipped.png" alternateSrc="calf.png" width="100px" x="20%" y="54.545456%" class="manipulationObject center" z="0"/>
         <alternateImage objId="cow_bw" action="flip" originalSrc="cow_bw.png" alternateSrc="cow_bw_flipped.png" width="150px" x="25%" y="22.869318%" class="manipulationObject center" z="0"/>
         <alternateImage objId="cow_bw" action="flipBack" originalSrc="cow_bw_flipped.png" alternateSrc="cow_bw.png" width="150px" x="25%" y="22.869318%" class="manipulationObject center" z="0"/>
         <alternateImage objId="emilio" action="appear" originalSrc="emilio_standing.png" alternateSrc="emilio_standing.png" width="60px" x="32.568359%" y="48.579548%" class="manipulationObject center" z="1"/>
+        <alternateImage objId="garlic" action="appear" originalSrc="garlic.png" alternateSrc="garlic.png" width="100px" x="81.982422%" y="81.960228%" class="manipulationObject center" z="2"/>
         <alternateImage objId="gate" action="close" originalSrc="gate_open.png" alternateSrc="gate_closed.png" width="38px" x="58.935547%" y="50.213070%" class="manipulationObject center" z="0"/>
         <alternateImage objId="horse" action="appear" originalSrc="horse_unmounted.png" alternateSrc="horse_unmounted.png" width="186px" x="27.294922%" y="36.647728%" class="manipulationObject center" z="0"/>
         <alternateImage objId="list" action="appear" originalSrc="list.png" alternateSrc="list.png" width="80px" x="50%" y="50%" class="manipulationObject center" z="2"/>
@@ -18,9 +22,14 @@
         <alternateImage objId="mancha" action="equip" originalSrc="mancha_naked.png" alternateSrc="mancha_equiped.png" width="250px" x="70.068359%" y="27.343750%" class="manipulationObject center" z="0"/>
         <alternateImage objId="mancha" action="naked" originalSrc="mancha_equiped.png" alternateSrc="mancha_naked.png" width="250px" x="70.068359%" y="27.343750%" class="manipulationObject center" z="0"/>
         <alternateImage objId="mancha" action="tied" originalSrc="mancha_loose_reins.png" alternateSrc="mancha_tied.png" width="300px" x="1.367188%" y="33.451702%" class="manipulationObject center" z="0"/>
+        <alternateImage objId="mangos" action="appear" originalSrc="mangos.png" alternateSrc="mangos.png" width="100px" x="75.634766%" y="79.048294%" class="manipulationObject center" z="2"/>
+        <alternateImage objId="milk" action="appear" originalSrc="milk.png" alternateSrc="milk.png" width="100px" x="90.234375%" y="74.928978%" class="manipulationObject center" z="2"/>
         <alternateImage objId="mom" action="noTote" originalSrc="mom_tote.png" alternateSrc="mom_full_hands_out.png" width="195px" x="72.705078%" y="30.681818%" class="manipulationObject center" z="1"/>
         <alternateImage objId="mom" action="tote" originalSrc="mom_full_hands_out.png" alternateSrc="mom_tote.png" width="230px" x="72.705078%" y="30.681818%" class="manipulationObject center" z="1"/>
-        <alternateImage objId="saddle" action="appear" originalSrc="saddle.png" alternateSrc="saddle.png" width="100px" x="75.000000%" y="41.690342%" class="manipulationObject center" z="0"/>
+        <alternateImage objId="roses_pink" action="appear" originalSrc="roses_pink.png" alternateSrc="roses_pink.png" width="79px" x="50%" y="50%" class="manipulationObject center" z="2"/>
+        <alternateImage objId="roses_white" action="appear" originalSrc="roses_white.png" alternateSrc="roses_white.png" width="79px" x="50%" y="50%" class="manipulationObject center" z="2"/>
+        <alternateImage objId="saddle" action="appear" originalSrc="saddle.png" alternateSrc="saddle.png" width="100px" x="75.000000%" y="41.690342%" class="manipulationObject center" z="2"/>
+        <alternateImage objId="saddle" action="changeZ" originalSrc="saddle.png" alternateSrc="saddle.png" width="100px" x="20.019531%" y="50.852276%" class="manipulationObject center" z="0"/>
         <alternateImage objId="scale" action="kilo" originalSrc="scale_no_weight.png" alternateSrc="scale_weighed_down.png" width="100px" x="29.394531%" y="28.338068%" class="manipulationObject center" z="0"/>
         <alternateImage objId="sofia" action="appear" originalSrc="sofia_empty_tote.png" alternateSrc="sofia_empty_tote.png" width="100px" x="7.617188%" y="65.980110%" class="manipulationObject center" z="1"/>
         <alternateImage objId="sofia" action="appear2" originalSrc="sofia_standing.png" alternateSrc="sofia_standing.png" width="150px" x="62%" y="48%" class="manipulationObject center" z="1"/>
@@ -29,12 +38,20 @@
         <alternateImage objId="sofia" action="horse" originalSrc="sofia_standing.png" alternateSrc="sofia_on_mancha.png" width="330px" x="61.962891%" y="18.323864%" class="manipulationObject center" z="1"/>
         <alternateImage objId="sofia" action="noTote" originalSrc="sofia_full_tote.png" alternateSrc="sofia_standing.png" width="100px" x="35.791016%" y="31.250000%" class="manipulationObject center" z="0"/>
         <alternateImage objId="sofia" action="noTote2" originalSrc="sofia_full_tote.png" alternateSrc="sofia_standing.png" width="100px" x="11.230469%" y="55.184658%" class="manipulationObject center" z="0"/>
+        <alternateImage objId="sofia" action="noTote3" originalSrc="sofia_full_tote.png" alternateSrc="sofia_standing.png" width="190px" x="36.230469%" y="48.579548%" class="manipulationObject center" z="0"/>
         <alternateImage objId="sofia" action="spoon" originalSrc="sofia_hands_out.png" alternateSrc="sofia_spoon_down.png" width="137.728px" x="36%" y="32.173298%" class="manipulationObject center" z="1"/>
         <alternateImage objId="sofia" action="tote" originalSrc="sofia_hands_out.png" alternateSrc="sofia_empty_tote.png" width="190px" x="59.082031%" y="46.093750%" class="manipulationObject center" z="1"/>
         <alternateImage objId="sofia" action="tote2" originalSrc="sofia_standing.png" alternateSrc="sofia_empty_tote.png" width="150px" x="12.353516%" y="51.278408%" class="manipulationObject center" z="1"/>
+        <alternateImage objId="sofia" action="tote3" originalSrc="sofia_standing.png" alternateSrc="sofia_full_tote.png" width="150px" x="12.353516%" y="51.278408%" class="manipulationObject center" z="1"/>
+        <alternateImage objId="sofia" action="waving" originalSrc="sofia_hands_out.png" alternateSrc="sofia_standing.png" width="190px" x="36.230469%" y="48.579548%" class="manipulationObject center" z="0"/>
         <alternateImage objId="sofia_on_mancha" action="appear" originalSrc="sofia_on_mancha.png" alternateSrc="sofia_on_mancha.png" width="100px" x="53.759766%" y="12.642045%" class="manipulationObject center" z="0"/>
         <alternateImage objId="sofia_on_mancha" action="flip" originalSrc="sofia_on_mancha.png" alternateSrc="sofia_on_horse2.png" width="150px" x="0.732422%" y="26.349432%" class="manipulationObject center" z="0"/>
         <alternateImage objId="sofia_on_mancha" action="flip2" originalSrc="sofia_on_mancha.png" alternateSrc="sofia_on_horse2.png" width="150px" x="0%" y="40%" class="manipulationObject center" z="0"/>
         <alternateImage objId="sofia_on_mancha" action="flipBack" originalSrc="sofia_on_horse2.png" alternateSrc="sofia_on_mancha.png" width="150px" x="36%" y="12%" class="manipulationObject center" z="0"/>
+        <alternateImage objId="spinach" action="appear" originalSrc="spinach.png" alternateSrc="spinach.png" width="100px" x="78.076172%" y="85.369316%" class="manipulationObject center" z="2"/>
+        <alternateImage objId="tomatillos" action="appear" originalSrc="tomatillos.png" alternateSrc="tomatillos.png" width="100px" x="86.279297%" y="85.795456%" class="manipulationObject center" z="2"/>
+        <alternateImage objId="vase" action="flower" originalSrc="vase_water.png" alternateSrc="vase_flower.png" width="120px" x="38.378906%" y="65.198860%" class="manipulationObject center" z="2"/>
+        <alternateImage objId="vase" action="water" originalSrc="vase_empty.png" alternateSrc="vase_water.png" width="120px" x="50%" y="50%" class="manipulationObject center" z="2"/>
+    
     </alternateImages>
 </metadata>

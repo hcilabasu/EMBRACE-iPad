@@ -17,8 +17,10 @@
         <relationship obj1Id="pesos" can="getIn" action="group" obj2Id="sofia"/>
         <relationship obj1Id="pesos" can="getOut" action="ungroup" obj2Id="sofia"/>
         <relationship obj1Id="roses_white" can="getIn" action="group" obj2Id="sofia"/>
+        <relationship obj1Id="roses_white" can="getOut" action="ungroup" obj2Id="sofia"/>
         <relationship obj1Id="saddle" can="getIn" action="group" obj2Id="sofia"/>
         <relationship obj1Id="saddle" can="leave" action="ungroup" obj2Id="sofia"/>
+        <relationship obj1Id="sofia" can="drop" action="ungroup" obj2Id="bridle"/>
         <relationship obj1Id="sofia" can="drop" action="ungroup" obj2Id="garlic"/>
         <relationship obj1Id="sofia" can="drop" action="ungroup" obj2Id="mangos"/>
         <relationship obj1Id="sofia" can="drop" action="ungroup" obj2Id="spinach"/>
@@ -32,9 +34,12 @@
         <relationship obj1Id="sofia" can="grabLeft" action="group" obj2Id="notebook"/>
         <relationship obj1Id="sofia" can="pickUp" action="group" obj2Id="champoorado"/>
         <relationship obj1Id="sofia" can="pickUp" action="group" obj2Id="chili"/>
+        <relationship obj1Id="sofia" can="pickUp" action="group" obj2Id="vase"/>
         <relationship obj1Id="sofia" can="pickUp" action="group" obj2Id="roses_pink"/>
         <relationship obj1Id="sofia" can="putDown" action="ungroup" obj2Id="chili"/>
         <relationship obj1Id="sofia" can="putDown" action="ungroup" obj2Id="notebook"/>
+        <relationship obj1Id="sofia" can="putDown" action="ungroup" obj2Id="roses_pink"/>
+        <relationship obj1Id="sofia" can="putDown" action="ungroup" obj2Id="vase"/>
         <relationship obj1Id="tomatillos" can="getIn" action="group" obj2Id="sofia"/>
         <relationship obj1Id="tomatillos" can="getOut" action="ungroup" obj2Id="sofia"/>
     </relationships>

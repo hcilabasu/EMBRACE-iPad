@@ -396,7 +396,92 @@
                     <check obj1Id="sofia" action="getIn" locationId="shed"/>
                     <ungroupAndStay obj1Id="saddle" action="leave" obj2Id="sofia"/>
                     <move obj1Id="sofia" action="getIn" waypointId="shed"/>
-                    <move obj1Id="saddle" action="getIn" waypointId="saddleShed"/>
+                    <swapImage obj1Id="saddle" action="changeZ"/>
+                </step>
+            </sentence>
+            <sentence number="3">
+                <step number="1">
+                    <check obj1Id="sofia" action="getIn" locationId="nearHorse"/>
+                    <appear obj1Id="bridle" action="appear"/>
+                    <groupAuto obj1Id="sofia" action="grabFist" obj2Id="bridle"/>
+                </step>
+                <step number="2">
+                    <check obj1Id="sofia" action="getIn" locationId="shed"/>
+                    <ungroupAndStay obj1Id="sofia" action="drop" obj2Id="bridle"/>
+                    <move obj1Id="sofia" action="getIn" waypointId="shed"/>
+                    <swapImage obj1Id="bridle" action="changeZ"/>
+                </step>
+            </sentence>
+            <sentence number="4">
+                <step number="1">
+                    <appear obj1Id="roses_pink" action="appear"/>
+                    <appear obj1Id="roses_white" action="appear"/>
+                    <swapImage obj1Id="sofia" action="tote3"/>
+                    <groupAuto obj1Id="roses_white" action="getIn" obj2Id="sofia"/>
+                    <groupAuto obj1Id="sofia" action="pickUp" obj2Id="roses_pink"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Homecoming" activity_id="story6-PM-2">
+            <sentence number="5">
+                <step number="1">
+                    <check obj1Id="sofia" action="getIn" locationId="anywhere"/>
+                    <move obj1Id="sofia" action="getIn" waypointId="nearMom2"/>
+                </step>
+            </sentence>
+            <sentence number="6">
+                <step number="1">
+                    <shakeOrTap obj1Id="sofia" action="getIn" locationId="counter"/>
+                    <ungroupAndStay obj1Id="roses_white" action="getOut" obj2Id="sofia"/>
+                    <ungroupAndStay obj1Id="sofia" action="putDown" obj2Id="roses_pink"/>
+                    <move obj1Id="roses_pink" action="getIn" waypointId="rosesPinkCounter"/>
+                    <move obj1Id="roses_white" action="getIn" waypointId="rosesWhiteCounter"/>
+                    <swapImage obj1Id="sofia" action="noTote3"/>
+                    <appear obj1Id="bag" action="appear2"/>
+                    <appear obj1Id="garlic" action="appear"/>
+                    <appear obj1Id="mangos" action="appear"/>
+                    <appear obj1Id="milk" action="appear"/>
+                    <appear obj1Id="spinach" action="appear"/>
+                    <appear obj1Id="tomatillos" action="appear"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Homecoming" activity_id="story6-PM-3">
+            <sentence number="7">
+                <step number="1">
+                    <check obj1Id="mom" action="getIn" locationId="counter"/>
+                    <move obj1Id="mom" action="getIn" waypointId="momSpot"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Homecoming" activity_id="story6-PM-4">
+            <sentence number="10">
+                <step number="1">
+                    <group obj1Id="sofia" action="pickUp" obj2Id="vase"/>
+                    <move obj1Id="sofia" action="getIn" waypointId="nearChili"/>
+                </step>
+                <step number="1">
+                    <check obj1Id="sofia" action="getIn" locationId="sink"/>
+                    <ungroupAndStay obj1Id="sofia" action="putDown" obj2Id="vase"/>
+                    <swapImage obj1Id="vase" action="water"/>
+                    <groupAuto obj1Id="sofia" action="pickUp" obj2Id="vase"/>
+                    <move obj1Id="sofia" action="getIn" waypointId="sink"/>
+                </step>
+            </sentence>
+            <sentence number="11">
+                <step number="1">
+                    <check obj1Id="sofia" action="getIn" locationId="flowers"/>
+                    <disappearAuto obj1Id="roses_pink" action="disappear" obj2Id="roses_pink"/>
+                    <disappearAuto obj1Id="roses_white" action="disappear" obj2Id="roses_white"/>
+                    <ungroupAndStay obj1Id="sofia" action="putDown" obj2Id="vase"/>
+                    <swapImage obj1Id="vase" action="flower"/>
+                    <swapImage obj1Id="sofia" action="waving"/>
+                </step>
+            </sentence>
+            <sentence number="12">
+                <step number="1">
+                    <check obj1Id="sofia" action="getIn" locationId="anywhere"/>
+                    <disappearAuto obj1Id="sofia" action="disappear" obj2Id="sofia"/>
                 </step>
             </sentence>
         </story>

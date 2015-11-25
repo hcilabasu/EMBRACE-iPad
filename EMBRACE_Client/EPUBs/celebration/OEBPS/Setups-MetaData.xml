@@ -8,5 +8,9 @@
             <group obj1Id="roses_white" action="getIn" obj2Id="sofia"/>
             <group obj1Id="sofia" action="pickUp" obj2Id="roses_pink"/>
         </story>
+        <story title="Homecoming" page_id="story6-PM-2">
+            <group obj1Id="roses_white" action="getIn" obj2Id="sofia"/>
+            <group obj1Id="sofia" action="pickUp" obj2Id="roses_pink"/>
+        </story>
     </setups>
 </metadata>

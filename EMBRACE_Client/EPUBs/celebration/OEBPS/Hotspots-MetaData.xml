@@ -24,8 +24,9 @@
         <hotspot objId="notebook" action="grabLeft" role="object" x="50%" y="50%"/>
         <hotspot objId="pesos" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="pesos" action="grabLeft" role="object" x="50%" y="50%"/>
+        <hotspot objId="roses_pink" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="roses_pink" action="pickUp" role="object" x="50%" y="50%"/>
-        <hotspot objId="roses_white" action="getIn" role="subject" x="50%" y="20%"/>
+        <hotspot objId="roses_white" action="getIn" role="subject" x="80%" y="20%"/>
         <hotspot objId="saddle" action="getIn" role="subject" x="25%" y="30%"/>
         <hotspot objId="scale" action="getIn" role="object" x="50%" y="50%"/>
         <hotspot objId="sofia" action="getIn" role="object" x="88.9%" y="38.5%"/>
@@ -38,6 +39,7 @@
         <hotspot objId="sofia_on_mancha" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="spinach" action="grabHigh" role="object" x="50%" y="50%"/>
         <hotspot objId="tomatillos" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="vase" action="pickUp" role="object" x="50%" y="75%"/>
         
     </hotspots>
 </metadata>
