@@ -1,5 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <solutions>
-           </solutions>
+        <story title="Words of Wisdom" activity_id="story4-PM-1">
+            <sentence number="3">
+                <step number="1">
+                    <group obj1Id="bottleIM" action="getIn" obj2Id="waterIM"/>
+                    <group obj1Id="bottleIM" action="getIn" obj2Id="bankIM"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Words of Wisdom" activity_id="story4-PM-3">
+            <sentence number="9">
+                <step number="1">
+                    <group obj1Id="babyIM" action="grabRight" obj2Id="rattleIM"/>
+                    <group obj1Id="babyIM" action="grabRight" obj2Id="ballIM"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Catch!" activity_id="story5-PM-1">
+            <sentence number="3">
+                <step number="1">
+                    <group obj1Id="lucasIM" action="standWith" obj2Id="oliviaIM"/>
+                    <group obj1Id="lucasIM" action="standWith" obj2Id="babyIM"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Catch!" activity_id="story5-PM-2">
+            <sentence number="6">
+                <step number="1">
+                    <group obj1Id="bottleIM" action="behind" obj2Id="bushIM"/>
+                    <group obj1Id="bottleIM" action="front" obj2Id="bushIM"/>
+                </step>
+            </sentence>
+        </story>
+    </solutions>
 </metadata>
