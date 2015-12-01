@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <locations>
+        <location locationId="anywhere" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="calfAway" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="cashier" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="corral" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="counter" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="cowAway" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="cowCorral" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="dirtRoad" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="dirtRoad2" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="door" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="flowers" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="gate" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="herd" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="inMarket" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="market" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="nearCalf" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="nearChampoorado" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="nearCow" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="nearHorse" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="nearHorse2" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="nearPost" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="nearTote" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="outCorral" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="rosesWhite" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="shed" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="sink" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="tomatillos" x="0%" y="0%" height="100%" width="100%"/>
+    </locations>
+</metadata>

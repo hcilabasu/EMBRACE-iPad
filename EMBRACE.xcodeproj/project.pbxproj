@@ -2610,7 +2610,6 @@
 		1ADAB6ED1ABA0AC900E1AB37 /* Solve_def_E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Solve_def_E.mp3; sourceTree = "<group>"; };
 		1ADAB6EE1ABA0AC900E1AB37 /* Stealing_def_E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Stealing_def_E.mp3; sourceTree = "<group>"; };
 		1ADAB6EF1ABA0AC900E1AB37 /* Thief_def_E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Thief_def_E.mp3; sourceTree = "<group>"; };
-		1ADB01A21AAD211C006C5256 /* house.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = house.epub; path = EPUBs/house/house.epub; sourceTree = "<group>"; };
 		1AE0F5FB1A7965EC00C5B67D /* Relationships-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Relationships-MetaData.xml"; sourceTree = "<group>"; };
 		1AE0F5FD1A79665A00C5B67D /* Constraints-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Constraints-MetaData.xml"; sourceTree = "<group>"; };
 		1AE0F6011A79671A00C5B67D /* Locations-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Locations-MetaData.xml"; sourceTree = "<group>"; };
@@ -3348,6 +3347,10 @@
 		5CD7FE3419775C1C007A1E49 /* VocabularyStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VocabularyStep.m; sourceTree = "<group>"; };
 		5CD7FE3619776403007A1E49 /* Introduction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Introduction.h; sourceTree = "<group>"; };
 		5CD7FE3719776403007A1E49 /* Introduction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Introduction.m; sourceTree = "<group>"; };
+		5CD959251BF18A1E0048337E /* Story1-Key-Ingredients-PM-3.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Key-Ingredients-PM-3.xhtml"; sourceTree = "<group>"; };
+		5CD959271BF18EFA0048337E /* Story4-Shopping-at-the-Market-PM-4.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Shopping-at-the-Market-PM-4.xhtml"; sourceTree = "<group>"; };
+		5CD959291BF192240048337E /* Story5-A-Gift-for-the-Bride-PM-3.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-A-Gift-for-the-Bride-PM-3.xhtml"; sourceTree = "<group>"; };
+		5CD9592B1BF192FD0048337E /* Story5-A-Gift-for-the-Bride-PM-4.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-A-Gift-for-the-Bride-PM-4.xhtml"; sourceTree = "<group>"; };
 		5CE1E30D1A119DFC0070A7D6 /* circulatory.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = circulatory.epub; path = EPUBs/circulatory/circulatory.epub; sourceTree = "<group>"; };
 		5CE1E30F1A119E120070A7D6 /* bestFarm.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = bestFarm.epub; path = EPUBs/bestFarm/bestFarm.epub; sourceTree = "<group>"; };
 		5CE1E3111A12D5080070A7D6 /* BFES_8B.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = BFES_8B.m4a; path = EMBRACE_Client/sounds/BFES_8B.m4a; sourceTree = SOURCE_ROOT; };
@@ -3929,6 +3932,7 @@
 		31953E3C1729ECC100570087 = {
 			isa = PBXGroup;
 			children = (
+				1A9BFD571BF29E8E006FD1CC /* house.epub */,
 				31953E4E1729ECC100570087 /* EMBRACE_iPad */,
 				31953E471729ECC100570087 /* Frameworks */,
 				31953E461729ECC100570087 /* Products */,
@@ -4149,6 +4153,187 @@
 				5CEEBFA71ACA05F4002AACC4 /* Area.m */,
 			);
 			name = "Interaction Model";
+			sourceTree = "<group>";
+		};
+		5C24BADF1BE9902B00455B3C /* celebration */ = {
+			isa = PBXGroup;
+			children = (
+				5C24BAE01BE9902B00455B3C /* META-INF */,
+				5C24BAE21BE9902B00455B3C /* mimetype */,
+				5C24BAE31BE9902B00455B3C /* OEBPS */,
+			);
+			path = celebration;
+			sourceTree = "<group>";
+		};
+		5C24BAE01BE9902B00455B3C /* META-INF */ = {
+			isa = PBXGroup;
+			children = (
+				5C24BAE11BE9902B00455B3C /* container.xml */,
+			);
+			path = "META-INF";
+			sourceTree = "<group>";
+		};
+		5C24BAE31BE9902B00455B3C /* OEBPS */ = {
+			isa = PBXGroup;
+			children = (
+				5C24BAE41BE9902B00455B3C /* AlternateImages-MetaData.xml */,
+				5C24BAE51BE9902B00455B3C /* Areas-MetaData.xml */,
+				5C24BAE61BE9902B00455B3C /* AssessmentActivities-MetaData.xml */,
+				5C24BAE71BE9902B00455B3C /* Constraints-MetaData.xml */,
+				5C24BAE81BE9902B00455B3C /* content.opf */,
+				5C24BAE91BE9902B00455B3C /* Hotspots-MetaData.xml */,
+				5C24BAEA1BE9902B00455B3C /* Images */,
+				5C24BB1B1BE9902B00455B3C /* IMSolutions-MetaData.xml */,
+				5C24BB1C1BE9902B00455B3C /* Introductions-MetaData.xml */,
+				5C24BB1D1BE9902B00455B3C /* Locations-MetaData.xml */,
+				5C24BB1E1BE9902B00455B3C /* metadata.xml */,
+				5C24BB1F1BE9902B00455B3C /* Relationships-MetaData.xml */,
+				5C24BB201BE9902B00455B3C /* SentenceAnalysis-MetaData.xml */,
+				5C24BB211BE9902B00455B3C /* Setups-MetaData.xml */,
+				5C24BB221BE9902B00455B3C /* Solutions-MetaData.xml */,
+				5C24BB231BE9902B00455B3C /* Styles */,
+				5C24BB271BE9902B00455B3C /* Text */,
+				5C24BB4A1BE9902B00455B3C /* toc.ncx */,
+				5C24BB4B1BE9902B00455B3C /* tocE.ncx */,
+				5C24BB4C1BE9902B00455B3C /* Translations-MetaData.xml */,
+				5C24BB4D1BE9902B00455B3C /* VocabularyIntroductions-MetaData.xml */,
+				5C24BB4E1BE9902B00455B3C /* Waypoints-MetaData.xml */,
+			);
+			path = OEBPS;
+			sourceTree = "<group>";
+		};
+		5C24BAEA1BE9902B00455B3C /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				5C9B6DA11C03B53E00926CFA /* mom_full_hands_out.png */,
+				5C9B6DA21C03B53E00926CFA /* mom_tote.png */,
+				5C9B6DA31C03B53E00926CFA /* mom_full.png */,
+				5CE301621BF5645C007B9A17 /* cow_bw_flipped.png */,
+				5C24BBCB1BE9BECE00455B3C /* bag.png */,
+				5C735D261BED8E1300F2295A /* bg_balloon_kitchen_door.png */,
+				5C24BBDD1BE9BF1800455B3C /* bg_barn.png */,
+				5C24BBEF1BE9BF9500455B3C /* bg_ch3.png */,
+				5C24BC2B1BE9C08D00455B3C /* bg_dirt_road.png */,
+				5C24BC331BE9C0CB00455B3C /* bg_faucet_on.png */,
+				5C735D271BED8E1300F2295A /* bg_kitchen_balloons.png */,
+				5C24BC341BE9C0CB00455B3C /* bg_kitchen_door.png */,
+				5C24BBCC1BE9BECE00455B3C /* bg_kitchen.png */,
+				5C24BC081BE9C02A00455B3C /* bg_market.png */,
+				5C24BBDE1BE9BF1800455B3C /* bridle.png */,
+				5C6431201BF2F77700FD7E2D /* calf_flipped.png */,
+				5C24BBF01BE9BF9500455B3C /* calf.png */,
+				5C24BBCD1BE9BECE00455B3C /* champoorado.png */,
+				5C24BBCE1BE9BECE00455B3C /* chili.png */,
+				5C24BC3A1BE9C0CB00455B3C /* counter_empty.png */,
+				5C24BBF11BE9BF9500455B3C /* cow_bw.png */,
+				5C24BBF91BE9BF9500455B3C /* cow2.png */,
+				5C24BBF21BE9BF9500455B3C /* cow3.png */,
+				5C24BBF31BE9BF9500455B3C /* cow4.png */,
+				5C24BBFA1BE9BF9500455B3C /* emilio_horse.png */,
+				5C24BBF41BE9BF9500455B3C /* emilio_standing.png */,
+				5C24BBDF1BE9BF1800455B3C /* fence_closed.png */,
+				5C24BBE01BE9BF1800455B3C /* fence_open.png */,
+				5C24BC091BE9C02A00455B3C /* garlic.png */,
+				5C24BBF51BE9BF9500455B3C /* gate_closed.png */,
+				5C24BBF61BE9BF9500455B3C /* gate_open.png */,
+				5C24BBF71BE9BF9500455B3C /* horse_unmounted.png */,
+				5C735D2A1BED8E2500F2295A /* icon_balloons.png */,
+				5C735D2B1BED8E2500F2295A /* icon_Emilio.png */,
+				5C735D2C1BED8E2500F2295A /* icon_key_ingredients.png */,
+				5C735D2D1BED8E2500F2295A /* icon_mancha.png */,
+				5C735D2E1BED8E2500F2295A /* icon_roses.png */,
+				5C735D2F1BED8E2500F2295A /* icon_scale.png */,
+				5C24BBCF1BE9BECE00455B3C /* list.png */,
+				5C24BC2C1BE9C08D00455B3C /* mancha_blue_saddlebag_open.png */,
+				5C24BC0A1BE9C02A00455B3C /* mancha_eating_grass.png */,
+				5C24BBE11BE9BF1800455B3C /* mancha_equiped.png */,
+				5C24BC0B1BE9C02A00455B3C /* mancha_loose_reins.png */,
+				5C24BBE21BE9BF1800455B3C /* mancha_naked.png */,
+				5C24BC0C1BE9C02A00455B3C /* mancha_open_saddlebag.png */,
+				5C24BC0D1BE9C02A00455B3C /* mancha_tied.png */,
+				5C24BC0E1BE9C02A00455B3C /* mangos.png */,
+				5C24BC0F1BE9C02A00455B3C /* milk.png */,
+				5C24BBD01BE9BECE00455B3C /* mom_counter.png */,
+				5C24BBD11BE9BECE00455B3C /* pesos.png */,
+				5C24BBD21BE9BECE00455B3C /* notebook.png */,
+				5C24BC2D1BE9C08D00455B3C /* roses_pink.png */,
+				5C24BC2E1BE9C08D00455B3C /* roses_white.png */,
+				5C24BBE31BE9BF1800455B3C /* saddle.png */,
+				5C24BC141BE9C02A00455B3C /* scale_no_weight.png */,
+				5C24BC151BE9C02A00455B3C /* scale_weighed_down.png */,
+				5C24BC161BE9C02A00455B3C /* sofia_empty_tote.png */,
+				5C24BC171BE9C02A00455B3C /* sofia_full_tote.png */,
+				5C64310A1BF2B2A800FD7E2D /* sofia_hands_out.png */,
+				5C24BBF81BE9BF9500455B3C /* sofia_horse.png */,
+				5C24BC101BE9C02A00455B3C /* sofia_on_horse2.png */,
+				5C24BBE41BE9BF1800455B3C /* sofia_on_mancha.png */,
+				5C64310B1BF2B2A800FD7E2D /* sofia_spoon_down.png */,
+				5C64310C1BF2B2A800FD7E2D /* sofia_spoon_up.png */,
+				5C24BBD31BE9BECE00455B3C /* sofia_spoon.png */,
+				5C24BC181BE9C02A00455B3C /* sofia_standing.png */,
+				5C64310D1BF2B2A800FD7E2D /* sofia_standing2.png */,
+				5C24BC361BE9C0CB00455B3C /* sofia_stool.png */,
+				5C24BBE51BE9BF1800455B3C /* sofia.png */,
+				5C24BC111BE9C02A00455B3C /* spinach.png */,
+				5C64310E1BF2B2A800FD7E2D /* stool.png */,
+				5C24BC121BE9C02A00455B3C /* tomatillos.png */,
+				5C24BC131BE9C02A00455B3C /* tote_for_scale.png */,
+				5C24BC371BE9C0CB00455B3C /* vase_empty.png */,
+				5C24BC381BE9C0CB00455B3C /* vase_flower.png */,
+				5C24BC391BE9C0CB00455B3C /* vase_water.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		5C24BB231BE9902B00455B3C /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				5C24BB241BE9902B00455B3C /* IMStyle.css */,
+				5C24BB251BE9902B00455B3C /* PMStyle.css */,
+				5C24BB261BE9902B00455B3C /* Stylesheet.css */,
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
+		5C24BB271BE9902B00455B3C /* Text */ = {
+			isa = PBXGroup;
+			children = (
+				5C24BB281BE9902B00455B3C /* Story1-Key-Ingredients-Intro-E.xhtml */,
+				5C24BB291BE9902B00455B3C /* Story1-Key-Ingredients-PM-1.xhtml */,
+				5C24BB2A1BE9902B00455B3C /* Story1-Key-Ingredients-PM-2.xhtml */,
+				5CD959251BF18A1E0048337E /* Story1-Key-Ingredients-PM-3.xhtml */,
+				5C24BB2B1BE9902B00455B3C /* Story1-Key-Ingredients-Title.xhtml */,
+				5C24BB2C1BE9902B00455B3C /* Story2-Mancha-the-Horse-Intro-E.xhtml */,
+				5C24BB2D1BE9902B00455B3C /* Story2-Mancha-the-Horse-PM-1.xhtml */,
+				5C24BB2E1BE9902B00455B3C /* Story2-Mancha-the-Horse-PM-2.xhtml */,
+				5C24BB2F1BE9902B00455B3C /* Story2-Mancha-the-Horse-PM-3.xhtml */,
+				5C24BB301BE9902B00455B3C /* Story2-Mancha-the-Horse-Title.xhtml */,
+				5C24BB311BE9902B00455B3C /* Story3-A-Friend-in-Need-Intro-E.xhtml */,
+				5C24BB321BE9902B00455B3C /* Story3-A-Friend-in-Need-PM-1.xhtml */,
+				5C24BB331BE9902B00455B3C /* Story3-A-Friend-in-Need-PM-2.xhtml */,
+				5C24BB341BE9902B00455B3C /* Story3-A-Friend-in-Need-PM-3.xhtml */,
+				5C24BB351BE9902B00455B3C /* Story3-A-Friend-in-Need-Title.xhtml */,
+				5C24BB361BE9902B00455B3C /* Story4-Shopping-at-the-Market-Intro-E.xhtml */,
+				5C24BB371BE9902B00455B3C /* Story4-Shopping-at-the-Market-PM-1.xhtml */,
+				5C24BB381BE9902B00455B3C /* Story4-Shopping-at-the-Market-PM-2.xhtml */,
+				5C24BB391BE9902B00455B3C /* Story4-Shopping-at-the-Market-PM-3.xhtml */,
+				5CD959271BF18EFA0048337E /* Story4-Shopping-at-the-Market-PM-4.xhtml */,
+				5C24BB3A1BE9902B00455B3C /* Story4-Shopping-at-the-Market-Title.xhtml */,
+				5C24BB3B1BE9902B00455B3C /* Story5-A-Gift-for-the-Bride-Intro-E.xhtml */,
+				5C24BB3C1BE9902B00455B3C /* Story5-A-Gift-for-the-Bride-PM-1.xhtml */,
+				5C24BB3D1BE9902B00455B3C /* Story5-A-Gift-for-the-Bride-PM-2.xhtml */,
+				5CD959291BF192240048337E /* Story5-A-Gift-for-the-Bride-PM-3.xhtml */,
+				5CD9592B1BF192FD0048337E /* Story5-A-Gift-for-the-Bride-PM-4.xhtml */,
+				5C9B6DA71C03FA5E00926CFA /* Story5-A-Gift-for-the-Bride-PM-5.xhtml */,
+				5C24BB3E1BE9902B00455B3C /* Story5-A-Gift-for-the-Bride-Title.xhtml */,
+				5C24BB3F1BE9902B00455B3C /* Story6-Homecoming-Intro-E.xhtml */,
+				5C24BB401BE9902B00455B3C /* Story6-Homecoming-PM-1.xhtml */,
+				5C24BB411BE9902B00455B3C /* Story6-Homecoming-PM-2.xhtml */,
+				5C24BB421BE9902B00455B3C /* Story6-Homecoming-PM-3.xhtml */,
+				5C24BB431BE9902B00455B3C /* Story6-Homecoming-PM-4.xhtml */,
+				5C24BB441BE9902B00455B3C /* Story6-Homecoming-Title.xhtml */,
+			);
+			path = Text;
 			sourceTree = "<group>";
 		};
 		5C7FDF3F19A6B1B500CBBE0E /* EPUBs */ = {
@@ -5343,6 +5528,164 @@
 				5C7FE0E919A7E43C00CBBE0E /* tryAgainE.m4a */,
 			);
 			path = sounds;
+			sourceTree = "<group>";
+		};
+		5C8C004C1BD5927B007D4CF0 /* physics */ = {
+			isa = PBXGroup;
+			children = (
+				5C8C004D1BD5927B007D4CF0 /* META-INF */,
+				5C8C004F1BD5927B007D4CF0 /* mimetype */,
+				5C8C00501BD5927B007D4CF0 /* OEBPS */,
+			);
+			path = physics;
+			sourceTree = "<group>";
+		};
+		5C8C004D1BD5927B007D4CF0 /* META-INF */ = {
+			isa = PBXGroup;
+			children = (
+				5C8C004E1BD5927B007D4CF0 /* container.xml */,
+			);
+			path = "META-INF";
+			sourceTree = "<group>";
+		};
+		5C8C00501BD5927B007D4CF0 /* OEBPS */ = {
+			isa = PBXGroup;
+			children = (
+				5C8C00511BD5927B007D4CF0 /* AlternateImages-MetaData.xml */,
+				5C8C00521BD5927B007D4CF0 /* Areas-MetaData.xml */,
+				5C8C00531BD5927B007D4CF0 /* AssessmentActivities-MetaData.xml */,
+				5C8C00541BD5927B007D4CF0 /* Constraints-MetaData.xml */,
+				5C8C00551BD5927B007D4CF0 /* content.opf */,
+				5C8C00561BD5927B007D4CF0 /* Hotspots-MetaData.xml */,
+				5C8C01021BD59A23007D4CF0 /* Images */,
+				5C8C00791BD5927B007D4CF0 /* IMSolutions-MetaData.xml */,
+				5C8C007A1BD5927B007D4CF0 /* Introductions-MetaData.xml */,
+				5C8C007B1BD5927B007D4CF0 /* Locations-MetaData.xml */,
+				5C8C007C1BD5927B007D4CF0 /* metadata.xml */,
+				5C8C007D1BD5927B007D4CF0 /* Relationships-MetaData.xml */,
+				5C8C007E1BD5927B007D4CF0 /* SentenceAnalysis-MetaData.xml */,
+				5C8C007F1BD5927B007D4CF0 /* Setups-MetaData.xml */,
+				5C8C00801BD5927B007D4CF0 /* Solutions-MetaData.xml */,
+				5C8C00811BD5927B007D4CF0 /* Styles */,
+				5C8C00851BD5927B007D4CF0 /* Text */,
+				5C8C009D1BD5927B007D4CF0 /* toc.ncx */,
+				5C8C009E1BD5927B007D4CF0 /* tocE.ncx */,
+				5C8C009F1BD5927B007D4CF0 /* Translations-MetaData.xml */,
+				5C8C00A01BD5927B007D4CF0 /* VocabularyIntroductions-MetaData.xml */,
+				5C8C00A11BD5927B007D4CF0 /* Waypoints-MetaData.xml */,
+			);
+			path = OEBPS;
+			sourceTree = "<group>";
+		};
+		5C8C00811BD5927B007D4CF0 /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				5C8C00821BD5927B007D4CF0 /* IMStyle.css */,
+				5C8C00831BD5927B007D4CF0 /* PMStyle.css */,
+				5C8C00841BD5927B007D4CF0 /* Stylesheet.css */,
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
+		5C8C00851BD5927B007D4CF0 /* Text */ = {
+			isa = PBXGroup;
+			children = (
+				5C8C00861BD5927B007D4CF0 /* Story1-How-do-Objects-Move-Intro-E.xhtml */,
+				5C8C00871BD5927B007D4CF0 /* Story1-How-do-Objects-Move-PM-1.xhtml */,
+				5C8C00881BD5927B007D4CF0 /* Story1-How-do-Objects-Move-PM-2.xhtml */,
+				5C8C00891BD5927B007D4CF0 /* Story1-How-do-Objects-Move-Title.xhtml */,
+				5C8C008A1BD5927B007D4CF0 /* Story2-Newton's-First-Law-Intro-E.xhtml */,
+				5C8C008B1BD5927B007D4CF0 /* Story2-Newton's-First-Law-PM-1.xhtml */,
+				5C8C008C1BD5927B007D4CF0 /* Story2-Newton's-First-Law-PM-2.xhtml */,
+				5CE8AE081BD7439300C40907 /* Story2-Newton's-First-Law-PM-3.xhtml */,
+				5C8C008D1BD5927B007D4CF0 /* Story2-Newton's-First-Law-Title.xhtml */,
+				5C8C008E1BD5927B007D4CF0 /* Story3-Newton's-First-Law-on-Earth-Intro-E.xhtml */,
+				5C8C008F1BD5927B007D4CF0 /* Story3-Newton's-First-Law-on-Earth-PM-1.xhtml */,
+				5C8C00901BD5927B007D4CF0 /* Story3-Newton's-First-Law-on-Earth-PM-2.xhtml */,
+				5C8C00911BD5927B007D4CF0 /* Story3-Newton's-First-Law-on-Earth-PM-3.xhtml */,
+				5C8C00921BD5927B007D4CF0 /* Story3-Newton's-First-Law-on-Earth-Title.xhtml */,
+				5C8C00931BD5927B007D4CF0 /* Story4-Newton's-Second-Law-Acceleration-Intro-E.xhtml */,
+				5C8C00941BD5927B007D4CF0 /* Story4-Newton's-Second-Law-Acceleration-PM-1.xhtml */,
+				5C8C00951BD5927B007D4CF0 /* Story4-Newton's-Second-Law-Acceleration-PM-2.xhtml */,
+				5C8C00961BD5927B007D4CF0 /* Story4-Newton's-Second-Law-Acceleration-PM-3.xhtml */,
+				5C8C00971BD5927B007D4CF0 /* Story4-Newton's-Second-Law-Acceleration-Title.xhtml */,
+				5C8C00981BD5927B007D4CF0 /* Story5-Newton's-Law-of-Acceleration-on-Earth-Intro-E.xhtml */,
+				5C8C00991BD5927B007D4CF0 /* Story5-Newton's-Law-of-Acceleration-on-Earth-PM-1.xhtml */,
+				5C8C009A1BD5927B007D4CF0 /* Story5-Newton's-Law-of-Acceleration-on-Earth-PM-2.xhtml */,
+				5C8C009C1BD5927B007D4CF0 /* Story5-Newton's-Law-of-Acceleration-on-Earth-Title.xhtml */,
+				5C8C00F21BD595BF007D4CF0 /* Story6-Newton's-Third-Law-Forces-are-Paired-Intro-E.xhtml */,
+				5C8C00F41BD595D8007D4CF0 /* Story6-Newton's-Third-Law-Forces-are-Paired-PM-1.xhtml */,
+				5C8C00F61BD595E4007D4CF0 /* Story6-Newton's-Third-Law-Forces-are-Paired-PM-2.xhtml */,
+				5C72DFF91BDB2FFA0058D8D3 /* Story6-Newton's-Third-Law-Forces-are-Paired-PM-3.xhtml */,
+				5C72DFFB1BDB33830058D8D3 /* Story6-Newton's-Third-Law-Forces-are-Paired-PM-4.xhtml */,
+				5C8C00F81BD595F2007D4CF0 /* Story6-Newton's-Third-Law-Forces-are-Paired-Title.xhtml */,
+				5C8C00FA1BD5974E007D4CF0 /* Story7-The-Three-Laws-Work-Together-Intro-E.xhtml */,
+				5C8C00FC1BD5975C007D4CF0 /* Story7-The-Three-Laws-Work-Together-PM-1.xhtml */,
+				5C8C00FE1BD59767007D4CF0 /* Story7-The-Three-Laws-Work-Together-PM-2.xhtml */,
+				5C72DFFD1BDB4C690058D8D3 /* Story7-The-Three-Laws-Work-Together-PM-3.xhtml */,
+				5C8C01001BD59774007D4CF0 /* Story7-The-Three-Laws-Work-Together-Title.xhtml */,
+			);
+			path = Text;
+			sourceTree = "<group>";
+		};
+		5C8C01021BD59A23007D4CF0 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				5C9B6D9F1C03B2D100926CFA /* toycar.png */,
+				5C6431161BF2BFBD00FD7E2D /* bigrocket_rotate.png */,
+				5C6431171BF2BFBD00FD7E2D /* maria_rotate.png */,
+				5C6431181BF2BFBD00FD7E2D /* rocketflame_rotate.png */,
+				5C6431191BF2BFBD00FD7E2D /* skateboard_rotate.png */,
+				5C64311A1BF2BFBD00FD7E2D /* smallrocket_rotate.png */,
+				5C8C01371BD59C05007D4CF0 /* background_Ch7_V2.png */,
+				5C8C01381BD59C05007D4CF0 /* background_Ch7.png */,
+				5C8C01031BD59A23007D4CF0 /* background.jpg */,
+				5C8C01131BD59AA6007D4CF0 /* ball.png */,
+				5CE5D2701BD9A2900053B038 /* bigrocket.png */,
+				5C8C01051BD59A23007D4CF0 /* boat_ropetaut.png */,
+				5C8C01041BD59A23007D4CF0 /* boat.png */,
+				5CE5D2761BD9A9990053B038 /* cart_flipped.png */,
+				5C8C011B1BD59B02007D4CF0 /* cart.png */,
+				5C8C01451BD59C4B007D4CF0 /* ch1.png */,
+				5C8C01461BD59C4B007D4CF0 /* ch2.png */,
+				5C8C01471BD59C4B007D4CF0 /* ch3.png */,
+				5C8C01481BD59C4B007D4CF0 /* ch4.png */,
+				5C8C01491BD59C4B007D4CF0 /* ch5.png */,
+				5C8C014A1BD59C4B007D4CF0 /* ch6.png */,
+				5C8C014B1BD59C4B007D4CF0 /* ch7.png */,
+				5C8C011C1BD59B02007D4CF0 /* dog_cart.png */,
+				5C8C011D1BD59B02007D4CF0 /* dog_cartempty.png */,
+				5C8C011E1BD59B02007D4CF0 /* dog_harness.png */,
+				5C8C01061BD59A23007D4CF0 /* dog.png */,
+				5CE5D27A1BD9A9ED0053B038 /* horse_cart.png */,
+				5C8C01201BD59B02007D4CF0 /* horse_noharness.png */,
+				5CE5D2781BD9A9C00053B038 /* horse.png */,
+				5C8C012B1BD59B41007D4CF0 /* juan_rowing.png */,
+				5C4ADDDF1BDED9B800F8EF37 /* juan_rowing2.png */,
+				5C8C01151BD59AA6007D4CF0 /* juan.png */,
+				5C8C013B1BD59C13007D4CF0 /* maria_fall.png */,
+				5C8C013C1BD59C13007D4CF0 /* maria_ground.png */,
+				5C4ADDDE1BDED9B800F8EF37 /* maria_helmet.png */,
+				5C4ADDE01BDED9B800F8EF37 /* maria_leg.png */,
+				5C8C013D1BD59C13007D4CF0 /* maria_push.png */,
+				5C8C012C1BD59B41007D4CF0 /* maria_skateboard.png */,
+				5C8C01161BD59AA6007D4CF0 /* maria.png */,
+				5C8C01071BD59A23007D4CF0 /* person1.png */,
+				5C8C01081BD59A23007D4CF0 /* person2.png */,
+				5C8C01091BD59A23007D4CF0 /* person3.png */,
+				5C8C012D1BD59B41007D4CF0 /* push.png */,
+				5CE5D2711BD9A2900053B038 /* rocket_flame.png */,
+				5C4ADDE11BDED9B800F8EF37 /* sara_helmet.png */,
+				5C8C012F1BD59B41007D4CF0 /* sara_skateboard.png */,
+				5C8C01301BD59B41007D4CF0 /* sara.png */,
+				5C4ADDE21BDED9B800F8EF37 /* skateboard_sara.png */,
+				5C8C013E1BD59C13007D4CF0 /* skateboard.png */,
+				5CE5D2721BD9A2900053B038 /* smallrocket.png */,
+				5C4ADDEC1BDF4AE100F8EF37 /* wagon_withwood.png */,
+				5C4ADDE91BDED9C500F8EF37 /* wave.png */,
+				5C8C01221BD59B02007D4CF0 /* wood.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 		5CC854E419FAF32500910237 /* Condition Setup */ = {
