@@ -31,22 +31,52 @@
         <hotspot objId="house_roof2" action="pull" role="object" x="50%" y="50%"/>
         <hotspot objId="houses" action="getIn" role="subject" x="0%" y="0%"/>
         <hotspot objId="hawaii" action="getIn" role="object" x="50%" y="50%"/>
+        <hotspot objId="hawaii" action="label" role="object" x="58%" y="0%"/>
         <hotspot objId="india" action="getIn" role="subject" x="0%" y="0%"/>
         <hotspot objId="india" action="hit" role="subject" x="50%" y="50%"/>
         <hotspot objId="india" action="touch" role="object" x="16.9%" y="5.6%"/>
         <hotspot objId="india" action="touch" role="subject" x="94.7%" y="23.4%"/>
-        <hotspot objId="kauai" action="touchAsKauai" role="subject" x="50%" y="89%"/>
-        <hotspot objId="kauai" action="touchAsKauai2" role="subject" x="0%" y="89%"/>
-        <hotspot objId="kauai" action="touchAsKauai3" role="subject" x="0%" y="89%"/>
+        <hotspot objId="kauai" action="label" role="object" x="48%" y="0%"/>
+        <hotspot objId="kauai" action="touchAsKauai" role="subject" x="50%" y="82%"/>
+        <hotspot objId="kauai" action="touchAsKauai2" role="subject" x="0%" y="82%"/>
+        <hotspot objId="kauai" action="touchAsKauai3" role="subject" x="0%" y="82%"/>
+        <hotspot objId="label_hawaii" action="label" role="subject" x="50%" y="100%"/>
+        <hotspot objId="label_kauai" action="label" role="subject" x="50%" y="100%"/>
+        <hotspot objId="label_molokai" action="label" role="subject" x="50%" y="100%"/>
+        <hotspot objId="label_oahu" action="label" role="subject" x="50%" y="100%"/>
         <hotspot objId="lava" action="getIn" role="subject" x="50%" y="50%"/>
-        <hotspot objId="lava" action="touchAsKauai" role="subject" x="50%" y="95%"/>
-        <hotspot objId="lava" action="touchAsOahu" role="subject" x="50%" y="95%"/>
+        <hotspot objId="lava" action="label" role="object" x="50%" y="0%"/>
+        <hotspot objId="lava" action="touchAsKauai" role="subject" x="50%" y="36%"/>
+        <hotspot objId="lava" action="touchAsOahu" role="subject" x="50%" y="36%"/>
+        <hotspot objId="molokai" action="label" role="object" x="46%" y="0%"/>
         <hotspot objId="north_america" action="getIn" role="subject" x="0%" y="0%"/>
         <hotspot objId="north_america" action="touch" role="object" x="10.93%" y="38.42%"/>
         <hotspot objId="oahu" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="oahu" action="label" role="object" x="55%" y="0%"/>
         <hotspot objId="oahu" action="touchAsOahu" role="subject" x="50%" y="89%"/>
         <hotspot objId="ocean" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="person" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="plate" action="getIn" role="subject" x="50%" y="50%"/>
+        
+        
+        
+        <hotspot obj1Id="kauaiIM" action="getInLeft" role="object" x="50%" y="50%"/>
+        <hotspot obj1Id="kauaiIM" action="getInRight" role="object" x="50%" y="50%"/>
+        <hotspot obj1Id="plumeIM" action="getInLeft" role="subject" x="50%" y="50%"/>
+        <hotspot obj1Id="plumeIM" action="getInRight" role="subject" x="50%" y="50%"/>
+        
+        <hotspot obj1Id="oahuIM" action="getIn" role="object" x="50%" y="50%"/>
+        <hotspot obj1Id="hawaiiIM" action="getIn" role="object" x="50%" y="50%"/>
+        <hotspot obj1Id="plumeIM" action="getIn" role="subject" x="50%" y="50%"/>
+        
+        <hotspot obj1Id="air_blueIM" action="above" role="object" x="50%" y="50%"/>
+        <hotspot obj1Id="air_blueIM" action="below" role="object" x="50%" y="50%"/>
+        <hotspot obj1Id="cloudIM" action="above" role="subject" x="50%" y="50%"/>
+        <hotspot obj1Id="cloudIM" action="below" role="subject" x="50%" y="50%"/>
+        
+        <hotspot obj1Id="house_noroof2IM" action="getIn" role="object" x="50%" y="50%"/>
+        <hotspot obj1Id="roofIM" action="getIn" role="object" x="50%" y="50%"/>
+        <hotspot obj1Id="roofIM" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot obj1Id="air_blueIM" action="getIn" role="subject" x="50%" y="50%"/>
     </hotspots>
 </metadata>

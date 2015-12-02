@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <waypoints>
-        <waypoint waypointId="africa_away" x="18.750000%" y="41.335228%"/>
+        <waypoint waypointId="africa_away" x="21.289062%" y="36.576702%"/>
         <waypoint waypointId="air_down" x="54.5%" y="50.5%"/>
         <waypoint waypointId="air_up" x="80%" y="46%"/>
-        <waypoint waypointId="bulge_left" x="10%" y="69.5%"/>
         <waypoint waypointId="california_boom" x="4.589844%" y="33.380680%"/>
         <waypoint waypointId="california_up" x="0.000000%" y="17.684660%"/>
         <waypoint waypointId="california_up2" x="6.054688%" y="31.534090%"/>
         <waypoint waypointId="gap" x="50%" y="50%"/>
         <waypoint waypointId="india_near_eurasia" x="44.9%" y="28.8%"/>
-        <waypoint waypointId="india_ungrouped" x="38.378906%" y="54.687500%"/>
-        <waypoint waypointId="oahu_left" x="26.855469%" y="13.352273%"/>
+        <waypoint waypointId="india_ungrouped" x="40.820312%" y="49.360798%"/>
+        <waypoint waypointId="oahu_left" x="23.925781%" y="41.193180%"/>
         <waypoint waypointId="ocean" x="35%" y="69%"/>
         <waypoint waypointId="ocean_down" x="50%" y="79%"/>
         <waypoint waypointId="plate_move" x="74%" y="90%"/>

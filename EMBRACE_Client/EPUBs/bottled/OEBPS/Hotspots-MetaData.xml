@@ -32,5 +32,19 @@
         <hotspot objId="rattle" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="rattle" action="grabRight" role="object" x="50%" y="50%"/>
         <hotspot objId="stone" action="grabRight" role="object" x="50%" y="50%"/>
+        
+        <hotspot obj1Id="bottleIM" action="getIn" role="object" x="50%" y ="50%"/>
+        <hotspot obj1Id="waterIM" action="getIn" role="subject" x="50%" y ="50%"/>
+        <hotspot obj1Id="bottleIM" action="behind" role="object" x="50%" y ="50%"/>
+        <hotspot obj1Id="bottleIM" action="front" role="object" x="50%" y ="50%"/>
+        <hotspot obj1Id="babyIM" action="grabRight" role="object" x="50%" y ="50%"/>
+        <hotspot obj1Id="LucasIM" action="standWith" role="object" x="50%" y ="50%"/>
+        <hotspot obj1Id="bankIM" action="getIn" role="subject" x="50%" y ="50%"/>
+        <hotspot obj1Id="bushIM" action="behind" role="subject" x="50%" y ="50%"/>
+        <hotspot obj1Id="bushIM" action="front" role="subject" x="50%" y ="50%"/>
+        <hotspot obj1Id="rattleIM" action="grabRight" role="subject" x="50%" y ="50%"/>
+        <hotspot obj1Id="ballIM" action="grabRight" role="subject" x="50%" y ="50%"/>
+        <hotspot obj1Id="oliviaIM" action="standWith" role="subject" x="50%" y ="50%"/>
+        <hotspot obj1Id="babyIM" action="standWith" role="subject" x="50%" y ="50%"/>
     </hotspots>
 </metadata>

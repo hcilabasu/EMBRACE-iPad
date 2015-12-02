@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <waypoints>
+        <waypoint waypointId="calfAway" x="20%" y="54.545456%"/>
+        <waypoint waypointId="calfCorral" x="62.890625%" y="47.088070%"/>
+        <waypoint waypointId="cashier" x="79.687500%" y="60.653408%"/>
+        <waypoint waypointId="cowAway" x="33.203125%" y="22.869318%"/>
+        <waypoint waypointId="cowBwCorral" x="70.507812%" y="51.349430%"/>
+        <waypoint waypointId="dirtRoad" x="29.443359%" y="46.235798%"/>
+        <waypoint waypointId="dirtRoad2" x="61.230469%" y="76.278404%"/>
+        <waypoint waypointId="fence" x="71.484375%" y="53.693180%"/>
+        <waypoint waypointId="fence2" x="62%" y="48%"/>
+        <waypoint waypointId="gate" x="53.222656%" y="49.5%"/>
+        <waypoint waypointId="inMarket" x="43.945312%" y="36%"/>
+        <waypoint waypointId="market" x="53.759766%" y="12.642045%"/>
+        <waypoint waypointId="milk" x="66.796875%" y="15.411931%"/>
+        <waypoint waypointId="momSpot" x="72.705078%" y="30.681818%"/>
+        <waypoint waypointId="msPena" x="91.210938%" y="70.099434%"/>
+        <waypoint waypointId="nearChili" x="25%" y="50%"/>
+        <waypoint waypointId="nearMom" x="59.082031%" y="46.093750%"/>
+        <waypoint waypointId="nearMom2" x="36.230469%" y="48.579548%"/>
+        <waypoint waypointId="nearPesos" x="35%" y="29.545454%"/>
+        <waypoint waypointId="nearPost" x="11.230469%" y="55.184658%"/>
+        <waypoint waypointId="notebookCounter" x="66%" y="82.650566%"/>
+        <waypoint waypointId="onHorse" x="75.000000%" y="41.690342%"/>
+        <waypoint waypointId="outCorral" x="64.111328%" y="41.761364%"/>
+        <waypoint waypointId="produce" x="43.945312%" y="26.207388%"/>
+        <waypoint waypointId="rosesPink" x="60%" y="40%"/>
+        <waypoint waypointId="rosesPinkCounter" x="38.427734%" y="78.267044%"/>
+        <waypoint waypointId="rosesWhite" x="67.871094%" y="29.048296%"/>
+        <waypoint waypointId="rosesWhiteCounter" x="35.693359%" y="81.960228%"/>
+        <waypoint waypointId="shed" x="12.353516%" y="51.278408%"/>
+        <waypoint waypointId="sink" x="46.337891%" y="37.784092%"/>
+        <waypoint waypointId="spinach" x="35.791016%" y="31.250000%"/>
+    </waypoints>
+</metadata>

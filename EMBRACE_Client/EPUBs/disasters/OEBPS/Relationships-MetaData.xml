@@ -18,11 +18,29 @@
         <relationship obj1Id="kauai" can="touchAsKauai" action="group" obj2Id="grey_plate_kauai"/>
         <relationship obj1Id="kauai" can="touchAsKauai2" action="group" obj2Id="grey_plate_kauai"/>
         <relationship obj1Id="kauai" can="touchAsKauai3" action="group" obj2Id="grey_plate_kauai"/>
+        <relationship obj1Id="label_hawaii" can="label" action="group" obj2Id="hawaii"/>
+        <relationship obj1Id="label_kauai" can="label" action="group" obj2Id="kauai"/>
+        <relationship obj1Id="label_kauai" can="label" action="group" obj2Id="lava"/>
+        <relationship obj1Id="label_molokai" can="label" action="group" obj2Id="molokai"/>
+        <relationship obj1Id="label_oahu" can="label" action="group" obj2Id="lava"/>
+        <relationship obj1Id="label_oahu" can="label" action="group" obj2Id="oahu"/>
         <relationship obj1Id="lava" can="getIn" action="group" obj2Id="hawaii"/>
         <relationship obj1Id="lava" can="touchAsKauai" action="group" obj2Id="grey_plate_kauai"/>
         <relationship obj1Id="lava" can="touchAsOahu" action="group" obj2Id="grey_plate_kauai"/>
         <relationship obj1Id="north_america" can="leave" action="ungroup" obj2Id="california"/>
         <relationship obj1Id="oahu" can="leave" action="ungroup" obj2Id="grey_plate_kauai"/>
         <relationship obj1Id="oahu" can="touchAsOahu" action="group" obj2Id="grey_plate_kauai"/>
+        
+        <relationship obj1Id="kauaiIM" can="getInLeft" action="group" obj2Id="plumeIM"/>
+        <relationship obj1Id="kauaiIM" can="getInRight" action="group" obj2Id="plumeIM"/>
+        
+        <relationship obj1Id="oahuIM" can="getIn" action="group" obj2Id="plumeIM"/>
+        <relationship obj1Id="hawaiiIM" can="getIn" action="group" obj2Id="plumeIM"/>
+        
+        <relationship obj1Id="air_blueIM" can="above" action="group" obj2Id="cloudIM"/>
+        <relationship obj1Id="air_blueIM" can="below" action="group" obj2Id="cloudIM"/>
+        
+        <relationship obj1Id="house_noroof2IM" can="getIn" action="group" obj2Id="roofIM"/>
+        <relationship obj1Id="roofIM" can="getIn" action="group" obj2Id="air_blueIM"/>
     </relationships>
 </metadata>

@@ -26,5 +26,15 @@
         <relationship obj1Id="papa" can="grabRight" action="group" obj2Id="babybrother"/>
         <relationship obj1Id="papa" can="grabRight" action="group" obj2Id="bottle"/>
         <relationship obj1Id="rattle" can="getIn" action="group" obj2Id="babybrother"/>
+        
+        <relationship obj1Id="bottleIM" can="getIn" action="group" obj2Id="waterIM"/>
+        <relationship obj1Id="bottleIM" can="getIn" action="group" obj2Id="bankIM"/>
+        <relationship obj1Id="bottleIM" can="behind" action="group" obj2Id="bushIM"/>
+        <relationship obj1Id="bottleIM" can="front" action="group" obj2Id="bushIM"/>
+        <relationship obj1Id="babyIM" can="grabRight" action="group" obj2Id="rattleIM"/>
+        <relationship obj1Id="babyIM" can="grabRight" action="group" obj2Id="ballIM"/>
+        <relationship obj1Id="lucasIM" can="standWith" action="group" obj2Id="oliviaIM"/>
+        <relationship obj1Id="lucasIM" can="standWith" action="group" obj2Id="babyIM"/>
+        
     </relationships>
 </metadata>
