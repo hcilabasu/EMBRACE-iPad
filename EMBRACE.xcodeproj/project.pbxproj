@@ -2305,7 +2305,7 @@
 		1A631D3B1C0E4D3A00251CB3 /* Translations-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Translations-MetaData.xml"; sourceTree = "<group>"; };
 		1A631D3C1C0E4D3A00251CB3 /* VocabularyIntroductions-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "VocabularyIntroductions-MetaData.xml"; sourceTree = "<group>"; };
 		1A631D3D1C0E4D3A00251CB3 /* Waypoints-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Waypoints-MetaData.xml"; sourceTree = "<group>"; };
-		1A631D3F1C0E4D3A00251CB3 /* celebration.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = celebration.epub; sourceTree = "<group>"; };
+		1A631D3F1C0E4D3A00251CB3 /* celebration.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = celebration.epub; path = EPUBs/celebration/celebration.epub; sourceTree = "<group>"; };
 		1A631D411C0E4D3A00251CB3 /* container.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = container.xml; sourceTree = "<group>"; };
 		1A631D421C0E4D3A00251CB3 /* mimetype */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mimetype; sourceTree = "<group>"; };
 		1A631D441C0E4D3A00251CB3 /* AlternateImages-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AlternateImages-MetaData.xml"; sourceTree = "<group>"; };
@@ -2979,7 +2979,7 @@
 		1A631FFB1C0E4D3B00251CB3 /* Translations-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Translations-MetaData.xml"; sourceTree = "<group>"; };
 		1A631FFC1C0E4D3B00251CB3 /* VocabularyIntroductions-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "VocabularyIntroductions-MetaData.xml"; sourceTree = "<group>"; };
 		1A631FFD1C0E4D3B00251CB3 /* Waypoints-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Waypoints-MetaData.xml"; sourceTree = "<group>"; };
-		1A631FFE1C0E4D3B00251CB3 /* physics.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = physics.epub; sourceTree = "<group>"; };
+		1A631FFE1C0E4D3B00251CB3 /* physics.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = physics.epub; path = EPUBs/physics/physics.epub; sourceTree = "<group>"; };
 		1A695C731AD4C8B0006A2284 /* TheLopezFamilyS0E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLopezFamilyS0E.mp3; sourceTree = "<group>"; };
 		1A695C741AD4C8B0006A2284 /* TheLopezFamilyS1E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLopezFamilyS1E.mp3; sourceTree = "<group>"; };
 		1A695C751AD4C8B0006A2284 /* TheLopezFamilyS2E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLopezFamilyS2E.mp3; sourceTree = "<group>"; };
@@ -4375,7 +4375,6 @@
 		1A631D3E1C0E4D3A00251CB3 /* celebration */ = {
 			isa = PBXGroup;
 			children = (
-				1A631D3F1C0E4D3A00251CB3 /* celebration.epub */,
 				1A631D401C0E4D3A00251CB3 /* META-INF */,
 				1A631D421C0E4D3A00251CB3 /* mimetype */,
 				1A631D431C0E4D3A00251CB3 /* OEBPS */,
@@ -5129,7 +5128,6 @@
 				1A631F8A1C0E4D3A00251CB3 /* META-INF */,
 				1A631F8C1C0E4D3A00251CB3 /* mimetype */,
 				1A631F8D1C0E4D3A00251CB3 /* OEBPS */,
-				1A631FFE1C0E4D3B00251CB3 /* physics.epub */,
 			);
 			path = physics;
 			sourceTree = "<group>";
@@ -5414,7 +5412,9 @@
 			children = (
 				1A631C671C0E4D3900251CB3 /* EPUBs */,
 				5CCAE22C1B4C42C600445020 /* disasters.epub */,
+				1A631D3F1C0E4D3A00251CB3 /* celebration.epub */,
 				1A5BB0741BD327D1002D1AEA /* bottled.epub */,
+				1A631FFE1C0E4D3B00251CB3 /* physics.epub */,
 				5CE1E30F1A119E120070A7D6 /* bestFarm.epub */,
 				5CE1E30D1A119DFC0070A7D6 /* circulatory.epub */,
 				5C7FE06619A7E43B00CBBE0E /* sounds */,
