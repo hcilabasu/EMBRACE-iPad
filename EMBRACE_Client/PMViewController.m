@@ -1534,9 +1534,11 @@ BOOL wasPathFollowed = false;
             //[bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
             
             //Object should now be in the correct location, so the step can be incremented
-            if([self isHotspotInsideLocation] || [self isHotspotInsideArea]) {
-                [self incrementCurrentStep];
-            }
+            //if([self isHotspotInsideLocation] || [self isHotspotInsideArea]) {
+            //    [self incrementCurrentStep];
+            //}
+            
+            [self incrementCurrentStep];
         }
         //Current step is checkAndSwap and involves swapping an image
         else if ([[currSolStep stepType] isEqualToString:@"checkAndSwap"]) {
@@ -1549,6 +1551,10 @@ BOOL wasPathFollowed = false;
         }
         //Current step involves following a path
         else if ([[currSolStep stepType] isEqualToString:@"checkPath"]) {
+            [self incrementCurrentStep];
+        }
+        else if([[currSolStep stepType] isEqualToString:@"shakeAndTap"])
+        {
             [self incrementCurrentStep];
         }
         //Current step is either group, ungroup, disappear, or transference
