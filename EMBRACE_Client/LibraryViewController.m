@@ -192,10 +192,13 @@ ConditionSetup *conditionSetup;
         [studentProgress loadBooks:books];
         
         NSString* firstBookTitle = [bookTitles objectAtIndex:0];
-        NSString* firstChapterTitle = [[chapterTitles objectAtIndex:0] objectAtIndex:0];
-        
+
         //Start off with the first chapter of the first book in progress
-        [studentProgress setStatusOfChapter:firstChapterTitle :IN_PROGRESS fromBook:firstBookTitle];
+        [studentProgress setNextChapterInProgressForBook:firstBookTitle];
+    }
+    else {
+        //Update progress with any new books/chapters that might have been added
+        [studentProgress addNewContent:books];
     }
 }
 

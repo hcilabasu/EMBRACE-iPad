@@ -31,6 +31,7 @@ typedef enum Status {
 
 - (void) loadBooks:(NSMutableArray*)books;
 - (void) loadChapters:(NSMutableArray*)chapters fromBook:(NSString*)bookTitle withStatus:(Status)status;
+- (void) addNewContent:(NSMutableArray*)books;
 
 - (Status) getStatusOfBook:(NSString*)bookTitle;
 

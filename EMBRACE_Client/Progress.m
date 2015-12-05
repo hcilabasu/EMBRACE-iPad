@@ -63,24 +63,75 @@
 }
 
 /*
+ * Goes through the array of books and adds any new books/chapters as incomplete
+ */
+- (void) addNewContent:(NSMutableArray*)books {
+    NSMutableArray* newBooks = [[NSMutableArray alloc] init]; //holds new books, if any, to be added
+    
+    for (Book* book in books) {
+        NSString* bookTitle = [book title];
+        
+        Status bookStatus = [self getStatusOfBook:bookTitle];
+        
+        //Book already exists
+        if (bookStatus != NO_STATUS) {
+            for (Chapter* chapter in [book chapters]) {
+                NSString* chapterTitle = [chapter title];
+                
+                Status chapterStatus = [self getStatusOfChapter:chapterTitle fromBook:bookTitle];
+                
+                //Chapter does not exist
+                if (chapterStatus == NO_STATUS) {
+                    //Add chapter as incomplete
+                    NSMutableArray* incompleteChapters = [chaptersIncomplete objectForKey:bookTitle];
+                    [incompleteChapters addObject:chapterTitle];
+                    [chaptersIncomplete setObject:incompleteChapters forKey:bookTitle];
+                }
+            }
+            
+            if (bookStatus != INCOMPLETE) {
+                //If a new book was added, it might need to be set as in progress
+                [self setNextChapterInProgressForBook:bookTitle];
+            }
+        }
+        //Book does not exist
+        else {
+            [newBooks addObject:book];
+        }
+    }
+    
+    //Add any new books along with their chapters
+    if ([newBooks count] > 0) {
+        [self loadBooks:newBooks];
+    }
+}
+
+/*
  * Returns current status of book
  */
 - (Status) getStatusOfBook:(NSString*)bookTitle {
-    BOOL hasCompletedChapters = [[chaptersCompleted objectForKey:bookTitle] count] > 0;
-    BOOL hasInProgressChapters = [[chaptersInProgress objectForKey:bookTitle] count] > 0;
-    BOOL hasIncompleteChapters = [[chaptersIncomplete objectForKey:bookTitle] count] > 0;
-    
-    //All chapters of book are completed
-    if (hasCompletedChapters && !hasInProgressChapters && !hasIncompleteChapters) {
-        return COMPLETED;
+    //Check if book exists
+    if ([chaptersCompleted objectForKey:bookTitle] != nil) {
+        BOOL hasCompletedChapters = [[chaptersCompleted objectForKey:bookTitle] count] > 0;
+        BOOL hasInProgressChapters = [[chaptersInProgress objectForKey:bookTitle] count] > 0;
+        BOOL hasIncompleteChapters = [[chaptersIncomplete objectForKey:bookTitle] count] > 0;
+        
+        //All chapters of book are completed
+        if (hasCompletedChapters && !hasInProgressChapters && !hasIncompleteChapters) {
+            return COMPLETED;
+        }
+        //All chapters of book are incomplete
+        else if (!hasCompletedChapters && !hasInProgressChapters && hasIncompleteChapters) {
+            return INCOMPLETE;
+        }
+        //Chapters of book may be completed, in progress, or incomplete
+        else {
+            return IN_PROGRESS;
+        }
     }
-    //All chapters of book are incomplete
-    else if (!hasCompletedChapters && !hasInProgressChapters && hasIncompleteChapters) {
-        return INCOMPLETE;
-    }
-    //Chapters of book may be completed, in progress, or incomplete
     else {
-        return IN_PROGRESS;
+        //Book does not exist
+        return NO_STATUS;
     }
 }
 
