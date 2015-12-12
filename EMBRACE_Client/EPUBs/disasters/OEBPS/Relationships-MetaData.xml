@@ -40,7 +40,7 @@
         <relationship obj1Id="air_blueIM" can="above" action="group" obj2Id="cloudIM"/>
         <relationship obj1Id="air_blueIM" can="below" action="group" obj2Id="cloudIM"/>
         
-        <relationship obj1Id="house_noroof2IM" can="getIn" action="group" obj2Id="roofIM"/>
+        <relationship obj1Id="house_noroofIM" can="damage" action="group" obj2Id="roofDamageIM"/>
         <relationship obj1Id="roofIM" can="getIn" action="group" obj2Id="air_blueIM"/>
     </relationships>
 </metadata>

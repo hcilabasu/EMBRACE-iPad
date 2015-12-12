@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A3BB2881C17B38C0069C915 /* bank.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A3BB2871C17B38C0069C915 /* bank.jpg */; };
 		1A5BB0CA1BD327D1002D1AEA /* bottled.epub in Resources */ = {isa = PBXBuildFile; fileRef = 1A5BB0741BD327D1002D1AEA /* bottled.epub */; };
 		1A631FFF1C0E4D3B00251CB3 /* bestFarm.epub in Resources */ = {isa = PBXBuildFile; fileRef = 1A631C691C0E4D3900251CB3 /* bestFarm.epub */; };
 		1A6320001C0E4D3B00251CB3 /* container.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A631C6B1C0E4D3900251CB3 /* container.xml */; };
@@ -2102,6 +2103,7 @@
 		1A3593E91AE76129003B3B41 /* TheMysteryIsSolvedQ7A2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheMysteryIsSolvedQ7A2.mp3; sourceTree = "<group>"; };
 		1A3593EA1AE76129003B3B41 /* TheMysteryIsSolvedQ7A3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheMysteryIsSolvedQ7A3.mp3; sourceTree = "<group>"; };
 		1A3593EB1AE76129003B3B41 /* TheMysteryIsSolvedQ7A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheMysteryIsSolvedQ7A4.mp3; sourceTree = "<group>"; };
+		1A3BB2871C17B38C0069C915 /* bank.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bank.jpg; sourceTree = "<group>"; };
 		1A5BB0741BD327D1002D1AEA /* bottled.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = bottled.epub; path = EPUBs/bottled/bottled.epub; sourceTree = "<group>"; };
 		1A631C691C0E4D3900251CB3 /* bestFarm.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = bestFarm.epub; sourceTree = "<group>"; };
 		1A631C6B1C0E4D3900251CB3 /* container.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = container.xml; sourceTree = "<group>"; };
@@ -4295,6 +4297,7 @@
 		1A631CF31C0E4D3900251CB3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				1A3BB2871C17B38C0069C915 /* bank.jpg */,
 				1A631CF41C0E4D3900251CB3 /* babybrother.png */,
 				1A631CF51C0E4D3900251CB3 /* ball.png */,
 				1A631CF61C0E4D3900251CB3 /* boardgame_box.png */,
@@ -7746,6 +7749,7 @@
 				C30D04041BABBFE800DF53F1 /* TheLopezFamilyQ7A2.mp3 in Resources */,
 				C30D04051BABBFE800DF53F1 /* TheLopezFamilyQ7A3.mp3 in Resources */,
 				1A6321DF1C0E4D3B00251CB3 /* bg_volcano.png in Resources */,
+				1A3BB2881C17B38C0069C915 /* bank.jpg in Resources */,
 				C30D04061BABBFE800DF53F1 /* TheLopezFamilyQ7A4.mp3 in Resources */,
 				1A6320051C0E4D3B00251CB3 /* AssessmentActivities-MetaData.xml in Resources */,
 				1A880E3C1BD6E4980020F93B /* GettingMoreOxygenForTheMusclesQ6A4.mp3 in Resources */,

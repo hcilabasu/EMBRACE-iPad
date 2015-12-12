@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <solutions>
-        <story title="Volcanoes and the Making of Hawaii" activity_id="story4-PM-2">
-            <sentence number="8">
+        <story title="Volcanoes and the Making of Hawaii" activity_id="story4-PM-3">
+            <sentence number="10">
                 <step number="1">
                     <group obj1Id="kauaiIM" action="getInLeft" obj2Id="plumeIM"/>
                     <group obj1Id="kauaiIM" action="getInRight" obj2Id="plumeIM"/>
@@ -26,9 +26,9 @@
             </sentence>
         </story>
         <story title="Tornados" activity_id="story5-PM-2">
-            <sentence number="7">
+            <sentence number="8">
                 <step number="1">
-                    <group obj1Id="house_noroof2IM" action="damage" obj2Id="roofIM"/>
+                    <group obj1Id="house_noroofIM" action="damage" obj2Id="roofDamageIM"/>
                     <group obj1Id="roofIM" action="getIn" obj2Id="air_blueIM"/>
                 </step>
             </sentence>

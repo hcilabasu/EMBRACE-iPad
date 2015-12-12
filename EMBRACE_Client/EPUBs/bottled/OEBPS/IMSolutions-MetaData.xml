@@ -28,7 +28,7 @@
         <story title="Catch!" activity_id="story5-PM-2">
             <sentence number="6">
                 <step number="1">
-                    <group obj1Id="bottleIM" action="behind" obj2Id="bushIM"/>
+                    <group obj1Id="bottleBehindIM" action="behind" obj2Id="bushIM"/>
                     <group obj1Id="bottleIM" action="front" obj2Id="bushIM"/>
                 </step>
             </sentence>

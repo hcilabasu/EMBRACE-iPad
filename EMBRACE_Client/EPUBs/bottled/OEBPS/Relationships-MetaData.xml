@@ -29,7 +29,7 @@
         
         <relationship obj1Id="bottleIM" can="getIn" action="group" obj2Id="waterIM"/>
         <relationship obj1Id="bottleIM" can="getIn" action="group" obj2Id="bankIM"/>
-        <relationship obj1Id="bottleIM" can="behind" action="group" obj2Id="bushIM"/>
+        <relationship obj1Id="bottleBehindIM" can="behind" action="group" obj2Id="bushIM"/>
         <relationship obj1Id="bottleIM" can="front" action="group" obj2Id="bushIM"/>
         <relationship obj1Id="babyIM" can="grabRight" action="group" obj2Id="rattleIM"/>
         <relationship obj1Id="babyIM" can="grabRight" action="group" obj2Id="ballIM"/>
