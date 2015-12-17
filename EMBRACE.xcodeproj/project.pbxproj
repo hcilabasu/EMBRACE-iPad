@@ -545,7 +545,6 @@
 		1A6322141C0E4D3B00251CB3 /* intro_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A631E991C0E4D3A00251CB3 /* intro_background.png */; };
 		1A6322151C0E4D3B00251CB3 /* intro_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A631E9A1C0E4D3A00251CB3 /* intro_icon.png */; };
 		1A6322161C0E4D3B00251CB3 /* island_Hawaii.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A631E9B1C0E4D3A00251CB3 /* island_Hawaii.png */; };
-		1A6322171C0E4D3B00251CB3 /* island_Kauai.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A631E9C1C0E4D3A00251CB3 /* island_Kauai.png */; };
 		1A6322181C0E4D3B00251CB3 /* island_lava_Hawaii.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A631E9D1C0E4D3A00251CB3 /* island_lava_Hawaii.png */; };
 		1A6322191C0E4D3B00251CB3 /* island_Molokai.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A631E9E1C0E4D3A00251CB3 /* island_Molokai.png */; };
 		1A63221A1C0E4D3B00251CB3 /* island_Oahu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A631E9F1C0E4D3A00251CB3 /* island_Oahu.png */; };
@@ -1071,6 +1070,7 @@
 		31C306C2183D900B0043DEDD /* Solution.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C306C1183D900B0043DEDD /* Solution.m */; };
 		31C306C5183E93A60043DEDD /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C306C4183E93A60043DEDD /* Connection.m */; };
 		5C466ADC192293290056EA4B /* Translation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C466ADB192293290056EA4B /* Translation.m */; };
+		5C5417C01C23653900EB7770 /* island_Kauai.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C5417BF1C23653900EB7770 /* island_Kauai.png */; };
 		5CC5FADB18FDFA3700D118B8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CC5FADA18FDFA3700D118B8 /* AVFoundation.framework */; };
 		5CC854E719FAF37F00910237 /* ConditionSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC854E619FAF37F00910237 /* ConditionSetup.m */; };
 		5CCEA48119AFD13C00FCBC2C /* ComboConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCEA48019AFD13C00FCBC2C /* ComboConstraint.m */; };
@@ -2641,7 +2641,6 @@
 		1A631E991C0E4D3A00251CB3 /* intro_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = intro_background.png; sourceTree = "<group>"; };
 		1A631E9A1C0E4D3A00251CB3 /* intro_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = intro_icon.png; sourceTree = "<group>"; };
 		1A631E9B1C0E4D3A00251CB3 /* island_Hawaii.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = island_Hawaii.png; sourceTree = "<group>"; };
-		1A631E9C1C0E4D3A00251CB3 /* island_Kauai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = island_Kauai.png; sourceTree = "<group>"; };
 		1A631E9D1C0E4D3A00251CB3 /* island_lava_Hawaii.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = island_lava_Hawaii.png; sourceTree = "<group>"; };
 		1A631E9E1C0E4D3A00251CB3 /* island_Molokai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = island_Molokai.png; sourceTree = "<group>"; };
 		1A631E9F1C0E4D3A00251CB3 /* island_Oahu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = island_Oahu.png; sourceTree = "<group>"; };
@@ -3640,6 +3639,7 @@
 		5C27CB341ADB4CCC00E6DC0D /* dog_labradoodle_bark_twice_001.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dog_labradoodle_bark_twice_001.mp3; sourceTree = "<group>"; };
 		5C466ADA192293290056EA4B /* Translation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Translation.h; sourceTree = "<group>"; };
 		5C466ADB192293290056EA4B /* Translation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Translation.m; sourceTree = "<group>"; };
+		5C5417BF1C23653900EB7770 /* island_Kauai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = island_Kauai.png; sourceTree = "<group>"; };
 		5C776A3719C17F39000DBC65 /* BFTC0.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = BFTC0.m4a; sourceTree = "<group>"; };
 		5C776A3819C17F39000DBC65 /* BFTC1.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = BFTC1.m4a; sourceTree = "<group>"; };
 		5C776A3919C17F39000DBC65 /* BFTC2.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = BFTC2.m4a; sourceTree = "<group>"; };
@@ -4778,6 +4778,7 @@
 		1A631E591C0E4D3A00251CB3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5C5417BF1C23653900EB7770 /* island_Kauai.png */,
 				1A631E5A1C0E4D3A00251CB3 /* africa.png */,
 				1A631E5B1C0E4D3A00251CB3 /* air_blue.png */,
 				1A631E5C1C0E4D3A00251CB3 /* air_red.png */,
@@ -4844,7 +4845,6 @@
 				1A631E991C0E4D3A00251CB3 /* intro_background.png */,
 				1A631E9A1C0E4D3A00251CB3 /* intro_icon.png */,
 				1A631E9B1C0E4D3A00251CB3 /* island_Hawaii.png */,
-				1A631E9C1C0E4D3A00251CB3 /* island_Kauai.png */,
 				1A631E9D1C0E4D3A00251CB3 /* island_lava_Hawaii.png */,
 				1A631E9E1C0E4D3A00251CB3 /* island_Molokai.png */,
 				1A631E9F1C0E4D3A00251CB3 /* island_Oahu.png */,
@@ -8056,7 +8056,6 @@
 				1A880E601BD6E4980020F93B /* TheAmazingHeartQ3.mp3 in Resources */,
 				1A63231F1C0E4D3B00251CB3 /* maria.png in Resources */,
 				1A63224B1C0E4D3B00251CB3 /* south_america.png in Resources */,
-				1A6322171C0E4D3B00251CB3 /* island_Kauai.png in Resources */,
 				C30D049A1BABBFE800DF53F1 /* oxygenS.m4a in Resources */,
 				1A6322471C0E4D3B00251CB3 /* small_house01_fall.png in Resources */,
 				1A880E0D1BD6E4980020F93B /* CigaretteSmokeHurtsYourLungsQ3A2.mp3 in Resources */,
@@ -8179,6 +8178,7 @@
 				1A880E481BD6E4980020F93B /* MusclesUseOxygenQ3A1.mp3 in Resources */,
 				1A6321751C0E4D3B00251CB3 /* O2_select large_high_res.png in Resources */,
 				C30D04D81BABBFE800DF53F1 /* CWWB13.m4a in Resources */,
+				5C5417C01C23653900EB7770 /* island_Kauai.png in Resources */,
 				C30D04D91BABBFE800DF53F1 /* CWWB14.m4a in Resources */,
 				C30D04DA1BABBFE800DF53F1 /* CWWB15.m4a in Resources */,
 				C30D04DB1BABBFE800DF53F1 /* BFTC0.m4a in Resources */,
