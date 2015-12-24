@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <relationships>
+        <relationship obj1Id="bark" can="getIn" action="group" obj2Id="man_ch4"/>
+        <relationship obj1Id="bark2" can="getIn" action="group" obj2Id="man_ch4"/>
+        <relationship obj1Id="bark" can="getOut" action="ungroup" obj2Id="man_ch4"/>
+        <relationship obj1Id="bark2" can="getOut" action="ungroup" obj2Id="man_ch4"/>
+        <relationship obj1Id="haida" can="drop" action="ungroup" obj2Id="axe"/>
+        <relationship obj1Id="haida" can="drop" action="ungroup" obj2Id="fallen_tree"/>
+        <relationship obj1Id="haida" can="grab" action="group" obj2Id="axe"/>
+        <relationship obj1Id="haida" can="grab" action="group" obj2Id="fallen_tree"/>
+        <relationship obj1Id="haida" can="roll" action="group" obj2Id="log1"/>
+        <relationship obj1Id="inuit" can="drop" action="ungroup" obj2Id="iceknife"/>
+        <relationship obj1Id="inuit" can="drop" action="ungroup" obj2Id="icewindow"/>
+        <relationship obj1Id="inuit" can="drop" action="ungroup" obj2Id="snowblock"/>
+        <relationship obj1Id="inuit" can="grab" action="group" obj2Id="iceknife"/>
+        <relationship obj1Id="inuit" can="grab" action="group" obj2Id="shovel"/>
+        <relationship obj1Id="inuit" can="pickUp" action="group" obj2Id="icewindow"/>
+        <relationship obj1Id="inuit" can="pickUp" action="group" obj2Id="snowblock"/>
+        <relationship obj1Id="man_ch4" can="drop" action="ungroup" obj2Id="rock"/>
+        <relationship obj1Id="man_ch4" can="grab" action="group" obj2Id="rock"/>
+        <relationship obj1Id="plank" can="getIn" action="group" obj2Id="haida"/>
+        <relationship obj1Id="plank" can="getOut" action="ungroup" obj2Id="haida"/>
+        <relationship obj1Id="seminole_dad" can="drop" action="ungroup" obj2Id="ladder"/>
+        <relationship obj1Id="seminole_dad" can="drop" action="ungroup" obj2Id="log_ch6"/>
+        <relationship obj1Id="seminole_dad" can="drop" action="ungroup" obj2Id="palm_platform"/>
+        <relationship obj1Id="seminole_dad" can="drop" action="ungroup" obj2Id="palm_roof"/>
+        <relationship obj1Id="seminole_dad" can="drop" action="ungroup" obj2Id="pole_ch6"/>
+        <relationship obj1Id="seminole_dad" can="grab" action="group" obj2Id="palm_platform"/>
+        <relationship obj1Id="seminole_dad" can="grab" action="group" obj2Id="palm_roof"/>
+        <relationship obj1Id="seminole_dad" can="pickUp" action="group" obj2Id="ladder"/>
+        <relationship obj1Id="seminole_dad" can="pickUp" action="group" obj2Id="log_ch6"/>
+        <relationship obj1Id="seminole_dad" can="pickUp" action="group" obj2Id="pole_ch6"/>
+        <relationship obj1Id="standing_sioux" can="drop" action="ungroup" obj2Id="liftingpole"/>
+        <relationship obj1Id="standing_sioux" can="drop" action="ungroup" obj2Id="pole_pile"/>
+        <relationship obj1Id="standing_sioux" can="drop" action="ungroup" obj2Id="ropecoil"/>
+        <relationship obj1Id="standing_sioux" can="drop" action="ungroup" obj2Id="travois_supplies"/>
+        <relationship obj1Id="standing_sioux" can="drop" action="ungroup" obj2Id="woodpile"/>
+        <relationship obj1Id="standing_sioux" can="grab" action="group" obj2Id="ropecoil"/>
+        <relationship obj1Id="standing_sioux" can="grabLeft" action="group" obj2Id="liftingpole"/>
+        <relationship obj1Id="standing_sioux" can="pickUp" action="group" obj2Id="pole_pile"/>
+        <relationship obj1Id="standing_sioux" can="pickUp" action="group" obj2Id="travois_supplies"/>
+        <relationship obj1Id="standing_sioux" can="pickUp" action="group" obj2Id="woodpile"/>
+    </relationships>
+</metadata>

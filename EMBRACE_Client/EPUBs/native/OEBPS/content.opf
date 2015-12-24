@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="BookId" version="2.0">
+    <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+        <dc:identifier id="BookId" opf:scheme="UUID">urn:uuid:f0fe710e-44d7-4626-8b59-20cd5fe9699f</dc:identifier>
+        <dc:date opf:event="modification">2015-07-06</dc:date>
+        <meta content="0.7.2" name="Sigil version" />
+        <dc:title>Native American Homes</dc:title>
+    </metadata>
+  <manifest>
+    <item href="Images/arrow.png" id="arrow.png" media-type="image/png" />
+    <item href="Images/axe.png" id="axe.png" media-type="image/png" />
+    <item href="Images/background_ch2.png" id="background_ch2.png" media-type="image/png" />
+    <item href="Images/background_ch3_buffalo.png" id="background_ch3_buffalo.png" media-type="image/png" />
+    <item href="Images/background_ch3.png" id="background_ch3.png" media-type="image/png" />
+    <item href="Images/background_ch4.png" id="background_ch4.png" media-type="image/png" />
+    <item href="Images/background_ch5_2.png" id="background_ch5_2.png" media-type="image/png" />
+    <item href="Images/background_ch5.png" id="background_ch5.png" media-type="image/png" />
+    <item href="Images/background_ch6.png" id="background_ch6.png" media-type="image/png" />
+    <item href="Images/background_hogan.png" id="background_hogan.png" media-type="image/png" />
+    <item href="Images/background_teepees.png" id="background_teepees.png" media-type="image/png" />
+    <item href="Images/bark_pile2.png" id="bark_pile2.png" media-type="image/png" />
+    <item href="Images/bark.png" id="bark.png" media-type="image/png" />
+    <item href="Images/bend_tied.png" id="bend_tied.png" media-type="image/png" />
+    <item href="Images/bendingpole.png" id="bendingpole.png" media-type="image/png" />
+    <item href="Images/bendingpole2.png" id="bendingpole2.png" media-type="image/png" />
+    <item href="Images/boat_full.png" id="boat_full.png" media-type="image/png" />
+    <item href="Images/boat_large.png" id="boat_large.png" media-type="image/png" />
+    <item href="Images/boat_logs.png" id="boat_logs.png" media-type="image/png" />
+    <item href="Images/boat_small.png" id="boat_small.png" media-type="image/png" />
+    <item href="Images/branch.png" id="branch.png" media-type="image/png" />
+    <item href="Images/branches_wleaves.png" id="branches_wleaves.png" media-type="image/png" />
+    <item href="Images/buffalo1.png" id="buffalo1.png" media-type="image/png" />
+    <item href="Images/buffalo2.png" id="buffalo2.png" media-type="image/png" />
+    <item href="Images/buffalo3.png" id="buffalo3.png" media-type="image/png" />
+    <item href="Images/chapter1_icon.png" id="chapter1_icon.png" media-type="image/png" />
+    <item href="Images/chapter2_icon.png" id="chapter2_icon.png" media-type="image/png" />
+    <item href="Images/chapter3_icon.png" id="chapter3_icon.png" media-type="image/png" />
+    <item href="Images/chapter4_icon.png" id="chapter4_icon.png" media-type="image/png" />
+    <item href="Images/chapter5_icon.png" id="chapter5_icon.png" media-type="image/png" />
+    <item href="Images/chapter6_icon.png" id="chapter6_icon.png" media-type="image/png" />
+    <item href="Images/chickee1.png" id="chickee1.png" media-type="image/png" />
+    <item href="Images/chickee2.png" id="chickee2.png" media-type="image/png" />
+    <item href="Images/chickee3.png" id="chickee3.png" media-type="image/png" />
+    <item href="Images/chickee4.png" id="chickee4.png" media-type="image/png" />
+    <item href="Images/chickee5.png" id="chickee5.png" media-type="image/png" />
+    <item href="Images/chickee6.png" id="chickee6.png" media-type="image/png" />
+    <item href="Images/circle_holes.png" id="circle_holes.png" media-type="image/png" />
+    <item href="Images/circle_onepole.png" id="circle_onepole.png" media-type="image/png" />
+    <item href="Images/circle.png" id="circle.png" media-type="image/png" />
+    <item href="Images/desert_background.png" id="desert_background.png" media-type="image/png" />
+    <item href="Images/doorwaycarpet.png" id="doorwaycarpet.png" media-type="image/png" />
+    <item href="Images/fallen_tree.png" id="fallen_tree.png" media-type="image/png" />
+    <item href="Images/firepit.png" id="firepit.png" media-type="image/png" />
+    <item href="Images/frame_complete.png" id="frame_complete.png" media-type="image/png" />
+    <item href="Images/frame_onground.png" id="frame_onground.png" media-type="image/png" />
+    <item href="Images/frame_upright.png" id="frame_upright.png" media-type="image/png" />
+    <item href="Images/frame_withrope.png" id="frame_withrope.png" media-type="image/png" />
+    <item href="Images/haida_axe.png" id="haida_axe.png" media-type="image/png" />
+    <item href="Images/haida_inboat.png" id="haida_inboat.png" media-type="image/png" />
+    <item href="Images/haida_inboat2.png" id="haida_inboat2.png" media-type="image/png" />
+    <item href="Images/haida_large.png" id="haida_large.png" media-type="image/png" />
+    <item href="Images/haida_small.png" id="haida_small.png" media-type="image/png" />
+    <item href="Images/hewed_tree2.png" id="hewed_tree2.png" media-type="image/png" />
+    <item href="Images/hogan_withhole.png" id="hogan_withhole.png" media-type="image/png" />
+    <item href="Images/hogan_withhole2.png" id="hogan_withhole2.png" media-type="image/png" />
+    <item href="Images/hogan.png" id="hogan.png" media-type="image/png" />
+    <item href="Images/hogancarpet.png" id="hogancarpet.png" media-type="image/png" />
+    <item href="Images/hole_outline.png" id="hole_outline.png" media-type="image/png" />
+    <item href="Images/hole.png" id="hole.png" media-type="image/png" />
+    <item href="Images/iceknife.png" id="iceknife.png" media-type="image/png" />
+    <item href="Images/icewindow.png" id="icewindow.png" media-type="image/png" />
+    <item href="Images/igloo_firstlayer.png" id="igloo_firstlayer.png" media-type="image/png" />
+    <item href="Images/igloo_window.png" id="igloo_window.png" media-type="image/png" />
+    <item href="Images/igloo_withhole.png" id="igloo_withhole.png" media-type="image/png" />
+    <item href="Images/igloo.png" id="igloo.png" media-type="image/png" />
+    <item href="Images/introduction_background.png" id="introduction_background.png" media-type="image/png" />
+    <item href="Images/intro.png" id="intro.png" media-type="image/png" />
+    <item href="Images/inuit.png" id="inuit.png" media-type="image/png" />
+    <item href="Images/ladder.png" id="ladder.png" media-type="image/png" />
+    <item href="Images/liftingpole.png" id="liftingpole.png" media-type="image/png" />
+    <item href="Images/log_ch6.png" id="log_ch6.png" media-type="image/png" />
+    <item href="Images/log_side.png" id="log_side.png" media-type="image/png" />
+    <item href="Images/log.png" id="log.png" media-type="image/png" />
+    <item href="Images/log_flip.png" id="log_flip.png" media-type="image/png" />
+    <item href="Images/loghouse.png" id="loghouse.png" media-type="image/png" />
+    <item href="Images/man_ch4.png" id="man_ch4.png" media-type="image/png" />
+    <item href="Images/man_withpole.png" id="man_withpole.png" media-type="image/png" />
+    <item href="Images/man_withstick.png" id="man_withstick.png" media-type="image/png" />
+    <item href="Images/man1_ch3.png" id="man1_ch3.png" media-type="image/png" />
+    <item href="Images/man1.png" id="man1.png" media-type="image/png" />
+    <item href="Images/man2_ch3.png" id="man2_ch3.png" media-type="image/png" />
+    <item href="Images/man2.png" id="man2.png" media-type="image/png" />
+    <item href="Images/man3_ch3_1.png" id="man3_ch3_1.png" media-type="image/png" />
+    <item href="Images/man3_ch3_2.png" id="man3_ch3_2.png" media-type="image/png" />
+    <item href="Images/man3.png" id="man3.png" media-type="image/png" />
+    <item href="Images/mosquito.png" id="mosquito.png" media-type="image/png" />
+    <item href="Images/mud.png" id="mud.png" media-type="image/png" />
+    <item href="Images/palm_pile.png" id="palm_pile.png" media-type="image/png" />
+    <item href="Images/palm_platform.png" id="palm_platform.png" media-type="image/png" />
+    <item href="Images/palm_roof.png" id="palm_roof.png" media-type="image/png" />
+    <item href="Images/plank_pile.png" id="plank_pile.png" media-type="image/png" />
+    <item href="Images/plank.png" id="plank.png" media-type="image/png" />
+    <item href="Images/plank_side.png" id="plank_side.png" media-type="image/png" />
+    <item href="Images/plankhouse_finished.png" id="plankhouse_finished.png" media-type="image/png" />
+    <item href="Images/plankhouse_unfinished.png" id="plankhouse_unfinished.png" media-type="image/png" />
+    <item href="Images/plankhouse_unfinished2.png" id="plankhouse_unfinished2.png" media-type="image/png" />
+    <item href="Images/pole_ch6.png" id="pole_ch6.png" media-type="image/png" />
+    <item href="Images/pole_pile_ch6.png" id="pole_pile_ch6.png" media-type="image/png" />
+    <item href="Images/pole_pile.png" id="pole_pile.png" media-type="image/png" />
+    <item href="Images/pole.png" id="pole.png" media-type="image/png" />
+    <item href="Images/pots.png" id="pots.png" media-type="image/png" />
+    <item href="Images/rock_pile.png" id="rock_pile.png" media-type="image/png" />
+    <item href="Images/rock.png" id="rock.png" media-type="image/png" />
+    <item href="Images/ropecoil.png" id="ropecoil.png" media-type="image/png" />
+    <item href="Images/seminole_dad.png" id="seminole_dad.png" media-type="image/png" />
+    <item href="Images/seminole_kid.png" id="seminole_kid.png" media-type="image/png" />
+    <item href="Images/seminole_mom.png" id="seminole_mom.png" media-type="image/png" />
+    <item href="Images/shovel_withsnow.png" id="shovel_withsnow.png" media-type="image/png" />
+    <item href="Images/shovel.png" id="shovel.png" media-type="image/png" />
+    <item href="Images/snowblock.png" id="snowblock.png" media-type="image/png" />
+    <item href="Images/snowpile.png" id="snowpile.png" media-type="image/png" />
+    <item href="Images/soldier1.png" id="soldier1.png" media-type="image/png" />
+    <item href="Images/soldier2.png" id="soldier2.png" media-type="image/png" />
+    <item href="Images/soldier3.png" id="soldier3.png" media-type="image/png" />
+    <item href="Images/standing_sioux.png" id="standing_sioux.png" media-type="image/png" />
+    <item href="Images/sun.png" id="sun.png" media-type="image/png" />
+    <item href="Images/teepee_blanket.png" id="teepee_blanket.png" media-type="image/png" />
+    <item href="Images/teepee_finished.png" id="teepee_finished.png" media-type="image/png" />
+    <item href="Images/teepee_open.png" id="teepee_open.png" media-type="image/png" />
+    <item href="Images/travois_supplies.png" id="travois_supplies.png" media-type="image/png" />
+    <item href="Images/travois_withsupplies.png" id="travois_withsupplies.png" media-type="image/png" />
+    <item href="Images/travois.png" id="travois.png" media-type="image/png" />
+    <item href="Images/tree_stump.png" id="tree_stump.png" media-type="image/png" />
+    <item href="Images/tree.png" id="tree.png" media-type="image/png" />
+    <item href="Images/wigwam_complete.png" id="wigwam_complete.png" media-type="image/png" />
+    <item href="Images/wigwam_firstbark.png" id="wigwam_firstbark.png" media-type="image/png" />
+    <item href="Images/wigwam_frame.png" id="wigwam_frame.png" media-type="image/png" />
+    <item href="Images/woman_ch4.png" id="woman_ch4.png" media-type="image/png" />
+    <item href="Images/woman1.png" id="woman1.png" media-type="image/png" />
+    <item href="Images/woman2.png" id="woman2.png" media-type="image/png" />
+    <item href="Images/woman3.png" id="woman3.png" media-type="image/png" />
+    <item href="Images/wooodpile_ignited.png" id="wooodpile_ignited.png" media-type="image/png" />
+    <item href="Images/wooodpile.png" id="wooodpile.png" media-type="image/png" />
+    
+    
+    
+    <item href="toc.ncx" id="ncx" media-type="application/x-dtbncx+xml" />
+    <item href="Styles/PMStyle.css" id="PMStyle.css" media-type="text/css" />
+    <item href="Styles/IMStyle.css" id="IMStyle.css" media-type="text/css" />
+    <item href="Styles/Stylesheet.css" id="Stylesheet.css" media-type="text/css" />
+    
+    
+    
+    
+    <item href="Text/Introduction-to-Native-American-Homes-Title.xhtml" id="Introduction-to-Native-American-Homes-Title.xhtml" media-type="application/xhtml+xml" />
+    
+    <item href="Text/Story1-Introduction-PM.xhtml" id="story0-PM" media-type="application/xhtml+xml" />
+    <item href="Text/Story1-Introduction-PM-2.xhtml" id="story0-PM-2" media-type="application/xhtml+xml" />
+
+    <item href="Text/Story1-The-Navajo-Hogan-Intro-E.xhtml" id="story1-Intro" media-type="application/xhtml+xml" />
+    <item href="Text/Story1-The-Navajo-Hogan-PM-1.xhtml" id="story1-PM-1" media-type="application/xhtml+xml" />
+    <item href="Text/Story1-The-Navajo-Hogan-PM-2.xhtml" id="story1-PM-2" media-type="application/xhtml+xml" />
+    <item href="Text/Story1-The-Navajo-Hogan-PM-3.xhtml" id="story1-PM-3" media-type="application/xhtml+xml" />
+    <item href="Text/Story1-The-Navajo-Hogan-Title.xhtml" id="Chapter1Title" media-type="application/xhtml+xml" />
+    <item href="Text/Story2-The-Inuit-Igloo-Intro-E.xhtml" id="story2-Intro" media-type="application/xhtml+xml" />
+    <item href="Text/Story2-The-Inuit-Igloo-PM-1.xhtml" id="story2-PM-1" media-type="application/xhtml+xml" />
+    <item href="Text/Story2-The-Inuit-Igloo-PM-2.xhtml" id="story2-PM-2" media-type="application/xhtml+xml" />
+    <item href="Text/Story2-The-Inuit-Igloo-PM-3.xhtml" id="story2-PM-3" media-type="application/xhtml+xml" />
+    <item href="Text/Story2-The-Inuit-Igloo-PM-4.xhtml" id="story2-PM-4" media-type="application/xhtml+xml" />
+    <item href="Text/Story2-The-Inuit-Igloo-Title.xhtml" id="Chapter2Title" media-type="application/xhtml+xml" />
+    <item href="Text/Story3-The-Sioux-Teepee-Intro-E.xhtml" id="story3-Intro" media-type="application/xhtml+xml" />
+    <item href="Text/Story3-The-Sioux-Teepee-PM-1.xhtml" id="story3-PM-1" media-type="application/xhtml+xml" />
+    <item href="Text/Story3-The-Sioux-Teepee-PM-2.xhtml" id="story3-PM-2" media-type="application/xhtml+xml" />
+    <item href="Text/Story3-The-Sioux-Teepee-PM-3.xhtml" id="story3-PM-3" media-type="application/xhtml+xml" />
+    <item href="Text/Story3-The-Sioux-Teepee-PM-4.xhtml" id="story3-PM-4" media-type="application/xhtml+xml" />
+    <item href="Text/Story3-The-Sioux-Teepee-PM-5.xhtml" id="story3-PM-5" media-type="application/xhtml+xml" />
+    <item href="Text/Story3-The-Sioux-Teepee-Title.xhtml" id="Chapter3Title" media-type="application/xhtml+xml" />
+    <item href="Text/Story4-The-Algonquian-Wigwam-Intro-E.xhtml" id="story4-Intro" media-type="application/xhtml+xml" />
+    <item href="Text/Story4-The-Algonquian-Wigwam-PM-1.xhtml" id="story4-PM-1" media-type="application/xhtml+xml" />
+    <item href="Text/Story4-The-Algonquian-Wigwam-PM-2.xhtml" id="story4-PM-2" media-type="application/xhtml+xml" />
+    <item href="Text/Story4-The-Algonquian-Wigwam-PM-3.xhtml" id="story4-PM-3" media-type="application/xhtml+xml" />
+    <item href="Text/Story4-The-Algonquian-Wigwam-PM-4.xhtml" id="story4-PM-4" media-type="application/xhtml+xml" />
+    <item href="Text/Story4-The-Algonquian-Wigwam-Title.xhtml" id="Chapter4Title" media-type="application/xhtml+xml" />
+    <item href="Text/Story5-The-Haida-Plank-House-Intro-E.xhtml" id="story5-Intro" media-type="application/xhtml+xml" />
+    <item href="Text/Story5-The-Haida-Plank-House-PM-1.xhtml" id="story5-PM-1" media-type="application/xhtml+xml" />
+    <item href="Text/Story5-The-Haida-Plank-House-PM-2.xhtml" id="story5-PM-2" media-type="application/xhtml+xml" />
+    <item href="Text/Story5-The-Haida-Plank-House-PM-3.xhtml" id="story5-PM-3" media-type="application/xhtml+xml" />
+    <item href="Text/Story5-The-Haida-Plank-House-PM-4.xhtml" id="story5-PM-4" media-type="application/xhtml+xml" />
+    <item href="Text/Story5-The-Haida-Plank-House-PM-5.xhtml" id="story5-PM-5" media-type="application/xhtml+xml" />
+    <item href="Text/Story5-The-Haida-Plank-House-Title.xhtml" id="Chapter5Title" media-type="application/xhtml+xml" />
+    <item href="Text/Story6-The-Seminole-Chickee-Intro-E.xhtml" id="story6-Intro" media-type="application/xhtml+xml" />
+    <item href="Text/Story6-The-Seminole-Chickee-PM-1.xhtml" id="story6-PM-1" media-type="application/xhtml+xml" />
+    <item href="Text/Story6-The-Seminole-Chickee-PM-2.xhtml" id="story6-PM-2" media-type="application/xhtml+xml" />
+    <item href="Text/Story6-The-Seminole-Chickee-PM-3.xhtml" id="story6-PM-3" media-type="application/xhtml+xml" />
+    <item href="Text/Story6-The-Seminole-Chickee-PM-4.xhtml" id="story6-PM-4" media-type="application/xhtml+xml" />
+    <item href="Text/Story6-The-Seminole-Chickee-Title.xhtml" id="Chapter6Title" media-type="application/xhtml+xml" />
+
+    
+    
+    
+  </manifest>
+  <spine toc="ncx">
+      <itemref idref="story0-PM" />
+      <itemref idref="story0-PM-2" />
+      <itemref idref="story1-Intro" />
+      <itemref idref="story2-Intro" />
+      <itemref idref="story3-Intro" />
+      <itemref idref="story4-Intro" />
+      <itemref idref="story5-Intro" />
+      <itemref idref="story6-Intro" />
+      <itemref idref="Introduction-to-Native-American-Homes-Title.xhtml" />
+      <itemref idref="Chapter1Title" />
+      <itemref idref="Chapter2Title" />
+      <itemref idref="Chapter3Title" />
+      <itemref idref="Chapter4Title" />
+      <itemref idref="Chapter5Title" />
+      <itemref idref="Chapter6Title" />
+      <itemref idref="story1-PM-1" />
+      <itemref idref="story1-PM-2" />
+      <itemref idref="story1-PM-3" />
+      <itemref idref="story2-PM-1" />
+      <itemref idref="story2-PM-2" />
+      <itemref idref="story2-PM-3" />
+      <itemref idref="story2-PM-4" />
+      <itemref idref="story3-PM-1" />
+      <itemref idref="story3-PM-2" />
+      <itemref idref="story3-PM-3" />
+      <itemref idref="story3-PM-4" />
+      <itemref idref="story3-PM-5" />
+      <itemref idref="story4-PM-1" />
+      <itemref idref="story4-PM-2" />
+      <itemref idref="story4-PM-3" />
+      <itemref idref="story4-PM-4" />
+      <itemref idref="story5-PM-1" />
+      <itemref idref="story5-PM-2" />
+      <itemref idref="story5-PM-3" />
+      <itemref idref="story5-PM-4" />
+      <itemref idref="story5-PM-5" />
+      <itemref idref="story6-PM-1" />
+      <itemref idref="story6-PM-2" />
+      <itemref idref="story6-PM-3" />
+      <itemref idref="story6-PM-4" />
+  </spine>
+  <guide/>
+</package>
