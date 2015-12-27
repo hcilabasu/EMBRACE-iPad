@@ -28,8 +28,8 @@
         <story title="Cigarette Smoke Hurts Your Lungs" activity_id="story5-PM-2">
             <sentence number="2">
                 <step number="1">
-                    <group obj1Id="p2_healthy_cilia_IM" action="getIn" obj2Id="lungs_IM"/>
-                    <group obj1Id="p2_healthy_cilia_IM" action="getOut" obj2Id="lungs_IM"/>
+                    <group obj1Id="cilia_insideIM" action="getIn" obj2Id="cilia_insideIM"/>
+                    <group obj1Id="cilia_outsideIM" action="getOut" obj2Id="cilia_outsideIM"/>
                 </step>
             </sentence>
         </story>

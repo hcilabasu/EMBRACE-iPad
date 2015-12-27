@@ -32,11 +32,8 @@
         
         <relationship obj1Id="dirt_1_IM" can="getIn" action="group" obj2Id="nose_IM"/>
         
-        <relationship obj1Id="dirt_1" can="getIn" action="group" obj2Id="p2_healthy_cilia"/>
-        <relationship obj1Id="dirt_1" can="getOut" action="group" obj2Id="p2_healthy_cilia"/>
-        
-        <relationship obj1Id="p2_healthy_cilia_IM" can="getIn" action="group" obj2Id="lungs_IM"/>
-        <relationship obj1Id="p2_healthy_cilia_IM" can="getOut" action="group" obj2Id="lungs_IM"/>
+        <relationship obj1Id="cilia_insideIM" can="getIn" action="group" obj2Id="cilia_insideIM"/>
+        <relationship obj1Id="cilia_outsideIM" can="getOut" action="group" obj2Id="cilia_outsideIM"/>
         
     </relationships>
 </metadata>

@@ -10,6 +10,9 @@
         <story title="Is Paco a Thief?" page_id="story3-PM-1">
             <group obj1Id="baby" action="getIn" obj2Id="highchair"/>
         </story>
+        <story title="The Baby's Rattle is Gone, Too!" page_id="story5-PM-1">
+            <group obj1Id="cribclosed_IM" action="closeDoor" obj2Id="cribdoor_IM"/>
+        </story>
         <story title="The Baby's Rattle is Gone, Too!" page_id="story5-PM-2">
             <group obj1Id="rabbit" action="sit" obj2Id="baby"/>
         </story>

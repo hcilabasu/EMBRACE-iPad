@@ -31,16 +31,18 @@
         <relationship obj1Id="oahu" can="leave" action="ungroup" obj2Id="grey_plate_kauai"/>
         <relationship obj1Id="oahu" can="touchAsOahu" action="group" obj2Id="grey_plate_kauai"/>
         
-        <relationship obj1Id="kauaiIM" can="getInLeft" action="group" obj2Id="plumeIM"/>
-        <relationship obj1Id="kauaiIM" can="getInRight" action="group" obj2Id="plumeIM"/>
+        <relationship obj1Id="plume_greyplate_leftIM" can="getInLeft" action="group" obj2Id="kauailabel_leftIM"/>
+        <relationship obj1Id="plume_greyplate_rightIM" can="getInRight" action="group" obj2Id="kauailabel_rightIM"/>
         
-        <relationship obj1Id="oahuIM" can="getIn" action="group" obj2Id="plumeIM"/>
-        <relationship obj1Id="hawaiiIM" can="getIn" action="group" obj2Id="plumeIM"/>
+        <relationship obj1Id="oahu_labelIM" can="getIn" action="group" obj2Id="plume_greyplate_oahuIM"/>
+        <relationship obj1Id="hawaii_labelIM" can="getIn" action="group" obj2Id="plume_greyplate_hawaiiIM"/>
         
-        <relationship obj1Id="air_blueIM" can="above" action="group" obj2Id="cloudIM"/>
-        <relationship obj1Id="air_blueIM" can="below" action="group" obj2Id="cloudIM"/>
+        <relationship obj1Id="air_blueIM" can="getWith" action="group" obj2Id="rainIM"/>
+        <relationship obj1Id="air_blueIM" can="getWith" action="group" obj2Id="houseIM"/>
         
         <relationship obj1Id="house_noroofIM" can="damage" action="group" obj2Id="roofDamageIM"/>
-        <relationship obj1Id="roofIM" can="getIn" action="group" obj2Id="air_blueIM"/>
+        <relationship obj1Id="roofDamageIM" can="closeBy" action="group" obj2Id="tornadoIM"/>
+        <relationship obj1Id="roofDamageIM" can="farAway" action="group" obj2Id="tornadoIM"/>
+        
     </relationships>
 </metadata>
