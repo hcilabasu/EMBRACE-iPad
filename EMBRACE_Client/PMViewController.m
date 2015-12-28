@@ -645,6 +645,13 @@ BOOL wasPathFollowed = false;
         [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
     }
     
+    //If it is an IM action sentence and in im mode, set its color to blue and automatically perform solution steps if necessary
+    if ([sentenceClass  isEqualToString: @"sentence IMactionSentence"] && currentSentence !=0 && conditionSetup.condition == CONTROL) {
+        setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
+        [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
+    }
+    
+    
     //Set the opacity of all but the current sentence to .2
     for(int i = currentSentence; i < totalSentences; i++) {
         NSString* setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, .2)", i + 1];
