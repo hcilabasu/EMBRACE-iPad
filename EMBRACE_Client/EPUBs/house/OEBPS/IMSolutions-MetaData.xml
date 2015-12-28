@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <solutions>
-        <story title="The Family is Rattled" activity_id="story5-PM-1">
+        <story title="The Baby's Rattle is Gone, Too!" activity_id="story5-PM-1">
             <sentence number="2">
                 <step number="1">
-                    <group obj1Id="baby_IM" action="getIn" obj2Id="crib_IM"/>
+                    <group obj1Id="baby_IM" action="getIn" obj2Id="cribclosed_IM"/>
                     <group obj1Id="baby_IM" action="getOut" obj2Id="crib_IM"/>
                 </step>
             </sentence>
         </story>
         
-        <story title="The Family is Rattled" activity_id="story5-PM-2">
+        <story title="The Baby's Rattle is Gone, Too!" activity_id="story5-PM-2">
             <sentence number="8">
                 <step number="1">
                     <group obj1Id="tree_IM" action="visit" obj2Id="dog_IM"/>
@@ -22,7 +22,7 @@
         <story title="The Mystery is Solved" activity_id="story6-PM-1">
             <sentence number="1">
                 <step number="1">
-                    <group obj1Id="keys_IM" action="on" obj2Id="hook_IM"/>
+                    <group obj1Id="keys_on_hookIM" action="on" obj2Id="keys_on_hookIM"/>
                     <group obj1Id="keys_IM" action="off" obj2Id="hook_IM"/>
                 </step>
             </sentence>

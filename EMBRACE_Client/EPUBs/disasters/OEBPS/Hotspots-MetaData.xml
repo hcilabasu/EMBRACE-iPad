@@ -57,24 +57,27 @@
         <hotspot objId="ocean" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="person" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="plate" action="getIn" role="subject" x="50%" y="50%"/>
+
+        <hotspot objId="plume_greyplate_leftIM" action="getInLeft" role="object" x="20%" y="10%"/>
+        <hotspot objId="plume_greyplate_rightIM" action="getInRight" role="object" x="60%" y="10%"/>
+        <hotspot objId="kauailabel_leftIM" action="getInLeft" role="subject" x="30%" y="0%"/>
+        <hotspot objId="kauailabel_rightIM" action="getInRight" role="subject" x="90%" y="0%"/>
         
-        <hotspot objId="kauaiIM" action="getInLeft" role="object" x="100%" y="0%"/>
-        <hotspot objId="kauaiIM" action="getInRight" role="object" x="0%" y="0%"/>
-        <hotspot objId="plumeIM" action="getInLeft" role="subject" x="50%" y="100%"/>
-        <hotspot objId="plumeIM" action="getInRight" role="subject" x="80%" y="100%"/>
+        <hotspot objId="oahu_labelIM" action="getIn" role="object" x="25%" y="0%"/>
+        <hotspot objId="hawaii_labelIM" action="getIn" role="object" x="30%" y="0%"/>
+        <hotspot objId="plume_greyplate_oahuIM" action="getIn" role="subject" x="50%" y="3%"/>
+        <hotspot objId="plume_greyplate_hawaiiIM" action="getIn" role="subject" x="50%" y="3%"/>
         
-        <hotspot objId="oahuIM" action="getIn" role="object" x="25%" y="0%"/>
-        <hotspot objId="hawaiiIM" action="getIn" role="object" x="30%" y="0%"/>
-        <hotspot objId="plumeIM" action="getIn" role="subject" x="50%" y="90%"/>
-        
-        <hotspot objId="air_blueIM" action="above" role="object" x="50%" y="100%"/>
-        <hotspot objId="air_blueIM" action="below" role="object" x="50%" y="0%"/>
-        <hotspot objId="cloudIM" action="above" role="subject" x="50%" y="50%"/>
-        <hotspot objId="cloudIM" action="below" role="subject" x="50%" y="50%"/>
+        <hotspot objId="air_blueIM" action="getWith" role="object" x="50%" y="50%"/>
+        <hotspot objId="rainIM" action="getWith" role="subject" x="50%" y="50%"/>
+        <hotspot objId="houseIM" action="getWith" role="subject" x="50%" y="50%"/>
         
         <hotspot objId="house_noroofIM" action="damage" role="object" x="100%" y="50%"/>
-        <hotspot objId="roofIM" action="getIn" role="object" x="50%" y="50%"/>
-        <hotspot objId="roofDamageIM" action="damage" role="subject" x="0%" y="50%"/>
-        <hotspot objId="air_blueIM" action="getIn" role="subject" x="50%" y="50%"/>
+         <hotspot objId="roofDamageIM" action="damage" role="subject" x="0%" y="50%"/>
+         
+        <hotspot objId="roofDamageIM" action="closeBy" role="object" x="50%" y="50%"/>
+        <hotspot objId="roofDamageIM" action="farAway" role="object" x="100%" y="0%"/>
+        <hotspot objId="tornadoIM" action="closeBy" role="subject" x="50%" y="50%"/>
+        <hotspot objId="tornadoIM" action="farAway" role="subject" x="0%" y="100%"/>
     </hotspots>
 </metadata>

@@ -35,7 +35,7 @@
         <hotspot objId="cat" action="pickUp" role="object" x="50%" y="50%"/>
         <hotspot objId="cat" action="visit" role="subject" x="100%" y="100%"/>
         <hotspot objId="catIM" action="flip" role="subject" x="0%" y="100%"/>
-        <hotspot objId="catIM" action="visit" role="subject" x="0%" y="100%"/>
+        <hotspot objId="catIM" action="visit" role="subject" x="30%" y="100%"/>
         <hotspot objId="cat" action="visit" role="object" x="0%" y="100%"/>
         <hotspot objId="chicken" action="count" role="subject" x="0%" y="100%"/>
         <hotspot objId="chicken" action="getIn" role="subject" x="50%" y="50%"/>

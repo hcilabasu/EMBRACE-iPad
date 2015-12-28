@@ -4,32 +4,32 @@
         <story title="Volcanoes and the Making of Hawaii" activity_id="story4-PM-3">
             <sentence number="10">
                 <step number="1">
-                    <group obj1Id="kauaiIM" action="getInLeft" obj2Id="plumeIM"/>
-                    <group obj1Id="kauaiIM" action="getInRight" obj2Id="plumeIM"/>
+                    <group obj1Id="plume_greyplate_leftIM" action="getInLeft" obj2Id="kauailabel_leftIM"/>
+                    <group obj1Id="plume_greyplate_rightIM" action="getInRight" obj2Id="kauailabel_rightIM"/>
                 </step>
             </sentence>
         </story>
         <story title="Volcanoes and the Making of Hawaii" activity_id="story4-PM-4">
             <sentence number="14">
                 <step number="1">
-                    <group obj1Id="oahuIM" action="getIn" obj2Id="plumeIM"/>
-                    <group obj1Id="hawaiiIM" action="getIn" obj2Id="plumeIM"/>
+                    <group obj1Id="oahu_labelIM" action="getIn" obj2Id="plume_greyplate_oahuIM"/>
+                    <group obj1Id="hawaii_labelIM" action="getIn" obj2Id="plume_greyplate_hawaiiIM"/>
                 </step>
             </sentence>
         </story>
         <story title="Tornados" activity_id="story5-PM-1">
-            <sentence number="3">
+            <sentence number="4">
                 <step number="1">
-                    <group obj1Id="air_blueIM" action="above" obj2Id="cloudIM"/>
-                    <group obj1Id="air_blueIM" action="below" obj2Id="cloudIM"/>
+                    <group obj1Id="air_blueIM" action="getWith" obj2Id="rainIM"/>
+                    <group obj1Id="air_blueIM" action="getWith" obj2Id="houseIM"/>
                 </step>
             </sentence>
         </story>
         <story title="Tornados" activity_id="story5-PM-2">
             <sentence number="8">
                 <step number="1">
-                    <group obj1Id="house_noroofIM" action="damage" obj2Id="roofDamageIM"/>
-                    <group obj1Id="roofIM" action="getIn" obj2Id="air_blueIM"/>
+                    <group obj1Id="roofDamageIM" action="closeBy" obj2Id="tornadoIM"/>
+                    <group obj1Id="roofDamageIM" action="farAway" obj2Id="tornadoIM"/>
                 </step>
             </sentence>
         </story>
