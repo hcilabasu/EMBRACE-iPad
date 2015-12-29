@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <alternateImages>
+        <alternateImage objId="banana" action="peel" originalSrc="banana.png" alternateSrc="banana_peel.png" width="50px" x="84.423828%" y="37.428978%" class="manipulationObject center" z="1"/>
+        <alternateImage objId="lisa" action="frown" originalSrc="lisa.png" alternateSrc="lisa_frowning.png" width="200px" x="53.933594%" y="44.247158%" class="manipulationObject center" z="0"/>
+        <alternateImage objId="monkey" action="tree" originalSrc="monkey_ground.png" alternateSrc="monkey_tree.png" width="125px" x="84.130859%" y="20.525568%" class="manipulationObject center" z="0"/>
+        <alternateImage objId="trough" action="filled" originalSrc="trough_empty.png" alternateSrc="trough_handle_up.png" width="250px" x="0%" y="51.065342%" class="manipulationObject center" z="0"/>
+    </alternateImages>
+</metadata>

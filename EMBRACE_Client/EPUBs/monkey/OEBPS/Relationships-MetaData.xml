@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <relationships>
+        <relationship obj1Id="banana" can="getIn" action="group" obj2Id="monkey"/>
+        <relationship obj1Id="banana" can="getOut" action="ungroup" obj2Id="monkey"/>
+        <relationship obj1Id="lisa" can="drop" action="ungroup" obj2Id="banana"/>
+        <relationship obj1Id="lisa" can="fill" action="group" obj2Id="trough"/>
+        <relationship obj1Id="lisa" can="grab" action="group" obj2Id="banana"/>
+        <relationship obj1Id="lisa" can="leave" action="ungroup" obj2Id="trough"/>
+        <relationship obj1Id="monkey" can="grab2" action="group" obj2Id="banana"/>
+    </relationships>
+</metadata>
