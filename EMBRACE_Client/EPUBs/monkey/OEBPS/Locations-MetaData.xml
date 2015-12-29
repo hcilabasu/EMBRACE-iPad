@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <locations>
+        <location locationId="anywhere" x="0%" y="0%" height="100%" width="100%"/>
+        <location locationId="tree" x="57%" y="0%" height="50%" width="100%"/>
+    </locations>
+</metadata>

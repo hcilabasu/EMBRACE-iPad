@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <ActivityAssessment>
+        <Questions title= "The Naughty Monkey">
+            <Question number="1">
+                <QuestionText>How many pets does the Lopez family have?</QuestionText>
+                <QuestionAudio>TheLopezFamilyQ1.mp3</QuestionAudio>
+                <Answer1>two pets</Answer1>
+                <Answer1Audio>TheLopezFamilyQ1A1.mp3</Answer1Audio>
+                <Answer2>one pet</Answer2>
+                <Answer2Audio>TheLopezFamilyQ1A2.mp3</Answer2Audio>
+                <Answer3>four pets</Answer3>
+                <Answer3Audio>TheLopezFamilyQ1A3.mp3</Answer3Audio>
+                <Answer4>half of a pet</Answer4>
+                <Answer4Audio>TheLopezFamilyQ1A4.mp3</Answer4Audio>
+                <expectedSelection>two pets</expectedSelection>
+            </Question>
+        </Questions>
+        
+    </ActivityAssessment>
+</metadata>
