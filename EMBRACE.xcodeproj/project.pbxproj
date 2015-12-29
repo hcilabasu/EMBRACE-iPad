@@ -15,6 +15,9 @@
 		1A23DA3B1C20A4FC00FE7C46 /* O2_select large_high_res_min.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A23DA3A1C20A4FC00FE7C46 /* O2_select large_high_res_min.png */; };
 		1A2AAD451C20DCFA00A709E9 /* baby_large_high_res_min.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A2AAD431C20DCFA00A709E9 /* baby_large_high_res_min.png */; };
 		1A2AAD461C20DCFA00A709E9 /* cribb_large_high_res_min.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A2AAD441C20DCFA00A709E9 /* cribb_large_high_res_min.png */; };
+		1A385FF81C325A80005BF7D0 /* dirt_tornado_min.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A385FF71C325A80005BF7D0 /* dirt_tornado_min.png */; };
+		1A385FFB1C325EDC005BF7D0 /* bottle_noteandstone_max.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A385FF91C325EDC005BF7D0 /* bottle_noteandstone_max.png */; };
+		1A385FFC1C325EDC005BF7D0 /* bush_max.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A385FFA1C325EDC005BF7D0 /* bush_max.png */; };
 		1A3BB2881C17B38C0069C915 /* bank.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A3BB2871C17B38C0069C915 /* bank.jpg */; };
 		1A5BB0CA1BD327D1002D1AEA /* bottled.epub in Resources */ = {isa = PBXBuildFile; fileRef = 1A5BB0741BD327D1002D1AEA /* bottled.epub */; };
 		1A631FFF1C0E4D3B00251CB3 /* bestFarm.epub in Resources */ = {isa = PBXBuildFile; fileRef = 1A631C691C0E4D3900251CB3 /* bestFarm.epub */; };
@@ -2324,6 +2327,9 @@
 		1A3593E91AE76129003B3B41 /* TheMysteryIsSolvedQ7A2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheMysteryIsSolvedQ7A2.mp3; sourceTree = "<group>"; };
 		1A3593EA1AE76129003B3B41 /* TheMysteryIsSolvedQ7A3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheMysteryIsSolvedQ7A3.mp3; sourceTree = "<group>"; };
 		1A3593EB1AE76129003B3B41 /* TheMysteryIsSolvedQ7A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheMysteryIsSolvedQ7A4.mp3; sourceTree = "<group>"; };
+		1A385FF71C325A80005BF7D0 /* dirt_tornado_min.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dirt_tornado_min.png; sourceTree = "<group>"; };
+		1A385FF91C325EDC005BF7D0 /* bottle_noteandstone_max.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottle_noteandstone_max.png; sourceTree = "<group>"; };
+		1A385FFA1C325EDC005BF7D0 /* bush_max.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bush_max.png; sourceTree = "<group>"; };
 		1A3BB2871C17B38C0069C915 /* bank.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bank.jpg; sourceTree = "<group>"; };
 		1A5BB0741BD327D1002D1AEA /* bottled.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = bottled.epub; path = EPUBs/bottled/bottled.epub; sourceTree = "<group>"; };
 		1A631C691C0E4D3900251CB3 /* bestFarm.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = bestFarm.epub; sourceTree = "<group>"; };
@@ -4732,6 +4738,8 @@
 				1A631CF71C0E4D3900251CB3 /* boardgame_open.png */,
 				1A631CF81C0E4D3900251CB3 /* bottle_empty.png */,
 				1A631CF91C0E4D3900251CB3 /* bottle_noteandstone.png */,
+				1A385FF91C325EDC005BF7D0 /* bottle_noteandstone_max.png */,
+				1A385FFA1C325EDC005BF7D0 /* bush_max.png */,
 				1A631CFA1C0E4D3900251CB3 /* bottle_picture.png */,
 				1A631CFB1C0E4D3900251CB3 /* bush.png */,
 				1A631CFC1C0E4D3900251CB3 /* chapter1.png */,
@@ -5255,6 +5263,7 @@
 				1A631E801C0E4D3A00251CB3 /* dirt.png */,
 				1A631E811C0E4D3A00251CB3 /* dirt_move.png */,
 				1A631E821C0E4D3A00251CB3 /* dirt_tornado.png */,
+				1A385FF71C325A80005BF7D0 /* dirt_tornado_min.png */,
 				1A631E831C0E4D3A00251CB3 /* droplet_group.png */,
 				1A631E841C0E4D3A00251CB3 /* droplet_single.png */,
 				1A631E851C0E4D3A00251CB3 /* Earthquake_icon.png */,
@@ -8358,6 +8367,7 @@
 				1A6322F71C0E4D3B00251CB3 /* toc.ncx in Resources */,
 				1A23DA391C20A46200FE7C46 /* bloodcell_select_large_high_res_min.png in Resources */,
 				C30D03AC1BABBFE800DF53F1 /* IsPacoAThiefQ2A4.mp3 in Resources */,
+				1A385FF81C325A80005BF7D0 /* dirt_tornado_min.png in Resources */,
 				5C28DD0F1C2BA66E005ACD07 /* Story5-The-Haida-Plank-House-Intro-E.xhtml in Resources */,
 				1A6321091C0E4D3B00251CB3 /* scale_weighed_down.png in Resources */,
 				5C28DD141C2BA66E005ACD07 /* Story5-The-Haida-Plank-House-PM-5.xhtml in Resources */,
@@ -8963,6 +8973,7 @@
 				1A0385061C2B156400A973D8 /* hook_n_key_large.png in Resources */,
 				C30D04B81BABBFE800DF53F1 /* nestE.m4a in Resources */,
 				C30D04B91BABBFE800DF53F1 /* BFCE_4.m4a in Resources */,
+				1A385FFB1C325EDC005BF7D0 /* bottle_noteandstone_max.png in Resources */,
 				C30D04BA1BABBFE800DF53F1 /* CPQR15.m4a in Resources */,
 				1A6321D81C0E4D3B00251CB3 /* antartica.png in Resources */,
 				C30D04BB1BABBFE800DF53F1 /* CPQR14.m4a in Resources */,
@@ -9363,6 +9374,7 @@
 				1A63221F1C0E4D3B00251CB3 /* land_molaka.png in Resources */,
 				1A880E7F1BD6E4980020F93B /* WhyWeBreatheQ4A1.mp3 in Resources */,
 				C30D05721BABBFE900DF53F1 /* BFCS_5.m4a in Resources */,
+				1A385FFC1C325EDC005BF7D0 /* bush_max.png in Resources */,
 				C30D05731BABBFE900DF53F1 /* BFCS_5A.m4a in Resources */,
 				C30D05741BABBFE900DF53F1 /* BFCS_6.m4a in Resources */,
 				1A6323551C0E4D3B00251CB3 /* Story4-Newton's-Second-Law-Acceleration-PM-3.xhtml in Resources */,

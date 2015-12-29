@@ -42,7 +42,7 @@
         
         <relationship obj1Id="house_noroofIM" can="damage" action="group" obj2Id="roofDamageIM"/>
         <relationship obj1Id="roofDamageIM" can="closeBy" action="group" obj2Id="tornadoIM"/>
-        <relationship obj1Id="roofDamageIM" can="farAway" action="group" obj2Id="tornadoIM"/>
+        <relationship obj1Id="roofDamageIM" can="farAway" action="group" obj2Id="tornadoMinIM"/>
         
     </relationships>
 </metadata>

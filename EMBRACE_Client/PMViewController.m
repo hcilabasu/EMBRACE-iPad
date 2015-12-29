@@ -5048,7 +5048,7 @@ BOOL wasPathFollowed = false;
     NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
     
     //If it is an action sentence color it blue
-    if ([sentenceClass  isEqualToString: @"sentence actionSentence"] && conditionSetup.condition == EMBRACE) {
+    if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
         NSString* colorSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
         [bookView stringByEvaluatingJavaScriptFromString:colorSentence];
     }

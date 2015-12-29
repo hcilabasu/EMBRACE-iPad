@@ -29,7 +29,7 @@
             <sentence number="8">
                 <step number="1">
                     <group obj1Id="roofDamageIM" action="closeBy" obj2Id="tornadoIM"/>
-                    <group obj1Id="roofDamageIM" action="farAway" obj2Id="tornadoIM"/>
+                    <group obj1Id="roofDamageIM" action="farAway" obj2Id="tornadoMinIM"/>
                 </step>
             </sentence>
         </story>
