@@ -1031,6 +1031,7 @@
 		1A880E851BD6E4980020F93B /* WhyWeBreatheQ5A2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A880DFE1BD6E4980020F93B /* WhyWeBreatheQ5A2.mp3 */; };
 		1A880E861BD6E4980020F93B /* WhyWeBreatheQ5A3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A880DFF1BD6E4980020F93B /* WhyWeBreatheQ5A3.mp3 */; };
 		1A880E871BD6E4980020F93B /* WhyWeBreatheQ5A4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A880E001BD6E4980020F93B /* WhyWeBreatheQ5A4.mp3 */; };
+		1A9174731C32FB9200D54971 /* monkey.epub in Resources */ = {isa = PBXBuildFile; fileRef = 1A9174721C32FB9200D54971 /* monkey.epub */; };
 		1A9BFD541BF29B1D006FD1CC /* penE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 1A9BFD531BF29B1D006FD1CC /* penE.m4a */; };
 		1A9CF8431C31C3A00000C135 /* island_Kauai.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A9CF8421C31C3A00000C135 /* island_Kauai.png */; };
 		1A9CF8451C31C7310000C135 /* native.epub in Resources */ = {isa = PBXBuildFile; fileRef = 1A9CF8441C31C7310000C135 /* native.epub */; };
@@ -3695,6 +3696,7 @@
 		1A880DFE1BD6E4980020F93B /* WhyWeBreatheQ5A2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WhyWeBreatheQ5A2.mp3; sourceTree = "<group>"; };
 		1A880DFF1BD6E4980020F93B /* WhyWeBreatheQ5A3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WhyWeBreatheQ5A3.mp3; sourceTree = "<group>"; };
 		1A880E001BD6E4980020F93B /* WhyWeBreatheQ5A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WhyWeBreatheQ5A4.mp3; sourceTree = "<group>"; };
+		1A9174721C32FB9200D54971 /* monkey.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = monkey.epub; sourceTree = "<group>"; };
 		1A9BFD531BF29B1D006FD1CC /* penE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = penE.m4a; sourceTree = "<group>"; };
 		1A9CF8421C31C3A00000C135 /* island_Kauai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = island_Kauai.png; sourceTree = "<group>"; };
 		1A9CF8441C31C7310000C135 /* native.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = native.epub; sourceTree = "<group>"; };
@@ -7384,6 +7386,7 @@
 		5CA955311C3237690038FB56 /* monkey */ = {
 			isa = PBXGroup;
 			children = (
+				1A9174721C32FB9200D54971 /* monkey.epub */,
 				5CA955321C3237690038FB56 /* META-INF */,
 				5CA955341C3237690038FB56 /* mimetype */,
 				5CA955351C3237690038FB56 /* OEBPS */,
@@ -7935,6 +7938,7 @@
 				C30D02A71BABBFE700DF53F1 /* IntroductionToTheBestFarmQ3A3.mp3 in Resources */,
 				C30D02A81BABBFE700DF53F1 /* IntroductionToTheBestFarmQ3A4.mp3 in Resources */,
 				C30D02A91BABBFE700DF53F1 /* IntroductionToTheBestFarmQ4.mp3 in Resources */,
+				1A9174731C32FB9200D54971 /* monkey.epub in Resources */,
 				1A6320F01C0E4D3B00251CB3 /* icon_Emilio.png in Resources */,
 				C30D02AA1BABBFE700DF53F1 /* IntroductionToTheBestFarmQ4A1.mp3 in Resources */,
 				1A63220F1C0E4D3B00251CB3 /* houses_burn.png in Resources */,
