@@ -36,5 +36,13 @@
         <relationship obj1Id="lucasIM" can="standWith" action="group" obj2Id="oliviaIM"/>
         <relationship obj1Id="lucasIM" can="standWith" action="group" obj2Id="babyIM"/>
         
+        <relationship obj1Id="lucasIM" can="hold" action="group" obj2Id="bottleIM"/>
+        <relationship obj1Id="lucasIM" can="hold" action="group" obj2Id="stoneIM"/>
+        <relationship obj1Id="lucasIM" can="hold" action="group" obj2Id="ballIM"/>
+        <relationship obj1Id="lucasIM" can="standOn" action="group" obj2Id="bottleIM"/>
+        
+        <relationship obj1Id="lucasSittingIM" can="sitOn" action="group" obj2Id="benchIM"/>
+        <relationship obj1Id="lucasIM" can="standBy" action="group" obj2Id="benchIM"/>
+        
     </relationships>
 </metadata>

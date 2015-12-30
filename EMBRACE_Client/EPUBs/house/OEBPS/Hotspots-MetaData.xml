@@ -34,6 +34,31 @@
         <hotspot objId="woman" action="moveTo" role="subject" x="0%" y="100%"/>
         <hotspot objId="woman" action="pickUp" role="subject" x="50%" y="50%"/>
         
+        <hotspot objId="martinIM" action="standBy" role="object" x="0%" y="50%"/>
+        <hotspot objId="carIM" action="getIn" role="object" x="50%" y="50%"/>
+        <hotspot objId="carIM" action="standBy" role="subject" x="50%" y="50%"/>
+        <hotspot objId="carIM" action="getIn" role="subject" x="50%" y="50%"/>
+        
+        <hotspot objId="martinIM" action="standWith" role="object" x="30%" y="50%"/>
+        <hotspot objId="pacoIM" action="standWith" role="subject" x="70%" y="50%"/>
+        <hotspot objId="lolaIM" action="standWith" role="subject" x="50%" y="50%"/>
+        
+        <hotspot objId="babyIM" action="sitIn" role="object" x="60%" y="70%"/>
+        <hotspot objId="babyIM" action="standBy" role="object" x="40%" y="50%"/>
+        <hotspot objId="highchairIM" action="sitIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="highchairIM" action="standBy" role="subject" x="50%" y="50%"/>
+        
+        <hotspot objId="highchairfrontIM" action="getIn" role="object" x="50%" y="50%"/>
+        <hotspot objId="highchairIM" action="getIn" role="subject" x="50%" y="50%"/>
+        
+        <hotspot objId="keysIM" action="layBy" role="object" x="0%" y="0%"/>
+        <hotspot objId="treeIM" action="layBy" role="subject" x="70%" y="80%"/>
+        
+        <hotspot objId="pacoIM" action="face" role="object" x="250%" y="0%"/>
+        <hotspot objId="pacoFlipIM" action="faceAway" role="object" x="250%" y="0%"/>
+        <hotspot objId="houseIM" action="face" role="subject" x="50%" y="80%"/>
+        <hotspot objId="houseIM" action="faceAway" role="subject" x="50%" y="80%"/>
+        
         <hotspot objId="baby_IM" action="getIn" role="subject" x="50%" y="60%"/>
         <hotspot objId="baby_IM" action="getOut" role="subject" x="90%" y="50%"/>
             

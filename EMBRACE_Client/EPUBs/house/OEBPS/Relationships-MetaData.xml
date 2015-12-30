@@ -25,6 +25,21 @@
         <relationship obj1Id="woman" can="moveTo" action="group" obj2Id="table"/>
         <relationship obj1Id="woman" can="pickUp" action="group" obj2Id="baby"/>
         
+        <relationship obj1Id="martinIM" can="standBy" action="group" obj2Id="carIM"/>
+        <relationship obj1Id="carIM" can="getIn" action="group" obj2Id="carIM"/>
+        
+        <relationship obj1Id="martinIM" can="standWith" action="group" obj2Id="pacoIM"/>
+        <relationship obj1Id="martinIM" can="standWith" action="group" obj2Id="lolaIM"/>
+        
+        <relationship obj1Id="babyIM" can="sitIn" action="group" obj2Id="highchairIM"/>
+        <relationship obj1Id="babyIM" can="standBy" action="group" obj2Id="highchairIM"/>
+        <relationship obj1Id="highchairfrontIM" can="getIn" action="group" obj2Id="highchairIM"/>
+        
+        <relationship obj1Id="keysIM" can="layBy" action="group" obj2Id="treeIM"/>
+        
+        <relationship obj1Id="pacoIM" can="face" action="group" obj2Id="houseIM"/>
+        <relationship obj1Id="pacoFlipIM" can="faceAway" action="group" obj2Id="houseIM"/>
+        
         <relationship obj1Id="baby_IM" can="getIn" action="group" obj2Id="cribclosed_IM"/>
         <relationship obj1Id="baby_IM" can="getOut" action="group" obj2Id="crib_IM"/>
         
@@ -38,6 +53,9 @@
         
         <relationship obj1Id="tree_IM" can="visit" action="group" obj2Id="dog_IM"/>
         <relationship obj1Id="rabbit_IM" can="visit" action="group" obj2Id="tree_IM"/>
+        
+        
+        
         
     </relationships>
 </metadata>

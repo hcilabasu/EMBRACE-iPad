@@ -6,6 +6,7 @@
         </story>
         <story title="Missing Keys" page_id="story2-PM-2">
             <group obj1Id="baby" action="getIn" obj2Id="highchair"/>
+            <group obj1Id="highchairfrontIM" action="getIn" obj2Id="highchairIM">
         </story>
         <story title="Is Paco a Thief?" page_id="story3-PM-1">
             <group obj1Id="baby" action="getIn" obj2Id="highchair"/>

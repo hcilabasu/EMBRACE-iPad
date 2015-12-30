@@ -1032,6 +1032,8 @@
 		1A880E861BD6E4980020F93B /* WhyWeBreatheQ5A3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A880DFF1BD6E4980020F93B /* WhyWeBreatheQ5A3.mp3 */; };
 		1A880E871BD6E4980020F93B /* WhyWeBreatheQ5A4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A880E001BD6E4980020F93B /* WhyWeBreatheQ5A4.mp3 */; };
 		1A9174731C32FB9200D54971 /* monkey.epub in Resources */ = {isa = PBXBuildFile; fileRef = 1A9174721C32FB9200D54971 /* monkey.epub */; };
+		1A9174751C3323FF00D54971 /* bench.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A9174741C3323FF00D54971 /* bench.png */; };
+		1A9174771C339CBB00D54971 /* house.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A9174761C339CBA00D54971 /* house.png */; };
 		1A9BFD541BF29B1D006FD1CC /* penE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 1A9BFD531BF29B1D006FD1CC /* penE.m4a */; };
 		1A9CF8431C31C3A00000C135 /* island_Kauai.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A9CF8421C31C3A00000C135 /* island_Kauai.png */; };
 		1A9CF8451C31C7310000C135 /* native.epub in Resources */ = {isa = PBXBuildFile; fileRef = 1A9CF8441C31C7310000C135 /* native.epub */; };
@@ -3697,6 +3699,8 @@
 		1A880DFF1BD6E4980020F93B /* WhyWeBreatheQ5A3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WhyWeBreatheQ5A3.mp3; sourceTree = "<group>"; };
 		1A880E001BD6E4980020F93B /* WhyWeBreatheQ5A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WhyWeBreatheQ5A4.mp3; sourceTree = "<group>"; };
 		1A9174721C32FB9200D54971 /* monkey.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = monkey.epub; sourceTree = "<group>"; };
+		1A9174741C3323FF00D54971 /* bench.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bench.png; sourceTree = "<group>"; };
+		1A9174761C339CBA00D54971 /* house.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = house.png; sourceTree = "<group>"; };
 		1A9BFD531BF29B1D006FD1CC /* penE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = penE.m4a; sourceTree = "<group>"; };
 		1A9CF8421C31C3A00000C135 /* island_Kauai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = island_Kauai.png; sourceTree = "<group>"; };
 		1A9CF8441C31C7310000C135 /* native.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = native.epub; sourceTree = "<group>"; };
@@ -4833,6 +4837,7 @@
 				1A631D011C0E4D3900251CB3 /* cup_empty.png */,
 				1A631D021C0E4D3A00251CB3 /* cup_full.png */,
 				1A631D031C0E4D3A00251CB3 /* hillatsunset.jpg */,
+				1A9174741C3323FF00D54971 /* bench.png */,
 				1A631D041C0E4D3A00251CB3 /* hug.png */,
 				1A631D051C0E4D3A00251CB3 /* michael2.png */,
 				1A631D061C0E4D3A00251CB3 /* michael_napping.png */,
@@ -5571,6 +5576,7 @@
 				1A631F311C0E4D3A00251CB3 /* icon_surprisemom.png */,
 				1A631F321C0E4D3A00251CB3 /* keys.png */,
 				1A631F331C0E4D3A00251CB3 /* keys2.png */,
+				1A9174761C339CBA00D54971 /* house.png */,
 				1A631F341C0E4D3A00251CB3 /* keys_large_high_res.png */,
 				1A631F351C0E4D3A00251CB3 /* man.png */,
 				1A631F361C0E4D3A00251CB3 /* nest_day.png */,
@@ -8951,6 +8957,7 @@
 				C30D04511BABBFE800DF53F1 /* nestDEFS.m4a in Resources */,
 				1A6322BF1C0E4D3B00251CB3 /* Introductions-MetaData.xml in Resources */,
 				1A6321081C0E4D3B00251CB3 /* scale_no_weight.png in Resources */,
+				1A9174751C3323FF00D54971 /* bench.png in Resources */,
 				C30D04521BABBFE800DF53F1 /* nestS.m4a in Resources */,
 				1A6321A61C0E4D3B00251CB3 /* Story2-The-Amazing-Heart-PM-2.xhtml in Resources */,
 				5C28DCDC1C2BA66E005ACD07 /* travois_supplies.png in Resources */,
@@ -9256,6 +9263,7 @@
 				1A63229E1C0E4D3B00251CB3 /* hook_large_high_res.png in Resources */,
 				1A6321721C0E4D3B00251CB3 /* handle_open.png in Resources */,
 				C30D04D71BABBFE800DF53F1 /* CWWB12.m4a in Resources */,
+				1A9174771C339CBB00D54971 /* house.png in Resources */,
 				1A880E481BD6E4980020F93B /* MusclesUseOxygenQ3A1.mp3 in Resources */,
 				1A6321751C0E4D3B00251CB3 /* O2_select large_high_res.png in Resources */,
 				C30D04D81BABBFE800DF53F1 /* CWWB13.m4a in Resources */,
