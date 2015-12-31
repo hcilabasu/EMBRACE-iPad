@@ -104,6 +104,7 @@
                     <shakeOrTap obj1Id="man3_ch3" action="getIn" locationId="anywhere"/>
                     <swapImage obj1Id="man3_ch3" action="arrow"/>
                     <appear obj1Id="arrow" action="appear"/>
+                    <animate obj1Id="arrow" action="followAnimation" waypointId="" areaId="arrowPath"/>
                 </step>
             </sentence>
         </story>
@@ -417,12 +418,19 @@
                     <move obj1Id="ladder" action="getIn" waypointId="chickeeLadder"/>
                 </step>
             </sentence>
+            <sentence number="12">
+                <step number="1">
+                    <appear obj1Id="mosquito1" action="appear"/>
+                    <appear obj1Id="mosquito2" action="appear"/>
+                    <appear obj1Id="mosquito3" action="appear"/>
+                    <animate obj1Id="mosquito1" action="floatAnimation" waypointId="" areaId=""/>
+                    <animate obj1Id="mosquito2" action="floatAnimation" waypointId="" areaId=""/>
+                    <animate obj1Id="mosquito3" action="floatAnimation" waypointId="" areaId=""/>
+                </step>
+            </sentence>
         </story>
     </solutions>
 </metadata>
-
-
-
 
 
 

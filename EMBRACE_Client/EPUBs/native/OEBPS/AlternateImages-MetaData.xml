@@ -2,7 +2,7 @@
 <metadata>
     <alternateImages>
         
-        <alternateImage objId="arrow" action="appear" originalSrc="arrow.png" alternateSrc="arrow.png" width="90px" x="0%" y="62.144886%" class="manipulationObject center" z="3"/>
+        <alternateImage objId="arrow" action="appear" originalSrc="arrow.png" alternateSrc="arrow.png" width="90px" x="47.314453%" y="64.630684%" class="manipulationObject center" z="3"/>
         <alternateImage objId="axe" action="appear" originalSrc="axe.png" alternateSrc="axe.png" width="70px" x="35.986328%" y="78.551140%" class="manipulationObject center" z="0"/>
         <alternateImage objId="bendingpole" action="adds_man" originalSrc="bendingpole.png" alternateSrc="bendingpole2.png" width="400px" x="45.605469%" y="31.178978%" class="manipulationObject center" z="2"/>
         <alternateImage objId="boat" action="adds_man" originalSrc="boat_large.png" alternateSrc="haida_inboat.png" width="300px" x="40.576172%" y="61.789776%" class="manipulationObject center" z="0"/>
@@ -27,6 +27,9 @@
         <alternateImage objId="man_ch4" action="pole" originalSrc="man_withstick.png" alternateSrc="man_withpole.png" width="205px" x="44.335938%" y="33.167614%" class="manipulationObject center" z="1"/>
         <alternateImage objId="man_ch4" action="stick" originalSrc="man_ch4.png" alternateSrc="man_withstick.png" width="140px" x="66.357422%" y="44.815342%" class="manipulationObject center" z="2"/>
         <alternateImage objId="man3_ch3" action="arrow" originalSrc="man3_ch3_1.png" alternateSrc="man3_ch3_2.png" width="260px" x="41.552734%" y="55.965908%" class="manipulationObject center" z="2"/>
+        <alternateImage objId="mosquito1" action="appear" originalSrc="mosquito.png" alternateSrc="mosquito.png" width="20px" x="25%" y="25%" class="manipulationObject center" z="3"/>
+        <alternateImage objId="mosquito2" action="appear" originalSrc="mosquito.png" alternateSrc="mosquito.png" width="20px" x="40%" y="50%" class="manipulationObject center" z="3"/>
+        <alternateImage objId="mosquito3" action="appear" originalSrc="mosquito.png" alternateSrc="mosquito.png" width="20px" x="10%" y="75%" class="manipulationObject center" z="3"/>
         <alternateImage objId="plankhouse" action="plank" originalSrc="plankhouse_unfinished.png" alternateSrc="plankhouse_unfinished2.png" width="450px" x="56.054688%" y="0%" class="manipulationObject center" z="0"/>
         <alternateImage objId="snowblock" action="appear" originalSrc="snowblock.png" alternateSrc="snowblock.png" width="133px" x="16.699219%" y="52.698864%" class="manipulationObject center" z="0"/>
         <alternateImage objId="snowpile" action="appear" originalSrc="snowpile.png" alternateSrc="snowpile.png" width="189px" x="26.757812%" y="52.130680%" class="manipulationObject center" z="0"/>

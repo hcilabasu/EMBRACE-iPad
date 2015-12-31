@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <areas>
+        <area areaId="arrowPath" pageId="story3-PM-1">
+            <point x="47.314453%" y="64.630684%"/>
+            <point x="0%" y="64.630684%"/>
+        </area>
     </areas>
 </metadata>
