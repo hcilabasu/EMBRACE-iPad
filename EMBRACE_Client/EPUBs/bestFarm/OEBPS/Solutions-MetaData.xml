@@ -295,6 +295,7 @@
             </step>
             <step number="52">
                 <group obj1Id="chicken" action="count" obj2Id="egg"/>
+                <animate obj1Id="chicken" action="bobAnimation" waypointId="chickenNextToNest" areaId=""/>
             </step>
         </idea>
         <idea number="52"/>
@@ -366,6 +367,7 @@
         <idea number="63">
             <step number="64">
                 <group obj1Id="cat" action="finish" obj2Id="bucket"/>
+                <animate obj1Id="cat" action="bobAnimation" waypointId="catDrink" areaId=""/>
             </step>
         </idea>
         <idea number="64">
