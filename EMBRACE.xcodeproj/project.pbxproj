@@ -1048,6 +1048,8 @@
 		1AF8054D1C28DEC400C96B05 /* lavaplume_greyplate_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AF8054C1C28DEC400C96B05 /* lavaplume_greyplate_right.png */; };
 		1AF805501C29019A00C96B05 /* plume_greyplate_hawaii.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AF8054E1C29019900C96B05 /* plume_greyplate_hawaii.png */; };
 		1AF805511C29019A00C96B05 /* plume_greyplate_oahu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AF8054F1C29019A00C96B05 /* plume_greyplate_oahu.png */; };
+		1AFCFFF11C34C0DB008F1A1C /* water_by_shore.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AFCFFEF1C34C0DB008F1A1C /* water_by_shore.png */; };
+		1AFCFFF21C34C0DB008F1A1C /* water_away_shore.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AFCFFF01C34C0DB008F1A1C /* water_away_shore.png */; };
 		31058C79176BE71C00595AAE /* PhysicalManipulationActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 31058C78176BE71C00595AAE /* PhysicalManipulationActivity.m */; };
 		31058C7C176BE73D00595AAE /* ImagineManipulationActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 31058C7B176BE73D00595AAE /* ImagineManipulationActivity.m */; };
 		31058C7F176BE74B00595AAE /* AssessmentActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 31058C7E176BE74B00595AAE /* AssessmentActivity.m */; };
@@ -3816,6 +3818,8 @@
 		1AF8054C1C28DEC400C96B05 /* lavaplume_greyplate_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lavaplume_greyplate_right.png; sourceTree = "<group>"; };
 		1AF8054E1C29019900C96B05 /* plume_greyplate_hawaii.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plume_greyplate_hawaii.png; sourceTree = "<group>"; };
 		1AF8054F1C29019A00C96B05 /* plume_greyplate_oahu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plume_greyplate_oahu.png; sourceTree = "<group>"; };
+		1AFCFFEF1C34C0DB008F1A1C /* water_by_shore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water_by_shore.png; sourceTree = "<group>"; };
+		1AFCFFF01C34C0DB008F1A1C /* water_away_shore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water_away_shore.png; sourceTree = "<group>"; };
 		31058C73176BCFF200595AAE /* logo114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo114.png; path = ../../logo114.png; sourceTree = "<group>"; };
 		31058C75176BCFF900595AAE /* logo57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo57.png; path = ../../logo57.png; sourceTree = "<group>"; };
 		31058C77176BE71C00595AAE /* PhysicalManipulationActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicalManipulationActivity.h; sourceTree = "<group>"; };
@@ -5314,6 +5318,8 @@
 				1A631E5B1C0E4D3A00251CB3 /* air_blue.png */,
 				1A631E5C1C0E4D3A00251CB3 /* air_red.png */,
 				1A631E5D1C0E4D3A00251CB3 /* antartica.png */,
+				1AFCFFEF1C34C0DB008F1A1C /* water_by_shore.png */,
+				1AFCFFF01C34C0DB008F1A1C /* water_away_shore.png */,
 				1A631E5E1C0E4D3A00251CB3 /* ash_00.png */,
 				1A631E5F1C0E4D3A00251CB3 /* ash_01.png */,
 				1A631E601C0E4D3A00251CB3 /* ash_02.png */,
@@ -8396,6 +8402,7 @@
 				5C28DC731C2BA66E005ACD07 /* boat_full.png in Resources */,
 				C30D03621BABBFE800DF53F1 /* TheFamilyIsRattledQ1.mp3 in Resources */,
 				1A6320521C0E4D3B00251CB3 /* Story3-Cleaning-Up-Intro-E.xhtml in Resources */,
+				1AFCFFF21C34C0DB008F1A1C /* water_away_shore.png in Resources */,
 				1A6322441C0E4D3B00251CB3 /* scene2.png in Resources */,
 				C30D03631BABBFE800DF53F1 /* TheFamilyIsRattledQ1A1.mp3 in Resources */,
 				C30D03641BABBFE800DF53F1 /* TheFamilyIsRattledQ1A2.mp3 in Resources */,
@@ -9067,6 +9074,7 @@
 				1A6320C81C0E4D3B00251CB3 /* Waypoints-MetaData.xml in Resources */,
 				1A6321061C0E4D3B00251CB3 /* roses_white.png in Resources */,
 				1A6322481C0E4D3B00251CB3 /* small_house02.png in Resources */,
+				1AFCFFF11C34C0DB008F1A1C /* water_by_shore.png in Resources */,
 				1A6321821C0E4D3B00251CB3 /* p3_Lsqueeze_circle.png in Resources */,
 				1A63203B1C0E4D3B00251CB3 /* IMStyle.css in Resources */,
 				1A6321171C0E4D3B00251CB3 /* spinach.png in Resources */,

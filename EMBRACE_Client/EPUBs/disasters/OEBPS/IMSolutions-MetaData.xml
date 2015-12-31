@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <solutions>
+        <story title="Tsunamis" activity_id="story3-PM-2">
+            <sentence number="7">
+                <step number="1">
+                    <group obj1Id="waterByShoreIM" action="cover" obj2Id="waterByShoreIM"/>
+                    <group obj1Id="waterAwayShoreIM" action="away" obj2Id="waterAwayShoreIM"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Tsunamis" activity_id="story3-PM-3">
+            <sentence number="10">
+                <step number="1">
+                    <group obj1Id="waveIM" action="cover" obj2Id="buildingsIM"/>
+                    <group obj1Id="buildingsIM" action="with" obj2Id="buildingsIM"/>
+                </step>
+            </sentence>
+        </story>
         <story title="Volcanoes and the Making of Hawaii" activity_id="story4-PM-3">
             <sentence number="10">
                 <step number="1">
