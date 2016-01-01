@@ -159,8 +159,8 @@
                 <step number="1">
                     <group obj1Id="maria" action="push" obj2Id="sara"/>
                     <ungroupAndStay obj1Id="maria" action="leave" obj2Id="sara"/>
-                    <move obj1Id="maria" action="getIn" waypointId="maria_push"/>
-                    <move obj1Id="sara" action="getIn" waypointId="sara_push"/>
+                    <animate obj1Id="maria" action="followAnimation" waypointId="" areaId="mariaPath"/>
+                    <animate obj1Id="sara" action="followAnimation" waypointId="" areaId="saraPath"/>
                 </step>
             </sentence>
         </story>
@@ -178,7 +178,8 @@
                 <step number="1">
                     <shakeOrTap obj1Id="juan_rowing" action="getIn" locationId="water"/>
                     <swapImage obj1Id="juan_rowing" action="pushBack"/>
-                    <move obj1Id="wave" action="getIn" waypointId="wave_back"/>
+                    <animate obj1Id="juan_rowing" action="followAnimation" waypointId="" areaId="juanPath"/>
+                    <animate obj1Id="wave" action="followAnimation" waypointId="" areaId="wavePath"/>
                 </step>
             </sentence>
         </story>
