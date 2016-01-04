@@ -41,5 +41,29 @@
         <relationship obj1Id="standing_sioux" can="pickUp" action="group" obj2Id="pole_pile"/>
         <relationship obj1Id="standing_sioux" can="pickUp" action="group" obj2Id="travois_supplies"/>
         <relationship obj1Id="standing_sioux" can="pickUp" action="group" obj2Id="woodpile"/>
+        
+        <relationship obj1Id="siouxIM" can="tie" action="group" obj2Id="polesIM"/>
+        <relationship obj1Id="siouxIM" can="tie" action="group" obj2Id="logsIM"/>
+     
+        <relationship obj1Id="fireIM" can="inside" action="group" obj2Id="teepeeIM"/>
+        <relationship obj1Id="fireIM" can="outside" action="group" obj2Id="teepeeIM"/>
+     
+        <relationship obj1Id="poleIM" can="inside" action="group" obj2Id="poleIM"/>
+        <relationship obj1Id="stoneIM" can="inside" action="group" obj2Id="holeIM"/>
+     
+        <relationship obj1Id="barkIM" can="bottom" action="group" obj2Id="wigwamIM"/>
+        <relationship obj1Id="barkIM" can="top" action="group" obj2Id="wigwamIM"/>
+     
+        <relationship obj1Id="haidaIM" can="with" action="group" obj2Id="axeIM"/>
+        <relationship obj1Id="haidaIM" can="with" action="group" obj2Id="canoeIM"/>
+     
+        <relationship obj1Id="haidaIM" can="carry" action="group" obj2Id="planksIM"/>
+        <relationship obj1Id="haidaIM" can="standOn" action="group" obj2Id="planksIM"/>
+        
+        <relationship obj1Id="logsInGroundIM" can="stuckIn" action="group" obj2Id="logsInGroundIM"/>
+        <relationship obj1Id="logsIM" can="pile" action="group" obj2Id="groundIM"/>
+     
+        <relationship obj1Id="ladderIM" can="attached" action="group" obj2Id="houseIM"/>
+        <relationship obj1Id="poleIM" can="attached" action="group" obj2Id="houseIM"/>
     </relationships>
 </metadata>

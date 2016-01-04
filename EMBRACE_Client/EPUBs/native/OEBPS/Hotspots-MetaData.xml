@@ -56,6 +56,43 @@
         <hotspot objId="sun" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="travois_supplies" action="pickUp" role="object" x="50%" y="50%"/>
         <hotspot objId="woodpile" action="pickUp" role="object" x="50%" y="50%"/>
+        
+        <hotspot objId="siouxIM" action="tie" role="object" x="50%" y="50%"/>
+        <hotspot objId="polesIM" action="tie" role="subject" x="50%" y="20%"/>
+        <hotspot objId="logsIM" action="tie" role="subject" x="50%" y="20%"/>
+        
+        <hotspot objId="fireIM" action="inside" role="object" x="50%" y="20%"/>
+        <hotspot objId="fireIM" action="outside" role="object" x="0%" y="20%"/>
+        <hotspot objId="teepeeIM" action="inside" role="subject" x="50%" y="50%"/>
+        <hotspot objId="teepeeIM" action="outside" role="subject" x="100%" y="50%"/>
+        
+        <hotspot objId="poleIM" action="inside" role="object" x="50%" y="50%"/>
+        <hotspot objId="poleIM" action="inside" role="subject" x="50%" y="50%"/>
+        <hotspot objId="stoneIM" action="inside" role="object" x="50%" y="50%"/>
+        <hotspot objId="holeIM" action="inside" role="subject" x="0%" y="50%"/>
+        
+        <hotspot objId="barkIM" action="bottom" role="object" x="0%" y="0%"/>
+        <hotspot objId="barkIM" action="top" role="object" x="0%" y="100%"/>
+        <hotspot objId="wigwamIM" action="bottom" role="subject" x="60%" y="60%"/>
+        <hotspot objId="wigwamIM" action="top" role="subject" x="60%" y="60%"/>
+        
+        <hotspot objId="haidaIM" action="with" role="object" x="40%" y="40%"/>
+        <hotspot objId="axeIM" action="with" role="subject" x="100%" y="30%"/>
+        <hotspot objId="canoeIM" action="with" role="subject" x="50%" y="0%"/>
+        
+        <hotspot objId="haidaIM" action="carry" role="object" x="40%" y="50%"/>
+        <hotspot objId="haidaIM" action="standOn" role="object" x="100%" y="80%"/>
+        <hotspot objId="planksIM" action="carry" role="subject" x="50%" y="50%"/>
+        <hotspot objId="planksIM" action="standOn" role="subject" x="50%" y="50%"/>
+        
+        <hotspot objId="logsInGroundIM" action="stuckIn" role="object" x="50%" y="50%"/>
+        <hotspot objId="logsIM" action="pile" role="object" x="50%" y="50%"/>
+        <hotspot objId="logsInGroundIM" action="stuckIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="groundIM" action="pile" role="subject" x="50%" y="50%"/>
+        
+        <hotspot objId="ladderIM" action="attached" role="object" x="0%" y="50%"/>
+        <hotspot objId="poleIM" action="attached" role="object" x="0%" y="50%"/>
+        <hotspot objId="houseIM" action="attached" role="subject" x="50%" y="50%"/>
     </hotspots>
 </metadata>
 
