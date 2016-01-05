@@ -90,9 +90,9 @@
         <hotspot objId="logsInGroundIM" action="stuckIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="groundIM" action="pile" role="subject" x="50%" y="50%"/>
         
-        <hotspot objId="ladderIM" action="attached" role="object" x="0%" y="50%"/>
-        <hotspot objId="poleIM" action="attached" role="object" x="0%" y="50%"/>
-        <hotspot objId="houseIM" action="attached" role="subject" x="50%" y="50%"/>
+        <hotspot objId="ladderIM" action="attached" role="object" x="50%" y="50%"/>
+        <hotspot objId="poleIM" action="attached" role="object" x="50%" y="0%"/>
+        <hotspot objId="houseIM" action="attached" role="subject" x="50%" y="100%"/>
     </hotspots>
 </metadata>
 

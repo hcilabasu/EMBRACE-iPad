@@ -4,8 +4,8 @@
         <story title="The Lopez Family" activity_id="story1-PM-1">
             <sentence number="3">
                 <step number="1">
+                    <group obj1Id="martinInsideIM" action="getIn" obj2Id="carIM"/>
                     <group obj1Id="martinIM" action="standBy" obj2Id="carIM"/>
-                    <group obj1Id="carIM" action="getIn" obj2Id="carIM"/>
                 </step>
             </sentence>
         </story>
@@ -50,10 +50,10 @@
             </sentence>
         </story>
         <story title="The Baby's Rattle is Gone, Too!" activity_id="story5-PM-1">
-            <sentence number="2">
+            <sentence number="5">
                 <step number="1">
-                    <group obj1Id="baby_IM" action="getIn" obj2Id="cribclosed_IM"/>
-                    <group obj1Id="baby_IM" action="getOut" obj2Id="crib_IM"/>
+                    <group obj1Id="baby_IM" action="inLap" obj2Id="lola_IM"/>
+                    <group obj1Id="baby_IM" action="onHead" obj2Id="lola_IM"/>
                 </step>
             </sentence>
         </story>

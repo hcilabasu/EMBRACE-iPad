@@ -51,7 +51,6 @@
         <hotspot objId="bottleBehindIM" action="behind" role="object" x="50%" y ="45%"/>
         <hotspot objId="bottleIM" action="front" role="object" x="50%" y ="20%"/>
         <hotspot objId="babyIM" action="grabRight" role="object" x="50%" y ="50%"/>
-        <hotspot objId="lucasIM" action="standWith" role="object" x="50%" y ="100%"/>
         
         <hotspot objId="bankIM" action="getIn" role="subject" x="75%" y ="0%"/>
         <hotspot objId="bushIM" action="behind" role="subject" x="40%" y ="50%"/>
@@ -59,7 +58,8 @@
         <hotspot objId="rattleIM" action="grabRight" role="subject" x="90%" y ="100%"/>
         <hotspot objId="ballIM" action="grabRight" role="subject" x="90%" y ="100%"/>
         
-        <hotspot objId="oliviaIM" action="standWith" role="subject" x="50%" y ="45%"/>
-        <hotspot objId="babyIM" action="standWith" role="subject" x="50%" y ="60%"/>
+        <hotspot objId="lucasIM" action="standWith" role="object" x="100%" y ="50%"/>
+        <hotspot objId="oliviaIM" action="standWith" role="subject" x="20%" y ="50%"/>
+        <hotspot objId="babyIM" action="standWith" role="subject" x="20%" y ="0%"/>
     </hotspots>
 </metadata>

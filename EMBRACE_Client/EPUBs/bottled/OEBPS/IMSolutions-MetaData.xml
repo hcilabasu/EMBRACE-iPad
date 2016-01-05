@@ -12,8 +12,8 @@
         <story title="The Lucky Stone" activity_id="story1-PM-2">
             <sentence number="10">
                 <step number="1">
-                    <group obj1Id="lucasIM" action="hold" obj2Id="bottleIM"/>
                     <group obj1Id="lucasIM" action="hold" obj2Id="stoneIM"/>
+                    <group obj1Id="lucasIM" action="hold" obj2Id="bottleIM"/>
                 </step>
             </sentence>
         </story>

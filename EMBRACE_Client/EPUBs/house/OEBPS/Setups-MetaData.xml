@@ -6,13 +6,14 @@
         </story>
         <story title="Missing Keys" page_id="story2-PM-2">
             <group obj1Id="baby" action="getIn" obj2Id="highchair"/>
-            <group obj1Id="highchairfrontIM" action="getIn" obj2Id="highchairIM">
+            <group obj1Id="highchairfrontIM" action="getIn" obj2Id="highchairIM"/>
         </story>
         <story title="Is Paco a Thief?" page_id="story3-PM-1">
             <group obj1Id="baby" action="getIn" obj2Id="highchair"/>
         </story>
-        <story title="The Baby's Rattle is Gone, Too!" page_id="story5-PM-1">
-            <group obj1Id="cribclosed_IM" action="closeDoor" obj2Id="cribdoor_IM"/>
+        <story title="Is Paco a Thief?" page_id="story3-PM-2">
+            <group obj1Id="pacoIM" action="getIn" obj2Id="keysIM"/>
+            <group obj1Id="pacoFlipIM" action="getInFlip" obj2Id="keysIM"/>
         </story>
         <story title="The Baby's Rattle is Gone, Too!" page_id="story5-PM-2">
             <group obj1Id="rabbit" action="sit" obj2Id="baby"/>
