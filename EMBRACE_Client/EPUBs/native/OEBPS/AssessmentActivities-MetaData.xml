@@ -18,17 +18,108 @@
         </Questions>
         <Questions title= "The Navajo Hogan">
             <Question number="1">
-                <QuestionText>How many pets does the Lopez family have?</QuestionText>
-                <QuestionAudio>TheLopezFamilyQ1.mp3</QuestionAudio>
-                <Answer1>two pets</Answer1>
-                <Answer1Audio>TheLopezFamilyQ1A1.mp3</Answer1Audio>
-                <Answer2>one pet</Answer2>
-                <Answer2Audio>TheLopezFamilyQ1A2.mp3</Answer2Audio>
-                <Answer3>four pets</Answer3>
-                <Answer3Audio>TheLopezFamilyQ1A3.mp3</Answer3Audio>
-                <Answer4>half of a pet</Answer4>
-                <Answer4Audio>TheLopezFamilyQ1A4.mp3</Answer4Audio>
-                <expectedSelection>two pets</expectedSelection>
+                <QuestionText>What can Lucas see from the hill?</QuestionText>
+                <QuestionAudio>TheNavajoHoganQ1.mp3</QuestionAudio>
+                <Answer1>A river</Answer1>
+                <Answer1Audio>TheNavajoHoganQ1A1.mp3</Answer1Audio>
+                <Answer2>A bottle</Answer2>
+                <Answer2Audio>TheNavajoHoganQ1A2.mp3</Answer2Audio>
+                <Answer3>A playground</Answer3>
+                <Answer3Audio>TheNavajoHoganQ1A3.mp3</Answer3Audio>
+                <Answer4>Clearly now the rain is gone</Answer4>
+                <Answer4Audio>TheNavajoHoganQ1A4.mp3</Answer4Audio>
+                <expectedSelection>A river</expectedSelection>
+            </Question>
+            <Question number="2">
+                <QuestionText>Why does Lucas walk down the hill most afternoons?</QuestionText>
+                <QuestionAudio>TheNavajoHoganQ2.mp3</QuestionAudio>
+                <Answer1>To watch the sunset</Answer1>
+                <Answer1Audio>TheNavajoHoganQ2A1.mp3</Answer1Audio>
+                <Answer2>To grab lunch</Answer2>
+                <Answer2Audio>TheNavajoHoganQ2A2.mp3</Answer2Audio>
+                <Answer3>To go fishing</Answer3>
+                <Answer3Audio>TheNavajoHoganQ2A3.mp3</Answer3Audio>
+                <Answer4>Because he's scared of heights</Answer4>
+                <Answer4Audio>TheNavajoHoganQ2A4.mp3</Answer4Audio>
+                <expectedSelection>To watch the sunset</expectedSelection>
+            </Question>
+            <Question number="3">
+                <QuestionText>What was so special about this afternoon?</QuestionText>
+                <QuestionAudio>TheNavajoHoganQ3.mp3</QuestionAudio>
+                <Answer1>Lucas found a bottle floating in the water</Answer1>
+                <Answer1Audio>TheNavajoHoganQ3A1.mp3</Answer1Audio>
+                <Answer2>Papa was home</Answer2>
+                <Answer2Audio>TheNavajoHoganQ3A2.mp3</Answer2Audio>
+                <Answer3>Lucas jumped in the water</Answer3>
+                <Answer3Audio>TheNavajoHoganQ3A3.mp3</Answer3Audio>
+                <Answer4>The sun didn't set</Answer4>
+                <Answer4Audio>TheNavajoHoganQ3A4.mp3</Answer4Audio>
+                <expectedSelection>Lucas found a bottle floating in the water</expectedSelection>
+            </Question>
+            <Question number="4">
+                <QuestionText>Where did Lucas bring the bottle?</QuestionText>
+                <QuestionAudio>TheNavajoHoganQ4.mp3</QuestionAudio>
+                <Answer1>Home to his papa</Answer1>
+                <Answer1Audio>TheNavajoHoganQ4A1.mp3</Answer1Audio>
+                <Answer2>Up to his room</Answer2>
+                <Answer2Audio>TheNavajoHoganQ4A2.mp3</Answer2Audio>
+                <Answer3>Across the river</Answer3>
+                <Answer3Audio>TheNavajoHoganQ4A3.mp3</Answer3Audio>
+                <Answer4>To Bottle Village</Answer4>
+                <Answer4Audio>TheNavajoHoganQ4A4.mp3</Answer4Audio>
+                <expectedSelection>Home to his papa</expectedSelection>
+            </Question>
+            <Question number="5">
+                <QuestionText>What did Papa do with the bottle?</QuestionText>
+                <QuestionAudio>TheNavajoHoganQ5.mp3</QuestionAudio>
+                <Answer1>He opened it</Answer1>
+                <Answer1Audio>TheNavajoHoganQ5A1.mp3</Answer1Audio>
+                <Answer2>He drank it</Answer2>
+                <Answer2Audio>TheNavajoHoganQ5A2.mp3</Answer2Audio>
+                <Answer3>He broke it</Answer3>
+                <Answer3Audio>TheNavajoHoganQ5A3.mp3</Answer3Audio>
+                <Answer4>He recycled it</Answer4>
+                <Answer4Audio>TheNavajoHoganQ5A4.mp3</Answer4Audio>
+                <expectedSelection>He opened it</expectedSelection>
+            </Question>
+            <Question number="6">
+                <QuestionText>What tumbled across the floor?</QuestionText>
+                <QuestionAudio>TheNavajoHoganQ6.mp3</QuestionAudio>
+                <Answer1>A note and stone</Answer1>
+                <Answer1Audio>TheNavajoHoganQ6A1.mp3</Answer1Audio>
+                <Answer2>A bottle</Answer2>
+                <Answer2Audio>TheNavajoHoganQ6A2.mp3</Answer2Audio>
+                <Answer3>Dice</Answer3>
+                <Answer3Audio>TheNavajoHoganQ6A3.mp3</Answer3Audio>
+                <Answer4>Cheerleaders</Answer4>
+                <Answer4Audio>TheNavajoHoganQ6A4.mp3</Answer4Audio>
+                <expectedSelection>A note and stone</expectedSelection>
+            </Question>
+            <Question number="7">
+                <QuestionText>What did Papa pick up form the ground?</QuestionText>
+                <QuestionAudio>TheNavajoHoganQ7.mp3</QuestionAudio>
+                <Answer1>The note</Answer1>
+                <Answer1Audio>TheNavajoHoganQ7A1.mp3</Answer1Audio>
+                <Answer2>The stone</Answer2>
+                <Answer2Audio>TheNavajoHoganQ7A2.mp3</Answer2Audio>
+                <Answer3>The bottle</Answer3>
+                <Answer3Audio>TheNavajoHoganQ7A3.mp3</Answer3Audio>
+                <Answer4>His shadow</Answer4>
+                <Answer4Audio>TheNavajoHoganQ7A4.mp3</Answer4Audio>
+                <expectedSelection>The note</expectedSelection>
+            </Question>
+            <Question number="8">
+                <QuestionText>Why did Lucas think he would be granted three wishes?</QuestionText>
+                <QuestionAudio>TheNavajoHoganQ8.mp3</QuestionAudio>
+                <Answer1>Because he found the lucky stone</Answer1>
+                <Answer1Audio>TheNavajoHoganQ8A1.mp3</Answer1Audio>
+                <Answer2>Because Papa gave him the lucky stone</Answer2>
+                <Answer2Audio>TheNavajoHoganQ8A2.mp3</Answer2Audio>
+                <Answer3>Because the note had his name on it</Answer3>
+                <Answer3Audio>TheNavajoHoganQ8A3.mp3</Answer3Audio>
+                <Answer4>Because a Genie popped out of the bottle</Answer4>
+                <Answer4Audio>TheNavajoHoganQ8A4.mp3</Answer4Audio>
+                <expectedSelection>Because he found the lucky stone</expectedSelection>
             </Question>
         </Questions>
         <Questions title= "The Inuit Igloo">

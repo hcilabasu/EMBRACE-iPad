@@ -42,10 +42,12 @@
         <story title="Earthquakes" activity_id="story2-PM-1">
             <sentence number="1">
                 <step number="1">
+                    <animate obj1Id="california" action="earthquakeAnimation" waypointId="californiaEarthquake" areaId=""/>
                     <shakeOrTap obj1Id="north_america" action="getIn" locationId="anywhere"/>
                     <ungroup obj1Id="north_america" action="leave" obj2Id="california"/>
                     <swapImage obj1Id="north_america" action="crack"/>
                     <swapImage obj1Id="california" action="crack"/>
+                    <animate obj1Id="california" action="earthquakeAnimation" waypointId="californiaEarthquake" areaId=""/>
                 </step>
             </sentence>
         </story>

@@ -2235,7 +2235,6 @@
 		C30D079F1BABC0B400DF53F1 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 31953E5E1729ECC100570087 /* Default-568h@2x.png */; };
 		C30D07A01BABC0B400DF53F1 /* AudioToolbox.framework in Resources */ = {isa = PBXBuildFile; fileRef = C393881E195376490005279F /* AudioToolbox.framework */; };
 		C30D07A11BABC0B400DF53F1 /* AVFoundation.framework in Resources */ = {isa = PBXBuildFile; fileRef = 5CC5FADA18FDFA3700D118B8 /* AVFoundation.framework */; };
-		C30D07A21BABC0B400DF53F1 /* libz.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 31953E961729EEDE00570087 /* libz.dylib */; };
 		C30D07A31BABC0B400DF53F1 /* QuartzCore.framework in Resources */ = {isa = PBXBuildFile; fileRef = 31953E9B172A136A00570087 /* QuartzCore.framework */; };
 		C30D07A41BABC0B400DF53F1 /* UIKit.framework in Resources */ = {isa = PBXBuildFile; fileRef = 31953E481729ECC100570087 /* UIKit.framework */; };
 		C30D07A51BABC0B400DF53F1 /* Foundation.framework in Resources */ = {isa = PBXBuildFile; fileRef = 31953E4A1729ECC100570087 /* Foundation.framework */; };
@@ -7584,7 +7583,6 @@
 				1A6321B41C0E4D3B00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-Intro-E.xhtml in Resources */,
 				C30D07A01BABC0B400DF53F1 /* AudioToolbox.framework in Resources */,
 				C30D07A11BABC0B400DF53F1 /* AVFoundation.framework in Resources */,
-				C30D07A21BABC0B400DF53F1 /* libz.dylib in Resources */,
 				C30D07A31BABC0B400DF53F1 /* QuartzCore.framework in Resources */,
 				1A880E301BD6E4980020F93B /* GettingMoreOxygenForTheMusclesQ4A2.mp3 in Resources */,
 				C30D07A41BABC0B400DF53F1 /* UIKit.framework in Resources */,

@@ -121,6 +121,9 @@ function animFrame(object){
     else if(object.animName == "bobAnimation") {
         bob(object);
     }
+    else if(object.animName == "earthquakeAnimation") {
+        earthquake(object);
+    }
     else if(object.animName == "cheerAnimation") {
         cheer(object);
     }
@@ -196,6 +199,23 @@ function bob(aniObject) {
         aniObject.tempY += 0.1;
         aniObject.y += waveHeight;
         aniObject.object.style.top = aniObject.y + "px";
+    }
+    else {
+        cancelAnimationFrame(requestId);
+    }
+}
+
+function earthquake(aniObject) {
+    var t1 = new Date().getTime();
+    aniObject.dt = 0.001*(t1-aniObject.t0);
+    var seconds = Math.round(aniObject.dt % 60);
+    
+    if (seconds < 4) {
+        var waveWidth = Math.sin(aniObject.tempY);
+        waveWidth = waveWidth/4;
+        aniObject.tempX += 0.1;
+        aniObject.x += waveWidth;
+        aniObject.object.style.left = aniObject.x + "px";
     }
     else {
         cancelAnimationFrame(requestId);
