@@ -101,8 +101,7 @@
             </sentence>
             <sentence number="3">
                 <step number="1">
-                    <shakeOrTap obj1Id="man3_ch3" action="getIn" locationId="anywhere"/>
-                    <swapImage obj1Id="man3_ch3" action="arrow"/>
+                    <checkAndSwap obj1Id="man3_ch3" action="arrow"/>
                     <appear obj1Id="arrow" action="appear"/>
                     <animate obj1Id="arrow" action="followAnimation" waypointId="" areaId="arrowPath"/>
                 </step>
