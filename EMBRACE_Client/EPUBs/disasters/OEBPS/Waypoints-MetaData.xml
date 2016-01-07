@@ -8,6 +8,7 @@
         <waypoint waypointId="california_up" x="0.000000%" y="17.684660%"/>
         <waypoint waypointId="california_up2" x="6.054688%" y="31.534090%"/>
         <waypoint waypointId="californiaEarthquake" x="10%" y="38.139202%"/>
+        <waypoint waypointId="droplet_stay" x="79.003906%" y="27.698862%"/>
         <waypoint waypointId="gap" x="50%" y="50%"/>
         <waypoint waypointId="india_near_eurasia" x="44.9%" y="28.8%"/>
         <waypoint waypointId="india_ungrouped" x="40.820312%" y="49.360798%"/>
