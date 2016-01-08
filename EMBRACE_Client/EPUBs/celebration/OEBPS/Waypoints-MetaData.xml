@@ -3,7 +3,7 @@
     <waypoints>
         <waypoint waypointId="calfAway" x="20%" y="54.545456%"/>
         <waypoint waypointId="calfCorral" x="62.890625%" y="47.088070%"/>
-        <waypoint waypointId="cashier" x="79.687500%" y="60.653408%"/>
+        <waypoint waypointId="cashier" x="48.046875%" y="43.110798%"/>
         <waypoint waypointId="cowAway" x="33.203125%" y="22.869318%"/>
         <waypoint waypointId="cowBwCorral" x="70.507812%" y="51.349430%"/>
         <waypoint waypointId="dirtRoad" x="29.443359%" y="46.235798%"/>
@@ -15,7 +15,7 @@
         <waypoint waypointId="market" x="53.759766%" y="12.642045%"/>
         <waypoint waypointId="milk" x="66.796875%" y="15.411931%"/>
         <waypoint waypointId="momSpot" x="72.705078%" y="30.681818%"/>
-        <waypoint waypointId="msPena" x="91.210938%" y="70.099434%"/>
+        <waypoint waypointId="msPena" x="59.863281%" y="70.809654%"/>
         <waypoint waypointId="nearChili" x="25%" y="50%"/>
         <waypoint waypointId="nearMom" x="59.082031%" y="46.093750%"/>
         <waypoint waypointId="nearMom2" x="36.230469%" y="48.579548%"/>

@@ -5,7 +5,7 @@
         <alternateImage objId="babybrother" action="movesCloser" originalSrc="babybrother.png" alternateSrc="babybrother.png" width="66.3px" x="12%" y="60%" class="manipulationObject" z="1"/>
         <alternateImage objId="ball" action="movesCloser" originalSrc="ball.png" alternateSrc="ball.png" width="58.5px" x="19.762846%" y="60.621387%" class="manipulationObject" z="1"/>
         <alternateImage objId="boardgame_open" action="appear" originalSrc="boardgame_open.png" alternateSrc="boardgame_open.png" width="148px" x="38%" y="38%" class="manipulationObject" z="1"/>
-        <alternateImage objId="bottle" action="empty" originalSrc="bottle_noteandstone.png" alternateSrc="bottle_empty.png" width="16px" x="22.95%" y="84.01%" class="manipulationObject" z="1"/>
+        <alternateImage objId="bottle" action="empty" originalSrc="bottle_noteandstone.png" alternateSrc="bottle_empty.png" width="16px" x="20.703125%" y="80.042610%" class="manipulationObject" z="1"/>
         <alternateImage objId="bottle" action="movesAway" originalSrc="bottle_noteandstone.png" alternateSrc="bottle_noteandstone.png" width="12px" x="41.064453%" y="40.838070%" class="manipulationObject" z="1"/>
         <alternateImage objId="bottle" action="movesCloser" originalSrc="bottle_noteandstone.png" alternateSrc="bottle_noteandstone.png" width="24px" x="50%" y="50%" class="manipulationObject" z="1"/>
         <alternateImage objId="bottle" action="movesCloser2" originalSrc="bottle_noteandstone.png" alternateSrc="bottle_noteandstone.png" width="24px" x="50%" y="50%" class="manipulationObject" z="1"/>

@@ -17,7 +17,11 @@
     <item href="Images/bg_kitchen.png" id="bg_kitchen.png" media-type="image/png" />
     <item href="Images/bg_kitchen_balloons.png" id="bg_kitchen_balloons.png" media-type="image/png" />
     <item href="Images/bg_market.png" id="bg_market.png" media-type="image/png" />
+    <item href="Images/bluesaddlebag_closed.png" id="bluesaddlebag_closed.png" media-type="image/png" />
+    <item href="Images/bluesaddlebag_open.png" id="bluesaddlebag_open.png" media-type="image/png" />
     <item href="Images/bridle.png" id="bridle.png" media-type="image/png" />
+    <item href="Images/brownsaddlebag_closed.png" id="brownsaddlebag_closed.png" media-type="image/png" />
+    <item href="Images/brownsaddlebag_open.png" id="brownsaddlebag_open.png" media-type="image/png" />
     <item href="Images/calf.png" id="calf.png" media-type="image/png" />
     <item href="Images/calf_flipped.png" id="calf_flipped.png" media-type="image/png" />
     <item href="Images/champoorado.png" id="champoorado.png" media-type="image/png" />
@@ -44,11 +48,13 @@
     <item href="Images/icon_scale.png" id="icon_scale.png" media-type="image/png" />
     <item href="Images/list.png" id="list.png" media-type="image/png" />
     <item href="Images/mancha_blue_saddlebag_open.png" id="mancha_blue_saddlebag_open.png" media-type="image/png" />
+    <item href="Images/mancha_bridle_only.png" id="mancha_bridle_only.png" media-type="image/png" />
     <item href="Images/mancha_eating_grass.png" id="mancha_eating_grass.png" media-type="image/png" />
     <item href="Images/mancha_equiped.png" id="mancha_equiped.png" media-type="image/png" />
     <item href="Images/mancha_loose_reins.png" id="mancha_loose_reins.png" media-type="image/png" />
     <item href="Images/mancha_naked.png" id="mancha_naked.png" media-type="image/png" />
     <item href="Images/mancha_open_saddlebag.png" id="mancha_open_saddlebag.png" media-type="image/png" />
+    <item href="Images/mancha_saddle_only.png" id="mancha_saddle_only.png" media-type="image/png" />
     <item href="Images/mancha_tied.png" id="mancha_tied.png" media-type="image/png" />
     <item href="Images/mangos.png" id="mangos.png" media-type="image/png" />
     <item href="Images/milk.png" id="milk.png" media-type="image/png" />
@@ -56,6 +62,7 @@
     <item href="Images/mom_full.png" id="mom_full.png" media-type="image/png" />
     <item href="Images/mom_full_hands_out.png" id="mom_full_hands_out.png" media-type="image/png" />
     <item href="Images/mom_tote.png" id="mom_tote.png" media-type="image/png" />
+    <item href="Images/mrs_pena.png" id="mrs_pena.png" media-type="image/png" />
     <item href="Images/notebook.png" id="notebook.png" media-type="image/png" />
     <item href="Images/pesos.png" id="pesos.png" media-type="image/png" />
     <item href="Images/roses_pink.png" id="roses_pink.png" media-type="image/png" />
