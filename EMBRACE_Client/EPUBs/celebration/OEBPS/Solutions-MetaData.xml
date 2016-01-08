@@ -262,20 +262,22 @@
                     <disappearAuto obj1Id="spinach" action="disappear" obj2Id="spinach"/>
                     <move obj1Id="sofia" action="getIn" waypointId="spinach"/>
                 </step>
-                <step number="2">
+            </sentence>
+            <sentence number="7">
+                <step number="1">
                     <group obj1Id="sofia" action="grabHigh" obj2Id="mangos"/>
                     <ungroupAndStay obj1Id="sofia" action="drop" obj2Id="mangos"/>
                     <disappearAuto obj1Id="mangos" action="disappear" obj2Id="mangos"/>
                     <move obj1Id="sofia" action="getIn" waypointId="produce"/>
                 </step>
-                <step number="3">
+                <step number="2">
                     <group obj1Id="sofia" action="grabHigh" obj2Id="garlic"/>
                     <ungroupAndStay obj1Id="sofia" action="drop" obj2Id="garlic"/>
                     <disappearAuto obj1Id="garlic" action="disappear" obj2Id="garlic"/>
                     <move obj1Id="sofia" action="getIn" waypointId="produce"/>
                 </step>
             </sentence>
-            <sentence number="7">
+            <sentence number="8">
                 <step number="1">
                     <group obj1Id="sofia" action="grabHigh" obj2Id="milk"/>
                     <move obj1Id="sofia" action="getIn" waypointId="milk"/>
@@ -283,7 +285,7 @@
             </sentence>
         </story>
         <story title="Shopping at the Market" activity_id="story4-PM-4">
-            <sentence number="8">
+            <sentence number="9">
                 <step number="1">
                     <check obj1Id="sofia" action="getIn" locationId="cashier"/>
                     <ungroupAndStay obj1Id="pesos" action="getOut" obj2Id="sofia"/>
@@ -291,7 +293,7 @@
                     <move obj1Id="pesos" action="getIn" waypointId="msPena"/>
                 </step>
             </sentence>
-            <sentence number="9">
+            <sentence number="10">
                 <step number="1">
                     <check obj1Id="sofia" action="getIn" locationId="nearPost"/>
                     <swapImage obj1Id="sofia" action="noTote2"/>
