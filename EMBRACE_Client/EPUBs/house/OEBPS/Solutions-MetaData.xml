@@ -2,7 +2,7 @@
 <metadata>
     <solutions>
         <story title="The Lopez Family" activity_id="story1-PM-1">
-            <sentence number="3">
+            <sentence number="5">
                 <step number="1">
                     <group obj1Id="man" action="grab" obj2Id="keys"/>
                     <move obj1Id="man" action="getIn" waypointId="nearKeys"/>
@@ -11,7 +11,7 @@
                     <group obj1Id="man" action="getIn" obj2Id="car"/>
                 </step>
             </sentence>
-            <sentence number="4">
+            <sentence number="6">
                 <step number="1">
                     <check obj1Id="man" action="getIn" locationId="frontHouse"/>
                     <move obj1Id="man" action="getIn" waypointId="frontHouse"/>
@@ -19,18 +19,18 @@
             </sentence>
         </story>
         <story title="The Lopez Family" activity_id="story1-PM-2">
-            <sentence number="5">
+            <sentence number="7">
                 <step number="1">
                     <check obj1Id="woman" action="getIn" locationId="frontHouse"/>
                     <move obj1Id="woman" action="getIn" waypointId="frontHouse2"/>
                 </step>
             </sentence>
-            <sentence number="8">
+            <sentence number="10">
                 <step number="1">
                     <group obj1Id="rabbit" action="sit" obj2Id="baby"/>
                 </step>
             </sentence>
-            <sentence number="9">
+            <sentence number="11">
                 <step number="1">
                     <check obj1Id="dog" action="getIn" locationId="frontHouse"/>
                     <move obj1Id="dog" action="getIn" waypointId="frontHouse3"/>
@@ -251,26 +251,24 @@
                     <move obj1Id="man" action="getIn" waypointId="rightOfHouse4"/>
                 </step>
             </sentence>
-        </story>
-        <story title="The Mystery is Solved" activity_id="story6-PM-2">
-            <sentence number="5">
+            <sentence number="3">
                 <step number="1">
                     <check obj1Id="bird" action="getIn" locationId="kitchen"/>
                     <move obj1Id="bird" action="getIn" waypointId="fridge"/>
                 </step>
             </sentence>
-            <sentence number="6">
+            <sentence number="4">
                 <step number="1">
                     <group obj1Id="bird" action="pickUp" obj2Id="keys"/>
                 </step>
                 <step number="2">
                     <check obj1Id="bird" action="getIn" locationId="nest"/>
-                    <ungroup obj1Id="bird" action="release" obj2Id="keys"/>
-                    <move obj1Id="bird" action="getIn" waypointId="nest"/>   
-                    <move obj1Id="keys" action="getIn" waypointId="nest2"/>   
+                    <move obj1Id="bird" action="getIn" waypointId="nest"/>
                 </step>
             </sentence>
-            <sentence number="7">
+        </story>
+        <story title="The Mystery is Solved" activity_id="story6-PM-2">
+            <sentence number="5">
                 <step number="1">
                     <tapToAnimate obj1Id="dog" action=""/>
                     <playSound fileName="dog_labradoodle_bark_twice_001.mp3"/>
