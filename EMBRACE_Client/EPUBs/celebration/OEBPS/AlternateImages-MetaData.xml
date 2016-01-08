@@ -3,8 +3,12 @@
     <alternateImages>
         <alternateImage objId="bag" action="appear" originalSrc="tote_for_scale.png" alternateSrc="tote_for_scale.png" width="95px" x="29.199219%" y="20.525568%" class="manipulationObject center" z="0"/>
         <alternateImage objId="bag" action="appear2" originalSrc="bag.png" alternateSrc="bag.png" width="120px" x="60.839844%" y="70.383522%" class="manipulationObject center" z="2"/>
+        <alternateImage objId="bluesaddlebag" action="appear" originalSrc="bluesaddlebag_closed.png" alternateSrc="bluesaddlebag_closed.png" width="95px" x="40%" y="50%" class="manipulationObject center" z="0"/>
+        <alternateImage objId="bluesaddlebag" action="open" originalSrc="bluesaddlebag_closed.png" alternateSrc="bluesaddlebag_open.png" width="95px" x="40%" y="50%" class="manipulationObject center" z="0"/>
         <alternateImage objId="bridle" action="appear" originalSrc="bridle.png" alternateSrc="bridle.png" width="50px" x="50%" y="50%" class="manipulationObject center" z="2"/>
         <alternateImage objId="bridle" action="changeZ" originalSrc="bridle.png" alternateSrc="bridle.png" width="50px" x="12.646484%" y="50.213070%" class="manipulationObject center" z="0"/>
+        <alternateImage objId="brownsaddlebag" action="appear" originalSrc="brownsaddlebag_closed.png" alternateSrc="brownsaddlebag_closed.png" width="95px" x="50%" y="50%" class="manipulationObject center" z="0"/>
+        <alternateImage objId="brownsaddlebag" action="open" originalSrc="brownsaddlebag_closed.png" alternateSrc="brownsaddlebag_open.png" width="95px" x="50%" y="50%" class="manipulationObject center" z="0"/>
         <alternateImage objId="calf" action="flip" originalSrc="calf_flipped.png" alternateSrc="calf.png" width="100px" x="20%" y="54.545456%" class="manipulationObject center" z="0"/>
         <alternateImage objId="cow_bw" action="flip" originalSrc="cow_bw.png" alternateSrc="cow_bw_flipped.png" width="150px" x="25%" y="22.869318%" class="manipulationObject center" z="0"/>
         <alternateImage objId="cow_bw" action="flipBack" originalSrc="cow_bw_flipped.png" alternateSrc="cow_bw.png" width="150px" x="25%" y="22.869318%" class="manipulationObject center" z="0"/>
@@ -17,10 +21,12 @@
         <alternateImage objId="mancha" action="appear" originalSrc="mancha_loose_reins.png" alternateSrc="mancha_loose_reins.png" width="300px" x="1.367188%" y="33.451702%" class="manipulationObject center" z="0"/>
         <alternateImage objId="mancha" action="appear2" originalSrc="mancha_equiped.png" alternateSrc="mancha_equiped.png" width="250px" x="70.068359%" y="27.343750%" class="manipulationObject center" z="0"/>
         <alternateImage objId="mancha" action="blueSaddlebag" originalSrc="mancha_eating_grass.png" alternateSrc="mancha_blue_saddlebag_open.png" width="300px" x="4.492188%" y="34.801136%" class="manipulationObject center" z="0"/>
+        <alternateImage objId="mancha" action="bridle" originalSrc="mancha_equiped.png" alternateSrc="mancha_bridle_only.png" width="250px" x="70.068359%" y="27.343750%" class="manipulationObject center" z="0"/>
         <alternateImage objId="mancha" action="brownSaddlebag" originalSrc="mancha_tied.png" alternateSrc="mancha_open_saddlebag.png" width="300px" x="1.367188%" y="33.451702%" class="manipulationObject center" z="0"/>
         <alternateImage objId="mancha" action="eating" originalSrc="mancha_tied.png" alternateSrc="mancha_eating_grass.png" width="300px" x="4.492188%" y="34.801136%" class="manipulationObject center" z="0"/>
         <alternateImage objId="mancha" action="equip" originalSrc="mancha_naked.png" alternateSrc="mancha_equiped.png" width="250px" x="70.068359%" y="27.343750%" class="manipulationObject center" z="0"/>
         <alternateImage objId="mancha" action="naked" originalSrc="mancha_equiped.png" alternateSrc="mancha_naked.png" width="250px" x="70.068359%" y="27.343750%" class="manipulationObject center" z="0"/>
+        <alternateImage objId="mancha" action="saddle" originalSrc="mancha_naked.png" alternateSrc="mancha_saddle_only.png" width="250px" x="70.068359%" y="27.343750%" class="manipulationObject center" z="0"/>
         <alternateImage objId="mancha" action="tied" originalSrc="mancha_loose_reins.png" alternateSrc="mancha_tied.png" width="300px" x="1.367188%" y="33.451702%" class="manipulationObject center" z="0"/>
         <alternateImage objId="mangos" action="appear" originalSrc="mangos.png" alternateSrc="mangos.png" width="100px" x="75.634766%" y="79.048294%" class="manipulationObject center" z="2"/>
         <alternateImage objId="milk" action="appear" originalSrc="milk.png" alternateSrc="milk.png" width="100px" x="90.234375%" y="74.928978%" class="manipulationObject center" z="2"/>

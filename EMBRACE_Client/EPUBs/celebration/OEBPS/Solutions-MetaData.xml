@@ -94,8 +94,9 @@
                 <step number="1">
                     <check obj1Id="sofia" action="getIn" locationId="nearHorse"/>
                     <ungroupAndStay obj1Id="saddle" action="leave" obj2Id="sofia"/>
-                    <move obj1Id="saddle" action="getIn" waypointId="onHorse"/>
+                    <disappearAuto obj1Id="saddle" action="disappear" obj2Id="saddle"/>
                     <move obj1Id="sofia" action="getIn" waypointId="fence2"/>
+                    <swapImage obj1Id="mancha" action="saddle"/>
                 </step>
             </sentence>
             <sentence number="6">
@@ -387,8 +388,10 @@
             <sentence number="2">
                 <step number="1">
                     <check obj1Id="sofia" action="getIn" locationId="nearHorse"/>
-                    <swapImage obj1Id="mancha" action="naked"/>
+                    <swapImage obj1Id="mancha" action="bridle"/>
                     <appear obj1Id="saddle" action="appear"/>
+                    <appear obj1Id="bluesaddlebag" action="appear"/>
+                    <appear obj1Id="brownsaddlebag" action="appear"/>
                     <groupAuto obj1Id="saddle" action="getIn" obj2Id="sofia"/>
                     <move obj1Id="sofia" action="getIn" waypointId="fence2"/>
                 </step>
@@ -402,6 +405,7 @@
             <sentence number="3">
                 <step number="1">
                     <check obj1Id="sofia" action="getIn" locationId="nearHorse"/>
+                    <swapImage obj1Id="mancha" action="naked"/>
                     <appear obj1Id="bridle" action="appear"/>
                     <groupAuto obj1Id="sofia" action="grabFist" obj2Id="bridle"/>
                 </step>
@@ -414,9 +418,12 @@
             </sentence>
             <sentence number="4">
                 <step number="1">
+                    <check obj1Id="sofia" action="getIn" locationId="nearSaddleBags"/>
                     <appear obj1Id="roses_pink" action="appear"/>
                     <appear obj1Id="roses_white" action="appear"/>
                     <swapImage obj1Id="sofia" action="tote3"/>
+                    <swapImage obj1Id="bluesaddlebag" action="open"/>
+                    <swapImage obj1Id="brownsaddlebag" action="open"/>
                     <groupAuto obj1Id="roses_white" action="getIn" obj2Id="sofia"/>
                     <groupAuto obj1Id="sofia" action="pickUp" obj2Id="roses_pink"/>
                 </step>

@@ -3,7 +3,7 @@
     <locations>
         <location locationId="anywhere" x="0%" y="0%" height="100%" width="100%"/>
         <location locationId="calfAway" x="0%" y="0%" height="100%" width="41.9%"/>
-        <location locationId="cashier" x="54.6%" y="50.4%" height="100%" width="100%"/>
+        <location locationId="cashier" x="45%" y="45%" height="35%" width="25%"/>
         <location locationId="corral" x="40.2%" y="0%" height="76.2%" width="59%"/>
         <location locationId="counter" x="30%" y="55%" height="100%" width="100%"/>
         <location locationId="cowAway" x="25%" y="20%" height="100%" width="100%"/>
@@ -22,6 +22,7 @@
         <location locationId="nearHorse" x="63%" y="30%" height="40%" width="100%"/>
         <location locationId="nearHorse2" x="55%" y="13%" height="17%" width="10%"/>
         <location locationId="nearPost" x="3%" y="40%" height="42%" width="26%"/>
+        <location locationId="nearSaddleBags" x="25%" y="45%" height="100%" width="45%"/>
         <location locationId="nearTote" x="0%" y="65%" height="100%" width="16%"/>
         <location locationId="outCorral" x="0%" y="48%" height="100%" width="100%"/>
         <location locationId="rosesWhite" x="70%" y="35%" height="25%" width="100%"/>
