@@ -104,7 +104,7 @@
                     <shakeOrTap obj1Id="man3_ch3" action="getIn" locationId="anywhere"/>
                     <swapImage obj1Id="man3_ch3" action="arrow"/>
                     <appear obj1Id="arrow" action="appear"/>
-                    <animate obj1Id="arrow" action="followAnimation" waypointId="" areaId="arrowPath"/>
+                    <animate obj1Id="arrow" action="shootArrowAnimation" waypointId="" areaId=""/>
                 </step>
             </sentence>
         </story>
@@ -289,6 +289,7 @@
                     <move obj1Id="haida" action="getIn" waypointId="tree1"/>
                     <swapImage obj1Id="tree1" action="stump"/>
                     <appear obj1Id="fallen_tree" action="appear"/>
+                    <animate obj1Id="fallen_tree" action="rotate90Animation" waypointId="" areaId=""/>
                 </step>
             </sentence>
             <sentence number="6">
@@ -348,8 +349,8 @@
                 <step number="1">
                     <check obj1Id="seminole_dad" action="getIn" locationId="swamp"/>
                     <move obj1Id="seminole_dad" action="getIn" waypointId="swampDad"/>
-                    <move obj1Id="seminole_kid" action="getIn" waypointId="swampKid"/>
-                    <move obj1Id="seminole_mom" action="getIn" waypointId="swampMom"/>
+                    <animate obj1Id="seminole_kid" action="moveToAnimation" waypointId="swampKid" areaId=""/>
+                    <animate obj1Id="seminole_mom" action="moveToAnimation" waypointId="swampmom" areaId=""/>
                 </step>
             </sentence>
         </story>

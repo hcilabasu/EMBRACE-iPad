@@ -2,8 +2,12 @@
 <metadata>
     <areas>
         <area areaId="arrowPath" pageId="story3-PM-1">
-            <point x="47.314453%" y="64.630684%"/>
-            <point x="0%" y="64.630684%"/>
+            <point x="41.552734%" y="55.965908%"/>
+            <point x="10%" y="55.965908%"/>
+        </area>
+        <area areaId="crossRiverPath" pageId="story3-PM-1">
+            <point x="41.552734%" y="55.965908%"/>
+            <point x="10%" y="55.965908%"/>
         </area>
     </areas>
 </metadata>

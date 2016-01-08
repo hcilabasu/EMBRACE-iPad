@@ -2006,8 +2006,8 @@ BOOL wasPathFollowed = false;
         }
         //If we're in the middle of moving the object, just call the JS to move it.
         else if(movingObject)  {
-            // The name of the chapter is hard-coded for now
-            if ([chapterTitle isEqualToString:@"Muscles Use Oxygen"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound)) {
+            //set to true for debugging set to false to disable
+            if (false) {
                 
                 // Start drawing the path
                 CGPoint pointLocation = [recognizer locationInView:recognizer.view];
@@ -2016,16 +2016,19 @@ BOOL wasPathFollowed = false;
                     
                     path = [UIBezierPath bezierPath];
                     [path moveToPoint:pointLocation];
-                    /*
+                    
                     shapeLayer = [[CAShapeLayer alloc] init];
                     shapeLayer.strokeColor = [self generateRandomColor].CGColor;
                     shapeLayer.fillColor = [UIColor clearColor].CGColor;
                     shapeLayer.lineWidth = 10.0;
                     [recognizer.view.layer addSublayer:shapeLayer];
-                     */
+                    
                 }
                 else {
                     [path addLineToPoint:pointLocation];
+
+                    NSLog(@"%@", [NSString stringWithFormat:@"<point x=\"%f\%\" y=\"%f\%\"/>", (pointLocation.x*100/[bookView frame].size.width), (pointLocation.y*100/[bookView frame].size.height) ]);
+                    
                     shapeLayer.path = path.CGPath;
                 }
                 
