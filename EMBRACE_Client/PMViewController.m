@@ -648,6 +648,13 @@ BOOL wasPathFollowed = false;
         [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
     }
     
+    //If it is an IM action sentence and in im mode, set its color to blue and automatically perform solution steps if necessary
+    if ([sentenceClass  isEqualToString: @"sentence IMactionSentence"] && currentSentence !=0 && conditionSetup.condition == CONTROL) {
+        setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
+        [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
+    }
+    
+    
     //Set the opacity of all but the current sentence to .2
     for(int i = currentSentence; i < totalSentences; i++) {
         NSString* setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, .2)", i + 1];
@@ -2002,8 +2009,8 @@ BOOL wasPathFollowed = false;
         }
         //If we're in the middle of moving the object, just call the JS to move it.
         else if(movingObject)  {
-            // The name of the chapter is hard-coded for now
-            if ([chapterTitle isEqualToString:@"Muscles Use Oxygen"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound)) {
+            //set to true for debugging set to false to disable
+            if (false) {
                 
                 // Start drawing the path
                 CGPoint pointLocation = [recognizer locationInView:recognizer.view];
@@ -2012,16 +2019,19 @@ BOOL wasPathFollowed = false;
                     
                     path = [UIBezierPath bezierPath];
                     [path moveToPoint:pointLocation];
-                    /*
+                    
                     shapeLayer = [[CAShapeLayer alloc] init];
                     shapeLayer.strokeColor = [self generateRandomColor].CGColor;
                     shapeLayer.fillColor = [UIColor clearColor].CGColor;
                     shapeLayer.lineWidth = 10.0;
                     [recognizer.view.layer addSublayer:shapeLayer];
-                     */
+                    
                 }
                 else {
                     [path addLineToPoint:pointLocation];
+
+                    NSLog(@"%@", [NSString stringWithFormat:@"<point x=\"%f\%\" y=\"%f\%\"/>", (pointLocation.x*100/[bookView frame].size.width), (pointLocation.y*100/[bookView frame].size.height) ]);
+                    
                     shapeLayer.path = path.CGPath;
                 }
                 
@@ -5044,7 +5054,7 @@ BOOL wasPathFollowed = false;
     NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
     
     //If it is an action sentence color it blue
-    if ([sentenceClass  isEqualToString: @"sentence actionSentence"] && conditionSetup.condition == EMBRACE) {
+    if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
         NSString* colorSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
         [bookView stringByEvaluatingJavaScriptFromString:colorSentence];
     }

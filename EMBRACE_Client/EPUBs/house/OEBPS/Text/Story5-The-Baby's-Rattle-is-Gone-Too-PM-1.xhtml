@@ -10,7 +10,7 @@
 
 <body background="../Images/house_day_hook.png">
   <canvas height="704px" id="overlay" width="1024px"></canvas>
-
+  <canvas height="704px" id="animation" width="1024px"></canvas>
   <canvas height="704px" id="highlight" width="1024px"></canvas>
 
   <div class="textbox">
@@ -21,18 +21,28 @@
 
     <p class="sentence actionSentence" id="s2">She looked in her crib, but it wasn't there.</p>
 
-    <p class="sentence actionSentence" id="s3">She looked in the living room, but she couldn't find her <a class="audible">rattle</a>.</p>
+    <p class="sentence actionSentence" id="s3">She looked in the living room, but she couldn't find her <a class="audible">rattle</a> there either.</p>
 
     <p class="sentence" id="s4">The baby started to cry.</p>
 
-    <p class="sentence actionSentence" id="s5">Lola jumped into the baby's lap to <a class="audible">comfort</a> her.</p>
+    <p class="sentence actionSentence" id="s5">Lola the bunny jumped into the baby's lap to <a class="audible">comfort</a> her.</p>
   </div>
 
   <div id="images" class="images">
-    <img alt="baby" class="manipulationObject" id="baby" src="../Images/baby.png" style="top:24%; left:35%; z-index:1;" /> <img alt="bed" class="backgroundObject" id="bed" src="../Images/bed.png" style="top:41%; left:8.75%; z-index:0" width="120px" /> <img alt="cribb" class="backgroundObject" id="cribb" src="../Images/cribb.png" style="top:50.5%; left:24.5%; z-index:0" /> <img alt="cribf" class="backgroundObject" id="cribf" src="../Images/cribf.png" style="top:50.5%; left:24.5%; z-index:2" /> <img alt="dog" class="manipulationObject" id="dog" src="../Images/dog.png" style="top:75%; left:60%; z-index:2" width="110px" /> <img alt="nest" class="backgroundObject" id="nest" src="../Images/nest_day.png" style="top:52%; left:85%; z-index:1" /> <img alt="rabbit" class="manipulationObject" id="rabbit" src="../Images/rabbit.png" style="top:82%; left:50%; z-index:1" /> <img alt="spoon" class="manipulationObject" id="spoon" src="../Images/spoon.png" style="top:74%; left:11.5%; z-index:1" width="50px" /> <img alt="tree" class="manipulationObject" id="tree" src="../Images/tree_day.png" style="top:29%; left:71%; z-index:0" /> <img alt="woman" class="manipulationObject" id="woman" src="../Images/woman.png" style="top:43.5%; left:13%; z-index:3" />
+    <img alt="baby" class="manipulationObject" id="baby" src="../Images/baby.png" style="top:24%; left:35%; z-index:1;" />
+    <img alt="bed" class="backgroundObject" id="bed" src="../Images/bed.png" style="top:41%; left:8.75%; z-index:0" width="120px" />
+    <img alt="cribb" class="backgroundObject" id="cribb" src="../Images/cribb.png" style="top:50.5%; left:24.5%; z-index:0" />
+    <img alt="cribf" class="backgroundObject" id="cribf" src="../Images/cribf.png" style="top:50.5%; left:24.5%; z-index:2" />
+    <img alt="dog" class="manipulationObject" id="dog" src="../Images/dog.png" style="top:75%; left:60%; z-index:2" width="110px" />
+    <img alt="nest" class="backgroundObject" id="nest" src="../Images/nest_day.png" style="top:52%; left:85%; z-index:1" />
+    <img alt="rabbit" class="manipulationObject" id="rabbit" src="../Images/rabbit.png" style="top:82%; left:50%; z-index:1" />
+    <img alt="spoon" class="manipulationObject" id="spoon" src="../Images/spoon.png" style="top:74%; left:11.5%; z-index:1" width="50px" />
+    <img alt="tree" class="manipulationObject" id="tree" src="../Images/tree_day.png" style="top:29%; left:71%; z-index:0" />
+    <img alt="woman" class="manipulationObject" id="woman" src="../Images/woman.png" style="top:43.5%; left:13%; z-index:3" />
     
-    <img alt="baby_IM" class="backgroundObject" id="baby_IM" src="../Images/baby_large_high_res.png" style="top:24%; left:35%; z-index:-1;" />
-    <img alt="crib_IM" class="backgroundObject" id="crib_IM" src="../Images/cribb_large_high_res.png" style="top:50.5%; left:24.5%; z-index:-2" />
+    <img alt="baby_IM" class="backgroundObject" id="baby_IM" src="../Images/baby_large_high_res.png" style="top:24%; left:35%; z-index:-2;" />
+    <img alt="lola_IM" class="backgroundObject" id="lola_IM" src="../Images/rabbit_large_high_res.png" style="top:82%; left:50%; z-index:-1" width="300px"/>
+    
   </div>
 </body>
 </html>

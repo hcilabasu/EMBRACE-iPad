@@ -372,7 +372,7 @@
                 <Answer3Audio>VolcanoesQ7A3.mp3</Answer3Audio>
                 <Answer4>Because it is so big, you can get lost</Answer4>
                 <Answer4Audio>VolcanoesQ7A4.mp3</Answer4Audio>
-                <expectedSelection>because the volcano is still spewing lava and can kill people</expectedSelection>
+                <expectedSelection>Because the volcano is still spewing lava and can kill people</expectedSelection>
             </Question>
             <Question number="8">
                 <QuestionText>Before the lava spews out of the volcano, where does it come from?</QuestionText>
@@ -426,7 +426,7 @@
                 <Answer3Audio>TornadosQ3A3.mp3</Answer3Audio>
                 <Answer4>Forever!</Answer4>
                 <Answer4Audio>TornadosQ3A4.mp3</Answer4Audio>
-                <expectedSelection>finding out who stole the shiny things</expectedSelection>
+                <expectedSelection>A few minutes</expectedSelection>
             </Question>
             <Question number="4">
                 <QuestionText>Why do tornados look brown or gray?</QuestionText>

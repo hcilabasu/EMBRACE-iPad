@@ -29,7 +29,6 @@
                     <ungroup obj1Id="papa" action="drop" obj2Id="bottle"/>
                     <swapImage obj1Id="bottle" action="empty"/>
                     <groupAuto obj1Id="papa" action="grabRight" obj2Id="bottle"/>
-                    <move obj1Id="papa" action="getIn" waypointId="papaLivingRoom"/>
                     <appear obj1Id="note" action="appear"/>
                     <appear obj1Id="stone" action="appear"/>
                 </step>

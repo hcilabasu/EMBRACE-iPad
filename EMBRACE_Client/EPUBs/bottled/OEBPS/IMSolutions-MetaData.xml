@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <solutions>
+        <story title="The Lucky Stone" activity_id="story1-PM-1">
+            <sentence number="4">
+                <step number="1">
+                    <group obj1Id="lucasIM" action="hold" obj2Id="bottleIM"/>
+                    <group obj1Id="lucasIM" action="standOn" obj2Id="bottleIM"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="The Lucky Stone" activity_id="story1-PM-2">
+            <sentence number="10">
+                <step number="1">
+                    <group obj1Id="lucasIM" action="hold" obj2Id="stoneIM"/>
+                    <group obj1Id="lucasIM" action="hold" obj2Id="bottleIM"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Magic Toys" activity_id="story2-PM-1">
+            <sentence number="2">
+                <step number="1">
+                    <group obj1Id="lucasSittingIM" action="sitOn" obj2Id="benchIM"/>
+                    <group obj1Id="lucasIM" action="standBy" obj2Id="benchIM"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Magic Toys" activity_id="story2-PM-2">
+            <sentence number="7">
+                <step number="1">
+                    <group obj1Id="lucasIM" action="hold" obj2Id="ballIM"/>
+                    <group obj1Id="lucasIM" action="hold" obj2Id="bottleIM"/>
+                </step>
+            </sentence>
+        </story>
         <story title="Words of Wisdom" activity_id="story4-PM-1">
             <sentence number="3">
                 <step number="1">
@@ -28,7 +60,7 @@
         <story title="Catch!" activity_id="story5-PM-2">
             <sentence number="6">
                 <step number="1">
-                    <group obj1Id="bottleIM" action="behind" obj2Id="bushIM"/>
+                    <group obj1Id="bottleBehindIM" action="behind" obj2Id="bushIM"/>
                     <group obj1Id="bottleIM" action="front" obj2Id="bushIM"/>
                 </step>
             </sentence>

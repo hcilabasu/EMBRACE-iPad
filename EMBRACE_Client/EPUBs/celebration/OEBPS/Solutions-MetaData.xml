@@ -2,7 +2,7 @@
 <metadata>
     <solutions>
         <story title="Key Ingredients" activity_id="story1-PM-2">
-            <sentence number="4">
+            <sentence number="5">
                 <step number="1">
                     <group obj1Id="sofia" action="pickUp" obj2Id="chili"/>
                     <move obj1Id="sofia" action="getIn" waypointId="nearChili"/>
@@ -13,7 +13,7 @@
                     <move obj1Id="sofia" action="getIn" waypointId="nearMom"/>
                 </step>
             </sentence>
-            <sentence number="6">
+            <sentence number="7">
                 <step number="1">
                     <check obj1Id="sofia" action="getIn" locationId="nearChampoorado"/>
                     <swapImage obj1Id="sofia" action="spoon"/>
@@ -21,7 +21,7 @@
             </sentence>
         </story>
         <story title="Key Ingredients" activity_id="story1-PM-3">
-            <sentence number="8">
+            <sentence number="9">
                 <step number="1">
                     <group obj1Id="sofia" action="grabLeft" obj2Id="notebook"/>
                     <move obj1Id="sofia" action="getIn" waypointId="nearChili"/>
@@ -32,7 +32,7 @@
                     <move obj1Id="sofia" action="getIn" waypointId="nearMom"/>
                 </step>
             </sentence>
-            <sentence number="10">
+            <sentence number="11">
                 <step number="1">
                     <ungroupAndStay obj1Id="notebook" action="getOut" obj2Id="mom"/>
                     <move obj1Id="notebook" action="getIn" waypointId="notebookCounter"/>
@@ -46,7 +46,7 @@
                     <swapImage obj1Id="mom" action="tote"/>
                 </step>
             </sentence>
-            <sentence number="11">
+            <sentence number="12">
                 <step number="1">
                     <group obj1Id="mom" action="moveTo" obj2Id="sofia"/>
                     <ungroupAndStay obj1Id="mom" action="leave" obj2Id="sofia"/>
@@ -54,7 +54,7 @@
                     <swapImage obj1Id="sofia" action="tote"/>
                 </step>
             </sentence>
-            <sentence number="12">
+            <sentence number="13">
                 <step number="1">
                     <group obj1Id="mom" action="grabLeft" obj2Id="pesos"/>
                     <move obj1Id="mom" action="getIn" waypointId="nearPesos"/>
@@ -65,7 +65,7 @@
                     <move obj1Id="mom" action="getIn" waypointId="nearPesos"/>
                 </step>
             </sentence>
-            <sentence number="13">
+            <sentence number="14">
                 <step number="1">
                     <check obj1Id="sofia" action="getIn" locationId="door"/>
                     <swapImage obj1Id="sofia" action="door"/>
@@ -94,8 +94,9 @@
                 <step number="1">
                     <check obj1Id="sofia" action="getIn" locationId="nearHorse"/>
                     <ungroupAndStay obj1Id="saddle" action="leave" obj2Id="sofia"/>
-                    <move obj1Id="saddle" action="getIn" waypointId="onHorse"/>
+                    <disappearAuto obj1Id="saddle" action="disappear" obj2Id="saddle"/>
                     <move obj1Id="sofia" action="getIn" waypointId="fence2"/>
+                    <swapImage obj1Id="mancha" action="saddle"/>
                 </step>
             </sentence>
             <sentence number="6">
@@ -261,20 +262,22 @@
                     <disappearAuto obj1Id="spinach" action="disappear" obj2Id="spinach"/>
                     <move obj1Id="sofia" action="getIn" waypointId="spinach"/>
                 </step>
-                <step number="2">
+            </sentence>
+            <sentence number="7">
+                <step number="1">
                     <group obj1Id="sofia" action="grabHigh" obj2Id="mangos"/>
                     <ungroupAndStay obj1Id="sofia" action="drop" obj2Id="mangos"/>
                     <disappearAuto obj1Id="mangos" action="disappear" obj2Id="mangos"/>
                     <move obj1Id="sofia" action="getIn" waypointId="produce"/>
                 </step>
-                <step number="3">
+                <step number="2">
                     <group obj1Id="sofia" action="grabHigh" obj2Id="garlic"/>
                     <ungroupAndStay obj1Id="sofia" action="drop" obj2Id="garlic"/>
                     <disappearAuto obj1Id="garlic" action="disappear" obj2Id="garlic"/>
                     <move obj1Id="sofia" action="getIn" waypointId="produce"/>
                 </step>
             </sentence>
-            <sentence number="7">
+            <sentence number="8">
                 <step number="1">
                     <group obj1Id="sofia" action="grabHigh" obj2Id="milk"/>
                     <move obj1Id="sofia" action="getIn" waypointId="milk"/>
@@ -282,7 +285,7 @@
             </sentence>
         </story>
         <story title="Shopping at the Market" activity_id="story4-PM-4">
-            <sentence number="8">
+            <sentence number="9">
                 <step number="1">
                     <check obj1Id="sofia" action="getIn" locationId="cashier"/>
                     <ungroupAndStay obj1Id="pesos" action="getOut" obj2Id="sofia"/>
@@ -290,7 +293,7 @@
                     <move obj1Id="pesos" action="getIn" waypointId="msPena"/>
                 </step>
             </sentence>
-            <sentence number="9">
+            <sentence number="10">
                 <step number="1">
                     <check obj1Id="sofia" action="getIn" locationId="nearPost"/>
                     <swapImage obj1Id="sofia" action="noTote2"/>
@@ -387,8 +390,10 @@
             <sentence number="2">
                 <step number="1">
                     <check obj1Id="sofia" action="getIn" locationId="nearHorse"/>
-                    <swapImage obj1Id="mancha" action="naked"/>
+                    <swapImage obj1Id="mancha" action="bridle"/>
                     <appear obj1Id="saddle" action="appear"/>
+                    <appear obj1Id="bluesaddlebag" action="appear"/>
+                    <appear obj1Id="brownsaddlebag" action="appear"/>
                     <groupAuto obj1Id="saddle" action="getIn" obj2Id="sofia"/>
                     <move obj1Id="sofia" action="getIn" waypointId="fence2"/>
                 </step>
@@ -402,6 +407,7 @@
             <sentence number="3">
                 <step number="1">
                     <check obj1Id="sofia" action="getIn" locationId="nearHorse"/>
+                    <swapImage obj1Id="mancha" action="naked"/>
                     <appear obj1Id="bridle" action="appear"/>
                     <groupAuto obj1Id="sofia" action="grabFist" obj2Id="bridle"/>
                 </step>
@@ -414,9 +420,12 @@
             </sentence>
             <sentence number="4">
                 <step number="1">
+                    <check obj1Id="sofia" action="getIn" locationId="nearSaddleBags"/>
                     <appear obj1Id="roses_pink" action="appear"/>
                     <appear obj1Id="roses_white" action="appear"/>
                     <swapImage obj1Id="sofia" action="tote3"/>
+                    <swapImage obj1Id="bluesaddlebag" action="open"/>
+                    <swapImage obj1Id="brownsaddlebag" action="open"/>
                     <groupAuto obj1Id="roses_white" action="getIn" obj2Id="sofia"/>
                     <groupAuto obj1Id="sofia" action="pickUp" obj2Id="roses_pink"/>
                 </step>

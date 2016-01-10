@@ -34,11 +34,46 @@
         <hotspot objId="woman" action="moveTo" role="subject" x="0%" y="100%"/>
         <hotspot objId="woman" action="pickUp" role="subject" x="50%" y="50%"/>
         
-        <hotspot objId="baby_IM" action="getIn" role="subject" x="100%" y="50%"/>
-        <hotspot objId="baby_IM" action="getOut" role="subject" x="90%" y="50%"/>
+        <hotspot objId="martinIM" action="standBy" role="object" x="0%" y="50%"/>
+        <hotspot objId="martinInsideIM" action="getIn" role="object" x="80%" y="55%"/>
+        <hotspot objId="carIM" action="standBy" role="subject" x="50%" y="50%"/>
+        <hotspot objId="carIM" action="getIn" role="subject" x="50%" y="50%"/>
+        
+        <hotspot objId="martinIM" action="standWith" role="object" x="30%" y="50%"/>
+        <hotspot objId="pacoIM" action="standWith" role="subject" x="130%" y="120%"/>
+        <hotspot objId="lolaIM" action="standWith" role="subject" x="50%" y="50%"/>
+        
+        <hotspot objId="babyIM" action="sitIn" role="object" x="60%" y="70%"/>
+        <hotspot objId="babyIM" action="standBy" role="object" x="40%" y="50%"/>
+        <hotspot objId="highchairIM" action="sitIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="highchairIM" action="standBy" role="subject" x="50%" y="50%"/>
+        
+        <hotspot objId="highchairfrontIM" action="getIn" role="object" x="50%" y="50%"/>
+        <hotspot objId="highchairIM" action="getIn" role="subject" x="50%" y="50%"/>
+        
+        <hotspot objId="keysIM" action="layBy" role="object" x="0%" y="0%"/>
+        <hotspot objId="treeIM" action="layBy" role="subject" x="70%" y="80%"/>
+        
+        <hotspot objId="pacoIM" action="getIn" role="object" x="80%" y="50%"/>
+        <hotspot objId="pacoFlipIM" action="getInFlip" role="object" x="20%" y="50%"/>
+        <hotspot objId="keysIM" action="getIn" role="subject" x="10%" y="80%"/>
+        <hotspot objId="keysIM" action="getInFlip" role="subject" x="100%" y="60%"/>
+        
+        <hotspot objId="pacoIM" action="face" role="object" x="0%" y="0%"/>
+        <hotspot objId="pacoFlipIM" action="faceAway" role="object" x="0%" y="0%"/>
+        <hotspot objId="houseIM" action="face" role="subject" x="70%" y="70%"/>
+        <hotspot objId="houseIM" action="faceAway" role="subject" x="70%" y="70%"/>
+        
+        <hotspot objId="baby_IM" action="inLap" role="subject" x="50%" y="50%"/>
+        <hotspot objId="baby_IM" action="onHead" role="subject" x="50%" y="50%"/>
             
-        <hotspot objId="crib_IM" action="getIn" role="object" x="70%" y="50%"/>
-        <hotspot objId="crib_IM" action="getOut" role="object" x="0%" y="50%"/>
+        <hotspot objId="lola_IM" action="inLap" role="object" x="50%" y="0%"/>
+        <hotspot objId="lola_IM" action="onHead" role="object" x="50%" y="150%"/>
+        
+        <hotspot objId="cribdoor_IM" action="closeDoor" role="object" x="50%" y="50%"/>
+        <hotspot objId="cribclosed_IM" action="closeDoor" role="subject" x="50%" y="50%"/>
+        <hotspot objId="cribdoor_IM" action="closeDoor" role="subject" x="50%" y="50%"/>
+        <hotspot objId="cribclosed_IM" action="closeDoor" role="object" x="50%" y="50%"/>
         
         <hotspot objId="dog_IM" action="visit" role="object" x="100%" y="100%"/>
         <hotspot objId="rabbit_IM" action="visit" role="subject" x="100%" y="100%"/>
@@ -46,10 +81,10 @@
         <hotspot objId="tree_IM" action="visit" role="object" x="100%" y="100%"/>
         <hotspot objId="tree_IM" action="visit" role="subject" x="100%" y="100%"/>
             
-        <hotspot objId="keys_IM" action="on" role="subject" x="50%" y="10%"/>
+        <hotspot objId="keys_on_hookIM" action="on" role="subject" x="50%" y="50%"/>
         <hotspot objId="keys_IM" action="off" role="subject" x="100%" y="50%"/>
         
-        <hotspot objId="hook_IM" action="on" role="object" x="50%" y="50%"/>
+        <hotspot objId="keys_on_hookIM" action="on" role="object" x="50%" y="50%"/>
         <hotspot objId="hook_IM" action="off" role="object" x="10%" y="50%"/>
         
         <hotspot objId="bird_IM" action="pickUp" role="subject" x="50%" y="80%"/>

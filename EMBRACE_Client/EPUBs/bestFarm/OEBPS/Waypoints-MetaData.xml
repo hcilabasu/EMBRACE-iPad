@@ -6,6 +6,7 @@
     <waypoint waypointId="catDrink" x="35%" y="85%"/>
     <waypoint waypointId="catInNest" x="23%" y="31%"/>
     <waypoint waypointId="chickenInNest" x="14%" y="31%"/>
+    <waypoint waypointId="chickenNextToNest" x="21%" y="36%"/>
     <waypoint waypointId="combGoat" x="53%" y="76.25%"/>
     <waypoint waypointId="corralDoorClose" x="69%" y="80%"/>
     <waypoint waypointId="corralDoorOpen" x="49%" y="80%"/>

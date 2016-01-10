@@ -118,8 +118,26 @@ function animFrame(object){
     else if(object.animName == "fallAnimation") {
         fall(object);
     }
+    else if(object.animName == "rotate90Animation") {
+        rotate90(object);
+    }
+    else if(object.animName == "rotate180Animation") {
+        rotate180(object);
+    }
+    else if(object.animName == "rotate270Animation") {
+        rotate270(object);
+    }
+    else if(object.animName == "moveToAnimation") {
+        moveTo(object);
+    }
+    else if(object.animName == "shootArrowAnimation") {
+        shootArrow(object);
+    }
     else if(object.animName == "bobAnimation") {
         bob(object);
+    }
+    else if(object.animName == "earthquakeAnimation") {
+        earthquake(object);
     }
     else if(object.animName == "cheerAnimation") {
         cheer(object);
@@ -133,6 +151,7 @@ function animFrame(object){
     else if(object.animName == "rollAnimation") {
         roll(object);
     }
+    
 }
 
 function cancelAnimation(objectName) {
@@ -196,6 +215,23 @@ function bob(aniObject) {
         aniObject.tempY += 0.1;
         aniObject.y += waveHeight;
         aniObject.object.style.top = aniObject.y + "px";
+    }
+    else {
+        cancelAnimationFrame(requestId);
+    }
+}
+
+function earthquake(aniObject) {
+    var t1 = new Date().getTime();
+    aniObject.dt = 0.001*(t1-aniObject.t0);
+    var seconds = Math.round(aniObject.dt % 60);
+    
+    if (seconds < 4) {
+        var waveWidth = Math.sin(aniObject.tempY);
+        waveWidth = waveWidth/4;
+        aniObject.tempY += 0.1;
+        aniObject.x += waveWidth;
+        aniObject.object.style.left = aniObject.x + "px";
     }
     else {
         cancelAnimationFrame(requestId);
@@ -591,6 +627,7 @@ function roll(aniObject) {
 	animCtx.translate(aniObject.location.x, aniObject.location.y);
 	animCtx.rotate(aniObject.angle);
 	animCtx.translate(-aniObject.location.x, -aniObject.location.y);
+    
     // Image width and height hard-coded for now for the lava image
     animCtx.drawImage(aniObject.object,aniObject.location.x,aniObject.location.y, 40, 40);
 	animCtx.restore();
@@ -598,9 +635,45 @@ function roll(aniObject) {
     checkEndingForRoll(aniObject);
 }
 
+function rotate90(aniObject) {
+    
+    aniObject.object.style.WebkitTransitionDuration='3s';
+    aniObject.object.style.webkitTransform = 'translate(150px, 250px) rotate(90deg)';
+
+}
+
+function rotate180(aniObject) {
+    
+    aniObject.object.style.WebkitTransitionDuration='2s';
+    aniObject.object.style.webkitTransform = 'rotate(180deg)';
+    
+}
+
+function rotate270(aniObject) {
+    
+    aniObject.object.style.WebkitTransitionDuration='2s';
+    aniObject.object.style.webkitTransform = 'rotate(270deg)';
+    
+}
+
+function moveTo(aniObject) {
+    
+    aniObject.object.style.WebkitTransitionDuration='4s';
+    aniObject.object.style.webkitTransform = 'translate(-280px, 158px)';
+    
+}
+
+function shootArrow(aniObject) {
+    
+    aniObject.object.style.WebkitTransitionDuration='4s';
+    aniObject.object.style.webkitTransform = 'translate(-600px, 30px)';
+    
+}
+
+
 function checkEndingForRoll(aniObject) {
     // The ending value is hard-coded for now, it should be gotten from the ending waypoint for the object
-    if(aniObject.location.x > 578) {
+    if(aniObject.location.x > 1000) {
         //aniObject.location.x = aniObject.ix;
         //aniObject.location.y = aniObject.iy;
         cancelAnimationFrame(requestId);

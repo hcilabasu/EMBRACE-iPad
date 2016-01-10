@@ -476,7 +476,7 @@
                 <Answer3Audio>CatchQ5A3.mp3</Answer3Audio>
                 <Answer4>Because it had bugs in it</Answer4>
                 <Answer4Audio>CatchQ5A4.mp3</Answer4Audio>
-                <expectedSelection>To hide it form Lucas</expectedSelection>
+                <expectedSelection>To hide it from Lucas</expectedSelection>
             </Question>
             <Question number="6">
                 <QuestionText>What do you think Olivia would have wished for?</QuestionText>

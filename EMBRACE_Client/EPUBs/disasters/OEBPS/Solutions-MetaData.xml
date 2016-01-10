@@ -46,6 +46,7 @@
                     <ungroup obj1Id="north_america" action="leave" obj2Id="california"/>
                     <swapImage obj1Id="north_america" action="crack"/>
                     <swapImage obj1Id="california" action="crack"/>
+                    <animate obj1Id="california" action="earthquakeAnimation" waypointId="californiaEarthquake" areaId=""/>
                 </step>
             </sentence>
         </story>
@@ -68,6 +69,7 @@
                 <step number="1">
                     <shakeOrTap obj1Id="houses" action="getIn" locationId="anywhere"/>
                     <swapImage obj1Id="houses" action="fall"/>
+                    <animate obj1Id="california" action="earthquakeAnimation" waypointId="californiaEarthquake" areaId=""/>
                 </step>
             </sentence>
         </story>
@@ -179,6 +181,8 @@
             <sentence number="3">
                 <step number="1">
                     <shakeOrTap obj1Id="air_blue" action="getIn" locationId="anywhere"/>
+                    <move obj1Id="droplet_group" action="getIn" waypointId="droplet_stay"/>
+                    <animate obj1Id="air_particle" action="followAnimation" waypointId="" areaId="blue_air_area"/>
                 </step>
             </sentence>
             <sentence number="4">
