@@ -2247,6 +2247,9 @@
 		C30D07A51BABC0B400DF53F1 /* Foundation.framework in Resources */ = {isa = PBXBuildFile; fileRef = 31953E4A1729ECC100570087 /* Foundation.framework */; };
 		C30D07A61BABC0B400DF53F1 /* CoreGraphics.framework in Resources */ = {isa = PBXBuildFile; fileRef = 31953E4C1729ECC100570087 /* CoreGraphics.framework */; };
 		C32DA0E11BF92A52006C2418 /* Progress.m in Sources */ = {isa = PBXBuildFile; fileRef = C32DA0E01BF92A52006C2418 /* Progress.m */; };
+		C34CC3691C43578D0075B58E /* library_background.png in Resources */ = {isa = PBXBuildFile; fileRef = C39DFB851BD81341005C3975 /* library_background.png */; };
+		C34CC36A1C43578D0075B58E /* library_header1.png in Resources */ = {isa = PBXBuildFile; fileRef = C39DFB861BD81341005C3975 /* library_header1.png */; };
+		C34CC36B1C43578D0075B58E /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = C35F427A1BDAAD3600B4BCF0 /* checkmark.png */; };
 		C35F427C1BDAAD3600B4BCF0 /* bookmark.png in Resources */ = {isa = PBXBuildFile; fileRef = C35F42791BDAAD3600B4BCF0 /* bookmark.png */; };
 		C35F427E1BDAAD3600B4BCF0 /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = C35F427B1BDAAD3600B4BCF0 /* lock.png */; };
 		C36473EE1A9AA5C100FD7494 /* AlternateSentence.m in Sources */ = {isa = PBXBuildFile; fileRef = C36473ED1A9AA5C100FD7494 /* AlternateSentence.m */; };
@@ -7621,7 +7624,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C34CC3691C43578D0075B58E /* library_background.png in Resources */,
+				C34CC36A1C43578D0075B58E /* library_header1.png in Resources */,
+				C34CC36B1C43578D0075B58E /* checkmark.png in Resources */,
 				C3B66A931BBF0D54005DF0AC /* BookCellView.xib in Resources */,
+				5C28DD011C2BA66E005ACD07 /* Story2-The-Inuit-Igloo-Title.xhtml in Resources */,
 				C30D079B1BABC0B400DF53F1 /* InfoPlist.strings in Resources */,
 				5C28DCD01C2BA66E005ACD07 /* shovel_withsnow.png in Resources */,
 				C30D079C1BABC0B400DF53F1 /* main.m in Resources */,

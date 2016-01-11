@@ -51,11 +51,12 @@ ConditionSetup *conditionSetup;
     [super viewDidLoad];
     
     //Add background image
-    UIImageView* backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"library_background"]];
-    [backgroundImageView setFrame:CGRectMake(0, 0, self.libraryView.frame.size.height, self.libraryView.frame.size.width)];
-    [self.libraryView addSubview:backgroundImageView];
-    [self.libraryView sendSubviewToBack:backgroundImageView];
-    
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    [[UIImage imageNamed:@"library_background"] drawInRect:self.view.bounds];
+    UIImage* backgroundImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    self.view.backgroundColor = [UIColor colorWithPatternImage:backgroundImage];
+
     //Register cells used to display books and chapters
     [self.libraryView registerClass:[LibraryCellView class] forCellWithReuseIdentifier:@"LibraryCellView"];
     [self.libraryView registerClass:[BookCellView class] forCellWithReuseIdentifier:@"BookCellView"];
