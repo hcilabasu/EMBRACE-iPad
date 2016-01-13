@@ -21,7 +21,7 @@
         <hotspot objId="inuit" action="pickUp" role="subject" x="50%" y="50%"/>
         <hotspot objId="ladder" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="ladder" action="pickUp" role="object" x="50%" y="50%"/>
-        <hotspot objId="liftingpole" action="grabLeft" role="object" x="50%" y="75%"/>
+        <hotspot objId="liftingpole" action="grabLeft" role="object" x="25.3%" y="75%"/>
         <hotspot objId="log1" action="roll" role="object" x="50%" y="20%"/>
         <hotspot objId="log_ch6" action="pickUp" role="object" x="50%" y="50%"/>
         <hotspot objId="man_ch4" action="getIn" role="object" x="50%" y="50%"/>

@@ -1170,7 +1170,6 @@
 		5C28DCA61C2BA66E005ACD07 /* introduction_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C28DBDE1C2BA66E005ACD07 /* introduction_background.png */; };
 		5C28DCA71C2BA66E005ACD07 /* inuit.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C28DBDF1C2BA66E005ACD07 /* inuit.png */; };
 		5C28DCA81C2BA66E005ACD07 /* ladder.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C28DBE01C2BA66E005ACD07 /* ladder.png */; };
-		5C28DCA91C2BA66E005ACD07 /* liftingpole.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C28DBE11C2BA66E005ACD07 /* liftingpole.png */; };
 		5C28DCAA1C2BA66E005ACD07 /* log.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C28DBE21C2BA66E005ACD07 /* log.png */; };
 		5C28DCAB1C2BA66E005ACD07 /* log_ch6.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C28DBE31C2BA66E005ACD07 /* log_ch6.png */; };
 		5C28DCAC1C2BA66E005ACD07 /* log_flip.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C28DBE41C2BA66E005ACD07 /* log_flip.png */; };
@@ -1291,6 +1290,7 @@
 		5C28DD1F1C2BA66E005ACD07 /* VocabularyIntroductions-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5C28DC591C2BA66E005ACD07 /* VocabularyIntroductions-MetaData.xml */; };
 		5C28DD201C2BA66E005ACD07 /* Waypoints-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5C28DC5A1C2BA66E005ACD07 /* Waypoints-MetaData.xml */; };
 		5C466ADC192293290056EA4B /* Translation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C466ADB192293290056EA4B /* Translation.m */; };
+		5C5C6FD91C45ADE9002A67F9 /* liftingpole.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C5C6FD81C45ADE9002A67F9 /* liftingpole.png */; };
 		5CA9555F1C3237690038FB56 /* container.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5CA955331C3237690038FB56 /* container.xml */; };
 		5CA955601C3237690038FB56 /* mimetype in Resources */ = {isa = PBXBuildFile; fileRef = 5CA955341C3237690038FB56 /* mimetype */; };
 		5CA955611C3237690038FB56 /* AlternateImages-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5CA955361C3237690038FB56 /* AlternateImages-MetaData.xml */; };
@@ -4006,7 +4006,6 @@
 		5C28DBDE1C2BA66E005ACD07 /* introduction_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = introduction_background.png; sourceTree = "<group>"; };
 		5C28DBDF1C2BA66E005ACD07 /* inuit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inuit.png; sourceTree = "<group>"; };
 		5C28DBE01C2BA66E005ACD07 /* ladder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ladder.png; sourceTree = "<group>"; };
-		5C28DBE11C2BA66E005ACD07 /* liftingpole.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = liftingpole.png; sourceTree = "<group>"; };
 		5C28DBE21C2BA66E005ACD07 /* log.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = log.png; sourceTree = "<group>"; };
 		5C28DBE31C2BA66E005ACD07 /* log_ch6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = log_ch6.png; sourceTree = "<group>"; };
 		5C28DBE41C2BA66E005ACD07 /* log_flip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = log_flip.png; sourceTree = "<group>"; };
@@ -4128,6 +4127,7 @@
 		5C28DC5A1C2BA66E005ACD07 /* Waypoints-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Waypoints-MetaData.xml"; sourceTree = "<group>"; };
 		5C466ADA192293290056EA4B /* Translation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Translation.h; sourceTree = "<group>"; };
 		5C466ADB192293290056EA4B /* Translation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Translation.m; sourceTree = "<group>"; };
+		5C5C6FD81C45ADE9002A67F9 /* liftingpole.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = liftingpole.png; sourceTree = "<group>"; };
 		5C776A3719C17F39000DBC65 /* BFTC0.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = BFTC0.m4a; sourceTree = "<group>"; };
 		5C776A3819C17F39000DBC65 /* BFTC1.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = BFTC1.m4a; sourceTree = "<group>"; };
 		5C776A3919C17F39000DBC65 /* BFTC2.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = BFTC2.m4a; sourceTree = "<group>"; };
@@ -6208,6 +6208,7 @@
 		5C28DB9A1C2BA66E005ACD07 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5C5C6FD81C45ADE9002A67F9 /* liftingpole.png */,
 				5C28DB9B1C2BA66E005ACD07 /* arrow.png */,
 				5C28DB9C1C2BA66E005ACD07 /* axe.png */,
 				5C28DB9D1C2BA66E005ACD07 /* background_ch2.png */,
@@ -6278,7 +6279,6 @@
 				5C28DBDE1C2BA66E005ACD07 /* introduction_background.png */,
 				5C28DBDF1C2BA66E005ACD07 /* inuit.png */,
 				5C28DBE01C2BA66E005ACD07 /* ladder.png */,
-				5C28DBE11C2BA66E005ACD07 /* liftingpole.png */,
 				5C28DBE21C2BA66E005ACD07 /* log.png */,
 				5C28DBE31C2BA66E005ACD07 /* log_ch6.png */,
 				5C28DBE41C2BA66E005ACD07 /* log_flip.png */,
@@ -8335,7 +8335,6 @@
 				1A6320F61C0E4D3B00251CB3 /* mancha_blue_saddlebag_open.png in Resources */,
 				1A880E7D1BD6E4980020F93B /* WhyWeBreatheQ3A4.mp3 in Resources */,
 				1A6323261C0E4D3B00251CB3 /* maria_skateboard.png in Resources */,
-				5C28DCA91C2BA66E005ACD07 /* liftingpole.png in Resources */,
 				C30D03431BABBFE800DF53F1 /* MoreIsMissingQ2A4.mp3 in Resources */,
 				C30D03441BABBFE800DF53F1 /* MoreIsMissingQ3.mp3 in Resources */,
 				1A6321731C0E4D3B00251CB3 /* lungs_1.png in Resources */,
@@ -8629,6 +8628,7 @@
 				1A6321AA1C0E4D3B00251CB3 /* Story3-Muscles-Use-Oxygen-IM-1.xhtml in Resources */,
 				1A6320201C0E4D3B00251CB3 /* hay_large.png in Resources */,
 				C30D03B41BABBFE800DF53F1 /* IsPacoAThiefQ4A2.mp3 in Resources */,
+				5C5C6FD91C45ADE9002A67F9 /* liftingpole.png in Resources */,
 				1A6321D71C0E4D3B00251CB3 /* air_red.png in Resources */,
 				1A63230C1C0E4D3B00251CB3 /* cart.png in Resources */,
 				1A6320871C0E4D3B00251CB3 /* bottle_picture.png in Resources */,
