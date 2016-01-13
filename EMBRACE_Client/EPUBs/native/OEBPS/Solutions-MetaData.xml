@@ -91,7 +91,7 @@
             </sentence>
         </story>
         <story title="The Sioux Teepee" activity_id="story3-PM-1">
-            <sentence number="2">
+            <sentence number="3">
                 <step number="1">
                     <check obj1Id="man3_ch3" action="getIn" locationId="siouxForward"/>
                     <move obj1Id="man3_ch3" action="getIn" waypointId="man3Forward"/>
@@ -99,7 +99,7 @@
                     <move obj1Id="man1_ch3" action="getIn" waypointId="man1Forward"/>
                 </step>
             </sentence>
-            <sentence number="3">
+            <sentence number="4">
                 <step number="1">
                     <checkAndSwap obj1Id="man3_ch3" action="arrow"/>
                     <appear obj1Id="arrow" action="appear"/>
@@ -108,7 +108,7 @@
             </sentence>
         </story>
         <story title="The Sioux Teepee" activity_id="story3-PM-2">
-            <sentence number="8">
+            <sentence number="9">
                 <step number="1">
                     <group obj1Id="standing_sioux" action="pickUp" obj2Id="travois_supplies"/>
                 </step>
@@ -122,7 +122,7 @@
             </sentence>
         </story>
         <story title="The Sioux Teepee" activity_id="story3-PM-3">
-            <sentence number="10">
+            <sentence number="11">
                 <step number="1">
                     <group obj1Id="standing_sioux" action="grab" obj2Id="ropecoil"/>
                 </step>
@@ -136,7 +136,7 @@
             </sentence>
         </story>
         <story title="The Sioux Teepee" activity_id="story3-PM-4">
-            <sentence number="12">
+            <sentence number="13">
                 <step number="1">
                     <group obj1Id="standing_sioux" action="pickUp" obj2Id="pole_pile"/>
                     <move obj1Id="standing_sioux" action="getIn" waypointId="poles4"/>
@@ -149,7 +149,7 @@
                     <swapImage obj1Id="frame" action="complete"/>
                 </step>
             </sentence>
-            <sentence number="13">
+            <sentence number="14">
                 <step number="1">
                     <group obj1Id="standing_sioux" action="grabLeft" obj2Id="liftingpole"/>
                     <move obj1Id="standing_sioux" action="getIn" waypointId="liftingpole"/>
@@ -164,7 +164,7 @@
             </sentence>
         </story>
         <story title="The Sioux Teepee" activity_id="story3-PM-5">
-            <sentence number="14">
+            <sentence number="15">
                 <step number="1">
                     <group obj1Id="standing_sioux" action="pickUp" obj2Id="woodpile"/>
                     <move obj1Id="standing_sioux" action="getIn" waypointId="poles4"/>
