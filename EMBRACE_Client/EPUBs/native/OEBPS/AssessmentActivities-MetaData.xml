@@ -5,10 +5,10 @@
             <Question number="1">
                 <QuestionText>We can learn about people by learning about?</QuestionText>
                 <QuestionAudio>IntroductiontoNativeAmericanHomesQ1.mp3</QuestionAudio>
-                <Answer1>their homes</Answer1>
+                <Answer1>Their homes</Answer1>
                 <Answer1Audio>IntroductiontoNativeAmericanHomesQ1A1</Answer1Audio>
-                <expectedSelection>their homes</expectedSelection>
-                <Answer2>wild animals</Answer2>
+                <expectedSelection>Their homes</expectedSelection>
+                <Answer2>Wild animals</Answer2>
                 <Answer2Audio>IntroductiontoNativeAmericanHomesQ1A2</Answer2Audio>
                 <Answer3>The rain and wind</Answer3>
                 <Answer3Audio>IntroductiontoNativeAmericanHomesQ1A3</Answer3Audio>
@@ -25,7 +25,7 @@
                 <Answer2Audio>IntroductiontoNativeAmericanHomesQ2A2</Answer2Audio>
                 <Answer3>Solving important problems</Answer3>
                 <Answer3Audio>IntroductiontoNativeAmericanHomesQ2A3</Answer3Audio>
-                <Answer4>driving a car</Answer4>
+                <Answer4>Driving a car</Answer4>
                 <Answer4Audio>IntroductiontoNativeAmericanHomesQ2A4</Answer4Audio>
             </Question>
             <Question number="3">
@@ -224,88 +224,88 @@
                 <Answer2Audio>TheInuitIglooQ7A2</Answer2Audio>
                 <Answer3>They would need to put a shade on the window</Answer3>
                 <Answer3Audio>TheInuitIglooQ7A3</Answer3Audio>
-                <Answer4>they could have a fashion show</Answer4>
+                <Answer4>They could have a fashion show</Answer4>
                 <Answer4Audio>TheInuitIglooQ7A4</Answer4Audio>
             </Question>
         </Questions>
-        <Questions title="The Sioux Tipi">
+        <Questions title="The Sioux Teepee">
             <Question number="1">
-                <QuestionText>Why did the Sioux people take down their tipis?</QuestionText>
-                <QuestionAudio>TheSiouxTipiQ1.mp3</QuestionAudio>
-                <Answer1>So the Sioux could take the tipis with them as they chased the buffalo</Answer1>
-                <Answer1Audio>TheSiouxTipiQ1A1</Answer1Audio>
-                <expectedSelection>So the Sioux could take the tipis with them as they chased the buffalo</expectedSelection>
-                <Answer2>The tipis were damaged</Answer2>
-                <Answer2Audio>TheSiouxTipiQ1A2</Answer2Audio>
+                <QuestionText>Why did the Sioux people take down their teepees?</QuestionText>
+                <QuestionAudio>TheSiouxTeepeeQ1.mp3</QuestionAudio>
+                <Answer1>So the Sioux could take the teepees with them as they chased the buffalo</Answer1>
+                <Answer1Audio>TheSiouxTeepeeQ1A1</Answer1Audio>
+                <expectedSelection>So the Sioux could take the teepees with them as they chased the buffalo</expectedSelection>
+                <Answer2>The teepees were damaged</Answer2>
+                <Answer2Audio>TheSiouxTeepeeQ1A2</Answer2Audio>
                 <Answer3>To make room for the horses</Answer3>
-                <Answer3Audio>TheSiouxTipiQ1A3</Answer3Audio>
+                <Answer3Audio>TheSiouxTeepeeQ1A3</Answer3Audio>
                 <Answer4>So the Sioux could return them</Answer4>
-                <Answer4Audio>TheSiouxTipiQ1A4</Answer4Audio>
+                <Answer4Audio>TheSiouxTeepeeQ1A4</Answer4Audio>
             </Question>
             <Question number="2">
                 <QuestionText>Why did the Sioux need horses for hunting?</QuestionText>
-                <QuestionAudio>TheSiouxTipiQ2.mp3</QuestionAudio>
+                <QuestionAudio>TheSiouxTeepeeQ2.mp3</QuestionAudio>
                 <Answer1>The horses ran faster than the Sioux</Answer1>
-                <Answer1Audio>TheSiouxTipiQ2A1</Answer1Audio>
+                <Answer1Audio>TheSiouxTeepeeQ2A1</Answer1Audio>
                 <expectedSelection>The horses ran faster than the Sioux</expectedSelection>
                 <Answer2>The horses distracted the buffalo</Answer2>
-                <Answer2Audio>TheSiouxTipiQ2A2</Answer2Audio>
+                <Answer2Audio>TheSiouxTeepeeQ2A2</Answer2Audio>
                 <Answer3>The horses knew where to find the buffalo</Answer3>
-                <Answer3Audio>TheSiouxTipiQ2A3</Answer3Audio>
+                <Answer3Audio>TheSiouxTeepeeQ2A3</Answer3Audio>
                 <Answer4>The horses had better aim</Answer4>
-                <Answer4Audio>TheSiouxTipiQ2A4</Answer4Audio>
+                <Answer4Audio>TheSiouxTeepeeQ2A4</Answer4Audio>
             </Question>
             <Question number="3">
-                <QuestionText>Which part of the buffalo was used to make tipis?</QuestionText>
-                <QuestionAudio>TheSiouxTipiQ3.mp3</QuestionAudio>
+                <QuestionText>Which part of the buffalo was used to make teepees?</QuestionText>
+                <QuestionAudio>TheSiouxTeepeeQ3.mp3</QuestionAudio>
                 <Answer1>Skin</Answer1>
-                <Answer1Audio>TheSiouxTipiQ3A1</Answer1Audio>
+                <Answer1Audio>TheSiouxTeepeeQ3A1</Answer1Audio>
                 <expectedSelection>Skin</expectedSelection>
                 <Answer2>Fur</Answer2>
-                <Answer2Audio>TheSiouxTipiQ3A2</Answer2Audio>
+                <Answer2Audio>TheSiouxTeepeeQ3A2</Answer2Audio>
                 <Answer3>Bone</Answer3>
-                <Answer3Audio>TheSiouxTipiQ3A3</Answer3Audio>
+                <Answer3Audio>TheSiouxTeepeeQ3A3</Answer3Audio>
                 <Answer4>Ear</Answer4>
-                <Answer4Audio>TheSiouxTipiQ3A4</Answer4Audio>
+                <Answer4Audio>TheSiouxTeepeeQ3A4</Answer4Audio>
             </Question>
             <Question number="4">
                 <QuestionText>Three poles are stood upright to make what?</QuestionText>
-                <QuestionAudio>TheSiouxTipiQ4.mp3</QuestionAudio>
+                <QuestionAudio>TheSiouxTeepeeQ4.mp3</QuestionAudio>
                 <Answer1>A frame</Answer1>
-                <Answer1Audio>TheSiouxTipiQ4A1</Answer1Audio>
+                <Answer1Audio>TheSiouxTeepeeQ4A1</Answer1Audio>
                 <expectedSelection>A frame</expectedSelection>
                 <Answer2>A sled</Answer2>
-                <Answer2Audio>TheSiouxTipiQ4A2</Answer2Audio>
+                <Answer2Audio>TheSiouxTeepeeQ4A2</Answer2Audio>
                 <Answer3>A door</Answer3>
-                <Answer3Audio>TheSiouxTipiQ4A3</Answer3Audio>
+                <Answer3Audio>TheSiouxTeepeeQ4A3</Answer3Audio>
                 <Answer4>A place to hang flags</Answer4>
-                <Answer4Audio>TheSiouxTipiQ4A4</Answer4Audio>
+                <Answer4Audio>TheSiouxTeepeeQ4A4</Answer4Audio>
             </Question>
             <Question number="5">
                 <QuestionText>Why is the rope important?</QuestionText>
-                <QuestionAudio>TheSiouxTipiQ5.mp3</QuestionAudio>
+                <QuestionAudio>TheSiouxTeepeeQ5.mp3</QuestionAudio>
                 <Answer1>It keeps the poles together</Answer1>
-                <Answer1Audio>TheSiouxTipiQ5A1</Answer1Audio>
+                <Answer1Audio>TheSiouxTeepeeQ5A1</Answer1Audio>
                 <expectedSelection>It keeps the poles together</expectedSelection>
                 <Answer2>It stops the buffalos from running away</Answer2>
-                <Answer2Audio>TheSiouxTipiQ5A2</Answer2Audio>
+                <Answer2Audio>TheSiouxTeepeeQ5A2</Answer2Audio>
                 <Answer3>It keeps the horse and sled together</Answer3>
-                <Answer3Audio>TheSiouxTipiQ5A3</Answer3Audio>
+                <Answer3Audio>TheSiouxTeepeeQ5A3</Answer3Audio>
                 <Answer4>For tug of war</Answer4>
-                <Answer4Audio>TheSiouxTipiQ5A4</Answer4Audio>
+                <Answer4Audio>TheSiouxTeepeeQ5A4</Answer4Audio>
             </Question>
             <Question number="6">
-                <QuestionText>How did the Sioux lift the buffalo skin near the top of the tipi?</QuestionText>
-                <QuestionAudio>TheSiouxTipiQ6.mp3</QuestionAudio>
+                <QuestionText>How did the Sioux lift the buffalo skin near the top of the teepee?</QuestionText>
+                <QuestionAudio>TheSiouxTeepeeQ6.mp3</QuestionAudio>
                 <Answer1>With a special lifting pole</Answer1>
-                <Answer1Audio>TheSiouxTipiQ6A1</Answer1Audio>
+                <Answer1Audio>TheSiouxTeepeeQ6A1</Answer1Audio>
                 <expectedSelection>With a special lifting pole</expectedSelection>
                 <Answer2>With a ladder</Answer2>
-                <Answer2Audio>TheSiouxTipiQ6A2</Answer2Audio>
+                <Answer2Audio>TheSiouxTeepeeQ6A2</Answer2Audio>
                 <Answer3>By throwing it</Answer3>
-                <Answer3Audio>TheSiouxTipiQ6A3</Answer3Audio>
+                <Answer3Audio>TheSiouxTeepeeQ6A3</Answer3Audio>
                 <Answer4>By standing on the horses</Answer4>
-                <Answer4Audio>TheSiouxTipiQ6A4</Answer4Audio>
+                <Answer4Audio>TheSiouxTeepeeQ6A4</Answer4Audio>
             </Question>
         </Questions>
         <Questions title="The Algonquian Wigwam">
@@ -479,26 +479,26 @@
                 <Answer3Audio>TheHaidaPlankHouseQ5A3</Answer3Audio>
                 <Answer4>In the formula</Answer4>
                 <Answer4Audio>TheHaidaPlankHouseQ5A4</Answer4Audio>
-                <Answer5>stone axes</Answer5>
+                <Answer5>Stone axes</Answer5>
                 <Answer5Audio>TheHaidaPlankHouseQ5A5</Answer5Audio>
-                <Answer6>steel axes</Answer6>
+                <Answer6>Steel axes</Answer6>
                 <Answer6Audio>TheHaidaPlankHouseQ5A6</Answer6Audio>
-                <Answer7>chain saws</Answer7>
+                <Answer7>Chain saws</Answer7>
                 <Answer7Audio>TheHaidaPlankHouseQ5A7</Answer7Audio>
-                <Answer8>bulldozers</Answer8>
+                <Answer8>Bulldozers</Answer8>
                 <Answer8Audio>TheHaidaPlankHouseQ5A8</Answer8Audio>
             </Question>
             <Question number="7">
                 <QuestionText>How did the Haida get to large trees?</QuestionText>
                 <QuestionAudio>TheHaidaPlankHouseQ7.mp3</QuestionAudio>
-                <Answer1>by canoe</Answer1>
+                <Answer1>By canoe</Answer1>
                 <Answer1Audio>TheHaidaPlankHouseQ7A1</Answer1Audio>
-                <expectedSelection>by canoe</expectedSelection>
-                <Answer2>by swimming</Answer2>
+                <expectedSelection>By canoe</expectedSelection>
+                <Answer2>By swimming</Answer2>
                 <Answer2Audio>TheHaidaPlankHouseQ7A2</Answer2Audio>
-                <Answer3>riding horses</Answer3>
+                <Answer3>Riding horses</Answer3>
                 <Answer3Audio>TheHaidaPlankHouseQ7A3</Answer3Audio>
-                <Answer4>walking on planks</Answer4>
+                <Answer4>Walking on planks</Answer4>
                 <Answer4Audio>TheHaidaPlankHouseQ7A4</Answer4Audio>
             </Question>
         </Questions>
