@@ -68,16 +68,16 @@
                 <Answer4Audio>HowdoObjectsMoveQ5A4</Answer4Audio>
             </Question>
         </Questions>
-        <Questions title="Newton&#8217;s first law">
+        <Questions title="Newton's First Law">
             <Question number="1">
                 <QuestionText>What needs to be added to change an object&#8217;s direction or speed?</QuestionText>
                 <QuestionAudio>NewtonsfirstlawQ1.mp3</QuestionAudio>
-                <Answer1>A force (push or pull</Answer1>
+                <Answer1>A force (push or pull)</Answer1>
                 <Answer1Audio>NewtonsfirstlawQ1A1</Answer1Audio>
-                <expectedSelection>A force (push or pull</expectedSelection>
+                <expectedSelection>A force (push or pull)</expectedSelection>
                 <Answer2>A rocket</Answer2>
                 <Answer2Audio>NewtonsfirstlawQ1A2</Answer2Audio>
-                <Answer3>A signal (stop or go</Answer3>
+                <Answer3>A signal (stop or go)</Answer3>
                 <Answer3Audio>NewtonsfirstlawQ1A3</Answer3Audio>
                 <Answer4>Martin, the policeman</Answer4>
                 <Answer4Audio>NewtonsfirstlawQ1A4</Answer4Audio>
@@ -135,7 +135,7 @@
                 <Answer4Audio>NewtonsfirstlawQ5A4</Answer4Audio>
             </Question>
         </Questions>
-        <Questions title="Newton&#8217;s First Law on Earth">
+        <Questions title="Newton's First Law on Earth">
             <Question number="1">
                 <QuestionText>What rubs on the ball?</QuestionText>
                 <QuestionAudio>NewtonsFirstLawonEarthQ1.mp3</QuestionAudio>
@@ -215,7 +215,7 @@
                 <Answer4Audio>NewtonsFirstLawonEarthQ6A4</Answer4Audio>
             </Question>
         </Questions>
-        <Questions title="Newton&#8217;s Second Law: Acceleration">
+        <Questions title="Newton's Second Law: Acceleration">
             <Question number="1">
                 <QuestionText>What happens to a stopped car when it accelerates?</QuestionText>
                 <QuestionAudio>NewtonsSecondLawAccelerationQ1.mp3</QuestionAudio>
@@ -308,7 +308,7 @@
                 <Answer4Audio>NewtonsSecondLawAccelerationQ7A4</Answer4Audio>
             </Question>
         </Questions>
-        <Questions title="Newton&#8217;s Law of Acceleration on Earth">
+        <Questions title="Newton's Law of Acceleration on Earth">
             <Question number="1">
                 <QuestionText>What accelerated the empty cart?</QuestionText>
                 <QuestionAudio>NewtonsLawofAccelerationonEarthQ1.mp3</QuestionAudio>
@@ -388,7 +388,7 @@
                 <Answer4Audio>NewtonsLawofAccelerationonEarthQ6A4</Answer4Audio>
             </Question>
         </Questions>
-        <Questions title="Newton&#8217;s Third Law: Forces are paired">
+        <Questions title="Newton's Third Law: Forces are Paired">
             <Question number="1">
                 <QuestionText>Which way does Juan move the water with his paddle?</QuestionText>
                 <QuestionAudio>NewtonsThirdLawForcesarepairedQ1.mp3</QuestionAudio>
@@ -444,9 +444,9 @@
             <Question number="5">
                 <QuestionText>Why did Maria move backward?</QuestionText>
                 <QuestionAudio>NewtonsThirdLawForcesarepairedQ5.mp3</QuestionAudio>
-                <Answer1>Every action (Sara being pushed forward) is paired with a reaction (Maria being pushed backward</Answer1>
+                <Answer1>Every action (Sara being pushed forward) is paired with a reaction (Maria being pushed backward)</Answer1>
                 <Answer1Audio>NewtonsThirdLawForcesarepairedQ5A1</Answer1Audio>
-                <expectedSelection>Every action (Sara being pushed forward) is paired with a reaction (Maria being pushed backward</expectedSelection>
+                <expectedSelection>Every action (Sara being pushed forward) is paired with a reaction (Maria being pushed backward)</expectedSelection>
                 <Answer2>Friction pulled Maria backward after she pushed Sarah forward.</Answer2>
                 <Answer2Audio>NewtonsThirdLawForcesarepairedQ5A2</Answer2Audio>
                 <Answer3>Gravity pulled Maria backward because she was on a hill</Answer3>
