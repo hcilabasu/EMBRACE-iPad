@@ -13,12 +13,12 @@
                 <Answer3Audio>IntroductionToNaturalDisastersQ1A3.mp3</Answer3Audio>
                 <Answer4>Magic beans</Answer4>
                 <Answer4Audio>IntroductionToNaturalDisastersQ1A4.mp3</Answer4Audio>
-                <expectedSelection>Earthquake</expectedSelection>
+                <expectedSelection>Nature</expectedSelection>
             </Question>
             <Question number="2">
                 <QuestionText>What causes earthquakes, tsunamis, and volcanoes?</QuestionText>
                 <QuestionAudio>IntroductionToNaturalDisastersQ2.mp3</QuestionAudio>
-                <Answer1>The earth moving</Answer1>
+                <Answer1>The ground moving</Answer1>
                 <Answer1Audio>IntroductionToNaturalDisastersQ2A1.mp3</Answer1Audio>
                 <Answer2>Very strong winds</Answer2>
                 <Answer2Audio>IntroductionToNaturalDisastersQ2A2.mp3</Answer2Audio>
@@ -26,20 +26,20 @@
                 <Answer3Audio>IntroductionToNaturalDisastersQ2A3.mp3</Answer3Audio>
                 <Answer4>Giants!</Answer4>
                 <Answer4Audio>IntroductionToNaturalDisastersQ2A4.mp3</Answer4Audio>
-                <expectedSelection>The earth moving</expectedSelection>
+                <expectedSelection>The ground moving</expectedSelection>
             </Question>
             <Question number="3">
-                <QuestionText>How do tornados create natural disasters?</QuestionText>
+                <QuestionText>What can cause tornados?</QuestionText>
                 <QuestionAudio>IntroductionToNaturalDisastersQ3.mp3</QuestionAudio>
-                <Answer1>With very storng winds</Answer1>
+                <Answer1>Strong winds</Answer1>
                 <Answer1Audio>IntroductionToNaturalDisastersQ3A1.mp3</Answer1Audio>
-                <Answer2>By moving he earth</Answer2>
+                <Answer2>The moving ground</Answer2>
                 <Answer2Audio>IntroductionToNaturalDisastersQ3A2.mp3</Answer2Audio>
-                <Answer3>With rain</Answer3>
+                <Answer3>The rain</Answer3>
                 <Answer3Audio>IntroductionToNaturalDisastersQ3A3.mp3</Answer3Audio>
-                <Answer4>With the press of a button</Answer4>
+                <Answer4>The press of a button</Answer4>
                 <Answer4Audio>IntroductionToNaturalDisastersQ3A4.mp3</Answer4Audio>
-                <expectedSelection>With very strong winds</expectedSelection>
+                <expectedSelection>Strong winds</expectedSelection>
             </Question>
         </Questions>
         <Questions title= "The Moving Earth">
@@ -72,20 +72,20 @@
             <Question number="3">
                 <QuestionText>What makes the plates move?</QuestionText>
                 <QuestionAudio>TheMovingEarthQ3.mp3</QuestionAudio>
-                <Answer1>Heat in the Mantle</Answer1>
+                <Answer1>Heat in the mantle</Answer1>
                 <Answer1Audio>TheMovingEarthQ3A1.mp3</Answer1Audio>
-                <Answer2>oceans in the mantle</Answer2>
+                <Answer2>Oceans in the mantle</Answer2>
                 <Answer2Audio>TheMovingEarthQ3A2.mp3</Answer2Audio>
-                <Answer3>Natural Disasters</Answer3>
+                <Answer3>Natural disasters</Answer3>
                 <Answer3Audio>TheMovingEarthQ3A3.mp3</Answer3Audio>
                 <Answer4>The bus boy</Answer4>
                 <Answer4Audio>TheMovingEarthQ3A4.mp3</Answer4Audio>
-                <expectedSelection>Heat in the Mantle</expectedSelection>
+                <expectedSelection>Heat in the mantle</expectedSelection>
             </Question>
             <Question number="4">
-                <QuestionText>What do plates do to make Mountains?</QuestionText>
+                <QuestionText>What do plates do to make mountains?</QuestionText>
                 <QuestionAudio>TheMovingEarthQ4.mp3</QuestionAudio>
-                <Answer1>one plate goes under another</Answer1>
+                <Answer1>One plate goes under another</Answer1>
                 <Answer1Audio>TheMovingEarthQ4A1.mp3</Answer1Audio>
                 <Answer2>Two plates slide past each other</Answer2>
                 <Answer2Audio>TheMovingEarthQ4A2.mp3</Answer2Audio>
@@ -93,7 +93,7 @@
                 <Answer3Audio>TheMovingEarthQ4A3.mp3</Answer3Audio>
                 <Answer4>They pile up lots of dirt</Answer4>
                 <Answer4Audio>TheMovingEarthQ4A4.mp3</Answer4Audio>
-                <expectedSelection>one plate goes under another</expectedSelection>
+                <expectedSelection>One plate goes under another</expectedSelection>
             </Question>
             <Question number="5">
                 <QuestionText>Why did the small brown plate that became California move?</QuestionText>
@@ -102,7 +102,7 @@
                 <Answer1Audio>TheMovingEarthQ5A1.mp3</Answer1Audio>
                 <Answer2>Because the red part pushed under it</Answer2>
                 <Answer2Audio>TheMovingEarthQ5A2.mp3</Answer2Audio>
-                <Answer3>Because of the ocean's waves'</Answer3>
+                <Answer3>Because of the ocean's waves</Answer3>
                 <Answer3Audio>TheMovingEarthQ5A3.mp3</Answer3Audio>
                 <Answer4>Because it wanted to go to a better school</Answer4>
                 <Answer4Audio>TheMovingEarthQ5A4.mp3</Answer4Audio>
@@ -141,7 +141,7 @@
                 <QuestionAudio>EarthquakesQ1.mp3</QuestionAudio>
                 <Answer1>Where plates push on each other</Answer1>
                 <Answer1Audio>EarthquakesQ1A1.mp3</Answer1Audio>
-                <Answer2>Found in the Mantle</Answer2>
+                <Answer2>Found in the mantle</Answer2>
                 <Answer2Audio>EarthquakesQ1A2.mp3</Answer2Audio>
                 <Answer3>Plate tectonics</Answer3>
                 <Answer3Audio>EarthquakesQ1A3.mp3</Answer3Audio>
@@ -173,20 +173,20 @@
                 <Answer3Audio>EarthquakesQ3A3.mp3</Answer3Audio>
                 <Answer4>Like nobody's watching</Answer4>
                 <Answer4Audio>EarthquakesQ3A4.mp3</Answer4Audio>
-                <expectedSelection>Easily</expectedSelection>
+                <expectedSelection>Just a little</expectedSelection>
             </Question>
             <Question number="4">
-                <QuestionText>Because of earthquakes, fault lines can become...?</QuestionText>
+                <QuestionText>The sudden movement when the ground on one side of the fault line slides past the ground on the other side is called...?</QuestionText>
                 <QuestionAudio>EarthquakesQ4.mp3</QuestionAudio>
-                <Answer1>Cracks in the earth</Answer1>
+                <Answer1>An earthquake</Answer1>
                 <Answer1Audio>EarthquakesQ4A1.mp3</Answer1Audio>
-                <Answer2>Plates on the mantle</Answer2>
+                <Answer2>A fault line</Answer2>
                 <Answer2Audio>EarthquakesQ4A2.mp3</Answer2Audio>
-                <Answer3>Stuck</Answer3>
+                <Answer3>Pressure</Answer3>
                 <Answer3Audio>EarthquakesQ4A3.mp3</Answer3Audio>
-                <Answer4>Fault dots</Answer4>
+                <Answer4>The Charleston</Answer4>
                 <Answer4Audio>EarthquakesQ4A4.mp3</Answer4Audio>
-                <expectedSelection>Cracks in the earth</expectedSelection>
+                <expectedSelection>An earthquake</expectedSelection>
             </Question>
             <Question number="5">
                 <QuestionText>What can happen to buildings during an earthquake?</QuestionText>
@@ -206,7 +206,7 @@
             <Question number="1">
                 <QuestionText>What is a tsunami?</QuestionText>
                 <QuestionAudio>TsunamisQ1.mp3</QuestionAudio>
-                <Answer1>A very big wave that can cause a lot of damage</Answer1>
+                <Answer1>A giant wave that can cause a lot of damage</Answer1>
                 <Answer1Audio>TsunamisQ1A1.mp3</Answer1Audio>
                 <Answer2>A sudden earthquake in the mountains</Answer2>
                 <Answer2Audio>TsunamisQ1A2.mp3</Answer2Audio>
@@ -214,7 +214,7 @@
                 <Answer3Audio>TsunamisQ1A3.mp3</Answer3Audio>
                 <Answer4>Lunch meat</Answer4>
                 <Answer4Audio>TsunamisQ1A4.mp3</Answer4Audio>
-                <expectedSelection>A very big wave that can cause a lot of damage</expectedSelection>
+                <expectedSelection>A giant wave that can cause a lot of damage</expectedSelection>
             </Question>
             <Question number="2">
                 <QuestionText>What can cause a tsunami?</QuestionText>
@@ -232,7 +232,7 @@
             <Question number="3">
                 <QuestionText>Where does water go during a drawback?</QuestionText>
                 <QuestionAudio>TsunamisQ3.mp3</QuestionAudio>
-                <Answer1>Back to the ocean</Answer1>
+                <Answer1>Toward the ocean</Answer1>
                 <Answer1Audio>TsunamisQ3A1.mp3</Answer1Audio>
                 <Answer2>Over buildings</Answer2>
                 <Answer2Audio>TsunamisQ3A2.mp3</Answer2Audio>
@@ -240,14 +240,14 @@
                 <Answer3Audio>TsunamisQ3A3.mp3</Answer3Audio>
                 <Answer4>Down the sink</Answer4>
                 <Answer4Audio>TsunamisQ3A4.mp3</Answer4Audio>
-                <expectedSelection>Back to the ocean</expectedSelection>
+                <expectedSelection>Toward the ocean</expectedSelection>
             </Question>
             <Question number="4">
                 <QuestionText>What can happen under water when one plate quickly slides under another?</QuestionText>
                 <QuestionAudio>TsunamisQ4.mp3</QuestionAudio>
                 <Answer1>There is an earthquake under water</Answer1>
                 <Answer1Audio>TsunamisQ4A1.mp3</Answer1Audio>
-                <Answer2>There is a drawback</Answer2>
+                <Answer2>The wave covers buildings</Answer2>
                 <Answer2Audio>TsunamisQ4A2.mp3</Answer2Audio>
                 <Answer3>Africa is made</Answer3>
                 <Answer3Audio>TsunamisQ4A3.mp3</Answer3Audio>
@@ -264,7 +264,7 @@
                 <Answer2Audio>TsunamisQ5A2.mp3</Answer2Audio>
                 <Answer3>Lock your doors</Answer3>
                 <Answer3Audio>TsunamisQ5A3.mp3</Answer3Audio>
-                <Answer4>go swimming</Answer4>
+                <Answer4>Go swimming</Answer4>
                 <Answer4Audio>TsunamisQ5A4.mp3</Answer4Audio>
                 <expectedSelection>Climb up high</expectedSelection>
             </Question>
@@ -327,7 +327,7 @@
                 <QuestionAudio>VolcanoesQ4.mp3</QuestionAudio>
                 <Answer1>Rock</Answer1>
                 <Answer1Audio>VolcanoesQ4A1.mp3</Answer1Audio>
-                <Answer2>plates</Answer2>
+                <Answer2>Plates</Answer2>
                 <Answer2Audio>VolcanoesQ4A2.mp3</Answer2Audio>
                 <Answer3>Hotspot</Answer3>
                 <Answer3Audio>VolcanoesQ4A3.mp3</Answer3Audio>
@@ -377,7 +377,7 @@
             <Question number="8">
                 <QuestionText>Before the lava spews out of the volcano, where does it come from?</QuestionText>
                 <QuestionAudio>VolcanoesQ8.mp3</QuestionAudio>
-                <Answer1>Deep in the earth</Answer1>
+                <Answer1>Within the earth</Answer1>
                 <Answer1Audio>VolcanoesQ8A1.mp3</Answer1Audio>
                 <Answer2>In the ocean</Answer2>
                 <Answer2Audio>VolcanoesQ8A2.mp3</Answer2Audio>
@@ -385,7 +385,7 @@
                 <Answer3Audio>VolcanoesQ8A3.mp3</Answer3Audio>
                 <Answer4>The volcano supplies store</Answer4>
                 <Answer4Audio>VolcanoesQ8A4.mp3</Answer4Audio>
-                <expectedSelection>Deep in the earth</expectedSelection>
+                <expectedSelection>Within the earth</expectedSelection>
             </Question>
         </Questions>
         <Questions title= "Tornados">

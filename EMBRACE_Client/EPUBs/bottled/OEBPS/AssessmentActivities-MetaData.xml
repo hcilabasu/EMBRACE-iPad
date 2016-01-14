@@ -102,7 +102,7 @@
                 <Answer2Audio>TheLuckyStoneQ8A2.mp3</Answer2Audio>
                 <Answer3>Because the note had his name on it</Answer3>
                 <Answer3Audio>TheLuckyStoneQ8A3.mp3</Answer3Audio>
-                <Answer4>Because a Genie popped out of the bottle</Answer4>
+                <Answer4>Because a genie popped out of the bottle</Answer4>
                 <Answer4Audio>TheLuckyStoneQ8A4.mp3</Answer4Audio>
                 <expectedSelection>Because he found the lucky stone</expectedSelection>
             </Question>
@@ -115,7 +115,7 @@
                 <Answer1Audio>MagicToysQ1A1.mp3</Answer1Audio>
                 <Answer2>To return the bottle</Answer2>
                 <Answer2Audio>MagicToysQ1A2.mp3</Answer2Audio>
-                <Answer3>To show Papa his favorite</Answer3>
+                <Answer3>To show Papa his favorite spot</Answer3>
                 <Answer3Audio>MagicToysQ1A3.mp3</Answer3Audio>
                 <Answer4>To catch some supper</Answer4>
                 <Answer4Audio>MagicToysQ1A4.mp3</Answer4Audio>
@@ -269,7 +269,7 @@
             <Question number="6">
                 <QuestionText>What did Papa tell Lucas to do?</QuestionText>
                 <QuestionAudio>BabyBrotherQ6.mp3</QuestionAudio>
-                <Answer1>To have a seat</Answer1>
+                <Answer1>To sit in the chair</Answer1>
                 <Answer1Audio>BabyBrotherQ6A1.mp3</Answer1Audio>
                 <Answer2>To think harder about his next wish</Answer2>
                 <Answer2Audio>BabyBrotherQ6A2.mp3</Answer2Audio>
@@ -277,7 +277,7 @@
                 <Answer3Audio>BabyBrotherQ6A3.mp3</Answer3Audio>
                 <Answer4>To stay out of trouble</Answer4>
                 <Answer4Audio>BabyBrotherQ6A4.mp3</Answer4Audio>
-                <expectedSelection>To have a seat</expectedSelection>
+                <expectedSelection>To sit in the chair</expectedSelection>
             </Question>
             <Question number="7">
                 <QuestionText>Where did Lucas bring the baby?</QuestionText>
@@ -379,7 +379,7 @@
                 <Answer1Audio>WordsOfWisdomQ6A1.mp3</Answer1Audio>
                 <Answer2>The ball</Answer2>
                 <Answer2Audio>WordsOfWisdomQ6A2.mp3</Answer2Audio>
-                <Answer3>The board game</Answer3>
+                <Answer3>The board-game</Answer3>
                 <Answer3Audio>WordsOfWisdomQ6A3.mp3</Answer3Audio>
                 <Answer4>The Barbie doll</Answer4>
                 <Answer4Audio>WordsOfWisdomQ6A4.mp3</Answer4Audio>
@@ -492,17 +492,17 @@
                 <expectedSelection>A friend</expectedSelection>
             </Question>
             <Question number="7">
-                <QuestionText>What do you think Olivia would have wished for?</QuestionText>
+                <QuestionText>What exactly did Lucas get that he needed?</QuestionText>
                 <QuestionAudio>CatchQ7.mp3</QuestionAudio>
-                <Answer1>A friend</Answer1>
+                <Answer1>Someone to catch the ball</Answer1>
                 <Answer1Audio>CatchQ7A1.mp3</Answer1Audio>
-                <Answer2>Toys</Answer2>
+                <Answer2>A bottle</Answer2>
                 <Answer2Audio>CatchQ7A2.mp3</Answer2Audio>
-                <Answer3>A baby brother</Answer3>
+                <Answer3>A room full of the best toys</Answer3>
                 <Answer3Audio>CatchQ7A3.mp3</Answer3Audio>
-                <Answer4>A tea set</Answer4>
+                <Answer4>A time-out</Answer4>
                 <Answer4Audio>CatchQ7A4.mp3</Answer4Audio>
-                <expectedSelection>A friend</expectedSelection>
+                <expectedSelection>Someone to catch the ball</expectedSelection>
             </Question>
         </Questions>
     </ActivityAssessment>
