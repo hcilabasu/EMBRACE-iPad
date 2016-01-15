@@ -377,14 +377,14 @@
             <Question number="2">
                 <QuestionText>How many white roses did Sofia buy?</QuestionText>
                 <QuestionAudio>AGiftfortheBrideQ2.mp3</QuestionAudio>
-                <Answer1>12 (a dozen</Answer1>
+                <Answer1>12 (a dozen)</Answer1>
                 <Answer1Audio>AGiftfortheBrideQ2A1</Answer1Audio>
-                <expectedSelection>12 (a dozen</expectedSelection>
-                <Answer2>6 (a half dozen</Answer2>
+                <expectedSelection>12 (a dozen)</expectedSelection>
+                <Answer2>6 (a half dozen)</Answer2>
                 <Answer2Audio>AGiftfortheBrideQ2A2</Answer2Audio>
-                <Answer3>24 (two dozens</Answer3>
+                <Answer3>24 (two dozens)</Answer3>
                 <Answer3Audio>AGiftfortheBrideQ2A3</Answer3Audio>
-                <Answer4>Billions and billions (A sagan</Answer4>
+                <Answer4>Billions and billions (A sagan)</Answer4>
                 <Answer4Audio>AGiftfortheBrideQ2A4</Answer4Audio>
             </Question>
             <Question number="3">
