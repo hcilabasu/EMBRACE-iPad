@@ -9,13 +9,13 @@
                     <animate obj1Id="O2_1" action="floatAnimation" waypointId="" areaId=""/>
                 </step>
             </sentence>
-            <sentence number="7">
+            <sentence number="5">
                 <step number="1">
                     <check obj1Id="O2_1" action="getIn" locationId="nose"/>
                     <move obj1Id="O2_1" action="getIn" waypointId="nose"/>
                 </step>
             </sentence>
-            <sentence number="8">
+            <sentence number="6">
                 <step number="1">
                     <check obj1Id="O2_1" action="getIn" locationId="lung1"/>
                     <move obj1Id="O2_1" action="getIn" waypointId="lung1"/>
@@ -23,29 +23,23 @@
             </sentence>
         </story>
         <story title="Why We Breathe" activity_id="story1-PM-2">
-            <sentence number="10">
+            <sentence number="9">
                 <step number="1">
                     <check obj1Id="CO2_1" action="getIn" locationId="lung2"/>
                     <move obj1Id="CO2_1" action="getIn" waypointId="lung2"/>
                 </step>
             </sentence>
-            <sentence number="11">
+            <sentence number="10">
                 <step number="1">
                     <group obj1Id="O2_1" action="attach" obj2Id="bloodcell_1"/>
                 </step>
             </sentence>
         </story>
         <story title="Why We Breathe" activity_id="story1-PM-3">
-            <sentence number="12">
+            <sentence number="11">
                 <step number="1">
                     <check obj1Id="CO2_1" action="getIn" locationId="air"/>
                     <move obj1Id="CO2_1" action="getIn" waypointId="air"/>
-                </step>
-            </sentence>
-            <sentence number="13">
-                <step number="1">
-                    <check obj1Id="bloodcell_1" action="getIn" locationId="heart1"/>
-                    <move obj1Id="bloodcell_1" action="getIn" waypointId="heart1"/>
                 </step>
             </sentence>
         </story>
