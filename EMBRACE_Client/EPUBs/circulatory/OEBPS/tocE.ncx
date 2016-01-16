@@ -200,12 +200,6 @@
 		  </navLabel>
 		  <content src="Text/Story4-Getting-More-Oxygen-for-the-Muscles-PM-6.xhtml"/>
 		</navPoint>
-      <navPoint class="PM_MODE" id="story4-PM-7">
-		  <navLabel>
-    		<text>Getting More Oxygen for the Muscles - PM</text>
-		  </navLabel>
-		  <content src="Text/Story4-Getting-More-Oxygen-for-the-Muscles-PM-7.xhtml"/>
-		</navPoint>
 		<navPoint class="IM_MODE" id="story4-IM-1">
 		  <navLabel>
     		<text>Getting More Oxygen for the Muscles - IM</text>
@@ -358,69 +352,64 @@
     	<navLabel><text>Chapter 4 - Getting More Oxygen for the Muscles - Physical Manipulation 6</text></navLabel>
 		<content src="Text/Story4-Getting-More-Oxygen-for-the-Muscles-PM-6.xhtml"/>
 	</pageTarget>
-   <pageTarget id="p22" type="normal" value="22">
-    	<navLabel><text>Chapter 4 - Getting More Oxygen for the Muscles - Physical Manipulation 7</text></navLabel>
-		<content src="Text/Story4-Getting-More-Oxygen-for-the-Muscles-PM-7.xhtml"/>
-	</pageTarget>
-  
-    <pageTarget id="p23" type="normal" value="23">
+    <pageTarget id="p22" type="normal" value="22">
        <navLabel><text>Chapter 5 - Cigarette Smoke Hurts Your Lungs - Introduction</text></navLabel>
        <content src="Text/Story5-Cigarette-Smoke-Hurts-Your-Lungs-Intro-E.xhtml"/>
     </pageTarget>
-   <pageTarget id="p24" type="normal" value="24">
+   <pageTarget id="p23" type="normal" value="23">
     	<navLabel><text>Chapter 5 - Cigarette Smoke Hurts Your Lungs - Physical Manipulation 1</text></navLabel>
 		<content src="Text/Story5-Cigarette-Smoke-Hurts-Your-Lungs-PM-1.xhtml"/>
 	</pageTarget> 
-   <pageTarget id="p25" type="normal" value="25">
+   <pageTarget id="p24" type="normal" value="24">
     	<navLabel><text>Chapter 5 - Cigarette Smoke Hurts Your Lungs - Physical Manipulation 2</text></navLabel>
 		<content src="Text/Story5-Cigarette-Smoke-Hurts-Your-Lungs-PM-2.xhtml"/>
 	</pageTarget>
-   <pageTarget id="p26" type="normal" value="26">
+   <pageTarget id="p25" type="normal" value="25">
     	<navLabel><text>Chapter 5 - Cigarette Smoke Hurts Your Lungs - Physical Manipulation 3</text></navLabel>
 		<content src="Text/Story5-Cigarette-Smoke-Hurts-Your-Lungs-PM-3.xhtml"/>
 	</pageTarget>
-   <pageTarget id="p27" type="normal" value="27">
+   <pageTarget id="p26" type="normal" value="26">
     	<navLabel><text>Chapter 5 - Cigarette Smoke Hurts Your Lungs - Physical Manipulation 4</text></navLabel>
 		<content src="Text/Story5-Cigarette-Smoke-Hurts-Your-Lungs-PM-4.xhtml"/>
 	</pageTarget>
 	
-    <pageTarget id="p28" type="normal" value="28">
+    <pageTarget id="p27" type="normal" value="27">
     	<navLabel><text>Chapter 1 - Why We Breathe - Imagine Manipulation 1</text></navLabel>
 		<content src="Text/Story1-Why-We-Breathe-IM-1.xhtml"/>
 	</pageTarget>        
-	<pageTarget id="p29" type="normal" value="29">
+	<pageTarget id="p28" type="normal" value="28">
     	<navLabel><text>Chapter 1 - Why We Breathe - Imagine Manipulation 2</text></navLabel>
 		<content src="Text/Story1-Why-We-Breathe-IM-2.xhtml"/>
 	</pageTarget>  
-   <pageTarget id="p30" type="normal" value="30">
+   <pageTarget id="p29" type="normal" value="29">
     	<navLabel><text>Chapter 2 - The Amazing Heart - Imagine Manipulation 1</text></navLabel>
 		<content src="Text/Story2-The-Amazing-Heart-IM-1.xhtml"/>
 	</pageTarget> 
-   <pageTarget id="p31" type="normal" value="31">
+   <pageTarget id="p30" type="normal" value="30">
     	<navLabel><text>Chapter 2 - The Amazing Heart - Imagine Manipulation 2</text></navLabel>
 		<content src="Text/Story2-The-Amazing-Heart-IM-2.xhtml"/>
 	</pageTarget>     
-   <pageTarget id="p32" type="normal" value="32">
+   <pageTarget id="p31" type="normal" value="31">
     	<navLabel><text>Chapter 3 - Muscles Use Oxygen - Imagine Manipulation 1</text></navLabel>
 		<content src="Text/Story3-Muscles-Use-Oxygen-IM-1.xhtml"/>
 	</pageTarget> 
-   <pageTarget id="p33" type="normal" value="33">
+   <pageTarget id="p32" type="normal" value="32">
     	<navLabel><text>Chapter 3 - Muscles Use Oxygen - Imagine Manipulation 2</text></navLabel>
 		<content src="Text/Story3-Muscles-Use-Oxygen-IM-2.xhtml"/>
 	</pageTarget> 
-   <pageTarget id="p34" type="normal" value="34">
+   <pageTarget id="p33" type="normal" value="33">
     	<navLabel><text>Chapter 4 - Getting More Oxygen for the Muscles - Imagine Manipulation 1</text></navLabel>
 		<content src="Text/Story4-Getting-More-Oxygen-for-the-Muscles-IM-1.xhtml"/>
 	</pageTarget>
-   <pageTarget id="p35" type="normal" value="35">
+   <pageTarget id="p34" type="normal" value="34">
     	<navLabel><text>Chapter 4 - Getting More Oxygen for the Muscles - Imagine Manipulation 2</text></navLabel>
 		<content src="Text/Story4-Getting-More-Oxygen-for-the-Muscles-IM-2.xhtml"/>
 	</pageTarget>
-   <pageTarget id="p36" type="normal" value="36">
+   <pageTarget id="p35" type="normal" value="35">
     	<navLabel><text>Chapter 5 - Cigarette Smoke Hurts Your Lungs - Imagine Manipulation 1</text></navLabel>
 		<content src="Text/Story5-Cigarette-Smoke-Hurts-Your-Lungs-IM-1.xhtml"/>
 	</pageTarget> 
-   <pageTarget id="p37" type="normal" value="37">
+   <pageTarget id="p36" type="normal" value="36">
     	<navLabel><text>Chapter 5 - Cigarette Smoke Hurts Your Lungs - Imagine Manipulation 2</text></navLabel>
 		<content src="Text/Story5-Cigarette-Smoke-Hurts-Your-Lungs-IM-2.xhtml"/>
 	</pageTarget> 
