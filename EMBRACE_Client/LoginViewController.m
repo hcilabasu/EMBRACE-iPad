@@ -71,6 +71,8 @@
         //If student doesn't exist, create new student profile.
         //For the moment, assume student does not exist, and create a new student.
         
+        student = [[Student alloc] initWithName: school:firstName :lastName: experimenter];
+        
         NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         NSString* tempFileName = [NSString stringWithFormat:@"%@ %@ %@.txt",school, firstName, lastName];
         NSString* doesFileExist = [documentsPath stringByAppendingPathComponent:tempFileName];
@@ -85,14 +87,8 @@
             [dateFormatter setDateFormat:@"MM-dd-yyyy'T'hh:mm.ss.SSS"];
             NSString *timeStampValue = [dateFormatter stringFromDate: currentTime];
             
-            student = [[Student alloc] initWithName:school:firstName :[NSString stringWithFormat:@"%@-%@", lastName, timeStampValue]: experimenter];
+            [student setCurrentTimestamp:timeStampValue];
         }
-        else
-        {
-            student = [[Student alloc] initWithName: school:firstName :lastName: experimenter];
-        }
-        
-        
 
         //Then take the user to the library view.
         [self performSegueWithIdentifier: @"OpenLibrarySegue" sender: self];
