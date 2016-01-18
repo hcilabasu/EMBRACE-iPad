@@ -37,6 +37,6 @@
         <alternateImage objId="tree1" action="stump" originalSrc="tree.png" alternateSrc="tree_stump.png" width="42px" x="7.861328%" y="74.431816%" class="manipulationObject center" z="0"/>
         <alternateImage objId="wigwam" action="complete" originalSrc="wigwam_firstbark.png" alternateSrc="wigwam_complete.png" width="400px" x="45.458984%" y="40.625000%" class="manipulationObject center" z="2"/>
         <alternateImage objId="wigwam" action="first_bark" originalSrc="wigwam_frame.png" alternateSrc="wigwam_firstbark.png" width="400px" x="45.458984%" y="40.625000%" class="manipulationObject center" z="2"/>
-        <alternateImage objId="woodpile" action="ignited" originalSrc="woodpile.png" alternateSrc="woodpile_ignited.png" width="175px" x="68.554688%" y="62.286930%" class="manipulationObject center" z="1"/>
+        <alternateImage objId="woodpile" action="ignited" originalSrc="woodpile.png" alternateSrc="woodpile_ignited.png" width="125px" x="71.484375%" y="61.860794%" class="manipulationObject center" z="1"/>
     </alternateImages>
 </metadata>

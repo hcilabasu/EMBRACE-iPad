@@ -461,10 +461,9 @@
 		1A6321B61C0E4D3B00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-1.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1A631E371C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-1.xhtml */; };
 		1A6321B71C0E4D3B00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-2.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1A631E381C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-2.xhtml */; };
 		1A6321B81C0E4D3B00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-3.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1A631E391C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-3.xhtml */; };
-		1A6321B91C0E4D3B00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-4.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1A631E3A1C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-4.xhtml */; };
-		1A6321BA1C0E4D3B00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-5.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1A631E3B1C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-5.xhtml */; };
-		1A6321BB1C0E4D3B00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-6.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1A631E3C1C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-6.xhtml */; };
-		1A6321BC1C0E4D3B00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-7.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1A631E3D1C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-7.xhtml */; };
+		1A6321BA1C0E4D3B00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-4.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1A631E3B1C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-4.xhtml */; };
+		1A6321BB1C0E4D3B00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-5.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1A631E3C1C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-5.xhtml */; };
+		1A6321BC1C0E4D3B00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-6.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1A631E3D1C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-6.xhtml */; };
 		1A6321BD1C0E4D3B00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-Title.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1A631E3E1C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-Title.xhtml */; };
 		1A6321BE1C0E4D3B00251CB3 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-IM-1.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1A631E3F1C0E4D3A00251CB3 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-IM-1.xhtml */; };
 		1A6321BF1C0E4D3B00251CB3 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-IM-2.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 1A631E401C0E4D3A00251CB3 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-IM-2.xhtml */; };
@@ -1170,7 +1169,6 @@
 		5C28DCA61C2BA66E005ACD07 /* introduction_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C28DBDE1C2BA66E005ACD07 /* introduction_background.png */; };
 		5C28DCA71C2BA66E005ACD07 /* inuit.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C28DBDF1C2BA66E005ACD07 /* inuit.png */; };
 		5C28DCA81C2BA66E005ACD07 /* ladder.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C28DBE01C2BA66E005ACD07 /* ladder.png */; };
-		5C28DCA91C2BA66E005ACD07 /* liftingpole.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C28DBE11C2BA66E005ACD07 /* liftingpole.png */; };
 		5C28DCAA1C2BA66E005ACD07 /* log.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C28DBE21C2BA66E005ACD07 /* log.png */; };
 		5C28DCAB1C2BA66E005ACD07 /* log_ch6.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C28DBE31C2BA66E005ACD07 /* log_ch6.png */; };
 		5C28DCAC1C2BA66E005ACD07 /* log_flip.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C28DBE41C2BA66E005ACD07 /* log_flip.png */; };
@@ -1291,6 +1289,7 @@
 		5C28DD1F1C2BA66E005ACD07 /* VocabularyIntroductions-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5C28DC591C2BA66E005ACD07 /* VocabularyIntroductions-MetaData.xml */; };
 		5C28DD201C2BA66E005ACD07 /* Waypoints-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5C28DC5A1C2BA66E005ACD07 /* Waypoints-MetaData.xml */; };
 		5C466ADC192293290056EA4B /* Translation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C466ADB192293290056EA4B /* Translation.m */; };
+		5C5C6FD91C45ADE9002A67F9 /* liftingpole.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C5C6FD81C45ADE9002A67F9 /* liftingpole.png */; };
 		5CA9555F1C3237690038FB56 /* container.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5CA955331C3237690038FB56 /* container.xml */; };
 		5CA955601C3237690038FB56 /* mimetype in Resources */ = {isa = PBXBuildFile; fileRef = 5CA955341C3237690038FB56 /* mimetype */; };
 		5CA955611C3237690038FB56 /* AlternateImages-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5CA955361C3237690038FB56 /* AlternateImages-MetaData.xml */; };
@@ -1346,6 +1345,13 @@
 		5CD7FE3819776403007A1E49 /* Introduction.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD7FE3719776403007A1E49 /* Introduction.m */; };
 		5CEEBFA81ACA05F4002AACC4 /* Area.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEEBFA71ACA05F4002AACC4 /* Area.m */; };
 		5CFA85AB1950EFDC00C7537D /* IntroductionStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFA85AA1950EFDC00C7537D /* IntroductionStep.m */; };
+		5DB509951C40CDEB00EB74E0 /* Story1-How-do-Objects-Move-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5DB509941C40CDEB00EB74E0 /* Story1-How-do-Objects-Move-Intro-S.xhtml */; };
+		5DB509971C40D29600EB74E0 /* Story2-Newton's-First-Law-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5DB509961C40D29600EB74E0 /* Story2-Newton's-First-Law-Intro-S.xhtml */; };
+		5DB509991C40D30900EB74E0 /* Story3-Newton's-First-Law-on-Earth-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5DB509981C40D30900EB74E0 /* Story3-Newton's-First-Law-on-Earth-Intro-S.xhtml */; };
+		5DB5099B1C40D53200EB74E0 /* Story4-Newton's-Second-Law-Acceleration-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5DB5099A1C40D53200EB74E0 /* Story4-Newton's-Second-Law-Acceleration-Intro-S.xhtml */; };
+		5DB5099D1C40D5D800EB74E0 /* Story5-Newton's-Law-of-Acceleration-on-Earth-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5DB5099C1C40D5D800EB74E0 /* Story5-Newton's-Law-of-Acceleration-on-Earth-Intro-S.xhtml */; };
+		5DB5099F1C40D69900EB74E0 /* Story6-Newton's-Third-Law-Forces-are-Paired-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5DB5099E1C40D69900EB74E0 /* Story6-Newton's-Third-Law-Forces-are-Paired-Intro-S.xhtml */; };
+		5DB509A11C40D6FF00EB74E0 /* Story7-The-Three-Laws-Work-Together-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5DB509A01C40D6FF00EB74E0 /* Story7-The-Three-Laws-Work-Together-Intro-S.xhtml */; };
 		C30D022D1BABBFD500DF53F1 /* PlayAudioIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABD84AD1A49F54B0043A685 /* PlayAudioIcon.png */; };
 		C30D022E1BABBFD500DF53F1 /* cover_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 31109701174AB35E00B02BF7 /* cover_default.png */; };
 		C30D022F1BABBFD500DF53F1 /* logo57.png in Resources */ = {isa = PBXBuildFile; fileRef = 31058C75176BCFF900595AAE /* logo57.png */; };
@@ -2835,10 +2841,9 @@
 		1A631E371C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-1.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Getting-More-Oxygen-for-the-Muscles-PM-1.xhtml"; sourceTree = "<group>"; };
 		1A631E381C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-2.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Getting-More-Oxygen-for-the-Muscles-PM-2.xhtml"; sourceTree = "<group>"; };
 		1A631E391C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-3.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Getting-More-Oxygen-for-the-Muscles-PM-3.xhtml"; sourceTree = "<group>"; };
-		1A631E3A1C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-4.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Getting-More-Oxygen-for-the-Muscles-PM-4.xhtml"; sourceTree = "<group>"; };
-		1A631E3B1C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-5.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Getting-More-Oxygen-for-the-Muscles-PM-5.xhtml"; sourceTree = "<group>"; };
-		1A631E3C1C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-6.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Getting-More-Oxygen-for-the-Muscles-PM-6.xhtml"; sourceTree = "<group>"; };
-		1A631E3D1C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-7.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Getting-More-Oxygen-for-the-Muscles-PM-7.xhtml"; sourceTree = "<group>"; };
+		1A631E3B1C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-4.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Getting-More-Oxygen-for-the-Muscles-PM-4.xhtml"; sourceTree = "<group>"; };
+		1A631E3C1C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-5.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Getting-More-Oxygen-for-the-Muscles-PM-5.xhtml"; sourceTree = "<group>"; };
+		1A631E3D1C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-6.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Getting-More-Oxygen-for-the-Muscles-PM-6.xhtml"; sourceTree = "<group>"; };
 		1A631E3E1C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-Title.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Getting-More-Oxygen-for-the-Muscles-Title.xhtml"; sourceTree = "<group>"; };
 		1A631E3F1C0E4D3A00251CB3 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-IM-1.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-Cigarette-Smoke-Hurts-Your-Lungs-IM-1.xhtml"; sourceTree = "<group>"; };
 		1A631E401C0E4D3A00251CB3 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-IM-2.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-Cigarette-Smoke-Hurts-Your-Lungs-IM-2.xhtml"; sourceTree = "<group>"; };
@@ -4017,7 +4022,6 @@
 		5C28DBDE1C2BA66E005ACD07 /* introduction_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = introduction_background.png; sourceTree = "<group>"; };
 		5C28DBDF1C2BA66E005ACD07 /* inuit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inuit.png; sourceTree = "<group>"; };
 		5C28DBE01C2BA66E005ACD07 /* ladder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ladder.png; sourceTree = "<group>"; };
-		5C28DBE11C2BA66E005ACD07 /* liftingpole.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = liftingpole.png; sourceTree = "<group>"; };
 		5C28DBE21C2BA66E005ACD07 /* log.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = log.png; sourceTree = "<group>"; };
 		5C28DBE31C2BA66E005ACD07 /* log_ch6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = log_ch6.png; sourceTree = "<group>"; };
 		5C28DBE41C2BA66E005ACD07 /* log_flip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = log_flip.png; sourceTree = "<group>"; };
@@ -4139,6 +4143,7 @@
 		5C28DC5A1C2BA66E005ACD07 /* Waypoints-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Waypoints-MetaData.xml"; sourceTree = "<group>"; };
 		5C466ADA192293290056EA4B /* Translation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Translation.h; sourceTree = "<group>"; };
 		5C466ADB192293290056EA4B /* Translation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Translation.m; sourceTree = "<group>"; };
+		5C5C6FD81C45ADE9002A67F9 /* liftingpole.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = liftingpole.png; sourceTree = "<group>"; };
 		5C776A3719C17F39000DBC65 /* BFTC0.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = BFTC0.m4a; sourceTree = "<group>"; };
 		5C776A3819C17F39000DBC65 /* BFTC1.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = BFTC1.m4a; sourceTree = "<group>"; };
 		5C776A3919C17F39000DBC65 /* BFTC2.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = BFTC2.m4a; sourceTree = "<group>"; };
@@ -5285,10 +5290,9 @@
 				1A631E371C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-1.xhtml */,
 				1A631E381C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-2.xhtml */,
 				1A631E391C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-3.xhtml */,
-				1A631E3A1C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-4.xhtml */,
-				1A631E3B1C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-5.xhtml */,
-				1A631E3C1C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-6.xhtml */,
-				1A631E3D1C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-7.xhtml */,
+				1A631E3B1C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-4.xhtml */,
+				1A631E3C1C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-5.xhtml */,
+				1A631E3D1C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-6.xhtml */,
 				1A631E3E1C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-Title.xhtml */,
 				1A631E3F1C0E4D3A00251CB3 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-IM-1.xhtml */,
 				1A631E401C0E4D3A00251CB3 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-IM-2.xhtml */,
@@ -5836,35 +5840,42 @@
 			isa = PBXGroup;
 			children = (
 				1A631FD71C0E4D3B00251CB3 /* Story1-How-do-Objects-Move-Intro-E.xhtml */,
+				5DB509941C40CDEB00EB74E0 /* Story1-How-do-Objects-Move-Intro-S.xhtml */,
 				1A631FD81C0E4D3B00251CB3 /* Story1-How-do-Objects-Move-PM-1.xhtml */,
 				1A631FD91C0E4D3B00251CB3 /* Story1-How-do-Objects-Move-PM-2.xhtml */,
 				1A631FDA1C0E4D3B00251CB3 /* Story1-How-do-Objects-Move-Title.xhtml */,
 				1A631FDB1C0E4D3B00251CB3 /* Story2-Newton's-First-Law-Intro-E.xhtml */,
+				5DB509961C40D29600EB74E0 /* Story2-Newton's-First-Law-Intro-S.xhtml */,
 				1A631FDC1C0E4D3B00251CB3 /* Story2-Newton's-First-Law-PM-1.xhtml */,
 				1A631FDD1C0E4D3B00251CB3 /* Story2-Newton's-First-Law-PM-2.xhtml */,
 				1A631FDE1C0E4D3B00251CB3 /* Story2-Newton's-First-Law-PM-3.xhtml */,
 				1A631FDF1C0E4D3B00251CB3 /* Story2-Newton's-First-Law-Title.xhtml */,
 				1A631FE01C0E4D3B00251CB3 /* Story3-Newton's-First-Law-on-Earth-Intro-E.xhtml */,
+				5DB509981C40D30900EB74E0 /* Story3-Newton's-First-Law-on-Earth-Intro-S.xhtml */,
 				1A631FE11C0E4D3B00251CB3 /* Story3-Newton's-First-Law-on-Earth-PM-1.xhtml */,
 				1A631FE21C0E4D3B00251CB3 /* Story3-Newton's-First-Law-on-Earth-PM-2.xhtml */,
 				1A631FE31C0E4D3B00251CB3 /* Story3-Newton's-First-Law-on-Earth-PM-3.xhtml */,
 				1A631FE41C0E4D3B00251CB3 /* Story3-Newton's-First-Law-on-Earth-Title.xhtml */,
 				1A631FE51C0E4D3B00251CB3 /* Story4-Newton's-Second-Law-Acceleration-Intro-E.xhtml */,
+				5DB5099A1C40D53200EB74E0 /* Story4-Newton's-Second-Law-Acceleration-Intro-S.xhtml */,
 				1A631FE61C0E4D3B00251CB3 /* Story4-Newton's-Second-Law-Acceleration-PM-1.xhtml */,
 				1A631FE71C0E4D3B00251CB3 /* Story4-Newton's-Second-Law-Acceleration-PM-2.xhtml */,
 				1A631FE81C0E4D3B00251CB3 /* Story4-Newton's-Second-Law-Acceleration-PM-3.xhtml */,
 				1A631FE91C0E4D3B00251CB3 /* Story4-Newton's-Second-Law-Acceleration-Title.xhtml */,
 				1A631FEA1C0E4D3B00251CB3 /* Story5-Newton's-Law-of-Acceleration-on-Earth-Intro-E.xhtml */,
+				5DB5099C1C40D5D800EB74E0 /* Story5-Newton's-Law-of-Acceleration-on-Earth-Intro-S.xhtml */,
 				1A631FEB1C0E4D3B00251CB3 /* Story5-Newton's-Law-of-Acceleration-on-Earth-PM-1.xhtml */,
 				1A631FEC1C0E4D3B00251CB3 /* Story5-Newton's-Law-of-Acceleration-on-Earth-PM-2.xhtml */,
 				1A631FED1C0E4D3B00251CB3 /* Story5-Newton's-Law-of-Acceleration-on-Earth-Title.xhtml */,
 				1A631FEE1C0E4D3B00251CB3 /* Story6-Newton's-Third-Law-Forces-are-Paired-Intro-E.xhtml */,
+				5DB5099E1C40D69900EB74E0 /* Story6-Newton's-Third-Law-Forces-are-Paired-Intro-S.xhtml */,
 				1A631FEF1C0E4D3B00251CB3 /* Story6-Newton's-Third-Law-Forces-are-Paired-PM-1.xhtml */,
 				1A631FF01C0E4D3B00251CB3 /* Story6-Newton's-Third-Law-Forces-are-Paired-PM-2.xhtml */,
 				1A631FF11C0E4D3B00251CB3 /* Story6-Newton's-Third-Law-Forces-are-Paired-PM-3.xhtml */,
 				1A631FF21C0E4D3B00251CB3 /* Story6-Newton's-Third-Law-Forces-are-Paired-PM-4.xhtml */,
 				1A631FF31C0E4D3B00251CB3 /* Story6-Newton's-Third-Law-Forces-are-Paired-Title.xhtml */,
 				1A631FF41C0E4D3B00251CB3 /* Story7-The-Three-Laws-Work-Together-Intro-E.xhtml */,
+				5DB509A01C40D6FF00EB74E0 /* Story7-The-Three-Laws-Work-Together-Intro-S.xhtml */,
 				1A631FF51C0E4D3B00251CB3 /* Story7-The-Three-Laws-Work-Together-PM-1.xhtml */,
 				1A631FF61C0E4D3B00251CB3 /* Story7-The-Three-Laws-Work-Together-PM-2.xhtml */,
 				1A631FF71C0E4D3B00251CB3 /* Story7-The-Three-Laws-Work-Together-PM-3.xhtml */,
@@ -6245,6 +6256,7 @@
 		5C28DB9A1C2BA66E005ACD07 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5C5C6FD81C45ADE9002A67F9 /* liftingpole.png */,
 				5C28DB9B1C2BA66E005ACD07 /* arrow.png */,
 				5C28DB9C1C2BA66E005ACD07 /* axe.png */,
 				5C28DB9D1C2BA66E005ACD07 /* background_ch2.png */,
@@ -6315,7 +6327,6 @@
 				5C28DBDE1C2BA66E005ACD07 /* introduction_background.png */,
 				5C28DBDF1C2BA66E005ACD07 /* inuit.png */,
 				5C28DBE01C2BA66E005ACD07 /* ladder.png */,
-				5C28DBE11C2BA66E005ACD07 /* liftingpole.png */,
 				5C28DBE21C2BA66E005ACD07 /* log.png */,
 				5C28DBE31C2BA66E005ACD07 /* log_ch6.png */,
 				5C28DBE41C2BA66E005ACD07 /* log_flip.png */,
@@ -7865,6 +7876,7 @@
 				C30D026D1BABBFE700DF53F1 /* EveryoneHelpsQ5.mp3 in Resources */,
 				5C28DCEC1C2BA66E005ACD07 /* metadata.xml in Resources */,
 				C30D026E1BABBFE700DF53F1 /* EveryoneHelpsQ5A1.mp3 in Resources */,
+				5DB5099B1C40D53200EB74E0 /* Story4-Newton's-Second-Law-Acceleration-Intro-S.xhtml in Resources */,
 				C30D026F1BABBFE700DF53F1 /* EveryoneHelpsQ5A2.mp3 in Resources */,
 				1A6321281C0E4D3B00251CB3 /* Stylesheet.css in Resources */,
 				1A6320451C0E4D3B00251CB3 /* Story1-The-Contest-PM-1S.xhtml in Resources */,
@@ -8045,7 +8057,7 @@
 				1A6321151C0E4D3B00251CB3 /* sofia_standing2.png in Resources */,
 				C30D02B81BABBFE700DF53F1 /* IntroductionToTheBestFarmQ7.mp3 in Resources */,
 				1A6320FE1C0E4D3B00251CB3 /* milk.png in Resources */,
-				1A6321BA1C0E4D3B00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-5.xhtml in Resources */,
+				1A6321BA1C0E4D3B00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-4.xhtml in Resources */,
 				1A6321B61C0E4D3B00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-1.xhtml in Resources */,
 				1A63206D1C0E4D3B00251CB3 /* Story7-The-Best-Farm-Award-IM-2.xhtml in Resources */,
 				1A6322AA1C0E4D3B00251CB3 /* man.png in Resources */,
@@ -8111,6 +8123,7 @@
 				1A6322F01C0E4D3B00251CB3 /* Story6-The-Mystery-is-Solved-IM-1.xhtml in Resources */,
 				C30D02D41BABBFE700DF53F1 /* TheBestFarmAwardQ5A3.mp3 in Resources */,
 				1A63234F1C0E4D3B00251CB3 /* Story3-Newton's-First-Law-on-Earth-PM-2.xhtml in Resources */,
+				5DB5099D1C40D5D800EB74E0 /* Story5-Newton's-Law-of-Acceleration-on-Earth-Intro-S.xhtml in Resources */,
 				C30D02D51BABBFE700DF53F1 /* TheBestFarmAwardQ5A4.mp3 in Resources */,
 				5C28DC681C2BA66E005ACD07 /* background_ch4.png in Resources */,
 				C30D02D61BABBFE700DF53F1 /* TheBestFarmAwardQ6.mp3 in Resources */,
@@ -8291,6 +8304,7 @@
 				1A880E6D1BD6E4980020F93B /* TheAmazingHeartQ5A3.mp3 in Resources */,
 				1A880E441BD6E4980020F93B /* MusclesUseOxygenQ2A2.mp3 in Resources */,
 				5C28DC5C1C2BA66E005ACD07 /* mimetype in Resources */,
+				5DB509991C40D30900EB74E0 /* Story3-Newton's-First-Law-on-Earth-Intro-S.xhtml in Resources */,
 				1A6321D41C0E4D3B00251CB3 /* Hotspots-MetaData.xml in Resources */,
 				5CA9556E1C3237690038FB56 /* monkey_tree.png in Resources */,
 				1A63224E1C0E4D3B00251CB3 /* tornado_grass.png in Resources */,
@@ -8378,7 +8392,6 @@
 				1A6320F61C0E4D3B00251CB3 /* mancha_blue_saddlebag_open.png in Resources */,
 				1A880E7D1BD6E4980020F93B /* WhyWeBreatheQ3A4.mp3 in Resources */,
 				1A6323261C0E4D3B00251CB3 /* maria_skateboard.png in Resources */,
-				5C28DCA91C2BA66E005ACD07 /* liftingpole.png in Resources */,
 				C30D03431BABBFE800DF53F1 /* MoreIsMissingQ2A4.mp3 in Resources */,
 				C30D03441BABBFE800DF53F1 /* MoreIsMissingQ3.mp3 in Resources */,
 				1A6321731C0E4D3B00251CB3 /* lungs_1.png in Resources */,
@@ -8672,6 +8685,7 @@
 				1A6321AA1C0E4D3B00251CB3 /* Story3-Muscles-Use-Oxygen-IM-1.xhtml in Resources */,
 				1A6320201C0E4D3B00251CB3 /* hay_large.png in Resources */,
 				C30D03B41BABBFE800DF53F1 /* IsPacoAThiefQ4A2.mp3 in Resources */,
+				5C5C6FD91C45ADE9002A67F9 /* liftingpole.png in Resources */,
 				1A6321D71C0E4D3B00251CB3 /* air_red.png in Resources */,
 				1A63230C1C0E4D3B00251CB3 /* cart.png in Resources */,
 				1A6320871C0E4D3B00251CB3 /* bottle_picture.png in Resources */,
@@ -8779,6 +8793,7 @@
 				1A880E161BD6E4980020F93B /* CigaretteSmokeHurtsYourLungsQ5A1.mp3 in Resources */,
 				1A6320841C0E4D3B00251CB3 /* boardgame_open.png in Resources */,
 				C30D03E61BABBFE800DF53F1 /* TheLopezFamilyQ1A2.mp3 in Resources */,
+				5DB509951C40CDEB00EB74E0 /* Story1-How-do-Objects-Move-Intro-S.xhtml in Resources */,
 				C30D03E71BABBFE800DF53F1 /* TheLopezFamilyQ1A3.mp3 in Resources */,
 				1A6320C91C0E4D3B00251CB3 /* celebration.epub in Resources */,
 				C30D03E81BABBFE800DF53F1 /* TheLopezFamilyQ1A4.mp3 in Resources */,
@@ -8830,6 +8845,7 @@
 				1A63223D1C0E4D3B00251CB3 /* Picture1resized.png in Resources */,
 				1A6322B51C0E4D3B00251CB3 /* Story-4-Good-Morning-Smiths.png in Resources */,
 				C30D03FB1BABBFE800DF53F1 /* TheLopezFamilyQ5A3.mp3 in Resources */,
+				5DB509A11C40D6FF00EB74E0 /* Story7-The-Three-Laws-Work-Together-Intro-S.xhtml in Resources */,
 				C30D03FC1BABBFE800DF53F1 /* TheLopezFamilyQ5A4.mp3 in Resources */,
 				1A6322491C0E4D3B00251CB3 /* small_house03.png in Resources */,
 				1A63217A1C0E4D3B00251CB3 /* p2_cilia_circle.png in Resources */,
@@ -8867,6 +8883,7 @@
 				1AF805511C29019A00C96B05 /* plume_greyplate_oahu.png in Resources */,
 				C30D04091BABBFE800DF53F1 /* TheLopezFamilyS2S.mp3 in Resources */,
 				1A880E501BD6E4980020F93B /* MusclesUseOxygenQ4A4.mp3 in Resources */,
+				5DB509971C40D29600EB74E0 /* Story2-Newton's-First-Law-Intro-S.xhtml in Resources */,
 				5C28DCE81C2BA66E005ACD07 /* woodpile_ignited.png in Resources */,
 				C30D040A1BABBFE800DF53F1 /* TheLopezFamilyS3S.mp3 in Resources */,
 				C30D040B1BABBFE800DF53F1 /* TheLopezFamilyS4S.mp3 in Resources */,
@@ -8941,7 +8958,7 @@
 				5C28DCD61C2BA66E005ACD07 /* standing_sioux.png in Resources */,
 				1A63213F1C0E4D3B00251CB3 /* Story5-A-Gift-for-the-Bride-PM-1.xhtml in Resources */,
 				1A63234D1C0E4D3B00251CB3 /* Story3-Newton's-First-Law-on-Earth-Intro-E.xhtml in Resources */,
-				1A6321BB1C0E4D3B00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-6.xhtml in Resources */,
+				1A6321BB1C0E4D3B00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-5.xhtml in Resources */,
 				5C28DCB41C2BA66E005ACD07 /* man3_ch3_1.png in Resources */,
 				C30D042A1BABBFE800DF53F1 /* thief_def_S.mp3 in Resources */,
 				1A6323221C0E4D3B00251CB3 /* maria_helmet.png in Resources */,
@@ -9044,7 +9061,6 @@
 				1A63228D1C0E4D3B00251CB3 /* bathtubf.png in Resources */,
 				1A6322AB1C0E4D3B00251CB3 /* nest_day.png in Resources */,
 				1A6320571C0E4D3B00251CB3 /* Story4-Who-is-the-Best-Animal-IM-1.xhtml in Resources */,
-				1A6321B91C0E4D3B00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-4.xhtml in Resources */,
 				C30D04541BABBFE800DF53F1 /* owlS.m4a in Resources */,
 				1A6322A71C0E4D3B00251CB3 /* keys.png in Resources */,
 				1A6322DB1C0E4D3B00251CB3 /* Story3-Is-Paco-a-Thief-IM-1.xhtml in Resources */,
@@ -9062,7 +9078,7 @@
 				C30D045B1BABBFE800DF53F1 /* hayDEFS.m4a in Resources */,
 				C30D045C1BABBFE800DF53F1 /* hayS.m4a in Resources */,
 				1A6321671C0E4D3B00251CB3 /* ch3_select.png in Resources */,
-				1A6321BC1C0E4D3B00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-7.xhtml in Resources */,
+				1A6321BC1C0E4D3B00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-6.xhtml in Resources */,
 				1A63204C1C0E4D3B00251CB3 /* Story2-Getting-Ready-Intro-S.xhtml in Resources */,
 				1A6322CA1C0E4D3B00251CB3 /* Story1-Introduction-At-the-House-PM.xhtml in Resources */,
 				C30D045D1BABBFE800DF53F1 /* barnDEFS.m4a in Resources */,
@@ -9341,6 +9357,7 @@
 				5C28DC961C2BA66E005ACD07 /* haida_large.png in Resources */,
 				1A63229E1C0E4D3B00251CB3 /* hook_large_high_res.png in Resources */,
 				1A6321721C0E4D3B00251CB3 /* handle_open.png in Resources */,
+				5DB5099F1C40D69900EB74E0 /* Story6-Newton's-Third-Law-Forces-are-Paired-Intro-S.xhtml in Resources */,
 				C30D04D71BABBFE800DF53F1 /* CWWB12.m4a in Resources */,
 				1A9174771C339CBB00D54971 /* house.png in Resources */,
 				1A880E481BD6E4980020F93B /* MusclesUseOxygenQ3A1.mp3 in Resources */,

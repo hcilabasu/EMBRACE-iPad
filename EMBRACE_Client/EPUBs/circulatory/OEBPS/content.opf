@@ -33,7 +33,6 @@
     <item href="Text/Story4-Getting-More-Oxygen-for-the-Muscles-PM-4.xhtml" id="story4-PM-4" media-type="application/xhtml+xml"/>
     <item href="Text/Story4-Getting-More-Oxygen-for-the-Muscles-PM-5.xhtml" id="story4-PM-5" media-type="application/xhtml+xml"/>
     <item href="Text/Story4-Getting-More-Oxygen-for-the-Muscles-PM-6.xhtml" id="story4-PM-6" media-type="application/xhtml+xml"/>
-    <item href="Text/Story4-Getting-More-Oxygen-for-the-Muscles-PM-7.xhtml" id="story4-PM-7" media-type="application/xhtml+xml"/>
     <item href="Text/Story5-Cigarette-Smoke-Hurts-Your-Lungs-PM-1.xhtml" id="story5-PM-1" media-type="application/xhtml+xml"/>
     <item href="Text/Story5-Cigarette-Smoke-Hurts-Your-Lungs-PM-2.xhtml" id="story5-PM-2" media-type="application/xhtml+xml"/>
     <item href="Text/Story5-Cigarette-Smoke-Hurts-Your-Lungs-PM-3.xhtml" id="story5-PM-3" media-type="application/xhtml+xml"/>
@@ -99,7 +98,6 @@
     <itemref idref="story4-PM-4"/>
     <itemref idref="story4-PM-5"/>
     <itemref idref="story4-PM-6"/>
-    <itemref idref="story4-PM-7"/>
     <itemref idref="story5-PM-1"/>
     <itemref idref="story5-PM-2"/>
     <itemref idref="story5-PM-3"/>

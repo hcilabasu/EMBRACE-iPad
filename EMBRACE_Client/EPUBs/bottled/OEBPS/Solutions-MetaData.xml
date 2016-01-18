@@ -253,7 +253,7 @@
             </sentence>
         </story>
         <story title="Catch!" activity_id="story5-PM-2">
-            <sentence number="6">
+            <sentence number="7">
                 <step number="1">
                     <check obj1Id="olivia" action="getIn" locationId="bush"/>
                     <ungroup obj1Id="olivia" action="drop" obj2Id="bottle"/>
@@ -261,7 +261,7 @@
                     <move obj1Id="bottle" action="getIn" waypointId="bottleBush"/>
                 </step>
             </sentence>
-            <sentence number="7">
+            <sentence number="8">
                 <step number="1">
                     <group obj1Id="lucas" action="grabLeft" obj2Id="bottle"/>
                     <move obj1Id="lucas" action="getIn" waypointId="lucasBush"/>
@@ -272,7 +272,7 @@
             </sentence>
         </story>
         <story title="Catch!" activity_id="story5-PM-3">
-            <sentence number="9">
+            <sentence number="10">
                 <step number="1">
                     <shakeOrTap obj1Id="lucas" action="getIn" locationId="anywhere"/>
                     <ungroup obj1Id="lucas" action="drop" obj2Id="ball"/>
