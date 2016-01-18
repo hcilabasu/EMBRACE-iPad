@@ -293,7 +293,8 @@ UIImage *BackgroundImage;   //The background image related to the story
         [[ServerCommunicationController sharedManager] logComputerAssessmentLoadNextActivityStep:@"Next" :@"End Assessment" :[NSString stringWithFormat:@"%d", (currentAssessmentActivityStep-1)] :@"End of Assessment" :BookTitle :ChapterTitle :[NSString stringWithFormat:@"%d",(currentAssessmentActivityStep-1)]];
         
         //Set chapter as completed
-        [[(LibraryViewController*) libraryView studentProgress] setStatusOfChapter:ChapterTitle :COMPLETED fromBook:[BookTitle stringByReplacingOccurrencesOfString:@" - Unknown-1" withString:@""]];
+        NSRange titleRange = [BookTitle rangeOfString:@" - Unknown"];
+        [[(LibraryViewController*) libraryView studentProgress] setStatusOfChapter:ChapterTitle :COMPLETED fromBook:[BookTitle substringToIndex:titleRange.location]];
         
         self.navigationController.navigationBar.hidden = NO;
         [self.navigationController popToViewController:libraryView animated:YES];
