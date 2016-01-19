@@ -292,6 +292,10 @@ UIImage *BackgroundImage;   //The background image related to the story
         //log end of assessment and return to library view
         [[ServerCommunicationController sharedManager] logComputerAssessmentLoadNextActivityStep:@"Next" :@"End Assessment" :[NSString stringWithFormat:@"%d", (currentAssessmentActivityStep-1)] :@"End of Assessment" :BookTitle :ChapterTitle :[NSString stringWithFormat:@"%d",(currentAssessmentActivityStep-1)]];
         
+        //Set chapter as completed
+        NSRange titleRange = [BookTitle rangeOfString:@" - Unknown"];
+        [[(LibraryViewController*) libraryView studentProgress] setStatusOfChapter:ChapterTitle :COMPLETED fromBook:[BookTitle substringToIndex:titleRange.location]];
+        
         self.navigationController.navigationBar.hidden = NO;
         [self.navigationController popToViewController:libraryView animated:YES];
     }

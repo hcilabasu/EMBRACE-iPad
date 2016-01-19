@@ -160,8 +160,15 @@ DDXMLElement *nodeStudy;
     if(userdetails != nil) {
         [self init]; //start a new log file
         
-        //formats username string into "firstname lastname"
-        NSString *FileNameValue = [NSString stringWithFormat:@"%@ %@ %@",[userdetails schoolName],[userdetails firstName],[userdetails lastName]];
+        NSString* FileNameValue; //combines school name, first name, and last name
+        
+        //Check if timestamp needs to be appended to file name
+        if ([userdetails currentTimestamp] == nil) {
+            FileNameValue = [NSString stringWithFormat:@"%@ %@ %@",[userdetails schoolName],[userdetails firstName],[userdetails lastName]];
+        }
+        else {
+            FileNameValue = [NSString stringWithFormat:@"%@ %@ %@ %@",[userdetails schoolName],[userdetails firstName],[userdetails lastName], [userdetails currentTimestamp]];
+        }
         
         //sets global variables to be used by returnContext function
         studySchoolString = [userdetails schoolName];
@@ -1631,5 +1638,152 @@ Context:
     return YES;
 }
 
+/*
+ * Loads the progress information from file for the given student
+ */
+- (Progress*) loadProgress:(Student*)student {
+    NSArray* directories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString* documentsDirectory = [directories objectAtIndex:0];
+    
+    //Get progress file name and path
+    NSString* progressFileName = [NSString stringWithFormat:@"%@_%@_%@_progress.xml", [student schoolName],[student firstName],[student lastName]];
+    NSString* progressFilePath = [documentsDirectory stringByAppendingPathComponent:progressFileName];
+    
+    //Try to load progress data
+    NSData* progressData = [[NSMutableData alloc] initWithContentsOfFile:progressFilePath];
+    
+    //Progress file for given student exists
+    if (progressData != nil) {
+        NSError* error;
+        GDataXMLDocument* progressXMLDocument = [[GDataXMLDocument alloc] initWithData:progressData error:&error];
+        
+        Progress* progress = [[Progress alloc] init];
+        
+        GDataXMLElement* progressElement = (GDataXMLElement*) [[progressXMLDocument nodesForXPath:@"//progress" error:nil] objectAtIndex:0];
+        
+        NSArray* bookElements = [progressElement elementsForName:@"book"];
+        
+        //Read the completed, in progress, and incomplete chapters for each book
+        for (GDataXMLElement* bookElement in bookElements) {
+            NSString* bookTitle = [[bookElement attributeForName:@"title"] stringValue];
+            
+            //Completed chapters
+            NSMutableArray* completedChapterTitles = [[NSMutableArray alloc] init];
+            GDataXMLElement* completedElement = (GDataXMLElement*) [[bookElement elementsForName:@"completed"] objectAtIndex:0];
+            NSArray* completedChapterElements = [completedElement elementsForName:@"chapter"];
+            
+            for (GDataXMLElement* completedChapterElement in completedChapterElements) {
+                NSString* chapterTitle = [[completedChapterElement attributeForName:@"title"] stringValue];
+                
+                [completedChapterTitles addObject:chapterTitle];
+            }
+            
+            [progress loadChapters:completedChapterTitles fromBook:bookTitle withStatus:COMPLETED];
+            
+            //In progress chapters
+            NSMutableArray* inProgressChapterTitles = [[NSMutableArray alloc] init];
+            GDataXMLElement* inProgressElement = (GDataXMLElement*) [[bookElement elementsForName:@"in_progress"] objectAtIndex:0];
+            NSArray* inProgressChapterElements = [inProgressElement elementsForName:@"chapter"];
+            
+            for (GDataXMLElement* inProgressChapterElement in inProgressChapterElements) {
+                NSString* chapterTitle = [[inProgressChapterElement attributeForName:@"title"] stringValue];
+                
+                [inProgressChapterTitles addObject:chapterTitle];
+            }
+            
+            [progress loadChapters:inProgressChapterTitles fromBook:bookTitle withStatus:IN_PROGRESS];
+            
+            //Incomplete chapters
+            NSMutableArray* incompleteChapterTitles = [[NSMutableArray alloc] init];
+            GDataXMLElement* incompleteElement = (GDataXMLElement*) [[bookElement elementsForName:@"incomplete"] objectAtIndex:0];
+            NSArray* incompleteChapterElements = [incompleteElement elementsForName:@"chapter"];
+            
+            for (GDataXMLElement* incompleteChapterElement in incompleteChapterElements) {
+                NSString* chapterTitle = [[incompleteChapterElement attributeForName:@"title"] stringValue];
+                
+                [incompleteChapterTitles addObject:chapterTitle];
+            }
+            
+            [progress loadChapters:incompleteChapterTitles fromBook:bookTitle withStatus:INCOMPLETE];
+        }
+        
+        return progress;
+    }
+    //No progress file for given student exists
+    else {
+        return nil;
+    }
+}
+
+/*
+ * Saves the progress information to file for the given student
+ */
+- (void) saveProgress:(Student*)student :(Progress*)progress {
+    DDXMLDocument* progressXMLDocument = [[DDXMLDocument alloc] initWithXMLString:@"<progress/>" options:0 error:nil];
+    DDXMLElement* progressXMLElement = [progressXMLDocument rootElement];
+    
+    //List the completed, in progress, and incomplete chapters for each book
+    for (NSString* bookTitle in [progress chaptersCompleted]) {
+        DDXMLElement* bookXMLElement = [DDXMLElement elementWithName:@"book"];
+        [bookXMLElement addAttributeWithName:@"title" stringValue:bookTitle];
+        
+        //Completed chapters
+        DDXMLElement* completedXMLElement = [DDXMLElement elementWithName:@"completed"];
+        NSMutableArray* completedChapters = [[progress chaptersCompleted] objectForKey:bookTitle];
+        
+        for (NSString* chapterTitle in completedChapters) {
+            DDXMLElement* chapterXMLElement = [DDXMLElement elementWithName:@"chapter"];
+            [chapterXMLElement addAttributeWithName:@"title" stringValue:chapterTitle];
+            
+            [completedXMLElement addChild:chapterXMLElement];
+        }
+        
+        //In progress chapters
+        DDXMLElement* inProgressXMLElement = [DDXMLElement elementWithName:@"in_progress"];
+        NSMutableArray* inProgressChapters = [[progress chaptersInProgress] objectForKey:bookTitle];
+        
+        for (NSString* chapterTitle in inProgressChapters) {
+            DDXMLElement* chapterXMLElement = [DDXMLElement elementWithName:@"chapter"];
+            [chapterXMLElement addAttributeWithName:@"title" stringValue:chapterTitle];
+            
+            [inProgressXMLElement addChild:chapterXMLElement];
+        }
+        
+        //Incomplete chapters
+        DDXMLElement* incompleteXMLElement = [DDXMLElement elementWithName:@"incomplete"];
+        NSMutableArray* incompleteChapters = [[progress chaptersIncomplete] objectForKey:bookTitle];
+        
+        for (NSString* chapterTitle in incompleteChapters) {
+            DDXMLElement* chapterXMLElement = [DDXMLElement elementWithName:@"chapter"];
+            [chapterXMLElement addAttributeWithName:@"title" stringValue:chapterTitle];
+            
+            [incompleteXMLElement addChild:chapterXMLElement];
+        }
+        
+        [bookXMLElement addChild:completedXMLElement];
+        [bookXMLElement addChild:inProgressXMLElement];
+        [bookXMLElement addChild:incompleteXMLElement];
+        
+        [progressXMLElement addChild:bookXMLElement];
+    }
+    
+    //Contents of progress file as a string
+    NSString* progressXMLString = [progressXMLDocument XMLStringWithOptions:DDXMLNodePrettyPrint];
+    
+    NSArray* directories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString* documentsDirectory = [directories objectAtIndex:0];
+    
+    //Get progress file name and path
+    NSString* progressFileName = [NSString stringWithFormat:@"%@_%@_%@_progress.xml", [student schoolName],[student firstName],[student lastName]];
+    NSString* progressFilePath = [documentsDirectory stringByAppendingPathComponent:progressFileName];
+    
+    //Write progress to file
+    if (![progressXMLString writeToFile:progressFilePath atomically:YES encoding:NSUTF8StringEncoding error:nil]) {
+        NSLog(@"Failed to saved progress:\n\n%@", progressXMLString);
+    }
+    else {
+        NSLog(@"Successfully saved progress.");
+    }
+}
 
 @end

@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LibraryCellView.h"
 
-@interface BookCellView : UICollectionViewCell
+@interface BookCellView : LibraryCellView
 
 @property (nonatomic, strong) IBOutlet UIImageView *coverImage;
 @property (nonatomic, strong) IBOutlet UILabel* coverTitle;
-@property (nonatomic, strong) IBOutlet UILabel* defaultTitle;
-@property (nonatomic, strong) IBOutlet UILabel* defaultAuthor;
+@property (weak, nonatomic) IBOutlet UIImageView *coverImageBackground;
 
 @end

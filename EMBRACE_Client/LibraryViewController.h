@@ -10,22 +10,21 @@
 #import "EbookImporter.h"
 #import "Book.h"
 #import "Student.h"
-
-//The mode enum will provide the information for what mode we're in.
-/*typedef enum modeTypes {
-    PM_MODE,
-    IM_MODE
-} Mode;*/
+#import "Progress.h"
 
 @interface LibraryViewController : UIViewController {
     EBookImporter *bookImporter;
     NSMutableArray* books;
-    Student *student;
     
-    Mode currentMode; 
+    Student *student;
+    Progress* studentProgress;
+    Mode currentMode;
+    
+    IBOutlet UIBarButtonItem *booksButton;
 }
 
 @property (strong, nonatomic) id dataObject;
 @property (nonatomic, strong) Student* student;
+@property (nonatomic, strong) Progress* studentProgress;
 
 @end
