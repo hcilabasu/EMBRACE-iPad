@@ -12,7 +12,7 @@
                 <Answer2Audio>KeyIngredientsQ1A2.mp3</Answer2Audio>
                 <Answer3>Holiday</Answer3>
                 <Answer3Audio>KeyIngredientsQ1A3.mp3</Answer3Audio>
-                <Answer4>The Kings coronation</Answer4>
+                <Answer4>The King's coronation</Answer4>
                 <Answer4Audio>KeyIngredientsQ1A4.mp3</Answer4Audio>
             </Question>
             <Question number="2">
@@ -25,7 +25,7 @@
                 <Answer2Audio>KeyIngredientsQ2A2.mp3</Answer2Audio>
                 <Answer3>Next week</Answer3>
                 <Answer3Audio>KeyIngredientsQ2A3.mp3</Answer3Audio>
-                <Answer4>5 minutes ago; theyre late!</Answer4>
+                <Answer4>5 minutes ago; they're late!</Answer4>
                 <Answer4Audio>KeyIngredientsQ2A4.mp3</Answer4Audio>
             </Question>
             <Question number="3">
@@ -42,7 +42,7 @@
                 <Answer4Audio>KeyIngredientsQ3A4.mp3</Answer4Audio>
             </Question>
             <Question number="4">
-                <QuestionText>Why did Sofias mother need the key ingredients?</QuestionText>
+                <QuestionText>Why did Sofia's mother need the key ingredients?</QuestionText>
                 <QuestionAudio>KeyIngredientsQ4.mp3</QuestionAudio>
                 <Answer1>To make mole</Answer1>
                 <Answer1Audio>KeyIngredientsQ4A1.mp3</Answer1Audio>
@@ -105,11 +105,11 @@
                 <Answer2Audio>ManchatheHorseQ1A2.mp3</Answer2Audio>
                 <Answer3>To see if her horse needed supplies from the store</Answer3>
                 <Answer3Audio>ManchatheHorseQ1A3.mp3</Answer3Audio>
-                <Answer4>Because thats where she sleeps</Answer4>
+                <Answer4>Because that's where she sleeps</Answer4>
                 <Answer4Audio>ManchatheHorseQ1A4.mp3</Answer4Audio>
             </Question>
             <Question number="2">
-                <QuestionText>What is the name of Sofias horse?</QuestionText>
+                <QuestionText>What is the name of Sofia's horse?</QuestionText>
                 <QuestionAudio>ManchatheHorseQ2.mp3</QuestionAudio>
                 <Answer1>Mancha</Answer1>
                 <Answer1Audio>ManchatheHorseQ2A1.mp3</Answer1Audio>
@@ -122,7 +122,7 @@
                 <Answer4Audio>ManchatheHorseQ2A4.mp3</Answer4Audio>
             </Question>
             <Question number="3">
-                <QuestionText>How did Sofia feel about her grandpas gift?</QuestionText>
+                <QuestionText>How did Sofia feel about her grandpa's gift?</QuestionText>
                 <QuestionAudio>ManchatheHorseQ3.mp3</QuestionAudio>
                 <Answer1>She was happy with the gift</Answer1>
                 <Answer1Audio>ManchatheHorseQ3A1.mp3</Answer1Audio>
@@ -150,9 +150,9 @@
             <Question number="5">
                 <QuestionText>Where did Sofia put the bridle?</QuestionText>
                 <QuestionAudio>ManchatheHorseQ5.mp3</QuestionAudio>
-                <Answer1>On Manchas head</Answer1>
+                <Answer1>On Mancha's head</Answer1>
                 <Answer1Audio>ManchatheHorseQ5A1.mp3</Answer1Audio>
-                <expectedSelection>On Manchas head</expectedSelection>
+                <expectedSelection>On Mancha's head</expectedSelection>
                 <Answer2>On the hook</Answer2>
                 <Answer2Audio>ManchatheHorseQ5A2.mp3</Answer2Audio>
                 <Answer3>In her tote bag</Answer3>
@@ -168,7 +168,7 @@
                 <expectedSelection>Read her grocery list</expectedSelection>
                 <Answer2>Walked to the corral</Answer2>
                 <Answer2Audio>ManchatheHorseQ6A2.mp3</Answer2Audio>
-                <Answer3>Put the bridle on Manchas head</Answer3>
+                <Answer3>Put the bridle on Mancha's head</Answer3>
                 <Answer3Audio>ManchatheHorseQ6A3.mp3</Answer3Audio>
                 <Answer4>Shined up her cowgirl boots</Answer4>
                 <Answer4Audio>ManchatheHorseQ6A4.mp3</Answer4Audio>
@@ -215,7 +215,7 @@
                 <Answer4Audio>AFriendinNeedQ2A4.mp3</Answer4Audio>
             </Question>
             <Question number="3">
-                <QuestionText>What is the name of Sofias friend?</QuestionText>
+                <QuestionText>What is the name of Sofia's friend?</QuestionText>
                 <QuestionAudio>AFriendinNeedQ3.mp3</QuestionAudio>
                 <Answer1>Emilio</Answer1>
                 <Answer1Audio>AFriendinNeedQ3A1.mp3</Answer1Audio>
@@ -254,7 +254,7 @@
                 <Answer4Audio>AFriendinNeedQ5A4.mp3</Answer4Audio>
             </Question>
             <Question number="6">
-                <QuestionText>Why cant the cows run away again?</QuestionText>
+                <QuestionText>Why can't the cows run away again?</QuestionText>
                 <QuestionAudio>AFriendinNeedQ6.mp3</QuestionAudio>
                 <Answer1>Emilio closed the corral gate</Answer1>
                 <Answer1Audio>AFriendinNeedQ6A1.mp3</Answer1Audio>
@@ -289,7 +289,7 @@
                 <expectedSelection>Mancha, the horse</expectedSelection>
                 <Answer2>Sofia</Answer2>
                 <Answer2Audio>ShoppingattheMarketQ2A2.mp3</Answer2Audio>
-                <Answer3>Mrs. Pea</Answer3>
+                <Answer3>Mrs. Peña</Answer3>
                 <Answer3Audio>ShoppingattheMarketQ2A3.mp3</Answer3Audio>
                 <Answer4>Howie</Answer4>
                 <Answer4Audio>ShoppingattheMarketQ2A4.mp3</Answer4Audio>
@@ -321,16 +321,16 @@
                 <Answer4Audio>ShoppingattheMarketQ4A4.mp3</Answer4Audio>
             </Question>
             <Question number="5">
-                <QuestionText>Why did Sofia walk over to Mrs. Pea?</QuestionText>
+                <QuestionText>Why did Sofia walk over to Mrs. Peña?</QuestionText>
                 <QuestionAudio>ShoppingattheMarketQ5.mp3</QuestionAudio>
                 <Answer1>To pay for her groceries</Answer1>
                 <Answer1Audio>ShoppingattheMarketQ5A1.mp3</Answer1Audio>
                 <expectedSelection>To pay for her groceries</expectedSelection>
                 <Answer2>To ask for help finding the mangoes</Answer2>
                 <Answer2Audio>ShoppingattheMarketQ5A2.mp3</Answer2Audio>
-                <Answer3>To invite Mrs. Pea to the wedding</Answer3>
+                <Answer3>To invite Mrs. Peña to the wedding</Answer3>
                 <Answer3Audio>ShoppingattheMarketQ5A3.mp3</Answer3Audio>
-                <Answer4>Because Sofias a little too old to crawl</Answer4>
+                <Answer4>Because Sofia's a little too old to crawl</Answer4>
                 <Answer4Audio>ShoppingattheMarketQ5A4.mp3</Answer4Audio>
             </Question>
             <Question number="6">
@@ -401,7 +401,7 @@
                 <Answer4Audio>AGiftfortheBrideQ3A4.mp3</Answer4Audio>
             </Question>
             <Question number="4">
-                <QuestionText>On Sofias way back home the second time, what did she know?</QuestionText>
+                <QuestionText>On Sofia's way back home the second time, what did she know?</QuestionText>
                 <QuestionAudio>AGiftfortheBrideQ4.mp3</QuestionAudio>
                 <Answer1>That she had bought everything she needed</Answer1>
                 <Answer1Audio>AGiftfortheBrideQ4A1.mp3</Answer1Audio>
@@ -439,18 +439,18 @@
                 <Answer4>She was trying to cheer up the bag with flowers</Answer4>
                 <Answer4Audio>AGiftfortheBrideQ6A4.mp3</Answer4Audio>
             </Question>
-            <Question number="6">
-                <QuestionText>What did Mrs. Pea think about Sofias gifts for her sister?</QuestionText>
-                <QuestionAudio>AGiftfortheBrideQ6.mp3</QuestionAudio>
-                <Answer1>Mrs. Pea believes that Sofias sister will love the gifts</Answer1>
-                <Answer1Audio>AGiftfortheBrideQ6A1.mp3</Answer1Audio>
-                <expectedSelection>Mrs. Pea believes that Sofias sister will love the gifts</expectedSelection>
-                <Answer2>Mrs. Pea is concerned Sofias sister wont like the gifts</Answer2>
-                <Answer2Audio>AGiftfortheBrideQ6A2.mp3</Answer2Audio>
-                <Answer3>Mrs. Pea doesnt like the colors that Sofia picked</Answer3>
-                <Answer3Audio>AGiftfortheBrideQ6A3.mp3</Answer3Audio>
-                <Answer4>Mrs. Pea wanted the gifts for herself</Answer4>
-                <Answer4Audio>AGiftfortheBrideQ6A4.mp3</Answer4Audio>
+            <Question number="7">
+                <QuestionText>What did Mrs. Peña think about Sofia's gifts for her sister?</QuestionText>
+                <QuestionAudio>AGiftfortheBrideQ7.mp3</QuestionAudio>
+                <Answer1>Mrs. Peña believes that Sofia's sister will love the gifts</Answer1>
+                <Answer1Audio>AGiftfortheBrideQ7A1.mp3</Answer1Audio>
+                <expectedSelection>Mrs. Peña believes that Sofia's sister will love the gifts</expectedSelection>
+                <Answer2>Mrs. Peña is concerned Sofia's sister won't like the gifts</Answer2>
+                <Answer2Audio>AGiftfortheBrideQ7A2.mp3</Answer2Audio>
+                <Answer3>Mrs. Peña doesn't like the colors that Sofia picked</Answer3>
+                <Answer3Audio>AGiftfortheBrideQ7A3.mp3</Answer3Audio>
+                <Answer4>Mrs. Peña wanted the gifts for herself</Answer4>
+                <Answer4Audio>AGiftfortheBrideQ7A4.mp3</Answer4Audio>
             </Question>
         </Questions>
         <Questions title="Homecoming">
@@ -494,7 +494,7 @@
                 <Answer4Audio>HomecomingQ3A4.mp3</Answer4Audio>
             </Question>
             <Question number="4">
-                <QuestionText>What did Sofias mom like about the produce that Sofia had picked?</QuestionText>
+                <QuestionText>What did Sofia's mom like about the produce that Sofia had picked?</QuestionText>
                 <QuestionAudio>HomecomingQ4.mp3</QuestionAudio>
                 <Answer1>It was fresh</Answer1>
                 <Answer1Audio>HomecomingQ4A1.mp3</Answer1Audio>
@@ -507,7 +507,7 @@
                 <Answer4Audio>HomecomingQ4A4.mp3</Answer4Audio>
             </Question>
             <Question number="5">
-                <QuestionText>Where did Sofias mom examine the groceries?</QuestionText>
+                <QuestionText>Where did Sofia's mom examine the groceries?</QuestionText>
                 <QuestionAudio>HomecomingQ5.mp3</QuestionAudio>
                 <Answer1>At the counter</Answer1>
                 <Answer1Audio>HomecomingQ5A1.mp3</Answer1Audio>
@@ -520,7 +520,7 @@
                 <Answer4Audio>HomecomingQ5A4.mp3</Answer4Audio>
             </Question>
             <Question number="6">
-                <QuestionText>What will Sofias mom do with the ingredients?</QuestionText>
+                <QuestionText>What will Sofia's mom do with the ingredients?</QuestionText>
                 <QuestionAudio>HomecomingQ6.mp3</QuestionAudio>
                 <Answer1>Finish cooking dinner</Answer1>
                 <Answer1Audio>HomecomingQ6A1.mp3</Answer1Audio>
@@ -538,7 +538,7 @@
                 <Answer1>Into the corral</Answer1>
                 <Answer1Audio>HomecomingQ7A1.mp3</Answer1Audio>
                 <expectedSelection>Into the corral</expectedSelection>
-                <Answer2>To Emilios house</Answer2>
+                <Answer2>To Emilio's house</Answer2>
                 <Answer2Audio>HomecomingQ7A2.mp3</Answer2Audio>
                 <Answer3>Back to the market</Answer3>
                 <Answer3Audio>HomecomingQ7A3.mp3</Answer3Audio>
