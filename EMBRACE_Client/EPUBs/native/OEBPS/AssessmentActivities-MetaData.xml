@@ -3,7 +3,7 @@
     <ActivityAssessment>
         <Questions title="Introduction to Native American Homes">
             <Question number="1">
-                <QuestionText>We can learn about people by learning about?</QuestionText>
+                <QuestionText>We can learn about people by learning about...?</QuestionText>
                 <QuestionAudio>IntroductiontoNativeAmericanHomesQ1.mp3</QuestionAudio>
                 <Answer1>Their homes</Answer1>
                 <Answer1Audio>IntroductiontoNativeAmericanHomesQ1A1.mp3</Answer1Audio>
@@ -16,7 +16,7 @@
                 <Answer4Audio>IntroductiontoNativeAmericanHomesQ1A4.mp3</Answer4Audio>
             </Question>
             <Question number="2">
-                <QuestionText>In this chapter, homes provide a place for?</QuestionText>
+                <QuestionText>In this chapter, homes provide a place for...?</QuestionText>
                 <QuestionAudio>IntroductiontoNativeAmericanHomesQ2.mp3</QuestionAudio>
                 <Answer1>Family and community events</Answer1>
                 <Answer1Audio>IntroductiontoNativeAmericanHomesQ2A1.mp3</Answer1Audio>
@@ -57,7 +57,7 @@
                 <Answer4Audio>TheNavajoHoganQ1A4.mp3</Answer4Audio>
             </Question>
             <Question number="2">
-                <QuestionText>Hogans have different shapes. Which of these shapes is not used for Hogans?</QuestionText>
+                <QuestionText>Hogans have different shapes. Which of these shapes is not used for hogans?</QuestionText>
                 <QuestionAudio>TheNavajoHoganQ2.mp3</QuestionAudio>
                 <Answer1>Triangle</Answer1>
                 <Answer1Audio>TheNavajoHoganQ2A1.mp3</Answer1Audio>
@@ -215,7 +215,7 @@
                 <Answer4Audio>TheInuitIglooQ6A4.mp3</Answer4Audio>
             </Question>
             <Question number="7">
-                <QuestionText>If Inuit people took off their jackets inside an igloo?</QuestionText>
+                <QuestionText>If Inuit people took off their jackets inside an igloo...?</QuestionText>
                 <QuestionAudio>TheInuitIglooQ7.mp3</QuestionAudio>
                 <Answer1>They would get cold</Answer1>
                 <Answer1Audio>TheInuitIglooQ7A1.mp3</Answer1Audio>
@@ -341,90 +341,90 @@
                 <Answer1>The floor of the wigwam would be messy</Answer1>
                 <Answer1Audio>TheAlgonquianWigwamQ3A1.mp3</Answer1Audio>
                 <expectedSelection>The floor of the wigwam would be messy</expectedSelection>
-                <Answer2>The people wouldnt be protected from wild animals</Answer2>
+                <Answer2>The people wouldn't be protected from wild animals</Answer2>
                 <Answer2Audio>TheAlgonquianWigwamQ3A2.mp3</Answer2Audio>
-                <Answer3>The wigwam wouldnt have a cooking fire</Answer3>
+                <Answer3>The wigwam wouldn't have a cooking fire</Answer3>
                 <Answer3Audio>TheAlgonquianWigwamQ3A3.mp3</Answer3Audio>
                 <Answer4>Someone would trip and fall</Answer4>
                 <Answer4Audio>TheAlgonquianWigwamQ3A4.mp3</Answer4Audio>
             </Question>
-            <Question number="5">
+            <Question number="4">
                 <QuestionText>What type of branches were used for poles?</QuestionText>
-                <QuestionAudio>TheAlgonquianWigwamQ5.mp3</QuestionAudio>
+                <QuestionAudio>TheAlgonquianWigwamQ4.mp3</QuestionAudio>
                 <Answer1>Flexible and straight branches</Answer1>
-                <Answer1Audio>TheAlgonquianWigwamQ5A1.mp3</Answer1Audio>
+                <Answer1Audio>TheAlgonquianWigwamQ4A1.mp3</Answer1Audio>
                 <expectedSelection>Flexible and straight branches</expectedSelection>
                 <Answer2>Stiff and curved branches</Answer2>
-                <Answer2Audio>TheAlgonquianWigwamQ5A2.mp3</Answer2Audio>
+                <Answer2Audio>TheAlgonquianWigwamQ4A2.mp3</Answer2Audio>
                 <Answer3>Short and thick branches</Answer3>
-                <Answer3Audio>TheAlgonquianWigwamQ5A3.mp3</Answer3Audio>
+                <Answer3Audio>TheAlgonquianWigwamQ4A3.mp3</Answer3Audio>
                 <Answer4>Olive branches</Answer4>
+                <Answer4Audio>TheAlgonquianWigwamQ4A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="5">
+                <QuestionText>Where were the poles stuck?</QuestionText>
+                <QuestionAudio>TheAlgonquianWigwamQ5.mp3</QuestionAudio>
+                <Answer1>Into the small holes</Answer1>
+                <Answer1Audio>TheAlgonquianWigwamQ5A1.mp3</Answer1Audio>
+                <expectedSelection>Into the small holes</expectedSelection>
+                <Answer2>In the center of the circle</Answer2>
+                <Answer2Audio>TheAlgonquianWigwamQ5A2.mp3</Answer2Audio>
+                <Answer3>On top of the wigwam</Answer3>
+                <Answer3Audio>TheAlgonquianWigwamQ5A3.mp3</Answer3Audio>
+                <Answer4>The North and South</Answer4>
                 <Answer4Audio>TheAlgonquianWigwamQ5A4.mp3</Answer4Audio>
             </Question>
             <Question number="6">
-                <QuestionText>Where were the poles stuck?</QuestionText>
+                <QuestionText>What would happen if the poles were not bent?</QuestionText>
                 <QuestionAudio>TheAlgonquianWigwamQ6.mp3</QuestionAudio>
-                <Answer1>Into the small holes</Answer1>
+                <Answer1>They couldn't be tied together</Answer1>
                 <Answer1Audio>TheAlgonquianWigwamQ6A1.mp3</Answer1Audio>
-                <expectedSelection>Into the small holes</expectedSelection>
-                <Answer2>In the center of the circle</Answer2>
+                <expectedSelection>They couldn't be tied together</expectedSelection>
+                <Answer2>The cooking fire couldn't escape</Answer2>
                 <Answer2Audio>TheAlgonquianWigwamQ6A2.mp3</Answer2Audio>
-                <Answer3>On top of the wigwam</Answer3>
+                <Answer3>They wouldn't fit in the small holes</Answer3>
                 <Answer3Audio>TheAlgonquianWigwamQ6A3.mp3</Answer3Audio>
-                <Answer4>The North and South</Answer4>
+                <Answer4>The sky would fall</Answer4>
                 <Answer4Audio>TheAlgonquianWigwamQ6A4.mp3</Answer4Audio>
             </Question>
             <Question number="7">
-                <QuestionText>What would happen if the poles were not bent?</QuestionText>
+                <QuestionText>Where were the pairs of poles tied together?</QuestionText>
                 <QuestionAudio>TheAlgonquianWigwamQ7.mp3</QuestionAudio>
-                <Answer1>They couldnt be tied together</Answer1>
+                <Answer1>Where they crossed</Answer1>
                 <Answer1Audio>TheAlgonquianWigwamQ7A1.mp3</Answer1Audio>
-                <expectedSelection>They couldnt be tied together</expectedSelection>
-                <Answer2>The cooking fire couldnt escape</Answer2>
+                <expectedSelection>Where they crossed</expectedSelection>
+                <Answer2>Near the ground</Answer2>
                 <Answer2Audio>TheAlgonquianWigwamQ7A2.mp3</Answer2Audio>
-                <Answer3>They wouldnt fit in the small holes</Answer3>
+                <Answer3>By the hole</Answer3>
                 <Answer3Audio>TheAlgonquianWigwamQ7A3.mp3</Answer3Audio>
-                <Answer4>The sky would fall</Answer4>
+                <Answer4>At the fishing pond</Answer4>
                 <Answer4Audio>TheAlgonquianWigwamQ7A4.mp3</Answer4Audio>
             </Question>
             <Question number="8">
-                <QuestionText>Where were the pairs of poles tied together?</QuestionText>
+                <QuestionText>In order to cover the wigwam, where was the tree bark put first?</QuestionText>
                 <QuestionAudio>TheAlgonquianWigwamQ8.mp3</QuestionAudio>
-                <Answer1>Where they crossed</Answer1>
+                <Answer1>Near the bottom</Answer1>
                 <Answer1Audio>TheAlgonquianWigwamQ8A1.mp3</Answer1Audio>
-                <expectedSelection>Where they crossed</expectedSelection>
-                <Answer2>Near the ground</Answer2>
+                <expectedSelection>Near the bottom</expectedSelection>
+                <Answer2>Where the poles crossed</Answer2>
                 <Answer2Audio>TheAlgonquianWigwamQ8A2.mp3</Answer2Audio>
-                <Answer3>By the hole</Answer3>
+                <Answer3>On the top</Answer3>
                 <Answer3Audio>TheAlgonquianWigwamQ8A3.mp3</Answer3Audio>
-                <Answer4>At the fishing pond</Answer4>
+                <Answer4>Around its shoulders</Answer4>
                 <Answer4Audio>TheAlgonquianWigwamQ8A4.mp3</Answer4Audio>
             </Question>
             <Question number="9">
-                <QuestionText>In order to cover the wigwam, where was the tree bark put first?</QuestionText>
-                <QuestionAudio>TheAlgonquianWigwamQ9.mp3</QuestionAudio>
-                <Answer1>Near the bottom</Answer1>
-                <Answer1Audio>TheAlgonquianWigwamQ9A1.mp3</Answer1Audio>
-                <expectedSelection>Near the bottom</expectedSelection>
-                <Answer2>Where the poles crossed</Answer2>
-                <Answer2Audio>TheAlgonquianWigwamQ9A2.mp3</Answer2Audio>
-                <Answer3>On the top</Answer3>
-                <Answer3Audio>TheAlgonquianWigwamQ9A3.mp3</Answer3Audio>
-                <Answer4>Around its shoulders</Answer4>
-                <Answer4Audio>TheAlgonquianWigwamQ9A4.mp3</Answer4Audio>
-            </Question>
-            <Question number="10">
                 <QuestionText>What would happen if there was no hole at the top of the wigwam?</QuestionText>
-                <QuestionAudio>TheAlgonquianWigwamQ10.mp3</QuestionAudio>
-                <Answer1>The wigwam would fill with smoke.</Answer1>
-                <Answer1Audio>TheAlgonquianWigwamQ10A1.mp3</Answer1Audio>
-                <expectedSelection>The wigwam would fill with smoke.</expectedSelection>
+                <QuestionAudio>TheAlgonquianWigwamQ9.mp3</QuestionAudio>
+                <Answer1>The wigwam would fill with smoke</Answer1>
+                <Answer1Audio>TheAlgonquianWigwamQ9A1.mp3</Answer1Audio>
+                <expectedSelection>The wigwam would fill with smoke</expectedSelection>
                 <Answer2>The wigwam would fall down</Answer2>
-                <Answer2Audio>TheAlgonquianWigwamQ10A2.mp3</Answer2Audio>
-                <Answer3>The wigwam wouldnt protect people</Answer3>
-                <Answer3Audio>TheAlgonquianWigwamQ10A3.mp3</Answer3Audio>
-                <Answer4>Tweety wouldnt be able to get in</Answer4>
-                <Answer4Audio>TheAlgonquianWigwamQ10A4.mp3</Answer4Audio>
+                <Answer2Audio>TheAlgonquianWigwamQ9A2.mp3</Answer2Audio>
+                <Answer3>The wigwam wouldn't protect people</Answer3>
+                <Answer3Audio>TheAlgonquianWigwamQ9A3.mp3</Answer3Audio>
+                <Answer4>Tweety wouldn't be able to get in</Answer4>
+                <Answer4Audio>TheAlgonquianWigwamQ9A4.mp3</Answer4Audio>
             </Question>
         </Questions>
         <Questions title="The Haida Plank House">
@@ -454,52 +454,57 @@
                 <Answer4>Lincoln Logs</Answer4>
                 <Answer4Audio>TheHaidaPlankHouseQ2A4.mp3</Answer4Audio>
             </Question>
-            <Question number="4">
+            <Question number="3">
                 <QuestionText>Why did Haidas cut planks from some trees instead of cutting the trees down?</QuestionText>
-                <QuestionAudio>TheHaidaPlankHouseQ4.mp3</QuestionAudio>
+                <QuestionAudio>TheHaidaPlankHouseQ3.mp3</QuestionAudio>
                 <Answer1>So the trees were left to live for the future</Answer1>
-                <Answer1Audio>TheHaidaPlankHouseQ4A1.mp3</Answer1Audio>
+                <Answer1Audio>TheHaidaPlankHouseQ3A1.mp3</Answer1Audio>
                 <expectedSelection>So the trees were left to live for the future</expectedSelection>
                 <Answer2>So they could make smaller logs</Answer2>
-                <Answer2Audio>TheHaidaPlankHouseQ4A2.mp3</Answer2Audio>
+                <Answer2Audio>TheHaidaPlankHouseQ3A2.mp3</Answer2Audio>
                 <Answer3>So they could make totem poles</Answer3>
+                <Answer3Audio>TheHaidaPlankHouseQ3A3.mp3</Answer3Audio>
+                <Answer4>So the trees wouldn't get angry</Answer4>
+                <Answer4Audio>TheHaidaPlankHouseQ3A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="4">
+                <QuestionText>Where were the logs used?</QuestionText>
+                <QuestionAudio>TheHaidaPlankHouseQ4.mp3</QuestionAudio>
+                <Answer1>In the corners of the house</Answer1>
+                <Answer1Audio>TheHaidaPlankHouseQ4A1.mp3</Answer1Audio>
+                <expectedSelection>In the corners of the house</expectedSelection>
+                <Answer2>At the top of the house</Answer2>
+                <Answer2Audio>TheHaidaPlankHouseQ4A2.mp3</Answer2Audio>
+                <Answer3>In the middle of the house</Answer3>
                 <Answer3Audio>TheHaidaPlankHouseQ4A3.mp3</Answer3Audio>
-                <Answer4>So the trees wouldnt get angry</Answer4>
+                <Answer4>In the formula</Answer4>
                 <Answer4Audio>TheHaidaPlankHouseQ4A4.mp3</Answer4Audio>
             </Question>
             <Question number="5">
-                <QuestionText>Where were the logs used?</QuestionText>
+                <QuestionText>What did the Haida use to cut down trees?</QuestionText>
                 <QuestionAudio>TheHaidaPlankHouseQ5.mp3</QuestionAudio>
-                <Answer1>In the corners of the house</Answer1>
+                <Answer1>Stone axes</Answer1>
                 <Answer1Audio>TheHaidaPlankHouseQ5A1.mp3</Answer1Audio>
-                <expectedSelection>In the corners of the house</expectedSelection>
-                <Answer2>At the top of the house</Answer2>
+                <expectedSelection>Stone axes</expectedSelection>
+                <Answer2>Steel axes</Answer2>
                 <Answer2Audio>TheHaidaPlankHouseQ5A2.mp3</Answer2Audio>
-                <Answer3>In the middle of the house</Answer3>
+                <Answer3>Chain saws</Answer3>
                 <Answer3Audio>TheHaidaPlankHouseQ5A3.mp3</Answer3Audio>
-                <Answer4>In the formula</Answer4>
+                <Answer4>Bulldozers</Answer4>
                 <Answer4Audio>TheHaidaPlankHouseQ5A4.mp3</Answer4Audio>
-                <Answer5>Stone axes</Answer5>
-                <Answer5Audio>TheHaidaPlankHouseQ5A5.mp3</Answer5Audio>
-                <Answer6>Steel axes</Answer6>
-                <Answer6Audio>TheHaidaPlankHouseQ5A6.mp3</Answer6Audio>
-                <Answer7>Chain saws</Answer7>
-                <Answer7Audio>TheHaidaPlankHouseQ5A7.mp3</Answer7Audio>
-                <Answer8>Bulldozers</Answer8>
-                <Answer8Audio>TheHaidaPlankHouseQ5A8.mp3</Answer8Audio>
             </Question>
-            <Question number="7">
+            <Question number="6">
                 <QuestionText>How did the Haida get to large trees?</QuestionText>
-                <QuestionAudio>TheHaidaPlankHouseQ7.mp3</QuestionAudio>
+                <QuestionAudio>TheHaidaPlankHouseQ6.mp3</QuestionAudio>
                 <Answer1>By canoe</Answer1>
-                <Answer1Audio>TheHaidaPlankHouseQ7A1.mp3</Answer1Audio>
+                <Answer1Audio>TheHaidaPlankHouseQ6A1.mp3</Answer1Audio>
                 <expectedSelection>By canoe</expectedSelection>
                 <Answer2>By swimming</Answer2>
-                <Answer2Audio>TheHaidaPlankHouseQ7A2.mp3</Answer2Audio>
+                <Answer2Audio>TheHaidaPlankHouseQ6A2.mp3</Answer2Audio>
                 <Answer3>Riding horses</Answer3>
-                <Answer3Audio>TheHaidaPlankHouseQ7A3.mp3</Answer3Audio>
+                <Answer3Audio>TheHaidaPlankHouseQ6A3.mp3</Answer3Audio>
                 <Answer4>Walking on planks</Answer4>
-                <Answer4Audio>TheHaidaPlankHouseQ7A4.mp3</Answer4Audio>
+                <Answer4Audio>TheHaidaPlankHouseQ6A4.mp3</Answer4Audio>
             </Question>
         </Questions>
         <Questions title="The Seminole Chickee">
@@ -556,20 +561,20 @@
                 <Answer4Audio>TheSeminoleChickeeQ4A4.mp3</Answer4Audio>
             </Question>
             <Question number="5">
-                <QuestionText>Why didnt the chickees have walls for most of the year?</QuestionText>
+                <QuestionText>Why didn't the chickees have walls for most of the year?</QuestionText>
                 <QuestionAudio>TheSeminoleChickeeQ5.mp3</QuestionAudio>
-                <Answer1>Its warm in Florida</Answer1>
+                <Answer1>It's warm in Florida</Answer1>
                 <Answer1Audio>TheSeminoleChickeeQ5A1.mp3</Answer1Audio>
-                <expectedSelection>Its warm in Florida</expectedSelection>
-                <Answer2>Its safe in Florida</Answer2>
+                <expectedSelection>It's warm in Florida</expectedSelection>
+                <Answer2>It's safe in Florida</Answer2>
                 <Answer2Audio>TheSeminoleChickeeQ5A2.mp3</Answer2Audio>
                 <Answer3>There are no bugs in Florida</Answer3>
                 <Answer3Audio>TheSeminoleChickeeQ5A3.mp3</Answer3Audio>
-                <Answer4>The Seminoles dont like being boxed in</Answer4>
+                <Answer4>The Seminoles don't like being boxed in</Answer4>
                 <Answer4Audio>TheSeminoleChickeeQ5A4.mp3</Answer4Audio>
             </Question>
             <Question number="6">
-                <QuestionText>How did the Seminoles ensure that water didnt collect on top of their houses?</QuestionText>
+                <QuestionText>How did the Seminoles ensure that water didn't collect on top of their houses?</QuestionText>
                 <QuestionAudio>TheSeminoleChickeeQ6.mp3</QuestionAudio>
                 <Answer1>They made their roofs slanted</Answer1>
                 <Answer1Audio>TheSeminoleChickeeQ6A1.mp3</Answer1Audio>
