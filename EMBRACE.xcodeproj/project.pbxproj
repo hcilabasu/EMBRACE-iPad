@@ -1366,6 +1366,21 @@
 		5DB5099D1C40D5D800EB74E0 /* Story5-Newton's-Law-of-Acceleration-on-Earth-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5DB5099C1C40D5D800EB74E0 /* Story5-Newton's-Law-of-Acceleration-on-Earth-Intro-S.xhtml */; };
 		5DB5099F1C40D69900EB74E0 /* Story6-Newton's-Third-Law-Forces-are-Paired-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5DB5099E1C40D69900EB74E0 /* Story6-Newton's-Third-Law-Forces-are-Paired-Intro-S.xhtml */; };
 		5DB509A11C40D6FF00EB74E0 /* Story7-The-Three-Laws-Work-Together-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5DB509A01C40D6FF00EB74E0 /* Story7-The-Three-Laws-Work-Together-Intro-S.xhtml */; };
+		5DBC02EB1C509B880030072B /* TheLuckyStoneQ1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC02E11C509B880030072B /* TheLuckyStoneQ1.mp3 */; };
+		5DBC02EC1C509B880030072B /* TheLuckyStoneQ1A1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC02E21C509B880030072B /* TheLuckyStoneQ1A1.mp3 */; };
+		5DBC02ED1C509B880030072B /* TheLuckyStoneQ1A2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC02E31C509B880030072B /* TheLuckyStoneQ1A2.mp3 */; };
+		5DBC02EE1C509B880030072B /* TheLuckyStoneQ1A3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC02E41C509B880030072B /* TheLuckyStoneQ1A3.mp3 */; };
+		5DBC02EF1C509B880030072B /* TheLuckyStoneQ1A4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC02E51C509B880030072B /* TheLuckyStoneQ1A4.mp3 */; };
+		5DBC02F01C509B880030072B /* TheLuckyStoneQ2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC02E61C509B880030072B /* TheLuckyStoneQ2.mp3 */; };
+		5DBC02F11C509B880030072B /* TheLuckyStoneQ2A1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC02E71C509B880030072B /* TheLuckyStoneQ2A1.mp3 */; };
+		5DBC02F21C509B880030072B /* TheLuckyStoneQ2A2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC02E81C509B880030072B /* TheLuckyStoneQ2A2.mp3 */; };
+		5DBC02F31C509B880030072B /* TheLuckyStoneQ2A3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC02E91C509B880030072B /* TheLuckyStoneQ2A3.mp3 */; };
+		5DBC02F41C509B880030072B /* TheLuckyStoneQ2A4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC02EA1C509B880030072B /* TheLuckyStoneQ2A4.mp3 */; };
+		5DBC02FA1C509CFD0030072B /* TheLuckyStoneQ3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC02F51C509CFD0030072B /* TheLuckyStoneQ3.mp3 */; };
+		5DBC02FB1C509CFD0030072B /* TheLuckyStoneQ3A1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC02F61C509CFD0030072B /* TheLuckyStoneQ3A1.mp3 */; };
+		5DBC02FC1C509CFD0030072B /* TheLuckyStoneQ3A2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC02F71C509CFD0030072B /* TheLuckyStoneQ3A2.mp3 */; };
+		5DBC02FD1C509CFD0030072B /* TheLuckyStoneQ3A3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC02F81C509CFD0030072B /* TheLuckyStoneQ3A3.mp3 */; };
+		5DBC02FE1C509CFD0030072B /* TheLuckyStoneQ3A4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC02F91C509CFD0030072B /* TheLuckyStoneQ3A4.mp3 */; };
 		C30D022D1BABBFD500DF53F1 /* PlayAudioIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABD84AD1A49F54B0043A685 /* PlayAudioIcon.png */; };
 		C30D022E1BABBFD500DF53F1 /* cover_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 31109701174AB35E00B02BF7 /* cover_default.png */; };
 		C30D022F1BABBFD500DF53F1 /* logo57.png in Resources */ = {isa = PBXBuildFile; fileRef = 31058C75176BCFF900595AAE /* logo57.png */; };
@@ -4592,11 +4607,6 @@
 		5D68212F1C489FB5001F5CFD /* Story4-Shopping-at-the-Market-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Shopping-at-the-Market-Intro-S.xhtml"; sourceTree = "<group>"; };
 		5D6821311C48A13A001F5CFD /* Story5-A-Gift-for-the-Bride-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-A-Gift-for-the-Bride-Intro-S.xhtml"; sourceTree = "<group>"; };
 		5D6821331C48A170001F5CFD /* Story6-Homecoming-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story6-Homecoming-Intro-S.xhtml"; sourceTree = "<group>"; };
-		C32DA0DF1BF92A52006C2418 /* Progress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Progress.h; sourceTree = "<group>"; };
-		C32DA0E01BF92A52006C2418 /* Progress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Progress.m; sourceTree = "<group>"; };
-		C35F42791BDAAD3600B4BCF0 /* bookmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bookmark.png; sourceTree = "<group>"; };
-		C35F427A1BDAAD3600B4BCF0 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
-		C35F427B1BDAAD3600B4BCF0 /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
 		5DB509941C40CDEB00EB74E0 /* Story1-How-do-Objects-Move-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-How-do-Objects-Move-Intro-S.xhtml"; sourceTree = "<group>"; };
 		5DB509961C40D29600EB74E0 /* Story2-Newton's-First-Law-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story2-Newton's-First-Law-Intro-S.xhtml"; sourceTree = "<group>"; };
 		5DB509981C40D30900EB74E0 /* Story3-Newton's-First-Law-on-Earth-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story3-Newton's-First-Law-on-Earth-Intro-S.xhtml"; sourceTree = "<group>"; };
@@ -4604,6 +4614,26 @@
 		5DB5099C1C40D5D800EB74E0 /* Story5-Newton's-Law-of-Acceleration-on-Earth-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-Newton's-Law-of-Acceleration-on-Earth-Intro-S.xhtml"; sourceTree = "<group>"; };
 		5DB5099E1C40D69900EB74E0 /* Story6-Newton's-Third-Law-Forces-are-Paired-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story6-Newton's-Third-Law-Forces-are-Paired-Intro-S.xhtml"; sourceTree = "<group>"; };
 		5DB509A01C40D6FF00EB74E0 /* Story7-The-Three-Laws-Work-Together-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story7-The-Three-Laws-Work-Together-Intro-S.xhtml"; sourceTree = "<group>"; };
+		5DBC02E11C509B880030072B /* TheLuckyStoneQ1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ1.mp3; sourceTree = "<group>"; };
+		5DBC02E21C509B880030072B /* TheLuckyStoneQ1A1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ1A1.mp3; sourceTree = "<group>"; };
+		5DBC02E31C509B880030072B /* TheLuckyStoneQ1A2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ1A2.mp3; sourceTree = "<group>"; };
+		5DBC02E41C509B880030072B /* TheLuckyStoneQ1A3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ1A3.mp3; sourceTree = "<group>"; };
+		5DBC02E51C509B880030072B /* TheLuckyStoneQ1A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ1A4.mp3; sourceTree = "<group>"; };
+		5DBC02E61C509B880030072B /* TheLuckyStoneQ2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ2.mp3; sourceTree = "<group>"; };
+		5DBC02E71C509B880030072B /* TheLuckyStoneQ2A1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ2A1.mp3; sourceTree = "<group>"; };
+		5DBC02E81C509B880030072B /* TheLuckyStoneQ2A2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ2A2.mp3; sourceTree = "<group>"; };
+		5DBC02E91C509B880030072B /* TheLuckyStoneQ2A3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ2A3.mp3; sourceTree = "<group>"; };
+		5DBC02EA1C509B880030072B /* TheLuckyStoneQ2A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ2A4.mp3; sourceTree = "<group>"; };
+		5DBC02F51C509CFD0030072B /* TheLuckyStoneQ3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ3.mp3; sourceTree = "<group>"; };
+		5DBC02F61C509CFD0030072B /* TheLuckyStoneQ3A1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ3A1.mp3; sourceTree = "<group>"; };
+		5DBC02F71C509CFD0030072B /* TheLuckyStoneQ3A2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ3A2.mp3; sourceTree = "<group>"; };
+		5DBC02F81C509CFD0030072B /* TheLuckyStoneQ3A3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ3A3.mp3; sourceTree = "<group>"; };
+		5DBC02F91C509CFD0030072B /* TheLuckyStoneQ3A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ3A4.mp3; sourceTree = "<group>"; };
+		C32DA0DF1BF92A52006C2418 /* Progress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Progress.h; sourceTree = "<group>"; };
+		C32DA0E01BF92A52006C2418 /* Progress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Progress.m; sourceTree = "<group>"; };
+		C35F42791BDAAD3600B4BCF0 /* bookmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bookmark.png; sourceTree = "<group>"; };
+		C35F427A1BDAAD3600B4BCF0 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
+		C35F427B1BDAAD3600B4BCF0 /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
 		C36473EC1A9AA5C100FD7494 /* AlternateSentence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlternateSentence.h; sourceTree = "<group>"; };
 		C36473ED1A9AA5C100FD7494 /* AlternateSentence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlternateSentence.m; sourceTree = "<group>"; };
 		C393881E195376490005279F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -6503,6 +6533,7 @@
 		5C7FE06619A7E43B00CBBE0E /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				5DBC02E01C509B880030072B /* bottled */,
 				1A880D7A1BD6E4950020F93B /* CigaretteSmokeHurtsYourLungsQ1.mp3 */,
 				1A880D7B1BD6E4950020F93B /* CigaretteSmokeHurtsYourLungsQ1A1.mp3 */,
 				1A9BFD531BF29B1D006FD1CC /* penE.m4a */,
@@ -7609,6 +7640,28 @@
 			name = "Condition Setup";
 			sourceTree = "<group>";
 		};
+		5DBC02E01C509B880030072B /* bottled */ = {
+			isa = PBXGroup;
+			children = (
+				5DBC02E11C509B880030072B /* TheLuckyStoneQ1.mp3 */,
+				5DBC02E21C509B880030072B /* TheLuckyStoneQ1A1.mp3 */,
+				5DBC02E31C509B880030072B /* TheLuckyStoneQ1A2.mp3 */,
+				5DBC02E41C509B880030072B /* TheLuckyStoneQ1A3.mp3 */,
+				5DBC02E51C509B880030072B /* TheLuckyStoneQ1A4.mp3 */,
+				5DBC02E61C509B880030072B /* TheLuckyStoneQ2.mp3 */,
+				5DBC02E71C509B880030072B /* TheLuckyStoneQ2A1.mp3 */,
+				5DBC02E81C509B880030072B /* TheLuckyStoneQ2A2.mp3 */,
+				5DBC02E91C509B880030072B /* TheLuckyStoneQ2A3.mp3 */,
+				5DBC02EA1C509B880030072B /* TheLuckyStoneQ2A4.mp3 */,
+				5DBC02F51C509CFD0030072B /* TheLuckyStoneQ3.mp3 */,
+				5DBC02F61C509CFD0030072B /* TheLuckyStoneQ3A1.mp3 */,
+				5DBC02F71C509CFD0030072B /* TheLuckyStoneQ3A2.mp3 */,
+				5DBC02F81C509CFD0030072B /* TheLuckyStoneQ3A3.mp3 */,
+				5DBC02F91C509CFD0030072B /* TheLuckyStoneQ3A4.mp3 */,
+			);
+			path = bottled;
+			sourceTree = "<group>";
+		};
 		C680520E197ECDC7002A5249 /* DDXML */ = {
 			isa = PBXGroup;
 			children = (
@@ -7717,6 +7770,7 @@
 				1A880E0A1BD6E4980020F93B /* CigaretteSmokeHurtsYourLungsQ2A4.mp3 in Resources */,
 				1A63212B1C0E4D3B00251CB3 /* Story1-Key-Ingredients-PM-2.xhtml in Resources */,
 				1A6323101C0E4D3B00251CB3 /* ch3.png in Resources */,
+				5DBC02FC1C509CFD0030072B /* TheLuckyStoneQ3A2.mp3 in Resources */,
 				1A880E4B1BD6E4980020F93B /* MusclesUseOxygenQ3A4.mp3 in Resources */,
 				1A880E581BD6E4980020F93B /* TheAmazingHeartQ1A2.mp3 in Resources */,
 				1A63205B1C0E4D3B00251CB3 /* Story4-Who-is-the-Best-Animal-PM-1.xhtml in Resources */,
@@ -7858,6 +7912,7 @@
 				1A63217F1C0E4D3B00251CB3 /* p2_no_cilia.png in Resources */,
 				5C28DD1F1C2BA66E005ACD07 /* VocabularyIntroductions-MetaData.xml in Resources */,
 				5C28DCFA1C2BA66E005ACD07 /* Story1-The-Navajo-Hogan-PM-3.xhtml in Resources */,
+				5DBC02ED1C509B880030072B /* TheLuckyStoneQ1A2.mp3 in Resources */,
 				1A6323541C0E4D3B00251CB3 /* Story4-Newton's-Second-Law-Acceleration-PM-2.xhtml in Resources */,
 				C30D02501BABBFE700DF53F1 /* CleaningUpQ5A1.mp3 in Resources */,
 				C30D02511BABBFE700DF53F1 /* CleaningUpQ5A2.mp3 in Resources */,
@@ -7913,6 +7968,7 @@
 				C30D02671BABBFE700DF53F1 /* EveryoneHelpsQ3A4.mp3 in Resources */,
 				5C28DCF71C2BA66E005ACD07 /* Story1-The-Navajo-Hogan-Intro-E.xhtml in Resources */,
 				1A6322831C0E4D3B00251CB3 /* mimetype in Resources */,
+				5DBC02F31C509B880030072B /* TheLuckyStoneQ2A3.mp3 in Resources */,
 				1A6320C71C0E4D3B00251CB3 /* VocabularyIntroductions-MetaData.xml in Resources */,
 				1A63213A1C0E4D3B00251CB3 /* Story4-Shopping-at-the-Market-PM-2.xhtml in Resources */,
 				1A6320081C0E4D3B00251CB3 /* Hotspots-MetaData.xml in Resources */,
@@ -8239,6 +8295,7 @@
 				1A6322821C0E4D3B00251CB3 /* container.xml in Resources */,
 				1A6321471C0E4D3B00251CB3 /* Story6-Homecoming-PM-2.xhtml in Resources */,
 				1A6322EB1C0E4D3B00251CB3 /* Story5-The-Baby's-Rattle-is-Gone-Too-Intro-E.xhtml in Resources */,
+				5DBC02F01C509B880030072B /* TheLuckyStoneQ2.mp3 in Resources */,
 				C30D02ED1BABBFE700DF53F1 /* TheContestQ4A3.mp3 in Resources */,
 				5CD1C1341C3F2E6A00BE9047 /* bluesaddlebag_open.png in Resources */,
 				1A6320BA1C0E4D3B00251CB3 /* Story4-Words-of-Wisdom-Intro-E.xhtml in Resources */,
@@ -8334,6 +8391,7 @@
 				C30D03101BABBFE700DF53F1 /* TheWiseOwlQ4A3.mp3 in Resources */,
 				C30D03111BABBFE700DF53F1 /* TheWiseOwlQ4A4.mp3 in Resources */,
 				5C28DC6B1C2BA66E005ACD07 /* background_ch6.png in Resources */,
+				5DBC02EE1C509B880030072B /* TheLuckyStoneQ1A3.mp3 in Resources */,
 				C30D03121BABBFE700DF53F1 /* TheWiseOwlQ5.mp3 in Resources */,
 				1A6320801C0E4D3B00251CB3 /* Hotspots-MetaData.xml in Resources */,
 				C30D03131BABBFE700DF53F1 /* TheWiseOwlQ5A1.mp3 in Resources */,
@@ -8363,6 +8421,7 @@
 				1A6321D41C0E4D3B00251CB3 /* Hotspots-MetaData.xml in Resources */,
 				5CA9556E1C3237690038FB56 /* monkey_tree.png in Resources */,
 				1A63224E1C0E4D3B00251CB3 /* tornado_grass.png in Resources */,
+				5DBC02FA1C509CFD0030072B /* TheLuckyStoneQ3.mp3 in Resources */,
 				C30D03201BABBFE700DF53F1 /* WhoIsTheBestAnimalQ1A4.mp3 in Resources */,
 				C30D03211BABBFE700DF53F1 /* WhoIsTheBestAnimalQ2.mp3 in Resources */,
 				1A6321C61C0E4D3B00251CB3 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-Title.xhtml in Resources */,
@@ -8591,6 +8650,7 @@
 				5C28DC831C2BA66E005ACD07 /* chickee2.png in Resources */,
 				C30D03791BABBFE800DF53F1 /* TheFamilyIsRattledQ5A3.mp3 in Resources */,
 				C30D037A1BABBFE800DF53F1 /* TheFamilyIsRattledQ5A4.mp3 in Resources */,
+				5DBC02F41C509B880030072B /* TheLuckyStoneQ2A4.mp3 in Resources */,
 				1A6323601C0E4D3B00251CB3 /* Story6-Newton's-Third-Law-Forces-are-Paired-Title.xhtml in Resources */,
 				C30D037B1BABBFE800DF53F1 /* TheFamilyIsRattledQ6.mp3 in Resources */,
 				C30D037C1BABBFE800DF53F1 /* TheFamilyIsRattledQ6A1.mp3 in Resources */,
@@ -8652,6 +8712,7 @@
 				C30D03901BABBFE800DF53F1 /* TheMysteryIsSolvedQ4A1.mp3 in Resources */,
 				C30D03911BABBFE800DF53F1 /* TheMysteryIsSolvedQ4A2.mp3 in Resources */,
 				C30D03921BABBFE800DF53F1 /* TheMysteryIsSolvedQ4A3.mp3 in Resources */,
+				5DBC02FD1C509CFD0030072B /* TheLuckyStoneQ3A3.mp3 in Resources */,
 				C30D03931BABBFE800DF53F1 /* TheMysteryIsSolvedQ4A4.mp3 in Resources */,
 				C30D03941BABBFE800DF53F1 /* TheMysteryIsSolvedQ5.mp3 in Resources */,
 				C30D03951BABBFE800DF53F1 /* TheMysteryIsSolvedQ5A1.mp3 in Resources */,
@@ -8693,6 +8754,7 @@
 				1A6320BD1C0E4D3B00251CB3 /* Story4-Words-of-Wisdom-PM-3.xhtml in Resources */,
 				C30D03A31BABBFE800DF53F1 /* IsPacoAThiefQ1.mp3 in Resources */,
 				5C28DCD81C2BA66E005ACD07 /* teepee_blanket.png in Resources */,
+				5DBC02EC1C509B880030072B /* TheLuckyStoneQ1A1.mp3 in Resources */,
 				C30D03A41BABBFE800DF53F1 /* IsPacoAThiefQ1A1.mp3 in Resources */,
 				1A6321B81C0E4D3B00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-3.xhtml in Resources */,
 				C30D03A51BABBFE800DF53F1 /* IsPacoAThiefQ1A2.mp3 in Resources */,
@@ -8760,6 +8822,7 @@
 				1A6320F41C0E4D3B00251CB3 /* icon_scale.png in Resources */,
 				C30D03BA1BABBFE800DF53F1 /* IsPacoAThiefQ5A3.mp3 in Resources */,
 				C30D03BB1BABBFE800DF53F1 /* IsPacoAThiefQ5A4.mp3 in Resources */,
+				5DBC02FB1C509CFD0030072B /* TheLuckyStoneQ3A1.mp3 in Resources */,
 				1A6321C81C0E4D3B00251CB3 /* tocE.ncx in Resources */,
 				5C28DCCC1C2BA66E005ACD07 /* seminole_dad.png in Resources */,
 				1A63214D1C0E4D3B00251CB3 /* Translations-MetaData.xml in Resources */,
@@ -8852,6 +8915,7 @@
 				1A63200D1C0E4D3B00251CB3 /* cart_large.png in Resources */,
 				1A880E161BD6E4980020F93B /* CigaretteSmokeHurtsYourLungsQ5A1.mp3 in Resources */,
 				1A6320841C0E4D3B00251CB3 /* boardgame_open.png in Resources */,
+				5DBC02F11C509B880030072B /* TheLuckyStoneQ2A1.mp3 in Resources */,
 				C30D03E61BABBFE800DF53F1 /* TheLopezFamilyQ1A2.mp3 in Resources */,
 				5DB509951C40CDEB00EB74E0 /* Story1-How-do-Objects-Move-Intro-S.xhtml in Resources */,
 				C30D03E71BABBFE800DF53F1 /* TheLopezFamilyQ1A3.mp3 in Resources */,
@@ -8942,6 +9006,7 @@
 				1A6322C21C0E4D3B00251CB3 /* Relationships-MetaData.xml in Resources */,
 				1AF805511C29019A00C96B05 /* plume_greyplate_oahu.png in Resources */,
 				C30D04091BABBFE800DF53F1 /* TheLopezFamilyS2S.mp3 in Resources */,
+				5DBC02F21C509B880030072B /* TheLuckyStoneQ2A2.mp3 in Resources */,
 				1A880E501BD6E4980020F93B /* MusclesUseOxygenQ4A4.mp3 in Resources */,
 				5DB509971C40D29600EB74E0 /* Story2-Newton's-First-Law-Intro-S.xhtml in Resources */,
 				5C28DCE81C2BA66E005ACD07 /* woodpile_ignited.png in Resources */,
@@ -9062,6 +9127,7 @@
 				1A880E5A1BD6E4980020F93B /* TheAmazingHeartQ1A4.mp3 in Resources */,
 				C30D043C1BABBFE800DF53F1 /* BFCS_10B.m4a in Resources */,
 				5C28DC8F1C2BA66E005ACD07 /* frame_complete.png in Resources */,
+				5DBC02EF1C509B880030072B /* TheLuckyStoneQ1A4.mp3 in Resources */,
 				1A63209E1C0E4D3B00251CB3 /* toy_chick.png in Resources */,
 				5C28DCD51C2BA66E005ACD07 /* soldier3.png in Resources */,
 				5C28DCBC1C2BA66E005ACD07 /* palm_platform.png in Resources */,
@@ -9163,6 +9229,7 @@
 				5C28DCDD1C2BA66E005ACD07 /* travois_withsupplies.png in Resources */,
 				5C28DCB11C2BA66E005ACD07 /* man2.png in Resources */,
 				C30D04641BABBFE800DF53F1 /* pumpkinS.m4a in Resources */,
+				5DBC02EB1C509B880030072B /* TheLuckyStoneQ1.mp3 in Resources */,
 				C30D04651BABBFE800DF53F1 /* cartDEFS.m4a in Resources */,
 				C30D04661BABBFE800DF53F1 /* cartS.m4a in Resources */,
 				1A6323171C0E4D3B00251CB3 /* dog_cartempty.png in Resources */,
@@ -9639,6 +9706,7 @@
 				1A6321F21C0E4D3B00251CB3 /* ch4_test_03.png in Resources */,
 				1A6322071C0E4D3B00251CB3 /* house_noroof.png in Resources */,
 				C30D05371BABBFE800DF53F1 /* BFCE2_5.m4a in Resources */,
+				5DBC02FE1C509CFD0030072B /* TheLuckyStoneQ3A4.mp3 in Resources */,
 				C30D05381BABBFE800DF53F1 /* BFCE2_4.m4a in Resources */,
 				5C28DCA61C2BA66E005ACD07 /* introduction_background.png in Resources */,
 				C30D05391BABBFE800DF53F1 /* cartE.m4a in Resources */,
