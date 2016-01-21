@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sequences id="1">
+    <book title="Bottled Up Joy">
+        <chapter title="The Naughty Monkey">
+            <reader>System</reader>
+            <language>Spanish</language>
+            <intervention>None</intervention>
+        </chapter>
+    </book>
+    <book title="Bottled Up Joy">
+        <chapter title="The Lucky Stone">
+            <reader>System</reader>
+            <language>Spanish</language>
+            <intervention>None</intervention>
+        </chapter>
+        <chapter title="Magic Toys">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>None</intervention>
+        </chapter>
+        <chapter title="Baby Brother">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>None</intervention>
+        </chapter>
+        <chapter title="Words of Wisdom">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>None</intervention>
+        </chapter>
+        <chapter title="Catch!">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>None</intervention>
+        </chapter>
+    </book>
+    <book title="The Best Farm">
+        <chapter title="The Contest">
+            <reader>System</reader>
+            <language>Spanish</language>
+            <intervention>None</intervention>
+        </chapter>
+        <chapter title="Getting Ready">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>None</intervention>
+        </chapter>
+        <chapter title="Cleaning Up">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>None</intervention>
+        </chapter>
+        <chapter title="Who is the Best Animal?">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>PM</intervention>
+        </chapter>
+        <chapter title="The Wise Owl">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>PM</intervention>
+        </chapter>
+        <chapter title="Everyone Helps">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>PM</intervention>
+        </chapter>
+        <chapter title="The Best Farm Award">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>PM</intervention>
+        </chapter>
+    </book>
+    <book title="Native American Homes">
+        <chapter title="Introduction to Native American Homes">
+            <reader>System</reader>
+            <language>Spanish</language>
+            <intervention>PM</intervention>
+        </chapter>
+        <chapter title="The Navajo Hogan">
+            <reader>System</reader>
+            <language>Spanish</language>
+            <intervention>PM</intervention>
+        </chapter>
+        <chapter title="The Inuit Igloo">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>PM</intervention>
+        </chapter>
+        <chapter title="The Sioux Teepee">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>None</intervention>
+        </chapter>
+        <chapter title="The Algonquian Wigwam">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>None</intervention>
+        </chapter>
+        <chapter title="The Haida Plank House">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>None</intervention>
+        </chapter>
+        <chapter title="The Seminole Chickee">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>None</intervention>
+        </chapter>
+    </book>
+    <book title="How Objects Move">
+        <chapter title="How do Objects Move?">
+            <reader>System</reader>
+            <language>Spanish</language>
+            <intervention>PM</intervention>
+        </chapter>
+        <chapter title="Newton's First Law">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>PM</intervention>
+        </chapter>
+        <chapter title="Newton's First Law on Earth">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>PM</intervention>
+        </chapter>
+        <chapter title="Newton's Second Law: Acceleration">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>IM</intervention>
+        </chapter>
+        <chapter title="Newton's Law of Acceleration on Earth">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>IM</intervention>
+        </chapter>
+        <chapter title="Newton's Third Law: Forces are Paired">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>IM</intervention>
+        </chapter>
+        <chapter title="The Three Laws Work Together">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>IM</intervention>
+        </chapter>
+    </book>
+    <book title="A Celebration to Remember">
+        <chapter title="Key Ingredients">
+            <reader>System</reader>
+            <language>Spanish</language>
+            <intervention>PM</intervention>
+        </chapter>
+        <chapter title="Mancha the Horse">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>PM</intervention>
+        </chapter>
+        <chapter title="A Friend in Need">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>PM</intervention>
+        </chapter>
+        <chapter title="Shopping at the Market">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>None</intervention>
+        </chapter>
+        <chapter title="A Gift for the Bride">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>IM</intervention>
+        </chapter>
+        <chapter title="Homecoming">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>IM</intervention>
+        </chapter>
+    </book>
+    <book title="Natural Disasters">
+        <chapter title="Introduction to Natural Disasters">
+            <reader>System</reader>
+            <language>Spanish</language>
+            <intervention>PM</intervention>
+        </chapter>
+        <chapter title="The Moving Earth">
+            <reader>System</reader>
+            <language>Spanish</language>
+            <intervention>PM</intervention>
+        </chapter>
+        <chapter title="Earthquakes">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>PM</intervention>
+        </chapter>
+        <chapter title="Tsunamis">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>None</intervention>
+        </chapter>
+        <chapter title="Volcanoes and the Making of Hawaii">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>IM</intervention>
+        </chapter>
+        <chapter title="Tornados">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>IM</intervention>
+        </chapter>
+    </book>
+    <book title="The Lopez House Mystery">
+        <chapter title="The Lopez Family">
+            <reader>System</reader>
+            <language>Spanish</language>
+            <intervention>IM</intervention>
+        </chapter>
+        <chapter title="Missing Keys">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>None</intervention>
+        </chapter>
+        <chapter title="Is Paco a Thief?">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>None</intervention>
+        </chapter>
+        <chapter title="More is Missing!">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>None</intervention>
+        </chapter>
+        <chapter title="The Baby's Rattle is Gone, Too!">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>None</intervention>
+        </chapter>
+        <chapter title="The Mystery is Solved">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>None</intervention>
+        </chapter>
+    </book>
+</sequences>

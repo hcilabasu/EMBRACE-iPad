@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		033BC05D1C501BB600A1EC14 /* ActivityMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 033BC05C1C501BB600A1EC14 /* ActivityMode.m */; };
+		033BC0641C505E4300A1EC14 /* sequences1.xml in Resources */ = {isa = PBXBuildFile; fileRef = 033BC0631C505E4300A1EC14 /* sequences1.xml */; };
+		033BC0671C506C0100A1EC14 /* ActivitySequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 033BC0661C506C0100A1EC14 /* ActivitySequence.m */; };
+		033BC06A1C507BD100A1EC14 /* ActivitySequenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 033BC0691C507BD100A1EC14 /* ActivitySequenceController.m */; };
 		1A0385061C2B156400A973D8 /* hook_n_key_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0385051C2B156400A973D8 /* hook_n_key_large.png */; };
 		1A0385091C2B1F2500A973D8 /* cilia_inside.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0385071C2B1F2500A973D8 /* cilia_inside.png */; };
 		1A03850A1C2B1F2500A973D8 /* cilia_outside.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0385081C2B1F2500A973D8 /* cilia_outside.png */; };
@@ -2296,6 +2300,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		033BC05B1C501BB600A1EC14 /* ActivityMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityMode.h; sourceTree = "<group>"; };
+		033BC05C1C501BB600A1EC14 /* ActivityMode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityMode.m; sourceTree = "<group>"; };
+		033BC0631C505E4300A1EC14 /* sequences1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences1.xml; sourceTree = "<group>"; };
+		033BC0651C506C0100A1EC14 /* ActivitySequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivitySequence.h; sourceTree = "<group>"; };
+		033BC0661C506C0100A1EC14 /* ActivitySequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivitySequence.m; sourceTree = "<group>"; };
+		033BC0681C507BD100A1EC14 /* ActivitySequenceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivitySequenceController.h; sourceTree = "<group>"; };
+		033BC0691C507BD100A1EC14 /* ActivitySequenceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivitySequenceController.m; sourceTree = "<group>"; };
 		1A0385051C2B156400A973D8 /* hook_n_key_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hook_n_key_large.png; sourceTree = "<group>"; };
 		1A0385071C2B1F2500A973D8 /* cilia_inside.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cilia_inside.png; sourceTree = "<group>"; };
 		1A0385081C2B1F2500A973D8 /* cilia_outside.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cilia_outside.png; sourceTree = "<group>"; };
@@ -4592,11 +4603,6 @@
 		5D68212F1C489FB5001F5CFD /* Story4-Shopping-at-the-Market-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Shopping-at-the-Market-Intro-S.xhtml"; sourceTree = "<group>"; };
 		5D6821311C48A13A001F5CFD /* Story5-A-Gift-for-the-Bride-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-A-Gift-for-the-Bride-Intro-S.xhtml"; sourceTree = "<group>"; };
 		5D6821331C48A170001F5CFD /* Story6-Homecoming-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story6-Homecoming-Intro-S.xhtml"; sourceTree = "<group>"; };
-		C32DA0DF1BF92A52006C2418 /* Progress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Progress.h; sourceTree = "<group>"; };
-		C32DA0E01BF92A52006C2418 /* Progress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Progress.m; sourceTree = "<group>"; };
-		C35F42791BDAAD3600B4BCF0 /* bookmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bookmark.png; sourceTree = "<group>"; };
-		C35F427A1BDAAD3600B4BCF0 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
-		C35F427B1BDAAD3600B4BCF0 /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
 		5DB509941C40CDEB00EB74E0 /* Story1-How-do-Objects-Move-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-How-do-Objects-Move-Intro-S.xhtml"; sourceTree = "<group>"; };
 		5DB509961C40D29600EB74E0 /* Story2-Newton's-First-Law-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story2-Newton's-First-Law-Intro-S.xhtml"; sourceTree = "<group>"; };
 		5DB509981C40D30900EB74E0 /* Story3-Newton's-First-Law-on-Earth-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story3-Newton's-First-Law-on-Earth-Intro-S.xhtml"; sourceTree = "<group>"; };
@@ -4604,6 +4610,11 @@
 		5DB5099C1C40D5D800EB74E0 /* Story5-Newton's-Law-of-Acceleration-on-Earth-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-Newton's-Law-of-Acceleration-on-Earth-Intro-S.xhtml"; sourceTree = "<group>"; };
 		5DB5099E1C40D69900EB74E0 /* Story6-Newton's-Third-Law-Forces-are-Paired-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story6-Newton's-Third-Law-Forces-are-Paired-Intro-S.xhtml"; sourceTree = "<group>"; };
 		5DB509A01C40D6FF00EB74E0 /* Story7-The-Three-Laws-Work-Together-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story7-The-Three-Laws-Work-Together-Intro-S.xhtml"; sourceTree = "<group>"; };
+		C32DA0DF1BF92A52006C2418 /* Progress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Progress.h; sourceTree = "<group>"; };
+		C32DA0E01BF92A52006C2418 /* Progress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Progress.m; sourceTree = "<group>"; };
+		C35F42791BDAAD3600B4BCF0 /* bookmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bookmark.png; sourceTree = "<group>"; };
+		C35F427A1BDAAD3600B4BCF0 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
+		C35F427B1BDAAD3600B4BCF0 /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
 		C36473EC1A9AA5C100FD7494 /* AlternateSentence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlternateSentence.h; sourceTree = "<group>"; };
 		C36473ED1A9AA5C100FD7494 /* AlternateSentence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlternateSentence.m; sourceTree = "<group>"; };
 		C393881E195376490005279F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -6072,6 +6083,7 @@
 				1A631FFE1C0E4D3B00251CB3 /* physics.epub */,
 				5CE1E30F1A119E120070A7D6 /* bestFarm.epub */,
 				5CE1E30D1A119DFC0070A7D6 /* circulatory.epub */,
+				033BC0631C505E4300A1EC14 /* sequences1.xml */,
 				5C7FE06619A7E43B00CBBE0E /* sounds */,
 				31953E501729ECC100570087 /* EMBRACE-Info.plist */,
 				31953E511729ECC100570087 /* InfoPlist.strings */,
@@ -7605,6 +7617,12 @@
 			children = (
 				5CC854E519FAF37F00910237 /* ConditionSetup.h */,
 				5CC854E619FAF37F00910237 /* ConditionSetup.m */,
+				033BC05B1C501BB600A1EC14 /* ActivityMode.h */,
+				033BC05C1C501BB600A1EC14 /* ActivityMode.m */,
+				033BC0651C506C0100A1EC14 /* ActivitySequence.h */,
+				033BC0661C506C0100A1EC14 /* ActivitySequence.m */,
+				033BC0681C507BD100A1EC14 /* ActivitySequenceController.h */,
+				033BC0691C507BD100A1EC14 /* ActivitySequenceController.m */,
 			);
 			name = "Condition Setup";
 			sourceTree = "<group>";
@@ -9460,6 +9478,7 @@
 				5C28DC5B1C2BA66E005ACD07 /* container.xml in Resources */,
 				C30D04EC1BABBFE800DF53F1 /* towardE.m4a in Resources */,
 				1A6321C91C0E4D3B00251CB3 /* Translations-MetaData.xml in Resources */,
+				033BC0641C505E4300A1EC14 /* sequences1.xml in Resources */,
 				1A63232B1C0E4D3B00251CB3 /* rocket_flame.png in Resources */,
 				1A6321E41C0E4D3B00251CB3 /* bulge.png in Resources */,
 				C30D04ED1BABBFE800DF53F1 /* veinsE.m4a in Resources */,
@@ -9916,6 +9935,7 @@
 				5CD7FE3819776403007A1E49 /* Introduction.m in Sources */,
 				C3B5214C19254B0C003FF639 /* Location.m in Sources */,
 				31953E761729ED5A00570087 /* mztools.c in Sources */,
+				033BC0671C506C0100A1EC14 /* ActivitySequence.m in Sources */,
 				C3D79468196B1EC9004C26ED /* AlternateImage.m in Sources */,
 				3115B1D41819C532007171E3 /* PossibleInteraction.m in Sources */,
 				5CD7FE3519775C1C007A1E49 /* VocabularyStep.m in Sources */,
@@ -9928,9 +9948,11 @@
 				31953E871729EE5800570087 /* LibraryViewController.m in Sources */,
 				C3B5215A192AB610003FF639 /* EBookImporter.m in Sources */,
 				1AB028FC1ACF0890006CC916 /* AuthoringModeViewController.m in Sources */,
+				033BC05D1C501BB600A1EC14 /* ActivityMode.m in Sources */,
 				1AF3815B1A40A4C600D967FD /* AssessmentActivityViewController.m in Sources */,
 				31953E8D1729EE6E00570087 /* BookCellView.m in Sources */,
 				5CFA85AB1950EFDC00C7537D /* IntroductionStep.m in Sources */,
+				033BC06A1C507BD100A1EC14 /* ActivitySequenceController.m in Sources */,
 				31953E8F1729EE6E00570087 /* LibraryView.m in Sources */,
 				31953E951729EEB800570087 /* PMViewController.m in Sources */,
 				5C466ADC192293290056EA4B /* Translation.m in Sources */,
