@@ -16,16 +16,16 @@
                 <Answer4Audio>HowdoObjectsMoveQ1A4.mp3</Answer4Audio>
             </Question>
             <Question number="2">
-                <QuestionText>A force is needed to&#8230;</QuestionText>
+                <QuestionText>A force is needed to&#8230;?</QuestionText>
                 <QuestionAudio>HowdoObjectsMoveQ2.mp3</QuestionAudio>
                 <Answer1>Start an object moving</Answer1>
                 <Answer1Audio>HowdoObjectsMoveQ2A1.mp3</Answer1Audio>
-                <expectedSelection>Start an object moving</expectedSelection>
+                <expectedSelection>All of the choices are correct</expectedSelection>
                 <Answer2>Stop an object from moving</Answer2>
                 <Answer2Audio>HowdoObjectsMoveQ2A2.mp3</Answer2Audio>
                 <Answer3>Change direction</Answer3>
                 <Answer3Audio>HowdoObjectsMoveQ2A3.mp3</Answer3Audio>
-                <Answer4>All of the above</Answer4>
+                <Answer4>All of the choices are correct</Answer4>
                 <Answer4Audio>HowdoObjectsMoveQ2A4.mp3</Answer4Audio>
             </Question>
             <Question number="3">
@@ -176,7 +176,7 @@
                 <Answer4Audio>NewtonsFirstLawonEarthQ3A4.mp3</Answer4Audio>
             </Question>
             <Question number="4">
-                <QuestionText>Which force pulls objects down to the earth?</QuestionText>
+                <QuestionText>Which force pulls objects down to Earth?</QuestionText>
                 <QuestionAudio>NewtonsFirstLawonEarthQ4.mp3</QuestionAudio>
                 <Answer1>Gravity</Answer1>
                 <Answer1Audio>NewtonsFirstLawonEarthQ4A1.mp3</Answer1Audio>
@@ -189,7 +189,7 @@
                 <Answer4Audio>NewtonsFirstLawonEarthQ4A4.mp3</Answer4Audio>
             </Question>
             <Question number="5">
-                <QuestionText>What are the names of some forces on earth that can change the speed and direction of objects?</QuestionText>
+                <QuestionText>What are the names of some forces on Earth that can change the speed and direction of objects?</QuestionText>
                 <QuestionAudio>NewtonsFirstLawonEarthQ5.mp3</QuestionAudio>
                 <Answer1>Gravity and friction</Answer1>
                 <Answer1Audio>NewtonsFirstLawonEarthQ5A1.mp3</Answer1Audio>
@@ -447,7 +447,7 @@
                 <Answer1>Every action (Sara being pushed forward) is paired with a reaction (Maria being pushed backward)</Answer1>
                 <Answer1Audio>NewtonsThirdLawForcesarepairedQ5A1.mp3</Answer1Audio>
                 <expectedSelection>Every action (Sara being pushed forward) is paired with a reaction (Maria being pushed backward)</expectedSelection>
-                <Answer2>Friction pulled Maria backward after she pushed Sarah forward.</Answer2>
+                <Answer2>Friction pulled Maria backward after she pushed Sarah forward</Answer2>
                 <Answer2Audio>NewtonsThirdLawForcesarepairedQ5A2.mp3</Answer2Audio>
                 <Answer3>Gravity pulled Maria backward because she was on a hill</Answer3>
                 <Answer3Audio>NewtonsThirdLawForcesarepairedQ5A3.mp3</Answer3Audio>
@@ -527,7 +527,7 @@
                 <Answer1>Friction</Answer1>
                 <Answer1Audio>TheThreeLawsWorkTogetherQ5A1.mp3</Answer1Audio>
                 <expectedSelection>Friction</expectedSelection>
-                <Answer2>The toy car</Answer2>
+                <Answer2>The toy truck</Answer2>
                 <Answer2Audio>TheThreeLawsWorkTogetherQ5A2.mp3</Answer2Audio>
                 <Answer3>The seatbelt</Answer3>
                 <Answer3Audio>TheThreeLawsWorkTogetherQ5A3.mp3</Answer3Audio>
