@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <locations>
-        <location locationId="bathroom" x="32%" y="33%" height="26%" width="23%"/>
-        <location locationId="crib" x="23%" y="49%" height="9%" width="8.2%"/>
-        <location locationId="frontHouse" x="1%" y="75%" height="26%" width="60%"/>
-        <location locationId="kitchen" x="8%" y="59%" height="25%" width="24%"/>
-        <location locationId="kitchenSink" x="8%" y="60%" height="26%" width="9%"/>
-        <location locationId="livingRoom" x="32%" y="59%" height="26%" width="23%"/>
-        <location locationId="nearHook" x="16%" y="63%" height="22%" width="10%"/>
-        <location locationId="nearTree" x="65%" y="67%" height="34%" width="35%"/>
-        <location locationId="nest" x="79%" y="50%" height="16%" width="14%"/>
-        <location locationId="outside" x="56%" y="59%" height="39%" width="44%"/>
-        <location locationId="playRoom" x="7%" y="15%" height="17%" width="48%"/>
+        <location locationId="bathroom" x="30.625000%" y="31.593752%" height="24.892046%" width="22.011719%"/>
+        <location locationId="crib" x="22.011719%" y="46.911930%" height="8.616478%" width="7.847656%"/>
+        <location locationId="frontHouse" x="0.957031%" y="71.803978%" height="24.892046%" width="57.421875%"/>
+        <location locationId="kitchen" x="7.656250%" y="56.485790%" height="23.934660%" width="22.968750%"/>
+        <location locationId="kitchenSink" x="7.656250%" y="57.443188%" height="24.892046%" width="8.613281%"/>
+        <location locationId="livingRoom" x="30.625000%" y="56.485790%" height="24.892046%" width="22.011719%"/>
+        <location locationId="nearHook" x="15.312500%" y="60.315342%" height="21.062500%" width="9.570312%"/>
+        <location locationId="nearTree" x="62.207031%" y="64.144890%" height="32.551136%" width="33.496094%"/>
+        <location locationId="nest" x="75.605469%" y="47.869320%" height="15.318182%" width="13.398438%"/>
+        <location locationId="outside" x="53.593750%" y="56.485790%" height="37.338066%" width="42.109375%"/>
+        <location locationId="playRoom" x="6.699219%" y="14.360797%" height="16.275568%" width="45.937500%"/>
     </locations>
 </metadata>
