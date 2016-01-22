@@ -3,12 +3,12 @@
 }
 
 .manipulationObject {
-    position: absolute;
+    position: fixed;
 	z-index: 1;
 }
 
 .backgroundObject {
-	position: absolute;
+	position: fixed;
 	z-index: 0;
 }
 
