@@ -1154,6 +1154,7 @@
 		5C28DD201C2BA66E005ACD07 /* Waypoints-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5C28DC5A1C2BA66E005ACD07 /* Waypoints-MetaData.xml */; };
 		5C466ADC192293290056EA4B /* Translation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C466ADB192293290056EA4B /* Translation.m */; };
 		5C5C6FD91C45ADE9002A67F9 /* liftingpole.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C5C6FD81C45ADE9002A67F9 /* liftingpole.png */; };
+		5C5F29CD1C52F28000F5A67C /* TheLuckyStoneQ7.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C5F29CC1C52F28000F5A67C /* TheLuckyStoneQ7.mp3 */; };
 		5CA9555F1C3237690038FB56 /* container.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5CA955331C3237690038FB56 /* container.xml */; };
 		5CA955601C3237690038FB56 /* mimetype in Resources */ = {isa = PBXBuildFile; fileRef = 5CA955341C3237690038FB56 /* mimetype */; };
 		5CA955611C3237690038FB56 /* AlternateImages-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5CA955361C3237690038FB56 /* AlternateImages-MetaData.xml */; };
@@ -2300,7 +2301,6 @@
 		5DBC03241C5121AE0030072B /* TheLuckyStoneQ6A2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC030B1C5121AE0030072B /* TheLuckyStoneQ6A2.mp3 */; };
 		5DBC03251C5121AE0030072B /* TheLuckyStoneQ6A3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC030C1C5121AE0030072B /* TheLuckyStoneQ6A3.mp3 */; };
 		5DBC03261C5121AE0030072B /* TheLuckyStoneQ6A4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC030D1C5121AE0030072B /* TheLuckyStoneQ6A4.mp3 */; };
-		5DBC03271C5121AE0030072B /* TheLuckyStoneQ7.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC030E1C5121AE0030072B /* TheLuckyStoneQ7.mp3 */; };
 		5DBC03281C5121AE0030072B /* TheLuckyStoneQ7A1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC030F1C5121AE0030072B /* TheLuckyStoneQ7A1.mp3 */; };
 		5DBC03291C5121AE0030072B /* TheLuckyStoneQ7A2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC03101C5121AE0030072B /* TheLuckyStoneQ7A2.mp3 */; };
 		5DBC032A1C5121AE0030072B /* TheLuckyStoneQ7A3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC03111C5121AE0030072B /* TheLuckyStoneQ7A3.mp3 */; };
@@ -3582,6 +3582,7 @@
 		5C466ADA192293290056EA4B /* Translation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Translation.h; sourceTree = "<group>"; };
 		5C466ADB192293290056EA4B /* Translation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Translation.m; sourceTree = "<group>"; };
 		5C5C6FD81C45ADE9002A67F9 /* liftingpole.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = liftingpole.png; sourceTree = "<group>"; };
+		5C5F29CC1C52F28000F5A67C /* TheLuckyStoneQ7.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ7.mp3; sourceTree = "<group>"; };
 		5C80A4EF1B4F378500CAC13E /* Vector.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Vector.js; sourceTree = "<group>"; };
 		5CA955331C3237690038FB56 /* container.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = container.xml; sourceTree = "<group>"; };
 		5CA955341C3237690038FB56 /* mimetype */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mimetype; sourceTree = "<group>"; };
@@ -4739,7 +4740,6 @@
 		5DBC030B1C5121AE0030072B /* TheLuckyStoneQ6A2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ6A2.mp3; sourceTree = "<group>"; };
 		5DBC030C1C5121AE0030072B /* TheLuckyStoneQ6A3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ6A3.mp3; sourceTree = "<group>"; };
 		5DBC030D1C5121AE0030072B /* TheLuckyStoneQ6A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ6A4.mp3; sourceTree = "<group>"; };
-		5DBC030E1C5121AE0030072B /* TheLuckyStoneQ7.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ7.mp3; sourceTree = "<group>"; };
 		5DBC030F1C5121AE0030072B /* TheLuckyStoneQ7A1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ7A1.mp3; sourceTree = "<group>"; };
 		5DBC03101C5121AE0030072B /* TheLuckyStoneQ7A2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ7A2.mp3; sourceTree = "<group>"; };
 		5DBC03111C5121AE0030072B /* TheLuckyStoneQ7A3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ7A3.mp3; sourceTree = "<group>"; };
@@ -7836,7 +7836,7 @@
 				5DBC030B1C5121AE0030072B /* TheLuckyStoneQ6A2.mp3 */,
 				5DBC030C1C5121AE0030072B /* TheLuckyStoneQ6A3.mp3 */,
 				5DBC030D1C5121AE0030072B /* TheLuckyStoneQ6A4.mp3 */,
-				5DBC030E1C5121AE0030072B /* TheLuckyStoneQ7.mp3 */,
+				5C5F29CC1C52F28000F5A67C /* TheLuckyStoneQ7.mp3 */,
 				5DBC030F1C5121AE0030072B /* TheLuckyStoneQ7A1.mp3 */,
 				5DBC03101C5121AE0030072B /* TheLuckyStoneQ7A2.mp3 */,
 				5DBC03111C5121AE0030072B /* TheLuckyStoneQ7A3.mp3 */,
@@ -9434,7 +9434,6 @@
 				5D10A9FF1C52C4DC007109AD /* IntroductionToTheBestFarmQ3A4.mp3 in Resources */,
 				1A6321081C0E4D3B00251CB3 /* scale_no_weight.png in Resources */,
 				5D10A9761C52C4DC007109AD /* dustS.m4a in Resources */,
-				5DBC03271C5121AE0030072B /* TheLuckyStoneQ7.mp3 in Resources */,
 				1A6321A61C0E4D3B00251CB3 /* Story2-The-Amazing-Heart-PM-2.xhtml in Resources */,
 				5C28DCDC1C2BA66E005ACD07 /* travois_supplies.png in Resources */,
 				5D10A9221C52C4DC007109AD /* CigaretteSmokeHurtsYourLungsQ6A1.mp3 in Resources */,
@@ -9903,6 +9902,7 @@
 				5D10AA6C1C52C4DC007109AD /* MoreIsMissingQ2A4.mp3 in Resources */,
 				5D10ABBF1C52C4DC007109AD /* TheWiseOwlQ3A3.mp3 in Resources */,
 				1A6320EB1C0E4D3B00251CB3 /* garlic.png in Resources */,
+				5C5F29CD1C52F28000F5A67C /* TheLuckyStoneQ7.mp3 in Resources */,
 				5DBC032C1C5121AE0030072B /* TheLuckyStoneQ8.mp3 in Resources */,
 				5D10AC101C52C4DC007109AD /* WhyWeBreatheQ2A1.mp3 in Resources */,
 				5C28DC6E1C2BA66E005ACD07 /* bark.png in Resources */,
