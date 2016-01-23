@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <waypoints>
-        <waypoint waypointId="air" x="39.238281" y="24.892046"/>
-        <waypoint waypointId="artery" x="47.851562" y="21.636932"/>
-        <waypoint waypointId="cilia" x="44.980469" y="63.187504"/>
-        <waypoint waypointId="heart1" x="15.312500" y="69.889206"/>
-        <waypoint waypointId="heart2" x="8.134766" y="43.082382"/>
-        <waypoint waypointId="heart3" x="26.796875" y="47.869320"/>
-        <waypoint waypointId="leftAtrium" x="39.238281" y="42.125000"/>
-        <waypoint waypointId="leftVentricle" x="43.066406" y="57.443188"/>
-        <waypoint waypointId="lung1" x="22.490234" y="76.590912"/>
-        <waypoint waypointId="lung2" x="35.410156" y="50.741470"/>
-        <waypoint waypointId="lung3" x="24.404297" y="76.590912"/>
-        <waypoint waypointId="muscle1" x="75.031258" y="49.305397"/>
-        <waypoint waypointId="muscle2" x="35.410156" y="31.593752"/>
-        <waypoint waypointId="nose" x="26.796875" y="18.190340"/>
-        <waypoint waypointId="rightAtrium" x="17.226562" y="54.571022"/>
-        <waypoint waypointId="rightVentricle" x="25.839844" y="62.230106"/>
-        <waypoint waypointId="vein" x="28.710938" y="75.633530"/>
+        <waypoint waypointId="air" x="41%" y="26%"/>
+        <waypoint waypointId="artery" x="50%" y="22.6%"/>
+        <waypoint waypointId="cilia" x="47%" y="66%"/>
+        <waypoint waypointId="heart1" x="16%" y="73%"/>
+        <waypoint waypointId="heart2" x="8.5%" y="45%"/>
+        <waypoint waypointId="heart3" x="28%" y="50%"/>
+        <waypoint waypointId="leftAtrium" x="41%" y="44%"/>
+        <waypoint waypointId="leftVentricle" x="45%" y="60%"/>
+        <waypoint waypointId="lung1" x="23.5%" y="80%"/>
+        <waypoint waypointId="lung2" x="37%" y="53%"/>
+        <waypoint waypointId="lung3" x="25.5%" y="80%"/>
+        <waypoint waypointId="muscle1" x="78.4%" y="51.5%"/>
+        <waypoint waypointId="muscle2" x="37%" y="33%"/>
+        <waypoint waypointId="nose" x="28%" y="19%"/>
+        <waypoint waypointId="rightAtrium" x="18%" y="57%"/>
+        <waypoint waypointId="rightVentricle" x="27%" y="65%"/>
+        <waypoint waypointId="vein" x="30%" y="79%"/>
     </waypoints>
 </metadata>
