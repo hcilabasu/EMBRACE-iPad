@@ -338,6 +338,15 @@ BOOL wasPathFollowed = false;
             [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3",currentSentence]];
         }
     }
+    //If we are on the first or second manipulation page of The Lucky Stone, play the current sentence
+    if ([chapterTitle isEqualToString:@"The Lucky Stone"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+        if(conditionSetup.language ==BILINGUAL) {
+            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLuckyStoneS%dS.mp3",currentSentence]];
+        }
+        else {
+            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLuckyStoneS%dE.mp3",currentSentence]];
+        }
+    }
     
     
     // If there is at least one area/path to build
@@ -3413,6 +3422,15 @@ BOOL wasPathFollowed = false;
                             [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3",currentSentence]];
                         }
                     }
+                    //If we are on the first or second manipulation page of The Lucky Stone, play the current sentence
+                    if ([chapterTitle isEqualToString:@"The Lucky Stone"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+                        if(conditionSetup.language ==BILINGUAL) {
+                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLuckyStoneS%dS.mp3",currentSentence]];
+                        }
+                        else {
+                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLuckyStoneS%dE.mp3",currentSentence]];
+                        }
+                    }
                     
                 }
             }
@@ -4674,6 +4692,16 @@ BOOL wasPathFollowed = false;
                         }
                     }
                     
+                    //If we are on the first or second manipulation page of The Lucky Stone, play the current sentence
+                    if ([chapterTitle isEqualToString:@"The Lucky Stone"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+                        if(conditionSetup.language ==BILINGUAL) {
+                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLuckyStoneS%dS.mp3",currentSentence]];
+                        }
+                        else {
+                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLuckyStoneS%dE.mp3",currentSentence]];
+                        }
+                    }
+                    
                     
                 }
             }
@@ -4755,6 +4783,15 @@ BOOL wasPathFollowed = false;
                     }
                     else {
                         [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3",currentSentence]];
+                    }
+                }
+                //If we are on the first or second manipulation page of The Lucky Stone, play the current sentence
+                if ([chapterTitle isEqualToString:@"The Lucky Stone"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+                    if(conditionSetup.language ==BILINGUAL) {
+                        [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLuckyStoneS%dS.mp3",currentSentence]];
+                    }
+                    else {
+                        [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLuckyStoneS%dE.mp3",currentSentence]];
                     }
                 }
             }
