@@ -24,7 +24,7 @@
 - (BOOL) loadSequences {
     NSBundle* mainBundle = [NSBundle mainBundle];
     
-    //TODO: Load different sequences files depending on student information
+    //TODO: Load different sequence files depending on student information
     NSString* sequencesFilePath = [mainBundle pathForResource:@"sequences1" ofType:@"xml"];
     
     //Try to load sequences data
@@ -35,27 +35,26 @@
         NSError* error;
         GDataXMLDocument* sequencesXMLDocument = [[GDataXMLDocument alloc] initWithData:sequencesData error:&error];
         
-        //Read sequences
         GDataXMLElement* sequencesElement = (GDataXMLElement*) [[sequencesXMLDocument nodesForXPath:@"//sequences" error:nil] objectAtIndex:0];
         
-        //Read books
-        NSArray* bookElements = [sequencesElement elementsForName:@"book"];
+        //Read sequences
+        NSArray* sequenceElements = [sequencesElement elementsForName:@"sequence"];
         
-        for (GDataXMLElement* bookElement in bookElements) {
+        for (GDataXMLElement* sequenceElement in sequenceElements) {
             //Get book title
-            NSString* bookTitle = [[bookElement attributeForName:@"title"] stringValue];
+            NSString* bookTitle = [[sequenceElement attributeForName:@"bookTitle"] stringValue];
             
             NSMutableArray* modes = [[NSMutableArray alloc] init]; //contains modes for each chapter
             
-            //Read chapters
-            NSArray* chapterElements = [bookElement elementsForName:@"chapter"];
+            //Read modes
+            NSArray* modeElements = [sequenceElement elementsForName:@"mode"];
             
-            for (GDataXMLElement* chapterElement in chapterElements) {
+            for (GDataXMLElement* modeElement in modeElements) {
                 //Get chapter title
-                NSString* chapterTitle = [[chapterElement attributeForName:@"title"] stringValue];
+                NSString* chapterTitle = [[modeElement attributeForName:@"chapterTitle"] stringValue];
                 
                 //Get reader
-                GDataXMLElement* readerElement = [[chapterElement elementsForName:@"reader"] objectAtIndex:0];
+                GDataXMLElement* readerElement = [[modeElement elementsForName:@"reader"] objectAtIndex:0];
                 NSString* readerString = readerElement.stringValue;
                 
                 Reader reader;
@@ -71,7 +70,7 @@
                 }
                 
                 //Get language
-                GDataXMLElement* languageElement = [[chapterElement elementsForName:@"language"] objectAtIndex:0];
+                GDataXMLElement* languageElement = [[modeElement elementsForName:@"language"] objectAtIndex:0];
                 NSString* languageString = languageElement.stringValue;
                 
                 Language language;
@@ -87,7 +86,7 @@
                 }
                 
                 //Get intervention
-                GDataXMLElement* interventionElement = [[chapterElement elementsForName:@"intervention"] objectAtIndex:0];
+                GDataXMLElement* interventionElement = [[modeElement elementsForName:@"intervention"] objectAtIndex:0];
                 NSString* interventionString = interventionElement.stringValue;
                 
                 InterventionType intervention;
@@ -117,12 +116,15 @@
         
         return true;
     }
-    //Sequences data failed to load
+    //Sequence data failed to load
     else {
         return false;
     }
 }
 
+/*
+ * Returns ActivitySequence for book with the specified title
+ */
 - (ActivitySequence*) getSequenceForBook:(NSString*)title {
     for (ActivitySequence* sequence in sequences) {
         if ([[sequence bookTitle] isEqualToString:title]) {

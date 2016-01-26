@@ -88,43 +88,7 @@ ConditionSetup *conditionSetup;
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if (useSequence) {
-        //TODO: Set next book in progress based on sequence
-    }
-    else {
-        //Set the next incomplete chapter to in progress if it exists
-        if (![studentProgress setNextChapterInProgressForBook:[bookTitles objectAtIndex:selectedBookIndex]]) {
-            BOOL inProgressBookExists = false; //whether another book is already in progress
-            BOOL foundNextBook = false; //whether an incomplete book was found
-            NSString* nextBookTitle;
-            
-            for (NSString* bookTitle in bookTitles) {
-                Status bookStatus = [studentProgress getStatusOfBook:bookTitle];
-                
-                //Stop searching if there is already another book in progress
-                if (bookStatus == IN_PROGRESS) {
-                    inProgressBookExists = true;
-                    break;
-                }
-                //Record title of next incomplete book if it exists
-                else if (bookStatus == INCOMPLETE && !foundNextBook) {
-                    nextBookTitle = bookTitle;
-                    foundNextBook = true;
-                }
-            }
-            
-            //No books already in progress, so set the next incomplete book to in progress
-            if (!inProgressBookExists && foundNextBook) {
-                [studentProgress setNextChapterInProgressForBook:nextBookTitle];
-            }
-        }
-    }
-    
-    //Update progress indicators
-    [self.libraryView reloadSections:[NSIndexSet indexSetWithIndex:0]];
-    
-    //Save progress to file
-    [[ServerCommunicationController sharedManager] saveProgress:student :studentProgress];
+    [self updateProgress];
 }
 
 /*
@@ -192,9 +156,6 @@ ConditionSetup *conditionSetup;
         student = [[Student alloc] initWithName:@"Study Code" :@"Study Day":@"Experimenter":@"School Day"];
     }
     
-    //Load progress for student if it exists
-    studentProgress = [[ServerCommunicationController sharedManager] loadProgress:student];
-    
     //TODO: Check whether sequence should be used based on student information
     //Student should follow particular sequence of activities
     if ([[student firstName] isEqualToString:@"test"]) {
@@ -209,6 +170,9 @@ ConditionSetup *conditionSetup;
         useSequence = FALSE;
     }
     
+    //Load progress for student if it exists
+    studentProgress = [[ServerCommunicationController sharedManager] loadProgress:student];
+    
     //Create new progress for student if needed
     if (studentProgress == nil) {
         studentProgress = [[Progress alloc] init];
@@ -217,19 +181,98 @@ ConditionSetup *conditionSetup;
         NSString* firstBookTitle; //title of first book to set in progress
         
         if (useSequence) {
-            firstBookTitle = [[[sequenceController sequences] objectAtIndex:0] bookTitle];
+            //TODO: Set current sequence id based on student information
+            studentProgress.sequenceId = 1;
+            studentProgress.currentSequence = 0; //index of first sequence
+            
+            firstBookTitle = [[[sequenceController sequences] objectAtIndex:[studentProgress currentSequence]] bookTitle];
         }
         else {
             firstBookTitle = [bookTitles objectAtIndex:0];
         }
         
-        //Set book as in progress
+        //Set first book as in progress
         [studentProgress setNextChapterInProgressForBook:firstBookTitle];
     }
     else {
         //Update progress with any new books/chapters that might have been added
         [studentProgress addNewContent:books];
     }
+}
+
+/*
+ * Sets next book/chapter to in progress and updates library and progress file
+ */
+- (void) updateProgress {
+    //Sequence
+    if (useSequence) {
+        //Get current book title
+        NSString* currentBookTitle = [[[sequenceController sequences] objectAtIndex:[studentProgress currentSequence]] bookTitle];
+        
+        //Set the next incomplete chapter to in progress if it exists
+        if (![studentProgress setNextChapterInProgressForBook:currentBookTitle]) {
+            if ([studentProgress currentSequence] + 1 < [[sequenceController sequences] count]) {
+                //Use next sequence
+                studentProgress.currentSequence++;
+                
+                //Get next book title
+                NSString* nextBookTitle = [[[sequenceController sequences] objectAtIndex:[studentProgress currentSequence]] bookTitle];
+                
+                //Reset next book to in progress if it has already been completed
+                if ([studentProgress getStatusOfBook:nextBookTitle] == COMPLETED) {
+                    //Get list of chapters in next book
+                    NSMutableArray* modes = [[sequenceController getSequenceForBook:nextBookTitle] modes];
+                    
+                    //Set all chapters to incomplete
+                    for (ActivityMode* mode in modes) {
+                        [studentProgress setStatusOfChapter:[mode chapterTitle] :INCOMPLETE fromBook:nextBookTitle];
+                    }
+                    
+                    //Set first chapter to in progress
+                    [studentProgress setStatusOfChapter:[[modes objectAtIndex:0] chapterTitle] :IN_PROGRESS fromBook:nextBookTitle];
+                }
+                else {
+                    //Set next book in sequence to in progress
+                    [studentProgress setNextChapterInProgressForBook:nextBookTitle];
+                }
+            }
+        }
+    }
+    //No sequence
+    else {
+        //Set the next incomplete chapter to in progress if it exists
+        if (![studentProgress setNextChapterInProgressForBook:[bookTitles objectAtIndex:selectedBookIndex]]) {
+            BOOL inProgressBookExists = false; //whether another book is already in progress
+            BOOL foundNextBook = false; //whether an incomplete book was found
+            NSString* nextBookTitle;
+            
+            for (NSString* bookTitle in bookTitles) {
+                Status bookStatus = [studentProgress getStatusOfBook:bookTitle];
+                
+                //Stop searching if there is already another book in progress
+                if (bookStatus == IN_PROGRESS) {
+                    inProgressBookExists = true;
+                    break;
+                }
+                //Record title of next incomplete book if it exists
+                else if (bookStatus == INCOMPLETE && !foundNextBook) {
+                    nextBookTitle = bookTitle;
+                    foundNextBook = true;
+                }
+            }
+            
+            //No books already in progress, so set the next incomplete book to in progress
+            if (!inProgressBookExists && foundNextBook) {
+                [studentProgress setNextChapterInProgressForBook:nextBookTitle];
+            }
+        }
+    }
+    
+    //Update progress indicators
+    [self.libraryView reloadSections:[NSIndexSet indexSetWithIndex:0]];
+    
+    //Save progress to file
+    [[ServerCommunicationController sharedManager] saveProgress:student :studentProgress];
 }
 
 - (void) didReceiveMemoryWarning {
@@ -309,13 +352,19 @@ ConditionSetup *conditionSetup;
         
         //Books
         if (showBooks) {
-            if ([studentProgress getStatusOfBook:[bookTitles objectAtIndex:lockedItemIndex]] == INCOMPLETE) {
+            //TEST: Temporary code to allow quick unlock/completion of any item
+//            if ([studentProgress getStatusOfBook:[bookTitles objectAtIndex:lockedItemIndex]] == INCOMPLETE) {
+            if ([studentProgress getStatusOfBook:[bookTitles objectAtIndex:lockedItemIndex]] == INCOMPLETE || [studentProgress getStatusOfBook:[bookTitles objectAtIndex:lockedItemIndex]] == IN_PROGRESS) {
+            //TEST
                 [self showPasswordPrompt];
             }
         }
         //Chapters
         else {
-            if ([studentProgress getStatusOfChapter:[[chapterTitles objectAtIndex:selectedBookIndex] objectAtIndex:lockedItemIndex] fromBook:[bookTitles objectAtIndex:selectedBookIndex]] == INCOMPLETE) {
+            //TEST: Temporary code to allow quick unlock/completion of any item
+//            if ([studentProgress getStatusOfChapter:[[chapterTitles objectAtIndex:selectedBookIndex] objectAtIndex:lockedItemIndex] fromBook:[bookTitles objectAtIndex:selectedBookIndex]] == INCOMPLETE) {
+            if ([studentProgress getStatusOfChapter:[[chapterTitles objectAtIndex:selectedBookIndex] objectAtIndex:lockedItemIndex] fromBook:[bookTitles objectAtIndex:selectedBookIndex]] == INCOMPLETE || [studentProgress getStatusOfChapter:[[chapterTitles objectAtIndex:selectedBookIndex] objectAtIndex:lockedItemIndex] fromBook:[bookTitles objectAtIndex:selectedBookIndex]] == IN_PROGRESS) {
+            //TEST
                 [self showPasswordPrompt];
             }
         }
@@ -375,6 +424,22 @@ ConditionSetup *conditionSetup;
             //Save progress to file
             [[ServerCommunicationController sharedManager] saveProgress:student :studentProgress];
         }
+        //TEST: Temporary code to allow quick unlock/completion of any item
+        else if ([[[alertView textFieldAtIndex:0] text] isEqualToString:@"goodbye"]) {
+            //Books
+            if (showBooks) {
+                for (NSString* chapterTitle in [chapterTitles objectAtIndex:lockedItemIndex]) {
+                    [studentProgress setStatusOfChapter:chapterTitle :COMPLETED fromBook:[bookTitles objectAtIndex:lockedItemIndex]];
+                }
+            }
+            //Chapters
+            else {
+                [studentProgress setStatusOfChapter:[[chapterTitles objectAtIndex:selectedBookIndex] objectAtIndex:lockedItemIndex] :COMPLETED fromBook:[bookTitles objectAtIndex:selectedBookIndex]];
+            }
+            
+            [self updateProgress];
+        }
+        //TEST
     }
 }
 

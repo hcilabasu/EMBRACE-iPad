@@ -1,244 +1,251 @@
 <?xml version="1.0" encoding="utf-8"?>
 <sequences id="1">
-    <book title="Bottled Up Joy">
-        <chapter title="The Naughty Monkey">
+    <sequence bookTitle="Introduction to EMBRACE">
+        <mode chapterTitle="The Naughty Monkey">
             <reader>System</reader>
             <language>Spanish</language>
             <intervention>None</intervention>
-        </chapter>
-    </book>
-    <book title="Bottled Up Joy">
-        <chapter title="The Lucky Stone">
+        </mode>
+    </sequence>
+    <sequence bookTitle="Bottled Up Joy">
+        <mode chapterTitle="The Lucky Stone">
             <reader>System</reader>
             <language>Spanish</language>
             <intervention>None</intervention>
-        </chapter>
-        <chapter title="Magic Toys">
+        </mode>
+        <mode chapterTitle="Magic Toys">
             <reader>User</reader>
             <language>Spanish</language>
             <intervention>None</intervention>
-        </chapter>
-        <chapter title="Baby Brother">
+        </mode>
+        <mode chapterTitle="Baby Brother">
             <reader>User</reader>
             <language>Spanish</language>
             <intervention>None</intervention>
-        </chapter>
-        <chapter title="Words of Wisdom">
+        </mode>
+        <mode chapterTitle="Words of Wisdom">
             <reader>User</reader>
             <language>Spanish</language>
             <intervention>None</intervention>
-        </chapter>
-        <chapter title="Catch!">
+        </mode>
+        <mode chapterTitle="Catch!">
             <reader>User</reader>
             <language>Spanish</language>
             <intervention>None</intervention>
-        </chapter>
-    </book>
-    <book title="The Best Farm">
-        <chapter title="The Contest">
-            <reader>System</reader>
-            <language>Spanish</language>
-            <intervention>None</intervention>
-        </chapter>
-        <chapter title="Getting Ready">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>None</intervention>
-        </chapter>
-        <chapter title="Cleaning Up">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>None</intervention>
-        </chapter>
-        <chapter title="Who is the Best Animal?">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>PM</intervention>
-        </chapter>
-        <chapter title="The Wise Owl">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>PM</intervention>
-        </chapter>
-        <chapter title="Everyone Helps">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>PM</intervention>
-        </chapter>
-        <chapter title="The Best Farm Award">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>PM</intervention>
-        </chapter>
-    </book>
-    <book title="Native American Homes">
-        <chapter title="Introduction to Native American Homes">
+        </mode>
+    </sequence>
+    <sequence bookTitle="Introduction to EMBRACE">
+        <mode chapterTitle="The Naughty Monkey">
             <reader>System</reader>
             <language>Spanish</language>
             <intervention>PM</intervention>
-        </chapter>
-        <chapter title="The Navajo Hogan">
+        </mode>
+    </sequence>
+    <sequence bookTitle="The Best Farm">
+        <mode chapterTitle="The Contest">
+            <reader>System</reader>
+            <language>Spanish</language>
+            <intervention>None</intervention>
+        </mode>
+        <mode chapterTitle="Getting Ready">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>None</intervention>
+        </mode>
+        <mode chapterTitle="Cleaning Up">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>None</intervention>
+        </mode>
+        <mode chapterTitle="Who is the Best Animal?">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>PM</intervention>
+        </mode>
+        <mode chapterTitle="The Wise Owl">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>PM</intervention>
+        </mode>
+        <mode chapterTitle="Everyone Helps">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>PM</intervention>
+        </mode>
+        <mode chapterTitle="The Best Farm Award">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>PM</intervention>
+        </mode>
+    </sequence>
+    <sequence bookTitle="Native American Homes">
+        <mode chapterTitle="Introduction to Native American Homes">
             <reader>System</reader>
             <language>Spanish</language>
             <intervention>PM</intervention>
-        </chapter>
-        <chapter title="The Inuit Igloo">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>PM</intervention>
-        </chapter>
-        <chapter title="The Sioux Teepee">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>None</intervention>
-        </chapter>
-        <chapter title="The Algonquian Wigwam">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>None</intervention>
-        </chapter>
-        <chapter title="The Haida Plank House">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>None</intervention>
-        </chapter>
-        <chapter title="The Seminole Chickee">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>None</intervention>
-        </chapter>
-    </book>
-    <book title="How Objects Move">
-        <chapter title="How do Objects Move?">
+        </mode>
+        <mode chapterTitle="The Navajo Hogan">
             <reader>System</reader>
             <language>Spanish</language>
             <intervention>PM</intervention>
-        </chapter>
-        <chapter title="Newton's First Law">
+        </mode>
+        <mode chapterTitle="The Inuit Igloo">
             <reader>User</reader>
             <language>Spanish</language>
             <intervention>PM</intervention>
-        </chapter>
-        <chapter title="Newton's First Law on Earth">
+        </mode>
+        <mode chapterTitle="The Sioux Teepee">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>None</intervention>
+        </mode>
+        <mode chapterTitle="The Algonquian Wigwam">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>None</intervention>
+        </mode>
+        <mode chapterTitle="The Haida Plank House">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>None</intervention>
+        </mode>
+        <mode chapterTitle="The Seminole Chickee">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>None</intervention>
+        </mode>
+    </sequence>
+    <sequence bookTitle="How Objects Move">
+        <mode chapterTitle="How do Objects Move?">
+            <reader>System</reader>
+            <language>Spanish</language>
+            <intervention>PM</intervention>
+        </mode>
+        <mode chapterTitle="Newton's First Law">
             <reader>User</reader>
             <language>Spanish</language>
             <intervention>PM</intervention>
-        </chapter>
-        <chapter title="Newton's Second Law: Acceleration">
+        </mode>
+        <mode chapterTitle="Newton's First Law on Earth">
+            <reader>User</reader>
+            <language>Spanish</language>
+            <intervention>PM</intervention>
+        </mode>
+        <mode chapterTitle="Newton's Second Law: Acceleration">
             <reader>User</reader>
             <language>Spanish</language>
             <intervention>IM</intervention>
-        </chapter>
-        <chapter title="Newton's Law of Acceleration on Earth">
+        </mode>
+        <mode chapterTitle="Newton's Law of Acceleration on Earth">
             <reader>User</reader>
             <language>Spanish</language>
             <intervention>IM</intervention>
-        </chapter>
-        <chapter title="Newton's Third Law: Forces are Paired">
+        </mode>
+        <mode chapterTitle="Newton's Third Law: Forces are Paired">
             <reader>User</reader>
             <language>Spanish</language>
             <intervention>IM</intervention>
-        </chapter>
-        <chapter title="The Three Laws Work Together">
+        </mode>
+        <mode chapterTitle="The Three Laws Work Together">
             <reader>User</reader>
             <language>Spanish</language>
             <intervention>IM</intervention>
-        </chapter>
-    </book>
-    <book title="A Celebration to Remember">
-        <chapter title="Key Ingredients">
+        </mode>
+    </sequence>
+    <sequence bookTitle="A Celebration to Remember">
+        <mode chapterTitle="Key Ingredients">
             <reader>System</reader>
             <language>Spanish</language>
             <intervention>PM</intervention>
-        </chapter>
-        <chapter title="Mancha the Horse">
+        </mode>
+        <mode chapterTitle="Mancha the Horse">
             <reader>User</reader>
             <language>Spanish</language>
             <intervention>PM</intervention>
-        </chapter>
-        <chapter title="A Friend in Need">
+        </mode>
+        <mode chapterTitle="A Friend in Need">
             <reader>User</reader>
             <language>Spanish</language>
             <intervention>PM</intervention>
-        </chapter>
-        <chapter title="Shopping at the Market">
+        </mode>
+        <mode chapterTitle="Shopping at the Market">
             <reader>User</reader>
             <language>Spanish</language>
             <intervention>None</intervention>
-        </chapter>
-        <chapter title="A Gift for the Bride">
+        </mode>
+        <mode chapterTitle="A Gift for the Bride">
             <reader>User</reader>
             <language>Spanish</language>
             <intervention>IM</intervention>
-        </chapter>
-        <chapter title="Homecoming">
+        </mode>
+        <mode chapterTitle="Homecoming">
             <reader>User</reader>
             <language>Spanish</language>
             <intervention>IM</intervention>
-        </chapter>
-    </book>
-    <book title="Natural Disasters">
-        <chapter title="Introduction to Natural Disasters">
+        </mode>
+    </sequence>
+    <sequence bookTitle="Natural Disasters">
+        <mode chapterTitle="Introduction to Natural Disasters">
             <reader>System</reader>
             <language>Spanish</language>
             <intervention>PM</intervention>
-        </chapter>
-        <chapter title="The Moving Earth">
+        </mode>
+        <mode chapterTitle="The Moving Earth">
             <reader>System</reader>
             <language>Spanish</language>
             <intervention>PM</intervention>
-        </chapter>
-        <chapter title="Earthquakes">
+        </mode>
+        <mode chapterTitle="Earthquakes">
             <reader>User</reader>
             <language>Spanish</language>
             <intervention>PM</intervention>
-        </chapter>
-        <chapter title="Tsunamis">
+        </mode>
+        <mode chapterTitle="Tsunamis">
             <reader>User</reader>
             <language>Spanish</language>
             <intervention>None</intervention>
-        </chapter>
-        <chapter title="Volcanoes and the Making of Hawaii">
+        </mode>
+        <mode chapterTitle="Volcanoes and the Making of Hawaii">
             <reader>User</reader>
             <language>Spanish</language>
             <intervention>IM</intervention>
-        </chapter>
-        <chapter title="Tornados">
+        </mode>
+        <mode chapterTitle="Tornados">
             <reader>User</reader>
             <language>Spanish</language>
             <intervention>IM</intervention>
-        </chapter>
-    </book>
-    <book title="The Lopez House Mystery">
-        <chapter title="The Lopez Family">
+        </mode>
+    </sequence>
+    <sequence bookTitle="The Lopez House Mystery">
+        <mode chapterTitle="The Lopez Family">
             <reader>System</reader>
             <language>Spanish</language>
             <intervention>IM</intervention>
-        </chapter>
-        <chapter title="Missing Keys">
+        </mode>
+        <mode chapterTitle="Missing Keys">
             <reader>User</reader>
             <language>Spanish</language>
             <intervention>None</intervention>
-        </chapter>
-        <chapter title="Is Paco a Thief?">
+        </mode>
+        <mode chapterTitle="Is Paco a Thief?">
             <reader>User</reader>
             <language>Spanish</language>
             <intervention>None</intervention>
-        </chapter>
-        <chapter title="More is Missing!">
+        </mode>
+        <mode chapterTitle="More is Missing!">
             <reader>User</reader>
             <language>Spanish</language>
             <intervention>None</intervention>
-        </chapter>
-        <chapter title="The Baby's Rattle is Gone, Too!">
+        </mode>
+        <mode chapterTitle="The Baby's Rattle is Gone, Too!">
             <reader>User</reader>
             <language>Spanish</language>
             <intervention>None</intervention>
-        </chapter>
-        <chapter title="The Mystery is Solved">
+        </mode>
+        <mode chapterTitle="The Mystery is Solved">
             <reader>User</reader>
             <language>Spanish</language>
             <intervention>None</intervention>
-        </chapter>
-    </book>
+        </mode>
+    </sequence>
 </sequences>
