@@ -348,6 +348,15 @@ BOOL wasPathFollowed = false;
         }
     }
     
+    //If we are on the first or second manipulation page of The Naughty Monkey, play the current sentence
+    if ([chapterTitle isEqualToString:@"The Naughty Monkey"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+        if(conditionSetup.language ==BILINGUAL) {
+            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheNaughtyMonkeyS%dS.mp3",currentSentence]];
+        }
+        else {
+            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheNaughtyMonkeyS%dE.mp3",currentSentence]];
+        }
+    }
     
     // If there is at least one area/path to build
     if ([model getAreaWithPageId:currentPageId]) {
@@ -3432,6 +3441,16 @@ BOOL wasPathFollowed = false;
                         }
                     }
                     
+                    //If we are on the first or second manipulation page of The Naughty Monkey, play the current sentence
+                    if ([chapterTitle isEqualToString:@"The Naughty Monkey"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+                        if(conditionSetup.language ==BILINGUAL) {
+                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheNaughtyMonkeyS%dS.mp3",currentSentence]];
+                        }
+                        else {
+                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheNaughtyMonkeyS%dE.mp3",currentSentence]];
+                        }
+                    }
+                    
                 }
             }
             else
@@ -4702,6 +4721,16 @@ BOOL wasPathFollowed = false;
                         }
                     }
                     
+                    //If we are on the first or second manipulation page of The Naughty Monkey, play the current sentence
+                    if ([chapterTitle isEqualToString:@"The Naughty Monkey"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+                        if(conditionSetup.language ==BILINGUAL) {
+                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheNaughtyMonkeyS%dS.mp3",currentSentence]];
+                        }
+                        else {
+                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheNaughtyMonkeyS%dE.mp3",currentSentence]];
+                        }
+                    }
+                    
                     
                 }
             }
@@ -4792,6 +4821,16 @@ BOOL wasPathFollowed = false;
                     }
                     else {
                         [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLuckyStoneS%dE.mp3",currentSentence]];
+                    }
+                }
+                
+                //If we are on the first or second manipulation page of The Naughty Monkey, play the current sentence
+                if ([chapterTitle isEqualToString:@"The Naughty Monkey"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+                    if(conditionSetup.language ==BILINGUAL) {
+                        [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheNaughtyMonkeyS%dS.mp3",currentSentence]];
+                    }
+                    else {
+                        [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheNaughtyMonkeyS%dE.mp3",currentSentence]];
                     }
                 }
             }
