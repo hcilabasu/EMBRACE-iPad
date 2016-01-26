@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
-<waypoints>
-    <waypoint waypointId="atBarn" x="48%" y="68%"/>
-    <waypoint waypointId="cartNearBarn" x="23%" y="77%"/>
-    <waypoint waypointId="catDrink" x="35%" y="85%"/>
-    <waypoint waypointId="catInNest" x="23%" y="31%"/>
-    <waypoint waypointId="chickenInNest" x="14%" y="31%"/>
-    <waypoint waypointId="chickenNextToNest" x="21%" y="36%"/>
-    <waypoint waypointId="combGoat" x="53%" y="76.25%"/>
-    <waypoint waypointId="corralDoorClose" x="69%" y="80%"/>
-    <waypoint waypointId="corralDoorOpen" x="49%" y="80%"/>
-    <waypoint waypointId="cowInCorral" x="74%" y="84%"/>
-    <waypoint waypointId="dropApple" x="65%" y="92%"/>
-    <waypoint waypointId="dropBucket" x="50%" y="62%"/>
-    <waypoint waypointId="dropComb" x="45%" y="89%"/>
-    <waypoint waypointId="farmerFallPosition" x="36%" y="85%"/>
-    <waypoint waypointId="farmerFeedHorse" x="85%" y="92%"/>
-    <waypoint waypointId="farmerFeedPig" x="52%" y="90%"/>
-    <waypoint waypointId="farmerInHayloft" x="37%" y="27%"/>
-    <waypoint waypointId="farmerNearPig" x="33%" y="62%"/>
-    <waypoint waypointId="hayFallPosition" x="36%" y="90%"/>
-    <waypoint waypointId="horseInCorral" x="82%" y="83%"/>
-    <waypoint waypointId="horseFeedCow" x="70%" y="65%"/>
-    <waypoint waypointId="insideCowPen" x="59%" y="58%"/>
-    <waypoint waypointId="insidePen2" x="28%" y="60.25%"/>
-    <waypoint waypointId="nearBarn" x="36%" y="73%"/>
-    <waypoint waypointId="nearCorral" x="55%" y="78%"/>
-    <waypoint waypointId="nearCowPen" x="66%" y="62%"/>
-    <waypoint waypointId="nearGoatPen" x="47%" y="62%"/>
-    <waypoint waypointId="nearPigPen" x="40%" y="62%"/>
-    <waypoint waypointId="owlInHayloft" x="28.5%" y="25%"/>
-    <waypoint waypointId="pen2Close" x="35%" y="62%"/>
-    <waypoint waypointId="pen2Open" x="35%" y="44%"/>
-    <waypoint waypointId="pen3Close" x="43%" y="62%"/>
-    <waypoint waypointId="pen3Open" x="43%" y="44%"/>
-    <waypoint waypointId="pen4Close" x="50%" y="56%"/>
-    <waypoint waypointId="pen4Open" x="67%" y="56%"/>
-    <waypoint waypointId="pigNearHorse" x="60%" y="80%"/>
-    <waypoint waypointId="pumpkinNearBarn" x="33%" y="85%"/>
-    <waypoint waypointId="pumpkinPatch" x="75%" y="56.5%"/>
-</waypoints>
+    <waypoints>
+        <waypoint waypointId="atBarn" x="48%" y="68%"/>
+        <waypoint waypointId="cartNearBarn" x="23%" y="77%"/>
+        <waypoint waypointId="catDrink" x="35%" y="85%"/>
+        <waypoint waypointId="catInNest" x="23%" y="31%"/>
+        <waypoint waypointId="chickenInNest" x="14%" y="31%"/>
+        <waypoint waypointId="chickenNextToNest" x="21%" y="36%"/>
+        <waypoint waypointId="combGoat" x="53%" y="76.25%"/>
+        <waypoint waypointId="corralDoorClose" x="69%" y="80%"/>
+        <waypoint waypointId="corralDoorOpen" x="49%" y="80%"/>
+        <waypoint waypointId="cowInCorral" x="74%" y="84%"/>
+        <waypoint waypointId="dropApple" x="65%" y="92%"/>
+        <waypoint waypointId="dropBucket" x="50%" y="62%"/>
+        <waypoint waypointId="dropComb" x="45%" y="89%"/>
+        <waypoint waypointId="farmerFallPosition" x="36%" y="85%"/>
+        <waypoint waypointId="farmerFeedHorse" x="85%" y="92%"/>
+        <waypoint waypointId="farmerFeedPig" x="52%" y="90%"/>
+        <waypoint waypointId="farmerInHayloft" x="37%" y="27%"/>
+        <waypoint waypointId="farmerNearPig" x="33%" y="62%"/>
+        <waypoint waypointId="hayFallPosition" x="36%" y="90%"/>
+        <waypoint waypointId="horseInCorral" x="82%" y="83%"/>
+        <waypoint waypointId="horseFeedCow" x="70%" y="65%"/>
+        <waypoint waypointId="insideCowPen" x="59%" y="58%"/>
+        <waypoint waypointId="insidePen2" x="28%" y="60.25%"/>
+        <waypoint waypointId="nearBarn" x="36%" y="73%"/>
+        <waypoint waypointId="nearCorral" x="55%" y="78%"/>
+        <waypoint waypointId="nearCowPen" x="66%" y="62%"/>
+        <waypoint waypointId="nearGoatPen" x="47%" y="62%"/>
+        <waypoint waypointId="nearPigPen" x="40%" y="62%"/>
+        <waypoint waypointId="owlInHayloft" x="28.5%" y="25%"/>
+        <waypoint waypointId="pen2Close" x="35%" y="62%"/>
+        <waypoint waypointId="pen2Open" x="35%" y="44%"/>
+        <waypoint waypointId="pen3Close" x="43%" y="62%"/>
+        <waypoint waypointId="pen3Open" x="43%" y="44%"/>
+        <waypoint waypointId="pen4Close" x="50%" y="56%"/>
+        <waypoint waypointId="pen4Open" x="67%" y="56%"/>
+        <waypoint waypointId="pigNearHorse" x="60%" y="80%"/>
+        <waypoint waypointId="pumpkinNearBarn" x="33%" y="85%"/>
+        <waypoint waypointId="pumpkinPatch" x="75%" y="56.5%"/>
+    </waypoints>
 </metadata>

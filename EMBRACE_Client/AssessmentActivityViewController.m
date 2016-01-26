@@ -384,39 +384,31 @@ UIImage *BackgroundImage;   //The background image related to the story
     [tableView reloadData];
 }
 
-//Add the quesiton number and text
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    // The header for the section is the region name -- get this from the region at the section index.
-    return [NSString stringWithFormat:@"%d. %@      ", questionNum,Question];
-}
-
-//Custom field to change the font style and size of the header
-- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
-    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
-    
-    header.textLabel.font = [UIFont fontWithName:@"GillSans" size:22];
-    CGRect headerFrame = header.frame;
-    header.textLabel.frame = headerFrame;
-}
-
-/*
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
+    NSString *text = [NSString stringWithFormat:@"%d. %@      ", questionNum,Question];
+    UIFont *font = [UIFont fontWithName:@"GillSans" size:22];
+  
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 20)];
-    UILabel *myLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 20)];
+    CGRect frame = CGRectInset(view.frame, 15, 0);
+    frame.size.height = 200;
+    UILabel *myLabel = [[UILabel alloc] initWithFrame:frame];
+    [myLabel setFont:font];
+    [myLabel setText:text];
+    myLabel.numberOfLines = 10;
+    float height = [myLabel.text
+                     boundingRectWithSize:myLabel.frame.size
+                     options:NSStringDrawingUsesLineFragmentOrigin
+                     attributes:@{ NSFontAttributeName:font }
+                     context:nil].size.height;
+    frame.size.height = height+20;
+    myLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    view.frame = CGRectMake(0, 0, tableView.frame.size.width, height + 20);
+    myLabel.frame = frame;
     
-    [myLabel setFont:[UIFont boldSystemFontOfSize:18]];
-    [myLabel setText:[self tableView:tableView titleForHeaderInSection:section]];
     [view addSubview:myLabel];
-    
-    //UILabel *chapterTitle = [[UILabel alloc] initWithFrame:CGRectMake(5, 10, tableView.frame.size.width, 22)];
-    //chapterTitle.center = CGPointMake(tableView.frame.size.width  / 2, 0);
-    //[chapterTitle setFont:[UIFont boldSystemFontOfSize:20]];
-    //[chapterTitle setText:ChapterTitle];
-    //[view addSubview:chapterTitle];
-    
     return view;
 }
- */
+
 
 @end

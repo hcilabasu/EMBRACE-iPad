@@ -81,7 +81,7 @@
                 <expectedSelection>A note and stone</expectedSelection>
             </Question>
             <Question number="7">
-                <QuestionText>What did Papa pick up form the ground?</QuestionText>
+                <QuestionText>What did Papa pick up from the ground?</QuestionText>
                 <QuestionAudio>TheLuckyStoneQ7.mp3</QuestionAudio>
                 <Answer1>The note</Answer1>
                 <Answer1Audio>TheLuckyStoneQ7A1.mp3</Answer1Audio>
