@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <ActivityAssessment>
+        <Questions title= "The Lucky Stone">
+            <Question number="1">
+                <QuestionText>What can Lucas see from the hill?</QuestionText>
+                <QuestionAudio>TheLuckyStoneQ1.mp3</QuestionAudio>
+                <Answer1>A river</Answer1>
+                <Answer1Audio>TheLuckyStoneQ1A1.mp3</Answer1Audio>
+                <Answer2>A bottle</Answer2>
+                <Answer2Audio>TheLuckyStoneQ1A2.mp3</Answer2Audio>
+                <Answer3>A playground</Answer3>
+                <Answer3Audio>TheLuckyStoneQ1A3.mp3</Answer3Audio>
+                <Answer4>Clearly now the rain is gone</Answer4>
+                <Answer4Audio>TheLuckyStoneQ1A4.mp3</Answer4Audio>
+                <expectedSelection>A river</expectedSelection>
+            </Question>
+            <Question number="2">
+                <QuestionText>Why does Lucas walk down the hill most afternoons?</QuestionText>
+                <QuestionAudio>TheLuckyStoneQ2.mp3</QuestionAudio>
+                <Answer1>To watch the sunset</Answer1>
+                <Answer1Audio>TheLuckyStoneQ2A1.mp3</Answer1Audio>
+                <Answer2>To grab lunch</Answer2>
+                <Answer2Audio>TheLuckyStoneQ2A2.mp3</Answer2Audio>
+                <Answer3>To go fishing</Answer3>
+                <Answer3Audio>TheLuckyStoneQ2A3.mp3</Answer3Audio>
+                <Answer4>Because he's scared of heights</Answer4>
+                <Answer4Audio>TheLuckyStoneQ2A4.mp3</Answer4Audio>
+                <expectedSelection>To watch the sunset</expectedSelection>
+            </Question>
+            <Question number="3">
+                <QuestionText>What was so special about this afternoon?</QuestionText>
+                <QuestionAudio>TheLuckyStoneQ3.mp3</QuestionAudio>
+                <Answer1>Lucas found a bottle floating in the water</Answer1>
+                <Answer1Audio>TheLuckyStoneQ3A1.mp3</Answer1Audio>
+                <Answer2>Papa was home</Answer2>
+                <Answer2Audio>TheLuckyStoneQ3A2.mp3</Answer2Audio>
+                <Answer3>Lucas jumped in the water</Answer3>
+                <Answer3Audio>TheLuckyStoneQ3A3.mp3</Answer3Audio>
+                <Answer4>The sun didn't set</Answer4>
+                <Answer4Audio>TheLuckyStoneQ3A4.mp3</Answer4Audio>
+                <expectedSelection>Lucas found a bottle floating in the water</expectedSelection>
+            </Question>
+            <Question number="4">
+                <QuestionText>Where did Lucas bring the bottle?</QuestionText>
+                <QuestionAudio>TheLuckyStoneQ4.mp3</QuestionAudio>
+                <Answer1>Home to his papa</Answer1>
+                <Answer1Audio>TheLuckyStoneQ4A1.mp3</Answer1Audio>
+                <Answer2>Up to his room</Answer2>
+                <Answer2Audio>TheLuckyStoneQ4A2.mp3</Answer2Audio>
+                <Answer3>Across the river</Answer3>
+                <Answer3Audio>TheLuckyStoneQ4A3.mp3</Answer3Audio>
+                <Answer4>To Bottle Village</Answer4>
+                <Answer4Audio>TheLuckyStoneQ4A4.mp3</Answer4Audio>
+                <expectedSelection>Home to his papa</expectedSelection>
+            </Question>
+            <Question number="5">
+                <QuestionText>What did Papa do with the bottle?</QuestionText>
+                <QuestionAudio>TheLuckyStoneQ5.mp3</QuestionAudio>
+                <Answer1>He opened it</Answer1>
+                <Answer1Audio>TheLuckyStoneQ5A1.mp3</Answer1Audio>
+                <Answer2>He drank it</Answer2>
+                <Answer2Audio>TheLuckyStoneQ5A2.mp3</Answer2Audio>
+                <Answer3>He broke it</Answer3>
+                <Answer3Audio>TheLuckyStoneQ5A3.mp3</Answer3Audio>
+                <Answer4>He recycled it</Answer4>
+                <Answer4Audio>TheLuckyStoneQ5A4.mp3</Answer4Audio>
+                <expectedSelection>He opened it</expectedSelection>
+            </Question>
+            <Question number="6">
+                <QuestionText>What tumbled across the floor?</QuestionText>
+                <QuestionAudio>TheLuckyStoneQ6.mp3</QuestionAudio>
+                <Answer1>A note and stone</Answer1>
+                <Answer1Audio>TheLuckyStoneQ6A1.mp3</Answer1Audio>
+                <Answer2>A bottle</Answer2>
+                <Answer2Audio>TheLuckyStoneQ6A2.mp3</Answer2Audio>
+                <Answer3>Dice</Answer3>
+                <Answer3Audio>TheLuckyStoneQ6A3.mp3</Answer3Audio>
+                <Answer4>Cheerleaders</Answer4>
+                <Answer4Audio>TheLuckyStoneQ6A4.mp3</Answer4Audio>
+                <expectedSelection>A note and stone</expectedSelection>
+            </Question>
+            <Question number="7">
+                <QuestionText>What did Papa pick up from the ground?</QuestionText>
+                <QuestionAudio>TheLuckyStoneQ7.mp3</QuestionAudio>
+                <Answer1>The note</Answer1>
+                <Answer1Audio>TheLuckyStoneQ7A1.mp3</Answer1Audio>
+                <Answer2>The stone</Answer2>
+                <Answer2Audio>TheLuckyStoneQ7A2.mp3</Answer2Audio>
+                <Answer3>The bottle</Answer3>
+                <Answer3Audio>TheLuckyStoneQ7A3.mp3</Answer3Audio>
+                <Answer4>His shadow</Answer4>
+                <Answer4Audio>TheLuckyStoneQ7A4.mp3</Answer4Audio>
+                <expectedSelection>The note</expectedSelection>
+            </Question>
+            <Question number="8">
+                <QuestionText>Why did Lucas think he would be granted three wishes?</QuestionText>
+                <QuestionAudio>TheLuckyStoneQ8.mp3</QuestionAudio>
+                <Answer1>Because he found the lucky stone</Answer1>
+                <Answer1Audio>TheLuckyStoneQ8A1.mp3</Answer1Audio>
+                <Answer2>Because Papa gave him the lucky stone</Answer2>
+                <Answer2Audio>TheLuckyStoneQ8A2.mp3</Answer2Audio>
+                <Answer3>Because the note had his name on it</Answer3>
+                <Answer3Audio>TheLuckyStoneQ8A3.mp3</Answer3Audio>
+                <Answer4>Because a genie popped out of the bottle</Answer4>
+                <Answer4Audio>TheLuckyStoneQ8A4.mp3</Answer4Audio>
+                <expectedSelection>Because he found the lucky stone</expectedSelection>
+            </Question>
+        </Questions>
+        <Questions title= "Magic Toys">
+            <Question number="1">
+                <QuestionText>Why did Lucas go back to the river?</QuestionText>
+                <QuestionAudio>MagicToysQ1.mp3</QuestionAudio>
+                <Answer1>To think about his wishes</Answer1>
+                <Answer1Audio>MagicToysQ1A1.mp3</Answer1Audio>
+                <Answer2>To return the bottle</Answer2>
+                <Answer2Audio>MagicToysQ1A2.mp3</Answer2Audio>
+                <Answer3>To show Papa his favorite spot</Answer3>
+                <Answer3Audio>MagicToysQ1A3.mp3</Answer3Audio>
+                <Answer4>To catch some supper</Answer4>
+                <Answer4Audio>MagicToysQ1A4.mp3</Answer4Audio>
+                <expectedSelection>To think about his wishes</expectedSelection>
+            </Question>
+            <Question number="2">
+                <QuestionText>What did Lucas wish for?</QuestionText>
+                <QuestionAudio>MagicToysQ2.mp3</QuestionAudio>
+                <Answer1>A room full of the best toys</Answer1>
+                <Answer1Audio>MagicToysQ2A1.mp3</Answer1Audio>
+                <Answer2>A bigger ball</Answer2>
+                <Answer2Audio>MagicToysQ2A2.mp3</Answer2Audio>
+                <Answer3>Three more lucky stones</Answer3>
+                <Answer3Audio>MagicToysQ2A3.mp3</Answer3Audio>
+                <Answer4>An A+ on his test tomorrow</Answer4>
+                <Answer4Audio>MagicToysQ2A4.mp3</Answer4Audio>
+                <expectedSelection>A room full of the best toys</expectedSelection>
+            </Question>
+            <Question number="3">
+                <QuestionText>How did Lucas feel about the toys when they appeared?</QuestionText>
+                <QuestionAudio>MagicToysQ3.mp3</QuestionAudio>
+                <Answer1>He couldn't wait to start playing with them</Answer1>
+                <Answer1Audio>MagicToysQ3A1.mp3</Answer1Audio>
+                <Answer2>He wasn't happy with them</Answer2>
+                <Answer2Audio>MagicToysQ3A2.mp3</Answer2Audio>
+                <Answer3>He wanted to share them</Answer3>
+                <Answer3Audio>MagicToysQ3A3.mp3</Answer3Audio>
+                <Answer4>He worried that they would come to life while he was sleeping</Answer4>
+                <Answer4Audio>MagicToysQ3A4.mp3</Answer4Audio>
+                <expectedSelection>He couldn't wait to start playing with them</expectedSelection>
+            </Question>
+            <Question number="4">
+                <QuestionText>Which toy did Lucas try to play with first?</QuestionText>
+                <QuestionAudio>MagicToysQ4.mp3</QuestionAudio>
+                <Answer1>The ball</Answer1>
+                <Answer1Audio>MagicToysQ4A1.mp3</Answer1Audio>
+                <Answer2>The board game</Answer2>
+                <Answer2Audio>MagicToysQ4A2.mp3</Answer2Audio>
+                <Answer3>The rattle</Answer3>
+                <Answer3Audio>MagicToysQ4A3.mp3</Answer3Audio>
+                <Answer4>The chew toy</Answer4>
+                <Answer4Audio>MagicToysQ4A4.mp3</Answer4Audio>
+                <expectedSelection>The ball</expectedSelection>
+            </Question>
+            <Question number="5">
+                <QuestionText>What did Lucas need in order to play with the toys?</QuestionText>
+                <QuestionAudio>MagicToysQ5.mp3</QuestionAudio>
+                <Answer1>Someone to play with</Answer1>
+                <Answer1Audio>MagicToysQ5A1.mp3</Answer1Audio>
+                <Answer2>Instructions</Answer2>
+                <Answer2Audio>MagicToysQ5A2.mp3</Answer2Audio>
+                <Answer3>Batteries</Answer3>
+                <Answer3Audio>MagicToysQ5A3.mp3</Answer3Audio>
+                <Answer4>To finish his homework first</Answer4>
+                <Answer4Audio>MagicToysQ5A4.mp3</Answer4Audio>
+                <expectedSelection>Someone to play with</expectedSelection>
+            </Question>
+            <Question number="6">
+                <QuestionText>How did Lucas feel about the toys at the end of the story?</QuestionText>
+                <QuestionAudio>MagicToysQ6.mp3</QuestionAudio>
+                <Answer1>He was no longer happy with them</Answer1>
+                <Answer1Audio>MagicToysQ6A1.mp3</Answer1Audio>
+                <Answer2>He couldn't put them down</Answer2>
+                <Answer2Audio>MagicToysQ6A2.mp3</Answer2Audio>
+                <Answer3>He wanted more of them</Answer3>
+                <Answer3Audio>MagicToysQ6A3.mp3</Answer3Audio>
+                <Answer4>He would rather read fun stories on the iPad</Answer4>
+                <Answer4Audio>MagicToysQ6A4.mp3</Answer4Audio>
+                <expectedSelection>He was no longer happy with them</expectedSelection>
+            </Question>
+            <Question number="7">
+                <QuestionText>Why did Lucas open the board game?</QuestionText>
+                <QuestionAudio>MagicToysQ7.mp3</QuestionAudio>
+                <Answer1>To play with it</Answer1>
+                <Answer1Audio>MagicToysQ7A1.mp3</Answer1Audio>
+                <Answer2>To see what was inside</Answer2>
+                <Answer2Audio>MagicToysQ7A2.mp3</Answer2Audio>
+                <Answer3>To look for candy</Answer3>
+                <Answer3Audio>MagicToysQ7A3.mp3</Answer3Audio>
+                <Answer4>Because he was bored</Answer4>
+                <Answer4Audio>MagicToysQ7A4.mp3</Answer4Audio>
+                <expectedSelection>To play with it</expectedSelection>
+            </Question>
+        </Questions>
+        <Questions title= "Baby Brother">
+            <Question number="1">
+                <QuestionText>Why did Lucas feel silly?</QuestionText>
+                <QuestionAudio>BabyBrotherQ1.mp3</QuestionAudio>
+                <Answer1>For making a wish so quickly</Answer1>
+                <Answer1Audio>BabyBrotherQ1A1.mp3</Answer1Audio>
+                <Answer2>For throwing the ball to his baby brother</Answer2>
+                <Answer2Audio>BabyBrotherQ1A2.mp3</Answer2Audio>
+                <Answer3>For wishing for a brother</Answer3>
+                <Answer3Audio>BabyBrotherQ1A3.mp3</Answer3Audio>
+                <Answer4>Because his nickname is Willy</Answer4>
+                <Answer4Audio>BabyBrotherQ1A4.mp3</Answer4Audio>
+                <expectedSelection>For making a wish so quickly</expectedSelection>
+            </Question>
+            <Question number="2">
+                <QuestionText>Why did Lucas want to think harder about his next wish?</QuestionText>
+                <QuestionAudio>BabyBrotherQ2.mp3</QuestionAudio>
+                <Answer1>So he wouldn't feel silly about it</Answer1>
+                <Answer1Audio>BabyBrotherQ2A1.mp3</Answer1Audio>
+                <Answer2>So it would come true</Answer2>
+                <Answer2Audio>BabyBrotherQ2A2.mp3</Answer2Audio>
+                <Answer3>Because it makes him feel smart</Answer3>
+                <Answer3Audio>BabyBrotherQ2A3.mp3</Answer3Audio>
+                <Answer4>He's trying out his new thinking cap</Answer4>
+                <Answer4Audio>BabyBrotherQ2A4.mp3</Answer4Audio>
+                <expectedSelection>So he wouldn't feel silly about it</expectedSelection>
+            </Question>
+            <Question number="3">
+                <QuestionText>Why was Lucas sleepy?</QuestionText>
+                <QuestionAudio>BabyBrotherQ3.mp3</QuestionAudio>
+                <Answer1>Because he was thinking so hard about his next wish</Answer1>
+                <Answer1Audio>BabyBrotherQ3A1.mp3</Answer1Audio>
+                <Answer2>Because he was playing ball</Answer2>
+                <Answer2Audio>BabyBrotherQ3A2.mp3</Answer2Audio>
+                <Answer3>Because he walked up the hill</Answer3>
+                <Answer3Audio>BabyBrotherQ3A3.mp3</Answer3Audio>
+                <Answer4>Because his toys kept him up all night</Answer4>
+                <Answer4Audio>BabyBrotherQ3A4.mp3</Answer4Audio>
+                <expectedSelection>Because he was thinking so hard about his next wish</expectedSelection>
+            </Question>
+            <Question number="4">
+                <QuestionText>What did Lucas know when he woke up?</QuestionText>
+                <QuestionAudio>BabyBrotherQ4.mp3</QuestionAudio>
+                <Answer1>What to wish for</Answer1>
+                <Answer1Audio>BabyBrotherQ4A1.mp3</Answer1Audio>
+                <Answer2>Where to find the bottle</Answer2>
+                <Answer2Audio>BabyBrotherQ4A2.mp3</Answer2Audio>
+                <Answer3>How to win at his board game</Answer3>
+                <Answer3Audio>BabyBrotherQ4A3.mp3</Answer3Audio>
+                <Answer4>An old lady who swallowed a fly</Answer4>
+                <Answer4Audio>BabyBrotherQ4A4.mp3</Answer4Audio>
+                <expectedSelection>What to wish for</expectedSelection>
+            </Question>
+            <Question number="5">
+                <QuestionText>What was Lucas's wish?</QuestionText>
+                <QuestionAudio>BabyBrotherQ5.mp3</QuestionAudio>
+                <Answer1>To have a little brother</Answer1>
+                <Answer1Audio>BabyBrotherQ5A1.mp3</Answer1Audio>
+                <Answer2>To have more toys</Answer2>
+                <Answer2Audio>BabyBrotherQ5A2.mp3</Answer2Audio>
+                <Answer3>To have a big sister</Answer3>
+                <Answer3Audio>BabyBrotherQ5A3.mp3</Answer3Audio>
+                <Answer4>To never grow up</Answer4>
+                <Answer4Audio>BabyBrotherQ5A4.mp3</Answer4Audio>
+                <expectedSelection>To have a little brother</expectedSelection>
+            </Question>
+            <Question number="6">
+                <QuestionText>What did Papa tell Lucas to do?</QuestionText>
+                <QuestionAudio>BabyBrotherQ6.mp3</QuestionAudio>
+                <Answer1>To sit in the chair</Answer1>
+                <Answer1Audio>BabyBrotherQ6A1.mp3</Answer1Audio>
+                <Answer2>To think harder about his next wish</Answer2>
+                <Answer2Audio>BabyBrotherQ6A2.mp3</Answer2Audio>
+                <Answer3>To hand over the stone</Answer3>
+                <Answer3Audio>BabyBrotherQ6A3.mp3</Answer3Audio>
+                <Answer4>To stay out of trouble</Answer4>
+                <Answer4Audio>BabyBrotherQ6A4.mp3</Answer4Audio>
+                <expectedSelection>To sit in the chair</expectedSelection>
+            </Question>
+            <Question number="7">
+                <QuestionText>Where did Lucas bring the baby?</QuestionText>
+                <QuestionAudio>BabyBrotherQ7.mp3</QuestionAudio>
+                <Answer1>Up to his room to play</Answer1>
+                <Answer1Audio>BabyBrotherQ7A1.mp3</Answer1Audio>
+                <Answer2>Over to Papa</Answer2>
+                <Answer2Audio>BabyBrotherQ7A2.mp3</Answer2Audio>
+                <Answer3>Down the hill</Answer3>
+                <Answer3Audio>BabyBrotherQ7A3.mp3</Answer3Audio>
+                <Answer4>Over the river and through the wood</Answer4>
+                <Answer4Audio>BabyBrotherQ7A4.mp3</Answer4Audio>
+                <expectedSelection>Up to his room to play</expectedSelection>
+            </Question>
+            <Question number="8">
+                <QuestionText>Why didn't the baby catch the ball?</QuestionText>
+                <QuestionAudio>BabyBrotherQ7.mp3</QuestionAudio>
+                <Answer1>The baby was too young to play</Answer1>
+                <Answer1Audio>BabyBrotherQ7A1.mp3</Answer1Audio>
+                <Answer2>The baby wanted to kick the ball instead</Answer2>
+                <Answer2Audio>BabyBrotherQ7A2.mp3</Answer2Audio>
+                <Answer3>The baby's eyes were closed</Answer3>
+                <Answer3Audio>BabyBrotherQ7A3.mp3</Answer3Audio>
+                <Answer4>The baby was mad at Lucas</Answer4>
+                <Answer4Audio>BabyBrotherQ7A4.mp3</Answer4Audio>
+                <expectedSelection>The baby was too young to play</expectedSelection>
+            </Question>
+        </Questions>
+        <Questions title= "Words of Wisdom">
+            <Question number="1">
+                <QuestionText>Where did Papa take the boy?</QuestionText>
+                <QuestionAudio>WordsOfWisdomQ1.mp3</QuestionAudio>
+                <Answer1>Down to the river</Answer1>
+                <Answer1Audio>WordsOfWisdomQ1A1.mp3</Answer1Audio>
+                <Answer2>To see the baby</Answer2>
+                <Answer2Audio>WordsOfWisdomQ1A2.mp3</Answer2Audio>
+                <Answer3>Up to Lucas's room</Answer3>
+                <Answer3Audio>WordsOfWisdomQ1A3.mp3</Answer3Audio>
+                <Answer4>Back to the future</Answer4>
+                <Answer4Audio>WordsOfWisdomQ1A4.mp3</Answer4Audio>
+                <expectedSelection>Down to the river</expectedSelection>
+            </Question>
+            <Question number="2">
+                <QuestionText>What present will make the river happy?</QuestionText>
+                <QuestionAudio>WordsOfWisdomQ2.mp3</QuestionAudio>
+                <Answer1>No present will make it happy</Answer1>
+                <Answer1Audio>WordsOfWisdomQ2A1.mp3</Answer1Audio>
+                <Answer2>A golden rock</Answer2>
+                <Answer2Audio>WordsOfWisdomQ2A2.mp3</Answer2Audio>
+                <Answer3>A new waterfall</Answer3>
+                <Answer3Audio>WordsOfWisdomQ2A3.mp3</Answer3Audio>
+                <Answer4>A fork</Answer4>
+                <Answer4Audio>WordsOfWisdomQ2A4.mp3</Answer4Audio>
+                <expectedSelection>No present will make it happy</expectedSelection>
+            </Question>
+            <Question number="3">
+                <QuestionText>Why did Lucas throw his lucky stone into the water?</QuestionText>
+                <QuestionAudio>WordsOfWisdomQ3.mp3</QuestionAudio>
+                <Answer1>He didn't need his last wish to be happy</Answer1>
+                <Answer1Audio>WordsOfWisdomQ3A1.mp3</Answer1Audio>
+                <Answer2>He used up all of the wishes</Answer2>
+                <Answer2Audio>WordsOfWisdomQ3A2.mp3</Answer2Audio>
+                <Answer3>The stone is luckier when it's in the river</Answer3>
+                <Answer3Audio>WordsOfWisdomQ3A3.mp3</Answer3Audio>
+                <Answer4>He wanted to see how many times it would skip before sinking</Answer4>
+                <Answer4Audio>WordsOfWisdomQ3A4.mp3</Answer4Audio>
+                <expectedSelection>He didn't need his last wish to be happy</expectedSelection>
+            </Question>
+            <Question number="4">
+                <QuestionText>In this story, what must the river do to be happy?</QuestionText>
+                <QuestionAudio>WordsOfWisdomQ4.mp3</QuestionAudio>
+                <Answer1>Share its water</Answer1>
+                <Answer1Audio>WordsOfWisdomQ4A1.mp3</Answer1Audio>
+                <Answer2>Carry children to safety</Answer2>
+                <Answer2Audio>WordsOfWisdomQ4A2.mp3</Answer2Audio>
+                <Answer3>Stay clean</Answer3>
+                <Answer3Audio>WordsOfWisdomQ4A3.mp3</Answer3Audio>
+                <Answer4>River dance</Answer4>
+                <Answer4Audio>WordsOfWisdomQ4A4.mp3</Answer4Audio>
+                <expectedSelection>Share its water</expectedSelection>
+            </Question>
+            <Question number="5">
+                <QuestionText>What do you think will happen to Lucas when he shares?</QuestionText>
+                <QuestionAudio>WordsOfWisdomQ5.mp3</QuestionAudio>
+                <Answer1>He will be happy</Answer1>
+                <Answer1Audio>WordsOfWisdomQ5A1.mp3</Answer1Audio>
+                <Answer2>He will be sad</Answer2>
+                <Answer2Audio>WordsOfWisdomQ5A2.mp3</Answer2Audio>
+                <Answer3>He will get more wishes</Answer3>
+                <Answer3Audio>WordsOfWisdomQ5A3.mp3</Answer3Audio>
+                <Answer4>He will turn into a Care Bear</Answer4>
+                <Answer4Audio>WordsOfWisdomQ5A4.mp3</Answer4Audio>
+                <expectedSelection>He will be happy</expectedSelection>
+            </Question>
+            <Question number="6">
+                <QuestionText>Which toy did Lucas pick up this time?</QuestionText>
+                <QuestionAudio>WordsOfWisdomQ6.mp3</QuestionAudio>
+                <Answer1>The rattle for his baby brother</Answer1>
+                <Answer1Audio>WordsOfWisdomQ6A1.mp3</Answer1Audio>
+                <Answer2>The ball</Answer2>
+                <Answer2Audio>WordsOfWisdomQ6A2.mp3</Answer2Audio>
+                <Answer3>The board-game</Answer3>
+                <Answer3Audio>WordsOfWisdomQ6A3.mp3</Answer3Audio>
+                <Answer4>The Barbie doll</Answer4>
+                <Answer4Audio>WordsOfWisdomQ6A4.mp3</Answer4Audio>
+                <expectedSelection>The rattle for his baby brother</expectedSelection>
+            </Question>
+            <Question number="7">
+                <QuestionText>What did Lucas decide at the end of the story?</QuestionText>
+                <QuestionAudio>WordsOfWisdomQ7.mp3</QuestionAudio>
+                <Answer1>To make his brother happy instead of himself</Answer1>
+                <Answer1Audio>WordsOfWisdomQ7A1.mp3</Answer1Audio>
+                <Answer2>To throw his lucky stone into the river</Answer2>
+                <Answer2Audio>WordsOfWisdomQ7A2.mp3</Answer2Audio>
+                <Answer3>To take a walk with Papa</Answer3>
+                <Answer3Audio>WordsOfWisdomQ7A3.mp3</Answer3Audio>
+                <Answer4>What to be when he grows up</Answer4>
+                <Answer4Audio>WordsOfWisdomQ7A4.mp3</Answer4Audio>
+                <expectedSelection>To make his brother happy instead of himself</expectedSelection>
+            </Question>
+            <Question number="8">
+                <QuestionText>When did Lucas become happy?</QuestionText>
+                <QuestionAudio>WordsOfWisdomQ8.mp3</QuestionAudio>
+                <Answer1>When he heard his brother giggle</Answer1>
+                <Answer1Audio>WordsOfWisdomQ8A1.mp3</Answer1Audio>
+                <Answer2>When his wish came true</Answer2>
+                <Answer2Audio>WordsOfWisdomQ8A2.mp3</Answer2Audio>
+                <Answer3>When he played with the toys</Answer3>
+                <Answer3Audio>WordsOfWisdomQ8A3.mp3</Answer3Audio>
+                <Answer4>When he clapped his hands</Answer4>
+                <Answer4Audio>WordsOfWisdomQ8A4.mp3</Answer4Audio>
+                <expectedSelection>When he heard his brother giggle</expectedSelection>
+            </Question>
+        </Questions>
+        <Questions title= "Catch!">
+            <Question number="1">
+                <QuestionText>Why was Lucas relieved when he didn't see the bottle in the beginning of the story?</QuestionText>
+                <QuestionAudio>CatchQ1.mp3</QuestionAudio>
+                <Answer1>So he wouldn't make another wish</Answer1>
+                <Answer1Audio>CatchQ1A1.mp3</Answer1Audio>
+                <Answer2>So he wouldn't have bad luck</Answer2>
+                <Answer2Audio>CatchQ1A2.mp3</Answer2Audio>
+                <Answer3>So he wouldn't step on it</Answer3>
+                <Answer3Audio>CatchQ1A3.mp3</Answer3Audio>
+                <Answer4>So he wouldn't make a bottle rocket</Answer4>
+                <Answer4Audio>CatchQ1A4.mp3</Answer4Audio>
+                <expectedSelection>So he wouldn't make another wish</expectedSelection>
+            </Question>
+            <Question number="2">
+                <QuestionText>What happened all of a sudden?</QuestionText>
+                <QuestionAudio>CatchQ2.mp3</QuestionAudio>
+                <Answer1>A girl crossed Lucas's path</Answer1>
+                <Answer1Audio>CatchQ2A1.mp3</Answer1Audio>
+                <Answer2>Papa appeared</Answer2>
+                <Answer2Audio>CatchQ2A2.mp3</Answer2Audio>
+                <Answer3>Lucas tripped on the stone</Answer3>
+                <Answer3Audio>CatchQ2A3.mp3</Answer3Audio>
+                <Answer4>Lucas turned into stone</Answer4>
+                <Answer4Audio>CatchQ2A4.mp3</Answer4Audio>
+                <expectedSelection>A girl crossed Lucas's path</expectedSelection>
+            </Question>
+            <Question number="3">
+                <QuestionText>Where does Olivia live?</QuestionText>
+                <QuestionAudio>CatchQ3.mp3</QuestionAudio>
+                <Answer1>On the other side of the hill</Answer1>
+                <Answer1Audio>CatchQ3A1.mp3</Answer1Audio>
+                <Answer2>On the other side of the river</Answer2>
+                <Answer2Audio>CatchQ3A2.mp3</Answer2Audio>
+                <Answer3>In another town</Answer3>
+                <Answer3Audio>CatchQ3A3.mp3</Answer3Audio>
+                <Answer4>Where the sidewalk ends</Answer4>
+                <Answer4Audio>CatchQ3A4.mp3</Answer4Audio>
+                <expectedSelection>On the other side of the hill</expectedSelection>
+            </Question>
+            <Question number="4">
+                <QuestionText>What was Olivia holding?</QuestionText>
+                <QuestionAudio>CatchQ4.mp3</QuestionAudio>
+                <Answer1>A bottle</Answer1>
+                <Answer1Audio>CatchQ4A1.mp3</Answer1Audio>
+                <Answer2>A ball</Answer2>
+                <Answer2Audio>CatchQ4A2.mp3</Answer2Audio>
+                <Answer3>A baby</Answer3>
+                <Answer3Audio>CatchQ4A3.mp3</Answer3Audio>
+                <Answer4>A grudge</Answer4>
+                <Answer4Audio>CatchQ4A4.mp3</Answer4Audio>
+                <expectedSelection>A bottle</expectedSelection>
+            </Question>
+            <Question number="5">
+                <QuestionText>Why did Olivia throw the bottle behind the bush?</QuestionText>
+                <QuestionAudio>CatchQ5.mp3</QuestionAudio>
+                <Answer1>To hide it from Lucas</Answer1>
+                <Answer1Audio>CatchQ5A1.mp3</Answer1Audio>
+                <Answer2>So someone else would find it</Answer2>
+                <Answer2Audio>CatchQ5A2.mp3</Answer2Audio>
+                <Answer3>So she could drink from it later</Answer3>
+                <Answer3Audio>CatchQ5A3.mp3</Answer3Audio>
+                <Answer4>Because it had bugs in it</Answer4>
+                <Answer4Audio>CatchQ5A4.mp3</Answer4Audio>
+                <expectedSelection>To hide it from Lucas</expectedSelection>
+            </Question>
+            <Question number="6">
+                <QuestionText>What do you think Olivia would have wished for?</QuestionText>
+                <QuestionAudio>CatchQ6.mp3</QuestionAudio>
+                <Answer1>A friend</Answer1>
+                <Answer1Audio>CatchQ6A1.mp3</Answer1Audio>
+                <Answer2>Toys</Answer2>
+                <Answer2Audio>CatchQ6A2.mp3</Answer2Audio>
+                <Answer3>A baby brother</Answer3>
+                <Answer3Audio>CatchQ6A3.mp3</Answer3Audio>
+                <Answer4>A tea set</Answer4>
+                <Answer4Audio>CatchQ6A4.mp3</Answer4Audio>
+                <expectedSelection>A friend</expectedSelection>
+            </Question>
+            <Question number="7">
+                <QuestionText>What exactly did Lucas get that he needed?</QuestionText>
+                <QuestionAudio>CatchQ7.mp3</QuestionAudio>
+                <Answer1>Someone to catch the ball</Answer1>
+                <Answer1Audio>CatchQ7A1.mp3</Answer1Audio>
+                <Answer2>A bottle</Answer2>
+                <Answer2Audio>CatchQ7A2.mp3</Answer2Audio>
+                <Answer3>A room full of the best toys</Answer3>
+                <Answer3Audio>CatchQ7A3.mp3</Answer3Audio>
+                <Answer4>A time-out</Answer4>
+                <Answer4Audio>CatchQ7A4.mp3</Answer4Audio>
+                <expectedSelection>Someone to catch the ball</expectedSelection>
+            </Question>
+        </Questions>
+    </ActivityAssessment>
+</metadata>
