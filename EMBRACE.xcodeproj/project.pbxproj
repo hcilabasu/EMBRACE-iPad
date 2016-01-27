@@ -904,7 +904,7 @@
 		1A9CF8451C31C7310000C135 /* native.epub in Resources */ = {isa = PBXBuildFile; fileRef = 1A9CF8441C31C7310000C135 /* native.epub */; };
 		1A9CF8471C31DAF90000C135 /* speakerIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A9CF8461C31DAF90000C135 /* speakerIcon.png */; };
 		1AB028FC1ACF0890006CC916 /* AuthoringModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB028FB1ACF0890006CC916 /* AuthoringModeViewController.m */; };
-		1AC7A38F1C59259C003B96C6 /* AssessmentActivitiesSpanish-MetaData copy.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AC7A38E1C59259C003B96C6 /* AssessmentActivitiesSpanish-MetaData copy.xml */; };
+		1AC7A38F1C59259C003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AC7A38E1C59259C003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml */; };
 		1AC7A3911C592847003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AC7A3901C592847003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml */; };
 		1AC7A3931C592AD5003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AC7A3921C592AD5003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml */; };
 		1AC7A3951C592D0E003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AC7A3941C592D0E003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml */; };
@@ -3279,7 +3279,7 @@
 		1AB028FA1ACF0890006CC916 /* AuthoringModeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthoringModeViewController.h; sourceTree = "<group>"; };
 		1AB028FB1ACF0890006CC916 /* AuthoringModeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthoringModeViewController.m; sourceTree = "<group>"; };
 		1ABD84AD1A49F54B0043A685 /* PlayAudioIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayAudioIcon.png; sourceTree = "<group>"; };
-		1AC7A38E1C59259C003B96C6 /* AssessmentActivitiesSpanish-MetaData copy.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesSpanish-MetaData copy.xml"; sourceTree = "<group>"; };
+		1AC7A38E1C59259C003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesSpanish-MetaData.xml"; sourceTree = "<group>"; };
 		1AC7A3901C592847003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesSpanish-MetaData.xml"; sourceTree = "<group>"; };
 		1AC7A3921C592AD5003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesSpanish-MetaData.xml"; sourceTree = "<group>"; };
 		1AC7A3941C592D0E003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesSpanish-MetaData.xml"; sourceTree = "<group>"; };
@@ -6446,7 +6446,7 @@
 				5C28DB941C2BA66E005ACD07 /* AlternateImages-MetaData.xml */,
 				5C28DB951C2BA66E005ACD07 /* Areas-MetaData.xml */,
 				5C28DB961C2BA66E005ACD07 /* AssessmentActivities-MetaData.xml */,
-				1AC7A38E1C59259C003B96C6 /* AssessmentActivitiesSpanish-MetaData copy.xml */,
+				1AC7A38E1C59259C003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml */,
 				5C28DB971C2BA66E005ACD07 /* Constraints-MetaData.xml */,
 				5C28DB981C2BA66E005ACD07 /* content.opf */,
 				5C28DB991C2BA66E005ACD07 /* Hotspots-MetaData.xml */,
@@ -9469,7 +9469,7 @@
 				1A6323411C0E4D3B00251CB3 /* IMStyle.css in Resources */,
 				1A63230E1C0E4D3B00251CB3 /* ch1.png in Resources */,
 				5C9C077D1C57385A00702FCD /* BFCE1_1.m4a in Resources */,
-				1AC7A38F1C59259C003B96C6 /* AssessmentActivitiesSpanish-MetaData copy.xml in Resources */,
+				1AC7A38F1C59259C003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml in Resources */,
 				5D10AC541C52C749007109AD /* MagicToysQ3A4.mp3 in Resources */,
 				5CA9556C1C3237690038FB56 /* monkey_background.png in Resources */,
 				5C9C0A1B1C573AAA00702FCD /* GettingMoreOxygenForTheMusclesQ5.mp3 in Resources */,
