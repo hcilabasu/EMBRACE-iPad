@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <ActivityAssessment>
+        <Questions title="How do Objects Move?">
+            <Question number="1">
+                <QuestionText>¿Qué se necesita para que una bicicleta empiece a moverse?</QuestionText>
+                <QuestionAudio>HowdoObjectsMoveQ1.mp3</QuestionAudio>
+                <Answer1>Una fuerza</Answer1>
+                <Answer1Audio>HowdoObjectsMoveQ1A1.mp3</Answer1Audio>
+                <expectedSelection>Una fuerza</expectedSelection>
+                <Answer2>Gasolina</Answer2>
+                <Answer2Audio>HowdoObjectsMoveQ1A2.mp3</Answer2Audio>
+                <Answer3>Se puede mover por sí mismas</Answer3>
+                <Answer3Audio>HowdoObjectsMoveQ1A3.mp3</Answer3Audio>
+                <Answer4>Darle ánimo</Answer4>
+                <Answer4Audio>HowdoObjectsMoveQ1A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="2">
+                <QuestionText>Se necesita una fuerza para hacer que…?</QuestionText>
+                <QuestionAudio>HowdoObjectsMoveQ2.mp3</QuestionAudio>
+                <Answer1>Todas las anteriores</Answer1>
+                <Answer1Audio>HowdoObjectsMoveQ2A1.mp3</Answer1Audio>
+                <expectedSelection>Todas las anteriores</expectedSelection>
+                <Answer2>Un objeto empiece a moverse</Answer2>
+                <Answer2Audio>HowdoObjectsMoveQ2A2.mp3</Answer2Audio>
+                <Answer3>Un objeto deje de moverse</Answer3>
+                <Answer3Audio>HowdoObjectsMoveQ2A3.mp3</Answer3Audio>
+                <Answer4>Un objeto cambie de dirección</Answer4>
+                <Answer4Audio>HowdoObjectsMoveQ2A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="3">
+                <QuestionText>¿Qué descubrió Sir Isaac Newton?</QuestionText>
+                <QuestionAudio>HowdoObjectsMoveQ3.mp3</QuestionAudio>
+                <Answer1>Tres leyes de movimiento</Answer1>
+                <Answer1Audio>HowdoObjectsMoveQ3A1.mp3</Answer1Audio>
+                <expectedSelection>Tres leyes de movimiento</expectedSelection>
+                <Answer2>La luna</Answer2>
+                <Answer2Audio>HowdoObjectsMoveQ3A2.mp3</Answer2Audio>
+                <Answer3>El sol y las estrellas</Answer3>
+                <Answer3Audio>HowdoObjectsMoveQ3A3.mp3</Answer3Audio>
+                <Answer4>Tres tristes tigres</Answer4>
+                <Answer4Audio>HowdoObjectsMoveQ3A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="4">
+                <QuestionText>¿Dónde funcionan las tres leyes de movimiento?</QuestionText>
+                <QuestionAudio>HowdoObjectsMoveQ4.mp3</QuestionAudio>
+                <Answer1>En la Tierra y en el espacio</Answer1>
+                <Answer1Audio>HowdoObjectsMoveQ4A1.mp3</Answer1Audio>
+                <expectedSelection>En la Tierra y en el espacio</expectedSelection>
+                <Answer2>Solo en la Tierra</Answer2>
+                <Answer2Audio>HowdoObjectsMoveQ4A2.mp3</Answer2Audio>
+                <Answer3>Solo en el espacio</Answer3>
+                <Answer3Audio>HowdoObjectsMoveQ4A3.mp3</Answer3Audio>
+                <Answer4>En el canal de ciencia en la TV</Answer4>
+                <Answer4Audio>HowdoObjectsMoveQ4A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="5">
+                <QuestionText>¿Qué puede hacer que un bote o un cohete empiece a moverse?</QuestionText>
+                <QuestionAudio>HowdoObjectsMoveQ5.mp3</QuestionAudio>
+                <Answer1>Una fuerza</Answer1>
+                <Answer1Audio>HowdoObjectsMoveQ5A1.mp3</Answer1Audio>
+                <expectedSelection>Una fuerza</expectedSelection>
+                <Answer2>Sir Isaac Newton</Answer2>
+                <Answer2Audio>HowdoObjectsMoveQ5A2.mp3</Answer2Audio>
+                <Answer3>Un remo</Answer3>
+                <Answer3Audio>HowdoObjectsMoveQ5A3.mp3</Answer3Audio>
+                <Answer4>Los piratas del espacio</Answer4>
+                <Answer4Audio>HowdoObjectsMoveQ5A4.mp3</Answer4Audio>
+            </Question>
+        </Questions>
+        <Questions title="Newton's First Law">
+            <Question number="1">
+                <QuestionText>What needs to be added to change an object&#8217;s direction or speed?</QuestionText>
+                <QuestionAudio>NewtonsfirstlawQ1.mp3</QuestionAudio>
+                <Answer1>A force (push or pull)</Answer1>
+                <Answer1Audio>NewtonsfirstlawQ1A1.mp3</Answer1Audio>
+                <expectedSelection>A force (push or pull)</expectedSelection>
+                <Answer2>A rocket</Answer2>
+                <Answer2Audio>NewtonsfirstlawQ1A2.mp3</Answer2Audio>
+                <Answer3>A signal (stop or go)</Answer3>
+                <Answer3Audio>NewtonsfirstlawQ1A3.mp3</Answer3Audio>
+                <Answer4>Martin, the policeman</Answer4>
+                <Answer4Audio>NewtonsfirstlawQ1A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="2">
+                <QuestionText>What can speed up a rocket, slow down a rocket, or change the direction?</QuestionText>
+                <QuestionAudio>NewtonsfirstlawQ2.mp3</QuestionAudio>
+                <Answer1>Force</Answer1>
+                <Answer1Audio>NewtonsfirstlawQ2A1.mp3</Answer1Audio>
+                <expectedSelection>Force</expectedSelection>
+                <Answer2>Speed</Answer2>
+                <Answer2Audio>NewtonsfirstlawQ2A2.mp3</Answer2Audio>
+                <Answer3>Only a pushing force</Answer3>
+                <Answer3Audio>NewtonsfirstlawQ2A3.mp3</Answer3Audio>
+                <Answer4>NASA</Answer4>
+                <Answer4Audio>NewtonsfirstlawQ2A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="3">
+                <QuestionText>What do moving objects do before a force is added?</QuestionText>
+                <QuestionAudio>NewtonsfirstlawQ3.mp3</QuestionAudio>
+                <Answer1>Keep moving</Answer1>
+                <Answer1Audio>NewtonsfirstlawQ3A1.mp3</Answer1Audio>
+                <expectedSelection>Keep moving</expectedSelection>
+                <Answer2>Stop moving</Answer2>
+                <Answer2Audio>NewtonsfirstlawQ3A2.mp3</Answer2Audio>
+                <Answer3>Speed up</Answer3>
+                <Answer3Audio>NewtonsfirstlawQ3A3.mp3</Answer3Audio>
+                <Answer4>Dodge black holes</Answer4>
+                <Answer4Audio>NewtonsfirstlawQ3A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="4">
+                <QuestionText>What do stopped objects do before a force is added?</QuestionText>
+                <QuestionAudio>NewtonsfirstlawQ4.mp3</QuestionAudio>
+                <Answer1>Remain still</Answer1>
+                <Answer1Audio>NewtonsfirstlawQ4A1.mp3</Answer1Audio>
+                <expectedSelection>Remain still</expectedSelection>
+                <Answer2>Start moving</Answer2>
+                <Answer2Audio>NewtonsfirstlawQ4A2.mp3</Answer2Audio>
+                <Answer3>Change direction</Answer3>
+                <Answer3Audio>NewtonsfirstlawQ4A3.mp3</Answer3Audio>
+                <Answer4>Take a seat and relax</Answer4>
+                <Answer4Audio>NewtonsfirstlawQ4A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="5">
+                <QuestionText>If a rocket is going really fast, how fast will it go if no new force is added?</QuestionText>
+                <QuestionAudio>NewtonsfirstlawQ5.mp3</QuestionAudio>
+                <Answer1>Really fast</Answer1>
+                <Answer1Audio>NewtonsfirstlawQ5A1.mp3</Answer1Audio>
+                <expectedSelection>Really fast</expectedSelection>
+                <Answer2>Really slow</Answer2>
+                <Answer2Audio>NewtonsfirstlawQ5A2.mp3</Answer2Audio>
+                <Answer3>Somewhat fast</Answer3>
+                <Answer3Audio>NewtonsfirstlawQ5A3.mp3</Answer3Audio>
+                <Answer4>As fast as the clock at work</Answer4>
+                <Answer4Audio>NewtonsfirstlawQ5A4.mp3</Answer4Audio>
+            </Question>
+        </Questions>
+        <Questions title="Newton's First Law on Earth">
+            <Question number="1">
+                <QuestionText>What rubs on the ball?</QuestionText>
+                <QuestionAudio>NewtonsFirstLawonEarthQ1.mp3</QuestionAudio>
+                <Answer1>Grass</Answer1>
+                <Answer1Audio>NewtonsFirstLawonEarthQ1A1.mp3</Answer1Audio>
+                <expectedSelection>Grass</expectedSelection>
+                <Answer2>Sand</Answer2>
+                <Answer2Audio>NewtonsFirstLawonEarthQ1A2.mp3</Answer2Audio>
+                <Answer3>Gravity</Answer3>
+                <Answer3Audio>NewtonsFirstLawonEarthQ1A3.mp3</Answer3Audio>
+                <Answer4>A socket</Answer4>
+                <Answer4Audio>NewtonsFirstLawonEarthQ1A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="2">
+                <QuestionText>What is the rubbing force called?</QuestionText>
+                <QuestionAudio>NewtonsFirstLawonEarthQ2.mp3</QuestionAudio>
+                <Answer1>Friction</Answer1>
+                <Answer1Audio>NewtonsFirstLawonEarthQ2A1.mp3</Answer1Audio>
+                <expectedSelection>Friction</expectedSelection>
+                <Answer2>Gravity</Answer2>
+                <Answer2Audio>NewtonsFirstLawonEarthQ2A2.mp3</Answer2Audio>
+                <Answer3>The First Law</Answer3>
+                <Answer3Audio>NewtonsFirstLawonEarthQ2A3.mp3</Answer3Audio>
+                <Answer4>A massage</Answer4>
+                <Answer4Audio>NewtonsFirstLawonEarthQ2A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="3">
+                <QuestionText>What does friction do to the ball?</QuestionText>
+                <QuestionAudio>NewtonsFirstLawonEarthQ3.mp3</QuestionAudio>
+                <Answer1>Slows the ball</Answer1>
+                <Answer1Audio>NewtonsFirstLawonEarthQ3A1.mp3</Answer1Audio>
+                <expectedSelection>Slows the ball</expectedSelection>
+                <Answer2>Speeds the ball up</Answer2>
+                <Answer2Audio>NewtonsFirstLawonEarthQ3A2.mp3</Answer2Audio>
+                <Answer3>Pulls the ball down</Answer3>
+                <Answer3Audio>NewtonsFirstLawonEarthQ3A3.mp3</Answer3Audio>
+                <Answer4>Kicks the ball</Answer4>
+                <Answer4Audio>NewtonsFirstLawonEarthQ3A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="4">
+                <QuestionText>Which force pulls objects down to Earth?</QuestionText>
+                <QuestionAudio>NewtonsFirstLawonEarthQ4.mp3</QuestionAudio>
+                <Answer1>Gravity</Answer1>
+                <Answer1Audio>NewtonsFirstLawonEarthQ4A1.mp3</Answer1Audio>
+                <expectedSelection>Gravity</expectedSelection>
+                <Answer2>Friction</Answer2>
+                <Answer2Audio>NewtonsFirstLawonEarthQ4A2.mp3</Answer2Audio>
+                <Answer3>The rubbing force</Answer3>
+                <Answer3Audio>NewtonsFirstLawonEarthQ4A3.mp3</Answer3Audio>
+                <Answer4>The workforce</Answer4>
+                <Answer4Audio>NewtonsFirstLawonEarthQ4A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="5">
+                <QuestionText>What are the names of some forces on Earth that can change the speed and direction of objects?</QuestionText>
+                <QuestionAudio>NewtonsFirstLawonEarthQ5.mp3</QuestionAudio>
+                <Answer1>Gravity and friction</Answer1>
+                <Answer1Audio>NewtonsFirstLawonEarthQ5A1.mp3</Answer1Audio>
+                <expectedSelection>Gravity and friction</expectedSelection>
+                <Answer2>Only a little friction, but no gravity</Answer2>
+                <Answer2Audio>NewtonsFirstLawonEarthQ5A2.mp3</Answer2Audio>
+                <Answer3>Only a little gravity, but no friction</Answer3>
+                <Answer3Audio>NewtonsFirstLawonEarthQ5A3.mp3</Answer3Audio>
+                <Answer4>The wind and Air Force</Answer4>
+                <Answer4Audio>NewtonsFirstLawonEarthQ5A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="6">
+                <QuestionText>How long would a ball keep moving in space?</QuestionText>
+                <QuestionAudio>NewtonsFirstLawonEarthQ6.mp3</QuestionAudio>
+                <Answer1>For a very long time</Answer1>
+                <Answer1Audio>NewtonsFirstLawonEarthQ6A1.mp3</Answer1Audio>
+                <expectedSelection>For a very long time</expectedSelection>
+                <Answer2>For a very short time</Answer2>
+                <Answer2Audio>NewtonsFirstLawonEarthQ6A2.mp3</Answer2Audio>
+                <Answer3>It would stop right away</Answer3>
+                <Answer3Audio>NewtonsFirstLawonEarthQ6A3.mp3</Answer3Audio>
+                <Answer4>As long as the aliens keep kicking it</Answer4>
+                <Answer4Audio>NewtonsFirstLawonEarthQ6A4.mp3</Answer4Audio>
+            </Question>
+        </Questions>
+        <Questions title="Newton's Second Law: Acceleration">
+            <Question number="1">
+                <QuestionText>What happens to a stopped car when it accelerates?</QuestionText>
+                <QuestionAudio>NewtonsSecondLawAccelerationQ1.mp3</QuestionAudio>
+                <Answer1>It gets going</Answer1>
+                <Answer1Audio>NewtonsSecondLawAccelerationQ1A1.mp3</Answer1Audio>
+                <expectedSelection>It gets going</expectedSelection>
+                <Answer2>It turns around</Answer2>
+                <Answer2Audio>NewtonsSecondLawAccelerationQ1A2.mp3</Answer2Audio>
+                <Answer3>It stops</Answer3>
+                <Answer3Audio>NewtonsSecondLawAccelerationQ1A3.mp3</Answer3Audio>
+                <Answer4>It lifts off the ground</Answer4>
+                <Answer4Audio>NewtonsSecondLawAccelerationQ1A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="2">
+                <QuestionText>What does acceleration depend on?</QuestionText>
+                <QuestionAudio>NewtonsSecondLawAccelerationQ2.mp3</QuestionAudio>
+                <Answer1>The force added and the weight of an object</Answer1>
+                <Answer1Audio>NewtonsSecondLawAccelerationQ2A1.mp3</Answer1Audio>
+                <expectedSelection>The force added and the weight of an object</expectedSelection>
+                <Answer2>The height and width of an object</Answer2>
+                <Answer2Audio>NewtonsSecondLawAccelerationQ2A2.mp3</Answer2Audio>
+                <Answer3>The speed of an object</Answer3>
+                <Answer3Audio>NewtonsSecondLawAccelerationQ2A3.mp3</Answer3Audio>
+                <Answer4>Its friends and family</Answer4>
+                <Answer4Audio>NewtonsSecondLawAccelerationQ2A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="3">
+                <QuestionText>What is going faster and faster called?</QuestionText>
+                <QuestionAudio>NewtonsSecondLawAccelerationQ3.mp3</QuestionAudio>
+                <Answer1>Acceleration</Answer1>
+                <Answer1Audio>NewtonsSecondLawAccelerationQ3A1.mp3</Answer1Audio>
+                <expectedSelection>Acceleration</expectedSelection>
+                <Answer2>Gravity</Answer2>
+                <Answer2Audio>NewtonsSecondLawAccelerationQ3A2.mp3</Answer2Audio>
+                <Answer3>Friction</Answer3>
+                <Answer3Audio>NewtonsSecondLawAccelerationQ3A3.mp3</Answer3Audio>
+                <Answer4>Life as a grownup</Answer4>
+                <Answer4Audio>NewtonsSecondLawAccelerationQ3A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="4">
+                <QuestionText>How fast does the big rocket move when you first push it?</QuestionText>
+                <QuestionAudio>NewtonsSecondLawAccelerationQ4.mp3</QuestionAudio>
+                <Answer1>Slowly</Answer1>
+                <Answer1Audio>NewtonsSecondLawAccelerationQ4A1.mp3</Answer1Audio>
+                <expectedSelection>Slowly</expectedSelection>
+                <Answer2>Quickly</Answer2>
+                <Answer2Audio>NewtonsSecondLawAccelerationQ4A2.mp3</Answer2Audio>
+                <Answer3>As fast as the little rocket</Answer3>
+                <Answer3Audio>NewtonsSecondLawAccelerationQ4A3.mp3</Answer3Audio>
+                <Answer4>As fast as the wind</Answer4>
+                <Answer4Audio>NewtonsSecondLawAccelerationQ4A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="5">
+                <QuestionText>What happens to the big rocket when you keep pushing it?</QuestionText>
+                <QuestionAudio>NewtonsSecondLawAccelerationQ5.mp3</QuestionAudio>
+                <Answer1>It goes as fast as the little rocket</Answer1>
+                <Answer1Audio>NewtonsSecondLawAccelerationQ5A1.mp3</Answer1Audio>
+                <expectedSelection>It goes as fast as the little rocket</expectedSelection>
+                <Answer2>It slows down</Answer2>
+                <Answer2Audio>NewtonsSecondLawAccelerationQ5A2.mp3</Answer2Audio>
+                <Answer3>Its moves at the same speed</Answer3>
+                <Answer3Audio>NewtonsSecondLawAccelerationQ5A3.mp3</Answer3Audio>
+                <Answer4>It gets mad at you</Answer4>
+                <Answer4Audio>NewtonsSecondLawAccelerationQ5A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="6">
+                <QuestionText>What size force is needed to accelerate a heavy object?</QuestionText>
+                <QuestionAudio>NewtonsSecondLawAccelerationQ6.mp3</QuestionAudio>
+                <Answer1>Big force</Answer1>
+                <Answer1Audio>NewtonsSecondLawAccelerationQ6A1.mp3</Answer1Audio>
+                <expectedSelection>Big force</expectedSelection>
+                <Answer2>Little force</Answer2>
+                <Answer2Audio>NewtonsSecondLawAccelerationQ6A2.mp3</Answer2Audio>
+                <Answer3>Medium force</Answer3>
+                <Answer3Audio>NewtonsSecondLawAccelerationQ6A3.mp3</Answer3Audio>
+                <Answer4>12 inch force</Answer4>
+                <Answer4Audio>NewtonsSecondLawAccelerationQ6A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="7">
+                <QuestionText>Why does the big, heavy rocket accelerate only a little when you push it?</QuestionText>
+                <QuestionAudio>NewtonsSecondLawAccelerationQ7.mp3</QuestionAudio>
+                <Answer1>Because heavy objects need a big force to accelerate them a lot</Answer1>
+                <Answer1Audio>NewtonsSecondLawAccelerationQ7A1.mp3</Answer1Audio>
+                <expectedSelection>Because heavy objects need a big force to accelerate them a lot</expectedSelection>
+                <Answer2>Because heavy objects need more gravity to accelerate them</Answer2>
+                <Answer2Audio>NewtonsSecondLawAccelerationQ7A2.mp3</Answer2Audio>
+                <Answer3>Because there is too much friction acting on the rocket</Answer3>
+                <Answer3Audio>NewtonsSecondLawAccelerationQ7A3.mp3</Answer3Audio>
+                <Answer4>Because you didn&#8217;t say the magic word</Answer4>
+                <Answer4Audio>NewtonsSecondLawAccelerationQ7A4.mp3</Answer4Audio>
+            </Question>
+        </Questions>
+        <Questions title="Newton's Law of Acceleration on Earth">
+            <Question number="1">
+                <QuestionText>What accelerated the empty cart?</QuestionText>
+                <QuestionAudio>NewtonsLawofAccelerationonEarthQ1.mp3</QuestionAudio>
+                <Answer1>The pulling force from the dog</Answer1>
+                <Answer1Audio>NewtonsLawofAccelerationonEarthQ1A1.mp3</Answer1Audio>
+                <expectedSelection>The pulling force from the dog</expectedSelection>
+                <Answer2>The pulling force from the horse</Answer2>
+                <Answer2Audio>NewtonsLawofAccelerationonEarthQ1A2.mp3</Answer2Audio>
+                <Answer3>Friction</Answer3>
+                <Answer3Audio>NewtonsLawofAccelerationonEarthQ1A3.mp3</Answer3Audio>
+                <Answer4>The shopper</Answer4>
+                <Answer4Audio>NewtonsLawofAccelerationonEarthQ1A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="2">
+                <QuestionText>What happens when Maria piles wood into the cart?</QuestionText>
+                <QuestionAudio>NewtonsLawofAccelerationonEarthQ2.mp3</QuestionAudio>
+                <Answer1>The cart becomes too heavy for the dog to move much</Answer1>
+                <Answer1Audio>NewtonsLawofAccelerationonEarthQ2A1.mp3</Answer1Audio>
+                <expectedSelection>The cart becomes too heavy for the dog to move much</expectedSelection>
+                <Answer2>Some of the wood falls out of the cart</Answer2>
+                <Answer2Audio>NewtonsLawofAccelerationonEarthQ2A2.mp3</Answer2Audio>
+                <Answer3>The dog pulls the cart to Juan</Answer3>
+                <Answer3Audio>NewtonsLawofAccelerationonEarthQ2A3.mp3</Answer3Audio>
+                <Answer4>The tree takes it back</Answer4>
+                <Answer4Audio>NewtonsLawofAccelerationonEarthQ2A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="3">
+                <QuestionText>What accelerates the cart with wood?</QuestionText>
+                <QuestionAudio>NewtonsLawofAccelerationonEarthQ3.mp3</QuestionAudio>
+                <Answer1>The big force from the horse</Answer1>
+                <Answer1Audio>NewtonsLawofAccelerationonEarthQ3A1.mp3</Answer1Audio>
+                <expectedSelection>The big force from the horse</expectedSelection>
+                <Answer2>The pulling force from the dog</Answer2>
+                <Answer2Audio>NewtonsLawofAccelerationonEarthQ3A2.mp3</Answer2Audio>
+                <Answer3>Gravity</Answer3>
+                <Answer3Audio>NewtonsLawofAccelerationonEarthQ3A3.mp3</Answer3Audio>
+                <Answer4>Bob the Builder</Answer4>
+                <Answer4Audio>NewtonsLawofAccelerationonEarthQ3A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="4">
+                <QuestionText>What happens to the cart in the story when it is accelerated?</QuestionText>
+                <QuestionAudio>NewtonsLawofAccelerationonEarthQ4.mp3</QuestionAudio>
+                <Answer1>It starts to move</Answer1>
+                <Answer1Audio>NewtonsLawofAccelerationonEarthQ4A1.mp3</Answer1Audio>
+                <expectedSelection>It starts to move</expectedSelection>
+                <Answer2>It turns around</Answer2>
+                <Answer2Audio>NewtonsLawofAccelerationonEarthQ4A2.mp3</Answer2Audio>
+                <Answer3>It slows down</Answer3>
+                <Answer3Audio>NewtonsLawofAccelerationonEarthQ4A3.mp3</Answer3Audio>
+                <Answer4>It shrinks</Answer4>
+                <Answer4Audio>NewtonsLawofAccelerationonEarthQ4A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="5">
+                <QuestionText>Why can the horse pull the cart with wood, but the dog cannot?</QuestionText>
+                <QuestionAudio>NewtonsLawofAccelerationonEarthQ5.mp3</QuestionAudio>
+                <Answer1>The horse adds a bigger force to accelerate the cart more</Answer1>
+                <Answer1Audio>NewtonsLawofAccelerationonEarthQ5A1.mp3</Answer1Audio>
+                <expectedSelection>The horse adds a bigger force to accelerate the cart more</expectedSelection>
+                <Answer2>The dog was never tied to the cart, but the horse was</Answer2>
+                <Answer2Audio>NewtonsLawofAccelerationonEarthQ5A2.mp3</Answer2Audio>
+                <Answer3>The horse adds more gravity to accelerate the cart</Answer3>
+                <Answer3Audio>NewtonsLawofAccelerationonEarthQ5A3.mp3</Answer3Audio>
+                <Answer4>The horse has been working out</Answer4>
+                <Answer4Audio>NewtonsLawofAccelerationonEarthQ5A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="6">
+                <QuestionText>Which force on Earth stops the cart?</QuestionText>
+                <QuestionAudio>NewtonsLawofAccelerationonEarthQ6.mp3</QuestionAudio>
+                <Answer1>Friction</Answer1>
+                <Answer1Audio>NewtonsLawofAccelerationonEarthQ6A1.mp3</Answer1Audio>
+                <expectedSelection>Friction</expectedSelection>
+                <Answer2>Acceleration</Answer2>
+                <Answer2Audio>NewtonsLawofAccelerationonEarthQ6A2.mp3</Answer2Audio>
+                <Answer3>Gravity</Answer3>
+                <Answer3Audio>NewtonsLawofAccelerationonEarthQ6A3.mp3</Answer3Audio>
+                <Answer4>Brute force</Answer4>
+                <Answer4Audio>NewtonsLawofAccelerationonEarthQ6A4.mp3</Answer4Audio>
+            </Question>
+        </Questions>
+        <Questions title="Newton's Third Law: Forces are Paired">
+            <Question number="1">
+                <QuestionText>Which way does Juan move the water with his paddle?</QuestionText>
+                <QuestionAudio>NewtonsThirdLawForcesarepairedQ1.mp3</QuestionAudio>
+                <Answer1>Backward</Answer1>
+                <Answer1Audio>NewtonsThirdLawForcesarepairedQ1A1.mp3</Answer1Audio>
+                <expectedSelection>Backward</expectedSelection>
+                <Answer2>Down</Answer2>
+                <Answer2Audio>NewtonsThirdLawForcesarepairedQ1A2.mp3</Answer2Audio>
+                <Answer3>Forward</Answer3>
+                <Answer3Audio>NewtonsThirdLawForcesarepairedQ1A3.mp3</Answer3Audio>
+                <Answer4>Into his cup</Answer4>
+                <Answer4Audio>NewtonsThirdLawForcesarepairedQ1A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="2">
+                <QuestionText>When the water is moved backward, which way does the boat move?</QuestionText>
+                <QuestionAudio>NewtonsThirdLawForcesarepairedQ2.mp3</QuestionAudio>
+                <Answer1>Forward</Answer1>
+                <Answer1Audio>NewtonsThirdLawForcesarepairedQ2A1.mp3</Answer1Audio>
+                <expectedSelection>Forward</expectedSelection>
+                <Answer2>To the side</Answer2>
+                <Answer2Audio>NewtonsThirdLawForcesarepairedQ2A2.mp3</Answer2Audio>
+                <Answer3>Backward</Answer3>
+                <Answer3Audio>NewtonsThirdLawForcesarepairedQ2A3.mp3</Answer3Audio>
+                <Answer4>Toward the lighthouse</Answer4>
+                <Answer4Audio>NewtonsThirdLawForcesarepairedQ2A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="3">
+                <QuestionText>Why does Sara go forward?</QuestionText>
+                <QuestionAudio>NewtonsThirdLawForcesarepairedQ3.mp3</QuestionAudio>
+                <Answer1>Because Maria pushes on Sara</Answer1>
+                <Answer1Audio>NewtonsThirdLawForcesarepairedQ3A1.mp3</Answer1Audio>
+                <expectedSelection>Because Maria pushes on Sara</expectedSelection>
+                <Answer2>Because Sara pushes on Maria</Answer2>
+                <Answer2Audio>NewtonsThirdLawForcesarepairedQ3A2.mp3</Answer2Audio>
+                <Answer3>Because Sara moved the water backward</Answer3>
+                <Answer3Audio>NewtonsThirdLawForcesarepairedQ3A3.mp3</Answer3Audio>
+                <Answer4>Because Sara has a green light</Answer4>
+                <Answer4Audio>NewtonsThirdLawForcesarepairedQ3A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="4">
+                <QuestionText>What happens to Maria after she pushes Sara?</QuestionText>
+                <QuestionAudio>NewtonsThirdLawForcesarepairedQ4.mp3</QuestionAudio>
+                <Answer1>Maria goes backward</Answer1>
+                <Answer1Audio>NewtonsThirdLawForcesarepairedQ4A1.mp3</Answer1Audio>
+                <expectedSelection>Maria goes backward</expectedSelection>
+                <Answer2>Maria goes forward</Answer2>
+                <Answer2Audio>NewtonsThirdLawForcesarepairedQ4A2.mp3</Answer2Audio>
+                <Answer3>Maria gets on her skateboard</Answer3>
+                <Answer3Audio>NewtonsThirdLawForcesarepairedQ4A3.mp3</Answer3Audio>
+                <Answer4>Maria gets in trouble</Answer4>
+                <Answer4Audio>NewtonsThirdLawForcesarepairedQ4A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="5">
+                <QuestionText>Why did Maria move backward?</QuestionText>
+                <QuestionAudio>NewtonsThirdLawForcesarepairedQ5.mp3</QuestionAudio>
+                <Answer1>Every action (Sara being pushed forward) is paired with a reaction (Maria being pushed backward)</Answer1>
+                <Answer1Audio>NewtonsThirdLawForcesarepairedQ5A1.mp3</Answer1Audio>
+                <expectedSelection>Every action (Sara being pushed forward) is paired with a reaction (Maria being pushed backward)</expectedSelection>
+                <Answer2>Friction pulled Maria backward after she pushed Sarah forward</Answer2>
+                <Answer2Audio>NewtonsThirdLawForcesarepairedQ5A2.mp3</Answer2Audio>
+                <Answer3>Gravity pulled Maria backward because she was on a hill</Answer3>
+                <Answer3Audio>NewtonsThirdLawForcesarepairedQ5A3.mp3</Answer3Audio>
+                <Answer4>Someone hit rewind</Answer4>
+                <Answer4Audio>NewtonsThirdLawForcesarepairedQ5A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="6">
+                <QuestionText>For the rocket to move forward, where must the flames shoot out?</QuestionText>
+                <QuestionAudio>NewtonsThirdLawForcesarepairedQ6.mp3</QuestionAudio>
+                <Answer1>The back of the rocket</Answer1>
+                <Answer1Audio>NewtonsThirdLawForcesarepairedQ6A1.mp3</Answer1Audio>
+                <expectedSelection>The back of the rocket</expectedSelection>
+                <Answer2>The front of the rocket</Answer2>
+                <Answer2Audio>NewtonsThirdLawForcesarepairedQ6A2.mp3</Answer2Audio>
+                <Answer3>The top of the rocket</Answer3>
+                <Answer3Audio>NewtonsThirdLawForcesarepairedQ6A3.mp3</Answer3Audio>
+                <Answer4>The dragon&#8217;s mouth</Answer4>
+                <Answer4Audio>NewtonsThirdLawForcesarepairedQ6A4.mp3</Answer4Audio>
+            </Question>
+        </Questions>
+        <Questions title="The Three Laws Work Together">
+            <Question number="1">
+                <QuestionText>What does Maria need to get moving?</QuestionText>
+                <QuestionAudio>TheThreeLawsWorkTogetherQ1.mp3</QuestionAudio>
+                <Answer1>A force</Answer1>
+                <Answer1Audio>TheThreeLawsWorkTogetherQ1A1.mp3</Answer1Audio>
+                <expectedSelection>A force</expectedSelection>
+                <Answer2>Friction</Answer2>
+                <Answer2Audio>TheThreeLawsWorkTogetherQ1A2.mp3</Answer2Audio>
+                <Answer3>A toy car</Answer3>
+                <Answer3Audio>TheThreeLawsWorkTogetherQ1A3.mp3</Answer3Audio>
+                <Answer4>Some new kicks</Answer4>
+                <Answer4Audio>TheThreeLawsWorkTogetherQ1A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="2">
+                <QuestionText>Which way does Maria have to push with her foot if she wants to move forward?</QuestionText>
+                <QuestionAudio>TheThreeLawsWorkTogetherQ2.mp3</QuestionAudio>
+                <Answer1>Backward</Answer1>
+                <Answer1Audio>TheThreeLawsWorkTogetherQ2A1.mp3</Answer1Audio>
+                <expectedSelection>Backward</expectedSelection>
+                <Answer2>Forward</Answer2>
+                <Answer2Audio>TheThreeLawsWorkTogetherQ2A2.mp3</Answer2Audio>
+                <Answer3>Down and to the side</Answer3>
+                <Answer3Audio>TheThreeLawsWorkTogetherQ2A3.mp3</Answer3Audio>
+                <Answer4>The wrong way</Answer4>
+                <Answer4Audio>TheThreeLawsWorkTogetherQ2A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="3">
+                <QuestionText>Which force pulls Maria down the hill faster and faster?</QuestionText>
+                <QuestionAudio>TheThreeLawsWorkTogetherQ3.mp3</QuestionAudio>
+                <Answer1>Gravity</Answer1>
+                <Answer1Audio>TheThreeLawsWorkTogetherQ3A1.mp3</Answer1Audio>
+                <expectedSelection>Gravity</expectedSelection>
+                <Answer2>Friction</Answer2>
+                <Answer2Audio>TheThreeLawsWorkTogetherQ3A2.mp3</Answer2Audio>
+                <Answer3>Acceleration</Answer3>
+                <Answer3Audio>TheThreeLawsWorkTogetherQ3A3.mp3</Answer3Audio>
+                <Answer4>The X-Force</Answer4>
+                <Answer4Audio>TheThreeLawsWorkTogetherQ3A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="4">
+                <QuestionText>How did the toy truck move?</QuestionText>
+                <QuestionAudio>TheThreeLawsWorkTogetherQ4.mp3</QuestionAudio>
+                <Answer1>You added a pushing force to the truck</Answer1>
+                <Answer1Audio>TheThreeLawsWorkTogetherQ4A1.mp3</Answer1Audio>
+                <expectedSelection>You added a pushing force to the truck</expectedSelection>
+                <Answer2>Toy trucks are objects that can move by themselves</Answer2>
+                <Answer2Audio>TheThreeLawsWorkTogetherQ4A2.mp3</Answer2Audio>
+                <Answer3>Maria pushed the toy truck</Answer3>
+                <Answer3Audio>TheThreeLawsWorkTogetherQ4A3.mp3</Answer3Audio>
+                <Answer4>A doll was driving it</Answer4>
+                <Answer4Audio>TheThreeLawsWorkTogetherQ4A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="5">
+                <QuestionText>What brings Maria to a stop?</QuestionText>
+                <QuestionAudio>TheThreeLawsWorkTogetherQ5.mp3</QuestionAudio>
+                <Answer1>Friction</Answer1>
+                <Answer1Audio>TheThreeLawsWorkTogetherQ5A1.mp3</Answer1Audio>
+                <expectedSelection>Friction</expectedSelection>
+                <Answer2>The toy truck</Answer2>
+                <Answer2Audio>TheThreeLawsWorkTogetherQ5A2.mp3</Answer2Audio>
+                <Answer3>The seatbelt</Answer3>
+                <Answer3Audio>TheThreeLawsWorkTogetherQ5A3.mp3</Answer3Audio>
+                <Answer4>The stop sign</Answer4>
+                <Answer4Audio>TheThreeLawsWorkTogetherQ5A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="6">
+                <QuestionText>Why doesn&#8217;t Maria stop when her skateboard does?</QuestionText>
+                <QuestionAudio>TheThreeLawsWorkTogetherQ6.mp3</QuestionAudio>
+                <Answer1>Because objects in motion stay in motion</Answer1>
+                <Answer1Audio>TheThreeLawsWorkTogetherQ6A1.mp3</Answer1Audio>
+                <expectedSelection>Because objects in motion stay in motion</expectedSelection>
+                <Answer2>Because Maria keeps pushing backwards</Answer2>
+                <Answer2Audio>TheThreeLawsWorkTogetherQ6A2.mp3</Answer2Audio>
+                <Answer3>Because Maria has no friction</Answer3>
+                <Answer3Audio>TheThreeLawsWorkTogetherQ6A3.mp3</Answer3Audio>
+                <Answer4>Because Maria&#8217;s not a follower</Answer4>
+                <Answer4Audio>TheThreeLawsWorkTogetherQ6A4.mp3</Answer4Audio>
+            </Question>
+            <Question number="7">
+                <QuestionText>If you are not wearing a seatbelt, what happens to you when the car stops?</QuestionText>
+                <QuestionAudio>TheThreeLawsWorkTogetherQ7.mp3</QuestionAudio>
+                <Answer1>You keep moving</Answer1>
+                <Answer1Audio>TheThreeLawsWorkTogetherQ7A1.mp3</Answer1Audio>
+                <expectedSelection>You keep moving</expectedSelection>
+                <Answer2>You stop when the car does</Answer2>
+                <Answer2Audio>TheThreeLawsWorkTogetherQ7A2.mp3</Answer2Audio>
+                <Answer3>You move in the opposite direction</Answer3>
+                <Answer3Audio>TheThreeLawsWorkTogetherQ7A3.mp3</Answer3Audio>
+                <Answer4>Your get out of the car</Answer4>
+                <Answer4Audio>TheThreeLawsWorkTogetherQ7A4.mp3</Answer4Audio>
+            </Question>
+        </Questions>
+    </ActivityAssessment>
+</metadata>

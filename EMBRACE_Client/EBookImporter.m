@@ -1195,8 +1195,16 @@ ConditionSetup *conditionSetup;
         }
     }
     
-    //NSLog(@"at beginning of read metadata for book");
-    filepath = [[book mainContentPath] stringByAppendingString:@"AssessmentActivities-MetaData.xml"];
+    //set file path to access introduction metadata
+    if (conditionSetup.language == BILINGUAL) {
+        //NSLog(@"at beginning of read metadata for book");
+        filepath = [[book mainContentPath] stringByAppendingString:@"AssessmentActivitiesSpanish-MetaData.xml"];
+    }
+    else
+    {
+        //NSLog(@"at beginning of read metadata for book");
+        filepath = [[book mainContentPath] stringByAppendingString:@"AssessmentActivities-MetaData.xml"];
+    }
     
     //NSLog(filepath);
     //Get xml data of the metadata file.
