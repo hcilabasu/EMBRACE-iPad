@@ -10460,11 +10460,11 @@
 				1A63222A1C0E4D3B00251CB3 /* mainland.png in Resources */,
 				5C9C080E1C57385A00702FCD /* combedE.m4a in Resources */,
 				1AF8054D1C28DEC400C96B05 /* lavaplume_greyplate_right.png in Resources */,
-<<<<<<< HEAD
+
 				1A68DC7F1C58215C009F9099 /* AssessmentActivitiesSpanish-MetaData.xml in Resources */,
 				5C9C0C731C573FC500702FCD /* MoreIsMissingQ8A4.mp3 in Resources */,
-=======
->>>>>>> origin/James-Branch
+
+
 				5C9C0A481C573AAA00702FCD /* atriumE.m4a in Resources */,
 				1A6322951C0E4D3B00251CB3 /* cribb_large_high_res.png in Resources */,
 				5C9C07B31C57385A00702FCD /* BFCS1_4.m4a in Resources */,
@@ -11016,11 +11016,11 @@
 				5C28DC5E1C2BA66E005ACD07 /* Areas-MetaData.xml in Resources */,
 				5C28DCA01C2BA66E005ACD07 /* icewindow.png in Resources */,
 				5C9C07851C57385A00702FCD /* BFCE1_6A.m4a in Resources */,
-<<<<<<< HEAD
+
 				1AC7A3951C592D0E003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml in Resources */,
-=======
+
 				5D9E34D31C590E9600636150 /* old_TheLopezFamilyS4E.mp3 in Resources */,
->>>>>>> origin/James-Branch
+
 				1A6321DE1C0E4D3B00251CB3 /* bg_test.png in Resources */,
 				5D9E34AE1C590E9600636150 /* TheMysteryIsSolvedQ6A3.mp3 in Resources */,
 				5D9E33DC1C590E9400636150 /* IsPacoAThiefQ7A3.mp3 in Resources */,
