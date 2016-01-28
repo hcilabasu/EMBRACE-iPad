@@ -3088,7 +3088,7 @@ BOOL wasPathFollowed = false;
 }
 
 /*
- * Returns true if the start location and the end location of an object are within the same area. Otherwise, returns false. 
+ * Returns true if the start location and the end location of an object are within the same area. Otherwise, returns false.  
  */
 -(BOOL) areHotspotsInsideArea {
     //Check solution only if it exists for the sentence
