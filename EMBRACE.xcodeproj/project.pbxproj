@@ -960,7 +960,6 @@
 		31953E871729EE5800570087 /* LibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31953E861729EE5800570087 /* LibraryViewController.m */; };
 		31953E8D1729EE6E00570087 /* BookCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31953E891729EE6E00570087 /* BookCellView.m */; };
 		31953E8F1729EE6E00570087 /* LibraryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31953E8C1729EE6E00570087 /* LibraryView.m */; };
-		31953E951729EEB800570087 /* PMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31953E941729EEB800570087 /* PMViewController.m */; };
 		31953E971729EEDE00570087 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 31953E961729EEDE00570087 /* libz.dylib */; };
 		31953E9C172A136A00570087 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31953E9B172A136A00570087 /* QuartzCore.framework */; };
 		31AA5FAA175FB16500E9A9B3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AA5FA9175FB16500E9A9B3 /* LoginViewController.m */; };
@@ -2004,6 +2003,8 @@
 		5D10AC661C52C749007109AD /* MagicToysQ7A2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5D10AC431C52C749007109AD /* MagicToysQ7A2.mp3 */; };
 		5D10AC671C52C749007109AD /* MagicToysQ7A3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5D10AC441C52C749007109AD /* MagicToysQ7A3.mp3 */; };
 		5D10AC681C52C749007109AD /* MagicToysQ7A4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5D10AC451C52C749007109AD /* MagicToysQ7A4.mp3 */; };
+		5D1168DA1C5A977800536340 /* speakerIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A9CF8461C31DAF90000C135 /* speakerIcon.png */; };
+		5D1168DB1C5A982B00536340 /* PMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31953E941729EEB800570087 /* PMViewController.m */; };
 		5D4B46AA1C5690690096BC1E /* BabyBrotherQ1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5D4B46821C5690690096BC1E /* BabyBrotherQ1.mp3 */; };
 		5D4B46AB1C5690690096BC1E /* BabyBrotherQ1A1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5D4B46831C5690690096BC1E /* BabyBrotherQ1A1.mp3 */; };
 		5D4B46AC1C5690690096BC1E /* BabyBrotherQ1A2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5D4B46841C5690690096BC1E /* BabyBrotherQ1A2.mp3 */; };
@@ -10397,6 +10398,7 @@
 				5D9E34CF1C590E9600636150 /* dog_labradoodle_bark_twice_001.mp3 in Resources */,
 				5D9E34731C590E9500636150 /* TheLopezFamilyQ1A4.mp3 in Resources */,
 				5DBC03291C5121AE0030072B /* TheLuckyStoneQ7A2.mp3 in Resources */,
+				5D1168DA1C5A977800536340 /* speakerIcon.png in Resources */,
 				5C9C0AAC1C573AAA00702FCD /* lungsDEFS.m4a in Resources */,
 				5C9C07051C57385A00702FCD /* CleaningUpQ3A3.mp3 in Resources */,
 				5C28DCED1C2BA66E005ACD07 /* Relationships-MetaData.xml in Resources */,
@@ -10460,11 +10462,7 @@
 				1A63222A1C0E4D3B00251CB3 /* mainland.png in Resources */,
 				5C9C080E1C57385A00702FCD /* combedE.m4a in Resources */,
 				1AF8054D1C28DEC400C96B05 /* lavaplume_greyplate_right.png in Resources */,
-
 				1A68DC7F1C58215C009F9099 /* AssessmentActivitiesSpanish-MetaData.xml in Resources */,
-				5C9C0C731C573FC500702FCD /* MoreIsMissingQ8A4.mp3 in Resources */,
-
-
 				5C9C0A481C573AAA00702FCD /* atriumE.m4a in Resources */,
 				1A6322951C0E4D3B00251CB3 /* cribb_large_high_res.png in Resources */,
 				5C9C07B31C57385A00702FCD /* BFCS1_4.m4a in Resources */,
@@ -11016,11 +11014,8 @@
 				5C28DC5E1C2BA66E005ACD07 /* Areas-MetaData.xml in Resources */,
 				5C28DCA01C2BA66E005ACD07 /* icewindow.png in Resources */,
 				5C9C07851C57385A00702FCD /* BFCE1_6A.m4a in Resources */,
-
 				1AC7A3951C592D0E003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml in Resources */,
-
 				5D9E34D31C590E9600636150 /* old_TheLopezFamilyS4E.mp3 in Resources */,
-
 				1A6321DE1C0E4D3B00251CB3 /* bg_test.png in Resources */,
 				5D9E34AE1C590E9600636150 /* TheMysteryIsSolvedQ6A3.mp3 in Resources */,
 				5D9E33DC1C590E9400636150 /* IsPacoAThiefQ7A3.mp3 in Resources */,
@@ -11182,7 +11177,7 @@
 				5CFA85AB1950EFDC00C7537D /* IntroductionStep.m in Sources */,
 				033BC06A1C507BD100A1EC14 /* ActivitySequenceController.m in Sources */,
 				31953E8F1729EE6E00570087 /* LibraryView.m in Sources */,
-				31953E951729EEB800570087 /* PMViewController.m in Sources */,
+				5D1168DB1C5A982B00536340 /* PMViewController.m in Sources */,
 				5C466ADC192293290056EA4B /* Translation.m in Sources */,
 				3193753A174185E000782C2B /* NavigationController.m in Sources */,
 				3193753D1741A76F00782C2B /* HelpViewController.m in Sources */,
