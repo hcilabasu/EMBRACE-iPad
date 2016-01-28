@@ -1099,7 +1099,7 @@ BOOL wasPathFollowed = false;
     [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Error Audio" : @"NULL" :@"Error Noise"  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
 }
 
-
+  
 /*
  * Tap gesture. Currently only used for menu selection.
  */
