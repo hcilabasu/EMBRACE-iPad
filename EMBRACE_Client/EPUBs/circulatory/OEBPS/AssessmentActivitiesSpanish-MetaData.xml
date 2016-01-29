@@ -20,7 +20,7 @@
                 <QuestionAudio>WhyWeBreatheQ2.mp3</QuestionAudio>
                 <Answer1>A la nariz</Answer1>
                 <Answer1Audio>WhyWeBreatheQ2A1.mp3</Answer1Audio>
-                <expectedSelection>Nose</expectedSelection>
+                <expectedSelection>A la nariz</expectedSelection>
                 <Answer2>A los pulmones</Answer2>
                 <Answer2Audio>WhyWeBreatheQ2A2.mp3</Answer2Audio>
                 <Answer3>A la sangre</Answer3>
@@ -33,7 +33,7 @@
                 <QuestionAudio>WhyWeBreatheQ3.mp3</QuestionAudio>
                 <Answer1>Al aire</Answer1>
                 <Answer1Audio>WhyWeBreatheQ3A1.mp3</Answer1Audio>
-                <expectedSelection>Air</expectedSelection>
+                <expectedSelection>Al aire</expectedSelection>
                 <Answer2>A los pulmones</Answer2>
                 <Answer2Audio>WhyWeBreatheQ3A2.mp3</Answer2Audio>
                 <Answer3>A la sangre</Answer3>
@@ -46,7 +46,7 @@
                 <QuestionAudio>WhyWeBreatheQ4.mp3</QuestionAudio>
                 <Answer1>A los pulmones</Answer1>
                 <Answer1Audio>WhyWeBreatheQ4A1.mp3</Answer1Audio>
-                <expectedSelection>Lungs</expectedSelection>
+                <expectedSelection>A los pulmones</expectedSelection>
                 <Answer2>Al corazón</Answer2>
                 <Answer2Audio>WhyWeBreatheQ4A2.mp3</Answer2Audio>
                 <Answer3>Al aire</Answer3>
@@ -59,7 +59,7 @@
                 <QuestionAudio>WhyWeBreatheQ5.mp3</QuestionAudio>
                 <Answer1>Vivir</Answer1>
                 <Answer1Audio>WhyWeBreatheQ5A1.mp3</Answer1Audio>
-                <expectedSelection>Live</expectedSelection>
+                <expectedSelection>Vivir</expectedSelection>
                 <Answer2>Hacer moléculas</Answer2>
                 <Answer2Audio>WhyWeBreatheQ5A2.mp3</Answer2Audio>
                 <Answer3>Inhalar</Answer3>
