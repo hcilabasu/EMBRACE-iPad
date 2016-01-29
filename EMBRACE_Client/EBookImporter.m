@@ -687,6 +687,7 @@ ConditionSetup *conditionSetup;
             NSString* originalSrc = [[altImage attributeForName:@"originalSrc"] stringValue];
             NSString* alternateSrc = [[altImage attributeForName:@"alternateSrc"] stringValue];
             NSString* width = [[altImage attributeForName:@"width"] stringValue];
+            NSString* height = [[altImage attributeForName:@"height"] stringValue];
             NSString* locationXString = [[altImage attributeForName:@"x"] stringValue];
             NSString* locationYString = [[altImage attributeForName:@"y"] stringValue];
             NSString* className = [[altImage attributeForName:@"class"] stringValue];
@@ -698,7 +699,7 @@ ConditionSetup *conditionSetup;
             
             CGPoint location = CGPointMake(locX, locY);
             
-            [model addAlternateImage:objectId :action :originalSrc :alternateSrc :width :location :className :locationZString];
+            [model addAlternateImage:objectId :action :originalSrc :alternateSrc :width : height :location :className :locationZString];
         }
     }
     
@@ -877,6 +878,15 @@ ConditionSetup *conditionSetup;
                             NSString* areaId = [[step attributeForName:@"areaId"] stringValue];
                             
                             ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :locationId :nil :action :areaId :nil];
+                            [PMSolution addSolutionStep:solutionStep];
+                        }
+                        //* CheckLeft, Right, Top, Down means that an object should be moved anywhere in the direction of the check step*//
+                        else if([[step name] isEqualToString:@"checkLeft"] ||
+                                [[step name] isEqualToString:@"checkRight"] ||
+                                [[step name] isEqualToString:@"checkTop"] ||
+                                [[step name] isEqualToString:@"checkDown"])
+                        {
+                            ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :action :nil :nil];
                             [PMSolution addSolutionStep:solutionStep];
                         }
                         //SwapImage and checkAndSwap only have obj1Id and action
