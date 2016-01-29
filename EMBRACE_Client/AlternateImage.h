@@ -14,6 +14,7 @@
     NSString* originalSrc;
     NSString* alternateSrc;
     NSString* width;
+    NSString* height;
     CGPoint location;
     NSString* className;
     NSString* zPosition;
@@ -25,10 +26,11 @@
 @property (nonatomic, strong) NSString* alternateSrc;
 @property (nonatomic, strong) NSString* height;
 @property (nonatomic, strong) NSString* width;
+@property (nonatomic, strong) NSString* heigh;
 @property (nonatomic, assign) CGPoint location;
 @property (nonatomic, strong) NSString* className;
 @property (nonatomic, strong) NSString* zPosition;
 
-- (id) initWithValues:(NSString*)objId :(NSString*)act :(NSString*)origSrc :(NSString*)altSrc :(NSString*)wdth :(CGPoint)loc :(NSString*)cls : (NSString*)zpos;
+- (id) initWithValues:(NSString*)objId :(NSString*)act :(NSString*)origSrc :(NSString*)altSrc :(NSString*)wdth : (NSString*)height : (CGPoint)loc :(NSString*)cls : (NSString*)zpos;
 
 @end

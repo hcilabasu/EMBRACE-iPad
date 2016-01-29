@@ -20,13 +20,14 @@
 @synthesize className;
 @synthesize zPosition;
 
-- (id) initWithValues:(NSString*)objId :(NSString*)act :(NSString*)origSrc :(NSString*)altSrc :(NSString*)wdth :(CGPoint)loc :(NSString*)cls :(NSString*)zpos {
+- (id) initWithValues:(NSString*)objId :(NSString*)act :(NSString*)origSrc :(NSString*)altSrc :(NSString*)wdth :(NSString*)heigh : (CGPoint)loc :(NSString*)cls :(NSString*)zpos {
     if (self = [super init]) {
         objectId = objId;
         action = act;
         originalSrc = origSrc;
         alternateSrc = altSrc;
         width = wdth;
+        height = heigh;
         location = loc;
         className = cls;
         zPosition = zpos;
