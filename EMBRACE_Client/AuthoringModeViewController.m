@@ -75,7 +75,7 @@ typedef enum InteractionMode {
     
     InteractionModel *model;
     
-    //Condition condition; //Study condition to run the app (e.g. MENU, HOTSPOT, etc.)
+    //Condition condition; //Study condition to run the app
     InteractionRestriction useSubject; //Determines which objects the user can manipulate as the subject
     InteractionRestriction useObject; //Determines which objects the user can interact with as the object
     
@@ -168,7 +168,7 @@ ConditionSetup *conditionSetup;
     //creates instance of introduction class
     IntroductionClass = [[IntroductionViewController alloc]init];
     //creates an instance of condition setup class
-    conditionSetup = [[ConditionSetup alloc] init];
+    conditionSetup = [ConditionSetup sharedInstance];
     //creates an instance of buildstringclass
     buildstringClass = [[BuildHTMLString alloc]init];
     //creates an instance of playaudioclass

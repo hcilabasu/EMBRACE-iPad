@@ -39,7 +39,7 @@ int const maxMenuItems = 3; //Total number of items the menu will display. chang
     if (self = [super initWithFrame:frame]) {
         [self setBackgroundColor:[[UIColor whiteColor] colorWithAlphaComponent:.5]];
         
-        conditionSetup = [[ConditionSetup alloc] init];
+        conditionSetup = [ConditionSetup sharedInstance];
         
         //IM Condition
         if (conditionSetup.condition == CONTROL) {

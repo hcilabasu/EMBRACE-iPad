@@ -20,7 +20,6 @@
     Student *student;
     Progress* studentProgress;
     ActivitySequenceController* sequenceController;
-    Mode currentMode;
     
     IBOutlet UIBarButtonItem *booksButton;
 }

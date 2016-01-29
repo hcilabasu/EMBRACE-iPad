@@ -69,7 +69,6 @@
     
     InteractionModel *model;
     
-    //Condition condition; //Study condition to run the app (e.g. MENU, HOTSPOT, etc.)
     InteractionRestriction useSubject; //Determines which objects the user can manipulate as the subject
     InteractionRestriction useObject; //Determines which objects the user can interact with as the object
     
@@ -80,7 +79,8 @@
     NSMutableDictionary* animatingObjects;
     BOOL containsAnimatingObject;
     NSString* previousStep;
-    Mode currentMode;
+    
+    ConditionSetup *conditionSetup;
 }
 
 @property (nonatomic, strong) IBOutlet UIWebView *bookView;
@@ -110,9 +110,6 @@
 //Used to determine the required proximity of 2 hotspots to group two items together.
 float const groupingProximity = 20.0;
 
-// Create an instance of  ConditionSetup
-ConditionSetup *conditionSetup;
-
 BOOL wasPathFollowed = false;
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -124,23 +121,10 @@ BOOL wasPathFollowed = false;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-    //creates an instance of condition setup class
-    conditionSetup = [[ConditionSetup alloc] init];
-    //creates an instance of buildstringclass
+    conditionSetup = [ConditionSetup sharedInstance];
     buildstringClass = [[BuildHTMLString alloc]init];
-    //creates an instance of playaudioclass
     playaudioClass = [[PlayAudioFile alloc]init];
-    //creates instance of introduction class
     IntroductionClass = [[IntroductionViewController alloc]initWithParams:playaudioClass : buildstringClass : conditionSetup];
-    
-    if (conditionSetup.condition == CONTROL) {
-        currentMode = IM_MODE;
-    }
-    else
-    {
-        currentMode = PM_MODE;
-    }
     
     syn = [[AVSpeechSynthesizer alloc] init];
     
@@ -171,14 +155,24 @@ BOOL wasPathFollowed = false;
     IntroductionClass.languageString = @"E";
     
     if (conditionSetup.condition  == CONTROL) {
-        IntroductionClass.allowInteractions = FALSE; //control condition allows user to read only; no manipulations
+        IntroductionClass.allowInteractions = FALSE;
+        
+        useSubject = NO_ENTITIES;
+        useObject = NO_ENTITIES;
     }
-    else {
+    else if (conditionSetup.condition == EMBRACE) {
         IntroductionClass.allowInteractions = TRUE;
+        
+        if (conditionSetup.currentMode == PM_MODE) {
+            useSubject = ALL_ENTITIES;
+            useObject = ONLY_CORRECT;
+        }
+        else if (conditionSetup.currentMode == IM_MODE) {
+            useSubject = NO_ENTITIES;
+            useObject = NO_ENTITIES;
+        }
     }
     
-    useSubject = ALL_ENTITIES;
-    useObject = ONLY_CORRECT;
     pinchToUngroup = FALSE;
     replenishSupply = FALSE;
     allowSnapback = TRUE;
@@ -190,13 +184,13 @@ BOOL wasPathFollowed = false;
     //Create contextualMenuController
     menuDataSource = [[ContextualMenuDataSource alloc] init];
     
-    pageStatistics = [[NSMutableDictionary alloc] init];
-    chooseComplexity = TRUE;
-    
-    //Ensure that the pinch recognizer gets called before the pan gesture recognizer.
-    //That way, if a user is trying to ungroup objects, they can do so without the objects moving as well.
-    //TODO: Figure out how to get the pan gesture to still properly recognize the begin and continue actions.
-    //[panRecognizer requireGestureRecognizerToFail:pinchRecognizer];
+    if (conditionSetup.appMode == ITS) {
+        chooseComplexity = TRUE;
+        pageStatistics = [[NSMutableDictionary alloc] init];
+    }
+    else {
+        chooseComplexity = FALSE;
+    }
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
@@ -247,7 +241,7 @@ BOOL wasPathFollowed = false;
     NSLog(@"bookTitle: %@", bookTitle);
     
     //Show menu to choose complexity level for non-intro pages of The Best Farm story only
-    if (conditionSetup.appmode == ITS && [currentPageId rangeOfString:@"Intro"].location == NSNotFound && ![chapterTitle isEqualToString:@"Introduction to The Best Farm"] && [bookTitle rangeOfString:@"The Circulatory System"].location == NSNotFound) {
+    if (conditionSetup.appMode == ITS && [currentPageId rangeOfString:@"Intro"].location == NSNotFound && ![chapterTitle isEqualToString:@"Introduction to The Best Farm"] && [bookTitle rangeOfString:@"The Circulatory System"].location == NSNotFound) {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Choose sentence complexity levels" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"60% Simple   20% Medium   20% Complex", @"20% Simple   60% Medium   20% Complex", @"20% Simple   20% Medium   60% Complex", @"0% Simple 100% Medium 0% Complex", nil];
         [alert show];
     }
@@ -609,7 +603,7 @@ BOOL wasPathFollowed = false;
     stepsComplete = FALSE;
     
     //Get number of steps for current sentence
-    if (conditionSetup.appmode == ITS && [pageSentences count] > 0) {
+    if (conditionSetup.appMode == ITS && [pageSentences count] > 0) {
         if (currentSentence > 0) {
             numSteps = [[[pageSentences objectAtIndex:currentSentence - 1] solutionSteps] count];
             
@@ -688,7 +682,7 @@ BOOL wasPathFollowed = false;
     //Get steps for current sentence
     NSMutableArray* currSolSteps;
     
-    if (conditionSetup.appmode == ITS) {
+    if (conditionSetup.appMode == ITS) {
         currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
     }
     else {
@@ -704,7 +698,7 @@ BOOL wasPathFollowed = false;
     //Get current step to be completed
     ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
     
-    if (conditionSetup.appmode == ITS) {
+    if (conditionSetup.appMode == ITS) {
         //Not automatic step
         if (!([[currSolStep stepType] isEqualToString:@"ungroup"] || [[currSolStep stepType] isEqualToString:@"move"] || [[currSolStep stepType] isEqualToString:@"swapImage"])) {
             endTime = [NSDate date];
@@ -887,7 +881,7 @@ BOOL wasPathFollowed = false;
         //Get steps for current sentence
         NSMutableArray* currSolSteps;
         
-        if (conditionSetup.appmode == ITS) {
+        if (conditionSetup.appMode == ITS) {
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
@@ -994,7 +988,7 @@ BOOL wasPathFollowed = false;
         //Get steps for current sentence
         NSMutableArray* currSolSteps;
         
-        if (conditionSetup.appmode == ITS) {
+        if (conditionSetup.appMode == ITS) {
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
@@ -1191,8 +1185,6 @@ BOOL wasPathFollowed = false;
         }
         //No menuItem was selected
         else {
-            
-            
             if (allowSnapback) {
                 //Snap the object back to its original location
                 [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
@@ -1217,24 +1209,13 @@ BOOL wasPathFollowed = false;
             menu = nil;
             menuExpanded = FALSE;
         }
-        
-        /*
-         moved to check solution for interaction, if it is correct it will close the menu,
-         if it is wrong menu will remain open.
-        //im code
-        if (IMViewMenu !=nil) {
-            [IMViewMenu removeFromSuperview];
-        }
-        //end imcode
-         */
-        
     }
     else {
         if (numSteps > 0 && IntroductionClass.allowInteractions) {
             //Get steps for current sentence
             NSMutableArray* currSolSteps;
             
-            if (conditionSetup.appmode == ITS) {
+            if (conditionSetup.appMode == ITS) {
                 currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
             }
             else {
@@ -1295,7 +1276,7 @@ BOOL wasPathFollowed = false;
         NSString* sentenceID = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceID];
         int sentenceIDNum = [[sentenceID substringFromIndex:0] intValue];
 
-        if (conditionSetup.appmode == ITS) {
+        if (conditionSetup.appMode == ITS) {
             //Record vocabulary request for complexity
             [[pageStatistics objectForKey:currentPageId] addVocabTapForComplexity:(currentComplexity - 1)];
         }
@@ -1485,7 +1466,7 @@ BOOL wasPathFollowed = false;
 -(IBAction)swipeGesturePerformed:(UISwipeGestureRecognizer *)recognizer {
     NSLog(@"Swiper no swiping!");
     
-    // Emergency swipe to bypass the vocab intros
+    //Emergency swipe to bypass the vocab intros
     if ([IntroductionClass.vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
         [_audioPlayer stop];
         [self loadNextPage];
@@ -1500,7 +1481,7 @@ BOOL wasPathFollowed = false;
         //Get steps for current sentence
         NSMutableArray* currSolSteps;
         
-        if (conditionSetup.appmode == ITS) {
+        if (conditionSetup.appMode == ITS) {
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
@@ -1765,7 +1746,7 @@ BOOL wasPathFollowed = false;
                     //Get steps for current sentence
                     NSMutableArray* currSolSteps;
                     
-                    if (conditionSetup.appmode == ITS) {
+                    if (conditionSetup.appMode == ITS) {
                         currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
                     }
                     else {
@@ -1844,7 +1825,7 @@ BOOL wasPathFollowed = false;
                             [self.playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                             //[self playErrorNoise];
                             
-                            if (conditionSetup.appmode == ITS) {
+                            if (conditionSetup.appMode == ITS) {
                                 //Record error for complexity
                                 [[pageStatistics objectForKey:currentPageId] addErrorForComplexity:(currentComplexity - 1)];
                             }
@@ -1917,10 +1898,6 @@ BOOL wasPathFollowed = false;
                         
                         //Get possible interactions only if the object is overlapping something
                         if (overlappingWith != nil) {
-                            if (conditionSetup.condition ==HOTSPOT) {
-                                useProximity = YES;
-                            }
-                            
                             //resets allRelationship arrray
                             if([allRelationships count]) {
                                 [allRelationships removeAllObjects];
@@ -1946,7 +1923,7 @@ BOOL wasPathFollowed = false;
                                     //wrong because two objects cant interact with each other reset object
                                 }
                                 
-                                if (conditionSetup.appmode == ITS) {
+                                if (conditionSetup.appMode == ITS) {
                                     //Record error for complexity
                                     [[pageStatistics objectForKey:currentPageId] addErrorForComplexity:(currentComplexity - 1)];
                                 }
@@ -2074,47 +2051,6 @@ BOOL wasPathFollowed = false;
                         NSString* highlight = [NSString stringWithFormat:@"highlightObject(%@)", objId];
                         [bookView stringByEvaluatingJavaScriptFromString:highlight];
                     }
-                }
-         
-                if (conditionSetup.condition ==HOTSPOT) {
-                    //resets allRelationship arrray
-                    if([allRelationships count])
-                    {
-                        [allRelationships removeAllObjects];
-                    }
-                    NSMutableArray* possibleInteractions = [self getPossibleInteractions:useProximity];
-                    
-                    //Keep a list of all hotspots so that we know which ones should be drawn as green and which should be drawn as red. At the end, draw all hotspots together.
-                    NSMutableArray* redHotspots = [[NSMutableArray alloc] init];
-                    NSMutableArray* greenHotspots = [[NSMutableArray alloc] init];
-                    
-                    for(PossibleInteraction* interaction in possibleInteractions) {
-                        for(Connection* connection in [interaction connections]) {
-                            if([connection interactionType] != NONE) {
-                                NSMutableArray* hotspots  = [[connection hotspots] mutableCopy];
-                                //NSLog(@"Hotspot Obj1: %@ Hotspot Obj2: %@", [connection objects][0], [connection objects][1]);
-                                
-                                //Figure out whether two hotspots are close enough together to currently be grouped. If so, draw the hotspots with green. Otherwise, draw them with red.
-                                BOOL areWithinProximity = [self hotspotsWithinGroupingProximity:[hotspots objectAtIndex:0] :[hotspots objectAtIndex:1]];
-                                
-                                //NSLog(@"are within proximity:%u:", areWithinProximity);
-                                //NSLog(@"within proximity %hhd %u", areWithinProximity, [interaction interactionType]);
-                                
-                                //TODO: Make sure this is correct.
-                                if(areWithinProximity || ([interaction interactionType] == TRANSFERANDGROUP) || ([interaction interactionType] == TRANSFERANDDISAPPEAR)) {
-                                    [greenHotspots addObjectsFromArray:hotspots];
-                                }
-                                else {
-                                    [redHotspots addObjectsFromArray:hotspots];
-                                }
-                            }
-                        }
-                    }
-                    
-                    //NSLog(@"number of hotspots:%d %d", [redHotspots count], [greenHotspots count]);
-                    //Draw red hotspots first, then green ones.
-                    [self drawHotspots:redHotspots :@"red"];
-                    [self drawHotspots:greenHotspots :@"green"];
                 }
             }
         }
@@ -2608,7 +2544,7 @@ BOOL wasPathFollowed = false;
         //Get steps for current sentence
         NSMutableArray* currSolSteps;
         
-        if (conditionSetup.appmode == ITS) {
+        if (conditionSetup.appMode == ITS) {
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
@@ -2673,7 +2609,7 @@ BOOL wasPathFollowed = false;
         //Get steps for current sentence
         NSMutableArray* currSolSteps;
         
-        if (conditionSetup.appmode == ITS) {
+        if (conditionSetup.appMode == ITS) {
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
@@ -2738,7 +2674,7 @@ BOOL wasPathFollowed = false;
         //Get steps for current sentence
         NSMutableArray* currSolSteps;
         
-        if (conditionSetup.appmode == ITS) {
+        if (conditionSetup.appMode == ITS) {
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
@@ -2811,7 +2747,7 @@ BOOL wasPathFollowed = false;
         //Get steps for current sentence
         NSMutableArray* currSolSteps;
         
-        if (conditionSetup.appmode == ITS) {
+        if (conditionSetup.appMode == ITS) {
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
@@ -2859,7 +2795,7 @@ BOOL wasPathFollowed = false;
         //Get steps for current sentence
         NSMutableArray* currSolSteps;
         
-        if (conditionSetup.appmode == ITS) {
+        if (conditionSetup.appMode == ITS) {
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
@@ -2905,7 +2841,7 @@ BOOL wasPathFollowed = false;
         //Get steps for current sentence
         NSMutableArray* currSolSteps;
         
-        if (conditionSetup.appmode == ITS) {
+        if (conditionSetup.appMode == ITS) {
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
@@ -2940,7 +2876,7 @@ BOOL wasPathFollowed = false;
         //Get steps for current sentence
         NSMutableArray* currSolSteps;
         
-        if (conditionSetup.appmode == ITS) {
+        if (conditionSetup.appMode == ITS) {
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
@@ -2988,7 +2924,7 @@ BOOL wasPathFollowed = false;
         //Get steps for current sentence
         NSMutableArray* currSolSteps;
         
-        if (conditionSetup.appmode == ITS) {
+        if (conditionSetup.appMode == ITS) {
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
@@ -3047,7 +2983,7 @@ BOOL wasPathFollowed = false;
         //Get steps for current sentence
         NSMutableArray* currSolSteps;
         
-        if (conditionSetup.appmode == ITS) {
+        if (conditionSetup.appMode == ITS) {
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
@@ -3096,7 +3032,7 @@ BOOL wasPathFollowed = false;
         //Get steps for current sentence
         NSMutableArray* currSolSteps;
         
-        if (conditionSetup.appmode == ITS) {
+        if (conditionSetup.appMode == ITS) {
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
@@ -3145,7 +3081,7 @@ BOOL wasPathFollowed = false;
         //Get steps for current sentence
         NSMutableArray* currSolSteps;
         
-        if (conditionSetup.appmode == ITS) {
+        if (conditionSetup.appMode == ITS) {
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
@@ -3234,7 +3170,7 @@ BOOL wasPathFollowed = false;
         //Get steps for current sentence
         NSMutableArray* currSolSteps;
         
-        if (conditionSetup.appmode == ITS) {
+        if (conditionSetup.appMode == ITS) {
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
@@ -3272,7 +3208,7 @@ BOOL wasPathFollowed = false;
         //Get steps for current sentence
         NSMutableArray* currSolSteps;
         
-        if (conditionSetup.appmode == ITS) {
+        if (conditionSetup.appMode == ITS) {
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
@@ -3501,7 +3437,7 @@ BOOL wasPathFollowed = false;
             [self.playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
             //[self playErrorNoise]; //play noise if interaction is incorrect
             
-            if (conditionSetup.appmode == ITS) {
+            if (conditionSetup.appMode == ITS) {
                 //Record error for complexity
                 [[pageStatistics objectForKey:currentPageId] addErrorForComplexity:(currentComplexity - 1)];
             }
@@ -4590,7 +4526,7 @@ BOOL wasPathFollowed = false;
             //Get steps for current sentence
             NSMutableArray* currSolSteps;
             
-            if (conditionSetup.appmode == ITS) {
+            if (conditionSetup.appMode == ITS) {
                 currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
             }
             else {
@@ -4761,7 +4697,7 @@ BOOL wasPathFollowed = false;
             
             //currentSentence is 1 indexed.
             if(currentSentence > totalSentences) {
-                if (conditionSetup.appmode == ITS && [currentPageId rangeOfString:@"Intro"].location == NSNotFound && ![chapterTitle isEqualToString:@"Introduction to The Best Farm"] && [bookTitle rangeOfString:@"The Circulatory System"].location == NSNotFound) {
+                if (conditionSetup.appMode == ITS && [currentPageId rangeOfString:@"Intro"].location == NSNotFound && ![chapterTitle isEqualToString:@"Introduction to The Best Farm"] && [bookTitle rangeOfString:@"The Circulatory System"].location == NSNotFound) {
                     [self showPageStatistics]; //show popup window with page statistics
                 }
                 else {
@@ -4771,7 +4707,7 @@ BOOL wasPathFollowed = false;
             }
             else {
                 //For page statistics
-                if (conditionSetup.appmode == ITS && numSteps == 0 && currentComplexity > 0) {
+                if (conditionSetup.appMode == ITS && numSteps == 0 && currentComplexity > 0) {
                     endTime = [NSDate date];
                     
                     //Record time for non-action sentence for complexity

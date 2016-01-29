@@ -20,8 +20,8 @@ ConditionSetup *conditionSetup;
 	if (self = [super init]) {
         library = [[NSMutableArray alloc] init];
         [self findDocDir];
-        // Create an instance of  ConditionSetup
-        conditionSetup = [[ConditionSetup alloc] init];
+        
+        conditionSetup = [ConditionSetup sharedInstance];
 	}
 	
 	return self;
@@ -1061,7 +1061,7 @@ ConditionSetup *conditionSetup;
     {
         GDataXMLElement *introductionElement = (GDataXMLElement *) [introductionElements objectAtIndex:0];
 
-        NSArray* introductions = [introductionElement elementsForName:[NSString stringWithFormat:@"%@%@",[conditionSetup ReturnConditionEnumToString:conditionSetup.condition], @"Introduction"]];
+        NSArray* introductions = [introductionElement elementsForName:[NSString stringWithFormat:@"%@%@",[conditionSetup returnConditionEnumToString:conditionSetup.condition], @"Introduction"]];
         
         for(GDataXMLElement* introduction in introductions) {
             //Get story title.

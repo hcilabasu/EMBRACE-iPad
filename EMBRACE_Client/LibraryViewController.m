@@ -28,6 +28,8 @@
     NSUInteger lockedItemIndex; //index of long pressed item
     
     BOOL useSequence; //whether user must complete books/chapters according to a particular sequence
+    
+    ConditionSetup* conditionSetup;
 }
 
 @property (nonatomic, strong) IBOutlet UICollectionView *libraryView;
@@ -47,8 +49,6 @@
 @synthesize sequenceController;
 
 NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapters
-
-ConditionSetup *conditionSetup;
 
 - (void) viewDidLoad {
     [super viewDidLoad];
@@ -143,14 +143,13 @@ ConditionSetup *conditionSetup;
  * Sets up the current session including the condition/mode, student, and progress data
  */
 - (void) setupCurrentSession  {
-    conditionSetup = [[ConditionSetup alloc] init];
-    currentMode = PM_MODE;
+    conditionSetup = [ConditionSetup sharedInstance];
     
     if (student != nil) {
         [[ServerCommunicationController sharedManager] logContext:student];
         
         //Set title to display condition and language (e.g., EMBRACE English)
-        self.title = [NSString stringWithFormat:@"%@ %@",[conditionSetup ReturnConditionEnumToString:conditionSetup.condition],[conditionSetup ReturnLanguageEnumtoString: conditionSetup.language]];
+        self.title = [NSString stringWithFormat:@"%@ %@",[conditionSetup returnConditionEnumToString:conditionSetup.condition],[conditionSetup returnLanguageEnumtoString: conditionSetup.language]];
     }
     else {
         student = [[Student alloc] initWithName:@"Study Code" :@"Study Day":@"Experimenter":@"School Day"];
@@ -286,7 +285,7 @@ ConditionSetup *conditionSetup;
  * Segue prep to go from LibraryViewController to BookView Controller.
  */
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if (conditionSetup.appmode == Authoring) {
+    if (conditionSetup.appMode == Authoring) {
         AuthoringModeViewController *destination = [segue destinationViewController];
         destination.bookImporter = bookImporter;
         destination.bookTitle = self.bookToOpen;
@@ -529,13 +528,13 @@ ConditionSetup *conditionSetup;
             self.chapterToOpen = [[[book chapters] objectAtIndex:indexPath.row] title];
             
             //Send the notification to open that mode for the particular book and activity chosen
-            if (conditionSetup.appmode == Authoring) {
+            if (conditionSetup.appMode == Authoring) {
                 [self performSegueWithIdentifier:@"OpenAuthoringSegue" sender:self];
             }
-            else if (currentMode == PM_MODE) {
+            else if (conditionSetup.currentMode == PM_MODE) {
                 [self performSegueWithIdentifier: @"OpenPMActivitySegue" sender:self];
             }
-            else if (currentMode == IM_MODE) {
+            else if (conditionSetup.currentMode == IM_MODE) {
                 [self performSegueWithIdentifier: @"OpenIMActivitySegue" sender:self];
             }
         }
