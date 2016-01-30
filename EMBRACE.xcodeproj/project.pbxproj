@@ -1915,6 +1915,7 @@
 		5C9F28881C5C3191008ACE48 /* TheNaughtyMonkeyQ1A3S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C9F28831C5C3191008ACE48 /* TheNaughtyMonkeyQ1A3S.mp3 */; };
 		5C9F28891C5C3191008ACE48 /* TheNaughtyMonkeyQ1A4S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C9F28841C5C3191008ACE48 /* TheNaughtyMonkeyQ1A4S.mp3 */; };
 		5C9F288A1C5C3191008ACE48 /* TheNaughtyMonkeyQ1S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C9F28851C5C3191008ACE48 /* TheNaughtyMonkeyQ1S.mp3 */; };
+		5C9F288C1C5C3F2E008ACE48 /* earthquake.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5C9F288B1C5C3F2E008ACE48 /* earthquake.wav */; };
 		5CA9555F1C3237690038FB56 /* container.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5CA955331C3237690038FB56 /* container.xml */; };
 		5CA955601C3237690038FB56 /* mimetype in Resources */ = {isa = PBXBuildFile; fileRef = 5CA955341C3237690038FB56 /* mimetype */; };
 		5CA955611C3237690038FB56 /* AlternateImages-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5CA955361C3237690038FB56 /* AlternateImages-MetaData.xml */; };
@@ -4552,6 +4553,7 @@
 		5C9F28831C5C3191008ACE48 /* TheNaughtyMonkeyQ1A3S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNaughtyMonkeyQ1A3S.mp3; sourceTree = "<group>"; };
 		5C9F28841C5C3191008ACE48 /* TheNaughtyMonkeyQ1A4S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNaughtyMonkeyQ1A4S.mp3; sourceTree = "<group>"; };
 		5C9F28851C5C3191008ACE48 /* TheNaughtyMonkeyQ1S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNaughtyMonkeyQ1S.mp3; sourceTree = "<group>"; };
+		5C9F288B1C5C3F2E008ACE48 /* earthquake.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = earthquake.wav; sourceTree = "<group>"; };
 		5CA955331C3237690038FB56 /* container.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = container.xml; sourceTree = "<group>"; };
 		5CA955341C3237690038FB56 /* mimetype */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mimetype; sourceTree = "<group>"; };
 		5CA955361C3237690038FB56 /* AlternateImages-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AlternateImages-MetaData.xml"; sourceTree = "<group>"; };
@@ -7878,6 +7880,7 @@
 		5C9CFE651C57348000702FCD /* disasters */ = {
 			isa = PBXGroup;
 			children = (
+				5C9F288B1C5C3F2E008ACE48 /* earthquake.wav */,
 			);
 			path = disasters;
 			sourceTree = "<group>";
@@ -9512,6 +9515,7 @@
 				1A6321CC1C0E4D3B00251CB3 /* disasters.epub in Resources */,
 				5D6821301C489FB5001F5CFD /* Story4-Shopping-at-the-Market-Intro-S.xhtml in Resources */,
 				5C28DC9F1C2BA66E005ACD07 /* iceknife.png in Resources */,
+				5C9F288C1C5C3F2E008ACE48 /* earthquake.wav in Resources */,
 				5C9C080C1C57385A00702FCD /* cartS.m4a in Resources */,
 				1A6323271C0E4D3B00251CB3 /* person1.png in Resources */,
 				1A63201A1C0E4D3B00251CB3 /* farm_pen.png in Resources */,
