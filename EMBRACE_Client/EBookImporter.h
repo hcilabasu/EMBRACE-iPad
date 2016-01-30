@@ -12,18 +12,9 @@
 #import "Book.h"
 #import "ConditionSetup.h"
 
-@interface EBookImporter : NSObject {
-    NSArray *dirPaths;
-    NSString *docsDir;
-    NSMutableArray *library;
-    
-}
+@interface EBookImporter : NSObject
 
-@property (nonatomic,strong) NSString *docsDir;
-@property (nonatomic,strong) NSArray *dirPaths;
-@property (nonatomic,strong) NSMutableArray *library;
+- (NSMutableArray *)importLibrary;
+- (Book *)getBookWithTitle:(NSString *)bookTitle;
 
--(NSMutableArray*) importLibrary;
--(Book*) getBookWithTitle:(NSString*) bookTitle;
--(void) readMetadataForBook:(Book*) book;
 @end

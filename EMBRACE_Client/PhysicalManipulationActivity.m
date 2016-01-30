@@ -14,7 +14,7 @@
 @synthesize alternateSentences;
 @synthesize PMSolutions;
 
-- (id) init {
+- (id)init {
     if (self = [super init]) {
         setupSteps = [[NSMutableDictionary alloc] init];
         alternateSentences = [[NSMutableDictionary alloc] init];
@@ -24,11 +24,13 @@
     return self;
 }
 
-//Add setup step to specific page with id
-- (void) addSetupStep:(ActionStep*)setupStep forPageId:(NSString*)pageId {
+/*
+ * Add setup step to specific page with id
+ */
+- (void)addSetupStep:(ActionStep *)setupStep forPageId:(NSString *)pageId {
     //Check to see if the key (page id) exists.
     //If it doesn't, we add the key with a new NSMutableArray that will contain the setup step created.
-    NSMutableArray* setupStepsForKey = [setupSteps objectForKey:pageId];
+    NSMutableArray *setupStepsForKey = [setupSteps objectForKey:pageId];
     
     if (setupStepsForKey == nil) {
         setupStepsForKey = [[NSMutableArray alloc] init];
@@ -42,11 +44,13 @@
     }
 }
 
-//Add alternate sentence to specific page with id
-- (void) addAlternateSentence:(AlternateSentence*)altSent forPageId:(NSString*)pageId {
+/*
+ * Add alternate sentence to specific page with id
+ */
+- (void)addAlternateSentence:(AlternateSentence *)altSent forPageId:(NSString *)pageId {
     //Check to see if the key (page id) exists.
     //If it doesn't, we add the key with a new NSMutableArray that will contain the alternate sentence created.
-    NSMutableArray* altSentsForKey = [alternateSentences objectForKey:pageId];
+    NSMutableArray *altSentsForKey = [alternateSentences objectForKey:pageId];
     
     if (altSentsForKey == nil) {
         altSentsForKey = [[NSMutableArray alloc] init];
@@ -61,18 +65,20 @@
     }
 }
 
-//Add PhysicalManipulationSolution to specific activity (page) with id
-- (void) addPMSolution:(PhysicalManipulationSolution*)PMSolution forActivityId:(NSString*)activityId {
+/*
+ * Add PhysicalManipulationSolution to specific activity (page) with id
+ */
+- (void)addPMSolution:(PhysicalManipulationSolution *)PMSolution forActivityId:(NSString *)actId {
     //Check to see if the key (activity id) exists.
     //If it doesn't, we add the key with a new NSMutableArray that will contain the PMSolution created.
-    NSMutableArray* PMSolutionsForKey = [PMSolutions objectForKey:activityId];
+    NSMutableArray *PMSolutionsForKey = [PMSolutions objectForKey:actId];
     
     if (PMSolutionsForKey == nil) {
         PMSolutionsForKey = [[NSMutableArray alloc] init];
         [PMSolutionsForKey addObject:PMSolution];
         
         if ([activityId length] != 0)
-            [PMSolutions setObject:PMSolutionsForKey forKey:activityId];
+            [PMSolutions setObject:PMSolutionsForKey forKey:actId];
     }
     //If it does, we just add the PMSolution to the array.
     else {

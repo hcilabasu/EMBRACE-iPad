@@ -17,10 +17,10 @@
 #import "ConditionSetup.h"
 
 @interface LibraryViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout> {
-    NSMutableArray* bookImages;
-    NSMutableArray* bookTitles;
-    NSMutableArray* chapterImages;
-    NSMutableArray* chapterTitles;
+    NSMutableArray *bookImages;
+    NSMutableArray *bookTitles;
+    NSMutableArray *chapterImages;
+    NSMutableArray *chapterTitles;
     
     NSInteger selectedBookIndex;
     BOOL showBooks; //whether library is currently showing books or not
@@ -29,14 +29,14 @@
     
     BOOL useSequence; //whether user must complete books/chapters according to a particular sequence
     
-    ConditionSetup* conditionSetup;
+    ConditionSetup *conditionSetup;
 }
 
 @property (nonatomic, strong) IBOutlet UICollectionView *libraryView;
 @property (nonatomic, strong) EBookImporter *bookImporter;
 @property (nonatomic, strong) NSMutableArray *books;
-@property (nonatomic, strong) NSString* bookToOpen;
-@property (nonatomic, strong) NSString* chapterToOpen;
+@property (nonatomic, strong) NSString *bookToOpen;
+@property (nonatomic, strong) NSString *chapterToOpen;
 
 @end
 
@@ -50,13 +50,13 @@
 
 NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapters
 
-- (void) viewDidLoad {
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     //Add background image
     UIGraphicsBeginImageContext(self.view.frame.size);
     [[UIImage imageNamed:@"library_background"] drawInRect:self.view.bounds];
-    UIImage* backgroundImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIImage *backgroundImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     self.view.backgroundColor = [UIColor colorWithPatternImage:backgroundImage];
 
@@ -85,7 +85,7 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
     [self setupCurrentSession];
 }
 
-- (void) viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     [self updateProgress];
@@ -94,17 +94,17 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
 /*
  * Goes through the imported books and pulls the data necessary to display the books and their associated chapters
  */
-- (void) createCollectionLayoutDataSource {
+- (void)createCollectionLayoutDataSource {
     bookImages = [[NSMutableArray alloc] init];
     bookTitles = [[NSMutableArray alloc] init];
     chapterImages = [[NSMutableArray alloc] init];
     chapterTitles = [[NSMutableArray alloc] init];
     
-    for (Book* book in books) {
+    for (Book *book in books) {
         //Use the image for the first chapter as the image for the book
-        NSString* bookImagePath = [[[book chapters] objectAtIndex:0] chapterImagePath];
+        NSString *bookImagePath = [[[book chapters] objectAtIndex:0] chapterImagePath];
         
-        UIImage* bookImage;
+        UIImage *bookImage;
         
         if (bookImagePath != nil) {
             bookImage = [[UIImage alloc] initWithContentsOfFile:bookImagePath];
@@ -115,14 +115,14 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
         [bookTitles addObject:[book title]];
         
         //Create temporary arrays to hold chapter images and titles for the book
-        NSMutableArray* bookChapterImages = [[NSMutableArray alloc] init];
-        NSMutableArray* bookChapterTitles = [[NSMutableArray alloc] init];
+        NSMutableArray *bookChapterImages = [[NSMutableArray alloc] init];
+        NSMutableArray *bookChapterTitles = [[NSMutableArray alloc] init];
         
-        for (Chapter* chapter in [book chapters]) {
+        for (Chapter *chapter in [book chapters]) {
             //Get image for chapter
-            NSString* chapterImagePath = [chapter chapterImagePath];
+            NSString *chapterImagePath = [chapter chapterImagePath];
             
-            UIImage* chapterImage;
+            UIImage *chapterImage;
             
             if (chapterImagePath != nil) {
                 chapterImage = [[UIImage alloc] initWithContentsOfFile:chapterImagePath];
@@ -142,7 +142,7 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
 /*
  * Sets up the current session including the condition/mode, student, and progress data
  */
-- (void) setupCurrentSession  {
+- (void)setupCurrentSession  {
     conditionSetup = [ConditionSetup sharedInstance];
     
     if (student != nil) {
@@ -155,7 +155,8 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
         student = [[Student alloc] initWithName:@"Study Code" :@"Study Day":@"Experimenter":@"School Day"];
     }
     
-    //TODO: Check whether sequence should be used based on student information
+    //TODO: Check whether sequence should be used based on student information.
+    //      Currently only using sequence for "test".
     //Student should follow particular sequence of activities
     if ([[student firstName] isEqualToString:@"test"]) {
         useSequence = TRUE;
@@ -177,7 +178,7 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
         studentProgress = [[Progress alloc] init];
         [studentProgress loadBooks:books];
         
-        NSString* firstBookTitle; //title of first book to set in progress
+        NSString *firstBookTitle; //title of first book to set in progress
         
         if (useSequence) {
             //TODO: Set current sequence id based on student information
@@ -202,11 +203,11 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
 /*
  * Sets next book/chapter to in progress and updates library and progress file
  */
-- (void) updateProgress {
+- (void)updateProgress {
     //Sequence
     if (useSequence) {
         //Get current book title
-        NSString* currentBookTitle = [[[sequenceController sequences] objectAtIndex:[studentProgress currentSequence]] bookTitle];
+        NSString *currentBookTitle = [[[sequenceController sequences] objectAtIndex:[studentProgress currentSequence]] bookTitle];
         
         //Set the next incomplete chapter to in progress if it exists
         if (![studentProgress setNextChapterInProgressForBook:currentBookTitle]) {
@@ -215,15 +216,15 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
                 studentProgress.currentSequence++;
                 
                 //Get next book title
-                NSString* nextBookTitle = [[[sequenceController sequences] objectAtIndex:[studentProgress currentSequence]] bookTitle];
+                NSString *nextBookTitle = [[[sequenceController sequences] objectAtIndex:[studentProgress currentSequence]] bookTitle];
                 
                 //Reset next book to in progress if it has already been completed
                 if ([studentProgress getStatusOfBook:nextBookTitle] == COMPLETED) {
                     //Get list of chapters in next book
-                    NSMutableArray* modes = [[sequenceController getSequenceForBook:nextBookTitle] modes];
+                    NSMutableArray *modes = [[sequenceController getSequenceForBook:nextBookTitle] modes];
                     
                     //Set all chapters to incomplete
-                    for (ActivityMode* mode in modes) {
+                    for (ActivityMode *mode in modes) {
                         [studentProgress setStatusOfChapter:[mode chapterTitle] :INCOMPLETE fromBook:nextBookTitle];
                     }
                     
@@ -243,9 +244,9 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
         if (![studentProgress setNextChapterInProgressForBook:[bookTitles objectAtIndex:selectedBookIndex]]) {
             BOOL inProgressBookExists = false; //whether another book is already in progress
             BOOL foundNextBook = false; //whether an incomplete book was found
-            NSString* nextBookTitle;
+            NSString *nextBookTitle;
             
-            for (NSString* bookTitle in bookTitles) {
+            for (NSString *bookTitle in bookTitles) {
                 Status bookStatus = [studentProgress getStatusOfBook:bookTitle];
                 
                 //Stop searching if there is already another book in progress
@@ -274,7 +275,7 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
     [[ServerCommunicationController sharedManager] saveProgress:student :studentProgress];
 }
 
-- (void) didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 
     //Dispose of any resources that can be recreated
@@ -314,7 +315,7 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
 /*
  * User pressed Books button. Switches to show books instead of chapters.
  */
-- (IBAction) pressedBooks:(id)sender {
+- (IBAction)pressedBooks:(id)sender {
     showBooks = TRUE;
     
     [self.libraryView reloadSections:[NSIndexSet indexSetWithIndex:0]];
@@ -325,7 +326,7 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
 /*
  * User pressed Logout button. Writes data to log file and returns to login screen.
  */
-- (IBAction) pressedLogout:(id)sender {
+- (IBAction)pressedLogout:(id)sender {
     //Write log data to file
     [[ServerCommunicationController sharedManager] writeToFile:[[ServerCommunicationController sharedManager] studyFileName] ofType:@"txt"];
     
@@ -338,13 +339,13 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
 /*
  * Long press is used to unlock books and chapters
  */
-- (void) longPressGesturePerformed:(UILongPressGestureRecognizer*)recognizer {
+- (void)longPressGesturePerformed:(UILongPressGestureRecognizer *)recognizer {
     if (recognizer.state != UIGestureRecognizerStateEnded) {
         return;
     }
     
     CGPoint location = [recognizer locationInView:self.libraryView];
-    NSIndexPath* indexPath = [self.libraryView indexPathForItemAtPoint:location];
+    NSIndexPath *indexPath = [self.libraryView indexPathForItemAtPoint:location];
     
     if (indexPath != nil) {
         lockedItemIndex = indexPath.row;
@@ -354,7 +355,7 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
             //TEST: Temporary code to allow quick unlock/completion of any item
 //            if ([studentProgress getStatusOfBook:[bookTitles objectAtIndex:lockedItemIndex]] == INCOMPLETE) {
             if ([studentProgress getStatusOfBook:[bookTitles objectAtIndex:lockedItemIndex]] == INCOMPLETE || [studentProgress getStatusOfBook:[bookTitles objectAtIndex:lockedItemIndex]] == IN_PROGRESS) {
-            //TEST
+            ///TEST
                 [self showPasswordPrompt];
             }
         }
@@ -363,7 +364,7 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
             //TEST: Temporary code to allow quick unlock/completion of any item
 //            if ([studentProgress getStatusOfChapter:[[chapterTitles objectAtIndex:selectedBookIndex] objectAtIndex:lockedItemIndex] fromBook:[bookTitles objectAtIndex:selectedBookIndex]] == INCOMPLETE) {
             if ([studentProgress getStatusOfChapter:[[chapterTitles objectAtIndex:selectedBookIndex] objectAtIndex:lockedItemIndex] fromBook:[bookTitles objectAtIndex:selectedBookIndex]] == INCOMPLETE || [studentProgress getStatusOfChapter:[[chapterTitles objectAtIndex:selectedBookIndex] objectAtIndex:lockedItemIndex] fromBook:[bookTitles objectAtIndex:selectedBookIndex]] == IN_PROGRESS) {
-            //TEST
+            ///TEST
                 [self showPasswordPrompt];
             }
         }
@@ -373,8 +374,8 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
 /*
  * Shows a message to indicate that a selected book/chapter is locked
  */
-- (void) showLockedMessage {
-    NSString* itemType = @"item";
+- (void)showLockedMessage {
+    NSString *itemType = @"item";
     
     if (showBooks) {
         itemType = @"book";
@@ -383,18 +384,18 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
         itemType = @"chapter";
     }
     
-    NSString* title = [NSString stringWithFormat:@"This %@ is locked.", itemType];
-    NSString* message = [NSString stringWithFormat:@"Please select a %@ with a red bookmark icon.", itemType];
+    NSString *title = [NSString stringWithFormat:@"This %@ is locked.", itemType];
+    NSString *message = [NSString stringWithFormat:@"Please select a %@ with a red bookmark icon.", itemType];
     
-    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
     [alertView show];
 }
 
 /*
  * Displays prompt to enter password to unlock books and chapters
  */
-- (void) showPasswordPrompt {
-    UIAlertView* passwordPrompt = [[UIAlertView alloc] initWithTitle:@"Password" message:@"Enter password to unlock this item" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+- (void)showPasswordPrompt {
+    UIAlertView *passwordPrompt = [[UIAlertView alloc] initWithTitle:@"Password" message:@"Enter password to unlock this item" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
     passwordPrompt.alertViewStyle = UIAlertViewStyleSecureTextInput;
     [passwordPrompt show];
 }
@@ -402,7 +403,7 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
 /*
  * Checks if user input for password prompt is correct to unlock the selected book or chapter
  */
-- (void) alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if ([[alertView title] isEqualToString:@"Password"] && buttonIndex == 1) {
         //Password is correct
         if ([[[alertView textFieldAtIndex:0] text] isEqualToString:LIBRARY_PASSWORD]) {
@@ -427,7 +428,7 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
         else if ([[[alertView textFieldAtIndex:0] text] isEqualToString:@"goodbye"]) {
             //Books
             if (showBooks) {
-                for (NSString* chapterTitle in [chapterTitles objectAtIndex:lockedItemIndex]) {
+                for (NSString *chapterTitle in [chapterTitles objectAtIndex:lockedItemIndex]) {
                     [studentProgress setStatusOfChapter:chapterTitle :COMPLETED fromBook:[bookTitles objectAtIndex:lockedItemIndex]];
                 }
             }
@@ -438,12 +439,12 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
             
             [self updateProgress];
         }
-        //TEST
+        ///TEST
     }
 }
 
 #pragma mark - UICollectionViewDataSource
-- (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)libraryView {
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)libraryView {
     return 1;
 }
 
@@ -461,15 +462,15 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)libraryView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    LibraryCellView* cell = (LibraryCellView*) [libraryView dequeueReusableCellWithReuseIdentifier:@"LibraryCellView" forIndexPath:indexPath];
+    LibraryCellView *cell = (LibraryCellView *)[libraryView dequeueReusableCellWithReuseIdentifier:@"LibraryCellView" forIndexPath:indexPath];
     
-    UIImage* image;
-    NSString* title;
+    UIImage *image;
+    NSString *title;
     Status currentStatus;
 
     //Books
     if (showBooks) {
-        cell = (BookCellView*) [libraryView dequeueReusableCellWithReuseIdentifier:@"BookCellView" forIndexPath:indexPath];
+        cell = (BookCellView *)[libraryView dequeueReusableCellWithReuseIdentifier:@"BookCellView" forIndexPath:indexPath];
         
         image = [bookImages objectAtIndex:indexPath.row];
         title = [bookTitles objectAtIndex:indexPath.row];
@@ -516,16 +517,43 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
     }
     //Chapters
     else {
+        //Get status of selected chapter
+        Status chapterStatus = [studentProgress getStatusOfChapter:[[chapterTitles objectAtIndex:selectedBookIndex] objectAtIndex:indexPath.row] fromBook:[bookTitles objectAtIndex:selectedBookIndex]];
+        
         //Only allow chapter to be opened if it is not incomplete
-        if ([studentProgress getStatusOfChapter:[[chapterTitles objectAtIndex:selectedBookIndex] objectAtIndex:indexPath.row] fromBook:[bookTitles objectAtIndex:selectedBookIndex]] != INCOMPLETE) {
+        if (chapterStatus != INCOMPLETE) {
             //Get selected book
-            Book* book = [books objectAtIndex:selectedBookIndex];
+            Book *book = [books objectAtIndex:selectedBookIndex];
             
-            NSString* title = [[book title] stringByAppendingString:@" - "];
+            NSString *title = [[book title] stringByAppendingString:@" - "];
             title = [title stringByAppendingString:[book author]];
             
             self.bookToOpen = title;
             self.chapterToOpen = [[[book chapters] objectAtIndex:indexPath.row] title];
+            
+            if (useSequence) {
+                //If chapter already completed, just open in read-only mode for now
+                if (chapterStatus == COMPLETED) {
+                    conditionSetup.condition = CONTROL;
+                }
+                else {
+                    //Get current mode for chapter
+                    ActivityMode *currentMode = [[[sequenceController sequences] objectAtIndex:[studentProgress currentSequence]] getModeForChapter:[[chapterTitles objectAtIndex:selectedBookIndex] objectAtIndex:indexPath.row]];
+                    
+                    //Set conditions for chapter based on mode information
+                    if ([currentMode interventionType] == PM_INTERVENTION) {
+                        conditionSetup.condition = EMBRACE;
+                        conditionSetup.currentMode = PM_MODE;
+                    }
+                    else if ([currentMode interventionType] == IM_INTERVENTION) {
+                        conditionSetup.condition = EMBRACE;
+                        conditionSetup.currentMode = IM_MODE;
+                    }
+                    else if ([currentMode interventionType] == NO_INTERVENTION) {
+                        conditionSetup.condition = CONTROL;
+                    }
+                }
+            }
             
             //Send the notification to open that mode for the particular book and activity chosen
             if (conditionSetup.appMode == Authoring) {
@@ -535,7 +563,9 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
                 [self performSegueWithIdentifier: @"OpenPMActivitySegue" sender:self];
             }
             else if (conditionSetup.currentMode == IM_MODE) {
-                [self performSegueWithIdentifier: @"OpenIMActivitySegue" sender:self];
+                //TODO: Currently only using PM segue and PMViewController
+//                [self performSegueWithIdentifier: @"OpenIMActivitySegue" sender:self];
+                [self performSegueWithIdentifier: @"OpenPMActivitySegue" sender:self];
             }
         }
         else {
@@ -548,14 +578,11 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    //TODO: Right now return true, but eventually we'll have to go ahead and display 2 different images based on whether or not
-    //the student has completed the activity. This means changing the data source for the collection view and returning no from
-    //this function so the student cannot select the item.
     return YES;
 }
 
 #pragma mark – UICollectionViewDelegateFlowLayout
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     NSInteger edgeInsets = 0;
     NSInteger cellWidth = 200;
     
@@ -587,7 +614,7 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
     if (kind == UICollectionElementKindSectionHeader) {        
         BookHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"BookHeaderView" forIndexPath:indexPath];
         
-        NSString* title;
+        NSString *title;
 
         //Books
         if (showBooks) {
@@ -597,7 +624,7 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
         }
         //Chapters
         else {
-            Book* book = [books objectAtIndex:selectedBookIndex];
+            Book *book = [books objectAtIndex:selectedBookIndex];
             title = [book title]; //Set title to title of book
             
             headerView.backgroundImage.image = [UIImage imageNamed:@"library_header2"];

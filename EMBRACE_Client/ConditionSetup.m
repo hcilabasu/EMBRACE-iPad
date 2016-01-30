@@ -15,7 +15,7 @@
 @synthesize appMode;
 @synthesize currentMode;
 
-+ (id) sharedInstance {
++ (id)sharedInstance {
     static ConditionSetup* sharedMyManager = nil;
     static dispatch_once_t onceToken;
     
@@ -26,7 +26,7 @@
     return sharedMyManager;
 }
 
-- (id) init {
+- (id)init {
     if (self = [super init]) {
         condition = EMBRACE;
         language = ENGLISH;
@@ -38,9 +38,9 @@
 }
 
 /*
- * Returns a string with the current value of the condition enumeration
+ * Returns a string with the current value of the Condition enumeration
  */
-- (NSString*) returnConditionEnumToString:(Condition)type {
+- (NSString*)returnConditionEnumToString:(Condition)type {
     NSString* result = nil;
     
     switch (type) {
@@ -59,9 +59,9 @@
 }
 
 /*
- * Returns a string with the current value of the language enumeration
+ * Returns a string with the current value of the Language enumeration
  */
-- (NSString*) returnLanguageEnumtoString:(Language)type {
+- (NSString*)returnLanguageEnumtoString:(Language)type {
     NSString* result = nil;
     
     switch (type) {

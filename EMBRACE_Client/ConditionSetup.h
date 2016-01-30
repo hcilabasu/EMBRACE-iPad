@@ -28,21 +28,16 @@ typedef enum AppMode {
     ITS //intelligent tutoring system
 } AppMode;
 
-@interface ConditionSetup : NSObject {
-    Condition condition;
-    Language language;
-    AppMode appMode;
-    Mode currentMode; //PM or IM
-}
+@interface ConditionSetup : NSObject
 
 @property (nonatomic) Condition condition;
 @property (nonatomic) Language language;
 @property (nonatomic) AppMode appMode;
-@property (nonatomic) Mode currentMode;
+@property (nonatomic) Mode currentMode; //PM or IM
 
-+ (ConditionSetup*) sharedInstance;
++ (ConditionSetup*)sharedInstance;
 
-- (NSString*) returnLanguageEnumtoString:(Language)type;
-- (NSString*) returnConditionEnumToString:(Condition)type;
+- (NSString*)returnLanguageEnumtoString:(Language)type;
+- (NSString*)returnConditionEnumToString:(Condition)type;
 
 @end

@@ -1,5 +1,5 @@
 //
-//  BookViewController.m
+//  PMViewController.m
 //  eBookReader
 //
 //  Created by Andreea Danielescu on 2/12/13.
@@ -18,43 +18,53 @@
 #import "Statistics.h"
 
 @interface PMViewController () {
-    NSString* currentPage; //The current page being shown, so that the next page can be requested.
-    NSString* currentPageId; //The id of the current page being shown
-    
-    NSString* currentSentenceText;
+    NSString *currentPage; //Current page being shown, so that the next page can be requested
+    NSString *currentPageId; //Id of the current page being shown
+    NSString *actualPage; //Stores the address of the current page we are at
     
     NSUInteger currentSentence; //Active sentence to be completed
+    NSString *currentSentenceText; //Text of current sentence
     NSUInteger currentIdea; //Current idea number to be completed
-    NSUInteger totalSentences; //Total number of sentences on this page.
-    NSMutableArray* pageSentences; //AlternateSentences on current page
+    NSUInteger totalSentences; //Total number of sentences on this page
+    NSMutableArray *pageSentences; //AlternateSentences on current page
+    NSString *actualWord; //Stores the current word that was clicked
+    NSString *previousStep;
     
-    BOOL chooseComplexity; //TRUE if using alternate sentences
-    NSMutableDictionary* pageStatistics;
-    NSUInteger currentComplexity; //complexity level of current sentence
-    NSDate* startTime;
-    NSDate* endTime;
+    BOOL chooseComplexity; //True if using alternate sentences
+    NSMutableDictionary *pageStatistics;
+    NSUInteger currentComplexity; //Complexity level of current sentence
+    NSDate *startTime;
+    NSDate *endTime;
     
-    PhysicalManipulationSolution* PMSolution; //Solution steps for current chapter
+    PhysicalManipulationSolution *PMSolution; //PM solution steps for current chapter
+    ImagineManipulationSolution *IMSolution; //IM solution steps for current chapter
     NSUInteger numSteps; //Number of steps for current sentence
-    NSUInteger currentStep; //Active step to be completed.
+    NSUInteger currentStep; //Active step to be completed
     BOOL stepsComplete; //True if all steps have been completed for a sentence
     
-    NSString *movingObjectId; //Object currently being moved.
-    NSString *collisionObjectId; //Object the moving object was moved to.
-    NSString *separatingObjectId; //Object identified when pinch gesture performed.
-    Relationship *lastRelationship;//stores the most recent relationship between objects used
-    NSMutableArray *allRelationships;// stores an array of all relationships which is populated in getPossibleInteractions
-    BOOL movingObject; //True if an object is currently being moved, false otherwise.
-    BOOL separatingObject; //True if two objects are currently being ungrouped, false otherwise.
+    InteractionModel *model;
+    ConditionSetup *conditionSetup;
+    
+    InteractionRestriction useSubject; //Determines which objects the user can manipulate as the subject
+    InteractionRestriction useObject; //Determines which objects the user can interact with as the object
+    
+    NSString *movingObjectId; //Object currently being moved
+    NSString *collisionObjectId; //Object the moving object was moved to
+    NSString *separatingObjectId; //Object identified when pinch gesture performed
+    NSMutableDictionary *currentGroupings;
+    Relationship *lastRelationship; //Stores the most recent relationship between objects used
+    NSMutableArray *allRelationships; //Stores an array of all relationships which is populated in getPossibleInteractions
+    NSMutableDictionary *animatingObjects;
+    BOOL containsAnimatingObject;
+    BOOL movingObject; //True if an object is currently being moved
+    BOOL separatingObject; //True if two objects are currently being ungrouped
     
     BOOL panning;
     BOOL pinching;
-    BOOL pinchToUngroup; //TRUE if pinch gesture is used to ungroup; FALSE otherwise
+    BOOL pinchToUngroup; //True if pinch gesture is used to ungroup
     
-    NSMutableDictionary *currentGroupings;
-    
-    BOOL replenishSupply; //TRUE if object should reappear after disappearing
-    BOOL allowSnapback; //TRUE if objects should snap back to original location upon error
+    BOOL replenishSupply; //True if object should reappear after disappearing
+    BOOL allowSnapback; //True if objects should snap back to original location upon error
 
     CGPoint startLocation; //initial location of an object before it is moved
     CGPoint endLocation; // ending location of an object after it is moved
@@ -62,31 +72,16 @@
     
     ContextualMenuDataSource *menuDataSource;
     PieContextualMenu *menu;
-    
-    //imcode
     UIView *IMViewMenu;
-    
     BOOL menuExpanded;
     
-    InteractionModel *model;
-    
-    InteractionRestriction useSubject; //Determines which objects the user can manipulate as the subject
-    InteractionRestriction useObject; //Determines which objects the user can interact with as the object
-    
-    NSString* actualPage; //Stores the address of the current page we are at
-    NSString* actualWord; //Stores the current word that was clicked
-    NSTimer* timer; //Controls the timing of the audio file that is playing
+    NSTimer *timer; //Controls the timing of the audio file that is playing
     BOOL isAudioLeft;
-    NSMutableDictionary* animatingObjects;
-    BOOL containsAnimatingObject;
-    NSString* previousStep;
-    
-    ConditionSetup *conditionSetup;
 }
 
 @property (nonatomic, strong) IBOutlet UIWebView *bookView;
 @property (strong) AVAudioPlayer *audioPlayer;
-@property (strong) AVAudioPlayer *audioPlayerAfter; // Used to play sounds after the first audio player has finished playing
+@property (strong) AVAudioPlayer *audioPlayerAfter; //Used to play sounds after the first audio player has finished playing
 
 @end
 
@@ -103,7 +98,7 @@
 @synthesize libraryViewController;
 
 @synthesize IntroductionClass;
-@synthesize buildstringClass;
+@synthesize buildStringClass;
 @synthesize playaudioClass;
 
 @synthesize syn;
@@ -119,15 +114,18 @@ BOOL wasPathFollowed = false;
     bookView.frame = self.view.bounds;
 }
 
-- (void)viewDidLoad {
+- (void) viewDidLoad {
     [super viewDidLoad];
     
     conditionSetup = [ConditionSetup sharedInstance];
-    buildstringClass = [[BuildHTMLString alloc]init];
-    playaudioClass = [[PlayAudioFile alloc]init];
-    IntroductionClass = [[IntroductionViewController alloc]initWithParams:playaudioClass : buildstringClass : conditionSetup];
+    
+    buildStringClass = [[BuildHTMLString alloc] init];
+    playaudioClass = [[PlayAudioFile alloc] init];
+    IntroductionClass = [[IntroductionViewController alloc] initWithParams:playaudioClass :buildStringClass :conditionSetup];
     
     syn = [[AVSpeechSynthesizer alloc] init];
+    
+    menuDataSource = [[ContextualMenuDataSource alloc] init];
     
     //Added to deal with ios7 view changes. This makes it so the UIWebView and the navigation bar do not overlap.
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
@@ -142,18 +140,20 @@ BOOL wasPathFollowed = false;
     [[bookView scrollView] setBounces: NO];
     [[bookView scrollView] setScrollEnabled:NO];
     
-    movingObject = FALSE;
-    pinching = FALSE;
-    
-    movingObjectId = nil;
-    collisionObjectId = nil;
-    lastRelationship = nil;
-    allRelationships = [[NSMutableArray alloc] init];
-    separatingObjectId = nil;
-    
     currentPage = nil;
     
-    IntroductionClass.languageString = @"E";
+    pinching = FALSE;
+    pinchToUngroup = FALSE;
+    replenishSupply = FALSE;
+    allowSnapback = TRUE;
+    
+    movingObject = FALSE;
+    movingObjectId = nil;
+    collisionObjectId = nil;
+    separatingObjectId = nil;
+    lastRelationship = nil;
+    allRelationships = [[NSMutableArray alloc] init];
+    currentGroupings = [[NSMutableDictionary alloc] init];
     
     if (conditionSetup.condition  == CONTROL) {
         IntroductionClass.allowInteractions = FALSE;
@@ -174,17 +174,6 @@ BOOL wasPathFollowed = false;
         }
     }
     
-    pinchToUngroup = FALSE;
-    replenishSupply = FALSE;
-    allowSnapback = TRUE;
-    
-    IntroductionClass.sameWordClicked = false;
-    
-    currentGroupings = [[NSMutableDictionary alloc] init];
-    
-    //Create contextualMenuController
-    menuDataSource = [[ContextualMenuDataSource alloc] init];
-    
     if (conditionSetup.appMode == ITS) {
         chooseComplexity = TRUE;
         pageStatistics = [[NSMutableDictionary alloc] init];
@@ -192,18 +181,21 @@ BOOL wasPathFollowed = false;
     else {
         chooseComplexity = FALSE;
     }
+    
+    IntroductionClass.languageString = @"E";
+    IntroductionClass.sameWordClicked = false;
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-    // Disable user sevlection
+- (void) webViewDidFinishLoad:(UIWebView *)webView {
+    //Disable user selection
     [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitUserSelect='none';"];
-    // Disable callout
+    //Disable callout
     [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitTouchCallout='none';"];
     
-    // Load the js files.
-    NSString* filePath = [[NSBundle mainBundle] pathForResource:@"ImageManipulation" ofType:@"js"];
+    //Load the js files.
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"ImageManipulation" ofType:@"js"];
     
-    if(filePath == nil) {
+    if (filePath == nil) {
         NSLog(@"Cannot find js file: ImageManipulation");
     }
     else {
@@ -212,8 +204,8 @@ BOOL wasPathFollowed = false;
         [bookView stringByEvaluatingJavaScriptFromString:jsString];
     }
     
-    // Load the animator js file
-    NSString* animatorFilePath = [[NSBundle mainBundle] pathForResource:@"Animator" ofType:@"js"];
+    //Load the animator js file
+    NSString *animatorFilePath = [[NSBundle mainBundle] pathForResource:@"Animator" ofType:@"js"];
     
     if(animatorFilePath == nil) {
         NSLog(@"Cannot find js file: Animator");
@@ -224,10 +216,10 @@ BOOL wasPathFollowed = false;
         [bookView stringByEvaluatingJavaScriptFromString:animatorJsString];
     }
     
-    // Load the vector js file
+    //Load the vector js file
     NSString* vectorFilePath = [[NSBundle mainBundle] pathForResource:@"Vector" ofType:@"js"];
     
-    if(vectorFilePath == nil) {
+    if (vectorFilePath == nil) {
         NSLog(@"Cannot find js file: Vector");
     }
     else {
@@ -238,8 +230,6 @@ BOOL wasPathFollowed = false;
     
     //Start off with no objects grouped together
     currentGroupings = [[NSMutableDictionary alloc] init];
-    
-    NSLog(@"bookTitle: %@", bookTitle);
     
     //Show menu to choose complexity level for non-intro pages of The Best Farm story only
     if (conditionSetup.appMode == ITS && [currentPageId rangeOfString:@"Intro"].location == NSNotFound && ![chapterTitle isEqualToString:@"Introduction to The Best Farm"] && [bookTitle rangeOfString:@"The Circulatory System"].location == NSNotFound) {
@@ -257,15 +247,10 @@ BOOL wasPathFollowed = false;
         //   The total number of sentences is like a running total, so by page 2, there are 6 sentences instead of 3.
         //This is to make sure we access the solution steps for the correct sentence on this page, and not a sentence on
         //a previous page.
-        //if (![vocabularies objectForKey:chapterTitle]) {
         NSString* requestLastSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[%d - 1].id", sentenceCount];
         NSString* lastSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
         int lastSentenceIdNumber = [[lastSentenceId substringFromIndex:1] intValue];
         totalSentences = lastSentenceIdNumber;
-        //}
-        //else {
-        //totalSentences = sentenceCount;
-        //}
         
         //Get the id number of the first sentence on the page and set it equal to the current sentence number.
         //Because the PMActivity may have multiple pages, the first sentence on the page is not necessarily sentence 1.
@@ -292,11 +277,6 @@ BOOL wasPathFollowed = false;
         [IntroductionClass loadIntroStep:bookView:self: currentSentence];
     }
     
-    //Create UIView for textbox area to recognize swipe gesture
-    //NOTE: Currently not in use because it disables tap gesture recognition over the textbox area and we haven't
-    //found a way to fix this yet.
-    //[self createTextboxView];
-    
     //Load the first vocabulary step for the current chapter (hard-coded for now)
     if ([IntroductionClass.vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
         [IntroductionClass loadVocabStep:bookView:self: currentSentence: chapterTitle];
@@ -306,7 +286,7 @@ BOOL wasPathFollowed = false;
     
     //If we are on the first or second manipulation page of The Contest, play the audio of the first sentence
     if ([chapterTitle isEqualToString:@"The Contest"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-        if(conditionSetup.language ==BILINGUAL) {
+        if (conditionSetup.language ==BILINGUAL) {
             [self.playaudioClass playAudioFile : self:[NSString stringWithFormat:@"BFEC%d.m4a",currentSentence]];
         }
         else {
@@ -316,7 +296,7 @@ BOOL wasPathFollowed = false;
     
     //If we are on the first or second manipulation page of Why We Breathe, play the audio of the first sentence
     if ([chapterTitle isEqualToString:@"Why We Breathe"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
-        if(conditionSetup.language ==BILINGUAL) {
+        if (conditionSetup.language ==BILINGUAL) {
             [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"CPQR%d.m4a",currentSentence]];
         }
         else {
@@ -326,7 +306,7 @@ BOOL wasPathFollowed = false;
     
     //If we are on the first or second manipulation page of The Lopez Family, play the audio of the first sentence
     if ([chapterTitle isEqualToString:@"The Lopez Family"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
-        if(conditionSetup.language ==BILINGUAL) {
+        if (conditionSetup.language ==BILINGUAL) {
             [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3",currentSentence]];
         }
         else {
@@ -335,7 +315,7 @@ BOOL wasPathFollowed = false;
     }
     //If we are on the first or second manipulation page of The Lucky Stone, play the current sentence
     if ([chapterTitle isEqualToString:@"The Lucky Stone"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-        if(conditionSetup.language ==BILINGUAL) {
+        if (conditionSetup.language ==BILINGUAL) {
             [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLuckyStoneS%dS.mp3",currentSentence]];
         }
         else {
@@ -345,7 +325,7 @@ BOOL wasPathFollowed = false;
     
     //If we are on the first or second manipulation page of The Naughty Monkey, play the current sentence
     if ([chapterTitle isEqualToString:@"The Naughty Monkey"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-        if(conditionSetup.language ==BILINGUAL) {
+        if (conditionSetup.language ==BILINGUAL) {
             [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheNaughtyMonkeyS%dS.mp3",currentSentence]];
         }
         else {
@@ -353,17 +333,17 @@ BOOL wasPathFollowed = false;
         }
     }
     
-    // If there is at least one area/path to build
+    //If there is at least one area/path to build
     if ([model getAreaWithPageId:currentPageId]) {
-        // Build area/path
-        for (Area* area in [model areas]) {
+        //Build area/path
+        for (Area *area in [model areas]) {
             if([area.pageId isEqualToString:currentPageId]) {
                 [self buildPath:area.areaId];
             }
         }
     }
     
-    // Draw area (hard-coded for now)
+    //Draw area (hard-coded for now)
     //[self drawArea:@"outside":@"The Lopez Family"];
     //[self drawArea:@"aroundPaco":@"Is Paco a Thief?"];
     [self drawArea:@"aorta":@"The Amazing Heart":@"story2-PM-4"];
@@ -373,8 +353,6 @@ BOOL wasPathFollowed = false;
     //[self drawArea:@"aortaPath2":@"Muscles Use Oxygen":@"story3-PM-1"];
     [self drawArea:@"veinPath":@"Getting More Oxygen for the Muscles":@"story4-PM-3"];
     [self drawArea:@"vein":@"Getting More Oxygen for the Muscles":@"story4-PM-3"];
-    
-    //NSLog(@"CURRENT PAGE ID: %@", currentPageId);
     
     //Perform setup for activity
     [self performSetupForActivity];
@@ -573,25 +551,31 @@ BOOL wasPathFollowed = false;
     
     [bookView loadHTMLString:pageContents baseURL:baseURL];
     [bookView stringByEvaluatingJavaScriptFromString:@"document.body.style.webkitTouchCallout='none';"];
-    //[bookView becomeFirstResponder];
     
     self.title = chapterTitle;
-    
-    //Set the current page id
-    currentPageId = [book getIdForPageInChapterAndActivity:currentPage :chapterTitle :PM_MODE];
-    
-    //Get the solution steps for the current chapter
-    Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
-    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
-    PMSolution = [[[PMActivity PMSolutions] objectForKey:currentPageId] objectAtIndex:0]; //get PM solution
-    currentIdea = [[[PMSolution solutionSteps] objectAtIndex:0] sentenceNumber];
     
     //instantiates all vocab variables
     [IntroductionClass loadFirstPageVocabulary:model :chapterTitle];
     
-    //
-    if (conditionSetup.condition != CONTROL) {
-       IntroductionClass.allowInteractions = TRUE;
+    //Set the current page id
+    currentPageId = [book getIdForPageInChapterAndActivity:currentPage :chapterTitle :PM_MODE];
+    
+    if (conditionSetup.condition == EMBRACE) {
+        if (conditionSetup.currentMode == PM_MODE) {
+            IntroductionClass.allowInteractions = TRUE;
+            
+            //Get the PM solution steps for the current chapter
+            Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
+            PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
+            PMSolution = [[[PMActivity PMSolutions] objectForKey:currentPageId] objectAtIndex:0]; //get PM solution
+            currentIdea = [[[PMSolution solutionSteps] objectAtIndex:0] sentenceNumber];
+        }
+        else if (conditionSetup.currentMode == IM_MODE) {
+            //Get the IM solution steps for the current chapter
+            Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
+            ImagineManipulationActivity* IMActivity = (ImagineManipulationActivity*)[chapter getActivityOfType:IM_MODE]; //get IM Activity from chapter
+            IMSolution = [[[IMActivity IMSolutions] objectForKey:currentPageId] objectAtIndex:0]; //get IM solution
+        }
     }
 }
 
@@ -616,12 +600,22 @@ BOOL wasPathFollowed = false;
         }
     }
     else {
-        //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-        if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound && conditionSetup.condition!=CONTROL) {
-            numSteps = [PMSolution getNumStepsForSentence:currentIdea];
-        }
-        else {
+        if (conditionSetup.condition == CONTROL) {
             numSteps = [PMSolution getNumStepsForSentence:currentSentence];
+        }
+        else if (conditionSetup.condition == EMBRACE) {
+            if (conditionSetup.currentMode == PM_MODE) {
+                //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+                if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                    numSteps = [PMSolution getNumStepsForSentence:currentIdea];
+                }
+                else {
+                    numSteps = [PMSolution getNumStepsForSentence:currentSentence];
+                }
+            }
+            else if (conditionSetup.currentMode == IM_MODE) {
+                numSteps = [IMSolution getNumStepsForSentence:currentSentence];
+            }
         }
     }
     
@@ -662,11 +656,10 @@ BOOL wasPathFollowed = false;
     }
     
     //If it is an IM action sentence and in im mode, set its color to blue and automatically perform solution steps if necessary
-    if ([sentenceClass  containsString: @"sentence IMactionSentence"] && currentSentence !=0 && conditionSetup.condition == CONTROL && ![sentenceClass containsString:@"black"]) {
+    if ([sentenceClass  isEqualToString: @"sentence IMactionSentence"] && ![sentenceClass containsString:@"black"] && currentSentence !=0 && conditionSetup.condition == EMBRACE && conditionSetup.condition == IM_MODE) {
         setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
         [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
     }
-    
     
     //Set the opacity of all but the current sentence to .2
     for(int i = currentSentence; i < totalSentences; i++) {
@@ -687,12 +680,22 @@ BOOL wasPathFollowed = false;
         currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
     }
     else {
-        //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-        if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-            currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-        }
-        else {
+        if (conditionSetup.condition == CONTROL) {
             currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        }
+        else if (conditionSetup.condition == EMBRACE) {
+            if (conditionSetup.currentMode == PM_MODE) {
+                //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+                if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                    currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+                }
+                else {
+                    currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                }
+            }
+            else if (conditionSetup.currentMode == IM_MODE) {
+                currSolSteps = [IMSolution getStepsForSentence:currentSentence];
+            }
         }
     }
     
@@ -886,12 +889,22 @@ BOOL wasPathFollowed = false;
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
-            //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-            if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-            }
-            else {
+            if (conditionSetup.condition == CONTROL) {
                 currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            }
+            else if (conditionSetup.condition == EMBRACE) {
+                if (conditionSetup.currentMode == PM_MODE) {
+                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+                    }
+                    else {
+                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                    }
+                }
+                else if (conditionSetup.currentMode == IM_MODE) {
+                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
+                }
             }
         }
         
@@ -904,53 +917,38 @@ BOOL wasPathFollowed = false;
             PossibleInteraction* correctUngrouping = [self getCorrectInteraction];
             
             [self performInteraction:correctUngrouping];
-            
-            //add logging to performInteraction maybe add a log here for perform atomic steps to distinguish automatic steps are being done and then just use performinterction to show the interaction
-            //[[ServerCommunicationController sharedManager] logComputerGroupingObjects:<#(NSString *)#>]
-            
             [self incrementCurrentStep];
         }
-        else if([[currSolStep stepType] isEqualToString:@"groupAuto"])
-        {
+        else if([[currSolStep stepType] isEqualToString:@"groupAuto"]) {
             PossibleInteraction* correctGrouping = [self getCorrectInteraction];
+            
             [self performInteraction:correctGrouping];
             [self incrementCurrentStep];
         }
-        else if ([[currSolStep stepType] isEqualToString:@"move"])
-        {
+        else if ([[currSolStep stepType] isEqualToString:@"move"]) {
             [self moveObjectForSolution];
             
-            //add logging
-            //[[ServerCommunicationController sharedManager] logComputerGroupingObjects:<#(NSString *)#>]
-            
             [self incrementCurrentStep];
         }
-        else if ([[currSolStep stepType] isEqualToString:@"swapImage"])
-        {
+        else if ([[currSolStep stepType] isEqualToString:@"swapImage"]) {
             [self swapObjectImage];
             
-            //add logging
-            //[[ServerCommunicationController sharedManager] logComputerGroupingObjects:<#(NSString *)#>]
-            
             [self incrementCurrentStep];
         }
-        else if ([[currSolStep stepType] isEqualToString:@"appear"])
-        {
+        else if ([[currSolStep stepType] isEqualToString:@"appear"]) {
             [self loadImage];
             [self incrementCurrentStep];
         }
         
-        else if ([[currSolStep stepType] isEqualToString:@"disappearAuto"])
-        {
+        else if ([[currSolStep stepType] isEqualToString:@"disappearAuto"]) {
             [self hideImage];
             [self incrementCurrentStep];
         }
-        else if([[currSolStep stepType] isEqualToString:@"changeZIndex"])
-        {
+        else if ([[currSolStep stepType] isEqualToString:@"changeZIndex"]) {
             [self changeZIndex];
             [self incrementCurrentStep];
         }
-        else if([[currSolStep stepType] isEqualToString:@"animate"]) {
+        else if ([[currSolStep stepType] isEqualToString:@"animate"]) {
             [self animateObject];
             [self incrementCurrentStep];
         }
@@ -959,10 +957,9 @@ BOOL wasPathFollowed = false;
             [self.playaudioClass playAudioFile:self:file];
             [self incrementCurrentStep];
         }
-        
     }
     
-    if([IntroductionClass.introductions objectForKey:chapterTitle] && [[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
+    if ([IntroductionClass.introductions objectForKey:chapterTitle] && [[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
         IntroductionClass.allowInteractions = FALSE;
     }
 }
@@ -993,12 +990,22 @@ BOOL wasPathFollowed = false;
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
-            //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-            if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-            }
-            else {
+            if (conditionSetup.condition == CONTROL) {
                 currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            }
+            else if (conditionSetup.condition == EMBRACE) {
+                if (conditionSetup.currentMode == PM_MODE) {
+                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+                    }
+                    else {
+                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                    }
+                }
+                else if (conditionSetup.currentMode == IM_MODE) {
+                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
+                }
             }
         }
         
@@ -1106,7 +1113,7 @@ BOOL wasPathFollowed = false;
     }
     
     //im code
-    if((conditionSetup.condition == CONTROL) && (!IntroductionClass.allowInteractions))
+    if((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && (!IntroductionClass.allowInteractions))
     {
             IntroductionClass.allowInteractions = true;
             allowSnapback = false;
@@ -1176,10 +1183,10 @@ BOOL wasPathFollowed = false;
             [self checkSolutionForInteraction:interaction]; //check if selected interaction is correct
             
             //im code
-            if((conditionSetup.condition == CONTROL) && (IntroductionClass.allowInteractions))
+            if((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && (IntroductionClass.allowInteractions))
             {
-                    IntroductionClass.allowInteractions = FALSE;
-                    allowSnapback = true;
+                IntroductionClass.allowInteractions = FALSE;
+                allowSnapback = true;
             }
             //end imcode
             
@@ -1204,7 +1211,7 @@ BOOL wasPathFollowed = false;
         [self.view addGestureRecognizer:tapRecognizer];
         
         
-        if (conditionSetup.condition !=CONTROL) {
+        if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == PM_MODE) {
             //Remove menu.
             [menu removeFromSuperview];
             menu = nil;
@@ -1220,12 +1227,22 @@ BOOL wasPathFollowed = false;
                 currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
             }
             else {
-                //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                    currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                }
-                else {
+                if (conditionSetup.condition == CONTROL) {
                     currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                }
+                else if (conditionSetup.condition == EMBRACE) {
+                    if (conditionSetup.currentMode == PM_MODE) {
+                        //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+                        if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                            currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+                        }
+                        else {
+                            currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                        }
+                    }
+                    else if (conditionSetup.currentMode == IM_MODE) {
+                        currSolSteps = [IMSolution getStepsForSentence:currentSentence];
+                    }
                 }
             }
 
@@ -1474,9 +1491,7 @@ BOOL wasPathFollowed = false;
     }
     
     //Perform steps only if they exist for the sentence and have not been completed
-    else if (numSteps > 0 && !stepsComplete && !(conditionSetup.condition == CONTROL)) {
-        
-        //Logging Added by James for Emergency Swipe
+    else if (numSteps > 0 && !stepsComplete && conditionSetup.condition == EMBRACE && conditionSetup.currentMode == PM_MODE) {
         [[ServerCommunicationController sharedManager] logUserEmergencyNext:@"Emergency Swipe" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
         
         //Get steps for current sentence
@@ -1486,12 +1501,22 @@ BOOL wasPathFollowed = false;
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
-            //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-            if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-            }
-            else {
+            if (conditionSetup.condition == CONTROL) {
                 currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            }
+            else if (conditionSetup.condition == EMBRACE) {
+                if (conditionSetup.currentMode == PM_MODE) {
+                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+                    }
+                    else {
+                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                    }
+                }
+                else if (conditionSetup.currentMode == IM_MODE) {
+                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
+                }
             }
         }
         
@@ -1502,20 +1527,16 @@ BOOL wasPathFollowed = false;
         if ([[currSolStep stepType] isEqualToString:@"check"]) {
             [self incrementCurrentStep];
         }
-        else if ([[currSolStep stepType] isEqualToString:@"checkLeft"])
-        {
+        else if ([[currSolStep stepType] isEqualToString:@"checkLeft"]) {
             [self incrementCurrentStep];
         }
-        else if ([[currSolStep stepType] isEqualToString:@"checkRight"])
-        {
+        else if ([[currSolStep stepType] isEqualToString:@"checkRight"]) {
             [self incrementCurrentStep];
         }
-        else if ([[currSolStep stepType] isEqualToString:@"checkTop"])
-        {
+        else if ([[currSolStep stepType] isEqualToString:@"checkTop"]) {
             [self incrementCurrentStep];
         }
-        else if ([[currSolStep stepType] isEqualToString:@"checkDown"])
-        {
+        else if ([[currSolStep stepType] isEqualToString:@"checkDown"]) {
             [self incrementCurrentStep];
         }
         //Current step is checkAndSwap and involves swapping an image
@@ -1531,8 +1552,7 @@ BOOL wasPathFollowed = false;
         else if ([[currSolStep stepType] isEqualToString:@"checkPath"]) {
             [self incrementCurrentStep];
         }
-        else if([[currSolStep stepType] isEqualToString:@"shakeAndTap"])
-        {
+        else if ([[currSolStep stepType] isEqualToString:@"shakeAndTap"]) {
             [self incrementCurrentStep];
         }
         //Current step is either group, ungroup, disappear, or transference
@@ -1683,7 +1703,6 @@ BOOL wasPathFollowed = false;
                 }
                 else
                 {
-                    
                     //Calculate offset between top-left corner of image and the point clicked.
                     delta = [self calculateDeltaForMovingObjectAtPoint:location];
                 }
@@ -1700,10 +1719,6 @@ BOOL wasPathFollowed = false;
             }
         }
         else if(recognizer.state == UIGestureRecognizerStateEnded) {
-            
-            // Clears the drawn path
-            //[shapeLayer removeFromSuperlayer];
-            //shapeLayer = nil;
             path = nil;
             
             //NSLog(@"pan gesture ended at location (%f, %f)", location.x, location.y);
@@ -1722,12 +1737,22 @@ BOOL wasPathFollowed = false;
                         currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
                     }
                     else {
-                        //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                        if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                            currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                        }
-                        else {
+                        if (conditionSetup.condition == CONTROL) {
                             currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                        }
+                        else if (conditionSetup.condition == EMBRACE) {
+                            if (conditionSetup.currentMode == PM_MODE) {
+                                //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+                                if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                                    currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+                                }
+                                else {
+                                    currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                                }
+                            }
+                            else if (conditionSetup.currentMode == IM_MODE) {
+                                currSolSteps = [IMSolution getStepsForSentence:currentSentence];
+                            }
                         }
                     }
                     
@@ -1784,8 +1809,6 @@ BOOL wasPathFollowed = false;
                                     }
                                 }
                             }
-                            
-                            //moving an object to a location (barn, hay loft etc)
                             
                             //gets hotspot id for logging
                             NSString* locationId = [currSolStep locationId];
@@ -1914,7 +1937,6 @@ BOOL wasPathFollowed = false;
                             if ([possibleInteractions count] == 1) {
                                 PossibleInteraction* interaction = [possibleInteractions objectAtIndex:0];
                                 
-                                //Logging added by James for User Move Object to object
                                 [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : collisionObjectId:startLocation.x :startLocation.y :location.x :location.y :@"Move to Object" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                                 
                                 //checks solution and accomplishes action trace
@@ -2459,17 +2481,13 @@ BOOL wasPathFollowed = false;
         //Get object 1 and object 2
         NSString* obj1 = [objectIds objectAtIndex:0];
         NSString* obj2 = [objectIds objectAtIndex:1];
-        if( [connection interactionType] == UNGROUP && [[self getCurrentSolutionStep] isEqualToString:@"ungroupAndStay"])
-        {
+        if( [connection interactionType] == UNGROUP && [[self getCurrentSolutionStep] isEqualToString:@"ungroupAndStay"]) {
             [self ungroupObjectsAndStay:obj1 :obj2];
         }
-        else if([connection interactionType] == UNGROUP)
-        {
+        else if([connection interactionType] == UNGROUP) {
             [self ungroupObjects:obj1 :obj2]; //ungroup objects
-            //logging done in ungroupObjects
         }
-        else if([connection interactionType] == GROUP)
-        {
+        else if([connection interactionType] == GROUP) {
             //Get hotspots.
             Hotspot* hotspot1 = [hotspots objectAtIndex:0];
             Hotspot* hotspot2 = [hotspots objectAtIndex:1];
@@ -2478,13 +2496,11 @@ BOOL wasPathFollowed = false;
             CGPoint hotspot2Loc = [self getHotspotLocation:hotspot2];
             
             [self groupObjects:obj1 :hotspot1Loc :obj2 :hotspot2Loc]; //group objects
-            //logging done in groupObjects
         }
         else if([connection interactionType] == DISAPPEAR) {
             //NSLog(@"causing object to disappear");
             
             [self consumeAndReplenishSupply:obj2]; //make object disappear
-            //logging done in consumeAndReplenishSupply
         }
     }
 }
@@ -2530,12 +2546,22 @@ BOOL wasPathFollowed = false;
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
-            //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-            if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-            }
-            else {
+            if (conditionSetup.condition == CONTROL) {
                 currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            }
+            else if (conditionSetup.condition == EMBRACE) {
+                if (conditionSetup.currentMode == PM_MODE) {
+                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+                    }
+                    else {
+                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                    }
+                }
+                else if (conditionSetup.currentMode == IM_MODE) {
+                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
+                }
             }
         }
         
@@ -2595,12 +2621,22 @@ BOOL wasPathFollowed = false;
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
-            //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-            if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-            }
-            else {
+            if (conditionSetup.condition == CONTROL) {
                 currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            }
+            else if (conditionSetup.condition == EMBRACE) {
+                if (conditionSetup.currentMode == PM_MODE) {
+                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+                    }
+                    else {
+                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                    }
+                }
+                else if (conditionSetup.currentMode == IM_MODE) {
+                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
+                }
             }
         }
         
@@ -2660,12 +2696,22 @@ BOOL wasPathFollowed = false;
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
-            //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-            if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-            }
-            else {
+            if (conditionSetup.condition == CONTROL) {
                 currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            }
+            else if (conditionSetup.condition == EMBRACE) {
+                if (conditionSetup.currentMode == PM_MODE) {
+                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+                    }
+                    else {
+                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                    }
+                }
+                else if (conditionSetup.currentMode == IM_MODE) {
+                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
+                }
             }
         }
         
@@ -2733,12 +2779,22 @@ BOOL wasPathFollowed = false;
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
-            //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-            if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-            }
-            else {
+            if (conditionSetup.condition == CONTROL) {
                 currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            }
+            else if (conditionSetup.condition == EMBRACE) {
+                if (conditionSetup.currentMode == PM_MODE) {
+                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+                    }
+                    else {
+                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                    }
+                }
+                else if (conditionSetup.currentMode == IM_MODE) {
+                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
+                }
             }
         }
         
@@ -2791,12 +2847,22 @@ BOOL wasPathFollowed = false;
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
-            //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-            if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-            }
-            else {
+            if (conditionSetup.condition == CONTROL) {
                 currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            }
+            else if (conditionSetup.condition == EMBRACE) {
+                if (conditionSetup.currentMode == PM_MODE) {
+                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+                    }
+                    else {
+                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                    }
+                }
+                else if (conditionSetup.currentMode == IM_MODE) {
+                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
+                }
             }
         }
         
@@ -2837,12 +2903,22 @@ BOOL wasPathFollowed = false;
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
-            //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-            if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-            }
-            else {
+            if (conditionSetup.condition == CONTROL) {
                 currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            }
+            else if (conditionSetup.condition == EMBRACE) {
+                if (conditionSetup.currentMode == PM_MODE) {
+                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+                    }
+                    else {
+                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                    }
+                }
+                else if (conditionSetup.currentMode == IM_MODE) {
+                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
+                }
             }
         }
         
@@ -2872,12 +2948,22 @@ BOOL wasPathFollowed = false;
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
-            //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-            if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-            }
-            else {
+            if (conditionSetup.condition == CONTROL) {
                 currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            }
+            else if (conditionSetup.condition == EMBRACE) {
+                if (conditionSetup.currentMode == PM_MODE) {
+                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+                    }
+                    else {
+                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                    }
+                }
+                else if (conditionSetup.currentMode == IM_MODE) {
+                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
+                }
             }
         }
         
@@ -2920,12 +3006,22 @@ BOOL wasPathFollowed = false;
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
-            //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-            if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-            }
-            else {
+            if (conditionSetup.condition == CONTROL) {
                 currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            }
+            else if (conditionSetup.condition == EMBRACE) {
+                if (conditionSetup.currentMode == PM_MODE) {
+                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+                    }
+                    else {
+                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                    }
+                }
+                else if (conditionSetup.currentMode == IM_MODE) {
+                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
+                }
             }
         }
         
@@ -2979,12 +3075,22 @@ BOOL wasPathFollowed = false;
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
-            //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-            if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-            }
-            else {
+            if (conditionSetup.condition == CONTROL) {
                 currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            }
+            else if (conditionSetup.condition == EMBRACE) {
+                if (conditionSetup.currentMode == PM_MODE) {
+                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+                    }
+                    else {
+                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                    }
+                }
+                else if (conditionSetup.currentMode == IM_MODE) {
+                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
+                }
             }
         }
         
@@ -3028,12 +3134,22 @@ BOOL wasPathFollowed = false;
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
-            //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-            if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-            }
-            else {
+            if (conditionSetup.condition == CONTROL) {
                 currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            }
+            else if (conditionSetup.condition == EMBRACE) {
+                if (conditionSetup.currentMode == PM_MODE) {
+                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+                    }
+                    else {
+                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                    }
+                }
+                else if (conditionSetup.currentMode == IM_MODE) {
+                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
+                }
             }
         }
         
@@ -3077,12 +3193,22 @@ BOOL wasPathFollowed = false;
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
-            //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-            if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-            }
-            else {
+            if (conditionSetup.condition == CONTROL) {
                 currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            }
+            else if (conditionSetup.condition == EMBRACE) {
+                if (conditionSetup.currentMode == PM_MODE) {
+                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+                    }
+                    else {
+                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                    }
+                }
+                else if (conditionSetup.currentMode == IM_MODE) {
+                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
+                }
             }
         }
         
@@ -3166,12 +3292,22 @@ BOOL wasPathFollowed = false;
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
-            //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-            if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-            }
-            else {
+            if (conditionSetup.condition == CONTROL) {
                 currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            }
+            else if (conditionSetup.condition == EMBRACE) {
+                if (conditionSetup.currentMode == PM_MODE) {
+                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+                    }
+                    else {
+                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                    }
+                }
+                else if (conditionSetup.currentMode == IM_MODE) {
+                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
+                }
             }
         }
         
@@ -3204,12 +3340,22 @@ BOOL wasPathFollowed = false;
             currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
         }
         else {
-            //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-            if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound && conditionSetup.condition!=CONTROL) {
-                currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-            }
-            else {
+            if (conditionSetup.condition == CONTROL) {
                 currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+            }
+            else if (conditionSetup.condition == EMBRACE) {
+                if (conditionSetup.currentMode == PM_MODE) {
+                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+                    }
+                    else {
+                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                    }
+                }
+                else if (conditionSetup.currentMode == IM_MODE) {
+                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
+                }
             }
         }
         
@@ -3282,29 +3428,21 @@ BOOL wasPathFollowed = false;
     
     //Check if selected interaction is correct
     if ([interaction isEqual:correctInteraction]) {
-        
-        //Logging added by James for Correct Interaction
         [[ServerCommunicationController sharedManager] logComputerVerification:@"Perform Interaction":true : movingObjectId:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
         
-            //imcode
-            if (conditionSetup.condition ==CONTROL) {
-                
-                //imcode
-                //Remove menu.
+            if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) {
+                //Remove menu
                 [menu removeFromSuperview];
                 menu = nil;
                 menuExpanded = FALSE;
                 
-                //im code
-                if (IMViewMenu !=nil) {
+                if (IMViewMenu != nil) {
                     [IMViewMenu removeFromSuperview];
                 }
-                //end imcode
             
-                //Logging added by James for User pressing the Next button
                 [[ServerCommunicationController sharedManager] logUserNextButtonPressed:@"Next" :@"Tap" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
             
-                //added for logging
+                //Added for logging
                 NSString *tempLastSentence = [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence];
             
                 //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
@@ -3320,18 +3458,16 @@ BOOL wasPathFollowed = false;
                 [self colorSentencesUponNext];
             
                 //currentSentence is 1 indexed.
-                if(currentSentence > totalSentences) {
-                        [self loadNextPage];
-                        //logging done in loadNextPage
+                if (currentSentence > totalSentences) {
+                    [self loadNextPage];
                 }
                 else {
-                        //Logging added by James for Computer moving to next sentence
                         [[ServerCommunicationController sharedManager] logNextSentenceNavigation:@"Next Button" :tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :@"Next Sentence" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                 
                         //If we are on the first or second manipulation page of The Contest, play the audio of the current sentence
                         if ([chapterTitle isEqualToString:@"The Contest"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
                             
-                                if((conditionSetup.language ==BILINGUAL)) {
+                                if((conditionSetup.language == BILINGUAL)) {
                                     [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"BFEC%d.m4a",currentSentence]];
                                 }
                                 else {
@@ -3341,8 +3477,7 @@ BOOL wasPathFollowed = false;
                     
                         //If we are on the first or second manipulation page of Why We Breathe, play the audio of the current sentence
                         if ([chapterTitle isEqualToString:@"Why We Breathe"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
-                            
-                                if((conditionSetup.language ==BILINGUAL)) {
+                                if ((conditionSetup.language ==BILINGUAL)) {
                                     [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"CPQR%d.m4a",currentSentence]];
                                 }
                                 else {
@@ -3352,7 +3487,7 @@ BOOL wasPathFollowed = false;
                     
                     //If we are on the first or second manipulation page of The Lopez Family, play the current sentence
                     if ([chapterTitle isEqualToString:@"The Lopez Family"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
-                        if(conditionSetup.language ==BILINGUAL) {
+                        if (conditionSetup.language ==BILINGUAL) {
                             [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3",currentSentence]];
                         }
                         else {
@@ -3361,7 +3496,7 @@ BOOL wasPathFollowed = false;
                     }
                     //If we are on the first or second manipulation page of The Lucky Stone, play the current sentence
                     if ([chapterTitle isEqualToString:@"The Lucky Stone"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-                        if(conditionSetup.language ==BILINGUAL) {
+                        if(conditionSetup.language == BILINGUAL) {
                             [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLuckyStoneS%dS.mp3",currentSentence]];
                         }
                         else {
@@ -3371,7 +3506,7 @@ BOOL wasPathFollowed = false;
                     
                     //If we are on the first or second manipulation page of The Naughty Monkey, play the current sentence
                     if ([chapterTitle isEqualToString:@"The Naughty Monkey"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-                        if(conditionSetup.language ==BILINGUAL) {
+                        if(conditionSetup.language == BILINGUAL) {
                             [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheNaughtyMonkeyS%dS.mp3",currentSentence]];
                         }
                         else {
@@ -3385,49 +3520,40 @@ BOOL wasPathFollowed = false;
             {
                 [self performInteraction:interaction];
             }
-            //end imcode
-        
-            //[self performInteraction:interaction];
         
         if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
             IntroductionClass.currentIntroStep++;
             [IntroductionClass loadIntroStep:bookView:self: currentSentence];
         }
         
-         if (conditionSetup.condition != CONTROL) {
-        [self incrementCurrentStep];
-         }
+        if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == PM_MODE) {
+            [self incrementCurrentStep];
+        }
         
         //Transference counts as two steps, so we must increment again
         if ([interaction interactionType] == TRANSFERANDGROUP || [interaction interactionType] == TRANSFERANDDISAPPEAR) {
-            if (conditionSetup.condition != CONTROL) {
+            if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == PM_MODE) {
                 [self incrementCurrentStep];
             }
         }
     }
     else {
         if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
-            if ((conditionSetup.language ==ENGLISH) || IntroductionClass.currentIntroStep > IntroductionClass.STEPS_TO_SWITCH_LANGUAGES_EMBRACE)
-            {
+            if ((conditionSetup.language ==ENGLISH) || IntroductionClass.currentIntroStep > IntroductionClass.STEPS_TO_SWITCH_LANGUAGES_EMBRACE) {
                 [self.playaudioClass playAudioFile:self:@"tryAgainE.m4a"];
                 
-                //Logging added by James for Try Again
                 [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Try Again" : @"E" : @"tryAgainE.m4a" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
             }
-            else
-            {
+            else {
                 [self.playaudioClass playAudioFile:self:@"tryAgainS.m4a"];
                 
-                //Logging added by James for Try Again
                 [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Try Again" : @"S" : @"tryAgainS.m4a" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
             }
         }
         else {
-            //Logging added by James for Incorrect Interaction
             [[ServerCommunicationController sharedManager] logComputerVerification:@"Perform Interaction":false : movingObjectId:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
             
             [self.playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-            //[self playErrorNoise]; //play noise if interaction is incorrect
             
             if (conditionSetup.appMode == ITS) {
                 //Record error for complexity
@@ -3439,16 +3565,13 @@ BOOL wasPathFollowed = false;
             //Snap the object back to its original location
             [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false:@"None"];
             
-            //move logging to moveObject
-            //Logging added by James for Object Reset Location
             [[ServerCommunicationController sharedManager] logComputerResetObject : movingObjectId  :startLocation.x :startLocation.y : startLocation.x : startLocation.y : @"Reset" : bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
         }
     }
     
-    //Clear any remaining highlighting.
+    //Clear any remaining highlighting
     NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
     [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
-    
 }
 
 /*
@@ -4478,38 +4601,26 @@ BOOL wasPathFollowed = false;
         }
         // If the user pressed next
         if ([input isEqualToString:@"next"]) {
-            // Destroy the timer to avoid playing the previous sound
-            //[timer invalidate];
-            //timer = nil;
             IntroductionClass.currentVocabStep++;
             
             if(IntroductionClass.currentVocabStep > IntroductionClass.totalVocabSteps-1) {
                 [_audioPlayer stop];
                 currentSentence = 1;
                 [self loadNextPage]; //logging done in loadNextPage
-                
             }
             else {
                 // Load the next step and update the performed actions
                 [IntroductionClass loadVocabStep:bookView:self:currentSentence:chapterTitle];
-                
-                //add logging: next vocab step
             }
         }
     }
     else {
-        
-        //imcode
-        //if (stepsComplete || numSteps == 0 || !IntroductionClass.allowInteractions) {
-        //IMCode
         NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
         NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
-        
-        if((conditionSetup.condition == CONTROL) && ([sentenceClass  containsString: @"sentence actionSentence"] || [sentenceClass  containsString: @"sentence IMactionSentence"]))
-        {
-            //resets allRelationship arrray
-            if([allRelationships count])
-            {
+
+        if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && ([sentenceClass containsString: @"sentence actionSentence"] || [sentenceClass containsString: @"sentence IMactionSentence"])) {
+            //Reset allRelationships arrray
+            if ([allRelationships count]) {
                 [allRelationships removeAllObjects];
             }
             
@@ -4520,12 +4631,22 @@ BOOL wasPathFollowed = false;
                 currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
             }
             else {
-                //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound && conditionSetup.condition != CONTROL) {
-                    currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                }
-                else {
+                if (conditionSetup.condition == CONTROL) {
                     currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                }
+                else if (conditionSetup.condition == EMBRACE) {
+                    if (conditionSetup.currentMode == PM_MODE) {
+                        //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+                        if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                            currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+                        }
+                        else {
+                            currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                        }
+                    }
+                    else if (conditionSetup.currentMode == IM_MODE) {
+                        currSolSteps = [IMSolution getStepsForSentence:currentSentence];
+                    }
                 }
             }
             
@@ -4586,13 +4707,6 @@ BOOL wasPathFollowed = false;
                 
                 currentSentence++;
                 currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence]];
-                
-                
-                
-                
-                //Set up current sentence appearance and solution steps
-                //[self setupCurrentSentence];
-                //[self colorSentencesUponNext];
                 
                 //currentSentence is 1 indexed.
                 if(currentSentence > totalSentences) {
@@ -4662,12 +4776,7 @@ BOOL wasPathFollowed = false;
             }
             
         }
-        //}
         else if (stepsComplete || numSteps == 0 || !IntroductionClass.allowInteractions) {
-            //end imcode
-            
-            //if (stepsComplete || numSteps == 0 || !IntroductionClass.allowInteractions) {
-            //Logging added by James for User pressing the Next button
             [[ServerCommunicationController sharedManager] logUserNextButtonPressed:@"Next" :@"Tap" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
             
             //added for logging
@@ -4680,19 +4789,14 @@ BOOL wasPathFollowed = false;
             
             currentSentence++;
             currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence]];
-            
-            //Set up current sentence appearance and solution steps
-            //[self setupCurrentSentence];
-            //[self colorSentencesUponNext];
-            
-            //currentSentence is 1 indexed.
+
+            //currentSentence is 1 indexed
             if(currentSentence > totalSentences) {
                 if (conditionSetup.appMode == ITS && [currentPageId rangeOfString:@"Intro"].location == NSNotFound && ![chapterTitle isEqualToString:@"Introduction to The Best Farm"] && [bookTitle rangeOfString:@"The Circulatory System"].location == NSNotFound) {
                     [self showPageStatistics]; //show popup window with page statistics
                 }
                 else {
                     [self loadNextPage];
-                    //logging done in loadNextPage
                 }
             }
             else {
@@ -4708,7 +4812,6 @@ BOOL wasPathFollowed = false;
                 [self setupCurrentSentence];
                 [self colorSentencesUponNext];
                 
-                //Logging added by James for Computer moving to next sentence
                 [[ServerCommunicationController sharedManager] logNextSentenceNavigation:@"Next Button" :tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :@"Next Sentence" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                 
                 //If we are on the first or second manipulation page of The Contest, play the audio of the current sentence
@@ -4764,41 +4867,8 @@ BOOL wasPathFollowed = false;
         else {
             //Play noise if not all steps have been completed
             [self.playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-            //[self playErrorNoise];
         }
     }
-}
-
-
-/*
- * Creates a UIView for the textbox area so that the swipe gesture can only be recognized when performed
- * in this location. This would make it so that we can only skip forward in the story if
- * we swipe the textbox and not anywhere else on the screen.
- * NOTE: Currently not in use because it disables tap gesture recognition over the textbox area and we haven't
- * found a way to fix this yet.
- */
--(void) createTextboxView {
-    //Get the textbox element
-    NSString* textbox = [NSString stringWithFormat:@"document.getElementsByClassName('textbox')[0]"];
-    
-    //Get the textbox x, y, width, and height
-    NSString* textboxXString = [NSString stringWithFormat:@"%@.offsetLeft", textbox];
-    NSString* textboxYString = [NSString stringWithFormat:@"%@.offsetTop", textbox];
-    NSString* textboxWidthString = [NSString stringWithFormat:@"%@.offsetWidth", textbox];
-    NSString* textboxHeightString = [NSString stringWithFormat:@"%@.offsetHeight", textbox];
-    
-    float textboxX = [[bookView stringByEvaluatingJavaScriptFromString:textboxXString] floatValue];
-    float textboxY = [[bookView stringByEvaluatingJavaScriptFromString:textboxYString] floatValue];
-    float textboxWidth = [[bookView stringByEvaluatingJavaScriptFromString:textboxWidthString] floatValue];
-    float textboxHeight = [[bookView stringByEvaluatingJavaScriptFromString:textboxHeightString] floatValue];
-    
-    //Create UIView over the textbox area
-    CGRect textboxRect = CGRectMake(textboxX, textboxY, textboxWidth, textboxHeight);
-    UIView* textboxView = [[UIView alloc] initWithFrame:textboxRect];
-    
-    //Add swipe gesture recognizer and add to the view
-    [textboxView addGestureRecognizer:swipeRecognizer];
-    [[self view] addSubview:textboxView];
 }
 
 /*
@@ -5050,7 +5120,8 @@ BOOL wasPathFollowed = false;
         NSString* colorSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
         [bookView stringByEvaluatingJavaScriptFromString:colorSentence];
     }
-    if ([sentenceClass  containsString: @"sentence IMactionSentence"] && conditionSetup.condition == CONTROL && ![sentenceClass containsString:@"black"]) {
+
+    if ([sentenceClass isEqualToString: @"sentence IMactionSentence"] && ![sentenceClass containsString:@"black"] && conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) {
         NSString* colorSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
         [bookView stringByEvaluatingJavaScriptFromString:colorSentence];
     }
@@ -5091,35 +5162,27 @@ BOOL wasPathFollowed = false;
  * Expands the contextual menu, allowing the user to select a possible grouping/ungrouping.
  * This function is called after the data source is created.
  */
--(void) expandMenu {
+- (void) expandMenu {
     menu = [[PieContextualMenu alloc] initWithFrame:[bookView frame]];
     [menu addGestureRecognizer:tapRecognizer];
     
-    //imcode
-    if (conditionSetup.condition== CONTROL) {
+    if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) {
         [IMViewMenu addSubview:menu];
     }
     else {
         [[self view] addSubview:menu];
     }
-    //end imcode
-    
-    //[[self view] addSubview:menu];
     
     menu.delegate = self;
     menu.dataSource = menuDataSource;
     
     CGFloat radius;
     
-    //IM Condition
-    if(conditionSetup.condition == CONTROL)
-    {
+    if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) {
         //Calculate the radius of the circle
          radius = (menuBoundingBoxIM -  (itemRadiusIM * 2)) / 2;
     }
-    //PM Condition
-    else
-    {
+    else {
         //Calculate the radius of the circle
         radius = (menuBoundingBoxPM -  (itemRadiusPM * 2)) / 2;
     }

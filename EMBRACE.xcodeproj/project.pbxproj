@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		030C8A981C5B1C6A00042C6F /* ImagineManipulationSolution.m in Sources */ = {isa = PBXBuildFile; fileRef = 030C8A971C5B1C6A00042C6F /* ImagineManipulationSolution.m */; };
 		033BC05D1C501BB600A1EC14 /* ActivityMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 033BC05C1C501BB600A1EC14 /* ActivityMode.m */; };
 		033BC0641C505E4300A1EC14 /* sequences1.xml in Resources */ = {isa = PBXBuildFile; fileRef = 033BC0631C505E4300A1EC14 /* sequences1.xml */; };
 		033BC0671C506C0100A1EC14 /* ActivitySequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 033BC0661C506C0100A1EC14 /* ActivitySequence.m */; };
@@ -2577,6 +2578,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		030C8A961C5B1C6A00042C6F /* ImagineManipulationSolution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagineManipulationSolution.h; sourceTree = "<group>"; };
+		030C8A971C5B1C6A00042C6F /* ImagineManipulationSolution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagineManipulationSolution.m; sourceTree = "<group>"; };
 		033BC05B1C501BB600A1EC14 /* ActivityMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityMode.h; sourceTree = "<group>"; };
 		033BC05C1C501BB600A1EC14 /* ActivityMode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityMode.m; sourceTree = "<group>"; };
 		033BC0631C505E4300A1EC14 /* sequences1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences1.xml; sourceTree = "<group>"; };
@@ -6522,6 +6525,8 @@
 				C3B5214F19254BA2003FF639 /* ActionStep.m */,
 				C3B5215019254BA2003FF639 /* PhysicalManipulationSolution.h */,
 				C3B5215119254BA2003FF639 /* PhysicalManipulationSolution.m */,
+				030C8A961C5B1C6A00042C6F /* ImagineManipulationSolution.h */,
+				030C8A971C5B1C6A00042C6F /* ImagineManipulationSolution.m */,
 				5C466ADA192293290056EA4B /* Translation.h */,
 				5C466ADB192293290056EA4B /* Translation.m */,
 				C36473EC1A9AA5C100FD7494 /* AlternateSentence.h */,
@@ -11204,6 +11209,7 @@
 				C3B5215A192AB610003FF639 /* EBookImporter.m in Sources */,
 				1AB028FC1ACF0890006CC916 /* AuthoringModeViewController.m in Sources */,
 				033BC05D1C501BB600A1EC14 /* ActivityMode.m in Sources */,
+				030C8A981C5B1C6A00042C6F /* ImagineManipulationSolution.m in Sources */,
 				1AF3815B1A40A4C600D967FD /* AssessmentActivityViewController.m in Sources */,
 				31953E8D1729EE6E00570087 /* BookCellView.m in Sources */,
 				5CFA85AB1950EFDC00C7537D /* IntroductionStep.m in Sources */,

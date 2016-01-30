@@ -15,18 +15,14 @@
 
 @interface LibraryViewController : UIViewController {
     EBookImporter *bookImporter;
-    NSMutableArray* books;
-    
-    Student *student;
-    Progress* studentProgress;
-    ActivitySequenceController* sequenceController;
+    NSMutableArray *books;
     
     IBOutlet UIBarButtonItem *booksButton;
 }
 
 @property (strong, nonatomic) id dataObject;
-@property (nonatomic, strong) Student* student;
-@property (nonatomic, strong) Progress* studentProgress;
-@property (nonatomic, strong) ActivitySequenceController* sequenceController;
+@property (nonatomic, strong) Student *student;
+@property (nonatomic, strong) Progress *studentProgress;
+@property (nonatomic, strong) ActivitySequenceController *sequenceController;
 
 @end
