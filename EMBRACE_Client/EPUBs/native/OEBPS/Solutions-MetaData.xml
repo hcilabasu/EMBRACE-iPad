@@ -426,6 +426,7 @@
                     <animate obj1Id="mosquito1" action="floatAnimation" waypointId="" areaId=""/>
                     <animate obj1Id="mosquito2" action="floatAnimation" waypointId="" areaId=""/>
                     <animate obj1Id="mosquito3" action="floatAnimation" waypointId="" areaId=""/>
+                    <playSound fileName="Mosquito.wav"/>
                 </step>
             </sentence>
         </story>

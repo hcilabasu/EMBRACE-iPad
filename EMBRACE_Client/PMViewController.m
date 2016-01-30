@@ -630,7 +630,7 @@ BOOL wasPathFollowed = false;
     NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
     
     //If it is an action sentence, perform its solution steps if necessary
-    if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
+    if ([sentenceClass  containsString: @"sentence actionSentence"]) {
         [self performAutomaticSteps];
     }
     else {
@@ -4505,7 +4505,7 @@ BOOL wasPathFollowed = false;
         NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
         NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
         
-        if((conditionSetup.condition == CONTROL) && ([sentenceClass  isEqualToString: @"sentence actionSentence"] || [sentenceClass  isEqualToString: @"sentence IMactionSentence"]))
+        if((conditionSetup.condition == CONTROL) && ([sentenceClass  containsString: @"sentence actionSentence"] || [sentenceClass  containsString: @"sentence IMactionSentence"]))
         {
             //resets allRelationship arrray
             if([allRelationships count])
