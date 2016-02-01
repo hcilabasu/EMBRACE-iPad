@@ -63,6 +63,7 @@
                 <step number="1">
                     <check obj1Id="california" action="getIn" locationId="anywhere"/>
                     <move obj1Id="california" action="getIn" waypointId="california_boom"/>
+                    <playSound fileName="earthquake.wav"/>
                 </step>
             </sentence>
             <sentence number="12">

@@ -57,6 +57,7 @@
     BOOL allowSnapback; //TRUE if objects should snap back to original location upon error
 
     CGPoint startLocation; //initial location of an object before it is moved
+    CGPoint endLocation; // ending location of an object after it is moved
     CGPoint delta; //distance between the top-left corner of the image being moved and the point clicked.
     
     ContextualMenuDataSource *menuDataSource;
@@ -635,7 +636,7 @@ BOOL wasPathFollowed = false;
     NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
     
     //If it is an action sentence, perform its solution steps if necessary
-    if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
+    if ([sentenceClass  containsString: @"sentence actionSentence"]) {
         [self performAutomaticSteps];
     }
     else {
@@ -661,13 +662,13 @@ BOOL wasPathFollowed = false;
     NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
     
     //If it is an action sentence, set its color to blue and automatically perform solution steps if necessary
-    if ([sentenceClass  isEqualToString: @"sentence actionSentence"] && currentSentence !=0) {
+    if ([sentenceClass  containsString: @"sentence actionSentence"] && currentSentence !=0 && ![sentenceClass containsString:@"black"]) {
         setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
         [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
     }
     
     //If it is an IM action sentence and in im mode, set its color to blue and automatically perform solution steps if necessary
-    if ([sentenceClass  isEqualToString: @"sentence IMactionSentence"] && currentSentence !=0 && conditionSetup.condition == CONTROL) {
+    if ([sentenceClass  containsString: @"sentence IMactionSentence"] && currentSentence !=0 && conditionSetup.condition == CONTROL && ![sentenceClass containsString:@"black"]) {
         setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
         [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
     }
@@ -1518,51 +1519,22 @@ BOOL wasPathFollowed = false;
         
         //Current step is check and involves moving an object to a location
         if ([[currSolStep stepType] isEqualToString:@"check"]) {
-            //Get information for check step type
-            //NSString* objectId = [currSolStep object1Id];
-            //NSString* action = [currSolStep action];
-            //NSString* locationId = [currSolStep locationId];
-            //NSString* waypointId = [currSolStep waypointId];
-            
-            //Get hotspot location of object
-            //Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:objectId :action :@"subject"];
-            //CGPoint hotspotLocation = [self getHotspotLocationOnImage:hotspot];
-            
-            //Get location that hotspot should be inside
-            //Location* location = [model getLocationWithId:locationId];
-            
-            //Calculate the x,y coordinates and the width and height in pixels from %
-            //float locationX = [location.originX floatValue] / 100.0 * [bookView frame].size.width;
-            //float locationY = [location.originY floatValue] / 100.0 * [bookView frame].size.height;
-            //float locationWidth = [location.width floatValue] / 100.0 * [bookView frame].size.width;
-            //float locationHeight = [location.height floatValue] / 100.0 * [bookView frame].size.height;
-            
-            //Calculate the center point of the location
-            //float midX = locationX + (locationWidth / 2);
-            //float midY = locationY + (locationHeight / 2);
-            //CGPoint midpoint = CGPointMake(midX, midY);
-            
-            //Get position of waypoint in pixels based on the background size
-            //Waypoint* waypoint = [model getWaypointWithId:waypointId];
-            //CGPoint waypointLocation = [self getWaypointLocation:waypoint];
-            
-            //if ([locationId isEqualToString:@""]) {
-                //[self moveObject:objectId :waypointLocation :hotspotLocation :false : @"None"];
-            //}
-            //else {
-                //Move the object to the center of the location
-                //[self moveObject:objectId :midpoint :hotspotLocation :false : @"None"];
-            //}
-            
-            //Clear highlighting
-            //NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
-            //[bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
-            
-            //Object should now be in the correct location, so the step can be incremented
-            //if([self isHotspotInsideLocation] || [self isHotspotInsideArea]) {
-            //    [self incrementCurrentStep];
-            //}
-            
+            [self incrementCurrentStep];
+        }
+        else if ([[currSolStep stepType] isEqualToString:@"checkLeft"])
+        {
+            [self incrementCurrentStep];
+        }
+        else if ([[currSolStep stepType] isEqualToString:@"checkRight"])
+        {
+            [self incrementCurrentStep];
+        }
+        else if ([[currSolStep stepType] isEqualToString:@"checkTop"])
+        {
+            [self incrementCurrentStep];
+        }
+        else if ([[currSolStep stepType] isEqualToString:@"checkDown"])
+        {
             [self incrementCurrentStep];
         }
         //Current step is checkAndSwap and involves swapping an image
@@ -1781,10 +1753,20 @@ BOOL wasPathFollowed = false;
                     //Get current step to be completed
                     ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
                     
-                    if ([[currSolStep stepType] isEqualToString:@"check"]) {
+                    if ([[currSolStep stepType] isEqualToString:@"check"] ||
+                        [[currSolStep stepType] isEqualToString:@"checkLeft"] ||
+                        [[currSolStep stepType] isEqualToString:@"checkRight"] ||
+                        [[currSolStep stepType] isEqualToString:@"checkTop"] ||
+                        [[currSolStep stepType] isEqualToString:@"checkDown"])
+                    {
                         
                         //Check if object is in the correct location or area
-                        if([self isHotspotInsideLocation] || [self isHotspotInsideArea]) {
+                        if((([[currSolStep stepType] isEqualToString:@"checkLeft"] && startLocation.x > endLocation.x ) ||
+                            ([[currSolStep stepType] isEqualToString:@"checkRight"] && startLocation.x < endLocation.x ) ||
+                            ([[currSolStep stepType] isEqualToString:@"checkTop"] && startLocation.y > endLocation.y ) ||
+                            ([[currSolStep stepType] isEqualToString:@"checkDown"] && startLocation.y < endLocation.y )) ||
+                           ([self isHotspotInsideLocation] || [self isHotspotInsideArea]))
+                        {
                             
                             if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
                                 /*Check to see if an object is at a certain location or is grouped with another object e.g. farmergetIncorralArea or farmerleadcow. These strings come from the solution steps */
@@ -2838,11 +2820,21 @@ BOOL wasPathFollowed = false;
             //Get alternate image information
             NSString* altSrc = [altImage alternateSrc];
             NSString* width = [altImage width];
+            NSString* height = [altImage height];
             CGPoint location = [altImage location];
             NSString* zIndex = [altImage zPosition];
             
             //Swap images using alternative src
-            NSString* swapImages = [NSString stringWithFormat:@"swapImageSrc('%@', '%@', '%@', %f, %f, '%@')", object1Id, altSrc, width, location.x, location.y, zIndex];
+            NSString* swapImages;
+            
+            if ([height isEqualToString:@""]) {
+                swapImages= [NSString stringWithFormat:@"swapImageSrc('%@', '%@', '%@', %f, %f, '%@')", object1Id, altSrc, width, location.x, location.y, zIndex];
+            }
+            else
+            {
+                swapImages= [NSString stringWithFormat:@"swapImageSrc('%@', '%@', '%@', '%@', %f, %f, '%@')", object1Id, altSrc, width, height, location.x, location.y, zIndex];
+            }
+            
             [bookView stringByEvaluatingJavaScriptFromString:swapImages];
             
             //Logging added by James for Swap Images
@@ -3088,7 +3080,7 @@ BOOL wasPathFollowed = false;
 }
 
 /*
- * Returns true if the start location and the end location of an object are within the same area. Otherwise, returns false.
+ * Returns true if the start location and the end location of an object are within the same area. Otherwise, returns false.  
  */
 -(BOOL) areHotspotsInsideArea {
     //Check solution only if it exists for the sentence
@@ -4206,6 +4198,8 @@ BOOL wasPathFollowed = false;
             adjLocation.y = 0;
     }
     
+    endLocation = adjLocation;
+    
     //May want to add code to keep objects from moving to the location that the text is taking up on screen.
     
     //logs only if object is moved by computer action, user pan done outside of this function
@@ -4406,10 +4400,6 @@ BOOL wasPathFollowed = false;
     float imageWidth = [[bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
     float imageHeight = [[bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
     
-    if ([[hotspot objectId] isEqualToString:@"dirt_tornado"]) {
-        imageHeight = 598;
-    }
-    
     //if image height and width are 0 then the image doesn't exist on this page.
     if(imageWidth > 0 && imageHeight > 0) {
         //Get the location of the top left corner of the image.
@@ -4579,7 +4569,7 @@ BOOL wasPathFollowed = false;
         NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
         NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
         
-        if((conditionSetup.condition == CONTROL) && ([sentenceClass  isEqualToString: @"sentence actionSentence"] || [sentenceClass  isEqualToString: @"sentence IMactionSentence"]))
+        if((conditionSetup.condition == CONTROL) && ([sentenceClass  containsString: @"sentence actionSentence"] || [sentenceClass  containsString: @"sentence IMactionSentence"]))
         {
             //resets allRelationship arrray
             if([allRelationships count])
@@ -5120,11 +5110,11 @@ BOOL wasPathFollowed = false;
     NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
     
     //If it is an action sentence color it blue
-    if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
+    if ([sentenceClass  containsString: @"sentence actionSentence"] && ![sentenceClass containsString:@"black"]) {
         NSString* colorSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
         [bookView stringByEvaluatingJavaScriptFromString:colorSentence];
     }
-    if ([sentenceClass  isEqualToString: @"sentence IMactionSentence"] && conditionSetup.condition == CONTROL) {
+    if ([sentenceClass  containsString: @"sentence IMactionSentence"] && conditionSetup.condition == CONTROL && ![sentenceClass containsString:@"black"]) {
         NSString* colorSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
         [bookView stringByEvaluatingJavaScriptFromString:colorSentence];
     }

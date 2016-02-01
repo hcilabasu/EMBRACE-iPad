@@ -594,6 +594,25 @@ function swapImageSrc(objectId, alternateSrc, width, left, top, zPosition) {
 }
 
 /*
+ * Swaps the current image src used by objectId for the alternateSrc and adjusts the image width, height and location
+ */
+function swapImageSrc(objectId, alternateSrc, width, height, left, top, zPosition) {
+    var image = document.getElementById(objectId); //get the image
+    
+    image.src = "../Images/" + alternateSrc; //swap image
+    
+    //Adjust image width and location
+    image.style.width = width;
+    image.style.height = height;
+    image.style.left = left + "%";
+    image.style.top = top + "%";
+    if(zPosition != "")
+    {
+        image.style.zIndex = zPosition;
+    }
+}
+
+/*
  Loads an image at a given location
  */
 function loadImage(objectId, source, width, left, top, className, zPosition) {
