@@ -82,7 +82,9 @@
                  @"silver": @"plateado",
                  @"comfort": @"calmar",
                  @"rattled": @"angustiado",
-                 @"shiny": @"brillante"
+                 @"shiny": @"brillante",
+                 
+                 @"spin": @"gire"
                  
         };
     });
