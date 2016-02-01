@@ -4,93 +4,93 @@
         <Questions title= "The Lopez Family">
             <Question number="1">
                 <QuestionText>¿Cuántas mascotas tiene la familia Lopez?</QuestionText>
-                <QuestionAudio>TheLopezFamilyQ1.mp3</QuestionAudio>
+                <QuestionAudio>TheLopezFamilyQ1S.mp3</QuestionAudio>
                 <Answer1>Dos mascotas</Answer1>
-                <Answer1Audio>TheLopezFamilyQ1A1.mp3</Answer1Audio>
+                <Answer1Audio>TheLopezFamilyQ1A1S.mp3</Answer1Audio>
                 <Answer2>Una mascota</Answer2>
-                <Answer2Audio>TheLopezFamilyQ1A2.mp3</Answer2Audio>
+                <Answer2Audio>TheLopezFamilyQ1A2S.mp3</Answer2Audio>
                 <Answer3>Cuatro mascotas</Answer3>
-                <Answer3Audio>TheLopezFamilyQ1A3.mp3</Answer3Audio>
+                <Answer3Audio>TheLopezFamilyQ1A3S.mp3</Answer3Audio>
                 <Answer4>Media mascota</Answer4>
-                <Answer4Audio>TheLopezFamilyQ1A4.mp3</Answer4Audio>
+                <Answer4Audio>TheLopezFamilyQ1A4S.mp3</Answer4Audio>
                 <expectedSelection>Dos mascotas</expectedSelection>
             </Question>
             <Question number="2">
                 <QuestionText>¿Qué agarra Martin de la cocina?</QuestionText>
-                <QuestionAudio>TheLopezFamilyQ2.mp3</QuestionAudio>
+                <QuestionAudio>TheLopezFamilyQ2S.mp3</QuestionAudio>
                 <Answer1>Sus llaves</Answer1>
-                <Answer1Audio>TheLopezFamilyQ2A1.mp3</Answer1Audio>
+                <Answer1Audio>TheLopezFamilyQ2A1S.mp3</Answer1Audio>
                 <Answer2>La bebé</Answer2>
-                <Answer2Audio>TheLopezFamilyQ2A2.mp3</Answer2Audio>
+                <Answer2Audio>TheLopezFamilyQ2A2S.mp3</Answer2Audio>
                 <Answer3>Su almuerzo</Answer3>
-                <Answer3Audio>TheLopezFamilyQ2A3.mp3</Answer3Audio>
+                <Answer3Audio>TheLopezFamilyQ2A3S.mp3</Answer3Audio>
                 <Answer4>Su varita mágica</Answer4>
-                <Answer4Audio>TheLopezFamilyQ2A4.mp3</Answer4Audio>
+                <Answer4Audio>TheLopezFamilyQ2A4S.mp3</Answer4Audio>
                 <expectedSelection>Sus llaves</expectedSelection>
             </Question>
             <Question number="3">
                 <QuestionText>¿Quién visita a la bebé?</QuestionText>
-                <QuestionAudio>TheLopezFamilyQ3.mp3</QuestionAudio>
+                <QuestionAudio>TheLopezFamilyQ3S.mp3</QuestionAudio>
                 <Answer1>Lola, la coneja</Answer1>
-                <Answer1Audio>TheLopezFamilyQ3A1.mp3</Answer1Audio>
+                <Answer1Audio>TheLopezFamilyQ3A1S.mp3</Answer1Audio>
                 <Answer2>Paco, el perro</Answer2>
-                <Answer2Audio>TheLopezFamilyQ3A2.mp3</Answer2Audio>
+                <Answer2Audio>TheLopezFamilyQ3A2S.mp3</Answer2Audio>
                 <Answer3>Rosa, su mamá</Answer3>
-                <Answer3Audio>TheLopezFamilyQ3A3.mp3</Answer3Audio>
+                <Answer3Audio>TheLopezFamilyQ3A3S.mp3</Answer3Audio>
                 <Answer4>El coco</Answer4>
-                <Answer4Audio>TheLopezFamilyQ3A4.mp3</Answer4Audio>
+                <Answer4Audio>TheLopezFamilyQ3A4S.mp3</Answer4Audio>
                 <expectedSelection>Lola, la coneja</expectedSelection>
             </Question>
             <Question number="4">
                 <QuestionText>¿Hacia dónde maneja Martin?</QuestionText>
-                <QuestionAudio>TheLopezFamilyQ4.mp3</QuestionAudio>
+                <QuestionAudio>TheLopezFamilyQ4S.mp3</QuestionAudio>
                 <Answer1>Hacia el frente de la casa</Answer1>
-                <Answer1Audio>TheLopezFamilyQ4A1.mp3</Answer1Audio>
+                <Answer1Audio>TheLopezFamilyQ4A1S.mp3</Answer1Audio>
                 <Answer2>Al mercado</Answer2>
-                <Answer2Audio>TheLopezFamilyQ4A2.mp3</Answer2Audio>
+                <Answer2Audio>TheLopezFamilyQ4A2S.mp3</Answer2Audio>
                 <Answer3>Por el barrio</Answer3>
-                <Answer3Audio>TheLopezFamilyQ4A3.mp3</Answer3Audio>
+                <Answer3Audio>TheLopezFamilyQ4A3S.mp3</Answer3Audio>
                 <Answer4>Al espacio exterior</Answer4>
-                <Answer4Audio>TheLopezFamilyQ4A4.mp3</Answer4Audio>
+                <Answer4Audio>TheLopezFamilyQ4A4S.mp3</Answer4Audio>
                 <expectedSelection>Hacia el frente de la casa</expectedSelection>
             </Question>
             <Question number="5">
                 <QuestionText>¿Qué va a estar haciendo pronto la familia?</QuestionText>
-                <QuestionAudio>TheLopezFamilyQ5.mp3</QuestionAudio>
+                <QuestionAudio>TheLopezFamilyQ5S.mp3</QuestionAudio>
                 <Answer1>Resolviendo un misterio</Answer1>
-                <Answer1Audio>TheLopezFamilyQ5A1.mp3</Answer1Audio>
+                <Answer1Audio>TheLopezFamilyQ5A1S.mp3</Answer1Audio>
                 <Answer2>Yendo al parque</Answer2>
-                <Answer2Audio>TheLopezFamilyQ5A2.mp3</Answer2Audio>
+                <Answer2Audio>TheLopezFamilyQ5A2S.mp3</Answer2Audio>
                 <Answer3>Jugando un juego</Answer3>
-                <Answer3Audio>TheLopezFamilyQ5A3.mp3</Answer3Audio>
+                <Answer3Audio>TheLopezFamilyQ5A3S.mp3</Answer3Audio>
                 <Answer4>Nadando con tiburones</Answer4>
-                <Answer4Audio>TheLopezFamilyQ5A4.mp3</Answer4Audio>
+                <Answer4Audio>TheLopezFamilyQ5A4S.mp3</Answer4Audio>
                 <expectedSelection>Resolviendo un misterio</expectedSelection>
             </Question>
             <Question number="6">
                 <QuestionText>¿Por qué agarró Martin sus llaves?</QuestionText>
-                <QuestionAudio>TheLopezFamilyQ6.mp3</QuestionAudio>
+                <QuestionAudio>TheLopezFamilyQ6S.mp3</QuestionAudio>
                 <Answer1>Para manejar su coche</Answer1>
-                <Answer1Audio>TheLopezFamilyQ6A1.mp3</Answer1Audio>
+                <Answer1Audio>TheLopezFamilyQ6A1S.mp3</Answer1Audio>
                 <Answer2>Para abrir la puerta principal</Answer2>
-                <Answer2Audio>TheLopezFamilyQ6A2.mp3</Answer2Audio>
+                <Answer2Audio>TheLopezFamilyQ6A2S.mp3</Answer2Audio>
                 <Answer3>Para dejar que la bebé juegue con ellas</Answer3>
-                <Answer3Audio>TheLopezFamilyQ6A3.mp3</Answer3Audio>
+                <Answer3Audio>TheLopezFamilyQ6A3S.mp3</Answer3Audio>
                 <Answer4>Para escribir en su computador</Answer4>
-                <Answer4Audio>TheLopezFamilyQ6A4.mp3</Answer4Audio>
+                <Answer4Audio>TheLopezFamilyQ6A4S.mp3</Answer4Audio>
                 <expectedSelection>Para manejar su coche</expectedSelection>
             </Question>
             <Question number="7">
                 <QuestionText>¿Por qué trabaja Rosa desde la casa?</QuestionText>
-                <QuestionAudio>TheLopezFamilyQ7.mp3</QuestionAudio>
+                <QuestionAudio>TheLopezFamilyQ7S.mp3</QuestionAudio>
                 <Answer1>Para cuidar a la bebé</Answer1>
-                <Answer1Audio>TheLopezFamilyQ7A1.mp3</Answer1Audio>
+                <Answer1Audio>TheLopezFamilyQ7A1S.mp3</Answer1Audio>
                 <Answer2>Para cuidar a Paco</Answer2>
-                <Answer2Audio>TheLopezFamilyQ7A2.mp3</Answer2Audio>
+                <Answer2Audio>TheLopezFamilyQ7A2S.mp3</Answer2Audio>
                 <Answer3>Porque su trabajo queda muy lejos</Answer3>
-                <Answer3Audio>TheLopezFamilyQ7A3.mp3</Answer3Audio>
+                <Answer3Audio>TheLopezFamilyQ7A3S.mp3</Answer3Audio>
                 <Answer4>Porque su jefe huele mal</Answer4>
-                <Answer4Audio>TheLopezFamilyQ7A4.mp3</Answer4Audio>
+                <Answer4Audio>TheLopezFamilyQ7A4S.mp3</Answer4Audio>
                 <expectedSelection>Para cuidar a la bebé</expectedSelection>
             </Question>
         </Questions>
