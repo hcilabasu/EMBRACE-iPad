@@ -7,43 +7,37 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Activity.h"
 
-//describes the condition in which the app will be deployed
-typedef enum Condition{
-    MENU,
-    HOTSPOT,
-    CONTROL,
-    OTHER,
-    EMBRACE
+//Condition in which the app will be deployed
+typedef enum Condition {
+    CONTROL, //no manipulation
+    EMBRACE //manipulation (PM or IM)
 } Condition;
 
-//Defines the types of language conditions to be used
-typedef enum Language{
+//Language of text/audio
+typedef enum Language {
     ENGLISH,
-    BILINGUAL
+    BILINGUAL //English + Spanish
 } Language;
 
-//defines the types of mode conditions to be used
-typedef enum AppMode{
-    Authoring,
-    Study,
-    ITS
+//Different modes of the app
+typedef enum AppMode {
+    Authoring, //authoring of epubs
+    Study, //normal use
+    ITS //intelligent tutoring system
 } AppMode;
 
-@interface ConditionSetup : NSObject {
+@interface ConditionSetup : NSObject
 
-    Condition condition;
-    Language language;
-    AppMode appmode;
-    
-}
+@property (nonatomic) Condition condition;
+@property (nonatomic) Language language;
+@property (nonatomic) AppMode appMode;
+@property (nonatomic) Mode currentMode; //PM or IM
 
-@property(nonatomic) Condition condition;
-@property(nonatomic) Language language;
-@property(nonatomic) AppMode appmode;
++ (ConditionSetup*)sharedInstance;
 
--(NSString*)ReturnModeEnumToString:(AppMode) type;
--(NSString*)ReturnLanguageEnumtoString:(Language) type;
--(NSString*)ReturnConditionEnumToString:(Condition) type;
+- (NSString*)returnLanguageEnumtoString:(Language)type;
+- (NSString*)returnConditionEnumToString:(Condition)type;
 
 @end

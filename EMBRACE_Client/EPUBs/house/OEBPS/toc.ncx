@@ -36,7 +36,7 @@
 		  <navLabel>
 	    	<text>The Lopez Family - PM</text>
 		  </navLabel>
-            <content src="Text/Story1-The-Lopez-Family-Intro-E.xhtml"/>
+            <content src="Text/Story1-The-Lopez-Family-PM-2S.xhtml"/>
 		</navPoint>
 		<navPoint class="IM_MODE" id="story1-IM-1">
 		  <navLabel>

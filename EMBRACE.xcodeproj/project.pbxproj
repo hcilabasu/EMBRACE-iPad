@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		030C8A981C5B1C6A00042C6F /* ImagineManipulationSolution.m in Sources */ = {isa = PBXBuildFile; fileRef = 030C8A971C5B1C6A00042C6F /* ImagineManipulationSolution.m */; };
+		033BC05D1C501BB600A1EC14 /* ActivityMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 033BC05C1C501BB600A1EC14 /* ActivityMode.m */; };
+		033BC0641C505E4300A1EC14 /* sequences1.xml in Resources */ = {isa = PBXBuildFile; fileRef = 033BC0631C505E4300A1EC14 /* sequences1.xml */; };
+		033BC0671C506C0100A1EC14 /* ActivitySequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 033BC0661C506C0100A1EC14 /* ActivitySequence.m */; };
+		033BC06A1C507BD100A1EC14 /* ActivitySequenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 033BC0691C507BD100A1EC14 /* ActivitySequenceController.m */; };
 		1A0385061C2B156400A973D8 /* hook_n_key_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0385051C2B156400A973D8 /* hook_n_key_large.png */; };
 		1A0385091C2B1F2500A973D8 /* cilia_inside.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0385071C2B1F2500A973D8 /* cilia_inside.png */; };
 		1A03850A1C2B1F2500A973D8 /* cilia_outside.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0385081C2B1F2500A973D8 /* cilia_outside.png */; };
@@ -2612,6 +2617,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		030C8A961C5B1C6A00042C6F /* ImagineManipulationSolution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagineManipulationSolution.h; sourceTree = "<group>"; };
+		030C8A971C5B1C6A00042C6F /* ImagineManipulationSolution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagineManipulationSolution.m; sourceTree = "<group>"; };
+		033BC05B1C501BB600A1EC14 /* ActivityMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityMode.h; sourceTree = "<group>"; };
+		033BC05C1C501BB600A1EC14 /* ActivityMode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityMode.m; sourceTree = "<group>"; };
+		033BC0631C505E4300A1EC14 /* sequences1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences1.xml; sourceTree = "<group>"; };
+		033BC0651C506C0100A1EC14 /* ActivitySequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivitySequence.h; sourceTree = "<group>"; };
+		033BC0661C506C0100A1EC14 /* ActivitySequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivitySequence.m; sourceTree = "<group>"; };
+		033BC0681C507BD100A1EC14 /* ActivitySequenceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivitySequenceController.h; sourceTree = "<group>"; };
+		033BC0691C507BD100A1EC14 /* ActivitySequenceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivitySequenceController.m; sourceTree = "<group>"; };
 		1A0385051C2B156400A973D8 /* hook_n_key_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hook_n_key_large.png; sourceTree = "<group>"; };
 		1A0385071C2B1F2500A973D8 /* cilia_inside.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cilia_inside.png; sourceTree = "<group>"; };
 		1A0385081C2B1F2500A973D8 /* cilia_outside.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cilia_outside.png; sourceTree = "<group>"; };
@@ -5200,45 +5214,6 @@
 		5DB5099C1C40D5D800EB74E0 /* Story5-Newton's-Law-of-Acceleration-on-Earth-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-Newton's-Law-of-Acceleration-on-Earth-Intro-S.xhtml"; sourceTree = "<group>"; };
 		5DB5099E1C40D69900EB74E0 /* Story6-Newton's-Third-Law-Forces-are-Paired-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story6-Newton's-Third-Law-Forces-are-Paired-Intro-S.xhtml"; sourceTree = "<group>"; };
 		5DB509A01C40D6FF00EB74E0 /* Story7-The-Three-Laws-Work-Together-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story7-The-Three-Laws-Work-Together-Intro-S.xhtml"; sourceTree = "<group>"; };
-		5DBC02E11C509B880030072B /* TheLuckyStoneQ1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ1.mp3; sourceTree = "<group>"; };
-		5DBC02E21C509B880030072B /* TheLuckyStoneQ1A1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ1A1.mp3; sourceTree = "<group>"; };
-		5DBC02E31C509B880030072B /* TheLuckyStoneQ1A2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ1A2.mp3; sourceTree = "<group>"; };
-		5DBC02E41C509B880030072B /* TheLuckyStoneQ1A3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ1A3.mp3; sourceTree = "<group>"; };
-		5DBC02E51C509B880030072B /* TheLuckyStoneQ1A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ1A4.mp3; sourceTree = "<group>"; };
-		5DBC02E61C509B880030072B /* TheLuckyStoneQ2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ2.mp3; sourceTree = "<group>"; };
-		5DBC02E71C509B880030072B /* TheLuckyStoneQ2A1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ2A1.mp3; sourceTree = "<group>"; };
-		5DBC02E81C509B880030072B /* TheLuckyStoneQ2A2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ2A2.mp3; sourceTree = "<group>"; };
-		5DBC02E91C509B880030072B /* TheLuckyStoneQ2A3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ2A3.mp3; sourceTree = "<group>"; };
-		5DBC02EA1C509B880030072B /* TheLuckyStoneQ2A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ2A4.mp3; sourceTree = "<group>"; };
-		5DBC02F51C509CFD0030072B /* TheLuckyStoneQ3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ3.mp3; sourceTree = "<group>"; };
-		5DBC02F61C509CFD0030072B /* TheLuckyStoneQ3A1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ3A1.mp3; sourceTree = "<group>"; };
-		5DBC02F71C509CFD0030072B /* TheLuckyStoneQ3A2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ3A2.mp3; sourceTree = "<group>"; };
-		5DBC02F81C509CFD0030072B /* TheLuckyStoneQ3A3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ3A3.mp3; sourceTree = "<group>"; };
-		5DBC02F91C509CFD0030072B /* TheLuckyStoneQ3A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ3A4.mp3; sourceTree = "<group>"; };
-		5DBC02FF1C5121AE0030072B /* TheLuckyStoneQ4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ4.mp3; sourceTree = "<group>"; };
-		5DBC03001C5121AE0030072B /* TheLuckyStoneQ4A1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ4A1.mp3; sourceTree = "<group>"; };
-		5DBC03011C5121AE0030072B /* TheLuckyStoneQ4A2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ4A2.mp3; sourceTree = "<group>"; };
-		5DBC03021C5121AE0030072B /* TheLuckyStoneQ4A3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ4A3.mp3; sourceTree = "<group>"; };
-		5DBC03031C5121AE0030072B /* TheLuckyStoneQ4A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ4A4.mp3; sourceTree = "<group>"; };
-		5DBC03041C5121AE0030072B /* TheLuckyStoneQ5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ5.mp3; sourceTree = "<group>"; };
-		5DBC03051C5121AE0030072B /* TheLuckyStoneQ5A1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ5A1.mp3; sourceTree = "<group>"; };
-		5DBC03061C5121AE0030072B /* TheLuckyStoneQ5A2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ5A2.mp3; sourceTree = "<group>"; };
-		5DBC03071C5121AE0030072B /* TheLuckyStoneQ5A3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ5A3.mp3; sourceTree = "<group>"; };
-		5DBC03081C5121AE0030072B /* TheLuckyStoneQ5A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ5A4.mp3; sourceTree = "<group>"; };
-		5DBC03091C5121AE0030072B /* TheLuckyStoneQ6.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ6.mp3; sourceTree = "<group>"; };
-		5DBC030A1C5121AE0030072B /* TheLuckyStoneQ6A1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ6A1.mp3; sourceTree = "<group>"; };
-		5DBC030B1C5121AE0030072B /* TheLuckyStoneQ6A2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ6A2.mp3; sourceTree = "<group>"; };
-		5DBC030C1C5121AE0030072B /* TheLuckyStoneQ6A3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ6A3.mp3; sourceTree = "<group>"; };
-		5DBC030D1C5121AE0030072B /* TheLuckyStoneQ6A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ6A4.mp3; sourceTree = "<group>"; };
-		5DBC030F1C5121AE0030072B /* TheLuckyStoneQ7A1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ7A1.mp3; sourceTree = "<group>"; };
-		5DBC03101C5121AE0030072B /* TheLuckyStoneQ7A2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ7A2.mp3; sourceTree = "<group>"; };
-		5DBC03111C5121AE0030072B /* TheLuckyStoneQ7A3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ7A3.mp3; sourceTree = "<group>"; };
-		5DBC03121C5121AE0030072B /* TheLuckyStoneQ7A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ7A4.mp3; sourceTree = "<group>"; };
-		5DBC03131C5121AE0030072B /* TheLuckyStoneQ8.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ8.mp3; sourceTree = "<group>"; };
-		5DBC03141C5121AE0030072B /* TheLuckyStoneQ8A1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ8A1.mp3; sourceTree = "<group>"; };
-		5DBC03151C5121AE0030072B /* TheLuckyStoneQ8A2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ8A2.mp3; sourceTree = "<group>"; };
-		5DBC03161C5121AE0030072B /* TheLuckyStoneQ8A3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ8A3.mp3; sourceTree = "<group>"; };
-		5DBC03171C5121AE0030072B /* TheLuckyStoneQ8A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneQ8A4.mp3; sourceTree = "<group>"; };
 		C32DA0DF1BF92A52006C2418 /* Progress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Progress.h; sourceTree = "<group>"; };
 		C32DA0E01BF92A52006C2418 /* Progress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Progress.m; sourceTree = "<group>"; };
 		C35F42791BDAAD3600B4BCF0 /* bookmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bookmark.png; sourceTree = "<group>"; };
@@ -6628,6 +6603,8 @@
 				C3B5214F19254BA2003FF639 /* ActionStep.m */,
 				C3B5215019254BA2003FF639 /* PhysicalManipulationSolution.h */,
 				C3B5215119254BA2003FF639 /* PhysicalManipulationSolution.m */,
+				030C8A961C5B1C6A00042C6F /* ImagineManipulationSolution.h */,
+				030C8A971C5B1C6A00042C6F /* ImagineManipulationSolution.m */,
 				5C466ADA192293290056EA4B /* Translation.h */,
 				5C466ADB192293290056EA4B /* Translation.m */,
 				C36473EC1A9AA5C100FD7494 /* AlternateSentence.h */,
@@ -6719,6 +6696,7 @@
 				1A631FFE1C0E4D3B00251CB3 /* physics.epub */,
 				5CE1E30F1A119E120070A7D6 /* bestFarm.epub */,
 				5CE1E30D1A119DFC0070A7D6 /* circulatory.epub */,
+				033BC0631C505E4300A1EC14 /* sequences1.xml */,
 				5C7FE06619A7E43B00CBBE0E /* sounds */,
 				31953E501729ECC100570087 /* EMBRACE-Info.plist */,
 				31953E511729ECC100570087 /* InfoPlist.strings */,
@@ -8134,6 +8112,12 @@
 			children = (
 				5CC854E519FAF37F00910237 /* ConditionSetup.h */,
 				5CC854E619FAF37F00910237 /* ConditionSetup.m */,
+				033BC05B1C501BB600A1EC14 /* ActivityMode.h */,
+				033BC05C1C501BB600A1EC14 /* ActivityMode.m */,
+				033BC0651C506C0100A1EC14 /* ActivitySequence.h */,
+				033BC0661C506C0100A1EC14 /* ActivitySequence.m */,
+				033BC0681C507BD100A1EC14 /* ActivitySequenceController.h */,
+				033BC0691C507BD100A1EC14 /* ActivitySequenceController.m */,
 			);
 			name = "Condition Setup";
 			sourceTree = "<group>";
@@ -10888,6 +10872,7 @@
 				5C28DC5B1C2BA66E005ACD07 /* container.xml in Resources */,
 				5C9C0AF01C573AAA00702FCD /* WhyWeBreatheQ1A1.mp3 in Resources */,
 				1A6321C91C0E4D3B00251CB3 /* Translations-MetaData.xml in Resources */,
+				033BC0641C505E4300A1EC14 /* sequences1.xml in Resources */,
 				1A63232B1C0E4D3B00251CB3 /* rocket_flame.png in Resources */,
 				5D9E342E1C590E9500636150 /* old_IsPacoAThiefQ6.mp3 in Resources */,
 				1A6321E41C0E4D3B00251CB3 /* bulge.png in Resources */,
@@ -11375,6 +11360,7 @@
 				5CD7FE3819776403007A1E49 /* Introduction.m in Sources */,
 				C3B5214C19254B0C003FF639 /* Location.m in Sources */,
 				31953E761729ED5A00570087 /* mztools.c in Sources */,
+				033BC0671C506C0100A1EC14 /* ActivitySequence.m in Sources */,
 				C3D79468196B1EC9004C26ED /* AlternateImage.m in Sources */,
 				3115B1D41819C532007171E3 /* PossibleInteraction.m in Sources */,
 				5CD7FE3519775C1C007A1E49 /* VocabularyStep.m in Sources */,
@@ -11387,9 +11373,12 @@
 				31953E871729EE5800570087 /* LibraryViewController.m in Sources */,
 				C3B5215A192AB610003FF639 /* EBookImporter.m in Sources */,
 				1AB028FC1ACF0890006CC916 /* AuthoringModeViewController.m in Sources */,
+				033BC05D1C501BB600A1EC14 /* ActivityMode.m in Sources */,
+				030C8A981C5B1C6A00042C6F /* ImagineManipulationSolution.m in Sources */,
 				1AF3815B1A40A4C600D967FD /* AssessmentActivityViewController.m in Sources */,
 				31953E8D1729EE6E00570087 /* BookCellView.m in Sources */,
 				5CFA85AB1950EFDC00C7537D /* IntroductionStep.m in Sources */,
+				033BC06A1C507BD100A1EC14 /* ActivitySequenceController.m in Sources */,
 				31953E8F1729EE6E00570087 /* LibraryView.m in Sources */,
 				5D1168DB1C5A982B00536340 /* PMViewController.m in Sources */,
 				5C466ADC192293290056EA4B /* Translation.m in Sources */,
