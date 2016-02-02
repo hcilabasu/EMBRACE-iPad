@@ -21,11 +21,16 @@ typedef enum Status {
     NSMutableDictionary* chaptersCompleted;
     NSMutableDictionary* chaptersInProgress;
     NSMutableDictionary* chaptersIncomplete;
+    
+    NSInteger sequenceId; //identifier for sequence
+    NSInteger currentSequence; //index of current sequence
 }
 
 @property (nonatomic, strong) NSMutableDictionary* chaptersCompleted;
 @property (nonatomic, strong) NSMutableDictionary* chaptersInProgress;
 @property (nonatomic, strong) NSMutableDictionary* chaptersIncomplete;
+@property (nonatomic, assign) NSInteger sequenceId;
+@property (nonatomic, assign) NSInteger currentSequence;
 
 - (id) init;
 

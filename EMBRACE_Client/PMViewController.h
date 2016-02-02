@@ -1,5 +1,5 @@
 //
-//  BookViewController.h
+//  PMViewController.h
 //  eBookReader
 //
 //  Created by Andreea Danielescu on 2/12/13.
@@ -26,16 +26,9 @@ typedef enum InteractionMode {
     INTERACTION
 } InteractionMode;
 
-//This enum defines the action types that exist in every intro or vocab step
-//typedef enum Action {
-//    SELECTION,
-//    EXP_ACTION,
-//    INPUT
-//}Action;
-
 @interface PMViewController : UIViewController <UIGestureRecognizerDelegate, UIScrollViewDelegate, PieContextualMenuDelegate> {
     EBookImporter *bookImporter;
-    Book* book;
+    Book *book;
     
     IBOutlet UIPinchGestureRecognizer *pinchRecognizer;
     IBOutlet UIPanGestureRecognizer *panRecognizer;
@@ -47,17 +40,17 @@ typedef enum InteractionMode {
 @property (nonatomic, strong) EBookImporter *bookImporter;
 @property (nonatomic, strong) NSString *bookTitle;
 @property (nonatomic, strong) NSString *chapterTitle;
-@property (nonatomic, strong) Book* book;
-@property (nonatomic, strong) AVSpeechSynthesizer* syn;
+@property (nonatomic, strong) Book *book;
+@property (nonatomic, strong) AVSpeechSynthesizer *syn;
 @property (nonatomic, strong) IntroductionViewController *IntroductionClass;
-@property (nonatomic, strong) BuildHTMLString *buildstringClass;
-@property(nonatomic,strong) PlayAudioFile *playaudioClass;
-@property(nonatomic, strong) UIViewController *libraryViewController;
+@property (nonatomic, strong) BuildHTMLString *buildStringClass;
+@property (nonatomic, strong) PlayAudioFile *playaudioClass;
+@property (nonatomic, strong) UIViewController *libraryViewController;
 
--(void)loadAssessmentActivity;
--(void) loadFirstPage;
--(void) loadNextPage;
--(void) loadPage;
--(UIImage*) getBackgroundImage;
+- (void) loadAssessmentActivity;
+- (void) loadFirstPage;
+- (void) loadNextPage;
+- (void) loadPage;
+- (UIImage *) getBackgroundImage;
 
 @end
