@@ -1445,6 +1445,7 @@
 		5C28DD201C2BA66E005ACD07 /* Waypoints-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5C28DC5A1C2BA66E005ACD07 /* Waypoints-MetaData.xml */; };
 		5C466ADC192293290056EA4B /* Translation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C466ADB192293290056EA4B /* Translation.m */; };
 		5C5C6FD91C45ADE9002A67F9 /* liftingpole.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C5C6FD81C45ADE9002A67F9 /* liftingpole.png */; };
+		5C5F7CBF1C62BE8000CF70A1 /* Story1-The-Naughty-Monkey-PM-1S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C5F7CBE1C62BE8000CF70A1 /* Story1-The-Naughty-Monkey-PM-1S.xhtml */; };
 		5C9C06F81C57385A00702FCD /* CleaningUpQ1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C9C05271C57385900702FCD /* CleaningUpQ1.mp3 */; };
 		5C9C06F91C57385A00702FCD /* CleaningUpQ1A1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C9C05281C57385900702FCD /* CleaningUpQ1A1.mp3 */; };
 		5C9C06FA1C57385A00702FCD /* CleaningUpQ1A2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C9C05291C57385900702FCD /* CleaningUpQ1A2.mp3 */; };
@@ -4225,6 +4226,7 @@
 		5C466ADA192293290056EA4B /* Translation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Translation.h; sourceTree = "<group>"; };
 		5C466ADB192293290056EA4B /* Translation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Translation.m; sourceTree = "<group>"; };
 		5C5C6FD81C45ADE9002A67F9 /* liftingpole.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = liftingpole.png; sourceTree = "<group>"; };
+		5C5F7CBE1C62BE8000CF70A1 /* Story1-The-Naughty-Monkey-PM-1S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-The-Naughty-Monkey-PM-1S.xhtml"; sourceTree = "<group>"; };
 		5C80A4EF1B4F378500CAC13E /* Vector.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Vector.js; sourceTree = "<group>"; };
 		5C9C05271C57385900702FCD /* CleaningUpQ1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CleaningUpQ1.mp3; sourceTree = "<group>"; };
 		5C9C05281C57385900702FCD /* CleaningUpQ1A1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CleaningUpQ1A1.mp3; sourceTree = "<group>"; };
@@ -8613,6 +8615,7 @@
 			isa = PBXGroup;
 			children = (
 				5CA955571C3237690038FB56 /* Story1-The-Naughty-Monkey-PM-1.xhtml */,
+				5C5F7CBE1C62BE8000CF70A1 /* Story1-The-Naughty-Monkey-PM-1S.xhtml */,
 				5CA955581C3237690038FB56 /* Story1-The-Naughty-Monkey-PM-2.xhtml */,
 				5CA955591C3237690038FB56 /* Story1-The-Naughty-Monkey-Title.xhtml */,
 			);
@@ -10190,6 +10193,7 @@
 				5C28DC6A1C2BA66E005ACD07 /* background_ch5_2.png in Resources */,
 				5C28DC721C2BA66E005ACD07 /* bendingpole2.png in Resources */,
 				5C28DCBF1C2BA66E005ACD07 /* plank_pile.png in Resources */,
+				5C5F7CBF1C62BE8000CF70A1 /* Story1-The-Naughty-Monkey-PM-1S.xhtml in Resources */,
 				5CA9555F1C3237690038FB56 /* container.xml in Resources */,
 				5C28DD071C2BA66E005ACD07 /* Story3-The-Sioux-Teepee-PM-5.xhtml in Resources */,
 				5D9E34C61C590E9600636150 /* Silver_def_S.mp3 in Resources */,
