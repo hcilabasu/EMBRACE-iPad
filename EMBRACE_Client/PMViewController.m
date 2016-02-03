@@ -4488,6 +4488,8 @@ BOOL wasPathFollowed = false;
  * is correct, then it will move on to the next sentence. If the manipulation is not current, then feedback will be provided.
  */
 -(IBAction)pressedNext:(id)sender {
+    
+    NSString *preAudio = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(preaudio)"]];
     if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
         // If the user pressed next
         if ([[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
@@ -4695,54 +4697,83 @@ BOOL wasPathFollowed = false;
 }
 
 - (void)playCurrentSentenceAudio {
+  
+    NSString *sentenceAudioFile = nil;
     //If we are on the first or second manipulation page of The Contest, play the audio of the current sentence
     if ([chapterTitle isEqualToString:@"The Contest"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
         if((conditionSetup.language ==BILINGUAL)) {
-            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"BFEC%d.m4a",currentSentence]];
+            sentenceAudioFile = [NSString stringWithFormat:@"BFEC%d.m4a",currentSentence];
         }
         else {
-            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
+            sentenceAudioFile = [NSString stringWithFormat:@"BFTC%d.m4a",currentSentence];
         }
     }
     
     //If we are on the first or second manipulation page of Why We Breathe, play the audio of the current sentence
     if ([chapterTitle isEqualToString:@"Why We Breathe"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
         if((conditionSetup.language ==BILINGUAL)) {
-            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"CPQR%d.m4a",currentSentence]];
+            sentenceAudioFile = [NSString stringWithFormat:@"CPQR%d.m4a",currentSentence];
         }
         else {
-            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"CWWB%d.m4a",currentSentence]];
+            sentenceAudioFile = [NSString stringWithFormat:@"CWWB%d.m4a",currentSentence];
         }
     }
     
     //If we are on the first or second manipulation page of The Lopez Family, play the current sentence
     if ([chapterTitle isEqualToString:@"The Lopez Family"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
         if(conditionSetup.language ==BILINGUAL) {
-            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3",currentSentence]];
+            sentenceAudioFile = [NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3",currentSentence];
         }
         else {
-            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3",currentSentence]];
+            sentenceAudioFile = [NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3",currentSentence];
         }
     }
     //If we are on the first or second manipulation page of The Lucky Stone, play the current sentence
     if ([chapterTitle isEqualToString:@"The Lucky Stone"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
         if(conditionSetup.language ==BILINGUAL) {
-            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLuckyStoneS%dS.mp3",currentSentence]];
+            sentenceAudioFile = [NSString stringWithFormat:@"TheLuckyStoneS%dS.mp3",currentSentence];
         }
         else {
-            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLuckyStoneS%dE.mp3",currentSentence]];
+            sentenceAudioFile = [NSString stringWithFormat:@"TheLuckyStoneS%dE.mp3",currentSentence];
         }
     }
     
     //If we are on the first or second manipulation page of The Naughty Monkey, play the current sentence
     if ([chapterTitle isEqualToString:@"The Naughty Monkey"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
         if(conditionSetup.language ==BILINGUAL) {
-            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheNaughtyMonkeyS%dS.mp3",currentSentence]];
+            sentenceAudioFile = [NSString stringWithFormat:@"TheNaughtyMonkeyS%dS.mp3",currentSentence];
         }
         else {
-            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheNaughtyMonkeyS%dE.mp3",currentSentence]];
+            sentenceAudioFile = [NSString stringWithFormat:@"TheNaughtyMonkeyS%dE.mp3",currentSentence];
         }
     }
+    
+//    NSString* spanishExtTag = [NSString stringWithFormat:@"document.querySelectorAll(\"p[id=\'%@%d\']\")", @"s",currentSentence];
+//
+//    
+//    NSString *preAudio1 = [bookView stringByEvaluatingJavaScriptFromString:spanishExtTag];
+//    
+    NSString *preAudio = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(\'s1\')"]];
+    if (preAudio != nil && [preAudio isEqualToString:@""] == NO) {
+        [self.playaudioClass playAudioInSequence:self :preAudio :sentenceAudioFile];
+    } else {
+        NSString *postAudio = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d).getAttribute(\"postAudio\")", @"s",currentSentence]];
+        if (postAudio == nil && [postAudio isEqualToString:@""] == NO) {
+            [self.playaudioClass playAudioInSequence:self :sentenceAudioFile :postAudio];
+        } else {
+            [self.playaudioClass playAudioFile:self:sentenceAudioFile];
+        }
+        
+    }
+    
+   
+    // Find if the sentence has some pre or post script
+    
+    
+//    //Capture the spanish extension
+//    NSString* spanishExtTag = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).getAttribute(\"spanishExt\")", location.x, location.y];
+//    NSString* spanishExt = [bookView stringByEvaluatingJavaScriptFromString:spanishExtTag];
+    
 }
 
 /*
