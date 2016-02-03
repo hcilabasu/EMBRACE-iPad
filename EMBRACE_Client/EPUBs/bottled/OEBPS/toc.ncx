@@ -18,19 +18,19 @@
             <navLabel>
                 <text>The Lucky Stone - Intro</text>
             </navLabel>
-            <content src="Text/Story1-The-Lucky-Stone-Intro-E.xhtml"/>
+            <content src="Text/Story1-The-Lucky-Stone-Intro-S.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story1-PM-1">
 		  <navLabel>
     		<text>The Lucky Stone - PM</text>
 		  </navLabel>
-		  <content src="Text/Story1-The-Lucky-Stone-PM-1.xhtml"/>
+		  <content src="Text/Story1-The-Lucky-Stone-PM-1S.xhtml"/>
 		</navPoint>
        <navPoint class="PM_MODE" id="story1-PM-2">
 		  <navLabel>
 	    	<text>The Lucky Stone - PM</text>
 		  </navLabel>
-		  <content src="Text/Story1-The-Lucky-Stone-PM-2.xhtml"/>
+		  <content src="Text/Story1-The-Lucky-Stone-PM-2S.xhtml"/>
 		</navPoint>
 	</navPoint>
 	
@@ -43,7 +43,7 @@
             <navLabel>
                 <text>Magic Toys - Intro</text>
             </navLabel>
-            <content src="Text/Story2-Magic-Toys-Intro-E.xhtml"/>
+            <content src="Text/Story2-Magic-Toys-Intro-S.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story2-PM-1">
 		  <navLabel>
@@ -68,7 +68,7 @@
             <navLabel>
                 <text>Baby Brother - Intro</text>
             </navLabel>
-            <content src="Text/Story3-Baby-Brother-Intro-E.xhtml"/>
+            <content src="Text/Story3-Baby-Brother-Intro-S.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story3-PM-1">
 		  <navLabel>
@@ -99,7 +99,7 @@
             <navLabel>
                 <text>Words of Wisdom - Intro</text>
             </navLabel>
-            <content src="Text/Story4-Words-of-Wisdom-Intro-E.xhtml"/>
+            <content src="Text/Story4-Words-of-Wisdom-Intro-S.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story4-PM-1">
 		  <navLabel>
@@ -130,7 +130,7 @@
             <navLabel>
                 <text>Catch! - Intro</text>
             </navLabel>
-            <content src="Text/Story5-Catch-Intro-E.xhtml"/>
+            <content src="Text/Story5-Catch-Intro-S.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story5-PM-1">
 		  <navLabel>
@@ -156,19 +156,19 @@
 <pageList>
   <pageTarget id="p1" type="normal" value="1">
     	<navLabel><text>Chapter 1 - The Lucky Stone - Introduction</text></navLabel>
-		<content src="Text/Story1-The-Lucky-Stone-Intro-E.xhtml"/>
+		<content src="Text/Story1-The-Lucky-Stone-Intro-S.xhtml"/>
   </pageTarget>
   <pageTarget id="p2" type="normal" value="2">
     	<navLabel><text>Chapter 1 - The Lucky Stone - Physical Manipulation 1</text></navLabel>
-		<content src="Text/Story1-The-Lucky-Stone-PM-1.xhtml"/>
+		<content src="Text/Story1-The-Lucky-Stone-PM-1S.xhtml"/>
   </pageTarget>
   <pageTarget id="p3" type="normal" value="3">
     	<navLabel><text>Chapter 1 - The Lucky Stone - Physical Manipulation 2</text></navLabel>
-		<content src="Text/Story1-The-Lucky-Stone-PM-2.xhtml"/>
+		<content src="Text/Story1-The-Lucky-Stone-PM-2S.xhtml"/>
   </pageTarget>
   <pageTarget id="p4" type="normal" value="4">
     	<navLabel><text>Chapter 2 - Magic Toys - Introduction</text></navLabel>
-		<content src="Text/Story2-Magic-Toys-Intro-E.xhtml"/>
+		<content src="Text/Story2-Magic-Toys-Intro-S.xhtml"/>
   </pageTarget>
   <pageTarget id="p5" type="normal" value="5">
     	<navLabel><text>Chapter 2 - Magic Toys - Physical Manipulation 1</text></navLabel>
@@ -180,7 +180,7 @@
   </pageTarget>
   <pageTarget id="p7" type="normal" value="7">
     	<navLabel><text>Chapter 3 - Baby Brother - Introduction</text></navLabel>
-		<content src="Text/Story3-Baby-Brother-Intro-E.xhtml"/>
+		<content src="Text/Story3-Baby-Brother-Intro-S.xhtml"/>
   </pageTarget>
   <pageTarget id="p8" type="normal" value="8">
     	<navLabel><text>Chapter 3 - Baby Brother - Physical Manipulation 1</text></navLabel>
@@ -196,7 +196,7 @@
   </pageTarget>
   <pageTarget id="p11" type="normal" value="11">
     	<navLabel><text>Chapter 4 - Words of Wisdom - Introduction</text></navLabel>
-		<content src="Text/Story4-Words-of-Wisdom-Intro-E.xhtml"/>
+		<content src="Text/Story4-Words-of-Wisdom-Intro-S.xhtml"/>
   </pageTarget>
   <pageTarget id="p12" type="normal" value="12">
     	<navLabel><text>Chapter 4 - Words of Wisdom - Physical Manipulation 1</text></navLabel>
@@ -212,7 +212,7 @@
   </pageTarget>
   <pageTarget id="p15" type="normal" value="15">
     	<navLabel><text>Chapter 5 - Catch! - Introduction</text></navLabel>
-		<content src="Text/Story5-Catch-Intro-E.xhtml"/>
+		<content src="Text/Story5-Catch-Intro-S.xhtml"/>
   </pageTarget>
   <pageTarget id="p16" type="normal" value="16">
     	<navLabel><text>Chapter 5 - Catch! - Physical Manipulation 1</text></navLabel>
