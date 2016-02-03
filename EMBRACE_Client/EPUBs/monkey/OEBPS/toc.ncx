@@ -32,7 +32,7 @@
     <pageList>
         <pageTarget id="p1" type="normal" value="1">
             <navLabel><text>Chapter 1 - The Naughty Monkey - Physical Manipulation 1</text></navLabel>
-            <content src="Text/Story1-The-Naughty-Monkey-PM-1.xhtml"/>
+            <content src="Text/Story1-The-Naughty-Monkey-PM-1S.xhtml"/>
         </pageTarget>
         <pageTarget id="p2" type="normal" value="2">
             <navLabel><text>Chapter 1 - The Naughty Monkey - Physical Manipulation 2</text></navLabel>
