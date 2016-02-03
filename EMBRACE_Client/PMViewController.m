@@ -284,54 +284,7 @@ BOOL wasPathFollowed = false;
     
     isAudioLeft = false;
     
-    //If we are on the first or second manipulation page of The Contest, play the audio of the first sentence
-    if ([chapterTitle isEqualToString:@"The Contest"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-        if (conditionSetup.language ==BILINGUAL) {
-            [self.playaudioClass playAudioFile : self:[NSString stringWithFormat:@"BFEC%d.m4a",currentSentence]];
-        }
-        else {
-            [self.playaudioClass playAudioFile: self:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
-        }
-    }
-    
-    //If we are on the first or second manipulation page of Why We Breathe, play the audio of the first sentence
-    if ([chapterTitle isEqualToString:@"Why We Breathe"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
-        if (conditionSetup.language ==BILINGUAL) {
-            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"CPQR%d.m4a",currentSentence]];
-        }
-        else {
-            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"CWWB%d.m4a",currentSentence]];
-        }
-    }
-    
-    //If we are on the first or second manipulation page of The Lopez Family, play the audio of the first sentence
-    if ([chapterTitle isEqualToString:@"The Lopez Family"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
-        if (conditionSetup.language ==BILINGUAL) {
-            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3",currentSentence]];
-        }
-        else {
-            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3",currentSentence]];
-        }
-    }
-    //If we are on the first or second manipulation page of The Lucky Stone, play the current sentence
-    if ([chapterTitle isEqualToString:@"The Lucky Stone"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-        if (conditionSetup.language ==BILINGUAL) {
-            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLuckyStoneS%dS.mp3",currentSentence]];
-        }
-        else {
-            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLuckyStoneS%dE.mp3",currentSentence]];
-        }
-    }
-    
-    //If we are on the first or second manipulation page of The Naughty Monkey, play the current sentence
-    if ([chapterTitle isEqualToString:@"The Naughty Monkey"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-        if (conditionSetup.language ==BILINGUAL) {
-            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheNaughtyMonkeyS%dS.mp3",currentSentence]];
-        }
-        else {
-            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheNaughtyMonkeyS%dE.mp3",currentSentence]];
-        }
-    }
+    [self playCurrentSentenceAudio];
     
     //If there is at least one area/path to build
     if ([model getAreaWithPageId:currentPageId]) {
@@ -3477,55 +3430,7 @@ BOOL wasPathFollowed = false;
                 else {
                         [[ServerCommunicationController sharedManager] logNextSentenceNavigation:@"Next Button" :tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :@"Next Sentence" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                 
-                        //If we are on the first or second manipulation page of The Contest, play the audio of the current sentence
-                        if ([chapterTitle isEqualToString:@"The Contest"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-                            
-                                if((conditionSetup.language == BILINGUAL)) {
-                                    [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"BFEC%d.m4a",currentSentence]];
-                                }
-                                else {
-                                    [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
-                                }
-                        }
-                    
-                        //If we are on the first or second manipulation page of Why We Breathe, play the audio of the current sentence
-                        if ([chapterTitle isEqualToString:@"Why We Breathe"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
-                                if ((conditionSetup.language ==BILINGUAL)) {
-                                    [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"CPQR%d.m4a",currentSentence]];
-                                }
-                                else {
-                                    [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"CWWB%d.m4a",currentSentence]];
-                                }
-                        }
-                    
-                    //If we are on the first or second manipulation page of The Lopez Family, play the current sentence
-                    if ([chapterTitle isEqualToString:@"The Lopez Family"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
-                        if (conditionSetup.language ==BILINGUAL) {
-                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3",currentSentence]];
-                        }
-                        else {
-                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3",currentSentence]];
-                        }
-                    }
-                    //If we are on the first or second manipulation page of The Lucky Stone, play the current sentence
-                    if ([chapterTitle isEqualToString:@"The Lucky Stone"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-                        if(conditionSetup.language == BILINGUAL) {
-                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLuckyStoneS%dS.mp3",currentSentence]];
-                        }
-                        else {
-                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLuckyStoneS%dE.mp3",currentSentence]];
-                        }
-                    }
-                    
-                    //If we are on the first or second manipulation page of The Naughty Monkey, play the current sentence
-                    if ([chapterTitle isEqualToString:@"The Naughty Monkey"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-                        if(conditionSetup.language == BILINGUAL) {
-                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheNaughtyMonkeyS%dS.mp3",currentSentence]];
-                        }
-                        else {
-                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheNaughtyMonkeyS%dE.mp3",currentSentence]];
-                        }
-                    }
+                         [self playCurrentSentenceAudio];
                     
                 }
             }
@@ -4734,55 +4639,7 @@ BOOL wasPathFollowed = false;
                     //Logging added by James for Computer moving to next sentence
                     [[ServerCommunicationController sharedManager] logNextSentenceNavigation:@"Next Button" :tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :@"Next Sentence" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                     
-                    //If we are on the first or second manipulation page of The Contest, play the audio of the current sentence
-                    if ([chapterTitle isEqualToString:@"The Contest"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-                        if((conditionSetup.language ==BILINGUAL)) {
-                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"BFEC%d.m4a",currentSentence]];
-                        }
-                        else {
-                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
-                        }
-                    }
-                    
-                    //If we are on the first or second manipulation page of Why We Breathe, play the audio of the current sentence
-                    if ([chapterTitle isEqualToString:@"Why We Breathe"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
-                        if((conditionSetup.language ==BILINGUAL)) {
-                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"CPQR%d.m4a",currentSentence]];
-                        }
-                        else {
-                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"CWWB%d.m4a",currentSentence]];
-                        }
-                    }
-                    
-                    //If we are on the first or second manipulation page of The Lopez Family, play the current sentence
-                    if ([chapterTitle isEqualToString:@"The Lopez Family"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
-                        if(conditionSetup.language ==BILINGUAL) {
-                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3",currentSentence]];
-                        }
-                        else {
-                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3",currentSentence]];
-                        }
-                    }
-                    
-                    //If we are on the first or second manipulation page of The Lucky Stone, play the current sentence
-                    if ([chapterTitle isEqualToString:@"The Lucky Stone"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-                        if(conditionSetup.language ==BILINGUAL) {
-                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLuckyStoneS%dS.mp3",currentSentence]];
-                        }
-                        else {
-                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLuckyStoneS%dE.mp3",currentSentence]];
-                        }
-                    }
-                    
-                    //If we are on the first or second manipulation page of The Naughty Monkey, play the current sentence
-                    if ([chapterTitle isEqualToString:@"The Naughty Monkey"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-                        if(conditionSetup.language ==BILINGUAL) {
-                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheNaughtyMonkeyS%dS.mp3",currentSentence]];
-                        }
-                        else {
-                            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheNaughtyMonkeyS%dE.mp3",currentSentence]];
-                        }
-                    }
+                     [self playCurrentSentenceAudio];
                     
                     
                 }
@@ -4826,60 +4683,64 @@ BOOL wasPathFollowed = false;
                 [self colorSentencesUponNext];
                 
                 [[ServerCommunicationController sharedManager] logNextSentenceNavigation:@"Next Button" :tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :@"Next Sentence" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                
-                //If we are on the first or second manipulation page of The Contest, play the audio of the current sentence
-                if ([chapterTitle isEqualToString:@"The Contest"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-                    if((conditionSetup.language ==BILINGUAL)) {
-                        [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"BFEC%d.m4a",currentSentence]];
-                    }
-                    else {
-                        [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
-                    }
-                }
-                
-                //If we are on the first or second manipulation page of Why We Breathe, play the audio of the current sentence
-                if ([chapterTitle isEqualToString:@"Why We Breathe"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
-                    if((conditionSetup.language ==BILINGUAL)) {
-                        [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"CPQR%d.m4a",currentSentence]];
-                    }
-                    else {
-                        [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"CWWB%d.m4a",currentSentence]];
-                    }
-                }
-                
-                //If we are on the first or second manipulation page of The Lopez Family, play the current sentence
-                if ([chapterTitle isEqualToString:@"The Lopez Family"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
-                    if(conditionSetup.language ==BILINGUAL) {
-                        [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3",currentSentence]];
-                    }
-                    else {
-                        [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3",currentSentence]];
-                    }
-                }
-                //If we are on the first or second manipulation page of The Lucky Stone, play the current sentence
-                if ([chapterTitle isEqualToString:@"The Lucky Stone"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-                    if(conditionSetup.language ==BILINGUAL) {
-                        [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLuckyStoneS%dS.mp3",currentSentence]];
-                    }
-                    else {
-                        [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLuckyStoneS%dE.mp3",currentSentence]];
-                    }
-                }
-                
-                //If we are on the first or second manipulation page of The Naughty Monkey, play the current sentence
-                if ([chapterTitle isEqualToString:@"The Naughty Monkey"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-                    if(conditionSetup.language ==BILINGUAL) {
-                        [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheNaughtyMonkeyS%dS.mp3",currentSentence]];
-                    }
-                    else {
-                        [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheNaughtyMonkeyS%dE.mp3",currentSentence]];
-                    }
-                }
+                [self playCurrentSentenceAudio];
+               
             }
         }
         else {
             //Play noise if not all steps have been completed
             [self.playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+        }
+    }
+}
+
+- (void)playCurrentSentenceAudio {
+    //If we are on the first or second manipulation page of The Contest, play the audio of the current sentence
+    if ([chapterTitle isEqualToString:@"The Contest"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+        if((conditionSetup.language ==BILINGUAL)) {
+            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"BFEC%d.m4a",currentSentence]];
+        }
+        else {
+            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"BFTC%d.m4a",currentSentence]];
+        }
+    }
+    
+    //If we are on the first or second manipulation page of Why We Breathe, play the audio of the current sentence
+    if ([chapterTitle isEqualToString:@"Why We Breathe"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
+        if((conditionSetup.language ==BILINGUAL)) {
+            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"CPQR%d.m4a",currentSentence]];
+        }
+        else {
+            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"CWWB%d.m4a",currentSentence]];
+        }
+    }
+    
+    //If we are on the first or second manipulation page of The Lopez Family, play the current sentence
+    if ([chapterTitle isEqualToString:@"The Lopez Family"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
+        if(conditionSetup.language ==BILINGUAL) {
+            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3",currentSentence]];
+        }
+        else {
+            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3",currentSentence]];
+        }
+    }
+    //If we are on the first or second manipulation page of The Lucky Stone, play the current sentence
+    if ([chapterTitle isEqualToString:@"The Lucky Stone"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+        if(conditionSetup.language ==BILINGUAL) {
+            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLuckyStoneS%dS.mp3",currentSentence]];
+        }
+        else {
+            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheLuckyStoneS%dE.mp3",currentSentence]];
+        }
+    }
+    
+    //If we are on the first or second manipulation page of The Naughty Monkey, play the current sentence
+    if ([chapterTitle isEqualToString:@"The Naughty Monkey"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+        if(conditionSetup.language ==BILINGUAL) {
+            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheNaughtyMonkeyS%dS.mp3",currentSentence]];
+        }
+        else {
+            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"TheNaughtyMonkeyS%dE.mp3",currentSentence]];
         }
     }
 }
