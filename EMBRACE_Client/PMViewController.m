@@ -1101,7 +1101,7 @@ BOOL wasPathFollowed = false;
     [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Error Audio" : @"NULL" :@"Error Noise"  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
 }
 
-
+  
 /*
  * Tap gesture. Currently only used for menu selection.
  */
@@ -1294,7 +1294,13 @@ BOOL wasPathFollowed = false;
         NSString* sentenceID = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceID];
         int sentenceIDNum = [[sentenceID substringFromIndex:0] intValue];
 
+        //Capture the spanish extension
+        NSString* spanishExtTag = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).getAttribute(\"spanishExt\")", location.x, location.y];
+        NSString* spanishExt = [bookView stringByEvaluatingJavaScriptFromString:spanishExtTag];
+        
+
         if (conditionSetup.appMode == ITS) {
+
             //Record vocabulary request for complexity
             [[pageStatistics objectForKey:currentPageId] addVocabTapForComplexity:(currentComplexity - 1)];
         }
@@ -1412,8 +1418,15 @@ BOOL wasPathFollowed = false;
                 [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"S" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
             }
             else if (conditionSetup.language ==BILINGUAL) {
+                
+                NSString *spanishAudio = [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"];
+                NSString *engAudio = [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"];
+               
+                if ([spanishExt isEqualToString:@""] == NO) {
+                    spanishAudio = [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,spanishExt];
+                }
                 //Play word audio Sp
-                [self.playaudioClass playAudioInSequence:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"]];
+                [self.playaudioClass playAudioInSequence:self:engAudio:spanishAudio];
                 
                 //Logging added by James for Word Audio
                 [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"S" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
