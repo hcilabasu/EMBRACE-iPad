@@ -12,26 +12,38 @@
         <story title="How do Objects Move?" activity_id="story1-PM-2">
             <sentence number="5">
                 <step number="1">
-                    <check obj1Id="smallrocket" action="getIn" locationId="forward"/>
+                    <shakeOrTap obj1Id="smallrocket" action="getIn" locationId="anywhere"/>
+                    <animate obj1Id="smallrocket" action="moveRightAndWrap" waypointId="" areaId=""/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Newton's First Law" activity_id="story2-PM-1">
+            <sentence number="0">
+                <step number="1">
+                    <animate obj1Id="smallrocket" action="moveRightAndWrap" waypointId="" areaId=""/>
                 </step>
             </sentence>
         </story>
         <story title="Newton's First Law" activity_id="story2-PM-2">
             <sentence number="5">
                 <step number="1">
-                    <check obj1Id="smallrocket" action="getIn" locationId="up"/>
+                    <animate obj1Id="smallrocket" action="moveRightAndWrap" waypointId="" areaId=""/>
+                    <checkUp obj1Id="smallrocket" action="getIn" locationId=""/>
                     <swapImage obj1Id="smallrocket" action="rotateUp"/>
+                    <animate obj1Id="smallrocket" action="move45DegreeAndWrap" waypointId="" areaId=""/>
                 </step>
             </sentence>
             <sentence number="6">
                 <step number="1">
-                    <shakeOrTap obj1Id="smallrocket" action="getIn" locationId="anywhere"/>
+                    <checkDown obj1Id="smallrocket" action="getIn" locationId="anywhere"/>
                     <swapImage obj1Id="smallrocket" action="rotateDown"/>
+                    <animate obj1Id="smallrocket" action="moveRightAndWrap" waypointId="" areaId=""/>
                 </step>
             </sentence>
             <sentence number="7">
                 <step number="1">
                     <shakeOrTap obj1Id="smallrocket" action="getIn" locationId="anywhere"/>
+                    <animate obj1Id="smallrocket" action="moveRightAndWrapSlower" waypointId="" areaId=""/>
                 </step>
             </sentence>
         </story>
@@ -41,7 +53,7 @@
                     <group obj1Id="juan" action="kick" obj2Id="ball"/>
                     <ungroupAndStay obj1Id="juan" action="leave" obj2Id="ball"/>
                     <move obj1Id="juan" action="getIn" waypointId="juan_kick"/>
-                    <move obj1Id="ball" action="getIn" waypointId="ball_right"/>
+                    <animate obj1Id="ball" action="kickBall" waypointId="" areaId=""/>
                 </step>
             </sentence>
         </story>
@@ -52,6 +64,7 @@
                     <ungroupAndStay obj1Id="maria" action="drop" obj2Id="ball"/>
                     <move obj1Id="ball" action="getIn" waypointId="ball_drop"/>
                     <move obj1Id="maria" action="getIn" waypointId="near_ball"/>
+                    <animate obj1Id="ball" action="moveLeftAndCurve" waypointId="" areaId=""/>
                 </step>
             </sentence>
         </story>
@@ -59,23 +72,33 @@
             <sentence number="4">
                 <step number="1">
                     <check obj1Id="smallrocket" action="getIn" locationId="forward"/>
+                    <animate obj1Id="smallrocket" action="moveRightAndWrap" waypointId="" areaId=""/>
                 </step>
             </sentence>
             <sentence number="6">
                 <step number="1">
                     <check obj1Id="bigrocket" action="getIn" locationId="big_forward"/>
+                    <animate obj1Id="bigrocket" action="moveRightAndWrapSlower" waypointId="" areaId=""/>
                 </step>
             </sentence>
         </story>
         <story title="Newton's Second Law: Acceleration" activity_id="story4-PM-3">
+            <sentence number="7">
+                <step number="1">
+                    <animate obj1Id="smallrocket" action="moveRightAndWrap" waypointId="" areaId=""/>
+                    <animate obj1Id="bigrocket" action="moveRightAndWrapSlower" waypointId="" areaId=""/>
+                </step>
+            </sentence>
             <sentence number="8">
                 <step number="1">
                     <shakeOrTap obj1Id="bigrocket" action="getIn" locationId="anywhere"/>
+                    <animate obj1Id="bigrocket" action="moveRightAndWrapSlow" waypointId="" areaId=""/>
                 </step>
             </sentence>
             <sentence number="9">
                 <step number="1">
                     <shakeOrTap obj1Id="bigrocket" action="getIn" locationId="anywhere"/>
+                    <animate obj1Id="bigrocket" action="moveRightAndWrap" waypointId="" areaId=""/>
                 </step>
             </sentence>
         </story>
@@ -159,8 +182,8 @@
                 <step number="1">
                     <group obj1Id="maria" action="push" obj2Id="sara"/>
                     <ungroupAndStay obj1Id="maria" action="leave" obj2Id="sara"/>
-                    <animate obj1Id="maria" action="followAnimation" waypointId="" areaId="mariaPath"/>
-                    <animate obj1Id="sara" action="followAnimation" waypointId="" areaId="saraPath"/>
+                    <animate obj1Id="maria" action="skateBackward" waypointId="" areaId=""/>
+                    <animate obj1Id="sara" action="skateForward" waypointId="" areaId=""/>
                 </step>
             </sentence>
         </story>
@@ -178,8 +201,8 @@
                 <step number="1">
                     <shakeOrTap obj1Id="juan_rowing" action="getIn" locationId="water"/>
                     <swapImage obj1Id="juan_rowing" action="pushBack"/>
-                    <animate obj1Id="juan_rowing" action="followAnimation" waypointId="" areaId="juanPath"/>
-                    <animate obj1Id="wave" action="followAnimation" waypointId="" areaId="wavePath"/>
+                    <animate obj1Id="juan_rowing" action="rowForward" waypointId="" areaId=""/>
+                    <animate obj1Id="wave" action="moveBackward" waypointId="" areaId=""/>
                 </step>
             </sentence>
         </story>
@@ -188,6 +211,7 @@
                 <step number="1">
                     <shakeOrTap obj1Id="smallrocket" action="getIn" locationId="anywhere"/>
                     <swapImage obj1Id="smallrocket" action="shootFlame"/>
+                    <animate obj1Id="smallrocket" action="moveRightAndWrap" waypointId="" areaId=""/>
                 </step>
             </sentence>
         </story>

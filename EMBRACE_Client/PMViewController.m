@@ -578,6 +578,7 @@ BOOL wasPathFollowed = false;
     
     //If it is an action sentence, perform its solution steps if necessary
     if ([sentenceClass  containsString: @"sentence actionSentence"]) {
+        NSLog(@"first one");
         [self performAutomaticSteps];
     }
     else {
@@ -835,6 +836,7 @@ BOOL wasPathFollowed = false;
     
     //Perform steps only if they exist for the sentence
     if (numSteps > 0 && IntroductionClass.allowInteractions) {
+        
         //Get steps for current sentence
         NSMutableArray* currSolSteps;
         
@@ -1499,7 +1501,8 @@ BOOL wasPathFollowed = false;
         else if ([[currSolStep stepType] isEqualToString:@"checkRight"]) {
             [self incrementCurrentStep];
         }
-        else if ([[currSolStep stepType] isEqualToString:@"checkTop"]) {
+        else if ([[currSolStep stepType] isEqualToString:@"checkUp"])
+        {
             [self incrementCurrentStep];
         }
         else if ([[currSolStep stepType] isEqualToString:@"checkDown"]) {
@@ -1728,14 +1731,14 @@ BOOL wasPathFollowed = false;
                     if ([[currSolStep stepType] isEqualToString:@"check"] ||
                         [[currSolStep stepType] isEqualToString:@"checkLeft"] ||
                         [[currSolStep stepType] isEqualToString:@"checkRight"] ||
-                        [[currSolStep stepType] isEqualToString:@"checkTop"] ||
+                        [[currSolStep stepType] isEqualToString:@"checkUp"] ||
                         [[currSolStep stepType] isEqualToString:@"checkDown"])
                     {
                         
                         //Check if object is in the correct location or area
                         if((([[currSolStep stepType] isEqualToString:@"checkLeft"] && startLocation.x > endLocation.x ) ||
                             ([[currSolStep stepType] isEqualToString:@"checkRight"] && startLocation.x < endLocation.x ) ||
-                            ([[currSolStep stepType] isEqualToString:@"checkTop"] && startLocation.y > endLocation.y ) ||
+                            ([[currSolStep stepType] isEqualToString:@"checkUp"] && startLocation.y > endLocation.y ) ||
                             ([[currSolStep stepType] isEqualToString:@"checkDown"] && startLocation.y < endLocation.y )) ||
                            ([self isHotspotInsideLocation] || [self isHotspotInsideArea]))
                         {
@@ -2846,12 +2849,22 @@ BOOL wasPathFollowed = false;
             //Get alternate image information
             NSString* altSrc = [altImage alternateSrc];
             NSString* width = [altImage width];
+            NSString* height = [altImage height];
             CGPoint location = [altImage location];
             NSString* className = [altImage className];
             NSString* zPosition = [altImage zPosition];
             
             //Swap images using alternative src
-            NSString* loadImage = [NSString stringWithFormat:@"loadImage('%@', '%@', '%@', %f, %f, '%@', %d)", object1Id, altSrc, width, location.x, location.y, className, zPosition.intValue];
+            NSString* loadImage;
+            
+            if ([height isEqualToString:@""]) {
+                loadImage = [NSString stringWithFormat:@"loadImage('%@', '%@', '%@', %f, %f, '%@', %d)", object1Id, altSrc, width, location.x, location.y, className, zPosition.intValue];
+            }
+            else
+            {
+                loadImage = [NSString stringWithFormat:@"loadImage('%@', '%@', '%@', '%@', %f, %f, '%@', %d)", object1Id, altSrc, width, height, location.x, location.y, className, zPosition.intValue];
+            }
+            
             [bookView stringByEvaluatingJavaScriptFromString:loadImage];
         }
     }

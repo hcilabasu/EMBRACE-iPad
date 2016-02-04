@@ -806,6 +806,105 @@
                                 [IMSolution addSolutionStep:solutionStep];
                             }
                         }
+                        //Move also has either an obj2Id or waypointId
+                        //* Move is performed automatically and means that an object should be moved to group with another object
+                        //or to a waypoint on the background.
+                        else if([[step name] isEqualToString:@"move"] ||
+                                [[step name] isEqualToString:@"appear"])
+                        {
+                            if([step attributeForName:@"obj2Id"])
+                            {
+                                NSString* obj2Id = [[step attributeForName:@"obj2Id"] stringValue];
+                                
+                                ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :obj2Id :nil :nil :action :nil :nil];
+                                [PMSolution addSolutionStep:solutionStep];
+                            }
+                            else if([step attributeForName:@"waypointId"])
+                            {
+                                NSString* waypointId = [[step attributeForName:@"waypointId"] stringValue];
+                                
+                                ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :waypointId :action :nil :nil];
+                                [PMSolution addSolutionStep:solutionStep];
+                            }
+                            else
+                            {
+                                ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :action :nil :nil];
+                                [PMSolution addSolutionStep:solutionStep];
+                            }
+                        }
+                        //Check also has a locationId
+                        //* Check means that an object should be moved to be inside a location (defined by a bounding box) on
+                        //the background.
+                        else if([[step name] isEqualToString:@"check"])
+                        {
+                            NSString* locationId = [[step attributeForName:@"locationId"] stringValue];
+                            NSString* areaId = [[step attributeForName:@"areaId"] stringValue];
+                            
+                            ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :locationId :nil :action :areaId :nil];
+                            [PMSolution addSolutionStep:solutionStep];
+                        }
+                        //* CheckLeft, Right, Top, Down means that an object should be moved anywhere in the direction of the check step*//
+                        else if([[step name] isEqualToString:@"checkLeft"] ||
+                                [[step name] isEqualToString:@"checkRight"] ||
+                                [[step name] isEqualToString:@"checkUp"] ||
+                                [[step name] isEqualToString:@"checkDown"])
+                        {
+                            ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :action :nil :nil];
+                            [PMSolution addSolutionStep:solutionStep];
+                        }
+                        //SwapImage and checkAndSwap only have obj1Id and action
+                        //* SwapImage is performed automatically and means that an object's image should be changed to its alternate
+                        //image.
+                        //* CheckAndSwap means that the correct object must be tapped by the user before changing to its alternate
+                        //image.
+                        else if([[step name] isEqualToString:@"swapImage"] ||
+                                [[step name] isEqualToString:@"checkAndSwap"])
+                        {
+                            ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :action :nil :nil];
+                            [PMSolution addSolutionStep:solutionStep];
+                        }
+                        
+                        else if([[step name] isEqualToString:@"animate"])
+                        {
+                            if([step attributeForName:@"waypointId"])
+                            {
+                                NSString* waypointId = [[step attributeForName:@"waypointId"] stringValue];
+                                NSString* areaId = [[step attributeForName:@"areaId"] stringValue];
+                                
+                                ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :waypointId :action :areaId :nil];
+                                [PMSolution addSolutionStep:solutionStep];
+                            }
+                        }
+                        
+                        else if([[step name] isEqualToString:@"tapToAnimate"])
+                        {
+                            ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :action :nil :nil];
+                            [PMSolution addSolutionStep:solutionStep];
+                        }
+                        
+                        else if([[step name] isEqualToString:@"playSound"])
+                        {
+                            NSString* fileName = [[step attributeForName:@"fileName"] stringValue];
+                            ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :action :nil :fileName];
+                            [PMSolution addSolutionStep:solutionStep];
+                        }
+                        
+                        else if([[step name] isEqualToString:@"shakeOrTap"])
+                        {
+                            NSString* areaId = [[step attributeForName:@"areaId"] stringValue];
+                            NSString* locationId = [[step attributeForName:@"locationId"] stringValue];
+                        
+                            ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :locationId :nil :action :areaId :nil];
+                            [PMSolution addSolutionStep:solutionStep];
+                        }
+                        
+                        else if([[step name] isEqualToString:@"checkPath"])
+                        {
+                            NSString* locationId = [[step attributeForName:@"locationId"] stringValue];
+                            NSString* areaId = [[step attributeForName:@"areaId"] stringValue];
+                            ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :locationId :nil :action :areaId :nil];
+                            [PMSolution addSolutionStep:solutionStep];
+                        }
                     }
                 }
             }

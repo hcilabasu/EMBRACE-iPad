@@ -11,6 +11,7 @@ var speed;
 var animatingObjects = new Array();
 var animatingObjectsIndex = -1;
 var requestId;
+var killAnimation = false;
 //var cancelOnce = true;
 //var path = new Array(100);
 //var pathIndex = 0;
@@ -107,54 +108,139 @@ function animateObject(objectName, posX, posY, endX, endY, animName, pathToFollo
     
     animFrame(animatingObjects[animatingObjectsIndex]);
     
+    return;
+    
 }
 
 function animFrame(object){
-    requestId = requestAnimationFrame(function() { animFrame(object); }, canvas);
+    //requestId = requestAnimationFrame(function() { animFrame(object); }, canvas);
     
-    if(object.animName == "bounceAnimation") {
+    killAnimation = false;
+    
+    if(object.animName == "bounceAnimation")
+    {
         bounce(object);
     }
-    else if(object.animName == "fallAnimation") {
+    else if(object.animName == "fallAnimation")
+    {
         fall(object);
     }
-    else if(object.animName == "rotate90Animation") {
+    else if(object.animName == "rotate90Animation")
+    {
         rotate90(object);
     }
-    else if(object.animName == "rotate180Animation") {
+    else if(object.animName == "rotate180Animation")
+    {
         rotate180(object);
     }
-    else if(object.animName == "rotate270Animation") {
+    else if(object.animName == "rotate270Animation")
+    {
         rotate270(object);
     }
-    else if(object.animName == "moveToAnimation") {
+    else if(object.animName == "moveRightAndWrap")
+    {
+        moveRightAndWrap(object);
+    }
+    else if(object.animName == "moveRightAndWrapSlow")
+    {
+        moveRightAndWrapSlow(object);
+    }
+    else if(object.animName == "moveRightAndWrapSlower")
+    {
+        moveRightAndWrapSlower(object);
+    }
+    else if(object.animName == "moveLeftAndWrap")
+    {
+        moveLeftAndWrap(object);
+    }
+    else if(object.animName == "moveLeftAndCurve")
+    {
+        moveLeftAndCurve(object);
+    }
+    else if(object.animName == "moveUpAndWrap")
+    {
+        moveUpAndWrap(object);
+    }
+    else if(object.animName == "moveDownAndWrap")
+    {
+        moveDownAndWrap(object);
+    }
+    else if(object.animName == "move45DegreeAndWrap")
+    {
+        move45DegreeAndWrap(object);
+    }
+    else if(object.animName == "move135DegreeAndWrap")
+    {
+        move135DegreeAndWrap(object);
+    }
+    else if(object.animName == "move225DegreeAndWrap")
+    {
+        move225DegreeAndWrap(object);
+    }
+    else if(object.animName == "move315DegreeAndWrap")
+    {
+        move315DegreeAndWrap(object);
+    }
+    else if(object.animName == "moveToAnimation")
+    {
         moveTo(object);
     }
-    else if(object.animName == "shootArrowAnimation") {
+    else if(object.animName == "shootArrowAnimation")
+    {
         shootArrow(object);
     }
-    else if(object.animName == "bobAnimation") {
+    else if(object.animName == "bobAnimation")
+    {
         bob(object);
     }
-    else if(object.animName == "earthquakeAnimation") {
+    else if(object.animName == "earthquakeAnimation")
+    {
         earthquake(object);
     }
-    else if(object.animName == "cheerAnimation") {
+    else if(object.animName == "cheerAnimation")
+    {
         cheer(object);
     }
-    else if(object.animName == "floatAnimation") {
+    else if(object.animName == "floatAnimation")
+    {
         floatAnim(object);
     }
-    else if(object.animName == "followAnimation") {
+    else if(object.animName == "followAnimation")
+    {
         follow(object);
     }
-    else if(object.animName == "rollAnimation") {
+    else if(object.animName == "rollAnimation")
+    {
         roll(object);
     }
+    else if(object.animName == "kickBall")
+    {
+        kickBall(object);
+    }
+    else if(object.animName == "skateForward")
+    {
+        skateForward(object);
+    }
+    else if(object.animName == "skateBackward")
+    {
+        skateBackward(object);
+    }
+    else if(object.animName == "rowForward")
+    {
+        rowForward(object);
+    }
+    else if(object.animName == "moveBackward")
+    {
+        moveBackward(object);
+    }
+    
+    return;
     
 }
 
 function cancelAnimation(objectName) {
+    killAnimation = true;
+    
     //console.log("OBJECT: " + this.object + " NAME:" + objectName);
     //if(this.object == objectName) {
     cancelAnimationFrame(requestId);
@@ -635,6 +721,45 @@ function roll(aniObject) {
     checkEndingForRoll(aniObject);
 }
 
+function kickBall(aniObject) {
+    
+    aniObject.object.style.WebkitTransitionDuration='3s';
+    aniObject.object.style.webkitTransform = 'translate(200px, 0px) rotate(1440deg)';
+    
+}
+
+function skateForward(aniObject) {
+    
+    aniObject.object.style.WebkitTransitionDuration='3s';
+    aniObject.object.style.WebkitTransitionTimingFunction = 'ease-out';
+    aniObject.object.style.webkitTransform = 'translate(200px, 0px)';
+    
+}
+
+function skateBackward(aniObject) {
+    
+    aniObject.object.style.WebkitTransitionDuration='3s';
+    aniObject.object.style.WebkitTransitionTimingFunction = 'ease-out';
+    aniObject.object.style.webkitTransform = 'translate(-200px, 0px)';
+    
+}
+
+function rowForward(aniObject) {
+    
+    aniObject.object.style.WebkitTransitionDuration='5s';
+    aniObject.object.style.WebkitTransitionTimingFunction = 'ease-out';
+    aniObject.object.style.webkitTransform = 'translate(400px, 0px)';
+    
+}
+
+function moveBackward(aniObject) {
+    
+    aniObject.object.style.WebkitTransitionDuration='4s';
+    aniObject.object.style.WebkitTransitionTimingFunction = 'ease-out';
+    aniObject.object.style.webkitTransform = 'translate(-500px, 0px)';
+    
+}
+
 function rotate90(aniObject) {
     
     aniObject.object.style.WebkitTransitionDuration='3s';
@@ -656,6 +781,248 @@ function rotate270(aniObject) {
     
 }
 
+function moveTopAndWrap(aniObject) {
+    var keyframes = findKeyframesRule('moveTop');
+    var cssStyleSheet = findCSSStyleSheet('Animations.css');
+   
+    // remove the existing 0% and 100% rules
+    keyframes.deleteRule("0%");
+    keyframes.deleteRule("100%");
+    
+    var top = parseFloat(aniObject.object.style.height);
+    var timePerPixels =  (parseFloat(aniObject.object.style.height))/70.4;
+    
+    // create new 0% and 100% rules with
+    keyframes.appendRule('0% {top: ' + parseFloat(aniObject.object.style.top) + 'px;}');
+    keyframes.appendRule('100% {top: ' + top + 'px;}');
+    
+    var originalClassName = aniObject.object.className;
+    
+    cssStyleSheet.insertRule('.manipulationObject.center.moveTop {' + 'animation: moveTop ' + timePerPixels + 's linear 1;}');
+    
+    aniObject.object.className = 'manipulationObject center moveTop';
+    
+    timePerPixels = timePerPixels * 1000;
+    
+    setTimeout(function(){
+               var top = -parseFloat(aniObject.object.style.height);
+               aniObject.object.style.top = 704 +  'px';
+               aniObject.y = top;
+               aniObject.object.className = 'manipulationObject center moveTopAndWrap';
+               }, timePerPixels);
+
+}
+
+function moveDownAndWrap(aniObject) {
+    var keyframes = findKeyframesRule('moveDown');
+    var cssStyleSheet = findCSSStyleSheet('Animations.css');
+    
+    // remove the existing 0% and 100% rules
+    keyframes.deleteRule("0%");
+    keyframes.deleteRule("100%");
+    
+    var top = parseFloat(aniObject.object.style.height);
+    var timePerPixels =  (704-parseFloat(aniObject.object.style.height))/70.4;
+    
+    // create new 0% and 100% rules with
+    keyframes.appendRule('0% {top: ' + parseFloat(aniObject.object.style.top) + 'px;}');
+    keyframes.appendRule('100% {top: ' + top + 'px;}');
+    
+    var originalClassName = aniObject.object.className;
+    
+    cssStyleSheet.insertRule('.manipulationObject.center.moveDown {' + 'animation: moveDown ' + timePerPixels + 's linear 1;}');
+    
+    aniObject.object.className = 'manipulationObject center moveDown';
+    
+    timePerPixels = timePerPixels * 1000;
+    
+    setTimeout(function(){
+               var top = parseFloat(aniObject.object.style.height);
+               aniObject.object.style.top = 0 +  'px';
+               aniObject.y = top;
+               aniObject.object.className = 'manipulationObject center moveDownAndWrap';
+               }, timePerPixels);
+
+    
+}
+
+function moveLeftAndWrap(aniObject) {
+    
+    var keyframes = findKeyframesRule('moveLeft');
+    console.log(keyframes);
+    var cssStyleSheet = findCSSStyleSheet('Animations.css');
+    console.log(cssStyleSheet);
+    // remove the existing 0% and 100% rules
+    keyframes.deleteRule("0%");
+    keyframes.deleteRule("100%");
+    
+    var left = -parseFloat(aniObject.object.style.left) - parseFloat(aniObject.object.style.width);
+    var timePerPixels =  (1024-parseFloat(aniObject.object.style.left))/102.4;
+    
+    // create new 0% and 100% rules with
+    keyframes.appendRule('0% {left: ' + parseFloat(aniObject.object.style.left) + 'px;}');
+    keyframes.appendRule('100% {left: ' + left + 'px;}');
+    
+    var originalClassName = aniObject.object.className;
+    
+    cssStyleSheet.insertRule('.manipulationObject.center.moveLeft {' + 'animation: moveLeft ' + timePerPixels + 's linear 1;}');
+    
+    aniObject.object.className = 'manipulationObject center moveLeft';
+    
+    timePerPixels = timePerPixels * 1000;
+    
+    setTimeout(function(){
+               var left = -parseFloat(aniObject.object.style.width);
+               aniObject.object.style.left = 1024 +  'px';
+               aniObject.x = left;
+               aniObject.object.className = 'manipulationObject center moveLeftAndWrap';
+               }, timePerPixels);
+}
+
+function moveLeftAndCurve(aniObject) {
+    aniObject.object.style.WebkitTransitionDuration='5s';
+    aniObject.object.style.webkitTransform = 'translate(-80px, -500px) rotate(1440deg)';
+    
+    setTimeout(function(){
+               aniObject.object.style.WebkitTransitionDuration='3s';
+               aniObject.object.style.WebkitTransitionTimingFunction = 'ease-in';
+               aniObject.object.style.webkitTransform = 'translate(-240px, 5px) rotate(1800deg)';
+               }, 5000);
+    
+}
+
+
+function findKeyframesRule(rule)
+{
+    // gather all stylesheets into an array
+    var ss = document.styleSheets;
+    console.log(ss);
+    
+    // loop through the stylesheets
+    for (var i = 0; i < ss.length; ++i) {
+        
+        // loop through all the rules
+        for (var j = 0; j < ss[i].cssRules.length; ++j) {
+            
+            // find the -webkit-keyframe rule whose name matches our passed over parameter and return that rule
+            if (ss[i].cssRules[j].type == window.CSSRule.WEBKIT_KEYFRAMES_RULE && ss[i].cssRules[j].name == rule)
+                return ss[i].cssRules[j];
+        }
+    }
+    
+    // rule not found
+    return null;
+}
+
+function findCSSStyleSheet(rule)
+{
+    // gather all stylesheets into an array
+    var ss = document.styleSheets;
+    return ss[1];
+}
+
+function moveRightAndWrap(aniObject) {
+    console.log('gets here');
+    var keyframes = findKeyframesRule('moveRight');
+    console.log(keyframes);
+    var cssStyleSheet = findCSSStyleSheet('Animations.css');
+    console.log(cssStyleSheet);
+    // remove the existing 0% and 100% rules
+    keyframes.deleteRule("0%");
+    keyframes.deleteRule("100%");
+    
+     var right = 1024 - parseFloat(aniObject.object.style.left);
+     var timePerPixels =  (1024-parseFloat(aniObject.object.style.left))/102.4;
+    
+    // create new 0% and 100% rules with
+    keyframes.appendRule('0% {left: ' + parseFloat(aniObject.object.style.left) + 'px;}');
+    keyframes.appendRule('100% {left: ' + right + 'px;}');
+    
+    var originalClassName = aniObject.object.className;
+    
+    cssStyleSheet.insertRule('.manipulationObject.center.moveRight {' + 'animation: moveRight ' + timePerPixels + 's linear 1;}');
+    
+    aniObject.object.className = 'manipulationObject center moveRight';
+    
+    timePerPixels = timePerPixels * 1000;
+    
+    setTimeout(function(){
+               var left = -parseFloat(aniObject.object.style.width);
+               aniObject.object.style.left = left +  'px';
+               aniObject.x = left;
+               aniObject.object.className = 'manipulationObject center moveRightAndWrap';
+               }, timePerPixels);
+}
+
+function moveRightAndWrapSlow(aniObject) {
+    
+    var keyframes = findKeyframesRule('moveRightSlow');
+    console.log(keyframes);
+    var cssStyleSheet = findCSSStyleSheet('Animations.css');
+    console.log(cssStyleSheet);
+    // remove the existing 0% and 100% rules
+    keyframes.deleteRule("0%");
+    keyframes.deleteRule("100%");
+    
+    var right = 1024 - parseFloat(aniObject.object.style.left);
+    var timePerPixels =  (1024-parseFloat(aniObject.object.style.left))/68.266;
+    console.log(timePerPixels)
+    
+    // create new 0% and 100% rules with
+    keyframes.appendRule('0% {left: ' + parseFloat(aniObject.object.style.left) + 'px;}');
+    keyframes.appendRule('100% {left: ' + right + 'px;}');
+    
+    var originalClassName = aniObject.object.className;
+    
+    cssStyleSheet.insertRule('.manipulationObject.center.moveRightSlow {' + 'animation: moveRightSlow ' + timePerPixels + 's linear 1;}');
+    
+    aniObject.object.className = 'manipulationObject center moveRightSlow';
+    
+    timePerPixels = timePerPixels * 1000;
+    
+    setTimeout(function(){
+               var left = -parseFloat(aniObject.object.style.width);
+               aniObject.object.style.left = left +  'px';
+               aniObject.x = left;
+               aniObject.object.className = 'manipulationObject center moveRightAndWrapSlow';
+               }, timePerPixels);
+}
+
+function moveRightAndWrapSlower(aniObject) {
+    
+    var keyframes = findKeyframesRule('moveRightSlower');
+    console.log(keyframes);
+    var cssStyleSheet = findCSSStyleSheet('Animations.css');
+    console.log(cssStyleSheet);
+    // remove the existing 0% and 100% rules
+    keyframes.deleteRule("0%");
+    keyframes.deleteRule("100%");
+    
+    var right = 1024 - parseFloat(aniObject.object.style.left);
+    var timePerPixels =  (1024-parseFloat(aniObject.object.style.left))/51.2;
+    console.log(timePerPixels);
+    
+    // create new 0% and 100% rules with
+    keyframes.appendRule('0% {left: ' + parseFloat(aniObject.object.style.left) + 'px;}');
+    keyframes.appendRule('100% {left: ' + right + 'px;}');
+    
+    var originalClassName = aniObject.object.className;
+    
+    cssStyleSheet.insertRule('.manipulationObject.center.moveRightSlower {' + 'animation: moveRightSlower ' + timePerPixels + 's linear 1;}');
+    
+    aniObject.object.className = 'manipulationObject center moveRightSlower';
+    
+    timePerPixels = timePerPixels * 1000;
+    
+    setTimeout(function(){
+               var left = -parseFloat(aniObject.object.style.width);
+               aniObject.object.style.left = left +  'px';
+               aniObject.x = left;
+               aniObject.object.className = 'manipulationObject center moveRightAndWrapSlower';
+               }, timePerPixels);
+}
+
+//
 function moveTo(aniObject) {
     
     aniObject.object.style.WebkitTransitionDuration='4s';

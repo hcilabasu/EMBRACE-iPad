@@ -2,17 +2,18 @@
 <head>
   <title>Newton's Second Law: Acceleration</title>
   <link href="../Styles/PMStyle.css" rel="stylesheet" type="text/css"/>
+  <link href="../Styles/Animations.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body background="../Images/background.jpg">
     <canvas height="704px" id="overlay" width="1024px"></canvas>
-    
+    <canvas height="704px" id="animation" width="1024px"></canvas>
     <canvas height="704px" id="highlight" width="1024px"></canvas>
 
 
   <div class="textbox">
 
-    <p class="sentence" id="s7">Newton's Second Law is: A little force will accelerate a light object, but a big force is needed to accelerate a heavy object the same amount.</p>
+    <p class="sentence actionSentence black" id="s7">Newton's Second Law is: A little force will accelerate a light object, but a big force is needed to accelerate a heavy object the same amount.</p>
 
     <p class="sentence actionSentence" id="s8">So, to get the big rocket to accelerate more, you'll need to keep pushing it to add a big force.</p>
     
@@ -27,6 +28,9 @@
     <img alt="juan" class="manipulationObject center" id="juan" src="../Images/juan.png" style="top: 41%; left: 18.212891%; z-index: 0; width: 90px;"/>
     <img alt="maria" class="manipulationObject center" id="maria" src="../Images/maria.png" style="top: 45.596592%; left: 42.041016%; z-index: 0; width: 100px;"/>
     <img alt="smallrocket" class="manipulationObject center" id="smallrocket" src="../Images/smallrocket.png" style="top: 16.832386%; left: 6.542969%; z-index: 0; width: 50px;"/>
+    
+    <img alt="smallrocket_IM" class="backgroundObject center" id="smallrocket_IM" src="../Images/smallrocket.png" style="top: 16.832386%; left: 6.542969%; z-index: -1; width: 50px;"/>
+    <img alt="bigrocket_IM" class="backgroundObject center" id="bigrocket_IM" src="../Images/bigrocket.png" style="top: 31.818182%; left: 2.490234%; z-index: -1; width: 100px;"/>
 </div>
 </body>
 </html>
