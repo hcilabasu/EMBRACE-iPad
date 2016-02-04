@@ -613,6 +613,15 @@ function swapImageSrc(objectId, alternateSrc, width, height, left, top, zPositio
 }
 
 /*
+ Removes an image as specified on the metadata
+ */
+
+function removeImage(objectId) {
+    var image = document.getElementById(objectId);
+    image.parentNode.removeChild(image);
+}
+
+/*
  Loads an image at a given location
  */
 function loadImage(objectId, source, width, left, top, className, zPosition) {
@@ -635,24 +644,16 @@ function loadImage(objectId, source, width, left, top, className, zPosition) {
 }
 
 /*
- Removes an image as specified on the metadata
+ Loads an image at a given location
  */
-
-function removeImage(objectId) {
-    var image = document.getElementById(objectId);
-    image.parentNode.removeChild(image);
-}
-
-/*
- * Loads an image at a given location
- */
-function loadImage(objectId, source, width, left, top, className, zPosition) {
+function loadImage(objectId, source, width, height, left, top, className, zPosition) {
     var image = document.createElement("img");
     
     image.src = "../Images/" + source; //load image
     
     //Adjust image style
     image.style.width = width;
+    image.style.height = height;
     image.style.left = left + "%";
     image.style.top = top + "%";
     image.style.zIndex = zPosition;
@@ -663,15 +664,6 @@ function loadImage(objectId, source, width, left, top, className, zPosition) {
     
     var images = document.getElementById('images');
     images.appendChild(image);
-}
-
-/*
- * Removes an image as specified on the metadata
- */
-
-function removeImage(objectId) {
-    var image = document.getElementById(objectId);
-    image.parentNode.removeChild(image);
 }
 
 /*

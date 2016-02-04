@@ -883,7 +883,7 @@ ConditionSetup *conditionSetup;
                         //* CheckLeft, Right, Top, Down means that an object should be moved anywhere in the direction of the check step*//
                         else if([[step name] isEqualToString:@"checkLeft"] ||
                                 [[step name] isEqualToString:@"checkRight"] ||
-                                [[step name] isEqualToString:@"checkTop"] ||
+                                [[step name] isEqualToString:@"checkUp"] ||
                                 [[step name] isEqualToString:@"checkDown"])
                         {
                             ActionStep* solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :action :nil :nil];

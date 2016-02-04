@@ -27,5 +27,28 @@
         <relationship obj1Id="sara" can="getOn" action="group" obj2Id="skateboard_sara"/>
         <relationship obj1Id="wood" can="getIn" action="group" obj2Id="dog"/>
         <relationship obj1Id="wood" can="getOut" action="ungroup" obj2Id="dog"/>
+        
+        <relationship obj1Id="ball_IM" can="getIn" action="group" obj2Id="ball_IM"/>
+        <relationship obj1Id="smallrocket_IM" can="getIn" action="group" obj2Id="smallrocket_IM"/>
+        
+        <relationship obj1Id="smallrocket_IM" can="sameSpeed" action="group" obj2Id="bigrocket_IM"/>
+        <relationship obj1Id="smallrocket_IM" can="fasterSpeed" action="group" obj2Id="bigrocket_IM"/>
+        
+        <relationship obj1Id="dog_IM" can="toward" action="group" obj2Id="maria_IM"/>
+        <relationship obj1Id="dog_IM" can="flip" action="group" obj2Id="maria_IM"/>
+        
+        <relationship obj1Id="horse_IM" can="getIn" action="group" obj2Id="horse_IM"/>
+        <relationship obj1Id="dog_IM" can="getIn" action="group" obj2Id="dog_IM"/>
+        
+        <relationship obj1Id="maria_IM" can="getIn" action="group" obj2Id="maria_IM"/>
+        
+        <relationship obj1Id="juan_IM" can="getOut" action="group" obj2Id="boat_IM"/>
+        <relationship obj1Id="juanInBoat_IM" can="getIn" action="group" obj2Id="juanInBoat_IM"/>
+        
+        <relationship obj1Id="maria_IM" can="getOn" action="group" obj2Id="skateboard_IM"/>
+        <relationship obj1Id="maria_IM" can="getOff" action="group" obj2Id="skateboard_IM"/>
+        
+        <relationship obj1Id="car_IM" can="getWith" action="group" obj2Id="skateboard_IM"/>
+        <relationship obj1Id="rocket_IM" can="getWith" action="group" obj2Id="skateboard_IM"/>
     </relationships>
 </metadata>
