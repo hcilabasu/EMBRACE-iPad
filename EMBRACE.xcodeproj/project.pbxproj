@@ -1446,6 +1446,9 @@
 		5C466ADC192293290056EA4B /* Translation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C466ADB192293290056EA4B /* Translation.m */; };
 		5C5C6FD91C45ADE9002A67F9 /* liftingpole.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C5C6FD81C45ADE9002A67F9 /* liftingpole.png */; };
 		5C5F7CBF1C62BE8000CF70A1 /* Story1-The-Naughty-Monkey-PM-1S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C5F7CBE1C62BE8000CF70A1 /* Story1-The-Naughty-Monkey-PM-1S.xhtml */; };
+		5C5F7CC11C62C8BA00CF70A1 /* Story1-Key-Ingredients-PM-1S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C5F7CC01C62C8BA00CF70A1 /* Story1-Key-Ingredients-PM-1S.xhtml */; };
+		5C5F7CC31C62C8C200CF70A1 /* Story1-Key-Ingredients-PM-2S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C5F7CC21C62C8C200CF70A1 /* Story1-Key-Ingredients-PM-2S.xhtml */; };
+		5C5F7CC51C62C8CC00CF70A1 /* Story1-Key-Ingredients-PM-3S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C5F7CC41C62C8CC00CF70A1 /* Story1-Key-Ingredients-PM-3S.xhtml */; };
 		5C9C06F81C57385A00702FCD /* CleaningUpQ1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C9C05271C57385900702FCD /* CleaningUpQ1.mp3 */; };
 		5C9C06F91C57385A00702FCD /* CleaningUpQ1A1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C9C05281C57385900702FCD /* CleaningUpQ1A1.mp3 */; };
 		5C9C06FA1C57385A00702FCD /* CleaningUpQ1A2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C9C05291C57385900702FCD /* CleaningUpQ1A2.mp3 */; };
@@ -4227,6 +4230,9 @@
 		5C466ADB192293290056EA4B /* Translation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Translation.m; sourceTree = "<group>"; };
 		5C5C6FD81C45ADE9002A67F9 /* liftingpole.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = liftingpole.png; sourceTree = "<group>"; };
 		5C5F7CBE1C62BE8000CF70A1 /* Story1-The-Naughty-Monkey-PM-1S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-The-Naughty-Monkey-PM-1S.xhtml"; sourceTree = "<group>"; };
+		5C5F7CC01C62C8BA00CF70A1 /* Story1-Key-Ingredients-PM-1S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Key-Ingredients-PM-1S.xhtml"; sourceTree = "<group>"; };
+		5C5F7CC21C62C8C200CF70A1 /* Story1-Key-Ingredients-PM-2S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Key-Ingredients-PM-2S.xhtml"; sourceTree = "<group>"; };
+		5C5F7CC41C62C8CC00CF70A1 /* Story1-Key-Ingredients-PM-3S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Key-Ingredients-PM-3S.xhtml"; sourceTree = "<group>"; };
 		5C80A4EF1B4F378500CAC13E /* Vector.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Vector.js; sourceTree = "<group>"; };
 		5C9C05271C57385900702FCD /* CleaningUpQ1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CleaningUpQ1.mp3; sourceTree = "<group>"; };
 		5C9C05281C57385900702FCD /* CleaningUpQ1A1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CleaningUpQ1A1.mp3; sourceTree = "<group>"; };
@@ -5958,8 +5964,11 @@
 				1A631DA41C0E4D3A00251CB3 /* Story1-Key-Ingredients-Intro-E.xhtml */,
 				5D6821291C489CC9001F5CFD /* Story1-Key-Ingredients-Intro-S.xhtml */,
 				1A631DA51C0E4D3A00251CB3 /* Story1-Key-Ingredients-PM-1.xhtml */,
+				5C5F7CC01C62C8BA00CF70A1 /* Story1-Key-Ingredients-PM-1S.xhtml */,
 				1A631DA61C0E4D3A00251CB3 /* Story1-Key-Ingredients-PM-2.xhtml */,
+				5C5F7CC21C62C8C200CF70A1 /* Story1-Key-Ingredients-PM-2S.xhtml */,
 				1A631DA71C0E4D3A00251CB3 /* Story1-Key-Ingredients-PM-3.xhtml */,
+				5C5F7CC41C62C8CC00CF70A1 /* Story1-Key-Ingredients-PM-3S.xhtml */,
 				1A631DA81C0E4D3A00251CB3 /* Story1-Key-Ingredients-Title.xhtml */,
 				1A631DA91C0E4D3A00251CB3 /* Story2-Mancha-the-Horse-Intro-E.xhtml */,
 				5D68212B1C489E14001F5CFD /* Story2-Mancha-the-Horse-Intro-S.xhtml */,
@@ -9778,6 +9787,7 @@
 				5CA9556A1C3237690038FB56 /* lisa.png in Resources */,
 				1A6322221C0E4D3B00251CB3 /* lava2.png in Resources */,
 				5C0421721C618C2B001BBE9D /* CatchQ5A1.mp3 in Resources */,
+				5C5F7CC51C62C8CC00CF70A1 /* Story1-Key-Ingredients-PM-3S.xhtml in Resources */,
 				5D9E33F81C590E9500636150 /* MissingKeysQ5A1.mp3 in Resources */,
 				1A6321B11C0E4D3B00251CB3 /* Story3-Muscles-Use-Oxygen-Title.xhtml in Resources */,
 				5C0421EB1C618C2B001BBE9D /* TheLuckyStoneQ7A2.mp3 in Resources */,
@@ -10282,6 +10292,7 @@
 				5C9C087B1C57385A00702FCD /* TheContestQ4A3.mp3 in Resources */,
 				1AC7A3911C592847003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml in Resources */,
 				1A6323371C0E4D3B00251CB3 /* wave.png in Resources */,
+				5C5F7CC11C62C8BA00CF70A1 /* Story1-Key-Ingredients-PM-1S.xhtml in Resources */,
 				1A6322051C0E4D3B00251CB3 /* grey_plate_oahu.png in Resources */,
 				5C9C07EB1C57385A00702FCD /* BFEE_5A.m4a in Resources */,
 				5C28DCD31C2BA66E005ACD07 /* soldier1.png in Resources */,
@@ -10892,6 +10903,7 @@
 				1A6320581C0E4D3B00251CB3 /* Story4-Who-is-the-Best-Animal-IM-2.xhtml in Resources */,
 				5CA955611C3237690038FB56 /* AlternateImages-MetaData.xml in Resources */,
 				5C28DCA81C2BA66E005ACD07 /* ladder.png in Resources */,
+				5C5F7CC31C62C8C200CF70A1 /* Story1-Key-Ingredients-PM-2S.xhtml in Resources */,
 				5C0421361C618C2B001BBE9D /* BabyBrotherQ1A1.mp3 in Resources */,
 				5CA955821C3237690038FB56 /* toc.ncx in Resources */,
 				5C28DC691C2BA66E005ACD07 /* background_ch5.png in Resources */,
