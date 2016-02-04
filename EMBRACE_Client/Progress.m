@@ -14,11 +14,17 @@
 @synthesize chaptersCompleted;
 @synthesize chaptersInProgress;
 @synthesize chaptersIncomplete;
+@synthesize currentSequence;
+@synthesize sequenceId;
 
 - (id) init {
     chaptersCompleted = [[NSMutableDictionary alloc] init];
     chaptersInProgress = [[NSMutableDictionary alloc] init];
     chaptersIncomplete = [[NSMutableDictionary alloc] init];
+    
+    //Not using sequence by default
+    sequenceId = -1;
+    currentSequence = -1;
     
     return self;
 }

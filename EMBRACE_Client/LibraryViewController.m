@@ -17,22 +17,26 @@
 #import "ConditionSetup.h"
 
 @interface LibraryViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout> {
-    NSMutableArray* bookImages;
-    NSMutableArray* bookTitles;
-    NSMutableArray* chapterImages;
-    NSMutableArray* chapterTitles;
+    NSMutableArray *bookImages;
+    NSMutableArray *bookTitles;
+    NSMutableArray *chapterImages;
+    NSMutableArray *chapterTitles;
     
     NSInteger selectedBookIndex;
     BOOL showBooks; //whether library is currently showing books or not
     
     NSUInteger lockedItemIndex; //index of long pressed item
+    
+    BOOL useSequence; //whether user must complete books/chapters according to a particular sequence
+    
+    ConditionSetup *conditionSetup;
 }
 
 @property (nonatomic, strong) IBOutlet UICollectionView *libraryView;
 @property (nonatomic, strong) EBookImporter *bookImporter;
 @property (nonatomic, strong) NSMutableArray *books;
-@property (nonatomic, strong) NSString* bookToOpen;
-@property (nonatomic, strong) NSString* chapterToOpen;
+@property (nonatomic, strong) NSString *bookToOpen;
+@property (nonatomic, strong) NSString *chapterToOpen;
 
 @end
 
@@ -42,18 +46,17 @@
 @synthesize books;
 @synthesize student;
 @synthesize studentProgress;
+@synthesize sequenceController;
 
 NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapters
 
-ConditionSetup *conditionSetup;
-
-- (void) viewDidLoad {
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     //Add background image
     UIGraphicsBeginImageContext(self.view.frame.size);
     [[UIImage imageNamed:@"library_background"] drawInRect:self.view.bounds];
-    UIImage* backgroundImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIImage *backgroundImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     self.view.backgroundColor = [UIColor colorWithPatternImage:backgroundImage];
 
@@ -82,57 +85,26 @@ ConditionSetup *conditionSetup;
     [self setupCurrentSession];
 }
 
-- (void) viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    //Set the next incomplete chapter to in progress if it exists
-    if (![studentProgress setNextChapterInProgressForBook:[bookTitles objectAtIndex:selectedBookIndex]]) {
-        BOOL inProgressBookExists = false; //whether another book is already in progress
-        BOOL foundNextBook = false; //whether an incomplete book was found
-        NSString* nextBookTitle;
-        
-        for (NSString* bookTitle in bookTitles) {
-            Status bookStatus = [studentProgress getStatusOfBook:bookTitle];
-            
-            //Stop searching if there is already another book in progress
-            if (bookStatus == IN_PROGRESS) {
-                inProgressBookExists = true;
-                break;
-            }
-            //Record title of next incomplete book if it exists
-            else if (bookStatus == INCOMPLETE && !foundNextBook) {
-                nextBookTitle = bookTitle;
-                foundNextBook = true;
-            }
-        }
-        
-        //No books already in progress, so set the next incomplete book to in progress
-        if (!inProgressBookExists && foundNextBook) {
-            [studentProgress setNextChapterInProgressForBook:nextBookTitle];
-        }
-    }
-    
-    //Update progress indicators
-    [self.libraryView reloadSections:[NSIndexSet indexSetWithIndex:0]];
-    
-    //Save progress to file
-    [[ServerCommunicationController sharedManager] saveProgress:student :studentProgress];
+    [self updateProgress];
 }
 
 /*
  * Goes through the imported books and pulls the data necessary to display the books and their associated chapters
  */
-- (void) createCollectionLayoutDataSource {
+- (void)createCollectionLayoutDataSource {
     bookImages = [[NSMutableArray alloc] init];
     bookTitles = [[NSMutableArray alloc] init];
     chapterImages = [[NSMutableArray alloc] init];
     chapterTitles = [[NSMutableArray alloc] init];
     
-    for (Book* book in books) {
+    for (Book *book in books) {
         //Use the image for the first chapter as the image for the book
-        NSString* bookImagePath = [[[book chapters] objectAtIndex:0] chapterImagePath];
+        NSString *bookImagePath = [[[book chapters] objectAtIndex:0] chapterImagePath];
         
-        UIImage* bookImage;
+        UIImage *bookImage;
         
         if (bookImagePath != nil) {
             bookImage = [[UIImage alloc] initWithContentsOfFile:bookImagePath];
@@ -143,14 +115,14 @@ ConditionSetup *conditionSetup;
         [bookTitles addObject:[book title]];
         
         //Create temporary arrays to hold chapter images and titles for the book
-        NSMutableArray* bookChapterImages = [[NSMutableArray alloc] init];
-        NSMutableArray* bookChapterTitles = [[NSMutableArray alloc] init];
+        NSMutableArray *bookChapterImages = [[NSMutableArray alloc] init];
+        NSMutableArray *bookChapterTitles = [[NSMutableArray alloc] init];
         
-        for (Chapter* chapter in [book chapters]) {
+        for (Chapter *chapter in [book chapters]) {
             //Get image for chapter
-            NSString* chapterImagePath = [chapter chapterImagePath];
+            NSString *chapterImagePath = [chapter chapterImagePath];
             
-            UIImage* chapterImage;
+            UIImage *chapterImage;
             
             if (chapterImagePath != nil) {
                 chapterImage = [[UIImage alloc] initWithContentsOfFile:chapterImagePath];
@@ -170,18 +142,32 @@ ConditionSetup *conditionSetup;
 /*
  * Sets up the current session including the condition/mode, student, and progress data
  */
-- (void) setupCurrentSession  {
-    conditionSetup = [[ConditionSetup alloc] init];
-    currentMode = PM_MODE;
+- (void)setupCurrentSession  {
+    conditionSetup = [ConditionSetup sharedInstance];
     
     if (student != nil) {
         [[ServerCommunicationController sharedManager] logContext:student];
         
         //Set title to display condition and language (e.g., EMBRACE English)
-        self.title = [NSString stringWithFormat:@"%@ %@",[conditionSetup ReturnConditionEnumToString:conditionSetup.condition],[conditionSetup ReturnLanguageEnumtoString: conditionSetup.language]];
+        self.title = [NSString stringWithFormat:@"%@ %@",[conditionSetup returnConditionEnumToString:conditionSetup.condition],[conditionSetup returnLanguageEnumtoString: conditionSetup.language]];
     }
     else {
         student = [[Student alloc] initWithName:@"Study Code" :@"Study Day":@"Experimenter":@"School Day"];
+    }
+    
+    //TODO: Check whether sequence should be used based on student information.
+    //      Currently only using sequence for "test".
+    //Student should follow particular sequence of activities
+    if ([[student firstName] isEqualToString:@"test"]) {
+        useSequence = TRUE;
+        
+        //Create ActivitySequenceController and load sequences
+        sequenceController = [[ActivitySequenceController alloc] init];
+        [sequenceController loadSequences];
+    }
+    //Student will follow default sequence of activities
+    else {
+        useSequence = FALSE;
     }
     
     //Load progress for student if it exists
@@ -192,9 +178,20 @@ ConditionSetup *conditionSetup;
         studentProgress = [[Progress alloc] init];
         [studentProgress loadBooks:books];
         
-        NSString* firstBookTitle = [bookTitles objectAtIndex:0];
-
-        //Start off with the first chapter of the first book in progress
+        NSString *firstBookTitle; //title of first book to set in progress
+        
+        if (useSequence) {
+            //TODO: Set current sequence id based on student information
+            studentProgress.sequenceId = 1;
+            studentProgress.currentSequence = 0; //index of first sequence
+            
+            firstBookTitle = [[[sequenceController sequences] objectAtIndex:[studentProgress currentSequence]] bookTitle];
+        }
+        else {
+            firstBookTitle = [bookTitles objectAtIndex:0];
+        }
+        
+        //Set first book as in progress
         [studentProgress setNextChapterInProgressForBook:firstBookTitle];
     }
     else {
@@ -203,7 +200,82 @@ ConditionSetup *conditionSetup;
     }
 }
 
-- (void) didReceiveMemoryWarning {
+/*
+ * Sets next book/chapter to in progress and updates library and progress file
+ */
+- (void)updateProgress {
+    //Sequence
+    if (useSequence) {
+        //Get current book title
+        NSString *currentBookTitle = [[[sequenceController sequences] objectAtIndex:[studentProgress currentSequence]] bookTitle];
+        
+        //Set the next incomplete chapter to in progress if it exists
+        if (![studentProgress setNextChapterInProgressForBook:currentBookTitle]) {
+            if ([studentProgress currentSequence] + 1 < [[sequenceController sequences] count]) {
+                //Use next sequence
+                studentProgress.currentSequence++;
+                
+                //Get next book title
+                NSString *nextBookTitle = [[[sequenceController sequences] objectAtIndex:[studentProgress currentSequence]] bookTitle];
+                
+                //Reset next book to in progress if it has already been completed
+                if ([studentProgress getStatusOfBook:nextBookTitle] == COMPLETED) {
+                    //Get list of chapters in next book
+                    NSMutableArray *modes = [[sequenceController getSequenceForBook:nextBookTitle] modes];
+                    
+                    //Set all chapters to incomplete
+                    for (ActivityMode *mode in modes) {
+                        [studentProgress setStatusOfChapter:[mode chapterTitle] :INCOMPLETE fromBook:nextBookTitle];
+                    }
+                    
+                    //Set first chapter to in progress
+                    [studentProgress setStatusOfChapter:[[modes objectAtIndex:0] chapterTitle] :IN_PROGRESS fromBook:nextBookTitle];
+                }
+                else {
+                    //Set next book in sequence to in progress
+                    [studentProgress setNextChapterInProgressForBook:nextBookTitle];
+                }
+            }
+        }
+    }
+    //No sequence
+    else {
+        //Set the next incomplete chapter to in progress if it exists
+        if (![studentProgress setNextChapterInProgressForBook:[bookTitles objectAtIndex:selectedBookIndex]]) {
+            BOOL inProgressBookExists = false; //whether another book is already in progress
+            BOOL foundNextBook = false; //whether an incomplete book was found
+            NSString *nextBookTitle;
+            
+            for (NSString *bookTitle in bookTitles) {
+                Status bookStatus = [studentProgress getStatusOfBook:bookTitle];
+                
+                //Stop searching if there is already another book in progress
+                if (bookStatus == IN_PROGRESS) {
+                    inProgressBookExists = true;
+                    break;
+                }
+                //Record title of next incomplete book if it exists
+                else if (bookStatus == INCOMPLETE && !foundNextBook) {
+                    nextBookTitle = bookTitle;
+                    foundNextBook = true;
+                }
+            }
+            
+            //No books already in progress, so set the next incomplete book to in progress
+            if (!inProgressBookExists && foundNextBook) {
+                [studentProgress setNextChapterInProgressForBook:nextBookTitle];
+            }
+        }
+    }
+    
+    //Update progress indicators
+    [self.libraryView reloadSections:[NSIndexSet indexSetWithIndex:0]];
+    
+    //Save progress to file
+    [[ServerCommunicationController sharedManager] saveProgress:student :studentProgress];
+}
+
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 
     //Dispose of any resources that can be recreated
@@ -214,7 +286,7 @@ ConditionSetup *conditionSetup;
  * Segue prep to go from LibraryViewController to BookView Controller.
  */
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if (conditionSetup.appmode == Authoring) {
+    if (conditionSetup.appMode == Authoring) {
         AuthoringModeViewController *destination = [segue destinationViewController];
         destination.bookImporter = bookImporter;
         destination.bookTitle = self.bookToOpen;
@@ -243,7 +315,7 @@ ConditionSetup *conditionSetup;
 /*
  * User pressed Books button. Switches to show books instead of chapters.
  */
-- (IBAction) pressedBooks:(id)sender {
+- (IBAction)pressedBooks:(id)sender {
     showBooks = TRUE;
     
     [self.libraryView reloadSections:[NSIndexSet indexSetWithIndex:0]];
@@ -254,7 +326,7 @@ ConditionSetup *conditionSetup;
 /*
  * User pressed Logout button. Writes data to log file and returns to login screen.
  */
-- (IBAction) pressedLogout:(id)sender {
+- (IBAction)pressedLogout:(id)sender {
     //Write log data to file
     [[ServerCommunicationController sharedManager] writeToFile:[[ServerCommunicationController sharedManager] studyFileName] ofType:@"txt"];
     
@@ -267,26 +339,32 @@ ConditionSetup *conditionSetup;
 /*
  * Long press is used to unlock books and chapters
  */
-- (void) longPressGesturePerformed:(UILongPressGestureRecognizer*)recognizer {
+- (void)longPressGesturePerformed:(UILongPressGestureRecognizer *)recognizer {
     if (recognizer.state != UIGestureRecognizerStateEnded) {
         return;
     }
     
     CGPoint location = [recognizer locationInView:self.libraryView];
-    NSIndexPath* indexPath = [self.libraryView indexPathForItemAtPoint:location];
+    NSIndexPath *indexPath = [self.libraryView indexPathForItemAtPoint:location];
     
     if (indexPath != nil) {
         lockedItemIndex = indexPath.row;
         
         //Books
         if (showBooks) {
-            if ([studentProgress getStatusOfBook:[bookTitles objectAtIndex:lockedItemIndex]] == INCOMPLETE) {
+            //TEST: Temporary code to allow quick unlock/completion of any item
+//            if ([studentProgress getStatusOfBook:[bookTitles objectAtIndex:lockedItemIndex]] == INCOMPLETE) {
+            if ([studentProgress getStatusOfBook:[bookTitles objectAtIndex:lockedItemIndex]] == INCOMPLETE || [studentProgress getStatusOfBook:[bookTitles objectAtIndex:lockedItemIndex]] == IN_PROGRESS) {
+            ///TEST
                 [self showPasswordPrompt];
             }
         }
         //Chapters
         else {
-            if ([studentProgress getStatusOfChapter:[[chapterTitles objectAtIndex:selectedBookIndex] objectAtIndex:lockedItemIndex] fromBook:[bookTitles objectAtIndex:selectedBookIndex]] == INCOMPLETE) {
+            //TEST: Temporary code to allow quick unlock/completion of any item
+//            if ([studentProgress getStatusOfChapter:[[chapterTitles objectAtIndex:selectedBookIndex] objectAtIndex:lockedItemIndex] fromBook:[bookTitles objectAtIndex:selectedBookIndex]] == INCOMPLETE) {
+            if ([studentProgress getStatusOfChapter:[[chapterTitles objectAtIndex:selectedBookIndex] objectAtIndex:lockedItemIndex] fromBook:[bookTitles objectAtIndex:selectedBookIndex]] == INCOMPLETE || [studentProgress getStatusOfChapter:[[chapterTitles objectAtIndex:selectedBookIndex] objectAtIndex:lockedItemIndex] fromBook:[bookTitles objectAtIndex:selectedBookIndex]] == IN_PROGRESS) {
+            ///TEST
                 [self showPasswordPrompt];
             }
         }
@@ -296,8 +374,8 @@ ConditionSetup *conditionSetup;
 /*
  * Shows a message to indicate that a selected book/chapter is locked
  */
-- (void) showLockedMessage {
-    NSString* itemType = @"item";
+- (void)showLockedMessage {
+    NSString *itemType = @"item";
     
     if (showBooks) {
         itemType = @"book";
@@ -306,18 +384,18 @@ ConditionSetup *conditionSetup;
         itemType = @"chapter";
     }
     
-    NSString* title = [NSString stringWithFormat:@"This %@ is locked.", itemType];
-    NSString* message = [NSString stringWithFormat:@"Please select a %@ with a red bookmark icon.", itemType];
+    NSString *title = [NSString stringWithFormat:@"This %@ is locked.", itemType];
+    NSString *message = [NSString stringWithFormat:@"Please select a %@ with a red bookmark icon.", itemType];
     
-    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
     [alertView show];
 }
 
 /*
  * Displays prompt to enter password to unlock books and chapters
  */
-- (void) showPasswordPrompt {
-    UIAlertView* passwordPrompt = [[UIAlertView alloc] initWithTitle:@"Password" message:@"Enter password to unlock this item" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+- (void)showPasswordPrompt {
+    UIAlertView *passwordPrompt = [[UIAlertView alloc] initWithTitle:@"Password" message:@"Enter password to unlock this item" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
     passwordPrompt.alertViewStyle = UIAlertViewStyleSecureTextInput;
     [passwordPrompt show];
 }
@@ -325,7 +403,7 @@ ConditionSetup *conditionSetup;
 /*
  * Checks if user input for password prompt is correct to unlock the selected book or chapter
  */
-- (void) alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if ([[alertView title] isEqualToString:@"Password"] && buttonIndex == 1) {
         //Password is correct
         if ([[[alertView textFieldAtIndex:0] text] isEqualToString:LIBRARY_PASSWORD]) {
@@ -346,11 +424,27 @@ ConditionSetup *conditionSetup;
             //Save progress to file
             [[ServerCommunicationController sharedManager] saveProgress:student :studentProgress];
         }
+        //TEST: Temporary code to allow quick unlock/completion of any item
+        else if ([[[alertView textFieldAtIndex:0] text] isEqualToString:@"goodbye"]) {
+            //Books
+            if (showBooks) {
+                for (NSString *chapterTitle in [chapterTitles objectAtIndex:lockedItemIndex]) {
+                    [studentProgress setStatusOfChapter:chapterTitle :COMPLETED fromBook:[bookTitles objectAtIndex:lockedItemIndex]];
+                }
+            }
+            //Chapters
+            else {
+                [studentProgress setStatusOfChapter:[[chapterTitles objectAtIndex:selectedBookIndex] objectAtIndex:lockedItemIndex] :COMPLETED fromBook:[bookTitles objectAtIndex:selectedBookIndex]];
+            }
+            
+            [self updateProgress];
+        }
+        ///TEST
     }
 }
 
 #pragma mark - UICollectionViewDataSource
-- (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)libraryView {
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)libraryView {
     return 1;
 }
 
@@ -368,15 +462,15 @@ ConditionSetup *conditionSetup;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)libraryView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    LibraryCellView* cell = (LibraryCellView*) [libraryView dequeueReusableCellWithReuseIdentifier:@"LibraryCellView" forIndexPath:indexPath];
+    LibraryCellView *cell = (LibraryCellView *)[libraryView dequeueReusableCellWithReuseIdentifier:@"LibraryCellView" forIndexPath:indexPath];
     
-    UIImage* image;
-    NSString* title;
+    UIImage *image;
+    NSString *title;
     Status currentStatus;
 
     //Books
     if (showBooks) {
-        cell = (BookCellView*) [libraryView dequeueReusableCellWithReuseIdentifier:@"BookCellView" forIndexPath:indexPath];
+        cell = (BookCellView *)[libraryView dequeueReusableCellWithReuseIdentifier:@"BookCellView" forIndexPath:indexPath];
         
         image = [bookImages objectAtIndex:indexPath.row];
         title = [bookTitles objectAtIndex:indexPath.row];
@@ -423,26 +517,55 @@ ConditionSetup *conditionSetup;
     }
     //Chapters
     else {
+        //Get status of selected chapter
+        Status chapterStatus = [studentProgress getStatusOfChapter:[[chapterTitles objectAtIndex:selectedBookIndex] objectAtIndex:indexPath.row] fromBook:[bookTitles objectAtIndex:selectedBookIndex]];
+        
         //Only allow chapter to be opened if it is not incomplete
-        if ([studentProgress getStatusOfChapter:[[chapterTitles objectAtIndex:selectedBookIndex] objectAtIndex:indexPath.row] fromBook:[bookTitles objectAtIndex:selectedBookIndex]] != INCOMPLETE) {
+        if (chapterStatus != INCOMPLETE) {
             //Get selected book
-            Book* book = [books objectAtIndex:selectedBookIndex];
+            Book *book = [books objectAtIndex:selectedBookIndex];
             
-            NSString* title = [[book title] stringByAppendingString:@" - "];
+            NSString *title = [[book title] stringByAppendingString:@" - "];
             title = [title stringByAppendingString:[book author]];
             
             self.bookToOpen = title;
             self.chapterToOpen = [[[book chapters] objectAtIndex:indexPath.row] title];
             
+            if (useSequence) {
+                //If chapter already completed, just open in read-only mode for now
+                if (chapterStatus == COMPLETED) {
+                    conditionSetup.condition = CONTROL;
+                }
+                else {
+                    //Get current mode for chapter
+                    ActivityMode *currentMode = [[[sequenceController sequences] objectAtIndex:[studentProgress currentSequence]] getModeForChapter:[[chapterTitles objectAtIndex:selectedBookIndex] objectAtIndex:indexPath.row]];
+                    
+                    //Set conditions for chapter based on mode information
+                    if ([currentMode interventionType] == PM_INTERVENTION) {
+                        conditionSetup.condition = EMBRACE;
+                        conditionSetup.currentMode = PM_MODE;
+                    }
+                    else if ([currentMode interventionType] == IM_INTERVENTION) {
+                        conditionSetup.condition = EMBRACE;
+                        conditionSetup.currentMode = IM_MODE;
+                    }
+                    else if ([currentMode interventionType] == NO_INTERVENTION) {
+                        conditionSetup.condition = CONTROL;
+                    }
+                }
+            }
+            
             //Send the notification to open that mode for the particular book and activity chosen
-            if (conditionSetup.appmode == Authoring) {
+            if (conditionSetup.appMode == Authoring) {
                 [self performSegueWithIdentifier:@"OpenAuthoringSegue" sender:self];
             }
-            else if (currentMode == PM_MODE) {
+            else if (conditionSetup.currentMode == PM_MODE) {
                 [self performSegueWithIdentifier: @"OpenPMActivitySegue" sender:self];
             }
-            else if (currentMode == IM_MODE) {
-                [self performSegueWithIdentifier: @"OpenIMActivitySegue" sender:self];
+            else if (conditionSetup.currentMode == IM_MODE) {
+                //TODO: Currently only using PM segue and PMViewController
+//                [self performSegueWithIdentifier: @"OpenIMActivitySegue" sender:self];
+                [self performSegueWithIdentifier: @"OpenPMActivitySegue" sender:self];
             }
         }
         else {
@@ -455,14 +578,11 @@ ConditionSetup *conditionSetup;
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    //TODO: Right now return true, but eventually we'll have to go ahead and display 2 different images based on whether or not
-    //the student has completed the activity. This means changing the data source for the collection view and returning no from
-    //this function so the student cannot select the item.
     return YES;
 }
 
 #pragma mark – UICollectionViewDelegateFlowLayout
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     NSInteger edgeInsets = 0;
     NSInteger cellWidth = 200;
     
@@ -494,7 +614,7 @@ ConditionSetup *conditionSetup;
     if (kind == UICollectionElementKindSectionHeader) {        
         BookHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"BookHeaderView" forIndexPath:indexPath];
         
-        NSString* title;
+        NSString *title;
 
         //Books
         if (showBooks) {
@@ -504,7 +624,7 @@ ConditionSetup *conditionSetup;
         }
         //Chapters
         else {
-            Book* book = [books objectAtIndex:selectedBookIndex];
+            Book *book = [books objectAtIndex:selectedBookIndex];
             title = [book title]; //Set title to title of book
             
             headerView.backgroundImage.image = [UIImage imageNamed:@"library_header2"];

@@ -131,7 +131,7 @@ ConditionSetup *conditionSetup;
                 underlinedVocabWord = expectedIntroInput;
             }
         }
-        else if ((conditionSetup.language ==BILINGUAL) && currentIntroStep < STEPS_TO_SWITCH_LANGUAGES_CONTROL && (conditionSetup.condition ==CONTROL)) {
+        else if ((conditionSetup.language ==BILINGUAL) && currentIntroStep < STEPS_TO_SWITCH_LANGUAGES_CONTROL && (conditionSetup.condition == CONTROL)) {
             text = textSpanish;
             audio = audioSpanish;
             languageString = @"S";
@@ -260,9 +260,6 @@ ConditionSetup *conditionSetup;
                 //Play introduction audio
                 [self.playAudioFileClass playAudioFile:pmviewController:audio];
             }
-    
-            //Logging added by James for Word Audio
-    //        [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Step Audio" : @"E" :audio  :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
         }
     
         if((conditionSetup.condition ==CONTROL)){

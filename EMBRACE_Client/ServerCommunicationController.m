@@ -1707,6 +1707,14 @@ Context:
             [progress loadChapters:incompleteChapterTitles fromBook:bookTitle withStatus:INCOMPLETE];
         }
         
+        //Read current sequence and id number
+        GDataXMLElement* sequenceElement = (GDataXMLElement*) [[progressElement elementsForName:@"sequence"] objectAtIndex:0];
+        NSInteger sequenceId = [[[sequenceElement attributeForName:@"sequenceId"] stringValue] integerValue];
+        NSInteger currentSequence = [[[sequenceElement attributeForName:@"currentSequence"] stringValue] integerValue];
+        
+        progress.sequenceId = sequenceId;
+        progress.currentSequence = currentSequence;
+        
         return progress;
     }
     //No progress file for given student exists
@@ -1766,6 +1774,12 @@ Context:
         
         [progressXMLElement addChild:bookXMLElement];
     }
+    
+    //Current sequence and id number
+    DDXMLElement* sequenceXMLElement = [DDXMLElement elementWithName:@"sequence"];
+    [sequenceXMLElement addAttributeWithName:@"sequenceId" stringValue:@([progress sequenceId]).stringValue];
+    [sequenceXMLElement addAttributeWithName:@"currentSequence" stringValue:@([progress currentSequence]).stringValue];
+    [progressXMLElement addChild:sequenceXMLElement];
     
     //Contents of progress file as a string
     NSString* progressXMLString = [progressXMLDocument XMLStringWithOptions:DDXMLNodePrettyPrint];

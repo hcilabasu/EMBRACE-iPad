@@ -75,7 +75,6 @@ typedef enum InteractionMode {
     
     InteractionModel *model;
     
-    //Condition condition; //Study condition to run the app (e.g. MENU, HOTSPOT, etc.)
     InteractionRestriction useSubject; //Determines which objects the user can manipulate as the subject
     InteractionRestriction useObject; //Determines which objects the user can interact with as the object
     
@@ -105,7 +104,7 @@ typedef enum InteractionMode {
 @synthesize libraryViewController;
 
 @synthesize IntroductionClass;
-@synthesize buildstringClass;
+@synthesize buildStringClass;
 @synthesize playaudioClass;
 
 @synthesize ImageOptions;
@@ -165,13 +164,9 @@ ConditionSetup *conditionSetup;
     
     self.ImageOptions = [NSArray arrayWithObjects: @"Save Waypoint", @"Save Hotspot", @"Save Location", @"Save Z-Index", @"Save Width", @"Save Height", @"Save Manipulation Type", @"FR: Save Animation", nil];
     
-    //creates instance of introduction class
     IntroductionClass = [[IntroductionViewController alloc]init];
-    //creates an instance of condition setup class
-    conditionSetup = [[ConditionSetup alloc] init];
-    //creates an instance of buildstringclass
-    buildstringClass = [[BuildHTMLString alloc]init];
-    //creates an instance of playaudioclass
+    conditionSetup = [ConditionSetup sharedInstance];
+    buildStringClass = [[BuildHTMLString alloc]init];
     playaudioClass = [[PlayAudioFile alloc]init];
     
     syn = [[AVSpeechSynthesizer alloc] init];

@@ -18,19 +18,19 @@
             <navLabel>
                 <text>How do Objects Move? - Intro</text>
             </navLabel>
-            <content src="Text/Story1-How-do-Objects-Move-Intro-E.xhtml"/>
+            <content src="Text/Story1-How-do-Objects-Move-Intro-S.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story1-PM-1">
 		  <navLabel>
     		<text>How do Objects Move? - PM</text>
 		  </navLabel>
-		  <content src="Text/Story1-How-do-Objects-Move-PM-1.xhtml"/>
+		  <content src="Text/Story1-How-do-Objects-Move-PM-1S.xhtml"/>
 		</navPoint>
        <navPoint class="PM_MODE" id="story1-PM-2">
 		  <navLabel>
 	    	<text>How do Objects Move? - PM</text>
 		  </navLabel>
-		  <content src="Text/Story1-How-do-Objects-Move-PM-2.xhtml"/>
+		  <content src="Text/Story1-How-do-Objects-Move-PM-2S.xhtml"/>
 		</navPoint>
 	</navPoint>
 	
@@ -43,7 +43,7 @@
             <navLabel>
                 <text>Newton's First Law - Intro</text>
             </navLabel>
-            <content src="Text/Story2-Newton's-First-Law-Intro-E.xhtml"/>
+            <content src="Text/Story2-Newton's-First-Law-Intro-S.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story2-PM-1">
 		  <navLabel>
@@ -74,7 +74,7 @@
             <navLabel>
                 <text>Newton's First Law on Earth - Intro</text>
             </navLabel>
-            <content src="Text/Story3-Newton's-First-Law-on-Earth-Intro-E.xhtml"/>
+            <content src="Text/Story3-Newton's-First-Law-on-Earth-Intro-S.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story3-PM-1">
 		  <navLabel>
@@ -105,7 +105,7 @@
             <navLabel>
                 <text>Newton's Second Law: Acceleration - Intro</text>
             </navLabel>
-            <content src="Text/Story4-Newton's-Second-Law-Acceleration-Intro-E.xhtml"/>
+            <content src="Text/Story4-Newton's-Second-Law-Acceleration-Intro-S.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story4-PM-1">
 		  <navLabel>
@@ -136,7 +136,7 @@
             <navLabel>
                 <text>Newton's Law of Acceleration on Earth - Intro</text>
             </navLabel>
-            <content src="Text/Story5-Newton's-Law-of-Acceleration-on-Earth-Intro-E.xhtml"/>
+            <content src="Text/Story5-Newton's-Law-of-Acceleration-on-Earth-Intro-S.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story5-PM-1">
 		  <navLabel>
@@ -161,7 +161,7 @@
             <navLabel>
                 <text>Newton's Third Law: Forces are Paired - Intro</text>
             </navLabel>
-            <content src="Text/Story6-Newton's-Third-Law-Forces-are-Paired-Intro-E.xhtml"/>
+            <content src="Text/Story6-Newton's-Third-Law-Forces-are-Paired-Intro-S.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story6-PM-1">
             <navLabel>
@@ -198,7 +198,7 @@
             <navLabel>
                 <text>The Three Laws Work Together - Intro</text>
             </navLabel>
-            <content src="Text/Story7-The-Three-Laws-Work-Together-Intro-E.xhtml"/>
+            <content src="Text/Story7-The-Three-Laws-Work-Together-Intro-S.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story7-PM-1">
             <navLabel>
@@ -225,19 +225,19 @@
 <pageList>
   <pageTarget id="p1" type="normal" value="1">
     	<navLabel><text>Chapter 1 - How do Objects Move? - Introduction</text></navLabel>
-		<content src="Text/Story1-How-do-Objects-Move-Intro-E.xhtml"/>
+		<content src="Text/Story1-How-do-Objects-Move-Intro-S.xhtml"/>
   </pageTarget>
   <pageTarget id="p2" type="normal" value="2">
     	<navLabel><text>Chapter 1 - How do Objects Move? - Physical Manipulation 1</text></navLabel>
-		<content src="Text/Story1-How-do-Objects-Move-PM-1.xhtml"/>
+		<content src="Text/Story1-How-do-Objects-Move-PM-1S.xhtml"/>
   </pageTarget>
   <pageTarget id="p3" type="normal" value="3">
     	<navLabel><text>Chapter 1 - How do Objects Move? - Physical Manipulation 2</text></navLabel>
-		<content src="Text/Story1-How-do-Objects-Move-PM-2.xhtml"/>
+		<content src="Text/Story1-How-do-Objects-Move-PM-2S.xhtml"/>
   </pageTarget>
   <pageTarget id="p4" type="normal" value="4">
     	<navLabel><text>Chapter 2 - Newton's First Law - Introduction</text></navLabel>
-		<content src="Text/Story2-Newton's-First-Law-Intro-E.xhtml"/>
+		<content src="Text/Story2-Newton's-First-Law-Intro-S.xhtml"/>
   </pageTarget>
   <pageTarget id="p5" type="normal" value="5">
     	<navLabel><text>Chapter 2 - Newton's First Law - Physical Manipulation 1</text></navLabel>
@@ -253,7 +253,7 @@
   </pageTarget>
   <pageTarget id="p8" type="normal" value="8">
     	<navLabel><text>Chapter 3 - Newton's First Law on Earth - Introduction</text></navLabel>
-		<content src="Text/Story3-Newton's-First-Law-on-Earth-Intro-E.xhtml"/>
+		<content src="Text/Story3-Newton's-First-Law-on-Earth-Intro-S.xhtml"/>
   </pageTarget>
   <pageTarget id="p9" type="normal" value="9">
     	<navLabel><text>Chapter 3 - Newton's First Law on Earth - Physical Manipulation 1</text></navLabel>
@@ -269,7 +269,7 @@
   </pageTarget>
   <pageTarget id="p12" type="normal" value="12">
     	<navLabel><text>Chapter 4 - Newton's Second Law: Acceleration - Introduction</text></navLabel>
-		<content src="Text/Story4-Newton's-Second-Law-Acceleration-Intro-E.xhtml"/>
+		<content src="Text/Story4-Newton's-Second-Law-Acceleration-Intro-S.xhtml"/>
   </pageTarget>
   <pageTarget id="p13" type="normal" value="13">
     	<navLabel><text>Chapter 4 - Newton's Second Law: Acceleration - Physical Manipulation 1</text></navLabel>
@@ -285,7 +285,7 @@
   </pageTarget>
   <pageTarget id="p16" type="normal" value="16">
     	<navLabel><text>Chapter 5 - Newton's Law of Acceleration on Earth - Introduction</text></navLabel>
-		<content src="Text/Story5-Newton's-Law-of-Acceleration-on-Earth-Intro-E.xhtml"/>
+		<content src="Text/Story5-Newton's-Law-of-Acceleration-on-Earth-Intro-S.xhtml"/>
   </pageTarget>
   <pageTarget id="p17" type="normal" value="17">
     	<navLabel><text>Chapter 5 - Newton's Law of Acceleration on Earth - Physical Manipulation 1</text></navLabel>
@@ -297,7 +297,7 @@
   </pageTarget>
   <pageTarget id="p19" type="normal" value="19">
       <navLabel><text>Chapter 6 - Newton's Third Law: Forces are Paired - Introduction</text></navLabel>
-      <content src="Text/Story6-Newton's-Third-Law-Forces-are-Paired-Intro-E.xhtml"/>
+      <content src="Text/Story6-Newton's-Third-Law-Forces-are-Paired-Intro-S.xhtml"/>
   </pageTarget>
   <pageTarget id="p20" type="normal" value="20">
       <navLabel><text>Chapter 6 - Newton's Third Law: Forces are Paired - Physical Manipulation 1</text></navLabel>
@@ -317,7 +317,7 @@
   </pageTarget>
   <pageTarget id="p24" type="normal" value="24">
       <navLabel><text>Chapter 7 - The Three Laws Work Together - Introduction</text></navLabel>
-      <content src="Text/Story7-The-Three-Laws-Work-Together-Intro-E.xhtml"/>
+      <content src="Text/Story7-The-Three-Laws-Work-Together-Intro-S.xhtml"/>
   </pageTarget>
   <pageTarget id="p25" type="normal" value="25">
       <navLabel><text>Chapter 7 - The Three Laws Work Together - Physical Manipulation 1</text></navLabel>

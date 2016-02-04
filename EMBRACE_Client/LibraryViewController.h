@@ -11,20 +11,18 @@
 #import "Book.h"
 #import "Student.h"
 #import "Progress.h"
+#import "ActivitySequenceController.h"
 
 @interface LibraryViewController : UIViewController {
     EBookImporter *bookImporter;
-    NSMutableArray* books;
-    
-    Student *student;
-    Progress* studentProgress;
-    Mode currentMode;
+    NSMutableArray *books;
     
     IBOutlet UIBarButtonItem *booksButton;
 }
 
 @property (strong, nonatomic) id dataObject;
-@property (nonatomic, strong) Student* student;
-@property (nonatomic, strong) Progress* studentProgress;
+@property (nonatomic, strong) Student *student;
+@property (nonatomic, strong) Progress *studentProgress;
+@property (nonatomic, strong) ActivitySequenceController *sequenceController;
 
 @end

@@ -15,16 +15,9 @@
 #import "IntroductionViewController.h"
 #import "AssessmentActivityViewController.h"
 
-//This enum defines the action types that exist in every intro or vocab step
-//typedef enum Action {
-//    SELECTION,
-//    EXP_ACTION,
-//    INPUT
-//}Action;
-
 @interface AuthoringModeViewController : UIViewController <UIGestureRecognizerDelegate, UIScrollViewDelegate, UIPickerViewDelegate>{
     EBookImporter *bookImporter;
-    Book* book;
+    Book *book;
     
     IBOutlet UIPinchGestureRecognizer *pinchRecognizer;
     IBOutlet UIPanGestureRecognizer *panRecognizer;
@@ -36,46 +29,46 @@
 @property (nonatomic, strong) EBookImporter *bookImporter;
 @property (nonatomic, strong) NSString *bookTitle;
 @property (nonatomic, strong) NSString *chapterTitle;
-@property (nonatomic, strong) Book* book;
-@property (nonatomic, strong) AVSpeechSynthesizer* syn;
+@property (nonatomic, strong) Book *book;
+@property (nonatomic, strong) AVSpeechSynthesizer *syn;
 @property (nonatomic, strong) IntroductionViewController *IntroductionClass;
-@property (nonatomic, strong) BuildHTMLString *buildstringClass;
-@property(nonatomic,strong) PlayAudioFile *playaudioClass;
-@property(nonatomic, strong) UIViewController *libraryViewController;
-@property(nonatomic, strong) UIPickerView *picker;
-@property(nonatomic, retain) NSArray *ImageOptions;
-@property(nonatomic, strong) UIView *entryview;
-@property(nonatomic, strong) UIView *areaSpace;
-@property(nonatomic) NSInteger TapLocationX;
-@property(nonatomic) NSInteger TapLocationY;
-@property(nonatomic, strong) UIView *HotspotEntry;
-@property(nonatomic, strong) UIView *LocationEntry;
-@property(nonatomic, strong) UIView *WaypointEntry;
-@property(nonatomic, strong) UIView *SingleEntry;
-@property(nonatomic, strong) UITextField *xcord;
-@property(nonatomic, strong) UITextField *ycord;
-@property(nonatomic, strong) UITextField *waypointID;
-@property(nonatomic, strong) UITextField *locationID;
-@property(nonatomic, strong) UITextField *hotspotID;
-@property(nonatomic, strong) UITextField *width;
-@property(nonatomic, strong) UITextField *height;
-@property(nonatomic, strong) UITextField *top;
-@property(nonatomic, strong) UITextField *left;
-@property(nonatomic, strong) UITextField *hotspotWidth;
-@property(nonatomic, strong) UITextField *hotspotHeight;
-@property(nonatomic, strong) UITextField *hotspotTop;
-@property(nonatomic, strong) UITextField *hotspotLeft;
-@property(nonatomic, strong) UITextField *zindex;
-@property(nonatomic, strong) UITextField *objectID;
-@property(nonatomic, strong) UITextField *manipulationType;
-@property(nonatomic, strong) UITextField *action;
-@property(nonatomic, strong) UITextField *role;
-@property(nonatomic) BOOL isEntryViewVisible;
-@property(nonatomic) BOOL isAreaViewVisible;
+@property (nonatomic, strong) BuildHTMLString *buildStringClass;
+@property (nonatomic,strong) PlayAudioFile *playaudioClass;
+@property (nonatomic, strong) UIViewController *libraryViewController;
+@property (nonatomic, strong) UIPickerView *picker;
+@property (nonatomic, retain) NSArray *ImageOptions;
+@property (nonatomic, strong) UIView *entryview;
+@property (nonatomic, strong) UIView *areaSpace;
+@property (nonatomic) NSInteger TapLocationX;
+@property (nonatomic) NSInteger TapLocationY;
+@property (nonatomic, strong) UIView *HotspotEntry;
+@property (nonatomic, strong) UIView *LocationEntry;
+@property (nonatomic, strong) UIView *WaypointEntry;
+@property (nonatomic, strong) UIView *SingleEntry;
+@property (nonatomic, strong) UITextField *xcord;
+@property (nonatomic, strong) UITextField *ycord;
+@property (nonatomic, strong) UITextField *waypointID;
+@property (nonatomic, strong) UITextField *locationID;
+@property (nonatomic, strong) UITextField *hotspotID;
+@property (nonatomic, strong) UITextField *width;
+@property (nonatomic, strong) UITextField *height;
+@property (nonatomic, strong) UITextField *top;
+@property (nonatomic, strong) UITextField *left;
+@property (nonatomic, strong) UITextField *hotspotWidth;
+@property (nonatomic, strong) UITextField *hotspotHeight;
+@property (nonatomic, strong) UITextField *hotspotTop;
+@property (nonatomic, strong) UITextField *hotspotLeft;
+@property (nonatomic, strong) UITextField *zindex;
+@property (nonatomic, strong) UITextField *objectID;
+@property (nonatomic, strong) UITextField *manipulationType;
+@property (nonatomic, strong) UITextField *action;
+@property (nonatomic, strong) UITextField *role;
+@property (nonatomic) BOOL isEntryViewVisible;
+@property (nonatomic) BOOL isAreaViewVisible;
 
--(void) loadFirstPage;
--(void) loadNextPage;
--(void) loadPage;
-- (BOOL) writeToFile:(NSString*) toLocation : (NSString *)fileName ofType:(NSString *)type;
+- (void) loadFirstPage;
+- (void) loadNextPage;
+- (void) loadPage;
+- (BOOL) writeToFile:(NSString *)toLocation :(NSString *)fileName ofType:(NSString *)type;
 
 @end

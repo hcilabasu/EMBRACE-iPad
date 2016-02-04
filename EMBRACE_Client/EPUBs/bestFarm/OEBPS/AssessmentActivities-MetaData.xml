@@ -124,9 +124,9 @@
                     <Question number="3">
                         <QuestionText>How did Manuel help the goat to look good?</QuestionText>
                         <QuestionAudio>GettingReadyQ3.mp3</QuestionAudio>
-                        <Answer1>Manuel combed the goat's fur</Answer1>
+                        <Answer1>Manuel brushed the goat's fur</Answer1>
                         <Answer1Audio>GettingReadyQ3A1.mp3</Answer1Audio>
-                        <expectedSelection>Manuel combed the goat's fur</expectedSelection>
+                        <expectedSelection>Manuel brushed the goat's fur</expectedSelection>
                         <Answer2>Manuel gave the goat a pumpkin</Answer2>
                         <Answer2Audio>GettingReadyQ3A2.mp3</Answer2Audio>
                         <Answer3>Manuel carried the milk bucket to the goat</Answer3>

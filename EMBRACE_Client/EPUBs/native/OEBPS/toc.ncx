@@ -25,13 +25,13 @@
                 <navLabel>
                     <text>Introduction to Native American Homes - PM</text>
                 </navLabel>
-                <content src="Text/Story1-Introduction-PM.xhtml"/>
+                <content src="Text/Story1-Introduction-PM-S.xhtml"/>
             </navPoint>
             <navPoint class="PM_MODE" id="story0-PM-2">
                 <navLabel>
                     <text>Introduction to Native American Homes - PM</text>
                 </navLabel>
-                <content src="Text/Story1-Introduction-PM-2.xhtml"/>
+                <content src="Text/Story1-Introduction-PM-2S.xhtml"/>
             </navPoint>
         </navPoint>
         
@@ -44,25 +44,25 @@
                 <navLabel>
                     <text>The Navajo Hogan - Intro</text>
                 </navLabel>
-                <content src="Text/Story1-The-Navajo-Hogan-Intro-E.xhtml"/>
+                <content src="Text/Story1-The-Navajo-Hogan-Intro-S.xhtml"/>
             </navPoint>
             <navPoint class="PM_MODE" id="story1-PM-1">
                 <navLabel>
                     <text>The Navajo Hogan - PM</text>
                 </navLabel>
-                <content src="Text/Story1-The-Navajo-Hogan-PM-1.xhtml"/>
+                <content src="Text/Story1-The-Navajo-Hogan-PM-1S.xhtml"/>
             </navPoint>
             <navPoint class="PM_MODE" id="story1-PM-2">
                 <navLabel>
                     <text>The Navajo Hogan - PM</text>
                 </navLabel>
-                <content src="Text/Story1-The-Navajo-Hogan-PM-2.xhtml"/>
+                <content src="Text/Story1-The-Navajo-Hogan-PM-2S.xhtml"/>
             </navPoint>
             <navPoint class="PM_MODE" id="story1-PM-3">
                 <navLabel>
                     <text>The Navajo Hogan - PM</text>
                 </navLabel>
-                <content src="Text/Story1-The-Navajo-Hogan-PM-3.xhtml"/>
+                <content src="Text/Story1-The-Navajo-Hogan-PM-3S.xhtml"/>
             </navPoint>
         </navPoint>
         
@@ -75,7 +75,7 @@
                 <navLabel>
                     <text>The Inuit Igloo - Intro</text>
                 </navLabel>
-                <content src="Text/Story2-The-Inuit-Igloo-Intro-E.xhtml"/>
+                <content src="Text/Story2-The-Inuit-Igloo-Intro-S.xhtml"/>
             </navPoint>
             <navPoint class="PM_MODE" id="story2-PM-1">
                 <navLabel>
@@ -112,7 +112,7 @@
                 <navLabel>
                     <text>The Sioux Teepee - Intro</text>
                 </navLabel>
-                <content src="Text/Story3-The-Sioux-Teepee-Intro-E.xhtml"/>
+                <content src="Text/Story3-The-Sioux-Teepee-Intro-S.xhtml"/>
             </navPoint>
             <navPoint class="PM_MODE" id="story3-PM-1">
                 <navLabel>
@@ -155,7 +155,7 @@
                 <navLabel>
                     <text>The Algonquian Wigwam - Intro</text>
                 </navLabel>
-                <content src="Text/Story4-The-Algonquian-Wigwam-Intro-E.xhtml"/>
+                <content src="Text/Story4-The-Algonquian-Wigwam-Intro-S.xhtml"/>
             </navPoint>
             <navPoint class="PM_MODE" id="story4-PM-1">
                 <navLabel>
@@ -192,7 +192,7 @@
                 <navLabel>
                     <text>The Haida Plank House - Intro</text>
                 </navLabel>
-                <content src="Text/Story5-The-Haida-Plank-House-Intro-E.xhtml"/>
+                <content src="Text/Story5-The-Haida-Plank-House-Intro-S.xhtml"/>
             </navPoint>
             <navPoint class="PM_MODE" id="story5-PM-1">
                 <navLabel>
@@ -235,7 +235,7 @@
                 <navLabel>
                     <text>The Seminole Chickee - Intro</text>
                 </navLabel>
-                <content src="Text/Story6-The-Seminole-Chickee-Intro-E.xhtml"/>
+                <content src="Text/Story6-The-Seminole-Chickee-Intro-S.xhtml"/>
             </navPoint>
             <navPoint class="PM_MODE" id="story6-PM-1">
                 <navLabel>
@@ -268,11 +268,11 @@
     <pageList>
         <pageTarget id="p0" type="normal" value="0">
             <navLabel><text>Chapter 1 - Introduction to Native American Homes - Physical Manipulation</text></navLabel>
-            <content src="Text/Story1-Introduction-PM.xhtml"/>
+            <content src="Text/Story1-Introduction-PM-S.xhtml"/>
         </pageTarget>
         <pageTarget id="p1" type="normal" value="1">
             <navLabel><text>Chapter 1 - Introduction to Native American Homes - Physical Manipulation 2</text></navLabel>
-            <content src="Text/Story1-Introduction-PM-2.xhtml"/>
+            <content src="Text/Story1-Introduction-PM-2S.xhtml"/>
         </pageTarget>
         <pageTarget id="p2" type="normal" value="2">
             <navLabel><text>Title - Introduction to Native American Homes</text></navLabel>
@@ -280,23 +280,23 @@
         </pageTarget>
         <pageTarget id="p3" type="normal" value="3">
             <navLabel><text>Chapter 1 - The Navajo Hogan - Introduction</text></navLabel>
-            <content src="Text/Story1-The-Navajo-Hogan-Intro-E.xhtml"/>
+            <content src="Text/Story1-The-Navajo-Hogan-Intro-S.xhtml"/>
         </pageTarget>
         <pageTarget id="p4" type="normal" value="4">
             <navLabel><text>Chapter 1 - The Navajo Hogan - Physical Manipulation 1</text></navLabel>
-            <content src="Text/Story1-The-Navajo-Hogan-PM-1.xhtml"/>
+            <content src="Text/Story1-The-Navajo-Hogan-PM-1S.xhtml"/>
         </pageTarget>
         <pageTarget id="p5" type="normal" value="5">
             <navLabel><text>Chapter 1 - The Navajo Hogan - Physical Manipulation 2</text></navLabel>
-            <content src="Text/Story1-The-Navajo-Hogan-PM-2.xhtml"/>
+            <content src="Text/Story1-The-Navajo-Hogan-PM-2S.xhtml"/>
         </pageTarget>
         <pageTarget id="p6" type="normal" value="6">
             <navLabel><text>Chapter 1 - The Navajo Hogan - Physical Manipulation 3</text></navLabel>
-            <content src="Text/Story1-The-Navajo-Hogan-PM-3.xhtml"/>
+            <content src="Text/Story1-The-Navajo-Hogan-PM-3S.xhtml"/>
         </pageTarget>
         <pageTarget id="p7" type="normal" value="7">
             <navLabel><text>Chapter 2 - The Inuit Igloo - Introduction</text></navLabel>
-            <content src="Text/Story2-The-Inuit-Igloo-Intro-E.xhtml"/>
+            <content src="Text/Story2-The-Inuit-Igloo-Intro-S.xhtml"/>
         </pageTarget>
         <pageTarget id="p8" type="normal" value="8">
             <navLabel><text>Chapter 2 - The Inuit Igloo - Physical Manipulation 1</text></navLabel>
@@ -316,7 +316,7 @@
         </pageTarget>
         <pageTarget id="p12" type="normal" value="12">
             <navLabel><text>Chapter 3 - The Sioux Teepee - Introduction</text></navLabel>
-            <content src="Text/Story3-The-Sioux-Teepee-Intro-E.xhtml"/>
+            <content src="Text/Story3-The-Sioux-Teepee-Intro-S.xhtml"/>
         </pageTarget>
         <pageTarget id="p13" type="normal" value="13">
             <navLabel><text>Chapter 3 - The Sioux Teepee - Physical Manipulation 1</text></navLabel>
@@ -340,7 +340,7 @@
         </pageTarget>
         <pageTarget id="p18" type="normal" value="18">
             <navLabel><text>Chapter 4 - The Algonquian Wigwam - Introduction</text></navLabel>
-            <content src="Text/Story4-The-Algonquian-Wigwam-Intro-E.xhtml"/>
+            <content src="Text/Story4-The-Algonquian-Wigwam-Intro-S.xhtml"/>
         </pageTarget>
         <pageTarget id="p19" type="normal" value="19">
             <navLabel><text>Chapter 4 - The Algonquian Wigwam - Physical Manipulation 1</text></navLabel>
@@ -360,7 +360,7 @@
         </pageTarget>
         <pageTarget id="p23" type="normal" value="23">
             <navLabel><text>Chapter 5 - The Haida Plank House - Introduction</text></navLabel>
-            <content src="Text/Story5-The-Haida-Plank-House-Intro-E.xhtml"/>
+            <content src="Text/Story5-The-Haida-Plank-House-Intro-S.xhtml"/>
         </pageTarget>
         <pageTarget id="p24" type="normal" value="24">
             <navLabel><text>Chapter 5 - The Haida Plank House - Physical Manipulation 1</text></navLabel>
@@ -384,7 +384,7 @@
         </pageTarget>
         <pageTarget id="p29" type="normal" value="29">
             <navLabel><text>Chapter 6 - The Seminole Chickee - Introduction</text></navLabel>
-            <content src="Text/Story6-The-Seminole-Chickee-Intro-E.xhtml"/>
+            <content src="Text/Story6-The-Seminole-Chickee-Intro-S.xhtml"/>
         </pageTarget>
         <pageTarget id="p30" type="normal" value="30">
             <navLabel><text>Chapter 6 - The Seminole Chickee - Physical Manipulation 1</text></navLabel>
