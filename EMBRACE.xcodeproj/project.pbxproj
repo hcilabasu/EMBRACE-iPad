@@ -1449,6 +1449,12 @@
 		5C5F7CC11C62C8BA00CF70A1 /* Story1-Key-Ingredients-PM-1S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C5F7CC01C62C8BA00CF70A1 /* Story1-Key-Ingredients-PM-1S.xhtml */; };
 		5C5F7CC31C62C8C200CF70A1 /* Story1-Key-Ingredients-PM-2S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C5F7CC21C62C8C200CF70A1 /* Story1-Key-Ingredients-PM-2S.xhtml */; };
 		5C5F7CC51C62C8CC00CF70A1 /* Story1-Key-Ingredients-PM-3S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C5F7CC41C62C8CC00CF70A1 /* Story1-Key-Ingredients-PM-3S.xhtml */; };
+		5C5F7CC71C62E0BA00CF70A1 /* Story1-Introduction-PM-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C5F7CC61C62E0BA00CF70A1 /* Story1-Introduction-PM-S.xhtml */; };
+		5C5F7CC91C62E0D800CF70A1 /* Story1-The-Moving-Earth-PM-1S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C5F7CC81C62E0D800CF70A1 /* Story1-The-Moving-Earth-PM-1S.xhtml */; };
+		5C5F7CCB1C62E0EC00CF70A1 /* Story1-The-Moving-Earth-PM-2S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C5F7CCA1C62E0EC00CF70A1 /* Story1-The-Moving-Earth-PM-2S.xhtml */; };
+		5C5F7CCD1C62E10200CF70A1 /* Story1-The-Moving-Earth-PM-3S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C5F7CCC1C62E10200CF70A1 /* Story1-The-Moving-Earth-PM-3S.xhtml */; };
+		5C5F7CCF1C62E9CE00CF70A1 /* Story1-How-do-Objects-Move-PM-1S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C5F7CCE1C62E9CE00CF70A1 /* Story1-How-do-Objects-Move-PM-1S.xhtml */; };
+		5C5F7CD11C62E9E800CF70A1 /* Story1-How-do-Objects-Move-PM-2S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C5F7CD01C62E9E800CF70A1 /* Story1-How-do-Objects-Move-PM-2S.xhtml */; };
 		5C9C06F81C57385A00702FCD /* CleaningUpQ1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C9C05271C57385900702FCD /* CleaningUpQ1.mp3 */; };
 		5C9C06F91C57385A00702FCD /* CleaningUpQ1A1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C9C05281C57385900702FCD /* CleaningUpQ1A1.mp3 */; };
 		5C9C06FA1C57385A00702FCD /* CleaningUpQ1A2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C9C05291C57385900702FCD /* CleaningUpQ1A2.mp3 */; };
@@ -4233,6 +4239,12 @@
 		5C5F7CC01C62C8BA00CF70A1 /* Story1-Key-Ingredients-PM-1S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Key-Ingredients-PM-1S.xhtml"; sourceTree = "<group>"; };
 		5C5F7CC21C62C8C200CF70A1 /* Story1-Key-Ingredients-PM-2S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Key-Ingredients-PM-2S.xhtml"; sourceTree = "<group>"; };
 		5C5F7CC41C62C8CC00CF70A1 /* Story1-Key-Ingredients-PM-3S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Key-Ingredients-PM-3S.xhtml"; sourceTree = "<group>"; };
+		5C5F7CC61C62E0BA00CF70A1 /* Story1-Introduction-PM-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Introduction-PM-S.xhtml"; sourceTree = "<group>"; };
+		5C5F7CC81C62E0D800CF70A1 /* Story1-The-Moving-Earth-PM-1S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-The-Moving-Earth-PM-1S.xhtml"; sourceTree = "<group>"; };
+		5C5F7CCA1C62E0EC00CF70A1 /* Story1-The-Moving-Earth-PM-2S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-The-Moving-Earth-PM-2S.xhtml"; sourceTree = "<group>"; };
+		5C5F7CCC1C62E10200CF70A1 /* Story1-The-Moving-Earth-PM-3S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-The-Moving-Earth-PM-3S.xhtml"; sourceTree = "<group>"; };
+		5C5F7CCE1C62E9CE00CF70A1 /* Story1-How-do-Objects-Move-PM-1S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-How-do-Objects-Move-PM-1S.xhtml"; sourceTree = "<group>"; };
+		5C5F7CD01C62E9E800CF70A1 /* Story1-How-do-Objects-Move-PM-2S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-How-do-Objects-Move-PM-2S.xhtml"; sourceTree = "<group>"; };
 		5C80A4EF1B4F378500CAC13E /* Vector.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Vector.js; sourceTree = "<group>"; };
 		5C9C05271C57385900702FCD /* CleaningUpQ1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CleaningUpQ1.mp3; sourceTree = "<group>"; };
 		5C9C05281C57385900702FCD /* CleaningUpQ1A1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CleaningUpQ1A1.mp3; sourceTree = "<group>"; };
@@ -6389,10 +6401,14 @@
 			children = (
 				1A631EE41C0E4D3A00251CB3 /* Introduction-to-Natural-Disasters-Title.xhtml */,
 				1A631EE51C0E4D3A00251CB3 /* Story1-Introduction-PM.xhtml */,
+				5C5F7CC61C62E0BA00CF70A1 /* Story1-Introduction-PM-S.xhtml */,
 				1A631EE61C0E4D3A00251CB3 /* Story1-The-Moving-Earth-Intro-E.xhtml */,
 				1A631EE71C0E4D3A00251CB3 /* Story1-The-Moving-Earth-PM-1.xhtml */,
+				5C5F7CC81C62E0D800CF70A1 /* Story1-The-Moving-Earth-PM-1S.xhtml */,
 				1A631EE81C0E4D3A00251CB3 /* Story1-The-Moving-Earth-PM-2.xhtml */,
+				5C5F7CCA1C62E0EC00CF70A1 /* Story1-The-Moving-Earth-PM-2S.xhtml */,
 				1A631EE91C0E4D3A00251CB3 /* Story1-The-Moving-Earth-PM-3.xhtml */,
+				5C5F7CCC1C62E10200CF70A1 /* Story1-The-Moving-Earth-PM-3S.xhtml */,
 				1A631EEA1C0E4D3A00251CB3 /* Story1-The-Moving-Earth-Title.xhtml */,
 				1A631EEB1C0E4D3A00251CB3 /* Story2-Earthquakes-Intro-E.xhtml */,
 				1A631EEC1C0E4D3A00251CB3 /* Story2-Earthquakes-PM-1.xhtml */,
@@ -6721,7 +6737,9 @@
 				1A631FD71C0E4D3B00251CB3 /* Story1-How-do-Objects-Move-Intro-E.xhtml */,
 				5DB509941C40CDEB00EB74E0 /* Story1-How-do-Objects-Move-Intro-S.xhtml */,
 				1A631FD81C0E4D3B00251CB3 /* Story1-How-do-Objects-Move-PM-1.xhtml */,
+				5C5F7CCE1C62E9CE00CF70A1 /* Story1-How-do-Objects-Move-PM-1S.xhtml */,
 				1A631FD91C0E4D3B00251CB3 /* Story1-How-do-Objects-Move-PM-2.xhtml */,
+				5C5F7CD01C62E9E800CF70A1 /* Story1-How-do-Objects-Move-PM-2S.xhtml */,
 				1A631FDA1C0E4D3B00251CB3 /* Story1-How-do-Objects-Move-Title.xhtml */,
 				1A631FDB1C0E4D3B00251CB3 /* Story2-Newton's-First-Law-Intro-E.xhtml */,
 				5DB509961C40D29600EB74E0 /* Story2-Newton's-First-Law-Intro-S.xhtml */,
@@ -9941,6 +9959,7 @@
 				5C9C0A6F1C573AAA00702FCD /* CCE5_5.m4a in Resources */,
 				1A6321871C0E4D3B00251CB3 /* p3_Rsqueeze.png in Resources */,
 				5D9E32831C588DF800636150 /* TheNaughtyMonkeyQ2A3.mp3 in Resources */,
+				5C5F7CCD1C62E10200CF70A1 /* Story1-The-Moving-Earth-PM-3S.xhtml in Resources */,
 				1A6322121C0E4D3B00251CB3 /* india_himalayas.png in Resources */,
 				5C9C08B31C57385A00702FCD /* WhoIsTheBestAnimalQ2A4.mp3 in Resources */,
 				1A6321CC1C0E4D3B00251CB3 /* disasters.epub in Resources */,
@@ -10397,6 +10416,7 @@
 				5D9E33E51C590E9500636150 /* MissingKeysQ1A2.mp3 in Resources */,
 				5D9E33F01C590E9500636150 /* MissingKeysQ3A3.mp3 in Resources */,
 				5C28DCCC1C2BA66E005ACD07 /* seminole_dad.png in Resources */,
+				5C5F7CC91C62E0D800CF70A1 /* Story1-The-Moving-Earth-PM-1S.xhtml in Resources */,
 				5C0421531C618C2B001BBE9D /* BabyBrotherQ7.mp3 in Resources */,
 				1A63214D1C0E4D3B00251CB3 /* Translations-MetaData.xml in Resources */,
 				5C9C07061C57385A00702FCD /* CleaningUpQ3A4.mp3 in Resources */,
@@ -10534,9 +10554,11 @@
 				1A63227E1C0E4D3B00251CB3 /* VocabularyIntroductions-MetaData.xml in Resources */,
 				1A6322DE1C0E4D3B00251CB3 /* Story3-Is-Paco-a-Thief-Intro-S.xhtml in Resources */,
 				1A6321E11C0E4D3B00251CB3 /* building_02.png in Resources */,
+				5C5F7CCF1C62E9CE00CF70A1 /* Story1-How-do-Objects-Move-PM-1S.xhtml in Resources */,
 				5C28DCFC1C2BA66E005ACD07 /* Story2-The-Inuit-Igloo-Intro-E.xhtml in Resources */,
 				5D9E34331C590E9500636150 /* old_MissingKeysQ3A3.mp3 in Resources */,
 				1A6321501C0E4D3B00251CB3 /* circulatory.epub in Resources */,
+				5C5F7CCB1C62E0EC00CF70A1 /* Story1-The-Moving-Earth-PM-2S.xhtml in Resources */,
 				1A6322EA1C0E4D3B00251CB3 /* Story5-The-Baby's-Rattle-is-Gone-Too-IM-2.xhtml in Resources */,
 				1A6320691C0E4D3B00251CB3 /* Story6-Everyone-Helps-PM-1.xhtml in Resources */,
 				5C28DC9D1C2BA66E005ACD07 /* hole.png in Resources */,
@@ -11130,6 +11152,7 @@
 				1A6321D61C0E4D3B00251CB3 /* air_blue.png in Resources */,
 				5C0421B21C618C2B001BBE9D /* TheLuckyStoneQ4A1S.mp3 in Resources */,
 				1A63206F1C0E4D3B00251CB3 /* Story7-The-Best-Farm-Award-Intro-S.xhtml in Resources */,
+				5C5F7CC71C62E0BA00CF70A1 /* Story1-Introduction-PM-S.xhtml in Resources */,
 				5D9E345C1C590E9500636150 /* TheFamilyIsRattledQ3A1.mp3 in Resources */,
 				5C0421FB1C618C2B001BBE9D /* WordsOfWisdomQ2A3.mp3 in Resources */,
 				5C9F28CC1C5C6B2E008ACE48 /* TheLopezFamilyQ6A3S.mp3 in Resources */,
@@ -11598,6 +11621,7 @@
 				1A63227F1C0E4D3B00251CB3 /* Waypoints-MetaData.xml in Resources */,
 				5C0421E51C618C2B001BBE9D /* TheLuckyStoneQ6A1.mp3 in Resources */,
 				1A6321961C0E4D3B00251CB3 /* Story1-Why-We-Breathe-IM-1.xhtml in Resources */,
+				5C5F7CD11C62E9E800CF70A1 /* Story1-How-do-Objects-Move-PM-2S.xhtml in Resources */,
 				1A6323181C0E4D3B00251CB3 /* dog_harness.png in Resources */,
 				5C28DCB71C2BA66E005ACD07 /* man_withpole.png in Resources */,
 				1A6321CB1C0E4D3B00251CB3 /* Waypoints-MetaData.xml in Resources */,
