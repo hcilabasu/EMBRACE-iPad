@@ -10262,6 +10262,7 @@
 				5D10AC651C52C749007109AD /* MagicToysQ7A1.mp3 in Resources */,
 				1A3EFFF61C635BE300927997 /* bg_corral.png in Resources */,
 				5D9E34E21C590E9600636150 /* TheLopezFamilyS4E.mp3 in Resources */,
+				5C0422041C618C2B001BBE9D /* WordsOfWisdomQ4A2.mp3 in Resources */,
 				5C9C07431C57385A00702FCD /* GettingReadyQ4.mp3 in Resources */,
 				1A6321D91C0E4D3B00251CB3 /* ash_00.png in Resources */,
 				5CD1C1331C3F2E6A00BE9047 /* bluesaddlebag_closed.png in Resources */,
