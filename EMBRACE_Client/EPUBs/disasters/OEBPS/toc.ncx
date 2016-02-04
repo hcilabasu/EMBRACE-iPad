@@ -24,7 +24,7 @@
             <navLabel>
                 <text>Introduction to Natural Disasters - PM</text>
             </navLabel>
-            <content src="Text/Story1-Introduction-PM.xhtml"/>
+            <content src="Text/Story1-Introduction-PM-S.xhtml"/>
         </navPoint>
     </navPoint>
     
@@ -43,19 +43,19 @@
 		  <navLabel>
     		<text>The Moving Earth - PM</text>
 		  </navLabel>
-		  <content src="Text/Story1-The-Moving-Earth-PM-1.xhtml"/>
+		  <content src="Text/Story1-The-Moving-Earth-PM-1S.xhtml"/>
 		</navPoint>
        <navPoint class="PM_MODE" id="story1-PM-2">
 		  <navLabel>
 	    	<text>The Moving Earth - PM</text>
 		  </navLabel>
-		  <content src="Text/Story1-The-Moving-Earth-PM-2.xhtml"/>
+		  <content src="Text/Story1-The-Moving-Earth-PM-2S.xhtml"/>
 		</navPoint>
        <navPoint class="PM_MODE" id="story1-PM-3">
 		  <navLabel>
     		<text>The Moving Earth - PM</text>
 		  </navLabel>
-		  <content src="Text/Story1-The-Moving-Earth-PM-3.xhtml"/>
+		  <content src="Text/Story1-The-Moving-Earth-PM-3S.xhtml"/>
 		</navPoint>
 	</navPoint>
 	
@@ -205,7 +205,7 @@
 <pageList>
 	<pageTarget id="p0" type="normal" value="0">
     	<navLabel><text>Chapter 1 - Introduction to Natural Disasters - Physical Manipulation</text></navLabel>
-		<content src="Text/Story1-Introduction-PM.xhtml"/>
+		<content src="Text/Story1-Introduction-PM-S.xhtml"/>
 	</pageTarget>
 	<pageTarget id="p1" type="normal" value="1">
     	<navLabel><text>Title - Introduction to Natural Disasters</text></navLabel>
@@ -217,15 +217,15 @@
 	</pageTarget>
 	<pageTarget id="p3" type="normal" value="3">
     	<navLabel><text>Chapter 1 - The Moving Earth - Physical Manipulation 1</text></navLabel>
-		<content src="Text/Story1-The-Moving-Earth-PM-1.xhtml"/>
+		<content src="Text/Story1-The-Moving-Earth-PM-1S.xhtml"/>
 	</pageTarget>
   <pageTarget id="p4" type="normal" value="4">
     	<navLabel><text>Chapter 1 - The Moving Earth - Physical Manipulation 2</text></navLabel>
-		<content src="Text/Story1-The-Moving-Earth-PM-2.xhtml"/>
+		<content src="Text/Story1-The-Moving-Earth-PM-2S.xhtml"/>
 	</pageTarget>
    <pageTarget id="p5" type="normal" value="5">
     	<navLabel><text>Chapter 1 - The Moving Earth - Physical Manipulation 3</text></navLabel>
-		<content src="Text/Story1-The-Moving-Earth-PM-3.xhtml"/>
+		<content src="Text/Story1-The-Moving-Earth-PM-3S.xhtml"/>
 	</pageTarget>
 	<pageTarget id="p6" type="normal" value="6">
     	<navLabel><text>Chapter 2 - Earthquakes - Introduction</text></navLabel>

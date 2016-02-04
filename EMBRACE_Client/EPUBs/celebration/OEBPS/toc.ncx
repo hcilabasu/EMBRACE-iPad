@@ -18,25 +18,25 @@
             <navLabel>
                 <text>Key Ingredients - Intro</text>
             </navLabel>
-            <content src="Text/Story1-Key-Ingredients-Intro-E.xhtml"/>
+            <content src="Text/Story1-Key-Ingredients-Intro-S.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story1-PM-1">
 		  <navLabel>
     		<text>Key Ingredients - PM</text>
 		  </navLabel>
-		  <content src="Text/Story1-Key-Ingredients-PM-1.xhtml"/>
+		  <content src="Text/Story1-Key-Ingredients-PM-1S.xhtml"/>
 		</navPoint>
        <navPoint class="PM_MODE" id="story1-PM-2">
 		  <navLabel>
 	    	<text>Key Ingredients - PM</text>
 		  </navLabel>
-		  <content src="Text/Story1-Key-Ingredients-PM-2.xhtml"/>
+		  <content src="Text/Story1-Key-Ingredients-PM-2S.xhtml"/>
 		</navPoint>
        <navPoint class="PM_MODE" id="story1-PM-3">
            <navLabel>
                <text>Key Ingredients - PM</text>
            </navLabel>
-           <content src="Text/Story1-Key-Ingredients-PM-3.xhtml"/>
+           <content src="Text/Story1-Key-Ingredients-PM-3S.xhtml"/>
        </navPoint>
 	</navPoint>
 	
@@ -49,7 +49,7 @@
             <navLabel>
                 <text>Mancha the Horse - Intro</text>
             </navLabel>
-            <content src="Text/Story2-Mancha-the-Horse-Intro-E.xhtml"/>
+            <content src="Text/Story2-Mancha-the-Horse-Intro-S.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story2-PM-1">
 		  <navLabel>
@@ -80,7 +80,7 @@
             <navLabel>
                 <text>A Friend in Need - Intro</text>
             </navLabel>
-            <content src="Text/Story3-A-Friend-in-Need-Intro-E.xhtml"/>
+            <content src="Text/Story3-A-Friend-in-Need-Intro-S.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story3-PM-1">
 		  <navLabel>
@@ -111,7 +111,7 @@
             <navLabel>
                 <text>Shopping at the Market - Intro</text>
             </navLabel>
-            <content src="Text/Story4-Shopping-at-the-Market-Intro-E.xhtml"/>
+            <content src="Text/Story4-Shopping-at-the-Market-Intro-S.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story4-PM-1">
 		  <navLabel>
@@ -148,7 +148,7 @@
             <navLabel>
                 <text>A Gift for the Bride - Intro</text>
             </navLabel>
-            <content src="Text/Story5-A-Gift-for-the-Bride-Intro-E.xhtml"/>
+            <content src="Text/Story5-A-Gift-for-the-Bride-Intro-S.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story5-PM-1">
             <navLabel>
@@ -191,7 +191,7 @@
             <navLabel>
                 <text>Homecoming - Intro</text>
             </navLabel>
-            <content src="Text/Story6-Homecoming-Intro-E.xhtml"/>
+            <content src="Text/Story6-Homecoming-Intro-S.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story6-PM-1">
             <navLabel>
@@ -223,24 +223,24 @@
 <pageList>
   <pageTarget id="p1" type="normal" value="1">
     	<navLabel><text>Chapter 1 - Key Ingredients - Introduction</text></navLabel>
-		<content src="Text/Story1-Key-Ingredients-Intro-E.xhtml"/>
+		<content src="Text/Story1-Key-Ingredients-Intro-S.xhtml"/>
   </pageTarget>
   <pageTarget id="p2" type="normal" value="2">
     	<navLabel><text>Chapter 1 - Key Ingredients - Physical Manipulation 1</text></navLabel>
-		<content src="Text/Story1-Key-Ingredients-PM-1.xhtml"/>
+		<content src="Text/Story1-Key-Ingredients-PM-1S.xhtml"/>
   </pageTarget>
   <pageTarget id="p3" type="normal" value="3">
     	<navLabel><text>Chapter 1 - Key Ingredients - Physical Manipulation 2</text></navLabel>
-		<content src="Text/Story1-Key-Ingredients-PM-2.xhtml"/>
+		<content src="Text/Story1-Key-Ingredients-PM-2S.xhtml"/>
   </pageTarget>
   <pageTarget id="p4" type="normal" value="4">
         <navLabel><text>Chapter 1 - Key Ingredients - Physical Manipulation 3</text></navLabel>
-        <content src="Text/Story1-Key-Ingredients-PM-3.xhtml"/>
+        <content src="Text/Story1-Key-Ingredients-PM-3S.xhtml"/>
   </pageTarget>
   
   <pageTarget id="p5" type="normal" value="5">
     	<navLabel><text>Chapter 2 - Mancha the Horse - Introduction</text></navLabel>
-		<content src="Text/Story2-Mancha-the-Horse-Intro-E.xhtml"/>
+		<content src="Text/Story2-Mancha-the-Horse-Intro-S.xhtml"/>
   </pageTarget>
   <pageTarget id="p6" type="normal" value="6">
     	<navLabel><text>Chapter 2 - Mancha the Horse - Physical Manipulation 1</text></navLabel>
@@ -257,7 +257,7 @@
   
   <pageTarget id="p9" type="normal" value="9">
     	<navLabel><text>Chapter 3 - A Friend in Need - Introduction</text></navLabel>
-		<content src="Text/Story3-A-Friend-in-Need-Intro-E.xhtml"/>
+		<content src="Text/Story3-A-Friend-in-Need-Intro-S.xhtml"/>
   </pageTarget>
   <pageTarget id="p10" type="normal" value="10">
     	<navLabel><text>Chapter 3 - A Friend in Need - Physical Manipulation 1</text></navLabel>
@@ -274,7 +274,7 @@
   
   <pageTarget id="p13" type="normal" value="13">
     	<navLabel><text>Chapter 4 - Shopping at the Market - Introduction</text></navLabel>
-		<content src="Text/Story4-Shopping-at-the-Market-Intro-E.xhtml"/>
+		<content src="Text/Story4-Shopping-at-the-Market-Intro-S.xhtml"/>
   </pageTarget>
   <pageTarget id="p14" type="normal" value="14">
     	<navLabel><text>Chapter 4 - Shopping at the Market - Physical Manipulation 1</text></navLabel>
@@ -295,7 +295,7 @@
   
   <pageTarget id="p18" type="normal" value="18">
     	<navLabel><text>Chapter 5 - A Gift for the Bride - Introduction</text></navLabel>
-		<content src="Text/Story5-A-Gift-for-the-Bride-Intro-E.xhtml"/>
+		<content src="Text/Story5-A-Gift-for-the-Bride-Intro-S.xhtml"/>
   </pageTarget>
   <pageTarget id="p19" type="normal" value="19">
     	<navLabel><text>Chapter 5 - A Gift for the Bride - Physical Manipulation 1</text></navLabel>
@@ -320,7 +320,7 @@
 
  <pageTarget id="p24" type="normal" value="24">
         <navLabel><text>Chapter 6 - Homecoming - Introduction</text></navLabel>
-        <content src="Text/Story6-Homecoming-Intro-E.xhtml"/>
+        <content src="Text/Story6-Homecoming-Intro-S.xhtml"/>
   </pageTarget>
   <pageTarget id="p25" type="normal" value="25">
         <navLabel><text>Chapter 6 - Homecoming - Physical Manipulation 1</text></navLabel>
