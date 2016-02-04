@@ -1455,6 +1455,11 @@
 		5C5F7CCD1C62E10200CF70A1 /* Story1-The-Moving-Earth-PM-3S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C5F7CCC1C62E10200CF70A1 /* Story1-The-Moving-Earth-PM-3S.xhtml */; };
 		5C5F7CCF1C62E9CE00CF70A1 /* Story1-How-do-Objects-Move-PM-1S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C5F7CCE1C62E9CE00CF70A1 /* Story1-How-do-Objects-Move-PM-1S.xhtml */; };
 		5C5F7CD11C62E9E800CF70A1 /* Story1-How-do-Objects-Move-PM-2S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C5F7CD01C62E9E800CF70A1 /* Story1-How-do-Objects-Move-PM-2S.xhtml */; };
+		5C5F7CD31C62F42000CF70A1 /* Story1-Introduction-PM-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C5F7CD21C62F42000CF70A1 /* Story1-Introduction-PM-S.xhtml */; };
+		5C5F7CD51C62F44200CF70A1 /* Story1-Introduction-PM-2S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C5F7CD41C62F44200CF70A1 /* Story1-Introduction-PM-2S.xhtml */; };
+		5C5F7CD71C62F64E00CF70A1 /* Story1-The-Navajo-Hogan-PM-1S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C5F7CD61C62F64E00CF70A1 /* Story1-The-Navajo-Hogan-PM-1S.xhtml */; };
+		5C5F7CD91C62F66500CF70A1 /* Story1-The-Navajo-Hogan-PM-2S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C5F7CD81C62F66500CF70A1 /* Story1-The-Navajo-Hogan-PM-2S.xhtml */; };
+		5C5F7CDB1C62F67800CF70A1 /* Story1-The-Navajo-Hogan-PM-3S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C5F7CDA1C62F67800CF70A1 /* Story1-The-Navajo-Hogan-PM-3S.xhtml */; };
 		5C9C06F81C57385A00702FCD /* CleaningUpQ1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C9C05271C57385900702FCD /* CleaningUpQ1.mp3 */; };
 		5C9C06F91C57385A00702FCD /* CleaningUpQ1A1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C9C05281C57385900702FCD /* CleaningUpQ1A1.mp3 */; };
 		5C9C06FA1C57385A00702FCD /* CleaningUpQ1A2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C9C05291C57385900702FCD /* CleaningUpQ1A2.mp3 */; };
@@ -4245,6 +4250,11 @@
 		5C5F7CCC1C62E10200CF70A1 /* Story1-The-Moving-Earth-PM-3S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-The-Moving-Earth-PM-3S.xhtml"; sourceTree = "<group>"; };
 		5C5F7CCE1C62E9CE00CF70A1 /* Story1-How-do-Objects-Move-PM-1S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-How-do-Objects-Move-PM-1S.xhtml"; sourceTree = "<group>"; };
 		5C5F7CD01C62E9E800CF70A1 /* Story1-How-do-Objects-Move-PM-2S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-How-do-Objects-Move-PM-2S.xhtml"; sourceTree = "<group>"; };
+		5C5F7CD21C62F42000CF70A1 /* Story1-Introduction-PM-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Introduction-PM-S.xhtml"; sourceTree = "<group>"; };
+		5C5F7CD41C62F44200CF70A1 /* Story1-Introduction-PM-2S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Introduction-PM-2S.xhtml"; sourceTree = "<group>"; };
+		5C5F7CD61C62F64E00CF70A1 /* Story1-The-Navajo-Hogan-PM-1S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-The-Navajo-Hogan-PM-1S.xhtml"; sourceTree = "<group>"; };
+		5C5F7CD81C62F66500CF70A1 /* Story1-The-Navajo-Hogan-PM-2S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-The-Navajo-Hogan-PM-2S.xhtml"; sourceTree = "<group>"; };
+		5C5F7CDA1C62F67800CF70A1 /* Story1-The-Navajo-Hogan-PM-3S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-The-Navajo-Hogan-PM-3S.xhtml"; sourceTree = "<group>"; };
 		5C80A4EF1B4F378500CAC13E /* Vector.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Vector.js; sourceTree = "<group>"; };
 		5C9C05271C57385900702FCD /* CleaningUpQ1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CleaningUpQ1.mp3; sourceTree = "<group>"; };
 		5C9C05281C57385900702FCD /* CleaningUpQ1A1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CleaningUpQ1A1.mp3; sourceTree = "<group>"; };
@@ -7621,13 +7631,18 @@
 				5C28DC2E1C2BA66E005ACD07 /* Introduction-to-Native-American-Homes-Title.xhtml */,
 				5D68211B1C480A27001F5CFD /* Story1-Introduction-Intro-E.xhtml */,
 				5D68211D1C480A3F001F5CFD /* Story1-Introduction-Intro-S.xhtml */,
-				5C28DC2F1C2BA66E005ACD07 /* Story1-Introduction-PM-2.xhtml */,
 				5C28DC301C2BA66E005ACD07 /* Story1-Introduction-PM.xhtml */,
+				5C5F7CD21C62F42000CF70A1 /* Story1-Introduction-PM-S.xhtml */,
+				5C28DC2F1C2BA66E005ACD07 /* Story1-Introduction-PM-2.xhtml */,
+				5C5F7CD41C62F44200CF70A1 /* Story1-Introduction-PM-2S.xhtml */,
 				5C28DC311C2BA66E005ACD07 /* Story1-The-Navajo-Hogan-Intro-E.xhtml */,
 				5D6821191C4808D1001F5CFD /* Story1-The-Navajo-Hogan-Intro-S.xhtml */,
 				5C28DC321C2BA66E005ACD07 /* Story1-The-Navajo-Hogan-PM-1.xhtml */,
+				5C5F7CD61C62F64E00CF70A1 /* Story1-The-Navajo-Hogan-PM-1S.xhtml */,
 				5C28DC331C2BA66E005ACD07 /* Story1-The-Navajo-Hogan-PM-2.xhtml */,
+				5C5F7CD81C62F66500CF70A1 /* Story1-The-Navajo-Hogan-PM-2S.xhtml */,
 				5C28DC341C2BA66E005ACD07 /* Story1-The-Navajo-Hogan-PM-3.xhtml */,
+				5C5F7CDA1C62F67800CF70A1 /* Story1-The-Navajo-Hogan-PM-3S.xhtml */,
 				5C28DC351C2BA66E005ACD07 /* Story1-The-Navajo-Hogan-Title.xhtml */,
 				5C28DC361C2BA66E005ACD07 /* Story2-The-Inuit-Igloo-Intro-E.xhtml */,
 				5D68211F1C480C4C001F5CFD /* Story2-The-Inuit-Igloo-Intro-S.xhtml */,
@@ -9468,6 +9483,7 @@
 				5C9C07C81C57385A00702FCD /* BFCS_8B.m4a in Resources */,
 				5D9E34BB1C590E9600636150 /* Lawyer_def_E.mp3 in Resources */,
 				1A6321E21C0E4D3B00251CB3 /* buildings.png in Resources */,
+				5C5F7CD31C62F42000CF70A1 /* Story1-Introduction-PM-S.xhtml in Resources */,
 				5C0422191C618C2B001BBE9D /* WordsOfWisdomQ8A3.mp3 in Resources */,
 				1A6322D11C0E4D3B00251CB3 /* Story1-The-Lopez-Family-PM-2.xhtml in Resources */,
 				5C9C0A841C573AAA00702FCD /* CPQR12.m4a in Resources */,
@@ -9590,6 +9606,7 @@
 				5C9C0A541C573AAA00702FCD /* carbonDioxideE.m4a in Resources */,
 				5C9C085E1C57385A00702FCD /* TheBestFarmAwardQ4A4.mp3 in Resources */,
 				5C9C088B1C57385A00702FCD /* TheContestQ7A4.mp3 in Resources */,
+				5C5F7CDB1C62F67800CF70A1 /* Story1-The-Navajo-Hogan-PM-3S.xhtml in Resources */,
 				5C9C0A231C573AAA00702FCD /* GettingMoreOxygenForTheMusclesQ6A3.mp3 in Resources */,
 				5D9E34521C590E9500636150 /* TheFamilyIsRattledQ1A1.mp3 in Resources */,
 				1A6320A11C0E4D3B00251CB3 /* toy_train.png in Resources */,
@@ -9759,6 +9776,7 @@
 				1A63215E1C0E4D3B00251CB3 /* bg_veins.png in Resources */,
 				5D9E34501C590E9500636150 /* old_TheMysteryIsSolvedQ6A3.mp3 in Resources */,
 				5C0421EC1C618C2B001BBE9D /* TheLuckyStoneQ7A3.mp3 in Resources */,
+				5C5F7CD91C62F66500CF70A1 /* Story1-The-Navajo-Hogan-PM-2S.xhtml in Resources */,
 				5C0421ED1C618C2B001BBE9D /* TheLuckyStoneQ7A4.mp3 in Resources */,
 				5C9C0AD21C573AAA00702FCD /* veinsS.m4a in Resources */,
 				5C0421571C618C2B001BBE9D /* BabyBrotherQ7A4.mp3 in Resources */,
@@ -10140,6 +10158,7 @@
 				1A6321B31C0E4D3B00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-IM-2.xhtml in Resources */,
 				5C9F28C71C5C6B2E008ACE48 /* TheLopezFamilyQ5A3S.mp3 in Resources */,
 				1A6321231C0E4D3B00251CB3 /* SentenceAnalysis-MetaData.xml in Resources */,
+				5C5F7CD71C62F64E00CF70A1 /* Story1-The-Navajo-Hogan-PM-1S.xhtml in Resources */,
 				1A6320DC1C0E4D3B00251CB3 /* bridle.png in Resources */,
 				1A6323241C0E4D3B00251CB3 /* maria_push.png in Resources */,
 				5D9E344D1C590E9500636150 /* old_TheMysteryIsSolvedQ2A3.mp3 in Resources */,
@@ -10622,6 +10641,7 @@
 				5C9C077A1C57385A00702FCD /* barnDEFS.m4a in Resources */,
 				5C9F28CB1C5C6B2E008ACE48 /* TheLopezFamilyQ6A2S.mp3 in Resources */,
 				5C9F28C41C5C6B2E008ACE48 /* TheLopezFamilyQ4S.mp3 in Resources */,
+				5C5F7CD51C62F44200CF70A1 /* Story1-Introduction-PM-2S.xhtml in Resources */,
 				5C9C0AC31C573AAA00702FCD /* stiffS.m4a in Resources */,
 				5D9E33D31C590E9400636150 /* IsPacoAThiefQ5A4.mp3 in Resources */,
 				1A6322D91C0E4D3B00251CB3 /* Story2-Missing-Keys-PM-2.xhtml in Resources */,
