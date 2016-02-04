@@ -16,7 +16,7 @@
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
 @property (nonatomic, strong) AVAudioPlayer *audioPlayerAfter; // Used to play sounds after the first audio player has finished playing
 @property (nonatomic, strong) AVSpeechSynthesizer* syn;
-@property (nonatomic, strong) UIViewController* PmviewController;
+@property (nonatomic, weak) UIViewController* PmviewController;
 
 -(void)initPlayer: (NSString*) audioFilePath;
 -(void)playWordAudioTimed:(NSTimer *) wordAndLang;
@@ -27,5 +27,6 @@
 -(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag;
 -(IBAction) playErrorNoise: (NSString *) storyName : (NSString *) chapterFilePath : (NSString*) pageFilePath : (NSInteger) sentenceNumber : (NSString *) sentenceText : (NSInteger) stepNumber : (NSInteger) ideaNumber;
 -(void) textToSpeech: (NSString *) text;
+- (void)playAudioInSequence:(NSArray *)audioList parentViewController:(UIViewController *)controller;
 
 @end

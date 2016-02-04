@@ -2348,6 +2348,8 @@
 		5D6821301C489FB5001F5CFD /* Story4-Shopping-at-the-Market-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5D68212F1C489FB5001F5CFD /* Story4-Shopping-at-the-Market-Intro-S.xhtml */; };
 		5D6821321C48A13A001F5CFD /* Story5-A-Gift-for-the-Bride-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5D6821311C48A13A001F5CFD /* Story5-A-Gift-for-the-Bride-Intro-S.xhtml */; };
 		5D6821341C48A170001F5CFD /* Story6-Homecoming-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5D6821331C48A170001F5CFD /* Story6-Homecoming-Intro-S.xhtml */; };
+		5D6C691D1C63E43900F4FA0F /* NaughtyMonkey_Script8.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5D6C691B1C63E43900F4FA0F /* NaughtyMonkey_Script8.mp3 */; };
+		5D6C691E1C63E43900F4FA0F /* NaughtyMonkey_Script2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5D6C691C1C63E43900F4FA0F /* NaughtyMonkey_Script2.mp3 */; };
 		5D90DCE61C5FCB7100359868 /* spinE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5D90DCE51C5FCB7100359868 /* spinE.m4a */; };
 		5D90DCE71C5FCB7800359868 /* spin_type1S.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5D90DCE31C5FC99E00359868 /* spin_type1S.m4a */; };
 		5D90DCE81C5FCB7800359868 /* spinS.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5D90DCE41C5FC99E00359868 /* spinS.m4a */; };
@@ -5165,6 +5167,8 @@
 		5D68212F1C489FB5001F5CFD /* Story4-Shopping-at-the-Market-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Shopping-at-the-Market-Intro-S.xhtml"; sourceTree = "<group>"; };
 		5D6821311C48A13A001F5CFD /* Story5-A-Gift-for-the-Bride-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-A-Gift-for-the-Bride-Intro-S.xhtml"; sourceTree = "<group>"; };
 		5D6821331C48A170001F5CFD /* Story6-Homecoming-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story6-Homecoming-Intro-S.xhtml"; sourceTree = "<group>"; };
+		5D6C691B1C63E43900F4FA0F /* NaughtyMonkey_Script8.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkey_Script8.mp3; sourceTree = "<group>"; };
+		5D6C691C1C63E43900F4FA0F /* NaughtyMonkey_Script2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkey_Script2.mp3; sourceTree = "<group>"; };
 		5D90DCE31C5FC99E00359868 /* spin_type1S.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = spin_type1S.m4a; sourceTree = "<group>"; };
 		5D90DCE41C5FC99E00359868 /* spinS.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = spinS.m4a; sourceTree = "<group>"; };
 		5D90DCE51C5FCB7100359868 /* spinE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = spinE.m4a; sourceTree = "<group>"; };
@@ -8705,6 +8709,8 @@
 		5D077F671C619ACA0035FEDA /* Script */ = {
 			isa = PBXGroup;
 			children = (
+				5D6C691B1C63E43900F4FA0F /* NaughtyMonkey_Script8.mp3 */,
+				5D6C691C1C63E43900F4FA0F /* NaughtyMonkey_Script2.mp3 */,
 				5D077F681C619ACA0035FEDA /* NaughtyMonkey_Script1.mp3 */,
 				5D077F691C619ACA0035FEDA /* NaughtyMonkey_Script3.mp3 */,
 				5D077F6A1C619ACA0035FEDA /* NaughtyMonkey_Script4.mp3 */,
@@ -10928,6 +10934,7 @@
 				5D9E33FF1C590E9500636150 /* MissingKeysQ6A3.mp3 in Resources */,
 				1A6322BF1C0E4D3B00251CB3 /* Introductions-MetaData.xml in Resources */,
 				1A6321081C0E4D3B00251CB3 /* scale_no_weight.png in Resources */,
+				5D6C691E1C63E43900F4FA0F /* NaughtyMonkey_Script2.mp3 in Resources */,
 				5C9C08A11C57385A00702FCD /* TheWiseOwlQ5A1.mp3 in Resources */,
 				1A6321A61C0E4D3B00251CB3 /* Story2-The-Amazing-Heart-PM-2.xhtml in Resources */,
 				5C28DCDC1C2BA66E005ACD07 /* travois_supplies.png in Resources */,
@@ -11243,6 +11250,7 @@
 				5D9E33CE1C590E9400636150 /* IsPacoAThiefQ4A4.mp3 in Resources */,
 				1A6320441C0E4D3B00251CB3 /* Story1-The-Contest-PM-1.xhtml in Resources */,
 				1A6323111C0E4D3B00251CB3 /* ch4.png in Resources */,
+				5D6C691D1C63E43900F4FA0F /* NaughtyMonkey_Script8.mp3 in Resources */,
 				5C0421CD1C618C2B001BBE9D /* TheLuckyStoneQ1A2.mp3 in Resources */,
 				1A6320AA1C0E4D3B00251CB3 /* IMStyle.css in Resources */,
 				5DBC032B1C5121AE0030072B /* (null) in Resources */,

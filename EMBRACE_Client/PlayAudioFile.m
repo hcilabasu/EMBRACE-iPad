@@ -9,12 +9,19 @@
 #import "PlayAudioFile.h"
 #import "ServerCommunicationController.h"
 
+@interface PlayAudioFile()<AVAudioPlayerDelegate>
+
+@property (nonatomic, strong) NSMutableArray *audioQueue;
+
+@end
+
 
 @implementation PlayAudioFile
 @synthesize syn;
 @synthesize PmviewController;
 @synthesize audioPlayer;
 @synthesize audioPlayerAfter;
+
 
 -(void)initPlayer: (NSString*) audioFilePath
 {
@@ -85,6 +92,49 @@
     [self.audioPlayer stop];
 }
 
+
+- (void)playAudioInSequence:(NSArray *)audioList parentViewController:(UIViewController *)controller {
+    
+    // Return if there is already a queue working
+    if ([self.audioQueue count] > 0) {
+        return;
+    }
+    
+    self.PmviewController = controller;
+    NSMutableArray *array = [NSMutableArray array];
+    for (NSString *path in audioList) {
+        NSString *soundFilePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], path];
+        NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+        [array addObject:soundFileURL];
+    }
+    self.audioQueue = array;
+    [self playNextAudio];
+}
+
+- (void)playNextAudio {
+    
+    if ([self.audioQueue count] > 0) {
+        
+        NSURL *soundFileURL = [self.audioQueue objectAtIndex:0];
+        NSError *audioError;
+        NSLog(@"Audio file - %@", soundFileURL);
+        self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&audioError];
+        self.audioPlayer.delegate = self;
+        
+        if (self.audioPlayer == nil) {
+            self.audioQueue = nil;
+            NSLog(@"Audio error %@",[audioError description]);
+            [PmviewController.view setUserInteractionEnabled:YES];
+        }
+        else {
+            [PmviewController.view setUserInteractionEnabled:NO];
+            [self.audioPlayer play];
+            [self.audioQueue removeObjectAtIndex:0];
+        }
+    }
+}
+
+
 /* Plays one audio file after the other */
 -(void) playAudioInSequence: (UIViewController*) viewController : (NSString*) path :(NSString*) path2 {
     NSString *soundFilePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], path];
@@ -116,15 +166,26 @@
 /* Delegate for the AVAudioPlayer */
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag  {
     
-    // This delay is needed in order to be able to play the last definition on a vocabulary page
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW,2*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [self.audioPlayerAfter play];
-    });
     
-    if(PmviewController != nil)
-    {
-        [PmviewController.view setUserInteractionEnabled:YES];
+    if ([self.audioQueue count] > 0) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW,NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [self playNextAudio];
+        });
+        
+    } else {
+        // This delay is needed in order to be able to play the last definition on a vocabulary page
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW,2*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [self.audioPlayerAfter play];
+        });
+        
+        if(PmviewController != nil)
+        {
+            [PmviewController.view setUserInteractionEnabled:YES];
+        }
     }
+    
+    
+    
 }
 
 

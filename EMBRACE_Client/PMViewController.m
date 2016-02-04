@@ -4747,32 +4747,26 @@ BOOL wasPathFollowed = false;
             sentenceAudioFile = [NSString stringWithFormat:@"TheNaughtyMonkeyS%dE.mp3",currentSentence];
         }
     }
+   
+    NSString *query = [NSString stringWithFormat:@"var matches = document.querySelectorAll(\"[id=s%d]\"); matches[0].getAttribute(\"preAudio\");", currentSentence];
+    NSString *preAudio = [bookView stringByEvaluatingJavaScriptFromString:query];
     
-//    NSString* spanishExtTag = [NSString stringWithFormat:@"document.querySelectorAll(\"p[id=\'%@%d\']\")", @"s",currentSentence];
-//
-//    
-//    NSString *preAudio1 = [bookView stringByEvaluatingJavaScriptFromString:spanishExtTag];
-//    
-    NSString *preAudio = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(\'s1\')"]];
+    query = [NSString stringWithFormat:@"var matches = document.querySelectorAll(\"[id=s%d]\"); matches[0].getAttribute(\"postAudio\");", currentSentence];
+    NSString *postAudio = [bookView stringByEvaluatingJavaScriptFromString:query];
+    
+    NSMutableArray *array = [NSMutableArray array];
+
     if (preAudio != nil && [preAudio isEqualToString:@""] == NO) {
-        [self.playaudioClass playAudioInSequence:self :preAudio :sentenceAudioFile];
-    } else {
-        NSString *postAudio = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d).getAttribute(\"postAudio\")", @"s",currentSentence]];
-        if (postAudio == nil && [postAudio isEqualToString:@""] == NO) {
-            [self.playaudioClass playAudioInSequence:self :sentenceAudioFile :postAudio];
-        } else {
-            [self.playaudioClass playAudioFile:self:sentenceAudioFile];
-        }
-        
+        [array addObject:preAudio];
+    }
+    [array addObject:sentenceAudioFile];
+    if (postAudio != nil && [postAudio isEqualToString:@""] == NO) {
+        [array addObject:postAudio];
     }
     
-   
-    // Find if the sentence has some pre or post script
     
-    
-//    //Capture the spanish extension
-//    NSString* spanishExtTag = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).getAttribute(\"spanishExt\")", location.x, location.y];
-//    NSString* spanishExt = [bookView stringByEvaluatingJavaScriptFromString:spanishExtTag];
+    [self.playaudioClass playAudioInSequence:array
+                        parentViewController:self];
     
 }
 
