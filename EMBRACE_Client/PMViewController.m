@@ -4761,6 +4761,7 @@ BOOL wasPathFollowed = false;
         }
     }
    
+    
     NSString *query = [NSString stringWithFormat:@"var matches = document.querySelectorAll(\"[id=s%d]\"); matches[0].getAttribute(\"preAudio\");", currentSentence];
     NSString *preAudio = [bookView stringByEvaluatingJavaScriptFromString:query];
     
@@ -4772,14 +4773,19 @@ BOOL wasPathFollowed = false;
     if (preAudio != nil && [preAudio isEqualToString:@""] == NO) {
         [array addObject:preAudio];
     }
-    [array addObject:sentenceAudioFile];
+    if (sentenceAudioFile != nil) {
+        [array addObject:sentenceAudioFile];
+    }
+    
     if (postAudio != nil && [postAudio isEqualToString:@""] == NO) {
         [array addObject:postAudio];
     }
     
-    
-    [self.playaudioClass playAudioInSequence:array
-                        parentViewController:self];
+    if ([array count] > 0) {
+        [self.playaudioClass playAudioInSequence:array
+                            parentViewController:self];
+
+    }
     
 }
 
