@@ -410,6 +410,7 @@
                     <swapImage obj1Id="mancha" action="naked"/>
                     <appear obj1Id="bridle" action="appear"/>
                     <groupAuto obj1Id="sofia" action="grabFist" obj2Id="bridle"/>
+                    <move obj1Id="sofia" action="getIn" waypointId="fence2"/>
                 </step>
                 <step number="2">
                     <check obj1Id="sofia" action="getIn" locationId="shed"/>
@@ -428,6 +429,7 @@
                     <swapImage obj1Id="brownsaddlebag" action="open"/>
                     <groupAuto obj1Id="roses_white" action="getIn" obj2Id="sofia"/>
                     <groupAuto obj1Id="sofia" action="pickUp" obj2Id="roses_pink"/>
+                    <move obj1Id="sofia" action="getIn" waypointId="hay"/>
                 </step>
             </sentence>
         </story>
