@@ -46,7 +46,6 @@
 		1A63200E1C0E4D3B00251CB3 /* cat_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A631C7B1C0E4D3900251CB3 /* cat_large.png */; };
 		1A63200F1C0E4D3B00251CB3 /* chicken_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A631C7C1C0E4D3900251CB3 /* chicken_large.png */; };
 		1A6320101C0E4D3B00251CB3 /* chicken_nest.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A631C7D1C0E4D3900251CB3 /* chicken_nest.png */; };
-		1A6320111C0E4D3B00251CB3 /* comb.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A631C7E1C0E4D3900251CB3 /* comb.png */; };
 		1A6320121C0E4D3B00251CB3 /* corral.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A631C7F1C0E4D3900251CB3 /* corral.png */; };
 		1A6320131C0E4D3B00251CB3 /* corral_door.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A631C801C0E4D3900251CB3 /* corral_door.png */; };
 		1A6320141C0E4D3B00251CB3 /* cow_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A631C811C0E4D3900251CB3 /* cow_large.png */; };
@@ -1249,6 +1248,7 @@
 		5C0422181C618C2B001BBE9D /* WordsOfWisdomQ8A2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C0421321C618C2B001BBE9D /* WordsOfWisdomQ8A2.mp3 */; };
 		5C0422191C618C2B001BBE9D /* WordsOfWisdomQ8A3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C0421331C618C2B001BBE9D /* WordsOfWisdomQ8A3.mp3 */; };
 		5C04221A1C618C2B001BBE9D /* WordsOfWisdomQ8A4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C0421341C618C2B001BBE9D /* WordsOfWisdomQ8A4.mp3 */; };
+		5C1A38711C692AD1007A877C /* comb.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1A38701C692AD1007A877C /* comb.png */; };
 		5C28DC5B1C2BA66E005ACD07 /* container.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5C28DB911C2BA66E005ACD07 /* container.xml */; };
 		5C28DC5C1C2BA66E005ACD07 /* mimetype in Resources */ = {isa = PBXBuildFile; fileRef = 5C28DB921C2BA66E005ACD07 /* mimetype */; };
 		5C28DC5D1C2BA66E005ACD07 /* AlternateImages-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5C28DB941C2BA66E005ACD07 /* AlternateImages-MetaData.xml */; };
@@ -2787,7 +2787,6 @@
 		1A631C7B1C0E4D3900251CB3 /* cat_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cat_large.png; sourceTree = "<group>"; };
 		1A631C7C1C0E4D3900251CB3 /* chicken_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chicken_large.png; sourceTree = "<group>"; };
 		1A631C7D1C0E4D3900251CB3 /* chicken_nest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chicken_nest.png; sourceTree = "<group>"; };
-		1A631C7E1C0E4D3900251CB3 /* comb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comb.png; sourceTree = "<group>"; };
 		1A631C7F1C0E4D3900251CB3 /* corral.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corral.png; sourceTree = "<group>"; };
 		1A631C801C0E4D3900251CB3 /* corral_door.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corral_door.png; sourceTree = "<group>"; };
 		1A631C811C0E4D3900251CB3 /* cow_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cow_large.png; sourceTree = "<group>"; };
@@ -4056,6 +4055,7 @@
 		5C0421321C618C2B001BBE9D /* WordsOfWisdomQ8A2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WordsOfWisdomQ8A2.mp3; sourceTree = "<group>"; };
 		5C0421331C618C2B001BBE9D /* WordsOfWisdomQ8A3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WordsOfWisdomQ8A3.mp3; sourceTree = "<group>"; };
 		5C0421341C618C2B001BBE9D /* WordsOfWisdomQ8A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WordsOfWisdomQ8A4.mp3; sourceTree = "<group>"; };
+		5C1A38701C692AD1007A877C /* comb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comb.png; sourceTree = "<group>"; };
 		5C28DB911C2BA66E005ACD07 /* container.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = container.xml; sourceTree = "<group>"; };
 		5C28DB921C2BA66E005ACD07 /* mimetype */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mimetype; sourceTree = "<group>"; };
 		5C28DB941C2BA66E005ACD07 /* AlternateImages-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AlternateImages-MetaData.xml"; sourceTree = "<group>"; };
@@ -5602,6 +5602,7 @@
 		1A631C751C0E4D3900251CB3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5C1A38701C692AD1007A877C /* comb.png */,
 				1A631C761C0E4D3900251CB3 /* apple_basket.png */,
 				1A631C771C0E4D3900251CB3 /* apple_large.png */,
 				1A631C781C0E4D3900251CB3 /* award.png */,
@@ -5610,7 +5611,6 @@
 				1A631C7B1C0E4D3900251CB3 /* cat_large.png */,
 				1A631C7C1C0E4D3900251CB3 /* chicken_large.png */,
 				1A631C7D1C0E4D3900251CB3 /* chicken_nest.png */,
-				1A631C7E1C0E4D3900251CB3 /* comb.png */,
 				1A631C7F1C0E4D3900251CB3 /* corral.png */,
 				1A631C801C0E4D3900251CB3 /* corral_door.png */,
 				1A631C811C0E4D3900251CB3 /* cow_large.png */,
@@ -10259,9 +10259,7 @@
 				5C9C0A461C573AAA00702FCD /* atomsS.m4a in Resources */,
 				5C28DC7F1C2BA66E005ACD07 /* chapter4_icon.png in Resources */,
 				5D6821281C481020001F5CFD /* Story6-The-Seminole-Chickee-Intro-S.xhtml in Resources */,
-				5D10AC651C52C749007109AD /* MagicToysQ7A1.mp3 in Resources */,
 				1A3EFFF61C635BE300927997 /* bg_corral.png in Resources */,
-				5D9E34E21C590E9600636150 /* TheLopezFamilyS4E.mp3 in Resources */,
 				5C0422041C618C2B001BBE9D /* WordsOfWisdomQ4A2.mp3 in Resources */,
 				5C9C07431C57385A00702FCD /* GettingReadyQ4.mp3 in Resources */,
 				1A6321D91C0E4D3B00251CB3 /* ash_00.png in Resources */,
@@ -10330,7 +10328,6 @@
 				1A6320221C0E4D3B00251CB3 /* horse_large.png in Resources */,
 				5C9C071C1C57385A00702FCD /* EveryoneHelpsQ2A1.mp3 in Resources */,
 				5C0421811C618C2B001BBE9D /* MagicToysQ1A1.mp3 in Resources */,
-				1A6320111C0E4D3B00251CB3 /* comb.png in Resources */,
 				5D9E33DB1C590E9400636150 /* IsPacoAThiefQ7A2.mp3 in Resources */,
 				5C9C06F91C57385A00702FCD /* CleaningUpQ1A1.mp3 in Resources */,
 				5C28DCBD1C2BA66E005ACD07 /* palm_roof.png in Resources */,
@@ -10605,6 +10602,7 @@
 				5DB509951C40CDEB00EB74E0 /* Story1-How-do-Objects-Move-Intro-S.xhtml in Resources */,
 				5D9E34CD1C590E9600636150 /* Thief_def_E.mp3 in Resources */,
 				1A6320C91C0E4D3B00251CB3 /* celebration.epub in Resources */,
+				5C1A38711C692AD1007A877C /* comb.png in Resources */,
 				5C9C0A7F1C573AAA00702FCD /* ciliaS.m4a in Resources */,
 				5C28DD0D1C2BA66E005ACD07 /* Story4-The-Algonquian-Wigwam-PM-4.xhtml in Resources */,
 				5D9E327F1C588DF800636150 /* TheNaughtyMonkeyQ1A4.mp3 in Resources */,
