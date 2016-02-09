@@ -14,6 +14,8 @@
                     <shakeOrTap obj1Id="lisa" action="getIn" locationId="anywhere"/>
                     <move obj1Id="lisa" action="getIn" waypointId="trough"/>
                     <swapImage obj1Id="trough" action="filled"/>
+                    <playSound fileName="NaughtyMonkey_Script4.mp3"/>
+
                 </step>
             </sentence>
             <sentence number="5">
