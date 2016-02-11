@@ -203,6 +203,7 @@ function animFrame(object){
     }
     else if(object.animName == "floatAnimation")
     {
+        requestId = requestAnimationFrame(function() { animFrame(object); }, canvas);
         floatAnim(object);
     }
     else if(object.animName == "followAnimation")

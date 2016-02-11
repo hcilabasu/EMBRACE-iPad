@@ -610,7 +610,7 @@ BOOL wasPathFollowed = false;
     }
     
     //If it is an IM action sentence and in im mode, set its color to blue and automatically perform solution steps if necessary
-    if ([sentenceClass  isEqualToString: @"sentence IMactionSentence"] && ![sentenceClass containsString:@"black"] && currentSentence !=0 && conditionSetup.condition == EMBRACE && conditionSetup.condition == IM_MODE) {
+    if ([sentenceClass  containsString: @"sentence IMactionSentence"] && ![sentenceClass containsString:@"black"] && currentSentence !=0 && conditionSetup.condition == EMBRACE && conditionSetup.condition == IM_MODE) {
         setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
         [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
     }
@@ -5043,7 +5043,7 @@ BOOL wasPathFollowed = false;
         [bookView stringByEvaluatingJavaScriptFromString:colorSentence];
     }
 
-    if ([sentenceClass isEqualToString: @"sentence IMactionSentence"] && ![sentenceClass containsString:@"black"] && conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) {
+    if ([sentenceClass containsString: @"sentence IMactionSentence"] && ![sentenceClass containsString:@"black"] && conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) {
         NSString* colorSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
         [bookView stringByEvaluatingJavaScriptFromString:colorSentence];
     }
