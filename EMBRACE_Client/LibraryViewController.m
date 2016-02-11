@@ -152,13 +152,13 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
         self.title = [NSString stringWithFormat:@"%@ %@",[conditionSetup returnConditionEnumToString:conditionSetup.condition],[conditionSetup returnLanguageEnumtoString: conditionSetup.language]];
     }
     else {
-        student = [[Student alloc] initWithName:@"Study Code" :@"Study Day":@"Experimenter":@"School Day"];
+        student = [[Student alloc] initWithValues:@"Study Code" :@"Study Day":@"Experimenter":@"School Day"];
     }
     
     //TODO: Check whether sequence should be used based on student information.
     //      Currently only using sequence for "test".
     //Student should follow particular sequence of activities
-    if ([[student firstName] isEqualToString:@"test"]) {
+    if ([[student participantCode] isEqualToString:@"test"]) {
         useSequence = TRUE;
         
         //Create ActivitySequenceController and load sequences

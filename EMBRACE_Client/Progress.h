@@ -16,33 +16,25 @@ typedef enum Status {
     NO_STATUS
 } Status;
 
-@interface Progress : NSObject {
-    //Maps book titles to arrays of chapters with the specified status
-    NSMutableDictionary* chaptersCompleted;
-    NSMutableDictionary* chaptersInProgress;
-    NSMutableDictionary* chaptersIncomplete;
-    
-    NSInteger sequenceId; //identifier for sequence
-    NSInteger currentSequence; //index of current sequence
-}
+@interface Progress : NSObject
 
-@property (nonatomic, strong) NSMutableDictionary* chaptersCompleted;
-@property (nonatomic, strong) NSMutableDictionary* chaptersInProgress;
-@property (nonatomic, strong) NSMutableDictionary* chaptersIncomplete;
-@property (nonatomic, assign) NSInteger sequenceId;
-@property (nonatomic, assign) NSInteger currentSequence;
+//Maps book titles to arrays of chapters with the specified status
+@property (nonatomic, strong) NSMutableDictionary *chaptersCompleted;
+@property (nonatomic, strong) NSMutableDictionary *chaptersInProgress;
+@property (nonatomic, strong) NSMutableDictionary *chaptersIncomplete;
 
-- (id) init;
+@property (nonatomic, assign) NSInteger sequenceId; //identifier for sequence
+@property (nonatomic, assign) NSInteger currentSequence; //index of current sequence
 
-- (void) loadBooks:(NSMutableArray*)books;
-- (void) loadChapters:(NSMutableArray*)chapters fromBook:(NSString*)bookTitle withStatus:(Status)status;
-- (void) addNewContent:(NSMutableArray*)books;
+- (void)loadBooks:(NSMutableArray *)books;
+- (void)loadChapters:(NSMutableArray *)chapters fromBook:(NSString *)bookTitle withStatus:(Status)status;
+- (void)addNewContent:(NSMutableArray *)books;
 
-- (Status) getStatusOfBook:(NSString*)bookTitle;
+- (Status)getStatusOfBook:(NSString *)bookTitle;
 
-- (Status) getStatusOfChapter:(NSString*)chapterTitle fromBook:(NSString*)bookTitle;
-- (void) setStatusOfChapter:(NSString*)chapterTitle :(Status)status fromBook:(NSString*)bookTitle;
+- (Status)getStatusOfChapter:(NSString *)chapterTitle fromBook:(NSString *)bookTitle;
+- (void)setStatusOfChapter:(NSString *)chapterTitle :(Status)status fromBook:(NSString *)bookTitle;
 
-- (BOOL) setNextChapterInProgressForBook:(NSString*)bookTitle;
+- (BOOL)setNextChapterInProgressForBook:(NSString *)bookTitle;
 
 @end

@@ -37,7 +37,7 @@ typedef enum AppMode {
 
 + (ConditionSetup*)sharedInstance;
 
-- (NSString*)returnLanguageEnumtoString:(Language)type;
-- (NSString*)returnConditionEnumToString:(Condition)type;
+- (NSString *)returnLanguageEnumtoString:(Language)type;
+- (NSString *)returnConditionEnumToString:(Condition)type;
 
 @end

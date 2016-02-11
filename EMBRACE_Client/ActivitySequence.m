@@ -13,7 +13,7 @@
 @synthesize bookTitle;
 @synthesize modes;
 
-- (id) initWithValues:(NSString*)title :(NSMutableArray*)modesArray {
+- (id)initWithValues:(NSString *)title :(NSMutableArray *)modesArray {
     if (self = [super init]) {
         bookTitle = title;
         modes = modesArray;
@@ -25,8 +25,8 @@
 /*
  * Returns ActivityMode for chapter with the specified title
  */
-- (ActivityMode*) getModeForChapter:(NSString*)title {
-    for (ActivityMode* mode in modes) {
+- (ActivityMode *)getModeForChapter:(NSString *)title {
+    for (ActivityMode *mode in modes) {
         if ([[mode chapterTitle] isEqualToString:title]) {
             return mode;
         }

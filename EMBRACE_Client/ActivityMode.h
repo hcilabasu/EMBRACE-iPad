@@ -22,18 +22,13 @@ typedef enum InterventionType {
     NO_INTERVENTION //read-only
 } InterventionType;
 
-@interface ActivityMode : NSObject {
-    NSString* chapterTitle;
-    Reader reader;
-    Language language; //English or Spanish-support (i.e., bilingual)
-    InterventionType interventionType;
-}
+@interface ActivityMode : NSObject
 
-@property (nonatomic, strong) NSString* chapterTitle;
+@property (nonatomic, strong) NSString *chapterTitle;
 @property (nonatomic, assign) Reader reader;
 @property (nonatomic, assign) Language language;
-@property (nonatomic, assign) InterventionType interventionType;
+@property (nonatomic, assign) InterventionType interventionType; //English or Spanish-support (i.e., bilingual)
 
-- (id) initWithValues:(NSString*)title :(Reader)read :(Language)lang :(InterventionType)type;
+- (id)initWithValues:(NSString *)title :(Reader)read :(Language)lang :(InterventionType)type;
 
 @end

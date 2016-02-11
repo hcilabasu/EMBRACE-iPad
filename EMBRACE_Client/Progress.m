@@ -17,7 +17,7 @@
 @synthesize currentSequence;
 @synthesize sequenceId;
 
-- (id) init {
+- (id)init {
     chaptersCompleted = [[NSMutableDictionary alloc] init];
     chaptersInProgress = [[NSMutableDictionary alloc] init];
     chaptersIncomplete = [[NSMutableDictionary alloc] init];
@@ -32,14 +32,14 @@
 /*
  * Loads array of books with chapters and sets all chapters to incomplete
  */
-- (void) loadBooks:(NSMutableArray*)books {
-    for (Book* book in books) {
-        NSString* bookTitle = [book title];
+- (void)loadBooks:(NSMutableArray *)books {
+    for (Book *book in books) {
+        NSString *bookTitle = [book title];
         
-        NSMutableArray* chapterTitles = [[NSMutableArray alloc] init];
+        NSMutableArray *chapterTitles = [[NSMutableArray alloc] init];
         
-        for (Chapter* chapter in [book chapters]) {
-            NSString* chapterTitle = [chapter title];
+        for (Chapter *chapter in [book chapters]) {
+            NSString *chapterTitle = [chapter title];
             
             [chapterTitles addObject:chapterTitle];
         }
@@ -56,7 +56,7 @@
 /*
  * Sets array of chapter titles from a book with the given status
  */
-- (void) loadChapters:(NSMutableArray*)chapters fromBook:(NSString*)bookTitle withStatus:(Status)status {
+- (void)loadChapters:(NSMutableArray *)chapters fromBook:(NSString *)bookTitle withStatus:(Status)status {
     if (status == COMPLETED) {
         [chaptersCompleted setObject:chapters forKey:bookTitle];
     }
@@ -71,25 +71,25 @@
 /*
  * Goes through the array of books and adds any new books/chapters as incomplete
  */
-- (void) addNewContent:(NSMutableArray*)books {
-    NSMutableArray* newBooks = [[NSMutableArray alloc] init]; //holds new books, if any, to be added
+- (void)addNewContent:(NSMutableArray *)books {
+    NSMutableArray *newBooks = [[NSMutableArray alloc] init]; //holds new books, if any, to be added
     
-    for (Book* book in books) {
-        NSString* bookTitle = [book title];
+    for (Book *book in books) {
+        NSString *bookTitle = [book title];
         
         Status bookStatus = [self getStatusOfBook:bookTitle];
         
         //Book already exists
         if (bookStatus != NO_STATUS) {
-            for (Chapter* chapter in [book chapters]) {
-                NSString* chapterTitle = [chapter title];
+            for (Chapter *chapter in [book chapters]) {
+                NSString *chapterTitle = [chapter title];
                 
                 Status chapterStatus = [self getStatusOfChapter:chapterTitle fromBook:bookTitle];
                 
                 //Chapter does not exist
                 if (chapterStatus == NO_STATUS) {
                     //Add chapter as incomplete
-                    NSMutableArray* incompleteChapters = [chaptersIncomplete objectForKey:bookTitle];
+                    NSMutableArray *incompleteChapters = [chaptersIncomplete objectForKey:bookTitle];
                     [incompleteChapters addObject:chapterTitle];
                     [chaptersIncomplete setObject:incompleteChapters forKey:bookTitle];
                 }
@@ -115,7 +115,7 @@
 /*
  * Returns current status of book
  */
-- (Status) getStatusOfBook:(NSString*)bookTitle {
+- (Status)getStatusOfBook:(NSString *)bookTitle {
     //Check if book exists
     if ([chaptersCompleted objectForKey:bookTitle] != nil) {
         BOOL hasCompletedChapters = [[chaptersCompleted objectForKey:bookTitle] count] > 0;
@@ -144,7 +144,7 @@
 /*
  * Returns current status of given chapter in book
  */
-- (Status) getStatusOfChapter:(NSString*)chapterTitle fromBook:(NSString*)bookTitle {
+- (Status)getStatusOfChapter:(NSString *)chapterTitle fromBook:(NSString *)bookTitle {
     if ([[chaptersCompleted objectForKey:bookTitle] containsObject:chapterTitle]) {
         return COMPLETED;
     }
@@ -163,7 +163,7 @@
 /*
  * Sets status of given chapter in book to the specified status
  */
-- (void) setStatusOfChapter:(NSString*)chapterTitle :(Status)status fromBook:(NSString*)bookTitle {
+- (void)setStatusOfChapter:(NSString *)chapterTitle :(Status)status fromBook:(NSString *)bookTitle {
     Status currentStatus = [self getStatusOfChapter:chapterTitle fromBook:bookTitle];
     
     //Remove chapter's current status
@@ -193,10 +193,10 @@
  * Sets the status of the next incomplete chapter in the specified book to in progress.
  * Returns true if chapter was set or an in progress chapter already exists. Returns false otherwise.
  */
-- (BOOL) setNextChapterInProgressForBook:(NSString*)bookTitle {
+- (BOOL)setNextChapterInProgressForBook:(NSString *)bookTitle {
     //No chapters are in progress
     if ([[chaptersInProgress objectForKey:bookTitle] count] == 0) {
-        NSMutableArray* incompleteChapters = [chaptersIncomplete objectForKey:bookTitle];
+        NSMutableArray *incompleteChapters = [chaptersIncomplete objectForKey:bookTitle];
         
         //Incomplete chapters exist
         if ([incompleteChapters count] > 0) {
