@@ -4,42 +4,42 @@
         <Questions title="Introduction to Native American Homes">
             <Question number="1">
                 <QuestionText>We can learn about people by learning about...?</QuestionText>
-                <QuestionAudio>IntroductiontoNativeAmericanHomesQ1.mp3</QuestionAudio>
+                <QuestionAudio>NativeIntroQ1.mp3</QuestionAudio>
                 <Answer1>Their homes</Answer1>
-                <Answer1Audio>IntroductiontoNativeAmericanHomesQ1A1.mp3</Answer1Audio>
+                <Answer1Audio>NativeIntroQ1A1.mp3</Answer1Audio>
                 <expectedSelection>Their homes</expectedSelection>
                 <Answer2>Wild animals</Answer2>
-                <Answer2Audio>IntroductiontoNativeAmericanHomesQ1A2.mp3</Answer2Audio>
+                <Answer2Audio>NativeIntroQ1A2.mp3</Answer2Audio>
                 <Answer3>The rain and wind</Answer3>
-                <Answer3Audio>IntroductiontoNativeAmericanHomesQ1A3.mp3</Answer3Audio>
+                <Answer3Audio>NativeIntroQ1A3.mp3</Answer3Audio>
                 <Answer4>Problems</Answer4>
-                <Answer4Audio>IntroductiontoNativeAmericanHomesQ1A4.mp3</Answer4Audio>
+                <Answer4Audio>NativeIntroQ1A4.mp3</Answer4Audio>
             </Question>
             <Question number="2">
                 <QuestionText>In this chapter, homes provide a place for...?</QuestionText>
-                <QuestionAudio>IntroductiontoNativeAmericanHomesQ2.mp3</QuestionAudio>
+                <QuestionAudio>NativeIntroQ2.mp3</QuestionAudio>
                 <Answer1>Family and community events</Answer1>
-                <Answer1Audio>IntroductiontoNativeAmericanHomesQ2A1.mp3</Answer1Audio>
+                <Answer1Audio>NativeIntroQ2A1.mp3</Answer1Audio>
                 <expectedSelection>Family and community events</expectedSelection>
                 <Answer2>Rain and wild animals</Answer2>
-                <Answer2Audio>IntroductiontoNativeAmericanHomesQ2A2.mp3</Answer2Audio>
+                <Answer2Audio>NativeIntroQ2A2.mp3</Answer2Audio>
                 <Answer3>Solving important problems</Answer3>
-                <Answer3Audio>IntroductiontoNativeAmericanHomesQ2A3.mp3</Answer3Audio>
+                <Answer3Audio>NativeIntroQ2A3.mp3</Answer3Audio>
                 <Answer4>Driving a car</Answer4>
-                <Answer4Audio>IntroductiontoNativeAmericanHomesQ2A4.mp3</Answer4Audio>
+                <Answer4Audio>NativeIntroQ2A4.mp3</Answer4Audio>
             </Question>
             <Question number="3">
                 <QuestionText>What are some materials that this chapter mentions for making homes?</QuestionText>
-                <QuestionAudio>IntroductiontoNativeAmericanHomesQ3.mp3</QuestionAudio>
+                <QuestionAudio>NativeIntroQ3.mp3</QuestionAudio>
                 <Answer1>Ice, trees, and animal skins</Answer1>
-                <Answer1Audio>IntroductiontoNativeAmericanHomesQ3A1.mp3</Answer1Audio>
+                <Answer1Audio>NativeIntroQ3A1.mp3</Answer1Audio>
                 <expectedSelection>Ice, trees, and animal skins</expectedSelection>
                 <Answer2>Water, bushes, and animal fur</Answer2>
-                <Answer2Audio>IntroductiontoNativeAmericanHomesQ3A2.mp3</Answer2Audio>
+                <Answer2Audio>NativeIntroQ3A2.mp3</Answer2Audio>
                 <Answer3>Plastic, glass, and metal</Answer3>
-                <Answer3Audio>IntroductiontoNativeAmericanHomesQ3A3.mp3</Answer3Audio>
+                <Answer3Audio>NativeIntroQ3A3.mp3</Answer3Audio>
                 <Answer4>Gingerbread, frosting, and sprinkles</Answer4>
-                <Answer4Audio>IntroductiontoNativeAmericanHomesQ3A4.mp3</Answer4Audio>
+                <Answer4Audio>NativeIntroQ3A4.mp3</Answer4Audio>
             </Question>
         </Questions>
         <Questions title="The Navajo Hogan">
