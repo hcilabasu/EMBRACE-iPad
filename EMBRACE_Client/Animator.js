@@ -724,7 +724,7 @@ function roll(aniObject) {
 function kickBall(aniObject) {
     
     aniObject.object.style.WebkitTransitionDuration='3s';
-    aniObject.object.style.webkitTransform = 'translate(200px, 0px) rotate(1440deg)';
+    aniObject.object.style.webkitTransform = 'translate(480px, 0px) rotate(1440deg)';
     
 }
 
@@ -732,15 +732,15 @@ function skateForward(aniObject) {
     
     aniObject.object.style.WebkitTransitionDuration='3s';
     aniObject.object.style.WebkitTransitionTimingFunction = 'ease-out';
-    aniObject.object.style.webkitTransform = 'translate(200px, 0px)';
+    aniObject.object.style.webkitTransform = 'translate(280px, 0px)';
     
 }
 
 function skateBackward(aniObject) {
     
-    aniObject.object.style.WebkitTransitionDuration='3s';
+    aniObject.object.style.WebkitTransitionDuration='5s';
     aniObject.object.style.WebkitTransitionTimingFunction = 'ease-out';
-    aniObject.object.style.webkitTransform = 'translate(-200px, 0px)';
+    aniObject.object.style.webkitTransform = 'translate(-510px, 0px)';
     
 }
 
@@ -836,14 +836,61 @@ function moveDownAndWrap(aniObject) {
     
     timePerPixels = timePerPixels * 1000;
     
-    setTimeout(function(){
+    setTimeout(function()
+    {
+        if(aniObject.object.className == 'manipulationObject center moveDown')
+        {
                var top = parseFloat(aniObject.object.style.height);
                aniObject.object.style.top = 0 +  'px';
                aniObject.y = top;
                aniObject.object.className = 'manipulationObject center moveDownAndWrap';
-               }, timePerPixels);
+        }
+    }, timePerPixels);
 
     
+}
+
+function move45DegreeAndWrap(aniObject) {
+    
+    var keyframes = findKeyframesRule('move45Degree');
+    console.log(keyframes);
+    var cssStyleSheet = findCSSStyleSheet('Animations.css');
+    console.log(cssStyleSheet);
+    // remove the existing 0% and 100% rules
+    keyframes.deleteRule("0%");
+    keyframes.deleteRule("100%");
+    
+    var left = 1024- parseFloat(aniObject.object.style.left);
+    var top = parseFloat(aniObject.object.style.top) - 300;
+    
+    var hypotenuse = Math.sqrt(top*top + left*left);
+    var timePerPixels =  (Math.sqrt(1024*1024+300*300) - hypotenuse)/(Math.sqrt(1024*1024+300*300)/10);
+    
+    // create new 0% and 100% rules with
+    keyframes.appendRule('0% {left: ' + parseFloat(aniObject.object.style.left) + 'px; top: ' + parseFloat(aniObject.object.style.top) +'px; }');
+    keyframes.appendRule('100% {left: ' + left + 'px;top: ' + top +'px; }');
+    
+    var originalClassName = aniObject.object.className;
+    
+    cssStyleSheet.insertRule('.manipulationObject.center.move45Degree {' + 'animation: move45Degree ' + timePerPixels + 's linear 1;}');
+    
+    aniObject.object.className = 'manipulationObject center move45Degree';
+    
+    timePerPixels = timePerPixels * 1000;
+    
+    setTimeout(function()
+    {
+        if(aniObject.object.className == 'manipulationObject center move45Degree')
+        {
+               var left = -parseFloat(aniObject.object.style.width);
+               var top = 352 + parseFloat(aniObject.object.style.height);
+               aniObject.object.style.left = '0px';
+               aniObject.object.style.top = '300px';
+               aniObject.x = left;
+               aniObject.y = top;
+               aniObject.object.className = 'manipulationObject center move45DegreeAndWrap';
+        }
+    }, timePerPixels);
 }
 
 function moveLeftAndWrap(aniObject) {
@@ -871,22 +918,26 @@ function moveLeftAndWrap(aniObject) {
     
     timePerPixels = timePerPixels * 1000;
     
-    setTimeout(function(){
-               var left = -parseFloat(aniObject.object.style.width);
-               aniObject.object.style.left = 1024 +  'px';
-               aniObject.x = left;
-               aniObject.object.className = 'manipulationObject center moveLeftAndWrap';
-               }, timePerPixels);
+    setTimeout(function()
+    {
+        if(aniObject.object.className == 'manipulationObject center moveLeft')
+        {
+            var left = -parseFloat(aniObject.object.style.width);
+            aniObject.object.style.left = 1024 +  'px';
+            aniObject.x = left;
+            aniObject.object.className = 'manipulationObject center moveLeftAndWrap';
+        }
+    }, timePerPixels);
 }
 
 function moveLeftAndCurve(aniObject) {
     aniObject.object.style.WebkitTransitionDuration='5s';
-    aniObject.object.style.webkitTransform = 'translate(-80px, -500px) rotate(1440deg)';
+    aniObject.object.style.webkitTransform = 'translate(-80px, -300px) rotate(1440deg)';
     
     setTimeout(function(){
                aniObject.object.style.WebkitTransitionDuration='3s';
                aniObject.object.style.WebkitTransitionTimingFunction = 'ease-in';
-               aniObject.object.style.webkitTransform = 'translate(-240px, 5px) rotate(1800deg)';
+               aniObject.object.style.webkitTransform = 'translate(-140px, 205px) rotate(1800deg)';
                }, 5000);
     
 }
@@ -946,12 +997,16 @@ function moveRightAndWrap(aniObject) {
     
     timePerPixels = timePerPixels * 1000;
     
-    setTimeout(function(){
+    setTimeout(function()
+    {
+        if(aniObject.object.className == 'manipulationObject center moveRight')
+        {
                var left = -parseFloat(aniObject.object.style.width);
                aniObject.object.style.left = left +  'px';
                aniObject.x = left;
                aniObject.object.className = 'manipulationObject center moveRightAndWrap';
-               }, timePerPixels);
+        }
+    }, timePerPixels);
 }
 
 function moveRightAndWrapSlow(aniObject) {

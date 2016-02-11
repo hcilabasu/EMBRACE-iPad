@@ -18,6 +18,14 @@
 		1A1B5CBE1C27569500E56004 /* lava_ball_min.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A1B5CBD1C27569500E56004 /* lava_ball_min.png */; };
 		1A23DA391C20A46200FE7C46 /* bloodcell_select_large_high_res_min.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A23DA381C20A46200FE7C46 /* bloodcell_select_large_high_res_min.png */; };
 		1A23DA3B1C20A4FC00FE7C46 /* O2_select large_high_res_min.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A23DA3A1C20A4FC00FE7C46 /* O2_select large_high_res_min.png */; };
+		1A24254E1C6A80BD002CBB13 /* juan_kick.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A24254B1C6A80BC002CBB13 /* juan_kick.png */; };
+		1A24254F1C6A80BD002CBB13 /* maria_handsup.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A24254C1C6A80BC002CBB13 /* maria_handsup.png */; };
+		1A2425501C6A80BD002CBB13 /* oar.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A24254D1C6A80BC002CBB13 /* oar.png */; };
+		1A2425521C6AC2D4002CBB13 /* boat_flipped.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A2425511C6AC2D4002CBB13 /* boat_flipped.png */; };
+		1A2425541C6AD271002CBB13 /* backgroundGate_closed.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A2425531C6AD271002CBB13 /* backgroundGate_closed.png */; };
+		1A2425561C6BF195002CBB13 /* bg_market_entrance_long.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A2425551C6BF194002CBB13 /* bg_market_entrance_long.png */; };
+		1A2425591C6C220E002CBB13 /* mom_with_flowers.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A2425571C6C220E002CBB13 /* mom_with_flowers.png */; };
+		1A24255A1C6C220E002CBB13 /* mom_with_groceries.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A2425581C6C220E002CBB13 /* mom_with_groceries.png */; };
 		1A2AAD451C20DCFA00A709E9 /* baby_large_high_res_min.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A2AAD431C20DCFA00A709E9 /* baby_large_high_res_min.png */; };
 		1A2AAD461C20DCFA00A709E9 /* cribb_large_high_res_min.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A2AAD441C20DCFA00A709E9 /* cribb_large_high_res_min.png */; };
 		1A338D8C1C4EB8D100F02859 /* bench.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A338D8B1C4EB8D100F02859 /* bench.png */; };
@@ -2779,6 +2787,14 @@
 		1A1B5CBD1C27569500E56004 /* lava_ball_min.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lava_ball_min.png; sourceTree = "<group>"; };
 		1A23DA381C20A46200FE7C46 /* bloodcell_select_large_high_res_min.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bloodcell_select_large_high_res_min.png; sourceTree = "<group>"; };
 		1A23DA3A1C20A4FC00FE7C46 /* O2_select large_high_res_min.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "O2_select large_high_res_min.png"; sourceTree = "<group>"; };
+		1A24254B1C6A80BC002CBB13 /* juan_kick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = juan_kick.png; sourceTree = "<group>"; };
+		1A24254C1C6A80BC002CBB13 /* maria_handsup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = maria_handsup.png; sourceTree = "<group>"; };
+		1A24254D1C6A80BC002CBB13 /* oar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oar.png; sourceTree = "<group>"; };
+		1A2425511C6AC2D4002CBB13 /* boat_flipped.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boat_flipped.png; sourceTree = "<group>"; };
+		1A2425531C6AD271002CBB13 /* backgroundGate_closed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundGate_closed.png; sourceTree = "<group>"; };
+		1A2425551C6BF194002CBB13 /* bg_market_entrance_long.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_market_entrance_long.png; sourceTree = "<group>"; };
+		1A2425571C6C220E002CBB13 /* mom_with_flowers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mom_with_flowers.png; sourceTree = "<group>"; };
+		1A2425581C6C220E002CBB13 /* mom_with_groceries.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mom_with_groceries.png; sourceTree = "<group>"; };
 		1A2AAD431C20DCFA00A709E9 /* baby_large_high_res_min.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = baby_large_high_res_min.png; sourceTree = "<group>"; };
 		1A2AAD441C20DCFA00A709E9 /* cribb_large_high_res_min.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cribb_large_high_res_min.png; sourceTree = "<group>"; };
 		1A338D8B1C4EB8D100F02859 /* bench.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bench.png; sourceTree = "<group>"; };
@@ -5950,6 +5966,9 @@
 			isa = PBXGroup;
 			children = (
 				5CD1C12A1C3F2E6A00BE9047 /* bg_market.png */,
+				1A2425571C6C220E002CBB13 /* mom_with_flowers.png */,
+				1A2425581C6C220E002CBB13 /* mom_with_groceries.png */,
+				1A2425551C6BF194002CBB13 /* bg_market_entrance_long.png */,
 				1A3EFFF71C635E2A00927997 /* bg_market_entrance.png */,
 				5CD1C12B1C3F2E6A00BE9047 /* bluesaddlebag_closed.png */,
 				5CD1C12C1C3F2E6A00BE9047 /* bluesaddlebag_open.png */,
@@ -6018,6 +6037,7 @@
 				1A631D841C0E4D3A00251CB3 /* sofia_empty_tote.png */,
 				1A631D851C0E4D3A00251CB3 /* sofia_full_tote.png */,
 				1A631D861C0E4D3A00251CB3 /* sofia_hands_out.png */,
+				1A2425531C6AD271002CBB13 /* backgroundGate_closed.png */,
 				1A631D871C0E4D3A00251CB3 /* sofia_horse.png */,
 				1A631D881C0E4D3A00251CB3 /* sofia_on_horse2.png */,
 				1A631D891C0E4D3A00251CB3 /* sofia_on_mancha.png */,
@@ -6744,11 +6764,15 @@
 			children = (
 				1A631F951C0E4D3A00251CB3 /* background.jpg */,
 				1A631F961C0E4D3A00251CB3 /* background_Ch7.png */,
+				1A24254B1C6A80BC002CBB13 /* juan_kick.png */,
+				1A24254C1C6A80BC002CBB13 /* maria_handsup.png */,
+				1A24254D1C6A80BC002CBB13 /* oar.png */,
 				1A631F971C0E4D3A00251CB3 /* background_Ch7_V2.png */,
 				1A631F981C0E4D3A00251CB3 /* ball.png */,
 				1A631F991C0E4D3A00251CB3 /* bigrocket.png */,
 				1A631F9A1C0E4D3A00251CB3 /* bigrocket_rotate.png */,
 				1A631F9B1C0E4D3A00251CB3 /* boat.png */,
+				1A2425511C6AC2D4002CBB13 /* boat_flipped.png */,
 				1A631F9C1C0E4D3A00251CB3 /* boat_ropetaut.png */,
 				1A631F9D1C0E4D3A00251CB3 /* cart.png */,
 				1A631F9E1C0E4D3A00251CB3 /* cart_flipped.png */,
@@ -9362,6 +9386,7 @@
 				1A6323441C0E4D3B00251CB3 /* Story1-How-do-Objects-Move-Intro-E.xhtml in Resources */,
 				1A63226E1C0E4D3B00251CB3 /* Story3-Tsunamis-Title.xhtml in Resources */,
 				1A63232D1C0E4D3B00251CB3 /* sara.png in Resources */,
+				1A24254E1C6A80BD002CBB13 /* juan_kick.png in Resources */,
 				5C0422111C618C2B001BBE9D /* WordsOfWisdomQ7.mp3 in Resources */,
 				1A6321DA1C0E4D3B00251CB3 /* ash_01.png in Resources */,
 				5C0421A81C618C2B001BBE9D /* TheLuckyStoneQ2A1S.mp3 in Resources */,
@@ -9454,6 +9479,7 @@
 				1A63226C1C0E4D3B00251CB3 /* Story3-Tsunamis-PM-3.xhtml in Resources */,
 				5C9C084A1C57385A00702FCD /* Shiny_def_S.mp3 in Resources */,
 				1AC7A3991C592E84003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml in Resources */,
+				1A24255A1C6C220E002CBB13 /* mom_with_groceries.png in Resources */,
 				5C9C085B1C57385A00702FCD /* TheBestFarmAwardQ4A1.mp3 in Resources */,
 				5D9E34A01C590E9600636150 /* TheMysteryIsSolvedQ3A4.mp3 in Resources */,
 				5D9E34391C590E9500636150 /* old_MissingKeysQ6A4.mp3 in Resources */,
@@ -9737,6 +9763,7 @@
 				5C9C07021C57385A00702FCD /* CleaningUpQ3.mp3 in Resources */,
 				1A6320DF1C0E4D3B00251CB3 /* champoorado.png in Resources */,
 				1A6322161C0E4D3B00251CB3 /* island_Hawaii.png in Resources */,
+				1A2425591C6C220E002CBB13 /* mom_with_flowers.png in Resources */,
 				1A6320CD1C0E4D3B00251CB3 /* Areas-MetaData.xml in Resources */,
 				5D9E342C1C590E9500636150 /* old_IsPacoAThiefQ4.mp3 in Resources */,
 				5C9C0AB91C573AAA00702FCD /* pumpsE.m4a in Resources */,
@@ -9863,6 +9890,7 @@
 				1A6322371C0E4D3B00251CB3 /* ocean_wave.png in Resources */,
 				5C9C07781C57385A00702FCD /* IntroductionToTheBestFarmQ7A3.mp3 in Resources */,
 				5C9C0A6A1C573AAA00702FCD /* CCE3_1.m4a in Resources */,
+				1A2425501C6A80BD002CBB13 /* oar.png in Resources */,
 				5C9C075D1C57385A00702FCD /* IntroductionToTheBestFarmQ2A1.mp3 in Resources */,
 				5C9C0A2F1C573AAA00702FCD /* MusclesUseOxygenQ3.mp3 in Resources */,
 				5C9C088E1C57385A00702FCD /* TheWiseOwlQ1A2.mp3 in Resources */,
@@ -9928,6 +9956,7 @@
 				5D4B477B1C56D8EA0096BC1E /* TheLuckyStoneS6E.mp3 in Resources */,
 				5DBC02F01C509B880030072B /* (null) in Resources */,
 				5C9C0A5E1C573AAA00702FCD /* CCE1_7.m4a in Resources */,
+				1A2425521C6AC2D4002CBB13 /* boat_flipped.png in Resources */,
 				5D9E34B01C590E9600636150 /* TheMysteryIsSolvedQ7.mp3 in Resources */,
 				5C9C08231C57385A00702FCD /* healthyE.m4a in Resources */,
 				5D9E34431C590E9500636150 /* old_TheFamilyIsRattledQ4.mp3 in Resources */,
@@ -10342,6 +10371,7 @@
 				5C9C07E71C57385A00702FCD /* BFEE_20A.m4a in Resources */,
 				5C9C07D51C57385A00702FCD /* BFEC6.m4a in Resources */,
 				5C9C07CB1C57385A00702FCD /* BFE_CH1.m4a in Resources */,
+				1A2425541C6AD271002CBB13 /* backgroundGate_closed.png in Resources */,
 				1A63213C1C0E4D3B00251CB3 /* Story4-Shopping-at-the-Market-PM-4.xhtml in Resources */,
 				5C9C08A41C57385A00702FCD /* TheWiseOwlQ5A4.mp3 in Resources */,
 				5D9E33E61C590E9500636150 /* MissingKeysQ1A3.mp3 in Resources */,
@@ -10478,6 +10508,7 @@
 				5C28DC9E1C2BA66E005ACD07 /* hole_outline.png in Resources */,
 				5C0421C11C618C2B001BBE9D /* TheLuckyStoneQ7A1S.mp3 in Resources */,
 				5C9C08A51C57385A00702FCD /* TheWiseOwlQ6.mp3 in Resources */,
+				1A2425561C6BF195002CBB13 /* bg_market_entrance_long.png in Resources */,
 				5C28DD1E1C2BA66E005ACD07 /* Translations-MetaData.xml in Resources */,
 				1A6320191C0E4D3B00251CB3 /* farm_night.png in Resources */,
 				1A6320901C0E4D3B00251CB3 /* hillatsunset.jpg in Resources */,
@@ -10873,6 +10904,7 @@
 				5C9C082D1C57385A00702FCD /* nestS.m4a in Resources */,
 				5D9E34571C590E9500636150 /* TheFamilyIsRattledQ2A1.mp3 in Resources */,
 				5DBC031C1C5121AE0030072B /* (null) in Resources */,
+				1A24254F1C6A80BD002CBB13 /* maria_handsup.png in Resources */,
 				1A6321941C0E4D3B00251CB3 /* Stylesheet.css in Resources */,
 				1A63235F1C0E4D3B00251CB3 /* Story6-Newton's-Third-Law-Forces-are-Paired-PM-4.xhtml in Resources */,
 				5C9C08B21C57385A00702FCD /* WhoIsTheBestAnimalQ2A3.mp3 in Resources */,

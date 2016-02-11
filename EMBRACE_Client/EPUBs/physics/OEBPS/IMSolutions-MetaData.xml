@@ -18,7 +18,7 @@
             </sentence>
         </story>
         <story title="Newton's Law of Acceleration on Earth" activity_id="story5-PM-1">
-            <sentence number="1">
+            <sentence number="4">
                 <step number="1">
                     <group obj1Id="dog_IM" action="toward" obj2Id="maria_IM"/>
                     <group obj1Id="dog_IM" action="flip" obj2Id="maria_IM"/>
@@ -28,7 +28,7 @@
         <story title="Newton's Law of Acceleration on Earth" activity_id="story5-PM-2">
             <sentence number="7">
                 <step number="1">
-                    <group obj1Id="horse_IM" action="getIn" obj2Id="horse_IM"/>
+                    <group obj1Id="horse_IM" action="flip" obj2Id="horse_IM"/>
                     <group obj1Id="dog_IM" action="getIn" obj2Id="dog_IM"/>
                 </step>
             </sentence>
@@ -37,7 +37,7 @@
             <sentence number="2">
                 <step number="1">
                     <group obj1Id="maria_IM" action="getOn" obj2Id="skateboard_IM"/>
-                    <group obj1Id="maria_IM" action="getOn" obj2Id="skateboard_IM"/>
+                    <group obj1Id="maria_IM" action="getOn" obj2Id="paddle_IM"/>
                 </step>
             </sentence>
         </story>

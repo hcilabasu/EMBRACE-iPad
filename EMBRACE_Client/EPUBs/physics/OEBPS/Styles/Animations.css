@@ -87,3 +87,36 @@
     -webkit-animation: moveDownAndWrap 10s linear infinite;
     animation: moveDownAndWrap 10s linear infinite;
 }
+
+@keyframes move45Degree {
+    0% {
+        top: 704px;
+        left: 0px;
+    }
+    100% {
+        top: 0px;
+        left: 1024px;
+    }
+}
+
+@keyframes move45DegreeAndWrap {
+    0% {
+        top: 300px;
+        left: 0px;
+        }
+    100% {
+        top: 0px;
+        left: 1024px;
+    }
+}
+
+.manipulationObject.center.move45DegreeAndWrap {
+    -webkit-animation: move45DegreeAndWrap 10s linear infinite;
+    animation: move45DegreeAndWrap 10s linear infinite;
+    -webkit-animation-play-state:running;
+}
+
+.manipulationObject.center.move45DegreeAndWrap:hover {
+    -webkit-animation-play-state:paused;
+}
+

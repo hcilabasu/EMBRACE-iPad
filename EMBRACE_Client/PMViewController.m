@@ -430,7 +430,7 @@ BOOL wasPathFollowed = false;
     book = [bookImporter getBookWithTitle:bookTitle]; //Get the book reference.
     model = [book model];
   
-    currentPage = [book getNextPageForChapterAndActivity:chapterTitle :PM_MODE :nil];
+    currentPage = [book getNextPageForChapterAndActivity:chapterTitle : conditionSetup.currentMode :nil];
     
     actualPage = currentPage;
     
@@ -455,7 +455,7 @@ BOOL wasPathFollowed = false;
 -(void) loadNextPage {
     //stores last page
     NSString *tempLastPage = currentPage;
-    currentPage = [book getNextPageForChapterAndActivity:chapterTitle :PM_MODE :currentPage];
+    currentPage = [book getNextPageForChapterAndActivity:chapterTitle :conditionSetup.currentMode :currentPage];
     
     //No more pages in chapter
     if (currentPage == nil) {
@@ -511,7 +511,7 @@ BOOL wasPathFollowed = false;
     [IntroductionClass loadFirstPageVocabulary:model :chapterTitle];
     
     //Set the current page id
-    currentPageId = [book getIdForPageInChapterAndActivity:currentPage :chapterTitle :PM_MODE];
+    currentPageId = [book getIdForPageInChapterAndActivity:currentPage :chapterTitle :conditionSetup.currentMode];
     
     if (conditionSetup.condition == EMBRACE) {
         if (conditionSetup.currentMode == PM_MODE) {
@@ -1388,11 +1388,15 @@ BOOL wasPathFollowed = false;
             }
             else {
                 //Play En audio twice
-                [self.playaudioClass playAudioInSequence:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
+                bool success = [self.playaudioClass playAudioInSequence:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
                 
-                //if error try mp3 format
-                [self.playaudioClass playAudioInSequence:self:[NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"_def_E"]:[NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"_def_E"]];
-                
+                //
+                if (!success) {
+                    
+                    //if error try mp3 format
+                    [self.playaudioClass playAudioInSequence:self:[NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"_def_E"]:[NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"_def_E"]];
+                }
+            
                 //Logging added by James for Word Audio
                 [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"E" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
             }
