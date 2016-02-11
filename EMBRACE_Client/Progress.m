@@ -23,7 +23,7 @@
     chaptersIncomplete = [[NSMutableDictionary alloc] init];
     
     //Not using sequence by default
-    sequenceId = -1;
+    sequenceId = @"NONE";
     currentSequence = -1;
     
     return self;

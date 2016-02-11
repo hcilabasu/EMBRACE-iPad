@@ -21,11 +21,11 @@
 /*
  * Loads a particular set of activity sequences from file for the current user
  */
-- (BOOL)loadSequences {
+- (BOOL)loadSequences:(NSString *)participantCode {
     NSBundle *mainBundle = [NSBundle mainBundle];
     
-    //TODO: Load different sequence files depending on student information
-    NSString *sequencesFilePath = [mainBundle pathForResource:@"sequences1" ofType:@"xml"];
+    //Get path to correct sequences file based on participant code
+    NSString *sequencesFilePath = [mainBundle pathForResource:[NSString stringWithFormat:@"sequences_%@", [participantCode uppercaseString]] ofType:@"xml"];
     
     //Try to load sequences data
     NSData *sequencesData = [[NSMutableData alloc] initWithContentsOfFile:sequencesFilePath];
@@ -97,11 +97,11 @@
                 else if ([interventionString isEqualToString:@"IM"]) {
                     intervention = IM_INTERVENTION;
                 }
-                else if ([interventionString isEqualToString:@"None"]) {
-                    intervention = NO_INTERVENTION;
+                else if ([interventionString isEqualToString:@"R"]) {
+                    intervention = R_INTERVENTION;
                 }
                 else {
-                    intervention = NO_INTERVENTION; //default intervention
+                    intervention = R_INTERVENTION; //default intervention
                 }
                 
                 //Create mode for chapter and add to array of modes

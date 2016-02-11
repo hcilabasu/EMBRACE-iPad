@@ -14,7 +14,7 @@
 
 @property (nonatomic, strong) NSMutableArray *sequences; //contains ActivitySequence objects for different books
 
-- (BOOL)loadSequences;
+- (BOOL)loadSequences:(NSString *)participantCode;
 
 - (ActivitySequence *)getSequenceForBook:(NSString *)title;
 

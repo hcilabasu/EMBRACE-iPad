@@ -1543,7 +1543,7 @@ DDXMLElement *nodeStudy;
         
         //Read current sequence and id number
         GDataXMLElement *sequenceElement = (GDataXMLElement*)[[progressElement elementsForName:@"sequence"] objectAtIndex:0];
-        NSInteger sequenceId = [[[sequenceElement attributeForName:@"sequenceId"] stringValue] integerValue];
+        NSString *sequenceId = [[sequenceElement attributeForName:@"sequenceId"] stringValue];
         NSInteger currentSequence = [[[sequenceElement attributeForName:@"currentSequence"] stringValue] integerValue];
         
         progress.sequenceId = sequenceId;
@@ -1611,7 +1611,7 @@ DDXMLElement *nodeStudy;
     
     //Current sequence and id number
     DDXMLElement *sequenceXMLElement = [DDXMLElement elementWithName:@"sequence"];
-    [sequenceXMLElement addAttributeWithName:@"sequenceId" stringValue:@([progress sequenceId]).stringValue];
+    [sequenceXMLElement addAttributeWithName:@"sequenceId" stringValue:[progress sequenceId]];
     [sequenceXMLElement addAttributeWithName:@"currentSequence" stringValue:@([progress currentSequence]).stringValue];
     [progressXMLElement addChild:sequenceXMLElement];
     

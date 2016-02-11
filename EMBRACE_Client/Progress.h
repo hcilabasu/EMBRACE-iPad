@@ -23,7 +23,7 @@ typedef enum Status {
 @property (nonatomic, strong) NSMutableDictionary *chaptersInProgress;
 @property (nonatomic, strong) NSMutableDictionary *chaptersIncomplete;
 
-@property (nonatomic, assign) NSInteger sequenceId; //identifier for sequence
+@property (nonatomic, strong) NSString *sequenceId; //identifier for sequence
 @property (nonatomic, assign) NSInteger currentSequence; //index of current sequence
 
 - (void)loadBooks:(NSMutableArray *)books;

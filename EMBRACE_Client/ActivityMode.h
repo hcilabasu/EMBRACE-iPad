@@ -19,15 +19,15 @@ typedef enum Reader {
 typedef enum InterventionType {
     PM_INTERVENTION, //physical manipulation
     IM_INTERVENTION, //imagine manipulation
-    NO_INTERVENTION //read-only
+    R_INTERVENTION //read-only
 } InterventionType;
 
 @interface ActivityMode : NSObject
 
 @property (nonatomic, strong) NSString *chapterTitle;
 @property (nonatomic, assign) Reader reader;
-@property (nonatomic, assign) Language language;
-@property (nonatomic, assign) InterventionType interventionType; //English or Spanish-support (i.e., bilingual)
+@property (nonatomic, assign) Language language; //English or Spanish-support (i.e., bilingual)
+@property (nonatomic, assign) InterventionType interventionType;
 
 - (id)initWithValues:(NSString *)title :(Reader)read :(Language)lang :(InterventionType)type;
 
