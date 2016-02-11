@@ -2551,6 +2551,9 @@
 		5D4B47921C5735200096BC1E /* TheNaughtyMonkeyS6E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5D4B47891C5735200096BC1E /* TheNaughtyMonkeyS6E.mp3 */; };
 		5D4B47931C5735200096BC1E /* TheNaughtyMonkeyS7E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5D4B478A1C5735200096BC1E /* TheNaughtyMonkeyS7E.mp3 */; };
 		5D4B47941C5735200096BC1E /* TheNaughtyMonkeyS8E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5D4B478B1C5735200096BC1E /* TheNaughtyMonkeyS8E.mp3 */; };
+		5D652E6D1C6D21A40014776E /* NaughtyMonkey_Script4_S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5D652E6A1C6D21A40014776E /* NaughtyMonkey_Script4_S.mp3 */; };
+		5D652E6E1C6D21A40014776E /* NaughtyMonkey_Script5_S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5D652E6B1C6D21A40014776E /* NaughtyMonkey_Script5_S.mp3 */; };
+		5D652E6F1C6D21A40014776E /* NaughtyMonkey_Script6_S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5D652E6C1C6D21A40014776E /* NaughtyMonkey_Script6_S.mp3 */; };
 		5D68211A1C4808D1001F5CFD /* Story1-The-Navajo-Hogan-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5D6821191C4808D1001F5CFD /* Story1-The-Navajo-Hogan-Intro-S.xhtml */; };
 		5D68211C1C480A27001F5CFD /* Story1-Introduction-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5D68211B1C480A27001F5CFD /* Story1-Introduction-Intro-E.xhtml */; };
 		5D68211E1C480A3F001F5CFD /* Story1-Introduction-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5D68211D1C480A3F001F5CFD /* Story1-Introduction-Intro-S.xhtml */; };
@@ -5587,6 +5590,9 @@
 		5D4B47891C5735200096BC1E /* TheNaughtyMonkeyS6E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNaughtyMonkeyS6E.mp3; sourceTree = "<group>"; };
 		5D4B478A1C5735200096BC1E /* TheNaughtyMonkeyS7E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNaughtyMonkeyS7E.mp3; sourceTree = "<group>"; };
 		5D4B478B1C5735200096BC1E /* TheNaughtyMonkeyS8E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNaughtyMonkeyS8E.mp3; sourceTree = "<group>"; };
+		5D652E6A1C6D21A40014776E /* NaughtyMonkey_Script4_S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkey_Script4_S.mp3; sourceTree = "<group>"; };
+		5D652E6B1C6D21A40014776E /* NaughtyMonkey_Script5_S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkey_Script5_S.mp3; sourceTree = "<group>"; };
+		5D652E6C1C6D21A40014776E /* NaughtyMonkey_Script6_S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkey_Script6_S.mp3; sourceTree = "<group>"; };
 		5D6821191C4808D1001F5CFD /* Story1-The-Navajo-Hogan-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-The-Navajo-Hogan-Intro-S.xhtml"; sourceTree = "<group>"; };
 		5D68211B1C480A27001F5CFD /* Story1-Introduction-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Introduction-Intro-E.xhtml"; sourceTree = "<group>"; };
 		5D68211D1C480A3F001F5CFD /* Story1-Introduction-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Introduction-Intro-S.xhtml"; sourceTree = "<group>"; };
@@ -9424,6 +9430,7 @@
 		5D077F671C619ACA0035FEDA /* Script */ = {
 			isa = PBXGroup;
 			children = (
+				5D652E691C6D21A40014776E /* Spanish */,
 				5D6C691B1C63E43900F4FA0F /* NaughtyMonkey_Script8.mp3 */,
 				5D6C691C1C63E43900F4FA0F /* NaughtyMonkey_Script2.mp3 */,
 				5D077F681C619ACA0035FEDA /* NaughtyMonkey_Script1.mp3 */,
@@ -9490,6 +9497,16 @@
 				5D4B478B1C5735200096BC1E /* TheNaughtyMonkeyS8E.mp3 */,
 			);
 			path = ChapterAudio;
+			sourceTree = "<group>";
+		};
+		5D652E691C6D21A40014776E /* Spanish */ = {
+			isa = PBXGroup;
+			children = (
+				5D652E6A1C6D21A40014776E /* NaughtyMonkey_Script4_S.mp3 */,
+				5D652E6B1C6D21A40014776E /* NaughtyMonkey_Script5_S.mp3 */,
+				5D652E6C1C6D21A40014776E /* NaughtyMonkey_Script6_S.mp3 */,
+			);
+			path = Spanish;
 			sourceTree = "<group>";
 		};
 		5D9E32851C590E9400636150 /* house */ = {
@@ -10138,6 +10155,7 @@
 				5CB7117E1C6C46DF0062AD61 /* TheNavajoHoganQ7S.mp3 in Resources */,
 				5DBC03241C5121AE0030072B /* (null) in Resources */,
 				5C0421D51C618C2B001BBE9D /* TheLuckyStoneQ3.mp3 in Resources */,
+				5D652E6F1C6D21A40014776E /* NaughtyMonkey_Script6_S.mp3 in Resources */,
 				5C9C08721C57385A00702FCD /* TheContestQ2A4.mp3 in Resources */,
 				5C9C07101C57385A00702FCD /* CleaningUpQ5A4.mp3 in Resources */,
 				5D9E34241C590E9500636150 /* MoreIsMissingQ8.mp3 in Resources */,
@@ -10549,6 +10567,7 @@
 				5C9C0A6A1C573AAA00702FCD /* CCE3_1.m4a in Resources */,
 				1A2425501C6A80BD002CBB13 /* oar.png in Resources */,
 				5C9C075D1C57385A00702FCD /* IntroductionToTheBestFarmQ2A1.mp3 in Resources */,
+				5D652E6E1C6D21A40014776E /* NaughtyMonkey_Script5_S.mp3 in Resources */,
 				5C9C0A2F1C573AAA00702FCD /* MusclesUseOxygenQ3.mp3 in Resources */,
 				5C9C088E1C57385A00702FCD /* TheWiseOwlQ1A2.mp3 in Resources */,
 				5C9C08101C57385A00702FCD /* contestE.m4a in Resources */,
@@ -12197,6 +12216,7 @@
 				1A6321CE1C0E4D3B00251CB3 /* mimetype in Resources */,
 				5C28DCAB1C2BA66E005ACD07 /* log_ch6.png in Resources */,
 				1A63228C1C0E4D3B00251CB3 /* bathtubb.png in Resources */,
+				5D652E6D1C6D21A40014776E /* NaughtyMonkey_Script4_S.mp3 in Resources */,
 				5C28DC5B1C2BA66E005ACD07 /* container.xml in Resources */,
 				5C9C0AF01C573AAA00702FCD /* WhyWeBreatheQ1A1.mp3 in Resources */,
 				1A6321C91C0E4D3B00251CB3 /* Translations-MetaData.xml in Resources */,
