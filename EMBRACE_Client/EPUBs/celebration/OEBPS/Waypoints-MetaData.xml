@@ -11,6 +11,7 @@
         <waypoint waypointId="fence" x="71.484375%" y="53.693180%"/>
         <waypoint waypointId="fence2" x="62%" y="48%"/>
         <waypoint waypointId="gate" x="53.222656%" y="49.5%"/>
+        <waypoint waypointId="hay" x="42%" y="48%"/>
         <waypoint waypointId="inMarket" x="43.945312%" y="36%"/>
         <waypoint waypointId="market" x="53.759766%" y="12.642045%"/>
         <waypoint waypointId="milk" x="66.796875%" y="15.411931%"/>
