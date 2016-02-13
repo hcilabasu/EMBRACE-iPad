@@ -4790,7 +4790,7 @@ BOOL wasPathFollowed = false;
     }
     
     //If we are on the first or second manipulation page of The Navajo Hogan, play the current sentence
-    if ([chapterTitle isEqualToString:@"The Navajo Hogan"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+    if ([chapterTitle isEqualToString:@"The Navajo Hogan"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
         if(conditionSetup.language ==BILINGUAL) {
             sentenceAudioFile = [NSString stringWithFormat:@"TheNavajoHoganS%dS.mp3",currentSentence];
         }
@@ -4810,7 +4810,7 @@ BOOL wasPathFollowed = false;
     }
     
     //If we are on the first or second manipulation page of Key Ingredients, play the current sentence
-    if ([chapterTitle isEqualToString:@"Key Ingredients"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+    if ([chapterTitle isEqualToString:@"Key Ingredients"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
         if(conditionSetup.language ==BILINGUAL) {
             sentenceAudioFile = [NSString stringWithFormat:@"KeyIngredientsS%dS.mp3",currentSentence];
         }
@@ -4830,7 +4830,7 @@ BOOL wasPathFollowed = false;
     }
     
     //If we are on the first or second manipulation page of The Moving Earth, play the current sentence
-    if ([chapterTitle isEqualToString:@"The Moving Earth"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+    if ([chapterTitle isEqualToString:@"The Moving Earth"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
         if(conditionSetup.language ==BILINGUAL) {
             sentenceAudioFile = [NSString stringWithFormat:@"TheMovingEarthS%dS.mp3",currentSentence];
         }
