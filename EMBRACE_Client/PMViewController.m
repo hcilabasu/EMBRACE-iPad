@@ -1690,7 +1690,7 @@ BOOL wasPathFollowed = false;
                     NSString *cancelAnimate = [NSString stringWithFormat:@"cancelAnimation('%@')", imageAtPoint];
                     [bookView stringByEvaluatingJavaScriptFromString:cancelAnimate];
                     
-                    NSString *pauseAnimate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"pause", @""];
+                    NSString *pauseAnimate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"pauseAnimation", @""];
                     [bookView stringByEvaluatingJavaScriptFromString:pauseAnimate];
                     
                     [animatingObjects setObject:@NO forKey:imageAtPoint];
@@ -1784,6 +1784,10 @@ BOOL wasPathFollowed = false;
                                         //Call the animateObject function in the js file.
                                         NSString *animate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"floatAnimation", @""];
                                         [bookView stringByEvaluatingJavaScriptFromString:animate];
+                                        
+                                        NSString *resumeAnimate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"resumeAnimation", @""];
+                                        [bookView stringByEvaluatingJavaScriptFromString:resumeAnimate];
+                                        
                                         [animatingObjects setObject:@YES forKey:movingObjectId];
                                     }
                                 }
@@ -1823,6 +1827,10 @@ BOOL wasPathFollowed = false;
                                     //Call the animateObject function in the js file.
                                     NSString *animate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"floatAnimation", @""];
                                     [bookView stringByEvaluatingJavaScriptFromString:animate];
+                                    
+                                    NSString *resumeAnimate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"resumeAnimation", @""];
+                                    [bookView stringByEvaluatingJavaScriptFromString:resumeAnimate];
+                                    
                                     [animatingObjects setObject:@YES forKey:movingObjectId];
                                 }
                             }

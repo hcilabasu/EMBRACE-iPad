@@ -117,8 +117,6 @@ function animFrame(object){
     
     killAnimation = false;
     
-    pauseAnimation(object);
-    
     if(object.animName == "bounceAnimation")
     {
         requestId = requestAnimationFrame(function() { animFrame(object); }, canvas);
@@ -243,6 +241,14 @@ function animFrame(object){
     {
         moveBackward(object);
     }
+    else if(object.animName == "pauseAnimation")
+    {
+        pauseAnimation(object);
+    }
+    else if(object.animName == "resumeAnimation")
+    {
+        resumeAnimation(object);
+    }
     
     return;
     
@@ -261,8 +267,20 @@ function pauseAnimation(aniObject) {
     
    if(aniObject.object.className.indexOf('manipulationObject center move') > -1)
    {
-       aniObject.object.className = 'manipulationObject center';//aniObject.object.className + ' paused';
+       
+       aniObject.object.style.WebkitAnimationPlayState = 'pasued';
+       //aniObject.object.className = 'manipulationObject center';//aniObject.object.className + ' paused';
    }
+}
+
+function resumeAnimation(aniObject) {
+    
+    if(aniObject.object.className.indexOf('manipulationObject center move') > -1)
+    {
+        
+        aniObject.object.style.WebkitAnimationPlayState = 'running';
+        //aniObject.object.className = 'manipulationObject center';//aniObject.object.className + ' paused';
+    }
 }
 
 
