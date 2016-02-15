@@ -4800,7 +4800,7 @@ BOOL wasPathFollowed = false;
     }
     
     //If we are on the first or second manipulation page of Native Intro, play the current sentence
-    if ([chapterTitle isEqualToString:@"Introduction to Native American Homes"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+    if ([chapterTitle isEqualToString:@"Introduction to Native American Homes"] && ([currentPageId rangeOfString:@"PM"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
         if(conditionSetup.language ==BILINGUAL) {
             sentenceAudioFile = [NSString stringWithFormat:@"NativeIntroS%dS.mp3",currentSentence];
         }
@@ -4820,7 +4820,7 @@ BOOL wasPathFollowed = false;
     }
     
     //If we are on the first or second manipulation page of Disasters Intro, play the current sentence
-    if ([chapterTitle isEqualToString:@"Introduction to Natural Disasters"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+    if ([chapterTitle isEqualToString:@"Introduction to Natural Disasters"] && ([currentPageId rangeOfString:@"PM"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
         if(conditionSetup.language ==BILINGUAL) {
             sentenceAudioFile = [NSString stringWithFormat:@"DisastersIntroS%dS.mp3",currentSentence];
         }
