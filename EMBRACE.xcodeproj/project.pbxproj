@@ -2962,6 +2962,8 @@
 		5CC5FADB18FDFA3700D118B8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CC5FADA18FDFA3700D118B8 /* AVFoundation.framework */; };
 		5CC854E719FAF37F00910237 /* ConditionSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC854E619FAF37F00910237 /* ConditionSetup.m */; };
 		5CCD8E111C73C1FB00D2EC2B /* HowdoObjectsMoveQ2A1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CCD8E101C73C1FB00D2EC2B /* HowdoObjectsMoveQ2A1.mp3 */; };
+		5CCD8E131C73C45400D2EC2B /* NewtonsfirstlawQ2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CCD8E121C73C45400D2EC2B /* NewtonsfirstlawQ2.mp3 */; };
+		5CCD8E151C73C45F00D2EC2B /* NewtonsfirstlawQ1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CCD8E141C73C45F00D2EC2B /* NewtonsfirstlawQ1.mp3 */; };
 		5CCEA48119AFD13C00FCBC2C /* ComboConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCEA48019AFD13C00FCBC2C /* ComboConstraint.m */; };
 		5CD1C1321C3F2E6A00BE9047 /* bg_market.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CD1C12A1C3F2E6A00BE9047 /* bg_market.png */; };
 		5CD1C1331C3F2E6A00BE9047 /* bluesaddlebag_closed.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CD1C12B1C3F2E6A00BE9047 /* bluesaddlebag_closed.png */; };
@@ -6445,6 +6447,8 @@
 		5CC854E619FAF37F00910237 /* ConditionSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConditionSetup.m; sourceTree = "<group>"; };
 		5CCAE22C1B4C42C600445020 /* disasters.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = disasters.epub; path = EPUBs/disasters/disasters.epub; sourceTree = "<group>"; };
 		5CCD8E101C73C1FB00D2EC2B /* HowdoObjectsMoveQ2A1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = HowdoObjectsMoveQ2A1.mp3; sourceTree = "<group>"; };
+		5CCD8E121C73C45400D2EC2B /* NewtonsfirstlawQ2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NewtonsfirstlawQ2.mp3; sourceTree = "<group>"; };
+		5CCD8E141C73C45F00D2EC2B /* NewtonsfirstlawQ1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NewtonsfirstlawQ1.mp3; sourceTree = "<group>"; };
 		5CCEA47F19AFD13C00FCBC2C /* ComboConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComboConstraint.h; sourceTree = "<group>"; };
 		5CCEA48019AFD13C00FCBC2C /* ComboConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComboConstraint.m; sourceTree = "<group>"; };
 		5CD1C12A1C3F2E6A00BE9047 /* bg_market.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_market.png; sourceTree = "<group>"; };
@@ -9098,6 +9102,8 @@
 		5C72E67D1C72BF1000CE4877 /* English */ = {
 			isa = PBXGroup;
 			children = (
+				5CCD8E141C73C45F00D2EC2B /* NewtonsfirstlawQ1.mp3 */,
+				5CCD8E121C73C45400D2EC2B /* NewtonsfirstlawQ2.mp3 */,
 				5C72E67E1C72BF1000CE4877 /* HowdoObjectsMoveQ1.mp3 */,
 				5C72E67F1C72BF1000CE4877 /* HowdoObjectsMoveQ1A1.mp3 */,
 				5C72E6801C72BF1000CE4877 /* HowdoObjectsMoveQ1A2.mp3 */,
@@ -11459,6 +11465,7 @@
 				5D9E34C11C590E9600636150 /* Rattle_def_E.mp3 in Resources */,
 				5C28DC671C2BA66E005ACD07 /* background_ch3_buffalo.png in Resources */,
 				5C72E83B1C72BF1000CE4877 /* HowdoObjectsMoveQ2A1S.mp3 in Resources */,
+				5CCD8E151C73C45F00D2EC2B /* NewtonsfirstlawQ1.mp3 in Resources */,
 				5D6821241C480D27001F5CFD /* Story4-The-Algonquian-Wigwam-Intro-S.xhtml in Resources */,
 				5C9C0AC01C573AAA00702FCD /* squeezeS.m4a in Resources */,
 				5C28DCF01C2BA66E005ACD07 /* Solutions-MetaData.xml in Resources */,
@@ -13797,6 +13804,7 @@
 				5C9C07D31C57385A00702FCD /* BFEC4.m4a in Resources */,
 				5C72E8211C72BF1000CE4877 /* TheThreeLawsWorkTogetherQ3A3.mp3 in Resources */,
 				5C72E64F1C72A46F00CE4877 /* TheSiouxTeepeeQ2.mp3 in Resources */,
+				5CCD8E131C73C45400D2EC2B /* NewtonsfirstlawQ2.mp3 in Resources */,
 				5C9C07441C57385A00702FCD /* GettingReadyQ4A1.mp3 in Resources */,
 				1A6321251C0E4D3B00251CB3 /* Solutions-MetaData.xml in Resources */,
 				5C9C0AAE1C573AAA00702FCD /* lungsS.m4a in Resources */,
