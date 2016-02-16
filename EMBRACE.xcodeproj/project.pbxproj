@@ -2961,6 +2961,7 @@
 		5CB7117E1C6C46DF0062AD61 /* TheNavajoHoganQ7S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CB7114C1C6C46DF0062AD61 /* TheNavajoHoganQ7S.mp3 */; };
 		5CC5FADB18FDFA3700D118B8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CC5FADA18FDFA3700D118B8 /* AVFoundation.framework */; };
 		5CC854E719FAF37F00910237 /* ConditionSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC854E619FAF37F00910237 /* ConditionSetup.m */; };
+		5CCD8E111C73C1FB00D2EC2B /* HowdoObjectsMoveQ2A1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CCD8E101C73C1FB00D2EC2B /* HowdoObjectsMoveQ2A1.mp3 */; };
 		5CCEA48119AFD13C00FCBC2C /* ComboConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCEA48019AFD13C00FCBC2C /* ComboConstraint.m */; };
 		5CD1C1321C3F2E6A00BE9047 /* bg_market.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CD1C12A1C3F2E6A00BE9047 /* bg_market.png */; };
 		5CD1C1331C3F2E6A00BE9047 /* bluesaddlebag_closed.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CD1C12B1C3F2E6A00BE9047 /* bluesaddlebag_closed.png */; };
@@ -6443,6 +6444,7 @@
 		5CC854E519FAF37F00910237 /* ConditionSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConditionSetup.h; sourceTree = "<group>"; };
 		5CC854E619FAF37F00910237 /* ConditionSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConditionSetup.m; sourceTree = "<group>"; };
 		5CCAE22C1B4C42C600445020 /* disasters.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = disasters.epub; path = EPUBs/disasters/disasters.epub; sourceTree = "<group>"; };
+		5CCD8E101C73C1FB00D2EC2B /* HowdoObjectsMoveQ2A1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = HowdoObjectsMoveQ2A1.mp3; sourceTree = "<group>"; };
 		5CCEA47F19AFD13C00FCBC2C /* ComboConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComboConstraint.h; sourceTree = "<group>"; };
 		5CCEA48019AFD13C00FCBC2C /* ComboConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComboConstraint.m; sourceTree = "<group>"; };
 		5CD1C12A1C3F2E6A00BE9047 /* bg_market.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_market.png; sourceTree = "<group>"; };
@@ -9102,6 +9104,7 @@
 				5C72E6811C72BF1000CE4877 /* HowdoObjectsMoveQ1A3.mp3 */,
 				5C72E6821C72BF1000CE4877 /* HowdoObjectsMoveQ1A4.mp3 */,
 				5C72E6831C72BF1000CE4877 /* HowdoObjectsMoveQ2.mp3 */,
+				5CCD8E101C73C1FB00D2EC2B /* HowdoObjectsMoveQ2A1.mp3 */,
 				5C72E6841C72BF1000CE4877 /* HowdoObjectsMoveQ2A4.mp3 */,
 				5C72E6861C72BF1000CE4877 /* HowdoObjectsMoveQ2A2.mp3 */,
 				5C72E6871C72BF1000CE4877 /* HowdoObjectsMoveQ2A3.mp3 */,
@@ -11577,6 +11580,7 @@
 				1A6323581C0E4D3B00251CB3 /* Story5-Newton's-Law-of-Acceleration-on-Earth-PM-1.xhtml in Resources */,
 				1A63230A1C0E4D3B00251CB3 /* boat.png in Resources */,
 				1A6323191C0E4D3B00251CB3 /* horse.png in Resources */,
+				5CCD8E111C73C1FB00D2EC2B /* HowdoObjectsMoveQ2A1.mp3 in Resources */,
 				1A6323301C0E4D3B00251CB3 /* skateboard.png in Resources */,
 				5C9C0A611C573AAA00702FCD /* CCE2_1.m4a in Resources */,
 				5C72E78B1C72BF1000CE4877 /* NewtonsFirstLawonEarthQ3A1.mp3 in Resources */,
