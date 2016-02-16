@@ -1658,6 +1658,8 @@ BOOL wasPathFollowed = false;
             //if it's an image that can be moved, then start moving it.
             if(imageAtPoint != nil && !stepsComplete) {
                 
+                
+                
                 //add logging: began object move ?
                 
                 movingObject = TRUE;
@@ -1687,6 +1689,10 @@ BOOL wasPathFollowed = false;
                     //Call the cancelAnimation function in the js file.
                     NSString *cancelAnimate = [NSString stringWithFormat:@"cancelAnimation('%@')", imageAtPoint];
                     [bookView stringByEvaluatingJavaScriptFromString:cancelAnimate];
+                    
+                    NSString *pauseAnimate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"pauseAnimation", @""];
+                    [bookView stringByEvaluatingJavaScriptFromString:pauseAnimate];
+                    
                     [animatingObjects setObject:@NO forKey:imageAtPoint];
                 }
             }
@@ -1778,6 +1784,10 @@ BOOL wasPathFollowed = false;
                                         //Call the animateObject function in the js file.
                                         NSString *animate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"floatAnimation", @""];
                                         [bookView stringByEvaluatingJavaScriptFromString:animate];
+                                        
+                                        NSString *resumeAnimate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"resumeAnimation", @""];
+                                        [bookView stringByEvaluatingJavaScriptFromString:resumeAnimate];
+                                        
                                         [animatingObjects setObject:@YES forKey:movingObjectId];
                                     }
                                 }
@@ -1817,6 +1827,10 @@ BOOL wasPathFollowed = false;
                                     //Call the animateObject function in the js file.
                                     NSString *animate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"floatAnimation", @""];
                                     [bookView stringByEvaluatingJavaScriptFromString:animate];
+                                    
+                                    NSString *resumeAnimate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"resumeAnimation", @""];
+                                    [bookView stringByEvaluatingJavaScriptFromString:resumeAnimate];
+                                    
                                     [animatingObjects setObject:@YES forKey:movingObjectId];
                                 }
                             }
@@ -4765,6 +4779,66 @@ BOOL wasPathFollowed = false;
         }
     }
    
+    //If we are on the first or second manipulation page of How Do Objects Move, play the current sentence
+    if ([chapterTitle isEqualToString:@"How do Objects Move?"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+        if(conditionSetup.language ==BILINGUAL) {
+            sentenceAudioFile = [NSString stringWithFormat:@"HowDoObjectsMoveS%dS.mp3",currentSentence];
+        }
+        else {
+            sentenceAudioFile = [NSString stringWithFormat:@"HowDoObjectsMoveS%dE.mp3",currentSentence];
+        }
+    }
+    
+    //If we are on the first or second manipulation page of The Navajo Hogan, play the current sentence
+    if ([chapterTitle isEqualToString:@"The Navajo Hogan"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
+        if(conditionSetup.language ==BILINGUAL) {
+            sentenceAudioFile = [NSString stringWithFormat:@"TheNavajoHoganS%dS.mp3",currentSentence];
+        }
+        else {
+            sentenceAudioFile = [NSString stringWithFormat:@"TheNavajoHoganS%dE.mp3",currentSentence];
+        }
+    }
+    
+    //If we are on the first or second manipulation page of Native Intro, play the current sentence
+    if ([chapterTitle isEqualToString:@"Introduction to Native American Homes"] && ([currentPageId rangeOfString:@"PM"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+        if(conditionSetup.language ==BILINGUAL) {
+            sentenceAudioFile = [NSString stringWithFormat:@"NativeIntroS%dS.mp3",currentSentence];
+        }
+        else {
+            sentenceAudioFile = [NSString stringWithFormat:@"NativeIntroS%dE.mp3",currentSentence];
+        }
+    }
+    
+    //If we are on the first or second manipulation page of Key Ingredients, play the current sentence
+    if ([chapterTitle isEqualToString:@"Key Ingredients"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
+        if(conditionSetup.language ==BILINGUAL) {
+            sentenceAudioFile = [NSString stringWithFormat:@"KeyIngredientsS%dS.mp3",currentSentence];
+        }
+        else {
+            sentenceAudioFile = [NSString stringWithFormat:@"KeyIngredientsS%dE.mp3",currentSentence];
+        }
+    }
+    
+    //If we are on the first or second manipulation page of Disasters Intro, play the current sentence
+    if ([chapterTitle isEqualToString:@"Introduction to Natural Disasters"] && ([currentPageId rangeOfString:@"PM"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+        if(conditionSetup.language ==BILINGUAL) {
+            sentenceAudioFile = [NSString stringWithFormat:@"DisastersIntroS%dS.mp3",currentSentence];
+        }
+        else {
+            sentenceAudioFile = [NSString stringWithFormat:@"DisastersIntroS%dE.mp3",currentSentence];
+        }
+    }
+    
+    //If we are on the first or second manipulation page of The Moving Earth, play the current sentence
+    if ([chapterTitle isEqualToString:@"The Moving Earth"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
+        if(conditionSetup.language ==BILINGUAL) {
+            sentenceAudioFile = [NSString stringWithFormat:@"TheMovingEarthS%dS.mp3",currentSentence];
+        }
+        else {
+            sentenceAudioFile = [NSString stringWithFormat:@"TheMovingEarthS%dE.mp3",currentSentence];
+        }
+    }
+    
     
     NSString *query = [NSString stringWithFormat:@"var matches = document.querySelectorAll(\"[id=s%d]\"); matches[0].getAttribute(\"preAudio\");", currentSentence];
     NSString *preAudio = [bookView stringByEvaluatingJavaScriptFromString:query];

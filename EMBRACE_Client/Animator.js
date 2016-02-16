@@ -119,10 +119,12 @@ function animFrame(object){
     
     if(object.animName == "bounceAnimation")
     {
+        requestId = requestAnimationFrame(function() { animFrame(object); }, canvas);
         bounce(object);
     }
     else if(object.animName == "fallAnimation")
     {
+        requestId = requestAnimationFrame(function() { animFrame(object); }, canvas);
         fall(object);
     }
     else if(object.animName == "rotate90Animation")
@@ -191,14 +193,17 @@ function animFrame(object){
     }
     else if(object.animName == "bobAnimation")
     {
+        requestId = requestAnimationFrame(function() { animFrame(object); }, canvas);
         bob(object);
     }
     else if(object.animName == "earthquakeAnimation")
     {
+        requestId = requestAnimationFrame(function() { animFrame(object); }, canvas);
         earthquake(object);
     }
     else if(object.animName == "cheerAnimation")
     {
+        requestId = requestAnimationFrame(function() { animFrame(object); }, canvas);
         cheer(object);
     }
     else if(object.animName == "floatAnimation")
@@ -208,10 +213,12 @@ function animFrame(object){
     }
     else if(object.animName == "followAnimation")
     {
+        requestId = requestAnimationFrame(function() { animFrame(object); }, canvas);
         follow(object);
     }
     else if(object.animName == "rollAnimation")
     {
+        requestId = requestAnimationFrame(function() { animFrame(object); }, canvas);
         roll(object);
     }
     else if(object.animName == "kickBall")
@@ -234,6 +241,14 @@ function animFrame(object){
     {
         moveBackward(object);
     }
+    else if(object.animName == "pauseAnimation")
+    {
+        pauseAnimation(object);
+    }
+    else if(object.animName == "resumeAnimation")
+    {
+        resumeAnimation(object);
+    }
     
     return;
     
@@ -247,6 +262,27 @@ function cancelAnimation(objectName) {
     cancelAnimationFrame(requestId);
     //}
 }
+
+function pauseAnimation(aniObject) {
+    
+   if(aniObject.object.className.indexOf('manipulationObject center move') > -1)
+   {
+       
+       aniObject.object.style.WebkitAnimationPlayState = 'pasued';
+       //aniObject.object.className = 'manipulationObject center';//aniObject.object.className + ' paused';
+   }
+}
+
+function resumeAnimation(aniObject) {
+    
+    if(aniObject.object.className.indexOf('manipulationObject center move') > -1)
+    {
+        
+        aniObject.object.style.WebkitAnimationPlayState = 'running';
+        //aniObject.object.className = 'manipulationObject center';//aniObject.object.className + ' paused';
+    }
+}
+
 
 //function cancelAnimation (objectName) {
 //if(cancelOnce) {
@@ -1037,11 +1073,13 @@ function moveRightAndWrapSlow(aniObject) {
     timePerPixels = timePerPixels * 1000;
     
     setTimeout(function(){
+            if(aniObject.object.className = 'manipulationObject center moveRightSlow'){
                var left = -parseFloat(aniObject.object.style.width);
                aniObject.object.style.left = left +  'px';
                aniObject.x = left;
                aniObject.object.className = 'manipulationObject center moveRightAndWrapSlow';
-               }, timePerPixels);
+               }
+    }, timePerPixels);
 }
 
 function moveRightAndWrapSlower(aniObject) {
@@ -1071,11 +1109,14 @@ function moveRightAndWrapSlower(aniObject) {
     timePerPixels = timePerPixels * 1000;
     
     setTimeout(function(){
+        if(aniObject.object.className = 'manipulationObject center moveRightSlower')
+        {
                var left = -parseFloat(aniObject.object.style.width);
                aniObject.object.style.left = left +  'px';
                aniObject.x = left;
                aniObject.object.className = 'manipulationObject center moveRightAndWrapSlower';
-               }, timePerPixels);
+        }
+    }, timePerPixels);
 }
 
 //
