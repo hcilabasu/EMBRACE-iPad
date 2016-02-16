@@ -41,37 +41,43 @@
         <hotspot objId="tomatillos" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="vase" action="pickUp" role="object" x="50%" y="75%"/>
         
-        <hotspot objId="cow_IM" action="enter" role="object" x="50%" y="80%"/>
+        <hotspot objId="cow_IM" action="enter" role="object" x="0%" y="50%"/>
         <hotspot objId="corral_IM" action="enter" role="subject" x="50%" y="50%"/>
         
-        <hotspot objId="cow_IM" action="leave" role="object" x="50%" y="0%"/>
+        <hotspot objId="cowFlipped_IM" action="leave" role="object" x="100%" y="50%"/>
         <hotspot objId="corral_IM" action="leave" role="subject" x="50%" y="50%"/>
         
-        <hotspot objId="emilio_IM" action="standBy" role="object" x="50%" y="50%"/>
-        <hotspot objId="sofia_IM" action="standBy" role="object" x="50%" y="50%"/>
+        <hotspot objId="emilio_IM" action="standBy" role="object" x="180%" y="85%"/>
+        <hotspot objId="sofia_IM" action="standBy" role="object" x="180%" y="85%"/>
         <hotspot objId="corralGate_IM" action="standBy" role="subject" x="50%" y="50%"/>
         
         <hotspot objId="sofiaOnMancha_IM" action="sitOn" role="object" x="50%" y="50%"/>
         <hotspot objId="sofiaOnMancha_IM" action="sitOn" role="subject" x="50%" y="50%"/>
         
-        <hotspot objId="sofia_IM" action="standBy" role="object" x="100%" y="50%"/>
-        <hotspot objId="mancha_IM" action="standBy" role="subject" x="0%" y="50%"/>
+        <hotspot objId="sofia_IM" action="standWith" role="object" x="100%" y="50%"/>
+        <hotspot objId="mancha_IM" action="standWith" role="subject" x="0%" y="50%"/>
        
         <hotspot objId="sofia_IM" action="hold" role="object" x="50%" y="50%"/>
-        <hotspot objId="tomatillos_IM" action="hold" role="subject" x="50%" y="50%"/>
-        <hotspot objId="milk_IM" action="hold" role="subject" x="50%" y="50%"/>
-        <hotspot objId="flowers_IM" action="hold" role="subject" x="50%" y="50%"/>
-        <hotspot objId="totebag_IM" action="hold" role="subject" x="50%" y="20%"/>
+        
+        <hotspot objId="sofiaWithTote_IM" action="hold" role="object" x="70%" y="50%"/>
+        <hotspot objId="tomatillos_IM" action="hold" role="subject" x="0%" y="100%"/>
+        <hotspot objId="milk_IM" action="hold" role="subject" x="0%" y="100%"/>
+        
+        <hotspot objId="flowers_IM" action="hold" role="subject" x="100%" y="100%"/>
+        
+        <hotspot objId="sofiaTote_IM" action="hold" role="object" x="50%" y="50%"/>
+        <hotspot objId="sofiaTote_IM" action="hold" role="subject" x="50%" y="50%"/>
        
         <hotspot objId="sofia_IM" action="toward" role="object" x="50%" y="50%"/>
         <hotspot objId="market_IM" action="toward" role="subject" x="50%" y="50%"/>
         
-        <hotspot objId="sofiaFlip_IM" action="leave" role="object" x="50%" y="50%"/>
+        <hotspot objId="sofiaFlip_IM" action="leave" role="object" x="140%" y="50%"/>
         <hotspot objId="market_IM" action="leave" role="subject" x="50%" y="50%"/>
 
-        <hotspot objId="mom_IM" action="hold" role="object" x="50%" y="50%"/>
-        <hotspot objId="groceries_IM" action="hold" role="subject" x="50%" y="20%"/>
-        <hotspot objId="flowers_IM" action="hold" role="subject" x="50%" y="70%"/>
+        <hotspot objId="momWithGroceries_IM" action="hold" role="object" x="50%" y="50%"/>
+        <hotspot objId="momWithFlowers_IM" action="hold" role="object" x="50%" y="50%"/>
+        <hotspot objId="momWithGroceries_IM" action="hold" role="subject" x="50%" y="50%"/>
+        <hotspot objId="momWithFlowers_IM" action="hold" role="subject" x="50%" y="50%"/>
    
         <hotspot objId="flowersInVase_IM" action="inVase" role="object" x="50%" y="50%"/>
         <hotspot objId="flowersInVase_IM" action="inVase" role="subject" x="50%" y="50%"/>

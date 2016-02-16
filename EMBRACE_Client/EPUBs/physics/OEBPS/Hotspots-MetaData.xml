@@ -50,14 +50,14 @@
         <hotspot objId="smallrocket_IM" action="fasterSpeed" role="object" x="20%" y="90%"/>
         <hotspot objId="bigrocket_IM" action="fasterSpeed" role="subject" x="80%" y="10%"/>
         
-        <hotspot objId="dog_IM" action="toward" role="object" x="100%" y="50%"/>
-        <hotspot objId="maria_IM" action="toward" role="subject" x="0%" y="50%"/>
+        <hotspot objId="dog_IM" action="toward" role="object" x="100%" y="0%"/>
+        <hotspot objId="maria_IM" action="toward" role="subject" x="0%" y="70%"/>
         
-        <hotspot objId="dog_IM" action="flip" role="object" x="100%" y="50%"/>
-        <hotspot objId="maria_IM" action="flip" role="subject" x="0%" y="50%"/>
+        <hotspot objId="dog_IM" action="flip" role="object" x="100%" y="0%"/>
+        <hotspot objId="maria_IM" action="flip" role="subject" x="0%" y="70%"/>
         
-        <hotspot objId="horse_IM" action="getIn" role="object" x="50%" y="50%"/>
-        <hotspot objId="horse_IM" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="horse_IM" action="flip" role="object" x="50%" y="50%"/>
+        <hotspot objId="horse_IM" action="flip" role="subject" x="50%" y="50%"/>
         
         <hotspot objId="dog_IM" action="getIn" role="object" x="50%" y="50%"/>
         <hotspot objId="dog_IM" action="getIn" role="subject" x="50%" y="50%"/>
@@ -73,14 +73,15 @@
         
         <hotspot objId="maria_IM" action="getOn" role="object" x="50%" y="100%"/>
         <hotspot objId="skateboard_IM" action="getOn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="paddle_IM" action="getOn" role="subject" x="50%" y="50%"/>
         
         <hotspot objId="maria_IM" action="getOff" role="object" x="100%" y="100%"/>
         <hotspot objId="skateboard_IM" action="getOff" role="subject" x="0%" y="50%"/>
         
-        <hotspot objId="car_IM" action="getWith" role="object" x="80%" y="50%"/>
-        <hotspot objId="skateboard_IM" action="getWith" role="subject" x="20%" y="50%"/>
+        <hotspot objId="car_IM" action="getWith" role="object" x="0%" y="50%"/>
+        <hotspot objId="skateboard_IM" action="getWith" role="subject" x="100%" y="50%"/>
         
-        <hotspot objId="rocket_IM" action="getWith" role="object" x="80%" y="50%"/>
-        <hotspot objId="skateboard_IM" action="getWith" role="subject" x="20%" y="50%"/>
+        <hotspot objId="rocket_IM" action="getWith" role="object" x="0%" y="50%"/>
+        <hotspot objId="skateboard_IM" action="getWith" role="subject" x="100%" y="50%"/>
     </hotspots>
 </metadata>

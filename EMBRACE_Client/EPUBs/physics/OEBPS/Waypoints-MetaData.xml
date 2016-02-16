@@ -3,7 +3,7 @@
     <waypoints>
         <waypoint waypointId="after_horse_tie" x="55%" y="59%"/>
         <waypoint waypointId="after_untie" x="50%" y="49%"/>
-        <waypoint waypointId="ball_drop" x="74.218750%" y="77.414772%"/>
+        <waypoint waypointId="ball_drop" x="74.218750%" y="50.414772%"/>
         <waypoint waypointId="ball_right" x="76.660156%" y="72.230110%"/>
         <waypoint waypointId="boat_left" x="22%" y="50%"/>
         <waypoint waypointId="hill" x="34.814453%" y="40.198864%"/>

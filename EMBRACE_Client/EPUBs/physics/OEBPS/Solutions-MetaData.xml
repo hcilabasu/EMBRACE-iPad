@@ -52,7 +52,7 @@
                 <step number="1">
                     <group obj1Id="juan" action="kick" obj2Id="ball"/>
                     <ungroupAndStay obj1Id="juan" action="leave" obj2Id="ball"/>
-                    <move obj1Id="juan" action="getIn" waypointId="juan_kick"/>
+                    <swapImage obj1Id="juan" action="withKick"/>
                     <animate obj1Id="ball" action="kickBall" waypointId="" areaId=""/>
                 </step>
             </sentence>
@@ -63,7 +63,7 @@
                     <group obj1Id="maria" action="pickUp" obj2Id="ball"/>
                     <ungroupAndStay obj1Id="maria" action="drop" obj2Id="ball"/>
                     <move obj1Id="ball" action="getIn" waypointId="ball_drop"/>
-                    <move obj1Id="maria" action="getIn" waypointId="near_ball"/>
+                    <swapImage obj1Id="maria" action="throwHandsUp"/>
                     <animate obj1Id="ball" action="moveLeftAndCurve" waypointId="" areaId=""/>
                 </step>
             </sentence>

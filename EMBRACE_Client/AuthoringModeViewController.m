@@ -74,6 +74,7 @@ typedef enum InteractionMode {
     BOOL menuExpanded;
     
     InteractionModel *model;
+    ConditionSetup *conditionSetup;
     
     InteractionRestriction useSubject; //Determines which objects the user can manipulate as the subject
     InteractionRestriction useObject; //Determines which objects the user can interact with as the object
@@ -152,6 +153,8 @@ ConditionSetup *conditionSetup;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    conditionSetup = [ConditionSetup sharedInstance];
     
     //Creates the picker view for editing options
     CGRect pickerFrame = CGRectMake(200, 200, 320, 216);
@@ -310,7 +313,7 @@ ConditionSetup *conditionSetup;
  */
 -(void) performSetupForActivity {
     Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
-    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
+    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:conditionSetup.currentMode]; //get PM Activity from chapter
     NSMutableArray* setupSteps = [[PMActivity setupSteps] objectForKey:currentPageId]; //get setup steps for current page
     
     for (ActionStep* setupStep in setupSteps) {
@@ -361,7 +364,7 @@ ConditionSetup *conditionSetup;
     book = [bookImporter getBookWithTitle:bookTitle]; //Get the book reference.
     model = [book model];
     
-    currentPage = [book getNextPageForChapterAndActivity:chapterTitle :PM_MODE :nil];
+    currentPage = [book getNextPageForChapterAndActivity:chapterTitle :conditionSetup.currentMode :nil];
     
     actualPage = currentPage;
     
@@ -377,7 +380,7 @@ ConditionSetup *conditionSetup;
  * Otherwise, it will load the next chaper.
  */
 -(void) loadNextPage {
-    currentPage = [book getNextPageForChapterAndActivity:chapterTitle :PM_MODE :currentPage];
+    currentPage = [book getNextPageForChapterAndActivity:chapterTitle :conditionSetup.currentMode :currentPage];
     
     //No more pages in chapter
     if (currentPage == nil) {
@@ -410,11 +413,11 @@ ConditionSetup *conditionSetup;
     self.title = chapterTitle;
     
     //Set the current page id
-    currentPageId = [book getIdForPageInChapterAndActivity:currentPage :chapterTitle :PM_MODE];
+    currentPageId = [book getIdForPageInChapterAndActivity:currentPage :chapterTitle :conditionSetup.currentMode];
     
     //Get the solution steps for the current chapter
     Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
-    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
+    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:conditionSetup.currentMode]; //get PM Activity from chapter
     //PMSolution = [PMActivity PMSolution]; //get PM solution
     //PMSolution = [[[PMActivity PMSolutions] objectForKey:currentPageId] objectAtIndex:0]; //get PM solution
     

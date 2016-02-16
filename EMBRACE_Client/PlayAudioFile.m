@@ -136,7 +136,7 @@
 
 
 /* Plays one audio file after the other */
--(void) playAudioInSequence: (UIViewController*) viewController : (NSString*) path :(NSString*) path2 {
+-(bool) playAudioInSequence: (UIViewController*) viewController : (NSString*) path :(NSString*) path2 {
     NSString *soundFilePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], path];
     NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
     NSError *audioError;
@@ -158,9 +158,13 @@
     {
         NSLog(@"%@",[audioError description]);
         [PmviewController.view setUserInteractionEnabled:YES];
+        return false;
     }
     else
+    {
         [self.audioPlayer play];
+        return true;
+    }
 }
 
 /* Delegate for the AVAudioPlayer */

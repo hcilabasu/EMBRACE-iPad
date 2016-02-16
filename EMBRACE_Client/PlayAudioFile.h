@@ -22,7 +22,7 @@
 -(void)playWordAudioTimed:(NSTimer *) wordAndLang;
 -(void)playAudioFileTimed:(NSTimer *) path;
 -(void) playAudioFile: (UIViewController *) viewController : (NSString*) path;
--(void) playAudioInSequence: (UIViewController*) viewController : (NSString*) path :(NSString*) path2;
+-(bool) playAudioInSequence: (UIViewController*) viewController : (NSString*) path :(NSString*) path2;
 -(void) stopPlayAudioFile;
 -(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag;
 -(IBAction) playErrorNoise: (NSString *) storyName : (NSString *) chapterFilePath : (NSString*) pageFilePath : (NSInteger) sentenceNumber : (NSString *) sentenceText : (NSInteger) stepNumber : (NSInteger) ideaNumber;
