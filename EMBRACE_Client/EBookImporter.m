@@ -441,6 +441,7 @@
     [self readIntroductionMetadata:model :[[book mainContentPath] stringByAppendingString:@"Introductions-MetaData.xml"]];
     [self readVocabularyIntroductionMetadata:model :[[book mainContentPath] stringByAppendingString:@"VocabularyIntroductions-MetaData.xml"]];
     
+    
     //Separate Assessment metadata files depending on language
     if (conditionSetup.language == ENGLISH) {
         [self readAssessmentMetadata:model :[[book mainContentPath] stringByAppendingString:@"AssessmentActivities-MetaData.xml"]];
@@ -448,6 +449,7 @@
     else if (conditionSetup.language == BILINGUAL) {
         [self readAssessmentMetadata:model :[[book mainContentPath] stringByAppendingString:@"AssessmentActivitiesSpanish-MetaData.xml"]];
     }
+    [self readScriptMetadata:book filePath:[[book mainContentPath] stringByAppendingString:@"Script-Metadata.xml"]];
 }
 
 - (void)readRelationshipMetadata:(InteractionModel *)model :(NSString *)filepath {
@@ -1243,6 +1245,111 @@
             [model addAssessmentActivity:title :storyQuestions];
         }
     }
+    
+
+}
+
+- (void)readScriptMetadata:(Book *)book filePath:(NSString *)filepath {
+    NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
+    NSError *error;
+    NSLog(@"Start for - %@",book.title);
+    GDataXMLDocument *metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:&error];
+    if (metadataDoc !=nil) {
+
+
+        NSArray *scriptAudioElems = [metadataDoc nodesForXPath:@"//scriptAudio" error:nil];
+        GDataXMLElement *solutionsElement = (GDataXMLElement *)[scriptAudioElems objectAtIndex:0];
+        
+        NSArray *storyScripts = [solutionsElement elementsForName:@"story"];
+        
+        for (GDataXMLElement *solution in storyScripts) {
+            //Get story title
+            NSString *title = [[solution attributeForName:@"title"] stringValue];
+            Chapter *chapter = [book getChapterWithTitle:title];
+            
+            NSArray *sentenceArray = [solution nodesForXPath:@"sentence" error:nil];
+            for (GDataXMLElement *sentence in sentenceArray) {
+                
+                NSString *sentNo = [[sentence attributeForName:@"number"] stringValue];
+                
+                NSArray *elems = [sentence nodesForXPath:@"embrace" error:nil];
+                if ([elems count] > 0) {
+                    GDataXMLElement *embrace = [elems objectAtIndex:0];
+                    ScriptAudio *script = [self parseScriptAudio:embrace
+                                                    forCondition:EMBRACE];
+                    if (script) {
+                        [chapter addEmbraceScript:script forSentence:sentNo];
+                    }
+                }
+                
+                elems = [sentence nodesForXPath:@"control" error:nil];
+                if ([elems count] > 0) {
+                    GDataXMLElement *control = [elems objectAtIndex:0];
+                    ScriptAudio *script = [self parseScriptAudio:control
+                                                    forCondition:CONTROL];
+                    if (script) {
+                        [chapter addControlScript:script forSentence:sentNo];
+                    }
+                }
+            }
+            
+           
+        }
+        
+    }
+    
+}
+
+- (ScriptAudio *)parseScriptAudio:(GDataXMLElement  *)elem
+                     forCondition:(Condition)condition {
+    
+    ScriptAudio *script = nil;
+    NSArray *preEnglish = nil;
+    NSArray *postEnglish = nil;
+    
+    NSArray *preBilingual = nil;
+    NSArray *postBilingual = nil;
+    
+    NSArray *preAudios = [elem nodesForXPath:@"preAudio" error:nil];
+    if (preAudios) {
+        GDataXMLElement *preAudio = [preAudios objectAtIndex:0];
+        
+        NSArray *englishArrayElem = [preAudio nodesForXPath:@"english" error:nil];
+        GDataXMLElement *eng = [englishArrayElem objectAtIndex:0];
+        preEnglish = [eng elementsForName:@"audio"];
+        
+        
+        NSArray *bilinArrayElem = [preAudio nodesForXPath:@"bilingual" error:nil];
+        GDataXMLElement *bilingual = [bilinArrayElem objectAtIndex:0];
+        preBilingual = [bilingual elementsForName:@"audio"];
+        
+    }
+    
+    NSArray *postAudios = [elem nodesForXPath:@"postAudio" error:nil];
+    if (postAudios) {
+        GDataXMLElement *postAudio = [postAudios objectAtIndex:0];
+        
+        NSArray *englishArrayElem = [postAudio nodesForXPath:@"english" error:nil];
+        GDataXMLElement *eng = [englishArrayElem objectAtIndex:0];
+        postEnglish = [eng elementsForName:@"audio"];
+        
+        
+        NSArray *bilinArrayElem = [postAudio nodesForXPath:@"bilingual" error:nil];
+        GDataXMLElement *bilingual = [bilinArrayElem objectAtIndex:0];
+        postBilingual = [bilingual elementsForName:@"audio"];
+    }
+    
+    if (preBilingual || preEnglish || postEnglish || postBilingual) {
+     
+        script = [[ScriptAudio alloc] initWithCondition:condition
+                                        englishPreAudio:preEnglish
+                                       englishPostAudio:postEnglish
+                                      bilingualPreAudio:preBilingual
+                                    bilingualaPostAudio:postBilingual];
+    }
+    
+    return script;
+    
 }
 
 @end

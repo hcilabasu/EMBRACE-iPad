@@ -3317,6 +3317,8 @@
 		5D9E34EE1C59150100636150 /* arteriesDEFS.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C9C09221C573AAA00702FCD /* arteriesDEFS.m4a */; };
 		5D9E34EF1C59150100636150 /* CCE4_8.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C9C094D1C573AAA00702FCD /* CCE4_8.m4a */; };
 		5D9E34F01C59150100636150 /* tryAgainE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C9C06741C57385900702FCD /* tryAgainE.m4a */; };
+		5DB15D951C738E0100130705 /* Script-Metadata.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5DB15D941C738E0100130705 /* Script-Metadata.xml */; };
+		5DB15D981C73955C00130705 /* ScriptAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB15D971C73955C00130705 /* ScriptAudio.m */; };
 		5DB509951C40CDEB00EB74E0 /* Story1-How-do-Objects-Move-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5DB509941C40CDEB00EB74E0 /* Story1-How-do-Objects-Move-Intro-S.xhtml */; };
 		5DB509971C40D29600EB74E0 /* Story2-Newton's-First-Law-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5DB509961C40D29600EB74E0 /* Story2-Newton's-First-Law-Intro-S.xhtml */; };
 		5DB509991C40D30900EB74E0 /* Story3-Newton's-First-Law-on-Earth-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5DB509981C40D30900EB74E0 /* Story3-Newton's-First-Law-on-Earth-Intro-S.xhtml */; };
@@ -6805,6 +6807,9 @@
 		5D9E339B1C590E9400636150 /* Thief_def_E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Thief_def_E.mp3; sourceTree = "<group>"; };
 		5D9E339C1C590E9400636150 /* thief_def_S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = thief_def_S.mp3; sourceTree = "<group>"; };
 		5D9E339D1C590E9400636150 /* dog_labradoodle_bark_twice_001.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dog_labradoodle_bark_twice_001.mp3; sourceTree = "<group>"; };
+		5DB15D941C738E0100130705 /* Script-Metadata.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Script-Metadata.xml"; sourceTree = "<group>"; };
+		5DB15D961C73955C00130705 /* ScriptAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptAudio.h; sourceTree = "<group>"; };
+		5DB15D971C73955C00130705 /* ScriptAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptAudio.m; sourceTree = "<group>"; };
 		5DB509941C40CDEB00EB74E0 /* Story1-How-do-Objects-Move-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-How-do-Objects-Move-Intro-S.xhtml"; sourceTree = "<group>"; };
 		5DB509961C40D29600EB74E0 /* Story2-Newton's-First-Law-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story2-Newton's-First-Law-Intro-S.xhtml"; sourceTree = "<group>"; };
 		5DB509981C40D30900EB74E0 /* Story3-Newton's-First-Law-on-Earth-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story3-Newton's-First-Law-on-Earth-Intro-S.xhtml"; sourceTree = "<group>"; };
@@ -8234,6 +8239,8 @@
 				5C466ADB192293290056EA4B /* Translation.m */,
 				C36473EC1A9AA5C100FD7494 /* AlternateSentence.h */,
 				C36473ED1A9AA5C100FD7494 /* AlternateSentence.m */,
+				5DB15D961C73955C00130705 /* ScriptAudio.h */,
+				5DB15D971C73955C00130705 /* ScriptAudio.m */,
 			);
 			name = "Book Model";
 			sourceTree = "<group>";
@@ -10237,6 +10244,7 @@
 		5CA955351C3237690038FB56 /* OEBPS */ = {
 			isa = PBXGroup;
 			children = (
+				5DB15D941C738E0100130705 /* Script-Metadata.xml */,
 				5CA955361C3237690038FB56 /* AlternateImages-MetaData.xml */,
 				5CA955371C3237690038FB56 /* Areas-MetaData.xml */,
 				5CA955381C3237690038FB56 /* AssessmentActivities-MetaData.xml */,
@@ -13153,6 +13161,7 @@
 				5C9C07A71C57385A00702FCD /* BFCE_5.m4a in Resources */,
 				5C28DC7B1C2BA66E005ACD07 /* buffalo3.png in Resources */,
 				5C9C076D1C57385A00702FCD /* IntroductionToTheBestFarmQ5A2.mp3 in Resources */,
+				5DB15D951C738E0100130705 /* Script-Metadata.xml in Resources */,
 				5C9C077A1C57385A00702FCD /* barnDEFS.m4a in Resources */,
 				5C9F28CB1C5C6B2E008ACE48 /* TheLopezFamilyQ6A2S.mp3 in Resources */,
 				5C9F28C41C5C6B2E008ACE48 /* TheLopezFamilyQ4S.mp3 in Resources */,
@@ -14673,6 +14682,7 @@
 				3115B1D11819AA0E007171E3 /* MenuItemImage.m in Sources */,
 				311646AE175FCFE100B483F0 /* Chapter.m in Sources */,
 				C36473EE1A9AA5C100FD7494 /* AlternateSentence.m in Sources */,
+				5DB15D981C73955C00130705 /* ScriptAudio.m in Sources */,
 				C3B52156192A97D7003FF639 /* InteractionModel.m in Sources */,
 				31C306C2183D900B0043DEDD /* Solution.m in Sources */,
 				311646B1175FD03F00B483F0 /* Activity.m in Sources */,
