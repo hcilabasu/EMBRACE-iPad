@@ -15290,6 +15290,8 @@
 				1A63218C1C0E4D3B00251CB3 /* Locations-MetaData.xml in Resources */,
 				5C9F28BD1C5C6B2E008ACE48 /* TheLopezFamilyQ3A3S.mp3 in Resources */,
 				033FC8631C6C538800CF3850 /* sequences_MCD02.xml in Resources */,
+				5C72E5201C727E2000CE4877 /* NativeIntroQ2A2.mp3 in Resources */,
+				5CCD8F391C7405EC00D2EC2B /* EarthquakesQ1A3.mp3 in Resources */,
 				1A6320021C0E4D3B00251CB3 /* AlternateImages-MetaData.xml in Resources */,
 				1A6322591C0E4D3B00251CB3 /* Solutions-MetaData.xml in Resources */,
 				5CB711001C6C292B0062AD61 /* old_CPQR14.m4a in Resources */,
