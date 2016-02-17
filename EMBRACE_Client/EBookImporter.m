@@ -333,7 +333,6 @@
         
         //For each page, we'll have to create an Activity if it belongs to a specific type of activity. Otherwise, we just add it as a page. If an Activity contains additional pages, we'll have to ensure that we add it to the existing activity, instead of creating a new one.
         for (GDataXMLElement *element in pageElements){
-            NSString *modeType = [[element attributeForName:@"class"] stringValue];
             NSString *pageId = [[element attributeForName:@"id"] stringValue]; //Get the ID
             
             Page *currPage = [[Page alloc] init];
@@ -343,45 +342,33 @@
             NSString *pagePathFilename = [[pagePathElement attributeForName:@"src"] stringValue];
             [currPage setPagePath:[[book mainContentPath] stringByAppendingString:pagePathFilename]];
             
-            
-            //For the moment make the assumption that the first IM that you come across is the one that you create the activity for...and for all other IM pages you just add it to that activity.
+            //NOTE: Previously, we used the navPoint class in the TOC file to determine which type of Activity to create. However, the class is irrelevant now because pages don't differ between PM_MODE and IM_MODE. (Only their solutions differ.) Instead, we go ahead and create a PhysicalManipulationActivity and an ImagineManipulationActivity for every chapter. Code below is not the most elegant solution, so we'll need to refactor things later.
             bool newActivity = FALSE;
-            Activity *currActivity;
+            PhysicalManipulationActivity *currPMActivity = (PhysicalManipulationActivity *)[currChapter getActivityOfType:PM_MODE];
+            ImagineManipulationActivity *currIMActivity = (ImagineManipulationActivity *)[currChapter getActivityOfType:IM_MODE];
             
-            if ([modeType isEqualToString:@"PM_MODE"]) {
-                currActivity= [currChapter getActivityOfType:PM_MODE];
-                
-                //The chapter doesn't currently have an Activity of the current type
-                if (currActivity == nil) {
-                    currActivity = [[PhysicalManipulationActivity alloc] init];
-                    newActivity = TRUE;
-                }
-            }
-            else if ([modeType isEqualToString:@"IM_MODE"]) {
-                currActivity = [currChapter getActivityOfType:IM_MODE];
-                
-                //The chapter doesn't currently have an Activity of the current type
-                if (currActivity == nil) {
-                    currActivity = [[ImagineManipulationActivity alloc] init];
-                    newActivity = TRUE;
-                }
-            }
-            else {
-                currActivity = [[Activity alloc] init]; //Generic activity since I have no idea what it is
+            //Chapter doesn't have a PMActivity or IMActivity, so we'll create them
+            if (currPMActivity == nil || currIMActivity == nil) {
+                currPMActivity = [[PhysicalManipulationActivity alloc] init];
+                currIMActivity = [[ImagineManipulationActivity alloc] init];
                 newActivity = TRUE;
             }
             
-            [currActivity setActivityId:pageId];
-            [currActivity addPage:currPage];
+            [currPMActivity setActivityId:pageId];
+            [currIMActivity setActivityId:pageId];
+            [currPMActivity addPage:currPage];
+            [currIMActivity addPage:currPage];
             
             //Get the title of the activity. Don't care about this right now.
             GDataXMLElement *activityTitleElement = [[element elementsForName:@"navLabel"] objectAtIndex:0];
             NSString *activityTitle = [activityTitleElement stringValue];
-            [currActivity setActivityTitle:activityTitle];
+            [currPMActivity setActivityTitle:activityTitle];
+            [currIMActivity setActivityTitle:activityTitle];
             
             //If we had to create an activity that doesn't exist in the chapter..add the activity.
             if (newActivity) {
-                [currChapter addActivity:currActivity];
+                [currChapter addActivity:currPMActivity];
+                [currChapter addActivity:currIMActivity];
             }
         }
         
