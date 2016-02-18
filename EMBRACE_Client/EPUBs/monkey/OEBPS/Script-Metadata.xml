@@ -20,10 +20,11 @@
                 <control>
                     <preAudio>
                         <english>
+                            <audio seq="1">NaughtyMonkey_Script_C1.mp3</audio>
+                            <audio seq="2">NaughtyMonkey_Script_C2.mp3</audio>
                         </english>
                         
-                        <bilingual>
-                        </bilingual>
+                      
                     </preAudio>
                     <postAudio>
                         <english>
@@ -123,6 +124,38 @@
                     
                 </embrace>
                 
+            </sentence>
+            
+        </story>
+        <story title="The Naughty Monkey" activity_id="story1-PM-2">
+            <sentence number="6">
+                
+                <embrace>
+                    <preAudio>
+                        <english>
+                            <audio seq="1">NaughtyMonkey_Script7.mp3</audio>
+                        </english>
+                        
+                        <bilingual>
+                        </bilingual>
+                    </preAudio>
+                    
+                </embrace>
+            </sentence>
+            
+            <sentence number="8">
+                
+                <embrace>
+                    <postAudio>
+                        <english>
+                            <audio seq="1">NaughtyMonkey_Script9.mp3</audio>
+                        </english>
+                        
+                        <bilingual>
+                        </bilingual>
+                    </postAudio>
+                    
+                </embrace>
             </sentence>
             
         </story>

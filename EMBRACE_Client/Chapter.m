@@ -108,8 +108,8 @@
 }
 
 - (ScriptAudio *)controlScriptFor:(NSString *)sentenceId {
-    if (self.embraceAudio) {
-        return [self.embraceAudio objectForKey:sentenceId];
+    if (self.controlAudio) {
+        return [self.controlAudio objectForKey:sentenceId];
     }
     return nil;
 }
