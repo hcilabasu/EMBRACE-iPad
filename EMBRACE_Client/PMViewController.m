@@ -186,6 +186,10 @@ BOOL wasPathFollowed = false;
     IntroductionClass.sameWordClicked = false;
 }
 
+- (void)didReceiveMemoryWarning {
+    NSLog(@"***************** Memory warning!! *****************");
+}
+
 - (void) webViewDidFinishLoad:(UIWebView *)webView {
     //Disable user selection
     [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitUserSelect='none';"];
@@ -4840,22 +4844,36 @@ BOOL wasPathFollowed = false;
     }
     
     
-    NSString *query = [NSString stringWithFormat:@"var matches = document.querySelectorAll(\"[id=s%d]\"); matches[0].getAttribute(\"preAudio\");", currentSentence];
-    NSString *preAudio = [bookView stringByEvaluatingJavaScriptFromString:query];
-    
-    query = [NSString stringWithFormat:@"var matches = document.querySelectorAll(\"[id=s%d]\"); matches[0].getAttribute(\"postAudio\");", currentSentence];
-    NSString *postAudio = [bookView stringByEvaluatingJavaScriptFromString:query];
-    
     NSMutableArray *array = [NSMutableArray array];
+    Chapter* chapter = [book getChapterWithTitle:chapterTitle];
+    ScriptAudio *script = nil;
+    
+    if ([ConditionSetup sharedInstance].condition == EMBRACE) {
+        script = [chapter embraceScriptFor:[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence]];
+    } else {
+        script = [chapter controlScriptFor:[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence]];
+    }
+    NSArray *preAudio = nil;
+    NSArray *postAudio = nil;
+     
+    if ([ConditionSetup sharedInstance].language == ENGLISH) {
+        preAudio = script.engPreAudio;
+        postAudio = script.engPostAudio;
+    } else {
+        preAudio = script.bilingualPreAudio;
+        postAudio = script.bilingualPostAudio;
+    }
+   
+    
 
-    if (preAudio != nil && [preAudio isEqualToString:@""] == NO) {
-        [array addObject:preAudio];
+    if (preAudio != nil) {
+        [array addObjectsFromArray:preAudio];
     }
     if (sentenceAudioFile != nil) {
         [array addObject:sentenceAudioFile];
     }
     
-    if (postAudio != nil && [postAudio isEqualToString:@""] == NO) {
+    if (postAudio != nil) {
         [array addObject:postAudio];
     }
     
