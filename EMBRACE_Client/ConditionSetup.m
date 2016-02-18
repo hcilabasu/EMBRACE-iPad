@@ -28,7 +28,7 @@
 
 - (id)init {
     if (self = [super init]) {
-        condition = EMBRACE;
+        condition = CONTROL;
         language = ENGLISH;
         appMode = Study;
         currentMode = PM_MODE;
