@@ -276,7 +276,7 @@
                 <expectedSelection>It goes as fast as the little rocket</expectedSelection>
                 <Answer2>It slows down</Answer2>
                 <Answer2Audio>NewtonsSecondLawAccelerationQ5A2.mp3</Answer2Audio>
-                <Answer3>Its moves at the same speed</Answer3>
+                <Answer3>It moves at the same speed</Answer3>
                 <Answer3Audio>NewtonsSecondLawAccelerationQ5A3.mp3</Answer3Audio>
                 <Answer4>It gets mad at you</Answer4>
                 <Answer4Audio>NewtonsSecondLawAccelerationQ5A4.mp3</Answer4Audio>
@@ -557,7 +557,7 @@
                 <Answer2Audio>TheThreeLawsWorkTogetherQ7A2.mp3</Answer2Audio>
                 <Answer3>You move in the opposite direction</Answer3>
                 <Answer3Audio>TheThreeLawsWorkTogetherQ7A3.mp3</Answer3Audio>
-                <Answer4>Your get out of the car</Answer4>
+                <Answer4>You get out of the car</Answer4>
                 <Answer4Audio>TheThreeLawsWorkTogetherQ7A4.mp3</Answer4Audio>
             </Question>
         </Questions>

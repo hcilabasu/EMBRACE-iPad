@@ -4,94 +4,94 @@
         <Questions title="Key Ingredients">
             <Question number="1">
                 <QuestionText>¿Para qué tipo de celebración se estaba preparando la familia Romero?</QuestionText>
-                <QuestionAudio>KeyIngredientsQ1.mp3</QuestionAudio>
+                <QuestionAudio>KeyIngredientsQ1S.mp3</QuestionAudio>
                 <Answer1>Una boda</Answer1>
-                <Answer1Audio>KeyIngredientsQ1A1.mp3</Answer1Audio>
+                <Answer1Audio>KeyIngredientsQ1A1S.mp3</Answer1Audio>
                 <expectedSelection>Una boda</expectedSelection>
                 <Answer2>Un cumpleaños</Answer2>
-                <Answer2Audio>KeyIngredientsQ1A2.mp3</Answer2Audio>
+                <Answer2Audio>KeyIngredientsQ1A2S.mp3</Answer2Audio>
                 <Answer3>Un día festivo</Answer3>
-                <Answer3Audio>KeyIngredientsQ1A3.mp3</Answer3Audio>
+                <Answer3Audio>KeyIngredientsQ1A3S.mp3</Answer3Audio>
                 <Answer4>Una quinceañera</Answer4>
-                <Answer4Audio>KeyIngredientsQ1A4.mp3</Answer4Audio>
+                <Answer4Audio>KeyIngredientsQ1A4S.mp3</Answer4Audio>
             </Question>
             <Question number="2">
                 <QuestionText>¿Cuándo tendrá lugar la boda?</QuestionText>
-                <QuestionAudio>KeyIngredientsQ2.mp3</QuestionAudio>
+                <QuestionAudio>KeyIngredientsQ2S.mp3</QuestionAudio>
                 <Answer1>Esta noche</Answer1>
-                <Answer1Audio>KeyIngredientsQ2A1.mp3</Answer1Audio>
+                <Answer1Audio>KeyIngredientsQ2A1S.mp3</Answer1Audio>
                 <expectedSelection>Esta noche</expectedSelection>
                 <Answer2>Mañana</Answer2>
-                <Answer2Audio>KeyIngredientsQ2A2.mp3</Answer2Audio>
+                <Answer2Audio>KeyIngredientsQ2A2S.mp3</Answer2Audio>
                 <Answer3>La próxima semana</Answer3>
-                <Answer3Audio>KeyIngredientsQ2A3.mp3</Answer3Audio>
+                <Answer3Audio>KeyIngredientsQ2A3S.mp3</Answer3Audio>
                 <Answer4>Hace 5 minutos, van tarde!</Answer4>
-                <Answer4Audio>KeyIngredientsQ2A4.mp3</Answer4Audio>
+                <Answer4Audio>KeyIngredientsQ2A4S.mp3</Answer4Audio>
             </Question>
             <Question number="3">
                 <QuestionText>¿Qué debe comprar Sofía con los cuarenta  pesos que le dio su mamá?</QuestionText>
-                <QuestionAudio>KeyIngredientsQ3.mp3</QuestionAudio>
+                <QuestionAudio>KeyIngredientsQ3S.mp3</QuestionAudio>
                 <Answer1>Los ingredientes</Answer1>
-                <Answer1Audio>KeyIngredientsQ3A1.mp3</Answer1Audio>
+                <Answer1Audio>KeyIngredientsQ3A1S.mp3</Answer1Audio>
                 <expectedSelection>Los ingredientes</expectedSelection>
                 <Answer2>Un pastel de bodas</Answer2>
-                <Answer2Audio>KeyIngredientsQ3A2.mp3</Answer2Audio>
+                <Answer2Audio>KeyIngredientsQ3A2S.mp3</Answer2Audio>
                 <Answer3>Una bebida de chocolate</Answer3>
-                <Answer3Audio>KeyIngredientsQ3A3.mp3</Answer3Audio>
+                <Answer3Audio>KeyIngredientsQ3A3S.mp3</Answer3Audio>
                 <Answer4>Una libra de  chiles</Answer4>
-                <Answer4Audio>KeyIngredientsQ3A4.mp3</Answer4Audio>
+                <Answer4Audio>KeyIngredientsQ3A4S.mp3</Answer4Audio>
             </Question>
             <Question number="4">
                 <QuestionText>¿Por qué necesitaba la mamá de Sofía los ingredientes importantes?</QuestionText>
-                <QuestionAudio>KeyIngredientsQ4.mp3</QuestionAudio>
+                <QuestionAudio>KeyIngredientsQ4S.mp3</QuestionAudio>
                 <Answer1>Para hacer el mole</Answer1>
-                <Answer1Audio>KeyIngredientsQ4A1.mp3</Answer1Audio>
+                <Answer1Audio>KeyIngredientsQ4A1S.mp3</Answer1Audio>
                 <expectedSelection>Para hacer el mole</expectedSelection>
                 <Answer2>Para hornear pan</Answer2>
-                <Answer2Audio>KeyIngredientsQ4A2.mp3</Answer2Audio>
+                <Answer2Audio>KeyIngredientsQ4A2S.mp3</Answer2Audio>
                 <Answer3>Para hacer chile</Answer3>
-                <Answer3Audio>KeyIngredientsQ4A3.mp3</Answer3Audio>
+                <Answer3Audio>KeyIngredientsQ4A3S.mp3</Answer3Audio>
                 <Answer4>Para hacer una poción</Answer4>
-                <Answer4Audio>KeyIngredientsQ4A4.mp3</Answer4Audio>
+                <Answer4Audio>KeyIngredientsQ4A4S.mp3</Answer4Audio>
             </Question>
             <Question number="5">
                 <QuestionText>¿Qué puede comprar Sofía con el cambio?</QuestionText>
-                <QuestionAudio>KeyIngredientsQ5.mp3</QuestionAudio>
+                <QuestionAudio>KeyIngredientsQ5S.mp3</QuestionAudio>
                 <Answer1>Lo que ella quiera</Answer1>
-                <Answer1Audio>KeyIngredientsQ5A1.mp3</Answer1Audio>
+                <Answer1Audio>KeyIngredientsQ5A1S.mp3</Answer1Audio>
                 <expectedSelection>Lo que ella quiera</expectedSelection>
                 <Answer2>Sólo comida para la boda</Answer2>
-                <Answer2Audio>KeyIngredientsQ5A2.mp3</Answer2Audio>
+                <Answer2Audio>KeyIngredientsQ5A2S.mp3</Answer2Audio>
                 <Answer3>Ella debe devolver el cambio a su madre</Answer3>
-                <Answer3Audio>KeyIngredientsQ5A3.mp3</Answer3Audio>
+                <Answer3Audio>KeyIngredientsQ5A3S.mp3</Answer3Audio>
                 <Answer4>Un coche</Answer4>
-                <Answer4Audio>KeyIngredientsQ5A4.mp3</Answer4Audio>
+                <Answer4Audio>KeyIngredientsQ5A4S.mp3</Answer4Audio>
             </Question>
             <Question number="6">
                 <QuestionText>¿Para qué revolvió Sofía el champurrado?</QuestionText>
-                <QuestionAudio>KeyIngredientsQ6.mp3</QuestionAudio>
+                <QuestionAudio>KeyIngredientsQ6S.mp3</QuestionAudio>
                 <Answer1>Para que no se pegara al fondo de la olla</Answer1>
-                <Answer1Audio>KeyIngredientsQ6A1.mp3</Answer1Audio>
+                <Answer1Audio>KeyIngredientsQ6A1S.mp3</Answer1Audio>
                 <expectedSelection>Para que no se pegara al fondo de la olla</expectedSelection>
                 <Answer2>Para mezclarle el chocolate</Answer2>
-                <Answer2Audio>KeyIngredientsQ6A2.mp3</Answer2Audio>
+                <Answer2Audio>KeyIngredientsQ6A2S.mp3</Answer2Audio>
                 <Answer3>Para que se cocinara uniformemente</Answer3>
-                <Answer3Audio>KeyIngredientsQ6A3.mp3</Answer3Audio>
+                <Answer3Audio>KeyIngredientsQ6A3S.mp3</Answer3Audio>
                 <Answer4>Porque al sacudirlo la última vez hizo un gran desastre</Answer4>
-                <Answer4Audio>KeyIngredientsQ6A4.mp3</Answer4Audio>
+                <Answer4Audio>KeyIngredientsQ6A4S.mp3</Answer4Audio>
             </Question>
             <Question number="7">
                 <QuestionText>¿Para qué le pasó Sofía el papel y lápiz a su mamá?</QuestionText>
-                <QuestionAudio>KeyIngredientsQ7.mp3</QuestionAudio>
+                <QuestionAudio>KeyIngredientsQ7S.mp3</QuestionAudio>
                 <Answer1>Para anotar los ingredientes</Answer1>
-                <Answer1Audio>KeyIngredientsQ7A1.mp3</Answer1Audio>
+                <Answer1Audio>KeyIngredientsQ7A1S.mp3</Answer1Audio>
                 <expectedSelection>Para anotar los ingredientes</expectedSelection>
                 <Answer2>Para firmar la tarjeta de bodas</Answer2>
-                <Answer2Audio>KeyIngredientsQ7A2.mp3</Answer2Audio>
+                <Answer2Audio>KeyIngredientsQ7A2S.mp3</Answer2Audio>
                 <Answer3>Para escribir las direcciones hacia el mercado</Answer3>
-                <Answer3Audio>KeyIngredientsQ7A3.mp3</Answer3Audio>
+                <Answer3Audio>KeyIngredientsQ7A3S.mp3</Answer3Audio>
                 <Answer4>Para firmar su boleta de malas notas</Answer4>
-                <Answer4Audio>KeyIngredientsQ7A4.mp3</Answer4Audio>
+                <Answer4Audio>KeyIngredientsQ7A4S.mp3</Answer4Audio>
             </Question>
         </Questions>
         <Questions title="Mancha the Horse">

@@ -4,94 +4,94 @@
                 <Questions title="The Contest">
                     <Question number="1">
                         <QuestionText>Cómo se llama el granjero?</QuestionText>
-                        <QuestionAudio>TheContestQ1.mp3</QuestionAudio>
+                        <QuestionAudio>TheContestQ1S.mp3</QuestionAudio>
                         <Answer1>Manuel</Answer1>
-                        <Answer1Audio>TheContestQ1A1.mp3</Answer1Audio>
+                        <Answer1Audio>TheContestQ1A1S.mp3</Answer1Audio>
                         <expectedSelection>Manuel</expectedSelection>
                         <Answer2>Ben</Answer2>
-                        <Answer2Audio>TheContestQ1A2.mp3</Answer2Audio>
+                        <Answer2Audio>TheContestQ1A2S.mp3</Answer2Audio>
                         <Answer3>David</Answer3>
-                        <Answer3Audio>TheContestQ1A3.mp3</Answer3Audio>
+                        <Answer3Audio>TheContestQ1A3S.mp3</Answer3Audio>
                         <Answer4>Betty</Answer4>
-                        <Answer4Audio>TheContestQ1A4.mp3</Answer4Audio>
+                        <Answer4Audio>TheContestQ1A4S.mp3</Answer4Audio>
                     </Question>
                     <Question number="2">
                         <QuestionText>Qué día viene la juez?</QuestionText>
-                        <QuestionAudio>TheContestQ2.mp3</QuestionAudio>
+                        <QuestionAudio>TheContestQ2S.mp3</QuestionAudio>
                         <Answer1>Domingo</Answer1>
-                        <Answer1Audio>TheContestQ2A1.mp3</Answer1Audio>
+                        <Answer1Audio>TheContestQ2A1S.mp3</Answer1Audio>
                         <expectedSelection>Domingo</expectedSelection>
                         <Answer2>Lunes</Answer2>
-                        <Answer2Audio>TheContestQ2A2.mp3</Answer2Audio>
+                        <Answer2Audio>TheContestQ2A2S.mp3</Answer2Audio>
                         <Answer3>Martes</Answer3>
-                        <Answer3Audio>TheContestQ2A3.mp3</Answer3Audio>
+                        <Answer3Audio>TheContestQ2A3S.mp3</Answer3Audio>
                         <Answer4>En Navidad</Answer4>
-                        <Answer4Audio>TheContestQ2A4.mp3</Answer4Audio>
+                        <Answer4Audio>TheContestQ2A4S.mp3</Answer4Audio>
                     </Question>
                     <Question number="3">
                         <QuestionText>Qué animal saltó a los brazos de Manuel?</QuestionText>
-                        <QuestionAudio>TheContestQ3.mp3</QuestionAudio>
+                        <QuestionAudio>TheContestQ3S.mp3</QuestionAudio>
                         <Answer1>El gato</Answer1>
-                        <Answer1Audio>TheContestQ3A1.mp3</Answer1Audio>
+                        <Answer1Audio>TheContestQ3A1S.mp3</Answer1Audio>
                         <expectedSelection>El gato</expectedSelection>
                         <Answer2>La gallina</Answer2>
-                        <Answer2Audio>TheContestQ3A2.mp3</Answer2Audio>
+                        <Answer2Audio>TheContestQ3A2S.mp3</Answer2Audio>
                         <Answer3>El búho</Answer3>
-                        <Answer3Audio>TheContestQ3A3.mp3</Answer3Audio>
+                        <Answer3Audio>TheContestQ3A3S.mp3</Answer3Audio>
                         <Answer4>El hipopótamo</Answer4>
-                        <Answer4Audio>TheContestQ3A4.mp3</Answer4Audio>
+                        <Answer4Audio>TheContestQ3A4S.mp3</Answer4Audio>
                     </Question>
                     <Question number="4">
                         <QuestionText>En qué animal se sentó la gallina?</QuestionText>
-                        <QuestionAudio>TheContestQ4.mp3</QuestionAudio>
+                        <QuestionAudio>TheContestQ4S.mp3</QuestionAudio>
                         <Answer1>La vaca</Answer1>
-                        <Answer1Audio>TheContestQ4A1.mp3</Answer1Audio>
+                        <Answer1Audio>TheContestQ4A1S.mp3</Answer1Audio>
                         <expectedSelection>La vaca</expectedSelection>
                         <Answer2>La cabra</Answer2>
-                        <Answer2Audio>TheContestQ4A2.mp3</Answer2Audio>
+                        <Answer2Audio>TheContestQ4A2S.mp3</Answer2Audio>
                         <Answer3>El caballo</Answer3>
-                        <Answer3Audio>TheContestQ4A3.mp3</Answer3Audio>
+                        <Answer3Audio>TheContestQ4A3S.mp3</Answer3Audio>
                         <Answer4>El bicho</Answer4>
-                        <Answer4Audio>TheContestQ4A4.mp3</Answer4Audio>
+                        <Answer4Audio>TheContestQ4A4S.mp3</Answer4Audio>
                     </Question>
                     <Question number="5">
                         <QuestionText>Por qué Manuel quiere trabajar duro esta semana?</QuestionText>
-                        <QuestionAudio>TheContestQ5.mp3</QuestionAudio>
+                        <QuestionAudio>TheContestQ5S.mp3</QuestionAudio>
                         <Answer1>Para ganar el premio de la mejor granja</Answer1>
-                        <Answer1Audio>TheContestQ5A1.mp3</Answer1Audio>
+                        <Answer1Audio>TheContestQ5A1S.mp3</Answer1Audio>
                         <expectedSelection>Para ganar el premio de la mejor granja</expectedSelection>
                         <Answer2>Para hacer un picnic</Answer2>
-                        <Answer2Audio>TheContestQ5A2.mp3</Answer2Audio>
+                        <Answer2Audio>TheContestQ5A2S.mp3</Answer2Audio>
                         <Answer3>Para ganar dinero</Answer3>
-                        <Answer3Audio>TheContestQ5A3.mp3</Answer3Audio>
+                        <Answer3Audio>TheContestQ5A3S.mp3</Answer3Audio>
                         <Answer4>Porque su papá le dijo</Answer4>
-                        <Answer4Audio>TheContestQ5A4.mp3</Answer4Audio>
+                        <Answer4Audio>TheContestQ5A4S.mp3</Answer4Audio>
                     </Question>
                     <Question number="6">
                         <QuestionText>Después de que la cabra se acercó a la vaca, qué otro animal estaba cerca?</QuestionText>
-                        <QuestionAudio>TheContestQ6.mp3</QuestionAudio>
+                        <QuestionAudio>TheContestQ6S.mp3</QuestionAudio>
                         <Answer1>El caballo</Answer1>
-                        <Answer1Audio>TheContestQ6A1.mp3</Answer1Audio>
+                        <Answer1Audio>TheContestQ6A1S.mp3</Answer1Audio>
                         <expectedSelection>El caballo</expectedSelection>
                         <Answer2>El cerdo</Answer2>
-                        <Answer2Audio>TheContestQ6A2.mp3</Answer2Audio>
+                        <Answer2Audio>TheContestQ6A2S.mp3</Answer2Audio>
                         <Answer3>El búho</Answer3>
-                        <Answer3Audio>TheContestQ6A3.mp3</Answer3Audio>
+                        <Answer3Audio>TheContestQ6A3S.mp3</Answer3Audio>
                         <Answer4>La cebra</Answer4>
-                        <Answer4Audio>TheContestQ6A4.mp3</Answer4Audio>
+                        <Answer4Audio>TheContestQ6A4S.mp3</Answer4Audio>
                     </Question>
                     <Question number="7">
                         <QuestionText>Cómo salió la cabra de su cuarto?</QuestionText>
-                        <QuestionAudio>TheContestQ7.mp3</QuestionAudio>
+                        <QuestionAudio>TheContestQ7S.mp3</QuestionAudio>
                         <Answer1>Manuel le abrió</Answer1>
-                        <Answer1Audio>TheContestQ7A1.mp3</Answer1Audio>
+                        <Answer1Audio>TheContestQ7A1S.mp3</Answer1Audio>
                         <expectedSelection>Manuel le abrió</expectedSelection>
                         <Answer2>La cabra salió saltando</Answer2>
-                        <Answer2Audio>TheContestQ7A2.mp3</Answer2Audio>
+                        <Answer2Audio>TheContestQ7A2S.mp3</Answer2Audio>
                         <Answer3>La gallina le abrió</Answer3>
-                        <Answer3Audio>TheContestQ7A3.mp3</Answer3Audio>
+                        <Answer3Audio>TheContestQ7A3S.mp3</Answer3Audio>
                         <Answer4>El cuarto se desapareció</Answer4>
-                        <Answer4Audio>TheContestQ7A4.mp3</Answer4Audio>
+                        <Answer4Audio>TheContestQ7A4S.mp3</Answer4Audio>
                     </Question>
                 </Questions>
                 <Questions title="Getting Ready">
