@@ -186,6 +186,10 @@ BOOL wasPathFollowed = false;
     IntroductionClass.sameWordClicked = false;
 }
 
+- (void)didReceiveMemoryWarning {
+    NSLog(@"***************** Memory warning!! *****************");
+}
+
 - (void) webViewDidFinishLoad:(UIWebView *)webView {
     //Disable user selection
     [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitUserSelect='none';"];
@@ -4839,20 +4843,38 @@ BOOL wasPathFollowed = false;
         }
     }
     
-    Chapter* chapter = [book getChapterWithTitle:chapterTitle];
-    ScriptAudio *script = [chapter embraceScriptFor:[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence]];
+    
     NSMutableArray *array = [NSMutableArray array];
+    Chapter* chapter = [book getChapterWithTitle:chapterTitle];
+    ScriptAudio *script = nil;
+    
+    if ([ConditionSetup sharedInstance].condition == EMBRACE) {
+        script = [chapter embraceScriptFor:[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence]];
+    } else {
+        script = [chapter controlScriptFor:[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence]];
+    }
+    NSArray *preAudio = nil;
+    NSArray *postAudio = nil;
+     
+    if ([ConditionSetup sharedInstance].language == ENGLISH) {
+        preAudio = script.engPreAudio;
+        postAudio = script.engPostAudio;
+    } else {
+        preAudio = script.bilingualPreAudio;
+        postAudio = script.bilingualPostAudio;
+    }
+   
     
 
-    if (script.engPreAudio != nil) {
-        [array addObjectsFromArray:script.engPreAudio];
+    if (preAudio != nil) {
+        [array addObjectsFromArray:preAudio];
     }
     if (sentenceAudioFile != nil) {
         [array addObject:sentenceAudioFile];
     }
     
-    if (script.engPostAudio != nil) {
-        [array addObject:script.engPostAudio];
+    if (postAudio != nil) {
+        [array addObject:postAudio];
     }
     
     if ([array count] > 0) {
