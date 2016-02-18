@@ -4839,24 +4839,20 @@ BOOL wasPathFollowed = false;
         }
     }
     
-    
-    NSString *query = [NSString stringWithFormat:@"var matches = document.querySelectorAll(\"[id=s%d]\"); matches[0].getAttribute(\"preAudio\");", currentSentence];
-    NSString *preAudio = [bookView stringByEvaluatingJavaScriptFromString:query];
-    
-    query = [NSString stringWithFormat:@"var matches = document.querySelectorAll(\"[id=s%d]\"); matches[0].getAttribute(\"postAudio\");", currentSentence];
-    NSString *postAudio = [bookView stringByEvaluatingJavaScriptFromString:query];
-    
+    Chapter* chapter = [book getChapterWithTitle:chapterTitle];
+    ScriptAudio *script = [chapter embraceScriptFor:[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence]];
     NSMutableArray *array = [NSMutableArray array];
+    
 
-    if (preAudio != nil && [preAudio isEqualToString:@""] == NO) {
-        [array addObject:preAudio];
+    if (script.engPreAudio != nil) {
+        [array addObjectsFromArray:script.engPreAudio];
     }
     if (sentenceAudioFile != nil) {
         [array addObject:sentenceAudioFile];
     }
     
-    if (postAudio != nil && [postAudio isEqualToString:@""] == NO) {
-        [array addObject:postAudio];
+    if (script.engPostAudio != nil) {
+        [array addObject:script.engPostAudio];
     }
     
     if ([array count] > 0) {

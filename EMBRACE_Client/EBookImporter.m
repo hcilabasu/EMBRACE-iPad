@@ -1311,32 +1311,44 @@
     NSArray *postBilingual = nil;
     
     NSArray *preAudios = [elem nodesForXPath:@"preAudio" error:nil];
-    if (preAudios) {
+    if ([preAudios count]>0) {
         GDataXMLElement *preAudio = [preAudios objectAtIndex:0];
         
         NSArray *englishArrayElem = [preAudio nodesForXPath:@"english" error:nil];
-        GDataXMLElement *eng = [englishArrayElem objectAtIndex:0];
-        preEnglish = [eng elementsForName:@"audio"];
-        
+        if ([englishArrayElem count]>0) {
+            GDataXMLElement *eng = [englishArrayElem objectAtIndex:0];
+            preEnglish = [[eng elementsForName:@"audio"]valueForKey:@"stringValue"];
+           
+            
+        }
         
         NSArray *bilinArrayElem = [preAudio nodesForXPath:@"bilingual" error:nil];
-        GDataXMLElement *bilingual = [bilinArrayElem objectAtIndex:0];
-        preBilingual = [bilingual elementsForName:@"audio"];
+        if ([bilinArrayElem count] > 0) {
+            GDataXMLElement *bilingual = [bilinArrayElem objectAtIndex:0];
+            preBilingual = [[bilingual elementsForName:@"audio"]valueForKey:@"stringValue"];
+            
+        }
         
     }
     
     NSArray *postAudios = [elem nodesForXPath:@"postAudio" error:nil];
-    if (postAudios) {
+    if ([postAudios count] >0) {
         GDataXMLElement *postAudio = [postAudios objectAtIndex:0];
         
         NSArray *englishArrayElem = [postAudio nodesForXPath:@"english" error:nil];
-        GDataXMLElement *eng = [englishArrayElem objectAtIndex:0];
-        postEnglish = [eng elementsForName:@"audio"];
-        
+        if ([englishArrayElem count] > 0) {
+            GDataXMLElement *eng = [englishArrayElem objectAtIndex:0];
+            postEnglish = [[eng elementsForName:@"audio"]valueForKey:@"stringValue"];
+        }
         
         NSArray *bilinArrayElem = [postAudio nodesForXPath:@"bilingual" error:nil];
-        GDataXMLElement *bilingual = [bilinArrayElem objectAtIndex:0];
-        postBilingual = [bilingual elementsForName:@"audio"];
+        if ([bilinArrayElem count] > 0) {
+            GDataXMLElement *bilingual = [bilinArrayElem objectAtIndex:0];
+            postBilingual = [[bilingual elementsForName:@"audio"]valueForKey:@"stringValue"];
+        }
+        
+        
+        
     }
     
     if (preBilingual || preEnglish || postEnglish || postBilingual) {
