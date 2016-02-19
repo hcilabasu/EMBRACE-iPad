@@ -12,11 +12,12 @@
 
 @synthesize condition;
 @synthesize language;
+@synthesize reader;
 @synthesize appMode;
 @synthesize currentMode;
 
 + (id)sharedInstance {
-    static ConditionSetup* sharedMyManager = nil;
+    static ConditionSetup *sharedMyManager = nil;
     static dispatch_once_t onceToken;
     
     dispatch_once(&onceToken, ^{
@@ -28,8 +29,9 @@
 
 - (id)init {
     if (self = [super init]) {
-        condition = CONTROL;
+        condition = EMBRACE;
         language = ENGLISH;
+        reader = USER_READER;
         appMode = Study;
         currentMode = PM_MODE;
     }
@@ -40,8 +42,8 @@
 /*
  * Returns a string with the current value of the Condition enumeration
  */
-- (NSString*)returnConditionEnumToString:(Condition)type {
-    NSString* result = nil;
+- (NSString *)returnConditionEnumToString:(Condition)type {
+    NSString *result = nil;
     
     switch (type) {
         case EMBRACE:
@@ -61,8 +63,8 @@
 /*
  * Returns a string with the current value of the Language enumeration
  */
-- (NSString*)returnLanguageEnumtoString:(Language)type {
-    NSString* result = nil;
+- (NSString *)returnLanguageEnumtoString:(Language)type {
+    NSString *result = nil;
     
     switch (type) {
         case ENGLISH:

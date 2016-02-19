@@ -9,9 +9,18 @@
 /* Begin PBXBuildFile section */
 		030C8A981C5B1C6A00042C6F /* ImagineManipulationSolution.m in Sources */ = {isa = PBXBuildFile; fileRef = 030C8A971C5B1C6A00042C6F /* ImagineManipulationSolution.m */; };
 		033BC05D1C501BB600A1EC14 /* ActivityMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 033BC05C1C501BB600A1EC14 /* ActivityMode.m */; };
-		033BC0641C505E4300A1EC14 /* sequences1.xml in Resources */ = {isa = PBXBuildFile; fileRef = 033BC0631C505E4300A1EC14 /* sequences1.xml */; };
 		033BC0671C506C0100A1EC14 /* ActivitySequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 033BC0661C506C0100A1EC14 /* ActivitySequence.m */; };
 		033BC06A1C507BD100A1EC14 /* ActivitySequenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 033BC0691C507BD100A1EC14 /* ActivitySequenceController.m */; };
+		033FC8621C6C538800CF3850 /* sequences_MCD01.xml in Resources */ = {isa = PBXBuildFile; fileRef = 033FC8581C6C538800CF3850 /* sequences_MCD01.xml */; };
+		033FC8631C6C538800CF3850 /* sequences_MCD02.xml in Resources */ = {isa = PBXBuildFile; fileRef = 033FC8591C6C538800CF3850 /* sequences_MCD02.xml */; };
+		033FC8641C6C538800CF3850 /* sequences_MCD03.xml in Resources */ = {isa = PBXBuildFile; fileRef = 033FC85A1C6C538800CF3850 /* sequences_MCD03.xml */; };
+		033FC8651C6C538800CF3850 /* sequences_MCD04.xml in Resources */ = {isa = PBXBuildFile; fileRef = 033FC85B1C6C538800CF3850 /* sequences_MCD04.xml */; };
+		033FC8661C6C538800CF3850 /* sequences_MCD05.xml in Resources */ = {isa = PBXBuildFile; fileRef = 033FC85C1C6C538800CF3850 /* sequences_MCD05.xml */; };
+		033FC8671C6C538800CF3850 /* sequences_MCD06.xml in Resources */ = {isa = PBXBuildFile; fileRef = 033FC85D1C6C538800CF3850 /* sequences_MCD06.xml */; };
+		033FC8681C6C538800CF3850 /* sequences_MCD07.xml in Resources */ = {isa = PBXBuildFile; fileRef = 033FC85E1C6C538800CF3850 /* sequences_MCD07.xml */; };
+		033FC8691C6C538800CF3850 /* sequences_MCD08.xml in Resources */ = {isa = PBXBuildFile; fileRef = 033FC85F1C6C538800CF3850 /* sequences_MCD08.xml */; };
+		033FC86A1C6C538800CF3850 /* sequences_MCD09.xml in Resources */ = {isa = PBXBuildFile; fileRef = 033FC8601C6C538800CF3850 /* sequences_MCD09.xml */; };
+		033FC86B1C6C538800CF3850 /* sequences_MCD10.xml in Resources */ = {isa = PBXBuildFile; fileRef = 033FC8611C6C538800CF3850 /* sequences_MCD10.xml */; };
 		1A0385061C2B156400A973D8 /* hook_n_key_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0385051C2B156400A973D8 /* hook_n_key_large.png */; };
 		1A0385091C2B1F2500A973D8 /* cilia_inside.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0385071C2B1F2500A973D8 /* cilia_inside.png */; };
 		1A03850A1C2B1F2500A973D8 /* cilia_outside.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0385081C2B1F2500A973D8 /* cilia_outside.png */; };
@@ -3995,11 +4004,20 @@
 		030C8A971C5B1C6A00042C6F /* ImagineManipulationSolution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagineManipulationSolution.m; sourceTree = "<group>"; };
 		033BC05B1C501BB600A1EC14 /* ActivityMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityMode.h; sourceTree = "<group>"; };
 		033BC05C1C501BB600A1EC14 /* ActivityMode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityMode.m; sourceTree = "<group>"; };
-		033BC0631C505E4300A1EC14 /* sequences1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences1.xml; sourceTree = "<group>"; };
 		033BC0651C506C0100A1EC14 /* ActivitySequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivitySequence.h; sourceTree = "<group>"; };
 		033BC0661C506C0100A1EC14 /* ActivitySequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivitySequence.m; sourceTree = "<group>"; };
 		033BC0681C507BD100A1EC14 /* ActivitySequenceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivitySequenceController.h; sourceTree = "<group>"; };
 		033BC0691C507BD100A1EC14 /* ActivitySequenceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivitySequenceController.m; sourceTree = "<group>"; };
+		033FC8581C6C538800CF3850 /* sequences_MCD01.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_MCD01.xml; sourceTree = "<group>"; };
+		033FC8591C6C538800CF3850 /* sequences_MCD02.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_MCD02.xml; sourceTree = "<group>"; };
+		033FC85A1C6C538800CF3850 /* sequences_MCD03.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_MCD03.xml; sourceTree = "<group>"; };
+		033FC85B1C6C538800CF3850 /* sequences_MCD04.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_MCD04.xml; sourceTree = "<group>"; };
+		033FC85C1C6C538800CF3850 /* sequences_MCD05.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_MCD05.xml; sourceTree = "<group>"; };
+		033FC85D1C6C538800CF3850 /* sequences_MCD06.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_MCD06.xml; sourceTree = "<group>"; };
+		033FC85E1C6C538800CF3850 /* sequences_MCD07.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_MCD07.xml; sourceTree = "<group>"; };
+		033FC85F1C6C538800CF3850 /* sequences_MCD08.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_MCD08.xml; sourceTree = "<group>"; };
+		033FC8601C6C538800CF3850 /* sequences_MCD09.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_MCD09.xml; sourceTree = "<group>"; };
+		033FC8611C6C538800CF3850 /* sequences_MCD10.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_MCD10.xml; sourceTree = "<group>"; };
 		1A0385051C2B156400A973D8 /* hook_n_key_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hook_n_key_large.png; sourceTree = "<group>"; };
 		1A0385071C2B1F2500A973D8 /* cilia_inside.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cilia_inside.png; sourceTree = "<group>"; };
 		1A0385081C2B1F2500A973D8 /* cilia_outside.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cilia_outside.png; sourceTree = "<group>"; };
@@ -8028,6 +8046,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		033FC8571C6C538800CF3850 /* sequences */ = {
+			isa = PBXGroup;
+			children = (
+				033FC8581C6C538800CF3850 /* sequences_MCD01.xml */,
+				033FC8591C6C538800CF3850 /* sequences_MCD02.xml */,
+				033FC85A1C6C538800CF3850 /* sequences_MCD03.xml */,
+				033FC85B1C6C538800CF3850 /* sequences_MCD04.xml */,
+				033FC85C1C6C538800CF3850 /* sequences_MCD05.xml */,
+				033FC85D1C6C538800CF3850 /* sequences_MCD06.xml */,
+				033FC85E1C6C538800CF3850 /* sequences_MCD07.xml */,
+				033FC85F1C6C538800CF3850 /* sequences_MCD08.xml */,
+				033FC8601C6C538800CF3850 /* sequences_MCD09.xml */,
+				033FC8611C6C538800CF3850 /* sequences_MCD10.xml */,
+			);
+			name = sequences;
+			path = Sequences;
+			sourceTree = "<group>";
+		};
 		1A631C671C0E4D3900251CB3 /* EPUBs */ = {
 			isa = PBXGroup;
 			children = (
@@ -9474,8 +9510,8 @@
 				1A631FFE1C0E4D3B00251CB3 /* physics.epub */,
 				5CE1E30F1A119E120070A7D6 /* bestFarm.epub */,
 				5CE1E30D1A119DFC0070A7D6 /* circulatory.epub */,
-				033BC0631C505E4300A1EC14 /* sequences1.xml */,
 				5C7FE06619A7E43B00CBBE0E /* sounds */,
+				033FC8571C6C538800CF3850 /* sequences */,
 				31953E501729ECC100570087 /* EMBRACE-Info.plist */,
 				31953E511729ECC100570087 /* InfoPlist.strings */,
 				31953E541729ECC100570087 /* main.m */,
@@ -13498,6 +13534,7 @@
 				1A6320361C0E4D3B00251CB3 /* metadata.xml in Resources */,
 				1A6321861C0E4D3B00251CB3 /* p3_Rsequeeze_circle.png in Resources */,
 				5C28DCB21C2BA66E005ACD07 /* man2_ch3.png in Resources */,
+				033FC8661C6C538800CF3850 /* sequences_MCD05.xml in Resources */,
 				5C28DCC71C2BA66E005ACD07 /* pole_pile_ch6.png in Resources */,
 				5C72E61D1C72A46F00CE4877 /* TheAlgonquianWigwamQ6.mp3 in Resources */,
 				5CB7117E1C6C46DF0062AD61 /* TheNavajoHoganQ7S.mp3 in Resources */,
@@ -13615,7 +13652,7 @@
 				5C0420331C614C42001BBE9D /* Story4-Words-of-Wisdom-Intro-S.xhtml in Resources */,
 				5C0ED7751C75328C00003B5A /* IntroductionToTheBestFarmQ7A2.mp3 in Resources */,
 				5D9E34031C590E9500636150 /* MoreIsMissingQ1A2.mp3 in Resources */,
-				5C0ED87B1C75334200003B5A /* AGiftfortheBrideQ5A3.mp3 in Resources */,
+				033FC86B1C6C538800CF3850 /* sequences_MCD10.xml in Resources */,
 				5CA955771C3237690038FB56 /* metadata.xml in Resources */,
 				5CCD8FBD1C7405EC00D2EC2B /* TsunamisQ5.mp3 in Resources */,
 				5C9C08121C57385A00702FCD /* corralE.m4a in Resources */,
@@ -13668,6 +13705,7 @@
 				1A6320011C0E4D3B00251CB3 /* mimetype in Resources */,
 				5C9C07F01C57385A00702FCD /* BFES_10.m4a in Resources */,
 				1A6320B51C0E4D3B00251CB3 /* Story3-Baby-Brother-Intro-E.xhtml in Resources */,
+				033FC8621C6C538800CF3850 /* sequences_MCD01.xml in Resources */,
 				5C9C07C81C57385A00702FCD /* BFCS_8B.m4a in Resources */,
 				5D9E34BB1C590E9600636150 /* Lawyer_def_E.mp3 in Resources */,
 				1A6321E21C0E4D3B00251CB3 /* buildings.png in Resources */,
@@ -14517,6 +14555,7 @@
 				5C0ED9AB1C753AD400003B5A /* CigaretteSmokeHurtsYourLungsQ4.mp3 in Resources */,
 				5C72E7AF1C72BF1000CE4877 /* NewtonsfirstlawQ4A4.mp3 in Resources */,
 				5C9C07D91C57385A00702FCD /* BFEE1_6.m4a in Resources */,
+				033FC8691C6C538800CF3850 /* sequences_MCD08.xml in Resources */,
 				1A6321CF1C0E4D3B00251CB3 /* AlternateImages-MetaData.xml in Resources */,
 				5C0ED7671C75328C00003B5A /* IntroductionToTheBestFarmQ4A3.mp3 in Resources */,
 				5C72E7C81C72BF1000CE4877 /* NewtonsLawofAccelerationonEarthQ4A4.mp3 in Resources */,
@@ -14689,6 +14728,7 @@
 				5D9E34A91C590E9600636150 /* TheMysteryIsSolvedQ5A3.mp3 in Resources */,
 				1A6322211C0E4D3B00251CB3 /* large_person.png in Resources */,
 				1A6322571C0E4D3B00251CB3 /* SentenceAnalysis-MetaData.xml in Resources */,
+				033FC8651C6C538800CF3850 /* sequences_MCD04.xml in Resources */,
 				1A6322641C0E4D3B00251CB3 /* Story2-Earthquakes-Intro-E.xhtml in Resources */,
 				5C9C08181C57385A00702FCD /* farmS.m4a in Resources */,
 				1A63230B1C0E4D3B00251CB3 /* boat_ropetaut.png in Resources */,
@@ -14935,6 +14975,7 @@
 				5CB710981C6C1AD80062AD61 /* TheMovingEarthS6E.mp3 in Resources */,
 				5C0ED9EB1C753AD400003B5A /* MusclesUseOxygenQ4A4.mp3 in Resources */,
 				5C28DC9E1C2BA66E005ACD07 /* hole_outline.png in Resources */,
+				033FC8671C6C538800CF3850 /* sequences_MCD06.xml in Resources */,
 				5C0421C11C618C2B001BBE9D /* TheLuckyStoneQ7A1S.mp3 in Resources */,
 				1A2425561C6BF195002CBB13 /* bg_market_entrance_long.png in Resources */,
 				5C28DD1E1C2BA66E005ACD07 /* Translations-MetaData.xml in Resources */,
@@ -15092,6 +15133,8 @@
 				5C0ED6AD1C752C2F00003B5A /* GettingReadyQ6A2.mp3 in Resources */,
 				5C9C082A1C57385A00702FCD /* jumpS.m4a in Resources */,
 				5C9C0ACE1C573AAA00702FCD /* valveE.m4a in Resources */,
+				5C9C0AFB1C573AAA00702FCD /* WhyWeBreatheQ3A2.mp3 in Resources */,
+				033FC86A1C6C538800CF3850 /* sequences_MCD09.xml in Resources */,
 				1A6323461C0E4D3B00251CB3 /* Story1-How-do-Objects-Move-PM-2.xhtml in Resources */,
 				5C04215D1C618C2B001BBE9D /* CatchQ1.mp3 in Resources */,
 				1A6321F41C0E4D3B00251CB3 /* ch4_test_05.png in Resources */,
@@ -16288,7 +16331,6 @@
 				5C0ED9AE1C753AD400003B5A /* CigaretteSmokeHurtsYourLungsQ4A3.mp3 in Resources */,
 				5C0ED8D51C75334200003B5A /* ManchatheHorseQ2A3.mp3 in Resources */,
 				1A6321C91C0E4D3B00251CB3 /* Translations-MetaData.xml in Resources */,
-				033BC0641C505E4300A1EC14 /* sequences1.xml in Resources */,
 				5C04219F1C618C2B001BBE9D /* MagicToysQ7A1.mp3 in Resources */,
 				5C0ED8D61C75334200003B5A /* ManchatheHorseQ2A4.mp3 in Resources */,
 				1A63232B1C0E4D3B00251CB3 /* rocket_flame.png in Resources */,
@@ -16464,8 +16506,7 @@
 				1A6320CC1C0E4D3B00251CB3 /* AlternateImages-MetaData.xml in Resources */,
 				5C0ED6951C752C2F00003B5A /* GettingReadyQ1A3.mp3 in Resources */,
 				1A6320B71C0E4D3B00251CB3 /* Story3-Baby-Brother-PM-2.xhtml in Resources */,
-				5C72E7721C72BF1000CE4877 /* HowdoObjectsMoveQ3A1.mp3 in Resources */,
-				5C0ED6671C752C2F00003B5A /* CleaningUpQ4A2.mp3 in Resources */,
+				033FC8641C6C538800CF3850 /* sequences_MCD03.xml in Resources */,
 				1A6320071C0E4D3B00251CB3 /* content.opf in Resources */,
 				5C28DC891C2BA66E005ACD07 /* circle_holes.png in Resources */,
 				5C0ED8EA1C75334200003B5A /* ManchatheHorseQ6A4.mp3 in Resources */,
@@ -16532,7 +16573,9 @@
 				5C0ED9031C75334200003B5A /* ShoppingattheMarketQ4A4.mp3 in Resources */,
 				1A63207F1C0E4D3B00251CB3 /* content.opf in Resources */,
 				1A6322731C0E4D3B00251CB3 /* Story4-Volcanoes-and-the-Making-of-Hawaii-PM-4.xhtml in Resources */,
-				5C0ED6E11C752C2F00003B5A /* TheContestQ3A4.mp3 in Resources */,
+				033FC8681C6C538800CF3850 /* sequences_MCD07.xml in Resources */,
+				5C9C07491C57385A00702FCD /* GettingReadyQ5A1.mp3 in Resources */,
+				5C9C0A081C573AAA00702FCD /* GettingMoreOxygenForTheMusclesQ1A1.mp3 in Resources */,
 				5C9C0AA41C573AAA00702FCD /* dustE.m4a in Resources */,
 				5C0ED55F1C75080300003B5A /* KeyIngredientsQ3A2S.mp3 in Resources */,
 				5C9C08471C57385A00702FCD /* weedsE.m4a in Resources */,
@@ -16713,6 +16756,7 @@
 				5CB711591C6C46DF0062AD61 /* NativeIntroQ3A3S.mp3 in Resources */,
 				1A63218C1C0E4D3B00251CB3 /* Locations-MetaData.xml in Resources */,
 				5C9F28BD1C5C6B2E008ACE48 /* TheLopezFamilyQ3A3S.mp3 in Resources */,
+				033FC8631C6C538800CF3850 /* sequences_MCD02.xml in Resources */,
 				5C72E5201C727E2000CE4877 /* NativeIntroQ2A2.mp3 in Resources */,
 				5C0ED6F51C752C2F00003B5A /* TheContestQ7A4.mp3 in Resources */,
 				5CCD8F391C7405EC00D2EC2B /* EarthquakesQ1A3.mp3 in Resources */,

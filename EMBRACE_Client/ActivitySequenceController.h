@@ -10,16 +10,12 @@
 #import "ActivitySequence.h"
 #import "GDataXMLNode.h"
 
-@interface ActivitySequenceController : NSObject {
-    NSMutableArray* sequences; //contains ActivitySequence objects for different books
-}
+@interface ActivitySequenceController : NSObject
 
-@property (nonatomic, strong) NSMutableArray* sequences;
+@property (nonatomic, strong) NSMutableArray *sequences; //contains ActivitySequence objects for different books
 
-- (id) init;
+- (BOOL)loadSequences:(NSString *)participantCode;
 
-- (BOOL) loadSequences;
-
-- (ActivitySequence*) getSequenceForBook:(NSString*)title;
+- (ActivitySequence *)getSequenceForBook:(NSString *)title;
 
 @end

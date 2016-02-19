@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<sequences id="1">
+<sequences id="MCD09">
     <sequence bookTitle="Introduction to EMBRACE">
         <mode chapterTitle="The Naughty Monkey">
             <reader>System</reader>
             <language>Spanish</language>
-            <intervention>None</intervention>
+            <intervention>R</intervention>
         </mode>
     </sequence>
     <sequence bookTitle="Bottled Up Joy">
         <mode chapterTitle="The Lucky Stone">
             <reader>System</reader>
             <language>Spanish</language>
-            <intervention>None</intervention>
+            <intervention>R</intervention>
         </mode>
         <mode chapterTitle="Magic Toys">
             <reader>User</reader>
             <language>Spanish</language>
-            <intervention>None</intervention>
+            <intervention>R</intervention>
         </mode>
         <mode chapterTitle="Baby Brother">
             <reader>User</reader>
             <language>Spanish</language>
-            <intervention>None</intervention>
+            <intervention>R</intervention>
         </mode>
         <mode chapterTitle="Words of Wisdom">
             <reader>User</reader>
             <language>Spanish</language>
-            <intervention>None</intervention>
+            <intervention>R</intervention>
         </mode>
         <mode chapterTitle="Catch!">
             <reader>User</reader>
             <language>Spanish</language>
-            <intervention>None</intervention>
+            <intervention>R</intervention>
         </mode>
     </sequence>
     <sequence bookTitle="Introduction to EMBRACE">
         <mode chapterTitle="The Naughty Monkey">
-            <reader>System</reader>
+            <reader>User</reader>
             <language>Spanish</language>
             <intervention>PM</intervention>
         </mode>
@@ -45,27 +45,27 @@
         <mode chapterTitle="The Contest">
             <reader>System</reader>
             <language>Spanish</language>
-            <intervention>None</intervention>
+            <intervention>R</intervention>
         </mode>
         <mode chapterTitle="Getting Ready">
             <reader>User</reader>
             <language>Spanish</language>
-            <intervention>None</intervention>
+            <intervention>R</intervention>
         </mode>
         <mode chapterTitle="Cleaning Up">
             <reader>User</reader>
             <language>Spanish</language>
-            <intervention>None</intervention>
+            <intervention>R</intervention>
         </mode>
         <mode chapterTitle="Who is the Best Animal?">
             <reader>User</reader>
             <language>Spanish</language>
-            <intervention>PM</intervention>
+            <intervention>R</intervention>
         </mode>
         <mode chapterTitle="The Wise Owl">
             <reader>User</reader>
             <language>Spanish</language>
-            <intervention>PM</intervention>
+            <intervention>R</intervention>
         </mode>
         <mode chapterTitle="Everyone Helps">
             <reader>User</reader>
@@ -97,22 +97,22 @@
         <mode chapterTitle="The Sioux Teepee">
             <reader>User</reader>
             <language>Spanish</language>
-            <intervention>None</intervention>
+            <intervention>R</intervention>
         </mode>
         <mode chapterTitle="The Algonquian Wigwam">
             <reader>User</reader>
             <language>Spanish</language>
-            <intervention>None</intervention>
+            <intervention>R</intervention>
         </mode>
         <mode chapterTitle="The Haida Plank House">
             <reader>User</reader>
             <language>Spanish</language>
-            <intervention>None</intervention>
+            <intervention>R</intervention>
         </mode>
         <mode chapterTitle="The Seminole Chickee">
             <reader>User</reader>
             <language>Spanish</language>
-            <intervention>None</intervention>
+            <intervention>R</intervention>
         </mode>
     </sequence>
     <sequence bookTitle="How Objects Move">
@@ -171,12 +171,12 @@
         <mode chapterTitle="Shopping at the Market">
             <reader>User</reader>
             <language>Spanish</language>
-            <intervention>None</intervention>
+            <intervention>IM</intervention>
         </mode>
         <mode chapterTitle="A Gift for the Bride">
             <reader>User</reader>
             <language>Spanish</language>
-            <intervention>IM</intervention>
+            <intervention>R</intervention>
         </mode>
         <mode chapterTitle="Homecoming">
             <reader>User</reader>
@@ -203,7 +203,7 @@
         <mode chapterTitle="Tsunamis">
             <reader>User</reader>
             <language>Spanish</language>
-            <intervention>None</intervention>
+            <intervention>R</intervention>
         </mode>
         <mode chapterTitle="Volcanoes and the Making of Hawaii">
             <reader>User</reader>
@@ -225,27 +225,27 @@
         <mode chapterTitle="Missing Keys">
             <reader>User</reader>
             <language>Spanish</language>
-            <intervention>None</intervention>
+            <intervention>IM</intervention>
         </mode>
         <mode chapterTitle="Is Paco a Thief?">
             <reader>User</reader>
             <language>Spanish</language>
-            <intervention>None</intervention>
+            <intervention>IM</intervention>
         </mode>
         <mode chapterTitle="More is Missing!">
             <reader>User</reader>
             <language>Spanish</language>
-            <intervention>None</intervention>
+            <intervention>R</intervention>
         </mode>
         <mode chapterTitle="The Baby's Rattle is Gone, Too!">
             <reader>User</reader>
             <language>Spanish</language>
-            <intervention>None</intervention>
+            <intervention>R</intervention>
         </mode>
         <mode chapterTitle="The Mystery is Solved">
             <reader>User</reader>
             <language>Spanish</language>
-            <intervention>None</intervention>
+            <intervention>R</intervention>
         </mode>
     </sequence>
 </sequences>

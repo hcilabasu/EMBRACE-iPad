@@ -21,6 +21,12 @@ typedef enum Language {
     BILINGUAL //English + Spanish
 } Language;
 
+//Defines who should read text
+typedef enum Reader {
+    SYSTEM_READER,
+    USER_READER
+} Reader;
+
 //Different modes of the app
 typedef enum AppMode {
     Authoring, //authoring of epubs
@@ -32,12 +38,13 @@ typedef enum AppMode {
 
 @property (nonatomic) Condition condition;
 @property (nonatomic) Language language;
+@property (nonatomic) Reader reader;
 @property (nonatomic) AppMode appMode;
 @property (nonatomic) Mode currentMode; //PM or IM
 
 + (ConditionSetup*)sharedInstance;
 
-- (NSString*)returnLanguageEnumtoString:(Language)type;
-- (NSString*)returnConditionEnumToString:(Condition)type;
+- (NSString *)returnLanguageEnumtoString:(Language)type;
+- (NSString *)returnConditionEnumToString:(Condition)type;
 
 @end

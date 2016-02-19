@@ -12,7 +12,7 @@
 
 @synthesize sequences;
 
-- (id) init {
+- (id)init {
     sequences = [[NSMutableArray alloc] init];
     
     return self;
@@ -21,41 +21,41 @@
 /*
  * Loads a particular set of activity sequences from file for the current user
  */
-- (BOOL) loadSequences {
-    NSBundle* mainBundle = [NSBundle mainBundle];
+- (BOOL)loadSequences:(NSString *)participantCode {
+    NSBundle *mainBundle = [NSBundle mainBundle];
     
-    //TODO: Load different sequence files depending on student information
-    NSString* sequencesFilePath = [mainBundle pathForResource:@"sequences1" ofType:@"xml"];
+    //Get path to correct sequences file based on participant code
+    NSString *sequencesFilePath = [mainBundle pathForResource:[NSString stringWithFormat:@"sequences_%@", [participantCode uppercaseString]] ofType:@"xml"];
     
     //Try to load sequences data
-    NSData* sequencesData = [[NSMutableData alloc] initWithContentsOfFile:sequencesFilePath];
+    NSData *sequencesData = [[NSMutableData alloc] initWithContentsOfFile:sequencesFilePath];
     
     //Sequences data loaded successfully
     if (sequencesData != nil) {
-        NSError* error;
-        GDataXMLDocument* sequencesXMLDocument = [[GDataXMLDocument alloc] initWithData:sequencesData error:&error];
+        NSError *error;
+        GDataXMLDocument *sequencesXMLDocument = [[GDataXMLDocument alloc] initWithData:sequencesData error:&error];
         
-        GDataXMLElement* sequencesElement = (GDataXMLElement*) [[sequencesXMLDocument nodesForXPath:@"//sequences" error:nil] objectAtIndex:0];
+        GDataXMLElement *sequencesElement = (GDataXMLElement *)[[sequencesXMLDocument nodesForXPath:@"//sequences" error:nil] objectAtIndex:0];
         
         //Read sequences
-        NSArray* sequenceElements = [sequencesElement elementsForName:@"sequence"];
+        NSArray *sequenceElements = [sequencesElement elementsForName:@"sequence"];
         
-        for (GDataXMLElement* sequenceElement in sequenceElements) {
+        for (GDataXMLElement *sequenceElement in sequenceElements) {
             //Get book title
-            NSString* bookTitle = [[sequenceElement attributeForName:@"bookTitle"] stringValue];
+            NSString *bookTitle = [[sequenceElement attributeForName:@"bookTitle"] stringValue];
             
-            NSMutableArray* modes = [[NSMutableArray alloc] init]; //contains modes for each chapter
+            NSMutableArray *modes = [[NSMutableArray alloc] init]; //contains modes for each chapter
             
             //Read modes
-            NSArray* modeElements = [sequenceElement elementsForName:@"mode"];
+            NSArray *modeElements = [sequenceElement elementsForName:@"mode"];
             
-            for (GDataXMLElement* modeElement in modeElements) {
+            for (GDataXMLElement *modeElement in modeElements) {
                 //Get chapter title
-                NSString* chapterTitle = [[modeElement attributeForName:@"chapterTitle"] stringValue];
+                NSString *chapterTitle = [[modeElement attributeForName:@"chapterTitle"] stringValue];
                 
                 //Get reader
-                GDataXMLElement* readerElement = [[modeElement elementsForName:@"reader"] objectAtIndex:0];
-                NSString* readerString = readerElement.stringValue;
+                GDataXMLElement *readerElement = [[modeElement elementsForName:@"reader"] objectAtIndex:0];
+                NSString *readerString = readerElement.stringValue;
                 
                 Reader reader;
                 
@@ -70,8 +70,8 @@
                 }
                 
                 //Get language
-                GDataXMLElement* languageElement = [[modeElement elementsForName:@"language"] objectAtIndex:0];
-                NSString* languageString = languageElement.stringValue;
+                GDataXMLElement *languageElement = [[modeElement elementsForName:@"language"] objectAtIndex:0];
+                NSString *languageString = languageElement.stringValue;
                 
                 Language language;
                 
@@ -86,8 +86,8 @@
                 }
                 
                 //Get intervention
-                GDataXMLElement* interventionElement = [[modeElement elementsForName:@"intervention"] objectAtIndex:0];
-                NSString* interventionString = interventionElement.stringValue;
+                GDataXMLElement *interventionElement = [[modeElement elementsForName:@"intervention"] objectAtIndex:0];
+                NSString *interventionString = interventionElement.stringValue;
                 
                 InterventionType intervention;
                 
@@ -97,20 +97,20 @@
                 else if ([interventionString isEqualToString:@"IM"]) {
                     intervention = IM_INTERVENTION;
                 }
-                else if ([interventionString isEqualToString:@"None"]) {
-                    intervention = NO_INTERVENTION;
+                else if ([interventionString isEqualToString:@"R"]) {
+                    intervention = R_INTERVENTION;
                 }
                 else {
-                    intervention = NO_INTERVENTION; //default intervention
+                    intervention = R_INTERVENTION; //default intervention
                 }
                 
                 //Create mode for chapter and add to array of modes
-                ActivityMode* mode = [[ActivityMode alloc] initWithValues:chapterTitle :reader :language :intervention];
+                ActivityMode *mode = [[ActivityMode alloc] initWithValues:chapterTitle :reader :language :intervention];
                 [modes addObject:mode];
             }
             
             //Create sequence to hold modes and add to array of sequences
-            ActivitySequence* sequence = [[ActivitySequence alloc] initWithValues:bookTitle :modes];
+            ActivitySequence *sequence = [[ActivitySequence alloc] initWithValues:bookTitle :modes];
             [sequences addObject:sequence];
         }
         
@@ -125,8 +125,8 @@
 /*
  * Returns ActivitySequence for book with the specified title
  */
-- (ActivitySequence*) getSequenceForBook:(NSString*)title {
-    for (ActivitySequence* sequence in sequences) {
+- (ActivitySequence *)getSequenceForBook:(NSString *)title {
+    for (ActivitySequence *sequence in sequences) {
         if ([[sequence bookTitle] isEqualToString:title]) {
             return sequence;
         }

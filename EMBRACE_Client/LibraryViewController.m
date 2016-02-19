@@ -152,22 +152,18 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
         self.title = [NSString stringWithFormat:@"%@ %@",[conditionSetup returnConditionEnumToString:conditionSetup.condition],[conditionSetup returnLanguageEnumtoString: conditionSetup.language]];
     }
     else {
-        student = [[Student alloc] initWithName:@"Study Code" :@"Study Day":@"Experimenter":@"School Day"];
+        student = [[Student alloc] initWithValues:@"Study Code" :@"Study Day" :@"Experimenter" :@"School Day"];
     }
     
-    //TODO: Check whether sequence should be used based on student information.
-    //      Currently only using sequence for "test".
-    //Student should follow particular sequence of activities
-    if ([[student firstName] isEqualToString:@"test"]) {
-        useSequence = TRUE;
-        
-        //Create ActivitySequenceController and load sequences
-        sequenceController = [[ActivitySequenceController alloc] init];
-        [sequenceController loadSequences];
+    //Create ActivitySequenceController
+    sequenceController = [[ActivitySequenceController alloc] init];
+
+    //Load sequences if they exist for student
+    if ([sequenceController loadSequences:[student participantCode]]) {
+        useSequence = TRUE; //student should follow particular sequence of activities
     }
-    //Student will follow default sequence of activities
     else {
-        useSequence = FALSE;
+        useSequence = FALSE; //student will follow default sequence of activities
     }
     
     //Load progress for student if it exists
@@ -181,8 +177,7 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
         NSString *firstBookTitle; //title of first book to set in progress
         
         if (useSequence) {
-            //TODO: Set current sequence id based on student information
-            studentProgress.sequenceId = 1;
+            studentProgress.sequenceId = [[student participantCode] uppercaseString]; //sequence id is just the participant code
             studentProgress.currentSequence = 0; //index of first sequence
             
             firstBookTitle = [[[sequenceController sequences] objectAtIndex:[studentProgress currentSequence]] bookTitle];
@@ -532,9 +527,11 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
             self.chapterToOpen = [[[book chapters] objectAtIndex:indexPath.row] title];
             
             if (useSequence) {
-                //If chapter already completed, just open in read-only mode for now
+                //If chapter already completed, just open in read-only English mode for now
                 if (chapterStatus == COMPLETED) {
                     conditionSetup.condition = CONTROL;
+                    conditionSetup.language = ENGLISH;
+                    conditionSetup.reader = USER_READER;
                 }
                 else {
                     //Get current mode for chapter
@@ -549,9 +546,17 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
                         conditionSetup.condition = EMBRACE;
                         conditionSetup.currentMode = IM_MODE;
                     }
-                    else if ([currentMode interventionType] == NO_INTERVENTION) {
+                    else if ([currentMode interventionType] == R_INTERVENTION) {
                         conditionSetup.condition = CONTROL;
                     }
+                    //Current mode for chapter was not found; default to control
+                    else {
+                        conditionSetup.condition = CONTROL;
+                    }
+                    
+                    //Set language and reader
+                    conditionSetup.language = [currentMode language];
+                    conditionSetup.reader = [currentMode reader];
                 }
             }
             

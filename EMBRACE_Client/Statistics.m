@@ -12,7 +12,7 @@
 
 @synthesize pageSentences;
 
-- (id) init {
+- (id)init {
     pageSentences = [[NSMutableArray alloc] init];
     
     for (int i = 0; i < 3; i++) {
@@ -32,27 +32,27 @@
 /*
  * Getter methods
  */
-- (int) getNumStepsForComplexity:(int)complexity {
+- (int)getNumStepsForComplexity:(int)complexity {
     return numStepsPerComplexity[complexity];
 }
 
-- (int) getNumErrorsForComplexity:(int)complexity {
+- (int)getNumErrorsForComplexity:(int)complexity {
     return numErrorsPerComplexity[complexity];
 }
 
-- (double) getTimeForComplexity:(int)complexity {
+- (double)getTimeForComplexity:(int)complexity {
     return timePerComplexity[complexity];
 }
 
-- (int) getNumNonActSentsForComplexity:(int)complexity {
+- (int)getNumNonActSentsForComplexity:(int)complexity {
     return numNonActSentsPerComplexity[complexity];
 }
 
-- (double) getTimeForNonActSentsForComplexity:(int)complexity {
+- (double)getTimeForNonActSentsForComplexity:(int)complexity {
     return timeForNonActSentsPerComplexity[complexity];
 }
 
-- (int) getNumVocabTapsForComplexity:(int)complexity {
+- (int)getNumVocabTapsForComplexity:(int)complexity {
     return numVocabTapsPerComplexity[complexity];
 }
 
