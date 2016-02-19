@@ -35,16 +35,16 @@
         <hotspot objId="woman" action="pickUp" role="subject" x="50%" y="50%"/>
         
         <hotspot objId="martinIM" action="standBy" role="object" x="0%" y="50%"/>
-        <hotspot objId="martinInsideIM" action="getIn" role="object" x="80%" y="55%"/>
-        <hotspot objId="carIM" action="standBy" role="subject" x="50%" y="50%"/>
-        <hotspot objId="carIM" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="martinInsideCarIM" action="getIn" role="object" x="50%" y="50%"/>
+        <hotspot objId="carIM" action="standBy" role="subject" x="100%" y="50%"/>
+        <hotspot objId="martinInsideCarIM" action="getIn" role="subject" x="50%" y="50%"/>
         
         <hotspot objId="martinIM" action="standWith" role="object" x="30%" y="50%"/>
         <hotspot objId="pacoIM" action="standWith" role="subject" x="130%" y="120%"/>
         <hotspot objId="lolaIM" action="standWith" role="subject" x="50%" y="50%"/>
         
-        <hotspot objId="babyIM" action="sitIn" role="object" x="60%" y="70%"/>
-        <hotspot objId="babyIM" action="standBy" role="object" x="40%" y="50%"/>
+        <hotspot objId="babyIM" action="sitIn" role="object" x="50%" y="75%"/>
+        <hotspot objId="babyIM" action="standBy" role="object" x="0%" y="0%"/>
         <hotspot objId="highchairIM" action="sitIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="highchairIM" action="standBy" role="subject" x="50%" y="50%"/>
         
@@ -89,7 +89,7 @@
         
         <hotspot objId="bird_IM" action="pickUp" role="subject" x="50%" y="80%"/>
             
-        <hotspot objId="keys_IM" action="pickUp" role="object" x="50%" y="0%"/>
+        <hotspot objId="keysBird_IM" action="pickUp" role="object" x="50%" y="0%"/>
         <hotspot objId="spoon_IM" action="pickUp" role="object" x="50%" y="35%"/>
         
         

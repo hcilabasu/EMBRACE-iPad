@@ -46,9 +46,9 @@
         <relationship obj1Id="air_blueIM" can="getWith" action="group" obj2Id="rainIM"/>
         <relationship obj1Id="air_blueIM" can="getWith" action="group" obj2Id="houseIM"/>
         
-        <relationship obj1Id="house_noroofIM" can="damage" action="group" obj2Id="roofDamageIM"/>
-        <relationship obj1Id="roofDamageIM" can="closeBy" action="group" obj2Id="tornadoIM"/>
-        <relationship obj1Id="roofDamageIM" can="farAway" action="group" obj2Id="tornadoMinIM"/>
+        <relationship obj1Id="houseDamageIM" can="damage" action="group" obj2Id="roofDamageIM"/>
+        <relationship obj1Id="roofDamageIM" can="nextTo" action="group" obj2Id="houseDamageIM"/>
+        <relationship obj1Id="houseWholeIM" can="getWith" action="group" obj2Id="houseWholeIM"/>
         
     </relationships>
 </metadata>

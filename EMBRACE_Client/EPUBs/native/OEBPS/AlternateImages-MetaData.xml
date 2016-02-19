@@ -12,7 +12,7 @@
         <alternateImage objId="circle" action="appear" originalSrc="circle.png" alternateSrc="circle.png" width="400px" x="45.410156%" y="74.360794%" class="manipulationObject center" z="0"/>
         <alternateImage objId="circle" action="holes" originalSrc="circle.png" alternateSrc="circle_holes.png" width="400px" x="45.458984%" y="74.147728%" class="manipulationObject center" z="0"/>
         <alternateImage objId="circle" action="pole" originalSrc="circle_holes.png" alternateSrc="circle_onepole.png" width="400px" x="45.214844%" y="33.593750%" class="manipulationObject center" z="1"/>
-        <alternateImage objId="fallen_tree" action="appear" originalSrc="fallen_tree.png" alternateSrc="fallen_tree.png" width="250px" x="14.013672%" y="8.309659%%" class="manipulationObject center" z="0"/>
+        <alternateImage objId="fallen_tree" action="appear" originalSrc="fallen_tree.png" alternateSrc="fallen_tree.png" width="250px" x="5%" y="0%" class="manipulationObject center" z="0"/>
         <alternateImage objId="frame" action="complete" originalSrc="frame_upright.png" alternateSrc="frame_complete.png" width="330px" x="61.425781%" y="19.176136%" class="manipulationObject center" z="0"/>
         <alternateImage objId="frame" action="teepee" originalSrc="frame_complete.png" alternateSrc="teepee_open.png" width="400px" x="57.666016%" y="19.105114%" class="manipulationObject center" z="0"/>
         <alternateImage objId="frame" action="tied" originalSrc="frame_onground.png" alternateSrc="frame_withrope.png" width="450px" x="35.937500%" y="72.514206%" class="manipulationObject center" z="0"/>

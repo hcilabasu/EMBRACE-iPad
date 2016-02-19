@@ -765,6 +765,7 @@ BOOL wasPathFollowed = false;
  */
 -(void) performSetupForActivity {
     Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
+    
     PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
     NSMutableArray* setupSteps = [[PMActivity setupSteps] objectForKey:currentPageId]; //get setup steps for current page
     
@@ -1837,7 +1838,13 @@ BOOL wasPathFollowed = false;
                         }
                     }
                     else if ([[currSolStep stepType] isEqualToString:@"shakeOrTap"]) {
-                        if([self areHotspotsInsideArea] || [self isHotspotInsideLocation]) {
+                        if(([[currSolStep object1Id] isEqualToString:movingObjectId]) && ([self areHotspotsInsideArea] || [self isHotspotInsideLocation])) {
+                            if (allowSnapback) {
+                                //Snap the object back to its original location
+                                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
+                                //if incorrect location reset object to beginning of gesture
+                                
+                            }
                             [self incrementCurrentStep];
                         }
                         else {

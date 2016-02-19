@@ -36,8 +36,8 @@
         <story title="Words of Wisdom" activity_id="story4-PM-1">
             <sentence number="3">
                 <step number="1">
-                    <group obj1Id="bottleIM" action="getIn" obj2Id="waterIM"/>
-                    <group obj1Id="bottleIM" action="getIn" obj2Id="bankIM"/>
+                    <group obj1Id="waterIM" action="getInWater" obj2Id="bottleIM"/>
+                    <group obj1Id="bankIM" action="getInBank" obj2Id="bottleIM"/>
                 </step>
             </sentence>
         </story>
@@ -58,7 +58,7 @@
             </sentence>
         </story>
         <story title="Catch!" activity_id="story5-PM-2">
-            <sentence number="6">
+            <sentence number="7">
                 <step number="1">
                     <group obj1Id="bottleBehindIM" action="behind" obj2Id="bushIM"/>
                     <group obj1Id="bottleIM" action="front" obj2Id="bushIM"/>

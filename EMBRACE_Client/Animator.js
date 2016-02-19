@@ -349,7 +349,7 @@ function earthquake(aniObject) {
     aniObject.dt = 0.001*(t1-aniObject.t0);
     var seconds = Math.round(aniObject.dt % 60);
     
-    if (seconds < 4) {
+    if (seconds < 2.5) {
         var waveWidth = Math.sin(aniObject.tempY);
         waveWidth = waveWidth/4;
         aniObject.tempY += 0.1;
@@ -799,8 +799,9 @@ function moveBackward(aniObject) {
 
 function rotate90(aniObject) {
     
-    aniObject.object.style.WebkitTransitionDuration='3s';
-    aniObject.object.style.webkitTransform = 'translate(150px, 250px) rotate(90deg)';
+    aniObject.object.style.WebkitTransitionDuration='5s';
+    aniObject.object.style.WebkitTransformOrigin = 'bottom left';
+    aniObject.object.style.WebkitTransform = 'translate(150px, -50px) rotate(90deg)';
 
 }
 
@@ -830,8 +831,8 @@ function moveTopAndWrap(aniObject) {
     var timePerPixels =  (parseFloat(aniObject.object.style.height))/70.4;
     
     // create new 0% and 100% rules with
-    keyframes.appendRule('0% {top: ' + parseFloat(aniObject.object.style.top) + 'px;}');
-    keyframes.appendRule('100% {top: ' + top + 'px;}');
+    keyframes.insertRule('0% {top: ' + parseFloat(aniObject.object.style.top) + 'px;}');
+    keyframes.insertRule('100% {top: ' + top + 'px;}');
     
     var originalClassName = aniObject.object.className;
     
@@ -842,12 +843,18 @@ function moveTopAndWrap(aniObject) {
     timePerPixels = timePerPixels * 1000;
     
     setTimeout(function(){
+        if(aniObject.object.className == "manipulationObject center moveTop")
+        {
                var top = -parseFloat(aniObject.object.style.height);
                aniObject.object.style.top = 704 +  'px';
                aniObject.y = top;
                aniObject.object.className = 'manipulationObject center moveTopAndWrap';
-               }, timePerPixels);
-
+        }
+        else
+        {
+               console.log("Class changed to:" + aniObject.object.className);
+        }
+    }, timePerPixels);
 }
 
 function moveDownAndWrap(aniObject) {
@@ -862,8 +869,8 @@ function moveDownAndWrap(aniObject) {
     var timePerPixels =  (704-parseFloat(aniObject.object.style.height))/70.4;
     
     // create new 0% and 100% rules with
-    keyframes.appendRule('0% {top: ' + parseFloat(aniObject.object.style.top) + 'px;}');
-    keyframes.appendRule('100% {top: ' + top + 'px;}');
+    keyframes.insertRule('0% {top: ' + parseFloat(aniObject.object.style.top) + 'px;}');
+    keyframes.insertRule('100% {top: ' + top + 'px;}');
     
     var originalClassName = aniObject.object.className;
     
@@ -875,12 +882,16 @@ function moveDownAndWrap(aniObject) {
     
     setTimeout(function()
     {
-        if(aniObject.object.className == 'manipulationObject center moveDown')
+        if(aniObject.object.className == "manipulationObject center moveDown")
         {
                var top = parseFloat(aniObject.object.style.height);
                aniObject.object.style.top = 0 +  'px';
                aniObject.y = top;
                aniObject.object.className = 'manipulationObject center moveDownAndWrap';
+        }
+        else
+        {
+               console.log("Class changed to:" + aniObject.object.className);
         }
     }, timePerPixels);
 
@@ -904,8 +915,8 @@ function move45DegreeAndWrap(aniObject) {
     var timePerPixels =  (Math.sqrt(1024*1024+300*300) - hypotenuse)/(Math.sqrt(1024*1024+300*300)/10);
     
     // create new 0% and 100% rules with
-    keyframes.appendRule('0% {left: ' + parseFloat(aniObject.object.style.left) + 'px; top: ' + parseFloat(aniObject.object.style.top) +'px; }');
-    keyframes.appendRule('100% {left: ' + left + 'px;top: ' + top +'px; }');
+    keyframes.insertRule('0% {left: ' + parseFloat(aniObject.object.style.left) + 'px; top: ' + parseFloat(aniObject.object.style.top) +'px; }');
+    keyframes.insertRule('100% {left: ' + left + 'px;top: ' + top +'px; }');
     
     var originalClassName = aniObject.object.className;
     
@@ -917,7 +928,7 @@ function move45DegreeAndWrap(aniObject) {
     
     setTimeout(function()
     {
-        if(aniObject.object.className == 'manipulationObject center move45Degree')
+        if(aniObject.object.className == "manipulationObject center move45Degree")
         {
                var left = -parseFloat(aniObject.object.style.width);
                var top = 352 + parseFloat(aniObject.object.style.height);
@@ -926,6 +937,10 @@ function move45DegreeAndWrap(aniObject) {
                aniObject.x = left;
                aniObject.y = top;
                aniObject.object.className = 'manipulationObject center move45DegreeAndWrap';
+        }
+        else
+        {
+               console.log("Class changed to:" + aniObject.object.className);
         }
     }, timePerPixels);
 }
@@ -944,8 +959,8 @@ function moveLeftAndWrap(aniObject) {
     var timePerPixels =  (1024-parseFloat(aniObject.object.style.left))/102.4;
     
     // create new 0% and 100% rules with
-    keyframes.appendRule('0% {left: ' + parseFloat(aniObject.object.style.left) + 'px;}');
-    keyframes.appendRule('100% {left: ' + left + 'px;}');
+    keyframes.insertRule('0% {left: ' + parseFloat(aniObject.object.style.left) + 'px;}');
+    keyframes.insertRule('100% {left: ' + left + 'px;}');
     
     var originalClassName = aniObject.object.className;
     
@@ -957,12 +972,16 @@ function moveLeftAndWrap(aniObject) {
     
     setTimeout(function()
     {
-        if(aniObject.object.className == 'manipulationObject center moveLeft')
+        if(aniObject.object.className == "manipulationObject center moveLeft")
         {
-            var left = -parseFloat(aniObject.object.style.width);
-            aniObject.object.style.left = 1024 +  'px';
-            aniObject.x = left;
-            aniObject.object.className = 'manipulationObject center moveLeftAndWrap';
+               var left = -parseFloat(aniObject.object.style.width);
+               aniObject.object.style.left = 1024 +  'px';
+               aniObject.x = left;
+               aniObject.object.className = 'manipulationObject center moveLeftAndWrap';
+        }
+        else
+        {
+               console.log("Class changed to:" + aniObject.object.className);
         }
     }, timePerPixels);
 }
@@ -1023,8 +1042,8 @@ function moveRightAndWrap(aniObject) {
      var timePerPixels =  (1024-parseFloat(aniObject.object.style.left))/102.4;
     
     // create new 0% and 100% rules with
-    keyframes.appendRule('0% {left: ' + parseFloat(aniObject.object.style.left) + 'px;}');
-    keyframes.appendRule('100% {left: ' + right + 'px;}');
+    keyframes.insertRule('0% {left: ' + parseFloat(aniObject.object.style.left) + 'px;}');
+    keyframes.insertRule('100% {left: ' + right + 'px;}');
     
     var originalClassName = aniObject.object.className;
     
@@ -1036,12 +1055,16 @@ function moveRightAndWrap(aniObject) {
     
     setTimeout(function()
     {
-        if(aniObject.object.className == 'manipulationObject center moveRight')
+        if(aniObject.object.className == "manipulationObject center moveRight")
         {
                var left = -parseFloat(aniObject.object.style.width);
                aniObject.object.style.left = left +  'px';
                aniObject.x = left;
                aniObject.object.className = 'manipulationObject center moveRightAndWrap';
+        }
+        else
+        {
+                console.log("Class changed to:" + aniObject.object.className);
         }
     }, timePerPixels);
 }
@@ -1061,8 +1084,8 @@ function moveRightAndWrapSlow(aniObject) {
     console.log(timePerPixels)
     
     // create new 0% and 100% rules with
-    keyframes.appendRule('0% {left: ' + parseFloat(aniObject.object.style.left) + 'px;}');
-    keyframes.appendRule('100% {left: ' + right + 'px;}');
+    keyframes.insertRule('0% {left: ' + parseFloat(aniObject.object.style.left) + 'px;}');
+    keyframes.insertRule('100% {left: ' + right + 'px;}');
     
     var originalClassName = aniObject.object.className;
     
@@ -1073,12 +1096,17 @@ function moveRightAndWrapSlow(aniObject) {
     timePerPixels = timePerPixels * 1000;
     
     setTimeout(function(){
-            if(aniObject.object.className = 'manipulationObject center moveRightSlow'){
+            if(aniObject.object.className == "manipulationObject center moveRightSlow")
+            {
                var left = -parseFloat(aniObject.object.style.width);
                aniObject.object.style.left = left +  'px';
                aniObject.x = left;
                aniObject.object.className = 'manipulationObject center moveRightAndWrapSlow';
-               }
+            }
+            else
+            {
+               console.log("Class changed to:" + aniObject.object.className);
+            }
     }, timePerPixels);
 }
 
@@ -1097,8 +1125,8 @@ function moveRightAndWrapSlower(aniObject) {
     console.log(timePerPixels);
     
     // create new 0% and 100% rules with
-    keyframes.appendRule('0% {left: ' + parseFloat(aniObject.object.style.left) + 'px;}');
-    keyframes.appendRule('100% {left: ' + right + 'px;}');
+    keyframes.insertRule('0% {left: ' + parseFloat(aniObject.object.style.left) + 'px;}');
+    keyframes.insertRule('100% {left: ' + right + 'px;}');
     
     var originalClassName = aniObject.object.className;
     
@@ -1109,12 +1137,16 @@ function moveRightAndWrapSlower(aniObject) {
     timePerPixels = timePerPixels * 1000;
     
     setTimeout(function(){
-        if(aniObject.object.className = 'manipulationObject center moveRightSlower')
+        if(aniObject.object.className == "manipulationObject center moveRightSlower")
         {
                var left = -parseFloat(aniObject.object.style.width);
                aniObject.object.style.left = left +  'px';
                aniObject.x = left;
                aniObject.object.className = 'manipulationObject center moveRightAndWrapSlower';
+        }
+        else
+        {
+               console.log("Class changed to:" + aniObject.object.className);
         }
     }, timePerPixels);
 }

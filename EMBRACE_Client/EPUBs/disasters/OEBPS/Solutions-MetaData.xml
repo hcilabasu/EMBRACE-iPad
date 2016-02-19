@@ -47,6 +47,7 @@
                     <swapImage obj1Id="north_america" action="crack"/>
                     <swapImage obj1Id="california" action="crack"/>
                     <animate obj1Id="california" action="earthquakeAnimation" waypointId="californiaEarthquake" areaId=""/>
+                    <animate obj1Id="north_america" action="earthquakeAnimation" waypointId="californiaEarthquake" areaId=""/>
                 </step>
             </sentence>
         </story>
@@ -70,7 +71,9 @@
                 <step number="1">
                     <shakeOrTap obj1Id="houses" action="getIn" locationId="anywhere"/>
                     <swapImage obj1Id="houses" action="fall"/>
+                    <move obj1Id="california" action="getIn" waypointId="california_boom"/>
                     <animate obj1Id="california" action="earthquakeAnimation" waypointId="californiaEarthquake" areaId=""/>
+                    <animate obj1Id="north_america" action="earthquakeAnimation" waypointId="californiaEarthquake" areaId=""/>
                 </step>
             </sentence>
         </story>

@@ -2,7 +2,7 @@
 <metadata>
     <solutions>
         <story title="The Sioux Teepee" activity_id="story3-PM-3">
-            <sentence number="10">
+            <sentence number="11">
                 <step number="1">
                     <group obj1Id="siouxIM" action="tie" obj2Id="polesIM"/>
                     <group obj1Id="siouxIM" action="tie" obj2Id="logsIM"/>
@@ -10,7 +10,7 @@
             </sentence>
         </story>
         <story title="The Sioux Teepee" activity_id="story3-PM-5">
-            <sentence number="14">
+            <sentence number="15">
                 <step number="1">
                     <group obj1Id="fireIM" action="inside" obj2Id="teepeeIM"/>
                     <group obj1Id="fireIM" action="outside" obj2Id="teepeeIM"/>

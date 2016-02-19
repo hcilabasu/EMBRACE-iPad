@@ -690,10 +690,17 @@ function setSentenceFontWeight(sentenceId, weight) {
  * under the object
  */
 function highlightObject(object) {
-    highlight(object.offsetLeft, object.offsetTop, object.offsetWidth, object.offsetHeight, "under");
+    if(object.objectId == "fallen_tree")
+    {
+        highlight(150, 500, 555, 250, "under");
+    }
+    else
+    {
+        highlight(object.offsetLeft, object.offsetTop, object.offsetWidth, object.offsetHeight, "under");
+    }
 }
 
-/* 
+/*
  * Create an oval highlight using the top left corner and width and height specified.
  * If highlighting only one object the top left corner specified will be based on the offsetLeft and offsetTop properies
  * and the width and height will be based on the offsetWidth and offsetTop.

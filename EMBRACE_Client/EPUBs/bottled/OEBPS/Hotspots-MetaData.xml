@@ -39,24 +39,26 @@
         <hotspot objId="ballIM" action="hold" role="subject" x="35%" y="90%"/>
         
         <hotspot objId="lucasSittingIM" action="sitOn" role="object" x="50%" y="50%"/>
-        <hotspot objId="lucasIM" action="standBy" role="object" x="180%" y="40%"/>
+        <hotspot objId="lucasIM" action="standBy" role="object" x="100%" y="50%"/>
         <hotspot objId="benchIM" action="sitOn" role="subject" x="50%" y="50%"/>
-        <hotspot objId="benchIM" action="standBy" role="subject" x="50%" y="50%"/>
+        <hotspot objId="benchIM" action="standBy" role="subject" x="40%" y="50%"/>
         
         <hotspot objId="lucasIM" action="standOn" role="object" x="50%" y="100%"/>
         <hotspot objId="bottleIM" action="standOn" role="subject" x="50%" y="5%"/>
         
-        <hotspot objId="bottleIM" action="getIn" role="object" x="50%" y ="0%"/>
-        <hotspot objId="waterIM" action="getIn" role="subject" x="75%" y ="40%"/>
         <hotspot objId="bottleBehindIM" action="behind" role="object" x="50%" y ="45%"/>
         <hotspot objId="bottleIM" action="front" role="object" x="50%" y ="20%"/>
-        <hotspot objId="babyIM" action="grabRight" role="object" x="50%" y ="50%"/>
+        <hotspot objId="babyIM" action="grabRight" role="object" x="50%" y ="55%"/>
         
-        <hotspot objId="bankIM" action="getIn" role="subject" x="75%" y ="0%"/>
+        <hotspot objId="bottleIM" action="getInWater" role="subject" x="50%" y ="0%"/>
+        <hotspot objId="bottleIM" action="getInBank" role="subject" x="50%" y ="100%"/>
+        <hotspot objId="waterIM" action="getInWater" role="object" x="50%" y ="50%"/>
+        <hotspot objId="bankIM" action="getInBank" role="object" x="50%" y ="50%"/>
+        
         <hotspot objId="bushIM" action="behind" role="subject" x="40%" y ="50%"/>
         <hotspot objId="bushIM" action="front" role="subject" x="50%" y ="50%"/>
-        <hotspot objId="rattleIM" action="grabRight" role="subject" x="90%" y ="100%"/>
-        <hotspot objId="ballIM" action="grabRight" role="subject" x="90%" y ="100%"/>
+        <hotspot objId="rattleIM" action="grabRight" role="subject" x="110%" y ="0%"/>
+        <hotspot objId="ballIM" action="grabRight" role="subject" x="100%" y ="5%"/>
         
         <hotspot objId="lucasIM" action="standWith" role="object" x="100%" y ="50%"/>
         <hotspot objId="oliviaIM" action="standWith" role="subject" x="20%" y ="50%"/>

@@ -42,7 +42,7 @@
         <story title="A Gift for the Bride" activity_id="story5-PM-4">
             <sentence number="10">
                 <step number="1">
-                    <group obj1Id="sofia_IM" action="hold" obj2Id="flowers_IM"/>
+                    <group obj1Id="sofia_IM" action="holdFlowers" obj2Id="flowers_IM"/>
                     <group obj1Id="sofiaTote_IM" action="hold" obj2Id="sofiaTote_IM"/>
                 </step>
             </sentence>

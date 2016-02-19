@@ -2,15 +2,15 @@
 <metadata>
     <solutions>
         <story title="The Lopez Family" activity_id="story1-PM-1">
-            <sentence number="3">
+            <sentence number="6">
                 <step number="1">
-                    <group obj1Id="martinInsideIM" action="getIn" obj2Id="carIM"/>
+                    <group obj1Id="martinInsideCarIM" action="getIn" obj2Id="martinInsideCarIM"/>
                     <group obj1Id="martinIM" action="standBy" obj2Id="carIM"/>
                 </step>
             </sentence>
         </story>
         <story title="The Lopez Family" activity_id="story1-PM-2">
-            <sentence number="9">
+            <sentence number="11">
                 <step number="1">
                     <group obj1Id="martinIM" action="standWith" obj2Id="pacoIM"/>
                     <group obj1Id="martinIM" action="standWith" obj2Id="lolaIM"/>
@@ -36,16 +36,16 @@
         <story title="Is Paco a Thief?" activity_id="story3-PM-1">
             <sentence number="4">
                 <step number="1">
-                    <group obj1Id="keys_on_hookIM" action="on" obj2Id="keys_on_hookIM"/>
                     <group obj1Id="keysIM" action="layBy" obj2Id="treeIM"/>
+                    <group obj1Id="keys_on_hookIM" action="on" obj2Id="keys_on_hookIM"/>
                 </step>
             </sentence>
         </story>
         <story title="Is Paco a Thief?" activity_id="story3-PM-2">
             <sentence number="5">
                 <step number="1">
-                    <group obj1Id="pacoIM" action="face" obj2Id="houseIM"/>
                     <group obj1Id="pacoFlipIM" action="faceAway" obj2Id="houseIM"/>
+                    <group obj1Id="pacoIM" action="face" obj2Id="houseIM"/>
                 </step>
             </sentence>
         </story>
@@ -74,16 +74,12 @@
                     <group obj1Id="keys_IM" action="off" obj2Id="hook_IM"/>
                 </step>
             </sentence>
-        </story>
-        
-        <story title="The Mystery is Solved" activity_id="story6-PM-2">
-            <sentence number="6">
+            <sentence number="4">
                 <step number="1">
-                    <group obj1Id="bird_IM" action="pickUp" obj2Id="keys_IM"/>
+                    <group obj1Id="bird_IM" action="pickUp" obj2Id="keysBird_IM"/>
                     <group obj1Id="bird_IM" action="pickUp" obj2Id="spoon_IM"/>
                 </step>
             </sentence>
         </story>
-
     </solutions>
 </metadata>

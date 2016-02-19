@@ -82,12 +82,13 @@
         <hotspot objId="rainIM" action="getWith" role="subject" x="50%" y="50%"/>
         <hotspot objId="houseIM" action="getWith" role="subject" x="50%" y="50%"/>
         
-        <hotspot objId="house_noroofIM" action="damage" role="object" x="100%" y="50%"/>
-         <hotspot objId="roofDamageIM" action="damage" role="subject" x="0%" y="50%"/>
+        <hotspot objId="houseDamageIM" action="damage" role="object" x="100%" y="50%"/>
+        <hotspot objId="roofDamageIM" action="damage" role="subject" x="0%" y="50%"/>
          
-        <hotspot objId="roofDamageIM" action="closeBy" role="object" x="50%" y="0%"/>
-        <hotspot objId="roofDamageIM" action="farAway" role="object" x="100%" y="0%"/>
-        <hotspot objId="tornadoIM" action="closeBy" role="subject" x="50%" y="80%"/>
-        <hotspot objId="tornadoMinIM" action="farAway" role="subject" x="0%" y="100%"/>
+        <hotspot objId="roofDamageIM" action="nextTo" role="object" x="0%" y="50%"/>
+        <hotspot objId="houseWholeIM" action="getWith" role="object" x="50%" y="50%"/>
+        
+        <hotspot objId="houseDamageIM" action="nextTo" role="subject" x="100%" y="50%"/>
+        <hotspot objId="houseWholeIM" action="getWith" role="subject" x="50%" y="50%"/>
     </hotspots>
 </metadata>
