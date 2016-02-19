@@ -2,7 +2,7 @@
 <sequences id="MCD06">
     <sequence bookTitle="Introduction to EMBRACE">
         <mode chapterTitle="The Naughty Monkey">
-            <reader>User</reader>
+            <reader>System</reader>
             <language>Spanish</language>
             <intervention>R</intervention>
         </mode>

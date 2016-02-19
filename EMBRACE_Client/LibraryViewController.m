@@ -527,9 +527,11 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
             self.chapterToOpen = [[[book chapters] objectAtIndex:indexPath.row] title];
             
             if (useSequence) {
-                //If chapter already completed, just open in read-only mode for now
+                //If chapter already completed, just open in read-only English mode for now
                 if (chapterStatus == COMPLETED) {
                     conditionSetup.condition = CONTROL;
+                    conditionSetup.language = ENGLISH;
+                    conditionSetup.reader = USER_READER;
                 }
                 else {
                     //Get current mode for chapter
@@ -551,6 +553,10 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
                     else {
                         conditionSetup.condition = CONTROL;
                     }
+                    
+                    //Set language and reader
+                    conditionSetup.language = [currentMode language];
+                    conditionSetup.reader = [currentMode reader];
                 }
             }
             

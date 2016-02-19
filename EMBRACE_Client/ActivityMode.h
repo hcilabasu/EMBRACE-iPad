@@ -9,12 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "ConditionSetup.h"
 
-//Defines who should read text
-typedef enum Reader {
-    SYSTEM_READER,
-    USER_READER
-} Reader;
-
 //Type of intervention to use
 typedef enum InterventionType {
     PM_INTERVENTION, //physical manipulation

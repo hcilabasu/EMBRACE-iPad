@@ -12,6 +12,7 @@
 
 @synthesize condition;
 @synthesize language;
+@synthesize reader;
 @synthesize appMode;
 @synthesize currentMode;
 
@@ -28,8 +29,9 @@
 
 - (id)init {
     if (self = [super init]) {
-        condition = CONTROL;
+        condition = EMBRACE;
         language = ENGLISH;
+        reader = USER_READER;
         appMode = Study;
         currentMode = PM_MODE;
     }
