@@ -9,16 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "ActivityMode.h"
 
-@interface ActivitySequence : NSObject {
-    NSString* bookTitle;
-    NSMutableArray* modes; //contains ActivityMode objects for chapters in given book
-}
+@interface ActivitySequence : NSObject
 
-@property (nonatomic, strong) NSString* bookTitle;
-@property (nonatomic, strong) NSMutableArray* modes;
+@property (nonatomic, strong) NSString *bookTitle;
+@property (nonatomic, strong) NSMutableArray *modes; //contains ActivityMode objects for chapters in given book
 
-- (id) initWithValues:(NSString*)title :(NSMutableArray*)modesArray;
+- (id)initWithValues:(NSString *)title :(NSMutableArray *)modesArray;
 
-- (ActivityMode*) getModeForChapter:(NSString*)title;
+- (ActivityMode *)getModeForChapter:(NSString *)title;
 
 @end

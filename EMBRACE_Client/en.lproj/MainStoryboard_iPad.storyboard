@@ -323,7 +323,7 @@
                             <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="30"/>
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" title="Next">
-                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -396,9 +396,9 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="experimenterField" destination="Adj-CD-O2S" id="5wG-YA-rEA"/>
-                        <outlet property="firstNameField" destination="kqd-k5-FuV" id="2Ca-8y-7vj"/>
-                        <outlet property="lastNameField" destination="WYJ-TE-HlA" id="Bpa-Vx-AdO"/>
-                        <outlet property="schoolField" destination="Z07-gu-DJb" id="UfP-be-6tk"/>
+                        <outlet property="participantCodeField" destination="kqd-k5-FuV" id="fCu-LI-nRW"/>
+                        <outlet property="schoolCodeField" destination="Z07-gu-DJb" id="aoY-Jl-QUs"/>
+                        <outlet property="studyDayField" destination="WYJ-TE-HlA" id="TdH-Ol-cQR"/>
                         <segue destination="5" kind="push" identifier="OpenLibrarySegue" id="UAZ-I9-Wkj"/>
                     </connections>
                 </viewController>
@@ -437,7 +437,7 @@
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aMg-Az-3P6">
                                                     <rect key="frame" x="5" y="113" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DZh-5Q-HvQ">
@@ -459,7 +459,7 @@
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IKm-9Y-g69">
                                             <rect key="frame" x="10" y="0.0" width="1024" height="50"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>

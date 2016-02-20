@@ -15,7 +15,7 @@
 @synthesize language;
 @synthesize interventionType;
 
-- (id) initWithValues:(NSString*)title :(Reader)read :(Language)lang :(InterventionType)type {
+- (id)initWithValues:(NSString *)title :(Reader)read :(Language)lang :(InterventionType)type {
     if (self = [super init]) {
         chapterTitle = title;
         reader = read;

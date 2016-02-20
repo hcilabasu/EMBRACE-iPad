@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "LibraryViewController.h"
+
 @interface LoginViewController () {
     Student *student;
 }
@@ -16,15 +17,14 @@
 
 @implementation LoginViewController
 
--(IBAction)login:(id)sender {
-    //When student presses login, we need to check and make sure they entered a first and last name.
-    NSString* firstName = [firstNameField text];
-    NSString* lastName = [lastNameField text];
-    NSString* experimenter = [experimenterField text];
-    NSString* school = [schoolField text];
+- (IBAction)login:(id)sender {
+    NSString* schoolCode = [schoolCodeField text];
+    NSString* participantCode = [participantCodeField text];
+    NSString* studyDay = [studyDayField text];
+    NSString* experimenterName = [experimenterField text];
     
-    //If they didn't, provide an error message.
-    if([school isEqualToString:@""]) {
+    ////When student logs in, check that all fields were entered; if they didn't, provide an error message
+    if ([schoolCode isEqualToString:@""]) {
         UIAlertView *alert = [[UIAlertView alloc]
                               initWithTitle:@"School Code missing!"
                               message:@"Please enter the School Code."
@@ -34,7 +34,7 @@
         
         [alert show];
     }
-    else if([firstName isEqualToString:@""]) {
+    else if ([participantCode isEqualToString:@""]) {
         UIAlertView *alert = [[UIAlertView alloc]
                               initWithTitle:@"Participant Code missing!"
                               message:@"Please enter the Participant Code."
@@ -44,7 +44,7 @@
         
         [alert show];
     }
-    else if([lastName isEqualToString:@""]) {
+    else if ([studyDay isEqualToString:@""]) {
         UIAlertView *alert = [[UIAlertView alloc]
                               initWithTitle:@"Study Day missing!"
                               message:@"Please enter the Study Day."
@@ -54,7 +54,7 @@
         
         [alert show];
     }
-    else if([experimenter isEqualToString:@""]) {
+    else if ([experimenterName isEqualToString:@""]) {
         UIAlertView *alert = [[UIAlertView alloc]
                               initWithTitle:@"Experimenter name missing!"
                               message:@"Please enter Experimenter name."
@@ -65,23 +65,21 @@
         [alert show];
     }
     else {
-        NSLog(@"name: %@ %@", firstName, lastName);
+        NSLog(@"name: %@ %@", participantCode, studyDay);
+        
         //If they did, then check to see if the student already exists.
         //If student exists, pull up student information.
         //If student doesn't exist, create new student profile.
         //For the moment, assume student does not exist, and create a new student.
+        student = [[Student alloc] initWithValues:schoolCode :participantCode :studyDay: experimenterName];
         
-        student = [[Student alloc] initWithName: school:firstName :lastName: experimenter];
-        
-        NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-        NSString* tempFileName = [NSString stringWithFormat:@"%@ %@ %@.txt",school, firstName, lastName];
-        NSString* doesFileExist = [documentsPath stringByAppendingPathComponent:tempFileName];
+        NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        NSString *tempFileName = [NSString stringWithFormat:@"%@ %@ %@.txt", schoolCode, participantCode, studyDay];
+        NSString *doesFileExist = [documentsPath stringByAppendingPathComponent:tempFileName];
         BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:doesFileExist];
         
-        if(fileExists)
-        {
-            //append timestamp
-            //timestamp
+        if (fileExists) {
+            //Append timestamp
             NSDate *currentTime = [NSDate date];
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:@"MM-dd-yyyy'T'hh:mm.ss.SSS"];
@@ -95,7 +93,9 @@
     }
 }
 
-//Segue prep to go from LoginViewController to LibraryViewController.
+/*
+ * Segue prep to go from LoginViewController to LibraryViewController.
+ */
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     LibraryViewController *destination = [segue destinationViewController];
     

@@ -333,7 +333,6 @@
         
         //For each page, we'll have to create an Activity if it belongs to a specific type of activity. Otherwise, we just add it as a page. If an Activity contains additional pages, we'll have to ensure that we add it to the existing activity, instead of creating a new one.
         for (GDataXMLElement *element in pageElements){
-            NSString *modeType = [[element attributeForName:@"class"] stringValue];
             NSString *pageId = [[element attributeForName:@"id"] stringValue]; //Get the ID
             
             Page *currPage = [[Page alloc] init];
@@ -343,45 +342,33 @@
             NSString *pagePathFilename = [[pagePathElement attributeForName:@"src"] stringValue];
             [currPage setPagePath:[[book mainContentPath] stringByAppendingString:pagePathFilename]];
             
-            
-            //For the moment make the assumption that the first IM that you come across is the one that you create the activity for...and for all other IM pages you just add it to that activity.
+            //NOTE: Previously, we used the navPoint class in the TOC file to determine which type of Activity to create. However, the class is irrelevant now because pages don't differ between PM_MODE and IM_MODE. (Only their solutions differ.) Instead, we go ahead and create a PhysicalManipulationActivity and an ImagineManipulationActivity for every chapter. Code below is not the most elegant solution, so we'll need to refactor things later.
             bool newActivity = FALSE;
-            Activity *currActivity;
+            PhysicalManipulationActivity *currPMActivity = (PhysicalManipulationActivity *)[currChapter getActivityOfType:PM_MODE];
+            ImagineManipulationActivity *currIMActivity = (ImagineManipulationActivity *)[currChapter getActivityOfType:IM_MODE];
             
-            if ([modeType isEqualToString:@"PM_MODE"]) {
-                currActivity= [currChapter getActivityOfType:PM_MODE];
-                
-                //The chapter doesn't currently have an Activity of the current type
-                if (currActivity == nil) {
-                    currActivity = [[PhysicalManipulationActivity alloc] init];
-                    newActivity = TRUE;
-                }
-            }
-            else if ([modeType isEqualToString:@"IM_MODE"]) {
-                currActivity = [currChapter getActivityOfType:IM_MODE];
-                
-                //The chapter doesn't currently have an Activity of the current type
-                if (currActivity == nil) {
-                    currActivity = [[ImagineManipulationActivity alloc] init];
-                    newActivity = TRUE;
-                }
-            }
-            else {
-                currActivity = [[Activity alloc] init]; //Generic activity since I have no idea what it is
+            //Chapter doesn't have a PMActivity or IMActivity, so we'll create them
+            if (currPMActivity == nil || currIMActivity == nil) {
+                currPMActivity = [[PhysicalManipulationActivity alloc] init];
+                currIMActivity = [[ImagineManipulationActivity alloc] init];
                 newActivity = TRUE;
             }
             
-            [currActivity setActivityId:pageId];
-            [currActivity addPage:currPage];
+            [currPMActivity setActivityId:pageId];
+            [currIMActivity setActivityId:pageId];
+            [currPMActivity addPage:currPage];
+            [currIMActivity addPage:currPage];
             
             //Get the title of the activity. Don't care about this right now.
             GDataXMLElement *activityTitleElement = [[element elementsForName:@"navLabel"] objectAtIndex:0];
             NSString *activityTitle = [activityTitleElement stringValue];
-            [currActivity setActivityTitle:activityTitle];
+            [currPMActivity setActivityTitle:activityTitle];
+            [currIMActivity setActivityTitle:activityTitle];
             
             //If we had to create an activity that doesn't exist in the chapter..add the activity.
             if (newActivity) {
-                [currChapter addActivity:currActivity];
+                [currChapter addActivity:currPMActivity];
+                [currChapter addActivity:currIMActivity];
             }
         }
         
@@ -441,6 +428,7 @@
     [self readIntroductionMetadata:model :[[book mainContentPath] stringByAppendingString:@"Introductions-MetaData.xml"]];
     [self readVocabularyIntroductionMetadata:model :[[book mainContentPath] stringByAppendingString:@"VocabularyIntroductions-MetaData.xml"]];
     
+    
     //Separate Assessment metadata files depending on language
     if (conditionSetup.language == ENGLISH) {
         [self readAssessmentMetadata:model :[[book mainContentPath] stringByAppendingString:@"AssessmentActivities-MetaData.xml"]];
@@ -448,6 +436,7 @@
     else if (conditionSetup.language == BILINGUAL) {
         [self readAssessmentMetadata:model :[[book mainContentPath] stringByAppendingString:@"AssessmentActivitiesSpanish-MetaData.xml"]];
     }
+    [self readScriptMetadata:book filePath:[[book mainContentPath] stringByAppendingString:@"Script-Metadata.xml"]];
 }
 
 - (void)readRelationshipMetadata:(InteractionModel *)model :(NSString *)filepath {
@@ -1243,6 +1232,123 @@
             [model addAssessmentActivity:title :storyQuestions];
         }
     }
+    
+
+}
+
+- (void)readScriptMetadata:(Book *)book filePath:(NSString *)filepath {
+    NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
+    NSError *error;
+    NSLog(@"Start for - %@",book.title);
+    GDataXMLDocument *metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:&error];
+    if (metadataDoc !=nil) {
+
+
+        NSArray *scriptAudioElems = [metadataDoc nodesForXPath:@"//scriptAudio" error:nil];
+        GDataXMLElement *solutionsElement = (GDataXMLElement *)[scriptAudioElems objectAtIndex:0];
+        
+        NSArray *storyScripts = [solutionsElement elementsForName:@"story"];
+        
+        for (GDataXMLElement *solution in storyScripts) {
+            //Get story title
+            NSString *title = [[solution attributeForName:@"title"] stringValue];
+            Chapter *chapter = [book getChapterWithTitle:title];
+            
+            NSArray *sentenceArray = [solution nodesForXPath:@"sentence" error:nil];
+            for (GDataXMLElement *sentence in sentenceArray) {
+                
+                NSString *sentNo = [[sentence attributeForName:@"number"] stringValue];
+                
+                NSArray *elems = [sentence nodesForXPath:@"embrace" error:nil];
+                if ([elems count] > 0) {
+                    GDataXMLElement *embrace = [elems objectAtIndex:0];
+                    ScriptAudio *script = [self parseScriptAudio:embrace
+                                                    forCondition:EMBRACE];
+                    if (script) {
+                        [chapter addEmbraceScript:script forSentence:sentNo];
+                    }
+                }
+                
+                elems = [sentence nodesForXPath:@"control" error:nil];
+                if ([elems count] > 0) {
+                    GDataXMLElement *control = [elems objectAtIndex:0];
+                    ScriptAudio *script = [self parseScriptAudio:control
+                                                    forCondition:CONTROL];
+                    if (script) {
+                        [chapter addControlScript:script forSentence:sentNo];
+                    }
+                }
+            }
+            
+           
+        }
+        
+    }
+    
+}
+
+- (ScriptAudio *)parseScriptAudio:(GDataXMLElement  *)elem
+                     forCondition:(Condition)condition {
+    
+    ScriptAudio *script = nil;
+    NSArray *preEnglish = nil;
+    NSArray *postEnglish = nil;
+    
+    NSArray *preBilingual = nil;
+    NSArray *postBilingual = nil;
+    
+    NSArray *preAudios = [elem nodesForXPath:@"preAudio" error:nil];
+    if ([preAudios count]>0) {
+        GDataXMLElement *preAudio = [preAudios objectAtIndex:0];
+        
+        NSArray *englishArrayElem = [preAudio nodesForXPath:@"english" error:nil];
+        if ([englishArrayElem count]>0) {
+            GDataXMLElement *eng = [englishArrayElem objectAtIndex:0];
+            preEnglish = [[eng elementsForName:@"audio"]valueForKey:@"stringValue"];
+           
+            
+        }
+        
+        NSArray *bilinArrayElem = [preAudio nodesForXPath:@"bilingual" error:nil];
+        if ([bilinArrayElem count] > 0) {
+            GDataXMLElement *bilingual = [bilinArrayElem objectAtIndex:0];
+            preBilingual = [[bilingual elementsForName:@"audio"]valueForKey:@"stringValue"];
+            
+        }
+        
+    }
+    
+    NSArray *postAudios = [elem nodesForXPath:@"postAudio" error:nil];
+    if ([postAudios count] >0) {
+        GDataXMLElement *postAudio = [postAudios objectAtIndex:0];
+        
+        NSArray *englishArrayElem = [postAudio nodesForXPath:@"english" error:nil];
+        if ([englishArrayElem count] > 0) {
+            GDataXMLElement *eng = [englishArrayElem objectAtIndex:0];
+            postEnglish = [[eng elementsForName:@"audio"]valueForKey:@"stringValue"];
+        }
+        
+        NSArray *bilinArrayElem = [postAudio nodesForXPath:@"bilingual" error:nil];
+        if ([bilinArrayElem count] > 0) {
+            GDataXMLElement *bilingual = [bilinArrayElem objectAtIndex:0];
+            postBilingual = [[bilingual elementsForName:@"audio"]valueForKey:@"stringValue"];
+        }
+        
+        
+        
+    }
+    
+    if (preBilingual || preEnglish || postEnglish || postBilingual) {
+     
+        script = [[ScriptAudio alloc] initWithCondition:condition
+                                        englishPreAudio:preEnglish
+                                       englishPostAudio:postEnglish
+                                      bilingualPreAudio:preBilingual
+                                    bilingualaPostAudio:postBilingual];
+    }
+    
+    return script;
+    
 }
 
 @end

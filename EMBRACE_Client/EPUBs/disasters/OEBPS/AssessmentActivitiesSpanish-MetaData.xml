@@ -4,134 +4,134 @@
         <Questions title= "Introduction to Natural Disasters">
             <Question number="1">
                 <QuestionText>¿Qué puede ser calmado y violento?</QuestionText>
-                <QuestionAudio>IntroductionToNaturalDisastersQ1.mp3</QuestionAudio>
+                <QuestionAudio>IntroductionToNaturalDisastersQ1S.mp3</QuestionAudio>
                 <Answer1>La naturaleza</Answer1>
-                <Answer1Audio>IntroductionToNaturalDisastersQ1A1.mp3</Answer1Audio>
+                <Answer1Audio>IntroductionToNaturalDisastersQ1A1S.mp3</Answer1Audio>
                 <Answer2>El atardecer</Answer2>
-                <Answer2Audio>IntroductionToNaturalDisastersQ1A2.mp3</Answer2Audio>
+                <Answer2Audio>IntroductionToNaturalDisastersQ1A2S.mp3</Answer2Audio>
                 <Answer3>Un terremoto</Answer3>
-                <Answer3Audio>IntroductionToNaturalDisastersQ1A3.mp3</Answer3Audio>
+                <Answer3Audio>IntroductionToNaturalDisastersQ1A3S.mp3</Answer3Audio>
                 <Answer4>Frijoles mágicos</Answer4>
-                <Answer4Audio>IntroductionToNaturalDisastersQ1A4.mp3</Answer4Audio>
+                <Answer4Audio>IntroductionToNaturalDisastersQ1A4S.mp3</Answer4Audio>
                 <expectedSelection>La naturaleza</expectedSelection>
             </Question>
             <Question number="2">
                 <QuestionText>¿Qué causa terremotos, tsunamis, y volcanes?</QuestionText>
-                <QuestionAudio>IntroductionToNaturalDisastersQ2.mp3</QuestionAudio>
+                <QuestionAudio>IntroductionToNaturalDisastersQ2S.mp3</QuestionAudio>
                 <Answer1>Los movimientos de tierra</Answer1>
-                <Answer1Audio>IntroductionToNaturalDisastersQ2A1.mp3</Answer1Audio>
+                <Answer1Audio>IntroductionToNaturalDisastersQ2A1S.mp3</Answer1Audio>
                 <Answer2>Vientos muy fuertes</Answer2>
-                <Answer2Audio>IntroductionToNaturalDisastersQ2A2.mp3</Answer2Audio>
+                <Answer2Audio>IntroductionToNaturalDisastersQ2A2S.mp3</Answer2Audio>
                 <Answer3>Huracanes</Answer3>
-                <Answer3Audio>IntroductionToNaturalDisastersQ2A3.mp3</Answer3Audio>
+                <Answer3Audio>IntroductionToNaturalDisastersQ2A3S.mp3</Answer3Audio>
                 <Answer4>Unos gigantes!</Answer4>
-                <Answer4Audio>IntroductionToNaturalDisastersQ2A4.mp3</Answer4Audio>
+                <Answer4Audio>IntroductionToNaturalDisastersQ2A4S.mp3</Answer4Audio>
                 <expectedSelection>Los movimientos de tierra</expectedSelection>
             </Question>
             <Question number="3">
                 <QuestionText>¿Qué puede causar tornados?</QuestionText>
-                <QuestionAudio>IntroductionToNaturalDisastersQ3.mp3</QuestionAudio>
+                <QuestionAudio>IntroductionToNaturalDisastersQ3S.mp3</QuestionAudio>
                 <Answer1>Vientos muy fuertes</Answer1>
-                <Answer1Audio>IntroductionToNaturalDisastersQ3A1.mp3</Answer1Audio>
+                <Answer1Audio>IntroductionToNaturalDisastersQ3A1S.mp3</Answer1Audio>
                 <Answer2>El movimiento de la tierra</Answer2>
-                <Answer2Audio>IntroductionToNaturalDisastersQ3A2.mp3</Answer2Audio>
+                <Answer2Audio>IntroductionToNaturalDisastersQ3A2S.mp3</Answer2Audio>
                 <Answer3>La lluvia</Answer3>
-                <Answer3Audio>IntroductionToNaturalDisastersQ3A3.mp3</Answer3Audio>
+                <Answer3Audio>IntroductionToNaturalDisastersQ3A3S.mp3</Answer3Audio>
                 <Answer4>Presionando un botón</Answer4>
-                <Answer4Audio>IntroductionToNaturalDisastersQ3A4.mp3</Answer4Audio>
+                <Answer4Audio>IntroductionToNaturalDisastersQ3A4S.mp3</Answer4Audio>
                 <expectedSelection>Vientos muy fuertes</expectedSelection>
             </Question>
         </Questions>
         <Questions title= "The Moving Earth">
             <Question number="1">
                 <QuestionText>¿Cómo se veía la Tierra hace 300 millones de años?</QuestionText>
-                <QuestionAudio>TheMovingEarthQ1.mp3</QuestionAudio>
+                <QuestionAudio>TheMovingEarthQ1S.mp3</QuestionAudio>
                 <Answer1>La mayoría de la tierra estaba conectada</Answer1>
-                <Answer1Audio>TheMovingEarthQ1A1.mp3</Answer1Audio>
+                <Answer1Audio>TheMovingEarthQ1A1S.mp3</Answer1Audio>
                 <Answer2>Había muchas islas</Answer2>
-                <Answer2Audio>TheMovingEarthQ1A2.mp3</Answer2Audio>
+                <Answer2Audio>TheMovingEarthQ1A2S.mp3</Answer2Audio>
                 <Answer3>Solo había océanos</Answer3>
-                <Answer3Audio>TheMovingEarthQ1A3.mp3</Answer3Audio>
+                <Answer3Audio>TheMovingEarthQ1A3S.mp3</Answer3Audio>
                 <Answer4>Como que iba a hacer algo malo</Answer4>
-                <Answer4Audio>TheMovingEarthQ1A4.mp3</Answer4Audio>
+                <Answer4Audio>TheMovingEarthQ1A4S.mp3</Answer4Audio>
                 <expectedSelection>La mayoría de la tierra estaba conectada</expectedSelection>
             </Question>
             <Question number="2">
                 <QuestionText>Las placas flotan sobre rocas derretidas llamadas…?</QuestionText>
-                <QuestionAudio>TheMovingEarthQ2.mp3</QuestionAudio>
+                <QuestionAudio>TheMovingEarthQ2S.mp3</QuestionAudio>
                 <Answer1>Manto</Answer1>
-                <Answer1Audio>TheMovingEarthQ2A1.mp3</Answer1Audio>
+                <Answer1Audio>TheMovingEarthQ2A1S.mp3</Answer1Audio>
                 <Answer2>Montañas</Answer2>
-                <Answer2Audio>TheMovingEarthQ2A2.mp3</Answer2Audio>
+                <Answer2Audio>TheMovingEarthQ2A2S.mp3</Answer2Audio>
                 <Answer3>La Tierra Media</Answer3>
-                <Answer3Audio>TheMovingEarthQ2A3.mp3</Answer3Audio>
+                <Answer3Audio>TheMovingEarthQ2A3S.mp3</Answer3Audio>
                 <Answer4>La música Rock</Answer4>
-                <Answer4Audio>TheMovingEarthQ2A4.mp3</Answer4Audio>
+                <Answer4Audio>TheMovingEarthQ2A4S.mp3</Answer4Audio>
                 <expectedSelection>Manto</expectedSelection>
             </Question>
             <Question number="3">
                 <QuestionText>¿Qué hace que las placas se muevan?</QuestionText>
-                <QuestionAudio>TheMovingEarthQ3.mp3</QuestionAudio>
+                <QuestionAudio>TheMovingEarthQ3S.mp3</QuestionAudio>
                 <Answer1>El calor en el manto</Answer1>
-                <Answer1Audio>TheMovingEarthQ3A1.mp3</Answer1Audio>
+                <Answer1Audio>TheMovingEarthQ3A1S.mp3</Answer1Audio>
                 <Answer2>Océanos en el manto</Answer2>
-                <Answer2Audio>TheMovingEarthQ3A2.mp3</Answer2Audio>
+                <Answer2Audio>TheMovingEarthQ3A2S.mp3</Answer2Audio>
                 <Answer3>Desastres naturales</Answer3>
-                <Answer3Audio>TheMovingEarthQ3A3.mp3</Answer3Audio>
+                <Answer3Audio>TheMovingEarthQ3A3S.mp3</Answer3Audio>
                 <Answer4>Un motor</Answer4>
-                <Answer4Audio>TheMovingEarthQ3A4.mp3</Answer4Audio>
+                <Answer4Audio>TheMovingEarthQ3A4S.mp3</Answer4Audio>
                 <expectedSelection>El calor en el manto</expectedSelection>
             </Question>
             <Question number="4">
                 <QuestionText>¿Qué hacen las placas para crear montañas?</QuestionText>
-                <QuestionAudio>TheMovingEarthQ4.mp3</QuestionAudio>
+                <QuestionAudio>TheMovingEarthQ4S.mp3</QuestionAudio>
                 <Answer1>Una placa se mete debajo de otra</Answer1>
-                <Answer1Audio>TheMovingEarthQ4A1.mp3</Answer1Audio>
+                <Answer1Audio>TheMovingEarthQ4A1S.mp3</Answer1Audio>
                 <Answer2>Dos placas se deslizan entre ellas</Answer2>
-                <Answer2Audio>TheMovingEarthQ4A2.mp3</Answer2Audio>
+                <Answer2Audio>TheMovingEarthQ4A2S.mp3</Answer2Audio>
                 <Answer3>Una placa se rompe</Answer3>
-                <Answer3Audio>TheMovingEarthQ4A3.mp3</Answer3Audio>
+                <Answer3Audio>TheMovingEarthQ4A3S.mp3</Answer3Audio>
                 <Answer4>Acumulan mucha mugre</Answer4>
-                <Answer4Audio>TheMovingEarthQ4A4.mp3</Answer4Audio>
+                <Answer4Audio>TheMovingEarthQ4A4S.mp3</Answer4Audio>
                 <expectedSelection>Una placa se mete debajo de otra</expectedSelection>
             </Question>
             <Question number="5">
                 <QuestionText>¿Por qué se movió la pequeña placa café que se convirtió en California?</QuestionText>
-                <QuestionAudio>TheMovingEarthQ5.mp3</QuestionAudio>
+                <QuestionAudio>TheMovingEarthQ5S.mp3</QuestionAudio>
                 <Answer1>Por el calor</Answer1>
-                <Answer1Audio>TheMovingEarthQ5A1.mp3</Answer1Audio>
+                <Answer1Audio>TheMovingEarthQ5A1S.mp3</Answer1Audio>
                 <Answer2>Porque la placa roja empujó debajo de ella</Answer2>
-                <Answer2Audio>TheMovingEarthQ5A2.mp3</Answer2Audio>
+                <Answer2Audio>TheMovingEarthQ5A2S.mp3</Answer2Audio>
                 <Answer3>Por las olas del océano</Answer3>
-                <Answer3Audio>TheMovingEarthQ5A3.mp3</Answer3Audio>
+                <Answer3Audio>TheMovingEarthQ5A3S.mp3</Answer3Audio>
                 <Answer4>Porque quería ir a una mejor escuela</Answer4>
-                <Answer4Audio>TheMovingEarthQ5A4.mp3</Answer4Audio>
+                <Answer4Audio>TheMovingEarthQ5A4S.mp3</Answer4Audio>
                 <expectedSelection>Por el calor</expectedSelection>
             </Question>
             <Question number="6">
                 <QuestionText>Después que las placas se movieron, ¿cómo se veía la Tierra?</QuestionText>
-                <QuestionAudio>TheMovingEarthQ6.mp3</QuestionAudio>
+                <QuestionAudio>TheMovingEarthQ6S.mp3</QuestionAudio>
                 <Answer1>La tierra estaba conectada de una nueva manera</Answer1>
-                <Answer1Audio>TheMovingEarthQ6A1.mp3</Answer1Audio>
+                <Answer1Audio>TheMovingEarthQ6A1S.mp3</Answer1Audio>
                 <Answer2>Había muchas islas</Answer2>
-                <Answer2Audio>TheMovingEarthQ6A2.mp3</Answer2Audio>
+                <Answer2Audio>TheMovingEarthQ6A2S.mp3</Answer2Audio>
                 <Answer3>Solo había océanos</Answer3>
-                <Answer3Audio>TheMovingEarthQ6A3.mp3</Answer3Audio>
+                <Answer3Audio>TheMovingEarthQ6A3S.mp3</Answer3Audio>
                 <Answer4>Alegre y de buen ánimo</Answer4>
-                <Answer4Audio>TheMovingEarthQ6A4.mp3</Answer4Audio>
+                <Answer4Audio>TheMovingEarthQ6A4S.mp3</Answer4Audio>
                 <expectedSelection>La tierra estaba conectada de una nueva manera</expectedSelection>
             </Question>
             <Question number="7">
                 <QuestionText>¿Cuáles son las montañas más altas del mundo?</QuestionText>
-                <QuestionAudio>TheMovingEarthQ7.mp3</QuestionAudio>
+                <QuestionAudio>TheMovingEarthQ7S.mp3</QuestionAudio>
                 <Answer1>Las montañas del Himalaya</Answer1>
-                <Answer1Audio>TheMovingEarthQ7A1.mp3</Answer1Audio>
+                <Answer1Audio>TheMovingEarthQ7A1S.mp3</Answer1Audio>
                 <Answer2>Las montañas de Norteamérica</Answer2>
-                <Answer2Audio>TheMovingEarthQ7A2.mp3</Answer2Audio>
+                <Answer2Audio>TheMovingEarthQ7A2S.mp3</Answer2Audio>
                 <Answer3>Las montañas Rocosas</Answer3>
-                <Answer3Audio>TheMovingEarthQ7A3.mp3</Answer3Audio>
+                <Answer3Audio>TheMovingEarthQ7A3S.mp3</Answer3Audio>
                 <Answer4>Las montañas Rusas</Answer4>
-                <Answer4Audio>TheMovingEarthQ7A4.mp3</Answer4Audio>
+                <Answer4Audio>TheMovingEarthQ7A4S.mp3</Answer4Audio>
                 <expectedSelection>Las montañas del Himalaya</expectedSelection>
             </Question>
         </Questions>
@@ -482,15 +482,15 @@
             </Question>
             <Question number="8">
                 <QuestionText>What does the cool air do inside of the supercell?</QuestionText>
-                <QuestionAudio>TornadosQ7.mp3</QuestionAudio>
+                <QuestionAudio>TornadosQ8.mp3</QuestionAudio>
                 <Answer1>Spins</Answer1>
-                <Answer1Audio>TornadosQ7A1.mp3</Answer1Audio>
+                <Answer1Audio>TornadosQ8A1.mp3</Answer1Audio>
                 <Answer2>Rises</Answer2>
-                <Answer2Audio>TornadosQ7A2.mp3</Answer2Audio>
+                <Answer2Audio>TornadosQ8A2.mp3</Answer2Audio>
                 <Answer3>Pulls in dirt</Answer3>
-                <Answer3Audio>TornadosQ7A3.mp3</Answer3Audio>
+                <Answer3Audio>TornadosQ8A3.mp3</Answer3Audio>
                 <Answer4>The limbo</Answer4>
-                <Answer4Audio>TornadosQ7A4.mp3</Answer4Audio>
+                <Answer4Audio>TornadosQ8A4.mp3</Answer4Audio>
                 <expectedSelection>Spins</expectedSelection>
             </Question>
         </Questions>

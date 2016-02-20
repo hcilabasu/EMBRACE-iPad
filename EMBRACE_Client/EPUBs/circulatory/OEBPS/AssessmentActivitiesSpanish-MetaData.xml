@@ -4,68 +4,68 @@
         <Questions title="Why We Breathe">
             <Question number="1">
                 <QuestionText>¿Cómo metemos oxígeno a la sangre?</QuestionText>
-                <QuestionAudio>WhyWeBreatheQ1.mp3</QuestionAudio>
+                <QuestionAudio>WhyWeBreatheQ1S.mp3</QuestionAudio>
                 <Answer1>Respirando</Answer1>
-                <Answer1Audio>WhyWeBreatheQ1A1.mp3</Answer1Audio>
+                <Answer1Audio>WhyWeBreatheQ1A1S.mp3</Answer1Audio>
                 <expectedSelection>Respirando</expectedSelection>
                 <Answer2>Comiendo</Answer2>
-                <Answer2Audio>WhyWeBreatheQ1A2.mp3</Answer2Audio>
+                <Answer2Audio>WhyWeBreatheQ1A2S.mp3</Answer2Audio>
                 <Answer3>Durmiendo</Answer3>
-                <Answer3Audio>WhyWeBreatheQ1A3.mp3</Answer3Audio>
+                <Answer3Audio>WhyWeBreatheQ1A3S.mp3</Answer3Audio>
                 <Answer4>Pidiéndolo muy amablamente</Answer4>
-                <Answer4Audio>WhyWeBreatheQ1A4.mp3</Answer4Audio>
+                <Answer4Audio>WhyWeBreatheQ1A4S.mp3</Answer4Audio>
             </Question>
             <Question number="2">
                 <QuestionText>Cuando respiramos, a dónde va el oxígeno primero?</QuestionText>
-                <QuestionAudio>WhyWeBreatheQ2.mp3</QuestionAudio>
+                <QuestionAudio>WhyWeBreatheQ2S.mp3</QuestionAudio>
                 <Answer1>A la nariz</Answer1>
-                <Answer1Audio>WhyWeBreatheQ2A1.mp3</Answer1Audio>
+                <Answer1Audio>WhyWeBreatheQ2A1S.mp3</Answer1Audio>
                 <expectedSelection>A la nariz</expectedSelection>
                 <Answer2>A los pulmones</Answer2>
-                <Answer2Audio>WhyWeBreatheQ2A2.mp3</Answer2Audio>
+                <Answer2Audio>WhyWeBreatheQ2A2S.mp3</Answer2Audio>
                 <Answer3>A la sangre</Answer3>
-                <Answer3Audio>WhyWeBreatheQ2A3.mp3</Answer3Audio>
+                <Answer3Audio>WhyWeBreatheQ2A3S.mp3</Answer3Audio>
                 <Answer4>A la uña del pie</Answer4>
-                <Answer4Audio>WhyWeBreatheQ2A4.mp3</Answer4Audio>
+                <Answer4Audio>WhyWeBreatheQ2A4S.mp3</Answer4Audio>
             </Question>
             <Question number="3">
                 <QuestionText>A dónde va el dióxido de carbono cuando exhalamos?</QuestionText>
-                <QuestionAudio>WhyWeBreatheQ3.mp3</QuestionAudio>
+                <QuestionAudio>WhyWeBreatheQ3S.mp3</QuestionAudio>
                 <Answer1>Al aire</Answer1>
-                <Answer1Audio>WhyWeBreatheQ3A1.mp3</Answer1Audio>
+                <Answer1Audio>WhyWeBreatheQ3A1S.mp3</Answer1Audio>
                 <expectedSelection>Al aire</expectedSelection>
                 <Answer2>A los pulmones</Answer2>
-                <Answer2Audio>WhyWeBreatheQ3A2.mp3</Answer2Audio>
+                <Answer2Audio>WhyWeBreatheQ3A2S.mp3</Answer2Audio>
                 <Answer3>A la sangre</Answer3>
-                <Answer3Audio>WhyWeBreatheQ3A3.mp3</Answer3Audio>
+                <Answer3Audio>WhyWeBreatheQ3A3S.mp3</Answer3Audio>
                 <Answer4>A la oreja</Answer4>
-                <Answer4Audio>WhyWeBreatheQ3A4.mp3</Answer4Audio>
+                <Answer4Audio>WhyWeBreatheQ3A4S.mp3</Answer4Audio>
             </Question>
             <Question number="4">
                 <QuestionText>A dónde va primero el dióxido de carbono de la célula de sangre?</QuestionText>
-                <QuestionAudio>WhyWeBreatheQ4.mp3</QuestionAudio>
+                <QuestionAudio>WhyWeBreatheQ4S.mp3</QuestionAudio>
                 <Answer1>A los pulmones</Answer1>
-                <Answer1Audio>WhyWeBreatheQ4A1.mp3</Answer1Audio>
+                <Answer1Audio>WhyWeBreatheQ4A1S.mp3</Answer1Audio>
                 <expectedSelection>A los pulmones</expectedSelection>
                 <Answer2>Al corazón</Answer2>
-                <Answer2Audio>WhyWeBreatheQ4A2.mp3</Answer2Audio>
+                <Answer2Audio>WhyWeBreatheQ4A2S.mp3</Answer2Audio>
                 <Answer3>Al aire</Answer3>
-                <Answer3Audio>WhyWeBreatheQ4A3.mp3</Answer3Audio>
+                <Answer3Audio>WhyWeBreatheQ4A3S.mp3</Answer3Audio>
                 <Answer4>Al ojo</Answer4>
-                <Answer4Audio>WhyWeBreatheQ4A4.mp3</Answer4Audio>
+                <Answer4Audio>WhyWeBreatheQ4A4S.mp3</Answer4Audio>
             </Question>
             <Question number="5">
                 <QuestionText>El oxígeno en la sangre ayuda a convertir la comida en energía, de tal manera que nosotros podamos…?</QuestionText>
-                <QuestionAudio>WhyWeBreatheQ5.mp3</QuestionAudio>
+                <QuestionAudio>WhyWeBreatheQ5S.mp3</QuestionAudio>
                 <Answer1>Vivir</Answer1>
-                <Answer1Audio>WhyWeBreatheQ5A1.mp3</Answer1Audio>
+                <Answer1Audio>WhyWeBreatheQ5A1S.mp3</Answer1Audio>
                 <expectedSelection>Vivir</expectedSelection>
-                <Answer2>Hacer moléculas</Answer2>
-                <Answer2Audio>WhyWeBreatheQ5A2.mp3</Answer2Audio>
+                <Answer2>Exhalar</Answer2>
+                <Answer2Audio>WhyWeBreatheQ5A2S.mp3</Answer2Audio>
                 <Answer3>Inhalar</Answer3>
-                <Answer3Audio>WhyWeBreatheQ5A3.mp3</Answer3Audio>
+                <Answer3Audio>WhyWeBreatheQ5A3S.mp3</Answer3Audio>
                 <Answer4>Roncar</Answer4>
-                <Answer4Audio>WhyWeBreatheQ5A4.mp3</Answer4Audio>
+                <Answer4Audio>WhyWeBreatheQ5A4S.mp3</Answer4Audio>
             </Question>
         </Questions>
         <Questions title="The Amazing Heart">
@@ -230,7 +230,7 @@
                 <Answer4Audio>GettingMoreOxygenfortheMusclesQ2A4.mp3</Answer4Audio>
             </Question>
             <Question number="3">
-                <QuestionText>Why cant the blood go from the right ventricle to the atrium?</QuestionText>
+                <QuestionText>Why can't the blood go from the right ventricle to the atrium?</QuestionText>
                 <QuestionAudio>GettingMoreOxygenfortheMusclesQ3.mp3</QuestionAudio>
                 <Answer1>The valve is closed</Answer1>
                 <Answer1Audio>GettingMoreOxygenfortheMusclesQ3A1.mp3</Answer1Audio>
@@ -256,7 +256,7 @@
                 <Answer4Audio>GettingMoreOxygenfortheMusclesQ4A4.mp3</Answer4Audio>
             </Question>
             <Question number="5">
-                <QuestionText>Which molecule goes into the blood after you breathe in?</QuestionText>
+                <QuestionText>Which one of these goes into the blood after you breathe in?</QuestionText>
                 <QuestionAudio>GettingMoreOxygenfortheMusclesQ5.mp3</QuestionAudio>
                 <Answer1>Oxygen</Answer1>
                 <Answer1Audio>GettingMoreOxygenfortheMusclesQ5A1.mp3</Answer1Audio>
@@ -276,7 +276,7 @@
                 <expectedSelection>The blood needs to get more oxygen first</expectedSelection>
                 <Answer2>The blood needs to get more veins first</Answer2>
                 <Answer2Audio>GettingMoreOxygenfortheMusclesQ6A2.mp3</Answer2Audio>
-                <Answer3>The blood doesnt have enough carbon dioxide</Answer3>
+                <Answer3>The blood doesn't have enough carbon dioxide</Answer3>
                 <Answer3Audio>GettingMoreOxygenfortheMusclesQ6A3.mp3</Answer3Audio>
                 <Answer4>The blood and lungs are BFFs</Answer4>
                 <Answer4Audio>GettingMoreOxygenfortheMusclesQ6A4.mp3</Answer4Audio>
