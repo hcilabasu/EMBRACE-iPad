@@ -4876,7 +4876,7 @@ BOOL wasPathFollowed = false;
     }
     
     if (postAudio != nil) {
-        [array addObject:postAudio];
+        [array addObjectsFromArray:postAudio];
     }
     
     if ([array count] > 0) {

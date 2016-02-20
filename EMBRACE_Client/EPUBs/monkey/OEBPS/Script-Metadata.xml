@@ -22,12 +22,14 @@
                         <english>
                             <audio seq="1">NaughtyMonkey_Script_C1.mp3</audio>
                             <audio seq="2">NaughtyMonkey_Script_C2.mp3</audio>
+                            <audio seq="3">NaughtyMonkey_Script_C3.mp3</audio>
                         </english>
                         
                       
                     </preAudio>
                     <postAudio>
                         <english>
+                            <audio seq="1">NaughtyMonkey_Script_C4.mp3</audio>
                         </english>
                         
                         <bilingual>
@@ -52,6 +54,31 @@
                     
                 </embrace>
                 
+                <control>
+                    <preAudio>
+                        <english>
+                            <audio seq="1">NaughtyMonkey_Script_C5.mp3</audio>
+                            <audio seq="2">NaughtyMonkey_Script_C6.mp3</audio>
+                        </english>
+                        
+                        
+                    </preAudio>
+                    
+                </control>
+            </sentence>
+            
+            <sentence number="2">
+            
+                <control>
+                    <preAudio>
+                        <english>
+                            <audio seq="1">NaughtyMonkey_Script_C5.mp3</audio>
+                            <audio seq="2">NaughtyMonkey_Script_C6.mp3</audio>
+                        </english>
+                        
+                    </preAudio>
+                    
+                </control>
             </sentence>
             
             <sentence number="3">
@@ -68,22 +95,15 @@
                     
                 </embrace>
                 
-            </sentence>
-            
-            <sentence number="3">
-                
-                <embrace>
+                <control>
                     <preAudio>
                         <english>
-                            <audio seq="1">NaughtyMonkey_Script3.mp3</audio>
+                            <audio seq="1">NaughtyMonkey_Script_C7.mp3</audio>
                         </english>
                         
-                        <bilingual>
-                        </bilingual>
                     </preAudio>
                     
-                </embrace>
-                
+                </control>
             </sentence>
             
             <sentence number="4">
@@ -108,6 +128,15 @@
                     </postAudio>
                 </embrace>
                 
+                <control>
+                    <postAudio>
+                        <english>
+                            <audio seq="1">NaughtyMonkey_Script_C8.mp3</audio>
+                        </english>
+                        
+                    </postAudio>
+                    
+                </control>
             </sentence>
             
             <sentence number="5">
@@ -123,7 +152,15 @@
                     </preAudio>
                     
                 </embrace>
-                
+                <control>
+                    <preAudio>
+                        <english>
+                            <audio seq="1">NaughtyMonkey_Script_C9.mp3</audio>
+                        </english>
+                        
+                    </preAudio>
+                    
+                </control>
             </sentence>
             
         </story>
@@ -141,6 +178,22 @@
                     </preAudio>
                     
                 </embrace>
+                
+                <control>
+                    <preAudio>
+                        <english>
+                            <audio seq="1">NaughtyMonkey_Script_C10.mp3</audio>
+                        </english>
+                        
+                    </preAudio>
+                    <postAudio>
+                        <english>
+                            <audio seq="1">NaughtyMonkey_Script_C11.mp3</audio>
+                        </english>
+                        
+                    </postAudio>
+                    
+                </control>
             </sentence>
             
             <sentence number="8">
@@ -156,6 +209,16 @@
                     </postAudio>
                     
                 </embrace>
+                
+                <control>
+                    <postAudio>
+                        <english>
+                            <audio seq="1">NaughtyMonkey_Script_C12.mp3</audio>
+                        </english>
+                        
+                    </postAudio>
+                    
+                </control>
             </sentence>
             
         </story>
