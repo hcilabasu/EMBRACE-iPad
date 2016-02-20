@@ -1317,7 +1317,6 @@
 		5C0ED6641C752C2F00003B5A /* CleaningUpQ3A4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C0ED5871C752C2F00003B5A /* CleaningUpQ3A4.mp3 */; };
 		5C0ED6651C752C2F00003B5A /* CleaningUpQ4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C0ED5881C752C2F00003B5A /* CleaningUpQ4.mp3 */; };
 		5C0ED6661C752C2F00003B5A /* CleaningUpQ4A1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C0ED5891C752C2F00003B5A /* CleaningUpQ4A1.mp3 */; };
-		5C0ED6671C752C2F00003B5A /* CleaningUpQ4A2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C0ED58A1C752C2F00003B5A /* CleaningUpQ4A2.mp3 */; };
 		5C0ED6681C752C2F00003B5A /* CleaningUpQ4A3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C0ED58B1C752C2F00003B5A /* CleaningUpQ4A3.mp3 */; };
 		5C0ED6691C752C2F00003B5A /* CleaningUpQ4A4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C0ED58C1C752C2F00003B5A /* CleaningUpQ4A4.mp3 */; };
 		5C0ED66A1C752C2F00003B5A /* CleaningUpQ5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C0ED58D1C752C2F00003B5A /* CleaningUpQ5.mp3 */; };
@@ -1439,7 +1438,6 @@
 		5C0ED6DE1C752C2F00003B5A /* TheContestQ3A1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C0ED6011C752C2F00003B5A /* TheContestQ3A1.mp3 */; };
 		5C0ED6DF1C752C2F00003B5A /* TheContestQ3A2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C0ED6021C752C2F00003B5A /* TheContestQ3A2.mp3 */; };
 		5C0ED6E01C752C2F00003B5A /* TheContestQ3A3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C0ED6031C752C2F00003B5A /* TheContestQ3A3.mp3 */; };
-		5C0ED6E11C752C2F00003B5A /* TheContestQ3A4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C0ED6041C752C2F00003B5A /* TheContestQ3A4.mp3 */; };
 		5C0ED6E21C752C2F00003B5A /* TheContestQ4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C0ED6051C752C2F00003B5A /* TheContestQ4.mp3 */; };
 		5C0ED6E31C752C2F00003B5A /* TheContestQ4A1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C0ED6061C752C2F00003B5A /* TheContestQ4A1.mp3 */; };
 		5C0ED6E41C752C2F00003B5A /* TheContestQ4A2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C0ED6071C752C2F00003B5A /* TheContestQ4A2.mp3 */; };
@@ -1608,7 +1606,6 @@
 		5C0ED8781C75334200003B5A /* AGiftfortheBrideQ5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C0ED7AB1C75334200003B5A /* AGiftfortheBrideQ5.mp3 */; };
 		5C0ED8791C75334200003B5A /* AGiftfortheBrideQ5A1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C0ED7AC1C75334200003B5A /* AGiftfortheBrideQ5A1.mp3 */; };
 		5C0ED87A1C75334200003B5A /* AGiftfortheBrideQ5A2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C0ED7AD1C75334200003B5A /* AGiftfortheBrideQ5A2.mp3 */; };
-		5C0ED87B1C75334200003B5A /* AGiftfortheBrideQ5A3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C0ED7AE1C75334200003B5A /* AGiftfortheBrideQ5A3.mp3 */; };
 		5C0ED87C1C75334200003B5A /* AGiftfortheBrideQ5A4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C0ED7AF1C75334200003B5A /* AGiftfortheBrideQ5A4.mp3 */; };
 		5C0ED87D1C75334200003B5A /* AGiftfortheBrideQ6.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C0ED7B01C75334200003B5A /* AGiftfortheBrideQ6.mp3 */; };
 		5C0ED87E1C75334200003B5A /* AGiftfortheBrideQ6A1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C0ED7B11C75334200003B5A /* AGiftfortheBrideQ6A1.mp3 */; };
@@ -2383,7 +2380,6 @@
 		5C72E76F1C72BF1000CE4877 /* HowdoObjectsMoveQ2A2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C72E6861C72BF1000CE4877 /* HowdoObjectsMoveQ2A2.mp3 */; };
 		5C72E7701C72BF1000CE4877 /* HowdoObjectsMoveQ2A3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C72E6871C72BF1000CE4877 /* HowdoObjectsMoveQ2A3.mp3 */; };
 		5C72E7711C72BF1000CE4877 /* HowdoObjectsMoveQ3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C72E6881C72BF1000CE4877 /* HowdoObjectsMoveQ3.mp3 */; };
-		5C72E7721C72BF1000CE4877 /* HowdoObjectsMoveQ3A1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C72E6891C72BF1000CE4877 /* HowdoObjectsMoveQ3A1.mp3 */; };
 		5C72E7731C72BF1000CE4877 /* HowdoObjectsMoveQ3A2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C72E68A1C72BF1000CE4877 /* HowdoObjectsMoveQ3A2.mp3 */; };
 		5C72E7741C72BF1000CE4877 /* HowdoObjectsMoveQ3A3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C72E68B1C72BF1000CE4877 /* HowdoObjectsMoveQ3A3.mp3 */; };
 		5C72E7751C72BF1000CE4877 /* HowdoObjectsMoveQ3A4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C72E68C1C72BF1000CE4877 /* HowdoObjectsMoveQ3A4.mp3 */; };
@@ -13102,10 +13098,6 @@
 			isa = PBXGroup;
 			children = (
 				5DED1C961C765BD200B29369 /* NaughtyMonkey_Script_C1.mp3 */,
-				5DED1C971C765BD200B29369 /* NaughtyMonkey_Script_C10.mp3 */,
-				5DED1C981C765BD200B29369 /* NaughtyMonkey_Script_C11.mp3 */,
-				5DED1C991C765BD200B29369 /* NaughtyMonkey_Script_C12.mp3 */,
-				5DED1C9A1C765BD200B29369 /* NaughtyMonkey_Script_C13.mp3 */,
 				5DED1C9B1C765BD200B29369 /* NaughtyMonkey_Script_C2.mp3 */,
 				5DED1C9C1C765BD200B29369 /* NaughtyMonkey_Script_C3.mp3 */,
 				5DED1C9D1C765BD200B29369 /* NaughtyMonkey_Script_C4.mp3 */,
@@ -13114,6 +13106,10 @@
 				5DED1CA01C765BD200B29369 /* NaughtyMonkey_Script_C7.mp3 */,
 				5DED1CA11C765BD200B29369 /* NaughtyMonkey_Script_C8.mp3 */,
 				5DED1CA21C765BD200B29369 /* NaughtyMonkey_Script_C9.mp3 */,
+				5DED1C971C765BD200B29369 /* NaughtyMonkey_Script_C10.mp3 */,
+				5DED1C981C765BD200B29369 /* NaughtyMonkey_Script_C11.mp3 */,
+				5DED1C991C765BD200B29369 /* NaughtyMonkey_Script_C12.mp3 */,
+				5DED1C9A1C765BD200B29369 /* NaughtyMonkey_Script_C13.mp3 */,
 			);
 			path = Control;
 			sourceTree = "<group>";
@@ -15133,7 +15129,6 @@
 				5C0ED6AD1C752C2F00003B5A /* GettingReadyQ6A2.mp3 in Resources */,
 				5C9C082A1C57385A00702FCD /* jumpS.m4a in Resources */,
 				5C9C0ACE1C573AAA00702FCD /* valveE.m4a in Resources */,
-				5C9C0AFB1C573AAA00702FCD /* WhyWeBreatheQ3A2.mp3 in Resources */,
 				033FC86A1C6C538800CF3850 /* sequences_MCD09.xml in Resources */,
 				1A6323461C0E4D3B00251CB3 /* Story1-How-do-Objects-Move-PM-2.xhtml in Resources */,
 				5C04215D1C618C2B001BBE9D /* CatchQ1.mp3 in Resources */,
@@ -16574,8 +16569,6 @@
 				1A63207F1C0E4D3B00251CB3 /* content.opf in Resources */,
 				1A6322731C0E4D3B00251CB3 /* Story4-Volcanoes-and-the-Making-of-Hawaii-PM-4.xhtml in Resources */,
 				033FC8681C6C538800CF3850 /* sequences_MCD07.xml in Resources */,
-				5C9C07491C57385A00702FCD /* GettingReadyQ5A1.mp3 in Resources */,
-				5C9C0A081C573AAA00702FCD /* GettingMoreOxygenForTheMusclesQ1A1.mp3 in Resources */,
 				5C9C0AA41C573AAA00702FCD /* dustE.m4a in Resources */,
 				5C0ED55F1C75080300003B5A /* KeyIngredientsQ3A2S.mp3 in Resources */,
 				5C9C08471C57385A00702FCD /* weedsE.m4a in Resources */,
