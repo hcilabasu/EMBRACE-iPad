@@ -4,18 +4,17 @@
         <story title="The Naughty Monkey" activity_id="story1-PM-1">
             <sentence number="3">
                 <step number="1">
-                    <group obj1Id="lisa" action="fill" obj2Id="trough"/>
-                    <ungroupAndStay obj1Id="lisa" action="leave" obj2Id="trough"/>
+                    <check obj1Id="lisa" action="getIn" locationId="trough"/>
                     <move obj1Id="lisa" action="getIn" waypointId="trough"/>
                 </step>
             </sentence>
             <sentence number="4">
                 <step number="1">
-                    <shakeOrTap obj1Id="lisa" action="getIn" locationId="anywhere"/>
+                    <group obj1Id="lisa" action="fill" obj2Id="trough"/>
+                    <ungroupAndStay obj1Id="lisa" action="leave" obj2Id="trough"/>
                     <move obj1Id="lisa" action="getIn" waypointId="trough"/>
                     <swapImage obj1Id="trough" action="filled"/>
                     <playSound fileName="NaughtyMonkey_Script4.mp3"/>
-
                 </step>
             </sentence>
             <sentence number="5">
