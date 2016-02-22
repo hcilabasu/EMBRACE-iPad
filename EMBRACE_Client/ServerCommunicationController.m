@@ -1634,4 +1634,120 @@ DDXMLElement *nodeStudy;
     }
 }
 
+/*
+ * Uploads log files and progress files to Dropbox for the specified student
+ */
+- (void)uploadFilesForStudent:(Student *)student {
+    //Dropbox access token
+    NSString *accessToken = @"I8aODJoC2RYAAAAAAAAAFhNr-UY0AM4r_e_KEsIzwqqyxCkn1VqWpLktQPSvyFoh";
+    
+    NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    sessionConfiguration.HTTPAdditionalHeaders = @{
+                                                   @"Authorization": [NSString stringWithFormat:@"Bearer %@", accessToken],
+                                                   @"Content-Type": @"application/zip"
+                                                   };
+    
+    //Get Documents directory on iPad
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    //Store names of files to upload in array
+    NSString *logFileName = [NSString stringWithFormat:@"%@.txt", studyFileName];
+    NSString *progressFileName = [NSString stringWithFormat:@"%@_%@_%@_progress.xml", [student schoolCode],[student participantCode],[student studyDay]];
+    NSArray *filesToUpload = [[NSArray alloc] initWithObjects:logFileName, progressFileName, nil];
+    
+    //Upload each file to Dropbox
+    for (NSString *fileToUpload in filesToUpload) {
+        NSString *filePath = [documentsDirectory stringByAppendingPathComponent:fileToUpload]; //Path of file on iPad
+        
+        NSString *content = [[NSString alloc] initWithContentsOfFile:filePath usedEncoding:nil error:nil];
+        
+        NSString *dbDirName = @"";
+        NSString *pathExtension = [fileToUpload pathExtension];
+        
+        //Determine name of folder to put file in based on its extension
+        if ([pathExtension isEqualToString:@"txt"]) {
+            dbDirName = @"LogFiles";
+        }
+        else if ([pathExtension isEqualToString:@"xml"]) {
+            dbDirName = @"ProgressFiles";
+        }
+        else {
+            dbDirName = @"UnknownFiles";
+        }
+        
+        NSString *dbFileName = [NSString stringWithFormat:@"%@/%@", dbDirName, fileToUpload]; //Name of file to use on Dropbox
+        NSString *localDir = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+        NSString *localPath = [localDir stringByAppendingPathComponent:dbFileName];
+        
+        [content writeToFile:localPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+        
+        NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:sessionConfiguration delegate:self delegateQueue:[NSOperationQueue mainQueue]];
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api-content.dropbox.com/1/files_put/auto/%@?overwrite=true", [dbFileName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]]; //Files with same name will be overwritten
+        [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
+        NSData *data = [[NSFileManager defaultManager] contentsAtPath:filePath];
+        [request setHTTPMethod:@"PUT"];
+        [request setHTTPBody:data];
+        [request setTimeoutInterval:1000];
+        
+        NSURLSessionDataTask *doDataTask = [defaultSession dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            if (!error) {
+                NSLog(@"Successfully uploaded student files to Dropbox.");
+            }
+            else {
+                NSLog(@"Failed to upload student files to Dropbox. Error: %@", error);
+            }
+        }];
+        
+        [doDataTask resume];
+    }
+}
+
+/*
+ * Downloads progress file from Dropbox for specified student
+ */
+- (void)downloadProgressForStudent:(Student *)student completionHandler:(void (^)(BOOL success))completionHandler {
+    //Dropbox access token
+    NSString *accessToken = @"I8aODJoC2RYAAAAAAAAAFhNr-UY0AM4r_e_KEsIzwqqyxCkn1VqWpLktQPSvyFoh";
+    
+    NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    sessionConfiguration.HTTPAdditionalHeaders = @{
+                                                   @"Authorization": [NSString stringWithFormat:@"Bearer %@", accessToken],
+                                                   @"Content-Type": @"application/zip"
+                                                   };
+    
+    NSString *progressFileName = [NSString stringWithFormat:@"%@_%@_%@_progress.xml", [student schoolCode],[student participantCode],[student studyDay]];
+    NSString *dbFileName = [NSString stringWithFormat:@"ProgressFiles/%@", progressFileName]; //Name of progress file on Dropbox
+    
+    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:sessionConfiguration delegate:self delegateQueue:[NSOperationQueue mainQueue]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api-content.dropbox.com/1/files/auto/%@", [dbFileName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]]; //File with same name will be overwritten
+    [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
+    [request setHTTPMethod:@"GET"];
+    [request setTimeoutInterval:1000];
+    
+    NSURLSessionDataTask *doDataTask = [defaultSession dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+        long responseCode = (long)[httpResponse statusCode];
+        
+        if (!error && responseCode != 404) {
+            NSLog(@"Successfully downloaded progress file for student from Dropbox.");
+            
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSString *documentsDirectory = [paths objectAtIndex:0];
+            NSString *filePath = [documentsDirectory stringByAppendingPathComponent:progressFileName]; //Path of file on iPad
+            
+            [data writeToFile:filePath atomically:YES];
+            
+            completionHandler(YES);
+        }
+        else {
+            NSLog(@"Failed to download progress file for student from Dropbox.");
+            
+            completionHandler(NO);
+        }
+    }];
+    
+    [doDataTask resume];
+}
+
 @end

@@ -193,6 +193,41 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
         //Update progress with any new books/chapters that might have been added
         [studentProgress addNewContent:books];
     }
+    
+//    //NOTE: Still testing this functionality
+//    //Download progress file from Dropbox
+//    [[ServerCommunicationController sharedManager] downloadProgressForStudent:student completionHandler:^(BOOL success) {
+//        if (success) {
+//            //Load progress for student
+//            studentProgress = [[ServerCommunicationController sharedManager] loadProgress:student];
+//            
+//            //Update progress with any new books/chapters that might have been added
+//            [studentProgress addNewContent:books];
+//        }
+//        else {
+//            //Create new progress for student
+//            studentProgress = [[Progress alloc] init];
+//            [studentProgress loadBooks:books];
+//            
+//            NSString *firstBookTitle; //title of first book to set in progress
+//            
+//            if (useSequence) {
+//                studentProgress.sequenceId = [[student participantCode] uppercaseString]; //sequence id is just the participant code
+//                studentProgress.currentSequence = 0; //index of first sequence
+//                
+//                firstBookTitle = [[[sequenceController sequences] objectAtIndex:[studentProgress currentSequence]] bookTitle];
+//            }
+//            else {
+//                firstBookTitle = [bookTitles objectAtIndex:0];
+//            }
+//            
+//            //Set first book as in progress
+//            [studentProgress setNextChapterInProgressForBook:firstBookTitle];
+//        }
+//        
+//        //Update progress indicators
+//        [self.libraryView reloadSections:[NSIndexSet indexSetWithIndex:0]];
+//    }];
 }
 
 /*
@@ -327,6 +362,10 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
     
     //Save progress to file
     [[ServerCommunicationController sharedManager] saveProgress:student :studentProgress];
+    
+    //NOTE: Still testing this functionality
+    //Upload log file and progress file to Dropbox
+    //[[ServerCommunicationController sharedManager] uploadFilesForStudent:student];
     
     [self.navigationController popViewControllerAnimated:YES];
 }

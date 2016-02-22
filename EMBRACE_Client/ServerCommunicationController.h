@@ -100,4 +100,7 @@
 - (Progress *)loadProgress:(Student *)student;
 - (void)saveProgress:(Student *)student :(Progress *)progress;
 
+- (void)uploadFilesForStudent:(Student *)student;
+- (void)downloadProgressForStudent:(Student *)student completionHandler:(void (^)(BOOL success))completionHandler;
+
 @end
