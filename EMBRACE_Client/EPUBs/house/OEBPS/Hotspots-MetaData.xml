@@ -43,12 +43,12 @@
         <hotspot objId="pacoIM" action="standWith" role="subject" x="130%" y="120%"/>
         <hotspot objId="lolaIM" action="standWith" role="subject" x="50%" y="50%"/>
         
-        <hotspot objId="babyIM" action="sitIn" role="object" x="50%" y="75%"/>
+        <hotspot objId="babyIM" action="sitIn" role="object" x="50%" y="90%"/>
         <hotspot objId="babyIM" action="standBy" role="object" x="0%" y="0%"/>
         <hotspot objId="highchairIM" action="sitIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="highchairIM" action="standBy" role="subject" x="50%" y="50%"/>
         
-        <hotspot objId="highchairfrontIM" action="getIn" role="object" x="50%" y="50%"/>
+        <hotspot objId="highchairfrontIM" action="getIn" role="object" x="50%" y="70%"/>
         <hotspot objId="highchairIM" action="getIn" role="subject" x="50%" y="50%"/>
         
         <hotspot objId="keysIM" action="layBy" role="object" x="0%" y="0%"/>

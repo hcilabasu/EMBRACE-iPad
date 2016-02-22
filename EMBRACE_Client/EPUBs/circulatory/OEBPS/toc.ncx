@@ -47,18 +47,6 @@
 		  </navLabel>
 		  <content src="Text/Story1-Why-We-Breathe-PM-3S.xhtml"/>
 		</navPoint>
-		<navPoint class="IM_MODE" id="story1-IM-1">
-		  <navLabel>
-    		<text>Why We Breathe - IM</text>
-		  </navLabel>
-		  <content src="Text/Story1-Why-We-Breathe-IM-1.xhtml"/>
-		</navPoint>
-		<navPoint class="IM_MODE" id="story1-IM-2">
-		  <navLabel>
-    		<text>Why We Breathe - IM</text>
-		  </navLabel>
-		  <content src="Text/Story1-Why-We-Breathe-IM-2.xhtml"/>
-		</navPoint>
 	</navPoint>
 
   <navPoint class="ChapterTitle" id="Chapter2Title" playOrder="2">
@@ -96,18 +84,6 @@
 		  </navLabel>
 		  <content src="Text/Story2-The-Amazing-Heart-PM-4.xhtml"/>
 		</navPoint>
-		<navPoint class="IM_MODE" id="story2-IM-1">
-		  <navLabel>
-    		<text>The Amazing Heart - IM</text>
-		  </navLabel>
-		  <content src="Text/Story2-The-Amazing-Heart-IM-1.xhtml"/>
-		</navPoint>
-		<navPoint class="IM_MODE" id="story2-IM-2">
-		  <navLabel>
-    		<text>The Amazing Heart - IM</text>
-		  </navLabel>
-		  <content src="Text/Story2-The-Amazing-Heart-IM-2.xhtml"/>
-      </navPoint>
 	</navPoint>
 
     <navPoint class="ChapterTitle" id="Chapter3Title" playOrder="3">
@@ -138,18 +114,6 @@
     		<text>Muscles Use Oxygen - PM</text>
 		  </navLabel>
 		  <content src="Text/Story3-Muscles-Use-Oxygen-PM-3.xhtml"/>
-		</navPoint>
-		<navPoint class="IM_MODE" id="story3-IM-1">
-		  <navLabel>
-    		<text>Muscles Use Oxygen - IM</text>
-		  </navLabel>
-		  <content src="Text/Story3-Muscles-Use-Oxygen-IM-1.xhtml"/>
-		</navPoint>
-		<navPoint class="IM_MODE" id="story3-IM-2">
-		  <navLabel>
-    		<text>Muscles Use Oxygen - IM</text>
-		  </navLabel>
-		  <content src="Text/Story3-Muscles-Use-Oxygen-IM-2.xhtml"/>
 		</navPoint>
 	</navPoint>
 
@@ -200,18 +164,6 @@
 		  </navLabel>
 		  <content src="Text/Story4-Getting-More-Oxygen-for-the-Muscles-PM-6.xhtml"/>
 		</navPoint>
-		<navPoint class="IM_MODE" id="story4-IM-1">
-		  <navLabel>
-    		<text>Getting More Oxygen for the Muscles - IM</text>
-		  </navLabel>
-		  <content src="Text/Story4-Getting-More-Oxygen-for-the-Muscles-IM-1.xhtml"/>
-		</navPoint>
-		<navPoint class="IM_MODE" id="story4-IM-2">
-		  <navLabel>
-    		<text>Getting More Oxygen for the Muscles - IM</text>
-		  </navLabel>
-		  <content src="Text/Story4-Getting-More-Oxygen-for-the-Muscles-IM-2.xhtml"/>
-		</navPoint>
 	</navPoint>
 
   <navPoint class="ChapterTitle" id="Chapter5Title" playOrder="5">
@@ -248,18 +200,6 @@
     		<text>Cigarette Smoke Hurts Your Lungs - PM</text>
 		  </navLabel>
 		  <content src="Text/Story5-Cigarette-Smoke-Hurts-Your-Lungs-PM-4.xhtml"/>
-		</navPoint>
-		<navPoint class="IM_MODE" id="story5-IM-1">
-		  <navLabel>
-    		<text>Cigarette Smoke Hurts Your Lungs - IM</text>
-		  </navLabel>
-		  <content src="Text/Story5-Cigarette-Smoke-Hurts-Your-Lungs-IM-1.xhtml"/>
-		</navPoint>
-		<navPoint class="IM_MODE" id="story5-IM-2">
-		  <navLabel>
-    		<text>Cigarette Smoke Hurts Your Lungs - IM</text>
-		  </navLabel>
-		  <content src="Text/Story5-The-Amazing-Heart-IM-2.xhtml"/>
 		</navPoint>
 	</navPoint>
 </navMap>
@@ -372,46 +312,5 @@
     	<navLabel><text>Chapter 5 - Cigarette Smoke Hurts Your Lungs - Physical Manipulation 4</text></navLabel>
 		<content src="Text/Story5-Cigarette-Smoke-Hurts-Your-Lungs-PM-4.xhtml"/>
 	</pageTarget>
-	
-    <pageTarget id="p27" type="normal" value="27">
-    	<navLabel><text>Chapter 1 - Why We Breathe - Imagine Manipulation 1</text></navLabel>
-		<content src="Text/Story1-Why-We-Breathe-IM-1.xhtml"/>
-	</pageTarget>        
-	<pageTarget id="p28" type="normal" value="28">
-    	<navLabel><text>Chapter 1 - Why We Breathe - Imagine Manipulation 2</text></navLabel>
-		<content src="Text/Story1-Why-We-Breathe-IM-2.xhtml"/>
-	</pageTarget>  
-   <pageTarget id="p29" type="normal" value="29">
-    	<navLabel><text>Chapter 2 - The Amazing Heart - Imagine Manipulation 1</text></navLabel>
-		<content src="Text/Story2-The-Amazing-Heart-IM-1.xhtml"/>
-	</pageTarget> 
-   <pageTarget id="p30" type="normal" value="30">
-    	<navLabel><text>Chapter 2 - The Amazing Heart - Imagine Manipulation 2</text></navLabel>
-		<content src="Text/Story2-The-Amazing-Heart-IM-2.xhtml"/>
-	</pageTarget>     
-   <pageTarget id="p31" type="normal" value="31">
-    	<navLabel><text>Chapter 3 - Muscles Use Oxygen - Imagine Manipulation 1</text></navLabel>
-		<content src="Text/Story3-Muscles-Use-Oxygen-IM-1.xhtml"/>
-	</pageTarget> 
-   <pageTarget id="p32" type="normal" value="32">
-    	<navLabel><text>Chapter 3 - Muscles Use Oxygen - Imagine Manipulation 2</text></navLabel>
-		<content src="Text/Story3-Muscles-Use-Oxygen-IM-2.xhtml"/>
-	</pageTarget> 
-   <pageTarget id="p33" type="normal" value="33">
-    	<navLabel><text>Chapter 4 - Getting More Oxygen for the Muscles - Imagine Manipulation 1</text></navLabel>
-		<content src="Text/Story4-Getting-More-Oxygen-for-the-Muscles-IM-1.xhtml"/>
-	</pageTarget>
-   <pageTarget id="p34" type="normal" value="34">
-    	<navLabel><text>Chapter 4 - Getting More Oxygen for the Muscles - Imagine Manipulation 2</text></navLabel>
-		<content src="Text/Story4-Getting-More-Oxygen-for-the-Muscles-IM-2.xhtml"/>
-	</pageTarget>
-   <pageTarget id="p35" type="normal" value="35">
-    	<navLabel><text>Chapter 5 - Cigarette Smoke Hurts Your Lungs - Imagine Manipulation 1</text></navLabel>
-		<content src="Text/Story5-Cigarette-Smoke-Hurts-Your-Lungs-IM-1.xhtml"/>
-	</pageTarget> 
-   <pageTarget id="p36" type="normal" value="36">
-    	<navLabel><text>Chapter 5 - Cigarette Smoke Hurts Your Lungs - Imagine Manipulation 2</text></navLabel>
-		<content src="Text/Story5-Cigarette-Smoke-Hurts-Your-Lungs-IM-2.xhtml"/>
-	</pageTarget> 
 </pageList>
 </ncx>

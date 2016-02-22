@@ -50,18 +50,6 @@
 		  </navLabel>
 		  <content src="Text/Story1-The-Contest-PM-2S.xhtml"/>
 		</navPoint>
-		<navPoint class="IM_MODE" id="story1-IM-1">
-		  <navLabel>
-    		<text>The Contest - IM</text>
-		  </navLabel>
-		  <content src="Text/Story1-The-Contest-IM-1.xhtml"/>
-		</navPoint>
-		<navPoint class="IM_MODE" id="story1-IM-2">
-		  <navLabel>
-    		<text>The Contest - IM</text>
-		  </navLabel>
-		  <content src="Text/Story1-The-Contest-IM-2.xhtml"/>
-		</navPoint>
 	</navPoint>
 	<navPoint class="ChapterTitle" id="Chapter2Title" playOrder="2">
 		<navLabel>
@@ -85,18 +73,6 @@
 	    	<text>Getting Ready - PM</text>
 		  </navLabel>
 		  <content src="Text/Story2-Getting-Ready-PM-2.xhtml"/>
-		</navPoint>
-		<navPoint class="IM_MODE" id="story2-IM-1">
-		  <navLabel>
-    		<text>Getting Ready - IM</text>
-		  </navLabel>
-		  <content src="Text/Story2-Getting-Ready-IM-1.xhtml"/>
-		</navPoint>
-		<navPoint class="IM_MODE" id="story2-IM-2">
-		  <navLabel>
-	    	<text>Getting Ready - IM</text>
-		  </navLabel>
-		  <content src="Text/Story2-Getting-Ready-IM-2.xhtml"/>
 		</navPoint>
 	</navPoint>
 	<navPoint class="ChapterTitle" id="Chapter3Title" playOrder="3">
@@ -122,18 +98,6 @@
 		  </navLabel>
 		  <content src="Text/Story3-Cleaning-Up-PM-2.xhtml"/>
 		</navPoint>
-		<navPoint class="IM_MODE" id="story3-IM-1">
-		  <navLabel>
-    		<text>Cleaning Up - IM</text>
-		  </navLabel>
-		  <content src="Text/Story3-Cleaning-Up-IM-1.xhtml"/>
-		</navPoint>
-		<navPoint class="IM_MODE" id="story3-IM-2">
-		  <navLabel>
-	    	<text>Cleaning Up - IM</text>
-		  </navLabel>
-		  <content src="Text/Story3-Cleaning-Up-IM-2.xhtml"/>
-		</navPoint>
 	</navPoint>
 	<navPoint class="ChapterTitle" id="Chapter4Title" playOrder="4">
 		<navLabel>
@@ -157,18 +121,6 @@
 	    	<text>Who is the Best Animal? - PM</text>
 		  </navLabel>
 		  <content src="Text/Story4-Who-is-the-Best-Animal-PM-2.xhtml"/>
-		</navPoint>
-		<navPoint class="IM_MODE" id="story4-IM-1">
-		  <navLabel>
-    		<text>Who is the Best Animal? - IM</text>
-		  </navLabel>
-		  <content src="Text/Story4-Who-is-the-Best-Animal-IM-1.xhtml"/>
-		</navPoint>
-		<navPoint class="IM_MODE" id="story4-IM-2">
-		  <navLabel>
-	    	<text>Who is the Best Animal? - IM</text>
-		  </navLabel>
-		  <content src="Text/Story4-Who-is-the-Best-Animal-IM-2.xhtml"/>
 		</navPoint>
 	</navPoint>
 	<navPoint class="ChapterTitle" id="Chapter5Title" playOrder="5">
@@ -194,18 +146,6 @@
 		  </navLabel>
 		  <content src="Text/Story5-The-Wise-Owl-PM-2.xhtml"/>
 		</navPoint>
-		<navPoint class="IM_MODE" id="story5-IM-1">
-		  <navLabel>
-    		<text>The Wise Owl - IM</text>
-		  </navLabel>
-		  <content src="Text/Story5-The-Wise-Owl-IM-1.xhtml"/>
-		</navPoint>
-		<navPoint class="IM_MODE" id="story5-IM-2">
-		  <navLabel>
-	    	<text>The Wise Owl - IM</text>
-		  </navLabel>
-		  <content src="Text/Story5-The-Wise-Owl-IM-2.xhtml"/>
-		</navPoint>
 	</navPoint>
 	<navPoint class="ChapterTitle" id="Chapter6Title" playOrder="6">
 		<navLabel>
@@ -230,18 +170,6 @@
 		  </navLabel>
 		  <content src="Text/Story6-Everyone-Helps-PM-2.xhtml"/>
 		</navPoint>
-		<navPoint class="IM_MODE" id="story6-IM-1">
-		  <navLabel>
-    		<text>Everyone Helps - IM</text>
-		  </navLabel>
-		  <content src="Text/Story6-A-Everyone-Helps-IM-1.xhtml"/>
-		</navPoint>
-		<navPoint class="IM_MODE" id="story6-IM-2">
-		  <navLabel>
-	    	<text>Everyone Helps - IM</text>
-		  </navLabel>
-		  <content src="Text/Story6-Everyone-Helps-IM-2.xhtml"/>
-		</navPoint>
 	</navPoint>
 	<navPoint class="ChapterTitle" id="Chapter7Title" playOrder="7">
 		<navLabel>
@@ -265,18 +193,6 @@
 	    	<text>The Best Farm Award - PM</text>
 		  </navLabel>
 		  <content src="Text/Story7-The-Best-Farm-Award-PM-2.xhtml"/>
-		</navPoint>
-		<navPoint class="IM_MODE" id="story7-IM-1">
-		  <navLabel>
-    		<text>The Best Farm Award - IM</text>
-		  </navLabel>
-		  <content src="Text/Story7-The-Best-Farm-Award-IM-1.xhtml"/>
-		</navPoint>
-		<navPoint class="IM_MODE" id="story7-IM-2">
-		  <navLabel>
-	    	<text>The Best Farm Award - IM</text>
-		  </navLabel>
-		  <content src="Text/Story7-The-Best-Farm-Award-IM-2.xhtml"/>
 		</navPoint>
 	</navPoint>
 </navMap>
@@ -344,62 +260,6 @@
     <pageTarget id="p15" type="normal" value="15">
     	<navLabel><text>Chapter 7 - The Best Farm Award - Physical Manipulation</text></navLabel>
 		<content src="Text/Story7-The-Best-Farm-Award-PM.xhtml"/>
-	</pageTarget>
-	<pageTarget id="p16" type="normal" value="16">
-    	<navLabel><text>Chapter 1 - The Contest - Imagine Manipulation 1</text></navLabel>
-		<content src="Text/Story1-The-Contest-IM-1.xhtml"/>
-	</pageTarget>
-	<pageTarget id="p17" type="normal" value="17">
-    	<navLabel><text>Chapter 1 - The Contest - Imagine Manipulation 2</text></navLabel>
-		<content src="Text/Story1-The-Contest-IM-2.xhtml"/>
-	</pageTarget>
-	<pageTarget id="p18" type="normal" value="18">
-    	<navLabel><text>Chapter 2 - Getting Ready - Imagine Manipulation 1</text></navLabel>
-		<content src="Text/Story2-Getting-Ready-IM-1.xhtml"/>
-	</pageTarget>
-	<pageTarget id="p19" type="normal" value="19">
-    	<navLabel><text>Chapter 2 - Getting Ready - Imagine Manipulation 2</text></navLabel>
-		<content src="Text/Story2-Getting-Ready-IM-2.xhtml"/>
-	</pageTarget>
-	<pageTarget id="p20" type="normal" value="20">
-    	<navLabel><text>Chapter 3 - Cleaning Up - Imagine Manipulation 1</text></navLabel>
-		<content src="Text/Story3-Cleaning-Up-IM-1.xhtml"/>
-	</pageTarget>
-	<pageTarget id="p21" type="normal" value="21">
-    	<navLabel><text>Chapter 3 - Cleaning Up - Imagine Manipulation 2</text></navLabel>
-		<content src="Text/Story3-Cleaning-Up-IM-2.xhtml"/>
-	</pageTarget>
-	<pageTarget id="p22" type="normal" value="22">
-    	<navLabel><text>Chapter 4 - Who is the Best Animal? - Imagine Manipulation 1</text></navLabel>
-		<content src="Text/Story4-Who-is-the-Best-Animal-IM-1.xhtml"/>
-	</pageTarget>
-	<pageTarget id="p23" type="normal" value="23">
-    	<navLabel><text>Chapter 4 - Who is the Best Animal? - Imagine Manipulation 2</text></navLabel>
-		<content src="Text/Story4-Who-is-the-Best-Animal-IM-2.xhtml"/>
-	</pageTarget>
-	<pageTarget id="p24" type="normal" value="24">
-    	<navLabel><text>Chapter 5 - The Wise Owl - Imagine Manipulation 1</text></navLabel>
-		<content src="Text/Story5-The-Wise-Owl-IM-1.xhtml"/>
-	</pageTarget>
-	<pageTarget id="p25" type="normal" value="25">
-    	<navLabel><text>Chapter 5 - The Wise Owl - Imagine Manipulation 2</text></navLabel>
-		<content src="Text/Story5-The-Wise-Owl-IM-2.xhtml"/>
-	</pageTarget>
-	<pageTarget id="p26" type="normal" value="26">
-    	<navLabel><text>Chapter 6 - Everyone Helps - Imagine Manipulation 1</text></navLabel>
-		<content src="Text/Story6-Everyone-Helps-IM-1.xhtml"/>
-	</pageTarget>
-	<pageTarget id="p27" type="normal" value="27">
-    	<navLabel><text>Chapter 6 - Everyone Helps - Imagine Manipulation 2</text></navLabel>
-		<content src="Text/Story6-Everyone-Helps-IM-2.xhtml"/>
-	</pageTarget>
-	<pageTarget id="p28" type="normal" value="28">
-    	<navLabel><text>Chapter 7 - The Best Farm Award - Imagine Manipulation 1</text></navLabel>
-		<content src="Text/Story7-The-Best-Farm-Award-IM-1.xhtml"/>
-	</pageTarget>
-	<pageTarget id="p29" type="normal" value="29">
-    	<navLabel><text>Chapter 7 - The Best Farm Award - Imagine Manipulation 2</text></navLabel>
-		<content src="Text/Story7-The-Best-Farm-Award-IM-2.xhtml"/>
 	</pageTarget>
 </pageList>
 </ncx>

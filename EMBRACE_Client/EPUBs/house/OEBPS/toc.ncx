@@ -38,18 +38,6 @@
 		  </navLabel>
             <content src="Text/Story1-The-Lopez-Family-PM-2S.xhtml"/>
 		</navPoint>
-		<navPoint class="IM_MODE" id="story1-IM-1">
-		  <navLabel>
-    		<text>The Lopez Family - IM</text>
-		  </navLabel>
-		  <content src="Text/Story1-The-Lopez-Family-PM-1.xhtml"/>
-		</navPoint>
-		<navPoint class="IM_MODE" id="story1-IM-2">
-		  <navLabel>
-    		<text>The Lopez Family - IM</text>
-		  </navLabel>
-		  <content src="Text/Story1-The-Lopez-Family-PM-2.xhtml"/>
-		</navPoint>
 	</navPoint>
 	<navPoint class="ChapterTitle" id="Chapter2Title" playOrder="2">
 		<navLabel>
@@ -73,18 +61,6 @@
 	    	<text>Missing Keys - PM</text>
 		  </navLabel>
             <content src="Text/Story2-Missing-Keys-Intro-E.xhtml"/>
-		</navPoint>
-		<navPoint class="IM_MODE" id="story2-IM-1">
-		  <navLabel>
-    		<text>Missing Keys - IM</text>
-		  </navLabel>
-		  <content src="Text/Story2-Missing-Keys-IM-1.xhtml"/>
-		</navPoint>
-		<navPoint class="IM_MODE" id="story2-IM-2">
-		  <navLabel>
-	    	<text>Missing Keys - IM</text>
-		  </navLabel>
-		  <content src="Text/Story2-Missing-Keys-IM-2.xhtml"/>
 		</navPoint>
 	</navPoint>
 	<navPoint class="ChapterTitle" id="Chapter3Title" playOrder="3">
@@ -110,18 +86,6 @@
 		  </navLabel>
             <content src="Text/Story3-Is-Paco-a-Thief-Intro-E.xhtml"/>
 		</navPoint>
-		<navPoint class="IM_MODE" id="story3-IM-1">
-		  <navLabel>
-    		<text>Is Paco a Thief? - IM</text>
-		  </navLabel>
-		  <content src="Text/Story3-Is-Paco-a-Thief-IM-1.xhtml"/>
-		</navPoint>
-		<navPoint class="IM_MODE" id="story3-IM-2">
-		  <navLabel>
-	    	<text>Is Paco a Thief? - IM</text>
-		  </navLabel>
-		  <content src="Text/Story3-Is-Paco-a-Thief-IM-2.xhtml"/>
-		</navPoint>
 	</navPoint>
 	<navPoint class="ChapterTitle" id="Chapter4Title" playOrder="4">
 		<navLabel>
@@ -145,18 +109,6 @@
 	    	<text>More is Missing! - PM</text>
 		  </navLabel>
             <content src="Text/Story4-More-is-Missing-Intro-E.xhtml"/>
-		</navPoint>
-		<navPoint class="IM_MODE" id="story4-IM-1">
-		  <navLabel>
-    		<text>More is Missing! - IM</text>
-		  </navLabel>
-		  <content src="Text/Story4-More-is-Missing-IM-1.xhtml"/>
-		</navPoint>
-		<navPoint class="IM_MODE" id="story4-IM-2">
-		  <navLabel>
-	    	<text>More is Missing! - IM</text>
-		  </navLabel>
-		  <content src="Text/Story4-More-is-Missing-IM-2.xhtml"/>
 		</navPoint>
 	</navPoint>
 	<navPoint class="ChapterTitle" id="Chapter5Title" playOrder="5">
@@ -182,18 +134,6 @@
 		  </navLabel>
 		  <content src="Text/Story5-The-Baby's-Rattle-is-Gone-Too-PM-2.xhtml"/>
 		</navPoint>
-		<navPoint class="IM_MODE" id="story5-IM-1">
-		  <navLabel>
-    		<text>The Baby's Rattle is Gone, Too! - IM</text>
-		  </navLabel>
-		  <content src="Text/Story5-The-Baby's-Rattle-is-Gone-Too-IM-1.xhtml"/>
-		</navPoint>
-		<navPoint class="IM_MODE" id="story5-IM-2">
-		  <navLabel>
-	    	<text>The Baby's Rattle is Gone, Too! - IM</text>
-		  </navLabel>
-		  <content src="Text/Story5-The-Baby's-Rattle-is-Gone-Too-IM-2.xhtml"/>
-		</navPoint>
 	</navPoint>
 	<navPoint class="ChapterTitle" id="Chapter6Title" playOrder="6">
 		<navLabel>
@@ -217,18 +157,6 @@
 	    	<text>The Mystery is Solved - PM</text>
 		  </navLabel>
             <content src="Text/Story6-The-Mystery-is-Solved-Intro-E.xhtml"/>
-		</navPoint>
-		<navPoint class="IM_MODE" id="story6-IM-1">
-		  <navLabel>
-    		<text>The Mystery is Solved - IM</text>
-		  </navLabel>
-		  <content src="Text/Story6-A-The-Mystery-is-Solved-IM-1.xhtml"/>
-		</navPoint>
-		<navPoint class="IM_MODE" id="story6-IM-2">
-		  <navLabel>
-	    	<text>The Mystery is Solved - IM</text>
-		  </navLabel>
-		  <content src="Text/Story6-The-Mystery-is-Solved-IM-2.xhtml"/>
 		</navPoint>
 	</navPoint>
 </navMap>
@@ -312,54 +240,6 @@
   <pageTarget id="p19" type="normal" value="19">
     	<navLabel><text>Chapter 6 - The Mystery is Solved - Physical Manipulation 2</text></navLabel>
 		<content src="Text/Story6-The-Mystery-is-Solved-PM-2.xhtml"/>
-	</pageTarget>
-	<pageTarget id="p20" type="normal" value="20">
-    	<navLabel><text>Chapter 1 - The Lopez Family - Imagine Manipulation 1</text></navLabel>
-		<content src="Text/Story1-The-Lopez-Family-IM-1.xhtml"/>
-	</pageTarget>
-	<pageTarget id="p21" type="normal" value="21">
-    	<navLabel><text>Chapter 1 - The Lopez Family - Imagine Manipulation 2</text></navLabel>
-		<content src="Text/Story6-The-Mystery-is-Solved-Intro-E.xhtml"/>
-	</pageTarget>
-	<pageTarget id="p22" type="normal" value="22">
-    	<navLabel><text>Chapter 2 - Missing Keys - Imagine Manipulation 1</text></navLabel>
-		<content src="Text/Story2-Missing-Keys-IM-1.xhtml"/>
-	</pageTarget>
-	<pageTarget id="p23" type="normal" value="23">
-    	<navLabel><text>Chapter 2 - Missing Keys - Imagine Manipulation 2</text></navLabel>
-		<content src="Text/Story2-Missing-Keys-IM-2.xhtml"/>
-	</pageTarget>
-	<pageTarget id="p24" type="normal" value="24">
-    	<navLabel><text>Chapter 3 - Is Paco a Thief? - Imagine Manipulation 1</text></navLabel>
-		<content src="Text/Story3-Is-Paco-a-Thief-IM-1.xhtml"/>
-	</pageTarget>
-	<pageTarget id="p25" type="normal" value="25">
-    	<navLabel><text>Chapter 3 - Is Paco a Thief? - Imagine Manipulation 2</text></navLabel>
-		<content src="Text/Story3-Is-Paco-a-Thief-IM-2.xhtml"/>
-	</pageTarget>
-	<pageTarget id="p26" type="normal" value="26">
-    	<navLabel><text>Chapter 4 - More is Missing! - Imagine Manipulation 1</text></navLabel>
-		<content src="Text/Story4-More-is-Missing-IM-1.xhtml"/>
-	</pageTarget>
-	<pageTarget id="p27" type="normal" value="27">
-    	<navLabel><text>Chapter 4 - More is Missing! - Imagine Manipulation 2</text></navLabel>
-		<content src="Text/Story4-More-is-Missing-IM-2.xhtml"/>
-	</pageTarget>
-	<pageTarget id="p28" type="normal" value="28">
-    	<navLabel><text>Chapter 5 - The Baby's Rattle is Gone, Too! - Imagine Manipulation 1</text></navLabel>
-		<content src="Text/Story5-The-Baby's-Rattle-is-Gone-Too-IM-1.xhtml"/>
-	</pageTarget>
-	<pageTarget id="p29" type="normal" value="29">
-    	<navLabel><text>Chapter 5 - The Baby's Rattle is Gone, Too! - Imagine Manipulation 2</text></navLabel>
-		<content src="Text/Story5-The-Baby's-Rattle-is-Gone-Too-IM-2.xhtml"/>
-	</pageTarget>
-	<pageTarget id="p30" type="normal" value="30">
-    	<navLabel><text>Chapter 6 - The Mystery is Solved - Imagine Manipulation 1</text></navLabel>
-		<content src="Text/Story6-The-Mystery-is-Solved-IM-1.xhtml"/>
-	</pageTarget>
-	<pageTarget id="p31" type="normal" value="31">
-    	<navLabel><text>Chapter 6 - The Mystery is Solved - Imagine Manipulation 2</text></navLabel>
-		<content src="Text/Story6-The-Mystery-is-Solved-IM-2.xhtml"/>
 	</pageTarget>
 </pageList>
 </ncx>

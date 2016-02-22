@@ -459,7 +459,7 @@ BOOL wasPathFollowed = false;
 -(void) loadNextPage {
     //stores last page
     NSString *tempLastPage = currentPage;
-    currentPage = [book getNextPageForChapterAndActivity:chapterTitle :conditionSetup.currentMode :currentPage];
+    currentPage = [book getNextPageForChapterAndActivity:chapterTitle :PM_MODE :currentPage];
     
     //No more pages in chapter
     if (currentPage == nil) {
