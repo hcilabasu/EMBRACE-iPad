@@ -1322,45 +1322,8 @@ BOOL wasPathFollowed = false;
                             [self.playaudioClass playAudioFile:self:IntroductionClass.vocabAudio];
                         }
                         else {
-                            [self.playaudioClass playAudioFile:self:IntroductionClass.currentAudio];
+                            [self playIntroVocabWord:sentenceText:englishSentenceText];
                         }
-                        
-                        //Logging added by James for Word Audio
-                        [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : IntroductionClass.languageString :[NSString stringWithFormat:@"%@%@.m4a",sentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                        
-                        NSObject *valueImage = [[Translation translationImages]objectForKey:englishSentenceText];
-                        
-                        NSString *imageHighlighted = @"";
-                        
-                        
-                        // If the key contains more than one value
-                        if ([valueImage isKindOfClass:[NSArray class]])
-                        {
-                            NSArray *imageArray = ((NSArray*)valueImage);
-                            for (int i = 0; i < [imageArray count]; i++)
-                            {
-                                imageHighlighted = imageArray[i];
-                                [self highlightObject:imageHighlighted:1.5];
-                            }
-                        }
-                        else
-                        {
-                            imageHighlighted = (NSString*)valueImage;
-                            [self highlightObject:imageHighlighted:1.5];
-                        }
-                    
-                        currentSentence++;
-                        currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence]];
-                        
-                        [self performSelector:@selector(colorSentencesUponNext) withObject:nil afterDelay:([self.playaudioClass audioPlayer].duration)];
-                        
-                        IntroductionClass.currentVocabStep++;
-                        
-                        // This delay is needed in order to be able to play the last definition on a vocabulary page
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW,([self.playaudioClass audioPlayer].duration)*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                            [IntroductionClass loadVocabStep:bookView:self:currentSentence:chapterTitle];
-                            
-                        });
                 }
             }
         }
@@ -1411,31 +1374,69 @@ BOOL wasPathFollowed = false;
                 englishSentenceText = @"carbon dioxide";
             }
             
-            // This code is duplicated for now, it will be moved to the highlightObject function
-            NSObject *valueImage = [[Translation translationImages]objectForKey:englishSentenceText];
-            
-            NSString *imageHighlighted = @"";
-            
-            
-            // If the key contains more than one value
-            if ([valueImage isKindOfClass:[NSArray class]])
-            {
-                NSArray *imageArray = ((NSArray*)valueImage);
-                for (int i = 0; i < [imageArray count]; i++)
-                {
-                    imageHighlighted = imageArray[i];
-                    [self highlightObject:imageHighlighted:1.5];
-                }
-            }
-            else
-            {
-                imageHighlighted = (NSString*)valueImage;
-                [self highlightObject:imageHighlighted:1.5];
-            }
+            [self highlightImageForText:englishSentenceText];
             
             //[self highlightObject:[[Translation translationImages] objectForKey:englishSentenceText]:1.5];
         }
     }
+}
+
+-(void) playIntroVocabWord: (NSString*) sentenceText : (NSString*) englishSentenceText
+{
+    //Logging added by James for Word Audio
+    [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : IntroductionClass.languageString :[NSString stringWithFormat:@"%@%@.m4a",sentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+    
+        [self.playaudioClass playAudioFile:self:IntroductionClass.currentAudio];
+        
+        [self highlightImageForText:englishSentenceText];
+        
+        currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence]];
+        
+        IntroductionClass.currentVocabStep++;
+        
+        // This delay is needed in order to be able to play the last definition on a vocabulary page
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW,([self.playaudioClass audioPlayer].duration)*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [IntroductionClass loadVocabStep:bookView:self:currentSentence:chapterTitle];
+            
+            [self.playaudioClass playAudioFile:self:IntroductionClass.currentAudio];
+            
+            [self highlightImageForText:englishSentenceText];
+            
+            currentSentence++;
+            currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence]];
+            
+            [self performSelector:@selector(colorSentencesUponNext) withObject:nil afterDelay:([self.playaudioClass audioPlayer].duration)];
+            
+            IntroductionClass.currentVocabStep++;
+            
+            // This delay is needed in order to be able to play the last definition on a vocabulary page
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW,([self.playaudioClass audioPlayer].duration)*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                [IntroductionClass loadVocabStep:bookView:self:currentSentence:chapterTitle];
+            });
+        });
+}
+
+-(void) highlightImageForText: (NSString*) englishSentenceText
+{
+    NSObject *valueImage = [[Translation translationImages]objectForKey:englishSentenceText];
+    NSString *imageHighlighted = @"";
+    
+    // If the key contains more than one value
+    if ([valueImage isKindOfClass:[NSArray class]])
+    {
+        NSArray *imageArray = ((NSArray*)valueImage);
+        for (int i = 0; i < [imageArray count]; i++)
+        {
+            imageHighlighted = imageArray[i];
+            [self highlightObject:imageHighlighted:1.5];
+        }
+    }
+    else
+    {
+        imageHighlighted = (NSString*)valueImage;
+        [self highlightObject:imageHighlighted:1.5];
+    }
+
 }
 
 /*
