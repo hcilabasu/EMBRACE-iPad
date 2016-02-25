@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <locations>
+        <location locationId="anywhere" x="0%" y="0%" height="100%" width="100%"/>
         <location locationId="bathroom" x="32%" y="33%" height="26%" width="23%"/>
         <location locationId="crib" x="23%" y="49%" height="9%" width="8.2%"/>
         <location locationId="frontHouse" x="1%" y="75%" height="26%" width="60%"/>

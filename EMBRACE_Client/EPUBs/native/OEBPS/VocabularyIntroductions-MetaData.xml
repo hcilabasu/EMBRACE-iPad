@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <vocabularyIntroductions>
+        <vocabularyIntroduction story="Introduction to Native American Homes">
+            <vocabularyIntroductionWord number="1">
+                <englishWordAudio>Community_def_E.mp3</englishWordAudio>
+                <spanishWordAudio>Community_def_S.mp3</spanishWordAudio>
+                <englishWordText>Community</englishWordText>
+                <spanishWordText>Comunidad</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>community</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="2">
+                <englishWordAudio>Community_def_E.mp3</englishWordAudio>
+                <spanishWordAudio>Community_def_S.mp3</spanishWordAudio>
+                <englishWordText>Community</englishWordText>
+                <spanishWordText>Comunidad</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>community</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="3">
+                <englishWordAudio>Protect_def_E.mp3</englishWordAudio>
+                <spanishWordAudio>Protect_def_S.mp3</spanishWordAudio>
+                <englishWordText>Protect</englishWordText>
+                <spanishWordText>Proteger</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>protect</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="4">
+                <englishWordAudio>Protect_def_E.mp3</englishWordAudio>
+                <spanishWordAudio>Protect_def_S.mp3</spanishWordAudio>
+                <englishWordText>Protect</englishWordText>
+                <spanishWordText>Proteger</spanishWordText>
+                <expectedSelection>word</expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>protect</expectedInput>
+            </vocabularyIntroductionWord>
+            <vocabularyIntroductionWord number="5">
+                <englishWordAudio></englishWordAudio>
+                <spanishWordAudio></spanishWordAudio>
+                <englishWordText></englishWordText>
+                <spanishWordText></spanishWordText>
+                <expectedSelection></expectedSelection>
+                <expectedAction>tap</expectedAction>
+                <expectedInput>next</expectedInput>
+            </vocabularyIntroductionWord>
+        </vocabularyIntroduction>
+        
+        
         <vocabularyIntroduction story="The Navajo Hogan">
             <vocabularyIntroductionWord number="1">
                 <englishWordAudio>Hook_def_E.mp3</englishWordAudio>

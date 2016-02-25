@@ -199,6 +199,7 @@ ConditionSetup *conditionSetup;
 
 //introduction: move to introduction class
 -(NSArray*) loadVocabStep: (UIWebView *) bookView : (UIViewController *) pmviewController : (NSUInteger) currentSentence :(NSString *) chapterTitle {
+    
         NSString* text;
         NSString* audio;
         NSString* expectedSelection;
@@ -211,7 +212,7 @@ ConditionSetup *conditionSetup;
         NSString* audioSpanish;
         NSString* nextAudioSpanish;
     
-       sameWordClicked = false;
+        sameWordClicked = false;
     
         //Get current step to be read
         VocabularyStep* currVocabStep = [currentVocabSteps objectAtIndex:currentVocabStep-1];
@@ -223,6 +224,7 @@ ConditionSetup *conditionSetup;
         stepNumber = [currVocabStep wordNumber];
         audioSpanish = [currVocabStep spanishAudioFileName];
         lastStep = stepNumber;
+    
         // && (stepNumber & 1) alternates between true and false
         if(((conditionSetup.language ==BILINGUAL)) && (stepNumber & 1)) {
             currentAudio = audioSpanish;
@@ -247,7 +249,6 @@ ConditionSetup *conditionSetup;
             }
             nextIntro = nextIntroInput;
         }
-    
     
         //add for house story?
         // If we are ont the first step (1) or the last step (9) which do not correspond to words

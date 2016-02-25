@@ -14,6 +14,12 @@
                 <text>The Naughty Monkey</text>
             </navLabel>
             <content src="Text/Story1-The-Naughty-Monkey-Title.xhtml"/>
+            <navPoint class="PM_MODE" id="story1-Intro">
+                <navLabel>
+                    <text>The Naughty Monkey - Intro</text>
+                </navLabel>
+                <content src="Text/Story1-The-Naughty-Monkey-Intro-E.xhtml"/>
+            </navPoint>
             <navPoint class="PM_MODE" id="story1-PM-1">
                 <navLabel>
                     <text>The Naughty Monkey - PM</text>
@@ -27,17 +33,21 @@
                 <content src="Text/Story1-The-Naughty-Monkey-PM-2.xhtml"/>
             </navPoint>
         </navPoint>
+    
         
     </navMap>
     <pageList>
         <pageTarget id="p1" type="normal" value="1">
+            <navLabel><text>Chapter 1 - The Naughty Monkey - Introduction</text></navLabel>
+            <content src="Text/Story1-The-Naughty-Monkey-Intro-E.xhtml"/>
+        </pageTarget>
+        <pageTarget id="p2" type="normal" value="2">
             <navLabel><text>Chapter 1 - The Naughty Monkey - Physical Manipulation 1</text></navLabel>
             <content src="Text/Story1-The-Naughty-Monkey-PM-1.xhtml"/>
         </pageTarget>
-        <pageTarget id="p2" type="normal" value="2">
+        <pageTarget id="p3" type="normal" value="3">
             <navLabel><text>Chapter 1 - The Naughty Monkey - Physical Manipulation 2</text></navLabel>
             <content src="Text/Story1-The-Naughty-Monkey-PM-2.xhtml"/>
         </pageTarget>
-        
     </pageList>
 </ncx>

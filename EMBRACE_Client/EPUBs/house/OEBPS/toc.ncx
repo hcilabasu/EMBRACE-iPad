@@ -60,7 +60,7 @@
 		  <navLabel>
 	    	<text>Missing Keys - PM</text>
 		  </navLabel>
-            <content src="Text/Story2-Missing-Keys-Intro-E.xhtml"/>
+            <content src="Text/Story2-Missing-Keys-PM-2.xhtml"/>
 		</navPoint>
 	</navPoint>
 	<navPoint class="ChapterTitle" id="Chapter3Title" playOrder="3">
@@ -84,7 +84,7 @@
 		  <navLabel>
 	    	<text>Is Paco a Thief? - PM</text>
 		  </navLabel>
-            <content src="Text/Story3-Is-Paco-a-Thief-Intro-E.xhtml"/>
+            <content src="Text/Story3-Is-Paco-a-Thief-PM-2.xhtml"/>
 		</navPoint>
 	</navPoint>
 	<navPoint class="ChapterTitle" id="Chapter4Title" playOrder="4">
@@ -108,7 +108,7 @@
 		  <navLabel>
 	    	<text>More is Missing! - PM</text>
 		  </navLabel>
-            <content src="Text/Story4-More-is-Missing-Intro-E.xhtml"/>
+            <content src="Text/Story4-More-is-Missing-PM-2.xhtml"/>
 		</navPoint>
 	</navPoint>
 	<navPoint class="ChapterTitle" id="Chapter5Title" playOrder="5">
@@ -120,7 +120,7 @@
             <navLabel>
                 <text>The Baby's Rattle is Gone, Too! - Intro</text>
             </navLabel>
-            <content src="Text/Story5-The-Baby's-Rattle-is-Gone-Too-Intro-E.xhtml"/>
+            <content src="Text/Story5-The-Baby's-Rattle-is-Gone-Too-Intro-S.xhtml"/>
 		</navPoint>
         <navPoint class="PM_MODE" id="story5-PM-1">
 		  <navLabel>
@@ -156,7 +156,7 @@
 		  <navLabel>
 	    	<text>The Mystery is Solved - PM</text>
 		  </navLabel>
-            <content src="Text/Story6-The-Mystery-is-Solved-Intro-E.xhtml"/>
+            <content src="Text/Story6-The-Mystery-is-Solved-PM-2.xhtml"/>
 		</navPoint>
 	</navPoint>
 </navMap>
@@ -187,7 +187,7 @@
 	</pageTarget>
   <pageTarget id="p6" type="normal" value="6">
     	<navLabel><text>Chapter 2 - Missing Keys - Physical Manipulation 1</text></navLabel>
-		<content src="Text/Story1-The-Lopez-Family-Intro-E.xhtml"/>
+		<content src="Text/Story1-Missing-Keys-PM-1.xhtml"/>
 	</pageTarget>
   <pageTarget id="p7" type="normal" value="7">
     	<navLabel><text>Chapter 2 - Missing Keys - Physical Manipulation 2</text></navLabel>
@@ -199,7 +199,7 @@
 	</pageTarget>
   <pageTarget id="p9" type="normal" value="9">
     	<navLabel><text>Chapter 3 - Is Paco a Thief? - Physical Manipulation 1</text></navLabel>
-		<content src="Text/Story2-Missing-Keys-Intro-E.xhtml"/>
+		<content src="Text/Story2-Is-Paco-a-Thief-PM-1.xhtml"/>
 	</pageTarget>
   <pageTarget id="p10" type="normal" value="10">
     	<navLabel><text>Chapter 3 - Is Paco a Thief? - Physical Manipulation 2</text></navLabel>
@@ -211,7 +211,7 @@
 	</pageTarget>
   <pageTarget id="p12" type="normal" value="12">
     	<navLabel><text>Chapter 4 - More is Missing! - Physical Manipulation 1</text></navLabel>
-		<content src="Text/Story3-Is-Paco-a-Thief-Intro-E.xhtml"/>
+		<content src="Text/Story3-More-is-Missing-PM-1.xhtml"/>
 	</pageTarget>
   <pageTarget id="p13" type="normal" value="13">
     	<navLabel><text>Chapter 4 - More is Missing! - Physical Manipulation 2</text></navLabel>
@@ -219,11 +219,11 @@
 	</pageTarget>
 	<pageTarget id="p14" type="normal" value="14">
     	<navLabel><text>Chapter 5 - The Baby's Rattle is Gone, Too! - Introduction</text></navLabel>
-		<content src="Text/Story5-The-Baby's-Rattle-is-Gone-Too-Intro-E.xhtml"/>
+		<content src="Text/Story5-The-Baby's-Rattle-is-Gone-Too-Intro-S.xhtml"/>
 	</pageTarget>
   <pageTarget id="p15" type="normal" value="15">
     	<navLabel><text>Chapter 5 - The Baby's Rattle is Gone, Too! - Physical Manipulation 1</text></navLabel>
-		<content src="Text/Story4-More-is-Missing-Intro-E.xhtml"/>
+		<content src="Text/Story4-The-Baby's-Rattle-is-Gone-Too-PM-1.xhtml"/>
 	</pageTarget>
   <pageTarget id="p16" type="normal" value="16">
     	<navLabel><text>Chapter 5 - The Baby's Rattle is Gone, Too! - Physical Manipulation 2</text></navLabel>
