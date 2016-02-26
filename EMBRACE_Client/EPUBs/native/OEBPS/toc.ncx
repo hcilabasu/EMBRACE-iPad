@@ -21,6 +21,12 @@
                 <text>Introduction to Native American Homes</text>
             </navLabel>
             <content src="Text/Introduction-to-Native-American-Homes-Title.xhtml"/>
+            <navPoint class="PM_MODE" id="story0-Intro">
+                <navLabel>
+                    <text>Introduction to Native American Homes - Intro</text>
+                </navLabel>
+                <content src="Text/Story1-Introduction-Intro-S.xhtml"/>
+            </navPoint>
             <navPoint class="PM_MODE" id="story0-PM">
                 <navLabel>
                     <text>Introduction to Native American Homes - PM</text>
@@ -266,142 +272,5 @@
         
     </navMap>
     <pageList>
-        <pageTarget id="p0" type="normal" value="0">
-            <navLabel><text>Chapter 1 - Introduction to Native American Homes - Physical Manipulation</text></navLabel>
-            <content src="Text/Story1-Introduction-PM-S.xhtml"/>
-        </pageTarget>
-        <pageTarget id="p1" type="normal" value="1">
-            <navLabel><text>Chapter 1 - Introduction to Native American Homes - Physical Manipulation 2</text></navLabel>
-            <content src="Text/Story1-Introduction-PM-2S.xhtml"/>
-        </pageTarget>
-        <pageTarget id="p2" type="normal" value="2">
-            <navLabel><text>Title - Introduction to Native American Homes</text></navLabel>
-            <content src="Text/Introduction-to-Native-American-Homes-Title.xhtml"/>
-        </pageTarget>
-        <pageTarget id="p3" type="normal" value="3">
-            <navLabel><text>Chapter 1 - The Navajo Hogan - Introduction</text></navLabel>
-            <content src="Text/Story1-The-Navajo-Hogan-Intro-S.xhtml"/>
-        </pageTarget>
-        <pageTarget id="p4" type="normal" value="4">
-            <navLabel><text>Chapter 1 - The Navajo Hogan - Physical Manipulation 1</text></navLabel>
-            <content src="Text/Story1-The-Navajo-Hogan-PM-1S.xhtml"/>
-        </pageTarget>
-        <pageTarget id="p5" type="normal" value="5">
-            <navLabel><text>Chapter 1 - The Navajo Hogan - Physical Manipulation 2</text></navLabel>
-            <content src="Text/Story1-The-Navajo-Hogan-PM-2S.xhtml"/>
-        </pageTarget>
-        <pageTarget id="p6" type="normal" value="6">
-            <navLabel><text>Chapter 1 - The Navajo Hogan - Physical Manipulation 3</text></navLabel>
-            <content src="Text/Story1-The-Navajo-Hogan-PM-3S.xhtml"/>
-        </pageTarget>
-        <pageTarget id="p7" type="normal" value="7">
-            <navLabel><text>Chapter 2 - The Inuit Igloo - Introduction</text></navLabel>
-            <content src="Text/Story2-The-Inuit-Igloo-Intro-S.xhtml"/>
-        </pageTarget>
-        <pageTarget id="p8" type="normal" value="8">
-            <navLabel><text>Chapter 2 - The Inuit Igloo - Physical Manipulation 1</text></navLabel>
-            <content src="Text/Story2-The-Inuit-Igloo-PM-1.xhtml"/>
-        </pageTarget>
-        <pageTarget id="p9" type="normal" value="9">
-            <navLabel><text>Chapter 2 - The Inuit Igloo - Physical Manipulation 2</text></navLabel>
-            <content src="Text/Story2-The-Inuit-Igloo-PM-2.xhtml"/>
-        </pageTarget>
-        <pageTarget id="p10" type="normal" value="10">
-            <navLabel><text>Chapter 2 - The Inuit Igloo - Physical Manipulation 3</text></navLabel>
-            <content src="Text/Story2-The-Inuit-Igloo-PM-3.xhtml"/>
-        </pageTarget>
-        <pageTarget id="p11" type="normal" value="11">
-            <navLabel><text>Chapter 2 - The Inuit Igloo - Physical Manipulation 4</text></navLabel>
-            <content src="Text/Story2-The-Inuit-Igloo-PM-4.xhtml"/>
-        </pageTarget>
-        <pageTarget id="p12" type="normal" value="12">
-            <navLabel><text>Chapter 3 - The Sioux Teepee - Introduction</text></navLabel>
-            <content src="Text/Story3-The-Sioux-Teepee-Intro-S.xhtml"/>
-        </pageTarget>
-        <pageTarget id="p13" type="normal" value="13">
-            <navLabel><text>Chapter 3 - The Sioux Teepee - Physical Manipulation 1</text></navLabel>
-            <content src="Text/Story3-The-Sioux-Teepee-PM-1.xhtml"/>
-        </pageTarget>
-        <pageTarget id="p14" type="normal" value="14">
-            <navLabel><text>Chapter 3 - The Sioux Teepee - Physical Manipulation 2</text></navLabel>
-            <content src="Text/Story3-The-Sioux-Teepee-PM-2.xhtml"/>
-        </pageTarget>
-        <pageTarget id="p15" type="normal" value="15">
-            <navLabel><text>Chapter 3 - The Sioux Teepee - Physical Manipulation 3</text></navLabel>
-            <content src="Text/Story3-The-Sioux-Teepee-PM-3.xhtml"/>
-        </pageTarget>
-        <pageTarget id="p16" type="normal" value="16">
-            <navLabel><text>Chapter 3 - The Sioux Teepee - Physical Manipulation 4</text></navLabel>
-            <content src="Text/Story3-The-Sioux-Teepee-PM-4.xhtml"/>
-        </pageTarget>
-        <pageTarget id="p17" type="normal" value="17">
-            <navLabel><text>Chapter 3 - The Sioux Teepee - Physical Manipulation 5</text></navLabel>
-            <content src="Text/Story3-The-Sioux-Teepee-PM-5.xhtml"/>
-        </pageTarget>
-        <pageTarget id="p18" type="normal" value="18">
-            <navLabel><text>Chapter 4 - The Algonquian Wigwam - Introduction</text></navLabel>
-            <content src="Text/Story4-The-Algonquian-Wigwam-Intro-S.xhtml"/>
-        </pageTarget>
-        <pageTarget id="p19" type="normal" value="19">
-            <navLabel><text>Chapter 4 - The Algonquian Wigwam - Physical Manipulation 1</text></navLabel>
-            <content src="Text/Story4-The-Algonquian-Wigwam-PM-1.xhtml"/>
-        </pageTarget>
-        <pageTarget id="p20" type="normal" value="20">
-            <navLabel><text>Chapter 4 - The Algonquian Wigwam - Physical Manipulation 2</text></navLabel>
-            <content src="Text/Story4-The-Algonquian-Wigwam-PM-2.xhtml"/>
-        </pageTarget>
-        <pageTarget id="p21" type="normal" value="21">
-            <navLabel><text>Chapter 4 - The Algonquian Wigwam - Physical Manipulation 3</text></navLabel>
-            <content src="Text/Story4-The-Algonquian-Wigwam-PM-3.xhtml"/>
-        </pageTarget>
-        <pageTarget id="p22" type="normal" value="22">
-            <navLabel><text>Chapter 4 - The Algonquian Wigwam - Physical Manipulation 4</text></navLabel>
-            <content src="Text/Story4-The-Algonquian-Wigwam-PM-4.xhtml"/>
-        </pageTarget>
-        <pageTarget id="p23" type="normal" value="23">
-            <navLabel><text>Chapter 5 - The Haida Plank House - Introduction</text></navLabel>
-            <content src="Text/Story5-The-Haida-Plank-House-Intro-S.xhtml"/>
-        </pageTarget>
-        <pageTarget id="p24" type="normal" value="24">
-            <navLabel><text>Chapter 5 - The Haida Plank House - Physical Manipulation 1</text></navLabel>
-            <content src="Text/Story5-The-Haida-Plank-House-PM-1.xhtml"/>
-        </pageTarget>
-        <pageTarget id="p25" type="normal" value="25">
-            <navLabel><text>Chapter 5 - The Haida Plank House - Physical Manipulation 2</text></navLabel>
-            <content src="Text/Story5-The-Haida-Plank-House-PM-2.xhtml"/>
-        </pageTarget>
-        <pageTarget id="p26" type="normal" value="26">
-            <navLabel><text>Chapter 5 - The Haida Plank House - Physical Manipulation 3</text></navLabel>
-            <content src="Text/Story5-The-Haida-Plank-House-PM-3.xhtml"/>
-        </pageTarget>
-        <pageTarget id="p27" type="normal" value="27">
-            <navLabel><text>Chapter 5 - The Haida Plank House - Physical Manipulation 4</text></navLabel>
-            <content src="Text/Story5-The-Haida-Plank-House-PM-4.xhtml"/>
-        </pageTarget>
-        <pageTarget id="p28" type="normal" value="28">
-            <navLabel><text>Chapter 5 - The Haida Plank House - Physical Manipulation 5</text></navLabel>
-            <content src="Text/Story5-The-Haida-Plank-House-PM-5.xhtml"/>
-        </pageTarget>
-        <pageTarget id="p29" type="normal" value="29">
-            <navLabel><text>Chapter 6 - The Seminole Chickee - Introduction</text></navLabel>
-            <content src="Text/Story6-The-Seminole-Chickee-Intro-S.xhtml"/>
-        </pageTarget>
-        <pageTarget id="p30" type="normal" value="30">
-            <navLabel><text>Chapter 6 - The Seminole Chickee - Physical Manipulation 1</text></navLabel>
-            <content src="Text/Story6-The-Seminole-Chickee-PM-1.xhtml"/>
-        </pageTarget>
-        <pageTarget id="p31" type="normal" value="31">
-            <navLabel><text>Chapter 6 - The Seminole Chickee - Physical Manipulation 2</text></navLabel>
-            <content src="Text/Story6-The-Seminole-Chickee-PM-2.xhtml"/>
-        </pageTarget>
-        <pageTarget id="p32" type="normal" value="32">
-            <navLabel><text>Chapter 6 - The Seminole Chickee - Physical Manipulation 3</text></navLabel>
-            <content src="Text/Story6-The-Seminole-Chickee-PM-3.xhtml"/>
-        </pageTarget>
-        <pageTarget id="p33" type="normal" value="33">
-            <navLabel><text>Chapter 6 - The Seminole Chickee - Physical Manipulation 4</text></navLabel>
-            <content src="Text/Story6-The-Seminole-Chickee-PM-4.xhtml"/>
-        </pageTarget>
-        
     </pageList>
 </ncx>
