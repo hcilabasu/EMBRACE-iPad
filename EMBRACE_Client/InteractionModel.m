@@ -19,8 +19,6 @@
 @synthesize sentenceMetadata;
 @synthesize introductions;
 @synthesize vocabularies;
-@synthesize assessmentActivities;
-@synthesize areas;
 
 - (id) init {
     if (self = [super init]) {
@@ -35,19 +33,9 @@
         useConstraints = TRUE;
         introductions = [[NSMutableDictionary alloc] init];
         vocabularies = [[NSMutableDictionary alloc] init];
-        assessmentActivities = [[NSMutableDictionary alloc] init];
-        areas = [[NSMutableSet alloc] init];
     }
     
     return self;
-}
-
-- (void) addAssessmentActivity:(NSString*) storyTitle :(NSMutableArray*) questions {
-    [assessmentActivities setObject:questions forKey:storyTitle];
-}
-
-- (NSMutableDictionary*) getAssessmentActivity{
-    return assessmentActivities;
 }
 
 /*
@@ -80,7 +68,6 @@
  */
 - (Relationship*) getRelationshipForObjectsForAction:(NSString*)obj1Id :(NSString*)obj2Id :(NSString*)action {
     for(Relationship *relation in relationships) {
-        
         if(([[relation object1Id] isEqualToString:obj1Id] && [[relation object2Id] isEqualToString:obj2Id]) || ([[relation object1Id] isEqualToString:obj2Id] && [[relation object2Id] isEqualToString:obj1Id])) {
  
             //Check to make sure the action is appropriate and filter based on valid action types.
@@ -128,15 +115,6 @@
 }
 
 /*
- * Adds a ComboConstraint tied to a specific object id with a list of actions/hotspots
- * that cannot be used simultaneously
- */
-- (void) addComboConstraint:(NSString*)objectId :(NSMutableArray*)comboActs {
-    Constraint *constraint = [[ComboConstraint alloc] initWithValues:objectId :comboActs];
-    [constraints addObject:constraint];
-}
-
-/*
  * Returns the MovementConstraint tied to the specified object id
  */
 - (NSMutableArray*) getMovementConstraintsForObjectId:(NSString*)objId {
@@ -152,24 +130,6 @@
     }
 
     return movementConstraintsForObject;
-}
-
-/*
- * Returns the ComboConstraint tied to the specified object id
- */
-- (NSMutableArray*) getComboConstraintsForObjectId:(NSString*)objId {
-    NSMutableArray* comboConstraintsForObject = [[NSMutableArray alloc] init];
-    
-    for (Constraint* constraint in constraints) {
-        if ([constraint class] == [ComboConstraint class]) {
-            ComboConstraint *cConstraint = (ComboConstraint*)constraint;
-            
-            if ([[cConstraint objId] isEqualToString:objId])
-                [comboConstraintsForObject addObject:cConstraint];
-        }
-    }
-    
-    return comboConstraintsForObject;
 }
 
 /* Add a hotspot to the dictionary with object ID: objId, action act, object role, orjRole and
@@ -323,8 +283,8 @@
  * Adds an AlternateImage with the specified object id, action, original src, alternate src, alternate image width, 
  * and alternate location (x-y coordinate of top left corner of image)
  */
-- (void) addAlternateImage:(NSString *)objId :(NSString *)act :(NSString *)origSrc :(NSString *)altSrc :(NSString *)wdth :(NSString*)height : (CGPoint)loc :(NSString *)cls :(NSString *)zpos {
-    AlternateImage* altImage = [[AlternateImage alloc] initWithValues:objId :act :origSrc :altSrc :wdth : height:loc :cls :zpos];
+- (void) addAlternateImage:(NSString *)objId :(NSString *)act :(NSString *)origSrc :(NSString *)altSrc :(NSString *)wdth :(CGPoint)loc {
+    AlternateImage* altImage = [[AlternateImage alloc] initWithValues:objId :act :origSrc :altSrc :wdth :loc];
     [alternateImages addObject:altImage];
 }
 
@@ -341,20 +301,6 @@
     return nil;
 }
 
-/*
- * Returns the AlternateImage with the specified action && ObjectID
- */
-- (AlternateImage*) getAlternateImageWithActionAndObjectID:(NSString *)action : (NSString *) objectId {
-    for (AlternateImage* altImage in alternateImages) {
-        if ([[altImage action] isEqualToString:action] && [[altImage objectId] isEqualToString:objectId]) {
-            return altImage;
-        }
-    }
-    
-    return nil;
-}
-
-
 - (void) addIntroduction:(NSString*) introTitle : (NSMutableArray*) introductionSteps {
     [introductions setObject:introductionSteps forKey:introTitle];
 }
@@ -369,40 +315,6 @@
 
 - (NSMutableDictionary*) getVocabularies{
     return vocabularies;
-}
-
-/*
- * Adds an area with the specified id and its set of points
- */
-- (void) addArea:(NSString*)areaId :(UIBezierPath *)path :(NSMutableDictionary*)points :(NSString*)pageId {
-    Area *area = [[Area alloc] initWithValues:areaId :path :points: pageId];
-    [areas addObject:area];
-}
-
-/*
- * Returns the area with the specified id
- */
-- (Area*) getAreaWithId:(NSString*)aId {
-    for (Area* area in areas) {
-        if ([[area areaId] isEqualToString:aId]) {
-            return area;
-        }
-    }
-    
-    return nil;
-}
-
-/*
- * Returns the area with the specified page id
- */
-- (Area*) getAreaWithPageId:(NSString*)pId {
-    for (Area* area in areas) {
-        if ([[area pageId] isEqualToString:pId]) {
-            return area;
-        }
-    }
-    
-    return nil;
 }
 
 @end

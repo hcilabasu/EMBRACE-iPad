@@ -1,5 +1,5 @@
 //
-//  PMViewController.h
+//  BookViewController.h
 //  eBookReader
 //
 //  Created by Andreea Danielescu on 2/12/13.
@@ -12,7 +12,14 @@
 #import "Book.h"
 #import "AVFoundation/AVSpeechSynthesis.h"
 #import "IntroductionViewController.h"
-#import "AssessmentActivityViewController.h"
+
+//Describes the condition in which the app will be deployed
+typedef enum Condition {
+    MENU,
+    HOTSPOT,
+    CONTROL,
+    OTHER,
+} Condition;
 
 typedef enum InteractionRestriction {
     ALL_ENTITIES, //Any object can be used
@@ -20,15 +27,28 @@ typedef enum InteractionRestriction {
     NO_ENTITIES //No object can be used
 } InteractionRestriction;
 
+//Defines the types of language conditions to be used
+typedef enum Language {
+    ENGLISH,
+    BILINGUAL
+} Language;
+
 //This enum will be used in the future to define if a condition has or not image manipulation
 typedef enum InteractionMode {
     NO_INTERACTION,
     INTERACTION
 } InteractionMode;
 
+//This enum defines the action types that exist in every intro or vocab step
+typedef enum Action {
+    SELECTION,
+    EXP_ACTION,
+    INPUT
+}Action;
+
 @interface PMViewController : UIViewController <UIGestureRecognizerDelegate, UIScrollViewDelegate, PieContextualMenuDelegate> {
     EBookImporter *bookImporter;
-    Book *book;
+    Book* book;
     
     IBOutlet UIPinchGestureRecognizer *pinchRecognizer;
     IBOutlet UIPanGestureRecognizer *panRecognizer;
@@ -40,17 +60,11 @@ typedef enum InteractionMode {
 @property (nonatomic, strong) EBookImporter *bookImporter;
 @property (nonatomic, strong) NSString *bookTitle;
 @property (nonatomic, strong) NSString *chapterTitle;
-@property (nonatomic, strong) Book *book;
-@property (nonatomic, strong) AVSpeechSynthesizer *syn;
-@property (nonatomic, strong) IntroductionViewController *IntroductionClass;
-@property (nonatomic, strong) BuildHTMLString *buildStringClass;
-@property (nonatomic, strong) PlayAudioFile *playaudioClass;
-@property (nonatomic, strong) UIViewController *libraryViewController;
+@property (nonatomic, strong) Book* book;
+@property (nonatomic, strong) AVSpeechSynthesizer* syn;
 
-- (void) loadAssessmentActivity;
-- (void) loadFirstPage;
-- (void) loadNextPage;
-- (void) loadPage;
-- (UIImage *) getBackgroundImage;
+-(void) loadFirstPage;
+-(void) loadNextPage;
+-(void) loadPage;
 
 @end

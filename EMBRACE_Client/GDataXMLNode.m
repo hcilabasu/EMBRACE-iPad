@@ -773,8 +773,7 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
                 // step through the namespaces, if any, and register each with the
                 // xpath context
                 if (nsNodePtr != NULL) {
-                    //Jithin: Dirty hack to make the app run in 64 bit devices. We should update the library.
-                    for (xmlNsPtr nsPtr = nsNodePtr->ns; nsPtr != NULL && nsNodePtr->ns != 0x0000000100000000; nsPtr = nsPtr->next) {
+                    for (xmlNsPtr nsPtr = nsNodePtr->ns; nsPtr != NULL; nsPtr = nsPtr->next) {
                         
                         // default namespace is nil in the tree, but there's no way to
                         // register a default namespace, so we'll register a fake one,

@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "PhysicalManipulationActivity.h"
 #import "ImagineManipulationActivity.h"
-#import "ScriptAudio.h"
 
 @interface Chapter : NSObject {
     NSString *title; //Title of this chapter.
@@ -34,11 +33,4 @@
 -(Activity*) getActivityOfType:(Mode) mode;
 
 -(NSString*) getNextPageForMode:(Mode) mode :(NSString*)currentPage;  //Get the next page in this chapter.
-
-- (void)addEmbraceScript:(ScriptAudio *)script forSentence:(NSString *)sentenceId;
-- (void)addControlScript:(ScriptAudio *)script forSentence:(NSString *)sentenceId;
-
-- (ScriptAudio *)embraceScriptFor:(NSString *)sentenceId;
-- (ScriptAudio *)controlScriptFor:(NSString *)sentenceId;
-
 @end

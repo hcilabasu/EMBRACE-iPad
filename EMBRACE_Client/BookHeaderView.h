@@ -11,6 +11,5 @@
 @interface BookHeaderView : UICollectionReusableView
 
 @property (nonatomic, strong) IBOutlet UILabel* bookTitle;
-@property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
 
 @end

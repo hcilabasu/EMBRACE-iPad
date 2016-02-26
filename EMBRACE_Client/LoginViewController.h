@@ -9,13 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface LoginViewController : UIViewController {
-    IBOutlet UITextField *schoolCodeField;
-    IBOutlet UITextField *participantCodeField;
-    IBOutlet UITextField *studyDayField;
-    IBOutlet UITextField *experimenterField;
+    IBOutlet UITextField *firstNameField;
+    IBOutlet UITextField *lastNameField;
 }
-
-- (IBAction)login:(id)sender;
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 
 @end

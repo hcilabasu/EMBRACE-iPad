@@ -8,15 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Student : NSObject
+@interface Student : NSObject {
+    NSString* firstName;
+    NSString* lastName;
+    
+    //Need some way to keep track of activities.
+    //I need to know which activities were done in PM and IM and which are still locked.
+    //Currently the Book represents the scenario: eg. Farm, House.
+    //Can have Chapters that represent individual stories - Eg. Halloween.
+    //Can then have associated Activities for each chapter. - Eg. PM and IM.
+}
 
-@property (nonatomic, strong) NSString *schoolCode;
-@property (nonatomic, strong) NSString *participantCode;
-@property (nonatomic, strong) NSString *studyDay;
-@property (nonatomic, strong) NSString *experimenterName;
-@property (nonatomic, strong) NSString *currentTimestamp; //appended to end of current log session file name
+@property (nonatomic, strong) NSString *firstName;
+@property (nonatomic, strong) NSString *lastName;
 
-- (id)initWithValues:(NSString *)school :(NSString *)participant :(NSString *)study :(NSString *)experimenter;
-- (void)setCurrentTimestamp:(NSString *)timestamp;
+-(id)initWithName:(NSString*) first :(NSString*) last;
 
 @end

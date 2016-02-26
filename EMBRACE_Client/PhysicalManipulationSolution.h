@@ -8,8 +8,14 @@
 
 #import "Solution.h"
 
-@interface PhysicalManipulationSolution : Solution
+@interface PhysicalManipulationSolution : Solution {
+    NSMutableArray* solutionSteps;
+}
 
-- (NSMutableArray *)getIdeaNumbers;
+@property (nonatomic, strong) NSMutableArray* solutionSteps;
+
+-(void) addSolutionStep:(ActionStep*)solStep;
+-(NSMutableArray*) getStepsForSentence:(NSUInteger)sentNum;
+-(NSUInteger) getNumStepsForSentence:(NSUInteger)sentNum;
 
 @end

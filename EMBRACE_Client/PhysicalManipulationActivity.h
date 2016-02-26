@@ -8,18 +8,16 @@
 
 #import "Activity.h"
 #import "ActionStep.h"
-#import "AlternateSentence.h"
 #import "PhysicalManipulationSolution.h"
 
-@interface PhysicalManipulationActivity : Activity
+@interface PhysicalManipulationActivity : Activity {
+    NSMutableDictionary *setupSteps;
+    PhysicalManipulationSolution *PMSolution;
+}
 
 @property (nonatomic, strong) NSMutableDictionary *setupSteps;
-@property (nonatomic, strong) NSMutableDictionary *alternateSentences;
-@property (nonatomic, strong) NSMutableDictionary *PMSolutions;
+@property (nonatomic, strong) PhysicalManipulationSolution *PMSolution;
 
-- (void)addSetupStep:(ActionStep *)setupStep forPageId:(NSString *)pageId;
-- (void)addAlternateSentence:(AlternateSentence *)altSent forPageId:(NSString* )pageId;
-- (void)addPMSolution:(PhysicalManipulationSolution *)PMSolution forActivityId:(NSString *)activityId;
+- (void) addSetupStep:(ActionStep*)setupStep forPageId:(NSString*)pageId;
 
 @end
-

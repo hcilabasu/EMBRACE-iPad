@@ -13,9 +13,11 @@
 
 @synthesize coverImage;
 @synthesize coverTitle;
-@synthesize coverImageBackground;
+@synthesize defaultTitle;
+@synthesize defaultAuthor;
 
-- (id)initWithFrame:(CGRect)frame {
+- (id)initWithFrame:(CGRect)frame
+{
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
@@ -30,16 +32,27 @@
         }
         
         self = [arrayOfViews objectAtIndex:0];
+       
+        coverImage.layer.shadowColor = [UIColor blackColor].CGColor;
+        coverImage.layer.shadowOffset = CGSizeMake(2, 2);
+        coverImage.layer.shadowOpacity = 0.75;
+        coverImage.layer.shadowRadius = 5;
+        coverImage.clipsToBounds = NO;
         
-        CALayer* imageLayer = [coverImage layer];
-        [imageLayer setBorderWidth:2];
-        [imageLayer setMasksToBounds:YES];
-        
-        self.progressIndicator = [[UIImageView alloc] init];
-        self.progressIconY = 10.5;
+        coverTitle.textAlignment = NSTextAlignmentCenter;
     }
     
     return self;
 }
+
+
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect
+{
+    // Drawing code
+}
+*/
 
 @end

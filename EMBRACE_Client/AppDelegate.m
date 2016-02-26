@@ -27,13 +27,10 @@
         NSArray *directoryContents = [fileManager contentsOfDirectoryAtPath:documentsDirectory error:&error];
         if (error == nil) {
             for (NSString *path in directoryContents) {
-                //EPUB files are located in a folder called "ASU"
-                if ([path isEqualToString:@"ASU"]) {
-                    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:path];
-                    BOOL removeSuccess = [fileManager removeItemAtPath:fullPath error:&error];
-                    if (!removeSuccess) {
-                        NSLog(@"could not remove files in document directory");
-                    }
+                NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:path];
+                BOOL removeSuccess = [fileManager removeItemAtPath:fullPath error:&error];
+                if (!removeSuccess) {
+                    NSLog(@"could not remove files in document directory");
                 }
             }
         }
@@ -55,17 +52,6 @@
     newPath = [newPath stringByAppendingString:filename];
     [fileManager copyItemAtPath:filePath toPath:newPath error:nil];*/
     
-    
-    //Copy the monkey.epub file from the app bundle to the application support directory
-    filePath = [[NSBundle mainBundle] pathForResource:@"monkey" ofType:@"epub"];
-    newPath = [documentsDirectory stringByAppendingPathComponent:@"/ASU/IntroTo1Monkey"];
-    
-    [fileManager createDirectoryAtPath:newPath  withIntermediateDirectories:YES attributes:nil error:nil];
-    
-    filename = [@"/" stringByAppendingString:[filePath lastPathComponent]];
-    newPath = [newPath stringByAppendingString:filename];
-    [fileManager copyItemAtPath:filePath toPath:newPath error:nil];
-    
     //Copy the bestFarm.epub file from the app bundle to the application support directory
     filePath = [[NSBundle mainBundle] pathForResource:@"bestFarm" ofType:@"epub"];
     newPath = [documentsDirectory stringByAppendingPathComponent:@"/ASU/IntroToBestFarm"];
@@ -76,7 +62,8 @@
     newPath = [newPath stringByAppendingString:filename];
     [fileManager copyItemAtPath:filePath toPath:newPath error:nil];
     
-    //Copy the house.epub file from the app bundle to the application support directory*/
+    /* //NOTE: Currently we are only using bestFarm.epub and circulatory.epub
+    //Copy the house.epub file from the app bundle to the application support directory
     filePath = [[NSBundle mainBundle] pathForResource:@"house" ofType:@"epub"];
     newPath = [documentsDirectory stringByAppendingPathComponent:@"/ASU/IntroToHouse"];
     
@@ -84,58 +71,11 @@
     
     filename = [@"/" stringByAppendingString:[filePath lastPathComponent]];
     newPath = [newPath stringByAppendingString:filename];
-    [fileManager copyItemAtPath:filePath toPath:newPath error:nil];
+    [fileManager copyItemAtPath:filePath toPath:newPath error:nil];*/
     
     //Copy the circulatory.epub file from the app bundle to the application support directory
     filePath = [[NSBundle mainBundle] pathForResource:@"circulatory" ofType:@"epub"];
     newPath = [documentsDirectory stringByAppendingPathComponent:@"/ASU/IntroToCirculatory"];
-    
-    [fileManager createDirectoryAtPath:newPath withIntermediateDirectories:YES attributes:nil error:nil];
-    
-    filename = [@"/" stringByAppendingString:[filePath lastPathComponent]];
-    newPath = [newPath stringByAppendingString:filename];
-    [fileManager copyItemAtPath:filePath toPath:newPath error:nil];
-    
-    //Copy the disasters.epub file from the app bundle to the application support directory
-    filePath = [[NSBundle mainBundle] pathForResource:@"disasters" ofType:@"epub"];
-    newPath = [documentsDirectory stringByAppendingPathComponent:@"/ASU/IntroToDisasters"];
-    
-    [fileManager createDirectoryAtPath:newPath withIntermediateDirectories:YES attributes:nil error:nil];
-    
-    filename = [@"/" stringByAppendingString:[filePath lastPathComponent]];
-    newPath = [newPath stringByAppendingString:filename];
-    [fileManager copyItemAtPath:filePath toPath:newPath error:nil];
-    
-    //Copy the bottled.epub file from the app bundle to the application support directory
-    filePath = [[NSBundle mainBundle] pathForResource:@"bottled" ofType:@"epub"];
-    newPath = [documentsDirectory stringByAppendingPathComponent:@"/ASU/IntroToBottledJoy"];
-    
-    [fileManager createDirectoryAtPath:newPath withIntermediateDirectories:YES attributes:nil error:nil];
-    
-    filename = [@"/" stringByAppendingString:[filePath lastPathComponent]];
-    newPath = [newPath stringByAppendingString:filename];
-    [fileManager copyItemAtPath:filePath toPath:newPath error:nil];
-    
-    filePath = [[NSBundle mainBundle] pathForResource:@"physics" ofType:@"epub"];
-    newPath = [documentsDirectory stringByAppendingPathComponent:@"/ASU/IntroToPhysics"];
-    
-    [fileManager createDirectoryAtPath:newPath withIntermediateDirectories:YES attributes:nil error:nil];
-    
-    filename = [@"/" stringByAppendingString:[filePath lastPathComponent]];
-    newPath = [newPath stringByAppendingString:filename];
-    [fileManager copyItemAtPath:filePath toPath:newPath error:nil];
-    
-    filePath = [[NSBundle mainBundle] pathForResource:@"celebration" ofType:@"epub"];
-    newPath = [documentsDirectory stringByAppendingPathComponent:@"/ASU/IntroToCelebration"];
-    
-    [fileManager createDirectoryAtPath:newPath withIntermediateDirectories:YES attributes:nil error:nil];
-    
-    filename = [@"/" stringByAppendingString:[filePath lastPathComponent]];
-    newPath = [newPath stringByAppendingString:filename];
-    [fileManager copyItemAtPath:filePath toPath:newPath error:nil];
-    
-    filePath = [[NSBundle mainBundle] pathForResource:@"native" ofType:@"epub"];
-    newPath = [documentsDirectory stringByAppendingPathComponent:@"/ASU/IntroToNative"];
     
     [fileManager createDirectoryAtPath:newPath withIntermediateDirectories:YES attributes:nil error:nil];
     

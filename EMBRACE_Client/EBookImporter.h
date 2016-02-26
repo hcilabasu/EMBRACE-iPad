@@ -10,11 +10,18 @@
 #import "GDataXMLNode.h"
 #import "ZipArchive.h"
 #import "Book.h"
-#import "ConditionSetup.h"
 
-@interface EBookImporter : NSObject
+@interface EBookImporter : NSObject {
+    NSArray *dirPaths;
+    NSString *docsDir;
+    NSMutableArray *library;
+}
 
-- (NSMutableArray *)importLibrary;
-- (Book *)getBookWithTitle:(NSString *)bookTitle;
+@property (nonatomic,strong) NSString *docsDir;
+@property (nonatomic,strong) NSArray *dirPaths;
+@property (nonatomic,strong) NSMutableArray *library;
 
+-(NSMutableArray*) importLibrary;
+-(Book*) getBookWithTitle:(NSString*) bookTitle;
+-(void) readMetadataForBook:(Book*) book;
 @end

@@ -1,5 +1,5 @@
 //
-//  PMViewController.m
+//  BookViewController.m
 //  eBookReader
 //
 //  Created by Andreea Danielescu on 2/12/13.
@@ -10,78 +10,69 @@
 #import "ContextualMenuDataSource.h"
 #import "PieContextualMenu.h"
 #import "Translation.h"
-#import "ServerCommunicationController.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import <AVFoundation/AVFoundation.h>
-#import "ConditionSetup.h"
-#import "IntroductionViewController.h"
-#import "Statistics.h"
 
 @interface PMViewController () {
-    NSString *currentPage; //Current page being shown, so that the next page can be requested
-    NSString *currentPageId; //Id of the current page being shown
-    NSString *actualPage; //Stores the address of the current page we are at
+    NSString* currentPage; //The current page being shown, so that the next page can be requested.
+    NSString* currentPageId; //The id of the current page being shown
     
-    NSUInteger currentSentence; //Active sentence to be completed
-    NSString *currentSentenceText; //Text of current sentence
-    NSUInteger currentIdea; //Current idea number to be completed
-    NSUInteger totalSentences; //Total number of sentences on this page
-    NSMutableArray *pageSentences; //AlternateSentences on current page
-    NSString *actualWord; //Stores the current word that was clicked
-    NSString *previousStep;
+    NSUInteger currentSentence; //Active sentence to be completed.
+    NSUInteger totalSentences; //Total number of sentences on this page.
+    NSUInteger currentIntroStep; //Current step in the introduction
     
-    BOOL chooseComplexity; //True if using alternate sentences
-    NSMutableDictionary *pageStatistics;
-    NSUInteger currentComplexity; //Complexity level of current sentence
-    NSDate *startTime;
-    NSDate *endTime;
-    
-    PhysicalManipulationSolution *PMSolution; //PM solution steps for current chapter
-    ImagineManipulationSolution *IMSolution; //IM solution steps for current chapter
+    PhysicalManipulationSolution* PMSolution; //Solution steps for current chapter
     NSUInteger numSteps; //Number of steps for current sentence
-    NSUInteger currentStep; //Active step to be completed
+    NSUInteger currentStep; //Active step to be completed.
     BOOL stepsComplete; //True if all steps have been completed for a sentence
     
-    InteractionModel *model;
-    ConditionSetup *conditionSetup;
-    
-    InteractionRestriction useSubject; //Determines which objects the user can manipulate as the subject
-    InteractionRestriction useObject; //Determines which objects the user can interact with as the object
-    
-    NSString *movingObjectId; //Object currently being moved
-    NSString *collisionObjectId; //Object the moving object was moved to
-    NSString *separatingObjectId; //Object identified when pinch gesture performed
-    NSMutableDictionary *currentGroupings;
-    Relationship *lastRelationship; //Stores the most recent relationship between objects used
-    NSMutableArray *allRelationships; //Stores an array of all relationships which is populated in getPossibleInteractions
-    NSMutableDictionary *animatingObjects;
-    BOOL containsAnimatingObject;
-    BOOL movingObject; //True if an object is currently being moved
-    BOOL separatingObject; //True if two objects are currently being ungrouped
+    NSString *movingObjectId; //Object currently being moved.
+    NSString *separatingObjectId; //Object identified when pinch gesture performed.
+    BOOL movingObject; //True if an object is currently being moved, false otherwise.
+    BOOL separatingObject; //True if two objects are currently being ungrouped, false otherwise.
     
     BOOL panning;
     BOOL pinching;
-    BOOL pinchToUngroup; //True if pinch gesture is used to ungroup
+    BOOL pinchToUngroup; //TRUE if pinch gesture is used to ungroup; FALSE otherwise
+    BOOL allowInteractions; //TRUE if objects can be manipulated; FALSE otherwise
     
-    BOOL replenishSupply; //True if object should reappear after disappearing
-    BOOL allowSnapback; //True if objects should snap back to original location upon error
+    NSMutableDictionary *currentGroupings;
+    
+    BOOL replenishSupply; //TRUE if object should reappear after disappearing
+    BOOL allowSnapback; //TRUE if objects should snap back to original location upon error
 
     CGPoint startLocation; //initial location of an object before it is moved
-    CGPoint endLocation; // ending location of an object after it is moved
     CGPoint delta; //distance between the top-left corner of the image being moved and the point clicked.
     
     ContextualMenuDataSource *menuDataSource;
     PieContextualMenu *menu;
-    UIView *IMViewMenu;
     BOOL menuExpanded;
     
-    NSTimer *timer; //Controls the timing of the audio file that is playing
-    BOOL isAudioLeft;
+    InteractionModel *model;
+    
+    Condition condition; //Study condition to run the app (e.g. MENU, HOTSPOT, etc.)
+    InteractionRestriction useSubject; //Determines which objects the user can manipulate as the subject
+    InteractionRestriction useObject; //Determines which objects the user can interact with as the object
+    
+    NSMutableDictionary* introductions; //Stores the instances of the introductions from metadata.xml
+    NSUInteger totalIntroSteps; //Stores the total number of introduction steps for the current chapter
+    NSMutableArray* currentIntroSteps; //Stores the introduction steps for the current chapter
+    NSArray *performedActions; //Store the information of the current step
+    
+    NSMutableDictionary* vocabularies; //Stores the instances of the vocabs from metadata.xml
+    NSUInteger currentVocabStep; //Stores the index of the current vocab step
+    NSMutableArray* currentVocabSteps; //Stores the vocab steps for the current chapter
+    NSUInteger totalVocabSteps; //Stores the total number of vocab steps for the current chapter
+    
+    NSString* actualPage; //Stores the address of the current page we are at
+    NSString* actualWord; //Stores the current word that was clicked
+    NSTimer* timer; //Controls the timing of the audio file that is playing
+    NSString* languageString; //Defines the languange to be used 'E' for English 'S' for Spanish
+    BOOL sameWordClicked; //Defines if a word has been clicked or not
 }
 
 @property (nonatomic, strong) IBOutlet UIWebView *bookView;
 @property (strong) AVAudioPlayer *audioPlayer;
-@property (strong) AVAudioPlayer *audioPlayerAfter; //Used to play sounds after the first audio player has finished playing
 
 @end
 
@@ -95,18 +86,14 @@
 @synthesize bookImporter;
 @synthesize bookView;
 
-@synthesize libraryViewController;
-
-@synthesize IntroductionClass;
-@synthesize buildStringClass;
-@synthesize playaudioClass;
-
 @synthesize syn;
 
 //Used to determine the required proximity of 2 hotspots to group two items together.
 float const groupingProximity = 20.0;
 
-BOOL wasPathFollowed = false;
+//In the bilingual introduction there are 13 steps in Spanish before switching to English only
+int const STEPS_TO_SWITCH_LANGUAGES = 14;
+int language_condition = ENGLISH;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -114,18 +101,10 @@ BOOL wasPathFollowed = false;
     bookView.frame = self.view.bounds;
 }
 
-- (void) viewDidLoad {
+- (void)viewDidLoad {
     [super viewDidLoad];
     
-    conditionSetup = [ConditionSetup sharedInstance];
-    
-    buildStringClass = [[BuildHTMLString alloc] init];
-    playaudioClass = [[PlayAudioFile alloc] init];
-    IntroductionClass = [[IntroductionViewController alloc] initWithParams:playaudioClass :buildStringClass :conditionSetup];
-    
     syn = [[AVSpeechSynthesizer alloc] init];
-    
-    menuDataSource = [[ContextualMenuDataSource alloc] init];
     
     //Added to deal with ios7 view changes. This makes it so the UIWebView and the navigation bar do not overlap.
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
@@ -140,66 +119,53 @@ BOOL wasPathFollowed = false;
     [[bookView scrollView] setBounces: NO];
     [[bookView scrollView] setScrollEnabled:NO];
     
+    movingObject = FALSE;
+    pinching = FALSE;
+    menuExpanded = FALSE;
+    
+    movingObjectId = nil;
+    separatingObjectId = nil;
+    
     currentPage = nil;
     
-    pinching = FALSE;
+    condition = MENU;
+    
+    if (condition == CONTROL) {
+        allowInteractions = FALSE; //control condition allows user to read only; no manipulations
+    }
+    else {
+        allowInteractions = TRUE;
+    }
+    
+    useSubject = ALL_ENTITIES;
+    useObject = ONLY_CORRECT;
     pinchToUngroup = FALSE;
     replenishSupply = FALSE;
     allowSnapback = TRUE;
     
-    movingObject = FALSE;
-    movingObjectId = nil;
-    collisionObjectId = nil;
-    separatingObjectId = nil;
-    lastRelationship = nil;
-    allRelationships = [[NSMutableArray alloc] init];
+    sameWordClicked = false;
+    
     currentGroupings = [[NSMutableDictionary alloc] init];
     
-    if (conditionSetup.condition  == CONTROL) {
-        IntroductionClass.allowInteractions = FALSE;
-        
-        useSubject = NO_ENTITIES;
-        useObject = NO_ENTITIES;
-    }
-    else if (conditionSetup.condition == EMBRACE) {
-        IntroductionClass.allowInteractions = TRUE;
-        
-        if (conditionSetup.currentMode == PM_MODE) {
-            useSubject = ALL_ENTITIES;
-            useObject = ONLY_CORRECT;
-        }
-        else if (conditionSetup.currentMode == IM_MODE) {
-            useSubject = NO_ENTITIES;
-            useObject = NO_ENTITIES;
-        }
-    }
+    //Create contextualMenuController
+    menuDataSource = [[ContextualMenuDataSource alloc] init];
     
-    if (conditionSetup.appMode == ITS) {
-        chooseComplexity = TRUE;
-        pageStatistics = [[NSMutableDictionary alloc] init];
-    }
-    else {
-        chooseComplexity = FALSE;
-    }
-    
-    IntroductionClass.languageString = @"E";
-    IntroductionClass.sameWordClicked = false;
+    //Ensure that the pinch recognizer gets called before the pan gesture recognizer.
+    //That way, if a user is trying to ungroup objects, they can do so without the objects moving as well.
+    //TODO: Figure out how to get the pan gesture to still properly recognize the begin and continue actions.
+    //[panRecognizer requireGestureRecognizerToFail:pinchRecognizer];
 }
 
-- (void)didReceiveMemoryWarning {
-    NSLog(@"***************** Memory warning!! *****************");
-}
-
-- (void) webViewDidFinishLoad:(UIWebView *)webView {
-    //Disable user selection
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    // Disable user selection
     [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitUserSelect='none';"];
-    //Disable callout
+    // Disable callout
     [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitTouchCallout='none';"];
     
-    //Load the js files.
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"ImageManipulation" ofType:@"js"];
+    // Load the js files.
+    NSString* filePath = [[NSBundle mainBundle] pathForResource:@"ImageManipulation" ofType:@"js"];
     
-    if (filePath == nil) {
+    if(filePath == nil) {
         NSLog(@"Cannot find js file: ImageManipulation");
     }
     else {
@@ -208,258 +174,61 @@ BOOL wasPathFollowed = false;
         [bookView stringByEvaluatingJavaScriptFromString:jsString];
     }
     
-    //Load the animator js file
-    NSString *animatorFilePath = [[NSBundle mainBundle] pathForResource:@"Animator" ofType:@"js"];
-    
-    if(animatorFilePath == nil) {
-        NSLog(@"Cannot find js file: Animator");
-    }
-    else {
-        NSData *animatorFileData = [NSData dataWithContentsOfFile:animatorFilePath];
-        NSString *animatorJsString = [[NSMutableString alloc] initWithData:animatorFileData encoding:NSUTF8StringEncoding];
-        [bookView stringByEvaluatingJavaScriptFromString:animatorJsString];
-    }
-    
-    //Load the vector js file
-    NSString* vectorFilePath = [[NSBundle mainBundle] pathForResource:@"Vector" ofType:@"js"];
-    
-    if (vectorFilePath == nil) {
-        NSLog(@"Cannot find js file: Vector");
-    }
-    else {
-        NSData *vectorFileData = [NSData dataWithContentsOfFile:vectorFilePath];
-        NSString *vectorJsString = [[NSMutableString alloc] initWithData:vectorFileData encoding:NSUTF8StringEncoding];
-        [bookView stringByEvaluatingJavaScriptFromString:vectorJsString];
-    }
-    
     //Start off with no objects grouped together
     currentGroupings = [[NSMutableDictionary alloc] init];
+
+    //Get the number of sentences on the page
+    NSString* requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('sentence').length"];
+    int sentenceCount = [[bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount] intValue];
     
-    //Show menu to choose complexity level for non-intro pages of The Best Farm story only
-    if (conditionSetup.appMode == ITS && [currentPageId rangeOfString:@"Intro"].location == NSNotFound && ![chapterTitle isEqualToString:@"Introduction to The Best Farm"] && [bookTitle rangeOfString:@"The Circulatory System"].location == NSNotFound) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Choose sentence complexity levels" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"60% Simple   20% Medium   20% Complex", @"20% Simple   60% Medium   20% Complex", @"20% Simple   20% Medium   60% Complex", @"0% Simple 100% Medium 0% Complex", nil];
-        [alert show];
-    }
-    else {
-        //Get the number of sentences on the page
-        NSString* requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('sentence').length"];
-        int sentenceCount = [[bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount] intValue];
-        
-        //Get the id number of the last sentence on the page and set it equal to the total number of sentences.
-        //Because the PMActivity may have multiple pages, this id number may not match the sentence count for the page.
-        //   Ex. Page 1 may have three sentences: 1, 2, and 3. Page 2 may also have three sentences: 4, 5, and 6.
-        //   The total number of sentences is like a running total, so by page 2, there are 6 sentences instead of 3.
-        //This is to make sure we access the solution steps for the correct sentence on this page, and not a sentence on
-        //a previous page.
+    //Get the id number of the last sentence on the page and set it equal to the total number of sentences.
+    //Because the PMActivity may have multiple pages, this id number may not match the sentence count for the page.
+    //   Ex. Page 1 may have three sentences: 1, 2, and 3. Page 2 may also have three sentences: 4, 5, and 6.
+    //   The total number of sentences is like a running total, so by page 2, there are 6 sentences instead of 3.
+    //This is to make sure we access the solution steps for the correct sentence on this page, and not a sentence on
+    //a previous page.
+    if (![chapterTitle isEqualToString:@"The Contest"]) {
         NSString* requestLastSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[%d - 1].id", sentenceCount];
         NSString* lastSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
         int lastSentenceIdNumber = [[lastSentenceId substringFromIndex:1] intValue];
         totalSentences = lastSentenceIdNumber;
-        
-        //Get the id number of the first sentence on the page and set it equal to the current sentence number.
-        //Because the PMActivity may have multiple pages, the first sentence on the page is not necessarily sentence 1.
-        //   Ex. Page 1 may start at sentence 1, but page 2 may start at sentence 4.
-        //   Thus, the first sentence on page 2 is sentence 4, not 1.
-        //This is also to make sure we access the solution steps for the correct sentence.
-        NSString* requestFirstSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[0].id"];
-        NSString* firstSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestFirstSentenceId];
-        int firstSentenceIdNumber = [[firstSentenceId substringFromIndex:1] intValue];
-        currentSentence = firstSentenceIdNumber;
-        currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",firstSentenceIdNumber]];
-        
-        
-        //dynamically reads the vocabulary words on the vocab page and creates and adds solutionsteps
-        if ([currentPageId rangeOfString:@"-Intro"].location != NSNotFound) {
-            
-            PMSolution = [[PhysicalManipulationSolution alloc] init];
-            IMSolution = [[ImagineManipulationSolution alloc] init];
-            
-            for (int i=1; i<totalSentences+1; i++)
-            {
-                NSString* requestSentenceText = [NSString stringWithFormat:@"document.getElementById(%d).innerHTML", i];
-                NSString* sentenceText = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceText];
-                sentenceText = [sentenceText lowercaseString];
-                //(NSUInteger)sentNum :(NSUInteger)stepNum :(NSString*)type :(NSString*)obj1Id :(NSString*) obj2Id :(NSString*)loc :(NSString*)waypt :(NSString*)act :(NSString*)area :(NSString*)file;
-                ActionStep *solutionStep = [[ActionStep alloc] initAsSolutionStep:i : 1 : @"tapWord" : sentenceText : nil : nil: nil : nil : nil : nil];
-                
-                if (conditionSetup.currentMode == PM_MODE) {
-                    
-                    [PMSolution addSolutionStep:solutionStep];
-                }
-                else if (conditionSetup.currentMode == IM_MODE) {
-                    
-                    [IMSolution addSolutionStep:solutionStep];
-                }
-            }
-            
-            Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
-            //Add PMSolution to page
-            if (conditionSetup.currentMode == PM_MODE) {
-                PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; //get PM Activity only
-                [PMActivity addPMSolution:PMSolution forActivityId:currentPageId];
-            }
-            //Add IMSolution to page
-            else if (conditionSetup.currentMode == IM_MODE) {
-                ImagineManipulationActivity *IMActivity = (ImagineManipulationActivity *)[chapter getActivityOfType:IM_MODE]; //get IM Activity only
-                [IMActivity addIMSolution:IMSolution forActivityId:currentPageId];
-            }
-        }
-        
-        //Set up current sentence appearance and solution steps
-        [self setupCurrentSentence];
-        [self setupCurrentSentenceColor];
+    }
+    else {
+        totalSentences = sentenceCount;
     }
     
-    if ([IntroductionClass.introductions objectForKey:chapterTitle] || ([IntroductionClass.vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound)) {
-        IntroductionClass.allowInteractions = FALSE;
+    //Get the id number of the first sentence on the page and set it equal to the current sentence number.
+    //Because the PMActivity may have multiple pages, the first sentence on the page is not necessarily sentence 1.
+    //   Ex. Page 1 may start at sentence 1, but page 2 may start at sentence 4.
+    //   Thus, the first sentence on page 2 is sentence 4, not 1.
+    //This is also to make sure we access the solution steps for the correct sentence.
+    NSString* requestFirstSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[0].id"];
+    NSString* firstSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestFirstSentenceId];
+    int firstSentenceIdNumber = [[firstSentenceId substringFromIndex:1] intValue];
+    currentSentence = firstSentenceIdNumber;
+    
+    //Set up current sentence appearance and solution steps
+    [self setupCurrentSentence];
+    [self setupCurrentSentenceColor];
+    
+    //Load the first step for the current chapter (hard-coded for now)
+    if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"]) {
+        [self loadIntroStep];
     }
     
-    //Load the first step for the current chapter
-    if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
-        [IntroductionClass loadIntroStep:bookView:self: currentSentence];
-    }
+    //Create UIView for textbox area to recognize swipe gesture
+    //NOTE: Currently not in use because it disables tap gesture recognition over the textbox area and we haven't
+    //found a way to fix this yet.
+    //[self createTextboxView];
     
     //Load the first vocabulary step for the current chapter (hard-coded for now)
-    if ([IntroductionClass.vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
-        [IntroductionClass loadVocabStep:bookView:self: currentSentence: chapterTitle];
+    if ([chapterTitle isEqualToString:@"The Contest"] && [actualPage isEqualToString:currentPage]) {
+        //The first word is in Spanish
+        [self loadVocabStep];
     }
-    
-    isAudioLeft = false;
-    
-    [self playCurrentSentenceAudio];
-    
-    //If there is at least one area/path to build
-    if ([model getAreaWithPageId:currentPageId]) {
-        //Build area/path
-        for (Area *area in [model areas]) {
-            if([area.pageId isEqualToString:currentPageId]) {
-                [self buildPath:area.areaId];
-            }
-        }
-    }
-    
-    //Draw area (hard-coded for now)
-    //[self drawArea:@"outside":@"The Lopez Family"];
-    //[self drawArea:@"aroundPaco":@"Is Paco a Thief?"];
-    [self drawArea:@"aorta":@"The Amazing Heart":@"story2-PM-4"];
-    [self drawArea:@"aortaPath":@"The Amazing Heart":@"story2-PM-4"];
-    [self drawArea:@"aortaStart":@"The Amazing Heart":@"story2-PM-4"];
-    //[self drawArea:@"arteries":@"Muscles Use Oxygen":@"story3-PM-1"];
-    //[self drawArea:@"aortaPath2":@"Muscles Use Oxygen":@"story3-PM-1"];
-    [self drawArea:@"veinPath":@"Getting More Oxygen for the Muscles":@"story4-PM-3"];
-    [self drawArea:@"vein":@"Getting More Oxygen for the Muscles":@"story4-PM-3"];
     
     //Perform setup for activity
     [self performSetupForActivity];
-}
-
--(void) drawArea : (NSString *) areaName : (NSString *) chapter : (NSString *) pageId {
-    if ([chapterTitle isEqualToString:chapter] && [currentPageId isEqualToString:pageId]) {
-        //Get area that hotspot should be inside
-        Area* area = [model getAreaWithId:areaName];
-        
-        //apply path to shapelayer
-        CAShapeLayer* path = [CAShapeLayer layer];
-        path.lineWidth = 10.0;
-        path.path = area.aPath.CGPath;
-        [path setFillColor:[UIColor clearColor].CGColor];
-        
-        if([areaName rangeOfString:@"Path"].location == NSNotFound) {
-            [path setStrokeColor:[UIColor greenColor].CGColor];
-        }
-        else {
-            // If it is a path, paint it red
-            [path setStrokeColor:[UIColor redColor].CGColor];
-        }
-        
-        //add shape layer to view's layer
-        //[[self.view layer] addSublayer:path];
-    }
-}
-
-
-//Temporary menu to select complexity of sentences on page or to dismiss page statistics
-- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if ([[alertView title] isEqualToString:@"Choose sentence complexity levels"]) {
-        Statistics* statistics = [[Statistics alloc] init];
-        [pageStatistics setObject:statistics forKey:currentPageId];
-        
-        pageSentences = [[pageStatistics objectForKey:currentPageId] pageSentences];
-        
-        if (buttonIndex == 0) {
-            //Swap sentences for specified complexity level
-            [self swapSentencesOnPage:60 :20 :20];
-        }
-        else if (buttonIndex == 1) {
-            //Swap sentences for specified complexity level
-            [self swapSentencesOnPage:20 :60 :20];
-        }
-        else if (buttonIndex == 2) {
-            //Swap sentences for specified complexity level
-            [self swapSentencesOnPage:20 :20 :60];
-        }
-        else if (buttonIndex ==3)
-        {
-            //keeps current sentences
-            [self swapSentencesOnPage:0 :100 :0];
-        }
-        
-        //Get the number of sentences on the page
-        NSString* requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('sentence').length"];
-        int sentenceCount = [[bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount] intValue];
-        
-        //Get the id number of the last sentence on the page and set it equal to the total number of sentences.
-        //Because the PMActivity may have multiple pages, this id number may not match the sentence count for the page.
-        //   Ex. Page 1 may have three sentences: 1, 2, and 3. Page 2 may also have three sentences: 4, 5, and 6.
-        //   The total number of sentences is like a running total, so by page 2, there are 6 sentences instead of 3.
-        //This is to make sure we access the solution steps for the correct sentence on this page, and not a sentence on
-        //a previous page.
-        //if (![vocabularies objectForKey:chapterTitle]) {
-        NSString* requestLastSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[%d - 1].id", sentenceCount];
-        NSString* lastSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
-        int lastSentenceIdNumber = [[lastSentenceId substringFromIndex:1] intValue];
-        totalSentences = lastSentenceIdNumber;
-        //}
-        //else {
-        //totalSentences = sentenceCount;
-        //}
-        
-        //Get the id number of the first sentence on the page and set it equal to the current sentence number.
-        //Because the PMActivity may have multiple pages, the first sentence on the page is not necessarily sentence 1.
-        //   Ex. Page 1 may start at sentence 1, but page 2 may start at sentence 4.
-        //   Thus, the first sentence on page 2 is sentence 4, not 1.
-        //This is also to make sure we access the solution steps for the correct sentence.
-        NSString* requestFirstSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[0].id"];
-        NSString* firstSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestFirstSentenceId];
-        int firstSentenceIdNumber = [[firstSentenceId substringFromIndex:1] intValue];
-        currentSentence = firstSentenceIdNumber;
-        
-        //Set up current sentence appearance and solution steps
-        [self setupCurrentSentence];
-        [self setupCurrentSentenceColor];
-    }
-    else if ([[alertView title] isEqualToString:@"Page Statistics"]) {
-        if (buttonIndex == 0) {
-            [self loadNextPage];
-        }
-    }
-}
-
-//Temporary function to show page statistics
-- (void) showPageStatistics {
-    Statistics* statistics = [pageStatistics objectForKey:currentPageId];
-    
-    NSString* numStepsString = [NSString stringWithFormat:@"Number of steps:\nSimple: %d\nMedium: %d\nComplex: %d", [statistics getNumStepsForComplexity:0], [statistics getNumStepsForComplexity:1], [statistics getNumStepsForComplexity:2]];
-    NSString* numErrorsString = [NSString stringWithFormat:@"Number of errors:\nSimple: %d\nMedium: %d\nComplex: %d", [statistics getNumErrorsForComplexity:0], [statistics getNumErrorsForComplexity:1], [statistics getNumErrorsForComplexity:2]];
-    NSString* timeString = [NSString stringWithFormat:@"Average time per step:\nSimple: %f\nMedium: %f\nComplex: %f", [statistics calculateAverageTimePerStepForComplexity:0], [statistics calculateAverageTimePerStepForComplexity:1], [statistics calculateAverageTimePerStepForComplexity:2]];
-    NSString* numNonActSentsString = [NSString stringWithFormat:@"Number of non-action sentences:\nSimple: %d\nMedium: %d\nComplex: %d", [statistics getNumNonActSentsForComplexity:0], [statistics getNumNonActSentsForComplexity:1], [statistics getNumNonActSentsForComplexity:2]];
-    NSString* timeForNonActsSentsString = [NSString stringWithFormat:@"Average time per non-action sentence:\nSimple: %f\nMedium: %f\nComplex: %f", [statistics calculateAverageTimePerNonActSentForComplexity:0], [statistics calculateAverageTimePerNonActSentForComplexity:1], [statistics calculateAverageTimePerNonActSentForComplexity:2]];
-    NSString* numVocabRequestsString = [NSString stringWithFormat:@"Number of vocabulary requests:\nSimple: %d\nMedium: %d\nComplex: %d", [statistics getNumVocabTapsForComplexity:0], [statistics getNumVocabTapsForComplexity:1], [statistics getNumVocabTapsForComplexity:2]];
-    
-    NSString* message = [NSString stringWithFormat:@"%@\n\n%@\n\n%@\n\n%@\n\n%@\n\n%@", numStepsString, numErrorsString, timeString, numNonActSentsString, timeForNonActsSentsString, numVocabRequestsString];
-    
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Page Statistics" message:message delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-    [alert show];
 }
 
 /*
@@ -471,22 +240,22 @@ BOOL wasPathFollowed = false;
 - (void) loadFirstPage {
     book = [bookImporter getBookWithTitle:bookTitle]; //Get the book reference.
     model = [book model];
-  
-    currentPage = [book getNextPageForChapterAndActivity:chapterTitle : conditionSetup.currentMode :nil];
+    
+    currentPage = [book getNextPageForChapterAndActivity:chapterTitle :PM_MODE :nil];
     
     actualPage = currentPage;
     
-    //instantiates all introduction variables
-    [IntroductionClass loadFirstPageIntroduction:model :chapterTitle];
+    //Introduction setup
+    currentIntroStep = 1;
+    
+    //Load the introduction data
+    introductions = [model getIntroductions];
+    
+    //Get the steps for the introduction of the current chapter
+    currentIntroSteps = [introductions objectForKey:chapterTitle];
+    totalIntroSteps = [currentIntroSteps count];
     
     [self loadPage];
-    
-    //change logging to introduction??
-    //Logging added by James for Loading First Page of selected Chapter form Library View
-    [[ServerCommunicationController sharedManager] logNextChapterNavigation:bookTitle :@"Title Page" :currentPage :@"Load First Page" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-    //storyName : chapterNumber : chapterName : pageNumber : pageName :  pageMode : pageLanguageType : sentenceNumber : sentenceText :  stepNumber : ideaNumber
-    
-    //Logging Completes Here.
 }
 
 /*
@@ -495,36 +264,17 @@ BOOL wasPathFollowed = false;
  * Otherwise, it will load the next chaper.
  */
 -(void) loadNextPage {
-    //stores last page
-    NSString *tempLastPage = currentPage;
     currentPage = [book getNextPageForChapterAndActivity:chapterTitle :PM_MODE :currentPage];
     
-    //No more pages in chapter
-    if (currentPage == nil) {
-        //Log that chapter has been completed
-        [[ServerCommunicationController sharedManager] logNextChapterNavigation:@"Next Button" :tempLastPage :currentPage :@"Next Page | Chapter Finished" :bookTitle :chapterTitle : @"Page Finished" :currentSentence : currentSentenceText: currentStep : currentIdea];
+    while (currentPage == nil) {
+        chapterTitle = [book getChapterAfterChapter:chapterTitle];
         
-        //return to library view
-        //load assessment activity screen
-        if([chapterTitle isEqualToString:@"Introduction to The Best Farm"] || [chapterTitle isEqualToString:@"Introduction to The House"])
-        {
-            //Set introduction as completed
-            [[(LibraryViewController*) libraryViewController studentProgress] setStatusOfChapter:chapterTitle :COMPLETED fromBook:[bookTitle stringByReplacingOccurrencesOfString:@" - Unknown-1" withString:@""]];
-            
+        if(chapterTitle == nil) { //no more chapters.
             [self.navigationController popViewControllerAnimated:YES];
             return;
         }
-        else
-        {
-            [self loadAssessmentActivity];
-            return;
-        }
-    }
-    else
-    {
-        //Logging added by James for Computer Navigation to next Page
-        [[ServerCommunicationController sharedManager] logNextPageNavigation:@"Next Button" :tempLastPage :currentPage :@"Next Page" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-        //Logging Completes Here.
+        
+        currentPage = [book getNextPageForChapterAndActivity:chapterTitle :PM_MODE :nil];
     }
     
     [self loadPage];
@@ -546,35 +296,27 @@ BOOL wasPathFollowed = false;
     
     [bookView loadHTMLString:pageContents baseURL:baseURL];
     [bookView stringByEvaluatingJavaScriptFromString:@"document.body.style.webkitTouchCallout='none';"];
+    //[bookView becomeFirstResponder];
     
     self.title = chapterTitle;
     
-    //instantiates all vocab variables
-    [IntroductionClass loadFirstPageVocabulary:model :chapterTitle];
-    
     //Set the current page id
-    currentPageId = [book getIdForPageInChapterAndActivity:currentPage :chapterTitle :conditionSetup.currentMode];
+    currentPageId = [book getIdForPageInChapterAndActivity:currentPage :chapterTitle :PM_MODE];
     
-    PhysicalManipulationActivity* PMActivity;
-    ImagineManipulationActivity* IMActivity;
+    //Get the solution steps for the current chapter
+    Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
+    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
+    PMSolution = [PMActivity PMSolution]; //get PM solution
     
-    if (conditionSetup.condition == EMBRACE) {
-        if (conditionSetup.currentMode == PM_MODE) {
-            IntroductionClass.allowInteractions = TRUE;
-            
-            //Get the PM solution steps for the current chapter
-            Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
-            PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
-            PMSolution = [[[PMActivity PMSolutions] objectForKey:currentPageId] objectAtIndex:0]; //get PM solution
-            currentIdea = [[[PMSolution solutionSteps] objectAtIndex:0] sentenceNumber];
-        }
-        else if (conditionSetup.currentMode == IM_MODE) {
-            //Get the IM solution steps for the current chapter
-            Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
-            IMActivity = (ImagineManipulationActivity*)[chapter getActivityOfType:IM_MODE]; //get IM Activity from chapter
-            IMSolution = [[[IMActivity IMSolutions] objectForKey:currentPageId] objectAtIndex:0]; //get IM solution
-        }
-    }
+    //Vocabulary setup
+    currentVocabStep = 1;
+    
+    //Load the vocabulary data
+    vocabularies = [model getVocabularies];
+    
+    //Get the vocabulary steps (words) for the current story
+    currentVocabSteps = [vocabularies objectForKey:chapterTitle];
+    totalVocabSteps = [currentVocabSteps count];
 }
 
 /*
@@ -586,51 +328,19 @@ BOOL wasPathFollowed = false;
     stepsComplete = FALSE;
     
     //Get number of steps for current sentence
-    if (conditionSetup.appMode == ITS && [pageSentences count] > 0) {
-        if (currentSentence > 0) {
-            numSteps = [[[pageSentences objectAtIndex:currentSentence - 1] solutionSteps] count];
-            
-            //Set current complexity based on sentence
-            currentComplexity = [[pageSentences objectAtIndex:currentSentence - 1] complexity];
-        }
-        else {
-            numSteps = 0; //sentence 0 is the title, so it has no steps
-        }
-    }
-    else {
-        if (conditionSetup.condition == CONTROL) {
-            numSteps = [PMSolution getNumStepsForSentence:currentSentence];
-        }
-        else if (conditionSetup.condition == EMBRACE) {
-            if (conditionSetup.currentMode == PM_MODE) {
-                //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                    numSteps = [PMSolution getNumStepsForSentence:currentIdea];
-                }
-                else {
-                    numSteps = [PMSolution getNumStepsForSentence:currentSentence];
-                }
-            }
-            else if (conditionSetup.currentMode == IM_MODE) {
-                numSteps = [IMSolution getNumStepsForSentence:currentSentence];
-            }
-        }
-    }
+    numSteps = [PMSolution getNumStepsForSentence:currentSentence];
     
     //Check to see if it is an action sentence
     NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
     NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
     
     //If it is an action sentence, perform its solution steps if necessary
-    if ([sentenceClass  containsString: @"sentence actionSentence"]) {
-        NSLog(@"first one");
+    if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
         [self performAutomaticSteps];
     }
     else {
         stepsComplete = TRUE; //no steps to complete for non-action sentence
     }
-    
-    startTime = [NSDate date]; //for page statistics
 }
 
 /* Sets up the appearance of the current sentence by highlighting it as blue (if it is an action sentence)
@@ -649,13 +359,7 @@ BOOL wasPathFollowed = false;
     NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
     
     //If it is an action sentence, set its color to blue and automatically perform solution steps if necessary
-    if ([sentenceClass  containsString: @"sentence actionSentence"] && currentSentence !=0 && ![sentenceClass containsString:@"black"]) {
-        setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
-        [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
-    }
-    
-    //If it is an IM action sentence and in im mode, set its color to blue and automatically perform solution steps if necessary
-    if ([sentenceClass  containsString: @"sentence IMactionSentence"] && ![sentenceClass containsString:@"black"] && currentSentence !=0 && conditionSetup.condition == EMBRACE && conditionSetup.condition == IM_MODE) {
+    if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
         setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
         [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
     }
@@ -672,77 +376,15 @@ BOOL wasPathFollowed = false;
  * if it is ungroup, move, or swap image.
  */
 -(void) incrementCurrentStep {
-    //Get steps for current sentence
-    NSMutableArray* currSolSteps;
-    
-    if (conditionSetup.appMode == ITS) {
-        currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-    }
-    else {
-        if (conditionSetup.condition == CONTROL) {
-            currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-        }
-        else if (conditionSetup.condition == EMBRACE) {
-            if (conditionSetup.currentMode == PM_MODE) {
-                //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                    currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                }
-                else {
-                    currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                }
-            }
-            else if (conditionSetup.currentMode == IM_MODE) {
-                currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-            }
-        }
-    }
-    
-    //Get current step to be completed
-    ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
-    
-    if (conditionSetup.appMode == ITS) {
-        //Not automatic step
-        if (!([[currSolStep stepType] isEqualToString:@"ungroup"] || [[currSolStep stepType] isEqualToString:@"move"] || [[currSolStep stepType] isEqualToString:@"swapImage"])) {
-            endTime = [NSDate date];
-            double elapsedTime = [endTime timeIntervalSinceDate:startTime];
-            
-            //Record time for complexity
-            [[pageStatistics objectForKey:currentPageId] addTime:elapsedTime ForComplexity:(currentComplexity - 1)];
-            
-            startTime = [NSDate date];
-        }
-    }
-    
     //Check if able to increment current step
     if (currentStep < numSteps) {
-        NSString *tempsteps = [NSString stringWithFormat:@"%lu", (unsigned long)currentStep];
         currentStep++;
-    
-        //Logging added by James for Computer Navigation to next Step
-        [[ServerCommunicationController sharedManager] logNextStepNavigation:@"Automatic Computer Action" :tempsteps :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep] :@"Next Step" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-        //Logging Completes Here.
         
         [self performAutomaticSteps]; //automatically perform ungroup or move steps if necessary
-        
     }
     else {
         stepsComplete = TRUE; //no more steps to complete
     }
-}
-
-/*
- *displays the assessment activity view controller
- */
--(void)loadAssessmentActivity{
-    UIImage *background = [self getBackgroundImage];
-    
-    //create an instance of the assessment activity view controller
-    AssessmentActivityViewController *assessmentActivityViewController = [[AssessmentActivityViewController alloc]initWithModel:model: libraryViewController:background:bookTitle :chapterTitle : currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] : [NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
-    
-    //push the assessment view controller as the top controller
-    [self.navigationController pushViewController:assessmentActivityViewController animated:YES];
-    
 }
 
 /*
@@ -778,23 +420,17 @@ BOOL wasPathFollowed = false;
     NSArray* hotspotsForInteraction = [[NSArray alloc]initWithObjects:hotspot1, hotspot2, nil];
     
     //The move case only applies if an object is being moved to another object, not a waypoint
-    if ([[step stepType] isEqualToString:@"group"] ||
-        [[step stepType] isEqualToString:@"move"] ||
-        [[step stepType] isEqualToString:@"groupAuto"])
-    {
+    if ([[step stepType] isEqualToString:@"group"] || [[step stepType] isEqualToString:@"move"]) {
         interaction = [[PossibleInteraction alloc]initWithInteractionType:GROUP];
         
         [interaction addConnection:GROUP :objects :hotspotsForInteraction];
     }
-    else if ([[step stepType] isEqualToString:@"ungroup"] ||
-             [[step stepType] isEqualToString:@"ungroupAndStay"])
-    {
+    else if ([[step stepType] isEqualToString:@"ungroup"]) {
         interaction = [[PossibleInteraction alloc]initWithInteractionType:UNGROUP];
         
         [interaction addConnection:UNGROUP :objects :hotspotsForInteraction];
     }
-    else if ([[step stepType] isEqualToString:@"disappear"])
-    {
+    else if ([[step stepType] isEqualToString:@"disappear"]) {
         interaction = [[PossibleInteraction alloc]initWithInteractionType:DISAPPEAR];
         
         [interaction addConnection:DISAPPEAR :objects :hotspotsForInteraction];
@@ -810,64 +446,12 @@ BOOL wasPathFollowed = false;
  */
 -(void) performSetupForActivity {
     Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
-    
     PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
     NSMutableArray* setupSteps = [[PMActivity setupSteps] objectForKey:currentPageId]; //get setup steps for current page
     
     for (ActionStep* setupStep in setupSteps) {
-        if ([[setupStep stepType] isEqualToString:@"group"]) {
-            PossibleInteraction* interaction = [self convertActionStepToPossibleInteraction:setupStep];
-            [self performInteraction:interaction]; //groups the objects
-        }
-        else if ([[setupStep stepType] isEqualToString:@"move"]) {
-            //Get information for move step type
-            NSString* object1Id = [setupStep object1Id];
-            NSString* action = [setupStep action];
-            NSString* object2Id = [setupStep object2Id];
-            NSString* waypointId = [setupStep waypointId];
-            
-            //Move either requires object1 to move to object2 (which creates a group interaction) or it requires object1 to move to a waypoint
-            if (object2Id != nil) {
-                PossibleInteraction* correctInteraction = [self getCorrectInteraction];
-                [self performInteraction:correctInteraction]; //performs solution step
-            }
-            else if (waypointId != nil) {
-                //Get position of hotspot in pixels based on the object image size
-                Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:object1Id :action :@"subject"];
-                CGPoint hotspotLocation = [self getHotspotLocationOnImage:hotspot];
-                
-                //Get position of waypoint in pixels based on the background size
-                Waypoint* waypoint = [model getWaypointWithId:waypointId];
-                CGPoint waypointLocation = [self getWaypointLocation:waypoint];
-                
-                
-                NSString* objectClassName = [NSString stringWithFormat:@"document.getElementById(%@).className", object1Id];
-                objectClassName = [bookView stringByEvaluatingJavaScriptFromString:objectClassName];
-                
-                if ([objectClassName rangeOfString:@"center"].location != NSNotFound) {
-                    
-                //NSString* requestImageHeight = [NSString stringWithFormat:@"%@.height", object1Id];
-                //NSString* requestImageWidth = [NSString stringWithFormat:@"%@.width", object1Id];
-                
-                //float imageHeight = [[bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
-                //float imageWidth = [[bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
-                
-                //waypointLocation.x = waypointLocation.x -imageWidth/2;
-                //waypointLocation.y = waypointLocation.y-imageHeight/2;
-                    
-                    hotspotLocation.x=0;
-                    hotspotLocation.y=0;
-                
-                }
-                
-                //Move the object
-                [self moveObject:object1Id :waypointLocation :hotspotLocation :false:waypointId];
-                
-                //Clear highlighting
-                NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
-                [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
-            }
-        }
+        PossibleInteraction* interaction = [self convertActionStepToPossibleInteraction:setupStep];
+        [self performInteraction:interaction]; //groups the objects
     }
 }
 
@@ -875,253 +459,48 @@ BOOL wasPathFollowed = false;
  * Performs ungroup, move, and swap image steps automatically
  */
 -(void) performAutomaticSteps {
-    
-    if([IntroductionClass.introductions objectForKey:chapterTitle] && [[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
-        IntroductionClass.allowInteractions = TRUE;
-    }
-    
     //Perform steps only if they exist for the sentence
-    if (numSteps > 0 && IntroductionClass.allowInteractions) {
-        
+    if (numSteps > 0 && allowInteractions) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps;
-        
-        if (conditionSetup.appMode == ITS) {
-            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-        }
-        else {
-            if (conditionSetup.condition == CONTROL) {
-                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-            }
-            else if (conditionSetup.condition == EMBRACE) {
-                if (conditionSetup.currentMode == PM_MODE) {
-                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                    }
-                    else {
-                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-                else if (conditionSetup.currentMode == IM_MODE) {
-                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                }
-            }
-        }
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
         //Automatically perform interaction if step is ungroup, move, or swap image
-        if (!pinchToUngroup && ([[currSolStep stepType] isEqualToString:@"ungroup"] ||
-                                [[currSolStep stepType] isEqualToString:@"ungroupAndStay"])) {
+        if (!pinchToUngroup && [[currSolStep stepType] isEqualToString:@"ungroup"]) {
             PossibleInteraction* correctUngrouping = [self getCorrectInteraction];
             
             [self performInteraction:correctUngrouping];
             [self incrementCurrentStep];
         }
-        else if([[currSolStep stepType] isEqualToString:@"groupAuto"]) {
-            PossibleInteraction* correctGrouping = [self getCorrectInteraction];
-            
-            [self performInteraction:correctGrouping];
-            [self incrementCurrentStep];
-        }
         else if ([[currSolStep stepType] isEqualToString:@"move"]) {
             [self moveObjectForSolution];
-            
             [self incrementCurrentStep];
         }
         else if ([[currSolStep stepType] isEqualToString:@"swapImage"]) {
             [self swapObjectImage];
-            
             [self incrementCurrentStep];
         }
-        else if ([[currSolStep stepType] isEqualToString:@"appear"]) {
-            [self loadImage];
-            [self incrementCurrentStep];
-        }
-        
-        else if ([[currSolStep stepType] isEqualToString:@"disappearAuto"]) {
-            [self hideImage];
-            [self incrementCurrentStep];
-        }
-        else if ([[currSolStep stepType] isEqualToString:@"changeZIndex"]) {
-            [self changeZIndex];
-            [self incrementCurrentStep];
-        }
-        else if ([[currSolStep stepType] isEqualToString:@"animate"]) {
-            [self animateObject];
-            [self incrementCurrentStep];
-        }
-        else if ([[currSolStep stepType] isEqualToString:@"playSound"]) {
-            NSString * file = [currSolStep fileName];
-            [self.playaudioClass playAudioFile:self:file];
-            [self incrementCurrentStep];
-        }
-    }
-    
-    if ([IntroductionClass.introductions objectForKey:chapterTitle] && [[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
-        IntroductionClass.allowInteractions = FALSE;
-    }
-}
-
-/*
- * Returns a CGPoint containing the x and y coordinates of the position of an object
- */
--(CGPoint) getObjectPosition:(NSString*)object {
-    NSArray* position;
-    
-    NSString* positionObject = [NSString stringWithFormat:@"getImagePosition(%@)", object];
-    NSString* positionString = [bookView stringByEvaluatingJavaScriptFromString:positionObject];
-    
-    if(![positionString isEqualToString:@""]) {
-        position = [positionString componentsSeparatedByString:@", "];
-    }
-    
-    return CGPointMake([position[0] floatValue], [position[1] floatValue]);
-}
-
--(void) animateObject {
-    //Check solution only if it exists for the sentence
-    if (numSteps > 0) {
-        //Get steps for current sentence
-        NSMutableArray* currSolSteps;
-        
-        if (conditionSetup.appMode == ITS) {
-            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-        }
-        else {
-            if (conditionSetup.condition == CONTROL) {
-                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-            }
-            else if (conditionSetup.condition == EMBRACE) {
-                if (conditionSetup.currentMode == PM_MODE) {
-                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                    }
-                    else {
-                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-                else if (conditionSetup.currentMode == IM_MODE) {
-                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                }
-            }
-        }
-        
-        //Get current step to be completed
-        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
-        
-        if ([[currSolStep stepType] isEqualToString:@"animate"]) {
-            //Get information for animation step type
-            NSString* object1Id = [currSolStep object1Id];
-            NSString* action = [currSolStep action];
-            NSString* waypointId = [currSolStep waypointId];
-            NSString* areaId = [currSolStep areaId];
-            if ([areaId isEqualToString:@""]) {
-                areaId = @"area";
-            }
-            
-            CGPoint imageLocation = [self getObjectPosition:object1Id];
-            
-            //Calculate offset between top-left corner of image and the point clicked.
-            delta = [self calculateDeltaForMovingObjectAtPoint:imageLocation];
-            
-            //Change the location to accounting for the difference between the point clicked and the top-left corner which is used to set the position of the image.
-            CGPoint adjLocation = CGPointMake(imageLocation.x - delta.x, imageLocation.y - delta.y);
-            
-            CGPoint waypointLocation;
-            if ([waypointId isEqualToString:@""]) {
-                waypointLocation.x = 0;
-                waypointLocation.y = 0;
-            }
-            else {
-                Waypoint* waypoint = [model getWaypointWithId:waypointId];
-                waypointLocation = [self getWaypointLocation:waypoint];
-            }
-            
-            //if ([areaId rangeOfString:@"Path"].location != NSNotFound) {
-                //[self buildPath:areaId];
-            //}
-            
-            //NSString *showPath = @"showPath()";
-            //[bookView stringByEvaluatingJavaScriptFromString:showPath];
-            
-            //Call the animateObject function in the js file.
-            NSString *animate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", object1Id, adjLocation.x, adjLocation.y, waypointLocation.x, waypointLocation.y, action, areaId];
-            [bookView stringByEvaluatingJavaScriptFromString:animate];
-            
-            animatingObjects = [[NSMutableDictionary alloc] init];
-            [animatingObjects setObject:@YES forKey:object1Id];
-        }
-    }
-}
-
-/*
- Calls the builPath fucntion on the JS file
- Sends all the points in an area or path to the the JS to load them in memory
- */
--(void)buildPath:(NSString*)areaId {
-    Area* area = [model getAreaWithId:areaId];
-    
-    NSString *createPath = [NSString stringWithFormat:@"createPath('%@')", areaId];
-    [bookView stringByEvaluatingJavaScriptFromString:createPath];
-    
-    for (int i=0; i < area.points.count/2; i++) {
-        NSString* xCoord = [area.points objectForKey:[NSString stringWithFormat:@"x%d", i]];
-        NSString* yCoord = [area.points objectForKey:[NSString stringWithFormat:@"y%d", i]];
-        
-        NSString *buildPath = [NSString stringWithFormat:@"buildPath('%@', %f, %f)", areaId, [xCoord floatValue], [yCoord floatValue]];
-        [bookView stringByEvaluatingJavaScriptFromString:buildPath];
     }
 }
 
 #pragma mark - Responding to gestures
 /*
- * User pressed Back button. Write log data to file.
- */
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [self.playaudioClass stopPlayAudioFile];
-    [super viewWillDisappear:animated];
-    
-    if (![[self.navigationController viewControllers] containsObject:self])
-    {
-        [[ServerCommunicationController sharedManager] writeToFile:[[ServerCommunicationController sharedManager] studyFileName] ofType:@"txt"];
-    }
-}
-
-/*
  * Plays a noise for error feedback if the user performs a manipulation incorrectly
  */
 - (IBAction) playErrorNoise {
     AudioServicesPlaySystemSound(1053);
-    
-    //Logging added by James for Error Noise
-    [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Error Audio" : @"NULL" :@"Error Noise"  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
 }
 
-  
 /*
  * Tap gesture. Currently only used for menu selection.
  */
 - (IBAction)tapGesturePerformed:(UITapGestureRecognizer *)recognizer {
     CGPoint location = [recognizer locationInView:self.view];
     
-    if([IntroductionClass.introductions objectForKey:chapterTitle] && [[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:@"menu"]) {
-        IntroductionClass.allowInteractions = TRUE;
-    }
-    
-    //im code
-    if((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && (!IntroductionClass.allowInteractions))
-    {
-            IntroductionClass.allowInteractions = true;
-            allowSnapback = false;
-    }
-    
     //check to see if we have a menu open. If so, process menu click.
-    if(menu != nil && IntroductionClass.allowInteractions) {
+    if(menu != nil && allowInteractions) {
         int menuItem = [menu pointInMenuItem:location];
         
         //If we've selected a menuItem.
@@ -1130,73 +509,13 @@ BOOL wasPathFollowed = false;
             MenuItemDataSource *dataForItem = [menuDataSource dataObjectAtIndex:menuItem];
             PossibleInteraction *interaction = [dataForItem interaction];
             
-            NSInteger numMenuItems = [menuDataSource numberOfMenuItems];
-            NSMutableArray *menuItemInteractions = [[NSMutableArray alloc] init];
-            NSMutableArray *menuItemImages =[[NSMutableArray alloc] init];
-            NSMutableArray *menuItemRelationships = [[NSMutableArray alloc] init];
-            
-            for (int x=0; x<numMenuItems; x++) {
-                MenuItemDataSource *tempMenuItem = [menuDataSource dataObjectAtIndex:x];
-                PossibleInteraction *tempMenuInteraction =[tempMenuItem interaction];
-                Relationship *tempMenuRelationship = [tempMenuItem menuRelationship];
-                
-                //[menuItemInteractions addObject:[tempMenuRelationship actionType]];
-                
-                if(tempMenuInteraction.interactionType == DISAPPEAR)
-                {
-                    [menuItemInteractions addObject:@"Disappear"];
-                }
-                if (tempMenuInteraction.interactionType == UNGROUP)
-                {
-                    [menuItemInteractions addObject:@"Ungroup"];
-                }
-                if (tempMenuInteraction.interactionType == GROUP)
-                {
-                    [menuItemInteractions addObject:@"Group"];
-                }
-                if (tempMenuInteraction.interactionType == TRANSFERANDDISAPPEAR)
-                {
-                    [menuItemInteractions addObject:@"Transfer And Disappear"];
-                }
-                if (tempMenuInteraction.interactionType == TRANSFERANDGROUP)
-                {
-                    [menuItemInteractions addObject:@"Transfer And Group"];
-                }
-                if(tempMenuInteraction.interactionType ==NONE)
-                {
-                    [menuItemInteractions addObject:@"none"];
-                }
-                
-                [menuItemImages addObject:[NSString stringWithFormat:@"%d", x]];
-                
-                for(int i=0; i< [tempMenuItem.images count]; i++)
-                {
-                    MenuItemImage *tempimage =  [tempMenuItem.images objectAtIndex:i];
-                    [menuItemImages addObject:[tempimage.image accessibilityIdentifier]];
-                }
-                
-                [menuItemRelationships addObject:tempMenuRelationship.action];
-            }
-            
-            //Logging Add by James for Menu Selection
-            [[ServerCommunicationController sharedManager] logMenuSelection: menuItem: menuItemInteractions : menuItemImages : menuItemRelationships :@"Menu Item Selected" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-            
             [self checkSolutionForInteraction:interaction]; //check if selected interaction is correct
-            
-            //im code
-            if((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && (IntroductionClass.allowInteractions))
-            {
-                IntroductionClass.allowInteractions = FALSE;
-                allowSnapback = true;
-            }
-            //end imcode
-            
         }
         //No menuItem was selected
         else {
             if (allowSnapback) {
                 //Snap the object back to its original location
-                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
+                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
                 
                 //Clear any remaining highlighting.
                 NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
@@ -1211,67 +530,28 @@ BOOL wasPathFollowed = false;
         //Re-add the tap gesture recognizer before the menu is removed
         [self.view addGestureRecognizer:tapRecognizer];
         
-        
-        if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == PM_MODE) {
-            //Remove menu.
-            [menu removeFromSuperview];
-            menu = nil;
-            menuExpanded = FALSE;
-        }
+        //Remove menu.
+        [menu removeFromSuperview];
+        menu = nil;
+        menuExpanded = FALSE;
     }
     else {
-        if (numSteps > 0 && IntroductionClass.allowInteractions) {
+        if (numSteps > 0 && allowInteractions) {
             //Get steps for current sentence
-            NSMutableArray* currSolSteps;
+            NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
             
-            if (conditionSetup.appMode == ITS) {
-                currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-            }
-            else {
-                if (conditionSetup.condition == CONTROL) {
-                    currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                }
-                else if (conditionSetup.condition == EMBRACE) {
-                    if (conditionSetup.currentMode == PM_MODE) {
-                        //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                        if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                            currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                        }
-                        else {
-                            currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                        }
-                    }
-                    else if (conditionSetup.currentMode == IM_MODE) {
-                        currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-            }
-
-            if ([currSolSteps count] > 0) {
-                //Get current step to be completed
-                ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+            //Get current step to be completed
+            ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+            
+            //Current step is checkAndSwap
+            if ([[currSolStep stepType] isEqualToString:@"checkAndSwap"]) {
+                //Get the object at this point
+                NSString* imageAtPoint = [self getObjectAtPoint:location ofType:nil];
                 
-                //Current step is checkAndSwap
-                if ([[currSolStep stepType] isEqualToString:@"checkAndSwap"]) {
-                    //Get the object at this point
-                    NSString* imageAtPoint = [self getObjectAtPoint:location ofType:nil];
-                    
-                    //If the correct object was tapped, swap its image and increment the step
-                    if ([self checkSolutionForSubject:imageAtPoint]) {
-                        [self swapObjectImage];
-                        [self incrementCurrentStep];
-                    }
-                }
-                else if ([[currSolStep stepType] isEqualToString:@"tapToAnimate"] ||
-                         [[currSolStep stepType] isEqualToString:@"shakeOrTap"]) {
-                    //Get the object at this point
-                    NSString* imageAtPoint = [self getObjectAtPoint:location ofType:nil];
-                    
-                    //If the correct object was tapped, increment the step
-                    if ([self checkSolutionForSubject:imageAtPoint]) {
-                        [self incrementCurrentStep];
-                    }
-                    
+                //If the correct object was tapped, swap its image and increment the step
+                if ([self checkSolutionForSubject:imageAtPoint]) {
+                    [self swapObjectImage];
+                    [self incrementCurrentStep];
                 }
             }
         }
@@ -1289,279 +569,70 @@ BOOL wasPathFollowed = false;
         //Capture the clicked text, if it exists
         NSString* requestSentenceText = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).innerHTML", location.x, location.y];
         NSString* sentenceText = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceText];
-        
-        //Capture the clicked text id, if it exists
-        NSString* requestSentenceID = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
-        NSString* sentenceID = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceID];
-        int sentenceIDNum = [[sentenceID substringFromIndex:0] intValue];
 
-        //Capture the spanish extension
-        NSString* spanishExtTag = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).getAttribute(\"spanishExt\")", location.x, location.y];
-        NSString* spanishExt = [bookView stringByEvaluatingJavaScriptFromString:spanishExtTag];
-        
-
-        if (conditionSetup.appMode == ITS) {
-
-            //Record vocabulary request for complexity
-            [[pageStatistics objectForKey:currentPageId] addVocabTapForComplexity:(currentComplexity - 1)];
-        }
-        
-        //Logs user Word Press
-        //this logs any tap on any words even if they are not audible, it logs taps on sentences,
-        [[ServerCommunicationController sharedManager] logUserPressWord:sentenceText :@"Tap" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-        
-        NSLog(@"%@",sentenceText);
         
         //Convert to lowercase so the sentence text can be mapped to objects
         sentenceText = [sentenceText lowercaseString];
         NSString* englishSentenceText = sentenceText;
         
-        if (conditionSetup.language ==BILINGUAL) {
-            if(![[self getEnglishTranslation:sentenceText] isEqualToString:@"Translation not found"]) {
-                englishSentenceText = [self getEnglishTranslation:sentenceText];
-            }
+        if (language_condition == BILINGUAL) {
+            englishSentenceText = [self getEnglishTranslation:sentenceText];
         }
         
         //Enable the introduction clicks on words and images, if it is intro mode
-        if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
-            if (([[IntroductionClass.performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] &&
-                [englishSentenceText isEqualToString:[IntroductionClass.performedActions objectAtIndex:INPUT]])) {
+        if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"]) {
+            if (([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] &&
+                [englishSentenceText isEqualToString:[performedActions objectAtIndex:INPUT]])) {
                 //Destroy the timer to avoid playing the previous sound
                 //[timer invalidate];
                 //timer = nil;
                 
-                [self.playaudioClass playAudioFile: self: [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]];
-                
-                //Logging added by James for Word Audio
-                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : IntroductionClass.languageString :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                
-                [self highlightObject:englishSentenceText:1.5];
+                [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]];
+                [self highlightObject:sentenceText:1.5];
                 //Bypass the image-tap steps which are found after each word-tap step on the metadata
                 // since they are not needed anymore
-                IntroductionClass.currentIntroStep+=1;
-                // This delay is needed in order to be able to hear the clicked word
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW,2*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                    [IntroductionClass loadIntroStep:bookView:self:currentSentence];
-                });
+                currentIntroStep+=2;
+                [self performSelector:@selector(loadIntroStep) withObject:nil afterDelay:2];
             }
         }
         //Vocabulary introduction mode
-        else if ([currentPageId rangeOfString:@"-Intro"].location != NSNotFound) {
-            
-            //Get steps for current sentence
-            NSMutableArray* currSolSteps;
-            
-            if (conditionSetup.appMode == ITS) {
-                currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-            }
-            else {
-                if (conditionSetup.condition == CONTROL) {
-                    currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                }
-                else if (conditionSetup.condition == EMBRACE) {
-                    if (conditionSetup.currentMode == PM_MODE) {
-                        //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                        if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                            currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                        }
-                        else {
-                            currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                        }
-                    }
-                    else if (conditionSetup.currentMode == IM_MODE) {
-                        currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-            }
-            
-            //Get current step to be completed
-            ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
-            
-            if([[currSolStep stepType] isEqualToString:@"tapWord"])
-            {
-                if([englishSentenceText containsString: [currSolStep object1Id]] &&
-                (currentSentence == sentenceIDNum))
-                {
-                    if ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"]) {
-                        [self.playaudioClass playAudioFile:self:IntroductionClass.vocabAudio];
-                    }
-                    else {
-                        [self playIntroVocabWord:sentenceText:englishSentenceText:currSolStep];
-                    }
-                    
-                    [self incrementCurrentStep];
-                }
-            }
-            
-            /*
+        else if ([chapterTitle isEqualToString:@"The Contest"] && [actualPage isEqualToString:currentPage]) {
             //If the user clicked on the correct word or image
-            if (([[IntroductionClass.performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] &&
-                 [englishSentenceText isEqualToString:[IntroductionClass.performedActions objectAtIndex:INPUT]]) ||
-                ([[IntroductionClass.performedActions objectAtIndex:SELECTION] isEqualToString:@"image"] &&
-                 [imageAtPoint isEqualToString:[IntroductionClass.performedActions objectAtIndex:INPUT]])) {
+            if (([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] &&
+                 [sentenceText isEqualToString:[performedActions objectAtIndex:INPUT]]) ||
+                ([[performedActions objectAtIndex:SELECTION] isEqualToString:@"image"] &&
+                 [imageAtPoint isEqualToString:[performedActions objectAtIndex:INPUT]])) {
                     //[timer invalidate];
                     //timer = nil;
                     
                     //If the user clicked on a word
-                    if ([[IntroductionClass.performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] && [[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:englishSentenceText] && !IntroductionClass.sameWordClicked && (currentSentence == sentenceIDNum)) {
+                    if ([[performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] && !sameWordClicked) {
+                        sameWordClicked = true;
                         
-                         IntroductionClass.sameWordClicked = true;
-                        if ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"]) {
-                            [self.playaudioClass playAudioFile:self:IntroductionClass.vocabAudio];
-                        }
-                        else {
-                            [self playIntroVocabWord:sentenceText:englishSentenceText];
-                        }
+                        [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,languageString]];
+                        //if ([languageString isEqualToString:@"S"]) {
+                            sentenceText = [self getEnglishTranslation:sentenceText];
+                        //}
+                        
+                        [self highlightObject:sentenceText :1.5];
+                        currentVocabStep++;
+                        [self performSelector:@selector(loadVocabStep) withObject:nil afterDelay:5];
+                        currentSentence++;
+                        [self performSelector:@selector(colorSentencesUponNext) withObject:nil afterDelay:4];
                 }
-            }*/
-            
+            }
         }
-        else if([[Translation translationWords] objectForKey:englishSentenceText]) {
-            [self playAudioForVocabWord:englishSentenceText :spanishExt];
-        }
-    }
-}
-
--(void) playAudioForVocabWord: (NSString*) englishSentenceText : (NSString*) spanishExt
-{
-    // Since the name of the carbon dioxide file is carbonDioxide, its name is hard-coded
-    if([englishSentenceText isEqualToString:@"carbon dioxide"]) {
-        englishSentenceText = @"carbonDioxide";
-    }
-    
-    if ((conditionSetup.language ==BILINGUAL) && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
-        //Play word audio Sp
-        [self.playaudioClass playAudioInSequence:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"]:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
-        
-        //Logging added by James for Word Audio
-        [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"S" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-    }
-    else if (conditionSetup.language ==BILINGUAL) {
-        
-        NSString *spanishAudio = [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"];
-        NSString *engAudio = [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"];
-        
-        if ([spanishExt isEqualToString:@""] == NO) {
-            spanishAudio = [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,spanishExt];
-        }
-        //Play word audio Sp
-        [self.playaudioClass playAudioInSequence:self:engAudio:spanishAudio];
-        
-        //Logging added by James for Word Audio
-        [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"S" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-    }
-    else {
-        //Play En audio twice
-        bool success = [self.playaudioClass playAudioInSequence:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
-        
-        //
-        if (!success) {
-            
-            //if error try mp3 format
-            [self.playaudioClass playAudioInSequence:self:[NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"_def_E"]:[NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"_def_E"]];
-        }
-        
-        //Logging added by James for Word Audio
-        [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"E" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-    }
-    
-    // Revert the carbon dioxide name for highlighting
-    if([englishSentenceText isEqualToString:@"carbonDioxide"]) {
-        englishSentenceText = @"carbon dioxide";
-    }
-    
-    [self highlightImageForText:englishSentenceText];
-    
-    //[self highlightObject:[[Translation translationImages] objectForKey:englishSentenceText]:1.5];
-}
-
--(void) playIntroVocabWord: (NSString*) sentenceText : (NSString*) englishSentenceText : (ActionStep *) currSolStep
-{
-    //Logging added by James for Word Audio
-    [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : IntroductionClass.languageString :[NSString stringWithFormat:@"%@%@.m4a",sentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-    
-        if(conditionSetup.language == ENGLISH)
-        {
-            //Play En audio twice
-            bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
-            //
-            if (!success) {
+        else if([[Translation translations] objectForKey:sentenceText]) {
+            //Play word audio En
+            [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",sentenceText,@"E"]];
+            [self highlightObject:sentenceText:1.5];
                 
-                //if error try mp3 format
-                [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"_def_E"]];
+            if (language_condition == BILINGUAL) {
+                //Play word audio Sp
+                [self playAudioFile:[NSString stringWithFormat:@"%@%@.m4a",[self getEnglishTranslation:sentenceText],@"S"]];
             }
-        }
-        else
-        {
-            //Play En audio twice
-            bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"]];
-            //
-            if (!success) {
-                
-                //if error try mp3 format
-                [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"_def_S"]];
-            }
-        }
-        
-        [self highlightImageForText:englishSentenceText];
-        
-        currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence]];
-        
-        //IntroductionClass.currentVocabStep++;
-        
-        // This delay is needed in order to be able to play the last definition on a vocabulary page
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW,([self.playaudioClass audioPlayer].duration)*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            [IntroductionClass loadVocabStep:bookView:self:currentSentence:chapterTitle];
-            
-           
-            //Play En audio
-            bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
-                //
-            if (!success)
-            {
-                    
-                //if error try mp3 format
-                [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"_def_E"]];
-            }
-            
-            [self highlightImageForText:englishSentenceText];
-            
-            currentSentence++;
-            currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence]];
-            
-            [self performSelector:@selector(colorSentencesUponNext) withObject:nil afterDelay:([self.playaudioClass audioPlayer].duration)];
-            
-            //IntroductionClass.currentVocabStep++;
-            
-            /*
-            // This delay is needed in order to be able to play the last definition on a vocabulary page
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW,([self.playaudioClass audioPlayer].duration)*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                //[IntroductionClass loadVocabStep:bookView:self:currentSentence:chapterTitle];
-            });*/
-        });
-}
-
--(void) highlightImageForText: (NSString*) englishSentenceText
-{
-    NSObject *valueImage = [[Translation translationImages]objectForKey:englishSentenceText];
-    NSString *imageHighlighted = @"";
-    
-    // If the key contains more than one value
-    if ([valueImage isKindOfClass:[NSArray class]])
-    {
-        NSArray *imageArray = ((NSArray*)valueImage);
-        for (int i = 0; i < [imageArray count]; i++)
-        {
-            imageHighlighted = imageArray[i];
-            [self highlightObject:imageHighlighted:1.5];
         }
     }
-    else
-    {
-        imageHighlighted = (NSString*)valueImage;
-        [self highlightObject:imageHighlighted:1.5];
-    }
-
 }
 
 /*
@@ -1579,7 +650,6 @@ BOOL wasPathFollowed = false;
     //NSLog(@"imageAtPoint: %@", imageAtPoint);
 }
 
-
 /*
  * Swipe gesture. Only recognizes a downwards two finger swipe. Used to skip the current step
  * by performing it automatically according to the solution.
@@ -1587,76 +657,54 @@ BOOL wasPathFollowed = false;
 -(IBAction)swipeGesturePerformed:(UISwipeGestureRecognizer *)recognizer {
     NSLog(@"Swiper no swiping!");
     
-    //Emergency swipe to bypass the vocab intros
-    if ([IntroductionClass.vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
-        [_audioPlayer stop];
-        [self loadNextPage];
-    }
-    
     //Perform steps only if they exist for the sentence and have not been completed
-    else if (numSteps > 0 && !stepsComplete && conditionSetup.condition == EMBRACE && conditionSetup.currentMode == PM_MODE) {
-        [[ServerCommunicationController sharedManager] logUserEmergencyNext:@"Emergency Swipe" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-        
+    if (numSteps > 0 && !stepsComplete && allowInteractions) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps;
-        
-        if (conditionSetup.appMode == ITS) {
-            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-        }
-        else {
-            if (conditionSetup.condition == CONTROL) {
-                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-            }
-            else if (conditionSetup.condition == EMBRACE) {
-                if (conditionSetup.currentMode == PM_MODE) {
-                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                    }
-                    else {
-                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-                else if (conditionSetup.currentMode == IM_MODE) {
-                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                }
-            }
-        }
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
         //Current step is check and involves moving an object to a location
         if ([[currSolStep stepType] isEqualToString:@"check"]) {
-            [self incrementCurrentStep];
-        }
-        else if ([[currSolStep stepType] isEqualToString:@"checkLeft"]) {
-            [self incrementCurrentStep];
-        }
-        else if ([[currSolStep stepType] isEqualToString:@"checkRight"]) {
-            [self incrementCurrentStep];
-        }
-        else if ([[currSolStep stepType] isEqualToString:@"checkUp"])
-        {
-            [self incrementCurrentStep];
-        }
-        else if ([[currSolStep stepType] isEqualToString:@"checkDown"]) {
-            [self incrementCurrentStep];
+            //Get information for check step type
+            NSString* objectId = [currSolStep object1Id];
+            NSString* action = [currSolStep action];
+            NSString* locationId = [currSolStep locationId];
+            
+            //Get hotspot location of object
+            Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:objectId :action :@"subject"];
+            CGPoint hotspotLocation = [self getHotspotLocationOnImage:hotspot];
+            
+            //Get location that hotspot should be inside
+            Location* location = [model getLocationWithId:locationId];
+            
+            //Calculate the x,y coordinates and the width and height in pixels from %
+            float locationX = [location.originX floatValue] / 100.0 * [bookView frame].size.width;
+            float locationY = [location.originY floatValue] / 100.0 * [bookView frame].size.height;
+            float locationWidth = [location.width floatValue] / 100.0 * [bookView frame].size.width;
+            float locationHeight = [location.height floatValue] / 100.0 * [bookView frame].size.height;
+            
+            //Calculate the center point of the location
+            float midX = locationX + (locationWidth / 2);
+            float midY = locationY + (locationHeight / 2);
+            CGPoint midpoint = CGPointMake(midX, midY);
+            
+            //Move the object to the center of the location
+            [self moveObject:objectId :midpoint :hotspotLocation :false];
+            
+            //Clear highlighting
+            NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
+            [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
+            
+            //Object should now be in the correct location, so the step can be incremented
+            if([self isHotspotInsideLocation]) {
+                [self incrementCurrentStep];
+            }
         }
         //Current step is checkAndSwap and involves swapping an image
         else if ([[currSolStep stepType] isEqualToString:@"checkAndSwap"]) {
             [self swapObjectImage];
-            [self incrementCurrentStep];
-        }
-        //Current step involves tapping an image
-        else if ([[currSolStep stepType] isEqualToString:@"tapToAnimate"]) {
-            [self incrementCurrentStep];
-        }
-        //Current step involves following a path
-        else if ([[currSolStep stepType] isEqualToString:@"checkPath"]) {
-            [self incrementCurrentStep];
-        }
-        else if ([[currSolStep stepType] isEqualToString:@"shakeAndTap"]) {
             [self incrementCurrentStep];
         }
         //Current step is either group, ungroup, disappear, or transference
@@ -1676,7 +724,7 @@ BOOL wasPathFollowed = false;
 -(IBAction)pinchGesturePerformed:(UIPinchGestureRecognizer *)recognizer {
     CGPoint location = [recognizer locationInView:self.view];
     
-    if(recognizer.state == UIGestureRecognizerStateBegan && IntroductionClass.allowInteractions && pinchToUngroup) {
+    if(recognizer.state == UIGestureRecognizerStateBegan && allowInteractions && pinchToUngroup) {
         pinching = TRUE;
         
         NSString* imageAtPoint = [self getObjectAtPoint:location ofType:@"manipulationObject"];
@@ -1743,7 +791,7 @@ BOOL wasPathFollowed = false;
             //Show the menu if multiple possible ungroupings are found
             if ([itemPairArray count] > 1) {
                 //Populate the data source and expand the menu.
-                [self populateMenuDataSource:possibleInteractions:allRelationships];
+                [self populateMenuDataSource:possibleInteractions];
                 
                 if(!menuExpanded)
                     [self expandMenu];
@@ -1760,21 +808,13 @@ BOOL wasPathFollowed = false;
  * Pan gesture. Used to move objects from one location to another.
  */
 -(IBAction)panGesturePerformed:(UIPanGestureRecognizer *)recognizer {
-    
     CGPoint location = [recognizer locationInView:self.view];
 
     //This should work with requireGestureRecognizerToFail:pinchRecognizer but it doesn't currently.
-    if(!pinching && IntroductionClass.allowInteractions) {
+    if(!pinching && allowInteractions) {
         BOOL useProximity = NO;
         
-        static UIBezierPath *path = nil;
-        static CAShapeLayer *shapeLayer = nil;
-        
         if(recognizer.state == UIGestureRecognizerStateBegan) {
-            
-            //Starts true because the object starts within the area
-            wasPathFollowed = true;
-            
             //NSLog(@"pan gesture began at location: (%f, %f)", location.x, location.y);
             panning = TRUE;
             
@@ -1782,242 +822,59 @@ BOOL wasPathFollowed = false;
             NSString* imageAtPoint = [self getObjectAtPoint:location ofType:@"manipulationObject"];
             //NSLog(@"location pressed: (%f, %f)", location.x, location.y);
             
-            if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
+            if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"]) {
                 stepsComplete = false;
             }
             
             //if it's an image that can be moved, then start moving it.
             if(imageAtPoint != nil && !stepsComplete) {
-                
-                
-                
-                //add logging: began object move ?
-                
                 movingObject = TRUE;
                 movingObjectId = imageAtPoint;
                 
-                NSString* requestImageMarginLeft = [NSString stringWithFormat:@"%@.style.marginLeft", movingObjectId];
-                NSString* requestImageMarginTop = [NSString stringWithFormat:@"%@.style.marginTop", movingObjectId];
-                
-                NSString* imageMarginLeft = [bookView stringByEvaluatingJavaScriptFromString:requestImageMarginLeft];
-                NSString* imageMarginTop = [bookView stringByEvaluatingJavaScriptFromString:requestImageMarginTop];
-                
-                if(![imageMarginLeft isEqualToString:@""] && ![imageMarginTop isEqualToString:@""])
-                {
-                    //Calulate offset between top-left corner of image and the point clicked for centered images
-                    delta = [self calculateDeltaForMovingObjectAtPointWithCenter:movingObjectId :location];
-                }
-                else
-                {
-                    //Calculate offset between top-left corner of image and the point clicked.
-                    delta = [self calculateDeltaForMovingObjectAtPoint:location];
-                }
+                //Calculate offset between top-left corner of image and the point clicked.
+                delta = [self calculateDeltaForMovingObjectAtPoint:location];
                 
                 //Record the starting location of the object when it is selected
                 startLocation = CGPointMake(location.x - delta.x, location.y - delta.y);
-                
-                if ([animatingObjects objectForKey:imageAtPoint] && [[animatingObjects objectForKey:imageAtPoint]  isEqual: @YES]) {
-                    //Call the cancelAnimation function in the js file.
-                    NSString *cancelAnimate = [NSString stringWithFormat:@"cancelAnimation('%@')", imageAtPoint];
-                    [bookView stringByEvaluatingJavaScriptFromString:cancelAnimate];
-                    
-                    NSString *pauseAnimate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"pauseAnimation", @""];
-                    [bookView stringByEvaluatingJavaScriptFromString:pauseAnimate];
-                    
-                    [animatingObjects setObject:@NO forKey:imageAtPoint];
-                }
             }
         }
         else if(recognizer.state == UIGestureRecognizerStateEnded) {
-            path = nil;
-            
             //NSLog(@"pan gesture ended at location (%f, %f)", location.x, location.y);
             panning = FALSE;
             
             //if moving object, move object to final position.
             if(movingObject) {
-                
-                [self moveObject:movingObjectId :location :delta :true: @"Ended"];
+                [self moveObject:movingObjectId :location :delta :true];
                 
                 if (numSteps > 0) {
                     //Get steps for current sentence
-                    NSMutableArray* currSolSteps;
-                    
-                    if (conditionSetup.appMode == ITS) {
-                        currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-                    }
-                    else {
-                        if (conditionSetup.condition == CONTROL) {
-                            currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                        }
-                        else if (conditionSetup.condition == EMBRACE) {
-                            if (conditionSetup.currentMode == PM_MODE) {
-                                //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                                if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                                    currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                                }
-                                else {
-                                    currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                                }
-                            }
-                            else if (conditionSetup.currentMode == IM_MODE) {
-                                currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                            }
-                        }
-                    }
+                    NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
                     
                     //Get current step to be completed
                     ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
                     
-                    if ([[currSolStep stepType] isEqualToString:@"check"] ||
-                        [[currSolStep stepType] isEqualToString:@"checkLeft"] ||
-                        [[currSolStep stepType] isEqualToString:@"checkRight"] ||
-                        [[currSolStep stepType] isEqualToString:@"checkUp"] ||
-                        [[currSolStep stepType] isEqualToString:@"checkDown"])
-                    {
-                        
-                        //Check if object is in the correct location or area
-                        if((([[currSolStep stepType] isEqualToString:@"checkLeft"] && startLocation.x > endLocation.x ) ||
-                            ([[currSolStep stepType] isEqualToString:@"checkRight"] && startLocation.x < endLocation.x ) ||
-                            ([[currSolStep stepType] isEqualToString:@"checkUp"] && startLocation.y > endLocation.y ) ||
-                            ([[currSolStep stepType] isEqualToString:@"checkDown"] && startLocation.y < endLocation.y )) ||
-                           ([self isHotspotInsideLocation] || [self isHotspotInsideArea]))
-                        {
-                            
-                            if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
+                    if ([[currSolStep stepType] isEqualToString:@"check"]) {
+                        //Check if object is in the correct location
+                        if([self isHotspotInsideLocation]) {
+                            if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"]) {
                                 /*Check to see if an object is at a certain location or is grouped with another object e.g. farmergetIncorralArea or farmerleadcow. These strings come from the solution steps */
-                                if([[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:[NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep locationId]]]
-                                   || [[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:[NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep object2Id]]]) {
+                                if([[performedActions objectAtIndex:INPUT] isEqualToString:[NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep locationId]]]
+                                   || [[performedActions objectAtIndex:INPUT] isEqualToString:[NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep object2Id]]]) {
                                         // Destroy the timer to avoid playing the previous sound
                                         //[timer invalidate];
                                         //timer = nil;
-                                        IntroductionClass.currentIntroStep++;
-                                    [IntroductionClass loadIntroStep:bookView:self: currentSentence];
+                                        currentIntroStep++;
+                                        [self loadIntroStep];
                                 }
-                            }
-                            
-                            //Get the object at this point
-                            NSString* imageAtPoint = [self getObjectAtPoint:location ofType:nil];
-                            
-                            //If the correct object was tapped, swap its image and increment the step
-                            if ([self checkSolutionForSubject:movingObjectId]) {
-                                [self incrementCurrentStep];
-                            }
-                            //reset object location
-                            else
-                            {
-                                if (allowSnapback) {
-                                    //Snap the object back to its original location
-                                    [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
-                                    
-                                    // If it was an animation object, animate it again after snapping back
-                                    if ([animatingObjects objectForKey:movingObjectId] && [previousStep isEqualToString:@"animate"]) {
-                                        //Call the animateObject function in the js file.
-                                        NSString *animate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"floatAnimation", @""];
-                                        [bookView stringByEvaluatingJavaScriptFromString:animate];
-                                        
-                                        NSString *resumeAnimate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"resumeAnimation", @""];
-                                        [bookView stringByEvaluatingJavaScriptFromString:resumeAnimate];
-                                        
-                                        [animatingObjects setObject:@YES forKey:movingObjectId];
-                                    }
-                                }
-                            }
-                            
-                            //gets hotspot id for logging
-                            NSString* locationId = [currSolStep locationId];
-                            //Logging added by James for User Move Object to object
-                            [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : locationId :startLocation.x :startLocation.y :location.x :location.y :@"Move to Hotspot" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                            
-                            //Logging added by James for user Move Object to Hotspot Correct
-                            [[ServerCommunicationController sharedManager] logComputerVerification: @"Move to Hotspot":true : movingObjectId:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                        }
-                        else {
-                            //gets hotspot id for logging
-                            NSString* locationId = [currSolStep locationId];
-                            //Logging added by James for User Move Object to object
-                            [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : locationId:startLocation.x :startLocation.y :location.x :location.y :@"Move to Hotspot" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                            
-                            //Logging added by James for user Move Object to Hotspot Incorrect
-                            [[ServerCommunicationController sharedManager] logComputerVerification:@"Move to Hotspot" :false : movingObjectId:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                            
-                            [self.playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                            //[self playErrorNoise];
-                            
-                            if (conditionSetup.appMode == ITS) {
-                                //Record error for complexity
-                                [[pageStatistics objectForKey:currentPageId] addErrorForComplexity:(currentComplexity - 1)];
-                            }
-                            
-                            if (allowSnapback) {
-                                //Snap the object back to its original location
-                                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
-                                
-                                // If it was an animation object, animate it again after snapping back
-                                if ([animatingObjects objectForKey:movingObjectId] && [previousStep isEqualToString:@"animate"]) {
-                                    //Call the animateObject function in the js file.
-                                    NSString *animate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"floatAnimation", @""];
-                                    [bookView stringByEvaluatingJavaScriptFromString:animate];
-                                    
-                                    NSString *resumeAnimate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"resumeAnimation", @""];
-                                    [bookView stringByEvaluatingJavaScriptFromString:resumeAnimate];
-                                    
-                                    [animatingObjects setObject:@YES forKey:movingObjectId];
-                                }
-                            }
-                        }
-                    }
-                    else if ([[currSolStep stepType] isEqualToString:@"shakeOrTap"]) {
-                        if(([[currSolStep object1Id] isEqualToString:movingObjectId]) && ([self areHotspotsInsideArea] || [self isHotspotInsideLocation])) {
-                            if (allowSnapback) {
-                                //Snap the object back to its original location
-                                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
-                                //if incorrect location reset object to beginning of gesture
-                                
                             }
                             [self incrementCurrentStep];
                         }
                         else {
-                            //gets hotspot id for logging
-                            NSString* locationId = [currSolStep locationId];
-                            //Logging added by James for User Move Object to object
-                            [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : locationId:startLocation.x :startLocation.y :location.x :location.y :@"Move to Hotspot" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                            
-                            //Logging added by James for user Move Object to Hotspot Incorrect
-                            [[ServerCommunicationController sharedManager] logComputerVerification:@"Move to Hotspot" :false : movingObjectId:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                            
-                            [self.playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                            //[self playErrorNoise];
+                            [self playErrorNoise];
                             
                             if (allowSnapback) {
                                 //Snap the object back to its original location
-                                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
-                                //if incorrect location reset object to beginning of gesture
-                                
-                            }
-                        }
-                    }
-                    else if ([[currSolStep stepType] isEqualToString:@"checkPath"]) {
-                        if(/*[self isHotspotInsideLocation] &&*/ wasPathFollowed) {
-                            [self incrementCurrentStep];
-                        }
-                        else {
-                            //gets hotspot id for logging
-                            NSString* locationId = [currSolStep locationId];
-                            //Logging added by James for User Move Object to object
-                            //[[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : locationId:startLocation.x :startLocation.y :location.x :location.y :@"Move to Hotspot" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
-                            
-                            //Logging added by James for user Move Object to Hotspot Incorrect
-                            //[[ServerCommunicationController sharedManager] logComputerVerification:@"Move to Hotspot" :false : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
-                            
-                            //[self.playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentStep];
-                            //[self playErrorNoise];
-                            
-                            if (allowSnapback) {
-                                //Snap the object back to its original location
-                                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
-                                //if incorrect location reset object to beginning of gesture
-                                
+                                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
                             }
                         }
                     }
@@ -2027,9 +884,8 @@ BOOL wasPathFollowed = false;
                         
                         //Get possible interactions only if the object is overlapping something
                         if (overlappingWith != nil) {
-                            //resets allRelationship arrray
-                            if([allRelationships count]) {
-                                [allRelationships removeAllObjects];
+                            if (condition == HOTSPOT) {
+                                useProximity = YES;
                             }
                             
                             //If the object was dropped, check if it's overlapping with any other objects that it could interact with.
@@ -2037,81 +893,40 @@ BOOL wasPathFollowed = false;
                             
                             //No possible interactions were found
                             if ([possibleInteractions count] == 0) {
-                                //Logging added by James for User Move Object to object
-                                [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : collisionObjectId:startLocation.x :startLocation.y :location.x :location.y :@"Move to Object" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                                
-                                //Logging added by James for Verifying Move Object to object
-                                [[ServerCommunicationController sharedManager] logComputerVerification: @"Move to Object":false : movingObjectId:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                                
-                                [self.playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                                //[self playErrorNoise];
+                                [self playErrorNoise];
                                 
                                 if (allowSnapback) {
                                     //Snap the object back to its original location
-                                    [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
-                                    //wrong because two objects cant interact with each other reset object
-                                }
-                                
-                                if (conditionSetup.appMode == ITS) {
-                                    //Record error for complexity
-                                    [[pageStatistics objectForKey:currentPageId] addErrorForComplexity:(currentComplexity - 1)];
+                                    [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
                                 }
                             }
                             //If only 1 possible interaction was found, go ahead and perform that interaction if it's correct.
                             if ([possibleInteractions count] == 1) {
                                 PossibleInteraction* interaction = [possibleInteractions objectAtIndex:0];
                                 
-                                [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : collisionObjectId:startLocation.x :startLocation.y :location.x :location.y :@"Move to Object" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                                
-                                //checks solution and accomplishes action trace
                                 [self checkSolutionForInteraction:interaction];
                             }
                             //If more than 1 was found, prompt the user to disambiguate.
                             else if ([possibleInteractions count] > 1) {
                                 //The chapter title hard-coded for now
-                                if ([IntroductionClass.introductions objectForKey:chapterTitle] &&
-                                    [[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:
+                                if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"] &&
+                                    [[performedActions objectAtIndex:INPUT] isEqualToString:
                                      [NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep object2Id]]]) {
                                     // Destroy the timer to avoid playing the previous sound
                                     //[timer invalidate];
                                     //timer = nil;
-                                    IntroductionClass.currentIntroStep++;
-                                        [IntroductionClass loadIntroStep:bookView:self: currentSentence];
+                                    currentIntroStep++;
+                                    [self loadIntroStep];
                                 }
                                 
                                 //First rank the interactions based on location to story.
                                 [self rankPossibleInteractions:possibleInteractions];
                                 
-                                //Logging added by James for User Move Object to object
-                                [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : collisionObjectId:startLocation.x :startLocation.y :location.x :location.y :@"Move to Object" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                                
-                                //Logging added by James for Move Object to object Verification
-                                [[ServerCommunicationController sharedManager] logComputerVerification: @"Move to Object":true : movingObjectId:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                                
                                 //Populate the menu data source and expand the menu.
-                                [self populateMenuDataSource:possibleInteractions:allRelationships];
+                                [self populateMenuDataSource:possibleInteractions];
                                 
                                 if(!menuExpanded)
-                                {
-                                    //Logging added by James for Move Object to object Verification
-                                        [[ServerCommunicationController sharedManager] logComputerVerification: @"Display Menu":true : movingObjectId:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                                    
                                     [self expandMenu];
-                                
-                                }
-                                
-                                
-                            }
-                        }
-                        //Not overlapping any object
-                        else {
-                            
-                            [self.playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                            //[self playErrorNoise];
-                            
-                            if (allowSnapback) {
-                                //Snap the object back to its original location
-                                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
                             }
                         }
                     }
@@ -2132,38 +947,7 @@ BOOL wasPathFollowed = false;
         }
         //If we're in the middle of moving the object, just call the JS to move it.
         else if(movingObject)  {
-            //set to true for debugging set to false to disable
-            if (false) {
-                
-                // Start drawing the path
-                CGPoint pointLocation = [recognizer locationInView:recognizer.view];
-                
-                if (!path) {
-                    
-                    path = [UIBezierPath bezierPath];
-                    [path moveToPoint:pointLocation];
-                    
-                    shapeLayer = [[CAShapeLayer alloc] init];
-                    shapeLayer.strokeColor = [self generateRandomColor].CGColor;
-                    shapeLayer.fillColor = [UIColor clearColor].CGColor;
-                    shapeLayer.lineWidth = 10.0;
-                    [recognizer.view.layer addSublayer:shapeLayer];
-                    
-                }
-                else {
-                    [path addLineToPoint:pointLocation];
-
-                    NSLog(@"%@", [NSString stringWithFormat:@"<point x=\"%f\%\" y=\"%f\%\"/>", (pointLocation.x*100/[bookView frame].size.width), (pointLocation.y*100/[bookView frame].size.height) ]);
-                    
-                    shapeLayer.path = path.CGPath;
-                }
-                
-                if (![self isHotspotInsideArea]) {
-                    wasPathFollowed = false;
-                }
-            }
-            
-            [self moveObject:movingObjectId :location :delta :true : @"isMoving"];
+            [self moveObject:movingObjectId :location :delta :true];
             
             //If we're overlapping with another object, then we need to figure out which hotspots are currently active and highlight those hotspots.
             //When moving the object, we may have the JS return a list of all the objects that are currently grouped together so that we can process all of them.
@@ -2180,34 +964,45 @@ BOOL wasPathFollowed = false;
                         [bookView stringByEvaluatingJavaScriptFromString:highlight];
                     }
                 }
+                
+                if (condition == HOTSPOT) {
+                    NSMutableArray* possibleInteractions = [self getPossibleInteractions:useProximity];
+                    
+                    //Keep a list of all hotspots so that we know which ones should be drawn as green and which should be drawn as red. At the end, draw all hotspots together.
+                    NSMutableArray* redHotspots = [[NSMutableArray alloc] init];
+                    NSMutableArray* greenHotspots = [[NSMutableArray alloc] init];
+                    
+                    for(PossibleInteraction* interaction in possibleInteractions) {
+                        for(Connection* connection in [interaction connections]) {
+                            if([connection interactionType] != NONE) {
+                                NSMutableArray* hotspots  = [[connection hotspots] mutableCopy];
+                                //NSLog(@"Hotspot Obj1: %@ Hotspot Obj2: %@", [connection objects][0], [connection objects][1]);
+                                
+                                //Figure out whether two hotspots are close enough together to currently be grouped. If so, draw the hotspots with green. Otherwise, draw them with red.
+                                BOOL areWithinProximity = [self hotspotsWithinGroupingProximity:[hotspots objectAtIndex:0] :[hotspots objectAtIndex:1]];
+                                
+                                //NSLog(@"are within proximity:%u:", areWithinProximity);
+                                //NSLog(@"within proximity %hhd %u", areWithinProximity, [interaction interactionType]);
+                                
+                                //TODO: Make sure this is correct.
+                                if(areWithinProximity || ([interaction interactionType] == TRANSFERANDGROUP) || ([interaction interactionType] == TRANSFERANDDISAPPEAR)) {
+                                    [greenHotspots addObjectsFromArray:hotspots];
+                                }
+                                else {
+                                    [redHotspots addObjectsFromArray:hotspots];
+                                }
+                            }
+                        }
+                    }
+                    
+                    //NSLog(@"number of hotspots:%d %d", [redHotspots count], [greenHotspots count]);
+                    //Draw red hotspots first, then green ones.
+                    [self drawHotspots:redHotspots :@"red"];
+                    [self drawHotspots:greenHotspots :@"green"];
+                }
             }
         }
     }
-}
-
--(UIColor *)generateRandomColor {
-    NSInteger aRedValue = arc4random()%255;
-    NSInteger aGreenValue = arc4random()%255;
-    NSInteger aBlueValue = arc4random()%255;
-    
-    UIColor *randColor = [UIColor colorWithRed:aRedValue/255.0f green:aGreenValue/255.0f blue:aBlueValue/255.0f alpha:1.0f];
-    
-    return randColor;
-}
-
--(UIImage*) getBackgroundImage{
-    NSString* imageSrc = [bookView stringByEvaluatingJavaScriptFromString:@"document.body.background"];
-    NSString* imageFileName = [imageSrc substringFromIndex:10];
-    imageFileName = [imageFileName substringToIndex:[imageFileName length]-4];
-    //NSString *url = [[NSBundle mainBundle] resourcePath];
-    
-    NSString *url = [[NSBundle mainBundle] pathForResource:imageFileName ofType:@"png"];
-    
-    NSString *imagePath = [url stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
-    UIImage* rawImage = [[UIImage alloc] initWithContentsOfFile:imagePath];
-    
-    return rawImage;
 }
 
 /*
@@ -2216,7 +1011,7 @@ BOOL wasPathFollowed = false;
  * flipped. If the image src isn't found, returns nil. Otherwise, returned the MenuItemImage 
  * that was created.
  */
--(MenuItemImage*) createMenuItemForImage:(NSString*) objId :(NSString*)FLIP {
+-(MenuItemImage*) createMenuItemForImage:(NSString*) objId :(BOOL)FLIP {
     //NSLog(@"creating menu item for image with object id: %@", objId);
     
     NSString* requestImageSrc = [NSString stringWithFormat:@"%@.src", objId];
@@ -2234,20 +1029,13 @@ BOOL wasPathFollowed = false;
     UIImage* image = [UIImage alloc];
     
     //Horizontally flip the image
-    if ([FLIP isEqualToString:@"rotate"]) {
-        image = [UIImage imageWithCGImage:rawImage.CGImage scale:rawImage.scale orientation:UIImageOrientationUpMirrored];
-    }
-    else if([FLIP isEqualToString:@"flipHorizontal"])
-    {
+    if (FLIP) {
         image = [UIImage imageWithCGImage:rawImage.CGImage scale:rawImage.scale orientation:UIImageOrientationUpMirrored];
     }
     //Use the unflipped image
     else {
         image = rawImage;
     }
-    
-    //added by James to extract image name
-    [image setAccessibilityIdentifier:objId];
     
     if(image == nil)
         NSLog(@"image is nil");
@@ -2294,7 +1082,7 @@ BOOL wasPathFollowed = false;
  * NOTE: This should be pushed to the JS so that all actual positioning information is in one place and we're not duplicating code that's in the JS in the objC as well. For now...we'll just do it here.
  * Come back to this...
  */
--(void) simulatePossibleInteractionForMenuItem:(PossibleInteraction*)interaction : (Relationship*) relationship{
+-(void) simulatePossibleInteractionForMenuItem:(PossibleInteraction*)interaction {
     NSMutableDictionary* images = [[NSMutableDictionary alloc] init];
     
     //Populate the mutable dictionary of menuItemImages.
@@ -2312,15 +1100,11 @@ BOOL wasPathFollowed = false;
                 if ([interaction interactionType] == TRANSFERANDDISAPPEAR
                     && [connection interactionType] == UNGROUP
                     && objId == [[connection objects] objectAtIndex:0]) {
-                    itemImage = [self createMenuItemForImage:objId :@"rotate"];
-                }
-                else if([[relationship action] isEqualToString:@"flip"])
-                {
-                    itemImage = [self createMenuItemForImage:objId : @"flipHorizontal"];
+                    itemImage = [self createMenuItemForImage:objId :TRUE];
                 }
                 //Otherwise, leave the image unflipped
                 else {
-                    itemImage = [self createMenuItemForImage:objId : @"normal"];
+                    itemImage = [self createMenuItemForImage:objId :FALSE];
                 }
                 
                 //NSLog(@"obj id:%@", objId);
@@ -2336,7 +1120,7 @@ BOOL wasPathFollowed = false;
             
             for (int i = 0; connectedObject && [connection interactionType] != UNGROUP && i < [connectedObject count]; i++) {
                 if ([images objectForKey:connectedObject[i]] == nil) {
-                    MenuItemImage *itemImage = [self createMenuItemForImage:connectedObject[i] :@"normal"];
+                    MenuItemImage *itemImage = [self createMenuItemForImage:connectedObject[i] :FALSE];
                     
                     if(itemImage != nil) {
                         [images setObject:itemImage forKey:connectedObject[i]];
@@ -2419,7 +1203,7 @@ BOOL wasPathFollowed = false;
     //Calculate the bounding box for the group of objects being passed to the menu item.
     CGRect boundingBox = [self getBoundingBoxOfImages:imagesArray];
     
-    [menuDataSource addMenuItem:interaction : relationship:imagesArray :boundingBox];
+    [menuDataSource addMenuItem:interaction :imagesArray :boundingBox];
 }
 
 /*
@@ -2605,13 +1389,15 @@ BOOL wasPathFollowed = false;
         //Get object 1 and object 2
         NSString* obj1 = [objectIds objectAtIndex:0];
         NSString* obj2 = [objectIds objectAtIndex:1];
-        if( [connection interactionType] == UNGROUP && [[self getCurrentSolutionStep] isEqualToString:@"ungroupAndStay"]) {
-            [self ungroupObjectsAndStay:obj1 :obj2];
-        }
-        else if([connection interactionType] == UNGROUP) {
+        
+        if([connection interactionType] == UNGROUP) {
+            //NSLog(@"ungrouping items");
+
             [self ungroupObjects:obj1 :obj2]; //ungroup objects
         }
         else if([connection interactionType] == GROUP) {
+            //NSLog(@"grouping items");
+            
             //Get hotspots.
             Hotspot* hotspot1 = [hotspots objectAtIndex:0];
             Hotspot* hotspot2 = [hotspots objectAtIndex:1];
@@ -2664,30 +1450,7 @@ BOOL wasPathFollowed = false;
     //Check solution only if it exists for the sentence
     if (numSteps > 0 && !stepsComplete) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps;
-        
-        if (conditionSetup.appMode == ITS) {
-            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-        }
-        else {
-            if (conditionSetup.condition == CONTROL) {
-                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-            }
-            else if (conditionSetup.condition == EMBRACE) {
-                if (conditionSetup.currentMode == PM_MODE) {
-                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                    }
-                    else {
-                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-                else if (conditionSetup.currentMode == IM_MODE) {
-                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                }
-            }
-        }
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -2739,30 +1502,7 @@ BOOL wasPathFollowed = false;
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps;
-        
-        if (conditionSetup.appMode == ITS) {
-            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-        }
-        else {
-            if (conditionSetup.condition == CONTROL) {
-                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-            }
-            else if (conditionSetup.condition == EMBRACE) {
-                if (conditionSetup.currentMode == PM_MODE) {
-                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                    }
-                    else {
-                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-                else if (conditionSetup.currentMode == IM_MODE) {
-                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                }
-            }
-        }
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -2814,30 +1554,7 @@ BOOL wasPathFollowed = false;
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps;
-        
-        if (conditionSetup.appMode == ITS) {
-            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-        }
-        else {
-            if (conditionSetup.condition == CONTROL) {
-                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-            }
-            else if (conditionSetup.condition == EMBRACE) {
-                if (conditionSetup.currentMode == PM_MODE) {
-                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                    }
-                    else {
-                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-                else if (conditionSetup.currentMode == IM_MODE) {
-                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                }
-            }
-        }
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -2853,12 +1570,6 @@ BOOL wasPathFollowed = false;
             if (object2Id != nil) {
                 PossibleInteraction* correctInteraction = [self getCorrectInteraction];
                 [self performInteraction:correctInteraction]; //performs solution step
-                
-                //gets location of second object and passes into xml
-               /* NSArray* hotspots = [connection hotspots]; //Array of hotspot objects.
-                Hotspot* hotspot2 = [hotspots objectAtIndex:1];
-                CGPoint hotspot2Loc = [self getHotspotLocation:hotspot2];*/
-                
             }
             else if (waypointId != nil) {
                 //Get position of hotspot in pixels based on the object image size
@@ -2869,17 +1580,8 @@ BOOL wasPathFollowed = false;
                 Waypoint* waypoint = [model getWaypointWithId:waypointId];
                 CGPoint waypointLocation = [self getWaypointLocation:waypoint];
                 
-                NSString* objectClassName = [NSString stringWithFormat:@"document.getElementById('%@').className", object1Id];
-                objectClassName = [bookView stringByEvaluatingJavaScriptFromString:objectClassName];
-                
-                if ([objectClassName rangeOfString:@"center"].location != NSNotFound) {
-                    
-                    hotspotLocation.x=0;
-                    hotspotLocation.y=0;
-                }
-                
                 //Move the object
-                [self moveObject:object1Id :waypointLocation :hotspotLocation :false: waypointId];
+                [self moveObject:object1Id :waypointLocation :hotspotLocation :false];
                 
                 //Clear highlighting
                 NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
@@ -2892,35 +1594,11 @@ BOOL wasPathFollowed = false;
 /*
  * Calls the JS function to swap an object's image with its alternate one
  */
-//for logging record alternate source image
 -(void) swapObjectImage {
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps;
-        
-        if (conditionSetup.appMode == ITS) {
-            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-        }
-        else {
-            if (conditionSetup.condition == CONTROL) {
-                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-            }
-            else if (conditionSetup.condition == EMBRACE) {
-                if (conditionSetup.currentMode == PM_MODE) {
-                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                    }
-                    else {
-                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-                else if (conditionSetup.currentMode == IM_MODE) {
-                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                }
-            }
-        }
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -2931,197 +1609,16 @@ BOOL wasPathFollowed = false;
             NSString* action = [currSolStep action];
             
             //Get alternate image
-            AlternateImage* altImage = [model getAlternateImageWithActionAndObjectID:action:object1Id];
+            AlternateImage* altImage = [model getAlternateImageWithAction:action];
             
             //Get alternate image information
             NSString* altSrc = [altImage alternateSrc];
             NSString* width = [altImage width];
-            NSString* height = [altImage height];
             CGPoint location = [altImage location];
-            NSString* zIndex = [altImage zPosition];
             
             //Swap images using alternative src
-            NSString* swapImages;
-            
-            if ([height isEqualToString:@""]) {
-                swapImages= [NSString stringWithFormat:@"swapImageSrc('%@', '%@', '%@', %f, %f, '%@')", object1Id, altSrc, width, location.x, location.y, zIndex];
-            }
-            else
-            {
-                swapImages= [NSString stringWithFormat:@"swapImageSrc('%@', '%@', '%@', '%@', %f, %f, '%@')", object1Id, altSrc, width, height, location.x, location.y, zIndex];
-            }
-            
+            NSString* swapImages = [NSString stringWithFormat:@"swapImageSrc('%@', '%@', '%@', %f, %f)", object1Id, altSrc, width, location.x, location.y];
             [bookView stringByEvaluatingJavaScriptFromString:swapImages];
-            
-            //Logging added by James for Swap Images
-            [[ServerCommunicationController sharedManager] logComputerSwapImages : object1Id : altSrc: @"Swap Image" : bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-        }
-    }
-}
-
-/*
- Loads an image calling the loadImage JS function and using the AlternateImage class
- */
--(void) loadImage {
-    if (numSteps > 0) {
-        //Get steps for current sentence
-        NSMutableArray* currSolSteps;
-        
-        if (conditionSetup.appMode == ITS) {
-            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-        }
-        else {
-            if (conditionSetup.condition == CONTROL) {
-                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-            }
-            else if (conditionSetup.condition == EMBRACE) {
-                if (conditionSetup.currentMode == PM_MODE) {
-                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                    }
-                    else {
-                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-                else if (conditionSetup.currentMode == IM_MODE) {
-                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                }
-            }
-        }
-        
-        //Get current step to be completed
-        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
-        
-        if ([[currSolStep stepType] isEqualToString:@"appear"]) {
-            //Get information for appear step type
-            NSString* object1Id = [currSolStep object1Id];
-            NSString* action = [currSolStep action];
-            
-            //Get alternate image
-            AlternateImage* altImage = [model getAlternateImageWithActionAndObjectID:action:object1Id];
-            
-            //Get alternate image information
-            NSString* altSrc = [altImage alternateSrc];
-            NSString* width = [altImage width];
-            NSString* height = [altImage height];
-            CGPoint location = [altImage location];
-            NSString* className = [altImage className];
-            NSString* zPosition = [altImage zPosition];
-            
-            //Swap images using alternative src
-            NSString* loadImage;
-            
-            if ([height isEqualToString:@""]) {
-                loadImage = [NSString stringWithFormat:@"loadImage('%@', '%@', '%@', %f, %f, '%@', %d)", object1Id, altSrc, width, location.x, location.y, className, zPosition.intValue];
-            }
-            else
-            {
-                loadImage = [NSString stringWithFormat:@"loadImage('%@', '%@', '%@', '%@', %f, %f, '%@', %d)", object1Id, altSrc, width, height, location.x, location.y, className, zPosition.intValue];
-            }
-            
-            [bookView stringByEvaluatingJavaScriptFromString:loadImage];
-        }
-    }
-}
-
-/*
- Calls the removeImage from the ImageManipulation.js file
- */
--(void) hideImage {
-    if (numSteps > 0) {
-        //Get steps for current sentence
-        NSMutableArray* currSolSteps;
-        
-        if (conditionSetup.appMode == ITS) {
-            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-        }
-        else {
-            if (conditionSetup.condition == CONTROL) {
-                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-            }
-            else if (conditionSetup.condition == EMBRACE) {
-                if (conditionSetup.currentMode == PM_MODE) {
-                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                    }
-                    else {
-                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-                else if (conditionSetup.currentMode == IM_MODE) {
-                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                }
-            }
-        }
-        
-        //Get current step to be completed
-        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
-        
-        if ([[currSolStep stepType] isEqualToString:@"disappearAuto"]) {
-            NSString* object2Id = [currSolStep object2Id];
-            
-            //Hide image
-            NSString* hideImage = [NSString stringWithFormat:@"removeImage('%@')", object2Id];
-            [bookView stringByEvaluatingJavaScriptFromString:hideImage];
-        }
-    }
-}
-
-/*
- *  Calls the changeZIndex from ImageManipulation.js file
- */
--(void)changeZIndex{
-    if (numSteps > 0) {
-        //Get steps for current sentence
-        //Get steps for current sentence
-        NSMutableArray* currSolSteps;
-        
-        if (conditionSetup.appMode == ITS) {
-            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-        }
-        else {
-            if (conditionSetup.condition == CONTROL) {
-                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-            }
-            else if (conditionSetup.condition == EMBRACE) {
-                if (conditionSetup.currentMode == PM_MODE) {
-                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                    }
-                    else {
-                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-                else if (conditionSetup.currentMode == IM_MODE) {
-                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                }
-            }
-        }
-        
-        //Get current step to be completed
-        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
-        
-        if ([[currSolStep stepType] isEqualToString:@"changeZIndex"]) {
-            //Get information for appear step type
-            NSString* object1Id = [currSolStep object1Id];
-            NSString* action = [currSolStep action];
-            
-            //Get alternate image
-            AlternateImage* altImage = [model getAlternateImageWithActionAndObjectID:action:object1Id];
-            
-            //Get alternate image information
-            NSString* altSrc = [altImage alternateSrc];
-            NSString* width = [altImage width];
-            CGPoint location = [altImage location];
-            NSString* className = [altImage className];
-            NSString* zPosition = [altImage zPosition];
-            
-            //Swap images using alternative src
-            NSString* loadImage = [NSString stringWithFormat:@"loadImage('%@', '%@', '%@', %f, %f, '%@', %d)", object1Id, altSrc, width, location.x, location.y, className, zPosition.intValue];
-            [bookView stringByEvaluatingJavaScriptFromString:loadImage];
         }
     }
 }
@@ -3134,37 +1631,12 @@ BOOL wasPathFollowed = false;
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps;
-        
-        if (conditionSetup.appMode == ITS) {
-            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-        }
-        else {
-            if (conditionSetup.condition == CONTROL) {
-                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-            }
-            else if (conditionSetup.condition == EMBRACE) {
-                if (conditionSetup.currentMode == PM_MODE) {
-                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                    }
-                    else {
-                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-                else if (conditionSetup.currentMode == IM_MODE) {
-                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                }
-            }
-        }
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
-        if ([[currSolStep stepType] isEqualToString:@"check"] ||
-            [[currSolStep stepType] isEqualToString:@"checkPath"] ||
-            [[currSolStep stepType] isEqualToString:@"shakeOrTap"]) {
+        if ([[currSolStep stepType] isEqualToString:@"check"]) {
             //Get information for check step type
             NSString* objectId = [currSolStep object1Id];
             NSString* action = [currSolStep action];
@@ -3183,8 +1655,6 @@ BOOL wasPathFollowed = false;
             float locationWidth = [location.width floatValue] / 100.0 * [bookView frame].size.width;
             float locationHeight = [location.height floatValue] / 100.0 * [bookView frame].size.height;
             
-            //NSLog(@"Width: %f Height: %f", [bookView frame].size.width, [bookView frame].size.height);
-            
             //Check if hotspot is inside location
             if ((hotspotLocation.x < locationX + locationWidth) && (hotspotLocation.x > locationX)
                 && (hotspotLocation.y < locationY + locationHeight) && (hotspotLocation.y > locationY)) {
@@ -3193,181 +1663,6 @@ BOOL wasPathFollowed = false;
         }
     }
     
-    return false;
-}
-
-/*
- * Returns true if the hotspot of an object (for a check step type) is inside the correct area. Otherwise, returns false.
- */
--(BOOL) isHotspotInsideArea {
-    //Check solution only if it exists for the sentence
-    if (numSteps > 0) {
-        //Get steps for current sentence
-        NSMutableArray* currSolSteps;
-        
-        if (conditionSetup.appMode == ITS) {
-            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-        }
-        else {
-            if (conditionSetup.condition == CONTROL) {
-                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-            }
-            else if (conditionSetup.condition == EMBRACE) {
-                if (conditionSetup.currentMode == PM_MODE) {
-                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                    }
-                    else {
-                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-                else if (conditionSetup.currentMode == IM_MODE) {
-                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                }
-            }
-        }
-        
-        //Get current step to be completed
-        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
-        
-        if ([[currSolStep stepType] isEqualToString:@"check"] || [[currSolStep stepType] isEqualToString:@"checkPath"]) {
-            //Get information for check step type
-            NSString* objectId = [currSolStep object1Id];
-            NSString* action = [currSolStep action];
-            
-            NSString* areaId = [currSolStep areaId];
-            
-            //Get hotspot location of correct subject
-            Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:objectId :action :@"subject"];
-            CGPoint hotspotLocation = [self getHotspotLocation:hotspot];
-            
-            //Get area that hotspot should be inside
-            Area* area = [model getAreaWithId:areaId];
-            
-            if ([area.aPath containsPoint:hotspotLocation])
-            {
-                return true;
-            }
-        }
-    }
-    
-    return false;
-}
-
-/*
- * Returns true if the start location and the end location of an object are within the same area. Otherwise, returns false.  
- */
--(BOOL) areHotspotsInsideArea {
-    //Check solution only if it exists for the sentence
-    if (numSteps > 0) {
-        //Get steps for current sentence
-        NSMutableArray* currSolSteps;
-        
-        if (conditionSetup.appMode == ITS) {
-            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-        }
-        else {
-            if (conditionSetup.condition == CONTROL) {
-                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-            }
-            else if (conditionSetup.condition == EMBRACE) {
-                if (conditionSetup.currentMode == PM_MODE) {
-                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                    }
-                    else {
-                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-                else if (conditionSetup.currentMode == IM_MODE) {
-                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                }
-            }
-        }
-        
-        //Get current step to be completed
-        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
-        
-        if ([[currSolStep stepType] isEqualToString:@"shakeOrTap"]) {
-            //Get information for check step type
-            NSString* objectId = [currSolStep object1Id];
-            NSString* action = [currSolStep action];
-            
-            NSString* areaId = [currSolStep areaId];
-            
-            //Get hotspot location of correct subject
-            Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:objectId :action :@"subject"];
-            CGPoint hotspotLocation = [self getHotspotLocation:hotspot];
-            
-            //Get area that hotspot should be inside
-            Area* area = [model getAreaWithId:areaId];
-            
-            if ([area.aPath containsPoint:hotspotLocation] && [area.aPath containsPoint:startLocation])
-            {
-                return true;
-            }
-        }
-    }
-    
-    return false;
-}
-
-/*
- * Returns true if a location belongs to an area path. Otherwise, returns false.
- */
-- (BOOL) isHotspotOnPath {
-    //Check solution only if it exists for the sentence
-    if (numSteps > 0) {
-        //Get steps for current sentence
-        NSMutableArray* currSolSteps;
-        
-        if (conditionSetup.appMode == ITS) {
-            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-        }
-        else {
-            if (conditionSetup.condition == CONTROL) {
-                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-            }
-            else if (conditionSetup.condition == EMBRACE) {
-                if (conditionSetup.currentMode == PM_MODE) {
-                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                    }
-                    else {
-                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-                else if (conditionSetup.currentMode == IM_MODE) {
-                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                }
-            }
-        }
-        
-        //Get current step to be completed
-        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
-        
-        if ([[currSolStep stepType] isEqualToString:@"checkPath"]) {
-            //Get information for check step type
-            NSString* objectId = [currSolStep object1Id];
-            NSString* action = [currSolStep action];
-            
-            NSString* areaId = [currSolStep areaId];
-            
-            //Get hotspot location of correct subject
-            Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:objectId :action :@"subject"];
-            CGPoint hotspotLocation = [self getHotspotLocation:hotspot];
-            
-            //Get area that hotspot should be inside
-            Area* area = [model getAreaWithId:areaId];
-            
-            if ([area.aPath containsPoint:hotspotLocation]){
-                return true;
-            }
-        }
-    }
     return false;
 }
 
@@ -3396,7 +1691,7 @@ BOOL wasPathFollowed = false;
     [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
     
     //Check if the object has the correct class, or if no class was specified before returning
-    if(( (class == nil) || (![imageAtPointClass isEqualToString:@""] && [imageAtPointClass rangeOfString:class].location != NSNotFound))) {
+    if([imageAtPointClass isEqualToString:class] || class == nil) {
         //Any subject can be used, so just return the object id
         if (useSubject == ALL_ENTITIES)
             return imageAtPoint;
@@ -3415,50 +1710,6 @@ BOOL wasPathFollowed = false;
 }
 
 /*
- * Gets the current solution step and returns it
- */
--(NSString*) getCurrentSolutionStep{
-    if (numSteps > 0) {
-        //Get steps for current sentence
-        NSMutableArray* currSolSteps;
-        
-        if (conditionSetup.appMode == ITS) {
-            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-        }
-        else {
-            if (conditionSetup.condition == CONTROL) {
-                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-            }
-            else if (conditionSetup.condition == EMBRACE) {
-                if (conditionSetup.currentMode == PM_MODE) {
-                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                    }
-                    else {
-                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-                else if (conditionSetup.currentMode == IM_MODE) {
-                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                }
-            }
-        }
-        
-        //Get current step to be completed
-        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
-        
-        //If step type involves transference, we must manually create the PossibleInteraction object.
-        //Otherwise, it can be directly converted.
-        return [currSolStep stepType];
-    }
-    else
-    {
-        return nil;
-    }
-}
-
-/*
  * Gets the current solution step of ActionStep type and converts it to a PossibleInteraction
  * object
  */
@@ -3468,38 +1719,14 @@ BOOL wasPathFollowed = false;
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps;
-        
-        if (conditionSetup.appMode == ITS) {
-            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-        }
-        else {
-            if (conditionSetup.condition == CONTROL) {
-                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-            }
-            else if (conditionSetup.condition == EMBRACE) {
-                if (conditionSetup.currentMode == PM_MODE) {
-                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                    }
-                    else {
-                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-                else if (conditionSetup.currentMode == IM_MODE) {
-                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                }
-            }
-        }
+        NSMutableArray* currSolSteps = [PMSolution getStepsForSentence:currentSentence];
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
         //If step type involves transference, we must manually create the PossibleInteraction object.
         //Otherwise, it can be directly converted.
-        if ([[currSolStep stepType] isEqualToString:@"transferAndGroup"] ||
-            [[currSolStep stepType] isEqualToString:@"transferAndDisappear"]) {
+        if ([[currSolStep stepType] isEqualToString:@"transferAndGroup"] || [[currSolStep stepType] isEqualToString:@"transferAndDisappear"]) {
             correctInteraction = [[PossibleInteraction alloc] init];
             
             //Get step information for current step
@@ -3562,100 +1789,38 @@ BOOL wasPathFollowed = false;
     
     //Check if selected interaction is correct
     if ([interaction isEqual:correctInteraction]) {
-        [[ServerCommunicationController sharedManager] logComputerVerification:@"Perform Interaction":true : movingObjectId:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+        [self performInteraction:interaction];
         
-            if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) {
-                //Remove menu
-                [menu removeFromSuperview];
-                menu = nil;
-                menuExpanded = FALSE;
-                
-                if (IMViewMenu != nil) {
-                    [IMViewMenu removeFromSuperview];
-                }
-            
-                [[ServerCommunicationController sharedManager] logUserNextButtonPressed:@"Next" :@"Tap" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-            
-                //Added for logging
-                NSString *tempLastSentence = [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence];
-            
-                //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
-                if (currentSentence > 0) {
-                    currentIdea++;
-                }
-                
-                currentSentence++;
-                currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence]];
-            
-                //Set up current sentence appearance and solution steps
-                [self setupCurrentSentence];
-                [self colorSentencesUponNext];
-            
-                //currentSentence is 1 indexed.
-                if (currentSentence > totalSentences) {
-                    [self loadNextPage];
-                }
-                else {
-                        [[ServerCommunicationController sharedManager] logNextSentenceNavigation:@"Next Button" :tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :@"Next Sentence" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                
-                         [self playCurrentSentenceAudio];
-                    
-                }
-            }
-            else
-            {
-                [self performInteraction:interaction];
-            }
-        
-        if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
-            IntroductionClass.currentIntroStep++;
-            [IntroductionClass loadIntroStep:bookView:self: currentSentence];
+        if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"]) {
+            currentIntroStep++;
+            [self loadIntroStep];
         }
         
-        if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == PM_MODE) {
-            [self incrementCurrentStep];
-        }
+        [self incrementCurrentStep];
         
         //Transference counts as two steps, so we must increment again
         if ([interaction interactionType] == TRANSFERANDGROUP || [interaction interactionType] == TRANSFERANDDISAPPEAR) {
-            if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == PM_MODE) {
-                [self incrementCurrentStep];
-            }
+            [self incrementCurrentStep];
         }
     }
     else {
-        if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
-            if ((conditionSetup.language ==ENGLISH) || IntroductionClass.currentIntroStep > IntroductionClass.STEPS_TO_SWITCH_LANGUAGES_EMBRACE) {
-                [self.playaudioClass playAudioFile:self:@"tryAgainE.m4a"];
-                
-                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Try Again" : @"E" : @"tryAgainE.m4a" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-            }
-            else {
-                [self.playaudioClass playAudioFile:self:@"tryAgainS.m4a"];
-                
-                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Try Again" : @"S" : @"tryAgainS.m4a" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-            }
+        if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"]) {
+            if (language_condition == ENGLISH)
+                [self playAudioFile:@"tryAgainE.m4a"];
+            else
+                [self playAudioFile:@"intentaDeNuevoS.m4a"];
         }
         else {
-            [[ServerCommunicationController sharedManager] logComputerVerification:@"Perform Interaction":false : movingObjectId:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-            
-            [self.playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-            
-            if (conditionSetup.appMode == ITS) {
-                //Record error for complexity
-                [[pageStatistics objectForKey:currentPageId] addErrorForComplexity:(currentComplexity - 1)];
-            }
+            [self playErrorNoise]; //play noise if interaction is incorrect
         }
         
         if ([interaction interactionType] != UNGROUP && allowSnapback) {
             //Snap the object back to its original location
-            [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false:@"None"];
-            
-            [[ServerCommunicationController sharedManager] logComputerResetObject : movingObjectId  :startLocation.x :startLocation.y : startLocation.x : startLocation.y : @"Reset" : bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+            [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
         }
     }
     
-    //Clear any remaining highlighting
+    //Clear any remaining highlighting.
     NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
     [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
 }
@@ -3722,8 +1887,7 @@ BOOL wasPathFollowed = false;
 /*
  * Returns all possible interactions that can occur between the object being moved and any other objects it's overlapping with.
  * This function takes into account all hotspots, both available and unavailable. It checks cases in which all hotspots are
- * available, as well as instances in which one hotspots is already taken up by a grouping but the other is not. The func
- tion
+ * available, as well as instances in which one hotspots is already taken up by a grouping but the other is not. The function
  * checks both group and disappear interaction types.
  
  * TODO: Figure out how to return all possible interactions robustly. Currently if the student drags the hay and the farmer (when grouped) by the hay, then the interaction will not be identified.
@@ -3740,8 +1904,6 @@ BOOL wasPathFollowed = false;
     
     //Get the objects that this object is overlapping with
     NSArray* overlappingWith = [self getObjectsOverlappingWithObject:obj];
-    BOOL ObjectIDUsed = false;
-    NSString *tempCollisionObject = nil;
     
     if (overlappingWith != nil) {
         for(NSString* objId in overlappingWith) {
@@ -3751,18 +1913,10 @@ BOOL wasPathFollowed = false;
             if (useObject == ONLY_CORRECT) {
                 if (![self checkSolutionForObject:objId]) {
                     getInteractions = FALSE;
-                    
-                    if (!ObjectIDUsed) {
-                        ObjectIDUsed = true;
-                        tempCollisionObject = objId;
-                    }
                 }
             }
             
             if (getInteractions) {
-                ObjectIDUsed = true;
-                tempCollisionObject = objId;
-                
                 NSMutableArray* hotspots = [model getHotspotsForObject:objId OverlappingWithObject:obj];
                 NSMutableArray* movingObjectHotspots = [model getHotspotsForObject:obj OverlappingWithObject:objId];
                 
@@ -3801,8 +1955,6 @@ BOOL wasPathFollowed = false;
                             else {
                                 //Get the relationship between these two objects so we can check to see what type of relationship it is.
                                 Relationship* relationshipBetweenObjects = [model getRelationshipForObjectsForAction:obj :objId :[movingObjectHotspot action]];
-                                lastRelationship = relationshipBetweenObjects;
-                                [allRelationships addObject:lastRelationship];
                                 
                                 //Check to make sure that the two hotspots are in close proximity to each other.
                                 if((useProximity && [self hotspotsWithinGroupingProximity:movingObjectHotspot :hotspot])
@@ -3812,34 +1964,13 @@ BOOL wasPathFollowed = false;
                                     NSArray* hotspotsForInteraction;
                                     
                                     if([[relationshipBetweenObjects actionType] isEqualToString:@"group"]) {
-                                        //Check if the moving object is already grouped with another
-                                        //object
-                                        NSArray* groupedObjects = [self getObjectsGroupedWithObject:movingObjectId];
+                                        PossibleInteraction* interaction = [[PossibleInteraction alloc] initWithInteractionType:GROUP];
                                         
-                                        //Object is already grouped to another object
-                                        if (groupedObjects != nil) {
-                                            //Check if this new grouping meets constraints before
-                                            //creating the PossibleInteraction object
-                                            if ([self doesObjectMeetComboConstraints:movingObjectId :movingObjectHotspot]) {
-                                                PossibleInteraction* interaction = [[PossibleInteraction alloc] initWithInteractionType:GROUP];
-                                                
-                                                objects = [[NSArray alloc] initWithObjects:obj, objId, nil];
-                                                hotspotsForInteraction = [[NSArray alloc] initWithObjects:movingObjectHotspot, hotspot, nil];
-                                                
-                                                [interaction addConnection:GROUP :objects :hotspotsForInteraction];
-                                                [groupings addObject:interaction];
-                                            }
-                                        }
-                                        //Object is not grouped to another object
-                                        else {
-                                            PossibleInteraction* interaction = [[PossibleInteraction alloc] initWithInteractionType:GROUP];
-                                            
-                                            objects = [[NSArray alloc] initWithObjects:obj, objId, nil];
-                                            hotspotsForInteraction = [[NSArray alloc] initWithObjects:movingObjectHotspot, hotspot, nil];
-                                            
-                                            [interaction addConnection:GROUP :objects :hotspotsForInteraction];
-                                            [groupings addObject:interaction];
-                                        }
+                                        objects = [[NSArray alloc] initWithObjects:obj, objId, nil];
+                                        hotspotsForInteraction = [[NSArray alloc] initWithObjects:movingObjectHotspot, hotspot, nil];
+                                        
+                                        [interaction addConnection:GROUP :objects :hotspotsForInteraction];
+                                        [groupings addObject:interaction];
                                     }
                                     else if([[relationshipBetweenObjects actionType] isEqualToString:@"disappear"]) {
                                         PossibleInteraction* interaction = [[PossibleInteraction alloc] initWithInteractionType:DISAPPEAR];
@@ -3875,7 +2006,6 @@ BOOL wasPathFollowed = false;
         }
     }
     
-    collisionObjectId = tempCollisionObject;
     return groupings;
 }
 
@@ -3968,8 +2098,6 @@ BOOL wasPathFollowed = false;
                 
                 //Get the relationship between the connected and currently unconnected objects so we can check to see what type of relationship it is.
                 Relationship* relationshipBetweenObjects = [model getRelationshipForObjectsForAction:objConnected :currentUnconnectedObj :[objConnectedHotspot action]];
-                lastRelationship = relationshipBetweenObjects;
-                [allRelationships addObject:lastRelationship];
                 
                 if([[relationshipBetweenObjects  actionType] isEqualToString:@"group"]) {
                     [interaction addConnection:GROUP :transferObjects :hotspotsForTransfer];
@@ -3986,6 +2114,7 @@ BOOL wasPathFollowed = false;
             }
         }
     }
+    
     return groupings;
 }
 
@@ -4028,7 +2157,7 @@ BOOL wasPathFollowed = false;
         overlappingWith = [overlapArrayString componentsSeparatedByString:@", "];
     }
     
-        return overlappingWith;
+    return overlappingWith;
 }
 
 /*
@@ -4052,105 +2181,6 @@ BOOL wasPathFollowed = false;
     }
     
     return connectedHotspot;
-}
-
-/*
- * Determines whether the potential connection is allowed to take place (i.e. whether the
- * hotspot can be used) based on the combo constraints.
- *
- * Ex. A combo constraint may specify that the farmer may not use the pickUp
- * and lead hotspots at the same time. This function will look up the farmer's combo
- * constraints, determine which hotspot is currently in use, and check whether the connected
- * (pickUp) and potential (lead) hotspots are both restricted by the constraint.
- *
- * TODO: Currently, this only checks if any 2 hotspots (one connected, one potential) can be
- * used at the same time. It should be able to check cases such as 3 hotspots exactly
- * (2 connected, 1 potential).
- */
--(BOOL) doesObjectMeetComboConstraints:(NSString*)connectedObject :(Hotspot*)potentialConnection {
-    //Records whether the potential and connected hotspots are present in the list
-    //of combo constraints for an object contained in a group with connectedObject.
-    //If they both are, then this object does not meet the combo constraints.
-    BOOL potentialConstraint = FALSE;
-    BOOL connectedConstraint = FALSE;
-    
-    //Get pairs of other objects grouped with this object.
-    NSArray* itemPairArray = [self getObjectsGroupedWithObject:connectedObject];
-    
-    if (itemPairArray != nil) {
-        for(NSString* pairStr in itemPairArray) {
-            //Create an array that will hold all the items in this group
-            NSMutableArray* groupedItemsArray = [[NSMutableArray alloc] init];
-            
-            //Separate the objects in this pair and add them to our array of all items in this group.
-            [groupedItemsArray addObjectsFromArray:[pairStr componentsSeparatedByString:@", "]];
-            
-            for (NSString* object in groupedItemsArray) {
-                //Get the combo constraints for the object
-                NSMutableArray* objectComboConstraints = [model getComboConstraintsForObjectId:object];
-                
-                //The object has combo constraints
-                if ([objectComboConstraints count] > 0) {
-                    //Get the hotspots for the object
-                    NSMutableArray* objectHotspots = [model getHotspotsForObjectId:object];
-                    
-                    for (Hotspot* hotspot in objectHotspots) {
-                        //Get the hotspot location
-                        CGPoint hotspotLocation = [self getHotspotLocation:hotspot];
-                        
-                        //Check if this hotspot is currently connected to another object
-                        NSString *isHotspotConnected = [NSString stringWithFormat:@"objectGroupedAtHotspot(%@, %f, %f)", object, hotspotLocation.x, hotspotLocation.y];
-                        NSString* isHotspotConnectedString = [bookView stringByEvaluatingJavaScriptFromString:isHotspotConnected];
-                        
-                        //Hotspot is connected to another object
-                        if (![isHotspotConnectedString isEqualToString:@""]) {
-                            for (ComboConstraint* comboConstraint in objectComboConstraints) {
-                                //Get the list of actions for the combo constraint
-                                NSMutableArray* comboActions = [comboConstraint comboActions];
-                                
-                                for (NSString* comboAction in comboActions) {
-                                    //Get the hotspot associated with the action, assuming the
-                                    //role as subject. Also get the hotspot location.
-                                    Hotspot* comboHotspot = [model getHotspotforObjectWithActionAndRole:[comboConstraint objId] :comboAction :@"subject"];
-                                    CGPoint comboHotspotLocation;
-                                    
-                                    if (comboHotspot != nil) {
-                                        comboHotspotLocation = [self getHotspotLocation:comboHotspot];
-                                    }
-                                    else {
-                                        //If no hotspot was found assuming the role as subject,
-                                        //then the role must be object.
-                                        comboHotspot = [model getHotspotforObjectWithActionAndRole:[comboConstraint objId] :comboAction :@"object"];
-                                        comboHotspotLocation = [self getHotspotLocation:comboHotspot];
-                                    }
-                                    
-                                    //Check if the potential hotspot matches an action on the list
-                                    if ([[potentialConnection action] isEqualToString:comboAction]) {
-                                        potentialConstraint = TRUE;
-                                    }
-                                    
-                                    //Check if the connected hotspot matches an action on the list
-                                    //based on its name or location
-                                    if ([[hotspot action] isEqualToString:comboAction]
-                                        || CGPointEqualToPoint(hotspotLocation, comboHotspotLocation)) {
-                                        connectedConstraint = TRUE;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    //Both potential and connected hotspots were present in the list
-    if (potentialConstraint && connectedConstraint) {
-        return FALSE; //fails to meet combo constraint
-    }
-    else {
-        return TRUE; //meets combo constraint
-    }
 }
 
 /*
@@ -4229,50 +2259,12 @@ BOOL wasPathFollowed = false;
 }
 
 /*
- * Calculates the delta pixel change for the object that is being moved
- * and changes the lcoation from relative % to pixels if necessary.
- */
--(CGPoint) calculateDeltaForMovingObjectAtPointWithCenter:(NSString*) object :(CGPoint) location {
-    CGPoint change;
-    
-    //Calculate offset between top-left corner of image and the point clicked.
-    NSString* requestImageAtPointTop = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).offsetTop", location.x, location.y];
-    NSString* requestImageAtPointLeft = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).offsetLeft", location.x, location.y];
-    
-    NSString* imageAtPointTop = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointTop];
-    NSString* imageAtPointLeft = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointLeft];
-    
-    //Get the width and height of the image to ensure that the image is not being moved off screen and that the image is being moved in accordance with all movement constraints.
-    NSString* requestImageHeight = [NSString stringWithFormat:@"%@.height", object];
-    NSString* requestImageWidth = [NSString stringWithFormat:@"%@.width", object];
-    
-    float imageHeight = [[bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
-    float imageWidth = [[bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
-    
-    //Check to see if the locations returned are in percentages. If they are, change them to pixel values based on the size of the screen.
-    NSRange rangePercentTop = [imageAtPointTop rangeOfString:@"%"];
-    NSRange rangePercentLeft = [imageAtPointLeft rangeOfString:@"%"];
-    
-    if(rangePercentTop.location != NSNotFound)
-        change.y = location.y - ([imageAtPointTop floatValue] / 100.0 * [bookView frame].size.height) -(imageHeight/2);
-    else
-        change.y = location.y - [imageAtPointTop floatValue]-(imageHeight/2);
-    
-    if(rangePercentLeft.location != NSNotFound)
-        change.x = location.x - ([imageAtPointLeft floatValue] / 100.0 * [bookView frame].size.width) -(imageWidth/2);
-    else
-        change.x = location.x - [imageAtPointLeft floatValue]-(imageWidth/2);
-    
-    return change;
-}
-
-/*
  * Moves the object passeed in to the location given. Calculates the difference between the point touched and the
  * top-left corner of the image, which is the x,y coordate that's actually used when moving the object.
  * Also ensures that the image is not moved off screen or outside of any specified bounding boxes for the image.
  * Updates the JS Connection hotspot locations if necessary.
  */
--(void) moveObject:(NSString*) object :(CGPoint) location :(CGPoint)offset :(BOOL)updateCon : (NSString*) waypointID{
+-(void) moveObject:(NSString*) object :(CGPoint) location :(CGPoint)offset :(BOOL)updateCon{
     //Change the location to accounting for the different between the point clicked and the top-left corner which is used to set the position of the image.
     CGPoint adjLocation = CGPointMake(location.x - offset.x, location.y - offset.y);
     
@@ -4311,47 +2303,17 @@ BOOL wasPathFollowed = false;
             adjLocation.y = boxY;
     }
     
-    
-    NSString* requestImageMarginLeft = [NSString stringWithFormat:@"%@.style.marginLeft", movingObjectId];
-    NSString* requestImageMarginTop = [NSString stringWithFormat:@"%@.style.marginTop", movingObjectId];
-    
-    NSString* imageMarginLeft = [bookView stringByEvaluatingJavaScriptFromString:requestImageMarginLeft];
-    NSString* imageMarginTop = [bookView stringByEvaluatingJavaScriptFromString:requestImageMarginTop];
-    
-    if(![imageMarginLeft isEqualToString:@""] && ![imageMarginTop isEqualToString:@""])
-    {
-        //Check to see if the image is being moved off screen. If it is, change it so that the image cannot be moved off screen.
-        if(adjLocation.x + (imageWidth/2) > [bookView frame].size.width)
-            adjLocation.x = [bookView frame].size.width - (imageWidth/2);
-        else if(adjLocation.x-(imageWidth/2)  < 0)
-            adjLocation.x = (imageWidth/2);
-        if(adjLocation.y + (imageHeight/2) > [bookView frame].size.height)
-            adjLocation.y = [bookView frame].size.height - (imageHeight/2);
-        else if(adjLocation.y-(imageHeight/2) < 0)
-            adjLocation.y = (imageHeight/2);
-    }
-    else
-    {
-        //Check to see if the image is being moved off screen. If it is, change it so that the image cannot be moved off screen.
-        if(adjLocation.x + imageWidth > [bookView frame].size.width)
-            adjLocation.x = [bookView frame].size.width - imageWidth;
-        else if(adjLocation.x < 0)
-            adjLocation.x = 0;
-        if(adjLocation.y + imageHeight > [bookView frame].size.height)
-            adjLocation.y = [bookView frame].size.height - imageHeight;
-        else if(adjLocation.y < 0)
-            adjLocation.y = 0;
-    }
-    
-    endLocation = adjLocation;
+    //Check to see if the image is being moved off screen. If it is, change it so that the image cannot be moved off screen.
+    if(adjLocation.x + imageWidth > [bookView frame].size.width)
+        adjLocation.x = [bookView frame].size.width - imageWidth;
+    else if(adjLocation.x < 0)
+        adjLocation.x = 0;
+    if(adjLocation.y + imageHeight > [bookView frame].size.height)
+        adjLocation.y = [bookView frame].size.height - imageHeight;
+    else if(adjLocation.y < 0)
+        adjLocation.y = 0;
     
     //May want to add code to keep objects from moving to the location that the text is taking up on screen.
-    
-    //logs only if object is moved by computer action, user pan done outside of this function
-    if (![waypointID isEqualToString:@"isMoving"]) {
-        //Logging added by James for Automatic Computer Move Object
-        [[ServerCommunicationController sharedManager] logComputerMoveObject: object : waypointID: startLocation.x : startLocation.y : adjLocation.x : adjLocation.y : @"Snap to Hotspot" : bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-    }
     
     //NSLog(@"new location of %@: (%f, %f)", object, adjLocation.x, adjLocation.y);
     //Call the moveObject function in the js file.
@@ -4374,9 +2336,6 @@ BOOL wasPathFollowed = false;
  */
 -(void) groupObjects:(NSString*)object1 :(CGPoint)object1Hotspot :(NSString*)object2 :(CGPoint)object2Hotspot {
     NSString *groupObjects = [NSString stringWithFormat:@"groupObjectsAtLoc(%@, %f, %f, %@, %f, %f)", object1, object1Hotspot.x, object1Hotspot.y, object2, object2Hotspot.x, object2Hotspot.y];
-    
-    //Logging added by James for Grouping Objects
-    [[ServerCommunicationController sharedManager] logComputerGroupingObjects: @"Group" :object1 :object2 : groupObjects:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
     
     //maintain a list of current groupings, with the subject as a key. currently only supports two objects
     
@@ -4405,36 +2364,6 @@ BOOL wasPathFollowed = false;
 -(void) ungroupObjects:(NSString* )object1 :(NSString*) object2 {
     NSString* ungroup = [NSString stringWithFormat:@"ungroupObjects(%@, %@)", object1, object2];
 
-    //Logging added by James for Grouping Objects
-    //[[ServerCommunicationController sharedManager] logComputerGroupingObjects: @"Ungroup" :object1 :object2 : ungroup:bookTitle :chapterTitle :currentPage :currentSentence :currentStep ];
-    
-    //get the current groupings of the objects
-    NSMutableArray *object1Groups = [currentGroupings objectForKey:object1];
-    NSMutableArray *object2Groups = [currentGroupings objectForKey:object2];
-    
-    if ([object1Groups containsObject:object2]) {
-        [object1Groups removeObject:object2];
-        [currentGroupings setValue:object1Groups forKey:object1];
-        //add the array back
-    }
-    if ([object2Groups containsObject:object1]) {
-        [object2Groups removeObject:object1];
-        [currentGroupings setValue:object2Groups forKey:object2];
-        //add the array back
-    }
-    
-    [bookView stringByEvaluatingJavaScriptFromString:ungroup];
-}
-
-/*
- * Calls the JS function to ungroup two objects.
- */
--(void) ungroupObjectsAndStay:(NSString* )object1 :(NSString*) object2 {
-    NSString* ungroup = [NSString stringWithFormat:@"ungroupObjectsAndStay(%@, %@)", object1, object2];
-    
-    //Logging added by James for Grouping Objects
-    //[[ServerCommunicationController sharedManager] logComputerGroupingObjects: @"Ungroup" :object1 :object2 : ungroup:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
-    
     //get the current groupings of the objects
     NSMutableArray *object1Groups = [currentGroupings objectForKey:object1];
     NSMutableArray *object2Groups = [currentGroupings objectForKey:object2];
@@ -4489,11 +2418,8 @@ BOOL wasPathFollowed = false;
                     //With both hotspot pixel values we can calcuate the distance between the top-left corner of the hidden object and it's hotspot.
                     CGPoint change = [self calculateDeltaForMovingObjectAtPoint:hiddenObjectHotspotLocation];
                     
-                    //Logging added by James for Object Disappear
-                    [[ServerCommunicationController sharedManager] logComputerDisappearObject: @"Appear Object":disappearingObject :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                    
                     //Now move the object taking into account the difference in change.
-                    [self moveObject:disappearingObject :appearLocation :change :false:@"None"];
+                    [self moveObject:disappearingObject :appearLocation :change :false];
                 }
             }
             else {
@@ -4507,12 +2433,7 @@ BOOL wasPathFollowed = false;
     }
     //Otherwise, just make the object disappear
     else {
-        
         NSString* hideObj = [NSString stringWithFormat:@"document.getElementById('%@').style.display = 'none';", disappearingObject];
-        
-        //Logging added by James for Object Disappear
-        [[ServerCommunicationController sharedManager] logComputerDisappearObject: @"Disappear Object":disappearingObject :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-        
         [bookView stringByEvaluatingJavaScriptFromString:hideObj];
     }
 }
@@ -4539,8 +2460,8 @@ BOOL wasPathFollowed = false;
  */
 - (CGPoint) getHotspotLocation:(Hotspot*) hotspot {
     //Get the height and width of the image.
-    NSString* requestImageHeight = [NSString stringWithFormat:@"%@.offsetHeight", [hotspot objectId]];
-    NSString* requestImageWidth = [NSString stringWithFormat:@"%@.offsetWidth", [hotspot objectId]];
+    NSString* requestImageHeight = [NSString stringWithFormat:@"%@.height", [hotspot objectId]];
+    NSString* requestImageWidth = [NSString stringWithFormat:@"%@.width", [hotspot objectId]];
     
     float imageWidth = [[bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
     float imageHeight = [[bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
@@ -4572,8 +2493,8 @@ BOOL wasPathFollowed = false;
             locY = [imageTop floatValue];
         
         //Now we've got the location of the top left corner of the image, the size of the image and the relative position of the hotspot. Need to calculate the pixel location of the hotspot and call the js to draw the hotspot.
-        float hotspotX = locX  + (imageWidth * ([hotspot location].x / 100.0) );
-        float hotspotY = locY + (imageHeight * ([hotspot location].y / 100.0) );
+        float hotspotX = locX + (imageWidth * [hotspot location].x / 100.0);
+        float hotspotY = locY + (imageHeight * [hotspot location].y / 100.0);
         
         return CGPointMake(hotspotX, hotspotY);
     }
@@ -4656,538 +2577,92 @@ BOOL wasPathFollowed = false;
  * is correct, then it will move on to the next sentence. If the manipulation is not current, then feedback will be provided.
  */
 -(IBAction)pressedNext:(id)sender {
-    
-    NSString *preAudio = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(preaudio)"]];
-    if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
+    if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"]) {
         // If the user pressed next
-        if ([[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
+        if ([[performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
             // Destroy the timer to avoid playing the previous sound
             //[timer invalidate];
             //timer = nil;
-            IntroductionClass.currentIntroStep++;
+            currentIntroStep++;
             
-            if (IntroductionClass.currentIntroStep > IntroductionClass.totalIntroSteps) {
-                [self loadNextPage]; //logging done in loadNextPage
+            if (currentIntroStep > totalIntroSteps) {
+                [self loadNextPage];
             }
             else {
                 // Load the next step
-                [IntroductionClass loadIntroStep:bookView:self: currentSentence];
+                [self loadIntroStep];
                 [self setupCurrentSentenceColor];
-                
-                //add logging: next intro step
             }
         }
     }
-    else if ([currentPageId rangeOfString:@"-Intro"].location != NSNotFound) {
-            if(currentSentence > totalSentences) {
-                [_audioPlayer stop];
-                currentSentence = 1;
-                [self loadNextPage]; //logging done in loadNextPage
+    else if ([chapterTitle isEqualToString:@"The Contest"] && [actualPage isEqualToString:currentPage]) {
+        // If the user pressed next
+        if ([[performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
+            // Destroy the timer to avoid playing the previous sound
+            //[timer invalidate];
+            //timer = nil;
+            currentVocabStep++;
+            
+            if(currentVocabStep > totalVocabSteps) {
+                [self loadNextPage];
             }
+            else {
+                // Load the next step and update the performed actions
+                [self loadVocabStep];
+            }
+        }
     }
     else {
-        NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
-        NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
-
-        if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && ([sentenceClass containsString: @"sentence actionSentence"] || [sentenceClass containsString: @"sentence IMactionSentence"])) {
-            //Reset allRelationships arrray
-            if ([allRelationships count]) {
-                [allRelationships removeAllObjects];
-            }
-            
-            //Get steps for current sentence
-            NSMutableArray* currSolSteps;
-            
-            if (conditionSetup.appMode == ITS) {
-                currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-            }
-            else {
-                if (conditionSetup.condition == CONTROL) {
-                    currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                }
-                else if (conditionSetup.condition == EMBRACE) {
-                    if (conditionSetup.currentMode == PM_MODE) {
-                        //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                        if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                            currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                        }
-                        else {
-                            currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                        }
-                    }
-                    else if (conditionSetup.currentMode == IM_MODE) {
-                        currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-            }
-            
-            PossibleInteraction* interaction;
-            NSMutableArray *interactions = [[NSMutableArray alloc]init ];
-            
-            if (currSolSteps.count!=0) {
-                
-                for (ActionStep* currSolStep in currSolSteps) {
-                    
-                    //[allRelationships addObject:@"dummydata"];
-                    
-                    interaction = [self convertActionStepToPossibleInteraction:currSolStep];
-                    [interactions addObject:interaction];
-                    Relationship* relationshipBetweenObjects = [[Relationship alloc] initWithValues:[currSolStep object1Id] :[currSolStep action] :[currSolStep stepType] :[currSolStep object2Id]];
-                    [allRelationships addObject:relationshipBetweenObjects];
-                }
-                
-                
-                //Relationship* newrel = [[Relationship alloc] initWithValues:[currSolStep object1Id] :[currSolStep action] :[currSolStep stepType] :[currSolStep objectId2]];
-                
-                //Populate the menu data source and expand the menu.
-                [self populateMenuDataSource:interactions:allRelationships];
-                
-                //add subview to hide story
-                IMViewMenu = [[UIView alloc] initWithFrame:[bookView frame]];
-                IMViewMenu.backgroundColor = [UIColor whiteColor];
-                UILabel *IMinstructions = [[UILabel alloc] initWithFrame:CGRectMake(200, 10, IMViewMenu.frame.size.width, 40)];
-                
-                IMinstructions.center = CGPointMake(IMViewMenu.frame.size.width  / 2, 40);
-                IMinstructions.text = @"Which did you imagine?";
-                IMinstructions.textAlignment = NSTextAlignmentCenter;
-                IMinstructions.textColor = [UIColor blackColor];
-                IMinstructions.font = [UIFont fontWithName:@"GillSans" size:28];
-                [IMViewMenu addSubview:IMinstructions];
-                IMViewMenu.backgroundColor =  [UIColor colorWithRed: 165.0/255.0 green: 203.0/255.0 blue:231.0/255.0 alpha: 1.0];
-                //[UIColor colorWithPatternImage: [self getBackgroundImage]];
-                //add sentence instructions
-                [[self view] addSubview:IMViewMenu];
-                
-                //expand menu
-                [self expandMenu];
-                [IMViewMenu bringSubviewToFront:IMinstructions];
-            }
-            else
-            {
-                //move to next sentence
-                //Logging added by James for User pressing the Next button
-                [[ServerCommunicationController sharedManager] logUserNextButtonPressed:@"Next" :@"Tap" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                
-                //added for logging
-                NSString *tempLastSentence = [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence];
-                
-                //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
-                if (currentSentence > 0) {
-                    currentIdea++;
-                }
-                
-                currentSentence++;
-                currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence]];
-                
-                //currentSentence is 1 indexed.
-                if(currentSentence > totalSentences) {
-                    [self loadNextPage];
-                    //logging done in loadNextPage
-                }
-                else {
-                    //Set up current sentence appearance and solution steps
-                    [self setupCurrentSentence];
-                    [self colorSentencesUponNext];
-                    
-                    //Logging added by James for Computer moving to next sentence
-                    [[ServerCommunicationController sharedManager] logNextSentenceNavigation:@"Next Button" :tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :@"Next Sentence" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                    
-                     [self playCurrentSentenceAudio];
-                    
-                    
-                }
-            }
-            
-        }
-        else if (stepsComplete || numSteps == 0 || !IntroductionClass.allowInteractions) {
-            [[ServerCommunicationController sharedManager] logUserNextButtonPressed:@"Next" :@"Tap" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-            
-            //added for logging
-            NSString *tempLastSentence = [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence];
-            
+        if (stepsComplete || numSteps == 0) {
             //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
-            if (currentSentence > 0) {
-                currentIdea++;
-            }
+            currentSentence ++;
             
-            currentSentence++;
-            currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence]];
-
-            //currentSentence is 1 indexed
+            //Set up current sentence appearance and solution steps
+            [self setupCurrentSentence];
+            [self colorSentencesUponNext];
+            
+            //currentSentence is 1 indexed.
             if(currentSentence > totalSentences) {
-                if (conditionSetup.appMode == ITS && [currentPageId rangeOfString:@"Intro"].location == NSNotFound && ![chapterTitle isEqualToString:@"Introduction to The Best Farm"] && [bookTitle rangeOfString:@"The Circulatory System"].location == NSNotFound) {
-                    [self showPageStatistics]; //show popup window with page statistics
-                }
-                else {
-                    [self loadNextPage];
-                }
-            }
-            else {
-                //For page statistics
-                if (conditionSetup.appMode == ITS && numSteps == 0 && currentComplexity > 0) {
-                    endTime = [NSDate date];
-                    
-                    //Record time for non-action sentence for complexity
-                    [[pageStatistics objectForKey:currentPageId] addTimeForNonActSents:[endTime timeIntervalSinceDate:startTime] ForComplexity:(currentComplexity - 1)];
-                }
-                
-                //Set up current sentence appearance and solution steps
-                [self setupCurrentSentence];
-                [self colorSentencesUponNext];
-                
-                [[ServerCommunicationController sharedManager] logNextSentenceNavigation:@"Next Button" :tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :@"Next Sentence" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                [self playCurrentSentenceAudio];
-               
+                [self loadNextPage];
             }
         }
         else {
             //Play noise if not all steps have been completed
-            [self.playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+            [self playErrorNoise];
         }
-    }
-}
-
-- (void)playCurrentSentenceAudio {
-  
-    NSString *sentenceAudioFile = nil;
-    
-    //Only play sentence audio if system is reading
-    if (conditionSetup.reader == SYSTEM_READER) {
-        //If we are on the first or second manipulation page of The Contest, play the audio of the current sentence
-        if ([chapterTitle isEqualToString:@"The Contest"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-            if((conditionSetup.language ==BILINGUAL)) {
-                sentenceAudioFile = [NSString stringWithFormat:@"BFEC%d.m4a",currentSentence];
-            }
-            else {
-                sentenceAudioFile = [NSString stringWithFormat:@"BFTC%d.m4a",currentSentence];
-            }
-        }
-        
-        //If we are on the first or second manipulation page of Why We Breathe, play the audio of the current sentence
-        if ([chapterTitle isEqualToString:@"Why We Breathe"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
-            if((conditionSetup.language ==BILINGUAL)) {
-                sentenceAudioFile = [NSString stringWithFormat:@"CPQR%d.m4a",currentSentence];
-            }
-            else {
-                sentenceAudioFile = [NSString stringWithFormat:@"CWWB%d.m4a",currentSentence];
-            }
-        }
-        
-        //If we are on the first or second manipulation page of The Lopez Family, play the current sentence
-        if ([chapterTitle isEqualToString:@"The Lopez Family"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
-            if(conditionSetup.language ==BILINGUAL) {
-                sentenceAudioFile = [NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3",currentSentence];
-            }
-            else {
-                sentenceAudioFile = [NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3",currentSentence];
-            }
-        }
-        //If we are on the first or second manipulation page of The Lucky Stone, play the current sentence
-        if ([chapterTitle isEqualToString:@"The Lucky Stone"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-            if(conditionSetup.language ==BILINGUAL) {
-                sentenceAudioFile = [NSString stringWithFormat:@"TheLuckyStoneS%dS.mp3",currentSentence];
-            }
-            else {
-                sentenceAudioFile = [NSString stringWithFormat:@"TheLuckyStoneS%dE.mp3",currentSentence];
-            }
-        }
-        
-        //If we are on the first or second manipulation page of The Naughty Monkey, play the current sentence
-        if ([chapterTitle isEqualToString:@"The Naughty Monkey"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-            if(conditionSetup.language ==BILINGUAL) {
-                sentenceAudioFile = [NSString stringWithFormat:@"TheNaughtyMonkeyS%dS.mp3",currentSentence];
-            }
-            else {
-                sentenceAudioFile = [NSString stringWithFormat:@"TheNaughtyMonkeyS%dE.mp3",currentSentence];
-            }
-        }
-        
-        //If we are on the first or second manipulation page of How Do Objects Move, play the current sentence
-        if ([chapterTitle isEqualToString:@"How do Objects Move?"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-            if(conditionSetup.language ==BILINGUAL) {
-                sentenceAudioFile = [NSString stringWithFormat:@"HowDoObjectsMoveS%dS.mp3",currentSentence];
-            }
-            else {
-                sentenceAudioFile = [NSString stringWithFormat:@"HowDoObjectsMoveS%dE.mp3",currentSentence];
-            }
-        }
-        
-        //If we are on the first or second manipulation page of The Navajo Hogan, play the current sentence
-        if ([chapterTitle isEqualToString:@"The Navajo Hogan"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
-            if(conditionSetup.language ==BILINGUAL) {
-                sentenceAudioFile = [NSString stringWithFormat:@"TheNavajoHoganS%dS.mp3",currentSentence];
-            }
-            else {
-                sentenceAudioFile = [NSString stringWithFormat:@"TheNavajoHoganS%dE.mp3",currentSentence];
-            }
-        }
-        
-        //If we are on the first or second manipulation page of Native Intro, play the current sentence
-        if ([chapterTitle isEqualToString:@"Introduction to Native American Homes"] && ([currentPageId rangeOfString:@"PM"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-            if(conditionSetup.language ==BILINGUAL) {
-                sentenceAudioFile = [NSString stringWithFormat:@"NativeIntroS%dS.mp3",currentSentence];
-            }
-            else {
-                sentenceAudioFile = [NSString stringWithFormat:@"NativeIntroS%dE.mp3",currentSentence];
-            }
-        }
-        
-        //If we are on the first or second manipulation page of Key Ingredients, play the current sentence
-        if ([chapterTitle isEqualToString:@"Key Ingredients"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
-            if(conditionSetup.language ==BILINGUAL) {
-                sentenceAudioFile = [NSString stringWithFormat:@"KeyIngredientsS%dS.mp3",currentSentence];
-            }
-            else {
-                sentenceAudioFile = [NSString stringWithFormat:@"KeyIngredientsS%dE.mp3",currentSentence];
-            }
-        }
-        
-        //If we are on the first or second manipulation page of Disasters Intro, play the current sentence
-        if ([chapterTitle isEqualToString:@"Introduction to Natural Disasters"] && ([currentPageId rangeOfString:@"PM"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-            if(conditionSetup.language ==BILINGUAL) {
-                sentenceAudioFile = [NSString stringWithFormat:@"DisastersIntroS%dS.mp3",currentSentence];
-            }
-            else {
-                sentenceAudioFile = [NSString stringWithFormat:@"DisastersIntroS%dE.mp3",currentSentence];
-            }
-        }
-        
-        //If we are on the first or second manipulation page of The Moving Earth, play the current sentence
-        if ([chapterTitle isEqualToString:@"The Moving Earth"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
-            if(conditionSetup.language ==BILINGUAL) {
-                sentenceAudioFile = [NSString stringWithFormat:@"TheMovingEarthS%dS.mp3",currentSentence];
-            }
-            else {
-                sentenceAudioFile = [NSString stringWithFormat:@"TheMovingEarthS%dE.mp3",currentSentence];
-            }
-        }
-    }
-    
-    NSMutableArray *array = [NSMutableArray array];
-    Chapter* chapter = [book getChapterWithTitle:chapterTitle];
-    ScriptAudio *script = nil;
-    
-    if ([ConditionSetup sharedInstance].condition == EMBRACE) {
-        script = [chapter embraceScriptFor:[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence]];
-    } else {
-        script = [chapter controlScriptFor:[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence]];
-    }
-    NSArray *preAudio = nil;
-    NSArray *postAudio = nil;
-     
-    if ([ConditionSetup sharedInstance].language == ENGLISH) {
-        preAudio = script.engPreAudio;
-        postAudio = script.engPostAudio;
-    } else {
-        preAudio = script.bilingualPreAudio;
-        postAudio = script.bilingualPostAudio;
-    }
-   
-    if (preAudio != nil) {
-        [array addObjectsFromArray:preAudio];
-    }
-    
-    if (sentenceAudioFile != nil) {
-        [array addObject:sentenceAudioFile];
-    }
-    
-    if (postAudio != nil) {
-        [array addObjectsFromArray:postAudio];
-    }
-    
-    if ([array count] > 0) {
-        [self.playaudioClass playAudioInSequence:array parentViewController:self];
     }
 }
 
 /*
- * Swaps all sentences on the current page for the versions with the specified level of complexity
+ * Creates a UIView for the textbox area so that the swipe gesture can only be recognized when performed
+ * in this location. This would make it so that we can only skip forward in the story if
+ * we swipe the textbox and not anywhere else on the screen.
+ * NOTE: Currently not in use because it disables tap gesture recognition over the textbox area and we haven't
+ * found a way to fix this yet.
  */
--(void) swapSentencesOnPage:(double)simple :(double)medium :(double)complex {
-    Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
-    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
-    NSMutableArray* alternateSentences = [[PMActivity alternateSentences] objectForKey:currentPageId]; //get alternate sentences for current page
+-(void) createTextboxView {
+    //Get the textbox element
+    NSString* textbox = [NSString stringWithFormat:@"document.getElementsByClassName('textbox')[0]"];
     
-    if ([alternateSentences count] > 0) {
-        //Get the number of sentences on the page
-        NSString* requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('sentence').length"];
-        int sentenceCount = [[bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount] intValue];
-        
-        //Get the id number of the last sentence on the page
-        NSString* requestLastSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[%d - 1].id", sentenceCount];
-        NSString* lastSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
-        int lastSentenceIdNumber = [[lastSentenceId substringFromIndex:1] intValue];
-        
-        //Get the id number of the first sentence on the page
-        NSString* requestFirstSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[0].id"];
-        NSString* firstSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestFirstSentenceId];
-        int firstSentenceIdNumber = [[firstSentenceId substringFromIndex:1] intValue];
-        
-        NSString* removeSentenceString;
-        
-        //Remove all sentences on page
-        for (int i = firstSentenceIdNumber; i <= lastSentenceIdNumber; i++) {
-            //Skip the title (sentence 0) if it's the first on the page
-            if (i > 0) {
-                removeSentenceString = [NSString stringWithFormat:@"removeSentence('s%d')", i];
-                [bookView stringByEvaluatingJavaScriptFromString:removeSentenceString];
-            }
-        }
-        
-        NSString* addSentenceString;
-        int sentenceNumber = 1; //used for assigning sentence ids
-        int previousIdeaNum = 0; //used for making sure same idea does not get repeated
-        
-        NSMutableArray* ideaNums = [PMSolution getIdeaNumbers]; //get list of idea numbers on the page
-        
-        double sumOfComplexities[3]; //running sum of complexity parameters used to randomly choose complexity
-        sumOfComplexities[0] = simple;
-        sumOfComplexities[1] = sumOfComplexities[0] + medium;
-        sumOfComplexities[2] = sumOfComplexities[1] + complex;
-        
-        //Add alternate sentences associated with each idea
-        for (NSNumber* ideaNum in ideaNums) {
-            if ([ideaNum intValue] > previousIdeaNum) {
-                NSUInteger complexity = 0;
-                double generateComplexity = ((double) arc4random() / 0x100000000) * 100; //randomly choose complexity
-                
-                for (int i = 0; i < 3; i++) {
-                    if (generateComplexity <= sumOfComplexities[i]) {
-                        complexity = i + 1;
-                        break;
-                    }
-                }
-                
-                BOOL foundIdea = false; //flag to check if there is a sentence with the specified complexity for the idea number
-                
-                //Create an array to hold sentences that will be added to the page
-                NSMutableArray* sentencesToAdd = [[NSMutableArray alloc] init];
-                
-                //Look for alternate sentences that match the idea number and complexity
-                for (AlternateSentence* altSent in alternateSentences) {
-                    if ([[[altSent ideas] objectAtIndex:0] isEqualToNumber:ideaNum] && [altSent complexity] == complexity) {
-                        foundIdea = true;
-                        [sentencesToAdd addObject:altSent];
-                        previousIdeaNum = [[[altSent ideas] lastObject] intValue];
-                    }
-                }
-                
-                //If a sentence with the specified complexity was not found for the idea number, look for a
-                //sentence with complexity level 2
-                if (!foundIdea) {
-                    for (AlternateSentence* altSent in alternateSentences) {
-                        if ([[[altSent ideas] objectAtIndex:0] isEqualToNumber:ideaNum] && [altSent complexity] == 2) {
-                            foundIdea = true;
-                            [sentencesToAdd addObject:altSent];
-                            previousIdeaNum = [[[altSent ideas] lastObject] intValue];
-                        }
-                    }
-                }
-                
-                for (AlternateSentence* sentenceToAdd in sentencesToAdd) {
-                    //Get alternate sentence information
-                    BOOL action = [sentenceToAdd actionSentence];
-                    NSString* text = [sentenceToAdd text];
-                    
-                    //Split sentence text into individual tokens (words)
-                    NSArray* textTokens = [text componentsSeparatedByString:@" "];
-                    
-                    //Contains the vocabulary words that appear in the sentence
-                    NSMutableArray* words = [[NSMutableArray alloc] init];
-                    
-                    //Contains the sentence text split around vocabulary words
-                    NSMutableArray* splitText = [[NSMutableArray alloc] init];
-                    
-                    //Combines tokens into the split sentence text
-                    NSString* currentSplit = @"";
-                    
-                    for (NSString* textToken in textTokens) {
-                        NSString* modifiedTextToken = textToken;
-                        
-                        //Replaces the ' character if it exists in the token
-                        if ([modifiedTextToken rangeOfString:@"'"].location != NSNotFound) {
-                            modifiedTextToken = [modifiedTextToken stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
-                        }
-                        
-                        BOOL addedWord = false; //whether token contains vocabulary word
-                        
-                        for (NSString* vocab in [[Translation translationWords] allKeys]) {
-                            //Match the whole vocabulary word only
-                            NSString* regex = [NSString stringWithFormat:@"\\b%@\\b", vocab];
-                            
-                            //Token contains vocabulary word
-                            if ([modifiedTextToken rangeOfString:regex options:NSRegularExpressionSearch].location != NSNotFound) {
-                                [words addObject:vocab]; //add word to list
-                                addedWord = true;
-                                
-                                [splitText addObject:currentSplit];
-                                
-                                //Reset current split to be anything that appears after the vocabulary word and add a space in the beginning
-                                currentSplit = [[modifiedTextToken stringByReplacingOccurrencesOfString:vocab withString:@""] stringByAppendingString:@" "];
-                                
-                                break;
-                            }
-                        }
-                        
-                        //Token does not contain vocabulary word
-                        if (!addedWord) {
-                            //Add token to current split with a space after it
-                            NSString* textTokenSpace = [NSString stringWithFormat:@"%@ ", modifiedTextToken];
-                            currentSplit = [currentSplit stringByAppendingString:textTokenSpace];
-                        }
-                    }
-                    
-                    [splitText addObject:currentSplit]; //make sure to add the last split
-                    
-                    //Create array strings for vocabulary and split text to send to JS function
-                    NSString* wordsArrayString = [words componentsJoinedByString:@"','"];
-                    NSString* splitTextArrayString = [splitText componentsJoinedByString:@"','"];
-                    
-                    //Add alternate sentence to page
-                    addSentenceString = [NSString stringWithFormat:@"addSentence('s%d', %@, ['%@'], ['%@'])", sentenceNumber++, action ? @"true" : @"false", splitTextArrayString, wordsArrayString];
-                    [bookView stringByEvaluatingJavaScriptFromString:addSentenceString];
-                    
-                    //Add alternate sentence to array
-                    [pageSentences addObject:sentenceToAdd];
-                    
-                    BOOL transference = FALSE;
-                    
-                    //Count number of user steps for page statistics
-                    for (ActionStep* as in [sentenceToAdd solutionSteps])
-                    {
-                        if (!([[as stepType] isEqualToString:@"ungroup"] ||
-                              [[as stepType] isEqualToString:@"move"] ||
-                              [[as stepType] isEqualToString:@"swapImage"]))
-                        {
-                            //Make sure transference steps don't get counted twice
-                            if ([[as stepType] isEqualToString:@"transferAndGroup"] ||
-                                [[as stepType] isEqualToString:@"transferAndDisappear"])
-                            {
-                                if (!transference) {
-                                    [[pageStatistics objectForKey:currentPageId] addStepForComplexity:([sentenceToAdd complexity] - 1)];
-                                    
-                                    transference = TRUE;
-                                }
-                                else {
-                                    transference = FALSE;
-                                }
-                            }
-                            else {
-                                [[pageStatistics objectForKey:currentPageId] addStepForComplexity:([sentenceToAdd complexity] - 1)];
-                            }
-                        }
-                    }
-                    
-                    //Count number of non-action sentences for each complexity
-                    if ([sentenceToAdd actionSentence] == FALSE) {
-                        [[pageStatistics objectForKey:currentPageId] addNonActSentForComplexity:([sentenceToAdd complexity] - 1)];
-                    }
-                }
-            }
-        }
-    }
+    //Get the textbox x, y, width, and height
+    NSString* textboxXString = [NSString stringWithFormat:@"%@.offsetLeft", textbox];
+    NSString* textboxYString = [NSString stringWithFormat:@"%@.offsetTop", textbox];
+    NSString* textboxWidthString = [NSString stringWithFormat:@"%@.offsetWidth", textbox];
+    NSString* textboxHeightString = [NSString stringWithFormat:@"%@.offsetHeight", textbox];
+    
+    float textboxX = [[bookView stringByEvaluatingJavaScriptFromString:textboxXString] floatValue];
+    float textboxY = [[bookView stringByEvaluatingJavaScriptFromString:textboxYString] floatValue];
+    float textboxWidth = [[bookView stringByEvaluatingJavaScriptFromString:textboxWidthString] floatValue];
+    float textboxHeight = [[bookView stringByEvaluatingJavaScriptFromString:textboxHeightString] floatValue];
+    
+    //Create UIView over the textbox area
+    CGRect textboxRect = CGRectMake(textboxX, textboxY, textboxWidth, textboxHeight);
+    UIView* textboxView = [[UIView alloc] initWithFrame:textboxRect];
+    
+    //Add swipe gesture recognizer and add to the view
+    [textboxView addGestureRecognizer:swipeRecognizer];
+    [[self view] addSubview:textboxView];
 }
-
 
 /*
  * Creates the menuDataSource from the list of possible interactions.
@@ -5196,20 +2671,19 @@ BOOL wasPathFollowed = false;
  * If more possible interactions than the alloted number max menu items exists
  * the function will stop after the max number of menu items possible.
  */
--(void)populateMenuDataSource:(NSMutableArray*)possibleInteractions : (NSMutableArray*)relationships {
+-(void)populateMenuDataSource:(NSMutableArray*)possibleInteractions {
     //Clear the old data source.
     [menuDataSource clearMenuitems];
     
     //Create new data source for menu.
-    //Go through and create a menuItem for every possible interaction
+    //Go through and great a menuItem for every possible interaction
     int interactionNum = 1;
     
     for(PossibleInteraction* interaction in possibleInteractions) {
-        //dig into simulatepossibleinteractionformenu to log populated menu
-        [self simulatePossibleInteractionForMenuItem: interaction : [relationships objectAtIndex:interactionNum-1]];
+        [self simulatePossibleInteractionForMenuItem:interaction];
         interactionNum ++;
-        
-        //If the number of interactions is greater than the max number of menu Items allowed, then stop.
+        //NSLog(@"%d", interactionNum);
+        //If the number of interactions is greater than the max number of menu items allowed, then stop.
         if(interactionNum > maxMenuItems)
             break;
     }
@@ -5219,8 +2693,228 @@ BOOL wasPathFollowed = false;
 -(void)clearHighlightedObject {
     NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
     [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
+}
+
+/* Plays a text-to-speech audio in a given language */
+-(void)playWordAudio:(NSString*) word :(NSString*) lang {
+    AVSpeechUtterance *utteranceEn = [[AVSpeechUtterance alloc]initWithString:word];
+    utteranceEn.rate = AVSpeechUtteranceMaximumSpeechRate/7;
+    utteranceEn.voice = [AVSpeechSynthesisVoice voiceWithLanguage:lang];
+    NSLog(@"Sentence: %@", word);
+    NSLog(@"Volume: %f", utteranceEn.volume);
+    [syn speakUtterance:utteranceEn];
+}
+
+/* Plays text-to-speech audio in a given language in a certain time */
+-(void)playWordAudioTimed:(NSTimer *) wordAndLang {
+    NSDictionary *wrapper = (NSDictionary *)[wordAndLang userInfo];
+    NSString * obj1 = [wrapper objectForKey:@"Key1"];
+    NSString * obj2 = [wrapper objectForKey:@"Key2"];
     
-    //log clear
+    AVSpeechUtterance *utteranceEn = [[AVSpeechUtterance alloc]initWithString:obj1];
+    utteranceEn.rate = AVSpeechUtteranceMaximumSpeechRate/7;
+    utteranceEn.voice = [AVSpeechSynthesisVoice voiceWithLanguage:obj2];
+    NSLog(@"Sentence: %@", obj1);
+    NSLog(@"Volume: %f", utteranceEn.volume);
+    [syn speakUtterance:utteranceEn];
+}
+
+/* Plays an audio file after a given time defined in the timer call*/
+-(void)playAudioFileTimed:(NSTimer *) path {
+    NSDictionary *wrapper = (NSDictionary *)[path userInfo];
+    NSString * obj1 = [wrapper objectForKey:@"Key1"];
+    
+    NSString *soundFilePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], obj1];
+    NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+    NSError *audioError;
+    
+    _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&audioError];
+    
+    if (_audioPlayer == nil)
+        NSLog(@"%@",[audioError description]);
+    else
+        [_audioPlayer play];
+}
+
+/* Plays an audio file at a given path */
+-(void) playAudioFile:(NSString*) path {
+    NSString *soundFilePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], path];
+    NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+    NSError *audioError;
+    
+    _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&audioError];
+    
+    if (_audioPlayer == nil)
+        NSLog(@"%@",[audioError description]);
+    else
+        [_audioPlayer play];
+}
+    
+// Loads the information of the currentIntroStep for the introduction
+-(NSArray*) loadIntroStep {
+    NSString* textEnglish;
+    NSString* audioEnglish;
+    NSString* textSpanish;
+    NSString* audioSpanish;
+    NSString* expectedSelection;
+    NSString* expectedIntroAction;
+    NSString* expectedIntroInput;
+    NSString* underlinedVocabWord;
+    NSString* wrapperObj1;
+    
+    //Get current step to be read
+    IntroductionStep* currIntroStep = [currentIntroSteps objectAtIndex:currentIntroStep-1];
+    expectedSelection = [currIntroStep expectedSelection];
+    expectedIntroAction = [currIntroStep expectedAction];
+    expectedIntroInput = [currIntroStep expectedInput];
+    textEnglish = [currIntroStep englishText];
+    audioEnglish = [currIntroStep englishAudioFileName];
+    textSpanish = [currIntroStep spanishText];
+    audioSpanish = [currIntroStep spanishAudioFileName];
+    
+    NSString* text = textEnglish;
+    NSString* audio = audioEnglish;
+    languageString = @"E";
+    underlinedVocabWord = expectedIntroInput;
+
+    // If the language condition for the app is BILINGUAL (English after Spanish) and the current intro step
+    //is lower than the step number to switch languages, load the Spanish information for the step
+    if (language_condition == BILINGUAL && currentIntroStep < STEPS_TO_SWITCH_LANGUAGES) {
+        text = textSpanish;
+        audio = audioSpanish;
+        languageString = @"S";
+        underlinedVocabWord = [[Translation translations] objectForKey:expectedIntroInput];
+        if (!underlinedVocabWord) {
+            underlinedVocabWord = expectedIntroInput;
+        }
+    }
+    
+    //Format text to load on the textbox
+    NSString* formattedHTML = [self buildHTMLString:text:expectedSelection:underlinedVocabWord:expectedIntroAction];
+    NSString* addOuterHTML = [NSString stringWithFormat:@"setOuterHTMLText('%@', '%@')", @"s1", formattedHTML];
+    [bookView stringByEvaluatingJavaScriptFromString:addOuterHTML];
+    
+    //Get the sentence class
+    NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
+    NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
+    
+    //If it is an action sentence color it blue
+    if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
+        NSString* colorSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
+        [bookView stringByEvaluatingJavaScriptFromString:colorSentence];
+    }
+
+    //Play introduction audio
+    [self playAudioFile:audio];
+    
+    //DEBUG code to play expected action
+    //NSString* actions = [NSString stringWithFormat:@"%@ %@ %@",expectedIntroAction,expectedIntroInput,expectedSelection];
+    //[self playWordAudio:actions:@"en-us"];
+    
+    //The response audio file names are hard-coded for now
+    if ([expectedIntroInput isEqualToString:@"next"]) {
+        wrapperObj1 = @"TTNBTC.m4a";
+    }
+    else if ([expectedIntroInput isEqualToString:@"next"] && language_condition == BILINGUAL) {
+        wrapperObj1 = @"TEBNPC.m4a";
+    }
+    else if ([expectedSelection isEqualToString:@"word"]) {
+        wrapperObj1 = @"BFCE_2B.m4a";
+    }
+    else if ([expectedSelection isEqualToString:@"word"] && language_condition == BILINGUAL) {
+        wrapperObj1 = @"BFCS_2B.m4a";
+    }
+    else if ([expectedIntroAction isEqualToString:@"move"]) {
+        wrapperObj1 = @"BFEE_8.m4a";
+    }
+    else if ([expectedIntroAction isEqualToString:@"move"] && language_condition == BILINGUAL) {
+        wrapperObj1 = @"BFES_8.m4a";
+    }
+    
+    //NSDictionary *wrapper = [NSDictionary dictionaryWithObjectsAndKeys:wrapperObj1, @"Key1", nil];
+    //timer = [NSTimer scheduledTimerWithTimeInterval:17.5 target:self selector:@selector(playAudioFileTimed:) userInfo:wrapper repeats:YES];
+    
+    performedActions = [NSArray arrayWithObjects: expectedSelection, expectedIntroAction, expectedIntroInput, nil];
+    
+    return performedActions;
+}
+
+/*
+ * Builds the format of the action sentence that allows words to be clickable
+ */
+-(NSString*) buildHTMLString:(NSString*)htmlText :(NSString*)selectionType :(NSString*)clickableWord :(NSString*) sentenceType {
+    //String to build
+    NSString* stringToBuild;
+    
+    //If string contains the special character "'"
+    if ([htmlText rangeOfString:@"'"].location != NSNotFound) {
+        htmlText = [htmlText stringByReplacingCharactersInRange:NSMakeRange([htmlText rangeOfString:@"'"].location,1) withString:@"&#39;"];
+    }
+    
+    NSArray* splits = [htmlText componentsSeparatedByString:clickableWord];
+    
+    if ([sentenceType isEqualToString:@"move"] || [sentenceType isEqualToString:@"group"]) {
+        stringToBuild = [NSString stringWithFormat:@"<span class=\"sentence actionSentence\" id=\"s1\">%@</span>",htmlText];
+    }
+    else if ([selectionType isEqualToString:@"word"]){
+        stringToBuild = [NSString stringWithFormat:@"<span class=\"sentence\" id=\"s1\">%@<span class=\"audible\">%@</span>%@</span>",splits[0],clickableWord,splits[1]];
+    }
+    else {
+        stringToBuild = [NSString stringWithFormat:@"<span class=\"sentence\" id=\"s1\">%@</span>",htmlText];
+    }
+    
+    return stringToBuild;
+}
+
+-(NSArray*) loadVocabStep {
+    NSString* text;
+    NSString* audio;
+    NSString* expectedSelection;
+    NSString* expectedIntroAction;
+    NSString* expectedIntroInput;
+    NSString* wrapperObj1;
+    
+    sameWordClicked = false;
+    
+    //Get current step to be read
+    VocabularyStep* currVocabStep = [currentVocabSteps objectAtIndex:currentVocabStep-1];
+    expectedSelection = [currVocabStep expectedSelection];
+    expectedIntroAction = [currVocabStep expectedAction];
+    expectedIntroInput = [currVocabStep expectedInput];
+    text = [currVocabStep englishText];
+    audio = [currVocabStep englishAudioFileName];
+    
+    // If we are ont the first step (1) ot the last step (9) which do not correspond to words
+    //play the corresponding intro or outro audio
+    if (currentVocabStep == 1 || currentVocabStep == 9) {
+        //Play introduction audio
+        [self playAudioFile:audio];
+    }
+    
+    //Switch the language every step for the translation
+    if ([languageString isEqualToString:@"S"]) {
+        languageString = @"E";
+    }
+    else {
+        languageString = @"S";
+    }
+    
+    //The response audio file names are hard-coded for now
+    if ([expectedIntroInput isEqualToString:@"next"]) {
+        wrapperObj1 = @"TTNBTC.m4a";
+    }
+    else if ([expectedIntroInput isEqualToString:@"next"] && language_condition == BILINGUAL) {
+        wrapperObj1 = @"TEBNPC.m4a";
+    }
+    
+    //The wrapper is a dictionary that stores the name of the file and a key.
+    //It is used to pass this information to the timer as one of its parameters.
+    //NSDictionary *wrapper = [NSDictionary dictionaryWithObjectsAndKeys:wrapperObj1, @"Key1", nil];
+    //timer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(playAudioFileTimed:) userInfo:wrapper repeats:YES];
+    
+    performedActions = [NSArray arrayWithObjects: expectedSelection, expectedIntroAction, expectedIntroInput, nil];
+    
+    return performedActions;
 }
 
 -(void) colorSentencesUponNext {
@@ -5245,29 +2939,16 @@ BOOL wasPathFollowed = false;
     NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
     
     //If it is an action sentence color it blue
-    if ([sentenceClass  containsString: @"sentence actionSentence"] && ![sentenceClass containsString:@"black"]) {
-        NSString* colorSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
-        [bookView stringByEvaluatingJavaScriptFromString:colorSentence];
-    }
-
-    if ([sentenceClass containsString: @"sentence IMactionSentence"] && ![sentenceClass containsString:@"black"] && conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) {
+    if ([sentenceClass  isEqualToString: @"sentence actionSentence"]) {
         NSString* colorSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
         [bookView stringByEvaluatingJavaScriptFromString:colorSentence];
     }
 }
 
 -(void) highlightObject:(NSString*)object :(double)delay {
-    if([model getAreaWithId:object]) {
-        //[self buildPath:object];
-        //Highlight the tapped object
-        NSString* highlight = [NSString stringWithFormat:@"highlightArea('%@')", object];
-        [bookView stringByEvaluatingJavaScriptFromString:highlight];
-    }
-    else {
-        //Highlight the tapped object
-        NSString* highlight = [NSString stringWithFormat:@"highlightObjectOnWordTap(%@)", object];
-        [bookView stringByEvaluatingJavaScriptFromString:highlight];
-    }
+    //Highlight the tapped object
+    NSString* highlight = [NSString stringWithFormat:@"highlightObjectOnWordTap(%@)", object];
+    [bookView stringByEvaluatingJavaScriptFromString:highlight];
 
     //Clear highlighted object
     [self performSelector:@selector(clearHighlightedObject) withObject:nil afterDelay:delay];
@@ -5279,7 +2960,7 @@ BOOL wasPathFollowed = false;
 }
 
 - (NSString*) getEnglishTranslation: (NSString*)sentence {
-    NSArray* keys = [[Translation translationWords] allKeysForObject:sentence];
+    NSArray* keys = [[Translation translations] allKeysForObject:sentence];
     if (keys != nil && [keys count] > 0)
         return [keys objectAtIndex:0];
     else
@@ -5291,101 +2972,18 @@ BOOL wasPathFollowed = false;
  * Expands the contextual menu, allowing the user to select a possible grouping/ungrouping.
  * This function is called after the data source is created.
  */
-- (void) expandMenu {
+-(void) expandMenu {
     menu = [[PieContextualMenu alloc] initWithFrame:[bookView frame]];
     [menu addGestureRecognizer:tapRecognizer];
-    
-    if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) {
-        [IMViewMenu addSubview:menu];
-    }
-    else {
-        [[self view] addSubview:menu];
-    }
+    [[self view] addSubview:menu];
     
     menu.delegate = self;
     menu.dataSource = menuDataSource;
     
-    CGFloat radius;
-    
-    if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) {
-        //Calculate the radius of the circle
-         radius = (menuBoundingBoxIM -  (itemRadiusIM * 2)) / 2;
-    }
-    else {
-        //Calculate the radius of the circle
-        radius = (menuBoundingBoxPM -  (itemRadiusPM * 2)) / 2;
-    }
-    
-    
+    //Calculate the radius of the circle
+    CGFloat radius = (menuBoundingBox -  (itemRadius * 2)) / 2;
     [menu expandMenu:radius];
     menuExpanded = TRUE;
-    
-    NSInteger numMenuItems = [menuDataSource numberOfMenuItems];
-    NSMutableArray *menuItemInteractions = [[NSMutableArray alloc] init];
-    NSMutableArray *menuItemImages =[[NSMutableArray alloc] init];
-    NSMutableArray *menuItemRelationships = [[NSMutableArray alloc] init];
-    
-    for (int x=0; x<numMenuItems; x++) {
-        MenuItemDataSource *tempMenuItem = [menuDataSource dataObjectAtIndex:x];
-        PossibleInteraction *tempMenuInteraction =[tempMenuItem interaction];
-        Relationship *tempMenuRelationship = [tempMenuItem menuRelationship];
-        
-        //[menuItemInteractions addObject:[tempMenuRelationship actionType]];
-        
-        if(tempMenuInteraction.interactionType == DISAPPEAR)
-        {
-            [menuItemInteractions addObject:@"Disappear"];
-        }
-        if (tempMenuInteraction.interactionType == UNGROUP)
-        {
-            [menuItemInteractions addObject:@"Ungroup"];
-        }
-        if (tempMenuInteraction.interactionType == GROUP)
-        {
-            [menuItemInteractions addObject:@"Group"];
-        }
-        if (tempMenuInteraction.interactionType == TRANSFERANDDISAPPEAR)
-        {
-            [menuItemInteractions addObject:@"Transfer And Disappear"];
-        }
-        if (tempMenuInteraction.interactionType == TRANSFERANDGROUP)
-        {
-            [menuItemInteractions addObject:@"Transfer And Group"];
-        }
-        if(tempMenuInteraction.interactionType ==NONE)
-        {
-            [menuItemInteractions addObject:@"none"];
-        }
-        
-        [menuItemImages addObject:[NSString stringWithFormat:@"%d", x]];
-        
-        for(int i=0; i< [tempMenuItem.images count]; i++)   
-        {
-            MenuItemImage *tempimage =  [tempMenuItem.images objectAtIndex:i];
-            [menuItemImages addObject:[tempimage.image accessibilityIdentifier]];
-        }
-        
-        [menuItemRelationships addObject:tempMenuRelationship.action];
-    }
-    
-    //Logging Added by James for Menu Display
-    [[ServerCommunicationController sharedManager] logComputerDisplayMenuItems : menuItemInteractions : menuItemImages : menuItemRelationships : bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-}
-
-- (BOOL)webView:(UIWebView *)webView2
-shouldStartLoadWithRequest:(NSURLRequest *)request
- navigationType:(UIWebViewNavigationType)navigationType {
-    
-    NSString *requestString = [[[request URL] absoluteString] stringByReplacingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
-    //NSLog(requestString);
-    
-    if ([requestString hasPrefix:@"ios-log:"]) {
-        NSString* logString = [[requestString componentsSeparatedByString:@":#iOS#"] objectAtIndex:1];
-        NSLog(@"UIWebView console: %@", logString);
-        return NO;
-    }
-    
-    return YES;
 }
 
 @end

@@ -11,7 +11,6 @@
 typedef enum InteractionType {
     GROUP,
     UNGROUP,
-    UNGROUPANDSTAY,
     DISAPPEAR,
     TRANSFERANDGROUP,
     TRANSFERANDDISAPPEAR,

@@ -296,26 +296,6 @@ function ungroupObjects(object1, object2) {
 }
 
 /*
- * Ungroups 2 objects from each other.
- */
-function ungroupObjectsAndStay(object1, object2) {
-    //Get the index at which the objects are grouped.
-    var areGrouped = areObjectsGrouped(object1, object2);
-    
-    //Make sure they are grouped, and if they are, ungroup them.
-    if(areGrouped > -1) {
-        //Grab the reference to the connection that needs to be removed so that animation can occur.
-        var group = groupings[areGrouped];
-        
-        //Remove the connection.
-        groupings.splice(areGrouped, 1);
-    }
-    
-    clearAllHighlighted();
-}
-
-
-/*
  * Animate the ungrouping by moving the objects away from each other.
  * Do so by ensuring that the objects no longer overlap and by putting a 10 pixel space in between them.
  * Keep in mind that objects should not be moved off screen when doing so.
@@ -578,7 +558,7 @@ function objectContainedInObject(object1, object2) {
 /*
  * Swaps the current image src used by objectId for the alternateSrc and adjusts the image width and location
  */
-function swapImageSrc(objectId, alternateSrc, width, left, top, zPosition) {
+function swapImageSrc(objectId, alternateSrc, width, left, top) {
     var image = document.getElementById(objectId); //get the image
     
     image.src = "../Images/" + alternateSrc; //swap image
@@ -587,83 +567,6 @@ function swapImageSrc(objectId, alternateSrc, width, left, top, zPosition) {
     image.style.width = width;
     image.style.left = left + "%";
     image.style.top = top + "%";
-    if(zPosition != "")
-    {
-        image.style.zIndex = zPosition;
-    }
-}
-
-/*
- * Swaps the current image src used by objectId for the alternateSrc and adjusts the image width, height and location
- */
-function swapImageSrc(objectId, alternateSrc, width, height, left, top, zPosition) {
-    var image = document.getElementById(objectId); //get the image
-    
-    image.src = "../Images/" + alternateSrc; //swap image
-    
-    //Adjust image width and location
-    image.style.width = width;
-    image.style.height = height;
-    image.style.left = left + "%";
-    image.style.top = top + "%";
-    if(zPosition != "")
-    {
-        image.style.zIndex = zPosition;
-    }
-}
-
-/*
- Removes an image as specified on the metadata
- */
-
-function removeImage(objectId) {
-    var image = document.getElementById(objectId);
-    image.parentNode.removeChild(image);
-}
-
-/*
- Loads an image at a given location
- */
-function loadImage(objectId, source, width, left, top, className, zPosition) {
-    var image = document.createElement("img");
-    
-    image.src = "../Images/" + source; //load image
-    
-    //Adjust image style
-    image.style.width = width;
-    image.style.left = left + "%";
-    image.style.top = top + "%";
-    image.style.zIndex = zPosition;
-    
-    image.alt = objectId;
-    image.className = className;
-    image.id = objectId;
-    
-    var images = document.getElementById('images');
-    images.appendChild(image);
-}
-
-/*
- Loads an image at a given location
- */
-function loadImage(objectId, source, width, height, left, top, className, zPosition) {
-    var image = document.createElement("img");
-    
-    image.src = "../Images/" + source; //load image
-    
-    //Adjust image style
-    image.style.width = width;
-    image.style.height = height;
-    image.style.left = left + "%";
-    image.style.top = top + "%";
-    image.style.zIndex = zPosition;
-    
-    image.alt = objectId;
-    image.className = className;
-    image.id = objectId;
-    
-    var images = document.getElementById('images');
-    images.appendChild(image);
 }
 
 /*
@@ -690,18 +593,10 @@ function setSentenceFontWeight(sentenceId, weight) {
  * under the object
  */
 function highlightObject(object) {
-    console.log(object.objectId);
-    if(object.objectId.indexOf("fallen_tree") > -1)
-    {
-        highlight(150, 500, 555, 250, "under");
-    }
-    else
-    {
-        highlight(object.offsetLeft, object.offsetTop, object.offsetWidth, object.offsetHeight, "under");
-    }
+    highlight(object.offsetLeft, object.offsetTop, object.offsetWidth, object.offsetHeight, "under");
 }
 
-/*
+/* 
  * Create an oval highlight using the top left corner and width and height specified.
  * If highlighting only one object the top left corner specified will be based on the offsetLeft and offsetTop properies
  * and the width and height will be based on the offsetWidth and offsetTop.
@@ -842,119 +737,12 @@ function getSentenceColor(sentenceId) {
 
 /*
  * Highlights the specified object on word tap.
- * This function is called by the PMView controller to highlight objects when their word has been clicked on.
+ * This function is called by the PMView controller to highlight objects when their word has been clicked.
  * The parameter 'over' indicates that the highlighting should be performed
  * over the object
  */
 function highlightObjectOnWordTap(object) {
     highlight(object.offsetLeft, object.offsetTop, object.offsetWidth, object.offsetHeight, "over");
-}
-
-/*
- * Highlights the specified area on word tap.
- * This function is called by the PMView controller to highlight areas when their word has been clicked on.
- * The parameter 'over' indicates that the highlighting should be performed
- * over the object
- * In order for the highlighting to work properly, the first and the second points have to be added
- * at the end of the area points in the metadata. This allows the calculation of the control points
- * for the curve of the closing segment of the area.
- */
-function highlightArea(areaName) {
-    //console.log("CALLING HIGHLIGHT FOR: " + areaName);
-    var smooth_value = .5522848;
-    
-    var canvas = document.getElementById('highlight');
-    var context = canvas.getContext('2d');
-    
-    context.beginPath();
-    context.strokeStyle = "rgba(250, 250, 210, .2)";
-    context.lineWidth = 5;
-    //context.moveTo(path[0][0], path[0][1]);
-    context.moveTo(paths[areaName].path[1][0], paths[areaName].path[1][1]);
-    
-    for (var i = 1; i < paths[areaName].pathIndex-2; i++) {
-        
-        // Adapted from:
-        // http://www.antigrain.com/research/bezier_interpolation/
-        
-        // Assume we need to calculate the control
-        // points between (x1,y1) and (x2,y2).
-        // Then x0,y0 - the previous vertex,
-        //      x3,y3 - the next one.
-        
-        var x0 = paths[areaName].path[i-1][0];
-        var y0 = paths[areaName].path[i-1][1];
-        var x1 = paths[areaName].path[i][0];
-        var y1 = paths[areaName].path[i][1];
-        var x2 = paths[areaName].path[i+1][0];
-        var y2 = paths[areaName].path[i+1][1];
-        var x3 = paths[areaName].path[i+2][0];
-        var y3 = paths[areaName].path[i+2][1];
-    
-        //console.log("X0: " + x0 + " Y0: " + y0 + " X1: " + x1 + " Y1: " + y1 + " X2: " + x2 + " Y2: " + y2 + " X3: " + x3 + " Y3: " + y3);
-    
-        var xc1 = (x0 + x1) / 2.0;
-        var yc1 = (y0 + y1) / 2.0;
-        var xc2 = (x1 + x2) / 2.0;
-        var yc2 = (y1 + y2) / 2.0;
-        var xc3 = (x2 + x3) / 2.0;
-        var yc3 = (y2 + y3) / 2.0;
-    
-        //console.log("XC1: " + xc1 + " YC1: " + yc1 + " XC2: " + xc2 + " YC2: " + yc2 + " XC3: " + xc3 + " YC3: " + yc3);
-    
-        var len1 = Math.sqrt((x1-x0) * (x1-x0) + (y1-y0) * (y1-y0));
-        var len2 = Math.sqrt((x2-x1) * (x2-x1) + (y2-y1) * (y2-y1));
-        var len3 = Math.sqrt((x3-x2) * (x3-x2) + (y3-y2) * (y3-y2));
-    
-        //console.log("LEN1: " + len1 + " LEN2: " + len2 + " LEN3: " + len3);
-    
-        var k1 = len1 / (len1 + len2);
-        var k2 = len2 / (len2 + len3);
-        
-        var xm1 = xc1 + (xc2 - xc1) * k1;
-        var ym1 = yc1 + (yc2 - yc1) * k1;
-        
-        var xm2 = xc2 + (xc3 - xc2) * k2;
-        var ym2 = yc2 + (yc3 - yc2) * k2;
-        
-        // Resulting control points. Here smooth_value is mentioned
-        // above coefficient K whose value should be in range [0...1].
-        var ctrl1_x = xm1 + (xc2 - xm1) * smooth_value + x1 - xm1;
-        var ctrl1_y = ym1 + (yc2 - ym1) * smooth_value + y1 - ym1;
-        
-        var ctrl2_x = xm2 + (xc2 - xm2) * smooth_value + x2 - xm2;
-        var ctrl2_y = ym2 + (yc2 - ym2) * smooth_value + y2 - ym2;
-
-        //console.log("1: " + ctrl1_x + " 2: " + ctrl1_y + " 3: " + ctrl2_x + " 4: " + ctrl2_y);
-        context.bezierCurveTo(ctrl1_x, ctrl1_y, ctrl2_x, ctrl2_y, paths[areaName].path[i+1][0], paths[areaName].path[i+1][1]);
-    
-    }
-    context.closePath();
-    context.stroke();
-    context.fillStyle = "rgba(255, 250, 205, .4)";
-    context.fill();
-    
-    document.getElementById('highlight').style.zIndex = "100";
-}
-
-function highlightArea2() {
-    //console.log("CALLING HIGHLIGHT");
-    var canvas = document.getElementById('highlight');
-    var context = canvas.getContext('2d');
-    
-    context.beginPath();
-    context.strokeStyle = "rgba(250, 250, 210, .2)";
-    context.lineWidth = 5;
-    context.moveTo(path[0][0], path[0][1]);
-    for (var i = 1; i < pathIndex; i++) {
-        context.lineTo(path[i][0], path[i][1]);
-    }
-    context.closePath();
-    context.stroke();
-    context.fillStyle = "rgba(255, 250, 205, .4)";
-    context.fill();
-    
-    document.getElementById('highlight').style.zIndex = "100";
 }
 
 /*
@@ -967,73 +755,4 @@ function setInnerHTMLText (sentenceID, text) {
 
 function setOuterHTMLText (sentenceID, text) {
     document.getElementById(sentenceID).outerHTML = text;
-}
-
-/*
- * Removes sentence with the specified sentence id
- */
-function removeSentence(sentenceId) {
-    var sentence = document.getElementById(sentenceId);
-    sentence.parentNode.removeChild(sentence);
-}
-
-/*
- * Adds sentence with the specified sentence id, action information (whether it is
- * an action sentence or not), text, and vocabulary words (if any)
- */
-function addSentence(sentenceId, action, splitTextArray, wordsArray) {
-    var textbox = document.getElementsByClassName('textbox')[0]; //get textbox element
-    var newSentence = document.createElement("p"); //create new sentence
-    
-    //Sentence text was split, so it contains vocabulary word(s)
-    if (splitTextArray.length > 1) {
-        //Piece the new sentence together by adding a split text followed by a vocabulary word
-        for (var i = 0; i < wordsArray.length; i++) {
-            //Split text
-            var newText = document.createTextNode(splitTextArray[i]);
-            
-            //Vocabulary word
-            var newWord = document.createElement("p");
-            newWord.className = "audible";
-            newWord.appendChild(document.createTextNode(wordsArray[i]));
-            
-            newSentence.appendChild(newText);
-            newSentence.appendChild(newWord);
-        }
-        
-        //Make sure to add remaining split text
-        var newText = document.createTextNode(splitTextArray[splitTextArray.length - 1]);
-        newSentence.appendChild(newText);
-    }
-    //Sentence text does not contain vocabulary word(s)
-    else {
-        //Just create new sentence from text like normal
-        var newText = document.createTextNode(splitTextArray[0]);
-        newSentence.appendChild(newText);
-    }
-    
-    newSentence.id = sentenceId; //set sentence id
-    newSentence.className = "sentence"; //set sentence class
-    
-    //Add actionSentence class if sentence requires manipulation
-    if (action) {
-        newSentence.className = newSentence.className + " actionSentence";
-    }
-    
-    textbox.appendChild(newSentence); //add sentence to textbox
-}
-
-function getImagePosition (object) {
-    var position = new Array();
-    position[0] = object.offsetLeft;
-    position[1] = object.offsetTop;
-    
-    if(position.length > 0) {
-        var overlapString = "";
-        overlapString = overlapString + position[0].toString() + ", " ;
-        overlapString = overlapString + position[1].toString();
-        return overlapString;
-    }
-    else
-        return null;
 }

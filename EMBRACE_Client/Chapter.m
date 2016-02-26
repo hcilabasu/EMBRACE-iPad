@@ -8,13 +8,6 @@
 
 #import "Chapter.h"
 
-@interface Chapter()
-
-@property (nonatomic, strong) NSMutableDictionary *embraceAudio;
-@property (nonatomic, strong) NSMutableDictionary *controlAudio;
-
-@end
-
 @implementation Chapter
 
 @synthesize title;
@@ -53,7 +46,7 @@
         if((mode == PM_MODE) && ([activity isKindOfClass:[PhysicalManipulationActivity class]])) {
             return [self getNextPageInActivity:activity :currentPage];
         }
-        else if(mode == IM_MODE && ([activity isKindOfClass:[ImagineManipulationActivity class]])) {
+        else if((mode == IM_MODE) && ([activity isKindOfClass:[ImagineManipulationActivity class]])) {
             return [self getNextPageInActivity:activity :currentPage];
         }
     }
@@ -84,34 +77,4 @@
     
     return nil;
 }
-
-
-- (void)addEmbraceScript:(ScriptAudio *)script forSentence:(NSString *)sentenceId {
-    if (self.embraceAudio == nil) {
-        self.embraceAudio = [NSMutableDictionary dictionary];
-    }
-    [self.embraceAudio setObject:script forKey:sentenceId];
-    
-}
-- (void)addControlScript:(ScriptAudio *)script forSentence:(NSString *)sentenceId {
-    if (self.controlAudio == nil) {
-        self.controlAudio = [NSMutableDictionary dictionary];
-    }
-    [self.controlAudio setObject:script forKey:sentenceId];
-}
-
-- (ScriptAudio *)embraceScriptFor:(NSString *)sentenceId {
-    if (self.embraceAudio) {
-        return [self.embraceAudio objectForKey:sentenceId];
-    }
-    return nil;
-}
-
-- (ScriptAudio *)controlScriptFor:(NSString *)sentenceId {
-    if (self.controlAudio) {
-        return [self.controlAudio objectForKey:sentenceId];
-    }
-    return nil;
-}
-
 @end

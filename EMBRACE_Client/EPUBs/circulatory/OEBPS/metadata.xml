@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
   <relationships>
-    <!--<relationship obj1Id="bloodcell_1" can="receive" action="disappear" obj2Id="O2_1"/>-->
+    <relationship obj1Id="bloodcell_1" can="receive" action="disappear" obj2Id="O2_1"/>
     <relationship obj1Id="CO2_1" can="attach" action="group" obj2Id="bloodcell_1"/>
     <relationship obj1Id="CO2_1" can="detach" action="ungroup" obj2Id="bloodcell_1"/> 
-    <relationship obj1Id="O2_1" can="appear" action="appear" obj2Id="bloodcell_1"/>
-    <relationship obj1Id="O2_1" can="attach" action="group" obj2Id="bloodcell_1"/>
-    <relationship obj1Id="O2_1" can="detach" action="ungroup" obj2Id="bloodcell_1"/>
+    <relationship obj1Id="O2_1" can="appear" action="appear" obj2Id="bloodcell_1"/>   
   </relationships>
   <constraints>
     <orderConstraints>
@@ -18,7 +16,7 @@
       <hotspot objId="bloodcell_1" action="appear" role="object" x="50%" y="50%"/>
       <hotspot objId="bloodcell_1" action="attach" role="object" x="50%" y="50%"/>
       <hotspot objId="bloodcell_1" action="getIn" role="subject" x="50%" y="50%"/>
-      <!--<hotspot objId="bloodcell_1" action="receive" role="subject" x="50%" y="50%"/>-->
+      <hotspot objId="bloodcell_1" action="receive" role="subject" x="50%" y="50%"/>
       <hotspot objId="bloodcell_2" action="getIn" role="subject" x="50%" y="50%"/>
       <hotspot objId="CO2_1" action="attach" role="subject" x="50%" y="50%"/>
       <hotspot objId="CO2_1" action="getIn" role="subject" x="50%" y="50%"/>
@@ -26,7 +24,7 @@
       <hotspot objId="O2_1" action="appear" role="subject" x="50%" y="50%"/>
       <hotspot objId="O2_1" action="attach" role="subject" x="50%" y="50%"/>
       <hotspot objId="O2_1" action="getIn" role="subject" x="50%" y="50%"/>
-      <!--<hotspot objId="O2_1" action="receive" role="object" x="50%" y="50%"/>-->
+      <hotspot objId="O2_1" action="receive" role="object" x="50%" y="50%"/>
   </hotspots>
   <locations>
     <location locationId="air" x="32%" y=".1%" height="66%" width="67%"/>
@@ -66,34 +64,14 @@
     <waypoint waypointId="vein" x="30%" y="79%"/>
   </waypoints>
   <alternateImages>
-     <!--<alternateImage objId="bloodcell_1" action="oxygenate" originalSrc="bloodcell_select.png" alternateSrc="bloodcell_select_oxygenated.png" width="40px" x="34%" y="16%"/>-->
-     <!--<alternateImage objId="bloodcell_2" action="deoxygenate" originalSrc="bloodcell_select_oxygenated.png" alternateSrc="bloodcell_select.png" width="40px" x="50%" y="50%"/>-->
+     <alternateImage objId="bloodcell_1" action="oxygenate" originalSrc="bloodcell_select.png" alternateSrc="bloodcell_select_oxygenated.png" width="40px" x="34%" y="16%"/>
+     <alternateImage objId="bloodcell_2" action="deoxygenate" originalSrc="bloodcell_select_oxygenated.png" alternateSrc="bloodcell_select.png" width="40px" x="50%" y="50%"/>
      <alternateImage objId="handle" action="open" originalSrc="handle_close.png" alternateSrc="handle_open.png" width="70px" x="41.5%" y="48%"/>
      <alternateImage objId="handle" action="close" originalSrc="handle_open.png" alternateSrc="handle_close.png" width="58px" x="42.5%" y="48%"/>
      <alternateImage objId="handle" action="open2" originalSrc="handle_close.png" alternateSrc="handle_open.png" width="72px" x="16.5%" y="62%"/>
      <alternateImage objId="handle" action="close2" originalSrc="handle_open.png" alternateSrc="handle_close.png" width="67px" x="17%" y="63%"/>
-     <alternateImage objId="handle" action="open3" originalSrc="gray_handle_close.png" alternateSrc="gray_handle_open.png" width="70px" x="41.5%" y="48%"/>
-     <alternateImage objId="handle" action="close3" originalSrc="gray_handle_open.png" alternateSrc="gray_handle_close.png" width="58px" x="42.5%" y="48%"/>
   </alternateImages>
   <setups>
-    <story title="Why We Breathe" page_id="story1-PM-3">
-      <group obj1Id="O2_1" action="attach" obj2Id="bloodcell_1"/>
-    </story>
-    <story title="The Amazing Heart" page_id="story2-PM-1">
-      <group obj1Id="O2_1" action="attach" obj2Id="bloodcell_1"/>
-    </story>
-    <story title="The Amazing Heart" page_id="story2-PM-2">
-      <group obj1Id="O2_1" action="attach" obj2Id="bloodcell_1"/>
-    </story>
-    <story title="The Amazing Heart" page_id="story2-PM-3">
-      <group obj1Id="O2_1" action="attach" obj2Id="bloodcell_1"/>
-    </story>
-    <story title="The Amazing Heart" page_id="story2-PM-4">
-      <group obj1Id="O2_1" action="attach" obj2Id="bloodcell_1"/>
-    </story>
-    <story title="Muscles Use Oxygen" page_id="story3-PM-1">
-      <group obj1Id="O2_1" action="attach" obj2Id="bloodcell_1"/>
-    </story>
     <story title="Muscles Use Oxygen" page_id="story3-PM-3">
       <group obj1Id="CO2_1" action="attach" obj2Id="bloodcell_1"/>
     </story>
@@ -106,19 +84,16 @@
     <story title="Getting More Oxygen for the Muscles" page_id="story4-PM-3">
       <group obj1Id="CO2_1" action="attach" obj2Id="bloodcell_1"/>
     </story>
-    <story title="Getting More Oxygen for the Muscles" page_id="story4-PM-7">
-        <group obj1Id="O2_1" action="attach" obj2Id="bloodcell_1"/>
-    </story>
   </setups>
   <solutions>
     <story title="Why We Breathe" activity_id="story1-PM-1">
-      <sentence number="7">
+      <sentence number="5">
         <step number="1">
             <check obj1Id="O2_1" action="getIn" locationId="nose"/>
             <move obj1Id="O2_1" action="getIn" waypointId="nose"/>
         </step>
       </sentence>
-      <sentence number="8">
+      <sentence number="6">
         <step number="1">
             <check obj1Id="O2_1" action="getIn" locationId="lung1"/>
             <move obj1Id="O2_1" action="getIn" waypointId="lung1"/>
@@ -126,78 +101,82 @@
       </sentence>
     </story>
     <story title="Why We Breathe" activity_id="story1-PM-2">
-      <sentence number="10">
+      <sentence number="8">
         <step number="1">
             <check obj1Id="CO2_1" action="getIn" locationId="lung2"/>
             <move obj1Id="CO2_1" action="getIn" waypointId="lung2"/>
         </step>
       </sentence>
-      <sentence number="11">
+      <sentence number="9">
         <step number="1">
-           <group obj1Id="O2_1" action="attach" obj2Id="bloodcell_1"/>
+           <disappear obj1Id="O2_1" action="receive" obj2Id="bloodcell_1"/>
+           <swapImage obj1Id="bloodcell_1" action="oxygenate"/>
         </step>
       </sentence>
     </story>
     <story title="Why We Breathe" activity_id="story1-PM-3">
-      <sentence number="12">
+      <sentence number="10">
         <step number="1">
             <check obj1Id="CO2_1" action="getIn" locationId="air"/>
             <move obj1Id="CO2_1" action="getIn" waypointId="air"/>
         </step>
       </sentence>
-      <sentence number="13">
+      <sentence number="11">
         <step number="1">
-            <check obj1Id="bloodcell_1" action="getIn" locationId="heart1"/>
-            <move obj1Id="bloodcell_1" action="getIn" waypointId="heart1"/>
+            <check obj1Id="bloodcell_2" action="getIn" locationId="heart1"/>
+            <move obj1Id="bloodcell_2" action="getIn" waypointId="heart1"/>
         </step>
       </sentence>
     </story>
     <story title="The Amazing Heart" activity_id="story2-PM-2">
       <sentence number="3">
         <step number="1">
-            <check obj1Id="bloodcell_1" action="getIn" locationId="leftAtrium"/>
-            <move obj1Id="bloodcell_1" action="getIn" waypointId="leftAtrium"/>
+            <check obj1Id="bloodcell_2" action="getIn" locationId="leftAtrium"/>
+            <move obj1Id="bloodcell_2" action="getIn" waypointId="leftAtrium"/>
         </step>
       </sentence>
       <sentence number="4">
         <step number="1">
-            <checkAndSwap obj1Id="handle" action="open3"/>
+            <checkAndSwap obj1Id="handle" action="open"/>
         </step>
       </sentence>
       <sentence number="5">
         <step number="1">
-            <check obj1Id="bloodcell_1" action="getIn" locationId="leftVentricle"/>
-            <move obj1Id="bloodcell_1" action="getIn" waypointId="leftVentricle"/>
+            <check obj1Id="bloodcell_2" action="getIn" locationId="leftVentricle"/>
+            <move obj1Id="bloodcell_2" action="getIn" waypointId="leftVentricle"/>
         </step>
       </sentence>
       <sentence number="6">
         <step number="1">
-            <checkAndSwap obj1Id="handle" action="close3"/>
+            <checkAndSwap obj1Id="handle" action="close"/>
         </step>
       </sentence>
     </story>
     <story title="The Amazing Heart" activity_id="story2-PM-4">
       <sentence number="8">
         <step number="1">
-            <check obj1Id="bloodcell_1" action="getIn" locationId="artery"/>
-            <move obj1Id="bloodcell_1" action="getIn" waypointId="artery"/>
+            <check obj1Id="bloodcell_2" action="getIn" locationId="artery"/>
+            <move obj1Id="bloodcell_2" action="getIn" waypointId="artery"/>
         </step>
       </sentence>
     </story>
     <story title="Muscles Use Oxygen" activity_id="story3-PM-1">
-      <sentence number="1">
+      <sentence number="2">
         <step number="1">
-            <check obj1Id="bloodcell_1" action="getIn" locationId="muscle1"/>
-            <move obj1Id="bloodcell_1" action="getIn" waypointId="muscle1"/>
+            <check obj1Id="bloodcell_2" action="getIn" locationId="muscle1"/>
+            <move obj1Id="bloodcell_2" action="getIn" waypointId="muscle1"/>
         </step>
       </sentence>
     </story>
     <story title="Muscles Use Oxygen" activity_id="story3-PM-2">
       <sentence number="5">
         <step number="1">
-            <appear obj1Id="O2_1" action="appear" obj2Id="bloodcell_1"/>
+            <swapImage obj1Id="bloodcell_2" action="deoxygenate"/>
         </step>
         <step number="2">
+            <appear obj1Id="O2_1" action="appear" obj2Id="bloodcell_1"/>
+        </step>
+        <step number="3">
             <check obj1Id="O2_1" action="getIn" locationId="muscle2"/>
             <move obj1Id="O2_1" action="getIn" waypointId="muscle2"/>
             <move obj1Id="bloodcell_1" action="getIn" waypointId="vein"/>
@@ -274,15 +253,16 @@
     <story title="Getting More Oxygen for the Muscles" activity_id="story4-PM-6">
       <sentence number="11">
         <step number="1">
-            <group obj1Id="O2_1" action="attach" obj2Id="bloodcell_1"/>
+            <disappear obj1Id="O2_1" action="receive" obj2Id="bloodcell_1"/>
+            <swapImage obj1Id="bloodcell_1" action="oxygenate"/>
         </step>
       </sentence>
     </story>
     <story title="Getting More Oxygen for the Muscles" activity_id="story4-PM-7">
       <sentence number="12">
         <step number="1">
-            <check obj1Id="bloodcell_1" action="getIn" locationId="heart3"/>
-            <move obj1Id="bloodcell_1" action="getIn" waypointId="heart3"/>
+            <check obj1Id="bloodcell_2" action="getIn" locationId="heart3"/>
+            <move obj1Id="bloodcell_2" action="getIn" waypointId="heart3"/>
         </step>
       </sentence>
     </story>
@@ -313,7 +293,8 @@
     <story title="Cigarette Smoke Hurts Your Lungs" activity_id="story5-PM-4">
       <sentence number="6">
         <step number="1">
-            <group obj1Id="O2_1" action="attach" obj2Id="bloodcell_1"/>
+            <disappear obj1Id="O2_1" action="receive" obj2Id="bloodcell_1"/>
+            <swapImage obj1Id="bloodcell_1" action="oxygenate"/>
         </step>
       </sentence>
     </story>
@@ -329,765 +310,109 @@
               <spanishWordText></spanishWordText>
               <expectedSelection>word</expectedSelection>
               <expectedAction>tap</expectedAction>
-              <expectedInput>breathe</expectedInput>
+              <expectedInput>molécula</expectedInput>
           </vocabularyIntroductionWord>
           <vocabularyIntroductionWord number="2">
-              <englishWordAudio>CCE1_1.m4a</englishWordAudio>
-              <spanishWordAudio>breatheDEFS.m4a</spanishWordAudio>
-              <englishWordText>Breathe</englishWordText>
-              <spanishWordText>Respirar</spanishWordText>
+              <englishWordAudio>moleculeE.m4a</englishWordAudio>
+              <spanishWordAudio>moleculaS.m4a</spanishWordAudio>
+              <englishWordText>Molecule</englishWordText>
+              <spanishWordText>Molécula</spanishWordText>
               <expectedSelection>word</expectedSelection>
               <expectedAction>tap</expectedAction>
-              <expectedInput>breathe</expectedInput>
+              <expectedInput>molecule</expectedInput>
           </vocabularyIntroductionWord>
           <vocabularyIntroductionWord number="3">
-              <englishWordAudio>CCE1_1.m4a</englishWordAudio>
-              <spanishWordAudio>breatheDEFS.m4a</spanishWordAudio>
-              <englishWordText>Breathe</englishWordText>
-              <spanishWordText>Respirar</spanishWordText>
+              <englishWordAudio>oxygenE.m4a</englishWordAudio>
+              <spanishWordAudio>oxígenoS.m4a</spanishWordAudio>
+              <englishWordText>Oxygen</englishWordText>
+              <spanishWordText>Oxígeno</spanishWordText>
               <expectedSelection>word</expectedSelection>
               <expectedAction>tap</expectedAction>
-              <expectedInput>heart</expectedInput>
+              <expectedInput>oxígeno</expectedInput>
           </vocabularyIntroductionWord>
           <vocabularyIntroductionWord number="4">
-              <englishWordAudio>CCE1_2.m4a</englishWordAudio>
-              <spanishWordAudio>heartDEFS.m4a</spanishWordAudio>
-              <englishWordText>Heart</englishWordText>
-              <spanishWordText>Corazón</spanishWordText>
+              <englishWordAudio>oxygenE.m4a</englishWordAudio>
+              <spanishWordAudio>oxígenoS.m4a</spanishWordAudio>
+              <englishWordText>Oxygen</englishWordText>
+              <spanishWordText>Oxígeno</spanishWordText>
               <expectedSelection>word</expectedSelection>
               <expectedAction>tap</expectedAction>
-              <expectedInput>heart</expectedInput>
+              <expectedInput>oxygen</expectedInput>
           </vocabularyIntroductionWord>
           <vocabularyIntroductionWord number="5">
-              <englishWordAudio>CCE1_2.m4a</englishWordAudio>
-              <spanishWordAudio>heartDEFS.m4a</spanishWordAudio>
-              <englishWordText>Heart</englishWordText>
-              <spanishWordText>Corazón</spanishWordText>
+              <englishWordAudio>atomsE.m4a</englishWordAudio>
+              <spanishWordAudio>átomosS.m4a</spanishWordAudio>
+              <englishWordText>Atoms</englishWordText>
+              <spanishWordText>Átomos</spanishWordText>
               <expectedSelection>word</expectedSelection>
               <expectedAction>tap</expectedAction>
-              <expectedInput>molecules</expectedInput>
+              <expectedInput>átomos</expectedInput>
           </vocabularyIntroductionWord>
           <vocabularyIntroductionWord number="6">
-              <englishWordAudio>CCE1_3.m4a</englishWordAudio>
-              <spanishWordAudio>moleculesDEFS.m4a</spanishWordAudio>
-              <englishWordText>Molecules</englishWordText>
-              <spanishWordText>Moléculas</spanishWordText>
+              <englishWordAudio>atomsE.m4a</englishWordAudio>
+              <spanishWordAudio>átomosS.m4a</spanishWordAudio>
+              <englishWordText>Atoms</englishWordText>
+              <spanishWordText>Átomos</spanishWordText>
               <expectedSelection>word</expectedSelection>
               <expectedAction>tap</expectedAction>
-              <expectedInput>molecules</expectedInput>
+              <expectedInput>atoms</expectedInput>
           </vocabularyIntroductionWord>
           <vocabularyIntroductionWord number="7">
-              <englishWordAudio>CCE1_3.m4a</englishWordAudio>
-              <spanishWordAudio>moleculesDEFS.m4a</spanishWordAudio>
-              <englishWordText>Molecules</englishWordText>
-              <spanishWordText>Moléculas</spanishWordText>
+              <englishWordAudio>carbonE.m4a</englishWordAudio>
+              <spanishWordAudio>carbonoS.m4a</spanishWordAudio>
+              <englishWordText>Carbon</englishWordText>
+              <spanishWordText>Carbono</spanishWordText>
               <expectedSelection>word</expectedSelection>
               <expectedAction>tap</expectedAction>
-              <expectedInput>oxygen</expectedInput>
+              <expectedInput>carbono</expectedInput>
           </vocabularyIntroductionWord>
           <vocabularyIntroductionWord number="8">
-              <englishWordAudio>CCE1_4.m4a</englishWordAudio>
-              <spanishWordAudio>oxygenDEFS.m4a</spanishWordAudio>
-              <englishWordText>Oxygen</englishWordText>
-              <spanishWordText>Oxígeno</spanishWordText>
+              <englishWordAudio>carbonE.m4a</englishWordAudio>
+              <spanishWordAudio>carbonoS.m4a</spanishWordAudio>
+              <englishWordText>Carbon</englishWordText>
+              <spanishWordText>Carbono</spanishWordText>
               <expectedSelection>word</expectedSelection>
               <expectedAction>tap</expectedAction>
-              <expectedInput>oxygen</expectedInput>
+              <expectedInput>carbon</expectedInput>
           </vocabularyIntroductionWord>
           <vocabularyIntroductionWord number="9">
-              <englishWordAudio>CCE1_4.m4a</englishWordAudio>
-              <spanishWordAudio>oxygenDEFS.m4a</spanishWordAudio>
-              <englishWordText>Oxygen</englishWordText>
-              <spanishWordText>Oxígeno</spanishWordText>
+              <englishWordAudio>energy.m4a</englishWordAudio>
+              <spanishWordAudio>energía.m4a</spanishWordAudio>
+              <englishWordText>Energy</englishWordText>
+              <spanishWordText>Energía</spanishWordText>
               <expectedSelection>word</expectedSelection>
               <expectedAction>tap</expectedAction>
-              <expectedInput>atoms</expectedInput>
+              <expectedInput>energía</expectedInput>
           </vocabularyIntroductionWord>
           <vocabularyIntroductionWord number="10">
-              <englishWordAudio>CCE1_5.m4a</englishWordAudio>
-              <spanishWordAudio>atomsDEFS.m4a</spanishWordAudio>
-              <englishWordText>Atoms</englishWordText>
-              <spanishWordText>Átomos</spanishWordText>
+              <englishWordAudio>energy.m4a</englishWordAudio>
+              <spanishWordAudio>energía.m4a</spanishWordAudio>
+              <englishWordText>Energy</englishWordText>
+              <spanishWordText>Energía</spanishWordText>
               <expectedSelection>word</expectedSelection>
               <expectedAction>tap</expectedAction>
-              <expectedInput>atoms</expectedInput>
+              <expectedInput>energy</expectedInput>
           </vocabularyIntroductionWord>
           <vocabularyIntroductionWord number="11">
-              <englishWordAudio>CCE1_5.m4a</englishWordAudio>
-              <spanishWordAudio>atomsDEFS.m4a</spanishWordAudio>
-              <englishWordText>Atoms</englishWordText>
-              <spanishWordText>Átomos</spanishWordText>
+              <englishWordAudio>lungs.m4a</englishWordAudio>
+              <spanishWordAudio>pulmones.m4a</spanishWordAudio>
+              <englishWordText>Lungs</englishWordText>
+              <spanishWordText>Pulmones</spanishWordText>
               <expectedSelection>word</expectedSelection>
               <expectedAction>tap</expectedAction>
-              <expectedInput>blood</expectedInput>
+              <expectedInput>pulmones</expectedInput>
           </vocabularyIntroductionWord>
           <vocabularyIntroductionWord number="12">
-              <englishWordAudio>CCE1_11.m4a</englishWordAudio>
-              <spanishWordAudio>bloodDEFS.m4a</spanishWordAudio>
-              <englishWordText>Blood</englishWordText>
-              <spanishWordText>Sangre</spanishWordText>
+              <englishWordAudio>lungs.m4a</englishWordAudio>
+              <spanishWordAudio>pulmones.m4a</spanishWordAudio>
+              <englishWordText>Lungs</englishWordText>
+              <spanishWordText>Pulmones</spanishWordText>
               <expectedSelection>word</expectedSelection>
               <expectedAction>tap</expectedAction>
-              <expectedInput>blood</expectedInput>
+              <expectedInput>lungs</expectedInput>
           </vocabularyIntroductionWord>
           <vocabularyIntroductionWord number="13">
-              <englishWordAudio>CCE1_11.m4a</englishWordAudio>
-              <spanishWordAudio>bloodDEFS.m4a</spanishWordAudio>
-              <englishWordText>Blood</englishWordText>
-              <spanishWordText>Sangre</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>lungs</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="14">
-              <englishWordAudio>CCE1_7.m4a</englishWordAudio>
-              <spanishWordAudio>lungsDEFS.m4a</spanishWordAudio>
-              <englishWordText>Lungs</englishWordText>
-              <spanishWordText>Lungs</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>lungs</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="15">
-              <englishWordAudio>CCE1_7.m4a</englishWordAudio>
-              <spanishWordAudio>lungsDEFS.m4a</spanishWordAudio>
-              <englishWordText>Lungs</englishWordText>
-              <spanishWordText>Lungs</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>arteries</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="16">
-              <englishWordAudio>CCE1_8.m4a</englishWordAudio>
-              <spanishWordAudio>arteriesDEFS.m4a</spanishWordAudio>
-              <englishWordText>Arteries</englishWordText>
-              <spanishWordText>Arterias</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>arteries</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="17">
-              <englishWordAudio>CCE1_8.m4a</englishWordAudio>
-              <spanishWordAudio>arteriesDEFS.m4a</spanishWordAudio>
-              <englishWordText>Arteries</englishWordText>
-              <spanishWordText>Arterias</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>tubes</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="18">
-              <englishWordAudio>CCE1_9.m4a</englishWordAudio>
-              <spanishWordAudio>tubesDEFS.m4a</spanishWordAudio>
-              <englishWordText>Tubes</englishWordText>
-              <spanishWordText>Tubos</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>tubes</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="19">
-              <englishWordAudio>CCE1_9.m4a</englishWordAudio>
-              <spanishWordAudio>tubesDEFS.m4a</spanishWordAudio>
-              <englishWordText>Tubes</englishWordText>
-              <spanishWordText>Tubos</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>energy</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="20">
-              <englishWordAudio>CCE1_10.m4a</englishWordAudio>
-              <spanishWordAudio>energyDEFS.m4a</spanishWordAudio>
-              <englishWordText>Energy</englishWordText>
-              <spanishWordText>Energía</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>energy</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="21">
-              <englishWordAudio>CCE1_10.m4a</englishWordAudio>
-              <spanishWordAudio>energyDEFS.m4a</spanishWordAudio>
-              <englishWordText>Energy</englishWordText>
-              <spanishWordText>Energía</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>carbon dioxide</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="22">
-              <englishWordAudio>CCE1_6.m4a</englishWordAudio>
-              <spanishWordAudio>carbonDioxideDEFS.m4a</spanishWordAudio>
-              <englishWordText>Carbon Dioxide</englishWordText>
-              <spanishWordText>Dióxido de Carbono</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>carbon dioxide</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="23">
-              <englishWordAudio>CCE1_6.m4a</englishWordAudio>
-              <spanishWordAudio>carbonDioxideDEFS.m4a</spanishWordAudio>
-              <englishWordText>Carbon Dioxide</englishWordText>
-              <spanishWordText>Dióxido de Carbono</spanishWordText>
-              <expectedSelection></expectedSelection>
-              <expectedAction></expectedAction>
-              <expectedInput></expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="24">
-              <englishWordAudio>CCE_14B.m4a</englishWordAudio>
-              <spanishWordAudio>CCS_14B.m4a</spanishWordAudio>
-              <englishWordText></englishWordText>
-              <spanishWordText></spanishWordText>
-              <expectedSelection></expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>next</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="25">
               <englishWordAudio>CEE_14.m4a</englishWordAudio>
-              <spanishWordAudio>CES_14.m4a</spanishWordAudio>
-              <englishWordText></englishWordText>
-              <spanishWordText></spanishWordText>
-              <expectedSelection></expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>next</expectedInput>
-          </vocabularyIntroductionWord>
-      </vocabularyIntroduction>
-      <vocabularyIntroduction story="The Amazing Heart">
-          <vocabularyIntroductionWord number="1">
-              <englishWordAudio>CCE2_1.m4a</englishWordAudio>
-              <spanishWordAudio>pumpsDEFS.m4a</spanishWordAudio>
-              <englishWordText>Pump</englishWordText>
-              <spanishWordText>Bombear</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>pumps</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="2">
-              <englishWordAudio>CCE2_1.m4a</englishWordAudio>
-              <spanishWordAudio>pumpsDEFS.m4a</spanishWordAudio>
-              <englishWordText>Pump</englishWordText>
-              <spanishWordText>Bombear</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>pumps</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="3">
-              <englishWordAudio>CCE2_2.m4a</englishWordAudio>
-              <spanishWordAudio>atriumDEFS.m4a</spanishWordAudio>
-              <englishWordText>Atrium</englishWordText>
-              <spanishWordText>Atrio</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>atrium</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="4">
-              <englishWordAudio>CCE2_2.m4a</englishWordAudio>
-              <spanishWordAudio>atriumDEFS.m4a</spanishWordAudio>
-              <englishWordText>Atrium</englishWordText>
-              <spanishWordText>Atrio</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>atrium</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="5">
-              <englishWordAudio>CCE2_3.m4a</englishWordAudio>
-              <spanishWordAudio>valveDEFS.m4a</spanishWordAudio>
-              <englishWordText>Valve</englishWordText>
-              <spanishWordText>Válvula</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>valve</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="6">
-              <englishWordAudio>CCE2_3.m4a</englishWordAudio>
-              <spanishWordAudio>valveDEFS.m4a</spanishWordAudio>
-              <englishWordText>Valve</englishWordText>
-              <spanishWordText>Válvula</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>valve</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="7">
-              <englishWordAudio>CCE2_4.m4a</englishWordAudio>
-              <spanishWordAudio>ventricleDEFS.m4a</spanishWordAudio>
-              <englishWordText>Ventricle</englishWordText>
-              <spanishWordText>Ventrículo</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>ventricle</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="8">
-              <englishWordAudio>CCE2_4.m4a</englishWordAudio>
-              <spanishWordAudio>ventricleDEFS.m4a</spanishWordAudio>
-              <englishWordText>Ventricle</englishWordText>
-              <spanishWordText>Ventrículo</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>ventricle</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="9">
-              <englishWordAudio>CCE2_5.m4a</englishWordAudio>
-              <spanishWordAudio>squeezeDEFS.m4a</spanishWordAudio>
-              <englishWordText>Squeeze</englishWordText>
-              <spanishWordText>Apretar</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>squeeze</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="10">
-              <englishWordAudio>CCE2_5.m4a</englishWordAudio>
-              <spanishWordAudio>squeezeDEFS.m4a</spanishWordAudio>
-              <englishWordText>Squeeze</englishWordText>
-              <spanishWordText>Apretar</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>squeeze</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="11">
-              <englishWordAudio>CCE2_6.m4a</englishWordAudio>
-              <spanishWordAudio>rushesDEFS.m4a</spanishWordAudio>
-              <englishWordText>Rush</englishWordText>
-              <spanishWordText>Fluir</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>rushes</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="12">
-              <englishWordAudio>CCE2_6.m4a</englishWordAudio>
-              <spanishWordAudio>rushesDEFS.m4a</spanishWordAudio>
-              <englishWordText>Rush</englishWordText>
-              <spanishWordText>Fluir</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>rushes</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="13">
-              <englishWordAudio>CCE2_7.m4a</englishWordAudio>
-              <spanishWordAudio>beatDEFS.m4a</spanishWordAudio>
-              <englishWordText>Beat</englishWordText>
-              <spanishWordText>Latir</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>beat</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="14">
-              <englishWordAudio>CCE2_7.m4a</englishWordAudio>
-              <spanishWordAudio>beatDEFS.m4a</spanishWordAudio>
-              <englishWordText>Beat</englishWordText>
-              <spanishWordText>Latir</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>beat</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="15">
-              <englishWordAudio>CCE2_8.m4a</englishWordAudio>
-              <spanishWordAudio>chestDEFS.m4a</spanishWordAudio>
-              <englishWordText>Chest</englishWordText>
-              <spanishWordText>Pecho</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>chest</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="16">
-              <englishWordAudio>CCE2_8.m4a</englishWordAudio>
-              <spanishWordAudio>chestDEFS.m4a</spanishWordAudio>
-              <englishWordText>Chest</englishWordText>
-              <spanishWordText>Pecho</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>chest</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="17">
-              <englishWordAudio>CCE2_9.m4a</englishWordAudio>
-              <spanishWordAudio>aroundDEFS.m4a</spanishWordAudio>
-              <englishWordText>Around</englishWordText>
-              <spanishWordText>Alrededor</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>around</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="18">
-              <englishWordAudio>CCE2_9.m4a</englishWordAudio>
-              <spanishWordAudio>aroundDEFS.m4a</spanishWordAudio>
-              <englishWordText>Around</englishWordText>
-              <spanishWordText>Alrededor</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>around</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="19">
-              <englishWordAudio></englishWordAudio>
-              <spanishWordAudio></spanishWordAudio>
-              <englishWordText></englishWordText>
-              <spanishWordText></spanishWordText>
-              <expectedSelection></expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>next</expectedInput>
-          </vocabularyIntroductionWord>
-      </vocabularyIntroduction>
-      <vocabularyIntroduction story="Muscles Use Oxygen">
-          <vocabularyIntroductionWord number="1">
-              <englishWordAudio>CCE3_1.m4a</englishWordAudio>
-              <spanishWordAudio>musclesDEFS.m4a</spanishWordAudio>
-              <englishWordText>Muscles</englishWordText>
-              <spanishWordText>Músculos</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>muscles</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="2">
-              <englishWordAudio>CCE3_1.m4a</englishWordAudio>
-              <spanishWordAudio>musclesDEFS.m4a</spanishWordAudio>
-              <englishWordText>Muscles</englishWordText>
-              <spanishWordText>Músculos</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>muscles</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="3">
-              <englishWordAudio>CCE3_2.m4a</englishWordAudio>
-              <spanishWordAudio>veinsDEFS.m4a</spanishWordAudio>
-              <englishWordText>Veins</englishWordText>
-              <spanishWordText>Venas</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>veins</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="4">
-              <englishWordAudio>CCE3_2.m4a</englishWordAudio>
-              <spanishWordAudio>veinsDEFS.m4a</spanishWordAudio>
-              <englishWordText>Veins</englishWordText>
-              <spanishWordText>Venas</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>veins</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="5">
-              <englishWordAudio>CCE1_8.m4a</englishWordAudio>
-              <spanishWordAudio>arteriesDEFS.m4a</spanishWordAudio>
-              <englishWordText>Arteries</englishWordText>
-              <spanishWordText>Arterias</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>arteries</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="6">
-              <englishWordAudio>CCE1_8.m4a</englishWordAudio>
-              <spanishWordAudio>arteriesDEFS.m4a</spanishWordAudio>
-              <englishWordText>Arteries</englishWordText>
-              <spanishWordText>Arterias</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>arteries</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="7">
-              <englishWordAudio>CCE1_4.m4a</englishWordAudio>
-              <spanishWordAudio>oxygenDEFS.m4a</spanishWordAudio>
-              <englishWordText>Oxygen</englishWordText>
-              <spanishWordText>Oxígeno</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>oxygen</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="8">
-              <englishWordAudio>CCE1_4.m4a</englishWordAudio>
-              <spanishWordAudio>oxygenDEFS.m4a</spanishWordAudio>
-              <englishWordText>Oxygen</englishWordText>
-              <spanishWordText>Oxígeno</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>oxygen</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="9">
-              <englishWordAudio>CCE1_10.m4a</englishWordAudio>
-              <spanishWordAudio>energyDEFS.m4a</spanishWordAudio>
-              <englishWordText>Energy</englishWordText>
-              <spanishWordText>Energía</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>energy</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="10">
-              <englishWordAudio>CCE1_10.m4a</englishWordAudio>
-              <spanishWordAudio>energyDEFS.m4a</spanishWordAudio>
-              <englishWordText>Energy</englishWordText>
-              <spanishWordText>Energía</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>energy</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="11">
-              <englishWordAudio>CCE1_6.m4a</englishWordAudio>
-              <spanishWordAudio>carbonDioxideDEFS.m4a</spanishWordAudio>
-              <englishWordText>Carbon Dioxide</englishWordText>
-              <spanishWordText>Dióxido de Carbono</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>carbon dioxide</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="12">
-              <englishWordAudio>CCE1_6.m4a</englishWordAudio>
-              <spanishWordAudio>carbonDioxideDEFS.m4a</spanishWordAudio>
-              <englishWordText>Carbon Dioxide</englishWordText>
-              <spanishWordText>Dióxido de Carbono</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>carbon dioxide</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="13">
-              <englishWordAudio></englishWordAudio>
-              <spanishWordAudio></spanishWordAudio>
-              <englishWordText></englishWordText>
-              <spanishWordText></spanishWordText>
-              <expectedSelection></expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>next</expectedInput>
-          </vocabularyIntroductionWord>
-      </vocabularyIntroduction>
-      <vocabularyIntroduction story="Getting More Oxygen for the Muscles">
-          <vocabularyIntroductionWord number="1">
-              <englishWordAudio>CCE3_1.m4a</englishWordAudio>
-              <spanishWordAudio>musclesDEFS.m4a</spanishWordAudio>
-              <englishWordText>Muscles</englishWordText>
-              <spanishWordText>Músculos</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>muscles</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="2">
-              <englishWordAudio>CCE3_1.m4a</englishWordAudio>
-              <spanishWordAudio>musclesDEFS.m4a</spanishWordAudio>
-              <englishWordText>Muscles</englishWordText>
-              <spanishWordText>Músculos</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>muscles</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="3">
-              <englishWordAudio>CCE2_2.m4a</englishWordAudio>
-              <spanishWordAudio>atriumDEFS.m4a</spanishWordAudio>
-              <englishWordText>Atrium</englishWordText>
-              <spanishWordText>Atrio</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>atrium</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="4">
-              <englishWordAudio>CCE2_2.m4a</englishWordAudio>
-              <spanishWordAudio>atriumDEFS.m4a</spanishWordAudio>
-              <englishWordText>Atrium</englishWordText>
-              <spanishWordText>Atrio</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>atrium</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="5">
-              <englishWordAudio>CCE2_3.m4a</englishWordAudio>
-              <spanishWordAudio>valveDEFS.m4a</spanishWordAudio>
-              <englishWordText>Valve</englishWordText>
-              <spanishWordText>Válvula</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>valve</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="6">
-              <englishWordAudio>CCE2_3.m4a</englishWordAudio>
-              <spanishWordAudio>valveDEFS.m4a</spanishWordAudio>
-              <englishWordText>Valve</englishWordText>
-              <spanishWordText>Válvula</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>valve</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="7">
-              <englishWordAudio>CCE1_11.m4a</englishWordAudio>
-              <spanishWordAudio>bloodDEFS.m4a</spanishWordAudio>
-              <englishWordText>Blood</englishWordText>
-              <spanishWordText>Sangre</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>blood</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="8">
-              <englishWordAudio>CCE1_11.m4a</englishWordAudio>
-              <spanishWordAudio>bloodDEFS.m4a</spanishWordAudio>
-              <englishWordText>Blood</englishWordText>
-              <spanishWordText>Sangre</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>blood</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="9">
-              <englishWordAudio>CCE2_4.m4a</englishWordAudio>
-              <spanishWordAudio>ventricleDEFS.m4a</spanishWordAudio>
-              <englishWordText>Ventricle</englishWordText>
-              <spanishWordText>Ventrículo</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>ventricle</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="10">
-              <englishWordAudio>CCE2_4.m4a</englishWordAudio>
-              <spanishWordAudio>ventricleDEFS.m4a</spanishWordAudio>
-              <englishWordText>Ventricle</englishWordText>
-              <spanishWordText>Ventrículo</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>ventricle</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="11">
-              <englishWordAudio>CCE1_7.m4a</englishWordAudio>
-              <spanishWordAudio>lungsDEFS.m4a</spanishWordAudio>
-              <englishWordText>Lungs</englishWordText>
-              <spanishWordText>Pulmones</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>lungs</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="12">
-              <englishWordAudio>CCE1_7.m4a</englishWordAudio>
-              <spanishWordAudio>lungsDEFS.m4a</spanishWordAudio>
-              <englishWordText>Lungs</englishWordText>
-              <spanishWordText>Pulmones</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>lungs</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="13">
-              <englishWordAudio>CCE1_4.m4a</englishWordAudio>
-              <spanishWordAudio>oxygenDEFS.m4a</spanishWordAudio>
-              <englishWordText>Oxygen</englishWordText>
-              <spanishWordText>Oxígeno</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>oxygen</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="14">
-              <englishWordAudio>CCE1_4.m4a</englishWordAudio>
-              <spanishWordAudio>oxygenDEFS.m4a</spanishWordAudio>
-              <englishWordText>Oxygen</englishWordText>
-              <spanishWordText>Oxígeno</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>oxygen</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="15">
-              <englishWordAudio>CCE4_8.m4a</englishWordAudio>
-              <spanishWordAudio>towardDEFS.m4a</spanishWordAudio>
-              <englishWordText>Toward</englishWordText>
-              <spanishWordText>Hacia</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>toward</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="16">
-              <englishWordAudio>CCE4_8.m4a</englishWordAudio>
-              <spanishWordAudio>towardDEFS.m4a</spanishWordAudio>
-              <englishWordText>Toward</englishWordText>
-              <spanishWordText>Hacia</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>toward</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="17">
-              <englishWordAudio></englishWordAudio>
-              <spanishWordAudio></spanishWordAudio>
-              <englishWordText></englishWordText>
-              <spanishWordText></spanishWordText>
-              <expectedSelection></expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>next</expectedInput>
-          </vocabularyIntroductionWord>
-      </vocabularyIntroduction>
-      <vocabularyIntroduction story="Cigarette Smoke Hurts Your Lungs">
-          <vocabularyIntroductionWord number="1">
-              <englishWordAudio>CCE5_1.m4a</englishWordAudio>
-              <spanishWordAudio>cigaretteDEFS.m4a</spanishWordAudio>
-              <englishWordText>Cigarette</englishWordText>
-              <spanishWordText>Cigarillo</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>cigarette</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="2">
-              <englishWordAudio>CCE5_1.m4a</englishWordAudio>
-              <spanishWordAudio>cigaretteDEFS.m4a</spanishWordAudio>
-              <englishWordText>Cigarette</englishWordText>
-              <spanishWordText>Cigarillo</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>cigarette</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="3">
-              <englishWordAudio>CCE5_3.m4a</englishWordAudio>
-              <spanishWordAudio>ciliaDEFS.m4a</spanishWordAudio>
-              <englishWordText>Cilia</englishWordText>
-              <spanishWordText>Cilia</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>cilia</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="4">
-              <englishWordAudio>CCE5_3.m4a</englishWordAudio>
-              <spanishWordAudio>ciliaDEFS.m4a</spanishWordAudio>
-              <englishWordText>Cilia</englishWordText>
-              <spanishWordText>Cilia</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>cilia</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="5">
-              <englishWordAudio>CCE5_5.m4a</englishWordAudio>
-              <spanishWordAudio>trappedDEFS.m4a</spanishWordAudio>
-              <englishWordText>Trapped</englishWordText>
-              <spanishWordText>Atrapado</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>trapped</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="6">
-              <englishWordAudio>CCE5_5.m4a</englishWordAudio>
-              <spanishWordAudio>trappedDEFS.m4a</spanishWordAudio>
-              <englishWordText>Trapped</englishWordText>
-              <spanishWordText>Atrapado</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>trapped</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="7">
-              <englishWordAudio>CCE5_6.m4a</englishWordAudio>
-              <spanishWordAudio>stiffDEFS.m4a</spanishWordAudio>
-              <englishWordText>Stiff</englishWordText>
-              <spanishWordText>Rígido</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>stiff</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="8">
-              <englishWordAudio>CCE5_6.m4a</englishWordAudio>
-              <spanishWordAudio>stiffDEFS.m4a</spanishWordAudio>
-              <englishWordText>Stiff</englishWordText>
-              <spanishWordText>Rígido</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>stiff</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="9">
-              <englishWordAudio>CCE5_7.m4a</englishWordAudio>
-              <spanishWordAudio>dirtDEFS.m4a</spanishWordAudio>
-              <englishWordText>Dirt</englishWordText>
-              <spanishWordText>Mugre</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>dirt</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="10">
-              <englishWordAudio>CCE5_7.m4a</englishWordAudio>
-              <spanishWordAudio>dirtDEFS.m4a</spanishWordAudio>
-              <englishWordText>Dirt</englishWordText>
-              <spanishWordText>Mugre</spanishWordText>
-              <expectedSelection>word</expectedSelection>
-              <expectedAction>tap</expectedAction>
-              <expectedInput>dirt</expectedInput>
-          </vocabularyIntroductionWord>
-          <vocabularyIntroductionWord number="11">
-              <englishWordAudio></englishWordAudio>
               <spanishWordAudio></spanishWordAudio>
               <englishWordText></englishWordText>
               <spanishWordText></spanishWordText>

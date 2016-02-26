@@ -10,28 +10,50 @@
 
 @implementation PhysicalManipulationSolution
 
-- (id)init {
-    self = [super init];
+@synthesize solutionSteps;
+
+-(id) init {
+    if (self = [super init]) {
+        solutionSteps = [[NSMutableArray alloc] init];
+    }
     
     return self;
 }
 
+-(void) addSolutionStep:(ActionStep*)solStep {
+    [solutionSteps addObject:solStep];
+}
+
 /*
- * Returns an array containing all the idea numbers associated with the story
+ * Returns an array containing all the steps for a given sentence number
  */
-- (NSMutableArray *)getIdeaNumbers {
-    NSMutableArray *ideaNums = [[NSMutableArray alloc] init];
+-(NSMutableArray*) getStepsForSentence:(NSUInteger)sentNum {
+    NSMutableArray* stepsForSentence = [[NSMutableArray alloc] init];
     
-    NSUInteger currIdeaNumber = 0;
-    
-    for (ActionStep *step in [self solutionSteps]) {
-        if ([step sentenceNumber] > currIdeaNumber) {
-            [ideaNums addObject:[NSNumber numberWithInteger:[step sentenceNumber]]];
-            currIdeaNumber = [step sentenceNumber];
+    for (ActionStep* step in solutionSteps) {
+        //Step sentence number matches
+        if ([step sentenceNumber] == sentNum) {
+            [stepsForSentence addObject:step];
         }
     }
     
-    return ideaNums;
+    return stepsForSentence;
+}
+
+/*
+ * Returns the number of steps for a given sentence number
+ */
+-(NSUInteger) getNumStepsForSentence:(NSUInteger)sentNum {
+    NSUInteger numberOfSteps = 0;
+    
+    for (ActionStep* step in solutionSteps) {
+        //Step sentence number matches
+        if ([step sentenceNumber] == sentNum) {
+            numberOfSteps++; //increase count
+        }
+    }
+    
+    return numberOfSteps;
 }
 
 @end

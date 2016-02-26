@@ -33,6 +33,7 @@
     <item href="Text/Story4-Getting-More-Oxygen-for-the-Muscles-PM-4.xhtml" id="story4-PM-4" media-type="application/xhtml+xml"/>
     <item href="Text/Story4-Getting-More-Oxygen-for-the-Muscles-PM-5.xhtml" id="story4-PM-5" media-type="application/xhtml+xml"/>
     <item href="Text/Story4-Getting-More-Oxygen-for-the-Muscles-PM-6.xhtml" id="story4-PM-6" media-type="application/xhtml+xml"/>
+    <item href="Text/Story4-Getting-More-Oxygen-for-the-Muscles-PM-7.xhtml" id="story4-PM-7" media-type="application/xhtml+xml"/>
     <item href="Text/Story5-Cigarette-Smoke-Hurts-Your-Lungs-PM-1.xhtml" id="story5-PM-1" media-type="application/xhtml+xml"/>
     <item href="Text/Story5-Cigarette-Smoke-Hurts-Your-Lungs-PM-2.xhtml" id="story5-PM-2" media-type="application/xhtml+xml"/>
     <item href="Text/Story5-Cigarette-Smoke-Hurts-Your-Lungs-PM-3.xhtml" id="story5-PM-3" media-type="application/xhtml+xml"/>
@@ -70,15 +71,9 @@
     <item href="Images/p2_damaged.png" id="p2_damaged.png" media-type="image/png"/>
     <item href="Images/p2_healthy_cilia.png" id="p2_healthy_cilia.png" media-type="image/png"/>
     <item href="Images/p3_Lsqueeze.png" id="p3_Lsqueeze.png" media-type="image/png"/>
-    <item href="Images/p3_Lsqueeze_with_valve.png" id="p3_Lsqueeze_with_valve.png" media-type="image/png"/>
     <item href="Images/p3_nosqueeze.png" id="p3_nosqueeze.png" media-type="image/png"/>
     <item href="Images/p3_Rsqueeze.png" id="p3_Rsqueeze.png" media-type="image/png"/>
     <item href="Images/p4.png" id="p4.png" media-type="image/png"/>
-    <item href="Images/ch5_icon.png" id="ch5_icon.png" media-type="image/png"/>
-    <item href="Images/ch4_icon.png" id="ch4_select_icon.png" media-type="image/png"/>
-    <item href="Images/ch3_icon.png" id="ch3_select_icon.png" media-type="image/png"/>
-    <item href="Images/ch2_icon.png" id="ch2_icon.png" media-type="image/png"/>
-    <item href="Images/ch1_icon.png" id="ch1_icon.png" media-type="image/png"/>
   </manifest>
   <spine toc="ncx">
     <itemref idref="Introduction-to-Circulatory-Characters-Title.xhtml"/>
@@ -98,6 +93,7 @@
     <itemref idref="story4-PM-4"/>
     <itemref idref="story4-PM-5"/>
     <itemref idref="story4-PM-6"/>
+    <itemref idref="story4-PM-7"/>
     <itemref idref="story5-PM-1"/>
     <itemref idref="story5-PM-2"/>
     <itemref idref="story5-PM-3"/>

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<metadata>
-    <waypoints>
-        <waypoint waypointId="banana" x="41.552734%" y="13.778409%"/>
-        <waypoint waypointId="monkey" x="53.933594%" y="44.247158%"/>
-        <waypoint waypointId="tree" x="84.130859%" y="20.525568%"/>
-        <waypoint waypointId="trough" x="21.777344%" y="24.857954%"/>
-    </waypoints>
-</metadata>
