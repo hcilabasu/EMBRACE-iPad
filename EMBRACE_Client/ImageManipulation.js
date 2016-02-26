@@ -690,7 +690,8 @@ function setSentenceFontWeight(sentenceId, weight) {
  * under the object
  */
 function highlightObject(object) {
-    if(object.objectId == "fallen_tree")
+    console.log(object.objectId);
+    if(object.objectId.indexOf("fallen_tree") > -1)
     {
         highlight(150, 500, 555, 250, "under");
     }

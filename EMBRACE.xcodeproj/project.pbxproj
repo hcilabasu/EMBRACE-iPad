@@ -24,6 +24,7 @@
 		1A0385061C2B156400A973D8 /* hook_n_key_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0385051C2B156400A973D8 /* hook_n_key_large.png */; };
 		1A0385091C2B1F2500A973D8 /* cilia_inside.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0385071C2B1F2500A973D8 /* cilia_inside.png */; };
 		1A03850A1C2B1F2500A973D8 /* cilia_outside.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0385081C2B1F2500A973D8 /* cilia_outside.png */; };
+		1A11B3C31C7D0ACF00525D34 /* sofia_on_horse2_flip.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A11B3C21C7D0ACF00525D34 /* sofia_on_horse2_flip.png */; };
 		1A1B5CBE1C27569500E56004 /* lava_ball_min.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A1B5CBD1C27569500E56004 /* lava_ball_min.png */; };
 		1A23DA391C20A46200FE7C46 /* bloodcell_select_large_high_res_min.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A23DA381C20A46200FE7C46 /* bloodcell_select_large_high_res_min.png */; };
 		1A23DA3B1C20A4FC00FE7C46 /* O2_select large_high_res_min.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A23DA3A1C20A4FC00FE7C46 /* O2_select large_high_res_min.png */; };
@@ -4017,6 +4018,7 @@
 		1A0385051C2B156400A973D8 /* hook_n_key_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hook_n_key_large.png; sourceTree = "<group>"; };
 		1A0385071C2B1F2500A973D8 /* cilia_inside.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cilia_inside.png; sourceTree = "<group>"; };
 		1A0385081C2B1F2500A973D8 /* cilia_outside.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cilia_outside.png; sourceTree = "<group>"; };
+		1A11B3C21C7D0ACF00525D34 /* sofia_on_horse2_flip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sofia_on_horse2_flip.png; sourceTree = "<group>"; };
 		1A1B5CBD1C27569500E56004 /* lava_ball_min.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lava_ball_min.png; sourceTree = "<group>"; };
 		1A23DA381C20A46200FE7C46 /* bloodcell_select_large_high_res_min.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bloodcell_select_large_high_res_min.png; sourceTree = "<group>"; };
 		1A23DA3A1C20A4FC00FE7C46 /* O2_select large_high_res_min.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "O2_select large_high_res_min.png"; sourceTree = "<group>"; };
@@ -8517,6 +8519,7 @@
 				1A2425531C6AD271002CBB13 /* backgroundGate_closed.png */,
 				1A631D871C0E4D3A00251CB3 /* sofia_horse.png */,
 				1A631D881C0E4D3A00251CB3 /* sofia_on_horse2.png */,
+				1A11B3C21C7D0ACF00525D34 /* sofia_on_horse2_flip.png */,
 				1A631D891C0E4D3A00251CB3 /* sofia_on_mancha.png */,
 				1A631D8A1C0E4D3A00251CB3 /* sofia_spoon.png */,
 				1A631D8B1C0E4D3A00251CB3 /* sofia_spoon_down.png */,
@@ -15095,6 +15098,7 @@
 				5C0ED7171C752C2F00003B5A /* WhoIsTheBestAnimalQ1A3.mp3 in Resources */,
 				5CF792CB1C7694A900216337 /* TheContestQ2S.mp3 in Resources */,
 				5C0EDA181C753AD400003B5A /* WhyWeBreatheQ3A4.mp3 in Resources */,
+				1A11B3C31C7D0ACF00525D34 /* sofia_on_horse2_flip.png in Resources */,
 				5C0420191C614653001BBE9D /* TheLopezFamilyS2S.mp3 in Resources */,
 				5C28DC611C2BA66E005ACD07 /* content.opf in Resources */,
 				5CF7931B1C76986E00216337 /* BFTC4.m4a in Resources */,

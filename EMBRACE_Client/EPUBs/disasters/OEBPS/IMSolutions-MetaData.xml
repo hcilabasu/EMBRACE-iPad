@@ -20,8 +20,8 @@
         <story title="Volcanoes and the Making of Hawaii" activity_id="story4-PM-3">
             <sentence number="10">
                 <step number="1">
-                    <group obj1Id="plume_greyplate_leftIM" action="getInLeft" obj2Id="kauailabel_leftIM"/>
-                    <group obj1Id="plume_greyplate_rightIM" action="getInRight" obj2Id="kauailabel_rightIM"/>
+                    <group obj1Id="kauai_leftIM" action="getInLeft" obj2Id="kauai_leftIM"/>
+                    <group obj1Id="kauai_rightIM" action="getInRight" obj2Id="kauai_rightIM"/>
                 </step>
             </sentence>
         </story>

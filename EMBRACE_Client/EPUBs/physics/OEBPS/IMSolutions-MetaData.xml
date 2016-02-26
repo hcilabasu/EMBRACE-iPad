@@ -18,7 +18,7 @@
             </sentence>
         </story>
         <story title="Newton's Law of Acceleration on Earth" activity_id="story5-PM-1">
-            <sentence number="4">
+            <sentence number="2">
                 <step number="1">
                     <group obj1Id="dog_IM" action="toward" obj2Id="maria_IM"/>
                     <group obj1Id="dog_IM" action="flip" obj2Id="maria_IM"/>

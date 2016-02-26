@@ -66,6 +66,9 @@
         <hotspot objId="sofia_IM" action="holdFlowers" role="object" x="50%" y="50%"/>
         <hotspot objId="flowers_IM" action="holdFlowers" role="subject" x="60%" y="60%"/>
         
+        <hotspot objId="flowers_IM" action="getIn" role="object" x="80%" y="50%"/>
+        <hotspot objId="flowers2_IM" action="getIn" role="subject" x="20%" y="50%"/>
+    
         <hotspot objId="sofiaTote_IM" action="hold" role="object" x="50%" y="50%"/>
         <hotspot objId="sofiaTote_IM" action="hold" role="subject" x="50%" y="50%"/>
        

@@ -57,6 +57,7 @@
      
         <relationship obj1Id="sofia_IM" can="holdFlowers" action="group" obj2Id="flowers_IM"/>
         <relationship obj1Id="sofiaTote_IM" can="hold" action="group" obj2Id="sofiaTote_IM"/>
+        <relationship obj1Id="flowers_IM" can="getIn" action="group" obj2Id="flowers2_IM"/>
         
         <relationship obj1Id="sofia_IM" can="toward" action="group" obj2Id="market_IM"/>
         <relationship obj1Id="sofiaFLip_IM" can="leave" action="group" obj2Id="market_IM"/>

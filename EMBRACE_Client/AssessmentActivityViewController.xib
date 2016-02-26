@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -14,6 +14,7 @@
                 <outlet property="answer4Button" destination="IQX-Lx-UOI" id="OlK-O3-6Gm"/>
                 <outlet property="nextButton" destination="8YV-Vg-Btg" id="Yi2-Gs-Mps"/>
                 <outlet property="questionButton" destination="xeE-R2-vKq" id="ENT-C2-8z5"/>
+                <outlet property="swipeRecognizer" destination="5Rg-Ga-iRa" id="tfK-B1-OFG"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="TRP-AO-18s"/>
             </connections>
         </placeholder>
@@ -101,8 +102,18 @@
                 </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <gestureRecognizers/>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="5Rg-Ga-iRa" appends="YES" id="CNk-30-9dH"/>
+            </connections>
         </view>
+        <swipeGestureRecognizer direction="down" numberOfTouchesRequired="2" id="5Rg-Ga-iRa">
+            <connections>
+                <action selector="swipeGesturePerformed:" destination="-1" id="qbl-j5-bJQ"/>
+                <outlet property="delegate" destination="i5M-Pr-FkT" id="Gcx-iO-Pv5"/>
+            </connections>
+        </swipeGestureRecognizer>
     </objects>
     <resources>
         <image name="speakerIcon.png" width="76" height="76"/>
