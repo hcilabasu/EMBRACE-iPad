@@ -37,7 +37,7 @@
                 <Answer2Audio>IntroductionToNaturalDisastersQ3A2S.mp3</Answer2Audio>
                 <Answer3>La lluvia</Answer3>
                 <Answer3Audio>IntroductionToNaturalDisastersQ3A3S.mp3</Answer3Audio>
-                <Answer4>Presionando un botón</Answer4>
+                <Answer4>El presionar de un botón</Answer4>
                 <Answer4Audio>IntroductionToNaturalDisastersQ3A4S.mp3</Answer4Audio>
                 <expectedSelection>Vientos muy fuertes</expectedSelection>
             </Question>
@@ -109,7 +109,7 @@
                 <expectedSelection>Por el calor</expectedSelection>
             </Question>
             <Question number="6">
-                <QuestionText>Después que las placas se movieron, ¿cómo se veía la Tierra?</QuestionText>
+                <QuestionText>Después de qué las placas se movieron, ¿cómo se veía la Tierra?</QuestionText>
                 <QuestionAudio>TheMovingEarthQ6S.mp3</QuestionAudio>
                 <Answer1>La tierra estaba conectada de una nueva manera</Answer1>
                 <Answer1Audio>TheMovingEarthQ6A1S.mp3</Answer1Audio>

@@ -16,7 +16,7 @@
                 <expectedSelection>Dos mascotas</expectedSelection>
             </Question>
             <Question number="2">
-                <QuestionText>¿Qué agarra Martin de la cocina?</QuestionText>
+                <QuestionText>¿Qué agarra Martín de la cocina?</QuestionText>
                 <QuestionAudio>TheLopezFamilyQ2S.mp3</QuestionAudio>
                 <Answer1>Sus llaves</Answer1>
                 <Answer1Audio>TheLopezFamilyQ2A1S.mp3</Answer1Audio>
@@ -42,7 +42,7 @@
                 <expectedSelection>Lola, la coneja</expectedSelection>
             </Question>
             <Question number="4">
-                <QuestionText>¿Hacia dónde maneja Martin?</QuestionText>
+                <QuestionText>¿Hacia dónde maneja Martín?</QuestionText>
                 <QuestionAudio>TheLopezFamilyQ4S.mp3</QuestionAudio>
                 <Answer1>Hacia el frente de la casa</Answer1>
                 <Answer1Audio>TheLopezFamilyQ4A1S.mp3</Answer1Audio>
@@ -55,7 +55,7 @@
                 <expectedSelection>Hacia el frente de la casa</expectedSelection>
             </Question>
             <Question number="5">
-                <QuestionText>¿Qué va a estar haciendo pronto la familia?</QuestionText>
+                <QuestionText>¿Qué va a estar haciendo la familia pronto?</QuestionText>
                 <QuestionAudio>TheLopezFamilyQ5S.mp3</QuestionAudio>
                 <Answer1>Resolviendo un misterio</Answer1>
                 <Answer1Audio>TheLopezFamilyQ5A1S.mp3</Answer1Audio>
@@ -68,7 +68,7 @@
                 <expectedSelection>Resolviendo un misterio</expectedSelection>
             </Question>
             <Question number="6">
-                <QuestionText>¿Por qué agarró Martin sus llaves?</QuestionText>
+                <QuestionText>¿Por qué agarró Martín sus llaves?</QuestionText>
                 <QuestionAudio>TheLopezFamilyQ6S.mp3</QuestionAudio>
                 <Answer1>Para manejar su coche</Answer1>
                 <Answer1Audio>TheLopezFamilyQ6A1S.mp3</Answer1Audio>
