@@ -19,6 +19,8 @@
         </story>
         <story title="The Baby's Rattle is Gone, Too!" page_id="story5-PM-2">
             <group obj1Id="rabbit" action="sit" obj2Id="baby"/>
+            <group obj1Id="nest_IM" action="getIn" obj2Id="tree_IM"/>
+            <group obj1Id="rattle_IM" action="getIn" obj2Id="nest_IM"/>
         </story>
         <story title="The Mystery is Solved" page_id="story6-PM-1">
             <group obj1Id="man" action="getIn" obj2Id="car"/>

@@ -268,7 +268,7 @@ function pauseAnimation(aniObject) {
    if(aniObject.object.className.indexOf('manipulationObject center move') > -1)
    {
        
-       aniObject.object.style.WebkitAnimationPlayState = 'pasued';
+       aniObject.object.style.WebkitAnimationPlayState = 'paused';
        //aniObject.object.className = 'manipulationObject center';//aniObject.object.className + ' paused';
    }
 }
@@ -352,7 +352,7 @@ function earthquake(aniObject) {
     if (seconds < 2.5) {
         var waveWidth = Math.sin(aniObject.tempY);
         waveWidth = waveWidth/4;
-        aniObject.tempY += 0.1;
+        aniObject.tempY += 0.2;
         aniObject.x += waveWidth;
         aniObject.object.style.left = aniObject.x + "px";
     }

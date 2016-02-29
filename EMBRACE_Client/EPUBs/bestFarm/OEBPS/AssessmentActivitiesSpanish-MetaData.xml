@@ -31,9 +31,9 @@
                     <Question number="3">
                         <QuestionText>Qué animal saltó a los brazos de Manuel?</QuestionText>
                         <QuestionAudio>TheContestQ3S.mp3</QuestionAudio>
-                        <Answer1>El gato</Answer1>
+                        <Answer1>La gata</Answer1>
                         <Answer1Audio>TheContestQ3A1S.mp3</Answer1Audio>
-                        <expectedSelection>El gato</expectedSelection>
+                        <expectedSelection>La gata</expectedSelection>
                         <Answer2>La gallina</Answer2>
                         <Answer2Audio>TheContestQ3A2S.mp3</Answer2Audio>
                         <Answer3>El búho</Answer3>

@@ -68,10 +68,10 @@
         <hotspot objId="buildingsIM" action="cover" role="subject" x="50%" y="50%"/>
         <hotspot objId="buildingsIM" action="with" role="subject" x="50%" y="50%"/>
 
-        <hotspot objId="plume_greyplate_leftIM" action="getInLeft" role="object" x="20%" y="10%"/>
-        <hotspot objId="plume_greyplate_rightIM" action="getInRight" role="object" x="60%" y="10%"/>
-        <hotspot objId="kauailabel_leftIM" action="getInLeft" role="subject" x="30%" y="0%"/>
-        <hotspot objId="kauailabel_rightIM" action="getInRight" role="subject" x="90%" y="0%"/>
+        <hotspot objId="kauai_leftIM" action="getInLeft" role="object" x="50%" y="50%"/>
+        <hotspot objId="kauai_rightIM" action="getInRight" role="object" x="50%" y="50%"/>
+        <hotspot objId="kauai_leftIM" action="getInLeft" role="subject" x="50%" y="50%"/>
+        <hotspot objId="kauai_rightIM" action="getInRight" role="subject" x="50%" y="50%"/>
         
         <hotspot objId="oahu_labelIM" action="getIn" role="object" x="25%" y="0%"/>
         <hotspot objId="hawaii_labelIM" action="getIn" role="object" x="30%" y="0%"/>

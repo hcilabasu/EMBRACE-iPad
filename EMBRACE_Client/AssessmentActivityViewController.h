@@ -12,6 +12,7 @@
 
 @interface AssessmentActivityViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
+@property(nonatomic, strong) IBOutlet UISwipeGestureRecognizer *swipeRecognizer;
 @property (strong, nonatomic) IBOutlet UITableView *AnswerList;
 @property (strong, nonatomic) IBOutlet UIView *transparentLayer;
 @property(nonatomic,strong) IBOutlet UIButton *nextButton;

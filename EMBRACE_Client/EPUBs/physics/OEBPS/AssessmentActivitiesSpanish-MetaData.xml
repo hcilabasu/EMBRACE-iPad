@@ -10,7 +10,7 @@
                 <expectedSelection>Una fuerza</expectedSelection>
                 <Answer2>Gasolina</Answer2>
                 <Answer2Audio>HowdoObjectsMoveQ1A2S.mp3</Answer2Audio>
-                <Answer3>Se puede mover por sí mismas</Answer3>
+                <Answer3>Se puede mover por sí misma</Answer3>
                 <Answer3Audio>HowdoObjectsMoveQ1A3S.mp3</Answer3Audio>
                 <Answer4>Darle ánimo</Answer4>
                 <Answer4Audio>HowdoObjectsMoveQ1A4S.mp3</Answer4Audio>
@@ -18,9 +18,9 @@
             <Question number="2">
                 <QuestionText>Se necesita una fuerza para hacer que…?</QuestionText>
                 <QuestionAudio>HowdoObjectsMoveQ2S.mp3</QuestionAudio>
-                <Answer1>Todas las anteriores</Answer1>
+                <Answer1>Todas las opciones son correctas</Answer1>
                 <Answer1Audio>HowdoObjectsMoveQ2A1S.mp3</Answer1Audio>
-                <expectedSelection>Todas las anteriores</expectedSelection>
+                <expectedSelection>Todas las opciones son correctas</expectedSelection>
                 <Answer2>Un objeto empiece a moverse</Answer2>
                 <Answer2Audio>HowdoObjectsMoveQ2A2S.mp3</Answer2Audio>
                 <Answer3>Un objeto deje de moverse</Answer3>

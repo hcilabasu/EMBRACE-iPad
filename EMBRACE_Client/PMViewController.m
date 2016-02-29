@@ -267,6 +267,44 @@ BOOL wasPathFollowed = false;
         currentSentence = firstSentenceIdNumber;
         currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",firstSentenceIdNumber]];
         
+        
+        //dynamically reads the vocabulary words on the vocab page and creates and adds solutionsteps
+        if ([currentPageId rangeOfString:@"-Intro"].location != NSNotFound) {
+            
+            PMSolution = [[PhysicalManipulationSolution alloc] init];
+            IMSolution = [[ImagineManipulationSolution alloc] init];
+            
+            for (int i=1; i<totalSentences+1; i++)
+            {
+                NSString* requestSentenceText = [NSString stringWithFormat:@"document.getElementById(%d).innerHTML", i];
+                NSString* sentenceText = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceText];
+                sentenceText = [sentenceText lowercaseString];
+                //(NSUInteger)sentNum :(NSUInteger)stepNum :(NSString*)type :(NSString*)obj1Id :(NSString*) obj2Id :(NSString*)loc :(NSString*)waypt :(NSString*)act :(NSString*)area :(NSString*)file;
+                ActionStep *solutionStep = [[ActionStep alloc] initAsSolutionStep:i : 1 : @"tapWord" : sentenceText : nil : nil: nil : nil : nil : nil];
+                
+                if (conditionSetup.currentMode == PM_MODE) {
+                    
+                    [PMSolution addSolutionStep:solutionStep];
+                }
+                else if (conditionSetup.currentMode == IM_MODE) {
+                    
+                    [IMSolution addSolutionStep:solutionStep];
+                }
+            }
+            
+            Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
+            //Add PMSolution to page
+            if (conditionSetup.currentMode == PM_MODE) {
+                PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; //get PM Activity only
+                [PMActivity addPMSolution:PMSolution forActivityId:currentPageId];
+            }
+            //Add IMSolution to page
+            else if (conditionSetup.currentMode == IM_MODE) {
+                ImagineManipulationActivity *IMActivity = (ImagineManipulationActivity *)[chapter getActivityOfType:IM_MODE]; //get IM Activity only
+                [IMActivity addIMSolution:IMSolution forActivityId:currentPageId];
+            }
+        }
+        
         //Set up current sentence appearance and solution steps
         [self setupCurrentSentence];
         [self setupCurrentSentenceColor];
@@ -517,20 +555,23 @@ BOOL wasPathFollowed = false;
     //Set the current page id
     currentPageId = [book getIdForPageInChapterAndActivity:currentPage :chapterTitle :conditionSetup.currentMode];
     
+    PhysicalManipulationActivity* PMActivity;
+    ImagineManipulationActivity* IMActivity;
+    
     if (conditionSetup.condition == EMBRACE) {
         if (conditionSetup.currentMode == PM_MODE) {
             IntroductionClass.allowInteractions = TRUE;
             
             //Get the PM solution steps for the current chapter
             Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
-            PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
+            PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
             PMSolution = [[[PMActivity PMSolutions] objectForKey:currentPageId] objectAtIndex:0]; //get PM solution
             currentIdea = [[[PMSolution solutionSteps] objectAtIndex:0] sentenceNumber];
         }
         else if (conditionSetup.currentMode == IM_MODE) {
             //Get the IM solution steps for the current chapter
             Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
-            ImagineManipulationActivity* IMActivity = (ImagineManipulationActivity*)[chapter getActivityOfType:IM_MODE]; //get IM Activity from chapter
+            IMActivity = (ImagineManipulationActivity*)[chapter getActivityOfType:IM_MODE]; //get IM Activity from chapter
             IMSolution = [[[IMActivity IMSolutions] objectForKey:currentPageId] objectAtIndex:0]; //get IM solution
         }
     }
@@ -1305,7 +1346,54 @@ BOOL wasPathFollowed = false;
             }
         }
         //Vocabulary introduction mode
-        else if ([IntroductionClass.vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
+        else if ([currentPageId rangeOfString:@"-Intro"].location != NSNotFound) {
+            
+            //Get steps for current sentence
+            NSMutableArray* currSolSteps;
+            
+            if (conditionSetup.appMode == ITS) {
+                currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+            }
+            else {
+                if (conditionSetup.condition == CONTROL) {
+                    currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                }
+                else if (conditionSetup.condition == EMBRACE) {
+                    if (conditionSetup.currentMode == PM_MODE) {
+                        //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+                        if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                            currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+                        }
+                        else {
+                            currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                        }
+                    }
+                    else if (conditionSetup.currentMode == IM_MODE) {
+                        currSolSteps = [IMSolution getStepsForSentence:currentSentence];
+                    }
+                }
+            }
+            
+            //Get current step to be completed
+            ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+            
+            if([[currSolStep stepType] isEqualToString:@"tapWord"])
+            {
+                if([englishSentenceText containsString: [currSolStep object1Id]] &&
+                (currentSentence == sentenceIDNum))
+                {
+                    if ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"]) {
+                        [self.playaudioClass playAudioFile:self:IntroductionClass.vocabAudio];
+                    }
+                    else {
+                        [self playIntroVocabWord:sentenceText:englishSentenceText:currSolStep];
+                    }
+                    
+                    [self incrementCurrentStep];
+                }
+            }
+            
+            /*
             //If the user clicked on the correct word or image
             if (([[IntroductionClass.performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] &&
                  [englishSentenceText isEqualToString:[IntroductionClass.performedActions objectAtIndex:INPUT]]) ||
@@ -1325,80 +1413,116 @@ BOOL wasPathFollowed = false;
                             [self playIntroVocabWord:sentenceText:englishSentenceText];
                         }
                 }
-            }
+            }*/
+            
         }
         else if([[Translation translationWords] objectForKey:englishSentenceText]) {
-            // Since the name of the carbon dioxide file is carbonDioxide, its name is hard-coded
-            if([englishSentenceText isEqualToString:@"carbon dioxide"]) {
-                englishSentenceText = @"carbonDioxide";
-            }
-            
-            if ((conditionSetup.language ==BILINGUAL) && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
-                //Play word audio Sp
-                [self.playaudioClass playAudioInSequence:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"]:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
-                
-                //Logging added by James for Word Audio
-                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"S" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-            }
-            else if (conditionSetup.language ==BILINGUAL) {
-                
-                NSString *spanishAudio = [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"];
-                NSString *engAudio = [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"];
-               
-                if ([spanishExt isEqualToString:@""] == NO) {
-                    spanishAudio = [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,spanishExt];
-                }
-                //Play word audio Sp
-                [self.playaudioClass playAudioInSequence:self:engAudio:spanishAudio];
-                
-                //Logging added by James for Word Audio
-                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"S" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-            }
-            else {
-                //Play En audio twice
-                bool success = [self.playaudioClass playAudioInSequence:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
-                
-                //
-                if (!success) {
-                    
-                    //if error try mp3 format
-                    [self.playaudioClass playAudioInSequence:self:[NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"_def_E"]:[NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"_def_E"]];
-                }
-            
-                //Logging added by James for Word Audio
-                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"E" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-            }
-            
-            // Revert the carbon dioxide name for highlighting
-            if([englishSentenceText isEqualToString:@"carbonDioxide"]) {
-                englishSentenceText = @"carbon dioxide";
-            }
-            
-            [self highlightImageForText:englishSentenceText];
-            
-            //[self highlightObject:[[Translation translationImages] objectForKey:englishSentenceText]:1.5];
+            [self playAudioForVocabWord:englishSentenceText :spanishExt];
         }
     }
 }
 
--(void) playIntroVocabWord: (NSString*) sentenceText : (NSString*) englishSentenceText
+-(void) playAudioForVocabWord: (NSString*) englishSentenceText : (NSString*) spanishExt
+{
+    // Since the name of the carbon dioxide file is carbonDioxide, its name is hard-coded
+    if([englishSentenceText isEqualToString:@"carbon dioxide"]) {
+        englishSentenceText = @"carbonDioxide";
+    }
+    
+    if ((conditionSetup.language ==BILINGUAL) && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
+        //Play word audio Sp
+        [self.playaudioClass playAudioInSequence:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"]:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
+        
+        //Logging added by James for Word Audio
+        [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"S" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+    }
+    else if (conditionSetup.language ==BILINGUAL) {
+        
+        NSString *spanishAudio = [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"];
+        NSString *engAudio = [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"];
+        
+        if ([spanishExt isEqualToString:@""] == NO) {
+            spanishAudio = [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,spanishExt];
+        }
+        //Play word audio Sp
+        [self.playaudioClass playAudioInSequence:self:engAudio:spanishAudio];
+        
+        //Logging added by James for Word Audio
+        [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"S" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+    }
+    else {
+        //Play En audio twice
+        bool success = [self.playaudioClass playAudioInSequence:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
+        
+        //
+        if (!success) {
+            
+            //if error try mp3 format
+            [self.playaudioClass playAudioInSequence:self:[NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"_def_E"]:[NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"_def_E"]];
+        }
+        
+        //Logging added by James for Word Audio
+        [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"E" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+    }
+    
+    // Revert the carbon dioxide name for highlighting
+    if([englishSentenceText isEqualToString:@"carbonDioxide"]) {
+        englishSentenceText = @"carbon dioxide";
+    }
+    
+    [self highlightImageForText:englishSentenceText];
+    
+    //[self highlightObject:[[Translation translationImages] objectForKey:englishSentenceText]:1.5];
+}
+
+-(void) playIntroVocabWord: (NSString*) sentenceText : (NSString*) englishSentenceText : (ActionStep *) currSolStep
 {
     //Logging added by James for Word Audio
     [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : IntroductionClass.languageString :[NSString stringWithFormat:@"%@%@.m4a",sentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
     
-        [self.playaudioClass playAudioFile:self:IntroductionClass.currentAudio];
+        if(conditionSetup.language == ENGLISH)
+        {
+            //Play En audio twice
+            bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
+            //
+            if (!success) {
+                
+                //if error try mp3 format
+                [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"_def_E"]];
+            }
+        }
+        else
+        {
+            //Play En audio twice
+            bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"]];
+            //
+            if (!success) {
+                
+                //if error try mp3 format
+                [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"_def_S"]];
+            }
+        }
         
         [self highlightImageForText:englishSentenceText];
         
         currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence]];
         
-        IntroductionClass.currentVocabStep++;
+        //IntroductionClass.currentVocabStep++;
         
         // This delay is needed in order to be able to play the last definition on a vocabulary page
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW,([self.playaudioClass audioPlayer].duration)*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             [IntroductionClass loadVocabStep:bookView:self:currentSentence:chapterTitle];
             
-            [self.playaudioClass playAudioFile:self:IntroductionClass.currentAudio];
+           
+            //Play En audio
+            bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
+                //
+            if (!success)
+            {
+                    
+                //if error try mp3 format
+                [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"_def_E"]];
+            }
             
             [self highlightImageForText:englishSentenceText];
             
@@ -1407,12 +1531,13 @@ BOOL wasPathFollowed = false;
             
             [self performSelector:@selector(colorSentencesUponNext) withObject:nil afterDelay:([self.playaudioClass audioPlayer].duration)];
             
-            IntroductionClass.currentVocabStep++;
+            //IntroductionClass.currentVocabStep++;
             
+            /*
             // This delay is needed in order to be able to play the last definition on a vocabulary page
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW,([self.playaudioClass audioPlayer].duration)*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                [IntroductionClass loadVocabStep:bookView:self:currentSentence:chapterTitle];
-            });
+                //[IntroductionClass loadVocabStep:bookView:self:currentSentence:chapterTitle];
+            });*/
         });
 }
 
@@ -4553,29 +4678,12 @@ BOOL wasPathFollowed = false;
             }
         }
     }
-    else if ([IntroductionClass.vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
-        NSString* input;
-        
-        if([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"]) {
-            input = IntroductionClass.nextIntro;
-        }
-        else {
-            input = [IntroductionClass.performedActions objectAtIndex:INPUT];
-        }
-        // If the user pressed next
-        if ([input isEqualToString:@"next"]) {
-            IntroductionClass.currentVocabStep++;
-            
-            if(IntroductionClass.currentVocabStep > IntroductionClass.totalVocabSteps-1) {
+    else if ([currentPageId rangeOfString:@"-Intro"].location != NSNotFound) {
+            if(currentSentence > totalSentences) {
                 [_audioPlayer stop];
                 currentSentence = 1;
                 [self loadNextPage]; //logging done in loadNextPage
             }
-            else {
-                // Load the next step and update the performed actions
-                [IntroductionClass loadVocabStep:bookView:self:currentSentence:chapterTitle];
-            }
-        }
     }
     else {
         NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];

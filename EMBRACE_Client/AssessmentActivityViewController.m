@@ -220,6 +220,14 @@ UIImage *BackgroundImage;   //The background image related to the story
 }
 
 /*
+ * Swipe gesture. Only recognizes a downwards two finger swipe. Used to skip to the next assessment question
+ */
+-(IBAction)swipeGesturePerformed:(UISwipeGestureRecognizer *)recognizer {
+    NSLog(@"recognizes emergency swipe");
+    [self NextButtonPressed:self];
+}
+
+/*
  *  Increments the next question, resets the visual aspects of the question and answer options,
  */
 - (IBAction)NextButtonPressed:(id)sender {

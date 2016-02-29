@@ -34,6 +34,11 @@
         <hotspot objId="woman" action="moveTo" role="subject" x="0%" y="100%"/>
         <hotspot objId="woman" action="pickUp" role="subject" x="50%" y="50%"/>
         
+        
+        <hotspot objId="rattle_IM" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="nest_IM" action="getIn" role="object" x="50%" y="50%"/>
+        <hotspot objId="tree_IM" action="getIn" role="subject" x="60%" y="42%"/>
+        
         <hotspot objId="martinIM" action="standBy" role="object" x="0%" y="50%"/>
         <hotspot objId="martinInsideCarIM" action="getIn" role="object" x="50%" y="50%"/>
         <hotspot objId="carIM" action="standBy" role="subject" x="100%" y="50%"/>
@@ -48,7 +53,7 @@
         <hotspot objId="highchairIM" action="sitIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="highchairIM" action="standBy" role="subject" x="50%" y="50%"/>
         
-        <hotspot objId="highchairfrontIM" action="getIn" role="object" x="50%" y="70%"/>
+        <hotspot objId="highchairfrontIM" action="getIn" role="object" x="50%" y="120%"/>
         <hotspot objId="highchairIM" action="getIn" role="subject" x="50%" y="50%"/>
         
         <hotspot objId="keysIM" action="layBy" role="object" x="0%" y="0%"/>

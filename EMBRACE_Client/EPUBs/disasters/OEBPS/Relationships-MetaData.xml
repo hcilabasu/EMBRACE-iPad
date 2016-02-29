@@ -37,8 +37,8 @@
         <relationship obj1Id="waveIM" can="cover" action="group" obj2Id="buildingsIM"/>
         <relationship obj1Id="buildingsIM" can="with" action="group" obj2Id="buildingsIM"/>
         
-        <relationship obj1Id="plume_greyplate_leftIM" can="getInLeft" action="group" obj2Id="kauailabel_leftIM"/>
-        <relationship obj1Id="plume_greyplate_rightIM" can="getInRight" action="group" obj2Id="kauailabel_rightIM"/>
+        <relationship obj1Id="kauai_leftIM" can="getInLeft" action="group" obj2Id="kauai_leftIM"/>
+        <relationship obj1Id="kauai_rightIM" can="getInRight" action="group" obj2Id="kauai_rightIM"/>
         
         <relationship obj1Id="oahu_labelIM" can="getIn" action="group" obj2Id="plume_greyplate_oahuIM"/>
         <relationship obj1Id="hawaii_labelIM" can="getIn" action="group" obj2Id="plume_greyplate_hawaiiIM"/>

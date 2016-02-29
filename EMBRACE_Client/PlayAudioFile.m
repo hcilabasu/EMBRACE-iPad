@@ -68,7 +68,7 @@
 }
 
 /* Plays an audio file at a given path */
--(void) playAudioFile:(UIViewController*) viewController : (NSString*) path {
+-(BOOL) playAudioFile:(UIViewController*) viewController : (NSString*) path {
     //PmviewController = [[UIViewController alloc] init];
     self.PmviewController = viewController;
     [viewController.view setUserInteractionEnabled:NO];
@@ -80,10 +80,12 @@
     if (self.audioPlayer == nil)
     {
         [PmviewController.view setUserInteractionEnabled:YES];
+        return false;
     }
     else
     {
         [self.audioPlayer play];
+        return true;
     }
 }
 

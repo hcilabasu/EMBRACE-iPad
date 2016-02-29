@@ -911,6 +911,11 @@
         
         solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :locationId :nil :action :areaId :nil];
     }
+    else if([[step name] isEqualToString:@"tapWord"])
+    {
+        solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :nil :nil :nil];
+    }
+    
     
     return solutionStep;
 }
