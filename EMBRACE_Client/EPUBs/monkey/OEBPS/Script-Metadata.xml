@@ -147,10 +147,14 @@
                             <audio seq="1">NaughtyMonkey_Script6.mp3</audio>
                         </english>
                         
-                        <bilingual>
-                        </bilingual>
                     </preAudio>
-                    
+                    <postAudio>
+                        <english>
+                            <audio seq="1">NaughtyMonkey_Script7.mp3</audio>
+                        </english>
+                        
+                    </postAudio>
+
                 </embrace>
                 <control>
                     <preAudio>
@@ -170,11 +174,9 @@
                 <embrace>
                     <preAudio>
                         <english>
-                            <audio seq="1">NaughtyMonkey_Script7.mp3</audio>
+                            <audio seq="1">NaughtyMonkey_Script8.mp3</audio>
                         </english>
                         
-                        <bilingual>
-                        </bilingual>
                     </preAudio>
                     
                 </embrace>
@@ -198,17 +200,7 @@
             
             <sentence number="8">
                 
-                <embrace>
-                    <postAudio>
-                        <english>
-                            <audio seq="1">NaughtyMonkey_Script9.mp3</audio>
-                        </english>
-                        
-                        <bilingual>
-                        </bilingual>
-                    </postAudio>
-                    
-                </embrace>
+               
                 
                 <control>
                     <postAudio>
