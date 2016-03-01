@@ -140,12 +140,6 @@
 			<text>The Mystery is Solved</text>
 		</navLabel>
 		<content src="Text/Story6-The-Mystery-is-Solved-Title.xhtml"/>
-		<navPoint class="PM_MODE" id="story6-Intro">
-            <navLabel>
-                <text>The Mystery is Solved - Intro</text>
-            </navLabel>
-            <content src="Text/Story6-The-Mystery-is-Solved-Intro-S.xhtml"/>
-		</navPoint>
         <navPoint class="PM_MODE" id="story6-PM-1">
 		  <navLabel>
     		<text>The Mystery is Solved - PM</text>
@@ -161,85 +155,5 @@
 	</navPoint>
 </navMap>
 <pageList>
-	<pageTarget id="p1" type="normal" value="1">
-    	<navLabel><text>Title - Introduction to Lopez House Mystery Characters</text></navLabel>
-        <content src="Text/Introduction-to-Lopez-House-Mystery-Characters-Title.xhtml"/>
-  </pageTarget>
-  <pageTarget id="p2" type="normal" value="2">
-    	<navLabel><text>Chapter 1 - The Lopez Family - Introduction</text></navLabel>
-		<content src="Text/Story1-The-Lopez-Family-Intro-S.xhtml"/>
-	</pageTarget>
-	<pageTarget id="p3" type="normal" value="3">
-    	<navLabel><text>Chapter 1 - The Lopez Family - Physical Manipulation 1</text></navLabel>
-		<content src="Text/Story1-The-Lopez-Family-PM-1.xhtml"/>
-	</pageTarget>
-	<pageTarget id="p0" type="normal" value="0">
-    	<navLabel><text>Chapter 1 - Introduction to The Lopez House Mystery - Physical Manipulation</text></navLabel>
-		<content src="Text/Story1-Introduction-At-the-House-PM.xhtml"/>
-	</pageTarget>
-  <pageTarget id="p4" type="normal" value="4">
-    	<navLabel><text>Chapter 1 - The Lopez Family - Physical Manipulation 2</text></navLabel>
-		<content src="Text/Story1-The-Lopez-Family-PM-2.xhtml"/>
-	</pageTarget>
-	<pageTarget id="p5" type="normal" value="5">
-    	<navLabel><text>Chapter 2 - Missing Keys - Introduction</text></navLabel>
-		<content src="Text/Story2-Missing-Keys-Intro-S.xhtml"/>
-	</pageTarget>
-  <pageTarget id="p6" type="normal" value="6">
-    	<navLabel><text>Chapter 2 - Missing Keys - Physical Manipulation 1</text></navLabel>
-		<content src="Text/Story1-Missing-Keys-PM-1.xhtml"/>
-	</pageTarget>
-  <pageTarget id="p7" type="normal" value="7">
-    	<navLabel><text>Chapter 2 - Missing Keys - Physical Manipulation 2</text></navLabel>
-		<content src="Text/Story2-Missing-Keys-PM-2.xhtml"/>
-	</pageTarget>
-	<pageTarget id="p8" type="normal" value="8">
-    	<navLabel><text>Chapter 3 - Is Paco a Thief? - Introduction</text></navLabel>
-		<content src="Text/Story3-Is-Paco-a-Thief-Intro-S.xhtml"/>
-	</pageTarget>
-  <pageTarget id="p9" type="normal" value="9">
-    	<navLabel><text>Chapter 3 - Is Paco a Thief? - Physical Manipulation 1</text></navLabel>
-		<content src="Text/Story2-Is-Paco-a-Thief-PM-1.xhtml"/>
-	</pageTarget>
-  <pageTarget id="p10" type="normal" value="10">
-    	<navLabel><text>Chapter 3 - Is Paco a Thief? - Physical Manipulation 2</text></navLabel>
-		<content src="Text/Story3-Is-Paco-a-Thief-PM-2.xhtml"/>
-	</pageTarget>
-	<pageTarget id="p11" type="normal" value="11">
-    	<navLabel><text>Chapter 4 - More is Missing! - Introduction</text></navLabel>
-		<content src="Text/Story4-More-is-Missing-Intro-S.xhtml"/>
-	</pageTarget>
-  <pageTarget id="p12" type="normal" value="12">
-    	<navLabel><text>Chapter 4 - More is Missing! - Physical Manipulation 1</text></navLabel>
-		<content src="Text/Story3-More-is-Missing-PM-1.xhtml"/>
-	</pageTarget>
-  <pageTarget id="p13" type="normal" value="13">
-    	<navLabel><text>Chapter 4 - More is Missing! - Physical Manipulation 2</text></navLabel>
-		<content src="Text/Story4-More-is-Missing-PM-2.xhtml"/>
-	</pageTarget>
-	<pageTarget id="p14" type="normal" value="14">
-    	<navLabel><text>Chapter 5 - The Baby's Rattle is Gone, Too! - Introduction</text></navLabel>
-		<content src="Text/Story5-The-Baby's-Rattle-is-Gone-Too-Intro-S.xhtml"/>
-	</pageTarget>
-  <pageTarget id="p15" type="normal" value="15">
-    	<navLabel><text>Chapter 5 - The Baby's Rattle is Gone, Too! - Physical Manipulation 1</text></navLabel>
-		<content src="Text/Story4-The-Baby's-Rattle-is-Gone-Too-PM-1.xhtml"/>
-	</pageTarget>
-  <pageTarget id="p16" type="normal" value="16">
-    	<navLabel><text>Chapter 5 - The Baby's Rattle is Gone, Too! - Physical Manipulation 2</text></navLabel>
-		<content src="Text/Story5-The-Baby's-Rattle-is-Gone-Too-PM-2.xhtml"/>
-	</pageTarget>
-	<pageTarget id="p17" type="normal" value="17">
-    	<navLabel><text>Chapter 6 - The Mystery is Solved - Introduction</text></navLabel>
-		<content src="Text/Story6-The-Mystery-is-Solved-Intro-S.xhtml"/>
-	</pageTarget>
-  <pageTarget id="p18" type="normal" value="18">
-    	<navLabel><text>Chapter 6 - The Mystery is Solved - Physical Manipulation 1</text></navLabel>
-		<content src="Text/Story6-The-Mystery-is-Solved-PM-1.xhtml"/>
-	</pageTarget>
-  <pageTarget id="p19" type="normal" value="19">
-    	<navLabel><text>Chapter 6 - The Mystery is Solved - Physical Manipulation 2</text></navLabel>
-		<content src="Text/Story6-The-Mystery-is-Solved-PM-2.xhtml"/>
-	</pageTarget>
 </pageList>
 </ncx>

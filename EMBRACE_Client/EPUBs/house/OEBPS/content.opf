@@ -21,7 +21,6 @@
     <item href="Text/Story3-Is-Paco-a-Thief-Intro-E.xhtml" id="story3-Intro" media-type="application/xhtml+xml"/>
     <item href="Text/Story4-More-is-Missing-Intro-E.xhtml" id="story4-Intro" media-type="application/xhtml+xml"/>
     <item href="Text/Story5-The-Baby's-Rattle-is-Gone-Too-Intro-E.xhtml" id="story5-Intro" media-type="application/xhtml+xml"/>
-    <item href="Text/Story6-The-Mystery-is-Solved-Intro-E.xhtml" id="story6-Intro" media-type="application/xhtml+xml"/>
     <item href="Text/Introduction-to-Lopez-House-Mystery-Characters-Title.xhtml" id="Introduction-to-Lopez-House-Mystery-Characters-Title.xhtml" media-type="application/xhtml+xml"/>
     <item href="Text/Story1-The-Lopez-Family-Title.xhtml" id="Chapter1Title" media-type="application/xhtml+xml"/>
     <item href="Text/Story2-Missing-Keys-Title.xhtml" id="Chapter2Title" media-type="application/xhtml+xml"/>
@@ -106,7 +105,6 @@
     <itemref idref="story3-Intro"/>
     <itemref idref="story4-Intro"/>
     <itemref idref="story5-Intro"/>
-    <itemref idref="story6-Intro"/>
     <itemref idref="Introduction-to-Lopez-House-Mystery-Characters-Title.xhtml"/>
     <itemref idref="Chapter1Title"/>
     <itemref idref="Chapter2Title"/>
