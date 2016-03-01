@@ -7,11 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-#import "EbookImporter.h"
-#import "Book.h"
-#import "Student.h"
-#import "LibraryViewController.h"
 #import "DDXML.h"
 #import "DDXMLNode.h"
 #import "DDXMLElement.h"
@@ -19,86 +14,78 @@
 #import "DDXMLElementAdditions.h"
 #import "DDXMLPrivate.h"
 #import "NSString+DDXML.h"
+#import "Student.h"
+#import "Progress.h"
+
+typedef enum LogAction {
+    COMPUTER_ACTION,
+    USER_ACTION
+} LogAction;
 
 @interface ServerCommunicationController : UIViewController
 
-@property (nonatomic, strong) Student *student;
-@property (nonatomic, strong) IBOutlet UIWebView *bookView;
-@property (nonatomic, retain) NSNumber *movenum;
-@property (nonatomic, retain) DDXMLElement *study;
-@property (nonatomic, retain) DDXMLDocument *xmlDoc;
-@property (nonatomic) NSInteger UserActionIDTag;
-@property (nonatomic, strong) NSString *studyDayString;
-@property (nonatomic, strong) NSString *userNameString;
-@property (nonatomic, strong) NSString *studyConditionString;
-@property (nonatomic, strong) NSString *studyExperimenterString;
-@property (nonatomic, strong) NSString *studyParticipantString;
-@property (nonatomic, strong) NSString *studySchoolString;
-@property (nonatomic, strong) NSString *studyFileName;
-
 + (id)sharedManager;
 
-/*
- * NOTE: These functions do not appear to be in use.
-- (void)logUserName:(Student *)userdetails;
-- (void)logMovements:(NSString *)objid :(float)posx :(float)posy;
-- (void)resetMoveNumber;
- */
+# pragma mark - General stuff
 
-- (void)logContext:(Student *)userdetails;
+- (BOOL)writeLogFile;
 
-/* 
- * Logging for computer actions
- */
+# pragma mark - Logging for context
 
-- (void)logComputerMoveObject:(NSString *)movingObjectID :(NSString *)collisionObjectOrLocationID :(float)startPosX :(float)startPosY :(float)endPosX :(float)endPosY :(NSString *)computerAction :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
-- (void)logComputerResetObject:(NSString *)movingObjectID :(float)startPosX :(float)startPosY :(float)endPosX :(float)endPosY :(NSString *)computerAction :(NSString *)storyName :(NSString *)chapterFilePath :(NSString*)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
-- (void)logComputerSwapImages:(NSString *)objectID :(NSString *)swapImageID  :(NSString *)computerAction :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
-- (void)logComputerDisappearObject:(NSString *)computerAction :(NSString *)objectID :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
-- (void)logComputerGroupingObjects:(NSString *)computerActionValue :(NSString *)movingObjectID :(NSString *)collisionObjectID :(NSString *)groupAtLocation :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
-- (void)logComputerVerification:(NSString *)action :(BOOL)verficationValue :(NSString *)objectSelected :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
-- (void)logComputerPlayAudio:(NSString *)computerAction :(NSString *)LanguageType :(NSString *)audioFileName :(NSString *)storyName :(NSString *)chapterFilePath :(NSString*)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
-- (void)logComputerDisplayMenuItems:(NSArray *)displayedMenuInteractions :(NSArray *)displayedMenuImages :(NSArray *)displayedMenuRelationships :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
+- (void)setContext:(Student *)student;
 
-/*
- * Logging for user actions
- */
+# pragma mark - Logging for actions
 
-- (void)logUserMoveObject:(NSString *)movingObjID :(NSString *)toLocationOrObject :(float)startposx :(float)startposy :(float)endposx :(float)endposy :(NSString *)computerActionValue :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
-- (void)logMenuSelection:(int)selectedMenuItemID :(NSArray *)displayedMenuInteractions :(NSArray *)displayedMenuImages  :(NSArray *)menuRelationships :(NSString *)computerActionValue :(NSString *)storyName :(NSString *)chapterFilePath :(NSString*)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
-- (void)logUserPressWord:(NSString *)selectedWordID :(NSString *)computerActionValue :(NSString *)storyName :(NSString *)chapterFilePath :(NSString*)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
-- (void)logUserEmergencyNext:(NSString *)computerActionValue :(NSString *)storyName :(NSString *)chapterFilePath :(NSString*)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
+# pragma mark Computer Actions
 
-/*
- * Logging for user navigation
- */
-- (void)logUserNextButtonPressed:(NSString *)buttonPressedValue :(NSString *)computerActionValue :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
-- (void)logStoryButtonPressed:(NSString *)buttonPressedValue :(NSString *)computerActionValue :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
+- (void)logComputerMoveObject:(NSString *)movingObjectID :(NSString *)waypointID :(float)startPosX :(float)startPosY :(float)endPosX :(float)endPosY :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
+- (void)logComputerResetObject:(NSString *)objectID :(float)startPosX :(float)startPosY :(float)endPosX :(float)endPosY :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
+- (void)logComputerDisappearObject:(NSString *)interactionType :(NSString *)objectID :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
+- (void)logComputerSwapImage:(NSString *)objectID :(NSString *)swapImageID :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
+- (void)logComputerGroupObjects:(NSString *)interactionType :(NSString *)object1ID :(NSString *)object2ID :(NSString *)groupingLocation :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
+- (void)logComputerVerification:(NSString *)actionType :(BOOL)verification :(NSString *)objectSelected :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
+- (void)logComputerPlayAudio:(NSString *)computerAction :(NSString *)languageType :(NSString *)audioFileName :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
+- (void)logComputerDisplayMenuItems:(NSArray *)menuInteractions :(NSArray *)menuImages :(NSArray*)menuRelationships :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
 
-/*
- * Logging for computer navigation
- */
-- (void)logNextStepNavigation:(NSString *)buttonPressedValue :(NSString *)curStepValue :(NSString *)nextStepValue :(NSString *)computerActionValue :(NSString *)storyName :(NSString *)chapterFilePath :(NSString*)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
-- (void)logNextSentenceNavigation:(NSString *)buttonPressedValue :(NSString *)curSentenceValue :(NSString *)nextSentenceValue :(NSString *)computerActionValue :(NSString *)storyName :(NSString *)chapterFilePath :(NSString*)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
-- (void)logNextPageNavigation:(NSString *)buttonPressedValue :(NSString *)curPageValue :(NSString *)nextPageValue :(NSString *)computerActionValue :(NSString *)storyName :(NSString *)chapterFilePath :(NSString*)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
-- (void)logNextChapterNavigation:(NSString *)buttonPressedValue :(NSString *)curChapterValue :(NSString *)nextChapterValue :(NSString *)computerActionValue :(NSString *)storyName :(NSString *)chapterFilePath :(NSString*)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
+#pragma mark User Actions
 
-/*
- * Logging for assessment activities
- */
-- (void)logComputerAssessmentLoadNextActivityStep:(NSString *)buttonPressedValue :(NSString *)computerActionValue :(NSString *)currAssesmentActivityStepValue :(NSString *)nextAssessmentActivityStepValue :(NSString *)storyValue :(NSString *)chapterValue :(NSString *)currentAssessmentStep;
-- (void)logUserAssessmentPressedNext:(NSString *)buttonPressedVaue :(NSString *)computerActionValue :(NSString *)storyValue :(NSString *)chapterValue :(NSString *)currentAssessmentStep;
-- (void)logUserAssessmentPressedAnswerOption:(NSString *)questionText :(NSInteger)answerOptionSelected :(NSArray *)answerOptions :(NSString *)buttonPressedVaue :(NSString *)computerActionValue :(NSString *)storyValue :(NSString *)chapterValue :(NSString *)currentAssesssmentStep :(NSString *)answerText;
-- (void)logComputerAssessmentAnswerVerification:(BOOL)verificationValue :(NSString *)questionText :(NSInteger)answerOptionSelected :(NSArray *)answerOptions :(NSString *)buttonPressedVaue :(NSString *)computerActionValue :(NSString *)storyValue :(NSString *)chapterValue :(NSString *)currentAssessmentStep :(NSString *)answerText;
-- (void)logComputerAssessmentDisplayStep:(NSString *)questionText :(NSArray *)answerOptions :(NSString *)buttonPressedVaue :(NSString *)computerActionValue :(NSString *)storyValue :(NSString *)chapterValue :(NSString *)currentAssesmentStep;
+- (void)logUserMoveObject:(NSString *)moveType :(NSString *)movingObjectID :(NSString *)collisionObjectOrLocationID :(float)startPosX :(float)startPosY :(float)endPosX :(float)endPosY :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
+- (void)logUserSelectMenuItem:(int)selectedMenuItemID :(NSArray *)menuInteractions :(NSArray *)menuImages :(NSArray *)menuRelationships :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
+- (void)logUserTapWord:(NSString *)selectedWord :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
+- (void)logUserEmergencyNext:(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
 
-/*
- * Write XML file locally
- */
-- (BOOL)writeToFile:(NSString *)fileName ofType:(NSString *)type;
+#pragma mark - Logging for navigation
+
+#pragma mark Computer Navigation
+
+- (void)logNextStepNavigation:(NSString *)nextStepNumber :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
+- (void)logNextSentenceNavigation:(NSString *)nextSentenceNumber :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
+- (void)logNextPageNavigation:(NSString *)nextPage :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
+- (void)logNextChapterNavigation:(NSString *)computerAction :(NSString *)nextChapter :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
+
+#pragma mark User Navigation
+
+- (void)logUserTapNext:(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
+
+#pragma mark - Logging for assessment activities
+
+#pragma mark Computer Actions
+
+- (void)logComputerLoadNextAssessmentStep:(NSString *)computerAction :(NSString *)currAssessmentStep :(NSString *)nextAssessmentStep :(NSString *)storyName :(NSString *)chapterName;
+- (void)logComputerAssessmentAnswerVerification:(BOOL)verification :(NSString *)answerSelected :(NSString *)storyName :(NSString *)chapterName :(NSString *)currentAssessmentStep;
+- (void)logComputerDisplayAssessment:(NSString *)questionText :(NSArray*)answerOptions :(NSString *)computerAction :(NSString *)storyName :(NSString *)chapterName :(NSString *)currentAssessmentStep;
+
+#pragma mark User Actions
+
+- (void)logUserAssessmentTapNext:(NSString *)storyName :(NSString *)chapterName :(NSString *)currentAssessmentStep;
+- (void)logUserAssessmentTapAnswerOption:(NSString *)questionText :(NSArray*)answerOptions :(NSString *)selectedAnswer :(NSString *)storyName :(NSString *)chapterName :(NSString *)currentAssessmentStep;
+
+#pragma mark - Saving/loading progress files
 
 - (Progress *)loadProgress:(Student *)student;
 - (void)saveProgress:(Student *)student :(Progress *)progress;
+
+#pragma mark - Syncing log/progress files with Dropbox
 
 - (void)uploadFilesForStudent:(Student *)student;
 - (void)downloadProgressForStudent:(Student *)student completionHandler:(void (^)(BOOL success))completionHandler;

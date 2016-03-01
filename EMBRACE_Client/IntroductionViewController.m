@@ -162,9 +162,6 @@ ConditionSetup *conditionSetup;
     //Play introduction audio
     [self.playAudioFileClass playAudioFile:pmviewController:audio];
     
-    //Logging added by James for Introduction Audio
-    //[[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Introduction Audio" : languageString :audio :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
-    
     //DEBUG code to play expected action
     //NSString* actions = [NSString stringWithFormat:@"%@ %@ %@",expectedIntroAction,expectedIntroInput,expectedSelection];
     //[self playWordAudio:actions:@"en-us"];

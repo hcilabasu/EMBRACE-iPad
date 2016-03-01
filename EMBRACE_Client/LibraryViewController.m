@@ -146,7 +146,7 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
     conditionSetup = [ConditionSetup sharedInstance];
     
     if (student != nil) {
-        [[ServerCommunicationController sharedManager] logContext:student];
+        [[ServerCommunicationController sharedManager] setContext:student];
         
         //Set title to display condition and language (e.g., EMBRACE English)
         self.title = [NSString stringWithFormat:@"%@ %@",[conditionSetup returnConditionEnumToString:conditionSetup.condition],[conditionSetup returnLanguageEnumtoString: conditionSetup.language]];
@@ -331,8 +331,6 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
         destination.bookTitle = self.bookToOpen;
         destination.chapterTitle = self.chapterToOpen;
         destination.libraryViewController = self;
-
-        [[ServerCommunicationController sharedManager] logStoryButtonPressed: @"Library Icon" : @"Tap" : self.bookToOpen : self.chapterToOpen : @"NULL" : -1 : @"NULL": -1: -1];
         
         [destination loadFirstPage];
     }
@@ -358,7 +356,7 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
  */
 - (IBAction)pressedLogout:(id)sender {
     //Write log data to file
-    [[ServerCommunicationController sharedManager] writeToFile:[[ServerCommunicationController sharedManager] studyFileName] ofType:@"txt"];
+    [[ServerCommunicationController sharedManager] writeLogFile];
     
     //Save progress to file
     [[ServerCommunicationController sharedManager] saveProgress:student :studentProgress];
