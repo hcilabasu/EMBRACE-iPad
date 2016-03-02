@@ -101,12 +101,6 @@
                 <text>Tsunamis</text>
             </navLabel>
             <content src="Text/Story3-Tsunamis-Title.xhtml"/>
-            <navPoint class="PM_MODE" id="story3-Intro">
-                <navLabel>
-                    <text>Tsunamis - Intro</text>
-                </navLabel>
-                <content src="Text/Story3-Tsunamis-Intro-E.xhtml"/>
-            </navPoint>
             <navPoint class="PM_MODE" id="story3-PM-1">
                 <navLabel>
                     <text>Tsunamis - PM</text>
@@ -138,12 +132,6 @@
                 <text>Volcanoes and the Making of Hawaii</text>
             </navLabel>
             <content src="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-Title.xhtml"/>
-            <navPoint class="PM_MODE" id="story4-Intro">
-                <navLabel>
-                    <text>Volcanoes and the Making of Hawaii - Intro</text>
-                </navLabel>
-                <content src="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-Intro-E.xhtml"/>
-            </navPoint>
             <navPoint class="PM_MODE" id="story4-PM-1">
                 <navLabel>
                     <text>Volcanoes and the Making of Hawaii - PM</text>
