@@ -52,11 +52,9 @@
     <item href="Text/Story2-Earthquakes-PM-1.xhtml" id="story2-PM-1" media-type="application/xhtml+xml" />
     <item href="Text/Story2-Earthquakes-PM-2.xhtml" id="story2-PM-2" media-type="application/xhtml+xml" />
     <item href="Text/Story2-Earthquakes-Title.xhtml" id="Chapter2Title" media-type="application/xhtml+xml" />
-    <item href="Text/Story3-Tsunamis-Intro-E.xhtml" id="story3-Intro" media-type="application/xhtml+xml" />
     <item href="Text/Story3-Tsunamis-PM-1.xhtml" id="story3-PM-1" media-type="application/xhtml+xml" />
     <item href="Text/Story3-Tsunamis-PM-2.xhtml" id="story3-PM-2" media-type="application/xhtml+xml" />
     <item href="Text/Story3-Tsunamis-Title.xhtml" id="Chapter3Title" media-type="application/xhtml+xml" />
-    <item href="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-Intro-E.xhtml" id="story4-Intro" media-type="application/xhtml+xml" />
     <item href="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-PM-1.xhtml" id="story4-PM-1" media-type="application/xhtml+xml" />
     <item href="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-PM-2.xhtml" id="story4-PM-2" media-type="application/xhtml+xml" />
     <item href="Text/Story4-Volcanoes-and-the-Making-of-Hawaii-Title.xhtml" id="Chapter4Title" media-type="application/xhtml+xml" />
@@ -172,8 +170,6 @@
     <itemref idref="story0-PM" />
     <itemref idref="story1-Intro" />
     <itemref idref="story2-Intro" />
-    <itemref idref="story3-Intro" />
-    <itemref idref="story4-Intro" />
     <itemref idref="story5-Intro" />
     <itemref idref="Introduction-to-Natural-Disasters-Title.xhtml" />
     <itemref idref="Chapter1Title" />

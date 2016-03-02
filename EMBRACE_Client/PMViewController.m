@@ -279,6 +279,13 @@ BOOL wasPathFollowed = false;
                 NSString* requestSentenceText = [NSString stringWithFormat:@"document.getElementById(%d).innerHTML", i];
                 NSString* sentenceText = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceText];
                 sentenceText = [sentenceText lowercaseString];
+                
+                if (conditionSetup.language ==BILINGUAL) {
+                    if(![[self getEnglishTranslation:sentenceText] isEqualToString:@"Translation not found"]) {
+                        sentenceText = [self getEnglishTranslation:sentenceText];
+                    }
+                }
+                
                 //(NSUInteger)sentNum :(NSUInteger)stepNum :(NSString*)type :(NSString*)obj1Id :(NSString*) obj2Id :(NSString*)loc :(NSString*)waypt :(NSString*)act :(NSString*)area :(NSString*)file;
                 ActionStep *solutionStep = [[ActionStep alloc] initAsSolutionStep:i : 1 : @"tapWord" : sentenceText : nil : nil: nil : nil : nil : nil];
                 
@@ -685,7 +692,7 @@ BOOL wasPathFollowed = false;
         else if (conditionSetup.condition == EMBRACE) {
             if (conditionSetup.currentMode == PM_MODE) {
                 //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound && ([currentPageId rangeOfString:@"-Intro"].location == NSNotFound)) {
                     currSolSteps = [PMSolution getStepsForSentence:currentIdea];
                 }
                 else {
@@ -1361,12 +1368,7 @@ BOOL wasPathFollowed = false;
                 else if (conditionSetup.condition == EMBRACE) {
                     if (conditionSetup.currentMode == PM_MODE) {
                         //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                        if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                            currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                        }
-                        else {
-                            currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                        }
+                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
                     }
                     else if (conditionSetup.currentMode == IM_MODE) {
                         currSolSteps = [IMSolution getStepsForSentence:currentSentence];
@@ -1374,47 +1376,27 @@ BOOL wasPathFollowed = false;
                 }
             }
             
-            //Get current step to be completed
-            ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
-            
-            if([[currSolStep stepType] isEqualToString:@"tapWord"])
+            if([currSolSteps count] >0)
             {
-                if([englishSentenceText containsString: [currSolStep object1Id]] &&
-                (currentSentence == sentenceIDNum))
+                //Get current step to be completed
+                ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+            
+                if([[currSolStep stepType] isEqualToString:@"tapWord"])
                 {
-                    if ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"]) {
-                        [self.playaudioClass playAudioFile:self:IntroductionClass.vocabAudio];
-                    }
-                    else {
-                        [self playIntroVocabWord:sentenceText:englishSentenceText:currSolStep];
-                    }
+                    if([englishSentenceText containsString: [currSolStep object1Id]] &&
+                       (currentSentence == sentenceIDNum))
+                    {
                     
-                    [self incrementCurrentStep];
+                        [self playIntroVocabWord:sentenceText:englishSentenceText:currSolStep];
+                    
+                        [self incrementCurrentStep];
+                    }
                 }
             }
-            
-            /*
-            //If the user clicked on the correct word or image
-            if (([[IntroductionClass.performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] &&
-                 [englishSentenceText isEqualToString:[IntroductionClass.performedActions objectAtIndex:INPUT]]) ||
-                ([[IntroductionClass.performedActions objectAtIndex:SELECTION] isEqualToString:@"image"] &&
-                 [imageAtPoint isEqualToString:[IntroductionClass.performedActions objectAtIndex:INPUT]])) {
-                    //[timer invalidate];
-                    //timer = nil;
-                    
-                    //If the user clicked on a word
-                    if ([[IntroductionClass.performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] && [[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:englishSentenceText] && !IntroductionClass.sameWordClicked && (currentSentence == sentenceIDNum)) {
-                        
-                         IntroductionClass.sameWordClicked = true;
-                        if ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"]) {
-                            [self.playaudioClass playAudioFile:self:IntroductionClass.vocabAudio];
-                        }
-                        else {
-                            [self playIntroVocabWord:sentenceText:englishSentenceText];
-                        }
-                }
-            }*/
-            
+            else
+            {
+                //no more vocab steps
+            }
         }
         else if([[Translation translationWords] objectForKey:englishSentenceText]) {
             [self playAudioForVocabWord:englishSentenceText :spanishExt];
