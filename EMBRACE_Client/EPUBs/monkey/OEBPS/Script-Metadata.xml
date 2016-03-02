@@ -26,14 +26,20 @@
                             <audio seq="3">NaughtyMonkey_Script_C3.mp3</audio>
                         </english>
                         
-                      
+                        <bilingual>
+                            <audio seq="1">NaughtyMonkey_Script_C1_S.mp3</audio>
+                            <audio seq="2">NaughtyMonkey_Script_C2_S.mp3</audio>
+                            <audio seq="3">NaughtyMonkey_Script_C3_S.mp3</audio>
+                        </bilingual>
                     </preAudio>
+                    
                     <postAudio>
                         <english>
                             <audio seq="1">NaughtyMonkey_Script_C4.mp3</audio>
                         </english>
                         
                         <bilingual>
+                            <audio seq="1">NaughtyMonkey_Script_C4_S.mp3</audio>
                         </bilingual>
                     </postAudio>
                 </control>
@@ -62,7 +68,10 @@
                             <audio seq="1">NaughtyMonkey_Script_C5.mp3</audio>
                             <audio seq="2">NaughtyMonkey_Script_C6.mp3</audio>
                         </english>
-                        
+                        <bilingual>
+                            <audio seq="1">NaughtyMonkey_Script_C5_S.mp3</audio>
+                            <audio seq="2">NaughtyMonkey_Script_C6_S.mp3</audio>
+                        </bilingual>
                         
                     </preAudio>
                     
@@ -77,7 +86,11 @@
                             <audio seq="1">NaughtyMonkey_Script_C5.mp3</audio>
                             <audio seq="2">NaughtyMonkey_Script_C6.mp3</audio>
                         </english>
-                        
+                        <bilingual>
+                            <audio seq="1">NaughtyMonkey_Script_C5_S.mp3</audio>
+                            <audio seq="2">NaughtyMonkey_Script_C6_S.mp3</audio>
+                        </bilingual>
+
                     </preAudio>
                     
                 </control>
@@ -103,7 +116,10 @@
                         <english>
                             <audio seq="1">NaughtyMonkey_Script_C7.mp3</audio>
                         </english>
-                        
+                        <bilingual>
+                            <audio seq="1">NaughtyMonkey_Script_C7_S.mp3</audio>
+                        </bilingual>
+
                     </preAudio>
                     
                 </control>
@@ -132,15 +148,7 @@
                     </postAudio>
                 </embrace>
                 
-                <control>
-                    <postAudio>
-                        <english>
-                            <audio seq="1">NaughtyMonkey_Script_C8.mp3</audio>
-                        </english>
-                        
-                    </postAudio>
-                    
-                </control>
+                
             </sentence>
             
             <sentence number="5">
@@ -167,7 +175,9 @@
                         <english>
                             <audio seq="1">NaughtyMonkey_Script_C9.mp3</audio>
                         </english>
-                        
+                        <bilingual>
+                            <audio seq="1">NaughtyMonkey_Script_C9_S.mp3</audio>
+                        </bilingual>
                     </preAudio>
                     
                 </control>
@@ -194,14 +204,11 @@
                         <english>
                             <audio seq="1">NaughtyMonkey_Script_C10.mp3</audio>
                         </english>
-                        
+                        <bilingual>
+                             <audio seq="1">NaughtyMonkey_Script_C10_S.mp3</audio>
+                        </bilingual>
                     </preAudio>
-                    <postAudio>
-                        <english>
-                            <audio seq="1">NaughtyMonkey_Script_C11.mp3</audio>
-                        </english>
-                        
-                    </postAudio>
+                    
                     
                 </control>
             </sentence>
