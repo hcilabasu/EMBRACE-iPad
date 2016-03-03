@@ -1802,18 +1802,8 @@ BOOL wasPathFollowed = false;
                     NSString *animationType = animation[1];
                     NSString *animationAreaId = animation[2];
                     
-                    if ([animationType containsString:@"move"]) {
-                        NSString *pauseAnimate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"pauseAnimation", @""];
-                        [bookView stringByEvaluatingJavaScriptFromString:pauseAnimate];
-                    }
-                    else
-                    {
-                    
-                    //Call the cancelAnimation function in the js file.
-                    NSString *cancelAnimate = [NSString stringWithFormat:@"cancelAnimation('%@')", imageAtPoint];
-                    [bookView stringByEvaluatingJavaScriptFromString:cancelAnimate];
-                    
-                    }
+                    NSString *pauseAnimate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", imageAtPoint, startLocation.x, startLocation.y, (float)0, (float)0, @"pauseAnimation", @""];
+                    [bookView stringByEvaluatingJavaScriptFromString:pauseAnimate];
                     
                     [animatingObjects setObject:[NSString stringWithFormat:@"%@,%@,%@", @"pause", animationType, animationAreaId]  forKey:imageAtPoint];
                 }
@@ -1891,7 +1881,8 @@ BOOL wasPathFollowed = false;
                             NSString* imageAtPoint = [self getObjectAtPoint:location ofType:nil];
                             
                             //If the correct object was tapped, swap its image and increment the step
-                            if ([self checkSolutionForSubject:movingObjectId]) {
+                            if ([self checkSolutionForSubject:movingObjectId])
+                            {
                                 [animatingObjects setObject:@"stop" forKey:movingObjectId];
                                 [self incrementCurrentStep];
                             }
@@ -1934,9 +1925,7 @@ BOOL wasPathFollowed = false;
                         if(([[currSolStep object1Id] isEqualToString:movingObjectId]) && ([self areHotspotsInsideArea] || [self isHotspotInsideLocation])) {
                             
                             [animatingObjects setObject:@"stop" forKey:movingObjectId];
-                            
                             [self resetObjectLocation];
-                            
                             [self incrementCurrentStep];
                         }
                         else {
@@ -2139,7 +2128,6 @@ BOOL wasPathFollowed = false;
         [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
         
         // If it was an animation object, animate it again after snapping back
-        //if ([animatingObjects objectForKey:movingObjectId] && [previousStep isEqualToString:@"animate"]) {
         if ([animatingObjects objectForKey:movingObjectId] && [[animatingObjects objectForKey:movingObjectId] containsString: @"pause"])
         {
             
@@ -2147,20 +2135,9 @@ BOOL wasPathFollowed = false;
             NSString *animationType = animation[1];
             NSString *animationAreaId = animation[2];
             
-            if ([animationType containsString:@"move"]) {
-                NSString *resumeAnimate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"resumeAnimation", @""];
-                [bookView stringByEvaluatingJavaScriptFromString:resumeAnimate];
-            }
-            else
-            {
-            
-            //Call the animateObject function in the js file.
-            NSString *animate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, animationType, animationAreaId];
-            [bookView stringByEvaluatingJavaScriptFromString:animate];
-            
-            }
-            
-            
+            NSString *resumeAnimate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, animationType, animationAreaId];
+            [bookView stringByEvaluatingJavaScriptFromString:resumeAnimate];
+           
             [animatingObjects setObject:[NSString stringWithFormat:@"%@,%@,%@", @"animate", animationType, animationAreaId]  forKey:movingObjectId];
         }
     }
@@ -4665,6 +4642,13 @@ BOOL wasPathFollowed = false;
                 currentSentence = 1;
                 [self loadNextPage]; //logging done in loadNextPage
             }
+        else if (currentSentence == totalSentences &&
+                 [bookTitle rangeOfString:@"Introduction to EMBRACE - Unknown"].location != NSNotFound)
+        {
+            [_audioPlayer stop];
+            currentSentence = 1;
+            [self loadNextPage]; //logging done in loadNextPage
+        }
     }
     else {
         NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];

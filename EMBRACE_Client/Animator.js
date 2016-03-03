@@ -114,7 +114,6 @@ function animateObject(objectName, posX, posY, endX, endY, animName, pathToFollo
 }
 
 function animFrame(object){
-    //requestId = requestAnimationFrame(function() { animFrame(object); }, canvas);
     
     if(object.animName == "bounceAnimation")
     {
@@ -274,7 +273,6 @@ function animFrame(object){
 }
 
 function cancelAnimation(objectName) {
-    console.log("cancelAnimation called");
     
     killAnimation = true;
     animationObjectToKill = objectName;
@@ -286,7 +284,12 @@ function pauseAnimation(aniObject) {
     
    if(aniObject.object.className.indexOf('manipulationObject center move') > -1)
    {
-       aniObject.object.style.WebkitAnimationPlayState = 'paused';
+       aniObject.object.className = 'manipulationObject center';
+       //aniObject.object.style.WebkitAnimationPlayState = 'paused';
+   }
+   else
+   {
+       cancelAnimation(aniObject.object.id);
    }
 }
 
@@ -297,14 +300,6 @@ function resumeAnimation(aniObject) {
         aniObject.object.style.WebkitAnimationPlayState = 'running';
     }
 }
-
-
-//function cancelAnimation (objectName) {
-//if(cancelOnce) {
-//cancelAnimationFrame(requestId);
-//cancelOnce = false;
-//}
-//}
 
 function bounce(aniObject) {
     var t1 = new Date().getTime(); // current time in milliseconds since midnight on 1 Jan 1970
@@ -396,11 +391,6 @@ function cheer(aniObject) {
 
 function floatAnim(aniObject) {
     
-    if(animationObjectToKill != "null")
-    {
-        console.log(animationObjectToKill + " : " + aniObject.object.id +" : "+ killAnimation + " : " + (animationObjectToKill.indexOf(aniObject.object.id) > -1));
-    }
-    
     if(!(killAnimation && (animationObjectToKill.indexOf(aniObject.object.id) > -1)))
     {
     //alert("Floating");
@@ -427,8 +417,7 @@ function floatAnim(aniObject) {
     }
     else
     {
-        console.log("kills float animation");
-        //reset
+        //reset cancel animation variables
         killAnimation = false;
         animationObjectToKill = "null";
     }
