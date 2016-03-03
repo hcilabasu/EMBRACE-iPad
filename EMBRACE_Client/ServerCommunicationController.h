@@ -71,7 +71,7 @@ typedef enum LogAction {
 
 #pragma mark User Navigation
 
-- (void)logUserTapNext:(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
+- (void)logUserPressNext:(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
 
 #pragma mark - Logging for assessment activities
 
