@@ -58,8 +58,9 @@ typedef enum LogAction {
 
 #pragma mark Computer Navigation
 
-- (void)logNextStepNavigation:(NSString *)nextStepNumber :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
-- (void)logNextSentenceNavigation:(NSString *)nextSentenceNumber :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
+// TODO: It might make more sense to rename these functions to a general "logStepNavigation" rather than specifically "logNextStepNavigation"
+- (void)logNextStepNavigation:(NSInteger)nextStepNumber :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
+- (void)logNextSentenceNavigation:(NSInteger)nextSentenceNumber :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
 - (void)logNextPageNavigation:(NSString *)nextPage :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
 - (void)logNextChapterNavigation:(NSString *)computerAction :(NSString *)nextChapter :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
 

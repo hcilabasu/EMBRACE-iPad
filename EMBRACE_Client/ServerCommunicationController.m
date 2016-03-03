@@ -224,18 +224,6 @@
     if (![pageFilePath isEqualToString:@"NULL"] && ![pageFilePath isEqualToString:@"Page Finished"]) {
         NSString* pageFileName = [NSString stringWithFormat:@"%@", [pageFilePath lastPathComponent]];
         
-        //Set page mode
-        if ([pageFileName rangeOfString:@"IM"].location != NSNotFound) {
-            pageMode = @"IM";
-        }
-        else if ([pageFileName rangeOfString:@"PM"].location != NSNotFound) {
-            pageMode = @"PM";
-        }
-        else if ([pageFileName rangeOfString:@"Intro"].location != NSNotFound) {
-            pageMode = @"INTRO";
-            pageNumber = @"0";
-        }
-        
         //Set page language type, number, and name
         if ([pageFileName rangeOfString:@"S.xhtml"].location != NSNotFound) {
             pageLanguageType = @"S";
@@ -266,6 +254,18 @@
             pageName = [pageFileName substringToIndex:range.location];
             pageName = [pageName substringFromIndex:5];
             pageName = [pageName stringByReplacingOccurrencesOfString:@"-" withString:@" "];
+        }
+        
+        //Set page mode
+        if ([pageFileName rangeOfString:@"IM"].location != NSNotFound) {
+            pageMode = @"IM";
+        }
+        else if ([pageFileName rangeOfString:@"PM"].location != NSNotFound) {
+            pageMode = @"PM";
+        }
+        else if ([pageFileName rangeOfString:@"Intro"].location != NSNotFound) {
+            pageMode = @"INTRO";
+            pageNumber = @"0";
         }
         
         //Set chapter number
@@ -910,7 +910,7 @@
 /*
  * Logging for moving to the next step in a sentence
  */
-- (void)logNextStepNavigation:(NSString *)nextStepNumber :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber {
+- (void)logNextStepNavigation:(NSInteger)nextStepNumber :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber {
     //Start with base node for computer action
     DDXMLElement *nodeComputerAction = [self getLogAction:COMPUTER_ACTION];
     [study addChild:nodeComputerAction];
@@ -927,7 +927,7 @@
     DDXMLElement *nodeInput = [[nodeComputerAction elementsForName:@"Input"] objectAtIndex:0];
     
     //Create nodes for next step number, and button type
-    DDXMLElement *nodeNextStepNumber = [DDXMLElement elementWithName:@"Next_Step_Number" stringValue:nextStepNumber];
+    DDXMLElement *nodeNextStepNumber = [DDXMLElement elementWithName:@"Next_Step_Number" stringValue:[NSString stringWithFormat:@"%d", nextStepNumber]];
     
     //Add above nodes to input
     [nodeInput addChild:nodeNextStepNumber];
@@ -940,7 +940,7 @@
 /*
  * Logging for moving to the next sentence on a page
  */
-- (void)logNextSentenceNavigation:(NSString *)nextSentenceNumber :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber {
+- (void)logNextSentenceNavigation:(NSInteger)nextSentenceNumber :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber {
     //Start with base node for computer action
     DDXMLElement *nodeComputerAction = [self getLogAction:COMPUTER_ACTION];
     [study addChild:nodeComputerAction];
@@ -957,7 +957,7 @@
     DDXMLElement *nodeInput = [[nodeComputerAction elementsForName:@"Input"] objectAtIndex:0];
     
     //Create nodes for next sentence number and button type
-    DDXMLElement *nodeNextSentenceNumber = [DDXMLElement elementWithName:@"Next_Sentence_Number" stringValue:nextSentenceNumber];
+    DDXMLElement *nodeNextSentenceNumber = [DDXMLElement elementWithName:@"Next_Sentence_Number" stringValue:[NSString stringWithFormat:@"%d", nextSentenceNumber]];
     DDXMLElement *nodeButtonType = [DDXMLElement elementWithName:@"Button_Type" stringValue:@"Next"];
     
     //Add above nodes to input
