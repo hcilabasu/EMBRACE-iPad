@@ -1042,9 +1042,9 @@
 #pragma mark User Navigation
 
 /*
- * Logging for when user taps the Next button
+ * Logging for when user presses the Next button
  */
-- (void)logUserTapNext:(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber {
+- (void)logUserPressNext:(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber {
     userActionID++;
     
     //Start with base node for user action

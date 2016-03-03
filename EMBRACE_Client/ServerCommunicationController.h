@@ -32,6 +32,8 @@ typedef enum LogAction {
 
 # pragma mark - Logging for context
 
+// TODO: Instead of passing so many parameters for logging context, we should create a new class (or at the very least a dictionary) to store those variables and pass an instance of that class instead.
+
 - (void)setContext:(Student *)student;
 
 # pragma mark - Logging for actions
@@ -40,8 +42,10 @@ typedef enum LogAction {
 
 - (void)logComputerMoveObject:(NSString *)movingObjectID :(NSString *)waypointID :(float)startPosX :(float)startPosY :(float)endPosX :(float)endPosY :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
 - (void)logComputerResetObject:(NSString *)objectID :(float)startPosX :(float)startPosY :(float)endPosX :(float)endPosY :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
+// TODO: This function is both appear and disappear. Rename accordingly.
 - (void)logComputerDisappearObject:(NSString *)interactionType :(NSString *)objectID :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
 - (void)logComputerSwapImage:(NSString *)objectID :(NSString *)swapImageID :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
+// TODO: This function is not just for grouping objects. Rename accordingly.
 - (void)logComputerGroupObjects:(NSString *)interactionType :(NSString *)object1ID :(NSString *)object2ID :(NSString *)groupingLocation :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
 - (void)logComputerVerification:(NSString *)actionType :(BOOL)verification :(NSString *)objectSelected :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
 - (void)logComputerPlayAudio:(NSString *)computerAction :(NSString *)languageType :(NSString *)audioFileName :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
@@ -58,7 +62,8 @@ typedef enum LogAction {
 
 #pragma mark Computer Navigation
 
-// TODO: It might make more sense to rename these functions to a general "logStepNavigation" rather than specifically "logNextStepNavigation"
+// TODO: It might make more sense to rename these functions to a general "logNextStepNavigation"
+
 - (void)logNextStepNavigation:(NSInteger)nextStepNumber :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
 - (void)logNextSentenceNavigation:(NSInteger)nextSentenceNumber :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
 - (void)logNextPageNavigation:(NSString *)nextPage :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;

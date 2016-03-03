@@ -48,7 +48,8 @@
 @synthesize studentProgress;
 @synthesize sequenceController;
 
-NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapters
+NSString* const LIBRARY_PASSWORD_INPROGRESS = @"hello"; //used to set locked books/chapters to in progress
+NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked books/chapters to completed
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -384,19 +385,13 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
         
         //Books
         if (showBooks) {
-            //TEST: Temporary code to allow quick unlock/completion of any item
-//            if ([studentProgress getStatusOfBook:[bookTitles objectAtIndex:lockedItemIndex]] == INCOMPLETE) {
             if ([studentProgress getStatusOfBook:[bookTitles objectAtIndex:lockedItemIndex]] == INCOMPLETE || [studentProgress getStatusOfBook:[bookTitles objectAtIndex:lockedItemIndex]] == IN_PROGRESS) {
-            ///TEST
                 [self showPasswordPrompt];
             }
         }
         //Chapters
         else {
-            //TEST: Temporary code to allow quick unlock/completion of any item
-//            if ([studentProgress getStatusOfChapter:[[chapterTitles objectAtIndex:selectedBookIndex] objectAtIndex:lockedItemIndex] fromBook:[bookTitles objectAtIndex:selectedBookIndex]] == INCOMPLETE) {
             if ([studentProgress getStatusOfChapter:[[chapterTitles objectAtIndex:selectedBookIndex] objectAtIndex:lockedItemIndex] fromBook:[bookTitles objectAtIndex:selectedBookIndex]] == INCOMPLETE || [studentProgress getStatusOfChapter:[[chapterTitles objectAtIndex:selectedBookIndex] objectAtIndex:lockedItemIndex] fromBook:[bookTitles objectAtIndex:selectedBookIndex]] == IN_PROGRESS) {
-            ///TEST
                 [self showPasswordPrompt];
             }
         }
@@ -437,8 +432,8 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
  */
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if ([[alertView title] isEqualToString:@"Password"] && buttonIndex == 1) {
-        //Password is correct
-        if ([[[alertView textFieldAtIndex:0] text] isEqualToString:LIBRARY_PASSWORD]) {
+        //Password is correct for setting item to in progress
+        if ([[[alertView textFieldAtIndex:0] text] isEqualToString:LIBRARY_PASSWORD_INPROGRESS]) {
             //Books
             if (showBooks) {
                 //Unlock book by setting its first chapter to be in progress
@@ -456,8 +451,8 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
             //Save progress to file
             [[ServerCommunicationController sharedManager] saveProgress:student :studentProgress];
         }
-        //TEST: Temporary code to allow quick unlock/completion of any item
-        else if ([[[alertView textFieldAtIndex:0] text] isEqualToString:@"goodbye"]) {
+        //Password is correct for setting item to completed
+        else if ([[[alertView textFieldAtIndex:0] text] isEqualToString:LIBRARY_PASSWORD_COMPLETED]) {
             //Books
             if (showBooks) {
                 for (NSString *chapterTitle in [chapterTitles objectAtIndex:lockedItemIndex]) {
@@ -471,7 +466,6 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
             
             [self updateProgress];
         }
-        ///TEST
     }
 }
 
@@ -535,8 +529,10 @@ NSString* const LIBRARY_PASSWORD = @"hello"; //used to unlock locked books/chapt
     if (showBooks) {
         selectedBookIndex = indexPath.row;
         
+        NSString *selectedBookTitle = [bookTitles objectAtIndex:selectedBookIndex];
+        
         //Only allow book to be opened if it is not incomplete
-        if ([studentProgress getStatusOfBook:[bookTitles objectAtIndex:selectedBookIndex]] != INCOMPLETE) {
+        if ([studentProgress getStatusOfBook:selectedBookTitle] != INCOMPLETE) {
             showBooks = FALSE;
             
             [libraryView reloadSections:[NSIndexSet indexSetWithIndex:0]]; //load chapters

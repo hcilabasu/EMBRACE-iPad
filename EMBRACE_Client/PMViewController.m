@@ -1024,8 +1024,6 @@ BOOL wasPathFollowed = false;
     }
 }
 
-#pragma mark - Responding to gestures
-
 /*
  * User pressed Back button. Write log data to file.
  */
@@ -3282,7 +3280,7 @@ BOOL wasPathFollowed = false;
                     [IMViewMenu removeFromSuperview];
                 }
             
-                [[ServerCommunicationController sharedManager] logUserTapNext:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+                [[ServerCommunicationController sharedManager] logUserPressNext:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
             
                 //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
                 if (currentSentence > 0) {
@@ -4431,7 +4429,7 @@ BOOL wasPathFollowed = false;
                 [IMViewMenu bringSubviewToFront:IMinstructions];
             }
             else {
-                [[ServerCommunicationController sharedManager] logUserTapNext:bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
+                [[ServerCommunicationController sharedManager] logUserPressNext:bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
                 
                 //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
                 if (currentSentence > 0) {
@@ -4457,7 +4455,7 @@ BOOL wasPathFollowed = false;
             }
         }
         else if (stepsComplete || numSteps == 0 || !IntroductionClass.allowInteractions) {
-            [[ServerCommunicationController sharedManager] logUserTapNext:bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
+            [[ServerCommunicationController sharedManager] logUserPressNext:bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
             
             if (currentSentence > 0) {
                 currentIdea++;
@@ -4928,8 +4926,6 @@ BOOL wasPathFollowed = false;
     else
         return @"Translation not found";
 }
-
-#pragma mark - PieContextualMenuDelegate
 
 /*
  * Expands the contextual menu, allowing the user to select a possible grouping/ungrouping.
