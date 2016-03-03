@@ -22,6 +22,9 @@
  * Loads a particular set of activity sequences from file for the current user
  */
 - (BOOL)loadSequences:(NSString *)participantCode {
+    //TEST: Match test ID to MCD participant code
+    participantCode = [[participantCode uppercaseString] stringByReplacingOccurrencesOfString:@"TEST" withString:@"MCD"];
+    
     NSBundle *mainBundle = [NSBundle mainBundle];
     
     //Get path to correct sequences file based on participant code
