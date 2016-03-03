@@ -999,8 +999,7 @@ BOOL wasPathFollowed = false;
             NSString *animate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", object1Id, adjLocation.x, adjLocation.y, waypointLocation.x, waypointLocation.y, action, areaId];
             [bookView stringByEvaluatingJavaScriptFromString:animate];
             
-            animatingObjects = [[NSMutableDictionary alloc] init];
-            [animatingObjects setObject:@YES forKey:object1Id];
+            [animatingObjects setObject:[NSString stringWithFormat:@"%@,%@,%@", @"animate", action, areaId] forKey:object1Id];
         }
     }
 }
@@ -1636,15 +1635,16 @@ BOOL wasPathFollowed = false;
                 //Record the starting location of the object when it is selected
                 startLocation = CGPointMake(location.x - delta.x, location.y - delta.y);
                 
-                if ([animatingObjects objectForKey:imageAtPoint] && [[animatingObjects objectForKey:imageAtPoint]  isEqual: @YES]) {
-                    //Call the cancelAnimation function in the js file.
-                    NSString *cancelAnimate = [NSString stringWithFormat:@"cancelAnimation('%@')", imageAtPoint];
-                    [bookView stringByEvaluatingJavaScriptFromString:cancelAnimate];
+                if ([animatingObjects objectForKey:imageAtPoint] && [[animatingObjects objectForKey:imageAtPoint] containsString: @"animate"]) {
                     
-                    NSString *pauseAnimate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"pauseAnimation", @""];
+                    NSArray *animation = [[animatingObjects objectForKey:imageAtPoint] componentsSeparatedByString: @","];
+                    NSString *animationType = animation[1];
+                    NSString *animationAreaId = animation[2];
+                    
+                    NSString *pauseAnimate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", imageAtPoint, startLocation.x, startLocation.y, (float)0, (float)0, @"pauseAnimation", @""];
                     [bookView stringByEvaluatingJavaScriptFromString:pauseAnimate];
                     
-                    [animatingObjects setObject:@NO forKey:imageAtPoint];
+                    [animatingObjects setObject:[NSString stringWithFormat:@"%@,%@,%@", @"pause", animationType, animationAreaId]  forKey:imageAtPoint];
                 }
             }
         }
@@ -1710,7 +1710,9 @@ BOOL wasPathFollowed = false;
                             NSString *imageAtPoint = [self getObjectAtPoint:location ofType:nil];
                             
                             //If the correct object was tapped, swap its image and increment the step
-                            if ([self checkSolutionForSubject:movingObjectId]) {
+                            if ([self checkSolutionForSubject:movingObjectId])
+                            {
+                                [animatingObjects setObject:@"stop" forKey:movingObjectId];
                                 [self incrementCurrentStep];
                             }
                             //Reset object location
@@ -1883,10 +1885,7 @@ BOOL wasPathFollowed = false;
                             
                             [self.playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                             
-                            if (allowSnapback) {
-                                //Snap the object back to its original location
-                                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
-                            }
+                            [self resetObjectLocation];
                         }
                     }
                 }

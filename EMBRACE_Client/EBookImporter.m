@@ -915,6 +915,10 @@
     {
         solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :stepNum :stepType :obj1Id :nil :nil :nil :nil :nil :nil];
     }
+    else
+    {
+        //error unknown step name
+    }
     
     
     return solutionStep;
