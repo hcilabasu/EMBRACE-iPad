@@ -12,6 +12,7 @@ var animatingObjects = new Array();
 var animatingObjectsIndex = -1;
 var requestId;
 var killAnimation = false;
+var animationObjectToKill= "null";
 //var cancelOnce = true;
 //var path = new Array(100);
 //var pathIndex = 0;
@@ -115,8 +116,6 @@ function animateObject(objectName, posX, posY, endX, endY, animName, pathToFollo
 function animFrame(object){
     //requestId = requestAnimationFrame(function() { animFrame(object); }, canvas);
     
-    killAnimation = false;
-    
     if(object.animName == "bounceAnimation")
     {
         requestId = requestAnimationFrame(function() { animFrame(object); }, canvas);
@@ -129,66 +128,82 @@ function animFrame(object){
     }
     else if(object.animName == "rotate90Animation")
     {
+        object.object.style.WebkitAnimationPlayState = 'running';
         rotate90(object);
     }
     else if(object.animName == "rotate180Animation")
     {
+        object.object.style.WebkitAnimationPlayState = 'running';
         rotate180(object);
     }
     else if(object.animName == "rotate270Animation")
     {
+        object.object.style.WebkitAnimationPlayState = 'running';
         rotate270(object);
     }
     else if(object.animName == "moveRightAndWrap")
     {
+        object.object.style.WebkitAnimationPlayState = 'running';
         moveRightAndWrap(object);
     }
     else if(object.animName == "moveRightAndWrapSlow")
     {
+        object.object.style.WebkitAnimationPlayState = 'running';
         moveRightAndWrapSlow(object);
     }
     else if(object.animName == "moveRightAndWrapSlower")
     {
+        object.object.style.WebkitAnimationPlayState = 'running';
         moveRightAndWrapSlower(object);
     }
     else if(object.animName == "moveLeftAndWrap")
     {
+        object.object.style.WebkitAnimationPlayState = 'running';
         moveLeftAndWrap(object);
     }
     else if(object.animName == "moveLeftAndCurve")
     {
+        object.object.style.WebkitAnimationPlayState = 'running';
         moveLeftAndCurve(object);
     }
     else if(object.animName == "moveUpAndWrap")
     {
+        object.object.style.WebkitAnimationPlayState = 'running';
         moveUpAndWrap(object);
     }
     else if(object.animName == "moveDownAndWrap")
     {
+        object.object.style.WebkitAnimationPlayState = 'running';
         moveDownAndWrap(object);
     }
     else if(object.animName == "move45DegreeAndWrap")
     {
+        object.object.style.WebkitAnimationPlayState = 'running';
         move45DegreeAndWrap(object);
     }
     else if(object.animName == "move135DegreeAndWrap")
     {
+        object.object.style.WebkitAnimationPlayState = 'running';
         move135DegreeAndWrap(object);
     }
     else if(object.animName == "move225DegreeAndWrap")
     {
+        object.object.style.WebkitAnimationPlayState = 'running';
         move225DegreeAndWrap(object);
     }
     else if(object.animName == "move315DegreeAndWrap")
     {
+        object.object.style.WebkitAnimationPlayState = 'running';
         move315DegreeAndWrap(object);
     }
     else if(object.animName == "moveToAnimation")
     {
+        object.object.style.WebkitAnimationPlayState = 'running';
         moveTo(object);
     }
     else if(object.animName == "shootArrowAnimation")
     {
+        object.object.style.WebkitAnimationPlayState = 'running';
         shootArrow(object);
     }
     else if(object.animName == "bobAnimation")
@@ -208,7 +223,6 @@ function animFrame(object){
     }
     else if(object.animName == "floatAnimation")
     {
-        requestId = requestAnimationFrame(function() { animFrame(object); }, canvas);
         floatAnim(object);
     }
     else if(object.animName == "followAnimation")
@@ -223,22 +237,27 @@ function animFrame(object){
     }
     else if(object.animName == "kickBall")
     {
+        object.object.style.WebkitAnimationPlayState = 'running';
         kickBall(object);
     }
     else if(object.animName == "skateForward")
     {
+        object.object.style.WebkitAnimationPlayState = 'running';
         skateForward(object);
     }
     else if(object.animName == "skateBackward")
     {
+        object.object.style.WebkitAnimationPlayState = 'running';
         skateBackward(object);
     }
     else if(object.animName == "rowForward")
     {
+        object.object.style.WebkitAnimationPlayState = 'running';
         rowForward(object);
     }
     else if(object.animName == "moveBackward")
     {
+        object.object.style.WebkitAnimationPlayState = 'running';
         moveBackward(object);
     }
     else if(object.animName == "pauseAnimation")
@@ -255,21 +274,19 @@ function animFrame(object){
 }
 
 function cancelAnimation(objectName) {
-    killAnimation = true;
+    console.log("cancelAnimation called");
     
-    //console.log("OBJECT: " + this.object + " NAME:" + objectName);
-    //if(this.object == objectName) {
-    cancelAnimationFrame(requestId);
-    //}
+    killAnimation = true;
+    animationObjectToKill = objectName;
+    
+    //cancelAnimationFrame(requestId);
 }
 
 function pauseAnimation(aniObject) {
     
    if(aniObject.object.className.indexOf('manipulationObject center move') > -1)
    {
-       
        aniObject.object.style.WebkitAnimationPlayState = 'paused';
-       //aniObject.object.className = 'manipulationObject center';//aniObject.object.className + ' paused';
    }
 }
 
@@ -277,9 +294,7 @@ function resumeAnimation(aniObject) {
     
     if(aniObject.object.className.indexOf('manipulationObject center move') > -1)
     {
-        
         aniObject.object.style.WebkitAnimationPlayState = 'running';
-        //aniObject.object.className = 'manipulationObject center';//aniObject.object.className + ' paused';
     }
 }
 
@@ -380,6 +395,14 @@ function cheer(aniObject) {
 }
 
 function floatAnim(aniObject) {
+    
+    if(animationObjectToKill != "null")
+    {
+        console.log(animationObjectToKill + " : " + aniObject.object.id +" : "+ killAnimation + " : " + (animationObjectToKill.indexOf(aniObject.object.id) > -1));
+    }
+    
+    if(!(killAnimation && (animationObjectToKill.indexOf(aniObject.object.id) > -1)))
+    {
     //alert("Floating");
     
     //for (var i=0; i<animatingObjects.length; i++) {
@@ -389,8 +412,6 @@ function floatAnim(aniObject) {
     aniObject.vx += aniObject.ax;
     aniObject.vy += aniObject.ay;
     //velocity.limit(maxspeed);
-    //console.log("Speed X: " + Math.max(aniObject.vx, maxSpeed));
-    //console.log("Speed Y: " + Math.max(aniObject.vy, maxSpeed));
     //location.add(velocity);
     aniObject.x += aniObject.vx;
     aniObject.object.style.left = aniObject.x + "px";
@@ -401,6 +422,16 @@ function floatAnim(aniObject) {
     aniObject.ay *= 0;
     checkEdges(aniObject);
     //}
+        
+    requestId = requestAnimationFrame(function() { animFrame(aniObject); }, canvas);
+    }
+    else
+    {
+        console.log("kills float animation");
+        //reset
+        killAnimation = false;
+        animationObjectToKill = "null";
+    }
 }
 
 

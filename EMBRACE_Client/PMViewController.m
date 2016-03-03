@@ -542,6 +542,7 @@ BOOL wasPathFollowed = false;
  */
 -(void) loadPage {
     NSURL* baseURL = [NSURL fileURLWithPath:[book getHTMLURL]];
+    animatingObjects = [[NSMutableDictionary alloc] init];
     
     if(baseURL == nil)
         NSLog(@"did not load baseURL");
@@ -1059,8 +1060,7 @@ BOOL wasPathFollowed = false;
             NSString *animate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", object1Id, adjLocation.x, adjLocation.y, waypointLocation.x, waypointLocation.y, action, areaId];
             [bookView stringByEvaluatingJavaScriptFromString:animate];
             
-            animatingObjects = [[NSMutableDictionary alloc] init];
-            [animatingObjects setObject:@YES forKey:object1Id];
+            [animatingObjects setObject:[NSString stringWithFormat:@"%@,%@,%@", @"animate", action, areaId] forKey:object1Id];
         }
     }
 }
@@ -1771,8 +1771,6 @@ BOOL wasPathFollowed = false;
             //if it's an image that can be moved, then start moving it.
             if(imageAtPoint != nil && !stepsComplete) {
                 
-                
-                
                 //add logging: began object move ?
                 
                 movingObject = TRUE;
@@ -1798,15 +1796,26 @@ BOOL wasPathFollowed = false;
                 //Record the starting location of the object when it is selected
                 startLocation = CGPointMake(location.x - delta.x, location.y - delta.y);
                 
-                if ([animatingObjects objectForKey:imageAtPoint] && [[animatingObjects objectForKey:imageAtPoint]  isEqual: @YES]) {
+                if ([animatingObjects objectForKey:imageAtPoint] && [[animatingObjects objectForKey:imageAtPoint] containsString: @"animate"]) {
+                    
+                    NSArray *animation = [[animatingObjects objectForKey:imageAtPoint] componentsSeparatedByString: @","];
+                    NSString *animationType = animation[1];
+                    NSString *animationAreaId = animation[2];
+                    
+                    if ([animationType containsString:@"move"]) {
+                        NSString *pauseAnimate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"pauseAnimation", @""];
+                        [bookView stringByEvaluatingJavaScriptFromString:pauseAnimate];
+                    }
+                    else
+                    {
+                    
                     //Call the cancelAnimation function in the js file.
                     NSString *cancelAnimate = [NSString stringWithFormat:@"cancelAnimation('%@')", imageAtPoint];
                     [bookView stringByEvaluatingJavaScriptFromString:cancelAnimate];
                     
-                    NSString *pauseAnimate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"pauseAnimation", @""];
-                    [bookView stringByEvaluatingJavaScriptFromString:pauseAnimate];
+                    }
                     
-                    [animatingObjects setObject:@NO forKey:imageAtPoint];
+                    [animatingObjects setObject:[NSString stringWithFormat:@"%@,%@,%@", @"pause", animationType, animationAreaId]  forKey:imageAtPoint];
                 }
             }
         }
@@ -1883,27 +1892,13 @@ BOOL wasPathFollowed = false;
                             
                             //If the correct object was tapped, swap its image and increment the step
                             if ([self checkSolutionForSubject:movingObjectId]) {
+                                [animatingObjects setObject:@"stop" forKey:movingObjectId];
                                 [self incrementCurrentStep];
                             }
                             //reset object location
                             else
                             {
-                                if (allowSnapback) {
-                                    //Snap the object back to its original location
-                                    [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
-                                    
-                                    // If it was an animation object, animate it again after snapping back
-                                    if ([animatingObjects objectForKey:movingObjectId] && [previousStep isEqualToString:@"animate"]) {
-                                        //Call the animateObject function in the js file.
-                                        NSString *animate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"floatAnimation", @""];
-                                        [bookView stringByEvaluatingJavaScriptFromString:animate];
-                                        
-                                        NSString *resumeAnimate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"resumeAnimation", @""];
-                                        [bookView stringByEvaluatingJavaScriptFromString:resumeAnimate];
-                                        
-                                        [animatingObjects setObject:@YES forKey:movingObjectId];
-                                    }
-                                }
+                                [self resetObjectLocation];
                             }
                             
                             //gets hotspot id for logging
@@ -1931,32 +1926,17 @@ BOOL wasPathFollowed = false;
                                 [[pageStatistics objectForKey:currentPageId] addErrorForComplexity:(currentComplexity - 1)];
                             }
                             
-                            if (allowSnapback) {
-                                //Snap the object back to its original location
-                                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
-                                
-                                // If it was an animation object, animate it again after snapping back
-                                if ([animatingObjects objectForKey:movingObjectId] && [previousStep isEqualToString:@"animate"]) {
-                                    //Call the animateObject function in the js file.
-                                    NSString *animate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"floatAnimation", @""];
-                                    [bookView stringByEvaluatingJavaScriptFromString:animate];
-                                    
-                                    NSString *resumeAnimate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"resumeAnimation", @""];
-                                    [bookView stringByEvaluatingJavaScriptFromString:resumeAnimate];
-                                    
-                                    [animatingObjects setObject:@YES forKey:movingObjectId];
-                                }
-                            }
+                            [self resetObjectLocation];
+                            
                         }
                     }
                     else if ([[currSolStep stepType] isEqualToString:@"shakeOrTap"]) {
                         if(([[currSolStep object1Id] isEqualToString:movingObjectId]) && ([self areHotspotsInsideArea] || [self isHotspotInsideLocation])) {
-                            if (allowSnapback) {
-                                //Snap the object back to its original location
-                                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
-                                //if incorrect location reset object to beginning of gesture
-                                
-                            }
+                            
+                            [animatingObjects setObject:@"stop" forKey:movingObjectId];
+                            
+                            [self resetObjectLocation];
+                            
                             [self incrementCurrentStep];
                         }
                         else {
@@ -1971,16 +1951,12 @@ BOOL wasPathFollowed = false;
                             [self.playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                             //[self playErrorNoise];
                             
-                            if (allowSnapback) {
-                                //Snap the object back to its original location
-                                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
-                                //if incorrect location reset object to beginning of gesture
-                                
-                            }
+                            [self resetObjectLocation];
                         }
                     }
                     else if ([[currSolStep stepType] isEqualToString:@"checkPath"]) {
                         if(/*[self isHotspotInsideLocation] &&*/ wasPathFollowed) {
+                            [animatingObjects setObject:@"stop" forKey:movingObjectId];
                             [self incrementCurrentStep];
                         }
                         else {
@@ -1995,12 +1971,8 @@ BOOL wasPathFollowed = false;
                             //[self.playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentStep];
                             //[self playErrorNoise];
                             
-                            if (allowSnapback) {
-                                //Snap the object back to its original location
-                                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
-                                //if incorrect location reset object to beginning of gesture
-                                
-                            }
+                            [self resetObjectLocation];
+                            
                         }
                     }
                     else {
@@ -2028,11 +2000,7 @@ BOOL wasPathFollowed = false;
                                 [self.playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                                 //[self playErrorNoise];
                                 
-                                if (allowSnapback) {
-                                    //Snap the object back to its original location
-                                    [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
-                                    //wrong because two objects cant interact with each other reset object
-                                }
+                                [self resetObjectLocation];
                                 
                                 if (conditionSetup.appMode == ITS) {
                                     //Record error for complexity
@@ -2091,10 +2059,7 @@ BOOL wasPathFollowed = false;
                             [self.playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                             //[self playErrorNoise];
                             
-                            if (allowSnapback) {
-                                //Snap the object back to its original location
-                                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
-                            }
+                            [self resetObjectLocation];
                         }
                     }
                 }
@@ -2163,6 +2128,40 @@ BOOL wasPathFollowed = false;
                     }
                 }
             }
+        }
+    }
+}
+
+-(void)resetObjectLocation{
+    if (allowSnapback) {
+        
+        //Snap the object back to its original location
+        [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
+        
+        // If it was an animation object, animate it again after snapping back
+        //if ([animatingObjects objectForKey:movingObjectId] && [previousStep isEqualToString:@"animate"]) {
+        if ([animatingObjects objectForKey:movingObjectId] && [[animatingObjects objectForKey:movingObjectId] containsString: @"pause"])
+        {
+            
+            NSArray *animation = [[animatingObjects objectForKey:movingObjectId] componentsSeparatedByString: @","];
+            NSString *animationType = animation[1];
+            NSString *animationAreaId = animation[2];
+            
+            if ([animationType containsString:@"move"]) {
+                NSString *resumeAnimate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"resumeAnimation", @""];
+                [bookView stringByEvaluatingJavaScriptFromString:resumeAnimate];
+            }
+            else
+            {
+            
+            //Call the animateObject function in the js file.
+            NSString *animate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, animationType, animationAreaId];
+            [bookView stringByEvaluatingJavaScriptFromString:animate];
+            
+            }
+            
+            
+            [animatingObjects setObject:[NSString stringWithFormat:@"%@,%@,%@", @"animate", animationType, animationAreaId]  forKey:movingObjectId];
         }
     }
 }
