@@ -512,6 +512,7 @@ BOOL wasPathFollowed = false;
  */
 - (void)loadPage {
     NSURL *baseURL = [NSURL fileURLWithPath:[book getHTMLURL]];
+    animatingObjects = [[NSMutableDictionary alloc] init];
     
     if (baseURL == nil)
         NSLog(@"did not load baseURL");
@@ -1717,22 +1718,7 @@ BOOL wasPathFollowed = false;
                             }
                             //Reset object location
                             else {
-                                if (allowSnapback) {
-                                    //Snap the object back to its original location
-                                    [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false :@"None"];
-                                    
-                                    //If it was an animation object, animate it again after snapping back
-                                    if ([animatingObjects objectForKey:movingObjectId] && [previousStep isEqualToString:@"animate"]) {
-                                        //Call the animateObject function in the js file.
-                                        NSString *animate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"floatAnimation", @""];
-                                        [bookView stringByEvaluatingJavaScriptFromString:animate];
-                                        
-                                        NSString *resumeAnimate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"resumeAnimation", @""];
-                                        [bookView stringByEvaluatingJavaScriptFromString:resumeAnimate];
-                                        
-                                        [animatingObjects setObject:@YES forKey:movingObjectId];
-                                    }
-                                }
+                                [self resetObjectLocation];
                             }
                             
                             //Gets hotspot id for logging
@@ -1757,31 +1743,15 @@ BOOL wasPathFollowed = false;
                                 [[pageStatistics objectForKey:currentPageId] addErrorForComplexity:(currentComplexity - 1)];
                             }
                             
-                            if (allowSnapback) {
-                                //Snap the object back to its original location
-                                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false :@"None"];
-                                
-                                //If it was an animation object, animate it again after snapping back
-                                if ([animatingObjects objectForKey:movingObjectId] && [previousStep isEqualToString:@"animate"]) {
-                                    //Call the animateObject function in the js file.
-                                    NSString *animate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"floatAnimation", @""];
-                                    [bookView stringByEvaluatingJavaScriptFromString:animate];
-                                    
-                                    NSString *resumeAnimate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, @"resumeAnimation", @""];
-                                    [bookView stringByEvaluatingJavaScriptFromString:resumeAnimate];
-                                    
-                                    [animatingObjects setObject:@YES forKey:movingObjectId];
-                                }
-                            }
+                            [self resetObjectLocation];
+                            
                         }
                     }
                     else if ([[currSolStep stepType] isEqualToString:@"shakeOrTap"]) {
                         if (([[currSolStep object1Id] isEqualToString:movingObjectId]) && ([self areHotspotsInsideArea] || [self isHotspotInsideLocation])) {
-                            if (allowSnapback) {
-                                //Snap the object back to its original location
-                                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
-                            }
                             
+                            [animatingObjects setObject:@"stop" forKey:movingObjectId];
+                            [self resetObjectLocation];
                             [self incrementCurrentStep];
                         }
                         else {
@@ -1794,21 +1764,16 @@ BOOL wasPathFollowed = false;
                             
                             [self.playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
                             
-                            if (allowSnapback) {
-                                //Snap the object back to its original location
-                                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false :@"None"];
-                            }
+                            [self resetObjectLocation];
                         }
                     }
                     else if ([[currSolStep stepType] isEqualToString:@"checkPath"]) {
                         if (wasPathFollowed) {
+                            [animatingObjects setObject:@"stop" forKey:movingObjectId];
                             [self incrementCurrentStep];
                         }
                         else {
-                            if (allowSnapback) {
-                                //Snap the object back to its original location
-                                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false :@"None"];
-                            }
+                            [self resetObjectLocation];
                         }
                     }
                     else {
@@ -1833,10 +1798,7 @@ BOOL wasPathFollowed = false;
                                 
                                 [self.playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
                                 
-                                if (allowSnapback) {
-                                    //Snap the object back to its original location
-                                    [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false :@"None"];
-                                }
+                                [self resetObjectLocation];
                                 
                                 if (conditionSetup.appMode == ITS) {
                                     //Record error for complexity
@@ -1947,6 +1909,25 @@ BOOL wasPathFollowed = false;
                     }
                 }
             }
+        }
+    }
+}
+
+- (void)resetObjectLocation {
+    if (allowSnapback) {
+        //Snap the object back to its original location
+        [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false :@"None"];
+        
+        //If it was an animation object, animate it again after snapping back
+        if ([animatingObjects objectForKey:movingObjectId] && [[animatingObjects objectForKey:movingObjectId] containsString: @"pause"]) {
+            NSArray *animation = [[animatingObjects objectForKey:movingObjectId] componentsSeparatedByString: @","];
+            NSString *animationType = animation[1];
+            NSString *animationAreaId = animation[2];
+            
+            NSString *resumeAnimate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, animationType, animationAreaId];
+            [bookView stringByEvaluatingJavaScriptFromString:resumeAnimate];
+           
+            [animatingObjects setObject:[NSString stringWithFormat:@"%@,%@,%@", @"animate", animationType, animationAreaId]  forKey:movingObjectId];
         }
     }
 }
@@ -4351,6 +4332,12 @@ BOOL wasPathFollowed = false;
     }
     else if ([currentPageId rangeOfString:@"-Intro"].location != NSNotFound) {
         if (currentSentence > totalSentences) {
+            [_audioPlayer stop];
+            currentSentence = 1;
+            [self loadNextPage];
+        }
+        else if (currentSentence == totalSentences &&
+                 [bookTitle rangeOfString:@"Introduction to EMBRACE - Unknown"].location != NSNotFound) {
             [_audioPlayer stop];
             currentSentence = 1;
             [self loadNextPage];
