@@ -202,8 +202,6 @@
 - (IBAction)playErrorNoise:(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber {
    
     AudioServicesPlaySystemSound(1053);
-    
-    [[ServerCommunicationController sharedManager] logComputerPlayAudio:@"Play Error Audio" :@"NULL" :@"Error Noise" :storyName :chapterFilePath :pageFilePath :sentenceNumber :sentenceText :stepNumber :ideaNumber];
 }
 
 - (void)textToSpeech:(NSString *)text {

@@ -60,16 +60,16 @@
                 GDataXMLElement *readerElement = [[modeElement elementsForName:@"reader"] objectAtIndex:0];
                 NSString *readerString = readerElement.stringValue;
                 
-                Reader reader;
+                Actor reader;
                 
                 if ([readerString isEqualToString:@"System"]) {
-                    reader = SYSTEM_READER;
+                    reader = SYSTEM;
                 }
                 else if ([readerString isEqualToString:@"User"]) {
-                    reader = USER_READER;
+                    reader = USER;
                 }
                 else {
-                    reader = SYSTEM_READER; //default reader
+                    reader = SYSTEM; //default reader
                 }
                 
                 //Get language

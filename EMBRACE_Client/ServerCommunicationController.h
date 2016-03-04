@@ -14,77 +14,64 @@
 #import "DDXMLElementAdditions.h"
 #import "DDXMLPrivate.h"
 #import "NSString+DDXML.h"
+#import "ConditionSetup.h"
 #import "Student.h"
 #import "Progress.h"
-
-typedef enum LogAction {
-    COMPUTER_ACTION,
-    USER_ACTION
-} LogAction;
+#import "ManipulationContext.h"
+#import "AssessmentContext.h"
 
 @interface ServerCommunicationController : UIViewController
 
 + (id)sharedManager;
 
-# pragma mark - General stuff
+# pragma mark - Logging
 
 - (BOOL)writeLogFile;
 
-# pragma mark - Logging for context
+# pragma mark - Logging (Context)
 
-// TODO: Instead of passing so many parameters for logging context, we should create a new class (or at the very least a dictionary) to store those variables and pass an instance of that class instead.
+- (void)setStudyContext:(Student *)student;
 
-- (void)setContext:(Student *)student;
+# pragma mark - Logging (General)
 
-# pragma mark - Logging for actions
+- (void)logPressLoginOrLogout:(BOOL)newSession atTime:(NSString *)timestamp;
+- (void)logPressBooksAtTime:(NSString *)timestamp;
+- (void)logLoadBook:(NSString *)bookTitle atTime:(NSString *)timestamp;
+- (void)logLoadChapter:(NSString *)chapterTitle atTime:(NSString *)timestamp;
 
-# pragma mark Computer Actions
+# pragma mark - Logging (Manipulation)
 
-- (void)logComputerMoveObject:(NSString *)movingObjectID :(NSString *)waypointID :(float)startPosX :(float)startPosY :(float)endPosX :(float)endPosY :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
-- (void)logComputerResetObject:(NSString *)objectID :(float)startPosX :(float)startPosY :(float)endPosX :(float)endPosY :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
-// TODO: This function is both appear and disappear. Rename accordingly.
-- (void)logComputerDisappearObject:(NSString *)interactionType :(NSString *)objectID :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
-- (void)logComputerSwapImage:(NSString *)objectID :(NSString *)swapImageID :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
-// TODO: This function is not just for grouping objects. Rename accordingly.
-- (void)logComputerGroupObjects:(NSString *)interactionType :(NSString *)object1ID :(NSString *)object2ID :(NSString *)groupingLocation :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
-- (void)logComputerVerification:(NSString *)actionType :(BOOL)verification :(NSString *)objectSelected :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
-- (void)logComputerPlayAudio:(NSString *)computerAction :(NSString *)languageType :(NSString *)audioFileName :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
-- (void)logComputerDisplayMenuItems:(NSArray *)menuInteractions :(NSArray *)menuImages :(NSArray*)menuRelationships :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
+- (void)logMoveObject:(NSString *)object toDestination:(NSString *)destination ofType:(NSString *)destinationType startPos:(CGPoint)start endPos:(CGPoint)end performedBy:(Actor)actor context:(ManipulationContext *)context;
+- (void)logComputerGroupOrUngroupObjects:(NSString *)object1 object2:(NSString *)object2 ofType:(NSString *)interactionType hotspot:(NSString *)hotspot :(ManipulationContext *)context;
+- (void)logDisplayMenuWithInteractions:(NSArray *)interactions objects:(NSArray *)objects relationships:(NSArray*)relationships context:(ManipulationContext *)context;
+- (void)logSelectMenuItemAtIndex:(int)index interactions:(NSArray *)interactions objects:(NSArray *)objects relationships:(NSArray *)relationships context:(ManipulationContext *)context;
+- (void)logVerification:(BOOL)verification forAction:(NSString *)action context:(ManipulationContext *)context;
+- (void)logResetObject:(NSString *)object startPos:(CGPoint)start endPos:(CGPoint)end context:(ManipulationContext *)context;
+- (void)logAppearOrDisappearObject:(NSString *)object ofType:(NSString *)objectType context:(ManipulationContext *)context;
+- (void)logSwapImageForObject:(NSString *)object altImage:(NSString *)image context:(ManipulationContext *)context;
+- (void)logTapWord:(NSString *)word :(ManipulationContext *)context;
+- (void)logPlayManipulationAudio:(NSString *)audioName inLanguage:(NSString *)language ofType:(NSString *)audioType :(ManipulationContext *)context;
 
-#pragma mark User Actions
+# pragma mark Navigation
 
-- (void)logUserMoveObject:(NSString *)moveType :(NSString *)movingObjectID :(NSString *)collisionObjectOrLocationID :(float)startPosX :(float)startPosY :(float)endPosX :(float)endPosY :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
-- (void)logUserSelectMenuItem:(int)selectedMenuItemID :(NSArray *)menuInteractions :(NSArray *)menuImages :(NSArray *)menuRelationships :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
-- (void)logUserTapWord:(NSString *)selectedWord :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
-- (void)logUserEmergencyNext:(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
+- (void)logPressNextInManipulationActivity:(ManipulationContext *)context;
+- (void)logEmergencySwipe:(ManipulationContext *)context;
+- (void)logLoadStep:(NSInteger)stepNumber ofType:(NSString *)stepType context:(ManipulationContext *)context;
+- (void)logLoadSentence:(NSInteger)sentenceNumber withText:(NSString *)sentenceText context:(ManipulationContext *)context;
+- (void)logLoadPage:(NSString *)page context:(ManipulationContext *)context;
 
-#pragma mark - Logging for navigation
+# pragma mark - Logging (Assessment)
 
-#pragma mark Computer Navigation
+- (void)logDisplayAssessmentQuestion:(NSString *)questionText withOptions:(NSArray*)answerOptions context:(AssessmentContext *)context;
+- (void)logSelectAssessmentAnswer:(NSString *)selectedAnswer context:(AssessmentContext *)context;
+- (void)logVerification:(BOOL)verification forAssessmentAnswer:(NSString *)answer context:(AssessmentContext *)context;
+- (void)logPlayAssessmentAudio:(NSString *)audioName inLanguage:(NSString *)language ofType:(NSString *)audioType :(AssessmentContext *)context;
 
-// TODO: It might make more sense to rename these functions to a general "logNextStepNavigation"
+# pragma mark Navigation
 
-- (void)logNextStepNavigation:(NSInteger)nextStepNumber :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
-- (void)logNextSentenceNavigation:(NSInteger)nextSentenceNumber :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
-- (void)logNextPageNavigation:(NSString *)nextPage :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
-- (void)logNextChapterNavigation:(NSString *)computerAction :(NSString *)nextChapter :(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
-
-#pragma mark User Navigation
-
-- (void)logUserPressNext:(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber;
-
-#pragma mark - Logging for assessment activities
-
-#pragma mark Computer Actions
-
-- (void)logComputerLoadNextAssessmentStep:(NSString *)computerAction :(NSString *)currAssessmentStep :(NSString *)nextAssessmentStep :(NSString *)storyName :(NSString *)chapterName;
-- (void)logComputerAssessmentAnswerVerification:(BOOL)verification :(NSString *)answerSelected :(NSString *)storyName :(NSString *)chapterName :(NSString *)currentAssessmentStep;
-- (void)logComputerDisplayAssessment:(NSString *)questionText :(NSArray*)answerOptions :(NSString *)computerAction :(NSString *)storyName :(NSString *)chapterName :(NSString *)currentAssessmentStep;
-
-#pragma mark User Actions
-
-- (void)logUserAssessmentTapNext:(NSString *)storyName :(NSString *)chapterName :(NSString *)currentAssessmentStep;
-- (void)logUserAssessmentTapAnswerOption:(NSString *)questionText :(NSArray*)answerOptions :(NSString *)selectedAnswer :(NSString *)storyName :(NSString *)chapterName :(NSString *)currentAssessmentStep;
+- (void)logTapAssessmentAudioButton:(NSString *)buttonName buttonType:(NSString *)type context:(AssessmentContext *)context;
+- (void)logPressNextInAssessmentActivity:(AssessmentContext *)context;
+- (void)logLoadAssessmentStep:(NSString *)assessmentStep ofType:(NSString *)assessemntStepType context:(AssessmentContext *)context;
 
 #pragma mark - Saving/loading progress files
 

@@ -17,6 +17,7 @@
 #import "IntroductionViewController.h"
 #import "Statistics.h"
 #import "LibraryViewController.h"
+#import "ManipulationContext.h"
 
 @interface PMViewController () {
     NSString *currentPage; //Current page being shown, so that the next page can be requested
@@ -469,9 +470,6 @@ BOOL wasPathFollowed = false;
     [IntroductionClass loadFirstPageIntroduction:model :chapterTitle];
     
     [self loadPage];
-    
-    // Log that first page was loaded for the new chapter.
-    [[ServerCommunicationController sharedManager] logNextChapterNavigation:@"Load First Page" :chapterTitle :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
 }
 
 /*
@@ -485,9 +483,6 @@ BOOL wasPathFollowed = false;
     
     //No more pages in chapter
     if (currentPage == nil) {
-        //Log that chapter has been completed
-        [[ServerCommunicationController sharedManager] logNextChapterNavigation:@"Load Next Page | Chapter Finished" :@"NULL" :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
-        
         if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"] || [chapterTitle isEqualToString:@"Introduction to The House"]) {
             //Set introduction as completed
             [[(LibraryViewController *)libraryViewController studentProgress] setStatusOfChapter:chapterTitle :COMPLETED fromBook:[bookTitle stringByReplacingOccurrencesOfString:@" - Unknown-1" withString:@""]];
@@ -500,9 +495,6 @@ BOOL wasPathFollowed = false;
         }
     }
     else {
-        // Log will treat the current page as the "next page" and the previous page as the "current page"
-        [[ServerCommunicationController sharedManager] logNextPageNavigation:currentPage :bookTitle :chapterTitle :previousPage :currentSentence :currentSentenceText :currentStep :currentIdea];
-        
         [self loadPage];
     }
 }
@@ -692,10 +684,7 @@ BOOL wasPathFollowed = false;
     if (currentStep < numSteps) {
         NSInteger prevStep = currentStep; //store previous step number
         currentStep++;
-        
-        //Log will treat the current step as the "next step" and the previous step as the "current step"
-        [[ServerCommunicationController sharedManager] logNextStepNavigation:currentStep :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :prevStep :currentIdea];
-        
+
         [self performAutomaticSteps]; //automatically perform ungroup or move steps if necessary
         
     }
@@ -1041,8 +1030,6 @@ BOOL wasPathFollowed = false;
  */
 - (IBAction)playErrorNoise {
     AudioServicesPlaySystemSound(1053);
-    
-    [[ServerCommunicationController sharedManager] logComputerPlayAudio:@"Play Error Noise" :@"NULL" :@"Error Noise" :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
 }
 
 /*
@@ -1118,9 +1105,7 @@ BOOL wasPathFollowed = false;
                 
                 [menuItemRelationships addObject:tempMenuRelationship.action];
             }
-            
-            [[ServerCommunicationController sharedManager] logUserSelectMenuItem:menuItem :menuItemInteractions :menuItemImages :menuItemRelationships :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText:currentStep :currentIdea];
-            
+
             [self checkSolutionForInteraction:interaction]; //check if selected interaction is correct
             
             if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && (IntroductionClass.allowInteractions)) {
@@ -1237,9 +1222,6 @@ BOOL wasPathFollowed = false;
             [[pageStatistics objectForKey:currentPageId] addVocabTapForComplexity:(currentComplexity - 1)];
         }
         
-        //This logs any tap on any words even if they are not audible, it logs taps on sentences
-        [[ServerCommunicationController sharedManager] logUserTapWord:sentenceText :bookTitle :chapterTitle :currentPage :currentSentence : currentSentenceText :currentStep :currentIdea];
-        
         //Convert to lowercase so the sentence text can be mapped to objects
         sentenceText = [sentenceText lowercaseString];
         NSString *englishSentenceText = sentenceText;
@@ -1255,9 +1237,7 @@ BOOL wasPathFollowed = false;
             if (([[IntroductionClass.performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] &&
                 [englishSentenceText isEqualToString:[IntroductionClass.performedActions objectAtIndex:INPUT]])) {
                 [self.playaudioClass playAudioFile: self: [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]];
-                
-                [[ServerCommunicationController sharedManager] logComputerPlayAudio:@"Play Word" :IntroductionClass.languageString :[NSString stringWithFormat:@"%@%@.m4a", englishSentenceText, IntroductionClass.languageString] :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
-                
+
                 [self highlightObject:englishSentenceText:1.5];
                 
                 //Bypass the image-tap steps which are found after each word-tap step on the metadata
@@ -1320,8 +1300,6 @@ BOOL wasPathFollowed = false;
     if ((conditionSetup.language == BILINGUAL) && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
         //Play word audio Sp
         [self.playaudioClass playAudioInSequence:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"]:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
-        
-        [[ServerCommunicationController sharedManager] logComputerPlayAudio:@"Play Word" :@"S" :[NSString stringWithFormat:@"%@%@.m4a", englishSentenceText, IntroductionClass.languageString] :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
     }
     else if (conditionSetup.language == BILINGUAL) {
         NSString *spanishAudio = [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"];
@@ -1333,8 +1311,6 @@ BOOL wasPathFollowed = false;
         
         //Play word audio Sp
         [self.playaudioClass playAudioInSequence:self:engAudio:spanishAudio];
-        
-        [[ServerCommunicationController sharedManager] logComputerPlayAudio:@"Play Word" :@"S" :[NSString stringWithFormat:@"%@%@.m4a", englishSentenceText, IntroductionClass.languageString] :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
     }
     else {
         //Play En audio twice
@@ -1344,8 +1320,6 @@ BOOL wasPathFollowed = false;
             //if error try mp3 format
             [self.playaudioClass playAudioInSequence:self:[NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"_def_E"]:[NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"_def_E"]];
         }
-        
-        [[ServerCommunicationController sharedManager] logComputerPlayAudio:@"Play Word" :@"E" :[NSString stringWithFormat:@"%@%@.m4a", englishSentenceText, IntroductionClass.languageString] :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
     }
     
     //Revert the carbon dioxide name for highlighting
@@ -1357,8 +1331,6 @@ BOOL wasPathFollowed = false;
 }
 
 - (void)playIntroVocabWord:(NSString *)sentenceText :(NSString *)englishSentenceText :(ActionStep *)currSolStep {
-    [[ServerCommunicationController sharedManager] logComputerPlayAudio:@"Play Word" :IntroductionClass.languageString :[NSString stringWithFormat:@"%@%@.m4a", sentenceText, IntroductionClass.languageString] :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
-    
     if (conditionSetup.language == ENGLISH) {
         //Play En audio twice
         bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
@@ -1451,8 +1423,6 @@ BOOL wasPathFollowed = false;
     
     //Perform steps only if they exist for the sentence and have not been completed
     else if (numSteps > 0 && !stepsComplete && conditionSetup.condition == EMBRACE && conditionSetup.currentMode == PM_MODE) {
-        [[ServerCommunicationController sharedManager] logUserEmergencyNext:bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
-        
         //Get steps for current sentence
         NSMutableArray *currSolSteps;
         
@@ -1723,18 +1693,10 @@ BOOL wasPathFollowed = false;
                             
                             //Gets hotspot id for logging
                             NSString *locationId = [currSolStep locationId];
-                            
-                            [[ServerCommunicationController sharedManager] logUserMoveObject:@"Move to Hotspot" :movingObjectId :locationId :startLocation.x :startLocation.y :location.x :location.y :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                            
-                            [[ServerCommunicationController sharedManager] logComputerVerification:@"Move to Hotspot" :true :movingObjectId :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
                         }
                         else {
                             //Gets hotspot id for logging
                             NSString *locationId = [currSolStep locationId];
-                            
-                            [[ServerCommunicationController sharedManager] logUserMoveObject:@"Move to Hotspot" :movingObjectId :locationId:startLocation.x :startLocation.y :location.x :location.y :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
-                            
-                            [[ServerCommunicationController sharedManager] logComputerVerification:@"Move to Hotspot" :false : movingObjectId :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
                             
                             [self.playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                             
@@ -1757,10 +1719,6 @@ BOOL wasPathFollowed = false;
                         else {
                             //Gets hotspot id for logging
                             NSString *locationId = [currSolStep locationId];
-
-                            [[ServerCommunicationController sharedManager] logUserMoveObject:@"Move to Hotspot" :movingObjectId :locationId:startLocation.x :startLocation.y :location.x :location.y :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
-                            
-                            [[ServerCommunicationController sharedManager] logComputerVerification:@"Move to Hotspot" :false :movingObjectId :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
                             
                             [self.playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
                             
@@ -1792,10 +1750,6 @@ BOOL wasPathFollowed = false;
                             
                             //No possible interactions were found
                             if ([possibleInteractions count] == 0) {
-                                [[ServerCommunicationController sharedManager] logUserMoveObject:@"Move to Object" :movingObjectId : collisionObjectId:startLocation.x :startLocation.y :location.x :location.y :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
-                                
-                                [[ServerCommunicationController sharedManager] logComputerVerification:@"Move to Object" :false :movingObjectId :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
-                                
                                 [self.playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
                                 
                                 [self resetObjectLocation];
@@ -1808,10 +1762,8 @@ BOOL wasPathFollowed = false;
                             //If only 1 possible interaction was found, go ahead and perform that interaction if it's correct.
                             if ([possibleInteractions count] == 1) {
                                 PossibleInteraction *interaction = [possibleInteractions objectAtIndex:0];
-                                
-                                [[ServerCommunicationController sharedManager] logUserMoveObject:@"Move to Object" :movingObjectId : collisionObjectId :startLocation.x :startLocation.y :location.x :location.y :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
-                                
-                                //checks solution and accomplishes action trace
+
+                                //Checks solution and accomplishes action trace
                                 [self checkSolutionForInteraction:interaction];
                             }
                             //If more than 1 was found, prompt the user to disambiguate.
@@ -1828,16 +1780,10 @@ BOOL wasPathFollowed = false;
                                 //First rank the interactions based on location to story.
                                 [self rankPossibleInteractions:possibleInteractions];
                                 
-                                [[ServerCommunicationController sharedManager] logUserMoveObject:@"Move to Object" :movingObjectId : collisionObjectId :startLocation.x :startLocation.y :location.x :location.y :bookTitle :chapterTitle : currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
-                                
-                                [[ServerCommunicationController sharedManager] logComputerVerification:@"Move to Object" :true :movingObjectId :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
-                                
                                 //Populate the menu data source and expand the menu.
                                 [self populateMenuDataSource:possibleInteractions:allRelationships];
                                 
                                 if (!menuExpanded) {
-                                    [[ServerCommunicationController sharedManager] logComputerVerification:@"Display Menu" :true :movingObjectId :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
-                                    
                                     [self expandMenu];
                                 }
                             }
@@ -2646,8 +2592,6 @@ BOOL wasPathFollowed = false;
             }
             
             [bookView stringByEvaluatingJavaScriptFromString:swapImages];
-            
-            [[ServerCommunicationController sharedManager] logComputerSwapImage:object1Id :action :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
         }
     }
 }
@@ -3248,8 +3192,6 @@ BOOL wasPathFollowed = false;
     
     //Check if selected interaction is correct
     if ([interaction isEqual:correctInteraction]) {
-        [[ServerCommunicationController sharedManager] logComputerVerification:@"Perform Interaction" :true :movingObjectId :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
-        
             if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) {
                 //Remove menu
                 [menu removeFromSuperview];
@@ -3259,9 +3201,7 @@ BOOL wasPathFollowed = false;
                 if (IMViewMenu != nil) {
                     [IMViewMenu removeFromSuperview];
                 }
-            
-                [[ServerCommunicationController sharedManager] logUserPressNext:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-            
+
                 //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
                 if (currentSentence > 0) {
                     currentIdea++;
@@ -3279,8 +3219,6 @@ BOOL wasPathFollowed = false;
                     [self loadNextPage];
                 }
                 else {
-                    [[ServerCommunicationController sharedManager] logNextSentenceNavigation:currentSentence :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
-            
                     [self playCurrentSentenceAudio];
                 }
             }
@@ -3308,18 +3246,12 @@ BOOL wasPathFollowed = false;
         if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
             if ((conditionSetup.language ==ENGLISH) || IntroductionClass.currentIntroStep > IntroductionClass.STEPS_TO_SWITCH_LANGUAGES_EMBRACE) {
                 [self.playaudioClass playAudioFile:self:@"tryAgainE.m4a"];
-                
-                [[ServerCommunicationController sharedManager] logComputerPlayAudio:@"Play Try Again" :@"E" :@"tryAgainE.m4a" :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
             }
             else {
                 [self.playaudioClass playAudioFile:self:@"tryAgainS.m4a"];
-                
-                [[ServerCommunicationController sharedManager] logComputerPlayAudio:@"Play Try Again" :@"S" :@"tryAgainS.m4a" :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
             }
         }
         else {
-            [[ServerCommunicationController sharedManager] logComputerVerification:@"Perform Interaction" :false :movingObjectId :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
-            
             [self.playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
             
             if (conditionSetup.appMode == ITS) {
@@ -3331,8 +3263,6 @@ BOOL wasPathFollowed = false;
         if ([interaction interactionType] != UNGROUP && allowSnapback) {
             //Snap the object back to its original location
             [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false :@"None"];
-            
-            [[ServerCommunicationController sharedManager] logComputerResetObject:movingObjectId  :startLocation.x :startLocation.y :startLocation.x :startLocation.y :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
         }
     }
     
@@ -4020,7 +3950,6 @@ BOOL wasPathFollowed = false;
     
     //Logs only if object is moved by computer action, user pan done outside of this function
     if (![waypointID isEqualToString:@"isMoving"]) {
-        [[ServerCommunicationController sharedManager] logComputerMoveObject:object :waypointID :startLocation.x :startLocation.y :adjLocation.x :adjLocation.y :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
     }
     
     //Call the moveObject function in the js file.
@@ -4043,8 +3972,6 @@ BOOL wasPathFollowed = false;
  */
 - (void)groupObjects:(NSString *)object1 :(CGPoint)object1Hotspot :(NSString *)object2 :(CGPoint)object2Hotspot {
     NSString *groupObjects = [NSString stringWithFormat:@"groupObjectsAtLoc(%@, %f, %f, %@, %f, %f)", object1, object1Hotspot.x, object1Hotspot.y, object2, object2Hotspot.x, object2Hotspot.y];
-    
-    [[ServerCommunicationController sharedManager] logComputerGroupObjects:@"Group Objects" :object1 :object2 :groupObjects :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
     
     //Maintain a list of current groupings, with the subject as a key. Currently only supports two objects
     
@@ -4072,8 +3999,6 @@ BOOL wasPathFollowed = false;
  */
 - (void)ungroupObjects:(NSString *)object1 :(NSString *)object2 {
     NSString *ungroup = [NSString stringWithFormat:@"ungroupObjects(%@, %@)", object1, object2];
-
-    [[ServerCommunicationController sharedManager] logComputerGroupObjects:@"Ungroup Objects" :object1 :object2 :ungroup :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
     
     //Get the current groupings of the objects
     NSMutableArray *object1Groups = [currentGroupings objectForKey:object1];
@@ -4096,9 +4021,7 @@ BOOL wasPathFollowed = false;
  */
 - (void)ungroupObjectsAndStay:(NSString *)object1 :(NSString *)object2 {
     NSString *ungroup = [NSString stringWithFormat:@"ungroupObjectsAndStay(%@, %@)", object1, object2];
-    
-    [[ServerCommunicationController sharedManager] logComputerGroupObjects:@"Ungroup and Stay Objects" :object1 :object2 :ungroup :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
-    
+
     //Get the current groupings of the objects
     NSMutableArray *object1Groups = [currentGroupings objectForKey:object1];
     NSMutableArray *object2Groups = [currentGroupings objectForKey:object2];
@@ -4150,8 +4073,6 @@ BOOL wasPathFollowed = false;
                     //With both hotspot pixel values we can calcuate the distance between the top-left corner of the hidden object and it's hotspot.
                     CGPoint change = [self calculateDeltaForMovingObjectAtPoint:hiddenObjectHotspotLocation];
                     
-                    [[ServerCommunicationController sharedManager] logComputerDisappearObject:@"Appear Object" :disappearingObject :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
-                    
                     //Now move the object taking into account the difference in change.
                     [self moveObject:disappearingObject :appearLocation :change :false :@"None"];
                 }
@@ -4168,9 +4089,6 @@ BOOL wasPathFollowed = false;
     //Otherwise, just make the object disappear
     else {
         NSString *hideObj = [NSString stringWithFormat:@"document.getElementById('%@').style.display = 'none';", disappearingObject];
-        
-        [[ServerCommunicationController sharedManager] logComputerDisappearObject:@"Disappear Object" :disappearingObject :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
-        
         [bookView stringByEvaluatingJavaScriptFromString:hideObj];
     }
 }
@@ -4415,8 +4333,6 @@ BOOL wasPathFollowed = false;
                 [IMViewMenu bringSubviewToFront:IMinstructions];
             }
             else {
-                [[ServerCommunicationController sharedManager] logUserPressNext:bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
-                
                 //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
                 if (currentSentence > 0) {
                     currentIdea++;
@@ -4433,16 +4349,12 @@ BOOL wasPathFollowed = false;
                     //Set up current sentence appearance and solution steps
                     [self setupCurrentSentence];
                     [self colorSentencesUponNext];
-                    
-                    [[ServerCommunicationController sharedManager] logNextSentenceNavigation:currentSentence :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
-                    
-                     [self playCurrentSentenceAudio];
+
+                    [self playCurrentSentenceAudio];
                 }
             }
         }
         else if (stepsComplete || numSteps == 0 || !IntroductionClass.allowInteractions) {
-            [[ServerCommunicationController sharedManager] logUserPressNext:bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
-            
             if (currentSentence > 0) {
                 currentIdea++;
             }
@@ -4472,8 +4384,6 @@ BOOL wasPathFollowed = false;
                 [self setupCurrentSentence];
                 [self colorSentencesUponNext];
                 
-                [[ServerCommunicationController sharedManager] logNextSentenceNavigation:currentSentence :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
-                
                 [self playCurrentSentenceAudio];
             }
         }
@@ -4488,7 +4398,7 @@ BOOL wasPathFollowed = false;
     NSString *sentenceAudioFile = nil;
     
     //Only play sentence audio if system is reading
-    if (conditionSetup.reader == SYSTEM_READER) {
+    if (conditionSetup.reader == SYSTEM) {
         //If we are on the first or second manipulation page of The Contest, play the audio of the current sentence
         if ([chapterTitle isEqualToString:@"The Contest"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
             if ((conditionSetup.language == BILINGUAL)) {
@@ -4994,8 +4904,6 @@ BOOL wasPathFollowed = false;
         
         [menuItemRelationships addObject:tempMenuRelationship.action];
     }
-    
-    [[ServerCommunicationController sharedManager] logComputerDisplayMenuItems:menuItemInteractions :menuItemImages :menuItemRelationships :bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
 }
 
 - (BOOL)webView:(UIWebView *)webView2 shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {

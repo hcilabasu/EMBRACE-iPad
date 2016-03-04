@@ -110,10 +110,6 @@ UIImage *BackgroundImage;   //The background image related to the story
         [self shuffleAnswers];
         
         playAudioFileClass = [[PlayAudioFile alloc]init];
-        
-        //log loading assessment activity
-        [[ServerCommunicationController sharedManager] logComputerDisplayAssessment:Question :AnswerOptions :@"Start Assessment" :BookTitle :ChapterTitle : @"1"];
-        
     }
     return self;
 }
@@ -177,10 +173,6 @@ UIImage *BackgroundImage;   //The background image related to the story
         [AnswerOptions addObject:[currAssessmentActivityStep Answer2]];
         [AnswerOptions addObject:[currAssessmentActivityStep Answer3]];
         [AnswerOptions addObject:[currAssessmentActivityStep Answer4]];
-        
-        //log load next assessment activity step
-        [[ServerCommunicationController sharedManager] logComputerDisplayAssessment:Question :AnswerOptions :@"Display Assessment" :BookTitle :ChapterTitle : [NSString stringWithFormat:@"%d", currentAssessmentActivityStep]];
-        
     }
     //return to the library view
     else
@@ -232,19 +224,12 @@ UIImage *BackgroundImage;   //The background image related to the story
  *  Increments the next question, resets the visual aspects of the question and answer options,
  */
 - (IBAction)NextButtonPressed:(id)sender {
-    
-    //log user pressed next button
-    [[ServerCommunicationController sharedManager] logUserAssessmentTapNext:BookTitle :ChapterTitle :[NSString stringWithFormat:@"%d",  currentAssessmentActivityStep]];
-    
     //Increment the current Assessment activity step
     currentAssessmentActivityStep++;
     
     //if there are more questions
     if(currentAssessmentActivityStep<=totalAssessmentActivitySteps)
     {
-        //Log Automatic computer action: Next Assessment
-        [[ServerCommunicationController sharedManager] logComputerLoadNextAssessmentStep:@"Next Assessment" :[NSString stringWithFormat:@"%d", (currentAssessmentActivityStep - 1)] :[NSString stringWithFormat:@"%d", currentAssessmentActivityStep] :BookTitle :ChapterTitle];
-        
         //Disable next button
         nextButton.hidden = true;
         
@@ -290,17 +275,10 @@ UIImage *BackgroundImage;   //The background image related to the story
         }
         
         [AnswerList reloadData];
-        
-        //log Automatic computer step: Display assessment activity
-        [[ServerCommunicationController sharedManager] logComputerDisplayAssessment:Question :AnswerOptions :@"Display Assessment" :BookTitle :ChapterTitle : [NSString stringWithFormat:@"%d", currentAssessmentActivityStep]];
-        
     }
     //return to the library view
     else
     {
-        //log end of assessment and return to library view
-        [[ServerCommunicationController sharedManager] logComputerLoadNextAssessmentStep:@"End Assessment" :[NSString stringWithFormat:@"%d", (currentAssessmentActivityStep-1)] :@"End of Assessment" :BookTitle :ChapterTitle];
-        
         //Set chapter as completed
         NSRange titleRange = [BookTitle rangeOfString:@" - Unknown"];
         [[(LibraryViewController*) libraryView studentProgress] setStatusOfChapter:ChapterTitle :COMPLETED fromBook:[BookTitle substringToIndex:titleRange.location]];
@@ -351,17 +329,10 @@ UIImage *BackgroundImage;   //The background image related to the story
             AnswerSelection[[indexPath row]] =1;
      
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        
-        //log user pressed answer option
-        [[ServerCommunicationController sharedManager] logUserAssessmentTapAnswerOption:Question :AnswerOptions :cell.textLabel.text :BookTitle :ChapterTitle :[NSString stringWithFormat:@"%d", currentAssessmentActivityStep]];
-        
+
             //checks if option is correct else gray out
             if([cell.textLabel.text isEqualToString: correctSelection])
             {
-                //log correct answer selected
-                [[ServerCommunicationController sharedManager] logComputerAssessmentAnswerVerification:true :cell.textLabel.text :BookTitle :ChapterTitle :[NSString stringWithFormat:@"%d", currentAssessmentActivityStep]];
-                
-                
                 //gray out other options
                 for(int i=0;i<[AnswerOptions count];i++)
                 {
@@ -381,9 +352,6 @@ UIImage *BackgroundImage;   //The background image related to the story
             }
             else
             {
-                //log incorrect answer selected
-                [[ServerCommunicationController sharedManager] logComputerAssessmentAnswerVerification:false :cell.textLabel.text :BookTitle :ChapterTitle :[NSString stringWithFormat:@"%d", currentAssessmentActivityStep]];
-                
                 //gray out option
                 cell.backgroundColor = [UIColor lightGrayColor];
                 cell.backgroundView.alpha = .2;

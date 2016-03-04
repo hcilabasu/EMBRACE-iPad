@@ -147,7 +147,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
     conditionSetup = [ConditionSetup sharedInstance];
     
     if (student != nil) {
-        [[ServerCommunicationController sharedManager] setContext:student];
+        [[ServerCommunicationController sharedManager] setStudyContext:student];
         
         //Set title to display condition and language (e.g., EMBRACE English)
         self.title = [NSString stringWithFormat:@"%@ %@",[conditionSetup returnConditionEnumToString:conditionSetup.condition],[conditionSetup returnLanguageEnumtoString: conditionSetup.language]];
@@ -564,7 +564,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                 if (chapterStatus == COMPLETED) {
                     conditionSetup.condition = CONTROL;
                     conditionSetup.language = ENGLISH;
-                    conditionSetup.reader = USER_READER;
+                    conditionSetup.reader = USER;
                 }
                 else {
                     //Get current mode for chapter
