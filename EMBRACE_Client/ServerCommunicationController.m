@@ -124,7 +124,7 @@ static ServerCommunicationController *sharedInstance = nil;
     if (student != nil) {
         studyContext = [[StudyContext alloc] init];
         
-        studyContext.condition = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"]; //comes from app name
+        studyContext.condition = [[ConditionSetup sharedInstance] returnConditionEnumToString:[[ConditionSetup sharedInstance] condition]];
         studyContext.schoolCode = [student schoolCode];
         studyContext.participantCode = [student participantCode];
         studyContext.studyDay = [student studyDay];
@@ -192,10 +192,9 @@ static ServerCommunicationController *sharedInstance = nil;
  *  <Book_Title>...</Book_Title>
  *  <Chapter_Number>...</Chapter_Number>
  *  <Chapter_Title>...</Chapter_Title>
- *  <Page_Number>...</Page_Number>
- *  <Page_Name>...</Page_Name>
  *  <Page_Language>...</Page_Language>
  *  <Page_Mode>...</Page_Mode>
+ *  <Page_Number>...</Page_Number>
  *  <Sentence_Number>...</Sentence_Number>
  *  <Sentence_Text>...</Sentence_Text>
  *  <Step_Number>...</Step_Number>
@@ -211,19 +210,17 @@ static ServerCommunicationController *sharedInstance = nil;
     DDXMLElement *nodeBookTitle = [DDXMLElement elementWithName:@"Book_Title" stringValue:[context bookTitle]];
     
     //Create nodes for chapter information
-    NSString* chapterTitle = [NSString stringWithFormat:@"%@", [[context chapterTitle] lastPathComponent]];
     DDXMLElement *nodeChapterNumber = [DDXMLElement elementWithName:@"Chapter_Number" stringValue:[NSString stringWithFormat:@"%d", [context chapterNumber]]];
-    DDXMLElement *nodeChapterTitle = [DDXMLElement elementWithName:@"Chapter_Title" stringValue:chapterTitle];
+    DDXMLElement *nodeChapterTitle = [DDXMLElement elementWithName:@"Chapter_Title" stringValue:[context chapterTitle]];
     
     //Create nodes for page information
-    DDXMLElement *nodePageNumber = [DDXMLElement elementWithName:@"Page_Number" stringValue:[NSString stringWithFormat:@"%d", [context pageNumber]]];
-    DDXMLElement *nodePageName = [DDXMLElement elementWithName:@"Page_Name" stringValue:[context pageName]];
     DDXMLElement *nodePageLanguage = [DDXMLElement elementWithName:@"Page_Language" stringValue:[context pageLanguage]];
     DDXMLElement *nodePageMode = [DDXMLElement elementWithName:@"Page_Mode" stringValue:[context pageMode]];
+    DDXMLElement *nodePageNumber = [DDXMLElement elementWithName:@"Page_Number" stringValue:[NSString stringWithFormat:@"%d", [context pageNumber]]];
     
     //Create nodes for sentence information
     DDXMLElement *nodeSentenceNumber = [DDXMLElement elementWithName:@"Sentence_Number" stringValue:[NSString stringWithFormat:@"%d", [context sentenceNumber]]];
-    DDXMLElement *nodeSentenceText = [DDXMLElement elementWithName:@"Sentence_Text" stringValue:[context sentenceText]];
+//    DDXMLElement *nodeSentenceText = [DDXMLElement elementWithName:@"Sentence_Text" stringValue:[context sentenceText]];
     
     //Create nodes for step number and idea number
     DDXMLElement *nodeStepNumber = [DDXMLElement elementWithName:@"Step_Number" stringValue:[NSString stringWithFormat:@"%d", [context stepNumber]]];
@@ -236,12 +233,11 @@ static ServerCommunicationController *sharedInstance = nil;
     [nodeManipulationContext addChild:nodeBookTitle];
     [nodeManipulationContext addChild:nodeChapterNumber];
     [nodeManipulationContext addChild:nodeChapterTitle];
-    [nodeManipulationContext addChild:nodePageNumber];
-    [nodeManipulationContext addChild:nodePageName];
     [nodeManipulationContext addChild:nodePageLanguage];
     [nodeManipulationContext addChild:nodePageMode];
+    [nodeManipulationContext addChild:nodePageNumber];
     [nodeManipulationContext addChild:nodeSentenceNumber];
-    [nodeManipulationContext addChild:nodeSentenceText];
+//    [nodeManipulationContext addChild:nodeSentenceText];
     [nodeManipulationContext addChild:nodeStepNumber];
     [nodeManipulationContext addChild:nodeIdeaNumber];
     [nodeManipulationContext addChild:nodeTimestamp];
@@ -375,43 +371,6 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for input information
     DDXMLElement *nodeButtonType = [DDXMLElement elementWithName:@"Button_Type" stringValue:@"Books"];
-    
-    //Add above nodes to input
-    [nodeInput addChild:nodeButtonType];
-    
-    //Get context
-    DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
-    
-    //Create node for context information
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:YES];
-    
-    //Add above node to context
-    [nodeContext addChild:nodeStudyContext];
-}
-
-/*
- * Logging for when Library button is pressed to return to library view
- */
-- (void)logPressLibrary {
-    userActionID++;
-    
-    //Start with base node for user action
-    DDXMLElement *nodeBaseAction = [self getBaseActionForActor:USER];
-    [study addChild:nodeBaseAction];
-    
-    //Set selection
-    DDXMLElement *nodeSelection = [[nodeBaseAction elementsForName:@"Selection"] objectAtIndex:0];
-    [nodeSelection setStringValue:@"Button"];
-    
-    //Set action
-    DDXMLElement *nodeAction = [[nodeBaseAction elementsForName:@"Action"] objectAtIndex:0];
-    [nodeAction setStringValue:@"Return to Library"];
-    
-    //Get input
-    DDXMLElement *nodeInput = [[nodeBaseAction elementsForName:@"Input"] objectAtIndex:0];
-    
-    //Create nodes for input information
-    DDXMLElement *nodeButtonType = [DDXMLElement elementWithName:@"Button_Type" stringValue:@"Library"];
     
     //Add above nodes to input
     [nodeInput addChild:nodeButtonType];
@@ -1289,11 +1248,11 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for input information
     DDXMLElement *nodeSentenceNumber = [DDXMLElement elementWithName:@"Sentence_Number" stringValue:[NSString stringWithFormat:@"%d", sentenceNumber]];
-    DDXMLElement *nodeSentenceText = [DDXMLElement elementWithName:@"Sentence_Text" stringValue:sentenceText];
+//    DDXMLElement *nodeSentenceText = [DDXMLElement elementWithName:@"Sentence_Text" stringValue:sentenceText];
     
     //Add above nodes to input
     [nodeInput addChild:nodeSentenceNumber];
-    [nodeInput addChild:nodeSentenceText];
+//    [nodeInput addChild:nodeSentenceText];
     
     //Get context
     DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
@@ -1310,7 +1269,7 @@ static ServerCommunicationController *sharedInstance = nil;
 /*
  * Logging for loading a page
  */
-- (void)logLoadPage:(NSString *)page context:(ManipulationContext *)context {
+- (void)logLoadPage:(NSString *)pageLanguage mode:(NSString *)pageMode number:(NSInteger)pageNumber context:(ManipulationContext *)context {
     //Start with base node for system action
     DDXMLElement *nodeBaseAction = [self getBaseActionForActor:SYSTEM];
     [study addChild:nodeBaseAction];
@@ -1327,10 +1286,14 @@ static ServerCommunicationController *sharedInstance = nil;
     DDXMLElement *nodeInput = [[nodeBaseAction elementsForName:@"Input"] objectAtIndex:0];
     
     //Create nodes for input information
-    DDXMLElement *nodePage = [DDXMLElement elementWithName:@"Page" stringValue:page];
+    DDXMLElement *nodePageLanguage = [DDXMLElement elementWithName:@"Page_Language" stringValue:pageLanguage];
+    DDXMLElement *nodePageMode = [DDXMLElement elementWithName:@"Page_Mode" stringValue:pageMode];
+    DDXMLElement *nodePageNumber = [DDXMLElement elementWithName:@"Page_Number" stringValue:[NSString stringWithFormat:@"%d", pageNumber]];
     
     //Add above nodes to input
-    [nodeInput addChild:nodePage];
+    [nodeInput addChild:nodePageLanguage];
+    [nodeInput addChild:nodePageMode];
+    [nodeInput addChild:nodePageNumber];
     
     //Get context
     DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
@@ -1345,6 +1308,45 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Make sure log file is written out at end of page
     [self writeLogFile];
+}
+
+/*
+ * Logging for when Library button is pressed to return to library view
+ */
+- (void)logPressLibrary:(ManipulationContext *)context {
+    userActionID++;
+    
+    //Start with base node for user action
+    DDXMLElement *nodeBaseAction = [self getBaseActionForActor:USER];
+    [study addChild:nodeBaseAction];
+    
+    //Set selection
+    DDXMLElement *nodeSelection = [[nodeBaseAction elementsForName:@"Selection"] objectAtIndex:0];
+    [nodeSelection setStringValue:@"Button"];
+    
+    //Set action
+    DDXMLElement *nodeAction = [[nodeBaseAction elementsForName:@"Action"] objectAtIndex:0];
+    [nodeAction setStringValue:@"Return to Library"];
+    
+    //Get input
+    DDXMLElement *nodeInput = [[nodeBaseAction elementsForName:@"Input"] objectAtIndex:0];
+    
+    //Create nodes for input information
+    DDXMLElement *nodeButtonType = [DDXMLElement elementWithName:@"Button_Type" stringValue:@"Library"];
+    
+    //Add above nodes to input
+    [nodeInput addChild:nodeButtonType];
+    
+    //Get context
+    DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
+    
+    //Create nodes for context information
+    DDXMLElement *nodeManipulationContext = [self getManipulationContext:context];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:NO];
+    
+    //Add above nodes to context
+    [nodeContext addChild:nodeManipulationContext];
+    [nodeContext addChild:nodeStudyContext];
 }
 
 # pragma mark - Logging (Assessment)

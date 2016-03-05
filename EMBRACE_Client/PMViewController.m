@@ -46,6 +46,7 @@
     
     InteractionModel *model;
     ConditionSetup *conditionSetup;
+    ManipulationContext *manipulationContext;
     
     InteractionRestriction useSubject; //Determines which objects the user can manipulate as the subject
     InteractionRestriction useObject; //Determines which objects the user can interact with as the object
@@ -115,6 +116,7 @@ BOOL wasPathFollowed = false;
     [super viewDidLoad];
     
     conditionSetup = [ConditionSetup sharedInstance];
+    manipulationContext = [[ManipulationContext alloc] init];
     
     buildStringClass = [[BuildHTMLString alloc] init];
     playaudioClass = [[PlayAudioFile alloc] init];
@@ -262,11 +264,14 @@ BOOL wasPathFollowed = false;
         NSString *firstSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestFirstSentenceId];
         int firstSentenceIdNumber = [[firstSentenceId substringFromIndex:1] intValue];
         currentSentence = firstSentenceIdNumber;
-        currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",firstSentenceIdNumber]];
+        currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d').innerHTML", currentSentence]];
+        
+        manipulationContext.sentenceNumber = currentSentence;
+        manipulationContext.sentenceText = currentSentenceText;
+//        [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText context:manipulationContext];
         
         //Dynamically reads the vocabulary words on the vocab page and creates and adds solutionsteps
         if ([currentPageId rangeOfString:@"-Intro"].location != NSNotFound) {
-            
             PMSolution = [[PhysicalManipulationSolution alloc] init];
             IMSolution = [[ImagineManipulationSolution alloc] init];
             
@@ -478,7 +483,6 @@ BOOL wasPathFollowed = false;
  * Otherwise, it will load the next chaper.
  */
 - (void)loadNextPage {
-    NSString *previousPage = currentPage; //Store previous page
     currentPage = [book getNextPageForChapterAndActivity:chapterTitle :PM_MODE :currentPage];
     
     //No more pages in chapter
@@ -525,6 +529,9 @@ BOOL wasPathFollowed = false;
     //Set the current page id
     currentPageId = [book getIdForPageInChapterAndActivity:currentPage :chapterTitle :conditionSetup.currentMode];
     
+    [self setManipulationContext];
+//    [[ServerCommunicationController sharedInstance] logLoadPage:[manipulationContext pageLanguage] mode:[manipulationContext pageMode] number:[manipulationContext pageNumber] context:manipulationContext];
+    
     //Get the solutions for the appropriate manipulation activity
     if (conditionSetup.condition == EMBRACE) {
         PhysicalManipulationActivity *PMActivity;
@@ -538,6 +545,7 @@ BOOL wasPathFollowed = false;
             PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
             PMSolution = [[[PMActivity PMSolutions] objectForKey:currentPageId] objectAtIndex:0]; //get PM solution
             currentIdea = [[[PMSolution solutionSteps] objectAtIndex:0] sentenceNumber];
+            manipulationContext.ideaNumber = currentIdea;
         }
         else if (conditionSetup.currentMode == IM_MODE) {
             //Get the IM solution steps for the current chapter
@@ -554,6 +562,7 @@ BOOL wasPathFollowed = false;
  */
 - (void)setupCurrentSentence {
     currentStep = 1;
+    manipulationContext.stepNumber = currentStep;
     stepsComplete = FALSE;
     
     //Get number of steps for current sentence
@@ -597,6 +606,8 @@ BOOL wasPathFollowed = false;
         [self performAutomaticSteps];
     }
     else {
+//        [[ServerCommunicationController sharedInstance] logLoadStep:currentStep ofType:@"NULL" context:manipulationContext];
+        
         stepsComplete = TRUE; //no steps to complete for non-action sentence
     }
     
@@ -682,8 +693,8 @@ BOOL wasPathFollowed = false;
     
     //Check if able to increment current step
     if (currentStep < numSteps) {
-        NSInteger prevStep = currentStep; //store previous step number
         currentStep++;
+        manipulationContext.stepNumber = currentStep;
 
         [self performAutomaticSteps]; //automatically perform ungroup or move steps if necessary
         
@@ -827,7 +838,6 @@ BOOL wasPathFollowed = false;
     
     //Perform steps only if they exist for the sentence
     if (numSteps > 0 && IntroductionClass.allowInteractions) {
-        
         //Get steps for current sentence
         NSMutableArray *currSolSteps;
         
@@ -856,6 +866,8 @@ BOOL wasPathFollowed = false;
         
         //Get current step to be completed
         ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+//        [[ServerCommunicationController sharedInstance] logLoadStep:currentStep ofType:[currSolStep stepType] context:manipulationContext];
         
         //Automatically perform interaction if step is ungroup, move, or swap image
         if (!pinchToUngroup && ([[currSolStep stepType] isEqualToString:@"ungroup"] ||
@@ -1014,13 +1026,14 @@ BOOL wasPathFollowed = false;
 }
 
 /*
- * User pressed Back button. Write log data to file.
+ * User pressed Library button. Write log data to file.
  */
 - (void)viewWillDisappear:(BOOL)animated {
     [self.playaudioClass stopPlayAudioFile];
     [super viewWillDisappear:animated];
     
     if (![[self.navigationController viewControllers] containsObject:self]) {
+//        [[ServerCommunicationController sharedInstance] logPressLibrary:manipulationContext];
         [[ServerCommunicationController sharedInstance] writeLogFile];
     }
 }
@@ -1226,7 +1239,7 @@ BOOL wasPathFollowed = false;
         sentenceText = [sentenceText lowercaseString];
         NSString *englishSentenceText = sentenceText;
         
-        if (conditionSetup.language ==BILINGUAL) {
+        if (conditionSetup.language == BILINGUAL) {
             if (![[self getEnglishTranslation:sentenceText] isEqualToString:@"Translation not found"]) {
                 englishSentenceText = [self getEnglishTranslation:sentenceText];
             }
@@ -1372,6 +1385,10 @@ BOOL wasPathFollowed = false;
         currentSentence++;
         currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence]];
         
+        manipulationContext.sentenceNumber = currentSentence;
+        manipulationContext.sentenceText = currentSentenceText;
+//        [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText context:manipulationContext];
+        
         [self performSelector:@selector(colorSentencesUponNext) withObject:nil afterDelay:([self.playaudioClass audioPlayer].duration)];
     });
 }
@@ -1417,12 +1434,15 @@ BOOL wasPathFollowed = false;
 - (IBAction)swipeGesturePerformed:(UISwipeGestureRecognizer *)recognizer {
     //Emergency swipe to bypass the vocab intros
     if ([IntroductionClass.vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
+//        [[ServerCommunicationController sharedInstance] logEmergencySwipe:manipulationContext];
+        
         [_audioPlayer stop];
         [self loadNextPage];
     }
-    
     //Perform steps only if they exist for the sentence and have not been completed
     else if (numSteps > 0 && !stepsComplete && conditionSetup.condition == EMBRACE && conditionSetup.currentMode == PM_MODE) {
+//        [[ServerCommunicationController sharedInstance] logEmergencySwipe:manipulationContext];
+        
         //Get steps for current sentence
         NSMutableArray *currSolSteps;
         
@@ -1677,9 +1697,6 @@ BOOL wasPathFollowed = false;
                                 }
                             }
                             
-                            //Get the object at this point
-                            NSString *imageAtPoint = [self getObjectAtPoint:location ofType:nil];
-                            
                             //If the correct object was tapped, swap its image and increment the step
                             if ([self checkSolutionForSubject:movingObjectId])
                             {
@@ -1690,14 +1707,8 @@ BOOL wasPathFollowed = false;
                             else {
                                 [self resetObjectLocation];
                             }
-                            
-                            //Gets hotspot id for logging
-                            NSString *locationId = [currSolStep locationId];
                         }
                         else {
-                            //Gets hotspot id for logging
-                            NSString *locationId = [currSolStep locationId];
-                            
                             [self.playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                             
                             if (conditionSetup.appMode == ITS) {
@@ -1717,9 +1728,6 @@ BOOL wasPathFollowed = false;
                             [self incrementCurrentStep];
                         }
                         else {
-                            //Gets hotspot id for logging
-                            NSString *locationId = [currSolStep locationId];
-                            
                             [self.playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentSentenceText :currentStep :currentIdea];
                             
                             [self resetObjectLocation];
@@ -3188,7 +3196,7 @@ BOOL wasPathFollowed = false;
  */
 - (void)checkSolutionForInteraction:(PossibleInteraction *)interaction {
     //Get correct interaction to compare
-    PossibleInteraction*correctInteraction = [self getCorrectInteraction];
+    PossibleInteraction *correctInteraction = [self getCorrectInteraction];
     
     //Check if selected interaction is correct
     if ([interaction isEqual:correctInteraction]) {
@@ -3205,10 +3213,15 @@ BOOL wasPathFollowed = false;
                 //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
                 if (currentSentence > 0) {
                     currentIdea++;
+                    manipulationContext.ideaNumber = currentIdea;
                 }
                 
                 currentSentence++;
-                currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence]];
+                currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d')", currentSentence]];
+                
+                manipulationContext.sentenceNumber = currentSentence;
+                manipulationContext.sentenceText = currentSentenceText;
+//                [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText context:manipulationContext];
             
                 //Set up current sentence appearance and solution steps
                 [self setupCurrentSentence];
@@ -4231,6 +4244,8 @@ BOOL wasPathFollowed = false;
  * is correct, then it will move on to the next sentence. If the manipulation is not current, then feedback will be provided.
  */
 - (IBAction)pressedNext:(id)sender {
+//    [[ServerCommunicationController sharedInstance] logPressNextInManipulationActivity:manipulationContext];
+    
 //    NSString *preAudio = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(preaudio)"]];
     
     if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
@@ -4252,12 +4267,22 @@ BOOL wasPathFollowed = false;
         if (currentSentence > totalSentences) {
             [_audioPlayer stop];
             currentSentence = 1;
+            
+            manipulationContext.sentenceNumber = currentSentence;
+            manipulationContext.sentenceText = currentSentenceText;
+//            [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText context:manipulationContext];
+            
             [self loadNextPage];
         }
         else if (currentSentence == totalSentences &&
                  [bookTitle rangeOfString:@"Introduction to EMBRACE - Unknown"].location != NSNotFound) {
             [_audioPlayer stop];
             currentSentence = 1;
+            
+            manipulationContext.sentenceNumber = currentSentence;
+            manipulationContext.sentenceText = currentSentenceText;
+//            [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText context:manipulationContext];
+            
             [self loadNextPage];
         }
     }
@@ -4336,10 +4361,15 @@ BOOL wasPathFollowed = false;
                 //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
                 if (currentSentence > 0) {
                     currentIdea++;
+                    manipulationContext.ideaNumber = currentIdea;
                 }
                 
                 currentSentence++;
-                currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s", currentSentence]];
+                currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d')", currentSentence]];
+                
+                manipulationContext.sentenceNumber = currentSentence;
+                manipulationContext.sentenceText = currentSentenceText;
+//                [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText context:manipulationContext];
                 
                 //currentSentence is 1 indexed.
                 if (currentSentence > totalSentences) {
@@ -4357,10 +4387,15 @@ BOOL wasPathFollowed = false;
         else if (stepsComplete || numSteps == 0 || !IntroductionClass.allowInteractions) {
             if (currentSentence > 0) {
                 currentIdea++;
+                manipulationContext.ideaNumber = currentIdea;
             }
             
             currentSentence++;
-            currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s", currentSentence]];
+            currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d')", currentSentence]];
+            
+            manipulationContext.sentenceNumber = currentSentence;
+            manipulationContext.sentenceText = currentSentenceText;
+//            [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText context:manipulationContext];
 
             //currentSentence is 1 indexed
             if (currentSentence > totalSentences) {
@@ -4917,6 +4952,26 @@ BOOL wasPathFollowed = false;
     }
     
     return YES;
+}
+
+- (void)setManipulationContext {
+    manipulationContext.bookTitle = [book title];
+    manipulationContext.chapterTitle = chapterTitle;
+    
+    //currentPageId has format "story<chapter number>-<mode>-<page number>" (e.g., "story1-PM-1")
+    NSArray *currentPageIdComponents = [currentPageId componentsSeparatedByString:@"-"];
+    
+    manipulationContext.chapterNumber = [[[currentPageIdComponents objectAtIndex:0] stringByReplacingOccurrencesOfString:@"story" withString:@""] intValue];
+    manipulationContext.pageNumber = [currentPageIdComponents count] == 3 ? [[currentPageIdComponents objectAtIndex:2] intValue] : 0;
+    
+    if ([[currentPageIdComponents objectAtIndex:1] isEqualToString:@"Intro"]) {
+        manipulationContext.pageMode = @"Intro";
+    }
+    else {
+        manipulationContext.pageMode = [conditionSetup currentMode] == PM_MODE ? @"PM" : @"IM";
+    }
+    
+    manipulationContext.pageLanguage = [conditionSetup returnLanguageEnumtoString:conditionSetup.language];
 }
 
 @end

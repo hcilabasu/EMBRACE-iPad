@@ -40,7 +40,6 @@
 - (void)logPressLogin;
 - (void)logPressLogout;
 - (void)logPressBooks;
-- (void)logPressLibrary;
 - (void)logUnlockBook:(NSString *)bookTitle;
 - (void)logUnlockChapter:(NSString *)chapterTitle inBook:(NSString *)bookTitle;
 - (void)logLoadBook:(NSString *)bookTitle;
@@ -65,7 +64,8 @@
 - (void)logEmergencySwipe:(ManipulationContext *)context;
 - (void)logLoadStep:(NSInteger)stepNumber ofType:(NSString *)stepType context:(ManipulationContext *)context;
 - (void)logLoadSentence:(NSInteger)sentenceNumber withText:(NSString *)sentenceText context:(ManipulationContext *)context;
-- (void)logLoadPage:(NSString *)page context:(ManipulationContext *)context;
+- (void)logLoadPage:(NSString *)pageLanguage mode:(NSString *)pageMode number:(NSInteger)pageNumber context:(ManipulationContext *)context;
+- (void)logPressLibrary:(ManipulationContext *)context;
 
 # pragma mark - Logging (Assessment)
 
