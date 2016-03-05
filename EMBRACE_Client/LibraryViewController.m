@@ -15,8 +15,9 @@
 #import "AuthoringModeViewController.h"
 #import "ServerCommunicationController.h"
 #import "ConditionSetup.h"
+#import "Context.h"
 
-@interface LibraryViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout> {
+@interface LibraryViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate> {
     NSMutableArray *bookImages;
     NSMutableArray *bookTitles;
     NSMutableArray *chapterImages;
@@ -147,7 +148,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
     conditionSetup = [ConditionSetup sharedInstance];
     
     if (student != nil) {
-        [[ServerCommunicationController sharedManager] setStudyContext:student];
+        [[ServerCommunicationController sharedInstance] setStudyContext:student];
         
         //Set title to display condition and language (e.g., EMBRACE English)
         self.title = [NSString stringWithFormat:@"%@ %@",[conditionSetup returnConditionEnumToString:conditionSetup.condition],[conditionSetup returnLanguageEnumtoString: conditionSetup.language]];
@@ -155,6 +156,8 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
     else {
         student = [[Student alloc] initWithValues:@"Study Code" :@"Study Day" :@"Experimenter" :@"School Day"];
     }
+    
+//    [[ServerCommunicationController sharedInstance] logPressLoginOrLogout:@"Login" atTime:[Context generateTimestamp]];
     
     //Create ActivitySequenceController
     sequenceController = [[ActivitySequenceController alloc] init];
@@ -168,7 +171,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
     }
     
     //Load progress for student if it exists
-    studentProgress = [[ServerCommunicationController sharedManager] loadProgress:student];
+    studentProgress = [[ServerCommunicationController sharedInstance] loadProgress:student];
     
     //Create new progress for student if needed
     if (studentProgress == nil) {
@@ -197,10 +200,10 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
     
 //    //NOTE: Still testing this functionality
 //    //Download progress file from Dropbox
-//    [[ServerCommunicationController sharedManager] downloadProgressForStudent:student completionHandler:^(BOOL success) {
+//    [[ServerCommunicationController sharedInstance] downloadProgressForStudent:student completionHandler:^(BOOL success) {
 //        if (success) {
 //            //Load progress for student
-//            studentProgress = [[ServerCommunicationController sharedManager] loadProgress:student];
+//            studentProgress = [[ServerCommunicationController sharedInstance] loadProgress:student];
 //            
 //            //Update progress with any new books/chapters that might have been added
 //            [studentProgress addNewContent:books];
@@ -303,7 +306,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
     [self.libraryView reloadSections:[NSIndexSet indexSetWithIndex:0]];
     
     //Save progress to file
-    [[ServerCommunicationController sharedManager] saveProgress:student :studentProgress];
+    [[ServerCommunicationController sharedInstance] saveProgress:student :studentProgress];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -336,7 +339,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
         [destination loadFirstPage];
     }
     
-    //Change the back button so that it doesn't show the LibraryView's title and instead shows "Back"
+    //Change the back button so that it doesn't show the LibraryView's title and instead shows "Library"
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle: @"Library" style: UIBarButtonItemStyleBordered target: nil action: nil];
     [[self navigationItem] setBackBarButtonItem:backButton];
 }
@@ -350,21 +353,28 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
     [self.libraryView reloadSections:[NSIndexSet indexSetWithIndex:0]];
     
     [booksButton setEnabled:FALSE];
+    
+//    [[ServerCommunicationController sharedInstance] logPressBooksAtTime:[Context generateTimestamp]];
 }
 
 /*
  * User pressed Logout button. Writes data to log file and returns to login screen.
  */
 - (IBAction)pressedLogout:(id)sender {
+//    [[ServerCommunicationController sharedInstance] logPressLoginOrLogout:@"Logout" atTime:[Context generateTimestamp]];
+    
     //Write log data to file
-    [[ServerCommunicationController sharedManager] writeLogFile];
+    [[ServerCommunicationController sharedInstance] writeLogFile];
     
     //Save progress to file
-    [[ServerCommunicationController sharedManager] saveProgress:student :studentProgress];
+    [[ServerCommunicationController sharedInstance] saveProgress:student :studentProgress];
     
     //NOTE: Still testing this functionality
     //Upload log file and progress file to Dropbox
-    //[[ServerCommunicationController sharedManager] uploadFilesForStudent:student];
+    //[[ServerCommunicationController sharedInstance] uploadFilesForStudent:student];
+    
+    //Reset ServerCommunicationController to end session
+    [ServerCommunicationController resetSharedInstance];
     
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -432,36 +442,54 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
  */
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if ([[alertView title] isEqualToString:@"Password"] && buttonIndex == 1) {
+        NSString *selectedBookTitle;
+        NSString *selectedChapterTitle;
+        
         //Password is correct for setting item to in progress
         if ([[[alertView textFieldAtIndex:0] text] isEqualToString:LIBRARY_PASSWORD_INPROGRESS]) {
             //Books
             if (showBooks) {
+                selectedBookTitle = [bookTitles objectAtIndex:lockedItemIndex];
+                selectedChapterTitle = [[chapterTitles objectAtIndex:lockedItemIndex] objectAtIndex:0];
+                
                 //Unlock book by setting its first chapter to be in progress
-                [studentProgress setStatusOfChapter:[[chapterTitles objectAtIndex:lockedItemIndex] objectAtIndex:0] :IN_PROGRESS fromBook:[bookTitles objectAtIndex:lockedItemIndex]];
+                [studentProgress setStatusOfChapter:selectedChapterTitle :IN_PROGRESS fromBook:selectedBookTitle];
+                
+//                [[ServerCommunicationController sharedInstance] logUnlockBook:selectedBookTitle atTime:[Context generateTimestamp]];
             }
             //Chapters
             else {
+                selectedBookTitle = [bookTitles objectAtIndex:selectedBookIndex];
+                selectedChapterTitle = [[chapterTitles objectAtIndex:selectedBookIndex] objectAtIndex:lockedItemIndex];
+                
                 //Set this chapter to be in progress
-                [studentProgress setStatusOfChapter:[[chapterTitles objectAtIndex:selectedBookIndex] objectAtIndex:lockedItemIndex] :IN_PROGRESS fromBook:[bookTitles objectAtIndex:selectedBookIndex]];
+                [studentProgress setStatusOfChapter:selectedChapterTitle :IN_PROGRESS fromBook:selectedBookTitle];
+                
+//                [[ServerCommunicationController sharedInstance] logUnlockChapter:selectedChapterTitle inBook:selectedBookTitle atTime:[Context generateTimestamp]];
             }
             
             //Update progress indicators
             [self.libraryView reloadSections:[NSIndexSet indexSetWithIndex:0]];
             
             //Save progress to file
-            [[ServerCommunicationController sharedManager] saveProgress:student :studentProgress];
+            [[ServerCommunicationController sharedInstance] saveProgress:student :studentProgress];
         }
         //Password is correct for setting item to completed
         else if ([[[alertView textFieldAtIndex:0] text] isEqualToString:LIBRARY_PASSWORD_COMPLETED]) {
             //Books
             if (showBooks) {
+                selectedBookTitle = [bookTitles objectAtIndex:lockedItemIndex];
+                
                 for (NSString *chapterTitle in [chapterTitles objectAtIndex:lockedItemIndex]) {
-                    [studentProgress setStatusOfChapter:chapterTitle :COMPLETED fromBook:[bookTitles objectAtIndex:lockedItemIndex]];
+                    [studentProgress setStatusOfChapter:chapterTitle :COMPLETED fromBook:selectedBookTitle];
                 }
             }
             //Chapters
             else {
-                [studentProgress setStatusOfChapter:[[chapterTitles objectAtIndex:selectedBookIndex] objectAtIndex:lockedItemIndex] :COMPLETED fromBook:[bookTitles objectAtIndex:selectedBookIndex]];
+                selectedBookTitle = [bookTitles objectAtIndex:selectedBookIndex];
+                selectedChapterTitle = [[chapterTitles objectAtIndex:selectedBookIndex] objectAtIndex:lockedItemIndex];
+                
+                [studentProgress setStatusOfChapter:selectedChapterTitle :COMPLETED fromBook:selectedBookTitle];
             }
             
             [self updateProgress];
@@ -538,6 +566,8 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
             [libraryView reloadSections:[NSIndexSet indexSetWithIndex:0]]; //load chapters
             
             [booksButton setEnabled:TRUE];
+            
+//            [[ServerCommunicationController sharedInstance] logLoadBook:selectedBookTitle atTime:[Context generateTimestamp]];
         }
         else {
             [self showLockedMessage];
@@ -545,8 +575,11 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
     }
     //Chapters
     else {
+        NSString *selectedBookTitle = [bookTitles objectAtIndex:selectedBookIndex];
+        NSString *selectedChapterTitle = [[chapterTitles objectAtIndex:selectedBookIndex] objectAtIndex:indexPath.row];
+        
         //Get status of selected chapter
-        Status chapterStatus = [studentProgress getStatusOfChapter:[[chapterTitles objectAtIndex:selectedBookIndex] objectAtIndex:indexPath.row] fromBook:[bookTitles objectAtIndex:selectedBookIndex]];
+        Status chapterStatus = [studentProgress getStatusOfChapter:selectedChapterTitle fromBook:selectedBookTitle];
         
         //Only allow chapter to be opened if it is not incomplete
         if (chapterStatus != INCOMPLETE) {
@@ -568,7 +601,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                 }
                 else {
                     //Get current mode for chapter
-                    ActivityMode *currentMode = [[[sequenceController sequences] objectAtIndex:[studentProgress currentSequence]] getModeForChapter:[[chapterTitles objectAtIndex:selectedBookIndex] objectAtIndex:indexPath.row]];
+                    ActivityMode *currentMode = [[[sequenceController sequences] objectAtIndex:[studentProgress currentSequence]] getModeForChapter:selectedChapterTitle];
                     
                     //Set conditions for chapter based on mode information
                     if ([currentMode interventionType] == PM_INTERVENTION) {
@@ -592,6 +625,8 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                     conditionSetup.reader = [currentMode reader];
                 }
             }
+            
+//            [[ServerCommunicationController sharedInstance] logLoadChapter:selectedChapterTitle inBook:selectedBookTitle atTime:[Context generateTimestamp]];
             
             //Send the notification to open that mode for the particular book and activity chosen
             if (conditionSetup.appMode == Authoring) {

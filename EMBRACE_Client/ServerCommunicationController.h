@@ -22,7 +22,9 @@
 
 @interface ServerCommunicationController : UIViewController
 
-+ (id)sharedManager;
+//+ (id)sharedManager;
++ (ServerCommunicationController *)sharedInstance;
++ (void)resetSharedInstance;
 
 # pragma mark - Logging
 
@@ -34,10 +36,13 @@
 
 # pragma mark - Logging (General)
 
-- (void)logPressLoginOrLogout:(BOOL)newSession atTime:(NSString *)timestamp;
+- (void)logPressLoginOrLogout:(NSString *)buttonType atTime:(NSString *)timestamp;
 - (void)logPressBooksAtTime:(NSString *)timestamp;
+- (void)logPressLibraryAtTime:(NSString *)timestamp;
+- (void)logUnlockBook:(NSString *)bookTitle atTime:(NSString *)timestamp;
+- (void)logUnlockChapter:(NSString *)chapterTitle inBook:(NSString *)bookTitle atTime:(NSString *)timestamp;
 - (void)logLoadBook:(NSString *)bookTitle atTime:(NSString *)timestamp;
-- (void)logLoadChapter:(NSString *)chapterTitle atTime:(NSString *)timestamp;
+- (void)logLoadChapter:(NSString *)chapterTitle inBook:(NSString *)bookTitle atTime:(NSString *)timestamp;
 
 # pragma mark - Logging (Manipulation)
 

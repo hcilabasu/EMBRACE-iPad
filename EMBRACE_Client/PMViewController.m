@@ -1021,7 +1021,7 @@ BOOL wasPathFollowed = false;
     [super viewWillDisappear:animated];
     
     if (![[self.navigationController viewControllers] containsObject:self]) {
-        [[ServerCommunicationController sharedManager] writeLogFile];
+        [[ServerCommunicationController sharedInstance] writeLogFile];
     }
 }
 

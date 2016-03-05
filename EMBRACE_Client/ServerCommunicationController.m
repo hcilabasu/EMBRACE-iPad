@@ -24,20 +24,34 @@
 
 @implementation ServerCommunicationController
 
-+ (id)sharedManager {
-    static ServerCommunicationController *sharedMyManager = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedMyManager = [[self alloc] init];
-        
-    });
+static ServerCommunicationController *sharedInstance = nil;
+
+//+ (id)sharedManager {
+//    static ServerCommunicationController *sharedMyManager = nil;
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        sharedMyManager = [[self alloc] init];
+//        
+//    });
+//    
+//    return sharedMyManager;
+//}
+
++ (ServerCommunicationController *)sharedInstance {
+    if (sharedInstance == nil) {
+        sharedInstance = [[ServerCommunicationController alloc] init];
+    }
     
-    return sharedMyManager;
+    return sharedInstance;
+}
+
++ (void)resetSharedInstance {
+    sharedInstance = nil;
 }
 
 - (id)init {
     if (self = [super init]){
-        xmlDocTemp = [[DDXMLDocument alloc] initWithXMLString:@"<study/>" options:0 error:nil];
+        xmlDocTemp = [[DDXMLDocument alloc] initWithXMLString:@"<Study/>" options:0 error:nil];
         study = [xmlDocTemp rootElement];
         userActionID = 0;
     }
@@ -59,6 +73,8 @@
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.txt", studyFileName]];
     NSString *stringxml = [xmlDocTemp XMLStringWithOptions:DDXMLNodePrettyPrint];
+    
+    NSLog(@"\n\n%@\n\n", stringxml);
     
     if (![stringxml writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil]) {
         NSLog(@"Failed to write log file");
@@ -278,22 +294,19 @@
 /*
  * Logging for when Login or Logout is pressed
  */
-- (void)logPressLoginOrLogout:(BOOL)newSession atTime:(NSString *)timestamp {
+- (void)logPressLoginOrLogout:(NSString *)buttonType atTime:(NSString *)timestamp {
     NSString *action;
-    NSString *buttonType;
     
-    if (newSession) {
+    if ([buttonType isEqualToString:@"Login"]) {
         action = @"Start Session";
-        buttonType = @"Login";
     }
-    else {
+    else if ([buttonType isEqualToString:@"Logout"]) {
         action = @"End Session";
-        buttonType = @"Logout";
         userActionID++;
     }
     
-    //Start with base node for system action
-    DDXMLElement *nodeBaseAction = [self getBaseActionForActor:SYSTEM];
+    //Start with base node for user action
+    DDXMLElement *nodeBaseAction = [self getBaseActionForActor:USER];
     [study addChild:nodeBaseAction];
     
     //Set selection
@@ -321,9 +334,6 @@
     
     //Add above node to context
     [nodeContext addChild:nodeStudyContext];
-    
-    //Add context to base action
-    [nodeBaseAction addChild:nodeContext];    
 }
 
 /*
@@ -332,8 +342,8 @@
 - (void)logPressBooksAtTime:(NSString *)timestamp {
     userActionID++;
     
-    //Start with base node for system action
-    DDXMLElement *nodeBaseAction = [self getBaseActionForActor:SYSTEM];
+    //Start with base node for user action
+    DDXMLElement *nodeBaseAction = [self getBaseActionForActor:USER];
     [study addChild:nodeBaseAction];
     
     //Set selection
@@ -361,9 +371,123 @@
     
     //Add above node to context
     [nodeContext addChild:nodeStudyContext];
+}
+
+/*
+ * Logging for when Library button is pressed to return to library view
+ */
+- (void)logPressLibraryAtTime:(NSString *)timestamp {
+    userActionID++;
     
-    //Add context to base action
-    [nodeBaseAction addChild:nodeContext];
+    //Start with base node for user action
+    DDXMLElement *nodeBaseAction = [self getBaseActionForActor:USER];
+    [study addChild:nodeBaseAction];
+    
+    //Set selection
+    DDXMLElement *nodeSelection = [[nodeBaseAction elementsForName:@"Selection"] objectAtIndex:0];
+    [nodeSelection setStringValue:@"Button"];
+    
+    //Set action
+    DDXMLElement *nodeAction = [[nodeBaseAction elementsForName:@"Action"] objectAtIndex:0];
+    [nodeAction setStringValue:@"Return to Library"];
+    
+    //Get input
+    DDXMLElement *nodeInput = [[nodeBaseAction elementsForName:@"Input"] objectAtIndex:0];
+    
+    //Create nodes for input information
+    DDXMLElement *nodeButtonType = [DDXMLElement elementWithName:@"Button_Type" stringValue:@"Library"];
+    
+    //Add above nodes to input
+    [nodeInput addChild:nodeButtonType];
+    
+    //Get context
+    DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
+    
+    //Create node for context information
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext withTimestamp:timestamp];
+    
+    //Add above node to context
+    [nodeContext addChild:nodeStudyContext];
+}
+
+/*
+ * Logging for when a book is unlocked in the library view
+ */
+- (void)logUnlockBook:(NSString *)bookTitle atTime:(NSString *)timestamp {
+    userActionID++;
+    
+    //Start with base node for user action
+    DDXMLElement *nodeBaseAction = [self getBaseActionForActor:USER];
+    [study addChild:nodeBaseAction];
+    
+    //Set selection
+    DDXMLElement *nodeSelection = [[nodeBaseAction elementsForName:@"Selection"] objectAtIndex:0];
+    [nodeSelection setStringValue:@"Button"];
+    
+    //Set action
+    DDXMLElement *nodeAction = [[nodeBaseAction elementsForName:@"Action"] objectAtIndex:0];
+    [nodeAction setStringValue:@"Unlock Book"];
+    
+    //Get input
+    DDXMLElement *nodeInput = [[nodeBaseAction elementsForName:@"Input"] objectAtIndex:0];
+    
+    //Create nodes for input information
+    DDXMLElement *nodeButtonType = [DDXMLElement elementWithName:@"Button_Type" stringValue:@"Book"];
+    DDXMLElement *nodeBookTitle = [DDXMLElement elementWithName:@"Book_Title" stringValue:bookTitle];
+    
+    //Add above nodes to input
+    [nodeInput addChild:nodeButtonType];
+    [nodeInput addChild:nodeBookTitle];
+    
+    //Get context
+    DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
+    
+    //Create node for context information
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext withTimestamp:timestamp];
+    
+    //Add above node to context
+    [nodeContext addChild:nodeStudyContext];
+}
+
+/*
+ * Logging for when a chapter is unlocked in the library view
+ */
+- (void)logUnlockChapter:(NSString *)chapterTitle inBook:(NSString *)bookTitle atTime:(NSString *)timestamp {
+    userActionID++;
+    
+    //Start with base node for user action
+    DDXMLElement *nodeBaseAction = [self getBaseActionForActor:USER];
+    [study addChild:nodeBaseAction];
+    
+    //Set selection
+    DDXMLElement *nodeSelection = [[nodeBaseAction elementsForName:@"Selection"] objectAtIndex:0];
+    [nodeSelection setStringValue:@"Button"];
+    
+    //Set action
+    DDXMLElement *nodeAction = [[nodeBaseAction elementsForName:@"Action"] objectAtIndex:0];
+    [nodeAction setStringValue:@"Unlock Chapter"];
+    
+    //Get input
+    DDXMLElement *nodeInput = [[nodeBaseAction elementsForName:@"Input"] objectAtIndex:0];
+    
+    //Create nodes for input information
+    DDXMLElement *nodeButtonType = [DDXMLElement elementWithName:@"Button_Type" stringValue:@"Chapter"];
+    DDXMLElement *nodeChapterTitle = [DDXMLElement elementWithName:@"Chapter_Title" stringValue:chapterTitle];
+    DDXMLElement *nodeBookTitle = [DDXMLElement elementWithName:@"Book_Title" stringValue:bookTitle];
+    
+    //Add above nodes to input
+    [nodeInput addChild:nodeButtonType];
+    [nodeInput addChild:nodeChapterTitle];
+    [nodeInput addChild:nodeBookTitle];
+    
+    //Get context
+    DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
+    
+    //Create node for context information
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext withTimestamp:timestamp];
+    
+    //Add above node to context
+    [nodeContext addChild:nodeStudyContext];
 }
 
 /*
@@ -372,8 +496,8 @@
 - (void)logLoadBook:(NSString *)bookTitle atTime:(NSString *)timestamp {
     userActionID++;
     
-    //Start with base node for system action
-    DDXMLElement *nodeBaseAction = [self getBaseActionForActor:SYSTEM];
+    //Start with base node for user action
+    DDXMLElement *nodeBaseAction = [self getBaseActionForActor:USER];
     [study addChild:nodeBaseAction];
     
     //Set selection
@@ -403,19 +527,16 @@
     
     //Add above node to context
     [nodeContext addChild:nodeStudyContext];
-    
-    //Add context to base action
-    [nodeBaseAction addChild:nodeContext];
 }
 
 /*
  * Logging for loading a chapter
  */
-- (void)logLoadChapter:(NSString *)chapterTitle atTime:(NSString *)timestamp {
+- (void)logLoadChapter:(NSString *)chapterTitle inBook:(NSString *)bookTitle atTime:(NSString *)timestamp {
     userActionID++;
     
-    //Start with base node for system action
-    DDXMLElement *nodeBaseAction = [self getBaseActionForActor:SYSTEM];
+    //Start with base node for user action
+    DDXMLElement *nodeBaseAction = [self getBaseActionForActor:USER];
     [study addChild:nodeBaseAction];
     
     //Set selection
@@ -432,10 +553,12 @@
     //Create nodes for input information
     DDXMLElement *nodeButtonType = [DDXMLElement elementWithName:@"Button_Type" stringValue:@"Chapter"];
     DDXMLElement *nodeChapterTitle = [DDXMLElement elementWithName:@"Chapter_Title" stringValue:chapterTitle];
+    DDXMLElement *nodeBookTitle = [DDXMLElement elementWithName:@"Book_Title" stringValue:bookTitle];
     
     //Add above nodes to input
     [nodeInput addChild:nodeButtonType];
     [nodeInput addChild:nodeChapterTitle];
+    [nodeInput addChild:nodeBookTitle];
     
     //Get context
     DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
@@ -445,9 +568,6 @@
     
     //Add above node to context
     [nodeContext addChild:nodeStudyContext];
-    
-    //Add context to base action
-    [nodeBaseAction addChild:nodeContext];
     
     //Make sure log file is written out at end of chapter
     [self writeLogFile];
@@ -507,9 +627,6 @@
     //Add above nodes to context
     [nodeContext addChild:nodeManipulationContext];
     [nodeContext addChild:nodeStudyContext];
-    
-    //Add context to base action
-    [nodeBaseAction addChild:nodeContext];
 }
 
 /*
@@ -551,9 +668,6 @@
     //Add above nodes to context
     [nodeContext addChild:nodeManipulationContext];
     [nodeContext addChild:nodeStudyContext];
-    
-    //Add context to base action
-    [nodeBaseAction addChild:nodeContext];
 }
 
 /*
@@ -660,9 +774,6 @@
     //Add above nodes to context
     [nodeContext addChild:nodeManipulationContext];
     [nodeContext addChild:nodeStudyContext];
-    
-    //Add context to base action
-    [nodeBaseAction addChild:nodeContext];
 }
 
 /*
@@ -780,9 +891,6 @@
     //Add above nodes to context
     [nodeContext addChild:nodeManipulationContext];
     [nodeContext addChild:nodeStudyContext];
-    
-    //Add context to base action
-    [nodeBaseAction addChild:nodeContext];
 }
 
 /*
@@ -828,9 +936,6 @@
     //Add above nodes to context
     [nodeContext addChild:nodeManipulationContext];
     [nodeContext addChild:nodeStudyContext];
-    
-    //Add context to base action
-    [nodeBaseAction addChild:nodeContext];
 }
 
 /*
@@ -872,9 +977,6 @@
     //Add above nodes to context
     [nodeContext addChild:nodeManipulationContext];
     [nodeContext addChild:nodeStudyContext];
-    
-    //Add context to base action
-    [nodeBaseAction addChild:nodeContext];
 }
 
 /*
@@ -912,9 +1014,6 @@
     //Add above nodes to context
     [nodeContext addChild:nodeManipulationContext];
     [nodeContext addChild:nodeStudyContext];
-    
-    //Add context to base action
-    [nodeBaseAction addChild:nodeContext];
 }
 
 /*
@@ -954,9 +1053,6 @@
     //Add above nodes to context
     [nodeContext addChild:nodeManipulationContext];
     [nodeContext addChild:nodeStudyContext];
-    
-    //Add context to base action
-    [nodeBaseAction addChild:nodeContext];
 }
 
 /*
@@ -996,9 +1092,6 @@
     //Add above nodes to context
     [nodeContext addChild:nodeManipulationContext];
     [nodeContext addChild:nodeStudyContext];
-    
-    //Add context to base action
-    [nodeBaseAction addChild:nodeContext];
 }
 
 /*
@@ -1038,9 +1131,6 @@
     //Add above nodes to context
     [nodeContext addChild:nodeManipulationContext];
     [nodeContext addChild:nodeStudyContext];
-    
-    //Add context to base action
-    [nodeBaseAction addChild:nodeContext];
 }
 
 # pragma mark Navigation
@@ -1082,9 +1172,6 @@
     //Add above nodes to context
     [nodeContext addChild:nodeManipulationContext];
     [nodeContext addChild:nodeStudyContext];
-    
-    //Add context to base action
-    [nodeBaseAction addChild:nodeContext];
 }
 
 /*
@@ -1124,9 +1211,6 @@
     //Add above nodes to context
     [nodeContext addChild:nodeManipulationContext];
     [nodeContext addChild:nodeStudyContext];
-    
-    //Add context to base action
-    [nodeBaseAction addChild:nodeContext];
 }
 
 /*
@@ -1166,9 +1250,6 @@
     //Add above nodes to context
     [nodeContext addChild:nodeManipulationContext];
     [nodeContext addChild:nodeStudyContext];
-    
-    //Add context to base action
-    [nodeBaseAction addChild:nodeContext];
 }
 
 /*
@@ -1208,9 +1289,6 @@
     //Add above nodes to context
     [nodeContext addChild:nodeManipulationContext];
     [nodeContext addChild:nodeStudyContext];
-    
-    //Add context to base action
-    [nodeBaseAction addChild:nodeContext];
 }
 
 /*
@@ -1248,9 +1326,6 @@
     //Add above nodes to context
     [nodeContext addChild:nodeManipulationContext];
     [nodeContext addChild:nodeStudyContext];
-    
-    //Add context to base action
-    [nodeBaseAction addChild:nodeContext];
     
     //Make sure log file is written out at end of page
     [self writeLogFile];
@@ -1295,9 +1370,6 @@
     //Add above nodes to context
     [nodeContext addChild:nodeAssessmentContext];
     [nodeContext addChild:nodeStudyContext];
-    
-    //Add context to base action
-    [nodeBaseAction addChild:nodeContext];
 }
 
 /*
@@ -1335,9 +1407,6 @@
     //Add above nodes to context
     [nodeContext addChild:nodeAssessmentContext];
     [nodeContext addChild:nodeStudyContext];
-    
-    //Add context to base action
-    [nodeBaseAction addChild:nodeContext];
 }
 
 /*
@@ -1383,9 +1452,6 @@
     //Add above nodes to context
     [nodeContext addChild:nodeAssessmentContext];
     [nodeContext addChild:nodeStudyContext];
-    
-    //Add context to base action
-    [nodeBaseAction addChild:nodeContext];
 }
 
 /*
@@ -1425,9 +1491,6 @@
     //Add above nodes to context
     [nodeContext addChild:nodeAssessmentContext];
     [nodeContext addChild:nodeStudyContext];
-    
-    //Add context to base action
-    [nodeBaseAction addChild:nodeContext];
 }
 
 # pragma mark Navigation
@@ -1471,9 +1534,6 @@
     //Add above nodes to context
     [nodeContext addChild:nodeAssessmentContext];
     [nodeContext addChild:nodeStudyContext];
-    
-    //Add context to base action
-    [nodeBaseAction addChild:nodeContext];
 }
 
 /*
@@ -1513,9 +1573,6 @@
     //Add above nodes to context
     [nodeContext addChild:nodeAssessmentContext];
     [nodeContext addChild:nodeStudyContext];
-    
-    //Add context to base action
-    [nodeBaseAction addChild:nodeContext];
 }
 
 /*
@@ -1555,9 +1612,6 @@
     //Add above nodes to context
     [nodeContext addChild:nodeAssessmentContext];
     [nodeContext addChild:nodeStudyContext];
-    
-    //Add context to base action
-    [nodeBaseAction addChild:nodeContext];
     
     //Make sure log file is written at end of assessment step
     [self writeLogFile];
