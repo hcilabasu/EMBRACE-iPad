@@ -1347,7 +1347,14 @@ BOOL wasPathFollowed = false;
         bool success = [self.playaudioClass playAudioInSequence:self:spanishAudio:engAudio];
         
         if (!success) {
-        
+            NSString *spanishAudio = [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"];
+            NSString *engAudio = [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"];
+            
+            if ([spanishExt isEqualToString:@""] == NO) {
+                spanishAudio = [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,spanishExt];
+            }
+            
+            [self.playaudioClass playAudioInSequence:self:spanishAudio:engAudio];
         }
         
         //Logging added by James for Word Audio
@@ -1361,7 +1368,8 @@ BOOL wasPathFollowed = false;
         bool success = [self.playaudioClass playAudioInSequence:self:engAudio:engAudio];
         
         if (!success) {
-            
+            NSString *engAudio = [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"];
+            [self.playaudioClass playAudioInSequence:self:engAudio:engAudio];
         }
         
         //Logging added by James for Word Audio
