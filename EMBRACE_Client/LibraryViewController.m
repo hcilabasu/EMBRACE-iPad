@@ -15,7 +15,6 @@
 #import "AuthoringModeViewController.h"
 #import "ServerCommunicationController.h"
 #import "ConditionSetup.h"
-#import "Context.h"
 
 @interface LibraryViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate> {
     NSMutableArray *bookImages;
@@ -157,7 +156,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
         student = [[Student alloc] initWithValues:@"Study Code" :@"Study Day" :@"Experimenter" :@"School Day"];
     }
     
-//    [[ServerCommunicationController sharedInstance] logPressLoginOrLogout:@"Login" atTime:[Context generateTimestamp]];
+//    [[ServerCommunicationController sharedInstance] logPressLogin];
     
     //Create ActivitySequenceController
     sequenceController = [[ActivitySequenceController alloc] init];
@@ -316,6 +315,8 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
     self.libraryView = nil;
 }
 
+# pragma mark - Navigation
+
 /*
  * Segue prep to go from LibraryViewController to BookView Controller.
  */
@@ -354,14 +355,14 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
     
     [booksButton setEnabled:FALSE];
     
-//    [[ServerCommunicationController sharedInstance] logPressBooksAtTime:[Context generateTimestamp]];
+//    [[ServerCommunicationController sharedInstance] logPressBooks];
 }
 
 /*
  * User pressed Logout button. Writes data to log file and returns to login screen.
  */
 - (IBAction)pressedLogout:(id)sender {
-//    [[ServerCommunicationController sharedInstance] logPressLoginOrLogout:@"Logout" atTime:[Context generateTimestamp]];
+//    [[ServerCommunicationController sharedInstance] logPressLogout];
     
     //Write log data to file
     [[ServerCommunicationController sharedInstance] writeLogFile];
@@ -378,6 +379,8 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
     
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+# pragma mark - Unlock Books/Chapters
 
 /*
  * Long press is used to unlock books and chapters
@@ -455,7 +458,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                 //Unlock book by setting its first chapter to be in progress
                 [studentProgress setStatusOfChapter:selectedChapterTitle :IN_PROGRESS fromBook:selectedBookTitle];
                 
-//                [[ServerCommunicationController sharedInstance] logUnlockBook:selectedBookTitle atTime:[Context generateTimestamp]];
+//                [[ServerCommunicationController sharedInstance] logUnlockBook:selectedBookTitle];
             }
             //Chapters
             else {
@@ -465,7 +468,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                 //Set this chapter to be in progress
                 [studentProgress setStatusOfChapter:selectedChapterTitle :IN_PROGRESS fromBook:selectedBookTitle];
                 
-//                [[ServerCommunicationController sharedInstance] logUnlockChapter:selectedChapterTitle inBook:selectedBookTitle atTime:[Context generateTimestamp]];
+//                [[ServerCommunicationController sharedInstance] logUnlockChapter:selectedChapterTitle inBook:selectedBookTitle];
             }
             
             //Update progress indicators
@@ -497,7 +500,8 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
     }
 }
 
-#pragma mark - UICollectionViewDataSource
+# pragma mark - UICollectionViewDataSource
+
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)libraryView {
     return 1;
 }
@@ -551,7 +555,8 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
     return cell;
 }
 
-#pragma mark - UICollectionViewDelegate
+# pragma mark - UICollectionViewDelegate
+
 - (void)collectionView:(UICollectionView *)libraryView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     //Books
     if (showBooks) {
@@ -567,7 +572,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
             
             [booksButton setEnabled:TRUE];
             
-//            [[ServerCommunicationController sharedInstance] logLoadBook:selectedBookTitle atTime:[Context generateTimestamp]];
+//            [[ServerCommunicationController sharedInstance] logLoadBook:selectedBookTitle];
         }
         else {
             [self showLockedMessage];
@@ -626,7 +631,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                 }
             }
             
-//            [[ServerCommunicationController sharedInstance] logLoadChapter:selectedChapterTitle inBook:selectedBookTitle atTime:[Context generateTimestamp]];
+//            [[ServerCommunicationController sharedInstance] logLoadChapter:selectedChapterTitle inBook:selectedBookTitle];
             
             //Send the notification to open that mode for the particular book and activity chosen
             if (conditionSetup.appMode == Authoring) {
@@ -654,7 +659,8 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
     return YES;
 }
 
-#pragma mark – UICollectionViewDelegateFlowLayout
+# pragma mark - UICollectionViewDelegateFlowLayout
+
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     NSInteger edgeInsets = 0;
     NSInteger cellWidth = 200;

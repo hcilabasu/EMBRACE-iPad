@@ -10,17 +10,7 @@
 
 @implementation Context
 
-@synthesize timestamp;
-
-- (id)init {
-    if (self = [super init]) {
-        timestamp = [Context generateTimestamp];
-    }
-    
-    return self;
-}
-
-+ (NSString *)generateTimestamp {
+- (NSString *)generateTimestamp {
     NSDate *currentDate = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MM-dd-yyyy'T'hh:mm.ss.SSS"];

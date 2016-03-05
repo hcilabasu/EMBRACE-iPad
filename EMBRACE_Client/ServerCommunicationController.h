@@ -22,7 +22,8 @@
 
 @interface ServerCommunicationController : UIViewController
 
-//+ (id)sharedManager;
+# pragma mark - Shared Instance
+
 + (ServerCommunicationController *)sharedInstance;
 + (void)resetSharedInstance;
 
@@ -34,15 +35,16 @@
 
 - (void)setStudyContext:(Student *)student;
 
-# pragma mark - Logging (General)
+# pragma mark - Logging (Library)
 
-- (void)logPressLoginOrLogout:(NSString *)buttonType atTime:(NSString *)timestamp;
-- (void)logPressBooksAtTime:(NSString *)timestamp;
-- (void)logPressLibraryAtTime:(NSString *)timestamp;
-- (void)logUnlockBook:(NSString *)bookTitle atTime:(NSString *)timestamp;
-- (void)logUnlockChapter:(NSString *)chapterTitle inBook:(NSString *)bookTitle atTime:(NSString *)timestamp;
-- (void)logLoadBook:(NSString *)bookTitle atTime:(NSString *)timestamp;
-- (void)logLoadChapter:(NSString *)chapterTitle inBook:(NSString *)bookTitle atTime:(NSString *)timestamp;
+- (void)logPressLogin;
+- (void)logPressLogout;
+- (void)logPressBooks;
+- (void)logPressLibrary;
+- (void)logUnlockBook:(NSString *)bookTitle;
+- (void)logUnlockChapter:(NSString *)chapterTitle inBook:(NSString *)bookTitle;
+- (void)logLoadBook:(NSString *)bookTitle;
+- (void)logLoadChapter:(NSString *)chapterTitle inBook:(NSString *)bookTitle;
 
 # pragma mark - Logging (Manipulation)
 

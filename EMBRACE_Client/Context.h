@@ -10,8 +10,6 @@
 
 @interface Context : NSObject
 
-@property (nonatomic, assign) NSString *timestamp;
-
-+ (NSString *)generateTimestamp;
+- (NSString *)generateTimestamp;
 
 @end
