@@ -681,30 +681,7 @@ BOOL wasPathFollowed = false;
  */
 -(void) incrementCurrentStep {
     //Get steps for current sentence
-    NSMutableArray* currSolSteps;
-    
-    if (conditionSetup.appMode == ITS) {
-        currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-    }
-    else {
-        if (conditionSetup.condition == CONTROL) {
-            currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-        }
-        else if (conditionSetup.condition == EMBRACE) {
-            if (conditionSetup.currentMode == PM_MODE) {
-                //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound && ([currentPageId rangeOfString:@"-Intro"].location == NSNotFound)) {
-                    currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                }
-                else {
-                    currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                }
-            }
-            else if (conditionSetup.currentMode == IM_MODE) {
-                currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-            }
-        }
-    }
+    NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
     
     //Get current step to be completed
     ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -892,30 +869,7 @@ BOOL wasPathFollowed = false;
     if (numSteps > 0 && IntroductionClass.allowInteractions) {
         
         //Get steps for current sentence
-        NSMutableArray* currSolSteps;
-        
-        if (conditionSetup.appMode == ITS) {
-            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-        }
-        else {
-            if (conditionSetup.condition == CONTROL) {
-                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-            }
-            else if (conditionSetup.condition == EMBRACE) {
-                if (conditionSetup.currentMode == PM_MODE) {
-                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                    }
-                    else {
-                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-                else if (conditionSetup.currentMode == IM_MODE) {
-                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                }
-            }
-        }
+        NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -948,8 +902,15 @@ BOOL wasPathFollowed = false;
             [self loadImage];
             [self incrementCurrentStep];
         }
-        
+        else if ([[currSolStep stepType] isEqualToString:@"appearAutoWithDelay"]) {
+            [self loadImage];
+            [self incrementCurrentStep];
+        }
         else if ([[currSolStep stepType] isEqualToString:@"disappearAuto"]) {
+            [self hideImage];
+            [self incrementCurrentStep];
+        }
+        else if ([[currSolStep stepType] isEqualToString:@"disappearAutoWithDelay"]) {
             [self hideImage];
             [self incrementCurrentStep];
         }
@@ -993,30 +954,7 @@ BOOL wasPathFollowed = false;
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps;
-        
-        if (conditionSetup.appMode == ITS) {
-            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-        }
-        else {
-            if (conditionSetup.condition == CONTROL) {
-                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-            }
-            else if (conditionSetup.condition == EMBRACE) {
-                if (conditionSetup.currentMode == PM_MODE) {
-                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                    }
-                    else {
-                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-                else if (conditionSetup.currentMode == IM_MODE) {
-                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                }
-            }
-        }
+        NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -1229,30 +1167,7 @@ BOOL wasPathFollowed = false;
     else {
         if (numSteps > 0 && IntroductionClass.allowInteractions) {
             //Get steps for current sentence
-            NSMutableArray* currSolSteps;
-            
-            if (conditionSetup.appMode == ITS) {
-                currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-            }
-            else {
-                if (conditionSetup.condition == CONTROL) {
-                    currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                }
-                else if (conditionSetup.condition == EMBRACE) {
-                    if (conditionSetup.currentMode == PM_MODE) {
-                        //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                        if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                            currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                        }
-                        else {
-                            currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                        }
-                    }
-                    else if (conditionSetup.currentMode == IM_MODE) {
-                        currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-            }
+            NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
 
             if ([currSolSteps count] > 0) {
                 //Get current step to be completed
@@ -1356,25 +1271,7 @@ BOOL wasPathFollowed = false;
         else if ([currentPageId rangeOfString:@"-Intro"].location != NSNotFound) {
             
             //Get steps for current sentence
-            NSMutableArray* currSolSteps;
-            
-            if (conditionSetup.appMode == ITS) {
-                currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-            }
-            else {
-                if (conditionSetup.condition == CONTROL) {
-                    currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                }
-                else if (conditionSetup.condition == EMBRACE) {
-                    if (conditionSetup.currentMode == PM_MODE) {
-                        //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                    }
-                    else if (conditionSetup.currentMode == IM_MODE) {
-                        currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-            }
+            NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
             
             if([currSolSteps count] >0)
             {
@@ -1398,9 +1295,36 @@ BOOL wasPathFollowed = false;
                 //no more vocab steps
             }
         }
-        else if([[Translation translationWords] objectForKey:englishSentenceText]) {
-            [self playAudioForVocabWord:englishSentenceText :spanishExt];
+        else if ([currentPageId rangeOfString:@"-PM"].location != NSNotFound)
+        {
+            //Get steps for current sentence
+            NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
+            
+            if([currSolSteps count] >0)
+            {
+                //Get current step to be completed
+                ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+                
+                if([[currSolStep stepType] isEqualToString:@"tapWord"])
+                {
+                    if([englishSentenceText containsString: [currSolStep object1Id]] &&
+                       (currentSentence == sentenceIDNum))
+                    {
+                        //[self playIntroVocabWord:sentenceText:englishSentenceText:currSolStep];
+                        [self incrementCurrentStep];
+                    }
+                }
+                else if([[Translation translationWords] objectForKey:englishSentenceText])
+                {
+                    [self playAudioForVocabWord:englishSentenceText :spanishExt];
+                }
+            }
+            else if([[Translation translationWords] objectForKey:englishSentenceText])
+            {
+                [self playAudioForVocabWord:englishSentenceText :spanishExt];
+            }
         }
+        
     }
 }
 
@@ -1411,36 +1335,33 @@ BOOL wasPathFollowed = false;
         englishSentenceText = @"carbonDioxide";
     }
     
-    if ((conditionSetup.language ==BILINGUAL) && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
-        //Play word audio Sp
-        [self.playaudioClass playAudioInSequence:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"]:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
-        
-        //Logging added by James for Word Audio
-        [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"S" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-    }
-    else if (conditionSetup.language ==BILINGUAL) {
-        
-        NSString *spanishAudio = [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"];
-        NSString *engAudio = [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"];
+    if (conditionSetup.language ==BILINGUAL) {
+        NSString *spanishAudio = [NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"S"];
+        NSString *engAudio = [NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"E"];
         
         if ([spanishExt isEqualToString:@""] == NO) {
-            spanishAudio = [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,spanishExt];
+            spanishAudio = [NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,spanishExt];
         }
-        //Play word audio Sp
-        [self.playaudioClass playAudioInSequence:self:engAudio:spanishAudio];
+        
+        //Play Sp audio then En auido
+        bool success = [self.playaudioClass playAudioInSequence:self:spanishAudio:engAudio];
+        
+        if (!success) {
+        
+        }
         
         //Logging added by James for Word Audio
         [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"S" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
     }
     else {
         //Play En audio twice
-        bool success = [self.playaudioClass playAudioInSequence:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
+        NSString *engAudio = [NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"E"];
         
-        //
+        //Play Sp audio then En auido
+        bool success = [self.playaudioClass playAudioInSequence:self:engAudio:engAudio];
+        
         if (!success) {
             
-            //if error try mp3 format
-            [self.playaudioClass playAudioInSequence:self:[NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"_def_E"]:[NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"_def_E"]];
         }
         
         //Logging added by James for Word Audio
@@ -1465,23 +1386,25 @@ BOOL wasPathFollowed = false;
         if(conditionSetup.language == ENGLISH)
         {
             //Play En audio twice
-            bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
-            //
+            bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"_def_E"]];
+            
             if (!success) {
                 
-                //if error try mp3 format
-                [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"_def_E"]];
+                //if error try mp4 format
+                 [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
+                
             }
         }
         else
         {
             //Play En audio twice
-            bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"]];
-            //
+            bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"_def_S"]];
+        
             if (!success) {
                 
-                //if error try mp3 format
-                [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"_def_S"]];
+                //if error try m4a format
+                [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"]];
+
             }
         }
         
@@ -1494,16 +1417,16 @@ BOOL wasPathFollowed = false;
         // This delay is needed in order to be able to play the last definition on a vocabulary page
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW,([self.playaudioClass audioPlayer].duration)*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             [IntroductionClass loadVocabStep:bookView:self:currentSentence:chapterTitle];
-            
            
             //Play En audio
-            bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
-                //
+            bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"_def_E"]];
+            
+            //
             if (!success)
             {
-                    
-                //if error try mp3 format
-                [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"_def_E"]];
+                //if error try m4a format
+                [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
+                
             }
             
             [self highlightImageForText:englishSentenceText];
@@ -1512,17 +1435,46 @@ BOOL wasPathFollowed = false;
             currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence]];
             
             [self performSelector:@selector(colorSentencesUponNext) withObject:nil afterDelay:([self.playaudioClass audioPlayer].duration)];
-            
-            //IntroductionClass.currentVocabStep++;
-            
-            /*
-            // This delay is needed in order to be able to play the last definition on a vocabulary page
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW,([self.playaudioClass audioPlayer].duration)*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                //[IntroductionClass loadVocabStep:bookView:self:currentSentence:chapterTitle];
-            });*/
         });
 }
 
+-(NSMutableArray*)returnCurrentSolutionSteps
+{
+    NSMutableArray *currSolSteps;
+    
+    if (conditionSetup.appMode == ITS)
+    {
+        currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
+    }
+    else {
+        if (conditionSetup.condition == CONTROL) {
+            currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+        }
+        else if (conditionSetup.condition == EMBRACE)
+        {
+            if (conditionSetup.currentMode == PM_MODE)
+            {
+                //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
+                if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound
+                    && [currentPageId rangeOfString:@"-Intro"].location == NSNotFound)
+                {
+                    currSolSteps = [PMSolution getStepsForSentence:currentIdea];
+                }
+                else
+                {
+                    currSolSteps = [PMSolution getStepsForSentence:currentSentence];
+                }
+            }
+            else if (conditionSetup.currentMode == IM_MODE)
+            {
+                currSolSteps = [IMSolution getStepsForSentence:currentSentence];
+            }
+        }
+    }
+    
+    return currSolSteps;
+}
+    
 -(void) highlightImageForText: (NSString*) englishSentenceText
 {
     NSObject *valueImage = [[Translation translationImages]objectForKey:englishSentenceText];
@@ -1580,30 +1532,7 @@ BOOL wasPathFollowed = false;
         [[ServerCommunicationController sharedManager] logUserEmergencyNext:@"Emergency Swipe" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
         
         //Get steps for current sentence
-        NSMutableArray* currSolSteps;
-        
-        if (conditionSetup.appMode == ITS) {
-            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-        }
-        else {
-            if (conditionSetup.condition == CONTROL) {
-                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-            }
-            else if (conditionSetup.condition == EMBRACE) {
-                if (conditionSetup.currentMode == PM_MODE) {
-                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                    }
-                    else {
-                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-                else if (conditionSetup.currentMode == IM_MODE) {
-                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                }
-            }
-        }
+        NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -1822,30 +1751,7 @@ BOOL wasPathFollowed = false;
                 
                 if (numSteps > 0) {
                     //Get steps for current sentence
-                    NSMutableArray* currSolSteps;
-                    
-                    if (conditionSetup.appMode == ITS) {
-                        currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-                    }
-                    else {
-                        if (conditionSetup.condition == CONTROL) {
-                            currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                        }
-                        else if (conditionSetup.condition == EMBRACE) {
-                            if (conditionSetup.currentMode == PM_MODE) {
-                                //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                                if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                                    currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                                }
-                                else {
-                                    currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                                }
-                            }
-                            else if (conditionSetup.currentMode == IM_MODE) {
-                                currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                            }
-                        }
-                    }
+                    NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
                     
                     //Get current step to be completed
                     ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -2622,30 +2528,7 @@ BOOL wasPathFollowed = false;
     //Check solution only if it exists for the sentence
     if (numSteps > 0 && !stepsComplete) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps;
-        
-        if (conditionSetup.appMode == ITS) {
-            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-        }
-        else {
-            if (conditionSetup.condition == CONTROL) {
-                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-            }
-            else if (conditionSetup.condition == EMBRACE) {
-                if (conditionSetup.currentMode == PM_MODE) {
-                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                    }
-                    else {
-                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-                else if (conditionSetup.currentMode == IM_MODE) {
-                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                }
-            }
-        }
+        NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -2697,30 +2580,7 @@ BOOL wasPathFollowed = false;
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps;
-        
-        if (conditionSetup.appMode == ITS) {
-            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-        }
-        else {
-            if (conditionSetup.condition == CONTROL) {
-                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-            }
-            else if (conditionSetup.condition == EMBRACE) {
-                if (conditionSetup.currentMode == PM_MODE) {
-                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                    }
-                    else {
-                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-                else if (conditionSetup.currentMode == IM_MODE) {
-                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                }
-            }
-        }
+        NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -2772,30 +2632,7 @@ BOOL wasPathFollowed = false;
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps;
-        
-        if (conditionSetup.appMode == ITS) {
-            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-        }
-        else {
-            if (conditionSetup.condition == CONTROL) {
-                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-            }
-            else if (conditionSetup.condition == EMBRACE) {
-                if (conditionSetup.currentMode == PM_MODE) {
-                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                    }
-                    else {
-                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-                else if (conditionSetup.currentMode == IM_MODE) {
-                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                }
-            }
-        }
+        NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -2855,30 +2692,7 @@ BOOL wasPathFollowed = false;
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps;
-        
-        if (conditionSetup.appMode == ITS) {
-            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-        }
-        else {
-            if (conditionSetup.condition == CONTROL) {
-                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-            }
-            else if (conditionSetup.condition == EMBRACE) {
-                if (conditionSetup.currentMode == PM_MODE) {
-                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                    }
-                    else {
-                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-                else if (conditionSetup.currentMode == IM_MODE) {
-                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                }
-            }
-        }
+        NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -2923,35 +2737,14 @@ BOOL wasPathFollowed = false;
 -(void) loadImage {
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps;
-        
-        if (conditionSetup.appMode == ITS) {
-            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-        }
-        else {
-            if (conditionSetup.condition == CONTROL) {
-                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-            }
-            else if (conditionSetup.condition == EMBRACE) {
-                if (conditionSetup.currentMode == PM_MODE) {
-                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                    }
-                    else {
-                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-                else if (conditionSetup.currentMode == IM_MODE) {
-                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                }
-            }
-        }
+        NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
-        if ([[currSolStep stepType] isEqualToString:@"appear"]) {
+        if ([[currSolStep stepType] isEqualToString:@"appear"] ||
+            [[currSolStep stepType] isEqualToString:@"appearAutoWithDelay"])
+        {
             //Get information for appear step type
             NSString* object1Id = [currSolStep object1Id];
             NSString* action = [currSolStep action];
@@ -2978,7 +2771,19 @@ BOOL wasPathFollowed = false;
                 loadImage = [NSString stringWithFormat:@"loadImage('%@', '%@', '%@', '%@', %f, %f, '%@', %d)", object1Id, altSrc, width, height, location.x, location.y, className, zPosition.intValue];
             }
             
-            [bookView stringByEvaluatingJavaScriptFromString:loadImage];
+            if ([[currSolStep stepType] isEqualToString:@"appear"]) {
+                [bookView stringByEvaluatingJavaScriptFromString:loadImage];
+            }
+            else if([[currSolStep stepType] isEqualToString:@"appearAutoWithDelay"])
+            {
+                NSInteger delay = [[currSolStep object2Id] intValue];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW,delay*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                
+                    [bookView stringByEvaluatingJavaScriptFromString:loadImage];
+                });
+                
+                
+            }
         }
     }
 }
@@ -2989,40 +2794,29 @@ BOOL wasPathFollowed = false;
 -(void) hideImage {
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps;
-        
-        if (conditionSetup.appMode == ITS) {
-            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-        }
-        else {
-            if (conditionSetup.condition == CONTROL) {
-                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-            }
-            else if (conditionSetup.condition == EMBRACE) {
-                if (conditionSetup.currentMode == PM_MODE) {
-                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                    }
-                    else {
-                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-                else if (conditionSetup.currentMode == IM_MODE) {
-                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                }
-            }
-        }
+        NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
-        if ([[currSolStep stepType] isEqualToString:@"disappearAuto"]) {
+        if ([[currSolStep stepType] isEqualToString:@"disappearAuto"])
+        {
             NSString* object2Id = [currSolStep object2Id];
             
             //Hide image
             NSString* hideImage = [NSString stringWithFormat:@"removeImage('%@')", object2Id];
             [bookView stringByEvaluatingJavaScriptFromString:hideImage];
+        }
+        else if ([[currSolStep stepType] isEqualToString:@"disappearAutoWithDelay"])
+        {
+            NSString *object1Id = [currSolStep object1Id];
+            NSInteger delay = [[currSolStep object2Id] intValue];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW,delay*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                //Hide image
+                NSString* hideImage = [NSString stringWithFormat:@"removeImage('%@')", object1Id];
+                [bookView stringByEvaluatingJavaScriptFromString:hideImage];
+            });
         }
     }
 }
@@ -3034,30 +2828,7 @@ BOOL wasPathFollowed = false;
     if (numSteps > 0) {
         //Get steps for current sentence
         //Get steps for current sentence
-        NSMutableArray* currSolSteps;
-        
-        if (conditionSetup.appMode == ITS) {
-            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-        }
-        else {
-            if (conditionSetup.condition == CONTROL) {
-                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-            }
-            else if (conditionSetup.condition == EMBRACE) {
-                if (conditionSetup.currentMode == PM_MODE) {
-                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                    }
-                    else {
-                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-                else if (conditionSetup.currentMode == IM_MODE) {
-                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                }
-            }
-        }
+        NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -3092,30 +2863,7 @@ BOOL wasPathFollowed = false;
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps;
-        
-        if (conditionSetup.appMode == ITS) {
-            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-        }
-        else {
-            if (conditionSetup.condition == CONTROL) {
-                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-            }
-            else if (conditionSetup.condition == EMBRACE) {
-                if (conditionSetup.currentMode == PM_MODE) {
-                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                    }
-                    else {
-                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-                else if (conditionSetup.currentMode == IM_MODE) {
-                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                }
-            }
-        }
+        NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -3161,30 +2909,7 @@ BOOL wasPathFollowed = false;
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps;
-        
-        if (conditionSetup.appMode == ITS) {
-            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-        }
-        else {
-            if (conditionSetup.condition == CONTROL) {
-                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-            }
-            else if (conditionSetup.condition == EMBRACE) {
-                if (conditionSetup.currentMode == PM_MODE) {
-                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                    }
-                    else {
-                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-                else if (conditionSetup.currentMode == IM_MODE) {
-                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                }
-            }
-        }
+        NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -3220,30 +2945,7 @@ BOOL wasPathFollowed = false;
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps;
-        
-        if (conditionSetup.appMode == ITS) {
-            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-        }
-        else {
-            if (conditionSetup.condition == CONTROL) {
-                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-            }
-            else if (conditionSetup.condition == EMBRACE) {
-                if (conditionSetup.currentMode == PM_MODE) {
-                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                    }
-                    else {
-                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-                else if (conditionSetup.currentMode == IM_MODE) {
-                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                }
-            }
-        }
+        NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -3279,30 +2981,7 @@ BOOL wasPathFollowed = false;
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps;
-        
-        if (conditionSetup.appMode == ITS) {
-            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-        }
-        else {
-            if (conditionSetup.condition == CONTROL) {
-                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-            }
-            else if (conditionSetup.condition == EMBRACE) {
-                if (conditionSetup.currentMode == PM_MODE) {
-                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                    }
-                    else {
-                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-                else if (conditionSetup.currentMode == IM_MODE) {
-                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                }
-            }
-        }
+        NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -3378,30 +3057,7 @@ BOOL wasPathFollowed = false;
 -(NSString*) getCurrentSolutionStep{
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps;
-        
-        if (conditionSetup.appMode == ITS) {
-            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-        }
-        else {
-            if (conditionSetup.condition == CONTROL) {
-                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-            }
-            else if (conditionSetup.condition == EMBRACE) {
-                if (conditionSetup.currentMode == PM_MODE) {
-                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                    }
-                    else {
-                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-                else if (conditionSetup.currentMode == IM_MODE) {
-                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                }
-            }
-        }
+        NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -3426,30 +3082,7 @@ BOOL wasPathFollowed = false;
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps;
-        
-        if (conditionSetup.appMode == ITS) {
-            currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-        }
-        else {
-            if (conditionSetup.condition == CONTROL) {
-                currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-            }
-            else if (conditionSetup.condition == EMBRACE) {
-                if (conditionSetup.currentMode == PM_MODE) {
-                    //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                    if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                        currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                    }
-                    else {
-                        currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-                else if (conditionSetup.currentMode == IM_MODE) {
-                    currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                }
-            }
-        }
+        NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
         
         //Get current step to be completed
         ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -3582,8 +3215,9 @@ BOOL wasPathFollowed = false;
         }
     }
     else {
-        if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
-            if ((conditionSetup.language ==ENGLISH) || IntroductionClass.currentIntroStep > IntroductionClass.STEPS_TO_SWITCH_LANGUAGES_EMBRACE) {
+        /*if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
+            if ((conditionSetup.language ==ENGLISH) ||
+                IntroductionClass.currentIntroStep > IntroductionClass.STEPS_TO_SWITCH_LANGUAGES_EMBRACE) {
                 [self.playaudioClass playAudioFile:self:@"tryAgainE.m4a"];
                 
                 [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Try Again" : @"E" : @"tryAgainE.m4a" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
@@ -3593,8 +3227,8 @@ BOOL wasPathFollowed = false;
                 
                 [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Try Again" : @"S" : @"tryAgainS.m4a" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
             }
-        }
-        else {
+        }*/
+        //else {
             [[ServerCommunicationController sharedManager] logComputerVerification:@"Perform Interaction":false : movingObjectId:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
             
             [self.playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
@@ -3603,7 +3237,7 @@ BOOL wasPathFollowed = false;
                 //Record error for complexity
                 [[pageStatistics objectForKey:currentPageId] addErrorForComplexity:(currentComplexity - 1)];
             }
-        }
+        //}
         
         if ([interaction interactionType] != UNGROUP && allowSnapback) {
             //Snap the object back to its original location
@@ -4654,37 +4288,17 @@ BOOL wasPathFollowed = false;
         NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
         NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
 
-        if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && ([sentenceClass containsString: @"sentence actionSentence"] || [sentenceClass containsString: @"sentence IMactionSentence"])) {
+        if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) &&
+            ([sentenceClass containsString: @"sentence actionSentence"] ||
+             [sentenceClass containsString: @"sentence IMactionSentence"]))
+        {
             //Reset allRelationships arrray
             if ([allRelationships count]) {
                 [allRelationships removeAllObjects];
             }
             
             //Get steps for current sentence
-            NSMutableArray* currSolSteps;
-            
-            if (conditionSetup.appMode == ITS) {
-                currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
-            }
-            else {
-                if (conditionSetup.condition == CONTROL) {
-                    currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                }
-                else if (conditionSetup.condition == EMBRACE) {
-                    if (conditionSetup.currentMode == PM_MODE) {
-                        //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                        if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
-                            currSolSteps = [PMSolution getStepsForSentence:currentIdea];
-                        }
-                        else {
-                            currSolSteps = [PMSolution getStepsForSentence:currentSentence];
-                        }
-                    }
-                    else if (conditionSetup.currentMode == IM_MODE) {
-                        currSolSteps = [IMSolution getStepsForSentence:currentSentence];
-                    }
-                }
-            }
+            NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
             
             PossibleInteraction* interaction;
             NSMutableArray *interactions = [[NSMutableArray alloc]init ];

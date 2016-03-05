@@ -8,6 +8,7 @@
         <hotspot objId="boat" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="doorwaycarpet" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="fallen_tree" action="grab" role="object" x="50%" y="50%"/>
+        <hotspot objId="fallen_tree2" action="grab" role="object" x="50%" y="50%"/>
         <hotspot objId="haida" action="getIn" role="object" x="50%" y="70%"/>
         <hotspot objId="haida" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="haida" action="grab" role="subject" x="50%" y="50%"/>

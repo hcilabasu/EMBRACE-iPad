@@ -690,15 +690,7 @@ function setSentenceFontWeight(sentenceId, weight) {
  * under the object
  */
 function highlightObject(object) {
-    console.log(object.objectId);
-    if(object.objectId.indexOf("fallen_tree") > -1)
-    {
-        highlight(150, 500, 555, 250, "under");
-    }
-    else
-    {
-        highlight(object.offsetLeft, object.offsetTop, object.offsetWidth, object.offsetHeight, "under");
-    }
+    highlight(object.offsetLeft, object.offsetTop, object.offsetWidth, object.offsetHeight, "under");
 }
 
 /*

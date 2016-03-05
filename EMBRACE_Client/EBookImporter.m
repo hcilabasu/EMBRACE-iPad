@@ -835,8 +835,11 @@
         [[step name] isEqualToString:@"groupAuto"] ||
         [[step name] isEqualToString:@"disappear"] ||
         [[step name] isEqualToString:@"disappearAuto"] ||
+        [[step name] isEqualToString:@"disappearAutoWithDelay"] ||
         [[step name] isEqualToString:@"ungroup"] ||
-        [[step name] isEqualToString:@"ungroupAndStay"]) {
+        [[step name] isEqualToString:@"ungroupAndStay"] ||
+        [[step name] isEqualToString:@"appearAutoWithDelay"]
+        ) {
         if ([step attributeForName:@"obj2Id"]) {
             NSString *obj2Id = [[step attributeForName:@"obj2Id"] stringValue];
             
