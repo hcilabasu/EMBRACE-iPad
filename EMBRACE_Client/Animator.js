@@ -130,6 +130,11 @@ function animFrame(object){
         object.object.style.WebkitAnimationPlayState = 'running';
         rotate90(object);
     }
+    else if(object.animName == "airParticle")
+    {
+        object.object.style.WebkitAnimationPlayState = 'running';
+        airParticle(object);
+    }
     else if(object.animName == "rotate180Animation")
     {
         object.object.style.WebkitAnimationPlayState = 'running';
@@ -823,6 +828,13 @@ function rotate90(aniObject) {
     aniObject.object.style.WebkitTransformOrigin = 'bottom left';
     aniObject.object.style.WebkitTransform = 'translate(150px, -50px) rotate(90deg)';
 
+}
+
+function airParticle(aniObject)
+{
+    aniObject.object.style.WebkitTransitionDuration='6s';
+    aniObject.object.style.WebkitTransformOrigin = '150% 150%';
+    aniObject.object.style.WebkitTransform = 'translate(250px, 0px) rotate(900deg) ';
 }
 
 function rotate180(aniObject) {

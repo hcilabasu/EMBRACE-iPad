@@ -186,7 +186,7 @@
                 <step number="1">
                     <shakeOrTap obj1Id="air_blue" action="getIn" locationId="anywhere"/>
                     <move obj1Id="droplet_group" action="getIn" waypointId="droplet_stay"/>
-                    <animate obj1Id="air_particle" action="followAnimation" waypointId="" areaId="blue_air_area"/>
+                    <animate obj1Id="air_particle" action="airParticle" waypointId="" areaId="blue_air_area"/>
                 </step>
             </sentence>
             <sentence number="4">

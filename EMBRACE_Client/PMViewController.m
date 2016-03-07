@@ -312,6 +312,24 @@ BOOL wasPathFollowed = false;
             }
         }
         
+        //Remove any PM specific sentence instructions
+        if(conditionSetup.currentMode == IM_MODE)
+        {
+            NSString* requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('PM_TEXT').length"];
+            int sentenceCount = [[bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount] intValue];
+            
+            if(sentenceCount > 0)
+            {
+                NSString* removeSentenceString;
+                
+                //Remove PM specific sentences on the page
+                for (int i = 0; i <= totalSentences; i++) {
+                    removeSentenceString = [NSString stringWithFormat:@"removeSentence('PMs%d')", i];
+                    [bookView stringByEvaluatingJavaScriptFromString:removeSentenceString];
+                }
+            }
+        }
+        
         //Set up current sentence appearance and solution steps
         [self setupCurrentSentence];
         [self setupCurrentSentenceColor];
@@ -662,7 +680,7 @@ BOOL wasPathFollowed = false;
         [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
     }
     
-    //If it is an IM action sentence and in im mode, set its color to blue and automatically perform solution steps if necessary
+    //If it is an IM action sentence and in im mode, set its color to blue
     if ([sentenceClass  containsString: @"sentence IMactionSentence"] && ![sentenceClass containsString:@"black"] && currentSentence !=0 && conditionSetup.condition == EMBRACE && conditionSetup.condition == IM_MODE) {
         setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
         [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
