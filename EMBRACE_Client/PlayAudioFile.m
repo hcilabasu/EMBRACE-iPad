@@ -148,7 +148,7 @@
     
     //PmviewController = [[UIViewController alloc] init];
     self.PmviewController = viewController;
-    [viewController.view setUserInteractionEnabled:NO];
+    [PmviewController.view setUserInteractionEnabled:NO];
     
     self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&audioError];
     self.audioPlayerAfter = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL2 error:&audioError];

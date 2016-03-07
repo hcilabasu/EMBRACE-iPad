@@ -920,6 +920,7 @@
 		1AFBD67F1C613C820081A300 /* Animations.css in Resources */ = {isa = PBXBuildFile; fileRef = 1AFBD67E1C613C820081A300 /* Animations.css */; };
 		1AFCFFF11C34C0DB008F1A1C /* water_by_shore.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AFCFFEF1C34C0DB008F1A1C /* water_by_shore.png */; };
 		1AFCFFF21C34C0DB008F1A1C /* water_away_shore.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AFCFFF01C34C0DB008F1A1C /* water_away_shore.png */; };
+		1AFD2EF61C8A7A4D004B2D88 /* fallen_tree2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AFD2EF51C8A7A4D004B2D88 /* fallen_tree2.png */; };
 		31058C79176BE71C00595AAE /* PhysicalManipulationActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 31058C78176BE71C00595AAE /* PhysicalManipulationActivity.m */; };
 		31058C7C176BE73D00595AAE /* ImagineManipulationActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 31058C7B176BE73D00595AAE /* ImagineManipulationActivity.m */; };
 		31058C7F176BE74B00595AAE /* AssessmentActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 31058C7E176BE74B00595AAE /* AssessmentActivity.m */; };
@@ -2974,7 +2975,7 @@
 		5C9C080F1C57385A00702FCD /* combedS.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C9C063F1C57385900702FCD /* combedS.m4a */; };
 		5C9C08101C57385A00702FCD /* contestE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C9C06401C57385900702FCD /* contestE.m4a */; };
 		5C9C08111C57385A00702FCD /* contestS.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C9C06411C57385900702FCD /* contestS.m4a */; };
-		5C9C08121C57385A00702FCD /* old_corralE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C9C06421C57385900702FCD /* old_corralE.m4a */; };
+		5C9C08121C57385A00702FCD /* corralE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C9C06421C57385900702FCD /* corralE.m4a */; };
 		5C9C08131C57385A00702FCD /* corralS.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C9C06431C57385900702FCD /* corralS.m4a */; };
 		5C9C08141C57385A00702FCD /* farmDEFS.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C9C06441C57385900702FCD /* farmDEFS.m4a */; };
 		5C9C08151C57385A00702FCD /* farmE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C9C06451C57385900702FCD /* farmE.m4a */; };
@@ -5177,6 +5178,7 @@
 		1AFBD67E1C613C820081A300 /* Animations.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = Animations.css; sourceTree = "<group>"; };
 		1AFCFFEF1C34C0DB008F1A1C /* water_by_shore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water_by_shore.png; sourceTree = "<group>"; };
 		1AFCFFF01C34C0DB008F1A1C /* water_away_shore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water_away_shore.png; sourceTree = "<group>"; };
+		1AFD2EF51C8A7A4D004B2D88 /* fallen_tree2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fallen_tree2.png; sourceTree = "<group>"; };
 		31058C73176BCFF200595AAE /* logo114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo114.png; path = ../../logo114.png; sourceTree = "<group>"; };
 		31058C75176BCFF900595AAE /* logo57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo57.png; path = ../../logo57.png; sourceTree = "<group>"; };
 		31058C77176BE71C00595AAE /* PhysicalManipulationActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicalManipulationActivity.h; sourceTree = "<group>"; };
@@ -7293,7 +7295,7 @@
 		5C9C063F1C57385900702FCD /* combedS.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = combedS.m4a; sourceTree = "<group>"; };
 		5C9C06401C57385900702FCD /* contestE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = contestE.m4a; sourceTree = "<group>"; };
 		5C9C06411C57385900702FCD /* contestS.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = contestS.m4a; sourceTree = "<group>"; };
-		5C9C06421C57385900702FCD /* old_corralE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = old_corralE.m4a; sourceTree = "<group>"; };
+		5C9C06421C57385900702FCD /* corralE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = corralE.m4a; sourceTree = "<group>"; };
 		5C9C06431C57385900702FCD /* corralS.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = corralS.m4a; sourceTree = "<group>"; };
 		5C9C06441C57385900702FCD /* farmDEFS.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = farmDEFS.m4a; sourceTree = "<group>"; };
 		5C9C06451C57385900702FCD /* farmE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = farmE.m4a; sourceTree = "<group>"; };
@@ -11582,6 +11584,7 @@
 				5C28DBC31C2BA66E005ACD07 /* desert_background.png */,
 				5C28DBC41C2BA66E005ACD07 /* doorwaycarpet.png */,
 				5C28DBC51C2BA66E005ACD07 /* fallen_tree.png */,
+				1AFD2EF51C8A7A4D004B2D88 /* fallen_tree2.png */,
 				5C28DBC61C2BA66E005ACD07 /* firepit.png */,
 				5C28DBC71C2BA66E005ACD07 /* frame_complete.png */,
 				5C28DBC81C2BA66E005ACD07 /* frame_onground.png */,
@@ -12366,7 +12369,7 @@
 				5C9C063F1C57385900702FCD /* combedS.m4a */,
 				5C9C06401C57385900702FCD /* contestE.m4a */,
 				5C9C06411C57385900702FCD /* contestS.m4a */,
-				5C9C06421C57385900702FCD /* old_corralE.m4a */,
+				5C9C06421C57385900702FCD /* corralE.m4a */,
 				5C9C06431C57385900702FCD /* corralS.m4a */,
 				5C9C06441C57385900702FCD /* farmDEFS.m4a */,
 				5C9C06451C57385900702FCD /* farmE.m4a */,
@@ -14667,7 +14670,7 @@
 				033FC86B1C6C538800CF3850 /* sequences_MCD10.xml in Resources */,
 				5CA955771C3237690038FB56 /* metadata.xml in Resources */,
 				5CCD8FBD1C7405EC00D2EC2B /* TsunamisQ5.mp3 in Resources */,
-				5C9C08121C57385A00702FCD /* old_corralE.m4a in Resources */,
+				5C9C08121C57385A00702FCD /* corralE.m4a in Resources */,
 				1A6322E41C0E4D3B00251CB3 /* Story4-More-is-Missing-Intro-E.xhtml in Resources */,
 				5C9C07E91C57385A00702FCD /* BFEE_22A.m4a in Resources */,
 				5CCD8F841C7405EC00D2EC2B /* TornadosQ1A3.mp3 in Resources */,
@@ -14848,6 +14851,7 @@
 				5C28DC911C2BA66E005ACD07 /* frame_upright.png in Resources */,
 				5C9C0AAB1C573AAA00702FCD /* heartS.m4a in Resources */,
 				5C0ED69B1C752C2F00003B5A /* GettingReadyQ2A4.mp3 in Resources */,
+				1AFD2EF61C8A7A4D004B2D88 /* fallen_tree2.png in Resources */,
 				5C723D2E1C7C05340036263A /* Story1-The-Naughty-Monkey-Intro-S.xhtml in Resources */,
 				5CD1C1391C3F2E6A00BE9047 /* mrs_pena.png in Resources */,
 				5C9C07A41C57385A00702FCD /* BFCE_2B.m4a in Resources */,

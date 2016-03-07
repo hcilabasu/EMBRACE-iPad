@@ -7,8 +7,10 @@
         <relationship obj1Id="bark2" can="getOut" action="ungroup" obj2Id="man_ch4"/>
         <relationship obj1Id="haida" can="drop" action="ungroup" obj2Id="axe"/>
         <relationship obj1Id="haida" can="drop" action="ungroup" obj2Id="fallen_tree"/>
+        <relationship obj1Id="haida" can="drop" action="ungroup" obj2Id="fallen_tree2"/>
         <relationship obj1Id="haida" can="grab" action="group" obj2Id="axe"/>
         <relationship obj1Id="haida" can="grab" action="group" obj2Id="fallen_tree"/>
+        <relationship obj1Id="haida" can="grab" action="group" obj2Id="fallen_tree2"/>
         <relationship obj1Id="haida" can="roll" action="group" obj2Id="log1"/>
         <relationship obj1Id="inuit" can="drop" action="ungroup" obj2Id="iceknife"/>
         <relationship obj1Id="inuit" can="drop" action="ungroup" obj2Id="icewindow"/>

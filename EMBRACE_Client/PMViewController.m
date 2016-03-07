@@ -310,6 +310,24 @@ BOOL wasPathFollowed = false;
             }
         }
         
+        //Remove any PM specific sentence instructions
+        if(conditionSetup.currentMode == IM_MODE)
+        {
+            NSString* requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('PM_TEXT').length"];
+            int sentenceCount = [[bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount] intValue];
+            
+            if(sentenceCount > 0)
+            {
+                NSString* removeSentenceString;
+                
+                //Remove PM specific sentences on the page
+                for (int i = 0; i <= totalSentences; i++) {
+                    removeSentenceString = [NSString stringWithFormat:@"removeSentence('PMs%d')", i];
+                    [bookView stringByEvaluatingJavaScriptFromString:removeSentenceString];
+                }
+            }
+        }
+        
         //Set up current sentence appearance and solution steps
         [self setupCurrentSentence];
         [self setupCurrentSentenceColor];
@@ -899,6 +917,10 @@ BOOL wasPathFollowed = false;
             [self hideImage];
             [self incrementCurrentStep];
         }
+        else if ([[currSolStep stepType] isEqualToString:@"disappearAutoWithDelay"]) {
+            [self hideImage];
+            [self incrementCurrentStep];
+        }
         else if ([[currSolStep stepType] isEqualToString:@"changeZIndex"]) {
             [self changeZIndex];
             [self incrementCurrentStep];
@@ -1301,6 +1323,7 @@ BOOL wasPathFollowed = false;
         else if ([[Translation translationWords] objectForKey:englishSentenceText]) {
             [self playAudioForVocabWord:englishSentenceText :spanishExt];
         }
+        
     }
 }
 
@@ -1318,8 +1341,15 @@ BOOL wasPathFollowed = false;
         NSString *spanishAudio = [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"];
         NSString *engAudio = [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"];
         
-        if ([spanishExt isEqualToString:@""] == NO) {
-            spanishAudio = [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,spanishExt];
+        if (!success) {
+            NSString *spanishAudio = [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"];
+            NSString *engAudio = [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"];
+            
+            if ([spanishExt isEqualToString:@""] == NO) {
+                spanishAudio = [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,spanishExt];
+            }
+            
+            [self.playaudioClass playAudioInSequence:self:spanishAudio:engAudio];
         }
         
         //Play word audio Sp
@@ -1327,7 +1357,10 @@ BOOL wasPathFollowed = false;
     }
     else {
         //Play En audio twice
-        bool success = [self.playaudioClass playAudioInSequence:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
+        NSString *engAudio = [NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"E"];
+        
+        //Play Sp audio then En auido
+        bool success = [self.playaudioClass playAudioInSequence:self:engAudio:engAudio];
         
         if (!success) {
             //if error try mp3 format
@@ -2638,7 +2671,9 @@ BOOL wasPathFollowed = false;
         //Get current step to be completed
         ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
-        if ([[currSolStep stepType] isEqualToString:@"appear"]) {
+        if ([[currSolStep stepType] isEqualToString:@"appear"] ||
+            [[currSolStep stepType] isEqualToString:@"appearAutoWithDelay"])
+        {
             //Get information for appear step type
             NSString *object1Id = [currSolStep object1Id];
             NSString *action = [currSolStep action];
@@ -2664,7 +2699,19 @@ BOOL wasPathFollowed = false;
                 loadImage = [NSString stringWithFormat:@"loadImage('%@', '%@', '%@', '%@', %f, %f, '%@', %d)", object1Id, altSrc, width, height, location.x, location.y, className, zPosition.intValue];
             }
             
-            [bookView stringByEvaluatingJavaScriptFromString:loadImage];
+            if ([[currSolStep stepType] isEqualToString:@"appear"]) {
+                [bookView stringByEvaluatingJavaScriptFromString:loadImage];
+            }
+            else if([[currSolStep stepType] isEqualToString:@"appearAutoWithDelay"])
+            {
+                NSInteger delay = [[currSolStep object2Id] intValue];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW,delay*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                
+                    [bookView stringByEvaluatingJavaScriptFromString:loadImage];
+                });
+                
+                
+            }
         }
     }
 }
@@ -2709,6 +2756,17 @@ BOOL wasPathFollowed = false;
             //Hide image
             NSString *hideImage = [NSString stringWithFormat:@"removeImage('%@')", object2Id];
             [bookView stringByEvaluatingJavaScriptFromString:hideImage];
+        }
+        else if ([[currSolStep stepType] isEqualToString:@"disappearAutoWithDelay"])
+        {
+            NSString *object1Id = [currSolStep object1Id];
+            NSInteger delay = [[currSolStep object2Id] intValue];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW,delay*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                //Hide image
+                NSString* hideImage = [NSString stringWithFormat:@"removeImage('%@')", object1Id];
+                [bookView stringByEvaluatingJavaScriptFromString:hideImage];
+            });
         }
     }
 }
@@ -3256,8 +3314,9 @@ BOOL wasPathFollowed = false;
         }
     }
     else {
-        if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
-            if ((conditionSetup.language ==ENGLISH) || IntroductionClass.currentIntroStep > IntroductionClass.STEPS_TO_SWITCH_LANGUAGES_EMBRACE) {
+        /*if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
+            if ((conditionSetup.language ==ENGLISH) ||
+                IntroductionClass.currentIntroStep > IntroductionClass.STEPS_TO_SWITCH_LANGUAGES_EMBRACE) {
                 [self.playaudioClass playAudioFile:self:@"tryAgainE.m4a"];
             }
             else {
@@ -3271,7 +3330,7 @@ BOOL wasPathFollowed = false;
                 //Record error for complexity
                 [[pageStatistics objectForKey:currentPageId] addErrorForComplexity:(currentComplexity - 1)];
             }
-        }
+        //}
         
         if ([interaction interactionType] != UNGROUP && allowSnapback) {
             //Snap the object back to its original location
@@ -4290,7 +4349,10 @@ BOOL wasPathFollowed = false;
         NSString *actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
         NSString *sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
 
-        if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && ([sentenceClass containsString: @"sentence actionSentence"] || [sentenceClass containsString: @"sentence IMactionSentence"])) {
+        if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) &&
+            ([sentenceClass containsString: @"sentence actionSentence"] ||
+             [sentenceClass containsString: @"sentence IMactionSentence"]))
+        {
             //Reset allRelationships arrray
             if ([allRelationships count]) {
                 [allRelationships removeAllObjects];

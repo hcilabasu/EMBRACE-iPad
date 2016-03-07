@@ -289,13 +289,15 @@
                     <swapImage obj1Id="tree1" action="stump"/>
                     <appear obj1Id="fallen_tree" action="appear"/>
                     <animate obj1Id="fallen_tree" action="rotate90Animation" waypointId="" areaId=""/>
+                    <appearAutoWithDelay obj1Id="fallen_tree2" action="appear" obj2Id="5"/>
+                    <disappearAutoWithDelay obj1Id="fallen_tree" action="disappear" obj2Id="5"/>
                 </step>
             </sentence>
             <sentence number="6">
                 <step number="1">
-                    <group obj1Id="haida" action="grab" obj2Id="fallen_tree"/>
-                    <ungroup obj1Id="haida" action="drop" obj2Id="fallen_tree"/>
-                    <disappearAuto obj1Id="fallen_tree" action="disappear" obj2Id="fallen_tree"/>
+                    <group obj1Id="haida" action="grab" obj2Id="fallen_tree2"/>
+                    <ungroup obj1Id="haida" action="drop" obj2Id="fallen_tree2"/>
+                    <disappearAuto obj1Id="fallen_tree2" action="disappear" obj2Id="fallen_tree2"/>
                     <appear obj1Id="log1" action="appear"/>
                     <appear obj1Id="log2" action="appear"/>
                     <appear obj1Id="log3" action="appear"/>

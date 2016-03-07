@@ -2,6 +2,11 @@
 <metadata>
     <solutions>
         <story title="The Naughty Monkey" activity_id="story1-PM-1">
+            <sentence number="0">
+                <step number="1">
+                    <tapWord obj1Id="naughty monkey"/>
+                </step>
+            </sentence>
             <sentence number="3">
                 <step number="1">
                     <check obj1Id="lisa" action="getIn" locationId="trough"/>
@@ -30,11 +35,6 @@
             </sentence>
         </story>
         <story title="The Naughty Monkey" activity_id="story1-PM-2">
-            <sentence number="0">
-                <step number="1">
-                    <tapWord obj1Id="naughty monkey"/>
-                </step>
-            </sentence>
             <sentence number="6">
                 <step number="1">
                     <check obj1Id="monkey" action="getIn" locationId="tree"/>
