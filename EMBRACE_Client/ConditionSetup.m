@@ -33,7 +33,7 @@
         language = ENGLISH;
         reader = USER;
         appMode = Study;
-        currentMode = IM_MODE;
+        currentMode = PM_MODE;
     }
     
     return self;
