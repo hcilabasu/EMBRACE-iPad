@@ -2392,8 +2392,8 @@
 		5C62A99A1C854C5900F28BEB /* Rattle_def_S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C62A9911C854C5900F28BEB /* Rattle_def_S.mp3 */; };
 		5C62A99B1C854C5900F28BEB /* Relieved_def_S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C62A9921C854C5900F28BEB /* Relieved_def_S.mp3 */; };
 		5C62A99C1C854C5900F28BEB /* Wisdom_def_S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C62A9931C854C5900F28BEB /* Wisdom_def_S.mp3 */; };
-		5C723D2C1C7C052D0036263A /* Story1-The-Naughty-Monkey-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C723D2B1C7C052D0036263A /* Story1-The-Naughty-Monkey-Intro-E.xhtml */; };
-		5C723D2E1C7C05340036263A /* Story1-The-Naughty-Monkey-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C723D2D1C7C05340036263A /* Story1-The-Naughty-Monkey-Intro-S.xhtml */; };
+		5C723D2C1C7C052D0036263A /* Introduction-to-Naughty-Monkey-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C723D2B1C7C052D0036263A /* Introduction-to-Naughty-Monkey-E.xhtml */; };
+		5C723D2E1C7C05340036263A /* Introduction-to-Naughty-Monkey-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C723D2D1C7C05340036263A /* Introduction-to-Naughty-Monkey-S.xhtml */; };
 		5C72E4F61C727E2000CE4877 /* TheNavajoHoganQ7A4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C72E4C41C727E2000CE4877 /* TheNavajoHoganQ7A4.mp3 */; };
 		5C72E4F71C727E2000CE4877 /* TheNavajoHoganQ7A3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C72E4C51C727E2000CE4877 /* TheNavajoHoganQ7A3.mp3 */; };
 		5C72E4F81C727E2000CE4877 /* TheNavajoHoganQ7A2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C72E4C61C727E2000CE4877 /* TheNavajoHoganQ7A2.mp3 */; };
@@ -6710,8 +6710,8 @@
 		5C62A9911C854C5900F28BEB /* Rattle_def_S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Rattle_def_S.mp3; sourceTree = "<group>"; };
 		5C62A9921C854C5900F28BEB /* Relieved_def_S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Relieved_def_S.mp3; sourceTree = "<group>"; };
 		5C62A9931C854C5900F28BEB /* Wisdom_def_S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Wisdom_def_S.mp3; sourceTree = "<group>"; };
-		5C723D2B1C7C052D0036263A /* Story1-The-Naughty-Monkey-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-The-Naughty-Monkey-Intro-E.xhtml"; sourceTree = "<group>"; };
-		5C723D2D1C7C05340036263A /* Story1-The-Naughty-Monkey-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-The-Naughty-Monkey-Intro-S.xhtml"; sourceTree = "<group>"; };
+		5C723D2B1C7C052D0036263A /* Introduction-to-Naughty-Monkey-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Introduction-to-Naughty-Monkey-E.xhtml"; sourceTree = "<group>"; };
+		5C723D2D1C7C05340036263A /* Introduction-to-Naughty-Monkey-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Introduction-to-Naughty-Monkey-S.xhtml"; sourceTree = "<group>"; };
 		5C72E4C41C727E2000CE4877 /* TheNavajoHoganQ7A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNavajoHoganQ7A4.mp3; sourceTree = "<group>"; };
 		5C72E4C51C727E2000CE4877 /* TheNavajoHoganQ7A3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNavajoHoganQ7A3.mp3; sourceTree = "<group>"; };
 		5C72E4C61C727E2000CE4877 /* TheNavajoHoganQ7A2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNavajoHoganQ7A2.mp3; sourceTree = "<group>"; };
@@ -12782,8 +12782,8 @@
 		5CA955561C3237690038FB56 /* Text */ = {
 			isa = PBXGroup;
 			children = (
-				5C723D2D1C7C05340036263A /* Story1-The-Naughty-Monkey-Intro-S.xhtml */,
-				5C723D2B1C7C052D0036263A /* Story1-The-Naughty-Monkey-Intro-E.xhtml */,
+				5C723D2D1C7C05340036263A /* Introduction-to-Naughty-Monkey-S.xhtml */,
+				5C723D2B1C7C052D0036263A /* Introduction-to-Naughty-Monkey-E.xhtml */,
 				5CA955571C3237690038FB56 /* Story1-The-Naughty-Monkey-PM-1.xhtml */,
 				5C5F7CBE1C62BE8000CF70A1 /* Story1-The-Naughty-Monkey-PM-1S.xhtml */,
 				5CA955581C3237690038FB56 /* Story1-The-Naughty-Monkey-PM-2.xhtml */,
@@ -14852,7 +14852,7 @@
 				5C9C0AAB1C573AAA00702FCD /* heartS.m4a in Resources */,
 				5C0ED69B1C752C2F00003B5A /* GettingReadyQ2A4.mp3 in Resources */,
 				1AFD2EF61C8A7A4D004B2D88 /* fallen_tree2.png in Resources */,
-				5C723D2E1C7C05340036263A /* Story1-The-Naughty-Monkey-Intro-S.xhtml in Resources */,
+				5C723D2E1C7C05340036263A /* Introduction-to-Naughty-Monkey-S.xhtml in Resources */,
 				5CD1C1391C3F2E6A00BE9047 /* mrs_pena.png in Resources */,
 				5C9C07A41C57385A00702FCD /* BFCE_2B.m4a in Resources */,
 				5C62A90E1C851D1000F28BEB /* Sniffed_def_E.mp3 in Resources */,
@@ -17574,7 +17574,7 @@
 				5CCD8E4A1C73E73200D2EC2B /* IntroductionToNaturalDisastersQ1A1S.mp3 in Resources */,
 				5C0ED6C51C752C2F00003B5A /* TheBestFarmAwardQ4A1.mp3 in Resources */,
 				5C0ED7071C752C2F00003B5A /* TheWiseOwlQ4A2.mp3 in Resources */,
-				5C723D2C1C7C052D0036263A /* Story1-The-Naughty-Monkey-Intro-E.xhtml in Resources */,
+				5C723D2C1C7C052D0036263A /* Introduction-to-Naughty-Monkey-E.xhtml in Resources */,
 				5CB710141C6C032B0062AD61 /* NativeIntroS4S.mp3 in Resources */,
 				5C9C07A01C57385A00702FCD /* BFCE_22.m4a in Resources */,
 				5DBC032A1C5121AE0030072B /* (null) in Resources */,

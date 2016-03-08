@@ -18,7 +18,7 @@
                 <navLabel>
                     <text>The Naughty Monkey - Intro</text>
                 </navLabel>
-                <content src="Text/Story1-The-Naughty-Monkey-Intro-S.xhtml"/>
+                <content src="Text/Introduction-to-Naughty-Monkey-S.xhtml"/>
             </navPoint>
             <navPoint class="PM_MODE" id="story1-PM-1">
                 <navLabel>
@@ -39,7 +39,7 @@
     <pageList>
         <pageTarget id="p1" type="normal" value="1">
             <navLabel><text>Chapter 1 - The Naughty Monkey - Introduction</text></navLabel>
-            <content src="Text/Story1-The-Naughty-Monkey-Intro-S.xhtml"/>
+            <content src="Text/Introduction-to-Naughty-Monkey-S.xhtml"/>
         </pageTarget>
         <pageTarget id="p2" type="normal" value="2">
             <navLabel><text>Chapter 1 - The Naughty Monkey - Physical Manipulation 1</text></navLabel>
