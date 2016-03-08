@@ -194,29 +194,21 @@
     
 }
 
-
 #pragma mark - Responding to gestures
+
 /*
  * Plays a noise for error feedback if the user performs a manipulation incorrectly
  */
--(IBAction) playErrorNoise: (NSString *) storyName : (NSString *) chapterFilePath : (NSString*) pageFilePath : (NSInteger) sentenceNumber : (NSString *) sentenceText : (NSInteger) stepNumber : (NSInteger) ideaNumber
-{
-   
+- (IBAction)playErrorNoise {
     AudioServicesPlaySystemSound(1053);
-    
-    //Logging added by James for Error Noise
-    [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Error Audio" : @"NULL" :@"Error Noise"  :storyName: chapterFilePath: pageFilePath:sentenceNumber: sentenceText: stepNumber: ideaNumber];
 }
 
--(void) textToSpeech: (NSString *) text
-{
+- (void)textToSpeech:(NSString *)text {
     syn = [[AVSpeechSynthesizer alloc] init];
     AVSpeechUtterance *utteranceEn = [[AVSpeechUtterance alloc]initWithString:text];
     utteranceEn.rate = AVSpeechUtteranceMaximumSpeechRate/7;
     //utteranceEn.voice = [AVSpeechSynthesisVoice voiceWithLanguage:obj2];
     [syn speakUtterance:utteranceEn];
-    
-    //[[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Audio" : @"TTS" :text:bookTitle :chapterTitle :currentPage:currentSentence :currentStep];
 }
 
 @end

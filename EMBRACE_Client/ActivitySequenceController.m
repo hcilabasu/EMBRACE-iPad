@@ -22,6 +22,9 @@
  * Loads a particular set of activity sequences from file for the current user
  */
 - (BOOL)loadSequences:(NSString *)participantCode {
+    //TEST: Match test ID to MCD participant code
+    participantCode = [[participantCode uppercaseString] stringByReplacingOccurrencesOfString:@"TEST" withString:@"MCD"];
+    
     NSBundle *mainBundle = [NSBundle mainBundle];
     
     //Get path to correct sequences file based on participant code
@@ -57,16 +60,16 @@
                 GDataXMLElement *readerElement = [[modeElement elementsForName:@"reader"] objectAtIndex:0];
                 NSString *readerString = readerElement.stringValue;
                 
-                Reader reader;
+                Actor reader;
                 
                 if ([readerString isEqualToString:@"System"]) {
-                    reader = SYSTEM_READER;
+                    reader = SYSTEM;
                 }
                 else if ([readerString isEqualToString:@"User"]) {
-                    reader = USER_READER;
+                    reader = USER;
                 }
                 else {
-                    reader = SYSTEM_READER; //default reader
+                    reader = SYSTEM; //default reader
                 }
                 
                 //Get language

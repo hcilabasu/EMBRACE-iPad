@@ -12,22 +12,20 @@
 
 @interface AssessmentActivityViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property(nonatomic, strong) IBOutlet UISwipeGestureRecognizer *swipeRecognizer;
-@property (strong, nonatomic) IBOutlet UITableView *AnswerList;
-@property (strong, nonatomic) IBOutlet UIView *transparentLayer;
-@property(nonatomic,strong) IBOutlet UIButton *nextButton;
-@property(nonatomic,strong) NSString *ChapterTitle;
+@property (nonatomic, strong) IBOutlet UISwipeGestureRecognizer *swipeRecognizer;
+@property (nonatomic, strong) IBOutlet UITableView *AnswerList;
+@property (nonatomic, strong) IBOutlet UIView *transparentLayer;
+@property (nonatomic, strong) IBOutlet UIButton *nextButton;
+@property (nonatomic, strong) NSString *ChapterTitle;
 
+@property (nonatomic,strong) IBOutlet UIButton *questionButton;
+@property (nonatomic,strong) IBOutlet UIButton *answer1Button;
+@property (nonatomic,strong) IBOutlet UIButton *answer2Button;
+@property (nonatomic,strong) IBOutlet UIButton *answer3Button;
+@property (nonatomic,strong) IBOutlet UIButton *answer4Button;
+@property (nonatomic, strong) PlayAudioFile *playAudioFileClass;
 
-@property(nonatomic,strong) IBOutlet UIButton *questionButton;
-@property(nonatomic,strong) IBOutlet UIButton *answer1Button;
-@property(nonatomic,strong) IBOutlet UIButton *answer2Button;
-@property(nonatomic,strong) IBOutlet UIButton *answer3Button;
-@property(nonatomic,strong) IBOutlet UIButton *answer4Button;
-@property(nonatomic, strong) PlayAudioFile *playAudioFileClass;
-
-- (id)initWithModel:(InteractionModel*) model : (UIViewController*) libraryViewController : (UIImage *) backgroundImage : (NSString*) bookTitle : (NSString*) chapterTitle : (NSString*) currentPage : (NSString*)currentSentence :(NSString*) currentStep;
--(void)loadNextAssessmentActivityQuestion;
-
+- (id)initWithModel:(InteractionModel *)model :(UIViewController *)libraryViewController :(UIImage *)backgroundImage :(NSString *)bookTitle :(NSString *)chapterTitle :(NSString *)currentPage :(NSString *)currentSentence :(NSString *)currentStep;
+- (void)loadNextAssessmentActivityQuestion;
 
 @end
