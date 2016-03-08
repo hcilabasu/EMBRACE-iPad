@@ -156,7 +156,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
         student = [[Student alloc] initWithValues:@"Study Code" :@"Study Day" :@"Experimenter" :@"School Day"];
     }
     
-//    [[ServerCommunicationController sharedInstance] logPressLogin];
+    [[ServerCommunicationController sharedInstance] logPressLogin];
     
     //Create ActivitySequenceController
     sequenceController = [[ActivitySequenceController alloc] init];
@@ -355,14 +355,14 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
     
     [booksButton setEnabled:FALSE];
     
-//    [[ServerCommunicationController sharedInstance] logPressBooks];
+    [[ServerCommunicationController sharedInstance] logPressBooks];
 }
 
 /*
  * User pressed Logout button. Writes data to log file and returns to login screen.
  */
 - (IBAction)pressedLogout:(id)sender {
-//    [[ServerCommunicationController sharedInstance] logPressLogout];
+    [[ServerCommunicationController sharedInstance] logPressLogout];
     
     //Write log data to file
     [[ServerCommunicationController sharedInstance] writeLogFile];
@@ -458,7 +458,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                 //Unlock book by setting its first chapter to be in progress
                 [studentProgress setStatusOfChapter:selectedChapterTitle :IN_PROGRESS fromBook:selectedBookTitle];
                 
-//                [[ServerCommunicationController sharedInstance] logUnlockBook:selectedBookTitle];
+                [[ServerCommunicationController sharedInstance] logUnlockBook:selectedBookTitle];
             }
             //Chapters
             else {
@@ -468,7 +468,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                 //Set this chapter to be in progress
                 [studentProgress setStatusOfChapter:selectedChapterTitle :IN_PROGRESS fromBook:selectedBookTitle];
                 
-//                [[ServerCommunicationController sharedInstance] logUnlockChapter:selectedChapterTitle inBook:selectedBookTitle];
+                [[ServerCommunicationController sharedInstance] logUnlockChapter:selectedChapterTitle inBook:selectedBookTitle];
             }
             
             //Update progress indicators
@@ -572,7 +572,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
             
             [booksButton setEnabled:TRUE];
             
-//            [[ServerCommunicationController sharedInstance] logLoadBook:selectedBookTitle];
+            [[ServerCommunicationController sharedInstance] logLoadBook:selectedBookTitle];
         }
         else {
             [self showLockedMessage];
@@ -631,7 +631,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                 }
             }
             
-//            [[ServerCommunicationController sharedInstance] logLoadChapter:selectedChapterTitle inBook:selectedBookTitle];
+            [[ServerCommunicationController sharedInstance] logLoadChapter:selectedChapterTitle inBook:selectedBookTitle];
             
             //Send the notification to open that mode for the particular book and activity chosen
             if (conditionSetup.appMode == Authoring) {

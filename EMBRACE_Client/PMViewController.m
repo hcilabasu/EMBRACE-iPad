@@ -268,7 +268,7 @@ BOOL wasPathFollowed = false;
         
         manipulationContext.sentenceNumber = currentSentence;
         manipulationContext.sentenceText = currentSentenceText;
-//        [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText context:manipulationContext];
+        [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText context:manipulationContext];
         
         //Dynamically reads the vocabulary words on the vocab page and creates and adds solutionsteps
         if ([currentPageId rangeOfString:@"-Intro"].location != NSNotFound) {
@@ -550,7 +550,7 @@ BOOL wasPathFollowed = false;
     currentPageId = [book getIdForPageInChapterAndActivity:currentPage :chapterTitle :conditionSetup.currentMode];
     
     [self setManipulationContext];
-//    [[ServerCommunicationController sharedInstance] logLoadPage:[manipulationContext pageLanguage] mode:[manipulationContext pageMode] number:[manipulationContext pageNumber] context:manipulationContext];
+    [[ServerCommunicationController sharedInstance] logLoadPage:[manipulationContext pageLanguage] mode:[manipulationContext pageMode] number:[manipulationContext pageNumber] context:manipulationContext];
     
     //Get the solutions for the appropriate manipulation activity
     if (conditionSetup.condition == EMBRACE) {
@@ -626,7 +626,7 @@ BOOL wasPathFollowed = false;
         [self performAutomaticSteps];
     }
     else {
-//        [[ServerCommunicationController sharedInstance] logLoadStep:currentStep ofType:@"NULL" context:manipulationContext];
+        [[ServerCommunicationController sharedInstance] logLoadStep:currentStep ofType:@"NULL" context:manipulationContext];
         
         stepsComplete = TRUE; //no steps to complete for non-action sentence
     }
@@ -840,7 +840,7 @@ BOOL wasPathFollowed = false;
         //Get current step to be completed
         ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
-//        [[ServerCommunicationController sharedInstance] logLoadStep:currentStep ofType:[currSolStep stepType] context:manipulationContext];
+        [[ServerCommunicationController sharedInstance] logLoadStep:currentStep ofType:[currSolStep stepType] context:manipulationContext];
         
         //Automatically perform interaction if step is ungroup, move, or swap image
         if (!pinchToUngroup && ([[currSolStep stepType] isEqualToString:@"ungroup"] ||
@@ -893,7 +893,7 @@ BOOL wasPathFollowed = false;
             
             [self.playaudioClass playAudioFile:self :file];
             
-//            [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:[[currSolStep fileName] stringByDeletingPathExtension] inLanguage:@"NULL" ofType:@"Play Sound" :manipulationContext];
+            [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:[[currSolStep fileName] stringByDeletingPathExtension] inLanguage:@"NULL" ofType:@"Play Sound" :manipulationContext];
             
             [self incrementCurrentStep];
         }
@@ -965,7 +965,7 @@ BOOL wasPathFollowed = false;
             
             [animatingObjects setObject:[NSString stringWithFormat:@"%@,%@,%@", @"animate", action, areaId] forKey:object1Id];
             
-//            [[ServerCommunicationController sharedInstance] logAnimateObject:object1Id forAction:action context:manipulationContext];
+            [[ServerCommunicationController sharedInstance] logAnimateObject:object1Id forAction:action context:manipulationContext];
         }
     }
 }
@@ -997,7 +997,7 @@ BOOL wasPathFollowed = false;
     [super viewWillDisappear:animated];
     
     if (![[self.navigationController viewControllers] containsObject:self]) {
-//        [[ServerCommunicationController sharedInstance] logPressLibrary:manipulationContext];
+        [[ServerCommunicationController sharedInstance] logPressLibrary:manipulationContext];
         [[ServerCommunicationController sharedInstance] writeLogFile];
     }
 }
@@ -1076,7 +1076,7 @@ BOOL wasPathFollowed = false;
                 [menuItemRelationships addObject:tempMenuRelationship.action];
             }
             
-//            [[ServerCommunicationController sharedInstance] logSelectMenuItemAtIndex:menuItem interactions:menuItemInteractions objects:menuItemImages relationships:menuItemRelationships context:manipulationContext];
+            [[ServerCommunicationController sharedInstance] logSelectMenuItemAtIndex:menuItem interactions:menuItemInteractions objects:menuItemImages relationships:menuItemRelationships context:manipulationContext];
 
             [self checkSolutionForInteraction:interaction]; //check if selected interaction is correct
             
@@ -1087,13 +1087,13 @@ BOOL wasPathFollowed = false;
         }
         //No menuItem was selected
         else {
-//            [[ServerCommunicationController sharedInstance] logSelectMenuItemAtIndex:-1 interactions:nil objects:nil relationships:nil context:manipulationContext];
+            [[ServerCommunicationController sharedInstance] logSelectMenuItemAtIndex:-1 interactions:nil objects:nil relationships:nil context:manipulationContext];
             
             if (allowSnapback) {
                 //Snap the object back to its original location
                 [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
                 
-//                [[ServerCommunicationController sharedInstance] logResetObject:movingObjectId startPos:endLocation endPos:startLocation context:manipulationContext];
+                [[ServerCommunicationController sharedInstance] logResetObject:movingObjectId startPos:endLocation endPos:startLocation context:manipulationContext];
                 
                 //Clear any remaining highlighting.
                 NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
@@ -1129,11 +1129,11 @@ BOOL wasPathFollowed = false;
                     //Get the object at this point
                     NSString *imageAtPoint = [self getObjectAtPoint:location ofType:nil];
                     
-//                    [[ServerCommunicationController sharedInstance] logTapObject:imageAtPoint :manipulationContext];
+                    [[ServerCommunicationController sharedInstance] logTapObject:imageAtPoint :manipulationContext];
                     
                     //If the correct object was tapped, swap its image and increment the step
                     if ([self checkSolutionForSubject:imageAtPoint]) {
-//                        [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Tap Object" context:manipulationContext];
+                        [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Tap Object" context:manipulationContext];
                         
                         [self swapObjectImage];
                         [self incrementCurrentStep];
@@ -1144,11 +1144,11 @@ BOOL wasPathFollowed = false;
                     //Get the object at this point
                     NSString *imageAtPoint = [self getObjectAtPoint:location ofType:nil];
                     
-//                    [[ServerCommunicationController sharedInstance] logTapObject:imageAtPoint :manipulationContext];
+                    [[ServerCommunicationController sharedInstance] logTapObject:imageAtPoint :manipulationContext];
                     
                     //If the correct object was tapped, increment the step
                     if ([self checkSolutionForSubject:imageAtPoint]) {
-//                        [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Tap Object" context:manipulationContext];
+                        [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Tap Object" context:manipulationContext];
                         
                         [self incrementCurrentStep];
                     }
@@ -1221,7 +1221,7 @@ BOOL wasPathFollowed = false;
             
                 if ([[currSolStep stepType] isEqualToString:@"tapWord"]) {
                     if ([englishSentenceText containsString: [currSolStep object1Id]] && (currentSentence == sentenceIDNum)) {
-//                        [[ServerCommunicationController sharedInstance] logTapWord:sentenceText :manipulationContext];
+                        [[ServerCommunicationController sharedInstance] logTapWord:sentenceText :manipulationContext];
                         
                         [self playIntroVocabWord:sentenceText :englishSentenceText :currSolStep];
                         [self incrementCurrentStep];
@@ -1240,20 +1240,20 @@ BOOL wasPathFollowed = false;
                 if ([[currSolStep stepType] isEqualToString:@"tapWord"]) {
                     if ([englishSentenceText containsString: [currSolStep object1Id]] &&
                        (currentSentence == sentenceIDNum)) {
-//                        [[ServerCommunicationController sharedInstance] logTapWord:sentenceText :manipulationContext];
+                        [[ServerCommunicationController sharedInstance] logTapWord:sentenceText :manipulationContext];
                         
                         //[self playIntroVocabWord:sentenceText :englishSentenceText :currSolStep];
                         [self incrementCurrentStep];
                     }
                 }
                 else if ([[Translation translationWords] objectForKey:englishSentenceText]) {
-//                    [[ServerCommunicationController sharedInstance] logTapWord:englishSentenceText :manipulationContext];
+                    [[ServerCommunicationController sharedInstance] logTapWord:englishSentenceText :manipulationContext];
                     
                     [self playAudioForVocabWord:englishSentenceText :spanishExt];
                 }
             }
             else if ([[Translation translationWords] objectForKey:englishSentenceText]) {
-//                [[ServerCommunicationController sharedInstance] logTapWord:englishSentenceText :manipulationContext];
+                [[ServerCommunicationController sharedInstance] logTapWord:englishSentenceText :manipulationContext];
                 
                 [self playAudioForVocabWord:englishSentenceText :spanishExt];
             }
@@ -1289,8 +1289,8 @@ BOOL wasPathFollowed = false;
             [self.playaudioClass playAudioInSequence:self :spanishAudio :engAudio];
         }
         
-//        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:@"Spanish" ofType:@"Play Word" :manipulationContext];
-//        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:@"English" ofType:@"Play Word" :manipulationContext];
+        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:@"Spanish" ofType:@"Play Word" :manipulationContext];
+        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:@"English" ofType:@"Play Word" :manipulationContext];
     }
     else {
         //Play En audio twice
@@ -1304,8 +1304,8 @@ BOOL wasPathFollowed = false;
             [self.playaudioClass playAudioInSequence:self :engAudio :engAudio];
         }
         
-//        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:@"English" ofType:@"Play Word" :manipulationContext];
-//        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:@"English" ofType:@"Play Word" :manipulationContext];
+        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:@"English" ofType:@"Play Word" :manipulationContext];
+        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:@"English" ofType:@"Play Word" :manipulationContext];
     }
     
     //Revert the carbon dioxide name for highlighting
@@ -1335,7 +1335,7 @@ BOOL wasPathFollowed = false;
             [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.m4a", englishSentenceText, @"S"]];
         }
         
-//        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:@"Spanish" ofType:@"Play Word with Definition" :manipulationContext];
+        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:@"Spanish" ofType:@"Play Word with Definition" :manipulationContext];
     }
     
     [self highlightImageForText:englishSentenceText];
@@ -1352,7 +1352,7 @@ BOOL wasPathFollowed = false;
             [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.m4a", englishSentenceText, @"E"]];
         }
         
-//        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:@"English" ofType:@"Play Word with Definition" :manipulationContext];
+        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:@"English" ofType:@"Play Word with Definition" :manipulationContext];
         
         [self highlightImageForText:englishSentenceText];
         
@@ -1361,7 +1361,7 @@ BOOL wasPathFollowed = false;
         
         manipulationContext.sentenceNumber = currentSentence;
         manipulationContext.sentenceText = currentSentenceText;
-//        [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText context:manipulationContext];
+        [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText context:manipulationContext];
         
         [self performSelector:@selector(colorSentencesUponNext) withObject:nil afterDelay:([self.playaudioClass audioPlayer].duration)];
     });
@@ -1437,14 +1437,14 @@ BOOL wasPathFollowed = false;
 - (IBAction)swipeGesturePerformed:(UISwipeGestureRecognizer *)recognizer {
     //Emergency swipe to bypass the vocab intros
     if ([IntroductionClass.vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
-//        [[ServerCommunicationController sharedInstance] logEmergencySwipe:manipulationContext];
+        [[ServerCommunicationController sharedInstance] logEmergencySwipe:manipulationContext];
         
         [_audioPlayer stop];
         [self loadNextPage];
     }
     //Perform steps only if they exist for the sentence and have not been completed
     else if (numSteps > 0 && !stepsComplete && conditionSetup.condition == EMBRACE && conditionSetup.currentMode == PM_MODE) {
-//        [[ServerCommunicationController sharedInstance] logEmergencySwipe:manipulationContext];
+        [[ServerCommunicationController sharedInstance] logEmergencySwipe:manipulationContext];
         
         //Get steps for current sentence
         NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
@@ -1667,26 +1667,26 @@ BOOL wasPathFollowed = false;
                                     destination = @"NULL";
                                 }
                                 
-//                                [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:destination ofType:@"Location" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
+                                [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:destination ofType:@"Location" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
 
-//                                [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Move Object" context:manipulationContext];
+                                [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Move Object" context:manipulationContext];
                                 
                                 [animatingObjects setObject:@"stop" forKey:movingObjectId];
                                 [self incrementCurrentStep];
                             }
                             //Reset object location
                             else {
-//                                [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:@"NULL" ofType:@"Location" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
+                                [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:@"NULL" ofType:@"Location" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
 
-//                                [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
+                                [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
                                 
                                 [self resetObjectLocation];
                             }
                         }
                         else {
-//                            [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:@"NULL" ofType:@"Location" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
+                            [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:@"NULL" ofType:@"Location" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
                             
-//                            [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
+                            [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
                             
                             [self playErrorNoise];
                             
@@ -1700,33 +1700,33 @@ BOOL wasPathFollowed = false;
                         }
                     }
                     else if ([[currSolStep stepType] isEqualToString:@"shakeOrTap"]) {
-//                        [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:@"NULL" ofType:@"Location" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
+                        [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:@"NULL" ofType:@"Location" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
                         
                         if (([[currSolStep object1Id] isEqualToString:movingObjectId]) && ([self areHotspotsInsideArea] || [self isHotspotInsideLocation])) {
-//                            [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Move Object" context:manipulationContext];
+                            [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Move Object" context:manipulationContext];
                             
                             [animatingObjects setObject:@"stop" forKey:movingObjectId];
                             [self resetObjectLocation];
                             [self incrementCurrentStep];
                         }
                         else {
-//                            [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
+                            [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
                             
                             [self playErrorNoise];
                             [self resetObjectLocation];
                         }
                     }
                     else if ([[currSolStep stepType] isEqualToString:@"checkPath"]) {
-//                        [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:@"NULL" ofType:@"Location" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
+                        [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:@"NULL" ofType:@"Location" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
                         
                         if (wasPathFollowed) {
-//                            [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Move Object" context:manipulationContext];
+                            [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Move Object" context:manipulationContext];
                             
                             [animatingObjects setObject:@"stop" forKey:movingObjectId];
                             [self incrementCurrentStep];
                         }
                         else {
-//                            [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
+                            [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
                             
                             [self resetObjectLocation];
                         }
@@ -1737,7 +1737,7 @@ BOOL wasPathFollowed = false;
                         
                         //Get possible interactions only if the object is overlapping something
                         if (overlappingWith != nil) {
-//                            [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:[overlappingWith componentsJoinedByString:@", "] ofType:@"Object" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
+                            [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:[overlappingWith componentsJoinedByString:@", "] ofType:@"Object" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
                             
                             //Resets allRelationship arrray
                             if ([allRelationships count]) {
@@ -1749,7 +1749,7 @@ BOOL wasPathFollowed = false;
                             
                             //No possible interactions were found
                             if ([possibleInteractions count] == 0) {
-//                                [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
+                                [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
                                 
                                 [self playErrorNoise];
                                 [self resetObjectLocation];
@@ -1790,9 +1790,9 @@ BOOL wasPathFollowed = false;
                         }
                         //Not overlapping any object
                         else {
-//                            [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:@"NULL" ofType:@"Location" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
+                            [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:@"NULL" ofType:@"Location" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
                             
-//                            [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
+                            [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
                             
                             [self playErrorNoise];
                             [self resetObjectLocation];
@@ -1878,7 +1878,7 @@ BOOL wasPathFollowed = false;
             [animatingObjects setObject:[NSString stringWithFormat:@"%@,%@,%@", @"animate", animationType, animationAreaId] forKey:movingObjectId];
         }
         
-//        [[ServerCommunicationController sharedInstance] logResetObject:movingObjectId startPos:endLocation endPos:startLocation context:manipulationContext];
+        [[ServerCommunicationController sharedInstance] logResetObject:movingObjectId startPos:endLocation endPos:startLocation context:manipulationContext];
     }
 }
 
@@ -2264,12 +2264,12 @@ BOOL wasPathFollowed = false;
         if ([connection interactionType] == UNGROUP && [[self getCurrentSolutionStep] isEqualToString:@"ungroupAndStay"]) {
             [self ungroupObjectsAndStay:obj1 :obj2];
             
-//            [[ServerCommunicationController sharedInstance] logGroupOrUngroupObjects:obj1 object2:obj2 ofType:@"Ungroup and Stay Objects" hotspot:@"NULL" :manipulationContext];
+            [[ServerCommunicationController sharedInstance] logGroupOrUngroupObjects:obj1 object2:obj2 ofType:@"Ungroup and Stay Objects" hotspot:@"NULL" :manipulationContext];
         }
         else if ([connection interactionType] == UNGROUP) {
             [self ungroupObjects:obj1 :obj2]; //ungroup objects
             
-//            [[ServerCommunicationController sharedInstance] logGroupOrUngroupObjects:obj1  object2:obj2 ofType:@"Ungroup Objects" hotspot:@"NULL" :manipulationContext];
+            [[ServerCommunicationController sharedInstance] logGroupOrUngroupObjects:obj1  object2:obj2 ofType:@"Ungroup Objects" hotspot:@"NULL" :manipulationContext];
         }
         else if ([connection interactionType] == GROUP) {
             //Get hotspots.
@@ -2281,12 +2281,12 @@ BOOL wasPathFollowed = false;
             
             [self groupObjects:obj1 :hotspot1Loc :obj2 :hotspot2Loc]; //group objects
             
-//            [[ServerCommunicationController sharedInstance] logGroupOrUngroupObjects:obj1  object2:obj2 ofType:@"Group Objects" hotspot:[hotspot1 action] :manipulationContext];
+            [[ServerCommunicationController sharedInstance] logGroupOrUngroupObjects:obj1  object2:obj2 ofType:@"Group Objects" hotspot:[hotspot1 action] :manipulationContext];
         }
         else if ([connection interactionType] == DISAPPEAR) {
             [self consumeAndReplenishSupply:obj2]; //make object disappear
             
-//            [[ServerCommunicationController sharedInstance] logAppearOrDisappearObject:obj2 ofType:@"Disappear Object" context:manipulationContext];
+            [[ServerCommunicationController sharedInstance] logAppearOrDisappearObject:obj2 ofType:@"Disappear Object" context:manipulationContext];
         }
     }
 }
@@ -2471,7 +2471,7 @@ BOOL wasPathFollowed = false;
                 NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
                 [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
                 
-//                [[ServerCommunicationController sharedInstance] logMoveObject:object1Id toDestination:[waypoint waypointId] ofType:@"Waypoint" startPos:startLocation endPos:waypointLocation performedBy:SYSTEM context:manipulationContext];
+                [[ServerCommunicationController sharedInstance] logMoveObject:object1Id toDestination:[waypoint waypointId] ofType:@"Waypoint" startPos:startLocation endPos:waypointLocation performedBy:SYSTEM context:manipulationContext];
             }
         }
     }
@@ -2516,7 +2516,7 @@ BOOL wasPathFollowed = false;
             
             [bookView stringByEvaluatingJavaScriptFromString:swapImages];
             
-//            [[ServerCommunicationController sharedInstance] logSwapImageForObject:object1Id altImage:[altSrc stringByDeletingPathExtension] context:manipulationContext];
+            [[ServerCommunicationController sharedInstance] logSwapImageForObject:object1Id altImage:[altSrc stringByDeletingPathExtension] context:manipulationContext];
         }
     }
 }
@@ -2562,14 +2562,14 @@ BOOL wasPathFollowed = false;
             if ([[currSolStep stepType] isEqualToString:@"appear"]) {
                 [bookView stringByEvaluatingJavaScriptFromString:loadImage];
                 
-//                [[ServerCommunicationController sharedInstance] logAppearOrDisappearObject:object1Id ofType:@"Appear Object" context:manipulationContext];
+                [[ServerCommunicationController sharedInstance] logAppearOrDisappearObject:object1Id ofType:@"Appear Object" context:manipulationContext];
             }
             else if([[currSolStep stepType] isEqualToString:@"appearAutoWithDelay"]) {
                 NSInteger delay = [[currSolStep object2Id] intValue];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW,delay * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                     [bookView stringByEvaluatingJavaScriptFromString:loadImage];
                     
-//                    [[ServerCommunicationController sharedInstance] logAppearOrDisappearObject:object1Id ofType:@"Appear Object" context:manipulationContext];
+                    [[ServerCommunicationController sharedInstance] logAppearOrDisappearObject:object1Id ofType:@"Appear Object" context:manipulationContext];
                 });
             }
         }
@@ -2594,7 +2594,7 @@ BOOL wasPathFollowed = false;
             NSString *hideImage = [NSString stringWithFormat:@"removeImage('%@')", object2Id];
             [bookView stringByEvaluatingJavaScriptFromString:hideImage];
             
-//            [[ServerCommunicationController sharedInstance] logAppearOrDisappearObject:object2Id ofType:@"Disappear Object" context:manipulationContext];
+            [[ServerCommunicationController sharedInstance] logAppearOrDisappearObject:object2Id ofType:@"Disappear Object" context:manipulationContext];
         }
         else if ([[currSolStep stepType] isEqualToString:@"disappearAutoWithDelay"]) {
             NSString *object1Id = [currSolStep object1Id];
@@ -2605,7 +2605,7 @@ BOOL wasPathFollowed = false;
                 NSString* hideImage = [NSString stringWithFormat:@"removeImage('%@')", object1Id];
                 [bookView stringByEvaluatingJavaScriptFromString:hideImage];
                 
-//                [[ServerCommunicationController sharedInstance] logAppearOrDisappearObject:object1Id ofType:@"Disappear Object" context:manipulationContext];
+                [[ServerCommunicationController sharedInstance] logAppearOrDisappearObject:object1Id ofType:@"Disappear Object" context:manipulationContext];
             });
         }
     }
@@ -2641,7 +2641,7 @@ BOOL wasPathFollowed = false;
             NSString *loadImage = [NSString stringWithFormat:@"loadImage('%@', '%@', '%@', %f, %f, '%@', %d)", object1Id, altSrc, width, location.x, location.y, className, zPosition.intValue];
             [bookView stringByEvaluatingJavaScriptFromString:loadImage];
             
-//            [[ServerCommunicationController sharedInstance] logSwapImageForObject:object1Id altImage:altSrc context:manipulationContext];
+            [[ServerCommunicationController sharedInstance] logSwapImageForObject:object1Id altImage:altSrc context:manipulationContext];
         }
     }
 }
@@ -2940,7 +2940,7 @@ BOOL wasPathFollowed = false;
     //Check if selected interaction is correct
     if ([interaction isEqual:correctInteraction]) {
         if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) {
-//            [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Select Menu Item" context:manipulationContext];
+            [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Select Menu Item" context:manipulationContext];
             
             //Remove menu
             [menu removeFromSuperview];
@@ -2962,7 +2962,7 @@ BOOL wasPathFollowed = false;
             
             manipulationContext.sentenceNumber = currentSentence;
             manipulationContext.sentenceText = currentSentenceText;
-//            [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText context:manipulationContext];
+            [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText context:manipulationContext];
         
             //Set up current sentence appearance and solution steps
             [self setupCurrentSentence];
@@ -2978,10 +2978,10 @@ BOOL wasPathFollowed = false;
         }
         else {
             if (menu != nil) {
-//                [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Select Menu Item" context:manipulationContext];
+                [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Select Menu Item" context:manipulationContext];
             }
             else {
-//                [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Move Object" context:manipulationContext];
+                [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Move Object" context:manipulationContext];
             }
             
             [self performInteraction:interaction];
@@ -3015,10 +3015,10 @@ BOOL wasPathFollowed = false;
         }*/
         //else {
             if (menu != nil) {
-//                [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Select Menu Item" context:manipulationContext];
+                [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Select Menu Item" context:manipulationContext];
             }
             else {
-//                [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
+                [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
             }
         
             [self playErrorNoise];
@@ -3033,7 +3033,7 @@ BOOL wasPathFollowed = false;
             //Snap the object back to its original location
             [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
             
-//            [[ServerCommunicationController sharedInstance] logResetObject:movingObjectId startPos:endLocation endPos:startLocation context:manipulationContext];
+            [[ServerCommunicationController sharedInstance] logResetObject:movingObjectId startPos:endLocation endPos:startLocation context:manipulationContext];
         }
     }
     
@@ -3998,7 +3998,7 @@ BOOL wasPathFollowed = false;
  * is correct, then it will move on to the next sentence. If the manipulation is not current, then feedback will be provided.
  */
 - (IBAction)pressedNext:(id)sender {
-//    [[ServerCommunicationController sharedInstance] logPressNextInManipulationActivity:manipulationContext];
+    [[ServerCommunicationController sharedInstance] logPressNextInManipulationActivity:manipulationContext];
     
 //    NSString *preAudio = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(preaudio)"]];
     
@@ -4098,7 +4098,7 @@ BOOL wasPathFollowed = false;
                 
                 manipulationContext.sentenceNumber = currentSentence;
                 manipulationContext.sentenceText = currentSentenceText;
-//                [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText context:manipulationContext];
+                [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText context:manipulationContext];
                 
                 //currentSentence is 1 indexed.
                 if (currentSentence > totalSentences) {
@@ -4124,7 +4124,7 @@ BOOL wasPathFollowed = false;
             
             manipulationContext.sentenceNumber = currentSentence;
             manipulationContext.sentenceText = currentSentenceText;
-//            [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText context:manipulationContext];
+            [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText context:manipulationContext];
 
             //currentSentence is 1 indexed
             if (currentSentence > totalSentences) {
@@ -4152,7 +4152,7 @@ BOOL wasPathFollowed = false;
             }
         }
         else {
-//            [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Press Next" context:manipulationContext];
+            [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Press Next" context:manipulationContext];
             
             //Play noise if not all steps have been completed
             [self playErrorNoise];
@@ -4163,7 +4163,7 @@ BOOL wasPathFollowed = false;
 - (void)playErrorNoise {
     [self.playaudioClass playErrorNoise];
     
-//    [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:@"Error Noise" inLanguage:@"NULL" ofType:@"Play Error Noise" :manipulationContext];
+    [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:@"Error Noise" inLanguage:@"NULL" ofType:@"Play Error Noise" :manipulationContext];
 }
 
 - (void)playCurrentSentenceAudio {
@@ -4307,23 +4307,23 @@ BOOL wasPathFollowed = false;
     if (preAudio != nil) {
         [array addObjectsFromArray:preAudio];
         
-//        for (NSString *preAudioFile in preAudio) {
-//            [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:[preAudioFile stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Pre-Sentence Script Audio" :manipulationContext];
-//        }
+        for (NSString *preAudioFile in preAudio) {
+            [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:[preAudioFile stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Pre-Sentence Script Audio" :manipulationContext];
+        }
     }
     
     if (sentenceAudioFile != nil) {
         [array addObject:sentenceAudioFile];
         
-//        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:[sentenceAudioFile stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Sentence Audio" :manipulationContext];
+        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:[sentenceAudioFile stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Sentence Audio" :manipulationContext];
     }
     
     if (postAudio != nil) {
         [array addObjectsFromArray:postAudio];
         
-//        for (NSString *postAudioFile in postAudio) {
-//            [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:[postAudioFile stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Post-Sentence Script Audio" :manipulationContext];
-//        }
+        for (NSString *postAudioFile in postAudio) {
+            [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:[postAudioFile stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Post-Sentence Script Audio" :manipulationContext];
+        }
     }
     
     if ([array count] > 0) {
@@ -4687,7 +4687,7 @@ BOOL wasPathFollowed = false;
         [menuItemRelationships addObject:tempMenuRelationship.action];
     }
     
-//    [[ServerCommunicationController sharedInstance] logDisplayMenuWithInteractions:menuItemInteractions objects:menuItemImages relationships:menuItemRelationships context:manipulationContext];
+    [[ServerCommunicationController sharedInstance] logDisplayMenuWithInteractions:menuItemInteractions objects:menuItemImages relationships:menuItemRelationships context:manipulationContext];
 }
 
 - (BOOL)webView:(UIWebView *)webView2 shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {

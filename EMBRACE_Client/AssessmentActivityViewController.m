@@ -196,7 +196,7 @@ UIImage *BackgroundImage;   //The background image related to the story
     
     [playAudioFileClass playAudioFile:self :QuestionAudio];
     
-    [[ServerCommunicationController sharedInstance] logPlayAssessmentAudio:[QuestionAudio stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Question Audio" :assessmentContext];
+    [[ServerCommunicationController sharedInstance] logPlayAssessmentAudio:[QuestionAudio stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Play Question Audio" :assessmentContext];
 }
 
 - (IBAction)PlayAnswer1AudioPressed:(id)sender {
@@ -204,7 +204,7 @@ UIImage *BackgroundImage;   //The background image related to the story
     
     [playAudioFileClass playAudioFile:self :AnswerAudios[0]];
     
-    [[ServerCommunicationController sharedInstance] logPlayAssessmentAudio:[AnswerAudios[0] stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Answer Audio" :assessmentContext];
+    [[ServerCommunicationController sharedInstance] logPlayAssessmentAudio:[AnswerAudios[0] stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Play Answer Audio" :assessmentContext];
 }
 
 - (IBAction)PlayAnswer2AudioPressed:(id)sender {
@@ -212,7 +212,7 @@ UIImage *BackgroundImage;   //The background image related to the story
     
     [playAudioFileClass playAudioFile:self :AnswerAudios[1]];
     
-    [[ServerCommunicationController sharedInstance] logPlayAssessmentAudio:[AnswerAudios[1] stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Answer Audio" :assessmentContext];
+    [[ServerCommunicationController sharedInstance] logPlayAssessmentAudio:[AnswerAudios[1] stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Play Answer Audio" :assessmentContext];
 }
 
 - (IBAction)PlayAnswer3AudioPressed:(id)sender {
@@ -220,7 +220,7 @@ UIImage *BackgroundImage;   //The background image related to the story
     
     [playAudioFileClass playAudioFile:self :AnswerAudios[2]];
     
-    [[ServerCommunicationController sharedInstance] logPlayAssessmentAudio:[AnswerAudios[2] stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Answer Audio" :assessmentContext];
+    [[ServerCommunicationController sharedInstance] logPlayAssessmentAudio:[AnswerAudios[2] stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Play Answer Audio" :assessmentContext];
 }
 
 - (IBAction)PlayAnswer4AudioPressed:(id)sender {
@@ -228,7 +228,7 @@ UIImage *BackgroundImage;   //The background image related to the story
     
     [playAudioFileClass playAudioFile:self :AnswerAudios[3]];
     
-    [[ServerCommunicationController sharedInstance] logPlayAssessmentAudio:[AnswerAudios[3] stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Answer Audio" :assessmentContext];
+    [[ServerCommunicationController sharedInstance] logPlayAssessmentAudio:[AnswerAudios[3] stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Play Answer Audio" :assessmentContext];
 }
 
 /*
