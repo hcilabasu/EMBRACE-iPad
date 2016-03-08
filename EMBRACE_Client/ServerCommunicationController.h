@@ -48,13 +48,15 @@
 # pragma mark - Logging (Manipulation)
 
 - (void)logMoveObject:(NSString *)object toDestination:(NSString *)destination ofType:(NSString *)destinationType startPos:(CGPoint)start endPos:(CGPoint)end performedBy:(Actor)actor context:(ManipulationContext *)context;
-- (void)logComputerGroupOrUngroupObjects:(NSString *)object1 object2:(NSString *)object2 ofType:(NSString *)interactionType hotspot:(NSString *)hotspot :(ManipulationContext *)context;
+- (void)logGroupOrUngroupObjects:(NSString *)object1 object2:(NSString *)object2 ofType:(NSString *)interactionType hotspot:(NSString *)hotspot :(ManipulationContext *)context;
 - (void)logDisplayMenuWithInteractions:(NSArray *)interactions objects:(NSArray *)objects relationships:(NSArray*)relationships context:(ManipulationContext *)context;
 - (void)logSelectMenuItemAtIndex:(int)index interactions:(NSArray *)interactions objects:(NSArray *)objects relationships:(NSArray *)relationships context:(ManipulationContext *)context;
 - (void)logVerification:(BOOL)verification forAction:(NSString *)action context:(ManipulationContext *)context;
 - (void)logResetObject:(NSString *)object startPos:(CGPoint)start endPos:(CGPoint)end context:(ManipulationContext *)context;
 - (void)logAppearOrDisappearObject:(NSString *)object ofType:(NSString *)objectType context:(ManipulationContext *)context;
 - (void)logSwapImageForObject:(NSString *)object altImage:(NSString *)image context:(ManipulationContext *)context;
+- (void)logAnimateObject:(NSString *)object forAction:(NSString *)animateAction context:(ManipulationContext *)context;
+- (void)logTapObject:(NSString *)object :(ManipulationContext *)context;
 - (void)logTapWord:(NSString *)word :(ManipulationContext *)context;
 - (void)logPlayManipulationAudio:(NSString *)audioName inLanguage:(NSString *)language ofType:(NSString *)audioType :(ManipulationContext *)context;
 

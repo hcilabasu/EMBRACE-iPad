@@ -199,8 +199,7 @@
 /*
  * Plays a noise for error feedback if the user performs a manipulation incorrectly
  */
-- (IBAction)playErrorNoise:(NSString *)storyName :(NSString *)chapterFilePath :(NSString *)pageFilePath :(NSInteger)sentenceNumber :(NSString *)sentenceText :(NSInteger)stepNumber :(NSInteger)ideaNumber {
-   
+- (IBAction)playErrorNoise {
     AudioServicesPlaySystemSound(1053);
 }
 
