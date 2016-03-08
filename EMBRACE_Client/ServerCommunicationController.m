@@ -1234,7 +1234,7 @@ static ServerCommunicationController *sharedInstance = nil;
 }
 
 /*
- * Logging for when an emergency swipe is performed
+ * Logging for when an emergency swipe is performed in a manipulation activity
  */
 - (void)logEmergencySwipe:(ManipulationContext *)context {
     userActionID++;
@@ -1433,12 +1433,47 @@ static ServerCommunicationController *sharedInstance = nil;
     [nodeContext addChild:nodeStudyContext];
 }
 
+/*
+ * Logging for when a manipulation activity is completed
+ */
+- (void)logCompleteManipulation:(ManipulationContext *)context {
+    //Start with base node for system action
+    DDXMLElement *nodeBaseAction = [self getBaseActionForActor:SYSTEM];
+    [study addChild:nodeBaseAction];
+    
+    //Set selection
+    DDXMLElement *nodeSelection = [[nodeBaseAction elementsForName:@"Selection"] objectAtIndex:0];
+    [nodeSelection setStringValue:@"Manipulation Activity"];
+    
+    //Set action
+    DDXMLElement *nodeAction = [[nodeBaseAction elementsForName:@"Action"] objectAtIndex:0];
+    [nodeAction setStringValue:@"Completed Manipulation Activity"];
+    
+    //Get input
+    DDXMLElement *nodeInput = [[nodeBaseAction elementsForName:@"Input"] objectAtIndex:0];
+    [nodeInput setStringValue:@"NULL"];
+    
+    //Get context
+    DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
+    
+    //Create nodes for context information
+    DDXMLElement *nodeManipulationContext = [self getManipulationContext:context];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:NO];
+    
+    //Add above nodes to context
+    [nodeContext addChild:nodeManipulationContext];
+    [nodeContext addChild:nodeStudyContext];
+    
+    //Make sure log file is written at end of manipulation activity
+    [self writeLogFile];
+}
+
 # pragma mark - Logging (Assessment)
 
 /*
  * Logging for when an assessment question is displayed
  */
-- (void)logDisplayAssessmentQuestion:(NSString *)questionText withOptions:(NSArray*)answerOptions context:(AssessmentContext *)context {
+- (void)logDisplayAssessmentQuestion:(NSString *)questionText withOptions:(NSArray *)answerOptions context:(AssessmentContext *)context {
     //Start with base node for system action
     DDXMLElement *nodeBaseAction = [self getBaseActionForActor:SYSTEM];
     [study addChild:nodeBaseAction];
@@ -1484,11 +1519,11 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Set selection
     DDXMLElement *nodeSelection = [[nodeBaseAction elementsForName:@"Selection"] objectAtIndex:0];
-    [nodeSelection setStringValue:@"Assessment Answer Option"];
+    [nodeSelection setStringValue:@"Assessment Answer"];
     
     //Set action
     DDXMLElement *nodeAction = [[nodeBaseAction elementsForName:@"Action"] objectAtIndex:0];
-    [nodeAction setStringValue:@"Select Assessment Answer Option"];
+    [nodeAction setStringValue:@"Select Assessment Answer"];
     
     //Get input
     DDXMLElement *nodeInput = [[nodeBaseAction elementsForName:@"Input"] objectAtIndex:0];
@@ -1595,6 +1630,45 @@ static ServerCommunicationController *sharedInstance = nil;
     [nodeContext addChild:nodeStudyContext];
 }
 
+/*
+ * Logging for when an emergency swipe is performed in an assessment activity
+ */
+- (void)logAssessmentEmergencySwipe:(AssessmentContext *)context {
+    userActionID++;
+    
+    //Start with base node for user action
+    DDXMLElement *nodeBaseAction = [self getBaseActionForActor:USER];
+    [study addChild:nodeBaseAction];
+    
+    //Set selection
+    DDXMLElement *nodeSelection = [[nodeBaseAction elementsForName:@"Selection"] objectAtIndex:0];
+    [nodeSelection setStringValue:@"Gesture"];
+    
+    //Set action
+    DDXMLElement *nodeAction = [[nodeBaseAction elementsForName:@"Action"] objectAtIndex:0];
+    [nodeAction setStringValue:@"Skip Content"];
+    
+    //Get input
+    DDXMLElement *nodeInput = [[nodeBaseAction elementsForName:@"Input"] objectAtIndex:0];
+    
+    //Create node for button type
+    DDXMLElement *nodeButtonType = [DDXMLElement elementWithName:@"Gesture_Type" stringValue:@"Emergency Swipe"];
+    
+    //Add above node to input
+    [nodeInput addChild:nodeButtonType];
+    
+    //Get context
+    DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
+    
+    //Create nodes for context information
+    DDXMLElement *nodeAssessmentContext = [self getAssessmentContext:context];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:NO];
+    
+    //Add above nodes to context
+    [nodeContext addChild:nodeAssessmentContext];
+    [nodeContext addChild:nodeStudyContext];
+}
+
 # pragma mark Navigation
 
 /*
@@ -1675,12 +1749,15 @@ static ServerCommunicationController *sharedInstance = nil;
     //Add above nodes to context
     [nodeContext addChild:nodeAssessmentContext];
     [nodeContext addChild:nodeStudyContext];
+    
+    //Make sure log file is written at end of assessment question
+    [self writeLogFile];
 }
 
 /*
  * Logging for loading an assessment step
  */
-- (void)logLoadAssessmentStep:(NSString *)assessmentStep ofType:(NSString *)assessemntStepType context:(AssessmentContext *)context {
+- (void)logLoadAssessmentStep:(NSInteger)assessmentStepNumber context:(AssessmentContext *)context {
     userActionID++;
     
     //Start with base node for system action
@@ -1693,16 +1770,45 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Set action
     DDXMLElement *nodeAction = [[nodeBaseAction elementsForName:@"Action"] objectAtIndex:0];
-    [nodeAction setStringValue:assessemntStepType];
+    [nodeAction setStringValue:@"Load Assessment Step"];
     
     //Get input
     DDXMLElement *nodeInput = [[nodeBaseAction elementsForName:@"Input"] objectAtIndex:0];
     
     //Create nodes for input information
-    DDXMLElement *nodeAssessmentStep = [DDXMLElement elementWithName:@"Assessment_Step" stringValue:assessmentStep];
+    DDXMLElement *nodeAssessmentStepNumber = [DDXMLElement elementWithName:@"Assessment_Step_Number" stringValue:[NSString stringWithFormat:@"%d", assessmentStepNumber]];
     
     //Add above nodes to input
-    [nodeInput addChild:nodeAssessmentStep];
+    [nodeInput addChild:nodeAssessmentStepNumber];
+    
+    //Get context
+    DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
+    
+    //Create nodes for context information
+    DDXMLElement *nodeAssessmentContext = [self getAssessmentContext:context];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:NO];
+    
+    //Add above nodes to context
+    [nodeContext addChild:nodeAssessmentContext];
+    [nodeContext addChild:nodeStudyContext];
+}
+
+- (void)logCompleteAssessment:(AssessmentContext *)context {
+    //Start with base node for system action
+    DDXMLElement *nodeBaseAction = [self getBaseActionForActor:SYSTEM];
+    [study addChild:nodeBaseAction];
+    
+    //Set selection
+    DDXMLElement *nodeSelection = [[nodeBaseAction elementsForName:@"Selection"] objectAtIndex:0];
+    [nodeSelection setStringValue:@"Assessment Activity"];
+    
+    //Set action
+    DDXMLElement *nodeAction = [[nodeBaseAction elementsForName:@"Action"] objectAtIndex:0];
+    [nodeAction setStringValue:@"Completed Assessment Activity"];
+    
+    //Get input
+    DDXMLElement *nodeInput = [[nodeBaseAction elementsForName:@"Input"] objectAtIndex:0];
+    [nodeInput setStringValue:@"NULL"];
     
     //Get context
     DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
@@ -1715,7 +1821,7 @@ static ServerCommunicationController *sharedInstance = nil;
     [nodeContext addChild:nodeAssessmentContext];
     [nodeContext addChild:nodeStudyContext];
     
-    //Make sure log file is written at end of assessment step
+    //Make sure log file is written at end of assessment activity
     [self writeLogFile];
 }
 

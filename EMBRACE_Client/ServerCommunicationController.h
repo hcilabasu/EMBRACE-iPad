@@ -68,19 +68,22 @@
 - (void)logLoadSentence:(NSInteger)sentenceNumber withText:(NSString *)sentenceText context:(ManipulationContext *)context;
 - (void)logLoadPage:(NSString *)pageLanguage mode:(NSString *)pageMode number:(NSInteger)pageNumber context:(ManipulationContext *)context;
 - (void)logPressLibrary:(ManipulationContext *)context;
+- (void)logCompleteManipulation:(ManipulationContext *)context;
 
 # pragma mark - Logging (Assessment)
 
-- (void)logDisplayAssessmentQuestion:(NSString *)questionText withOptions:(NSArray*)answerOptions context:(AssessmentContext *)context;
+- (void)logDisplayAssessmentQuestion:(NSString *)questionText withOptions:(NSArray *)answerOptions context:(AssessmentContext *)context;
 - (void)logSelectAssessmentAnswer:(NSString *)selectedAnswer context:(AssessmentContext *)context;
 - (void)logVerification:(BOOL)verification forAssessmentAnswer:(NSString *)answer context:(AssessmentContext *)context;
 - (void)logPlayAssessmentAudio:(NSString *)audioName inLanguage:(NSString *)language ofType:(NSString *)audioType :(AssessmentContext *)context;
+- (void)logAssessmentEmergencySwipe:(AssessmentContext *)context;
 
 # pragma mark Navigation
 
 - (void)logTapAssessmentAudioButton:(NSString *)buttonName buttonType:(NSString *)type context:(AssessmentContext *)context;
 - (void)logPressNextInAssessmentActivity:(AssessmentContext *)context;
-- (void)logLoadAssessmentStep:(NSString *)assessmentStep ofType:(NSString *)assessemntStepType context:(AssessmentContext *)context;
+- (void)logLoadAssessmentStep:(NSInteger)assessmentStepNumber context:(AssessmentContext *)context;
+- (void)logCompleteAssessment:(AssessmentContext *)context;
 
 #pragma mark - Saving/loading progress files
 

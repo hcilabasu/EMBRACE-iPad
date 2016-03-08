@@ -504,6 +504,8 @@ BOOL wasPathFollowed = false;
     //No more pages in chapter
     if (currentPage == nil) {
         if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"] || [chapterTitle isEqualToString:@"Introduction to The House"]) {
+            [[ServerCommunicationController sharedInstance] logCompleteManipulation:manipulationContext];
+            
             //Set introduction as completed
             [[(LibraryViewController *)libraryViewController studentProgress] setStatusOfChapter:chapterTitle :COMPLETED fromBook:[bookTitle stringByReplacingOccurrencesOfString:@" - Unknown-1" withString:@""]];
             
@@ -511,6 +513,8 @@ BOOL wasPathFollowed = false;
             [self.navigationController popViewControllerAnimated:YES];
         }
         else {
+            [[ServerCommunicationController sharedInstance] logCompleteManipulation:manipulationContext];
+            
             [self loadAssessmentActivity];
         }
     }
@@ -703,7 +707,7 @@ BOOL wasPathFollowed = false;
     UIImage *background = [self getBackgroundImage];
     
     //Create an instance of the assessment activity view controller
-    AssessmentActivityViewController *assessmentActivityViewController = [[AssessmentActivityViewController alloc]initWithModel:model : libraryViewController :background :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+    AssessmentActivityViewController *assessmentActivityViewController = [[AssessmentActivityViewController alloc]initWithModel:model : libraryViewController :background :[book title] :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
     
     //Push the assessment view controller as the top controller
     [self.navigationController pushViewController:assessmentActivityViewController animated:YES];
@@ -4304,21 +4308,21 @@ BOOL wasPathFollowed = false;
         [array addObjectsFromArray:preAudio];
         
 //        for (NSString *preAudioFile in preAudio) {
-//            [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:[preAudioFile stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:conditionSetup.language] ofType:@"Pre-Sentence Script Audio" :manipulationContext];
+//            [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:[preAudioFile stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Pre-Sentence Script Audio" :manipulationContext];
 //        }
     }
     
     if (sentenceAudioFile != nil) {
         [array addObject:sentenceAudioFile];
         
-//        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:[sentenceAudioFile stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:conditionSetup.language] ofType:@"Sentence Audio" :manipulationContext];
+//        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:[sentenceAudioFile stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Sentence Audio" :manipulationContext];
     }
     
     if (postAudio != nil) {
         [array addObjectsFromArray:postAudio];
         
 //        for (NSString *postAudioFile in postAudio) {
-//            [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:[postAudioFile stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:conditionSetup.language] ofType:@"Post-Sentence Script Audio" :manipulationContext];
+//            [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:[postAudioFile stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Post-Sentence Script Audio" :manipulationContext];
 //        }
     }
     
@@ -4716,7 +4720,7 @@ BOOL wasPathFollowed = false;
         manipulationContext.pageMode = [conditionSetup currentMode] == PM_MODE ? @"PM" : @"IM";
     }
     
-    manipulationContext.pageLanguage = [conditionSetup returnLanguageEnumtoString:conditionSetup.language];
+    manipulationContext.pageLanguage = [conditionSetup returnLanguageEnumtoString:[conditionSetup language]];
 }
 
 @end

@@ -7,13 +7,17 @@
 //
 
 #import "AssessmentActivityViewController.h"
+#import "ConditionSetup.h"
 #import "ServerCommunicationController.h"
 #import "LibraryViewController.h"
+#import "AssessmentContext.h"
 
-@interface AssessmentActivityViewController ()
+@interface AssessmentActivityViewController () {
+    ConditionSetup *conditionSetup;
+    AssessmentContext *assessmentContext;
+}
 
 @end
-
 
 NSInteger AnswerSelection[4];           //Array of answers selected
 NSMutableArray *AnswerOptions;          //Array of Answer options
@@ -29,7 +33,7 @@ NSString *AnswerOption4SpanishAudio;    //Spanish Audio file for Answer 4
 NSString *Question;                     //Question Text
 NSString *QuestionAudio;                //Question audio file name
 NSInteger questionNum;                  //Current Question Number
-NSString* correctSelection;             //correct Selection text
+NSString *correctSelection;             //correct Selection text
 NSMutableDictionary *assessmentActivities;          //the total assessment activity steps details
 NSMutableArray *currentAssessmentActivitySteps;     //the current assessment activity step details
 NSInteger totalAssessmentActivitySteps;             //the total assessment activity steps
@@ -48,30 +52,36 @@ UIImage *BackgroundImage;   //The background image related to the story
 @synthesize AnswerList;
 @synthesize transparentLayer;
 @synthesize nextButton;
-//@synthesize model;
 @synthesize ChapterTitle;
 @synthesize playAudioFileClass;
 
-- (id)initWithModel:(InteractionModel*) model : (UIViewController*) libraryViewController : (UIImage*) backgroundImage : (NSString*) bookTitle : (NSString*) chapterTitle : (NSString*) currentPage : (NSString*)currentSentence :(NSString*) currentStep
-{
-    self=[super init];
+- (id)initWithModel:(InteractionModel *)model :(UIViewController *)libraryViewController :(UIImage *)backgroundImage :(NSString *)bookTitle :(NSString *)chapterTitle :(NSString *)currentPage :(NSString *)currentSentence :(NSString *)currentStep {
+    self = [super init];
+    
     if (self) {
+        //Local instance of library view controller
+        libraryView = libraryViewController;
         
-        //local instance of library view controller
-        libraryView=libraryViewController;
+        conditionSetup = [ConditionSetup sharedInstance];
         
-        //context variables for logging
+        //Context variables for logging
         BookTitle = bookTitle;
-        ChapterTitle =chapterTitle;
+        ChapterTitle = chapterTitle;
         CurrentPage = currentPage;
-        CurrentSentence=currentSentence;
+        CurrentSentence = currentSentence;
         CurrentStep = currentStep;
         
-        //local instance of background image for story
+        assessmentContext = [[AssessmentContext alloc] init];
+        [self setAssessmentContext];
+        
+        //Local instance of background image for story
         BackgroundImage = backgroundImage;
         
         //Instantiate current assessment step
         currentAssessmentActivityStep = 1;
+        assessmentContext.assessmentStepNumber = currentAssessmentActivityStep;
+        
+        [[ServerCommunicationController sharedInstance] logLoadAssessmentStep:currentAssessmentActivityStep context:assessmentContext];
         
         //Instantiate answer selection array
         AnswerList.backgroundColor = [UIColor clearColor];
@@ -85,11 +95,10 @@ UIImage *BackgroundImage;   //The background image related to the story
         assessmentActivities =  [model getAssessmentActivity];
         currentAssessmentActivitySteps = [assessmentActivities objectForKey:chapterTitle];
         totalAssessmentActivitySteps = [currentAssessmentActivitySteps count];
-        AssessmentActivity* currAssessmentActivityStep = [currentAssessmentActivitySteps objectAtIndex:currentAssessmentActivityStep-1];
+        AssessmentActivity *currAssessmentActivityStep = [currentAssessmentActivitySteps objectAtIndex:currentAssessmentActivityStep - 1];
         correctSelection = [currAssessmentActivityStep expectedSelection];
         
-        /*Set the current question, question number and answer options with their
-        audio file names*/
+        //Set the current question, question number and answer options with their audio file names
         Question = [currAssessmentActivityStep QuestionText];
         QuestionAudio = [currAssessmentActivityStep QuestionAudio];
         questionNum = [currAssessmentActivityStep QuestionNumber];
@@ -109,33 +118,34 @@ UIImage *BackgroundImage;   //The background image related to the story
         //Randomizes answer options
         [self shuffleAnswers];
         
-        playAudioFileClass = [[PlayAudioFile alloc]init];
+        [[ServerCommunicationController sharedInstance] logDisplayAssessmentQuestion:Question withOptions:AnswerOptions context:assessmentContext];
+        
+        playAudioFileClass = [[PlayAudioFile alloc] init];
     }
+    
     return self;
 }
 
 /*
- Randomizer function that randomizes the answer options
+ * Randomizer function that randomizes the answer options
  */
--(void)shuffleAnswers{
+- (void)shuffleAnswers {
     NSUInteger count = [AnswerOptions count];
-    for (NSUInteger i=0; i<count; ++i) {
-        NSInteger remainingCount = count-i;
-        NSInteger exchangeIndex = i+ arc4random_uniform((u_int32_t)remainingCount);
+    
+    for (NSUInteger i = 0; i < count; ++i) {
+        NSInteger remainingCount = count - i;
+        NSInteger exchangeIndex = i + arc4random_uniform((u_int32_t)remainingCount);
         [AnswerOptions exchangeObjectAtIndex:i withObjectAtIndex:exchangeIndex];
         [AnswerAudios exchangeObjectAtIndex:i withObjectAtIndex:exchangeIndex];
     }
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Do any additional setup after loading the view from its nib.
-    
     //Set up design
-    nextButton.hidden =true;
-    self.view.backgroundColor = [UIColor colorWithRed: 165.0/255.0 green: 203.0/255.0 blue:231.0/255.0 alpha: 1.0];
+    nextButton.hidden = true;
+    self.view.backgroundColor = [UIColor colorWithRed:165.0/255.0 green:203.0/255.0 blue:231.0/255.0 alpha:1.0];
     transparentLayer.backgroundColor = [UIColor whiteColor];
     transparentLayer.alpha = .5;
     AnswerList.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -145,26 +155,23 @@ UIImage *BackgroundImage;   //The background image related to the story
     self.navigationController.navigationBar.hidden = YES;
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-//not being used currently may delete
--(void)loadNextAssessmentActivityQuestion{
-    
+//Not being used currently may delete
+- (void)loadNextAssessmentActivityQuestion{
     currentAssessmentActivityStep++;
     
     //If there are more questions load the next question
-    if(currentAssessmentActivityStep<totalAssessmentActivitySteps)
-    {
+    if (currentAssessmentActivityStep<totalAssessmentActivitySteps) {
         AnswerSelection[0] = 0;
         AnswerSelection[1] = 0;
         AnswerSelection[2] = 0;
         AnswerSelection[3] = 0;
         
-        AssessmentActivity* currAssessmentActivityStep = [currentAssessmentActivitySteps objectAtIndex:currentAssessmentActivityStep-1];
+        AssessmentActivity *currAssessmentActivityStep = [currentAssessmentActivitySteps objectAtIndex:currentAssessmentActivityStep - 1];
         correctSelection = [currAssessmentActivityStep expectedSelection];
         Question = [currAssessmentActivityStep QuestionText];
         questionNum = [currAssessmentActivityStep QuestionNumber];
@@ -174,62 +181,79 @@ UIImage *BackgroundImage;   //The background image related to the story
         [AnswerOptions addObject:[currAssessmentActivityStep Answer3]];
         [AnswerOptions addObject:[currAssessmentActivityStep Answer4]];
     }
-    //return to the library view
-    else
-    {
-        //log end of assessment activity
+    //Return to the library view
+    else {
         self.navigationController.navigationBar.hidden = NO;
         [super.navigationController popViewControllerAnimated:YES]; //return to library view
     }
 }
 
-
 /*
- Play Audio functions that will play the matching text in english or spanish
+ * Play Audio functions that will play the matching text in english or spanish
  */
--(IBAction)PlayQuestionAudioPressed:(id)sender
-{
-    [playAudioFileClass playAudioFile:self:QuestionAudio];
+- (IBAction)PlayQuestionAudioPressed:(id)sender {
+    [[ServerCommunicationController sharedInstance] logTapAssessmentAudioButton:Question buttonType:@"Question" context:assessmentContext];
+    
+    [playAudioFileClass playAudioFile:self :QuestionAudio];
+    
+    [[ServerCommunicationController sharedInstance] logPlayAssessmentAudio:[QuestionAudio stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Question Audio" :assessmentContext];
 }
 
--(IBAction)PlayAnswer1AudioPressed:(id)sender
-{
-    [playAudioFileClass playAudioFile:self:AnswerAudios[0]];
+- (IBAction)PlayAnswer1AudioPressed:(id)sender {
+    [[ServerCommunicationController sharedInstance] logTapAssessmentAudioButton:AnswerOptions[0] buttonType:@"Answer Option" context:assessmentContext];
+    
+    [playAudioFileClass playAudioFile:self :AnswerAudios[0]];
+    
+    [[ServerCommunicationController sharedInstance] logPlayAssessmentAudio:[AnswerAudios[0] stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Answer Audio" :assessmentContext];
 }
 
--(IBAction)PlayAnswer2AudioPressed:(id)sender
-{
-    [playAudioFileClass playAudioFile:self:AnswerAudios[1]];
+- (IBAction)PlayAnswer2AudioPressed:(id)sender {
+    [[ServerCommunicationController sharedInstance] logTapAssessmentAudioButton:AnswerOptions[1] buttonType:@"Answer Option" context:assessmentContext];
+    
+    [playAudioFileClass playAudioFile:self :AnswerAudios[1]];
+    
+    [[ServerCommunicationController sharedInstance] logPlayAssessmentAudio:[AnswerAudios[1] stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Answer Audio" :assessmentContext];
 }
 
--(IBAction)PlayAnswer3AudioPressed:(id)sender
-{
-    [playAudioFileClass playAudioFile:self:AnswerAudios[2]];
+- (IBAction)PlayAnswer3AudioPressed:(id)sender {
+    [[ServerCommunicationController sharedInstance] logTapAssessmentAudioButton:AnswerOptions[2] buttonType:@"Answer Option" context:assessmentContext];
+    
+    [playAudioFileClass playAudioFile:self :AnswerAudios[2]];
+    
+    [[ServerCommunicationController sharedInstance] logPlayAssessmentAudio:[AnswerAudios[2] stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Answer Audio" :assessmentContext];
 }
 
--(IBAction)PlayAnswer4AudioPressed:(id)sender
-{
-    [playAudioFileClass playAudioFile:self:AnswerAudios[3]];
+- (IBAction)PlayAnswer4AudioPressed:(id)sender {
+    [[ServerCommunicationController sharedInstance] logTapAssessmentAudioButton:AnswerOptions[3] buttonType:@"Answer Option" context:assessmentContext];
+    
+    [playAudioFileClass playAudioFile:self :AnswerAudios[3]];
+    
+    [[ServerCommunicationController sharedInstance] logPlayAssessmentAudio:[AnswerAudios[3] stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Answer Audio" :assessmentContext];
 }
 
 /*
  * Swipe gesture. Only recognizes a downwards two finger swipe. Used to skip to the next assessment question
  */
--(IBAction)swipeGesturePerformed:(UISwipeGestureRecognizer *)recognizer {
-    NSLog(@"recognizes emergency swipe");
+- (IBAction)swipeGesturePerformed:(UISwipeGestureRecognizer *)recognizer {
+    [[ServerCommunicationController sharedInstance] logAssessmentEmergencySwipe:assessmentContext];
+    
     [self NextButtonPressed:self];
 }
 
 /*
- *  Increments the next question, resets the visual aspects of the question and answer options,
+ * Increments the next question, resets the visual aspects of the question and answer options,
  */
 - (IBAction)NextButtonPressed:(id)sender {
+    [[ServerCommunicationController sharedInstance] logPressNextInAssessmentActivity:assessmentContext];
+    
     //Increment the current Assessment activity step
     currentAssessmentActivityStep++;
     
-    //if there are more questions
-    if(currentAssessmentActivityStep<=totalAssessmentActivitySteps)
-    {
+    assessmentContext.assessmentStepNumber = currentAssessmentActivityStep;
+    [[ServerCommunicationController sharedInstance] logLoadAssessmentStep:currentAssessmentActivityStep context:assessmentContext];
+    
+    //If there are more questions
+    if (currentAssessmentActivityStep <= totalAssessmentActivitySteps) {
         //Disable next button
         nextButton.hidden = true;
         
@@ -240,10 +264,10 @@ UIImage *BackgroundImage;   //The background image related to the story
         AnswerSelection[3] = 0;
         
         //Load the next assessment activity step
-        AssessmentActivity* currAssessmentActivityStep = [currentAssessmentActivitySteps objectAtIndex:currentAssessmentActivityStep-1];
+        AssessmentActivity *currAssessmentActivityStep = [currentAssessmentActivitySteps objectAtIndex:currentAssessmentActivityStep - 1];
         correctSelection = [currAssessmentActivityStep expectedSelection];
         Question = [currAssessmentActivityStep QuestionText];
-        QuestionAudio =[currAssessmentActivityStep QuestionAudio];
+        QuestionAudio = [currAssessmentActivityStep QuestionAudio];
         questionNum = [currAssessmentActivityStep QuestionNumber];
         [AnswerOptions removeAllObjects];
         [AnswerAudios removeAllObjects];
@@ -263,8 +287,7 @@ UIImage *BackgroundImage;   //The background image related to the story
         //reset tableview cells and reload tableview to be unselected
         NSArray *cells = [AnswerList indexPathsForVisibleRows];
         
-        for (int i=0; i<[AnswerOptions count]; i++)
-        {
+        for (int i = 0; i < [AnswerOptions count]; i++) {
             UITableViewCell *tempCell = [AnswerList cellForRowAtIndexPath:cells[i]];
             tempCell.contentView.alpha = 1;
             tempCell.backgroundColor = [UIColor clearColor];
@@ -275,13 +298,15 @@ UIImage *BackgroundImage;   //The background image related to the story
         }
         
         [AnswerList reloadData];
+        
+        [[ServerCommunicationController sharedInstance] logDisplayAssessmentQuestion:Question withOptions:AnswerOptions context:assessmentContext];
     }
-    //return to the library view
-    else
-    {
+    //Return to the library view
+    else {
+        [[ServerCommunicationController sharedInstance] logCompleteAssessment:assessmentContext];
+        
         //Set chapter as completed
-        NSRange titleRange = [BookTitle rangeOfString:@" - Unknown"];
-        [[(LibraryViewController*) libraryView studentProgress] setStatusOfChapter:ChapterTitle :COMPLETED fromBook:[BookTitle substringToIndex:titleRange.location]];
+        [[(LibraryViewController *)libraryView studentProgress] setStatusOfChapter:ChapterTitle :COMPLETED fromBook:BookTitle];
         
         self.navigationController.navigationBar.hidden = NO;
         [self.navigationController popToViewController:libraryView animated:YES];
@@ -290,22 +315,21 @@ UIImage *BackgroundImage;   //The background image related to the story
 
 #pragma mark - Table view data source
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 //Default 4 answer options
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 4;
 }
 
-//set the answer option text for each row
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+//Set the answer option text for each row
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *CellIdentifier =  [NSString stringWithFormat:@"MyCell%d", [indexPath row]];
     UITableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    if(cell==nil)
-    {
+    if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         cell.backgroundColor = [UIColor clearColor];
         cell.backgroundView.backgroundColor = [UIColor clearColor];
@@ -318,52 +342,50 @@ UIImage *BackgroundImage;   //The background image related to the story
 }
 
 /*
- *  If the user selects the correct answer highlight the answer and make the next button appear, otherwise
- *  show the answer as incorrect.
+ * If the user selects the correct answer highlight the answer and make the next button appear, otherwise
+ * show the answer as incorrect.
  */
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    //checks if option has already been selected else do nothing
+    //Checks if option has already been selected else do nothing
     if (AnswerSelection[[indexPath row]] == 0) {
-     
-            AnswerSelection[[indexPath row]] =1;
+        AnswerSelection[[indexPath row]] = 1;
      
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 
-            //checks if option is correct else gray out
-            if([cell.textLabel.text isEqualToString: correctSelection])
-            {
-                //gray out other options
-                for(int i=0;i<[AnswerOptions count];i++)
-                {
-                    
-                    if ([AnswerOptions[i] isEqualToString:correctSelection]) {
-                        UIColor *LightBlueColor = [UIColor colorWithRed: 135.0/255.0 green: 180.0/255.0 blue:225.0/255.0 alpha: 1.0];
-                        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-                        cell.backgroundColor= LightBlueColor;
-                        nextButton.hidden = false;
-                    }
-                    else{
-                        //gray out option
-                        AnswerSelection[i] = 1;
-                    }
+        [[ServerCommunicationController sharedInstance] logSelectAssessmentAnswer:cell.textLabel.text context:assessmentContext];
+        
+        //Checks if option is correct else gray out
+        if ([cell.textLabel.text isEqualToString:correctSelection]) {
+            [[ServerCommunicationController sharedInstance] logVerification:true forAssessmentAnswer:cell.textLabel.text context:assessmentContext];
+            
+            //Gray out other options
+            for (int i = 0; i < [AnswerOptions count]; i++) {
+                if ([AnswerOptions[i] isEqualToString:correctSelection]) {
+                    UIColor *LightBlueColor = [UIColor colorWithRed:135.0/255.0 green:180.0/255.0 blue:225.0/255.0 alpha:1.0];
+                    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+                    cell.backgroundColor = LightBlueColor;
+                    nextButton.hidden = false;
                 }
-                
+                else {
+                    //Gray out option
+                    AnswerSelection[i] = 1;
+                }
             }
-            else
-            {
-                //gray out option
-                cell.backgroundColor = [UIColor lightGrayColor];
-                cell.backgroundView.alpha = .2;
-            }
+        }
+        else {
+            [[ServerCommunicationController sharedInstance] logVerification:false forAssessmentAnswer:cell.textLabel.text context:assessmentContext];
+            
+            //Gray out option
+            cell.backgroundColor = [UIColor lightGrayColor];
+            cell.backgroundView.alpha = .2;
+        }
      }
     
     [tableView reloadData];
 }
 
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    
-    NSString *text = [NSString stringWithFormat:@"%d. %@      ", questionNum,Question];
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    NSString *text = [NSString stringWithFormat:@"%d. %@      ", questionNum, Question];
     UIFont *font = [UIFont fontWithName:@"GillSans" size:22];
   
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 20)];
@@ -378,7 +400,7 @@ UIImage *BackgroundImage;   //The background image related to the story
                      options:NSStringDrawingUsesLineFragmentOrigin
                      attributes:@{ NSFontAttributeName:font }
                      context:nil].size.height;
-    frame.size.height = height+20;
+    frame.size.height = height + 20;
     myLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     view.frame = CGRectMake(0, 0, tableView.frame.size.width, height + 20);
     myLabel.frame = frame;
@@ -387,5 +409,10 @@ UIImage *BackgroundImage;   //The background image related to the story
     return view;
 }
 
+- (void)setAssessmentContext {
+    assessmentContext.bookTitle = BookTitle;
+    assessmentContext.chapterTitle = ChapterTitle;
+    assessmentContext.assessmentStepNumber = currentAssessmentActivityStep;
+}
 
 @end
