@@ -16,6 +16,8 @@
 #import "ConditionSetup.h"
 #import "IntroductionViewController.h"
 #import "Statistics.h"
+#import "LibraryViewController.h"
+#import "ManipulationContext.h"
 
 @interface PMViewController () {
     NSString *currentPage; //Current page being shown, so that the next page can be requested
@@ -44,6 +46,7 @@
     
     InteractionModel *model;
     ConditionSetup *conditionSetup;
+    ManipulationContext *manipulationContext;
     
     InteractionRestriction useSubject; //Determines which objects the user can manipulate as the subject
     InteractionRestriction useObject; //Determines which objects the user can interact with as the object
@@ -88,19 +91,14 @@
 @implementation PMViewController
 
 @synthesize book;
-
 @synthesize bookTitle;
 @synthesize chapterTitle;
-
 @synthesize bookImporter;
 @synthesize bookView;
-
 @synthesize libraryViewController;
-
 @synthesize IntroductionClass;
 @synthesize buildStringClass;
 @synthesize playaudioClass;
-
 @synthesize syn;
 
 //Used to determine the required proximity of 2 hotspots to group two items together.
@@ -114,10 +112,11 @@ BOOL wasPathFollowed = false;
     bookView.frame = self.view.bounds;
 }
 
-- (void) viewDidLoad {
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     conditionSetup = [ConditionSetup sharedInstance];
+    manipulationContext = [[ManipulationContext alloc] init];
     
     buildStringClass = [[BuildHTMLString alloc] init];
     playaudioClass = [[PlayAudioFile alloc] init];
@@ -190,7 +189,7 @@ BOOL wasPathFollowed = false;
     NSLog(@"***************** Memory warning!! *****************");
 }
 
-- (void) webViewDidFinishLoad:(UIWebView *)webView {
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
     //Disable user selection
     [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitUserSelect='none';"];
     //Disable callout
@@ -211,7 +210,7 @@ BOOL wasPathFollowed = false;
     //Load the animator js file
     NSString *animatorFilePath = [[NSBundle mainBundle] pathForResource:@"Animator" ofType:@"js"];
     
-    if(animatorFilePath == nil) {
+    if (animatorFilePath == nil) {
         NSLog(@"Cannot find js file: Animator");
     }
     else {
@@ -221,7 +220,7 @@ BOOL wasPathFollowed = false;
     }
     
     //Load the vector js file
-    NSString* vectorFilePath = [[NSBundle mainBundle] pathForResource:@"Vector" ofType:@"js"];
+    NSString *vectorFilePath = [[NSBundle mainBundle] pathForResource:@"Vector" ofType:@"js"];
     
     if (vectorFilePath == nil) {
         NSLog(@"Cannot find js file: Vector");
@@ -242,7 +241,7 @@ BOOL wasPathFollowed = false;
     }
     else {
         //Get the number of sentences on the page
-        NSString* requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('sentence').length"];
+        NSString *requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('sentence').length"];
         int sentenceCount = [[bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount] intValue];
         
         //Get the id number of the last sentence on the page and set it equal to the total number of sentences.
@@ -251,8 +250,8 @@ BOOL wasPathFollowed = false;
         //   The total number of sentences is like a running total, so by page 2, there are 6 sentences instead of 3.
         //This is to make sure we access the solution steps for the correct sentence on this page, and not a sentence on
         //a previous page.
-        NSString* requestLastSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[%d - 1].id", sentenceCount];
-        NSString* lastSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
+        NSString *requestLastSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[%d - 1].id", sentenceCount];
+        NSString *lastSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
         int lastSentenceIdNumber = [[lastSentenceId substringFromIndex:1] intValue];
         totalSentences = lastSentenceIdNumber;
         
@@ -261,45 +260,44 @@ BOOL wasPathFollowed = false;
         //   Ex. Page 1 may start at sentence 1, but page 2 may start at sentence 4.
         //   Thus, the first sentence on page 2 is sentence 4, not 1.
         //This is also to make sure we access the solution steps for the correct sentence.
-        NSString* requestFirstSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[0].id"];
-        NSString* firstSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestFirstSentenceId];
+        NSString *requestFirstSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[0].id"];
+        NSString *firstSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestFirstSentenceId];
         int firstSentenceIdNumber = [[firstSentenceId substringFromIndex:1] intValue];
         currentSentence = firstSentenceIdNumber;
-        currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",firstSentenceIdNumber]];
+        currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d').innerHTML", currentSentence]];
         
+        manipulationContext.sentenceNumber = currentSentence;
+        manipulationContext.sentenceText = currentSentenceText;
+        [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText context:manipulationContext];
         
-        //dynamically reads the vocabulary words on the vocab page and creates and adds solutionsteps
+        //Dynamically reads the vocabulary words on the vocab page and creates and adds solutionsteps
         if ([currentPageId rangeOfString:@"-Intro"].location != NSNotFound) {
-            
             PMSolution = [[PhysicalManipulationSolution alloc] init];
             IMSolution = [[ImagineManipulationSolution alloc] init];
             
-            for (int i=1; i<totalSentences+1; i++)
-            {
-                NSString* requestSentenceText = [NSString stringWithFormat:@"document.getElementById(%d).innerHTML", i];
-                NSString* sentenceText = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceText];
+            for (int i = 1; i < totalSentences + 1; i++) {
+                NSString *requestSentenceText = [NSString stringWithFormat:@"document.getElementById(%d).innerHTML", i];
+                NSString *sentenceText = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceText];
                 sentenceText = [sentenceText lowercaseString];
                 
-                if (conditionSetup.language ==BILINGUAL) {
-                    if(![[self getEnglishTranslation:sentenceText] isEqualToString:@"Translation not found"]) {
+                if (conditionSetup.language == BILINGUAL) {
+                    if (![[self getEnglishTranslation:sentenceText] isEqualToString:@"Translation not found"]) {
                         sentenceText = [self getEnglishTranslation:sentenceText];
                     }
                 }
-                
-                //(NSUInteger)sentNum :(NSUInteger)stepNum :(NSString*)type :(NSString*)obj1Id :(NSString*) obj2Id :(NSString*)loc :(NSString*)waypt :(NSString*)act :(NSString*)area :(NSString*)file;
+
                 ActionStep *solutionStep = [[ActionStep alloc] initAsSolutionStep:i : 1 : @"tapWord" : sentenceText : nil : nil: nil : nil : nil : nil];
                 
                 if (conditionSetup.currentMode == PM_MODE) {
-                    
                     [PMSolution addSolutionStep:solutionStep];
                 }
                 else if (conditionSetup.currentMode == IM_MODE) {
-                    
                     [IMSolution addSolutionStep:solutionStep];
                 }
             }
             
-            Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
+            Chapter *chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
+            
             //Add PMSolution to page
             if (conditionSetup.currentMode == PM_MODE) {
                 PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; //get PM Activity only
@@ -318,8 +316,7 @@ BOOL wasPathFollowed = false;
             NSString* requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('PM_TEXT').length"];
             int sentenceCount = [[bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount] intValue];
             
-            if(sentenceCount > 0)
-            {
+            if(sentenceCount > 0) {
                 NSString* removeSentenceString;
                 
                 //Remove PM specific sentences on the page
@@ -357,7 +354,7 @@ BOOL wasPathFollowed = false;
     if ([model getAreaWithPageId:currentPageId]) {
         //Build area/path
         for (Area *area in [model areas]) {
-            if([area.pageId isEqualToString:currentPageId]) {
+            if ([area.pageId isEqualToString:currentPageId]) {
                 [self buildPath:area.areaId];
             }
         }
@@ -378,35 +375,31 @@ BOOL wasPathFollowed = false;
     [self performSetupForActivity];
 }
 
--(void) drawArea : (NSString *) areaName : (NSString *) chapter : (NSString *) pageId {
+- (void)drawArea:(NSString *)areaName :(NSString *)chapter :(NSString *)pageId {
     if ([chapterTitle isEqualToString:chapter] && [currentPageId isEqualToString:pageId]) {
         //Get area that hotspot should be inside
-        Area* area = [model getAreaWithId:areaName];
+        Area *area = [model getAreaWithId:areaName];
         
-        //apply path to shapelayer
-        CAShapeLayer* path = [CAShapeLayer layer];
+        //Apply path to shapelayer
+        CAShapeLayer *path = [CAShapeLayer layer];
         path.lineWidth = 10.0;
         path.path = area.aPath.CGPath;
         [path setFillColor:[UIColor clearColor].CGColor];
         
-        if([areaName rangeOfString:@"Path"].location == NSNotFound) {
+        if ([areaName rangeOfString:@"Path"].location == NSNotFound) {
             [path setStrokeColor:[UIColor greenColor].CGColor];
         }
         else {
-            // If it is a path, paint it red
+            //If it is a path, paint it red
             [path setStrokeColor:[UIColor redColor].CGColor];
         }
-        
-        //add shape layer to view's layer
-        //[[self.view layer] addSublayer:path];
     }
 }
 
-
 //Temporary menu to select complexity of sentences on page or to dismiss page statistics
-- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if ([[alertView title] isEqualToString:@"Choose sentence complexity levels"]) {
-        Statistics* statistics = [[Statistics alloc] init];
+        Statistics *statistics = [[Statistics alloc] init];
         [pageStatistics setObject:statistics forKey:currentPageId];
         
         pageSentences = [[pageStatistics objectForKey:currentPageId] pageSentences];
@@ -423,14 +416,13 @@ BOOL wasPathFollowed = false;
             //Swap sentences for specified complexity level
             [self swapSentencesOnPage:20 :20 :60];
         }
-        else if (buttonIndex ==3)
-        {
-            //keeps current sentences
+        else if (buttonIndex == 3) {
+            //Keeps current sentences
             [self swapSentencesOnPage:0 :100 :0];
         }
         
         //Get the number of sentences on the page
-        NSString* requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('sentence').length"];
+        NSString *requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('sentence').length"];
         int sentenceCount = [[bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount] intValue];
         
         //Get the id number of the last sentence on the page and set it equal to the total number of sentences.
@@ -440,22 +432,18 @@ BOOL wasPathFollowed = false;
         //This is to make sure we access the solution steps for the correct sentence on this page, and not a sentence on
         //a previous page.
         //if (![vocabularies objectForKey:chapterTitle]) {
-        NSString* requestLastSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[%d - 1].id", sentenceCount];
-        NSString* lastSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
+        NSString *requestLastSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[%d - 1].id", sentenceCount];
+        NSString *lastSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
         int lastSentenceIdNumber = [[lastSentenceId substringFromIndex:1] intValue];
         totalSentences = lastSentenceIdNumber;
-        //}
-        //else {
-        //totalSentences = sentenceCount;
-        //}
         
         //Get the id number of the first sentence on the page and set it equal to the current sentence number.
         //Because the PMActivity may have multiple pages, the first sentence on the page is not necessarily sentence 1.
         //   Ex. Page 1 may start at sentence 1, but page 2 may start at sentence 4.
         //   Thus, the first sentence on page 2 is sentence 4, not 1.
         //This is also to make sure we access the solution steps for the correct sentence.
-        NSString* requestFirstSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[0].id"];
-        NSString* firstSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestFirstSentenceId];
+        NSString *requestFirstSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[0].id"];
+        NSString *firstSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestFirstSentenceId];
         int firstSentenceIdNumber = [[firstSentenceId substringFromIndex:1] intValue];
         currentSentence = firstSentenceIdNumber;
         
@@ -471,47 +459,39 @@ BOOL wasPathFollowed = false;
 }
 
 //Temporary function to show page statistics
-- (void) showPageStatistics {
-    Statistics* statistics = [pageStatistics objectForKey:currentPageId];
+- (void)showPageStatistics {
+    Statistics *statistics = [pageStatistics objectForKey:currentPageId];
     
-    NSString* numStepsString = [NSString stringWithFormat:@"Number of steps:\nSimple: %d\nMedium: %d\nComplex: %d", [statistics getNumStepsForComplexity:0], [statistics getNumStepsForComplexity:1], [statistics getNumStepsForComplexity:2]];
-    NSString* numErrorsString = [NSString stringWithFormat:@"Number of errors:\nSimple: %d\nMedium: %d\nComplex: %d", [statistics getNumErrorsForComplexity:0], [statistics getNumErrorsForComplexity:1], [statistics getNumErrorsForComplexity:2]];
-    NSString* timeString = [NSString stringWithFormat:@"Average time per step:\nSimple: %f\nMedium: %f\nComplex: %f", [statistics calculateAverageTimePerStepForComplexity:0], [statistics calculateAverageTimePerStepForComplexity:1], [statistics calculateAverageTimePerStepForComplexity:2]];
-    NSString* numNonActSentsString = [NSString stringWithFormat:@"Number of non-action sentences:\nSimple: %d\nMedium: %d\nComplex: %d", [statistics getNumNonActSentsForComplexity:0], [statistics getNumNonActSentsForComplexity:1], [statistics getNumNonActSentsForComplexity:2]];
-    NSString* timeForNonActsSentsString = [NSString stringWithFormat:@"Average time per non-action sentence:\nSimple: %f\nMedium: %f\nComplex: %f", [statistics calculateAverageTimePerNonActSentForComplexity:0], [statistics calculateAverageTimePerNonActSentForComplexity:1], [statistics calculateAverageTimePerNonActSentForComplexity:2]];
-    NSString* numVocabRequestsString = [NSString stringWithFormat:@"Number of vocabulary requests:\nSimple: %d\nMedium: %d\nComplex: %d", [statistics getNumVocabTapsForComplexity:0], [statistics getNumVocabTapsForComplexity:1], [statistics getNumVocabTapsForComplexity:2]];
+    NSString *numStepsString = [NSString stringWithFormat:@"Number of steps:\nSimple: %d\nMedium: %d\nComplex: %d", [statistics getNumStepsForComplexity:0], [statistics getNumStepsForComplexity:1], [statistics getNumStepsForComplexity:2]];
+    NSString *numErrorsString = [NSString stringWithFormat:@"Number of errors:\nSimple: %d\nMedium: %d\nComplex: %d", [statistics getNumErrorsForComplexity:0], [statistics getNumErrorsForComplexity:1], [statistics getNumErrorsForComplexity:2]];
+    NSString *timeString = [NSString stringWithFormat:@"Average time per step:\nSimple: %f\nMedium: %f\nComplex: %f", [statistics calculateAverageTimePerStepForComplexity:0], [statistics calculateAverageTimePerStepForComplexity:1], [statistics calculateAverageTimePerStepForComplexity:2]];
+    NSString *numNonActSentsString = [NSString stringWithFormat:@"Number of non-action sentences:\nSimple: %d\nMedium: %d\nComplex: %d", [statistics getNumNonActSentsForComplexity:0], [statistics getNumNonActSentsForComplexity:1], [statistics getNumNonActSentsForComplexity:2]];
+    NSString *timeForNonActsSentsString = [NSString stringWithFormat:@"Average time per non-action sentence:\nSimple: %f\nMedium: %f\nComplex: %f", [statistics calculateAverageTimePerNonActSentForComplexity:0], [statistics calculateAverageTimePerNonActSentForComplexity:1], [statistics calculateAverageTimePerNonActSentForComplexity:2]];
+    NSString *numVocabRequestsString = [NSString stringWithFormat:@"Number of vocabulary requests:\nSimple: %d\nMedium: %d\nComplex: %d", [statistics getNumVocabTapsForComplexity:0], [statistics getNumVocabTapsForComplexity:1], [statistics getNumVocabTapsForComplexity:2]];
     
-    NSString* message = [NSString stringWithFormat:@"%@\n\n%@\n\n%@\n\n%@\n\n%@\n\n%@", numStepsString, numErrorsString, timeString, numNonActSentsString, timeForNonActsSentsString, numVocabRequestsString];
+    NSString *message = [NSString stringWithFormat:@"%@\n\n%@\n\n%@\n\n%@\n\n%@\n\n%@", numStepsString, numErrorsString, timeString, numNonActSentsString, timeForNonActsSentsString, numVocabRequestsString];
     
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Page Statistics" message:message delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Page Statistics" message:message delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
     [alert show];
 }
 
 /*
  * Gets the book reference for the book that's been opened.
  * Also sets the reference to the interaction model of the book.
- * Sets the page to the one for th current chapter activity.
+ * Sets the page to the one for the current chapter activity.
  * Calls the function to load the html content for the activity.
  */
-- (void) loadFirstPage {
+- (void)loadFirstPage {
     book = [bookImporter getBookWithTitle:bookTitle]; //Get the book reference.
     model = [book model];
   
     currentPage = [book getNextPageForChapterAndActivity:chapterTitle : conditionSetup.currentMode :nil];
-    
     actualPage = currentPage;
     
-    //instantiates all introduction variables
+    //Instantiates all introduction variables
     [IntroductionClass loadFirstPageIntroduction:model :chapterTitle];
     
     [self loadPage];
-    
-    //change logging to introduction??
-    //Logging added by James for Loading First Page of selected Chapter form Library View
-    [[ServerCommunicationController sharedManager] logNextChapterNavigation:bookTitle :@"Title Page" :currentPage :@"Load First Page" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-    //storyName : chapterNumber : chapterName : pageNumber : pageName :  pageMode : pageLanguageType : sentenceNumber : sentenceText :  stepNumber : ideaNumber
-    
-    //Logging Completes Here.
 }
 
 /*
@@ -529,48 +509,39 @@ BOOL wasPathFollowed = false;
     
     //No more pages in chapter
     if (currentPage == nil) {
-        //Log that chapter has been completed
-        [[ServerCommunicationController sharedManager] logNextChapterNavigation:@"Next Button" :tempLastPage :currentPage :@"Next Page | Chapter Finished" :bookTitle :chapterTitle : @"Page Finished" :currentSentence : currentSentenceText: currentStep : currentIdea];
-        
-        //return to library view
-        //load assessment activity screen
-        if([chapterTitle isEqualToString:@"Introduction to The Best Farm"] || [chapterTitle isEqualToString:@"Introduction to The House"])
-        {
-            //Set introduction as completed
-            [[(LibraryViewController*) libraryViewController studentProgress] setStatusOfChapter:chapterTitle :COMPLETED fromBook:[bookTitle stringByReplacingOccurrencesOfString:@" - Unknown-1" withString:@""]];
+        if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"] || [chapterTitle isEqualToString:@"Introduction to The House"]) {
+            [[ServerCommunicationController sharedInstance] logCompleteManipulation:manipulationContext];
             
+            //Set introduction as completed
+            [[(LibraryViewController *)libraryViewController studentProgress] setStatusOfChapter:chapterTitle :COMPLETED fromBook:[bookTitle stringByReplacingOccurrencesOfString:@" - Unknown-1" withString:@""]];
+            
+            //Return to library view
             [self.navigationController popViewControllerAnimated:YES];
-            return;
         }
-        else
-        {
+        else {
+            [[ServerCommunicationController sharedInstance] logCompleteManipulation:manipulationContext];
+            
             [self loadAssessmentActivity];
-            return;
         }
     }
-    else
-    {
-        //Logging added by James for Computer Navigation to next Page
-        [[ServerCommunicationController sharedManager] logNextPageNavigation:@"Next Button" :tempLastPage :currentPage :@"Next Page" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-        //Logging Completes Here.
+    else {
+        [self loadPage];
     }
-    
-    [self loadPage];
 }
 
 /*
- * Loads the html content for the current page.
+ * Loads the html content and solution steps for the current page.
  */
--(void) loadPage {
-    NSURL* baseURL = [NSURL fileURLWithPath:[book getHTMLURL]];
+- (void)loadPage {
+    NSURL *baseURL = [NSURL fileURLWithPath:[book getHTMLURL]];
     animatingObjects = [[NSMutableDictionary alloc] init];
     
-    if(baseURL == nil)
+    if (baseURL == nil)
         NSLog(@"did not load baseURL");
     
     NSError *error;
-    NSString* pageContents = [[NSString alloc] initWithContentsOfFile:currentPage encoding:NSASCIIStringEncoding error:&error];
-    if(error != nil)
+    NSString *pageContents = [[NSString alloc] initWithContentsOfFile:currentPage encoding:NSASCIIStringEncoding error:&error];
+    if (error != nil)
         NSLog(@"problem loading page contents");
     
     [bookView loadHTMLString:pageContents baseURL:baseURL];
@@ -578,40 +549,46 @@ BOOL wasPathFollowed = false;
     
     self.title = chapterTitle;
     
-    //instantiates all vocab variables
+    //Instantiates all vocab variables
     [IntroductionClass loadFirstPageVocabulary:model :chapterTitle];
     
     //Set the current page id
     currentPageId = [book getIdForPageInChapterAndActivity:currentPage :chapterTitle :conditionSetup.currentMode];
     
-    PhysicalManipulationActivity* PMActivity;
-    ImagineManipulationActivity* IMActivity;
+    [self setManipulationContext];
+    [[ServerCommunicationController sharedInstance] logLoadPage:[manipulationContext pageLanguage] mode:[manipulationContext pageMode] number:[manipulationContext pageNumber] context:manipulationContext];
     
+    //Get the solutions for the appropriate manipulation activity
     if (conditionSetup.condition == EMBRACE) {
+        PhysicalManipulationActivity *PMActivity;
+        ImagineManipulationActivity *IMActivity;
+        
         if (conditionSetup.currentMode == PM_MODE) {
             IntroductionClass.allowInteractions = TRUE;
             
             //Get the PM solution steps for the current chapter
-            Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
-            PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
+            Chapter *chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
+            PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
             PMSolution = [[[PMActivity PMSolutions] objectForKey:currentPageId] objectAtIndex:0]; //get PM solution
             currentIdea = [[[PMSolution solutionSteps] objectAtIndex:0] sentenceNumber];
+            manipulationContext.ideaNumber = currentIdea;
         }
         else if (conditionSetup.currentMode == IM_MODE) {
             //Get the IM solution steps for the current chapter
-            Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
-            IMActivity = (ImagineManipulationActivity*)[chapter getActivityOfType:IM_MODE]; //get IM Activity from chapter
+            Chapter *chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
+            IMActivity = (ImagineManipulationActivity *)[chapter getActivityOfType:IM_MODE]; //get IM Activity from chapter
             IMSolution = [[[IMActivity IMSolutions] objectForKey:currentPageId] objectAtIndex:0]; //get IM solution
         }
     }
 }
 
 /*
- * Gets the number of steps for the current
- * sentence and sets the current step to 1. Steps are complete if it's a non-action sentence.
+ * Gets the number of steps for the current sentence and sets the current step to 1.
+ * Performs steps automatically if needed. Step is complete if it's a non-action sentence.
  */
--(void) setupCurrentSentence {
+- (void)setupCurrentSentence {
     currentStep = 1;
+    manipulationContext.stepNumber = currentStep;
     stepsComplete = FALSE;
     
     //Get number of steps for current sentence
@@ -647,15 +624,16 @@ BOOL wasPathFollowed = false;
     }
     
     //Check to see if it is an action sentence
-    NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
-    NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
+    NSString *actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
+    NSString *sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
     
     //If it is an action sentence, perform its solution steps if necessary
     if ([sentenceClass  containsString: @"sentence actionSentence"]) {
-        NSLog(@"first one");
         [self performAutomaticSteps];
     }
     else {
+        [[ServerCommunicationController sharedInstance] logLoadStep:currentStep ofType:@"NULL" context:manipulationContext];
+        
         stepsComplete = TRUE; //no steps to complete for non-action sentence
     }
     
@@ -665,33 +643,29 @@ BOOL wasPathFollowed = false;
 /* Sets up the appearance of the current sentence by highlighting it as blue (if it is an action sentence)
  * or as black (if it is a non-action sentence).
  */
--(void) setupCurrentSentenceColor {
-    //Highlight the sentence and set its color to black.
-    NSString* setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, 1.0)", currentSentence];
+- (void)setupCurrentSentenceColor {
+    //Highlight the sentence and set its color to black
+    NSString *setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, 1.0)", currentSentence];
     [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
     
-    NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence];
+    NSString *setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence];
     [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
     
     //Check to see if it is an action sentence
-    NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
-    NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
+    NSString *actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
+    NSString *sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
     
-    //If it is an action sentence, set its color to blue and automatically perform solution steps if necessary
-    if ([sentenceClass  containsString: @"sentence actionSentence"] && currentSentence !=0 && ![sentenceClass containsString:@"black"]) {
-        setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
-        [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
-    }
-    
-    //If it is an IM action sentence and in im mode, set its color to blue
-    if ([sentenceClass  containsString: @"sentence IMactionSentence"] && ![sentenceClass containsString:@"black"] && currentSentence !=0 && conditionSetup.condition == EMBRACE && conditionSetup.condition == IM_MODE) {
-        setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
-        [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
+    //If it is a non-black action sentence (i.e., requires user manipulation), then set the color to blue
+    if (![sentenceClass containsString:@"black"]) {
+        if ([sentenceClass containsString: @"sentence actionSentence"] || ([sentenceClass containsString: @"sentence IMactionSentence"] && conditionSetup.condition == EMBRACE && conditionSetup.condition == IM_MODE)) {
+            setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
+            [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
+        }
     }
     
     //Set the opacity of all but the current sentence to .2
-    for(int i = currentSentence; i < totalSentences; i++) {
-        NSString* setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, .2)", i + 1];
+    for (int i = currentSentence; i < totalSentences; i++) {
+        NSString *setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, .2)", i + 1];
         [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
     }
 }
@@ -700,12 +674,12 @@ BOOL wasPathFollowed = false;
  * Moves to next step in a sentence if possible. The step is performed automatically 
  * if it is ungroup, move, or swap image.
  */
--(void) incrementCurrentStep {
+- (void)incrementCurrentStep {
     //Get steps for current sentence
-    NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
+    NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
     
     //Get current step to be completed
-    ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+    ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
     
     if (conditionSetup.appMode == ITS) {
         //Not automatic step
@@ -722,15 +696,10 @@ BOOL wasPathFollowed = false;
     
     //Check if able to increment current step
     if (currentStep < numSteps) {
-        NSString *tempsteps = [NSString stringWithFormat:@"%lu", (unsigned long)currentStep];
         currentStep++;
-    
-        //Logging added by James for Computer Navigation to next Step
-        [[ServerCommunicationController sharedManager] logNextStepNavigation:@"Automatic Computer Action" :tempsteps :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep] :@"Next Step" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-        //Logging Completes Here.
-        
+        manipulationContext.stepNumber = currentStep;
+
         [self performAutomaticSteps]; //automatically perform ungroup or move steps if necessary
-        
     }
     else {
         stepsComplete = TRUE; //no more steps to complete
@@ -738,36 +707,35 @@ BOOL wasPathFollowed = false;
 }
 
 /*
- *displays the assessment activity view controller
+ * Displays the assessment activity view controller
  */
--(void)loadAssessmentActivity{
+- (void)loadAssessmentActivity {
     UIImage *background = [self getBackgroundImage];
     
-    //create an instance of the assessment activity view controller
-    AssessmentActivityViewController *assessmentActivityViewController = [[AssessmentActivityViewController alloc]initWithModel:model: libraryViewController:background:bookTitle :chapterTitle : currentPage :[NSString stringWithFormat:@"%lu",(unsigned long)currentSentence] : [NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
+    //Create an instance of the assessment activity view controller
+    AssessmentActivityViewController *assessmentActivityViewController = [[AssessmentActivityViewController alloc]initWithModel:model : libraryViewController :background :[book title] :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
     
-    //push the assessment view controller as the top controller
+    //Push the assessment view controller as the top controller
     [self.navigationController pushViewController:assessmentActivityViewController animated:YES];
-    
 }
 
 /*
  * Converts an ActionStep object to a PossibleInteraction object
  */
--(PossibleInteraction*) convertActionStepToPossibleInteraction:(ActionStep*)step {
-    PossibleInteraction* interaction;
+- (PossibleInteraction *)convertActionStepToPossibleInteraction:(ActionStep *)step {
+    PossibleInteraction *interaction;
     
     //Get step information
-    NSString* obj1Id = [step object1Id];
-    NSString* obj2Id = [step object2Id];
-    NSString* action = [step action];
+    NSString *obj1Id = [step object1Id];
+    NSString *obj2Id = [step object2Id];
+    NSString *action = [step action];
     
     //Objects involved in interaction
-    NSArray* objects;
+    NSArray *objects;
     
     //Get hotspots for both objects associated with action, first assuming that obj1 is the subject of the interaction
-    Hotspot* hotspot1 = [model getHotspotforObjectWithActionAndRole:obj1Id :action :@"subject"];
-    Hotspot* hotspot2 = [model getHotspotforObjectWithActionAndRole:obj2Id :action :@"object"];
+    Hotspot *hotspot1 = [model getHotspotforObjectWithActionAndRole:obj1Id :action :@"subject"];
+    Hotspot *hotspot2 = [model getHotspotforObjectWithActionAndRole:obj2Id :action :@"object"];
     
     //If no hotspots were found with obj1 as the subject, then assume obj1 is the object of the interaction
     //Add the subject before the object to the interaction
@@ -781,26 +749,23 @@ BOOL wasPathFollowed = false;
         objects = [[NSArray alloc] initWithObjects:obj1Id, obj2Id, nil];
     }
     
-    NSArray* hotspotsForInteraction = [[NSArray alloc]initWithObjects:hotspot1, hotspot2, nil];
+    NSArray *hotspotsForInteraction = [[NSArray alloc]initWithObjects:hotspot1, hotspot2, nil];
     
     //The move case only applies if an object is being moved to another object, not a waypoint
     if ([[step stepType] isEqualToString:@"group"] ||
         [[step stepType] isEqualToString:@"move"] ||
-        [[step stepType] isEqualToString:@"groupAuto"])
-    {
+        [[step stepType] isEqualToString:@"groupAuto"]) {
         interaction = [[PossibleInteraction alloc]initWithInteractionType:GROUP];
         
         [interaction addConnection:GROUP :objects :hotspotsForInteraction];
     }
     else if ([[step stepType] isEqualToString:@"ungroup"] ||
-             [[step stepType] isEqualToString:@"ungroupAndStay"])
-    {
+             [[step stepType] isEqualToString:@"ungroupAndStay"]) {
         interaction = [[PossibleInteraction alloc]initWithInteractionType:UNGROUP];
         
         [interaction addConnection:UNGROUP :objects :hotspotsForInteraction];
     }
-    else if ([[step stepType] isEqualToString:@"disappear"])
-    {
+    else if ([[step stepType] isEqualToString:@"disappear"]) {
         interaction = [[PossibleInteraction alloc]initWithInteractionType:DISAPPEAR];
         
         [interaction addConnection:DISAPPEAR :objects :hotspotsForInteraction];
@@ -814,23 +779,23 @@ BOOL wasPathFollowed = false;
  * For example, if the cart should be connected to the tractor at the beginning of the story,
  * then this function will connect the cart to the tractor.
  */
--(void) performSetupForActivity {
-    Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
+- (void)performSetupForActivity {
+    Chapter *chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
     
-    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
-    NSMutableArray* setupSteps = [[PMActivity setupSteps] objectForKey:currentPageId]; //get setup steps for current page
+    PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
+    NSMutableArray *setupSteps = [[PMActivity setupSteps] objectForKey:currentPageId]; //get setup steps for current page
     
-    for (ActionStep* setupStep in setupSteps) {
+    for (ActionStep *setupStep in setupSteps) {
         if ([[setupStep stepType] isEqualToString:@"group"]) {
-            PossibleInteraction* interaction = [self convertActionStepToPossibleInteraction:setupStep];
+            PossibleInteraction *interaction = [self convertActionStepToPossibleInteraction:setupStep];
             [self performInteraction:interaction]; //groups the objects
         }
         else if ([[setupStep stepType] isEqualToString:@"move"]) {
             //Get information for move step type
-            NSString* object1Id = [setupStep object1Id];
-            NSString* action = [setupStep action];
-            NSString* object2Id = [setupStep object2Id];
-            NSString* waypointId = [setupStep waypointId];
+            NSString *object1Id = [setupStep object1Id];
+            NSString *action = [setupStep action];
+            NSString *object2Id = [setupStep object2Id];
+            NSString *waypointId = [setupStep waypointId];
             
             //Move either requires object1 to move to object2 (which creates a group interaction) or it requires object1 to move to a waypoint
             if (object2Id != nil) {
@@ -839,35 +804,23 @@ BOOL wasPathFollowed = false;
             }
             else if (waypointId != nil) {
                 //Get position of hotspot in pixels based on the object image size
-                Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:object1Id :action :@"subject"];
+                Hotspot *hotspot = [model getHotspotforObjectWithActionAndRole:object1Id :action :@"subject"];
                 CGPoint hotspotLocation = [self getHotspotLocationOnImage:hotspot];
                 
                 //Get position of waypoint in pixels based on the background size
                 Waypoint* waypoint = [model getWaypointWithId:waypointId];
                 CGPoint waypointLocation = [self getWaypointLocation:waypoint];
                 
-                
-                NSString* objectClassName = [NSString stringWithFormat:@"document.getElementById(%@).className", object1Id];
+                NSString *objectClassName = [NSString stringWithFormat:@"document.getElementById(%@).className", object1Id];
                 objectClassName = [bookView stringByEvaluatingJavaScriptFromString:objectClassName];
                 
                 if ([objectClassName rangeOfString:@"center"].location != NSNotFound) {
-                    
-                //NSString* requestImageHeight = [NSString stringWithFormat:@"%@.height", object1Id];
-                //NSString* requestImageWidth = [NSString stringWithFormat:@"%@.width", object1Id];
-                
-                //float imageHeight = [[bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
-                //float imageWidth = [[bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
-                
-                //waypointLocation.x = waypointLocation.x -imageWidth/2;
-                //waypointLocation.y = waypointLocation.y-imageHeight/2;
-                    
-                    hotspotLocation.x=0;
-                    hotspotLocation.y=0;
-                
+                    hotspotLocation.x = 0;
+                    hotspotLocation.y = 0;
                 }
                 
                 //Move the object
-                [self moveObject:object1Id :waypointLocation :hotspotLocation :false:waypointId];
+                [self moveObject:object1Id :waypointLocation :hotspotLocation :false];
                 
                 //Clear highlighting
                 NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
@@ -880,43 +833,41 @@ BOOL wasPathFollowed = false;
 /*
  * Performs ungroup, move, and swap image steps automatically
  */
--(void) performAutomaticSteps {
-    
-    if([IntroductionClass.introductions objectForKey:chapterTitle] && [[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
+- (void)performAutomaticSteps {
+    if ([IntroductionClass.introductions objectForKey:chapterTitle] && [[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
         IntroductionClass.allowInteractions = TRUE;
     }
     
     //Perform steps only if they exist for the sentence
     if (numSteps > 0 && IntroductionClass.allowInteractions) {
-        
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
+        NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
         
         //Get current step to be completed
-        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        
+        [[ServerCommunicationController sharedInstance] logLoadStep:currentStep ofType:[currSolStep stepType] context:manipulationContext];
         
         //Automatically perform interaction if step is ungroup, move, or swap image
         if (!pinchToUngroup && ([[currSolStep stepType] isEqualToString:@"ungroup"] ||
                                 [[currSolStep stepType] isEqualToString:@"ungroupAndStay"])) {
-            PossibleInteraction* correctUngrouping = [self getCorrectInteraction];
+            PossibleInteraction *correctUngrouping = [self getCorrectInteraction];
             
             [self performInteraction:correctUngrouping];
             [self incrementCurrentStep];
         }
-        else if([[currSolStep stepType] isEqualToString:@"groupAuto"]) {
-            PossibleInteraction* correctGrouping = [self getCorrectInteraction];
+        else if ([[currSolStep stepType] isEqualToString:@"groupAuto"]) {
+            PossibleInteraction *correctGrouping = [self getCorrectInteraction];
             
             [self performInteraction:correctGrouping];
             [self incrementCurrentStep];
         }
         else if ([[currSolStep stepType] isEqualToString:@"move"]) {
             [self moveObjectForSolution];
-            
             [self incrementCurrentStep];
         }
         else if ([[currSolStep stepType] isEqualToString:@"swapImage"]) {
             [self swapObjectImage];
-            
             [self incrementCurrentStep];
         }
         else if ([[currSolStep stepType] isEqualToString:@"appear"]) {
@@ -944,8 +895,12 @@ BOOL wasPathFollowed = false;
             [self incrementCurrentStep];
         }
         else if ([[currSolStep stepType] isEqualToString:@"playSound"]) {
-            NSString * file = [currSolStep fileName];
-            [self.playaudioClass playAudioFile:self:file];
+            NSString *file = [currSolStep fileName];
+            
+            [self.playaudioClass playAudioFile:self :file];
+            
+            [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:[[currSolStep fileName] stringByDeletingPathExtension] inLanguage:@"NULL" ofType:@"Play Sound" :manipulationContext];
+            
             [self incrementCurrentStep];
         }
     }
@@ -958,34 +913,35 @@ BOOL wasPathFollowed = false;
 /*
  * Returns a CGPoint containing the x and y coordinates of the position of an object
  */
--(CGPoint) getObjectPosition:(NSString*)object {
-    NSArray* position;
+- (CGPoint)getObjectPosition:(NSString *)object {
+    NSArray *position;
     
-    NSString* positionObject = [NSString stringWithFormat:@"getImagePosition(%@)", object];
-    NSString* positionString = [bookView stringByEvaluatingJavaScriptFromString:positionObject];
+    NSString *positionObject = [NSString stringWithFormat:@"getImagePosition(%@)", object];
+    NSString *positionString = [bookView stringByEvaluatingJavaScriptFromString:positionObject];
     
-    if(![positionString isEqualToString:@""]) {
+    if (![positionString isEqualToString:@""]) {
         position = [positionString componentsSeparatedByString:@", "];
     }
     
     return CGPointMake([position[0] floatValue], [position[1] floatValue]);
 }
 
--(void) animateObject {
+- (void)animateObject {
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
+        NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
         
         //Get current step to be completed
-        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
         if ([[currSolStep stepType] isEqualToString:@"animate"]) {
             //Get information for animation step type
-            NSString* object1Id = [currSolStep object1Id];
-            NSString* action = [currSolStep action];
-            NSString* waypointId = [currSolStep waypointId];
-            NSString* areaId = [currSolStep areaId];
+            NSString *object1Id = [currSolStep object1Id];
+            NSString *action = [currSolStep action];
+            NSString *waypointId = [currSolStep waypointId];
+            NSString *areaId = [currSolStep areaId];
+            
             if ([areaId isEqualToString:@""]) {
                 areaId = @"area";
             }
@@ -999,100 +955,81 @@ BOOL wasPathFollowed = false;
             CGPoint adjLocation = CGPointMake(imageLocation.x - delta.x, imageLocation.y - delta.y);
             
             CGPoint waypointLocation;
+            
             if ([waypointId isEqualToString:@""]) {
                 waypointLocation.x = 0;
                 waypointLocation.y = 0;
             }
             else {
-                Waypoint* waypoint = [model getWaypointWithId:waypointId];
+                Waypoint *waypoint = [model getWaypointWithId:waypointId];
                 waypointLocation = [self getWaypointLocation:waypoint];
             }
-            
-            //if ([areaId rangeOfString:@"Path"].location != NSNotFound) {
-                //[self buildPath:areaId];
-            //}
-            
-            //NSString *showPath = @"showPath()";
-            //[bookView stringByEvaluatingJavaScriptFromString:showPath];
             
             //Call the animateObject function in the js file.
             NSString *animate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", object1Id, adjLocation.x, adjLocation.y, waypointLocation.x, waypointLocation.y, action, areaId];
             [bookView stringByEvaluatingJavaScriptFromString:animate];
             
             [animatingObjects setObject:[NSString stringWithFormat:@"%@,%@,%@", @"animate", action, areaId] forKey:object1Id];
+            
+            [[ServerCommunicationController sharedInstance] logAnimateObject:object1Id forAction:action context:manipulationContext];
         }
     }
 }
 
 /*
- Calls the builPath fucntion on the JS file
- Sends all the points in an area or path to the the JS to load them in memory
+ * Calls the buildPath function on the JS file
+ * Sends all the points in an area or path to the the JS to load them in memory
  */
--(void)buildPath:(NSString*)areaId {
-    Area* area = [model getAreaWithId:areaId];
+- (void)buildPath:(NSString *)areaId {
+    Area *area = [model getAreaWithId:areaId];
     
     NSString *createPath = [NSString stringWithFormat:@"createPath('%@')", areaId];
     [bookView stringByEvaluatingJavaScriptFromString:createPath];
     
-    for (int i=0; i < area.points.count/2; i++) {
-        NSString* xCoord = [area.points objectForKey:[NSString stringWithFormat:@"x%d", i]];
-        NSString* yCoord = [area.points objectForKey:[NSString stringWithFormat:@"y%d", i]];
+    for (int i = 0; i < area.points.count/2; i++) {
+        NSString *xCoord = [area.points objectForKey:[NSString stringWithFormat:@"x%d", i]];
+        NSString *yCoord = [area.points objectForKey:[NSString stringWithFormat:@"y%d", i]];
         
         NSString *buildPath = [NSString stringWithFormat:@"buildPath('%@', %f, %f)", areaId, [xCoord floatValue], [yCoord floatValue]];
         [bookView stringByEvaluatingJavaScriptFromString:buildPath];
     }
 }
 
-#pragma mark - Responding to gestures
 /*
- * User pressed Back button. Write log data to file.
+ * User pressed Library button. Write log data to file.
  */
-- (void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewWillDisappear:(BOOL)animated {
     [self.playaudioClass stopPlayAudioFile];
     [super viewWillDisappear:animated];
     
-    if (![[self.navigationController viewControllers] containsObject:self])
-    {
-        [[ServerCommunicationController sharedManager] writeToFile:[[ServerCommunicationController sharedManager] studyFileName] ofType:@"txt"];
+    if (![[self.navigationController viewControllers] containsObject:self]) {
+        [[ServerCommunicationController sharedInstance] logPressLibrary:manipulationContext];
+        [[ServerCommunicationController sharedInstance] writeLogFile];
     }
 }
 
 /*
- * Plays a noise for error feedback if the user performs a manipulation incorrectly
- */
-- (IBAction) playErrorNoise {
-    AudioServicesPlaySystemSound(1053);
-    
-    //Logging added by James for Error Noise
-    [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Error Audio" : @"NULL" :@"Error Noise"  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-}
-
-  
-/*
- * Tap gesture. Currently only used for menu selection.
+ * Tap gesture
  */
 - (IBAction)tapGesturePerformed:(UITapGestureRecognizer *)recognizer {
     
     CGPoint location = [recognizer locationInView:self.view];
     
-    if([IntroductionClass.introductions objectForKey:chapterTitle] && [[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:@"menu"]) {
+    if ([IntroductionClass.introductions objectForKey:chapterTitle] && [[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:@"menu"]) {
         IntroductionClass.allowInteractions = TRUE;
     }
     
-    //im code
-    if((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && (!IntroductionClass.allowInteractions))
-    {
-            IntroductionClass.allowInteractions = true;
-            allowSnapback = false;
+    if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && (!IntroductionClass.allowInteractions)) {
+        IntroductionClass.allowInteractions = true;
+        allowSnapback = false;
     }
     
-    //check to see if we have a menu open. If so, process menu click.
-    if(menu != nil && IntroductionClass.allowInteractions) {
+    //Check to see if we have a menu open. If so, process menu click.
+    if (menu != nil && IntroductionClass.allowInteractions) {
         int menuItem = [menu pointInMenuItem:location];
         
         //If we've selected a menuItem.
-        if(menuItem != -1) {
+        if (menuItem != -1) {
             //Get the information from the particular menu item that was pressed.
             MenuItemDataSource *dataForItem = [menuDataSource dataObjectAtIndex:menuItem];
             PossibleInteraction *interaction = [dataForItem interaction];
@@ -1102,68 +1039,68 @@ BOOL wasPathFollowed = false;
             NSMutableArray *menuItemImages =[[NSMutableArray alloc] init];
             NSMutableArray *menuItemRelationships = [[NSMutableArray alloc] init];
             
-            for (int x=0; x<numMenuItems; x++) {
+            for (int x = 0; x < numMenuItems; x++) {
                 MenuItemDataSource *tempMenuItem = [menuDataSource dataObjectAtIndex:x];
                 PossibleInteraction *tempMenuInteraction =[tempMenuItem interaction];
                 Relationship *tempMenuRelationship = [tempMenuItem menuRelationship];
                 
-                //[menuItemInteractions addObject:[tempMenuRelationship actionType]];
+                NSString *interactionType;
                 
-                if(tempMenuInteraction.interactionType == DISAPPEAR)
-                {
-                    [menuItemInteractions addObject:@"Disappear"];
-                }
-                if (tempMenuInteraction.interactionType == UNGROUP)
-                {
-                    [menuItemInteractions addObject:@"Ungroup"];
-                }
-                if (tempMenuInteraction.interactionType == GROUP)
-                {
-                    [menuItemInteractions addObject:@"Group"];
-                }
-                if (tempMenuInteraction.interactionType == TRANSFERANDDISAPPEAR)
-                {
-                    [menuItemInteractions addObject:@"Transfer And Disappear"];
-                }
-                if (tempMenuInteraction.interactionType == TRANSFERANDGROUP)
-                {
-                    [menuItemInteractions addObject:@"Transfer And Group"];
-                }
-                if(tempMenuInteraction.interactionType ==NONE)
-                {
-                    [menuItemInteractions addObject:@"none"];
+                switch (tempMenuInteraction.interactionType) {
+                    case DISAPPEAR:
+                        interactionType = @"Disappear";
+                        break;
+                        
+                    case UNGROUP:
+                        interactionType = @"Ungroup";
+                        break;
+                        
+                    case GROUP:
+                        interactionType = @"Group";
+                        break;
+                        
+                    case TRANSFERANDDISAPPEAR:
+                        interactionType = @"Transfer and Disappear";
+                        break;
+                        
+                    case TRANSFERANDGROUP:
+                        interactionType = @"Transfer and Group";
+                        break;
+                        
+                    default:
+                        interactionType = @"None";
+                        break;
                 }
                 
+                [menuItemInteractions addObject:interactionType];
                 [menuItemImages addObject:[NSString stringWithFormat:@"%d", x]];
                 
-                for(int i=0; i< [tempMenuItem.images count]; i++)
-                {
-                    MenuItemImage *tempimage =  [tempMenuItem.images objectAtIndex:i];
+                for (int i = 0; i < [tempMenuItem.images count]; i++) {
+                    MenuItemImage *tempimage = [tempMenuItem.images objectAtIndex:i];
                     [menuItemImages addObject:[tempimage.image accessibilityIdentifier]];
                 }
                 
                 [menuItemRelationships addObject:tempMenuRelationship.action];
             }
             
-            //Logging Add by James for Menu Selection
-            [[ServerCommunicationController sharedManager] logMenuSelection: menuItem: menuItemInteractions : menuItemImages : menuItemRelationships :@"Menu Item Selected" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-            
+            [[ServerCommunicationController sharedInstance] logSelectMenuItemAtIndex:menuItem interactions:menuItemInteractions objects:menuItemImages relationships:menuItemRelationships context:manipulationContext];
+
             [self checkSolutionForInteraction:interaction]; //check if selected interaction is correct
             
-            //im code
-            if((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && (IntroductionClass.allowInteractions))
-            {
+            if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && (IntroductionClass.allowInteractions)) {
                 IntroductionClass.allowInteractions = FALSE;
                 allowSnapback = true;
             }
-            //end imcode
-            
         }
         //No menuItem was selected
         else {
+            [[ServerCommunicationController sharedInstance] logSelectMenuItemAtIndex:-1 interactions:nil objects:nil relationships:nil context:manipulationContext];
+            
             if (allowSnapback) {
                 //Snap the object back to its original location
-                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
+                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
+                
+                [[ServerCommunicationController sharedInstance] logResetObject:movingObjectId startPos:endLocation endPos:startLocation context:manipulationContext];
                 
                 //Clear any remaining highlighting.
                 NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
@@ -1178,7 +1115,6 @@ BOOL wasPathFollowed = false;
         //Re-add the tap gesture recognizer before the menu is removed
         [self.view addGestureRecognizer:tapRecognizer];
         
-        
         if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == PM_MODE) {
             //Remove menu.
             [menu removeFromSuperview];
@@ -1189,19 +1125,23 @@ BOOL wasPathFollowed = false;
     else {
         if (numSteps > 0 && IntroductionClass.allowInteractions) {
             //Get steps for current sentence
-            NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
+            NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
 
             if ([currSolSteps count] > 0) {
                 //Get current step to be completed
-                ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+                ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
                 
                 //Current step is checkAndSwap
                 if ([[currSolStep stepType] isEqualToString:@"checkAndSwap"]) {
                     //Get the object at this point
-                    NSString* imageAtPoint = [self getObjectAtPoint:location ofType:nil];
+                    NSString *imageAtPoint = [self getObjectAtPoint:location ofType:nil];
+                    
+                    [[ServerCommunicationController sharedInstance] logTapObject:imageAtPoint :manipulationContext];
                     
                     //If the correct object was tapped, swap its image and increment the step
                     if ([self checkSolutionForSubject:imageAtPoint]) {
+                        [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Tap Object" context:manipulationContext];
+                        
                         [self swapObjectImage];
                         [self incrementCurrentStep];
                     }
@@ -1209,10 +1149,14 @@ BOOL wasPathFollowed = false;
                 else if ([[currSolStep stepType] isEqualToString:@"tapToAnimate"] ||
                          [[currSolStep stepType] isEqualToString:@"shakeOrTap"]) {
                     //Get the object at this point
-                    NSString* imageAtPoint = [self getObjectAtPoint:location ofType:nil];
+                    NSString *imageAtPoint = [self getObjectAtPoint:location ofType:nil];
+                    
+                    [[ServerCommunicationController sharedInstance] logTapObject:imageAtPoint :manipulationContext];
                     
                     //If the correct object was tapped, increment the step
                     if ([self checkSolutionForSubject:imageAtPoint]) {
+                        [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Tap Object" context:manipulationContext];
+                        
                         [self incrementCurrentStep];
                     }
                     
@@ -1221,47 +1165,37 @@ BOOL wasPathFollowed = false;
         }
         
         //Get the object at that point if it's a manipulation object.
-        NSString* imageAtPoint = [self getObjectAtPoint:location ofType:@"manipulationObject"];
-        
-        //NSLog(@"location pressed: (%f, %f)", location.x, location.y);
+        NSString *imageAtPoint = [self getObjectAtPoint:location ofType:@"manipulationObject"];
         
         //Retrieve the name of the object at this location
-        NSString* requestImageAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
+        NSString *requestImageAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
         
         imageAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPoint];
             
         //Capture the clicked text, if it exists
-        NSString* requestSentenceText = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).innerHTML", location.x, location.y];
-        NSString* sentenceText = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceText];
+        NSString *requestSentenceText = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).innerHTML", location.x, location.y];
+        NSString *sentenceText = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceText];
         
         //Capture the clicked text id, if it exists
-        NSString* requestSentenceID = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
-        NSString* sentenceID = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceID];
+        NSString *requestSentenceID = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
+        NSString *sentenceID = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceID];
         int sentenceIDNum = [[sentenceID substringFromIndex:0] intValue];
 
         //Capture the spanish extension
-        NSString* spanishExtTag = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).getAttribute(\"spanishExt\")", location.x, location.y];
-        NSString* spanishExt = [bookView stringByEvaluatingJavaScriptFromString:spanishExtTag];
-        
+        NSString *spanishExtTag = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).getAttribute(\"spanishExt\")", location.x, location.y];
+        NSString *spanishExt = [bookView stringByEvaluatingJavaScriptFromString:spanishExtTag];
 
         if (conditionSetup.appMode == ITS) {
-
             //Record vocabulary request for complexity
             [[pageStatistics objectForKey:currentPageId] addVocabTapForComplexity:(currentComplexity - 1)];
         }
         
-        //Logs user Word Press
-        //this logs any tap on any words even if they are not audible, it logs taps on sentences,
-        [[ServerCommunicationController sharedManager] logUserPressWord:sentenceText :@"Tap" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-        
-        NSLog(@"%@",sentenceText);
-        
         //Convert to lowercase so the sentence text can be mapped to objects
         sentenceText = [sentenceText lowercaseString];
-        NSString* englishSentenceText = sentenceText;
+        NSString *englishSentenceText = sentenceText;
         
-        if (conditionSetup.language ==BILINGUAL) {
-            if(![[self getEnglishTranslation:sentenceText] isEqualToString:@"Translation not found"]) {
+        if (conditionSetup.language == BILINGUAL) {
+            if (![[self getEnglishTranslation:sentenceText] isEqualToString:@"Translation not found"]) {
                 englishSentenceText = [self getEnglishTranslation:sentenceText];
             }
         }
@@ -1270,35 +1204,27 @@ BOOL wasPathFollowed = false;
         if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
             if (([[IntroductionClass.performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] &&
                 [englishSentenceText isEqualToString:[IntroductionClass.performedActions objectAtIndex:INPUT]])) {
-                //Destroy the timer to avoid playing the previous sound
-                //[timer invalidate];
-                //timer = nil;
-                
-                [self.playaudioClass playAudioFile: self: [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]];
-                
-                //Logging added by James for Word Audio
-                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : IntroductionClass.languageString :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                
+                [self.playaudioClass playAudioFile: self :[NSString stringWithFormat:@"%@%@.m4a", englishSentenceText, IntroductionClass.languageString]];
+
                 [self highlightObject:englishSentenceText:1.5];
-                //Bypass the image-tap steps which are found after each word-tap step on the metadata
-                // since they are not needed anymore
-                IntroductionClass.currentIntroStep+=1;
+                
+                //Bypass the image-tap steps which are found after each word-tap step on the metadata since they are not needed anymore
+                IntroductionClass.currentIntroStep += 1;
+                
                 // This delay is needed in order to be able to hear the clicked word
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW,2*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                     [IntroductionClass loadIntroStep:bookView:self:currentSentence];
                 });
             }
         }
         //Vocabulary introduction mode
         else if ([currentPageId rangeOfString:@"-Intro"].location != NSNotFound) {
-            
             //Get steps for current sentence
-            NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
+            NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
             
-            if([currSolSteps count] >0)
-            {
+            if ([currSolSteps count] > 0) {
                 //Get current step to be completed
-                ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+                ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
             
                 if([[currSolStep stepType] isEqualToString:@"tapWord"])
                 {
@@ -1327,19 +1253,18 @@ BOOL wasPathFollowed = false;
         else if ([currentPageId rangeOfString:@"-PM"].location != NSNotFound)
         {
             //Get steps for current sentence
-            NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
+            NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
             
-            if([currSolSteps count] >0)
-            {
+            if ([currSolSteps count] > 0) {
                 //Get current step to be completed
-                ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+                ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
                 
-                if([[currSolStep stepType] isEqualToString:@"tapWord"])
-                {
-                    if([englishSentenceText containsString: [currSolStep object1Id]] &&
-                       (currentSentence == sentenceIDNum))
-                    {
-                        //[self playIntroVocabWord:sentenceText:englishSentenceText:currSolStep];
+                if ([[currSolStep stepType] isEqualToString:@"tapWord"]) {
+                    if ([englishSentenceText containsString: [currSolStep object1Id]] &&
+                       (currentSentence == sentenceIDNum)) {
+                        [[ServerCommunicationController sharedInstance] logTapWord:sentenceText :manipulationContext];
+                        
+                        //[self playIntroVocabWord:sentenceText :englishSentenceText :currSolStep];
                         [self incrementCurrentStep];
                     }
                 }
@@ -1355,66 +1280,62 @@ BOOL wasPathFollowed = false;
                 [self playAudioForVocabWord: englishSentenceText : spanishExt];
             }
         }
-        
     }
 }
 
--(void) playAudioForVocabWord: (NSString*) englishSentenceText : (NSString*) spanishExt
-{
-    // Since the name of the carbon dioxide file is carbonDioxide, its name is hard-coded
-    if([englishSentenceText isEqualToString:@"carbon dioxide"]) {
+- (void)playAudioForVocabWord:(NSString *)englishSentenceText :(NSString *)spanishExt {
+    //Since the name of the carbon dioxide file is carbonDioxide, its name is hard-coded
+    if ([englishSentenceText isEqualToString:@"carbon dioxide"]) {
         englishSentenceText = @"carbonDioxide";
     }
     
-    if (conditionSetup.language ==BILINGUAL) {
-        NSString *spanishAudio = [NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"S"];
-        NSString *engAudio = [NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"E"];
+    if (conditionSetup.language == BILINGUAL) {
+        NSString *spanishAudio = [NSString stringWithFormat:@"%@%@.mp3", englishSentenceText, @"S"];
+        NSString *engAudio = [NSString stringWithFormat:@"%@%@.mp3", englishSentenceText, @"E"];
         
         if ([spanishExt isEqualToString:@""] == NO) {
-            spanishAudio = [NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,spanishExt];
+            spanishAudio = [NSString stringWithFormat:@"%@%@.mp3", englishSentenceText, spanishExt];
         }
         
         //Play Sp audio then En auido
-        bool success = [self.playaudioClass playAudioInSequence:self:spanishAudio:engAudio];
+        bool success = [self.playaudioClass playAudioInSequence:self :spanishAudio :engAudio];
         
         if (!success) {
-            NSString *spanishAudio = [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"];
-            NSString *engAudio = [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"];
+            NSString *spanishAudio = [NSString stringWithFormat:@"%@%@.m4a", englishSentenceText, @"S"];
+            NSString *engAudio = [NSString stringWithFormat:@"%@%@.m4a", englishSentenceText, @"E"];
             
             if ([spanishExt isEqualToString:@""] == NO) {
-                spanishAudio = [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,spanishExt];
+                spanishAudio = [NSString stringWithFormat:@"%@%@.m4a", englishSentenceText, spanishExt];
             }
             
-            [self.playaudioClass playAudioInSequence:self:spanishAudio:engAudio];
+            [self.playaudioClass playAudioInSequence:self :spanishAudio :engAudio];
         }
         
-        //Logging added by James for Word Audio
-        [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"S" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:@"Spanish" ofType:@"Play Word" :manipulationContext];
+        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:@"English" ofType:@"Play Word" :manipulationContext];
     }
     else {
         //Play En audio twice
-        NSString *engAudio = [NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"E"];
+        NSString *engAudio = [NSString stringWithFormat:@"%@%@.mp3", englishSentenceText, @"E"];
         
         //Play Sp audio then En auido
-        bool success = [self.playaudioClass playAudioInSequence:self:engAudio:engAudio];
+        bool success = [self.playaudioClass playAudioInSequence:self :engAudio :engAudio];
         
         if (!success) {
-            NSString *engAudio = [NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"];
-            [self.playaudioClass playAudioInSequence:self:engAudio:engAudio];
+            NSString *engAudio = [NSString stringWithFormat:@"%@%@.m4a", englishSentenceText, @"E"];
+            [self.playaudioClass playAudioInSequence:self :engAudio :engAudio];
         }
         
-        //Logging added by James for Word Audio
-        [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : @"E" :[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:@"English" ofType:@"Play Word" :manipulationContext];
+        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:@"English" ofType:@"Play Word" :manipulationContext];
     }
     
-    // Revert the carbon dioxide name for highlighting
-    if([englishSentenceText isEqualToString:@"carbonDioxide"]) {
+    //Revert the carbon dioxide name for highlighting
+    if ([englishSentenceText isEqualToString:@"carbonDioxide"]) {
         englishSentenceText = @"carbon dioxide";
     }
     
     [self highlightImageForText:englishSentenceText];
-    
-    //[self highlightObject:[[Translation translationImages] objectForKey:englishSentenceText]:1.5];
 }
 
 -(void) playIntroVocabWord: (NSString*) sentenceText : (NSString*) englishSentenceText : (ActionStep *) currSolStep
@@ -1445,9 +1366,12 @@ BOOL wasPathFollowed = false;
             }
         }
         
+        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:@"English" ofType:@"Play Word with Definition" :manipulationContext];
+        
         [self highlightImageForText:englishSentenceText];
         
-        currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence]];
+        currentSentence++;
+        currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d')", currentSentence]];
         
         // This delay is needed in order to be able to play the last definition on a vocabulary page
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW,([self.playaudioClass audioPlayer].duration)*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
@@ -1477,36 +1401,29 @@ BOOL wasPathFollowed = false;
             }
         });
 }
-
--(NSMutableArray*)returnCurrentSolutionSteps
-{
+                   
+- (NSMutableArray *)returnCurrentSolutionSteps {
     NSMutableArray *currSolSteps;
     
-    if (conditionSetup.appMode == ITS)
-    {
+    if (conditionSetup.appMode == ITS) {
         currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
     }
     else {
         if (conditionSetup.condition == CONTROL) {
             currSolSteps = [PMSolution getStepsForSentence:currentSentence];
         }
-        else if (conditionSetup.condition == EMBRACE)
-        {
-            if (conditionSetup.currentMode == PM_MODE)
-            {
+        else if (conditionSetup.condition == EMBRACE) {
+            if (conditionSetup.currentMode == PM_MODE) {
                 //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
                 if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound
-                    && [currentPageId rangeOfString:@"-Intro"].location == NSNotFound)
-                {
+                    && [currentPageId rangeOfString:@"-Intro"].location == NSNotFound) {
                     currSolSteps = [PMSolution getStepsForSentence:currentIdea];
                 }
-                else
-                {
+                else {
                     currSolSteps = [PMSolution getStepsForSentence:currentSentence];
                 }
             }
-            else if (conditionSetup.currentMode == IM_MODE)
-            {
+            else if (conditionSetup.currentMode == IM_MODE) {
                 currSolSteps = [IMSolution getStepsForSentence:currentSentence];
             }
         }
@@ -1514,106 +1431,72 @@ BOOL wasPathFollowed = false;
     
     return currSolSteps;
 }
-    
--(void) highlightImageForText: (NSString*) englishSentenceText
-{
+
+- (void)highlightImageForText:(NSString *)englishSentenceText {
     NSObject *valueImage = [[Translation translationImages]objectForKey:englishSentenceText];
     NSString *imageHighlighted = @"";
     
-    // If the key contains more than one value
-    if ([valueImage isKindOfClass:[NSArray class]])
-    {
-        NSArray *imageArray = ((NSArray*)valueImage);
-        for (int i = 0; i < [imageArray count]; i++)
-        {
+    //If the key contains more than one value
+    if ([valueImage isKindOfClass:[NSArray class]]) {
+        NSArray *imageArray = ((NSArray *)valueImage);
+        for (int i = 0; i < [imageArray count]; i++) {
             imageHighlighted = imageArray[i];
             [self highlightObject:imageHighlighted:1.5];
         }
     }
-    else
-    {
-        imageHighlighted = (NSString*)valueImage;
+    else {
+        imageHighlighted = (NSString *)valueImage;
         [self highlightObject:imageHighlighted:1.5];
     }
-
 }
 
 /*
  * Long press gesture. Either tap or long press can be used for definitions.
  */
--(IBAction)longPressGesturePerformed:(UILongPressGestureRecognizer *)recognizer {
+- (IBAction)longPressGesturePerformed:(UILongPressGestureRecognizer *)recognizer {
     //This is the location of the point in the parent UIView, not in the UIWebView.
     //These two coordinate systems may be different.
     /*CGPoint location = [recognizer locationInView:self.view];
      
-     NSString* requestImageAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
+     NSString *requestImageAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
      
-     NSString* imageAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPoint];*/
+     NSString *imageAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPoint];*/
     
     //NSLog(@"imageAtPoint: %@", imageAtPoint);
 }
-
 
 /*
  * Swipe gesture. Only recognizes a downwards two finger swipe. Used to skip the current step
  * by performing it automatically according to the solution.
  */
--(IBAction)swipeGesturePerformed:(UISwipeGestureRecognizer *)recognizer {
-    NSLog(@"Swiper no swiping!");
-    
+- (IBAction)swipeGesturePerformed:(UISwipeGestureRecognizer *)recognizer {
     //Emergency swipe to bypass the vocab intros
     if ([IntroductionClass.vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
         [self.playaudioClass stopPlayAudioFile];
         [self loadNextPage];
     }
-    
     //Perform steps only if they exist for the sentence and have not been completed
     else if (numSteps > 0 && !stepsComplete && conditionSetup.condition == EMBRACE && conditionSetup.currentMode == PM_MODE) {
-        [[ServerCommunicationController sharedManager] logUserEmergencyNext:@"Emergency Swipe" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+        [[ServerCommunicationController sharedInstance] logEmergencySwipe:manipulationContext];
         
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
+        NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
         
         //Get current step to be completed
-        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        NSString *stepType = [currSolStep stepType];
         
-        //Current step is check and involves moving an object to a location
-        if ([[currSolStep stepType] isEqualToString:@"check"]) {
-            [self incrementCurrentStep];
-        }
-        else if ([[currSolStep stepType] isEqualToString:@"checkLeft"]) {
-            [self incrementCurrentStep];
-        }
-        else if ([[currSolStep stepType] isEqualToString:@"checkRight"]) {
-            [self incrementCurrentStep];
-        }
-        else if ([[currSolStep stepType] isEqualToString:@"checkUp"])
-        {
-            [self incrementCurrentStep];
-        }
-        else if ([[currSolStep stepType] isEqualToString:@"checkDown"]) {
-            [self incrementCurrentStep];
-        }
-        //Current step is checkAndSwap and involves swapping an image
-        else if ([[currSolStep stepType] isEqualToString:@"checkAndSwap"]) {
-            [self swapObjectImage];
-            [self incrementCurrentStep];
-        }
-        //Current step involves tapping an image
-        else if ([[currSolStep stepType] isEqualToString:@"tapToAnimate"]) {
-            [self incrementCurrentStep];
-        }
-        //Current step involves following a path
-        else if ([[currSolStep stepType] isEqualToString:@"checkPath"]) {
-            [self incrementCurrentStep];
-        }
-        else if ([[currSolStep stepType] isEqualToString:@"shakeAndTap"]) {
+        if ([stepType isEqualToString:@"check"] || [stepType isEqualToString:@"checkLeft"] || [stepType isEqualToString:@"checkRight"] || [stepType isEqualToString:@"checkUp"] || [stepType isEqualToString:@"checkDown"] || [stepType isEqualToString:@"checkAndSwap"] || [stepType isEqualToString:@"tapToAnimate"] || [stepType isEqualToString:@"checkPath"] || [stepType isEqualToString:@"shakeAndTap"]) {
+            if ([stepType isEqualToString:@"checkAndSwap"]) {
+                [self swapObjectImage];
+            }
+            
             [self incrementCurrentStep];
         }
         //Current step is either group, ungroup, disappear, or transference
         else {
             //Get the interaction to be performed
-            PossibleInteraction* interaction = [self getCorrectInteraction];
+            PossibleInteraction *interaction = [self getCorrectInteraction];
             
             //Perform the interaction and increment the step
             [self checkSolutionForInteraction:interaction];
@@ -1624,29 +1507,29 @@ BOOL wasPathFollowed = false;
 /*
  * Pinch gesture. Used to ungroup two images from each other.
  */
--(IBAction)pinchGesturePerformed:(UIPinchGestureRecognizer *)recognizer {
+- (IBAction)pinchGesturePerformed:(UIPinchGestureRecognizer *)recognizer {
     CGPoint location = [recognizer locationInView:self.view];
     
-    if(recognizer.state == UIGestureRecognizerStateBegan && IntroductionClass.allowInteractions && pinchToUngroup) {
+    if (recognizer.state == UIGestureRecognizerStateBegan && IntroductionClass.allowInteractions && pinchToUngroup) {
         pinching = TRUE;
         
-        NSString* imageAtPoint = [self getObjectAtPoint:location ofType:@"manipulationObject"];
+        NSString *imageAtPoint = [self getObjectAtPoint:location ofType:@"manipulationObject"];
         
         //if it's an image that can be moved, then start moving it.
-        if(imageAtPoint != nil && !stepsComplete) {
+        if (imageAtPoint != nil && !stepsComplete) {
             separatingObjectId = imageAtPoint;
         }
     }
-    else if(recognizer.state == UIGestureRecognizerStateEnded) {
+    else if (recognizer.state == UIGestureRecognizerStateEnded) {
         //Get pairs of other objects grouped with this object.
-        NSArray* itemPairArray = [self getObjectsGroupedWithObject:separatingObjectId];
+        NSArray *itemPairArray = [self getObjectsGroupedWithObject:separatingObjectId];
         
         if (itemPairArray != nil) {
-            NSMutableArray* possibleInteractions = [[NSMutableArray alloc] init];
+            NSMutableArray *possibleInteractions = [[NSMutableArray alloc] init];
         
-            for(NSString* pairStr in itemPairArray) {
+            for (NSString *pairStr in itemPairArray) {
                 //Create an array that will hold all the items in this group
-                NSMutableArray* groupedItemsArray = [[NSMutableArray alloc] init];
+                NSMutableArray *groupedItemsArray = [[NSMutableArray alloc] init];
                 
                 //Separate the objects in this pair and add them to our array of all items in this group.
                 [groupedItemsArray addObjectsFromArray:[pairStr componentsSeparatedByString:@", "]];
@@ -1655,7 +1538,7 @@ BOOL wasPathFollowed = false;
                 BOOL allowSubjectToUngroup = false;
                 BOOL allowObjectToUngroup = false;
                 
-                for(NSString* obj in groupedItemsArray) {
+                for (NSString *obj in groupedItemsArray) {
                     if (useSubject == ONLY_CORRECT) {
                         if ([self checkSolutionForSubject:obj]) {
                             allowSubjectToUngroup = true;
@@ -1677,7 +1560,7 @@ BOOL wasPathFollowed = false;
                 
                 //Objects are allowed to ungroup
                 if (allowSubjectToUngroup && allowObjectToUngroup) {
-                    PossibleInteraction* interaction = [[PossibleInteraction alloc] initWithInteractionType:UNGROUP];
+                    PossibleInteraction *interaction = [[PossibleInteraction alloc] initWithInteractionType:UNGROUP];
                     [interaction addConnection:UNGROUP :groupedItemsArray :nil];
                     
                     //Only one possible ungrouping found
@@ -1696,7 +1579,7 @@ BOOL wasPathFollowed = false;
                 //Populate the data source and expand the menu.
                 [self populateMenuDataSource:possibleInteractions:allRelationships];
                 
-                if(!menuExpanded)
+                if (!menuExpanded)
                     [self expandMenu];
             }
         }
@@ -1710,54 +1593,45 @@ BOOL wasPathFollowed = false;
 /*
  * Pan gesture. Used to move objects from one location to another.
  */
--(IBAction)panGesturePerformed:(UIPanGestureRecognizer *)recognizer {
-    
+- (IBAction)panGesturePerformed:(UIPanGestureRecognizer *)recognizer {
     CGPoint location = [recognizer locationInView:self.view];
 
     //This should work with requireGestureRecognizerToFail:pinchRecognizer but it doesn't currently.
-    if(!pinching && IntroductionClass.allowInteractions) {
+    if (!pinching && IntroductionClass.allowInteractions) {
         BOOL useProximity = NO;
         
         static UIBezierPath *path = nil;
         static CAShapeLayer *shapeLayer = nil;
         
-        if(recognizer.state == UIGestureRecognizerStateBegan) {
-            
+        if (recognizer.state == UIGestureRecognizerStateBegan) {
             //Starts true because the object starts within the area
             wasPathFollowed = true;
             
-            //NSLog(@"pan gesture began at location: (%f, %f)", location.x, location.y);
             panning = TRUE;
             
             //Get the object at that point if it's a manipulation object.
-            NSString* imageAtPoint = [self getObjectAtPoint:location ofType:@"manipulationObject"];
-            //NSLog(@"location pressed: (%f, %f)", location.x, location.y);
+            NSString *imageAtPoint = [self getObjectAtPoint:location ofType:@"manipulationObject"];
             
             if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
                 stepsComplete = false;
             }
             
-            //if it's an image that can be moved, then start moving it.
-            if(imageAtPoint != nil && !stepsComplete) {
-                
-                //add logging: began object move ?
-                
+            //If it's an image that can be moved, then start moving it.
+            if (imageAtPoint != nil && !stepsComplete) {
                 movingObject = TRUE;
                 movingObjectId = imageAtPoint;
                 
-                NSString* requestImageMarginLeft = [NSString stringWithFormat:@"%@.style.marginLeft", movingObjectId];
-                NSString* requestImageMarginTop = [NSString stringWithFormat:@"%@.style.marginTop", movingObjectId];
+                NSString *requestImageMarginLeft = [NSString stringWithFormat:@"%@.style.marginLeft", movingObjectId];
+                NSString *requestImageMarginTop = [NSString stringWithFormat:@"%@.style.marginTop", movingObjectId];
                 
-                NSString* imageMarginLeft = [bookView stringByEvaluatingJavaScriptFromString:requestImageMarginLeft];
-                NSString* imageMarginTop = [bookView stringByEvaluatingJavaScriptFromString:requestImageMarginTop];
+                NSString *imageMarginLeft = [bookView stringByEvaluatingJavaScriptFromString:requestImageMarginLeft];
+                NSString *imageMarginTop = [bookView stringByEvaluatingJavaScriptFromString:requestImageMarginTop];
                 
-                if(![imageMarginLeft isEqualToString:@""] && ![imageMarginTop isEqualToString:@""])
-                {
+                if (![imageMarginLeft isEqualToString:@""] && ![imageMarginTop isEqualToString:@""]) {
                     //Calulate offset between top-left corner of image and the point clicked for centered images
                     delta = [self calculateDeltaForMovingObjectAtPointWithCenter:movingObjectId :location];
                 }
-                else
-                {
+                else {
                     //Calculate offset between top-left corner of image and the point clicked.
                     delta = [self calculateDeltaForMovingObjectAtPoint:location];
                 }
@@ -1778,85 +1652,76 @@ BOOL wasPathFollowed = false;
                 }
             }
         }
-        else if(recognizer.state == UIGestureRecognizerStateEnded) {
+        else if (recognizer.state == UIGestureRecognizerStateEnded) {
             path = nil;
-            
-            //NSLog(@"pan gesture ended at location (%f, %f)", location.x, location.y);
             panning = FALSE;
             
-            //if moving object, move object to final position.
-            if(movingObject) {
-                
-                [self moveObject:movingObjectId :location :delta :true: @"Ended"];
+            //If moving object, move object to final position.
+            if (movingObject) {
+                [self moveObject:movingObjectId :location :delta :true];
                 
                 if (numSteps > 0) {
                     //Get steps for current sentence
-                    NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
+                    NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
                     
                     //Get current step to be completed
-                    ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+                    ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
                     
                     if ([[currSolStep stepType] isEqualToString:@"check"] ||
                         [[currSolStep stepType] isEqualToString:@"checkLeft"] ||
                         [[currSolStep stepType] isEqualToString:@"checkRight"] ||
                         [[currSolStep stepType] isEqualToString:@"checkUp"] ||
-                        [[currSolStep stepType] isEqualToString:@"checkDown"])
-                    {
-                        
+                        [[currSolStep stepType] isEqualToString:@"checkDown"]) {
                         //Check if object is in the correct location or area
-                        if((([[currSolStep stepType] isEqualToString:@"checkLeft"] && startLocation.x > endLocation.x ) ||
+                        if ((([[currSolStep stepType] isEqualToString:@"checkLeft"] && startLocation.x > endLocation.x ) ||
                             ([[currSolStep stepType] isEqualToString:@"checkRight"] && startLocation.x < endLocation.x ) ||
                             ([[currSolStep stepType] isEqualToString:@"checkUp"] && startLocation.y > endLocation.y ) ||
                             ([[currSolStep stepType] isEqualToString:@"checkDown"] && startLocation.y < endLocation.y )) ||
-                           ([self isHotspotInsideLocation] || [self isHotspotInsideArea]))
-                        {
-                            
+                           ([self isHotspotInsideLocation] || [self isHotspotInsideArea])) {
                             if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
                                 /*Check to see if an object is at a certain location or is grouped with another object e.g. farmergetIncorralArea or farmerleadcow. These strings come from the solution steps */
-                                if([[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:[NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep locationId]]]
+                                if ([[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:[NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep locationId]]]
                                    || [[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:[NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep object2Id]]]) {
-                                        // Destroy the timer to avoid playing the previous sound
-                                        //[timer invalidate];
-                                        //timer = nil;
                                         IntroductionClass.currentIntroStep++;
                                     [IntroductionClass loadIntroStep:bookView:self: currentSentence];
                                 }
                             }
                             
-                            //Get the object at this point
-                            NSString* imageAtPoint = [self getObjectAtPoint:location ofType:nil];
-                            
-                            //If the correct object was tapped, swap its image and increment the step
-                            if ([self checkSolutionForSubject:movingObjectId])
-                            {
+                            if ([self checkSolutionForSubject:movingObjectId]) {
+                                NSString *destination;
+                                
+                                if ([currSolStep locationId] != nil) {
+                                    destination = [currSolStep locationId];
+                                }
+                                else if ([currSolStep areaId] != nil) {
+                                    destination = [currSolStep areaId];
+                                }
+                                else {
+                                    destination = @"NULL";
+                                }
+                                
+                                [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:destination ofType:@"Location" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
+
+                                [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Move Object" context:manipulationContext];
+                                
                                 [animatingObjects setObject:@"stop" forKey:movingObjectId];
                                 [self incrementCurrentStep];
                             }
-                            //reset object location
-                            else
-                            {
+                            //Reset object location
+                            else {
+                                [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:@"NULL" ofType:@"Location" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
+
+                                [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
+                                
                                 [self resetObjectLocation];
                             }
-                            
-                            //gets hotspot id for logging
-                            NSString* locationId = [currSolStep locationId];
-                            //Logging added by James for User Move Object to object
-                            [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : locationId :startLocation.x :startLocation.y :location.x :location.y :@"Move to Hotspot" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                            
-                            //Logging added by James for user Move Object to Hotspot Correct
-                            [[ServerCommunicationController sharedManager] logComputerVerification: @"Move to Hotspot":true : movingObjectId:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                         }
                         else {
-                            //gets hotspot id for logging
-                            NSString* locationId = [currSolStep locationId];
-                            //Logging added by James for User Move Object to object
-                            [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : locationId:startLocation.x :startLocation.y :location.x :location.y :@"Move to Hotspot" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+                            [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:@"NULL" ofType:@"Location" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
                             
-                            //Logging added by James for user Move Object to Hotspot Incorrect
-                            [[ServerCommunicationController sharedManager] logComputerVerification:@"Move to Hotspot" :false : movingObjectId:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+                            [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
                             
-                            [self.playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                            //[self playErrorNoise];
+                            [self playErrorNoise];
                             
                             if (conditionSetup.appMode == ITS) {
                                 //Record error for complexity
@@ -1868,73 +1733,58 @@ BOOL wasPathFollowed = false;
                         }
                     }
                     else if ([[currSolStep stepType] isEqualToString:@"shakeOrTap"]) {
-                        if(([[currSolStep object1Id] isEqualToString:movingObjectId]) && ([self areHotspotsInsideArea] || [self isHotspotInsideLocation])) {
+                        [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:@"NULL" ofType:@"Location" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
+                        
+                        if (([[currSolStep object1Id] isEqualToString:movingObjectId]) && ([self areHotspotsInsideArea] || [self isHotspotInsideLocation])) {
+                            [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Move Object" context:manipulationContext];
                             
                             [animatingObjects setObject:@"stop" forKey:movingObjectId];
                             [self resetObjectLocation];
                             [self incrementCurrentStep];
                         }
                         else {
-                            //gets hotspot id for logging
-                            NSString* locationId = [currSolStep locationId];
-                            //Logging added by James for User Move Object to object
-                            [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : locationId:startLocation.x :startLocation.y :location.x :location.y :@"Move to Hotspot" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+                            [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
                             
-                            //Logging added by James for user Move Object to Hotspot Incorrect
-                            [[ServerCommunicationController sharedManager] logComputerVerification:@"Move to Hotspot" :false : movingObjectId:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                            
-                            [self.playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                            //[self playErrorNoise];
-                            
+                            [self playErrorNoise];
                             [self resetObjectLocation];
                         }
                     }
                     else if ([[currSolStep stepType] isEqualToString:@"checkPath"]) {
-                        if(/*[self isHotspotInsideLocation] &&*/ wasPathFollowed) {
+                        [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:@"NULL" ofType:@"Location" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
+                        
+                        if (wasPathFollowed) {
+                            [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Move Object" context:manipulationContext];
+                            
                             [animatingObjects setObject:@"stop" forKey:movingObjectId];
                             [self incrementCurrentStep];
                         }
                         else {
-                            //gets hotspot id for logging
-                            NSString* locationId = [currSolStep locationId];
-                            //Logging added by James for User Move Object to object
-                            //[[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : locationId:startLocation.x :startLocation.y :location.x :location.y :@"Move to Hotspot" :bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
-                            
-                            //Logging added by James for user Move Object to Hotspot Incorrect
-                            //[[ServerCommunicationController sharedManager] logComputerVerification:@"Move to Hotspot" :false : movingObjectId:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
-                            
-                            //[self.playaudioClass playErrorNoise:bookTitle :chapterTitle :currentPage :currentSentence :currentStep];
-                            //[self playErrorNoise];
+                            [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
                             
                             [self resetObjectLocation];
-                            
                         }
                     }
                     else {
                         //Check if the object is overlapping anything
-                        NSArray* overlappingWith = [self getObjectsOverlappingWithObject:movingObjectId];
+                        NSArray *overlappingWith = [self getObjectsOverlappingWithObject:movingObjectId];
                         
                         //Get possible interactions only if the object is overlapping something
                         if (overlappingWith != nil) {
-                            //resets allRelationship arrray
-                            if([allRelationships count]) {
+                            [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:[overlappingWith componentsJoinedByString:@", "] ofType:@"Object" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
+                            
+                            //Resets allRelationship arrray
+                            if ([allRelationships count]) {
                                 [allRelationships removeAllObjects];
                             }
                             
                             //If the object was dropped, check if it's overlapping with any other objects that it could interact with.
-                            NSMutableArray* possibleInteractions = [self getPossibleInteractions:useProximity];
+                            NSMutableArray *possibleInteractions = [self getPossibleInteractions:useProximity];
                             
                             //No possible interactions were found
                             if ([possibleInteractions count] == 0) {
-                                //Logging added by James for User Move Object to object
-                                [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : collisionObjectId:startLocation.x :startLocation.y :location.x :location.y :@"Move to Object" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+                                [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
                                 
-                                //Logging added by James for Verifying Move Object to object
-                                [[ServerCommunicationController sharedManager] logComputerVerification: @"Move to Object":false : movingObjectId:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                                
-                                [self.playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                                //[self playErrorNoise];
-                                
+                                [self playErrorNoise];
                                 [self resetObjectLocation];
                                 
                                 if (conditionSetup.appMode == ITS) {
@@ -1944,11 +1794,9 @@ BOOL wasPathFollowed = false;
                             }
                             //If only 1 possible interaction was found, go ahead and perform that interaction if it's correct.
                             if ([possibleInteractions count] == 1) {
-                                PossibleInteraction* interaction = [possibleInteractions objectAtIndex:0];
-                                
-                                [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : collisionObjectId:startLocation.x :startLocation.y :location.x :location.y :@"Move to Object" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                                
-                                //checks solution and accomplishes action trace
+                                PossibleInteraction *interaction = [possibleInteractions objectAtIndex:0];
+
+                                //Checks solution and accomplishes action trace
                                 [self checkSolutionForInteraction:interaction];
                             }
                             //If more than 1 was found, prompt the user to disambiguate.
@@ -1957,43 +1805,29 @@ BOOL wasPathFollowed = false;
                                 if ([IntroductionClass.introductions objectForKey:chapterTitle] &&
                                     [[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:
                                      [NSString stringWithFormat:@"%@%@%@",[currSolStep object1Id], [currSolStep action], [currSolStep object2Id]]]) {
-                                    // Destroy the timer to avoid playing the previous sound
-                                    //[timer invalidate];
-                                    //timer = nil;
+
                                     IntroductionClass.currentIntroStep++;
-                                        [IntroductionClass loadIntroStep:bookView:self: currentSentence];
+                                    [IntroductionClass loadIntroStep:bookView :self :currentSentence];
                                 }
                                 
                                 //First rank the interactions based on location to story.
                                 [self rankPossibleInteractions:possibleInteractions];
                                 
-                                //Logging added by James for User Move Object to object
-                                [[ServerCommunicationController sharedManager] logUserMoveObject:movingObjectId  : collisionObjectId:startLocation.x :startLocation.y :location.x :location.y :@"Move to Object" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                                
-                                //Logging added by James for Move Object to object Verification
-                                [[ServerCommunicationController sharedManager] logComputerVerification: @"Move to Object":true : movingObjectId:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                                
                                 //Populate the menu data source and expand the menu.
-                                [self populateMenuDataSource:possibleInteractions:allRelationships];
+                                [self populateMenuDataSource:possibleInteractions :allRelationships];
                                 
-                                if(!menuExpanded)
-                                {
-                                    //Logging added by James for Move Object to object Verification
-                                        [[ServerCommunicationController sharedManager] logComputerVerification: @"Display Menu":true : movingObjectId:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                                    
+                                if (!menuExpanded) {
                                     [self expandMenu];
-                                
                                 }
-                                
-                                
                             }
                         }
                         //Not overlapping any object
                         else {
+                            [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:@"NULL" ofType:@"Location" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
                             
-                            [self.playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                            //[self playErrorNoise];
+                            [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
                             
+                            [self playErrorNoise];
                             [self resetObjectLocation];
                         }
                     }
@@ -2006,22 +1840,18 @@ BOOL wasPathFollowed = false;
                 }
                 
                 //Clear any remaining highlighting.
-                //TODO: it's probably better to move the highlighting outside of the move function, that way we don't have to clear the highlighting at a point when highlighting shouldn't happen anyway.
-                //TODO: Double check to see whether we've already done this or not.
                 NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
                 [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
             }
         }
         //If we're in the middle of moving the object, just call the JS to move it.
-        else if(movingObject)  {
-            //set to true for debugging set to false to disable
+        else if (movingObject)  {
+            //Set to true for debugging; set to false to disable
             if (false) {
-                
                 // Start drawing the path
                 CGPoint pointLocation = [recognizer locationInView:recognizer.view];
                 
                 if (!path) {
-                    
                     path = [UIBezierPath bezierPath];
                     [path moveToPoint:pointLocation];
                     
@@ -2034,9 +1864,6 @@ BOOL wasPathFollowed = false;
                 }
                 else {
                     [path addLineToPoint:pointLocation];
-
-                    NSLog(@"%@", [NSString stringWithFormat:@"<point x=\"%f\%\" y=\"%f\%\"/>", (pointLocation.x*100/[bookView frame].size.width), (pointLocation.y*100/[bookView frame].size.height) ]);
-                    
                     shapeLayer.path = path.CGPath;
                 }
                 
@@ -2045,20 +1872,20 @@ BOOL wasPathFollowed = false;
                 }
             }
             
-            [self moveObject:movingObjectId :location :delta :true : @"isMoving"];
+            [self moveObject:movingObjectId :location :delta :true];
             
             //If we're overlapping with another object, then we need to figure out which hotspots are currently active and highlight those hotspots.
             //When moving the object, we may have the JS return a list of all the objects that are currently grouped together so that we can process all of them.
-            NSArray* overlappingWith = [self getObjectsOverlappingWithObject:movingObjectId];
+            NSArray *overlappingWith = [self getObjectsOverlappingWithObject:movingObjectId];
             
             if (overlappingWith != nil) {
-                for(NSString* objId in overlappingWith) {
-                    //we have the list of objects it's overlapping with, we now have to figure out which hotspots to draw.
-                    NSMutableArray* hotspots = [model getHotspotsForObject:objId OverlappingWithObject:movingObjectId];
+                for (NSString *objId in overlappingWith) {
+                    //We have the list of objects it's overlapping with, we now have to figure out which hotspots to draw.
+                    NSMutableArray *hotspots = [model getHotspotsForObject:objId OverlappingWithObject:movingObjectId];
                     
                     //Since hotspots are filtered based on relevant relationships between objects, only highlight objects that have at least one hotspot returned by the model.
-                    if([hotspots count] > 0) {
-                        NSString* highlight = [NSString stringWithFormat:@"highlightObject(%@)", objId];
+                    if ([hotspots count] > 0) {
+                        NSString *highlight = [NSString stringWithFormat:@"highlightObject(%@)", objId];
                         [bookView stringByEvaluatingJavaScriptFromString:highlight];
                     }
                 }
@@ -2067,16 +1894,13 @@ BOOL wasPathFollowed = false;
     }
 }
 
--(void)resetObjectLocation{
+- (void)resetObjectLocation {
     if (allowSnapback) {
-        
         //Snap the object back to its original location
-        [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false : @"None"];
+        [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
         
-        // If it was an animation object, animate it again after snapping back
-        if ([animatingObjects objectForKey:movingObjectId] && [[animatingObjects objectForKey:movingObjectId] containsString: @"pause"])
-        {
-            
+        //If it was an animation object, animate it again after snapping back
+        if ([animatingObjects objectForKey:movingObjectId] && [[animatingObjects objectForKey:movingObjectId] containsString: @"pause"]) {
             NSArray *animation = [[animatingObjects objectForKey:movingObjectId] componentsSeparatedByString: @","];
             NSString *animationType = animation[1];
             NSString *animationAreaId = animation[2];
@@ -2084,32 +1908,33 @@ BOOL wasPathFollowed = false;
             NSString *resumeAnimate = [NSString stringWithFormat:@"animateObject(%@, %f, %f, %f, %f, '%@', '%@')", movingObjectId, startLocation.x, startLocation.y, (float)0, (float)0, animationType, animationAreaId];
             [bookView stringByEvaluatingJavaScriptFromString:resumeAnimate];
            
-            [animatingObjects setObject:[NSString stringWithFormat:@"%@,%@,%@", @"animate", animationType, animationAreaId]  forKey:movingObjectId];
+            [animatingObjects setObject:[NSString stringWithFormat:@"%@,%@,%@", @"animate", animationType, animationAreaId] forKey:movingObjectId];
         }
+        
+        [[ServerCommunicationController sharedInstance] logResetObject:movingObjectId startPos:endLocation endPos:startLocation context:manipulationContext];
     }
 }
 
--(UIColor *)generateRandomColor {
-    NSInteger aRedValue = arc4random()%255;
-    NSInteger aGreenValue = arc4random()%255;
-    NSInteger aBlueValue = arc4random()%255;
+- (UIColor *)generateRandomColor {
+    NSInteger aRedValue = arc4random() % 255;
+    NSInteger aGreenValue = arc4random() % 255;
+    NSInteger aBlueValue = arc4random() % 255;
     
     UIColor *randColor = [UIColor colorWithRed:aRedValue/255.0f green:aGreenValue/255.0f blue:aBlueValue/255.0f alpha:1.0f];
     
     return randColor;
 }
 
--(UIImage*) getBackgroundImage{
-    NSString* imageSrc = [bookView stringByEvaluatingJavaScriptFromString:@"document.body.background"];
-    NSString* imageFileName = [imageSrc substringFromIndex:10];
-    imageFileName = [imageFileName substringToIndex:[imageFileName length]-4];
-    //NSString *url = [[NSBundle mainBundle] resourcePath];
+- (UIImage *)getBackgroundImage{
+    NSString *imageSrc = [bookView stringByEvaluatingJavaScriptFromString:@"document.body.background"];
+    NSString *imageFileName = [imageSrc substringFromIndex:10];
+    imageFileName = [imageFileName substringToIndex:[imageFileName length] - 4];
     
     NSString *url = [[NSBundle mainBundle] pathForResource:imageFileName ofType:@"png"];
     
     NSString *imagePath = [url stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
-    UIImage* rawImage = [[UIImage alloc] initWithContentsOfFile:imagePath];
+    UIImage *rawImage = [[UIImage alloc] initWithContentsOfFile:imagePath];
     
     return rawImage;
 }
@@ -2120,29 +1945,23 @@ BOOL wasPathFollowed = false;
  * flipped. If the image src isn't found, returns nil. Otherwise, returned the MenuItemImage 
  * that was created.
  */
--(MenuItemImage*) createMenuItemForImage:(NSString*) objId :(NSString*)FLIP {
-    //NSLog(@"creating menu item for image with object id: %@", objId);
+- (MenuItemImage *)createMenuItemForImage:(NSString *)objId :(NSString *)FLIP {
+    NSString *requestImageSrc = [NSString stringWithFormat:@"%@.src", objId];
+    NSString *imageSrc = [bookView stringByEvaluatingJavaScriptFromString:requestImageSrc];
     
-    NSString* requestImageSrc = [NSString stringWithFormat:@"%@.src", objId];
-    NSString* imageSrc = [bookView stringByEvaluatingJavaScriptFromString:requestImageSrc];
-    
-    //NSLog(@"createMenuItemForImage imagesrc %@", imageSrc);
-
     NSRange range = [imageSrc rangeOfString:@"file:"];
-    NSString* imagePath = [imageSrc substringFromIndex:range.location + range.length + 1];
+    NSString *imagePath = [imageSrc substringFromIndex:range.location + range.length + 1];
     
     imagePath = [imagePath stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    //NSLog(@"createMenuItemForImage imagesrc %@", imagePath);
 
-    UIImage* rawImage = [[UIImage alloc] initWithContentsOfFile:imagePath];
-    UIImage* image = [UIImage alloc];
+    UIImage *rawImage = [[UIImage alloc] initWithContentsOfFile:imagePath];
+    UIImage *image = [UIImage alloc];
     
     //Horizontally flip the image
     if ([FLIP isEqualToString:@"rotate"]) {
         image = [UIImage imageWithCGImage:rawImage.CGImage scale:rawImage.scale orientation:UIImageOrientationUpMirrored];
     }
-    else if([FLIP isEqualToString:@"flipHorizontal"])
-    {
+    else if ([FLIP isEqualToString:@"flipHorizontal"]) {
         image = [UIImage imageWithCGImage:rawImage.CGImage scale:rawImage.scale orientation:UIImageOrientationUpMirrored];
     }
     //Use the unflipped image
@@ -2150,40 +1969,34 @@ BOOL wasPathFollowed = false;
         image = rawImage;
     }
     
-    //added by James to extract image name
     [image setAccessibilityIdentifier:objId];
     
-    if(image == nil)
+    if (image == nil)
         NSLog(@"image is nil");
     else {
         MenuItemImage *itemImage = [[MenuItemImage alloc] initWithImage:image];
         
         //Get the z-index of the image.
-        NSString* requestZIndex = [NSString stringWithFormat:@"%@.style.zIndex", objId];
-        NSString* zIndex = [bookView stringByEvaluatingJavaScriptFromString:requestZIndex];
-        
-        //NSLog(@"z-index of %@: %@", objId, zIndex);
+        NSString *requestZIndex = [NSString stringWithFormat:@"%@.style.zIndex", objId];
+        NSString *zIndex = [bookView stringByEvaluatingJavaScriptFromString:requestZIndex];
         
         [itemImage setZPosition:[zIndex floatValue]];
         
         //Get the location of the image, so we can position it appropriately.
-        NSString* requestPositionX = [NSString stringWithFormat:@"%@.offsetLeft", objId];
-        NSString* requestPositionY = [NSString stringWithFormat:@"%@.offsetTop", objId];
+        NSString *requestPositionX = [NSString stringWithFormat:@"%@.offsetLeft", objId];
+        NSString *requestPositionY = [NSString stringWithFormat:@"%@.offsetTop", objId];
         
-        NSString* positionX = [bookView stringByEvaluatingJavaScriptFromString:requestPositionX];
-        NSString* positionY = [bookView stringByEvaluatingJavaScriptFromString:requestPositionY];
+        NSString *positionX = [bookView stringByEvaluatingJavaScriptFromString:requestPositionX];
+        NSString *positionY = [bookView stringByEvaluatingJavaScriptFromString:requestPositionY];
         
         //Get the size of the image, so that it can be scaled appropriately.
-        NSString* requestWidth = [NSString stringWithFormat:@"%@.offsetWidth", objId];
-        NSString* requestHeight = [NSString stringWithFormat:@"%@.offsetHeight", objId];
+        NSString *requestWidth = [NSString stringWithFormat:@"%@.offsetWidth", objId];
+        NSString *requestHeight = [NSString stringWithFormat:@"%@.offsetHeight", objId];
         
-        NSString* width = [bookView stringByEvaluatingJavaScriptFromString:requestWidth];
-        NSString* height = [bookView stringByEvaluatingJavaScriptFromString:requestHeight];
+        NSString *width = [bookView stringByEvaluatingJavaScriptFromString:requestWidth];
+        NSString *height = [bookView stringByEvaluatingJavaScriptFromString:requestHeight];
         
-        //NSLog(@"location of %@: (%@, %@) with size: %@ x %@, zindex:%@", objId, positionX, positionY, width, height, zIndex);
-        
-        [itemImage setBoundingBoxImage:CGRectMake([positionX floatValue], [positionY floatValue],
-                                                  [width floatValue], [height floatValue])];
+        [itemImage setBoundingBoxImage:CGRectMake([positionX floatValue], [positionY floatValue], [width floatValue], [height floatValue])];
         
         return itemImage;
     }
@@ -2198,16 +2011,16 @@ BOOL wasPathFollowed = false;
  * NOTE: This should be pushed to the JS so that all actual positioning information is in one place and we're not duplicating code that's in the JS in the objC as well. For now...we'll just do it here.
  * Come back to this...
  */
--(void) simulatePossibleInteractionForMenuItem:(PossibleInteraction*)interaction : (Relationship*) relationship{
-    NSMutableDictionary* images = [[NSMutableDictionary alloc] init];
+- (void)simulatePossibleInteractionForMenuItem:(PossibleInteraction *)interaction :(Relationship *)relationship {
+    NSMutableDictionary *images = [[NSMutableDictionary alloc] init];
     
     //Populate the mutable dictionary of menuItemImages.
-    for(Connection* connection in [interaction connections]) {
-        NSArray* objectIds = [connection objects];
+    for (Connection* connection in [interaction connections]) {
+        NSArray *objectIds = [connection objects];
         
         //Get all the necessary information of the UIImages.
         for (int i = 0; i < [objectIds count]; i++) {
-            NSString* objId = objectIds[i];
+            NSString *objId = objectIds[i];
             
             if ([images objectForKey:objId] == nil) {
                 MenuItemImage *itemImage;
@@ -2218,7 +2031,7 @@ BOOL wasPathFollowed = false;
                     && objId == [[connection objects] objectAtIndex:0]) {
                     itemImage = [self createMenuItemForImage:objId :@"rotate"];
                 }
-                else if([[relationship action] isEqualToString:@"flip"])
+                else if ([[relationship action] isEqualToString:@"flip"])
                 {
                     itemImage = [self createMenuItemForImage:objId : @"flipHorizontal"];
                 }
@@ -2227,22 +2040,20 @@ BOOL wasPathFollowed = false;
                     itemImage = [self createMenuItemForImage:objId : @"normal"];
                 }
                 
-                //NSLog(@"obj id:%@", objId);
-                
-                if(itemImage != nil)
+                if (itemImage != nil)
                     [images setObject:itemImage forKey:objId];
             }
         }
         
         //If the objects are already connected to other objects, create images for those as well, if they haven't already been created
-        for (NSString* objectId in objectIds) {
+        for (NSString *objectId in objectIds) {
             NSMutableArray *connectedObject = [currentGroupings objectForKey:objectId];
             
             for (int i = 0; connectedObject && [connection interactionType] != UNGROUP && i < [connectedObject count]; i++) {
                 if ([images objectForKey:connectedObject[i]] == nil) {
                     MenuItemImage *itemImage = [self createMenuItemForImage:connectedObject[i] :@"normal"];
                     
-                    if(itemImage != nil) {
+                    if (itemImage != nil) {
                         [images setObject:itemImage forKey:connectedObject[i]];
                     }
                 }
@@ -2250,22 +2061,20 @@ BOOL wasPathFollowed = false;
         }
     }
     
-    //NSLog(@"images count:%d", [images count]);
-    
     //Perform the changes to the connections.
-    for(Connection* connection in [interaction connections]) {
-        NSArray* objectIds = [connection objects];
-        NSArray* hotspots = [connection hotspots];
+    for (Connection* connection in [interaction connections]) {
+        NSArray *objectIds = [connection objects];
+        NSArray *hotspots = [connection hotspots];
         
         //Update the locations of the UIImages based on the type of interaction with the simulated location.
         //get the object Ids for this particular menuItem.
-        NSString* obj1 = [objectIds objectAtIndex:0]; //get object 1
-        NSString* obj2 = [objectIds objectAtIndex:1]; //get object 2
-        NSString* connectedObject;
-        Hotspot* connectedHotspot1;
-        Hotspot* connectedHotspot2;
+        NSString *obj1 = [objectIds objectAtIndex:0]; //get object 1
+        NSString *obj2 = [objectIds objectAtIndex:1]; //get object 2
+        NSString *connectedObject;
+        Hotspot *connectedHotspot1;
+        Hotspot *connectedHotspot2;
         
-        if([connection interactionType] == UNGROUP) {
+        if ([connection interactionType] == UNGROUP) {
             float GAP; //we want a pixel gap between objects to show that they're no longer grouped together.
             
             //The object performing a transfer and disappear interaction will be ungrouped from the object
@@ -2279,9 +2088,7 @@ BOOL wasPathFollowed = false;
             
             [self simulateUngrouping:obj1 :obj2 :images :GAP];
         }
-        else if([connection interactionType] == GROUP || [connection interactionType] == DISAPPEAR) {
-            //NSLog(@"simulating grouping between %@ and %@", obj1, obj2);
-            
+        else if ([connection interactionType] == GROUP || [connection interactionType] == DISAPPEAR) {
             //Get hotspots.
             Hotspot *hotspot1 = [hotspots objectAtIndex:0];
             Hotspot *hotspot2 = [hotspots objectAtIndex:1];
@@ -2303,7 +2110,7 @@ BOOL wasPathFollowed = false;
                         CGPoint hotspotLoc = [self getHotspotLocation:ht];
                         
                         NSString *isHotspotConnectedMovingObject = [NSString stringWithFormat:@"objectGroupedAtHotspot(%@, %f, %f)", connectedObject, hotspotLoc.x, hotspotLoc.y];
-                        NSString* isHotspotConnectedMovingObjectString = [bookView stringByEvaluatingJavaScriptFromString:isHotspotConnectedMovingObject];
+                        NSString *isHotspotConnectedMovingObjectString = [bookView stringByEvaluatingJavaScriptFromString:isHotspotConnectedMovingObject];
                         
                         if ([isHotspotConnectedMovingObjectString isEqualToString:obj1])
                             connectedHotspot2 = ht;
@@ -2318,7 +2125,7 @@ BOOL wasPathFollowed = false;
         }
     }
     
-    NSMutableArray* imagesArray = [[images allValues] mutableCopy];
+    NSMutableArray *imagesArray = [[images allValues] mutableCopy];
     
     //Calculate the bounding box for the group of objects being passed to the menu item.
     CGRect boundingBox = [self getBoundingBoxOfImages:imagesArray];
@@ -2329,23 +2136,23 @@ BOOL wasPathFollowed = false;
 /*
  * This function gets passed in an array of MenuItemImages and calculates the bounding box for the entire array.
  */
--(CGRect) getBoundingBoxOfImages:(NSMutableArray*)images {
+- (CGRect)getBoundingBoxOfImages:(NSMutableArray *)images {
     CGRect boundingBox = CGRectMake(0, 0, 0, 0);
     
-    if([images count] > 0) {
-        float leftMostPoint = ((MenuItemImage*)[images objectAtIndex:0]).boundingBoxImage.origin.x;
-        float topMostPoint = ((MenuItemImage*)[images objectAtIndex:0]).boundingBoxImage.origin.y;
-        float rightMostPoint = ((MenuItemImage*)[images objectAtIndex:0]).boundingBoxImage.origin.x + ((MenuItemImage*)[images objectAtIndex:0]).boundingBoxImage.size.width;
-        float bottomMostPoint = ((MenuItemImage*)[images objectAtIndex:0]).boundingBoxImage.origin.y + ((MenuItemImage*)[images objectAtIndex:0]).boundingBoxImage.size.height;
+    if ([images count] > 0) {
+        float leftMostPoint = ((MenuItemImage *)[images objectAtIndex:0]).boundingBoxImage.origin.x;
+        float topMostPoint = ((MenuItemImage *)[images objectAtIndex:0]).boundingBoxImage.origin.y;
+        float rightMostPoint = ((MenuItemImage *)[images objectAtIndex:0]).boundingBoxImage.origin.x + ((MenuItemImage *)[images objectAtIndex:0]).boundingBoxImage.size.width;
+        float bottomMostPoint = ((MenuItemImage *)[images objectAtIndex:0]).boundingBoxImage.origin.y + ((MenuItemImage *)[images objectAtIndex:0]).boundingBoxImage.size.height;
         
-        for(MenuItemImage* image in images) {
-            if(image.boundingBoxImage.origin.x < leftMostPoint)
+        for (MenuItemImage *image in images) {
+            if (image.boundingBoxImage.origin.x < leftMostPoint)
                 leftMostPoint = image.boundingBoxImage.origin.x;
-            if(image.boundingBoxImage.origin.y < topMostPoint)
+            if (image.boundingBoxImage.origin.y < topMostPoint)
                 topMostPoint = image.boundingBoxImage.origin.y;
-            if(image.boundingBoxImage.origin.x + image.boundingBoxImage.size.width > rightMostPoint)
+            if (image.boundingBoxImage.origin.x + image.boundingBoxImage.size.width > rightMostPoint)
                 rightMostPoint = image.boundingBoxImage.origin.x + image.boundingBoxImage.size.width;
-            if(image.boundingBoxImage.origin.y + image.boundingBoxImage.size.height > bottomMostPoint)
+            if (image.boundingBoxImage.origin.y + image.boundingBoxImage.size.height > bottomMostPoint)
                 bottomMostPoint = image.boundingBoxImage.origin.y + image.boundingBoxImage.size.height;
         }
         
@@ -2356,18 +2163,15 @@ BOOL wasPathFollowed = false;
     return boundingBox;
 }
 
--(void)simulateGrouping:(NSString*)obj1 :(Hotspot*)hotspot1 :(NSString*)obj2 :(Hotspot*)hotspot2 :(NSMutableDictionary*)images {
-    CGPoint hotspot1Loc = [self calculateHotspotLocationBasedOnBoundingBox:hotspot1
-                                                                          :[[images objectForKey:obj1] boundingBoxImage]];
-    CGPoint hotspot2Loc = [self calculateHotspotLocationBasedOnBoundingBox:hotspot2
-                                                                          :[[images objectForKey:obj2] boundingBoxImage]];
+- (void)simulateGrouping:(NSString *)obj1 :(Hotspot *)hotspot1 :(NSString *)obj2 :(Hotspot *)hotspot2 :(NSMutableDictionary *)images {
+    CGPoint hotspot1Loc = [self calculateHotspotLocationBasedOnBoundingBox:hotspot1 :[[images objectForKey:obj1] boundingBoxImage]];
+    CGPoint hotspot2Loc = [self calculateHotspotLocationBasedOnBoundingBox:hotspot2 :[[images objectForKey:obj2] boundingBoxImage]];
     
     //Figure out the distance necessary for obj1 to travel such that hotspot1 and hotspot2 are in the same location.
     float deltaX = hotspot2Loc.x - hotspot1Loc.x; //get the delta between the 2 hotspots.
     float deltaY = hotspot2Loc.y - hotspot1Loc.y;
     
     //Get the location of the top left corner of obj1.
-    //MenuItemImage* obj1Image = [images objectAtIndex:0];
     MenuItemImage* obj1Image = [images objectForKey:obj1];
     CGFloat positionX = [obj1Image boundingBoxImage].origin.x;
     CGFloat positionY = [obj1Image boundingBoxImage].origin.y;
@@ -2376,26 +2180,21 @@ BOOL wasPathFollowed = false;
     CGFloat obj1FinalPosX = positionX + deltaX;
     CGFloat obj1FinalPosY = positionY + deltaY;
     
-    //NSLog(@"Object1: %@ Object2: %@ X: %f Y: %f %f %f", obj1, obj2, obj1FinalPosX, obj1FinalPosY, [obj1Image boundingBoxImage].size.width, [obj1Image boundingBoxImage].size.height);
-    
-    [obj1Image setBoundingBoxImage:CGRectMake(obj1FinalPosX, obj1FinalPosY, [obj1Image boundingBoxImage].size.width,
-                                              [obj1Image boundingBoxImage].size.height)];
+    [obj1Image setBoundingBoxImage:CGRectMake(obj1FinalPosX, obj1FinalPosY, [obj1Image boundingBoxImage].size.width, [obj1Image boundingBoxImage].size.height)];
 }
 
--(void)simulateGroupingMultipleObjects:(NSMutableArray*)objs :(NSMutableArray*)hotspots :(NSMutableDictionary*)images {
+- (void)simulateGroupingMultipleObjects:(NSMutableArray *)objs :(NSMutableArray *)hotspots :(NSMutableDictionary *)images {
     CGPoint hotspot1Loc = [self calculateHotspotLocationBasedOnBoundingBox:hotspots[0]
                                                                           :[[images objectForKey:objs[0]] boundingBoxImage]];
     CGPoint hotspot2Loc = [self calculateHotspotLocationBasedOnBoundingBox:hotspots[1]
                                                                           :[[images objectForKey:objs[1]] boundingBoxImage]];
-    
-    //NSLog(@"simulateGroupingMultipleObjects %@", objs);
     
     //Figure out the distance necessary for obj1 to travel such that hotspot1 and hotspot2 are in the same location.
     float deltaX = hotspot2Loc.x - hotspot1Loc.x; //get the delta between the 2 hotspots.
     float deltaY = hotspot2Loc.y - hotspot1Loc.y;
     
     //Get the location of the top left corner of obj1.
-    MenuItemImage* obj1Image = [images objectForKey:objs[0]];
+    MenuItemImage *obj1Image = [images objectForKey:objs[0]];
     CGFloat positionX = [obj1Image boundingBoxImage].origin.x;
     CGFloat positionY = [obj1Image boundingBoxImage].origin.y;
     
@@ -2403,16 +2202,13 @@ BOOL wasPathFollowed = false;
     CGFloat obj1FinalPosX = positionX + deltaX;
     CGFloat obj1FinalPosY = positionY + deltaY;
     
-    //NSLog(@"Object1: %@ Object2: %@ X: %f Y: %f %f %f", obj1, obj2, obj1FinalPosX, obj1FinalPosY, [obj1Image boundingBoxImage].size.width, [obj1Image boundingBoxImage].size.height);
-    
-    [obj1Image setBoundingBoxImage:CGRectMake(obj1FinalPosX, obj1FinalPosY, [obj1Image boundingBoxImage].size.width,
-                                              [obj1Image boundingBoxImage].size.height)];
+    [obj1Image setBoundingBoxImage:CGRectMake(obj1FinalPosX, obj1FinalPosY, [obj1Image boundingBoxImage].size.width, [obj1Image boundingBoxImage].size.height)];
    
-    NSMutableArray* connectedObjects = [currentGroupings valueForKey:objs[0]];
+    NSMutableArray *connectedObjects = [currentGroupings valueForKey:objs[0]];
     
     if (connectedObjects && [connectedObjects count] > 0) {
         //Get locations of all objects connected to object1
-        MenuItemImage* obj3Image = [images objectForKey:connectedObjects[0]];
+        MenuItemImage *obj3Image = [images objectForKey:connectedObjects[0]];
         CGFloat connectedObjectPositionX = [obj3Image boundingBoxImage].origin.x;
         CGFloat connectedObjectPositionY = [obj3Image boundingBoxImage].origin.y;
     
@@ -2420,24 +2216,23 @@ BOOL wasPathFollowed = false;
         CGFloat obj3FinalPosX = connectedObjectPositionX + deltaX;
         CGFloat obj3FinalPosY = connectedObjectPositionY + deltaY;
     
-        [obj3Image setBoundingBoxImage:CGRectMake(obj3FinalPosX, obj3FinalPosY, [obj3Image boundingBoxImage].size.width,
-                                                [obj3Image boundingBoxImage].size.height)];
+        [obj3Image setBoundingBoxImage:CGRectMake(obj3FinalPosX, obj3FinalPosY, [obj3Image boundingBoxImage].size.width, [obj3Image boundingBoxImage].size.height)];
     }
 }
 
--(void)simulateUngrouping:(NSString*)obj1 :(NSString*)obj2 :(NSMutableDictionary*)images :(float)GAP {
+- (void)simulateUngrouping:(NSString *)obj1 :(NSString *)obj2 :(NSMutableDictionary *)images :(float)GAP {
     //See if one object is contained in the other.
-    NSString* requestObj1ContainedInObj2 = [NSString stringWithFormat:@"objectContainedInObject(%@, %@)", obj1, obj2];
-    NSString* obj1ContainedInObj2 = [bookView stringByEvaluatingJavaScriptFromString:requestObj1ContainedInObj2];
+    NSString *requestObj1ContainedInObj2 = [NSString stringWithFormat:@"objectContainedInObject(%@, %@)", obj1, obj2];
+    NSString *obj1ContainedInObj2 = [bookView stringByEvaluatingJavaScriptFromString:requestObj1ContainedInObj2];
     
-    NSString* requestObj2ContainedInObj1 = [NSString stringWithFormat:@"objectContainedInObject(%@, %@)", obj2, obj1];
-    NSString* obj2ContainedInObj1 = [bookView stringByEvaluatingJavaScriptFromString:requestObj2ContainedInObj1];
+    NSString *requestObj2ContainedInObj1 = [NSString stringWithFormat:@"objectContainedInObject(%@, %@)", obj2, obj1];
+    NSString *obj2ContainedInObj1 = [bookView stringByEvaluatingJavaScriptFromString:requestObj2ContainedInObj1];
     
     CGFloat obj1FinalPosX, obj2FinalPosX; //For ungrouping we only ever change X.
     
     //Get the locations and widths of objects 1 and 2.
-    MenuItemImage* obj1Image = [images objectForKey:obj1];
-    MenuItemImage* obj2Image = [images objectForKey:obj2];
+    MenuItemImage *obj1Image = [images objectForKey:obj1];
+    MenuItemImage *obj2Image = [images objectForKey:obj2];
     
     CGFloat obj1PositionX = [obj1Image boundingBoxImage].origin.x;
     CGFloat obj2PositionX = [obj2Image boundingBoxImage].origin.x;
@@ -2445,21 +2240,19 @@ BOOL wasPathFollowed = false;
     CGFloat obj1Width = [obj1Image boundingBoxImage].size.width;
     CGFloat obj2Width = [obj2Image boundingBoxImage].size.width;
     
-    if([obj1ContainedInObj2 isEqualToString:@"true"]) {
+    if ([obj1ContainedInObj2 isEqualToString:@"true"]) {
         obj1FinalPosX = obj2PositionX - obj2Width - GAP;
         obj2FinalPosX = obj2PositionX;
-        //NSLog(@"if %@ is contained in %@", obj1, obj2);
     }
-    else if([obj2ContainedInObj1 isEqualToString:@"true"]) {
+    else if ([obj2ContainedInObj1 isEqualToString:@"true"]) {
         obj1FinalPosX = obj1PositionX;
         obj2FinalPosX = obj1PositionX + obj1Width + GAP;
-        //NSLog(@"else %@ is contained in %@", obj2, obj1);
     }
     
     //Otherwise, partially overlapping or connected on the edges.
     else {
         //Figure out which is the leftmost object. Unlike the animate ungrouping function, we're just going to move the leftmost object to the left so that it's not overlapping with the other one unless it's a TRANSFERANDDISAPPEAR interaction
-        if(obj1PositionX < obj2PositionX) {
+        if (obj1PositionX < obj2PositionX) {
             obj1FinalPosX = obj2PositionX - obj2Width - GAP;
             
             //A negative GAP indicates a TRANSFERANDDISAPPEAR interaction, so we want to adjust the rightmost object so that it is slightly overlapping the right side of the leftmost object
@@ -2477,58 +2270,56 @@ BOOL wasPathFollowed = false;
                     obj2FinalPosX = obj2PositionX;
                 }
             }
-            
-            //NSLog(@"%@ is the leftmost object", obj1);
-            //NSLog(@"%@ width: %f", obj1, obj1Width);
         }
         else {
             obj1FinalPosX = obj1PositionX;
             obj2FinalPosX = obj1PositionX + obj1Width + GAP;
-            //NSLog(@"%@ is the leftmost object", obj2);
         }
     }
     
-    [obj1Image setBoundingBoxImage:CGRectMake(obj1FinalPosX, [obj1Image boundingBoxImage].origin.y,
-                                              [obj1Image boundingBoxImage].size.width,
-                                              [obj1Image boundingBoxImage].size.height)];
-    [obj2Image setBoundingBoxImage:CGRectMake(obj2FinalPosX, [obj2Image boundingBoxImage].origin.y,
-                                              [obj2Image boundingBoxImage].size.width,
-                                              [obj2Image boundingBoxImage].size.height)];
+    [obj1Image setBoundingBoxImage:CGRectMake(obj1FinalPosX, [obj1Image boundingBoxImage].origin.y, [obj1Image boundingBoxImage].size.width, [obj1Image boundingBoxImage].size.height)];
+    [obj2Image setBoundingBoxImage:CGRectMake(obj2FinalPosX, [obj2Image boundingBoxImage].origin.y, [obj2Image boundingBoxImage].size.width, [obj2Image boundingBoxImage].size.height)];
 }
 
 /*
  * This checks the PossibleInteractin passed in to figure out what type of interaction it is,
  * extracts the necessary information and calls the appropriate function to perform the interaction.
- * TODO: Come back to this.
  */
--(void) performInteraction:(PossibleInteraction*)interaction {
-    for(Connection* connection in [interaction connections]) {
-        NSArray* objectIds = [connection objects]; //get the object Ids for this particular menuItem.
-        NSArray* hotspots = [connection hotspots]; //Array of hotspot objects.
+- (void)performInteraction:(PossibleInteraction *)interaction {
+    for (Connection *connection in [interaction connections]) {
+        NSArray *objectIds = [connection objects]; //get the object Ids for this particular menuItem.
+        NSArray *hotspots = [connection hotspots]; //Array of hotspot objects.
         
         //Get object 1 and object 2
-        NSString* obj1 = [objectIds objectAtIndex:0];
-        NSString* obj2 = [objectIds objectAtIndex:1];
-        if( [connection interactionType] == UNGROUP && [[self getCurrentSolutionStep] isEqualToString:@"ungroupAndStay"]) {
+        NSString *obj1 = [objectIds objectAtIndex:0];
+        NSString *obj2 = [objectIds objectAtIndex:1];
+        
+        if ([connection interactionType] == UNGROUP && [[self getCurrentSolutionStep] isEqualToString:@"ungroupAndStay"]) {
             [self ungroupObjectsAndStay:obj1 :obj2];
+            
+            [[ServerCommunicationController sharedInstance] logGroupOrUngroupObjects:obj1 object2:obj2 ofType:@"Ungroup and Stay Objects" hotspot:@"NULL" :manipulationContext];
         }
-        else if([connection interactionType] == UNGROUP) {
+        else if ([connection interactionType] == UNGROUP) {
             [self ungroupObjects:obj1 :obj2]; //ungroup objects
+            
+            [[ServerCommunicationController sharedInstance] logGroupOrUngroupObjects:obj1  object2:obj2 ofType:@"Ungroup Objects" hotspot:@"NULL" :manipulationContext];
         }
-        else if([connection interactionType] == GROUP) {
+        else if ([connection interactionType] == GROUP) {
             //Get hotspots.
-            Hotspot* hotspot1 = [hotspots objectAtIndex:0];
-            Hotspot* hotspot2 = [hotspots objectAtIndex:1];
+            Hotspot *hotspot1 = [hotspots objectAtIndex:0];
+            Hotspot *hotspot2 = [hotspots objectAtIndex:1];
             
             CGPoint hotspot1Loc = [self getHotspotLocation:hotspot1];
             CGPoint hotspot2Loc = [self getHotspotLocation:hotspot2];
             
             [self groupObjects:obj1 :hotspot1Loc :obj2 :hotspot2Loc]; //group objects
-        }
-        else if([connection interactionType] == DISAPPEAR) {
-            //NSLog(@"causing object to disappear");
             
+            [[ServerCommunicationController sharedInstance] logGroupOrUngroupObjects:obj1  object2:obj2 ofType:@"Group Objects" hotspot:[hotspot1 action] :manipulationContext];
+        }
+        else if ([connection interactionType] == DISAPPEAR) {
             [self consumeAndReplenishSupply:obj2]; //make object disappear
+            
+            [[ServerCommunicationController sharedInstance] logAppearOrDisappearObject:obj2 ofType:@"Disappear Object" context:manipulationContext];
         }
     }
 }
@@ -2537,22 +2328,22 @@ BOOL wasPathFollowed = false;
  * Returns true if the specified subject from the solutions is part of a group with the
  * specified object. Otherwise, returns false.
  */
--(BOOL)isSubject:(NSString*)subject ContainedInGroupWithObject:(NSString*)object {
+- (BOOL)isSubject:(NSString *)subject ContainedInGroupWithObject:(NSString *)object {
     //Get pairs of other objects grouped with this object
-    NSArray* itemPairArray = [self getObjectsGroupedWithObject:object];
+    NSArray *itemPairArray = [self getObjectsGroupedWithObject:object];
     
     if (itemPairArray != nil) {
         //Create an array that will hold all the items in this group
-        NSMutableArray* groupedItemsArray = [[NSMutableArray alloc] init];
+        NSMutableArray *groupedItemsArray = [[NSMutableArray alloc] init];
         
-        for(NSString* pairStr in itemPairArray) {
+        for (NSString *pairStr in itemPairArray) {
             //Separate the objects in this pair and add them to our array of all items in this group.
             [groupedItemsArray addObjectsFromArray:[pairStr componentsSeparatedByString:@", "]];
         }
         
         //Checks if one of the grouped objects is the subject
-        for(NSString* obj in groupedItemsArray) {
-            if([obj isEqualToString:subject])
+        for (NSString *obj in groupedItemsArray) {
+            if ([obj isEqualToString:subject])
                 return true;
         }
     }
@@ -2564,21 +2355,21 @@ BOOL wasPathFollowed = false;
  * Returns true if the correct object is selected as the subject based on the solutions
  * for group step types. Otherwise, it returns false.
  */
--(BOOL) checkSolutionForSubject:(NSString*)subject {
+- (BOOL)checkSolutionForSubject:(NSString *)subject {
     //Check solution only if it exists for the sentence
     if (numSteps > 0 && !stepsComplete) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
+        NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
         
         //Get current step to be completed
-        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
         if ([[currSolStep stepType] isEqualToString:@"transferAndGroup"]) {
             //Get next sentence step
-            ActionStep* nextSolStep = [currSolSteps objectAtIndex:currentStep];
+            ActionStep *nextSolStep = [currSolSteps objectAtIndex:currentStep];
             
             //Correct subject for a transfer and group step is the obj1 of the next transfer and group step
-            NSString* correctSubject = [nextSolStep object1Id];
+            NSString *correctSubject = [nextSolStep object1Id];
             
             //Selected object is the correct subject
             if ([correctSubject isEqualToString:subject]) {
@@ -2591,7 +2382,7 @@ BOOL wasPathFollowed = false;
             }
         }
         else {
-            NSString* correctSubject = [currSolStep object1Id];
+            NSString *correctSubject = [currSolStep object1Id];
             
             //Selected object is the correct subject
             if ([correctSubject isEqualToString:subject]) {
@@ -2616,14 +2407,14 @@ BOOL wasPathFollowed = false;
  * Returns true if the active object is overlapping the correct object based on the solutions.
  * Otherwise, it returns false.
  */
--(BOOL) checkSolutionForObject:(NSString*)overlappingObject {
+- (BOOL)checkSolutionForObject:(NSString *)overlappingObject {
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
+        NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
         
         //Get current step to be completed
-        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
         //If current step requires transference and group, the correct object depends on the format used.
         //transferAndGroup steps may be written in two different ways:
@@ -2633,7 +2424,7 @@ BOOL wasPathFollowed = false;
         //      (ex. farmer putDown hay; hay getIn cart)
         if ([[currSolStep stepType] isEqualToString:@"transferAndGroup"]) {
             //Get next step
-            ActionStep* nextSolStep = [currSolSteps objectAtIndex:currentStep];
+            ActionStep *nextSolStep = [currSolSteps objectAtIndex:currentStep];
 
             if ([[currSolStep object2Id] isEqualToString:[nextSolStep object2Id]]) {
                 if ([overlappingObject isEqualToString:[nextSolStep object1Id]]) {
@@ -2649,7 +2440,7 @@ BOOL wasPathFollowed = false;
         //If current step requires transference and disapppear, the correct object should be the object1 of the next step
         else if ([[currSolStep stepType] isEqualToString:@"transferAndDisappear"]) {
             //Get next step
-            ActionStep* nextSolStep = [currSolSteps objectAtIndex:currentStep];
+            ActionStep *nextSolStep = [currSolSteps objectAtIndex:currentStep];
             
             if ([overlappingObject isEqualToString:[nextSolStep object1Id]]) {
                 return true;
@@ -2668,57 +2459,52 @@ BOOL wasPathFollowed = false;
 /*
  * Moves an object to another object or waypoint for move step types
  */
--(void) moveObjectForSolution {
+- (void)moveObjectForSolution {
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
+        NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
         
         //Get current step to be completed
-        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
         if ([[currSolStep stepType] isEqualToString:@"move"]) {
             //Get information for move step type
-            NSString* object1Id = [currSolStep object1Id];
-            NSString* action = [currSolStep action];
-            NSString* object2Id = [currSolStep object2Id];
-            NSString* waypointId = [currSolStep waypointId];
+            NSString *object1Id = [currSolStep object1Id];
+            NSString *action = [currSolStep action];
+            NSString *object2Id = [currSolStep object2Id];
+            NSString *waypointId = [currSolStep waypointId];
             
             //Move either requires object1 to move to object2 (which creates a group interaction) or it requires object1 to move to a waypoint
             if (object2Id != nil) {
-                PossibleInteraction* correctInteraction = [self getCorrectInteraction];
+                PossibleInteraction *correctInteraction = [self getCorrectInteraction];
                 [self performInteraction:correctInteraction]; //performs solution step
-                
-                //gets location of second object and passes into xml
-               /* NSArray* hotspots = [connection hotspots]; //Array of hotspot objects.
-                Hotspot* hotspot2 = [hotspots objectAtIndex:1];
-                CGPoint hotspot2Loc = [self getHotspotLocation:hotspot2];*/
-                
             }
             else if (waypointId != nil) {
                 //Get position of hotspot in pixels based on the object image size
-                Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:object1Id :action :@"subject"];
+                Hotspot *hotspot = [model getHotspotforObjectWithActionAndRole:object1Id :action :@"subject"];
                 CGPoint hotspotLocation = [self getHotspotLocationOnImage:hotspot];
                 
                 //Get position of waypoint in pixels based on the background size
-                Waypoint* waypoint = [model getWaypointWithId:waypointId];
+                Waypoint *waypoint = [model getWaypointWithId:waypointId];
                 CGPoint waypointLocation = [self getWaypointLocation:waypoint];
                 
-                NSString* objectClassName = [NSString stringWithFormat:@"document.getElementById('%@').className", object1Id];
+                NSString *objectClassName = [NSString stringWithFormat:@"document.getElementById('%@').className", object1Id];
                 objectClassName = [bookView stringByEvaluatingJavaScriptFromString:objectClassName];
                 
                 if ([objectClassName rangeOfString:@"center"].location != NSNotFound) {
-                    
-                    hotspotLocation.x=0;
-                    hotspotLocation.y=0;
+                    hotspotLocation.x = 0;
+                    hotspotLocation.y = 0;
                 }
                 
                 //Move the object
-                [self moveObject:object1Id :waypointLocation :hotspotLocation :false: waypointId];
+                [self moveObject:object1Id :waypointLocation :hotspotLocation :false];
                 
                 //Clear highlighting
                 NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
                 [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
+                
+                [[ServerCommunicationController sharedInstance] logMoveObject:object1Id toDestination:[waypoint waypointId] ofType:@"Waypoint" startPos:startLocation endPos:waypointLocation performedBy:SYSTEM context:manipulationContext];
             }
         }
     }
@@ -2727,170 +2513,168 @@ BOOL wasPathFollowed = false;
 /*
  * Calls the JS function to swap an object's image with its alternate one
  */
-//for logging record alternate source image
--(void) swapObjectImage {
+- (void)swapObjectImage {
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
+        NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
         
         //Get current step to be completed
-        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
         if ([[currSolStep stepType] isEqualToString:@"swapImage"] || [[currSolStep stepType] isEqualToString:@"checkAndSwap"]) {
             //Get information for swapImage step type
-            NSString* object1Id = [currSolStep object1Id];
-            NSString* action = [currSolStep action];
+            NSString *object1Id = [currSolStep object1Id];
+            NSString *action = [currSolStep action];
             
             //Get alternate image
-            AlternateImage* altImage = [model getAlternateImageWithActionAndObjectID:action:object1Id];
+            AlternateImage* altImage = [model getAlternateImageWithActionAndObjectID:action :object1Id];
             
             //Get alternate image information
-            NSString* altSrc = [altImage alternateSrc];
-            NSString* width = [altImage width];
-            NSString* height = [altImage height];
+            NSString *altSrc = [altImage alternateSrc];
+            NSString *width = [altImage width];
+            NSString *height = [altImage height];
             CGPoint location = [altImage location];
-            NSString* zIndex = [altImage zPosition];
+            NSString *zIndex = [altImage zPosition];
             
             //Swap images using alternative src
-            NSString* swapImages;
+            NSString *swapImages;
             
             if ([height isEqualToString:@""]) {
-                swapImages= [NSString stringWithFormat:@"swapImageSrc('%@', '%@', '%@', %f, %f, '%@')", object1Id, altSrc, width, location.x, location.y, zIndex];
+                swapImages = [NSString stringWithFormat:@"swapImageSrc('%@', '%@', '%@', %f, %f, '%@')", object1Id, altSrc, width, location.x, location.y, zIndex];
             }
-            else
-            {
-                swapImages= [NSString stringWithFormat:@"swapImageSrc('%@', '%@', '%@', '%@', %f, %f, '%@')", object1Id, altSrc, width, height, location.x, location.y, zIndex];
+            else {
+                swapImages = [NSString stringWithFormat:@"swapImageSrc('%@', '%@', '%@', '%@', %f, %f, '%@')", object1Id, altSrc, width, height, location.x, location.y, zIndex];
             }
             
             [bookView stringByEvaluatingJavaScriptFromString:swapImages];
             
-            //Logging added by James for Swap Images
-            [[ServerCommunicationController sharedManager] logComputerSwapImages : object1Id : altSrc: @"Swap Image" : bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+            [[ServerCommunicationController sharedInstance] logSwapImageForObject:object1Id altImage:[altSrc stringByDeletingPathExtension] context:manipulationContext];
         }
     }
 }
 
 /*
- Loads an image calling the loadImage JS function and using the AlternateImage class
+ * Loads an image calling the loadImage JS function and using the AlternateImage class
  */
--(void) loadImage {
+- (void)loadImage {
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
+        NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
         
         //Get current step to be completed
-        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
         if ([[currSolStep stepType] isEqualToString:@"appear"] ||
-            [[currSolStep stepType] isEqualToString:@"appearAutoWithDelay"])
-        {
+            [[currSolStep stepType] isEqualToString:@"appearAutoWithDelay"]) {
             //Get information for appear step type
-            NSString* object1Id = [currSolStep object1Id];
-            NSString* action = [currSolStep action];
+            NSString *object1Id = [currSolStep object1Id];
+            NSString *action = [currSolStep action];
             
             //Get alternate image
-            AlternateImage* altImage = [model getAlternateImageWithActionAndObjectID:action:object1Id];
+            AlternateImage *altImage = [model getAlternateImageWithActionAndObjectID:action:object1Id];
             
             //Get alternate image information
-            NSString* altSrc = [altImage alternateSrc];
-            NSString* width = [altImage width];
-            NSString* height = [altImage height];
+            NSString *altSrc = [altImage alternateSrc];
+            NSString *width = [altImage width];
+            NSString *height = [altImage height];
             CGPoint location = [altImage location];
-            NSString* className = [altImage className];
-            NSString* zPosition = [altImage zPosition];
+            NSString *className = [altImage className];
+            NSString *zPosition = [altImage zPosition];
             
             //Swap images using alternative src
-            NSString* loadImage;
+            NSString *loadImage;
             
             if ([height isEqualToString:@""]) {
                 loadImage = [NSString stringWithFormat:@"loadImage('%@', '%@', '%@', %f, %f, '%@', %d)", object1Id, altSrc, width, location.x, location.y, className, zPosition.intValue];
             }
-            else
-            {
+            else {
                 loadImage = [NSString stringWithFormat:@"loadImage('%@', '%@', '%@', '%@', %f, %f, '%@', %d)", object1Id, altSrc, width, height, location.x, location.y, className, zPosition.intValue];
             }
             
             if ([[currSolStep stepType] isEqualToString:@"appear"]) {
                 [bookView stringByEvaluatingJavaScriptFromString:loadImage];
+                
+                [[ServerCommunicationController sharedInstance] logAppearOrDisappearObject:object1Id ofType:@"Appear Object" context:manipulationContext];
             }
-            else if([[currSolStep stepType] isEqualToString:@"appearAutoWithDelay"])
-            {
+            else if([[currSolStep stepType] isEqualToString:@"appearAutoWithDelay"]) {
                 NSInteger delay = [[currSolStep object2Id] intValue];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW,delay*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW,delay * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                     [bookView stringByEvaluatingJavaScriptFromString:loadImage];
+                    
+                    [[ServerCommunicationController sharedInstance] logAppearOrDisappearObject:object1Id ofType:@"Appear Object" context:manipulationContext];
                 });
-                
-                
             }
         }
     }
 }
 
 /*
- Calls the removeImage from the ImageManipulation.js file
+ * Calls the removeImage from the ImageManipulation.js file
  */
--(void) hideImage {
+- (void)hideImage {
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
+        NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
         
         //Get current step to be completed
-        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
-        if ([[currSolStep stepType] isEqualToString:@"disappearAuto"])
-        {
-            NSString* object2Id = [currSolStep object2Id];
+        if ([[currSolStep stepType] isEqualToString:@"disappearAuto"]) {
+            NSString *object2Id = [currSolStep object2Id];
             
             //Hide image
-            NSString* hideImage = [NSString stringWithFormat:@"removeImage('%@')", object2Id];
+            NSString *hideImage = [NSString stringWithFormat:@"removeImage('%@')", object2Id];
             [bookView stringByEvaluatingJavaScriptFromString:hideImage];
+            
+            [[ServerCommunicationController sharedInstance] logAppearOrDisappearObject:object2Id ofType:@"Disappear Object" context:manipulationContext];
         }
-        else if ([[currSolStep stepType] isEqualToString:@"disappearAutoWithDelay"])
-        {
+        else if ([[currSolStep stepType] isEqualToString:@"disappearAutoWithDelay"]) {
             NSString *object1Id = [currSolStep object1Id];
             NSInteger delay = [[currSolStep object2Id] intValue];
             
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW,delay*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW,delay * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                 //Hide image
                 NSString* hideImage = [NSString stringWithFormat:@"removeImage('%@')", object1Id];
                 [bookView stringByEvaluatingJavaScriptFromString:hideImage];
+                
+                [[ServerCommunicationController sharedInstance] logAppearOrDisappearObject:object1Id ofType:@"Disappear Object" context:manipulationContext];
             });
         }
     }
 }
 
 /*
- *  Calls the changeZIndex from ImageManipulation.js file
+ * Calls the changeZIndex from ImageManipulation.js file
  */
--(void)changeZIndex{
+- (void)changeZIndex {
     if (numSteps > 0) {
         //Get steps for current sentence
-        //Get steps for current sentence
-        NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
+        NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
         
         //Get current step to be completed
-        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
         if ([[currSolStep stepType] isEqualToString:@"changeZIndex"]) {
             //Get information for appear step type
-            NSString* object1Id = [currSolStep object1Id];
-            NSString* action = [currSolStep action];
+            NSString *object1Id = [currSolStep object1Id];
+            NSString *action = [currSolStep action];
             
             //Get alternate image
             AlternateImage* altImage = [model getAlternateImageWithActionAndObjectID:action:object1Id];
             
             //Get alternate image information
-            NSString* altSrc = [altImage alternateSrc];
-            NSString* width = [altImage width];
+            NSString *altSrc = [altImage alternateSrc];
+            NSString *width = [altImage width];
             CGPoint location = [altImage location];
-            NSString* className = [altImage className];
-            NSString* zPosition = [altImage zPosition];
+            NSString *className = [altImage className];
+            NSString *zPosition = [altImage zPosition];
             
             //Swap images using alternative src
-            NSString* loadImage = [NSString stringWithFormat:@"loadImage('%@', '%@', '%@', %f, %f, '%@', %d)", object1Id, altSrc, width, location.x, location.y, className, zPosition.intValue];
+            NSString *loadImage = [NSString stringWithFormat:@"loadImage('%@', '%@', '%@', %f, %f, '%@', %d)", object1Id, altSrc, width, location.x, location.y, className, zPosition.intValue];
             [bookView stringByEvaluatingJavaScriptFromString:loadImage];
+            
+            [[ServerCommunicationController sharedInstance] logSwapImageForObject:object1Id altImage:altSrc context:manipulationContext];
         }
     }
 }
@@ -2899,37 +2683,35 @@ BOOL wasPathFollowed = false;
  * Returns true if the hotspot of an object (for a check step type) is inside the correct location.
  * Otherwise, returns false.
  */
--(BOOL) isHotspotInsideLocation {
+- (BOOL)isHotspotInsideLocation {
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
+        NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
         
         //Get current step to be completed
-        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
         if ([[currSolStep stepType] isEqualToString:@"check"] ||
             [[currSolStep stepType] isEqualToString:@"checkPath"] ||
             [[currSolStep stepType] isEqualToString:@"shakeOrTap"]) {
             //Get information for check step type
-            NSString* objectId = [currSolStep object1Id];
-            NSString* action = [currSolStep action];
-            NSString* locationId = [currSolStep locationId];
+            NSString *objectId = [currSolStep object1Id];
+            NSString *action = [currSolStep action];
+            NSString *locationId = [currSolStep locationId];
             
             //Get hotspot location of correct subject
-            Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:objectId :action :@"subject"];
+            Hotspot *hotspot = [model getHotspotforObjectWithActionAndRole:objectId :action :@"subject"];
             CGPoint hotspotLocation = [self getHotspotLocation:hotspot];
             
             //Get location that hotspot should be inside
-            Location* location = [model getLocationWithId:locationId];
+            Location *location = [model getLocationWithId:locationId];
             
             //Calculate the x,y coordinates and the width and height in pixels from %
             float locationX = [location.originX floatValue] / 100.0 * [bookView frame].size.width;
             float locationY = [location.originY floatValue] / 100.0 * [bookView frame].size.height;
             float locationWidth = [location.width floatValue] / 100.0 * [bookView frame].size.width;
             float locationHeight = [location.height floatValue] / 100.0 * [bookView frame].size.height;
-            
-            //NSLog(@"Width: %f Height: %f", [bookView frame].size.width, [bookView frame].size.height);
             
             //Check if hotspot is inside location
             if ((hotspotLocation.x < locationX + locationWidth) && (hotspotLocation.x > locationX)
@@ -2945,31 +2727,30 @@ BOOL wasPathFollowed = false;
 /*
  * Returns true if the hotspot of an object (for a check step type) is inside the correct area. Otherwise, returns false.
  */
--(BOOL) isHotspotInsideArea {
+- (BOOL)isHotspotInsideArea {
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
+        NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
         
         //Get current step to be completed
-        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
         if ([[currSolStep stepType] isEqualToString:@"check"] || [[currSolStep stepType] isEqualToString:@"checkPath"]) {
             //Get information for check step type
-            NSString* objectId = [currSolStep object1Id];
-            NSString* action = [currSolStep action];
+            NSString *objectId = [currSolStep object1Id];
+            NSString *action = [currSolStep action];
             
-            NSString* areaId = [currSolStep areaId];
+            NSString *areaId = [currSolStep areaId];
             
             //Get hotspot location of correct subject
-            Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:objectId :action :@"subject"];
+            Hotspot *hotspot = [model getHotspotforObjectWithActionAndRole:objectId :action :@"subject"];
             CGPoint hotspotLocation = [self getHotspotLocation:hotspot];
             
             //Get area that hotspot should be inside
             Area* area = [model getAreaWithId:areaId];
             
-            if ([area.aPath containsPoint:hotspotLocation])
-            {
+            if ([area.aPath containsPoint:hotspotLocation]) {
                 return true;
             }
         }
@@ -2981,31 +2762,30 @@ BOOL wasPathFollowed = false;
 /*
  * Returns true if the start location and the end location of an object are within the same area. Otherwise, returns false.  
  */
--(BOOL) areHotspotsInsideArea {
+- (BOOL)areHotspotsInsideArea {
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
+        NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
         
         //Get current step to be completed
-        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
         if ([[currSolStep stepType] isEqualToString:@"shakeOrTap"]) {
             //Get information for check step type
-            NSString* objectId = [currSolStep object1Id];
-            NSString* action = [currSolStep action];
+            NSString *objectId = [currSolStep object1Id];
+            NSString *action = [currSolStep action];
             
-            NSString* areaId = [currSolStep areaId];
+            NSString *areaId = [currSolStep areaId];
             
             //Get hotspot location of correct subject
-            Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:objectId :action :@"subject"];
+            Hotspot *hotspot = [model getHotspotforObjectWithActionAndRole:objectId :action :@"subject"];
             CGPoint hotspotLocation = [self getHotspotLocation:hotspot];
             
             //Get area that hotspot should be inside
-            Area* area = [model getAreaWithId:areaId];
+            Area *area = [model getAreaWithId:areaId];
             
-            if ([area.aPath containsPoint:hotspotLocation] && [area.aPath containsPoint:startLocation])
-            {
+            if ([area.aPath containsPoint:hotspotLocation] && [area.aPath containsPoint:startLocation]) {
                 return true;
             }
         }
@@ -3017,34 +2797,35 @@ BOOL wasPathFollowed = false;
 /*
  * Returns true if a location belongs to an area path. Otherwise, returns false.
  */
-- (BOOL) isHotspotOnPath {
+- (BOOL)isHotspotOnPath {
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
+        NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
         
         //Get current step to be completed
-        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
         if ([[currSolStep stepType] isEqualToString:@"checkPath"]) {
             //Get information for check step type
-            NSString* objectId = [currSolStep object1Id];
-            NSString* action = [currSolStep action];
+            NSString *objectId = [currSolStep object1Id];
+            NSString *action = [currSolStep action];
             
-            NSString* areaId = [currSolStep areaId];
+            NSString *areaId = [currSolStep areaId];
             
             //Get hotspot location of correct subject
-            Hotspot* hotspot = [model getHotspotforObjectWithActionAndRole:objectId :action :@"subject"];
+            Hotspot *hotspot = [model getHotspotforObjectWithActionAndRole:objectId :action :@"subject"];
             CGPoint hotspotLocation = [self getHotspotLocation:hotspot];
             
             //Get area that hotspot should be inside
-            Area* area = [model getAreaWithId:areaId];
+            Area *area = [model getAreaWithId:areaId];
             
             if ([area.aPath containsPoint:hotspotLocation]){
                 return true;
             }
         }
     }
+    
     return false;
 }
 
@@ -3054,26 +2835,25 @@ BOOL wasPathFollowed = false;
  * It also checks to make sure the object that is at that point is of a certain class (manipulation or 
  * background) before returning it.
  */
--(NSString*) getObjectAtPoint:(CGPoint) location ofType:(NSString*)class {
+- (NSString *)getObjectAtPoint:(CGPoint) location ofType:(NSString *)class {
     //Temporarily hide the overlay canvas to get the object we need
-    NSString* hideCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'none';", @"'overlay'"];
+    NSString *hideCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'none';", @"'overlay'"];
     [bookView stringByEvaluatingJavaScriptFromString:hideCanvas];
     
     //Retrieve the elements at this location and see if it's an element that is moveable.
-    NSString* requestImageAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
+    NSString *requestImageAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
     
-    NSString* requestImageAtPointClass = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).className", location.x, location.y];
+    NSString *requestImageAtPointClass = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).className", location.x, location.y];
     
-    NSString* imageAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPoint];
-    NSString* imageAtPointClass = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointClass];
+    NSString *imageAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPoint];
+    NSString *imageAtPointClass = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointClass];
     
     //Bring the canvas back to where it should be.
-    //NSString* showCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.zIndex = 100;", @"'overlay'"];
-    NSString* showCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'block';", @"'overlay'"];
+    NSString *showCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'block';", @"'overlay'"];
     [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
     
     //Check if the object has the correct class, or if no class was specified before returning
-    if(( (class == nil) || (![imageAtPointClass isEqualToString:@""] && [imageAtPointClass rangeOfString:class].location != NSNotFound))) {
+    if (( (class == nil) || (![imageAtPointClass isEqualToString:@""] && [imageAtPointClass rangeOfString:class].location != NSNotFound))) {
         //Any subject can be used, so just return the object id
         if (useSubject == ALL_ENTITIES)
             return imageAtPoint;
@@ -3094,20 +2874,19 @@ BOOL wasPathFollowed = false;
 /*
  * Gets the current solution step and returns it
  */
--(NSString*) getCurrentSolutionStep{
+- (NSString *)getCurrentSolutionStep {
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
+        NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
         
         //Get current step to be completed
-        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
         //If step type involves transference, we must manually create the PossibleInteraction object.
         //Otherwise, it can be directly converted.
         return [currSolStep stepType];
     }
-    else
-    {
+    else {
         return nil;
     }
 }
@@ -3116,16 +2895,16 @@ BOOL wasPathFollowed = false;
  * Gets the current solution step of ActionStep type and converts it to a PossibleInteraction
  * object
  */
--(PossibleInteraction*) getCorrectInteraction {
+- (PossibleInteraction *)getCorrectInteraction {
     PossibleInteraction* correctInteraction;
     
     //Check solution only if it exists for the sentence
     if (numSteps > 0) {
         //Get steps for current sentence
-        NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
+        NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
         
         //Get current step to be completed
-        ActionStep* currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         
         //If step type involves transference, we must manually create the PossibleInteraction object.
         //Otherwise, it can be directly converted.
@@ -3134,35 +2913,35 @@ BOOL wasPathFollowed = false;
             correctInteraction = [[PossibleInteraction alloc] init];
             
             //Get step information for current step
-            NSString* currObj1Id = [currSolStep object1Id];
-            NSString* currObj2Id = [currSolStep object2Id];
-            NSString* currAction = [currSolStep action];
+            NSString *currObj1Id = [currSolStep object1Id];
+            NSString *currObj2Id = [currSolStep object2Id];
+            NSString *currAction = [currSolStep action];
             
             //Objects involved in group setup for current step
-            NSArray* currObjects = [[NSArray alloc] initWithObjects:currObj1Id, currObj2Id, nil];
+            NSArray *currObjects = [[NSArray alloc] initWithObjects:currObj1Id, currObj2Id, nil];
             
             //Get hotspots for both objects associated with action for current step
-            Hotspot* currHotspot1 = [model getHotspotforObjectWithActionAndRole:currObj1Id :currAction :@"subject"];
-            Hotspot* currHotspot2 = [model getHotspotforObjectWithActionAndRole:currObj2Id :currAction :@"object"];
-            NSArray* currHotspotsForInteraction = [[NSArray alloc]initWithObjects:currHotspot1, currHotspot2, nil];
+            Hotspot *currHotspot1 = [model getHotspotforObjectWithActionAndRole:currObj1Id :currAction :@"subject"];
+            Hotspot *currHotspot2 = [model getHotspotforObjectWithActionAndRole:currObj2Id :currAction :@"object"];
+            NSArray *currHotspotsForInteraction = [[NSArray alloc]initWithObjects:currHotspot1, currHotspot2, nil];
             
             [correctInteraction addConnection:UNGROUP :currObjects :currHotspotsForInteraction];
             
             //Get next step to be completed
-            ActionStep* nextSolStep = [currSolSteps objectAtIndex:currentStep];
+            ActionStep *nextSolStep = [currSolSteps objectAtIndex:currentStep];
             
             //Get step information for next step
-            NSString* nextObj1Id = [nextSolStep object1Id];
-            NSString* nextObj2Id = [nextSolStep object2Id];
-            NSString* nextAction = [nextSolStep action];
+            NSString *nextObj1Id = [nextSolStep object1Id];
+            NSString *nextObj2Id = [nextSolStep object2Id];
+            NSString *nextAction = [nextSolStep action];
             
             //Objects involved in group setup for next step
-            NSArray* nextObjects = [[NSArray alloc] initWithObjects:nextObj1Id, nextObj2Id, nil];
+            NSArray *nextObjects = [[NSArray alloc] initWithObjects:nextObj1Id, nextObj2Id, nil];
             
             //Get hotspots for both objects associated with action for next step
-            Hotspot* nextHotspot1 = [model getHotspotforObjectWithActionAndRole:nextObj1Id :nextAction :@"subject"];
-            Hotspot* nextHotspot2 = [model getHotspotforObjectWithActionAndRole:nextObj2Id :nextAction :@"object"];
-            NSArray* nextHotspotsForInteraction = [[NSArray alloc]initWithObjects:nextHotspot1, nextHotspot2, nil];
+            Hotspot *nextHotspot1 = [model getHotspotforObjectWithActionAndRole:nextObj1Id :nextAction :@"subject"];
+            Hotspot *nextHotspot2 = [model getHotspotforObjectWithActionAndRole:nextObj2Id :nextAction :@"object"];
+            NSArray *nextHotspotsForInteraction = [[NSArray alloc]initWithObjects:nextHotspot1, nextHotspot2, nil];
             
             //Add the group or disappear connection and set the interaction to the appropriate type
             if ([[currSolStep stepType] isEqualToString:@"transferAndGroup"]) {
@@ -3187,60 +2966,63 @@ BOOL wasPathFollowed = false;
  * the current step is incremented. If it is incorrect, an error noise is played, and the objects snap back to their 
  * original positions.
  */
--(void) checkSolutionForInteraction:(PossibleInteraction*)interaction {
+- (void)checkSolutionForInteraction:(PossibleInteraction *)interaction {
     //Get correct interaction to compare
-    PossibleInteraction* correctInteraction = [self getCorrectInteraction];
+    PossibleInteraction *correctInteraction = [self getCorrectInteraction];
     
     //Check if selected interaction is correct
     if ([interaction isEqual:correctInteraction]) {
-        [[ServerCommunicationController sharedManager] logComputerVerification:@"Perform Interaction":true : movingObjectId:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+        if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) {
+            [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Select Menu Item" context:manipulationContext];
+            
+            //Remove menu
+            [menu removeFromSuperview];
+            menu = nil;
+            menuExpanded = FALSE;
+            
+            if (IMViewMenu != nil) {
+                [IMViewMenu removeFromSuperview];
+            }
+
+            //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
+            if (currentSentence > 0) {
+                currentIdea++;
+                manipulationContext.ideaNumber = currentIdea;
+            }
+            
+            currentSentence++;
+            currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d')", currentSentence]];
+            
+            manipulationContext.sentenceNumber = currentSentence;
+            manipulationContext.sentenceText = currentSentenceText;
+            [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText context:manipulationContext];
         
-            if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) {
-                //Remove menu
-                [menu removeFromSuperview];
-                menu = nil;
-                menuExpanded = FALSE;
-                
-                if (IMViewMenu != nil) {
-                    [IMViewMenu removeFromSuperview];
-                }
-            
-                [[ServerCommunicationController sharedManager] logUserNextButtonPressed:@"Next" :@"Tap" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-            
-                //Added for logging
-                NSString *tempLastSentence = [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence];
-            
-                //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
-                if (currentSentence > 0) {
-                    currentIdea++;
-                }
-                
-                currentSentence++;
-                currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence]];
-            
-                //Set up current sentence appearance and solution steps
-                [self setupCurrentSentence];
-                [self colorSentencesUponNext];
-            
-                //currentSentence is 1 indexed.
-                if (currentSentence > totalSentences) {
-                    [self loadNextPage];
-                }
-                else {
-                        [[ServerCommunicationController sharedManager] logNextSentenceNavigation:@"Next Button" :tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :@"Next Sentence" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                
-                         [self playCurrentSentenceAudio];
-                    
-                }
+            //Set up current sentence appearance and solution steps
+            [self setupCurrentSentence];
+            [self colorSentencesUponNext];
+        
+            //currentSentence is 1 indexed.
+            if (currentSentence > totalSentences) {
+                [self loadNextPage];
             }
-            else
-            {
-                [self performInteraction:interaction];
+            else {
+                [self playCurrentSentenceAudio];
             }
+        }
+        else {
+            if (menu != nil) {
+                [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Select Menu Item" context:manipulationContext];
+            }
+            else {
+                [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Move Object" context:manipulationContext];
+            }
+            
+            [self performInteraction:interaction];
+        }
         
         if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
             IntroductionClass.currentIntroStep++;
-            [IntroductionClass loadIntroStep:bookView:self: currentSentence];
+            [IntroductionClass loadIntroStep:bookView:self :currentSentence];
         }
         
         if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == PM_MODE) {
@@ -3256,22 +3038,23 @@ BOOL wasPathFollowed = false;
     }
     else {
         /*if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
-            if ((conditionSetup.language ==ENGLISH) ||
+            if ((conditionSetup.language == ENGLISH) ||
                 IntroductionClass.currentIntroStep > IntroductionClass.STEPS_TO_SWITCH_LANGUAGES_EMBRACE) {
                 [self.playaudioClass playAudioFile:self:@"tryAgainE.m4a"];
-                
-                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Try Again" : @"E" : @"tryAgainE.m4a" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
             }
             else {
                 [self.playaudioClass playAudioFile:self:@"tryAgainS.m4a"];
-                
-                [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Try Again" : @"S" : @"tryAgainS.m4a" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
             }
         }*/
         //else {
-            [[ServerCommunicationController sharedManager] logComputerVerification:@"Perform Interaction":false : movingObjectId:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-            
-            [self.playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+            if (menu != nil) {
+                [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Select Menu Item" context:manipulationContext];
+            }
+            else {
+                [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
+            }
+        
+            [self playErrorNoise];
             
             if (conditionSetup.appMode == ITS) {
                 //Record error for complexity
@@ -3281,9 +3064,9 @@ BOOL wasPathFollowed = false;
         
         if ([interaction interactionType] != UNGROUP && allowSnapback) {
             //Snap the object back to its original location
-            [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false:@"None"];
+            [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
             
-            [[ServerCommunicationController sharedManager] logComputerResetObject : movingObjectId  :startLocation.x :startLocation.y : startLocation.x : startLocation.y : @"Reset" : bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+            [[ServerCommunicationController sharedInstance] logResetObject:movingObjectId startPos:endLocation endPos:startLocation context:manipulationContext];
         }
     }
     
@@ -3295,7 +3078,7 @@ BOOL wasPathFollowed = false;
 /*
  * Checks if one object is contained inside another object and returns the contained object
  */
--(NSString*) findContainedObject:(NSArray*)objects {
+- (NSString *)findContainedObject:(NSArray *)objects {
     NSString *containedObject = @"";
     
     //Check the first object
@@ -3303,44 +3086,42 @@ BOOL wasPathFollowed = false;
     NSString *isContainedString = [bookView stringByEvaluatingJavaScriptFromString:isContained];
     
     //First object in array is contained in second object in array
-    if([isContainedString isEqualToString:@"true"]) {
+    if ([isContainedString isEqualToString:@"true"]) {
         containedObject = objects[0];
     }
     //Check the second object
-    else if([isContainedString isEqualToString:@"false"]) {
+    else if ([isContainedString isEqualToString:@"false"]) {
         isContained = [NSString stringWithFormat:@"objectContainedInObject(%@,%@)", objects[1], objects[0]];
         isContainedString = [bookView stringByEvaluatingJavaScriptFromString:isContained];
     }
     
     //Second object in array is contained in first object in array
-    if([containedObject isEqualToString:@""] && [isContainedString isEqualToString:@"true"]) {
+    if ([containedObject isEqualToString:@""] && [isContainedString isEqualToString:@"true"]) {
         containedObject = objects[1];
     }
-    
-    //NSLog(@"first obj:%@, second obj:%@, containedObject:%@", array[0], array[1], containedObject);
     
     return containedObject;
 }
 
--(NSMutableArray*) getPossibleInteractions:(BOOL)useProximity {
+- (NSMutableArray *)getPossibleInteractions:(BOOL)useProximity {
     //Get pairs of other objects grouped with this object
-    NSArray* itemPairArray = [self getObjectsGroupedWithObject:movingObjectId];
+    NSArray *itemPairArray = [self getObjectsGroupedWithObject:movingObjectId];
     
     if (itemPairArray != nil) {
-        NSMutableArray* groupings = [[NSMutableArray alloc] init];
-        NSMutableSet* uniqueObjIds = [[NSMutableSet alloc] init];
+        NSMutableArray *groupings = [[NSMutableArray alloc] init];
+        NSMutableSet *uniqueObjIds = [[NSMutableSet alloc] init];
         
-        for(NSString* pairStr in itemPairArray) {
+        for (NSString *pairStr in itemPairArray) {
             //Separate the objects in this pair.
             NSArray *itemPair = [pairStr componentsSeparatedByString:@", "];
             
-            for(NSString* item in itemPair) {
+            for (NSString *item in itemPair) {
                 [uniqueObjIds addObject:item];
             }
         }
         
         //Get the possible interactions for all objects in the group
-        for(NSString* obj in uniqueObjIds) {
+        for (NSString *obj in uniqueObjIds) {
             [groupings addObjectsFromArray:[self getPossibleInteractions:useProximity forObject:obj]];
         }
         
@@ -3367,16 +3148,16 @@ BOOL wasPathFollowed = false;
  
  * TODO: Instead of just checking based on the object that's being moved, we should get all objects the movingObject is connected to. From there, we can either get all the possible interactions for each object, or we can figure out which one is the "subject" and use that one. For example, when the farmer is holding the hay, the farmer is the one doing the action, so the farmer would be the subject. Does this work in all instances? If so, we may also want to think about looking at the object's role when coming up with transfer interactions as well.
  */
--(NSMutableArray*) getPossibleInteractions:(BOOL)useProximity forObject:(NSString*)obj{
-    NSMutableArray* groupings = [[NSMutableArray alloc] init];
+- (NSMutableArray *)getPossibleInteractions:(BOOL)useProximity forObject:(NSString *)obj{
+    NSMutableArray *groupings = [[NSMutableArray alloc] init];
     
     //Get the objects that this object is overlapping with
-    NSArray* overlappingWith = [self getObjectsOverlappingWithObject:obj];
+    NSArray *overlappingWith = [self getObjectsOverlappingWithObject:obj];
     BOOL ObjectIDUsed = false;
     NSString *tempCollisionObject = nil;
     
     if (overlappingWith != nil) {
-        for(NSString* objId in overlappingWith) {
+        for (NSString *objId in overlappingWith) {
             //If only the correct object can be used, then check if the overlapping object is correct. If it is not, do not get any possible interactions for it.
             BOOL getInteractions = TRUE;
 
@@ -3395,32 +3176,32 @@ BOOL wasPathFollowed = false;
                 ObjectIDUsed = true;
                 tempCollisionObject = objId;
                 
-                NSMutableArray* hotspots = [model getHotspotsForObject:objId OverlappingWithObject:obj];
-                NSMutableArray* movingObjectHotspots = [model getHotspotsForObject:obj OverlappingWithObject:objId];
+                NSMutableArray *hotspots = [model getHotspotsForObject:objId OverlappingWithObject:obj];
+                NSMutableArray *movingObjectHotspots = [model getHotspotsForObject:obj OverlappingWithObject:objId];
                 
                 //Compare hotspots of the two objects. 
-                for(Hotspot* hotspot in hotspots) {
-                    for(Hotspot* movingObjectHotspot in movingObjectHotspots) {
+                for (Hotspot *hotspot in hotspots) {
+                    for (Hotspot *movingObjectHotspot in movingObjectHotspots) {
                         //Need to calculate exact pixel locations of both hotspots and then make sure they're within a specific distance of each other.
                         CGPoint movingObjectHotspotLoc = [self getHotspotLocation:movingObjectHotspot];
                         CGPoint hotspotLoc = [self getHotspotLocation:hotspot];
                         
                         //Check to see if either of these hotspots are currently connected to another objects.
                         NSString *isHotspotConnectedMovingObject = [NSString stringWithFormat:@"objectGroupedAtHotspot(%@, %f, %f)", obj, movingObjectHotspotLoc.x, movingObjectHotspotLoc.y];
-                        NSString* isHotspotConnectedMovingObjectString  = [bookView stringByEvaluatingJavaScriptFromString:isHotspotConnectedMovingObject];
+                        NSString *isHotspotConnectedMovingObjectString  = [bookView stringByEvaluatingJavaScriptFromString:isHotspotConnectedMovingObject];
                         
                         NSString *isHotspotConnectedObject = [NSString stringWithFormat:@"objectGroupedAtHotspot(%@, %f, %f)", objId, hotspotLoc.x, hotspotLoc.y];
-                        NSString* isHotspotConnectedObjectString  = [bookView stringByEvaluatingJavaScriptFromString:isHotspotConnectedObject];
+                        NSString *isHotspotConnectedObjectString  = [bookView stringByEvaluatingJavaScriptFromString:isHotspotConnectedObject];
                         
                         bool rolesMatch = [[hotspot role] isEqualToString:[movingObjectHotspot role]];
                         bool actionsMatch = [[hotspot action] isEqualToString:[movingObjectHotspot action]];
                         
                         //Make sure the two hotspots have the same action. It may also be necessary to ensure that the roles do not match. Also make sure neither of the hotspots are connected to another object.
-                        if(actionsMatch && [isHotspotConnectedMovingObjectString isEqualToString:@""]
+                        if (actionsMatch && [isHotspotConnectedMovingObjectString isEqualToString:@""]
                            && [isHotspotConnectedObjectString isEqualToString:@""] && !rolesMatch) {
                             //Although the matching hotspots are free, transference may still be possible if one of the objects is connected at a different hotspot that must be ungrouped first.
-                            NSString* objTransferringObj = [self getObjectPerformingTransference:obj :objId :@"object"];
-                            NSString* objTransferringObjId = [self getObjectPerformingTransference:objId :obj :@"subject"];
+                            NSString *objTransferringObj = [self getObjectPerformingTransference:obj :objId :@"object"];
+                            NSString *objTransferringObjId = [self getObjectPerformingTransference:objId :obj :@"subject"];
                             
                             //Transference is possible
                             if (objTransferringObj != nil && objTransferringObjId == nil) {
@@ -3432,28 +3213,28 @@ BOOL wasPathFollowed = false;
                             //Group or disappear normally
                             else {
                                 //Get the relationship between these two objects so we can check to see what type of relationship it is.
-                                Relationship* relationshipBetweenObjects = [model getRelationshipForObjectsForAction:obj :objId :[movingObjectHotspot action]];
+                                Relationship *relationshipBetweenObjects = [model getRelationshipForObjectsForAction:obj :objId :[movingObjectHotspot action]];
                                 lastRelationship = relationshipBetweenObjects;
                                 [allRelationships addObject:lastRelationship];
                                 
                                 //Check to make sure that the two hotspots are in close proximity to each other.
-                                if((useProximity && [self hotspotsWithinGroupingProximity:movingObjectHotspot :hotspot])
+                                if ((useProximity && [self hotspotsWithinGroupingProximity:movingObjectHotspot :hotspot])
                                    || !useProximity) {
                                     //Create necessary arrays for the interaction.
-                                    NSArray* objects;
-                                    NSArray* hotspotsForInteraction;
+                                    NSArray *objects;
+                                    NSArray *hotspotsForInteraction;
                                     
-                                    if([[relationshipBetweenObjects actionType] isEqualToString:@"group"]) {
+                                    if ([[relationshipBetweenObjects actionType] isEqualToString:@"group"]) {
                                         //Check if the moving object is already grouped with another
                                         //object
-                                        NSArray* groupedObjects = [self getObjectsGroupedWithObject:movingObjectId];
+                                        NSArray *groupedObjects = [self getObjectsGroupedWithObject:movingObjectId];
                                         
                                         //Object is already grouped to another object
                                         if (groupedObjects != nil) {
                                             //Check if this new grouping meets constraints before
                                             //creating the PossibleInteraction object
                                             if ([self doesObjectMeetComboConstraints:movingObjectId :movingObjectHotspot]) {
-                                                PossibleInteraction* interaction = [[PossibleInteraction alloc] initWithInteractionType:GROUP];
+                                                PossibleInteraction *interaction = [[PossibleInteraction alloc] initWithInteractionType:GROUP];
                                                 
                                                 objects = [[NSArray alloc] initWithObjects:obj, objId, nil];
                                                 hotspotsForInteraction = [[NSArray alloc] initWithObjects:movingObjectHotspot, hotspot, nil];
@@ -3464,7 +3245,7 @@ BOOL wasPathFollowed = false;
                                         }
                                         //Object is not grouped to another object
                                         else {
-                                            PossibleInteraction* interaction = [[PossibleInteraction alloc] initWithInteractionType:GROUP];
+                                            PossibleInteraction *interaction = [[PossibleInteraction alloc] initWithInteractionType:GROUP];
                                             
                                             objects = [[NSArray alloc] initWithObjects:obj, objId, nil];
                                             hotspotsForInteraction = [[NSArray alloc] initWithObjects:movingObjectHotspot, hotspot, nil];
@@ -3473,8 +3254,8 @@ BOOL wasPathFollowed = false;
                                             [groupings addObject:interaction];
                                         }
                                     }
-                                    else if([[relationshipBetweenObjects actionType] isEqualToString:@"disappear"]) {
-                                        PossibleInteraction* interaction = [[PossibleInteraction alloc] initWithInteractionType:DISAPPEAR];
+                                    else if ([[relationshipBetweenObjects actionType] isEqualToString:@"disappear"]) {
+                                        PossibleInteraction *interaction = [[PossibleInteraction alloc] initWithInteractionType:DISAPPEAR];
                                         
                                         //Add the subject of the disappear interaction before the object
                                         if ([[movingObjectHotspot role] isEqualToString:@"subject"]) {
@@ -3493,11 +3274,11 @@ BOOL wasPathFollowed = false;
                             }
                         }
                         //Otherwise, one of these is connected to another object...so we check to see if the other object can be connected with the unconnected one.
-                        else if(actionsMatch && ![isHotspotConnectedMovingObjectString isEqualToString:@""]
+                        else if (actionsMatch && ![isHotspotConnectedMovingObjectString isEqualToString:@""]
                                 && [isHotspotConnectedObjectString isEqualToString:@""] && !rolesMatch) {
                             [groupings addObjectsFromArray:[self getPossibleTransferInteractionsforObjects:obj :isHotspotConnectedMovingObjectString :objId :movingObjectHotspot :hotspot]];
                         }
-                        else if(actionsMatch && [isHotspotConnectedMovingObjectString isEqualToString:@""]
+                        else if (actionsMatch && [isHotspotConnectedMovingObjectString isEqualToString:@""]
                                 && ![isHotspotConnectedObjectString isEqualToString:@""] && !rolesMatch) {
                             [groupings addObjectsFromArray:[self getPossibleTransferInteractionsforObjects:objId :isHotspotConnectedObjectString :obj :hotspot :movingObjectHotspot]];
                         }
@@ -3508,6 +3289,7 @@ BOOL wasPathFollowed = false;
     }
     
     collisionObjectId = tempCollisionObject;
+    
     return groupings;
 }
 
@@ -3516,24 +3298,24 @@ BOOL wasPathFollowed = false;
  * connected to it using the role specified. Additionally, it must have strictly greater than one possible hotspot that matches with the
  * receiver object (i.e. the object accepting the transferred object).
  */
--(NSString*) getObjectPerformingTransference:(NSString*)transferredObj :(NSString*)receiverObj :(NSString*)role {
-    NSMutableArray* transferredObjHotspots = [model getHotspotsForObjectId:transferredObj];
+- (NSString *)getObjectPerformingTransference:(NSString *)transferredObj :(NSString *)receiverObj :(NSString *)role {
+    NSMutableArray *transferredObjHotspots = [model getHotspotsForObjectId:transferredObj];
 
-    NSString* senderObj; //Object that is performing the transference
+    NSString *senderObj; //Object that is performing the transference
     
     //Check to see if the transferred object is already connected at a different hotspot that needs to be ungrouped for transference to occur
-    for(Hotspot* transferredObjHotspot in transferredObjHotspots) {
+    for (Hotspot *transferredObjHotspot in transferredObjHotspots) {
         //Check if it is currently grouped with another object using the specified role
         if ([[transferredObjHotspot role] isEqualToString:role]) {
             CGPoint transferredObjHotspotLoc = [self getHotspotLocation:transferredObjHotspot];
             
             //Get the object that the transferred object is connected to at this hotspot
-            NSString* isHotspotConnected = [NSString stringWithFormat:@"objectGroupedAtHotspot(%@, %f, %f)", transferredObj, transferredObjHotspotLoc.x, transferredObjHotspotLoc.y];
-            NSString* isHotspotConnectedString = [bookView stringByEvaluatingJavaScriptFromString:isHotspotConnected];
+            NSString *isHotspotConnected = [NSString stringWithFormat:@"objectGroupedAtHotspot(%@, %f, %f)", transferredObj, transferredObjHotspotLoc.x, transferredObjHotspotLoc.y];
+            NSString *isHotspotConnectedString = [bookView stringByEvaluatingJavaScriptFromString:isHotspotConnected];
             
             if (![isHotspotConnectedString isEqualToString:@""]) {
                 //If this object has multiple hotspots in common with the recipient object, then it must be capable of performing transference (i.e. an animate object)
-                NSMutableArray* otherObjHotspots = [model getHotspotsForObject:isHotspotConnectedString OverlappingWithObject:receiverObj];
+                NSMutableArray *otherObjHotspots = [model getHotspotsForObject:isHotspotConnectedString OverlappingWithObject:receiverObj];
                 
                 if ([otherObjHotspots count] > 1) {
                     senderObj = isHotspotConnectedString;
@@ -3545,32 +3327,32 @@ BOOL wasPathFollowed = false;
     return senderObj;
 }
 
--(NSMutableArray*) getPossibleTransferInteractionsforObjects:(NSString*)objConnected :(NSString*)objConnectedTo :(NSString*)currentUnconnectedObj :(Hotspot*)objConnectedHotspot :(Hotspot*)currentUnconnectedObjHotspot{
-    NSMutableArray* groupings = [[NSMutableArray alloc] init];
+- (NSMutableArray *)getPossibleTransferInteractionsforObjects:(NSString *)objConnected :(NSString *)objConnectedTo :(NSString *)currentUnconnectedObj :(Hotspot *)objConnectedHotspot :(Hotspot *)currentUnconnectedObjHotspot{
+    NSMutableArray *groupings = [[NSMutableArray alloc] init];
     
     //Get the hotspots for the grouped objects
-    NSMutableArray* hotspotsForObjConnected = [model getHotspotsForObject:objConnected OverlappingWithObject :objConnectedTo];
-    NSMutableArray* hotspotsForObjConnectedTo = [model getHotspotsForObject:objConnectedTo OverlappingWithObject :objConnected];
+    NSMutableArray *hotspotsForObjConnected = [model getHotspotsForObject:objConnected OverlappingWithObject :objConnectedTo];
+    NSMutableArray *hotspotsForObjConnectedTo = [model getHotspotsForObject:objConnectedTo OverlappingWithObject :objConnected];
     
     //Compare their hotspots to determine where the two objects are currently grouped
-    for(Hotspot* hotspot1 in hotspotsForObjConnectedTo) {
-        for(Hotspot* hotspot2 in hotspotsForObjConnected) {
+    for (Hotspot *hotspot1 in hotspotsForObjConnectedTo) {
+        for (Hotspot *hotspot2 in hotspotsForObjConnected) {
             //Need to calculate exact pixel location of one of the hotspots and then make sure it is connected to the other object at that location
             CGPoint hotspot1Loc = [self getHotspotLocation:hotspot1];
             
             NSString *isObjConnectedToHotspotConnected = [NSString stringWithFormat:@"objectGroupedAtHotspot(%@, %f, %f)", objConnectedTo, hotspot1Loc.x, hotspot1Loc.y];
-            NSString* isConnectedObjHotspotConnectedString  = [bookView stringByEvaluatingJavaScriptFromString:isObjConnectedToHotspotConnected];
+            NSString *isConnectedObjHotspotConnectedString  = [bookView stringByEvaluatingJavaScriptFromString:isObjConnectedToHotspotConnected];
             
             //Make sure the two hotspots have the same action and make sure the roles do not match (there are only two possibilities right now: subject and object). Also make sure the hotspots are connected to each other. If all is well, these objects can be ungrouped.
             bool rolesMatch = [[hotspot1 role] isEqualToString:[hotspot2 role]];
             bool actionsMatch = [[hotspot1 action] isEqualToString:[hotspot2 action]];
             
-            if(actionsMatch && ![isConnectedObjHotspotConnectedString isEqualToString:@""] && !rolesMatch) {
-                PossibleInteraction* interaction = [[PossibleInteraction alloc] init];
+            if (actionsMatch && ![isConnectedObjHotspotConnectedString isEqualToString:@""] && !rolesMatch) {
+                PossibleInteraction *interaction = [[PossibleInteraction alloc] init];
                 
                 //Add the connection to ungroup first.
-                NSArray* ungroupObjects;
-                NSArray* hotspotsForUngrouping;
+                NSArray *ungroupObjects;
+                NSArray *hotspotsForUngrouping;
                 
                 //Add the subject to the ungroup connection before the object
                 if ([[hotspot1 role] isEqualToString:@"subject"]) {
@@ -3585,8 +3367,8 @@ BOOL wasPathFollowed = false;
                 [interaction addConnection:UNGROUP :ungroupObjects :hotspotsForUngrouping];
                 
                 //Then add the connection to group or disappear
-                NSArray* transferObjects;
-                NSArray* hotspotsForTransfer;
+                NSArray *transferObjects;
+                NSArray *hotspotsForTransfer;
                 
                 //Add the subject to the group or disappear interaction before the object
                 if ([[objConnectedHotspot role] isEqualToString:@"subject"]) {
@@ -3599,17 +3381,17 @@ BOOL wasPathFollowed = false;
                 }
                 
                 //Get the relationship between the connected and currently unconnected objects so we can check to see what type of relationship it is.
-                Relationship* relationshipBetweenObjects = [model getRelationshipForObjectsForAction:objConnected :currentUnconnectedObj :[objConnectedHotspot action]];
+                Relationship *relationshipBetweenObjects = [model getRelationshipForObjectsForAction:objConnected :currentUnconnectedObj :[objConnectedHotspot action]];
                 lastRelationship = relationshipBetweenObjects;
                 [allRelationships addObject:lastRelationship];
                 
-                if([[relationshipBetweenObjects  actionType] isEqualToString:@"group"]) {
+                if ([[relationshipBetweenObjects  actionType] isEqualToString:@"group"]) {
                     [interaction addConnection:GROUP :transferObjects :hotspotsForTransfer];
                     [interaction setInteractionType:TRANSFERANDGROUP];
                     
                     [groupings addObject:interaction];
                 }
-                else if([[relationshipBetweenObjects actionType] isEqualToString:@"disappear"]) {
+                else if ([[relationshipBetweenObjects actionType] isEqualToString:@"disappear"]) {
                     [interaction addConnection:DISAPPEAR :transferObjects :hotspotsForTransfer];
                     [interaction setInteractionType:TRANSFERANDDISAPPEAR];
                     
@@ -3618,17 +3400,18 @@ BOOL wasPathFollowed = false;
             }
         }
     }
+    
     return groupings;
 }
 
 /*
  * Returns an array containing pairs of grouped objects (with the format "hay, farmer") connected to the object specified
  */
--(NSArray*) getObjectsGroupedWithObject:(NSString*)object {
-    NSArray* itemPairArray; //contains grouped objects split by pairs
+- (NSArray *)getObjectsGroupedWithObject:(NSString *)object {
+    NSArray *itemPairArray; //contains grouped objects split by pairs
     
     //Get other objects grouped with this object.
-    NSString* requestGroupedImages = [NSString stringWithFormat:@"getGroupedObjectsString(%@)", object];
+    NSString *requestGroupedImages = [NSString stringWithFormat:@"getGroupedObjectsString(%@)", object];
     
     /*
      * Say the cart is connected to the tractor and the tractor is "connected" to the farmer,
@@ -3636,10 +3419,10 @@ BOOL wasPathFollowed = false;
      * if the only thing you currently have connected to the hay is the farmer, then you'll get
      * a string back that is: "hay, farmer" or "farmer, hay"
      */
-    NSString* groupedImages = [bookView stringByEvaluatingJavaScriptFromString:requestGroupedImages];
+    NSString *groupedImages = [bookView stringByEvaluatingJavaScriptFromString:requestGroupedImages];
     
     //If there is an array, split the array based on pairs.
-    if(![groupedImages isEqualToString:@""]) {
+    if (![groupedImages isEqualToString:@""]) {
         itemPairArray = [groupedImages componentsSeparatedByString:@"; "];
     }
     
@@ -3649,33 +3432,33 @@ BOOL wasPathFollowed = false;
 /*
  * Returns an array containing objects that are overlapping with the object specified
  */
--(NSArray*) getObjectsOverlappingWithObject:(NSString*)object {
-    NSArray* overlappingWith; //contains overlapping objects
+- (NSArray *)getObjectsOverlappingWithObject:(NSString *)object {
+    NSArray *overlappingWith; //contains overlapping objects
     
     //Check if object is overlapping anything
-    NSString* overlappingObjects = [NSString stringWithFormat:@"checkObjectOverlapString(%@)", movingObjectId];
-    NSString* overlapArrayString = [bookView stringByEvaluatingJavaScriptFromString:overlappingObjects];
+    NSString *overlappingObjects = [NSString stringWithFormat:@"checkObjectOverlapString(%@)", movingObjectId];
+    NSString *overlapArrayString = [bookView stringByEvaluatingJavaScriptFromString:overlappingObjects];
     
-    if(![overlapArrayString isEqualToString:@""]) {
+    if (![overlapArrayString isEqualToString:@""]) {
         overlappingWith = [overlapArrayString componentsSeparatedByString:@", "];
     }
     
-        return overlappingWith;
+    return overlappingWith;
 }
 
 /*
  * Checks an object's array of hotspots to determine if one is connected to a specific object and returns that hotspot
  */
--(Hotspot*) findConnectedHotspot:(NSMutableArray*)movingObjectHotspots : (NSString*)objConnectedTo {
-    Hotspot* connectedHotspot = NULL;
+- (Hotspot *)findConnectedHotspot:(NSMutableArray *)movingObjectHotspots :(NSString *)objConnectedTo {
+    Hotspot *connectedHotspot = NULL;
     
-    for(Hotspot* movingObjectHotspot in movingObjectHotspots) {
+    for (Hotspot *movingObjectHotspot in movingObjectHotspots) {
         //Get the hotspot location
         CGPoint movingObjectHotspotLoc = [self getHotspotLocation:movingObjectHotspot];
         
         //Check if this hotspot is currently in use
-        NSString* isHotspotConnectedMovingObject = [NSString stringWithFormat:@"objectGroupedAtHotspot(%@, %f, %f)", movingObjectId, movingObjectHotspotLoc.x, movingObjectHotspotLoc.y];
-        NSString* isHotspotConnectedMovingObjectString  = [bookView stringByEvaluatingJavaScriptFromString:isHotspotConnectedMovingObject];
+        NSString *isHotspotConnectedMovingObject = [NSString stringWithFormat:@"objectGroupedAtHotspot(%@, %f, %f)", movingObjectId, movingObjectHotspotLoc.x, movingObjectHotspotLoc.y];
+        NSString *isHotspotConnectedMovingObjectString  = [bookView stringByEvaluatingJavaScriptFromString:isHotspotConnectedMovingObject];
         
         //Check if this hotspot is being used by the objConnectedTo
         if ([isHotspotConnectedMovingObjectString isEqualToString:objConnectedTo]) {
@@ -3699,7 +3482,7 @@ BOOL wasPathFollowed = false;
  * used at the same time. It should be able to check cases such as 3 hotspots exactly
  * (2 connected, 1 potential).
  */
--(BOOL) doesObjectMeetComboConstraints:(NSString*)connectedObject :(Hotspot*)potentialConnection {
+- (BOOL)doesObjectMeetComboConstraints:(NSString *)connectedObject :(Hotspot *)potentialConnection {
     //Records whether the potential and connected hotspots are present in the list
     //of combo constraints for an object contained in a group with connectedObject.
     //If they both are, then this object does not meet the combo constraints.
@@ -3707,43 +3490,43 @@ BOOL wasPathFollowed = false;
     BOOL connectedConstraint = FALSE;
     
     //Get pairs of other objects grouped with this object.
-    NSArray* itemPairArray = [self getObjectsGroupedWithObject:connectedObject];
+    NSArray *itemPairArray = [self getObjectsGroupedWithObject:connectedObject];
     
     if (itemPairArray != nil) {
-        for(NSString* pairStr in itemPairArray) {
+        for (NSString *pairStr in itemPairArray) {
             //Create an array that will hold all the items in this group
-            NSMutableArray* groupedItemsArray = [[NSMutableArray alloc] init];
+            NSMutableArray *groupedItemsArray = [[NSMutableArray alloc] init];
             
             //Separate the objects in this pair and add them to our array of all items in this group.
             [groupedItemsArray addObjectsFromArray:[pairStr componentsSeparatedByString:@", "]];
             
-            for (NSString* object in groupedItemsArray) {
+            for (NSString *object in groupedItemsArray) {
                 //Get the combo constraints for the object
-                NSMutableArray* objectComboConstraints = [model getComboConstraintsForObjectId:object];
+                NSMutableArray *objectComboConstraints = [model getComboConstraintsForObjectId:object];
                 
                 //The object has combo constraints
                 if ([objectComboConstraints count] > 0) {
                     //Get the hotspots for the object
-                    NSMutableArray* objectHotspots = [model getHotspotsForObjectId:object];
+                    NSMutableArray *objectHotspots = [model getHotspotsForObjectId:object];
                     
-                    for (Hotspot* hotspot in objectHotspots) {
+                    for (Hotspot *hotspot in objectHotspots) {
                         //Get the hotspot location
                         CGPoint hotspotLocation = [self getHotspotLocation:hotspot];
                         
                         //Check if this hotspot is currently connected to another object
                         NSString *isHotspotConnected = [NSString stringWithFormat:@"objectGroupedAtHotspot(%@, %f, %f)", object, hotspotLocation.x, hotspotLocation.y];
-                        NSString* isHotspotConnectedString = [bookView stringByEvaluatingJavaScriptFromString:isHotspotConnected];
+                        NSString *isHotspotConnectedString = [bookView stringByEvaluatingJavaScriptFromString:isHotspotConnected];
                         
                         //Hotspot is connected to another object
                         if (![isHotspotConnectedString isEqualToString:@""]) {
-                            for (ComboConstraint* comboConstraint in objectComboConstraints) {
+                            for (ComboConstraint *comboConstraint in objectComboConstraints) {
                                 //Get the list of actions for the combo constraint
-                                NSMutableArray* comboActions = [comboConstraint comboActions];
+                                NSMutableArray *comboActions = [comboConstraint comboActions];
                                 
-                                for (NSString* comboAction in comboActions) {
+                                for (NSString *comboAction in comboActions) {
                                     //Get the hotspot associated with the action, assuming the
                                     //role as subject. Also get the hotspot location.
-                                    Hotspot* comboHotspot = [model getHotspotforObjectWithActionAndRole:[comboConstraint objId] :comboAction :@"subject"];
+                                    Hotspot *comboHotspot = [model getHotspotforObjectWithActionAndRole:[comboConstraint objId] :comboAction :@"subject"];
                                     CGPoint comboHotspotLocation;
                                     
                                     if (comboHotspot != nil) {
@@ -3763,8 +3546,7 @@ BOOL wasPathFollowed = false;
                                     
                                     //Check if the connected hotspot matches an action on the list
                                     //based on its name or location
-                                    if ([[hotspot action] isEqualToString:comboAction]
-                                        || CGPointEqualToPoint(hotspotLocation, comboHotspotLocation)) {
+                                    if ([[hotspot action] isEqualToString:comboAction] || CGPointEqualToPoint(hotspotLocation, comboHotspotLocation)) {
                                         connectedConstraint = TRUE;
                                     }
                                 }
@@ -3791,7 +3573,7 @@ BOOL wasPathFollowed = false;
  * For now, the function makes sure the interaction which ensures going to the next step in the story is present
  * somewhere in the first three (maximum menu items) indexes of the possibleInteractions array.
  */
--(void) rankPossibleInteractions:(NSMutableArray*)possibleInteractions {
+- (void)rankPossibleInteractions:(NSMutableArray *)possibleInteractions {
     PossibleInteraction* correctInteraction = [self getCorrectInteraction];
     
     int correctIndex; //index to insert correct menu item
@@ -3816,14 +3598,14 @@ BOOL wasPathFollowed = false;
  * Checks to see whether two hotspots are within grouping proximity.
  * Returns true if they are, false otherwise.
  */
--(BOOL) hotspotsWithinGroupingProximity:(Hotspot *)hotspot1 :(Hotspot *)hotspot2 {
+- (BOOL)hotspotsWithinGroupingProximity:(Hotspot *)hotspot1 :(Hotspot *)hotspot2 {
     CGPoint hotspot1Loc = [self getHotspotLocation:hotspot1];
     CGPoint hotspot2Loc = [self getHotspotLocation:hotspot2];
     
     float deltaX = fabsf(hotspot1Loc.x - hotspot2Loc.x);
     float deltaY = fabsf(hotspot1Loc.y - hotspot2Loc.y);
     
-    if(deltaX <= groupingProximity && deltaY <= groupingProximity)
+    if (deltaX <= groupingProximity && deltaY <= groupingProximity)
         return true;
     
     return false;
@@ -3833,26 +3615,26 @@ BOOL wasPathFollowed = false;
  * Calculates the delta pixel change for the object that is being moved
  * and changes the lcoation from relative % to pixels if necessary.
  */
--(CGPoint) calculateDeltaForMovingObjectAtPoint:(CGPoint) location {
+- (CGPoint)calculateDeltaForMovingObjectAtPoint:(CGPoint)location {
     CGPoint change;
     
     //Calculate offset between top-left corner of image and the point clicked.
-    NSString* requestImageAtPointTop = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).offsetTop", location.x, location.y];
-    NSString* requestImageAtPointLeft = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).offsetLeft", location.x, location.y];
+    NSString *requestImageAtPointTop = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).offsetTop", location.x, location.y];
+    NSString *requestImageAtPointLeft = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).offsetLeft", location.x, location.y];
     
-    NSString* imageAtPointTop = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointTop];
-    NSString* imageAtPointLeft = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointLeft];
+    NSString *imageAtPointTop = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointTop];
+    NSString *imageAtPointLeft = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointLeft];
     
     //Check to see if the locations returned are in percentages. If they are, change them to pixel values based on the size of the screen.
     NSRange rangePercentTop = [imageAtPointTop rangeOfString:@"%"];
     NSRange rangePercentLeft = [imageAtPointLeft rangeOfString:@"%"];
     
-    if(rangePercentTop.location != NSNotFound)
+    if (rangePercentTop.location != NSNotFound)
         change.y = location.y - ([imageAtPointTop floatValue] / 100.0 * [bookView frame].size.height);
     else
         change.y = location.y - [imageAtPointTop floatValue];
     
-    if(rangePercentLeft.location != NSNotFound)
+    if (rangePercentLeft.location != NSNotFound)
         change.x = location.x - ([imageAtPointLeft floatValue] / 100.0 * [bookView frame].size.width);
     else
         change.x = location.x - [imageAtPointLeft floatValue];
@@ -3864,19 +3646,19 @@ BOOL wasPathFollowed = false;
  * Calculates the delta pixel change for the object that is being moved
  * and changes the lcoation from relative % to pixels if necessary.
  */
--(CGPoint) calculateDeltaForMovingObjectAtPointWithCenter:(NSString*) object :(CGPoint) location {
+- (CGPoint)calculateDeltaForMovingObjectAtPointWithCenter:(NSString *)object :(CGPoint)location {
     CGPoint change;
     
     //Calculate offset between top-left corner of image and the point clicked.
-    NSString* requestImageAtPointTop = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).offsetTop", location.x, location.y];
-    NSString* requestImageAtPointLeft = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).offsetLeft", location.x, location.y];
+    NSString *requestImageAtPointTop = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).offsetTop", location.x, location.y];
+    NSString *requestImageAtPointLeft = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).offsetLeft", location.x, location.y];
     
-    NSString* imageAtPointTop = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointTop];
-    NSString* imageAtPointLeft = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointLeft];
+    NSString *imageAtPointTop = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointTop];
+    NSString *imageAtPointLeft = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPointLeft];
     
     //Get the width and height of the image to ensure that the image is not being moved off screen and that the image is being moved in accordance with all movement constraints.
-    NSString* requestImageHeight = [NSString stringWithFormat:@"%@.height", object];
-    NSString* requestImageWidth = [NSString stringWithFormat:@"%@.width", object];
+    NSString *requestImageHeight = [NSString stringWithFormat:@"%@.height", object];
+    NSString *requestImageWidth = [NSString stringWithFormat:@"%@.width", object];
     
     float imageHeight = [[bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
     float imageWidth = [[bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
@@ -3885,44 +3667,42 @@ BOOL wasPathFollowed = false;
     NSRange rangePercentTop = [imageAtPointTop rangeOfString:@"%"];
     NSRange rangePercentLeft = [imageAtPointLeft rangeOfString:@"%"];
     
-    if(rangePercentTop.location != NSNotFound)
-        change.y = location.y - ([imageAtPointTop floatValue] / 100.0 * [bookView frame].size.height) -(imageHeight/2);
+    if (rangePercentTop.location != NSNotFound)
+        change.y = location.y - ([imageAtPointTop floatValue] / 100.0 * [bookView frame].size.height) - (imageHeight / 2);
     else
-        change.y = location.y - [imageAtPointTop floatValue]-(imageHeight/2);
+        change.y = location.y - [imageAtPointTop floatValue] - (imageHeight / 2);
     
-    if(rangePercentLeft.location != NSNotFound)
-        change.x = location.x - ([imageAtPointLeft floatValue] / 100.0 * [bookView frame].size.width) -(imageWidth/2);
+    if (rangePercentLeft.location != NSNotFound)
+        change.x = location.x - ([imageAtPointLeft floatValue] / 100.0 * [bookView frame].size.width) - (imageWidth / 2);
     else
-        change.x = location.x - [imageAtPointLeft floatValue]-(imageWidth/2);
+        change.x = location.x - [imageAtPointLeft floatValue] - (imageWidth / 2);
     
     return change;
 }
 
 /*
- * Moves the object passeed in to the location given. Calculates the difference between the point touched and the
+ * Moves the object passed in to the location given. Calculates the difference between the point touched and the
  * top-left corner of the image, which is the x,y coordate that's actually used when moving the object.
  * Also ensures that the image is not moved off screen or outside of any specified bounding boxes for the image.
  * Updates the JS Connection hotspot locations if necessary.
  */
--(void) moveObject:(NSString*) object :(CGPoint) location :(CGPoint)offset :(BOOL)updateCon : (NSString*) waypointID{
+- (void)moveObject:(NSString *)object :(CGPoint)location :(CGPoint)offset :(BOOL)updateCon {
     //Change the location to accounting for the different between the point clicked and the top-left corner which is used to set the position of the image.
     CGPoint adjLocation = CGPointMake(location.x - offset.x, location.y - offset.y);
     
     //Get the width and height of the image to ensure that the image is not being moved off screen and that the image is being moved in accordance with all movement constraints.
-    NSString* requestImageHeight = [NSString stringWithFormat:@"%@.height", object];
-    NSString* requestImageWidth = [NSString stringWithFormat:@"%@.width", object];
+    NSString *requestImageHeight = [NSString stringWithFormat:@"%@.height", object];
+    NSString *requestImageWidth = [NSString stringWithFormat:@"%@.width", object];
     
     float imageHeight = [[bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
     float imageWidth = [[bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
     
     //Check to see if the image is being moved outside of any bounding boxes. At this point in time, each object only has 1 movemet constraint associated with it and the movement constraint is a bounding box. The bounding box is in relative (percentage) values to the background object.
-    NSArray* constraints = [model getMovementConstraintsForObjectId:object];
-    
-    //NSLog(@"location of image being moved adjusted for point clicked: (%f, %f) size of image: %f x %f", adjLocation.x, adjLocation.y, imageWidth, imageHeight);
+    NSArray *constraints = [model getMovementConstraintsForObjectId:object];
     
     //If there are movement constraints for this object.
-    if([constraints count] > 0) {
-        MovementConstraint* constraint = (MovementConstraint*)[constraints objectAtIndex:0];
+    if ([constraints count] > 0) {
+        MovementConstraint *constraint = (MovementConstraint *)[constraints objectAtIndex:0];
         
         //Calculate the x,y coordinates and the width and height in pixels from %
         float boxX = [constraint.originX floatValue] / 100.0 * [bookView frame].size.width;
@@ -3930,62 +3710,48 @@ BOOL wasPathFollowed = false;
         float boxWidth = [constraint.width floatValue] / 100.0 * [bookView frame].size.width;
         float boxHeight = [constraint.height floatValue] / 100.0 * [bookView frame].size.height;
         
-        //NSLog(@"location of bounding box: (%f, %f) and size of bounding box: %f x %f", boxX, boxY, boxWidth, boxHeight);
-        
         //Ensure that the image is not being moved outside of its bounding box.
-        if(adjLocation.x + imageWidth > boxX + boxWidth)
+        if (adjLocation.x + imageWidth > boxX + boxWidth)
             adjLocation.x = boxX + boxWidth - imageWidth;
-        else if(adjLocation.x < boxX)
+        else if (adjLocation.x < boxX)
             adjLocation.x = boxX;
-        if(adjLocation.y + imageHeight > boxY + boxHeight)
+        if (adjLocation.y + imageHeight > boxY + boxHeight)
             adjLocation.y = boxY + boxHeight - imageHeight;
-        else if(adjLocation.y < boxY)
+        else if (adjLocation.y < boxY)
             adjLocation.y = boxY;
     }
     
+    NSString *requestImageMarginLeft = [NSString stringWithFormat:@"%@.style.marginLeft", movingObjectId];
+    NSString *requestImageMarginTop = [NSString stringWithFormat:@"%@.style.marginTop", movingObjectId];
     
-    NSString* requestImageMarginLeft = [NSString stringWithFormat:@"%@.style.marginLeft", movingObjectId];
-    NSString* requestImageMarginTop = [NSString stringWithFormat:@"%@.style.marginTop", movingObjectId];
+    NSString *imageMarginLeft = [bookView stringByEvaluatingJavaScriptFromString:requestImageMarginLeft];
+    NSString *imageMarginTop = [bookView stringByEvaluatingJavaScriptFromString:requestImageMarginTop];
     
-    NSString* imageMarginLeft = [bookView stringByEvaluatingJavaScriptFromString:requestImageMarginLeft];
-    NSString* imageMarginTop = [bookView stringByEvaluatingJavaScriptFromString:requestImageMarginTop];
-    
-    if(![imageMarginLeft isEqualToString:@""] && ![imageMarginTop isEqualToString:@""])
-    {
+    if (![imageMarginLeft isEqualToString:@""] && ![imageMarginTop isEqualToString:@""]) {
         //Check to see if the image is being moved off screen. If it is, change it so that the image cannot be moved off screen.
-        if(adjLocation.x + (imageWidth/2) > [bookView frame].size.width)
+        if (adjLocation.x + (imageWidth/2) > [bookView frame].size.width)
             adjLocation.x = [bookView frame].size.width - (imageWidth/2);
-        else if(adjLocation.x-(imageWidth/2)  < 0)
+        else if (adjLocation.x-(imageWidth/2)  < 0)
             adjLocation.x = (imageWidth/2);
-        if(adjLocation.y + (imageHeight/2) > [bookView frame].size.height)
+        if (adjLocation.y + (imageHeight/2) > [bookView frame].size.height)
             adjLocation.y = [bookView frame].size.height - (imageHeight/2);
-        else if(adjLocation.y-(imageHeight/2) < 0)
+        else if (adjLocation.y-(imageHeight/2) < 0)
             adjLocation.y = (imageHeight/2);
     }
-    else
-    {
+    else {
         //Check to see if the image is being moved off screen. If it is, change it so that the image cannot be moved off screen.
-        if(adjLocation.x + imageWidth > [bookView frame].size.width)
+        if (adjLocation.x + imageWidth > [bookView frame].size.width)
             adjLocation.x = [bookView frame].size.width - imageWidth;
-        else if(adjLocation.x < 0)
+        else if (adjLocation.x < 0)
             adjLocation.x = 0;
-        if(adjLocation.y + imageHeight > [bookView frame].size.height)
+        if (adjLocation.y + imageHeight > [bookView frame].size.height)
             adjLocation.y = [bookView frame].size.height - imageHeight;
-        else if(adjLocation.y < 0)
+        else if (adjLocation.y < 0)
             adjLocation.y = 0;
     }
     
     endLocation = adjLocation;
     
-    //May want to add code to keep objects from moving to the location that the text is taking up on screen.
-    
-    //logs only if object is moved by computer action, user pan done outside of this function
-    if (![waypointID isEqualToString:@"isMoving"]) {
-        //Logging added by James for Automatic Computer Move Object
-        [[ServerCommunicationController sharedManager] logComputerMoveObject: object : waypointID: startLocation.x : startLocation.y : adjLocation.x : adjLocation.y : @"Snap to Hotspot" : bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-    }
-    
-    //NSLog(@"new location of %@: (%f, %f)", object, adjLocation.x, adjLocation.y);
     //Call the moveObject function in the js file.
     NSString *move = [NSString stringWithFormat:@"moveObject(%@, %f, %f, %@)", object, adjLocation.x, adjLocation.y, updateCon ? @"true" : @"false"];
     [bookView stringByEvaluatingJavaScriptFromString:move];
@@ -3996,7 +3762,7 @@ BOOL wasPathFollowed = false;
         float deltaX = adjLocation.x - startLocation.x;
         float deltaY = adjLocation.y - startLocation.y;
         
-        NSString* updateConnection = [NSString stringWithFormat:@"updateConnection(%@, %f, %f)", object, deltaX, deltaY];
+        NSString *updateConnection = [NSString stringWithFormat:@"updateConnection(%@, %f, %f)", object, deltaX, deltaY];
         [bookView stringByEvaluatingJavaScriptFromString:updateConnection];
     }
 }
@@ -4004,24 +3770,22 @@ BOOL wasPathFollowed = false;
 /*
  * Calls the JS function to group two objects at the specified hotspots.
  */
--(void) groupObjects:(NSString*)object1 :(CGPoint)object1Hotspot :(NSString*)object2 :(CGPoint)object2Hotspot {
+- (void)groupObjects:(NSString *)object1 :(CGPoint)object1Hotspot :(NSString *)object2 :(CGPoint)object2Hotspot {
     NSString *groupObjects = [NSString stringWithFormat:@"groupObjectsAtLoc(%@, %f, %f, %@, %f, %f)", object1, object1Hotspot.x, object1Hotspot.y, object2, object2Hotspot.x, object2Hotspot.y];
     
-    //Logging added by James for Grouping Objects
-    [[ServerCommunicationController sharedManager] logComputerGroupingObjects: @"Group" :object1 :object2 : groupObjects:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+    //Maintain a list of current groupings, with the subject as a key. Currently only supports two objects
     
-    //maintain a list of current groupings, with the subject as a key. currently only supports two objects
-    
-    //get the current groupings of the objects
+    //Get the current groupings of the objects
     NSMutableArray *object1Groups = [currentGroupings objectForKey:object1];
     NSMutableArray *object2Groups = [currentGroupings objectForKey:object2];
     
     if (!object1Groups) //if there already exists some groupings add the new grouping
         object1Groups = [[NSMutableArray alloc] init];
+    
     [object1Groups addObject:object2];
 
     if (!object2Groups) //if there already exists some groupings add the new grouping
-        object2Groups = [[NSMutableArray alloc] init];
+    object2Groups = [[NSMutableArray alloc] init];
     [object2Groups addObject:object1];
     
     [currentGroupings setValue:object1Groups forKey:object1];
@@ -4030,29 +3794,23 @@ BOOL wasPathFollowed = false;
     [bookView stringByEvaluatingJavaScriptFromString:groupObjects];
 }
 
-
 /*
  * Calls the JS function to ungroup two objects.
  */
--(void) ungroupObjects:(NSString* )object1 :(NSString*) object2 {
-    NSString* ungroup = [NSString stringWithFormat:@"ungroupObjects(%@, %@)", object1, object2];
-
-    //Logging added by James for Grouping Objects
-    //[[ServerCommunicationController sharedManager] logComputerGroupingObjects: @"Ungroup" :object1 :object2 : ungroup:bookTitle :chapterTitle :currentPage :currentSentence :currentStep ];
+- (void)ungroupObjects:(NSString *)object1 :(NSString *)object2 {
+    NSString *ungroup = [NSString stringWithFormat:@"ungroupObjects(%@, %@)", object1, object2];
     
-    //get the current groupings of the objects
+    //Get the current groupings of the objects
     NSMutableArray *object1Groups = [currentGroupings objectForKey:object1];
     NSMutableArray *object2Groups = [currentGroupings objectForKey:object2];
     
     if ([object1Groups containsObject:object2]) {
         [object1Groups removeObject:object2];
         [currentGroupings setValue:object1Groups forKey:object1];
-        //add the array back
     }
     if ([object2Groups containsObject:object1]) {
         [object2Groups removeObject:object1];
         [currentGroupings setValue:object2Groups forKey:object2];
-        //add the array back
     }
     
     [bookView stringByEvaluatingJavaScriptFromString:ungroup];
@@ -4061,25 +3819,20 @@ BOOL wasPathFollowed = false;
 /*
  * Calls the JS function to ungroup two objects.
  */
--(void) ungroupObjectsAndStay:(NSString* )object1 :(NSString*) object2 {
-    NSString* ungroup = [NSString stringWithFormat:@"ungroupObjectsAndStay(%@, %@)", object1, object2];
-    
-    //Logging added by James for Grouping Objects
-    //[[ServerCommunicationController sharedManager] logComputerGroupingObjects: @"Ungroup" :object1 :object2 : ungroup:bookTitle :chapterTitle :currentPage :[NSString stringWithFormat: @"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat: @"%lu", (unsigned long)currentStep]];
-    
-    //get the current groupings of the objects
+- (void)ungroupObjectsAndStay:(NSString *)object1 :(NSString *)object2 {
+    NSString *ungroup = [NSString stringWithFormat:@"ungroupObjectsAndStay(%@, %@)", object1, object2];
+
+    //Get the current groupings of the objects
     NSMutableArray *object1Groups = [currentGroupings objectForKey:object1];
     NSMutableArray *object2Groups = [currentGroupings objectForKey:object2];
     
     if ([object1Groups containsObject:object2]) {
         [object1Groups removeObject:object2];
         [currentGroupings setValue:object1Groups forKey:object1];
-        //add the array back
     }
     if ([object2Groups containsObject:object1]) {
         [object2Groups removeObject:object1];
         [currentGroupings setValue:object2Groups forKey:object2];
-        //add the array back
     }
     
     [bookView stringByEvaluatingJavaScriptFromString:ungroup];
@@ -4088,44 +3841,40 @@ BOOL wasPathFollowed = false;
 /*
  * Call JS code to cause the object to disappear, then calculate where it needs to re-appear and call the JS code to make
  * it re-appear at the new location.
- * TODO: Figure out how to deal with instances of transferGrouping + consumeAndReplenishSupply
  */
-- (void) consumeAndReplenishSupply:(NSString*)disappearingObject {
+- (void)consumeAndReplenishSupply:(NSString *)disappearingObject {
     //Replenish supply of disappearing object only if allowed
     if (replenishSupply) {
         //Move the object to the "appear" hotspot location. This means finding the hotspot that specifies this information for the object, and also finding the relationship that links this object to the other object it's supposed to appear at/in.
-        Hotspot* hiddenObjectHotspot = [model getHotspotforObjectWithActionAndRole:disappearingObject :@"appear" :@"subject"];
+        Hotspot *hiddenObjectHotspot = [model getHotspotforObjectWithActionAndRole:disappearingObject :@"appear" :@"subject"];
         
         //Get the relationship between this object and the other object specifying where the object should appear. Even though the call is to a general function, there should only be 1 valid relationship returned.
-        NSMutableArray* relationshipsForHiddenObject = [model getRelationshipForObjectForAction:disappearingObject :@"appear"];
+        NSMutableArray *relationshipsForHiddenObject = [model getRelationshipForObjectForAction:disappearingObject :@"appear"];
         
         //There should be one and only one valid relationship returned, but we'll double check anyway.
-        if([relationshipsForHiddenObject count] > 0) {
+        if ([relationshipsForHiddenObject count] > 0) {
             Relationship *appearRelation = [relationshipsForHiddenObject objectAtIndex:0];
             
             //Now we have to pull the hotspot at which this relationship occurs.
             //Note: We may at one point want to programmatically determine the role, but for now, we'll hard code it in.
-            Hotspot* appearHotspot = [model getHotspotforObjectWithActionAndRole:[appearRelation object2Id] :@"appear" :@"object"];
+            Hotspot *appearHotspot = [model getHotspotforObjectWithActionAndRole:[appearRelation object2Id] :@"appear" :@"object"];
             
             //Make sure that the hotspot was found and returned.
-            if(appearHotspot != nil) {
+            if (appearHotspot != nil) {
                 //Use the hotspot returned to calculate the location at which the disappearing object should appear.
                 //The two hotspots need to match up, so we need to figure out how far away the top-left corner of the disappearing object needs to be from the location it needs to appear at.
                 CGPoint appearLocation = [self getHotspotLocation:appearHotspot];
                 
                 //Next we have to move the apple to that location. Need the pixel location of the hotspot of the disappearing object.
                 //Again, double check to make sure this isn't nil.
-                if(hiddenObjectHotspot != nil) {
+                if (hiddenObjectHotspot != nil) {
                     CGPoint hiddenObjectHotspotLocation = [self getHotspotLocation:hiddenObjectHotspot];
                     
                     //With both hotspot pixel values we can calcuate the distance between the top-left corner of the hidden object and it's hotspot.
                     CGPoint change = [self calculateDeltaForMovingObjectAtPoint:hiddenObjectHotspotLocation];
                     
-                    //Logging added by James for Object Disappear
-                    [[ServerCommunicationController sharedManager] logComputerDisappearObject: @"Appear Object":disappearingObject :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                    
                     //Now move the object taking into account the difference in change.
-                    [self moveObject:disappearingObject :appearLocation :change :false:@"None"];
+                    [self moveObject:disappearingObject :appearLocation :change :false];
                 }
             }
             else {
@@ -4139,12 +3888,7 @@ BOOL wasPathFollowed = false;
     }
     //Otherwise, just make the object disappear
     else {
-        
-        NSString* hideObj = [NSString stringWithFormat:@"document.getElementById('%@').style.display = 'none';", disappearingObject];
-        
-        //Logging added by James for Object Disappear
-        [[ServerCommunicationController sharedManager] logComputerDisappearObject: @"Disappear Object":disappearingObject :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-        
+        NSString *hideObj = [NSString stringWithFormat:@"document.getElementById('%@').style.display = 'none';", disappearingObject];
         [bookView stringByEvaluatingJavaScriptFromString:hideObj];
     }
 }
@@ -4153,12 +3897,12 @@ BOOL wasPathFollowed = false;
  * Calls the JS function to draw each individual hotspot in the array provided
  * with the color specified.
  */
--(void) drawHotspots:(NSMutableArray *)hotspots :(NSString *)color{
-    for(Hotspot* hotspot in hotspots) {
+- (void)drawHotspots:(NSMutableArray *)hotspots :(NSString *)color{
+    for (Hotspot *hotspot in hotspots) {
         CGPoint hotspotLoc = [self getHotspotLocation:hotspot];
         
-        if(hotspotLoc.x != -1) {
-            NSString* drawHotspot = [NSString stringWithFormat:@"drawHotspot(%f, %f, \"%@\")",
+        if (hotspotLoc.x != -1) {
+            NSString *drawHotspot = [NSString stringWithFormat:@"drawHotspot(%f, %f, \"%@\")",
                                      hotspotLoc.x, hotspotLoc.y, color];
             [bookView stringByEvaluatingJavaScriptFromString:drawHotspot];
         }
@@ -4169,43 +3913,43 @@ BOOL wasPathFollowed = false;
  * Returns the pixel location of the hotspot based on the location of the image and the relative location of the
  * hotspot to that image.
  */
-- (CGPoint) getHotspotLocation:(Hotspot*) hotspot {
+- (CGPoint)getHotspotLocation:(Hotspot *)hotspot {
     //Get the height and width of the image.
-    NSString* requestImageHeight = [NSString stringWithFormat:@"%@.offsetHeight", [hotspot objectId]];
-    NSString* requestImageWidth = [NSString stringWithFormat:@"%@.offsetWidth", [hotspot objectId]];
+    NSString *requestImageHeight = [NSString stringWithFormat:@"%@.offsetHeight", [hotspot objectId]];
+    NSString *requestImageWidth = [NSString stringWithFormat:@"%@.offsetWidth", [hotspot objectId]];
     
     float imageWidth = [[bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
     float imageHeight = [[bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
     
-    //if image height and width are 0 then the image doesn't exist on this page.
-    if(imageWidth > 0 && imageHeight > 0) {
+    //If image height and width are 0 then the image doesn't exist on this page.
+    if (imageWidth > 0 && imageHeight > 0) {
         //Get the location of the top left corner of the image.
-        NSString* requestImageTop = [NSString stringWithFormat:@"%@.offsetTop", [hotspot objectId]];
-        NSString* requestImageLeft = [NSString stringWithFormat:@"%@.offsetLeft", [hotspot objectId]];
+        NSString *requestImageTop = [NSString stringWithFormat:@"%@.offsetTop", [hotspot objectId]];
+        NSString *requestImageLeft = [NSString stringWithFormat:@"%@.offsetLeft", [hotspot objectId]];
         
-        NSString* imageTop = [bookView stringByEvaluatingJavaScriptFromString:requestImageTop];
-        NSString* imageLeft = [bookView stringByEvaluatingJavaScriptFromString:requestImageLeft];
+        NSString *imageTop = [bookView stringByEvaluatingJavaScriptFromString:requestImageTop];
+        NSString *imageLeft = [bookView stringByEvaluatingJavaScriptFromString:requestImageLeft];
         
         //Check to see if the locations returned are in percentages. If they are, change them to pixel values based on the size of the screen.
         NSRange rangePercentTop = [imageTop rangeOfString:@"%"];
         NSRange rangePercentLeft = [imageLeft rangeOfString:@"%"];
         float locY, locX;
         
-        if(rangePercentLeft.location != NSNotFound) {
+        if (rangePercentLeft.location != NSNotFound) {
             locX = ([imageLeft floatValue] / 100.0 * [bookView frame].size.width);
         }
         else
             locX = [imageLeft floatValue];
         
-        if(rangePercentTop.location != NSNotFound) {
+        if (rangePercentTop.location != NSNotFound) {
             locY = ([imageTop floatValue] / 100.0 * [bookView frame].size.height);
         }
         else
             locY = [imageTop floatValue];
         
         //Now we've got the location of the top left corner of the image, the size of the image and the relative position of the hotspot. Need to calculate the pixel location of the hotspot and call the js to draw the hotspot.
-        float hotspotX = locX  + (imageWidth * ([hotspot location].x / 100.0) );
-        float hotspotY = locY + (imageHeight * ([hotspot location].y / 100.0) );
+        float hotspotX = locX  + (imageWidth * ([hotspot location].x / 100.0));
+        float hotspotY = locY + (imageHeight * ([hotspot location].y / 100.0));
         
         return CGPointMake(hotspotX, hotspotY);
     }
@@ -4216,10 +3960,10 @@ BOOL wasPathFollowed = false;
 /*
  * Returns the hotspot location in pixels based on the object image size
  */
--(CGPoint) getHotspotLocationOnImage:(Hotspot*) hotspot {
+- (CGPoint)getHotspotLocationOnImage:(Hotspot *)hotspot {
     //Get the width and height of the object image
-    NSString* requestImageHeight = [NSString stringWithFormat:@"%@.height", [hotspot objectId]];
-    NSString* requestImageWidth = [NSString stringWithFormat:@"%@.width", [hotspot objectId]];
+    NSString *requestImageHeight = [NSString stringWithFormat:@"%@.height", [hotspot objectId]];
+    NSString *requestImageWidth = [NSString stringWithFormat:@"%@.width", [hotspot objectId]];
     
     float imageHeight = [[bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
     float imageWidth = [[bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
@@ -4236,7 +3980,7 @@ BOOL wasPathFollowed = false;
 /*
  * Returns the waypoint location in pixels based on the background size
  */
--(CGPoint) getWaypointLocation:(Waypoint*) waypoint {
+- (CGPoint)getWaypointLocation:(Waypoint *)waypoint {
     //Get position of waypoint in pixels based on the background size
     CGPoint waypointLoc = [waypoint location];
     CGFloat waypointX = waypointLoc.x / 100.0 * [bookView frame].size.width;
@@ -4251,12 +3995,12 @@ BOOL wasPathFollowed = false;
  * This function is used when simulating the locations of objects, since we can't pull the
  * current location and size of the image for this.
  */
--(CGPoint) calculateHotspotLocationBasedOnBoundingBox:(Hotspot*)hotspot :(CGRect) boundingBox {
+- (CGPoint)calculateHotspotLocationBasedOnBoundingBox:(Hotspot *)hotspot :(CGRect)boundingBox {
     float imageWidth = boundingBox.size.width;
     float imageHeight = boundingBox.size.height;
     
     //if image height and width are 0 then the image doesn't exist on this page.
-    if(imageWidth > 0 && imageHeight > 0) {
+    if (imageWidth > 0 && imageHeight > 0) {
         float locX = boundingBox.origin.x;
         float locY = boundingBox.origin.y;
         
@@ -4268,7 +4012,6 @@ BOOL wasPathFollowed = false;
     }
     
     return CGPointMake(-1, -1);
-    
 }
 
 //Needed so the Controller gets the touch events.
@@ -4287,26 +4030,23 @@ BOOL wasPathFollowed = false;
  * of the interaction is checked against the current sentence before moving on to the next sentence. If the manipulation
  * is correct, then it will move on to the next sentence. If the manipulation is not current, then feedback will be provided.
  */
--(IBAction)pressedNext:(id)sender {
+- (IBAction)pressedNext:(id)sender {
+    [[ServerCommunicationController sharedInstance] logPressNextInManipulationActivity:manipulationContext];
     
-    NSString *preAudio = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(preaudio)"]];
+//    NSString *preAudio = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(preaudio)"]];
+    
     if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
         // If the user pressed next
         if ([[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
-            // Destroy the timer to avoid playing the previous sound
-            //[timer invalidate];
-            //timer = nil;
             IntroductionClass.currentIntroStep++;
             
             if (IntroductionClass.currentIntroStep > IntroductionClass.totalIntroSteps) {
-                [self loadNextPage]; //logging done in loadNextPage
+                [self loadNextPage];
             }
             else {
                 // Load the next step
                 [IntroductionClass loadIntroStep:bookView:self: currentSentence];
                 [self setupCurrentSentenceColor];
-                
-                //add logging: next intro step
             }
         }
     }
@@ -4321,47 +4061,41 @@ BOOL wasPathFollowed = false;
         {
             [self.playaudioClass stopPlayAudioFile];
             currentSentence = 1;
-            [self loadNextPage]; //logging done in loadNextPage
+            
+            manipulationContext.sentenceNumber = currentSentence;
+            manipulationContext.sentenceText = currentSentenceText;
+            
+            [self loadNextPage];
         }
     }
     else {
-        NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
-        NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
+        NSString *actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
+        NSString *sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
 
-        if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) &&
-            ([sentenceClass containsString: @"sentence actionSentence"] ||
-             [sentenceClass containsString: @"sentence IMactionSentence"]))
-        {
+        if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && ([sentenceClass containsString: @"sentence actionSentence"] || [sentenceClass containsString: @"sentence IMactionSentence"])) {
             //Reset allRelationships arrray
             if ([allRelationships count]) {
                 [allRelationships removeAllObjects];
             }
             
             //Get steps for current sentence
-            NSMutableArray* currSolSteps = [self returnCurrentSolutionSteps];
+            NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
             
-            PossibleInteraction* interaction;
+            PossibleInteraction *interaction;
             NSMutableArray *interactions = [[NSMutableArray alloc]init ];
             
-            if (currSolSteps.count!=0) {
-                
-                for (ActionStep* currSolStep in currSolSteps) {
-                    
-                    //[allRelationships addObject:@"dummydata"];
-                    
+            if (currSolSteps.count != 0) {
+                for (ActionStep *currSolStep in currSolSteps) {
                     interaction = [self convertActionStepToPossibleInteraction:currSolStep];
                     [interactions addObject:interaction];
-                    Relationship* relationshipBetweenObjects = [[Relationship alloc] initWithValues:[currSolStep object1Id] :[currSolStep action] :[currSolStep stepType] :[currSolStep object2Id]];
+                    Relationship *relationshipBetweenObjects = [[Relationship alloc] initWithValues:[currSolStep object1Id] :[currSolStep action] :[currSolStep stepType] :[currSolStep object2Id]];
                     [allRelationships addObject:relationshipBetweenObjects];
                 }
                 
-                
-                //Relationship* newrel = [[Relationship alloc] initWithValues:[currSolStep object1Id] :[currSolStep action] :[currSolStep stepType] :[currSolStep objectId2]];
-                
                 //Populate the menu data source and expand the menu.
-                [self populateMenuDataSource:interactions:allRelationships];
+                [self populateMenuDataSource:interactions :allRelationships];
                 
-                //add subview to hide story
+                //Add subview to hide story
                 IMViewMenu = [[UIView alloc] initWithFrame:[bookView frame]];
                 IMViewMenu.backgroundColor = [UIColor whiteColor];
                 UILabel *IMinstructions = [[UILabel alloc] initWithFrame:CGRectMake(200, 10, IMViewMenu.frame.size.width, 40)];
@@ -4371,69 +4105,59 @@ BOOL wasPathFollowed = false;
                 IMinstructions.textAlignment = NSTextAlignmentCenter;
                 IMinstructions.textColor = [UIColor blackColor];
                 IMinstructions.font = [UIFont fontWithName:@"GillSans" size:28];
+                
                 [IMViewMenu addSubview:IMinstructions];
-                IMViewMenu.backgroundColor =  [UIColor colorWithRed: 165.0/255.0 green: 203.0/255.0 blue:231.0/255.0 alpha: 1.0];
-                //[UIColor colorWithPatternImage: [self getBackgroundImage]];
-                //add sentence instructions
+                IMViewMenu.backgroundColor = [UIColor colorWithRed:165.0/255.0 green:203.0/255.0 blue:231.0/255.0 alpha:1.0];
+                
+                //Add sentence instructions
                 [[self view] addSubview:IMViewMenu];
                 
-                //expand menu
+                //Expand menu
                 [self expandMenu];
                 [IMViewMenu bringSubviewToFront:IMinstructions];
             }
-            else
-            {
-                //move to next sentence
-                //Logging added by James for User pressing the Next button
-                [[ServerCommunicationController sharedManager] logUserNextButtonPressed:@"Next" :@"Tap" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                
-                //added for logging
-                NSString *tempLastSentence = [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence];
-                
+            else {
                 //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
                 if (currentSentence > 0) {
                     currentIdea++;
+                    manipulationContext.ideaNumber = currentIdea;
                 }
                 
                 currentSentence++;
-                currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence]];
+                currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d')", currentSentence]];
+                
+                manipulationContext.sentenceNumber = currentSentence;
+                manipulationContext.sentenceText = currentSentenceText;
+                [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText context:manipulationContext];
                 
                 //currentSentence is 1 indexed.
-                if(currentSentence > totalSentences) {
+                if (currentSentence > totalSentences) {
                     [self loadNextPage];
-                    //logging done in loadNextPage
                 }
                 else {
                     //Set up current sentence appearance and solution steps
                     [self setupCurrentSentence];
                     [self colorSentencesUponNext];
-                    
-                    //Logging added by James for Computer moving to next sentence
-                    [[ServerCommunicationController sharedManager] logNextSentenceNavigation:@"Next Button" :tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :@"Next Sentence" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-                    
-                     [self playCurrentSentenceAudio];
-                    
-                    
+
+                    [self playCurrentSentenceAudio];
                 }
             }
-            
         }
         else if (stepsComplete || numSteps == 0 || !IntroductionClass.allowInteractions) {
-            [[ServerCommunicationController sharedManager] logUserNextButtonPressed:@"Next" :@"Tap" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-            
-            //added for logging
-            NSString *tempLastSentence = [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence];
-            
-            //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
             if (currentSentence > 0) {
                 currentIdea++;
+                manipulationContext.ideaNumber = currentIdea;
             }
             
             currentSentence++;
-            currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence]];
+            currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d')", currentSentence]];
+            
+            manipulationContext.sentenceNumber = currentSentence;
+            manipulationContext.sentenceText = currentSentenceText;
+            [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText context:manipulationContext];
 
             //currentSentence is 1 indexed
-            if(currentSentence > totalSentences) {
+            if (currentSentence > totalSentences) {
                 if (conditionSetup.appMode == ITS && [currentPageId rangeOfString:@"Intro"].location == NSNotFound && ![chapterTitle isEqualToString:@"Introduction to The Best Farm"] && [bookTitle rangeOfString:@"The Circulatory System"].location == NSNotFound) {
                     [self showPageStatistics]; //show popup window with page statistics
                 }
@@ -4454,164 +4178,182 @@ BOOL wasPathFollowed = false;
                 [self setupCurrentSentence];
                 [self colorSentencesUponNext];
                 
-                [[ServerCommunicationController sharedManager] logNextSentenceNavigation:@"Next Button" :tempLastSentence : [NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :@"Next Sentence" :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
                 [self playCurrentSentenceAudio];
-               
             }
         }
         else {
+            [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Press Next" context:manipulationContext];
+            
             //Play noise if not all steps have been completed
-            [self.playaudioClass playErrorNoise:bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+            [self playErrorNoise];
         }
     }
 }
 
+- (void)playErrorNoise {
+    [self.playaudioClass playErrorNoise];
+    
+    [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:@"Error Noise" inLanguage:@"NULL" ofType:@"Play Error Noise" :manipulationContext];
+}
+
 - (void)playCurrentSentenceAudio {
-  
     NSString *sentenceAudioFile = nil;
     
     //Only play sentence audio if system is reading
-    if (conditionSetup.reader == SYSTEM_READER) {
+    if (conditionSetup.reader == SYSTEM) {
         //If we are on the first or second manipulation page of The Contest, play the audio of the current sentence
         if ([chapterTitle isEqualToString:@"The Contest"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-            if((conditionSetup.language ==BILINGUAL)) {
-                sentenceAudioFile = [NSString stringWithFormat:@"BFEC%d.m4a",currentSentence];
+            if ((conditionSetup.language == BILINGUAL)) {
+                sentenceAudioFile = [NSString stringWithFormat:@"BFEC%d.m4a", currentSentence];
             }
             else {
-                sentenceAudioFile = [NSString stringWithFormat:@"BFTC%d.m4a",currentSentence];
+                sentenceAudioFile = [NSString stringWithFormat:@"BFTC%d.m4a", currentSentence];
             }
         }
         
         //If we are on the first or second manipulation page of Why We Breathe, play the audio of the current sentence
         if ([chapterTitle isEqualToString:@"Why We Breathe"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
-            if((conditionSetup.language ==BILINGUAL)) {
-                sentenceAudioFile = [NSString stringWithFormat:@"CPQR%d.m4a",currentSentence];
+            if ((conditionSetup.language == BILINGUAL)) {
+                sentenceAudioFile = [NSString stringWithFormat:@"CPQR%d.m4a", currentSentence];
             }
             else {
-                sentenceAudioFile = [NSString stringWithFormat:@"CWWB%d.m4a",currentSentence];
+                sentenceAudioFile = [NSString stringWithFormat:@"CWWB%d.m4a", currentSentence];
             }
         }
         
         //If we are on the first or second manipulation page of The Lopez Family, play the current sentence
         if ([chapterTitle isEqualToString:@"The Lopez Family"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
-            if(conditionSetup.language ==BILINGUAL) {
-                sentenceAudioFile = [NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3",currentSentence];
+            if (conditionSetup.language == BILINGUAL) {
+                sentenceAudioFile = [NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3", currentSentence];
             }
             else {
-                sentenceAudioFile = [NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3",currentSentence];
+                sentenceAudioFile = [NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3", currentSentence];
             }
         }
         //If we are on the first or second manipulation page of The Lucky Stone, play the current sentence
         if ([chapterTitle isEqualToString:@"The Lucky Stone"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-            if(conditionSetup.language ==BILINGUAL) {
-                sentenceAudioFile = [NSString stringWithFormat:@"TheLuckyStoneS%dS.mp3",currentSentence];
+            if (conditionSetup.language == BILINGUAL) {
+                sentenceAudioFile = [NSString stringWithFormat:@"TheLuckyStoneS%dS.mp3", currentSentence];
             }
             else {
-                sentenceAudioFile = [NSString stringWithFormat:@"TheLuckyStoneS%dE.mp3",currentSentence];
+                sentenceAudioFile = [NSString stringWithFormat:@"TheLuckyStoneS%dE.mp3", currentSentence];
             }
         }
         
         //If we are on the first or second manipulation page of The Naughty Monkey, play the current sentence
         if ([chapterTitle isEqualToString:@"The Naughty Monkey"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-            if(conditionSetup.language ==BILINGUAL) {
-                sentenceAudioFile = [NSString stringWithFormat:@"TheNaughtyMonkeyS%dS.mp3",currentSentence];
+            if (conditionSetup.language == BILINGUAL) {
+                sentenceAudioFile = [NSString stringWithFormat:@"TheNaughtyMonkeyS%dS.mp3", currentSentence];
             }
             else {
-                sentenceAudioFile = [NSString stringWithFormat:@"TheNaughtyMonkeyS%dE.mp3",currentSentence];
+                sentenceAudioFile = [NSString stringWithFormat:@"TheNaughtyMonkeyS%dE.mp3", currentSentence];
             }
         }
         
         //If we are on the first or second manipulation page of How Do Objects Move, play the current sentence
         if ([chapterTitle isEqualToString:@"How do Objects Move?"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-            if(conditionSetup.language ==BILINGUAL) {
-                sentenceAudioFile = [NSString stringWithFormat:@"HowDoObjectsMoveS%dS.mp3",currentSentence];
+            if (conditionSetup.language == BILINGUAL) {
+                sentenceAudioFile = [NSString stringWithFormat:@"HowDoObjectsMoveS%dS.mp3", currentSentence];
             }
             else {
-                sentenceAudioFile = [NSString stringWithFormat:@"HowDoObjectsMoveS%dE.mp3",currentSentence];
+                sentenceAudioFile = [NSString stringWithFormat:@"HowDoObjectsMoveS%dE.mp3", currentSentence];
             }
         }
         
         //If we are on the first or second manipulation page of The Navajo Hogan, play the current sentence
         if ([chapterTitle isEqualToString:@"The Navajo Hogan"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
-            if(conditionSetup.language ==BILINGUAL) {
-                sentenceAudioFile = [NSString stringWithFormat:@"TheNavajoHoganS%dS.mp3",currentSentence];
+            if (conditionSetup.language == BILINGUAL) {
+                sentenceAudioFile = [NSString stringWithFormat:@"TheNavajoHoganS%dS.mp3", currentSentence];
             }
             else {
-                sentenceAudioFile = [NSString stringWithFormat:@"TheNavajoHoganS%dE.mp3",currentSentence];
+                sentenceAudioFile = [NSString stringWithFormat:@"TheNavajoHoganS%dE.mp3", currentSentence];
             }
         }
         
         //If we are on the first or second manipulation page of Native Intro, play the current sentence
         if ([chapterTitle isEqualToString:@"Introduction to Native American Homes"] && ([currentPageId rangeOfString:@"PM"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-            if(conditionSetup.language ==BILINGUAL) {
-                sentenceAudioFile = [NSString stringWithFormat:@"NativeIntroS%dS.mp3",currentSentence];
+            if (conditionSetup.language == BILINGUAL) {
+                sentenceAudioFile = [NSString stringWithFormat:@"NativeIntroS%dS.mp3", currentSentence];
             }
             else {
-                sentenceAudioFile = [NSString stringWithFormat:@"NativeIntroS%dE.mp3",currentSentence];
+                sentenceAudioFile = [NSString stringWithFormat:@"NativeIntroS%dE.mp3", currentSentence];
             }
         }
         
         //If we are on the first or second manipulation page of Key Ingredients, play the current sentence
         if ([chapterTitle isEqualToString:@"Key Ingredients"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
-            if(conditionSetup.language ==BILINGUAL) {
-                sentenceAudioFile = [NSString stringWithFormat:@"KeyIngredientsS%dS.mp3",currentSentence];
+            if (conditionSetup.language == BILINGUAL) {
+                sentenceAudioFile = [NSString stringWithFormat:@"KeyIngredientsS%dS.mp3", currentSentence];
             }
             else {
-                sentenceAudioFile = [NSString stringWithFormat:@"KeyIngredientsS%dE.mp3",currentSentence];
+                sentenceAudioFile = [NSString stringWithFormat:@"KeyIngredientsS%dE.mp3", currentSentence];
             }
         }
         
         //If we are on the first or second manipulation page of Disasters Intro, play the current sentence
         if ([chapterTitle isEqualToString:@"Introduction to Natural Disasters"] && ([currentPageId rangeOfString:@"PM"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
-            if(conditionSetup.language ==BILINGUAL) {
-                sentenceAudioFile = [NSString stringWithFormat:@"DisastersIntroS%dS.mp3",currentSentence];
+            if (conditionSetup.language == BILINGUAL) {
+                sentenceAudioFile = [NSString stringWithFormat:@"DisastersIntroS%dS.mp3", currentSentence];
             }
             else {
-                sentenceAudioFile = [NSString stringWithFormat:@"DisastersIntroS%dE.mp3",currentSentence];
+                sentenceAudioFile = [NSString stringWithFormat:@"DisastersIntroS%dE.mp3", currentSentence];
             }
         }
         
         //If we are on the first or second manipulation page of The Moving Earth, play the current sentence
         if ([chapterTitle isEqualToString:@"The Moving Earth"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
-            if(conditionSetup.language ==BILINGUAL) {
-                sentenceAudioFile = [NSString stringWithFormat:@"TheMovingEarthS%dS.mp3",currentSentence];
+            if (conditionSetup.language == BILINGUAL) {
+                sentenceAudioFile = [NSString stringWithFormat:@"TheMovingEarthS%dS.mp3", currentSentence];
             }
             else {
-                sentenceAudioFile = [NSString stringWithFormat:@"TheMovingEarthS%dE.mp3",currentSentence];
+                sentenceAudioFile = [NSString stringWithFormat:@"TheMovingEarthS%dE.mp3", currentSentence];
             }
         }
     }
     
     NSMutableArray *array = [NSMutableArray array];
-    Chapter* chapter = [book getChapterWithTitle:chapterTitle];
+    Chapter *chapter = [book getChapterWithTitle:chapterTitle];
     ScriptAudio *script = nil;
     
     if ([ConditionSetup sharedInstance].condition == EMBRACE) {
         script = [chapter embraceScriptFor:[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence]];
-    } else {
+    }
+    else {
         script = [chapter controlScriptFor:[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence]];
     }
+    
     NSArray *preAudio = nil;
     NSArray *postAudio = nil;
      
     if ([ConditionSetup sharedInstance].language == ENGLISH) {
         preAudio = script.engPreAudio;
         postAudio = script.engPostAudio;
-    } else {
+    }
+    else {
         preAudio = script.bilingualPreAudio;
         postAudio = script.bilingualPostAudio;
     }
    
     if (preAudio != nil) {
         [array addObjectsFromArray:preAudio];
+        
+        for (NSString *preAudioFile in preAudio) {
+            [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:[preAudioFile stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Pre-Sentence Script Audio" :manipulationContext];
+        }
     }
     
     if (sentenceAudioFile != nil) {
         [array addObject:sentenceAudioFile];
+        
+        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:[sentenceAudioFile stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Sentence Audio" :manipulationContext];
     }
     
     if (postAudio != nil) {
         [array addObjectsFromArray:postAudio];
+        
+        for (NSString *postAudioFile in postAudio) {
+            [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:[postAudioFile stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Post-Sentence Script Audio" :manipulationContext];
+        }
     }
     
     if ([array count] > 0) {
@@ -4622,27 +4364,27 @@ BOOL wasPathFollowed = false;
 /*
  * Swaps all sentences on the current page for the versions with the specified level of complexity
  */
--(void) swapSentencesOnPage:(double)simple :(double)medium :(double)complex {
-    Chapter* chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
-    PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
-    NSMutableArray* alternateSentences = [[PMActivity alternateSentences] objectForKey:currentPageId]; //get alternate sentences for current page
+- (void)swapSentencesOnPage:(double)simple :(double)medium :(double)complex {
+    Chapter *chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
+    PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
+    NSMutableArray *alternateSentences = [[PMActivity alternateSentences] objectForKey:currentPageId]; //get alternate sentences for current page
     
     if ([alternateSentences count] > 0) {
         //Get the number of sentences on the page
-        NSString* requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('sentence').length"];
+        NSString *requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('sentence').length"];
         int sentenceCount = [[bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount] intValue];
         
         //Get the id number of the last sentence on the page
-        NSString* requestLastSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[%d - 1].id", sentenceCount];
-        NSString* lastSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
+        NSString *requestLastSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[%d - 1].id", sentenceCount];
+        NSString *lastSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
         int lastSentenceIdNumber = [[lastSentenceId substringFromIndex:1] intValue];
         
         //Get the id number of the first sentence on the page
-        NSString* requestFirstSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[0].id"];
-        NSString* firstSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestFirstSentenceId];
+        NSString *requestFirstSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[0].id"];
+        NSString *firstSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestFirstSentenceId];
         int firstSentenceIdNumber = [[firstSentenceId substringFromIndex:1] intValue];
         
-        NSString* removeSentenceString;
+        NSString *removeSentenceString;
         
         //Remove all sentences on page
         for (int i = firstSentenceIdNumber; i <= lastSentenceIdNumber; i++) {
@@ -4653,11 +4395,11 @@ BOOL wasPathFollowed = false;
             }
         }
         
-        NSString* addSentenceString;
+        NSString *addSentenceString;
         int sentenceNumber = 1; //used for assigning sentence ids
         int previousIdeaNum = 0; //used for making sure same idea does not get repeated
         
-        NSMutableArray* ideaNums = [PMSolution getIdeaNumbers]; //get list of idea numbers on the page
+        NSMutableArray *ideaNums = [PMSolution getIdeaNumbers]; //get list of idea numbers on the page
         
         double sumOfComplexities[3]; //running sum of complexity parameters used to randomly choose complexity
         sumOfComplexities[0] = simple;
@@ -4665,7 +4407,7 @@ BOOL wasPathFollowed = false;
         sumOfComplexities[2] = sumOfComplexities[1] + complex;
         
         //Add alternate sentences associated with each idea
-        for (NSNumber* ideaNum in ideaNums) {
+        for (NSNumber *ideaNum in ideaNums) {
             if ([ideaNum intValue] > previousIdeaNum) {
                 NSUInteger complexity = 0;
                 double generateComplexity = ((double) arc4random() / 0x100000000) * 100; //randomly choose complexity
@@ -4680,10 +4422,10 @@ BOOL wasPathFollowed = false;
                 BOOL foundIdea = false; //flag to check if there is a sentence with the specified complexity for the idea number
                 
                 //Create an array to hold sentences that will be added to the page
-                NSMutableArray* sentencesToAdd = [[NSMutableArray alloc] init];
+                NSMutableArray *sentencesToAdd = [[NSMutableArray alloc] init];
                 
                 //Look for alternate sentences that match the idea number and complexity
-                for (AlternateSentence* altSent in alternateSentences) {
+                for (AlternateSentence *altSent in alternateSentences) {
                     if ([[[altSent ideas] objectAtIndex:0] isEqualToNumber:ideaNum] && [altSent complexity] == complexity) {
                         foundIdea = true;
                         [sentencesToAdd addObject:altSent];
@@ -4694,7 +4436,7 @@ BOOL wasPathFollowed = false;
                 //If a sentence with the specified complexity was not found for the idea number, look for a
                 //sentence with complexity level 2
                 if (!foundIdea) {
-                    for (AlternateSentence* altSent in alternateSentences) {
+                    for (AlternateSentence *altSent in alternateSentences) {
                         if ([[[altSent ideas] objectAtIndex:0] isEqualToNumber:ideaNum] && [altSent complexity] == 2) {
                             foundIdea = true;
                             [sentencesToAdd addObject:altSent];
@@ -4703,25 +4445,25 @@ BOOL wasPathFollowed = false;
                     }
                 }
                 
-                for (AlternateSentence* sentenceToAdd in sentencesToAdd) {
+                for (AlternateSentence *sentenceToAdd in sentencesToAdd) {
                     //Get alternate sentence information
                     BOOL action = [sentenceToAdd actionSentence];
-                    NSString* text = [sentenceToAdd text];
+                    NSString *text = [sentenceToAdd text];
                     
                     //Split sentence text into individual tokens (words)
-                    NSArray* textTokens = [text componentsSeparatedByString:@" "];
+                    NSArray *textTokens = [text componentsSeparatedByString:@" "];
                     
                     //Contains the vocabulary words that appear in the sentence
-                    NSMutableArray* words = [[NSMutableArray alloc] init];
+                    NSMutableArray *words = [[NSMutableArray alloc] init];
                     
                     //Contains the sentence text split around vocabulary words
-                    NSMutableArray* splitText = [[NSMutableArray alloc] init];
+                    NSMutableArray *splitText = [[NSMutableArray alloc] init];
                     
                     //Combines tokens into the split sentence text
-                    NSString* currentSplit = @"";
+                    NSString *currentSplit = @"";
                     
-                    for (NSString* textToken in textTokens) {
-                        NSString* modifiedTextToken = textToken;
+                    for (NSString *textToken in textTokens) {
+                        NSString *modifiedTextToken = textToken;
                         
                         //Replaces the ' character if it exists in the token
                         if ([modifiedTextToken rangeOfString:@"'"].location != NSNotFound) {
@@ -4730,9 +4472,9 @@ BOOL wasPathFollowed = false;
                         
                         BOOL addedWord = false; //whether token contains vocabulary word
                         
-                        for (NSString* vocab in [[Translation translationWords] allKeys]) {
+                        for (NSString *vocab in [[Translation translationWords] allKeys]) {
                             //Match the whole vocabulary word only
-                            NSString* regex = [NSString stringWithFormat:@"\\b%@\\b", vocab];
+                            NSString *regex = [NSString stringWithFormat:@"\\b%@\\b", vocab];
                             
                             //Token contains vocabulary word
                             if ([modifiedTextToken rangeOfString:regex options:NSRegularExpressionSearch].location != NSNotFound) {
@@ -4751,7 +4493,7 @@ BOOL wasPathFollowed = false;
                         //Token does not contain vocabulary word
                         if (!addedWord) {
                             //Add token to current split with a space after it
-                            NSString* textTokenSpace = [NSString stringWithFormat:@"%@ ", modifiedTextToken];
+                            NSString *textTokenSpace = [NSString stringWithFormat:@"%@ ", modifiedTextToken];
                             currentSplit = [currentSplit stringByAppendingString:textTokenSpace];
                         }
                     }
@@ -4759,8 +4501,8 @@ BOOL wasPathFollowed = false;
                     [splitText addObject:currentSplit]; //make sure to add the last split
                     
                     //Create array strings for vocabulary and split text to send to JS function
-                    NSString* wordsArrayString = [words componentsJoinedByString:@"','"];
-                    NSString* splitTextArrayString = [splitText componentsJoinedByString:@"','"];
+                    NSString *wordsArrayString = [words componentsJoinedByString:@"','"];
+                    NSString *splitTextArrayString = [splitText componentsJoinedByString:@"','"];
                     
                     //Add alternate sentence to page
                     addSentenceString = [NSString stringWithFormat:@"addSentence('s%d', %@, ['%@'], ['%@'])", sentenceNumber++, action ? @"true" : @"false", splitTextArrayString, wordsArrayString];
@@ -4772,16 +4514,13 @@ BOOL wasPathFollowed = false;
                     BOOL transference = FALSE;
                     
                     //Count number of user steps for page statistics
-                    for (ActionStep* as in [sentenceToAdd solutionSteps])
-                    {
+                    for (ActionStep *as in [sentenceToAdd solutionSteps]) {
                         if (!([[as stepType] isEqualToString:@"ungroup"] ||
                               [[as stepType] isEqualToString:@"move"] ||
-                              [[as stepType] isEqualToString:@"swapImage"]))
-                        {
+                              [[as stepType] isEqualToString:@"swapImage"])) {
                             //Make sure transference steps don't get counted twice
                             if ([[as stepType] isEqualToString:@"transferAndGroup"] ||
-                                [[as stepType] isEqualToString:@"transferAndDisappear"])
-                            {
+                                [[as stepType] isEqualToString:@"transferAndDisappear"]) {
                                 if (!transference) {
                                     [[pageStatistics objectForKey:currentPageId] addStepForComplexity:([sentenceToAdd complexity] - 1)];
                                     
@@ -4807,7 +4546,6 @@ BOOL wasPathFollowed = false;
     }
 }
 
-
 /*
  * Creates the menuDataSource from the list of possible interactions.
  * This function assumes that the possible interactions are already rank ordered
@@ -4815,7 +4553,7 @@ BOOL wasPathFollowed = false;
  * If more possible interactions than the alloted number max menu items exists
  * the function will stop after the max number of menu items possible.
  */
--(void)populateMenuDataSource:(NSMutableArray*)possibleInteractions : (NSMutableArray*)relationships {
+- (void)populateMenuDataSource:(NSMutableArray *)possibleInteractions :(NSMutableArray *)relationships {
     //Clear the old data source.
     [menuDataSource clearMenuitems];
     
@@ -4823,68 +4561,64 @@ BOOL wasPathFollowed = false;
     //Go through and create a menuItem for every possible interaction
     int interactionNum = 1;
     
-    for(PossibleInteraction* interaction in possibleInteractions) {
-        //dig into simulatepossibleinteractionformenu to log populated menu
-        [self simulatePossibleInteractionForMenuItem: interaction : [relationships objectAtIndex:interactionNum-1]];
-        interactionNum ++;
+    for (PossibleInteraction* interaction in possibleInteractions) {
+        //Dig into simulatePossibleInteractionForMenu to log populated menu
+        [self simulatePossibleInteractionForMenuItem:interaction :[relationships objectAtIndex:interactionNum - 1]];
+        interactionNum++;
         
-        //If the number of interactions is greater than the max number of menu Items allowed, then stop.
-        if(interactionNum > maxMenuItems)
+        //If the number of interactions is greater than the max number of menu items allowed, then stop.
+        if (interactionNum > maxMenuItems)
             break;
     }
 }
 
-/* Clears the highlighting on the scene */
--(void)clearHighlightedObject {
+/*
+ * Clears the highlighting on the scene
+ */
+- (void)clearHighlightedObject {
     NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
     [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
-    
-    //log clear
 }
 
--(void) colorSentencesUponNext {
-    //Color the current sentence black by default
-    NSString* setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence];
+- (void)colorSentencesUponNext {
+    //Set the color of the current sentence to black by default
+    NSString *setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence];
     [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
     
     //Change the opacity to 1
-    NSString* setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, 1)", currentSentence];
+    NSString *setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, 1)", currentSentence];
     [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
     
-    //Set the color to black for the previous sentence also
-    setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence-1];
+    //Set the color of the previous sentence to black
+    setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence - 1];
     [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
     
     //Decrease the opacity of the previous sentence
-    setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, .2)", currentSentence-1];
+    setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, .2)", currentSentence - 1];
     [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
     
     //Get the sentence class
-    NSString* actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
-    NSString* sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
+    NSString *actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
+    NSString *sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
     
-    //If it is an action sentence color it blue
-    if ([sentenceClass  containsString: @"sentence actionSentence"] && ![sentenceClass containsString:@"black"]) {
-        NSString* colorSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
-        [bookView stringByEvaluatingJavaScriptFromString:colorSentence];
-    }
-
-    if ([sentenceClass containsString: @"sentence IMactionSentence"] && ![sentenceClass containsString:@"black"] && conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) {
-        NSString* colorSentence = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
-        [bookView stringByEvaluatingJavaScriptFromString:colorSentence];
+    //If it is a non-black action sentence (i.e., requires user manipulation), then set the color to blue
+    if (![sentenceClass containsString:@"black"]) {
+        if ([sentenceClass containsString: @"sentence actionSentence"] || ([sentenceClass containsString: @"sentence IMactionSentence"] && conditionSetup.condition == EMBRACE && conditionSetup.condition == IM_MODE)) {
+            setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
+            [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
+        }
     }
 }
 
--(void) highlightObject:(NSString*)object :(double)delay {
-    if([model getAreaWithId:object]) {
-        //[self buildPath:object];
+- (void)highlightObject:(NSString *)object :(double)delay {
+    if ([model getAreaWithId:object]) {
         //Highlight the tapped object
-        NSString* highlight = [NSString stringWithFormat:@"highlightArea('%@')", object];
+        NSString *highlight = [NSString stringWithFormat:@"highlightArea('%@')", object];
         [bookView stringByEvaluatingJavaScriptFromString:highlight];
     }
     else {
         //Highlight the tapped object
-        NSString* highlight = [NSString stringWithFormat:@"highlightObjectOnWordTap(%@)", object];
+        NSString *highlight = [NSString stringWithFormat:@"highlightObjectOnWordTap(%@)", object];
         [bookView stringByEvaluatingJavaScriptFromString:highlight];
     }
 
@@ -4892,25 +4626,20 @@ BOOL wasPathFollowed = false;
     [self performSelector:@selector(clearHighlightedObject) withObject:nil afterDelay:delay];
 }
 
-- (void) viewDidDisappear:(BOOL)animated {
-    //[timer invalidate];
-    //timer = nil;
-}
-
-- (NSString*) getEnglishTranslation: (NSString*)sentence {
-    NSArray* keys = [[Translation translationWords] allKeysForObject:sentence];
+- (NSString *)getEnglishTranslation:(NSString *)sentence {
+    NSArray *keys = [[Translation translationWords] allKeysForObject:sentence];
+    
     if (keys != nil && [keys count] > 0)
         return [keys objectAtIndex:0];
     else
         return @"Translation not found";
 }
 
-#pragma mark - PieContextualMenuDelegate
 /*
  * Expands the contextual menu, allowing the user to select a possible grouping/ungrouping.
  * This function is called after the data source is created.
  */
-- (void) expandMenu {
+- (void)expandMenu {
     menu = [[PieContextualMenu alloc] initWithFrame:[bookView frame]];
     [menu addGestureRecognizer:tapRecognizer];
     
@@ -4943,67 +4672,84 @@ BOOL wasPathFollowed = false;
     NSMutableArray *menuItemImages =[[NSMutableArray alloc] init];
     NSMutableArray *menuItemRelationships = [[NSMutableArray alloc] init];
     
-    for (int x=0; x<numMenuItems; x++) {
+    for (int x = 0; x < numMenuItems; x++) {
         MenuItemDataSource *tempMenuItem = [menuDataSource dataObjectAtIndex:x];
         PossibleInteraction *tempMenuInteraction =[tempMenuItem interaction];
         Relationship *tempMenuRelationship = [tempMenuItem menuRelationship];
         
-        //[menuItemInteractions addObject:[tempMenuRelationship actionType]];
+        NSString *interactionType;
         
-        if(tempMenuInteraction.interactionType == DISAPPEAR)
-        {
-            [menuItemInteractions addObject:@"Disappear"];
-        }
-        if (tempMenuInteraction.interactionType == UNGROUP)
-        {
-            [menuItemInteractions addObject:@"Ungroup"];
-        }
-        if (tempMenuInteraction.interactionType == GROUP)
-        {
-            [menuItemInteractions addObject:@"Group"];
-        }
-        if (tempMenuInteraction.interactionType == TRANSFERANDDISAPPEAR)
-        {
-            [menuItemInteractions addObject:@"Transfer And Disappear"];
-        }
-        if (tempMenuInteraction.interactionType == TRANSFERANDGROUP)
-        {
-            [menuItemInteractions addObject:@"Transfer And Group"];
-        }
-        if(tempMenuInteraction.interactionType ==NONE)
-        {
-            [menuItemInteractions addObject:@"none"];
+        switch (tempMenuInteraction.interactionType) {
+            case DISAPPEAR:
+                interactionType = @"Disappear";
+                break;
+                
+            case UNGROUP:
+                interactionType = @"Ungroup";
+                break;
+                
+            case GROUP:
+                interactionType = @"Group";
+                break;
+                
+            case TRANSFERANDDISAPPEAR:
+                interactionType = @"Transfer and Disappear";
+                break;
+                
+            case TRANSFERANDGROUP:
+                interactionType = @"Transfer and Group";
+                break;
+                
+            default:
+                interactionType = @"None";
+                break;
         }
         
+        [menuItemInteractions addObject:interactionType];
         [menuItemImages addObject:[NSString stringWithFormat:@"%d", x]];
         
-        for(int i=0; i< [tempMenuItem.images count]; i++)   
-        {
-            MenuItemImage *tempimage =  [tempMenuItem.images objectAtIndex:i];
+        for (int i = 0; i < [tempMenuItem.images count]; i++) {
+            MenuItemImage *tempimage = [tempMenuItem.images objectAtIndex:i];
             [menuItemImages addObject:[tempimage.image accessibilityIdentifier]];
         }
         
         [menuItemRelationships addObject:tempMenuRelationship.action];
     }
     
-    //Logging Added by James for Menu Display
-    [[ServerCommunicationController sharedManager] logComputerDisplayMenuItems : menuItemInteractions : menuItemImages : menuItemRelationships : bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
+    [[ServerCommunicationController sharedInstance] logDisplayMenuWithInteractions:menuItemInteractions objects:menuItemImages relationships:menuItemRelationships context:manipulationContext];
 }
 
-- (BOOL)webView:(UIWebView *)webView2
-shouldStartLoadWithRequest:(NSURLRequest *)request
- navigationType:(UIWebViewNavigationType)navigationType {
+- (BOOL)webView:(UIWebView *)webView2 shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     
     NSString *requestString = [[[request URL] absoluteString] stringByReplacingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
-    //NSLog(requestString);
     
     if ([requestString hasPrefix:@"ios-log:"]) {
-        NSString* logString = [[requestString componentsSeparatedByString:@":#iOS#"] objectAtIndex:1];
+        NSString *logString = [[requestString componentsSeparatedByString:@":#iOS#"] objectAtIndex:1];
         NSLog(@"UIWebView console: %@", logString);
         return NO;
     }
     
     return YES;
+}
+
+- (void)setManipulationContext {
+    manipulationContext.bookTitle = [book title];
+    manipulationContext.chapterTitle = chapterTitle;
+    
+    //currentPageId has format "story<chapter number>-<mode>-<page number>" (e.g., "story1-PM-1")
+    NSArray *currentPageIdComponents = [currentPageId componentsSeparatedByString:@"-"];
+    
+    manipulationContext.chapterNumber = [[[currentPageIdComponents objectAtIndex:0] stringByReplacingOccurrencesOfString:@"story" withString:@""] intValue];
+    manipulationContext.pageNumber = [currentPageIdComponents count] == 3 ? [[currentPageIdComponents objectAtIndex:2] intValue] : 0;
+    
+    if ([[currentPageIdComponents objectAtIndex:1] isEqualToString:@"Intro"]) {
+        manipulationContext.pageMode = @"Intro";
+    }
+    else {
+        manipulationContext.pageMode = [conditionSetup currentMode] == PM_MODE ? @"PM" : @"IM";
+    }
+    
+    manipulationContext.pageLanguage = [conditionSetup returnLanguageEnumtoString:[conditionSetup language]];
 }
 
 @end

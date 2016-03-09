@@ -47,10 +47,6 @@ typedef enum InteractionMode {
 @property (nonatomic, strong) PlayAudioFile *playaudioClass;
 @property (nonatomic, strong) UIViewController *libraryViewController;
 
-- (void) loadAssessmentActivity;
-- (void) loadFirstPage;
-- (void) loadNextPage;
-- (void) loadPage;
-- (UIImage *) getBackgroundImage;
+- (void)loadFirstPage;
 
 @end

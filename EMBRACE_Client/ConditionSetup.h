@@ -21,12 +21,6 @@ typedef enum Language {
     BILINGUAL //English + Spanish
 } Language;
 
-//Defines who should read text
-typedef enum Reader {
-    SYSTEM_READER,
-    USER_READER
-} Reader;
-
 //Different modes of the app
 typedef enum AppMode {
     Authoring, //authoring of epubs
@@ -34,11 +28,17 @@ typedef enum AppMode {
     ITS //intelligent tutoring system
 } AppMode;
 
+//Differentiates system from user
+typedef enum Actor {
+    SYSTEM,
+    USER
+} Actor;
+
 @interface ConditionSetup : NSObject
 
 @property (nonatomic) Condition condition;
 @property (nonatomic) Language language;
-@property (nonatomic) Reader reader;
+@property (nonatomic) Actor reader; //who should read the text
 @property (nonatomic) AppMode appMode;
 @property (nonatomic) Mode currentMode; //PM or IM
 

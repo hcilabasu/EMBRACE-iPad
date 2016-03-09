@@ -21,6 +21,10 @@
 		033FC8691C6C538800CF3850 /* sequences_MCD08.xml in Resources */ = {isa = PBXBuildFile; fileRef = 033FC85F1C6C538800CF3850 /* sequences_MCD08.xml */; };
 		033FC86A1C6C538800CF3850 /* sequences_MCD09.xml in Resources */ = {isa = PBXBuildFile; fileRef = 033FC8601C6C538800CF3850 /* sequences_MCD09.xml */; };
 		033FC86B1C6C538800CF3850 /* sequences_MCD10.xml in Resources */ = {isa = PBXBuildFile; fileRef = 033FC8611C6C538800CF3850 /* sequences_MCD10.xml */; };
+		038BECDC1C88C33F00ECFE28 /* Context.m in Sources */ = {isa = PBXBuildFile; fileRef = 038BECDB1C88C33F00ECFE28 /* Context.m */; };
+		038BECDF1C88C79600ECFE28 /* ManipulationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 038BECDE1C88C79600ECFE28 /* ManipulationContext.m */; };
+		038BECE21C88CC6000ECFE28 /* AssessmentContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 038BECE11C88CC6000ECFE28 /* AssessmentContext.m */; };
+		038BECE91C8956BF00ECFE28 /* StudyContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 038BECE81C8956BF00ECFE28 /* StudyContext.m */; };
 		1A0385061C2B156400A973D8 /* hook_n_key_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0385051C2B156400A973D8 /* hook_n_key_large.png */; };
 		1A0385091C2B1F2500A973D8 /* cilia_inside.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0385071C2B1F2500A973D8 /* cilia_inside.png */; };
 		1A03850A1C2B1F2500A973D8 /* cilia_outside.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0385081C2B1F2500A973D8 /* cilia_outside.png */; };
@@ -2388,8 +2392,8 @@
 		5C62A99A1C854C5900F28BEB /* Rattle_def_S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C62A9911C854C5900F28BEB /* Rattle_def_S.mp3 */; };
 		5C62A99B1C854C5900F28BEB /* Relieved_def_S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C62A9921C854C5900F28BEB /* Relieved_def_S.mp3 */; };
 		5C62A99C1C854C5900F28BEB /* Wisdom_def_S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C62A9931C854C5900F28BEB /* Wisdom_def_S.mp3 */; };
-		5C723D2C1C7C052D0036263A /* Story1-The-Naughty-Monkey-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C723D2B1C7C052D0036263A /* Story1-The-Naughty-Monkey-Intro-E.xhtml */; };
-		5C723D2E1C7C05340036263A /* Story1-The-Naughty-Monkey-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C723D2D1C7C05340036263A /* Story1-The-Naughty-Monkey-Intro-S.xhtml */; };
+		5C723D2C1C7C052D0036263A /* Introduction-to-Naughty-Monkey-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C723D2B1C7C052D0036263A /* Introduction-to-Naughty-Monkey-E.xhtml */; };
+		5C723D2E1C7C05340036263A /* Introduction-to-Naughty-Monkey-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5C723D2D1C7C05340036263A /* Introduction-to-Naughty-Monkey-S.xhtml */; };
 		5C72E4F61C727E2000CE4877 /* TheNavajoHoganQ7A4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C72E4C41C727E2000CE4877 /* TheNavajoHoganQ7A4.mp3 */; };
 		5C72E4F71C727E2000CE4877 /* TheNavajoHoganQ7A3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C72E4C51C727E2000CE4877 /* TheNavajoHoganQ7A3.mp3 */; };
 		5C72E4F81C727E2000CE4877 /* TheNavajoHoganQ7A2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C72E4C61C727E2000CE4877 /* TheNavajoHoganQ7A2.mp3 */; };
@@ -4261,6 +4265,14 @@
 		033FC85F1C6C538800CF3850 /* sequences_MCD08.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_MCD08.xml; sourceTree = "<group>"; };
 		033FC8601C6C538800CF3850 /* sequences_MCD09.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_MCD09.xml; sourceTree = "<group>"; };
 		033FC8611C6C538800CF3850 /* sequences_MCD10.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_MCD10.xml; sourceTree = "<group>"; };
+		038BECDA1C88C33F00ECFE28 /* Context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Context.h; sourceTree = "<group>"; };
+		038BECDB1C88C33F00ECFE28 /* Context.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Context.m; sourceTree = "<group>"; };
+		038BECDD1C88C79600ECFE28 /* ManipulationContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManipulationContext.h; sourceTree = "<group>"; };
+		038BECDE1C88C79600ECFE28 /* ManipulationContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManipulationContext.m; sourceTree = "<group>"; };
+		038BECE01C88CC6000ECFE28 /* AssessmentContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssessmentContext.h; sourceTree = "<group>"; };
+		038BECE11C88CC6000ECFE28 /* AssessmentContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssessmentContext.m; sourceTree = "<group>"; };
+		038BECE71C8956BF00ECFE28 /* StudyContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudyContext.h; sourceTree = "<group>"; };
+		038BECE81C8956BF00ECFE28 /* StudyContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudyContext.m; sourceTree = "<group>"; };
 		1A0385051C2B156400A973D8 /* hook_n_key_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hook_n_key_large.png; sourceTree = "<group>"; };
 		1A0385071C2B1F2500A973D8 /* cilia_inside.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cilia_inside.png; sourceTree = "<group>"; };
 		1A0385081C2B1F2500A973D8 /* cilia_outside.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cilia_outside.png; sourceTree = "<group>"; };
@@ -6698,8 +6710,8 @@
 		5C62A9911C854C5900F28BEB /* Rattle_def_S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Rattle_def_S.mp3; sourceTree = "<group>"; };
 		5C62A9921C854C5900F28BEB /* Relieved_def_S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Relieved_def_S.mp3; sourceTree = "<group>"; };
 		5C62A9931C854C5900F28BEB /* Wisdom_def_S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Wisdom_def_S.mp3; sourceTree = "<group>"; };
-		5C723D2B1C7C052D0036263A /* Story1-The-Naughty-Monkey-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-The-Naughty-Monkey-Intro-E.xhtml"; sourceTree = "<group>"; };
-		5C723D2D1C7C05340036263A /* Story1-The-Naughty-Monkey-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-The-Naughty-Monkey-Intro-S.xhtml"; sourceTree = "<group>"; };
+		5C723D2B1C7C052D0036263A /* Introduction-to-Naughty-Monkey-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Introduction-to-Naughty-Monkey-E.xhtml"; sourceTree = "<group>"; };
+		5C723D2D1C7C05340036263A /* Introduction-to-Naughty-Monkey-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Introduction-to-Naughty-Monkey-S.xhtml"; sourceTree = "<group>"; };
 		5C72E4C41C727E2000CE4877 /* TheNavajoHoganQ7A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNavajoHoganQ7A4.mp3; sourceTree = "<group>"; };
 		5C72E4C51C727E2000CE4877 /* TheNavajoHoganQ7A3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNavajoHoganQ7A3.mp3; sourceTree = "<group>"; };
 		5C72E4C61C727E2000CE4877 /* TheNavajoHoganQ7A2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNavajoHoganQ7A2.mp3; sourceTree = "<group>"; };
@@ -8554,6 +8566,21 @@
 			path = Sequences;
 			sourceTree = "<group>";
 		};
+		038BECE31C89012200ECFE28 /* Log Context */ = {
+			isa = PBXGroup;
+			children = (
+				038BECDA1C88C33F00ECFE28 /* Context.h */,
+				038BECDB1C88C33F00ECFE28 /* Context.m */,
+				038BECDD1C88C79600ECFE28 /* ManipulationContext.h */,
+				038BECDE1C88C79600ECFE28 /* ManipulationContext.m */,
+				038BECE01C88CC6000ECFE28 /* AssessmentContext.h */,
+				038BECE11C88CC6000ECFE28 /* AssessmentContext.m */,
+				038BECE71C8956BF00ECFE28 /* StudyContext.h */,
+				038BECE81C8956BF00ECFE28 /* StudyContext.m */,
+			);
+			name = "Log Context";
+			sourceTree = "<group>";
+		};
 		1A631C671C0E4D3900251CB3 /* EPUBs */ = {
 			isa = PBXGroup;
 			children = (
@@ -10041,6 +10068,7 @@
 				31C5A6801799EFE600A084A3 /* Interaction Model */,
 				311646B2175FD04F00B483F0 /* Student Model */,
 				311646B3175FD05E00B483F0 /* Book Model */,
+				038BECE31C89012200ECFE28 /* Log Context */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -12754,8 +12782,8 @@
 		5CA955561C3237690038FB56 /* Text */ = {
 			isa = PBXGroup;
 			children = (
-				5C723D2D1C7C05340036263A /* Story1-The-Naughty-Monkey-Intro-S.xhtml */,
-				5C723D2B1C7C052D0036263A /* Story1-The-Naughty-Monkey-Intro-E.xhtml */,
+				5C723D2D1C7C05340036263A /* Introduction-to-Naughty-Monkey-S.xhtml */,
+				5C723D2B1C7C052D0036263A /* Introduction-to-Naughty-Monkey-E.xhtml */,
 				5CA955571C3237690038FB56 /* Story1-The-Naughty-Monkey-PM-1.xhtml */,
 				5C5F7CBE1C62BE8000CF70A1 /* Story1-The-Naughty-Monkey-PM-1S.xhtml */,
 				5CA955581C3237690038FB56 /* Story1-The-Naughty-Monkey-PM-2.xhtml */,
@@ -14824,7 +14852,7 @@
 				5C9C0AAB1C573AAA00702FCD /* heartS.m4a in Resources */,
 				5C0ED69B1C752C2F00003B5A /* GettingReadyQ2A4.mp3 in Resources */,
 				1AFD2EF61C8A7A4D004B2D88 /* fallen_tree2.png in Resources */,
-				5C723D2E1C7C05340036263A /* Story1-The-Naughty-Monkey-Intro-S.xhtml in Resources */,
+				5C723D2E1C7C05340036263A /* Introduction-to-Naughty-Monkey-S.xhtml in Resources */,
 				5CD1C1391C3F2E6A00BE9047 /* mrs_pena.png in Resources */,
 				5C9C07A41C57385A00702FCD /* BFCE_2B.m4a in Resources */,
 				5C62A90E1C851D1000F28BEB /* Sniffed_def_E.mp3 in Resources */,
@@ -17546,7 +17574,7 @@
 				5CCD8E4A1C73E73200D2EC2B /* IntroductionToNaturalDisastersQ1A1S.mp3 in Resources */,
 				5C0ED6C51C752C2F00003B5A /* TheBestFarmAwardQ4A1.mp3 in Resources */,
 				5C0ED7071C752C2F00003B5A /* TheWiseOwlQ4A2.mp3 in Resources */,
-				5C723D2C1C7C052D0036263A /* Story1-The-Naughty-Monkey-Intro-E.xhtml in Resources */,
+				5C723D2C1C7C052D0036263A /* Introduction-to-Naughty-Monkey-E.xhtml in Resources */,
 				5CB710141C6C032B0062AD61 /* NativeIntroS4S.mp3 in Resources */,
 				5C9C07A01C57385A00702FCD /* BFCE_22.m4a in Resources */,
 				5DBC032A1C5121AE0030072B /* (null) in Resources */,
@@ -18320,6 +18348,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				038BECDC1C88C33F00ECFE28 /* Context.m in Sources */,
 				C3B66AA11BC33C2D005DF0AC /* LibraryCellView.m in Sources */,
 				5CEEBFA81ACA05F4002AACC4 /* Area.m in Sources */,
 				31953E551729ECC100570087 /* main.m in Sources */,
@@ -18331,6 +18360,7 @@
 				C3B5214C19254B0C003FF639 /* Location.m in Sources */,
 				31953E761729ED5A00570087 /* mztools.c in Sources */,
 				033BC0671C506C0100A1EC14 /* ActivitySequence.m in Sources */,
+				038BECDF1C88C79600ECFE28 /* ManipulationContext.m in Sources */,
 				C3D79468196B1EC9004C26ED /* AlternateImage.m in Sources */,
 				3115B1D41819C532007171E3 /* PossibleInteraction.m in Sources */,
 				5CD7FE3519775C1C007A1E49 /* VocabularyStep.m in Sources */,
@@ -18352,6 +18382,7 @@
 				31953E8F1729EE6E00570087 /* LibraryView.m in Sources */,
 				5D1168DB1C5A982B00536340 /* PMViewController.m in Sources */,
 				5C466ADC192293290056EA4B /* Translation.m in Sources */,
+				038BECE21C88CC6000ECFE28 /* AssessmentContext.m in Sources */,
 				3193753A174185E000782C2B /* NavigationController.m in Sources */,
 				3193753D1741A76F00782C2B /* HelpViewController.m in Sources */,
 				3154982A174EAA22004521B1 /* Student.m in Sources */,
@@ -18380,6 +18411,7 @@
 				1AD3CC891A251CBA00E18B1C /* BuildHTMLString.m in Sources */,
 				31161433179DE85E00655221 /* Relationship.m in Sources */,
 				C3B5215219254BA2003FF639 /* ActionStep.m in Sources */,
+				038BECE91C8956BF00ECFE28 /* StudyContext.m in Sources */,
 				C3B5215319254BA2003FF639 /* PhysicalManipulationSolution.m in Sources */,
 				310908EC17DE90CA004590A2 /* MovementConstraint.m in Sources */,
 				5CC854E719FAF37F00910237 /* ConditionSetup.m in Sources */,
