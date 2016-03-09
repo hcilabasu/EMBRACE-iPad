@@ -25,7 +25,7 @@
         <relationship obj1Id="woman" can="moveTo" action="group" obj2Id="table"/>
         <relationship obj1Id="woman" can="pickUp" action="group" obj2Id="baby"/>
         
-        <relationship obj1Id="rattle_IM" can="getIn" action="group" obj2Id="nest_IM"/>
+        <relationship obj1Id="rattle_IM" can="getIn" action="group" obj2Id="tree_IM"/>
         <relationship obj1Id="nest_IM" can="getIn" action="group" obj2Id="tree_IM"/>
         
         <relationship obj1Id="martinIM" can="standBy" action="group" obj2Id="carIM"/>
@@ -57,11 +57,8 @@
         <relationship obj1Id="keys_on_hookIM" can="on" action="group" obj2Id="keys_on_hookIM"/>
         <relationship obj1Id="keys_IM" can="off" action="group" obj2Id="hook_IM"/>
         
-        <relationship obj1Id="tree_IM" can="visit" action="group" obj2Id="dog_IM"/>
+        <relationship obj1Id="dog_IM" can="visit" action="group" obj2Id="tree_IM"/>
         <relationship obj1Id="rabbit_IM" can="visit" action="group" obj2Id="tree_IM"/>
-        
-        
-        
         
     </relationships>
 </metadata>

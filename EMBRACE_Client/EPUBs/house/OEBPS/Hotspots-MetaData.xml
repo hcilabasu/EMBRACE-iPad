@@ -34,8 +34,7 @@
         <hotspot objId="woman" action="moveTo" role="subject" x="0%" y="100%"/>
         <hotspot objId="woman" action="pickUp" role="subject" x="50%" y="50%"/>
         
-        
-        <hotspot objId="rattle_IM" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="rattle_IM" action="getIn" role="object" x="50%" y="50%"/>
         <hotspot objId="nest_IM" action="getIn" role="object" x="50%" y="50%"/>
         <hotspot objId="tree_IM" action="getIn" role="subject" x="60%" y="42%"/>
         
@@ -80,7 +79,7 @@
         <hotspot objId="cribdoor_IM" action="closeDoor" role="subject" x="50%" y="50%"/>
         <hotspot objId="cribclosed_IM" action="closeDoor" role="object" x="50%" y="50%"/>
         
-        <hotspot objId="dog_IM" action="visit" role="object" x="100%" y="100%"/>
+        <hotspot objId="dog_IM" action="visit" role="subject" x="100%" y="100%"/>
         <hotspot objId="rabbit_IM" action="visit" role="subject" x="100%" y="100%"/>
         
         <hotspot objId="tree_IM" action="visit" role="object" x="100%" y="100%"/>
