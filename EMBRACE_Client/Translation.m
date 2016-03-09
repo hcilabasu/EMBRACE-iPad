@@ -88,6 +88,9 @@
                  
                  @"spin": @"gire",
                  
+                 @"monkey": @"chango",
+                 @"naughty": @"travieso",
+                 
                  @"algonquian" : @"algonquian",
                  @"algonquians" : @"algonquians",
                  @"arrow" : @"flecha",
@@ -220,6 +223,9 @@
                  @"pets": @[@"dog", @"rabbit"],
                  @"rattle": @"rattle",
                  @"rosa": @"woman",
+                 
+                 @"monkey": @"monkey",
+                 @"naughty": @"naughty",
                  
                  @"algonquian" : @"algonquian",
                  @"algonquians" : @"algonquians",
