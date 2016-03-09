@@ -499,7 +499,7 @@ BOOL wasPathFollowed = false;
  * If the activity has multiple pages, it would load the next page in the activity.
  * Otherwise, it will load the next chaper.
  */
--(void) loadNextPage {
+- (void) loadNextPage {
     
     [self.playaudioClass stopPlayAudioFile];
     
@@ -1012,7 +1012,6 @@ BOOL wasPathFollowed = false;
  * Tap gesture
  */
 - (IBAction)tapGesturePerformed:(UITapGestureRecognizer *)recognizer {
-    
     CGPoint location = [recognizer locationInView:self.view];
     
     if ([IntroductionClass.introductions objectForKey:chapterTitle] && [[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:@"menu"]) {
@@ -1231,6 +1230,8 @@ BOOL wasPathFollowed = false;
                     if([englishSentenceText containsString: [currSolStep object1Id]] &&
                        (currentSentence == sentenceIDNum) && !stepsComplete)
                     {
+                        [[ServerCommunicationController sharedInstance] logTapWord:sentenceText :manipulationContext];
+                        
                         [self incrementCurrentStep];
                         [self playIntroVocabWord: sentenceText : englishSentenceText : currSolStep];
                     }
@@ -1270,12 +1271,14 @@ BOOL wasPathFollowed = false;
                 }
                 else if([[Translation translationWords] objectForKey:englishSentenceText])
                 {
+                    [[ServerCommunicationController sharedInstance] logTapWord:englishSentenceText :manipulationContext];
                     [self.playaudioClass stopPlayAudioFile];
                     [self playAudioForVocabWord: englishSentenceText : spanishExt];
                 }
             }
             else if([[Translation translationWords] objectForKey:englishSentenceText])
             {
+                [[ServerCommunicationController sharedInstance] logTapWord:englishSentenceText :manipulationContext];
                 [self.playaudioClass stopPlayAudioFile];
                 [self playAudioForVocabWord: englishSentenceText : spanishExt];
             }
@@ -1338,21 +1341,20 @@ BOOL wasPathFollowed = false;
     [self highlightImageForText:englishSentenceText];
 }
 
--(void) playIntroVocabWord: (NSString*) sentenceText : (NSString*) englishSentenceText : (ActionStep *) currSolStep
+- (void) playIntroVocabWord: (NSString *) sentenceText : (NSString *) englishSentenceText : (ActionStep *) currSolStep
 {
-    //Logging added by James for Word Audio
-    [[ServerCommunicationController sharedManager] logComputerPlayAudio: @"Play Word" : IntroductionClass.languageString :[NSString stringWithFormat:@"%@%@.m4a",sentenceText,IntroductionClass.languageString]  :bookTitle :chapterTitle : currentPage :currentSentence : currentSentenceText: currentStep : currentIdea];
-    
         if(conditionSetup.language == ENGLISH)
         {
             //Play En audio
-            bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"_def_E"]];
+            bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3", englishSentenceText, @"_def_E"]];
             
             if (!success)
             {
                 //if error try m4a format
-                 [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
+                 [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.m4a", englishSentenceText, @"E"]];
             }
+           
+            [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:@"English" ofType:@"Play Word with Definition" :manipulationContext];
         }
         else
         {
@@ -1362,17 +1364,15 @@ BOOL wasPathFollowed = false;
             if (!success)
             {
                 //if error try m4a format
-                [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"]];
+                [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.m4a" ,englishSentenceText, @"S"]];
             }
+            
+            [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:@"Spanish" ofType:@"Play Word with Definition" :manipulationContext];
         }
-        
-        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:@"English" ofType:@"Play Word with Definition" :manipulationContext];
-        
+    
         [self highlightImageForText:englishSentenceText];
-        
-        currentSentence++;
-        currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d')", currentSentence]];
-        
+    
+    
         // This delay is needed in order to be able to play the last definition on a vocabulary page
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW,([self.playaudioClass audioPlayer].duration)*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             [IntroductionClass loadVocabStep:bookView:self:currentSentence:chapterTitle];
@@ -1394,8 +1394,13 @@ BOOL wasPathFollowed = false;
                 [self highlightImageForText:englishSentenceText];
             
                 currentSentence++;
-                currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence]];
+                currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d')", currentSentence]];
                 stepsComplete = NO;
+                
+                manipulationContext.sentenceNumber = currentSentence;
+                manipulationContext.sentenceText = currentSentenceText;
+                
+                [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText context:manipulationContext];
             
                 [self performSelector:@selector(colorSentencesUponNext) withObject:nil afterDelay:([self.playaudioClass audioPlayer].duration)];
             }
@@ -1472,6 +1477,7 @@ BOOL wasPathFollowed = false;
 - (IBAction)swipeGesturePerformed:(UISwipeGestureRecognizer *)recognizer {
     //Emergency swipe to bypass the vocab intros
     if ([IntroductionClass.vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
+        [[ServerCommunicationController sharedInstance] logEmergencySwipe:manipulationContext];
         [self.playaudioClass stopPlayAudioFile];
         [self loadNextPage];
     }
@@ -4054,7 +4060,11 @@ BOOL wasPathFollowed = false;
             if(currentSentence > totalSentences) {
                 [self.playaudioClass stopPlayAudioFile];
                 currentSentence = 1;
-                [self loadNextPage]; //logging done in loadNextPage
+                
+                manipulationContext.sentenceNumber = currentSentence;
+                manipulationContext.sentenceText = currentSentenceText;
+                
+                [self loadNextPage];
             }
         else if (currentSentence == totalSentences &&
                  [bookTitle rangeOfString:@"Introduction to EMBRACE - Unknown"].location != NSNotFound)
