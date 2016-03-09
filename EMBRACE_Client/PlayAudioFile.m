@@ -92,6 +92,9 @@
 -(void) stopPlayAudioFile
 {
     [self.audioPlayer stop];
+    [self.audioPlayerAfter stop];
+    self.audioPlayer = nil;
+    self.audioPlayerAfter = nil;
 }
 
 

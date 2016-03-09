@@ -313,7 +313,7 @@ BOOL wasPathFollowed = false;
         }
         
         //Remove any PM specific sentence instructions
-        if(conditionSetup.currentMode == IM_MODE)
+        if(conditionSetup.currentMode == IM_MODE || conditionSetup.condition == CONTROL)
         {
             NSString* requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('PM_TEXT').length"];
             int sentenceCount = [[bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount] intValue];
@@ -520,6 +520,9 @@ BOOL wasPathFollowed = false;
  * Otherwise, it will load the next chaper.
  */
 -(void) loadNextPage {
+    
+    [self.playaudioClass stopPlayAudioFile];
+    
     //stores last page
     NSString *tempLastPage = currentPage;
     currentPage = [book getNextPageForChapterAndActivity:chapterTitle :PM_MODE :currentPage];
@@ -1070,6 +1073,7 @@ BOOL wasPathFollowed = false;
  * Tap gesture. Currently only used for menu selection.
  */
 - (IBAction)tapGesturePerformed:(UITapGestureRecognizer *)recognizer {
+    
     CGPoint location = [recognizer locationInView:self.view];
     
     if([IntroductionClass.introductions objectForKey:chapterTitle] && [[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:@"menu"]) {
@@ -1299,20 +1303,27 @@ BOOL wasPathFollowed = false;
                 if([[currSolStep stepType] isEqualToString:@"tapWord"])
                 {
                     if([englishSentenceText containsString: [currSolStep object1Id]] &&
-                       (currentSentence == sentenceIDNum))
+                       (currentSentence == sentenceIDNum) && !stepsComplete)
                     {
-                    
-                        [self playIntroVocabWord:sentenceText:englishSentenceText:currSolStep];
-                    
                         [self incrementCurrentStep];
+                        [self playIntroVocabWord: sentenceText : englishSentenceText : currSolStep];
                     }
+                    else
+                    {
+                        //pressed wrong word
+                    }
+                }
+                else
+                {
+                    //incorrect solution step created for vocabulary page
                 }
             }
             else
             {
-                //no more vocab steps
+                //no vocab steps
             }
         }
+        //Taps on vocab word in story
         else if ([currentPageId rangeOfString:@"-PM"].location != NSNotFound)
         {
             //Get steps for current sentence
@@ -1334,12 +1345,14 @@ BOOL wasPathFollowed = false;
                 }
                 else if([[Translation translationWords] objectForKey:englishSentenceText])
                 {
-                    [self playAudioForVocabWord:englishSentenceText :spanishExt];
+                    [self.playaudioClass stopPlayAudioFile];
+                    [self playAudioForVocabWord: englishSentenceText : spanishExt];
                 }
             }
             else if([[Translation translationWords] objectForKey:englishSentenceText])
             {
-                [self playAudioForVocabWord:englishSentenceText :spanishExt];
+                [self.playaudioClass stopPlayAudioFile];
+                [self playAudioForVocabWord: englishSentenceText : spanishExt];
             }
         }
         
@@ -1411,26 +1424,24 @@ BOOL wasPathFollowed = false;
     
         if(conditionSetup.language == ENGLISH)
         {
-            //Play En audio twice
+            //Play En audio
             bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"_def_E"]];
             
-            if (!success) {
-                
-                //if error try mp4 format
+            if (!success)
+            {
+                //if error try m4a format
                  [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
-                
             }
         }
         else
         {
-            //Play En audio twice
+            //Play Sp Audio
             bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"_def_S"]];
         
-            if (!success) {
-                
+            if (!success)
+            {
                 //if error try m4a format
                 [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"S"]];
-
             }
         }
         
@@ -1438,29 +1449,32 @@ BOOL wasPathFollowed = false;
         
         currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence]];
         
-        //IntroductionClass.currentVocabStep++;
-        
         // This delay is needed in order to be able to play the last definition on a vocabulary page
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW,([self.playaudioClass audioPlayer].duration)*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             [IntroductionClass loadVocabStep:bookView:self:currentSentence:chapterTitle];
            
-            //Play En audio
-            bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"_def_E"]];
-            
-            //
-            if (!success)
+            //if audioPlayer is nil then we have returned to library view and should not play audio
+            if ([self.playaudioClass audioPlayer] != nil)
             {
-                //if error try m4a format
-                [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
                 
+                //Play En audio
+                bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"_def_E"]];
+            
+                //
+                if (!success)
+                {
+                    //if error try m4a format
+                    [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
+                }
+            
+                [self highlightImageForText:englishSentenceText];
+            
+                currentSentence++;
+                currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence]];
+                stepsComplete = NO;
+            
+                [self performSelector:@selector(colorSentencesUponNext) withObject:nil afterDelay:([self.playaudioClass audioPlayer].duration)];
             }
-            
-            [self highlightImageForText:englishSentenceText];
-            
-            currentSentence++;
-            currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(%@%d)", @"s",currentSentence]];
-            
-            [self performSelector:@selector(colorSentencesUponNext) withObject:nil afterDelay:([self.playaudioClass audioPlayer].duration)];
         });
 }
 
@@ -1549,7 +1563,7 @@ BOOL wasPathFollowed = false;
     
     //Emergency swipe to bypass the vocab intros
     if ([IntroductionClass.vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
-        [_audioPlayer stop];
+        [self.playaudioClass stopPlayAudioFile];
         [self loadNextPage];
     }
     
@@ -4298,14 +4312,14 @@ BOOL wasPathFollowed = false;
     }
     else if ([currentPageId rangeOfString:@"-Intro"].location != NSNotFound) {
             if(currentSentence > totalSentences) {
-                [_audioPlayer stop];
+                [self.playaudioClass stopPlayAudioFile];
                 currentSentence = 1;
                 [self loadNextPage]; //logging done in loadNextPage
             }
         else if (currentSentence == totalSentences &&
                  [bookTitle rangeOfString:@"Introduction to EMBRACE - Unknown"].location != NSNotFound)
         {
-            [_audioPlayer stop];
+            [self.playaudioClass stopPlayAudioFile];
             currentSentence = 1;
             [self loadNextPage]; //logging done in loadNextPage
         }
@@ -4920,7 +4934,6 @@ BOOL wasPathFollowed = false;
         //Calculate the radius of the circle
         radius = (menuBoundingBoxPM -  (itemRadiusPM * 2)) / 2;
     }
-    
     
     [menu expandMenu:radius];
     menuExpanded = TRUE;
