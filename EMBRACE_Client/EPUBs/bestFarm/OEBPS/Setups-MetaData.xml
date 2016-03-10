@@ -10,7 +10,6 @@
         <move obj1Id="farmer" action="getIn" waypointId="farmerNearPig"/>
     </story>
     <story title="Everyone Helps" page_id="story6-PM-2">
-        <group obj1Id="owl" action="visit" obj2Id="farmer"/>
         <move obj1Id="chicken" action="leave" waypointId="nearPigPen"/>
         <move obj1Id="pig" action="getIn" waypointId="pigNearHorse"/>
     </story>
