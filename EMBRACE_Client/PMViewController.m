@@ -4380,6 +4380,8 @@ BOOL wasPathFollowed = false;
                     } else {
                         if ([ConditionSetup sharedInstance].reader == USER) {
                             audio = @"IntroDyadReads_IM";
+                        } else {
+                            audio = nil;
                         }
                     }
                 } else {
@@ -4395,8 +4397,10 @@ BOOL wasPathFollowed = false;
                 if ([ConditionSetup sharedInstance].language == BILINGUAL) {
                     audio = [NSString stringWithFormat:@"%@_S",audio];
                 }
-                audio = [NSString stringWithFormat:@"%@.mp3",audio];
-                preAudio = [NSArray arrayWithObject:audio];
+                if (audio) {
+                    audio = [NSString stringWithFormat:@"%@.mp3",audio];
+                    preAudio = [NSArray arrayWithObject:audio];
+                }
             }
         }
         
