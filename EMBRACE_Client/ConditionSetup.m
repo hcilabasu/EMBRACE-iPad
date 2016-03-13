@@ -31,7 +31,7 @@
     if (self = [super init]) {
         condition = EMBRACE;
         language = ENGLISH;
-        reader = USER;
+        reader = SYSTEM;
         appMode = Study;
         currentMode = PM_MODE;
     }
