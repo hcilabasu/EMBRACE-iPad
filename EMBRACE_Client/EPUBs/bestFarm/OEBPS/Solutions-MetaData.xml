@@ -286,8 +286,7 @@
         <idea number="49"/>
         <idea number="50">
             <step number="49">
-                <ungroup obj1Id="owl" action="leave" obj2Id="farmer"/>
-                <move obj1Id="farmer" action="getIn" waypointId="farmerInHayloft"/>
+                <ungroupAndStay obj1Id="owl" action="leave" obj2Id="farmer"/>
             </step>
             <step number="50">
                 <group obj1Id="owl" action="moveTo" obj2Id="chicken"/>
@@ -331,8 +330,7 @@
         <idea number="58"/>
         <idea number="59">
             <step number="57">
-                <ungroup obj1Id="chicken" action="leave" obj2Id="owl"/>
-                <move obj1Id="owl" action="getIn" waypointId="owlInHayloft"/>
+                <ungroupAndStay obj1Id="chicken" action="leave" obj2Id="owl"/>
             </step>
             <step number="58">
                 <group obj1Id="chicken" action="open" obj2Id="pen2"/>

@@ -4,7 +4,6 @@
         <relationship obj1Id="apple" can="appear" action="appear" obj2Id="appleBasket"/>
         <relationship obj1Id="cart" can="hook" action="group" obj2Id="tractor"/>
         <relationship obj1Id="cart" can="unhook" action="ungroup" obj2Id="tractor"/>
-        <!--<relationship obj1Id="cat" can="drink" action="group" obj2Id="bucket"/>-->
         <relationship obj1Id="cat" can="finish" action="group" obj2Id="bucket"/>
         <relationship obj1Id="cat" can="getIn" action="group" obj2Id="nest"/>
         <relationship obj1Id="cat" can="getOff" action="ungroup" obj2Id="cow"/>
@@ -27,8 +26,6 @@
         <relationship obj1Id="cat" can="leave" action="ungroup" obj2Id="farmer"/>
         <relationship obj1Id="cat" can="moveTo" action="group" obj2Id="chicken"/>
         <relationship obj1Id="catIM" can="flip" action="group" obj2Id="bucketIM"/>
-        <relationship obj1Id="cat" can="visit" action="group" obj2Id="bucket"/>
-        <!--<relationship obj1Id="cat" can="visit" action="group" obj2Id="chicken"/>-->
         <relationship obj1Id="chicken" can="count" action="group" obj2Id="egg"/>
         <relationship obj1Id="chicken" can="getIn" action="group" obj2Id="cart"/>
         <relationship obj1Id="chicken" can="getIn" action="group" obj2Id="chickenNest"/>
@@ -53,11 +50,6 @@
         <relationship obj1Id="chicken" can="leave" action="ungroup" obj2Id="pen2"/>
         <relationship obj1Id="chicken" can="open" action="group" obj2Id="pen2"/>
         <relationship obj1Id="chicken" can="stopCount" action="ungroup" obj2Id="egg"/>
-        <relationship obj1Id="chicken" can="visit" action="group" obj2Id="egg"/>
-        <relationship obj1Id="chicken" can="visit" action="group" obj2Id="egg4"/>
-        <!--<relationship obj1Id="chicken" can="visit" action="group" obj2Id="cat"/>-->
-        <relationship obj1Id="chicken" can="visit" action="group" obj2Id="cow"/>
-        <relationship obj1Id="chicken" can="visit" action="group" obj2Id="farmer"/>
         <relationship obj1Id="cow" can="getIn" action="group" obj2Id="cart"/>
         <relationship obj1Id="cow" can="getIn" action="group" obj2Id="pen"/>
         <relationship obj1Id="cow" can="getOut" action="ungroup" obj2Id="cart"/>
@@ -67,7 +59,6 @@
         <relationship obj1Id="cow" can="putDown" action="ungroup" obj2Id="apple"/>
         <relationship obj1Id="cow" can="receive" action="disappear" obj2Id="apple"/>
         <relationship obj1Id="cow" can="receive" action="disappear" obj2Id="hay"/>
-        <!--<relationship obj1Id="cow" can="visit" action="group" obj2Id="horse"/>-->
         <relationship obj1Id="farmer" can="close" action="group" obj2Id="corralDoor"/>
         <relationship obj1Id="farmer" can="close" action="group" obj2Id="pen1"/>
         <relationship obj1Id="farmer" can="close" action="group" obj2Id="pen2"/>
@@ -106,8 +97,6 @@
         <relationship obj1Id="farmer" can="letGo" action="ungroup" obj2Id="pen2"/>
         <relationship obj1Id="farmer" can="letGo" action="ungroup" obj2Id="pen3"/>
         <relationship obj1Id="farmer" can="letGo" action="ungroup" obj2Id="pen4"/>
-        <!--<relationship obj1Id="farmer" can="moveTo" action="group" obj2Id="cat"/>-->
-        <!--<relationship obj1Id="farmer" can="moveTo" action="group" obj2Id="goat"/>-->
         <relationship obj1Id="farmer" can="open" action="group" obj2Id="corralDoor"/>
         <relationship obj1Id="farmer" can="open" action="group" obj2Id="pen1"/>
         <relationship obj1Id="farmer" can="open" action="group" obj2Id="pen2"/>
@@ -130,7 +119,6 @@
         <relationship obj1Id="farmer" can="release" action="ungroup" obj2Id="cart"/>
         <relationship obj1Id="farmer" can="release" action="ungroup" obj2Id="comb"/>
         <relationship obj1Id="farmer" can="stopComb" action="ungroup" obj2Id="goat"/>
-        <!--<relationship obj1Id="farmer" can="visit" action="group" obj2Id="cat"/>-->
         <relationship obj1Id="goat" can="comb" action="disappear" obj2Id="comb"/>
         <relationship obj1Id="goat" can="getIn" action="group" obj2Id="cart"/>
         <relationship obj1Id="goat" can="getIn" action="group" obj2Id="pen"/>
@@ -192,7 +180,6 @@
         <relationship obj1Id="pig" can="getOut" action="ungroup" obj2Id="cart"/>
         <relationship obj1Id="pig" can="getOut" action="ungroup" obj2Id="pen"/>
         <relationship obj1Id="pig" can="give" action="ungroup" obj2Id="apple"/>
-        <relationship obj1Id="pig" can="moveTo" action="group" obj2Id="horse"/>
         <relationship obj1Id="pig" can="pickUp" action="group" obj2Id="apple"/>
         <relationship obj1Id="pig" can="putDown" action="ungroup" obj2Id="apple"/>
         <!--<relationship obj1Id="pig" can="receive" action="disappear" obj2Id="apple"/>-->
@@ -201,14 +188,6 @@
         <relationship obj1Id="pumpkin" can="appear" action="appear" obj2Id="pumpkinPatch"/>
         <relationship obj1Id="pumpkin" can="getIn" action="group" obj2Id="cart"/>
         <relationship obj1Id="pumpkin" can="getOut" action="ungroup" obj2Id="cart"/>
-        <relationship obj1Id="sheep" can="getIn" action="group" obj2Id="cart"/>
-        <relationship obj1Id="sheep" can="getIn" action="group" obj2Id="pen"/>
-        <relationship obj1Id="sheep" can="getOut" action="ungroup" obj2Id="cart"/>
-        <relationship obj1Id="sheep" can="getOut" action="ungroup" obj2Id="pen"/>
-        <relationship obj1Id="sheep" can="pickUp" action="group" obj2Id="apple"/>
-        <relationship obj1Id="sheep" can="putDown" action="ungroup" obj2Id="apple"/>
-        <relationship obj1Id="sheep" can="receive" action="disappear" obj2Id="apple"/>
-        <relationship obj1Id="sheep" can="receive" action="disappear" obj2Id="pumpkin"/>
     </relationships>
 </metadata>
 
