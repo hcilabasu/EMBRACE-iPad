@@ -88,13 +88,16 @@
                  
                  @"spin": @"gire",
                  
+                 @"monkey": @"chango",
+                 @"naughty": @"travieso",
+                 
                  @"algonquian" : @"algonquian",
                  @"algonquians" : @"algonquians",
                  @"arrow" : @"flecha",
                  @"arrows" : @"flechas",
                  @"bark" : @"corteza",
                  @"bows" : @"arcos",
-                 @"branches " : @"ramas",
+                 @"branches" : @"ramas",
                  @"buffalo" : @"búfalo",
                  @"canoes" : @"canoas",
                  @"carving" : @"tallar",
@@ -221,13 +224,16 @@
                  @"rattle": @"rattle",
                  @"rosa": @"woman",
                  
+                 @"monkey": @"monkey",
+                 @"naughty": @"naughty",
+                 
                  @"algonquian" : @"algonquian",
                  @"algonquians" : @"algonquians",
                  @"arrow" : @"arrow",
                  @"arrows" : @"arrows",
                  @"bark" : @"bark",
                  @"bows" : @"bows",
-                 @"branches " : @"branches ",
+                 @"branches" : @"branches",
                  @"buffalo" : @"buffalo",
                  @"canoes" : @"canoes",
                  @"carving" : @"carving",

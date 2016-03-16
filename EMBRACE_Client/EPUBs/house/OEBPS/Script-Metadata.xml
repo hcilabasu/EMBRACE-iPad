@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <scriptAudio>
+        
+        <story title="The Lopez Family" activity_id="story1-PM-1">
+            
+            <sentence number="0">
+                
+                <embrace>
+                    <preAudio>
+                        <english>
+                            <audio seq="1">Intro</audio>
+                        </english>
+                      
+                    </preAudio>
+                    
+                </embrace>
+                <control>
+                    <preAudio>
+                        <english>
+                            <audio seq="1">Intro</audio>
+                        </english>
+                        
+                    </preAudio>
+                    
+                </control>
+                
+            </sentence>
+        </story>
+    </scriptAudio>
+</metadata>

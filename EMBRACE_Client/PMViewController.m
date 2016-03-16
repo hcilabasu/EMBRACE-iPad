@@ -4274,12 +4274,13 @@ BOOL wasPathFollowed = false;
         }
         
         //If we are on the first or second manipulation page of The Naughty Monkey, play the current sentence
-        if ([chapterTitle isEqualToString:@"The Naughty Monkey"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+        if ([chapterTitle isEqualToString:@"The Naughty Monkey"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound) &&
+            currentSentence != 1) {
             if (conditionSetup.language == BILINGUAL) {
-                sentenceAudioFile = [NSString stringWithFormat:@"TheNaughtyMonkeyS%dS.mp3", currentSentence];
+                sentenceAudioFile = [NSString stringWithFormat:@"TheNaughtyMonkeyS%dS.mp3", currentSentence - 2];
             }
             else {
-                sentenceAudioFile = [NSString stringWithFormat:@"TheNaughtyMonkeyS%dE.mp3", currentSentence];
+                sentenceAudioFile = [NSString stringWithFormat:@"TheNaughtyMonkeyS%dE.mp3", currentSentence - 2 ];
             }
         }
         
@@ -4344,9 +4345,26 @@ BOOL wasPathFollowed = false;
         }
     }
     
+    NSString *introAudio = nil;
+    if ([currentPageId rangeOfString:@"-Intro"].location != NSNotFound &&
+        [currentPageId rangeOfString:@"story1"].location != NSNotFound &&
+        ([chapterTitle isEqualToString:@"The Lucky Stone"])) {
+            introAudio = @"splWordsIntro";
+
+    }
+    
     NSMutableArray *array = [NSMutableArray array];
     Chapter *chapter = [book getChapterWithTitle:chapterTitle];
     ScriptAudio *script = nil;
+    
+    if (introAudio) {
+        
+        if ([ConditionSetup sharedInstance].language == BILINGUAL) {
+            introAudio = [NSString stringWithFormat:@"%@_S",introAudio];
+        }
+        introAudio = [NSString stringWithFormat:@"%@.mp3",introAudio];
+        [array addObject:introAudio];
+    }
     
     if ([ConditionSetup sharedInstance].condition == EMBRACE) {
         script = [chapter embraceScriptFor:[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence]];
@@ -4368,6 +4386,48 @@ BOOL wasPathFollowed = false;
     }
    
     if (preAudio != nil) {
+        
+        // Check if the preAudio is an introduction.
+        // If it is an introduction add appropriate extension
+        if (preAudio.count == 1) {
+            NSString *audio = [preAudio objectAtIndex:0];
+            if ([audio containsString:@"Intro"]) {
+                
+                if ([ConditionSetup sharedInstance].condition == EMBRACE) {
+                    if ([ConditionSetup sharedInstance].currentMode == PM_MODE) {
+                        if ([ConditionSetup sharedInstance].reader == USER) {
+                            audio = @"IntroDyadReads_PM";
+                        } else {
+                            audio = @"IntroIpadReads_PM";
+                        }
+                    } else {
+                        if ([ConditionSetup sharedInstance].reader == USER) {
+                            audio = @"IntroDyadReads_IM";
+                        } else {
+                            audio = nil;
+                        }
+                    }
+                } else {
+                    if ([ConditionSetup sharedInstance].reader == USER) {
+                        audio = @"IntroDyadReads_R";
+                    } else {
+                        audio = @"IntroIpadReads_R";
+                    }
+                }
+                
+                
+                
+                if ([ConditionSetup sharedInstance].language == BILINGUAL) {
+                    audio = [NSString stringWithFormat:@"%@_S",audio];
+                }
+                if (audio) {
+                    audio = [NSString stringWithFormat:@"%@.mp3",audio];
+                    preAudio = [NSArray arrayWithObject:audio];
+                }
+            }
+        }
+        
+        
         [array addObjectsFromArray:preAudio];
         
         for (NSString *preAudioFile in preAudio) {

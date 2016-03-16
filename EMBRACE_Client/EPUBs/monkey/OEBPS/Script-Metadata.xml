@@ -1,233 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <scriptAudio>
+        
         <story title="The Naughty Monkey" activity_id="story1-PM-1">
-            
-            <sentence number="0">
-                
-                <embrace>
-                    <preAudio>
-                        <english>
-                            <audio seq="1">NaughtyMonkey_Script1.mp3</audio>
-                        </english>
-                        
-                        <bilingual>
-                            <audio seq="1">NaughtyMonkey_Script1_S.mp3</audio>
-                        </bilingual>
-                    </preAudio>
-                    
-                </embrace>
-                
-                <control>
-                    <preAudio>
-                        <english>
-                            <audio seq="1">NaughtyMonkey_Script_C1.mp3</audio>
-                            <audio seq="2">NaughtyMonkey_Script_C2.mp3</audio>
-                            <audio seq="3">NaughtyMonkey_Script_C3.mp3</audio>
-                        </english>
-                        
-                        <bilingual>
-                            <audio seq="1">NaughtyMonkey_Script_C1_S.mp3</audio>
-                            <audio seq="2">NaughtyMonkey_Script_C2_S.mp3</audio>
-                            <audio seq="3">NaughtyMonkey_Script_C3_S.mp3</audio>
-                        </bilingual>
-                    </preAudio>
-                    
-                    <postAudio>
-                        <english>
-                            <audio seq="1">NaughtyMonkey_Script_C4.mp3</audio>
-                        </english>
-                        
-                        <bilingual>
-                            <audio seq="1">NaughtyMonkey_Script_C4_S.mp3</audio>
-                        </bilingual>
-                    </postAudio>
-                </control>
-                
-            </sentence>
-            
             
             <sentence number="1">
                 
                 <embrace>
                     <preAudio>
                         <english>
-                            <audio seq="1">NaughtyMonkey_Script2.mp3</audio>
+                            <audio seq="1">NaughtyMonkey_Script1.mp3</audio>
+                            <audio seq="2">NaughtyMonkey_Script2.mp3</audio>
                         </english>
                         
                         <bilingual>
-                            <audio seq="1">NaughtyMonkey_Script2_S.mp3</audio>
+                            <audio seq="1">NaughtyMonkey_Script1_S.mp3</audio>
+                            <audio seq="2">NaughtyMonkey_Script2_S.mp3</audio>
                         </bilingual>
                     </preAudio>
                     
                 </embrace>
                 
-                <control>
-                    <preAudio>
-                        <english>
-                            <audio seq="1">NaughtyMonkey_Script_C5.mp3</audio>
-                            <audio seq="2">NaughtyMonkey_Script_C6.mp3</audio>
-                        </english>
-                        <bilingual>
-                            <audio seq="1">NaughtyMonkey_Script_C5_S.mp3</audio>
-                            <audio seq="2">NaughtyMonkey_Script_C6_S.mp3</audio>
-                        </bilingual>
-                        
-                    </preAudio>
-                    
-                </control>
-            </sentence>
-            
-            <sentence number="2">
-            
-                <control>
-                    <preAudio>
-                        <english>
-                            <audio seq="1">NaughtyMonkey_Script_C5.mp3</audio>
-                            <audio seq="2">NaughtyMonkey_Script_C6.mp3</audio>
-                        </english>
-                        <bilingual>
-                            <audio seq="1">NaughtyMonkey_Script_C5_S.mp3</audio>
-                            <audio seq="2">NaughtyMonkey_Script_C6_S.mp3</audio>
-                        </bilingual>
-
-                    </preAudio>
-                    
-                </control>
-            </sentence>
-            
-            <sentence number="3">
-                
-                <embrace>
-                    <preAudio>
-                        <english>
-                            <audio seq="1">NaughtyMonkey_Script3.mp3</audio>
-                        </english>
-                        
-                        <bilingual>
-                            <audio seq="1">NaughtyMonkey_Script3_S.mp3</audio>
-                        </bilingual>
-                    </preAudio>
-                    
-                </embrace>
-                
-                <control>
-                    <preAudio>
-                        <english>
-                            <audio seq="1">NaughtyMonkey_Script_C7.mp3</audio>
-                        </english>
-                        <bilingual>
-                            <audio seq="1">NaughtyMonkey_Script_C7_S.mp3</audio>
-                        </bilingual>
-
-                    </preAudio>
-                    
-                </control>
-            </sentence>
-            
-            <sentence number="4">
-                
-                <embrace>
-                    <preAudio>
-                        <english>
-                            <audio seq="1">NaughtyMonkey_Script4.mp3</audio>
-                        </english>
-                        
-                        <bilingual>
-                            <audio seq="1">NaughtyMonkey_Script4_S.mp3</audio>
-                        </bilingual>
-                    </preAudio>
-                    
-                    <postAudio>
-                        <english>
-                            <audio seq="1">NaughtyMonkey_Script5.mp3</audio>
-                        </english>
-                        
-                        <bilingual>
-                        </bilingual>
-                    </postAudio>
-                </embrace>
-                
                 
             </sentence>
-            
-            <sentence number="5">
-                
-                <embrace>
-                    <preAudio>
-                        <english>
-                            <audio seq="1">NaughtyMonkey_Script6.mp3</audio>
-                        </english>
-                        <bilingual>
-                             <audio seq="1">NaughtyMonkey_Script6_S.mp3</audio>
-                        </bilingual>
-                    </preAudio>
-                    <postAudio>
-                        <english>
-                            <audio seq="1">NaughtyMonkey_Script7.mp3</audio>
-                        </english>
-                        
-                    </postAudio>
-
-                </embrace>
-                <control>
-                    <preAudio>
-                        <english>
-                            <audio seq="1">NaughtyMonkey_Script_C9.mp3</audio>
-                        </english>
-                        <bilingual>
-                            <audio seq="1">NaughtyMonkey_Script_C9_S.mp3</audio>
-                        </bilingual>
-                    </preAudio>
-                    
-                </control>
-            </sentence>
-            
-        </story>
+         </story>
         <story title="The Naughty Monkey" activity_id="story1-PM-2">
-            <sentence number="6">
-                
-                <embrace>
-                    <preAudio>
-                        <english>
-                            <audio seq="1">NaughtyMonkey_Script8.mp3</audio>
-                        </english>
-                        <bilingual>
-                            <audio seq="1">NaughtyMonkey_Script8_S.mp3</audio>
-                        </bilingual>
-                    </preAudio>
+            <sentence number="5">
+            <embrace>
+                <preAudio>
+                    <english>
+                        <audio seq="1">NaughtyMonkey_Script3.mp3</audio>
+                    </english>
                     
-                </embrace>
+                    <bilingual>
+                        <audio seq="1">NaughtyMonkey_Script3_S.mp3</audio>
+                    </bilingual>
+                </preAudio>
                 
-                <control>
-                    <preAudio>
-                        <english>
-                            <audio seq="1">NaughtyMonkey_Script_C10.mp3</audio>
-                        </english>
-                        <bilingual>
-                             <audio seq="1">NaughtyMonkey_Script_C10_S.mp3</audio>
-                        </bilingual>
-                    </preAudio>
-                    
-                    
-                </control>
-            </sentence>
-            
-            <sentence number="8">
-                
-               
-                
-                <control>
-                    <postAudio>
-                        <english>
-                            <audio seq="1">NaughtyMonkey_Script_C12.mp3</audio>
-                        </english>
-                        
-                    </postAudio>
-                    
-                </control>
-            </sentence>
-            
+            </embrace>
+          </sentence>
+          
         </story>
     </scriptAudio>
 </metadata>
