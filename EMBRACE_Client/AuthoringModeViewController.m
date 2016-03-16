@@ -1986,7 +1986,7 @@ ConditionSetup *conditionSetup;
             int topStartIndex = [newImages rangeOfString:@"top:" options:0 range:range].location;
             int topEndIndex = [[newImages substringFromIndex:topStartIndex+4] rangeOfString:@";"].location;
             NSString *topString = [newImages substringFromIndex:topStartIndex+4];
-            BOOL needsConversion = nil;
+            BOOL needsConversion;
             topString = [topString substringToIndex:topEndIndex];
             
             if ([topString rangeOfString:@"px"].location != NSNotFound) {
@@ -2033,14 +2033,6 @@ ConditionSetup *conditionSetup;
                 {
                     float topPixelValue = [topString floatValue];
                     NSString *topPercentValueString;
-                    
-                    float viewH = [self areaSpace].frame.size.height;
-                    float viewW = [self areaSpace].frame.size.width;
-                    float bookH = [bookView frame].size.height;
-                    float bookW = [bookView frame].size.width;
-                    NSString *htmlH = [bookView stringByEvaluatingJavaScriptFromString:@"document.innerWidth"];
-                    NSString *htmlW = [bookView stringByEvaluatingJavaScriptFromString:@"document.innerHeight"];
-                    
                     
                     if (needsConversion) {
                         Float32  topPercentValue = ((topPixelValue / ([bookView frame].size.height))*100); //-32
@@ -2274,15 +2266,6 @@ ConditionSetup *conditionSetup;
         else if(adjLocation.y < 0)
             adjLocation.y = 0;
     }
-    
-    //May want to add code to keep objects from moving to the location that the text is taking up on screen.
-    
-    //logs only if object is moved by computer action, user pan done outside of this function
-    if (![waypointID isEqualToString:@"isMoving"]) {
-        //Logging added by James for Automatic Computer Move Object
-        
-    }
-    
     
     //NSLog(@"new location of %@: (%f, %f)", object, adjLocation.x, adjLocation.y);
     //Call the moveObject function in the js file.
