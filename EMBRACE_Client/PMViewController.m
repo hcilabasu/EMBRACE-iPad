@@ -563,7 +563,7 @@ BOOL wasPathFollowed = false;
         PhysicalManipulationActivity *PMActivity;
         ImagineManipulationActivity *IMActivity;
         
-        if (([chapterTitle isEqualToString:@"The Naughty Monkey"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound)))
+        if (([chapterTitle isEqualToString:@"The Naughty Monkey"] && ([currentPageId rangeOfString:@"PM-2"].location != NSNotFound) && conditionSetup.condition == CONTROL))
         {
             IntroductionClass.allowInteractions = false;
             //Get the PM solution steps for the current chapter
@@ -573,7 +573,7 @@ BOOL wasPathFollowed = false;
             currentIdea = [[[PMSolution solutionSteps] objectAtIndex:0] sentenceNumber];
             manipulationContext.ideaNumber = currentIdea;
         }
-        if (([chapterTitle isEqualToString:@"The Naughty Monkey"] && ([currentPageId rangeOfString:@"PM-2"].location != NSNotFound) && ([currentPageId rangeOfString:@"PM-3"].location != NSNotFound)))
+        else if (([chapterTitle isEqualToString:@"The Naughty Monkey"] && (([currentPageId rangeOfString:@"PM-1"].location != NSNotFound)|| ([currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) && conditionSetup.condition == CONTROL))
         {
             IntroductionClass.allowInteractions = false;
         }
@@ -1279,7 +1279,7 @@ BOOL wasPathFollowed = false;
                 
                 if ([[currSolStep stepType] isEqualToString:@"tapWord"]) {
                     if ([[currSolStep object1Id] containsString: englishSentenceText] &&
-                       (currentSentence == sentenceIDNum)) {
+                       (currentSentence == sentenceIDNum || [chapterTitle isEqualToString:@"The Naughty Monkey"])) {
                         [[ServerCommunicationController sharedInstance] logTapWord:sentenceText :manipulationContext];
                         [self.playaudioClass stopPlayAudioFile];
                         [self playAudioForVocabWord: englishSentenceText : spanishExt];
@@ -4176,7 +4176,8 @@ BOOL wasPathFollowed = false;
                 }
             }
         }
-        else if (stepsComplete || numSteps == 0 || !IntroductionClass.allowInteractions) {
+        else if (stepsComplete || numSteps == 0 || (!IntroductionClass.allowInteractions && !([chapterTitle isEqualToString:@"The Naughty Monkey"] && [currentPageId rangeOfString:@"PM-2"].location != NSNotFound && conditionSetup.condition == CONTROL && !stepsComplete && currentSentence == 2)))
+        {
             if (currentSentence > 0) {
                 currentIdea++;
                 manipulationContext.ideaNumber = currentIdea;
