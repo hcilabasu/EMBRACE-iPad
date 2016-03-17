@@ -22,7 +22,6 @@
 @synthesize audioPlayer;
 @synthesize audioPlayerAfter;
 
-
 -(void)initPlayer: (NSString*) audioFilePath
 {
     NSString *soundFilePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], audioFilePath];
@@ -141,47 +140,49 @@
 
 
 /* Plays one audio file after the other */
--(bool) playAudioInSequence: (UIViewController*) viewController : (NSString*) path :(NSString*) path2 {
-    NSString *soundFilePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], path];
-    NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
-    NSError *audioError;
-    
-    NSString *soundFilePath2 = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], path2];
-    NSURL *soundFileURL2 = [NSURL fileURLWithPath:soundFilePath2];
-    
-    //PmviewController = [[UIViewController alloc] init];
-    self.PmviewController = viewController;
-    [PmviewController.view setUserInteractionEnabled:NO];
-    
-    self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&audioError];
-    self.audioPlayerAfter = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL2 error:&audioError];
-    
-    //may need to pass in which ever class is calling this function
-    self.audioPlayer.delegate = self;
-    
-    if (self.audioPlayer == nil)
-    {
-        NSLog(@"%@",[audioError description]);
-        [PmviewController.view setUserInteractionEnabled:YES];
-        return false;
-    }
-    else
-    {
-        [self.audioPlayer play];
-        return true;
-    }
+-(BOOL) playAudioInSequence: (UIViewController*) viewController : (NSString*) path :(NSString*) path2 {
+   
+        NSString *soundFilePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], path];
+        NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+        NSError *audioError;
+        
+        NSString *soundFilePath2 = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], path2];
+        NSURL *soundFileURL2 = [NSURL fileURLWithPath:soundFilePath2];
+        
+        //PmviewController = [[UIViewController alloc] init];
+        self.PmviewController = viewController;
+        [PmviewController.view setUserInteractionEnabled:NO];
+        
+        self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&audioError];
+        self.audioPlayerAfter = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL2 error:&audioError];
+        
+        //may need to pass in which ever class is calling this function
+        self.audioPlayer.delegate = self;
+        
+        if (self.audioPlayer == nil)
+        {
+            NSLog(@"%@",[audioError description]);
+            [PmviewController.view setUserInteractionEnabled:YES];
+            return false;
+        }
+        else
+        {
+            [self.audioPlayer play];
+            return true;
+        }
 }
 
 /* Delegate for the AVAudioPlayer */
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag  {
-    
     
     if ([self.audioQueue count] > 0) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW,NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             [self playNextAudio];
         });
         
-    } else {
+    }
+    else
+    {
         // This delay is needed in order to be able to play the last definition on a vocabulary page
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW,2*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             [self.audioPlayerAfter play];
@@ -192,9 +193,20 @@
             [PmviewController.view setUserInteractionEnabled:YES];
         }
     }
-    
-    
-    
+}
+
+/* Checks if audioPlayer and audioPlayerAfter is current playing audio */
+- (BOOL) isAudioLeftInSequence
+{
+    if ((self.audioPlayer != Nil && self.audioPlayerAfter != nil) &&
+        (self.audioPlayer.isPlaying || self.audioPlayerAfter.isPlaying))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 #pragma mark - Responding to gestures

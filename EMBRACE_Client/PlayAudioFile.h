@@ -28,5 +28,6 @@
 - (IBAction)playErrorNoise;
 - (void)textToSpeech:(NSString *)text;
 - (void)playAudioInSequence:(NSArray *)audioList parentViewController:(UIViewController *)controller;
+- (BOOL)isAudioLeftInSequence;
 
 @end

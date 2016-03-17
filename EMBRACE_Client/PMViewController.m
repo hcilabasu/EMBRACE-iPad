@@ -559,11 +559,25 @@ BOOL wasPathFollowed = false;
     [[ServerCommunicationController sharedInstance] logLoadPage:[manipulationContext pageLanguage] mode:[manipulationContext pageMode] number:[manipulationContext pageNumber] context:manipulationContext];
     
     //Get the solutions for the appropriate manipulation activity
-    if (conditionSetup.condition == EMBRACE) {
+    if (conditionSetup.condition == EMBRACE || ([chapterTitle isEqualToString:@"The Naughty Monkey"])) {
         PhysicalManipulationActivity *PMActivity;
         ImagineManipulationActivity *IMActivity;
         
-        if (conditionSetup.currentMode == PM_MODE) {
+        if (([chapterTitle isEqualToString:@"The Naughty Monkey"] && ([currentPageId rangeOfString:@"PM-2"].location != NSNotFound) && conditionSetup.condition == CONTROL))
+        {
+            IntroductionClass.allowInteractions = false;
+            //Get the PM solution steps for the current chapter
+            Chapter *chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
+            PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
+            PMSolution = [[[PMActivity PMSolutions] objectForKey:currentPageId] objectAtIndex:0]; //get PM solution
+            currentIdea = [[[PMSolution solutionSteps] objectAtIndex:0] sentenceNumber];
+            manipulationContext.ideaNumber = currentIdea;
+        }
+        else if (([chapterTitle isEqualToString:@"The Naughty Monkey"] && (([currentPageId rangeOfString:@"PM-1"].location != NSNotFound)|| ([currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) && conditionSetup.condition == CONTROL))
+        {
+            IntroductionClass.allowInteractions = false;
+        }
+        else if (conditionSetup.currentMode == PM_MODE) {
             IntroductionClass.allowInteractions = TRUE;
             
             //Get the PM solution steps for the current chapter
@@ -596,7 +610,7 @@ BOOL wasPathFollowed = false;
         if (currentSentence > 0) {
             numSteps = [[[pageSentences objectAtIndex:currentSentence - 1] solutionSteps] count];
             
-            //Set current complexity based on sentence
+            //Set current complexity based on senten ce
             currentComplexity = [[pageSentences objectAtIndex:currentSentence - 1] complexity];
         }
         else {
@@ -1199,6 +1213,7 @@ BOOL wasPathFollowed = false;
             }
         }
         
+        /*
         //Enable the introduction clicks on words and images, if it is intro mode
         if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
             if (([[IntroductionClass.performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] &&
@@ -1217,7 +1232,8 @@ BOOL wasPathFollowed = false;
             }
         }
         //Vocabulary introduction mode
-        else if ([currentPageId rangeOfString:@"-Intro"].location != NSNotFound) {
+        else*/
+        if ([currentPageId rangeOfString:@"-Intro"].location != NSNotFound) {
             //Get steps for current sentence
             NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
             
@@ -1255,16 +1271,18 @@ BOOL wasPathFollowed = false;
         {
             //Get steps for current sentence
             NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
-            
+            if(![self.playaudioClass isAudioLeftInSequence])
+            {
             if ([currSolSteps count] > 0) {
                 //Get current step to be completed
                 ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
                 
                 if ([[currSolStep stepType] isEqualToString:@"tapWord"]) {
-                    if ([englishSentenceText containsString: [currSolStep object1Id]] &&
-                       (currentSentence == sentenceIDNum)) {
+                    if ([[currSolStep object1Id] containsString: englishSentenceText] &&
+                       (currentSentence == sentenceIDNum || [chapterTitle isEqualToString:@"The Naughty Monkey"])) {
                         [[ServerCommunicationController sharedInstance] logTapWord:sentenceText :manipulationContext];
-                        
+                        [self.playaudioClass stopPlayAudioFile];
+                        [self playAudioForVocabWord: englishSentenceText : spanishExt];
                         //[self playIntroVocabWord:sentenceText :englishSentenceText :currSolStep];
                         [self incrementCurrentStep];
                     }
@@ -1282,11 +1300,13 @@ BOOL wasPathFollowed = false;
                 [self.playaudioClass stopPlayAudioFile];
                 [self playAudioForVocabWord: englishSentenceText : spanishExt];
             }
+            }
         }
     }
 }
 
 - (void)playAudioForVocabWord:(NSString *)englishSentenceText :(NSString *)spanishExt {
+    
     //Since the name of the carbon dioxide file is carbonDioxide, its name is hard-coded
     if ([englishSentenceText isEqualToString:@"carbon dioxide"]) {
         englishSentenceText = @"carbonDioxide";
@@ -1325,7 +1345,7 @@ BOOL wasPathFollowed = false;
         bool success = [self.playaudioClass playAudioInSequence:self :engAudio :engAudio];
         
         if (!success) {
-            NSString *engAudio = [NSString stringWithFormat:@"%@%@.m4a", englishSentenceText, @"E"];
+            engAudio = [NSString stringWithFormat:@"%@%@.m4a", englishSentenceText, @"E"];
             [self.playaudioClass playAudioInSequence:self :engAudio :engAudio];
         }
         
@@ -1437,6 +1457,9 @@ BOOL wasPathFollowed = false;
     return currSolSteps;
 }
 
+/*
+ *  Highlights the image of the selected
+ */
 - (void)highlightImageForText:(NSString *)englishSentenceText {
     NSObject *valueImage = [[Translation translationImages]objectForKey:englishSentenceText];
     NSString *imageHighlighted = @"";
@@ -1482,7 +1505,7 @@ BOOL wasPathFollowed = false;
         [self loadNextPage];
     }
     //Perform steps only if they exist for the sentence and have not been completed
-    else if (numSteps > 0 && !stepsComplete && conditionSetup.condition == EMBRACE && conditionSetup.currentMode == PM_MODE) {
+    else if ((numSteps > 0 && !stepsComplete && conditionSetup.condition == EMBRACE && conditionSetup.currentMode == PM_MODE) || ([chapterTitle isEqualToString:@"The Naughty Monkey"] && numSteps > 0 && !stepsComplete)) {
         [[ServerCommunicationController sharedInstance] logEmergencySwipe:manipulationContext];
         
         //Get steps for current sentence
@@ -1492,7 +1515,7 @@ BOOL wasPathFollowed = false;
         ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         NSString *stepType = [currSolStep stepType];
         
-        if ([stepType isEqualToString:@"check"] || [stepType isEqualToString:@"checkLeft"] || [stepType isEqualToString:@"checkRight"] || [stepType isEqualToString:@"checkUp"] || [stepType isEqualToString:@"checkDown"] || [stepType isEqualToString:@"checkAndSwap"] || [stepType isEqualToString:@"tapToAnimate"] || [stepType isEqualToString:@"checkPath"] || [stepType isEqualToString:@"shakeAndTap"]) {
+        if ([stepType isEqualToString:@"check"] || [stepType isEqualToString:@"checkLeft"] || [stepType isEqualToString:@"checkRight"] || [stepType isEqualToString:@"checkUp"] || [stepType isEqualToString:@"checkDown"] || [stepType isEqualToString:@"checkAndSwap"] || [stepType isEqualToString:@"tapToAnimate"] || [stepType isEqualToString:@"checkPath"] || [stepType isEqualToString:@"shakeAndTap"] || [stepType isEqualToString:@"tapWord"] ) {
             if ([stepType isEqualToString:@"checkAndSwap"]) {
                 [self swapObjectImage];
             }
@@ -4153,7 +4176,8 @@ BOOL wasPathFollowed = false;
                 }
             }
         }
-        else if (stepsComplete || numSteps == 0 || !IntroductionClass.allowInteractions) {
+        else if (stepsComplete || numSteps == 0 || (!IntroductionClass.allowInteractions && !([chapterTitle isEqualToString:@"The Naughty Monkey"] && [currentPageId rangeOfString:@"PM-2"].location != NSNotFound && conditionSetup.condition == CONTROL && !stepsComplete && currentSentence == 2)))
+        {
             if (currentSentence > 0) {
                 currentIdea++;
                 manipulationContext.ideaNumber = currentIdea;

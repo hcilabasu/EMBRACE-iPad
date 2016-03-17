@@ -91,7 +91,7 @@ ConditionSetup *conditionSetup;
 }
 
 // Loads the information of the currentIntroStep for the introduction
--(NSArray*) loadIntroStep: (UIWebView *) bookView : (UIViewController *) pmviewController: (NSUInteger) currentSentence{
+-(NSArray*) loadIntroStep: (UIWebView *) bookView : (UIViewController *) pmviewController : (NSUInteger) currentSentence{
  
     NSString* textEnglish;
     NSString* audioEnglish;
