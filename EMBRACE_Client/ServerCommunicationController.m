@@ -220,7 +220,8 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for sentence information
     DDXMLElement *nodeSentenceNumber = [DDXMLElement elementWithName:@"Sentence_Number" stringValue:[NSString stringWithFormat:@"%d", [context sentenceNumber]]];
-//    DDXMLElement *nodeSentenceText = [DDXMLElement elementWithName:@"Sentence_Text" stringValue:[context sentenceText]];
+    NSString *sentenceText = [[context sentenceText] isEqualToString:@""] || [context sentenceText] == nil ? @"NULL" : [context sentenceText];
+    DDXMLElement *nodeSentenceText = [DDXMLElement elementWithName:@"Sentence_Text" stringValue:sentenceText];
     
     //Create nodes for step number and idea number
     DDXMLElement *nodeStepNumber = [DDXMLElement elementWithName:@"Step_Number" stringValue:[NSString stringWithFormat:@"%d", [context stepNumber]]];
@@ -237,7 +238,7 @@ static ServerCommunicationController *sharedInstance = nil;
     [nodeManipulationContext addChild:nodePageMode];
     [nodeManipulationContext addChild:nodePageNumber];
     [nodeManipulationContext addChild:nodeSentenceNumber];
-//    [nodeManipulationContext addChild:nodeSentenceText];
+    [nodeManipulationContext addChild:nodeSentenceText];
     [nodeManipulationContext addChild:nodeStepNumber];
     [nodeManipulationContext addChild:nodeIdeaNumber];
     [nodeManipulationContext addChild:nodeTimestamp];
@@ -1240,11 +1241,12 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for input information
     DDXMLElement *nodeSentenceNumber = [DDXMLElement elementWithName:@"Sentence_Number" stringValue:[NSString stringWithFormat:@"%d", sentenceNumber]];
-//    DDXMLElement *nodeSentenceText = [DDXMLElement elementWithName:@"Sentence_Text" stringValue:sentenceText];
+    sentenceText = [sentenceText isEqualToString:@""] || sentenceText == nil ? @"NULL" : sentenceText;
+    DDXMLElement *nodeSentenceText = [DDXMLElement elementWithName:@"Sentence_Text" stringValue:sentenceText];
     
     //Add above nodes to input
     [nodeInput addChild:nodeSentenceNumber];
-//    [nodeInput addChild:nodeSentenceText];
+    [nodeInput addChild:nodeSentenceText];
     
     //Get context
     DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];

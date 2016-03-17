@@ -18,6 +18,7 @@
 #import "Statistics.h"
 #import "LibraryViewController.h"
 #import "ManipulationContext.h"
+#import "NSString+HTML.h"
 
 @interface PMViewController () {
     NSString *currentPage; //Current page being shown, so that the next page can be requested
@@ -264,7 +265,7 @@ BOOL wasPathFollowed = false;
         NSString *firstSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestFirstSentenceId];
         int firstSentenceIdNumber = [[firstSentenceId substringFromIndex:1] intValue];
         currentSentence = firstSentenceIdNumber;
-        currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d').innerHTML", currentSentence]];
+        currentSentenceText = [[bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d').innerHTML", currentSentence]] stringByConvertingHTMLToPlainText];
         
         manipulationContext.sentenceNumber = currentSentence;
         manipulationContext.sentenceText = currentSentenceText;
@@ -1383,7 +1384,7 @@ BOOL wasPathFollowed = false;
                 [self highlightImageForText:englishSentenceText];
             
                 currentSentence++;
-                currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d')", currentSentence]];
+                currentSentenceText = [[bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d').innerHTML", currentSentence]] stringByConvertingHTMLToPlainText];
                 stepsComplete = NO;
                 
                 manipulationContext.sentenceNumber = currentSentence;
@@ -2989,7 +2990,7 @@ BOOL wasPathFollowed = false;
             }
             
             currentSentence++;
-            currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d')", currentSentence]];
+            currentSentenceText = [[bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d').innerHTML", currentSentence]] stringByConvertingHTMLToPlainText];
             
             manipulationContext.sentenceNumber = currentSentence;
             manipulationContext.sentenceText = currentSentenceText;
@@ -4126,7 +4127,7 @@ BOOL wasPathFollowed = false;
                 }
                 
                 currentSentence++;
-                currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d')", currentSentence]];
+                currentSentenceText = [[bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d').innerHTML", currentSentence]] stringByConvertingHTMLToPlainText];
                 
                 manipulationContext.sentenceNumber = currentSentence;
                 manipulationContext.sentenceText = currentSentenceText;
@@ -4153,7 +4154,7 @@ BOOL wasPathFollowed = false;
             }
             
             currentSentence++;
-            currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d')", currentSentence]];
+            currentSentenceText = [[bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d').innerHTML", currentSentence]] stringByConvertingHTMLToPlainText];
             
             manipulationContext.sentenceNumber = currentSentence;
             manipulationContext.sentenceText = currentSentenceText;
