@@ -4374,6 +4374,10 @@ BOOL wasPathFollowed = false;
         script = [chapter controlScriptFor:[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence]];
     }
     
+    if (conditionSetup.newInstructions) {
+        NSLog(@"New instructions should be played");
+    }
+    
     NSArray *preAudio = nil;
     NSArray *postAudio = nil;
      

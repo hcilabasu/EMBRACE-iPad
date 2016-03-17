@@ -15,6 +15,7 @@
 @synthesize reader;
 @synthesize appMode;
 @synthesize currentMode;
+@synthesize newInstructions;
 
 + (id)sharedInstance {
     static ConditionSetup *sharedMyManager = nil;
@@ -30,10 +31,11 @@
 - (id)init {
     if (self = [super init]) {
         condition = EMBRACE;
-        language = ENGLISH;
+        language = BILINGUAL;
         reader = SYSTEM;
         appMode = Study;
         currentMode = PM_MODE;
+        newInstructions = false;
     }
     
     return self;
