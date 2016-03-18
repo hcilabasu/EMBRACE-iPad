@@ -115,6 +115,14 @@ BOOL wasPathFollowed = false;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //hides the default navigation bar to add custom back button
+    self.navigationItem.hidesBackButton = YES;
+    
+    //custom back button to show confirmation alert
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle: @"Library" style: UIBarButtonItemStyleBordered target: self action: @selector(backButtonPressed:)];
+    //Sets leftBarButtonItem to the custom back button in place of default back button
+    self.navigationItem.leftBarButtonItem = backButton;
+    
     conditionSetup = [ConditionSetup sharedInstance];
     manipulationContext = [[ManipulationContext alloc] init];
     
@@ -183,6 +191,12 @@ BOOL wasPathFollowed = false;
     
     IntroductionClass.languageString = @"E";
     IntroductionClass.sameWordClicked = false;
+}
+
+-(void)backButtonPressed:(id)sender
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Return to Library", @"") message:NSLocalizedString(@"Are you sure you want to return to the Library?", @"") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"") otherButtonTitles:NSLocalizedString(@"Yes", @""), nil];
+    [alertView show];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -454,6 +468,17 @@ BOOL wasPathFollowed = false;
     else if ([[alertView title] isEqualToString:@"Page Statistics"]) {
         if (buttonIndex == 0) {
             [self loadNextPage];
+        }
+    }
+    else if([[alertView title] isEqualToString:@"Return to Library"])
+    {
+        //Get title of pressed alert button
+        NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+        
+        //If button pressed is Yes, return to libraryView
+        if([title isEqualToString:@"Yes"])
+        {
+            [self.navigationController popViewControllerAnimated:YES];
         }
     }
 }
@@ -4808,6 +4833,10 @@ BOOL wasPathFollowed = false;
         }
         
         [menuItemRelationships addObject:tempMenuRelationship.action];
+    }
+    
+    if (([chapterTitle isEqualToString:@"The Naughty Monkey"]) && currentSentence == 6) {
+        [self.playaudioClass playAudioFile:self :@"NaughtyMonkey_Script5.mp3"];
     }
     
     [[ServerCommunicationController sharedInstance] logDisplayMenuWithInteractions:menuItemInteractions objects:menuItemImages relationships:menuItemRelationships context:manipulationContext];

@@ -339,10 +339,6 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
         
         [destination loadFirstPage];
     }
-    
-    //Change the back button so that it doesn't show the LibraryView's title and instead shows "Library"
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle: @"Library" style: UIBarButtonItemStyleBordered target: nil action: nil];
-    [[self navigationItem] setBackBarButtonItem:backButton];
 }
 
 /*
