@@ -1054,9 +1054,10 @@ BOOL wasPathFollowed = false;
 - (IBAction)tapGesturePerformed:(UITapGestureRecognizer *)recognizer {
     CGPoint location = [recognizer locationInView:self.view];
     
+    /*
     if ([IntroductionClass.introductions objectForKey:chapterTitle] && [[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:@"menu"]) {
         IntroductionClass.allowInteractions = TRUE;
-    }
+    }*/
     
     if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && (!IntroductionClass.allowInteractions)) {
         IntroductionClass.allowInteractions = true;
@@ -1268,18 +1269,33 @@ BOOL wasPathFollowed = false;
             NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
             if(![self.playaudioClass isAudioLeftInSequence])
             {
-            if ([currSolSteps count] > 0) {
-                //Get current step to be completed
-                ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
-                
-                if ([[currSolStep stepType] isEqualToString:@"tapWord"]) {
-                    if ([[currSolStep object1Id] containsString: englishSentenceText] &&
-                       (currentSentence == sentenceIDNum || [chapterTitle isEqualToString:@"The Naughty Monkey"])) {
-                        [[ServerCommunicationController sharedInstance] logTapWord:sentenceText :manipulationContext];
+                if ([currSolSteps count] > 0) {
+                    //Get current step to be completed
+                    ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+                    
+                    if ([[currSolStep stepType] isEqualToString:@"tapWord"])
+                    {
+                        if ([[currSolStep object1Id] containsString: englishSentenceText] &&
+                           (currentSentence == sentenceIDNum || [chapterTitle isEqualToString:@"The Naughty Monkey"]))
+                        {
+                            [[ServerCommunicationController sharedInstance] logTapWord:sentenceText :manipulationContext];
+                            [self.playaudioClass stopPlayAudioFile];
+                            [self playAudioForVocabWord: englishSentenceText : spanishExt];
+                            //[self playIntroVocabWord:sentenceText :englishSentenceText :currSolStep];
+                            [self incrementCurrentStep];
+                        }
+                        else if([[Translation translationWords] objectForKey:englishSentenceText])
+                        {
+                            [[ServerCommunicationController sharedInstance] logTapWord:englishSentenceText :manipulationContext];
+                            [self.playaudioClass stopPlayAudioFile];
+                            [self playAudioForVocabWord: englishSentenceText : spanishExt];
+                        }
+                    }
+                    else if([[Translation translationWords] objectForKey:englishSentenceText])
+                    {
+                        [[ServerCommunicationController sharedInstance] logTapWord:englishSentenceText :manipulationContext];
                         [self.playaudioClass stopPlayAudioFile];
                         [self playAudioForVocabWord: englishSentenceText : spanishExt];
-                        //[self playIntroVocabWord:sentenceText :englishSentenceText :currSolStep];
-                        [self incrementCurrentStep];
                     }
                 }
                 else if([[Translation translationWords] objectForKey:englishSentenceText])
@@ -1288,13 +1304,6 @@ BOOL wasPathFollowed = false;
                     [self.playaudioClass stopPlayAudioFile];
                     [self playAudioForVocabWord: englishSentenceText : spanishExt];
                 }
-            }
-            else if([[Translation translationWords] objectForKey:englishSentenceText])
-            {
-                [[ServerCommunicationController sharedInstance] logTapWord:englishSentenceText :manipulationContext];
-                [self.playaudioClass stopPlayAudioFile];
-                [self playAudioForVocabWord: englishSentenceText : spanishExt];
-            }
             }
         }
     }
@@ -1353,7 +1362,7 @@ BOOL wasPathFollowed = false;
         englishSentenceText = @"carbon dioxide";
     }
     
-    [self highlightImageForText:englishSentenceText];
+    //[self highlightImageForText:englishSentenceText];
 }
 
 - (void) playIntroVocabWord: (NSString *) sentenceText : (NSString *) englishSentenceText : (ActionStep *) currSolStep
