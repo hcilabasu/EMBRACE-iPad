@@ -75,4 +75,39 @@
      return [self interactionType] ^ [[self objects] hash] ^ [[self hotspots] hash];
 }
 
+/*
+ * Returns interaction type as a string
+ */
+- (NSString *)returnInteractionTypeAsString {
+    NSString *interactionTypeString;
+    
+    switch (interactionType) {
+        case DISAPPEAR:
+            interactionTypeString = @"Disappear";
+            break;
+            
+        case UNGROUP:
+            interactionTypeString = @"Ungroup";
+            break;
+            
+        case GROUP:
+            interactionTypeString = @"Group";
+            break;
+            
+        case TRANSFERANDDISAPPEAR:
+            interactionTypeString = @"Transfer and Disappear";
+            break;
+            
+        case TRANSFERANDGROUP:
+            interactionTypeString = @"Transfer and Group";
+            break;
+            
+        default:
+            interactionTypeString = @"None";
+            break;
+    }
+    
+    return interactionTypeString;
+}
+
 @end

@@ -18,6 +18,7 @@
 #import "Statistics.h"
 #import "LibraryViewController.h"
 #import "ManipulationContext.h"
+#import "NSString+HTML.h"
 
 @interface PMViewController () {
     NSString *currentPage; //Current page being shown, so that the next page can be requested
@@ -264,7 +265,7 @@ BOOL wasPathFollowed = false;
         NSString *firstSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestFirstSentenceId];
         int firstSentenceIdNumber = [[firstSentenceId substringFromIndex:1] intValue];
         currentSentence = firstSentenceIdNumber;
-        currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d').innerHTML", currentSentence]];
+        currentSentenceText = [[bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d').innerHTML", currentSentence]] stringByConvertingHTMLToPlainText];
         
         manipulationContext.sentenceNumber = currentSentence;
         manipulationContext.sentenceText = currentSentenceText;
@@ -1047,56 +1048,25 @@ BOOL wasPathFollowed = false;
             MenuItemDataSource *dataForItem = [menuDataSource dataObjectAtIndex:menuItem];
             PossibleInteraction *interaction = [dataForItem interaction];
             
-            NSInteger numMenuItems = [menuDataSource numberOfMenuItems];
-            NSMutableArray *menuItemInteractions = [[NSMutableArray alloc] init];
-            NSMutableArray *menuItemImages =[[NSMutableArray alloc] init];
-            NSMutableArray *menuItemRelationships = [[NSMutableArray alloc] init];
+            //Used to store menu item data as strings for logging
+            NSMutableArray *menuItemData = [[NSMutableArray alloc] init];
             
-            for (int x = 0; x < numMenuItems; x++) {
-                MenuItemDataSource *tempMenuItem = [menuDataSource dataObjectAtIndex:x];
-                PossibleInteraction *tempMenuInteraction =[tempMenuItem interaction];
-                Relationship *tempMenuRelationship = [tempMenuItem menuRelationship];
+            //Go through each connection in the interaction and extract data for logging
+            for (Connection *connection in [interaction connections]) {
+                NSMutableDictionary *connectionData = [[NSMutableDictionary alloc] init];
                 
-                NSString *interactionType;
+                NSArray *objects = [connection objects];
+                NSString *hotspot = [(Hotspot *)[[connection hotspots] objectAtIndex:0] action];
+                NSString *interactionType = [connection returnInteractionTypeAsString];
                 
-                switch (tempMenuInteraction.interactionType) {
-                    case DISAPPEAR:
-                        interactionType = @"Disappear";
-                        break;
-                        
-                    case UNGROUP:
-                        interactionType = @"Ungroup";
-                        break;
-                        
-                    case GROUP:
-                        interactionType = @"Group";
-                        break;
-                        
-                    case TRANSFERANDDISAPPEAR:
-                        interactionType = @"Transfer and Disappear";
-                        break;
-                        
-                    case TRANSFERANDGROUP:
-                        interactionType = @"Transfer and Group";
-                        break;
-                        
-                    default:
-                        interactionType = @"None";
-                        break;
-                }
+                [connectionData setObject:objects forKey:@"objects"];
+                [connectionData setObject:hotspot forKey:@"hotspot"];
+                [connectionData setObject:interactionType forKey:@"interactionType"];
                 
-                [menuItemInteractions addObject:interactionType];
-                [menuItemImages addObject:[NSString stringWithFormat:@"%d", x]];
-                
-                for (int i = 0; i < [tempMenuItem.images count]; i++) {
-                    MenuItemImage *tempimage = [tempMenuItem.images objectAtIndex:i];
-                    [menuItemImages addObject:[tempimage.image accessibilityIdentifier]];
-                }
-                
-                [menuItemRelationships addObject:tempMenuRelationship.action];
+                [menuItemData addObject:connectionData];
             }
             
-            [[ServerCommunicationController sharedInstance] logSelectMenuItemAtIndex:menuItem interactions:menuItemInteractions objects:menuItemImages relationships:menuItemRelationships context:manipulationContext];
+            [[ServerCommunicationController sharedInstance] logSelectMenuItem:menuItemData atIndex:menuItem context:manipulationContext];
 
             [self checkSolutionForInteraction:interaction]; //check if selected interaction is correct
             
@@ -1107,7 +1077,7 @@ BOOL wasPathFollowed = false;
         }
         //No menuItem was selected
         else {
-            [[ServerCommunicationController sharedInstance] logSelectMenuItemAtIndex:-1 interactions:nil objects:nil relationships:nil context:manipulationContext];
+            [[ServerCommunicationController sharedInstance] logSelectMenuItem:nil atIndex:-1 context:manipulationContext];
             
             if (allowSnapback) {
                 //Snap the object back to its original location
@@ -1414,7 +1384,7 @@ BOOL wasPathFollowed = false;
                 [self highlightImageForText:englishSentenceText];
             
                 currentSentence++;
-                currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d')", currentSentence]];
+                currentSentenceText = [[bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d').innerHTML", currentSentence]] stringByConvertingHTMLToPlainText];
                 stepsComplete = NO;
                 
                 manipulationContext.sentenceNumber = currentSentence;
@@ -2159,7 +2129,7 @@ BOOL wasPathFollowed = false;
     //Calculate the bounding box for the group of objects being passed to the menu item.
     CGRect boundingBox = [self getBoundingBoxOfImages:imagesArray];
     
-    [menuDataSource addMenuItem:interaction : relationship:imagesArray :boundingBox];
+    [menuDataSource addMenuItem:interaction :relationship :imagesArray :boundingBox];
 }
 
 /*
@@ -3020,7 +2990,7 @@ BOOL wasPathFollowed = false;
             }
             
             currentSentence++;
-            currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d')", currentSentence]];
+            currentSentenceText = [[bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d').innerHTML", currentSentence]] stringByConvertingHTMLToPlainText];
             
             manipulationContext.sentenceNumber = currentSentence;
             manipulationContext.sentenceText = currentSentenceText;
@@ -4157,7 +4127,7 @@ BOOL wasPathFollowed = false;
                 }
                 
                 currentSentence++;
-                currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d')", currentSentence]];
+                currentSentenceText = [[bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d').innerHTML", currentSentence]] stringByConvertingHTMLToPlainText];
                 
                 manipulationContext.sentenceNumber = currentSentence;
                 manipulationContext.sentenceText = currentSentenceText;
@@ -4184,7 +4154,7 @@ BOOL wasPathFollowed = false;
             }
             
             currentSentence++;
-            currentSentenceText = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d')", currentSentence]];
+            currentSentenceText = [[bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d').innerHTML", currentSentence]] stringByConvertingHTMLToPlainText];
             
             manipulationContext.sentenceNumber = currentSentence;
             manipulationContext.sentenceText = currentSentenceText;
@@ -4372,6 +4342,10 @@ BOOL wasPathFollowed = false;
     }
     else {
         script = [chapter controlScriptFor:[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence]];
+    }
+    
+    if (conditionSetup.newInstructions) {
+        NSLog(@"New instructions should be played");
     }
     
     NSArray *preAudio = nil;
@@ -4761,56 +4735,35 @@ BOOL wasPathFollowed = false;
     [menu expandMenu:radius];
     menuExpanded = TRUE;
     
-    NSInteger numMenuItems = [menuDataSource numberOfMenuItems];
-    NSMutableArray *menuItemInteractions = [[NSMutableArray alloc] init];
-    NSMutableArray *menuItemImages =[[NSMutableArray alloc] init];
-    NSMutableArray *menuItemRelationships = [[NSMutableArray alloc] init];
+    //Used to store menu items data as strings for logging
+    NSMutableArray *menuItemsData = [[NSMutableArray alloc] init];
     
-    for (int x = 0; x < numMenuItems; x++) {
-        MenuItemDataSource *tempMenuItem = [menuDataSource dataObjectAtIndex:x];
-        PossibleInteraction *tempMenuInteraction =[tempMenuItem interaction];
-        Relationship *tempMenuRelationship = [tempMenuItem menuRelationship];
+    for (int i = 0; i < [menuDataSource numberOfMenuItems]; i++) {
+        MenuItemDataSource *dataForItem = [menuDataSource dataObjectAtIndex:i];
+        PossibleInteraction *interaction = [dataForItem interaction];
         
-        NSString *interactionType;
+        //Used to store menu item data as strings for logging
+        NSMutableArray *menuItemData = [[NSMutableArray alloc] init];
         
-        switch (tempMenuInteraction.interactionType) {
-            case DISAPPEAR:
-                interactionType = @"Disappear";
-                break;
-                
-            case UNGROUP:
-                interactionType = @"Ungroup";
-                break;
-                
-            case GROUP:
-                interactionType = @"Group";
-                break;
-                
-            case TRANSFERANDDISAPPEAR:
-                interactionType = @"Transfer and Disappear";
-                break;
-                
-            case TRANSFERANDGROUP:
-                interactionType = @"Transfer and Group";
-                break;
-                
-            default:
-                interactionType = @"None";
-                break;
+        //Go through each connection in the interaction and extract data for logging
+        for (Connection *connection in [interaction connections]) {
+            NSMutableDictionary *connectionData = [[NSMutableDictionary alloc] init];
+            
+            NSArray *objects = [connection objects];
+            NSString *hotspot = [(Hotspot *)[[connection hotspots] objectAtIndex:0] action];
+            NSString *interactionType = [connection returnInteractionTypeAsString];
+            
+            [connectionData setObject:objects forKey:@"objects"];
+            [connectionData setObject:hotspot forKey:@"hotspot"];
+            [connectionData setObject:interactionType forKey:@"interactionType"];
+            
+            [menuItemData addObject:connectionData];
         }
         
-        [menuItemInteractions addObject:interactionType];
-        [menuItemImages addObject:[NSString stringWithFormat:@"%d", x]];
-        
-        for (int i = 0; i < [tempMenuItem.images count]; i++) {
-            MenuItemImage *tempimage = [tempMenuItem.images objectAtIndex:i];
-            [menuItemImages addObject:[tempimage.image accessibilityIdentifier]];
-        }
-        
-        [menuItemRelationships addObject:tempMenuRelationship.action];
+        [menuItemsData addObject:menuItemData];
     }
     
-    [[ServerCommunicationController sharedInstance] logDisplayMenuWithInteractions:menuItemInteractions objects:menuItemImages relationships:menuItemRelationships context:manipulationContext];
+    [[ServerCommunicationController sharedInstance] logDisplayMenuItems:menuItemsData context:manipulationContext];
 }
 
 - (BOOL)webView:(UIWebView *)webView2 shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {

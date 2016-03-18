@@ -15,6 +15,7 @@
 @synthesize reader;
 @synthesize appMode;
 @synthesize currentMode;
+@synthesize newInstructions;
 
 + (id)sharedInstance {
     static ConditionSetup *sharedMyManager = nil;
@@ -34,6 +35,7 @@
         reader = SYSTEM;
         appMode = Study;
         currentMode = PM_MODE;
+        newInstructions = false;
     }
     
     return self;

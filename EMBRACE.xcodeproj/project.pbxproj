@@ -25,6 +25,8 @@
 		038BECDF1C88C79600ECFE28 /* ManipulationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 038BECDE1C88C79600ECFE28 /* ManipulationContext.m */; };
 		038BECE21C88CC6000ECFE28 /* AssessmentContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 038BECE11C88CC6000ECFE28 /* AssessmentContext.m */; };
 		038BECE91C8956BF00ECFE28 /* StudyContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 038BECE81C8956BF00ECFE28 /* StudyContext.m */; };
+		03A401141C9B6F2E00FBE6D2 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A401131C9B6F2E00FBE6D2 /* NSString+HTML.m */; };
+		03A4011C1C9B6FF300FBE6D2 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A4011B1C9B6FF300FBE6D2 /* GTMNSString+HTML.m */; };
 		1A0385061C2B156400A973D8 /* hook_n_key_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0385051C2B156400A973D8 /* hook_n_key_large.png */; };
 		1A0385091C2B1F2500A973D8 /* cilia_inside.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0385071C2B1F2500A973D8 /* cilia_inside.png */; };
 		1A03850A1C2B1F2500A973D8 /* cilia_outside.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0385081C2B1F2500A973D8 /* cilia_outside.png */; };
@@ -4356,6 +4358,10 @@
 		038BECE11C88CC6000ECFE28 /* AssessmentContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssessmentContext.m; sourceTree = "<group>"; };
 		038BECE71C8956BF00ECFE28 /* StudyContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudyContext.h; sourceTree = "<group>"; };
 		038BECE81C8956BF00ECFE28 /* StudyContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudyContext.m; sourceTree = "<group>"; };
+		03A401131C9B6F2E00FBE6D2 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
+		03A401151C9B6F5C00FBE6D2 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
+		03A4011A1C9B6FF300FBE6D2 /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+HTML.h"; sourceTree = "<group>"; };
+		03A4011B1C9B6FF300FBE6D2 /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+HTML.m"; sourceTree = "<group>"; };
 		1A0385051C2B156400A973D8 /* hook_n_key_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hook_n_key_large.png; sourceTree = "<group>"; };
 		1A0385071C2B1F2500A973D8 /* cilia_inside.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cilia_inside.png; sourceTree = "<group>"; };
 		1A0385081C2B1F2500A973D8 /* cilia_outside.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cilia_outside.png; sourceTree = "<group>"; };
@@ -8747,6 +8753,17 @@
 			name = "Log Context";
 			sourceTree = "<group>";
 		};
+		03A4011D1C9B7A4F00FBE6D2 /* NSString+HTML Parser */ = {
+			isa = PBXGroup;
+			children = (
+				03A4011A1C9B6FF300FBE6D2 /* GTMNSString+HTML.h */,
+				03A4011B1C9B6FF300FBE6D2 /* GTMNSString+HTML.m */,
+				03A401151C9B6F5C00FBE6D2 /* NSString+HTML.h */,
+				03A401131C9B6F2E00FBE6D2 /* NSString+HTML.m */,
+			);
+			name = "NSString+HTML Parser";
+			sourceTree = "<group>";
+		};
 		1A631C671C0E4D3900251CB3 /* EPUBs */ = {
 			isa = PBXGroup;
 			children = (
@@ -10192,6 +10209,7 @@
 		31953E651729ED4500570087 /* External Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				03A4011D1C9B7A4F00FBE6D2 /* NSString+HTML Parser */,
 				31953E7A1729ED6000570087 /* GData XML Parser */,
 				31953E7B1729ED6C00570087 /* Unzip Library */,
 			);
@@ -18707,6 +18725,7 @@
 				038BECDC1C88C33F00ECFE28 /* Context.m in Sources */,
 				C3B66AA11BC33C2D005DF0AC /* LibraryCellView.m in Sources */,
 				5CEEBFA81ACA05F4002AACC4 /* Area.m in Sources */,
+				03A401141C9B6F2E00FBE6D2 /* NSString+HTML.m in Sources */,
 				31953E551729ECC100570087 /* main.m in Sources */,
 				C3B10B3A1AF2F54F003195F5 /* Statistics.m in Sources */,
 				31953E591729ECC100570087 /* AppDelegate.m in Sources */,
@@ -18780,6 +18799,7 @@
 				C6805218197ECDE5002A5249 /* DDXMLNode.m in Sources */,
 				C680521B197ECDF4002A5249 /* DDXMLElementAdditions.m in Sources */,
 				C680521E197ECE02002A5249 /* NSString+DDXML.m in Sources */,
+				03A4011C1C9B6FF300FBE6D2 /* GTMNSString+HTML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
