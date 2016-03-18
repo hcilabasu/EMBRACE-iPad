@@ -4792,7 +4792,7 @@ BOOL wasPathFollowed = false;
         [self.playaudioClass playAudioFile:self :@"NaughtyMonkey_Script5.mp3"];
     }
     
-    [[ServerCommunicationController sharedInstance] logDisplayMenuWithInteractions:menuItemInteractions objects:menuItemImages relationships:menuItemRelationships context:manipulationContext];
+   [[ServerCommunicationController sharedInstance] logDisplayMenuItems:menuItemsData context:manipulationContext];
 }
 
 - (BOOL)webView:(UIWebView *)webView2 shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
