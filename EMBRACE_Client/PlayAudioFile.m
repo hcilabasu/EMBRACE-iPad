@@ -189,13 +189,13 @@
     else
     {
         // This delay is needed in order to be able to play the last definition on a vocabulary page
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW,NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        //dispatch_after(dispatch_time(DISPATCH_TIME_NOW,NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             [self.audioPlayerAfter play];
-        });
+        //});
         
         if(PmviewController != nil)
         {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW,([self.audioPlayerAfter duration]+1) * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW,([self.audioPlayerAfter duration]+.25) * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                 [PmviewController.view setUserInteractionEnabled:YES];
             });
         }

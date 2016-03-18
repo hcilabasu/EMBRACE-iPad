@@ -42,7 +42,7 @@
             </sentence>
             <sentence number="7">
                 <step number="1">
-                    <shakeOrTap obj1Id="smallrocket" action="getIn" locationId="anywhere"/>
+                    <checkLeft obj1Id="smallrocket" action="getIn" locationId="anywhere"/>
                     <animate obj1Id="smallrocket" action="moveRightAndWrapSlower" waypointId="" areaId=""/>
                 </step>
             </sentence>
