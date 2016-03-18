@@ -621,9 +621,10 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                         conditionSetup.condition = CONTROL;
                     }
                     
-                    //Set language and reader
+                    //Set language, reader, and new instructions
                     conditionSetup.language = [currentMode language];
                     conditionSetup.reader = [currentMode reader];
+                    conditionSetup.newInstructions = [currentMode newInstructions];
                 }
             }
             

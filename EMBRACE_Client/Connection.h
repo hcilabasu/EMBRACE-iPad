@@ -30,5 +30,6 @@ typedef enum InteractionType {
 
 - (id)initWithValues:(InteractionType)type :(NSArray*) objs :(NSArray*) hotspts;
 - (BOOL)isEqualToConnection:(Connection*)connection;
+- (NSString *)returnInteractionTypeAsString;
 
 @end

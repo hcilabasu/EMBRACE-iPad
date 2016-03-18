@@ -41,6 +41,7 @@ typedef enum Actor {
 @property (nonatomic) Actor reader; //who should read the text
 @property (nonatomic) AppMode appMode;
 @property (nonatomic) Mode currentMode; //PM or IM
+@property (nonatomic) BOOL newInstructions; //whether new audio instructions should be played (for sequences)
 
 + (ConditionSetup*)sharedInstance;
 

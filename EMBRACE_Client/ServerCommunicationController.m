@@ -65,7 +65,7 @@ static ServerCommunicationController *sharedInstance = nil;
     NSString *path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.txt", studyFileName]];
     NSString *stringxml = [xmlDocTemp XMLStringWithOptions:DDXMLNodePrettyPrint];
     
-    NSLog(@"\n\n%@\n\n", stringxml);
+//    NSLog(@"\n\n%@\n\n", stringxml);
     
     if (![stringxml writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil]) {
         NSLog(@"Failed to write log file");
@@ -220,7 +220,8 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for sentence information
     DDXMLElement *nodeSentenceNumber = [DDXMLElement elementWithName:@"Sentence_Number" stringValue:[NSString stringWithFormat:@"%d", [context sentenceNumber]]];
-//    DDXMLElement *nodeSentenceText = [DDXMLElement elementWithName:@"Sentence_Text" stringValue:[context sentenceText]];
+    NSString *sentenceText = [[context sentenceText] isEqualToString:@""] || [context sentenceText] == nil ? @"NULL" : [context sentenceText];
+    DDXMLElement *nodeSentenceText = [DDXMLElement elementWithName:@"Sentence_Text" stringValue:sentenceText];
     
     //Create nodes for step number and idea number
     DDXMLElement *nodeStepNumber = [DDXMLElement elementWithName:@"Step_Number" stringValue:[NSString stringWithFormat:@"%d", [context stepNumber]]];
@@ -237,7 +238,7 @@ static ServerCommunicationController *sharedInstance = nil;
     [nodeManipulationContext addChild:nodePageMode];
     [nodeManipulationContext addChild:nodePageNumber];
     [nodeManipulationContext addChild:nodeSentenceNumber];
-//    [nodeManipulationContext addChild:nodeSentenceText];
+    [nodeManipulationContext addChild:nodeSentenceText];
     [nodeManipulationContext addChild:nodeStepNumber];
     [nodeManipulationContext addChild:nodeIdeaNumber];
     [nodeManipulationContext addChild:nodeTimestamp];
@@ -648,7 +649,7 @@ static ServerCommunicationController *sharedInstance = nil;
 /*
  * Logging for when a menu is displayed
  */
-- (void)logDisplayMenuWithInteractions:(NSArray *)interactions objects:(NSArray *)objects relationships:(NSArray*)relationships context:(ManipulationContext *)context {
+- (void)logDisplayMenuItems:(NSArray *)menuItemsData context:(ManipulationContext *)context {
     userActionID++;
     
     //Start with base node for system action
@@ -666,78 +667,43 @@ static ServerCommunicationController *sharedInstance = nil;
     //Get input
     DDXMLElement *nodeInput = [[nodeBaseAction elementsForName:@"Input"] objectAtIndex:0];
     
-    //Create nodes for menu item 1, menu item 2, and menu item 3
-    DDXMLElement *nodeMenuItem1;
-    DDXMLElement *nodeMenuItem2;
-    DDXMLElement *nodeMenuItem3;
+    //Create node for menu items
+    DDXMLElement *nodeMenuItems = [DDXMLElement elementWithName:@"Menu_Items"];
     
-    if ([interactions count] == 2) {
-        NSString *menuItem;
+    for (int i = 0; i < [menuItemsData count]; i++) {
+        NSArray *menuItemData = [menuItemsData objectAtIndex:i];
         
-        for (int i = 0; i < [objects count]; i++) {
-            if ([[objects objectAtIndex:i] isEqual:@"1"]) {
-                menuItem = [NSString stringWithFormat:@"%@", [objects objectAtIndex:1]];
-                
-                for (int j = 2; j < i; j++) {
-                    menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [objects objectAtIndex:j]];
-                }
-                
-                nodeMenuItem1 = [DDXMLElement elementWithName:@"Menu_Item_1" stringValue:[NSString stringWithFormat:@"%@, %@, %@", menuItem, [interactions objectAtIndex:0], [relationships objectAtIndex:0]]];
-                
-                menuItem = [NSString stringWithFormat:@"%@", [objects objectAtIndex:i + 1]];
-                
-                for (int j = i + 2; j < [objects count]; j++) {
-                    menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [objects objectAtIndex:j]];
-                }
-                
-                nodeMenuItem2 = [DDXMLElement elementWithName:@"Menu_Item_2" stringValue:[NSString stringWithFormat:@"%@, %@, %@", menuItem, [interactions objectAtIndex:1], [relationships objectAtIndex:1]]];
-            }
-        }
+        //Create node for menu item
+        DDXMLElement *nodeMenuItem = [DDXMLElement elementWithName:[NSString stringWithFormat:@"Menu_Item_%d", i]];
         
-        //Add above nodes to input
-        [nodeInput addChild:nodeMenuItem1];
-        [nodeInput addChild:nodeMenuItem2];
-    }
-    else {
-        NSString *menuItem;
-        int markMidmenu = 0;
-        
-        for (int i = 0; i < [objects count]; i++) {
-            if ([[objects objectAtIndex:i] isEqual:@"1"]) {
-                markMidmenu = i;
-                menuItem = [NSString stringWithFormat:@"%@", [objects objectAtIndex:1]];
-                
-                for (int j = 2; j < i; j++) {
-                    menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [objects objectAtIndex:j]];
-                }
-                
-                nodeMenuItem1 = [DDXMLElement elementWithName:@"Menu_Item_1" stringValue:[NSString stringWithFormat:@"%@, %@, %@", menuItem, [interactions objectAtIndex:0], [relationships objectAtIndex:0]]];
-            }
+        for (int j = 0; j < [menuItemData count]; j++) {
+            NSDictionary *connectionData = [menuItemData objectAtIndex:j];
             
-            if ([[objects objectAtIndex:i] isEqual:@"2"]) {
-                menuItem = [NSString stringWithFormat:@"%@", [objects objectAtIndex:markMidmenu + 1]];
-                
-                for (int j = markMidmenu + 2; j < i; j++) {
-                    menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [objects objectAtIndex:j]];
-                }
-                
-                nodeMenuItem2 = [DDXMLElement elementWithName:@"Menu_Item_2" stringValue:[NSString stringWithFormat:@"%@, %@, %@", menuItem, [interactions objectAtIndex:1], [relationships objectAtIndex:1]]];
-                
-                menuItem = [NSString stringWithFormat:@"%@", [objects objectAtIndex:i + 1]];
-                
-                for (int j = i + 2; j < [objects count]; j++) {
-                    menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [objects objectAtIndex:j] ];
-                }
-                
-                nodeMenuItem3 = [DDXMLElement elementWithName:@"Menu_Item_3" stringValue:[NSString stringWithFormat:@"%@, %@, %@", menuItem, [interactions objectAtIndex:2], [relationships objectAtIndex:2]]];
-            }
+            //Create node for interaction
+            DDXMLElement *nodeInteraction = [DDXMLElement elementWithName:[NSString stringWithFormat:@"Interaction_%d", j]];
+            
+            //Create nodes for objects, hotspot, and interaction type in interaction
+            DDXMLElement *nodeInteractionObject1 = [DDXMLElement elementWithName:@"Object_1" stringValue:[[connectionData objectForKey:@"objects"] objectAtIndex:0]];
+            DDXMLElement *nodeInteractionObject2 = [DDXMLElement elementWithName:@"Object_2" stringValue:[[connectionData objectForKey:@"objects"] objectAtIndex:1]];
+            DDXMLElement *nodeInteractionHotspot = [DDXMLElement elementWithName:@"Hotspot" stringValue:[connectionData objectForKey:@"hotspot"]];
+            DDXMLElement *nodeInteractionType = [DDXMLElement elementWithName:@"Interaction_Type" stringValue:[connectionData objectForKey:@"interactionType"]];
+            
+            //Add above nodes to interaction
+            [nodeInteraction addChild:nodeInteractionObject1];
+            [nodeInteraction addChild:nodeInteractionObject2];
+            [nodeInteraction addChild:nodeInteractionHotspot];
+            [nodeInteraction addChild:nodeInteractionType];
+            
+            //Add interaction node to menu item
+            [nodeMenuItem addChild:nodeInteraction];
         }
         
-        //Add above nodes to input
-        [nodeInput addChild:nodeMenuItem1];
-        [nodeInput addChild:nodeMenuItem2];
-        [nodeInput addChild:nodeMenuItem3];
+        //Add menu item node to menu items
+        [nodeMenuItems addChild:nodeMenuItem];
     }
+    
+    //Add above node to input
+    [nodeInput addChild:nodeMenuItems];
     
     //Get context
     DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
@@ -754,7 +720,7 @@ static ServerCommunicationController *sharedInstance = nil;
 /*
  * Logging for when a menu item is selected
  */
-- (void)logSelectMenuItemAtIndex:(int)index interactions:(NSArray *)interactions objects:(NSArray *)objects relationships:(NSArray *)relationships context:(ManipulationContext *)context {
+- (void)logSelectMenuItem:(NSArray *)menuItemData atIndex:(int)index context:(ManipulationContext *)context {
     //Start with base node for user action
     DDXMLElement *nodeBaseAction = [self getBaseActionForActor:USER];
     [study addChild:nodeBaseAction];
@@ -770,97 +736,40 @@ static ServerCommunicationController *sharedInstance = nil;
     //Get input
     DDXMLElement *nodeInput = [[nodeBaseAction elementsForName:@"Input"] objectAtIndex:0];
     
+    //Create node for menu item
+    DDXMLElement *nodeMenuItem;
+    
     if (index > -1) {
-        //Create nodes for menu item 1, menu item 2, and menu item 3
-        DDXMLElement *nodeMenuItem1;
-        DDXMLElement *nodeMenuItem2;
-        DDXMLElement *nodeMenuItem3;
+        nodeMenuItem = [DDXMLElement elementWithName:[NSString stringWithFormat:@"Menu_Item_%d", index]];
         
-        //Checks the number of menu items displayed, then extracts the menu item data and parses data into a string for each menu item for logging
-        if ([interactions count] == 2) {
-            NSString *menuItem;
+        for (int i = 0; i < [menuItemData count]; i++) {
+            NSDictionary *connectionData = [menuItemData objectAtIndex:i];
             
-            //Iterates through all menu images
-            for (int i = 0; i < [objects count]; i++) {
-                //Once the break between both menu items is reached, create strings for each
-                if ([[objects objectAtIndex:i] isEqual:@"1"]) {
-                    menuItem = [NSString stringWithFormat:@"%@", [objects objectAtIndex:1]];
-                    
-                    for (int j = 2; j < i; j++) {
-                        menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [objects objectAtIndex:j]];
-                    }
-                    
-                    nodeMenuItem1 = [DDXMLElement elementWithName:@"Menu_Item_1" stringValue:[NSString stringWithFormat:@"%@, %@, %@", menuItem, [interactions objectAtIndex:0], [relationships objectAtIndex:0]]];
-                    
-                    menuItem = [NSString stringWithFormat:@"%@", [objects objectAtIndex:i + 1]];
-                    
-                    for (int j = i + 2; j < [objects count]; j++) {
-                        menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [objects objectAtIndex:j]];
-                    }
-                    
-                    nodeMenuItem2 = [DDXMLElement elementWithName:@"Menu_Item_2" stringValue:[NSString stringWithFormat:@"%@, %@, %@", menuItem, [interactions objectAtIndex:1], [relationships objectAtIndex:1]]];
-                }
-            }
+            //Create node for interaction
+            DDXMLElement *nodeInteraction = [DDXMLElement elementWithName:[NSString stringWithFormat:@"Interaction_%d", i]];
             
-            //Add above nodes to input
-            if (index == 0) {
-                [nodeInput addChild:nodeMenuItem1];
-            }
-            else if (index == 1) {
-                [nodeInput addChild:nodeMenuItem2];
-            }
-        }
-        else {
-            NSString *menuItem;
-            int markMidmenu = 0;
+            //Create nodes for objects, hotspot, and interaction type in interaction
+            DDXMLElement *nodeInteractionObject1 = [DDXMLElement elementWithName:@"Object_1" stringValue:[[connectionData objectForKey:@"objects"] objectAtIndex:0]];
+            DDXMLElement *nodeInteractionObject2 = [DDXMLElement elementWithName:@"Object_2" stringValue:[[connectionData objectForKey:@"objects"] objectAtIndex:1]];
+            DDXMLElement *nodeInteractionHotspot = [DDXMLElement elementWithName:@"Hotspot" stringValue:[connectionData objectForKey:@"hotspot"]];
+            DDXMLElement *nodeInteractionType = [DDXMLElement elementWithName:@"Interaction_Type" stringValue:[connectionData objectForKey:@"interactionType"]];
             
-            for (int i = 0; i < [objects count]; i++) {
-                if ([[objects objectAtIndex:i] isEqual:@"1"]) {
-                    markMidmenu = i;
-                    menuItem = [NSString stringWithFormat:@"%@", [objects objectAtIndex:1]];
-                    
-                    for (int j = 2; j < i; j++) {
-                        menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [objects objectAtIndex:j]];
-                    }
-                    
-                    nodeMenuItem1 = [DDXMLElement elementWithName:@"Menu_Item_1" stringValue:[NSString stringWithFormat:@"%@, %@, %@", menuItem, [interactions objectAtIndex:0], [relationships objectAtIndex:0]]];
-                }
-                
-                if ([[objects objectAtIndex:i] isEqual:@"2"]) {
-                    menuItem = [NSString stringWithFormat:@"%@", [objects objectAtIndex:markMidmenu + 1]];
-                    
-                    for (int j = markMidmenu + 2; j < i; j++) {
-                        menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [objects objectAtIndex:j]];
-                    }
-                    
-                    nodeMenuItem2 = [DDXMLElement elementWithName:@"Menu_Item_2" stringValue:[NSString stringWithFormat:@"%@, %@, %@", menuItem, [interactions objectAtIndex:1], [relationships objectAtIndex:1]]];
-                    
-                    menuItem = [NSString stringWithFormat:@"%@", [objects objectAtIndex:i + 1]];
-                    
-                    for (int j = i + 2; j < [objects count]; j++) {
-                        menuItem = [NSString stringWithFormat:@"%@, %@", menuItem, [objects objectAtIndex:j] ];
-                    }
-                    
-                    nodeMenuItem3 = [DDXMLElement elementWithName:@"Menu_Item_3" stringValue:[NSString stringWithFormat:@"%@, %@, %@", menuItem, [interactions objectAtIndex:2], [relationships objectAtIndex:2]]];
-                }
-            }
+            //Add above nodes to interaction
+            [nodeInteraction addChild:nodeInteractionObject1];
+            [nodeInteraction addChild:nodeInteractionObject2];
+            [nodeInteraction addChild:nodeInteractionHotspot];
+            [nodeInteraction addChild:nodeInteractionType];
             
-            //Add above nodes to input
-            if (index == 0) {
-                [nodeInput addChild:nodeMenuItem1];
-            }
-            else if (index == 1) {
-                [nodeInput addChild:nodeMenuItem2];
-            }
-            else if (index == 2) {
-                [nodeInput addChild:nodeMenuItem3];
-            }
+            //Add interaction node to menu item
+            [nodeMenuItem addChild:nodeInteraction];
         }
     }
     else {
-        DDXMLElement *nodeMenuItem = [DDXMLElement elementWithName:@"Menu_Item" stringValue:@"NULL"];
-        [nodeInput addChild:nodeMenuItem];
+        nodeMenuItem = [DDXMLElement elementWithName:@"Menu_Item" stringValue:@"NULL"];
     }
+    
+    //Add above node to input
+    [nodeInput addChild:nodeMenuItem];
     
     //Get context
     DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
@@ -1332,11 +1241,12 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for input information
     DDXMLElement *nodeSentenceNumber = [DDXMLElement elementWithName:@"Sentence_Number" stringValue:[NSString stringWithFormat:@"%d", sentenceNumber]];
-//    DDXMLElement *nodeSentenceText = [DDXMLElement elementWithName:@"Sentence_Text" stringValue:sentenceText];
+    sentenceText = [sentenceText isEqualToString:@""] || sentenceText == nil ? @"NULL" : sentenceText;
+    DDXMLElement *nodeSentenceText = [DDXMLElement elementWithName:@"Sentence_Text" stringValue:sentenceText];
     
     //Add above nodes to input
     [nodeInput addChild:nodeSentenceNumber];
-//    [nodeInput addChild:nodeSentenceText];
+    [nodeInput addChild:nodeSentenceText];
     
     //Get context
     DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
