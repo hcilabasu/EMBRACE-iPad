@@ -55,6 +55,7 @@
     NSError *audioError;
     
     self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&audioError];
+    self.audioPlayerAfter = nil;
     
     if (self.audioPlayer == nil)
     {
@@ -124,6 +125,7 @@
         NSLog(@"Audio file - %@", soundFileURL);
         self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&audioError];
         self.audioPlayer.delegate = self;
+        self.audioPlayerAfter = nil;
         
         if (self.audioPlayer == nil) {
             self.audioQueue = nil;
