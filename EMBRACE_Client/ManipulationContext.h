@@ -21,6 +21,7 @@
 
 @property (nonatomic, assign) NSInteger sentenceNumber;
 @property (nonatomic, strong) NSString *sentenceText;
+@property (nonatomic, assign) BOOL manipulationSentence;
 
 @property (nonatomic, assign) NSInteger stepNumber;
 

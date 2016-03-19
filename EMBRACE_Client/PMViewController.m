@@ -283,7 +283,8 @@ BOOL wasPathFollowed = false;
         
         manipulationContext.sentenceNumber = currentSentence;
         manipulationContext.sentenceText = currentSentenceText;
-        [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText context:manipulationContext];
+        manipulationContext.manipulationSentence = [self isManipulationSentence:currentSentence];
+        [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
         
         //Dynamically reads the vocabulary words on the vocab page and creates and adds solutionsteps
         if ([currentPageId rangeOfString:@"-Intro"].location != NSNotFound) {
@@ -1423,8 +1424,8 @@ BOOL wasPathFollowed = false;
                 
                 manipulationContext.sentenceNumber = currentSentence;
                 manipulationContext.sentenceText = currentSentenceText;
-                
-                [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText context:manipulationContext];
+                manipulationContext.manipulationSentence = [self isManipulationSentence:currentSentence];
+                [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
             
                 [self performSelector:@selector(colorSentencesUponNext) withObject:nil afterDelay:([self.playaudioClass audioPlayer].duration)];
             }
@@ -3028,7 +3029,8 @@ BOOL wasPathFollowed = false;
             
             manipulationContext.sentenceNumber = currentSentence;
             manipulationContext.sentenceText = currentSentenceText;
-            [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText context:manipulationContext];
+            manipulationContext.manipulationSentence = [self isManipulationSentence:currentSentence];
+            [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
         
             //Set up current sentence appearance and solution steps
             [self setupCurrentSentence];
@@ -4090,6 +4092,7 @@ BOOL wasPathFollowed = false;
                 
                 manipulationContext.sentenceNumber = currentSentence;
                 manipulationContext.sentenceText = currentSentenceText;
+                manipulationContext.manipulationSentence = [self isManipulationSentence:currentSentence];
                 
                 [self loadNextPage];
             }
@@ -4101,6 +4104,7 @@ BOOL wasPathFollowed = false;
             
             manipulationContext.sentenceNumber = currentSentence;
             manipulationContext.sentenceText = currentSentenceText;
+            manipulationContext.manipulationSentence = [self isManipulationSentence:currentSentence];
             
             [self loadNextPage];
         }
@@ -4165,7 +4169,8 @@ BOOL wasPathFollowed = false;
                 
                 manipulationContext.sentenceNumber = currentSentence;
                 manipulationContext.sentenceText = currentSentenceText;
-                [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText context:manipulationContext];
+                manipulationContext.manipulationSentence = [self isManipulationSentence:currentSentence];
+                [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
                 
                 //currentSentence is 1 indexed.
                 if (currentSentence > totalSentences) {
@@ -4192,7 +4197,8 @@ BOOL wasPathFollowed = false;
             
             manipulationContext.sentenceNumber = currentSentence;
             manipulationContext.sentenceText = currentSentenceText;
-            [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText context:manipulationContext];
+            manipulationContext.manipulationSentence = [self isManipulationSentence:currentSentence];
+            [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
 
             //currentSentence is 1 indexed
             if (currentSentence > totalSentences) {
@@ -4710,6 +4716,23 @@ BOOL wasPathFollowed = false;
             [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
         }
     }
+}
+
+/*
+ * Checks whether the specified sentence number requires physical or imagine manipulation
+ */
+- (BOOL)isManipulationSentence:(NSInteger)sentenceNumber {
+    BOOL isManipulationSentence = false;
+    
+    //Get the sentence class
+    NSString *getSentenceClass = [NSString stringWithFormat:@"getSentenceClass(s%d)", sentenceNumber];
+    NSString *sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:getSentenceClass];
+    
+    if ([sentenceClass containsString: @"sentence actionSentence"]) {
+        isManipulationSentence = true;
+    }
+    
+    return isManipulationSentence;
 }
 
 - (void)highlightObject:(NSString *)object :(double)delay {

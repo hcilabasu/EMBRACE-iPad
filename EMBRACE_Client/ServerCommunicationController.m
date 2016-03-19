@@ -197,6 +197,7 @@ static ServerCommunicationController *sharedInstance = nil;
  *  <Page_Number>...</Page_Number>
  *  <Sentence_Number>...</Sentence_Number>
  *  <Sentence_Text>...</Sentence_Text>
+ *  <Manipulation_Sentence>...</Manipulation_Sentence>
  *  <Step_Number>...</Step_Number>
  *  <Idea_Number>...</Idea_Number>
  *  <Timestamp>...</Timestamp>
@@ -222,6 +223,7 @@ static ServerCommunicationController *sharedInstance = nil;
     DDXMLElement *nodeSentenceNumber = [DDXMLElement elementWithName:@"Sentence_Number" stringValue:[NSString stringWithFormat:@"%ld", (long)[context sentenceNumber]]];
     NSString *sentenceText = [[context sentenceText] isEqualToString:@""] || [context sentenceText] == nil ? @"NULL" : [context sentenceText];
     DDXMLElement *nodeSentenceText = [DDXMLElement elementWithName:@"Sentence_Text" stringValue:sentenceText];
+    DDXMLElement *nodeManipulationSentence = [DDXMLElement elementWithName:@"Manipulation_Sentence" stringValue:[context manipulationSentence] ? @"Yes" : @"No"];
     
     //Create nodes for step number and idea number
     DDXMLElement *nodeStepNumber = [DDXMLElement elementWithName:@"Step_Number" stringValue:[NSString stringWithFormat:@"%ld", (long)[context stepNumber]]];
@@ -239,6 +241,7 @@ static ServerCommunicationController *sharedInstance = nil;
     [nodeManipulationContext addChild:nodePageNumber];
     [nodeManipulationContext addChild:nodeSentenceNumber];
     [nodeManipulationContext addChild:nodeSentenceText];
+    [nodeManipulationContext addChild:nodeManipulationSentence];
     [nodeManipulationContext addChild:nodeStepNumber];
     [nodeManipulationContext addChild:nodeIdeaNumber];
     [nodeManipulationContext addChild:nodeTimestamp];
@@ -1227,7 +1230,7 @@ static ServerCommunicationController *sharedInstance = nil;
 /*
  * Logging for loading a sentence
  */
-- (void)logLoadSentence:(NSInteger)sentenceNumber withText:(NSString *)sentenceText context:(ManipulationContext *)context {
+- (void)logLoadSentence:(NSInteger)sentenceNumber withText:(NSString *)sentenceText manipulationSentence:(BOOL)manipulationSentence context:(ManipulationContext *)context {
     //Start with base node for system action
     DDXMLElement *nodeBaseAction = [self getBaseActionForActor:SYSTEM];
     [study addChild:nodeBaseAction];
@@ -1247,10 +1250,12 @@ static ServerCommunicationController *sharedInstance = nil;
     DDXMLElement *nodeSentenceNumber = [DDXMLElement elementWithName:@"Sentence_Number" stringValue:[NSString stringWithFormat:@"%d", sentenceNumber]];
     sentenceText = [sentenceText isEqualToString:@""] || sentenceText == nil ? @"NULL" : sentenceText;
     DDXMLElement *nodeSentenceText = [DDXMLElement elementWithName:@"Sentence_Text" stringValue:sentenceText];
+    DDXMLElement *nodeManipulationSentence = [DDXMLElement elementWithName:@"Manipulation_Sentence" stringValue:manipulationSentence ? @"Yes" : @"No"];
     
     //Add above nodes to input
     [nodeInput addChild:nodeSentenceNumber];
     [nodeInput addChild:nodeSentenceText];
+    [nodeInput addChild:nodeManipulationSentence];
     
     //Get context
     DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
