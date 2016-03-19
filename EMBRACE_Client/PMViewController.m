@@ -1047,7 +1047,6 @@ BOOL wasPathFollowed = false;
     if (![[self.navigationController viewControllers] containsObject:self]) {
         [[ServerCommunicationController sharedInstance] logPressLibrary:manipulationContext];
         [[ServerCommunicationController sharedInstance] studyContext].condition = @"NULL";
-        [[ServerCommunicationController sharedInstance] writeLogFile];
     }
 }
 

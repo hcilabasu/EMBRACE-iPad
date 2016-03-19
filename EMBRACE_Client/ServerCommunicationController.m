@@ -65,7 +65,7 @@ static ServerCommunicationController *sharedInstance = nil;
     NSString *path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.txt", studyFileName]];
     NSString *stringxml = [xmlDocTemp XMLStringWithOptions:DDXMLNodePrettyPrint];
     
-    NSLog(@"\n\n%@\n\n", stringxml);
+//    NSLog(@"\n\n%@\n\n", stringxml);
     
     if (![stringxml writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil]) {
         NSLog(@"Failed to write log file");
@@ -327,6 +327,8 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Add above node to context
     [nodeContext addChild:nodeStudyContext];
+    
+    [self writeLogFile];
 }
 
 /*
@@ -364,6 +366,8 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Add above node to context
     [nodeContext addChild:nodeStudyContext];
+    
+    [self writeLogFile];
 }
 
 /*
@@ -401,6 +405,8 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Add above node to context
     [nodeContext addChild:nodeStudyContext];
+    
+    [self writeLogFile];
 }
 
 /*
@@ -524,6 +530,8 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Add above node to context
     [nodeContext addChild:nodeStudyContext];
+    
+    [self writeLogFile];
 }
 
 /*
@@ -566,7 +574,6 @@ static ServerCommunicationController *sharedInstance = nil;
     //Add above node to context
     [nodeContext addChild:nodeStudyContext];
     
-    //Make sure log file is written out at end of chapter
     [self writeLogFile];
 }
 
@@ -1323,7 +1330,6 @@ static ServerCommunicationController *sharedInstance = nil;
     [nodeContext addChild:nodeManipulationContext];
     [nodeContext addChild:nodeStudyContext];
     
-    //Make sure log file is written out at end of page
     [self writeLogFile];
 }
 
@@ -1364,6 +1370,8 @@ static ServerCommunicationController *sharedInstance = nil;
     //Add above nodes to context
     [nodeContext addChild:nodeManipulationContext];
     [nodeContext addChild:nodeStudyContext];
+    
+    [self writeLogFile];
 }
 
 /*
@@ -1397,7 +1405,6 @@ static ServerCommunicationController *sharedInstance = nil;
     [nodeContext addChild:nodeManipulationContext];
     [nodeContext addChild:nodeStudyContext];
     
-    //Make sure log file is written at end of manipulation activity
     [self writeLogFile];
 }
 
@@ -1682,9 +1689,6 @@ static ServerCommunicationController *sharedInstance = nil;
     //Add above nodes to context
     [nodeContext addChild:nodeAssessmentContext];
     [nodeContext addChild:nodeStudyContext];
-    
-    //Make sure log file is written at end of assessment question
-    [self writeLogFile];
 }
 
 /*
@@ -1724,6 +1728,8 @@ static ServerCommunicationController *sharedInstance = nil;
     //Add above nodes to context
     [nodeContext addChild:nodeAssessmentContext];
     [nodeContext addChild:nodeStudyContext];
+    
+    [self writeLogFile];
 }
 
 - (void)logCompleteAssessment:(AssessmentContext *)context {
@@ -1754,7 +1760,6 @@ static ServerCommunicationController *sharedInstance = nil;
     [nodeContext addChild:nodeAssessmentContext];
     [nodeContext addChild:nodeStudyContext];
     
-    //Make sure log file is written at end of assessment activity
     [self writeLogFile];
 }
 

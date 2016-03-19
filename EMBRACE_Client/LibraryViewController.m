@@ -360,9 +360,6 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
 - (IBAction)pressedLogout:(id)sender {
     [[ServerCommunicationController sharedInstance] logPressLogout];
     
-    //Write log data to file
-    [[ServerCommunicationController sharedInstance] writeLogFile];
-    
     //Save progress to file
     [[ServerCommunicationController sharedInstance] saveProgress:student :studentProgress];
     
