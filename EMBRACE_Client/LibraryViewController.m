@@ -632,7 +632,21 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                 }
             }
             
-            [[ServerCommunicationController sharedInstance] studyContext].condition = [conditionSetup returnConditionEnumToString:conditionSetup.condition];
+            NSString *condition = @"Unknown";
+            
+            if (conditionSetup.condition == CONTROL) {
+                condition = @"R";
+            }
+            else if (conditionSetup.condition == EMBRACE) {
+                if (conditionSetup.currentMode == PM_MODE) {
+                    condition = @"PM";
+                }
+                else if (conditionSetup.currentMode == IM_MODE) {
+                    condition = @"IM";
+                }
+            }
+            
+            [[ServerCommunicationController sharedInstance] studyContext].condition = condition;
             [[ServerCommunicationController sharedInstance] logLoadChapter:selectedChapterTitle inBook:selectedBookTitle];
             
             //Send the notification to open that mode for the particular book and activity chosen

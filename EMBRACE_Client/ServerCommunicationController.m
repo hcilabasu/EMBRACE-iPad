@@ -124,7 +124,7 @@ static ServerCommunicationController *sharedInstance = nil;
     if (student != nil) {
         studyContext = [[StudyContext alloc] init];
         
-        studyContext.condition = [[ConditionSetup sharedInstance] returnConditionEnumToString:[[ConditionSetup sharedInstance] condition]];
+        studyContext.condition = @"NULL";
         studyContext.schoolCode = [student schoolCode];
         studyContext.participantCode = [student participantCode];
         studyContext.studyDay = [student studyDay];
