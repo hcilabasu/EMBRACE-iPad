@@ -224,11 +224,7 @@
                         <english>
                             <audio seq="1">NaughtyMonkey_Script_C10.mp3</audio>
                         </english>
-                        
-                        <bilingual>
-                            <audio seq="1">NaughtyMonkey_Script_C10_S.mp3</audio>
-                            
-                        </bilingual>
+                       
                     </preAudio>
                     
                 </control>
@@ -244,10 +240,7 @@
                             <audio seq="1">NaughtyMonkey_Script_C12.mp3</audio>
                         </english>
                         
-                        <bilingual>
-                            <audio seq="1">NaughtyMonkey_Script_C12_S.mp3</audio>
-                            
-                        </bilingual>
+                        
                     </postAudio>
                     
                 </control>
