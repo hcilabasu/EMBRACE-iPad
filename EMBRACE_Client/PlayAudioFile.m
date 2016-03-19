@@ -55,6 +55,7 @@
     NSError *audioError;
     
     self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&audioError];
+    self.audioPlayerAfter = nil;
     
     if (self.audioPlayer == nil)
     {
@@ -68,7 +69,7 @@
 
 /* Plays an audio file at a given path */
 -(BOOL) playAudioFile:(UIViewController*) viewController : (NSString*) path {
-    //PmviewController = [[UIViewController alloc] init];
+    
     self.PmviewController = viewController;
     [viewController.view setUserInteractionEnabled:NO];
     
@@ -124,6 +125,7 @@
         NSLog(@"Audio file - %@", soundFileURL);
         self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&audioError];
         self.audioPlayer.delegate = self;
+        self.audioPlayerAfter = nil;
         
         if (self.audioPlayer == nil) {
             self.audioQueue = nil;
@@ -142,26 +144,29 @@
 /* Plays one audio file after the other */
 -(BOOL) playAudioInSequence: (UIViewController*) viewController : (NSString*) path :(NSString*) path2 {
    
-        NSString *soundFilePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], path];
-        NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
-        NSError *audioError;
-        
-        NSString *soundFilePath2 = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], path2];
-        NSURL *soundFileURL2 = [NSURL fileURLWithPath:soundFilePath2];
-        
-        //PmviewController = [[UIViewController alloc] init];
         self.PmviewController = viewController;
         [PmviewController.view setUserInteractionEnabled:NO];
-        
-        self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&audioError];
-        self.audioPlayerAfter = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL2 error:&audioError];
+    
+        NSString *soundFilePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], path];
+        NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+        NSError *audioError1;
+        NSError *audioError2;
+    
+        NSString *soundFilePath2 = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], path2];
+        NSURL *soundFileURL2 = [NSURL fileURLWithPath:soundFilePath2];
+    
+        self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&audioError1];
+        self.audioPlayerAfter = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL2 error:&audioError2];
         
         //may need to pass in which ever class is calling this function
         self.audioPlayer.delegate = self;
         
-        if (self.audioPlayer == nil)
+        if (self.audioPlayer == nil || self.audioPlayerAfter == nil)
         {
-            NSLog(@"%@",[audioError description]);
+            NSLog(@"%@",[audioError1 description]);
+            NSLog(@"%@",[audioError2 description]);
+            self.audioPlayer = nil;
+            self.audioPlayerAfter = nil;
             [PmviewController.view setUserInteractionEnabled:YES];
             return false;
         }
@@ -184,13 +189,15 @@
     else
     {
         // This delay is needed in order to be able to play the last definition on a vocabulary page
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW,2*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        //dispatch_after(dispatch_time(DISPATCH_TIME_NOW,NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             [self.audioPlayerAfter play];
-        });
+        //});
         
         if(PmviewController != nil)
         {
-            [PmviewController.view setUserInteractionEnabled:YES];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW,([self.audioPlayerAfter duration]+.25) * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                [PmviewController.view setUserInteractionEnabled:YES];
+            });
         }
     }
 }

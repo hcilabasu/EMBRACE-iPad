@@ -11,13 +11,15 @@
 @implementation ActivityMode
 
 @synthesize chapterTitle;
+@synthesize newInstructions;
 @synthesize reader;
 @synthesize language;
 @synthesize interventionType;
 
-- (id)initWithValues:(NSString *)title :(Actor)read :(Language)lang :(InterventionType)type {
+- (id)initWithValues:(NSString *)title :(BOOL)newInstruct :(Actor)read :(Language)lang :(InterventionType)type {
     if (self = [super init]) {
         chapterTitle = title;
+        newInstructions = newInstruct;
         reader = read;
         language = lang;
         interventionType = type;

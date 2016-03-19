@@ -56,6 +56,10 @@
                 //Get chapter title
                 NSString *chapterTitle = [[modeElement attributeForName:@"chapterTitle"] stringValue];
                 
+                //Get new instructions flag
+                NSString *newInstructionsString = [[modeElement attributeForName:@"newInstructions"] stringValue];
+                BOOL newInstructions = [newInstructionsString isEqualToString:@"true"] ? true : false;
+                
                 //Get reader
                 GDataXMLElement *readerElement = [[modeElement elementsForName:@"reader"] objectAtIndex:0];
                 NSString *readerString = readerElement.stringValue;
@@ -108,7 +112,7 @@
                 }
                 
                 //Create mode for chapter and add to array of modes
-                ActivityMode *mode = [[ActivityMode alloc] initWithValues:chapterTitle :reader :language :intervention];
+                ActivityMode *mode = [[ActivityMode alloc] initWithValues:chapterTitle :newInstructions :reader :language :intervention];
                 [modes addObject:mode];
             }
             
