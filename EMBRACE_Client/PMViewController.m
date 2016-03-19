@@ -4129,6 +4129,8 @@ BOOL wasPathFollowed = false;
                     [allRelationships addObject:relationshipBetweenObjects];
                 }
                 
+                interactions = [self shuffleIMOptions: interactions];
+                
                 //Populate the menu data source and expand the menu.
                 [self populateMenuDataSource:interactions :allRelationships];
                 
@@ -4226,6 +4228,22 @@ BOOL wasPathFollowed = false;
             [self playErrorNoise];
         }
     }
+}
+
+/*
+ * Randomizer function that randomizes the menu options for IM
+ */
+- (NSMutableArray *)shuffleIMOptions: (NSMutableArray *) interactions {
+    NSUInteger count = [allRelationships count];
+    
+    for (NSUInteger i = 0; i < count; ++i) {
+        //NSInteger remainingCount = count - i;
+        NSInteger exchangeIndex = (arc4random() % (count - i)) + i;
+        [allRelationships exchangeObjectAtIndex:i withObjectAtIndex:exchangeIndex];
+        [interactions exchangeObjectAtIndex:i withObjectAtIndex:exchangeIndex];
+    }
+    
+    return interactions;
 }
 
 - (void)playErrorNoise {
