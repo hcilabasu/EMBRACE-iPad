@@ -17,4 +17,6 @@
 @property (nonatomic, strong) NSString *experimenterName;
 @property (nonatomic, strong) NSString *language;
 
+- (NSMutableDictionary *)generateTimestamp;
+
 @end

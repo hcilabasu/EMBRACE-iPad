@@ -117,6 +117,29 @@ static ServerCommunicationController *sharedInstance = nil;
 # pragma mark - Logging (Context)
 
 /*
+ * Returns a timestamp for context
+ *
+ * <Timestamp>
+ *  <Date>...</Date>
+ *  <Time>...</Time>
+ * </Timestamp>
+ */
+- (DDXMLElement *)getTimestamp:(NSDictionary *)timestamp {
+    //Create node for timestamp
+    DDXMLElement *nodeTimestamp = [DDXMLElement elementWithName:@"Timestamp"];
+    
+    //Create nodes for timestamp information
+    DDXMLElement *nodeDate = [DDXMLElement elementWithName:@"Date" stringValue:[timestamp objectForKey:@"date"]];
+    DDXMLElement *nodeTime = [DDXMLElement elementWithName:@"Time" stringValue:[timestamp objectForKey:@"time"]];
+    
+    //Add above nodes to timestamp
+    [nodeTimestamp addChild:nodeDate];
+    [nodeTimestamp addChild:nodeTime];
+    
+    return nodeTimestamp;
+}
+
+/*
  * Sets up study context--condition, school code, participant code, study day, and experimenter name.
  * Also sets the name of the current log file.
  */
@@ -157,7 +180,7 @@ static ServerCommunicationController *sharedInstance = nil;
  *  [OPTIONAL] <Timestamp>...</Timestamp>
  * </Study_Context>
  */
-- (DDXMLElement *)getStudyContext:(StudyContext *)context addTimestamp:(BOOL)addTimestamp {
+- (DDXMLElement *)getStudyContext:(StudyContext *)context {
     //Create node to store study context information
     DDXMLElement *nodeStudyContext = [DDXMLElement elementWithName:@"Study_Context"];
     
@@ -168,6 +191,7 @@ static ServerCommunicationController *sharedInstance = nil;
     DDXMLElement *nodeParticipantCode = [DDXMLElement elementWithName:@"Participant_Code" stringValue:[context participantCode]];
     DDXMLElement *nodeExperimenterName = [DDXMLElement elementWithName:@"Experimenter_Name" stringValue:[context experimenterName]];
     DDXMLElement *nodeLanguage = [DDXMLElement elementWithName:@"Language" stringValue:[context language]];
+    DDXMLElement *nodeTimestamp = [self getTimestamp:[context generateTimestamp]];
     
     //Add nodes to study context
     [nodeStudyContext addChild:nodeSchoolCode];
@@ -176,14 +200,7 @@ static ServerCommunicationController *sharedInstance = nil;
     [nodeStudyContext addChild:nodeParticipantCode];
     [nodeStudyContext addChild:nodeExperimenterName];
     [nodeStudyContext addChild:nodeLanguage];
-    
-    if (addTimestamp) {
-        //Create node for timestamp
-        DDXMLElement *nodeTimestamp = [DDXMLElement elementWithName:@"Timestamp" stringValue:[context generateTimestamp]];
-        
-        //Add above node to study context
-        [nodeStudyContext addChild:nodeTimestamp];
-    }
+    [nodeStudyContext addChild:nodeTimestamp];
     
     return nodeStudyContext;
 }
@@ -232,9 +249,6 @@ static ServerCommunicationController *sharedInstance = nil;
     DDXMLElement *nodeStepNumber = [DDXMLElement elementWithName:@"Step_Number" stringValue:[NSString stringWithFormat:@"%ld", (long)[context stepNumber]]];
     DDXMLElement *nodeIdeaNumber = [DDXMLElement elementWithName:@"Idea_Number" stringValue:[NSString stringWithFormat:@"%ld", (long)[context ideaNumber]]];
     
-    //Create node for timestamp
-    DDXMLElement *nodeTimestamp = [DDXMLElement elementWithName:@"Timestamp" stringValue:[context generateTimestamp]];
-    
     //Add nodes to manipulation context
     [nodeManipulationContext addChild:nodeBookTitle];
     [nodeManipulationContext addChild:nodeChapterNumber];
@@ -247,7 +261,6 @@ static ServerCommunicationController *sharedInstance = nil;
     [nodeManipulationContext addChild:nodeManipulationSentence];
     [nodeManipulationContext addChild:nodeStepNumber];
     [nodeManipulationContext addChild:nodeIdeaNumber];
-    [nodeManipulationContext addChild:nodeTimestamp];
     
     return nodeManipulationContext;
 }
@@ -270,13 +283,11 @@ static ServerCommunicationController *sharedInstance = nil;
     DDXMLElement *nodeBookTitle = [DDXMLElement elementWithName:@"Book_Title" stringValue:[context bookTitle]];
     DDXMLElement *nodeChapterTitle = [DDXMLElement elementWithName:@"Chapter_Title" stringValue:[context chapterTitle]];
     DDXMLElement *nodeAssessmentStepNumber = [DDXMLElement elementWithName:@"Assessment_Step_Number" stringValue:[NSString stringWithFormat:@"%d", [context assessmentStepNumber]]];
-    DDXMLElement *nodeTimestamp = [DDXMLElement elementWithName:@"Timestamp" stringValue:[context generateTimestamp]];
     
     //Add nodes to assessment context
     [nodeAssessmentContext addChild:nodeBookTitle];
     [nodeAssessmentContext addChild:nodeChapterTitle];
     [nodeAssessmentContext addChild:nodeAssessmentStepNumber];
-    [nodeAssessmentContext addChild:nodeTimestamp];
     
     return nodeAssessmentContext;
 }
@@ -312,7 +323,7 @@ static ServerCommunicationController *sharedInstance = nil;
     DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
     
     //Create node for context information
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:YES];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
     
     //Add above node to context
     [nodeContext addChild:nodeStudyContext];
@@ -349,7 +360,7 @@ static ServerCommunicationController *sharedInstance = nil;
     DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
     
     //Create node for context information
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:YES];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
     
     //Add above node to context
     [nodeContext addChild:nodeStudyContext];
@@ -386,7 +397,7 @@ static ServerCommunicationController *sharedInstance = nil;
     DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
     
     //Create node for context information
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:YES];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
     
     //Add above node to context
     [nodeContext addChild:nodeStudyContext];
@@ -427,7 +438,7 @@ static ServerCommunicationController *sharedInstance = nil;
     DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
     
     //Create node for context information
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:YES];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
     
     //Add above node to context
     [nodeContext addChild:nodeStudyContext];
@@ -470,7 +481,7 @@ static ServerCommunicationController *sharedInstance = nil;
     DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
     
     //Create node for context information
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:YES];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
     
     //Add above node to context
     [nodeContext addChild:nodeStudyContext];
@@ -509,7 +520,7 @@ static ServerCommunicationController *sharedInstance = nil;
     DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
     
     //Create node for context information
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:YES];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
     
     //Add above node to context
     [nodeContext addChild:nodeStudyContext];
@@ -550,7 +561,7 @@ static ServerCommunicationController *sharedInstance = nil;
     DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
     
     //Create node for context information
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:YES];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
     
     //Add above node to context
     [nodeContext addChild:nodeStudyContext];
@@ -608,7 +619,7 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for context information
     DDXMLElement *nodeManipulationContext = [self getManipulationContext:context];
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:NO];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
     
     //Add above nodes to context
     [nodeContext addChild:nodeManipulationContext];
@@ -649,7 +660,7 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for context information
     DDXMLElement *nodeManipulationContext = [self getManipulationContext:context];
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:NO];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
     
     //Add above nodes to context
     [nodeContext addChild:nodeManipulationContext];
@@ -720,7 +731,7 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for context information
     DDXMLElement *nodeManipulationContext = [self getManipulationContext:context];
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:NO];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
     
     //Add above nodes to context
     [nodeContext addChild:nodeManipulationContext];
@@ -786,7 +797,7 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for context information
     DDXMLElement *nodeManipulationContext = [self getManipulationContext:context];
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:NO];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
     
     //Add above nodes to context
     [nodeContext addChild:nodeManipulationContext];
@@ -831,7 +842,7 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for context information
     DDXMLElement *nodeManipulationContext = [self getManipulationContext:context];
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:NO];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
     
     //Add above nodes to context
     [nodeContext addChild:nodeManipulationContext];
@@ -872,7 +883,7 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for context information
     DDXMLElement *nodeManipulationContext = [self getManipulationContext:context];
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:NO];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
     
     //Add above nodes to context
     [nodeContext addChild:nodeManipulationContext];
@@ -909,7 +920,7 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for context information
     DDXMLElement *nodeManipulationContext = [self getManipulationContext:context];
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:NO];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
     
     //Add above nodes to context
     [nodeContext addChild:nodeManipulationContext];
@@ -948,7 +959,7 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for context information
     DDXMLElement *nodeManipulationContext = [self getManipulationContext:context];
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:NO];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
     
     //Add above nodes to context
     [nodeContext addChild:nodeManipulationContext];
@@ -987,7 +998,7 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for context information
     DDXMLElement *nodeManipulationContext = [self getManipulationContext:context];
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:NO];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
     
     //Add above nodes to context
     [nodeContext addChild:nodeManipulationContext];
@@ -1026,7 +1037,7 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for context information
     DDXMLElement *nodeManipulationContext = [self getManipulationContext:context];
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:NO];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
     
     //Add above nodes to context
     [nodeContext addChild:nodeManipulationContext];
@@ -1065,7 +1076,7 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for context information
     DDXMLElement *nodeManipulationContext = [self getManipulationContext:context];
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:NO];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
     
     //Add above nodes to context
     [nodeContext addChild:nodeManipulationContext];
@@ -1104,7 +1115,7 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for context information
     DDXMLElement *nodeManipulationContext = [self getManipulationContext:context];
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:NO];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
     
     //Add above nodes to context
     [nodeContext addChild:nodeManipulationContext];
@@ -1145,7 +1156,7 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for context information
     DDXMLElement *nodeManipulationContext = [self getManipulationContext:context];
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:NO];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
     
     //Add above nodes to context
     [nodeContext addChild:nodeManipulationContext];
@@ -1184,7 +1195,7 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for context information
     DDXMLElement *nodeManipulationContext = [self getManipulationContext:context];
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:NO];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
     
     //Add above nodes to context
     [nodeContext addChild:nodeManipulationContext];
@@ -1223,7 +1234,7 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for context information
     DDXMLElement *nodeManipulationContext = [self getManipulationContext:context];
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:NO];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
     
     //Add above nodes to context
     [nodeContext addChild:nodeManipulationContext];
@@ -1265,7 +1276,7 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for context information
     DDXMLElement *nodeManipulationContext = [self getManipulationContext:context];
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:NO];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
     
     //Add above nodes to context
     [nodeContext addChild:nodeManipulationContext];
@@ -1306,7 +1317,7 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for context information
     DDXMLElement *nodeManipulationContext = [self getManipulationContext:context];
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:NO];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
     
     //Add above nodes to context
     [nodeContext addChild:nodeManipulationContext];
@@ -1348,7 +1359,7 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for context information
     DDXMLElement *nodeManipulationContext = [self getManipulationContext:context];
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:NO];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
     
     //Add above nodes to context
     [nodeContext addChild:nodeManipulationContext];
@@ -1380,7 +1391,7 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for context information
     DDXMLElement *nodeManipulationContext = [self getManipulationContext:context];
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:NO];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
     
     //Add above nodes to context
     [nodeContext addChild:nodeManipulationContext];
@@ -1424,7 +1435,7 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for context information
     DDXMLElement *nodeAssessmentContext = [self getAssessmentContext:context];
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:NO];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
     
     //Add above nodes to context
     [nodeContext addChild:nodeAssessmentContext];
@@ -1461,7 +1472,7 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for context information
     DDXMLElement *nodeAssessmentContext = [self getAssessmentContext:context];
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:NO];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
     
     //Add above nodes to context
     [nodeContext addChild:nodeAssessmentContext];
@@ -1506,7 +1517,7 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for context information
     DDXMLElement *nodeAssessmentContext = [self getAssessmentContext:context];
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:NO];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
     
     //Add above nodes to context
     [nodeContext addChild:nodeAssessmentContext];
@@ -1545,7 +1556,7 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for context information
     DDXMLElement *nodeAssessmentContext = [self getAssessmentContext:context];
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:NO];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
     
     //Add above nodes to context
     [nodeContext addChild:nodeAssessmentContext];
@@ -1584,7 +1595,7 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for context information
     DDXMLElement *nodeAssessmentContext = [self getAssessmentContext:context];
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:NO];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
     
     //Add above nodes to context
     [nodeContext addChild:nodeAssessmentContext];
@@ -1627,7 +1638,7 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for context information
     DDXMLElement *nodeAssessmentContext = [self getAssessmentContext:context];
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:NO];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
     
     //Add above nodes to context
     [nodeContext addChild:nodeAssessmentContext];
@@ -1666,7 +1677,7 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for context information
     DDXMLElement *nodeAssessmentContext = [self getAssessmentContext:context];
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:NO];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
     
     //Add above nodes to context
     [nodeContext addChild:nodeAssessmentContext];
@@ -1708,7 +1719,7 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for context information
     DDXMLElement *nodeAssessmentContext = [self getAssessmentContext:context];
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:NO];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
     
     //Add above nodes to context
     [nodeContext addChild:nodeAssessmentContext];
@@ -1737,7 +1748,7 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for context information
     DDXMLElement *nodeAssessmentContext = [self getAssessmentContext:context];
-    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext addTimestamp:NO];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
     
     //Add above nodes to context
     [nodeContext addChild:nodeAssessmentContext];
