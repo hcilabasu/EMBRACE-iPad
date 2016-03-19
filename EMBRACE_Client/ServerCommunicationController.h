@@ -43,8 +43,8 @@
 - (void)logPressLogin;
 - (void)logPressLogout;
 - (void)logPressBooks;
-- (void)logUnlockBook:(NSString *)bookTitle;
-- (void)logUnlockChapter:(NSString *)chapterTitle inBook:(NSString *)bookTitle;
+- (void)logUnlockBook:(NSString *)bookTitle withStatus:(NSString *)bookStatus;
+- (void)logUnlockChapter:(NSString *)chapterTitle inBook:(NSString *)bookTitle withStatus:(NSString *)chapterStatus;
 - (void)logLoadBook:(NSString *)bookTitle;
 - (void)logLoadChapter:(NSString *)chapterTitle inBook:(NSString *)bookTitle;
 

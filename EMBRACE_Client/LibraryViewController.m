@@ -454,7 +454,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                 //Unlock book by setting its first chapter to be in progress
                 [studentProgress setStatusOfChapter:selectedChapterTitle :IN_PROGRESS fromBook:selectedBookTitle];
                 
-                [[ServerCommunicationController sharedInstance] logUnlockBook:selectedBookTitle];
+                [[ServerCommunicationController sharedInstance] logUnlockBook:selectedBookTitle withStatus:@"IN_PROGRESS"];
             }
             //Chapters
             else {
@@ -464,7 +464,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                 //Set this chapter to be in progress
                 [studentProgress setStatusOfChapter:selectedChapterTitle :IN_PROGRESS fromBook:selectedBookTitle];
                 
-                [[ServerCommunicationController sharedInstance] logUnlockChapter:selectedChapterTitle inBook:selectedBookTitle];
+                [[ServerCommunicationController sharedInstance] logUnlockChapter:selectedChapterTitle inBook:selectedBookTitle withStatus:@"IN_PROGRESS"];
             }
             
             //Update progress indicators
@@ -482,6 +482,8 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                 for (NSString *chapterTitle in [chapterTitles objectAtIndex:lockedItemIndex]) {
                     [studentProgress setStatusOfChapter:chapterTitle :COMPLETED fromBook:selectedBookTitle];
                 }
+                
+                [[ServerCommunicationController sharedInstance] logUnlockBook:selectedBookTitle withStatus:@"COMPLETED"];
             }
             //Chapters
             else {
@@ -489,6 +491,8 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                 selectedChapterTitle = [[chapterTitles objectAtIndex:selectedBookIndex] objectAtIndex:lockedItemIndex];
                 
                 [studentProgress setStatusOfChapter:selectedChapterTitle :COMPLETED fromBook:selectedBookTitle];
+                
+                [[ServerCommunicationController sharedInstance] logUnlockChapter:selectedChapterTitle inBook:selectedBookTitle withStatus:@"COMPLETED"];
             }
             
             [self updateProgress];

@@ -389,7 +389,7 @@ static ServerCommunicationController *sharedInstance = nil;
 /*
  * Logging for when a book is unlocked in the library view
  */
-- (void)logUnlockBook:(NSString *)bookTitle {
+- (void)logUnlockBook:(NSString *)bookTitle withStatus:(NSString *)bookStatus {
     userActionID++;
     
     //Start with base node for user action
@@ -410,10 +410,12 @@ static ServerCommunicationController *sharedInstance = nil;
     //Create nodes for input information
     DDXMLElement *nodeButtonType = [DDXMLElement elementWithName:@"Button_Type" stringValue:@"Book"];
     DDXMLElement *nodeBookTitle = [DDXMLElement elementWithName:@"Book_Title" stringValue:bookTitle];
+    DDXMLElement *nodeBookStatus = [DDXMLElement elementWithName:@"Book_Status" stringValue:bookStatus];
     
     //Add above nodes to input
     [nodeInput addChild:nodeButtonType];
     [nodeInput addChild:nodeBookTitle];
+    [nodeInput addChild:nodeBookStatus];
     
     //Get context
     DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
@@ -428,7 +430,7 @@ static ServerCommunicationController *sharedInstance = nil;
 /*
  * Logging for when a chapter is unlocked in the library view
  */
-- (void)logUnlockChapter:(NSString *)chapterTitle inBook:(NSString *)bookTitle {
+- (void)logUnlockChapter:(NSString *)chapterTitle inBook:(NSString *)bookTitle withStatus:(NSString *)chapterStatus {
     userActionID++;
     
     //Start with base node for user action
@@ -450,11 +452,13 @@ static ServerCommunicationController *sharedInstance = nil;
     DDXMLElement *nodeButtonType = [DDXMLElement elementWithName:@"Button_Type" stringValue:@"Chapter"];
     DDXMLElement *nodeChapterTitle = [DDXMLElement elementWithName:@"Chapter_Title" stringValue:chapterTitle];
     DDXMLElement *nodeBookTitle = [DDXMLElement elementWithName:@"Book_Title" stringValue:bookTitle];
+    DDXMLElement *nodeChapterStatus = [DDXMLElement elementWithName:@"Chapter_Status" stringValue:chapterStatus];
     
     //Add above nodes to input
     [nodeInput addChild:nodeButtonType];
     [nodeInput addChild:nodeChapterTitle];
     [nodeInput addChild:nodeBookTitle];
+    [nodeInput addChild:nodeChapterStatus];
     
     //Get context
     DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
