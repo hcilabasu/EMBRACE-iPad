@@ -85,6 +85,15 @@
                  @"comfort": @"calmar",
                  @"rattled": @"angustiado",
                  @"shiny": @"brillante",
+                 @"breakfast": @"desayuno",
+                 @"comfort": @"calmar",
+                 @"drove": @"manejar",
+                 @"hero": @"héroe",
+                 @"kitchen": @"cocina",
+                 @"pancakes": @"panqueques",
+                 @"policeman": @"policía",
+                 @"suddenly": @"de repente",
+                 @"toward": @"hacia",
                  
                  @"spin": @"gire",
                  
