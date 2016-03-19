@@ -2871,7 +2871,11 @@ BOOL wasPathFollowed = false;
 - (NSString *)getObjectAtPoint:(CGPoint) location ofType:(NSString *)class {
     //Temporarily hide the overlay canvas to get the object we need
     NSString *hideCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'none';", @"'overlay'"];
+    NSString *hideHighlight = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'none';", @"'highlight'"];
+    NSString *hideAnimation = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'none';", @"'animation'"];
     [bookView stringByEvaluatingJavaScriptFromString:hideCanvas];
+    [bookView stringByEvaluatingJavaScriptFromString:hideHighlight];
+    [bookView stringByEvaluatingJavaScriptFromString:hideAnimation];
     
     //Retrieve the elements at this location and see if it's an element that is moveable.
     NSString *requestImageAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
@@ -2883,7 +2887,11 @@ BOOL wasPathFollowed = false;
     
     //Bring the canvas back to where it should be.
     NSString *showCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'block';", @"'overlay'"];
+    NSString *showHighlight = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'block';", @"'highlight'"];
+    NSString *showAnimation = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'block';", @"'animation'"];
     [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
+    [bookView stringByEvaluatingJavaScriptFromString:showHighlight];
+    [bookView stringByEvaluatingJavaScriptFromString:showAnimation];
     
     //Check if the object has the correct class, or if no class was specified before returning
     if (( (class == nil) || (![imageAtPointClass isEqualToString:@""] && [imageAtPointClass rangeOfString:class].location != NSNotFound))) {

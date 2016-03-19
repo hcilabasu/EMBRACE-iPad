@@ -860,7 +860,7 @@ function moveTopAndWrap(aniObject) {
     keyframes.deleteRule("100%");
     
     var top = parseFloat(aniObject.object.style.height);
-    var timePerPixels =  (parseFloat(aniObject.object.style.height))/70.4;
+    var timePerPixels =  (parseFloat(aniObject.object.style.height))/(704/10.3125);
     
     // create new 0% and 100% rules with
     keyframes.insertRule('0% {top: ' + parseFloat(aniObject.object.style.top) + 'px;}');
@@ -898,7 +898,7 @@ function moveDownAndWrap(aniObject) {
     keyframes.deleteRule("100%");
     
     var top = parseFloat(aniObject.object.style.height);
-    var timePerPixels =  (704-parseFloat(aniObject.object.style.height))/70.4;
+    var timePerPixels =  (704-parseFloat(aniObject.object.style.height))/(704/10.3125);
     
     // create new 0% and 100% rules with
     keyframes.insertRule('0% {top: ' + parseFloat(aniObject.object.style.top) + 'px;}');
@@ -944,7 +944,7 @@ function move45DegreeAndWrap(aniObject) {
     var top = parseFloat(aniObject.object.style.top) - 300;
     
     var hypotenuse = Math.sqrt(top*top + left*left);
-    var timePerPixels =  (Math.sqrt(1024*1024+300*300) - hypotenuse)/(Math.sqrt(1024*1024+300*300)/10);
+    var timePerPixels =  (Math.sqrt(1024*1024+300*300) - hypotenuse)/(Math.sqrt(1024*1024+300*300)/15.6305);
     
     // create new 0% and 100% rules with
     keyframes.insertRule('0% {left: ' + parseFloat(aniObject.object.style.left) + 'px; top: ' + parseFloat(aniObject.object.style.top) +'px; }');
@@ -988,7 +988,7 @@ function moveLeftAndWrap(aniObject) {
     keyframes.deleteRule("100%");
     
     var left = -parseFloat(aniObject.object.style.left) - parseFloat(aniObject.object.style.width);
-    var timePerPixels =  (1024-parseFloat(aniObject.object.style.left))/102.4;
+    var timePerPixels =  (1024-parseFloat(aniObject.object.style.left))/(1024/15);
     
     // create new 0% and 100% rules with
     keyframes.insertRule('0% {left: ' + parseFloat(aniObject.object.style.left) + 'px;}');
@@ -1071,7 +1071,7 @@ function moveRightAndWrap(aniObject) {
     keyframes.deleteRule("100%");
     
      var right = 1024 - parseFloat(aniObject.object.style.left);
-     var timePerPixels =  (1024-parseFloat(aniObject.object.style.left))/102.4;
+     var timePerPixels =  (1024-parseFloat(aniObject.object.style.left))/(1024/15);
     
     // create new 0% and 100% rules with
     keyframes.insertRule('0% {left: ' + parseFloat(aniObject.object.style.left) + 'px;}');
@@ -1112,7 +1112,7 @@ function moveRightAndWrapSlow(aniObject) {
     keyframes.deleteRule("100%");
     
     var right = 1024 - parseFloat(aniObject.object.style.left);
-    var timePerPixels =  (1024-parseFloat(aniObject.object.style.left))/68.266;
+    var timePerPixels =  (1024-parseFloat(aniObject.object.style.left))/(1024/22);
     console.log(timePerPixels)
     
     // create new 0% and 100% rules with
@@ -1153,7 +1153,7 @@ function moveRightAndWrapSlower(aniObject) {
     keyframes.deleteRule("100%");
     
     var right = 1024 - parseFloat(aniObject.object.style.left);
-    var timePerPixels =  (1024-parseFloat(aniObject.object.style.left))/51.2;
+    var timePerPixels =  (1024-parseFloat(aniObject.object.style.left))/(1024/30);
     console.log(timePerPixels);
     
     // create new 0% and 100% rules with
