@@ -8,7 +8,6 @@
 
 #import "ServerCommunicationController.h"
 #import "GDataXMLNode.h"
-#import "StudyContext.h"
 
 @interface ServerCommunicationController () {
     NSInteger userActionID; //current user action number
@@ -17,12 +16,13 @@
     DDXMLElement *study;
     
     NSString *studyFileName; //name of current log file
-    StudyContext *studyContext;
 }
 
 @end
 
 @implementation ServerCommunicationController
+
+@synthesize studyContext;
 
 # pragma mark - Shared Instance
 
@@ -65,7 +65,7 @@ static ServerCommunicationController *sharedInstance = nil;
     NSString *path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.txt", studyFileName]];
     NSString *stringxml = [xmlDocTemp XMLStringWithOptions:DDXMLNodePrettyPrint];
     
-//    NSLog(@"\n\n%@\n\n", stringxml);
+    NSLog(@"\n\n%@\n\n", stringxml);
     
     if (![stringxml writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil]) {
         NSLog(@"Failed to write log file");
@@ -117,10 +117,10 @@ static ServerCommunicationController *sharedInstance = nil;
 # pragma mark - Logging (Context)
 
 /*
- * Sets study context--condition, school code, participant code, study day, and experimenter name.
+ * Sets up study context--condition, school code, participant code, study day, and experimenter name.
  * Also sets the name of the current log file.
  */
-- (void)setStudyContext:(Student *)student {
+- (void)setupStudyContext:(Student *)student {
     if (student != nil) {
         studyContext = [[StudyContext alloc] init];
         
@@ -210,22 +210,22 @@ static ServerCommunicationController *sharedInstance = nil;
     DDXMLElement *nodeBookTitle = [DDXMLElement elementWithName:@"Book_Title" stringValue:[context bookTitle]];
     
     //Create nodes for chapter information
-    DDXMLElement *nodeChapterNumber = [DDXMLElement elementWithName:@"Chapter_Number" stringValue:[NSString stringWithFormat:@"%d", [context chapterNumber]]];
+    DDXMLElement *nodeChapterNumber = [DDXMLElement elementWithName:@"Chapter_Number" stringValue:[NSString stringWithFormat:@"%ld", (long)[context chapterNumber]]];
     DDXMLElement *nodeChapterTitle = [DDXMLElement elementWithName:@"Chapter_Title" stringValue:[context chapterTitle]];
     
     //Create nodes for page information
     DDXMLElement *nodePageLanguage = [DDXMLElement elementWithName:@"Page_Language" stringValue:[context pageLanguage]];
     DDXMLElement *nodePageMode = [DDXMLElement elementWithName:@"Page_Mode" stringValue:[context pageMode]];
-    DDXMLElement *nodePageNumber = [DDXMLElement elementWithName:@"Page_Number" stringValue:[NSString stringWithFormat:@"%d", [context pageNumber]]];
+    DDXMLElement *nodePageNumber = [DDXMLElement elementWithName:@"Page_Number" stringValue:[NSString stringWithFormat:@"%ld", (long)[context pageNumber]]];
     
     //Create nodes for sentence information
-    DDXMLElement *nodeSentenceNumber = [DDXMLElement elementWithName:@"Sentence_Number" stringValue:[NSString stringWithFormat:@"%d", [context sentenceNumber]]];
+    DDXMLElement *nodeSentenceNumber = [DDXMLElement elementWithName:@"Sentence_Number" stringValue:[NSString stringWithFormat:@"%ld", (long)[context sentenceNumber]]];
     NSString *sentenceText = [[context sentenceText] isEqualToString:@""] || [context sentenceText] == nil ? @"NULL" : [context sentenceText];
     DDXMLElement *nodeSentenceText = [DDXMLElement elementWithName:@"Sentence_Text" stringValue:sentenceText];
     
     //Create nodes for step number and idea number
-    DDXMLElement *nodeStepNumber = [DDXMLElement elementWithName:@"Step_Number" stringValue:[NSString stringWithFormat:@"%d", [context stepNumber]]];
-    DDXMLElement *nodeIdeaNumber = [DDXMLElement elementWithName:@"Idea_Number" stringValue:[NSString stringWithFormat:@"%d", [context ideaNumber]]];
+    DDXMLElement *nodeStepNumber = [DDXMLElement elementWithName:@"Step_Number" stringValue:[NSString stringWithFormat:@"%ld", (long)[context stepNumber]]];
+    DDXMLElement *nodeIdeaNumber = [DDXMLElement elementWithName:@"Idea_Number" stringValue:[NSString stringWithFormat:@"%ld", (long)[context ideaNumber]]];
     
     //Create node for timestamp
     DDXMLElement *nodeTimestamp = [DDXMLElement elementWithName:@"Timestamp" stringValue:[context generateTimestamp]];

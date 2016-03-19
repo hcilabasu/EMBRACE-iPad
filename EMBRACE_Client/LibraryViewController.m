@@ -147,7 +147,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
     conditionSetup = [ConditionSetup sharedInstance];
     
     if (student != nil) {
-        [[ServerCommunicationController sharedInstance] setStudyContext:student];
+        [[ServerCommunicationController sharedInstance] setupStudyContext:student];
         
         //Set title to display condition and language (e.g., EMBRACE English)
         self.title = [NSString stringWithFormat:@"%@ %@",[conditionSetup returnConditionEnumToString:conditionSetup.condition],[conditionSetup returnLanguageEnumtoString: conditionSetup.language]];
@@ -628,6 +628,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                 }
             }
             
+            [[ServerCommunicationController sharedInstance] studyContext].condition = [conditionSetup returnConditionEnumToString:conditionSetup.condition];
             [[ServerCommunicationController sharedInstance] logLoadChapter:selectedChapterTitle inBook:selectedBookTitle];
             
             //Send the notification to open that mode for the particular book and activity chosen

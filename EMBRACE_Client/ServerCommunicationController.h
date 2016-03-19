@@ -17,10 +17,13 @@
 #import "ConditionSetup.h"
 #import "Student.h"
 #import "Progress.h"
+#import "StudyContext.h"
 #import "ManipulationContext.h"
 #import "AssessmentContext.h"
 
 @interface ServerCommunicationController : UIViewController
+
+@property (nonatomic, strong) StudyContext *studyContext;
 
 # pragma mark - Shared Instance
 
@@ -33,7 +36,7 @@
 
 # pragma mark - Logging (Context)
 
-- (void)setStudyContext:(Student *)student;
+- (void)setupStudyContext:(Student *)student;
 
 # pragma mark - Logging (Library)
 
