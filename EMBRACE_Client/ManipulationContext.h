@@ -15,7 +15,7 @@
 @property (nonatomic, strong) NSString *chapterTitle;
 @property (nonatomic, assign) NSInteger chapterNumber;
 
-@property (nonatomic, assign) NSString *pageLanguage;
+@property (nonatomic, strong) NSString *pageLanguage;
 @property (nonatomic, strong) NSString *pageMode;
 @property (nonatomic, assign) NSInteger pageNumber;
 

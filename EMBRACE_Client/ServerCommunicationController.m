@@ -129,6 +129,7 @@ static ServerCommunicationController *sharedInstance = nil;
         studyContext.participantCode = [student participantCode];
         studyContext.studyDay = [student studyDay];
         studyContext.experimenterName = [student experimenterName];
+        studyContext.language = [[ConditionSetup sharedInstance] returnLanguageEnumtoString:[[ConditionSetup sharedInstance] language]];
         
         NSString* fileName; //combines school code, participant code, and study day
         
@@ -166,6 +167,7 @@ static ServerCommunicationController *sharedInstance = nil;
     DDXMLElement *nodeStudyDay = [DDXMLElement elementWithName:@"Study_Day" stringValue:[context studyDay]];
     DDXMLElement *nodeParticipantCode = [DDXMLElement elementWithName:@"Participant_Code" stringValue:[context participantCode]];
     DDXMLElement *nodeExperimenterName = [DDXMLElement elementWithName:@"Experimenter_Name" stringValue:[context experimenterName]];
+    DDXMLElement *nodeLanguage = [DDXMLElement elementWithName:@"Language" stringValue:[context language]];
     
     //Add nodes to study context
     [nodeStudyContext addChild:nodeSchoolCode];
@@ -173,6 +175,7 @@ static ServerCommunicationController *sharedInstance = nil;
     [nodeStudyContext addChild:nodeStudyDay];
     [nodeStudyContext addChild:nodeParticipantCode];
     [nodeStudyContext addChild:nodeExperimenterName];
+    [nodeStudyContext addChild:nodeLanguage];
     
     if (addTimestamp) {
         //Create node for timestamp

@@ -527,11 +527,8 @@ BOOL wasPathFollowed = false;
  * Otherwise, it will load the next chaper.
  */
 - (void) loadNextPage {
-    
     [self.playaudioClass stopPlayAudioFile];
-    
-    //stores last page
-    NSString *tempLastPage = currentPage;
+
     currentPage = [book getNextPageForChapterAndActivity:chapterTitle :PM_MODE :currentPage];
     
     //No more pages in chapter
@@ -583,6 +580,10 @@ BOOL wasPathFollowed = false;
     currentPageId = [book getIdForPageInChapterAndActivity:currentPage :chapterTitle :conditionSetup.currentMode];
     
     [self setManipulationContext];
+    
+    NSString *pageLanguage = [currentPage containsString:@"S.xhtml"] ? @"Spanish" : @"English";
+    manipulationContext.pageLanguage = pageLanguage;
+    
     [[ServerCommunicationController sharedInstance] logLoadPage:[manipulationContext pageLanguage] mode:[manipulationContext pageMode] number:[manipulationContext pageNumber] context:manipulationContext];
     
     //Get the solutions for the appropriate manipulation activity
@@ -4856,8 +4857,6 @@ BOOL wasPathFollowed = false;
     else {
         manipulationContext.pageMode = [conditionSetup currentMode] == PM_MODE ? @"PM" : @"IM";
     }
-    
-    manipulationContext.pageLanguage = [conditionSetup returnLanguageEnumtoString:[conditionSetup language]];
 }
 
 @end

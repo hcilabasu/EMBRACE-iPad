@@ -15,6 +15,7 @@
 @synthesize participantCode;
 @synthesize studyDay;
 @synthesize experimenterName;
+@synthesize language;
 
 - (id)init {
     return [super init];
