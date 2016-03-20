@@ -4755,7 +4755,7 @@ BOOL wasPathFollowed = false;
     NSString *getSentenceClass = [NSString stringWithFormat:@"getSentenceClass(s%d)", sentenceNumber];
     NSString *sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:getSentenceClass];
     
-    if ([sentenceClass containsString: @"sentence actionSentence"]) {
+    if ([sentenceClass containsString: @"sentence actionSentence"] || ([sentenceClass containsString: @"sentence IMactionSentence"] && conditionSetup.condition == EMBRACE && conditionSetup.condition == IM_MODE)) {
         isManipulationSentence = true;
     }
     
