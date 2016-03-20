@@ -699,7 +699,7 @@ BOOL wasPathFollowed = false;
     
     //If it is a non-black action sentence (i.e., requires user manipulation), then set the color to blue
     if (![sentenceClass containsString:@"black"]) {
-        if ([sentenceClass containsString: @"sentence actionSentence"] || ([sentenceClass containsString: @"sentence IMactionSentence"] && conditionSetup.condition == EMBRACE && conditionSetup.condition == IM_MODE)) {
+        if ([sentenceClass containsString: @"sentence actionSentence"] || ([sentenceClass containsString: @"sentence IMactionSentence"] && conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE)) {
             setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
             [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
         }
@@ -4738,7 +4738,7 @@ BOOL wasPathFollowed = false;
     
     //If it is a non-black action sentence (i.e., requires user manipulation), then set the color to blue
     if (![sentenceClass containsString:@"black"]) {
-        if ([sentenceClass containsString: @"sentence actionSentence"] || ([sentenceClass containsString: @"sentence IMactionSentence"] && conditionSetup.condition == EMBRACE && conditionSetup.condition == IM_MODE)) {
+        if ([sentenceClass containsString: @"sentence actionSentence"] || ([sentenceClass containsString: @"sentence IMactionSentence"] && conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE)) {
             setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
             [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
         }
@@ -4755,7 +4755,7 @@ BOOL wasPathFollowed = false;
     NSString *getSentenceClass = [NSString stringWithFormat:@"getSentenceClass(s%d)", sentenceNumber];
     NSString *sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:getSentenceClass];
     
-    if ([sentenceClass containsString: @"sentence actionSentence"] || ([sentenceClass containsString: @"sentence IMactionSentence"] && conditionSetup.condition == EMBRACE && conditionSetup.condition == IM_MODE)) {
+    if ([sentenceClass containsString: @"sentence actionSentence"] || ([sentenceClass containsString: @"sentence IMactionSentence"] && conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE)) {
         isManipulationSentence = true;
     }
     
