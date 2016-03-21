@@ -1841,7 +1841,7 @@ BOOL wasPathFollowed = false;
                                     }
                                 }
                                 
-                                //Only populate Menu if user is moving the correct object
+                                //Only populate Menu if user is moving the correct object to the correct objects
                                 if ([movingObjectId isEqualToString:[currSolStep object1Id]] && correctInteractionExists) {
                                     
                                     //First rank the interactions based on location to story.
