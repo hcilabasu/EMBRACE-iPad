@@ -29,10 +29,10 @@
                     <move obj1Id="lisa" action="getIn" waypointId="banana"/>
                 </step>
                 <step number="2">
+                    <playSound fileName="NaughtyMonkey_Script7.mp3"/>
                     <transferAndGroup obj1Id="lisa" action="drop" obj2Id="banana"/>
                     <transferAndGroup obj1Id="banana" action="getIn" obj2Id="monkey"/>
                     <move obj1Id="lisa" action="getIn" waypointId="monkey"/>
-                    <playSound fileName="NaughtyMonkey_Script7.mp3"/>
                 </step>
             </sentence>
         </story>
