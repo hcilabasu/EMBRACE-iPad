@@ -268,6 +268,8 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                     //Set next book in sequence to in progress
                     [studentProgress setNextChapterInProgressForBook:nextBookTitle];
                 }
+                
+                [self pressedBooks:self];
             }
         }
     }
