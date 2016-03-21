@@ -15,12 +15,13 @@
 @property (nonatomic, strong) NSString *chapterTitle;
 @property (nonatomic, assign) NSInteger chapterNumber;
 
-@property (nonatomic, assign) NSString *pageLanguage;
+@property (nonatomic, strong) NSString *pageLanguage;
 @property (nonatomic, strong) NSString *pageMode;
 @property (nonatomic, assign) NSInteger pageNumber;
 
 @property (nonatomic, assign) NSInteger sentenceNumber;
 @property (nonatomic, strong) NSString *sentenceText;
+@property (nonatomic, assign) BOOL manipulationSentence;
 
 @property (nonatomic, assign) NSInteger stepNumber;
 

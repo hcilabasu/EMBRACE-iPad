@@ -10,6 +10,4 @@
 
 @interface Context : NSObject
 
-- (NSString *)generateTimestamp;
-
 @end

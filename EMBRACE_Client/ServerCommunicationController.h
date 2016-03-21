@@ -17,10 +17,13 @@
 #import "ConditionSetup.h"
 #import "Student.h"
 #import "Progress.h"
+#import "StudyContext.h"
 #import "ManipulationContext.h"
 #import "AssessmentContext.h"
 
 @interface ServerCommunicationController : UIViewController
+
+@property (nonatomic, strong) StudyContext *studyContext;
 
 # pragma mark - Shared Instance
 
@@ -33,15 +36,15 @@
 
 # pragma mark - Logging (Context)
 
-- (void)setStudyContext:(Student *)student;
+- (void)setupStudyContext:(Student *)student;
 
 # pragma mark - Logging (Library)
 
 - (void)logPressLogin;
 - (void)logPressLogout;
 - (void)logPressBooks;
-- (void)logUnlockBook:(NSString *)bookTitle;
-- (void)logUnlockChapter:(NSString *)chapterTitle inBook:(NSString *)bookTitle;
+- (void)logUnlockBook:(NSString *)bookTitle withStatus:(NSString *)bookStatus;
+- (void)logUnlockChapter:(NSString *)chapterTitle inBook:(NSString *)bookTitle withStatus:(NSString *)chapterStatus;
 - (void)logLoadBook:(NSString *)bookTitle;
 - (void)logLoadChapter:(NSString *)chapterTitle inBook:(NSString *)bookTitle;
 
@@ -65,7 +68,7 @@
 - (void)logPressNextInManipulationActivity:(ManipulationContext *)context;
 - (void)logEmergencySwipe:(ManipulationContext *)context;
 - (void)logLoadStep:(NSInteger)stepNumber ofType:(NSString *)stepType context:(ManipulationContext *)context;
-- (void)logLoadSentence:(NSInteger)sentenceNumber withText:(NSString *)sentenceText context:(ManipulationContext *)context;
+- (void)logLoadSentence:(NSInteger)sentenceNumber withText:(NSString *)sentenceText manipulationSentence:(BOOL)manipulationSentence context:(ManipulationContext *)context;
 - (void)logLoadPage:(NSString *)pageLanguage mode:(NSString *)pageMode number:(NSInteger)pageNumber context:(ManipulationContext *)context;
 - (void)logPressLibrary:(ManipulationContext *)context;
 - (void)logCompleteManipulation:(ManipulationContext *)context;
