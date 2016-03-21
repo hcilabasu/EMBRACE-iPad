@@ -18,10 +18,10 @@
 @implementation LoginViewController
 
 - (IBAction)login:(id)sender {
-    NSString* schoolCode = [schoolCodeField text];
-    NSString* participantCode = [participantCodeField text];
-    NSString* studyDay = [studyDayField text];
-    NSString* experimenterName = [experimenterField text];
+    NSString* schoolCode = [[schoolCodeField text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSString* participantCode = [[participantCodeField text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSString* studyDay = [[studyDayField text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSString* experimenterName = [[experimenterField text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
     ////When student logs in, check that all fields were entered; if they didn't, provide an error message
     if ([schoolCode isEqualToString:@""]) {
