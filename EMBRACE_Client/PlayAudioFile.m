@@ -195,7 +195,7 @@
         
         if(PmviewController != nil)
         {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW,([self.audioPlayerAfter duration]+.25) * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW,([self.audioPlayerAfter duration] * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [PmviewController.view setUserInteractionEnabled:YES];
             });
         }
