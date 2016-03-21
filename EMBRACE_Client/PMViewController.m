@@ -1831,8 +1831,18 @@ BOOL wasPathFollowed = false;
                                     [IntroductionClass loadIntroStep:bookView :self :currentSentence];
                                 }
                                 
+                                PossibleInteraction* correctInteraction = [self getCorrectInteraction];
+                                BOOL correctInteractionExists = false;
+                                
+                                //Look for the correct interaction
+                                for (int i = 0; i < [possibleInteractions count]; i++) {
+                                    if ([[possibleInteractions objectAtIndex:i] isEqual:correctInteraction]) {
+                                        correctInteractionExists = true;
+                                    }
+                                }
+                                
                                 //Only populate Menu if user is moving the correct object
-                                if ([movingObjectId isEqualToString:[currSolStep object1Id]]) {
+                                if ([movingObjectId isEqualToString:[currSolStep object1Id]] && correctInteractionExists) {
                                     
                                     //First rank the interactions based on location to story.
                                     [self rankPossibleInteractions:possibleInteractions];
