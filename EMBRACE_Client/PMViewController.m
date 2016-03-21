@@ -1857,8 +1857,6 @@ BOOL wasPathFollowed = false;
                                 //Otherwise reset object location and play error noise
                                 else
                                 {
-                                    [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:@"NULL" ofType:@"Location" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
-                                    
                                     [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
                                     
                                     [self playErrorNoise];
