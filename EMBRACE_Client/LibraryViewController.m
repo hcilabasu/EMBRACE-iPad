@@ -147,7 +147,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
     conditionSetup = [ConditionSetup sharedInstance];
     
     if (student != nil) {
-        [[ServerCommunicationController sharedInstance] setStudyContext:student];
+        [[ServerCommunicationController sharedInstance] setupStudyContext:student];
         
         //Set title to display condition and language (e.g., EMBRACE English)
         self.title = [NSString stringWithFormat:@"%@ %@",[conditionSetup returnConditionEnumToString:conditionSetup.condition],[conditionSetup returnLanguageEnumtoString: conditionSetup.language]];
@@ -360,9 +360,6 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
 - (IBAction)pressedLogout:(id)sender {
     [[ServerCommunicationController sharedInstance] logPressLogout];
     
-    //Write log data to file
-    [[ServerCommunicationController sharedInstance] writeLogFile];
-    
     //Save progress to file
     [[ServerCommunicationController sharedInstance] saveProgress:student :studentProgress];
     
@@ -454,7 +451,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                 //Unlock book by setting its first chapter to be in progress
                 [studentProgress setStatusOfChapter:selectedChapterTitle :IN_PROGRESS fromBook:selectedBookTitle];
                 
-                [[ServerCommunicationController sharedInstance] logUnlockBook:selectedBookTitle];
+                [[ServerCommunicationController sharedInstance] logUnlockBook:selectedBookTitle withStatus:@"IN_PROGRESS"];
             }
             //Chapters
             else {
@@ -464,7 +461,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                 //Set this chapter to be in progress
                 [studentProgress setStatusOfChapter:selectedChapterTitle :IN_PROGRESS fromBook:selectedBookTitle];
                 
-                [[ServerCommunicationController sharedInstance] logUnlockChapter:selectedChapterTitle inBook:selectedBookTitle];
+                [[ServerCommunicationController sharedInstance] logUnlockChapter:selectedChapterTitle inBook:selectedBookTitle withStatus:@"IN_PROGRESS"];
             }
             
             //Update progress indicators
@@ -482,6 +479,8 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                 for (NSString *chapterTitle in [chapterTitles objectAtIndex:lockedItemIndex]) {
                     [studentProgress setStatusOfChapter:chapterTitle :COMPLETED fromBook:selectedBookTitle];
                 }
+                
+                [[ServerCommunicationController sharedInstance] logUnlockBook:selectedBookTitle withStatus:@"COMPLETED"];
             }
             //Chapters
             else {
@@ -489,6 +488,8 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                 selectedChapterTitle = [[chapterTitles objectAtIndex:selectedBookIndex] objectAtIndex:lockedItemIndex];
                 
                 [studentProgress setStatusOfChapter:selectedChapterTitle :COMPLETED fromBook:selectedBookTitle];
+                
+                [[ServerCommunicationController sharedInstance] logUnlockChapter:selectedChapterTitle inBook:selectedBookTitle withStatus:@"COMPLETED"];
             }
             
             [self updateProgress];
@@ -628,6 +629,21 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                 }
             }
             
+            NSString *condition = @"Unknown";
+            
+            if (conditionSetup.condition == CONTROL) {
+                condition = @"R";
+            }
+            else if (conditionSetup.condition == EMBRACE) {
+                if (conditionSetup.currentMode == PM_MODE) {
+                    condition = @"PM";
+                }
+                else if (conditionSetup.currentMode == IM_MODE) {
+                    condition = @"IM";
+                }
+            }
+            
+            [[ServerCommunicationController sharedInstance] studyContext].condition = condition;
             [[ServerCommunicationController sharedInstance] logLoadChapter:selectedChapterTitle inBook:selectedBookTitle];
             
             //Send the notification to open that mode for the particular book and activity chosen

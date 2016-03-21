@@ -283,7 +283,8 @@ BOOL wasPathFollowed = false;
         
         manipulationContext.sentenceNumber = currentSentence;
         manipulationContext.sentenceText = currentSentenceText;
-        [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText context:manipulationContext];
+        manipulationContext.manipulationSentence = [self isManipulationSentence:currentSentence];
+        [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
         
         //Dynamically reads the vocabulary words on the vocab page and creates and adds solutionsteps
         if ([currentPageId rangeOfString:@"-Intro"].location != NSNotFound) {
@@ -526,11 +527,8 @@ BOOL wasPathFollowed = false;
  * Otherwise, it will load the next chaper.
  */
 - (void) loadNextPage {
-    
     [self.playaudioClass stopPlayAudioFile];
-    
-    //stores last page
-    NSString *tempLastPage = currentPage;
+
     currentPage = [book getNextPageForChapterAndActivity:chapterTitle :PM_MODE :currentPage];
     
     //No more pages in chapter
@@ -582,6 +580,10 @@ BOOL wasPathFollowed = false;
     currentPageId = [book getIdForPageInChapterAndActivity:currentPage :chapterTitle :conditionSetup.currentMode];
     
     [self setManipulationContext];
+    
+    NSString *pageLanguage = [currentPage containsString:@"S.xhtml"] ? @"Spanish" : @"English";
+    manipulationContext.pageLanguage = pageLanguage;
+    
     [[ServerCommunicationController sharedInstance] logLoadPage:[manipulationContext pageLanguage] mode:[manipulationContext pageMode] number:[manipulationContext pageNumber] context:manipulationContext];
     
     //Get the solutions for the appropriate manipulation activity
@@ -697,7 +699,7 @@ BOOL wasPathFollowed = false;
     
     //If it is a non-black action sentence (i.e., requires user manipulation), then set the color to blue
     if (![sentenceClass containsString:@"black"]) {
-        if ([sentenceClass containsString: @"sentence actionSentence"] || ([sentenceClass containsString: @"sentence IMactionSentence"] && conditionSetup.condition == EMBRACE && conditionSetup.condition == IM_MODE)) {
+        if ([sentenceClass containsString: @"sentence actionSentence"] || ([sentenceClass containsString: @"sentence IMactionSentence"] && conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE)) {
             setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
             [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
         }
@@ -1044,7 +1046,7 @@ BOOL wasPathFollowed = false;
     
     if (![[self.navigationController viewControllers] containsObject:self]) {
         [[ServerCommunicationController sharedInstance] logPressLibrary:manipulationContext];
-        [[ServerCommunicationController sharedInstance] writeLogFile];
+        [[ServerCommunicationController sharedInstance] studyContext].condition = @"NULL";
     }
 }
 
@@ -1423,8 +1425,8 @@ BOOL wasPathFollowed = false;
                 
                 manipulationContext.sentenceNumber = currentSentence;
                 manipulationContext.sentenceText = currentSentenceText;
-                
-                [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText context:manipulationContext];
+                manipulationContext.manipulationSentence = [self isManipulationSentence:currentSentence];
+                [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
             
                 [self performSelector:@selector(colorSentencesUponNext) withObject:nil afterDelay:([self.playaudioClass audioPlayer].duration)];
             }
@@ -2871,7 +2873,11 @@ BOOL wasPathFollowed = false;
 - (NSString *)getObjectAtPoint:(CGPoint) location ofType:(NSString *)class {
     //Temporarily hide the overlay canvas to get the object we need
     NSString *hideCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'none';", @"'overlay'"];
+    NSString *hideHighlight = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'none';", @"'highlight'"];
+    NSString *hideAnimation = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'none';", @"'animation'"];
     [bookView stringByEvaluatingJavaScriptFromString:hideCanvas];
+    [bookView stringByEvaluatingJavaScriptFromString:hideHighlight];
+    [bookView stringByEvaluatingJavaScriptFromString:hideAnimation];
     
     //Retrieve the elements at this location and see if it's an element that is moveable.
     NSString *requestImageAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
@@ -2883,7 +2889,11 @@ BOOL wasPathFollowed = false;
     
     //Bring the canvas back to where it should be.
     NSString *showCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'block';", @"'overlay'"];
+    NSString *showHighlight = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'block';", @"'highlight'"];
+    NSString *showAnimation = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'block';", @"'animation'"];
     [bookView stringByEvaluatingJavaScriptFromString:showCanvas];
+    [bookView stringByEvaluatingJavaScriptFromString:showHighlight];
+    [bookView stringByEvaluatingJavaScriptFromString:showAnimation];
     
     //Check if the object has the correct class, or if no class was specified before returning
     if (( (class == nil) || (![imageAtPointClass isEqualToString:@""] && [imageAtPointClass rangeOfString:class].location != NSNotFound))) {
@@ -3028,7 +3038,8 @@ BOOL wasPathFollowed = false;
             
             manipulationContext.sentenceNumber = currentSentence;
             manipulationContext.sentenceText = currentSentenceText;
-            [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText context:manipulationContext];
+            manipulationContext.manipulationSentence = [self isManipulationSentence:currentSentence];
+            [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
         
             //Set up current sentence appearance and solution steps
             [self setupCurrentSentence];
@@ -4090,6 +4101,7 @@ BOOL wasPathFollowed = false;
                 
                 manipulationContext.sentenceNumber = currentSentence;
                 manipulationContext.sentenceText = currentSentenceText;
+                manipulationContext.manipulationSentence = [self isManipulationSentence:currentSentence];
                 
                 [self loadNextPage];
             }
@@ -4101,6 +4113,7 @@ BOOL wasPathFollowed = false;
             
             manipulationContext.sentenceNumber = currentSentence;
             manipulationContext.sentenceText = currentSentenceText;
+            manipulationContext.manipulationSentence = [self isManipulationSentence:currentSentence];
             
             [self loadNextPage];
         }
@@ -4128,6 +4141,8 @@ BOOL wasPathFollowed = false;
                     Relationship *relationshipBetweenObjects = [[Relationship alloc] initWithValues:[currSolStep object1Id] :[currSolStep action] :[currSolStep stepType] :[currSolStep object2Id]];
                     [allRelationships addObject:relationshipBetweenObjects];
                 }
+                
+                interactions = [self shuffleIMOptions: interactions];
                 
                 //Populate the menu data source and expand the menu.
                 [self populateMenuDataSource:interactions :allRelationships];
@@ -4165,7 +4180,8 @@ BOOL wasPathFollowed = false;
                 
                 manipulationContext.sentenceNumber = currentSentence;
                 manipulationContext.sentenceText = currentSentenceText;
-                [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText context:manipulationContext];
+                manipulationContext.manipulationSentence = [self isManipulationSentence:currentSentence];
+                [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
                 
                 //currentSentence is 1 indexed.
                 if (currentSentence > totalSentences) {
@@ -4192,7 +4208,8 @@ BOOL wasPathFollowed = false;
             
             manipulationContext.sentenceNumber = currentSentence;
             manipulationContext.sentenceText = currentSentenceText;
-            [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText context:manipulationContext];
+            manipulationContext.manipulationSentence = [self isManipulationSentence:currentSentence];
+            [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
 
             //currentSentence is 1 indexed
             if (currentSentence > totalSentences) {
@@ -4226,6 +4243,22 @@ BOOL wasPathFollowed = false;
             [self playErrorNoise];
         }
     }
+}
+
+/*
+ * Randomizer function that randomizes the menu options for IM
+ */
+- (NSMutableArray *)shuffleIMOptions: (NSMutableArray *) interactions {
+    NSUInteger count = [allRelationships count];
+    
+    for (NSUInteger i = 0; i < count; ++i) {
+        //NSInteger remainingCount = count - i;
+        NSInteger exchangeIndex = (arc4random() % (count - i)) + i;
+        [allRelationships exchangeObjectAtIndex:i withObjectAtIndex:exchangeIndex];
+        [interactions exchangeObjectAtIndex:i withObjectAtIndex:exchangeIndex];
+    }
+    
+    return interactions;
 }
 
 - (void)playErrorNoise {
@@ -4705,11 +4738,28 @@ BOOL wasPathFollowed = false;
     
     //If it is a non-black action sentence (i.e., requires user manipulation), then set the color to blue
     if (![sentenceClass containsString:@"black"]) {
-        if ([sentenceClass containsString: @"sentence actionSentence"] || ([sentenceClass containsString: @"sentence IMactionSentence"] && conditionSetup.condition == EMBRACE && conditionSetup.condition == IM_MODE)) {
+        if ([sentenceClass containsString: @"sentence actionSentence"] || ([sentenceClass containsString: @"sentence IMactionSentence"] && conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE)) {
             setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
             [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
         }
     }
+}
+
+/*
+ * Checks whether the specified sentence number requires physical or imagine manipulation
+ */
+- (BOOL)isManipulationSentence:(NSInteger)sentenceNumber {
+    BOOL isManipulationSentence = false;
+    
+    //Get the sentence class
+    NSString *getSentenceClass = [NSString stringWithFormat:@"getSentenceClass(s%d)", sentenceNumber];
+    NSString *sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:getSentenceClass];
+    
+    if ([sentenceClass containsString: @"sentence actionSentence"] || ([sentenceClass containsString: @"sentence IMactionSentence"] && conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE)) {
+        isManipulationSentence = true;
+    }
+    
+    return isManipulationSentence;
 }
 
 - (void)highlightObject:(NSString *)object :(double)delay {
@@ -4831,10 +4881,8 @@ BOOL wasPathFollowed = false;
         manipulationContext.pageMode = @"Intro";
     }
     else {
-        manipulationContext.pageMode = [conditionSetup currentMode] == PM_MODE ? @"PM" : @"IM";
+        manipulationContext.pageMode = @"Intervention";
     }
-    
-    manipulationContext.pageLanguage = [conditionSetup returnLanguageEnumtoString:[conditionSetup language]];
 }
 
 @end

@@ -21,6 +21,7 @@
 
 @synthesize sentenceNumber;
 @synthesize sentenceText;
+@synthesize manipulationSentence;
 
 @synthesize stepNumber;
 

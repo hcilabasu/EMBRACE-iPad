@@ -304,6 +304,7 @@ UIImage *BackgroundImage;   //The background image related to the story
     //Return to the library view
     else {
         [[ServerCommunicationController sharedInstance] logCompleteAssessment:assessmentContext];
+        [[ServerCommunicationController sharedInstance] studyContext].condition = @"NULL";
         
         //Set chapter as completed
         [[(LibraryViewController *)libraryView studentProgress] setStatusOfChapter:ChapterTitle :COMPLETED fromBook:BookTitle];

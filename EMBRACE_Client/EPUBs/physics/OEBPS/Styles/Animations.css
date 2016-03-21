@@ -9,8 +9,8 @@
 }
 
 .manipulationObject.center.moveLeftAndWrap {
-    -webkit-animation: moveLeftAndWrap 10s linear infinite;
-    animation: moveLeftAndWrap 10s linear infinite;
+    -webkit-animation: moveLeftAndWrap 15s linear infinite;
+    animation: moveLeftAndWrap 15s linear infinite;
 }
 
 @keyframes moveRight {
@@ -34,8 +34,8 @@
 }
 
 .manipulationObject.center.moveRightAndWrap {
-    -webkit-animation: moveRightAndWrap 10s linear infinite;
-    animation: moveRightAndWrap 10s linear infinite;
+    -webkit-animation: moveRightAndWrap 15s linear infinite;
+    animation: moveRightAndWrap 15s linear infinite;
 }
 
 @keyframes moveRightAndWrapSlow {
@@ -44,8 +44,8 @@
 }
 
 .manipulationObject.center.moveRightAndWrapSlow {
-    -webkit-animation: moveRightAndWrap 15s linear infinite;
-    animation: moveRightAndWrap 15s linear infinite;
+    -webkit-animation: moveRightAndWrap 22s linear infinite;
+    animation: moveRightAndWrap 22s linear infinite;
 }
 
 @keyframes moveRightAndWrapSlower {
@@ -54,8 +54,8 @@
 }
 
 .manipulationObject.center.moveRightAndWrapSlower {
-    -webkit-animation: moveRightAndWrap 20s linear infinite;
-    animation: moveRightAndWrap 20s linear infinite;
+    -webkit-animation: moveRightAndWrap 30s linear infinite;
+    animation: moveRightAndWrap 30s linear infinite;
 }
 
 @keyframes moveTop {
@@ -69,8 +69,8 @@
 }
 
 .manipulationObject.center.moveTopAndWrap {
-    -webkit-animation: moveTopAndWrap 10s linear infinite;
-    animation: moveTopAndWrap 10s linear infinite;
+    -webkit-animation: moveTopAndWrap 15s linear infinite;
+    animation: moveTopAndWrap 15s linear infinite;
 }
 
 @keyframes moveDown {
@@ -84,8 +84,8 @@
 }
 
 .manipulationObject.center.moveDownAndWrap {
-    -webkit-animation: moveDownAndWrap 10s linear infinite;
-    animation: moveDownAndWrap 10s linear infinite;
+    -webkit-animation: moveDownAndWrap 15s linear infinite;
+    animation: moveDownAndWrap 15s linear infinite;
 }
 
 @keyframes move45Degree {
@@ -111,8 +111,8 @@
 }
 
 .manipulationObject.center.move45DegreeAndWrap {
-    -webkit-animation: move45DegreeAndWrap 10s linear infinite;
-    animation: move45DegreeAndWrap 10s linear infinite;
+    -webkit-animation: move45DegreeAndWrap 15s linear infinite;
+    animation: move45DegreeAndWrap 15s linear infinite;
     -webkit-animation-play-state:running;
 }
 

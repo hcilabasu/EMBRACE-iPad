@@ -10,13 +10,4 @@
 
 @implementation Context
 
-- (NSString *)generateTimestamp {
-    NSDate *currentDate = [NSDate date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"MM-dd-yyyy'T'hh:mm.ss.SSS"];
-    NSString *newTimestamp = [dateFormatter stringFromDate:currentDate];
-    
-    return newTimestamp;
-}
-
 @end

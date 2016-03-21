@@ -10,10 +10,13 @@
 
 @interface StudyContext : Context
 
-@property (nonatomic, assign) NSString *condition;
-@property (nonatomic, assign) NSString *schoolCode;
-@property (nonatomic, assign) NSString *participantCode;
-@property (nonatomic, assign) NSString *studyDay;
-@property (nonatomic, assign) NSString *experimenterName;
+@property (nonatomic, strong) NSString *condition;
+@property (nonatomic, strong) NSString *schoolCode;
+@property (nonatomic, strong) NSString *participantCode;
+@property (nonatomic, strong) NSString *studyDay;
+@property (nonatomic, strong) NSString *experimenterName;
+@property (nonatomic, strong) NSString *language;
+
+- (NSMutableDictionary *)generateTimestamp;
 
 @end
