@@ -1773,7 +1773,7 @@ static ServerCommunicationController *sharedInstance = nil;
     NSString *documentsDirectory = [directories objectAtIndex:0];
     
     //Get progress file name and path
-    NSString *progressFileName = [NSString stringWithFormat:@"%@_%@_%@_progress.xml", [student schoolCode],[student participantCode],[student studyDay]];
+    NSString *progressFileName = [NSString stringWithFormat:@"%@_progress.xml", [student participantCode]];
     NSString *progressFilePath = [documentsDirectory stringByAppendingPathComponent:progressFileName];
     
     //Try to load progress data
@@ -1915,7 +1915,7 @@ static ServerCommunicationController *sharedInstance = nil;
     NSString *documentsDirectory = [directories objectAtIndex:0];
     
     //Get progress file name and path
-    NSString *progressFileName = [NSString stringWithFormat:@"%@_%@_%@_progress.xml", [student schoolCode],[student participantCode],[student studyDay]];
+    NSString *progressFileName = [NSString stringWithFormat:@"%@_progress.xml", [student participantCode]];
     NSString *progressFilePath = [documentsDirectory stringByAppendingPathComponent:progressFileName];
     
     //Write progress to file
@@ -1948,7 +1948,7 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Store names of files to upload in array
     NSString *logFileName = [NSString stringWithFormat:@"%@.txt", studyFileName];
-    NSString *progressFileName = [NSString stringWithFormat:@"%@_%@_%@_progress.xml", [student schoolCode],[student participantCode],[student studyDay]];
+    NSString *progressFileName = [NSString stringWithFormat:@"%@_progress.xml", [student participantCode]];
     NSArray *filesToUpload = [[NSArray alloc] initWithObjects:logFileName, progressFileName, nil];
     
     //Upload each file to Dropbox
@@ -2011,7 +2011,7 @@ static ServerCommunicationController *sharedInstance = nil;
                                                    @"Content-Type": @"application/zip"
                                                    };
     
-    NSString *progressFileName = [NSString stringWithFormat:@"%@_%@_%@_progress.xml", [student schoolCode],[student participantCode],[student studyDay]];
+    NSString *progressFileName = [NSString stringWithFormat:@"%@_progress.xml", [student participantCode]];
     NSString *dbFileName = [NSString stringWithFormat:@"ProgressFiles/%@", progressFileName]; //Name of progress file on Dropbox
     
     NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:sessionConfiguration delegate:self delegateQueue:[NSOperationQueue mainQueue]];

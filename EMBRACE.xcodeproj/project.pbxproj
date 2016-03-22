@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		030420001CA0E86A006F07C4 /* bookmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 03041FFE1CA0E86A006F07C4 /* bookmark.png */; };
+		030420011CA0E86A006F07C4 /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 03041FFF1CA0E86A006F07C4 /* checkmark.png */; };
 		030C8A981C5B1C6A00042C6F /* ImagineManipulationSolution.m in Sources */ = {isa = PBXBuildFile; fileRef = 030C8A971C5B1C6A00042C6F /* ImagineManipulationSolution.m */; };
 		033BC05D1C501BB600A1EC14 /* ActivityMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 033BC05C1C501BB600A1EC14 /* ActivityMode.m */; };
 		033BC0671C506C0100A1EC14 /* ActivitySequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 033BC0661C506C0100A1EC14 /* ActivitySequence.m */; };
@@ -4310,8 +4312,6 @@
 		C32DA0E11BF92A52006C2418 /* Progress.m in Sources */ = {isa = PBXBuildFile; fileRef = C32DA0E01BF92A52006C2418 /* Progress.m */; };
 		C34CC3691C43578D0075B58E /* library_background.png in Resources */ = {isa = PBXBuildFile; fileRef = C39DFB851BD81341005C3975 /* library_background.png */; };
 		C34CC36A1C43578D0075B58E /* library_header1.png in Resources */ = {isa = PBXBuildFile; fileRef = C39DFB861BD81341005C3975 /* library_header1.png */; };
-		C34CC36B1C43578D0075B58E /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = C35F427A1BDAAD3600B4BCF0 /* checkmark.png */; };
-		C35F427C1BDAAD3600B4BCF0 /* bookmark.png in Resources */ = {isa = PBXBuildFile; fileRef = C35F42791BDAAD3600B4BCF0 /* bookmark.png */; };
 		C35F427E1BDAAD3600B4BCF0 /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = C35F427B1BDAAD3600B4BCF0 /* lock.png */; };
 		C36473EE1A9AA5C100FD7494 /* AlternateSentence.m in Sources */ = {isa = PBXBuildFile; fileRef = C36473ED1A9AA5C100FD7494 /* AlternateSentence.m */; };
 		C393881F195376490005279F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C393881E195376490005279F /* AudioToolbox.framework */; };
@@ -4337,6 +4337,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		03041FFE1CA0E86A006F07C4 /* bookmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bookmark.png; sourceTree = "<group>"; };
+		03041FFF1CA0E86A006F07C4 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
 		030C8A961C5B1C6A00042C6F /* ImagineManipulationSolution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagineManipulationSolution.h; sourceTree = "<group>"; };
 		030C8A971C5B1C6A00042C6F /* ImagineManipulationSolution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagineManipulationSolution.m; sourceTree = "<group>"; };
 		033BC05B1C501BB600A1EC14 /* ActivityMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityMode.h; sourceTree = "<group>"; };
@@ -8667,8 +8669,6 @@
 		5DED1CA21C765BD200B29369 /* NaughtyMonkey_Script_C9.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkey_Script_C9.mp3; sourceTree = "<group>"; };
 		C32DA0DF1BF92A52006C2418 /* Progress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Progress.h; sourceTree = "<group>"; };
 		C32DA0E01BF92A52006C2418 /* Progress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Progress.m; sourceTree = "<group>"; };
-		C35F42791BDAAD3600B4BCF0 /* bookmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bookmark.png; sourceTree = "<group>"; };
-		C35F427A1BDAAD3600B4BCF0 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
 		C35F427B1BDAAD3600B4BCF0 /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
 		C36473EC1A9AA5C100FD7494 /* AlternateSentence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlternateSentence.h; sourceTree = "<group>"; };
 		C36473ED1A9AA5C100FD7494 /* AlternateSentence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlternateSentence.m; sourceTree = "<group>"; };
@@ -10064,8 +10064,8 @@
 				C3B66AB01BC59D89005DF0AC /* BookCellView_background.png */,
 				C39DFB861BD81341005C3975 /* library_header1.png */,
 				C39DFB871BD81341005C3975 /* library_header2.png */,
-				C35F42791BDAAD3600B4BCF0 /* bookmark.png */,
-				C35F427A1BDAAD3600B4BCF0 /* checkmark.png */,
+				03041FFE1CA0E86A006F07C4 /* bookmark.png */,
+				03041FFF1CA0E86A006F07C4 /* checkmark.png */,
 				C35F427B1BDAAD3600B4BCF0 /* lock.png */,
 			);
 			name = Images;
@@ -14516,7 +14516,6 @@
 				5C9C0AA11C573AAA00702FCD /* dirtE.m4a in Resources */,
 				5C72E62F1C72A46F00CE4877 /* TheAlgonquianWigwamQ2A2.mp3 in Resources */,
 				C34CC36A1C43578D0075B58E /* library_header1.png in Resources */,
-				C34CC36B1C43578D0075B58E /* checkmark.png in Resources */,
 				5D9E34A21C590E9600636150 /* TheMysteryIsSolvedQ4A1.mp3 in Resources */,
 				5CF792C91C7694A900216337 /* TheContestQ2A3S.mp3 in Resources */,
 				5C0421731C618C2B001BBE9D /* CatchQ5A2.mp3 in Resources */,
@@ -14703,7 +14702,6 @@
 				5C0420181C614653001BBE9D /* TheLopezFamilyS2E.mp3 in Resources */,
 				5D9E343A1C590E9500636150 /* old_MoreIsMissingQ4A1.mp3 in Resources */,
 				5C28DCC01C2BA66E005ACD07 /* plank_side.png in Resources */,
-				C35F427C1BDAAD3600B4BCF0 /* bookmark.png in Resources */,
 				5C9F28C21C5C6B2E008ACE48 /* TheLopezFamilyQ4A3S.mp3 in Resources */,
 				1A63204B1C0E4D3B00251CB3 /* Story2-Getting-Ready-Intro-E.xhtml in Resources */,
 				5C137CE31C8A79CC0023901C /* BranchesE.mp3 in Resources */,
@@ -14958,6 +14956,7 @@
 				5CF793221C76986E00216337 /* old_BFTC1.m4a in Resources */,
 				1A6320AE1C0E4D3B00251CB3 /* Story1-The-Lucky-Stone-PM-1.xhtml in Resources */,
 				5C72E78E1C72BF1000CE4877 /* NewtonsFirstLawonEarthQ3A4.mp3 in Resources */,
+				030420011CA0E86A006F07C4 /* checkmark.png in Resources */,
 				5C72E80F1C72BF1000CE4877 /* NewtonsThirdLawForcesarepairedQ6.mp3 in Resources */,
 				5C0ED8891C75334200003B5A /* HomecomingQ1A2.mp3 in Resources */,
 				1A63201E1C0E4D3B00251CB3 /* farmer_large.png in Resources */,
@@ -15299,6 +15298,7 @@
 				5CA955741C3237690038FB56 /* IMSolutions-MetaData.xml in Resources */,
 				1A6321151C0E4D3B00251CB3 /* sofia_standing2.png in Resources */,
 				5C0421741C618C2B001BBE9D /* CatchQ5A3.mp3 in Resources */,
+				030420001CA0E86A006F07C4 /* bookmark.png in Resources */,
 				5CCD8F8A1C7405EC00D2EC2B /* TornadosQ2A4.mp3 in Resources */,
 				5C030F921C863196006E1BEA /* Hay_def_S.mp3 in Resources */,
 				5C0ED6C01C752C2F00003B5A /* TheBestFarmAwardQ3A1.mp3 in Resources */,
