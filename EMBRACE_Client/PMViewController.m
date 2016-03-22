@@ -4398,7 +4398,10 @@ BOOL wasPathFollowed = false;
         [currentPageId rangeOfString:@"story1"].location != NSNotFound &&
         ([chapterTitle isEqualToString:@"The Lucky Stone"])) {
             introAudio = @"splWordsIntro";
-
+    }
+    
+    if ([currentPageId rangeOfString:@"-PM-1"].location != NSNotFound) {
+        NSLog(@"********************* After vocab");
     }
     
     NSMutableArray *array = [NSMutableArray array];
@@ -4468,13 +4471,16 @@ BOOL wasPathFollowed = false;
                 }
                 
                 
-                
-                if ([ConditionSetup sharedInstance].language == BILINGUAL) {
-                    audio = [NSString stringWithFormat:@"%@_S",audio];
-                }
                 if (audio) {
+                    NSString *spanishAudio = nil;
+                    
+                   
+                    if ([ConditionSetup sharedInstance].language == BILINGUAL && conditionSetup.newInstructions) {
+                        spanishAudio = [NSString stringWithFormat:@"%@_S.mp3",audio];
+                    }
                     audio = [NSString stringWithFormat:@"%@.mp3",audio];
-                    preAudio = [NSArray arrayWithObject:audio];
+                    preAudio = [NSArray arrayWithObjects:audio, spanishAudio, nil];
+                    
                 }
             }
         }
