@@ -11,7 +11,10 @@
                         <english>
                             <audio seq="1">Intro</audio>
                         </english>
-                      
+                        <bilingual>
+                            <audio seq="1">Intro</audio>
+                        </bilingual>
+                        
                     </preAudio>
                     
                 </embrace>
@@ -20,12 +23,140 @@
                         <english>
                             <audio seq="1">Intro</audio>
                         </english>
-                        
+                        <bilingual>
+                            <audio seq="1">Intro</audio>
+                        </bilingual>
                     </preAudio>
                     
                 </control>
                 
             </sentence>
         </story>
+        
+        
+        <story title="Magic Toys" activity_id="story2-PM-1">
+            
+            <sentence number="0">
+                
+                <embrace>
+                    <preAudio>
+                        <english>
+                            <audio seq="1">Intro</audio>
+                        </english>
+                        <bilingual>
+                            <audio seq="1">Intro</audio>
+                        </bilingual>
+                        
+                    </preAudio>
+                    
+                </embrace>
+                <control>
+                    <preAudio>
+                        <english>
+                            <audio seq="1">Intro</audio>
+                        </english>
+                        <bilingual>
+                            <audio seq="1">Intro</audio>
+                        </bilingual>
+                    </preAudio>
+                    
+                </control>
+                
+            </sentence>
+        </story>
+        <story title="Baby Brother" activity_id="story3-PM-1">
+            
+            <sentence number="0">
+                
+                <embrace>
+                    <preAudio>
+                        <english>
+                            <audio seq="1">Intro</audio>
+                        </english>
+                        <bilingual>
+                            <audio seq="1">Intro</audio>
+                        </bilingual>
+                        
+                    </preAudio>
+                    
+                </embrace>
+                <control>
+                    <preAudio>
+                        <english>
+                            <audio seq="1">Intro</audio>
+                        </english>
+                        <bilingual>
+                            <audio seq="1">Intro</audio>
+                        </bilingual>
+                    </preAudio>
+                    
+                </control>
+                
+            </sentence>
+        </story>
+        
+        <story title="Words of Wisdom" activity_id="story4-PM-1">
+            
+            <sentence number="0">
+                
+                <embrace>
+                    <preAudio>
+                        <english>
+                            <audio seq="1">Intro</audio>
+                        </english>
+                        <bilingual>
+                            <audio seq="1">Intro</audio>
+                        </bilingual>
+                        
+                    </preAudio>
+                    
+                </embrace>
+                <control>
+                    <preAudio>
+                        <english>
+                            <audio seq="1">Intro</audio>
+                        </english>
+                        <bilingual>
+                            <audio seq="1">Intro</audio>
+                        </bilingual>
+                    </preAudio>
+                    
+                </control>
+                
+            </sentence>
+        </story>
+        
+        <story title="Catch!" activity_id="story5-PM-1">
+            
+            <sentence number="0">
+                
+                <embrace>
+                    <preAudio>
+                        <english>
+                            <audio seq="1">Intro</audio>
+                        </english>
+                        <bilingual>
+                            <audio seq="1">Intro</audio>
+                        </bilingual>
+                        
+                    </preAudio>
+                    
+                </embrace>
+                <control>
+                    <preAudio>
+                        <english>
+                            <audio seq="1">Intro</audio>
+                        </english>
+                        <bilingual>
+                            <audio seq="1">Intro</audio>
+                        </bilingual>
+                    </preAudio>
+                    
+                </control>
+                
+            </sentence>
+        </story>
+        
+        
     </scriptAudio>
 </metadata>
