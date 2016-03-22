@@ -509,14 +509,14 @@
                 <Answer4Audio>TheThreeLawsWorkTogetherQ3A4.mp3</Answer4Audio>
             </Question>
             <Question number="4">
-                <QuestionText>How did the toy truck move?</QuestionText>
+                <QuestionText>Why did the toy truck move?</QuestionText>
                 <QuestionAudio>TheThreeLawsWorkTogetherQ4.mp3</QuestionAudio>
-                <Answer1>You added a pushing force to the truck</Answer1>
+                <Answer1>Someone added a force to the truck</Answer1>
                 <Answer1Audio>TheThreeLawsWorkTogetherQ4A1.mp3</Answer1Audio>
-                <expectedSelection>You added a pushing force to the truck</expectedSelection>
+                <expectedSelection>Someone added a force to the truck</expectedSelection>
                 <Answer2>Toy trucks are objects that can move by themselves</Answer2>
                 <Answer2Audio>TheThreeLawsWorkTogetherQ4A2.mp3</Answer2Audio>
-                <Answer3>Maria pushed the toy truck</Answer3>
+                <Answer3>Friction pushed the toy truck</Answer3>
                 <Answer3Audio>TheThreeLawsWorkTogetherQ4A3.mp3</Answer3Audio>
                 <Answer4>A doll was driving it</Answer4>
                 <Answer4Audio>TheThreeLawsWorkTogetherQ4A4.mp3</Answer4Audio>
