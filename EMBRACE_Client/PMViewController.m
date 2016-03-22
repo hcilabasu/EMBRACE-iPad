@@ -1056,14 +1056,15 @@ BOOL wasPathFollowed = false;
 - (IBAction)tapGesturePerformed:(UITapGestureRecognizer *)recognizer {
     CGPoint location = [recognizer locationInView:self.view];
     
-    allowSnapback = false;
-    
     if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && (!IntroductionClass.allowInteractions)) {
         IntroductionClass.allowInteractions = true;
     }
     
     //Check to see if we have a menu open. If so, process menu click.
     if (menu != nil && IntroductionClass.allowInteractions) {
+        
+        allowSnapback = false;
+        
         int menuItem = [menu pointInMenuItem:location];
         
         //If we've selected a menuItem.
@@ -1108,6 +1109,7 @@ BOOL wasPathFollowed = false;
         //No longer moving object
         movingObject = FALSE;
         movingObjectId = nil;
+        allowSnapback =true;
         
         //Re-add the tap gesture recognizer before the menu is removed
         //[self.view addGestureRecognizer:tapRecognizer];
@@ -1294,6 +1296,10 @@ BOOL wasPathFollowed = false;
                 }
             }
         }
+    }
+    
+    if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && (IntroductionClass.allowInteractions)) {
+        IntroductionClass.allowInteractions = false;
     }
 }
 
@@ -1842,7 +1848,7 @@ BOOL wasPathFollowed = false;
                                 }
                                 
                                 //Only populate Menu if user is moving the correct object to the correct objects
-                                if ([movingObjectId isEqualToString:[currSolStep object1Id]] && correctInteractionExists) {
+                                if (correctInteractionExists) {
                                     
                                     //First rank the interactions based on location to story.
                                     [self rankPossibleInteractions:possibleInteractions];

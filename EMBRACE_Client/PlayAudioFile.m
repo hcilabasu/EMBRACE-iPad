@@ -160,7 +160,7 @@
         
         //may need to pass in which ever class is calling this function
         self.audioPlayer.delegate = self;
-        
+    
         if (self.audioPlayer == nil || self.audioPlayerAfter == nil)
         {
             NSLog(@"%@",[audioError1 description]);
@@ -188,16 +188,22 @@
     }
     else
     {
-        // This delay is needed in order to be able to play the last definition on a vocabulary page
-        //dispatch_after(dispatch_time(DISPATCH_TIME_NOW,NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            [self.audioPlayerAfter play];
-        //});
+        [self.audioPlayerAfter play];
         
+        //make sure we have an instance of the PMViewController
         if(PmviewController != nil)
         {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW,([self.audioPlayerAfter duration] * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            //reenable user interaction after second audio file finishes playing if it exists otherwise just renable user interaction after first audio file finishes playing
+            float duration = [self.audioPlayerAfter duration];
+            if (self.audioPlayerAfter !=nil) {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW,([self.audioPlayerAfter duration])), dispatch_get_main_queue(), ^{
+                    [PmviewController.view setUserInteractionEnabled:YES];
+                });
+            }
+            else
+            {
                 [PmviewController.view setUserInteractionEnabled:YES];
-            });
+            }
         }
     }
 }
