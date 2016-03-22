@@ -2870,7 +2870,7 @@
 		5C8C35751CA1E60C00E07A5C /* MonkeyS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C356B1CA1E60C00E07A5C /* MonkeyS.mp3 */; };
 		5C8C35761CA1E60C00E07A5C /* NaughtyS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C356C1CA1E60C00E07A5C /* NaughtyS.mp3 */; };
 		5C8C35771CA1E60C00E07A5C /* TroughS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C356D1CA1E60C00E07A5C /* TroughS.mp3 */; };
-		5C8C35781CA1E60C00E07A5C /* Zebra’sS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C356E1CA1E60C00E07A5C /* Zebra’sS.mp3 */; };
+		5C8C35781CA1E60C00E07A5C /* Zebra'sS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C8C356E1CA1E60C00E07A5C /* Zebra'sS.mp3 */; };
 		5C9C077A1C57385A00702FCD /* barnDEFS.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C9C05AA1C57385900702FCD /* barnDEFS.m4a */; };
 		5C9C077B1C57385A00702FCD /* barnE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C9C05AB1C57385900702FCD /* barnE.m4a */; };
 		5C9C077C1C57385A00702FCD /* barnS.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C9C05AC1C57385900702FCD /* barnS.m4a */; };
@@ -7300,7 +7300,7 @@
 		5C8C356B1CA1E60C00E07A5C /* MonkeyS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MonkeyS.mp3; sourceTree = "<group>"; };
 		5C8C356C1CA1E60C00E07A5C /* NaughtyS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyS.mp3; sourceTree = "<group>"; };
 		5C8C356D1CA1E60C00E07A5C /* TroughS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TroughS.mp3; sourceTree = "<group>"; };
-		5C8C356E1CA1E60C00E07A5C /* Zebra’sS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Zebra’sS.mp3"; sourceTree = "<group>"; };
+		5C8C356E1CA1E60C00E07A5C /* Zebra'sS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Zebra'sS.mp3"; sourceTree = "<group>"; };
 		5C9C05AA1C57385900702FCD /* barnDEFS.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = barnDEFS.m4a; sourceTree = "<group>"; };
 		5C9C05AB1C57385900702FCD /* barnE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = barnE.m4a; sourceTree = "<group>"; };
 		5C9C05AC1C57385900702FCD /* barnS.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = barnS.m4a; sourceTree = "<group>"; };
@@ -12459,7 +12459,7 @@
 				5C8C356B1CA1E60C00E07A5C /* MonkeyS.mp3 */,
 				5C8C356C1CA1E60C00E07A5C /* NaughtyS.mp3 */,
 				5C8C356D1CA1E60C00E07A5C /* TroughS.mp3 */,
-				5C8C356E1CA1E60C00E07A5C /* Zebra’sS.mp3 */,
+				5C8C356E1CA1E60C00E07A5C /* Zebra'sS.mp3 */,
 			);
 			path = Spanish;
 			sourceTree = "<group>";
@@ -15841,7 +15841,7 @@
 				5CCD8E4F1C73E73200D2EC2B /* IntroductionToNaturalDisastersQ2A1S.mp3 in Resources */,
 				5C0421D21C618C2B001BBE9D /* TheLuckyStoneQ2A2.mp3 in Resources */,
 				1A6323211C0E4D3B00251CB3 /* maria_ground.png in Resources */,
-				5C8C35781CA1E60C00E07A5C /* Zebra’sS.mp3 in Resources */,
+				5C8C35781CA1E60C00E07A5C /* Zebra'sS.mp3 in Resources */,
 				5DA8FD251C872F190056DE7A /* NaughtyMonkey_Script3.mp3 in Resources */,
 				5C72E5251C727E2000CE4877 /* NativeIntroQ1A2.mp3 in Resources */,
 				5CB7117A1C6C46DF0062AD61 /* TheNavajoHoganQ7A1S.mp3 in Resources */,
