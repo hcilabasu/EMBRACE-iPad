@@ -1051,19 +1051,15 @@ BOOL wasPathFollowed = false;
 }
 
 /*
- * Tap gesture
+ * Tap gesture handles taps on menus, words, images
  */
 - (IBAction)tapGesturePerformed:(UITapGestureRecognizer *)recognizer {
     CGPoint location = [recognizer locationInView:self.view];
     
-    /*
-    if ([IntroductionClass.introductions objectForKey:chapterTitle] && [[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:@"menu"]) {
-        IntroductionClass.allowInteractions = TRUE;
-    }*/
+    allowSnapback = false;
     
     if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && (!IntroductionClass.allowInteractions)) {
         IntroductionClass.allowInteractions = true;
-        allowSnapback = false;
     }
     
     //Check to see if we have a menu open. If so, process menu click.
@@ -1100,23 +1096,13 @@ BOOL wasPathFollowed = false;
             
             if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && (IntroductionClass.allowInteractions)) {
                 IntroductionClass.allowInteractions = FALSE;
-                allowSnapback = true;
             }
+            
+            //allowSnapback = true;
         }
         //No menuItem was selected
         else {
             [[ServerCommunicationController sharedInstance] logSelectMenuItem:nil atIndex:-1 context:manipulationContext];
-            
-            if (allowSnapback) {
-                //Snap the object back to its original location
-                [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
-                
-                [[ServerCommunicationController sharedInstance] logResetObject:movingObjectId startPos:endLocation endPos:startLocation context:manipulationContext];
-                
-                //Clear any remaining highlighting.
-                NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
-                [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
-            }
         }
         
         //No longer moving object
@@ -1124,14 +1110,14 @@ BOOL wasPathFollowed = false;
         movingObjectId = nil;
         
         //Re-add the tap gesture recognizer before the menu is removed
-        [self.view addGestureRecognizer:tapRecognizer];
+        //[self.view addGestureRecognizer:tapRecognizer];
         
-        if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == PM_MODE) {
+        /*if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == PM_MODE) {
             //Remove menu.
             [menu removeFromSuperview];
             menu = nil;
             menuExpanded = FALSE;
-        }
+        }*/
     }
     else {
         if (numSteps > 0 && IntroductionClass.allowInteractions) {
@@ -1845,14 +1831,36 @@ BOOL wasPathFollowed = false;
                                     [IntroductionClass loadIntroStep:bookView :self :currentSentence];
                                 }
                                 
-                                //First rank the interactions based on location to story.
-                                [self rankPossibleInteractions:possibleInteractions];
+                                PossibleInteraction* correctInteraction = [self getCorrectInteraction];
+                                BOOL correctInteractionExists = false;
                                 
-                                //Populate the menu data source and expand the menu.
-                                [self populateMenuDataSource:possibleInteractions :allRelationships];
+                                //Look for the correct interaction
+                                for (int i = 0; i < [possibleInteractions count]; i++) {
+                                    if ([[possibleInteractions objectAtIndex:i] isEqual:correctInteraction]) {
+                                        correctInteractionExists = true;
+                                    }
+                                }
                                 
-                                if (!menuExpanded) {
-                                    [self expandMenu];
+                                //Only populate Menu if user is moving the correct object to the correct objects
+                                if ([movingObjectId isEqualToString:[currSolStep object1Id]] && correctInteractionExists) {
+                                    
+                                    //First rank the interactions based on location to story.
+                                    [self rankPossibleInteractions:possibleInteractions];
+                                
+                                    //Populate the menu data source and expand the menu.
+                                    [self populateMenuDataSource:possibleInteractions :allRelationships];
+                                
+                                    if (!menuExpanded) {
+                                        [self expandMenu];
+                                    }
+                                }
+                                //Otherwise reset object location and play error noise
+                                else
+                                {
+                                    [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
+                                    
+                                    [self playErrorNoise];
+                                    [self resetObjectLocation];
                                 }
                             }
                         }
@@ -3018,6 +3026,9 @@ BOOL wasPathFollowed = false;
         if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) {
             [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Select Menu Item" context:manipulationContext];
             
+            //Re-add the tap gesture recognizer before the menu is removed
+            [self.view addGestureRecognizer:tapRecognizer];
+            
             //Remove menu
             [menu removeFromSuperview];
             menu = nil;
@@ -3053,9 +3064,18 @@ BOOL wasPathFollowed = false;
                 [self playCurrentSentenceAudio];
             }
         }
-        else {
+        else if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == PM_MODE){
             if (menu != nil) {
                 [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Select Menu Item" context:manipulationContext];
+                
+                //Re-add the tap gesture recognizer before the menu is removed
+                [self.view addGestureRecognizer:tapRecognizer];
+                
+                //Remove menu
+                [menu removeFromSuperview];
+                menu = nil;
+                menuExpanded = FALSE;
+                allowSnapback = true;
             }
             else {
                 [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Move Object" context:manipulationContext];
@@ -3074,37 +3094,27 @@ BOOL wasPathFollowed = false;
         }
         
         //Transference counts as two steps, so we must increment again
-        if ([interaction interactionType] == TRANSFERANDGROUP || [interaction interactionType] == TRANSFERANDDISAPPEAR) {
+        if ([interaction interactionType] == TRANSFERANDGROUP ||
+            [interaction interactionType] == TRANSFERANDDISAPPEAR) {
             if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == PM_MODE) {
                 [self incrementCurrentStep];
             }
         }
     }
     else {
-        /*if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
-            if ((conditionSetup.language == ENGLISH) ||
-                IntroductionClass.currentIntroStep > IntroductionClass.STEPS_TO_SWITCH_LANGUAGES_EMBRACE) {
-                [self.playaudioClass playAudioFile:self:@"tryAgainE.m4a"];
-            }
-            else {
-                [self.playaudioClass playAudioFile:self:@"tryAgainS.m4a"];
-            }
-        }*/
-        //else {
-            if (menu != nil) {
-                [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Select Menu Item" context:manipulationContext];
-            }
-            else {
-                [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
-            }
+        if (menu != nil) {
+            [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Select Menu Item" context:manipulationContext];
+        }
+        else {
+            [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
+        }
+    
+        [self playErrorNoise];
         
-            [self playErrorNoise];
-            
-            if (conditionSetup.appMode == ITS) {
-                //Record error for complexity
-                [[pageStatistics objectForKey:currentPageId] addErrorForComplexity:(currentComplexity - 1)];
-            }
-        //}
+        if (conditionSetup.appMode == ITS) {
+            //Record error for complexity
+            [[pageStatistics objectForKey:currentPageId] addErrorForComplexity:(currentComplexity - 1)];
+        }
         
         if ([interaction interactionType] != UNGROUP && allowSnapback) {
             //Snap the object back to its original location
