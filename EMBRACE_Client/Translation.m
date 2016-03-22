@@ -244,7 +244,7 @@
                  @"rosa": @"woman",
                  
                  @"banana": @"banana",
-                 @"coco": @"coco",
+                 @"coco": @"monkey",
                  @"empty": @"empty",
                  @"handle": @"handle",
                  @"jumps": @"jumps",
@@ -254,7 +254,7 @@
                  @"naughty": @"naughty",
                  @"throws": @"throws",
                  @"trough": @"trough",
-                 @"zebra's": @"zebra's",
+                 @"zebra's": @"zebra",
                  
                  @"algonquian" : @"algonquian",
                  @"algonquians" : @"algonquians",
