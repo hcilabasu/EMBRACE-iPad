@@ -181,10 +181,7 @@
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag  {
     
     if ([self.audioQueue count] > 0) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW,NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            [self playNextAudio];
-        });
-        
+        [self playNextAudio];
     }
     else
     {
