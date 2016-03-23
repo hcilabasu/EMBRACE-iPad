@@ -1170,16 +1170,28 @@ BOOL wasPathFollowed = false;
         NSString *requestImageAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
         
         imageAtPoint = [bookView stringByEvaluatingJavaScriptFromString:requestImageAtPoint];
-            
-        //Capture the clicked text, if it exists
-        NSString *requestSentenceText = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).innerHTML", location.x, location.y];
-        NSString *sentenceText = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceText];
         
         //Capture the clicked text id, if it exists
         NSString *requestSentenceID = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).id", location.x, location.y];
         NSString *sentenceID = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceID];
         int sentenceIDNum = [[sentenceID substringFromIndex:0] intValue];
 
+        NSString *requestSentenceText;
+        NSString *sentenceText;
+        
+        if([currentPageId rangeOfString:@"-Intro"].location != NSNotFound)
+        {
+            //Capture the clicked text, if it exists
+            requestSentenceText = [NSString stringWithFormat:@"document.getElementById(%d).innerHTML", sentenceIDNum];
+            sentenceText = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceText];
+        }
+        else
+        {
+            //Capture the clicked text, if it exists
+            requestSentenceText = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).innerHTML", location.x, location.y];
+            sentenceText = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceText];
+        }
+        
         //Capture the spanish extension
         NSString *spanishExtTag = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).getAttribute(\"spanishExt\")", location.x, location.y];
         NSString *spanishExt = [bookView stringByEvaluatingJavaScriptFromString:spanishExtTag];
@@ -1259,7 +1271,7 @@ BOOL wasPathFollowed = false;
             NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
             if(![self.playaudioClass isAudioLeftInSequence])
             {
-                if ([currSolSteps count] > 0) {
+                if (currSolSteps !=nil && [currSolSteps count] > 0) {
                     //Get current step to be completed
                     ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
                     
@@ -1311,15 +1323,15 @@ BOOL wasPathFollowed = false;
     }
     
     if (conditionSetup.language == BILINGUAL) {
-        NSString *spanishAudio = [NSString stringWithFormat:@"%@%@.mp3", englishSentenceText, @"S"];
-        NSString *engAudio = [NSString stringWithFormat:@"%@%@.mp3", englishSentenceText, @"E"];
+        NSString *spanishAudio = [NSString stringWithFormat:@"%@%@.mp3", [englishSentenceText capitalizedString], @"S"];
+        NSString *engAudio = [NSString stringWithFormat:@"%@%@.mp3", [englishSentenceText capitalizedString], @"E"];
         
         if ([spanishExt isEqualToString:@""] == NO) {
-            spanishAudio = [NSString stringWithFormat:@"%@%@.mp3", englishSentenceText, spanishExt];
+            spanishAudio = [NSString stringWithFormat:@"%@%@.mp3", [englishSentenceText capitalizedString], spanishExt];
         }
         
         //Play Sp audio then En auido
-        bool success = [self.playaudioClass playAudioInSequence:self :spanishAudio :engAudio];
+        bool success = [self.playaudioClass playAudioInSequence:self :spanishAudio : engAudio];
         
         if (!success) {
             NSString *spanishAudio = [NSString stringWithFormat:@"%@%@.m4a", englishSentenceText, @"S"];
@@ -1337,7 +1349,7 @@ BOOL wasPathFollowed = false;
     }
     else {
         //Play En audio twice
-        NSString *engAudio = [NSString stringWithFormat:@"%@%@.mp3", englishSentenceText, @"E"];
+        NSString *engAudio = [NSString stringWithFormat:@"%@%@.mp3", [englishSentenceText capitalizedString], @"E"];
         
         //Play Sp audio then En auido
         bool success = [self.playaudioClass playAudioInSequence:self :engAudio :engAudio];
@@ -1364,7 +1376,7 @@ BOOL wasPathFollowed = false;
         if(conditionSetup.language == ENGLISH)
         {
             //Play En audio
-            bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3", englishSentenceText, @"_def_E"]];
+            bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3", [englishSentenceText capitalizedString], @"_def_E"]];
             
             if (!success)
             {
@@ -1377,7 +1389,7 @@ BOOL wasPathFollowed = false;
         else
         {
             //Play Sp Audio
-            bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"_def_S"]];
+            bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3",[englishSentenceText capitalizedString],@"_def_S"]];
         
             if (!success)
             {
@@ -1392,7 +1404,7 @@ BOOL wasPathFollowed = false;
     
     
         // This delay is needed in order to be able to play the last definition on a vocabulary page
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW,([self.playaudioClass audioPlayer].duration)*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW,([self.playaudioClass audioPlayer].duration)), dispatch_get_main_queue(), ^{
             [IntroductionClass loadVocabStep:bookView:self:currentSentence:chapterTitle];
            
             //if audioPlayer is nil then we have returned to library view and should not play audio
@@ -1400,7 +1412,7 @@ BOOL wasPathFollowed = false;
             {
                 
                 //Play En audio
-                bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3",englishSentenceText,@"_def_E"]];
+                bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3",[englishSentenceText capitalizedString],@"_def_E"]];
             
                 //
                 if (!success)
