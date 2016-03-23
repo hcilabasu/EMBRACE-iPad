@@ -1211,26 +1211,7 @@ BOOL wasPathFollowed = false;
             }
         }
         
-        /*
-        //Enable the introduction clicks on words and images, if it is intro mode
-        if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
-            if (([[IntroductionClass.performedActions objectAtIndex:SELECTION] isEqualToString:@"word"] &&
-                [englishSentenceText isEqualToString:[IntroductionClass.performedActions objectAtIndex:INPUT]])) {
-                [self.playaudioClass playAudioFile: self :[NSString stringWithFormat:@"%@%@.m4a", englishSentenceText, IntroductionClass.languageString]];
-
-                [self highlightObject:englishSentenceText:1.5];
-                
-                //Bypass the image-tap steps which are found after each word-tap step on the metadata since they are not needed anymore
-                IntroductionClass.currentIntroStep += 1;
-                
-                // This delay is needed in order to be able to hear the clicked word
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                    [IntroductionClass loadIntroStep:bookView:self:currentSentence];
-                });
-            }
-        }
         //Vocabulary introduction mode
-        else*/
         if ([currentPageId rangeOfString:@"-Intro"].location != NSNotFound) {
             //Get steps for current sentence
             NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
@@ -1277,13 +1258,13 @@ BOOL wasPathFollowed = false;
                     
                     if ([[currSolStep stepType] isEqualToString:@"tapWord"])
                     {
-                        if ([[currSolStep object1Id] containsString: englishSentenceText] &&
-                           (currentSentence == sentenceIDNum || [chapterTitle isEqualToString:@"The Naughty Monkey"]))
+                        if (([[currSolStep object1Id] containsString: englishSentenceText] && (currentSentence == sentenceIDNum)) ||
+                            ([chapterTitle isEqualToString:@"The Naughty Monkey"] && conditionSetup.condition == CONTROL && [[currSolStep object1Id] containsString: englishSentenceText] && currentSentence == 2 && [currentPageId rangeOfString:@"-PM-2"].location != NSNotFound) ||
+                            ([chapterTitle isEqualToString:@"The Naughty Monkey"] && conditionSetup.condition == EMBRACE && [[currSolStep object1Id] containsString: englishSentenceText] && (currentSentence == sentenceIDNum) && currentSentence !=2 && [currentPageId rangeOfString:@"-PM-2"].location != NSNotFound))
                         {
                             [[ServerCommunicationController sharedInstance] logTapWord:sentenceText :manipulationContext];
                             [self.playaudioClass stopPlayAudioFile];
                             [self playAudioForVocabWord: englishSentenceText : spanishExt];
-                            //[self playIntroVocabWord:sentenceText :englishSentenceText :currSolStep];
                             [self incrementCurrentStep];
                         }
                         else if([[Translation translationWords] objectForKey:englishSentenceText])
@@ -1368,7 +1349,7 @@ BOOL wasPathFollowed = false;
         englishSentenceText = @"carbon dioxide";
     }
     
-    //[self highlightImageForText:englishSentenceText];
+    [self highlightImageForText:englishSentenceText];
 }
 
 - (void) playIntroVocabWord: (NSString *) sentenceText : (NSString *) englishSentenceText : (ActionStep *) currSolStep
@@ -1401,12 +1382,11 @@ BOOL wasPathFollowed = false;
         }
     
         [self highlightImageForText:englishSentenceText];
-    
-    
+        Float64 delay = [self.playaudioClass audioDuration];
         // This delay is needed in order to be able to play the last definition on a vocabulary page
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW,([self.playaudioClass audioPlayer].duration)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW,[self.playaudioClass audioDuration]*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             [IntroductionClass loadVocabStep:bookView:self:currentSentence:chapterTitle];
-           
+            
             //if audioPlayer is nil then we have returned to library view and should not play audio
             if ([self.playaudioClass audioPlayer] != nil)
             {
@@ -4224,7 +4204,7 @@ BOOL wasPathFollowed = false;
                 }
             }
         }
-        else if (stepsComplete || numSteps == 0 || (!IntroductionClass.allowInteractions && !([chapterTitle isEqualToString:@"The Naughty Monkey"] && [currentPageId rangeOfString:@"PM-2"].location != NSNotFound && conditionSetup.condition == CONTROL && !stepsComplete && currentSentence == 2)))
+        else if (stepsComplete || numSteps == 0 || (IntroductionClass.allowInteractions && ([chapterTitle isEqualToString:@"The Naughty Monkey"] && [currentPageId rangeOfString:@"PM-2"].location != NSNotFound && conditionSetup.condition == EMBRACE && !stepsComplete && currentSentence == 2)) || (!IntroductionClass.allowInteractions && ![chapterTitle isEqualToString:@"The Naughty Monkey"]) || (!IntroductionClass.allowInteractions && ([chapterTitle isEqualToString:@"The Naughty Monkey"] && [currentPageId rangeOfString:@"PM-2"].location != NSNotFound && conditionSetup.condition == CONTROL && stepsComplete && currentSentence == 2)) || (!IntroductionClass.allowInteractions && ([chapterTitle isEqualToString:@"The Naughty Monkey"] && conditionSetup.condition == CONTROL && !stepsComplete && currentSentence != 2)))
         {
             if (currentSentence > 0) {
                 currentIdea++;

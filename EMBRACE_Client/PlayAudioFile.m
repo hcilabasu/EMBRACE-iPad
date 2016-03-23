@@ -21,6 +21,8 @@
 @synthesize PmviewController;
 @synthesize audioPlayer;
 @synthesize audioPlayerAfter;
+@synthesize audioDuration;
+@synthesize audioAfterDuration;
 
 -(void)initPlayer: (NSString*) audioFilePath
 {
@@ -29,6 +31,9 @@
     NSError *error;
     
     self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&error];
+    
+    AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:soundFileURL options:[NSDictionary dictionaryWithObjectsAndKeys: [NSNumber numberWithBool:YES], AVURLAssetPreferPreciseDurationAndTimingKey, nil]];
+    self.audioDuration = CMTimeGetSeconds(asset.duration);
 }
 
 /* Plays text-to-speech audio in a given language in a certain time */
@@ -63,6 +68,7 @@
     }
     else
     {
+        [self.audioPlayer prepareToPlay];
         [self.audioPlayer play];
     }
 }
@@ -84,6 +90,7 @@
     }
     else
     {
+        [self.audioPlayer prepareToPlay];
         [self.audioPlayer play];
         return true;
     }
@@ -134,6 +141,9 @@
         }
         else {
             [PmviewController.view setUserInteractionEnabled:NO];
+            [self.audioPlayer prepareToPlay];
+            AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:soundFileURL options:[NSDictionary dictionaryWithObjectsAndKeys: [NSNumber numberWithBool:YES], AVURLAssetPreferPreciseDurationAndTimingKey, nil]];
+            self.audioDuration = CMTimeGetSeconds(asset.duration);
             [self.audioPlayer play];
             [self.audioQueue removeObjectAtIndex:0];
         }
@@ -149,11 +159,12 @@
     
         NSString *soundFilePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], path];
         NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
-        NSError *audioError1;
-        NSError *audioError2;
     
         NSString *soundFilePath2 = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], path2];
         NSURL *soundFileURL2 = [NSURL fileURLWithPath:soundFilePath2];
+    
+        NSError *audioError1;
+        NSError *audioError2;
     
         self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&audioError1];
         self.audioPlayerAfter = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL2 error:&audioError2];
@@ -172,6 +183,14 @@
         }
         else
         {
+            [self.audioPlayer prepareToPlay];
+            
+            AVURLAsset *asset1 = [[AVURLAsset alloc] initWithURL:soundFileURL options:[NSDictionary dictionaryWithObjectsAndKeys: [NSNumber numberWithBool:YES], AVURLAssetPreferPreciseDurationAndTimingKey, nil]];
+            self.audioDuration = CMTimeGetSeconds(asset1.duration);
+            
+            AVURLAsset *asset2 = [[AVURLAsset alloc] initWithURL:soundFileURL2 options:[NSDictionary dictionaryWithObjectsAndKeys: [NSNumber numberWithBool:YES], AVURLAssetPreferPreciseDurationAndTimingKey, nil]];
+            self.audioAfterDuration = CMTimeGetSeconds(asset2.duration);
+            
             [self.audioPlayer play];
             return true;
         }
@@ -185,15 +204,15 @@
     }
     else
     {
+        [self.audioPlayer prepareToPlay];
         [self.audioPlayerAfter play];
         
         //make sure we have an instance of the PMViewController
         if(PmviewController != nil)
         {
             //reenable user interaction after second audio file finishes playing if it exists otherwise just renable user interaction after first audio file finishes playing
-            float duration = [self.audioPlayerAfter duration];
             if (self.audioPlayerAfter !=nil) {
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW,([self.audioPlayerAfter duration])), dispatch_get_main_queue(), ^{
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW,self.audioAfterDuration*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                     [PmviewController.view setUserInteractionEnabled:YES];
                 });
             }
