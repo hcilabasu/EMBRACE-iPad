@@ -4495,7 +4495,9 @@ BOOL wasPathFollowed = false;
                    
                     if ([ConditionSetup sharedInstance].language == BILINGUAL && conditionSetup.newInstructions) {
                         spanishAudio = [NSString stringWithFormat:@"%@_S.mp3",audio];
+                        
                     }
+
                     audio = [NSString stringWithFormat:@"%@.mp3",audio];
                     preAudio = [NSArray arrayWithObjects:audio, spanishAudio, nil];
                     
@@ -4882,7 +4884,20 @@ BOOL wasPathFollowed = false;
     }
     
     if (([chapterTitle isEqualToString:@"The Naughty Monkey"]) && currentSentence == 6) {
-        [self.playaudioClass playAudioFile:self :@"NaughtyMonkey_Script5.mp3"];
+        if (conditionSetup.language == ENGLISH) {
+            [self.playaudioClass playAudioFile:self :@"NaughtyMonkey_Script5.mp3"];
+        } else {
+            [self.playaudioClass playAudioFile:self :@"NaughtyMonkey_Script5_S.mp3"];
+        }
+        
+        
+    } else if (([chapterTitle isEqualToString:@"The Naughty Monkey"]) && currentSentence == 7 ) {
+        if (conditionSetup.language == ENGLISH) {
+            [self.playaudioClass playAudioFile:self :@"NaughtyMonkey_Script7.mp3"];
+        } else {
+            [self.playaudioClass playAudioFile:self :@"NaughtyMonkey_Script7_S.mp3"];
+        }
+        
     }
     
    [[ServerCommunicationController sharedInstance] logDisplayMenuItems:menuItemsData context:manipulationContext];
