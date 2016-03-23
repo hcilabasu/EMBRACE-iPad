@@ -268,6 +268,8 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                     //Set next book in sequence to in progress
                     [studentProgress setNextChapterInProgressForBook:nextBookTitle];
                 }
+                
+                [self pressedBooks:self];
             }
         }
     }
@@ -298,6 +300,8 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
             if (!inProgressBookExists && foundNextBook) {
                 [studentProgress setNextChapterInProgressForBook:nextBookTitle];
             }
+            
+            [self pressedBooks:self];
         }
     }
     
@@ -418,7 +422,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
     }
     
     NSString *title = [NSString stringWithFormat:@"This %@ is locked.", itemType];
-    NSString *message = [NSString stringWithFormat:@"Please select a %@ with a red bookmark icon.", itemType];
+    NSString *message = [NSString stringWithFormat:@"Please select a %@ with a green bookmark icon.", itemType];
     
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
     [alertView show];

@@ -8,14 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LoginViewController : UIViewController {
-    IBOutlet UITextField *schoolCodeField;
-    IBOutlet UITextField *participantCodeField;
-    IBOutlet UITextField *studyDayField;
-    IBOutlet UITextField *experimenterField;
-}
-
-- (IBAction)login:(id)sender;
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
+@interface LoginViewController : UIViewController
 
 @end

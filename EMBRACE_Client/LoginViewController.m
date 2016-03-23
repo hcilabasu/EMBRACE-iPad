@@ -9,7 +9,12 @@
 #import "LoginViewController.h"
 #import "LibraryViewController.h"
 
-@interface LoginViewController () {
+@interface LoginViewController () <UITextFieldDelegate> {
+    IBOutlet UITextField *schoolCodeField;
+    IBOutlet UITextField *participantCodeField;
+    IBOutlet UITextField *studyDayField;
+    IBOutlet UITextField *experimenterField;
+    
     Student *student;
 }
 
@@ -17,13 +22,20 @@
 
 @implementation LoginViewController
 
+- (void)viewDidLoad {
+    [schoolCodeField setDelegate:self];
+    [participantCodeField setDelegate:self];
+    [studyDayField setDelegate:self];
+    [experimenterField setDelegate:self];
+}
+
 - (IBAction)login:(id)sender {
-    NSString* schoolCode = [schoolCodeField text];
-    NSString* participantCode = [participantCodeField text];
-    NSString* studyDay = [studyDayField text];
-    NSString* experimenterName = [experimenterField text];
+    NSString *schoolCode = [schoolCodeField text];
+    NSString *participantCode = [participantCodeField text];
+    NSString *studyDay = [studyDayField text];
+    NSString *experimenterName = [experimenterField text];
     
-    ////When student logs in, check that all fields were entered; if they didn't, provide an error message
+    //When student logs in, check that all fields were entered; if they didn't, provide an error message
     if ([schoolCode isEqualToString:@""]) {
         UIAlertView *alert = [[UIAlertView alloc]
                               initWithTitle:@"School Code missing!"
@@ -65,8 +77,6 @@
         [alert show];
     }
     else {
-        NSLog(@"name: %@ %@", participantCode, studyDay);
-        
         //If they did, then check to see if the student already exists.
         //If student exists, pull up student information.
         //If student doesn't exist, create new student profile.
@@ -93,6 +103,11 @@
     }
 }
 
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    //Trim whitespace from textfield input
+    textField.text = [[textField text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+}
+
 /*
  * Segue prep to go from LoginViewController to LibraryViewController.
  */
@@ -101,4 +116,5 @@
     
     destination.student = student;    
 }
+
 @end

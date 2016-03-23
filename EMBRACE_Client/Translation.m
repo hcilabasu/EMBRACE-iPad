@@ -97,8 +97,18 @@
                  
                  @"spin": @"gire",
                  
+                 @"banana": @"plátano",
+                 @"coco": @"coco",
+                 @"empty": @"vacío",
+                 @"handle": @"manija",
+                 @"jumps": @"salto",
+                 @"lifts": @"levanta",
+                 @"lisa": @"lisa",
                  @"monkey": @"chango",
                  @"naughty": @"travieso",
+                 @"throws": @"lanza",
+                 @"trough": @"bebedero",
+                 @"zebra's": @"cebra",
                  
                  @"algonquian" : @"algonquian",
                  @"algonquians" : @"algonquians",
@@ -233,8 +243,18 @@
                  @"rattle": @"rattle",
                  @"rosa": @"woman",
                  
+                 @"banana": @"banana",
+                 @"coco": @"monkey",
+                 @"empty": @"empty",
+                 @"handle": @"handle",
+                 @"jumps": @"jumps",
+                 @"lifts": @"lifts",
+                 @"lisa": @"lisa",
                  @"monkey": @"monkey",
                  @"naughty": @"naughty",
+                 @"throws": @"throws",
+                 @"trough": @"trough",
+                 @"zebra's": @"zebra",
                  
                  @"algonquian" : @"algonquian",
                  @"algonquians" : @"algonquians",
