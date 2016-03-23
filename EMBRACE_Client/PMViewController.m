@@ -4883,7 +4883,7 @@ BOOL wasPathFollowed = false;
         [menuItemsData addObject:menuItemData];
     }
     
-    if (([chapterTitle isEqualToString:@"The Naughty Monkey"]) && currentSentence == 6) {
+    if (([chapterTitle isEqualToString:@"The Naughty Monkey"]) && currentSentence == 6 && currentStep == 2) {
         if (conditionSetup.language == ENGLISH) {
             [self.playaudioClass playAudioFile:self :@"NaughtyMonkey_Script5.mp3"];
         } else {
@@ -4891,7 +4891,7 @@ BOOL wasPathFollowed = false;
         }
         
         
-    } else if (([chapterTitle isEqualToString:@"The Naughty Monkey"]) && currentSentence == 7 ) {
+    } else if (([chapterTitle isEqualToString:@"The Naughty Monkey"]) && currentSentence == 7 && currentStep == 3 ) {
         if (conditionSetup.language == ENGLISH) {
             [self.playaudioClass playAudioFile:self :@"NaughtyMonkey_Script7.mp3"];
         } else {
