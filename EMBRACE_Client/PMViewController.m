@@ -939,7 +939,13 @@ BOOL wasPathFollowed = false;
         else if ([[currSolStep stepType] isEqualToString:@"playSound"]) {
             NSString *file = [currSolStep fileName];
             
-            [self.playaudioClass playAudioFile:self :file];
+            
+            if ([file isEqualToString:@"NaughtyMonkey_Script4.mp3"]
+                && conditionSetup.language == BILINGUAL) {
+                    [self.playaudioClass playAudioFile:self :@"NaughtyMonkey_Script4_S.mp3"];
+            } else {
+                [self.playaudioClass playAudioFile:self :file];
+            }
             
             [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:[[currSolStep fileName] stringByDeletingPathExtension] inLanguage:@"NULL" ofType:@"Play Sound" :manipulationContext];
             

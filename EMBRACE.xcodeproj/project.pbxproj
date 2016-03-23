@@ -4287,6 +4287,7 @@
 		5DBC032E1C5121AE0030072B /* (null) in Resources */ = {isa = PBXBuildFile; };
 		5DBC032F1C5121AE0030072B /* (null) in Resources */ = {isa = PBXBuildFile; };
 		5DBC03301C5121AE0030072B /* (null) in Resources */ = {isa = PBXBuildFile; };
+		5DDDDAB21CA3214300A21397 /* TheNaughtyMonkeyS5S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DDDDAB11CA3214300A21397 /* TheNaughtyMonkeyS5S.mp3 */; };
 		5DDF53A71C9CFC7C004AB6D1 /* TheNaughtyMonkeyS0S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DDF53A21C9CFC7C004AB6D1 /* TheNaughtyMonkeyS0S.mp3 */; };
 		5DDF53A81C9CFC7C004AB6D1 /* TheNaughtyMonkeyS1S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DDF53A31C9CFC7C004AB6D1 /* TheNaughtyMonkeyS1S.mp3 */; };
 		5DDF53A91C9CFC7C004AB6D1 /* TheNaughtyMonkeyS2S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DDF53A41C9CFC7C004AB6D1 /* TheNaughtyMonkeyS2S.mp3 */; };
@@ -8687,6 +8688,7 @@
 		5DB79E861C91739A003B2AFC /* Script-Metadata.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Script-Metadata.xml"; sourceTree = "<group>"; };
 		5DB79E881C9173CB003B2AFC /* Script-Metadata.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Script-Metadata.xml"; sourceTree = "<group>"; };
 		5DB79E8A1C917403003B2AFC /* Script-Metadata.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Script-Metadata.xml"; sourceTree = "<group>"; };
+		5DDDDAB11CA3214300A21397 /* TheNaughtyMonkeyS5S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNaughtyMonkeyS5S.mp3; sourceTree = "<group>"; };
 		5DDF53A21C9CFC7C004AB6D1 /* TheNaughtyMonkeyS0S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNaughtyMonkeyS0S.mp3; sourceTree = "<group>"; };
 		5DDF53A31C9CFC7C004AB6D1 /* TheNaughtyMonkeyS1S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNaughtyMonkeyS1S.mp3; sourceTree = "<group>"; };
 		5DDF53A41C9CFC7C004AB6D1 /* TheNaughtyMonkeyS2S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNaughtyMonkeyS2S.mp3; sourceTree = "<group>"; };
@@ -14462,6 +14464,7 @@
 				5DDF53A41C9CFC7C004AB6D1 /* TheNaughtyMonkeyS2S.mp3 */,
 				5DDF53A51C9CFC7C004AB6D1 /* TheNaughtyMonkeyS3S.mp3 */,
 				5DDF53A61C9CFC7C004AB6D1 /* TheNaughtyMonkeyS4S.mp3 */,
+				5DDDDAB11CA3214300A21397 /* TheNaughtyMonkeyS5S.mp3 */,
 			);
 			path = Spanish;
 			sourceTree = "<group>";
@@ -15310,6 +15313,7 @@
 				5CB710871C6C1AD80062AD61 /* TheMovingEarthS11S.mp3 in Resources */,
 				5C0ED86F1C75334200003B5A /* AGiftfortheBrideQ3A1.mp3 in Resources */,
 				1A6320F01C0E4D3B00251CB3 /* icon_Emilio.png in Resources */,
+				5DDDDAB21CA3214300A21397 /* TheNaughtyMonkeyS5S.mp3 in Resources */,
 				5C0421B81C618C2B001BBE9D /* TheLuckyStoneQ5A2S.mp3 in Resources */,
 				5C72E79B1C72BF1000CE4877 /* NewtonsFirstLawonEarthQ6A2.mp3 in Resources */,
 				1A63220F1C0E4D3B00251CB3 /* houses_burn.png in Resources */,
