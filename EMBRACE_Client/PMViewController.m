@@ -4872,10 +4872,20 @@ BOOL wasPathFollowed = false;
     }
     
     if (([chapterTitle isEqualToString:@"The Naughty Monkey"]) && currentSentence == 6) {
-        [self.playaudioClass playAudioFile:self :@"NaughtyMonkey_Script5.mp3"];
+        if (conditionSetup.language == ENGLISH) {
+            [self.playaudioClass playAudioFile:self :@"NaughtyMonkey_Script5.mp3"];
+        } else {
+            [self.playaudioClass playAudioFile:self :@"NaughtyMonkey_Script5_S.mp3"];
+        }
+        
         
     } else if (([chapterTitle isEqualToString:@"The Naughty Monkey"]) && currentSentence == 7 ) {
-        [self.playaudioClass playAudioFile:self :@"NaughtyMonkey_Script7.mp3"];
+        if (conditionSetup.language == ENGLISH) {
+            [self.playaudioClass playAudioFile:self :@"NaughtyMonkey_Script7.mp3"];
+        } else {
+            [self.playaudioClass playAudioFile:self :@"NaughtyMonkey_Script7_S.mp3"];
+        }
+        
     }
     
    [[ServerCommunicationController sharedInstance] logDisplayMenuItems:menuItemsData context:manipulationContext];
