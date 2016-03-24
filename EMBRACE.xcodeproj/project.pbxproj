@@ -3556,6 +3556,8 @@
 		5CB7117C1C6C46DF0062AD61 /* TheNavajoHoganQ7A3S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CB7114A1C6C46DF0062AD61 /* TheNavajoHoganQ7A3S.mp3 */; };
 		5CB7117D1C6C46DF0062AD61 /* TheNavajoHoganQ7A4S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CB7114B1C6C46DF0062AD61 /* TheNavajoHoganQ7A4S.mp3 */; };
 		5CB7117E1C6C46DF0062AD61 /* TheNavajoHoganQ7S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CB7114C1C6C46DF0062AD61 /* TheNavajoHoganQ7S.mp3 */; };
+		5CC0A5401CA3A1BA003F1880 /* ThrowsS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CC0A53F1CA3A1BA003F1880 /* ThrowsS.mp3 */; };
+		5CC0A5421CA3A1CB003F1880 /* JumpsS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CC0A5411CA3A1CB003F1880 /* JumpsS.mp3 */; };
 		5CC5FADB18FDFA3700D118B8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CC5FADA18FDFA3700D118B8 /* AVFoundation.framework */; };
 		5CC6845B1C7D297B0069A883 /* Story1-The-Moving-Earth-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CC6845A1C7D297B0069A883 /* Story1-The-Moving-Earth-Intro-S.xhtml */; };
 		5CC6845D1C7D299D0069A883 /* Story2-Earthquakes-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CC6845C1C7D299D0069A883 /* Story2-Earthquakes-Intro-S.xhtml */; };
@@ -7991,6 +7993,8 @@
 		5CB7114A1C6C46DF0062AD61 /* TheNavajoHoganQ7A3S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNavajoHoganQ7A3S.mp3; sourceTree = "<group>"; };
 		5CB7114B1C6C46DF0062AD61 /* TheNavajoHoganQ7A4S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNavajoHoganQ7A4S.mp3; sourceTree = "<group>"; };
 		5CB7114C1C6C46DF0062AD61 /* TheNavajoHoganQ7S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNavajoHoganQ7S.mp3; sourceTree = "<group>"; };
+		5CC0A53F1CA3A1BA003F1880 /* ThrowsS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ThrowsS.mp3; sourceTree = "<group>"; };
+		5CC0A5411CA3A1CB003F1880 /* JumpsS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = JumpsS.mp3; sourceTree = "<group>"; };
 		5CC5FADA18FDFA3700D118B8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		5CC6845A1C7D297B0069A883 /* Story1-The-Moving-Earth-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-The-Moving-Earth-Intro-S.xhtml"; sourceTree = "<group>"; };
 		5CC6845C1C7D299D0069A883 /* Story2-Earthquakes-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story2-Earthquakes-Intro-S.xhtml"; sourceTree = "<group>"; };
@@ -12426,7 +12430,6 @@
 				5C9C08C81C573AAA00702FCD /* circulatory */,
 				5C9C05261C57385900702FCD /* bestFarm */,
 				5C9CFE651C57348000702FCD /* disasters */,
-				5C9CFF651C57348100702FCD /* monkey */,
 				5C9CFF661C57348100702FCD /* native */,
 				5C9CFF671C57348100702FCD /* physics */,
 				5DBC02E01C509B880030072B /* bottled */,
@@ -12460,10 +12463,12 @@
 				5C8C35661CA1E60C00E07A5C /* CocoS.mp3 */,
 				5C8C35671CA1E60C00E07A5C /* EmptyS.mp3 */,
 				5C8C35681CA1E60C00E07A5C /* HandleS.mp3 */,
+				5CC0A5411CA3A1CB003F1880 /* JumpsS.mp3 */,
 				5C8C35691CA1E60C00E07A5C /* LiftsS.mp3 */,
 				5C8C356A1CA1E60C00E07A5C /* LisaS.mp3 */,
 				5C8C356B1CA1E60C00E07A5C /* MonkeyS.mp3 */,
 				5C8C356C1CA1E60C00E07A5C /* NaughtyS.mp3 */,
+				5CC0A53F1CA3A1BA003F1880 /* ThrowsS.mp3 */,
 				5C8C356D1CA1E60C00E07A5C /* TroughS.mp3 */,
 				5C8C356E1CA1E60C00E07A5C /* Zebra'sS.mp3 */,
 			);
@@ -12870,13 +12875,6 @@
 				5C9F288B1C5C3F2E008ACE48 /* earthquake.wav */,
 			);
 			path = disasters;
-			sourceTree = "<group>";
-		};
-		5C9CFF651C57348100702FCD /* monkey */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = monkey;
 			sourceTree = "<group>";
 		};
 		5C9CFF661C57348100702FCD /* native */ = {
@@ -14614,8 +14612,10 @@
 				5C0ED9E91C753AD400003B5A /* MusclesUseOxygenQ4A2.mp3 in Resources */,
 				5DBC03281C5121AE0030072B /* (null) in Resources */,
 				5C72E8451C72BF1000CE4877 /* HowdoObjectsMoveQ4A1S.mp3 in Resources */,
+				5CC0A5421CA3A1CB003F1880 /* JumpsS.mp3 in Resources */,
 				5C62A9601C85453F00F28BEB /* Pressure_def_S.mp3 in Resources */,
 				C30D079C1BABC0B400DF53F1 /* main.m in Resources */,
+				5CC0A5401CA3A1BA003F1880 /* ThrowsS.mp3 in Resources */,
 				5C9C083F1C57385A00702FCD /* shinyS.m4a in Resources */,
 				5C137CE01C8A79CC0023901C /* ArrowsE.mp3 in Resources */,
 				5CAE95E21C921DCD00702DB4 /* FlexibleS.mp3 in Resources */,
