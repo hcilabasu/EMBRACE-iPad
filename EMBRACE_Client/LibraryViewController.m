@@ -54,6 +54,8 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"EMBRACE";
+    
     //Add background image
     UIGraphicsBeginImageContext(self.view.frame.size);
     [[UIImage imageNamed:@"library_background"] drawInRect:self.view.bounds];
@@ -148,9 +150,6 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
     
     if (student != nil) {
         [[ServerCommunicationController sharedInstance] setupStudyContext:student];
-        
-        //Set title to display condition and language (e.g., EMBRACE English)
-        self.title = [NSString stringWithFormat:@"%@ %@",[conditionSetup returnConditionEnumToString:conditionSetup.condition],[conditionSetup returnLanguageEnumtoString: conditionSetup.language]];
     }
     else {
         student = [[Student alloc] initWithValues:@"Study Code" :@"Study Day" :@"Experimenter" :@"School Day"];
