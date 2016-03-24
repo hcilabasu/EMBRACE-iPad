@@ -17,6 +17,8 @@
     AssessmentContext *assessmentContext;
 }
 
+@property (nonatomic, strong) PlayAudioFile *playaudioClass;
+
 @end
 
 NSInteger AnswerSelection[4];           //Array of answers selected
@@ -143,6 +145,7 @@ UIImage *BackgroundImage;   //The background image related to the story
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSLog(@"%@ %@",ChapterTitle, BookTitle);
     //Set up design
     nextButton.hidden = true;
     self.view.backgroundColor = [UIColor colorWithRed:165.0/255.0 green:203.0/255.0 blue:231.0/255.0 alpha:1.0];
@@ -153,6 +156,22 @@ UIImage *BackgroundImage;   //The background image related to the story
     
     //Hide the navigation bar to force completion
     self.navigationController.navigationBar.hidden = YES;
+    
+    if ([ChapterTitle isEqualToString:@"The Naughty Monkey"] &&
+        conditionSetup.condition == CONTROL) {
+        
+        self.playaudioClass = [[PlayAudioFile alloc]init];
+        [self.playaudioClass playAudioFile:self :@"NaughtyMonkey_Script_C12.mp3"];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    if (self.playaudioClass) {
+        [self.playaudioClass stopPlayAudioFile];
+    }
+    
+    [super viewWillDisappear:animated];
+
 }
 
 - (void)didReceiveMemoryWarning {
