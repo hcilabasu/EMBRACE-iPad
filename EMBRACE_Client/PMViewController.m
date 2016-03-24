@@ -754,11 +754,21 @@ BOOL wasPathFollowed = false;
 - (void)loadAssessmentActivity {
     UIImage *background = [self getBackgroundImage];
     
-    //Create an instance of the assessment activity view controller
-    AssessmentActivityViewController *assessmentActivityViewController = [[AssessmentActivityViewController alloc]initWithModel:model : libraryViewController :background :[book title] :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
-    
-    //Push the assessment view controller as the top controller
-    [self.navigationController pushViewController:assessmentActivityViewController animated:YES];
+    //Hardcoding for second Introduction to EMBRACE
+    if ([[(LibraryViewController *)libraryViewController studentProgress] getStatusOfBook:[book title]] == COMPLETED && ([[(LibraryViewController *)libraryViewController studentProgress] getStatusOfBook:@"Second Introduction to EMBRACE"] == IN_PROGRESS || [[(LibraryViewController *)libraryViewController studentProgress] getStatusOfBook:@"Second Introduction to EMBRACE"] == COMPLETED)) {
+        //Create an instance of the assessment activity view controller
+        AssessmentActivityViewController *assessmentActivityViewController = [[AssessmentActivityViewController alloc]initWithModel:model : libraryViewController :background :@"Second Introduction to EMBRACE" :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+        
+        //Push the assessment view controller as the top controller
+        [self.navigationController pushViewController:assessmentActivityViewController animated:YES];
+    }
+    else {
+        //Create an instance of the assessment activity view controller
+        AssessmentActivityViewController *assessmentActivityViewController = [[AssessmentActivityViewController alloc]initWithModel:model : libraryViewController :background :[book title] :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+        
+        //Push the assessment view controller as the top controller
+        [self.navigationController pushViewController:assessmentActivityViewController animated:YES];
+    }
 }
 
 /*
@@ -4903,7 +4913,14 @@ BOOL wasPathFollowed = false;
 }
 
 - (void)setManipulationContext {
-    manipulationContext.bookTitle = [book title];
+    //Hardcoding for second Introduction to EMBRACE
+    if ([[(LibraryViewController *)libraryViewController studentProgress] getStatusOfBook:[book title]] == COMPLETED && ([[(LibraryViewController *)libraryViewController studentProgress] getStatusOfBook:@"Second Introduction to EMBRACE"] == IN_PROGRESS || [[(LibraryViewController *)libraryViewController studentProgress] getStatusOfBook:@"Second Introduction to EMBRACE"] == COMPLETED)) {
+        manipulationContext.bookTitle = @"Second Introduction to EMBRACE";
+    }
+    else {
+        manipulationContext.bookTitle = [book title];
+    }
+    
     manipulationContext.chapterTitle = chapterTitle;
     
     //currentPageId has format "story<chapter number>-<mode>-<page number>" (e.g., "story1-PM-1")

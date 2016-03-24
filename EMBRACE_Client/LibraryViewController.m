@@ -177,6 +177,14 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
         studentProgress = [[Progress alloc] init];
         [studentProgress loadBooks:books];
         
+        //Hardcoding progress for second Introduction to EMBRACE
+        NSString *introBookTitle = @"Second Introduction to EMBRACE";
+        NSMutableArray *introChapterTitles = [[NSMutableArray alloc] initWithObjects:@"The Naughty Monkey", nil];
+        
+        [[studentProgress chaptersCompleted] setObject:[[NSMutableArray alloc] init] forKey:introBookTitle];
+        [[studentProgress chaptersInProgress] setObject:[[NSMutableArray alloc] init] forKey:introBookTitle];
+        [[studentProgress chaptersIncomplete] setObject:introChapterTitles forKey:introBookTitle];
+        
         NSString *firstBookTitle; //title of first book to set in progress
         
         if (useSequence) {
@@ -195,6 +203,19 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
     else {
         //Update progress with any new books/chapters that might have been added
         [studentProgress addNewContent:books];
+        
+        //Hardcoding for second Introduction to EMBRACE
+        if ([studentProgress getStatusOfBook:@"Second Introduction to EMBRACE"] == NO_STATUS) {
+            NSString *introBookTitle = @"Second Introduction to EMBRACE";
+            NSMutableArray *introChapterTitles = [[NSMutableArray alloc] initWithObjects:@"The Naughty Monkey", nil];
+            
+            [[studentProgress chaptersCompleted] setObject:[[NSMutableArray alloc] init] forKey:introBookTitle];
+            [[studentProgress chaptersIncomplete] setObject:[[NSMutableArray alloc] init] forKey:introBookTitle];
+            [[studentProgress chaptersInProgress] setObject:introChapterTitles forKey:introBookTitle];
+        }
+        else if ([studentProgress getStatusOfBook:@"Second Introduction to EMBRACE"] == IN_PROGRESS || [studentProgress getStatusOfBook:@"Second Introduction to EMBRACE"] == COMPLETED) {
+            [bookTitles setObject:@"Second Introduction to EMBRACE" atIndexedSubscript:0];
+        }
     }
     
 //    //NOTE: Still testing this functionality
@@ -242,6 +263,11 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
         //Get current book title
         NSString *currentBookTitle = [[[sequenceController sequences] objectAtIndex:[studentProgress currentSequence]] bookTitle];
         
+        //Hardcoding for second Introduction to EMBRACE
+        if ([currentBookTitle isEqualToString:@"Introduction to EMBRACE"] && [studentProgress getStatusOfBook:currentBookTitle] == COMPLETED && ![currentBookTitle isEqualToString:[bookTitles objectAtIndex:selectedBookIndex]]) {
+            currentBookTitle = @"Second Introduction to EMBRACE";
+        }
+        
         //Set the next incomplete chapter to in progress if it exists
         if (![studentProgress setNextChapterInProgressForBook:currentBookTitle]) {
             if ([studentProgress currentSequence] + 1 < [[sequenceController sequences] count]) {
@@ -251,18 +277,14 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                 //Get next book title
                 NSString *nextBookTitle = [[[sequenceController sequences] objectAtIndex:[studentProgress currentSequence]] bookTitle];
                 
-                //Reset next book to in progress if it has already been completed
-                if ([studentProgress getStatusOfBook:nextBookTitle] == COMPLETED) {
-                    //Get list of chapters in next book
-                    NSMutableArray *modes = [[sequenceController getSequenceForBook:nextBookTitle] modes];
-                    
-                    //Set all chapters to incomplete
-                    for (ActivityMode *mode in modes) {
-                        [studentProgress setStatusOfChapter:[mode chapterTitle] :INCOMPLETE fromBook:nextBookTitle];
-                    }
+                //Hardcoding for second Introduction to EMBRACE
+                if ([studentProgress getStatusOfBook:nextBookTitle] == COMPLETED && [nextBookTitle isEqualToString:@"Introduction to EMBRACE"]) {
+                    //Change title of book
+                    nextBookTitle = @"Second Introduction to EMBRACE";
+                    [bookTitles setObject:nextBookTitle atIndexedSubscript:0];
                     
                     //Set first chapter to in progress
-                    [studentProgress setStatusOfChapter:[[modes objectAtIndex:0] chapterTitle] :IN_PROGRESS fromBook:nextBookTitle];
+                    [studentProgress setStatusOfChapter:@"The Naughty Monkey" :IN_PROGRESS fromBook:nextBookTitle];
                 }
                 else {
                     //Set next book in sequence to in progress
