@@ -4336,9 +4336,10 @@ BOOL wasPathFollowed = false;
         }
         
         //If we are on the first or second manipulation page of The Naughty Monkey, play the current sentence
-        if ([chapterTitle isEqualToString:@"The Naughty Monkey"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound) &&
+        if ([chapterTitle isEqualToString:@"The Naughty Monkey"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound ||
+            [currentPageId rangeOfString:@"PM-3"].location != NSNotFound) &&
             currentSentence != 1) {
-            if (conditionSetup.language == BILINGUAL) {
+            if (conditionSetup.language == BILINGUAL && currentSentence < 8) {
                 sentenceAudioFile = [NSString stringWithFormat:@"TheNaughtyMonkeyS%dS.mp3", currentSentence - 2];
             }
             else {

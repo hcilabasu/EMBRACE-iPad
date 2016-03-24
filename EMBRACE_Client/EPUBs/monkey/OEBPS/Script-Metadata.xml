@@ -241,22 +241,7 @@
             </sentence>
             
             
-            <sentence number="10">
-                
-                <control>
-                    <postAudio>
-                        <english>
-                            <audio seq="1">NaughtyMonkey_Script_C12.mp3</audio>
-                        </english>
-                        <bilingual>
-                            <audio seq="1">NaughtyMonkey_Script_C12.mp3</audio>
-                        </bilingual>
-                        
-                    </postAudio>
-                    
-                </control>
-                
-            </sentence>
+        
         </story>
         
         
