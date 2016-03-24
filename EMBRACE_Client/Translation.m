@@ -101,7 +101,7 @@
                  @"coco": @"coco",
                  @"empty": @"vacío",
                  @"handle": @"manija",
-                 @"jumps": @"salto",
+                 @"jumps": @"salta",
                  @"lifts": @"levanta",
                  @"lisa": @"lisa",
                  @"monkey": @"chango",
