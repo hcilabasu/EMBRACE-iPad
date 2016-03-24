@@ -54,8 +54,6 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"EMBRACE";
-    
     //Add background image
     UIGraphicsBeginImageContext(self.view.frame.size);
     [[UIImage imageNamed:@"library_background"] drawInRect:self.view.bounds];
@@ -163,9 +161,19 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
     //Load sequences if they exist for student
     if ([sequenceController loadSequences:[student participantCode]]) {
         useSequence = TRUE; //student should follow particular sequence of activities
+        
+        self.title = @"EMBRACE";
     }
     else {
         useSequence = FALSE; //student will follow default sequence of activities
+        
+        //Get condition setup information to display in title
+        NSString *conditionString = [conditionSetup returnConditionEnumToString:conditionSetup.condition];
+        NSString *languageString = [conditionSetup returnLanguageEnumtoString:conditionSetup.language];
+        NSString *readerString = [conditionSetup reader] == SYSTEM ? @"System" : @"User";
+        NSString *currentModeString = [conditionSetup currentMode] == PM_MODE ? @"PM" : @"IM";
+        
+        self.title = [NSString stringWithFormat:@"%@ / %@ / %@ / %@", conditionString, languageString, readerString, currentModeString];
     }
     
     //Load progress for student if it exists
