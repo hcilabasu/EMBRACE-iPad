@@ -106,7 +106,7 @@
                  @"lisa": @"lisa",
                  @"monkey": @"chango",
                  @"naughty": @"travieso",
-                 @"throws": @"lanza",
+                 @"throws": @"tira",
                  @"trough": @"bebedero",
                  @"zebra's": @"cebra",
                  
