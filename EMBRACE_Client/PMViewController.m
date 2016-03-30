@@ -4413,15 +4413,22 @@ BOOL wasPathFollowed = false;
     }
     
     NSString *introAudio = nil;
-    if ([currentPageId rangeOfString:@"-Intro"].location != NSNotFound &&
-        [currentPageId rangeOfString:@"story1"].location != NSNotFound &&
-        ([chapterTitle isEqualToString:@"The Lucky Stone"])) {
+    LibraryViewController *vc = (LibraryViewController *)libraryViewController;
+    ActivitySequenceController * seqController = vc.sequenceController;
+    
+    if (seqController && [seqController.sequences count] > 1) {
+        
+        ActivitySequence *seq = [seqController.sequences objectAtIndex:1];
+        if( [currentPageId rangeOfString:@"-Intro"].location != NSNotFound &&
+           [currentPageId rangeOfString:@"story1"].location != NSNotFound &&
+           ([chapterTitle isEqualToString:@"The Lucky Stone"] || [chapterTitle isEqualToString:@"The Lopez Family"])
+           && [bookTitle containsString:seq.bookTitle]) {
+            
+            
             introAudio = @"splWordsIntro";
+        }
     }
     
-    if ([currentPageId rangeOfString:@"-PM-1"].location != NSNotFound) {
-        NSLog(@"********************* After vocab");
-    }
     
     NSMutableArray *array = [NSMutableArray array];
     Chapter *chapter = [book getChapterWithTitle:chapterTitle];
@@ -4462,7 +4469,7 @@ BOOL wasPathFollowed = false;
     if (preAudio != nil) {
         
         // Check if the preAudio is an introduction.
-        // If it is an introduction add appropriate extension
+        // If it is an introduction, add appropriate extension
         if (preAudio.count == 1) {
             NSString *audio = [preAudio objectAtIndex:0];
             if ([audio containsString:@"Intro"]) {
