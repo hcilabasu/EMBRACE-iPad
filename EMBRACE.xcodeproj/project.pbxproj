@@ -44,6 +44,7 @@
 		1A2425561C6BF195002CBB13 /* bg_market_entrance_long.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A2425551C6BF194002CBB13 /* bg_market_entrance_long.png */; };
 		1A2425591C6C220E002CBB13 /* mom_with_flowers.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A2425571C6C220E002CBB13 /* mom_with_flowers.png */; };
 		1A24255A1C6C220E002CBB13 /* mom_with_groceries.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A2425581C6C220E002CBB13 /* mom_with_groceries.png */; };
+		1A26CAC11CAB576D00A5461B /* pronounceWord in Resources */ = {isa = PBXBuildFile; fileRef = 1A26CAC01CAB576D00A5461B /* pronounceWord */; };
 		1A2AAD451C20DCFA00A709E9 /* baby_large_high_res_min.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A2AAD431C20DCFA00A709E9 /* baby_large_high_res_min.png */; };
 		1A2AAD461C20DCFA00A709E9 /* cribb_large_high_res_min.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A2AAD441C20DCFA00A709E9 /* cribb_large_high_res_min.png */; };
 		1A338D8C1C4EB8D100F02859 /* bench.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A338D8B1C4EB8D100F02859 /* bench.png */; };
@@ -4406,6 +4407,7 @@
 		1A2425551C6BF194002CBB13 /* bg_market_entrance_long.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_market_entrance_long.png; sourceTree = "<group>"; };
 		1A2425571C6C220E002CBB13 /* mom_with_flowers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mom_with_flowers.png; sourceTree = "<group>"; };
 		1A2425581C6C220E002CBB13 /* mom_with_groceries.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mom_with_groceries.png; sourceTree = "<group>"; };
+		1A26CAC01CAB576D00A5461B /* pronounceWord */ = {isa = PBXFileReference; lastKnownFileType = folder; path = pronounceWord; sourceTree = "<group>"; };
 		1A2AAD431C20DCFA00A709E9 /* baby_large_high_res_min.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = baby_large_high_res_min.png; sourceTree = "<group>"; };
 		1A2AAD441C20DCFA00A709E9 /* cribb_large_high_res_min.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cribb_large_high_res_min.png; sourceTree = "<group>"; };
 		1A338D8B1C4EB8D100F02859 /* bench.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bench.png; sourceTree = "<group>"; };
@@ -14132,6 +14134,7 @@
 		5D9E32851C590E9400636150 /* house */ = {
 			isa = PBXGroup;
 			children = (
+				1A26CAC01CAB576D00A5461B /* pronounceWord */,
 				5C62A8FA1C851D1000F28BEB /* Definitions */,
 				5C09DFD31C85158A00EC4E78 /* LawyerE.mp3 */,
 				5C041FE61C614653001BBE9D /* chapter audio */,
@@ -15719,6 +15722,7 @@
 				5D9E347B1C590E9500636150 /* TheLopezFamilyQ3A2.mp3 in Resources */,
 				1A63229A1C0E4D3B00251CB3 /* dog_large_high_res_left.png in Resources */,
 				5C0ED9F81C753AD400003B5A /* TheAmazingHeartQ2A2.mp3 in Resources */,
+				1A26CAC11CAB576D00A5461B /* pronounceWord in Resources */,
 				5C09DF321C84EFF300EC4E78 /* Pair_def_E.mp3 in Resources */,
 				5CB7117D1C6C46DF0062AD61 /* TheNavajoHoganQ7A4S.mp3 in Resources */,
 				5C0420261C614653001BBE9D /* TheLopezFamilyS9E.mp3 in Resources */,
