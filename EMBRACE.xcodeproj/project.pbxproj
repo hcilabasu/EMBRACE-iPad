@@ -16943,6 +16943,7 @@
 				5CCD8F3D1C7405EC00D2EC2B /* EarthquakesQ2A2.mp3 in Resources */,
 				1A6321D71C0E4D3B00251CB3 /* air_red.png in Resources */,
 				1AE35F2C1CAA35DA0005213E /* lucasByBed.png in Resources */,
+				5C5D09851CA9F6DD00B7C8D9 /* WishesE.mp3 in Resources */,
 				5C0422061C618C2B001BBE9D /* WordsOfWisdomQ4A4.mp3 in Resources */,
 				1A63230C1C0E4D3B00251CB3 /* cart.png in Resources */,
 				5CAE96011C921DCD00702DB4 /* SophisticatedS.mp3 in Resources */,
