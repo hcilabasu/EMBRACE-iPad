@@ -4416,7 +4416,7 @@ BOOL wasPathFollowed = false;
     LibraryViewController *vc = (LibraryViewController *)libraryViewController;
     ActivitySequenceController * seqController = vc.sequenceController;
     
-    if (seqController) {
+    if (seqController && [seqController.sequences count] > 1) {
         
         ActivitySequence *seq = [seqController.sequences objectAtIndex:1];
         if( [currentPageId rangeOfString:@"-Intro"].location != NSNotFound &&
