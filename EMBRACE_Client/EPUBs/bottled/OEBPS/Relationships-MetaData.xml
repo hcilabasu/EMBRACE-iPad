@@ -39,7 +39,11 @@
         <relationship obj1Id="lucasIM" can="hold" action="group" obj2Id="bottleIM"/>
         <relationship obj1Id="lucasIM" can="hold" action="group" obj2Id="stoneIM"/>
         <relationship obj1Id="lucasIM" can="hold" action="group" obj2Id="ballIM"/>
+        <relationship obj1Id="lucasIM" can="hold" action="group" obj2Id="boardgameIM"/>
         <relationship obj1Id="lucasIM" can="standOn" action="group" obj2Id="bottleIM"/>
+        
+        <relationship obj1Id="lucasBedIM" can="sleep" action="group" obj2Id="lucasBedIM"/>
+        <relationship obj1Id="lucasStandByBedIM" can="standBy" action="group" obj2Id="lucasStandByBedIM"/>
         
         <relationship obj1Id="lucasSittingIM" can="sitOn" action="group" obj2Id="benchIM"/>
         <relationship obj1Id="lucasIM" can="standBy" action="group" obj2Id="benchIM"/>

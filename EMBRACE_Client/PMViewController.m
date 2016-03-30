@@ -1234,7 +1234,7 @@ BOOL wasPathFollowed = false;
                         [[ServerCommunicationController sharedInstance] logTapWord:sentenceText :manipulationContext];
                         
                         [self incrementCurrentStep];
-                        [self playIntroVocabWord: sentenceText : englishSentenceText : currSolStep];
+                        [self playIntroVocabWord: englishSentenceText : currSolStep];
                     }
                     else
                     {
@@ -1358,7 +1358,7 @@ BOOL wasPathFollowed = false;
     [self highlightImageForText:englishSentenceText];
 }
 
-- (void) playIntroVocabWord: (NSString *) sentenceText : (NSString *) englishSentenceText : (ActionStep *) currSolStep
+- (void) playIntroVocabWord: (NSString *) englishSentenceText : (ActionStep *) currSolStep
 {
         if(conditionSetup.language == ENGLISH)
         {
@@ -4089,11 +4089,13 @@ BOOL wasPathFollowed = false;
  * is correct, then it will move on to the next sentence. If the manipulation is not current, then feedback will be provided.
  */
 - (IBAction)pressedNext:(id)sender {
+    [self.view setUserInteractionEnabled:NO];
+    
     [[ServerCommunicationController sharedInstance] logPressNextInManipulationActivity:manipulationContext];
     
 //    NSString *preAudio = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(preaudio)"]];
     
-    if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
+    /*if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
         // If the user pressed next
         if ([[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
             IntroductionClass.currentIntroStep++;
@@ -4108,7 +4110,7 @@ BOOL wasPathFollowed = false;
             }
         }
     }
-    else if ([currentPageId rangeOfString:@"-Intro"].location != NSNotFound) {
+    else*/ if ([currentPageId rangeOfString:@"-Intro"].location != NSNotFound) {
             if(currentSentence > totalSentences) {
                 [self.playaudioClass stopPlayAudioFile];
                 currentSentence = 1;
@@ -4257,6 +4259,8 @@ BOOL wasPathFollowed = false;
             [self playErrorNoise];
         }
     }
+    
+    [self.view setUserInteractionEnabled:YES];
 }
 
 /*
@@ -4800,14 +4804,46 @@ BOOL wasPathFollowed = false;
     [self performSelector:@selector(clearHighlightedObject) withObject:nil afterDelay:delay];
 }
 
+/*
+ *  Converts the passed in sentence text into english using the setence text as the key to the 
+ *  Translation dictionary
+ */
 - (NSString *)getEnglishTranslation:(NSString *)sentence {
-    NSArray *keys = [[Translation translationWords] allKeysForObject:sentence];
+    NSObject *englishTranslations = [[Translation translationWordsSpanish]objectForKey:sentence];
     
-    if (keys != nil && [keys count] > 0)
-        return [keys objectAtIndex:0];
+    if (englishTranslations != nil && [englishTranslations isKindOfClass:[NSArray class]]) {
+        NSArray *englishTranslationsArray = ((NSArray *)englishTranslations);
+        return [englishTranslationsArray objectAtIndex:0];
+    }
+    else if(englishTranslations != nil && [englishTranslations isKindOfClass:[NSString class]])
+    {
+        NSString *englishTranslationsString = ((NSString *) englishTranslations);
+        return englishTranslationsString;
+    }
     else
         return @"Translation not found";
 }
+
+/*
+ *  Converts the passed in sentence text into spanish using the setence text as the key to the
+ *  Translation dictionary
+ */
+- (NSString *)getSpanishTranslation:(NSString *)sentence {
+    NSObject *englishTranslations = [[Translation translationWords]objectForKey:sentence];
+    
+    if (englishTranslations != nil && [englishTranslations isKindOfClass:[NSArray class]]) {
+        NSArray *englishTranslationsArray = ((NSArray *)englishTranslations);
+        return [englishTranslationsArray objectAtIndex:0];
+    }
+    else if(englishTranslations != nil && [englishTranslations isKindOfClass:[NSString class]])
+    {
+        NSString *englishTranslationsString = ((NSString *) englishTranslations);
+        return englishTranslationsString;
+    }
+    else
+        return @"Translation not found";
+}
+
 
 /*
  * Expands the contextual menu, allowing the user to select a possible grouping/ungrouping.

@@ -916,6 +916,8 @@
 		1AD3CC861A251C5300E18B1C /* IntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3CC851A251C5300E18B1C /* IntroductionViewController.m */; };
 		1AD3CC891A251CBA00E18B1C /* BuildHTMLString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3CC881A251CBA00E18B1C /* BuildHTMLString.m */; };
 		1AD3CC8C1A251CE600E18B1C /* PlayAudioFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3CC8B1A251CE600E18B1C /* PlayAudioFile.m */; };
+		1AE35F2C1CAA35DA0005213E /* lucasByBed.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AE35F2A1CAA35DA0005213E /* lucasByBed.png */; };
+		1AE35F2D1CAA35DA0005213E /* lucasInBed.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AE35F2B1CAA35DA0005213E /* lucasInBed.png */; };
 		1AF3815B1A40A4C600D967FD /* AssessmentActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF381591A40A4C600D967FD /* AssessmentActivityViewController.m */; };
 		1AF805491C28DDF400C96B05 /* kauai_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AF805481C28DDF400C96B05 /* kauai_right.png */; };
 		1AF8054B1C28DE9A00C96B05 /* lavaplume_greyplate_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AF8054A1C28DE9A00C96B05 /* lavaplume_greyplate_left.png */; };
@@ -5283,6 +5285,8 @@
 		1AD3CC881A251CBA00E18B1C /* BuildHTMLString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildHTMLString.m; sourceTree = "<group>"; };
 		1AD3CC8A1A251CE600E18B1C /* PlayAudioFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayAudioFile.h; sourceTree = "<group>"; };
 		1AD3CC8B1A251CE600E18B1C /* PlayAudioFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayAudioFile.m; sourceTree = "<group>"; };
+		1AE35F2A1CAA35DA0005213E /* lucasByBed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lucasByBed.png; sourceTree = "<group>"; };
+		1AE35F2B1CAA35DA0005213E /* lucasInBed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lucasInBed.png; sourceTree = "<group>"; };
 		1AF381581A40A4C600D967FD /* AssessmentActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssessmentActivityViewController.h; sourceTree = "<group>"; };
 		1AF381591A40A4C600D967FD /* AssessmentActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssessmentActivityViewController.m; sourceTree = "<group>"; };
 		1AF3815A1A40A4C600D967FD /* AssessmentActivityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AssessmentActivityViewController.xib; sourceTree = "<group>"; };
@@ -9041,6 +9045,8 @@
 			isa = PBXGroup;
 			children = (
 				1A3BB2871C17B38C0069C915 /* bank.jpg */,
+				1AE35F2A1CAA35DA0005213E /* lucasByBed.png */,
+				1AE35F2B1CAA35DA0005213E /* lucasInBed.png */,
 				1A7C78061C74FAF60031041D /* babybrother_high_res.png */,
 				1A7C78071C74FAF60031041D /* ball_high_res.png */,
 				1A7C78081C74FAF60031041D /* bank_high_res.png */,
@@ -16612,6 +16618,7 @@
 				5D9E34561C590E9500636150 /* TheFamilyIsRattledQ2.mp3 in Resources */,
 				5CCD8F3D1C7405EC00D2EC2B /* EarthquakesQ2A2.mp3 in Resources */,
 				1A6321D71C0E4D3B00251CB3 /* air_red.png in Resources */,
+				1AE35F2C1CAA35DA0005213E /* lucasByBed.png in Resources */,
 				5C0422061C618C2B001BBE9D /* WordsOfWisdomQ4A4.mp3 in Resources */,
 				1A63230C1C0E4D3B00251CB3 /* cart.png in Resources */,
 				5CAE96011C921DCD00702DB4 /* SophisticatedS.mp3 in Resources */,
@@ -17919,6 +17926,7 @@
 				5C0421F61C618C2B001BBE9D /* WordsOfWisdomQ1A3.mp3 in Resources */,
 				5C72E5111C727E2000CE4877 /* TheNavajoHoganQ2A2.mp3 in Resources */,
 				5C0420171C614653001BBE9D /* TheLopezFamilyS1S.mp3 in Resources */,
+				1AE35F2D1CAA35DA0005213E /* lucasInBed.png in Resources */,
 				5CB7117C1C6C46DF0062AD61 /* TheNavajoHoganQ7A3S.mp3 in Resources */,
 				5C28DC961C2BA66E005ACD07 /* haida_large.png in Resources */,
 				5DDF53AA1C9CFC7C004AB6D1 /* TheNaughtyMonkeyS3S.mp3 in Resources */,
