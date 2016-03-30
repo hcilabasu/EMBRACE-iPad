@@ -8,7 +8,7 @@
         </mode>
     </sequence>
     <sequence bookTitle="The Lopez Family Mystery">
-        <mode chapterTitle="The Lopez Family" newInstructions="false">
+        <mode chapterTitle="The Lopez Family" newInstructions="true">
             <reader>System</reader>
             <language>Spanish</language>
             <intervention>R</intervention>

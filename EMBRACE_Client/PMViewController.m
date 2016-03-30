@@ -4409,15 +4409,12 @@ BOOL wasPathFollowed = false;
     }
     
     NSString *introAudio = nil;
-    if ([currentPageId rangeOfString:@"-Intro"].location != NSNotFound &&
-        [currentPageId rangeOfString:@"story1"].location != NSNotFound &&
-        ([chapterTitle isEqualToString:@"The Lucky Stone"])) {
-            introAudio = @"splWordsIntro";
-    }
+//    if ([currentPageId rangeOfString:@"-Intro"].location != NSNotFound &&
+//        [currentPageId rangeOfString:@"story1"].location != NSNotFound &&
+//        ([chapterTitle isEqualToString:@"The Lucky Stone"])) {
+//            introAudio = @"splWordsIntro";
+//    }
     
-    if ([currentPageId rangeOfString:@"-PM-1"].location != NSNotFound) {
-        NSLog(@"********************* After vocab");
-    }
     
     NSMutableArray *array = [NSMutableArray array];
     Chapter *chapter = [book getChapterWithTitle:chapterTitle];
@@ -4458,7 +4455,7 @@ BOOL wasPathFollowed = false;
     if (preAudio != nil) {
         
         // Check if the preAudio is an introduction.
-        // If it is an introduction add appropriate extension
+        // If it is an introduction, add appropriate extension
         if (preAudio.count == 1) {
             NSString *audio = [preAudio objectAtIndex:0];
             if ([audio containsString:@"Intro"]) {
