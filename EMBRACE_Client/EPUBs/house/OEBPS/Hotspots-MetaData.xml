@@ -79,6 +79,22 @@
         <hotspot objId="cribdoor_IM" action="closeDoor" role="subject" x="50%" y="50%"/>
         <hotspot objId="cribclosed_IM" action="closeDoor" role="object" x="50%" y="50%"/>
         
+        <hotspot objId="rosa_IM" action="face" role="subject" x="100%" y="0%"/>
+        <hotspot objId="pacoSpoon_IM" action="face" role="object" x="40%" y="0%"/>
+        
+        <hotspot objId="rosa_IM" action="faceAway" role="subject" x="100%" y="0%"/>
+        <hotspot objId="pacoFlipSpoon_IM" action="faceAway" role="object" x="40%" y="0%"/>
+        
+        <hotspot objId="pacoSpoon_IM" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="spoon1_IM" action="getIn" role="object" x="110%" y="120%"/>
+        
+        <hotspot objId="pacoFlipSpoon_IM" action="getInFlip" role="subject" x="60%" y="50%"/>
+        <hotspot objId="spoon2_IM" action="getInFlip" role="object" x="0%" y="120%"/>
+        
+        <hotspot objId="rosa_IM" action="visit" role="subject" x="100%" y="50%"/>
+        <hotspot objId="paco_IM" action="visit" role="object" x="100%" y="130%"/>
+        <hotspot objId="lola_IM" action="visit" role="object" x="80%" y="70%"/>
+        
         <hotspot objId="dog_IM" action="visit" role="subject" x="100%" y="100%"/>
         <hotspot objId="rabbit_IM" action="visit" role="subject" x="100%" y="100%"/>
         

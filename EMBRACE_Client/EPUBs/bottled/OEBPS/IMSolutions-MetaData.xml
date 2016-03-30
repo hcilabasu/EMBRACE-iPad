@@ -33,6 +33,22 @@
                 </step>
             </sentence>
         </story>
+        <story title="Baby Brother" activity_id="story3-PM-1">
+            <sentence number="3">
+                <step number="1">
+                    <group obj1Id="lucasBedIM" action="sleep" obj2Id="lucasBedIM"/>
+                    <group obj1Id="lucasStandByBedIM" action="standBy" obj2Id="lucasStandByBedIM"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="Baby Brother" activity_id="story3-PM-3">
+            <sentence number="14">
+                <step number="1">
+                    <group obj1Id="lucasIM" action="hold" obj2Id="boardgameIM"/>
+                    <group obj1Id="lucasIM" action="hold" obj2Id="ballIM"/>
+                </step>
+            </sentence>
+        </story>
         <story title="Words of Wisdom" activity_id="story4-PM-1">
             <sentence number="3">
                 <step number="1">

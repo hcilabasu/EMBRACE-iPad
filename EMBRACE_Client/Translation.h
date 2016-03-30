@@ -11,6 +11,7 @@
 @interface Translation : NSObject
 
 +(NSDictionary *) translationWords;
++(NSDictionary *) translationWordsSpanish;
 +(NSDictionary *) translationImages;
 
 @end

@@ -44,6 +44,15 @@
         <relationship obj1Id="pacoIM" can="face" action="group" obj2Id="houseIM"/>
         <relationship obj1Id="pacoFlipIM" can="faceAway" action="group" obj2Id="houseIM"/>
         
+        <relationship obj1Id="rosa_IM" can="face" action="group" obj2Id="pacoSpoon_IM"/>
+        <relationship obj1Id="rosa_IM" can="faceAway" action="group" obj2Id="pacoFlipSpoon_IM"/>
+        
+        <relationship obj1Id="rosa_IM" can="visit" action="group" obj2Id="paco_IM"/>
+        <relationship obj1Id="rosa_IM" can="visit" action="group" obj2Id="lola_IM"/>
+        
+        <relationship obj1Id="pacoSpoon_IM" can="getIn" action="group" obj2Id="spoon1_IM"/>
+        <relationship obj1Id="pacoFlipSpoon_IM" can="getInFlip" action="group" obj2Id="spoon2_IM"/>
+        
         <relationship obj1Id="baby_IM" can="getIn" action="group" obj2Id="cribclosed_IM"/>
         <relationship obj1Id="baby_IM" can="getOut" action="group" obj2Id="crib_IM"/>
         

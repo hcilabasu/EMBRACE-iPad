@@ -57,7 +57,20 @@
                 </step>
             </sentence>
         </story>
-        
+        <story title="More is Missing!" activity_id="story4-PM-2">
+            <sentence number="5">
+                <step number="1">
+                    <group obj1Id="rosa_IM" action="visit" obj2Id="paco_IM"/>
+                    <group obj1Id="rosa_IM" action="visit" obj2Id="lola_IM"/>
+                </step>
+            </sentence>
+            <sentence number="8">
+                <step number="1">
+                    <group obj1Id="rosa_IM" action="face" obj2Id="pacoSpoon_IM"/>
+                    <group obj1Id="rosa_IM" action="faceAway" obj2Id="pacoFlipSpoon_IM"/>
+                </step>
+            </sentence>
+        </story>
         <story title="The Baby's Rattle is Gone, Too!" activity_id="story5-PM-2">
             <sentence number="8">
                 <step number="1">

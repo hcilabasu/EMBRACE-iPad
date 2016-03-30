@@ -18,6 +18,10 @@
             <group obj1Id="pacoIM" action="getIn" obj2Id="keysIM"/>
             <group obj1Id="pacoFlipIM" action="getInFlip" obj2Id="keysIM"/>
         </story>
+        <story title="More is Missing!" page_id="story4-PM-2">
+            <group obj1Id="pacoSpoon_IM" action="getIn" obj2Id="spoon1_IM"/>
+            <group obj1Id="pacoFlipSpoon_IM" action="getInFlip" obj2Id="spoon2_IM"/>
+        </story>
         <story title="The Baby's Rattle is Gone, Too!" page_id="story5-PM-2">
             <group obj1Id="rabbit" action="sit" obj2Id="baby"/>
             <group obj1Id="nest_IM" action="getIn" obj2Id="tree_IM"/>
