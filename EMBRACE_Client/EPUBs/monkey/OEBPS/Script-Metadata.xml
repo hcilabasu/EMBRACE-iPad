@@ -220,7 +220,7 @@
                         </english>
                         
                         <bilingual>
-                            <audio seq="1">NaughtyMonkey_Script8_S.mp3</audio>
+                            <audio seq="1">NaughtyMonkey_Script8.mp3</audio>
                         </bilingual>
                     </preAudio>
                     
@@ -231,7 +231,9 @@
                         <english>
                             <audio seq="1">NaughtyMonkey_Script_C10.mp3</audio>
                         </english>
-                       
+                        <bilingual>
+                            <audio seq="1">NaughtyMonkey_Script_C10.mp3</audio>
+                        </bilingual>
                     </preAudio>
                     
                 </control>
@@ -239,20 +241,7 @@
             </sentence>
             
             
-            <sentence number="10">
-                
-                <control>
-                    <postAudio>
-                        <english>
-                            <audio seq="1">NaughtyMonkey_Script_C12.mp3</audio>
-                        </english>
-                        
-                        
-                    </postAudio>
-                    
-                </control>
-                
-            </sentence>
+        
         </story>
         
         

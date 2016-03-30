@@ -30,8 +30,8 @@
 
 - (id)init {
     if (self = [super init]) {
-        condition = EMBRACE;
-        language = ENGLISH;
+        condition = CONTROL;
+        language = BILINGUAL;
         reader = SYSTEM;
         appMode = Study;
         currentMode = IM_MODE;
