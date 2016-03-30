@@ -4413,11 +4413,21 @@ BOOL wasPathFollowed = false;
     }
     
     NSString *introAudio = nil;
-//    if ([currentPageId rangeOfString:@"-Intro"].location != NSNotFound &&
-//        [currentPageId rangeOfString:@"story1"].location != NSNotFound &&
-//        ([chapterTitle isEqualToString:@"The Lucky Stone"])) {
-//            introAudio = @"splWordsIntro";
-//    }
+    LibraryViewController *vc = (LibraryViewController *)libraryViewController;
+    ActivitySequenceController * seqController = vc.sequenceController;
+    
+    if (seqController) {
+        
+        ActivitySequence *seq = [seqController.sequences objectAtIndex:1];
+        if( [currentPageId rangeOfString:@"-Intro"].location != NSNotFound &&
+           [currentPageId rangeOfString:@"story1"].location != NSNotFound &&
+           ([chapterTitle isEqualToString:@"The Lucky Stone"] || [chapterTitle isEqualToString:@"The Lopez Family"])
+           && [bookTitle containsString:seq.bookTitle]) {
+            
+            
+            introAudio = @"splWordsIntro";
+        }
+    }
     
     
     NSMutableArray *array = [NSMutableArray array];
