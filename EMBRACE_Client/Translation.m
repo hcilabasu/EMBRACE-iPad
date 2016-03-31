@@ -491,6 +491,7 @@
                  @"highchair": @"highchairb",
                  @"hook": @"hook",
                  @"keys": @"keys2",
+                 @"kitchen": @"kitchen",
                  @"lola": @"rabbit",
                  @"martin": @"man",
                  @"paco": @"dog",
