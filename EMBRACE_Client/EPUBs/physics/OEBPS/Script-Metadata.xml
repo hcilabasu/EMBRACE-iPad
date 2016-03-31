@@ -66,7 +66,39 @@
             </sentence>
         </story>
         
-        <story title="Newton's First Law" activity_id="story2-PM-1">
+        <story title="Newton's First Law on Earth" activity_id="story3-PM-1">
+            
+            <sentence number="0">
+                
+                <embrace>
+                    <preAudio>
+                        <english>
+                            <audio seq="1">Intro</audio>
+                        </english>
+                        
+                        <bilingual>
+                            <audio seq="1">Intro</audio>
+                        </bilingual>
+                        
+                    </preAudio>
+                    
+                </embrace>
+                <control>
+                    <preAudio>
+                        <english>
+                            <audio seq="1">Intro</audio>
+                        </english>
+                        <bilingual>
+                            <audio seq="1">Intro</audio>
+                        </bilingual>
+                    </preAudio>
+                    
+                </control>
+                
+            </sentence>
+        </story>
+        
+        <story title="Newton's Second Law: Acceleration" activity_id="story4-PM-1">
             
             <sentence number="0">
                 
@@ -130,6 +162,38 @@
             </sentence>
         </story>
         <story title="Newton's Third Law: Forces are Paired" activity_id="story6-PM-1">
+            
+            <sentence number="0">
+                
+                <embrace>
+                    <preAudio>
+                        <english>
+                            <audio seq="1">Intro</audio>
+                        </english>
+                        
+                        <bilingual>
+                            <audio seq="1">Intro</audio>
+                        </bilingual>
+                        
+                    </preAudio>
+                    
+                </embrace>
+                <control>
+                    <preAudio>
+                        <english>
+                            <audio seq="1">Intro</audio>
+                        </english>
+                        <bilingual>
+                            <audio seq="1">Intro</audio>
+                        </bilingual>
+                    </preAudio>
+                    
+                </control>
+                
+            </sentence>
+        </story>
+        
+        <story title="The Three Laws Work Together" activity_id="story7-PM-1">
             
             <sentence number="0">
                 
