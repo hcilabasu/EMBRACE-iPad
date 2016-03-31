@@ -4412,6 +4412,9 @@ BOOL wasPathFollowed = false;
         }
     }
     
+    NSMutableArray *array = [NSMutableArray array];
+    Chapter *chapter = [book getChapterWithTitle:chapterTitle];
+    ScriptAudio *script = nil;
     NSString *introAudio = nil;
     LibraryViewController *vc = (LibraryViewController *)libraryViewController;
     ActivitySequenceController * seqController = vc.sequenceController;
@@ -4419,29 +4422,32 @@ BOOL wasPathFollowed = false;
     if (seqController && [seqController.sequences count] > 1) {
         
         ActivitySequence *seq = [seqController.sequences objectAtIndex:1];
+        ActivityMode *mode = [seq getModeForChapter:chapterTitle];
+        
         if( [currentPageId rangeOfString:@"-Intro"].location != NSNotFound &&
            [currentPageId rangeOfString:@"story1"].location != NSNotFound &&
            ([chapterTitle isEqualToString:@"The Lucky Stone"] || [chapterTitle isEqualToString:@"The Lopez Family"])
-           && [bookTitle containsString:seq.bookTitle]) {
+           && [bookTitle rangeOfString:seq.bookTitle].location != NSNotFound) {
             
             
             introAudio = @"splWordsIntro";
+            
+            
+            
+            [array addObject:[NSString stringWithFormat:@"%@.mp3",introAudio]];
+            if (mode.language == BILINGUAL && mode.newInstructions) {
+                
+                introAudio = [NSString stringWithFormat:@"%@_S",introAudio];
+                [array addObject:[NSString stringWithFormat:@"%@.mp3",introAudio]];
+                
+            }
         }
     }
     
     
-    NSMutableArray *array = [NSMutableArray array];
-    Chapter *chapter = [book getChapterWithTitle:chapterTitle];
-    ScriptAudio *script = nil;
+
     
-    if (introAudio) {
-        
-        if ([ConditionSetup sharedInstance].language == BILINGUAL) {
-            introAudio = [NSString stringWithFormat:@"%@_S",introAudio];
-        }
-        introAudio = [NSString stringWithFormat:@"%@.mp3",introAudio];
-        [array addObject:introAudio];
-    }
+    
     
     if ([ConditionSetup sharedInstance].condition == EMBRACE) {
         script = [chapter embraceScriptFor:[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence]];
