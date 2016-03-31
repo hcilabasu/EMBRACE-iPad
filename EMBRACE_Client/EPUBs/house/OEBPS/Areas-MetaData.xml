@@ -22,24 +22,32 @@
             <point x="30.66%" y="59.64%"/>
             <point x="30.66%" y="83.85%"/>
             <point x="8.20%" y="83.85%"/>
+            <point x="8.20%" y="59.64%"/>
+            <point x="30.66%" y="59.64%"/>
         </area>
         <area areaId="kitchenSavedForLater" pageId="story2-PM-1">
             <point x="8.20%" y="59.64%"/>
             <point x="30.66%" y="59.64%"/>
             <point x="30.66%" y="83.85%"/>
             <point x="8.20%" y="83.85%"/>
+            <point x="8.20%" y="59.64%"/>
+            <point x="30.66%" y="59.64%"/>
         </area>
         <area areaId="kitchenSavedForLater" pageId="story4-PM-1">
             <point x="8.20%" y="59.64%"/>
             <point x="30.66%" y="59.64%"/>
             <point x="30.66%" y="83.85%"/>
             <point x="8.20%" y="83.85%"/>
+            <point x="8.20%" y="59.64%"/>
+            <point x="30.66%" y="59.64%"/>
         </area>
         <area areaId="kitchenSavedForLater" pageId="story6-PM-1">
             <point x="8.20%" y="59.64%"/>
             <point x="30.66%" y="59.64%"/>
             <point x="30.66%" y="83.85%"/>
             <point x="8.20%" y="83.85%"/>
+            <point x="8.20%" y="59.64%"/>
+            <point x="30.66%" y="59.64%"/>
         </area>
     </areas>
 </metadata>
