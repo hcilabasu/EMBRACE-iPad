@@ -188,6 +188,12 @@
         <relationship obj1Id="pumpkin" can="appear" action="appear" obj2Id="pumpkinPatch"/>
         <relationship obj1Id="pumpkin" can="getIn" action="group" obj2Id="cart"/>
         <relationship obj1Id="pumpkin" can="getOut" action="ungroup" obj2Id="cart"/>
+        
+        <relationship obj1Id="chickenIM" can="visit" action="group" obj2Id="eggIM"/>
+        <relationship obj1Id="chickenIM" can="visit" action="group" obj2Id="egg4IM"/>
+        
+        <relationship obj1Id="pigIM" can="face" action="group" obj2Id="owlIM"/>
+        <relationship obj1Id="pigFlipIM" can="faceAway" action="group" obj2Id="owlIM"/>
     </relationships>
 </metadata>
 

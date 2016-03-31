@@ -4,14 +4,14 @@
         <story title="The Wise Owl" activity_id="story5-PM-2">
             <sentence number="6">
                 <step number="1">
-                    <group obj1Id="chicken" action="visit" obj2Id="egg"/>
-                    <group obj1Id="chicken" action="visit" obj2Id="egg4"/>
+                    <group obj1Id="chickenIM" action="visit" obj2Id="eggIM"/>
+                    <group obj1Id="chickenIM" action="visit" obj2Id="egg4IM"/>
                 </step>
             </sentence>
-            <sentence number="10">
+            <sentence number="8">
                 <step number="1">
-                    <group obj1Id="pig" action="getIn" obj2Id="pen"/>
-                    <group obj1Id="pen" action="getIn" obj2Id="pig"/>
+                    <group obj1Id="pigIM" action="face" obj2Id="owlIM"/>
+                    <group obj1Id="pigFlipIM" action="faceAway" obj2Id="owlIM"/>
                 </step>
             </sentence>
         </story>

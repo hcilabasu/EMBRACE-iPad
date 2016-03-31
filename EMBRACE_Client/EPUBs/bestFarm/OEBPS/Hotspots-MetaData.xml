@@ -169,5 +169,18 @@
         <hotspot objId="tractor" action="getIn" role="subject" x="50%" y="50%"/>
         <hotspot objId="tractor" action="getOn" role="object" x="50%" y="0%"/>
         <hotspot objId="tractor" action="hook" role="object" x="2%" y="55%"/>
+        
+        <hotspot objId="eggIM" action="visit" role="object" x="0%" y="100%"/>
+        <hotspot objId="egg4IM" action="visit" role="object" x="0%" y="100%"/>
+        <hotspot objId="eggIM" action="visit" role="subject" x="100%" y="100%"/>
+        <hotspot objId="egg4IM" action="visit" role="subject" x="100%" y="100%"/>
+        
+        <hotspot objId="chickenIM" action="visit" role="object" x="0%" y="100%"/>
+        <hotspot objId="chickenIM" action="visit" role="subject" x="100%" y="100%"/>
+        
+        <hotspot objId="pigIM" action="face" role="object" x="0%" y="100%"/>
+        <hotspot objId="pigFlipIM" action="faceAway" role="object" x="0%" y="100%"/>
+        <hotspot objId="owlIM" action="face" role="subject" x="100%" y="100%"/>
+        <hotspot objId="owlIM" action="faceAway" role="subject" x="100%" y="100%"/>
     </hotspots>
 </metadata>

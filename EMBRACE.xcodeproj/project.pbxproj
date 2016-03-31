@@ -907,6 +907,7 @@
 		1A9CF8431C31C3A00000C135 /* island_Kauai.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A9CF8421C31C3A00000C135 /* island_Kauai.png */; };
 		1A9CF8451C31C7310000C135 /* native.epub in Resources */ = {isa = PBXBuildFile; fileRef = 1A9CF8441C31C7310000C135 /* native.epub */; };
 		1AB028FC1ACF0890006CC916 /* AuthoringModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB028FB1ACF0890006CC916 /* AuthoringModeViewController.m */; };
+		1AC450771CAC8243004B7810 /* pigRight_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AC450761CAC8243004B7810 /* pigRight_large.png */; };
 		1AC7A38F1C59259C003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AC7A38E1C59259C003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml */; };
 		1AC7A3911C592847003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AC7A3901C592847003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml */; };
 		1AC7A3931C592AD5003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AC7A3921C592AD5003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml */; };
@@ -5410,6 +5411,7 @@
 		1AB028FA1ACF0890006CC916 /* AuthoringModeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthoringModeViewController.h; sourceTree = "<group>"; };
 		1AB028FB1ACF0890006CC916 /* AuthoringModeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthoringModeViewController.m; sourceTree = "<group>"; };
 		1ABD84AD1A49F54B0043A685 /* PlayAudioIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayAudioIcon.png; sourceTree = "<group>"; };
+		1AC450761CAC8243004B7810 /* pigRight_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pigRight_large.png; sourceTree = "<group>"; };
 		1AC7A38E1C59259C003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesSpanish-MetaData.xml"; sourceTree = "<group>"; };
 		1AC7A3901C592847003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesSpanish-MetaData.xml"; sourceTree = "<group>"; };
 		1AC7A3921C592AD5003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesSpanish-MetaData.xml"; sourceTree = "<group>"; };
@@ -9194,6 +9196,7 @@
 				1A631C921C0E4D3900251CB3 /* judge_walkingright.png */,
 				1A631C931C0E4D3900251CB3 /* owl.png */,
 				1A631C941C0E4D3900251CB3 /* pig_large.png */,
+				1AC450761CAC8243004B7810 /* pigRight_large.png */,
 				1A631C951C0E4D3900251CB3 /* pumpkin_large.png */,
 				1A631C961C0E4D3900251CB3 /* pumpkin_patch.png */,
 				1A631C971C0E4D3900251CB3 /* sheep_large.png */,
@@ -18472,6 +18475,7 @@
 				5C0ED9C81C753AD400003B5A /* GettingMoreOxygenForTheMusclesQ3A4.mp3 in Resources */,
 				5DB5099F1C40D69900EB74E0 /* Story6-Newton's-Third-Law-Forces-are-Paired-Intro-S.xhtml in Resources */,
 				5D90DCE71C5FCB7800359868 /* spin_type1S.m4a in Resources */,
+				1AC450771CAC8243004B7810 /* pigRight_large.png in Resources */,
 				5C0ED9FF1C753AD400003B5A /* TheAmazingHeartQ3A4.mp3 in Resources */,
 				5C5D09231CA9F55800B7C8D9 /* OverlookedS.mp3 in Resources */,
 				5C0421C41C618C2B001BBE9D /* TheLuckyStoneQ7A4S.mp3 in Resources */,
