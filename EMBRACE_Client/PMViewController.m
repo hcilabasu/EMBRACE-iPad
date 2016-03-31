@@ -352,6 +352,7 @@ BOOL wasPathFollowed = false;
         IntroductionClass.allowInteractions = FALSE;
     }
     
+    
     //Load the first step for the current chapter
     if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
         [IntroductionClass loadIntroStep:bookView:self: currentSentence];
@@ -4105,22 +4106,7 @@ BOOL wasPathFollowed = false;
     
 //    NSString *preAudio = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(preaudio)"]];
     
-    /*if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
-        // If the user pressed next
-        if ([[IntroductionClass.performedActions objectAtIndex:INPUT] isEqualToString:@"next"]) {
-            IntroductionClass.currentIntroStep++;
-            
-            if (IntroductionClass.currentIntroStep > IntroductionClass.totalIntroSteps) {
-                [self loadNextPage];
-            }
-            else {
-                // Load the next step
-                [IntroductionClass loadIntroStep:bookView:self: currentSentence];
-                [self setupCurrentSentenceColor];
-            }
-        }
-    }
-    else*/ if ([currentPageId rangeOfString:@"-Intro"].location != NSNotFound) {
+    if ([currentPageId rangeOfString:@"-Intro"].location != NSNotFound) {
             if(currentSentence > totalSentences) {
                 [self.playaudioClass stopPlayAudioFile];
                 currentSentence = 1;
@@ -4296,6 +4282,10 @@ BOOL wasPathFollowed = false;
 }
 
 - (void)playCurrentSentenceAudio {
+    
+    //disable user interactions when preparing to play audio to prevent users from skipping audio
+    [self.view setUserInteractionEnabled:NO];
+    
     NSString *sentenceAudioFile = nil;
     
     //Only play sentence audio if system is reading
@@ -4542,7 +4532,12 @@ BOOL wasPathFollowed = false;
     }
     
     if ([array count] > 0) {
-        [self.playaudioClass playAudioInSequence:array parentViewController:self];
+        [self.playaudioClass playAudioInSequence:array :self];
+    }
+    else
+    {
+        //there are no audio files to play so allow interactions
+        [self.view setUserInteractionEnabled:YES];
     }
 }
 

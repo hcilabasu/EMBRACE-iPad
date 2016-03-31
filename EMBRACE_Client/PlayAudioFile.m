@@ -105,7 +105,7 @@
 }
 
 
-- (void)playAudioInSequence:(NSArray *)audioList parentViewController:(UIViewController *)controller {
+- (void)playAudioInSequence:(NSArray *)audioList :(UIViewController *)controller {
     
     // Return if there is already a queue working
     if ([self.audioQueue count] > 0) {
@@ -147,6 +147,10 @@
             [self.audioPlayer play];
             [self.audioQueue removeObjectAtIndex:0];
         }
+    }
+    else
+    {
+        [PmviewController.view setUserInteractionEnabled:YES];
     }
 }
 
@@ -204,14 +208,15 @@
     }
     else
     {
-        [self.audioPlayer prepareToPlay];
-        [self.audioPlayerAfter play];
-        
         //make sure we have an instance of the PMViewController
         if(PmviewController != nil)
         {
             //reenable user interaction after second audio file finishes playing if it exists otherwise just renable user interaction after first audio file finishes playing
-            if (self.audioPlayerAfter !=nil) {
+            if (self.audioPlayerAfter != nil) {
+                
+                [self.audioPlayerAfter prepareToPlay];
+                [self.audioPlayerAfter play];
+                
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW,self.audioAfterDuration*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                     [PmviewController.view setUserInteractionEnabled:YES];
                 });
