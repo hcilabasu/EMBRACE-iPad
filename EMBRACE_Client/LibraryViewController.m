@@ -270,11 +270,6 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
         //Get current book title
         NSString *currentBookTitle = [[[sequenceController sequences] objectAtIndex:[studentProgress currentSequence]] bookTitle];
         
-        //Hardcoding for second Introduction to EMBRACE
-        if ([currentBookTitle isEqualToString:@"Introduction to EMBRACE"] && [studentProgress getStatusOfBook:currentBookTitle] == COMPLETED && ![currentBookTitle isEqualToString:[bookTitles objectAtIndex:selectedBookIndex]]) {
-            currentBookTitle = @"Second Introduction to EMBRACE";
-        }
-        
         //Set the next incomplete chapter to in progress if it exists
         if (![studentProgress setNextChapterInProgressForBook:currentBookTitle]) {
             if ([studentProgress currentSequence] + 1 < [[sequenceController sequences] count]) {
@@ -285,18 +280,13 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                 NSString *nextBookTitle = [[[sequenceController sequences] objectAtIndex:[studentProgress currentSequence]] bookTitle];
                 
                 //Hardcoding for second Introduction to EMBRACE
-                if ([studentProgress getStatusOfBook:nextBookTitle] == COMPLETED && [nextBookTitle isEqualToString:@"Introduction to EMBRACE"]) {
+                if ([nextBookTitle isEqualToString:@"Second Introduction to EMBRACE"]) {
                     //Change title of book
-                    nextBookTitle = @"Second Introduction to EMBRACE";
                     [bookTitles setObject:nextBookTitle atIndexedSubscript:0];
-                    
-                    //Set first chapter to in progress
-                    [studentProgress setStatusOfChapter:@"The Naughty Monkey" :IN_PROGRESS fromBook:nextBookTitle];
                 }
-                else {
-                    //Set next book in sequence to in progress
-                    [studentProgress setNextChapterInProgressForBook:nextBookTitle];
-                }
+                
+                //Set next book in sequence to in progress
+                [studentProgress setNextChapterInProgressForBook:nextBookTitle];
                 
                 [self pressedBooks:self];
             }
@@ -628,38 +618,38 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
             self.chapterToOpen = [[[book chapters] objectAtIndex:indexPath.row] title];
             
             if (useSequence) {
-                //If chapter already completed, just open in read-only English mode for now
+                ActivityMode *currentMode;
+                
+                //If chapter already completed, reload its mode information
                 if (chapterStatus == COMPLETED) {
-                    conditionSetup.condition = CONTROL;
-                    conditionSetup.language = ENGLISH;
-                    conditionSetup.reader = USER;
+                    currentMode = [[sequenceController getSequenceForBook:selectedBookTitle] getModeForChapter:selectedChapterTitle];
                 }
                 else {
                     //Get current mode for chapter
-                    ActivityMode *currentMode = [[[sequenceController sequences] objectAtIndex:[studentProgress currentSequence]] getModeForChapter:selectedChapterTitle];
-                    
-                    //Set conditions for chapter based on mode information
-                    if ([currentMode interventionType] == PM_INTERVENTION) {
-                        conditionSetup.condition = EMBRACE;
-                        conditionSetup.currentMode = PM_MODE;
-                    }
-                    else if ([currentMode interventionType] == IM_INTERVENTION) {
-                        conditionSetup.condition = EMBRACE;
-                        conditionSetup.currentMode = IM_MODE;
-                    }
-                    else if ([currentMode interventionType] == R_INTERVENTION) {
-                        conditionSetup.condition = CONTROL;
-                    }
-                    //Current mode for chapter was not found; default to control
-                    else {
-                        conditionSetup.condition = CONTROL;
-                    }
-                    
-                    //Set language, reader, and new instructions
-                    conditionSetup.language = [currentMode language];
-                    conditionSetup.reader = [currentMode reader];
-                    conditionSetup.newInstructions = [currentMode newInstructions];
+                    currentMode = [[[sequenceController sequences] objectAtIndex:[studentProgress currentSequence]] getModeForChapter:selectedChapterTitle];
                 }
+                
+                //Set conditions for chapter based on mode information
+                if ([currentMode interventionType] == PM_INTERVENTION) {
+                    conditionSetup.condition = EMBRACE;
+                    conditionSetup.currentMode = PM_MODE;
+                }
+                else if ([currentMode interventionType] == IM_INTERVENTION) {
+                    conditionSetup.condition = EMBRACE;
+                    conditionSetup.currentMode = IM_MODE;
+                }
+                else if ([currentMode interventionType] == R_INTERVENTION) {
+                    conditionSetup.condition = CONTROL;
+                }
+                //Current mode for chapter was not found; default to control
+                else {
+                    conditionSetup.condition = CONTROL;
+                }
+                
+                //Set language, reader, and new instructions
+                conditionSetup.language = [currentMode language];
+                conditionSetup.reader = [currentMode reader];
+                conditionSetup.newInstructions = [currentMode newInstructions];
             }
             
             NSString *condition = @"Unknown";
