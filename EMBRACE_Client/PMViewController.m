@@ -304,7 +304,7 @@ BOOL wasPathFollowed = false;
 
                 ActionStep *solutionStep = [[ActionStep alloc] initAsSolutionStep:i : 1 : @"tapWord" : sentenceText : nil : nil: nil : nil : nil : nil];
                 
-                if (conditionSetup.currentMode == PM_MODE) {
+                if (conditionSetup.currentMode == PM_MODE || conditionSetup.condition == CONTROL) {
                     [PMSolution addSolutionStep:solutionStep];
                 }
                 else if (conditionSetup.currentMode == IM_MODE) {
@@ -315,7 +315,7 @@ BOOL wasPathFollowed = false;
             Chapter *chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
             
             //Add PMSolution to page
-            if (conditionSetup.currentMode == PM_MODE) {
+            if (conditionSetup.currentMode == PM_MODE || conditionSetup.condition == CONTROL) {
                 PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; //get PM Activity only
                 [PMActivity addPMSolution:PMSolution forActivityId:currentPageId];
             }
