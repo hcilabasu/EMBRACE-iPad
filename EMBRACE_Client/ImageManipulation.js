@@ -848,7 +848,9 @@ function highlightObjectOnWordTap(object) {
  * The parameter 'over' indicates that the highlighting should be performed
  * over the object
  * In order for the highlighting to work properly, the first and the second points have to be added
- * at the end of the area points in the metadata. This allows the calculation of the control points
+ * at the end of the area points in the metadata. Ie. if you have 4 coordinate points, then you will need to add 
+ * the first two coordinate points to the end of the points for a total for 6 coordinate points.
+ * This allows the calculation of the control points
  * for the curve of the closing segment of the area.
  */
 function highlightArea(areaName) {

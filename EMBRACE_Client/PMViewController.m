@@ -4100,7 +4100,6 @@ BOOL wasPathFollowed = false;
  * is correct, then it will move on to the next sentence. If the manipulation is not current, then feedback will be provided.
  */
 - (IBAction)pressedNext:(id)sender {
-    [self.view setUserInteractionEnabled:NO];
     
     [[ServerCommunicationController sharedInstance] logPressNextInManipulationActivity:manipulationContext];
     
@@ -4255,8 +4254,6 @@ BOOL wasPathFollowed = false;
             [self playErrorNoise];
         }
     }
-    
-    [self.view setUserInteractionEnabled:YES];
 }
 
 /*
