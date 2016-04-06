@@ -1227,8 +1227,7 @@
   <vocabularyIntroductions>
       <vocabularyIntroduction story="The Contest">
           <vocabularyIntroductionWord number="1">
-              <englishWordAudio>BFCE1_1G.m4a</englishWordAudio>
-              <spanishWordAudio>BFCS1_1G.m4a</spanishWordAudio>
+              
               <englishWordText></englishWordText>
               <spanishWordText></spanishWordText>
               <expectedSelection>word</expectedSelection>
