@@ -2,6 +2,38 @@
 <metadata>
     <scriptAudio>
         
+        <story title="The Contest" activity_id="Intro">
+            
+            <sentence number="0">
+                
+                <embrace>
+                    <preAudio>
+                        <english>
+                            <audio seq="1">Intro</audio>
+                        </english>
+                        
+                        <bilingual>
+                            <audio seq="1">Intro</audio>
+                        </bilingual>
+                        
+                    </preAudio>
+                    
+                </embrace>
+                <control>
+                    <preAudio>
+                        <english>
+                            <audio seq="1">Intro</audio>
+                        </english>
+                        
+                        <bilingual>
+                            <audio seq="1">Intro</audio>
+                        </bilingual>
+                    </preAudio>
+                    
+                </control>
+                
+            </sentence>
+        </story>
         
         <story title="The Contest" activity_id="story1-PM-1">
             
