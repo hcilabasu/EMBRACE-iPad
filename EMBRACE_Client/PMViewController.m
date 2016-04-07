@@ -1399,10 +1399,9 @@ BOOL wasPathFollowed = false;
         }
     
         [self highlightImageForText:englishSentenceText];
-        Float64 delay = [self.playaudioClass audioDuration];
+    
         // This delay is needed in order to be able to play the last definition on a vocabulary page
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW,[self.playaudioClass audioDuration]*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            [IntroductionClass loadVocabStep:bookView:self:currentSentence:chapterTitle];
             
             //if audioPlayer is nil then we have returned to library view and should not play audio
             if ([self.playaudioClass audioPlayer] != nil)
@@ -1771,7 +1770,7 @@ BOOL wasPathFollowed = false;
                     else if ([[currSolStep stepType] isEqualToString:@"shakeOrTap"]) {
                         [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:@"NULL" ofType:@"Location" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
                         
-                        if (([[currSolStep object1Id] isEqualToString:movingObjectId]) && ([self areHotspotsInsideArea] || [self isHotspotInsideLocation])) {
+                        if ([self checkSolutionForSubject:movingObjectId] && ([self areHotspotsInsideArea] || [self isHotspotInsideLocation])) {
                             [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Move Object" context:manipulationContext];
                             
                             [animatingObjects setObject:@"stop" forKey:movingObjectId];
