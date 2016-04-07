@@ -62,7 +62,7 @@
             <language>Spanish</language>
             <intervention>R</intervention>
         </mode>
-        <mode chapterTitle="The Wise Owl" newInstructions="false">
+        <mode chapterTitle="The Wise Owl" newInstructions="true">
             <reader>User</reader>
             <language>Spanish</language>
             <intervention>PM</intervention>
