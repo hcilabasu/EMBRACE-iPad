@@ -618,16 +618,8 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
             self.chapterToOpen = [[[book chapters] objectAtIndex:indexPath.row] title];
             
             if (useSequence) {
-                ActivityMode *currentMode;
-                
-                //If chapter already completed, reload its mode information
-                if (chapterStatus == COMPLETED) {
-                    currentMode = [[sequenceController getSequenceForBook:selectedBookTitle] getModeForChapter:selectedChapterTitle];
-                }
-                else {
-                    //Get current mode for chapter
-                    currentMode = [[[sequenceController sequences] objectAtIndex:[studentProgress currentSequence]] getModeForChapter:selectedChapterTitle];
-                }
+                //Get mode information for selected chapter
+                ActivityMode *currentMode = [[sequenceController getSequenceForBook:selectedBookTitle] getModeForChapter:selectedChapterTitle];
                 
                 //Set conditions for chapter based on mode information
                 if ([currentMode interventionType] == PM_INTERVENTION) {
