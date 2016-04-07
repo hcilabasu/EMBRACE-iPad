@@ -62,7 +62,7 @@
             <language>Spanish</language>
             <intervention>R</intervention>
         </mode>
-        <mode chapterTitle="Who is the Best Animal?" newInstructions="false">
+        <mode chapterTitle="Who is the Best Animal?" newInstructions="true">
             <reader>User</reader>
             <language>Spanish</language>
             <intervention>PM</intervention>
