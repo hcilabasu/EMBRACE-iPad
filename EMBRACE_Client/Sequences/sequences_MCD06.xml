@@ -67,7 +67,7 @@
             <language>Spanish</language>
             <intervention>R</intervention>
         </mode>
-        <mode chapterTitle="Everyone Helps" newInstructions="false">
+        <mode chapterTitle="Everyone Helps" newInstructions="true">
             <reader>User</reader>
             <language>Spanish</language>
             <intervention>PM</intervention>
