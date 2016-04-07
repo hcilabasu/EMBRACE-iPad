@@ -272,23 +272,36 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
         
         //Set the next incomplete chapter to in progress if it exists
         if (![studentProgress setNextChapterInProgressForBook:currentBookTitle]) {
-            if ([studentProgress currentSequence] + 1 < [[sequenceController sequences] count]) {
-                //Use next sequence
-                studentProgress.currentSequence++;
-                
-                //Get next book title
-                NSString *nextBookTitle = [[[sequenceController sequences] objectAtIndex:[studentProgress currentSequence]] bookTitle];
-                
-                //Hardcoding for second Introduction to EMBRACE
-                if ([nextBookTitle isEqualToString:@"Second Introduction to EMBRACE"]) {
-                    //Change title of book
-                    [bookTitles setObject:nextBookTitle atIndexedSubscript:0];
+            BOOL finishedSequenceUpdate = false;
+            
+            //Keep looping until next incomplete/in progress book in sequence is found, or there are no more sequences left
+            while (!finishedSequenceUpdate) {
+                if ([studentProgress currentSequence] + 1 < [[sequenceController sequences] count]) {
+                    //Use next sequence
+                    studentProgress.currentSequence++;
+                    
+                    //Get next book title
+                    NSString *nextBookTitle = [[[sequenceController sequences] objectAtIndex:[studentProgress currentSequence]] bookTitle];
+                    
+                    //Hardcoding for second Introduction to EMBRACE
+                    if ([nextBookTitle isEqualToString:@"Second Introduction to EMBRACE"]) {
+                        //Change title of book
+                        [bookTitles setObject:nextBookTitle atIndexedSubscript:0];
+                    }
+                    
+                    //Set next book in sequence to in progress
+                    if ([studentProgress setNextChapterInProgressForBook:nextBookTitle]) {
+                        finishedSequenceUpdate = true;
+                        
+                        [self pressedBooks:self];
+                    }
                 }
-                
-                //Set next book in sequence to in progress
-                [studentProgress setNextChapterInProgressForBook:nextBookTitle];
-                
-                [self pressedBooks:self];
+                //No more sequences left
+                else {
+                    finishedSequenceUpdate = true;
+                    
+                    [self pressedBooks:self];
+                }
             }
         }
     }
