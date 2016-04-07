@@ -3000,6 +3000,7 @@
 		5C9B8B791CB6030900420053 /* Brushed_type1S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C9B8B781CB6030900420053 /* Brushed_type1S.mp3 */; };
 		5C9B8B7B1CB6032500420053 /* Cannot_type1S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C9B8B7A1CB6032500420053 /* Cannot_type1S.mp3 */; };
 		5C9B8B7D1CB6038C00420053 /* Purr_type1S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C9B8B7C1CB6038C00420053 /* Purr_type1S.mp3 */; };
+		5C9B8B7F1CB635EF00420053 /* Manuel'sE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C9B8B7E1CB635EF00420053 /* Manuel'sE.mp3 */; };
 		5C9C077D1C57385A00702FCD /* BFCE1_1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C9C05AD1C57385900702FCD /* BFCE1_1.m4a */; };
 		5C9C077E1C57385A00702FCD /* BFCE1_1G.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C9C05AE1C57385900702FCD /* BFCE1_1G.m4a */; };
 		5C9C077F1C57385A00702FCD /* BFCE1_2.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C9C05AF1C57385900702FCD /* BFCE1_2.m4a */; };
@@ -7541,6 +7542,7 @@
 		5C9B8B781CB6030900420053 /* Brushed_type1S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Brushed_type1S.mp3; sourceTree = "<group>"; };
 		5C9B8B7A1CB6032500420053 /* Cannot_type1S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Cannot_type1S.mp3; sourceTree = "<group>"; };
 		5C9B8B7C1CB6038C00420053 /* Purr_type1S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Purr_type1S.mp3; sourceTree = "<group>"; };
+		5C9B8B7E1CB635EF00420053 /* Manuel'sE.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Manuel'sE.mp3"; sourceTree = "<group>"; };
 		5C9C05AD1C57385900702FCD /* BFCE1_1.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = BFCE1_1.m4a; sourceTree = "<group>"; };
 		5C9C05AE1C57385900702FCD /* BFCE1_1G.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = BFCE1_1G.m4a; sourceTree = "<group>"; };
 		5C9C05AF1C57385900702FCD /* BFCE1_2.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = BFCE1_2.m4a; sourceTree = "<group>"; };
@@ -12813,6 +12815,7 @@
 		5C9B8AE61CB5EFC800420053 /* English */ = {
 			isa = PBXGroup;
 			children = (
+				5C9B8B7E1CB635EF00420053 /* Manuel'sE.mp3 */,
 				5C9B8AE71CB5EFC800420053 /* AwardE.mp3 */,
 				5C9B8AE81CB5EFC800420053 /* BarnE.mp3 */,
 				5C9B8AE91CB5EFC800420053 /* BrushedE.mp3 */,
@@ -17550,6 +17553,7 @@
 				1A63235F1C0E4D3B00251CB3 /* Story6-Newton's-Third-Law-Forces-are-Paired-PM-4.xhtml in Resources */,
 				1A6322A21C0E4D3B00251CB3 /* icon_babycry2.png in Resources */,
 				5C72E7C41C72BF1000CE4877 /* NewtonsLawofAccelerationonEarthQ4.mp3 in Resources */,
+				5C9B8B7F1CB635EF00420053 /* Manuel'sE.mp3 in Resources */,
 				5C5D09691CA9F6DD00B7C8D9 /* CirclesE.mp3 in Resources */,
 				5C04220B1C618C2B001BBE9D /* WordsOfWisdomQ5A4.mp3 in Resources */,
 				5C72E7A01C72BF1000CE4877 /* NewtonsfirstlawQ1A3.mp3 in Resources */,
