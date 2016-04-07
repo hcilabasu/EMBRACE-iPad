@@ -2276,7 +2276,7 @@
 		5C5D090D1CA9F55800B7C8D9 /* Appeared_type1S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C5D08DB1CA9F55800B7C8D9 /* Appeared_type1S.mp3 */; };
 		5C5D090E1CA9F55800B7C8D9 /* AppearedS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C5D08DC1CA9F55800B7C8D9 /* AppearedS.mp3 */; };
 		5C5D090F1CA9F55800B7C8D9 /* BeautifulS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C5D08DD1CA9F55800B7C8D9 /* BeautifulS.mp3 */; };
-		5C5D09101CA9F55800B7C8D9 /* Board-gameS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C5D08DE1CA9F55800B7C8D9 /* Board-gameS.mp3 */; };
+		5C5D09101CA9F55800B7C8D9 /* Board-GameS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C5D08DE1CA9F55800B7C8D9 /* Board-GameS.mp3 */; };
 		5C5D09111CA9F55800B7C8D9 /* BottleS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C5D08DF1CA9F55800B7C8D9 /* BottleS.mp3 */; };
 		5C5D09121CA9F55800B7C8D9 /* CirclesS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C5D08E01CA9F55800B7C8D9 /* CirclesS.mp3 */; };
 		5C5D09131CA9F55800B7C8D9 /* Couldn'tS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C5D08E11CA9F55800B7C8D9 /* Couldn'tS.mp3 */; };
@@ -2324,7 +2324,7 @@
 		5C5D09641CA9F6DD00B7C8D9 /* AdviceE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C5D093F1CA9F6DD00B7C8D9 /* AdviceE.mp3 */; };
 		5C5D09651CA9F6DD00B7C8D9 /* AppearedE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C5D09401CA9F6DD00B7C8D9 /* AppearedE.mp3 */; };
 		5C5D09661CA9F6DD00B7C8D9 /* BeautifulE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C5D09411CA9F6DD00B7C8D9 /* BeautifulE.mp3 */; };
-		5C5D09671CA9F6DD00B7C8D9 /* Board-gameE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C5D09421CA9F6DD00B7C8D9 /* Board-gameE.mp3 */; };
+		5C5D09671CA9F6DD00B7C8D9 /* Board-GameE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C5D09421CA9F6DD00B7C8D9 /* Board-GameE.mp3 */; };
 		5C5D09681CA9F6DD00B7C8D9 /* BottleE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C5D09431CA9F6DD00B7C8D9 /* BottleE.mp3 */; };
 		5C5D09691CA9F6DD00B7C8D9 /* CirclesE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C5D09441CA9F6DD00B7C8D9 /* CirclesE.mp3 */; };
 		5C5D096A1CA9F6DD00B7C8D9 /* Couldn'tE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C5D09451CA9F6DD00B7C8D9 /* Couldn'tE.mp3 */; };
@@ -6815,7 +6815,7 @@
 		5C5D08DB1CA9F55800B7C8D9 /* Appeared_type1S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Appeared_type1S.mp3; sourceTree = "<group>"; };
 		5C5D08DC1CA9F55800B7C8D9 /* AppearedS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = AppearedS.mp3; sourceTree = "<group>"; };
 		5C5D08DD1CA9F55800B7C8D9 /* BeautifulS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BeautifulS.mp3; sourceTree = "<group>"; };
-		5C5D08DE1CA9F55800B7C8D9 /* Board-gameS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Board-gameS.mp3"; sourceTree = "<group>"; };
+		5C5D08DE1CA9F55800B7C8D9 /* Board-GameS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Board-GameS.mp3"; sourceTree = "<group>"; };
 		5C5D08DF1CA9F55800B7C8D9 /* BottleS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BottleS.mp3; sourceTree = "<group>"; };
 		5C5D08E01CA9F55800B7C8D9 /* CirclesS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CirclesS.mp3; sourceTree = "<group>"; };
 		5C5D08E11CA9F55800B7C8D9 /* Couldn'tS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Couldn'tS.mp3"; sourceTree = "<group>"; };
@@ -6863,7 +6863,7 @@
 		5C5D093F1CA9F6DD00B7C8D9 /* AdviceE.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = AdviceE.mp3; sourceTree = "<group>"; };
 		5C5D09401CA9F6DD00B7C8D9 /* AppearedE.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = AppearedE.mp3; sourceTree = "<group>"; };
 		5C5D09411CA9F6DD00B7C8D9 /* BeautifulE.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BeautifulE.mp3; sourceTree = "<group>"; };
-		5C5D09421CA9F6DD00B7C8D9 /* Board-gameE.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Board-gameE.mp3"; sourceTree = "<group>"; };
+		5C5D09421CA9F6DD00B7C8D9 /* Board-GameE.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Board-GameE.mp3"; sourceTree = "<group>"; };
 		5C5D09431CA9F6DD00B7C8D9 /* BottleE.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BottleE.mp3; sourceTree = "<group>"; };
 		5C5D09441CA9F6DD00B7C8D9 /* CirclesE.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CirclesE.mp3; sourceTree = "<group>"; };
 		5C5D09451CA9F6DD00B7C8D9 /* Couldn'tE.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Couldn'tE.mp3"; sourceTree = "<group>"; };
@@ -12267,7 +12267,7 @@
 				5C5D08DB1CA9F55800B7C8D9 /* Appeared_type1S.mp3 */,
 				5C5D08DC1CA9F55800B7C8D9 /* AppearedS.mp3 */,
 				5C5D08DD1CA9F55800B7C8D9 /* BeautifulS.mp3 */,
-				5C5D08DE1CA9F55800B7C8D9 /* Board-gameS.mp3 */,
+				5C5D08DE1CA9F55800B7C8D9 /* Board-GameS.mp3 */,
 				5C5D08DF1CA9F55800B7C8D9 /* BottleS.mp3 */,
 				5C5D08E01CA9F55800B7C8D9 /* CirclesS.mp3 */,
 				5C5D08E11CA9F55800B7C8D9 /* Couldn'tS.mp3 */,
@@ -12322,7 +12322,7 @@
 				5C5D093F1CA9F6DD00B7C8D9 /* AdviceE.mp3 */,
 				5C5D09401CA9F6DD00B7C8D9 /* AppearedE.mp3 */,
 				5C5D09411CA9F6DD00B7C8D9 /* BeautifulE.mp3 */,
-				5C5D09421CA9F6DD00B7C8D9 /* Board-gameE.mp3 */,
+				5C5D09421CA9F6DD00B7C8D9 /* Board-GameE.mp3 */,
 				5C5D09431CA9F6DD00B7C8D9 /* BottleE.mp3 */,
 				5C5D09441CA9F6DD00B7C8D9 /* CirclesE.mp3 */,
 				5C5D09451CA9F6DD00B7C8D9 /* Couldn'tE.mp3 */,
@@ -15394,7 +15394,7 @@
 				5CAE95D41C921DCD00702DB4 /* BowsS.mp3 in Resources */,
 				1A6322831C0E4D3B00251CB3 /* mimetype in Resources */,
 				5CBA9D5F1CAB7E7E008DEF04 /* SolvedE.mp3 in Resources */,
-				5C5D09101CA9F55800B7C8D9 /* Board-gameS.mp3 in Resources */,
+				5C5D09101CA9F55800B7C8D9 /* Board-GameS.mp3 in Resources */,
 				5C0ED5721C75080300003B5A /* KeyIngredientsQ7A1S.mp3 in Resources */,
 				5DBC02F31C509B880030072B /* (null) in Resources */,
 				1A6320C71C0E4D3B00251CB3 /* VocabularyIntroductions-MetaData.xml in Resources */,
@@ -18900,7 +18900,7 @@
 				5C0ED8C41C75334200003B5A /* KeyIngredientsQ6A1.mp3 in Resources */,
 				5C62A90F1C851D1000F28BEB /* Solve_def_E.mp3 in Resources */,
 				5C0ED8481C75334200003B5A /* AFriendinNeedQ1A2.mp3 in Resources */,
-				5C5D09671CA9F6DD00B7C8D9 /* Board-gameE.mp3 in Resources */,
+				5C5D09671CA9F6DD00B7C8D9 /* Board-GameE.mp3 in Resources */,
 				1A6323011C0E4D3B00251CB3 /* Constraints-MetaData.xml in Resources */,
 				5C72E80A1C72BF1000CE4877 /* NewtonsThirdLawForcesarepairedQ5.mp3 in Resources */,
 				5C0421B11C618C2B001BBE9D /* TheLuckyStoneQ3S.mp3 in Resources */,
