@@ -69,6 +69,7 @@
     
     BOOL replenishSupply; //True if object should reappear after disappearing
     BOOL allowSnapback; //True if objects should snap back to original location upon error
+    BOOL pressedNextLock; // True if user pressed next, and false after next function finishes execution
 
     CGPoint startLocation; //initial location of an object before it is moved
     CGPoint endLocation; // ending location of an object after it is moved
@@ -154,6 +155,7 @@ BOOL wasPathFollowed = false;
     pinchToUngroup = FALSE;
     replenishSupply = FALSE;
     allowSnapback = TRUE;
+    pressedNextLock = false;
     
     movingObject = FALSE;
     movingObjectId = nil;
@@ -1399,10 +1401,9 @@ BOOL wasPathFollowed = false;
         }
     
         [self highlightImageForText:englishSentenceText];
-        Float64 delay = [self.playaudioClass audioDuration];
+    
         // This delay is needed in order to be able to play the last definition on a vocabulary page
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW,[self.playaudioClass audioDuration]*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            [IntroductionClass loadVocabStep:bookView:self:currentSentence:chapterTitle];
             
             //if audioPlayer is nil then we have returned to library view and should not play audio
             if ([self.playaudioClass audioPlayer] != nil)
@@ -1771,7 +1772,7 @@ BOOL wasPathFollowed = false;
                     else if ([[currSolStep stepType] isEqualToString:@"shakeOrTap"]) {
                         [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:@"NULL" ofType:@"Location" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
                         
-                        if (([[currSolStep object1Id] isEqualToString:movingObjectId]) && ([self areHotspotsInsideArea] || [self isHotspotInsideLocation])) {
+                        if ([self checkSolutionForSubject:movingObjectId] && ([self areHotspotsInsideArea] || [self isHotspotInsideLocation])) {
                             [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Move Object" context:manipulationContext];
                             
                             [animatingObjects setObject:@"stop" forKey:movingObjectId];
@@ -2772,8 +2773,8 @@ BOOL wasPathFollowed = false;
             float locationHeight = [location.height floatValue] / 100.0 * [bookView frame].size.height;
             
             //Check if hotspot is inside location
-            if ((hotspotLocation.x < locationX + locationWidth) && (hotspotLocation.x > locationX)
-                && (hotspotLocation.y < locationY + locationHeight) && (hotspotLocation.y > locationY)) {
+            if (((hotspotLocation.x < locationX + locationWidth) && (hotspotLocation.x > locationX)
+                && (hotspotLocation.y < locationY + locationHeight) && (hotspotLocation.y > locationY)) || [locationId isEqualToString:@"anywhere"]) {
                 return true;
             }
         }
@@ -2843,7 +2844,7 @@ BOOL wasPathFollowed = false;
             //Get area that hotspot should be inside
             Area *area = [model getAreaWithId:areaId];
             
-            if ([area.aPath containsPoint:hotspotLocation] && [area.aPath containsPoint:startLocation]) {
+            if (([area.aPath containsPoint:hotspotLocation] && [area.aPath containsPoint:startLocation]) || [areaId isEqualToString:@"anywhere"]) {
                 return true;
             }
         }
@@ -4101,6 +4102,10 @@ BOOL wasPathFollowed = false;
  */
 - (IBAction)pressedNext:(id)sender {
     
+    if (!pressedNextLock) {
+    
+        pressedNextLock = true;
+    
     [[ServerCommunicationController sharedInstance] logPressNextInManipulationActivity:manipulationContext];
     
 //    NSString *preAudio = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(preaudio)"]];
@@ -4253,6 +4258,11 @@ BOOL wasPathFollowed = false;
             //Play noise if not all steps have been completed
             [self playErrorNoise];
         }
+    }
+    }
+    else
+    {
+        pressedNextLock = false;
     }
 }
 

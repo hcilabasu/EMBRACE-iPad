@@ -270,81 +270,81 @@
                 <Questions title="Who is the Best Animal?">
                     <Question number="1">
                         <QuestionText>Why couldn't the cat purr?</QuestionText>
-                        <QuestionAudio>WhoistheBestAnimalQ1.mp3</QuestionAudio>
+                        <QuestionAudio>WhoIsTheBestAnimalQ1.mp3</QuestionAudio>
                         <Answer1>She was thirsty</Answer1>
-                        <Answer1Audio>WhoistheBestAnimalQ1A1.mp3</Answer1Audio>
+                        <Answer1Audio>WhoIsTheBestAnimalQ1A1.mp3</Answer1Audio>
                         <expectedSelection>She was thirsty</expectedSelection>
                         <Answer2>She was hurt</Answer2>
-                        <Answer2Audio>WhoistheBestAnimalQ1A2.mp3</Answer2Audio>
+                        <Answer2Audio>WhoIsTheBestAnimalQ1A2.mp3</Answer2Audio>
                         <Answer3>She was tired</Answer3>
-                        <Answer3Audio>WhoistheBestAnimalQ1A3.mp3</Answer3Audio>
+                        <Answer3Audio>WhoIsTheBestAnimalQ1A3.mp3</Answer3Audio>
                         <Answer4>There was a frog in her throat</Answer4>
-                        <Answer4Audio>WhoistheBestAnimalQ1A4.mp3</Answer4Audio>
+                        <Answer4Audio>WhoIsTheBestAnimalQ1A4.mp3</Answer4Audio>
                     </Question>
                     <Question number="2">
                         <QuestionText>Which animal ate the apple?</QuestionText>
-                        <QuestionAudio>WhoistheBestAnimalQ2.mp3</QuestionAudio>
+                        <QuestionAudio>WhoIsTheBestAnimalQ2.mp3</QuestionAudio>
                         <Answer1>Goat</Answer1>
-                        <Answer1Audio>WhoistheBestAnimalQ2A1.mp3</Answer1Audio>
+                        <Answer1Audio>WhoIsTheBestAnimalQ2A1.mp3</Answer1Audio>
                         <expectedSelection>Goat</expectedSelection>
                         <Answer2>Horse</Answer2>
-                        <Answer2Audio>WhoistheBestAnimalQ2A2.mp3</Answer2Audio>
+                        <Answer2Audio>WhoIsTheBestAnimalQ2A2.mp3</Answer2Audio>
                         <Answer3>Cow</Answer3>
-                        <Answer3Audio>WhoistheBestAnimalQ2A3.mp3</Answer3Audio>
+                        <Answer3Audio>WhoIsTheBestAnimalQ2A3.mp3</Answer3Audio>
                         <Answer4>Worm</Answer4>
-                        <Answer4Audio>WhoistheBestAnimalQ2A4.mp3</Answer4Audio>
+                        <Answer4Audio>WhoIsTheBestAnimalQ2A4.mp3</Answer4Audio>
                     </Question>
                     <Question number="3">
                         <QuestionText>Which animal ate the hay?</QuestionText>
-                        <QuestionAudio>WhoistheBestAnimalQ3.mp3</QuestionAudio>
+                        <QuestionAudio>WhoIsTheBestAnimalQ3.mp3</QuestionAudio>
                         <Answer1>Horse</Answer1>
-                        <Answer1Audio>WhoistheBestAnimalQ3A1.mp3</Answer1Audio>
+                        <Answer1Audio>WhoIsTheBestAnimalQ3A1.mp3</Answer1Audio>
                         <expectedSelection>Horse</expectedSelection>
                         <Answer2>Cow</Answer2>
-                        <Answer2Audio>WhoistheBestAnimalQ3A2.mp3</Answer2Audio>
+                        <Answer2Audio>WhoIsTheBestAnimalQ3A2.mp3</Answer2Audio>
                         <Answer3>Chicken</Answer3>
-                        <Answer3Audio>WhoistheBestAnimalQ3A3.mp3</Answer3Audio>
+                        <Answer3Audio>WhoIsTheBestAnimalQ3A3.mp3</Answer3Audio>
                         <Answer4>Donkey</Answer4>
-                        <Answer4Audio>WhoistheBestAnimalQ3A4.mp3</Answer4Audio>
+                        <Answer4Audio>WhoIsTheBestAnimalQ3A4.mp3</Answer4Audio>
                     </Question>
                     <Question number="4">
                         <QuestionText>What did the chicken want the cat to do?</QuestionText>
-                        <QuestionAudio>WhoistheBestAnimalQ4.mp3</QuestionAudio>
+                        <QuestionAudio>WhoIsTheBestAnimalQ4.mp3</QuestionAudio>
                         <Answer1>Purr</Answer1>
-                        <Answer1Audio>WhoistheBestAnimalQ4A1.mp3</Answer1Audio>
+                        <Answer1Audio>WhoIsTheBestAnimalQ4A1.mp3</Answer1Audio>
                         <expectedSelection>Purr</expectedSelection>
                         <Answer2>Drink milk</Answer2>
-                        <Answer2Audio>WhoistheBestAnimalQ4A2.mp3</Answer2Audio>
+                        <Answer2Audio>WhoIsTheBestAnimalQ4A2.mp3</Answer2Audio>
                         <Answer3>Bring an apple</Answer3>
-                        <Answer3Audio>WhoistheBestAnimalQ4A3.mp3</Answer3Audio>
+                        <Answer3Audio>WhoIsTheBestAnimalQ4A3.mp3</Answer3Audio>
                         <Answer4>Catch the mouse</Answer4>
-                        <Answer4Audio>WhoistheBestAnimalQ4A4.mp3</Answer4Audio>
+                        <Answer4Audio>WhoIsTheBestAnimalQ4A4.mp3</Answer4Audio>
                     </Question>
                     <Question number="5">
                         <QuestionText>Which animal jumped up to the chicken's nest?</QuestionText>
-                        <QuestionAudio>WhoistheBestAnimalQ5.mp3</QuestionAudio>
+                        <QuestionAudio>WhoIsTheBestAnimalQ5.mp3</QuestionAudio>
                         <Answer1>Cat</Answer1>
-                        <Answer1Audio>WhoistheBestAnimalQ5A1.mp3</Answer1Audio>
+                        <Answer1Audio>WhoIsTheBestAnimalQ5A1.mp3</Answer1Audio>
                         <expectedSelection>Cat</expectedSelection>
                         <Answer2>Goat</Answer2>
-                        <Answer2Audio>WhoistheBestAnimalQ5A2.mp3</Answer2Audio>
+                        <Answer2Audio>WhoIsTheBestAnimalQ5A2.mp3</Answer2Audio>
                         <Answer3>Owl</Answer3>
-                        <Answer3Audio>WhoistheBestAnimalQ5A3.mp3</Answer3Audio>
+                        <Answer3Audio>WhoIsTheBestAnimalQ5A3.mp3</Answer3Audio>
                         <Answer4>Giraffe</Answer4>
-                        <Answer4Audio>WhoistheBestAnimalQ5A4.mp3</Answer4Audio>
+                        <Answer4Audio>WhoIsTheBestAnimalQ5A4.mp3</Answer4Audio>
                     </Question>
                     <Question number="6">
                         <QuestionText>Which animal was near the hay?</QuestionText>
-                        <QuestionAudio>WhoistheBestAnimalQ6.mp3</QuestionAudio>
+                        <QuestionAudio>WhoIsTheBestAnimalQ6.mp3</QuestionAudio>
                         <Answer1>Horse</Answer1>
-                        <Answer1Audio>WhoistheBestAnimalQ6A1.mp3</Answer1Audio>
+                        <Answer1Audio>WhoIsTheBestAnimalQ6A1.mp3</Answer1Audio>
                         <expectedSelection>Horse</expectedSelection>
                         <Answer2>Cow</Answer2>
-                        <Answer2Audio>WhoistheBestAnimalQ6A2.mp3</Answer2Audio>
+                        <Answer2Audio>WhoIsTheBestAnimalQ6A2.mp3</Answer2Audio>
                         <Answer3>Chicken</Answer3>
-                        <Answer3Audio>WhoistheBestAnimalQ6A3.mp3</Answer3Audio>
+                        <Answer3Audio>WhoIsTheBestAnimalQ6A3.mp3</Answer3Audio>
                         <Answer4>Monkey</Answer4>
-                        <Answer4Audio>WhoistheBestAnimalQ6A4.mp3</Answer4Audio>
+                        <Answer4Audio>WhoIsTheBestAnimalQ6A4.mp3</Answer4Audio>
                     </Question>
                 </Questions>
                 <Questions title="The Wise Owl">
