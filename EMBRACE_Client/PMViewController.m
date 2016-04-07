@@ -69,6 +69,7 @@
     
     BOOL replenishSupply; //True if object should reappear after disappearing
     BOOL allowSnapback; //True if objects should snap back to original location upon error
+    BOOL pressedNextLock; // True if user pressed next, and false after next function finishes execution
 
     CGPoint startLocation; //initial location of an object before it is moved
     CGPoint endLocation; // ending location of an object after it is moved
@@ -154,6 +155,7 @@ BOOL wasPathFollowed = false;
     pinchToUngroup = FALSE;
     replenishSupply = FALSE;
     allowSnapback = TRUE;
+    pressedNextLock = false;
     
     movingObject = FALSE;
     movingObjectId = nil;
@@ -2771,8 +2773,8 @@ BOOL wasPathFollowed = false;
             float locationHeight = [location.height floatValue] / 100.0 * [bookView frame].size.height;
             
             //Check if hotspot is inside location
-            if ((hotspotLocation.x < locationX + locationWidth) && (hotspotLocation.x > locationX)
-                && (hotspotLocation.y < locationY + locationHeight) && (hotspotLocation.y > locationY)) {
+            if (((hotspotLocation.x < locationX + locationWidth) && (hotspotLocation.x > locationX)
+                && (hotspotLocation.y < locationY + locationHeight) && (hotspotLocation.y > locationY)) || [locationId isEqualToString:@"anywhere"]) {
                 return true;
             }
         }
@@ -2842,7 +2844,7 @@ BOOL wasPathFollowed = false;
             //Get area that hotspot should be inside
             Area *area = [model getAreaWithId:areaId];
             
-            if ([area.aPath containsPoint:hotspotLocation] && [area.aPath containsPoint:startLocation]) {
+            if (([area.aPath containsPoint:hotspotLocation] && [area.aPath containsPoint:startLocation]) || [areaId isEqualToString:@"anywhere"]) {
                 return true;
             }
         }
@@ -4100,6 +4102,10 @@ BOOL wasPathFollowed = false;
  */
 - (IBAction)pressedNext:(id)sender {
     
+    if (!pressedNextLock) {
+    
+        pressedNextLock = true;
+    
     [[ServerCommunicationController sharedInstance] logPressNextInManipulationActivity:manipulationContext];
     
 //    NSString *preAudio = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(preaudio)"]];
@@ -4252,6 +4258,11 @@ BOOL wasPathFollowed = false;
             //Play noise if not all steps have been completed
             [self playErrorNoise];
         }
+    }
+    }
+    else
+    {
+        pressedNextLock = false;
     }
 }
 
