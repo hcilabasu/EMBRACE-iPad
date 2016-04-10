@@ -397,7 +397,7 @@ BOOL wasPathFollowed = false;
 - (void)drawArea:(NSString *)areaName :(NSString *)chapter :(NSString *)pageId {
     if ([chapterTitle isEqualToString:chapter] && [currentPageId isEqualToString:pageId]) {
         //Get area that hotspot should be inside
-        Area *area = [model getAreaWithId:areaName];
+        Area *area = [model getArea:areaName : pageId];
         
         //Apply path to shapelayer
         CAShapeLayer *path = [CAShapeLayer layer];
@@ -1042,7 +1042,7 @@ BOOL wasPathFollowed = false;
  * Sends all the points in an area or path to the the JS to load them in memory
  */
 - (void)buildPath:(NSString *)areaId {
-    Area *area = [model getAreaWithId:areaId];
+    Area *area = [model getArea:areaId: currentPageId];
     
     NSString *createPath = [NSString stringWithFormat:@"createPath('%@')", areaId];
     [bookView stringByEvaluatingJavaScriptFromString:createPath];
@@ -2807,7 +2807,7 @@ BOOL wasPathFollowed = false;
             CGPoint hotspotLocation = [self getHotspotLocation:hotspot];
             
             //Get area that hotspot should be inside
-            Area* area = [model getAreaWithId:areaId];
+            Area* area = [model getArea:areaId:currentPageId];
             
             if ([area.aPath containsPoint:hotspotLocation]) {
                 return true;
@@ -2834,7 +2834,6 @@ BOOL wasPathFollowed = false;
             //Get information for check step type
             NSString *objectId = [currSolStep object1Id];
             NSString *action = [currSolStep action];
-            
             NSString *areaId = [currSolStep areaId];
             
             //Get hotspot location of correct subject
@@ -2842,7 +2841,7 @@ BOOL wasPathFollowed = false;
             CGPoint hotspotLocation = [self getHotspotLocation:hotspot];
             
             //Get area that hotspot should be inside
-            Area *area = [model getAreaWithId:areaId];
+            Area *area = [model getArea:areaId : currentPageId];
             
             if (([area.aPath containsPoint:hotspotLocation] && [area.aPath containsPoint:startLocation]) || [areaId isEqualToString:@"anywhere"]) {
                 return true;
@@ -2877,7 +2876,7 @@ BOOL wasPathFollowed = false;
             CGPoint hotspotLocation = [self getHotspotLocation:hotspot];
             
             //Get area that hotspot should be inside
-            Area *area = [model getAreaWithId:areaId];
+            Area *area = [model getArea:areaId : currentPageId];
             
             if ([area.aPath containsPoint:hotspotLocation]){
                 return true;
@@ -4259,9 +4258,6 @@ BOOL wasPathFollowed = false;
             [self playErrorNoise];
         }
     }
-    }
-    else
-    {
         pressedNextLock = false;
     }
 }
@@ -4815,7 +4811,7 @@ BOOL wasPathFollowed = false;
 }
 
 - (void)highlightObject:(NSString *)object :(double)delay {
-    if ([model getAreaWithId:object]) {
+    if ([model getArea:object:currentPageId]) {
         //Highlight the tapped object
         NSString *highlight = [NSString stringWithFormat:@"highlightArea('%@')", object];
         [bookView stringByEvaluatingJavaScriptFromString:highlight];

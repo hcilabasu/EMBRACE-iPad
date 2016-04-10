@@ -78,10 +78,10 @@
         <hotspot objId="maria_IM" action="getOff" role="object" x="100%" y="100%"/>
         <hotspot objId="skateboard_IM" action="getOff" role="subject" x="0%" y="50%"/>
         
-        <hotspot objId="car_IM" action="getWith" role="object" x="0%" y="50%"/>
-        <hotspot objId="skateboard_IM" action="getWith" role="subject" x="100%" y="50%"/>
+        <hotspot objId="car_IM" action="getWith" role="object" x="50%" y="50%"/>
+        <hotspot objId="road_IM" action="getWith" role="subject" x="50%" y="50%"/>
         
-        <hotspot objId="rocket_IM" action="getWith" role="object" x="0%" y="50%"/>
-        <hotspot objId="skateboard_IM" action="getWith" role="subject" x="100%" y="50%"/>
+        <hotspot objId="rocket_IM" action="getWith" role="object" x="50%" y="50%"/>
+        <hotspot objId="road_IM" action="getWith" role="subject" x="50%" y="50%"/>
     </hotspots>
 </metadata>
