@@ -54,8 +54,12 @@
         <hotspot objId="sofiaOnMancha_IM" action="sitOn" role="object" x="50%" y="50%"/>
         <hotspot objId="sofiaOnMancha_IM" action="sitOn" role="subject" x="50%" y="50%"/>
         
-        <hotspot objId="sofia_IM" action="standWith" role="object" x="100%" y="50%"/>
-        <hotspot objId="mancha_IM" action="standWith" role="subject" x="0%" y="50%"/>
+        <hotspot objId="sofia_IM" action="standWith" role="object" x="25%" y="50%"/>
+        <hotspot objId="mancha_IM" action="standWith" role="subject" x="80%" y="50%"/>
+        
+        <hotspot objId="sofiaOnMancha_IM" action="nextTo" role="object" x="70%" y="50%"/>
+        <hotspot objId="sofia_IM" action="nextTo" role="object" x="0%" y="50%"/>
+        <hotspot objId="post_IM" action="nextTo" role="subject" x="60%" y="50%"/>
        
         <hotspot objId="sofia_IM" action="hold" role="object" x="50%" y="50%"/>
         

@@ -920,6 +920,7 @@
 		1AE35F2C1CAA35DA0005213E /* lucasByBed.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AE35F2A1CAA35DA0005213E /* lucasByBed.png */; };
 		1AE35F2D1CAA35DA0005213E /* lucasInBed.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AE35F2B1CAA35DA0005213E /* lucasInBed.png */; };
 		1AEC241C1CB9CCD600803580 /* road.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AEC241B1CB9CCD600803580 /* road.png */; };
+		1AEC241E1CB9E32200803580 /* market_post.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AEC241D1CB9E32200803580 /* market_post.png */; };
 		1AF3815B1A40A4C600D967FD /* AssessmentActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF381591A40A4C600D967FD /* AssessmentActivityViewController.m */; };
 		1AF805491C28DDF400C96B05 /* kauai_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AF805481C28DDF400C96B05 /* kauai_right.png */; };
 		1AF8054B1C28DE9A00C96B05 /* lavaplume_greyplate_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AF8054A1C28DE9A00C96B05 /* lavaplume_greyplate_left.png */; };
@@ -5398,6 +5399,7 @@
 		1AE35F2A1CAA35DA0005213E /* lucasByBed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lucasByBed.png; sourceTree = "<group>"; };
 		1AE35F2B1CAA35DA0005213E /* lucasInBed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lucasInBed.png; sourceTree = "<group>"; };
 		1AEC241B1CB9CCD600803580 /* road.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = road.png; sourceTree = "<group>"; };
+		1AEC241D1CB9E32200803580 /* market_post.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = market_post.png; sourceTree = "<group>"; };
 		1AF381581A40A4C600D967FD /* AssessmentActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssessmentActivityViewController.h; sourceTree = "<group>"; };
 		1AF381591A40A4C600D967FD /* AssessmentActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssessmentActivityViewController.m; sourceTree = "<group>"; };
 		1AF3815A1A40A4C600D967FD /* AssessmentActivityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AssessmentActivityViewController.xib; sourceTree = "<group>"; };
@@ -9412,6 +9414,7 @@
 			isa = PBXGroup;
 			children = (
 				5CD1C12A1C3F2E6A00BE9047 /* bg_market.png */,
+				1AEC241D1CB9E32200803580 /* market_post.png */,
 				1A2425571C6C220E002CBB13 /* mom_with_flowers.png */,
 				1A2425581C6C220E002CBB13 /* mom_with_groceries.png */,
 				1A2425551C6BF194002CBB13 /* bg_market_entrance_long.png */,
@@ -16240,6 +16243,7 @@
 				5DBC02EE1C509B880030072B /* (null) in Resources */,
 				5CB710401C6C0B650062AD61 /* HowDoObjectsMoveS4S.mp3 in Resources */,
 				5DDF53AB1C9CFC7C004AB6D1 /* TheNaughtyMonkeyS4S.mp3 in Resources */,
+				1AEC241E1CB9E32200803580 /* market_post.png in Resources */,
 				1A6320801C0E4D3B00251CB3 /* Hotspots-MetaData.xml in Resources */,
 				1A63236B1C0E4D3B00251CB3 /* physics.epub in Resources */,
 				5C72E6051C72A46F00CE4877 /* TheHaidaPlankHouseQ1A4.mp3 in Resources */,
