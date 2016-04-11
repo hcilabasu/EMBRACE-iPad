@@ -22,13 +22,41 @@
  * Loads a particular set of activity sequences from file for the current user
  */
 - (BOOL)loadSequences:(NSString *)participantCode {
-    //TEST: Match test ID to MCD participant code
-    participantCode = [[participantCode uppercaseString] stringByReplacingOccurrencesOfString:@"TEST" withString:@"MCD"];
+    participantCode = [participantCode uppercaseString];
+    
+    //Using EEG sequence
+    if ([participantCode rangeOfString:@"EEG"].location != NSNotFound) {
+        //Get number at end of participant code and match it to appropriate sequence
+        NSInteger sequenceNumber = [[participantCode componentsSeparatedByString:@"EEG"][1] integerValue] % 4;
+        
+        switch (sequenceNumber) {
+            case 1:
+                participantCode = @"EEG01";
+                break;
+            case 2:
+                participantCode = @"EEG02";
+                break;
+            case 3:
+                participantCode = @"EEG03";
+                break;
+            case 4:
+                participantCode = @"EEG04";
+                break;
+                
+            default:
+                break;
+        }
+    }
+    //Using MCD sequence
+    else {
+        //TEST: Match test ID to MCD participant code
+        participantCode = [participantCode stringByReplacingOccurrencesOfString:@"TEST" withString:@"MCD"];
+    }
     
     NSBundle *mainBundle = [NSBundle mainBundle];
     
     //Get path to correct sequences file based on participant code
-    NSString *sequencesFilePath = [mainBundle pathForResource:[NSString stringWithFormat:@"sequences_%@", [participantCode uppercaseString]] ofType:@"xml"];
+    NSString *sequencesFilePath = [mainBundle pathForResource:[NSString stringWithFormat:@"sequences_%@", participantCode] ofType:@"xml"];
     
     //Try to load sequences data
     NSData *sequencesData = [[NSMutableData alloc] initWithContentsOfFile:sequencesFilePath];

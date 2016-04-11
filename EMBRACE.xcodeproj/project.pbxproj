@@ -23,6 +23,10 @@
 		033FC8691C6C538800CF3850 /* sequences_MCD08.xml in Resources */ = {isa = PBXBuildFile; fileRef = 033FC85F1C6C538800CF3850 /* sequences_MCD08.xml */; };
 		033FC86A1C6C538800CF3850 /* sequences_MCD09.xml in Resources */ = {isa = PBXBuildFile; fileRef = 033FC8601C6C538800CF3850 /* sequences_MCD09.xml */; };
 		033FC86B1C6C538800CF3850 /* sequences_MCD10.xml in Resources */ = {isa = PBXBuildFile; fileRef = 033FC8611C6C538800CF3850 /* sequences_MCD10.xml */; };
+		037E97A91CBC4C0400F9F5AC /* sequences_EEG01.xml in Resources */ = {isa = PBXBuildFile; fileRef = 037E97A51CBC4C0400F9F5AC /* sequences_EEG01.xml */; };
+		037E97AA1CBC4C0400F9F5AC /* sequences_EEG02.xml in Resources */ = {isa = PBXBuildFile; fileRef = 037E97A61CBC4C0400F9F5AC /* sequences_EEG02.xml */; };
+		037E97AB1CBC4C0400F9F5AC /* sequences_EEG03.xml in Resources */ = {isa = PBXBuildFile; fileRef = 037E97A71CBC4C0400F9F5AC /* sequences_EEG03.xml */; };
+		037E97AC1CBC4C0400F9F5AC /* sequences_EEG04.xml in Resources */ = {isa = PBXBuildFile; fileRef = 037E97A81CBC4C0400F9F5AC /* sequences_EEG04.xml */; };
 		038BECDC1C88C33F00ECFE28 /* Context.m in Sources */ = {isa = PBXBuildFile; fileRef = 038BECDB1C88C33F00ECFE28 /* Context.m */; };
 		038BECDF1C88C79600ECFE28 /* ManipulationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 038BECDE1C88C79600ECFE28 /* ManipulationContext.m */; };
 		038BECE21C88CC6000ECFE28 /* AssessmentContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 038BECE11C88CC6000ECFE28 /* AssessmentContext.m */; };
@@ -4487,6 +4491,10 @@
 		033FC85F1C6C538800CF3850 /* sequences_MCD08.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_MCD08.xml; sourceTree = "<group>"; };
 		033FC8601C6C538800CF3850 /* sequences_MCD09.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_MCD09.xml; sourceTree = "<group>"; };
 		033FC8611C6C538800CF3850 /* sequences_MCD10.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_MCD10.xml; sourceTree = "<group>"; };
+		037E97A51CBC4C0400F9F5AC /* sequences_EEG01.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_EEG01.xml; sourceTree = "<group>"; };
+		037E97A61CBC4C0400F9F5AC /* sequences_EEG02.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_EEG02.xml; sourceTree = "<group>"; };
+		037E97A71CBC4C0400F9F5AC /* sequences_EEG03.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_EEG03.xml; sourceTree = "<group>"; };
+		037E97A81CBC4C0400F9F5AC /* sequences_EEG04.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_EEG04.xml; sourceTree = "<group>"; };
 		038BECDA1C88C33F00ECFE28 /* Context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Context.h; sourceTree = "<group>"; };
 		038BECDB1C88C33F00ECFE28 /* Context.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Context.m; sourceTree = "<group>"; };
 		038BECDD1C88C79600ECFE28 /* ManipulationContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManipulationContext.h; sourceTree = "<group>"; };
@@ -8994,6 +9002,16 @@
 		033FC8571C6C538800CF3850 /* sequences */ = {
 			isa = PBXGroup;
 			children = (
+				037E97AF1CBC4C2B00F9F5AC /* EEG */,
+				037E97AE1CBC4C2400F9F5AC /* MCD */,
+			);
+			name = sequences;
+			path = Sequences;
+			sourceTree = "<group>";
+		};
+		037E97AE1CBC4C2400F9F5AC /* MCD */ = {
+			isa = PBXGroup;
+			children = (
 				033FC8581C6C538800CF3850 /* sequences_MCD01.xml */,
 				033FC8591C6C538800CF3850 /* sequences_MCD02.xml */,
 				033FC85A1C6C538800CF3850 /* sequences_MCD03.xml */,
@@ -9005,8 +9023,18 @@
 				033FC8601C6C538800CF3850 /* sequences_MCD09.xml */,
 				033FC8611C6C538800CF3850 /* sequences_MCD10.xml */,
 			);
-			name = sequences;
-			path = Sequences;
+			name = MCD;
+			sourceTree = "<group>";
+		};
+		037E97AF1CBC4C2B00F9F5AC /* EEG */ = {
+			isa = PBXGroup;
+			children = (
+				037E97A51CBC4C0400F9F5AC /* sequences_EEG01.xml */,
+				037E97A61CBC4C0400F9F5AC /* sequences_EEG02.xml */,
+				037E97A71CBC4C0400F9F5AC /* sequences_EEG03.xml */,
+				037E97A81CBC4C0400F9F5AC /* sequences_EEG04.xml */,
+			);
+			name = EEG;
 			sourceTree = "<group>";
 		};
 		038BECE31C89012200ECFE28 /* Log Context */ = {
@@ -15140,6 +15168,7 @@
 				5CB710211C6C032B0062AD61 /* TheNavajoHoganS9S.mp3 in Resources */,
 				5C0EDA4D1C753BCD00003B5A /* WhyWeBreatheQ4A2S.mp3 in Resources */,
 				5CB711601C6C46DF0062AD61 /* TheNavajoHoganQ1S.mp3 in Resources */,
+				037E97A91CBC4C0400F9F5AC /* sequences_EEG01.xml in Resources */,
 				5C0421A61C618C2B001BBE9D /* TheLuckyStoneQ1A4S.mp3 in Resources */,
 				1A6322961C0E4D3B00251CB3 /* cribf.png in Resources */,
 				1A6323441C0E4D3B00251CB3 /* Story1-How-do-Objects-Move-Intro-E.xhtml in Resources */,
@@ -16207,6 +16236,7 @@
 				5CBA9D531CAB7E7E008DEF04 /* PetsE.mp3 in Resources */,
 				5C28DD0C1C2BA66E005ACD07 /* Story4-The-Algonquian-Wigwam-PM-3.xhtml in Resources */,
 				5CAE95E01C921DCD00702DB4 /* EvergladesS.mp3 in Resources */,
+				037E97AB1CBC4C0400F9F5AC /* sequences_EEG03.xml in Resources */,
 				5D68211E1C480A3F001F5CFD /* Story1-Introduction-Intro-S.xhtml in Resources */,
 				5C9C0A581C573AAA00702FCD /* CCE1_11.m4a in Resources */,
 				5C04201F1C614653001BBE9D /* TheLopezFamilyS5S.mp3 in Resources */,
@@ -17615,6 +17645,7 @@
 				5CCD8E7A1C73E73200D2EC2B /* TheMovingEarthQ7A4S.mp3 in Resources */,
 				5CB710951C6C1AD80062AD61 /* TheMovingEarthS4S.mp3 in Resources */,
 				5D9E34271C590E9500636150 /* MoreIsMissingQ8A3.mp3 in Resources */,
+				037E97AC1CBC4C0400F9F5AC /* sequences_EEG04.xml in Resources */,
 				5C0ED9121C75334200003B5A /* ShoppingattheMarketQ7A4.mp3 in Resources */,
 				1A6321121C0E4D3B00251CB3 /* sofia_spoon_down.png in Resources */,
 				5CBA9D591CAB7E7E008DEF04 /* ShinyE.mp3 in Resources */,
@@ -19312,6 +19343,7 @@
 				5C72E5141C727E2000CE4877 /* TheNavajoHoganQ1A4.mp3 in Resources */,
 				1A63204F1C0E4D3B00251CB3 /* Story2-Getting-Ready-Title.xhtml in Resources */,
 				5C62A9471C853C7400F28BEB /* Flames_def_S.mp3 in Resources */,
+				037E97AA1CBC4C0400F9F5AC /* sequences_EEG02.xml in Resources */,
 				5C9C0AC61C573AAA00702FCD /* towardS.m4a in Resources */,
 				5CBA9D4B1CAB7E7E008DEF04 /* KitchenE.mp3 in Resources */,
 				C30D02381BABBFD500DF53F1 /* bestFarm.epub in Resources */,
