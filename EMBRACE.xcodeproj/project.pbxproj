@@ -907,6 +907,7 @@
 		1A9CF8431C31C3A00000C135 /* island_Kauai.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A9CF8421C31C3A00000C135 /* island_Kauai.png */; };
 		1A9CF8451C31C7310000C135 /* native.epub in Resources */ = {isa = PBXBuildFile; fileRef = 1A9CF8441C31C7310000C135 /* native.epub */; };
 		1AB028FC1ACF0890006CC916 /* AuthoringModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB028FB1ACF0890006CC916 /* AuthoringModeViewController.m */; };
+		1ABDDCFE1CBDAAD100EA4DF2 /* island_lava_Oahu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABDDCFD1CBDAAD100EA4DF2 /* island_lava_Oahu.png */; };
 		1AC450771CAC8243004B7810 /* pigRight_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AC450761CAC8243004B7810 /* pigRight_large.png */; };
 		1AC7A38F1C59259C003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AC7A38E1C59259C003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml */; };
 		1AC7A3911C592847003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AC7A3901C592847003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml */; };
@@ -5383,6 +5384,7 @@
 		1AB028FA1ACF0890006CC916 /* AuthoringModeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthoringModeViewController.h; sourceTree = "<group>"; };
 		1AB028FB1ACF0890006CC916 /* AuthoringModeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthoringModeViewController.m; sourceTree = "<group>"; };
 		1ABD84AD1A49F54B0043A685 /* PlayAudioIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayAudioIcon.png; sourceTree = "<group>"; };
+		1ABDDCFD1CBDAAD100EA4DF2 /* island_lava_Oahu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = island_lava_Oahu.png; sourceTree = "<group>"; };
 		1AC450761CAC8243004B7810 /* pigRight_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pigRight_large.png; sourceTree = "<group>"; };
 		1AC7A38E1C59259C003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesSpanish-MetaData.xml"; sourceTree = "<group>"; };
 		1AC7A3901C592847003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesSpanish-MetaData.xml"; sourceTree = "<group>"; };
@@ -9863,6 +9865,7 @@
 				1A631E9B1C0E4D3A00251CB3 /* island_Hawaii.png */,
 				1A9CF8421C31C3A00000C135 /* island_Kauai.png */,
 				1A631E9D1C0E4D3A00251CB3 /* island_lava_Hawaii.png */,
+				1ABDDCFD1CBDAAD100EA4DF2 /* island_lava_Oahu.png */,
 				1A631E9E1C0E4D3A00251CB3 /* island_Molokai.png */,
 				1A631E9F1C0E4D3A00251CB3 /* island_Oahu.png */,
 				1AF805461C28DDD300C96B05 /* kauai_left.png */,
@@ -18198,6 +18201,7 @@
 				1A6321381C0E4D3B00251CB3 /* Story4-Shopping-at-the-Market-Intro-E.xhtml in Resources */,
 				5C137D0A1C8A79CC0023901C /* SophisticatedE.mp3 in Resources */,
 				1A6320771C0E4D3B00251CB3 /* Waypoints-MetaData.xml in Resources */,
+				1ABDDCFE1CBDAAD100EA4DF2 /* island_lava_Oahu.png in Resources */,
 				5C72E7E91C72BF1000CE4877 /* NewtonsSecondLawAccelerationQ5A2.mp3 in Resources */,
 				5C9F28B21C5C6B2E008ACE48 /* TheLopezFamilyQ1A2S.mp3 in Resources */,
 				5CF792CE1C7694A900216337 /* TheContestQ3A3S.mp3 in Resources */,

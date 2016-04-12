@@ -25,11 +25,11 @@
                 </step>
             </sentence>
         </story>
-        <story title="Volcanoes and the Making of Hawaii" activity_id="story4-PM-4">
-            <sentence number="14">
+        <story title="Volcanoes and the Making of Hawaii" activity_id="story4-PM-5">
+            <sentence number="15">
                 <step number="1">
-                    <group obj1Id="hawaii_labelIM" action="getIn" obj2Id="plume_greyplate_hawaiiIM"/>
-                    <group obj1Id="oahu_labelIM" action="getIn" obj2Id="plume_greyplate_oahuIM"/>
+                    <group obj1Id="hawaii_lavaIM" action="getIn" obj2Id="hawaii_lavaIM"/>
+                    <group obj1Id="oahu_lavaIM" action="getIn" obj2Id="oahu_lavaIM"/>
                 </step>
             </sentence>
         </story>

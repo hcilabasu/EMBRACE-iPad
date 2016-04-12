@@ -78,6 +78,11 @@
         <hotspot objId="plume_greyplate_oahuIM" action="getIn" role="subject" x="50%" y="3%"/>
         <hotspot objId="plume_greyplate_hawaiiIM" action="getIn" role="subject" x="50%" y="3%"/>
         
+        <hotspot objId="oahu_lavaIM" action="getIn" role="object" x="50%" y="50%"/>
+        <hotspot objId="hawaii_lavaIM" action="getIn" role="object" x="50%" y="50%"/>
+        <hotspot objId="oahu_lavaIM" action="getIn" role="subject" x="50%" y="50%"/>
+        <hotspot objId="hawaii_lavaIM" action="getIn" role="subject" x="50%" y="50%"/>
+        
         <hotspot objId="air_blueIM" action="getWith" role="object" x="50%" y="50%"/>
         <hotspot objId="rainIM" action="getWith" role="subject" x="50%" y="50%"/>
         <hotspot objId="houseIM" action="getWith" role="subject" x="50%" y="50%"/>
