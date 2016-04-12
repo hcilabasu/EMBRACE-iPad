@@ -1077,7 +1077,6 @@
 		5C04214E1C618C2B001BBE9D /* BabyBrotherQ6.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C0420671C618C2B001BBE9D /* BabyBrotherQ6.mp3 */; };
 		5C04214F1C618C2B001BBE9D /* BabyBrotherQ6A1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C0420681C618C2B001BBE9D /* BabyBrotherQ6A1.mp3 */; };
 		5C0421501C618C2B001BBE9D /* BabyBrotherQ6A2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C0420691C618C2B001BBE9D /* BabyBrotherQ6A2.mp3 */; };
-		5C0421511C618C2B001BBE9D /* BabyBrotherQ6A3.MP3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C04206A1C618C2B001BBE9D /* BabyBrotherQ6A3.MP3 */; };
 		5C0421521C618C2B001BBE9D /* BabyBrotherQ6A4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C04206B1C618C2B001BBE9D /* BabyBrotherQ6A4.mp3 */; };
 		5C0421531C618C2B001BBE9D /* BabyBrotherQ7.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C04206C1C618C2B001BBE9D /* BabyBrotherQ7.mp3 */; };
 		5C0421541C618C2B001BBE9D /* BabyBrotherQ7A1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C04206D1C618C2B001BBE9D /* BabyBrotherQ7A1.mp3 */; };
@@ -5613,7 +5612,6 @@
 		5C0420671C618C2B001BBE9D /* BabyBrotherQ6.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BabyBrotherQ6.mp3; sourceTree = "<group>"; };
 		5C0420681C618C2B001BBE9D /* BabyBrotherQ6A1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BabyBrotherQ6A1.mp3; sourceTree = "<group>"; };
 		5C0420691C618C2B001BBE9D /* BabyBrotherQ6A2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BabyBrotherQ6A2.mp3; sourceTree = "<group>"; };
-		5C04206A1C618C2B001BBE9D /* BabyBrotherQ6A3.MP3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BabyBrotherQ6A3.MP3; sourceTree = "<group>"; };
 		5C04206B1C618C2B001BBE9D /* BabyBrotherQ6A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BabyBrotherQ6A4.mp3; sourceTree = "<group>"; };
 		5C04206C1C618C2B001BBE9D /* BabyBrotherQ7.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BabyBrotherQ7.mp3; sourceTree = "<group>"; };
 		5C04206D1C618C2B001BBE9D /* BabyBrotherQ7A1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BabyBrotherQ7A1.mp3; sourceTree = "<group>"; };
@@ -10783,7 +10781,6 @@
 				5C0420671C618C2B001BBE9D /* BabyBrotherQ6.mp3 */,
 				5C0420681C618C2B001BBE9D /* BabyBrotherQ6A1.mp3 */,
 				5C0420691C618C2B001BBE9D /* BabyBrotherQ6A2.mp3 */,
-				5C04206A1C618C2B001BBE9D /* BabyBrotherQ6A3.MP3 */,
 				5C04206B1C618C2B001BBE9D /* BabyBrotherQ6A4.mp3 */,
 				5C04206C1C618C2B001BBE9D /* BabyBrotherQ7.mp3 */,
 				5C04206D1C618C2B001BBE9D /* BabyBrotherQ7A1.mp3 */,
@@ -18803,7 +18800,6 @@
 				5C5D09711CA9F6DD00B7C8D9 /* GrantedE.mp3 in Resources */,
 				5C9C07E21C57385A00702FCD /* BFEE_18A.m4a in Resources */,
 				5C0421461C618C2B001BBE9D /* BabyBrotherQ4A2.mp3 in Resources */,
-				5C0421511C618C2B001BBE9D /* BabyBrotherQ6A3.MP3 in Resources */,
 				5C9B8B431CB5EFC800420053 /* HoppedE.mp3 in Resources */,
 				5CB7114D1C6C46DF0062AD61 /* NativeIntroQ1A1S.mp3 in Resources */,
 				5C04204C1C616BEA001BBE9D /* TheLuckyStoneS9S.mp3 in Resources */,
