@@ -1080,7 +1080,6 @@
 		5C04214E1C618C2B001BBE9D /* BabyBrotherQ6.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C0420671C618C2B001BBE9D /* BabyBrotherQ6.mp3 */; };
 		5C04214F1C618C2B001BBE9D /* BabyBrotherQ6A1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C0420681C618C2B001BBE9D /* BabyBrotherQ6A1.mp3 */; };
 		5C0421501C618C2B001BBE9D /* BabyBrotherQ6A2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C0420691C618C2B001BBE9D /* BabyBrotherQ6A2.mp3 */; };
-		5C0421511C618C2B001BBE9D /* BabyBrotherQ6A3.MP3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C04206A1C618C2B001BBE9D /* BabyBrotherQ6A3.MP3 */; };
 		5C0421521C618C2B001BBE9D /* BabyBrotherQ6A4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C04206B1C618C2B001BBE9D /* BabyBrotherQ6A4.mp3 */; };
 		5C0421531C618C2B001BBE9D /* BabyBrotherQ7.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C04206C1C618C2B001BBE9D /* BabyBrotherQ7.mp3 */; };
 		5C0421541C618C2B001BBE9D /* BabyBrotherQ7A1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C04206D1C618C2B001BBE9D /* BabyBrotherQ7A1.mp3 */; };
@@ -3678,6 +3677,7 @@
 		5CC684671C7D2ABF0069A883 /* Story1-Introduction-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5CC684661C7D2ABF0069A883 /* Story1-Introduction-Intro-S.xhtml */; };
 		5CC684691C7D31F90069A883 /* content.opf in Resources */ = {isa = PBXBuildFile; fileRef = 5CC684681C7D31F90069A883 /* content.opf */; };
 		5CC854E719FAF37F00910237 /* ConditionSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC854E619FAF37F00910237 /* ConditionSetup.m */; };
+		5CC9BB051CBDB120006ED32E /* BabyBrotherQ6A3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CC9BB041CBDB120006ED32E /* BabyBrotherQ6A3.mp3 */; };
 		5CCD8E111C73C1FB00D2EC2B /* HowdoObjectsMoveQ2A1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CCD8E101C73C1FB00D2EC2B /* HowdoObjectsMoveQ2A1.mp3 */; };
 		5CCD8E131C73C45400D2EC2B /* NewtonsfirstlawQ2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CCD8E121C73C45400D2EC2B /* NewtonsfirstlawQ2.mp3 */; };
 		5CCD8E151C73C45F00D2EC2B /* NewtonsfirstlawQ1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CCD8E141C73C45F00D2EC2B /* NewtonsfirstlawQ1.mp3 */; };
@@ -5619,7 +5619,6 @@
 		5C0420671C618C2B001BBE9D /* BabyBrotherQ6.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BabyBrotherQ6.mp3; sourceTree = "<group>"; };
 		5C0420681C618C2B001BBE9D /* BabyBrotherQ6A1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BabyBrotherQ6A1.mp3; sourceTree = "<group>"; };
 		5C0420691C618C2B001BBE9D /* BabyBrotherQ6A2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BabyBrotherQ6A2.mp3; sourceTree = "<group>"; };
-		5C04206A1C618C2B001BBE9D /* BabyBrotherQ6A3.MP3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BabyBrotherQ6A3.MP3; sourceTree = "<group>"; };
 		5C04206B1C618C2B001BBE9D /* BabyBrotherQ6A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BabyBrotherQ6A4.mp3; sourceTree = "<group>"; };
 		5C04206C1C618C2B001BBE9D /* BabyBrotherQ7.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BabyBrotherQ7.mp3; sourceTree = "<group>"; };
 		5C04206D1C618C2B001BBE9D /* BabyBrotherQ7A1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BabyBrotherQ7A1.mp3; sourceTree = "<group>"; };
@@ -8226,6 +8225,7 @@
 		5CC684681C7D31F90069A883 /* content.opf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = content.opf; sourceTree = "<group>"; };
 		5CC854E519FAF37F00910237 /* ConditionSetup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConditionSetup.h; sourceTree = "<group>"; };
 		5CC854E619FAF37F00910237 /* ConditionSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConditionSetup.m; sourceTree = "<group>"; };
+		5CC9BB041CBDB120006ED32E /* BabyBrotherQ6A3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BabyBrotherQ6A3.mp3; sourceTree = "<group>"; };
 		5CCAE22C1B4C42C600445020 /* disasters.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = disasters.epub; path = EPUBs/disasters/disasters.epub; sourceTree = "<group>"; };
 		5CCD8E101C73C1FB00D2EC2B /* HowdoObjectsMoveQ2A1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = HowdoObjectsMoveQ2A1.mp3; sourceTree = "<group>"; };
 		5CCD8E121C73C45400D2EC2B /* NewtonsfirstlawQ2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NewtonsfirstlawQ2.mp3; sourceTree = "<group>"; };
@@ -10792,7 +10792,7 @@
 				5C0420671C618C2B001BBE9D /* BabyBrotherQ6.mp3 */,
 				5C0420681C618C2B001BBE9D /* BabyBrotherQ6A1.mp3 */,
 				5C0420691C618C2B001BBE9D /* BabyBrotherQ6A2.mp3 */,
-				5C04206A1C618C2B001BBE9D /* BabyBrotherQ6A3.MP3 */,
+				5CC9BB041CBDB120006ED32E /* BabyBrotherQ6A3.mp3 */,
 				5C04206B1C618C2B001BBE9D /* BabyBrotherQ6A4.mp3 */,
 				5C04206C1C618C2B001BBE9D /* BabyBrotherQ7.mp3 */,
 				5C04206D1C618C2B001BBE9D /* BabyBrotherQ7A1.mp3 */,
@@ -15207,6 +15207,7 @@
 				5C72E83B1C72BF1000CE4877 /* HowdoObjectsMoveQ2A1S.mp3 in Resources */,
 				5CCD8E151C73C45F00D2EC2B /* NewtonsfirstlawQ1.mp3 in Resources */,
 				5D6821241C480D27001F5CFD /* Story4-The-Algonquian-Wigwam-Intro-S.xhtml in Resources */,
+				5CC9BB051CBDB120006ED32E /* BabyBrotherQ6A3.mp3 in Resources */,
 				5C0ED9071C75334200003B5A /* ShoppingattheMarketQ5A3.mp3 in Resources */,
 				5C9C0AC01C573AAA00702FCD /* squeezeS.m4a in Resources */,
 				5C28DCF01C2BA66E005ACD07 /* Solutions-MetaData.xml in Resources */,
@@ -18815,7 +18816,6 @@
 				5C5D09711CA9F6DD00B7C8D9 /* GrantedE.mp3 in Resources */,
 				5C9C07E21C57385A00702FCD /* BFEE_18A.m4a in Resources */,
 				5C0421461C618C2B001BBE9D /* BabyBrotherQ4A2.mp3 in Resources */,
-				5C0421511C618C2B001BBE9D /* BabyBrotherQ6A3.MP3 in Resources */,
 				5C9B8B431CB5EFC800420053 /* HoppedE.mp3 in Resources */,
 				5CB7114D1C6C46DF0062AD61 /* NativeIntroQ1A1S.mp3 in Resources */,
 				5C04204C1C616BEA001BBE9D /* TheLuckyStoneS9S.mp3 in Resources */,
