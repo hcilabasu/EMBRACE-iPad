@@ -43,6 +43,9 @@
         <relationship obj1Id="oahu_labelIM" can="getIn" action="group" obj2Id="plume_greyplate_oahuIM"/>
         <relationship obj1Id="hawaii_labelIM" can="getIn" action="group" obj2Id="plume_greyplate_hawaiiIM"/>
         
+        <relationship obj1Id="oahu_lavaIM" can="getIn" action="group" obj2Id="oahu_lavaIM"/>
+        <relationship obj1Id="hawaii_lavaIM" can="getIn" action="group" obj2Id="hawaii_lavaIM"/>
+        
         <relationship obj1Id="air_blueIM" can="getWith" action="group" obj2Id="rainIM"/>
         <relationship obj1Id="air_blueIM" can="getWith" action="group" obj2Id="houseIM"/>
         

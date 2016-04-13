@@ -49,7 +49,7 @@
         <relationship obj1Id="maria_IM" can="getOn" action="group" obj2Id="paddle_IM"/>
         <relationship obj1Id="maria_IM" can="getOff" action="group" obj2Id="skateboard_IM"/>
         
-        <relationship obj1Id="car_IM" can="getWith" action="group" obj2Id="skateboard_IM"/>
-        <relationship obj1Id="rocket_IM" can="getWith" action="group" obj2Id="skateboard_IM"/>
+        <relationship obj1Id="car_IM" can="getWith" action="group" obj2Id="road_IM"/>
+        <relationship obj1Id="rocket_IM" can="getWith" action="group" obj2Id="road_IM"/>
     </relationships>
 </metadata>

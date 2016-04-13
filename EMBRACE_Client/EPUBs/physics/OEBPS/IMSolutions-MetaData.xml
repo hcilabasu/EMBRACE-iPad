@@ -60,8 +60,8 @@
         <story title="The Three Laws Work Together" activity_id="story7-PM-2">
             <sentence number="8">
                 <step number="1">
-                    <group obj1Id="car_IM" action="getWith" obj2Id="skateboard_IM"/>
-                    <group obj1Id="rocket_IM" action="getWith" obj2Id="skateboard_IM"/>
+                    <group obj1Id="car_IM" action="getWith" obj2Id="road_IM"/>
+                    <group obj1Id="rocket_IM" action="getWith" obj2Id="road_IM"/>
                 </step>
             </sentence>
         </story>

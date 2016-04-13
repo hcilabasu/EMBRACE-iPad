@@ -582,6 +582,7 @@
     
     NSArray *areas = [areaElement elementsForName:@"area"];
     bool isFirstPoint = true;
+    bool isSecondPoint = false;
     
     for (GDataXMLElement *area in areas) {
         UIBezierPath *aPath = [UIBezierPath bezierPath];
@@ -589,9 +590,13 @@
         NSString *areaId = [[area attributeForName:@"areaId"] stringValue];
         NSArray *points = [area elementsForName:@"point"];
         isFirstPoint = true;
+        isSecondPoint = false;
         NSString *pageId = [[area attributeForName:@"pageId"] stringValue];
         
         int pointID = 0;
+        
+        CGPoint firstPoint;
+        CGPoint secondPoint;
         
         for (GDataXMLElement *point in points) {
             NSString *pointX = [[point attributeForName:@"x"] stringValue];
@@ -607,12 +612,22 @@
             if (isFirstPoint) {
                 // Set the starting point of the shape
                 [aPath moveToPoint:CGPointMake(locationX, locationY)];
+                firstPoint = CGPointMake(locationX, locationY);
                 isFirstPoint = false;
+                isSecondPoint = true;
+            }
+            else if (isSecondPoint) {
+                secondPoint = CGPointMake(locationX, locationY);
+                isSecondPoint = false;
+                [aPath addLineToPoint:CGPointMake(locationX, locationY)];
             }
             else {
                 [aPath addLineToPoint:CGPointMake(locationX, locationY)];
             }
         }
+        
+        [aPath addLineToPoint:firstPoint];
+        [aPath addLineToPoint:secondPoint];
         
         if ([areaId rangeOfString:@"Path"].location == NSNotFound) {
             [aPath closePath];

@@ -49,14 +49,6 @@
                 </step>
             </sentence>
         </story>
-        <story title="The Baby's Rattle is Gone, Too!" activity_id="story5-PM-1">
-            <sentence number="5">
-                <step number="1">
-                    <group obj1Id="baby_IM" action="inLap" obj2Id="lola_IM"/>
-                    <group obj1Id="baby_IM" action="onHead" obj2Id="lola_IM"/>
-                </step>
-            </sentence>
-        </story>
         <story title="More is Missing!" activity_id="story4-PM-2">
             <sentence number="5">
                 <step number="1">
@@ -71,11 +63,19 @@
                 </step>
             </sentence>
         </story>
-        <story title="The Baby's Rattle is Gone, Too!" activity_id="story5-PM-2">
-            <sentence number="8">
+        <story title="The Baby's Rattle is Gone, Too!" activity_id="story5-PM-1">
+            <sentence number="5">
                 <step number="1">
-                    <group obj1Id="dog_IM" action="visit" obj2Id="tree_IM"/>
-                    <group obj1Id="rabbit_IM" action="visit" obj2Id="tree_IM"/>
+                    <group obj1Id="baby_IM" action="inLap" obj2Id="lola_IM"/>
+                    <group obj1Id="baby_IM" action="onHead" obj2Id="lola_IM"/>
+                </step>
+            </sentence>
+        </story>
+        <story title="The Baby's Rattle is Gone, Too!" activity_id="story5-PM-2">
+            <sentence number="10">
+                <step number="1">
+                    <group obj1Id="rosa_IM" action="holding" obj2Id="baby_IM"/>
+                    <group obj1Id="rosa_IM" action="holding" obj2Id="lola_IM"/>
                 </step>
             </sentence>
         </story>

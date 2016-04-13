@@ -74,6 +74,10 @@
         <hotspot objId="lola_IM" action="inLap" role="object" x="50%" y="0%"/>
         <hotspot objId="lola_IM" action="onHead" role="object" x="50%" y="150%"/>
         
+        <hotspot objId="rosa_IM" action="holding" role="subject" x="50%" y="50%"/>
+        <hotspot objId="lola_IM" action="holding" role="object" x="140%" y="180%"/>
+        <hotspot objId="baby_IM" action="holding" role="object" x="120%" y="120%"/>
+        
         <hotspot objId="cribdoor_IM" action="closeDoor" role="object" x="50%" y="50%"/>
         <hotspot objId="cribclosed_IM" action="closeDoor" role="subject" x="50%" y="50%"/>
         <hotspot objId="cribdoor_IM" action="closeDoor" role="subject" x="50%" y="50%"/>

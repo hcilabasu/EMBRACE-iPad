@@ -405,4 +405,21 @@
     return nil;
 }
 
+/*
+ * Returns the area with the specified page id and area id
+ */
+- (Area*) getArea: (NSString*)aId : (NSString*)pId
+{
+    for (Area* area in areas)
+    {
+        if ([[area areaId] isEqualToString:aId] &&
+           ([[area pageId] isEqualToString:pId] || [[area pageId] isEqualToString:@"All_Chapters"]))
+        {
+            return area;
+        }
+    }
+    
+    return nil;
+}
+
 @end

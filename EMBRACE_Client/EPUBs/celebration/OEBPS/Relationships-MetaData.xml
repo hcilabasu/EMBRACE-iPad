@@ -51,6 +51,9 @@
      
         <relationship obj1Id="sofia_IM" can="standWith" action="group" obj2Id="mancha_IM"/>
         <relationship obj1Id="sofiaOnMancha_IM" can="sitOn" action="group" obj2Id="sofiaOnMancha_IM"/>
+        
+        <relationship obj1Id="sofia_IM" can="nextTo" action="group" obj2Id="post_IM"/>
+        <relationship obj1Id="sofiaOnMancha_IM" can="nextTo" action="group" obj2Id="post_IM"/>
      
         <relationship obj1Id="sofiaWithTote_IM" can="hold" action="group" obj2Id="tomatillos_IM"/>
         <relationship obj1Id="sofiaWithTote_IM" can="hold" action="group" obj2Id="milk_IM"/>
