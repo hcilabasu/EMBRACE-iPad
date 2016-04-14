@@ -84,7 +84,7 @@
         </mode>
     </sequence>
     <sequence bookTitle="How Objects Move">
-        <mode chapterTitle="How do Objects Move?" newInstructions="true">
+        <mode chapterTitle="How do Objects Move?" newInstructions="false">
             <reader>System</reader>
             <language>Spanish</language>
             <intervention>PM</intervention>
