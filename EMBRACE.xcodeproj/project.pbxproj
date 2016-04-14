@@ -34,6 +34,8 @@
 		1A03850A1C2B1F2500A973D8 /* cilia_outside.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0385081C2B1F2500A973D8 /* cilia_outside.png */; };
 		1A11B3C31C7D0ACF00525D34 /* sofia_on_horse2_flip.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A11B3C21C7D0ACF00525D34 /* sofia_on_horse2_flip.png */; };
 		1A1B5CBE1C27569500E56004 /* lava_ball_min.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A1B5CBD1C27569500E56004 /* lava_ball_min.png */; };
+		1A2063801CC0157E00EEF024 /* logpile_side.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A20637F1CC0157E00EEF024 /* logpile_side.png */; };
+		1A2063821CC01BB700EEF024 /* smallrocket_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A2063811CC01BB700EEF024 /* smallrocket_left.png */; };
 		1A23DA391C20A46200FE7C46 /* bloodcell_select_large_high_res_min.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A23DA381C20A46200FE7C46 /* bloodcell_select_large_high_res_min.png */; };
 		1A23DA3B1C20A4FC00FE7C46 /* O2_select large_high_res_min.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A23DA3A1C20A4FC00FE7C46 /* O2_select large_high_res_min.png */; };
 		1A24254E1C6A80BD002CBB13 /* juan_kick.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A24254B1C6A80BC002CBB13 /* juan_kick.png */; };
@@ -4507,6 +4509,8 @@
 		1A0385081C2B1F2500A973D8 /* cilia_outside.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cilia_outside.png; sourceTree = "<group>"; };
 		1A11B3C21C7D0ACF00525D34 /* sofia_on_horse2_flip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sofia_on_horse2_flip.png; sourceTree = "<group>"; };
 		1A1B5CBD1C27569500E56004 /* lava_ball_min.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lava_ball_min.png; sourceTree = "<group>"; };
+		1A20637F1CC0157E00EEF024 /* logpile_side.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logpile_side.png; sourceTree = "<group>"; };
+		1A2063811CC01BB700EEF024 /* smallrocket_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallrocket_left.png; sourceTree = "<group>"; };
 		1A23DA381C20A46200FE7C46 /* bloodcell_select_large_high_res_min.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bloodcell_select_large_high_res_min.png; sourceTree = "<group>"; };
 		1A23DA3A1C20A4FC00FE7C46 /* O2_select large_high_res_min.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "O2_select large_high_res_min.png"; sourceTree = "<group>"; };
 		1A24254B1C6A80BC002CBB13 /* juan_kick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = juan_kick.png; sourceTree = "<group>"; };
@@ -10261,6 +10265,7 @@
 				1A631FC21C0E4D3B00251CB3 /* skateboard_rotate.png */,
 				1A631FC31C0E4D3B00251CB3 /* skateboard_sara.png */,
 				1A631FC41C0E4D3B00251CB3 /* smallrocket.png */,
+				1A2063811CC01BB700EEF024 /* smallrocket_left.png */,
 				1A631FC51C0E4D3B00251CB3 /* smallrocket_rotate.png */,
 				1A631FC61C0E4D3B00251CB3 /* toycar.png */,
 				1A631FC71C0E4D3B00251CB3 /* wagon_withwood.png */,
@@ -12093,6 +12098,7 @@
 				5C28DBE31C2BA66E005ACD07 /* log_ch6.png */,
 				5C28DBE41C2BA66E005ACD07 /* log_flip.png */,
 				5C28DBE51C2BA66E005ACD07 /* log_side.png */,
+				1A20637F1CC0157E00EEF024 /* logpile_side.png */,
 				5C28DBE61C2BA66E005ACD07 /* loghouse.png */,
 				5C28DBE71C2BA66E005ACD07 /* man1.png */,
 				5C28DBE81C2BA66E005ACD07 /* man1_ch3.png */,
@@ -15179,6 +15185,7 @@
 				1A6321801C0E4D3B00251CB3 /* p2_no_cilia_circle.png in Resources */,
 				5D9E34681C590E9500636150 /* TheFamilyIsRattledQ5A3.mp3 in Resources */,
 				5C9C07ED1C57385A00702FCD /* BFEE_8A.m4a in Resources */,
+				1A2063801CC0157E00EEF024 /* logpile_side.png in Resources */,
 				5C72E7BF1C72BF1000CE4877 /* NewtonsLawofAccelerationonEarthQ3.mp3 in Resources */,
 				5C0ED9A01C753AD400003B5A /* CigaretteSmokeHurtsYourLungsQ1A4.mp3 in Resources */,
 				5C72E66C1C72A46F00CE4877 /* TheInuitIglooQ3A1.mp3 in Resources */,
@@ -17091,6 +17098,7 @@
 				5CB710851C6C1AD80062AD61 /* TheMovingEarthS10S.mp3 in Resources */,
 				5C72E6691C72A46F00CE4877 /* TheInuitIglooQ3A4.mp3 in Resources */,
 				5D9E34511C590E9500636150 /* TheFamilyIsRattledQ1.mp3 in Resources */,
+				1A2063821CC01BB700EEF024 /* smallrocket_left.png in Resources */,
 				5C62A92F1C85398900F28BEB /* Grind_def_S.mp3 in Resources */,
 				5C0ED5551C75080300003B5A /* KeyIngredientsQ1A2S.mp3 in Resources */,
 				5C9C0AAF1C573AAA00702FCD /* moleculesDEFS.m4a in Resources */,
