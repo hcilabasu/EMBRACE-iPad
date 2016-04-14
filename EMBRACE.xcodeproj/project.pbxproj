@@ -3256,7 +3256,7 @@
 		5C9D5FFB1C811959002EC986 /* Sophisticated_def_S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C9D5FE81C811959002EC986 /* Sophisticated_def_S.mp3 */; };
 		5C9D5FFC1C811959002EC986 /* Stilts_def_S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C9D5FE91C811959002EC986 /* Stilts_def_S.mp3 */; };
 		5C9D5FFD1C811959002EC986 /* Swamps_def_S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C9D5FEA1C811959002EC986 /* Swamps_def_S.mp3 */; };
-		5C9D5FFE1C811959002EC986 /* Totem Pole_def_S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C9D5FEB1C811959002EC986 /* Totem Pole_def_S.mp3 */; };
+		5C9D5FFE1C811959002EC986 /* Totem Poles_def_S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C9D5FEB1C811959002EC986 /* Totem Poles_def_S.mp3 */; };
 		5C9F287F1C5C1F2C008ACE48 /* Mosquito.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5C9F287E1C5C1F2C008ACE48 /* Mosquito.wav */; };
 		5C9F28861C5C3191008ACE48 /* TheNaughtyMonkeyQ1A1S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C9F28811C5C3191008ACE48 /* TheNaughtyMonkeyQ1A1S.mp3 */; };
 		5C9F28871C5C3191008ACE48 /* TheNaughtyMonkeyQ1A2S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C9F28821C5C3191008ACE48 /* TheNaughtyMonkeyQ1A2S.mp3 */; };
@@ -7803,7 +7803,7 @@
 		5C9D5FE81C811959002EC986 /* Sophisticated_def_S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Sophisticated_def_S.mp3; sourceTree = "<group>"; };
 		5C9D5FE91C811959002EC986 /* Stilts_def_S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Stilts_def_S.mp3; sourceTree = "<group>"; };
 		5C9D5FEA1C811959002EC986 /* Swamps_def_S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Swamps_def_S.mp3; sourceTree = "<group>"; };
-		5C9D5FEB1C811959002EC986 /* Totem Pole_def_S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Totem Pole_def_S.mp3"; sourceTree = "<group>"; };
+		5C9D5FEB1C811959002EC986 /* Totem Poles_def_S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Totem Poles_def_S.mp3"; sourceTree = "<group>"; };
 		5C9F287E1C5C1F2C008ACE48 /* Mosquito.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Mosquito.wav; sourceTree = "<group>"; };
 		5C9F28811C5C3191008ACE48 /* TheNaughtyMonkeyQ1A1S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNaughtyMonkeyQ1A1S.mp3; sourceTree = "<group>"; };
 		5C9F28821C5C3191008ACE48 /* TheNaughtyMonkeyQ1A2S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNaughtyMonkeyQ1A2S.mp3; sourceTree = "<group>"; };
@@ -13252,7 +13252,7 @@
 				5C9D5FE81C811959002EC986 /* Sophisticated_def_S.mp3 */,
 				5C9D5FE91C811959002EC986 /* Stilts_def_S.mp3 */,
 				5C9D5FEA1C811959002EC986 /* Swamps_def_S.mp3 */,
-				5C9D5FEB1C811959002EC986 /* Totem Pole_def_S.mp3 */,
+				5C9D5FEB1C811959002EC986 /* Totem Poles_def_S.mp3 */,
 			);
 			path = Spanish;
 			sourceTree = "<group>";
@@ -16071,7 +16071,7 @@
 				5C72E8361C72BF1000CE4877 /* TheThreeLawsWorkTogetherQ7A4.mp3 in Resources */,
 				5D9E34B41C590E9600636150 /* TheMysteryIsSolvedQ7A4.mp3 in Resources */,
 				1A6320721C0E4D3B00251CB3 /* Story7-The-Best-Farm-Award-Title.xhtml in Resources */,
-				5C9D5FFE1C811959002EC986 /* Totem Pole_def_S.mp3 in Resources */,
+				5C9D5FFE1C811959002EC986 /* Totem Poles_def_S.mp3 in Resources */,
 				1A6323201C0E4D3B00251CB3 /* maria_fall.png in Resources */,
 				1A6320091C0E4D3B00251CB3 /* apple_basket.png in Resources */,
 				5C43D1091C7FCFE3000C5F6D /* Ceremonies_def_E.mp3 in Resources */,
