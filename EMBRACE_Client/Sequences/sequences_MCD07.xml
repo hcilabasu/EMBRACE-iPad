@@ -79,7 +79,7 @@
         </mode>
     </sequence>
     <sequence bookTitle="Native American Homes">
-        <mode chapterTitle="Introduction to Native American Homes" newInstructions="true">
+        <mode chapterTitle="Introduction to Native American Homes" newInstructions="false">
             <reader>System</reader>
             <language>Spanish</language>
             <intervention>PM</intervention>

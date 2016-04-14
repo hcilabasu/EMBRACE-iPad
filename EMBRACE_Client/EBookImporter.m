@@ -595,8 +595,11 @@
         
         int pointID = 0;
         
-        CGPoint firstPoint;
-        CGPoint secondPoint;
+        
+        float firstpointX;
+        float firstpointY;
+        float secondpointX;
+        float secondpointY;
         
         for (GDataXMLElement *point in points) {
             NSString *pointX = [[point attributeForName:@"x"] stringValue];
@@ -612,12 +615,14 @@
             if (isFirstPoint) {
                 // Set the starting point of the shape
                 [aPath moveToPoint:CGPointMake(locationX, locationY)];
-                firstPoint = CGPointMake(locationX, locationY);
-                isFirstPoint = false;
+                firstpointX = locationX;
+                firstpointY = locationY;
                 isSecondPoint = true;
+                isFirstPoint = false;
             }
             else if (isSecondPoint) {
-                secondPoint = CGPointMake(locationX, locationY);
+                secondpointX = locationX;
+                secondpointY = locationY;
                 isSecondPoint = false;
                 [aPath addLineToPoint:CGPointMake(locationX, locationY)];
             }
@@ -626,8 +631,13 @@
             }
         }
         
-        [aPath addLineToPoint:firstPoint];
-        [aPath addLineToPoint:secondPoint];
+        areaDictionary[[NSString stringWithFormat:@"x%d", pointID]] = [NSString stringWithFormat:@"%f", firstpointX];
+        areaDictionary[[NSString stringWithFormat:@"y%d", pointID]] = [NSString stringWithFormat:@"%f", firstpointY];
+        pointID++;
+        [aPath addLineToPoint:CGPointMake(firstpointX, firstpointY)];
+        areaDictionary[[NSString stringWithFormat:@"x%d", pointID]] = [NSString stringWithFormat:@"%f", secondpointX];
+        areaDictionary[[NSString stringWithFormat:@"y%d", pointID]] = [NSString stringWithFormat:@"%f", secondpointY];
+        [aPath addLineToPoint:CGPointMake(secondpointX, secondpointY)];
         
         if ([areaId rangeOfString:@"Path"].location == NSNotFound) {
             [aPath closePath];

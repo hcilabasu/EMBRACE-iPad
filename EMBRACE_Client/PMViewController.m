@@ -370,10 +370,10 @@ BOOL wasPathFollowed = false;
     [self playCurrentSentenceAudio];
     
     //If there is at least one area/path to build
-    if ([model getAreaWithPageId:currentPageId]) {
+    if ([model getAreaWithPageId:currentPageId] || [model getAreaWithPageId:@"All_Chapters"]  ) {
         //Build area/path
         for (Area *area in [model areas]) {
-            if ([area.pageId isEqualToString:currentPageId]) {
+            if ([area.pageId isEqualToString:currentPageId] || [area.pageId isEqualToString:@"All_Chapters"]) {
                 [self buildPath:area.areaId];
             }
         }
