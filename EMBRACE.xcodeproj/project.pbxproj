@@ -931,6 +931,7 @@
 		1AF805501C29019A00C96B05 /* plume_greyplate_hawaii.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AF8054E1C29019900C96B05 /* plume_greyplate_hawaii.png */; };
 		1AF805511C29019A00C96B05 /* plume_greyplate_oahu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AF8054F1C29019A00C96B05 /* plume_greyplate_oahu.png */; };
 		1AFBD67F1C613C820081A300 /* Animations.css in Resources */ = {isa = PBXBuildFile; fileRef = 1AFBD67E1C613C820081A300 /* Animations.css */; };
+		1AFC81C61CC20A62003CDD86 /* CleaningUpQ4A2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AFC81C51CC20A62003CDD86 /* CleaningUpQ4A2.mp3 */; };
 		1AFCFFF11C34C0DB008F1A1C /* water_by_shore.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AFCFFEF1C34C0DB008F1A1C /* water_by_shore.png */; };
 		1AFCFFF21C34C0DB008F1A1C /* water_away_shore.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AFCFFF01C34C0DB008F1A1C /* water_away_shore.png */; };
 		1AFD2EF61C8A7A4D004B2D88 /* fallen_tree2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AFD2EF51C8A7A4D004B2D88 /* fallen_tree2.png */; };
@@ -5504,6 +5505,7 @@
 		1AF8054E1C29019900C96B05 /* plume_greyplate_hawaii.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plume_greyplate_hawaii.png; sourceTree = "<group>"; };
 		1AF8054F1C29019A00C96B05 /* plume_greyplate_oahu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plume_greyplate_oahu.png; sourceTree = "<group>"; };
 		1AFBD67E1C613C820081A300 /* Animations.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = Animations.css; sourceTree = "<group>"; };
+		1AFC81C51CC20A62003CDD86 /* CleaningUpQ4A2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CleaningUpQ4A2.mp3; sourceTree = "<group>"; };
 		1AFCFFEF1C34C0DB008F1A1C /* water_by_shore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water_by_shore.png; sourceTree = "<group>"; };
 		1AFCFFF01C34C0DB008F1A1C /* water_away_shore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water_away_shore.png; sourceTree = "<group>"; };
 		1AFD2EF51C8A7A4D004B2D88 /* fallen_tree2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fallen_tree2.png; sourceTree = "<group>"; };
@@ -6048,7 +6050,6 @@
 		5C0ED5871C752C2F00003B5A /* CleaningUpQ3A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CleaningUpQ3A4.mp3; sourceTree = "<group>"; };
 		5C0ED5881C752C2F00003B5A /* CleaningUpQ4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CleaningUpQ4.mp3; sourceTree = "<group>"; };
 		5C0ED5891C752C2F00003B5A /* CleaningUpQ4A1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CleaningUpQ4A1.mp3; sourceTree = "<group>"; };
-		5C0ED58A1C752C2F00003B5A /* CleaningUpQ4A2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CleaningUpQ4A2.mp3; sourceTree = "<group>"; };
 		5C0ED58B1C752C2F00003B5A /* CleaningUpQ4A3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CleaningUpQ4A3.mp3; sourceTree = "<group>"; };
 		5C0ED58C1C752C2F00003B5A /* CleaningUpQ4A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CleaningUpQ4A4.mp3; sourceTree = "<group>"; };
 		5C0ED58D1C752C2F00003B5A /* CleaningUpQ5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CleaningUpQ5.mp3; sourceTree = "<group>"; };
@@ -11447,7 +11448,7 @@
 				5C0ED5871C752C2F00003B5A /* CleaningUpQ3A4.mp3 */,
 				5C0ED5881C752C2F00003B5A /* CleaningUpQ4.mp3 */,
 				5C0ED5891C752C2F00003B5A /* CleaningUpQ4A1.mp3 */,
-				5C0ED58A1C752C2F00003B5A /* CleaningUpQ4A2.mp3 */,
+				1AFC81C51CC20A62003CDD86 /* CleaningUpQ4A2.mp3 */,
 				5C0ED58B1C752C2F00003B5A /* CleaningUpQ4A3.mp3 */,
 				5C0ED58C1C752C2F00003B5A /* CleaningUpQ4A4.mp3 */,
 				5C0ED58D1C752C2F00003B5A /* CleaningUpQ5.mp3 */,
@@ -19215,6 +19216,7 @@
 				5C0ED71D1C752C2F00003B5A /* WhoIsTheBestAnimalQ2A4.mp3 in Resources */,
 				5CF792DE1C7694A900216337 /* TheContestQ6A4S.mp3 in Resources */,
 				5CB710971C6C1AD80062AD61 /* TheMovingEarthS5S.mp3 in Resources */,
+				1AFC81C61CC20A62003CDD86 /* CleaningUpQ4A2.mp3 in Resources */,
 				1A6321601C0E4D3B00251CB3 /* bloodcell2_select_large_high_res.png in Resources */,
 				5C40AE7D1CBF591A00BFEB9F /* FlamesE.mp3 in Resources */,
 				1A6320EC1C0E4D3B00251CB3 /* gate_closed.png in Resources */,
