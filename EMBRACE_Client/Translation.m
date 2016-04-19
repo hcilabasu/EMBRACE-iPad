@@ -545,7 +545,7 @@
     dispatch_once(&onceToken, ^{
         inst = @{
                  @"award" : @"award",
-                 @"barn": @"barn",
+                 @"barn": @"barnHighlight",
                  @"bucket": @"bucket",
                  @"cart": @"cart",
                  @"chicken" : @"chicken",
