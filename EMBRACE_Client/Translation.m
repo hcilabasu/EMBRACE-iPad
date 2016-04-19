@@ -671,7 +671,7 @@
                  @"sled" : @"travois",
                  @"sophisticated" : @"sophisticated",
                  @"stilts" : @"chickee",
-                 @"swamps" : @"swamps",
+                 @"swamps" : @"swamp",
                  @"teepee" : @"teepee",
                  @"teepees" : @"teepee",
                  @"totem poles" : @"totem poles",
