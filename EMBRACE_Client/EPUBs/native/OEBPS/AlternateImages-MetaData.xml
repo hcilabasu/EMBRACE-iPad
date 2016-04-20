@@ -14,8 +14,8 @@
         <alternateImage objId="circle" action="pole" originalSrc="circle_holes.png" alternateSrc="circle_onepole.png" width="400px" x="45.214844%" y="33.593750%" class="manipulationObject center" z="1"/>
         <alternateImage objId="fallen_tree" action="appear" originalSrc="fallen_tree.png" alternateSrc="fallen_tree.png" width="250px" x="5%" y="0%" class="manipulationObject center" z="0"/>
         <alternateImage objId="fallen_tree2" action="appear" originalSrc="fallen_tree2.png" alternateSrc="fallen_tree2.png" width="555px" height="250px" x="18.25%" y="71.5%" class="manipulationObject center" z="0"/>
-        <alternateImage objId="frame" action="complete" originalSrc="frame_upright.png" alternateSrc="frame_complete.png" width="330px" x="61.425781%" y="19.176136%" class="manipulationObject center" z="0"/>
-        <alternateImage objId="frame" action="teepee" originalSrc="frame_complete.png" alternateSrc="teepee_open.png" width="400px" x="57.666016%" y="19.105114%" class="manipulationObject center" z="0"/>
+        
+        
         <alternateImage objId="frame" action="tied" originalSrc="frame_onground.png" alternateSrc="frame_withrope.png" width="450px" x="35.937500%" y="72.514206%" class="manipulationObject center" z="0"/>
         <alternateImage objId="haida" action="axe" originalSrc="haida_large.png" alternateSrc="haida_axe.png" width="78px" x="38.183594%" y="55.894886%" class="manipulationObject center" z="1"/>
         <alternateImage objId="haida" action="no_axe" originalSrc="haida_axe.png" alternateSrc="haida_large.png" width="78px" x="40.322266%" y="58.394890%" class="manipulationObject center" z="2"/>
@@ -34,6 +34,8 @@
         <alternateImage objId="plankhouse" action="plank" originalSrc="plankhouse_unfinished.png" alternateSrc="plankhouse_unfinished2.png" width="450px" x="56.054688%" y="0%" class="manipulationObject center" z="0"/>
         <alternateImage objId="snowblock" action="appear" originalSrc="snowblock.png" alternateSrc="snowblock.png" width="133px" x="16.699219%" y="52.698864%" class="manipulationObject center" z="0"/>
         <alternateImage objId="snowpile" action="appear" originalSrc="snowpile.png" alternateSrc="snowpile.png" width="189px" x="26.757812%" y="52.130680%" class="manipulationObject center" z="0"/>
+        <alternateImage objId="teepee2" action="appear" originalSrc="frame_complete.png" alternateSrc="frame_complete.png" width="330px" x="61.425781%" y="19.176136%" class="manipulationObject center" z="0"/>
+        <alternateImage objId="teepee2" action="teepee" originalSrc="frame_complete.png" alternateSrc="teepee_open.png" width="400px" x="57.666016%" y="19.105114%" class="manipulationObject center" z="0"/>
         <alternateImage objId="travois" action="supplies" originalSrc="travois.png" alternateSrc="travois_withsupplies.png" width="500px" x="47.119141%" y="55.397724%" class="manipulationObject center" z="0"/>
         <alternateImage objId="tree1" action="stump" originalSrc="tree.png" alternateSrc="tree_stump.png" width="42px" x="7.861328%" y="74.431816%" class="manipulationObject center" z="0"/>
         <alternateImage objId="wigwam" action="complete" originalSrc="wigwam_firstbark.png" alternateSrc="wigwam_complete.png" width="400px" x="45.458984%" y="40.625000%" class="manipulationObject center" z="2"/>
