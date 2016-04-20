@@ -9,5 +9,11 @@
             <point x="41.552734%" y="55.965908%"/>
             <point x="10%" y="55.965908%"/>
         </area>
+        <area areaId="swamp" pageId="All_Chapters">
+            <point x="0%" y="26.6%"/>
+            <point x="44.7%" y="26.6%"/>
+            <point x="44.7%" y="100%"/>
+            <point x="0%" y="100%"/>
+        </area>
     </areas>
 </metadata>

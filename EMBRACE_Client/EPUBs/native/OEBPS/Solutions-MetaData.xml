@@ -146,7 +146,8 @@
                     <ungroup obj1Id="standing_sioux" action="drop" obj2Id="pole_pile"/>
                     <disappearAuto obj1Id="pole_pile" action="disappear" obj2Id="pole_pile"/>
                     <move obj1Id="standing_sioux" action="getIn" waypointId="poles3"/>
-                    <swapImage obj1Id="frame" action="complete"/>
+                    <disappearAuto obj1Id="frame" action="disappear" obj2Id="frame"/>
+                    <appear obj1Id="teepee2" action="appear"/>
                 </step>
             </sentence>
             <sentence number="14">
@@ -159,7 +160,7 @@
                     <ungroup obj1Id="standing_sioux" action="drop" obj2Id="liftingpole"/>
                     <disappearAuto obj1Id="liftingpole" action="disappear" obj2Id="liftingpole"/>
                     <move obj1Id="standing_sioux" action="getIn" waypointId="poles3"/>
-                    <swapImage obj1Id="frame" action="teepee"/>
+                    <swapImage obj1Id="teepee2" action="teepee"/>
                 </step>
             </sentence>
         </story>

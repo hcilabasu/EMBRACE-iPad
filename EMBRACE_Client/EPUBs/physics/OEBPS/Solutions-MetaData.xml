@@ -240,7 +240,7 @@
             </sentence>
             <sentence number="7">
                 <step number="1">
-                    <check obj1Id="toycar" action="getIn" locationId="road"/>
+                    <check obj1Id="toycar" action="getIn" areaId="road"/>
                     <move obj1Id="toycar" action="getIn" waypointId="road"/>
                     <swapImage obj1Id="maria" action="fall"/>
                     <appear obj1Id="skateboard_maria" action="appear"/>

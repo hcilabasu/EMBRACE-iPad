@@ -4019,6 +4019,8 @@
 		5CD1C1371C3F2E6A00BE9047 /* mancha_bridle_only.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CD1C12F1C3F2E6A00BE9047 /* mancha_bridle_only.png */; };
 		5CD1C1381C3F2E6A00BE9047 /* mancha_saddle_only.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CD1C1301C3F2E6A00BE9047 /* mancha_saddle_only.png */; };
 		5CD1C1391C3F2E6A00BE9047 /* mrs_pena.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CD1C1311C3F2E6A00BE9047 /* mrs_pena.png */; };
+		5CD642B81CC5ED8500211BD4 /* Rocket'sE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CD642B71CC5ED8500211BD4 /* Rocket'sE.mp3 */; };
+		5CD642BA1CC5F0CB00211BD4 /* Rocket'sS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CD642B91CC5F0CB00211BD4 /* Rocket'sS.mp3 */; };
 		5CD7FE3519775C1C007A1E49 /* VocabularyStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD7FE3419775C1C007A1E49 /* VocabularyStep.m */; };
 		5CD7FE3819776403007A1E49 /* Introduction.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD7FE3719776403007A1E49 /* Introduction.m */; };
 		5CEEBFA81ACA05F4002AACC4 /* Area.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEEBFA71ACA05F4002AACC4 /* Area.m */; };
@@ -8661,6 +8663,8 @@
 		5CD1C12F1C3F2E6A00BE9047 /* mancha_bridle_only.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mancha_bridle_only.png; sourceTree = "<group>"; };
 		5CD1C1301C3F2E6A00BE9047 /* mancha_saddle_only.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mancha_saddle_only.png; sourceTree = "<group>"; };
 		5CD1C1311C3F2E6A00BE9047 /* mrs_pena.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mrs_pena.png; sourceTree = "<group>"; };
+		5CD642B71CC5ED8500211BD4 /* Rocket'sE.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rocket'sE.mp3"; sourceTree = "<group>"; };
+		5CD642B91CC5F0CB00211BD4 /* Rocket'sS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rocket'sS.mp3"; sourceTree = "<group>"; };
 		5CD65DCE1B133360009CF3DE /* Animator.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Animator.js; sourceTree = "<group>"; };
 		5CD7FE3319775C1C007A1E49 /* VocabularyStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VocabularyStep.h; sourceTree = "<group>"; };
 		5CD7FE3419775C1C007A1E49 /* VocabularyStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VocabularyStep.m; sourceTree = "<group>"; };
@@ -12454,6 +12458,7 @@
 				5C40AE641CBF591A00BFEB9F /* PilesE.mp3 */,
 				5C40AE651CBF591A00BFEB9F /* ReactionE.mp3 */,
 				5C40AE661CBF591A00BFEB9F /* RocketE.mp3 */,
+				5CD642B71CC5ED8500211BD4 /* Rocket'sE.mp3 */,
 				5C40AE671CBF591A00BFEB9F /* RocketsE.mp3 */,
 				5C40AE681CBF591A00BFEB9F /* RubbingE.mp3 */,
 				5C40AE691CBF591A00BFEB9F /* RubsE.mp3 */,
@@ -12474,6 +12479,7 @@
 		5C40AE9D1CBF5C7C00BFEB9F /* Spanish */ = {
 			isa = PBXGroup;
 			children = (
+				5CD642B91CC5F0CB00211BD4 /* Rocket'sS.mp3 */,
 				5C40AEFA1CBF5F5F00BFEB9F /* Tiny_type1S.mp3 */,
 				5C40AEF81CBF5EFC00BFEB9F /* Stopped_type1S.mp3 */,
 				5C40AEF61CBF5E8400BFEB9F /* Piles_type1S.mp3 */,
@@ -18034,6 +18040,7 @@
 				5C5D09171CA9F55800B7C8D9 /* ExactlyS.mp3 in Resources */,
 				5CCD8FA51C7405EC00D2EC2B /* TornadosQ8A1.mp3 in Resources */,
 				1A6322241C0E4D3B00251CB3 /* lava_cooled.png in Resources */,
+				5CD642BA1CC5F0CB00211BD4 /* Rocket'sS.mp3 in Resources */,
 				5C72E7801C72BF1000CE4877 /* NewtonsFirstLawonEarthQ1.mp3 in Resources */,
 				1A6320991C0E4D3B00251CB3 /* papa2.png in Resources */,
 				5C28DCE11C2BA66E005ACD07 /* wigwam_firstbark.png in Resources */,
@@ -18449,6 +18456,7 @@
 				5C9C07B31C57385A00702FCD /* BFCS1_4.m4a in Resources */,
 				5C137D0C1C8A79CC0023901C /* SwampsE.mp3 in Resources */,
 				5C0422131C618C2B001BBE9D /* WordsOfWisdomQ7A2.mp3 in Resources */,
+				5CD642B81CC5ED8500211BD4 /* Rocket'sE.mp3 in Resources */,
 				1A63214F1C0E4D3B00251CB3 /* Waypoints-MetaData.xml in Resources */,
 				1A63236A1C0E4D3B00251CB3 /* Waypoints-MetaData.xml in Resources */,
 				5CF792DF1C7694A900216337 /* TheContestQ6S.mp3 in Resources */,
