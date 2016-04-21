@@ -262,7 +262,34 @@
                  @"stopped" : @"detenido",
                  @"tiny" : @"diminuto",
                  @"unties" : @"desata",
-                 @"weight" : @"peso"
+                 @"weight" : @"peso",
+                 
+                 @"bridle" : @"brida",
+                 @"calf" : @"ternero",
+                 @"cattle" : @"ganado",
+                 @"celebration" : @"celebración",
+                 @"champurrado" : @"champurrado",
+                 @"corral" : @"corral",
+                 @"dairy" : @"lácteos",
+                 @"dozen" : @"docena",
+                 @"enthusiastically" : @"con entusiasmo",
+                 @"evening" : @"noche",
+                 @"grind" : @"moler",
+                 @"guide" : @"guiar",
+                 @"guided" : @"guió",
+                 @"herd" : @"manada",
+                 @"ingredients" : @"ingredientes",
+                 @"mole" : @"mole",
+                 @"post" : @"poste",
+                 @"produce" : @"frutas y vegetales",
+                 @"saddle" : @"silla de montar",
+                 @"scale" : @"bascule",
+                 @"straps" : @"correas",
+                 @"successful" : @"exitoso",
+                 @"supplies" : @"suministros",
+                 @"tomatillos" : @"tomatillos",
+                 @"tote" : @"bolsa",
+                 @"vase" : @"florero"
                  
         };
     });
@@ -532,7 +559,34 @@
                  @"detenido" : @"stopped",
                  @"diminuto" : @"tiny",
                  @"desata" : @"unties",
-                 @"peso" : @"weight"
+                 @"peso" : @"weight",
+                 
+                 @"brida" : @"bridle",
+                 @"ternero" : @"calf",
+                 @"ganado" : @"cattle",
+                 @"celebración" : @"celebration",
+                 @"champurrado" : @"champurrado",
+                 @"corral" : @"corral",
+                 @"lácteos" : @"dairy",
+                 @"docena" : @"dozen",
+                 @"con entusiasmo" : @"enthusiastically",
+                 @"noche" : @"evening",
+                 @"moler" : @"grind",
+                 @"guiar" : @"guide",
+                 @"guió" : @"guided",
+                 @"manada" : @"herd",
+                 @"ingredientes" : @"ingredients",
+                 @"mole" : @"mole",
+                 @"poste" : @"post",
+                 @"frutas y vegetales" : @"produce",
+                 @"silla de montar" : @"saddle",
+                 @"bascule" : @"scale",
+                 @"correas" : @"straps",
+                 @"exitoso" : @"successful",
+                 @"suministros" : @"supplies",
+                 @"tomatillos" : @"tomatillos",
+                 @"bolsa" : @"tote",
+                 @"florero" : @"vase"
                  
                  };
     });
@@ -758,7 +812,19 @@
                  @"stopped" : @"stopped",
                  @"tiny" : @"tiny",
                  @"unties" : @"unties",
-                 @"weight" : @"weight"
+                 @"weight" : @"weight",
+                 
+                 @"bridle" : @"bridle",
+                 @"calf" : @"calf",
+                 @"cattle" : @[@"calf", @"cow2", @"cow3", @"cow4", @"cow_bw"],
+                 @"champurrado" : @"champoorado",
+                 @"corral" : @"corral",
+                 @"post" : @"post",
+                 @"saddle" : @"saddle",
+                 @"scale" : @"scale",
+                 @"tomatillos" : @"tomatillos",
+                 @"tote" : @"bag",
+                 @"vase" : @"vase"
                  
                  
                  };
