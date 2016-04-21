@@ -8,6 +8,8 @@
 
 #import "LoginViewController.h"
 #import "LibraryViewController.h"
+#import "Progress.h"
+#import "ServerCommunicationController.h"
 
 @interface LoginViewController () <UITextFieldDelegate> {
     IBOutlet UITextField *schoolCodeField;
@@ -16,6 +18,7 @@
     IBOutlet UITextField *experimenterField;
     
     Student *student;
+    Progress *studentProgress;
 }
 
 @end
@@ -97,9 +100,19 @@
             
             [student setCurrentTimestamp:timeStampValue];
         }
+        
+        [[ServerCommunicationController sharedInstance] setupStudyContext:student];
+        [[ServerCommunicationController sharedInstance] logPressLogin];
+        
+        //NOTE: Still testing this functionality
+        //Download progress file from Dropbox
+        [[ServerCommunicationController sharedInstance] downloadProgressForStudent:student completionHandler:^(BOOL success) {
+            //Load progress for student if it exists
+            studentProgress = [[ServerCommunicationController sharedInstance] loadProgress:student];
 
-        //Then take the user to the library view.
-        [self performSegueWithIdentifier: @"OpenLibrarySegue" sender: self];
+            //Then take the user to the library view.
+            [self performSegueWithIdentifier: @"OpenLibrarySegue" sender: self];
+        }];
     }
 }
 
@@ -114,7 +127,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     LibraryViewController *destination = [segue destinationViewController];
     
-    destination.student = student;    
+    destination.student = student;
+    destination.studentProgress = studentProgress;
 }
 
 @end

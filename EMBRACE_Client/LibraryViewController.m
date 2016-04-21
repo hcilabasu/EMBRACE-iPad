@@ -147,16 +147,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
  */
 - (void)setupCurrentSession  {
     conditionSetup = [ConditionSetup sharedInstance];
-    
-    if (student != nil) {
-        [[ServerCommunicationController sharedInstance] setupStudyContext:student];
-    }
-    else {
-        student = [[Student alloc] initWithValues:@"Study Code" :@"Study Day" :@"Experimenter" :@"School Day"];
-    }
-    
-    [[ServerCommunicationController sharedInstance] logPressLogin];
-    
+
     //Create ActivitySequenceController
     sequenceController = [[ActivitySequenceController alloc] init];
 
@@ -177,10 +168,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
         
         self.title = [NSString stringWithFormat:@"%@ / %@ / %@ / %@", conditionString, languageString, readerString, currentModeString];
     }
-    
-    //Load progress for student if it exists
-    studentProgress = [[ServerCommunicationController sharedInstance] loadProgress:student];
-    
+
     //Create new progress for student if needed
     if (studentProgress == nil) {
         studentProgress = [[Progress alloc] init];
@@ -226,64 +214,6 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
             [bookTitles setObject:@"Second Introduction to EMBRACE" atIndexedSubscript:0];
         }
     }
-    
-//    //NOTE: Still testing this functionality
-//    //Download progress file from Dropbox
-//    [[ServerCommunicationController sharedInstance] downloadProgressForStudent:student completionHandler:^(BOOL success) {
-//        if (success) {
-//            //Load progress for student
-//            studentProgress = [[ServerCommunicationController sharedInstance] loadProgress:student];
-//            
-//            //Update progress with any new books/chapters that might have been added
-//            [studentProgress addNewContent:books];
-//            
-//            //Hardcoding for second Introduction to EMBRACE
-//            if ([studentProgress getStatusOfBook:@"Second Introduction to EMBRACE"] == NO_STATUS) {
-//                NSString *introBookTitle = @"Second Introduction to EMBRACE";
-//                NSMutableArray *introChapterTitles = [[NSMutableArray alloc] initWithObjects:@"The Naughty Monkey", nil];
-//                
-//                [[studentProgress chaptersCompleted] setObject:[[NSMutableArray alloc] init] forKey:introBookTitle];
-//                [[studentProgress chaptersIncomplete] setObject:[[NSMutableArray alloc] init] forKey:introBookTitle];
-//                [[studentProgress chaptersInProgress] setObject:introChapterTitles forKey:introBookTitle];
-//            }
-//            else if ([studentProgress getStatusOfBook:@"Second Introduction to EMBRACE"] == IN_PROGRESS || [studentProgress getStatusOfBook:@"Second Introduction to EMBRACE"] == COMPLETED) {
-//                [bookTitles setObject:@"Second Introduction to EMBRACE" atIndexedSubscript:0];
-//            }
-//        }
-//        else {
-//            //Create new progress for student
-//            studentProgress = [[Progress alloc] init];
-//            [studentProgress loadBooks:books];
-//            
-//            //Hardcoding progress for second Introduction to EMBRACE
-//            NSString *introBookTitle = @"Second Introduction to EMBRACE";
-//            NSMutableArray *introChapterTitles = [[NSMutableArray alloc] initWithObjects:@"The Naughty Monkey", nil];
-//            
-//            [[studentProgress chaptersCompleted] setObject:[[NSMutableArray alloc] init] forKey:introBookTitle];
-//            [[studentProgress chaptersInProgress] setObject:[[NSMutableArray alloc] init] forKey:introBookTitle];
-//            [[studentProgress chaptersIncomplete] setObject:introChapterTitles forKey:introBookTitle];
-//            
-//            NSString *firstBookTitle; //title of first book to set in progress
-//            
-//            if (useSequence) {
-//                studentProgress.sequenceId = [[student participantCode] uppercaseString]; //sequence id is just the participant code
-//                studentProgress.currentSequence = 0; //index of first sequence
-//                
-//                firstBookTitle = [[[sequenceController sequences] objectAtIndex:[studentProgress currentSequence]] bookTitle];
-//            }
-//            else {
-//                firstBookTitle = [bookTitles objectAtIndex:0];
-//            }
-//            
-//            //Set first book as in progress
-//            [studentProgress setNextChapterInProgressForBook:firstBookTitle];
-//        }
-//        
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            //Update progress indicators
-//            [self.libraryView reloadSections:[NSIndexSet indexSetWithIndex:0]];
-//        });
-//    }];
 }
 
 /*
@@ -424,9 +354,9 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
     //Save progress to file
     [[ServerCommunicationController sharedInstance] saveProgress:student :studentProgress];
     
-//    //NOTE: Still testing this functionality
-//    //Upload log file and progress file to Dropbox
-//    [[ServerCommunicationController sharedInstance] uploadFilesForStudent:student];
+    //NOTE: Still testing this functionality
+    //Upload log file and progress file to Dropbox
+    [[ServerCommunicationController sharedInstance] uploadFilesForStudent:student];
     
     //Reset ServerCommunicationController to end session
     [ServerCommunicationController resetSharedInstance];
