@@ -4145,6 +4145,7 @@
 		5D6821301C489FB5001F5CFD /* Story4-Shopping-at-the-Market-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5D68212F1C489FB5001F5CFD /* Story4-Shopping-at-the-Market-Intro-S.xhtml */; };
 		5D6821321C48A13A001F5CFD /* Story5-A-Gift-for-the-Bride-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5D6821311C48A13A001F5CFD /* Story5-A-Gift-for-the-Bride-Intro-S.xhtml */; };
 		5D6821341C48A170001F5CFD /* Story6-Homecoming-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5D6821331C48A170001F5CFD /* Story6-Homecoming-Intro-S.xhtml */; };
+		5D6FA37C1CC87A9A009C3181 /* IntroIpadReads_IM.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5D6FA37B1CC87A9A009C3181 /* IntroIpadReads_IM.mp3 */; };
 		5D90DCE61C5FCB7100359868 /* spinE.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5D90DCE51C5FCB7100359868 /* spinE.m4a */; };
 		5D90DCE71C5FCB7800359868 /* spin_type1S.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5D90DCE31C5FC99E00359868 /* spin_type1S.m4a */; };
 		5D90DCE81C5FCB7800359868 /* spinS.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5D90DCE41C5FC99E00359868 /* spinS.m4a */; };
@@ -8794,6 +8795,7 @@
 		5D68212F1C489FB5001F5CFD /* Story4-Shopping-at-the-Market-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Shopping-at-the-Market-Intro-S.xhtml"; sourceTree = "<group>"; };
 		5D6821311C48A13A001F5CFD /* Story5-A-Gift-for-the-Bride-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-A-Gift-for-the-Bride-Intro-S.xhtml"; sourceTree = "<group>"; };
 		5D6821331C48A170001F5CFD /* Story6-Homecoming-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story6-Homecoming-Intro-S.xhtml"; sourceTree = "<group>"; };
+		5D6FA37B1CC87A9A009C3181 /* IntroIpadReads_IM.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = IntroIpadReads_IM.mp3; sourceTree = "<group>"; };
 		5D90DCE31C5FC99E00359868 /* spin_type1S.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = spin_type1S.m4a; sourceTree = "<group>"; };
 		5D90DCE41C5FC99E00359868 /* spinS.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = spinS.m4a; sourceTree = "<group>"; };
 		5D90DCE51C5FCB7100359868 /* spinE.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = spinE.m4a; sourceTree = "<group>"; };
@@ -14800,6 +14802,7 @@
 		5D502A091C912C00007B3F22 /* chapterIntroAudio */ = {
 			isa = PBXGroup;
 			children = (
+				5D6FA37B1CC87A9A009C3181 /* IntroIpadReads_IM.mp3 */,
 				5DB79E6E1C916798003B2AFC /* IntroDyadReads_IM_S.mp3 */,
 				5DB79E6F1C916798003B2AFC /* IntroDyadReads_PM_S.mp3 */,
 				5DB79E701C916798003B2AFC /* IntroDyadReads_R_S.mp3 */,
@@ -17372,6 +17375,7 @@
 				5DB79E761C916798003B2AFC /* IntroDyadReads_R_S.mp3 in Resources */,
 				5CB710E41C6C292B0062AD61 /* CPQR2.m4a in Resources */,
 				5C9C0A631C573AAA00702FCD /* CCE2_3.m4a in Resources */,
+				5D6FA37C1CC87A9A009C3181 /* IntroIpadReads_IM.mp3 in Resources */,
 				5C0421E11C618C2B001BBE9D /* TheLuckyStoneQ5A2.mp3 in Resources */,
 				5C0EDA031C753AD400003B5A /* TheAmazingHeartQ4A3.mp3 in Resources */,
 				5C9F28861C5C3191008ACE48 /* TheNaughtyMonkeyQ1A1S.mp3 in Resources */,
