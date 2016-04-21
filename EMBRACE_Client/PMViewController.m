@@ -4493,7 +4493,7 @@ BOOL wasPathFollowed = false;
                         if ([ConditionSetup sharedInstance].reader == USER) {
                             audio = @"IntroDyadReads_IM";
                         } else {
-                            audio = nil;
+                            audio = @"IntroIpadReads_IM";
                         }
                     }
                 } else {
