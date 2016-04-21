@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <areas>
+        <area areaId="post" pageId="story4-Intro">
+            <point x="62.3%" y="21.0%"/>
+            <point x="67.6%" y="21.0%"/>
+            <point x="67.6%" y="29.9%"/>
+            <point x="62.3%" y="29.9%"/>
+        </area>
+        <area areaId="post" pageId="story4-PM-2">
+            <point x="15.4%" y="54.4%"/>
+            <point x="25.4%" y="54.4%"/>
+            <point x="25.4%" y="75.8%"/>
+            <point x="14.4%" y="75.8%"/>
+        </area>
+        <area areaId="post" pageId="story5-PM-3">
+            <point x="15.4%" y="54.4%"/>
+            <point x="25.4%" y="54.4%"/>
+            <point x="25.4%" y="75.8%"/>
+            <point x="14.4%" y="75.8%"/>
+        </area>
     </areas>
 </metadata>
