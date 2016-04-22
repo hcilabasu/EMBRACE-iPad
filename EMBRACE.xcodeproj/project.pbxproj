@@ -4076,6 +4076,7 @@
 		5CD7FE3519775C1C007A1E49 /* VocabularyStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD7FE3419775C1C007A1E49 /* VocabularyStep.m */; };
 		5CD7FE3819776403007A1E49 /* Introduction.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD7FE3719776403007A1E49 /* Introduction.m */; };
 		5CEEBFA81ACA05F4002AACC4 /* Area.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEEBFA71ACA05F4002AACC4 /* Area.m */; };
+		5CF6C99D1CCAEC1B0093D3FD /* island_lava_Hawaii2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CF6C99C1CCAEC1B0093D3FD /* island_lava_Hawaii2.png */; };
 		5CF792C21C7694A900216337 /* TheContestQ1A1S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CF7929F1C7694A900216337 /* TheContestQ1A1S.mp3 */; };
 		5CF792C31C7694A900216337 /* TheContestQ1A2S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CF792A01C7694A900216337 /* TheContestQ1A2S.mp3 */; };
 		5CF792C41C7694A900216337 /* TheContestQ1A3S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CF792A11C7694A900216337 /* TheContestQ1A3S.mp3 */; };
@@ -8779,6 +8780,7 @@
 		5CE1E30F1A119E120070A7D6 /* bestFarm.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = bestFarm.epub; path = EPUBs/bestFarm/bestFarm.epub; sourceTree = "<group>"; };
 		5CEEBFA61ACA05F4002AACC4 /* Area.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Area.h; sourceTree = "<group>"; };
 		5CEEBFA71ACA05F4002AACC4 /* Area.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Area.m; sourceTree = "<group>"; };
+		5CF6C99C1CCAEC1B0093D3FD /* island_lava_Hawaii2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = island_lava_Hawaii2.png; sourceTree = "<group>"; };
 		5CF7929F1C7694A900216337 /* TheContestQ1A1S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheContestQ1A1S.mp3; sourceTree = "<group>"; };
 		5CF792A01C7694A900216337 /* TheContestQ1A2S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheContestQ1A2S.mp3; sourceTree = "<group>"; };
 		5CF792A11C7694A900216337 /* TheContestQ1A3S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheContestQ1A3S.mp3; sourceTree = "<group>"; };
@@ -10061,8 +10063,8 @@
 			children = (
 				5DB79E7C1C916DCD003B2AFC /* Script-Metadata.xml */,
 				1A631E531C0E4D3A00251CB3 /* AlternateImages-MetaData.xml */,
-				1A631E541C0E4D3A00251CB3 /* Areas-MetaData.xml */,
 				1A631E551C0E4D3A00251CB3 /* AssessmentActivities-MetaData.xml */,
+				1A631E541C0E4D3A00251CB3 /* Areas-MetaData.xml */,
 				1AC7A3901C592847003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml */,
 				1A631E561C0E4D3A00251CB3 /* Constraints-MetaData.xml */,
 				5CC684681C7D31F90069A883 /* content.opf */,
@@ -10090,6 +10092,7 @@
 		1A631E591C0E4D3A00251CB3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5CF6C99C1CCAEC1B0093D3FD /* island_lava_Hawaii2.png */,
 				1A631E5A1C0E4D3A00251CB3 /* africa.png */,
 				1A7C78021C74FACF0031041D /* air_particle.png */,
 				1A631E5B1C0E4D3A00251CB3 /* air_blue.png */,
@@ -17570,6 +17573,7 @@
 				5CBA9D541CAB7E7E008DEF04 /* PetsS.mp3 in Resources */,
 				5C09DFCD1C85116B00EC4E78 /* Mole_def_E.mp3 in Resources */,
 				1A63218E1C0E4D3B00251CB3 /* Relationships-MetaData.xml in Resources */,
+				5CF6C99D1CCAEC1B0093D3FD /* island_lava_Hawaii2.png in Resources */,
 				5C72E6101C72A46F00CE4877 /* TheAlgonquianWigwamQ8A3.mp3 in Resources */,
 				1A6321B01C0E4D3B00251CB3 /* Story3-Muscles-Use-Oxygen-PM-3.xhtml in Resources */,
 				1A6320A21C0E4D3B00251CB3 /* IMSolutions-MetaData.xml in Resources */,
