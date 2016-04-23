@@ -209,6 +209,8 @@ BOOL wasPathFollowed = false;
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
+    isLoadPageInProgress = false;
+    
     //Disable user selection
     [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitUserSelect='none';"];
     //Disable callout
@@ -394,8 +396,6 @@ BOOL wasPathFollowed = false;
     
     //Perform setup for activity
     [self performSetupForActivity];
-    
-    isLoadPageInProgress = false;
 }
 
 - (void)drawArea:(NSString *)areaName :(NSString *)chapter :(NSString *)pageId {
