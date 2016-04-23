@@ -4181,6 +4181,7 @@
 		5CF6CA6E1CCB2BB50093D3FD /* VolcanoesS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CF6CA061CCB2BB50093D3FD /* VolcanoesS.mp3 */; };
 		5CF6CA6F1CCB2BB50093D3FD /* VolcanoS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CF6CA071CCB2BB50093D3FD /* VolcanoS.mp3 */; };
 		5CF6CA701CCB2BB50093D3FD /* WindsS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CF6CA081CCB2BB50093D3FD /* WindsS.mp3 */; };
+		5CF6CA721CCB31810093D3FD /* AGiftfortheBrideQ5A3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CF6CA711CCB31810093D3FD /* AGiftfortheBrideQ5A3.mp3 */; };
 		5CF792C21C7694A900216337 /* TheContestQ1A1S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CF7929F1C7694A900216337 /* TheContestQ1A1S.mp3 */; };
 		5CF792C31C7694A900216337 /* TheContestQ1A2S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CF792A01C7694A900216337 /* TheContestQ1A2S.mp3 */; };
 		5CF792C41C7694A900216337 /* TheContestQ1A3S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CF792A11C7694A900216337 /* TheContestQ1A3S.mp3 */; };
@@ -6464,7 +6465,6 @@
 		5C0ED7AB1C75334200003B5A /* AGiftfortheBrideQ5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = AGiftfortheBrideQ5.mp3; sourceTree = "<group>"; };
 		5C0ED7AC1C75334200003B5A /* AGiftfortheBrideQ5A1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = AGiftfortheBrideQ5A1.mp3; sourceTree = "<group>"; };
 		5C0ED7AD1C75334200003B5A /* AGiftfortheBrideQ5A2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = AGiftfortheBrideQ5A2.mp3; sourceTree = "<group>"; };
-		5C0ED7AE1C75334200003B5A /* AGiftfortheBrideQ5A3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = AGiftfortheBrideQ5A3.mp3; sourceTree = "<group>"; };
 		5C0ED7AF1C75334200003B5A /* AGiftfortheBrideQ5A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = AGiftfortheBrideQ5A4.mp3; sourceTree = "<group>"; };
 		5C0ED7B01C75334200003B5A /* AGiftfortheBrideQ6.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = AGiftfortheBrideQ6.mp3; sourceTree = "<group>"; };
 		5C0ED7B11C75334200003B5A /* AGiftfortheBrideQ6A1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = AGiftfortheBrideQ6A1.mp3; sourceTree = "<group>"; };
@@ -8986,6 +8986,7 @@
 		5CF6CA061CCB2BB50093D3FD /* VolcanoesS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = VolcanoesS.mp3; sourceTree = "<group>"; };
 		5CF6CA071CCB2BB50093D3FD /* VolcanoS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = VolcanoS.mp3; sourceTree = "<group>"; };
 		5CF6CA081CCB2BB50093D3FD /* WindsS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WindsS.mp3; sourceTree = "<group>"; };
+		5CF6CA711CCB31810093D3FD /* AGiftfortheBrideQ5A3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = AGiftfortheBrideQ5A3.mp3; sourceTree = "<group>"; };
 		5CF7929F1C7694A900216337 /* TheContestQ1A1S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheContestQ1A1S.mp3; sourceTree = "<group>"; };
 		5CF792A01C7694A900216337 /* TheContestQ1A2S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheContestQ1A2S.mp3; sourceTree = "<group>"; };
 		5CF792A11C7694A900216337 /* TheContestQ1A3S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheContestQ1A3S.mp3; sourceTree = "<group>"; };
@@ -11977,6 +11978,7 @@
 		5C0ED7781C75334200003B5A /* English */ = {
 			isa = PBXGroup;
 			children = (
+				5CF6CA711CCB31810093D3FD /* AGiftfortheBrideQ5A3.mp3 */,
 				5C0ED7791C75334200003B5A /* AFriendinNeedQ1.mp3 */,
 				5C0ED77A1C75334200003B5A /* AFriendinNeedQ1A1.mp3 */,
 				5C0ED77B1C75334200003B5A /* AFriendinNeedQ1A2.mp3 */,
@@ -12030,7 +12032,6 @@
 				5C0ED7AB1C75334200003B5A /* AGiftfortheBrideQ5.mp3 */,
 				5C0ED7AC1C75334200003B5A /* AGiftfortheBrideQ5A1.mp3 */,
 				5C0ED7AD1C75334200003B5A /* AGiftfortheBrideQ5A2.mp3 */,
-				5C0ED7AE1C75334200003B5A /* AGiftfortheBrideQ5A3.mp3 */,
 				5C0ED7AF1C75334200003B5A /* AGiftfortheBrideQ5A4.mp3 */,
 				5C0ED7B01C75334200003B5A /* AGiftfortheBrideQ6.mp3 */,
 				5C0ED7B11C75334200003B5A /* AGiftfortheBrideQ6A1.mp3 */,
@@ -16692,6 +16693,7 @@
 				5C9C0A4C1C573AAA00702FCD /* beatS.m4a in Resources */,
 				5CCD8E621C73E73200D2EC2B /* TheMovingEarthQ2S.mp3 in Resources */,
 				5CF6CA4E1CCB2BB50093D3FD /* Kaua'iS.mp3 in Resources */,
+				5CF6CA721CCB31810093D3FD /* AGiftfortheBrideQ5A3.mp3 in Resources */,
 				1A6321551C0E4D3B00251CB3 /* AssessmentActivities-MetaData.xml in Resources */,
 				5CF6CA291CCB2BB50093D3FD /* SeriousE.mp3 in Resources */,
 				1A6322651C0E4D3B00251CB3 /* Story2-Earthquakes-PM-1.xhtml in Resources */,
