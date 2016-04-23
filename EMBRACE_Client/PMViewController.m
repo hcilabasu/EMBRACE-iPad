@@ -520,6 +520,12 @@ BOOL wasPathFollowed = false;
     model = [book model];
   
     currentPage = [book getNextPageForChapterAndActivity:chapterTitle : conditionSetup.currentMode :nil];
+    
+    if (!conditionSetup.vocabPageEnabled) {
+        currentSentence = 1;
+        currentPage = [book getNextPageForChapterAndActivity:chapterTitle :PM_MODE :currentPage];
+    }
+    
     actualPage = currentPage;
     
     //Instantiates all introduction variables
@@ -553,7 +559,20 @@ BOOL wasPathFollowed = false;
         else {
             [[ServerCommunicationController sharedInstance] logCompleteManipulation:manipulationContext];
             
-            [self loadAssessmentActivity];
+            if(conditionSetup.assessmentPageEnabled)
+            {
+                [self loadAssessmentActivity];
+            }
+            else
+            {
+                [[ServerCommunicationController sharedInstance] studyContext].condition = @"NULL";
+               
+                //Set chapter as completed
+                [[(LibraryViewController *)libraryViewController studentProgress] setStatusOfChapter:chapterTitle :COMPLETED fromBook:bookTitle];
+                
+                //Return to library view
+                [self.navigationController popViewControllerAnimated:YES];
+            }
         }
     }
     else {

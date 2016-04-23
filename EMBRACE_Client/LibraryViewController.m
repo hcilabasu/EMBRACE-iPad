@@ -655,6 +655,8 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                 conditionSetup.language = [currentMode language];
                 conditionSetup.reader = [currentMode reader];
                 conditionSetup.newInstructions = [currentMode newInstructions];
+                conditionSetup.vocabPageEnabled = [currentMode vocabPageEnabled];
+                conditionSetup.assessmentPageEnabled = [currentMode assessmentPageEnabled];
             }
             
             NSString *condition = @"Unknown";

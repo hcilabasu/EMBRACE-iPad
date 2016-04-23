@@ -922,6 +922,16 @@
 		1AD3CC8C1A251CE600E18B1C /* PlayAudioFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3CC8B1A251CE600E18B1C /* PlayAudioFile.m */; };
 		1AE35F2C1CAA35DA0005213E /* lucasByBed.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AE35F2A1CAA35DA0005213E /* lucasByBed.png */; };
 		1AE35F2D1CAA35DA0005213E /* lucasInBed.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AE35F2B1CAA35DA0005213E /* lucasInBed.png */; };
+		1AE472A01CCBE6BD001D89C2 /* sequences_EEG01.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AE472961CCBE6BD001D89C2 /* sequences_EEG01.xml */; };
+		1AE472A11CCBE6BD001D89C2 /* sequences_EEG02.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AE472971CCBE6BD001D89C2 /* sequences_EEG02.xml */; };
+		1AE472A21CCBE6BD001D89C2 /* sequences_EEG03.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AE472981CCBE6BD001D89C2 /* sequences_EEG03.xml */; };
+		1AE472A31CCBE6BD001D89C2 /* sequences_EEG04.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AE472991CCBE6BD001D89C2 /* sequences_EEG04.xml */; };
+		1AE472A41CCBE6BD001D89C2 /* sequences_EEG05.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AE4729A1CCBE6BD001D89C2 /* sequences_EEG05.xml */; };
+		1AE472A51CCBE6BD001D89C2 /* sequences_EEG06.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AE4729B1CCBE6BD001D89C2 /* sequences_EEG06.xml */; };
+		1AE472A61CCBE6BD001D89C2 /* sequences_EEG07.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AE4729C1CCBE6BD001D89C2 /* sequences_EEG07.xml */; };
+		1AE472A71CCBE6BD001D89C2 /* sequences_EEG08.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AE4729D1CCBE6BD001D89C2 /* sequences_EEG08.xml */; };
+		1AE472A81CCBE6BD001D89C2 /* sequences_EEG09.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AE4729E1CCBE6BD001D89C2 /* sequences_EEG09.xml */; };
+		1AE472A91CCBE6BD001D89C2 /* sequences_EEG10.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AE4729F1CCBE6BD001D89C2 /* sequences_EEG10.xml */; };
 		1AEC241C1CB9CCD600803580 /* road.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AEC241B1CB9CCD600803580 /* road.png */; };
 		1AEC241E1CB9E32200803580 /* market_post.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AEC241D1CB9E32200803580 /* market_post.png */; };
 		1AF3815B1A40A4C600D967FD /* AssessmentActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF381591A40A4C600D967FD /* AssessmentActivityViewController.m */; };
@@ -5653,6 +5663,16 @@
 		1AD3CC8B1A251CE600E18B1C /* PlayAudioFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayAudioFile.m; sourceTree = "<group>"; };
 		1AE35F2A1CAA35DA0005213E /* lucasByBed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lucasByBed.png; sourceTree = "<group>"; };
 		1AE35F2B1CAA35DA0005213E /* lucasInBed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lucasInBed.png; sourceTree = "<group>"; };
+		1AE472961CCBE6BD001D89C2 /* sequences_EEG01.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_EEG01.xml; sourceTree = "<group>"; };
+		1AE472971CCBE6BD001D89C2 /* sequences_EEG02.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_EEG02.xml; sourceTree = "<group>"; };
+		1AE472981CCBE6BD001D89C2 /* sequences_EEG03.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_EEG03.xml; sourceTree = "<group>"; };
+		1AE472991CCBE6BD001D89C2 /* sequences_EEG04.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_EEG04.xml; sourceTree = "<group>"; };
+		1AE4729A1CCBE6BD001D89C2 /* sequences_EEG05.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_EEG05.xml; sourceTree = "<group>"; };
+		1AE4729B1CCBE6BD001D89C2 /* sequences_EEG06.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_EEG06.xml; sourceTree = "<group>"; };
+		1AE4729C1CCBE6BD001D89C2 /* sequences_EEG07.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_EEG07.xml; sourceTree = "<group>"; };
+		1AE4729D1CCBE6BD001D89C2 /* sequences_EEG08.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_EEG08.xml; sourceTree = "<group>"; };
+		1AE4729E1CCBE6BD001D89C2 /* sequences_EEG09.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_EEG09.xml; sourceTree = "<group>"; };
+		1AE4729F1CCBE6BD001D89C2 /* sequences_EEG10.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_EEG10.xml; sourceTree = "<group>"; };
 		1AEC241B1CB9CCD600803580 /* road.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = road.png; sourceTree = "<group>"; };
 		1AEC241D1CB9E32200803580 /* market_post.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = market_post.png; sourceTree = "<group>"; };
 		1AF381581A40A4C600D967FD /* AssessmentActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssessmentActivityViewController.h; sourceTree = "<group>"; };
@@ -9501,6 +9521,16 @@
 			isa = PBXGroup;
 			children = (
 				033FC8581C6C538800CF3850 /* sequences_MCD01.xml */,
+				1AE472961CCBE6BD001D89C2 /* sequences_EEG01.xml */,
+				1AE472971CCBE6BD001D89C2 /* sequences_EEG02.xml */,
+				1AE472981CCBE6BD001D89C2 /* sequences_EEG03.xml */,
+				1AE472991CCBE6BD001D89C2 /* sequences_EEG04.xml */,
+				1AE4729A1CCBE6BD001D89C2 /* sequences_EEG05.xml */,
+				1AE4729B1CCBE6BD001D89C2 /* sequences_EEG06.xml */,
+				1AE4729C1CCBE6BD001D89C2 /* sequences_EEG07.xml */,
+				1AE4729D1CCBE6BD001D89C2 /* sequences_EEG08.xml */,
+				1AE4729E1CCBE6BD001D89C2 /* sequences_EEG09.xml */,
+				1AE4729F1CCBE6BD001D89C2 /* sequences_EEG10.xml */,
 				033FC8591C6C538800CF3850 /* sequences_MCD02.xml */,
 				033FC85A1C6C538800CF3850 /* sequences_MCD03.xml */,
 				033FC85B1C6C538800CF3850 /* sequences_MCD04.xml */,
@@ -15907,6 +15937,7 @@
 				5C28DCA51C2BA66E005ACD07 /* intro.png in Resources */,
 				5C0ED9B91C753AD400003B5A /* CigaretteSmokeHurtsYourLungsQ6A4.mp3 in Resources */,
 				5C0420241C614653001BBE9D /* TheLopezFamilyS8E.mp3 in Resources */,
+				1AE472A21CCBE6BD001D89C2 /* sequences_EEG03.xml in Resources */,
 				5C0ED86C1C75334200003B5A /* AGiftfortheBrideQ2A3.mp3 in Resources */,
 				5CCD8F781C7405EC00D2EC2B /* TheMovingEarthQ6A1.mp3 in Resources */,
 				5C72E5FA1C72A46F00CE4877 /* TheHaidaPlankHouseQ4.mp3 in Resources */,
@@ -15996,6 +16027,7 @@
 				5C0420181C614653001BBE9D /* TheLopezFamilyS2E.mp3 in Resources */,
 				5D9E343A1C590E9500636150 /* old_MoreIsMissingQ4A1.mp3 in Resources */,
 				5C28DCC01C2BA66E005ACD07 /* plank_side.png in Resources */,
+				1AE472A61CCBE6BD001D89C2 /* sequences_EEG07.xml in Resources */,
 				5C9F28C21C5C6B2E008ACE48 /* TheLopezFamilyQ4A3S.mp3 in Resources */,
 				1A63204B1C0E4D3B00251CB3 /* Story2-Getting-Ready-Intro-E.xhtml in Resources */,
 				5C137CE31C8A79CC0023901C /* BranchesE.mp3 in Resources */,
@@ -16085,6 +16117,7 @@
 				5C40AE8A1CBF591A00BFEB9F /* PaddleE.mp3 in Resources */,
 				5C40AE761CBF591A00BFEB9F /* AmountE.mp3 in Resources */,
 				5C0421DD1C618C2B001BBE9D /* TheLuckyStoneQ4A3.mp3 in Resources */,
+				1AE472A51CCBE6BD001D89C2 /* sequences_EEG06.xml in Resources */,
 				5CB711671C6C46DF0062AD61 /* TheNavajoHoganQ3A2S.mp3 in Resources */,
 				5C0421EE1C618C2B001BBE9D /* TheLuckyStoneQ8.mp3 in Resources */,
 				5C9C07B71C57385A00702FCD /* BFCS1_6B.m4a in Resources */,
@@ -16631,6 +16664,7 @@
 				5D9E348C1C590E9500636150 /* TheLopezFamilyQ6A4.mp3 in Resources */,
 				5C0ED7301C752C2F00003B5A /* WhoIsTheBestAnimalQ6A3.mp3 in Resources */,
 				5C9B8B6A1CB5EFC800420053 /* LockedS.mp3 in Resources */,
+				1AE472A01CCBE6BD001D89C2 /* sequences_EEG01.xml in Resources */,
 				5C0421D31C618C2B001BBE9D /* TheLuckyStoneQ2A3.mp3 in Resources */,
 				5CA955741C3237690038FB56 /* IMSolutions-MetaData.xml in Resources */,
 				1A6321151C0E4D3B00251CB3 /* sofia_standing2.png in Resources */,
@@ -18591,6 +18625,7 @@
 				5D9E33C21C590E9400636150 /* IsPacoAThiefQ2A2.mp3 in Resources */,
 				5CBA9D491CAB7E7E008DEF04 /* HookE.mp3 in Resources */,
 				5CB7115B1C6C46DF0062AD61 /* NativeIntroQ3S.mp3 in Resources */,
+				1AE472A81CCBE6BD001D89C2 /* sequences_EEG09.xml in Resources */,
 				5C09DF8E1C85007900EC4E78 /* Hayloft_def_E.mp3 in Resources */,
 				1A6321BE1C0E4D3B00251CB3 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-IM-1.xhtml in Resources */,
 				5C5D09681CA9F6DD00B7C8D9 /* BottleE.mp3 in Resources */,
@@ -18681,6 +18716,7 @@
 				5CF793331C76986E00216337 /* BFEC6.m4a in Resources */,
 				5CB711011C6C292B0062AD61 /* old_CPQR15.m4a in Resources */,
 				5C72E7FE1C72BF1000CE4877 /* NewtonsThirdLawForcesarepairedQ2A3.mp3 in Resources */,
+				1AE472A91CCBE6BD001D89C2 /* sequences_EEG10.xml in Resources */,
 				5D9E343B1C590E9500636150 /* old_MoreIsMissingQ4A2.mp3 in Resources */,
 				5CB710F61C6C292B0062AD61 /* CWWB6.m4a in Resources */,
 				5C9C0AB11C573AAA00702FCD /* moleculesS.m4a in Resources */,
@@ -19294,6 +19330,7 @@
 				5CB710101C6C032B0062AD61 /* NativeIntroS0S.mp3 in Resources */,
 				5C09DF4A1C84F33E00EC4E78 /* Violent_def_E.mp3 in Resources */,
 				5D9E33E41C590E9500636150 /* MissingKeysQ1A1.mp3 in Resources */,
+				1AE472A31CCBE6BD001D89C2 /* sequences_EEG04.xml in Resources */,
 				5C72E5D91C72A46F00CE4877 /* TheSeminoleChickeeQ4A4.mp3 in Resources */,
 				5C9C0A6B1C573AAA00702FCD /* CCE3_2.m4a in Resources */,
 				5C0ED8BD1C75334200003B5A /* KeyIngredientsQ4A4.mp3 in Resources */,
@@ -19408,6 +19445,7 @@
 				5C0421E61C618C2B001BBE9D /* TheLuckyStoneQ6A2.mp3 in Resources */,
 				5C0EDA0D1C753AD400003B5A /* WhyWeBreatheQ1A3.mp3 in Resources */,
 				5C40E0291CC863FC00D8BC48 /* GuideS.mp3 in Resources */,
+				1AE472A41CCBE6BD001D89C2 /* sequences_EEG05.xml in Resources */,
 				5C9C07E31C57385A00702FCD /* BFEE_18AA.m4a in Resources */,
 				5C9B8B761CB5EFC800420053 /* WeedsS.mp3 in Resources */,
 				5C72E6181C72A46F00CE4877 /* TheAlgonquianWigwamQ7.mp3 in Resources */,
@@ -19655,6 +19693,7 @@
 				5C72E6621C72A46F00CE4877 /* TheInuitIglooQ5A1.mp3 in Resources */,
 				5CCD8F951C7405EC00D2EC2B /* TornadosQ5.mp3 in Resources */,
 				5C0422121C618C2B001BBE9D /* WordsOfWisdomQ7A1.mp3 in Resources */,
+				1AE472A71CCBE6BD001D89C2 /* sequences_EEG08.xml in Resources */,
 				1A6320CC1C0E4D3B00251CB3 /* AlternateImages-MetaData.xml in Resources */,
 				5C0ED6951C752C2F00003B5A /* GettingReadyQ1A3.mp3 in Resources */,
 				5C030F991C863196006E1BEA /* Trophy_def_S.mp3 in Resources */,
@@ -19706,6 +19745,7 @@
 				5CCD8FE91C7405EC00D2EC2B /* VolcanoesQ7A4.mp3 in Resources */,
 				5C5D092E1CA9F55800B7C8D9 /* Stared_type1S.mp3 in Resources */,
 				1A6320CA1C0E4D3B00251CB3 /* container.xml in Resources */,
+				1AE472A11CCBE6BD001D89C2 /* sequences_EEG02.xml in Resources */,
 				5CF7933D1C76986E00216337 /* old_BFEC5.m4a in Resources */,
 				5C9F28B91C5C6B2E008ACE48 /* TheLopezFamilyQ2A4S.mp3 in Resources */,
 				5C9B8B3A1CB5EFC800420053 /* CorralE.mp3 in Resources */,

@@ -16,6 +16,8 @@
 @synthesize appMode;
 @synthesize currentMode;
 @synthesize newInstructions;
+@synthesize vocabPageEnabled;
+@synthesize assessmentPageEnabled;
 
 + (id)sharedInstance {
     static ConditionSetup *sharedMyManager = nil;
@@ -36,6 +38,8 @@
         appMode = Study;
         currentMode = IM_MODE;
         newInstructions = false;
+        vocabPageEnabled = true;
+        assessmentPageEnabled = true;
     }
     
     return self;
