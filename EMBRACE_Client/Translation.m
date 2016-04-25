@@ -294,9 +294,11 @@
                  @"cloud" : @"nube",
                  @"columns" : @"columnas",
                  @"disaster" : @"desastre",
+                 @"disasters" : @"desastres",
                  @"drifted" : @[@"ir a la deriva",@"se fue a la deriva"],
                  @"earth" : @"tierra",
                  @"earthquake" : @"terremoto",
+                 @"earthquakes" : @"terremotos",
                  @"enough" : @"suficiente",
                  @"fault line" : @"línea de falla",
                  @"forest" : @"bosque",
@@ -310,7 +312,7 @@
                  @"kaua'i" : @"kuai",
                  @"lava" : @"lava",
                  @"mantle" : @"manto",
-                 @"million" : @"millónes",
+                 @"million" : @"millones",
                  @"mountains" : @"montañas",
                  @"nature" : @"naturaleza",
                  @"oahu" : @"oahu",
@@ -338,7 +340,7 @@
                  @"violent" : @[@"violento",@"violenta"],
                  @"volcano" : @"volcán",
                  @"volcanoes" : @"volcanes",
-                 @"winds" : @"viento"
+                 @"winds" : @"vientos"
                  
         };
     });
@@ -640,10 +642,12 @@
                  @"nube" : @"cloud",
                  @"columnas" : @"columns",
                  @"desastre" : @"disaster",
+                 @"desastres" : @"disasters",
                  @"ir a la deriva" : @"drifted",
                  @"se fue a la deriva" : @"drifted",
                  @"tierra" : @"earth",
                  @"terremoto" : @"earthquake",
+                 @"terremotos" : @"earthquakes",
                  @"suficiente" : @"enough",
                  @"línea de falla" : @"fault line",
                  @"bosque" : @"forest",
@@ -657,7 +661,7 @@
                  @"kuai" : @"kaua'i",
                  @"lava" : @"lava",
                  @"manto" : @"mantle",
-                 @"millónes" : @"million",
+                 @"millones" : @"million",
                  @"montañas" : @"mountains",
                  @"naturaleza" : @"nature",
                  @"oahu" : @"oahu",
@@ -686,7 +690,7 @@
                  @"violenta" : @"violent",
                  @"volcán" : @"volcano",
                  @"volcanes" : @"volcanoes",
-                 @"viento" : @"winds"
+                 @"vientos" : @"winds"
                  
                  
                  };
@@ -932,9 +936,11 @@
                  @"cloud" : @"cloud",
                  @"columns" : @"columns",
                  @"disaster" : @"disaster",
+                 @"disasters" : @"disasters",
                  @"drifted" : @"drifted",
                  @"earth" : @"earth",
                  @"earthquake" : @"earthquake",
+                 @"earthquakes" : @"earthquakes",
                  @"enough" : @"enough",
                  @"fault line" : @"fault line",
                  @"forest" : @"forest",

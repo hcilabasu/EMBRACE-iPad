@@ -2039,6 +2039,10 @@
 		5C137D101C8A79CC0023901C /* UprightE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C137CDA1C8A79CC0023901C /* UprightE.mp3 */; };
 		5C137D111C8A79CC0023901C /* WigwamE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C137CDB1C8A79CC0023901C /* WigwamE.mp3 */; };
 		5C137D121C8A79CC0023901C /* WigwamsE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C137CDC1C8A79CC0023901C /* WigwamsE.mp3 */; };
+		5C13C8831CCEB9AE005072DB /* DisastersS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C13C8821CCEB9AE005072DB /* DisastersS.mp3 */; };
+		5C13C8851CCEBA48005072DB /* DisasterE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C13C8841CCEBA48005072DB /* DisasterE.mp3 */; };
+		5C13C8871CCEBFF3005072DB /* EarthquakesS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C13C8861CCEBFF3005072DB /* EarthquakesS.mp3 */; };
+		5C13C8891CCEC0C9005072DB /* EarthquakesE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C13C8881CCEC0C9005072DB /* EarthquakesE.mp3 */; };
 		5C1A38711C692AD1007A877C /* comb.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1A38701C692AD1007A877C /* comb.png */; };
 		5C1A38B11C69954B007A877C /* TheNavajoHoganS0E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C1A389F1C69954B007A877C /* TheNavajoHoganS0E.mp3 */; };
 		5C1A38B21C69954B007A877C /* TheNavajoHoganS10E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C1A38A01C69954B007A877C /* TheNavajoHoganS10E.mp3 */; };
@@ -6830,6 +6834,10 @@
 		5C137CDA1C8A79CC0023901C /* UprightE.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = UprightE.mp3; sourceTree = "<group>"; };
 		5C137CDB1C8A79CC0023901C /* WigwamE.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WigwamE.mp3; sourceTree = "<group>"; };
 		5C137CDC1C8A79CC0023901C /* WigwamsE.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WigwamsE.mp3; sourceTree = "<group>"; };
+		5C13C8821CCEB9AE005072DB /* DisastersS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = DisastersS.mp3; sourceTree = "<group>"; };
+		5C13C8841CCEBA48005072DB /* DisasterE.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = DisasterE.mp3; sourceTree = "<group>"; };
+		5C13C8861CCEBFF3005072DB /* EarthquakesS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = EarthquakesS.mp3; sourceTree = "<group>"; };
+		5C13C8881CCEC0C9005072DB /* EarthquakesE.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = EarthquakesE.mp3; sourceTree = "<group>"; };
 		5C1A38701C692AD1007A877C /* comb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comb.png; sourceTree = "<group>"; };
 		5C1A389F1C69954B007A877C /* TheNavajoHoganS0E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNavajoHoganS0E.mp3; sourceTree = "<group>"; };
 		5C1A38A01C69954B007A877C /* TheNavajoHoganS10E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNavajoHoganS10E.mp3; sourceTree = "<group>"; };
@@ -14995,10 +15003,12 @@
 		5CF6C99F1CCB2BB50093D3FD /* English */ = {
 			isa = PBXGroup;
 			children = (
+				5C13C8881CCEC0C9005072DB /* EarthquakesE.mp3 */,
 				5CF6C9A01CCB2BB50093D3FD /* AwhileE.mp3 */,
 				5CF6C9A11CCB2BB50093D3FD /* CaliforniaE.mp3 */,
 				5CF6C9A21CCB2BB50093D3FD /* CloudE.mp3 */,
 				5CF6C9A31CCB2BB50093D3FD /* ColumnsE.mp3 */,
+				5C13C8841CCEBA48005072DB /* DisasterE.mp3 */,
 				5CF6C9A41CCB2BB50093D3FD /* DisastersE.mp3 */,
 				5CF6C9A51CCB2BB50093D3FD /* DriftedE.mp3 */,
 				5CF6C9A61CCB2BB50093D3FD /* EarthE.mp3 */,
@@ -15052,6 +15062,8 @@
 		5CF6C9D21CCB2BB50093D3FD /* Spanish */ = {
 			isa = PBXGroup;
 			children = (
+				5C13C8861CCEBFF3005072DB /* EarthquakesS.mp3 */,
+				5C13C8821CCEB9AE005072DB /* DisastersS.mp3 */,
 				5CF6C9D31CCB2BB50093D3FD /* AwhileS.mp3 */,
 				5CF6C9D41CCB2BB50093D3FD /* CaliforniaS.mp3 */,
 				5CF6C9D51CCB2BB50093D3FD /* CloudS.mp3 */,
@@ -15844,6 +15856,7 @@
 				5CB711051C6C292B0062AD61 /* old_CPQR5.m4a in Resources */,
 				5C62A9331C85398900F28BEB /* Mole_def_S.mp3 in Resources */,
 				5C72E7771C72BF1000CE4877 /* HowdoObjectsMoveQ4A1.mp3 in Resources */,
+				5C13C8871CCEBFF3005072DB /* EarthquakesS.mp3 in Resources */,
 				5C9C0AD11C573AAA00702FCD /* veinsE.m4a in Resources */,
 				5D9E340C1C590E9500636150 /* MoreIsMissingQ3A1.mp3 in Resources */,
 				1A6320F71C0E4D3B00251CB3 /* mancha_eating_grass.png in Resources */,
@@ -18887,6 +18900,7 @@
 				5C62A9841C854A2200F28BEB /* Rush_def_S.mp3 in Resources */,
 				1A63229B1C0E4D3B00251CB3 /* highchairb.png in Resources */,
 				5CB711751C6C46DF0062AD61 /* TheNavajoHoganQ6A1S.mp3 in Resources */,
+				5C13C8851CCEBA48005072DB /* DisasterE.mp3 in Resources */,
 				5C72E83E1C72BF1000CE4877 /* HowdoObjectsMoveQ2A4S.mp3 in Resources */,
 				5CA955611C3237690038FB56 /* AlternateImages-MetaData.xml in Resources */,
 				5DB79E871C91739A003B2AFC /* Script-Metadata.xml in Resources */,
@@ -19213,6 +19227,7 @@
 				5C0421A51C618C2B001BBE9D /* TheLuckyStoneQ1A3S.mp3 in Resources */,
 				5C9D5FF41C811959002EC986 /* Flexible_def_S.mp3 in Resources */,
 				5CF6CA5F1CCB2BB50093D3FD /* SpewS.mp3 in Resources */,
+				5C13C8891CCEC0C9005072DB /* EarthquakesE.mp3 in Resources */,
 				5CCD8FC61C7405EC00D2EC2B /* TsunamisQ6A4.mp3 in Resources */,
 				5C9C0A5A1C573AAA00702FCD /* CCE1_3.m4a in Resources */,
 				5C9B8B6F1CB5EFC800420053 /* PumpkinS.mp3 in Resources */,
@@ -20206,6 +20221,7 @@
 				5C0ED6A31C752C2F00003B5A /* GettingReadyQ4A2.mp3 in Resources */,
 				1A6322CD1C0E4D3B00251CB3 /* Story1-The-Lopez-Family-Intro-E.xhtml in Resources */,
 				5C8C35721CA1E60C00E07A5C /* HandleS.mp3 in Resources */,
+				5C13C8831CCEB9AE005072DB /* DisastersS.mp3 in Resources */,
 				1A6320FC1C0E4D3B00251CB3 /* mancha_tied.png in Resources */,
 				1A63232C1C0E4D3B00251CB3 /* rocketflame_rotate.png in Resources */,
 				5C9C07B81C57385A00702FCD /* BFCS1_6E.m4a in Resources */,
