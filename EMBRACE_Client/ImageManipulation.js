@@ -864,6 +864,7 @@ function highlightArea(areaName) {
     context.strokeStyle = "rgba(250, 250, 210, .2)";
     context.lineWidth = 5;
     //context.moveTo(path[0][0], path[0][1]);
+    
     context.moveTo(paths[areaName].path[1][0], paths[areaName].path[1][1]);
     
     for (var i = 1; i < paths[areaName].pathIndex-2; i++) {
@@ -1031,3 +1032,8 @@ function getImagePosition (object) {
     else
         return null;
 }
+
+console.debug = console.log;
+console.info = console.log;
+console.warn = console.log;
+console.error = console.log;

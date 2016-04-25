@@ -70,6 +70,7 @@
     BOOL replenishSupply; //True if object should reappear after disappearing
     BOOL allowSnapback; //True if objects should snap back to original location upon error
     BOOL pressedNextLock; // True if user pressed next, and false after next function finishes execution
+    BOOL isLoadPageInProgress; //True if the system is currently trying to load the next page
 
     CGPoint startLocation; //initial location of an object before it is moved
     CGPoint endLocation; // ending location of an object after it is moved
@@ -156,6 +157,7 @@ BOOL wasPathFollowed = false;
     replenishSupply = FALSE;
     allowSnapback = TRUE;
     pressedNextLock = false;
+    isLoadPageInProgress = false;
     
     movingObject = FALSE;
     movingObjectId = nil;
@@ -207,6 +209,8 @@ BOOL wasPathFollowed = false;
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
+    isLoadPageInProgress = false;
+    
     //Disable user selection
     [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitUserSelect='none';"];
     //Disable callout
@@ -370,10 +374,10 @@ BOOL wasPathFollowed = false;
     [self playCurrentSentenceAudio];
     
     //If there is at least one area/path to build
-    if ([model getAreaWithPageId:currentPageId]) {
+    if ([model getAreaWithPageId:currentPageId] || [model getAreaWithPageId:@"All_Chapters"]  ) {
         //Build area/path
         for (Area *area in [model areas]) {
-            if ([area.pageId isEqualToString:currentPageId]) {
+            if ([area.pageId isEqualToString:currentPageId] || [area.pageId isEqualToString:@"All_Chapters"]) {
                 [self buildPath:area.areaId];
             }
         }
@@ -530,6 +534,7 @@ BOOL wasPathFollowed = false;
  * Otherwise, it will load the next chaper.
  */
 - (void) loadNextPage {
+    isLoadPageInProgress =true;
     [self.playaudioClass stopPlayAudioFile];
 
     currentPage = [book getNextPageForChapterAndActivity:chapterTitle :PM_MODE :currentPage];
@@ -4100,8 +4105,10 @@ BOOL wasPathFollowed = false;
  * is correct, then it will move on to the next sentence. If the manipulation is not current, then feedback will be provided.
  */
 - (IBAction)pressedNext:(id)sender {
+    @synchronized(self) {
+        
     
-    if (!pressedNextLock) {
+    if (!pressedNextLock && !isLoadPageInProgress) {
     
         pressedNextLock = true;
     
@@ -4258,7 +4265,9 @@ BOOL wasPathFollowed = false;
             [self playErrorNoise];
         }
     }
+        
         pressedNextLock = false;
+    }
     }
 }
 
@@ -4484,7 +4493,7 @@ BOOL wasPathFollowed = false;
                         if ([ConditionSetup sharedInstance].reader == USER) {
                             audio = @"IntroDyadReads_IM";
                         } else {
-                            audio = nil;
+                            audio = @"IntroIpadReads_IM";
                         }
                     }
                 } else {

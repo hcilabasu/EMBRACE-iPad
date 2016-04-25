@@ -142,7 +142,7 @@
                 <group obj1Id="farmer" action="grab" obj2Id="cart"/>
             </step>
             <step number="26">
-                <check obj1Id="farmer" action="getIn" locationId="" areaId="barn"/>
+                <check obj1Id="farmer" action="getIn" locationId="" areaId="barnSolution"/>
                 <move obj1Id="farmer" action="getIn" waypointId="nearBarn"/>
             </step>
         </idea>
@@ -217,7 +217,7 @@
         <idea number="28"/>
         <idea number="29">
             <step number="40">
-                <check obj1Id="farmer" action="getIn" locationId="barn"/>
+                <check obj1Id="farmer" action="getIn" locationId="" areaId="barnSolution"/>
                 <move obj1Id="farmer" action="getIn" waypointId="nearBarn"/>
             </step>
         </idea>

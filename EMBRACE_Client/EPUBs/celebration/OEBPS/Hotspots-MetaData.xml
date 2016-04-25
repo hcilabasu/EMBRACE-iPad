@@ -59,7 +59,7 @@
         
         <hotspot objId="sofiaOnMancha_IM" action="nextTo" role="object" x="70%" y="50%"/>
         <hotspot objId="sofia_IM" action="nextTo" role="object" x="0%" y="50%"/>
-        <hotspot objId="post_IM" action="nextTo" role="subject" x="60%" y="50%"/>
+        <hotspot objId="post_IM" action="nextTo" role="subject" x="65%" y="50%"/>
        
         <hotspot objId="sofia_IM" action="hold" role="object" x="50%" y="50%"/>
         

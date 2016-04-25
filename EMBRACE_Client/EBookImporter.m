@@ -21,15 +21,15 @@
 @implementation EBookImporter
 
 - (id)init {
-	if (self = [super init]) {
+    if (self = [super init]) {
         library = [[NSMutableArray alloc] init];
         
         conditionSetup = [ConditionSetup sharedInstance];
         
         [self findDocDir];
-	}
-	
-	return self;
+    }
+    
+    return self;
 }
 
 - (void)dealloc {
@@ -120,7 +120,7 @@
     [zipArchive UnzipCloseFile];
     
     [zipArchive release];
-
+    
     //Read the container to find the path for the opf
     [self readContainerForBook:filepath];
 }
@@ -172,7 +172,7 @@
     }
 }
 
-/* 
+/*
  * Reads the opf file for the book. This file provides information about the title and author of the book,
  * as well as a list of all the files associated with this book. The spine provides an order for which pages
  * should be displayed. For the purposes of this application, the program will instead use the TOC to identify
@@ -279,7 +279,7 @@
     
     //Read the metadata for the book
     [self readMetadataForBook:book];
-
+    
     [library addObject:book];
 }
 
@@ -289,7 +289,7 @@
  */
 - (void)readTOCForBook:(Book *)book {
     NSString *filepath = nil;
-
+    
     //Separate TOC files depending on language
     if (conditionSetup.language == BILINGUAL) {
         filepath = [[book mainContentPath] stringByAppendingString:@"toc.ncx"];
@@ -300,7 +300,7 @@
     
     //Get xml data of the toc file
     NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
-
+    
     NSError *error;
     GDataXMLDocument *tocDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:&error];
     
@@ -583,6 +583,7 @@
     NSArray *areas = [areaElement elementsForName:@"area"];
     bool isFirstPoint = true;
     bool isSecondPoint = false;
+    bool isThirdPoint = false;
     
     for (GDataXMLElement *area in areas) {
         UIBezierPath *aPath = [UIBezierPath bezierPath];
@@ -595,8 +596,13 @@
         
         int pointID = 0;
         
-        CGPoint firstPoint;
-        CGPoint secondPoint;
+        
+        float firstpointX;
+        float firstpointY;
+        float secondpointX;
+        float secondpointY;
+        float thirdpointX;
+        float thirdpointY;
         
         for (GDataXMLElement *point in points) {
             NSString *pointX = [[point attributeForName:@"x"] stringValue];
@@ -612,13 +618,22 @@
             if (isFirstPoint) {
                 // Set the starting point of the shape
                 [aPath moveToPoint:CGPointMake(locationX, locationY)];
-                firstPoint = CGPointMake(locationX, locationY);
-                isFirstPoint = false;
+                firstpointX = locationX;
+                firstpointY = locationY;
                 isSecondPoint = true;
+                isFirstPoint = false;
             }
             else if (isSecondPoint) {
-                secondPoint = CGPointMake(locationX, locationY);
+                secondpointX = locationX;
+                secondpointY = locationY;
                 isSecondPoint = false;
+                isThirdPoint = true;
+                [aPath addLineToPoint:CGPointMake(locationX, locationY)];
+            }
+            else if (isThirdPoint) {
+                thirdpointX = locationX;
+                thirdpointY = locationY;
+                isThirdPoint = false;
                 [aPath addLineToPoint:CGPointMake(locationX, locationY)];
             }
             else {
@@ -626,8 +641,18 @@
             }
         }
         
-        [aPath addLineToPoint:firstPoint];
-        [aPath addLineToPoint:secondPoint];
+        areaDictionary[[NSString stringWithFormat:@"x%d", pointID]] = [NSString stringWithFormat:@"%f", firstpointX];
+        areaDictionary[[NSString stringWithFormat:@"y%d", pointID]] = [NSString stringWithFormat:@"%f", firstpointY];
+        pointID++;
+        [aPath addLineToPoint:CGPointMake(firstpointX, firstpointY)];
+        areaDictionary[[NSString stringWithFormat:@"x%d", pointID]] = [NSString stringWithFormat:@"%f", secondpointX];
+        areaDictionary[[NSString stringWithFormat:@"y%d", pointID]] = [NSString stringWithFormat:@"%f", secondpointY];
+        pointID++;
+        [aPath addLineToPoint:CGPointMake(secondpointX, secondpointY)];
+        areaDictionary[[NSString stringWithFormat:@"x%d", pointID]] = [NSString stringWithFormat:@"%f", thirdpointX];
+        areaDictionary[[NSString stringWithFormat:@"y%d", pointID]] = [NSString stringWithFormat:@"%f", thirdpointY];
+        pointID++;
+        [aPath addLineToPoint:CGPointMake(thirdpointX, thirdpointY)];
         
         if ([areaId rangeOfString:@"Path"].location == NSNotFound) {
             [aPath closePath];
@@ -1260,7 +1285,7 @@
         }
     }
     
-
+    
 }
 
 - (void)readScriptMetadata:(Book *)book filePath:(NSString *)filepath {
@@ -1269,8 +1294,8 @@
     NSLog(@"Start for - %@",book.title);
     GDataXMLDocument *metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:&error];
     if (metadataDoc !=nil) {
-
-
+        
+        
         NSArray *scriptAudioElems = [metadataDoc nodesForXPath:@"//scriptAudio" error:nil];
         GDataXMLElement *solutionsElement = (GDataXMLElement *)[scriptAudioElems objectAtIndex:0];
         
@@ -1307,7 +1332,7 @@
                 }
             }
             
-           
+            
         }
         
     }
@@ -1332,7 +1357,7 @@
         if ([englishArrayElem count]>0) {
             GDataXMLElement *eng = [englishArrayElem objectAtIndex:0];
             preEnglish = [[eng elementsForName:@"audio"]valueForKey:@"stringValue"];
-           
+            
             
         }
         
@@ -1366,7 +1391,7 @@
     }
     
     if (preBilingual || preEnglish || postEnglish || postBilingual) {
-     
+        
         script = [[ScriptAudio alloc] initWithCondition:condition
                                         englishPreAudio:preEnglish
                                        englishPostAudio:postEnglish
