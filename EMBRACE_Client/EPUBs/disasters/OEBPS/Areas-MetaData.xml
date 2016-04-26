@@ -106,5 +106,11 @@
             <point x="70%" y="80%"/>
             <point x="0%" y="80%"/>
         </area>
+        <area areaId="ocean1" pageId="story4-PM-2">
+            <point x="0%" y="45%"/>
+            <point x="100%" y="45%"/>
+            <point x="100%" y="58%"/>
+            <point x="0%" y="58%"/>
+        </area>
     </areas>
 </metadata>
