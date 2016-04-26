@@ -17,15 +17,15 @@
         <alternateImage objId="house_roof2" action="flip" originalSrc="house_roof2.png" alternateSrc="house_roof2_damaged.png" width="237px" x="44.873047%" y="74.005684%" class="manipulationObject" z="3"/>
         <alternateImage objId="houses" action="fall" originalSrc="houses.png" alternateSrc="houses_burn.png" width="80px" x="12.5%" y="46%" class="manipulationObject" z=""/>
         <alternateImage objId="india" action="push" originalSrc="india_whole.png" alternateSrc="india_himalayas.png" width="160px" x="44.335938%" y="29.119318%" class="manipulationObject" z=""/>
+        <alternateImage objId="kauai" action="appear" originalSrc="island_Kauai.png" alternateSrc="island_Kauai.png" width="225px" x="56%" y="45%" class="manipulationObject" z="2"/>
         <alternateImage objId="label_hawaii" action="appear" originalSrc="Hawaii.png" alternateSrc="Hawaii.png" width="77px" height="19px" x="50" y="10%" class="manipulationObject" z="5"/>
         <alternateImage objId="label_kauai" action="appear" originalSrc="Kauai.png" alternateSrc="Kauai.png" width="65px" height="19px" x="50" y="10%" class="manipulationObject" z="5"/>
         <alternateImage objId="label_molokai" action="appear" originalSrc="Molokai.png" alternateSrc="Molokai.png" width="90px" height="19px" x="50" y="10%" class="manipulationObject" z="5"/>
         <alternateImage objId="label_oahu" action="appear" originalSrc="Oahu.png" alternateSrc="Oahu.png" width="62px" height="19px" x="50%" y="10%" class="manipulationObject" z="5"/>
-        <alternateImage objId="lava" action="forms_island" originalSrc="lava_ball.png" alternateSrc="island_Kauai.png" width="225px" x="56%" y="45%" class="manipulationObject" z=""/>
-        <alternateImage objId="lava" action="forms_Oahu" originalSrc="lava_ball.png" alternateSrc="island_Oahu.png" width="225px" x="50%" y="50%" class="manipulationObject" z=""/>
         <alternateImage objId="lava" action="forms_rock" originalSrc="lava_ball.png" alternateSrc="lava_cooled.png" width="81px" x="79.345703%" y="48.366478%" class="manipulationObject" z=""/>
         <alternateImage objId="lava" action="forms_rock_Hawaii" originalSrc="lava_ball.png" alternateSrc="lava_cooled.png" width="81px" x="50%" y="50%" class="manipulationObject" z=""/>
         <alternateImage objId="molokai" action="appear" originalSrc="island_Molokai.png" alternateSrc="island_Molokai.png" width="350px" height="125.6px" x="39.843750%" y="36.789772%" class="manipulationObject" z="2"/>
         <alternateImage objId="north_america" action="crack" originalSrc="north_america_nofault.png" alternateSrc="north_america_fault.png" width="495px" x="6.396484%" y="0.000000%" class="manipulationObject" z=""/>
+        <alternateImage objId="oahu" action="appear" originalSrc="island_Oahu.png" alternateSrc="island_Oahu.png" width="225px" x="50%" y="50%" class="manipulationObject" z="2"/>
     </alternateImages>
 </metadata>

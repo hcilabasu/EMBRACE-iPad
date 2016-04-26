@@ -127,11 +127,12 @@
             <sentence number="7">
                 <step number="1">
                     <check obj1Id="lava" action="getIn" locationId="lavaUp"/>
-                    <swapImage obj1Id="lava" action="forms_island"/>
+                    <disappearAuto obj1Id="lava" action="disappear" obj2Id="lava"/>
+                    <appear obj1Id="kauai" action="appear"/>
                     <appear obj1Id="label_kauai" action="appear"/>
                     <disappearAuto obj1Id="lava_cooled" action="disappear" obj2Id="lava_cooled"/>
-                    <groupAuto obj1Id="label_kauai" action="label" obj2Id="lava"/>
-                    <groupAuto obj1Id="lava" action="touchAsKauai" obj2Id="grey_plate_kauai"/>
+                    <groupAuto obj1Id="label_kauai" action="label" obj2Id="kauai"/>
+                    <groupAuto obj1Id="kauai" action="touchAsKauai" obj2Id="grey_plate_kauai"/>
                 </step>
             </sentence>
         </story>
@@ -147,10 +148,11 @@
             <sentence number="11">
                 <step number="1">
                     <check obj1Id="lava" action="getIn" locationId="lavaUp"/>
-                    <swapImage obj1Id="lava" action="forms_Oahu"/>
+                    <disappearAuto obj1Id="lava" action="disappear" obj2Id="lava"/>
+                    <appear obj1Id="oahu" action="appear"/>
                     <appear obj1Id="label_oahu" action="appear"/>
-                    <groupAuto obj1Id="label_oahu" action="label" obj2Id="lava"/>
-                    <groupAuto obj1Id="lava" action="touchAsOahu" obj2Id="grey_plate_kauai"/>
+                    <groupAuto obj1Id="label_oahu" action="label" obj2Id="oahu"/>
+                    <groupAuto obj1Id="oahu" action="touchAsOahu" obj2Id="grey_plate_kauai"/>
                 </step>
             </sentence>
         </story>
