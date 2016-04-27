@@ -192,8 +192,24 @@
         <relationship obj1Id="chickenIM" can="visit" action="group" obj2Id="eggIM"/>
         <relationship obj1Id="chickenIM" can="visit" action="group" obj2Id="egg4IM"/>
         
+        <relationship obj1Id="catIM" can="visit" action="group" obj2Id="bucketIM"/>
+        <relationship obj1Id="catIM" can="flip" action="group" obj2Id="bucketIM"/>
+        
+        <relationship obj1Id="owlIM" can="visit" action="group" obj2Id="farmerIM"/>
+        <relationship obj1Id="chickenIM" can="visit" action="group" obj2Id="farmerIM"/>
+        
+        <relationship obj1Id="horseIM" can="face" action="group" obj2Id="hayIM"/>
+        <relationship obj1Id="horseIM" can="face" action="group" obj2Id="pumpkinIM"/>
+        
+        <relationship obj1Id="horseIM" can="visit" action="group" obj2Id="judgeIM"/>
+        <relationship obj1Id="horseIM" can="visit" action="group" obj2Id="farmerIM"/>
+        
         <relationship obj1Id="pigIM" can="face" action="group" obj2Id="owlIM"/>
         <relationship obj1Id="pigFlipIM" can="faceAway" action="group" obj2Id="owlIM"/>
+        
+        <relationship obj1Id="judge_rightIM" can="visit" action="group" obj2Id="cowIM"/>
+        <relationship obj1Id="judge_leftIM" can="visit" action="group" obj2Id="cowIM"/>
+        
     </relationships>
 </metadata>
 
