@@ -18,8 +18,6 @@
         <hotspot objId="bucket" action="finish" role="object" x="100%" y="100%"/>
         <hotspot objId="bucket" action="give" role="object" x="50%" y="3%"/>
         <hotspot objId="bucket" action="grab" role="object" x="50%" y="3%"/>
-        <hotspot objId="bucketIM" action="flip" role="object" x="100%" y="100%"/>
-        <hotspot objId="bucketIM" action="visit" role="object" x="100%" y="100%"/>
         <hotspot objId="bucket" action="visit" role="object" x="100%" y="100%"/>
         <hotspot objId="cart" action="getIn" role="object" x="34%" y="0%"/>
         <hotspot objId="cart" action="getIn" role="subject" x="50%" y="50%"/>
@@ -34,8 +32,6 @@
         <hotspot objId="cat" action="moveTo" role="subject" x="0%" y="100%"/>
         <hotspot objId="cat" action="pickUp" role="object" x="50%" y="50%"/>
         <hotspot objId="cat" action="visit" role="subject" x="100%" y="100%"/>
-        <hotspot objId="catIM" action="flip" role="subject" x="0%" y="100%"/>
-        <hotspot objId="catIM" action="visit" role="subject" x="30%" y="100%"/>
         <hotspot objId="cat" action="visit" role="object" x="0%" y="100%"/>
         <hotspot objId="chicken" action="count" role="subject" x="0%" y="100%"/>
         <hotspot objId="chicken" action="getIn" role="subject" x="50%" y="50%"/>
@@ -123,8 +119,6 @@
         <hotspot objId="judge" action="open" role="subject" x="89%" y="62%"/>
         <hotspot objId="judge" action="visit" role="object" x="0%" y="100%"/>
         <hotspot objId="judge" action="visit" role="subject" x="100%" y="100%"/>
-        <hotspot objId="judge_right_IM" action="visit" role="subject" x="100%" y="100%"/>
-        <hotspot objId="judge_left_IM" action="visit" role="subject" x="100%" y="100%"/>
         <hotspot objId="judge" action="leave" role="subject" x="100%" y="100%"/>
         <hotspot objId="owl" action="moveTo" role="subject" x="0%" y="100%"/>
         <hotspot objId="owl" action="visit" role="object" x="0%" y="100%"/>
@@ -175,12 +169,34 @@
         <hotspot objId="eggIM" action="visit" role="subject" x="100%" y="100%"/>
         <hotspot objId="egg4IM" action="visit" role="subject" x="100%" y="100%"/>
         
+        <hotspot objId="catIM" action="flip" role="subject" x="0%" y="100%"/>
+        <hotspot objId="catIM" action="visit" role="subject" x="30%" y="100%"/>
+        <hotspot objId="bucketIM" action="flip" role="object" x="100%" y="100%"/>
+        <hotspot objId="bucketIM" action="visit" role="object" x="100%" y="100%"/>
+        
         <hotspot objId="chickenIM" action="visit" role="object" x="0%" y="100%"/>
         <hotspot objId="chickenIM" action="visit" role="subject" x="100%" y="100%"/>
         
-        <hotspot objId="pigIM" action="face" role="object" x="0%" y="100%"/>
-        <hotspot objId="pigFlipIM" action="faceAway" role="object" x="0%" y="100%"/>
-        <hotspot objId="owlIM" action="face" role="subject" x="100%" y="100%"/>
-        <hotspot objId="owlIM" action="faceAway" role="subject" x="100%" y="100%"/>
+        <hotspot objId="chickenIM" action="visit" role="subject" x="100%" y="100%"/>
+        <hotspot objId="owlIM" action="visit" role="subject" x="100%" y="100%"/>
+        <hotspot objId="farmerIM" action="visit" role="object" x="0%" y="100%"/>
+        
+        <hotspot objId="horseIM" action="face" role="subject" x="0%" y="50%"/>
+        <hotspot objId="pumpkinIM" action="face" role="object" x="100%" y="50%"/>
+        <hotspot objId="hayIM" action="face" role="object" x="100%" y="50%"/>
+        
+        <hotspot objId="pigIM" action="face" role="subject" x="0%" y="100%"/>
+        <hotspot objId="pigFlipIM" action="faceAway" role="subject" x="0%" y="100%"/>
+        <hotspot objId="owlIM" action="face" role="object" x="100%" y="100%"/>
+        <hotspot objId="owlIM" action="faceAway" role="object" x="100%" y="100%"/>
+        
+        <hotspot objId="judge_rightIM" action="visit" role="subject" x="100%" y="100%"/>
+        <hotspot objId="judge_leftIM" action="visit" role="subject" x="100%" y="100%"/>
+        <hotspot objId="cowIM" action="visit" role="object" x="0%" y="100%"/>
+        
+        <hotspot objId="horseIM" action="visit" role="object" x="0%" y="100%"/>
+        <hotspot objId="horseIM" action="visit" role="subject" x="100%" y="100%"/>
+        <hotspot objId="judgeIM" action="visit" role="object" x="0%" y="100%"/>
+        <hotspot objId="judgeIM" action="visit" role="subject" x="100%" y="100%"/>
     </hotspots>
 </metadata>

@@ -42,6 +42,8 @@ typedef enum Actor {
 @property (nonatomic) AppMode appMode;
 @property (nonatomic) Mode currentMode; //PM or IM
 @property (nonatomic) BOOL newInstructions; //whether new audio instructions should be played (for sequences)
+@property (nonatomic) BOOL vocabPageEnabled; //whether the vocab page should be displayed
+@property (nonatomic) BOOL assessmentPageEnabled; //whether the assessment page should be displayed
 
 + (ConditionSetup*)sharedInstance;
 

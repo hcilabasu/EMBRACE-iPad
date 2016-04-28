@@ -76,5 +76,41 @@
             <point x="94.8%" y="24.0%"/>
             <point x="94.8%" y="24.1%"/>
         </area>
+        <area areaId="forest" pageId="All_Chapters">
+            <point x="55%" y="45%"/>
+            <point x="100%" y="45%"/>
+            <point x="100%" y="100%"/>
+            <point x="55%" y="100%"/>
+        </area>
+        <area areaId="ocean1" pageId="story3-PM-1">
+            <point x="0%" y="60%"/>
+            <point x="70%" y="60%"/>
+            <point x="70%" y="80%"/>
+            <point x="0%" y="80%"/>
+        </area>
+        <area areaId="ocean1" pageId="story3-PM-2">
+            <point x="0%" y="60%"/>
+            <point x="70%" y="60%"/>
+            <point x="70%" y="80%"/>
+            <point x="0%" y="80%"/>
+        </area>
+        <area areaId="ocean1" pageId="story3-PM-3">
+            <point x="0%" y="60%"/>
+            <point x="70%" y="60%"/>
+            <point x="70%" y="80%"/>
+            <point x="0%" y="80%"/>
+        </area>
+        <area areaId="ocean1" pageId="story3-PM-4">
+            <point x="0%" y="60%"/>
+            <point x="70%" y="60%"/>
+            <point x="70%" y="80%"/>
+            <point x="0%" y="80%"/>
+        </area>
+        <area areaId="ocean1" pageId="story4-PM-2">
+            <point x="0%" y="45%"/>
+            <point x="100%" y="45%"/>
+            <point x="100%" y="58%"/>
+            <point x="0%" y="58%"/>
+        </area>
     </areas>
 </metadata>

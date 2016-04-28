@@ -139,8 +139,16 @@
                     intervention = R_INTERVENTION; //default intervention
                 }
                 
+                //Get vocab page flag
+                NSString *vocabPageString = [[modeElement attributeForName:@"vocabPage"] stringValue];
+                BOOL vocabPage = [vocabPageString isEqualToString:@"true"] ? true : false;
+                
+                //Get assessment page flag
+                NSString *assessmentPageString = [[modeElement attributeForName:@"assessmentPage"] stringValue];
+                BOOL assesssmentPage = [assessmentPageString isEqualToString:@"true"] ? true : false;
+                
                 //Create mode for chapter and add to array of modes
-                ActivityMode *mode = [[ActivityMode alloc] initWithValues:chapterTitle :newInstructions :reader :language :intervention];
+                ActivityMode *mode = [[ActivityMode alloc] initWithValues:chapterTitle :newInstructions :reader :language :intervention:vocabPage:assesssmentPage];
                 [modes addObject:mode];
             }
             

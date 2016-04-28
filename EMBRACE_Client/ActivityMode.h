@@ -20,10 +20,12 @@ typedef enum InterventionType {
 
 @property (nonatomic, strong) NSString *chapterTitle;
 @property (nonatomic, assign) BOOL newInstructions; //whether the set of instructions (audio) is being presented for the first time
+@property (nonatomic, assign) BOOL vocabPageEnabled;
+@property (nonatomic, assign) BOOL assessmentPageEnabled;
 @property (nonatomic, assign) Actor reader;
 @property (nonatomic, assign) Language language; //English or Spanish-support (i.e., bilingual)
 @property (nonatomic, assign) InterventionType interventionType;
 
-- (id)initWithValues:(NSString *)title :(BOOL)newInstruct :(Actor)read :(Language)lang :(InterventionType)type;
+- (id)initWithValues:(NSString *)title :(BOOL)newInstruct :(Actor)read :(Language)lang :(InterventionType)type :(BOOL) isVocabPageEnabled :(BOOL) isAssessmentPageEnabled;
 
 @end
