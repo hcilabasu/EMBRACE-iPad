@@ -22,7 +22,8 @@
  * Loads a particular set of activity sequences from file for the current user
  */
 - (BOOL)loadSequences:(NSString *)participantCode {
-    participantCode = [participantCode uppercaseString];
+    //TEST: Match test ID to EEG participant code
+    participantCode = [[participantCode uppercaseString] stringByReplacingOccurrencesOfString:@"TEST" withString:@"EEG"];
     
     //Using EEG sequence
     if ([participantCode rangeOfString:@"EEG"].location != NSNotFound) {
@@ -46,11 +47,6 @@
             default:
                 break;
         }
-    }
-    //Using MCD sequence
-    else {
-        //TEST: Match test ID to MCD participant code
-        participantCode = [participantCode stringByReplacingOccurrencesOfString:@"TEST" withString:@"MCD"];
     }
     
     NSBundle *mainBundle = [NSBundle mainBundle];
