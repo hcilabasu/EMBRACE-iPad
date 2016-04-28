@@ -4822,6 +4822,10 @@
 		5DED1CAD1C765BD200B29369 /* NaughtyMonkey_Script_C7.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DED1CA01C765BD200B29369 /* NaughtyMonkey_Script_C7.mp3 */; };
 		5DED1CAE1C765BD200B29369 /* NaughtyMonkey_Script_C8.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DED1CA11C765BD200B29369 /* NaughtyMonkey_Script_C8.mp3 */; };
 		5DED1CAF1C765BD200B29369 /* NaughtyMonkey_Script_C9.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DED1CA21C765BD200B29369 /* NaughtyMonkey_Script_C9.mp3 */; };
+		5DF851571CD2631300F063DE /* NaughtyMonkeyEEG_Script1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DF851531CD2631300F063DE /* NaughtyMonkeyEEG_Script1.mp3 */; };
+		5DF851581CD2631300F063DE /* NaughtyMonkeyEEG_Script2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DF851541CD2631300F063DE /* NaughtyMonkeyEEG_Script2.mp3 */; };
+		5DF851591CD2631300F063DE /* NaughtyMonkeyEEG_Script3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DF851551CD2631300F063DE /* NaughtyMonkeyEEG_Script3.mp3 */; };
+		5DF8515A1CD2631300F063DE /* NaughtyMonkeyEEG_Script4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DF851561CD2631300F063DE /* NaughtyMonkeyEEG_Script4.mp3 */; };
 		C30D022D1BABBFD500DF53F1 /* PlayAudioIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABD84AD1A49F54B0043A685 /* PlayAudioIcon.png */; };
 		C30D022E1BABBFD500DF53F1 /* cover_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 31109701174AB35E00B02BF7 /* cover_default.png */; };
 		C30D022F1BABBFD500DF53F1 /* logo57.png in Resources */ = {isa = PBXBuildFile; fileRef = 31058C75176BCFF900595AAE /* logo57.png */; };
@@ -9737,6 +9741,10 @@
 		5DED1CA01C765BD200B29369 /* NaughtyMonkey_Script_C7.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkey_Script_C7.mp3; sourceTree = "<group>"; };
 		5DED1CA11C765BD200B29369 /* NaughtyMonkey_Script_C8.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkey_Script_C8.mp3; sourceTree = "<group>"; };
 		5DED1CA21C765BD200B29369 /* NaughtyMonkey_Script_C9.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkey_Script_C9.mp3; sourceTree = "<group>"; };
+		5DF851531CD2631300F063DE /* NaughtyMonkeyEEG_Script1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = NaughtyMonkeyEEG_Script1.mp3; path = ../../../../../../../../Downloads/yak/NaughtyMonkeyEEG_Script1.mp3; sourceTree = "<group>"; };
+		5DF851541CD2631300F063DE /* NaughtyMonkeyEEG_Script2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = NaughtyMonkeyEEG_Script2.mp3; path = ../../../../../../../../Downloads/yak/NaughtyMonkeyEEG_Script2.mp3; sourceTree = "<group>"; };
+		5DF851551CD2631300F063DE /* NaughtyMonkeyEEG_Script3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = NaughtyMonkeyEEG_Script3.mp3; path = ../../../../../../../../Downloads/yak/NaughtyMonkeyEEG_Script3.mp3; sourceTree = "<group>"; };
+		5DF851561CD2631300F063DE /* NaughtyMonkeyEEG_Script4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = NaughtyMonkeyEEG_Script4.mp3; path = ../../../../../../../../Downloads/yak/NaughtyMonkeyEEG_Script4.mp3; sourceTree = "<group>"; };
 		C32DA0DF1BF92A52006C2418 /* Progress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Progress.h; sourceTree = "<group>"; };
 		C32DA0E01BF92A52006C2418 /* Progress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Progress.m; sourceTree = "<group>"; };
 		C35F427B1BDAAD3600B4BCF0 /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
@@ -16083,6 +16091,7 @@
 		5DA8FD121C872F190056DE7A /* Embrace */ = {
 			isa = PBXGroup;
 			children = (
+				5DF851521CD262E000F063DE /* EEG */,
 				5DA8FD131C872F190056DE7A /* NaughtyMonkey_Script1.mp3 */,
 				5DA8FD141C872F190056DE7A /* NaughtyMonkey_Script2.mp3 */,
 				5DA8FD151C872F190056DE7A /* NaughtyMonkey_Script3.mp3 */,
@@ -16168,6 +16177,17 @@
 				5DED1C9A1C765BD200B29369 /* NaughtyMonkey_Script_C13.mp3 */,
 			);
 			path = Control;
+			sourceTree = "<group>";
+		};
+		5DF851521CD262E000F063DE /* EEG */ = {
+			isa = PBXGroup;
+			children = (
+				5DF851531CD2631300F063DE /* NaughtyMonkeyEEG_Script1.mp3 */,
+				5DF851541CD2631300F063DE /* NaughtyMonkeyEEG_Script2.mp3 */,
+				5DF851551CD2631300F063DE /* NaughtyMonkeyEEG_Script3.mp3 */,
+				5DF851561CD2631300F063DE /* NaughtyMonkeyEEG_Script4.mp3 */,
+			);
+			path = EEG;
 			sourceTree = "<group>";
 		};
 		C680520E197ECDC7002A5249 /* DDXML */ = {
@@ -16295,6 +16315,7 @@
 				5C72E77D1C72BF1000CE4877 /* HowdoObjectsMoveQ5A2.mp3 in Resources */,
 				5C28DCD01C2BA66E005ACD07 /* shovel_withsnow.png in Resources */,
 				5C0ED9E91C753AD400003B5A /* MusclesUseOxygenQ4A2.mp3 in Resources */,
+				5DF851591CD2631300F063DE /* NaughtyMonkeyEEG_Script3.mp3 in Resources */,
 				5DBC03281C5121AE0030072B /* (null) in Resources */,
 				5C72E8451C72BF1000CE4877 /* HowdoObjectsMoveQ4A1S.mp3 in Resources */,
 				5CC0A5421CA3A1CB003F1880 /* JumpsS.mp3 in Resources */,
@@ -16827,6 +16848,7 @@
 				1A6321451C0E4D3B00251CB3 /* Story6-Homecoming-Intro-E.xhtml in Resources */,
 				5C72E5D31C72A46F00CE4877 /* TheSeminoleChickeeQ6A1.mp3 in Resources */,
 				5CB711531C6C46DF0062AD61 /* NativeIntroQ2A2S.mp3 in Resources */,
+				5DF851571CD2631300F063DE /* NaughtyMonkeyEEG_Script1.mp3 in Resources */,
 				5D9E34421C590E9500636150 /* old_TheFamilyIsRattledQ1A2.mp3 in Resources */,
 				5C0ED86D1C75334200003B5A /* AGiftfortheBrideQ2A4.mp3 in Resources */,
 				5CF793181C76986E00216337 /* BFTC10.m4a in Resources */,
@@ -20396,7 +20418,11 @@
 				5C030FAD1C8633CF006E1BEA /* Rattle_def_S.mp3 in Resources */,
 				5C9D5FF81C811959002EC986 /* Narrow_def_S.mp3 in Resources */,
 				5C72E79F1C72BF1000CE4877 /* NewtonsfirstlawQ1A2.mp3 in Resources */,
+
+				5DF851581CD2631300F063DE /* NaughtyMonkeyEEG_Script2.mp3 in Resources */,
+
 				5CA5CC181CD1A46D002A631F /* HomecomingS6E.mp3 in Resources */,
+
 				5C40AE951CBF591A00BFEB9F /* SkateboardsE.mp3 in Resources */,
 				5C8C355B1CA1E18800E07A5C /* HandleE.mp3 in Resources */,
 				5C5D09241CA9F55800B7C8D9 /* RattleS.mp3 in Resources */,
@@ -20452,6 +20478,7 @@
 				5C72E8121C72BF1000CE4877 /* NewtonsThirdLawForcesarepairedQ6A3.mp3 in Resources */,
 				5CCD8FDC1C7405EC00D2EC2B /* VolcanoesQ5A1.mp3 in Resources */,
 				5C09DF451C84F33E00EC4E78 /* Earth_def_E.mp3 in Resources */,
+				5DF8515A1CD2631300F063DE /* NaughtyMonkeyEEG_Script4.mp3 in Resources */,
 				5CCD8F761C7405EC00D2EC2B /* TheMovingEarthQ5A4.mp3 in Resources */,
 				1A6320F21C0E4D3B00251CB3 /* icon_mancha.png in Resources */,
 				5C9B8B451CB5EFC800420053 /* JumpedE.mp3 in Resources */,
