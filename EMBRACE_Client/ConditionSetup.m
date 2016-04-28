@@ -19,6 +19,8 @@
 @synthesize vocabPageEnabled;
 @synthesize assessmentPageEnabled;
 
+@synthesize allowFileSync;
+
 + (id)sharedInstance {
     static ConditionSetup *sharedMyManager = nil;
     static dispatch_once_t onceToken;
@@ -33,13 +35,15 @@
 - (id)init {
     if (self = [super init]) {
         condition = EMBRACE;
-        language = BILINGUAL;
+        language = ENGLISH;
         reader = SYSTEM;
         appMode = Study;
-        currentMode = IM_MODE;
+        currentMode = PM_MODE;
         newInstructions = false;
         vocabPageEnabled = true;
         assessmentPageEnabled = true;
+        
+        allowFileSync = false; //NOTE: Still testing this functionality
     }
     
     return self;
