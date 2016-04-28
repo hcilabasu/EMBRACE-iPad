@@ -354,9 +354,11 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
     //Save progress to file
     [[ServerCommunicationController sharedInstance] saveProgress:student :studentProgress];
     
-    //NOTE: Still testing this functionality
-    //Upload log file and progress file to Dropbox
-    [[ServerCommunicationController sharedInstance] uploadFilesForStudent:student];
+    if (conditionSetup.allowFileSync) {
+        //NOTE: Still testing this functionality
+        //Upload log file and progress file to Dropbox
+        [[ServerCommunicationController sharedInstance] uploadFilesForStudent:student];
+    }
     
     //Reset ServerCommunicationController to end session
     [ServerCommunicationController resetSharedInstance];

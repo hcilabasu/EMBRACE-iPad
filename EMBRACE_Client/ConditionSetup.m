@@ -19,6 +19,8 @@
 @synthesize vocabPageEnabled;
 @synthesize assessmentPageEnabled;
 
+@synthesize allowFileSync;
+
 + (id)sharedInstance {
     static ConditionSetup *sharedMyManager = nil;
     static dispatch_once_t onceToken;
@@ -40,6 +42,8 @@
         newInstructions = false;
         vocabPageEnabled = true;
         assessmentPageEnabled = true;
+        
+        allowFileSync = false; //NOTE: Still testing this functionality
     }
     
     return self;

@@ -104,15 +104,24 @@
         [[ServerCommunicationController sharedInstance] setupStudyContext:student];
         [[ServerCommunicationController sharedInstance] logPressLogin];
         
-        //NOTE: Still testing this functionality
-        //Download progress file from Dropbox
-        [[ServerCommunicationController sharedInstance] downloadProgressForStudent:student completionHandler:^(BOOL success) {
+        if ([[ConditionSetup sharedInstance] allowFileSync]) {
+            //NOTE: Still testing this functionality
+            //Download progress file from Dropbox
+            [[ServerCommunicationController sharedInstance] downloadProgressForStudent:student completionHandler:^(BOOL success) {
+                //Load progress for student if it exists
+                studentProgress = [[ServerCommunicationController sharedInstance] loadProgress:student];
+                
+                //Then take the user to the library view.
+                [self performSegueWithIdentifier: @"OpenLibrarySegue" sender: self];
+            }];
+        }
+        else {
             //Load progress for student if it exists
             studentProgress = [[ServerCommunicationController sharedInstance] loadProgress:student];
-
+            
             //Then take the user to the library view.
             [self performSegueWithIdentifier: @"OpenLibrarySegue" sender: self];
-        }];
+        }
     }
 }
 
