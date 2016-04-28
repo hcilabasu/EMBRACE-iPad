@@ -33,10 +33,10 @@
 - (id)init {
     if (self = [super init]) {
         condition = EMBRACE;
-        language = BILINGUAL;
+        language = ENGLISH;
         reader = SYSTEM;
         appMode = Study;
-        currentMode = IM_MODE;
+        currentMode = PM_MODE;
         newInstructions = false;
         vocabPageEnabled = true;
         assessmentPageEnabled = true;
