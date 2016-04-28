@@ -4527,8 +4527,10 @@ BOOL wasPathFollowed = false;
                 if (audio) {
                     NSString *spanishAudio = nil;
                     
-                   
-                    if ([ConditionSetup sharedInstance].language == BILINGUAL && conditionSetup.newInstructions) {
+                    // IntroIpadReads_IM does not have spanish audio.
+                    if (![audio isEqualToString:@"IntroIpadReads_IM"] &&
+                        [ConditionSetup sharedInstance].language == BILINGUAL &&
+                        conditionSetup.newInstructions) {
                         spanishAudio = [NSString stringWithFormat:@"%@_S.mp3",audio];
                         
                     }
