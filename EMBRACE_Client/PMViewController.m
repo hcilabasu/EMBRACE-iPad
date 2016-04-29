@@ -4331,6 +4331,42 @@ BOOL wasPathFollowed = false;
             }
         }
         
+        //If we are on the first or second manipulation page of Cleaning Up, play the audio of the current sentence
+        if ([chapterTitle isEqualToString:@"Cleaning Up"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+            
+                sentenceAudioFile = [NSString stringWithFormat:@"CleaningUpS%dE", currentSentence];
+        }
+        
+        //If we are on the first or second manipulation page of Getting Ready, play the audio of the current sentence
+        if ([chapterTitle isEqualToString:@"Getting Ready"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"GettingReadyS%dE", currentSentence];
+        }
+        
+        //If we are on the first or second manipulation page of Who Is The Best Animal, play the audio of the current sentence
+        if ([chapterTitle isEqualToString:@"Who Is The Best Animal"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"WhoIsTheBestAnimalS%dE", currentSentence];
+        }
+        
+        //If we are on the first or second manipulation page of The Wise Owl, play the audio of the current sentence
+        if ([chapterTitle isEqualToString:@"The Wise Owl"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"TheWiseOwlS%dE", currentSentence];
+        }
+        
+        //If we are on the first or second manipulation page of Everyone Helps, play the audio of the current sentence
+        if ([chapterTitle isEqualToString:@"Everyone Helps"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"EveryoneHelpsS%dE", currentSentence];
+        }
+        
+        //If we are on the first or second manipulation page of The Best Farm Award, play the audio of the current sentence
+        if ([chapterTitle isEqualToString:@"The Best Farm Award"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"TheBestFarmAwardS%dE", currentSentence];
+        }
+        
         //If we are on the first or second manipulation page of Why We Breathe, play the audio of the current sentence
         if ([chapterTitle isEqualToString:@"Why We Breathe"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
             if ((conditionSetup.language == BILINGUAL)) {
@@ -4350,6 +4386,37 @@ BOOL wasPathFollowed = false;
                 sentenceAudioFile = [NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3", currentSentence];
             }
         }
+        
+        //If we are on the first or second manipulation page of Is Paco A Thief, play the current sentence
+        if ([chapterTitle isEqualToString:@"Is Paco A Thief"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"IsPacoAThiefS%dE.mp3", currentSentence];
+        }
+        
+        //If we are on the first or second manipulation page of Missing Keys, play the current sentence
+        if ([chapterTitle isEqualToString:@"Missing Keys"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"MissingKeysS%dE.mp3", currentSentence];
+        }
+        
+        //If we are on the first or second manipulation page of More Is Missing, play the current sentence
+        if ([chapterTitle isEqualToString:@"More Is Missing"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"More Is MissingS%dE.mp3", currentSentence];
+        }
+        
+        //If we are on the first or second manipulation page of The Baby's Rattle Is Gone Too, play the current sentence
+        if ([chapterTitle isEqualToString:@"The Baby's Rattle Is Gone Too"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"TheBaby'sRattleIsGoneTooS%dE.mp3", currentSentence];
+        }
+        
+        //If we are on the first or second manipulation page of The Mystery Is Solved, play the current sentence
+        if ([chapterTitle isEqualToString:@"The Mystery Is Solved"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"TheMysteryIsSolvedS%dE.mp3", currentSentence];
+        }
+        
         //If we are on the first or second manipulation page of The Lucky Stone, play the current sentence
         if ([chapterTitle isEqualToString:@"The Lucky Stone"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
             if (conditionSetup.language == BILINGUAL) {
@@ -4358,6 +4425,34 @@ BOOL wasPathFollowed = false;
             else {
                 sentenceAudioFile = [NSString stringWithFormat:@"TheLuckyStoneS%dE.mp3", currentSentence];
             }
+        }
+        
+        //If we are on the first or second manipulation page of Baby Brother, play the current sentence
+        if ([chapterTitle isEqualToString:@"Baby Brother"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+           
+            sentenceAudioFile = [NSString stringWithFormat:@"BabyBrotherS%dE.mp3", currentSentence];
+            
+        }
+        
+        //If we are on the first or second manipulation page of Catch, play the current sentence
+        if ([chapterTitle isEqualToString:@"Catch"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"CatchS%dE.mp3", currentSentence];
+            
+        }
+        
+        //If we are on the first or second manipulation page of Magic Toys, play the current sentence
+        if ([chapterTitle isEqualToString:@"Magic Toys"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"MagicToysS%dE.mp3", currentSentence];
+            
+        }
+        
+        //If we are on the first or second manipulation page of Words Of Wisdom, play the current sentence
+        if ([chapterTitle isEqualToString:@"Words Of Wisdom"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"WordsOfWisdomS%dE.mp3", currentSentence];
+            
         }
         
         //If we are on the first or second manipulation page of The Naughty Monkey, play the current sentence
@@ -4410,6 +4505,41 @@ BOOL wasPathFollowed = false;
             else {
                 sentenceAudioFile = [NSString stringWithFormat:@"KeyIngredientsS%dE.mp3", currentSentence];
             }
+        }
+        
+        //If we are on the first or second manipulation page of Mancha The Horse, play the current sentence
+        if ([chapterTitle isEqualToString:@"Mancha The Horse"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"ManchaTheHorseS%dE.mp3", currentSentence];
+           
+        }
+        
+        //If we are on the first or second manipulation page of A Friend In Need, play the current sentence
+        if ([chapterTitle isEqualToString:@"A Friend In Need"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"AFriendInNeedS%dE.mp3", currentSentence];
+            
+        }
+        
+        //If we are on the first or second manipulation page of Shopping At The Market, play the current sentence
+        if ([chapterTitle isEqualToString:@"Shopping At The Market"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"ShoppingAtTheMarketS%dE.mp3", currentSentence];
+            
+        }
+        
+        //If we are on the first or second manipulation page of A Gift For The Bride, play the current sentence
+        if ([chapterTitle isEqualToString:@"A Gift For The Bride"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"AGiftForTheBrideS%dE.mp3", currentSentence];
+            
+        }
+        
+        //If we are on the first or second manipulation page of Homecoming, play the current sentence
+        if ([chapterTitle isEqualToString:@"Homecoming"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"HomecomingS%dE.mp3", currentSentence];
+            
         }
         
         //If we are on the first or second manipulation page of Disasters Intro, play the current sentence
