@@ -4402,7 +4402,7 @@ BOOL wasPathFollowed = false;
         //If we are on the first or second manipulation page of More Is Missing, play the current sentence
         if ([chapterTitle isEqualToString:@"More Is Missing"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
             
-            sentenceAudioFile = [NSString stringWithFormat:@"More Is MissingS%dE.mp3", currentSentence];
+            sentenceAudioFile = [NSString stringWithFormat:@"MoreIsMissingS%dE.mp3", currentSentence];
         }
         
         //If we are on the first or second manipulation page of The Baby's Rattle Is Gone Too, play the current sentence
