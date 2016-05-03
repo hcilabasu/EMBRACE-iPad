@@ -3740,6 +3740,7 @@
 		5CA955841C3237690038FB56 /* Translations-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5CA9555C1C3237690038FB56 /* Translations-MetaData.xml */; };
 		5CA955851C3237690038FB56 /* VocabularyIntroductions-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5CA9555D1C3237690038FB56 /* VocabularyIntroductions-MetaData.xml */; };
 		5CA955861C3237690038FB56 /* Waypoints-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5CA9555E1C3237690038FB56 /* Waypoints-MetaData.xml */; };
+		5CAD1D261CD91FDB00C05BC0 /* CleaningUpS11E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CAD1D251CD91FDB00C05BC0 /* CleaningUpS11E.mp3 */; };
 		5CAE95CF1C921DCD00702DB4 /* AlgonquianS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CAE95941C921DCD00702DB4 /* AlgonquianS.mp3 */; };
 		5CAE95D01C921DCD00702DB4 /* AlgonquiansS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CAE95951C921DCD00702DB4 /* AlgonquiansS.mp3 */; };
 		5CAE95D11C921DCD00702DB4 /* ArrowS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CAE95961C921DCD00702DB4 /* ArrowS.mp3 */; };
@@ -8792,6 +8793,7 @@
 		5CA9555C1C3237690038FB56 /* Translations-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Translations-MetaData.xml"; sourceTree = "<group>"; };
 		5CA9555D1C3237690038FB56 /* VocabularyIntroductions-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "VocabularyIntroductions-MetaData.xml"; sourceTree = "<group>"; };
 		5CA9555E1C3237690038FB56 /* Waypoints-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Waypoints-MetaData.xml"; sourceTree = "<group>"; };
+		5CAD1D251CD91FDB00C05BC0 /* CleaningUpS11E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CleaningUpS11E.mp3; sourceTree = "<group>"; };
 		5CAE95941C921DCD00702DB4 /* AlgonquianS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = AlgonquianS.mp3; sourceTree = "<group>"; };
 		5CAE95951C921DCD00702DB4 /* AlgonquiansS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = AlgonquiansS.mp3; sourceTree = "<group>"; };
 		5CAE95961C921DCD00702DB4 /* ArrowS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ArrowS.mp3; sourceTree = "<group>"; };
@@ -15839,6 +15841,7 @@
 				5CA5CC271CD1A9C7002A631F /* CleaningUpS8E.mp3 */,
 				5CA5CC281CD1A9C7002A631F /* CleaningUpS9E.mp3 */,
 				5CA5CC291CD1A9C7002A631F /* CleaningUpS10E.mp3 */,
+				5CAD1D251CD91FDB00C05BC0 /* CleaningUpS11E.mp3 */,
 				5CA5CC891CD1B85D002A631F /* EveryoneHelpsS0E.mp3 */,
 				5CA5CC8A1CD1B85D002A631F /* EveryoneHelpsS1E.mp3 */,
 				5CA5CC8B1CD1B85D002A631F /* EveryoneHelpsS2E.mp3 */,
@@ -17129,6 +17132,7 @@
 				5C0ED88F1C75334200003B5A /* HomecomingQ2A3.mp3 in Resources */,
 				5CA5CC9C1CD1B85D002A631F /* EveryoneHelpsS6E.mp3 in Resources */,
 				1A6322AD1C0E4D3B00251CB3 /* rabbit.png in Resources */,
+				5CAD1D261CD91FDB00C05BC0 /* CleaningUpS11E.mp3 in Resources */,
 				5C72E6401C72A46F00CE4877 /* TheSiouxTeepeeQ5.mp3 in Resources */,
 				1A63211B1C0E4D3B00251CB3 /* vase_empty.png in Resources */,
 				5CF792E11C7694A900216337 /* TheContestQ7A2S.mp3 in Resources */,
