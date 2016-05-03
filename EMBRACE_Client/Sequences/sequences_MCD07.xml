@@ -225,7 +225,7 @@
         <mode chapterTitle="Missing Keys" newInstructions="false">
             <reader>User</reader>
             <language>Spanish</language>
-            <intervention>R</intervention>
+            <intervention>IM</intervention>
         </mode>
         <mode chapterTitle="Is Paco a Thief?" newInstructions="false">
             <reader>User</reader>
