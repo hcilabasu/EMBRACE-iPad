@@ -4146,24 +4146,25 @@ BOOL wasPathFollowed = false;
                 
                 [self loadNextPage];
             }
-        else if (currentSentence == totalSentences &&
+            else if (currentSentence == totalSentences &&
                  [bookTitle rangeOfString:@"Introduction to EMBRACE - Unknown"].location != NSNotFound)
-        {
-            [self.playaudioClass stopPlayAudioFile];
-            currentSentence = 1;
+            {
+                [self.playaudioClass stopPlayAudioFile];
+                currentSentence = 1;
             
-            manipulationContext.sentenceNumber = currentSentence;
-            manipulationContext.sentenceText = currentSentenceText;
-            manipulationContext.manipulationSentence = [self isManipulationSentence:currentSentence];
+                manipulationContext.sentenceNumber = currentSentence;
+                manipulationContext.sentenceText = currentSentenceText;
+                manipulationContext.manipulationSentence = [self isManipulationSentence:currentSentence];
             
-            [self loadNextPage];
-        }
+                [self loadNextPage];
+            }
     }
     else {
         NSString *actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
         NSString *sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
 
         if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && ([sentenceClass containsString: @"sentence actionSentence"] || [sentenceClass containsString: @"sentence IMactionSentence"])) {
+            
             //Reset allRelationships arrray
             if ([allRelationships count]) {
                 [allRelationships removeAllObjects];
@@ -4232,7 +4233,6 @@ BOOL wasPathFollowed = false;
                     //Set up current sentence appearance and solution steps
                     [self setupCurrentSentence];
                     [self colorSentencesUponNext];
-
                     [self playCurrentSentenceAudio];
                 }
             }
@@ -4334,37 +4334,37 @@ BOOL wasPathFollowed = false;
         //If we are on the first or second manipulation page of Cleaning Up, play the audio of the current sentence
         if ([chapterTitle isEqualToString:@"Cleaning Up"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
             
-                sentenceAudioFile = [NSString stringWithFormat:@"CleaningUpS%dE", currentSentence];
+                sentenceAudioFile = [NSString stringWithFormat:@"CleaningUpS%dE.mp3", currentSentence];
         }
         
         //If we are on the first or second manipulation page of Getting Ready, play the audio of the current sentence
         if ([chapterTitle isEqualToString:@"Getting Ready"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
             
-            sentenceAudioFile = [NSString stringWithFormat:@"GettingReadyS%dE", currentSentence];
+            sentenceAudioFile = [NSString stringWithFormat:@"GettingReadyS%dE.mp3", currentSentence];
         }
         
         //If we are on the first or second manipulation page of Who is the Best Animal?, play the audio of the current sentence
         if ([chapterTitle isEqualToString:@"Who is the Best Animal?"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
             
-            sentenceAudioFile = [NSString stringWithFormat:@"WhoIsTheBestAnimalS%dE", currentSentence];
+            sentenceAudioFile = [NSString stringWithFormat:@"WhoIsTheBestAnimalS%dE.mp3", currentSentence];
         }
         
         //If we are on the first or second manipulation page of The Wise Owl, play the audio of the current sentence
         if ([chapterTitle isEqualToString:@"The Wise Owl"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
             
-            sentenceAudioFile = [NSString stringWithFormat:@"TheWiseOwlS%dE", currentSentence];
+            sentenceAudioFile = [NSString stringWithFormat:@"TheWiseOwlS%dE.mp3", currentSentence];
         }
         
         //If we are on the first or second manipulation page of Everyone Helps, play the audio of the current sentence
         if ([chapterTitle isEqualToString:@"Everyone Helps"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
             
-            sentenceAudioFile = [NSString stringWithFormat:@"EveryoneHelpsS%dE", currentSentence];
+            sentenceAudioFile = [NSString stringWithFormat:@"EveryoneHelpsS%dE.mp3", currentSentence];
         }
         
         //If we are on the first or second manipulation page of The Best Farm Award, play the audio of the current sentence
         if ([chapterTitle isEqualToString:@"The Best Farm Award"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
             
-            sentenceAudioFile = [NSString stringWithFormat:@"TheBestFarmAwardS%dE", currentSentence];
+            sentenceAudioFile = [NSString stringWithFormat:@"TheBestFarmAwardS%dE.mp3", currentSentence];
         }
         
         //If we are on the first or second manipulation page of Why We Breathe, play the audio of the current sentence
@@ -4575,15 +4575,12 @@ BOOL wasPathFollowed = false;
         ActivitySequence *seq = [seqController.sequences objectAtIndex:1];
         ActivityMode *mode = [seq getModeForChapter:chapterTitle];
         
-        if( [currentPageId rangeOfString:@"-Intro"].location != NSNotFound &&
+        if([currentPageId rangeOfString:@"-Intro"].location != NSNotFound &&
            [currentPageId rangeOfString:@"story1"].location != NSNotFound &&
            ([chapterTitle isEqualToString:@"The Lucky Stone"] || [chapterTitle isEqualToString:@"The Lopez Family"])
            && [bookTitle rangeOfString:seq.bookTitle].location != NSNotFound) {
             
-            
             introAudio = @"splWordsIntro";
-            
-            
             
             [array addObject:[NSString stringWithFormat:@"%@.mp3",introAudio]];
             if (mode.language == BILINGUAL && mode.newInstructions) {
@@ -4594,10 +4591,6 @@ BOOL wasPathFollowed = false;
             }
         }
     }
-    
-    
-
-    
     
     
     if ([ConditionSetup sharedInstance].condition == EMBRACE) {
