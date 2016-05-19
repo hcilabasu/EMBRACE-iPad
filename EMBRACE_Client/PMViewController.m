@@ -521,7 +521,7 @@ BOOL wasPathFollowed = false;
   
     currentPage = [book getNextPageForChapterAndActivity:chapterTitle : conditionSetup.currentMode :nil];
     
-    if (!conditionSetup.vocabPageEnabled) {
+    if (!conditionSetup.vocabPageEnabled && [currentPage containsString:@"-Intro"]) {
         currentSentence = 1;
         currentPage = [book getNextPageForChapterAndActivity:chapterTitle :PM_MODE :currentPage];
     }
@@ -547,7 +547,9 @@ BOOL wasPathFollowed = false;
     
     //No more pages in chapter
     if (currentPage == nil) {
-        if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"] || [chapterTitle isEqualToString:@"Introduction to The House"]) {
+        if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"] ||
+            [chapterTitle isEqualToString:@"Introduction to The House"])
+        {
             [[ServerCommunicationController sharedInstance] logCompleteManipulation:manipulationContext];
             
             //Set introduction as completed
@@ -567,8 +569,15 @@ BOOL wasPathFollowed = false;
             {
                 [[ServerCommunicationController sharedInstance] studyContext].condition = @"NULL";
                
-                //Set chapter as completed
-                [[(LibraryViewController *)libraryViewController studentProgress] setStatusOfChapter:chapterTitle :COMPLETED fromBook:bookTitle];
+                if([bookTitle containsString:@"- Unknown"])
+                {
+                    [[(LibraryViewController *)libraryViewController studentProgress] setStatusOfChapter:chapterTitle :COMPLETED fromBook:[bookTitle stringByReplacingOccurrencesOfString:@" - Unknown" withString:@""]];
+                }
+                else
+                {
+                    //Set chapter as completed
+                    [[(LibraryViewController *)libraryViewController studentProgress] setStatusOfChapter:chapterTitle :COMPLETED fromBook:bookTitle];
+                }
                 
                 //Return to library view
                 [self.navigationController popViewControllerAnimated:YES];
@@ -782,14 +791,16 @@ BOOL wasPathFollowed = false;
     UIImage *background = [self getBackgroundImage];
     
     //Hardcoding for second Introduction to EMBRACE
-    if ([[(LibraryViewController *)libraryViewController studentProgress] getStatusOfBook:[book title]] == COMPLETED && ([[(LibraryViewController *)libraryViewController studentProgress] getStatusOfBook:@"Second Introduction to EMBRACE"] == IN_PROGRESS || [[(LibraryViewController *)libraryViewController studentProgress] getStatusOfBook:@"Second Introduction to EMBRACE"] == COMPLETED)) {
-        //Create an instance of the assessment activity view controller
-        AssessmentActivityViewController *assessmentActivityViewController = [[AssessmentActivityViewController alloc]initWithModel:model : libraryViewController :background :@"Second Introduction to EMBRACE" :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+    if ([[(LibraryViewController *)libraryViewController studentProgress] getStatusOfBook:[book title]] == COMPLETED && ([[(LibraryViewController *)libraryViewController studentProgress] getStatusOfBook:@"Second Introduction to EMBRACE"] == IN_PROGRESS || [[(LibraryViewController *)libraryViewController studentProgress] getStatusOfBook:@"Second Introduction to EMBRACE"] == COMPLETED))
+        {
+            //Create an instance of the assessment activity view controller
+            AssessmentActivityViewController *assessmentActivityViewController = [[AssessmentActivityViewController alloc]initWithModel:model : libraryViewController :background :@"Second Introduction to EMBRACE" :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
         
-        //Push the assessment view controller as the top controller
-        [self.navigationController pushViewController:assessmentActivityViewController animated:YES];
-    }
-    else {
+            //Push the assessment view controller as the top controller
+            [self.navigationController pushViewController:assessmentActivityViewController animated:YES];
+        }
+    else
+    {
         //Create an instance of the assessment activity view controller
         AssessmentActivityViewController *assessmentActivityViewController = [[AssessmentActivityViewController alloc]initWithModel:model : libraryViewController :background :[book title] :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
         
