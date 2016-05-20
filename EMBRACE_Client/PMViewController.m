@@ -556,6 +556,7 @@ BOOL wasPathFollowed = false;
             [[(LibraryViewController *)libraryViewController studentProgress] setStatusOfChapter:chapterTitle :COMPLETED fromBook:[bookTitle stringByReplacingOccurrencesOfString:@" - Unknown-1" withString:@""]];
             
             //Return to library view
+            [self.view setUserInteractionEnabled:YES];
             [self.navigationController popViewControllerAnimated:YES];
         }
         else {
@@ -563,6 +564,7 @@ BOOL wasPathFollowed = false;
             
             if(conditionSetup.assessmentPageEnabled)
             {
+                [self.view setUserInteractionEnabled:YES];
                 [self loadAssessmentActivity];
             }
             else
@@ -580,6 +582,7 @@ BOOL wasPathFollowed = false;
                 }
                 
                 //Return to library view
+                [self.view setUserInteractionEnabled:YES];
                 [self.navigationController popViewControllerAnimated:YES];
             }
         }
@@ -4141,10 +4144,11 @@ BOOL wasPathFollowed = false;
     if (!pressedNextLock && !isLoadPageInProgress) {
     
         pressedNextLock = true;
+        [self.view setUserInteractionEnabled:NO];
     
     [[ServerCommunicationController sharedInstance] logPressNextInManipulationActivity:manipulationContext];
     
-//    NSString *preAudio = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(preaudio)"]];
+    //NSString *preAudio = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(preaudio)"]];
     
     if ([currentPageId rangeOfString:@"-Intro"].location != NSNotFound) {
             if(currentSentence > totalSentences) {
@@ -4168,6 +4172,10 @@ BOOL wasPathFollowed = false;
                 manipulationContext.manipulationSentence = [self isManipulationSentence:currentSentence];
             
                 [self loadNextPage];
+            }
+            else
+            {
+                [self.view setUserInteractionEnabled:YES];
             }
     }
     else {
@@ -4220,6 +4228,7 @@ BOOL wasPathFollowed = false;
                 //Expand menu
                 [self expandMenu];
                 [IMViewMenu bringSubviewToFront:IMinstructions];
+                [self.view setUserInteractionEnabled:YES];
             }
             else {
                 //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
@@ -4284,7 +4293,6 @@ BOOL wasPathFollowed = false;
                 //Set up current sentence appearance and solution steps
                 [self setupCurrentSentence];
                 [self colorSentencesUponNext];
-                
                 [self playCurrentSentenceAudio];
             }
         }
@@ -4293,6 +4301,7 @@ BOOL wasPathFollowed = false;
             
             //Play noise if not all steps have been completed
             [self playErrorNoise];
+            [self.view setUserInteractionEnabled:YES];
         }
     }
         
