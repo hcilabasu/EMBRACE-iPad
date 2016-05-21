@@ -571,7 +571,11 @@ BOOL wasPathFollowed = false;
             {
                 [[ServerCommunicationController sharedInstance] studyContext].condition = @"NULL";
                
-                if([bookTitle containsString:@"- Unknown"])
+                if([bookTitle containsString:@"- Unknown-1"])
+                {
+                    [[(LibraryViewController *)libraryViewController studentProgress] setStatusOfChapter:chapterTitle :COMPLETED fromBook:[bookTitle stringByReplacingOccurrencesOfString:@" - Unknown-1" withString:@""]];
+                }
+                else if([bookTitle containsString:@"- Unknown"])
                 {
                     [[(LibraryViewController *)libraryViewController studentProgress] setStatusOfChapter:chapterTitle :COMPLETED fromBook:[bookTitle stringByReplacingOccurrencesOfString:@" - Unknown" withString:@""]];
                 }
