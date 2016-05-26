@@ -836,7 +836,7 @@ ConditionSetup *conditionSetup;
         [area removeLastObject];
         
         //redraw BezierPath
-        [self drawArea:(self)];
+        [self drawArea:self];
     }
     else
     {
@@ -1650,51 +1650,51 @@ ConditionSetup *conditionSetup;
     {
         isCreateArea = true;
                                                             //x, y, width, height)
-        entryview = [[UIView alloc] initWithFrame:CGRectMake(670, 10, 400, 200)];
+        entryview = [[UIView alloc] initWithFrame:CGRectMake(640, 10, 370, 250)];
         entryview.backgroundColor = [UIColor whiteColor];
         
-        areaID = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 180, 30)];
+        areaID = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 150, 30)];
         areaID.textColor = [UIColor blackColor];
         areaID.borderStyle = UITextBorderStyleRoundedRect;
         areaID.text = @"areaID";
         
-        pageID = [[UITextField alloc] initWithFrame:CGRectMake(10, 60, 180, 30)];
+        pageID = [[UITextField alloc] initWithFrame:CGRectMake(10, 60, 150, 30)];
         pageID.textColor = [UIColor blackColor];
         pageID.borderStyle = UITextBorderStyleRoundedRect;
         pageID.text = currentPageId;
         
-        areaPoints = [[UITextView alloc] initWithFrame:CGRectMake(200, 10, 100, 100) textContainer:nil];
+        areaPoints = [[UITextView alloc] initWithFrame:CGRectMake(170, 10, 200, 85) textContainer:nil];
         areaPoints.textColor = [UIColor blackColor];
         areaPoints.scrollEnabled = true;
-        areaPoints.text = @"X, Y Points will appear here";
-        
+        areaPoints.text = @"(X%, Y%) will appear here";
+        [areaPoints flashScrollIndicators];
         
         UIButton *deleteLastPoint = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [deleteLastPoint addTarget:self action:@selector(deleteLastPoint:) forControlEvents:UIControlEventTouchUpInside];
-        deleteLastPoint.frame = CGRectMake(10, 80, 120, 30);
+        deleteLastPoint.frame = CGRectMake(10, 100, 120, 30);
         [deleteLastPoint setTitle:@"Delete Last Point" forState:UIControlStateNormal];
         
         UIButton *addNewPoint = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [addNewPoint addTarget:self action:@selector(addNewPoint:) forControlEvents:UIControlEventTouchUpInside];
-        addNewPoint.frame = CGRectMake(140, 80, 120, 30);
+        addNewPoint.frame = CGRectMake(140, 100, 120, 30);
         [addNewPoint setTitle:@"Add New Point" forState:UIControlStateNormal];
         
         UIButton *drawArea = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [drawArea addTarget:self action:@selector(drawArea:) forControlEvents:UIControlEventTouchUpInside];
-        drawArea.frame = CGRectMake(10, 120, 80, 30);
+        drawArea.frame = CGRectMake(10, 140, 80, 30);
         [drawArea setTitle:@"Draw Area" forState:UIControlStateNormal];
         
         UIButton *cancel = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [cancel addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
-        cancel.frame = CGRectMake(10, 160, 80, 30);
+        cancel.frame = CGRectMake(10, 180, 80, 30);
         [cancel setTitle:@"Cancel" forState:UIControlStateNormal];
         
         UIButton *save = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [save addTarget:self action:@selector(saveArea:) forControlEvents:UIControlEventTouchUpInside];
-        save.frame = CGRectMake(100, 160, 80, 30);
+        save.frame = CGRectMake(100, 180, 80, 30);
         [save setTitle:@"Save" forState:UIControlStateNormal];
         
-        SingleEntry = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 250, 200)];
+        SingleEntry = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 370, 250)];
         SingleEntry.backgroundColor = [UIColor whiteColor];
         [SingleEntry addSubview:areaID];
         [SingleEntry addSubview:pageID];
@@ -1809,7 +1809,7 @@ ConditionSetup *conditionSetup;
         
         NSString *areaCoords = @"";
         
-        for (int i=0; i < area .count; i++) {
+        for (int i=0; i < area.count; i++) {
             CGPoint tempPoint = [[area objectAtIndex:i] CGPointValue];
             
             NSString* areaPointToString = [NSString stringWithFormat:@"(%f%%, %f%%), ", (tempPoint.x*100/1024), (tempPoint.y*100/704)];
@@ -1817,10 +1817,11 @@ ConditionSetup *conditionSetup;
         }
         
         areaPoints.text = areaCoords;
-        
         addPointToArea = false;
         
-        
+        if (area.count >= 3) {
+            [self drawArea:self];
+        }
     }
 }
 
