@@ -596,7 +596,6 @@
         
         int pointID = 0;
         
-        
         float firstpointX;
         float firstpointY;
         float secondpointX;

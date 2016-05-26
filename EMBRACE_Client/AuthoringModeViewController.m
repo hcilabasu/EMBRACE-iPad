@@ -57,6 +57,11 @@ typedef enum InteractionMode {
     BOOL pinching;
     BOOL pinchToUngroup; //TRUE if pinch gesture is used to ungroup; FALSE otherwise
     
+    BOOL isCreateArea; //True if we are currently authoring an area
+    BOOL addPointToArea; //True if user pressed add point button and system is waiting for a user tap gesture
+    NSMutableArray* area; // Contains points to create an area
+    CAShapeLayer *path; // Contains the layer to draw the area
+    
     NSMutableDictionary *currentGroupings;
     
     BOOL replenishSupply; //TRUE if object should reappear after disappearing
@@ -126,6 +131,9 @@ typedef enum InteractionMode {
 @synthesize waypointID;
 @synthesize hotspotID;
 @synthesize locationID;
+@synthesize areaID;
+@synthesize pageID;
+@synthesize areaPoints;
 @synthesize width;
 @synthesize height;
 @synthesize top;
@@ -163,9 +171,11 @@ ConditionSetup *conditionSetup;
     picker.showsSelectionIndicator = YES;
     TapLocationX = 0;
     TapLocationY = 0;
+    area = [[NSMutableArray alloc] init];
     isEntryViewVisible = false;
+    path = nil;
     
-    self.ImageOptions = [NSArray arrayWithObjects: @"Save Waypoint", @"Save Hotspot", @"Save Location", @"Save Z-Index", @"Save Width", @"Save Height", @"Save Manipulation Type", @"FR: Save Animation", nil];
+    self.ImageOptions = [NSArray arrayWithObjects: @"Save Waypoint", @"Save Hotspot", @"Save Location", @"Save Z-Index", @"Save Width", @"Save Height", @"Save Manipulation Type", @"Save Area" ,@"FR: Save Animation", nil];
     
     IntroductionClass = [[IntroductionViewController alloc]init];
     conditionSetup = [ConditionSetup sharedInstance];
@@ -807,6 +817,169 @@ ConditionSetup *conditionSetup;
     
     [entryview removeFromSuperview];
     isEntryViewVisible = false;
+}
+
+/*
+ *  Function sets addPointToArea to true and awaits user tap gesture to receive new point to add to area array
+ */
+-(void)addNewPoint:(id)sender {
+
+    addPointToArea = true;
+}
+
+/*
+ *  Function sets addPointToArea to true and awaits user tap gesture to receive new point to add to area array
+ */
+-(void)deleteLastPoint:(id)sender {
+    
+    if (area.count > 0) {
+        [area removeLastObject];
+        
+        //redraw BezierPath
+        [self drawArea:(self)];
+    }
+    else
+    {
+        //popup warning that the area array is empty
+    }
+}
+
+/*
+ *  Function draws area based on area array of added points assuming 3 or more points have been added to area array.
+ */
+-(void)drawArea:(id)sender {
+
+    if (area.count >= 3) {
+        UIBezierPath *aPath = [UIBezierPath bezierPath];
+        
+        if (path) {
+            [path removeFromSuperlayer];
+        }
+        else
+        {
+            path = [CAShapeLayer layer];
+        }
+        
+        path.lineWidth = 10.0;
+        
+        // Set the starting point of the area.
+        [aPath moveToPoint:[[area objectAtIndex:0] CGPointValue]];
+        
+        for (int i=1; i < area.count; i++) {
+            //Add rest of points to line to create the area
+            CGPoint tempPoint = [[area objectAtIndex:i] CGPointValue];
+            [aPath addLineToPoint:tempPoint];
+        }
+        
+        //close the path
+        [aPath closePath];
+        
+        path.path = aPath.CGPath;
+        [path setFillColor:[UIColor redColor].CGColor];
+        [path setStrokeColor:[UIColor blackColor].CGColor];
+        [self.view.layer addSublayer:path];
+        
+        // Set the render colors.
+        [[UIColor blackColor] setStroke];
+        [[UIColor redColor] setFill];
+        
+        // If you have content to draw after the shape,
+        // save the current state before changing the transform.
+        //CGContextSaveGState(aRef);
+        
+        // Adjust the drawing options as needed.
+        aPath.lineWidth = 5;
+        
+        // Fill the path before stroking it so that the fill
+        // color does not obscure the stroked line.
+        [aPath fill];
+        [aPath stroke];
+        
+        // Restore the graphics state before drawing any other content.
+        //CGContextRestoreGState(aRef);
+        
+    }
+    else
+    {
+        if (path) {
+            [path removeFromSuperlayer];
+        }
+        //throw a popup warning user that they must have at least 3 points before drawing an area
+    }
+}
+
+
+
+/*
+ *  Function saves area to metadata file.
+ */
+-(void)saveArea:(id)sender {
+    NSString* areaPoints = @"";
+    
+    for (int i=0; i < area .count; i++) {
+        CGPoint tempPoint = [[area objectAtIndex:i] CGPointValue];
+        
+        NSString* areaPointToString = [NSString stringWithFormat:@"<point x=\"%f%%\" y=\"%f%%\"/>", (tempPoint.x*100/1024), (tempPoint.y*100/704)];
+        areaPoints = [areaPoints stringByAppendingString:areaPointToString];
+    }
+    
+    NSString* newArea = [NSString stringWithFormat:@"<area areaId=\"%@\" pageId=\"%@\"> \n %@ \n </area>", areaID.text, pageID.text, areaPoints];
+    
+    //set file path to access introduction metadata
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"Areas-MetaData.xml"];
+    NSString *filepath = [[book mainContentPath] stringByAppendingString:@"Areas-MetaData.xml"];
+    
+    //Get xml data of the metadata file.
+    NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
+    NSError *error;
+    
+    if (xmlData == NULL)
+    {
+        xmlData = [[NSMutableData alloc] initWithContentsOfFile:path];
+    }
+    
+    //break out metadata file into seperate components
+    GDataXMLDocument *metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:&error];
+    
+    xmlDocTemp = [[DDXMLDocument alloc] initWithData:xmlData options:0 error:nil];
+    
+    //Reading in the location information.
+    NSArray* areaElements = [metadataDoc nodesForXPath:@"//areas" error:nil];
+    GDataXMLElement* areaElement = (GDataXMLElement*)[areaElements objectAtIndex:0];
+    
+    NSArray* areas = [areaElement elementsForName:@"area"];
+    
+    bool doesAreaExist = false;
+    
+    //Read in the location information.
+    for (GDataXMLElement* area in areas) {
+        NSLog(@"%@", [area XMLString]);
+        
+        if ([[area XMLString] isEqualToString:newArea]) {
+            NSLog(@"Error: Area already exists");
+            NSLog(@"%@",newArea);
+            doesAreaExist = true;
+            return;
+        }
+    }
+    
+    //if the area doesn't already exist, add it
+    if (doesAreaExist == false) {
+        
+        NSArray *areas = [xmlDocTemp nodesForXPath:@"//areas" error:nil];
+        DDXMLElement *areaElement = (DDXMLElement*)[areas objectAtIndex:0];
+        DDXMLElement *newXMLArea = [DDXMLElement elementWithName:newArea];
+        [areaElement addChild: newXMLArea];
+        NSString *stringxml = [xmlDocTemp XMLStringWithOptions:DDXMLNodeCompactEmptyElement];
+        NSLog(@"%@", stringxml);
+        [self writeToFile: filepath : @"Areas-MetaData" ofType:@"xml"];
+        NSLog(@"Success: Area added");
+        NSLog(@"%@",newArea);
+        [entryview removeFromSuperview];
+        isEntryViewVisible = false;
+    }
 }
 
 /*
@@ -1475,6 +1648,68 @@ ConditionSetup *conditionSetup;
     }
     else if(row == 7)
     {
+        isCreateArea = true;
+                                                            //x, y, width, height)
+        entryview = [[UIView alloc] initWithFrame:CGRectMake(670, 10, 400, 200)];
+        entryview.backgroundColor = [UIColor whiteColor];
+        
+        areaID = [[UITextField alloc] initWithFrame:CGRectMake(10, 20, 180, 30)];
+        areaID.textColor = [UIColor blackColor];
+        areaID.borderStyle = UITextBorderStyleRoundedRect;
+        areaID.text = @"areaID";
+        
+        pageID = [[UITextField alloc] initWithFrame:CGRectMake(10, 60, 180, 30)];
+        pageID.textColor = [UIColor blackColor];
+        pageID.borderStyle = UITextBorderStyleRoundedRect;
+        pageID.text = currentPageId;
+        
+        areaPoints = [[UITextView alloc] initWithFrame:CGRectMake(200, 10, 100, 100) textContainer:nil];
+        areaPoints.textColor = [UIColor blackColor];
+        areaPoints.scrollEnabled = true;
+        areaPoints.text = @"X, Y Points will appear here";
+        
+        
+        UIButton *deleteLastPoint = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [deleteLastPoint addTarget:self action:@selector(deleteLastPoint:) forControlEvents:UIControlEventTouchUpInside];
+        deleteLastPoint.frame = CGRectMake(10, 80, 120, 30);
+        [deleteLastPoint setTitle:@"Delete Last Point" forState:UIControlStateNormal];
+        
+        UIButton *addNewPoint = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [addNewPoint addTarget:self action:@selector(addNewPoint:) forControlEvents:UIControlEventTouchUpInside];
+        addNewPoint.frame = CGRectMake(140, 80, 120, 30);
+        [addNewPoint setTitle:@"Add New Point" forState:UIControlStateNormal];
+        
+        UIButton *drawArea = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [drawArea addTarget:self action:@selector(drawArea:) forControlEvents:UIControlEventTouchUpInside];
+        drawArea.frame = CGRectMake(10, 120, 80, 30);
+        [drawArea setTitle:@"Draw Area" forState:UIControlStateNormal];
+        
+        UIButton *cancel = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [cancel addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
+        cancel.frame = CGRectMake(10, 160, 80, 30);
+        [cancel setTitle:@"Cancel" forState:UIControlStateNormal];
+        
+        UIButton *save = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [save addTarget:self action:@selector(saveArea:) forControlEvents:UIControlEventTouchUpInside];
+        save.frame = CGRectMake(100, 160, 80, 30);
+        [save setTitle:@"Save" forState:UIControlStateNormal];
+        
+        SingleEntry = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 250, 200)];
+        SingleEntry.backgroundColor = [UIColor whiteColor];
+        [SingleEntry addSubview:areaID];
+        [SingleEntry addSubview:pageID];
+        [SingleEntry addSubview:areaPoints];
+        [SingleEntry addSubview:deleteLastPoint];
+        [SingleEntry addSubview:addNewPoint];
+        [SingleEntry addSubview:drawArea];
+        [SingleEntry addSubview:cancel];
+        [SingleEntry addSubview:save];
+        [entryview addSubview:SingleEntry];
+        [self.view addSubview:entryview];
+        
+    }
+    else if(row == 8)
+    {
         /*
          TODO: add functionality to save animations
          
@@ -1541,6 +1776,12 @@ ConditionSetup *conditionSetup;
     [entryview removeFromSuperview];
     self.isEntryViewVisible = false;
     
+    if(isCreateArea || addPointToArea)
+    {
+        isCreateArea = false;
+        addPointToArea = false;
+    }
+    
     if (isAreaViewVisible == true) {
         [areaSpace removeFromSuperview];
         self.isAreaViewVisible = false;
@@ -1561,6 +1802,25 @@ ConditionSetup *conditionSetup;
     
     if (isEntryViewVisible == false) {
         [self.view addSubview:picker];
+    }
+    else if(isCreateArea && addPointToArea)
+    {
+        [area addObject:[NSValue valueWithCGPoint:location]];
+        
+        NSString *areaCoords = @"";
+        
+        for (int i=0; i < area .count; i++) {
+            CGPoint tempPoint = [[area objectAtIndex:i] CGPointValue];
+            
+            NSString* areaPointToString = [NSString stringWithFormat:@"(%f%%, %f%%), ", (tempPoint.x*100/1024), (tempPoint.y*100/704)];
+            areaCoords = [areaCoords stringByAppendingString:areaPointToString];
+        }
+        
+        areaPoints.text = areaCoords;
+        
+        addPointToArea = false;
+        
+        
     }
 }
 

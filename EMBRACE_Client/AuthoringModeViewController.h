@@ -50,6 +50,8 @@
 @property (nonatomic, strong) UITextField *waypointID;
 @property (nonatomic, strong) UITextField *locationID;
 @property (nonatomic, strong) UITextField *hotspotID;
+@property (nonatomic, strong) UITextField *areaID;
+@property (nonatomic, strong) UITextField *pageID;
 @property (nonatomic, strong) UITextField *width;
 @property (nonatomic, strong) UITextField *height;
 @property (nonatomic, strong) UITextField *top;
@@ -63,6 +65,7 @@
 @property (nonatomic, strong) UITextField *manipulationType;
 @property (nonatomic, strong) UITextField *action;
 @property (nonatomic, strong) UITextField *role;
+@property (nonatomic, strong) UITextView *areaPoints;
 @property (nonatomic) BOOL isEntryViewVisible;
 @property (nonatomic) BOOL isAreaViewVisible;
 
