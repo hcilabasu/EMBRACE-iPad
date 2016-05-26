@@ -45,6 +45,8 @@ typedef enum Actor {
 @property (nonatomic) BOOL vocabPageEnabled; //whether the vocab page should be displayed
 @property (nonatomic) BOOL assessmentPageEnabled; //whether the assessment page should be displayed
 
+@property (nonatomic) BOOL allowFileSync; //whether log and progress files should be synced with Dropbox
+
 + (ConditionSetup*)sharedInstance;
 
 - (NSString *)returnLanguageEnumtoString:(Language)type;

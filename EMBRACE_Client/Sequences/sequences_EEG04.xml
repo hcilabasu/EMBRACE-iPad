@@ -1,250 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
 <sequences id="EEG04">
-    <sequence bookTitle="Introduction to EMBRACE">
-        <mode chapterTitle="The Naughty Monkey" newInstructions="true" vocabPage="true" assessmentPage="true">
+    <sequence bookTitle="The Lopez Family Mystery">
+        <mode chapterTitle="The Lopez Family" newInstructions="false" vocabPage="false" assessmentPage="false">
             <reader>System</reader>
-            <language>Spanish</language>
+            <language>English</language>
+            <intervention>R</intervention>
+        </mode>
+        <mode chapterTitle="Missing Keys" newInstructions="false" vocabPage="false" assessmentPage="false">
+            <reader>System</reader>
+            <language>English</language>
+            <intervention>R</intervention>
+        </mode>
+        <mode chapterTitle="Is Paco a Thief?" newInstructions="false" vocabPage="false" assessmentPage="false">
+            <reader>System</reader>
+            <language>English</language>
+            <intervention>R</intervention>
+        </mode>
+        <mode chapterTitle="More is Missing!" newInstructions="false" vocabPage="false" assessmentPage="false">
+            <reader>System</reader>
+            <language>English</language>
+            <intervention>R</intervention>
+        </mode>
+        <mode chapterTitle="The Baby's Rattle is Gone, Too!" newInstructions="false" vocabPage="false" assessmentPage="false">
+            <reader>System</reader>
+            <language>English</language>
+            <intervention>R</intervention>
+        </mode>
+        <mode chapterTitle="The Mystery is Solved" newInstructions="false" vocabPage="false" assessmentPage="false">
+            <reader>System</reader>
+            <language>English</language>
+            <intervention>R</intervention>
+        </mode>
+    </sequence>
+    <sequence bookTitle="Introduction to EMBRACE">
+        <mode chapterTitle="The Naughty Monkey" newInstructions="false" vocabPage="false" assessmentPage="false">
+            <reader>System</reader>
+            <language>English</language>
+            <intervention>R</intervention>
+        </mode>
+    </sequence>
+    <sequence bookTitle="The Best Farm">
+        <mode chapterTitle="The Contest" newInstructions="false" vocabPage="false" assessmentPage="false">
+            <reader>System</reader>
+            <language>English</language>
+            <intervention>R</intervention>
+        </mode>
+        <mode chapterTitle="Getting Ready" newInstructions="false" vocabPage="false" assessmentPage="false">
+            <reader>System</reader>
+            <language>English</language>
+            <intervention>R</intervention>
+        </mode>
+        <mode chapterTitle="Cleaning Up" newInstructions="false" vocabPage="false" assessmentPage="false">
+            <reader>System</reader>
+            <language>English</language>
+            <intervention>R</intervention>
+        </mode>
+        <mode chapterTitle="Who is the Best Animal?" newInstructions="false" vocabPage="false" assessmentPage="false">
+            <reader>System</reader>
+            <language>English</language>
+            <intervention>R</intervention>
+        </mode>
+        <mode chapterTitle="The Wise Owl" newInstructions="false" vocabPage="false" assessmentPage="false">
+            <reader>System</reader>
+            <language>English</language>
+            <intervention>R</intervention>
+        </mode>
+        <mode chapterTitle="Everyone Helps" newInstructions="false" vocabPage="false" assessmentPage="false">
+            <reader>System</reader>
+            <language>English</language>
+            <intervention>R</intervention>
+        </mode>
+        <mode chapterTitle="The Best Farm Award" newInstructions="false" vocabPage="false" assessmentPage="false">
+            <reader>System</reader>
+            <language>English</language>
+            <intervention>R</intervention>
+        </mode>
+    </sequence>
+    <sequence bookTitle="A Celebration to Remember">
+        <mode chapterTitle="Key Ingredients" newInstructions="false" vocabPage="false" assessmentPage="false">
+            <reader>System</reader>
+            <language>English</language>
+            <intervention>R</intervention>
+        </mode>
+        <mode chapterTitle="Mancha the Horse" newInstructions="false" vocabPage="false" assessmentPage="false">
+            <reader>System</reader>
+            <language>English</language>
+            <intervention>R</intervention>
+        </mode>
+        <mode chapterTitle="A Friend in Need" newInstructions="false" vocabPage="false" assessmentPage="false">
+            <reader>System</reader>
+            <language>English</language>
+            <intervention>R</intervention>
+        </mode>
+        <mode chapterTitle="Shopping at the Market" newInstructions="false" vocabPage="false" assessmentPage="false">
+            <reader>System</reader>
+            <language>English</language>
+            <intervention>R</intervention>
+        </mode>
+        <mode chapterTitle="A Gift for the Bride" newInstructions="false" vocabPage="false" assessmentPage="false">
+            <reader>System</reader>
+            <language>English</language>
+            <intervention>R</intervention>
+        </mode>
+        <mode chapterTitle="Homecoming" newInstructions="false" vocabPage="false" assessmentPage="false">
+            <reader>System</reader>
+            <language>English</language>
             <intervention>R</intervention>
         </mode>
     </sequence>
     <sequence bookTitle="Bottled Up Joy">
-        <mode chapterTitle="The Lucky Stone" newInstructions="true" vocabPage="true" assessmentPage="true">
+        <mode chapterTitle="The Lucky Stone" newInstructions="false" vocabPage="false" assessmentPage="false">
             <reader>System</reader>
-            <language>Spanish</language>
+            <language>English</language>
             <intervention>R</intervention>
         </mode>
-        <mode chapterTitle="Magic Toys" newInstructions="true" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>R</intervention>
-        </mode>
-        <mode chapterTitle="Baby Brother" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>R</intervention>
-        </mode>
-        <mode chapterTitle="Words of Wisdom" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>R</intervention>
-        </mode>
-        <mode chapterTitle="Catch!" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>R</intervention>
-        </mode>
-    </sequence>
-    <sequence bookTitle="Second Introduction to EMBRACE">
-        <mode chapterTitle="The Naughty Monkey" newInstructions="true" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>PM</intervention>
-        </mode>
-    </sequence>
-    <sequence bookTitle="The Best Farm">
-        <mode chapterTitle="The Contest" newInstructions="false" vocabPage="true" assessmentPage="true">
+        <mode chapterTitle="Magic Toys" newInstructions="false" vocabPage="false" assessmentPage="false">
             <reader>System</reader>
-            <language>Spanish</language>
+            <language>English</language>
             <intervention>R</intervention>
         </mode>
-        <mode chapterTitle="Getting Ready" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>R</intervention>
-        </mode>
-        <mode chapterTitle="Cleaning Up" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>R</intervention>
-        </mode>
-        <mode chapterTitle="Who is the Best Animal?" newInstructions="true" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>PM</intervention>
-        </mode>
-        <mode chapterTitle="The Wise Owl" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>PM</intervention>
-        </mode>
-        <mode chapterTitle="Everyone Helps" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>PM</intervention>
-        </mode>
-        <mode chapterTitle="The Best Farm Award" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>PM</intervention>
-        </mode>
-    </sequence>
-    <sequence bookTitle="Native American Homes">
-        <mode chapterTitle="Introduction to Native American Homes" newInstructions="false" vocabPage="true" assessmentPage="true">
+        <mode chapterTitle="Baby Brother" newInstructions="false" vocabPage="false" assessmentPage="false">
             <reader>System</reader>
-            <language>Spanish</language>
-            <intervention>PM</intervention>
+            <language>English</language>
+            <intervention>R</intervention>
         </mode>
-        <mode chapterTitle="The Navajo Hogan" newInstructions="false" vocabPage="true" assessmentPage="true">
+        <mode chapterTitle="Words of Wisdom" newInstructions="false" vocabPage="false" assessmentPage="false">
             <reader>System</reader>
-            <language>Spanish</language>
-            <intervention>PM</intervention>
-        </mode>
-        <mode chapterTitle="The Inuit Igloo" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>PM</intervention>
-        </mode>
-        <mode chapterTitle="The Sioux Teepee" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
+            <language>English</language>
             <intervention>R</intervention>
         </mode>
-        <mode chapterTitle="The Algonquian Wigwam" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>R</intervention>
-        </mode>
-        <mode chapterTitle="The Haida Plank House" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>R</intervention>
-        </mode>
-        <mode chapterTitle="The Seminole Chickee" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>R</intervention>
-        </mode>
-    </sequence>
-    <sequence bookTitle="How Objects Move">
-        <mode chapterTitle="How do Objects Move?" newInstructions="false" vocabPage="true" assessmentPage="true">
+        <mode chapterTitle="Catch!" newInstructions="false" vocabPage="false" assessmentPage="false">
             <reader>System</reader>
-            <language>Spanish</language>
-            <intervention>PM</intervention>
-        </mode>
-        <mode chapterTitle="Newton's First Law" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>PM</intervention>
-        </mode>
-        <mode chapterTitle="Newton's First Law on Earth" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>PM</intervention>
-        </mode>
-        <mode chapterTitle="Newton's Second Law: Acceleration" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>PM</intervention>
-        </mode>
-        <mode chapterTitle="Newton's Law of Acceleration on Earth" newInstructions="true" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>IM</intervention>
-        </mode>
-        <mode chapterTitle="Newton's Third Law: Forces are Paired" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>IM</intervention>
-        </mode>
-        <mode chapterTitle="The Three Laws Work Together" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>IM</intervention>
-        </mode>
-    </sequence>
-    <sequence bookTitle="A Celebration to Remember">
-        <mode chapterTitle="Key Ingredients" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>System</reader>
-            <language>Spanish</language>
-            <intervention>PM</intervention>
-        </mode>
-        <mode chapterTitle="Mancha the Horse" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>PM</intervention>
-        </mode>
-        <mode chapterTitle="A Friend in Need" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>PM</intervention>
-        </mode>
-        <mode chapterTitle="Shopping at the Market" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>IM</intervention>
-        </mode>
-        <mode chapterTitle="A Gift for the Bride" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>R</intervention>
-        </mode>
-        <mode chapterTitle="Homecoming" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>IM</intervention>
-        </mode>
-    </sequence>
-    <sequence bookTitle="Natural Disasters">
-        <mode chapterTitle="Introduction to Natural Disasters" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>System</reader>
-            <language>Spanish</language>
-            <intervention>PM</intervention>
-        </mode>
-        <mode chapterTitle="The Moving Earth" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>System</reader>
-            <language>Spanish</language>
-            <intervention>PM</intervention>
-        </mode>
-        <mode chapterTitle="Earthquakes" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>PM</intervention>
-        </mode>
-        <mode chapterTitle="Tsunamis" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>R</intervention>
-        </mode>
-        <mode chapterTitle="Volcanoes and the Making of Hawaii" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>IM</intervention>
-        </mode>
-        <mode chapterTitle="Tornados" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>IM</intervention>
-        </mode>
-    </sequence>
-    <sequence bookTitle="The Lopez Family Mystery">
-        <mode chapterTitle="The Lopez Family" newInstructions="true" vocabPage="true" assessmentPage="true">
-            <reader>System</reader>
-            <language>Spanish</language>
-            <intervention>IM</intervention>
-        </mode>
-        <mode chapterTitle="Missing Keys" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>IM</intervention>
-        </mode>
-        <mode chapterTitle="Is Paco a Thief?" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>R</intervention>
-        </mode>
-        <mode chapterTitle="More is Missing!" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>R</intervention>
-        </mode>
-        <mode chapterTitle="The Baby's Rattle is Gone, Too!" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
-            <intervention>R</intervention>
-        </mode>
-        <mode chapterTitle="The Mystery is Solved" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
-            <language>Spanish</language>
+            <language>English</language>
             <intervention>R</intervention>
         </mode>
     </sequence>

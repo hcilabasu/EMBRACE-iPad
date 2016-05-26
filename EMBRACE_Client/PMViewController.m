@@ -521,7 +521,7 @@ BOOL wasPathFollowed = false;
   
     currentPage = [book getNextPageForChapterAndActivity:chapterTitle : conditionSetup.currentMode :nil];
     
-    if (!conditionSetup.vocabPageEnabled) {
+    if (!conditionSetup.vocabPageEnabled && [currentPage containsString:@"-Intro"]) {
         currentSentence = 1;
         currentPage = [book getNextPageForChapterAndActivity:chapterTitle :PM_MODE :currentPage];
     }
@@ -547,13 +547,16 @@ BOOL wasPathFollowed = false;
     
     //No more pages in chapter
     if (currentPage == nil) {
-        if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"] || [chapterTitle isEqualToString:@"Introduction to The House"]) {
+        if ([chapterTitle isEqualToString:@"Introduction to The Best Farm"] ||
+            [chapterTitle isEqualToString:@"Introduction to The House"])
+        {
             [[ServerCommunicationController sharedInstance] logCompleteManipulation:manipulationContext];
             
             //Set introduction as completed
             [[(LibraryViewController *)libraryViewController studentProgress] setStatusOfChapter:chapterTitle :COMPLETED fromBook:[bookTitle stringByReplacingOccurrencesOfString:@" - Unknown-1" withString:@""]];
             
             //Return to library view
+            [self.view setUserInteractionEnabled:YES];
             [self.navigationController popViewControllerAnimated:YES];
         }
         else {
@@ -561,16 +564,29 @@ BOOL wasPathFollowed = false;
             
             if(conditionSetup.assessmentPageEnabled)
             {
+                [self.view setUserInteractionEnabled:YES];
                 [self loadAssessmentActivity];
             }
             else
             {
                 [[ServerCommunicationController sharedInstance] studyContext].condition = @"NULL";
                
-                //Set chapter as completed
-                [[(LibraryViewController *)libraryViewController studentProgress] setStatusOfChapter:chapterTitle :COMPLETED fromBook:bookTitle];
+                if([bookTitle containsString:@"- Unknown-1"])
+                {
+                    [[(LibraryViewController *)libraryViewController studentProgress] setStatusOfChapter:chapterTitle :COMPLETED fromBook:[bookTitle stringByReplacingOccurrencesOfString:@" - Unknown-1" withString:@""]];
+                }
+                else if([bookTitle containsString:@"- Unknown"])
+                {
+                    [[(LibraryViewController *)libraryViewController studentProgress] setStatusOfChapter:chapterTitle :COMPLETED fromBook:[bookTitle stringByReplacingOccurrencesOfString:@" - Unknown" withString:@""]];
+                }
+                else
+                {
+                    //Set chapter as completed
+                    [[(LibraryViewController *)libraryViewController studentProgress] setStatusOfChapter:chapterTitle :COMPLETED fromBook:bookTitle];
+                }
                 
                 //Return to library view
+                [self.view setUserInteractionEnabled:YES];
                 [self.navigationController popViewControllerAnimated:YES];
             }
         }
@@ -782,14 +798,16 @@ BOOL wasPathFollowed = false;
     UIImage *background = [self getBackgroundImage];
     
     //Hardcoding for second Introduction to EMBRACE
-    if ([[(LibraryViewController *)libraryViewController studentProgress] getStatusOfBook:[book title]] == COMPLETED && ([[(LibraryViewController *)libraryViewController studentProgress] getStatusOfBook:@"Second Introduction to EMBRACE"] == IN_PROGRESS || [[(LibraryViewController *)libraryViewController studentProgress] getStatusOfBook:@"Second Introduction to EMBRACE"] == COMPLETED)) {
-        //Create an instance of the assessment activity view controller
-        AssessmentActivityViewController *assessmentActivityViewController = [[AssessmentActivityViewController alloc]initWithModel:model : libraryViewController :background :@"Second Introduction to EMBRACE" :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
+    if ([[(LibraryViewController *)libraryViewController studentProgress] getStatusOfBook:[book title]] == COMPLETED && ([[(LibraryViewController *)libraryViewController studentProgress] getStatusOfBook:@"Second Introduction to EMBRACE"] == IN_PROGRESS || [[(LibraryViewController *)libraryViewController studentProgress] getStatusOfBook:@"Second Introduction to EMBRACE"] == COMPLETED))
+        {
+            //Create an instance of the assessment activity view controller
+            AssessmentActivityViewController *assessmentActivityViewController = [[AssessmentActivityViewController alloc]initWithModel:model : libraryViewController :background :@"Second Introduction to EMBRACE" :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
         
-        //Push the assessment view controller as the top controller
-        [self.navigationController pushViewController:assessmentActivityViewController animated:YES];
-    }
-    else {
+            //Push the assessment view controller as the top controller
+            [self.navigationController pushViewController:assessmentActivityViewController animated:YES];
+        }
+    else
+    {
         //Create an instance of the assessment activity view controller
         AssessmentActivityViewController *assessmentActivityViewController = [[AssessmentActivityViewController alloc]initWithModel:model : libraryViewController :background :[book title] :chapterTitle :currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)currentStep]];
         
@@ -4130,10 +4148,11 @@ BOOL wasPathFollowed = false;
     if (!pressedNextLock && !isLoadPageInProgress) {
     
         pressedNextLock = true;
+        [self.view setUserInteractionEnabled:NO];
     
     [[ServerCommunicationController sharedInstance] logPressNextInManipulationActivity:manipulationContext];
     
-//    NSString *preAudio = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(preaudio)"]];
+    //NSString *preAudio = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(preaudio)"]];
     
     if ([currentPageId rangeOfString:@"-Intro"].location != NSNotFound) {
             if(currentSentence > totalSentences) {
@@ -4146,24 +4165,29 @@ BOOL wasPathFollowed = false;
                 
                 [self loadNextPage];
             }
-        else if (currentSentence == totalSentences &&
+            else if (currentSentence == totalSentences &&
                  [bookTitle rangeOfString:@"Introduction to EMBRACE - Unknown"].location != NSNotFound)
-        {
-            [self.playaudioClass stopPlayAudioFile];
-            currentSentence = 1;
+            {
+                [self.playaudioClass stopPlayAudioFile];
+                currentSentence = 1;
             
-            manipulationContext.sentenceNumber = currentSentence;
-            manipulationContext.sentenceText = currentSentenceText;
-            manipulationContext.manipulationSentence = [self isManipulationSentence:currentSentence];
+                manipulationContext.sentenceNumber = currentSentence;
+                manipulationContext.sentenceText = currentSentenceText;
+                manipulationContext.manipulationSentence = [self isManipulationSentence:currentSentence];
             
-            [self loadNextPage];
-        }
+                [self loadNextPage];
+            }
+            else
+            {
+                [self.view setUserInteractionEnabled:YES];
+            }
     }
     else {
         NSString *actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
         NSString *sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
 
         if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && ([sentenceClass containsString: @"sentence actionSentence"] || [sentenceClass containsString: @"sentence IMactionSentence"])) {
+            
             //Reset allRelationships arrray
             if ([allRelationships count]) {
                 [allRelationships removeAllObjects];
@@ -4208,6 +4232,7 @@ BOOL wasPathFollowed = false;
                 //Expand menu
                 [self expandMenu];
                 [IMViewMenu bringSubviewToFront:IMinstructions];
+                [self.view setUserInteractionEnabled:YES];
             }
             else {
                 //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
@@ -4232,7 +4257,6 @@ BOOL wasPathFollowed = false;
                     //Set up current sentence appearance and solution steps
                     [self setupCurrentSentence];
                     [self colorSentencesUponNext];
-
                     [self playCurrentSentenceAudio];
                 }
             }
@@ -4273,7 +4297,6 @@ BOOL wasPathFollowed = false;
                 //Set up current sentence appearance and solution steps
                 [self setupCurrentSentence];
                 [self colorSentencesUponNext];
-                
                 [self playCurrentSentenceAudio];
             }
         }
@@ -4282,6 +4305,7 @@ BOOL wasPathFollowed = false;
             
             //Play noise if not all steps have been completed
             [self playErrorNoise];
+            [self.view setUserInteractionEnabled:YES];
         }
     }
         
@@ -4331,6 +4355,42 @@ BOOL wasPathFollowed = false;
             }
         }
         
+        //If we are on the first or second manipulation page of Cleaning Up, play the audio of the current sentence
+        if ([chapterTitle isEqualToString:@"Cleaning Up"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+            
+                sentenceAudioFile = [NSString stringWithFormat:@"CleaningUpS%dE.mp3", currentSentence];
+        }
+        
+        //If we are on the first or second manipulation page of Getting Ready, play the audio of the current sentence
+        if ([chapterTitle isEqualToString:@"Getting Ready"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"GettingReadyS%dE.mp3", currentSentence];
+        }
+        
+        //If we are on the first or second manipulation page of Who is the Best Animal?, play the audio of the current sentence
+        if ([chapterTitle isEqualToString:@"Who is the Best Animal?"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"WhoIsTheBestAnimalS%dE.mp3", currentSentence];
+        }
+        
+        //If we are on the first or second manipulation page of The Wise Owl, play the audio of the current sentence
+        if ([chapterTitle isEqualToString:@"The Wise Owl"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"TheWiseOwlS%dE.mp3", currentSentence];
+        }
+        
+        //If we are on the first or second manipulation page of Everyone Helps, play the audio of the current sentence
+        if ([chapterTitle isEqualToString:@"Everyone Helps"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"EveryoneHelpsS%dE.mp3", currentSentence];
+        }
+        
+        //If we are on the first or second manipulation page of The Best Farm Award, play the audio of the current sentence
+        if ([chapterTitle isEqualToString:@"The Best Farm Award"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"TheBestFarmAwardS%dE.mp3", currentSentence];
+        }
+        
         //If we are on the first or second manipulation page of Why We Breathe, play the audio of the current sentence
         if ([chapterTitle isEqualToString:@"Why We Breathe"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
             if ((conditionSetup.language == BILINGUAL)) {
@@ -4350,6 +4410,37 @@ BOOL wasPathFollowed = false;
                 sentenceAudioFile = [NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3", currentSentence];
             }
         }
+        
+        //If we are on the first or second manipulation page of Is Paco a Thief?, play the current sentence
+        if ([chapterTitle isEqualToString:@"Is Paco a Thief?"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"IsPacoAThiefS%dE.mp3", currentSentence];
+        }
+        
+        //If we are on the first or second manipulation page of Missing Keys, play the current sentence
+        if ([chapterTitle isEqualToString:@"Missing Keys"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"MissingKeysS%dE.mp3", currentSentence];
+        }
+        
+        //If we are on the first or second manipulation page of More is Missing!, play the current sentence
+        if ([chapterTitle isEqualToString:@"More is Missing!"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"MoreIsMissingS%dE.mp3", currentSentence];
+        }
+        
+        //If we are on the first or second manipulation page of The Baby's Rattle is Gone, Too!, play the current sentence
+        if ([chapterTitle isEqualToString:@"The Baby's Rattle is Gone, Too!"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"TheBaby'sRattleIsGoneTooS%dE.mp3", currentSentence];
+        }
+        
+        //If we are on the first or second manipulation page of The Mystery is Solved, play the current sentence
+        if ([chapterTitle isEqualToString:@"The Mystery is Solved"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"TheMysteryIsSolvedS%dE.mp3", currentSentence];
+        }
+        
         //If we are on the first or second manipulation page of The Lucky Stone, play the current sentence
         if ([chapterTitle isEqualToString:@"The Lucky Stone"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
             if (conditionSetup.language == BILINGUAL) {
@@ -4358,6 +4449,34 @@ BOOL wasPathFollowed = false;
             else {
                 sentenceAudioFile = [NSString stringWithFormat:@"TheLuckyStoneS%dE.mp3", currentSentence];
             }
+        }
+        
+        //If we are on the first or second manipulation page of Baby Brother, play the current sentence
+        if ([chapterTitle isEqualToString:@"Baby Brother"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
+           
+            sentenceAudioFile = [NSString stringWithFormat:@"BabyBrotherS%dE.mp3", currentSentence];
+            
+        }
+        
+        //If we are on the first or second manipulation page of Catch!, play the current sentence
+        if ([chapterTitle isEqualToString:@"Catch!"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"CatchS%dE.mp3", currentSentence];
+            
+        }
+        
+        //If we are on the first or second manipulation page of Magic Toys, play the current sentence
+        if ([chapterTitle isEqualToString:@"Magic Toys"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"MagicToysS%dE.mp3", currentSentence];
+            
+        }
+        
+        //If we are on the first or second manipulation page of Words of Wisdom, play the current sentence
+        if ([chapterTitle isEqualToString:@"Words of Wisdom"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"WordsOfWisdomS%dE.mp3", currentSentence];
+            
         }
         
         //If we are on the first or second manipulation page of The Naughty Monkey, play the current sentence
@@ -4412,6 +4531,41 @@ BOOL wasPathFollowed = false;
             }
         }
         
+        //If we are on the first or second manipulation page of Mancha the Horse, play the current sentence
+        if ([chapterTitle isEqualToString:@"Mancha the Horse"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"ManchaTheHorseS%dE.mp3", currentSentence];
+           
+        }
+        
+        //If we are on the first or second manipulation page of A Friend in Need, play the current sentence
+        if ([chapterTitle isEqualToString:@"A Friend in Need"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"AFriendInNeedS%dE.mp3", currentSentence];
+            
+        }
+        
+        //If we are on the first or second manipulation page of Shopping at the Market, play the current sentence
+        if ([chapterTitle isEqualToString:@"Shopping at the Market"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound || [currentPageId rangeOfString:@"PM-4"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"ShoppingAtTheMarketS%dE.mp3", currentSentence];
+            
+        }
+        
+        //If we are on the first or second manipulation page of A Gift for the Bride, play the current sentence
+        if ([chapterTitle isEqualToString:@"A Gift for the Bride"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound || [currentPageId rangeOfString:@"PM-4"].location != NSNotFound || [currentPageId rangeOfString:@"PM-5"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"AGiftForTheBrideS%dE.mp3", currentSentence];
+            
+        }
+        
+        //If we are on the first or second manipulation page of Homecoming, play the current sentence
+        if ([chapterTitle isEqualToString:@"Homecoming"] && ([currentPageId rangeOfString:@"PM-1"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound || [currentPageId rangeOfString:@"PM-3"].location != NSNotFound || [currentPageId rangeOfString:@"PM-4"].location != NSNotFound)) {
+            
+            sentenceAudioFile = [NSString stringWithFormat:@"HomecomingS%dE.mp3", currentSentence];
+            
+        }
+        
         //If we are on the first or second manipulation page of Disasters Intro, play the current sentence
         if ([chapterTitle isEqualToString:@"Introduction to Natural Disasters"] && ([currentPageId rangeOfString:@"PM"].location != NSNotFound || [currentPageId rangeOfString:@"PM-2"].location != NSNotFound)) {
             if (conditionSetup.language == BILINGUAL) {
@@ -4445,15 +4599,12 @@ BOOL wasPathFollowed = false;
         ActivitySequence *seq = [seqController.sequences objectAtIndex:1];
         ActivityMode *mode = [seq getModeForChapter:chapterTitle];
         
-        if( [currentPageId rangeOfString:@"-Intro"].location != NSNotFound &&
+        if([currentPageId rangeOfString:@"-Intro"].location != NSNotFound &&
            [currentPageId rangeOfString:@"story1"].location != NSNotFound &&
            ([chapterTitle isEqualToString:@"The Lucky Stone"] || [chapterTitle isEqualToString:@"The Lopez Family"])
            && [bookTitle rangeOfString:seq.bookTitle].location != NSNotFound) {
             
-            
             introAudio = @"splWordsIntro";
-            
-            
             
             [array addObject:[NSString stringWithFormat:@"%@.mp3",introAudio]];
             if (mode.language == BILINGUAL && mode.newInstructions) {
@@ -4464,10 +4615,6 @@ BOOL wasPathFollowed = false;
             }
         }
     }
-    
-    
-
-    
     
     
     if ([ConditionSetup sharedInstance].condition == EMBRACE) {
@@ -4527,8 +4674,10 @@ BOOL wasPathFollowed = false;
                 if (audio) {
                     NSString *spanishAudio = nil;
                     
-                   
-                    if ([ConditionSetup sharedInstance].language == BILINGUAL && conditionSetup.newInstructions) {
+                    // IntroIpadReads_IM does not have spanish audio.
+                    if (![audio isEqualToString:@"IntroIpadReads_IM"] &&
+                        [ConditionSetup sharedInstance].language == BILINGUAL &&
+                        conditionSetup.newInstructions) {
                         spanishAudio = [NSString stringWithFormat:@"%@_S.mp3",audio];
                         
                     }
