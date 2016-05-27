@@ -835,6 +835,17 @@ ConditionSetup *conditionSetup;
     if (area.count > 0) {
         [area removeLastObject];
         
+        NSString *areaCoords = @"";
+        
+        for (int i=0; i < area.count; i++) {
+            CGPoint tempPoint = [[area objectAtIndex:i] CGPointValue];
+            
+            NSString* areaPointToString = [NSString stringWithFormat:@"(%f%%, %f%%), ", (tempPoint.x*100/1024), (tempPoint.y*100/704)];
+            areaCoords = [areaCoords stringByAppendingString:areaPointToString];
+        }
+        
+        areaPoints.text = areaCoords;
+        
         //redraw BezierPath
         [self drawArea:self];
     }
