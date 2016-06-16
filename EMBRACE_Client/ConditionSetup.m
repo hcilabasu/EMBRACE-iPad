@@ -37,7 +37,7 @@
         condition = EMBRACE;
         language = ENGLISH;
         reader = SYSTEM;
-        appMode = Authoring;
+        appMode = Study;
         currentMode = PM_MODE;
         newInstructions = false;
         vocabPageEnabled = false;

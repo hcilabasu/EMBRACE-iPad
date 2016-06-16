@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class UserAction;
+@class ManipulationContext;
+
 @interface ManipulationAnalyser : NSObject
+
+
+- (void)actionPerformed:(UserAction *)userAction
+    manipulationContext:(ManipulationContext *)context;
+
 
 @end
