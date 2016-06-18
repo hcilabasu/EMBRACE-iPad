@@ -13,7 +13,7 @@
             <sentence number="9">
                 <step number="1">
                     <group obj1Id="smallrocket_IM" action="sameSpeed" obj2Id="bigrocket_IM"/>
-                    <group obj1Id="smallrocket_IM" action="fasterSpeed" obj2Id="bigrocket_IM"/>
+                    <group obj1Id="smallrocket_IM" action="fasterSpeed" obj2Id="bigrocketUp_IM"/>
                 </step>
             </sentence>
         </story>

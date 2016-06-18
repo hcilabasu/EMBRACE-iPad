@@ -32,7 +32,7 @@
         <relationship obj1Id="smallrocket_IM" can="getIn" action="group" obj2Id="smallrocket_IM"/>
         
         <relationship obj1Id="smallrocket_IM" can="sameSpeed" action="group" obj2Id="bigrocket_IM"/>
-        <relationship obj1Id="smallrocket_IM" can="fasterSpeed" action="group" obj2Id="bigrocket_IM"/>
+        <relationship obj1Id="smallrocket_IM" can="fasterSpeed" action="group" obj2Id="bigrocketUp_IM"/>
         
         <relationship obj1Id="dog_IM" can="toward" action="group" obj2Id="maria_IM"/>
         <relationship obj1Id="dog_IM" can="flip" action="group" obj2Id="maria_IM"/>

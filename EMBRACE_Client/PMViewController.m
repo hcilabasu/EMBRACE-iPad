@@ -4239,7 +4239,7 @@ BOOL wasPathFollowed = false;
         NSString *actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
         NSString *sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
 
-        if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && !didSelectCorrectMenuOption && ([sentenceClass containsString: @"sentence actionSentence"] || [sentenceClass containsString: @"sentence IMactionSentence"])) {
+        if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && ([sentenceClass containsString: @"sentence actionSentence"] || [sentenceClass containsString: @"sentence IMactionSentence"])) {
             
             //Reset allRelationships arrray
             if ([allRelationships count]) {
@@ -4252,7 +4252,7 @@ BOOL wasPathFollowed = false;
             PossibleInteraction *interaction;
             NSMutableArray *interactions = [[NSMutableArray alloc]init ];
             
-            if (currSolSteps.count != 0) {
+            if (currSolSteps.count != 0 && !didSelectCorrectMenuOption) {
                 for (ActionStep *currSolStep in currSolSteps) {
                     interaction = [self convertActionStepToPossibleInteraction:currSolStep];
                     [interactions addObject:interaction];
