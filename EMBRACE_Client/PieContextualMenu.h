@@ -27,6 +27,7 @@ extern float const menuBoundingBoxIM;
 extern float const menuBoundingBoxPM;
 extern float const minAngle;
 extern int const maxMenuItems;
+extern int const minMenuItems;
 
 - (void)expandMenu:(CGFloat)circleRadius;
 - (int)pointInMenuItem:(CGPoint)point;

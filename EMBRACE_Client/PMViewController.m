@@ -71,6 +71,7 @@
     BOOL allowSnapback; //True if objects should snap back to original location upon error
     BOOL pressedNextLock; // True if user pressed next, and false after next function finishes execution
     BOOL isLoadPageInProgress; //True if the system is currently trying to load the next page
+    BOOL didSelectCorrectMenuOption; // True if user selected the correct menu option in IM mode
 
     CGPoint startLocation; //initial location of an object before it is moved
     CGPoint endLocation; // ending location of an object after it is moved
@@ -158,6 +159,7 @@ BOOL wasPathFollowed = false;
     allowSnapback = TRUE;
     pressedNextLock = false;
     isLoadPageInProgress = false;
+    didSelectCorrectMenuOption = false;
     
     movingObject = FALSE;
     movingObjectId = nil;
@@ -308,7 +310,7 @@ BOOL wasPathFollowed = false;
                     }
                 }
 
-                ActionStep *solutionStep = [[ActionStep alloc] initAsSolutionStep:i : 1 : @"tapWord" : sentenceText : nil : nil: nil : nil : nil : nil];
+                ActionStep *solutionStep = [[ActionStep alloc] initAsSolutionStep:i :nil : 1 : @"tapWord" : sentenceText : nil : nil: nil : nil : nil : nil];
                 
                 if (conditionSetup.currentMode == PM_MODE || conditionSetup.condition == CONTROL) {
                     [PMSolution addSolutionStep:solutionStep];
@@ -760,6 +762,8 @@ BOOL wasPathFollowed = false;
  * if it is ungroup, move, or swap image.
  */
 - (void)incrementCurrentStep {
+    //TODO: change currSolSteps && currSolStep to private and accessible to all functions in this view controller
+    
     //Get steps for current sentence
     NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
     
@@ -781,9 +785,21 @@ BOOL wasPathFollowed = false;
     
     //Check if able to increment current step
     if (currentStep < numSteps) {
-        currentStep++;
+        
+        //if the current solution step is a custom pm, then increment current step minMenuOption times
+        if ([@"PM_CUSTOM" isEqualToString: [currSolStep menuType]])
+        {
+            for (int i=0; i<minMenuItems; i++) {
+                currentStep++;
+            }
+        }
+        //current solution step is normal and just increment once
+        else
+        {
+            currentStep++;
+        }
+        
         manipulationContext.stepNumber = currentStep;
-
         [self performAutomaticSteps]; //automatically perform ungroup or move steps if necessary
     }
     else {
@@ -1172,10 +1188,11 @@ BOOL wasPathFollowed = false;
         movingObjectId = nil;
         allowSnapback =true;
         
+        /* TODO: See if this is removalable in refactor
         //Re-add the tap gesture recognizer before the menu is removed
         //[self.view addGestureRecognizer:tapRecognizer];
         
-        /*if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == PM_MODE) {
+        if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == PM_MODE) {
             //Remove menu.
             [menu removeFromSuperview];
             menu = nil;
@@ -1901,15 +1918,49 @@ BOOL wasPathFollowed = false;
                                 
                                 //Only populate Menu if user is moving the correct object to the correct objects
                                 if (correctInteractionExists) {
-                                    
-                                    //First rank the interactions based on location to story.
-                                    [self rankPossibleInteractions:possibleInteractions];
-                                
-                                    //Populate the menu data source and expand the menu.
-                                    [self populateMenuDataSource:possibleInteractions :allRelationships];
-                                
-                                    if (!menuExpanded) {
+                                   
+                                    //TODO: add a parameter check
+                                    if (!menuExpanded && [@"PM_CUSTOM" isEqualToString:[currSolStep menuType]]) {
+                                        //Reset allRelationships arrray
+                                        if ([allRelationships count]) {
+                                            [allRelationships removeAllObjects];
+                                        }
+                                        
+                                        PossibleInteraction *interaction;
+                                        NSMutableArray *interactions = [[NSMutableArray alloc]init ];
+                                        
+                                        if (currSolSteps.count != 0 && (currSolSteps.count+1-currentStep) >= minMenuItems) {
+                                            for (int i = currentStep-1; i < (currentStep-1+minMenuItems); i++) {
+                                                ActionStep *currSolStep = currSolSteps[i];
+                                                interaction = [self convertActionStepToPossibleInteraction:currSolStep];
+                                                [interactions addObject:interaction];
+                                                Relationship *relationshipBetweenObjects = [[Relationship alloc] initWithValues:[currSolStep object1Id] : [currSolStep action] : [currSolStep stepType] : [currSolStep object2Id]];
+                                                [allRelationships addObject:relationshipBetweenObjects];
+                                            }
+                                            
+                                            interactions = [self shuffleMenuOptions: interactions];
+                                            
+                                            //Populate the menu data source and expand the menu.
+                                            [self populateMenuDataSource:interactions :allRelationships];
+                                            [self expandMenu];
+                                        }
+                                        else
+                                        {
+                                            //TODO: log error
+                                        }
+                                        
+                                    }
+                                    else if (!menuExpanded) {
+                                        //First rank the interactions based on location to story.
+                                        [self rankPossibleInteractions:possibleInteractions];
+                                        
+                                        //Populate the menu data source and expand the menu.
+                                        [self populateMenuDataSource:possibleInteractions :allRelationships];
                                         [self expandMenu];
+                                    }
+                                    else
+                                    {
+                                        //TODO: add log statement
                                     }
                                 }
                                 //Otherwise reset object location and play error noise
@@ -3094,7 +3145,9 @@ BOOL wasPathFollowed = false;
             if (IMViewMenu != nil) {
                 [IMViewMenu removeFromSuperview];
             }
-
+            
+            didSelectCorrectMenuOption = true;
+            /* TODO: See if this is removalable in refactor
             //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
             if (currentSentence > 0) {
                 currentIdea++;
@@ -3119,7 +3172,7 @@ BOOL wasPathFollowed = false;
             }
             else {
                 [self playCurrentSentenceAudio];
-            }
+            }*/
         }
         else if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == PM_MODE){
             if (menu != nil) {
@@ -4186,7 +4239,7 @@ BOOL wasPathFollowed = false;
         NSString *actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
         NSString *sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
 
-        if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && ([sentenceClass containsString: @"sentence actionSentence"] || [sentenceClass containsString: @"sentence IMactionSentence"])) {
+        if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && !didSelectCorrectMenuOption && ([sentenceClass containsString: @"sentence actionSentence"] || [sentenceClass containsString: @"sentence IMactionSentence"])) {
             
             //Reset allRelationships arrray
             if ([allRelationships count]) {
@@ -4207,7 +4260,7 @@ BOOL wasPathFollowed = false;
                     [allRelationships addObject:relationshipBetweenObjects];
                 }
                 
-                interactions = [self shuffleIMOptions: interactions];
+                interactions = [self shuffleMenuOptions: interactions];
                 
                 //Populate the menu data source and expand the menu.
                 [self populateMenuDataSource:interactions :allRelationships];
@@ -4241,6 +4294,7 @@ BOOL wasPathFollowed = false;
                     manipulationContext.ideaNumber = currentIdea;
                 }
                 
+                didSelectCorrectMenuOption = false;
                 currentSentence++;
                 currentSentenceText = [[bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d').innerHTML", currentSentence]] stringByConvertingHTMLToPlainText];
                 
@@ -4315,9 +4369,9 @@ BOOL wasPathFollowed = false;
 }
 
 /*
- * Randomizer function that randomizes the menu options for IM
+ * Randomizer function that randomizes the menu options
  */
-- (NSMutableArray *)shuffleIMOptions: (NSMutableArray *) interactions {
+- (NSMutableArray *)shuffleMenuOptions: (NSMutableArray *) interactions {
     NSUInteger count = [allRelationships count];
     
     for (NSUInteger i = 0; i < count; ++i) {
