@@ -33,6 +33,7 @@ float const menuBoundingBoxPM = 400.0; // The bounding box of the large for the 
 
 float const minAngle = 5.0; //minimum angle in degrees.
 int const maxMenuItems = 3; //Total number of items the menu will display. changed to 3 from 6
+int const minMenuItems = 2; //Total number of items the menu must display. changed from 2 from 6
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {

@@ -11,6 +11,7 @@
 @implementation ActionStep
 
 @synthesize sentenceNumber;
+@synthesize menuType;
 @synthesize stepNumber;
 @synthesize stepType;
 @synthesize object1Id;
@@ -32,9 +33,10 @@
     return self;
 }
 
-- (id) initAsSolutionStep:(NSUInteger)sentNum :(NSUInteger)stepNum :(NSString*)type :(NSString*)obj1Id :(NSString*) obj2Id :(NSString*)loc :(NSString*)waypt :(NSString*)act :(NSString*)area :(NSString*)file {
+- (id) initAsSolutionStep:(NSUInteger)sentNumb : (NSString*)menType : (NSUInteger)stepNum :(NSString*)type :(NSString*)obj1Id :(NSString*) obj2Id :(NSString*)loc :(NSString*)waypt :(NSString*)act :(NSString*)area :(NSString*)file {
     if(self = [super init]) {
-        sentenceNumber = sentNum;
+        sentenceNumber = sentNumb;
+        menuType = menType;
         stepNumber = stepNum;
         stepType = type;
         object1Id = obj1Id;
