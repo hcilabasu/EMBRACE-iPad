@@ -27,6 +27,14 @@
 }
 
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _skillValue = 0.0;
+    }
+    return self;
+}
+
 - (void)updateSkillValue:(double)value {
     self.skillValue = value;
 }

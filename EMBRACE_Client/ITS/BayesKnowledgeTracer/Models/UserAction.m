@@ -20,7 +20,8 @@
 - (instancetype)initWithMovedObjectId:(NSString *)movedObjId
                         destinationId:(NSString *)destinationId
                            actionStep:(ActionStep *)actionStep
-                           isVerified:(BOOL)isverified {
+                           isVerified:(BOOL)isverified
+                          forSentence:(NSString *)sentenceText {
     self = [super init];
     if (self) {
         
@@ -28,6 +29,7 @@
         _destinationObjectId = [destinationId copy];
         _actionStep = actionStep;
         _isVerified = isverified;
+        _sentenceText = [sentenceText copy];
         
     }
     return self;

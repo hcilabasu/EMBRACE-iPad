@@ -12,22 +12,14 @@
 
 @interface ITSController : NSObject
 
-- (void)movedObject:(NSString *)objectId
-  destinationObject:(NSString *)destinationId
-         isVerified:(BOOL)verified
-         actionStep:(ActionStep *)actionStep
-manipulationContext:(ManipulationContext *)context;
++ (instancetype)sharedInstance;
 
 - (void)movedObject:(NSString *)objectId
-     destinationLoc:(NSString *)destinationLoc
+  destinationObjects:(NSArray *)destinationObjs
          isVerified:(BOOL)verified
          actionStep:(ActionStep *)actionStep
-manipulationContext:(ManipulationContext *)context;
+manipulationContext:(ManipulationContext *)context
+        forSentence:(NSString *)sentence;
 
-- (void)movedObject:(NSString *)objectId
-destinationWaypoint:(NSString *)waypoint
-         isVerified:(BOOL)verified
-         actionStep:(ActionStep *)actionStep
-manipulationContext:(ManipulationContext *)context;
 
 @end

@@ -8,6 +8,11 @@
 
 #import "KnowledgeTracer.h"
 #import "SkillSet.h"
+#import "UserAction.h"
+#import "ActionStep.h"
+
+#define ITS_PRONOUN @"ITS_PRONOUN"
+#define ITS_SYNTAX @"ITS_SYNTAX"
 
 @interface KnowledgeTracer()
 
@@ -22,13 +27,48 @@
     self = [super init];
     if (self) {
         _skillSet = [[SkillSet alloc] init];
+        [_skillSet getSkillForWord:ITS_PRONOUN];
+        [_skillSet getSkillForWord:ITS_SYNTAX];
     }
     return self;
 }
 
 #pragma mark -
 
+- (void)updateSkillFor:(NSString *)action isVerified:(BOOL)isVerified {
+    
+    if (action == nil) {
+        return;
+    }
+    
+    double newSkill = 0.0;
+    if (isVerified) {
 
+        Skill *prevSkill = [self.skillSet getSkillForWord:action];
+        double skillEvaluated = [self calcCorrect:prevSkill.skillValue];
+        newSkill = [self calcNewSkillValue:skillEvaluated];
+        [prevSkill updateSkillValue:newSkill];
+        
+    } else {
+        
+        Skill *prevSkill = [self.skillSet getSkillForWord:action];
+        double skillEvaluated = [self calcIncorrect:prevSkill.skillValue];
+        newSkill = [self calcNewSkillValue:skillEvaluated];
+        [prevSkill updateSkillValue:newSkill];
+
+    }
+    
+    NSLog(@"Skill value %@ - %f", action, newSkill);
+  
+}
+
+- (void)updateSyntaxSkill:(BOOL)isVerified {
+    [self updateSkillFor:ITS_SYNTAX isVerified:isVerified];
+}
+
+- (void)updatePronounSkill:(BOOL)isVerified {
+    [self updateSkillFor:ITS_PRONOUN isVerified:isVerified];
+}
 
 #pragma mark -
 

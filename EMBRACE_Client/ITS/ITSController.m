@@ -45,32 +45,30 @@
 
 
 - (void)movedObject:(NSString *)objectId
-  destinationObject:(NSString *)destinationId
+  destinationObjects:(NSArray *)destinationObjs
          isVerified:(BOOL)verified
          actionStep:(ActionStep *)actionStep
-manipulationContext:(ManipulationContext *)context {
+manipulationContext:(ManipulationContext *)context
+        forSentence:(NSString *)sentence {
     
+    NSString *dest = nil;
+    if ([destinationObjs count] > 0) {
+           dest = [destinationObjs objectAtIndex:0];
+        if ([destinationObjs containsObject:actionStep.object2Id]) {
+            dest = [actionStep.object2Id copy];
+        }
+    }
+
     UserAction *userAction = [[UserAction alloc] initWithMovedObjectId:objectId
-                                                         destinationId:destinationId
+                                                         destinationId:dest
                                                             actionStep:actionStep
-                                                            isVerified:verified];
+                                                            isVerified:verified
+                                                           forSentence:sentence];
+    [self.manipulationAnalyser actionPerformed:userAction
+                           manipulationContext:context];
 
 }
 
-- (void)movedObject:(NSString *)objectId
-     destinationLoc:(NSString *)destinationLoc
-         isVerified:(BOOL)verified
-         actionStep:(ActionStep *)actionStep
-manipulationContext:(ManipulationContext *)context {
-    
-}
 
-- (void)movedObject:(NSString *)objectId
-destinationWaypoint:(NSString *)waypoint
-         isVerified:(BOOL)verified
-         actionStep:(ActionStep *)actionStep
-manipulationContext:(ManipulationContext *)context {
-    
-}
 
 @end

@@ -8,6 +8,20 @@
 
 #import "WordSkill.h"
 
+@interface WordSkill ()
+
+@property (nonatomic, strong) NSString *word;
+
+@end
+
 @implementation WordSkill
+
+- (instancetype)initWithWord:(NSString *)word {
+    self = [super init];
+    if (self) {
+        _word = [word copy];
+    }
+    return self;
+}
 
 @end

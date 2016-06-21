@@ -4837,6 +4837,7 @@
 		5D9E34ED1C59150000636150 /* kauai_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AF805461C28DDD300C96B05 /* kauai_left.png */; };
 		5D9E34EE1C59150100636150 /* arteriesDEFS.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C9C09221C573AAA00702FCD /* arteriesDEFS.m4a */; };
 		5D9E34EF1C59150100636150 /* CCE4_8.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 5C9C094D1C573AAA00702FCD /* CCE4_8.m4a */; };
+		5D9F20041D18E1E0001325B1 /* The_Lopez_Family_Mystery.json in Resources */ = {isa = PBXBuildFile; fileRef = 5D9F20031D18E1E0001325B1 /* The_Lopez_Family_Mystery.json */; };
 		5DA8FD231C872F190056DE7A /* NaughtyMonkey_Script1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DA8FD131C872F190056DE7A /* NaughtyMonkey_Script1.mp3 */; };
 		5DA8FD241C872F190056DE7A /* NaughtyMonkey_Script2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DA8FD141C872F190056DE7A /* NaughtyMonkey_Script2.mp3 */; };
 		5DA8FD251C872F190056DE7A /* NaughtyMonkey_Script3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DA8FD151C872F190056DE7A /* NaughtyMonkey_Script3.mp3 */; };
@@ -9915,6 +9916,7 @@
 		5D9E33801C590E9400636150 /* TheMysteryIsSolvedQ7A3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheMysteryIsSolvedQ7A3.mp3; sourceTree = "<group>"; };
 		5D9E33811C590E9400636150 /* TheMysteryIsSolvedQ7A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheMysteryIsSolvedQ7A4.mp3; sourceTree = "<group>"; };
 		5D9E339D1C590E9400636150 /* dog_labradoodle_bark_twice_001.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dog_labradoodle_bark_twice_001.mp3; sourceTree = "<group>"; };
+		5D9F20031D18E1E0001325B1 /* The_Lopez_Family_Mystery.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = The_Lopez_Family_Mystery.json; sourceTree = "<group>"; };
 		5DA8FD131C872F190056DE7A /* NaughtyMonkey_Script1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkey_Script1.mp3; sourceTree = "<group>"; };
 		5DA8FD141C872F190056DE7A /* NaughtyMonkey_Script2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkey_Script2.mp3; sourceTree = "<group>"; };
 		5DA8FD151C872F190056DE7A /* NaughtyMonkey_Script3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkey_Script3.mp3; sourceTree = "<group>"; };
@@ -16143,6 +16145,7 @@
 		5D4FB3911D092D9600B0D695 /* BayesKnowledgeTracer */ = {
 			isa = PBXGroup;
 			children = (
+				5D9F20021D18DC8A001325B1 /* Data */,
 				5D5421151D0ECC7E008ADA3D /* Models */,
 				5D19177F1D09AD96001E7F30 /* KnowledgeTracer.h */,
 				5D1917801D09AD96001E7F30 /* KnowledgeTracer.m */,
@@ -16467,6 +16470,14 @@
 			path = old;
 			sourceTree = "<group>";
 		};
+		5D9F20021D18DC8A001325B1 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				5D9F20031D18E1E0001325B1 /* The_Lopez_Family_Mystery.json */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		5DA8FD121C872F190056DE7A /* Embrace */ = {
 			isa = PBXGroup;
 			children = (
@@ -16737,6 +16748,7 @@
 				5C04201C1C614653001BBE9D /* TheLopezFamilyS4E.mp3 in Resources */,
 				5C72E8291C72BF1000CE4877 /* TheThreeLawsWorkTogetherQ5A1.mp3 in Resources */,
 				1A63227B1C0E4D3B00251CB3 /* toc.ncx in Resources */,
+				5D9F20041D18E1E0001325B1 /* The_Lopez_Family_Mystery.json in Resources */,
 				5CAE95D71C921DCD00702DB4 /* CanoesS.mp3 in Resources */,
 				5CF6CA471CCB2BB50093D3FD /* Hawai'iS.mp3 in Resources */,
 				5C0ED5751C75080300003B5A /* KeyIngredientsQ7A4S.mp3 in Resources */,

@@ -7,12 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+@class UserAction;
 
 @protocol KnowledgeTracerProtocol;
 
 @interface KnowledgeTracer : NSObject
 
 @property (nonatomic, weak) id <KnowledgeTracerProtocol> delegate;
+
+- (void)updateSkillFor:(NSString *)action isVerified:(BOOL)isVerified;
+- (void)updateSyntaxSkill:(BOOL)isVerified;
+- (void)updatePronounSkill:(BOOL)isVerified;
+
 
 @end
 

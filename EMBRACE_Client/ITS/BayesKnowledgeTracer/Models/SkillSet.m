@@ -31,7 +31,12 @@
 }
 
 - (Skill *)getSkillForWord:(NSString *)word {
-    return [self.wordSkillDict objectForKey:word];
+    Skill *skill = [self.wordSkillDict objectForKey:word];
+    if (skill == nil) {
+        skill = [Skill skillForWord:word];
+        [self addWordSkill:skill forWord:word];
+    }
+    return skill;
 }
 
 @end

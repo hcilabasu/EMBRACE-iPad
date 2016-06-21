@@ -19,6 +19,7 @@
 #import "LibraryViewController.h"
 #import "ManipulationContext.h"
 #import "NSString+HTML.h"
+#import "ITSController.h"
 
 @interface PMViewController () {
     NSString *currentPage; //Current page being shown, so that the next page can be requested
@@ -1738,7 +1739,7 @@ BOOL wasPathFollowed = false;
             //If moving object, move object to final position.
             if (movingObject) {
                 [self moveObject:movingObjectId :location :delta :true];
-                
+                NSArray *overlappingWith = [self getObjectsOverlappingWithObject:movingObjectId];
                 if (numSteps > 0) {
                     //Get steps for current sentence
                     NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
@@ -1782,6 +1783,12 @@ BOOL wasPathFollowed = false;
                                 [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:destination ofType:@"Location" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
 
                                 [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Move Object" context:manipulationContext];
+                                [[ITSController sharedInstance] movedObject:movingObjectId
+                                                          destinationObjects:overlappingWith
+                                                                 isVerified:true
+                                                                 actionStep:currSolStep
+                                                        manipulationContext:manipulationContext
+                                                                forSentence:currentSentenceText];
                                 
                                 [animatingObjects setObject:@"stop" forKey:movingObjectId];
                                 [self incrementCurrentStep];
@@ -1793,6 +1800,12 @@ BOOL wasPathFollowed = false;
                                 [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
                                 
                                 [self resetObjectLocation];
+                                [[ITSController sharedInstance] movedObject:movingObjectId
+                                                          destinationObjects:overlappingWith
+                                                                 isVerified:false
+                                                                 actionStep:currSolStep
+                                                        manipulationContext:manipulationContext
+                                                                forSentence:currentSentenceText];
                             }
                         }
                         else {
@@ -1808,6 +1821,12 @@ BOOL wasPathFollowed = false;
                             }
                             
                             [self resetObjectLocation];
+                            [[ITSController sharedInstance] movedObject:movingObjectId
+                                                      destinationObjects:overlappingWith
+                                                             isVerified:false
+                                                             actionStep:currSolStep
+                                                    manipulationContext:manipulationContext
+                                                            forSentence:currentSentenceText];
                             
                         }
                     }
@@ -1927,7 +1946,12 @@ BOOL wasPathFollowed = false;
                             [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:@"NULL" ofType:@"Location" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
                             
                             [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
-                            
+                            [[ITSController sharedInstance] movedObject:movingObjectId
+                                                     destinationObjects:overlappingWith
+                                                             isVerified:false
+                                                             actionStep:currSolStep
+                                                    manipulationContext:manipulationContext
+                                                            forSentence:currentSentenceText];
                             [self playErrorNoise];
                             [self resetObjectLocation];
                         }
