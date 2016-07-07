@@ -269,6 +269,53 @@
     return CGSizeMake(imageWidth, imageHeight);
 }
 
+/*
+ * Returns an array containing pairs of grouped objects (with the format "hay, farmer") connected to the object specified
+ */
+- (NSArray *)getObjectsGroupedWithObject:(NSString *)object {
+    NSArray *itemPairArray; //contains grouped objects split by pairs
+    
+    //Get other objects grouped with this object.
+    NSString *requestGroupedImages = [NSString stringWithFormat:@"getGroupedObjectsString(%@)", object];
+    
+    /*
+     * Say the cart is connected to the tractor and the tractor is "connected" to the farmer,
+     * then groupedImages will be a string in the following format: "cart, tractor; tractor, farmer"
+     * if the only thing you currently have connected to the hay is the farmer, then you'll get
+     * a string back that is: "hay, farmer" or "farmer, hay"
+     */
+    NSString *groupedImages = [self.bookView stringByEvaluatingJavaScriptFromString:requestGroupedImages];
+    
+    //If there is an array, split the array based on pairs.
+    if (![groupedImages isEqualToString:@""]) {
+        itemPairArray = [groupedImages componentsSeparatedByString:@"; "];
+    }
+    
+    return itemPairArray;
+}
+
+/*
+ * Returns an array containing objects that are overlapping with the object specified
+ */
+- (NSArray *)getObjectsOverlappingWithObject:(NSString *)object movingObject:(NSString *)movingObjectId{
+    NSArray *overlappingWith; //contains overlapping objects
+    
+    //Check if object is overlapping anything
+    NSString *overlappingObjects = [NSString stringWithFormat:@"checkObjectOverlapString(%@)", movingObjectId];
+    NSString *overlapArrayString = [self.bookView stringByEvaluatingJavaScriptFromString:overlappingObjects];
+    
+    if (![overlapArrayString isEqualToString:@""]) {
+        overlappingWith = [overlapArrayString componentsSeparatedByString:@", "];
+    }
+    
+    return overlappingWith;
+}
+
+- (NSString *)getSentenceClass:(NSInteger)sentenceNumber {
+    NSString *actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%ld)", (long)sentenceNumber];
+    return [self.bookView stringByEvaluatingJavaScriptFromString:actionSentence];
+}
+
 #pragma mark - Webview delegates
 
 - (BOOL)webView:(UIWebView *)webView
@@ -432,6 +479,41 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     }
     
     return CGPointMake(-1, -1);
+}
+
+/*
+ * Returns the hotspot location in pixels based on the object image size
+ */
+- (CGPoint)getHotspotLocationOnImage:(Hotspot *)hotspot {
+    
+    //Get the width and height of the object image
+    NSString *requestImageHeight = [NSString stringWithFormat:@"%@.height", [hotspot objectId]];
+    NSString *requestImageWidth = [NSString stringWithFormat:@"%@.width", [hotspot objectId]];
+    
+    float imageHeight = [[self.bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
+    float imageWidth = [[self.bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
+    
+    //Get position of hotspot in pixels based on the object image size
+    CGPoint hotspotLoc = [hotspot location];
+    CGFloat hotspotX = hotspotLoc.x / 100.0 * imageWidth;
+    CGFloat hotspotY = hotspotLoc.y / 100.0 * imageHeight;
+    CGPoint hotspotLocation = CGPointMake(hotspotX, hotspotY);
+    
+    return hotspotLocation;
+}
+
+/*
+ * Returns the waypoint location in pixels based on the background size
+ */
+- (CGPoint)getWaypointLocation:(Waypoint *)waypoint {
+    
+    //Get position of waypoint in pixels based on the background size
+    CGPoint waypointLoc = [waypoint location];
+    CGFloat waypointX = waypointLoc.x / 100.0 * [self.bookView frame].size.width;
+    CGFloat waypointY = waypointLoc.y / 100.0 * [self.bookView frame].size.height;
+    CGPoint waypointLocation = CGPointMake(waypointX, waypointY);
+    
+    return waypointLocation;
 }
 
 #pragma mark - Drawings
@@ -610,6 +692,66 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     }
     
     return nil;
+}
+
+/*
+ * Calls the JS function to draw each individual hotspot in the array provided
+ * with the color specified.
+ */
+- (void)drawHotspots:(NSMutableArray *)hotspots color:(NSString *)color {
+    for (Hotspot *hotspot in hotspots) {
+        CGPoint hotspotLoc = [self getHotspotLocation:hotspot];
+        
+        if (hotspotLoc.x != -1) {
+            NSString *drawHotspot = [NSString stringWithFormat:@"drawHotspot(%f, %f, \"%@\")",
+                                     hotspotLoc.x, hotspotLoc.y, color];
+            [self.bookView stringByEvaluatingJavaScriptFromString:drawHotspot];
+        }
+    }
+}
+
+- (void)colorSentencesUponNext:(NSInteger)currentSentence
+                     condition:(Condition)condition
+                       andMode:(Mode)mode {
+    
+    //Set the color of the current sentence to black by default
+    NSString *setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%ld, 'black')", (long)currentSentence];
+    [self.bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
+    
+    //Change the opacity to 1
+    NSString *setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%ld, 1)", (long)currentSentence];
+    [self.bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
+    
+    //Set the color of the previous sentence to black
+    setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%ld, 'black')", currentSentence - 1];
+    [self.bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
+    
+    //Decrease the opacity of the previous sentence
+    setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%ld, .2)", currentSentence - 1];
+    [self.bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
+    
+    //Get the sentence class
+    NSString *actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%ld)", (long)currentSentence];
+    NSString *sentenceClass = [self.bookView stringByEvaluatingJavaScriptFromString:actionSentence];
+    
+    //If it is a non-black action sentence (i.e., requires user manipulation), then set the color to blue
+    if (![sentenceClass containsString:@"black"]) {
+        if ([sentenceClass containsString: @"sentence actionSentence"] ||
+            ([sentenceClass containsString: @"sentence IMactionSentence"] && condition == EMBRACE && mode == IM_MODE)) {
+            setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%ld, 'blue')", (long)currentSentence];
+            [self.bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
+        }
+    }
+}
+
+- (void)highLightArea:(NSString *)objectId {
+    NSString *highlight = [NSString stringWithFormat:@"highlightArea('%@')", objectId];
+    [self.bookView stringByEvaluatingJavaScriptFromString:highlight];
+}
+
+- (void)highlightObjectOnWordTap:(NSString *)objectId {
+    NSString *highlight = [NSString stringWithFormat:@"highlightObjectOnWordTap(%@)", objectId];
+    [self.bookView stringByEvaluatingJavaScriptFromString:highlight];
 }
 
 #pragma mark - Animation

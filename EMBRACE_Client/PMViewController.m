@@ -122,6 +122,9 @@ BOOL wasPathFollowed = false;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.pmView = [[PMView alloc] initWithFrame:self.view.frame];
+    [self.view addSubview:self.pmView];
+    self.pmView.delegate = self;
     
     //hides the default navigation bar to add custom back button
     self.navigationItem.hidesBackButton = YES;
@@ -148,8 +151,7 @@ BOOL wasPathFollowed = false;
     }
     
     self.view.backgroundColor = [UIColor whiteColor];
-    self.pmView = [[PMView alloc] initWithFrame:self.view.frame];
-    self.pmView.delegate = self;
+    
     
     currentPage = nil;
     
@@ -344,10 +346,10 @@ BOOL wasPathFollowed = false;
         }
 }
 
-////Temporary menu to select complexity of sentences on page or to dismiss page statistics
-////TODO: remove temporary menu or enable for debug/testing mode only
-//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-//    if ([[alertView title] isEqualToString:@"Choose sentence complexity levels"]) {
+//Temporary menu to select complexity of sentences on page or to dismiss page statistics
+//TODO: remove temporary menu or enable for debug/testing mode only
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if ([[alertView title] isEqualToString:@"Choose sentence complexity levels"]) {
 //        Statistics *statistics = [[Statistics alloc] init];
 //        [pageStatistics setObject:statistics forKey:currentPageId];
 //        
@@ -399,24 +401,24 @@ BOOL wasPathFollowed = false;
 //        //Set up current sentence appearance and solution steps
 //        [self setupCurrentSentence];
 //        [self setupCurrentSentenceColor];
-//    }
-//    else if ([[alertView title] isEqualToString:@"Page Statistics"]) {
-//        if (buttonIndex == 0) {
-//            [self loadNextPage];
-//        }
-//    }
-//    else if([[alertView title] isEqualToString:@"Return to Library"])
-//    {
-//        //Get title of pressed alert button
-//        NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
-//        
-//        //If button pressed is Yes, return to libraryView
-//        if([title isEqualToString:@"Yes"])
-//        {
-//            [self.navigationController popViewControllerAnimated:YES];
-//        }
-//    }
-//}
+    }
+    else if ([[alertView title] isEqualToString:@"Page Statistics"]) {
+        if (buttonIndex == 0) {
+            [self loadNextPage];
+        }
+    }
+    else if([[alertView title] isEqualToString:@"Return to Library"])
+    {
+        //Get title of pressed alert button
+        NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+        
+        //If button pressed is Yes, return to libraryView
+        if([title isEqualToString:@"Yes"])
+        {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }
+}
 
 //Temporary function to show page statistics
 //TODO: remove or enable for debug/testing only
@@ -2216,8 +2218,8 @@ BOOL wasPathFollowed = false;
             Hotspot *hotspot1 = [hotspots objectAtIndex:0];
             Hotspot *hotspot2 = [hotspots objectAtIndex:1];
             
-            CGPoint hotspot1Loc = [self getHotspotLocation:hotspot1];
-            CGPoint hotspot2Loc = [self getHotspotLocation:hotspot2];
+            CGPoint hotspot1Loc = [self.pmView getHotspotLocation:hotspot1];
+            CGPoint hotspot2Loc = [self.pmView getHotspotLocation:hotspot2];
             
             [self groupObjects:obj1 :hotspot1Loc :obj2 :hotspot2Loc]; //group objects
             
@@ -2606,7 +2608,7 @@ BOOL wasPathFollowed = false;
             
             //Get hotspot location of correct subject
             Hotspot *hotspot = [model getHotspotforObjectWithActionAndRole:objectId :action :@"subject"];
-            CGPoint hotspotLocation = [self getHotspotLocation:hotspot];
+            CGPoint hotspotLocation = [self.pmView getHotspotLocation:hotspot];
             
             //Get location that hotspot should be inside
             Location *location = [model getLocationWithId:locationId];
@@ -2649,7 +2651,7 @@ BOOL wasPathFollowed = false;
             
             //Get hotspot location of correct subject
             Hotspot *hotspot = [model getHotspotforObjectWithActionAndRole:objectId :action :@"subject"];
-            CGPoint hotspotLocation = [self getHotspotLocation:hotspot];
+            CGPoint hotspotLocation = [self.pmView getHotspotLocation:hotspot];
             
             //Get area that hotspot should be inside
             Area* area = [model getArea:areaId:currentPageId];
@@ -2683,7 +2685,7 @@ BOOL wasPathFollowed = false;
             
             //Get hotspot location of correct subject
             Hotspot *hotspot = [model getHotspotforObjectWithActionAndRole:objectId :action :@"subject"];
-            CGPoint hotspotLocation = [self getHotspotLocation:hotspot];
+            CGPoint hotspotLocation = [self.pmView getHotspotLocation:hotspot];
             
             //Get area that hotspot should be inside
             Area *area = [model getArea:areaId : currentPageId];
@@ -2718,7 +2720,7 @@ BOOL wasPathFollowed = false;
             
             //Get hotspot location of correct subject
             Hotspot *hotspot = [model getHotspotforObjectWithActionAndRole:objectId :action :@"subject"];
-            CGPoint hotspotLocation = [self getHotspotLocation:hotspot];
+            CGPoint hotspotLocation = [self.pmView getHotspotLocation:hotspot];
             
             //Get area that hotspot should be inside
             Area *area = [model getArea:areaId : currentPageId];
@@ -3067,8 +3069,8 @@ BOOL wasPathFollowed = false;
                 for (Hotspot *hotspot in hotspots) {
                     for (Hotspot *movingObjectHotspot in movingObjectHotspots) {
                         //Need to calculate exact pixel locations of both hotspots and then make sure they're within a specific distance of each other.
-                        CGPoint movingObjectHotspotLoc = [self getHotspotLocation:movingObjectHotspot];
-                        CGPoint hotspotLoc = [self getHotspotLocation:hotspot];
+                        CGPoint movingObjectHotspotLoc = [self.pmView getHotspotLocation:movingObjectHotspot];
+                        CGPoint hotspotLoc = [self.pmView getHotspotLocation:hotspot];
                         
                         //Check to see if either of these hotspots are currently connected to another objects.
 //                        NSString *isHotspotConnectedMovingObject = [NSString stringWithFormat:@"objectGroupedAtHotspot(%@, %f, %f)", obj, movingObjectHotspotLoc.x, movingObjectHotspotLoc.y];
@@ -3197,7 +3199,7 @@ BOOL wasPathFollowed = false;
     for (Hotspot *transferredObjHotspot in transferredObjHotspots) {
         //Check if it is currently grouped with another object using the specified role
         if ([[transferredObjHotspot role] isEqualToString:role]) {
-            CGPoint transferredObjHotspotLoc = [self getHotspotLocation:transferredObjHotspot];
+            CGPoint transferredObjHotspotLoc = [self.pmView getHotspotLocation:transferredObjHotspot];
             
             //Get the object that the transferred object is connected to at this hotspot
             NSString *isHotspotConnected = [NSString stringWithFormat:@"objectGroupedAtHotspot(%@, %f, %f)", transferredObj, transferredObjHotspotLoc.x, transferredObjHotspotLoc.y];
@@ -3229,10 +3231,8 @@ BOOL wasPathFollowed = false;
     for (Hotspot *hotspot1 in hotspotsForObjConnectedTo) {
         for (Hotspot *hotspot2 in hotspotsForObjConnected) {
             //Need to calculate exact pixel location of one of the hotspots and then make sure it is connected to the other object at that location
-            CGPoint hotspot1Loc = [self getHotspotLocation:hotspot1];
-            
-            NSString *isObjConnectedToHotspotConnected = [NSString stringWithFormat:@"objectGroupedAtHotspot(%@, %f, %f)", objConnectedTo, hotspot1Loc.x, hotspot1Loc.y];
-            NSString *isConnectedObjHotspotConnectedString  = [bookView stringByEvaluatingJavaScriptFromString:isObjConnectedToHotspotConnected];
+            CGPoint hotspot1Loc = [self.pmView getHotspotLocation:hotspot1];
+            NSString *isConnectedObjHotspotConnectedString  = [self.pmView groupedObject:objConnectedTo atHotSpot:hotspot1Loc];
             
             //Make sure the two hotspots have the same action and make sure the roles do not match (there are only two possibilities right now: subject and object). Also make sure the hotspots are connected to each other. If all is well, these objects can be ungrouped.
             bool rolesMatch = [[hotspot1 role] isEqualToString:[hotspot2 role]];
@@ -3299,42 +3299,16 @@ BOOL wasPathFollowed = false;
  * Returns an array containing pairs of grouped objects (with the format "hay, farmer") connected to the object specified
  */
 - (NSArray *)getObjectsGroupedWithObject:(NSString *)object {
-    NSArray *itemPairArray; //contains grouped objects split by pairs
-    
-    //Get other objects grouped with this object.
-    NSString *requestGroupedImages = [NSString stringWithFormat:@"getGroupedObjectsString(%@)", object];
-    
-    /*
-     * Say the cart is connected to the tractor and the tractor is "connected" to the farmer,
-     * then groupedImages will be a string in the following format: "cart, tractor; tractor, farmer"
-     * if the only thing you currently have connected to the hay is the farmer, then you'll get
-     * a string back that is: "hay, farmer" or "farmer, hay"
-     */
-    NSString *groupedImages = [bookView stringByEvaluatingJavaScriptFromString:requestGroupedImages];
-    
-    //If there is an array, split the array based on pairs.
-    if (![groupedImages isEqualToString:@""]) {
-        itemPairArray = [groupedImages componentsSeparatedByString:@"; "];
-    }
-    
-    return itemPairArray;
+
+    return [self.pmView getObjectsGroupedWithObject:object];
 }
 
 /*
  * Returns an array containing objects that are overlapping with the object specified
  */
 - (NSArray *)getObjectsOverlappingWithObject:(NSString *)object {
-    NSArray *overlappingWith; //contains overlapping objects
     
-    //Check if object is overlapping anything
-    NSString *overlappingObjects = [NSString stringWithFormat:@"checkObjectOverlapString(%@)", movingObjectId];
-    NSString *overlapArrayString = [bookView stringByEvaluatingJavaScriptFromString:overlappingObjects];
-    
-    if (![overlapArrayString isEqualToString:@""]) {
-        overlappingWith = [overlapArrayString componentsSeparatedByString:@", "];
-    }
-    
-    return overlappingWith;
+    return [self.pmView getObjectsOverlappingWithObject:object movingObject:movingObjectId];
 }
 
 /*
@@ -3345,11 +3319,10 @@ BOOL wasPathFollowed = false;
     
     for (Hotspot *movingObjectHotspot in movingObjectHotspots) {
         //Get the hotspot location
-        CGPoint movingObjectHotspotLoc = [self getHotspotLocation:movingObjectHotspot];
+        CGPoint movingObjectHotspotLoc = [self.pmView getHotspotLocation:movingObjectHotspot];
         
         //Check if this hotspot is currently in use
-        NSString *isHotspotConnectedMovingObject = [NSString stringWithFormat:@"objectGroupedAtHotspot(%@, %f, %f)", movingObjectId, movingObjectHotspotLoc.x, movingObjectHotspotLoc.y];
-        NSString *isHotspotConnectedMovingObjectString  = [bookView stringByEvaluatingJavaScriptFromString:isHotspotConnectedMovingObject];
+        NSString *isHotspotConnectedMovingObjectString  = [self.pmView groupedObject:movingObjectId atHotSpot:movingObjectHotspotLoc];
         
         //Check if this hotspot is being used by the objConnectedTo
         if ([isHotspotConnectedMovingObjectString isEqualToString:objConnectedTo]) {
@@ -3402,7 +3375,7 @@ BOOL wasPathFollowed = false;
                     
                     for (Hotspot *hotspot in objectHotspots) {
                         //Get the hotspot location
-                        CGPoint hotspotLocation = [self getHotspotLocation:hotspot];
+                        CGPoint hotspotLocation = [self.pmView getHotspotLocation:hotspot];
                         
                         //Check if this hotspot is currently connected to another object
                         NSString *isHotspotConnectedString = [self.pmView groupedObject:object atHotSpot:hotspotLocation];
@@ -3419,13 +3392,13 @@ BOOL wasPathFollowed = false;
                                     CGPoint comboHotspotLocation;
                                     
                                     if (comboHotspot != nil) {
-                                        comboHotspotLocation = [self getHotspotLocation:comboHotspot];
+                                        comboHotspotLocation = [self.pmView getHotspotLocation:comboHotspot];
                                     }
                                     else {
                                         //If no hotspot was found assuming the role as subject,
                                         //then the role must be object.
                                         comboHotspot = [model getHotspotforObjectWithActionAndRole:[comboConstraint objId] :comboAction :@"object"];
-                                        comboHotspotLocation = [self getHotspotLocation:comboHotspot];
+                                        comboHotspotLocation = [self.pmView getHotspotLocation:comboHotspot];
                                     }
                                     
                                     //Check if the potential hotspot matches an action on the list
@@ -3488,8 +3461,8 @@ BOOL wasPathFollowed = false;
  * Returns true if they are, false otherwise.
  */
 - (BOOL)hotspotsWithinGroupingProximity:(Hotspot *)hotspot1 :(Hotspot *)hotspot2 {
-    CGPoint hotspot1Loc = [self getHotspotLocation:hotspot1];
-    CGPoint hotspot2Loc = [self getHotspotLocation:hotspot2];
+    CGPoint hotspot1Loc = [self.pmView getHotspotLocation:hotspot1];
+    CGPoint hotspot2Loc = [self.pmView getHotspotLocation:hotspot2];
     
     float deltaX = fabsf(hotspot1Loc.x - hotspot2Loc.x);
     float deltaY = fabsf(hotspot1Loc.y - hotspot2Loc.y);
@@ -3626,15 +3599,7 @@ BOOL wasPathFollowed = false;
  * with the color specified.
  */
 - (void)drawHotspots:(NSMutableArray *)hotspots :(NSString *)color{
-    for (Hotspot *hotspot in hotspots) {
-        CGPoint hotspotLoc = [self getHotspotLocation:hotspot];
-        
-        if (hotspotLoc.x != -1) {
-            NSString *drawHotspot = [NSString stringWithFormat:@"drawHotspot(%f, %f, \"%@\")",
-                                     hotspotLoc.x, hotspotLoc.y, color];
-            [bookView stringByEvaluatingJavaScriptFromString:drawHotspot];
-        }
-    }
+    [self.pmView drawHotspots:hotspots color:color];
 }
 
 
@@ -3642,33 +3607,15 @@ BOOL wasPathFollowed = false;
  * Returns the hotspot location in pixels based on the object image size
  */
 - (CGPoint)getHotspotLocationOnImage:(Hotspot *)hotspot {
-    //Get the width and height of the object image
-    NSString *requestImageHeight = [NSString stringWithFormat:@"%@.height", [hotspot objectId]];
-    NSString *requestImageWidth = [NSString stringWithFormat:@"%@.width", [hotspot objectId]];
     
-    float imageHeight = [[bookView stringByEvaluatingJavaScriptFromString:requestImageHeight] floatValue];
-    float imageWidth = [[bookView stringByEvaluatingJavaScriptFromString:requestImageWidth] floatValue];
-    
-    //Get position of hotspot in pixels based on the object image size
-    CGPoint hotspotLoc = [hotspot location];
-    CGFloat hotspotX = hotspotLoc.x / 100.0 * imageWidth;
-    CGFloat hotspotY = hotspotLoc.y / 100.0 * imageHeight;
-    CGPoint hotspotLocation = CGPointMake(hotspotX, hotspotY);
-    
-    return hotspotLocation;
+    return [self.pmView getHotspotLocationOnImage:hotspot];
 }
 
 /*
  * Returns the waypoint location in pixels based on the background size
  */
 - (CGPoint)getWaypointLocation:(Waypoint *)waypoint {
-    //Get position of waypoint in pixels based on the background size
-    CGPoint waypointLoc = [waypoint location];
-    CGFloat waypointX = waypointLoc.x / 100.0 * [bookView frame].size.width;
-    CGFloat waypointY = waypointLoc.y / 100.0 * [bookView frame].size.height;
-    CGPoint waypointLocation = CGPointMake(waypointX, waypointY);
-    
-    return waypointLocation;
+    return [self.pmView getWaypointLocation:waypoint];
 }
 
 /*
@@ -3754,8 +3701,7 @@ BOOL wasPathFollowed = false;
             }
     }
     else {
-        NSString *actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
-        NSString *sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
+        NSString *sentenceClass = [self.pmView getSentenceClass:currentSentence];
 
         if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && ([sentenceClass containsString: @"sentence actionSentence"] || [sentenceClass containsString: @"sentence IMactionSentence"])) {
             
@@ -3784,7 +3730,7 @@ BOOL wasPathFollowed = false;
                 [self populateMenuDataSource:interactions :allRelationships];
                 
                 //Add subview to hide story
-                IMViewMenu = [[UIView alloc] initWithFrame:[bookView frame]];
+                IMViewMenu = [[UIView alloc] initWithFrame:[self.pmView frame]];
                 IMViewMenu.backgroundColor = [UIColor whiteColor];
                 UILabel *IMinstructions = [[UILabel alloc] initWithFrame:CGRectMake(200, 10, IMViewMenu.frame.size.width, 40)];
                 
@@ -3814,8 +3760,7 @@ BOOL wasPathFollowed = false;
                 
                 didSelectCorrectMenuOption = false;
                 currentSentence++;
-                currentSentenceText = [[bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d').innerHTML", currentSentence]] stringByConvertingHTMLToPlainText];
-                
+                currentSentenceText = [self.pmView getCurrentSentenceAt:currentSentence];
                 manipulationContext.sentenceNumber = currentSentence;
                 manipulationContext.sentenceText = currentSentenceText;
                 manipulationContext.manipulationSentence = [self isManipulationSentence:currentSentence];
@@ -3841,8 +3786,7 @@ BOOL wasPathFollowed = false;
             }
             
             currentSentence++;
-            currentSentenceText = [[bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d').innerHTML", currentSentence]] stringByConvertingHTMLToPlainText];
-            
+            currentSentenceText = [self.pmView getCurrentSentenceAt:currentSentence];
             manipulationContext.sentenceNumber = currentSentence;
             manipulationContext.sentenceText = currentSentenceText;
             manipulationContext.manipulationSentence = [self isManipulationSentence:currentSentence];
@@ -4512,38 +4456,14 @@ BOOL wasPathFollowed = false;
  * Clears the highlighting on the scene
  */
 - (void)clearHighlightedObject {
-    NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
-    [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
+    [self.pmView clearAllHighLighting];
 }
 
 - (void)colorSentencesUponNext {
-    //Set the color of the current sentence to black by default
-    NSString *setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence];
-    [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
-    
-    //Change the opacity to 1
-    NSString *setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, 1)", currentSentence];
-    [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
-    
-    //Set the color of the previous sentence to black
-    setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence - 1];
-    [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
-    
-    //Decrease the opacity of the previous sentence
-    setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, .2)", currentSentence - 1];
-    [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
-    
-    //Get the sentence class
-    NSString *actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
-    NSString *sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
-    
-    //If it is a non-black action sentence (i.e., requires user manipulation), then set the color to blue
-    if (![sentenceClass containsString:@"black"]) {
-        if ([sentenceClass containsString: @"sentence actionSentence"] || ([sentenceClass containsString: @"sentence IMactionSentence"] && conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE)) {
-            setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
-            [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
-        }
-    }
+   
+    [self.pmView colorSentencesUponNext:currentSentence
+                              condition:conditionSetup.condition
+                                andMode:conditionSetup.currentMode];
 }
 
 /*
@@ -4553,9 +4473,7 @@ BOOL wasPathFollowed = false;
     BOOL isManipulationSentence = false;
     
     //Get the sentence class
-    NSString *getSentenceClass = [NSString stringWithFormat:@"getSentenceClass(s%d)", sentenceNumber];
-    NSString *sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:getSentenceClass];
-    
+    NSString *sentenceClass = [self.pmView getSentenceClass:sentenceNumber];
     if ([sentenceClass containsString: @"sentence actionSentence"] || ([sentenceClass containsString: @"sentence IMactionSentence"] && conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE)) {
         isManipulationSentence = true;
     }
@@ -4567,13 +4485,11 @@ BOOL wasPathFollowed = false;
 - (void)highlightObject:(NSString *)object :(double)delay {
     if ([model getArea:object:currentPageId]) {
         //Highlight the tapped object
-        NSString *highlight = [NSString stringWithFormat:@"highlightArea('%@')", object];
-        [bookView stringByEvaluatingJavaScriptFromString:highlight];
+        [self.pmView highLightArea:object];
     }
     else {
         //Highlight the tapped object
-        NSString *highlight = [NSString stringWithFormat:@"highlightObjectOnWordTap(%@)", object];
-        [bookView stringByEvaluatingJavaScriptFromString:highlight];
+        [self.pmView highlightObjectOnWordTap:object];
     }
 
     //Clear highlighted object
@@ -4627,7 +4543,7 @@ BOOL wasPathFollowed = false;
  */
 //TODO: simplify im and pm menu logic
 - (void)expandMenu {
-    menu = [[PieContextualMenu alloc] initWithFrame:[bookView frame]];
+    menu = [[PieContextualMenu alloc] initWithFrame:[self.pmView frame]];
     [menu addGestureRecognizer:tapRecognizer];
     
     if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) {

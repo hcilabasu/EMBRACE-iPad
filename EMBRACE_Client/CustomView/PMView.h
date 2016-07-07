@@ -10,7 +10,7 @@
 #import "Activity.h"
 #import "ConditionSetup.h"
 
-@class InteractionModel, Book, MenuItemImage;
+@class InteractionModel, Book, MenuItemImage, Hotspot, Waypoint;
 
 @protocol PMViewDelegate;
 
@@ -58,6 +58,12 @@
 
 - (CGSize)sizeOfObject:(NSString *)objectId;
 
+- (NSArray *)getObjectsGroupedWithObject:(NSString *)object;
+
+- (NSArray *)getObjectsOverlappingWithObject:(NSString *)object movingObject:(NSString *)movingObjectId;
+
+- (NSString *)getSentenceClass:(NSInteger)sentenceNumber;
+
 #pragma mark - 
 
 - (CGPoint)getObjectPosition:(NSString *)object;
@@ -65,6 +71,12 @@
 - (CGPoint)deltaForMovingObjectAtPoint:(CGPoint)location;
 
 - (CGPoint)deltaForMovingObjectAtPointWithCenter:(NSString *)object :(CGPoint)location;
+
+- (CGPoint)getHotspotLocation:(Hotspot *)hotspot;
+
+- (CGPoint)getHotspotLocationOnImage:(Hotspot *)hotspot;
+
+- (CGPoint)getWaypointLocation:(Waypoint *)waypoint;
 
 #pragma mark - 
 
@@ -93,6 +105,16 @@
 
 - (MenuItemImage *)createMenuItemForImage:(NSString *)objId
                                      flip:(NSString *)flip;
+
+- (void)drawHotspots:(NSMutableArray *)hotspots color:(NSString *)color;
+
+- (void)colorSentencesUponNext:(NSInteger)currentSentence
+                     condition:(Condition)condition
+                       andMode:(Mode)mode;
+
+- (void)highLightArea:(NSString *)objectId;
+
+- (void)highlightObjectOnWordTap:(NSString *)objectId;
 
 #pragma mark - Animations
 
