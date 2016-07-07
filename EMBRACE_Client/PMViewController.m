@@ -1436,9 +1436,12 @@ BOOL wasPathFollowed = false;
             engAudio = [NSString stringWithFormat:@"%@%@.m4a", englishSentenceText, @"E"];
             [self.playaudioClass playAudioInSequence:self :engAudio :engAudio];
         }
+
+        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:@"English" ofType:@"Play Word" :manipulationContext];
+        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:@"English" ofType:@"Play Word" :manipulationContext];
         
-        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:@"English" ofType:@"Play Word" :manipulationContext];
-        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:@"English" ofType:@"Play Word" :manipulationContext];
+        [[ITSController sharedInstance] userDidPlayWord:englishSentenceText];
+        
     }
     
     //Revert the carbon dioxide name for highlighting
@@ -3245,6 +3248,17 @@ BOOL wasPathFollowed = false;
             }
             else {
                 [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Move Object" context:manipulationContext];
+                Connection *con = [interaction.connections objectAtIndex:0];
+                NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
+                
+                //Get current step to be completed
+                ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+                [[ITSController sharedInstance] movedObject:[con.objects objectAtIndex:0]
+                                         destinationObjects:@[[con.objects objectAtIndex:1]]
+                                                 isVerified:true
+                                                 actionStep:currSolStep
+                                        manipulationContext:manipulationContext
+                                                forSentence:currentSentenceText];
             }
             
             [self performInteraction:interaction];
@@ -3274,7 +3288,17 @@ BOOL wasPathFollowed = false;
         else {
             [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
         }
-    
+        Connection *con = [interaction.connections objectAtIndex:0];
+        NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
+        
+        //Get current step to be completed
+        ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        [[ITSController sharedInstance] movedObject:[con.objects objectAtIndex:0]
+                                 destinationObjects:@[[con.objects objectAtIndex:1]]
+                                         isVerified:false
+                                         actionStep:currSolStep
+                                manipulationContext:manipulationContext
+                                        forSentence:currentSentenceText];
         [self playErrorNoise];
         
         if (conditionSetup.appMode == ITS) {

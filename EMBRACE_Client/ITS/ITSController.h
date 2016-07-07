@@ -21,5 +21,6 @@
 manipulationContext:(ManipulationContext *)context
         forSentence:(NSString *)sentence;
 
+- (void)userDidPlayWord:(NSString *)word;
 
 @end

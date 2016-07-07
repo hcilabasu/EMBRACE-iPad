@@ -6,15 +6,16 @@
 //  Copyright © 2016 Andreea Danielescu. All rights reserved.
 //
 
-#import "StatementStatus.h"
+#import "SentenceStatus.h"
+#import "ActionStep.h"
 
-@interface StatementStatus ()
+@interface SentenceStatus ()
 
 @property (nonatomic, strong) NSMutableArray *userActionSteps;
 
 @end
 
-@implementation StatementStatus
+@implementation SentenceStatus
 
 - (instancetype)init {
     self = [super init];
@@ -33,5 +34,15 @@
     return [NSArray arrayWithArray:self.userActionSteps];
 }
 
+
+- (BOOL)containsAction:(UserAction *)action {
+    for (UserAction *exAction in self.userActionSteps) {
+        if (exAction.actionStep.sentenceNumber == action.actionStep.sentenceNumber &&
+            exAction.actionStep.stepNumber == action.actionStep.stepNumber) {
+            return YES;
+        }
+    }
+    return NO;
+}
 
 @end

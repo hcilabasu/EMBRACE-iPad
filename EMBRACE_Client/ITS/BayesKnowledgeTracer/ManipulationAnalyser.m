@@ -10,7 +10,7 @@
 #import "ManipulationContext.h"
 #import "KnowledgeTracer.h"
 #import "UserAction.h"
-#import "StatementStatus.h"
+#import "SentenceStatus.h"
 #import "ActionStep.h"
 
 @interface ManipulationAnalyser ()
@@ -23,6 +23,8 @@
 // Key : ChapterTitle_SentenceNumber Value: StatementStatus
 @property (nonatomic, strong) NSMutableDictionary *booksDict;
 
+@property (nonatomic, strong) NSMutableSet *playWords;
+
 @end
 
 @implementation ManipulationAnalyser
@@ -32,32 +34,36 @@
     self = [super init];
 
     if (self) {
-    
         _knowledgeTracer = [[KnowledgeTracer alloc] init];
         _booksDict = [[NSMutableDictionary alloc] init];
+        _playWords = [[NSMutableSet alloc] init];
     }
     return self;
 }
 
-
 - (void)userDidPlayWord:(NSString *)word {
-    
+    [self.playWords addObject:word];
 }
-
 
 - (void)actionPerformed:(UserAction *)userAction
     manipulationContext:(ManipulationContext *)context {
     
+
     NSString *bookTitle = context.bookTitle;
     NSMutableDictionary *bookDetails = [self bookDictionaryForTitle:bookTitle];
-    StatementStatus *status = [self getActionListFrom:bookDetails
+    SentenceStatus *status = [self getActionListFrom:bookDetails
                                            forChapter:context.chapterTitle
                                    andStentenceNumber:context.sentenceNumber];
+    
+    NSLog(@"Action performed for %@ %@ %d", bookTitle,context.chapterTitle, context.sentenceNumber);
+
+    if ([status containsAction:userAction]) {
+        
+    } else {
+        [self analyzeAndUpdateSkill:userAction andContext:context];
+    }
     [status addUserAction:userAction];
     
-    //TODO: check if the user action is getting repeated.
-
-    [self analyzeAndUpdateSkill:userAction andContext:context];
     
 }
 
@@ -133,8 +139,6 @@
             }
             
             
-        } else {
-            //TODO: Update for playword
         }
         
     }
@@ -172,14 +176,14 @@
     return actionDict;
 }
 
-- (StatementStatus *)getActionListFrom:(NSMutableDictionary *)bookDetails
+- (SentenceStatus *)getActionListFrom:(NSMutableDictionary *)bookDetails
                            forChapter:(NSString *)chapterTitle
                    andStentenceNumber:(NSInteger)sentenceNumber {
     
      NSString *sentenceKey = [NSString stringWithFormat:@"%@_%ld",chapterTitle, (long)sentenceNumber];
-    StatementStatus *statementDetails = [bookDetails objectForKey:sentenceKey];
+    SentenceStatus *statementDetails = [bookDetails objectForKey:sentenceKey];
     if (statementDetails == nil) {
-        statementDetails = [StatementStatus new];
+        statementDetails = [SentenceStatus new];
         statementDetails.chapterTitle = chapterTitle;
         statementDetails.sentenceNumber = sentenceNumber;
         [bookDetails setObject:statementDetails forKey:sentenceKey];

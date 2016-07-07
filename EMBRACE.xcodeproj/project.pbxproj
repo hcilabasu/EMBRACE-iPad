@@ -4569,7 +4569,7 @@
 		5D6FA37C1CC87A9A009C3181 /* IntroIpadReads_IM.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5D6FA37B1CC87A9A009C3181 /* IntroIpadReads_IM.mp3 */; };
 		5D76CCA91D11568B00456ACF /* ManipulationAnalyser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D76CCA81D11568B00456ACF /* ManipulationAnalyser.m */; };
 		5D76CCAC1D11589800456ACF /* UserAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D76CCAB1D11589800456ACF /* UserAction.m */; };
-		5D76CCAF1D1199A500456ACF /* StatementStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D76CCAE1D1199A500456ACF /* StatementStatus.m */; };
+		5D76CCAF1D1199A500456ACF /* SentenceStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D76CCAE1D1199A500456ACF /* SentenceStatus.m */; };
 		5D7EB0D51CE51A8800FD2D54 /* NaughtyMonkeyEEG_Script1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5D7EB0D11CE51A8800FD2D54 /* NaughtyMonkeyEEG_Script1.mp3 */; };
 		5D7EB0D61CE51A8800FD2D54 /* NaughtyMonkeyEEG_Script2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5D7EB0D21CE51A8800FD2D54 /* NaughtyMonkeyEEG_Script2.mp3 */; };
 		5D7EB0D71CE51A8800FD2D54 /* NaughtyMonkeyEEG_Script3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5D7EB0D31CE51A8800FD2D54 /* NaughtyMonkeyEEG_Script3.mp3 */; };
@@ -9651,8 +9651,8 @@
 		5D76CCA81D11568B00456ACF /* ManipulationAnalyser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManipulationAnalyser.m; sourceTree = "<group>"; };
 		5D76CCAA1D11589800456ACF /* UserAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAction.h; sourceTree = "<group>"; };
 		5D76CCAB1D11589800456ACF /* UserAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAction.m; sourceTree = "<group>"; };
-		5D76CCAD1D1199A400456ACF /* StatementStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatementStatus.h; sourceTree = "<group>"; };
-		5D76CCAE1D1199A500456ACF /* StatementStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatementStatus.m; sourceTree = "<group>"; };
+		5D76CCAD1D1199A400456ACF /* SentenceStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SentenceStatus.h; sourceTree = "<group>"; };
+		5D76CCAE1D1199A500456ACF /* SentenceStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SentenceStatus.m; sourceTree = "<group>"; };
 		5D7EB0D11CE51A8800FD2D54 /* NaughtyMonkeyEEG_Script1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkeyEEG_Script1.mp3; sourceTree = "<group>"; };
 		5D7EB0D21CE51A8800FD2D54 /* NaughtyMonkeyEEG_Script2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkeyEEG_Script2.mp3; sourceTree = "<group>"; };
 		5D7EB0D31CE51A8800FD2D54 /* NaughtyMonkeyEEG_Script3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkeyEEG_Script3.mp3; sourceTree = "<group>"; };
@@ -16189,8 +16189,8 @@
 				5D54211D1D0ECDFE008ADA3D /* SkillSet.m */,
 				5D76CCAA1D11589800456ACF /* UserAction.h */,
 				5D76CCAB1D11589800456ACF /* UserAction.m */,
-				5D76CCAD1D1199A400456ACF /* StatementStatus.h */,
-				5D76CCAE1D1199A500456ACF /* StatementStatus.m */,
+				5D76CCAD1D1199A400456ACF /* SentenceStatus.h */,
+				5D76CCAE1D1199A500456ACF /* SentenceStatus.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -21631,7 +21631,7 @@
 				316CFAE81773BE56004216D0 /* PieContextualMenuItem.m in Sources */,
 				312F5B13177A0F58000DAD2E /* MenuItemDataSource.m in Sources */,
 				3116142A179DE69400655221 /* Hotspot.m in Sources */,
-				5D76CCAF1D1199A500456ACF /* StatementStatus.m in Sources */,
+				5D76CCAF1D1199A500456ACF /* SentenceStatus.m in Sources */,
 				3116142D179DE77B00655221 /* Constraint.m in Sources */,
 				1AD3CC891A251CBA00E18B1C /* BuildHTMLString.m in Sources */,
 				31161433179DE85E00655221 /* Relationship.m in Sources */,

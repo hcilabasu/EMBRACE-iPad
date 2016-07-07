@@ -40,6 +40,7 @@
 #pragma  mark - 
 
 - (void)userDidPlayWord:(NSString *)word {
+    [self.manipulationAnalyser userDidPlayWord:word];
     
 }
 

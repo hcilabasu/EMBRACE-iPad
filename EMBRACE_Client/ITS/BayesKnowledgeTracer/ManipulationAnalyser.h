@@ -17,5 +17,6 @@
 - (void)actionPerformed:(UserAction *)userAction
     manipulationContext:(ManipulationContext *)context;
 
+- (void)userDidPlayWord:(NSString *)word;
 
 @end

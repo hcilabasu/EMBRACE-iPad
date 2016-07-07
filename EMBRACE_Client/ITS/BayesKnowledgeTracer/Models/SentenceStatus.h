@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "UserAction.h"
 
-@interface StatementStatus : NSObject
+@interface SentenceStatus : NSObject
 
 @property (nonatomic, copy) NSString *chapterTitle;
 
@@ -20,5 +20,7 @@
 - (void)addUserAction:(UserAction *)action;
 
 - (NSArray *)userActions;
+
+- (BOOL)containsAction:(UserAction *)action;
 
 @end
