@@ -214,8 +214,8 @@
                     <rect key="frame" x="0.0" y="0.0" width="1024" height="724"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u4R-ML-16W">
-                            <rect key="frame" x="940" y="744" width="75" height="25"/>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u4R-ML-16W">
+                            <rect key="frame" x="924" y="674" width="75" height="25"/>
                             <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="30"/>
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" title="Next"/>
@@ -225,6 +225,10 @@
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="u4R-ML-16W" secondAttribute="bottom" constant="25" id="APt-1U-ebR"/>
+                        <constraint firstAttribute="trailing" secondItem="u4R-ML-16W" secondAttribute="trailing" constant="25" id="VdU-eV-BZY"/>
+                    </constraints>
                 </view>
                 <tapGestureRecognizer id="6LS-gR-BKA">
                     <connections>
@@ -558,6 +562,6 @@
         <image name="library_header1.png" width="1358" height="102"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="y3V-Kf-tce"/>
+        <segue reference="PGe-Vh-msr"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -38,7 +38,7 @@
         language = ENGLISH;
         reader = SYSTEM;
         appMode = Study;
-        currentMode = IM_MODE;
+        currentMode = PM_MODE;
         newInstructions = false;
         vocabPageEnabled = false;
         assessmentPageEnabled = false;

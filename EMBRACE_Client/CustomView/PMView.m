@@ -316,11 +316,26 @@
     return [self.bookView stringByEvaluatingJavaScriptFromString:actionSentence];
 }
 
+#pragma mark - UIScrollView delegates
+
+//Remove zoom in scroll view for UIWebView
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+    return nil;
+}
+
 #pragma mark - Webview delegates
 
 - (BOOL)webView:(UIWebView *)webView
 shouldStartLoadWithRequest:(NSURLRequest *)request
  navigationType:(UIWebViewNavigationType)navigationType {
+    
+    NSString *requestString = [[[request URL] absoluteString] stringByReplacingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
+    
+    if ([requestString hasPrefix:@"ios-log:"]) {
+        NSString *logString = [[requestString componentsSeparatedByString:@":#iOS#"] objectAtIndex:1];
+        NSLog(@"UIWebView console: %@", logString);
+        return NO;
+    }
     
     return YES;
 }
@@ -338,6 +353,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitTouchCallout='none';"];
     
     [self loadJsFiles];
+    [self.delegate pmViewDidLoad:self];
     
     
 }
@@ -568,15 +584,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     //Highlight the sentence and set its color to black
     [self highlightSentenceToBlack:currentSentence];
     
-    
-    //TODO: utilize return setence class functon
+
     //Check to see if it is an action sentence
     NSString *actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%ld)", (long)currentSentence];
     NSString *sentenceClass = [self.bookView stringByEvaluatingJavaScriptFromString:actionSentence];
     
     //If it is a non-black action sentence (i.e., requires user manipulation), then set the color to blue
     if (![sentenceClass containsString:@"black"]) {
-        //TODO: utilize check return sentence class type function
         if ([sentenceClass containsString: @"sentence actionSentence"] ||
             ([sentenceClass containsString: @"sentence IMactionSentence"] &&
              condition == EMBRACE && mode == IM_MODE)) {
@@ -880,7 +894,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  * Also ensures that the image is not moved off screen or outside of any specified bounding boxes for the image.
  * Updates the JS Connection hotspot locations if necessary.
  */
-//TODO: condense logic
 - (CGPoint)moveObject:(NSString *)object
           location:(CGPoint)location
             offset:(CGPoint)offset

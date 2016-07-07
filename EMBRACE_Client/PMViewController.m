@@ -125,6 +125,7 @@ BOOL wasPathFollowed = false;
     self.pmView = [[PMView alloc] initWithFrame:self.view.frame];
     [self.view addSubview:self.pmView];
     self.pmView.delegate = self;
+    [self.view sendSubviewToBack:self.pmView];
     
     //hides the default navigation bar to add custom back button
     self.navigationItem.hidesBackButton = YES;
@@ -3647,11 +3648,6 @@ BOOL wasPathFollowed = false;
     return YES;
 }
 
-//Remove zoom in scroll view for UIWebView
-- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
-    return nil;
-}
-
 /*
  * Button listener for the "Next" button. This function moves to the next active sentence in the story, or to the
  * next story if at the end of the current story. Eventually, this function will also ensure that the correctness
@@ -4616,20 +4612,6 @@ BOOL wasPathFollowed = false;
     }
     
    [[ServerCommunicationController sharedInstance] logDisplayMenuItems:menuItemsData context:manipulationContext];
-}
-
-//TODO: add description
-- (BOOL)webView:(UIWebView *)webView2 shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    
-    NSString *requestString = [[[request URL] absoluteString] stringByReplacingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
-    
-    if ([requestString hasPrefix:@"ios-log:"]) {
-        NSString *logString = [[requestString componentsSeparatedByString:@":#iOS#"] objectAtIndex:1];
-        NSLog(@"UIWebView console: %@", logString);
-        return NO;
-    }
-    
-    return YES;
 }
 
 //TODO: add description
