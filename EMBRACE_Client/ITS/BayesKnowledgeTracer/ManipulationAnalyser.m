@@ -69,6 +69,8 @@
     
 }
 
+// TODO: Figure out whether the error is due to Syntax, usability
+// pronoun
 - (void)analyzeAndUpdateSkill:(UserAction *)userAction
                    andContext:(ManipulationContext *)context {
     
