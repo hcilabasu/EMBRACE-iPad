@@ -32,7 +32,7 @@
 
 - (instancetype)init {
     self = [super init];
-
+    
     if (self) {
         _knowledgeTracer = [[KnowledgeTracer alloc] init];
         _booksDict = [[NSMutableDictionary alloc] init];
@@ -48,22 +48,24 @@
 - (void)actionPerformed:(UserAction *)userAction
     manipulationContext:(ManipulationContext *)context {
     
-
+    
     NSString *bookTitle = context.bookTitle;
     NSMutableDictionary *bookDetails = [self bookDictionaryForTitle:bookTitle];
     SentenceStatus *status = [self getActionListFrom:bookDetails
-                                           forChapter:context.chapterTitle
-                                   andStentenceNumber:context.sentenceNumber];
+                                          forChapter:context.chapterTitle
+                                  sentenceNumber:context.sentenceNumber
+                              andStep:context.stepNumber];
     
     NSLog(@"Action performed for %@ %@ %d", bookTitle,context.chapterTitle, context.sentenceNumber);
-
+    
+    [self analyzeAndUpdateSkill:userAction andContext:context];
     if ([status containsAction:userAction]) {
+        // The sentence has been tried before
         
     } else {
-        [self analyzeAndUpdateSkill:userAction andContext:context];
+        // First try by user
     }
     [status addUserAction:userAction];
-    
     
 }
 
@@ -73,7 +75,7 @@
     NSLog(@"Book Title - %@", [context.bookTitle stringByReplacingOccurrencesOfString:@" " withString:@"_"]);
     
     if (userAction.isVerified) {
-    
+        
         // Update the two object's skills
         [self.knowledgeTracer updateSkillFor:userAction.movedObjectId isVerified:YES];
         
@@ -83,8 +85,6 @@
         } else if (userAction.actionStep.locationId && ![userAction.actionStep.locationId isEqualToString:@""]) {
             [self.knowledgeTracer updateSkillFor:userAction.actionStep.locationId isVerified:YES];
         }
-        
-        
         // Update the syntax skill
         [self.knowledgeTracer updateSyntaxSkill:YES];
         
@@ -95,54 +95,49 @@
         // If the action is not verified, find out the kind of error the user made.
         if (userAction.movedObjectId && userAction.destinationObjectId) {
             
-            // Moved object was correct
-            if ([userAction.movedObjectId isEqualToString:userAction.actionStep.object1Id]) {
-                [self.knowledgeTracer updateSkillFor:userAction.movedObjectId isVerified:YES];
-                
-            } else {
-                
-                [self.knowledgeTracer updateSkillFor:userAction.movedObjectId isVerified:NO];
-                
-                // Check if the sentence has any pronoun
-                NSArray *pronouns = [self pronounsFor:userAction.movedObjectId inBook:[context.bookTitle lowercaseString]];
-                if (pronouns) {
-                    NSString *sentence = [userAction.sentenceText lowercaseString];
-                    for (NSString *word in pronouns) {
-                        if ([sentence containsString:word]) {
-                            [self.knowledgeTracer updatePronounSkill:NO];
-                            break;
-                        }
-                    }
-                }
-                
-            }
+            [self updateSkillForObject:userAction.movedObjectId
+                         correctObject:userAction.actionStep.object1Id
+                           forSentence:userAction.sentenceText
+                           inBookTitle:context.bookTitle];
             
-            // Destination object was correct
-            if ([userAction.destinationObjectId isEqualToString:userAction.actionStep.object2Id]) {
-                [self.knowledgeTracer updateSkillFor:userAction.destinationObjectId isVerified:YES];
-                
-            } else {
-
-                [self.knowledgeTracer updateSkillFor:userAction.destinationObjectId isVerified:NO];
-                
-                // Check if the sentence has any pronoun
-                NSArray *pronouns = [self pronounsFor:userAction.destinationObjectId inBook:[context.bookTitle lowercaseString]];
-                if (pronouns) {
-                    NSString *sentence = [userAction.sentenceText lowercaseString];
-                    for (NSString *word in pronouns) {
-                        if ([sentence containsString:word]) {
-                            [self.knowledgeTracer updatePronounSkill:NO];
-                            break;
-                        }
-                    }
-                }
-            }
-            
+            [self updateSkillForObject:userAction.destinationObjectId
+                         correctObject:userAction.actionStep.object2Id
+                           forSentence:userAction.sentenceText
+                           inBookTitle:context.bookTitle];
             
         }
         
     }
+    
+    
+}
 
+- (void)updateSkillForObject:(NSString *)objectId
+               correctObject:(NSString *)correctObjectId
+                 forSentence:(NSString *)sentence
+                 inBookTitle:(NSString *)bookTitle {
+    
+    // Object was correct
+    if ([objectId isEqualToString:correctObjectId]) {
+        [self.knowledgeTracer updateSkillFor:objectId isVerified:YES];
+        
+    } else {
+        
+        [self.knowledgeTracer updateSkillFor:objectId isVerified:NO];
+        
+        // Check if the sentence has any pronoun
+        NSArray *pronouns = [self pronounsFor:objectId inBook:[bookTitle lowercaseString]];
+        if (pronouns) {
+            sentence = [sentence lowercaseString];
+            for (NSString *word in pronouns) {
+                if ([sentence containsString:word]) {
+                    [self.knowledgeTracer updatePronounSkill:NO];
+                    break;
+                }
+            }
+        }
+        
+    }
     
 }
 
@@ -156,8 +151,8 @@
     if (data) {
         NSError *error = nil;
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data
-                                                                options:NSJSONReadingMutableContainers
-                                                                  error:&error];
+                                                             options:NSJSONReadingMutableContainers
+                                                               error:&error];
         if (error)
             NSLog(@"JSONObjectWithData error: %@", error);
         
@@ -178,9 +173,10 @@
 
 - (SentenceStatus *)getActionListFrom:(NSMutableDictionary *)bookDetails
                            forChapter:(NSString *)chapterTitle
-                   andStentenceNumber:(NSInteger)sentenceNumber {
+                       sentenceNumber:(NSInteger)sentenceNumber
+                              andStep:(NSInteger)stepNumber {
     
-     NSString *sentenceKey = [NSString stringWithFormat:@"%@_%ld",chapterTitle, (long)sentenceNumber];
+    NSString *sentenceKey = [NSString stringWithFormat:@"%@_%ld_%ld",chapterTitle, (long)sentenceNumber, (long)stepNumber];
     SentenceStatus *statementDetails = [bookDetails objectForKey:sentenceKey];
     if (statementDetails == nil) {
         statementDetails = [SentenceStatus new];
@@ -188,7 +184,7 @@
         statementDetails.sentenceNumber = sentenceNumber;
         [bookDetails setObject:statementDetails forKey:sentenceKey];
     }
-
+    
     return statementDetails;
 }
 

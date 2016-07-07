@@ -27,6 +27,9 @@
 }
 
 - (void)addUserAction:(UserAction *)action {
+    if (action.isVerified) {
+        self.isCompleted = YES;
+    }
     [self.userActionSteps addObject:action];
 }
 

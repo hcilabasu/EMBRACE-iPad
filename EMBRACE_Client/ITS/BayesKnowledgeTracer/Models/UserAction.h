@@ -10,6 +10,10 @@
 
 @class ActionStep;
 
+/**
+ Class stores the single action performed by the user.
+ It also has the actual actionstep that to be preformed.
+ **/
 @interface UserAction : NSObject
 
 

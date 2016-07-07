@@ -27,8 +27,8 @@
     self = [super init];
     if (self) {
         _skillSet = [[SkillSet alloc] init];
-        [_skillSet getSkillForWord:ITS_PRONOUN];
-        [_skillSet getSkillForWord:ITS_SYNTAX];
+        [_skillSet skillForWord:ITS_PRONOUN];
+        [_skillSet skillForWord:ITS_SYNTAX];
     }
     return self;
 }
@@ -44,14 +44,14 @@
     double newSkill = 0.0;
     if (isVerified) {
 
-        Skill *prevSkill = [self.skillSet getSkillForWord:action];
+        Skill *prevSkill = [self.skillSet skillForWord:action];
         double skillEvaluated = [self calcCorrect:prevSkill.skillValue];
         newSkill = [self calcNewSkillValue:skillEvaluated];
         [prevSkill updateSkillValue:newSkill];
         
     } else {
         
-        Skill *prevSkill = [self.skillSet getSkillForWord:action];
+        Skill *prevSkill = [self.skillSet skillForWord:action];
         double skillEvaluated = [self calcIncorrect:prevSkill.skillValue];
         newSkill = [self calcNewSkillValue:skillEvaluated];
         [prevSkill updateSkillValue:newSkill];

@@ -13,6 +13,6 @@
 
 - (void)addWordSkill:(Skill *)wordSkill forWord:(NSString *)word ;
 
-- (Skill *)getSkillForWord:(NSString *)word;
+- (Skill *)skillForWord:(NSString *)word;
 
 @end

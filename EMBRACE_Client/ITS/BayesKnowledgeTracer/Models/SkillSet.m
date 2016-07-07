@@ -30,7 +30,7 @@
     [self.wordSkillDict setObject:wordSkill forKey:word];
 }
 
-- (Skill *)getSkillForWord:(NSString *)word {
+- (Skill *)skillForWord:(NSString *)word {
     Skill *skill = [self.wordSkillDict objectForKey:word];
     if (skill == nil) {
         skill = [Skill skillForWord:word];
