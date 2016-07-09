@@ -132,8 +132,8 @@
         <story title="Getting More Oxygen for the Muscles" activity_id="story4-PM-3">
             <sentence number="7">
                 <step number="1">
-                    <check obj1Id="bloodcell_1" action="getIn" locationId="" areaId="vein"/>
-                    <animate obj1Id="bloodcell_1" action="followAnimation" waypointId="" areaId="veinPath"/>
+                    <check obj1Id="bloodcell_1" action="getIn" locationId="lung1"/>
+                    <move obj1Id="bloodcell_1" action="getIn" waypointId="lung3"/>
                 </step>
             </sentence>
         </story>
