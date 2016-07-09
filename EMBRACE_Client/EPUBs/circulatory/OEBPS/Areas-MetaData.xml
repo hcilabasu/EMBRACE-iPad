@@ -184,6 +184,12 @@
             <point x="99.609375%" y="54.332386%"/>
             <point x="98.339844%" y="70.667610%"/>
         </area>
+        <area areaId="muscles" pageId="story3-PM-1">
+            <point x="72.900391%" y="55.113636%"/>
+            <point x="83.984375%" y="37.855114%"/>
+            <point x="99.609375%" y="54.332386%"/>
+            <point x="98.339844%" y="70.667610%"/>
+        </area>
         <area areaId="muscles" pageId="story3-PM-2">
             <point x="21.142578%" y="16.122160%"/>
             <point x="31.835938%" y="10.156250%"/>
@@ -200,6 +206,12 @@
             <point x="41.943359%" y="64.772728%"/>
             <point x="43.701172%" y="56.818180%"/>
             <point x="44.970703%" y="52.272728%"/>
+        </area>
+        <area areaId="muscles" pageId="story4-PM-6">
+            <point x="72.900391%" y="55.113636%"/>
+            <point x="83.984375%" y="37.855114%"/>
+            <point x="99.609375%" y="54.332386%"/>
+            <point x="98.339844%" y="70.667610%"/>
         </area>
         <area areaId="veinPath" pageId="story4-PM-3">
             <point x="10.335938%" y="74.293182%"/>
