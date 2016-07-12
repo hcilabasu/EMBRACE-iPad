@@ -107,13 +107,54 @@
         if ([[ConditionSetup sharedInstance] allowFileSync]) {
             //NOTE: Still testing this functionality
             //Download progress file from Dropbox
-            [[ServerCommunicationController sharedInstance] downloadProgressForStudent:student completionHandler:^(BOOL success) {
-                //Load progress for student if it exists
+            
+            //[[ServerCommunicationController sharedInstance] downloadProgressForStudent:student completionHandler:^(BOOL success) {
+            //Path to each directory
+            NSString *progressFilePath = [documentsPath stringByAppendingPathComponent:@"ProgressFiles"];
+            NSString *currentSessionProgressFilePath = [progressFilePath stringByAppendingPathComponent:@"CurrentSession"];
+            NSString *masterProgressFilePath = [progressFilePath stringByAppendingPathComponent:@"Master"];
+            NSString *backupProgressFilePath = [progressFilePath stringByAppendingPathComponent:@"Backup"];
+            
+            //Check if the directory paths actually exist, if they do not, then create the directories
+            BOOL isDir;
+            NSFileManager *fileManager= [NSFileManager defaultManager];
+            if(![fileManager fileExistsAtPath:progressFilePath isDirectory:&isDir])
+                if(![fileManager createDirectoryAtPath:progressFilePath withIntermediateDirectories:YES attributes:nil error:NULL])
+                    NSLog(@"Error: Create folder failed %@", progressFilePath);
+            
+            if(![fileManager fileExistsAtPath:currentSessionProgressFilePath isDirectory:&isDir])
+                if(![fileManager createDirectoryAtPath:currentSessionProgressFilePath withIntermediateDirectories:YES attributes:nil error:NULL])
+                    NSLog(@"Error: Create folder failed %@", currentSessionProgressFilePath);
+            
+            if(![fileManager fileExistsAtPath:masterProgressFilePath isDirectory:&isDir])
+                if(![fileManager createDirectoryAtPath:masterProgressFilePath withIntermediateDirectories:YES attributes:nil error:NULL])
+                    NSLog(@"Error: Create folder failed %@", masterProgressFilePath);
+            
+            if(![fileManager fileExistsAtPath:backupProgressFilePath isDirectory:&isDir])
+                if(![fileManager createDirectoryAtPath:backupProgressFilePath withIntermediateDirectories:YES attributes:nil error:NULL])
+                    NSLog(@"Error: Create folder failed %@", backupProgressFilePath);
+            
+           /* assert(fileManager != nil);
+            NSError* error = nil;
+            
+            //Check to see if file exists in CurrentSession, if it does not, then check to see if it's in Master and move it to Current Session
+            NSString *doesFileExist = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@",currentSessionProgressFilePath,student]];
+            if(![[NSFileManager defaultManager] fileExistsAtPath:doesFileExist]){
+                
+                doesFileExist = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@",masterProgressFilePath,student]];
+                
+                if([[NSFileManager defaultManager] fileExistsAtPath:doesFileExist]){
+                    //Move file from CurrentSession to Backup folder
+                    [fileManager moveItemAtPath:[NSString stringWithFormat:@"%@/%@",masterProgressFilePath,student] toPath:[NSString stringWithFormat:@"%@/%@",currentSessionProgressFilePath,student] error:&error];
+                }
+            }}*/
+            
+            //Load progress for student if it exists
                 studentProgress = [[ServerCommunicationController sharedInstance] loadProgress:student];
                 
                 //Then take the user to the library view.
                 [self performSegueWithIdentifier: @"OpenLibrarySegue" sender: self];
-            }];
+            //}];
         }
         else {
             //Load progress for student if it exists
@@ -124,6 +165,29 @@
         }
     }
 }
+
+- (IBAction)uploadProgress:(id)sender {
+    if ([[ConditionSetup sharedInstance] allowFileSync]) {
+        [[ServerCommunicationController sharedInstance] uploadFilesForStudent:student completionHandler:^(BOOL success) {
+            //successfully uploaded files to Dropbox
+        }failure:^(BOOL failure){
+            //Failed to upload progress files to Dropbox
+        }];
+    }
+}
+
+- (IBAction)downloadProgress:(id)sender {
+    if ([[ConditionSetup sharedInstance] allowFileSync]) {
+        [[ServerCommunicationController sharedInstance] downloadProgressForStudent:student completionHandler:^(BOOL success) {
+            //Load progress for student if it exists
+            studentProgress = [[ServerCommunicationController sharedInstance] loadProgress:student];
+        }failure:^(BOOL failure){
+            //Failed to download progress files from Dropbox
+        }];
+    }
+}
+
+
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     //Trim whitespace from textfield input
