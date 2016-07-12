@@ -929,6 +929,8 @@
 		1AE35F2D1CAA35DA0005213E /* lucasInBed.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AE35F2B1CAA35DA0005213E /* lucasInBed.png */; };
 		1AEC241C1CB9CCD600803580 /* road.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AEC241B1CB9CCD600803580 /* road.png */; };
 		1AEC241E1CB9E32200803580 /* market_post.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AEC241D1CB9E32200803580 /* market_post.png */; };
+		1AF008491D34A55B00EDF057 /* CarbonDioxideE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AF008481D34A55B00EDF057 /* CarbonDioxideE.mp3 */; };
+		1AF0084B1D34A56F00EDF057 /* CarbonDioxideS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AF0084A1D34A56F00EDF057 /* CarbonDioxideS.mp3 */; };
 		1AF3815B1A40A4C600D967FD /* AssessmentActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF381591A40A4C600D967FD /* AssessmentActivityViewController.m */; };
 		1AF805491C28DDF400C96B05 /* kauai_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AF805481C28DDF400C96B05 /* kauai_right.png */; };
 		1AF8054B1C28DE9A00C96B05 /* lavaplume_greyplate_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AF8054A1C28DE9A00C96B05 /* lavaplume_greyplate_left.png */; };
@@ -2084,7 +2086,6 @@
 		5C1C4CF71D2386AD00547783 /* BreatheS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C1C4CD01D2386AD00547783 /* BreatheS.mp3 */; };
 		5C1C4CF81D2386AD00547783 /* BreathingS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C1C4CD11D2386AD00547783 /* BreathingS.mp3 */; };
 		5C1C4CF91D2386AD00547783 /* CannotS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C1C4CD21D2386AD00547783 /* CannotS.mp3 */; };
-		5C1C4CFA1D2386AD00547783 /* Carbon DioxideS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C1C4CD31D2386AD00547783 /* Carbon DioxideS.mp3 */; };
 		5C1C4CFB1D2386AD00547783 /* CellS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C1C4CD41D2386AD00547783 /* CellS.mp3 */; };
 		5C1C4CFC1D2386AD00547783 /* CellsS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C1C4CD51D2386AD00547783 /* CellsS.mp3 */; };
 		5C1C4CFD1D2386AD00547783 /* CigaretteS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C1C4CD61D2386AD00547783 /* CigaretteS.mp3 */; };
@@ -2118,7 +2119,6 @@
 		5C1C4D3C1D238A2800547783 /* BreathesE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C1C4D1A1D238A2800547783 /* BreathesE.mp3 */; };
 		5C1C4D3D1D238A2800547783 /* BreathingE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C1C4D1B1D238A2800547783 /* BreathingE.mp3 */; };
 		5C1C4D3E1D238A2800547783 /* CannotE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C1C4D1C1D238A2800547783 /* CannotE.mp3 */; };
-		5C1C4D3F1D238A2800547783 /* Carbon DioxideE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C1C4D1D1D238A2800547783 /* Carbon DioxideE.mp3 */; };
 		5C1C4D401D238A2800547783 /* CellE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C1C4D1E1D238A2800547783 /* CellE.mp3 */; };
 		5C1C4D411D238A2800547783 /* CellsE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C1C4D1F1D238A2800547783 /* CellsE.mp3 */; };
 		5C1C4D421D238A2800547783 /* CigaretteE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C1C4D201D238A2800547783 /* CigaretteE.mp3 */; };
@@ -5875,6 +5875,8 @@
 		1AE35F2B1CAA35DA0005213E /* lucasInBed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lucasInBed.png; sourceTree = "<group>"; };
 		1AEC241B1CB9CCD600803580 /* road.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = road.png; sourceTree = "<group>"; };
 		1AEC241D1CB9E32200803580 /* market_post.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = market_post.png; sourceTree = "<group>"; };
+		1AF008481D34A55B00EDF057 /* CarbonDioxideE.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CarbonDioxideE.mp3; sourceTree = "<group>"; };
+		1AF0084A1D34A56F00EDF057 /* CarbonDioxideS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CarbonDioxideS.mp3; sourceTree = "<group>"; };
 		1AF381581A40A4C600D967FD /* AssessmentActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssessmentActivityViewController.h; sourceTree = "<group>"; };
 		1AF381591A40A4C600D967FD /* AssessmentActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssessmentActivityViewController.m; sourceTree = "<group>"; };
 		1AF3815A1A40A4C600D967FD /* AssessmentActivityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AssessmentActivityViewController.xib; sourceTree = "<group>"; };
@@ -7090,7 +7092,6 @@
 		5C1C4CD01D2386AD00547783 /* BreatheS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BreatheS.mp3; sourceTree = "<group>"; };
 		5C1C4CD11D2386AD00547783 /* BreathingS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BreathingS.mp3; sourceTree = "<group>"; };
 		5C1C4CD21D2386AD00547783 /* CannotS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CannotS.mp3; sourceTree = "<group>"; };
-		5C1C4CD31D2386AD00547783 /* Carbon DioxideS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Carbon DioxideS.mp3"; sourceTree = "<group>"; };
 		5C1C4CD41D2386AD00547783 /* CellS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CellS.mp3; sourceTree = "<group>"; };
 		5C1C4CD51D2386AD00547783 /* CellsS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CellsS.mp3; sourceTree = "<group>"; };
 		5C1C4CD61D2386AD00547783 /* CigaretteS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CigaretteS.mp3; sourceTree = "<group>"; };
@@ -7124,7 +7125,6 @@
 		5C1C4D1A1D238A2800547783 /* BreathesE.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BreathesE.mp3; sourceTree = "<group>"; };
 		5C1C4D1B1D238A2800547783 /* BreathingE.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BreathingE.mp3; sourceTree = "<group>"; };
 		5C1C4D1C1D238A2800547783 /* CannotE.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CannotE.mp3; sourceTree = "<group>"; };
-		5C1C4D1D1D238A2800547783 /* Carbon DioxideE.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Carbon DioxideE.mp3"; sourceTree = "<group>"; };
 		5C1C4D1E1D238A2800547783 /* CellE.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CellE.mp3; sourceTree = "<group>"; };
 		5C1C4D1F1D238A2800547783 /* CellsE.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CellsE.mp3; sourceTree = "<group>"; };
 		5C1C4D201D238A2800547783 /* CigaretteE.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CigaretteE.mp3; sourceTree = "<group>"; };
@@ -12981,6 +12981,7 @@
 			isa = PBXGroup;
 			children = (
 				5C1C4CC21D2386AD00547783 /* AroundS.mp3 */,
+				1AF0084A1D34A56F00EDF057 /* CarbonDioxideS.mp3 */,
 				5C1C4CC31D2386AD00547783 /* ArteriesS.mp3 */,
 				5C1C4CC41D2386AD00547783 /* AtriumS.mp3 */,
 				5C1C4CC51D2386AD00547783 /* BeatS.mp3 */,
@@ -12997,7 +12998,6 @@
 				5C1C4CD01D2386AD00547783 /* BreatheS.mp3 */,
 				5C1C4CD11D2386AD00547783 /* BreathingS.mp3 */,
 				5C1C4CD21D2386AD00547783 /* CannotS.mp3 */,
-				5C1C4CD31D2386AD00547783 /* Carbon DioxideS.mp3 */,
 				5C1C4CD41D2386AD00547783 /* CellS.mp3 */,
 				5C1C4CD51D2386AD00547783 /* CellsS.mp3 */,
 				5C1C4CD61D2386AD00547783 /* CigaretteS.mp3 */,
@@ -13027,6 +13027,7 @@
 			isa = PBXGroup;
 			children = (
 				5C1C4D111D238A2800547783 /* AroundE.mp3 */,
+				1AF008481D34A55B00EDF057 /* CarbonDioxideE.mp3 */,
 				5C1C4D121D238A2800547783 /* ArteriesE.mp3 */,
 				5C1C4D131D238A2800547783 /* AtriumE.mp3 */,
 				5C1C4D141D238A2800547783 /* BeatE.mp3 */,
@@ -13038,7 +13039,6 @@
 				5C1C4D1A1D238A2800547783 /* BreathesE.mp3 */,
 				5C1C4D1B1D238A2800547783 /* BreathingE.mp3 */,
 				5C1C4D1C1D238A2800547783 /* CannotE.mp3 */,
-				5C1C4D1D1D238A2800547783 /* Carbon DioxideE.mp3 */,
 				5C1C4D1E1D238A2800547783 /* CellE.mp3 */,
 				5C1C4D1F1D238A2800547783 /* CellsE.mp3 */,
 				5C1C4D201D238A2800547783 /* CigaretteE.mp3 */,
@@ -19389,7 +19389,6 @@
 				5CA5CC4A1CD1A9C7002A631F /* GettingReadyS8E.mp3 in Resources */,
 				1A6320E81C0E4D3B00251CB3 /* emilio_standing.png in Resources */,
 				5D9E342B1C590E9500636150 /* old_IsPacoAThiefQ3.mp3 in Resources */,
-				5C1C4D3F1D238A2800547783 /* Carbon DioxideE.mp3 in Resources */,
 				5C0421B91C618C2B001BBE9D /* TheLuckyStoneQ5A3S.mp3 in Resources */,
 				5D4B47761C56D8EA0096BC1E /* TheLuckyStoneS1E.mp3 in Resources */,
 				5C0ED8F21C75334200003B5A /* ShoppingattheMarketQ1A2.mp3 in Resources */,
@@ -19635,6 +19634,7 @@
 				5D9E33BD1C590E9400636150 /* IsPacoAThiefQ1A2.mp3 in Resources */,
 				5CCD8E6A1C73E73200D2EC2B /* TheMovingEarthQ4A3S.mp3 in Resources */,
 				5C72E5EA1C72A46F00CE4877 /* TheSeminoleChickeeQ1A1.mp3 in Resources */,
+				1AF0084B1D34A56F00EDF057 /* CarbonDioxideS.mp3 in Resources */,
 				5CA5CC811CD1B632002A631F /* TheWiseOwlS4E.mp3 in Resources */,
 				1A6322ED1C0E4D3B00251CB3 /* Story5-The-Baby's-Rattle-is-Gone-Too-PM-1.xhtml in Resources */,
 				5C72E7A31C72BF1000CE4877 /* NewtonsfirstlawQ2A2.mp3 in Resources */,
@@ -20305,6 +20305,7 @@
 				5CA5CBE51CD19DF4002A631F /* ShoppingAtTheMarketS4E.mp3 in Resources */,
 				5C09DF6D1C84F7DB00EC4E78 /* Rush_def_E.mp3 in Resources */,
 				5C28DC5B1C2BA66E005ACD07 /* container.xml in Resources */,
+				1AF008491D34A55B00EDF057 /* CarbonDioxideE.mp3 in Resources */,
 				5CA5CC4D1CD1A9C7002A631F /* GettingReadyS11E.mp3 in Resources */,
 				5C0ED9AE1C753AD400003B5A /* CigaretteSmokeHurtsYourLungsQ4A3.mp3 in Resources */,
 				5C0ED8D51C75334200003B5A /* ManchatheHorseQ2A3.mp3 in Resources */,
@@ -20731,7 +20732,6 @@
 				5C04204C1C616BEA001BBE9D /* TheLuckyStoneS9S.mp3 in Resources */,
 				1A6321F21C0E4D3B00251CB3 /* ch4_test_03.png in Resources */,
 				5C0ED6761C752C2F00003B5A /* EveryoneHelpsQ1A2.mp3 in Resources */,
-				5C1C4CFA1D2386AD00547783 /* Carbon DioxideS.mp3 in Resources */,
 				5C04218D1C618C2B001BBE9D /* MagicToysQ3A3.mp3 in Resources */,
 				1A6322071C0E4D3B00251CB3 /* house_noroof.png in Resources */,
 				5CB7109B1C6C1AD80062AD61 /* TheMovingEarthS7S.mp3 in Resources */,
