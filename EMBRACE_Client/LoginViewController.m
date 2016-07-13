@@ -87,11 +87,11 @@
         student = [[Student alloc] initWithValues:schoolCode :participantCode :studyDay: experimenterName];
         
         NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-        NSString *tempFileName = [NSString stringWithFormat:@"%@ %@ %@.txt", schoolCode, participantCode, studyDay];
-        NSString *doesFileExist = [documentsPath stringByAppendingPathComponent:tempFileName];
-        BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:doesFileExist];
+        //NSString *tempFileName = [NSString stringWithFormat:@"%@ %@ %@.txt", schoolCode, participantCode, studyDay];
+        //NSString *doesFileExist = [documentsPath stringByAppendingPathComponent:tempFileName];
+        //BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:doesFileExist];
         
-        if (fileExists) {
+        //if (fileExists) {
             //Append timestamp
             NSDate *currentTime = [NSDate date];
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -99,7 +99,7 @@
             NSString *timeStampValue = [dateFormatter stringFromDate: currentTime];
             
             [student setCurrentTimestamp:timeStampValue];
-        }
+        //}
         
         [[ServerCommunicationController sharedInstance] setupStudyContext:student];
         [[ServerCommunicationController sharedInstance] logPressLogin];

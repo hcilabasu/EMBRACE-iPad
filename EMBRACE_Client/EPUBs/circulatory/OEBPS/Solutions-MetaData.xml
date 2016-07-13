@@ -70,8 +70,8 @@
         <story title="The Amazing Heart" activity_id="story2-PM-4">
             <sentence number="12">
                 <step number="1">
-                    <check obj1Id="bloodcell_1" action="getIn" locationId="" areaId="aorta"/>
-                    <animate obj1Id="bloodcell_1" action="followAnimation" waypointId="" areaId="aortaPath"/>
+                    <check obj1Id="bloodcell_1" action="getIn" locationId="muscle1" areaId="aorta"/>
+                    <animate obj1Id="bloodcell_1" action="followAnimation" waypointId="" areaId="aortaPath2"/>
                 </step>
             </sentence>
         </story>
@@ -100,8 +100,8 @@
         <story title="Muscles Use Oxygen" activity_id="story3-PM-3">
             <sentence number="5">
                 <step number="1">
-                    <check obj1Id="bloodcell_1" action="getIn" locationId="heart2"/>
-                    <move obj1Id="bloodcell_1" action="getIn" waypointId="heart2"/>
+                    <check obj1Id="bloodcell_1" action="getIn" locationId="heart2" areaId="veins"/>
+                    <move obj1Id="bloodcell_1" action="getIn" waypointId="" areaId="veinPath"/>
                 </step>
             </sentence>
         </story>

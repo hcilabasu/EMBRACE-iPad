@@ -700,7 +700,6 @@
 		1A6322951C0E4D3B00251CB3 /* cribb_large_high_res.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A631F201C0E4D3A00251CB3 /* cribb_large_high_res.png */; };
 		1A6322961C0E4D3B00251CB3 /* cribf.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A631F211C0E4D3A00251CB3 /* cribf.png */; };
 		1A6322971C0E4D3B00251CB3 /* cribf_large_high_res.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A631F221C0E4D3A00251CB3 /* cribf_large_high_res.png */; };
-		1A6322981C0E4D3B00251CB3 /* dog.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A631F231C0E4D3A00251CB3 /* dog.png */; };
 		1A6322991C0E4D3B00251CB3 /* dog_large_high_res.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A631F241C0E4D3A00251CB3 /* dog_large_high_res.png */; };
 		1A63229A1C0E4D3B00251CB3 /* dog_large_high_res_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A631F251C0E4D3A00251CB3 /* dog_large_high_res_left.png */; };
 		1A63229B1C0E4D3B00251CB3 /* highchairb.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A631F261C0E4D3A00251CB3 /* highchairb.png */; };
@@ -912,6 +911,7 @@
 		1A9174771C339CBB00D54971 /* house.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A9174761C339CBA00D54971 /* house.png */; };
 		1A9CF8431C31C3A00000C135 /* island_Kauai.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A9CF8421C31C3A00000C135 /* island_Kauai.png */; };
 		1A9CF8451C31C7310000C135 /* native.epub in Resources */ = {isa = PBXBuildFile; fileRef = 1A9CF8441C31C7310000C135 /* native.epub */; };
+		1AAC942A1D35BBCC00302395 /* dog.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC94291D35BBCC00302395 /* dog.png */; };
 		1AB028FC1ACF0890006CC916 /* AuthoringModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB028FB1ACF0890006CC916 /* AuthoringModeViewController.m */; };
 		1ABDDCFE1CBDAAD100EA4DF2 /* island_lava_Oahu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABDDCFD1CBDAAD100EA4DF2 /* island_lava_Oahu.png */; };
 		1AC450771CAC8243004B7810 /* pigRight_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AC450761CAC8243004B7810 /* pigRight_large.png */; };
@@ -5640,7 +5640,6 @@
 		1A631F201C0E4D3A00251CB3 /* cribb_large_high_res.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cribb_large_high_res.png; sourceTree = "<group>"; };
 		1A631F211C0E4D3A00251CB3 /* cribf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cribf.png; sourceTree = "<group>"; };
 		1A631F221C0E4D3A00251CB3 /* cribf_large_high_res.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cribf_large_high_res.png; sourceTree = "<group>"; };
-		1A631F231C0E4D3A00251CB3 /* dog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dog.png; sourceTree = "<group>"; };
 		1A631F241C0E4D3A00251CB3 /* dog_large_high_res.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dog_large_high_res.png; sourceTree = "<group>"; };
 		1A631F251C0E4D3A00251CB3 /* dog_large_high_res_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dog_large_high_res_left.png; sourceTree = "<group>"; };
 		1A631F261C0E4D3A00251CB3 /* highchairb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = highchairb.png; sourceTree = "<group>"; };
@@ -5853,6 +5852,7 @@
 		1A9CF8421C31C3A00000C135 /* island_Kauai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = island_Kauai.png; sourceTree = "<group>"; };
 		1A9CF8441C31C7310000C135 /* native.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = native.epub; sourceTree = "<group>"; };
 		1A9CF8461C31DAF90000C135 /* speakerIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speakerIcon.png; sourceTree = "<group>"; };
+		1AAC94291D35BBCC00302395 /* dog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dog.png; sourceTree = "<group>"; };
 		1AB028FA1ACF0890006CC916 /* AuthoringModeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthoringModeViewController.h; sourceTree = "<group>"; };
 		1AB028FB1ACF0890006CC916 /* AuthoringModeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthoringModeViewController.m; sourceTree = "<group>"; };
 		1ABD84AD1A49F54B0043A685 /* PlayAudioIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayAudioIcon.png; sourceTree = "<group>"; };
@@ -11000,6 +11000,7 @@
 				1A631F161C0E4D3A00251CB3 /* baby_large_high_res.png */,
 				1A0385051C2B156400A973D8 /* hook_n_key_large.png */,
 				1A631F171C0E4D3A00251CB3 /* bathtubb.png */,
+				1AAC94291D35BBCC00302395 /* dog.png */,
 				1A631F181C0E4D3A00251CB3 /* bathtubf.png */,
 				1A631F191C0E4D3A00251CB3 /* bed.png */,
 				1A631F1A1C0E4D3A00251CB3 /* bird.png */,
@@ -11013,7 +11014,6 @@
 				1A2AAD441C20DCFA00A709E9 /* cribb_large_high_res_min.png */,
 				1A631F211C0E4D3A00251CB3 /* cribf.png */,
 				1A631F221C0E4D3A00251CB3 /* cribf_large_high_res.png */,
-				1A631F231C0E4D3A00251CB3 /* dog.png */,
 				1A631F241C0E4D3A00251CB3 /* dog_large_high_res.png */,
 				1A631F251C0E4D3A00251CB3 /* dog_large_high_res_left.png */,
 				1A631F261C0E4D3A00251CB3 /* highchairb.png */,
@@ -17137,7 +17137,6 @@
 				5C62A9481C853C7400F28BEB /* Law_def_S.mp3 in Resources */,
 				5CB710F41C6C292B0062AD61 /* CWWB4.m4a in Resources */,
 				5CA955831C3237690038FB56 /* tocE.ncx in Resources */,
-				1A6322981C0E4D3B00251CB3 /* dog.png in Resources */,
 				5C72E6671C72A46F00CE4877 /* TheInuitIglooQ4A1.mp3 in Resources */,
 				5CA5CC6E1CD1B1C6002A631F /* WhoIsTheBestAnimalS14E.mp3 in Resources */,
 				1A6320171C0E4D3B00251CB3 /* farm.png in Resources */,
@@ -17605,6 +17604,7 @@
 				1A63215E1C0E4D3B00251CB3 /* bg_veins.png in Resources */,
 				5D9E34501C590E9500636150 /* old_TheMysteryIsSolvedQ6A3.mp3 in Resources */,
 				5C40AECF1CBF5C7C00BFEB9F /* ExplainsS.mp3 in Resources */,
+				1AAC942A1D35BBCC00302395 /* dog.png in Resources */,
 				5C0421EC1C618C2B001BBE9D /* TheLuckyStoneQ7A3.mp3 in Resources */,
 				5C09DF311C84EFF300EC4E78 /* Paddle_def_E.mp3 in Resources */,
 				5C5F7CD91C62F66500CF70A1 /* Story1-The-Navajo-Hogan-PM-2S.xhtml in Resources */,

@@ -157,12 +157,12 @@ static ServerCommunicationController *sharedInstance = nil;
         NSString* fileName; //combines school code, participant code, and study day
         
         //Check if timestamp needs to be appended to file name
-        if ([student currentTimestamp] == nil) {
-            fileName = [NSString stringWithFormat:@"%@ %@ %@", [student schoolCode], [student participantCode], [student studyDay]];
-        }
-        else {
+        //if ([student currentTimestamp] == nil) {
+         //   fileName = [NSString stringWithFormat:@"%@ %@ %@", [student schoolCode], [student participantCode], [student studyDay]];
+        //}
+        //else {
             fileName = [NSString stringWithFormat:@"%@ %@ %@ %@", [student schoolCode], [student participantCode], [student studyDay], [student currentTimestamp]];
-        }
+        //}
         
         studyFileName = fileName;
     }
