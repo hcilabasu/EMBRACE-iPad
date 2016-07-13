@@ -36,8 +36,10 @@
             <point x="38.855465%" y="18.286079%"/>
             <point x="44.119141%" y="19.817900%"/>
             <point x="55.794926%" y="28.625853%"/>
+            <point x="65.556641%" y="38.103977%"/>
+            <point x="73.595703%" y="47.869320%"/>
         </area>
-        <area areaId="aortaPath2" pageId="story3-PM-1">
+        <area areaId="aortaPath" pageId="story3-PM-1">
             <point x="22.298828%" y="54.953979%"/>
             <point x="17.322266%" y="45.954544%"/>
             <point x="13.876952%" y="36.476418%"/>
