@@ -1986,14 +1986,14 @@ static ServerCommunicationController *sharedInstance = nil;
         
         //Determine name of folder to put file in based on its extension
         if ([pathExtension isEqualToString:@"txt"]) {
-            dbDirName = @"LogFiles";
+            dbDirName = @"Embrace/FileSync/LogFiles";
         }
         else if ([pathExtension isEqualToString:@"xml"]) {
-            dbDirName = @"ProgressFiles/CurrentSession";
+            dbDirName = @"Embrace/FileSync/ProgressFiles/CurrentSession";
             locDirName = @"ProgressFiles";
         }
         else {
-            dbDirName = @"UnknownFiles";
+            dbDirName = @"Embrace/FileSync/UnknownFiles";
         }
         
         NSString *dbFileName = [NSString stringWithFormat:@"%@/%@", dbDirName, fileToUpload]; //Name of file to use on Dropbox
@@ -2097,7 +2097,7 @@ static ServerCommunicationController *sharedInstance = nil;
     NSString *stringData = @"{\"path\":\"/ProgressFiles/Master\",\"recursive\":\"false\",\"include_media_info\":\"false\",\"include_deleted\":\"false\",\"include_has_explicit_shared_members\":\"false\"}";
     
     NSDictionary *jsonDict = @{
-                               @"path" : @"/ProgressFiles/Master",
+                               @"path" : @"/Embrace/FileSync/ProgressFiles/Master",
                                /*@"recursive" : (BOOL)false,
                                @"include_media_info" : (BOOL)false,
                                @"include_deleted" : (BOOL)false,
