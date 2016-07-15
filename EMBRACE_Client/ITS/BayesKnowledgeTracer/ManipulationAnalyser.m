@@ -13,6 +13,8 @@
 #import "SentenceStatus.h"
 #import "ActionStep.h"
 
+#define DISTANCE_THRESHOLD 150
+
 @interface ManipulationAnalyser ()
 
 @property (nonatomic, strong) KnowledgeTracer *knowledgeTracer;
@@ -45,6 +47,13 @@
     [self.playWords addObject:word];
 }
 
+- (void)pressedNextWithManipulationContext:(ManipulationContext *)context
+                               forSentence:(NSString *)sentence
+                                isVerified:(BOOL)verified {
+    
+    
+}
+
 - (void)actionPerformed:(UserAction *)userAction
     manipulationContext:(ManipulationContext *)context {
     
@@ -53,8 +62,8 @@
     NSMutableDictionary *bookDetails = [self bookDictionaryForTitle:bookTitle];
     SentenceStatus *status = [self getActionListFrom:bookDetails
                                           forChapter:context.chapterTitle
-                                  sentenceNumber:context.sentenceNumber
-                              andStep:context.stepNumber];
+                                      sentenceNumber:context.sentenceNumber
+                                             andStep:context.stepNumber];
     
     NSLog(@"Action performed for %@ %@ %d", bookTitle,context.chapterTitle, context.sentenceNumber);
     
@@ -71,6 +80,7 @@
 
 // TODO: Figure out whether the error is due to Syntax, usability
 // pronoun
+// Syntax can have 3 values - complex, med, easy
 - (void)analyzeAndUpdateSkill:(UserAction *)userAction
                    andContext:(ManipulationContext *)context {
     
@@ -84,35 +94,97 @@
         if (userAction.actionStep.object2Id && ![userAction.actionStep.object2Id isEqualToString:@""]) {
             [self.knowledgeTracer updateSkillFor:userAction.actionStep.object2Id isVerified:YES];
             
-        } else if (userAction.actionStep.locationId && ![userAction.actionStep.locationId isEqualToString:@""]) {
+        } else if (userAction.actionStep.locationId &&
+                   ![userAction.actionStep.locationId isEqualToString:@""]) {
+            
             [self.knowledgeTracer updateSkillFor:userAction.actionStep.locationId isVerified:YES];
         }
-        // Update the syntax skill
+        
+        // Update the syntax and usability skill
         [self.knowledgeTracer updateSyntaxSkill:YES];
+        [self.knowledgeTracer updateUsabilitySkill:YES];
         
     } else {
         
-        [self.knowledgeTracer updateSyntaxSkill:NO];
-        
         // If the action is not verified, find out the kind of error the user made.
         if (userAction.movedObjectId && userAction.destinationObjectId) {
-            
-            [self updateSkillForObject:userAction.movedObjectId
-                         correctObject:userAction.actionStep.object1Id
-                           forSentence:userAction.sentenceText
-                           inBookTitle:context.bookTitle];
-            
-            [self updateSkillForObject:userAction.destinationObjectId
-                         correctObject:userAction.actionStep.object2Id
-                           forSentence:userAction.sentenceText
-                           inBookTitle:context.bookTitle];
+            [self updateSkillBasedOnMovedObject:userAction
+                                     andContext:context];
             
         }
+    }
+}
+
+- (void)updateSkillBasedOnMovedObject:(UserAction *)userAction
+                           andContext:(ManipulationContext *)context  {
+    
+    // Check for syntax error
+    // Check if the student mixed up subject and object
+    if ([userAction.destinationObjectId isEqualToString:userAction.actionStep.object1Id] &&
+        [userAction.movedObjectId isEqualToString:userAction.actionStep.object2Id]) {
         
+        NSLog(@"Mixed up objects");
+        [self.knowledgeTracer updateSyntaxSkill:NO];
+        return;
+    } else {
+        //TODO: Check if the user performed a later step
+    }
+    
+    // Moved incorrect subject
+    if (![userAction.movedObjectId isEqualToString:userAction.actionStep.object1Id]) {
+        
+        CGPoint movedFromLocation = [self.delegate locationOfObject:userAction.movedObjectId
+                                                           analyzer:self];
+        CGPoint actualLocation = [self.delegate locationOfObject:userAction.actionStep.object1Id
+                                                        analyzer:self];
+        float distance = [self distanceBetween:movedFromLocation
+                                                 and:actualLocation];
+        
+        if (distance > DISTANCE_THRESHOLD) {
+            // Vocabulary error
+            [self.knowledgeTracer updateSkillFor:userAction.movedObjectId isVerified:NO];
+            
+        } else {
+            // Usability error
+            [self.knowledgeTracer updateUsabilitySkill:NO];
+        }
+    } else {
+        [self.knowledgeTracer updateSkillFor:userAction.movedObjectId isVerified:YES];
+    }
+    
+    NSString *correctDest = nil;
+    if (userAction.actionStep.object2Id != nil) {
+        correctDest = userAction.actionStep.object2Id;
+        
+    } else if (userAction.actionStep.locationId != nil) {
+        correctDest = userAction.actionStep.locationId;
+        
+    } else if (userAction.actionStep.areaId != nil) {
+        correctDest = userAction.actionStep.areaId;
     }
     
     
+    if (![userAction.destinationObjectId isEqualToString:correctDest]) {
+       
+        CGPoint movedFromLocation = [self.delegate locationOfObject:userAction.destinationObjectId
+                                                           analyzer:self];
+        CGPoint actualLocation = [self.delegate locationOfObject:userAction.actionStep.object2Id
+                                                        analyzer:self];
+        float distance = [self distanceBetween:movedFromLocation
+                                           and:actualLocation];
+        if (distance > DISTANCE_THRESHOLD) {
+            // Vocabulary error
+            [self.knowledgeTracer updateSkillFor:userAction.destinationObjectId isVerified:NO];
+            
+        } else {
+            // Usability error
+            [self.knowledgeTracer updateUsabilitySkill:NO];
+        }
+    } else {
+        [self.knowledgeTracer updateSkillFor:userAction.destinationObjectId isVerified:YES];
+    }
 }
+
 
 - (void)updateSkillForObject:(NSString *)objectId
                correctObject:(NSString *)correctObjectId
@@ -190,4 +262,9 @@
     return statementDetails;
 }
 
+- (float) distanceBetween:(CGPoint)p1
+                       and:(CGPoint)p2 {
+    
+    return sqrt(pow(p2.x-p1.x,2) + pow(p2.y-p1.y,2));
+}
 @end

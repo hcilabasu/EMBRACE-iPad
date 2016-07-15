@@ -20,6 +20,7 @@
 #import "ManipulationContext.h"
 #import "NSString+HTML.h"
 #import "ITSController.h"
+#import "ManipulationAnalyser.h"
 
 @interface PMViewController () {
     NSString *currentPage; //Current page being shown, so that the next page can be requested
@@ -199,6 +200,7 @@ BOOL wasPathFollowed = false;
     
     IntroductionClass.languageString = @"E";
     IntroductionClass.sameWordClicked = false;
+    [[ITSController sharedInstance] setAnalyzerDelegate:self];
 }
 
 -(void)backButtonPressed:(id)sender
@@ -1828,7 +1830,7 @@ BOOL wasPathFollowed = false;
 
                                 [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Move Object" context:manipulationContext];
                                 [[ITSController sharedInstance] movedObject:movingObjectId
-                                                          destinationObjects:overlappingWith
+                                                          destinationObjects:@[destination]
                                                                  isVerified:true
                                                                  actionStep:currSolStep
                                                         manipulationContext:manipulationContext
@@ -1865,6 +1867,11 @@ BOOL wasPathFollowed = false;
                             }
                             
                             [self resetObjectLocation];
+                            
+                            // Find the location if overlapping is nil;
+                            if (overlappingWith == nil) {
+                                //TOD: Find the object precent in destination location.
+                            }
                             [[ITSController sharedInstance] movedObject:movingObjectId
                                                       destinationObjects:overlappingWith
                                                              isVerified:false
@@ -1933,6 +1940,12 @@ BOOL wasPathFollowed = false;
                                     //Record error for complexity
                                     [[pageStatistics objectForKey:currentPageId] addErrorForComplexity:(currentComplexity - 1)];
                                 }
+                                [[ITSController sharedInstance] movedObject:movingObjectId
+                                                         destinationObjects:overlappingWith
+                                                                 isVerified:false
+                                                                 actionStep:currSolStep
+                                                        manipulationContext:manipulationContext
+                                                                forSentence:currentSentenceText];
                             }
                             //If only 1 possible interaction was found, go ahead and perform that interaction if it's correct.
                             if ([possibleInteractions count] == 1) {
@@ -5307,6 +5320,14 @@ BOOL wasPathFollowed = false;
     else {
         manipulationContext.pageMode = @"Intervention";
     }
+}
+
+#pragma mark - ManipulationAnalyserProtocol
+
+- (CGPoint)locationOfObject:(NSString *)object
+                   analyzer:(ManipulationAnalyser *)analyzer {
+    
+    return [self getObjectPosition:object];
 }
 
 @end

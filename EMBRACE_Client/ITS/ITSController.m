@@ -37,6 +37,10 @@
     return self;
 }
 
+- (void)setAnalyzerDelegate:(id)delegate {
+    self.manipulationAnalyser.delegate = delegate;
+}
+
 #pragma  mark - 
 
 - (void)userDidPlayWord:(NSString *)word {
@@ -70,6 +74,10 @@ manipulationContext:(ManipulationContext *)context
 
 }
 
-
+- (void)pressedNextWithManipulationContext:(ManipulationContext *)context
+                               forSentence:(NSString *)sentence
+                                isVerified:(BOOL)verified {
+    
+}
 
 @end

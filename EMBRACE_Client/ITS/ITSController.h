@@ -14,6 +14,8 @@
 
 + (instancetype)sharedInstance;
 
+- (void)setAnalyzerDelegate:(id)delegate;
+
 - (void)movedObject:(NSString *)objectId
   destinationObjects:(NSArray *)destinationObjs
          isVerified:(BOOL)verified
@@ -23,4 +25,7 @@ manipulationContext:(ManipulationContext *)context
 
 - (void)userDidPlayWord:(NSString *)word;
 
+- (void)pressedNextWithManipulationContext:(ManipulationContext *)context
+                               forSentence:(NSString *)sentence
+                                isVerified:(BOOL)verified;
 @end

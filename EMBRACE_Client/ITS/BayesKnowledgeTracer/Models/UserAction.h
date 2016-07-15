@@ -23,6 +23,7 @@
                            isVerified:(BOOL)isverified
                           forSentence:(NSString *)sentenceText;
 
+
 @property (nonatomic, readonly) NSString *movedObjectId;
 
 @property (nonatomic, readonly) NSString *destinationObjectId;
@@ -32,5 +33,6 @@
 @property (nonatomic, readonly) ActionStep *actionStep;
 
 @property (nonatomic, readonly) NSString *sentenceText;
+
 
 @end

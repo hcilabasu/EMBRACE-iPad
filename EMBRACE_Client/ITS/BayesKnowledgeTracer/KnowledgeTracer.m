@@ -13,6 +13,8 @@
 
 #define ITS_PRONOUN @"ITS_PRONOUN"
 #define ITS_SYNTAX @"ITS_SYNTAX"
+#define ITS_USABILITY @"ITS_USABILITY"
+#define ITS_VOCAB @"ITS_VOCAB"
 
 @interface KnowledgeTracer()
 
@@ -29,6 +31,8 @@
         _skillSet = [[SkillSet alloc] init];
         [_skillSet skillForWord:ITS_PRONOUN];
         [_skillSet skillForWord:ITS_SYNTAX];
+        [_skillSet skillForWord:ITS_VOCAB];
+        [_skillSet skillForWord:ITS_USABILITY];
     }
     return self;
 }
@@ -59,7 +63,6 @@
     }
     
     NSLog(@"Skill value %@ - %f", action, newSkill);
-  
 }
 
 - (void)updateSyntaxSkill:(BOOL)isVerified {
@@ -68,6 +71,14 @@
 
 - (void)updatePronounSkill:(BOOL)isVerified {
     [self updateSkillFor:ITS_PRONOUN isVerified:isVerified];
+}
+
+- (void)updateUsabilitySkill:(BOOL)isVerified {
+    [self updateSkillFor:ITS_USABILITY isVerified:isVerified];
+}
+
+- (void)updateVocabSkill:(BOOL)isVerified {
+    [self updateSkillFor:ITS_VOCAB isVerified:isVerified];
 }
 
 #pragma mark -
