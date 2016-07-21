@@ -30,7 +30,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _skillValue = 0.0;
+        _skillValue = 0.15;
     }
     return self;
 }
