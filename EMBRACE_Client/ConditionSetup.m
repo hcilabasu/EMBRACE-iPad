@@ -40,10 +40,10 @@
         appMode = Study;
         currentMode = PM_MODE;
         newInstructions = false;
-        vocabPageEnabled = false;
+        vocabPageEnabled = true;
         assessmentPageEnabled = false;
         
-        allowFileSync = false; //NOTE: Still testing this functionality
+        allowFileSync = true; //NOTE: Still testing this functionality
     }
     
     return self;
