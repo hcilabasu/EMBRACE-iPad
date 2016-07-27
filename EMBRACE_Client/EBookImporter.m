@@ -640,21 +640,20 @@
             }
         }
         
-        areaDictionary[[NSString stringWithFormat:@"x%d", pointID]] = [NSString stringWithFormat:@"%f", firstpointX];
-        areaDictionary[[NSString stringWithFormat:@"y%d", pointID]] = [NSString stringWithFormat:@"%f", firstpointY];
-        pointID++;
-        [aPath addLineToPoint:CGPointMake(firstpointX, firstpointY)];
-        areaDictionary[[NSString stringWithFormat:@"x%d", pointID]] = [NSString stringWithFormat:@"%f", secondpointX];
-        areaDictionary[[NSString stringWithFormat:@"y%d", pointID]] = [NSString stringWithFormat:@"%f", secondpointY];
-        pointID++;
-        [aPath addLineToPoint:CGPointMake(secondpointX, secondpointY)];
-        areaDictionary[[NSString stringWithFormat:@"x%d", pointID]] = [NSString stringWithFormat:@"%f", thirdpointX];
-        areaDictionary[[NSString stringWithFormat:@"y%d", pointID]] = [NSString stringWithFormat:@"%f", thirdpointY];
-        pointID++;
-        [aPath addLineToPoint:CGPointMake(thirdpointX, thirdpointY)];
-        
         if ([areaId rangeOfString:@"Path"].location == NSNotFound) {
             [aPath closePath];
+            areaDictionary[[NSString stringWithFormat:@"x%d", pointID]] = [NSString stringWithFormat:@"%f", firstpointX];
+            areaDictionary[[NSString stringWithFormat:@"y%d", pointID]] = [NSString stringWithFormat:@"%f", firstpointY];
+            pointID++;
+            [aPath addLineToPoint:CGPointMake(firstpointX, firstpointY)];
+            areaDictionary[[NSString stringWithFormat:@"x%d", pointID]] = [NSString stringWithFormat:@"%f", secondpointX];
+            areaDictionary[[NSString stringWithFormat:@"y%d", pointID]] = [NSString stringWithFormat:@"%f", secondpointY];
+            pointID++;
+            [aPath addLineToPoint:CGPointMake(secondpointX, secondpointY)];
+            areaDictionary[[NSString stringWithFormat:@"x%d", pointID]] = [NSString stringWithFormat:@"%f", thirdpointX];
+            areaDictionary[[NSString stringWithFormat:@"y%d", pointID]] = [NSString stringWithFormat:@"%f", thirdpointY];
+            pointID++;
+            [aPath addLineToPoint:CGPointMake(thirdpointX, thirdpointY)];
         }
         
         [model addArea:areaId :aPath :areaDictionary :pageId];

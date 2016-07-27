@@ -38,9 +38,9 @@
         language = BILINGUAL;
         reader = SYSTEM;
         appMode = Study;
-        currentMode = IM_MODE;
+        currentMode = PM_MODE;
         newInstructions = false;
-        vocabPageEnabled = true;
+        vocabPageEnabled = false;
         assessmentPageEnabled = false;
         
         allowFileSync = true; //NOTE: Still testing this functionality
