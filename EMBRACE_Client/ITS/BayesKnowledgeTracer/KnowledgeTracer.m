@@ -12,7 +12,10 @@
 #import "ActionStep.h"
 
 #define ITS_PRONOUN @"ITS_PRONOUN"
-#define ITS_SYNTAX @"ITS_SYNTAX"
+#define ITS_SYNTAX_EASY @"ITS_SYNTAX_EASY"
+#define ITS_SYNTAX_MED @"ITS_SYNTAX_MED"
+#define ITS_SYNTAX_HARD @"ITS_SYNTAX_HARD"
+
 #define ITS_USABILITY @"ITS_USABILITY"
 #define ITS_VOCAB @"ITS_VOCAB"
 
@@ -30,7 +33,9 @@
     if (self) {
         _skillSet = [[SkillSet alloc] init];
         [_skillSet skillForWord:ITS_PRONOUN];
-        [_skillSet skillForWord:ITS_SYNTAX];
+        [_skillSet skillForWord:ITS_SYNTAX_EASY];
+        [_skillSet skillForWord:ITS_SYNTAX_MED];
+        [_skillSet skillForWord:ITS_SYNTAX_HARD];
         [_skillSet skillForWord:ITS_VOCAB];
         [_skillSet skillForWord:ITS_USABILITY];
     }
@@ -39,23 +44,24 @@
 
 #pragma mark -
 
-- (void)updateSkillFor:(NSString *)action isVerified:(BOOL)isVerified {
+- (Skill *)updateSkillFor:(NSString *)action isVerified:(BOOL)isVerified {
     
     if (action == nil) {
-        return;
+        return nil;
     }
     
     double newSkill = 0.0;
+    Skill *prevSkill = nil;
     if (isVerified) {
 
-        Skill *prevSkill = [self.skillSet skillForWord:action];
+        prevSkill = [self.skillSet skillForWord:action];
         double skillEvaluated = [self calcCorrect:prevSkill.skillValue];
         newSkill = [self calcNewSkillValue:skillEvaluated];
         [prevSkill updateSkillValue:newSkill];
         
     } else {
         
-        Skill *prevSkill = [self.skillSet skillForWord:action];
+        prevSkill = [self.skillSet skillForWord:action];
         double skillEvaluated = [self calcIncorrect:prevSkill.skillValue];
         newSkill = [self calcNewSkillValue:skillEvaluated];
         [prevSkill updateSkillValue:newSkill];
@@ -63,22 +69,43 @@
     }
     
     NSLog(@"Skill value %@ - %f", action, newSkill);
+    return prevSkill;
 }
 
-- (void)updateSyntaxSkill:(BOOL)isVerified {
-    [self updateSkillFor:ITS_SYNTAX isVerified:isVerified];
+- (Skill *)updateSyntaxSkill:(BOOL)isVerified {
+    return [self updateSyntaxSkill:isVerified
+             withComplexity:2];
 }
 
-- (void)updatePronounSkill:(BOOL)isVerified {
-    [self updateSkillFor:ITS_PRONOUN isVerified:isVerified];
+- (Skill *)updatePronounSkill:(BOOL)isVerified {
+    return [self updateSkillFor:ITS_PRONOUN isVerified:isVerified];
 }
 
-- (void)updateUsabilitySkill:(BOOL)isVerified {
-    [self updateSkillFor:ITS_USABILITY isVerified:isVerified];
+- (Skill *)updateUsabilitySkill:(BOOL)isVerified {
+    return [self updateSkillFor:ITS_USABILITY isVerified:isVerified];
 }
 
-- (void)updateVocabSkill:(BOOL)isVerified {
-    [self updateSkillFor:ITS_VOCAB isVerified:isVerified];
+- (Skill *)updateVocabSkill:(BOOL)isVerified {
+    return [self updateSkillFor:ITS_VOCAB isVerified:isVerified];
+}
+
+- (Skill *)updateSyntaxSkill:(BOOL)isVerified
+           withComplexity:(NSUInteger)complex {
+    Skill *sk  = nil;
+    switch (complex) {
+        case 1:
+            sk = [self updateSkillFor:ITS_SYNTAX_EASY isVerified:isVerified];
+            break;
+        case 2:
+            sk = [self updateSkillFor:ITS_SYNTAX_MED isVerified:isVerified];
+            break;
+        case 3:
+            sk = [self updateSkillFor:ITS_SYNTAX_HARD isVerified:isVerified];
+            break;
+        default:
+            break;
+    }
+    return sk;
 }
 
 #pragma mark -

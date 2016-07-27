@@ -32,4 +32,6 @@
 
 - (CGPoint)locationOfObject:(NSString *)object analyzer:(ManipulationAnalyser *)analyzer;
 
+- (void)analyzer:(ManipulationAnalyser *)analyzer showMessage:(NSString *)message;
+
 @end

@@ -7,15 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
-@class UserAction;
+@class UserAction, Skill;
 
 @interface KnowledgeTracer : NSObject
 
-- (void)updateSkillFor:(NSString *)action isVerified:(BOOL)isVerified;
-- (void)updateSyntaxSkill:(BOOL)isVerified;
-- (void)updatePronounSkill:(BOOL)isVerified;
-- (void)updateUsabilitySkill:(BOOL)isVerified;
-//- (void)updateVocabSkill:(BOOL)isVerified;
+- (Skill *)updateSkillFor:(NSString *)action isVerified:(BOOL)isVerified;
+- (Skill *)updateSyntaxSkill:(BOOL)isVerified;
+- (Skill *)updatePronounSkill:(BOOL)isVerified;
+- (Skill *)updateUsabilitySkill:(BOOL)isVerified;
+
+- (Skill *)updateSyntaxSkill:(BOOL)isVerified withComplexity:(NSUInteger)complex;
 
 
 @end

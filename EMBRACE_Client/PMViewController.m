@@ -1865,19 +1865,26 @@ BOOL wasPathFollowed = false;
                                 //Record error for complexity
                                 [[pageStatistics objectForKey:currentPageId] addErrorForComplexity:(currentComplexity - 1)];
                             }
-                            
-                            [self resetObjectLocation];
-                            
                             // Find the location if overlapping is nil;
                             if (overlappingWith == nil) {
-                                //TOD: Find the object precent in destination location.
+                                //TODO: Find the object precent in destination location.
+                                NSString *areaId = [model getObjectIdAtLocation:endLocation];
+                                
+                                NSLog(@"Area - %@",areaId);
+                                if (areaId)
+                                    overlappingWith = @[areaId];
+                                
                             }
                             [[ITSController sharedInstance] movedObject:movingObjectId
-                                                      destinationObjects:overlappingWith
+                                                     destinationObjects:overlappingWith
                                                              isVerified:false
                                                              actionStep:currSolStep
                                                     manipulationContext:manipulationContext
                                                             forSentence:currentSentenceText];
+                            
+                            [self resetObjectLocation];
+                            
+                            
                             
                         }
                     }
@@ -2037,6 +2044,16 @@ BOOL wasPathFollowed = false;
                             [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:@"NULL" ofType:@"Location" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
                             
                             [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
+                            
+                            // Find the location if overlapping is nil;
+                            if (overlappingWith == nil) {
+                                //TODO: Find the object precent in destination location.
+                                NSString *areaId = [model getObjectIdAtLocation:endLocation];
+                                NSLog(@"Area - %@",areaId);
+                                if (areaId)
+                                    overlappingWith = @[areaId];
+                                
+                            }
                             [[ITSController sharedInstance] movedObject:movingObjectId
                                                      destinationObjects:overlappingWith
                                                              isVerified:false
@@ -5328,6 +5345,25 @@ BOOL wasPathFollowed = false;
                    analyzer:(ManipulationAnalyser *)analyzer {
     
     return [self getObjectPosition:object];
+}
+
+- (void)analyzer:(ManipulationAnalyser *)analyzer showMessage:(NSString *)message {
+   
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"Dismiss"
+                                                     style:UIAlertActionStyleCancel
+                                                   handler:nil];
+    [alert addAction:action];
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    int duration = 5; // duration in seconds
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [alert dismissViewControllerAnimated:YES completion:nil];
+    });
 }
 
 @end
