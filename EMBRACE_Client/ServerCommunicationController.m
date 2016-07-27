@@ -1774,19 +1774,19 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Get progress file name and path
     NSString *progressFileName = [NSString stringWithFormat:@"%@_progress.xml", [student participantCode]];
-    NSString *progressFilePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"ProgressFiles/CurrentSession/%@", progressFileName]];
+    NSString *progressFileCurrentSessionPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"ProgressFiles/CurrentSession/%@", progressFileName]];
     
     //Try to load progress data
-    NSData *progressData = [[NSMutableData alloc] initWithContentsOfFile:progressFilePath];
+    NSData *progressData = [[NSMutableData alloc] initWithContentsOfFile:progressFileCurrentSessionPath];
     
     //If the file doesn't exist in the CurrentSession Folder, check the Master Folder
     if (progressData == nil){
-        progressFilePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"ProgressFiles/Master/%@", progressFileName]];
-        progressData = [[NSMutableData alloc] initWithContentsOfFile:progressFilePath];
+        NSString *progressFileMasterPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"ProgressFiles/Master/%@", progressFileName]];
+        progressData = [[NSMutableData alloc] initWithContentsOfFile:progressFileMasterPath];
         
         //Copy data from Master Folder to CurrentSession Folder
         if (progressData != nil) {
-            [progressData writeToFile:progressFilePath atomically:YES];
+            [progressData writeToFile:progressFileCurrentSessionPath atomically:YES];
         }
     }
     
@@ -1958,15 +1958,12 @@ static ServerCommunicationController *sharedInstance = nil;
     NSString *documentsDirectory = [paths objectAtIndex:0];
     
     //Store names of files to upload in array
-    NSString *logFileName = [NSString stringWithFormat:@"%@.txt", studyFileName];
-    //NSString *progressFileName = [NSString stringWithFormat:@"%@_progress.xml", [student participantCode]];
-    //NSArray *filesToUpload = [[NSArray alloc] initWithObjects:logFileName, progressFileName, nil];
-    NSMutableArray *filesToUpload = [[NSMutableArray alloc]initWithObjects:logFileName, nil];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSMutableArray *filesToUpload = [[NSMutableArray alloc] initWithArray:[fileManager contentsOfDirectoryAtPath:documentsDirectory error:nil]];
     
     //Check if CurrentSession Folder exists and has files
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    //TODO: changes file path to strip file name out of var filepath
     NSString *currentSessionFilePath = [documentsDirectory stringByAppendingPathComponent:@"ProgressFiles/CurrentSession"]; //Path of file on iPad
+    
     NSLog(@"%@", currentSessionFilePath);
         NSArray *listOfFiles = [fileManager contentsOfDirectoryAtPath:currentSessionFilePath error:nil];
         for (NSString *file in listOfFiles) {
@@ -1976,25 +1973,30 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Upload each file to Dropbox
     for (NSString *fileToUpload in filesToUpload) {
-        NSString *filePath = [documentsDirectory stringByAppendingPathComponent:fileToUpload]; //Path of file on iPad
-        
-        NSString *content = [[NSString alloc] initWithContentsOfFile:filePath usedEncoding:nil error:nil];
         
         NSString *dbDirName = @"";
         NSString *locDirName = @"";
         NSString *pathExtension = [fileToUpload pathExtension];
         
+        NSString *filePath;
+        
         //Determine name of folder to put file in based on its extension
         if ([pathExtension isEqualToString:@"txt"]) {
             dbDirName = @"Embrace/FileSync/LogFiles";
+            filePath = [documentsDirectory stringByAppendingPathComponent: fileToUpload]; //Path of file on iPad
         }
         else if ([pathExtension isEqualToString:@"xml"]) {
             dbDirName = @"Embrace/FileSync/ProgressFiles/CurrentSession";
             locDirName = @"ProgressFiles";
+            filePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/CurrentSession/%@",locDirName, fileToUpload]]; //Path of file on iPad
         }
         else {
             dbDirName = @"Embrace/FileSync/UnknownFiles";
+            filePath = [documentsDirectory stringByAppendingPathComponent: fileToUpload]; //Path of file on iPad
         }
+        
+        NSString *content = [[NSString alloc] initWithContentsOfFile:filePath usedEncoding:nil error:nil];
+        NSData *data = [[NSFileManager defaultManager] contentsAtPath:filePath]; // Store file into data object
         
         NSString *dbFileName = [NSString stringWithFormat:@"%@/%@", dbDirName, fileToUpload]; //Name of file to use on Dropbox
         NSString *locFileNameDesination = [NSString stringWithFormat:@"%@/Backup/%@", locDirName, fileToUpload]; //Name of file path destination
@@ -2031,7 +2033,6 @@ static ServerCommunicationController *sharedInstance = nil;
         NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:sessionConfiguration delegate:self delegateQueue:[NSOperationQueue mainQueue]];
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api-content.dropbox.com/1/files_put/auto/%@?overwrite=true", [dbFileName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]]; //Files with same name will be overwritten
         [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
-        NSData *data = [[NSFileManager defaultManager] contentsAtPath:filePath];
         [request setHTTPMethod:@"PUT"];
         [request setHTTPBody:data];
         [request setTimeoutInterval:1000];
@@ -2094,7 +2095,7 @@ static ServerCommunicationController *sharedInstance = nil;
     [request setTimeoutInterval:1000];
     
     // Convert your data and set your request's HTTPBody property
-    NSString *stringData = @"{\"path\":\"/ProgressFiles/Master\",\"recursive\":\"false\",\"include_media_info\":\"false\",\"include_deleted\":\"false\",\"include_has_explicit_shared_members\":\"false\"}";
+    NSString *stringData = @"{\"path\":\"/Embrace/FileSync/ProgressFiles/Master\",\"recursive\":\"false\",\"include_media_info\":\"false\",\"include_deleted\":\"false\",\"include_has_explicit_shared_members\":\"false\"}";
     
     NSDictionary *jsonDict = @{
                                @"path" : @"/Embrace/FileSync/ProgressFiles/Master",
@@ -2169,7 +2170,7 @@ static ServerCommunicationController *sharedInstance = nil;
                 NSURLSessionConfiguration *getFilesSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
                 getFilesSessionConfiguration.HTTPAdditionalHeaders = @{
                                                                        @"Authorization": [NSString stringWithFormat:@"Bearer %@", accessToken],
-                                                                       @"Dropbox-API-Arg" : [NSString stringWithFormat:@"{\"path\":\"/ProgressFiles/Master/%@\"}", file]
+                                                                       @"Dropbox-API-Arg" : [NSString stringWithFormat:@"{\"path\": \"/Embrace/FileSync/ProgressFiles/Master/%@\"}", file]
                                                                        };
                 
                 NSURLSession *downloadFilesSession = [NSURLSession sessionWithConfiguration:getFilesSessionConfiguration delegate:self delegateQueue:[NSOperationQueue mainQueue]];
@@ -2209,7 +2210,7 @@ static ServerCommunicationController *sharedInstance = nil;
                         
                         if([data writeToFile:filePath atomically:YES])
                         {
-                            NSLog(@"Successfully wrote progress file to ProgressFiles/Master Folder");
+                            NSLog(@"Successfully wrote progress file to ProgressFiles/MasterFolder");
                         }
                         
                         completionHandler(YES);
