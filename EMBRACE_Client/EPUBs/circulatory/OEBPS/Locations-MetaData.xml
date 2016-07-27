@@ -12,7 +12,6 @@
         <location locationId="leftVentricle" x="33%" y="45%" height="39%" width="23%"/>
         <location locationId="lung1" x="0.1%" y="53%" height="46%" width="34%"/>
         <location locationId="lung2" x="20%" y="21%" height="66%" width="35%"/>
-        <location locationId="lung3" x="0.1%" y="53%" height="46%" width="34%"/>
         <location locationId="muscle1" x="71%" y="33%" height="37%" width="30%"/>
         <location locationId="muscle2" x="18%" y="7%" height="69%" width="46%"/>
         <location locationId="nose" x="24%" y="15%" height="10%" width="11%"/>

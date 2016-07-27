@@ -70,7 +70,7 @@
         <story title="The Amazing Heart" activity_id="story2-PM-4">
             <sentence number="12">
                 <step number="1">
-                    <check obj1Id="bloodcell_1" action="getIn" locationId="" areaId="aorta"/>
+                    <check obj1Id="bloodcell_1" action="getIn" locationId="muscle1" areaId="arteries"/>
                     <animate obj1Id="bloodcell_1" action="followAnimation" waypointId="" areaId="aortaPath"/>
                 </step>
             </sentence>
@@ -79,7 +79,7 @@
             <sentence number="1">
                 <step number="1">
                     <check obj1Id="bloodcell_1" action="getIn" locationId="muscle1" areaId="arteries"/>
-                    <animate obj1Id="bloodcell_1" action="followAnimation" waypointId="" areaId="aortaPath2"/>
+                    <animate obj1Id="bloodcell_1" action="followAnimation" waypointId="" areaId="aortaPath"/>
                 </step>
             </sentence>
         </story>
@@ -100,8 +100,8 @@
         <story title="Muscles Use Oxygen" activity_id="story3-PM-3">
             <sentence number="5">
                 <step number="1">
-                    <check obj1Id="bloodcell_1" action="getIn" locationId="heart2"/>
-                    <move obj1Id="bloodcell_1" action="getIn" waypointId="heart2"/>
+                    <check obj1Id="bloodcell_1" action="getIn" locationId="heart2" areaId="veins"/>
+                    <animate obj1Id="bloodcell_1" action="followAnimation" waypointId="" areaId="veinPath"/>
                 </step>
             </sentence>
         </story>
@@ -132,8 +132,8 @@
         <story title="Getting More Oxygen for the Muscles" activity_id="story4-PM-3">
             <sentence number="7">
                 <step number="1">
-                    <check obj1Id="bloodcell_1" action="getIn" locationId="" areaId="vein"/>
-                    <animate obj1Id="bloodcell_1" action="followAnimation" waypointId="" areaId="veinPath"/>
+                    <check obj1Id="bloodcell_1" action="getIn" locationId="lung1"/>
+                    <move obj1Id="bloodcell_1" action="getIn" waypointId="lung3"/>
                 </step>
             </sentence>
         </story>

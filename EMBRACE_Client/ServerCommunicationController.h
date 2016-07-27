@@ -95,7 +95,7 @@
 
 #pragma mark - Syncing log/progress files with Dropbox
 
-- (void)uploadFilesForStudent:(Student *)student;
-- (void)downloadProgressForStudent:(Student *)student completionHandler:(void (^)(BOOL success))completionHandler;
+- (void)uploadFilesForStudent:(Student *)student completionHandler:(void (^)(BOOL success))completionHandler failure:(void (^)(BOOL success))failureHandler;
+- (void)downloadProgressForStudent:(Student *)student completionHandler:(void (^)(BOOL success))completionHandler failure:(void (^)(BOOL success))failureHandler;
 
 @end
