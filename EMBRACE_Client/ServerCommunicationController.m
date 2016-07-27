@@ -2095,7 +2095,7 @@ static ServerCommunicationController *sharedInstance = nil;
     [request setTimeoutInterval:1000];
     
     // Convert your data and set your request's HTTPBody property
-    NSString *stringData = @"{\"path\":\"/ProgressFiles/Master\",\"recursive\":\"false\",\"include_media_info\":\"false\",\"include_deleted\":\"false\",\"include_has_explicit_shared_members\":\"false\"}";
+    NSString *stringData = @"{\"path\":\"/Embrace/FileSync/ProgressFiles/Master\",\"recursive\":\"false\",\"include_media_info\":\"false\",\"include_deleted\":\"false\",\"include_has_explicit_shared_members\":\"false\"}";
     
     NSDictionary *jsonDict = @{
                                @"path" : @"/Embrace/FileSync/ProgressFiles/Master",
@@ -2170,7 +2170,7 @@ static ServerCommunicationController *sharedInstance = nil;
                 NSURLSessionConfiguration *getFilesSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
                 getFilesSessionConfiguration.HTTPAdditionalHeaders = @{
                                                                        @"Authorization": [NSString stringWithFormat:@"Bearer %@", accessToken],
-                                                                       @"Dropbox-API-Arg" : [NSString stringWithFormat:@"{\"path\":\"/ProgressFiles/Master/%@\"}", file]
+                                                                       @"Dropbox-API-Arg" : [NSString stringWithFormat:@"{\"path\": \"/Embrace/FileSync/ProgressFiles/Master/%@\"}", file]
                                                                        };
                 
                 NSURLSession *downloadFilesSession = [NSURLSession sessionWithConfiguration:getFilesSessionConfiguration delegate:self delegateQueue:[NSOperationQueue mainQueue]];
@@ -2210,7 +2210,7 @@ static ServerCommunicationController *sharedInstance = nil;
                         
                         if([data writeToFile:filePath atomically:YES])
                         {
-                            NSLog(@"Successfully wrote progress file to ProgressFiles/Master Folder");
+                            NSLog(@"Successfully wrote progress file to ProgressFiles/MasterFolder");
                         }
                         
                         completionHandler(YES);

@@ -101,7 +101,7 @@
             <sentence number="5">
                 <step number="1">
                     <check obj1Id="bloodcell_1" action="getIn" locationId="heart2" areaId="veins"/>
-                    <move obj1Id="bloodcell_1" action="getIn" waypointId="" areaId="veinPath"/>
+                    <animate obj1Id="bloodcell_1" action="followAnimation" waypointId="" areaId="veinPath"/>
                 </step>
             </sentence>
         </story>
