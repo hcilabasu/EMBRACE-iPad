@@ -1867,10 +1867,8 @@ BOOL wasPathFollowed = false;
                             }
                             // Find the location if overlapping is nil;
                             if (overlappingWith == nil) {
-                                //TODO: Find the object precent in destination location.
-                                NSString *areaId = [model getObjectIdAtLocation:endLocation];
                                 
-                                NSLog(@"Area - %@",areaId);
+                                NSString *areaId = [model getObjectIdAtLocation:endLocation];
                                 if (areaId)
                                     overlappingWith = @[areaId];
                                 
@@ -1895,11 +1893,26 @@ BOOL wasPathFollowed = false;
                             [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Move Object" context:manipulationContext];
                             
                             [animatingObjects setObject:@"stop" forKey:movingObjectId];
+                            
+                            [[ITSController sharedInstance] movedObject:movingObjectId
+                                                     destinationObjects:@[currSolStep.locationId]
+                                                             isVerified:true
+                                                             actionStep:currSolStep
+                                                    manipulationContext:manipulationContext
+                                                            forSentence:currentSentenceText];
+                            
                             [self resetObjectLocation];
                             [self incrementCurrentStep];
                         }
                         else {
                             [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
+                            
+                            [[ITSController sharedInstance] movedObject:movingObjectId
+                                                     destinationObjects:@[currSolStep.locationId]
+                                                             isVerified:false
+                                                             actionStep:currSolStep
+                                                    manipulationContext:manipulationContext
+                                                            forSentence:currentSentenceText];
                             
                             [self playErrorNoise];
                             [self resetObjectLocation];
@@ -5364,6 +5377,20 @@ BOOL wasPathFollowed = false;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         [alert dismissViewControllerAnimated:YES completion:nil];
     });
+}
+
+- (ActionStep *)getNextStepForCurrentSentence:(ManipulationAnalyser *)analyzer {
+    NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
+    ActionStep *currSolStep = nil;
+    if ([currSolSteps count] > currentStep) {
+        currSolStep = [currSolSteps objectAtIndex:currentStep];    
+    }
+    
+    return currSolStep;
+}
+
+- (NSInteger)analyzer:(ManipulationAnalyser *)analyzer getComplexityForSentence:(int)sentenceNumber {
+    return 1;
 }
 
 @end

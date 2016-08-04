@@ -80,8 +80,7 @@
     
 }
 
-// TODO:
-// Syntax can have 3 values - complex, med, easy
+
 - (void)analyzeAndUpdateSkill:(UserAction *)userAction
                    andContext:(ManipulationContext *)context {
    
@@ -102,7 +101,9 @@
         }
         
         // Update the syntax and usability skill
-        WordSkill *synSkill = (WordSkill *)[self.knowledgeTracer updateSyntaxSkill:YES];
+        NSUInteger com = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
+        WordSkill *synSkill = (WordSkill *)[self.knowledgeTracer updateSyntaxSkill:YES
+                                                                    withComplexity:com];
         WordSkill *useSkill = (WordSkill *)[self.knowledgeTracer updateUsabilitySkill:YES];
         [self showMessageWith:@[movedSkill,destSkill,synSkill,useSkill]];
         
@@ -129,12 +130,44 @@
         [userAction.movedObjectId isEqualToString:userAction.actionStep.object2Id]) {
         
         NSLog(@"Mixed up objects");
-        WordSkill *skill = ( WordSkill *)[self.knowledgeTracer updateSyntaxSkill:NO];
+        NSUInteger com = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
+        WordSkill *skill = (WordSkill *)[self.knowledgeTracer updateSyntaxSkill:NO
+                                                                    withComplexity:com];
+        
         [skills addObject:skill];
         [self showMessageWith:skills];
         return;
     } else {
-        //TODO: Check if the user performed a later step
+        // Check if the user preformed a future step
+        //
+        ActionStep *nextStep = [self.delegate getNextStepForCurrentSentence:self];
+        if (nextStep) {
+            
+            NSString *correctDest = nil;
+            if (nextStep.object2Id != nil) {
+                correctDest = nextStep.object2Id;
+                
+            } else if (nextStep.locationId != nil) {
+                correctDest = nextStep.locationId;
+                
+            } else if (nextStep.areaId != nil) {
+                correctDest = nextStep.areaId;
+            }
+            
+            if ([nextStep.object1Id isEqualToString:userAction.movedObjectId] &&
+                [correctDest isEqualToString:userAction.destinationObjectId]) {
+                NSLog(@"Performed a future step");
+                
+                NSUInteger com = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
+                WordSkill *skill = (WordSkill *)[self.knowledgeTracer updateSyntaxSkill:NO
+                                                                         withComplexity:com];
+                [skills addObject:skill];
+                [self showMessageWith:skills];
+                return;
+            }
+            
+           
+        }
     }
     
     // Moved incorrect subject
@@ -213,7 +246,6 @@
 - (void)showMessageWith:(NSArray *)skills {
     
     NSMutableString *message = [NSMutableString stringWithFormat:@"Skills updated: \n"];
-    
     for (WordSkill *sk in skills) {
         [message appendString:[NSString stringWithFormat:@"%@ - %f\n", sk.word, sk.skillValue]];
     }

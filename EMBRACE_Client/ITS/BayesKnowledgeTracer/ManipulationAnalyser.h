@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class UserAction;
+@class UserAction, ActionStep;
 @class ManipulationContext;
 @protocol ManipulationAnalyserProtocol;
 
@@ -31,6 +31,10 @@
 @protocol ManipulationAnalyserProtocol <NSObject>
 
 - (CGPoint)locationOfObject:(NSString *)object analyzer:(ManipulationAnalyser *)analyzer;
+
+- (ActionStep *)getNextStepForCurrentSentence:(ManipulationAnalyser *)analyzer;
+
+- (NSInteger)analyzer:(ManipulationAnalyser *)analyzer getComplexityForSentence:(int)sentenceNumber;
 
 - (void)analyzer:(ManipulationAnalyser *)analyzer showMessage:(NSString *)message;
 
