@@ -401,6 +401,7 @@ BOOL wasPathFollowed = false;
     //[self drawArea:@"aortaPath2":@"Muscles Use Oxygen":@"story3-PM-1"];
     [self drawArea:@"veinPath":@"Getting More Oxygen for the Muscles":@"story4-PM-3"];
     [self drawArea:@"vein":@"Getting More Oxygen for the Muscles":@"story4-PM-3"];
+    [self drawArea:@"veinPath":@"Muscles Use Oxygen":@"story3-PM-3"];
     
     //Perform setup for activity
     [self performSetupForActivity];
