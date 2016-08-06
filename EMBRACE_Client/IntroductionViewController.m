@@ -250,8 +250,7 @@ ConditionSetup *conditionSetup;
         //add for house story?
         // If we are ont the first step (1) or the last step (9) which do not correspond to words
         //play the corresponding intro or outro audio
-        if (currentVocabStep == 1 && ([chapterTitle isEqualToString:@"The Contest"] ||
-                                      [chapterTitle isEqualToString:@"Why We Breathe"])) {
+        if (currentVocabStep == 1 && ([chapterTitle isEqualToString:@"The Contest"] )) {
             if((conditionSetup.language ==BILINGUAL)) {
                 [self.playAudioFileClass playAudioFile:pmviewController:audioSpanish];
             } else {
@@ -263,8 +262,7 @@ ConditionSetup *conditionSetup;
         if((conditionSetup.condition ==CONTROL)){
             //add for house story?
             if (currentVocabStep == totalVocabSteps-2 &&
-                ([chapterTitle isEqualToString:@"The Contest"] ||
-                 [chapterTitle isEqualToString:@"Why We Breathe"]))
+                ([chapterTitle isEqualToString:@"The Contest"]))
             {
                 if((conditionSetup.language == BILINGUAL))
                 {
@@ -281,7 +279,7 @@ ConditionSetup *conditionSetup;
     
         if((conditionSetup.condition ==EMBRACE)){
             //add for house story?
-            if (currentVocabStep == totalVocabSteps-2 && ([chapterTitle isEqualToString:@"The Contest"] || [chapterTitle isEqualToString:@"Why We Breathe"])) {
+            if (currentVocabStep == totalVocabSteps-2 && ([chapterTitle isEqualToString:@"The Contest"])) {
     
                 currentVocabStep++;
                 //Get next step to be read
