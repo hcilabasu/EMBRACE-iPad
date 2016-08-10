@@ -5373,11 +5373,11 @@ BOOL wasPathFollowed = false;
     [alert addAction:action];
     [self presentViewController:alert animated:YES completion:nil];
     
-    int duration = 5; // duration in seconds
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [alert dismissViewControllerAnimated:YES completion:nil];
-    });
+//    int duration = 5; // duration in seconds
+//    
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+//        [alert dismissViewControllerAnimated:YES completion:nil];
+//    });
 }
 
 - (ActionStep *)getNextStepForCurrentSentence:(ManipulationAnalyser *)analyzer {
