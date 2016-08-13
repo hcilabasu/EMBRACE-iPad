@@ -24,4 +24,8 @@
     return self;
 }
 
+- (NSString *)description {
+    return  [NSString stringWithFormat:@"%@ -  %f",self.word, self.skillValue];
+}
+
 @end

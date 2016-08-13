@@ -80,4 +80,29 @@ manipulationContext:(ManipulationContext *)context
     
 }
 
+- (EMComplexity)getCurrentComplexity {
+    
+    double easySkillValue = [self.manipulationAnalyser easySyntaxSkillValue];
+    double medSkillValue = [self.manipulationAnalyser medSyntaxSkillValue];
+    double complexSkillValue = [self.manipulationAnalyser complexSyntaxSkillValue];
+    
+    EMComplexity complexity = EM_Medium;
+    if (complexSkillValue == 0 && easySkillValue == 0 &&
+        medSkillValue == 0) {
+        complexity = EM_Medium;
+        
+    } else if (complexSkillValue > 0.8 || medSkillValue > 0.9) {
+        complexity = EM_Complex;
+        
+    } else if (easySkillValue > 0.9 ) {
+        complexity = EM_Medium;
+        
+    } else {
+        complexity = EM_Easy;
+        
+    }
+    
+    return EM_Medium;
+}
+
 @end

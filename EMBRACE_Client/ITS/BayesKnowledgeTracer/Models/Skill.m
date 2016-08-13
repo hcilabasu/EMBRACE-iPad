@@ -39,4 +39,8 @@
     self.skillValue = value;
 }
 
+- (NSString *)description {
+    return  [NSString stringWithFormat:@"Skill -  %f", self.skillValue];
+}
+
 @end

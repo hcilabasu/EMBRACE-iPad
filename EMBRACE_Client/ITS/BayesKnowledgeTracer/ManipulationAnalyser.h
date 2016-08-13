@@ -25,6 +25,10 @@
                                forSentence:(NSString *)sentence
                                 isVerified:(BOOL)verified;
 
+- (double)easySyntaxSkillValue;
+- (double)medSyntaxSkillValue;
+- (double)complexSyntaxSkillValue;
+
 @end
 
 

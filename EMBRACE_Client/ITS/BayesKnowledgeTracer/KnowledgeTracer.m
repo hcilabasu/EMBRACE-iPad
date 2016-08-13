@@ -10,14 +10,8 @@
 #import "SkillSet.h"
 #import "UserAction.h"
 #import "ActionStep.h"
+#import "WordSkill.h"
 
-#define ITS_PRONOUN @"ITS_PRONOUN"
-#define ITS_SYNTAX_EASY @"ITS_SYNTAX_EASY"
-#define ITS_SYNTAX_MED @"ITS_SYNTAX_MED"
-#define ITS_SYNTAX_HARD @"ITS_SYNTAX_HARD"
-
-#define ITS_USABILITY @"ITS_USABILITY"
-#define ITS_VOCAB @"ITS_VOCAB"
 
 @interface KnowledgeTracer()
 
@@ -32,12 +26,6 @@
     self = [super init];
     if (self) {
         _skillSet = [[SkillSet alloc] init];
-        [_skillSet skillForWord:ITS_PRONOUN];
-        [_skillSet skillForWord:ITS_SYNTAX_EASY];
-        [_skillSet skillForWord:ITS_SYNTAX_MED];
-        [_skillSet skillForWord:ITS_SYNTAX_HARD];
-        [_skillSet skillForWord:ITS_VOCAB];
-        [_skillSet skillForWord:ITS_USABILITY];
     }
     return self;
 }
@@ -50,61 +38,57 @@
         return nil;
     }
     
+    Skill *prevSkill = [self.skillSet skillForWord:action];
+    Skill *sk = [self updateSkill:prevSkill isVerified:isVerified];
+    NSLog(@"Skill value %@ - %f", action, sk.skillValue);
+    return prevSkill;
+}
+
+- (Skill *)updateSkill:(Skill *)skill isVerified:(BOOL)isVerified {
+   
     double newSkill = 0.0;
     Skill *prevSkill = nil;
     if (isVerified) {
-
-        prevSkill = [self.skillSet skillForWord:action];
+            
         double skillEvaluated = [self calcCorrect:prevSkill.skillValue];
         newSkill = [self calcNewSkillValue:skillEvaluated];
         [prevSkill updateSkillValue:newSkill];
         
     } else {
-        
-        prevSkill = [self.skillSet skillForWord:action];
+    
         double skillEvaluated = [self calcIncorrect:prevSkill.skillValue];
         newSkill = [self calcNewSkillValue:skillEvaluated];
         [prevSkill updateSkillValue:newSkill];
-
+        
     }
-    
-    NSLog(@"Skill value %@ - %f", action, newSkill);
     return prevSkill;
 }
 
-- (Skill *)updateSyntaxSkill:(BOOL)isVerified {
-    return [self updateSyntaxSkill:isVerified
-             withComplexity:2];
-}
 
-- (Skill *)updatePronounSkill:(BOOL)isVerified {
-    return [self updateSkillFor:ITS_PRONOUN isVerified:isVerified];
-}
 
 - (Skill *)updateUsabilitySkill:(BOOL)isVerified {
-    return [self updateSkillFor:ITS_USABILITY isVerified:isVerified];
-}
-
-- (Skill *)updateVocabSkill:(BOOL)isVerified {
-    return [self updateSkillFor:ITS_VOCAB isVerified:isVerified];
+    Skill *sk  = [self.skillSet usabilitySkill];
+    sk = [self updateSkill:sk isVerified:isVerified];
+    return sk;
 }
 
 - (Skill *)updateSyntaxSkill:(BOOL)isVerified
-           withComplexity:(NSUInteger)complex {
-    Skill *sk  = nil;
-    switch (complex) {
-        case 1:
-            sk = [self updateSkillFor:ITS_SYNTAX_EASY isVerified:isVerified];
-            break;
-        case 2:
-            sk = [self updateSkillFor:ITS_SYNTAX_MED isVerified:isVerified];
-            break;
-        case 3:
-            sk = [self updateSkillFor:ITS_SYNTAX_HARD isVerified:isVerified];
-            break;
-        default:
-            break;
-    }
+           withComplexity:(EMComplexity)complex {
+    
+    
+    Skill *sk  = [self.skillSet syntaxSkillFor:complex];
+    sk = [self updateSkill:sk isVerified:isVerified];
+    return sk;
+}
+
+- (WordSkill *)getWordSkillFor:(NSString *)word {
+    Skill *skill = [self.skillSet skillForWord:word];
+    return (WordSkill *)skill;
+}
+
+
+- (Skill *)syntaxSkillFor:(EMComplexity)complex {
+    Skill *sk  = [self.skillSet syntaxSkillFor:complex];
     return sk;
 }
 

@@ -8,11 +8,18 @@
 
 #import <Foundation/Foundation.h>
 #import "Skill.h"
+#import "WordSkill.h"
+#import "SyntaxSkill.h"
+#import "UsabilitySkill.h"
 
 @interface SkillSet : NSObject
 
 - (void)addWordSkill:(Skill *)wordSkill forWord:(NSString *)word ;
 
 - (Skill *)skillForWord:(NSString *)word;
+
+- (SyntaxSkill *)syntaxSkillFor:(EMComplexity)complexity;
+
+- (UsabilitySkill *)usabilitySkill;
 
 @end

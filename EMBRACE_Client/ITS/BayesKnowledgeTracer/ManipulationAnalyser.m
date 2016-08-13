@@ -13,7 +13,6 @@
 #import "SentenceStatus.h"
 #import "ActionStep.h"
 #import "Skill.h"
-#import "WordSkill.h"
 
 #define DISTANCE_THRESHOLD 150
 
@@ -56,6 +55,23 @@
     
 }
 
+
+- (double)easySyntaxSkillValue {
+    Skill *sk = [self.knowledgeTracer syntaxSkillFor:EM_Easy];
+    return sk.skillValue;
+}
+
+- (double)medSyntaxSkillValue {
+    Skill *sk = [self.knowledgeTracer syntaxSkillFor:EM_Medium];
+    return sk.skillValue;
+}
+
+- (double)complexSyntaxSkillValue {
+    Skill *sk = [self.knowledgeTracer syntaxSkillFor:EM_Complex];
+    return sk.skillValue;
+}
+
+
 - (void)actionPerformed:(UserAction *)userAction
     manipulationContext:(ManipulationContext *)context {
     
@@ -89,22 +105,22 @@
     if (userAction.isVerified) {
         
         // Update the two object's skills
-        WordSkill *movedSkill = (WordSkill *)[self.knowledgeTracer updateSkillFor:userAction.movedObjectId isVerified:YES];
-        WordSkill *destSkill = nil;
+        Skill *movedSkill = [self.knowledgeTracer updateSkillFor:userAction.movedObjectId isVerified:YES];
+        Skill *destSkill = nil;
         if (userAction.actionStep.object2Id && ![userAction.actionStep.object2Id isEqualToString:@""]) {
-           destSkill = (WordSkill *)[self.knowledgeTracer updateSkillFor:userAction.actionStep.object2Id isVerified:YES];
+           destSkill = [self.knowledgeTracer updateSkillFor:userAction.actionStep.object2Id isVerified:YES];
             
         } else if (userAction.actionStep.locationId &&
                    ![userAction.actionStep.locationId isEqualToString:@""]) {
             
-            destSkill = (WordSkill *)[self.knowledgeTracer updateSkillFor:userAction.actionStep.locationId isVerified:YES];
+            destSkill = [self.knowledgeTracer updateSkillFor:userAction.actionStep.locationId isVerified:YES];
         }
         
         // Update the syntax and usability skill
         NSUInteger com = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
-        WordSkill *synSkill = (WordSkill *)[self.knowledgeTracer updateSyntaxSkill:YES
+        Skill *synSkill = [self.knowledgeTracer updateSyntaxSkill:YES
                                                                     withComplexity:com];
-        WordSkill *useSkill = (WordSkill *)[self.knowledgeTracer updateUsabilitySkill:YES];
+        Skill *useSkill = [self.knowledgeTracer updateUsabilitySkill:YES];
         [self showMessageWith:@[movedSkill,destSkill,synSkill,useSkill]];
         
         
@@ -131,7 +147,7 @@
         
         NSLog(@"Mixed up objects");
         NSUInteger com = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
-        WordSkill *skill = (WordSkill *)[self.knowledgeTracer updateSyntaxSkill:NO
+        Skill *skill = [self.knowledgeTracer updateSyntaxSkill:NO
                                                                     withComplexity:com];
         
         [skills addObject:skill];
@@ -159,7 +175,7 @@
                 NSLog(@"Performed a future step");
                 
                 NSUInteger com = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
-                WordSkill *skill = (WordSkill *)[self.knowledgeTracer updateSyntaxSkill:NO
+                Skill *skill = [self.knowledgeTracer updateSyntaxSkill:NO
                                                                          withComplexity:com];
                 [skills addObject:skill];
                 [self showMessageWith:skills];
@@ -182,18 +198,18 @@
         
         if (distance > DISTANCE_THRESHOLD) {
             // Vocabulary error
-           WordSkill *movedSkill = ( WordSkill *) [self.knowledgeTracer updateSkillFor:userAction.movedObjectId isVerified:NO];
-           WordSkill *actionObjSkill = ( WordSkill *) [self.knowledgeTracer updateSkillFor:userAction.actionStep.object1Id isVerified:NO];
+           Skill *movedSkill = [self.knowledgeTracer updateSkillFor:userAction.movedObjectId isVerified:NO];
+           Skill *actionObjSkill = [self.knowledgeTracer updateSkillFor:userAction.actionStep.object1Id isVerified:NO];
             
             [skills addObject:movedSkill];
             [skills addObject:actionObjSkill];
         } else {
             // Usability error
-            WordSkill *skill = (WordSkill *)[self.knowledgeTracer updateUsabilitySkill:NO];
+            Skill *skill = [self.knowledgeTracer updateUsabilitySkill:NO];
             [skills addObject:skill];
         }
     } else {
-        WordSkill *skill = (WordSkill *)[self.knowledgeTracer updateSkillFor:userAction.movedObjectId isVerified:YES];
+        Skill *skill = [self.knowledgeTracer updateSkillFor:userAction.movedObjectId isVerified:YES];
         [skills addObject:skill];
     }
     
@@ -211,7 +227,7 @@
     // If user action destination is nil, it means user doesnot know the object
     // so update the vocab skill for the object.
     if (userAction.destinationObjectId == nil) {
-        WordSkill *skill = (WordSkill *)[self.knowledgeTracer updateSkillFor:correctDest isVerified:NO];
+        Skill *skill = [self.knowledgeTracer updateSkillFor:correctDest isVerified:NO];
         [skills addObject:skill];
         
     } else if (![userAction.destinationObjectId isEqualToString:correctDest]) {
@@ -224,19 +240,19 @@
                                            and:actualLocation];
         if (distance > DISTANCE_THRESHOLD) {
             // Vocabulary error
-            WordSkill *destObjSkill = (WordSkill *) [self.knowledgeTracer updateSkillFor:userAction.destinationObjectId isVerified:NO];
-            WordSkill *actualDestSkill = (WordSkill *)[self.knowledgeTracer updateSkillFor:correctDest isVerified:NO];
+            Skill *destObjSkill = [self.knowledgeTracer updateSkillFor:userAction.destinationObjectId isVerified:NO];
+            Skill *actualDestSkill = [self.knowledgeTracer updateSkillFor:correctDest isVerified:NO];
             
             [skills addObject:destObjSkill];
             [skills addObject:actualDestSkill];
             
         } else {
             // Usability error
-            WordSkill *skill = (WordSkill *)[self.knowledgeTracer updateUsabilitySkill:NO];
+            Skill *skill = [self.knowledgeTracer updateUsabilitySkill:NO];
             [skills addObject:skill];
         }
     } else {
-        WordSkill *skill = (WordSkill *)[self.knowledgeTracer updateSkillFor:userAction.destinationObjectId isVerified:YES];
+        Skill *skill = [self.knowledgeTracer updateSkillFor:userAction.destinationObjectId isVerified:YES];
         [skills addObject:skill];
     }
     [self showMessageWith:skills];
@@ -246,8 +262,8 @@
 - (void)showMessageWith:(NSArray *)skills {
     
     NSMutableString *message = [NSMutableString stringWithFormat:@"Skills updated: \n"];
-    for (WordSkill *sk in skills) {
-        [message appendString:[NSString stringWithFormat:@"%@ - %f\n", sk.word, sk.skillValue]];
+    for (Skill *sk in skills) {
+        [message appendString:[NSString stringWithFormat:@"%@\n", [sk description]]];
     }
     
     [self showMessage:message];

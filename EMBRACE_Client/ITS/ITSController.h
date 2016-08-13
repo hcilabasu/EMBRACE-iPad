@@ -10,6 +10,12 @@
 #import "ManipulationContext.h"
 #import "ActionStep.h"
 
+typedef NS_ENUM(NSInteger, EMComplexity) {
+    EM_Easy,
+    EM_Medium,
+    EM_Complex
+};
+
 @interface ITSController : NSObject
 
 + (instancetype)sharedInstance;
@@ -28,4 +34,7 @@ manipulationContext:(ManipulationContext *)context
 - (void)pressedNextWithManipulationContext:(ManipulationContext *)context
                                forSentence:(NSString *)sentence
                                 isVerified:(BOOL)verified;
+
+- (EMComplexity)getCurrentComplexity;
+
 @end
