@@ -36,6 +36,10 @@
     return self;
 }
 
+- (void)addGesture:(UIGestureRecognizer *)recogniser {
+    [self.bookView addGestureRecognizer:recogniser];
+}
+
 #pragma mark -
 
 - (void)loadPageFor:(Book *)book andCurrentPage:(NSString *)page {

@@ -126,6 +126,9 @@ BOOL wasPathFollowed = false;
     [self.view addSubview:self.pmView];
     self.pmView.delegate = self;
     [self.view sendSubviewToBack:self.pmView];
+    [self.pmView addGesture:tapRecognizer];
+    [self.pmView addGesture:swipeRecognizer];
+    [self.pmView addGesture:panRecognizer];
     
     //hides the default navigation bar to add custom back button
     self.navigationItem.hidesBackButton = YES;

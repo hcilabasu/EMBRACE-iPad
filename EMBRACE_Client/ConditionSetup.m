@@ -35,12 +35,12 @@
 - (id)init {
     if (self = [super init]) {
         condition = EMBRACE;
-        language = BILINGUAL;
+        language = ENGLISH;
         reader = SYSTEM;
         appMode = Study;
         currentMode = PM_MODE;
         newInstructions = false;
-        vocabPageEnabled = false;
+        vocabPageEnabled = true;
         assessmentPageEnabled = false;
         
         allowFileSync = true; //NOTE: Still testing this functionality

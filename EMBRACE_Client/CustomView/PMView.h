@@ -18,6 +18,8 @@
 
 @property (nonatomic, weak) id <PMViewDelegate> delegate;
 
+- (void)addGesture:(UIGestureRecognizer *)recogniser;
+
 - (void)loadPageFor:(Book *)book andCurrentPage:(NSString *)page;
 
 - (NSInteger)totalSentences;
