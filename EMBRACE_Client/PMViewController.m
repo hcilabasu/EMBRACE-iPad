@@ -4496,6 +4496,7 @@ BOOL wasPathFollowed = false;
     }
     }
     NSLog(@"manipulationContext.sentenceNumber = %d",manipulationContext.sentenceNumber);
+    
 }
 
 /*
@@ -4906,6 +4907,37 @@ BOOL wasPathFollowed = false;
         //there are no audio files to play so allow interactions
         [self.view setUserInteractionEnabled:YES];
     }
+}
+
+- (void)removeAllSentences {
+    //Get the number of sentences on the page
+    NSString *requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('sentence').length"];
+    int sentenceCount = [[bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount] intValue];
+    
+    //Get the id number of the last sentence on the page
+    NSString *requestLastSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[%d - 1].id", sentenceCount];
+    NSString *lastSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
+    int lastSentenceIdNumber = [[lastSentenceId substringFromIndex:1] intValue];
+    
+    //Get the id number of the first sentence on the page
+    NSString *requestFirstSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[0].id"];
+    NSString *firstSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestFirstSentenceId];
+    int firstSentenceIdNumber = [[firstSentenceId substringFromIndex:1] intValue];
+    
+    NSString *removeSentenceString;
+    
+    //Remove all sentences on page
+    for (int i = firstSentenceIdNumber; i <= lastSentenceIdNumber; i++) {
+        //Skip the title (sentence 0) if it's the first on the page
+        if (i > 0) {
+            removeSentenceString = [NSString stringWithFormat:@"removeSentence('s%d')", i];
+            [bookView stringByEvaluatingJavaScriptFromString:removeSentenceString];
+        }
+    }
+}
+
+- (void)addSentencesWithComplexity:(EMComplexity)complexity {
+    
 }
 
 /*
