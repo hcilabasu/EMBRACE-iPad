@@ -4495,6 +4495,7 @@ BOOL wasPathFollowed = false;
         pressedNextLock = false;
     }
     }
+    NSLog(@"manipulationContext.sentenceNumber = %d",manipulationContext.sentenceNumber);
 }
 
 /*

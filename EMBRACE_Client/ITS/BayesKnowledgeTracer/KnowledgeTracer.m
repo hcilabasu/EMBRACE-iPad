@@ -47,21 +47,21 @@
 - (Skill *)updateSkill:(Skill *)skill isVerified:(BOOL)isVerified {
    
     double newSkill = 0.0;
-    Skill *prevSkill = nil;
+    
     if (isVerified) {
             
-        double skillEvaluated = [self calcCorrect:prevSkill.skillValue];
+        double skillEvaluated = [self calcCorrect:skill.skillValue];
         newSkill = [self calcNewSkillValue:skillEvaluated];
-        [prevSkill updateSkillValue:newSkill];
+        [skill updateSkillValue:newSkill];
         
     } else {
     
-        double skillEvaluated = [self calcIncorrect:prevSkill.skillValue];
+        double skillEvaluated = [self calcIncorrect:skill.skillValue];
         newSkill = [self calcNewSkillValue:skillEvaluated];
-        [prevSkill updateSkillValue:newSkill];
+        [skill updateSkillValue:newSkill];
         
     }
-    return prevSkill;
+    return skill;
 }
 
 
