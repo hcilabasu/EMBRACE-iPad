@@ -36,7 +36,7 @@
 
 - (CGPoint)locationOfObject:(NSString *)object analyzer:(ManipulationAnalyser *)analyzer;
 
-- (ActionStep *)getNextStepForCurrentSentence:(ManipulationAnalyser *)analyzer;
+- (NSArray *)getNextStepsForCurrentSentence:(ManipulationAnalyser *)analyzer;
 
 - (NSInteger)analyzer:(ManipulationAnalyser *)analyzer getComplexityForSentence:(int)sentenceNumber;
 

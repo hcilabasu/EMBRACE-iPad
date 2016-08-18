@@ -156,34 +156,39 @@
     } else {
         // Check if the user preformed a future step
         //
-        ActionStep *nextStep = [self.delegate getNextStepForCurrentSentence:self];
-        if (nextStep) {
+        NSArray *nextSteps = [self.delegate getNextStepsForCurrentSentence:self];
+        for (ActionStep *nextStep in nextSteps) {
             
-            NSString *correctDest = nil;
-            if (nextStep.object2Id != nil) {
-                correctDest = nextStep.object2Id;
-                
-            } else if (nextStep.locationId != nil) {
-                correctDest = nextStep.locationId;
-                
-            } else if (nextStep.areaId != nil) {
-                correctDest = nextStep.areaId;
-            }
             
-            if ([nextStep.object1Id isEqualToString:userAction.movedObjectId] &&
-                [correctDest isEqualToString:userAction.destinationObjectId]) {
-                NSLog(@"Performed a future step");
                 
-                NSUInteger com = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
-                Skill *skill = [self.knowledgeTracer updateSyntaxSkill:NO
-                                                                         withComplexity:com];
-                [skills addObject:skill];
-                [self showMessageWith:skills];
-                return;
-            }
+                NSString *correctDest = nil;
+                if (nextStep.object2Id != nil) {
+                    correctDest = nextStep.object2Id;
+                    
+                } else if (nextStep.locationId != nil) {
+                    correctDest = nextStep.locationId;
+                    
+                } else if (nextStep.areaId != nil) {
+                    correctDest = nextStep.areaId;
+                }
+                
+                if ([nextStep.object1Id isEqualToString:userAction.movedObjectId] &&
+                    [correctDest isEqualToString:userAction.destinationObjectId]) {
+                    NSLog(@"Performed a future step");
+                    
+                    NSUInteger com = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
+                    Skill *skill = [self.knowledgeTracer updateSyntaxSkill:NO
+                                                            withComplexity:com];
+                    [skills addObject:skill];
+                    [self showMessageWith:skills];
+                    return;
+                }
+                
             
-           
+            
+            
         }
+        
     }
     
     // Moved incorrect subject

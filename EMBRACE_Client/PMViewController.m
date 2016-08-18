@@ -5413,14 +5413,16 @@ BOOL wasPathFollowed = false;
 //    });
 }
 
-- (ActionStep *)getNextStepForCurrentSentence:(ManipulationAnalyser *)analyzer {
+- (NSArray *)getNextStepsForCurrentSentence:(ManipulationAnalyser *)analyzer {
     NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
-    ActionStep *currSolStep = nil;
+    NSArray *nextSteps = nil;
+    
     if ([currSolSteps count] > currentStep) {
-        currSolStep = [currSolSteps objectAtIndex:currentStep];    
+        NSRange range = NSMakeRange(currentStep, [currSolSteps count] - currentStep);
+        nextSteps = [currSolSteps subarrayWithRange:range];
     }
     
-    return currSolStep;
+    return nextSteps;
 }
 
 - (NSInteger)analyzer:(ManipulationAnalyser *)analyzer getComplexityForSentence:(int)sentenceNumber {
