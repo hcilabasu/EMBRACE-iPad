@@ -295,45 +295,8 @@ BOOL wasPathFollowed = false;
         manipulationContext.manipulationSentence = [self isManipulationSentence:currentSentence];
         [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
         
-        //TODO: move into new function createVocabSolutionsForPage
-        //Dynamically reads the vocabulary words on the vocab page and creates and adds solutionsteps
         if ([currentPageId rangeOfString:@"-Intro"].location != NSNotFound) {
-            PMSolution = [[PhysicalManipulationSolution alloc] init];
-            IMSolution = [[ImagineManipulationSolution alloc] init];
-            
-            for (int i = 1; i < totalSentences + 1; i++) {
-                NSString *requestSentenceText = [NSString stringWithFormat:@"document.getElementById(%d).innerHTML", i];
-                NSString *sentenceText = [bookView stringByEvaluatingJavaScriptFromString:requestSentenceText];
-                sentenceText = [sentenceText lowercaseString];
-                
-                if (conditionSetup.language == BILINGUAL) {
-                    if (![[self getEnglishTranslation:sentenceText] isEqualToString:@"Translation not found"]) {
-                        sentenceText = [self getEnglishTranslation:sentenceText];
-                    }
-                }
-
-                ActionStep *solutionStep = [[ActionStep alloc] initAsSolutionStep:i :nil : 1 : @"tapWord" : sentenceText : nil : nil: nil : nil : nil : nil];
-                
-                if (conditionSetup.currentMode == PM_MODE || conditionSetup.condition == CONTROL) {
-                    [PMSolution addSolutionStep:solutionStep];
-                }
-                else if (conditionSetup.currentMode == IM_MODE) {
-                    [IMSolution addSolutionStep:solutionStep];
-                }
-            }
-            
-            Chapter *chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
-            
-            //Add PMSolution to page
-            if (conditionSetup.currentMode == PM_MODE || conditionSetup.condition == CONTROL) {
-                PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; //get PM Activity only
-                [PMActivity addPMSolution:PMSolution forActivityId:currentPageId];
-            }
-            //Add IMSolution to page
-            else if (conditionSetup.currentMode == IM_MODE) {
-                ImagineManipulationActivity *IMActivity = (ImagineManipulationActivity *)[chapter getActivityOfType:IM_MODE]; //get IM Activity only
-                [IMActivity addIMSolution:IMSolution forActivityId:currentPageId];
-            }
+            [self createVocabSolutionsForPage];
         }
         
         //Remove any PM specific sentence instructions
@@ -678,6 +641,44 @@ BOOL wasPathFollowed = false;
             IMActivity = (ImagineManipulationActivity *)[chapter getActivityOfType:IM_MODE]; //get IM Activity from chapter
             IMSolution = [[[IMActivity IMSolutions] objectForKey:currentPageId] objectAtIndex:0]; //get IM solution
         }
+    }
+}
+
+/*
+ * Creates a solution step for each vocabulary word in the introduction and adds it to the page solutions
+ */
+- (void)createVocabSolutionsForPage {
+    NSMutableArray *vocabSolutionSteps = [[NSMutableArray alloc] init];
+    
+    for (int i = 1; i < totalSentences + 1; i++) {
+        NSString *requestVocabText = [NSString stringWithFormat:@"document.getElementById(%d).innerHTML", i];
+        NSString *vocabText = [[bookView stringByEvaluatingJavaScriptFromString:requestVocabText] lowercaseString];
+        
+        if (conditionSetup.language == BILINGUAL) {
+            if (![[self getEnglishTranslation:vocabText] isEqualToString:@"Translation not found"]) {
+                vocabText = [self getEnglishTranslation:vocabText];
+            }
+        }
+        
+        ActionStep *vocabSolutionStep = [[ActionStep alloc] initAsSolutionStep:i :nil :1 :@"tapWord" :vocabText :nil :nil :nil :nil :nil :nil];
+        [vocabSolutionSteps addObject:vocabSolutionStep];
+    }
+    
+    Chapter *chapter = [book getChapterWithTitle:chapterTitle];
+    
+    if (conditionSetup.currentMode == PM_MODE || conditionSetup.condition == CONTROL) {
+        PMSolution = [[PhysicalManipulationSolution alloc] init];
+        PMSolution.solutionSteps = vocabSolutionSteps;
+        
+        PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE];
+        [PMActivity addPMSolution:PMSolution forActivityId:currentPageId];
+    }
+    else if (conditionSetup.currentMode == IM_MODE) {
+        IMSolution = [[ImagineManipulationSolution alloc] init];
+        IMSolution.solutionSteps = vocabSolutionSteps;
+        
+        ImagineManipulationActivity *IMActivity = (ImagineManipulationActivity *)[chapter getActivityOfType:IM_MODE];
+        [IMActivity addIMSolution:IMSolution forActivityId:currentPageId];
     }
 }
 

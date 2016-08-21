@@ -36,11 +36,11 @@
     if (self = [super init]) {
         condition = EMBRACE;
         language = ENGLISH;
-        reader = SYSTEM;
+        reader = USER;
         appMode = Study;
         currentMode = PM_MODE;
         newInstructions = false;
-        vocabPageEnabled = false;
+        vocabPageEnabled = true;
         assessmentPageEnabled = false;
         
         allowFileSync = true; //NOTE: Still testing this functionality
