@@ -650,6 +650,7 @@ BOOL wasPathFollowed = false;
 - (void)createVocabSolutionsForPage {
     NSMutableArray *vocabSolutionSteps = [[NSMutableArray alloc] init];
     
+    // Adds new vocabulary introduced in the chapter
     for (int i = 1; i < totalSentences + 1; i++) {
         NSString *requestVocabText = [NSString stringWithFormat:@"document.getElementById(%d).innerHTML", i];
         NSString *vocabText = [[bookView stringByEvaluatingJavaScriptFromString:requestVocabText] lowercaseString];
@@ -662,6 +663,28 @@ BOOL wasPathFollowed = false;
         
         ActionStep *vocabSolutionStep = [[ActionStep alloc] initAsSolutionStep:i :nil :1 :@"tapWord" :vocabText :nil :nil :nil :nil :nil :nil];
         [vocabSolutionSteps addObject:vocabSolutionStep];
+    }
+    
+    // TODO: Dynamically add vocabulary based on user's current skills
+    if (conditionSetup.appMode == ITS) {
+        NSMutableArray *vocabToAdd = [[NSMutableArray alloc] init];
+    
+        // TODO: Test data. Remove later.
+        [vocabToAdd addObject:[NSString stringWithFormat:@"contest"]];
+    
+        NSString *addVocabularyString;
+    
+        for (NSString *vocab in vocabToAdd) {
+            totalSentences++;
+            
+            NSString *vocabText = vocab;
+            
+            addVocabularyString = [NSString stringWithFormat:@"addVocabulary('s%d', '%@')", totalSentences, vocabText];
+            [bookView stringByEvaluatingJavaScriptFromString:addVocabularyString];
+            
+            ActionStep *vocabSolutionStep = [[ActionStep alloc] initAsSolutionStep:totalSentences :nil :1 :@"tapWord" :vocabText :nil :nil :nil :nil :nil :nil];
+            [vocabSolutionSteps addObject:vocabSolutionStep];
+        }
     }
     
     Chapter *chapter = [book getChapterWithTitle:chapterTitle];
@@ -766,7 +789,7 @@ BOOL wasPathFollowed = false;
             [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
         }
     }
-    
+
     //Set the opacity of all but the current sentence to .2
     for (int i = currentSentence; i < totalSentences; i++) {
         NSString *setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, .2)", i + 1];
@@ -1462,7 +1485,7 @@ BOOL wasPathFollowed = false;
             if (!success)
             {
                 //if error try m4a format
-                 [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.m4a", englishSentenceText, @"E"]];
+                 [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp4", englishSentenceText, @"E"]];
             }
            
             [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:@"English" ofType:@"Play Word with Definition" :manipulationContext];

@@ -1018,6 +1018,27 @@ function addSentence(sentenceId, action, splitTextArray, wordsArray) {
     textbox.appendChild(newSentence); //add sentence to textbox
 }
 
+/*
+ * Adds vocabulary with the specified sentence ID and English text
+ */
+function addVocabulary(sentenceID, englishText) {
+    var textboxCol = document.getElementsByClassName("col-2")[0];
+    var newSentence = document.createElement("div");
+    
+    newSentence.className = "sentence actionSentence";
+    newSentence.id = sentenceID;
+
+    var newVocabulary = document.createElement("a");
+    
+    newVocabulary.className = "audible";
+    newVocabulary.id = sentenceID.slice(1);
+    newVocabulary.innerHTML = englishText[0].toUpperCase() + englishText.slice(1);
+    
+    newSentence.appendChild(newVocabulary);
+    
+    textboxCol.appendChild(newSentence);
+}
+
 function getImagePosition (object) {
     var position = new Array();
     position[0] = object.offsetLeft;
