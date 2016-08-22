@@ -44,6 +44,8 @@
     NSUInteger numSteps; //Number of steps for current sentence
     NSUInteger currentStep; //Active step to be completed
     BOOL stepsComplete; //True if all steps have been completed for a sentence
+    NSUInteger maxAttempts; // Maximum number of attempts user can make before system automatically performs step
+    NSUInteger numAttempts; // Number of attempts user has made for current step
     
     InteractionModel *model;
     ConditionSetup *conditionSetup;
@@ -191,6 +193,8 @@ BOOL wasPathFollowed = false;
     if (conditionSetup.appMode == ITS) {
         chooseComplexity = TRUE;
         pageStatistics = [[NSMutableDictionary alloc] init];
+        maxAttempts = 5;
+        numAttempts = 0;
     }
     else {
         chooseComplexity = FALSE;
@@ -666,7 +670,7 @@ BOOL wasPathFollowed = false;
     }
     
     // TODO: Dynamically add vocabulary based on user's current skills
-    if (conditionSetup.appMode == ITS) {
+//    if (conditionSetup.appMode == ITS) {
         NSMutableArray *vocabToAdd = [[NSMutableArray alloc] init];
     
         // TODO: Test data. Remove later.
@@ -692,12 +696,12 @@ BOOL wasPathFollowed = false;
                 }
             }
             
-            addVocabularyString = [NSString stringWithFormat:@"addVocabulary('s%d', '%@', '%@')", totalSentences, englishText, spanishText];
+            addVocabularyString = [NSString stringWithFormat:@"addVocabulary('s%lu', '%@', '%@')", (unsigned long)totalSentences, englishText, spanishText];
             [bookView stringByEvaluatingJavaScriptFromString:addVocabularyString];
             
             ActionStep *vocabSolutionStep = [[ActionStep alloc] initAsSolutionStep:totalSentences :nil :1 :@"tapWord" :englishText :nil :nil :nil :nil :nil :nil];
             [vocabSolutionSteps addObject:vocabSolutionStep];
-        }
+//        }
         
         // TODO: Prints textbox HTML contents. Remove later.
         NSString *pageHTMLString = [NSString stringWithFormat:@"document.getElementsByClassName('col-2')[0].innerHTML"];
@@ -1874,25 +1878,13 @@ BOOL wasPathFollowed = false;
                             else {
                                 [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:@"NULL" ofType:@"Location" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
 
-                                [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
-                                
-                                [self resetObjectLocation];
+                                [self handleErrorForAction:@"Move Object"];
                             }
                         }
                         else {
                             [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:@"NULL" ofType:@"Location" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
                             
-                            [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
-                            
-                            [self playErrorNoise];
-                            
-                            if (conditionSetup.appMode == ITS) {
-                                //Record error for complexity
-                                [[pageStatistics objectForKey:currentPageId] addErrorForComplexity:(currentComplexity - 1)];
-                            }
-                            
-                            [self resetObjectLocation];
-                            
+                            [self handleErrorForAction:@"Move Object"];
                         }
                     }
                     else if ([[currSolStep stepType] isEqualToString:@"shakeOrTap"]) {
@@ -1906,10 +1898,7 @@ BOOL wasPathFollowed = false;
                             [self incrementCurrentStep];
                         }
                         else {
-                            [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
-                            
-                            [self playErrorNoise];
-                            [self resetObjectLocation];
+                            [self handleErrorForAction:@"Move Object"];
                         }
                     }
                     else if ([[currSolStep stepType] isEqualToString:@"checkPath"]) {
@@ -1922,9 +1911,7 @@ BOOL wasPathFollowed = false;
                             [self incrementCurrentStep];
                         }
                         else {
-                            [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
-                            
-                            [self resetObjectLocation];
+                            [self handleErrorForAction:@"Move Object"];
                         }
                     }
                     else {
@@ -1945,15 +1932,7 @@ BOOL wasPathFollowed = false;
                             
                             //No possible interactions were found
                             if ([possibleInteractions count] == 0) {
-                                [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
-                                
-                                [self playErrorNoise];
-                                [self resetObjectLocation];
-                                
-                                if (conditionSetup.appMode == ITS) {
-                                    //Record error for complexity
-                                    [[pageStatistics objectForKey:currentPageId] addErrorForComplexity:(currentComplexity - 1)];
-                                }
+                                [self handleErrorForAction:@"Move Object"];
                             }
                             //If only 1 possible interaction was found, go ahead and perform that interaction if it's correct.
                             if ([possibleInteractions count] == 1) {
@@ -1985,7 +1964,6 @@ BOOL wasPathFollowed = false;
                                 
                                 //Only populate Menu if user is moving the correct object to the correct objects
                                 if (correctInteractionExists) {
-                                   
                                     //TODO: add a parameter check
                                     if (!menuExpanded && [@"PM_CUSTOM" isEqualToString:[currSolStep menuType]]) {
                                         //Reset allRelationships arrray
@@ -2011,8 +1989,7 @@ BOOL wasPathFollowed = false;
                                             [self populateMenuDataSource:interactions :allRelationships];
                                             [self expandMenu];
                                         }
-                                        else
-                                        {
+                                        else {
                                             //TODO: log error
                                         }
                                         
@@ -2025,18 +2002,13 @@ BOOL wasPathFollowed = false;
                                         [self populateMenuDataSource:possibleInteractions :allRelationships];
                                         [self expandMenu];
                                     }
-                                    else
-                                    {
+                                    else {
                                         //TODO: add log statement
                                     }
                                 }
                                 //Otherwise reset object location and play error noise
-                                else
-                                {
-                                    [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
-                                    
-                                    [self playErrorNoise];
-                                    [self resetObjectLocation];
+                                else {
+                                    [self handleErrorForAction:@"Move Object"];
                                 }
                             }
                         }
@@ -2044,10 +2016,7 @@ BOOL wasPathFollowed = false;
                         else {
                             [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:@"NULL" ofType:@"Location" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
                             
-                            [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
-                            
-                            [self playErrorNoise];
-                            [self resetObjectLocation];
+                            [self handleErrorForAction:@"Move Object"];
                         }
                     }
                 }
@@ -3287,31 +3256,71 @@ BOOL wasPathFollowed = false;
         }
     }
     else {
+        NSString *action;
+        
         if (menu != nil) {
-            [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Select Menu Item" context:manipulationContext];
+            action = [NSString stringWithFormat:@"Select Menu Item"];
         }
         else {
-            [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
+            action = [NSString stringWithFormat:@"Move Object"];
         }
     
-        [self playErrorNoise];
-        
-        if (conditionSetup.appMode == ITS) {
-            //Record error for complexity
-            [[pageStatistics objectForKey:currentPageId] addErrorForComplexity:(currentComplexity - 1)];
-        }
-        
-        if ([interaction interactionType] != UNGROUP && allowSnapback) {
-            //Snap the object back to its original location
-            [self moveObject:movingObjectId :startLocation :CGPointMake(0, 0) :false];
-            
-            [[ServerCommunicationController sharedInstance] logResetObject:movingObjectId startPos:endLocation endPos:startLocation context:manipulationContext];
-        }
+        [self handleErrorForAction:action];
     }
     
     //Clear any remaining highlighting
     NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
     [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
+}
+
+/*
+ * Handles errors by logging the action, playing a noise, and resetting the object location.
+ * The ITS will check if the user's number of attempts has reached the maximum number of attempts; if so, it will
+ * automatically perform the step.
+ */
+- (void)handleErrorForAction:(NSString *)action {
+    [[ServerCommunicationController sharedInstance] logVerification:false forAction:action context:manipulationContext];
+    
+    [self playErrorNoise];
+    
+    if (conditionSetup.appMode == ITS) {
+        //Record error for complexity
+        [[pageStatistics objectForKey:currentPageId] addErrorForComplexity:(currentComplexity - 1)];
+        
+        numAttempts++;
+        
+        if (numAttempts >= maxAttempts) {
+            numAttempts = 0;
+            
+            //Get steps for current sentence
+            NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
+            
+            //Get current step to be completed
+            ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+            NSString *stepType = [currSolStep stepType];
+            
+            if ([stepType isEqualToString:@"check"] || [stepType isEqualToString:@"checkLeft"] || [stepType isEqualToString:@"checkRight"] || [stepType isEqualToString:@"checkUp"] || [stepType isEqualToString:@"checkDown"] || [stepType isEqualToString:@"checkAndSwap"] || [stepType isEqualToString:@"tapToAnimate"] || [stepType isEqualToString:@"checkPath"] || [stepType isEqualToString:@"shakeAndTap"] || [stepType isEqualToString:@"tapWord"] ) {
+                if ([stepType isEqualToString:@"checkAndSwap"]) {
+                    [self swapObjectImage];
+                }
+                
+                [self incrementCurrentStep];
+            }
+            else {
+                //Get the interaction to be performed
+                PossibleInteraction *interaction = [self getCorrectInteraction];
+                
+                //Perform the interaction and increment the step
+                [self checkSolutionForInteraction:interaction];
+            }
+        }
+        else {
+            [self resetObjectLocation];
+        }
+    }
+    else {
+        [self resetObjectLocation];
+    }
 }
 
 /*
