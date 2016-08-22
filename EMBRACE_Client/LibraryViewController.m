@@ -581,10 +581,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
             //Get selected book
             Book *book = [books objectAtIndex:selectedBookIndex];
             
-            NSString *title = [[book title] stringByAppendingString:@" - "];
-            title = [title stringByAppendingString:[book author]];
-            
-            self.bookToOpen = title;
+            self.bookToOpen = [book title];
             self.chapterToOpen = [[[book chapters] objectAtIndex:indexPath.row] title];
             
             if (useSequence) {
