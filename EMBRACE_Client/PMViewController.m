@@ -670,21 +670,39 @@ BOOL wasPathFollowed = false;
         NSMutableArray *vocabToAdd = [[NSMutableArray alloc] init];
     
         // TODO: Test data. Remove later.
-        [vocabToAdd addObject:[NSString stringWithFormat:@"contest"]];
+        if (conditionSetup.language == BILINGUAL) {
+            [vocabToAdd addObject:[NSString stringWithFormat:@"concurso"]];
+        }
+        else {
+            [vocabToAdd addObject:[NSString stringWithFormat:@"contest"]];
+        }
     
         NSString *addVocabularyString;
     
         for (NSString *vocab in vocabToAdd) {
             totalSentences++;
             
-            NSString *vocabText = vocab;
+            NSString *englishText = vocab;
+            NSString *spanishText = [NSString stringWithFormat:@""];
             
-            addVocabularyString = [NSString stringWithFormat:@"addVocabulary('s%d', '%@')", totalSentences, vocabText];
+            if (conditionSetup.language == BILINGUAL) {
+                if (![[self getEnglishTranslation:vocab] isEqualToString:@"Translation not found"]) {
+                    englishText = [self getEnglishTranslation:vocab];
+                    spanishText = vocab;
+                }
+            }
+            
+            addVocabularyString = [NSString stringWithFormat:@"addVocabulary('s%d', '%@', '%@')", totalSentences, englishText, spanishText];
             [bookView stringByEvaluatingJavaScriptFromString:addVocabularyString];
             
-            ActionStep *vocabSolutionStep = [[ActionStep alloc] initAsSolutionStep:totalSentences :nil :1 :@"tapWord" :vocabText :nil :nil :nil :nil :nil :nil];
+            ActionStep *vocabSolutionStep = [[ActionStep alloc] initAsSolutionStep:totalSentences :nil :1 :@"tapWord" :englishText :nil :nil :nil :nil :nil :nil];
             [vocabSolutionSteps addObject:vocabSolutionStep];
         }
+        
+        // TODO: Prints textbox HTML contents. Remove later.
+        NSString *pageHTMLString = [NSString stringWithFormat:@"document.getElementsByClassName('col-2')[0].innerHTML"];
+        NSString *pageHTML = [bookView stringByEvaluatingJavaScriptFromString:pageHTMLString];
+        NSLog(@"%@", pageHTML);
     }
     
     Chapter *chapter = [book getChapterWithTitle:chapterTitle];

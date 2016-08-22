@@ -1019,22 +1019,39 @@ function addSentence(sentenceId, action, splitTextArray, wordsArray) {
 }
 
 /*
- * Adds vocabulary with the specified sentence ID and English text
+ * Adds vocabulary with the specified sentence ID, English text, and optional Spanish text
  */
-function addVocabulary(sentenceID, englishText) {
+function addVocabulary(sentenceID, englishText, spanishText) {
     var textboxCol = document.getElementsByClassName("col-2")[0];
     var newSentence = document.createElement("div");
     
     newSentence.className = "sentence actionSentence";
     newSentence.id = sentenceID;
 
-    var newVocabulary = document.createElement("a");
+    if (spanishText.length > 0) {
+        var newSpanishVocabulary = document.createElement("a");
+        
+        newSpanishVocabulary.className = "audible";
+        newSpanishVocabulary.id = sentenceID.slice(1);
+        newSpanishVocabulary.innerHTML = spanishText[0].toUpperCase() + spanishText.slice(1);
+        
+        newSentence.appendChild(newSpanishVocabulary);
+        
+        var divider = document.createElement("a");
+        
+        divider.className = "divider";
+        divider.innerHTML = "&nbsp;/&nbsp;";
+        
+        newSentence.appendChild(divider);
+    }
     
-    newVocabulary.className = "audible";
-    newVocabulary.id = sentenceID.slice(1);
-    newVocabulary.innerHTML = englishText[0].toUpperCase() + englishText.slice(1);
+    var newEnglishVocabulary = document.createElement("a");
     
-    newSentence.appendChild(newVocabulary);
+    newEnglishVocabulary.className = "audible";
+    newEnglishVocabulary.id = sentenceID.slice(1);
+    newEnglishVocabulary.innerHTML = englishText[0].toUpperCase() + englishText.slice(1);
+    
+    newSentence.appendChild(newEnglishVocabulary);
     
     textboxCol.appendChild(newSentence);
 }
