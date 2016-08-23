@@ -260,13 +260,17 @@ BOOL wasPathFollowed = false;
     //Start off with no objects grouped together
     currentGroupings = [[NSMutableDictionary alloc] init];
     
-    //TODO: remove debug menu, tie into its system to build complexity
-    //Show menu to choose complexity level for non-intro pages of The Best Farm story only
-    if (conditionSetup.appMode == ITS && [currentPageId rangeOfString:@"Intro"].location == NSNotFound && ![chapterTitle isEqualToString:@"Introduction to The Best Farm"] && [bookTitle rangeOfString:@"The Circulatory System"].location == NSNotFound) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Choose sentence complexity levels" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"60% Simple   20% Medium   20% Complex", @"20% Simple   60% Medium   20% Complex", @"20% Simple   20% Medium   60% Complex", @"0% Simple 100% Medium 0% Complex", nil];
-        [alert show];
-    }
-    else {
+//    //TODO: remove debug menu, tie into its system to build complexity
+//    //Show menu to choose complexity level for non-intro pages of The Best Farm story only
+//    if (conditionSetup.appMode == ITS && [currentPageId rangeOfString:@"Intro"].location == NSNotFound && ![chapterTitle isEqualToString:@"Introduction to The Best Farm"] && [bookTitle rangeOfString:@"The Circulatory System"].location == NSNotFound) {
+//        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Choose sentence complexity levels" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"60% Simple   20% Medium   20% Complex", @"20% Simple   60% Medium   20% Complex", @"20% Simple   20% Medium   60% Complex", @"0% Simple 100% Medium 0% Complex", nil];
+//        [alert show];
+//    }
+//    else {
+    [self removeAllSentences];
+    [self addSentencesWithComplexity:EM_Complex];
+
+    
         //Get the number of sentences on the page
         NSString *requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('sentence').length"];
         int sentenceCount = [[bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount] intValue];
@@ -281,7 +285,8 @@ BOOL wasPathFollowed = false;
         NSString *lastSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
         int lastSentenceIdNumber = [[lastSentenceId substringFromIndex:1] intValue];
         totalSentences = lastSentenceIdNumber;
-        
+    
+    
         //Get the id number of the first sentence on the page and set it equal to the current sentence number.
         //Because the PMActivity may have multiple pages, the first sentence on the page is not necessarily sentence 1.
         //   Ex. Page 1 may start at sentence 1, but page 2 may start at sentence 4.
@@ -359,7 +364,7 @@ BOOL wasPathFollowed = false;
         //Set up current sentence appearance and solution steps
         [self setupCurrentSentence];
         [self setupCurrentSentenceColor];
-    }
+//    }
     
     if ([IntroductionClass.introductions objectForKey:chapterTitle] || ([IntroductionClass.vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound)) {
         IntroductionClass.allowInteractions = FALSE;
@@ -4938,6 +4943,145 @@ BOOL wasPathFollowed = false;
 
 - (void)addSentencesWithComplexity:(EMComplexity)complexity {
     
+    Chapter *chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
+    PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
+    NSMutableArray *alternateSentences = [[PMActivity alternateSentences] objectForKey:currentPageId]; //get alternate sentences for current page
+    
+    NSString *addSentenceString;
+    int sentenceNumber = 1; //used for assigning sentence ids
+    int previousIdeaNum = 0; //used for making sure same idea does not get repeated
+    
+    NSMutableArray *ideaNums = [PMSolution getIdeaNumbers]; //get list of idea numbers on the page
+    
+    //Add alternate sentences associated with each idea
+    for (NSNumber *ideaNum in ideaNums) {
+        if ([ideaNum intValue] > previousIdeaNum) {
+            
+            
+            BOOL foundIdea = false; //flag to check if there is a sentence with the specified complexity for the idea number
+            
+            //Create an array to hold sentences that will be added to the page
+            NSMutableArray *sentencesToAdd = [[NSMutableArray alloc] init];
+            
+            //Look for alternate sentences that match the idea number and complexity
+            for (AlternateSentence *altSent in alternateSentences) {
+                if ([[[altSent ideas] objectAtIndex:0] isEqualToNumber:ideaNum] && [altSent complexity] == complexity) {
+                    foundIdea = true;
+                    [sentencesToAdd addObject:altSent];
+                    previousIdeaNum = [[[altSent ideas] lastObject] intValue];
+                }
+            }
+            
+            //If a sentence with the specified complexity was not found for the idea number, look for a
+            //sentence with complexity level 2
+            if (!foundIdea) {
+                for (AlternateSentence *altSent in alternateSentences) {
+                    if ([[[altSent ideas] objectAtIndex:0] isEqualToNumber:ideaNum] && [altSent complexity] == 2) {
+                        foundIdea = true;
+                        [sentencesToAdd addObject:altSent];
+                        previousIdeaNum = [[[altSent ideas] lastObject] intValue];
+                    }
+                }
+            }
+            
+            for (AlternateSentence *sentenceToAdd in sentencesToAdd) {
+                //Get alternate sentence information
+                BOOL action = [sentenceToAdd actionSentence];
+                NSString *text = [sentenceToAdd text];
+                
+                //Split sentence text into individual tokens (words)
+                NSArray *textTokens = [text componentsSeparatedByString:@" "];
+                
+                //Contains the vocabulary words that appear in the sentence
+                NSMutableArray *words = [[NSMutableArray alloc] init];
+                
+                //Contains the sentence text split around vocabulary words
+                NSMutableArray *splitText = [[NSMutableArray alloc] init];
+                
+                //Combines tokens into the split sentence text
+                NSString *currentSplit = @"";
+                
+                for (NSString *textToken in textTokens) {
+                    NSString *modifiedTextToken = textToken;
+                    
+                    //Replaces the ' character if it exists in the token
+                    if ([modifiedTextToken rangeOfString:@"'"].location != NSNotFound) {
+                        modifiedTextToken = [modifiedTextToken stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
+                    }
+                    
+                    BOOL addedWord = false; //whether token contains vocabulary word
+                    
+                    for (NSString *vocab in [[Translation translationWords] allKeys]) {
+                        //Match the whole vocabulary word only
+                        NSString *regex = [NSString stringWithFormat:@"\\b%@\\b", vocab];
+                        
+                        //Token contains vocabulary word
+                        if ([modifiedTextToken rangeOfString:regex options:NSRegularExpressionSearch].location != NSNotFound) {
+                            [words addObject:vocab]; //add word to list
+                            addedWord = true;
+                            
+                            [splitText addObject:currentSplit];
+                            
+                            //Reset current split to be anything that appears after the vocabulary word and add a space in the beginning
+                            currentSplit = [[modifiedTextToken stringByReplacingOccurrencesOfString:vocab withString:@""] stringByAppendingString:@" "];
+                            
+                            break;
+                        }
+                    }
+                    
+                    //Token does not contain vocabulary word
+                    if (!addedWord) {
+                        //Add token to current split with a space after it
+                        NSString *textTokenSpace = [NSString stringWithFormat:@"%@ ", modifiedTextToken];
+                        currentSplit = [currentSplit stringByAppendingString:textTokenSpace];
+                    }
+                }
+                
+                [splitText addObject:currentSplit]; //make sure to add the last split
+                
+                //Create array strings for vocabulary and split text to send to JS function
+                NSString *wordsArrayString = [words componentsJoinedByString:@"','"];
+                NSString *splitTextArrayString = [splitText componentsJoinedByString:@"','"];
+                
+                //Add alternate sentence to page
+                addSentenceString = [NSString stringWithFormat:@"addSentence('s%d', %@, ['%@'], ['%@'])", sentenceNumber++, action ? @"true" : @"false", splitTextArrayString, wordsArrayString];
+                [bookView stringByEvaluatingJavaScriptFromString:addSentenceString];
+                
+                //Add alternate sentence to array
+                [pageSentences addObject:sentenceToAdd];
+                
+                BOOL transference = FALSE;
+                
+                //Count number of user steps for page statistics
+                for (ActionStep *as in [sentenceToAdd solutionSteps]) {
+                    if (!([[as stepType] isEqualToString:@"ungroup"] ||
+                          [[as stepType] isEqualToString:@"move"] ||
+                          [[as stepType] isEqualToString:@"swapImage"])) {
+                        //Make sure transference steps don't get counted twice
+                        if ([[as stepType] isEqualToString:@"transferAndGroup"] ||
+                            [[as stepType] isEqualToString:@"transferAndDisappear"]) {
+                            if (!transference) {
+                                [[pageStatistics objectForKey:currentPageId] addStepForComplexity:([sentenceToAdd complexity] - 1)];
+                                
+                                transference = TRUE;
+                            }
+                            else {
+                                transference = FALSE;
+                            }
+                        }
+                        else {
+                            [[pageStatistics objectForKey:currentPageId] addStepForComplexity:([sentenceToAdd complexity] - 1)];
+                        }
+                    }
+                }
+                
+                //Count number of non-action sentences for each complexity
+                if ([sentenceToAdd actionSentence] == FALSE) {
+                    [[pageStatistics objectForKey:currentPageId] addNonActSentForComplexity:([sentenceToAdd complexity] - 1)];
+                }
+            }
+        }
+    }
 }
 
 /*

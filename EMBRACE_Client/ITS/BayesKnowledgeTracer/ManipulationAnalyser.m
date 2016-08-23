@@ -14,7 +14,7 @@
 #import "ActionStep.h"
 #import "Skill.h"
 
-#define DISTANCE_THRESHOLD 150
+#define DISTANCE_THRESHOLD 90
 
 @interface ManipulationAnalyser ()
 

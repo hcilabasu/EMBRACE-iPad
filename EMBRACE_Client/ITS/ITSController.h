@@ -11,7 +11,7 @@
 #import "ActionStep.h"
 
 typedef NS_ENUM(NSInteger, EMComplexity) {
-    EM_Easy,
+    EM_Easy = 1,
     EM_Medium,
     EM_Complex
 };
