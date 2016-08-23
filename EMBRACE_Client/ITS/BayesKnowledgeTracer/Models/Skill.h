@@ -13,6 +13,8 @@
 
 + (Skill *)skillForWord:(NSString *)word;
 
++ (double)defaultInitialValue;
+
 - (void)updateSkillValue:(double)value;
 
 @property (nonatomic, assign) BOOL isVerified;

@@ -4476,7 +4476,7 @@ BOOL wasPathFollowed = false;
             //currentSentence is 1 indexed
             if (currentSentence > totalSentences) {
                 if (conditionSetup.appMode == ITS && [currentPageId rangeOfString:@"Intro"].location == NSNotFound && ![chapterTitle isEqualToString:@"Introduction to The Best Farm"] && [bookTitle rangeOfString:@"The Circulatory System"].location == NSNotFound) {
-                    [self showPageStatistics]; //show popup window with page statistics
+                    //[self showPageStatistics]; //show popup window with page statistics
                 }
                 else {
                     [self loadNextPage];

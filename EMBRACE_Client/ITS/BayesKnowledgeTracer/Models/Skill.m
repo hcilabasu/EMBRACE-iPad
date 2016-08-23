@@ -9,6 +9,8 @@
 #import "Skill.h"
 #import "WordSkill.h"
 
+#define DEFAULT_INITIAL_VALUE 0.15
+
 @interface Skill ()
 
 @property (nonatomic, assign) double skillValue;
@@ -26,11 +28,15 @@
     return skill;
 }
 
++ (double)defaultInitialValue {
+    return DEFAULT_INITIAL_VALUE;
+}
+
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _skillValue = 0.15;
+        _skillValue = DEFAULT_INITIAL_VALUE;
     }
     return self;
 }
