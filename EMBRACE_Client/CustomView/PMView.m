@@ -32,6 +32,40 @@
         [[_bookView scrollView] setScrollEnabled:NO];
         [self addSubview:_bookView];
         
+        
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:_bookView
+                                                              attribute:NSLayoutAttributeTop
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:self
+                                                              attribute:NSLayoutAttributeTop
+                                                             multiplier:1.0
+                                                               constant:0.0]];
+        
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:_bookView
+                                                              attribute:NSLayoutAttributeLeading
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:self
+                                                              attribute:NSLayoutAttributeLeading
+                                                             multiplier:1.0
+                                                               constant:0.0]];
+        
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:_bookView
+                                                              attribute:NSLayoutAttributeBottom
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:self
+                                                              attribute:NSLayoutAttributeBottom
+                                                             multiplier:1.0
+                                                               constant:0.0]];
+        
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:_bookView
+                                                              attribute:NSLayoutAttributeTrailing
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:self
+                                                              attribute:NSLayoutAttributeTrailing
+                                                             multiplier:1.0
+                                                               constant:0.0]];
+
+        
     }
     return self;
 }
