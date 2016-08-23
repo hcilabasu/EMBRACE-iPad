@@ -652,7 +652,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  * flipped. If the image src isn't found, returns nil. Otherwise, returned the MenuItemImage
  * that was created.
  */
-- (MenuItemImage *)createMenuItemForImage:(NSString *)objId :(NSString *)FLIP {
+- (MenuItemImage *)createMenuItemForImage:(NSString *)objId
+                                     flip:(NSString *)FLIP {
     
     NSString *requestImageSrc = [NSString stringWithFormat:@"%@.src", objId];
     NSString *imageSrc = [self.bookView stringByEvaluatingJavaScriptFromString:requestImageSrc];
