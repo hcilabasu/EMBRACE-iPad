@@ -27,9 +27,9 @@
     if (self) {
         _wordSkillDict = [[NSMutableDictionary alloc] init];
         
-        _easySyntaxSkill = [[SyntaxSkill alloc] init];
-        _medSyntaxSkill = [[SyntaxSkill alloc] init];
-        _complexSyntaxSkill = [[SyntaxSkill alloc] init];
+        _easySyntaxSkill = [[SyntaxSkill alloc] initWithComplexity:EM_Easy];
+        _medSyntaxSkill = [[SyntaxSkill alloc] initWithComplexity:EM_Medium];
+        _complexSyntaxSkill = [[SyntaxSkill alloc] initWithComplexity:EM_Complex];
         
         _usabilitySkill = [[UsabilitySkill alloc] init];
         

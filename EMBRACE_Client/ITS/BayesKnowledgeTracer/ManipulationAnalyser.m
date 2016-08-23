@@ -117,7 +117,7 @@
         }
         
         // Update the syntax and usability skill
-        NSUInteger com = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
+        EMComplexity com = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
         Skill *synSkill = [self.knowledgeTracer updateSyntaxSkill:YES
                                                                     withComplexity:com];
         Skill *useSkill = [self.knowledgeTracer updateUsabilitySkill:YES];
@@ -146,7 +146,7 @@
         [userAction.movedObjectId isEqualToString:userAction.actionStep.object2Id]) {
         
         NSLog(@"Mixed up objects");
-        NSUInteger com = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
+        EMComplexity com = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
         Skill *skill = [self.knowledgeTracer updateSyntaxSkill:NO
                                                                     withComplexity:com];
         
@@ -176,7 +176,7 @@
                     [correctDest isEqualToString:userAction.destinationObjectId]) {
                     NSLog(@"Performed a future step");
                     
-                    NSUInteger com = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
+                    EMComplexity com = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
                     Skill *skill = [self.knowledgeTracer updateSyntaxSkill:NO
                                                             withComplexity:com];
                     [skills addObject:skill];

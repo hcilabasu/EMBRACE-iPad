@@ -86,11 +86,14 @@
     
     NSTimer *timer; //Controls the timing of the audio file that is playing
     BOOL isAudioLeft;
+    
+    
 }
 
 @property (nonatomic, strong) IBOutlet UIWebView *bookView;
 @property (strong) AVAudioPlayer *audioPlayer;
 @property (strong) AVAudioPlayer *audioPlayerAfter; //Used to play sounds after the first audio player has finished playing
+@property (nonatomic, assign)EMComplexity currentComplexityLevel;
 
 @end
 
@@ -267,8 +270,12 @@ BOOL wasPathFollowed = false;
 //        [alert show];
 //    }
 //    else {
-    [self removeAllSentences];
-    [self addSentencesWithComplexity:EM_Complex];
+    if (conditionSetup.appMode == ITS) {
+        self.currentComplexityLevel = [[ITSController sharedInstance] getCurrentComplexity];
+        [self removeAllSentences];
+        [self addSentencesWithComplexity:self.currentComplexityLevel];
+    }
+    
 
     
         //Get the number of sentences on the page
@@ -360,7 +367,9 @@ BOOL wasPathFollowed = false;
                 }
             }
         }
-        
+    
+
+    
         //Set up current sentence appearance and solution steps
         [self setupCurrentSentence];
         [self setupCurrentSentenceColor];
@@ -4952,7 +4961,7 @@ BOOL wasPathFollowed = false;
     int previousIdeaNum = 0; //used for making sure same idea does not get repeated
     
     NSMutableArray *ideaNums = [PMSolution getIdeaNumbers]; //get list of idea numbers on the page
-    
+    pageSentences = [NSMutableArray array];
     //Add alternate sentences associated with each idea
     for (NSNumber *ideaNum in ideaNums) {
         if ([ideaNum intValue] > previousIdeaNum) {
@@ -5569,8 +5578,8 @@ BOOL wasPathFollowed = false;
     return nextSteps;
 }
 
-- (NSInteger)analyzer:(ManipulationAnalyser *)analyzer getComplexityForSentence:(int)sentenceNumber {
-    return 1;
+- (EMComplexity)analyzer:(ManipulationAnalyser *)analyzer getComplexityForSentence:(int)sentenceNumber {
+    return self.currentComplexityLevel;
 }
 
 @end

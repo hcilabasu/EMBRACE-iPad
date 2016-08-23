@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ITSController.h"
 
 @class UserAction, ActionStep;
 @class ManipulationContext;
@@ -38,7 +39,7 @@
 
 - (NSArray *)getNextStepsForCurrentSentence:(ManipulationAnalyser *)analyzer;
 
-- (NSInteger)analyzer:(ManipulationAnalyser *)analyzer getComplexityForSentence:(int)sentenceNumber;
+- (EMComplexity)analyzer:(ManipulationAnalyser *)analyzer getComplexityForSentence:(int)sentenceNumber;
 
 - (void)analyzer:(ManipulationAnalyser *)analyzer showMessage:(NSString *)message;
 

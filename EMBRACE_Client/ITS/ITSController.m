@@ -9,6 +9,7 @@
 #import "ITSController.h"
 #import "ManipulationAnalyser.h"
 #import "UserAction.h"
+#import "ConditionSetup.h"
 
 @interface ITSController()
 
@@ -56,6 +57,10 @@
 manipulationContext:(ManipulationContext *)context
         forSentence:(NSString *)sentence {
     
+    if ([[ConditionSetup sharedInstance] appMode] != ITS) {
+        return;
+    }
+    
     NSString *dest = nil;
     if ([destinationObjs count] > 0) {
            dest = [destinationObjs objectAtIndex:0];
@@ -102,7 +107,7 @@ manipulationContext:(ManipulationContext *)context
         
     }
     
-    return EM_Medium;
+    return complexity;
 }
 
 @end
