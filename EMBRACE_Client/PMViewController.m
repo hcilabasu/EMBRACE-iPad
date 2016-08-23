@@ -123,9 +123,51 @@ BOOL wasPathFollowed = false;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.pmView = [[PMView alloc] initWithFrame:self.view.frame];
+    
     [self.view addSubview:self.pmView];
     self.pmView.delegate = self;
     [self.view sendSubviewToBack:self.pmView];
+    
+//    NSLayoutConstraint *xCenterConstraint = [NSLayoutConstraint constraintWithItem:self.pmView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0];
+//    [self.view addConstraint:xCenterConstraint];
+//    
+//    NSLayoutConstraint *yCenterConstraint = [NSLayoutConstraint constraintWithItem:self.pmView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0];
+//    [self.view addConstraint:yCenterConstraint];
+    
+    
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.pmView
+                                                              attribute:NSLayoutAttributeTop
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:self.view
+                                                              attribute:NSLayoutAttributeTop
+                                                             multiplier:1.0
+                                                               constant:0.0]];
+    
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.pmView
+                                                              attribute:NSLayoutAttributeLeading
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:self.view
+                                                              attribute:NSLayoutAttributeLeading
+                                                             multiplier:1.0
+                                                               constant:0.0]];
+    
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.pmView
+                                                              attribute:NSLayoutAttributeBottom
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:self.view
+                                                              attribute:NSLayoutAttributeBottom
+                                                             multiplier:1.0
+                                                               constant:0.0]];
+    
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.pmView
+                                                              attribute:NSLayoutAttributeTrailing
+                                                              relatedBy:NSLayoutRelationEqual
+                                                                 toItem:self.view
+                                                              attribute:NSLayoutAttributeTrailing
+                                                             multiplier:1.0
+                                                               constant:0.0]];
+
+    
     [self.pmView addGesture:tapRecognizer];
     [self.pmView addGesture:swipeRecognizer];
     [self.pmView addGesture:panRecognizer];
