@@ -92,6 +92,11 @@
     return sk;
 }
 
+- (Skill *)syntaxSkillForWord:(NSString *)word {
+    Skill *sk  = [self.skillSet skillForWord:word];
+    return sk;
+}
+
 #pragma mark -
 
 - (double)getSlip {

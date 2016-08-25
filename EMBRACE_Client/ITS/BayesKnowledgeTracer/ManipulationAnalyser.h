@@ -30,6 +30,8 @@
 - (double)medSyntaxSkillValue;
 - (double)complexSyntaxSkillValue;
 
+- (double)syntaxSkillValueForWord:(NSString *)word;
+
 @end
 
 
