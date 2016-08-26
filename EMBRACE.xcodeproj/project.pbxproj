@@ -2045,7 +2045,7 @@
 		5C13C8891CCEC0C9005072DB /* EarthquakesE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C13C8881CCEC0C9005072DB /* EarthquakesE.mp3 */; };
 		5C1A38711C692AD1007A877C /* comb.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1A38701C692AD1007A877C /* comb.png */; };
 		5C1A38B11C69954B007A877C /* TheNavajoHoganS0E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C1A389F1C69954B007A877C /* TheNavajoHoganS0E.mp3 */; };
-		5C1A38B21C69954B007A877C /* TheNavajoHoganS10E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C1A38A01C69954B007A877C /* TheNavajoHoganS10E.mp3 */; };
+		5C1A38B21C69954B007A877C /* TheNavajoHoganS11E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C1A38A01C69954B007A877C /* TheNavajoHoganS11E.mp3 */; };
 		5C1A38B31C69954B007A877C /* TheNavajoHoganS1E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C1A38A11C69954B007A877C /* TheNavajoHoganS1E.mp3 */; };
 		5C1A38B41C69954B007A877C /* TheNavajoHoganS2E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C1A38A21C69954B007A877C /* TheNavajoHoganS2E.mp3 */; };
 		5C1A38B51C69954B007A877C /* TheNavajoHoganS3E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C1A38A31C69954B007A877C /* TheNavajoHoganS3E.mp3 */; };
@@ -2053,8 +2053,8 @@
 		5C1A38B71C69954B007A877C /* TheNavajoHoganS5E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C1A38A51C69954B007A877C /* TheNavajoHoganS5E.mp3 */; };
 		5C1A38B81C69954B007A877C /* TheNavajoHoganS6E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C1A38A61C69954B007A877C /* TheNavajoHoganS6E.mp3 */; };
 		5C1A38B91C69954B007A877C /* TheNavajoHoganS7E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C1A38A71C69954B007A877C /* TheNavajoHoganS7E.mp3 */; };
-		5C1A38BA1C69954B007A877C /* TheNavajoHoganS8E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C1A38A81C69954B007A877C /* TheNavajoHoganS8E.mp3 */; };
-		5C1A38BB1C69954B007A877C /* TheNavajoHoganS9E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C1A38A91C69954B007A877C /* TheNavajoHoganS9E.mp3 */; };
+		5C1A38BA1C69954B007A877C /* TheNavajoHoganS9E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C1A38A81C69954B007A877C /* TheNavajoHoganS9E.mp3 */; };
+		5C1A38BB1C69954B007A877C /* TheNavajoHoganS10E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C1A38A91C69954B007A877C /* TheNavajoHoganS10E.mp3 */; };
 		5C1A38D11C6997C2007A877C /* NativeIntroS0E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C1A38CA1C6997C2007A877C /* NativeIntroS0E.mp3 */; };
 		5C1A38D21C6997C2007A877C /* NativeIntroS1E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C1A38CB1C6997C2007A877C /* NativeIntroS1E.mp3 */; };
 		5C1A38D31C6997C2007A877C /* NativeIntroS2E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C1A38CC1C6997C2007A877C /* NativeIntroS2E.mp3 */; };
@@ -4281,6 +4281,7 @@
 		5CD642BA1CC5F0CB00211BD4 /* Rocket'sS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CD642B91CC5F0CB00211BD4 /* Rocket'sS.mp3 */; };
 		5CD7FE3519775C1C007A1E49 /* VocabularyStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD7FE3419775C1C007A1E49 /* VocabularyStep.m */; };
 		5CD7FE3819776403007A1E49 /* Introduction.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD7FE3719776403007A1E49 /* Introduction.m */; };
+		5CECE6D61D6FCE4400C6FDF9 /* TheNavajoHoganS8E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CECE6D51D6FCE4400C6FDF9 /* TheNavajoHoganS8E.mp3 */; };
 		5CEEBFA81ACA05F4002AACC4 /* Area.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEEBFA71ACA05F4002AACC4 /* Area.m */; };
 		5CF6C99D1CCAEC1B0093D3FD /* island_lava_Hawaii2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CF6C99C1CCAEC1B0093D3FD /* island_lava_Hawaii2.png */; };
 		5CF6CA091CCB2BB50093D3FD /* AwhileE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5CF6C9A01CCB2BB50093D3FD /* AwhileE.mp3 */; };
@@ -7052,7 +7053,7 @@
 		5C13C8881CCEC0C9005072DB /* EarthquakesE.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = EarthquakesE.mp3; sourceTree = "<group>"; };
 		5C1A38701C692AD1007A877C /* comb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comb.png; sourceTree = "<group>"; };
 		5C1A389F1C69954B007A877C /* TheNavajoHoganS0E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNavajoHoganS0E.mp3; sourceTree = "<group>"; };
-		5C1A38A01C69954B007A877C /* TheNavajoHoganS10E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNavajoHoganS10E.mp3; sourceTree = "<group>"; };
+		5C1A38A01C69954B007A877C /* TheNavajoHoganS11E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNavajoHoganS11E.mp3; sourceTree = "<group>"; };
 		5C1A38A11C69954B007A877C /* TheNavajoHoganS1E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNavajoHoganS1E.mp3; sourceTree = "<group>"; };
 		5C1A38A21C69954B007A877C /* TheNavajoHoganS2E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNavajoHoganS2E.mp3; sourceTree = "<group>"; };
 		5C1A38A31C69954B007A877C /* TheNavajoHoganS3E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNavajoHoganS3E.mp3; sourceTree = "<group>"; };
@@ -7060,8 +7061,8 @@
 		5C1A38A51C69954B007A877C /* TheNavajoHoganS5E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNavajoHoganS5E.mp3; sourceTree = "<group>"; };
 		5C1A38A61C69954B007A877C /* TheNavajoHoganS6E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNavajoHoganS6E.mp3; sourceTree = "<group>"; };
 		5C1A38A71C69954B007A877C /* TheNavajoHoganS7E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNavajoHoganS7E.mp3; sourceTree = "<group>"; };
-		5C1A38A81C69954B007A877C /* TheNavajoHoganS8E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNavajoHoganS8E.mp3; sourceTree = "<group>"; };
-		5C1A38A91C69954B007A877C /* TheNavajoHoganS9E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNavajoHoganS9E.mp3; sourceTree = "<group>"; };
+		5C1A38A81C69954B007A877C /* TheNavajoHoganS9E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNavajoHoganS9E.mp3; sourceTree = "<group>"; };
+		5C1A38A91C69954B007A877C /* TheNavajoHoganS10E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNavajoHoganS10E.mp3; sourceTree = "<group>"; };
 		5C1A38CA1C6997C2007A877C /* NativeIntroS0E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NativeIntroS0E.mp3; sourceTree = "<group>"; };
 		5C1A38CB1C6997C2007A877C /* NativeIntroS1E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NativeIntroS1E.mp3; sourceTree = "<group>"; };
 		5C1A38CC1C6997C2007A877C /* NativeIntroS2E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NativeIntroS2E.mp3; sourceTree = "<group>"; };
@@ -9299,6 +9300,7 @@
 		5CD7FE3719776403007A1E49 /* Introduction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Introduction.m; sourceTree = "<group>"; };
 		5CE1E30D1A119DFC0070A7D6 /* circulatory.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = circulatory.epub; path = EPUBs/circulatory/circulatory.epub; sourceTree = "<group>"; };
 		5CE1E30F1A119E120070A7D6 /* bestFarm.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = bestFarm.epub; path = EPUBs/bestFarm/bestFarm.epub; sourceTree = "<group>"; };
+		5CECE6D51D6FCE4400C6FDF9 /* TheNavajoHoganS8E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNavajoHoganS8E.mp3; sourceTree = "<group>"; };
 		5CEEBFA61ACA05F4002AACC4 /* Area.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Area.h; sourceTree = "<group>"; };
 		5CEEBFA71ACA05F4002AACC4 /* Area.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Area.m; sourceTree = "<group>"; };
 		5CF6C99C1CCAEC1B0093D3FD /* island_lava_Hawaii2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = island_lava_Hawaii2.png; sourceTree = "<group>"; };
@@ -12949,7 +12951,7 @@
 				5C1A38CF1C6997C2007A877C /* NativeIntroS5E.mp3 */,
 				5C1A38D01C6997C2007A877C /* NativeIntroS6E.mp3 */,
 				5C1A389F1C69954B007A877C /* TheNavajoHoganS0E.mp3 */,
-				5C1A38A01C69954B007A877C /* TheNavajoHoganS10E.mp3 */,
+				5C1A38A01C69954B007A877C /* TheNavajoHoganS11E.mp3 */,
 				5C1A38A11C69954B007A877C /* TheNavajoHoganS1E.mp3 */,
 				5C1A38A21C69954B007A877C /* TheNavajoHoganS2E.mp3 */,
 				5C1A38A31C69954B007A877C /* TheNavajoHoganS3E.mp3 */,
@@ -12957,8 +12959,9 @@
 				5C1A38A51C69954B007A877C /* TheNavajoHoganS5E.mp3 */,
 				5C1A38A61C69954B007A877C /* TheNavajoHoganS6E.mp3 */,
 				5C1A38A71C69954B007A877C /* TheNavajoHoganS7E.mp3 */,
-				5C1A38A81C69954B007A877C /* TheNavajoHoganS8E.mp3 */,
-				5C1A38A91C69954B007A877C /* TheNavajoHoganS9E.mp3 */,
+				5CECE6D51D6FCE4400C6FDF9 /* TheNavajoHoganS8E.mp3 */,
+				5C1A38A81C69954B007A877C /* TheNavajoHoganS9E.mp3 */,
+				5C1A38A91C69954B007A877C /* TheNavajoHoganS10E.mp3 */,
 			);
 			path = ChapterAudio;
 			sourceTree = "<group>";
@@ -16594,6 +16597,7 @@
 				5DBC02FC1C509CFD0030072B /* (null) in Resources */,
 				5CA5CBAF1CD15A0B002A631F /* ManchaTheHorseS4E.mp3 in Resources */,
 				5C5D09831CA9F6DD00B7C8D9 /* UnderstoodE.mp3 in Resources */,
+				5CECE6D61D6FCE4400C6FDF9 /* TheNavajoHoganS8E.mp3 in Resources */,
 				5C0421551C618C2B001BBE9D /* BabyBrotherQ7A2.mp3 in Resources */,
 				5C72E6661C72A46F00CE4877 /* TheInuitIglooQ4A2.mp3 in Resources */,
 				1A63205B1C0E4D3B00251CB3 /* Story4-Who-is-the-Best-Animal-PM-1.xhtml in Resources */,
@@ -17012,7 +17016,7 @@
 				5C72E6401C72A46F00CE4877 /* TheSiouxTeepeeQ5.mp3 in Resources */,
 				1A63211B1C0E4D3B00251CB3 /* vase_empty.png in Resources */,
 				5CF792E11C7694A900216337 /* TheContestQ7A2S.mp3 in Resources */,
-				5C1A38B21C69954B007A877C /* TheNavajoHoganS10E.mp3 in Resources */,
+				5C1A38B21C69954B007A877C /* TheNavajoHoganS11E.mp3 in Resources */,
 				1A6322271C0E4D3B00251CB3 /* lava_molaka.png in Resources */,
 				1A7C78151C74FAF60031041D /* rattle_high_res.png in Resources */,
 				1A6320791C0E4D3B00251CB3 /* container.xml in Resources */,
@@ -17443,7 +17447,7 @@
 				5C28DCCB1C2BA66E005ACD07 /* ropecoil.png in Resources */,
 				5CF793371C76986E00216337 /* old_BFEC0.m4a in Resources */,
 				5C72E5FE1C72A46F00CE4877 /* TheHaidaPlankHouseQ3A1.mp3 in Resources */,
-				5C1A38BA1C69954B007A877C /* TheNavajoHoganS8E.mp3 in Resources */,
+				5C1A38BA1C69954B007A877C /* TheNavajoHoganS9E.mp3 in Resources */,
 				5C0ED5591C75080300003B5A /* KeyIngredientsQ2A1S.mp3 in Resources */,
 				5C0ED8871C75334200003B5A /* HomecomingQ1.mp3 in Resources */,
 				1A6320811C0E4D3B00251CB3 /* babybrother.png in Resources */,
@@ -20953,7 +20957,7 @@
 				5CB710E91C6C292B0062AD61 /* CPQR7.m4a in Resources */,
 				5C72E5F21C72A46F00CE4877 /* TheHaidaPlankHouseQ5A3.mp3 in Resources */,
 				5C1C4D4B1D238A2800547783 /* RushE.mp3 in Resources */,
-				5C1A38BB1C69954B007A877C /* TheNavajoHoganS9E.mp3 in Resources */,
+				5C1A38BB1C69954B007A877C /* TheNavajoHoganS10E.mp3 in Resources */,
 				5CAE95E41C921DCD00702DB4 /* HaidaS.mp3 in Resources */,
 				5C0422071C618C2B001BBE9D /* WordsOfWisdomQ5.mp3 in Resources */,
 				5C72E5F51C72A46F00CE4877 /* TheHaidaPlankHouseQ5.mp3 in Resources */,
