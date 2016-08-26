@@ -36,8 +36,8 @@
     if (self = [super init]) {
         condition = EMBRACE;
         language = ENGLISH;
-        reader = SYSTEM;
-        appMode = Study;
+        reader = USER;
+        appMode = ITS;
         currentMode = PM_MODE;
         newInstructions = false;
         vocabPageEnabled = false;

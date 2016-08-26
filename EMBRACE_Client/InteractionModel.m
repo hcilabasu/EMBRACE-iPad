@@ -422,4 +422,15 @@
     return nil;
 }
 
+- (NSString *)getObjectIdAtLocation:(CGPoint)loc {
+    for (Area* area in areas)
+    {
+        if ([area.aPath containsPoint:loc]) {
+            return area.areaId;
+        }
+
+    }
+    return nil;
+}
+
 @end

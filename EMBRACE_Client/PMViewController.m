@@ -19,6 +19,8 @@
 #import "LibraryViewController.h"
 #import "ManipulationContext.h"
 #import "NSString+HTML.h"
+#import "ITSController.h"
+#import "ManipulationAnalyser.h"
 
 @interface PMViewController () {
     NSString *currentPage; //Current page being shown, so that the next page can be requested
@@ -84,11 +86,14 @@
     
     NSTimer *timer; //Controls the timing of the audio file that is playing
     BOOL isAudioLeft;
+    
+    
 }
 
 @property (nonatomic, strong) IBOutlet UIWebView *bookView;
 @property (strong) AVAudioPlayer *audioPlayer;
 @property (strong) AVAudioPlayer *audioPlayerAfter; //Used to play sounds after the first audio player has finished playing
+@property (nonatomic, assign)EMComplexity currentComplexityLevel;
 
 @end
 
@@ -198,6 +203,7 @@ BOOL wasPathFollowed = false;
     
     IntroductionClass.languageString = @"E";
     IntroductionClass.sameWordClicked = false;
+    [[ITSController sharedInstance] setAnalyzerDelegate:self];
 }
 
 -(void)backButtonPressed:(id)sender
@@ -257,13 +263,21 @@ BOOL wasPathFollowed = false;
     //Start off with no objects grouped together
     currentGroupings = [[NSMutableDictionary alloc] init];
     
-    //TODO: remove debug menu, tie into its system to build complexity
-    //Show menu to choose complexity level for non-intro pages of The Best Farm story only
-    if (conditionSetup.appMode == ITS && [currentPageId rangeOfString:@"Intro"].location == NSNotFound && ![chapterTitle isEqualToString:@"Introduction to The Best Farm"] && [bookTitle rangeOfString:@"The Circulatory System"].location == NSNotFound) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Choose sentence complexity levels" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"60% Simple   20% Medium   20% Complex", @"20% Simple   60% Medium   20% Complex", @"20% Simple   20% Medium   60% Complex", @"0% Simple 100% Medium 0% Complex", nil];
-        [alert show];
+//    //TODO: remove debug menu, tie into its system to build complexity
+//    //Show menu to choose complexity level for non-intro pages of The Best Farm story only
+//    if (conditionSetup.appMode == ITS && [currentPageId rangeOfString:@"Intro"].location == NSNotFound && ![chapterTitle isEqualToString:@"Introduction to The Best Farm"] && [bookTitle rangeOfString:@"The Circulatory System"].location == NSNotFound) {
+//        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Choose sentence complexity levels" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"60% Simple   20% Medium   20% Complex", @"20% Simple   60% Medium   20% Complex", @"20% Simple   20% Medium   60% Complex", @"0% Simple 100% Medium 0% Complex", nil];
+//        [alert show];
+//    }
+//    else {
+    if (conditionSetup.appMode == ITS) {
+        self.currentComplexityLevel = [[ITSController sharedInstance] getCurrentComplexity];
+        [self removeAllSentences];
+        [self addSentencesWithComplexity:self.currentComplexityLevel];
     }
-    else {
+    
+
+    
         //Get the number of sentences on the page
         NSString *requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('sentence').length"];
         int sentenceCount = [[bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount] intValue];
@@ -278,7 +292,8 @@ BOOL wasPathFollowed = false;
         NSString *lastSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
         int lastSentenceIdNumber = [[lastSentenceId substringFromIndex:1] intValue];
         totalSentences = lastSentenceIdNumber;
-        
+    
+    
         //Get the id number of the first sentence on the page and set it equal to the current sentence number.
         //Because the PMActivity may have multiple pages, the first sentence on the page is not necessarily sentence 1.
         //   Ex. Page 1 may start at sentence 1, but page 2 may start at sentence 4.
@@ -352,11 +367,13 @@ BOOL wasPathFollowed = false;
                 }
             }
         }
-        
+    
+
+    
         //Set up current sentence appearance and solution steps
         [self setupCurrentSentence];
         [self setupCurrentSentenceColor];
-    }
+//    }
     
     if ([IntroductionClass.introductions objectForKey:chapterTitle] || ([IntroductionClass.vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound)) {
         IntroductionClass.allowInteractions = FALSE;
@@ -1436,9 +1453,12 @@ BOOL wasPathFollowed = false;
             engAudio = [NSString stringWithFormat:@"%@%@.m4a", englishSentenceText, @"E"];
             [self.playaudioClass playAudioInSequence:self :engAudio :engAudio];
         }
+
+        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:@"English" ofType:@"Play Word" :manipulationContext];
+        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:@"English" ofType:@"Play Word" :manipulationContext];
         
-        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:@"English" ofType:@"Play Word" :manipulationContext];
-        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:@"English" ofType:@"Play Word" :manipulationContext];
+        [[ITSController sharedInstance] userDidPlayWord:englishSentenceText];
+        
     }
     
     //Revert the carbon dioxide name for highlighting
@@ -1780,7 +1800,7 @@ BOOL wasPathFollowed = false;
             //If moving object, move object to final position.
             if (movingObject) {
                 [self moveObject:movingObjectId :location :delta :true];
-                
+                NSArray *overlappingWith = [self getObjectsOverlappingWithObject:movingObjectId];
                 if (numSteps > 0) {
                     //Get steps for current sentence
                     NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
@@ -1824,6 +1844,12 @@ BOOL wasPathFollowed = false;
                                 [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:destination ofType:@"Location" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
 
                                 [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Move Object" context:manipulationContext];
+                                [[ITSController sharedInstance] movedObject:movingObjectId
+                                                          destinationObjects:@[destination]
+                                                                 isVerified:true
+                                                                 actionStep:currSolStep
+                                                        manipulationContext:manipulationContext
+                                                                forSentence:currentSentenceText];
                                 
                                 [animatingObjects setObject:@"stop" forKey:movingObjectId];
                                 [self incrementCurrentStep];
@@ -1835,6 +1861,12 @@ BOOL wasPathFollowed = false;
                                 [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
                                 
                                 [self resetObjectLocation];
+                                [[ITSController sharedInstance] movedObject:movingObjectId
+                                                          destinationObjects:overlappingWith
+                                                                 isVerified:false
+                                                                 actionStep:currSolStep
+                                                        manipulationContext:manipulationContext
+                                                                forSentence:currentSentenceText];
                             }
                         }
                         else {
@@ -1848,8 +1880,24 @@ BOOL wasPathFollowed = false;
                                 //Record error for complexity
                                 [[pageStatistics objectForKey:currentPageId] addErrorForComplexity:(currentComplexity - 1)];
                             }
+                            // Find the location if overlapping is nil;
+                            if (overlappingWith == nil) {
+                                
+                                NSString *areaId = [model getObjectIdAtLocation:endLocation];
+                                if (areaId)
+                                    overlappingWith = @[areaId];
+                                
+                            }
+                            [[ITSController sharedInstance] movedObject:movingObjectId
+                                                     destinationObjects:overlappingWith
+                                                             isVerified:false
+                                                             actionStep:currSolStep
+                                                    manipulationContext:manipulationContext
+                                                            forSentence:currentSentenceText];
                             
                             [self resetObjectLocation];
+                            
+                            
                             
                         }
                     }
@@ -1860,11 +1908,26 @@ BOOL wasPathFollowed = false;
                             [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Move Object" context:manipulationContext];
                             
                             [animatingObjects setObject:@"stop" forKey:movingObjectId];
+                            
+                            [[ITSController sharedInstance] movedObject:movingObjectId
+                                                     destinationObjects:@[currSolStep.locationId]
+                                                             isVerified:true
+                                                             actionStep:currSolStep
+                                                    manipulationContext:manipulationContext
+                                                            forSentence:currentSentenceText];
+                            
                             [self resetObjectLocation];
                             [self incrementCurrentStep];
                         }
                         else {
                             [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
+                            
+                            [[ITSController sharedInstance] movedObject:movingObjectId
+                                                     destinationObjects:@[currSolStep.locationId]
+                                                             isVerified:false
+                                                             actionStep:currSolStep
+                                                    manipulationContext:manipulationContext
+                                                            forSentence:currentSentenceText];
                             
                             [self playErrorNoise];
                             [self resetObjectLocation];
@@ -1912,6 +1975,12 @@ BOOL wasPathFollowed = false;
                                     //Record error for complexity
                                     [[pageStatistics objectForKey:currentPageId] addErrorForComplexity:(currentComplexity - 1)];
                                 }
+                                [[ITSController sharedInstance] movedObject:movingObjectId
+                                                         destinationObjects:overlappingWith
+                                                                 isVerified:false
+                                                                 actionStep:currSolStep
+                                                        manipulationContext:manipulationContext
+                                                                forSentence:currentSentenceText];
                             }
                             //If only 1 possible interaction was found, go ahead and perform that interaction if it's correct.
                             if ([possibleInteractions count] == 1) {
@@ -2004,6 +2073,21 @@ BOOL wasPathFollowed = false;
                             
                             [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
                             
+                            // Find the location if overlapping is nil;
+                            if (overlappingWith == nil) {
+                                //TODO: Find the object precent in destination location.
+                                NSString *areaId = [model getObjectIdAtLocation:endLocation];
+                                NSLog(@"Area - %@",areaId);
+                                if (areaId)
+                                    overlappingWith = @[areaId];
+                                
+                            }
+                            [[ITSController sharedInstance] movedObject:movingObjectId
+                                                     destinationObjects:overlappingWith
+                                                             isVerified:false
+                                                             actionStep:currSolStep
+                                                    manipulationContext:manipulationContext
+                                                            forSentence:currentSentenceText];
                             [self playErrorNoise];
                             [self resetObjectLocation];
                         }
@@ -3222,6 +3306,17 @@ BOOL wasPathFollowed = false;
             }
             else {
                 [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Move Object" context:manipulationContext];
+                Connection *con = [interaction.connections objectAtIndex:0];
+                NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
+                
+                //Get current step to be completed
+                ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+                [[ITSController sharedInstance] movedObject:[con.objects objectAtIndex:0]
+                                         destinationObjects:@[[con.objects objectAtIndex:1]]
+                                                 isVerified:true
+                                                 actionStep:currSolStep
+                                        manipulationContext:manipulationContext
+                                                forSentence:currentSentenceText];
             }
             
             [self performInteraction:interaction];
@@ -3251,7 +3346,17 @@ BOOL wasPathFollowed = false;
         else {
             [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Move Object" context:manipulationContext];
         }
-    
+        Connection *con = [interaction.connections objectAtIndex:0];
+        NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
+        
+        //Get current step to be completed
+        ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        [[ITSController sharedInstance] movedObject:[con.objects objectAtIndex:0]
+                                 destinationObjects:@[[con.objects objectAtIndex:1]]
+                                         isVerified:false
+                                         actionStep:currSolStep
+                                manipulationContext:manipulationContext
+                                        forSentence:currentSentenceText];
         [self playErrorNoise];
         
         if (conditionSetup.appMode == ITS) {
@@ -4371,7 +4476,7 @@ BOOL wasPathFollowed = false;
             //currentSentence is 1 indexed
             if (currentSentence > totalSentences) {
                 if (conditionSetup.appMode == ITS && [currentPageId rangeOfString:@"Intro"].location == NSNotFound && ![chapterTitle isEqualToString:@"Introduction to The Best Farm"] && [bookTitle rangeOfString:@"The Circulatory System"].location == NSNotFound) {
-                    [self showPageStatistics]; //show popup window with page statistics
+                    //[self showPageStatistics]; //show popup window with page statistics
                 }
                 else {
                     [self loadNextPage];
@@ -4404,6 +4509,8 @@ BOOL wasPathFollowed = false;
         pressedNextLock = false;
     }
     }
+    NSLog(@"manipulationContext.sentenceNumber = %d",manipulationContext.sentenceNumber);
+    
 }
 
 /*
@@ -4813,6 +4920,176 @@ BOOL wasPathFollowed = false;
     {
         //there are no audio files to play so allow interactions
         [self.view setUserInteractionEnabled:YES];
+    }
+}
+
+- (void)removeAllSentences {
+    //Get the number of sentences on the page
+    NSString *requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('sentence').length"];
+    int sentenceCount = [[bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount] intValue];
+    
+    //Get the id number of the last sentence on the page
+    NSString *requestLastSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[%d - 1].id", sentenceCount];
+    NSString *lastSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
+    int lastSentenceIdNumber = [[lastSentenceId substringFromIndex:1] intValue];
+    
+    //Get the id number of the first sentence on the page
+    NSString *requestFirstSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[0].id"];
+    NSString *firstSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestFirstSentenceId];
+    int firstSentenceIdNumber = [[firstSentenceId substringFromIndex:1] intValue];
+    
+    NSString *removeSentenceString;
+    
+    //Remove all sentences on page
+    for (int i = firstSentenceIdNumber; i <= lastSentenceIdNumber; i++) {
+        //Skip the title (sentence 0) if it's the first on the page
+        if (i > 0) {
+            removeSentenceString = [NSString stringWithFormat:@"removeSentence('s%d')", i];
+            [bookView stringByEvaluatingJavaScriptFromString:removeSentenceString];
+        }
+    }
+}
+
+- (void)addSentencesWithComplexity:(EMComplexity)complexity {
+    
+    Chapter *chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
+    PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
+    NSMutableArray *alternateSentences = [[PMActivity alternateSentences] objectForKey:currentPageId]; //get alternate sentences for current page
+    
+    NSString *addSentenceString;
+    int sentenceNumber = 1; //used for assigning sentence ids
+    int previousIdeaNum = 0; //used for making sure same idea does not get repeated
+    
+    NSMutableArray *ideaNums = [PMSolution getIdeaNumbers]; //get list of idea numbers on the page
+    pageSentences = [NSMutableArray array];
+    //Add alternate sentences associated with each idea
+    for (NSNumber *ideaNum in ideaNums) {
+        if ([ideaNum intValue] > previousIdeaNum) {
+            
+            
+            BOOL foundIdea = false; //flag to check if there is a sentence with the specified complexity for the idea number
+            
+            //Create an array to hold sentences that will be added to the page
+            NSMutableArray *sentencesToAdd = [[NSMutableArray alloc] init];
+            
+            //Look for alternate sentences that match the idea number and complexity
+            for (AlternateSentence *altSent in alternateSentences) {
+                if ([[[altSent ideas] objectAtIndex:0] isEqualToNumber:ideaNum] && [altSent complexity] == complexity) {
+                    foundIdea = true;
+                    [sentencesToAdd addObject:altSent];
+                    previousIdeaNum = [[[altSent ideas] lastObject] intValue];
+                }
+            }
+            
+            //If a sentence with the specified complexity was not found for the idea number, look for a
+            //sentence with complexity level 2
+            if (!foundIdea) {
+                for (AlternateSentence *altSent in alternateSentences) {
+                    if ([[[altSent ideas] objectAtIndex:0] isEqualToNumber:ideaNum] && [altSent complexity] == 2) {
+                        foundIdea = true;
+                        [sentencesToAdd addObject:altSent];
+                        previousIdeaNum = [[[altSent ideas] lastObject] intValue];
+                    }
+                }
+            }
+            
+            for (AlternateSentence *sentenceToAdd in sentencesToAdd) {
+                //Get alternate sentence information
+                BOOL action = [sentenceToAdd actionSentence];
+                NSString *text = [sentenceToAdd text];
+                
+                //Split sentence text into individual tokens (words)
+                NSArray *textTokens = [text componentsSeparatedByString:@" "];
+                
+                //Contains the vocabulary words that appear in the sentence
+                NSMutableArray *words = [[NSMutableArray alloc] init];
+                
+                //Contains the sentence text split around vocabulary words
+                NSMutableArray *splitText = [[NSMutableArray alloc] init];
+                
+                //Combines tokens into the split sentence text
+                NSString *currentSplit = @"";
+                
+                for (NSString *textToken in textTokens) {
+                    NSString *modifiedTextToken = textToken;
+                    
+                    //Replaces the ' character if it exists in the token
+                    if ([modifiedTextToken rangeOfString:@"'"].location != NSNotFound) {
+                        modifiedTextToken = [modifiedTextToken stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
+                    }
+                    
+                    BOOL addedWord = false; //whether token contains vocabulary word
+                    
+                    for (NSString *vocab in [[Translation translationWords] allKeys]) {
+                        //Match the whole vocabulary word only
+                        NSString *regex = [NSString stringWithFormat:@"\\b%@\\b", vocab];
+                        
+                        //Token contains vocabulary word
+                        if ([modifiedTextToken rangeOfString:regex options:NSRegularExpressionSearch].location != NSNotFound) {
+                            [words addObject:vocab]; //add word to list
+                            addedWord = true;
+                            
+                            [splitText addObject:currentSplit];
+                            
+                            //Reset current split to be anything that appears after the vocabulary word and add a space in the beginning
+                            currentSplit = [[modifiedTextToken stringByReplacingOccurrencesOfString:vocab withString:@""] stringByAppendingString:@" "];
+                            
+                            break;
+                        }
+                    }
+                    
+                    //Token does not contain vocabulary word
+                    if (!addedWord) {
+                        //Add token to current split with a space after it
+                        NSString *textTokenSpace = [NSString stringWithFormat:@"%@ ", modifiedTextToken];
+                        currentSplit = [currentSplit stringByAppendingString:textTokenSpace];
+                    }
+                }
+                
+                [splitText addObject:currentSplit]; //make sure to add the last split
+                
+                //Create array strings for vocabulary and split text to send to JS function
+                NSString *wordsArrayString = [words componentsJoinedByString:@"','"];
+                NSString *splitTextArrayString = [splitText componentsJoinedByString:@"','"];
+                
+                //Add alternate sentence to page
+                addSentenceString = [NSString stringWithFormat:@"addSentence('s%d', %@, ['%@'], ['%@'])", sentenceNumber++, action ? @"true" : @"false", splitTextArrayString, wordsArrayString];
+                [bookView stringByEvaluatingJavaScriptFromString:addSentenceString];
+                
+                //Add alternate sentence to array
+                [pageSentences addObject:sentenceToAdd];
+                
+                BOOL transference = FALSE;
+                
+                //Count number of user steps for page statistics
+                for (ActionStep *as in [sentenceToAdd solutionSteps]) {
+                    if (!([[as stepType] isEqualToString:@"ungroup"] ||
+                          [[as stepType] isEqualToString:@"move"] ||
+                          [[as stepType] isEqualToString:@"swapImage"])) {
+                        //Make sure transference steps don't get counted twice
+                        if ([[as stepType] isEqualToString:@"transferAndGroup"] ||
+                            [[as stepType] isEqualToString:@"transferAndDisappear"]) {
+                            if (!transference) {
+                                [[pageStatistics objectForKey:currentPageId] addStepForComplexity:([sentenceToAdd complexity] - 1)];
+                                
+                                transference = TRUE;
+                            }
+                            else {
+                                transference = FALSE;
+                            }
+                        }
+                        else {
+                            [[pageStatistics objectForKey:currentPageId] addStepForComplexity:([sentenceToAdd complexity] - 1)];
+                        }
+                    }
+                }
+                
+                //Count number of non-action sentences for each complexity
+                if ([sentenceToAdd actionSentence] == FALSE) {
+                    [[pageStatistics objectForKey:currentPageId] addNonActSentForComplexity:([sentenceToAdd complexity] - 1)];
+                }
+            }
+        }
     }
 }
 
@@ -5260,6 +5537,49 @@ BOOL wasPathFollowed = false;
     else {
         manipulationContext.pageMode = @"Intervention";
     }
+}
+
+#pragma mark - ManipulationAnalyserProtocol
+
+- (CGPoint)locationOfObject:(NSString *)object
+                   analyzer:(ManipulationAnalyser *)analyzer {
+    
+    return [self getObjectPosition:object];
+}
+
+- (void)analyzer:(ManipulationAnalyser *)analyzer showMessage:(NSString *)message {
+   
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"Dismiss"
+                                                     style:UIAlertActionStyleCancel
+                                                   handler:nil];
+    [alert addAction:action];
+    [self presentViewController:alert animated:YES completion:nil];
+    
+//    int duration = 5; // duration in seconds
+//    
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+//        [alert dismissViewControllerAnimated:YES completion:nil];
+//    });
+}
+
+- (NSArray *)getNextStepsForCurrentSentence:(ManipulationAnalyser *)analyzer {
+    NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
+    NSArray *nextSteps = nil;
+    
+    if ([currSolSteps count] > currentStep) {
+        NSRange range = NSMakeRange(currentStep, [currSolSteps count] - currentStep);
+        nextSteps = [currSolSteps subarrayWithRange:range];
+    }
+    
+    return nextSteps;
+}
+
+- (EMComplexity)analyzer:(ManipulationAnalyser *)analyzer getComplexityForSentence:(int)sentenceNumber {
+    return self.currentComplexityLevel;
 }
 
 @end
