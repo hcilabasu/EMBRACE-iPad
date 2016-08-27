@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="KdN-Nn-VnM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="KdN-Nn-VnM">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -202,7 +202,6 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <outlet property="bookView" destination="1u8-HC-lY8" id="1pb-zc-vPH"/>
                         <outlet property="panRecognizer" destination="iaN-Wz-vgI" id="DDs-ye-s0g"/>
                         <outlet property="pinchRecognizer" destination="IG0-TB-X5w" id="ZYE-6c-rPe"/>
                         <outlet property="swipeRecognizer" destination="skg-93-SYv" id="moo-tZ-moZ"/>
@@ -215,21 +214,8 @@
                     <rect key="frame" x="0.0" y="0.0" width="1024" height="724"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <webView autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1u8-HC-lY8">
-                            <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
-                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <dataDetectorType key="dataDetectorTypes"/>
-                            <connections>
-                                <outlet property="delegate" destination="NLI-lb-tHz" id="pIc-4U-niu"/>
-                                <outletCollection property="gestureRecognizers" destination="6LS-gR-BKA" appends="YES" id="zSQ-fw-Zkv"/>
-                                <outletCollection property="gestureRecognizers" destination="iaN-Wz-vgI" appends="YES" id="dF4-Pw-syc"/>
-                                <outletCollection property="gestureRecognizers" destination="j3h-7r-Imw" appends="YES" id="C29-MC-Toz"/>
-                                <outletCollection property="gestureRecognizers" destination="IG0-TB-X5w" appends="YES" id="VGC-g7-Rrx"/>
-                                <outletCollection property="gestureRecognizers" destination="skg-93-SYv" appends="YES" id="n1g-vr-H1M"/>
-                            </connections>
-                        </webView>
-                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u4R-ML-16W">
-                            <rect key="frame" x="940" y="744" width="75" height="25"/>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u4R-ML-16W">
+                            <rect key="frame" x="924" y="674" width="75" height="25"/>
                             <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="30"/>
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" title="Next"/>
@@ -240,11 +226,8 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="u4R-ML-16W" firstAttribute="bottom" secondItem="1u8-HC-lY8" secondAttribute="bottom" id="49D-yc-yXu"/>
-                        <constraint firstAttribute="bottom" secondItem="1u8-HC-lY8" secondAttribute="bottom" id="CiJ-46-i6G"/>
-                        <constraint firstItem="1u8-HC-lY8" firstAttribute="top" secondItem="erm-JD-CyO" secondAttribute="top" id="gdM-nj-R7l"/>
-                        <constraint firstAttribute="trailing" secondItem="1u8-HC-lY8" secondAttribute="trailing" id="rIB-iB-6nn"/>
-                        <constraint firstItem="1u8-HC-lY8" firstAttribute="leading" secondItem="erm-JD-CyO" secondAttribute="leading" id="rv6-aF-fpd"/>
+                        <constraint firstAttribute="bottom" secondItem="u4R-ML-16W" secondAttribute="bottom" constant="25" id="APt-1U-ebR"/>
+                        <constraint firstAttribute="trailing" secondItem="u4R-ML-16W" secondAttribute="trailing" constant="25" id="VdU-eV-BZY"/>
                     </constraints>
                 </view>
                 <tapGestureRecognizer id="6LS-gR-BKA">
@@ -296,7 +279,6 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <outlet property="bookView" destination="1u8-HC-lY8" id="kcD-5W-jy2"/>
                         <outlet property="nextButton" destination="Ubx-qn-Yia" id="yx7-yH-YRv"/>
                         <outlet property="panRecognizer" destination="iaN-Wz-vgI" id="K3n-ge-A1O"/>
                         <outlet property="pinchRecognizer" destination="IG0-TB-X5w" id="DiC-dr-Fo3"/>
@@ -591,7 +573,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2119" y="-4451"/>
+            <point key="canvasLocation" x="3651" y="-4371"/>
         </scene>
     </scenes>
     <resources>

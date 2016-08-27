@@ -4803,6 +4803,7 @@
 		5DA8FD401C8732550056DE7A /* NaughtyMonkey_Script_C6_S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DA8FD381C8732550056DE7A /* NaughtyMonkey_Script_C6_S.mp3 */; };
 		5DA8FD411C8732550056DE7A /* NaughtyMonkey_Script_C7_S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DA8FD391C8732550056DE7A /* NaughtyMonkey_Script_C7_S.mp3 */; };
 		5DA8FD421C8732550056DE7A /* NaughtyMonkey_Script_C9_S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DA8FD3A1C8732550056DE7A /* NaughtyMonkey_Script_C9_S.mp3 */; };
+		5DB14E441D2E08C5006EEFCF /* PMView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB14E431D2E08C5006EEFCF /* PMView.m */; };
 		5DB15D951C738E0100130705 /* Script-Metadata.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5DB15D941C738E0100130705 /* Script-Metadata.xml */; };
 		5DB15D981C73955C00130705 /* ScriptAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB15D971C73955C00130705 /* ScriptAudio.m */; };
 		5DB509951C40CDEB00EB74E0 /* Story1-How-do-Objects-Move-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5DB509941C40CDEB00EB74E0 /* Story1-How-do-Objects-Move-Intro-S.xhtml */; };
@@ -9823,6 +9824,8 @@
 		5DA8FD381C8732550056DE7A /* NaughtyMonkey_Script_C6_S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkey_Script_C6_S.mp3; sourceTree = "<group>"; };
 		5DA8FD391C8732550056DE7A /* NaughtyMonkey_Script_C7_S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkey_Script_C7_S.mp3; sourceTree = "<group>"; };
 		5DA8FD3A1C8732550056DE7A /* NaughtyMonkey_Script_C9_S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkey_Script_C9_S.mp3; sourceTree = "<group>"; };
+		5DB14E421D2E08C5006EEFCF /* PMView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMView.h; sourceTree = "<group>"; };
+		5DB14E431D2E08C5006EEFCF /* PMView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMView.m; sourceTree = "<group>"; };
 		5DB15D941C738E0100130705 /* Script-Metadata.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Script-Metadata.xml"; sourceTree = "<group>"; };
 		5DB15D961C73955C00130705 /* ScriptAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptAudio.h; sourceTree = "<group>"; };
 		5DB15D971C73955C00130705 /* ScriptAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptAudio.m; sourceTree = "<group>"; };
@@ -11409,6 +11412,7 @@
 		31953E4E1729ECC100570087 /* EMBRACE_iPad */ = {
 			isa = PBXGroup;
 			children = (
+				5DB14E411D2E08B6006EEFCF /* CustomView */,
 				31109700174AB35D00B02BF7 /* Images */,
 				31953E651729ED4500570087 /* External Libraries */,
 				31953E7C1729ED8300570087 /* Model */,
@@ -16338,6 +16342,15 @@
 				5DA8FD3A1C8732550056DE7A /* NaughtyMonkey_Script_C9_S.mp3 */,
 			);
 			path = Spanish;
+			sourceTree = "<group>";
+		};
+		5DB14E411D2E08B6006EEFCF /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				5DB14E421D2E08C5006EEFCF /* PMView.h */,
+				5DB14E431D2E08C5006EEFCF /* PMView.m */,
+			);
+			path = CustomView;
 			sourceTree = "<group>";
 		};
 		5DBC02E01C509B880030072B /* bottled */ = {
@@ -21329,6 +21342,7 @@
 			files = (
 				038BECDC1C88C33F00ECFE28 /* Context.m in Sources */,
 				C3B66AA11BC33C2D005DF0AC /* LibraryCellView.m in Sources */,
+				5DB14E441D2E08C5006EEFCF /* PMView.m in Sources */,
 				5CEEBFA81ACA05F4002AACC4 /* Area.m in Sources */,
 				03A401141C9B6F2E00FBE6D2 /* NSString+HTML.m in Sources */,
 				31953E551729ECC100570087 /* main.m in Sources */,
