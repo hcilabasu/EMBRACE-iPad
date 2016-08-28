@@ -184,6 +184,8 @@ BOOL wasPathFollowed = false;
     }
     else if (conditionSetup.condition == EMBRACE) {
         IntroductionClass.allowInteractions = TRUE;
+        maxAttempts = 5;
+        numAttempts = 0;
         
         if (conditionSetup.currentMode == PM_MODE) {
             useSubject = ALL_ENTITIES;
@@ -198,8 +200,6 @@ BOOL wasPathFollowed = false;
     if (conditionSetup.appMode == ITS) {
         chooseComplexity = TRUE;
         pageStatistics = [[NSMutableDictionary alloc] init];
-        maxAttempts = 5;
-        numAttempts = 0;
     }
     else {
         chooseComplexity = FALSE;
@@ -3377,43 +3377,41 @@ BOOL wasPathFollowed = false;
     
     [self playErrorNoise];
     
-    if (conditionSetup.appMode == ITS) {
-        //Record error for complexity
-        [[pageStatistics objectForKey:currentPageId] addErrorForComplexity:(currentComplexity - 1)];
+    numAttempts++;
+    
+    if (numAttempts >= maxAttempts) {
+        numAttempts = 0;
         
-        numAttempts++;
+        //Get steps for current sentence
+        NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
         
-        if (numAttempts >= maxAttempts) {
-            numAttempts = 0;
-            
-            //Get steps for current sentence
-            NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
-            
-            //Get current step to be completed
-            ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
-            NSString *stepType = [currSolStep stepType];
-            
-            if ([stepType isEqualToString:@"check"] || [stepType isEqualToString:@"checkLeft"] || [stepType isEqualToString:@"checkRight"] || [stepType isEqualToString:@"checkUp"] || [stepType isEqualToString:@"checkDown"] || [stepType isEqualToString:@"checkAndSwap"] || [stepType isEqualToString:@"tapToAnimate"] || [stepType isEqualToString:@"checkPath"] || [stepType isEqualToString:@"shakeAndTap"] || [stepType isEqualToString:@"tapWord"] ) {
-                if ([stepType isEqualToString:@"checkAndSwap"]) {
-                    [self swapObjectImage];
-                }
-                
-                [self incrementCurrentStep];
+        //Get current step to be completed
+        ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        NSString *stepType = [currSolStep stepType];
+        
+        if ([stepType isEqualToString:@"check"] || [stepType isEqualToString:@"checkLeft"] || [stepType isEqualToString:@"checkRight"] || [stepType isEqualToString:@"checkUp"] || [stepType isEqualToString:@"checkDown"] || [stepType isEqualToString:@"checkAndSwap"] || [stepType isEqualToString:@"tapToAnimate"] || [stepType isEqualToString:@"checkPath"] || [stepType isEqualToString:@"shakeAndTap"] || [stepType isEqualToString:@"tapWord"] ) {
+            if ([stepType isEqualToString:@"checkAndSwap"]) {
+                [self swapObjectImage];
             }
-            else {
-                //Get the interaction to be performed
-                PossibleInteraction *interaction = [self getCorrectInteraction];
-                
-                //Perform the interaction and increment the step
-                [self checkSolutionForInteraction:interaction];
-            }
+            
+            [self incrementCurrentStep];
         }
         else {
-            [self resetObjectLocation];
+            //Get the interaction to be performed
+            PossibleInteraction *interaction = [self getCorrectInteraction];
+            
+            //Perform the interaction and increment the step
+            [self checkSolutionForInteraction:interaction];
         }
     }
     else {
         [self resetObjectLocation];
+    }
+    
+    if (conditionSetup.appMode == ITS) {
+        //Record error for complexity
+        [[pageStatistics objectForKey:currentPageId] addErrorForComplexity:(currentComplexity - 1)];
+        
     }
 }
 
