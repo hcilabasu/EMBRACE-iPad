@@ -101,4 +101,6 @@
 - (Area*) getAreaWithPageId:(NSString*)pId;
 - (Area*) getArea: (NSString*)aId : (NSString*)pId;
 
+- (NSString *)getObjectIdAtLocation:(CGPoint)loc;
+
 @end

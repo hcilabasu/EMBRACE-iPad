@@ -4470,6 +4470,8 @@
 		5CFA85AB1950EFDC00C7537D /* IntroductionStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFA85AA1950EFDC00C7537D /* IntroductionStep.m */; };
 		5D1168DA1C5A977800536340 /* speakerIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A9CF8461C31DAF90000C135 /* speakerIcon.png */; };
 		5D1168DB1C5A982B00536340 /* PMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31953E941729EEB800570087 /* PMViewController.m */; };
+		5D1917811D09AD96001E7F30 /* KnowledgeTracer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D1917801D09AD96001E7F30 /* KnowledgeTracer.m */; };
+		5D1917841D09ADB8001E7F30 /* ITSController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D1917831D09ADB8001E7F30 /* ITSController.m */; };
 		5D4B47741C56D8EA0096BC1E /* TheLuckyStoneS0E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5D4B47691C56D8E90096BC1E /* TheLuckyStoneS0E.mp3 */; };
 		5D4B47751C56D8EA0096BC1E /* TheLuckyStoneS10E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5D4B476A1C56D8E90096BC1E /* TheLuckyStoneS10E.mp3 */; };
 		5D4B47761C56D8EA0096BC1E /* TheLuckyStoneS1E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5D4B476B1C56D8E90096BC1E /* TheLuckyStoneS1E.mp3 */; };
@@ -4495,6 +4497,9 @@
 		5D502A111C912C00007B3F22 /* IntroDyadReads_R.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5D502A0C1C912C00007B3F22 /* IntroDyadReads_R.mp3 */; };
 		5D502A121C912C00007B3F22 /* IntroIpadReads_PM.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5D502A0D1C912C00007B3F22 /* IntroIpadReads_PM.mp3 */; };
 		5D502A131C912C00007B3F22 /* IntroIpadReads_R.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5D502A0E1C912C00007B3F22 /* IntroIpadReads_R.mp3 */; };
+		5D5421181D0ECC7E008ADA3D /* Skill.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5421171D0ECC7E008ADA3D /* Skill.m */; };
+		5D54211B1D0ECCFE008ADA3D /* WordSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D54211A1D0ECCFE008ADA3D /* WordSkill.m */; };
+		5D54211E1D0ECDFE008ADA3D /* SkillSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D54211D1D0ECDFE008ADA3D /* SkillSet.m */; };
 		5D68211A1C4808D1001F5CFD /* Story1-The-Navajo-Hogan-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5D6821191C4808D1001F5CFD /* Story1-The-Navajo-Hogan-Intro-S.xhtml */; };
 		5D68211C1C480A27001F5CFD /* Story1-Introduction-Intro-E.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5D68211B1C480A27001F5CFD /* Story1-Introduction-Intro-E.xhtml */; };
 		5D68211E1C480A3F001F5CFD /* Story1-Introduction-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5D68211D1C480A3F001F5CFD /* Story1-Introduction-Intro-S.xhtml */; };
@@ -4510,6 +4515,9 @@
 		5D6821321C48A13A001F5CFD /* Story5-A-Gift-for-the-Bride-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5D6821311C48A13A001F5CFD /* Story5-A-Gift-for-the-Bride-Intro-S.xhtml */; };
 		5D6821341C48A170001F5CFD /* Story6-Homecoming-Intro-S.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = 5D6821331C48A170001F5CFD /* Story6-Homecoming-Intro-S.xhtml */; };
 		5D6FA37C1CC87A9A009C3181 /* IntroIpadReads_IM.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5D6FA37B1CC87A9A009C3181 /* IntroIpadReads_IM.mp3 */; };
+		5D76CCA91D11568B00456ACF /* ManipulationAnalyser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D76CCA81D11568B00456ACF /* ManipulationAnalyser.m */; };
+		5D76CCAC1D11589800456ACF /* UserAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D76CCAB1D11589800456ACF /* UserAction.m */; };
+		5D76CCAF1D1199A500456ACF /* SentenceStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D76CCAE1D1199A500456ACF /* SentenceStatus.m */; };
 		5D7EB0D51CE51A8800FD2D54 /* NaughtyMonkeyEEG_Script1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5D7EB0D11CE51A8800FD2D54 /* NaughtyMonkeyEEG_Script1.mp3 */; };
 		5D7EB0D61CE51A8800FD2D54 /* NaughtyMonkeyEEG_Script2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5D7EB0D21CE51A8800FD2D54 /* NaughtyMonkeyEEG_Script2.mp3 */; };
 		5D7EB0D71CE51A8800FD2D54 /* NaughtyMonkeyEEG_Script3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5D7EB0D31CE51A8800FD2D54 /* NaughtyMonkeyEEG_Script3.mp3 */; };
@@ -4777,6 +4785,7 @@
 		5D9E34EB1C590FC700636150 /* TheMysteryIsSolvedQ6A2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5D9E337A1C590E9400636150 /* TheMysteryIsSolvedQ6A2.mp3 */; };
 		5D9E34EC1C59100B00636150 /* MissingKeysQ5A2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5D9E32C51C590E9400636150 /* MissingKeysQ5A2.mp3 */; };
 		5D9E34ED1C59150000636150 /* kauai_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AF805461C28DDD300C96B05 /* kauai_left.png */; };
+		5D9F20041D18E1E0001325B1 /* The_Lopez_Family_Mystery.json in Resources */ = {isa = PBXBuildFile; fileRef = 5D9F20031D18E1E0001325B1 /* The_Lopez_Family_Mystery.json */; };
 		5DA8FD231C872F190056DE7A /* NaughtyMonkey_Script1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DA8FD131C872F190056DE7A /* NaughtyMonkey_Script1.mp3 */; };
 		5DA8FD241C872F190056DE7A /* NaughtyMonkey_Script2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DA8FD141C872F190056DE7A /* NaughtyMonkey_Script2.mp3 */; };
 		5DA8FD251C872F190056DE7A /* NaughtyMonkey_Script3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DA8FD151C872F190056DE7A /* NaughtyMonkey_Script3.mp3 */; };
@@ -4860,6 +4869,8 @@
 		5DBC032E1C5121AE0030072B /* (null) in Resources */ = {isa = PBXBuildFile; };
 		5DBC032F1C5121AE0030072B /* (null) in Resources */ = {isa = PBXBuildFile; };
 		5DBC03301C5121AE0030072B /* (null) in Resources */ = {isa = PBXBuildFile; };
+		5DCC5B381D5EAAC2006DAF05 /* SyntaxSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DCC5B371D5EAAC2006DAF05 /* SyntaxSkill.m */; };
+		5DCC5B3B1D5EAACE006DAF05 /* UsabilitySkill.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DCC5B3A1D5EAACE006DAF05 /* UsabilitySkill.m */; };
 		5DDDDAB21CA3214300A21397 /* TheNaughtyMonkeyS5S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DDDDAB11CA3214300A21397 /* TheNaughtyMonkeyS5S.mp3 */; };
 		5DDF53A71C9CFC7C004AB6D1 /* TheNaughtyMonkeyS0S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DDF53A21C9CFC7C004AB6D1 /* TheNaughtyMonkeyS0S.mp3 */; };
 		5DDF53A81C9CFC7C004AB6D1 /* TheNaughtyMonkeyS1S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DDF53A31C9CFC7C004AB6D1 /* TheNaughtyMonkeyS1S.mp3 */; };
@@ -9488,6 +9499,10 @@
 		5CF793151C76986E00216337 /* old_BFEC9.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = old_BFEC9.m4a; sourceTree = "<group>"; };
 		5CFA85A91950EFDC00C7537D /* IntroductionStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroductionStep.h; sourceTree = "<group>"; };
 		5CFA85AA1950EFDC00C7537D /* IntroductionStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroductionStep.m; sourceTree = "<group>"; };
+		5D19177F1D09AD96001E7F30 /* KnowledgeTracer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KnowledgeTracer.h; sourceTree = "<group>"; };
+		5D1917801D09AD96001E7F30 /* KnowledgeTracer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KnowledgeTracer.m; sourceTree = "<group>"; };
+		5D1917821D09ADB8001E7F30 /* ITSController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITSController.h; sourceTree = "<group>"; };
+		5D1917831D09ADB8001E7F30 /* ITSController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITSController.m; sourceTree = "<group>"; };
 		5D4B47691C56D8E90096BC1E /* TheLuckyStoneS0E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneS0E.mp3; sourceTree = "<group>"; };
 		5D4B476A1C56D8E90096BC1E /* TheLuckyStoneS10E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneS10E.mp3; sourceTree = "<group>"; };
 		5D4B476B1C56D8E90096BC1E /* TheLuckyStoneS1E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLuckyStoneS1E.mp3; sourceTree = "<group>"; };
@@ -9513,6 +9528,12 @@
 		5D502A0C1C912C00007B3F22 /* IntroDyadReads_R.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = IntroDyadReads_R.mp3; sourceTree = "<group>"; };
 		5D502A0D1C912C00007B3F22 /* IntroIpadReads_PM.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = IntroIpadReads_PM.mp3; sourceTree = "<group>"; };
 		5D502A0E1C912C00007B3F22 /* IntroIpadReads_R.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = IntroIpadReads_R.mp3; sourceTree = "<group>"; };
+		5D5421161D0ECC7E008ADA3D /* Skill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Skill.h; sourceTree = "<group>"; };
+		5D5421171D0ECC7E008ADA3D /* Skill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Skill.m; sourceTree = "<group>"; };
+		5D5421191D0ECCFE008ADA3D /* WordSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordSkill.h; sourceTree = "<group>"; };
+		5D54211A1D0ECCFE008ADA3D /* WordSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordSkill.m; sourceTree = "<group>"; };
+		5D54211C1D0ECDFE008ADA3D /* SkillSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillSet.h; sourceTree = "<group>"; };
+		5D54211D1D0ECDFE008ADA3D /* SkillSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillSet.m; sourceTree = "<group>"; };
 		5D6821191C4808D1001F5CFD /* Story1-The-Navajo-Hogan-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-The-Navajo-Hogan-Intro-S.xhtml"; sourceTree = "<group>"; };
 		5D68211B1C480A27001F5CFD /* Story1-Introduction-Intro-E.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Introduction-Intro-E.xhtml"; sourceTree = "<group>"; };
 		5D68211D1C480A3F001F5CFD /* Story1-Introduction-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story1-Introduction-Intro-S.xhtml"; sourceTree = "<group>"; };
@@ -9528,6 +9549,12 @@
 		5D6821311C48A13A001F5CFD /* Story5-A-Gift-for-the-Bride-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-A-Gift-for-the-Bride-Intro-S.xhtml"; sourceTree = "<group>"; };
 		5D6821331C48A170001F5CFD /* Story6-Homecoming-Intro-S.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story6-Homecoming-Intro-S.xhtml"; sourceTree = "<group>"; };
 		5D6FA37B1CC87A9A009C3181 /* IntroIpadReads_IM.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = IntroIpadReads_IM.mp3; sourceTree = "<group>"; };
+		5D76CCA71D11568B00456ACF /* ManipulationAnalyser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManipulationAnalyser.h; sourceTree = "<group>"; };
+		5D76CCA81D11568B00456ACF /* ManipulationAnalyser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManipulationAnalyser.m; sourceTree = "<group>"; };
+		5D76CCAA1D11589800456ACF /* UserAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAction.h; sourceTree = "<group>"; };
+		5D76CCAB1D11589800456ACF /* UserAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAction.m; sourceTree = "<group>"; };
+		5D76CCAD1D1199A400456ACF /* SentenceStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SentenceStatus.h; sourceTree = "<group>"; };
+		5D76CCAE1D1199A500456ACF /* SentenceStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SentenceStatus.m; sourceTree = "<group>"; };
 		5D7EB0D11CE51A8800FD2D54 /* NaughtyMonkeyEEG_Script1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkeyEEG_Script1.mp3; sourceTree = "<group>"; };
 		5D7EB0D21CE51A8800FD2D54 /* NaughtyMonkeyEEG_Script2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkeyEEG_Script2.mp3; sourceTree = "<group>"; };
 		5D7EB0D31CE51A8800FD2D54 /* NaughtyMonkeyEEG_Script3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkeyEEG_Script3.mp3; sourceTree = "<group>"; };
@@ -9794,6 +9821,7 @@
 		5D9E33801C590E9400636150 /* TheMysteryIsSolvedQ7A3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheMysteryIsSolvedQ7A3.mp3; sourceTree = "<group>"; };
 		5D9E33811C590E9400636150 /* TheMysteryIsSolvedQ7A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheMysteryIsSolvedQ7A4.mp3; sourceTree = "<group>"; };
 		5D9E339D1C590E9400636150 /* dog_labradoodle_bark_twice_001.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dog_labradoodle_bark_twice_001.mp3; sourceTree = "<group>"; };
+		5D9F20031D18E1E0001325B1 /* The_Lopez_Family_Mystery.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = The_Lopez_Family_Mystery.json; sourceTree = "<group>"; };
 		5DA8FD131C872F190056DE7A /* NaughtyMonkey_Script1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkey_Script1.mp3; sourceTree = "<group>"; };
 		5DA8FD141C872F190056DE7A /* NaughtyMonkey_Script2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkey_Script2.mp3; sourceTree = "<group>"; };
 		5DA8FD151C872F190056DE7A /* NaughtyMonkey_Script3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkey_Script3.mp3; sourceTree = "<group>"; };
@@ -9839,6 +9867,10 @@
 		5DB79E861C91739A003B2AFC /* Script-Metadata.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Script-Metadata.xml"; sourceTree = "<group>"; };
 		5DB79E881C9173CB003B2AFC /* Script-Metadata.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Script-Metadata.xml"; sourceTree = "<group>"; };
 		5DB79E8A1C917403003B2AFC /* Script-Metadata.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Script-Metadata.xml"; sourceTree = "<group>"; };
+		5DCC5B361D5EAAC2006DAF05 /* SyntaxSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyntaxSkill.h; sourceTree = "<group>"; };
+		5DCC5B371D5EAAC2006DAF05 /* SyntaxSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyntaxSkill.m; sourceTree = "<group>"; };
+		5DCC5B391D5EAACE006DAF05 /* UsabilitySkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsabilitySkill.h; sourceTree = "<group>"; };
+		5DCC5B3A1D5EAACE006DAF05 /* UsabilitySkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsabilitySkill.m; sourceTree = "<group>"; };
 		5DDDDAB11CA3214300A21397 /* TheNaughtyMonkeyS5S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNaughtyMonkeyS5S.mp3; sourceTree = "<group>"; };
 		5DDF53A21C9CFC7C004AB6D1 /* TheNaughtyMonkeyS0S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNaughtyMonkeyS0S.mp3; sourceTree = "<group>"; };
 		5DDF53A31C9CFC7C004AB6D1 /* TheNaughtyMonkeyS1S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheNaughtyMonkeyS1S.mp3; sourceTree = "<group>"; };
@@ -11520,6 +11552,7 @@
 		31953E7E1729ED8D00570087 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				5D4FB3901D092D9600B0D695 /* ITS */,
 				316CFADF1773A512004216D0 /* Physical Manipulation */,
 				1AD3CC841A251C5300E18B1C /* IntroductionViewController.h */,
 				1AD3CC851A251C5300E18B1C /* IntroductionViewController.m */,
@@ -15979,6 +16012,29 @@
 			path = ChapterAudio;
 			sourceTree = "<group>";
 		};
+		5D4FB3901D092D9600B0D695 /* ITS */ = {
+			isa = PBXGroup;
+			children = (
+				5D1917821D09ADB8001E7F30 /* ITSController.h */,
+				5D1917831D09ADB8001E7F30 /* ITSController.m */,
+				5D4FB3911D092D9600B0D695 /* BayesKnowledgeTracer */,
+			);
+			path = ITS;
+			sourceTree = "<group>";
+		};
+		5D4FB3911D092D9600B0D695 /* BayesKnowledgeTracer */ = {
+			isa = PBXGroup;
+			children = (
+				5D9F20021D18DC8A001325B1 /* Data */,
+				5D5421151D0ECC7E008ADA3D /* Models */,
+				5D19177F1D09AD96001E7F30 /* KnowledgeTracer.h */,
+				5D1917801D09AD96001E7F30 /* KnowledgeTracer.m */,
+				5D76CCA71D11568B00456ACF /* ManipulationAnalyser.h */,
+				5D76CCA81D11568B00456ACF /* ManipulationAnalyser.m */,
+			);
+			path = BayesKnowledgeTracer;
+			sourceTree = "<group>";
+		};
 		5D502A091C912C00007B3F22 /* chapterIntroAudio */ = {
 			isa = PBXGroup;
 			children = (
@@ -15997,6 +16053,27 @@
 				5D502A0E1C912C00007B3F22 /* IntroIpadReads_R.mp3 */,
 			);
 			path = chapterIntroAudio;
+			sourceTree = "<group>";
+		};
+		5D5421151D0ECC7E008ADA3D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5D5421161D0ECC7E008ADA3D /* Skill.h */,
+				5D5421171D0ECC7E008ADA3D /* Skill.m */,
+				5D5421191D0ECCFE008ADA3D /* WordSkill.h */,
+				5D54211A1D0ECCFE008ADA3D /* WordSkill.m */,
+				5DCC5B361D5EAAC2006DAF05 /* SyntaxSkill.h */,
+				5DCC5B371D5EAAC2006DAF05 /* SyntaxSkill.m */,
+				5DCC5B391D5EAACE006DAF05 /* UsabilitySkill.h */,
+				5DCC5B3A1D5EAACE006DAF05 /* UsabilitySkill.m */,
+				5D54211C1D0ECDFE008ADA3D /* SkillSet.h */,
+				5D54211D1D0ECDFE008ADA3D /* SkillSet.m */,
+				5D76CCAA1D11589800456ACF /* UserAction.h */,
+				5D76CCAB1D11589800456ACF /* UserAction.m */,
+				5D76CCAD1D1199A400456ACF /* SentenceStatus.h */,
+				5D76CCAE1D1199A500456ACF /* SentenceStatus.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		5D9CAED01D39B61D0073F484 /* vocabIntro */ = {
@@ -16285,6 +16362,14 @@
 			path = old;
 			sourceTree = "<group>";
 		};
+		5D9F20021D18DC8A001325B1 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				5D9F20031D18E1E0001325B1 /* The_Lopez_Family_Mystery.json */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		5DA8FD121C872F190056DE7A /* Embrace */ = {
 			isa = PBXGroup;
 			children = (
@@ -16552,6 +16637,7 @@
 				5C04201C1C614653001BBE9D /* TheLopezFamilyS4E.mp3 in Resources */,
 				5C72E8291C72BF1000CE4877 /* TheThreeLawsWorkTogetherQ5A1.mp3 in Resources */,
 				1A63227B1C0E4D3B00251CB3 /* toc.ncx in Resources */,
+				5D9F20041D18E1E0001325B1 /* The_Lopez_Family_Mystery.json in Resources */,
 				5CAE95D71C921DCD00702DB4 /* CanoesS.mp3 in Resources */,
 				5CF6CA471CCB2BB50093D3FD /* Hawai'iS.mp3 in Resources */,
 				5C0ED5751C75080300003B5A /* KeyIngredientsQ7A4S.mp3 in Resources */,
@@ -21329,18 +21415,25 @@
 				31953E761729ED5A00570087 /* mztools.c in Sources */,
 				033BC0671C506C0100A1EC14 /* ActivitySequence.m in Sources */,
 				038BECDF1C88C79600ECFE28 /* ManipulationContext.m in Sources */,
+				5D1917841D09ADB8001E7F30 /* ITSController.m in Sources */,
 				C3D79468196B1EC9004C26ED /* AlternateImage.m in Sources */,
 				3115B1D41819C532007171E3 /* PossibleInteraction.m in Sources */,
 				5CD7FE3519775C1C007A1E49 /* VocabularyStep.m in Sources */,
 				C32DA0E11BF92A52006C2418 /* Progress.m in Sources */,
+				5D1917811D09AD96001E7F30 /* KnowledgeTracer.m in Sources */,
+				5D76CCAC1D11589800456ACF /* UserAction.m in Sources */,
 				31953E771729ED5A00570087 /* unzip.c in Sources */,
 				31953E781729ED5A00570087 /* zip.c in Sources */,
+				5DCC5B381D5EAAC2006DAF05 /* SyntaxSkill.m in Sources */,
+				5DCC5B3B1D5EAACE006DAF05 /* UsabilitySkill.m in Sources */,
 				31953E791729ED5A00570087 /* ZipArchive.mm in Sources */,
 				31953E841729EE4100570087 /* Book.m in Sources */,
 				1AD3CC8C1A251CE600E18B1C /* PlayAudioFile.m in Sources */,
 				31953E871729EE5800570087 /* LibraryViewController.m in Sources */,
+				5D5421181D0ECC7E008ADA3D /* Skill.m in Sources */,
 				C3B5215A192AB610003FF639 /* EBookImporter.m in Sources */,
 				1AB028FC1ACF0890006CC916 /* AuthoringModeViewController.m in Sources */,
+				5D54211B1D0ECCFE008ADA3D /* WordSkill.m in Sources */,
 				033BC05D1C501BB600A1EC14 /* ActivityMode.m in Sources */,
 				030C8A981C5B1C6A00042C6F /* ImagineManipulationSolution.m in Sources */,
 				1AF3815B1A40A4C600D967FD /* AssessmentActivityViewController.m in Sources */,
@@ -21375,11 +21468,13 @@
 				316CFAE81773BE56004216D0 /* PieContextualMenuItem.m in Sources */,
 				312F5B13177A0F58000DAD2E /* MenuItemDataSource.m in Sources */,
 				3116142A179DE69400655221 /* Hotspot.m in Sources */,
+				5D76CCAF1D1199A500456ACF /* SentenceStatus.m in Sources */,
 				3116142D179DE77B00655221 /* Constraint.m in Sources */,
 				1AD3CC891A251CBA00E18B1C /* BuildHTMLString.m in Sources */,
 				31161433179DE85E00655221 /* Relationship.m in Sources */,
 				C3B5215219254BA2003FF639 /* ActionStep.m in Sources */,
 				038BECE91C8956BF00ECFE28 /* StudyContext.m in Sources */,
+				5D76CCA91D11568B00456ACF /* ManipulationAnalyser.m in Sources */,
 				C3B5215319254BA2003FF639 /* PhysicalManipulationSolution.m in Sources */,
 				310908EC17DE90CA004590A2 /* MovementConstraint.m in Sources */,
 				5CC854E719FAF37F00910237 /* ConditionSetup.m in Sources */,
@@ -21392,6 +21487,7 @@
 				C6805218197ECDE5002A5249 /* DDXMLNode.m in Sources */,
 				C680521B197ECDF4002A5249 /* DDXMLElementAdditions.m in Sources */,
 				C680521E197ECE02002A5249 /* NSString+DDXML.m in Sources */,
+				5D54211E1D0ECDFE008ADA3D /* SkillSet.m in Sources */,
 				03A4011C1C9B6FF300FBE6D2 /* GTMNSString+HTML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
