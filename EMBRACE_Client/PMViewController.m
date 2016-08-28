@@ -266,87 +266,72 @@ BOOL wasPathFollowed = false;
     
     //Start off with no objects grouped together
     currentGroupings = [[NSMutableDictionary alloc] init];
-    
-//    //TODO: remove debug menu, tie into its system to build complexity
-//    //Show menu to choose complexity level for non-intro pages of The Best Farm story only
-//    if (conditionSetup.appMode == ITS && [currentPageId rangeOfString:@"Intro"].location == NSNotFound && ![chapterTitle isEqualToString:@"Introduction to The Best Farm"] && [bookTitle rangeOfString:@"The Circulatory System"].location == NSNotFound) {
-//        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Choose sentence complexity levels" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"60% Simple   20% Medium   20% Complex", @"20% Simple   60% Medium   20% Complex", @"20% Simple   20% Medium   60% Complex", @"0% Simple 100% Medium 0% Complex", nil];
-//        [alert show];
-//    }
-//    else {
-    if (conditionSetup.appMode == ITS) {
+        
+    if (conditionSetup.appMode == ITS && [currentPageId rangeOfString:@"-Intro"].location == NSNotFound) {
         self.currentComplexityLevel = [[ITSController sharedInstance] getCurrentComplexity];
         [self removeAllSentences];
         [self addSentencesWithComplexity:self.currentComplexityLevel];
     }
-    
 
+    //Get the number of sentences on the page
+    NSString *requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('sentence').length"];
+    int sentenceCount = [[bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount] intValue];
     
-        //Get the number of sentences on the page
-        NSString *requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('sentence').length"];
+    //Get the id number of the last sentence on the page and set it equal to the total number of sentences.
+    //Because the PMActivity may have multiple pages, this id number may not match the sentence count for the page.
+    //   Ex. Page 1 may have three sentences: 1, 2, and 3. Page 2 may also have three sentences: 4, 5, and 6.
+    //   The total number of sentences is like a running total, so by page 2, there are 6 sentences instead of 3.
+    //This is to make sure we access the solution steps for the correct sentence on this page, and not a sentence on
+    //a previous page.
+    NSString *requestLastSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[%d - 1].id", sentenceCount];
+    NSString *lastSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
+    int lastSentenceIdNumber = [[lastSentenceId substringFromIndex:1] intValue];
+    totalSentences = lastSentenceIdNumber;
+
+    //Get the id number of the first sentence on the page and set it equal to the current sentence number.
+    //Because the PMActivity may have multiple pages, the first sentence on the page is not necessarily sentence 1.
+    //   Ex. Page 1 may start at sentence 1, but page 2 may start at sentence 4.
+    //   Thus, the first sentence on page 2 is sentence 4, not 1.
+    //This is also to make sure we access the solution steps for the correct sentence.
+    NSString *requestFirstSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[0].id"];
+    NSString *firstSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestFirstSentenceId];
+    int firstSentenceIdNumber = [[firstSentenceId substringFromIndex:1] intValue];
+    currentSentence = firstSentenceIdNumber;
+    currentSentenceText = [[bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d').innerHTML", currentSentence]] stringByConvertingHTMLToPlainText];
+    
+    manipulationContext.sentenceNumber = currentSentence;
+    manipulationContext.sentenceText = currentSentenceText;
+    manipulationContext.manipulationSentence = [self isManipulationSentence:currentSentence];
+    [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
+    
+    if ([currentPageId rangeOfString:@"-Intro"].location != NSNotFound) {
+        [self createVocabSolutionsForPage];
+    }
+    
+    //Remove any PM specific sentence instructions
+    if (conditionSetup.currentMode == IM_MODE || conditionSetup.condition == CONTROL) {
+        NSString* requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('PM_TEXT').length"];
         int sentenceCount = [[bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount] intValue];
         
-        //Get the id number of the last sentence on the page and set it equal to the total number of sentences.
-        //Because the PMActivity may have multiple pages, this id number may not match the sentence count for the page.
-        //   Ex. Page 1 may have three sentences: 1, 2, and 3. Page 2 may also have three sentences: 4, 5, and 6.
-        //   The total number of sentences is like a running total, so by page 2, there are 6 sentences instead of 3.
-        //This is to make sure we access the solution steps for the correct sentence on this page, and not a sentence on
-        //a previous page.
-        NSString *requestLastSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[%d - 1].id", sentenceCount];
-        NSString *lastSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
-        int lastSentenceIdNumber = [[lastSentenceId substringFromIndex:1] intValue];
-        totalSentences = lastSentenceIdNumber;
-    
-    
-        //Get the id number of the first sentence on the page and set it equal to the current sentence number.
-        //Because the PMActivity may have multiple pages, the first sentence on the page is not necessarily sentence 1.
-        //   Ex. Page 1 may start at sentence 1, but page 2 may start at sentence 4.
-        //   Thus, the first sentence on page 2 is sentence 4, not 1.
-        //This is also to make sure we access the solution steps for the correct sentence.
-        NSString *requestFirstSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[0].id"];
-        NSString *firstSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestFirstSentenceId];
-        int firstSentenceIdNumber = [[firstSentenceId substringFromIndex:1] intValue];
-        currentSentence = firstSentenceIdNumber;
-        currentSentenceText = [[bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d').innerHTML", currentSentence]] stringByConvertingHTMLToPlainText];
-        
-        manipulationContext.sentenceNumber = currentSentence;
-        manipulationContext.sentenceText = currentSentenceText;
-        manipulationContext.manipulationSentence = [self isManipulationSentence:currentSentence];
-        [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
-        
-        if ([currentPageId rangeOfString:@"-Intro"].location != NSNotFound) {
-            [self createVocabSolutionsForPage];
-        }
-        
-        //Remove any PM specific sentence instructions
-        if(conditionSetup.currentMode == IM_MODE || conditionSetup.condition == CONTROL)
-        {
-            NSString* requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('PM_TEXT').length"];
-            int sentenceCount = [[bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount] intValue];
+        if (sentenceCount > 0) {
+            NSString* removeSentenceString;
             
-            if(sentenceCount > 0) {
-                NSString* removeSentenceString;
-                
-                //Remove PM specific sentences on the page
-                for (int i = 0; i <= totalSentences; i++) {
-                    removeSentenceString = [NSString stringWithFormat:@"removeSentence('PMs%d')", i];
-                    [bookView stringByEvaluatingJavaScriptFromString:removeSentenceString];
-                }
+            //Remove PM specific sentences on the page
+            for (int i = 0; i <= totalSentences; i++) {
+                removeSentenceString = [NSString stringWithFormat:@"removeSentence('PMs%d')", i];
+                [bookView stringByEvaluatingJavaScriptFromString:removeSentenceString];
             }
         }
-    
+    }
 
-    
-        //Set up current sentence appearance and solution steps
-        [self setupCurrentSentence];
-        [self setupCurrentSentenceColor];
-//    }
-    
+    //Set up current sentence appearance and solution steps
+    [self setupCurrentSentence];
+    [self setupCurrentSentenceColor];
+
     if ([IntroductionClass.introductions objectForKey:chapterTitle] || ([IntroductionClass.vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound)) {
         IntroductionClass.allowInteractions = FALSE;
     }
-    
-    
+
     //Load the first step for the current chapter
     if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
         [IntroductionClass loadIntroStep:bookView:self: currentSentence];
