@@ -3403,6 +3403,8 @@ BOOL wasPathFollowed = false;
             //Perform the interaction and increment the step
             [self checkSolutionForInteraction:interaction];
         }
+        
+        [playaudioClass playAutoCompleteStepNoise];
     }
     else {
         [self resetObjectLocation];
@@ -4515,6 +4517,7 @@ BOOL wasPathFollowed = false;
             if (currentSentence > totalSentences) {
                 if (conditionSetup.appMode == ITS && [currentPageId rangeOfString:@"Intro"].location == NSNotFound && ![chapterTitle isEqualToString:@"Introduction to The Best Farm"] && [bookTitle rangeOfString:@"The Circulatory System"].location == NSNotFound) {
                     //[self showPageStatistics]; //show popup window with page statistics
+                    [self loadNextPage];
                 }
                 else {
                     [self loadNextPage];
