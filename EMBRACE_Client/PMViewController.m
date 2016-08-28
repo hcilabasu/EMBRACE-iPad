@@ -1905,12 +1905,34 @@ BOOL wasPathFollowed = false;
                                 [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:@"NULL" ofType:@"Location" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
 
                                 [self handleErrorForAction:@"Move Object"];
+                                
+                                [[ITSController sharedInstance] movedObject:movingObjectId
+                                                         destinationObjects:overlappingWith
+                                                                 isVerified:false
+                                                                 actionStep:currSolStep
+                                                        manipulationContext:manipulationContext
+                                                                forSentence:currentSentenceText];
                             }
                         }
                         else {
                             [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:@"NULL" ofType:@"Location" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
                             
                             [self handleErrorForAction:@"Move Object"];
+                            
+                            // Find the location if overlapping is nil;
+                            if (overlappingWith == nil) {
+                                
+                                NSString *areaId = [model getObjectIdAtLocation:endLocation];
+                                if (areaId)
+                                    overlappingWith = @[areaId];
+                                
+                            }
+                            [[ITSController sharedInstance] movedObject:movingObjectId
+                                                     destinationObjects:overlappingWith
+                                                             isVerified:false
+                                                             actionStep:currSolStep
+                                                    manipulationContext:manipulationContext
+                                                            forSentence:currentSentenceText];
                         }
                     }
                     else if ([[currSolStep stepType] isEqualToString:@"shakeOrTap"]) {
@@ -1933,6 +1955,13 @@ BOOL wasPathFollowed = false;
                         }
                         else {
                             [self handleErrorForAction:@"Move Object"];
+                            
+                            [[ITSController sharedInstance] movedObject:movingObjectId
+                                                     destinationObjects:@[currSolStep.locationId]
+                                                             isVerified:false
+                                                             actionStep:currSolStep
+                                                    manipulationContext:manipulationContext
+                                                            forSentence:currentSentenceText];
                         }
                     }
                     else if ([[currSolStep stepType] isEqualToString:@"checkPath"]) {
@@ -1967,6 +1996,13 @@ BOOL wasPathFollowed = false;
                             //No possible interactions were found
                             if ([possibleInteractions count] == 0) {
                                 [self handleErrorForAction:@"Move Object"];
+                                
+                                [[ITSController sharedInstance] movedObject:movingObjectId
+                                                         destinationObjects:overlappingWith
+                                                                 isVerified:false
+                                                                 actionStep:currSolStep
+                                                        manipulationContext:manipulationContext
+                                                                forSentence:currentSentenceText];
                             }
                             //If only 1 possible interaction was found, go ahead and perform that interaction if it's correct.
                             if ([possibleInteractions count] == 1) {
@@ -2051,6 +2087,22 @@ BOOL wasPathFollowed = false;
                             [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:@"NULL" ofType:@"Location" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
                             
                             [self handleErrorForAction:@"Move Object"];
+                            
+                            // Find the location if overlapping is nil;
+                            if (overlappingWith == nil) {
+                                //TODO: Find the object precent in destination location.
+                                NSString *areaId = [model getObjectIdAtLocation:endLocation];
+                                NSLog(@"Area - %@",areaId);
+                                if (areaId)
+                                    overlappingWith = @[areaId];
+                                
+                            }
+                            [[ITSController sharedInstance] movedObject:movingObjectId
+                                                     destinationObjects:overlappingWith
+                                                             isVerified:false
+                                                             actionStep:currSolStep
+                                                    manipulationContext:manipulationContext
+                                                            forSentence:currentSentenceText];
                         }
                     }
                 }
@@ -3309,6 +3361,18 @@ BOOL wasPathFollowed = false;
         else {
             action = [NSString stringWithFormat:@"Move Object"];
         }
+        
+        Connection *con = [interaction.connections objectAtIndex:0];
+        NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
+        
+        //Get current step to be completed
+        ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        [[ITSController sharedInstance] movedObject:[con.objects objectAtIndex:0]
+                                 destinationObjects:@[[con.objects objectAtIndex:1]]
+                                         isVerified:false
+                                         actionStep:currSolStep
+                                manipulationContext:manipulationContext
+                                        forSentence:currentSentenceText];
     
         [self handleErrorForAction:action];
     }
