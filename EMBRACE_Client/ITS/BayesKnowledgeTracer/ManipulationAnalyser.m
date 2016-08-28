@@ -109,24 +109,33 @@
     
     if (userAction.isVerified) {
         
+        NSMutableArray *skillList = [NSMutableArray array];
+        
         // Update the two object's skills
         Skill *movedSkill = [self.knowledgeTracer updateSkillFor:userAction.movedObjectId isVerified:YES];
+        [skillList addObject:movedSkill];
+        
         Skill *destSkill = nil;
         if (userAction.actionStep.object2Id && ![userAction.actionStep.object2Id isEqualToString:@""]) {
            destSkill = [self.knowledgeTracer updateSkillFor:userAction.actionStep.object2Id isVerified:YES];
+            [skillList addObject:destSkill];
             
         } else if (userAction.actionStep.locationId &&
                    ![userAction.actionStep.locationId isEqualToString:@""]) {
             
             destSkill = [self.knowledgeTracer updateSkillFor:userAction.actionStep.locationId isVerified:YES];
+            [skillList addObject:destSkill];
         }
         
         // Update the syntax and usability skill
         EMComplexity com = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
         Skill *synSkill = [self.knowledgeTracer updateSyntaxSkill:YES
                                                                     withComplexity:com];
+        [skillList addObject:synSkill];
         Skill *useSkill = [self.knowledgeTracer updateUsabilitySkill:YES];
-        [self showMessageWith:@[movedSkill,destSkill,synSkill,useSkill]];
+        [skillList addObject:useSkill];
+        
+        [self showMessageWith:skillList];
         
         
     } else {

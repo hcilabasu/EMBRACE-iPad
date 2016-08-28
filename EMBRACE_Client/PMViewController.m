@@ -4458,7 +4458,13 @@ BOOL wasPathFollowed = false;
                 }
             }
         }
-        else if (stepsComplete || numSteps == 0 || (IntroductionClass.allowInteractions && ([chapterTitle isEqualToString:@"The Naughty Monkey"] && [currentPageId rangeOfString:@"PM-2"].location != NSNotFound && conditionSetup.condition == EMBRACE && !stepsComplete && currentSentence == 2)) || (!IntroductionClass.allowInteractions && ![chapterTitle isEqualToString:@"The Naughty Monkey"]) || (!IntroductionClass.allowInteractions && ([chapterTitle isEqualToString:@"The Naughty Monkey"] && [currentPageId rangeOfString:@"PM-2"].location != NSNotFound && conditionSetup.condition == CONTROL && stepsComplete && currentSentence == 2)) || (!IntroductionClass.allowInteractions && ([chapterTitle isEqualToString:@"The Naughty Monkey"] && conditionSetup.condition == CONTROL && !stepsComplete && currentSentence != 2)))
+        else if (stepsComplete || numSteps == 0 || (IntroductionClass.allowInteractions && ([chapterTitle isEqualToString:@"The Naughty Monkey"] && [currentPageId rangeOfString:@"PM-2"].location != NSNotFound && conditionSetup.condition == EMBRACE && !stepsComplete && currentSentence == 2))
+                 
+                 || (!IntroductionClass.allowInteractions && ![chapterTitle isEqualToString:@"The Naughty Monkey"])
+                 
+                 || (!IntroductionClass.allowInteractions && ([chapterTitle isEqualToString:@"The Naughty Monkey"] && [currentPageId rangeOfString:@"PM-2"].location != NSNotFound && conditionSetup.condition == CONTROL && stepsComplete && currentSentence == 2))
+                 
+                 || (!IntroductionClass.allowInteractions && ([chapterTitle isEqualToString:@"The Naughty Monkey"] && conditionSetup.condition == CONTROL && !stepsComplete && currentSentence != 2)))
         {
             if (currentSentence > 0) {
                 currentIdea++;
@@ -4475,12 +4481,7 @@ BOOL wasPathFollowed = false;
 
             //currentSentence is 1 indexed
             if (currentSentence > totalSentences) {
-                if (conditionSetup.appMode == ITS && [currentPageId rangeOfString:@"Intro"].location == NSNotFound && ![chapterTitle isEqualToString:@"Introduction to The Best Farm"] && [bookTitle rangeOfString:@"The Circulatory System"].location == NSNotFound) {
-                    //[self showPageStatistics]; //show popup window with page statistics
-                }
-                else {
-                    [self loadNextPage];
-                }
+                [self loadNextPage];
             }
             else {
                 //For page statistics
