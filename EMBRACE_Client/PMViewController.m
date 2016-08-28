@@ -670,7 +670,7 @@ BOOL wasPathFollowed = false;
     }
     
     // TODO: Dynamically add vocabulary based on user's current skills
-//    if (conditionSetup.appMode == ITS) {
+    if (conditionSetup.appMode == ITS) {
         NSMutableArray *vocabToAdd = [[NSMutableArray alloc] init];
     
         // TODO: Test data. Remove later.
@@ -701,7 +701,7 @@ BOOL wasPathFollowed = false;
             
             ActionStep *vocabSolutionStep = [[ActionStep alloc] initAsSolutionStep:totalSentences :nil :1 :@"tapWord" :englishText :nil :nil :nil :nil :nil :nil];
             [vocabSolutionSteps addObject:vocabSolutionStep];
-//        }
+        }
         
         // TODO: Prints textbox HTML contents. Remove later.
         NSString *pageHTMLString = [NSString stringWithFormat:@"document.getElementsByClassName('col-2')[0].innerHTML"];
@@ -1565,7 +1565,7 @@ BOOL wasPathFollowed = false;
 - (NSMutableArray *)returnCurrentSolutionSteps {
     NSMutableArray *currSolSteps;
     
-    if (conditionSetup.appMode == ITS) {
+    if (conditionSetup.appMode == ITS && [currentPageId rangeOfString:@"-Intro"].location == NSNotFound) {
         currSolSteps = [[pageSentences objectAtIndex:currentSentence - 1] solutionSteps];
     }
     else {
