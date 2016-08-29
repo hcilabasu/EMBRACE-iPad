@@ -3376,6 +3376,7 @@ BOOL wasPathFollowed = false;
     [[ServerCommunicationController sharedInstance] logVerification:false forAction:action context:manipulationContext];
     
     [self playErrorNoise];
+    [self resetObjectLocation];
     
     numAttempts++;
     
@@ -3405,9 +3406,6 @@ BOOL wasPathFollowed = false;
         }
         
         [playaudioClass playAutoCompleteStepNoise];
-    }
-    else {
-        [self resetObjectLocation];
     }
     
     if (conditionSetup.appMode == ITS) {
