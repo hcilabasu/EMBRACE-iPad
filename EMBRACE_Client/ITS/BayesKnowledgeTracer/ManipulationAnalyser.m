@@ -48,6 +48,10 @@
     [self.playWords addObject:word];
 }
 
+- (NSMutableSet *)getRequestedVocab {
+    return self.playWords;
+}
+
 - (void)pressedNextWithManipulationContext:(ManipulationContext *)context
                                forSentence:(NSString *)sentence
                                 isVerified:(BOOL)verified {

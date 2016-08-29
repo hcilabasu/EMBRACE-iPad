@@ -110,4 +110,8 @@ manipulationContext:(ManipulationContext *)context
     return complexity;
 }
 
+- (NSMutableSet *)getRequestedVocab {
+    return [self.manipulationAnalyser getRequestedVocab];
+}
+
 @end

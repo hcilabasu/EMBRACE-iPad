@@ -21,6 +21,7 @@
     manipulationContext:(ManipulationContext *)context;
 
 - (void)userDidPlayWord:(NSString *)word;
+- (NSMutableSet *)getRequestedVocab;
 
 - (void)pressedNextWithManipulationContext:(ManipulationContext *)context
                                forSentence:(NSString *)sentence
