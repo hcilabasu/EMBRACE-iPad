@@ -36,6 +36,7 @@ manipulationContext:(ManipulationContext *)context
                                 isVerified:(BOOL)verified;
 
 - (EMComplexity)getCurrentComplexity;
+- (NSMutableSet *)getRequestedVocab;
 
 - (double)vocabSkillValueForWord:(NSString *)word;
 

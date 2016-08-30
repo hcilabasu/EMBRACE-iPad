@@ -114,4 +114,8 @@ manipulationContext:(ManipulationContext *)context
     return [self.manipulationAnalyser vocabSkillForWord:word];
 }
 
+- (NSMutableSet *)getRequestedVocab {
+    return [self.manipulationAnalyser getRequestedVocab];
+}
+
 @end
