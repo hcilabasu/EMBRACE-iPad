@@ -110,8 +110,8 @@ manipulationContext:(ManipulationContext *)context
     return complexity;
 }
 
-- (double)syntaxSkillValueForWord:(NSString *)word {
-    [self.manipulationAnalyser syntaxSkillValueForWord:word];
+- (double)vocabSkillValueForWord:(NSString *)word {
+    return [self.manipulationAnalyser vocabSkillForWord:word];
 }
 
 @end

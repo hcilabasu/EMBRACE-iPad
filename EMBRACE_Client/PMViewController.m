@@ -983,7 +983,7 @@ BOOL wasPathFollowed = false;
  * Returns a CGPoint containing the x and y coordinates of the position of an object
  */
 - (CGPoint)getObjectPosition:(NSString *)object {
-    [self.pmView getObjectPosition:object];
+    return [self.pmView getObjectPosition:object];
 }
 
 //TODO: add description, move to new class
@@ -4944,6 +4944,10 @@ BOOL wasPathFollowed = false;
                    analyzer:(ManipulationAnalyser *)analyzer {
     
     return [self getObjectPosition:object];
+}
+
+- (CGSize)sizeOfObject:(NSString *)object analyzer:(ManipulationAnalyser *)analyzer {
+    return [self.pmView sizeOfObject:object];
 }
 
 - (void)analyzer:(ManipulationAnalyser *)analyzer showMessage:(NSString *)message {

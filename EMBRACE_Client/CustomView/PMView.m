@@ -416,8 +416,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     if (![positionString isEqualToString:@""]) {
         position = [positionString componentsSeparatedByString:@", "];
     }
-    
-    return CGPointMake([position[0] floatValue], [position[1] floatValue]);
+    CGPoint point = CGPointMake([position[0] floatValue], [position[1] floatValue]);
+    return point;
 }
 
 /*

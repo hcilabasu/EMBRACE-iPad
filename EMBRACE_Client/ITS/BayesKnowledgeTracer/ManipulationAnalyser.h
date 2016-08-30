@@ -30,7 +30,7 @@
 - (double)medSyntaxSkillValue;
 - (double)complexSyntaxSkillValue;
 
-- (double)syntaxSkillValueForWord:(NSString *)word;
+- (double)vocabSkillForWord:(NSString *)word;
 
 @end
 
@@ -38,6 +38,8 @@
 @protocol ManipulationAnalyserProtocol <NSObject>
 
 - (CGPoint)locationOfObject:(NSString *)object analyzer:(ManipulationAnalyser *)analyzer;
+
+- (CGSize)sizeOfObject:(NSString *)object analyzer:(ManipulationAnalyser *)analyzer;
 
 - (NSArray *)getNextStepsForCurrentSentence:(ManipulationAnalyser *)analyzer;
 

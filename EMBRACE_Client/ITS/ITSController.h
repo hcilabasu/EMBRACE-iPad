@@ -37,6 +37,6 @@ manipulationContext:(ManipulationContext *)context
 
 - (EMComplexity)getCurrentComplexity;
 
-- (double)syntaxSkillValueForWord:(NSString *)word;
+- (double)vocabSkillValueForWord:(NSString *)word;
 
 @end

@@ -92,7 +92,7 @@
     return sk;
 }
 
-- (Skill *)syntaxSkillForWord:(NSString *)word {
+- (Skill *)vocabSkillForWord:(NSString *)word {
     Skill *sk  = [self.skillSet skillForWord:word];
     return sk;
 }
