@@ -66,6 +66,8 @@
 
 - (NSString *)getSentenceClass:(NSInteger)sentenceNumber;
 
+- (void)addVocabularyWithID:(NSInteger)vocabID englishText:(NSString *)engText spanishText:(NSString *)spanText;
+
 #pragma mark - 
 
 - (CGPoint)getObjectPosition:(NSString *)object;

@@ -277,82 +277,53 @@ BOOL wasPathFollowed = false;
     
     //Start off with no objects grouped together
     currentGroupings = [[NSMutableDictionary alloc] init];
-        
-    if (conditionSetup.appMode == ITS && [currentPageId rangeOfString:@"-Intro"].location == NSNotFound) {
-        self.currentComplexityLevel = [[ITSController sharedInstance] getCurrentComplexity];
-        [self.pmView removeAllSentences];
-        [self addSentencesWithComplexity:self.currentComplexityLevel];
-    }
+    
 
-    //Get the number of sentences on the page
-    NSString *requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('sentence').length"];
-    int sentenceCount = [[bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount] intValue];
-    
-    //Get the id number of the last sentence on the page and set it equal to the total number of sentences.
-    //Because the PMActivity may have multiple pages, this id number may not match the sentence count for the page.
-    //   Ex. Page 1 may have three sentences: 1, 2, and 3. Page 2 may also have three sentences: 4, 5, and 6.
-    //   The total number of sentences is like a running total, so by page 2, there are 6 sentences instead of 3.
-    //This is to make sure we access the solution steps for the correct sentence on this page, and not a sentence on
-    //a previous page.
-    NSString *requestLastSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[%d - 1].id", sentenceCount];
-    NSString *lastSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
-    int lastSentenceIdNumber = [[lastSentenceId substringFromIndex:1] intValue];
-    totalSentences = lastSentenceIdNumber;
+    totalSentences = (int)[self.pmView totalSentences];
 
-    //Get the id number of the first sentence on the page and set it equal to the current sentence number.
-    //Because the PMActivity may have multiple pages, the first sentence on the page is not necessarily sentence 1.
-    //   Ex. Page 1 may start at sentence 1, but page 2 may start at sentence 4.
-    //   Thus, the first sentence on page 2 is sentence 4, not 1.
-    //This is also to make sure we access the solution steps for the correct sentence.
-    NSString *requestFirstSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[0].id"];
-    NSString *firstSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestFirstSentenceId];
-    int firstSentenceIdNumber = [[firstSentenceId substringFromIndex:1] intValue];
-    currentSentence = firstSentenceIdNumber;
-    currentSentenceText = [[bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d').innerHTML", currentSentence]] stringByConvertingHTMLToPlainText];
-    
-    manipulationContext.sentenceNumber = currentSentence;
-    manipulationContext.sentenceText = currentSentenceText;
-    manipulationContext.manipulationSentence = [self isManipulationSentence:currentSentence];
-    [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
-    
+    //Dynamically reads the vocabulary words on the vocab page and creates and adds solutionsteps
     if ([currentPageId rangeOfString:@"-Intro"].location != NSNotFound) {
         [self createVocabSolutionsForPage];
     }
-    
-    //Remove any PM specific sentence instructions
-    if (conditionSetup.currentMode == IM_MODE || conditionSetup.condition == CONTROL) {
-        NSString* requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('PM_TEXT').length"];
-        int sentenceCount = [[bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount] intValue];
-        
-        if (sentenceCount > 0) {
-            NSString* removeSentenceString;
-            
-            //Remove PM specific sentences on the page
-            for (int i = 0; i <= totalSentences; i++) {
-                removeSentenceString = [NSString stringWithFormat:@"removeSentence('PMs%d')", i];
-                [bookView stringByEvaluatingJavaScriptFromString:removeSentenceString];
-            }
+    else {
+        if (conditionSetup.appMode == ITS) {
+            self.currentComplexityLevel = [[ITSController sharedInstance] getCurrentComplexity];
+            [self.pmView removeAllSentences];
+            [self addSentencesWithComplexity:self.currentComplexityLevel];
         }
     }
+       
+        totalSentences = (int)[self.pmView totalSentences];
+        
 
-    //Set up current sentence appearance and solution steps
-    [self setupCurrentSentence];
-    [self setupCurrentSentenceColor];
-
-    if ([IntroductionClass.introductions objectForKey:chapterTitle] || ([IntroductionClass.vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound)) {
-        IntroductionClass.allowInteractions = FALSE;
-    }
-
-    //Load the first step for the current chapter
-    if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
-        [IntroductionClass loadIntroStep:bookView:self: currentSentence];
-    }
+        //Get the id number of the first sentence on the page and set it equal to the current sentence number.
+        //Because the PMActivity may have multiple pages, the first sentence on the page is not necessarily sentence 1.
+        //   Ex. Page 1 may start at sentence 1, but page 2 may start at sentence 4.
+        //   Thus, the first sentence on page 2 is sentence 4, not 1.
+        //This is also to make sure we access the solution steps for the correct sentence.
+        currentSentence = (int)[self.pmView getIdForSentence:0];
+       
+        currentSentenceText = [self.pmView getCurrentSentenceAt:currentSentence];
+        //[[bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d').innerHTML", currentSentence]] stringByConvertingHTMLToPlainText];
+        
+        manipulationContext.sentenceNumber = currentSentence;
+        manipulationContext.sentenceText = currentSentenceText;
+        manipulationContext.manipulationSentence = [self isManipulationSentence:currentSentence];
+        [[ServerCommunicationController sharedInstance] logLoadSentence:currentSentence withText:currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
+        
     
-    //Load the first vocabulary step for the current chapter (hard-coded for now)
-    if ([IntroductionClass.vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
-        [IntroductionClass loadVocabStep:bookView:self: currentSentence: chapterTitle];
-    }
+        
+        //Remove any PM specific sentence instructions
+        if(conditionSetup.currentMode == IM_MODE || conditionSetup.condition == CONTROL) {
+            [self.pmView removePMInstructions:totalSentences];
+        }
     
+
+    
+        //Set up current sentence appearance and solution steps
+        [self setupCurrentSentence];
+        [self setupCurrentSentenceColor];
+
     isAudioLeft = false;
     
     [self playCurrentSentenceAudio];
@@ -398,43 +369,70 @@ BOOL wasPathFollowed = false;
     }
 }
 
+/*
+ * Creates a solution step for each vocabulary word in the introduction and adds it to the page solutions
+ */
 - (void)createVocabSolutionsForPage {
+    NSMutableSet *newVocab = [[NSMutableSet alloc] init];
+    NSMutableArray *vocabSolutionSteps = [[NSMutableArray alloc] init];
     
-        PMSolution = [[PhysicalManipulationSolution alloc] init];
-        IMSolution = [[ImagineManipulationSolution alloc] init];
+    // Adds new vocabulary introduced in the chapter
+    for (int i = 1; i < totalSentences + 1; i++) {
+        NSString *vocabText = [[self.pmView getVocabAtId:i] lowercaseString];
         
-        for (int i = 1; i < totalSentences + 1; i++) {
+        if (conditionSetup.language == BILINGUAL) {
+            if (![[self getEnglishTranslation:vocabText] isEqualToString:@"Translation not found"]) {
+                vocabText = [self getEnglishTranslation:vocabText];
+            }
+        }
+        
+        [newVocab addObject:vocabText];
+        
+        ActionStep *vocabSolutionStep = [[ActionStep alloc] initAsSolutionStep:i :nil :1 :@"tapWord" :vocabText :nil :nil :nil :nil :nil :nil];
+        [vocabSolutionSteps addObject:vocabSolutionStep];
+    }
+    
+    // TODO: Dynamically add vocabulary based on user's current skills
+    if (conditionSetup.appMode == ITS) {
+        NSMutableSet *vocabToAdd = [[ITSController sharedInstance] getRequestedVocab];
+        [vocabToAdd minusSet:newVocab];
+        
+        for (NSString *vocab in vocabToAdd) {
+            totalSentences++;
             
-            NSString *sentenceText = [[self.pmView getVocabAtId:i] lowercaseString];
+            NSString *englishText = vocab;
+            NSString *spanishText = [NSString stringWithFormat:@""];
             
             if (conditionSetup.language == BILINGUAL) {
-                if (![[self getEnglishTranslation:sentenceText] isEqualToString:@"Translation not found"]) {
-                    sentenceText = [self getEnglishTranslation:sentenceText];
+                if (![[self getEnglishTranslation:vocab] isEqualToString:@"Translation not found"]) {
+                    englishText = [self getEnglishTranslation:vocab];
+                    spanishText = vocab;
                 }
             }
             
-            ActionStep *solutionStep = [[ActionStep alloc] initAsSolutionStep:i :nil : 1 : @"tapWord" : sentenceText : nil : nil: nil : nil : nil : nil];
+            [self.pmView addVocabularyWithID:totalSentences englishText:englishText spanishText:spanishText];
             
-            if (conditionSetup.currentMode == PM_MODE || conditionSetup.condition == CONTROL) {
-                [PMSolution addSolutionStep:solutionStep];
-            }
-            else if (conditionSetup.currentMode == IM_MODE) {
-                [IMSolution addSolutionStep:solutionStep];
-            }
+            ActionStep *vocabSolutionStep = [[ActionStep alloc] initAsSolutionStep:totalSentences :nil :1 :@"tapWord" :englishText :nil :nil :nil :nil :nil :nil];
+            [vocabSolutionSteps addObject:vocabSolutionStep];
         }
+    }
+    
+    Chapter *chapter = [book getChapterWithTitle:chapterTitle];
+    
+    if (conditionSetup.currentMode == PM_MODE || conditionSetup.condition == CONTROL) {
+        PMSolution = [[PhysicalManipulationSolution alloc] init];
+        PMSolution.solutionSteps = vocabSolutionSteps;
         
-        Chapter *chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
+        PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE];
+        [PMActivity addPMSolution:PMSolution forActivityId:currentPageId];
+    }
+    else if (conditionSetup.currentMode == IM_MODE) {
+        IMSolution = [[ImagineManipulationSolution alloc] init];
+        IMSolution.solutionSteps = vocabSolutionSteps;
         
-        //Add PMSolution to page
-        if (conditionSetup.currentMode == PM_MODE || conditionSetup.condition == CONTROL) {
-            PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; //get PM Activity only
-            [PMActivity addPMSolution:PMSolution forActivityId:currentPageId];
-        }
-        //Add IMSolution to page
-        else if (conditionSetup.currentMode == IM_MODE) {
-            ImagineManipulationActivity *IMActivity = (ImagineManipulationActivity *)[chapter getActivityOfType:IM_MODE]; //get IM Activity only
-            [IMActivity addIMSolution:IMSolution forActivityId:currentPageId];
-        }
+        ImagineManipulationActivity *IMActivity = (ImagineManipulationActivity *)[chapter getActivityOfType:IM_MODE];
+        [IMActivity addIMSolution:IMSolution forActivityId:currentPageId];
+    }
 }
 
 //Temporary menu to select complexity of sentences on page or to dismiss page statistics
@@ -680,76 +678,6 @@ BOOL wasPathFollowed = false;
 }
 
 /*
- * Creates a solution step for each vocabulary word in the introduction and adds it to the page solutions
- */
-- (void)createVocabSolutionsForPage {
-    NSMutableSet *newVocab = [[NSMutableSet alloc] init];
-    NSMutableArray *vocabSolutionSteps = [[NSMutableArray alloc] init];
-    
-    // Adds new vocabulary introduced in the chapter
-    for (int i = 1; i < totalSentences + 1; i++) {
-        NSString *requestVocabText = [NSString stringWithFormat:@"document.getElementById(%d).innerHTML", i];
-        NSString *vocabText = [[bookView stringByEvaluatingJavaScriptFromString:requestVocabText] lowercaseString];
-        
-        if (conditionSetup.language == BILINGUAL) {
-            if (![[self getEnglishTranslation:vocabText] isEqualToString:@"Translation not found"]) {
-                vocabText = [self getEnglishTranslation:vocabText];
-            }
-        }
-        
-        [newVocab addObject:vocabText];
-        
-        ActionStep *vocabSolutionStep = [[ActionStep alloc] initAsSolutionStep:i :nil :1 :@"tapWord" :vocabText :nil :nil :nil :nil :nil :nil];
-        [vocabSolutionSteps addObject:vocabSolutionStep];
-    }
-    
-    // TODO: Dynamically add vocabulary based on user's current skills
-    if (conditionSetup.appMode == ITS) {
-        NSMutableSet *vocabToAdd = [[ITSController sharedInstance] getRequestedVocab];
-        [vocabToAdd minusSet:newVocab];
-    
-        NSString *addVocabularyString;
-    
-        for (NSString *vocab in vocabToAdd) {
-            totalSentences++;
-            
-            NSString *englishText = vocab;
-            NSString *spanishText = [NSString stringWithFormat:@""];
-            
-            if (conditionSetup.language == BILINGUAL) {
-                if (![[self getEnglishTranslation:vocab] isEqualToString:@"Translation not found"]) {
-                    englishText = [self getEnglishTranslation:vocab];
-                    spanishText = vocab;
-                }
-            }
-            
-            addVocabularyString = [NSString stringWithFormat:@"addVocabulary('s%lu', '%@', '%@')", (unsigned long)totalSentences, englishText, spanishText];
-            [bookView stringByEvaluatingJavaScriptFromString:addVocabularyString];
-            
-            ActionStep *vocabSolutionStep = [[ActionStep alloc] initAsSolutionStep:totalSentences :nil :1 :@"tapWord" :englishText :nil :nil :nil :nil :nil :nil];
-            [vocabSolutionSteps addObject:vocabSolutionStep];
-        }
-    }
-    
-    Chapter *chapter = [book getChapterWithTitle:chapterTitle];
-    
-    if (conditionSetup.currentMode == PM_MODE || conditionSetup.condition == CONTROL) {
-        PMSolution = [[PhysicalManipulationSolution alloc] init];
-        PMSolution.solutionSteps = vocabSolutionSteps;
-        
-        PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE];
-        [PMActivity addPMSolution:PMSolution forActivityId:currentPageId];
-    }
-    else if (conditionSetup.currentMode == IM_MODE) {
-        IMSolution = [[ImagineManipulationSolution alloc] init];
-        IMSolution.solutionSteps = vocabSolutionSteps;
-        
-        ImagineManipulationActivity *IMActivity = (ImagineManipulationActivity *)[chapter getActivityOfType:IM_MODE];
-        [IMActivity addIMSolution:IMSolution forActivityId:currentPageId];
-    }
-}
-
-/*
  * Gets the number of steps for the current sentence and sets the current step to 1.
  * Performs steps automatically if needed. Step is complete if it's a non-action sentence.
  */
@@ -808,32 +736,8 @@ BOOL wasPathFollowed = false;
  * or as black (if it is a non-action sentence).
  */
 - (void)setupCurrentSentenceColor {
-    //Highlight the sentence and set its color to black
-    NSString *setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, 1.0)", currentSentence];
-    [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
-    
-    NSString *setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence];
-    [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
-    
-    //TODO: utilize return setence class functon
-    //Check to see if it is an action sentence
-    NSString *actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%d)", currentSentence];
-    NSString *sentenceClass = [bookView stringByEvaluatingJavaScriptFromString:actionSentence];
-    
-    //If it is a non-black action sentence (i.e., requires user manipulation), then set the color to blue
-    if (![sentenceClass containsString:@"black"]) {
-        //TODO: utilize check return sentence class type function
-        if ([sentenceClass containsString: @"sentence actionSentence"] || ([sentenceClass containsString: @"sentence IMactionSentence"] && conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE)) {
-            setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'blue')", currentSentence];
-            [bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
-        }
-    }
-
-    //Set the opacity of all but the current sentence to .2
-    for (int i = currentSentence; i < totalSentences; i++) {
-        NSString *setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, .2)", i + 1];
-        [bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
-    }
+    [self.pmView setupCurrentSentenceColor:currentSentence condition:conditionSetup.condition
+                                   andMode:conditionSetup.currentMode];
 }
 
 /*
@@ -1304,7 +1208,7 @@ BOOL wasPathFollowed = false;
         
         //Capture the clicked text id, if it exists
         NSString *sentenceID = [self.pmView getElementAtLocation:location];
-        int sentenceIDNum = [[sentenceID substringFromIndex:0] intValue];
+        int sentenceIDNum = [[sentenceID stringByReplacingOccurrencesOfString:@"s" withString:@""] intValue];
 
         NSString *requestSentenceText;
         NSString *sentenceText;
@@ -1510,7 +1414,7 @@ BOOL wasPathFollowed = false;
             [self highlightImageForText:englishSentenceText];
         
             currentSentence++;
-            currentSentenceText = [[bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById('s%d').innerHTML", currentSentence]] stringByConvertingHTMLToPlainText];
+            currentSentenceText = [self.pmView getCurrentSentenceAt:currentSentence];
             stepsComplete = NO;
             
             manipulationContext.sentenceNumber = currentSentence;
@@ -3182,8 +3086,7 @@ BOOL wasPathFollowed = false;
     }
     
     //Clear any remaining highlighting
-    NSString *clearHighlighting = [NSString stringWithFormat:@"clearAllHighlighted()"];
-    [bookView stringByEvaluatingJavaScriptFromString:clearHighlighting];
+    [self.pmView clearAllHighLighting];
 }
 
 /*
@@ -4048,13 +3951,7 @@ BOOL wasPathFollowed = false;
 
             //currentSentence is 1 indexed
             if (currentSentence > totalSentences) {
-                if (conditionSetup.appMode == ITS && [currentPageId rangeOfString:@"Intro"].location == NSNotFound && ![chapterTitle isEqualToString:@"Introduction to The Best Farm"] && [bookTitle rangeOfString:@"The Circulatory System"].location == NSNotFound) {
-                    //[self showPageStatistics]; //show popup window with page statistics
-                    [self loadNextPage];
-                }
-                else {
-                    [self loadNextPage];
-                }
+                [self loadNextPage];
             }
             else {
                 //For page statistics
