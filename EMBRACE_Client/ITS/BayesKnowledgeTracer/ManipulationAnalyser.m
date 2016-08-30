@@ -46,6 +46,14 @@
 
 - (void)userDidPlayWord:(NSString *)word {
     [self.playWords addObject:word];
+    
+    NSMutableArray *skillList = [NSMutableArray array];
+    
+    // Update the two object's skills
+    Skill *movedSkill = [self.knowledgeTracer updateSkillFor:word isVerified:NO];
+    [skillList addObject:movedSkill];
+    [self showMessageWith:skillList];
+    
 }
 
 - (void)pressedNextWithManipulationContext:(ManipulationContext *)context
@@ -68,6 +76,11 @@
 
 - (double)complexSyntaxSkillValue {
     Skill *sk = [self.knowledgeTracer syntaxSkillFor:EM_Complex];
+    return sk.skillValue;
+}
+
+- (double)vocabSkillForWord:(NSString *)word {
+    Skill *sk = [self.knowledgeTracer vocabSkillForWord:word];
     return sk.skillValue;
 }
 
@@ -104,24 +117,33 @@
     
     if (userAction.isVerified) {
         
+        NSMutableArray *skillList = [NSMutableArray array];
+        
         // Update the two object's skills
         Skill *movedSkill = [self.knowledgeTracer updateSkillFor:userAction.movedObjectId isVerified:YES];
+        [skillList addObject:movedSkill];
+        
         Skill *destSkill = nil;
         if (userAction.actionStep.object2Id && ![userAction.actionStep.object2Id isEqualToString:@""]) {
            destSkill = [self.knowledgeTracer updateSkillFor:userAction.actionStep.object2Id isVerified:YES];
+            [skillList addObject:destSkill];
             
         } else if (userAction.actionStep.locationId &&
                    ![userAction.actionStep.locationId isEqualToString:@""]) {
             
             destSkill = [self.knowledgeTracer updateSkillFor:userAction.actionStep.locationId isVerified:YES];
+            [skillList addObject:destSkill];
         }
         
         // Update the syntax and usability skill
         EMComplexity com = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
         Skill *synSkill = [self.knowledgeTracer updateSyntaxSkill:YES
                                                                     withComplexity:com];
+        [skillList addObject:synSkill];
         Skill *useSkill = [self.knowledgeTracer updateUsabilitySkill:YES];
-        [self showMessageWith:@[movedSkill,destSkill,synSkill,useSkill]];
+        [skillList addObject:useSkill];
+        
+        [self showMessageWith:skillList];
         
         
     } else {
@@ -156,37 +178,70 @@
     } else {
         // Check if the user preformed a future step
         //
-        NSArray *nextSteps = [self.delegate getNextStepsForCurrentSentence:self];
-        for (ActionStep *nextStep in nextSteps) {
+//        NSArray *nextSteps = [self.delegate getNextStepsForCurrentSentence:self];
+//        for (ActionStep *nextStep in nextSteps) {
+//            
+//            
+//                
+//                NSString *correctDest = nil;
+//                if (nextStep.object2Id != nil) {
+//                    correctDest = nextStep.object2Id;
+//                    
+//                } else if (nextStep.locationId != nil) {
+//                    correctDest = nextStep.locationId;
+//                    
+//                } else if (nextStep.areaId != nil) {
+//                    correctDest = nextStep.areaId;
+//                }
+//                
+//                if ([nextStep.object1Id isEqualToString:userAction.movedObjectId] &&
+//                    [correctDest isEqualToString:userAction.destinationObjectId]) {
+//                    NSLog(@"Performed a future step");
+//                    
+//                    EMComplexity com = [self.delegate analyzer:self
+//                                      getComplexityForSentence:context.sentenceNumber];
+//                    Skill *skill = [self.knowledgeTracer updateSyntaxSkill:NO
+//                                                            withComplexity:com];
+//                    [skills addObject:skill];
+//                    [self showMessageWith:skills];
+//                    return;
+//                }
+//                
+//            
+//            
+//            
+//        }
+        
+        // Check if one of the step is correct
+        //
+        if ([userAction.movedObjectId isEqualToString:userAction.actionStep.object1Id] &&
+            ![userAction.destinationObjectId isEqualToString:userAction.actionStep.object2Id]) {
             
+            NSLog(@"Subject is wrong");
+            EMComplexity com = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
+            Skill *skill = [self.knowledgeTracer updateSyntaxSkill:NO
+                                                    withComplexity:com];
+            Skill *objSkill = [self.knowledgeTracer updateSkillFor:userAction.movedObjectId isVerified:YES];
             
-                
-                NSString *correctDest = nil;
-                if (nextStep.object2Id != nil) {
-                    correctDest = nextStep.object2Id;
-                    
-                } else if (nextStep.locationId != nil) {
-                    correctDest = nextStep.locationId;
-                    
-                } else if (nextStep.areaId != nil) {
-                    correctDest = nextStep.areaId;
-                }
-                
-                if ([nextStep.object1Id isEqualToString:userAction.movedObjectId] &&
-                    [correctDest isEqualToString:userAction.destinationObjectId]) {
-                    NSLog(@"Performed a future step");
-                    
-                    EMComplexity com = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
-                    Skill *skill = [self.knowledgeTracer updateSyntaxSkill:NO
-                                                            withComplexity:com];
-                    [skills addObject:skill];
-                    [self showMessageWith:skills];
-                    return;
-                }
-                
+            [skills addObject:skill];
+            [skills addObject:objSkill];
+            [self showMessageWith:skills];
+            return;
+        }
+        
+        if (![userAction.movedObjectId isEqualToString:userAction.actionStep.object1Id] &&
+            [userAction.destinationObjectId isEqualToString:userAction.actionStep.object2Id]) {
             
+            NSLog(@"Object is wrong");
+            EMComplexity com = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
+            Skill *skill = [self.knowledgeTracer updateSyntaxSkill:NO
+                                                    withComplexity:com];
+            Skill *objSkill = [self.knowledgeTracer updateSkillFor:userAction.destinationObjectId isVerified:YES];
             
-            
+            [skills addObject:skill];
+            [skills addObject:objSkill];
+            [self showMessageWith:skills];
+            return;
         }
         
     }
@@ -198,8 +253,15 @@
                                                            analyzer:self];
         CGPoint actualLocation = [self.delegate locationOfObject:userAction.actionStep.object1Id
                                                         analyzer:self];
-        float distance = [self distanceBetween:movedFromLocation
-                                                 and:actualLocation];
+        CGSize firstObjectSize = [self.delegate sizeOfObject:userAction.movedObjectId
+                                                    analyzer:self];
+        CGSize secondObjectSize = [self.delegate sizeOfObject:userAction.actionStep.object1Id
+                                                    analyzer:self];
+        
+        CGRect firstRect = CGRectMake(movedFromLocation.x, movedFromLocation.y, firstObjectSize.width, firstObjectSize.height);
+        CGRect secondRect = CGRectMake(actualLocation.x, actualLocation.y, secondObjectSize.width, secondObjectSize.height);
+        
+        float distance = distanceBetween(firstRect, secondRect);
         
         if (distance > DISTANCE_THRESHOLD) {
             // Vocabulary error
@@ -239,10 +301,19 @@
        
         CGPoint movedFromLocation = [self.delegate locationOfObject:userAction.destinationObjectId
                                                            analyzer:self];
-        CGPoint actualLocation = [self.delegate locationOfObject:userAction.actionStep.object2Id
+        CGPoint actualLocation = [self.delegate locationOfObject:correctDest
                                                         analyzer:self];
-        float distance = [self distanceBetween:movedFromLocation
-                                           and:actualLocation];
+        
+        CGSize firstObjectSize = [self.delegate sizeOfObject:userAction.destinationObjectId
+                                                    analyzer:self];
+        CGSize secondObjectSize = [self.delegate sizeOfObject:correctDest
+                                                     analyzer:self];
+        
+       CGRect firstRect = CGRectMake(movedFromLocation.x, movedFromLocation.y, firstObjectSize.width, firstObjectSize.height);
+       CGRect secondRect = CGRectMake(actualLocation.x, actualLocation.y, secondObjectSize.width, secondObjectSize.height);
+        
+        
+        float distance = distanceBetween(firstRect, secondRect);
         if (distance > DISTANCE_THRESHOLD) {
             // Vocabulary error
             Skill *destObjSkill = [self.knowledgeTracer updateSkillFor:userAction.destinationObjectId isVerified:NO];
@@ -331,4 +402,29 @@
     
     return sqrt(pow(p2.x-p1.x,2) + pow(p2.y-p1.y,2));
 }
+
+float distanceBetween(CGRect rect1, CGRect rect2) {
+    
+    if (CGRectIntersectsRect(rect1, rect2)) {
+        return 0;
+    }
+    
+    CGRect mostLeft = rect1.origin.x < rect2.origin.x ? rect1 : rect2;
+    CGRect mostRight = rect2.origin.x < rect1.origin.x ? rect1 : rect2;
+    
+    CGFloat xDifference = mostLeft.origin.x == mostRight.origin.x ? 0 : mostRight.origin.x - (mostLeft.origin.x + mostLeft.size.width);
+    xDifference = MAX(0, xDifference);
+    
+    CGRect upper = rect1.origin.y < rect2.origin.y ? rect1 : rect2;
+    CGRect lower = rect2.origin.y < rect1.origin.y ? rect1 : rect2;
+    
+    CGFloat yDifference = upper.origin.y == lower.origin.y ? 0 : lower.origin.y - (upper.origin.y + upper.size.height);
+    yDifference = MAX(0, yDifference);
+    float diff = sqrt(pow(yDifference,2) + pow(xDifference,2));
+   NSLog(@"%f", diff);
+   
+    return diff;
+}
+
+
 @end
