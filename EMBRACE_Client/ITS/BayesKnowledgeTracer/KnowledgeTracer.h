@@ -19,4 +19,6 @@
 
 - (Skill *)syntaxSkillFor:(EMComplexity)complex;
 
+- (Skill *)vocabSkillForWord:(NSString *)word;
+
 @end

@@ -22,7 +22,7 @@
             </sentence>
         </story>
         <story title="The Navajo Hogan" activity_id="story1-PM-3">
-            <sentence number="8">
+            <sentence number="9">
                 <step number="1">
                     <check obj1Id="hogancarpet" action="getIn" locationId="hogancarpetUp"/>
                     <move obj1Id="hogancarpet" action="getIn" waypointId="hogancarpetUp"/>
