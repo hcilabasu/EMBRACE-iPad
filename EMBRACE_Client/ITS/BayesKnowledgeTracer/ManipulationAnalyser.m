@@ -49,11 +49,20 @@
     
     NSMutableArray *skillList = [NSMutableArray array];
     
-    // Update the two object's skills
     Skill *movedSkill = [self.knowledgeTracer updateSkillFor:word isVerified:NO];
     [skillList addObject:movedSkill];
     [self showMessageWith:skillList];
     
+}
+
+- (void)userDidVocabPreviewWord:(NSString *)word {
+    [self.playWords addObject:word];
+    
+    NSMutableArray *skillList = [NSMutableArray array];
+    
+    Skill *movedSkill = [self.knowledgeTracer updateSkillFor:word isVerified:YES];
+    [skillList addObject:movedSkill];
+    [self showMessageWith:skillList];
 }
 
 - (NSMutableSet *)getRequestedVocab {

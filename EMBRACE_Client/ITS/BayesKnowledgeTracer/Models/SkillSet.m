@@ -31,6 +31,10 @@
         _medSyntaxSkill = [[SyntaxSkill alloc] initWithComplexity:EM_Medium];
         _complexSyntaxSkill = [[SyntaxSkill alloc] initWithComplexity:EM_Complex];
         
+        [_easySyntaxSkill updateSkillValue:0.99];
+        
+        
+        
         _usabilitySkill = [[UsabilitySkill alloc] init];
         
     }

@@ -31,6 +31,8 @@ manipulationContext:(ManipulationContext *)context
 
 - (void)userDidPlayWord:(NSString *)word;
 
+- (void)userDidVocabPreviewWord:(NSString *)word;
+
 - (void)pressedNextWithManipulationContext:(ManipulationContext *)context
                                forSentence:(NSString *)sentence
                                 isVerified:(BOOL)verified;

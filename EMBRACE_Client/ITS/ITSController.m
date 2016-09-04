@@ -49,6 +49,10 @@
     
 }
 
+- (void)userDidVocabPreviewWord:(NSString *)word {
+    [self.manipulationAnalyser userDidVocabPreviewWord:word];
+}
+
 
 - (void)movedObject:(NSString *)objectId
   destinationObjects:(NSArray *)destinationObjs
