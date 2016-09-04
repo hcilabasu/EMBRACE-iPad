@@ -137,14 +137,8 @@
         [skillList addObject:movedSkill];
         
         Skill *destSkill = nil;
-        if (userAction.actionStep.object2Id && ![userAction.actionStep.object2Id isEqualToString:@""]) {
-           destSkill = [self.knowledgeTracer updateSkillFor:userAction.actionStep.object2Id isVerified:YES];
-            [skillList addObject:destSkill];
-            
-        } else if (userAction.actionStep.locationId &&
-                   ![userAction.actionStep.locationId isEqualToString:@""]) {
-            
-            destSkill = [self.knowledgeTracer updateSkillFor:userAction.actionStep.locationId isVerified:YES];
+        if (userAction.actionStepDestinationObjectId && ![userAction.actionStepDestinationObjectId isEqualToString:@""]) {
+           destSkill = [self.knowledgeTracer updateSkillFor:userAction.actionStepDestinationObjectId isVerified:YES];
             [skillList addObject:destSkill];
         }
         
@@ -177,8 +171,8 @@
     
     // Check for syntax error
     // Check if the student mixed up subject and object
-    if ([userAction.destinationObjectId isEqualToString:userAction.actionStep.object1Id] &&
-        [userAction.movedObjectId isEqualToString:userAction.actionStep.object2Id]) {
+    if ([userAction.destinationObjectId isEqualToString:userAction.actionStepMovedObjectId] &&
+        [userAction.movedObjectId isEqualToString:userAction.actionStepDestinationObjectId]) {
         
         NSLog(@"Mixed up objects");
         EMComplexity com = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
@@ -225,25 +219,25 @@
 //            
 //        }
         
-        // Check if one of the step is correct
-        //
-        if ([userAction.movedObjectId isEqualToString:userAction.actionStep.object1Id] &&
-            ![userAction.destinationObjectId isEqualToString:userAction.actionStep.object2Id]) {
-            
-            NSLog(@"Subject is wrong");
-            EMComplexity com = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
-            Skill *skill = [self.knowledgeTracer updateSyntaxSkill:NO
-                                                    withComplexity:com];
-            Skill *objSkill = [self.knowledgeTracer updateSkillFor:userAction.movedObjectId isVerified:YES];
-            
-            [skills addObject:skill];
-            [skills addObject:objSkill];
-            [self showMessageWith:skills];
-            return;
-        }
+//        // Check if one of the step is correct
+//        //
+//        if ([userAction.movedObjectId isEqualToString:userAction.actionStep.object1Id] &&
+//            ![userAction.destinationObjectId isEqualToString:userAction.actionStep.object2Id]) {
+//            
+//            NSLog(@"Subject is wrong");
+//            EMComplexity com = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
+//            Skill *skill = [self.knowledgeTracer updateSyntaxSkill:NO
+//                                                    withComplexity:com];
+//            Skill *objSkill = [self.knowledgeTracer updateSkillFor:userAction.movedObjectId isVerified:YES];
+//            
+//            [skills addObject:skill];
+//            [skills addObject:objSkill];
+//            [self showMessageWith:skills];
+//            return;
+//        }
         
-        if (![userAction.movedObjectId isEqualToString:userAction.actionStep.object1Id] &&
-            [userAction.destinationObjectId isEqualToString:userAction.actionStep.object2Id]) {
+        if (![userAction.movedObjectId isEqualToString:userAction.actionStepMovedObjectId] &&
+            [userAction.destinationObjectId isEqualToString:userAction.actionStepDestinationObjectId]) {
             
             NSLog(@"Object is wrong");
             EMComplexity com = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
@@ -260,15 +254,15 @@
     }
     
     // Moved incorrect subject
-    if (![userAction.movedObjectId isEqualToString:userAction.actionStep.object1Id]) {
+    if (![userAction.movedObjectId isEqualToString:userAction.actionStepMovedObjectId]) {
         
         CGPoint movedFromLocation = [self.delegate locationOfObject:userAction.movedObjectId
                                                            analyzer:self];
-        CGPoint actualLocation = [self.delegate locationOfObject:userAction.actionStep.object1Id
+        CGPoint actualLocation = [self.delegate locationOfObject:userAction.actionStepMovedObjectId
                                                         analyzer:self];
         CGSize firstObjectSize = [self.delegate sizeOfObject:userAction.movedObjectId
                                                     analyzer:self];
-        CGSize secondObjectSize = [self.delegate sizeOfObject:userAction.actionStep.object1Id
+        CGSize secondObjectSize = [self.delegate sizeOfObject:userAction.actionStepMovedObjectId
                                                     analyzer:self];
         
         CGRect firstRect = CGRectMake(movedFromLocation.x, movedFromLocation.y, firstObjectSize.width, firstObjectSize.height);
@@ -279,7 +273,7 @@
         if (distance > DISTANCE_THRESHOLD) {
             // Vocabulary error
            Skill *movedSkill = [self.knowledgeTracer updateSkillFor:userAction.movedObjectId isVerified:NO];
-           Skill *actionObjSkill = [self.knowledgeTracer updateSkillFor:userAction.actionStep.object1Id isVerified:NO];
+           Skill *actionObjSkill = [self.knowledgeTracer updateSkillFor:userAction.actionStepMovedObjectId isVerified:NO];
             
             [skills addObject:movedSkill];
             [skills addObject:actionObjSkill];
@@ -293,16 +287,7 @@
         [skills addObject:skill];
     }
     
-    NSString *correctDest = nil;
-    if (userAction.actionStep.object2Id != nil) {
-        correctDest = userAction.actionStep.object2Id;
-        
-    } else if (userAction.actionStep.locationId != nil) {
-        correctDest = userAction.actionStep.locationId;
-        
-    } else if (userAction.actionStep.areaId != nil) {
-        correctDest = userAction.actionStep.areaId;
-    }
+    NSString *correctDest = userAction.actionStepDestinationObjectId;
     
     // If user action destination is nil, it means user doesnot know the object
     // so update the vocab skill for the object.
