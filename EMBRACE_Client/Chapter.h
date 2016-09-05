@@ -28,6 +28,7 @@
 @property (nonatomic, strong) NSMutableArray* content;
 @property (nonatomic, strong) NSMutableArray* activities;
 @property (nonatomic, assign) NSInteger pageNum;
+@property (nonatomic, strong) NSMutableDictionary *vocabulary;
 
 -(void) addActivity:(Activity*)activity; //Add an activity to the chapter.
 
@@ -40,5 +41,8 @@
 
 - (ScriptAudio *)embraceScriptFor:(NSString *)sentenceId;
 - (ScriptAudio *)controlScriptFor:(NSString *)sentenceId;
+
+- (NSMutableSet *)getNewVocabulary; // Returns new vocabulary introduced in the chapter
+- (NSMutableSet *)getOldVocabulary; // Returns vocabulary not introduced in the chapter
 
 @end

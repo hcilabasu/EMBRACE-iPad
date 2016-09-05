@@ -114,8 +114,26 @@ manipulationContext:(ManipulationContext *)context
     return [self.manipulationAnalyser vocabSkillForWord:word];
 }
 
-- (NSMutableSet *)getRequestedVocab {
-    return [self.manipulationAnalyser getRequestedVocab];
+- (NSMutableSet *)getIntroductionVocabularyForChapter:(Chapter *)chapter {
+    NSMutableSet *introductionVocabulary = [[NSMutableSet alloc] init];
+    [introductionVocabulary unionSet:[self.manipulationAnalyser getRequestedVocab]];
+    
+    NSMutableSet *chapterVocabulary = [chapter getOldVocabulary];
+    [introductionVocabulary intersectSet:chapterVocabulary];
+    
+    NSMutableSet *highSkillVocabulary = [[NSMutableSet alloc] init];
+    
+    for (NSString *vocabulary in introductionVocabulary) {
+        double skill = [self vocabSkillValueForWord:vocabulary];
+        
+        if (skill >= 0.5) {
+            [highSkillVocabulary addObject:vocabulary];
+        }
+    }
+    
+    [introductionVocabulary minusSet:highSkillVocabulary];
+    
+    return introductionVocabulary;
 }
 
 @end

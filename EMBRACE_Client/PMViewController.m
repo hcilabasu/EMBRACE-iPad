@@ -373,6 +373,8 @@ BOOL wasPathFollowed = false;
  * Creates a solution step for each vocabulary word in the introduction and adds it to the page solutions
  */
 - (void)createVocabSolutionsForPage {
+    Chapter *chapter = [book getChapterWithTitle:chapterTitle];
+    
     NSMutableSet *newVocab = [[NSMutableSet alloc] init];
     NSMutableArray *vocabSolutionSteps = [[NSMutableArray alloc] init];
     
@@ -394,8 +396,7 @@ BOOL wasPathFollowed = false;
     
     // TODO: Dynamically add vocabulary based on user's current skills
     if (conditionSetup.appMode == ITS) {
-        NSMutableSet *vocabToAdd = [[ITSController sharedInstance] getRequestedVocab];
-        [vocabToAdd minusSet:newVocab];
+        NSMutableSet *vocabToAdd = [[ITSController sharedInstance] getIntroductionVocabularyForChapter:chapter];
         
         for (NSString *vocab in vocabToAdd) {
             totalSentences++;
@@ -416,8 +417,6 @@ BOOL wasPathFollowed = false;
             [vocabSolutionSteps addObject:vocabSolutionStep];
         }
     }
-    
-    Chapter *chapter = [book getChapterWithTitle:chapterTitle];
     
     if (conditionSetup.currentMode == PM_MODE || conditionSetup.condition == CONTROL) {
         PMSolution = [[PhysicalManipulationSolution alloc] init];
