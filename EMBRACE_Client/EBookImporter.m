@@ -1223,15 +1223,25 @@
             NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
             
             for (GDataXMLElement *vocabElement in vocabElements) {
-                BOOL introWord = false;
+                NSString *typeString = [[vocabElement attributeForName:@"type"] stringValue];
+                VocabularyType type = VOCAB_NONE;
                 
-                if ([[[vocabElement attributeForName:@"introWord"] stringValue] isEqualToString:@"true"]) {
-                    introWord = true;
+                if ([typeString isEqualToString:@"intro"]) {
+                    type = VOCAB_INTRO;
+                }
+                else if ([typeString isEqualToString:@"text"]) {
+                    type = VOCAB_TEXT;
+                }
+                else if ([typeString isEqualToString:@"image"]) {
+                    type = VOCAB_IMAGE;
+                }
+                else {
+                    type = VOCAB_NONE;
                 }
                 
                 NSString *word = vocabElement.stringValue;
                 
-                [dictionary setValue:@(introWord) forKey:word];
+                [dictionary setValue:[NSNumber numberWithInt:type] forKey:word];
             }
             
             Chapter *chapter = [book getChapterWithTitle:storyTitle];

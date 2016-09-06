@@ -11,6 +11,13 @@
 #import "ImagineManipulationActivity.h"
 #import "ScriptAudio.h"
 
+typedef enum VocabularyType {
+    VOCAB_NONE, // No type
+    VOCAB_INTRO, // Word is introduced in the chapter (may also appear in text and as an image)
+    VOCAB_TEXT, // Word appears underlined in the text (may also appear as an image)
+    VOCAB_IMAGE // Word appears only as an image
+} VocabularyType;
+
 @interface Chapter : NSObject {
     NSString *title; //Title of this chapter.
     NSString* chapterTitlePage; //Any page associated with the chapter title. 
@@ -42,7 +49,6 @@
 - (ScriptAudio *)embraceScriptFor:(NSString *)sentenceId;
 - (ScriptAudio *)controlScriptFor:(NSString *)sentenceId;
 
-- (NSMutableSet *)getNewVocabulary; // Returns new vocabulary introduced in the chapter
-- (NSMutableSet *)getOldVocabulary; // Returns vocabulary not introduced in the chapter
+- (NSMutableSet *)getVocabularyOfType:(VocabularyType)type; // Returns vocabulary for specified type
 
 @end
