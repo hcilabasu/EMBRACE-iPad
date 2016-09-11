@@ -114,16 +114,28 @@
     return nil;
 }
 
-- (NSMutableSet *)getVocabularyOfType:(VocabularyType)type {
-    NSMutableSet *vocabulary = [[NSMutableSet alloc] init];
+- (NSMutableSet *)getNewVocabulary {
+    NSMutableSet *newVocabulary = [[NSMutableSet alloc] init];
     
-    for (NSString *vocab in [self vocabulary]) {
-        if ([[[self vocabulary] objectForKey:vocab] intValue] == type) {
-            [vocabulary addObject:vocab];
+    for (NSString *vocabulary in [self vocabulary]) {
+        if ([[[self vocabulary] objectForKey:vocabulary] isEqual: @(TRUE)]) {
+            [newVocabulary addObject:vocabulary];
         }
     }
     
-    return vocabulary;
+    return newVocabulary;
+}
+
+- (NSMutableSet *)getOldVocabulary {
+    NSMutableSet *oldVocabulary = [[NSMutableSet alloc] init];
+    
+    for (NSString *vocabulary in [self vocabulary]) {
+        if ([[[self vocabulary] objectForKey:vocabulary] isEqual: @(FALSE)]) {
+            [oldVocabulary addObject:vocabulary];
+        }
+    }
+    
+    return oldVocabulary;
 }
 
 @end

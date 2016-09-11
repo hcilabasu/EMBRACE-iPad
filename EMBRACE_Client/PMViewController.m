@@ -394,8 +394,9 @@ BOOL wasPathFollowed = false;
         [vocabSolutionSteps addObject:vocabSolutionStep];
     }
     
+    // TODO: Dynamically add vocabulary based on user's current skills
     if (conditionSetup.appMode == ITS) {
-        NSMutableSet *vocabToAdd = [[ITSController sharedInstance] getExtraIntroductionVocabularyForChapter:chapter];
+        NSMutableSet *vocabToAdd = [[ITSController sharedInstance] getIntroductionVocabularyForChapter:chapter];
         
         for (NSString *vocab in vocabToAdd) {
             totalSentences++;

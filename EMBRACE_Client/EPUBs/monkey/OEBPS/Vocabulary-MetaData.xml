@@ -1,19 +1,18 @@
 <metadata>
   <vocabulary>
     <story title="The Naughty Monkey">
-      <vocabulary type="text">naughty</vocabulary>
-      <vocabulary type="text">handle</vocabulary>
-      <vocabulary type="image">monkey</vocabulary>
-      <vocabulary type="text">jumps</vocabulary>
-      <vocabulary type="text">throws</vocabulary>
-      <vocabulary type="text">zebra's</vocabulary>
-      <vocabulary type="text">lifts</vocabulary>
-      <vocabulary type="image">zebra</vocabulary>
-      <vocabulary type="text">coco</vocabulary>
-      <vocabulary type="image">lisa</vocabulary>
-      <vocabulary type="image">banana</vocabulary>
-      <vocabulary type="text">empty</vocabulary>
-      <vocabulary type="image">trough</vocabulary>
+      <vocabulary introWord="false">naughty</vocabulary>
+      <vocabulary introWord="false">handle</vocabulary>
+      <vocabulary introWord="false">monkey</vocabulary>
+      <vocabulary introWord="false">jumps</vocabulary>
+      <vocabulary introWord="false">throws</vocabulary>
+      <vocabulary introWord="false">zebra's</vocabulary>
+      <vocabulary introWord="false">lifts</vocabulary>
+      <vocabulary introWord="false">trough</vocabulary>
+      <vocabulary introWord="false">coco</vocabulary>
+      <vocabulary introWord="false">lisa</vocabulary>
+      <vocabulary introWord="false">banana</vocabulary>
+      <vocabulary introWord="false">empty</vocabulary>
     </story>
   </vocabulary>
 </metadata>
