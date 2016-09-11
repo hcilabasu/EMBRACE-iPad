@@ -40,6 +40,6 @@ manipulationContext:(ManipulationContext *)context
 
 - (double)vocabSkillValueForWord:(NSString *)word;
 
-- (NSMutableSet *)getIntroductionVocabularyForChapter:(Chapter *)chapter;
+- (NSMutableSet *)getExtraIntroductionVocabularyForChapter:(Chapter *)chapter;
 
 @end

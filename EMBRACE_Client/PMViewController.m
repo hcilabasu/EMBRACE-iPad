@@ -396,7 +396,7 @@ BOOL wasPathFollowed = false;
     
     // TODO: Dynamically add vocabulary based on user's current skills
     if (conditionSetup.appMode == ITS) {
-        NSMutableSet *vocabToAdd = [[ITSController sharedInstance] getIntroductionVocabularyForChapter:chapter];
+        NSMutableSet *vocabToAdd = [[ITSController sharedInstance] getExtraIntroductionVocabularyForChapter:chapter];
         
         for (NSString *vocab in vocabToAdd) {
             totalSentences++;
