@@ -44,5 +44,6 @@
 
 - (NSMutableSet *)getNewVocabulary; // Returns new vocabulary introduced in the chapter
 - (NSMutableSet *)getOldVocabulary; // Returns vocabulary not introduced in the chapter
+- (NSMutableSet *)getVocabularyFromSolutions; // Returns objects involved in solutions
 
 @end

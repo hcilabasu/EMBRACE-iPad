@@ -394,9 +394,8 @@ BOOL wasPathFollowed = false;
         [vocabSolutionSteps addObject:vocabSolutionStep];
     }
     
-    // TODO: Dynamically add vocabulary based on user's current skills
     if (conditionSetup.appMode == ITS) {
-        NSMutableSet *vocabToAdd = [[ITSController sharedInstance] getExtraIntroductionVocabularyForChapter:chapter];
+        NSMutableSet *vocabToAdd = [[ITSController sharedInstance] getExtraIntroductionVocabularyForChapter:chapter inBook:book];
         
         for (NSString *vocab in vocabToAdd) {
             totalSentences++;
@@ -1464,6 +1463,11 @@ BOOL wasPathFollowed = false;
  */
 - (void)highlightImageForText:(NSString *)englishSentenceText {
     NSObject *valueImage = [[Translation translationImages]objectForKey:englishSentenceText];
+    
+    if (valueImage == nil) {
+        valueImage = englishSentenceText;
+    }
+    
     NSString *imageHighlighted = @"";
     
     //If the key contains more than one value
