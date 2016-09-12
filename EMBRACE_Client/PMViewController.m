@@ -3128,6 +3128,7 @@ BOOL wasPathFollowed = false;
                               {
                                   [self provideFeedbackForErrorType:@"usability"];
                               }]];
+            [alert addAction:[UIAlertAction actionWithTitle:@"None" style:UIAlertActionStyleCancel handler:nil]];
             
             [self presentViewController:alert animated:YES completion:nil];
         }
@@ -3161,9 +3162,9 @@ BOOL wasPathFollowed = false;
         }
     }
     else if ([errorType isEqualToString:@"syntax"]) {
+        NSMutableArray *simplerSentences = [[NSMutableArray alloc] init];
+        
         if (currentComplexity > 1) {
-            NSMutableArray *simplerSentences = [[NSMutableArray alloc] init];
-            
             Chapter *chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
             PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
             
@@ -3172,20 +3173,20 @@ BOOL wasPathFollowed = false;
                     [simplerSentences addObject:[alternateSentence text]];
                 }
             }
-            
-            if ([simplerSentences count] > 0) {
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Hint" message:[simplerSentences componentsJoinedByString:@" "] preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
-                [alert addAction:action];
-                [self presentViewController:alert animated:YES completion:nil];
-            }
-            // TODO: Temporary message for demo purposes only
-            else {
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Hint" message:@"There are no simpler sentences available." preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
-                [alert addAction:action];
-                [self presentViewController:alert animated:YES completion:nil];
-            }
+        }
+        
+        if ([simplerSentences count] > 0) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Hint" message:[simplerSentences componentsJoinedByString:@" "] preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+            [alert addAction:action];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+        // TODO: Temporary message for demo purposes only
+        else {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Hint" message:@"There are no simpler sentences available." preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+            [alert addAction:action];
+            [self presentViewController:alert animated:YES completion:nil];
         }
     }
     else if ([errorType isEqualToString:@"usability"]) {
