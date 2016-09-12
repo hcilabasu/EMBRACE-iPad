@@ -3111,10 +3111,86 @@ BOOL wasPathFollowed = false;
         [self animatePerformingStep];
         [playaudioClass playAutoCompleteStepNoise];
     }
+    else {
+        if (conditionSetup.appMode == ITS) {
+            // TODO: Determine most probable error type
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Choose the most probable error type:" message:nil preferredStyle:UIAlertControllerStyleAlert];
+            
+            [alert addAction:[UIAlertAction actionWithTitle:@"Vocabulary" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                              {
+                                  [self provideFeedbackForErrorType:@"vocabulary"];
+                              }]];
+            [alert addAction:[UIAlertAction actionWithTitle:@"Syntax" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                              {
+                                  [self provideFeedbackForErrorType:@"syntax"];
+                              }]];
+            [alert addAction:[UIAlertAction actionWithTitle:@"Usability" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                              {
+                                  [self provideFeedbackForErrorType:@"usability"];
+                              }]];
+            
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+    }
     
     if (conditionSetup.appMode == ITS) {
         //Record error for complexity
         [[pageStatistics objectForKey:currentPageId] addErrorForComplexity:(currentComplexity - 1)];
+    }
+}
+
+// TODO: Change error type NSString to enum
+- (void)provideFeedbackForErrorType:(NSString *)errorType {
+    if ([errorType isEqualToString:@"vocabulary"]) {
+        //Get steps for current sentence
+        NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
+        
+        //Get current step to be completed
+        ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        NSString *stepType = [currSolStep stepType];
+        
+        if ([stepType isEqualToString:@"check"] || [stepType isEqualToString:@"checkLeft"] || [stepType isEqualToString:@"checkRight"] || [stepType isEqualToString:@"checkUp"] || [stepType isEqualToString:@"checkDown"] || [stepType isEqualToString:@"checkAndSwap"] || [stepType isEqualToString:@"tapToAnimate"] || [stepType isEqualToString:@"checkPath"] || [stepType isEqualToString:@"shakeAndTap"] || [stepType isEqualToString:@"tapWord"] ) {
+            // TODO: Highlight object and location
+        }
+        else {
+            NSString *object1Id = [currSolStep object1Id];
+            NSString *object2Id = [currSolStep object2Id];
+            
+            [self highlightImageForText:object1Id];
+            [self highlightImageForText:object2Id];
+        }
+    }
+    else if ([errorType isEqualToString:@"syntax"]) {
+        if (currentComplexity > 1) {
+            NSMutableArray *simplerSentences = [[NSMutableArray alloc] init];
+            
+            Chapter *chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
+            PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
+            
+            for (AlternateSentence *alternateSentence in [[PMActivity alternateSentences] objectForKey:currentPageId]) {
+                if ([alternateSentence complexity] == currentComplexity - 1 && [[alternateSentence ideas] containsObject:@(currentIdea)]) {
+                    [simplerSentences addObject:[alternateSentence text]];
+                }
+            }
+            
+            if ([simplerSentences count] > 0) {
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Hint" message:[simplerSentences componentsJoinedByString:@" "] preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+                [alert addAction:action];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
+            // TODO: Temporary message for demo purposes only
+            else {
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Hint" message:@"There are no simpler sentences available." preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+                [alert addAction:action];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
+        }
+    }
+    else if ([errorType isEqualToString:@"usability"]) {
+        [self animatePerformingStep];
+        [playaudioClass playAutoCompleteStepNoise];
     }
 }
 
@@ -4991,7 +5067,7 @@ BOOL wasPathFollowed = false;
                                                      style:UIAlertActionStyleCancel
                                                    handler:nil];
     [alert addAction:action];
-    [self presentViewController:alert animated:YES completion:nil];
+//    [self presentViewController:alert animated:YES completion:nil];
     
 //    int duration = 5; // duration in seconds
 //    
