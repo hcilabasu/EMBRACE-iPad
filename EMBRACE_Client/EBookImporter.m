@@ -924,10 +924,11 @@
     }
     else if ([[step name] isEqualToString:@"animate"]) {
         if ([step attributeForName:@"waypointId"]) {
+            NSString *locationId = [[step attributeForName:@"locationId"] stringValue];
             NSString *waypointId = [[step attributeForName:@"waypointId"] stringValue];
             NSString *areaId = [[step attributeForName:@"areaId"] stringValue];
             
-            solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :menuType :stepNum :stepType :obj1Id :nil :nil :waypointId :action :areaId :nil];
+            solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :menuType :stepNum :stepType :obj1Id :nil :locationId :waypointId :action :areaId :nil];
         }
     }
     else if ([[step name] isEqualToString:@"tapToAnimate"]) {
@@ -957,6 +958,7 @@
     else
     {
         //error unknown step name
+        //TODO: add default solutionStep
     }
     
     

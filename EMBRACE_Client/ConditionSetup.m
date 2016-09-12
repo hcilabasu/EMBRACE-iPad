@@ -16,8 +16,8 @@
 @synthesize appMode;
 @synthesize currentMode;
 @synthesize newInstructions;
-@synthesize vocabPageEnabled;
-@synthesize assessmentPageEnabled;
+@synthesize isVocabPageEnabled;
+@synthesize isAssessmentPageEnabled;
 
 @synthesize allowFileSync;
 
@@ -40,8 +40,8 @@
         appMode = Study;
         currentMode = PM_MODE;
         newInstructions = false;
-        vocabPageEnabled = false;
-        assessmentPageEnabled = false;
+        isVocabPageEnabled = false;
+        isAssessmentPageEnabled = false;
         
         allowFileSync = true; //NOTE: Still testing this functionality
     }

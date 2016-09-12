@@ -118,8 +118,8 @@
             float widthImage = (lengthSide - 50) / 2;
     
             //There are only two images.
-            UIImage *image1 = [[images objectAtIndex:0] image];
-            UIImage *image2 = [[images objectAtIndex:1] image];
+            UIImage *image1 = (UIImage*)[[images objectAtIndex:0] image];
+            UIImage *image2 = (UIImage*)[[images objectAtIndex:1] image];
             
             //Need to properly figure out what these image resolutions need to be.
             UIImage *image1Scaled = [self scaleImagetoResolution:image1 :widthImage :SCALE_EITHER];
