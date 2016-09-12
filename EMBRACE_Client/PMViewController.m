@@ -3123,11 +3123,27 @@ BOOL wasPathFollowed = false;
             [self incrementCurrentStep];
         }
         else {
-            //Get the interaction to be performed
-            PossibleInteraction *interaction = [self getCorrectInteraction];
+            NSString *object1Id = [currSolStep object1Id];
+            NSString *object2Id = [currSolStep object2Id];
             
-            //Perform the interaction and increment the step
-            [self checkSolutionForInteraction:interaction];
+            CGPoint object1Location = [self getObjectPosition:object1Id];
+            CGPoint object2Location = [self getObjectPosition:object2Id];
+            
+            CGSize object1Size = [self.pmView sizeOfObject:object1Id];
+            CGSize object2Size = [self.pmView sizeOfObject:object2Id];
+            
+            CGPoint object1Center = CGPointMake(object1Location.x + object1Size.width / 2, object1Location.y + object1Size.height / 2);
+            CGPoint object2Center = CGPointMake(object2Location.x + object2Size.width / 2, object2Location.y + object2Size.height / 2);
+            
+            [self.pmView animateObject:object1Id from:object1Center to:object2Center action:@"moveToLocation" areaId:@""];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                //Get the interaction to be performed
+                PossibleInteraction *interaction = [self getCorrectInteraction];
+                
+                //Perform the interaction and increment the step
+                [self checkSolutionForInteraction:interaction];
+            });
         }
         
         [playaudioClass playAutoCompleteStepNoise];

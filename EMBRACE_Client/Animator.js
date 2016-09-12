@@ -264,6 +264,9 @@ function animFrame(object){
         object.object.style.WebkitAnimationPlayState = 'running';
         moveBackward(object);
     }
+    else if (object.animName == "moveToLocation") {
+        moveToLocation(object);
+    }
     else if(object.animName == "pauseAnimation")
     {
         pauseAnimation(object);
@@ -1189,6 +1192,24 @@ function moveTo(aniObject) {
     aniObject.object.style.WebkitTransitionDuration='4s';
     aniObject.object.style.webkitTransform = 'translate(-280px, 158px)';
     
+}
+
+function moveToLocation(aniObject) {
+    var seconds = 4;
+    
+    var diffX = aniObject.ex - aniObject.x;
+    var diffY = aniObject.ey - aniObject.y;
+    
+    aniObject.object.style.WebkitTransitionDuration = seconds + 's';
+    aniObject.object.style.webkitTransform = 'translate(' + diffX + 'px, ' + diffY + 'px)';
+    
+    setTimeout(function() {
+        aniObject.object.style.WebkitTransitionDuration = '';
+        aniObject.object.style.webkitTransform = '';
+               
+        aniObject.object.style.left = aniObject.ex - (aniObject.object.clientWidth / 2) + "px";
+        aniObject.object.style.top = aniObject.ey - (aniObject.object.clientHeight / 2) + "px";
+    }, seconds * 1000);
 }
 
 function shootArrow(aniObject) {
