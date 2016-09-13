@@ -101,22 +101,25 @@
 - (void)actionPerformed:(UserAction *)userAction
     manipulationContext:(ManipulationContext *)context {
     
+    userAction.sentenceNumber = context.sentenceNumber;
+    userAction.ideaNumber = context.ideaNumber;
     
     NSString *bookTitle = context.bookTitle;
     NSMutableDictionary *bookDetails = [self bookDictionaryForTitle:bookTitle];
     SentenceStatus *status = [self getActionListFrom:bookDetails
                                           forChapter:context.chapterTitle
                                       sentenceNumber:context.sentenceNumber
-                                             andStep:context.stepNumber];
+                                       andIdeaNumber:context.ideaNumber];
     
     NSLog(@"Action performed for %@ %@ %d", bookTitle,context.chapterTitle, context.sentenceNumber);
     
-    [self analyzeAndUpdateSkill:userAction andContext:context];
+    
     if ([status containsAction:userAction]) {
         // The sentence has been tried before
-        
+        [self analyzeAndUpdateSkill:userAction andContext:context isFirstAttempt:NO];
     } else {
         // First try by user
+        [self analyzeAndUpdateSkill:userAction andContext:context isFirstAttempt:YES];
     }
     [status addUserAction:userAction];
     
@@ -124,8 +127,9 @@
 
 
 - (void)analyzeAndUpdateSkill:(UserAction *)userAction
-                   andContext:(ManipulationContext *)context {
-   
+                   andContext:(ManipulationContext *)context
+               isFirstAttempt:(BOOL)isFirstAttempt {
+    
     NSLog(@"Book Title - %@", [context.bookTitle stringByReplacingOccurrencesOfString:@" " withString:@"_"]);
     
     if (userAction.isVerified) {
@@ -133,21 +137,28 @@
         NSMutableArray *skillList = [NSMutableArray array];
         
         // Update the two object's skills
-        Skill *movedSkill = [self.knowledgeTracer updateSkillFor:userAction.movedObjectId isVerified:YES];
+        Skill *movedSkill = [self.knowledgeTracer
+                             updateSkillFor:userAction.movedObjectId
+                             isVerified:YES
+                             shouldDampen:!isFirstAttempt];
         [skillList addObject:movedSkill];
         
         Skill *destSkill = nil;
         if (userAction.actionStepDestinationObjectId && ![userAction.actionStepDestinationObjectId isEqualToString:@""]) {
-           destSkill = [self.knowledgeTracer updateSkillFor:userAction.actionStepDestinationObjectId isVerified:YES];
+            destSkill = [self.knowledgeTracer updateSkillFor:userAction.actionStepDestinationObjectId
+                                                  isVerified:YES
+                                                shouldDampen:!isFirstAttempt];
             [skillList addObject:destSkill];
         }
         
         // Update the syntax and usability skill
         EMComplexity com = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
         Skill *synSkill = [self.knowledgeTracer updateSyntaxSkill:YES
-                                                                    withComplexity:com];
+                                                   withComplexity:com
+                                                     shouldDampen:!isFirstAttempt];
         [skillList addObject:synSkill];
-        Skill *useSkill = [self.knowledgeTracer updateUsabilitySkill:YES];
+        Skill *useSkill = [self.knowledgeTracer updateUsabilitySkill:YES
+                                                        shouldDampen:!isFirstAttempt];
         [skillList addObject:useSkill];
         
         [self showMessageWith:skillList];
@@ -156,16 +167,16 @@
     } else {
         
         // If the action is not verified, find out the kind of error the user made.
-       
+        //
         [self updateSkillBasedOnMovedObject:userAction
-                                 andContext:context];
-            
-        
+                                 andContext:context
+                             isFirstAttempt:isFirstAttempt];
     }
 }
 
 - (void)updateSkillBasedOnMovedObject:(UserAction *)userAction
-                           andContext:(ManipulationContext *)context  {
+                           andContext:(ManipulationContext *)context
+                       isFirstAttempt:(BOOL)isFirstAttempt {
     
     NSMutableArray *skills = [NSMutableArray array];
     
@@ -177,7 +188,8 @@
         NSLog(@"Mixed up objects");
         EMComplexity com = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
         Skill *skill = [self.knowledgeTracer updateSyntaxSkill:NO
-                                                                    withComplexity:com];
+                                                withComplexity:com
+                                                  shouldDampen:!isFirstAttempt];
         
         [skills addObject:skill];
         [self showMessageWith:skills];
@@ -185,71 +197,37 @@
     } else {
         // Check if the user preformed a future step
         //
-//        NSArray *nextSteps = [self.delegate getNextStepsForCurrentSentence:self];
-//        for (ActionStep *nextStep in nextSteps) {
-//            
-//            
-//                
-//                NSString *correctDest = nil;
-//                if (nextStep.object2Id != nil) {
-//                    correctDest = nextStep.object2Id;
-//                    
-//                } else if (nextStep.locationId != nil) {
-//                    correctDest = nextStep.locationId;
-//                    
-//                } else if (nextStep.areaId != nil) {
-//                    correctDest = nextStep.areaId;
-//                }
-//                
-//                if ([nextStep.object1Id isEqualToString:userAction.movedObjectId] &&
-//                    [correctDest isEqualToString:userAction.destinationObjectId]) {
-//                    NSLog(@"Performed a future step");
-//                    
-//                    EMComplexity com = [self.delegate analyzer:self
-//                                      getComplexityForSentence:context.sentenceNumber];
-//                    Skill *skill = [self.knowledgeTracer updateSyntaxSkill:NO
-//                                                            withComplexity:com];
-//                    [skills addObject:skill];
-//                    [self showMessageWith:skills];
-//                    return;
-//                }
-//                
-//            
-//            
-//            
-//        }
-        
-//        // Check if one of the step is correct
-//        //
-//        if ([userAction.movedObjectId isEqualToString:userAction.actionStep.object1Id] &&
-//            ![userAction.destinationObjectId isEqualToString:userAction.actionStep.object2Id]) {
-//            
-//            NSLog(@"Subject is wrong");
-//            EMComplexity com = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
-//            Skill *skill = [self.knowledgeTracer updateSyntaxSkill:NO
-//                                                    withComplexity:com];
-//            Skill *objSkill = [self.knowledgeTracer updateSkillFor:userAction.movedObjectId isVerified:YES];
-//            
-//            [skills addObject:skill];
-//            [skills addObject:objSkill];
-//            [self showMessageWith:skills];
-//            return;
-//        }
-        
-        if (![userAction.movedObjectId isEqualToString:userAction.actionStepMovedObjectId] &&
-            [userAction.destinationObjectId isEqualToString:userAction.actionStepDestinationObjectId]) {
+        NSArray *nextSteps = [self.delegate getNextStepsForCurrentSentence:self];
+        for (ActionStep *nextStep in nextSteps) {
             
-            NSLog(@"Object is wrong");
-            EMComplexity com = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
-            Skill *skill = [self.knowledgeTracer updateSyntaxSkill:NO
-                                                    withComplexity:com];
-            Skill *objSkill = [self.knowledgeTracer updateSkillFor:userAction.destinationObjectId isVerified:YES];
             
-            [skills addObject:skill];
-            [skills addObject:objSkill];
-            [self showMessageWith:skills];
-            return;
+            
+            NSString *correctDest = nil;
+            if (nextStep.object2Id != nil) {
+                correctDest = nextStep.object2Id;
+                
+            } else if (nextStep.locationId != nil) {
+                correctDest = nextStep.locationId;
+                
+            } else if (nextStep.areaId != nil) {
+                correctDest = nextStep.areaId;
+            }
+            
+            if ([nextStep.object1Id isEqualToString:userAction.movedObjectId] &&
+                [correctDest isEqualToString:userAction.destinationObjectId]) {
+                NSLog(@"Performed a future step");
+                
+                EMComplexity com = [self.delegate analyzer:self
+                                  getComplexityForSentence:context.sentenceNumber];
+                Skill *skill = [self.knowledgeTracer updateSyntaxSkill:NO
+                                                        withComplexity:com
+                                                          shouldDampen:!isFirstAttempt];
+                [skills addObject:skill];
+                [self showMessageWith:skills];
+                return;
+            }
         }
+        
         
     }
     
@@ -263,7 +241,7 @@
         CGSize firstObjectSize = [self.delegate sizeOfObject:userAction.movedObjectId
                                                     analyzer:self];
         CGSize secondObjectSize = [self.delegate sizeOfObject:userAction.actionStepMovedObjectId
-                                                    analyzer:self];
+                                                     analyzer:self];
         
         CGRect firstRect = CGRectMake(movedFromLocation.x, movedFromLocation.y, firstObjectSize.width, firstObjectSize.height);
         CGRect secondRect = CGRectMake(actualLocation.x, actualLocation.y, secondObjectSize.width, secondObjectSize.height);
@@ -272,18 +250,26 @@
         
         if (distance > DISTANCE_THRESHOLD) {
             // Vocabulary error
-           Skill *movedSkill = [self.knowledgeTracer updateSkillFor:userAction.movedObjectId isVerified:NO];
-           Skill *actionObjSkill = [self.knowledgeTracer updateSkillFor:userAction.actionStepMovedObjectId isVerified:NO];
+            Skill *movedSkill = [self.knowledgeTracer updateSkillFor:userAction.movedObjectId
+                                                          isVerified:NO
+                                                        shouldDampen:!isFirstAttempt];
+            
+            Skill *actionObjSkill = [self.knowledgeTracer updateSkillFor:userAction.actionStepMovedObjectId
+                                                              isVerified:NO
+                                                            shouldDampen:!isFirstAttempt];
             
             [skills addObject:movedSkill];
             [skills addObject:actionObjSkill];
         } else {
             // Usability error
-            Skill *skill = [self.knowledgeTracer updateUsabilitySkill:NO];
+            Skill *skill = [self.knowledgeTracer updateUsabilitySkill:NO
+                                                         shouldDampen:!isFirstAttempt];
             [skills addObject:skill];
         }
     } else {
-        Skill *skill = [self.knowledgeTracer updateSkillFor:userAction.movedObjectId isVerified:YES];
+        Skill *skill = [self.knowledgeTracer updateSkillFor:userAction.movedObjectId
+                                                 isVerified:YES
+                                               shouldDampen:!isFirstAttempt];
         [skills addObject:skill];
     }
     
@@ -292,11 +278,12 @@
     // If user action destination is nil, it means user doesnot know the object
     // so update the vocab skill for the object.
     if (userAction.destinationObjectId == nil) {
-        Skill *skill = [self.knowledgeTracer updateSkillFor:correctDest isVerified:NO];
+        Skill *skill = [self.knowledgeTracer updateSkillFor:correctDest isVerified:NO
+                                               shouldDampen:!isFirstAttempt];
         [skills addObject:skill];
         
     } else if (![userAction.destinationObjectId isEqualToString:correctDest]) {
-       
+        
         CGPoint movedFromLocation = [self.delegate locationOfObject:userAction.destinationObjectId
                                                            analyzer:self];
         CGPoint actualLocation = [self.delegate locationOfObject:correctDest
@@ -307,26 +294,34 @@
         CGSize secondObjectSize = [self.delegate sizeOfObject:correctDest
                                                      analyzer:self];
         
-       CGRect firstRect = CGRectMake(movedFromLocation.x, movedFromLocation.y, firstObjectSize.width, firstObjectSize.height);
-       CGRect secondRect = CGRectMake(actualLocation.x, actualLocation.y, secondObjectSize.width, secondObjectSize.height);
+        CGRect firstRect = CGRectMake(movedFromLocation.x, movedFromLocation.y, firstObjectSize.width, firstObjectSize.height);
+        CGRect secondRect = CGRectMake(actualLocation.x, actualLocation.y, secondObjectSize.width, secondObjectSize.height);
         
         
         float distance = distanceBetween(firstRect, secondRect);
         if (distance > DISTANCE_THRESHOLD) {
             // Vocabulary error
-            Skill *destObjSkill = [self.knowledgeTracer updateSkillFor:userAction.destinationObjectId isVerified:NO];
-            Skill *actualDestSkill = [self.knowledgeTracer updateSkillFor:correctDest isVerified:NO];
+            Skill *destObjSkill = [self.knowledgeTracer updateSkillFor:userAction.destinationObjectId
+                                                            isVerified:NO
+                                                          shouldDampen:!isFirstAttempt];
+            
+            Skill *actualDestSkill = [self.knowledgeTracer updateSkillFor:correctDest
+                                                               isVerified:NO
+                                                             shouldDampen:!isFirstAttempt];
             
             [skills addObject:destObjSkill];
             [skills addObject:actualDestSkill];
             
         } else {
             // Usability error
-            Skill *skill = [self.knowledgeTracer updateUsabilitySkill:NO];
+            Skill *skill = [self.knowledgeTracer updateUsabilitySkill:NO
+                                                         shouldDampen:!isFirstAttempt];
             [skills addObject:skill];
         }
     } else {
-        Skill *skill = [self.knowledgeTracer updateSkillFor:userAction.destinationObjectId isVerified:YES];
+        Skill *skill = [self.knowledgeTracer updateSkillFor:userAction.destinationObjectId
+                                                 isVerified:YES
+                                               shouldDampen:!isFirstAttempt];
         [skills addObject:skill];
     }
     [self showMessageWith:skills];
@@ -381,14 +376,17 @@
 - (SentenceStatus *)getActionListFrom:(NSMutableDictionary *)bookDetails
                            forChapter:(NSString *)chapterTitle
                        sentenceNumber:(NSInteger)sentenceNumber
-                              andStep:(NSInteger)stepNumber {
+                        andIdeaNumber:(NSInteger)ideaNumber {
     
-    NSString *sentenceKey = [NSString stringWithFormat:@"%@_%ld_%ld",chapterTitle, (long)sentenceNumber, (long)stepNumber];
+    NSString *sentenceKey = [NSString stringWithFormat:@"%@_%ld_%ld",chapterTitle, (long)sentenceNumber, (long)ideaNumber];
+    // Get the sentence details from the book if present.
     SentenceStatus *statementDetails = [bookDetails objectForKey:sentenceKey];
     if (statementDetails == nil) {
         statementDetails = [SentenceStatus new];
         statementDetails.chapterTitle = chapterTitle;
         statementDetails.sentenceNumber = sentenceNumber;
+        statementDetails.ideaNumber = ideaNumber;
+        
         [bookDetails setObject:statementDetails forKey:sentenceKey];
     }
     
@@ -396,7 +394,7 @@
 }
 
 - (float) distanceBetween:(CGPoint)p1
-                       and:(CGPoint)p2 {
+                      and:(CGPoint)p2 {
     
     return sqrt(pow(p2.x-p1.x,2) + pow(p2.y-p1.y,2));
 }
@@ -419,8 +417,8 @@ float distanceBetween(CGRect rect1, CGRect rect2) {
     CGFloat yDifference = upper.origin.y == lower.origin.y ? 0 : lower.origin.y - (upper.origin.y + upper.size.height);
     yDifference = MAX(0, yDifference);
     float diff = sqrt(pow(yDifference,2) + pow(xDifference,2));
-   NSLog(@"%f", diff);
-   
+    NSLog(@"%f", diff);
+    
     return diff;
 }
 

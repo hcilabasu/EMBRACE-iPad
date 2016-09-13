@@ -86,8 +86,8 @@ manipulationContext:(ManipulationContext *)context
         correctDest = actionStep.areaId;
     }
 
-    
-    
+
+    // Convert the words to the mapped keys if present
     for (NSString *key in mapDict.allKeys) {
         
         NSArray *mappedWords = [mapDict objectForKey:key];

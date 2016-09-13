@@ -39,4 +39,10 @@
 @property (nonatomic, readonly) NSString *sentenceText;
 
 
+
+@property (nonatomic, assign) NSInteger sentenceNumber;
+
+@property (nonatomic, assign) NSInteger ideaNumber;
+
+
 @end
