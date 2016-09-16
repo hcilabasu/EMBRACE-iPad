@@ -604,7 +604,7 @@ BOOL wasPathFollowed = false;
             
             //If last step was a check step and user moved the object to the correct end location, then just move object to correct
             //last coordinate point for the path
-            if([currSolSteps count] >= 2 && [[[currSolSteps objectAtIndex:stepContext.currentStep - 2] stepType] isEqualToString:CHECK]
+            if([currSolSteps count] >= 2 && stepContext.currentStep >= 2 && [[[currSolSteps objectAtIndex:stepContext.currentStep - 2] stepType] isEqualToString:CHECK]
                && [self isHotspotInsideLocation:true]){
                 
                 NSString *areaId = [currSolStep areaId];
