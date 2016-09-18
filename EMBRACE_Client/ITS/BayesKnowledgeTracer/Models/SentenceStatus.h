@@ -19,6 +19,8 @@
 
 @property (nonatomic, assign) NSInteger sentenceNumber;
 
+@property (nonatomic, assign) NSInteger ideaNumber;
+
 @property (nonatomic, assign) BOOL isCompleted;
 
 - (void)addUserAction:(UserAction *)action;

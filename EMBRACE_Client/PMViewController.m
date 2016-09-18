@@ -1739,7 +1739,8 @@ BOOL wasPathFollowed = false;
                                                                  isVerified:true
                                                                  actionStep:currSolStep
                                                         manipulationContext:manipulationContext
-                                                                forSentence:currentSentenceText];
+                                                                forSentence:currentSentenceText
+                                                            withWordMapping:model.wordMapping];
                                 
                                 [animatingObjects setObject:@"stop" forKey:movingObjectId];
                                 [self incrementCurrentStep];
@@ -1755,7 +1756,8 @@ BOOL wasPathFollowed = false;
                                                                  isVerified:false
                                                                  actionStep:currSolStep
                                                         manipulationContext:manipulationContext
-                                                                forSentence:currentSentenceText];
+                                                                forSentence:currentSentenceText
+                                 withWordMapping:model.wordMapping];
                             }
                         }
                         else {
@@ -1776,7 +1778,8 @@ BOOL wasPathFollowed = false;
                                                              isVerified:false
                                                              actionStep:currSolStep
                                                     manipulationContext:manipulationContext
-                                                            forSentence:currentSentenceText];
+                                                            forSentence:currentSentenceText
+                                                        withWordMapping:model.wordMapping];
                         }
                     }
                     else if ([[currSolStep stepType] isEqualToString:@"shakeOrTap"]) {
@@ -1792,7 +1795,8 @@ BOOL wasPathFollowed = false;
                                                              isVerified:true
                                                              actionStep:currSolStep
                                                     manipulationContext:manipulationContext
-                                                            forSentence:currentSentenceText];
+                                                            forSentence:currentSentenceText
+                                                        withWordMapping:model.wordMapping];
                             
                             [self resetObjectLocation];
                             [self incrementCurrentStep];
@@ -1805,7 +1809,8 @@ BOOL wasPathFollowed = false;
                                                              isVerified:false
                                                              actionStep:currSolStep
                                                     manipulationContext:manipulationContext
-                                                            forSentence:currentSentenceText];
+                                                            forSentence:currentSentenceText
+                                                        withWordMapping:model.wordMapping];
                         }
                     }
                     else if ([[currSolStep stepType] isEqualToString:@"checkPath"]) {
@@ -1846,7 +1851,8 @@ BOOL wasPathFollowed = false;
                                                                  isVerified:false
                                                                  actionStep:currSolStep
                                                         manipulationContext:manipulationContext
-                                                                forSentence:currentSentenceText];
+                                                                forSentence:currentSentenceText
+                                                            withWordMapping:model.wordMapping];
                             }
                             //If only 1 possible interaction was found, go ahead and perform that interaction if it's correct.
                             if ([possibleInteractions count] == 1) {
@@ -1946,7 +1952,8 @@ BOOL wasPathFollowed = false;
                                                              isVerified:false
                                                              actionStep:currSolStep
                                                     manipulationContext:manipulationContext
-                                                            forSentence:currentSentenceText];
+                                                            forSentence:currentSentenceText
+                                                        withWordMapping:model.wordMapping];
                         }
                     }
                 }
@@ -3037,7 +3044,8 @@ BOOL wasPathFollowed = false;
                                                  isVerified:true
                                                  actionStep:currSolStep
                                         manipulationContext:manipulationContext
-                                                forSentence:currentSentenceText];
+                                                forSentence:currentSentenceText
+                                            withWordMapping:model.wordMapping];
             }
             
             [self performInteraction:interaction];
@@ -3080,7 +3088,8 @@ BOOL wasPathFollowed = false;
                                          isVerified:false
                                          actionStep:currSolStep
                                 manipulationContext:manipulationContext
-                                        forSentence:currentSentenceText];
+                                        forSentence:currentSentenceText
+                                    withWordMapping:model.wordMapping];
     
         [self handleErrorForAction:action];
     }

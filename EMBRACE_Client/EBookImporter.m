@@ -437,6 +437,8 @@
         [self readAssessmentMetadata:model :[[book mainContentPath] stringByAppendingString:@"AssessmentActivitiesSpanish-MetaData.xml"]];
     }
     [self readScriptMetadata:book filePath:[[book mainContentPath] stringByAppendingString:@"Script-Metadata.xml"]];
+    [self readWordMappingMetadata:model :[[book mainContentPath] stringByAppendingString:@"WordMapping.xml"]];
+    
 }
 
 - (void)readRelationshipMetadata:(InteractionModel *)model :(NSString *)filepath {
@@ -1284,6 +1286,33 @@
         }
     }
     
+    
+}
+
+- (void)readWordMappingMetadata:(InteractionModel *)model :(NSString *)filepath {
+    
+    NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
+    NSError *error;
+    GDataXMLDocument *metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:&error];
+    
+    if (xmlData) {
+        NSArray *words = [metadataDoc nodesForXPath:@"//word" error:nil];
+        
+        for (GDataXMLElement *wordElement in words) {
+            NSString *title = [[wordElement attributeForName:@"keyWord"] stringValue];
+            NSArray *mappedWords = [wordElement elementsForName:@"mappedWords"];
+            for (GDataXMLElement *mpWord in mappedWords) {
+                NSArray *subWords = [mpWord elementsForName:@"subWord"];
+                
+                for (GDataXMLElement *subw in subWords) {
+                    NSString *subWord = subw.stringValue;
+                    
+                    [model addWordMapping:subWord andKey:title];
+                }
+            }
+        }
+        
+    }
     
 }
 

@@ -52,6 +52,8 @@
 @property (nonatomic, strong) NSMutableDictionary* vocabularies;
 @property (nonatomic, strong) NSMutableSet* areas;
 
+@property (nonatomic, strong) NSMutableDictionary* wordMapping;
+
 - (NSMutableDictionary*) getAssessmentActivity;
 - (void) addAssessmentActivity:(NSString*) storyTitle :(NSMutableArray*) questions;
 
@@ -102,5 +104,7 @@
 - (Area*) getArea: (NSString*)aId : (NSString*)pId;
 
 - (NSString *)getObjectIdAtLocation:(CGPoint)loc;
+
+- (void)addWordMapping:(NSString *)subWord andKey:(NSString *)key;
 
 @end
