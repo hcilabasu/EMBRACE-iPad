@@ -49,13 +49,18 @@
     
 }
 
+- (void)userDidVocabPreviewWord:(NSString *)word {
+    [self.manipulationAnalyser userDidVocabPreviewWord:word];
+}
+
 
 - (void)movedObject:(NSString *)objectId
-  destinationObjects:(NSArray *)destinationObjs
+ destinationObjects:(NSArray *)destinationObjs
          isVerified:(BOOL)verified
          actionStep:(ActionStep *)actionStep
 manipulationContext:(ManipulationContext *)context
-        forSentence:(NSString *)sentence {
+        forSentence:(NSString *)sentence
+    withWordMapping:(NSDictionary *)mapDict {
     
     if ([[ConditionSetup sharedInstance] appMode] != ITS) {
         return;
@@ -68,12 +73,46 @@ manipulationContext:(ManipulationContext *)context
             dest = [actionStep.object2Id copy];
         }
     }
+    
+    NSString *actionObj1 = actionStep.object1Id;
+    NSString *correctDest = nil;
+    if (actionStep.object2Id != nil) {
+        correctDest = actionStep.object2Id;
+        
+    } else if (actionStep.locationId != nil) {
+        correctDest = actionStep.locationId;
+        
+    } else if (actionStep.areaId != nil) {
+        correctDest = actionStep.areaId;
+    }
 
+
+    // Convert the words to the mapped keys if present
+    for (NSString *key in mapDict.allKeys) {
+        
+        NSArray *mappedWords = [mapDict objectForKey:key];
+        if ([mappedWords containsObject:objectId]) {
+            objectId = [key copy];
+        }
+        if ([mappedWords containsObject:dest]) {
+            dest = [key copy];
+        }
+        if ([mappedWords containsObject:actionObj1]) {
+            actionObj1 = [key copy];
+        }
+        if ([mappedWords containsObject:correctDest]) {
+            correctDest = [key copy];
+        }
+        
+    }
+    
     UserAction *userAction = [[UserAction alloc] initWithMovedObjectId:objectId
                                                          destinationId:dest
-                                                            actionStep:actionStep
                                                             isVerified:verified
+                                               actionStepMovedObjectId:actionObj1
+                                         actionStepDestinationObjectId:correctDest
                                                            forSentence:sentence];
+    
     [self.manipulationAnalyser actionPerformed:userAction
                            manipulationContext:context];
 

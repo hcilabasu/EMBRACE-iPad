@@ -19,8 +19,9 @@
 
 - (instancetype)initWithMovedObjectId:(NSString *)movedObjId
                         destinationId:(NSString *)destinationId
-                           actionStep:(ActionStep *)actionStep
                            isVerified:(BOOL)isverified
+              actionStepMovedObjectId:(NSString *)actionStepMovedObjectId
+        actionStepDestinationObjectId:(NSString *)actionStepDestinationObjectId
                           forSentence:(NSString *)sentenceText;
 
 
@@ -30,9 +31,18 @@
 
 @property (nonatomic, readonly) BOOL isVerified;
 
-@property (nonatomic, readonly) ActionStep *actionStep;
+
+@property (nonatomic, readonly) NSString *actionStepMovedObjectId;
+
+@property (nonatomic, readonly) NSString *actionStepDestinationObjectId;
 
 @property (nonatomic, readonly) NSString *sentenceText;
+
+
+
+@property (nonatomic, assign) NSInteger sentenceNumber;
+
+@property (nonatomic, assign) NSInteger ideaNumber;
 
 
 @end

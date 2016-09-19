@@ -17,8 +17,19 @@
 - (Skill *)updateUsabilitySkill:(BOOL)isVerified;
 - (Skill *)updateSyntaxSkill:(BOOL)isVerified withComplexity:(EMComplexity)complex;
 
-- (Skill *)syntaxSkillFor:(EMComplexity)complex;
+// Calling this method will have lesser change in skill value if shouldDampen is TRUE
+- (Skill *)updateSkillFor:(NSString *)action
+               isVerified:(BOOL)isVerified
+             shouldDampen:(BOOL)shouldDampen;
 
+- (Skill *)updateUsabilitySkill:(BOOL)isVerified
+                   shouldDampen:(BOOL)shouldDampen;
+
+- (Skill *)updateSyntaxSkill:(BOOL)isVerified
+              withComplexity:(EMComplexity)complex
+                shouldDampen:(BOOL)shouldDampen;
+
+- (Skill *)syntaxSkillFor:(EMComplexity)complex;
 - (Skill *)vocabSkillForWord:(NSString *)word;
 
 @end

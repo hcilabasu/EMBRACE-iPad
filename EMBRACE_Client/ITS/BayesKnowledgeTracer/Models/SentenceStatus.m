@@ -40,8 +40,8 @@
 
 - (BOOL)containsAction:(UserAction *)action {
     for (UserAction *exAction in self.userActionSteps) {
-        if (exAction.actionStep.sentenceNumber == action.actionStep.sentenceNumber &&
-            exAction.actionStep.stepNumber == action.actionStep.stepNumber) {
+        if (exAction.sentenceNumber == action.sentenceNumber &&
+            exAction.ideaNumber == action.ideaNumber) {
             return YES;
         }
     }

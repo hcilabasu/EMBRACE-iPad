@@ -12,10 +12,21 @@
 #import "ActionStep.h"
 #import "WordSkill.h"
 
+#define DEFAULT_GUESS 0.1
+#define DEFAULT_SLIP 0.2
+#define DEFAULT_TRANSITION 0.1
 
 @interface KnowledgeTracer()
 
 @property (nonatomic, strong) SkillSet *skillSet;
+
+@property (nonatomic, assign) BOOL shouldDampen;
+
+@property (nonatomic, assign) double guess;
+
+@property (nonatomic, assign) double slip;
+
+@property (nonatomic, assign) double transition;
 
 @end
 
@@ -26,22 +37,36 @@
     self = [super init];
     if (self) {
         _skillSet = [[SkillSet alloc] init];
+        _shouldDampen = NO;
+        
+        _guess = DEFAULT_GUESS;
+        _slip = DEFAULT_SLIP;
+        _transition = DEFAULT_TRANSITION;
     }
     return self;
 }
 
 #pragma mark -
 
-- (Skill *)updateSkillFor:(NSString *)action isVerified:(BOOL)isVerified {
+- (Skill *)updateSkillFor:(NSString *)action
+               isVerified:(BOOL)isVerified
+             shouldDampen:(BOOL)shouldDampen {
     
     if (action == nil) {
         return nil;
     }
     
+    self.shouldDampen = shouldDampen;
+    
     Skill *prevSkill = [self.skillSet skillForWord:action];
     Skill *sk = [self updateSkill:prevSkill isVerified:isVerified];
     NSLog(@"Skill value %@ - %f", action, sk.skillValue);
     return prevSkill;
+}
+
+- (Skill *)updateSkillFor:(NSString *)action isVerified:(BOOL)isVerified {
+    
+    return [self updateSkillFor:action isVerified:isVerified shouldDampen:NO];
 }
 
 - (Skill *)updateSkill:(Skill *)skill isVerified:(BOOL)isVerified {
@@ -65,9 +90,25 @@
 }
 
 
-
-- (Skill *)updateUsabilitySkill:(BOOL)isVerified {
+- (Skill *)updateUsabilitySkill:(BOOL)isVerified
+                   shouldDampen:(BOOL)shouldDampen {
+    
+    self.shouldDampen = shouldDampen;
     Skill *sk  = [self.skillSet usabilitySkill];
+    sk = [self updateSkill:sk isVerified:isVerified];
+    return sk;
+}
+
+- (Skill *)updateUsabilitySkill:(BOOL)isVerified  {
+    return [self updateUsabilitySkill:isVerified shouldDampen:NO];
+}
+
+- (Skill *)updateSyntaxSkill:(BOOL)isVerified
+              withComplexity:(EMComplexity)complex
+                shouldDampen:(BOOL)shouldDampen {
+    
+    self.shouldDampen = shouldDampen;
+    Skill *sk  = [self.skillSet syntaxSkillFor:complex];
     sk = [self updateSkill:sk isVerified:isVerified];
     return sk;
 }
@@ -75,10 +116,10 @@
 - (Skill *)updateSyntaxSkill:(BOOL)isVerified
            withComplexity:(EMComplexity)complex {
     
+    return  [self updateSyntaxSkill:isVerified
+                     withComplexity:complex
+                       shouldDampen:NO];
     
-    Skill *sk  = [self.skillSet syntaxSkillFor:complex];
-    sk = [self updateSkill:sk isVerified:isVerified];
-    return sk;
 }
 
 - (WordSkill *)getWordSkillFor:(NSString *)word {
@@ -101,7 +142,12 @@
 
 - (double)getSlip {
     
-    return 0.2;
+    if (self.shouldDampen) {
+        self.slip /= 10;
+    } else {
+        self.slip = DEFAULT_SLIP;
+    }
+    return self.slip;
 }
 
 - (double)getSlip2 {
@@ -111,7 +157,14 @@
 
 - (double)getGuess {
     
-    return 0.1;
+    if (self.shouldDampen) {
+        self.guess *= 10;
+    } else {
+        self.guess = DEFAULT_GUESS;
+    }
+    
+    return self.guess;
+    
 }
 
 - (double)getGuess2 {
@@ -120,10 +173,16 @@
 }
 
 - (double)getTransition {
-    return 0.1;
+    if (self.shouldDampen) {
+        self.transition /= 10;
+    } else {
+        self.transition = DEFAULT_TRANSITION;
+    }
+    
+    return self.transition;
 }
 
-- (double) calcCorrect:(double) prevSkillValue  {
+- (double) calcCorrect:(double)prevSkillValue  {
     
     return (prevSkillValue * (1 - [self getSlip]))
 				/ (prevSkillValue * (1 - [self getSlip]) + (1 - prevSkillValue) * [self getGuess]);
