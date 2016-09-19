@@ -1197,6 +1197,9 @@ function moveTo(aniObject) {
 function moveToLocation(aniObject) {
     var seconds = 4;
     
+    var offsetDiffX = aniObject.x - aniObject.object.offsetLeft;
+    var offsetDiffY = aniObject.y - aniObject.object.offsetTop;
+    
     var diffX = aniObject.ex - aniObject.x;
     var diffY = aniObject.ey - aniObject.y;
     
@@ -1207,8 +1210,8 @@ function moveToLocation(aniObject) {
         aniObject.object.style.WebkitTransitionDuration = '';
         aniObject.object.style.webkitTransform = '';
                
-        aniObject.object.style.left = aniObject.ex - (aniObject.object.clientWidth / 2) + "px";
-        aniObject.object.style.top = aniObject.ey - (aniObject.object.clientHeight / 2) + "px";
+       aniObject.object.style.left = aniObject.ex - offsetDiffX + 'px';
+       aniObject.object.style.top = aniObject.ey - offsetDiffY + 'px';
     }, seconds * 1000);
 }
 
