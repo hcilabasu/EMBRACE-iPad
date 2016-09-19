@@ -683,6 +683,7 @@ BOOL wasPathFollowed = false;
     currentStep = 1;
     manipulationContext.stepNumber = currentStep;
     stepsComplete = FALSE;
+    numAttempts = 0;
     
     //Get number of steps for current sentence
     if (conditionSetup.appMode == ITS && [pageSentences count] > 0) {
@@ -766,6 +767,7 @@ BOOL wasPathFollowed = false;
     
     //Check if able to increment current step
     if (currentStep < numSteps) {
+        numAttempts = 0;
         
         //if the current solution step is a custom pm, then increment current step minMenuOption times
         if ([@"PM_CUSTOM" isEqualToString: [currSolStep menuType]]){
