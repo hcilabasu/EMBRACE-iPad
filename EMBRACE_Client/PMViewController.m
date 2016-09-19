@@ -3119,8 +3119,7 @@ BOOL wasPathFollowed = false;
     if (numAttempts >= maxAttempts) {
         numAttempts = 0;
         
-        [self animatePerformingStep];
-        [playaudioClass playAutoCompleteStepNoise];
+        [self provideFeedbackForErrorType:@"usability"];
     }
     else {
         if (conditionSetup.appMode == ITS) {
@@ -3201,8 +3200,13 @@ BOOL wasPathFollowed = false;
         }
     }
     else if ([errorType isEqualToString:@"usability"]) {
-        [self animatePerformingStep];
-        [playaudioClass playAutoCompleteStepNoise];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Need help?" message:@"The iPad will show you how to complete this step." preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action)
+                          {
+                              [self animatePerformingStep];
+                              [playaudioClass playAutoCompleteStepNoise];
+                          }]];
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 
