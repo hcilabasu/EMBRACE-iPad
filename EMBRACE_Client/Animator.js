@@ -1206,12 +1206,38 @@ function moveToLocation(aniObject) {
     aniObject.object.style.WebkitTransitionDuration = seconds + 's';
     aniObject.object.style.webkitTransform = 'translate(' + diffX + 'px, ' + diffY + 'px)';
     
+    var groupedWithObjects = new Array();
+    var groupedWithObjectsEX = new Array();
+    var groupedWithObjectsEY = new Array();
+    
+    getObjectsGroupedWithObject(aniObject.object, groupedWithObjects);
+    
+    for (var i = 0; i < groupedWithObjects.length; i++) {
+        if (groupedWithObjects[i].id != aniObject.object.id) {
+            groupedWithObjectsEX[i] = groupedWithObjects[i].offsetLeft + diffX;
+            groupedWithObjectsEY[i] = groupedWithObjects[i].offsetTop + diffY;
+            
+            groupedWithObjects[i].style.WebkitTransitionDuration = seconds + 's';
+            groupedWithObjects[i].style.webkitTransform = 'translate(' + diffX + 'px, ' + diffY + 'px)';
+        }
+    }
+    
     setTimeout(function() {
         aniObject.object.style.WebkitTransitionDuration = '';
         aniObject.object.style.webkitTransform = '';
+        
+        aniObject.object.style.left = aniObject.ex - offsetDiffX + 'px';
+        aniObject.object.style.top = aniObject.ey - offsetDiffY + 'px';
                
-       aniObject.object.style.left = aniObject.ex - offsetDiffX + 'px';
-       aniObject.object.style.top = aniObject.ey - offsetDiffY + 'px';
+        for (var i = 0; i < groupedWithObjects.length; i++) {
+            if (groupedWithObjects[i].id != aniObject.object.id) {
+               groupedWithObjects[i].style.WebkitTransitionDuration = '';
+               groupedWithObjects[i].style.webkitTransform = '';
+               
+               groupedWithObjects[i].style.left = groupedWithObjectsEX[i] + 'px';
+               groupedWithObjects[i].style.top = groupedWithObjectsEY[i] + 'px';
+            }
+        }
     }, seconds * 1000);
 }
 

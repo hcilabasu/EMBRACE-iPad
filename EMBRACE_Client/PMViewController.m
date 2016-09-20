@@ -3219,11 +3219,39 @@ BOOL wasPathFollowed = false;
     NSString *stepType = [currSolStep stepType];
     
     if ([stepType isEqualToString:@"check"] || [stepType isEqualToString:@"checkLeft"] || [stepType isEqualToString:@"checkRight"] || [stepType isEqualToString:@"checkUp"] || [stepType isEqualToString:@"checkDown"] || [stepType isEqualToString:@"checkAndSwap"] || [stepType isEqualToString:@"tapToAnimate"] || [stepType isEqualToString:@"checkPath"] || [stepType isEqualToString:@"shakeAndTap"] || [stepType isEqualToString:@"tapWord"] ) {
-        if ([stepType isEqualToString:@"checkAndSwap"]) {
-            [self swapObjectImage];
+        if ([stepType isEqualToString:@"check"]) {
+            NSString *object1Id = [currSolStep object1Id];
+            ActionStep *nextSolStep = [currSolSteps objectAtIndex:currentStep];
+            
+            if (nextSolStep != nil && [[nextSolStep stepType] isEqualToString:@"move"] && [[nextSolStep object1Id] isEqualToString:object1Id]) {
+                Hotspot *object1Hotspot = [model getHotspotforObjectWithActionAndRole:object1Id :[currSolStep action] :@"subject"];
+                CGPoint object1HotspotLocation = [self.pmView getHotspotLocation:object1Hotspot];
+                
+                Waypoint *waypoint = [model getWaypointWithId:[nextSolStep waypointId]];
+                CGPoint waypointLocation = [self getWaypointLocation:waypoint];
+                
+                [self highlightObject:object1Id :2.0];
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                    [self.pmView animateObject:object1Id from:object1HotspotLocation to:waypointLocation action:@"moveToLocation" areaId:@""];
+                    
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                        [self highlightObject:object1Id :2.0];
+                        
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                            [self incrementCurrentStep];
+                        });
+                    });
+                });
+            }
         }
-        
-        [self incrementCurrentStep];
+        else {
+            if ([stepType isEqualToString:@"checkAndSwap"]) {
+                [self swapObjectImage];
+            }
+            
+            [self incrementCurrentStep];
+        }
     }
     else {
         NSString *object1Id = [currSolStep object1Id];
