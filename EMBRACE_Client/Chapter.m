@@ -114,4 +114,52 @@
     return nil;
 }
 
+- (NSMutableSet *)getNewVocabulary {
+    NSMutableSet *newVocabulary = [[NSMutableSet alloc] init];
+    
+    for (NSString *vocabulary in [self vocabulary]) {
+        if ([[[self vocabulary] objectForKey:vocabulary] isEqual: @(TRUE)]) {
+            [newVocabulary addObject:vocabulary];
+        }
+    }
+    
+    return newVocabulary;
+}
+
+- (NSMutableSet *)getOldVocabulary {
+    NSMutableSet *oldVocabulary = [[NSMutableSet alloc] init];
+    
+    for (NSString *vocabulary in [self vocabulary]) {
+        if ([[[self vocabulary] objectForKey:vocabulary] isEqual: @(FALSE)]) {
+            [oldVocabulary addObject:vocabulary];
+        }
+    }
+    
+    return oldVocabulary;
+}
+
+- (NSMutableSet *)getVocabularyFromSolutions {
+    NSMutableSet *solutionVocabulary = [[NSMutableSet alloc] init];
+    NSMutableDictionary *PMSolutions = [(PhysicalManipulationActivity *)[self getActivityOfType:PM_MODE] PMSolutions];
+    
+    for (NSString *activityId in PMSolutions) {
+        PhysicalManipulationSolution *PMSolution = [[PMSolutions objectForKey:activityId] objectAtIndex:0];
+        
+        for (ActionStep *actionStep in [PMSolution solutionSteps]) {
+            NSString *object1Id = [actionStep object1Id];
+            NSString *object2Id = [actionStep object2Id];
+            
+            if (object1Id != nil && [object1Id rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet]].location == NSNotFound) {
+                [solutionVocabulary addObject:object1Id];
+            }
+            
+            if (object2Id != nil && [object2Id rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet]].location == NSNotFound) {
+                [solutionVocabulary addObject:object2Id];
+            }
+        }
+    }
+    
+    return solutionVocabulary;
+}
+
 @end
