@@ -427,11 +427,17 @@
     
     
     //Separate Assessment metadata files depending on language
-    if (conditionSetup.language == ENGLISH) {
+    if (conditionSetup.language == ENGLISH && conditionSetup.assessmentMode == ENDOFCHAPTER) {
         [self readAssessmentMetadata:model :[[book mainContentPath] stringByAppendingString:@"AssessmentActivities-MetaData.xml"]];
     }
-    else if (conditionSetup.language == BILINGUAL) {
+    else if (conditionSetup.language == BILINGUAL && conditionSetup.assessmentMode == ENDOFCHAPTER) {
         [self readAssessmentMetadata:model :[[book mainContentPath] stringByAppendingString:@"AssessmentActivitiesSpanish-MetaData.xml"]];
+    }
+    else if (conditionSetup.language == ENGLISH && conditionSetup.assessmentMode == ENDOFBOOK) {
+        [self readAssessmentMetadata:model :[[book mainContentPath] stringByAppendingString:@"AssessmentActivitiesEOB-MetaData.xml"]];
+    }
+    else if (conditionSetup.language == BILINGUAL && conditionSetup.assessmentMode == ENDOFBOOK) {
+        [self readAssessmentMetadata:model :[[book mainContentPath] stringByAppendingString:@"AssessmentActivitiesEOBSpanish-MetaData.xml"]];
     }
     [self readScriptMetadata:book filePath:[[book mainContentPath] stringByAppendingString:@"Script-Metadata.xml"]];
 }

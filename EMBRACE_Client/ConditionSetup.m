@@ -18,6 +18,7 @@
 @synthesize newInstructions;
 @synthesize isVocabPageEnabled;
 @synthesize isAssessmentPageEnabled;
+@synthesize assessmentMode;
 
 @synthesize allowFileSync;
 
@@ -35,14 +36,14 @@
 - (id)init {
     if (self = [super init]) {
         condition = EMBRACE;
-        language = ENGLISH;
+        language = BILINGUAL;
         reader = SYSTEM;
         appMode = Study;
         currentMode = PM_MODE;
         newInstructions = false;
         isVocabPageEnabled = false;
-        isAssessmentPageEnabled = false;
-        
+        isAssessmentPageEnabled = true;
+        assessmentMode = ENDOFBOOK;
         allowFileSync = true; //NOTE: Still testing this functionality
     }
     

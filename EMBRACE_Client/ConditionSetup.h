@@ -34,6 +34,12 @@ typedef enum Actor {
     USER
 } Actor;
 
+//Differentiates system from user
+typedef enum Assessment {
+    ENDOFCHAPTER,
+    ENDOFBOOK
+} Assessment;
+
 @interface ConditionSetup : NSObject
 
 @property (nonatomic) Condition condition;
@@ -41,10 +47,10 @@ typedef enum Actor {
 @property (nonatomic) Actor reader; //who should read the text
 @property (nonatomic) AppMode appMode;
 @property (nonatomic) Mode currentMode; //PM or IM
+@property (nonatomic) Assessment assessmentMode;
 @property (nonatomic) BOOL newInstructions; //whether new audio instructions should be played (for sequences)
 @property (nonatomic) BOOL isVocabPageEnabled; //whether the vocab page should be displayed
 @property (nonatomic) BOOL isAssessmentPageEnabled; //whether the assessment page should be displayed
-
 @property (nonatomic) BOOL allowFileSync; //whether log and progress files should be synced with Dropbox
 
 + (ConditionSetup*)sharedInstance;

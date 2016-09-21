@@ -95,7 +95,15 @@ UIImage *BackgroundImage;   //The background image related to the story
         
         //Load the assessment activity for the current chapter
         assessmentActivities =  [model getAssessmentActivity];
-        currentAssessmentActivitySteps = [assessmentActivities objectForKey:chapterTitle];
+        if(conditionSetup.assessmentMode == ENDOFBOOK){
+            currentAssessmentActivitySteps = [assessmentActivities objectForKey:bookTitle];
+        }
+        else if(conditionSetup.assessmentMode == ENDOFCHAPTER){
+            currentAssessmentActivitySteps = [assessmentActivities objectForKey:chapterTitle];
+        }
+        else{
+            //TODO: Log fatal error and return to library view to prevent system crash
+        }
         totalAssessmentActivitySteps = [currentAssessmentActivitySteps count];
         AssessmentActivity *currAssessmentActivityStep = [currentAssessmentActivitySteps objectAtIndex:currentAssessmentActivityStep - 1];
         correctSelection = [currAssessmentActivityStep expectedSelection];

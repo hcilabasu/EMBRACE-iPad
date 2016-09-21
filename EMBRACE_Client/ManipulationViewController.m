@@ -129,7 +129,7 @@ BOOL wasPathFollowed = false;
 //    [self.view addConstraint:yCenterConstraint];
     
     
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.manipulationView
+    /*[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.manipulationView
                                                               attribute:NSLayoutAttributeTop
                                                               relatedBy:NSLayoutRelationEqual
                                                                  toItem:self.view
@@ -160,6 +160,7 @@ BOOL wasPathFollowed = false;
                                                               attribute:NSLayoutAttributeTrailing
                                                              multiplier:1.0
                                                                constant:0.0]];
+     */
 
     
     [self.manipulationView addGesture:tapRecognizer];

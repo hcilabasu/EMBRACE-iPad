@@ -144,7 +144,7 @@
     if (pageContext.currentPage == nil) {
         [[ServerCommunicationController sharedInstance] logCompleteManipulation:manipulationContext];
         
-        if(conditionSetup.isAssessmentPageEnabled)
+        if(conditionSetup.isAssessmentPageEnabled && conditionSetup.assessmentMode == ENDOFCHAPTER)
         {
             [mvc.view setUserInteractionEnabled:YES];
             [self loadAssessmentActivity];
@@ -155,10 +155,17 @@
             
             //Set chapter as completed
             [[(LibraryViewController *)mvc.libraryViewController studentProgress] setStatusOfChapter:chapterTitle :COMPLETED fromBook:bookTitle];
-            
-            //Return to library view
             [mvc.view setUserInteractionEnabled:YES];
-            [mvc.navigationController popViewControllerAnimated:YES];
+            
+            if(conditionSetup.isAssessmentPageEnabled && conditionSetup.assessmentMode == ENDOFBOOK && [[(LibraryViewController *)mvc.libraryViewController studentProgress] getStatusOfBook:[mvc.book title]] == COMPLETED){
+                
+                    //Move to Assessment Activity
+                    [self loadAssessmentActivity];
+            }
+            else{
+                //Return to library view
+                [mvc.navigationController popViewControllerAnimated:YES];
+            }
         }
     }
     else {
@@ -174,21 +181,23 @@
     
     //TODO: Remove hard coded workaround and find way to have same functionality
     //Hardcoding for second Introduction to EMBRACE
-    if ([[(LibraryViewController *)mvc.libraryViewController studentProgress] getStatusOfBook:[mvc.book title]] == COMPLETED && ([[(LibraryViewController *)mvc.libraryViewController studentProgress] getStatusOfBook:@"Second Introduction to EMBRACE"] == IN_PROGRESS || [[(LibraryViewController *)mvc.libraryViewController studentProgress] getStatusOfBook:@"Second Introduction to EMBRACE"] == COMPLETED))
-    {
+    if ([[(LibraryViewController *)mvc.libraryViewController studentProgress] getStatusOfBook:[mvc.book title]] == COMPLETED && ([[(LibraryViewController *)mvc.libraryViewController studentProgress] getStatusOfBook:@"Second Introduction to EMBRACE"] == IN_PROGRESS || [[(LibraryViewController *)mvc.libraryViewController studentProgress] getStatusOfBook:@"Second Introduction to EMBRACE"] == COMPLETED)){
         //Create an instance of the assessment activity view controller
         AssessmentActivityViewController *assessmentActivityViewController = [[AssessmentActivityViewController alloc]initWithModel:mvc.model : mvc.libraryViewController :background :@"Second Introduction to EMBRACE" :chapterTitle :pageContext.currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)sentenceContext.currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)stepContext.currentStep]];
         
         //Push the assessment view controller as the top controller
         [mvc.navigationController pushViewController:assessmentActivityViewController animated:YES];
     }
-    else
-    {
+    else if (conditionSetup.assessmentMode == ENDOFCHAPTER || (conditionSetup.assessmentMode == ENDOFBOOK && [[(LibraryViewController *)mvc.libraryViewController studentProgress] getStatusOfBook:[mvc.book title]] == COMPLETED)) {
+        
         //Create an instance of the assessment activity view controller
         AssessmentActivityViewController *assessmentActivityViewController = [[AssessmentActivityViewController alloc]initWithModel:mvc.model : mvc.libraryViewController :background :[mvc.book title] :chapterTitle :pageContext.currentPage :[NSString stringWithFormat:@"%lu", (unsigned long)sentenceContext.currentSentence] :[NSString stringWithFormat:@"%lu", (unsigned long)stepContext.currentStep]];
         
         //Push the assessment view controller as the top controller
         [mvc.navigationController pushViewController:assessmentActivityViewController animated:YES];
+    }
+    else{
+        //TODO: Log fatal error and return to library view
     }
 }
 

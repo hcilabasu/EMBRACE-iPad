@@ -61,6 +61,24 @@
 		1A3EFFF61C635BE300927997 /* bg_corral.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A3EFFF51C635BE300927997 /* bg_corral.png */; };
 		1A3EFFF81C635E2A00927997 /* bg_market_entrance.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A3EFFF71C635E2A00927997 /* bg_market_entrance.png */; };
 		1A4542F31CA35428004D1CE0 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A4542F21CA35428004D1CE0 /* CoreMedia.framework */; };
+		1A519C731D8EF05500FADCF7 /* AssessmentActivitiesEOB-Metadata.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C721D8EF05500FADCF7 /* AssessmentActivitiesEOB-Metadata.xml */; };
+		1A519C751D8EF07300FADCF7 /* AssessmentActivitiesEOBSpanish-Metadata.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C741D8EF07300FADCF7 /* AssessmentActivitiesEOBSpanish-Metadata.xml */; };
+		1A519C781D90899700FADCF7 /* AssessmentActivitiesEOB-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C761D90899700FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */; };
+		1A519C791D90899700FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C771D90899700FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */; };
+		1A519C7C1D9089A500FADCF7 /* AssessmentActivitiesEOB-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C7A1D9089A500FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */; };
+		1A519C7D1D9089A500FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C7B1D9089A500FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */; };
+		1A519C801D9089B200FADCF7 /* AssessmentActivitiesEOB-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C7E1D9089B200FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */; };
+		1A519C811D9089B200FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C7F1D9089B200FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */; };
+		1A519C841D9089BE00FADCF7 /* AssessmentActivities-EOBMetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C821D9089BE00FADCF7 /* AssessmentActivities-EOBMetaData.xml */; };
+		1A519C851D9089BE00FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C831D9089BE00FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */; };
+		1A519C881D9089CA00FADCF7 /* AssessmentActivitiesEOB-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C861D9089CA00FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */; };
+		1A519C891D9089CA00FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C871D9089CA00FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */; };
+		1A519C8C1D9089D800FADCF7 /* AssessmentActivities-EOBMetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C8A1D9089D800FADCF7 /* AssessmentActivities-EOBMetaData.xml */; };
+		1A519C8D1D9089D800FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C8B1D9089D800FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */; };
+		1A519C901D9089E200FADCF7 /* AssessmentActivitiesEOB-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C8E1D9089E200FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */; };
+		1A519C911D9089E200FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C8F1D9089E200FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */; };
+		1A519C941D9089EC00FADCF7 /* AssessmentActivitiesEOB-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C921D9089EC00FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */; };
+		1A519C951D9089EC00FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C931D9089EC00FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */; };
 		1A5BB0CA1BD327D1002D1AEA /* bottled.epub in Resources */ = {isa = PBXBuildFile; fileRef = 1A5BB0741BD327D1002D1AEA /* bottled.epub */; };
 		1A631FFF1C0E4D3B00251CB3 /* bestFarm.epub in Resources */ = {isa = PBXBuildFile; fileRef = 1A631C691C0E4D3900251CB3 /* bestFarm.epub */; };
 		1A6320001C0E4D3B00251CB3 /* container.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A631C6B1C0E4D3900251CB3 /* container.xml */; };
@@ -5006,6 +5024,24 @@
 		1A3EFFF51C635BE300927997 /* bg_corral.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_corral.png; sourceTree = "<group>"; };
 		1A3EFFF71C635E2A00927997 /* bg_market_entrance.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_market_entrance.png; sourceTree = "<group>"; };
 		1A4542F21CA35428004D1CE0 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		1A519C721D8EF05500FADCF7 /* AssessmentActivitiesEOB-Metadata.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOB-Metadata.xml"; sourceTree = "<group>"; };
+		1A519C741D8EF07300FADCF7 /* AssessmentActivitiesEOBSpanish-Metadata.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOBSpanish-Metadata.xml"; sourceTree = "<group>"; };
+		1A519C761D90899700FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOB-MetaData.xml"; sourceTree = "<group>"; };
+		1A519C771D90899700FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOBSpanish-MetaData.xml"; sourceTree = "<group>"; };
+		1A519C7A1D9089A500FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOB-MetaData.xml"; sourceTree = "<group>"; };
+		1A519C7B1D9089A500FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOBSpanish-MetaData.xml"; sourceTree = "<group>"; };
+		1A519C7E1D9089B200FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOB-MetaData.xml"; sourceTree = "<group>"; };
+		1A519C7F1D9089B200FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOBSpanish-MetaData.xml"; sourceTree = "<group>"; };
+		1A519C821D9089BE00FADCF7 /* AssessmentActivities-EOBMetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivities-EOBMetaData.xml"; sourceTree = "<group>"; };
+		1A519C831D9089BE00FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOBSpanish-MetaData.xml"; sourceTree = "<group>"; };
+		1A519C861D9089CA00FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOB-MetaData.xml"; sourceTree = "<group>"; };
+		1A519C871D9089CA00FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOBSpanish-MetaData.xml"; sourceTree = "<group>"; };
+		1A519C8A1D9089D800FADCF7 /* AssessmentActivities-EOBMetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivities-EOBMetaData.xml"; sourceTree = "<group>"; };
+		1A519C8B1D9089D800FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOBSpanish-MetaData.xml"; sourceTree = "<group>"; };
+		1A519C8E1D9089E200FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOB-MetaData.xml"; sourceTree = "<group>"; };
+		1A519C8F1D9089E200FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOBSpanish-MetaData.xml"; sourceTree = "<group>"; };
+		1A519C921D9089EC00FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOB-MetaData.xml"; sourceTree = "<group>"; };
+		1A519C931D9089EC00FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOBSpanish-MetaData.xml"; sourceTree = "<group>"; };
 		1A5BB0741BD327D1002D1AEA /* bottled.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = bottled.epub; path = EPUBs/bottled/bottled.epub; sourceTree = "<group>"; };
 		1A631C691C0E4D3900251CB3 /* bestFarm.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = bestFarm.epub; sourceTree = "<group>"; };
 		1A631C6B1C0E4D3900251CB3 /* container.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = container.xml; sourceTree = "<group>"; };
@@ -10063,6 +10099,8 @@
 			children = (
 				5DB79E881C9173CB003B2AFC /* Script-Metadata.xml */,
 				1A631C6E1C0E4D3900251CB3 /* AlternateImages-MetaData.xml */,
+				1A519C7E1D9089B200FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */,
+				1A519C7F1D9089B200FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */,
 				1A631C6F1C0E4D3900251CB3 /* AlternateSentences-MetaData.xml */,
 				1A631C701C0E4D3900251CB3 /* Areas-MetaData.xml */,
 				1A631C711C0E4D3900251CB3 /* AssessmentActivities-MetaData.xml */,
@@ -10220,6 +10258,8 @@
 			children = (
 				5DB79E861C91739A003B2AFC /* Script-Metadata.xml */,
 				1A631CED1C0E4D3900251CB3 /* AlternateImages-MetaData.xml */,
+				1A519C821D9089BE00FADCF7 /* AssessmentActivities-EOBMetaData.xml */,
+				1A519C831D9089BE00FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */,
 				1A631CEE1C0E4D3900251CB3 /* Areas-MetaData.xml */,
 				1A631CEF1C0E4D3900251CB3 /* AssessmentActivities-MetaData.xml */,
 				1AC7A3941C592D0E003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml */,
@@ -10368,6 +10408,8 @@
 			children = (
 				1A631D441C0E4D3A00251CB3 /* AlternateImages-MetaData.xml */,
 				5DB79E841C91734D003B2AFC /* Script-Metadata.xml */,
+				1A519C861D9089CA00FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */,
+				1A519C871D9089CA00FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */,
 				1A631D451C0E4D3A00251CB3 /* Areas-MetaData.xml */,
 				1A631D461C0E4D3A00251CB3 /* AssessmentActivities-MetaData.xml */,
 				1AC7A3921C592AD5003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml */,
@@ -10578,6 +10620,8 @@
 				1A631DD11C0E4D3A00251CB3 /* AlternateImages-MetaData.xml */,
 				1A631DD21C0E4D3A00251CB3 /* Areas-MetaData.xml */,
 				1A631DD31C0E4D3A00251CB3 /* AssessmentActivities-MetaData.xml */,
+				1A519C721D8EF05500FADCF7 /* AssessmentActivitiesEOB-Metadata.xml */,
+				1A519C741D8EF07300FADCF7 /* AssessmentActivitiesEOBSpanish-Metadata.xml */,
 				1A68DC801C5825F1009F9099 /* AssessmentActivitiesSpanish-MetaData.xml */,
 				1A631DD41C0E4D3A00251CB3 /* Constraints-MetaData.xml */,
 				1A631DD51C0E4D3A00251CB3 /* content.opf */,
@@ -10748,6 +10792,8 @@
 			children = (
 				5DB79E7C1C916DCD003B2AFC /* Script-Metadata.xml */,
 				1A631E531C0E4D3A00251CB3 /* AlternateImages-MetaData.xml */,
+				1A519C8A1D9089D800FADCF7 /* AssessmentActivities-EOBMetaData.xml */,
+				1A519C8B1D9089D800FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */,
 				1A631E551C0E4D3A00251CB3 /* AssessmentActivities-MetaData.xml */,
 				1A631E541C0E4D3A00251CB3 /* Areas-MetaData.xml */,
 				1AC7A3901C592847003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml */,
@@ -10997,6 +11043,8 @@
 			isa = PBXGroup;
 			children = (
 				5DB79E801C917296003B2AFC /* Script-Metadata.xml */,
+				1A519C8E1D9089E200FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */,
+				1A519C8F1D9089E200FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */,
 				1A631F0E1C0E4D3A00251CB3 /* AlternateImages-MetaData.xml */,
 				1A631F0F1C0E4D3A00251CB3 /* Areas-MetaData.xml */,
 				1A631F101C0E4D3A00251CB3 /* AssessmentActivities-MetaData.xml */,
@@ -11161,6 +11209,8 @@
 			isa = PBXGroup;
 			children = (
 				5DB79E7E1C9170D1003B2AFC /* Script-Metadata.xml */,
+				1A519C921D9089EC00FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */,
+				1A519C931D9089EC00FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */,
 				1A631F8E1C0E4D3A00251CB3 /* AlternateImages-MetaData.xml */,
 				1A631F8F1C0E4D3A00251CB3 /* Areas-MetaData.xml */,
 				1A631F901C0E4D3A00251CB3 /* AssessmentActivities-MetaData.xml */,
@@ -13130,6 +13180,8 @@
 			isa = PBXGroup;
 			children = (
 				5DB79E8A1C917403003B2AFC /* Script-Metadata.xml */,
+				1A519C7A1D9089A500FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */,
+				1A519C7B1D9089A500FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */,
 				5C28DB941C2BA66E005ACD07 /* AlternateImages-MetaData.xml */,
 				5C28DB951C2BA66E005ACD07 /* Areas-MetaData.xml */,
 				5C28DB961C2BA66E005ACD07 /* AssessmentActivities-MetaData.xml */,
@@ -14541,6 +14593,8 @@
 			isa = PBXGroup;
 			children = (
 				5DB15D941C738E0100130705 /* Script-Metadata.xml */,
+				1A519C761D90899700FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */,
+				1A519C771D90899700FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */,
 				5CA955361C3237690038FB56 /* AlternateImages-MetaData.xml */,
 				5CA955371C3237690038FB56 /* Areas-MetaData.xml */,
 				5CA955381C3237690038FB56 /* AssessmentActivities-MetaData.xml */,
@@ -16868,6 +16922,7 @@
 				1A6323671C0E4D3B00251CB3 /* tocE.ncx in Resources */,
 				5CCD8E6F1C73E73200D2EC2B /* TheMovingEarthQ5A3S.mp3 in Resources */,
 				1A6320D71C0E4D3B00251CB3 /* bg_faucet_on.png in Resources */,
+				1A519C911D9089E200FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml in Resources */,
 				5C030FAF1C8633CF006E1BEA /* Sniffed_def_S.mp3 in Resources */,
 				5CA5CC3D1CD1A9C7002A631F /* CleaningUpS6E.mp3 in Resources */,
 				5C62A95F1C85453F00F28BEB /* Nature_def_S.mp3 in Resources */,
@@ -16881,6 +16936,7 @@
 				5C28DC741C2BA66E005ACD07 /* boat_large.png in Resources */,
 				5D9E34721C590E9500636150 /* TheLopezFamilyQ1A3.mp3 in Resources */,
 				5C9B8B641CB5EFC800420053 /* HayloftS.mp3 in Resources */,
+				1A519C8C1D9089D800FADCF7 /* AssessmentActivities-EOBMetaData.xml in Resources */,
 				1A63219D1C0E4D3B00251CB3 /* Story1-Why-We-Breathe-PM-2S.xhtml in Resources */,
 				5D9E34791C590E9500636150 /* TheLopezFamilyQ3.mp3 in Resources */,
 				1A6322971C0E4D3B00251CB3 /* cribf_large_high_res.png in Resources */,
@@ -16968,6 +17024,7 @@
 				5CB7104A1C6C0B650062AD61 /* HowDoObjectsMoveS9S.mp3 in Resources */,
 				5C0421431C618C2B001BBE9D /* BabyBrotherQ3A4.mp3 in Resources */,
 				1A6323581C0E4D3B00251CB3 /* Story5-Newton's-Law-of-Acceleration-on-Earth-PM-1.xhtml in Resources */,
+				1A519C801D9089B200FADCF7 /* AssessmentActivitiesEOB-MetaData.xml in Resources */,
 				5C1C4CF91D2386AD00547783 /* CannotS.mp3 in Resources */,
 				1A63230A1C0E4D3B00251CB3 /* boat.png in Resources */,
 				5CAE95F01C921DCD00702DB4 /* NavajoS.mp3 in Resources */,
@@ -16980,6 +17037,7 @@
 				5C72E78B1C72BF1000CE4877 /* NewtonsFirstLawonEarthQ3A1.mp3 in Resources */,
 				5CB7109F1C6C1AD80062AD61 /* TheMovingEarthS9S.mp3 in Resources */,
 				5D9E34211C590E9500636150 /* MoreIsMissingQ7A2.mp3 in Resources */,
+				1A519C731D8EF05500FADCF7 /* AssessmentActivitiesEOB-Metadata.xml in Resources */,
 				5C72E8281C72BF1000CE4877 /* TheThreeLawsWorkTogetherQ5.mp3 in Resources */,
 				5C0ED8D21C75334200003B5A /* ManchatheHorseQ2.mp3 in Resources */,
 				1A6321591C0E4D3B00251CB3 /* background_1.png in Resources */,
@@ -17155,6 +17213,7 @@
 				5CF792DC1C7694A900216337 /* TheContestQ6A2S.mp3 in Resources */,
 				5D9E34A31C590E9600636150 /* TheMysteryIsSolvedQ4A2.mp3 in Resources */,
 				5C0ED6AE1C752C2F00003B5A /* GettingReadyQ6A3.mp3 in Resources */,
+				1A519C941D9089EC00FADCF7 /* AssessmentActivitiesEOB-MetaData.xml in Resources */,
 				5C0ED8A21C75334200003B5A /* HomecomingQ6A2.mp3 in Resources */,
 				5CB7116B1C6C46DF0062AD61 /* TheNavajoHoganQ4A1S.mp3 in Resources */,
 				5C0ED7101C752C2F00003B5A /* TheWiseOwlQ6A1.mp3 in Resources */,
@@ -17519,6 +17578,7 @@
 				5C0EDA0A1C753AD400003B5A /* WhyWeBreatheQ1.mp3 in Resources */,
 				5CB7116F1C6C46DF0062AD61 /* TheNavajoHoganQ4S.mp3 in Resources */,
 				5C0ED6AC1C752C2F00003B5A /* GettingReadyQ6A1.mp3 in Resources */,
+				1A519C781D90899700FADCF7 /* AssessmentActivitiesEOB-MetaData.xml in Resources */,
 				5C72E7691C72BF1000CE4877 /* HowdoObjectsMoveQ1A2.mp3 in Resources */,
 				5CCD8E771C73E73200D2EC2B /* TheMovingEarthQ7A1S.mp3 in Resources */,
 				5C72E6151C72A46F00CE4877 /* TheAlgonquianWigwamQ7A3.mp3 in Resources */,
@@ -17747,6 +17807,7 @@
 				5C0ED9F01C753AD400003B5A /* MusclesUseOxygenQ5A4.mp3 in Resources */,
 				5C0ED9CA1C753AD400003B5A /* GettingMoreOxygenForTheMusclesQ4A1.mp3 in Resources */,
 				1A6320B21C0E4D3B00251CB3 /* Story2-Magic-Toys-PM-1.xhtml in Resources */,
+				1A519C881D9089CA00FADCF7 /* AssessmentActivitiesEOB-MetaData.xml in Resources */,
 				5C72E6111C72A46F00CE4877 /* TheAlgonquianWigwamQ8A2.mp3 in Resources */,
 				5C72E4FC1C727E2000CE4877 /* TheNavajoHoganQ6A3.mp3 in Resources */,
 				5CCD8E681C73E73200D2EC2B /* TheMovingEarthQ4A1S.mp3 in Resources */,
@@ -17810,6 +17871,7 @@
 				5CAE95FA1C921DCD00702DB4 /* ProtectS.mp3 in Resources */,
 				5C28DD0A1C2BA66E005ACD07 /* Story4-The-Algonquian-Wigwam-PM-1.xhtml in Resources */,
 				5C1C4D541D238A2800547783 /* VentricleE.mp3 in Resources */,
+				1A519C7D1D9089A500FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml in Resources */,
 				5C1C4CFB1D2386AD00547783 /* CellS.mp3 in Resources */,
 				5C28DCEA1C2BA66E005ACD07 /* Introductions-MetaData.xml in Resources */,
 				1A6321641C0E4D3B00251CB3 /* bloodcell_select_oxygenated.png in Resources */,
@@ -18217,6 +18279,7 @@
 				5C72E7AD1C72BF1000CE4877 /* NewtonsfirstlawQ4A2.mp3 in Resources */,
 				5C0ED6871C752C2F00003B5A /* EveryoneHelpsQ4A4.mp3 in Resources */,
 				5D502A0F1C912C00007B3F22 /* IntroDyadReads_IM.mp3 in Resources */,
+				1A519C901D9089E200FADCF7 /* AssessmentActivitiesEOB-MetaData.xml in Resources */,
 				1A6322841C0E4D3B00251CB3 /* AlternateImages-MetaData.xml in Resources */,
 				5D9E33BB1C590E9400636150 /* IsPacoAThiefQ1.mp3 in Resources */,
 				5C0421BA1C618C2B001BBE9D /* TheLuckyStoneQ5A4S.mp3 in Resources */,
@@ -18289,6 +18352,7 @@
 				1A6320D01C0E4D3B00251CB3 /* content.opf in Resources */,
 				1A6322DA1C0E4D3B00251CB3 /* Story2-Missing-Keys-Title.xhtml in Resources */,
 				5CB70FF11C6BF8B50062AD61 /* KeyIngredientsS4E.mp3 in Resources */,
+				1A519C891D9089CA00FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml in Resources */,
 				5C8A565F1CD3F391009F1ED4 /* MissingKeysS4E.mp3 in Resources */,
 				5CA5CC9A1CD1B85D002A631F /* EveryoneHelpsS4E.mp3 in Resources */,
 				5C72E7B41C72BF1000CE4877 /* NewtonsfirstlawQ5A4.mp3 in Resources */,
@@ -18693,6 +18757,7 @@
 				5CCD8F9C1C7405EC00D2EC2B /* TornadosQ6A2.mp3 in Resources */,
 				1A6320BD1C0E4D3B00251CB3 /* Story4-Words-of-Wisdom-PM-3.xhtml in Resources */,
 				5CCD8F381C7405EC00D2EC2B /* EarthquakesQ1A2.mp3 in Resources */,
+				1A519C8D1D9089D800FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml in Resources */,
 				5C43D10E1C7FCFE3000C5F6D /* Hunted_def_E.mp3 in Resources */,
 				5D9E34221C590E9500636150 /* MoreIsMissingQ7A3.mp3 in Resources */,
 				5C28DCD81C2BA66E005ACD07 /* teepee_blanket.png in Resources */,
@@ -18834,6 +18899,7 @@
 				5CA5CC801CD1B632002A631F /* TheWiseOwlS3E.mp3 in Resources */,
 				5CA5CBCD1CD15E13002A631F /* AFriendInNeedS8E.mp3 in Resources */,
 				1A6320871C0E4D3B00251CB3 /* bottle_picture.png in Resources */,
+				1A519C811D9089B200FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml in Resources */,
 				5CB70FF31C6BF8B50062AD61 /* KeyIngredientsS5E.mp3 in Resources */,
 				5D9E33EC1C590E9500636150 /* MissingKeysQ2A4.mp3 in Resources */,
 				5C0ED9DB1C753AD400003B5A /* MusclesUseOxygenQ1A3.mp3 in Resources */,
@@ -19028,6 +19094,7 @@
 				1A63233B1C0E4D3B00251CB3 /* Locations-MetaData.xml in Resources */,
 				5C8A562B1CD3E2C0009F1ED4 /* WordsOfWisdomS1E.mp3 in Resources */,
 				5CCD8F721C7405EC00D2EC2B /* TheMovingEarthQ5.mp3 in Resources */,
+				1A519C791D90899700FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml in Resources */,
 				5C28DCFB1C2BA66E005ACD07 /* Story1-The-Navajo-Hogan-Title.xhtml in Resources */,
 				5C9C07BA1C57385A00702FCD /* BFCS_10.m4a in Resources */,
 				5CF793201C76986E00216337 /* BFTC9.m4a in Resources */,
@@ -19242,6 +19309,7 @@
 				5CB70FDF1C6BF8B50062AD61 /* KeyIngredientsS0E.mp3 in Resources */,
 				5C28DCCE1C2BA66E005ACD07 /* seminole_mom.png in Resources */,
 				5C9C07931C57385A00702FCD /* BFCE4_1.m4a in Resources */,
+				1A519C841D9089BE00FADCF7 /* AssessmentActivities-EOBMetaData.xml in Resources */,
 				1A6321DF1C0E4D3B00251CB3 /* bg_volcano.png in Resources */,
 				5C04215A1C618C2B001BBE9D /* BabyBrotherQ8A2.mp3 in Resources */,
 				5CA955731C3237690038FB56 /* zebra.png in Resources */,
@@ -19409,6 +19477,7 @@
 				5C72E7C41C72BF1000CE4877 /* NewtonsLawofAccelerationonEarthQ4.mp3 in Resources */,
 				5C9B8B7F1CB635EF00420053 /* Manuel'sE.mp3 in Resources */,
 				5CA5CC151CD1A46D002A631F /* HomecomingS3E.mp3 in Resources */,
+				1A519C851D9089BE00FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml in Resources */,
 				5C5D09691CA9F6DD00B7C8D9 /* CirclesE.mp3 in Resources */,
 				5C04220B1C618C2B001BBE9D /* WordsOfWisdomQ5A4.mp3 in Resources */,
 				5C72E7A01C72BF1000CE4877 /* NewtonsfirstlawQ1A3.mp3 in Resources */,
@@ -19769,6 +19838,7 @@
 				5C0ED8F01C75334200003B5A /* ShoppingattheMarketQ1.mp3 in Resources */,
 				5CF6CA671CCB2BB50093D3FD /* SwirlsS.mp3 in Resources */,
 				1A6321671C0E4D3B00251CB3 /* ch3_select.png in Resources */,
+				1A519C951D9089EC00FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml in Resources */,
 				5C1C4D041D2386AD00547783 /* OxygenS.mp3 in Resources */,
 				1A6321BC1C0E4D3B00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-6.xhtml in Resources */,
 				5C1C4CF01D2386AD00547783 /* BloodS.mp3 in Resources */,
@@ -20887,6 +20957,7 @@
 				5C9B8B561CB5EFC800420053 /* BrushedS.mp3 in Resources */,
 				5C0ED8D41C75334200003B5A /* ManchatheHorseQ2A2.mp3 in Resources */,
 				5C04217D1C618C2B001BBE9D /* CatchQ7A2.mp3 in Resources */,
+				1A519C751D8EF07300FADCF7 /* AssessmentActivitiesEOBSpanish-Metadata.xml in Resources */,
 				1A6322131C0E4D3B00251CB3 /* india_whole.png in Resources */,
 				5CB70FF61C6BF8B50062AD61 /* KeyIngredientsS6S.mp3 in Resources */,
 				5C62A97F1C854A2200F28BEB /* Heart_def_S.mp3 in Resources */,
@@ -21250,6 +21321,7 @@
 				1A6323691C0E4D3B00251CB3 /* VocabularyIntroductions-MetaData.xml in Resources */,
 				5CB7115E1C6C46DF0062AD61 /* TheNavajoHoganQ1A3S.mp3 in Resources */,
 				5C9B8B411CB5EFC800420053 /* HayloftE.mp3 in Resources */,
+				1A519C7C1D9089A500FADCF7 /* AssessmentActivitiesEOB-MetaData.xml in Resources */,
 				5D9E341C1C590E9500636150 /* MoreIsMissingQ6A2.mp3 in Resources */,
 				5CB710991C6C1AD80062AD61 /* TheMovingEarthS6S.mp3 in Resources */,
 				5C0ED8FC1C75334200003B5A /* ShoppingattheMarketQ3A2.mp3 in Resources */,
