@@ -693,6 +693,14 @@ function highlightObject(object) {
     highlight(object.offsetLeft, object.offsetTop, object.offsetWidth, object.offsetHeight, "under");
 }
 
+
+/*
+ *  Highlights a location using the locations passed in values
+ */
+function highlightLocation(topleftX, topleftY, objectWidth, objectHeight){
+    highlight(topleftX, topleftY, objectWidth, objectHeight, "over");
+}
+
 /*
  * Create an oval highlight using the top left corner and width and height specified.
  * If highlighting only one object the top left corner specified will be based on the offsetLeft and offsetTop properies
