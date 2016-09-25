@@ -1210,16 +1210,14 @@ BOOL wasPathFollowed = false;
         NSString *sentenceID = [self.pmView getElementAtLocation:location];
         int sentenceIDNum = [[sentenceID stringByReplacingOccurrencesOfString:@"s" withString:@""] intValue];
 
-        NSString *requestSentenceText;
         NSString *sentenceText;
         
-        if([currentPageId rangeOfString:@"-Intro"].location != NSNotFound) {
+        if ([currentPageId rangeOfString:@"-Intro"].location != NSNotFound) {
             //Capture the clicked text, if it exists
             sentenceText = [self.pmView getCurrentSentenceAt:sentenceIDNum];
         }
         else {
             //Capture the clicked text, if it exists
-            requestSentenceText = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).innerHTML", location.x, location.y];
             sentenceText = [self.pmView getTextAtLocation:location];
         }
         
@@ -4541,10 +4539,13 @@ BOOL wasPathFollowed = false;
 
 
 - (void)addSentencesWithComplexity:(EMComplexity)complexity {
-    
     Chapter *chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
     PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
     NSMutableArray *alternateSentences = [[PMActivity alternateSentences] objectForKey:currentPageId]; //get alternate sentences for current page
+    
+    // Underlined vocabulary includes chapter vocabulary and vocabulary from solution steps
+    NSMutableSet *vocabulary = [[NSMutableSet alloc] initWithArray:[[chapter vocabulary] allKeys]];
+    [vocabulary unionSet:[chapter getVocabularyFromSolutions]];
     
     NSString *addSentenceString;
     int sentenceNumber = 1; //used for assigning sentence ids
@@ -4555,8 +4556,6 @@ BOOL wasPathFollowed = false;
     //Add alternate sentences associated with each idea
     for (NSNumber *ideaNum in ideaNums) {
         if ([ideaNum intValue] > previousIdeaNum) {
-            
-            
             BOOL foundIdea = false; //flag to check if there is a sentence with the specified complexity for the idea number
             
             //Create an array to hold sentences that will be added to the page
@@ -4584,69 +4583,7 @@ BOOL wasPathFollowed = false;
             }
             
             for (AlternateSentence *sentenceToAdd in sentencesToAdd) {
-//                //Get alternate sentence information
-//                BOOL action = [sentenceToAdd actionSentence];
-//                NSString *text = [sentenceToAdd text];
-//                
-//                //Split sentence text into individual tokens (words)
-//                NSArray *textTokens = [text componentsSeparatedByString:@" "];
-//                
-//                //Contains the vocabulary words that appear in the sentence
-//                NSMutableArray *words = [[NSMutableArray alloc] init];
-//                
-//                //Contains the sentence text split around vocabulary words
-//                NSMutableArray *splitText = [[NSMutableArray alloc] init];
-//                
-//                //Combines tokens into the split sentence text
-//                NSString *currentSplit = @"";
-//                
-//                for (NSString *textToken in textTokens) {
-//                    NSString *modifiedTextToken = textToken;
-//                    
-//                    //Replaces the ' character if it exists in the token
-//                    if ([modifiedTextToken rangeOfString:@"'"].location != NSNotFound) {
-//                        modifiedTextToken = [modifiedTextToken stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
-//                    }
-//                    
-//                    BOOL addedWord = false; //whether token contains vocabulary word
-//                    
-//                    for (NSString *vocab in [[Translation translationWords] allKeys]) {
-//                        //Match the whole vocabulary word only
-//                        NSString *regex = [NSString stringWithFormat:@"\\b%@\\b", vocab];
-//                        
-//                        //Token contains vocabulary word
-//                        if ([modifiedTextToken rangeOfString:regex options:NSRegularExpressionSearch].location != NSNotFound) {
-//                            [words addObject:vocab]; //add word to list
-//                            addedWord = true;
-//                            
-//                            [splitText addObject:currentSplit];
-//                            
-//                            //Reset current split to be anything that appears after the vocabulary word and add a space in the beginning
-//                            currentSplit = [[modifiedTextToken stringByReplacingOccurrencesOfString:vocab withString:@""] stringByAppendingString:@" "];
-//                            
-//                            break;
-//                        }
-//                    }
-//                    
-//                    //Token does not contain vocabulary word
-//                    if (!addedWord) {
-//                        //Add token to current split with a space after it
-//                        NSString *textTokenSpace = [NSString stringWithFormat:@"%@ ", modifiedTextToken];
-//                        currentSplit = [currentSplit stringByAppendingString:textTokenSpace];
-//                    }
-//                }
-//                
-//                [splitText addObject:currentSplit]; //make sure to add the last split
-//                
-//                //Create array strings for vocabulary and split text to send to JS function
-//                NSString *wordsArrayString = [words componentsJoinedByString:@"','"];
-//                NSString *splitTextArrayString = [splitText componentsJoinedByString:@"','"];
-//                
-//                //Add alternate sentence to page
-//                addSentenceString = [NSString stringWithFormat:@"addSentence('s%d', %@, ['%@'], ['%@'])", sentenceNumber++, action ? @"true" : @"false", splitTextArrayString, wordsArrayString];
-//                [self.bookView stringByEvaluatingJavaScriptFromString:addSentenceString];
-//
-                [self.pmView addSentence:sentenceToAdd withSentenceNumber:sentenceNumber];
+                [self.pmView addSentence:sentenceToAdd withSentenceNumber:sentenceNumber andVocabulary:vocabulary];
                 sentenceNumber++;
                 //Add alternate sentence to array
                 [pageSentences addObject:sentenceToAdd];

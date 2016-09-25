@@ -212,8 +212,10 @@
 }
 
 - (NSString *)getTextAtLocation:(CGPoint)location {
-    NSString *requestImageAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).innerHTML", location.x, location.y];
-    return  [self.bookView stringByEvaluatingJavaScriptFromString:requestImageAtPoint];
+    NSString *requestString = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).innerHTML", location.x, location.y];
+    NSString *textAtLocation = [self.bookView stringByEvaluatingJavaScriptFromString:requestString];
+
+    return textAtLocation;
 }
 
 - (NSString *)getSpanishExtention:(CGPoint)location {
@@ -1145,9 +1147,7 @@ shouldUpdateConnection:(BOOL)updateCon
     }
 }
 
-- (void)addSentence:(AlternateSentence *)sentenceToAdd
- withSentenceNumber:(int)sentenceNumber {
-    
+- (void)addSentence:(AlternateSentence *)sentenceToAdd withSentenceNumber:(int)sentenceNumber andVocabulary:(NSMutableSet *)vocabulary {
     NSString *addSentenceString;
     //Get alternate sentence information
     BOOL action = [sentenceToAdd actionSentence];
@@ -1175,19 +1175,21 @@ shouldUpdateConnection:(BOOL)updateCon
         
         BOOL addedWord = false; //whether token contains vocabulary word
         
-        for (NSString *vocab in [[Translation translationWords] allKeys]) {
-            //Match the whole vocabulary word only
+        for (NSString *vocab in vocabulary) {
+            // Match the whole vocabulary word only
             NSString *regex = [NSString stringWithFormat:@"\\b%@\\b", vocab];
             
-            //Token contains vocabulary word
-            if ([modifiedTextToken rangeOfString:regex options:NSRegularExpressionSearch].location != NSNotFound) {
-                [words addObject:vocab]; //add word to list
+            NSRange range = [modifiedTextToken rangeOfString:regex options:NSRegularExpressionSearch|NSCaseInsensitiveSearch];
+            
+            // Token contains vocabulary word
+            if (range.location != NSNotFound) {
+                [words addObject:[modifiedTextToken substringWithRange:range]]; // Add word to list
                 addedWord = true;
                 
                 [splitText addObject:currentSplit];
                 
-                //Reset current split to be anything that appears after the vocabulary word and add a space in the beginning
-                currentSplit = [[modifiedTextToken stringByReplacingOccurrencesOfString:vocab withString:@""] stringByAppendingString:@" "];
+                // Reset current split to be anything that appears after the vocabulary word and add a space in the beginning
+                currentSplit = [[modifiedTextToken stringByReplacingCharactersInRange:range withString:@""] stringByAppendingString:@" "];
                 
                 break;
             }
