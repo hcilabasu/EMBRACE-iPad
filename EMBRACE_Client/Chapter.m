@@ -7,6 +7,7 @@
 //
 
 #import "Chapter.h"
+#import "Translation.h"
 
 @interface Chapter()
 
@@ -149,12 +150,54 @@
             NSString *object1Id = [actionStep object1Id];
             NSString *object2Id = [actionStep object2Id];
             
-            if (object1Id != nil && [object1Id rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet]].location == NSNotFound) {
-                [solutionVocabulary addObject:object1Id];
+            if (object1Id != nil) {
+                // Get all possible keys (vocabulary) that may correspond to this object
+                NSArray *possibleKeys = [[[Translation translationImages] keysOfEntriesPassingTest:^(id key, id obj, BOOL *stop)
+                    {
+                        if ([obj isKindOfClass:[NSArray class]]) {
+                            return [obj containsObject:object1Id];
+                        }
+                        else {
+                            return [obj isEqual:object1Id];
+                        }
+                    }] allObjects];
+                
+                if ([possibleKeys count] > 0) {
+                    // For now, assume the correct corresponding vocabulary is the last element
+                    // It seems like the more specific vocabulary (e.g., "Paco" instead of "pets") is usually last.
+                    [solutionVocabulary addObject:[possibleKeys lastObject]];
+                }
+                else {
+                    // Discard vocabulary with numbers, uppercase letters, or underscores
+                    if ([object1Id rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet]].location == NSNotFound && [object1Id rangeOfCharacterFromSet:[NSCharacterSet uppercaseLetterCharacterSet]].location == NSNotFound && ![object1Id containsString:@"_"]) {
+                        [solutionVocabulary addObject:object1Id];
+                    }
+                }
             }
             
-            if (object2Id != nil && [object2Id rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet]].location == NSNotFound) {
-                [solutionVocabulary addObject:object2Id];
+            if (object2Id != nil) {
+                // Get all possible keys (vocabulary) that may correspond to this object
+                NSArray *possibleKeys = [[[Translation translationImages] keysOfEntriesPassingTest:^(id key, id obj, BOOL *stop)
+                    {
+                        if ([obj isKindOfClass:[NSArray class]]) {
+                            return [obj containsObject:object2Id];
+                        }
+                        else {
+                            return [obj isEqual:object2Id];
+                        }
+                    }] allObjects];
+                
+                if ([possibleKeys count] > 0) {
+                    // For now, assume the correct corresponding vocabulary is the last element
+                    // It seems like the more specific vocabulary (e.g., "Paco" instead of "pets") is usually last.
+                    [solutionVocabulary addObject:[possibleKeys lastObject]];
+                }
+                else {
+                    // Discard vocabulary with numbers, uppercase letters, or underscores
+                    if ([object2Id rangeOfCharacterFromSet:[NSCharacterSet decimalDigitCharacterSet]].location == NSNotFound && [object2Id rangeOfCharacterFromSet:[NSCharacterSet uppercaseLetterCharacterSet]].location == NSNotFound && ![object2Id containsString:@"_"]) {
+                        [solutionVocabulary addObject:object2Id];
+                    }
+                }
             }
         }
     }
