@@ -17,8 +17,13 @@
 @interface ManipulationView : UIView
 
 @property (nonatomic, weak) id <ManipulationViewDelegate> delegate;
+@property (nonatomic, strong) UIWebView *bookView;
 
-- (void)addGesture:(UIGestureRecognizer *)recogniser;
+//- (void)addGesture:(UIGestureRecognizer *)recogniser;
+
+- (instancetype)initWithFrameAndView:(CGRect)frame : (UIWebView *) bv;
+
+- (void)loadJsFiles;
 
 - (void)loadPageFor:(Book *)book andCurrentPage:(NSString *)page;
 

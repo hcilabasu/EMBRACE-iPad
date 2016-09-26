@@ -58,7 +58,7 @@
     BOOL isAudioLeft;
 }
 
-//@property (nonatomic, strong) IBOutlet UIWebView *bookView;
+@property (nonatomic, strong) IBOutlet UIWebView *bookView;
 
 //@property (nonatomic, strong) IBOutlet ManipulationView *manipulationView;
 
@@ -99,6 +99,7 @@
 @synthesize lastRelationship;
 @synthesize allRelationships;
 @synthesize menuDataSource;
+@synthesize bookView;
 
 //Used to determine the required proximity of 2 hotspots to group two items together.
 float const groupingProximity = 20.0;
@@ -108,7 +109,8 @@ BOOL wasPathFollowed = false;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.manipulationView.frame = self.view.bounds;
+    //self.manipulationView.frame = self.view.bounds;
+    bookView.frame = self.view.bounds;
 }
 
 /*  Initial view setup after webview loads. Adds manipulationView as a subview and adds view constraints
@@ -116,11 +118,11 @@ BOOL wasPathFollowed = false;
 */
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.manipulationView = [[ManipulationView alloc] initWithFrame:self.view.frame];
+    self.manipulationView = [[ManipulationView alloc] initWithFrameAndView:self.view.frame:bookView];
     
-    [self.view addSubview:self.manipulationView];
+    //[self.view addSubview:self.manipulationView];
     self.manipulationView.delegate = self;
-    [self.view sendSubviewToBack:self.manipulationView];
+    //[self.view sendSubviewToBack:self.manipulationView];
     
 //    NSLayoutConstraint *xCenterConstraint = [NSLayoutConstraint constraintWithItem:self.manipulationView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0];
 //    [self.view addConstraint:xCenterConstraint];
@@ -163,9 +165,9 @@ BOOL wasPathFollowed = false;
      */
 
     
-    [self.manipulationView addGesture:tapRecognizer];
-    [self.manipulationView addGesture:swipeRecognizer];
-    [self.manipulationView addGesture:panRecognizer];
+    //[self.manipulationView addGesture:tapRecognizer];
+    //[self.manipulationView addGesture:swipeRecognizer];
+    //[self.manipulationView addGesture:panRecognizer];
     
     //hides the default navigation bar to add custom back button
     self.navigationItem.hidesBackButton = YES;
@@ -195,6 +197,12 @@ BOOL wasPathFollowed = false;
     }
     
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    manipulationView.bookView.scalesPageToFit = YES;
+    manipulationView.bookView.scrollView.delegate = self;
+    
+    [[manipulationView.bookView scrollView] setBounces: NO];
+    [[manipulationView.bookView scrollView] setScrollEnabled:NO];
     
     pageContext.currentPage = nil;
     
@@ -253,6 +261,41 @@ BOOL wasPathFollowed = false;
 //Memory warning; potentially expand functionality if there is a memory leak
 - (void)didReceiveMemoryWarning {
     NSLog(@"***************** Memory warning!! *****************");
+}
+
+- (BOOL)webView:(UIWebView *)webView
+shouldStartLoadWithRequest:(NSURLRequest *)request
+ navigationType:(UIWebViewNavigationType)navigationType {
+    
+    NSString *requestString = [[[request URL] absoluteString] stringByReplacingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
+    
+    if ([requestString hasPrefix:@"ios-log:"]) {
+        NSString *logString = [[requestString componentsSeparatedByString:@":#iOS#"] objectAtIndex:1];
+        NSLog(@"UIWebView console: %@", logString);
+        return NO;
+    }
+    
+    return YES;
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+    
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    
+    //Disable user selection
+    [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitUserSelect='none';"];
+    
+    //Disable callout
+    [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitTouchCallout='none';"];
+    
+    [self.manipulationView loadJsFiles];
+    [self manipulationViewDidLoad:manipulationView];
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    
 }
 
 //Function is called back from the ManipulationView after loading to setup sentences and areas

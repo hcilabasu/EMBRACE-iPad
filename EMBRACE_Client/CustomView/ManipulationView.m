@@ -14,26 +14,28 @@
 
 @interface ManipulationView()<UIScrollViewDelegate, UIWebViewDelegate>
 
-@property (nonatomic, strong) UIWebView *bookView;
-
 @end
 
 @implementation ManipulationView
+@synthesize bookView;
 
-- (instancetype)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrameAndView:(CGRect)frame : (UIWebView *) bv{
     self = [super initWithFrame:frame];
     if (self) {
-        _bookView = [[UIWebView alloc] initWithFrame:frame];
-        _bookView.scalesPageToFit = YES;
-        _bookView.scrollView.delegate = self;
-        _bookView.delegate = self;
         
-        [[_bookView scrollView] setBounces: NO];
-        [[_bookView scrollView] setScrollEnabled:NO];
-        [self addSubview:_bookView];
+        bookView = bv;
+        
+        //bookview = [[UIWebView alloc] initWithFrame:frame];
+        /*bookview.scalesPageToFit = YES;
+        bookview.scrollView.delegate = self;
+        bookview.delegate = self;
+        
+        [[bookview scrollView] setBounces: NO];
+        [[bookview scrollView] setScrollEnabled:NO];
+        [self addSubview:bookview];
         
         
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:_bookView
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:bookview
                                                               attribute:NSLayoutAttributeTop
                                                               relatedBy:NSLayoutRelationEqual
                                                                  toItem:self
@@ -41,7 +43,7 @@
                                                              multiplier:1.0
                                                                constant:0.0]];
         
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:_bookView
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:bookview
                                                               attribute:NSLayoutAttributeLeading
                                                               relatedBy:NSLayoutRelationEqual
                                                                  toItem:self
@@ -49,7 +51,7 @@
                                                              multiplier:1.0
                                                                constant:0.0]];
         
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:_bookView
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:bookview
                                                               attribute:NSLayoutAttributeBottom
                                                               relatedBy:NSLayoutRelationEqual
                                                                  toItem:self
@@ -57,22 +59,24 @@
                                                              multiplier:1.0
                                                                constant:0.0]];
         
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:_bookView
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:bookview
                                                               attribute:NSLayoutAttributeTrailing
                                                               relatedBy:NSLayoutRelationEqual
                                                                  toItem:self
                                                               attribute:NSLayoutAttributeTrailing
                                                              multiplier:1.0
                                                                constant:0.0]];
+         */
 
         
     }
     return self;
 }
 
+/*
 - (void)addGesture:(UIGestureRecognizer *)recogniser {
     [self.bookView addGestureRecognizer:recogniser];
-}
+}*/
 
 #pragma mark -
 

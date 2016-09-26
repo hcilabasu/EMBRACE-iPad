@@ -202,6 +202,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="bookView" destination="chF-4H-yn4" id="Jxw-wO-SkX"/>
                         <outlet property="panRecognizer" destination="iaN-Wz-vgI" id="DDs-ye-s0g"/>
                         <outlet property="pinchRecognizer" destination="IG0-TB-X5w" id="ZYE-6c-rPe"/>
                         <outlet property="swipeRecognizer" destination="skg-93-SYv" id="moo-tZ-moZ"/>
@@ -211,11 +212,24 @@
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d1n-FJ-bLf" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <view autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleAspectFit" id="erm-JD-CyO">
-                    <rect key="frame" x="0.0" y="0.0" width="1024" height="724"/>
+                    <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u4R-ML-16W">
-                            <rect key="frame" x="924" y="674" width="75" height="25"/>
+                        <webView autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="chF-4H-yn4" userLabel="Book View">
+                            <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <dataDetectorType key="dataDetectorTypes"/>
+                            <connections>
+                                <outlet property="delegate" destination="NLI-lb-tHz" id="PNa-Ph-0NJ"/>
+                                <outletCollection property="gestureRecognizers" destination="6LS-gR-BKA" appends="YES" id="Roi-Ni-wnj"/>
+                                <outletCollection property="gestureRecognizers" destination="iaN-Wz-vgI" appends="YES" id="0zK-EJ-z8G"/>
+                                <outletCollection property="gestureRecognizers" destination="j3h-7r-Imw" appends="YES" id="jsO-U5-wAq"/>
+                                <outletCollection property="gestureRecognizers" destination="IG0-TB-X5w" appends="YES" id="Dhj-H6-iHL"/>
+                                <outletCollection property="gestureRecognizers" destination="skg-93-SYv" appends="YES" id="1w7-67-e9G"/>
+                            </connections>
+                        </webView>
+                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u4R-ML-16W">
+                            <rect key="frame" x="940" y="743" width="75" height="25"/>
                             <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="30"/>
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" title="Next"/>
@@ -226,8 +240,11 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="u4R-ML-16W" secondAttribute="bottom" constant="25" id="APt-1U-ebR"/>
-                        <constraint firstAttribute="trailing" secondItem="u4R-ML-16W" secondAttribute="trailing" constant="25" id="VdU-eV-BZY"/>
+                        <constraint firstAttribute="bottom" secondItem="chF-4H-yn4" secondAttribute="bottom" id="5I9-dJ-c4a"/>
+                        <constraint firstItem="chF-4H-yn4" firstAttribute="leading" secondItem="erm-JD-CyO" secondAttribute="leading" id="LL8-2I-y6W"/>
+                        <constraint firstAttribute="trailing" secondItem="chF-4H-yn4" secondAttribute="trailing" id="osm-04-GNd"/>
+                        <constraint firstItem="chF-4H-yn4" firstAttribute="top" secondItem="erm-JD-CyO" secondAttribute="top" id="tvy-7t-4cl"/>
+                        <constraint firstItem="chF-4H-yn4" firstAttribute="bottom" secondItem="u4R-ML-16W" secondAttribute="bottom" id="zhc-gk-xQJ"/>
                     </constraints>
                 </view>
                 <tapGestureRecognizer id="6LS-gR-BKA">
