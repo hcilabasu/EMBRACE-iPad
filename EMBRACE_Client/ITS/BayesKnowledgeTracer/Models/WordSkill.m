@@ -20,6 +20,7 @@
     self = [super init];
     if (self) {
         _word = [word copy];
+        
     }
     return self;
 }

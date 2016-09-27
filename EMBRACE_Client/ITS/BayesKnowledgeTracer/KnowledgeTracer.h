@@ -13,8 +13,19 @@
 
 @interface KnowledgeTracer : NSObject
 
+/*
+ Update the vocabulary skill
+ */
 - (Skill *)updateSkillFor:(NSString *)action isVerified:(BOOL)isVerified;
+
+/*
+ Update the usability skill
+ */
 - (Skill *)updateUsabilitySkill:(BOOL)isVerified;
+
+/*
+ Update the syntax skill
+ */
 - (Skill *)updateSyntaxSkill:(BOOL)isVerified withComplexity:(EMComplexity)complex;
 
 // Calling this method will have lesser change in skill value if shouldDampen is TRUE
