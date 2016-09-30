@@ -2394,13 +2394,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                         CGPoint movingObjectHotspotLoc = [self.manipulationView getHotspotLocation:movingObjectHotspot];
                         CGPoint hotspotLoc = [self.manipulationView getHotspotLocation:hotspot];
                         
-                        //Check to see if either of these hotspots are currently connected to another objects.
-                        //                        NSString *isHotspotConnectedMovingObject = [NSString stringWithFormat:@"objectGroupedAtHotspot(%@, %f, %f)", obj, movingObjectHotspotLoc.x, movingObjectHotspotLoc.y];
-                        //                        NSString *isHotspotConnectedMovingObjectString  = [bookView stringByEvaluatingJavaScriptFromString:isHotspotConnectedMovingObject];
-                        //
-                        //                        NSString *isHotspotConnectedObject = [NSString stringWithFormat:@"objectGroupedAtHotspot(%@, %f, %f)", objId, hotspotLoc.x, hotspotLoc.y];
-                        //                        NSString *isHotspotConnectedObjectString  = [bookView stringByEvaluatingJavaScriptFromString:isHotspotConnectedObject];
-                        //
                         NSString *isHotspotConnectedObjectString = [self.manipulationView groupedObject:objId atHotSpot:hotspotLoc];
                         NSString *isHotspotConnectedMovingObjectString  = [self.manipulationView groupedObject:obj atHotSpot:movingObjectHotspotLoc];
                         bool rolesMatch = [[hotspot role] isEqualToString:[movingObjectHotspot role]];
@@ -2487,10 +2480,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                         }
                         //Otherwise, one of these is connected to another object...so we check to see if the other object can be connected with the unconnected one.
                         else if (actionsMatch
-                                 && [self.manipulationView isObjectGrouped:obj atHotSpot:movingObjectHotspotLoc]
-                                 && [self.manipulationView isObjectGrouped:objId atHotSpot:hotspotLoc]
+                                 && ![isHotspotConnectedMovingObjectString isEqualToString:EMPTYSTRING]
+                                 && [isHotspotConnectedObjectString isEqualToString:EMPTYSTRING]
                                  && !rolesMatch) {
-                            [groupings addObjectsFromArray:[pic getPossibleTransferInteractionsforObjects:obj :[self.manipulationView groupedObject:obj atHotSpot:movingObjectHotspotLoc] :objId :movingObjectHotspot :hotspot]];
+                            [groupings addObjectsFromArray:[pic getPossibleTransferInteractionsforObjects:obj :isHotspotConnectedMovingObjectString :objId :movingObjectHotspot :hotspot]];
                         }
                         else if (actionsMatch && [isHotspotConnectedMovingObjectString isEqualToString:EMPTYSTRING]
                                  && ![isHotspotConnectedObjectString isEqualToString:EMPTYSTRING] && !rolesMatch) {
