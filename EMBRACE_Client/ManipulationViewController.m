@@ -289,13 +289,20 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     
     //Disable callout
     [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitTouchCallout='none';"];
-    
+    self.manipulationView.bookView = self.bookView;
     [self.manipulationView loadJsFiles];
     [self manipulationViewDidLoad:manipulationView];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     
+}
+
+#pragma mark - UIScrollView delegates
+
+//Remove zoom in scroll view for UIWebView
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+    return nil;
 }
 
 //Function is called back from the ManipulationView after loading to setup sentences and areas

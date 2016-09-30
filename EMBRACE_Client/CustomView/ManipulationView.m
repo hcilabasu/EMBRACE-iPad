@@ -169,7 +169,7 @@
 }
 
 - (NSString *)getVocabAtId:(NSInteger)idNum {
-    NSString *requestSentenceText = [NSString stringWithFormat:@"document.getElementById(%ld).innerHTML", (long)idNum];
+    NSString *requestSentenceText = [NSString stringWithFormat:@"document.getElementById('%ld').innerHTML", (long)idNum];
     NSString *sentenceText = [self.bookView stringByEvaluatingJavaScriptFromString:requestSentenceText];
     return sentenceText;
 }
@@ -197,7 +197,7 @@
 }
 
 - (BOOL)isObjectCenter:(NSString *)objectId {
-    NSString *objectClassName = [NSString stringWithFormat:@"document.getElementById(%@).className", objectId];
+    NSString *objectClassName = [NSString stringWithFormat:@"document.getElementById('%@').className", objectId];
     objectClassName = [self.bookView stringByEvaluatingJavaScriptFromString:objectClassName];
     
     return ([objectClassName rangeOfString:@"center"].location != NSNotFound);
@@ -240,9 +240,9 @@
 
 - (void)hideCanvas {
     
-    NSString *hideCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'none';", @"'overlay'"];
-    NSString *hideHighlight = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'none';", @"'highlight'"];
-    NSString *hideAnimation = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'none';", @"'animation'"];
+    NSString *hideCanvas = [NSString stringWithFormat:@"document.getElementById('%@').style.display = 'none';", @"'overlay'"];
+    NSString *hideHighlight = [NSString stringWithFormat:@"document.getElementById('%@').style.display = 'none';", @"'highlight'"];
+    NSString *hideAnimation = [NSString stringWithFormat:@"document.getElementById('%@').style.display = 'none';", @"'animation'"];
     [self.bookView stringByEvaluatingJavaScriptFromString:hideCanvas];
     [self.bookView stringByEvaluatingJavaScriptFromString:hideHighlight];
     [self.bookView stringByEvaluatingJavaScriptFromString:hideAnimation];
@@ -250,9 +250,9 @@
 
 - (void)showCanvas {
     
-    NSString *showCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'block';", @"'overlay'"];
-    NSString *showHighlight = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'block';", @"'highlight'"];
-    NSString *showAnimation = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'block';", @"'animation'"];
+    NSString *showCanvas = [NSString stringWithFormat:@"document.getElementById('%@').style.display = 'block';", @"'overlay'"];
+    NSString *showHighlight = [NSString stringWithFormat:@"document.getElementById('%@').style.display = 'block';", @"'highlight'"];
+    NSString *showAnimation = [NSString stringWithFormat:@"document.getElementById('%@').style.display = 'block';", @"'animation'"];
     [self.bookView stringByEvaluatingJavaScriptFromString:showCanvas];
     [self.bookView stringByEvaluatingJavaScriptFromString:showHighlight];
     [self.bookView stringByEvaluatingJavaScriptFromString:showAnimation];
@@ -358,15 +358,17 @@
     return [self.bookView stringByEvaluatingJavaScriptFromString:actionSentence];
 }
 
+/*
 #pragma mark - UIScrollView delegates
 
 //Remove zoom in scroll view for UIWebView
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
     return nil;
-}
+}*/
 
 #pragma mark - Webview delegates
 
+/*
 - (BOOL)webView:(UIWebView *)webView
 shouldStartLoadWithRequest:(NSURLRequest *)request
  navigationType:(UIWebViewNavigationType)navigationType {
@@ -400,7 +402,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     
-}
+}*/
 
 #pragma mark - Positions
 
