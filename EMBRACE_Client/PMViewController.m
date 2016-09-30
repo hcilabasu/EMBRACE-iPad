@@ -3515,13 +3515,13 @@ BOOL wasPathFollowed = false;
                         }
                         //Otherwise, one of these is connected to another object...so we check to see if the other object can be connected with the unconnected one.
                         else if (actionsMatch
-                                 && [self.pmView isObjectGrouped:obj atHotSpot:movingObjectHotspotLoc]
-                                && [self.pmView isObjectGrouped:objId atHotSpot:hotspotLoc]
+                                 && ![isHotspotConnectedMovingObjectString isEqualToString:@""]
+                                 && [isHotspotConnectedObjectString isEqualToString:@""]
                                  && !rolesMatch) {
-                            [groupings addObjectsFromArray:[self getPossibleTransferInteractionsforObjects:obj :[self.pmView groupedObject:obj atHotSpot:movingObjectHotspotLoc] :objId :movingObjectHotspot :hotspot]];
+                            [groupings addObjectsFromArray:[self getPossibleTransferInteractionsforObjects:obj :isHotspotConnectedMovingObjectString :objId :movingObjectHotspot :hotspot]];
                         }
                         else if (actionsMatch && [isHotspotConnectedMovingObjectString isEqualToString:@""]
-                                && ![isHotspotConnectedObjectString isEqualToString:@""] && !rolesMatch) {
+                                 && ![isHotspotConnectedObjectString isEqualToString:@""] && !rolesMatch) {
                             [groupings addObjectsFromArray:[self getPossibleTransferInteractionsforObjects:objId :isHotspotConnectedObjectString :obj :hotspot :movingObjectHotspot]];
                         }
                     }
