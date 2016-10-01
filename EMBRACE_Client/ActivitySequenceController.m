@@ -18,36 +18,64 @@
     return self;
 }
 
+- (NSString *)getAdjustedParticipantCode:(NSString *)participantCode {
+    //TEST: Match test ID to MCD2 participant code
+    participantCode = [[participantCode uppercaseString] stringByReplacingOccurrencesOfString:@"TEST" withString:@"MCD2"];
+    
+    int numSequences = 0;
+    NSString *adjustedParticipantCode;
+    
+    // EEG sequence
+    if ([participantCode rangeOfString:@"EEG"].location != NSNotFound) {
+        numSequences = 4;
+        
+        //Get number at end of participant code and match it to appropriate sequence
+        NSInteger sequenceNumber = [[participantCode componentsSeparatedByString:@"EEG"][1] integerValue] % numSequences;
+        
+        if (sequenceNumber == 0) {
+            adjustedParticipantCode = [NSString stringWithFormat:@"EEG04"];
+        }
+        else {
+            adjustedParticipantCode = [NSString stringWithFormat:@"EEG0%d", sequenceNumber];
+        }
+    }
+    // MCD1 sequence
+    else if ([participantCode rangeOfString:@"MCD"].location != NSNotFound && [[participantCode componentsSeparatedByString:@"MCD"][1] length] == 2) {
+        numSequences = 10;
+        
+        //Get number at end of participant code and match it to appropriate sequence
+        NSInteger sequenceNumber = [[participantCode componentsSeparatedByString:@"MCD"][1] integerValue] % numSequences;
+        
+        if (sequenceNumber == 0) {
+            adjustedParticipantCode = [NSString stringWithFormat:@"MCD10"];
+        }
+        else {
+            adjustedParticipantCode = [NSString stringWithFormat:@"MCD0%d", sequenceNumber];
+        }
+    }
+    // MCD2 sequence
+    else if ([participantCode rangeOfString:@"MCD2"].location != NSNotFound && [[participantCode componentsSeparatedByString:@"MCD2"][1] length] == 2) {
+        numSequences = 10;
+        
+        //Get number at end of participant code and match it to appropriate sequence
+        NSInteger sequenceNumber = [[participantCode componentsSeparatedByString:@"MCD2"][1] integerValue] % numSequences;
+        
+        if (sequenceNumber == 0) {
+            adjustedParticipantCode = [NSString stringWithFormat:@"MCD210"];
+        }
+        else {
+            adjustedParticipantCode = [NSString stringWithFormat:@"MCD20%d", sequenceNumber];
+        }
+    }
+    
+    return adjustedParticipantCode;
+}
+
 /*
  * Loads a particular set of activity sequences from file for the current user
  */
 - (BOOL)loadSequences:(NSString *)participantCode {
-    //TEST: Match test ID to EEG participant code
-    participantCode = [[participantCode uppercaseString] stringByReplacingOccurrencesOfString:@"TEST" withString:@"EEG"];
-    
-    //Using EEG sequence
-    if ([participantCode rangeOfString:@"EEG"].location != NSNotFound) {
-        //Get number at end of participant code and match it to appropriate sequence
-        NSInteger sequenceNumber = [[participantCode componentsSeparatedByString:@"EEG"][1] integerValue] % 4;
-        
-        switch (sequenceNumber) {
-            case 1:
-                participantCode = @"EEG01";
-                break;
-            case 2:
-                participantCode = @"EEG02";
-                break;
-            case 3:
-                participantCode = @"EEG03";
-                break;
-            case 4:
-                participantCode = @"EEG04";
-                break;
-                
-            default:
-                break;
-        }
-    }
+    participantCode = [self getAdjustedParticipantCode:participantCode];
     
     NSBundle *mainBundle = [NSBundle mainBundle];
     
