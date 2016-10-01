@@ -118,6 +118,8 @@
 
 - (void)highLightArea:(NSString *)objectId;
 
+- (void)highlightLocation:(int)originX : (int)originY : (int)width : (int)height;
+
 - (void)highlightObjectOnWordTap:(NSString *)objectId;
 
 #pragma mark - Animations
