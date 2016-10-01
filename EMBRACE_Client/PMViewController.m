@@ -3153,25 +3153,30 @@ BOOL wasPathFollowed = false;
     [self.view setUserInteractionEnabled:NO];
     
     if ([errorType isEqualToString:@"vocabulary"]) {
-        //Get steps for current sentence
+        [playaudioClass playErrorFeedbackNoise];
+        
+        // Get steps for current sentence
         NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
         
-        //Get current step to be completed
+        // Get current step to be completed
         ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
         NSString *stepType = [currSolStep stepType];
         
+        // Highlight correct object and location
         if ([stepType isEqualToString:@"check"] || [stepType isEqualToString:@"checkLeft"] || [stepType isEqualToString:@"checkRight"] || [stepType isEqualToString:@"checkUp"] || [stepType isEqualToString:@"checkDown"] || [stepType isEqualToString:@"checkAndSwap"] || [stepType isEqualToString:@"tapToAnimate"] || [stepType isEqualToString:@"checkPath"] || [stepType isEqualToString:@"shakeAndTap"] || [stepType isEqualToString:@"tapWord"] ) {
             
             NSString *object1Id = [currSolStep object1Id];
             NSString *locationId = [currSolStep locationId];
             
             [self highlightImageForText:object1Id];
+            
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                if([model getLocationWithId:locationId]){
+                if ([model getLocationWithId:locationId]){
                     [self highlightObject:locationId :1.5];
                 }
             });
         }
+        // Highlight correct objects
         else {
             NSString *object1Id = [currSolStep object1Id];
             NSString *object2Id = [currSolStep object2Id];
@@ -3184,9 +3189,10 @@ BOOL wasPathFollowed = false;
         NSMutableArray *simplerSentences = [[NSMutableArray alloc] init];
         
         if (currentComplexity > 1) {
-            Chapter *chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
-            PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
+            Chapter *chapter = [book getChapterWithTitle:chapterTitle]; // Get current chapter
+            PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; // Get PM Activity from chapter
             
+            // Look for simpler versions of the current sentence
             for (AlternateSentence *alternateSentence in [[PMActivity alternateSentences] objectForKey:currentPageId]) {
                 if ([alternateSentence complexity] == currentComplexity - 1 && [[alternateSentence ideas] containsObject:@(currentIdea)]) {
                     [simplerSentences addObject:[alternateSentence text]];
@@ -3194,45 +3200,47 @@ BOOL wasPathFollowed = false;
             }
         }
         
+        // Present simpler sentence(s)
+        // TODO: Only show one step at a time
         if ([simplerSentences count] > 0) {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Hint" message:[simplerSentences componentsJoinedByString:@" "] preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
             [alert addAction:action];
             [self presentViewController:alert animated:YES completion:nil];
+            
+            [playaudioClass playErrorFeedbackNoise];
         }
-        // TODO: Temporary message for demo purposes only
+        // Default to usability error feedback if there are no simpler sentences available
         else {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Hint" message:@"There are no simpler sentences available." preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
-            [alert addAction:action];
-            [self presentViewController:alert animated:YES completion:nil];
+            [self provideFeedbackForErrorType:@"usability"];
         }
     }
     else if ([errorType isEqualToString:@"usability"]) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Need help?" message:@"The iPad will show you how to complete this step." preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action)
                           {
-                              
                               [self.view setUserInteractionEnabled:YES];
                               [self animatePerformingStep];
-                              [playaudioClass playAutoCompleteStepNoise];
                           }]];
         [self presentViewController:alert animated:YES completion:nil];
+        
+        [playaudioClass playErrorFeedbackNoise];
     }
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         [self.view setUserInteractionEnabled:YES];
-     });
+    });
 }
 
 - (void)animatePerformingStep {
-    //Get steps for current sentence
+    // Get steps for current sentence
     NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
     
-    //Get current step to be completed
+    // Get current step to be completed
     ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
     NSString *stepType = [currSolStep stepType];
     
+    // Animate moving object to location
     if ([stepType isEqualToString:@"check"] || [stepType isEqualToString:@"checkLeft"] || [stepType isEqualToString:@"checkRight"] || [stepType isEqualToString:@"checkUp"] || [stepType isEqualToString:@"checkDown"] || [stepType isEqualToString:@"checkAndSwap"] || [stepType isEqualToString:@"tapToAnimate"] || [stepType isEqualToString:@"checkPath"] || [stepType isEqualToString:@"shakeAndTap"] || [stepType isEqualToString:@"tapWord"] ) {
         if ([stepType isEqualToString:@"check"]) {
             NSString *object1Id = [currSolStep object1Id];
@@ -3249,6 +3257,7 @@ BOOL wasPathFollowed = false;
                 
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                     movingObjectId = object1Id;
+                    
                     [self.pmView animateObject:object1Id from:object1HotspotLocation to:waypointLocation action:@"moveToLocation" areaId:@""];
                     
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
@@ -3269,7 +3278,8 @@ BOOL wasPathFollowed = false;
             [self incrementCurrentStep];
         }
     }
-    else if([stepType isEqualToString:@"transferAndGroup"] || [stepType isEqualToString:@"transferAndDisappear"]){
+    // Animate moving object for transference
+    else if ([stepType isEqualToString:@"transferAndGroup"] || [stepType isEqualToString:@"transferAndDisappear"]){
         NSString *object1Id = [currSolStep object1Id];
         ActionStep *nextSolStep = [currSolSteps objectAtIndex:currentStep];
         
@@ -3286,6 +3296,7 @@ BOOL wasPathFollowed = false;
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                 movingObjectId = object1Id;
+                
                 [self.pmView animateObject:object1Id from:object1HotspotLocation to:nextObject1HotspotLocation action:@"moveToLocation" areaId:@""];
                 
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
@@ -3299,6 +3310,7 @@ BOOL wasPathFollowed = false;
         }
         
     }
+    // Animate object moving to object
     else {
         NSString *object1Id = [currSolStep object1Id];
         NSString *object2Id = [currSolStep object2Id];
@@ -3313,6 +3325,7 @@ BOOL wasPathFollowed = false;
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             movingObjectId = object1Id;
+            
             [self.pmView animateObject:object1Id from:object1HotspotLocation to:object2HotspotLocation action:@"moveToLocation" areaId:@""];
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{

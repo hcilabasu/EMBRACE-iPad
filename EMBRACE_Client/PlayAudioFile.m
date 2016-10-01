@@ -255,7 +255,7 @@
     AudioServicesPlaySystemSound(1053);
 }
 
-- (IBAction)playAutoCompleteStepNoise {
+- (IBAction)playErrorFeedbackNoise {
     AudioServicesPlaySystemSound(1054);
 }
 
