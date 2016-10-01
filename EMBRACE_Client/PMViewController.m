@@ -3150,6 +3150,8 @@ BOOL wasPathFollowed = false;
 
 // TODO: Change error type NSString to enum
 - (void)provideFeedbackForErrorType:(NSString *)errorType {
+    [self.view setUserInteractionEnabled:NO];
+    
     if ([errorType isEqualToString:@"vocabulary"]) {
         //Get steps for current sentence
         NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
@@ -3159,7 +3161,16 @@ BOOL wasPathFollowed = false;
         NSString *stepType = [currSolStep stepType];
         
         if ([stepType isEqualToString:@"check"] || [stepType isEqualToString:@"checkLeft"] || [stepType isEqualToString:@"checkRight"] || [stepType isEqualToString:@"checkUp"] || [stepType isEqualToString:@"checkDown"] || [stepType isEqualToString:@"checkAndSwap"] || [stepType isEqualToString:@"tapToAnimate"] || [stepType isEqualToString:@"checkPath"] || [stepType isEqualToString:@"shakeAndTap"] || [stepType isEqualToString:@"tapWord"] ) {
-            // TODO: Highlight object and location
+            
+            NSString *object1Id = [currSolStep object1Id];
+            NSString *locationId = [currSolStep locationId];
+            
+            [self highlightImageForText:object1Id];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                if([model getLocationWithId:locationId]){
+                    [self highlightObject:locationId :1.5];
+                }
+            });
         }
         else {
             NSString *object1Id = [currSolStep object1Id];
@@ -3201,11 +3212,17 @@ BOOL wasPathFollowed = false;
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Need help?" message:@"The iPad will show you how to complete this step." preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action)
                           {
+                              
+                              [self.view setUserInteractionEnabled:YES];
                               [self animatePerformingStep];
                               [playaudioClass playAutoCompleteStepNoise];
                           }]];
         [self presentViewController:alert animated:YES completion:nil];
     }
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [self.view setUserInteractionEnabled:YES];
+     });
 }
 
 - (void)animatePerformingStep {
@@ -3231,6 +3248,7 @@ BOOL wasPathFollowed = false;
                 [self highlightObject:object1Id :2.0];
                 
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                    movingObjectId = object1Id;
                     [self.pmView animateObject:object1Id from:object1HotspotLocation to:waypointLocation action:@"moveToLocation" areaId:@""];
                     
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
@@ -3251,6 +3269,36 @@ BOOL wasPathFollowed = false;
             [self incrementCurrentStep];
         }
     }
+    else if([stepType isEqualToString:@"transferAndGroup"] || [stepType isEqualToString:@"transferAndDisappear"]){
+        NSString *object1Id = [currSolStep object1Id];
+        ActionStep *nextSolStep = [currSolSteps objectAtIndex:currentStep];
+        
+        if (nextSolStep != nil && ([[nextSolStep stepType] isEqualToString:@"transferAndGroup"] || [stepType isEqualToString:@"transferAndDisappear"])) {
+            NSString *nextObject1ID = [nextSolStep object1Id];
+            Hotspot *object1Hotspot = [model getHotspotforObjectWithActionAndRole:object1Id :[currSolStep action] :@"subject"];
+            CGPoint object1HotspotLocation = [self.pmView getHotspotLocation:object1Hotspot];
+            
+            Hotspot *nextObject1Hotspot = [model getHotspotforObjectWithActionAndRole:nextObject1ID :[nextSolStep action] :@"subject"];
+            CGPoint nextObject1HotspotLocation = [self.pmView getHotspotLocation:nextObject1Hotspot];
+            
+            [self highlightObject:object1Id :2.0];
+            [self highlightObject:nextObject1ID :2.0];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                movingObjectId = object1Id;
+                [self.pmView animateObject:object1Id from:object1HotspotLocation to:nextObject1HotspotLocation action:@"moveToLocation" areaId:@""];
+                
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                        //Get the interaction to be performed
+                        PossibleInteraction *interaction = [self getCorrectInteraction];
+                        
+                        //Perform the interaction and increment the step
+                        [self checkSolutionForInteraction:interaction];
+                    });
+            });
+        }
+        
+    }
     else {
         NSString *object1Id = [currSolStep object1Id];
         NSString *object2Id = [currSolStep object2Id];
@@ -3264,6 +3312,7 @@ BOOL wasPathFollowed = false;
         [self highlightObject:object1Id :2.0];
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            movingObjectId = object1Id;
             [self.pmView animateObject:object1Id from:object1HotspotLocation to:object2HotspotLocation action:@"moveToLocation" areaId:@""];
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
@@ -3464,13 +3513,13 @@ BOOL wasPathFollowed = false;
                         }
                         //Otherwise, one of these is connected to another object...so we check to see if the other object can be connected with the unconnected one.
                         else if (actionsMatch
-                                 && [self.pmView isObjectGrouped:obj atHotSpot:movingObjectHotspotLoc]
-                                && [self.pmView isObjectGrouped:objId atHotSpot:hotspotLoc]
+                                 && ![isHotspotConnectedMovingObjectString isEqualToString:@""]
+                                 && [isHotspotConnectedObjectString isEqualToString:@""]
                                  && !rolesMatch) {
-                            [groupings addObjectsFromArray:[self getPossibleTransferInteractionsforObjects:obj :[self.pmView groupedObject:obj atHotSpot:movingObjectHotspotLoc] :objId :movingObjectHotspot :hotspot]];
+                            [groupings addObjectsFromArray:[self getPossibleTransferInteractionsforObjects:obj :isHotspotConnectedMovingObjectString :objId :movingObjectHotspot :hotspot]];
                         }
                         else if (actionsMatch && [isHotspotConnectedMovingObjectString isEqualToString:@""]
-                                && ![isHotspotConnectedObjectString isEqualToString:@""] && !rolesMatch) {
+                                 && ![isHotspotConnectedObjectString isEqualToString:@""] && !rolesMatch) {
                             [groupings addObjectsFromArray:[self getPossibleTransferInteractionsforObjects:objId :isHotspotConnectedObjectString :obj :hotspot :movingObjectHotspot]];
                         }
                     }
@@ -4871,6 +4920,17 @@ BOOL wasPathFollowed = false;
     if ([model getArea:object:currentPageId]) {
         //Highlight the tapped object
         [self.pmView highLightArea:object];
+    }
+    else if ([model getLocationWithId:object]){
+        Location *loc = [model getLocationWithId:object];
+        
+        //Calculate the x,y coordinates and the width and height in pixels from %
+        float locationX = [loc.originX floatValue] / 100.0 * [self.pmView frame].size.width;
+        float locationY = [loc.originY floatValue] / 100.0 * [self.pmView frame].size.height;
+        float locationWidth = [loc.width floatValue] / 100.0 * [self.pmView frame].size.width;
+        float locationHeight = [loc.height floatValue] / 100.0 * [self.pmView frame].size.height;
+        
+        [self.pmView highlightLocation:lroundf(locationX):lroundf(locationY):lroundf(locationWidth):lroundf(locationHeight)];
     }
     else {
         //Highlight the tapped object
