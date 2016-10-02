@@ -3172,14 +3172,12 @@ BOOL wasPathFollowed = false;
             
             [self highlightImageForText:object1Id];
             
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                if ([model getLocationWithId:locationId] || [model getAreaWithId:locationId]) {
-                    [self highlightObject:locationId :1.5];
-                }
-                
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                    IntroductionClass.allowInteractions = TRUE;
-                });
+            if ([model getLocationWithId:locationId] || [model getAreaWithId:locationId]) {
+                [self highlightObject:locationId :1.5];
+            }
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                IntroductionClass.allowInteractions = TRUE;
             });
         }
         // Highlight correct objects for transference
@@ -3197,7 +3195,7 @@ BOOL wasPathFollowed = false;
                 [self highlightImageForText:object1Id];
                 [self highlightImageForText:nextObject1Id];
                 
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                     IntroductionClass.allowInteractions = TRUE;
                 });
             }
@@ -3210,7 +3208,7 @@ BOOL wasPathFollowed = false;
             [self highlightImageForText:object1Id];
             [self highlightImageForText:object2Id];
             
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                 IntroductionClass.allowInteractions = TRUE;
             });
         }
