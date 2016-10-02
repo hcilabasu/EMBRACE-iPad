@@ -899,6 +899,14 @@
 		1A68DC7D1C5815A2009F9099 /* AssessmentActivitiesSpanish-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A68DC7C1C5815A2009F9099 /* AssessmentActivitiesSpanish-MetaData.xml */; };
 		1A68DC7F1C58215C009F9099 /* AssessmentActivitiesSpanish-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A68DC7E1C58215B009F9099 /* AssessmentActivitiesSpanish-MetaData.xml */; };
 		1A68DC811C5825F1009F9099 /* AssessmentActivitiesSpanish-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A68DC801C5825F1009F9099 /* AssessmentActivitiesSpanish-MetaData.xml */; };
+		1A6C14001D9F2E3A004658F5 /* WordMapping.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A6C13FF1D9F2E3A004658F5 /* WordMapping.xml */; };
+		1A6C14021D9F2E79004658F5 /* WordMapping.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A6C14011D9F2E79004658F5 /* WordMapping.xml */; };
+		1A6C14041D9F2E8C004658F5 /* WordMapping.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A6C14031D9F2E8C004658F5 /* WordMapping.xml */; };
+		1A6C14061D9F2EA6004658F5 /* WordMapping.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A6C14051D9F2EA6004658F5 /* WordMapping.xml */; };
+		1A6C14081D9F2EBE004658F5 /* WordMapping.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A6C14071D9F2EBE004658F5 /* WordMapping.xml */; };
+		1A6C140C1D9F2EF4004658F5 /* WordMapping.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A6C140B1D9F2EF4004658F5 /* WordMapping.xml */; };
+		1A6C140E1D9F2F08004658F5 /* WordMapping.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A6C140D1D9F2F08004658F5 /* WordMapping.xml */; };
+		1A6C14101D9F2F1B004658F5 /* WordMapping.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A6C140F1D9F2F1B004658F5 /* WordMapping.xml */; };
 		1A7C78031C74FACF0031041D /* air_particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A7C78021C74FACF0031041D /* air_particle.png */; };
 		1A7C78051C74FAE20031041D /* man_driving.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A7C78041C74FAE20031041D /* man_driving.png */; };
 		1A7C780E1C74FAF60031041D /* babybrother_high_res.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A7C78061C74FAF60031041D /* babybrother_high_res.png */; };
@@ -5861,6 +5869,14 @@
 		1A68DC7C1C5815A2009F9099 /* AssessmentActivitiesSpanish-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesSpanish-MetaData.xml"; sourceTree = "<group>"; };
 		1A68DC7E1C58215B009F9099 /* AssessmentActivitiesSpanish-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesSpanish-MetaData.xml"; sourceTree = "<group>"; };
 		1A68DC801C5825F1009F9099 /* AssessmentActivitiesSpanish-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesSpanish-MetaData.xml"; sourceTree = "<group>"; };
+		1A6C13FF1D9F2E3A004658F5 /* WordMapping.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WordMapping.xml; sourceTree = "<group>"; };
+		1A6C14011D9F2E79004658F5 /* WordMapping.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WordMapping.xml; sourceTree = "<group>"; };
+		1A6C14031D9F2E8C004658F5 /* WordMapping.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WordMapping.xml; sourceTree = "<group>"; };
+		1A6C14051D9F2EA6004658F5 /* WordMapping.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WordMapping.xml; sourceTree = "<group>"; };
+		1A6C14071D9F2EBE004658F5 /* WordMapping.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WordMapping.xml; sourceTree = "<group>"; };
+		1A6C140B1D9F2EF4004658F5 /* WordMapping.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WordMapping.xml; sourceTree = "<group>"; };
+		1A6C140D1D9F2F08004658F5 /* WordMapping.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WordMapping.xml; sourceTree = "<group>"; };
+		1A6C140F1D9F2F1B004658F5 /* WordMapping.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WordMapping.xml; sourceTree = "<group>"; };
 		1A7C78021C74FACF0031041D /* air_particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = air_particle.png; sourceTree = "<group>"; };
 		1A7C78041C74FAE20031041D /* man_driving.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = man_driving.png; sourceTree = "<group>"; };
 		1A7C78061C74FAF60031041D /* babybrother_high_res.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babybrother_high_res.png; sourceTree = "<group>"; };
@@ -10247,6 +10263,7 @@
 				1A631CF01C0E4D3900251CB3 /* Constraints-MetaData.xml */,
 				1A631CF11C0E4D3900251CB3 /* content.opf */,
 				1A631CF21C0E4D3900251CB3 /* Hotspots-MetaData.xml */,
+				1A6C14031D9F2E8C004658F5 /* WordMapping.xml */,
 				1A631CF31C0E4D3900251CB3 /* Images */,
 				1A631D151C0E4D3A00251CB3 /* IMSolutions-MetaData.xml */,
 				1A631D161C0E4D3A00251CB3 /* Introductions-MetaData.xml */,
@@ -10404,6 +10421,7 @@
 				1A631D991C0E4D3A00251CB3 /* Locations-MetaData.xml */,
 				1A631D9A1C0E4D3A00251CB3 /* metadata.xml */,
 				1A631D9B1C0E4D3A00251CB3 /* Relationships-MetaData.xml */,
+				1A6C14051D9F2EA6004658F5 /* WordMapping.xml */,
 				1A631D9C1C0E4D3A00251CB3 /* SentenceAnalysis-MetaData.xml */,
 				1A631D9D1C0E4D3A00251CB3 /* Setups-MetaData.xml */,
 				1A631D9E1C0E4D3A00251CB3 /* Solutions-MetaData.xml */,
@@ -10602,6 +10620,7 @@
 				5DB79E821C9172F7003B2AFC /* Script-Metadata.xml */,
 				1A631DD11C0E4D3A00251CB3 /* AlternateImages-MetaData.xml */,
 				1A631DD21C0E4D3A00251CB3 /* Areas-MetaData.xml */,
+				1A6C14071D9F2EBE004658F5 /* WordMapping.xml */,
 				1A631DD31C0E4D3A00251CB3 /* AssessmentActivities-MetaData.xml */,
 				1A68DC801C5825F1009F9099 /* AssessmentActivitiesSpanish-MetaData.xml */,
 				1A631DD41C0E4D3A00251CB3 /* Constraints-MetaData.xml */,
@@ -10775,6 +10794,7 @@
 				5DB79E7C1C916DCD003B2AFC /* Script-Metadata.xml */,
 				1A631E531C0E4D3A00251CB3 /* AlternateImages-MetaData.xml */,
 				1A631E551C0E4D3A00251CB3 /* AssessmentActivities-MetaData.xml */,
+				1A6C140B1D9F2EF4004658F5 /* WordMapping.xml */,
 				1A631E541C0E4D3A00251CB3 /* Areas-MetaData.xml */,
 				1AC7A3901C592847003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml */,
 				1A631E561C0E4D3A00251CB3 /* Constraints-MetaData.xml */,
@@ -11024,6 +11044,7 @@
 			children = (
 				033DA4E41D7D1ED200648C2F /* Vocabulary-MetaData.xml */,
 				5DB79E801C917296003B2AFC /* Script-Metadata.xml */,
+				1A6C140D1D9F2F08004658F5 /* WordMapping.xml */,
 				1A631F0E1C0E4D3A00251CB3 /* AlternateImages-MetaData.xml */,
 				1A631F0F1C0E4D3A00251CB3 /* Areas-MetaData.xml */,
 				1A631F101C0E4D3A00251CB3 /* AssessmentActivities-MetaData.xml */,
@@ -11189,6 +11210,7 @@
 			isa = PBXGroup;
 			children = (
 				033DA4E61D7D1EDD00648C2F /* Vocabulary-MetaData.xml */,
+				1A6C140F1D9F2F1B004658F5 /* WordMapping.xml */,
 				5DB79E7E1C9170D1003B2AFC /* Script-Metadata.xml */,
 				1A631F8E1C0E4D3A00251CB3 /* AlternateImages-MetaData.xml */,
 				1A631F8F1C0E4D3A00251CB3 /* Areas-MetaData.xml */,
@@ -13162,6 +13184,7 @@
 				5C28DC261C2BA66E005ACD07 /* SentenceAnalysis-MetaData.xml */,
 				5C28DC271C2BA66E005ACD07 /* Setups-MetaData.xml */,
 				5C28DC281C2BA66E005ACD07 /* Solutions-MetaData.xml */,
+				1A6C14011D9F2E79004658F5 /* WordMapping.xml */,
 				5C28DC291C2BA66E005ACD07 /* Styles */,
 				5C28DC2D1C2BA66E005ACD07 /* Text */,
 				5C28DC561C2BA66E005ACD07 /* toc.ncx */,
@@ -14574,6 +14597,7 @@
 				5CA9554F1C3237690038FB56 /* SentenceAnalysis-MetaData.xml */,
 				5CA955501C3237690038FB56 /* Setups-MetaData.xml */,
 				5CA955511C3237690038FB56 /* Solutions-MetaData.xml */,
+				1A6C13FF1D9F2E3A004658F5 /* WordMapping.xml */,
 				5CA955521C3237690038FB56 /* Styles */,
 				5CA955561C3237690038FB56 /* Text */,
 				5CA9555A1C3237690038FB56 /* toc.ncx */,
@@ -17228,6 +17252,7 @@
 				5C0ED8A21C75334200003B5A /* HomecomingQ6A2.mp3 in Resources */,
 				5CB7116B1C6C46DF0062AD61 /* TheNavajoHoganQ4A1S.mp3 in Resources */,
 				5C0ED7101C752C2F00003B5A /* TheWiseOwlQ6A1.mp3 in Resources */,
+				1A6C140C1D9F2EF4004658F5 /* WordMapping.xml in Resources */,
 				5C0ED69A1C752C2F00003B5A /* GettingReadyQ2A3.mp3 in Resources */,
 				5D4B477D1C56D8EA0096BC1E /* TheLuckyStoneS8E.mp3 in Resources */,
 				5CCD8F9D1C7405EC00D2EC2B /* TornadosQ6A3.mp3 in Resources */,
@@ -17983,6 +18008,7 @@
 				037E97AB1CBC4C0400F9F5AC /* sequences_EEG03.xml in Resources */,
 				5D68211E1C480A3F001F5CFD /* Story1-Introduction-Intro-S.xhtml in Resources */,
 				5C40AE791CBF591A00BFEB9F /* DependsE.mp3 in Resources */,
+				1A6C14101D9F2F1B004658F5 /* WordMapping.xml in Resources */,
 				5C04201F1C614653001BBE9D /* TheLopezFamilyS5S.mp3 in Resources */,
 				1A63224D1C0E4D3B00251CB3 /* tornado_bg.png in Resources */,
 				1A63235E1C0E4D3B00251CB3 /* Story6-Newton's-Third-Law-Forces-are-Paired-PM-3.xhtml in Resources */,
@@ -18013,6 +18039,7 @@
 				5DDF53AB1C9CFC7C004AB6D1 /* TheNaughtyMonkeyS4S.mp3 in Resources */,
 				1AEC241E1CB9E32200803580 /* market_post.png in Resources */,
 				1A6320801C0E4D3B00251CB3 /* Hotspots-MetaData.xml in Resources */,
+				1A6C14001D9F2E3A004658F5 /* WordMapping.xml in Resources */,
 				1A63236B1C0E4D3B00251CB3 /* physics.epub in Resources */,
 				5C72E6051C72A46F00CE4877 /* TheHaidaPlankHouseQ1A4.mp3 in Resources */,
 				5C40AEE31CBF5C7C00BFEB9F /* RocketsS.mp3 in Resources */,
@@ -18688,6 +18715,7 @@
 				5C72E7EB1C72BF1000CE4877 /* NewtonsSecondLawAccelerationQ5A4.mp3 in Resources */,
 				5C72E5D81C72A46F00CE4877 /* TheSeminoleChickeeQ5.mp3 in Resources */,
 				033DA4DF1D7D1EA700648C2F /* Vocabulary-MetaData.xml in Resources */,
+				1A6C140E1D9F2F08004658F5 /* WordMapping.xml in Resources */,
 				5C0ED6AF1C752C2F00003B5A /* GettingReadyQ6A4.mp3 in Resources */,
 				5C28DD181C2BA66E005ACD07 /* Story6-The-Seminole-Chickee-PM-2.xhtml in Resources */,
 				5C0ED9EF1C753AD400003B5A /* MusclesUseOxygenQ5A3.mp3 in Resources */,
@@ -18723,6 +18751,7 @@
 				5CF7931A1C76986E00216337 /* BFTC3.m4a in Resources */,
 				5CAE95F21C921DCD00702DB4 /* OctagonS.mp3 in Resources */,
 				5C72E5F01C72A46F00CE4877 /* TheHaidaPlankHouseQ6.mp3 in Resources */,
+				1A6C14061D9F2EA6004658F5 /* WordMapping.xml in Resources */,
 				5CA5CBD41CD15E13002A631F /* AFriendInNeedS15E.mp3 in Resources */,
 				5CB711151C6C292B0062AD61 /* old_CWWB5.m4a in Resources */,
 				1A63203D1C0E4D3B00251CB3 /* Stylesheet.css in Resources */,
@@ -19331,6 +19360,7 @@
 				1A6321ED1C0E4D3B00251CB3 /* ch4_bg_lava.png in Resources */,
 				5CCD8F3A1C7405EC00D2EC2B /* EarthquakesQ1A4.mp3 in Resources */,
 				5C0ED8621C75334200003B5A /* AFriendinNeedQ6A3.mp3 in Resources */,
+				1A6C14021D9F2E79004658F5 /* WordMapping.xml in Resources */,
 				5CA5CC421CD1A9C7002A631F /* GettingReadyS0E.mp3 in Resources */,
 				5CCD8F7F1C7405EC00D2EC2B /* TheMovingEarthQ7A3.mp3 in Resources */,
 				5C0ED6C41C752C2F00003B5A /* TheBestFarmAwardQ4.mp3 in Resources */,
@@ -20666,6 +20696,7 @@
 				5CAE95D21C921DCD00702DB4 /* ArrowsS.mp3 in Resources */,
 				5CF6CA351CCB2BB50093D3FD /* TsunamiE.mp3 in Resources */,
 				5C9B8B601CB5EFC800420053 /* FarmS.mp3 in Resources */,
+				1A6C14041D9F2E8C004658F5 /* WordMapping.xml in Resources */,
 				1A6320B71C0E4D3B00251CB3 /* Story3-Baby-Brother-PM-2.xhtml in Resources */,
 				033FC8641C6C538800CF3850 /* sequences_MCD03.xml in Resources */,
 				5C8A561B1CD3E2AB009F1ED4 /* MagicToysS8E.mp3 in Resources */,
@@ -20863,6 +20894,7 @@
 				5C0ED6651C752C2F00003B5A /* CleaningUpQ4.mp3 in Resources */,
 				5CCD8F741C7405EC00D2EC2B /* TheMovingEarthQ5A2.mp3 in Resources */,
 				5C28DCB01C2BA66E005ACD07 /* man1_ch3.png in Resources */,
+				1A6C14081D9F2EBE004658F5 /* WordMapping.xml in Resources */,
 				5C5D09711CA9F6DD00B7C8D9 /* GrantedE.mp3 in Resources */,
 				5C9C07E21C57385A00702FCD /* BFEE_18A.m4a in Resources */,
 				5C0421461C618C2B001BBE9D /* BabyBrotherQ4A2.mp3 in Resources */,
