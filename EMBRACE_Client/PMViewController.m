@@ -3290,11 +3290,14 @@ BOOL wasPathFollowed = false;
                         
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                             IntroductionClass.allowInteractions = TRUE;
-                            
                             [self incrementCurrentStep];
                         });
                     });
                 });
+            }
+            else {
+                IntroductionClass.allowInteractions = TRUE;
+                [self incrementCurrentStep];
             }
         }
         else {
@@ -3326,14 +3329,13 @@ BOOL wasPathFollowed = false;
             CGPoint nextObject1HotspotLocation = [self.pmView getHotspotLocation:nextObject1Hotspot];
             
             [self highlightObject:object1Id :2.0];
-            [self highlightObject:nextObject1Id :2.0];
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                 movingObjectId = object1Id;
                 
                 [self.pmView animateObject:object1Id from:object1HotspotLocation to:nextObject1HotspotLocation action:@"moveToLocation" areaId:@""];
                 
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                         IntroductionClass.allowInteractions = TRUE;
                         
                         //Get the interaction to be performed
