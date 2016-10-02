@@ -3166,17 +3166,41 @@ BOOL wasPathFollowed = false;
             NSString *object1Id = [currSolStep object1Id];
             NSString *locationId = [currSolStep locationId];
             
+            if ([locationId isEqualToString:@""]) {
+                locationId = [currSolStep areaId];
+            }
+            
             [self highlightImageForText:object1Id];
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                if ([model getLocationWithId:locationId]){
+                if ([model getLocationWithId:locationId] || [model getAreaWithId:locationId]) {
                     [self highlightObject:locationId :1.5];
-                    
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                        IntroductionClass.allowInteractions = TRUE;
-                    });
                 }
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                    IntroductionClass.allowInteractions = TRUE;
+                });
             });
+        }
+        // Highlight correct objects for transference
+        else if ([stepType isEqualToString:@"transferAndGroup"] || [stepType isEqualToString:@"transferAndDisappear"]) {
+            NSString *object1Id = [currSolStep object1Id];
+            ActionStep *nextSolStep = [currSolSteps objectAtIndex:currentStep];
+            
+            if (nextSolStep != nil && ([[nextSolStep stepType] isEqualToString:@"transferAndGroup"] || [stepType isEqualToString:@"transferAndDisappear"])) {
+                NSString *nextObject1Id = [nextSolStep object1Id];
+                
+                if ([nextObject1Id isEqualToString:[currSolStep object2Id]]) {
+                    nextObject1Id = [nextSolStep object2Id];
+                }
+                
+                [self highlightImageForText:object1Id];
+                [self highlightImageForText:nextObject1Id];
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                    IntroductionClass.allowInteractions = TRUE;
+                });
+            }
         }
         // Highlight correct objects
         else {
@@ -3286,20 +3310,25 @@ BOOL wasPathFollowed = false;
         }
     }
     // Animate moving object for transference
-    else if ([stepType isEqualToString:@"transferAndGroup"] || [stepType isEqualToString:@"transferAndDisappear"]){
+    else if ([stepType isEqualToString:@"transferAndGroup"] || [stepType isEqualToString:@"transferAndDisappear"]) {
         NSString *object1Id = [currSolStep object1Id];
         ActionStep *nextSolStep = [currSolSteps objectAtIndex:currentStep];
         
         if (nextSolStep != nil && ([[nextSolStep stepType] isEqualToString:@"transferAndGroup"] || [stepType isEqualToString:@"transferAndDisappear"])) {
-            NSString *nextObject1ID = [nextSolStep object1Id];
+            NSString *nextObject1Id = [nextSolStep object1Id];
+            
+            if ([nextObject1Id isEqualToString:[currSolStep object2Id]]) {
+                nextObject1Id = [nextSolStep object2Id];
+            }
+            
             Hotspot *object1Hotspot = [model getHotspotforObjectWithActionAndRole:object1Id :[currSolStep action] :@"subject"];
             CGPoint object1HotspotLocation = [self.pmView getHotspotLocation:object1Hotspot];
             
-            Hotspot *nextObject1Hotspot = [model getHotspotforObjectWithActionAndRole:nextObject1ID :[nextSolStep action] :@"subject"];
+            Hotspot *nextObject1Hotspot = [model getHotspotforObjectWithActionAndRole:nextObject1Id :[nextSolStep action] :@"subject"];
             CGPoint nextObject1HotspotLocation = [self.pmView getHotspotLocation:nextObject1Hotspot];
             
             [self highlightObject:object1Id :2.0];
-            [self highlightObject:nextObject1ID :2.0];
+            [self highlightObject:nextObject1Id :2.0];
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                 movingObjectId = object1Id;
