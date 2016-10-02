@@ -212,7 +212,7 @@
 }
 
 - (NSString *)getTextAtLocation:(CGPoint)location {
-    NSString *requestString = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).innerHTML", location.x, location.y];
+    NSString *requestString = [NSString stringWithFormat:@"getTextAtLocation(%f, %f)", location.x, location.y];
     NSString *textAtLocation = [self.bookView stringByEvaluatingJavaScriptFromString:requestString];
 
     return textAtLocation;

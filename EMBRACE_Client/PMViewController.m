@@ -1248,8 +1248,8 @@ BOOL wasPathFollowed = false;
                 //Get current step to be completed
                 ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
             
-                if([[currSolStep stepType] isEqualToString:@"tapWord"]) {
-                    if([englishSentenceText containsString: [currSolStep object1Id]] && (currentSentence == sentenceIDNum) && !stepsComplete) {
+                if ([[currSolStep stepType] isEqualToString:@"tapWord"]) {
+                    if ([englishSentenceText containsString: [currSolStep object1Id]] && (currentSentence == sentenceIDNum) && !stepsComplete) {
                         [[ServerCommunicationController sharedInstance] logTapWord:sentenceText :manipulationContext];
                         
                         [self incrementCurrentStep];
@@ -1264,6 +1264,8 @@ BOOL wasPathFollowed = false;
             NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
             
             if (![self.playaudioClass isAudioLeftInSequence]) {
+                BOOL playedAudio = false;
+                
                 if (currSolSteps != nil && [currSolSteps count] > 0) {
                     //Get current step to be completed
                     ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
@@ -1272,27 +1274,19 @@ BOOL wasPathFollowed = false;
                         if (([[currSolStep object1Id] containsString: englishSentenceText] && (currentSentence == sentenceIDNum)) ||
                             ([chapterTitle isEqualToString:@"The Naughty Monkey"] && conditionSetup.condition == CONTROL && [[currSolStep object1Id] containsString: englishSentenceText] && currentSentence == 2 && [currentPageId rangeOfString:@"-PM-2"].location != NSNotFound) ||
                             ([chapterTitle isEqualToString:@"The Naughty Monkey"] && conditionSetup.condition == EMBRACE && [[currSolStep object1Id] containsString: englishSentenceText] && (currentSentence == sentenceIDNum) && currentSentence !=2 && [currentPageId rangeOfString:@"-PM-2"].location != NSNotFound)) {
+                            playedAudio = true;
                             [[ServerCommunicationController sharedInstance] logTapWord:sentenceText :manipulationContext];
                             [self.playaudioClass stopPlayAudioFile];
-                            [self playAudioForVocabWord: englishSentenceText : spanishExt];
+                            [self playAudioForVocabWord:englishSentenceText :spanishExt];
                             [self incrementCurrentStep];
                         }
-                        else if([[Translation translationWords] objectForKey:englishSentenceText]) {
-                            [[ServerCommunicationController sharedInstance] logTapWord:englishSentenceText :manipulationContext];
-                            [self.playaudioClass stopPlayAudioFile];
-                            [self playAudioForVocabWord: englishSentenceText : spanishExt];
-                        }
-                    }
-                    else if([[Translation translationWords] objectForKey:englishSentenceText]) {
-                        [[ServerCommunicationController sharedInstance] logTapWord:englishSentenceText :manipulationContext];
-                        [self.playaudioClass stopPlayAudioFile];
-                        [self playAudioForVocabWord: englishSentenceText : spanishExt];
                     }
                 }
-                else if([[Translation translationWords] objectForKey:englishSentenceText]) {
+                
+                if (!playedAudio && [englishSentenceText length] > 0) {
                     [[ServerCommunicationController sharedInstance] logTapWord:englishSentenceText :manipulationContext];
                     [self.playaudioClass stopPlayAudioFile];
-                    [self playAudioForVocabWord: englishSentenceText : spanishExt];
+                    [self playAudioForVocabWord:englishSentenceText :spanishExt];
                 }
             }
         }
@@ -1370,12 +1364,9 @@ BOOL wasPathFollowed = false;
 - (void) playIntroVocabWord: (NSString *) englishSentenceText : (ActionStep *) currSolStep {
     if (conditionSetup.language == ENGLISH) {
         //Play En audio
-        bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3", [englishSentenceText capitalizedString], @"_def_E"]];
+        bool success = [self.playaudioClass playAudioFile:self :[NSString stringWithFormat:@"%@%@.mp3", [englishSentenceText capitalizedString], @"_def_E"]];
         
         if (!success) {
-//            //if error try m4a format
-//            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.m4a", englishSentenceText, @"E"]];
-            
             [self.playaudioClass playAudioFile:self :[NSString stringWithFormat:@"%@%@.mp3", [englishSentenceText capitalizedString], @"E"]];
         }
        
@@ -1383,13 +1374,10 @@ BOOL wasPathFollowed = false;
     }
     else {
         //Play Sp Audio
-        bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3",[englishSentenceText capitalizedString],@"_def_S"]];
+        bool success = [self.playaudioClass playAudioFile:self :[NSString stringWithFormat:@"%@%@.mp3", [englishSentenceText capitalizedString],@"_def_S"]];
     
         if (!success) {
-//            //if error try m4a format
-//            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.m4a" ,englishSentenceText, @"S"]];
-            
-            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3" ,[englishSentenceText capitalizedString], @"S"]];
+            [self.playaudioClass playAudioFile:self :[NSString stringWithFormat:@"%@%@.mp3", [englishSentenceText capitalizedString], @"S"]];
         }
         
         [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:@"Spanish" ofType:@"Play Word with Definition" :manipulationContext];
@@ -1398,18 +1386,18 @@ BOOL wasPathFollowed = false;
     [self highlightImageForText:englishSentenceText];
 
     // This delay is needed in order to be able to play the last definition on a vocabulary page
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW,[self.playaudioClass audioDuration]*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, [self.playaudioClass audioDuration] * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         //if audioPlayer is nil then we have returned to library view and should not play audio
         if ([self.playaudioClass audioPlayer] != nil) {
             //Play En audio
-            bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3",[englishSentenceText capitalizedString],@"_def_E"]];
+            bool success = [self.playaudioClass playAudioFile:self :[NSString stringWithFormat:@"%@%@.mp3", [englishSentenceText capitalizedString],@"_def_E"]];
         
             if (!success) {
-                //if error try m4a format
-                [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,@"E"]];
+                [self.playaudioClass playAudioFile:self :[NSString stringWithFormat:@"%@%@.mp3", [englishSentenceText capitalizedString], @"E"]];
             }
-        
-            [self highlightImageForText:englishSentenceText];
+            else {
+                [self highlightImageForText:englishSentenceText];
+            }
         
             currentSentence++;
             currentSentenceText = [self.pmView getCurrentSentenceAt:currentSentence];

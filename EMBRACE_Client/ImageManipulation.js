@@ -1064,6 +1064,32 @@ function addVocabulary(sentenceID, englishText, spanishText) {
     textboxCol.appendChild(newSentence);
 }
 
+function getTextAtLocation(x, y) {
+    var element = document.elementFromPoint(x, y);
+    
+    if (element.classList.contains("audible")) {
+        return element.innerHTML;
+    }
+    // NOTE: For some reason, tapping on a dynamically added underlined word returns the inner HTML of the entire
+    // sentence, rather than the word itself. Thus, we have to manually check all the audible words in the sentence
+    // to figure out which one was tapped.
+    else {
+        var audibleElements = element.getElementsByClassName("audible");
+        var threshold = 15; // This is used because x-coordinate of tap location and word location appear off
+        
+        for (var i = 0; i < audibleElements.length; i++) {
+            var audibleElement = audibleElements[i];
+            var rect = audibleElement.getBoundingClientRect();
+            
+            if (x >= rect.left - threshold && x <= rect.right + threshold && y >= rect.top && y <= rect.bottom) {
+                return audibleElement.innerHTML;
+            }
+        }
+        
+        return null;
+    }
+}
+
 function getImagePosition (object) {
     var position = new Array();
     position[0] = object.offsetLeft;
