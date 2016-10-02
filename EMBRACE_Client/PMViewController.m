@@ -227,7 +227,7 @@ BOOL wasPathFollowed = false;
     allRelationships = [[NSMutableArray alloc] init];
     currentGroupings = [[NSMutableDictionary alloc] init];
     
-    if (conditionSetup.condition  == CONTROL) {
+    if (conditionSetup.condition == CONTROL) {
         IntroductionClass.allowInteractions = FALSE;
         
         useSubject = NO_ENTITIES;
@@ -235,6 +235,7 @@ BOOL wasPathFollowed = false;
     }
     else if (conditionSetup.condition == EMBRACE) {
         IntroductionClass.allowInteractions = TRUE;
+        
         maxAttempts = 5;
         numAttempts = 0;
         
@@ -283,9 +284,15 @@ BOOL wasPathFollowed = false;
 
     //Dynamically reads the vocabulary words on the vocab page and creates and adds solutionsteps
     if ([currentPageId rangeOfString:@"-Intro"].location != NSNotFound) {
+        IntroductionClass.allowInteractions = FALSE;
+        
         [self createVocabSolutionsForPage];
     }
     else {
+        if (conditionSetup.condition != CONTROL) {
+            IntroductionClass.allowInteractions = TRUE;
+        }
+        
         if (conditionSetup.appMode == ITS) {
             self.currentComplexityLevel = [[ITSController sharedInstance] getCurrentComplexity];
             [self.pmView removeAllSentences];
@@ -776,7 +783,7 @@ BOOL wasPathFollowed = false;
             }
         }
         //current solution step is normal and just increment once
-        else{
+        else {
             currentStep++;
         }
         
@@ -3095,6 +3102,8 @@ BOOL wasPathFollowed = false;
  * automatically perform the step.
  */
 - (void)handleErrorForAction:(NSString *)action {
+    IntroductionClass.allowInteractions = FALSE;
+    
     [[ServerCommunicationController sharedInstance] logVerification:false forAction:action context:manipulationContext];
     
     [self playErrorNoise];
@@ -3124,7 +3133,10 @@ BOOL wasPathFollowed = false;
                               {
                                   [self provideFeedbackForErrorType:@"usability"];
                               }]];
-            [alert addAction:[UIAlertAction actionWithTitle:@"None" style:UIAlertActionStyleCancel handler:nil]];
+            [alert addAction:[UIAlertAction actionWithTitle:@"None" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action)
+                              {
+                                  IntroductionClass.allowInteractions = TRUE;
+                              }]];
             
             [self presentViewController:alert animated:YES completion:nil];
         }
@@ -3138,8 +3150,6 @@ BOOL wasPathFollowed = false;
 
 // TODO: Change error type NSString to enum
 - (void)provideFeedbackForErrorType:(NSString *)errorType {
-    [self.view setUserInteractionEnabled:NO];
-    
     if ([errorType isEqualToString:@"vocabulary"]) {
         [playaudioClass playErrorFeedbackNoise];
         
@@ -3161,6 +3171,10 @@ BOOL wasPathFollowed = false;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                 if ([model getLocationWithId:locationId]){
                     [self highlightObject:locationId :1.5];
+                    
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                        IntroductionClass.allowInteractions = TRUE;
+                    });
                 }
             });
         }
@@ -3171,6 +3185,10 @@ BOOL wasPathFollowed = false;
             
             [self highlightImageForText:object1Id];
             [self highlightImageForText:object2Id];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                IntroductionClass.allowInteractions = TRUE;
+            });
         }
     }
     else if ([errorType isEqualToString:@"syntax"]) {
@@ -3197,6 +3215,7 @@ BOOL wasPathFollowed = false;
             [self presentViewController:alert animated:YES completion:nil];
             
             [playaudioClass playErrorFeedbackNoise];
+            IntroductionClass.allowInteractions = TRUE;
         }
         // Default to usability error feedback if there are no simpler sentences available
         else {
@@ -3214,10 +3233,6 @@ BOOL wasPathFollowed = false;
         
         [playaudioClass playErrorFeedbackNoise];
     }
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [self.view setUserInteractionEnabled:YES];
-    });
 }
 
 - (void)animatePerformingStep {
@@ -3252,6 +3267,8 @@ BOOL wasPathFollowed = false;
                         [self highlightObject:object1Id :2.0];
                         
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                            IntroductionClass.allowInteractions = TRUE;
+                            
                             [self incrementCurrentStep];
                         });
                     });
@@ -3259,6 +3276,8 @@ BOOL wasPathFollowed = false;
             }
         }
         else {
+            IntroductionClass.allowInteractions = TRUE;
+            
             if ([stepType isEqualToString:@"checkAndSwap"]) {
                 [self swapObjectImage];
             }
@@ -3288,6 +3307,8 @@ BOOL wasPathFollowed = false;
                 [self.pmView animateObject:object1Id from:object1HotspotLocation to:nextObject1HotspotLocation action:@"moveToLocation" areaId:@""];
                 
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                        IntroductionClass.allowInteractions = TRUE;
+                        
                         //Get the interaction to be performed
                         PossibleInteraction *interaction = [self getCorrectInteraction];
                         
@@ -3317,6 +3338,8 @@ BOOL wasPathFollowed = false;
             [self.pmView animateObject:object1Id from:object1HotspotLocation to:object2HotspotLocation action:@"moveToLocation" areaId:@""];
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                IntroductionClass.allowInteractions = TRUE;
+                
                 //Get the interaction to be performed
                 PossibleInteraction *interaction = [self getCorrectInteraction];
                 
