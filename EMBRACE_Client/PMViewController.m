@@ -3220,18 +3220,43 @@ BOOL wasPathFollowed = false;
             Chapter *chapter = [book getChapterWithTitle:chapterTitle]; // Get current chapter
             PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; // Get PM Activity from chapter
             
-            // Look for simpler versions of the current sentence
+            // Get steps for current sentence
+            NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
+            
+            // Get current step to be completed
+            ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+            
+            // Look for simpler version of the current sentence
             for (AlternateSentence *alternateSentence in [[PMActivity alternateSentences] objectForKey:currentPageId]) {
-                if ([alternateSentence complexity] == currentComplexity - 1 && [[alternateSentence ideas] containsObject:@(currentIdea)]) {
-                    [simplerSentences addObject:[alternateSentence text]];
+                if ([alternateSentence complexity] == currentComplexity - 1) {
+                    for (NSNumber *idea in [[pageSentences objectAtIndex:currentSentence - 1] ideas]) {
+                        if ([[alternateSentence ideas] containsObject:idea]) {
+                            // Add sentences with no solution steps if they share the same idea
+                            if ([[alternateSentence solutionSteps] count] == 0) {
+                                [simplerSentences addObject:[alternateSentence text]];
+                                break;
+                            }
+                            else {
+                                // Add sentences with solution steps only if they share the same idea and current step
+                                for (ActionStep *solutionStep in [alternateSentence solutionSteps]) {
+                                    if ([solutionStep stepNumber] == [currSolStep stepNumber]) {
+                                        [simplerSentences addObject:[alternateSentence text]];
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
         
         // Present simpler sentence(s)
-        // TODO: Only show one step at a time
         if ([simplerSentences count] > 0) {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Hint" message:[simplerSentences componentsJoinedByString:@" "] preferredStyle:UIAlertControllerStyleAlert];
+            // Join sentences together and remove any slash characters
+            NSString *message = [[simplerSentences componentsJoinedByString:@" "] stringByReplacingOccurrencesOfString:@"\\" withString:@""];
+            
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Hint" message:message preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
             [alert addAction:action];
             [self presentViewController:alert animated:YES completion:nil];
@@ -4649,7 +4674,6 @@ BOOL wasPathFollowed = false;
     NSMutableSet *vocabulary = [[NSMutableSet alloc] initWithArray:[[chapter vocabulary] allKeys]];
     [vocabulary unionSet:[chapter getVocabularyFromSolutions]];
     
-    NSString *addSentenceString;
     int sentenceNumber = 1; //used for assigning sentence ids
     int previousIdeaNum = 0; //used for making sure same idea does not get repeated
     
