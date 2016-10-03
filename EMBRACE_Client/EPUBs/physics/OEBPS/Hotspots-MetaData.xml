@@ -47,7 +47,7 @@
         <hotspot objId="smallrocket_IM" action="sameSpeed" role="object" x="20%" y="90%"/>
         <hotspot objId="bigrocket_IM" action="sameSpeed" role="subject" x="50%" y="10%"/>
         
-        <hotspot objId="smallrocket_IM" action="fasterSpeed" role="object" x="10%" y="50%"/>
+        <hotspot objId="smallrocketMin_IM" action="fasterSpeed" role="object" x="10%" y="50%"/>
         <hotspot objId="bigrocketUp_IM" action="fasterSpeed" role="subject" x="90%" y="50%"/>
         
         <hotspot objId="dog_IM" action="toward" role="object" x="100%" y="0%"/>
