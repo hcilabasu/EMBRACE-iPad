@@ -47,6 +47,8 @@ typedef enum Actor {
 
 @property (nonatomic) BOOL allowFileSync; //whether log and progress files should be synced with Dropbox
 
+@property (nonatomic) BOOL shouldShowITSMessages; //whether to show ITS skill changes as popup messages
+
 + (ConditionSetup*)sharedInstance;
 
 - (NSString *)returnLanguageEnumtoString:(Language)type;
