@@ -213,8 +213,12 @@
                 correctDest = nextStep.areaId;
             }
             
-            if ([nextStep.object1Id isEqualToString:userAction.movedObjectId] &&
-                [correctDest isEqualToString:userAction.destinationObjectId]) {
+            // Check if any of the step uses 
+            if (([nextStep.object1Id isEqualToString:userAction.movedObjectId] &&
+                [correctDest isEqualToString:userAction.destinationObjectId] )||
+                
+                ([nextStep.object1Id isEqualToString:userAction.destinationObjectId] &&
+                [correctDest isEqualToString:userAction.movedObjectId])) {
                 NSLog(@"Performed a future step");
                 
                 EMComplexity com = [self.delegate analyzer:self

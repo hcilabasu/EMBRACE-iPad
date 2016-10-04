@@ -5166,7 +5166,8 @@ BOOL wasPathFollowed = false;
 
 - (void)analyzer:(ManipulationAnalyser *)analyzer showMessage:(NSString *)message {
    
-    
+    if (conditionSetup.shouldShowITSMessages == NO)
+        return;
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
                                                                    message:message
                                                             preferredStyle:UIAlertControllerStyleAlert];
@@ -5174,13 +5175,13 @@ BOOL wasPathFollowed = false;
                                                      style:UIAlertActionStyleCancel
                                                    handler:nil];
     [alert addAction:action];
-//    [self presentViewController:alert animated:YES completion:nil];
+    [self presentViewController:alert animated:YES completion:nil];
     
-//    int duration = 5; // duration in seconds
-//    
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-//        [alert dismissViewControllerAnimated:YES completion:nil];
-//    });
+    int duration = 5; // duration in seconds
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [alert dismissViewControllerAnimated:YES completion:nil];
+    });
 }
 
 - (NSArray *)getNextStepsForCurrentSentence:(ManipulationAnalyser *)analyzer {

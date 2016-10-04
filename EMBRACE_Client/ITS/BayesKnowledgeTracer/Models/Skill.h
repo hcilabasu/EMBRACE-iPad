@@ -7,11 +7,22 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ITSController.h"
 
+typedef NS_ENUM(NSInteger, SkillType) {
+    SkillType_Vocab,
+    SkillType_Usability,
+    SkillType_Syntax
+    
+};
 
 @interface Skill : NSObject
 
 + (Skill *)skillForWord:(NSString *)word;
+
++ (Skill *)syntaxSkillWithComplexity:(EMComplexity)complexity;
+
++ (Skill *)usabilitySkill;
 
 + (double)defaultInitialValue;
 
@@ -20,5 +31,7 @@
 @property (nonatomic, assign) BOOL isVerified;
 
 @property (nonatomic, readonly) double skillValue;
+
+@property (nonatomic, readonly) SkillType skillType;
 
 @end

@@ -12,21 +12,24 @@
 #import "ActionStep.h"
 #import "WordSkill.h"
 
+// Probability of correctly applying a not known skill
 #define DEFAULT_GUESS 0.1
+
+// Probability of make a mistake applying a known skill
 #define DEFAULT_SLIP 0.2
-#define DEFAULT_TRANSITION 0.1
+
+// Probability of student’s knowledge of a skill transitioning
+// from not known to known state after an opportunity to apply it.
+#define DEFAULT_SYNTAX_TRANSITION 0.05
+#define DEFAULT_VOCAB_TRANSITION 0.1
+#define DEFAULT_USABILITY_TRANSITION 0.01
 
 @interface KnowledgeTracer()
 
 @property (nonatomic, strong) SkillSet *skillSet;
 
-@property (nonatomic, assign) BOOL shouldDampen;
 
-@property (nonatomic, assign) double guess;
-
-@property (nonatomic, assign) double slip;
-
-@property (nonatomic, assign) double transition;
+@property (nonatomic, assign) double dampenValue;
 
 @end
 
@@ -37,15 +40,23 @@
     self = [super init];
     if (self) {
         _skillSet = [[SkillSet alloc] init];
-        _shouldDampen = NO;
+
         
-        _guess = DEFAULT_GUESS;
-        _slip = DEFAULT_SLIP;
-        _transition = DEFAULT_TRANSITION;
+        _dampenValue = 1.0;
     }
     return self;
 }
 
+#pragma mark -
+
+- (void)updateDampenValue:(BOOL)shouldDampen {
+    if (shouldDampen) {
+        self.dampenValue *= 10;
+        
+    } else {
+        self.dampenValue = 1.0;
+    }
+}
 #pragma mark -
 
 - (Skill *)updateSkillFor:(NSString *)action
@@ -55,8 +66,6 @@
     if (action == nil) {
         return nil;
     }
-    
-    self.shouldDampen = shouldDampen;
     
     Skill *prevSkill = [self.skillSet skillForWord:action];
     Skill *sk = [self updateSkill:prevSkill isVerified:isVerified];
@@ -93,7 +102,7 @@
 - (Skill *)updateUsabilitySkill:(BOOL)isVerified
                    shouldDampen:(BOOL)shouldDampen {
     
-    self.shouldDampen = shouldDampen;
+    [self updateDampenValue:shouldDampen];
     Skill *sk  = [self.skillSet usabilitySkill];
     sk = [self updateSkill:sk isVerified:isVerified];
     return sk;
@@ -107,7 +116,7 @@
               withComplexity:(EMComplexity)complex
                 shouldDampen:(BOOL)shouldDampen {
     
-    self.shouldDampen = shouldDampen;
+    [self updateDampenValue:shouldDampen];
     Skill *sk  = [self.skillSet syntaxSkillFor:complex];
     sk = [self updateSkill:sk isVerified:isVerified];
     return sk;
@@ -142,78 +151,87 @@
 
 - (double)getSlip {
     
-    if (self.shouldDampen) {
-        self.slip /= 10;
-    } else {
-        self.slip = DEFAULT_SLIP;
-    }
-    return self.slip;
-}
-
-- (double)getSlip2 {
-    
-    return 0.1;
+    return DEFAULT_SLIP;
 }
 
 - (double)getGuess {
     
-    if (self.shouldDampen) {
-        self.guess *= 10;
-    } else {
-        self.guess = DEFAULT_GUESS;
-    }
-    
-    return self.guess;
-    
+    return DEFAULT_GUESS;
 }
 
-- (double)getGuess2 {
+- (double)getSyntaxTransition {
     
-    return 0.3;
+    return DEFAULT_SYNTAX_TRANSITION;
 }
 
-- (double)getTransition {
-    if (self.shouldDampen) {
-        self.transition /= 10;
-    } else {
-        self.transition = DEFAULT_TRANSITION;
-    }
-    
-    return self.transition;
+- (double)getVocabTransition {
+
+    return DEFAULT_VOCAB_TRANSITION;
+}
+
+- (double)getUsabilityTransition {
+
+    return DEFAULT_USABILITY_TRANSITION;
 }
 
 - (double) calcCorrect:(double)prevSkillValue  {
+    double slip = [self getSlip] / self.dampenValue;
+    double guess = [self getGuess] / self.dampenValue;
+    double noSlip = 1 - slip;
     
-    return (prevSkillValue * (1 - [self getSlip]))
-				/ (prevSkillValue * (1 - [self getSlip]) + (1 - prevSkillValue) * [self getGuess]);
+    return (prevSkillValue * noSlip)
+				/ (prevSkillValue * noSlip + (1 - prevSkillValue) * guess);
     
 }
 
 - (double) calcIncorrect:(double) prevSkillValue {
     
-    return (prevSkillValue * [self getSlip])
-				/ (([self getSlip] * prevSkillValue) + ((1 - [self getGuess]) * (1 - prevSkillValue)));
+    double slip = [self getSlip] / self.dampenValue;
+    double guess = [self getGuess] / self.dampenValue;
     
-}
-
-- (double) calcCorrectPlayWord:(double) prevSkillValue {
+    double noGuess = 1 - guess;
     
-    
-    return (prevSkillValue * (1 - [self getSlip2]))
-				/ (prevSkillValue * (1 - [self getSlip2]) + (1 - prevSkillValue) * [self getGuess2]);
-}
-
-- (double) calcIncorrectPlayWord:(double) prevSkillValue {
-    
-    return (prevSkillValue * [self getSlip2])
-				/ (([self getSlip2] * prevSkillValue) + ((1 - [self getGuess2]) * (1 - prevSkillValue)));
+    return (prevSkillValue * slip)
+				/ ((slip * prevSkillValue) + (noGuess * (1 - prevSkillValue)));
     
 }
 
 - (double) calcNewSkillValue:(double )skillEvaluated {
-    return skillEvaluated + ((1 - skillEvaluated) * [self getTransition]);
+    return [self calcNewSkillValue:skillEvaluated skillType:SkillType_Usability];
 }
 
+- (double) calcNewSkillValue:(double )skillEvaluated skillType:(SkillType)type {
+    double transition = 1.0;
+    switch (type) {
+        case SkillType_Usability:
+            transition = [self getUsabilityTransition];
+            break;
+        case SkillType_Syntax:
+            transition = [self getSyntaxTransition];
+            break;
+        case SkillType_Vocab:
+            transition = [self getVocabTransition];
+            break;
+        default:
+            break;
+    }
+    return skillEvaluated + ((1 - skillEvaluated) * transition);
+}
 
+#pragma mark - Playword
+
+- (double) calcCorrectPlayWord:(double) prevSkillValue {
+    
+    
+    return (prevSkillValue * (1 - [self getSlip]))
+				/ (prevSkillValue * (1 - [self getSlip]) + (1 - prevSkillValue) * [self getGuess]);
+}
+
+- (double) calcIncorrectPlayWord:(double) prevSkillValue {
+    
+    return (prevSkillValue * [self getSlip])
+				/ (([self getSlip] * prevSkillValue) + ((1 - [self getGuess]) * (1 - prevSkillValue)));
+    
+}
 
 @end
