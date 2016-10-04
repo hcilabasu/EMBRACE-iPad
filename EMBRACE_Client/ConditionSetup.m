@@ -18,6 +18,7 @@
 @synthesize newInstructions;
 @synthesize vocabPageEnabled;
 @synthesize assessmentPageEnabled;
+@synthesize shouldShowITSMessages;
 
 @synthesize allowFileSync;
 
@@ -43,6 +44,7 @@
         vocabPageEnabled = true;
         assessmentPageEnabled = false;
         
+        shouldShowITSMessages = YES;
         allowFileSync = true; //NOTE: Still testing this functionality
     }
     

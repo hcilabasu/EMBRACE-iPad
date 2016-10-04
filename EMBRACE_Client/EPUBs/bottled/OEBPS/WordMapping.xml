@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wordMappings>
+    <word keyWord="house">
+        <mappedWords>
+            <subWord>house</subWord>
+            <subWord>nearHouse</subWord>
+        </mappedWords>
+    </word>
+    
+    <!--
+    bed
+    bedroom
+    bench
+    bush
+    chair
+    livingRoom
+    riverSide
+     -->
+</wordMappings>

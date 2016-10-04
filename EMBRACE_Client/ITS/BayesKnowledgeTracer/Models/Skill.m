@@ -8,12 +8,16 @@
 
 #import "Skill.h"
 #import "WordSkill.h"
+#import "SyntaxSkill.h"
+#import "UsabilitySkill.h"
 
 #define DEFAULT_INITIAL_VALUE 0.15
 
 @interface Skill ()
 
 @property (nonatomic, assign) double skillValue;
+
+@property (nonatomic, assign) SkillType skillType;
 
 @end
 
@@ -25,6 +29,19 @@
     }
     
     WordSkill *skill = [[WordSkill alloc] initWithWord:word];
+    skill.skillType = SkillType_Vocab;
+    return skill;
+}
+
++ (Skill *)syntaxSkillWithComplexity:(EMComplexity)complexity {
+    SyntaxSkill *skill = [[SyntaxSkill alloc] initWithComplexity:complexity];
+    skill.skillType = SkillType_Syntax;
+    return skill;
+}
+
++ (Skill *)usabilitySkill {
+    UsabilitySkill *skill = [[UsabilitySkill alloc] init];
+    skill.skillType = SkillType_Usability;
     return skill;
 }
 

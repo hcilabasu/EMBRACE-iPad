@@ -3119,26 +3119,35 @@ BOOL wasPathFollowed = false;
     else {
         if (conditionSetup.appMode == ITS) {
             // TODO: Determine most probable error type
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Choose the most probable error type:" message:nil preferredStyle:UIAlertControllerStyleAlert];
-            
-            [alert addAction:[UIAlertAction actionWithTitle:@"Vocabulary" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
-                              {
-                                  [self provideFeedbackForErrorType:@"vocabulary"];
-                              }]];
-            [alert addAction:[UIAlertAction actionWithTitle:@"Syntax" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
-                              {
-                                  [self provideFeedbackForErrorType:@"syntax"];
-                              }]];
-            [alert addAction:[UIAlertAction actionWithTitle:@"Usability" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
-                              {
-                                  [self provideFeedbackForErrorType:@"usability"];
-                              }]];
-            [alert addAction:[UIAlertAction actionWithTitle:@"None" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action)
-                              {
-                                  IntroductionClass.allowInteractions = TRUE;
-                              }]];
-            
-            [self presentViewController:alert animated:YES completion:nil];
+            if (conditionSetup.shouldShowITSMessages == NO) {
+                NSString *errorType;
+                [self provideFeedbackForErrorType:errorType];
+            }
+            else {
+                // Delay is added so that this alert is displayed after updated skills alert
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 5.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Choose the most probable error type:" message:nil preferredStyle:UIAlertControllerStyleAlert];
+                    
+                    [alert addAction:[UIAlertAction actionWithTitle:@"Vocabulary" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                                      {
+                                          [self provideFeedbackForErrorType:@"vocabulary"];
+                                      }]];
+                    [alert addAction:[UIAlertAction actionWithTitle:@"Syntax" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                                      {
+                                          [self provideFeedbackForErrorType:@"syntax"];
+                                      }]];
+                    [alert addAction:[UIAlertAction actionWithTitle:@"Usability" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                                      {
+                                          [self provideFeedbackForErrorType:@"usability"];
+                                      }]];
+                    [alert addAction:[UIAlertAction actionWithTitle:@"None" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action)
+                                      {
+                                          IntroductionClass.allowInteractions = TRUE;
+                                      }]];
+                    
+                    [self presentViewController:alert animated:YES completion:nil];
+                });
+            }
         }
     }
     
@@ -5180,21 +5189,22 @@ BOOL wasPathFollowed = false;
 
 - (void)analyzer:(ManipulationAnalyser *)analyzer showMessage:(NSString *)message {
    
-    
+    if (conditionSetup.shouldShowITSMessages == NO)
+        return;
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
                                                                    message:message
                                                             preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *action = [UIAlertAction actionWithTitle:@"Dismiss"
-                                                     style:UIAlertActionStyleCancel
-                                                   handler:nil];
-    [alert addAction:action];
-//    [self presentViewController:alert animated:YES completion:nil];
+//    UIAlertAction *action = [UIAlertAction actionWithTitle:@"Dismiss"
+//                                                     style:UIAlertActionStyleCancel
+//                                                   handler:nil];
+//    [alert addAction:action];
+    [self presentViewController:alert animated:YES completion:nil];
     
-//    int duration = 5; // duration in seconds
-//    
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-//        [alert dismissViewControllerAnimated:YES completion:nil];
-//    });
+    int duration = 5; // duration in seconds
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [alert dismissViewControllerAnimated:YES completion:nil];
+    });
 }
 
 - (NSArray *)getNextStepsForCurrentSentence:(ManipulationAnalyser *)analyzer {
