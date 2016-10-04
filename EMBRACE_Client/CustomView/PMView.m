@@ -809,6 +809,11 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     [self.bookView stringByEvaluatingJavaScriptFromString:highlight];
 }
 
+- (void)highlightLocation:(int)originX : (int)originY : (int)width : (int)height {
+    NSString *highlight = [NSString stringWithFormat:@"highlightLocation(%d, %d, %d, %d)", originX, originY, width, height];
+    [self.bookView stringByEvaluatingJavaScriptFromString:highlight];
+}
+
 - (void)highlightObjectOnWordTap:(NSString *)objectId {
     NSString *highlight = [NSString stringWithFormat:@"highlightObjectOnWordTap(%@)", objectId];
     [self.bookView stringByEvaluatingJavaScriptFromString:highlight];

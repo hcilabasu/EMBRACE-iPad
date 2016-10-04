@@ -427,7 +427,7 @@
     [self readAlternateSentenceMetadata:book :[[book mainContentPath] stringByAppendingString:@"AlternateSentences-MetaData.xml"]];
     [self readIntroductionMetadata:model :[[book mainContentPath] stringByAppendingString:@"Introductions-MetaData.xml"]];
     [self readVocabularyIntroductionMetadata:model :[[book mainContentPath] stringByAppendingString:@"VocabularyIntroductions-MetaData.xml"]];
-    
+    [self readVocabularyMetadata:book :[[book mainContentPath] stringByAppendingString:@"Vocabulary-MetaData.xml"]];
     
     //Separate Assessment metadata files depending on language
     if (conditionSetup.language == ENGLISH) {
@@ -1202,6 +1202,42 @@
             }
             
             [model addVocabulary:storyTitle :storyWords];
+        }
+    }
+}
+
+- (void)readVocabularyMetadata:(Book *)book :(NSString *)filepath {
+    NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
+    NSError *error;
+    GDataXMLDocument *metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:&error];
+    
+    NSArray *vocabularyElements = [metadataDoc nodesForXPath:@"//vocabulary" error:nil];
+    
+    if ([vocabularyElements count] > 0) {
+        GDataXMLElement *vocabularyElement = (GDataXMLElement *)[vocabularyElements objectAtIndex:0];
+        
+        NSArray *storyElements = [vocabularyElement elementsForName:@"story"];
+        
+        for (GDataXMLElement *storyElement in storyElements) {
+            NSString *storyTitle = [[storyElement attributeForName:@"title"] stringValue];
+            
+            NSArray *vocabElements = [storyElement elementsForName:@"vocabulary"];
+            NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+            
+            for (GDataXMLElement *vocabElement in vocabElements) {
+                BOOL introWord = false;
+                
+                if ([[[vocabElement attributeForName:@"introWord"] stringValue] isEqualToString:@"true"]) {
+                    introWord = true;
+                }
+                
+                NSString *word = vocabElement.stringValue;
+                
+                [dictionary setValue:@(introWord) forKey:word];
+            }
+            
+            Chapter *chapter = [book getChapterWithTitle:storyTitle];
+            chapter.vocabulary = dictionary;
         }
     }
 }

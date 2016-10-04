@@ -153,8 +153,40 @@ manipulationContext:(ManipulationContext *)context
     return [self.manipulationAnalyser vocabSkillForWord:word];
 }
 
-- (NSMutableSet *)getRequestedVocab {
-    return [self.manipulationAnalyser getRequestedVocab];
+- (NSMutableSet *)getExtraIntroductionVocabularyForChapter:(Chapter *)chapter inBook:(Book *)book {
+    NSMutableSet *extraVocabulary = [[NSMutableSet alloc] init];
+    [extraVocabulary unionSet:[self.manipulationAnalyser getRequestedVocab]];
+    
+    NSMutableSet *chapterVocabulary = [chapter getOldVocabulary];
+    [extraVocabulary intersectSet:chapterVocabulary];
+    
+    NSMutableSet *solutionVocabulary = [[NSMutableSet alloc] init];
+    
+    for (Chapter *bookChapter in [book chapters]) {
+        if ([[bookChapter title] isEqualToString:[chapter title]]) {
+            break;
+        }
+        else {
+            [solutionVocabulary unionSet:[bookChapter getVocabularyFromSolutions]];
+        }
+    }
+    
+    [solutionVocabulary intersectSet:[chapter getVocabularyFromSolutions]];
+    [extraVocabulary unionSet:solutionVocabulary];
+    
+    NSMutableSet *highSkillVocabulary = [[NSMutableSet alloc] init];
+    
+    for (NSString *vocabulary in extraVocabulary) {
+        double skill = [self vocabSkillValueForWord:vocabulary];
+        
+        if (skill >= 0.9) {
+            [highSkillVocabulary addObject:vocabulary];
+        }
+    }
+    
+    [extraVocabulary minusSet:highSkillVocabulary];
+    
+    return extraVocabulary;
 }
 
 @end

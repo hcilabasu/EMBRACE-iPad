@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wordMappings>
+    <word keyWord="paco">
+        <mappedWords>
+            <subWord>paco</subWord>
+            <subWord>aroundPaco</subWord>
+            <subWord>dog</subWord>
+        </mappedWords>
+    </word>
+    
+    <word keyWord="house">
+        <mappedWords>
+            <subWord>house</subWord>
+            <subWord>home</subWord>
+            <subWord>frontHouse</subWord>
+        </mappedWords>
+    </word>
+    
+    <word keyWord="tree">
+        <mappedWords>
+            <subWord>tree</subWord>
+            <subWord>nearTree</subWord>
+        </mappedWords>
+    </word>
+    
+    <word keyWord="hook">
+        <mappedWords>
+            <subWord>hook</subWord>
+            <subWord>nearHook</subWord>
+        </mappedWords>
+    </word>
+    <!--
+    outside
+    bathroom
+    crib
+    kitchen
+    kitchenSink
+    livingRoom
+    nest
+    playRoom
+     -->
+</wordMappings>

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ManipulationContext.h"
 #import "ActionStep.h"
+#import "Book.h"
 
 typedef NS_ENUM(NSInteger, EMComplexity) {
     EM_Easy = 1,
@@ -46,8 +47,9 @@ manipulationContext:(ManipulationContext *)context
                                 isVerified:(BOOL)verified;
 
 - (EMComplexity)getCurrentComplexity;
-- (NSMutableSet *)getRequestedVocab;
 
 - (double)vocabSkillValueForWord:(NSString *)word;
+
+- (NSMutableSet *)getExtraIntroductionVocabularyForChapter:(Chapter *)chapter inBook:(Book *)book;
 
 @end

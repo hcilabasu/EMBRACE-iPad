@@ -373,6 +373,8 @@ BOOL wasPathFollowed = false;
  * Creates a solution step for each vocabulary word in the introduction and adds it to the page solutions
  */
 - (void)createVocabSolutionsForPage {
+    Chapter *chapter = [book getChapterWithTitle:chapterTitle];
+    
     NSMutableSet *newVocab = [[NSMutableSet alloc] init];
     NSMutableArray *vocabSolutionSteps = [[NSMutableArray alloc] init];
     
@@ -392,10 +394,8 @@ BOOL wasPathFollowed = false;
         [vocabSolutionSteps addObject:vocabSolutionStep];
     }
     
-    // TODO: Dynamically add vocabulary based on user's current skills
     if (conditionSetup.appMode == ITS) {
-        NSMutableSet *vocabToAdd = [[ITSController sharedInstance] getRequestedVocab];
-        [vocabToAdd minusSet:newVocab];
+        NSMutableSet *vocabToAdd = [[ITSController sharedInstance] getExtraIntroductionVocabularyForChapter:chapter inBook:book];
         
         for (NSString *vocab in vocabToAdd) {
             totalSentences++;
@@ -416,8 +416,6 @@ BOOL wasPathFollowed = false;
             [vocabSolutionSteps addObject:vocabSolutionStep];
         }
     }
-    
-    Chapter *chapter = [book getChapterWithTitle:chapterTitle];
     
     if (conditionSetup.currentMode == PM_MODE || conditionSetup.condition == CONTROL) {
         PMSolution = [[PhysicalManipulationSolution alloc] init];
@@ -685,6 +683,7 @@ BOOL wasPathFollowed = false;
     currentStep = 1;
     manipulationContext.stepNumber = currentStep;
     stepsComplete = FALSE;
+    numAttempts = 0;
     
     //Get number of steps for current sentence
     if (conditionSetup.appMode == ITS && [pageSentences count] > 0) {
@@ -768,6 +767,7 @@ BOOL wasPathFollowed = false;
     
     //Check if able to increment current step
     if (currentStep < numSteps) {
+        numAttempts = 0;
         
         //if the current solution step is a custom pm, then increment current step minMenuOption times
         if ([@"PM_CUSTOM" isEqualToString: [currSolStep menuType]]){
@@ -1465,6 +1465,11 @@ BOOL wasPathFollowed = false;
  */
 - (void)highlightImageForText:(NSString *)englishSentenceText {
     NSObject *valueImage = [[Translation translationImages]objectForKey:englishSentenceText];
+    
+    if (valueImage == nil) {
+        valueImage = englishSentenceText;
+    }
+    
     NSString *imageHighlighted = @"";
     
     //If the key contains more than one value
@@ -3114,6 +3119,42 @@ BOOL wasPathFollowed = false;
     if (numAttempts >= maxAttempts) {
         numAttempts = 0;
         
+        [self provideFeedbackForErrorType:@"usability"];
+    }
+    else {
+        if (conditionSetup.appMode == ITS) {
+            // TODO: Determine most probable error type
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Choose the most probable error type:" message:nil preferredStyle:UIAlertControllerStyleAlert];
+            
+            [alert addAction:[UIAlertAction actionWithTitle:@"Vocabulary" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                              {
+                                  [self provideFeedbackForErrorType:@"vocabulary"];
+                              }]];
+            [alert addAction:[UIAlertAction actionWithTitle:@"Syntax" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                              {
+                                  [self provideFeedbackForErrorType:@"syntax"];
+                              }]];
+            [alert addAction:[UIAlertAction actionWithTitle:@"Usability" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                              {
+                                  [self provideFeedbackForErrorType:@"usability"];
+                              }]];
+            [alert addAction:[UIAlertAction actionWithTitle:@"None" style:UIAlertActionStyleCancel handler:nil]];
+            
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+    }
+    
+    if (conditionSetup.appMode == ITS) {
+        //Record error for complexity
+        [[pageStatistics objectForKey:currentPageId] addErrorForComplexity:(currentComplexity - 1)];
+    }
+}
+
+// TODO: Change error type NSString to enum
+- (void)provideFeedbackForErrorType:(NSString *)errorType {
+    [self.view setUserInteractionEnabled:NO];
+    
+    if ([errorType isEqualToString:@"vocabulary"]) {
         //Get steps for current sentence
         NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
         
@@ -3122,26 +3163,170 @@ BOOL wasPathFollowed = false;
         NSString *stepType = [currSolStep stepType];
         
         if ([stepType isEqualToString:@"check"] || [stepType isEqualToString:@"checkLeft"] || [stepType isEqualToString:@"checkRight"] || [stepType isEqualToString:@"checkUp"] || [stepType isEqualToString:@"checkDown"] || [stepType isEqualToString:@"checkAndSwap"] || [stepType isEqualToString:@"tapToAnimate"] || [stepType isEqualToString:@"checkPath"] || [stepType isEqualToString:@"shakeAndTap"] || [stepType isEqualToString:@"tapWord"] ) {
+            
+            NSString *object1Id = [currSolStep object1Id];
+            NSString *locationId = [currSolStep locationId];
+            
+            [self highlightImageForText:object1Id];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                if([model getLocationWithId:locationId]){
+                    [self highlightObject:locationId :1.5];
+                }
+            });
+        }
+        else {
+            NSString *object1Id = [currSolStep object1Id];
+            NSString *object2Id = [currSolStep object2Id];
+            
+            [self highlightImageForText:object1Id];
+            [self highlightImageForText:object2Id];
+        }
+    }
+    else if ([errorType isEqualToString:@"syntax"]) {
+        NSMutableArray *simplerSentences = [[NSMutableArray alloc] init];
+        
+        if (currentComplexity > 1) {
+            Chapter *chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
+            PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
+            
+            for (AlternateSentence *alternateSentence in [[PMActivity alternateSentences] objectForKey:currentPageId]) {
+                if ([alternateSentence complexity] == currentComplexity - 1 && [[alternateSentence ideas] containsObject:@(currentIdea)]) {
+                    [simplerSentences addObject:[alternateSentence text]];
+                }
+            }
+        }
+        
+        if ([simplerSentences count] > 0) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Hint" message:[simplerSentences componentsJoinedByString:@" "] preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+            [alert addAction:action];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+        // TODO: Temporary message for demo purposes only
+        else {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Hint" message:@"There are no simpler sentences available." preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+            [alert addAction:action];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+    }
+    else if ([errorType isEqualToString:@"usability"]) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Need help?" message:@"The iPad will show you how to complete this step." preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action)
+                          {
+                              
+                              [self.view setUserInteractionEnabled:YES];
+                              [self animatePerformingStep];
+                              [playaudioClass playAutoCompleteStepNoise];
+                          }]];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [self.view setUserInteractionEnabled:YES];
+     });
+}
+
+- (void)animatePerformingStep {
+    //Get steps for current sentence
+    NSMutableArray *currSolSteps = [self returnCurrentSolutionSteps];
+    
+    //Get current step to be completed
+    ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+    NSString *stepType = [currSolStep stepType];
+    
+    if ([stepType isEqualToString:@"check"] || [stepType isEqualToString:@"checkLeft"] || [stepType isEqualToString:@"checkRight"] || [stepType isEqualToString:@"checkUp"] || [stepType isEqualToString:@"checkDown"] || [stepType isEqualToString:@"checkAndSwap"] || [stepType isEqualToString:@"tapToAnimate"] || [stepType isEqualToString:@"checkPath"] || [stepType isEqualToString:@"shakeAndTap"] || [stepType isEqualToString:@"tapWord"] ) {
+        if ([stepType isEqualToString:@"check"]) {
+            NSString *object1Id = [currSolStep object1Id];
+            ActionStep *nextSolStep = [currSolSteps objectAtIndex:currentStep];
+            
+            if (nextSolStep != nil && [[nextSolStep stepType] isEqualToString:@"move"] && [[nextSolStep object1Id] isEqualToString:object1Id]) {
+                Hotspot *object1Hotspot = [model getHotspotforObjectWithActionAndRole:object1Id :[currSolStep action] :@"subject"];
+                CGPoint object1HotspotLocation = [self.pmView getHotspotLocation:object1Hotspot];
+                
+                Waypoint *waypoint = [model getWaypointWithId:[nextSolStep waypointId]];
+                CGPoint waypointLocation = [self getWaypointLocation:waypoint];
+                
+                [self highlightObject:object1Id :2.0];
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                    movingObjectId = object1Id;
+                    [self.pmView animateObject:object1Id from:object1HotspotLocation to:waypointLocation action:@"moveToLocation" areaId:@""];
+                    
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                        [self highlightObject:object1Id :2.0];
+                        
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                            [self incrementCurrentStep];
+                        });
+                    });
+                });
+            }
+        }
+        else {
             if ([stepType isEqualToString:@"checkAndSwap"]) {
                 [self swapObjectImage];
             }
             
             [self incrementCurrentStep];
         }
-        else {
-            //Get the interaction to be performed
-            PossibleInteraction *interaction = [self getCorrectInteraction];
+    }
+    else if([stepType isEqualToString:@"transferAndGroup"] || [stepType isEqualToString:@"transferAndDisappear"]){
+        NSString *object1Id = [currSolStep object1Id];
+        ActionStep *nextSolStep = [currSolSteps objectAtIndex:currentStep];
+        
+        if (nextSolStep != nil && ([[nextSolStep stepType] isEqualToString:@"transferAndGroup"] || [stepType isEqualToString:@"transferAndDisappear"])) {
+            NSString *nextObject1ID = [nextSolStep object1Id];
+            Hotspot *object1Hotspot = [model getHotspotforObjectWithActionAndRole:object1Id :[currSolStep action] :@"subject"];
+            CGPoint object1HotspotLocation = [self.pmView getHotspotLocation:object1Hotspot];
             
-            //Perform the interaction and increment the step
-            [self checkSolutionForInteraction:interaction];
+            Hotspot *nextObject1Hotspot = [model getHotspotforObjectWithActionAndRole:nextObject1ID :[nextSolStep action] :@"subject"];
+            CGPoint nextObject1HotspotLocation = [self.pmView getHotspotLocation:nextObject1Hotspot];
+            
+            [self highlightObject:object1Id :2.0];
+            [self highlightObject:nextObject1ID :2.0];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                movingObjectId = object1Id;
+                [self.pmView animateObject:object1Id from:object1HotspotLocation to:nextObject1HotspotLocation action:@"moveToLocation" areaId:@""];
+                
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                        //Get the interaction to be performed
+                        PossibleInteraction *interaction = [self getCorrectInteraction];
+                        
+                        //Perform the interaction and increment the step
+                        [self checkSolutionForInteraction:interaction];
+                    });
+            });
         }
         
-        [playaudioClass playAutoCompleteStepNoise];
     }
-    
-    if (conditionSetup.appMode == ITS) {
-        //Record error for complexity
-        [[pageStatistics objectForKey:currentPageId] addErrorForComplexity:(currentComplexity - 1)];
+    else {
+        NSString *object1Id = [currSolStep object1Id];
+        NSString *object2Id = [currSolStep object2Id];
+        
+        Hotspot *object1Hotspot = [model getHotspotforObjectWithActionAndRole:object1Id :[currSolStep action] :@"subject"];
+        Hotspot *object2Hotspot = [model getHotspotforObjectWithActionAndRole:object2Id :[currSolStep action] :@"object"];
+        
+        CGPoint object1HotspotLocation = [self.pmView getHotspotLocation:object1Hotspot];
+        CGPoint object2HotspotLocation = [self.pmView getHotspotLocation:object2Hotspot];
+        
+        [self highlightObject:object1Id :2.0];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            movingObjectId = object1Id;
+            [self.pmView animateObject:object1Id from:object1HotspotLocation to:object2HotspotLocation action:@"moveToLocation" areaId:@""];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                //Get the interaction to be performed
+                PossibleInteraction *interaction = [self getCorrectInteraction];
+                
+                //Perform the interaction and increment the step
+                [self checkSolutionForInteraction:interaction];
+                
+                [self highlightObject:object1Id :2.0];
+            });
+        });
     }
 }
 
@@ -3330,13 +3515,13 @@ BOOL wasPathFollowed = false;
                         }
                         //Otherwise, one of these is connected to another object...so we check to see if the other object can be connected with the unconnected one.
                         else if (actionsMatch
-                                 && [self.pmView isObjectGrouped:obj atHotSpot:movingObjectHotspotLoc]
-                                && [self.pmView isObjectGrouped:objId atHotSpot:hotspotLoc]
+                                 && ![isHotspotConnectedMovingObjectString isEqualToString:@""]
+                                 && [isHotspotConnectedObjectString isEqualToString:@""]
                                  && !rolesMatch) {
-                            [groupings addObjectsFromArray:[self getPossibleTransferInteractionsforObjects:obj :[self.pmView groupedObject:obj atHotSpot:movingObjectHotspotLoc] :objId :movingObjectHotspot :hotspot]];
+                            [groupings addObjectsFromArray:[self getPossibleTransferInteractionsforObjects:obj :isHotspotConnectedMovingObjectString :objId :movingObjectHotspot :hotspot]];
                         }
                         else if (actionsMatch && [isHotspotConnectedMovingObjectString isEqualToString:@""]
-                                && ![isHotspotConnectedObjectString isEqualToString:@""] && !rolesMatch) {
+                                 && ![isHotspotConnectedObjectString isEqualToString:@""] && !rolesMatch) {
                             [groupings addObjectsFromArray:[self getPossibleTransferInteractionsforObjects:objId :isHotspotConnectedObjectString :obj :hotspot :movingObjectHotspot]];
                         }
                     }
@@ -4799,6 +4984,17 @@ BOOL wasPathFollowed = false;
         //Highlight the tapped object
         [self.pmView highLightArea:object];
     }
+    else if ([model getLocationWithId:object]){
+        Location *loc = [model getLocationWithId:object];
+        
+        //Calculate the x,y coordinates and the width and height in pixels from %
+        float locationX = [loc.originX floatValue] / 100.0 * [self.pmView frame].size.width;
+        float locationY = [loc.originY floatValue] / 100.0 * [self.pmView frame].size.height;
+        float locationWidth = [loc.width floatValue] / 100.0 * [self.pmView frame].size.width;
+        float locationHeight = [loc.height floatValue] / 100.0 * [self.pmView frame].size.height;
+        
+        [self.pmView highlightLocation:lroundf(locationX):lroundf(locationY):lroundf(locationWidth):lroundf(locationHeight)];
+    }
     else {
         //Highlight the tapped object
         [self.pmView highlightObjectOnWordTap:object];
@@ -4978,7 +5174,7 @@ BOOL wasPathFollowed = false;
                                                      style:UIAlertActionStyleCancel
                                                    handler:nil];
     [alert addAction:action];
-    [self presentViewController:alert animated:YES completion:nil];
+//    [self presentViewController:alert animated:YES completion:nil];
     
 //    int duration = 5; // duration in seconds
 //    
