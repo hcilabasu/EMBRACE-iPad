@@ -11,7 +11,7 @@
 #import "BookCellView.h"
 #import "BookHeaderView.h"
 #import "Book.h"
-#import "PMViewController.h"
+#import "ManipulationViewController.h"
 #import "AuthoringModeViewController.h"
 #import "ServerCommunicationController.h"
 #import "ConditionSetup.h"
@@ -322,7 +322,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
         [destination loadFirstPage];
     }
     else {
-        PMViewController *destination = [segue destinationViewController];
+        ManipulationViewController *destination = [segue destinationViewController];
         destination.bookImporter = bookImporter;
         destination.bookTitle = self.bookToOpen;
         destination.chapterTitle = self.chapterToOpen;
@@ -581,10 +581,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
             //Get selected book
             Book *book = [books objectAtIndex:selectedBookIndex];
             
-            NSString *title = [[book title] stringByAppendingString:@" - "];
-            title = [title stringByAppendingString:[book author]];
-            
-            self.bookToOpen = title;
+            self.bookToOpen = [book title];
             self.chapterToOpen = [[[book chapters] objectAtIndex:indexPath.row] title];
             
             if (useSequence) {
@@ -612,8 +609,8 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                 conditionSetup.language = [currentMode language];
                 conditionSetup.reader = [currentMode reader];
                 conditionSetup.newInstructions = [currentMode newInstructions];
-                conditionSetup.vocabPageEnabled = [currentMode vocabPageEnabled];
-                conditionSetup.assessmentPageEnabled = [currentMode assessmentPageEnabled];
+                conditionSetup.isVocabPageEnabled = [currentMode vocabPageEnabled];
+                conditionSetup.isAssessmentPageEnabled = [currentMode assessmentPageEnabled];
             }
             
             NSString *condition = @"Unknown";

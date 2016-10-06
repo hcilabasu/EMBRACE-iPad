@@ -1,39 +1,41 @@
 //
-//  PMView.m
+//  ManipulationView.m
 //  EMBRACE
 //
 //  Created by Jithin on 7/6/16.
 //  Copyright © 2016 Andreea Danielescu. All rights reserved.
 //
 
-#import "PMView.h"
+#import "ManipulationView.h"
 #import "InteractionModel.h"
 #import "NSString+HTML.h"
 #import "Book.h"
 #import "MenuItemImage.h"
 
-@interface PMView()<UIScrollViewDelegate, UIWebViewDelegate>
-
-@property (nonatomic, strong) UIWebView *bookView;
+@interface ManipulationView()<UIScrollViewDelegate, UIWebViewDelegate>
 
 @end
 
-@implementation PMView
+@implementation ManipulationView
+@synthesize bookView;
 
-- (instancetype)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrameAndView:(CGRect)frame : (UIWebView *) bv{
     self = [super initWithFrame:frame];
     if (self) {
-        _bookView = [[UIWebView alloc] initWithFrame:frame];
-        _bookView.scalesPageToFit = YES;
-        _bookView.scrollView.delegate = self;
-        _bookView.delegate = self;
         
-        [[_bookView scrollView] setBounces: NO];
-        [[_bookView scrollView] setScrollEnabled:NO];
-        [self addSubview:_bookView];
+        bookView = bv;
+        
+        //bookview = [[UIWebView alloc] initWithFrame:frame];
+        /*bookview.scalesPageToFit = YES;
+        bookview.scrollView.delegate = self;
+        bookview.delegate = self;
+        
+        [[bookview scrollView] setBounces: NO];
+        [[bookview scrollView] setScrollEnabled:NO];
+        [self addSubview:bookview];
         
         
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:_bookView
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:bookview
                                                               attribute:NSLayoutAttributeTop
                                                               relatedBy:NSLayoutRelationEqual
                                                                  toItem:self
@@ -41,7 +43,7 @@
                                                              multiplier:1.0
                                                                constant:0.0]];
         
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:_bookView
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:bookview
                                                               attribute:NSLayoutAttributeLeading
                                                               relatedBy:NSLayoutRelationEqual
                                                                  toItem:self
@@ -49,7 +51,7 @@
                                                              multiplier:1.0
                                                                constant:0.0]];
         
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:_bookView
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:bookview
                                                               attribute:NSLayoutAttributeBottom
                                                               relatedBy:NSLayoutRelationEqual
                                                                  toItem:self
@@ -57,22 +59,24 @@
                                                              multiplier:1.0
                                                                constant:0.0]];
         
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:_bookView
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:bookview
                                                               attribute:NSLayoutAttributeTrailing
                                                               relatedBy:NSLayoutRelationEqual
                                                                  toItem:self
                                                               attribute:NSLayoutAttributeTrailing
                                                              multiplier:1.0
                                                                constant:0.0]];
+         */
 
         
     }
     return self;
 }
 
+/*
 - (void)addGesture:(UIGestureRecognizer *)recogniser {
     [self.bookView addGestureRecognizer:recogniser];
-}
+}*/
 
 #pragma mark -
 
@@ -165,7 +169,7 @@
 }
 
 - (NSString *)getVocabAtId:(NSInteger)idNum {
-    NSString *requestSentenceText = [NSString stringWithFormat:@"document.getElementById(%ld).innerHTML", (long)idNum];
+    NSString *requestSentenceText = [NSString stringWithFormat:@"document.getElementById('%ld').innerHTML", (long)idNum];
     NSString *sentenceText = [self.bookView stringByEvaluatingJavaScriptFromString:requestSentenceText];
     return sentenceText;
 }
@@ -193,7 +197,7 @@
 }
 
 - (BOOL)isObjectCenter:(NSString *)objectId {
-    NSString *objectClassName = [NSString stringWithFormat:@"document.getElementById(%@).className", objectId];
+    NSString *objectClassName = [NSString stringWithFormat:@"document.getElementById('%@').className", objectId];
     objectClassName = [self.bookView stringByEvaluatingJavaScriptFromString:objectClassName];
     
     return ([objectClassName rangeOfString:@"center"].location != NSNotFound);
@@ -236,9 +240,9 @@
 
 - (void)hideCanvas {
     
-    NSString *hideCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'none';", @"'overlay'"];
-    NSString *hideHighlight = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'none';", @"'highlight'"];
-    NSString *hideAnimation = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'none';", @"'animation'"];
+    NSString *hideCanvas = [NSString stringWithFormat:@"document.getElementById('%@').style.display = 'none';", @"'overlay'"];
+    NSString *hideHighlight = [NSString stringWithFormat:@"document.getElementById('%@').style.display = 'none';", @"'highlight'"];
+    NSString *hideAnimation = [NSString stringWithFormat:@"document.getElementById('%@').style.display = 'none';", @"'animation'"];
     [self.bookView stringByEvaluatingJavaScriptFromString:hideCanvas];
     [self.bookView stringByEvaluatingJavaScriptFromString:hideHighlight];
     [self.bookView stringByEvaluatingJavaScriptFromString:hideAnimation];
@@ -246,9 +250,9 @@
 
 - (void)showCanvas {
     
-    NSString *showCanvas = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'block';", @"'overlay'"];
-    NSString *showHighlight = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'block';", @"'highlight'"];
-    NSString *showAnimation = [NSString stringWithFormat:@"document.getElementById(%@).style.display = 'block';", @"'animation'"];
+    NSString *showCanvas = [NSString stringWithFormat:@"document.getElementById('%@').style.display = 'block';", @"'overlay'"];
+    NSString *showHighlight = [NSString stringWithFormat:@"document.getElementById('%@').style.display = 'block';", @"'highlight'"];
+    NSString *showAnimation = [NSString stringWithFormat:@"document.getElementById('%@').style.display = 'block';", @"'animation'"];
     [self.bookView stringByEvaluatingJavaScriptFromString:showCanvas];
     [self.bookView stringByEvaluatingJavaScriptFromString:showHighlight];
     [self.bookView stringByEvaluatingJavaScriptFromString:showAnimation];
@@ -354,15 +358,17 @@
     return [self.bookView stringByEvaluatingJavaScriptFromString:actionSentence];
 }
 
+/*
 #pragma mark - UIScrollView delegates
 
 //Remove zoom in scroll view for UIWebView
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
     return nil;
-}
+}*/
 
 #pragma mark - Webview delegates
 
+/*
 - (BOOL)webView:(UIWebView *)webView
 shouldStartLoadWithRequest:(NSURLRequest *)request
  navigationType:(UIWebViewNavigationType)navigationType {
@@ -391,14 +397,12 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitTouchCallout='none';"];
     
     [self loadJsFiles];
-    [self.delegate pmViewDidLoad:self];
-    
-    
+    [self.delegate manipulationViewDidLoad:self];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     
-}
+}*/
 
 #pragma mark - Positions
 
@@ -587,12 +591,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     path.path = area.aPath.CGPath;
     [path setFillColor:[UIColor clearColor].CGColor];
     
-    if ([areaName rangeOfString:@"Path"].location == NSNotFound) {
+    if (![areaName containsString:@"Path"]) {
         [path setStrokeColor:[UIColor greenColor].CGColor];
     }
     else {
         //If it is a path, paint it red
         [path setStrokeColor:[UIColor redColor].CGColor];
+        [self.bookView.layer addSublayer:path];
     }
     
 }
@@ -640,7 +645,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     //Set the opacity of all but the current sentence to .2
     NSInteger totalSentences = [self totalSentences];
     for (NSInteger i = currentSentence; i < totalSentences; i++) {
-        NSString *setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%ld, .2)", i + 1];
+        NSString *setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, .2)", i + 1];
         [self.bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
     }
 }
@@ -776,11 +781,11 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     [self.bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
     
     //Set the color of the previous sentence to black
-    setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%ld, 'black')", currentSentence - 1];
+    setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence - 1];
     [self.bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
     
     //Decrease the opacity of the previous sentence
-    setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%ld, .2)", currentSentence - 1];
+    setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, .2)", currentSentence - 1];
     [self.bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
     
     //Get the sentence class

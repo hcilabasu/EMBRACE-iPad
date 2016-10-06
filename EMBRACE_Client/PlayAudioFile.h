@@ -16,7 +16,7 @@
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
 @property (nonatomic, strong) AVAudioPlayer *audioPlayerAfter; // Used to play sounds after the first audio player has finished playing
 @property (nonatomic, strong) AVSpeechSynthesizer *syn;
-@property (nonatomic, weak) UIViewController *PmviewController;
+@property (nonatomic, weak) UIViewController *manipulationViewController;
 @property (nonatomic) Float64 audioDuration;
 @property (nonatomic) Float64 audioAfterDuration;
 

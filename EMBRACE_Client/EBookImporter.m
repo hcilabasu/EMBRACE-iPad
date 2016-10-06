@@ -129,12 +129,9 @@
  * Returns the Book with the specified title
  */
 - (Book *)getBookWithTitle:(NSString *)bookTitle {
-    NSRange dashRange = [bookTitle rangeOfString:@" - "];
-    NSString *title = [bookTitle substringToIndex:dashRange.location];
-    NSString *author = [bookTitle substringFromIndex:dashRange.location + dashRange.length];
     
     for (Book *book in library) {
-        if (([book.title compare:title] == NSOrderedSame) && ([book.author compare:author] == NSOrderedSame)) {
+        if (([book.title compare:bookTitle] == NSOrderedSame)) {
             return book;
             break;
         }
@@ -200,18 +197,18 @@
     NSString *title = titleData.stringValue;
     
     //Extract author
-    NSArray *authorElement = [metadata elementsForName:@"dc:creator"];
+    /*NSArray *authorElement = [metadata elementsForName:@"dc:creator"];
     GDataXMLElement *authorData = (GDataXMLElement *)[authorElement objectAtIndex:0];
-    NSString *author = authorData.stringValue;
+    NSString *author = authorData.stringValue;*/
     
     //If there is no title and author information, go ahead and just list it as Unknown
     if (title == nil)
         title = @"Unknown";
-    if (author == nil)
-        author = @"Unknown";
+    /*if (author == nil)
+        author = @"Unknown";*/
     
     //Create Book with author and title
-    book = [[Book alloc] initWithTitleAndAuthor:filepath :title :author];
+    book = [[Book alloc] initWithTitleAndAuthor:filepath :title :@""];
     
     //Set the mainContentPath so we can access the cover image and all other files of the book
     NSRange rangeOfContentFile = [opfFilePath rangeOfString:@"content.opf"];
@@ -430,11 +427,17 @@
     
     
     //Separate Assessment metadata files depending on language
-    if (conditionSetup.language == ENGLISH) {
+    if (conditionSetup.language == ENGLISH && conditionSetup.assessmentMode == ENDOFCHAPTER) {
         [self readAssessmentMetadata:model :[[book mainContentPath] stringByAppendingString:@"AssessmentActivities-MetaData.xml"]];
     }
-    else if (conditionSetup.language == BILINGUAL) {
+    else if (conditionSetup.language == BILINGUAL && conditionSetup.assessmentMode == ENDOFCHAPTER) {
         [self readAssessmentMetadata:model :[[book mainContentPath] stringByAppendingString:@"AssessmentActivitiesSpanish-MetaData.xml"]];
+    }
+    else if (conditionSetup.language == ENGLISH && conditionSetup.assessmentMode == ENDOFBOOK) {
+        [self readAssessmentMetadata:model :[[book mainContentPath] stringByAppendingString:@"AssessmentActivitiesEOB-MetaData.xml"]];
+    }
+    else if (conditionSetup.language == BILINGUAL && conditionSetup.assessmentMode == ENDOFBOOK) {
+        [self readAssessmentMetadata:model :[[book mainContentPath] stringByAppendingString:@"AssessmentActivitiesEOBSpanish-MetaData.xml"]];
     }
     [self readScriptMetadata:book filePath:[[book mainContentPath] stringByAppendingString:@"Script-Metadata.xml"]];
 }
@@ -927,10 +930,11 @@
     }
     else if ([[step name] isEqualToString:@"animate"]) {
         if ([step attributeForName:@"waypointId"]) {
+            NSString *locationId = [[step attributeForName:@"locationId"] stringValue];
             NSString *waypointId = [[step attributeForName:@"waypointId"] stringValue];
             NSString *areaId = [[step attributeForName:@"areaId"] stringValue];
             
-            solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :menuType :stepNum :stepType :obj1Id :nil :nil :waypointId :action :areaId :nil];
+            solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum :menuType :stepNum :stepType :obj1Id :nil :locationId :waypointId :action :areaId :nil];
         }
     }
     else if ([[step name] isEqualToString:@"tapToAnimate"]) {
@@ -960,6 +964,7 @@
     else
     {
         //error unknown step name
+        //TODO: add default solutionStep
     }
     
     

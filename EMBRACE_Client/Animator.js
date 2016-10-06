@@ -103,7 +103,6 @@ function animateObject(objectName, posX, posY, endX, endY, animName, pathToFollo
     else if (animatingObjects[animatingObjectsIndex].animName == "followAnimation") {
         
         animatingObjects[animatingObjectsIndex].velocity.x = animatingObjects[animatingObjectsIndex].maxSpeed;
-        //animatingObjects[animatingObjectsIndex].velocity.x = 2;
         animatingObjects[animatingObjectsIndex].velocity.y = 0;
     }
     

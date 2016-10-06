@@ -12,13 +12,18 @@
 
 @class InteractionModel, Book, MenuItemImage, Hotspot, Waypoint;
 
-@protocol PMViewDelegate;
+@protocol ManipulationViewDelegate;
 
-@interface PMView : UIView
+@interface ManipulationView : UIView
 
-@property (nonatomic, weak) id <PMViewDelegate> delegate;
+@property (nonatomic, weak) id <ManipulationViewDelegate> delegate;
+@property (nonatomic, strong) UIWebView *bookView;
 
-- (void)addGesture:(UIGestureRecognizer *)recogniser;
+//- (void)addGesture:(UIGestureRecognizer *)recogniser;
+
+- (instancetype)initWithFrameAndView:(CGRect)frame : (UIWebView *) bv;
+
+- (void)loadJsFiles;
 
 - (void)loadPageFor:(Book *)book andCurrentPage:(NSString *)page;
 
@@ -180,8 +185,8 @@ shouldUpdateConnection:(BOOL)updateCon
 
 @end
 
-@protocol PMViewDelegate <NSObject>
+@protocol ManipulationViewDelegate <NSObject>
 
-- (void)pmViewDidLoad:(PMView *)view;
+- (void)manipulationViewDidLoad:(ManipulationView *)view;
 
 @end
