@@ -13,6 +13,9 @@
 #import "SentenceStatus.h"
 #import "ActionStep.h"
 #import "Skill.h"
+#import "WordSkill.h"
+#import "SyntaxSkill.h"
+#import "UsabilitySkill.h"
 
 #define DISTANCE_THRESHOLD 90
 
@@ -27,6 +30,8 @@
 @property (nonatomic, strong) NSMutableDictionary *booksDict;
 
 @property (nonatomic, strong) NSMutableSet *playWords;
+
+@property (nonatomic, strong) NSString *mostProbableErrorType;
 
 @end
 
@@ -193,6 +198,7 @@
         
         [skills addObject:skill];
         [self showMessageWith:skills];
+        [self determineMostProbableErrorTypeFromSkills:skills];
         return;
     } else {
         // Check if the user preformed a future step
@@ -228,6 +234,7 @@
                                                           shouldDampen:!isFirstAttempt];
                 [skills addObject:skill];
                 [self showMessageWith:skills];
+                [self determineMostProbableErrorTypeFromSkills:skills];
                 return;
             }
         }
@@ -329,8 +336,87 @@
         [skills addObject:skill];
     }
     [self showMessageWith:skills];
+    [self determineMostProbableErrorTypeFromSkills:skills];
 }
 
+- (NSString *)getMostProbableErrorType {
+    return [self mostProbableErrorType];
+}
+
+- (void)determineMostProbableErrorTypeFromSkills:(NSMutableArray *)skills {
+    // Calculate overall values for each of the skills
+    NSMutableArray *skillValues = [[NSMutableArray alloc] initWithObjects:@0.0, @0.0, @0.0, nil];
+    
+    int INDEX_VOCABULARY = 0;
+    int INDEX_SYNTAX = 1;
+    int INDEX_USABILITY = 2;
+    
+    int numVocabularySkills = 0;
+    double sumVocabularySkills = 0.0;
+    
+    for (Skill *skill in skills) {
+        if ([skill isKindOfClass:[WordSkill class]]) {
+            numVocabularySkills++;
+            sumVocabularySkills += [skill skillValue];
+            [skillValues replaceObjectAtIndex:INDEX_VOCABULARY withObject:@(sumVocabularySkills / numVocabularySkills)];
+        }
+        else if ([skill isKindOfClass:[SyntaxSkill class]]) {
+            [skillValues replaceObjectAtIndex:INDEX_SYNTAX withObject:@([skill skillValue])];
+        }
+        else if ([skill isKindOfClass:[UsabilitySkill class]]) {
+            [skillValues replaceObjectAtIndex:INDEX_USABILITY withObject:@([skill skillValue])];
+        }
+    }
+    
+    // Determine the most probable error type from the lowest skill value
+    NSString *mostProbableErrorType;
+    double lowestSkillValue = [[skillValues firstObject] doubleValue];
+    
+    for (int i = 0; i < [skillValues count]; i++) {
+        double skillValue = [[skillValues objectAtIndex:i] doubleValue];
+        
+        if (skillValue > 0.0 && skillValue <= lowestSkillValue) {
+            lowestSkillValue = skillValue;
+            
+            if (i == INDEX_VOCABULARY) {
+                mostProbableErrorType = @"vocabulary";
+            }
+            else if (i == INDEX_SYNTAX) {
+                mostProbableErrorType = @"syntax";
+            }
+            else if (i == INDEX_USABILITY) {
+                mostProbableErrorType = @"usability";
+            }
+        }
+    }
+    
+    self.mostProbableErrorType = nil;
+    
+    // Set the most probable error type if the skill value is below the threshold
+    if ([mostProbableErrorType isEqualToString:@"vocabulary"]) {
+        double VOCABULARY_THRESHOLD = 0.5;
+        
+        if (lowestSkillValue <= VOCABULARY_THRESHOLD) {
+            self.mostProbableErrorType = @"vocabulary";
+        }
+    }
+    else if ([mostProbableErrorType isEqualToString:@"syntax"]) {
+        double SYNTAX_THRESHOLD = 0.5;
+        
+        if (lowestSkillValue <= SYNTAX_THRESHOLD) {
+            self.mostProbableErrorType = @"syntax";
+        }
+    }
+    else if ([mostProbableErrorType isEqualToString:@"usability"]) {
+        double USABILITY_THRESHOLD = 0.5;
+        
+        if (lowestSkillValue <= USABILITY_THRESHOLD) {
+            self.mostProbableErrorType = @"usability";
+        }
+    }
+    
+    NSLog(@"*** lowestSkillValue: %f", lowestSkillValue);
+}
 
 - (void)showMessageWith:(NSArray *)skills {
     

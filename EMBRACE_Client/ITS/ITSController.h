@@ -48,8 +48,8 @@ manipulationContext:(ManipulationContext *)context
 
 - (EMComplexity)getCurrentComplexity;
 
-- (double)vocabSkillValueForWord:(NSString *)word;
-
 - (NSMutableSet *)getExtraIntroductionVocabularyForChapter:(Chapter *)chapter inBook:(Book *)book;
+
+- (NSString *)getMostProbableErrorType;
 
 @end

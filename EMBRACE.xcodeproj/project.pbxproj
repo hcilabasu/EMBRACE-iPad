@@ -16656,11 +16656,11 @@
 		5D4FB3911D092D9600B0D695 /* BayesKnowledgeTracer */ = {
 			isa = PBXGroup;
 			children = (
-				5D19177F1D09AD96001E7F30 /* KnowledgeTracer.h */,
-				5D76CCA71D11568B00456ACF /* ManipulationAnalyser.h */,
-				5D1917801D09AD96001E7F30 /* KnowledgeTracer.m */,
-				5D76CCA81D11568B00456ACF /* ManipulationAnalyser.m */,
 				5D9F20021D18DC8A001325B1 /* Data */,
+				5D19177F1D09AD96001E7F30 /* KnowledgeTracer.h */,
+				5D1917801D09AD96001E7F30 /* KnowledgeTracer.m */,
+				5D76CCA71D11568B00456ACF /* ManipulationAnalyser.h */,
+				5D76CCA81D11568B00456ACF /* ManipulationAnalyser.m */,
 				5D5421151D0ECC7E008ADA3D /* Models */,
 			);
 			path = BayesKnowledgeTracer;
@@ -16690,18 +16690,18 @@
 			isa = PBXGroup;
 			children = (
 				5D76CCAD1D1199A400456ACF /* SentenceStatus.h */,
-				5D5421161D0ECC7E008ADA3D /* Skill.h */,
-				5D54211C1D0ECDFE008ADA3D /* SkillSet.h */,
-				5DCC5B361D5EAAC2006DAF05 /* SyntaxSkill.h */,
-				5DCC5B391D5EAACE006DAF05 /* UsabilitySkill.h */,
-				5D76CCAA1D11589800456ACF /* UserAction.h */,
-				5D5421191D0ECCFE008ADA3D /* WordSkill.h */,
 				5D76CCAE1D1199A500456ACF /* SentenceStatus.m */,
+				5D5421161D0ECC7E008ADA3D /* Skill.h */,
 				5D5421171D0ECC7E008ADA3D /* Skill.m */,
+				5D54211C1D0ECDFE008ADA3D /* SkillSet.h */,
 				5D54211D1D0ECDFE008ADA3D /* SkillSet.m */,
+				5DCC5B361D5EAAC2006DAF05 /* SyntaxSkill.h */,
 				5DCC5B371D5EAAC2006DAF05 /* SyntaxSkill.m */,
+				5DCC5B391D5EAACE006DAF05 /* UsabilitySkill.h */,
 				5DCC5B3A1D5EAACE006DAF05 /* UsabilitySkill.m */,
+				5D76CCAA1D11589800456ACF /* UserAction.h */,
 				5D76CCAB1D11589800456ACF /* UserAction.m */,
+				5D5421191D0ECCFE008ADA3D /* WordSkill.h */,
 				5D54211A1D0ECCFE008ADA3D /* WordSkill.m */,
 			);
 			path = Models;

@@ -1746,8 +1746,6 @@ BOOL wasPathFollowed = false;
                             //Reset object location
                             else {
                                 [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:@"NULL" ofType:@"Location" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
-
-                                [self handleErrorForAction:@"Move Object"];
                                 
                                 [[ITSController sharedInstance] movedObject:movingObjectId
                                                          destinationObjects:overlappingWith
@@ -1756,12 +1754,12 @@ BOOL wasPathFollowed = false;
                                                         manipulationContext:manipulationContext
                                                                 forSentence:currentSentenceText
                                  withWordMapping:model.wordMapping];
+                                
+                                [self handleErrorForAction:@"Move Object"];
                             }
                         }
                         else {
                             [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:@"NULL" ofType:@"Location" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
-                            
-                            [self handleErrorForAction:@"Move Object"];
                             
                             // Find the location if overlapping is nil;
                             if (overlappingWith == nil) {
@@ -1771,6 +1769,7 @@ BOOL wasPathFollowed = false;
                                     overlappingWith = @[areaId];
                                 
                             }
+                            
                             [[ITSController sharedInstance] movedObject:movingObjectId
                                                      destinationObjects:overlappingWith
                                                              isVerified:false
@@ -1778,6 +1777,8 @@ BOOL wasPathFollowed = false;
                                                     manipulationContext:manipulationContext
                                                             forSentence:currentSentenceText
                                                         withWordMapping:model.wordMapping];
+                            
+                            [self handleErrorForAction:@"Move Object"];
                         }
                     }
                     else if ([[currSolStep stepType] isEqualToString:@"shakeOrTap"]) {
@@ -1800,8 +1801,6 @@ BOOL wasPathFollowed = false;
                             [self incrementCurrentStep];
                         }
                         else {
-                            [self handleErrorForAction:@"Move Object"];
-                            
                             [[ITSController sharedInstance] movedObject:movingObjectId
                                                      destinationObjects:@[currSolStep.locationId]
                                                              isVerified:false
@@ -1809,6 +1808,8 @@ BOOL wasPathFollowed = false;
                                                     manipulationContext:manipulationContext
                                                             forSentence:currentSentenceText
                                                         withWordMapping:model.wordMapping];
+                            
+                            [self handleErrorForAction:@"Move Object"];
                         }
                     }
                     else if ([[currSolStep stepType] isEqualToString:@"checkPath"]) {
@@ -1842,8 +1843,6 @@ BOOL wasPathFollowed = false;
                             
                             //No possible interactions were found
                             if ([possibleInteractions count] == 0) {
-                                [self handleErrorForAction:@"Move Object"];
-                                
                                 [[ITSController sharedInstance] movedObject:movingObjectId
                                                          destinationObjects:overlappingWith
                                                                  isVerified:false
@@ -1851,6 +1850,8 @@ BOOL wasPathFollowed = false;
                                                         manipulationContext:manipulationContext
                                                                 forSentence:currentSentenceText
                                                             withWordMapping:model.wordMapping];
+                                
+                                [self handleErrorForAction:@"Move Object"];
                             }
                             //If only 1 possible interaction was found, go ahead and perform that interaction if it's correct.
                             if ([possibleInteractions count] == 1) {
@@ -1934,8 +1935,6 @@ BOOL wasPathFollowed = false;
                         else {
                             [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:@"NULL" ofType:@"Location" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
                             
-                            [self handleErrorForAction:@"Move Object"];
-                            
                             // Find the location if overlapping is nil;
                             if (overlappingWith == nil) {
                                 //TODO: Find the object precent in destination location.
@@ -1952,6 +1951,8 @@ BOOL wasPathFollowed = false;
                                                     manipulationContext:manipulationContext
                                                             forSentence:currentSentenceText
                                                         withWordMapping:model.wordMapping];
+                            
+                            [self handleErrorForAction:@"Move Object"];
                         }
                     }
                 }
@@ -3118,36 +3119,23 @@ BOOL wasPathFollowed = false;
     }
     else {
         if (conditionSetup.appMode == ITS) {
-            // TODO: Determine most probable error type
-            if (conditionSetup.shouldShowITSMessages == NO) {
-                NSString *errorType;
-                [self provideFeedbackForErrorType:errorType];
+            double delay = 0.0;
+            
+            if (conditionSetup.shouldShowITSMessages == YES) {
+                delay = 5.5;
             }
-            else {
-                // Delay is added so that this alert is displayed after updated skills alert
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 5.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Choose the most probable error type:" message:nil preferredStyle:UIAlertControllerStyleAlert];
-                    
-                    [alert addAction:[UIAlertAction actionWithTitle:@"Vocabulary" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
-                                      {
-                                          [self provideFeedbackForErrorType:@"vocabulary"];
-                                      }]];
-                    [alert addAction:[UIAlertAction actionWithTitle:@"Syntax" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
-                                      {
-                                          [self provideFeedbackForErrorType:@"syntax"];
-                                      }]];
-                    [alert addAction:[UIAlertAction actionWithTitle:@"Usability" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
-                                      {
-                                          [self provideFeedbackForErrorType:@"usability"];
-                                      }]];
-                    [alert addAction:[UIAlertAction actionWithTitle:@"None" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action)
-                                      {
-                                          IntroductionClass.allowInteractions = TRUE;
-                                      }]];
-                    
-                    [self presentViewController:alert animated:YES completion:nil];
-                });
-            }
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, delay * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                NSString *mostProbableErrorType = [[ITSController sharedInstance] getMostProbableErrorType];
+                NSLog(@"*** mostProbableErrorType: %@", mostProbableErrorType);
+                
+                if (mostProbableErrorType != nil) {
+                    [self provideFeedbackForErrorType:mostProbableErrorType];
+                }
+                else {
+                    IntroductionClass.allowInteractions = TRUE;
+                }
+            });
         }
     }
     
@@ -5194,10 +5182,10 @@ BOOL wasPathFollowed = false;
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
                                                                    message:message
                                                             preferredStyle:UIAlertControllerStyleAlert];
-//    UIAlertAction *action = [UIAlertAction actionWithTitle:@"Dismiss"
-//                                                     style:UIAlertActionStyleCancel
-//                                                   handler:nil];
-//    [alert addAction:action];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"Dismiss"
+                                                     style:UIAlertActionStyleCancel
+                                                   handler:nil];
+    [alert addAction:action];
     [self presentViewController:alert animated:YES completion:nil];
     
     int duration = 5; // duration in seconds

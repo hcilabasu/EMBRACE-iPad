@@ -149,13 +149,9 @@ manipulationContext:(ManipulationContext *)context
     return complexity;
 }
 
-- (double)vocabSkillValueForWord:(NSString *)word {
-    return [self.manipulationAnalyser vocabSkillForWord:word];
-}
-
 - (NSMutableSet *)getExtraIntroductionVocabularyForChapter:(Chapter *)chapter inBook:(Book *)book {
     double HIGH_VOCABULARY_SKILL_THRESHOLD = 0.9;
-    int MAX_EXTRA_VOCABULARY = 8 - [[chapter getNewVocabulary] count];
+    int MAX_EXTRA_VOCABULARY = 8.0 - [[chapter getNewVocabulary] count];
     
     NSMutableSet *extraVocabulary = [[NSMutableSet alloc] init];
     
@@ -193,7 +189,7 @@ manipulationContext:(ManipulationContext *)context
     NSMutableArray *vocabularySkills = [[NSMutableArray alloc] init];
     
     for (NSString *vocabulary in potentialVocabulary) {
-        double s = [self vocabSkillValueForWord:vocabulary];
+        double s = [self.manipulationAnalyser vocabSkillForWord:vocabulary];
         
         // Do not include vocabulary with skills above the threshold
         if (s < HIGH_VOCABULARY_SKILL_THRESHOLD) {
@@ -218,6 +214,10 @@ manipulationContext:(ManipulationContext *)context
     }
     
     return extraVocabulary;
+}
+
+- (NSString *)getMostProbableErrorType {
+    return [self.manipulationAnalyser getMostProbableErrorType];
 }
 
 @end
