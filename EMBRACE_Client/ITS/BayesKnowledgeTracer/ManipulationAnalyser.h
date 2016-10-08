@@ -34,6 +34,8 @@
 
 - (double)vocabSkillForWord:(NSString *)word;
 
+- (NSString *)getMostProbableErrorType;
+
 @end
 
 
