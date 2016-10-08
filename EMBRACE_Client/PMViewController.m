@@ -4424,9 +4424,11 @@ BOOL wasPathFollowed = false;
 
 //TODO: add description
 - (void)playErrorNoise {
+    /*
     [self.playaudioClass playErrorNoise];
     
     [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:@"Error Noise" inLanguage:@"NULL" ofType:@"Play Error Noise" :manipulationContext];
+     */
 }
 
 //todo: add description
