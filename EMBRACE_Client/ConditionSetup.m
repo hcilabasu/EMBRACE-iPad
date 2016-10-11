@@ -41,10 +41,10 @@
         appMode = ITS;
         currentMode = PM_MODE;
         newInstructions = false;
-        vocabPageEnabled = false;
+        vocabPageEnabled = true;
         assessmentPageEnabled = false;
         
-        shouldShowITSMessages = YES;
+        shouldShowITSMessages = NO;
         allowFileSync = true; //NOTE: Still testing this functionality
     }
     

@@ -185,8 +185,7 @@ shouldUpdateConnection:(BOOL)updateCon
 
 - (void)removeAllSentences;
 
-- (void)addSentence:(AlternateSentence *)sentenceToAdd
- withSentenceNumber:(int)sentenceNumber;
+- (void)addSentence:(AlternateSentence *)sentenceToAdd withSentenceNumber:(int)sentenceNumber andVocabulary:(NSMutableSet *)vocabulary ;
 
 @end
 

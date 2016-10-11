@@ -149,17 +149,13 @@ manipulationContext:(ManipulationContext *)context
     return complexity;
 }
 
-- (double)vocabSkillValueForWord:(NSString *)word {
-    return [self.manipulationAnalyser vocabSkillForWord:word];
-}
-
 - (NSMutableSet *)getExtraIntroductionVocabularyForChapter:(Chapter *)chapter inBook:(Book *)book {
+    double HIGH_VOCABULARY_SKILL_THRESHOLD = 0.9;
+    int MAX_EXTRA_VOCABULARY = 8.0 - [[chapter getNewVocabulary] count];
+    
     NSMutableSet *extraVocabulary = [[NSMutableSet alloc] init];
-    [extraVocabulary unionSet:[self.manipulationAnalyser getRequestedVocab]];
     
-    NSMutableSet *chapterVocabulary = [chapter getOldVocabulary];
-    [extraVocabulary intersectSet:chapterVocabulary];
-    
+    // Get all vocabulary that comes from solutions of previous chapters
     NSMutableSet *solutionVocabulary = [[NSMutableSet alloc] init];
     
     for (Chapter *bookChapter in [book chapters]) {
@@ -171,22 +167,57 @@ manipulationContext:(ManipulationContext *)context
         }
     }
     
+    // Remove vocabulary that does not appear in solution of current chapter
     [solutionVocabulary intersectSet:[chapter getVocabularyFromSolutions]];
-    [extraVocabulary unionSet:solutionVocabulary];
     
-    NSMutableSet *highSkillVocabulary = [[NSMutableSet alloc] init];
+    // Get all vocabulary that can be requested by combining underlined chapter vocabulary with solution vocabulary
+    NSMutableSet *allowedVocabularyToRequest = [chapter getOldVocabulary];
+    [allowedVocabularyToRequest unionSet:solutionVocabulary];
     
-    for (NSString *vocabulary in extraVocabulary) {
-        double skill = [self vocabSkillValueForWord:vocabulary];
+    // Add requested vocabulary only if it appears in the allowed vocabulary set
+    NSMutableSet *requestedVocabulary = [[NSMutableSet alloc] init];
+    [requestedVocabulary unionSet:[self.manipulationAnalyser getRequestedVocab]];
+    [requestedVocabulary intersectSet:allowedVocabularyToRequest];
+    
+    // Potential vocabulary combines solution vocabulary and requested vocabulary
+    NSMutableSet *potentialVocabulary = [[NSMutableSet alloc] init];
+    [potentialVocabulary unionSet:solutionVocabulary];
+    [potentialVocabulary unionSet:requestedVocabulary];
+    
+    // Sort vocabulary/skills from lowest to highest skill
+    NSMutableArray *vocabularyStrings = [[NSMutableArray alloc] init];
+    NSMutableArray *vocabularySkills = [[NSMutableArray alloc] init];
+    
+    for (NSString *vocabulary in potentialVocabulary) {
+        double s = [self.manipulationAnalyser vocabSkillForWord:vocabulary];
         
-        if (skill >= 0.9) {
-            [highSkillVocabulary addObject:vocabulary];
+        // Do not include vocabulary with skills above the threshold
+        if (s < HIGH_VOCABULARY_SKILL_THRESHOLD) {
+            NSNumber *skill = [NSNumber numberWithDouble:s];
+            
+            // Figure out index to insert vocabulary/skill into sorted arrays
+            NSUInteger index = [vocabularySkills indexOfObject:skill inSortedRange:(NSRange){0, [vocabularySkills count]} options:NSBinarySearchingInsertionIndex usingComparator:^NSComparisonResult(id obj1, id obj2) {
+                return [obj1 compare:obj2];
+            }];
+            
+            [vocabularyStrings insertObject:vocabulary atIndex:index];
+            [vocabularySkills insertObject:skill atIndex:index];
         }
     }
     
-    [extraVocabulary minusSet:highSkillVocabulary];
+    // Extra vocabulary will consist of the vocabulary with the lowest skills
+    if ([vocabularyStrings count] <= MAX_EXTRA_VOCABULARY) {
+        [extraVocabulary addObjectsFromArray:vocabularyStrings];
+    }
+    else {
+        [extraVocabulary addObjectsFromArray:[vocabularyStrings subarrayWithRange:NSMakeRange(0, MAX_EXTRA_VOCABULARY)]];
+    }
     
     return extraVocabulary;
+}
+
+- (NSString *)getMostProbableErrorType {
+    return [self.manipulationAnalyser getMostProbableErrorType];
 }
 
 @end
