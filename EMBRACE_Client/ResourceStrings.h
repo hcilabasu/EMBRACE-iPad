@@ -47,6 +47,7 @@
 #define MANIPULATIONOBJECT @"manipulationObject"
 #define MOVE @"move"
 #define MOVE_OBJECT @"Move Object"
+#define MOVETOLOCATION @"moveToLocation"
 #define NULL_TXT @"NULL"
 #define OBJECT @"object"
 #define OBJECTS @"objects"

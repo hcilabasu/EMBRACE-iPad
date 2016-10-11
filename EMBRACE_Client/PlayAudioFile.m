@@ -255,6 +255,10 @@
     AudioServicesPlaySystemSound(1053);
 }
 
+- (IBAction)playErrorFeedbackNoise {
+    AudioServicesPlaySystemSound(1054);
+}
+
 - (void)textToSpeech:(NSString *)text {
     syn = [[AVSpeechSynthesizer alloc] init];
     AVSpeechUtterance *utteranceEn = [[AVSpeechUtterance alloc]initWithString:text];
