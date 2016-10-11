@@ -3045,6 +3045,12 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:ERROR_NOISE inLanguage:NULL_TXT ofType:PLAY_ERROR_NOISE :manipulationContext];
 }
 
+- (void)playErrorFeedbackNoise {
+    [self.playaudioClass playErrorFeedbackNoise];
+    
+    [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:ERROR_FEEDBACK_NOISE inLanguage:NULL_TXT ofType:ERROR_FEEDBACK_NOISE :manipulationContext];
+}
+
 - (void)handleErrorForAction:(NSString *)action {
     allowInteractions = FALSE;
     
@@ -3056,6 +3062,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     stepContext.numAttempts++;
     
     if (stepContext.numAttempts >= stepContext.maxAttempts) {
+        [[ServerCommunicationController sharedInstance] logMaximumAttemptsReachedForAction:action context:manipulationContext];
+        
         stepContext.numAttempts = 0;
         
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Need help?" message:@"The iPad will show you how to complete this step." preferredStyle:UIAlertControllerStyleAlert];
@@ -3065,7 +3073,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             }]];
         [self presentViewController:alert animated:YES completion:nil];
         
-        [self.playaudioClass playErrorFeedbackNoise];
+        [self playErrorFeedbackNoise];
     }
     else {
         allowInteractions = TRUE;
@@ -3104,6 +3112,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     movingObjectId = object1Id;
                     
                     [self.manipulationView animateObject:object1Id from:object1HotspotLocation to:waypointLocation action:MOVETOLOCATION areaId:EMPTYSTRING];
+                    [[ServerCommunicationController sharedInstance] logAnimateObject:object1Id forAction:[currSolStep action] context:manipulationContext];
                     
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                         [self highlightObject:object1Id :2.0];
@@ -3184,6 +3193,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 movingObjectId = objectId;
                 
                 [self.manipulationView animateObject:objectId from:objectHotspotLocation to:nextObjectHotspotLocation action:MOVETOLOCATION areaId:EMPTYSTRING];
+                [[ServerCommunicationController sharedInstance] logAnimateObject:objectId forAction:[objectHotspot action] context:manipulationContext];
                 
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                     allowInteractions = TRUE;
@@ -3215,6 +3225,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             movingObjectId = object1Id;
             
             [self.manipulationView animateObject:object1Id from:object1HotspotLocation to:object2HotspotLocation action:MOVETOLOCATION areaId:EMPTYSTRING];
+            [[ServerCommunicationController sharedInstance] logAnimateObject:object1Id forAction:[currSolStep action] context:manipulationContext];
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                 allowInteractions = TRUE;
