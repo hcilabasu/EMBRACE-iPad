@@ -4912,6 +4912,8 @@
 		5DED1CAD1C765BD200B29369 /* NaughtyMonkey_Script_C7.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DED1CA01C765BD200B29369 /* NaughtyMonkey_Script_C7.mp3 */; };
 		5DED1CAE1C765BD200B29369 /* NaughtyMonkey_Script_C8.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DED1CA11C765BD200B29369 /* NaughtyMonkey_Script_C8.mp3 */; };
 		5DED1CAF1C765BD200B29369 /* NaughtyMonkey_Script_C9.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DED1CA21C765BD200B29369 /* NaughtyMonkey_Script_C9.mp3 */; };
+		7112BA161DA4154700E08B7B /* AlternateSentences-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 7112BA141DA4154700E08B7B /* AlternateSentences-MetaData.xml */; };
+		7112BA171DA4154700E08B7B /* Solutions-MetaData-ITS.xml in Resources */ = {isa = PBXBuildFile; fileRef = 7112BA151DA4154700E08B7B /* Solutions-MetaData-ITS.xml */; };
 		C30D022D1BABBFD500DF53F1 /* PlayAudioIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABD84AD1A49F54B0043A685 /* PlayAudioIcon.png */; };
 		C30D022E1BABBFD500DF53F1 /* cover_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 31109701174AB35E00B02BF7 /* cover_default.png */; };
 		C30D022F1BABBFD500DF53F1 /* logo57.png in Resources */ = {isa = PBXBuildFile; fileRef = 31058C75176BCFF900595AAE /* logo57.png */; };
@@ -9929,6 +9931,8 @@
 		5DED1CA01C765BD200B29369 /* NaughtyMonkey_Script_C7.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkey_Script_C7.mp3; sourceTree = "<group>"; };
 		5DED1CA11C765BD200B29369 /* NaughtyMonkey_Script_C8.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkey_Script_C8.mp3; sourceTree = "<group>"; };
 		5DED1CA21C765BD200B29369 /* NaughtyMonkey_Script_C9.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkey_Script_C9.mp3; sourceTree = "<group>"; };
+		7112BA141DA4154700E08B7B /* AlternateSentences-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AlternateSentences-MetaData.xml"; sourceTree = "<group>"; };
+		7112BA151DA4154700E08B7B /* Solutions-MetaData-ITS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Solutions-MetaData-ITS.xml"; sourceTree = "<group>"; };
 		C32DA0DF1BF92A52006C2418 /* Progress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Progress.h; sourceTree = "<group>"; };
 		C32DA0E01BF92A52006C2418 /* Progress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Progress.m; sourceTree = "<group>"; };
 		C35F427B1BDAAD3600B4BCF0 /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
@@ -11042,6 +11046,8 @@
 		1A631F0D1C0E4D3A00251CB3 /* OEBPS */ = {
 			isa = PBXGroup;
 			children = (
+				7112BA141DA4154700E08B7B /* AlternateSentences-MetaData.xml */,
+				7112BA151DA4154700E08B7B /* Solutions-MetaData-ITS.xml */,
 				033DA4E41D7D1ED200648C2F /* Vocabulary-MetaData.xml */,
 				5DB79E801C917296003B2AFC /* Script-Metadata.xml */,
 				1A6C140D1D9F2F08004658F5 /* WordMapping.xml */,
@@ -16990,6 +16996,7 @@
 				5C9B8B661CB5EFC800420053 /* HealthyS.mp3 in Resources */,
 				5CAE96061C921DCD00702DB4 /* Totem PolesS.mp3 in Resources */,
 				5C9C07801C57385A00702FCD /* BFCE1_2A.m4a in Resources */,
+				7112BA161DA4154700E08B7B /* AlternateSentences-MetaData.xml in Resources */,
 				5C72E77E1C72BF1000CE4877 /* HowdoObjectsMoveQ5A3.mp3 in Resources */,
 				5C40AE8B1CBF591A00BFEB9F /* PairE.mp3 in Resources */,
 				1A63206A1C0E4D3B00251CB3 /* Story6-Everyone-Helps-PM-2.xhtml in Resources */,
@@ -20633,6 +20640,7 @@
 				5C40AEE91CBF5C7C00BFEB9F /* SpaceS.mp3 in Resources */,
 				1A6320C01C0E4D3B00251CB3 /* Story5-Catch-PM-1.xhtml in Resources */,
 				1A6322F41C0E4D3B00251CB3 /* Story6-The-Mystery-is-Solved-PM-1.xhtml in Resources */,
+				7112BA171DA4154700E08B7B /* Solutions-MetaData-ITS.xml in Resources */,
 				5C72E5F31C72A46F00CE4877 /* TheHaidaPlankHouseQ5A2.mp3 in Resources */,
 				5C72E5E91C72A46F00CE4877 /* TheSeminoleChickeeQ1A2.mp3 in Resources */,
 				1A6320A41C0E4D3B00251CB3 /* Locations-MetaData.xml in Resources */,

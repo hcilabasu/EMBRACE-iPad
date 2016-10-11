@@ -421,7 +421,12 @@
     [self readSetupMetadata:book :[[book mainContentPath] stringByAppendingString:@"Setups-MetaData.xml"]];
     
     //Read PM and IM solutions
-    [self readSolutionMetadata:book :PM_MODE :[[book mainContentPath] stringByAppendingString:@"Solutions-MetaData.xml"]];
+    
+    if (conditionSetup.appMode == ITS) {
+        [self readSolutionMetadata:book :PM_MODE :[[book mainContentPath] stringByAppendingString:@"Solutions-MetaData-ITS.xml"]];
+    } else {
+        [self readSolutionMetadata:book :PM_MODE :[[book mainContentPath] stringByAppendingString:@"Solutions-MetaData.xml"]];
+    }
     [self readSolutionMetadata:book :IM_MODE :[[book mainContentPath] stringByAppendingString:@"IMSolutions-MetaData.xml"]];
     
     [self readAlternateSentenceMetadata:book :[[book mainContentPath] stringByAppendingString:@"AlternateSentences-MetaData.xml"]];
