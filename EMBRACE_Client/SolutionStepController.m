@@ -249,40 +249,62 @@
  * Dynamically creates pm and im vocab solutions for an intro page
  */
 - (void)createVocabSolutionsForPage {
+    Chapter *chapter = [mvc.book getChapterWithTitle:mvc.chapterTitle];
     
-    stepContext.PMSolution = [[PhysicalManipulationSolution alloc] init];
-    stepContext.IMSolution = [[ImagineManipulationSolution alloc] init];
+    NSMutableSet *newVocab = [[NSMutableSet alloc] init];
+    NSMutableArray *vocabSolutionSteps = [[NSMutableArray alloc] init];
     
+    // Adds new vocabulary introduced in the chapter
     for (int i = 1; i < sentenceContext.totalSentences + 1; i++) {
-        
-        NSString *sentenceText = [[mvc.manipulationView getVocabAtId:i] lowercaseString];
+        NSString *vocabText = [[mvc.manipulationView getVocabAtId:i] lowercaseString];
         
         if (conditionSetup.language == BILINGUAL) {
-            if (![[mvc.sc getEnglishTranslation:sentenceText] isEqualToString:NULL_TXT]) {
-                sentenceText = [mvc.sc getEnglishTranslation:sentenceText];
+            if (![[mvc.sc getEnglishTranslation:vocabText] isEqualToString:NULL_TXT]) {
+                vocabText = [mvc.sc getEnglishTranslation:vocabText];
             }
         }
         
-        ActionStep *solutionStep = [[ActionStep alloc] initAsSolutionStep:i :nil : 1 : TAPWORD : sentenceText : nil : nil: nil : nil : nil : nil];
+        [newVocab addObject:vocabText];
         
-        if (conditionSetup.currentMode == PM_MODE || conditionSetup.condition == CONTROL) {
-            [stepContext.PMSolution addSolutionStep:solutionStep];
-        }
-        else if (conditionSetup.currentMode == IM_MODE) {
-            [stepContext.IMSolution addSolutionStep:solutionStep];
+        ActionStep *vocabSolutionStep = [[ActionStep alloc] initAsSolutionStep:i :nil :1 :@"tapWord" :vocabText :nil :nil :nil :nil :nil :nil];
+        [vocabSolutionSteps addObject:vocabSolutionStep];
+    }
+    
+    if (conditionSetup.appMode == ITS) {
+        NSMutableSet *vocabToAdd = [[ITSController sharedInstance] getExtraIntroductionVocabularyForChapter:chapter inBook:mvc.book];
+        
+        for (NSString *vocab in vocabToAdd) {
+            sentenceContext.totalSentences++;
+            
+            NSString *englishText = vocab;
+            NSString *spanishText = [NSString stringWithFormat:@""];
+            
+            if (conditionSetup.language == BILINGUAL) {
+                if (![[mvc.sc getEnglishTranslation:vocab] isEqualToString:@"Translation not found"]) {
+                    englishText = [mvc.sc getEnglishTranslation:vocab];
+                    spanishText = vocab;
+                }
+            }
+            
+            [mvc.manipulationView addVocabularyWithID:sentenceContext.totalSentences englishText:englishText spanishText:spanishText];
+            
+            ActionStep *vocabSolutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceContext.totalSentences :nil :1 :@"tapWord" :englishText :nil :nil :nil :nil :nil :nil];
+            [vocabSolutionSteps addObject:vocabSolutionStep];
         }
     }
     
-    Chapter *chapter = [mvc.book getChapterWithTitle:mvc.chapterTitle]; //get current chapter
-    
-    //Add PMSolution to page
     if (conditionSetup.currentMode == PM_MODE || conditionSetup.condition == CONTROL) {
-        PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; //get PM Activity only
+        stepContext.PMSolution = [[PhysicalManipulationSolution alloc] init];
+        stepContext.PMSolution.solutionSteps = vocabSolutionSteps;
+        
+        PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE];
         [PMActivity addPMSolution:stepContext.PMSolution forActivityId:pageContext.currentPageId];
     }
-    //Add IMSolution to page
     else if (conditionSetup.currentMode == IM_MODE) {
-        ImagineManipulationActivity *IMActivity = (ImagineManipulationActivity *)[chapter getActivityOfType:IM_MODE]; //get IM Activity only
+        stepContext.IMSolution = [[ImagineManipulationSolution alloc] init];
+        stepContext.IMSolution.solutionSteps = vocabSolutionSteps;
+        
+        ImagineManipulationActivity *IMActivity = (ImagineManipulationActivity *)[chapter getActivityOfType:IM_MODE];
         [IMActivity addIMSolution:stepContext.IMSolution forActivityId:pageContext.currentPageId];
     }
 }
@@ -315,6 +337,7 @@
     
     //Check if we able to increment current step
     if (stepContext.currentStep < stepContext.numSteps) {
+        mvc.numAttempts = 0;
         
         //if the current solution step is a custom pm, then increment current step minMenuOption times
         if ([PM_CUSTOM isEqualToString: [currSolStep menuType]]){

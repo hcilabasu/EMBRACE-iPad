@@ -1,5 +1,5 @@
 //
-//  PMViewController.h
+//  ManipulationViewController.h
 //  eBookReader
 //
 //  Created by Andreea Danielescu on 2/12/13.
@@ -28,6 +28,7 @@
 #import "SentenceContext.h"
 #import "StepContext.h"
 #import "ContextualMenuDataSource.h"
+#import "ITSController.h"
 
 @class PageController;
 @class SentenceController;
@@ -87,6 +88,10 @@ typedef enum InteractionMode {
 @property (nonatomic, strong) NSMutableArray *allRelationships; //Stores an array of all relationships which is populated in getPossibleInteractions
 @property (nonatomic, strong) NSMutableDictionary *currentGroupings;
 @property (nonatomic, strong) ContextualMenuDataSource *menuDataSource;
+@property (nonatomic, assign) EMComplexity currentComplexityLevel;
+@property (nonatomic, assign) NSUInteger maxAttempts; // Maximum number of attempts user can make before system automatically performs step
+@property (nonatomic, assign) NSUInteger numAttempts; // Number of attempts user has made for current step
+@property (nonatomic, strong) NSMutableArray *pageSentences; //AlternateSentences on current page
 
 - (void)loadFirstPage;
 - (void)setManipulationContext;

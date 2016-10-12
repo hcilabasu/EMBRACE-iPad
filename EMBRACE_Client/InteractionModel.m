@@ -37,6 +37,7 @@
         vocabularies = [[NSMutableDictionary alloc] init];
         assessmentActivities = [[NSMutableDictionary alloc] init];
         areas = [[NSMutableSet alloc] init];
+        _wordMapping = [[NSMutableDictionary alloc]init];
     }
     
     return self;
@@ -420,6 +421,26 @@
     }
     
     return nil;
+}
+
+- (NSString *)getObjectIdAtLocation:(CGPoint)loc {
+    for (Area* area in areas)
+    {
+        if ([area.aPath containsPoint:loc]) {
+            return area.areaId;
+        }
+
+    }
+    return nil;
+}
+
+- (void)addWordMapping:(NSString *)subWord andKey:(NSString *)key {
+    NSMutableArray *inner = [self.wordMapping objectForKey:key];
+    if (inner == nil) {
+        inner = [NSMutableArray array];
+        [self.wordMapping setObject:inner forKey:key];
+    }
+    [inner addObject:subWord];
 }
 
 @end

@@ -10,7 +10,7 @@
 #import "Activity.h"
 #import "ConditionSetup.h"
 
-@class InteractionModel, Book, MenuItemImage, Hotspot, Waypoint;
+@class InteractionModel, Book, MenuItemImage, Hotspot, Waypoint,AlternateSentence;
 
 @protocol ManipulationViewDelegate;
 
@@ -71,6 +71,8 @@
 
 - (NSString *)getSentenceClass:(NSInteger)sentenceNumber;
 
+- (void)addVocabularyWithID:(NSInteger)vocabID englishText:(NSString *)engText spanishText:(NSString *)spanText;
+
 #pragma mark - 
 
 - (CGPoint)getObjectPosition:(NSString *)object;
@@ -120,6 +122,8 @@
                        andMode:(Mode)mode;
 
 - (void)highLightArea:(NSString *)objectId;
+
+- (void)highlightLocation:(int)originX : (int)originY : (int)width : (int)height;
 
 - (void)highlightObjectOnWordTap:(NSString *)objectId;
 
@@ -182,6 +186,11 @@ shouldUpdateConnection:(BOOL)updateCon
                     startLocation:(CGPoint)startLocation
                         shouldPan:(BOOL)isPanning;
 
+#pragma mark - Add remove sentences
+
+- (void)removeAllSentences;
+
+- (void)addSentence:(AlternateSentence *)sentenceToAdd withSentenceNumber:(int)sentenceNumber andVocabulary:(NSMutableSet *)vocabulary ;
 
 @end
 

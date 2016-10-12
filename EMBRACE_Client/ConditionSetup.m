@@ -19,6 +19,7 @@
 @synthesize isVocabPageEnabled;
 @synthesize isAssessmentPageEnabled;
 @synthesize assessmentMode;
+@synthesize shouldShowITSMessages;
 
 @synthesize allowFileSync;
 
@@ -44,6 +45,8 @@
         isVocabPageEnabled = false;
         isAssessmentPageEnabled = true;
         assessmentMode = ENDOFBOOK;
+        shouldShowITSMessages = NO;
+
         allowFileSync = true; //NOTE: Still testing this functionality
     }
     

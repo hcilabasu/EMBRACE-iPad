@@ -967,6 +967,17 @@
 		1AF805511C29019A00C96B05 /* plume_greyplate_oahu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AF8054F1C29019A00C96B05 /* plume_greyplate_oahu.png */; };
 		1AFBD67F1C613C820081A300 /* Animations.css in Resources */ = {isa = PBXBuildFile; fileRef = 1AFBD67E1C613C820081A300 /* Animations.css */; };
 		1AFC81C61CC20A62003CDD86 /* CleaningUpQ4A2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AFC81C51CC20A62003CDD86 /* CleaningUpQ4A2.mp3 */; };
+		1AFC9BF71DAC485A00189CD2 /* The_Lopez_Family_Mystery.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AFC9BE11DAC485A00189CD2 /* The_Lopez_Family_Mystery.json */; };
+		1AFC9BF81DAC485A00189CD2 /* KnowledgeTracer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC9BE31DAC485A00189CD2 /* KnowledgeTracer.m */; };
+		1AFC9BF91DAC485A00189CD2 /* ManipulationAnalyser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC9BE51DAC485A00189CD2 /* ManipulationAnalyser.m */; };
+		1AFC9BFA1DAC485A00189CD2 /* SentenceStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC9BE81DAC485A00189CD2 /* SentenceStatus.m */; };
+		1AFC9BFB1DAC485A00189CD2 /* Skill.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC9BEA1DAC485A00189CD2 /* Skill.m */; };
+		1AFC9BFC1DAC485A00189CD2 /* SkillSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC9BEC1DAC485A00189CD2 /* SkillSet.m */; };
+		1AFC9BFD1DAC485A00189CD2 /* SyntaxSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC9BEE1DAC485A00189CD2 /* SyntaxSkill.m */; };
+		1AFC9BFE1DAC485A00189CD2 /* UsabilitySkill.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC9BF01DAC485A00189CD2 /* UsabilitySkill.m */; };
+		1AFC9BFF1DAC485A00189CD2 /* UserAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC9BF21DAC485A00189CD2 /* UserAction.m */; };
+		1AFC9C001DAC485A00189CD2 /* WordSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC9BF41DAC485A00189CD2 /* WordSkill.m */; };
+		1AFC9C011DAC485A00189CD2 /* ITSController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFC9BF61DAC485A00189CD2 /* ITSController.m */; };
 		1AFCFFF11C34C0DB008F1A1C /* water_by_shore.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AFCFFEF1C34C0DB008F1A1C /* water_by_shore.png */; };
 		1AFCFFF21C34C0DB008F1A1C /* water_away_shore.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AFCFFF01C34C0DB008F1A1C /* water_away_shore.png */; };
 		1AFD2EF61C8A7A4D004B2D88 /* fallen_tree2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AFD2EF51C8A7A4D004B2D88 /* fallen_tree2.png */; };
@@ -5964,6 +5975,27 @@
 		1AF8054F1C29019A00C96B05 /* plume_greyplate_oahu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plume_greyplate_oahu.png; sourceTree = "<group>"; };
 		1AFBD67E1C613C820081A300 /* Animations.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = Animations.css; sourceTree = "<group>"; };
 		1AFC81C51CC20A62003CDD86 /* CleaningUpQ4A2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CleaningUpQ4A2.mp3; sourceTree = "<group>"; };
+		1AFC9BE11DAC485A00189CD2 /* The_Lopez_Family_Mystery.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = The_Lopez_Family_Mystery.json; sourceTree = "<group>"; };
+		1AFC9BE21DAC485A00189CD2 /* KnowledgeTracer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KnowledgeTracer.h; sourceTree = "<group>"; };
+		1AFC9BE31DAC485A00189CD2 /* KnowledgeTracer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KnowledgeTracer.m; sourceTree = "<group>"; };
+		1AFC9BE41DAC485A00189CD2 /* ManipulationAnalyser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManipulationAnalyser.h; sourceTree = "<group>"; };
+		1AFC9BE51DAC485A00189CD2 /* ManipulationAnalyser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManipulationAnalyser.m; sourceTree = "<group>"; };
+		1AFC9BE71DAC485A00189CD2 /* SentenceStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SentenceStatus.h; sourceTree = "<group>"; };
+		1AFC9BE81DAC485A00189CD2 /* SentenceStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SentenceStatus.m; sourceTree = "<group>"; };
+		1AFC9BE91DAC485A00189CD2 /* Skill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Skill.h; sourceTree = "<group>"; };
+		1AFC9BEA1DAC485A00189CD2 /* Skill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Skill.m; sourceTree = "<group>"; };
+		1AFC9BEB1DAC485A00189CD2 /* SkillSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillSet.h; sourceTree = "<group>"; };
+		1AFC9BEC1DAC485A00189CD2 /* SkillSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillSet.m; sourceTree = "<group>"; };
+		1AFC9BED1DAC485A00189CD2 /* SyntaxSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyntaxSkill.h; sourceTree = "<group>"; };
+		1AFC9BEE1DAC485A00189CD2 /* SyntaxSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyntaxSkill.m; sourceTree = "<group>"; };
+		1AFC9BEF1DAC485A00189CD2 /* UsabilitySkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsabilitySkill.h; sourceTree = "<group>"; };
+		1AFC9BF01DAC485A00189CD2 /* UsabilitySkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsabilitySkill.m; sourceTree = "<group>"; };
+		1AFC9BF11DAC485A00189CD2 /* UserAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAction.h; sourceTree = "<group>"; };
+		1AFC9BF21DAC485A00189CD2 /* UserAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAction.m; sourceTree = "<group>"; };
+		1AFC9BF31DAC485A00189CD2 /* WordSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordSkill.h; sourceTree = "<group>"; };
+		1AFC9BF41DAC485A00189CD2 /* WordSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordSkill.m; sourceTree = "<group>"; };
+		1AFC9BF51DAC485A00189CD2 /* ITSController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITSController.h; sourceTree = "<group>"; };
+		1AFC9BF61DAC485A00189CD2 /* ITSController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITSController.m; sourceTree = "<group>"; };
 		1AFCFFEF1C34C0DB008F1A1C /* water_by_shore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water_by_shore.png; sourceTree = "<group>"; };
 		1AFCFFF01C34C0DB008F1A1C /* water_away_shore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water_away_shore.png; sourceTree = "<group>"; };
 		1AFD2EF51C8A7A4D004B2D88 /* fallen_tree2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fallen_tree2.png; sourceTree = "<group>"; };
@@ -11398,6 +11430,58 @@
 			path = Text;
 			sourceTree = "<group>";
 		};
+		1AFC9BDE1DAC485A00189CD2 /* ITS */ = {
+			isa = PBXGroup;
+			children = (
+				1AFC9BDF1DAC485A00189CD2 /* BayesKnowledgeTracer */,
+				1AFC9BF51DAC485A00189CD2 /* ITSController.h */,
+				1AFC9BF61DAC485A00189CD2 /* ITSController.m */,
+			);
+			path = ITS;
+			sourceTree = "<group>";
+		};
+		1AFC9BDF1DAC485A00189CD2 /* BayesKnowledgeTracer */ = {
+			isa = PBXGroup;
+			children = (
+				1AFC9BE01DAC485A00189CD2 /* Data */,
+				1AFC9BE21DAC485A00189CD2 /* KnowledgeTracer.h */,
+				1AFC9BE31DAC485A00189CD2 /* KnowledgeTracer.m */,
+				1AFC9BE41DAC485A00189CD2 /* ManipulationAnalyser.h */,
+				1AFC9BE51DAC485A00189CD2 /* ManipulationAnalyser.m */,
+				1AFC9BE61DAC485A00189CD2 /* Models */,
+			);
+			path = BayesKnowledgeTracer;
+			sourceTree = "<group>";
+		};
+		1AFC9BE01DAC485A00189CD2 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				1AFC9BE11DAC485A00189CD2 /* The_Lopez_Family_Mystery.json */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		1AFC9BE61DAC485A00189CD2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1AFC9BE71DAC485A00189CD2 /* SentenceStatus.h */,
+				1AFC9BE81DAC485A00189CD2 /* SentenceStatus.m */,
+				1AFC9BE91DAC485A00189CD2 /* Skill.h */,
+				1AFC9BEA1DAC485A00189CD2 /* Skill.m */,
+				1AFC9BEB1DAC485A00189CD2 /* SkillSet.h */,
+				1AFC9BEC1DAC485A00189CD2 /* SkillSet.m */,
+				1AFC9BED1DAC485A00189CD2 /* SyntaxSkill.h */,
+				1AFC9BEE1DAC485A00189CD2 /* SyntaxSkill.m */,
+				1AFC9BEF1DAC485A00189CD2 /* UsabilitySkill.h */,
+				1AFC9BF01DAC485A00189CD2 /* UsabilitySkill.m */,
+				1AFC9BF11DAC485A00189CD2 /* UserAction.h */,
+				1AFC9BF21DAC485A00189CD2 /* UserAction.m */,
+				1AFC9BF31DAC485A00189CD2 /* WordSkill.h */,
+				1AFC9BF41DAC485A00189CD2 /* WordSkill.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		31109700174AB35D00B02BF7 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -11655,6 +11739,7 @@
 		31953E7E1729ED8D00570087 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1AFC9BDE1DAC485A00189CD2 /* ITS */,
 				316CFADF1773A512004216D0 /* Physical Manipulation */,
 				1AD3CC841A251C5300E18B1C /* IntroductionViewController.h */,
 				1AD3CC851A251C5300E18B1C /* IntroductionViewController.m */,
@@ -17910,6 +17995,7 @@
 				5D9E347E1C590E9500636150 /* TheLopezFamilyQ4.mp3 in Resources */,
 				5C5D091F1CA9F55800B7C8D9 /* MagicallyS.mp3 in Resources */,
 				5CAE95FA1C921DCD00702DB4 /* ProtectS.mp3 in Resources */,
+				1AFC9BF71DAC485A00189CD2 /* The_Lopez_Family_Mystery.json in Resources */,
 				5C28DD0A1C2BA66E005ACD07 /* Story4-The-Algonquian-Wigwam-PM-1.xhtml in Resources */,
 				5C1C4D541D238A2800547783 /* VentricleE.mp3 in Resources */,
 				1A519C7D1D9089A500FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml in Resources */,
@@ -21497,6 +21583,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AFC9BFE1DAC485A00189CD2 /* UsabilitySkill.m in Sources */,
 				038BECDC1C88C33F00ECFE28 /* Context.m in Sources */,
 				C3B66AA11BC33C2D005DF0AC /* LibraryCellView.m in Sources */,
 				5DB14E441D2E08C5006EEFCF /* ManipulationView.m in Sources */,
@@ -21506,6 +21593,7 @@
 				C3B10B3A1AF2F54F003195F5 /* Statistics.m in Sources */,
 				31953E591729ECC100570087 /* AppDelegate.m in Sources */,
 				31953E741729ED5A00570087 /* GDataXMLNode.m in Sources */,
+				1AFC9BF91DAC485A00189CD2 /* ManipulationAnalyser.m in Sources */,
 				31953E751729ED5A00570087 /* ioapi.c in Sources */,
 				5CD7FE3819776403007A1E49 /* Introduction.m in Sources */,
 				C3B5214C19254B0C003FF639 /* Location.m in Sources */,
@@ -21523,7 +21611,9 @@
 				31953E841729EE4100570087 /* Book.m in Sources */,
 				1AD3CC8C1A251CE600E18B1C /* PlayAudioFile.m in Sources */,
 				31953E871729EE5800570087 /* LibraryViewController.m in Sources */,
+				1AFC9BFB1DAC485A00189CD2 /* Skill.m in Sources */,
 				C3B5215A192AB610003FF639 /* EBookImporter.m in Sources */,
+				1AFC9C011DAC485A00189CD2 /* ITSController.m in Sources */,
 				1ADDE2FA1D808CD7002FB71C /* SentenceController.m in Sources */,
 				1AB028FC1ACF0890006CC916 /* AuthoringModeViewController.m in Sources */,
 				033BC05D1C501BB600A1EC14 /* ActivityMode.m in Sources */,
@@ -21545,6 +21635,7 @@
 				C36473EE1A9AA5C100FD7494 /* AlternateSentence.m in Sources */,
 				5DB15D981C73955C00130705 /* ScriptAudio.m in Sources */,
 				1A2C94971D8464E4001E46A2 /* PossibleInteractionController.m in Sources */,
+				1AFC9BFD1DAC485A00189CD2 /* SyntaxSkill.m in Sources */,
 				C3B52156192A97D7003FF639 /* InteractionModel.m in Sources */,
 				31C306C2183D900B0043DEDD /* Solution.m in Sources */,
 				311646B1175FD03F00B483F0 /* Activity.m in Sources */,
@@ -21557,7 +21648,9 @@
 				31058C7C176BE73D00595AAE /* ImagineManipulationActivity.m in Sources */,
 				31058C7F176BE74B00595AAE /* AssessmentActivity.m in Sources */,
 				31058C82176BEB6300595AAE /* Page.m in Sources */,
+				1AFC9BFC1DAC485A00189CD2 /* SkillSet.m in Sources */,
 				316CFADB1773A1E3004216D0 /* ContextualMenuDataSource.m in Sources */,
+				1AFC9C001DAC485A00189CD2 /* WordSkill.m in Sources */,
 				316CFADE1773A2A2004216D0 /* PieContextualMenu.m in Sources */,
 				316CFAE81773BE56004216D0 /* PieContextualMenuItem.m in Sources */,
 				312F5B13177A0F58000DAD2E /* MenuItemDataSource.m in Sources */,
@@ -21568,8 +21661,10 @@
 				1AD3CC891A251CBA00E18B1C /* BuildHTMLString.m in Sources */,
 				31161433179DE85E00655221 /* Relationship.m in Sources */,
 				C3B5215219254BA2003FF639 /* ActionStep.m in Sources */,
+				1AFC9BFF1DAC485A00189CD2 /* UserAction.m in Sources */,
 				038BECE91C8956BF00ECFE28 /* StudyContext.m in Sources */,
 				C3B5215319254BA2003FF639 /* PhysicalManipulationSolution.m in Sources */,
+				1AFC9BF81DAC485A00189CD2 /* KnowledgeTracer.m in Sources */,
 				310908EC17DE90CA004590A2 /* MovementConstraint.m in Sources */,
 				5CC854E719FAF37F00910237 /* ConditionSetup.m in Sources */,
 				310908EF17DE90DB004590A2 /* OrderConstraint.m in Sources */,
@@ -21582,6 +21677,7 @@
 				C6805218197ECDE5002A5249 /* DDXMLNode.m in Sources */,
 				C680521B197ECDF4002A5249 /* DDXMLElementAdditions.m in Sources */,
 				C680521E197ECE02002A5249 /* NSString+DDXML.m in Sources */,
+				1AFC9BFA1DAC485A00189CD2 /* SentenceStatus.m in Sources */,
 				03A4011C1C9B6FF300FBE6D2 /* GTMNSString+HTML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

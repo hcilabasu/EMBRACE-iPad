@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wordMappings>
+    <word keyWord="aorta">
+        <mappedWords>
+            <subWord>aorta</subWord>
+            <subWord>aortaStart</subWord>
+            <subWord>aortaPath</subWord>
+        </mappedWords>
+    </word>
+    
+    <word keyWord="artery">
+        <mappedWords>
+            <subWord>arteries</subWord>
+            <subWord>artery</subWord>
+        </mappedWords>
+    </word>
+    
+    <word keyWord="atrium">
+        <mappedWords>
+            <subWord>atrium_1</subWord>
+            <subWord>atrium_2</subWord>
+            <subWord>leftAtrium</subWord>
+            <subWord>leftAtrium2</subWord>
+            <subWord>rightAtrium</subWord>
+        </mappedWords>
+    </word>
+    
+    <word keyWord="vein">
+        <mappedWords>
+            <subWord>vein</subWord>
+            <subWord>veins</subWord>
+            <subWord>veinPath</subWord>
+        </mappedWords>
+    </word>
+    
+    <word keyWord="heart">
+        <mappedWords>
+            <subWord>heart</subWord>
+            <subWord>heart1</subWord>
+            <subWord>heart2</subWord>
+            <subWord>heart3</subWord>
+        </mappedWords>
+    </word>
+    
+    <word keyWord="ventricle">
+        <mappedWords>
+            <subWord>ventricle</subWord>
+            <subWord>ventricle_1</subWord>
+            <subWord>ventricle_2</subWord>
+            <subWord>leftVentricle</subWord>
+            <subWord>rightVentricle</subWord>
+        </mappedWords>
+    </word>
+    
+    <word keyWord="muscle">
+        <mappedWords>
+            <subWord>muscles</subWord>
+            <subWord>muscle1</subWord>
+            <subWord>muscle2</subWord>
+        </mappedWords>
+    </word>
+   
+   <word keyWord="lung">
+       <mappedWords>
+           <subWord>lung</subWord>
+           <subWord>lung1</subWord>
+           <subWord>lung2</subWord>
+       </mappedWords>
+   </word>
+   <!--
+    air
+    cilia
+    nose
+    -->
+</wordMappings>
