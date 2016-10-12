@@ -37,15 +37,15 @@
 - (id)init {
     if (self = [super init]) {
         condition = EMBRACE;
-        language = BILINGUAL;
+        language = ENGLISH;
         reader = SYSTEM;
         appMode = Study;
         currentMode = PM_MODE;
-        newInstructions = false;
-        isVocabPageEnabled = false;
-        isAssessmentPageEnabled = true;
+        newInstructions = FALSE;
+        isVocabPageEnabled = FALSE;
+        isAssessmentPageEnabled = FALSE;
         assessmentMode = ENDOFBOOK;
-        shouldShowITSMessages = NO;
+        shouldShowITSMessages = YES;
 
         allowFileSync = true; //NOTE: Still testing this functionality
     }

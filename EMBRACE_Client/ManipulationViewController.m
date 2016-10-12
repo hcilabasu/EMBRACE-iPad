@@ -29,25 +29,25 @@
 
     
     //TODO: Determine what I can delete from here to next comment
-    NSString *currentPage; //Current page being shown, so that the next page can be requested
-    NSString *currentPageId; //Id of the current page being shown
-    NSString *actualPage; //Stores the address of the current page we are at
-    NSUInteger currentSentence; //Active sentence to be completed
-    NSString *currentSentenceText; //Text of current sentence
-    NSUInteger currentIdea; //Current idea number to be completed
-    NSUInteger totalSentences; //Total number of sentences on this page
-    NSString *actualWord; //Stores the current word that was clicked
-    NSString *previousStep;
+    //NSString *currentPage; //Current page being shown, so that the next page can be requested
+    //NSString *currentPageId; //Id of the current page being shown
+    //NSString *actualPage; //Stores the address of the current page we are at
+    //NSUInteger currentSentence; //Active sentence to be completed
+    //NSString *currentSentenceText; //Text of current sentence
+    //NSUInteger currentIdea; //Current idea number to be completed
+    //NSUInteger totalSentences; //Total number of sentences on this page
+    //NSString *actualWord; //Stores the current word that was clicked
+    //NSString *previousStep;
     
-    NSUInteger currentComplexity; //Complexity level of current sentence
+    //NSUInteger currentComplexity; //Complexity level of current sentence
     NSDate *startTime;
     NSDate *endTime;
     
-    PhysicalManipulationSolution *PMSolution; //PM solution steps for current chapter
-    ImagineManipulationSolution *IMSolution; //IM solution steps for current chapter
-    NSUInteger numSteps; //Number of steps for current sentence
-    NSUInteger currentStep; //Active step to be completed
-    BOOL stepsComplete; //True if all steps have been completed for a sentence
+    //PhysicalManipulationSolution *PMSolution; //PM solution steps for current chapter
+    //ImagineManipulationSolution *IMSolution; //IM solution steps for current chapter
+    //NSUInteger numSteps; //Number of steps for current sentence
+    //NSUInteger currentStep; //Active step to be completed
+    //BOOL stepsComplete; //True if all steps have been completed for a sentence
     //TODO: Determine what I can delete from previous todo to here
     
     BOOL chooseComplexity; //True if using alternate sentences
@@ -1469,7 +1469,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                                                          isVerified:true
                                                          actionStep:currSolStep
                                                 manipulationContext:manipulationContext
-                                                        forSentence:currentSentenceText
+                                                        forSentence:sentenceContext.currentSentenceText
                                                     withWordMapping:model.wordMapping];
                         
                         [animatingObjects setObject:STOP forKey:movingObjectId];
@@ -1484,7 +1484,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                                                          isVerified:false
                                                          actionStep:currSolStep
                                                 manipulationContext:manipulationContext
-                                                        forSentence:currentSentenceText
+                                                        forSentence:sentenceContext.currentSentenceText
                                                     withWordMapping:model.wordMapping];
                         
                         [self handleErrorForAction:@"Move Object"];
@@ -1507,7 +1507,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                                                      isVerified:false
                                                      actionStep:currSolStep
                                             manipulationContext:manipulationContext
-                                                    forSentence:currentSentenceText
+                                                    forSentence:sentenceContext.currentSentenceText
                                                 withWordMapping:model.wordMapping];
                     
                     [self handleErrorForAction:@"Move Object"];
@@ -1527,7 +1527,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                                                      isVerified:true
                                                      actionStep:currSolStep
                                             manipulationContext:manipulationContext
-                                                    forSentence:currentSentenceText
+                                                    forSentence:sentenceContext.currentSentenceText
                                                 withWordMapping:model.wordMapping];
                     
                     [self resetObjectLocation];
@@ -1539,7 +1539,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                                                      isVerified:false
                                                      actionStep:currSolStep
                                             manipulationContext:manipulationContext
-                                                    forSentence:currentSentenceText
+                                                    forSentence:sentenceContext.currentSentenceText
                                                 withWordMapping:model.wordMapping];
                     
                     [self handleErrorForAction:@"Move Object"];
@@ -1581,13 +1581,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                                                          isVerified:false
                                                          actionStep:currSolStep
                                                 manipulationContext:manipulationContext
-                                                        forSentence:currentSentenceText
+                                                        forSentence:sentenceContext.currentSentenceText
                                                     withWordMapping:model.wordMapping];
                         
                         [self handleErrorForAction:@"Move Object"];
                     }
                     //If only 1 possible interaction was found, go ahead and perform that interaction if it's correct.
-                    if ([possibleInteractions count] == 1) {
+                    else if ([possibleInteractions count] == 1) {
                         PossibleInteraction *interaction = [possibleInteractions objectAtIndex:0];
                         
                         //Checks solution and accomplishes action trace
@@ -1678,7 +1678,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                                                      isVerified:false
                                                      actionStep:currSolStep
                                             manipulationContext:manipulationContext
-                                                    forSentence:currentSentenceText
+                                                    forSentence:sentenceContext.currentSentenceText
                                                 withWordMapping:model.wordMapping];
                     
                     [self handleErrorForAction:@"Move Object"];
@@ -2339,13 +2339,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
                 
                 //Get current step to be completed
-                ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+                ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
                 [[ITSController sharedInstance] movedObject:[con.objects objectAtIndex:0]
                                          destinationObjects:@[[con.objects objectAtIndex:1]]
                                                  isVerified:true
                                                  actionStep:currSolStep
                                         manipulationContext:manipulationContext
-                                                forSentence:currentSentenceText
+                                                forSentence:sentenceContext.currentSentenceText
                                             withWordMapping:model.wordMapping];
             }
             
@@ -2378,13 +2378,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
         
         //Get current step to be completed
-        ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
         [[ITSController sharedInstance] movedObject:[con.objects objectAtIndex:0]
                                  destinationObjects:@[[con.objects objectAtIndex:1]]
                                          isVerified:false
                                          actionStep:currSolStep
                                 manipulationContext:manipulationContext
-                                        forSentence:currentSentenceText
+                                        forSentence:sentenceContext.currentSentenceText
                                     withWordMapping:model.wordMapping];
         
         [self handleErrorForAction:action];
@@ -2434,11 +2434,14 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 }
             });
         }
+        else{
+            allowInteractions = TRUE;
+        }
     }
     
     if (conditionSetup.appMode == ITS) {
         //Record error for complexity
-        [[pageStatistics objectForKey:currentPageId] addErrorForComplexity:(currentComplexity - 1)];
+        [[pageStatistics objectForKey:pageContext.currentPageId] addErrorForComplexity:(currentComplexity - 1)];
     }
 }
 
@@ -2451,7 +2454,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
         
         // Get current step to be completed
-        ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+        ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
         NSString *stepType = [currSolStep stepType];
         
         // Highlight correct object and location
@@ -2477,7 +2480,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         // Highlight correct objects for transference
         else if ([stepType isEqualToString:@"transferAndGroup"] || [stepType isEqualToString:@"transferAndDisappear"]) {
             NSString *object1Id = [currSolStep object1Id];
-            ActionStep *nextSolStep = [currSolSteps objectAtIndex:currentStep];
+            ActionStep *nextSolStep = [currSolSteps objectAtIndex:stepContext.currentStep];
             
             if (nextSolStep != nil && ([[nextSolStep stepType] isEqualToString:@"transferAndGroup"] || [stepType isEqualToString:@"transferAndDisappear"])) {
                 NSString *nextObject1Id = [nextSolStep object1Id];
@@ -2518,12 +2521,12 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
             
             // Get current step to be completed
-            ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+            ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
             
             // Look for simpler version of the current sentence
-            for (AlternateSentence *alternateSentence in [[PMActivity alternateSentences] objectForKey:currentPageId]) {
+            for (AlternateSentence *alternateSentence in [[PMActivity alternateSentences] objectForKey:pageContext.currentPageId]) {
                 if ([alternateSentence complexity] == currentComplexity - 1) {
-                    for (NSNumber *idea in [[pageSentences objectAtIndex:currentSentence - 1] ideas]) {
+                    for (NSNumber *idea in [[pageSentences objectAtIndex:sentenceContext.currentSentence - 1] ideas]) {
                         if ([[alternateSentence ideas] containsObject:idea]) {
                             // Add sentences with no solution steps if they share the same idea
                             if ([[alternateSentence solutionSteps] count] == 0) {
@@ -2581,14 +2584,14 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
     
     // Get current step to be completed
-    ActionStep *currSolStep = [currSolSteps objectAtIndex:currentStep - 1];
+    ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
     NSString *stepType = [currSolStep stepType];
     
     // Animate moving object to location
     if ([stepType isEqualToString:@"check"] || [stepType isEqualToString:@"checkLeft"] || [stepType isEqualToString:@"checkRight"] || [stepType isEqualToString:@"checkUp"] || [stepType isEqualToString:@"checkDown"] || [stepType isEqualToString:@"checkAndSwap"] || [stepType isEqualToString:@"tapToAnimate"] || [stepType isEqualToString:@"checkPath"] || [stepType isEqualToString:@"shakeAndTap"] || [stepType isEqualToString:@"tapWord"] ) {
         if ([stepType isEqualToString:@"check"]) {
             NSString *object1Id = [currSolStep object1Id];
-            ActionStep *nextSolStep = [currSolSteps objectAtIndex:currentStep];
+            ActionStep *nextSolStep = [currSolSteps objectAtIndex:stepContext.currentStep];
             
             if (nextSolStep != nil && [[nextSolStep stepType] isEqualToString:@"move"] && [[nextSolStep object1Id] isEqualToString:object1Id]) {
                 Hotspot *object1Hotspot = [model getHotspotforObjectWithActionAndRole:object1Id :[currSolStep action] :@"subject"];
@@ -2632,7 +2635,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     // Animate moving object for transference
     else if ([stepType isEqualToString:@"transferAndGroup"] || [stepType isEqualToString:@"transferAndDisappear"]) {
         NSString *object1Id = [currSolStep object1Id];
-        ActionStep *nextSolStep = [currSolSteps objectAtIndex:currentStep];
+        ActionStep *nextSolStep = [currSolSteps objectAtIndex:stepContext.currentStep];
         
         if (nextSolStep != nil && ([[nextSolStep stepType] isEqualToString:@"transferAndGroup"] || [stepType isEqualToString:@"transferAndDisappear"])) {
             NSString *nextObject1Id = [nextSolStep object1Id];
@@ -4265,8 +4268,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
     NSArray *nextSteps = nil;
     
-    if ([currSolSteps count] > currentStep) {
-        NSRange range = NSMakeRange(currentStep, [currSolSteps count] - currentStep);
+    if ([currSolSteps count] > stepContext.currentStep) {
+        NSRange range = NSMakeRange(stepContext.currentStep, [currSolSteps count] - stepContext.currentStep);
         nextSteps = [currSolSteps subarrayWithRange:range];
     }
     
