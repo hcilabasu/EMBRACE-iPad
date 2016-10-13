@@ -4914,6 +4914,7 @@
 		5DED1CAF1C765BD200B29369 /* NaughtyMonkey_Script_C9.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DED1CA21C765BD200B29369 /* NaughtyMonkey_Script_C9.mp3 */; };
 		7112BA161DA4154700E08B7B /* AlternateSentences-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 7112BA141DA4154700E08B7B /* AlternateSentences-MetaData.xml */; };
 		7112BA171DA4154700E08B7B /* Solutions-MetaData-ITS.xml in Resources */ = {isa = PBXBuildFile; fileRef = 7112BA151DA4154700E08B7B /* Solutions-MetaData-ITS.xml */; };
+		719D48D31DAD509D00027A7F /* Solutions-MetaData-ITS.xml in Resources */ = {isa = PBXBuildFile; fileRef = 719D48D21DAD509D00027A7F /* Solutions-MetaData-ITS.xml */; };
 		C30D022D1BABBFD500DF53F1 /* PlayAudioIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABD84AD1A49F54B0043A685 /* PlayAudioIcon.png */; };
 		C30D022E1BABBFD500DF53F1 /* cover_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 31109701174AB35E00B02BF7 /* cover_default.png */; };
 		C30D022F1BABBFD500DF53F1 /* logo57.png in Resources */ = {isa = PBXBuildFile; fileRef = 31058C75176BCFF900595AAE /* logo57.png */; };
@@ -9933,6 +9934,7 @@
 		5DED1CA21C765BD200B29369 /* NaughtyMonkey_Script_C9.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkey_Script_C9.mp3; sourceTree = "<group>"; };
 		7112BA141DA4154700E08B7B /* AlternateSentences-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AlternateSentences-MetaData.xml"; sourceTree = "<group>"; };
 		7112BA151DA4154700E08B7B /* Solutions-MetaData-ITS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Solutions-MetaData-ITS.xml"; sourceTree = "<group>"; };
+		719D48D21DAD509D00027A7F /* Solutions-MetaData-ITS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Solutions-MetaData-ITS.xml"; sourceTree = "<group>"; };
 		C32DA0DF1BF92A52006C2418 /* Progress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Progress.h; sourceTree = "<group>"; };
 		C32DA0E01BF92A52006C2418 /* Progress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Progress.m; sourceTree = "<group>"; };
 		C35F427B1BDAAD3600B4BCF0 /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
@@ -10117,6 +10119,7 @@
 				1A631CA41C0E4D3900251CB3 /* Relationships-MetaData.xml */,
 				1A631CA51C0E4D3900251CB3 /* SentenceAnalysis-MetaData.xml */,
 				1A631CA61C0E4D3900251CB3 /* Setups-MetaData.xml */,
+				719D48D21DAD509D00027A7F /* Solutions-MetaData-ITS.xml */,
 				1A631CA71C0E4D3900251CB3 /* Solutions-MetaData.xml */,
 				1A631CA81C0E4D3900251CB3 /* Styles */,
 				1A631CAC1C0E4D3900251CB3 /* Text */,
@@ -17555,6 +17558,7 @@
 				5C72E64E1C72A46F00CE4877 /* TheSiouxTeepeeQ2A1.mp3 in Resources */,
 				1A63225F1C0E4D3B00251CB3 /* Story1-The-Moving-Earth-Intro-E.xhtml in Resources */,
 				1A6320681C0E4D3B00251CB3 /* Story6-Everyone-Helps-Intro-S.xhtml in Resources */,
+				719D48D31DAD509D00027A7F /* Solutions-MetaData-ITS.xml in Resources */,
 				5C40AEF91CBF5EFC00BFEB9F /* Stopped_type1S.mp3 in Resources */,
 				5CA5CC701CD1B1C6002A631F /* WhoIsTheBestAnimalS16E.mp3 in Resources */,
 				5C9B8B5A1CB5EFC800420053 /* CartS.mp3 in Resources */,
