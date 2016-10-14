@@ -198,8 +198,10 @@
 - (NSMutableArray *)returnCurrentSolutionSteps {
     NSMutableArray *currSolSteps;
     
-    if (conditionSetup.appMode == ITS) {
-        currSolSteps = [[sentenceContext.pageSentences objectAtIndex:sentenceContext.currentSentence - 1] solutionSteps];
+    if (conditionSetup.appMode == ITS && ![pageContext.currentPageId containsString:DASH_INTRO]) {
+        if(sentenceContext.currentSentence > 0){
+            currSolSteps = [[sentenceContext.pageSentences objectAtIndex:sentenceContext.currentSentence - 1] solutionSteps];
+        }
     }
     else {
         if (conditionSetup.condition == CONTROL) {
@@ -280,7 +282,7 @@
             NSString *spanishText = [NSString stringWithFormat:@""];
             
             if (conditionSetup.language == BILINGUAL) {
-                if (![[mvc.sc getEnglishTranslation:vocab] isEqualToString:@"Translation not found"]) {
+                if (![[mvc.sc getEnglishTranslation:vocab] isEqualToString:NULL_TXT]) {
                     englishText = [mvc.sc getEnglishTranslation:vocab];
                     spanishText = vocab;
                 }

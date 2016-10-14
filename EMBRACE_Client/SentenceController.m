@@ -113,6 +113,7 @@
  * Set the current sentence number, text, type, appearance and associated solution steps. (creations solutions for vocab pages)
  */
 - (void) setupSentencesForPage {
+    sentenceContext.totalSentences = (int)[self.manipulationView totalSentences];
     
     //Dynamically reads the vocabulary words on the vocab page and creates and adds solutionsteps
     if ([pageContext.currentPageId rangeOfString:DASH_INTRO].location != NSNotFound) {
@@ -168,7 +169,7 @@
     int previousIdeaNum = 0; //used for making sure same idea does not get repeated
     
     NSMutableArray *ideaNums = [stepContext.PMSolution getIdeaNumbers]; //get list of idea numbers on the page
-    mvc.pageSentences = [NSMutableArray array];
+    sentenceContext.pageSentences = [NSMutableArray array];
     //Add alternate sentences associated with each idea
     for (NSNumber *ideaNum in ideaNums) {
         if ([ideaNum intValue] > previousIdeaNum) {
@@ -202,7 +203,7 @@
                 [self.manipulationView addSentence:sentenceToAdd withSentenceNumber:sentenceNumber andVocabulary:vocabulary];
                 sentenceNumber++;
                 //Add alternate sentence to array
-                [mvc.pageSentences addObject:sentenceToAdd];
+                [sentenceContext.pageSentences addObject:sentenceToAdd];
                 
                 BOOL transference = FALSE;
                 

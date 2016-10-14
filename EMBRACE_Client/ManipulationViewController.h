@@ -91,7 +91,6 @@ typedef enum InteractionMode {
 @property (nonatomic, assign) EMComplexity currentComplexityLevel;
 @property (nonatomic, assign) NSUInteger maxAttempts; // Maximum number of attempts user can make before system automatically performs step
 @property (nonatomic, assign) NSUInteger numAttempts; // Number of attempts user has made for current step
-@property (nonatomic, strong) NSMutableArray *pageSentences; //AlternateSentences on current page
 
 - (void)loadFirstPage;
 - (void)setManipulationContext;

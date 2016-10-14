@@ -129,7 +129,6 @@
 @synthesize bookView;
 @synthesize numAttempts;
 @synthesize maxAttempts;
-@synthesize pageSentences;
 
 //Used to determine the required proximity of 2 hotspots to group two items together.
 float const groupingProximity = 20.0;
@@ -994,6 +993,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
     if(![self.playaudioClass isAudioLeftInSequence])
     {
+        BOOL playedAudio = false;
+        
         if (currSolSteps !=nil && [currSolSteps count] > 0) {
             //Get current step to be completed
             ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
@@ -1004,26 +1005,16 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     ([chapterTitle isEqualToString:@"The Naughty Monkey"] && conditionSetup.condition == CONTROL && [[currSolStep object1Id] containsString: englishSentenceText] && sentenceContext.currentSentence == 2 && [pageContext.currentPageId containsString:@"-PM-2"]) ||
                     ([chapterTitle isEqualToString:@"The Naughty Monkey"] && conditionSetup.condition == EMBRACE && [[currSolStep object1Id] containsString: englishSentenceText] && (sentenceContext.currentSentence == sentenceIDNum) && sentenceContext.currentSentence !=2 && [pageContext.currentPageId containsString:@"-PM-2"]))
                 {
+                    playedAudio = true;
                     [[ServerCommunicationController sharedInstance] logTapWord:sentenceText :manipulationContext];
                     [self.playaudioClass stopPlayAudioFile];
                     [self playAudioForVocabWord: englishSentenceText : spanishExt];
                     [ssc incrementCurrentStep];
                 }
-                else if([[Translation translationWords] objectForKey:englishSentenceText])
-                {
-                    [[ServerCommunicationController sharedInstance] logTapWord:englishSentenceText :manipulationContext];
-                    [self.playaudioClass stopPlayAudioFile];
-                    [self playAudioForVocabWord: englishSentenceText : spanishExt];
-                }
-            }
-            else if([[Translation translationWords] objectForKey:englishSentenceText])
-            {
-                [[ServerCommunicationController sharedInstance] logTapWord:englishSentenceText :manipulationContext];
-                [self.playaudioClass stopPlayAudioFile];
-                [self playAudioForVocabWord: englishSentenceText : spanishExt];
             }
         }
-        else if([[Translation translationWords] objectForKey:englishSentenceText])
+        
+        if(!playedAudio && [englishSentenceText length] > 0)// && [[Translation translationWords] objectForKey:englishSentenceText])
         {
             [[ServerCommunicationController sharedInstance] logTapWord:englishSentenceText :manipulationContext];
             [self.playaudioClass stopPlayAudioFile];
@@ -2526,7 +2517,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             // Look for simpler version of the current sentence
             for (AlternateSentence *alternateSentence in [[PMActivity alternateSentences] objectForKey:pageContext.currentPageId]) {
                 if ([alternateSentence complexity] == currentComplexity - 1) {
-                    for (NSNumber *idea in [[pageSentences objectAtIndex:sentenceContext.currentSentence - 1] ideas]) {
+                    for (NSNumber *idea in [[sentenceContext.pageSentences objectAtIndex:sentenceContext.currentSentence - 1] ideas]) {
                         if ([[alternateSentence ideas] containsObject:idea]) {
                             // Add sentences with no solution steps if they share the same idea
                             if ([[alternateSentence solutionSteps] count] == 0) {
@@ -2546,6 +2537,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     }
                 }
             }
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                allowInteractions = TRUE;
+            });
         }
         
         // Present simpler sentence(s)
