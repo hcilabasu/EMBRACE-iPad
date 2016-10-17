@@ -55,6 +55,7 @@
 - (void)logDisplayMenuItems:(NSArray *)menuItemsData context:(ManipulationContext *)context;
 - (void)logSelectMenuItem:(NSArray *)menuItemData atIndex:(int)index context:(ManipulationContext *)context;
 - (void)logVerification:(BOOL)verification forAction:(NSString *)action context:(ManipulationContext *)context;
+- (void)logMaximumAttemptsReachedForAction:(NSString *)action context:(ManipulationContext *)context;
 - (void)logResetObject:(NSString *)object startPos:(CGPoint)start endPos:(CGPoint)end context:(ManipulationContext *)context;
 - (void)logAppearOrDisappearObject:(NSString *)object ofType:(NSString *)objectType context:(ManipulationContext *)context;
 - (void)logSwapImageForObject:(NSString *)object altImage:(NSString *)image context:(ManipulationContext *)context;

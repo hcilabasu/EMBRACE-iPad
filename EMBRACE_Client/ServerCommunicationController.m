@@ -856,6 +856,31 @@ static ServerCommunicationController *sharedInstance = nil;
     [nodeContext addChild:nodeStudyContext];
 }
 
+- (void)logMaximumAttemptsReachedForAction:(NSString *)action context:(ManipulationContext *)context {
+    //Start with base node for system action
+    DDXMLElement *nodeBaseAction = [self getBaseActionForActor:SYSTEM];
+    [study addChild:nodeBaseAction];
+    
+    //Set selection
+    DDXMLElement *nodeSelection = [[nodeBaseAction elementsForName:@"Selection"] objectAtIndex:0];
+    [nodeSelection setStringValue:action];
+    
+    //Set action
+    DDXMLElement *nodeAction = [[nodeBaseAction elementsForName:@"Action"] objectAtIndex:0];
+    [nodeAction setStringValue:@"Maximum Attempts Reached"];
+    
+    //Get context
+    DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
+    
+    //Create nodes for context information
+    DDXMLElement *nodeManipulationContext = [self getManipulationContext:context];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
+    
+    //Add above nodes to context
+    [nodeContext addChild:nodeManipulationContext];
+    [nodeContext addChild:nodeStudyContext];
+}
+
 /*
  * Logging for when an object is reset (i.e., snaps object back to original position after an error)
  */

@@ -12,6 +12,8 @@
 
 @synthesize numSteps; //Number of steps for current sentence
 @synthesize currentStep; //Active step to be completed
+@synthesize maxAttempts;
+@synthesize numAttempts;
 @synthesize PMSolution;
 @synthesize IMSolution;
 @synthesize stepsComplete;

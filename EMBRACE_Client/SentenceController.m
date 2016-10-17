@@ -53,7 +53,7 @@
     stepContext.currentStep = 1;
     manipulationContext.stepNumber = stepContext.currentStep;
     stepContext.stepsComplete = FALSE;
-    mvc.numAttempts = 0;
+    stepContext.numAttempts = 0;
     
     //Get number of steps for current sentence
     if (conditionSetup.appMode == ITS && [sentenceContext.pageSentences count] > 0) {

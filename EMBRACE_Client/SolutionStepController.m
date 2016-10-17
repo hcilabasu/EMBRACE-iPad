@@ -339,7 +339,7 @@
     
     //Check if we able to increment current step
     if (stepContext.currentStep < stepContext.numSteps) {
-        mvc.numAttempts = 0;
+        stepContext.numAttempts = 0;
         
         //if the current solution step is a custom pm, then increment current step minMenuOption times
         if ([PM_CUSTOM isEqualToString: [currSolStep menuType]]){
