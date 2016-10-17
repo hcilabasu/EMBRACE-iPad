@@ -3402,7 +3402,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     [self populateMenuDataSource:interactions :allRelationships];
     
     //Add subview to hide story
-    IMViewMenu = [[UIView alloc] initWithFrame:[self.manipulationView frame]];
+    IMViewMenu = [[UIView alloc] initWithFrame:[bookView frame]];
     IMViewMenu.backgroundColor = [UIColor whiteColor];
     UILabel *IMinstructions = [[UILabel alloc] initWithFrame:CGRectMake(200, 10, IMViewMenu.frame.size.width, 40)];
     
@@ -4124,7 +4124,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  */
 //TODO: simplify im and pm menu logic
 - (void)expandMenu {
-    menu = [[PieContextualMenu alloc] initWithFrame:[self.manipulationView frame]];
+    menu = [[PieContextualMenu alloc] initWithFrame:[bookView frame]];
     [menu addGestureRecognizer:tapRecognizer];
     
     if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) {

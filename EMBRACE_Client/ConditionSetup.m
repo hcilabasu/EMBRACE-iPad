@@ -39,10 +39,10 @@
         condition = EMBRACE;
         language = ENGLISH;
         reader = USER;
-        appMode = ITS;
-        currentMode = PM_MODE;
+        appMode = Study;
+        currentMode = IM_MODE;
         newInstructions = FALSE;
-        isVocabPageEnabled = TRUE;
+        isVocabPageEnabled = false;
         isAssessmentPageEnabled = FALSE;
         assessmentMode = ENDOFBOOK;
         shouldShowITSMessages = YES;
