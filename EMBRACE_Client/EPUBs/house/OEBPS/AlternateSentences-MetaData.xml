@@ -373,7 +373,7 @@
                 
                 <ideas>
                     
-                    <idea number="16"/>
+                    <idea number="13"/>
                     
                 </ideas>
                 
@@ -634,6 +634,7 @@
                 
                 <solution>
                     <step number="14"/>
+                    <step number="15"/>
                 </solution>
                 
             </sentence>
@@ -669,7 +670,7 @@
                 </ideas>
                 
                 <solution>
-                    <step number="14"/>
+                    <step number="15"/>
                 </solution>
                 
             </sentence>
@@ -833,9 +834,7 @@
                 
                 <ideas>
                     
-                    <idea number="29"/>
-                    
-                    <idea number="29"/>
+                    <idea number="28"/>
                     
                 </ideas>
                 
@@ -851,8 +850,6 @@
                 <text>Paco was very sad.</text>
                 
                 <ideas>
-                    
-                    <idea number="29"/>
                     
                     <idea number="29"/>
                     
@@ -945,7 +942,7 @@
                 
                 <ideas>
                     
-                    <idea number="33"/>
+                    <idea number="30"/>
                     
                 </ideas>
                 
@@ -1271,7 +1268,7 @@
             
             <sentence number="23" action="no">
                 
-                <attributes complexity="1"/>
+                <attributes complexity="3"/>
                 
                 <text>Rosa told Paco he was a bad dog for stealing her silver spoon and he would have to stay outside all day.</text>
                 
@@ -1707,7 +1704,7 @@
             
             <sentence number="24" action="yes">
                 
-                <attributes complexity="1"/>
+                <attributes complexity="3"/>
                 
                 <text>As Paco barked and barked, the rattle dropped to the ground.</text>
                 
@@ -2106,7 +2103,7 @@
                 </ideas>
                 
                 <solution>
-                    <idea number="55"/>
+                    <step number="46"/>
                 </solution>
                 
             </sentence>
@@ -2171,6 +2168,7 @@
                 <ideas>
                     
                     <idea number="57"/>
+                    <idea number="58"/>
                     
                 </ideas>
                 

@@ -146,7 +146,7 @@ manipulationContext:(ManipulationContext *)context
         
     }
     
-    return complexity;
+    return EM_Easy;
 }
 
 - (NSMutableSet *)getExtraIntroductionVocabularyForChapter:(Chapter *)chapter inBook:(Book *)book {
