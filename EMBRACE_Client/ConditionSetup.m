@@ -41,7 +41,7 @@
         appMode = ITS;
         currentMode = PM_MODE;
         newInstructions = false;
-        vocabPageEnabled = true;
+        vocabPageEnabled = false;
         assessmentPageEnabled = false;
         
         shouldShowITSMessages = NO;

@@ -712,7 +712,8 @@ BOOL wasPathFollowed = false;
         else if (conditionSetup.condition == EMBRACE) {
             if (conditionSetup.currentMode == PM_MODE) {
                 //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound ||
+                    conditionSetup.appMode == ITS) {
                     numSteps = [PMSolution getNumStepsForSentence:currentIdea];
                 }
                 else {
@@ -1436,8 +1437,9 @@ BOOL wasPathFollowed = false;
         else if (conditionSetup.condition == EMBRACE) {
             if (conditionSetup.currentMode == PM_MODE) {
                 //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound
-                    && [currentPageId rangeOfString:@"-Intro"].location == NSNotFound) {
+                if (([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound
+                    && [currentPageId rangeOfString:@"-Intro"].location == NSNotFound)
+                    || conditionSetup.appMode == ITS) {
                     currSolSteps = [PMSolution getStepsForSentence:currentIdea];
                 }
                 else {
