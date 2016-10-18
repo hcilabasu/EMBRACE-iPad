@@ -25,27 +25,17 @@
     //TEST: Match test ID to EEG participant code
     participantCode = [[participantCode uppercaseString] stringByReplacingOccurrencesOfString:@"TEST" withString:@"EEG"];
     
-    //Using EEG sequence
     if ([participantCode rangeOfString:@"EEG"].location != NSNotFound) {
-        //Get number at end of participant code and match it to appropriate sequence
-        NSInteger sequenceNumber = [[participantCode componentsSeparatedByString:@"EEG"][1] integerValue] % 4;
+        int numSequences = 4;
         
-        switch (sequenceNumber) {
-            case 1:
-                participantCode = @"EEG01";
-                break;
-            case 2:
-                participantCode = @"EEG02";
-                break;
-            case 3:
-                participantCode = @"EEG03";
-                break;
-            case 4:
-                participantCode = @"EEG04";
-                break;
-                
-            default:
-                break;
+        //Get number at end of participant code and match it to appropriate sequence
+        NSInteger sequenceNumber = [[participantCode componentsSeparatedByString:@"EEG"][1] integerValue] % numSequences;
+        
+        if (sequenceNumber == 0) {
+            participantCode = [NSString stringWithFormat:@"EEG04"];
+        }
+        else {
+            participantCode = [NSString stringWithFormat:@"EEG0%d", sequenceNumber];
         }
     }
     
