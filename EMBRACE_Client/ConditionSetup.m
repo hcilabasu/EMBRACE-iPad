@@ -46,7 +46,7 @@
         isAssessmentPageEnabled = FALSE;
         assessmentMode = ENDOFBOOK;
         shouldShowITSMessages = YES;
-
+        
         allowFileSync = true; //NOTE: Still testing this functionality
     }
     

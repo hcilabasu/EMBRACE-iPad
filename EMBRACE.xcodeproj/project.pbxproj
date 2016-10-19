@@ -934,6 +934,29 @@
 		1A9174771C339CBB00D54971 /* house.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A9174761C339CBA00D54971 /* house.png */; };
 		1A9CF8431C31C3A00000C135 /* island_Kauai.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A9CF8421C31C3A00000C135 /* island_Kauai.png */; };
 		1A9CF8451C31C7310000C135 /* native.epub in Resources */ = {isa = PBXBuildFile; fileRef = 1A9CF8441C31C7310000C135 /* native.epub */; };
+		1A9FCAFB1DB6FD4C005C5DAE /* Solutions-MetaData-ITS.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A9FCAF81DB6FD4C005C5DAE /* Solutions-MetaData-ITS.xml */; };
+		1A9FCAFC1DB6FD4C005C5DAE /* Vocabulary-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A9FCAF91DB6FD4C005C5DAE /* Vocabulary-MetaData.xml */; };
+		1A9FCAFD1DB6FD4C005C5DAE /* WordMapping.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A9FCAFA1DB6FD4C005C5DAE /* WordMapping.xml */; };
+		1A9FCB021DB6FD7B005C5DAE /* AlternateSentences-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A9FCAFE1DB6FD7B005C5DAE /* AlternateSentences-MetaData.xml */; };
+		1A9FCB031DB6FD7B005C5DAE /* Solutions-MetaData-ITS.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A9FCAFF1DB6FD7B005C5DAE /* Solutions-MetaData-ITS.xml */; };
+		1A9FCB041DB6FD7B005C5DAE /* Vocabulary-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A9FCB001DB6FD7B005C5DAE /* Vocabulary-MetaData.xml */; };
+		1A9FCB051DB6FD7B005C5DAE /* WordMapping.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A9FCB011DB6FD7B005C5DAE /* WordMapping.xml */; };
+		1A9FCB0A1DB6FD91005C5DAE /* AlternateSentences-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A9FCB061DB6FD91005C5DAE /* AlternateSentences-MetaData.xml */; };
+		1A9FCB0B1DB6FD91005C5DAE /* Solutions-MetaData-ITS.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A9FCB071DB6FD91005C5DAE /* Solutions-MetaData-ITS.xml */; };
+		1A9FCB0C1DB6FD91005C5DAE /* Vocabulary-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A9FCB081DB6FD91005C5DAE /* Vocabulary-MetaData.xml */; };
+		1A9FCB0D1DB6FD91005C5DAE /* WordMapping.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A9FCB091DB6FD91005C5DAE /* WordMapping.xml */; };
+		1A9FCB101DB6FDA4005C5DAE /* Vocabulary-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A9FCB0E1DB6FDA4005C5DAE /* Vocabulary-MetaData.xml */; };
+		1A9FCB111DB6FDA4005C5DAE /* WordMapping.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A9FCB0F1DB6FDA4005C5DAE /* WordMapping.xml */; };
+		1A9FCB141DB6FDB6005C5DAE /* Vocabulary-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A9FCB121DB6FDB6005C5DAE /* Vocabulary-MetaData.xml */; };
+		1A9FCB151DB6FDB6005C5DAE /* WordMapping.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A9FCB131DB6FDB6005C5DAE /* WordMapping.xml */; };
+		1A9FCB181DB6FDC4005C5DAE /* Vocabulary-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A9FCB161DB6FDC4005C5DAE /* Vocabulary-MetaData.xml */; };
+		1A9FCB191DB6FDC4005C5DAE /* WordMapping.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A9FCB171DB6FDC4005C5DAE /* WordMapping.xml */; };
+		1A9FCB1C1DB6FDD2005C5DAE /* Vocabulary-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A9FCB1A1DB6FDD2005C5DAE /* Vocabulary-MetaData.xml */; };
+		1A9FCB1D1DB6FDD2005C5DAE /* WordMapping.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A9FCB1B1DB6FDD2005C5DAE /* WordMapping.xml */; };
+		1A9FCB201DB6FDE4005C5DAE /* Vocabulary-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A9FCB1E1DB6FDE4005C5DAE /* Vocabulary-MetaData.xml */; };
+		1A9FCB211DB6FDE4005C5DAE /* WordMapping.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A9FCB1F1DB6FDE4005C5DAE /* WordMapping.xml */; };
+		1A9FCB241DB6FDF3005C5DAE /* Vocabulary-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A9FCB221DB6FDF3005C5DAE /* Vocabulary-MetaData.xml */; };
+		1A9FCB251DB6FDF3005C5DAE /* WordMapping.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A9FCB231DB6FDF3005C5DAE /* WordMapping.xml */; };
 		1AA630891DB049510006B194 /* Apple_def_E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AA6307D1DB049510006B194 /* Apple_def_E.mp3 */; };
 		1AA6308A1DB049510006B194 /* Cat_def_E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AA6307E1DB049510006B194 /* Cat_def_E.mp3 */; };
 		1AA6308B1DB049510006B194 /* Comb_def_E.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AA6307F1DB049510006B194 /* Comb_def_E.mp3 */; };
@@ -6068,6 +6091,29 @@
 		1A9CF8421C31C3A00000C135 /* island_Kauai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = island_Kauai.png; sourceTree = "<group>"; };
 		1A9CF8441C31C7310000C135 /* native.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = native.epub; sourceTree = "<group>"; };
 		1A9CF8461C31DAF90000C135 /* speakerIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speakerIcon.png; sourceTree = "<group>"; };
+		1A9FCAF81DB6FD4C005C5DAE /* Solutions-MetaData-ITS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Solutions-MetaData-ITS.xml"; sourceTree = "<group>"; };
+		1A9FCAF91DB6FD4C005C5DAE /* Vocabulary-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Vocabulary-MetaData.xml"; sourceTree = "<group>"; };
+		1A9FCAFA1DB6FD4C005C5DAE /* WordMapping.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WordMapping.xml; sourceTree = "<group>"; };
+		1A9FCAFE1DB6FD7B005C5DAE /* AlternateSentences-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AlternateSentences-MetaData.xml"; sourceTree = "<group>"; };
+		1A9FCAFF1DB6FD7B005C5DAE /* Solutions-MetaData-ITS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Solutions-MetaData-ITS.xml"; sourceTree = "<group>"; };
+		1A9FCB001DB6FD7B005C5DAE /* Vocabulary-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Vocabulary-MetaData.xml"; sourceTree = "<group>"; };
+		1A9FCB011DB6FD7B005C5DAE /* WordMapping.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WordMapping.xml; sourceTree = "<group>"; };
+		1A9FCB061DB6FD91005C5DAE /* AlternateSentences-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AlternateSentences-MetaData.xml"; sourceTree = "<group>"; };
+		1A9FCB071DB6FD91005C5DAE /* Solutions-MetaData-ITS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Solutions-MetaData-ITS.xml"; sourceTree = "<group>"; };
+		1A9FCB081DB6FD91005C5DAE /* Vocabulary-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Vocabulary-MetaData.xml"; sourceTree = "<group>"; };
+		1A9FCB091DB6FD91005C5DAE /* WordMapping.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WordMapping.xml; sourceTree = "<group>"; };
+		1A9FCB0E1DB6FDA4005C5DAE /* Vocabulary-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Vocabulary-MetaData.xml"; sourceTree = "<group>"; };
+		1A9FCB0F1DB6FDA4005C5DAE /* WordMapping.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WordMapping.xml; sourceTree = "<group>"; };
+		1A9FCB121DB6FDB6005C5DAE /* Vocabulary-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Vocabulary-MetaData.xml"; sourceTree = "<group>"; };
+		1A9FCB131DB6FDB6005C5DAE /* WordMapping.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WordMapping.xml; sourceTree = "<group>"; };
+		1A9FCB161DB6FDC4005C5DAE /* Vocabulary-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Vocabulary-MetaData.xml"; sourceTree = "<group>"; };
+		1A9FCB171DB6FDC4005C5DAE /* WordMapping.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WordMapping.xml; sourceTree = "<group>"; };
+		1A9FCB1A1DB6FDD2005C5DAE /* Vocabulary-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Vocabulary-MetaData.xml"; sourceTree = "<group>"; };
+		1A9FCB1B1DB6FDD2005C5DAE /* WordMapping.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WordMapping.xml; sourceTree = "<group>"; };
+		1A9FCB1E1DB6FDE4005C5DAE /* Vocabulary-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Vocabulary-MetaData.xml"; sourceTree = "<group>"; };
+		1A9FCB1F1DB6FDE4005C5DAE /* WordMapping.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WordMapping.xml; sourceTree = "<group>"; };
+		1A9FCB221DB6FDF3005C5DAE /* Vocabulary-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Vocabulary-MetaData.xml"; sourceTree = "<group>"; };
+		1A9FCB231DB6FDF3005C5DAE /* WordMapping.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WordMapping.xml; sourceTree = "<group>"; };
 		1AA6307D1DB049510006B194 /* Apple_def_E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Apple_def_E.mp3; sourceTree = "<group>"; };
 		1AA6307E1DB049510006B194 /* Cat_def_E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Cat_def_E.mp3; sourceTree = "<group>"; };
 		1AA6307F1DB049510006B194 /* Comb_def_E.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Comb_def_E.mp3; sourceTree = "<group>"; };
@@ -10464,6 +10510,9 @@
 				1A631C741C0E4D3900251CB3 /* Hotspots-MetaData.xml */,
 				1A631C751C0E4D3900251CB3 /* Images */,
 				1A631CA01C0E4D3900251CB3 /* IMSolutions-MetaData.xml */,
+				1A9FCAF81DB6FD4C005C5DAE /* Solutions-MetaData-ITS.xml */,
+				1A9FCAF91DB6FD4C005C5DAE /* Vocabulary-MetaData.xml */,
+				1A9FCAFA1DB6FD4C005C5DAE /* WordMapping.xml */,
 				1A631CA11C0E4D3900251CB3 /* Introductions-MetaData.xml */,
 				1A631CA21C0E4D3900251CB3 /* Locations-MetaData.xml */,
 				1A631CA31C0E4D3900251CB3 /* metadata.xml */,
@@ -10611,6 +10660,10 @@
 			isa = PBXGroup;
 			children = (
 				5DB79E861C91739A003B2AFC /* Script-Metadata.xml */,
+				1A9FCAFE1DB6FD7B005C5DAE /* AlternateSentences-MetaData.xml */,
+				1A9FCAFF1DB6FD7B005C5DAE /* Solutions-MetaData-ITS.xml */,
+				1A9FCB001DB6FD7B005C5DAE /* Vocabulary-MetaData.xml */,
+				1A9FCB011DB6FD7B005C5DAE /* WordMapping.xml */,
 				1A631CED1C0E4D3900251CB3 /* AlternateImages-MetaData.xml */,
 				1A519C821D9089BE00FADCF7 /* AssessmentActivities-EOBMetaData.xml */,
 				1A519C831D9089BE00FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */,
@@ -10761,6 +10814,8 @@
 			isa = PBXGroup;
 			children = (
 				1A631D441C0E4D3A00251CB3 /* AlternateImages-MetaData.xml */,
+				1A9FCB1A1DB6FDD2005C5DAE /* Vocabulary-MetaData.xml */,
+				1A9FCB1B1DB6FDD2005C5DAE /* WordMapping.xml */,
 				5DB79E841C91734D003B2AFC /* Script-Metadata.xml */,
 				1A519C861D9089CA00FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */,
 				1A519C871D9089CA00FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */,
@@ -10971,6 +11026,8 @@
 			isa = PBXGroup;
 			children = (
 				5DB79E821C9172F7003B2AFC /* Script-Metadata.xml */,
+				1A9FCB161DB6FDC4005C5DAE /* Vocabulary-MetaData.xml */,
+				1A9FCB171DB6FDC4005C5DAE /* WordMapping.xml */,
 				1A631DD11C0E4D3A00251CB3 /* AlternateImages-MetaData.xml */,
 				1A631DD21C0E4D3A00251CB3 /* Areas-MetaData.xml */,
 				1A631DD31C0E4D3A00251CB3 /* AssessmentActivities-MetaData.xml */,
@@ -11145,6 +11202,8 @@
 			isa = PBXGroup;
 			children = (
 				5DB79E7C1C916DCD003B2AFC /* Script-Metadata.xml */,
+				1A9FCB121DB6FDB6005C5DAE /* Vocabulary-MetaData.xml */,
+				1A9FCB131DB6FDB6005C5DAE /* WordMapping.xml */,
 				1A631E531C0E4D3A00251CB3 /* AlternateImages-MetaData.xml */,
 				1A519C8A1D9089D800FADCF7 /* AssessmentActivities-EOBMetaData.xml */,
 				1A519C8B1D9089D800FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */,
@@ -11397,6 +11456,10 @@
 			isa = PBXGroup;
 			children = (
 				5DB79E801C917296003B2AFC /* Script-Metadata.xml */,
+				1A9FCB061DB6FD91005C5DAE /* AlternateSentences-MetaData.xml */,
+				1A9FCB071DB6FD91005C5DAE /* Solutions-MetaData-ITS.xml */,
+				1A9FCB081DB6FD91005C5DAE /* Vocabulary-MetaData.xml */,
+				1A9FCB091DB6FD91005C5DAE /* WordMapping.xml */,
 				1A519C8E1D9089E200FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */,
 				1A519C8F1D9089E200FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */,
 				1A631F0E1C0E4D3A00251CB3 /* AlternateImages-MetaData.xml */,
@@ -11563,6 +11626,8 @@
 			isa = PBXGroup;
 			children = (
 				5DB79E7E1C9170D1003B2AFC /* Script-Metadata.xml */,
+				1A9FCB0E1DB6FDA4005C5DAE /* Vocabulary-MetaData.xml */,
+				1A9FCB0F1DB6FDA4005C5DAE /* WordMapping.xml */,
 				1A519C921D9089EC00FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */,
 				1A519C931D9089EC00FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */,
 				1A631F8E1C0E4D3A00251CB3 /* AlternateImages-MetaData.xml */,
@@ -13650,6 +13715,8 @@
 			isa = PBXGroup;
 			children = (
 				5DB79E8A1C917403003B2AFC /* Script-Metadata.xml */,
+				1A9FCB1E1DB6FDE4005C5DAE /* Vocabulary-MetaData.xml */,
+				1A9FCB1F1DB6FDE4005C5DAE /* WordMapping.xml */,
 				1A519C7A1D9089A500FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */,
 				1A519C7B1D9089A500FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */,
 				5C28DB941C2BA66E005ACD07 /* AlternateImages-MetaData.xml */,
@@ -15125,6 +15192,8 @@
 			isa = PBXGroup;
 			children = (
 				5DB15D941C738E0100130705 /* Script-Metadata.xml */,
+				1A9FCB221DB6FDF3005C5DAE /* Vocabulary-MetaData.xml */,
+				1A9FCB231DB6FDF3005C5DAE /* WordMapping.xml */,
 				1A519C761D90899700FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */,
 				1A519C771D90899700FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */,
 				5CA955361C3237690038FB56 /* AlternateImages-MetaData.xml */,
@@ -17198,6 +17267,7 @@
 				5CB710921C6C1AD80062AD61 /* TheMovingEarthS3E.mp3 in Resources */,
 				5C28DC9A1C2BA66E005ACD07 /* hogan_withhole.png in Resources */,
 				5CB711051C6C292B0062AD61 /* old_CPQR5.m4a in Resources */,
+				1A9FCB0B1DB6FD91005C5DAE /* Solutions-MetaData-ITS.xml in Resources */,
 				5C62A9331C85398900F28BEB /* Mole_def_S.mp3 in Resources */,
 				5C72E7771C72BF1000CE4877 /* HowdoObjectsMoveQ4A1.mp3 in Resources */,
 				5C13C8871CCEBFF3005072DB /* EarthquakesS.mp3 in Resources */,
@@ -17384,6 +17454,7 @@
 				5C72E6201C72A46F00CE4877 /* TheAlgonquianWigwamQ5A2.mp3 in Resources */,
 				5C0421401C618C2B001BBE9D /* BabyBrotherQ3A1.mp3 in Resources */,
 				1A6321D01C0E4D3B00251CB3 /* Areas-MetaData.xml in Resources */,
+				1A9FCB031DB6FD7B005C5DAE /* Solutions-MetaData-ITS.xml in Resources */,
 				1A6321801C0E4D3B00251CB3 /* p2_no_cilia_circle.png in Resources */,
 				5D9E34681C590E9500636150 /* TheFamilyIsRattledQ5A3.mp3 in Resources */,
 				5C9C07ED1C57385A00702FCD /* BFEE_8A.m4a in Resources */,
@@ -17870,6 +17941,7 @@
 				5D9E347C1C590E9500636150 /* TheLopezFamilyQ3A3.mp3 in Resources */,
 				5C72E62C1C72A46F00CE4877 /* TheAlgonquianWigwamQ3.mp3 in Resources */,
 				1A63201D1C0E4D3B00251CB3 /* farmer_falling.png in Resources */,
+				1A9FCAFC1DB6FD4C005C5DAE /* Vocabulary-MetaData.xml in Resources */,
 				5C28DCC41C2BA66E005ACD07 /* pole.png in Resources */,
 				5CCD8F661C7405EC00D2EC2B /* TheMovingEarthQ2A3.mp3 in Resources */,
 				5C40AED31CBF5C7C00BFEB9F /* ForwardS.mp3 in Resources */,
@@ -18072,6 +18144,7 @@
 				5C1C4D411D238A2800547783 /* CellsE.mp3 in Resources */,
 				5C62A9281C85398900F28BEB /* Cattle_def_S.mp3 in Resources */,
 				5C5D097E1CA9F6DD00B7C8D9 /* StaredE.mp3 in Resources */,
+				1A9FCB051DB6FD7B005C5DAE /* WordMapping.xml in Resources */,
 				5C0ED6A91C752C2F00003B5A /* GettingReadyQ5A3.mp3 in Resources */,
 				5D9E34761C590E9500636150 /* TheLopezFamilyQ2A2.mp3 in Resources */,
 				1A6321B61C0E4D3B00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-1.xhtml in Resources */,
@@ -18103,6 +18176,7 @@
 				5C72E7D21C72BF1000CE4877 /* NewtonsLawofAccelerationonEarthQ6A4.mp3 in Resources */,
 				5D9E33E91C590E9500636150 /* MissingKeysQ2A1.mp3 in Resources */,
 				5C72E7DB1C72BF1000CE4877 /* NewtonsSecondLawAccelerationQ2A3.mp3 in Resources */,
+				1A9FCB141DB6FDB6005C5DAE /* Vocabulary-MetaData.xml in Resources */,
 				5CCD8F751C7405EC00D2EC2B /* TheMovingEarthQ5A3.mp3 in Resources */,
 				1A6322261C0E4D3B00251CB3 /* lava_kauai.png in Resources */,
 				5CB7108E1C6C1AD80062AD61 /* TheMovingEarthS1E.mp3 in Resources */,
@@ -18172,6 +18246,7 @@
 				5C0ED6FB1C752C2F00003B5A /* TheWiseOwlQ2.mp3 in Resources */,
 				5CF6CA331CCB2BB50093D3FD /* TornadoE.mp3 in Resources */,
 				1A6322FD1C0E4D3B00251CB3 /* mimetype in Resources */,
+				1A9FCB0C1DB6FD91005C5DAE /* Vocabulary-MetaData.xml in Resources */,
 				5CF7931E1C76986E00216337 /* BFTC7.m4a in Resources */,
 				1A6322891C0E4D3B00251CB3 /* Hotspots-MetaData.xml in Resources */,
 				5C72E8501C72C24C00CE4877 /* HowdoObjectsMoveQ1S.mp3 in Resources */,
@@ -18270,6 +18345,7 @@
 				1A6322B71C0E4D3B00251CB3 /* Story-6-Going-for-a-Walk.png in Resources */,
 				5CF793391C76986E00216337 /* old_BFEC10.m4a in Resources */,
 				1A6320331C0E4D3B00251CB3 /* IMSolutions-MetaData.xml in Resources */,
+				1A9FCB211DB6FDE4005C5DAE /* WordMapping.xml in Resources */,
 				5C0ED8F61C75334200003B5A /* ShoppingattheMarketQ2A1.mp3 in Resources */,
 				5CF6CA6F1CCB2BB50093D3FD /* VolcanoS.mp3 in Resources */,
 				5C0420101C614653001BBE9D /* TheLopezFamilyS10E.mp3 in Resources */,
@@ -18379,6 +18455,7 @@
 				1A6320BA1C0E4D3B00251CB3 /* Story4-Words-of-Wisdom-Intro-E.xhtml in Resources */,
 				5C28DCD11C2BA66E005ACD07 /* snowblock.png in Resources */,
 				5C72E7731C72BF1000CE4877 /* HowdoObjectsMoveQ3A2.mp3 in Resources */,
+				1A9FCB0A1DB6FD91005C5DAE /* AlternateSentences-MetaData.xml in Resources */,
 				5C0422181C618C2B001BBE9D /* WordsOfWisdomQ8A2.mp3 in Resources */,
 				1A6321811C0E4D3B00251CB3 /* p3_Lsqueeze.png in Resources */,
 				5C43D10C1C7FCFE3000C5F6D /* Flexible_def_E.mp3 in Resources */,
@@ -18409,6 +18486,7 @@
 				5C0421721C618C2B001BBE9D /* CatchQ5A1.mp3 in Resources */,
 				5CF6CA6C1CCB2BB50093D3FD /* Violent_type1S.mp3 in Resources */,
 				5C5F7CC51C62C8CC00CF70A1 /* Story1-Key-Ingredients-PM-3S.xhtml in Resources */,
+				1A9FCB181DB6FDC4005C5DAE /* Vocabulary-MetaData.xml in Resources */,
 				5D9E33F81C590E9500636150 /* MissingKeysQ5A1.mp3 in Resources */,
 				1A6321B11C0E4D3B00251CB3 /* Story3-Muscles-Use-Oxygen-Title.xhtml in Resources */,
 				5C0421EB1C618C2B001BBE9D /* TheLuckyStoneQ7A2.mp3 in Resources */,
@@ -18421,6 +18499,7 @@
 				5CA955711C3237690038FB56 /* trough_filled.png in Resources */,
 				5CAE95FC1C921DCD00702DB4 /* SeminolesS.mp3 in Resources */,
 				1A6322A11C0E4D3B00251CB3 /* house_night.png in Resources */,
+				1A9FCAFD1DB6FD4C005C5DAE /* WordMapping.xml in Resources */,
 				5C0420441C616BEA001BBE9D /* TheLuckyStoneS1S.mp3 in Resources */,
 				1A63231A1C0E4D3B00251CB3 /* horse_cart.png in Resources */,
 				5DED1CAF1C765BD200B29369 /* NaughtyMonkey_Script_C9.mp3 in Resources */,
@@ -18463,6 +18542,7 @@
 				5C28DD0A1C2BA66E005ACD07 /* Story4-The-Algonquian-Wigwam-PM-1.xhtml in Resources */,
 				5C1C4D541D238A2800547783 /* VentricleE.mp3 in Resources */,
 				1A519C7D1D9089A500FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml in Resources */,
+				1A9FCB0D1DB6FD91005C5DAE /* WordMapping.xml in Resources */,
 				5C1C4CFB1D2386AD00547783 /* CellS.mp3 in Resources */,
 				5C28DCEA1C2BA66E005ACD07 /* Introductions-MetaData.xml in Resources */,
 				1A6321641C0E4D3B00251CB3 /* bloodcell_select_oxygenated.png in Resources */,
@@ -18504,6 +18584,7 @@
 				5C5D090D1CA9F55800B7C8D9 /* Appeared_type1S.mp3 in Resources */,
 				5C09DF671C84F7DB00EC4E78 /* Cilia_def_E.mp3 in Resources */,
 				5C0ED9B01C753AD400003B5A /* CigaretteSmokeHurtsYourLungsQ5.mp3 in Resources */,
+				1A9FCB101DB6FDA4005C5DAE /* Vocabulary-MetaData.xml in Resources */,
 				5C0ED8731C75334200003B5A /* AGiftfortheBrideQ4.mp3 in Resources */,
 				5C137D101C8A79CC0023901C /* UprightE.mp3 in Resources */,
 				5C72E6231C72A46F00CE4877 /* TheAlgonquianWigwamQ4A4.mp3 in Resources */,
@@ -18547,6 +18628,7 @@
 				5CB70FE21C6BF8B50062AD61 /* KeyIngredientsS10S.mp3 in Resources */,
 				5C1C4CF41D2386AD00547783 /* Breathe_type4S.mp3 in Resources */,
 				5C72E7A61C72BF1000CE4877 /* NewtonsfirstlawQ3.mp3 in Resources */,
+				1A9FCB021DB6FD7B005C5DAE /* AlternateSentences-MetaData.xml in Resources */,
 				5C0ED9081C75334200003B5A /* ShoppingattheMarketQ5A4.mp3 in Resources */,
 				5C09DFA61C85080900EC4E78 /* Granted_def_E.mp3 in Resources */,
 				5C72E80C1C72BF1000CE4877 /* NewtonsThirdLawForcesarepairedQ5A2.mp3 in Resources */,
@@ -18781,6 +18863,7 @@
 				1A7C78101C74FAF60031041D /* bank_high_res.png in Resources */,
 				5C04200D1C614653001BBE9D /* old_TheLopezFamilyS4S.mp3 in Resources */,
 				5C0ED99C1C753AD400003B5A /* CigaretteSmokeHurtsYourLungsQ1.mp3 in Resources */,
+				1A9FCB241DB6FDF3005C5DAE /* Vocabulary-MetaData.xml in Resources */,
 				5CB711071C6C292B0062AD61 /* old_CPQR7.m4a in Resources */,
 				5C0421521C618C2B001BBE9D /* BabyBrotherQ6A4.mp3 in Resources */,
 				5DA8FD2A1C872F190056DE7A /* NaughtyMonkey_Script8.mp3 in Resources */,
@@ -18998,6 +19081,7 @@
 				1AA630F01DB04C4C0006B194 /* SpinachE.mp3 in Resources */,
 				5C1C4D021D2386AD00547783 /* LungsS.mp3 in Resources */,
 				5CCD8F4E1C7405EC00D2EC2B /* EarthquakesQ5A4.mp3 in Resources */,
+				1A9FCB1D1DB6FDD2005C5DAE /* WordMapping.xml in Resources */,
 				5C1C4CF51D2386AD00547783 /* Breathe_type5S.mp3 in Resources */,
 				5C8A56941CD3F3D5009F1ED4 /* TheMysteryIsSolvedS4E.mp3 in Resources */,
 				5C0ED9EA1C753AD400003B5A /* MusclesUseOxygenQ4A3.mp3 in Resources */,
@@ -20187,6 +20271,7 @@
 				1A6321BE1C0E4D3B00251CB3 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-IM-1.xhtml in Resources */,
 				5C5D09681CA9F6DD00B7C8D9 /* BottleE.mp3 in Resources */,
 				5CCD8E7A1C73E73200D2EC2B /* TheMovingEarthQ7A4S.mp3 in Resources */,
+				1A9FCB1C1DB6FDD2005C5DAE /* Vocabulary-MetaData.xml in Resources */,
 				5CB710951C6C1AD80062AD61 /* TheMovingEarthS4S.mp3 in Resources */,
 				5D9E34271C590E9500636150 /* MoreIsMissingQ8A3.mp3 in Resources */,
 				5C0ED9121C75334200003B5A /* ShoppingattheMarketQ7A4.mp3 in Resources */,
@@ -20251,6 +20336,7 @@
 				5CD642BA1CC5F0CB00211BD4 /* Rocket'sS.mp3 in Resources */,
 				5C72E7801C72BF1000CE4877 /* NewtonsFirstLawonEarthQ1.mp3 in Resources */,
 				5CF6CA481CCB2BB50093D3FD /* HawaiianS.mp3 in Resources */,
+				1A9FCB041DB6FD7B005C5DAE /* Vocabulary-MetaData.xml in Resources */,
 				1A6320991C0E4D3B00251CB3 /* papa2.png in Resources */,
 				5C28DCE11C2BA66E005ACD07 /* wigwam_firstbark.png in Resources */,
 				1A6323571C0E4D3B00251CB3 /* Story5-Newton's-Law-of-Acceleration-on-Earth-Intro-E.xhtml in Resources */,
@@ -20654,6 +20740,7 @@
 				5C0ED5661C75080300003B5A /* KeyIngredientsQ4A4S.mp3 in Resources */,
 				1A6320C81C0E4D3B00251CB3 /* Waypoints-MetaData.xml in Resources */,
 				1A6321061C0E4D3B00251CB3 /* roses_white.png in Resources */,
+				1A9FCAFB1DB6FD4C005C5DAE /* Solutions-MetaData-ITS.xml in Resources */,
 				5CB711721C6C46DF0062AD61 /* TheNavajoHoganQ5A3S.mp3 in Resources */,
 				1A6322481C0E4D3B00251CB3 /* small_house02.png in Resources */,
 				5D9E34121C590E9500636150 /* MoreIsMissingQ4A2.mp3 in Resources */,
@@ -20710,6 +20797,7 @@
 				1AF8054D1C28DEC400C96B05 /* lavaplume_greyplate_right.png in Resources */,
 				5C8A567F1CD3F3BB009F1ED4 /* TheBaby'sRattleIsGoneTooS5E.mp3 in Resources */,
 				5C72E7B31C72BF1000CE4877 /* NewtonsfirstlawQ5A3.mp3 in Resources */,
+				1A9FCB111DB6FDA4005C5DAE /* WordMapping.xml in Resources */,
 				1A68DC7F1C58215C009F9099 /* AssessmentActivitiesSpanish-MetaData.xml in Resources */,
 				1A6322951C0E4D3B00251CB3 /* cribb_large_high_res.png in Resources */,
 				5C72E8311C72BF1000CE4877 /* TheThreeLawsWorkTogetherQ6A4.mp3 in Resources */,
@@ -21137,6 +21225,7 @@
 				5C0ED8AB1C75334200003B5A /* KeyIngredientsQ1A1.mp3 in Resources */,
 				1A63221B1C0E4D3B00251CB3 /* Kauai.png in Resources */,
 				5C0ED6901C752C2F00003B5A /* EveryoneHelpsQ6A3.mp3 in Resources */,
+				1A9FCB191DB6FDC4005C5DAE /* WordMapping.xml in Resources */,
 				5C0ED6EB1C752C2F00003B5A /* TheContestQ5A4.mp3 in Resources */,
 				5C1C4D521D238A2800547783 /* ValveE.mp3 in Resources */,
 				5CA5CC0B1CD1A46D002A631F /* AGiftForTheBrideS5E.mp3 in Resources */,
@@ -21428,6 +21517,7 @@
 				1A6322731C0E4D3B00251CB3 /* Story4-Volcanoes-and-the-Making-of-Hawaii-PM-4.xhtml in Resources */,
 				5C0ED55F1C75080300003B5A /* KeyIngredientsQ3A2S.mp3 in Resources */,
 				1A6322E61C0E4D3B00251CB3 /* Story4-More-is-Missing-PM-1.xhtml in Resources */,
+				1A9FCB151DB6FDB6005C5DAE /* WordMapping.xml in Resources */,
 				5C72E7F81C72BF1000CE4877 /* NewtonsThirdLawForcesarepairedQ1A2.mp3 in Resources */,
 				5C40E0261CC863FC00D8BC48 /* EveningS.mp3 in Resources */,
 				5C72E7961C72BF1000CE4877 /* NewtonsFirstLawonEarthQ5A2.mp3 in Resources */,
@@ -21701,6 +21791,7 @@
 				5C1A38B31C69954B007A877C /* TheNavajoHoganS1E.mp3 in Resources */,
 				5D9E34091C590E9500636150 /* MoreIsMissingQ2A3.mp3 in Resources */,
 				5D9E34821C590E9500636150 /* TheLopezFamilyQ4A4.mp3 in Resources */,
+				1A9FCB251DB6FDF3005C5DAE /* WordMapping.xml in Resources */,
 				5C09DF901C85007900EC4E78 /* Judge_def_E.mp3 in Resources */,
 				5C0EDA021C753AD400003B5A /* TheAmazingHeartQ4A2.mp3 in Resources */,
 				5C72E6471C72A46F00CE4877 /* TheSiouxTeepeeQ3A3.mp3 in Resources */,
@@ -22003,6 +22094,7 @@
 				5C0EDA521C753BCD00003B5A /* WhyWeBreatheQ5A2S.mp3 in Resources */,
 				5D9E33F41C590E9500636150 /* MissingKeysQ4A2.mp3 in Resources */,
 				5C9F28B31C5C6B2E008ACE48 /* TheLopezFamilyQ1A3S.mp3 in Resources */,
+				1A9FCB201DB6FDE4005C5DAE /* Vocabulary-MetaData.xml in Resources */,
 				5C09DF8A1C85007900EC4E78 /* Corral_def_E.mp3 in Resources */,
 				5CF6CA561CCB2BB50093D3FD /* OceansS.mp3 in Resources */,
 				5CCD8F791C7405EC00D2EC2B /* TheMovingEarthQ6A2.mp3 in Resources */,

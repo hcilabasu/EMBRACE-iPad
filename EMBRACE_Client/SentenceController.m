@@ -74,7 +74,7 @@
         else if (conditionSetup.condition == EMBRACE) {
             if (conditionSetup.currentMode == PM_MODE) {
                 //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound || conditionSetup.appMode == ITS) {
                     stepContext.numSteps = [stepContext.PMSolution getNumStepsForSentence:sentenceContext.currentIdea];
                 }
                 else {
