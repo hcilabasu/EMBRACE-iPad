@@ -109,7 +109,6 @@ BOOL wasPathFollowed = false;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    //self.manipulationView.frame = self.view.bounds;
     bookView.frame = self.view.bounds;
 }
 
@@ -2034,10 +2033,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             Location *location = [model getLocationWithId:locationId];
             
             //Calculate the x,y coordinates and the width and height in pixels from %
-            float locationX = [location.originX floatValue] / 100.0 * [self.manipulationView frame].size.width;
-            float locationY = [location.originY floatValue] / 100.0 * [self.manipulationView frame].size.height;
-            float locationWidth = [location.width floatValue] / 100.0 * [self.manipulationView frame].size.width;
-            float locationHeight = [location.height floatValue] / 100.0 * [self.manipulationView frame].size.height;
+            float locationX = [location.originX floatValue] / 100.0 * [bookView frame].size.width;
+            float locationY = [location.originY floatValue] / 100.0 * [bookView frame].size.height;
+            float locationWidth = [location.width floatValue] / 100.0 * [bookView frame].size.width;
+            float locationHeight = [location.height floatValue] / 100.0 * [bookView frame].size.height;
             
             //Check if hotspot is inside location
             if (((hotspotLocation.x < locationX + locationWidth) && (hotspotLocation.x > locationX)
@@ -2968,7 +2967,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     [self populateMenuDataSource:interactions :allRelationships];
     
     //Add subview to hide story
-    IMViewMenu = [[UIView alloc] initWithFrame:[self.manipulationView frame]];
+    IMViewMenu = [[UIView alloc] initWithFrame:[bookView frame]];
     IMViewMenu.backgroundColor = [UIColor whiteColor];
     UILabel *IMinstructions = [[UILabel alloc] initWithFrame:CGRectMake(200, 10, IMViewMenu.frame.size.width, 40)];
     
@@ -3873,7 +3872,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  */
 //TODO: simplify im and pm menu logic
 - (void)expandMenu {
-    menu = [[PieContextualMenu alloc] initWithFrame:[self.manipulationView frame]];
+    menu = [[PieContextualMenu alloc] initWithFrame:[bookView frame]];
     [menu addGestureRecognizer:tapRecognizer];
     
     if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) {
