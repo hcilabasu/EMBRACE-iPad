@@ -43,10 +43,10 @@
         currentMode = PM_MODE;
         
         newInstructions = FALSE;
-        isVocabPageEnabled = FALSE;
+        isVocabPageEnabled = TRUE;
         isAssessmentPageEnabled = FALSE;
         assessmentMode = ENDOFBOOK;
-        shouldShowITSMessages = YES;
+        shouldShowITSMessages = TRUE;
         
         allowFileSync = TRUE;
     }

@@ -199,7 +199,7 @@
     NSMutableArray *currSolSteps;
     
     if (conditionSetup.appMode == ITS && ![pageContext.currentPageId containsString:DASH_INTRO]) {
-        if(sentenceContext.currentSentence > 0){
+        if (sentenceContext.currentSentence > 0) {
             currSolSteps = [[sentenceContext.pageSentences objectAtIndex:sentenceContext.currentSentence - 1] solutionSteps];
         }
     }
@@ -210,8 +210,10 @@
         else if (conditionSetup.condition == EMBRACE) {
             if (conditionSetup.currentMode == PM_MODE) {
                 //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                if (([mvc.bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound &&
-                    [pageContext.currentPageId rangeOfString:DASH_INTRO].location == NSNotFound) || conditionSetup.appMode == ITS) {
+                if ([mvc.bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound && [pageContext.currentPageId rangeOfString:DASH_INTRO].location == NSNotFound) {
+                    currSolSteps = [stepContext.PMSolution getStepsForSentence:sentenceContext.currentIdea];
+                }
+                else if (conditionSetup.appMode == ITS && [pageContext.currentPageId rangeOfString:DASH_INTRO].location == NSNotFound) {
                     currSolSteps = [stepContext.PMSolution getStepsForSentence:sentenceContext.currentIdea];
                 }
                 else {

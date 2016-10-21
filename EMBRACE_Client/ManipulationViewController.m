@@ -850,7 +850,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 [[ServerCommunicationController sharedInstance] logTapWord:sentenceText :manipulationContext];
                 
                 [ssc incrementCurrentStep];
-                [self playIntroVocabWord: englishSentenceText : currSolStep];
+                [self playIntroVocabWord:englishSentenceText :currSolStep];
             }
             else {
                 //pressed wrong word
@@ -1135,7 +1135,12 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             PossibleInteraction *interaction = [pic getCorrectInteraction];
             
             //Perform the interaction and increment the step
-            [self checkSolutionForInteraction:interaction];
+            [pic performInteraction:interaction];
+            [ssc incrementCurrentStep];
+            
+            if ([interaction interactionType] == TRANSFERANDGROUP || [interaction interactionType] == TRANSFERANDDISAPPEAR) {
+                [ssc incrementCurrentStep];
+            }
         }
         
         if (stepContext.stepsComplete) {
@@ -1323,13 +1328,15 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                         
                         [[ServerCommunicationController sharedInstance] logVerification:true forAction:MOVE_OBJECT context:manipulationContext];
                         
-                        [[ITSController sharedInstance] movedObject:movingObjectId
-                                                 destinationObjects:@[destination]
-                                                         isVerified:true
-                                                         actionStep:currSolStep
-                                                manipulationContext:manipulationContext
-                                                        forSentence:sentenceContext.currentSentenceText
-                                                    withWordMapping:model.wordMapping];
+                        if (conditionSetup.appMode == ITS) {
+                            [[ITSController sharedInstance] movedObject:movingObjectId
+                                                     destinationObjects:@[destination]
+                                                             isVerified:true
+                                                             actionStep:currSolStep
+                                                    manipulationContext:manipulationContext
+                                                            forSentence:sentenceContext.currentSentenceText
+                                                        withWordMapping:model.wordMapping];
+                        }
                         
                         [animatingObjects setObject:STOP forKey:movingObjectId];
                         [ssc incrementCurrentStep];
@@ -1338,13 +1345,15 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     else {
                         [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:NULL_TXT ofType:LOCATION startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
                         
-                        [[ITSController sharedInstance] movedObject:movingObjectId
-                                                 destinationObjects:overlappingWith
-                                                         isVerified:false
-                                                         actionStep:currSolStep
-                                                manipulationContext:manipulationContext
-                                                        forSentence:sentenceContext.currentSentenceText
-                                                    withWordMapping:model.wordMapping];
+                        if (conditionSetup.appMode == ITS) {
+                            [[ITSController sharedInstance] movedObject:movingObjectId
+                                                     destinationObjects:overlappingWith
+                                                             isVerified:false
+                                                             actionStep:currSolStep
+                                                    manipulationContext:manipulationContext
+                                                            forSentence:sentenceContext.currentSentenceText
+                                                        withWordMapping:model.wordMapping];
+                        }
 
                         [self handleErrorForAction:MOVE_OBJECT];
                     }
@@ -1361,13 +1370,15 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                         
                     }
                     
-                    [[ITSController sharedInstance] movedObject:movingObjectId
-                                             destinationObjects:overlappingWith
-                                                     isVerified:false
-                                                     actionStep:currSolStep
-                                            manipulationContext:manipulationContext
-                                                    forSentence:sentenceContext.currentSentenceText
-                                                withWordMapping:model.wordMapping];
+                    if (conditionSetup.appMode == ITS) {
+                        [[ITSController sharedInstance] movedObject:movingObjectId
+                                                 destinationObjects:overlappingWith
+                                                         isVerified:false
+                                                         actionStep:currSolStep
+                                                manipulationContext:manipulationContext
+                                                        forSentence:sentenceContext.currentSentenceText
+                                                    withWordMapping:model.wordMapping];
+                    }
 
                     [self handleErrorForAction:MOVE_OBJECT];
                 }
@@ -1380,25 +1391,29 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     
                     [animatingObjects setObject:STOP forKey:movingObjectId];
                     
-                    [[ITSController sharedInstance] movedObject:movingObjectId
-                                             destinationObjects:@[currSolStep.locationId]
-                                                     isVerified:true
-                                                     actionStep:currSolStep
-                                            manipulationContext:manipulationContext
-                                                    forSentence:sentenceContext.currentSentenceText
-                                                withWordMapping:model.wordMapping];
+                    if (conditionSetup.appMode == ITS) {
+                        [[ITSController sharedInstance] movedObject:movingObjectId
+                                                 destinationObjects:@[currSolStep.locationId]
+                                                         isVerified:true
+                                                         actionStep:currSolStep
+                                                manipulationContext:manipulationContext
+                                                        forSentence:sentenceContext.currentSentenceText
+                                                    withWordMapping:model.wordMapping];
+                    }
                     
                     [self resetObjectLocation];
                     [ssc incrementCurrentStep];
                 }
                 else {
-                    [[ITSController sharedInstance] movedObject:movingObjectId
-                                             destinationObjects:@[currSolStep.locationId]
-                                                     isVerified:false
-                                                     actionStep:currSolStep
-                                            manipulationContext:manipulationContext
-                                                    forSentence:sentenceContext.currentSentenceText
-                                                withWordMapping:model.wordMapping];
+                    if (conditionSetup.appMode == ITS) {
+                        [[ITSController sharedInstance] movedObject:movingObjectId
+                                                 destinationObjects:@[currSolStep.locationId]
+                                                         isVerified:false
+                                                         actionStep:currSolStep
+                                                manipulationContext:manipulationContext
+                                                        forSentence:sentenceContext.currentSentenceText
+                                                    withWordMapping:model.wordMapping];
+                    }
                 
                     [self handleErrorForAction:MOVE_OBJECT];
                 }
@@ -1434,13 +1449,15 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     
                     //No possible interactions were found
                     if ([possibleInteractions count] == 0) {
-                        [[ITSController sharedInstance] movedObject:movingObjectId
-                                                 destinationObjects:overlappingWith
-                                                         isVerified:false
-                                                         actionStep:currSolStep
-                                                manipulationContext:manipulationContext
-                                                        forSentence:sentenceContext.currentSentenceText
-                                                    withWordMapping:model.wordMapping];
+                        if (conditionSetup.appMode == ITS) {
+                            [[ITSController sharedInstance] movedObject:movingObjectId
+                                                     destinationObjects:overlappingWith
+                                                             isVerified:false
+                                                             actionStep:currSolStep
+                                                    manipulationContext:manipulationContext
+                                                            forSentence:sentenceContext.currentSentenceText
+                                                        withWordMapping:model.wordMapping];
+                        }
                         
                         [self handleErrorForAction:MOVE_OBJECT];
                     }
@@ -1525,13 +1542,16 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                             overlappingWith = @[areaId];
                         
                     }
-                    [[ITSController sharedInstance] movedObject:movingObjectId
-                                             destinationObjects:overlappingWith
-                                                     isVerified:false
-                                                     actionStep:currSolStep
-                                            manipulationContext:manipulationContext
-                                                    forSentence:sentenceContext.currentSentenceText
-                                                withWordMapping:model.wordMapping];
+                    
+                    if (conditionSetup.appMode == ITS) {
+                        [[ITSController sharedInstance] movedObject:movingObjectId
+                                                 destinationObjects:overlappingWith
+                                                         isVerified:false
+                                                         actionStep:currSolStep
+                                                manipulationContext:manipulationContext
+                                                        forSentence:sentenceContext.currentSentenceText
+                                                    withWordMapping:model.wordMapping];
+                    }
                     
                     [self handleErrorForAction:MOVE_OBJECT];
                 }
@@ -2176,11 +2196,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             }
             else {
                 [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Move Object" context:manipulationContext];
+            }
+            
+            if (conditionSetup.appMode == ITS) {
                 Connection *con = [interaction.connections objectAtIndex:0];
                 NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
-                
-                //Get current step to be completed
                 ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
+                
                 [[ITSController sharedInstance] movedObject:[con.objects objectAtIndex:0]
                                          destinationObjects:@[[con.objects objectAtIndex:1]]
                                                  isVerified:true
@@ -2215,18 +2237,20 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             action = MOVE_OBJECT;
         }
         
-        Connection *con = [interaction.connections objectAtIndex:0];
-        NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
-        
-        //Get current step to be completed
-        ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
-        [[ITSController sharedInstance] movedObject:[con.objects objectAtIndex:0]
-                                 destinationObjects:@[[con.objects objectAtIndex:1]]
-                                         isVerified:false
-                                         actionStep:currSolStep
-                                manipulationContext:manipulationContext
-                                        forSentence:sentenceContext.currentSentenceText
-                                    withWordMapping:model.wordMapping];
+        if (conditionSetup.appMode == ITS) {
+            Connection *con = [interaction.connections objectAtIndex:0];
+            NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
+            
+            //Get current step to be completed
+            ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
+            [[ITSController sharedInstance] movedObject:[con.objects objectAtIndex:0]
+                                     destinationObjects:@[[con.objects objectAtIndex:1]]
+                                             isVerified:false
+                                             actionStep:currSolStep
+                                    manipulationContext:manipulationContext
+                                            forSentence:sentenceContext.currentSentenceText
+                                        withWordMapping:model.wordMapping];
+        }
         
         [self handleErrorForAction:action];
     }
@@ -3298,7 +3322,12 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     PossibleInteraction *interaction = [pic getCorrectInteraction];
                     
                     //Perform the interaction and increment the step
-                    [self checkSolutionForInteraction:interaction];
+                    [pic performInteraction:interaction];
+                    [ssc incrementCurrentStep];
+                    
+                    if ([interaction interactionType] == TRANSFERANDGROUP || [interaction interactionType] == TRANSFERANDDISAPPEAR) {
+                        [ssc incrementCurrentStep];
+                    }
                 });
             });
         }
@@ -3330,7 +3359,12 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 PossibleInteraction *interaction = [pic getCorrectInteraction];
                 
                 //Perform the interaction and increment the step
-                [self checkSolutionForInteraction:interaction];
+                [pic performInteraction:interaction];
+                [ssc incrementCurrentStep];
+                
+                if ([interaction interactionType] == TRANSFERANDGROUP || [interaction interactionType] == TRANSFERANDDISAPPEAR) {
+                    [ssc incrementCurrentStep];
+                }
                 
                 [self highlightObject:object1Id :2.0];
             });
