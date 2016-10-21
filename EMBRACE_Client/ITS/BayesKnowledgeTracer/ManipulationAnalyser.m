@@ -368,52 +368,40 @@
         }
     }
     
-    // Determine the most probable error type from the lowest skill value
-    NSString *mostProbableErrorType;
+    double VOCABULARY_THRESHOLD = 0.5;
+    double SYNTAX_THRESHOLD = 0.5;
+    double USABILITY_THRESHOLD = 0.5;
+    
+    self.mostProbableErrorType = nil;
     double lowestSkillValue = [[skillValues firstObject] doubleValue];
     
+    // Select the most probable error type from the lowest skill below its corresponding threshold
     for (int i = 0; i < [skillValues count]; i++) {
         double skillValue = [[skillValues objectAtIndex:i] doubleValue];
         
-        if (skillValue > 0.0 && skillValue <= lowestSkillValue) {
-            lowestSkillValue = skillValue;
-            
+        if (skillValue > 0.0) {
             if (i == INDEX_VOCABULARY) {
-                mostProbableErrorType = @"vocabulary";
+                if (skillValue <= VOCABULARY_THRESHOLD && skillValue <= lowestSkillValue) {
+                    self.mostProbableErrorType = @"vocabulary";
+                    lowestSkillValue = skillValue;
+                }
             }
             else if (i == INDEX_SYNTAX) {
-                mostProbableErrorType = @"syntax";
+                if (skillValue <= SYNTAX_THRESHOLD && skillValue <= lowestSkillValue) {
+                    self.mostProbableErrorType = @"syntax";
+                    lowestSkillValue = skillValue;
+                }
             }
             else if (i == INDEX_USABILITY) {
-                mostProbableErrorType = @"usability";
+                if (skillValue <= USABILITY_THRESHOLD && skillValue <= lowestSkillValue) {
+                    self.mostProbableErrorType = @"usability";
+                    lowestSkillValue = skillValue;
+                }
             }
         }
     }
     
-    self.mostProbableErrorType = nil;
-    
-    // Set the most probable error type if the skill value is below the threshold
-    if ([mostProbableErrorType isEqualToString:@"vocabulary"]) {
-        double VOCABULARY_THRESHOLD = 0.5;
-        
-        if (lowestSkillValue <= VOCABULARY_THRESHOLD) {
-            self.mostProbableErrorType = @"vocabulary";
-        }
-    }
-    else if ([mostProbableErrorType isEqualToString:@"syntax"]) {
-        double SYNTAX_THRESHOLD = 0.5;
-        
-        if (lowestSkillValue <= SYNTAX_THRESHOLD) {
-            self.mostProbableErrorType = @"syntax";
-        }
-    }
-    else if ([mostProbableErrorType isEqualToString:@"usability"]) {
-        double USABILITY_THRESHOLD = 0.5;
-        
-        if (lowestSkillValue <= USABILITY_THRESHOLD) {
-            self.mostProbableErrorType = @"usability";
-        }
-    }
+    NSLog(@"mostProbableErrorType: %@   lowestSkillValue: %f", self.mostProbableErrorType, lowestSkillValue);
 }
 
 - (void)showMessageWith:(NSArray *)skills {
