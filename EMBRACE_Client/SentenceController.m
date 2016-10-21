@@ -9,6 +9,7 @@
 #import "SentenceController.h"
 #import "Translation.h"
 #import "SolutionStepController.h"
+#import "Statistics.h"
 
 @implementation SentenceController
 @synthesize mvc;
@@ -73,7 +74,7 @@
         else if (conditionSetup.condition == EMBRACE) {
             if (conditionSetup.currentMode == PM_MODE) {
                 //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound) {
+                if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound || conditionSetup.appMode == ITS) {
                     stepContext.numSteps = [stepContext.PMSolution getNumStepsForSentence:sentenceContext.currentIdea];
                 }
                 else {
@@ -103,7 +104,7 @@
  * or as black (if it is a non-action sentence).
  */
 - (void)setupCurrentSentenceColor {
-    
+    //
     [self.manipulationView setupCurrentSentenceColor:sentenceContext.currentSentence condition:conditionSetup.condition
                                              andMode:conditionSetup.currentMode];
 }
@@ -112,6 +113,23 @@
  * Set the current sentence number, text, type, appearance and associated solution steps. (creations solutions for vocab pages)
  */
 - (void) setupSentencesForPage {
+    sentenceContext.totalSentences = (int)[self.manipulationView totalSentences];
+    
+    //Dynamically reads the vocabulary words on the vocab page and creates and adds solutionsteps
+    if ([pageContext.currentPageId rangeOfString:DASH_INTRO].location != NSNotFound) {
+        [mvc.ssc createVocabSolutionsForPage];
+    }
+    else{
+        if (conditionSetup.condition != CONTROL) {
+            mvc.allowInteractions = TRUE;
+        }
+        if(conditionSetup.appMode == ITS){
+            mvc.currentComplexityLevel = [[ITSController sharedInstance] getCurrentComplexity];
+            [self.manipulationView removeAllSentences];
+            [self addSentencesWithComplexity: mvc.currentComplexityLevel];
+        }
+    }
+    
     sentenceContext.totalSentences = (int)[self.manipulationView totalSentences];
     
     //Get the id number of the first sentence on the page and set it equal to the current sentence number.
@@ -128,11 +146,6 @@
     manipulationContext.manipulationSentence = [self isManipulationSentence:sentenceContext.currentSentence];
     [[ServerCommunicationController sharedInstance] logLoadSentence:sentenceContext.currentSentence withText:sentenceContext.currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
     
-    //Dynamically reads the vocabulary words on the vocab page and creates and adds solutionsteps
-    if ([pageContext.currentPageId rangeOfString:DASH_INTRO].location != NSNotFound) {
-        [mvc.ssc createVocabSolutionsForPage];
-    }
-    
     //Remove any PM specific sentence instructions
     if(conditionSetup.currentMode == IM_MODE || conditionSetup.condition == CONTROL) {
         [self.manipulationView removePMInstructions:sentenceContext.totalSentences];
@@ -141,6 +154,89 @@
     //Set up current sentence appearance and solution steps
     [self setupCurrentSentence];
     [self setupCurrentSentenceColor];
+}
+
+- (void)addSentencesWithComplexity:(EMComplexity)complexity {
+    Chapter *chapter = [mvc.book getChapterWithTitle:chapterTitle]; //get current chapter
+    PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
+    NSMutableArray *alternateSentences = [[PMActivity alternateSentences] objectForKey:pageContext.currentPageId]; //get alternate sentences for current page
+    
+    // Underlined vocabulary includes chapter vocabulary and vocabulary from solution steps
+    NSMutableSet *vocabulary = [[NSMutableSet alloc] initWithArray:[[chapter vocabulary] allKeys]];
+    [vocabulary unionSet:[chapter getVocabularyFromSolutions]];
+    
+    int sentenceNumber = 1; //used for assigning sentence ids
+    int previousIdeaNum = 0; //used for making sure same idea does not get repeated
+    
+    NSMutableArray *ideaNums = [stepContext.PMSolution getIdeaNumbers]; //get list of idea numbers on the page
+    sentenceContext.pageSentences = [NSMutableArray array];
+    //Add alternate sentences associated with each idea
+    for (NSNumber *ideaNum in ideaNums) {
+        if ([ideaNum intValue] > previousIdeaNum) {
+            BOOL foundIdea = false; //flag to check if there is a sentence with the specified complexity for the idea number
+            
+            //Create an array to hold sentences that will be added to the page
+            NSMutableArray *sentencesToAdd = [[NSMutableArray alloc] init];
+            
+            //Look for alternate sentences that match the idea number and complexity
+            for (AlternateSentence *altSent in alternateSentences) {
+                if ([[[altSent ideas] objectAtIndex:0] isEqualToNumber:ideaNum] && [altSent complexity] == complexity) {
+                    foundIdea = true;
+                    [sentencesToAdd addObject:altSent];
+                    previousIdeaNum = [[[altSent ideas] lastObject] intValue];
+                }
+            }
+            
+            //If a sentence with the specified complexity was not found for the idea number, look for a
+            //sentence with complexity level 2
+            if (!foundIdea) {
+                for (AlternateSentence *altSent in alternateSentences) {
+                    if ([[[altSent ideas] objectAtIndex:0] isEqualToNumber:ideaNum] && [altSent complexity] == 2) {
+                        foundIdea = true;
+                        [sentencesToAdd addObject:altSent];
+                        previousIdeaNum = [[[altSent ideas] lastObject] intValue];
+                    }
+                }
+            }
+            
+            for (AlternateSentence *sentenceToAdd in sentencesToAdd) {
+                [self.manipulationView addSentence:sentenceToAdd withSentenceNumber:sentenceNumber andVocabulary:vocabulary];
+                sentenceNumber++;
+                //Add alternate sentence to array
+                [sentenceContext.pageSentences addObject:sentenceToAdd];
+                
+                BOOL transference = FALSE;
+                
+                //Count number of user steps for page statistics
+                for (ActionStep *as in [sentenceToAdd solutionSteps]) {
+                    if (!([[as stepType] isEqualToString:@"ungroup"] ||
+                          [[as stepType] isEqualToString:@"move"] ||
+                          [[as stepType] isEqualToString:@"swapImage"])) {
+                        //Make sure transference steps don't get counted twice
+                        if ([[as stepType] isEqualToString:@"transferAndGroup"] ||
+                            [[as stepType] isEqualToString:@"transferAndDisappear"]) {
+                            if (!transference) {
+                                [[mvc.pageStatistics objectForKey:pageContext.currentPageId] addStepForComplexity:([sentenceToAdd complexity] - 1)];
+                                
+                                transference = TRUE;
+                            }
+                            else {
+                                transference = FALSE;
+                            }
+                        }
+                        else {
+                            [[mvc.pageStatistics objectForKey:pageContext.currentPageId] addStepForComplexity:([sentenceToAdd complexity] - 1)];
+                        }
+                    }
+                }
+                
+                //Count number of non-action sentences for each complexity
+                if ([sentenceToAdd actionSentence] == FALSE) {
+                    [[mvc.pageStatistics objectForKey:pageContext.currentPageId] addNonActSentForComplexity:([sentenceToAdd complexity] - 1)];
+                }
+            }
+        }
+    }
 }
 
 /*

@@ -20,11 +20,35 @@
 #import "SentenceController.h"
 #import "SolutionStepController.h"
 #import "PossibleInteractionController.h"
+#import "ManipulationAnalyser.h"
 
 @interface ManipulationViewController ()<ManipulationViewDelegate> {
     
     NSString *chapterTitle;
     NSString *bookTitle;
+
+    
+    //TODO: Determine what I can delete from here to next comment
+    //NSString *currentPage; //Current page being shown, so that the next page can be requested
+    //NSString *currentPageId; //Id of the current page being shown
+    //NSString *actualPage; //Stores the address of the current page we are at
+    //NSUInteger currentSentence; //Active sentence to be completed
+    //NSString *currentSentenceText; //Text of current sentence
+    //NSUInteger currentIdea; //Current idea number to be completed
+    //NSUInteger totalSentences; //Total number of sentences on this page
+    //NSString *actualWord; //Stores the current word that was clicked
+    //NSString *previousStep;
+    
+    //NSUInteger currentComplexity; //Complexity level of current sentence
+    NSDate *startTime;
+    NSDate *endTime;
+    
+    //PhysicalManipulationSolution *PMSolution; //PM solution steps for current chapter
+    //ImagineManipulationSolution *IMSolution; //IM solution steps for current chapter
+    //NSUInteger numSteps; //Number of steps for current sentence
+    //NSUInteger currentStep; //Active step to be completed
+    //BOOL stepsComplete; //True if all steps have been completed for a sentence
+    //TODO: Determine what I can delete from previous todo to here
     
     BOOL chooseComplexity; //True if using alternate sentences
     
@@ -56,11 +80,13 @@
     
     NSTimer *timer; //Controls the timing of the audio file that is playing
     BOOL isAudioLeft;
+    
+    
 }
 
 @property (nonatomic, strong) IBOutlet UIWebView *bookView;
-
 //@property (nonatomic, strong) IBOutlet ManipulationView *manipulationView;
+
 
 @end
 
@@ -91,6 +117,7 @@
 @synthesize ssc;
 @synthesize pic;
 @synthesize currentComplexity;
+@synthesize currentComplexityLevel;
 @synthesize startTime;
 @synthesize endTime;
 @synthesize startLocation;
@@ -250,6 +277,8 @@ BOOL wasPathFollowed = false;
     else {
         chooseComplexity = FALSE;
     }
+
+    [[ITSController sharedInstance] setAnalyzerDelegate:self];
 }
 
 //Custom back button to confirm navigation to library page
@@ -315,19 +344,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     //Start off with no objects grouped together
     currentGroupings = [[NSMutableDictionary alloc] init];
     
-    //TODO: remove debug menu, tie into its system to build complexity
-    //Show menu to choose complexity level for non-intro pages of The Best Farm story only
-    if (conditionSetup.appMode == ITS && ![pageContext.currentPageId containsString:INTRO] &&
-        ![chapterTitle isEqualToString:@"Introduction to The Best Farm"] &&
-        ![bookTitle containsString:@"The Circulatory System"]) {
-        
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Choose sentence complexity levels" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"60% Simple   20% Medium   20% Complex", @"20% Simple   60% Medium   20% Complex", @"20% Simple   20% Medium   60% Complex", @"0% Simple 100% Medium 0% Complex", nil];
-        [alert show];
-    }
-    else {
-        //Perform setup of setentences for page
-        [sc setupSentencesForPage];
-    }
+    //Perform setup of setentences for page
+    [sc setupSentencesForPage];
     
     isAudioLeft = false;
     
@@ -794,8 +812,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 }
 
 /*
- * Tap gesture handles taps on menus, words, images
- */
+* Tap gesture handles taps on menus, words, images
+*/
 - (IBAction)tapGesturePerformed:(UITapGestureRecognizer *)recognizer {
     CGPoint location = [recognizer locationInView:self.view];
     
@@ -843,9 +861,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         NSString *englishSentenceText = sentenceText;
         
         //Capture the spanish extension
-
+        
         NSString *spanishExt = [self.manipulationView getSpanishExtention:location];
-
+        
         if (conditionSetup.appMode == ITS) {
             //Record vocabulary request for complexity
             [[pageStatistics objectForKey:pageContext.currentPageId] addVocabTapForComplexity:(currentComplexity - 1)];
@@ -924,7 +942,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     //No longer moving object
     movingObject = FALSE;
     movingObjectId = nil;
-    allowSnapback =true;
+    allowSnapback = TRUE;
 }
 
 /*
@@ -972,6 +990,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
     if(![self.playaudioClass isAudioLeftInSequence])
     {
+        BOOL playedAudio = false;
+        
         if (currSolSteps !=nil && [currSolSteps count] > 0) {
             //Get current step to be completed
             ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
@@ -982,26 +1002,16 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     ([chapterTitle isEqualToString:@"The Naughty Monkey"] && conditionSetup.condition == CONTROL && [[currSolStep object1Id] containsString: englishSentenceText] && sentenceContext.currentSentence == 2 && [pageContext.currentPageId containsString:@"-PM-2"]) ||
                     ([chapterTitle isEqualToString:@"The Naughty Monkey"] && conditionSetup.condition == EMBRACE && [[currSolStep object1Id] containsString: englishSentenceText] && (sentenceContext.currentSentence == sentenceIDNum) && sentenceContext.currentSentence !=2 && [pageContext.currentPageId containsString:@"-PM-2"]))
                 {
+                    playedAudio = true;
                     [[ServerCommunicationController sharedInstance] logTapWord:sentenceText :manipulationContext];
                     [self.playaudioClass stopPlayAudioFile];
                     [self playAudioForVocabWord: englishSentenceText : spanishExt];
                     [ssc incrementCurrentStep];
                 }
-                else if([[Translation translationWords] objectForKey:englishSentenceText])
-                {
-                    [[ServerCommunicationController sharedInstance] logTapWord:englishSentenceText :manipulationContext];
-                    [self.playaudioClass stopPlayAudioFile];
-                    [self playAudioForVocabWord: englishSentenceText : spanishExt];
-                }
-            }
-            else if([[Translation translationWords] objectForKey:englishSentenceText])
-            {
-                [[ServerCommunicationController sharedInstance] logTapWord:englishSentenceText :manipulationContext];
-                [self.playaudioClass stopPlayAudioFile];
-                [self playAudioForVocabWord: englishSentenceText : spanishExt];
             }
         }
-        else if([[Translation translationWords] objectForKey:englishSentenceText])
+        
+        if(!playedAudio && [englishSentenceText length] > 0)// && [[Translation translationWords] objectForKey:englishSentenceText])
         {
             [[ServerCommunicationController sharedInstance] logTapWord:englishSentenceText :manipulationContext];
             [self.playaudioClass stopPlayAudioFile];
@@ -1077,6 +1087,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         
         [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:SPANISH_TXT ofType:PLAY_WORD :manipulationContext];
         [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:ENGLISH_TXT ofType:PLAY_WORD :manipulationContext];
+        
+        [[ITSController sharedInstance] userDidPlayWord:englishSentenceText];
     }
     else {
         //Play En audio twice
@@ -1092,6 +1104,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         
         [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:ENGLISH_TXT ofType:PLAY_WORD :manipulationContext];
         [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:ENGLISH_TXT ofType:PLAY_WORD :manipulationContext];
+        
+        [[ITSController sharedInstance] userDidPlayWord:englishSentenceText];
     }
 }
 
@@ -1167,7 +1181,12 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  */
 - (void)highlightImageForText:(NSString *)englishSentenceText {
     NSObject *valueImage = [[Translation translationImages]objectForKey:englishSentenceText];
+
     NSString *imageHighlighted = EMPTYSTRING;
+    
+    if (valueImage == nil) {
+        valueImage = englishSentenceText;
+    }
     
     //If the key contains more than one value
     if ([valueImage isKindOfClass:[NSArray class]]) {
@@ -1394,6 +1413,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     //If moving object, move object to final position.
     if (movingObject) {
         [self moveObject:movingObjectId :location :delta :true];
+        NSArray *overlappingWith = [self getObjectsOverlappingWithObject:movingObjectId];
         
         if (stepContext.numSteps > 0) {
             //Get steps for current sentence
@@ -1432,6 +1452,14 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                         
                         [[ServerCommunicationController sharedInstance] logVerification:true forAction:MOVE_OBJECT context:manipulationContext];
                         
+                        [[ITSController sharedInstance] movedObject:movingObjectId
+                                                 destinationObjects:@[destination]
+                                                         isVerified:true
+                                                         actionStep:currSolStep
+                                                manipulationContext:manipulationContext
+                                                        forSentence:sentenceContext.currentSentenceText
+                                                    withWordMapping:model.wordMapping];
+                        
                         [animatingObjects setObject:STOP forKey:movingObjectId];
                         [ssc incrementCurrentStep];
                     }
@@ -1439,18 +1467,39 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     else {
                         [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:NULL_TXT ofType:LOCATION startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
                         
+                        [[ITSController sharedInstance] movedObject:movingObjectId
+                                                 destinationObjects:overlappingWith
+                                                         isVerified:false
+                                                         actionStep:currSolStep
+                                                manipulationContext:manipulationContext
+                                                        forSentence:sentenceContext.currentSentenceText
+                                                    withWordMapping:model.wordMapping];
+
                         [self handleErrorForAction:MOVE_OBJECT];
                     }
                 }
                 else {
                     [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:NULL_TXT ofType:LOCATION startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
                     
+                    // Find the location if overlapping is nil;
+                    if (overlappingWith == nil) {
+                        
+                        NSString *areaId = [model getObjectIdAtLocation:endLocation];
+                        if (areaId)
+                            overlappingWith = @[areaId];
+                        
+                    }
+                    
+                    [[ITSController sharedInstance] movedObject:movingObjectId
+                                             destinationObjects:overlappingWith
+                                                     isVerified:false
+                                                     actionStep:currSolStep
+                                            manipulationContext:manipulationContext
+                                                    forSentence:sentenceContext.currentSentenceText
+                                                withWordMapping:model.wordMapping];
+
                     [self handleErrorForAction:MOVE_OBJECT];
                     
-                    if (conditionSetup.appMode == ITS) {
-                        //Record error for complexity
-                        [[pageStatistics objectForKey:pageContext.currentPageId] addErrorForComplexity:(int)(currentComplexity - 1)];
-                    }
                 }
             }
             else if ([[currSolStep stepType] isEqualToString:SHAKEORTAP]) {
@@ -1460,10 +1509,28 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     [[ServerCommunicationController sharedInstance] logVerification:true forAction:MOVE_OBJECT context:manipulationContext];
                     
                     [animatingObjects setObject:STOP forKey:movingObjectId];
+                    
+                    [[ITSController sharedInstance] movedObject:movingObjectId
+                                             destinationObjects:@[currSolStep.locationId]
+                                                     isVerified:true
+                                                     actionStep:currSolStep
+                                            manipulationContext:manipulationContext
+                                                    forSentence:sentenceContext.currentSentenceText
+                                                withWordMapping:model.wordMapping];
+                    
                     [self resetObjectLocation];
                     [ssc incrementCurrentStep];
                 }
                 else {
+                    
+                    [[ITSController sharedInstance] movedObject:movingObjectId
+                                             destinationObjects:@[currSolStep.locationId]
+                                                     isVerified:false
+                                                     actionStep:currSolStep
+                                            manipulationContext:manipulationContext
+                                                    forSentence:sentenceContext.currentSentenceText
+                                                withWordMapping:model.wordMapping];
+                
                     [self handleErrorForAction:MOVE_OBJECT];
                 }
             }
@@ -1477,6 +1544,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     [ssc incrementCurrentStep];
                 }
                 else {
+
                     [self handleErrorForAction:MOVE_OBJECT];
                 }
             }
@@ -1498,15 +1566,19 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     
                     //No possible interactions were found
                     if ([possibleInteractions count] == 0) {
-                        [self handleErrorForAction:MOVE_OBJECT];
+
+                        [[ITSController sharedInstance] movedObject:movingObjectId
+                                                 destinationObjects:overlappingWith
+                                                         isVerified:false
+                                                         actionStep:currSolStep
+                                                manipulationContext:manipulationContext
+                                                        forSentence:sentenceContext.currentSentenceText
+                                                    withWordMapping:model.wordMapping];
                         
-                        if (conditionSetup.appMode == ITS) {
-                            //Record error for complexity
-                            [[pageStatistics objectForKey:pageContext.currentPageId] addErrorForComplexity:(int)(currentComplexity - 1)];
-                        }
+                        [self handleErrorForAction:MOVE_OBJECT];
                     }
                     //If only 1 possible interaction was found, go ahead and perform that interaction if it's correct.
-                    if ([possibleInteractions count] == 1) {
+                    else if ([possibleInteractions count] == 1) {
                         PossibleInteraction *interaction = [possibleInteractions objectAtIndex:0];
                         
                         //Checks solution and accomplishes action trace
@@ -1575,7 +1647,24 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 }
                 //Not overlapping any object
                 else {
-                    [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:NULL_TXT ofType:LOCATION startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
+                    [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:@"NULL" ofType:@"Location" startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
+                    
+                    // Find the location if overlapping is nil;
+                    if (overlappingWith == nil) {
+                        //TODO: Find the object precent in destination location.
+                        NSString *areaId = [model getObjectIdAtLocation:endLocation];
+                        NSLog(@"Area - %@",areaId);
+                        if (areaId)
+                            overlappingWith = @[areaId];
+                        
+                    }
+                    [[ITSController sharedInstance] movedObject:movingObjectId
+                                             destinationObjects:overlappingWith
+                                                     isVerified:false
+                                                     actionStep:currSolStep
+                                            manipulationContext:manipulationContext
+                                                    forSentence:sentenceContext.currentSentenceText
+                                                withWordMapping:model.wordMapping];
                     
                     [self handleErrorForAction:MOVE_OBJECT];
                 }
@@ -2230,7 +2319,19 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 allowSnapback = true;
             }
             else {
-                [[ServerCommunicationController sharedInstance] logVerification:true forAction:MOVE_OBJECT context:manipulationContext];
+                [[ServerCommunicationController sharedInstance] logVerification:true forAction:@"Move Object" context:manipulationContext];
+                Connection *con = [interaction.connections objectAtIndex:0];
+                NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
+                
+                //Get current step to be completed
+                ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
+                [[ITSController sharedInstance] movedObject:[con.objects objectAtIndex:0]
+                                         destinationObjects:@[[con.objects objectAtIndex:1]]
+                                                 isVerified:true
+                                                 actionStep:currSolStep
+                                        manipulationContext:manipulationContext
+                                                forSentence:sentenceContext.currentSentenceText
+                                            withWordMapping:model.wordMapping];
             }
             
             [pic performInteraction:interaction];
@@ -2252,17 +2353,220 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         NSString *action;
         
         if (menu != nil) {
+            
             action = SELECT_MENU_ITEM;
         }
         else {
             action = MOVE_OBJECT;
         }
         
+        Connection *con = [interaction.connections objectAtIndex:0];
+        NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
+        
+        //Get current step to be completed
+        ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
+        [[ITSController sharedInstance] movedObject:[con.objects objectAtIndex:0]
+                                 destinationObjects:@[[con.objects objectAtIndex:1]]
+                                         isVerified:false
+                                         actionStep:currSolStep
+                                manipulationContext:manipulationContext
+                                        forSentence:sentenceContext.currentSentenceText
+                                    withWordMapping:model.wordMapping];
+        
         [self handleErrorForAction:action];
     }
     
     //Clear any remaining highlighting
     [self.manipulationView clearAllHighLighting];
+}
+
+/*
+ * Handles errors by logging the action, playing a noise, and resetting the object location.
+ * The ITS will check if the user's number of attempts has reached the maximum number of attempts; if so, it will
+ * automatically perform the step.
+ */
+- (void)handleErrorForAction:(NSString *)action {
+    allowInteractions = FALSE;
+    
+    [[ServerCommunicationController sharedInstance] logVerification:false forAction:action context:manipulationContext];
+    
+    [self playErrorNoise];
+    [self resetObjectLocation];
+    
+    stepContext.numAttempts++;
+    
+    if (stepContext.numAttempts >= stepContext.maxAttempts) {
+        stepContext.numAttempts = 0;
+        
+        [self provideFeedbackForErrorType:@"usability"];
+    }
+    else {
+        if (conditionSetup.appMode == ITS) {
+            double delay = 0.0;
+            
+            if (conditionSetup.shouldShowITSMessages == YES) {
+                delay = 5.5;
+            }
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, delay * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                NSString *mostProbableErrorType = [[ITSController sharedInstance] getMostProbableErrorType];
+                NSLog(@"*** mostProbableErrorType: %@", mostProbableErrorType);
+                
+                if (mostProbableErrorType != nil) {
+                    [self provideFeedbackForErrorType:mostProbableErrorType];
+                }
+                else {
+                    allowInteractions = TRUE;
+                }
+            });
+        }
+        else{
+            allowInteractions = TRUE;
+        }
+    }
+    
+    if (conditionSetup.appMode == ITS) {
+        //Record error for complexity
+        [[pageStatistics objectForKey:pageContext.currentPageId] addErrorForComplexity:(currentComplexity - 1)];
+    }
+}
+
+// TODO: Change error type NSString to enum
+- (void)provideFeedbackForErrorType:(NSString *)errorType {
+    if ([errorType isEqualToString:@"vocabulary"]) {
+        [playaudioClass playErrorFeedbackNoise];
+        
+        // Get steps for current sentence
+        NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
+        
+        // Get current step to be completed
+        ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
+        NSString *stepType = [currSolStep stepType];
+        
+        // Highlight correct object and location
+        if ([stepType isEqualToString:@"check"] || [stepType isEqualToString:@"checkLeft"] || [stepType isEqualToString:@"checkRight"] || [stepType isEqualToString:@"checkUp"] || [stepType isEqualToString:@"checkDown"] || [stepType isEqualToString:@"checkAndSwap"] || [stepType isEqualToString:@"tapToAnimate"] || [stepType isEqualToString:@"checkPath"] || [stepType isEqualToString:@"shakeAndTap"] || [stepType isEqualToString:@"tapWord"] ) {
+            
+            NSString *object1Id = [currSolStep object1Id];
+            NSString *locationId = [currSolStep locationId];
+            
+            if ([locationId isEqualToString:@""]) {
+                locationId = [currSolStep areaId];
+            }
+            
+            [self highlightImageForText:object1Id];
+            
+            if ([model getLocationWithId:locationId] || [model getAreaWithId:locationId]) {
+                [self highlightObject:locationId :1.5];
+            }
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                allowInteractions = TRUE;
+            });
+        }
+        // Highlight correct objects for transference
+        else if ([stepType isEqualToString:@"transferAndGroup"] || [stepType isEqualToString:@"transferAndDisappear"]) {
+            NSString *object1Id = [currSolStep object1Id];
+            ActionStep *nextSolStep = [currSolSteps objectAtIndex:stepContext.currentStep];
+            
+            if (nextSolStep != nil && ([[nextSolStep stepType] isEqualToString:@"transferAndGroup"] || [stepType isEqualToString:@"transferAndDisappear"])) {
+                NSString *nextObject1Id = [nextSolStep object1Id];
+                
+                if ([nextObject1Id isEqualToString:[currSolStep object2Id]]) {
+                    nextObject1Id = [nextSolStep object2Id];
+                }
+                
+                [self highlightImageForText:object1Id];
+                [self highlightImageForText:nextObject1Id];
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                    allowInteractions = TRUE;
+                });
+            }
+        }
+        // Highlight correct objects
+        else {
+            NSString *object1Id = [currSolStep object1Id];
+            NSString *object2Id = [currSolStep object2Id];
+            
+            [self highlightImageForText:object1Id];
+            [self highlightImageForText:object2Id];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                allowInteractions = TRUE;
+            });
+        }
+    }
+    else if ([errorType isEqualToString:@"syntax"]) {
+        NSMutableArray *simplerSentences = [[NSMutableArray alloc] init];
+        
+        if (currentComplexity > 1) {
+            Chapter *chapter = [book getChapterWithTitle:chapterTitle]; // Get current chapter
+            PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; // Get PM Activity from chapter
+            
+            // Get steps for current sentence
+            NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
+            
+            // Get current step to be completed
+            ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
+            
+            // Look for simpler version of the current sentence
+            for (AlternateSentence *alternateSentence in [[PMActivity alternateSentences] objectForKey:pageContext.currentPageId]) {
+                if ([alternateSentence complexity] == currentComplexity - 1) {
+                    for (NSNumber *idea in [[sentenceContext.pageSentences objectAtIndex:sentenceContext.currentSentence - 1] ideas]) {
+                        if ([[alternateSentence ideas] containsObject:idea]) {
+                            // Add sentences with no solution steps if they share the same idea
+                            if ([[alternateSentence solutionSteps] count] == 0) {
+                                [simplerSentences addObject:[alternateSentence text]];
+                                break;
+                            }
+                            else {
+                                // Add sentences with solution steps only if they share the same idea and current step
+                                for (ActionStep *solutionStep in [alternateSentence solutionSteps]) {
+                                    if ([solutionStep stepNumber] == [currSolStep stepNumber]) {
+                                        [simplerSentences addObject:[alternateSentence text]];
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                allowInteractions = TRUE;
+            });
+        }
+        
+        // Present simpler sentence(s)
+        if ([simplerSentences count] > 0) {
+            // Join sentences together and remove any slash characters
+            NSString *message = [[simplerSentences componentsJoinedByString:@" "] stringByReplacingOccurrencesOfString:@"\\" withString:@""];
+            
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Hint" message:message preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+            [alert addAction:action];
+            [self presentViewController:alert animated:YES completion:nil];
+            
+            [playaudioClass playErrorFeedbackNoise];
+            allowInteractions = TRUE;
+        }
+        // Default to usability error feedback if there are no simpler sentences available
+        else {
+            [self provideFeedbackForErrorType:@"usability"];
+        }
+    }
+    else if ([errorType isEqualToString:@"usability"]) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Need help?" message:@"The iPad will show you how to complete this step." preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action)
+                          {
+                              [self.view setUserInteractionEnabled:YES];
+                              [self animatePerformingStep];
+                          }]];
+        [self presentViewController:alert animated:YES completion:nil];
+        
+        [playaudioClass playErrorFeedbackNoise];
+    }
 }
 
 /*
@@ -2450,8 +2754,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                                  && !rolesMatch) {
                             [groupings addObjectsFromArray:[pic getPossibleTransferInteractionsforObjects:obj :isHotspotConnectedMovingObjectString :objId :movingObjectHotspot :hotspot]];
                         }
-                        else if (actionsMatch && [isHotspotConnectedMovingObjectString isEqualToString:EMPTYSTRING]
-                                 && ![isHotspotConnectedObjectString isEqualToString:EMPTYSTRING] && !rolesMatch) {
+                        else if (actionsMatch
+                                 && [isHotspotConnectedMovingObjectString isEqualToString:EMPTYSTRING]
+                                 && ![isHotspotConnectedObjectString isEqualToString:EMPTYSTRING]
+                                 && !rolesMatch) {
                             [groupings addObjectsFromArray:[pic getPossibleTransferInteractionsforObjects:objId :isHotspotConnectedObjectString :obj :hotspot :movingObjectHotspot]];
                         }
                     }
@@ -3050,40 +3356,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:ERROR_FEEDBACK_NOISE inLanguage:NULL_TXT ofType:ERROR_FEEDBACK_NOISE :manipulationContext];
 }
 
-- (void)handleErrorForAction:(NSString *)action {
-    allowInteractions = FALSE;
-    
-    [[ServerCommunicationController sharedInstance] logVerification:false forAction:action context:manipulationContext];
-    
-    [self playErrorNoise];
-    [self resetObjectLocation];
-    
-    stepContext.numAttempts++;
-    
-    if (stepContext.numAttempts >= stepContext.maxAttempts) {
-        [[ServerCommunicationController sharedInstance] logMaximumAttemptsReachedForAction:action context:manipulationContext];
-        
-        stepContext.numAttempts = 0;
-        
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Need help?" message:@"The iPad will show you how to complete this step." preferredStyle:UIAlertControllerStyleAlert];
-        [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action)
-            {
-                [self animatePerformingStep];
-            }]];
-        [self presentViewController:alert animated:YES completion:nil];
-        
-        [self playErrorFeedbackNoise];
-    }
-    else {
-        allowInteractions = TRUE;
-    }
-    
-    if (conditionSetup.appMode == ITS) {
-        //Record error for complexity
-        [[pageStatistics objectForKey:pageContext.currentPageId] addErrorForComplexity:(int)(currentComplexity - 1)];
-    }
-}
-
 - (void)animatePerformingStep {
     // Get steps for current sentence
     NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
@@ -3630,11 +3902,11 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     }
 }
 
-///*
-// * Swaps all sentences on the current page for the versions with the specified level of complexity
-// */
-////TODO: move logic in if else statements into new functions and move into new class
-//- (void)swapSentencesOnPage:(double)simple :(double)medium :(double)complex {
+/*
+ * Swaps all sentences on the current page for the versions with the specified level of complexity
+ */
+//TODO: move logic in if else statements into new functions and move into new class
+- (void)swapSentencesOnPage:(double)simple :(double)medium :(double)complex {
 //    Chapter *chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
 //    PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
 //    NSMutableArray *alternateSentences = [[PMActivity alternateSentences] objectForKey:currentPageId]; //get alternate sentences for current page
@@ -3814,7 +4086,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 //            }
 //        }
 //    }
-//}
+}
+
+
+
 
 /*
  * Creates the menuDataSource from the list of possible interactions.
@@ -3856,6 +4131,17 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     if ([model getArea:object:pageContext.currentPageId]) {
         //Highlight the tapped object
         [self.manipulationView highLightArea:object];
+    }
+    else if ([model getLocationWithId:object]){
+        Location *loc = [model getLocationWithId:object];
+        
+        //Calculate the x,y coordinates and the width and height in pixels from %
+        float locationX = [loc.originX floatValue] / 100.0 * [self.view frame].size.width;
+        float locationY = [loc.originY floatValue] / 100.0 * [self.view frame].size.height;
+        float locationWidth = [loc.width floatValue] / 100.0 * [self.view frame].size.width;
+        float locationHeight = [loc.height floatValue] / 100.0 * [self.view frame].size.height;
+        
+        [self.manipulationView highlightLocation:lroundf(locationX):lroundf(locationY):lroundf(locationWidth):lroundf(locationHeight)];
     }
     else {
         //Highlight the tapped object
@@ -3973,6 +4259,54 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     else {
         manipulationContext.pageMode = INTERVENTION;
     }
+}
+
+#pragma mark - ManipulationAnalyserProtocol
+
+- (CGPoint)locationOfObject:(NSString *)object
+                   analyzer:(ManipulationAnalyser *)analyzer {
+    
+    return [self getObjectPosition:object];
+}
+
+- (CGSize)sizeOfObject:(NSString *)object analyzer:(ManipulationAnalyser *)analyzer {
+    return [self.manipulationView sizeOfObject:object];
+}
+
+- (void)analyzer:(ManipulationAnalyser *)analyzer showMessage:(NSString *)message {
+   
+    if (conditionSetup.shouldShowITSMessages == NO)
+        return;
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"Dismiss"
+                                                     style:UIAlertActionStyleCancel
+                                                   handler:nil];
+    [alert addAction:action];
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    int duration = 5; // duration in seconds
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [alert dismissViewControllerAnimated:YES completion:nil];
+    });
+}
+
+- (NSArray *)getNextStepsForCurrentSentence:(ManipulationAnalyser *)analyzer {
+    NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
+    NSArray *nextSteps = nil;
+    
+    if ([currSolSteps count] > stepContext.currentStep) {
+        NSRange range = NSMakeRange(stepContext.currentStep, [currSolSteps count] - stepContext.currentStep);
+        nextSteps = [currSolSteps subarrayWithRange:range];
+    }
+    
+    return nextSteps;
+}
+
+- (EMComplexity)analyzer:(ManipulationAnalyser *)analyzer getComplexityForSentence:(int)sentenceNumber {
+    return self.currentComplexityLevel;
 }
 
 @end

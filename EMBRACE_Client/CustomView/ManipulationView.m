@@ -11,6 +11,8 @@
 #import "NSString+HTML.h"
 #import "Book.h"
 #import "MenuItemImage.h"
+#import "ITSController.h"
+#import "Translation.h"
 
 @interface ManipulationView()<UIScrollViewDelegate, UIWebViewDelegate>
 
@@ -214,8 +216,10 @@
 }
 
 - (NSString *)getTextAtLocation:(CGPoint)location {
-    NSString *requestImageAtPoint = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).innerHTML", location.x, location.y];
-    return  [self.bookView stringByEvaluatingJavaScriptFromString:requestImageAtPoint];
+    NSString *requestString = [NSString stringWithFormat:@"getTextAtLocation(%f, %f)", location.x, location.y];
+    NSString *textAtLocation = [self.bookView stringByEvaluatingJavaScriptFromString:requestString];
+
+    return textAtLocation;
 }
 
 - (NSString *)getSpanishExtention:(CGPoint)location {
@@ -358,6 +362,11 @@
     return [self.bookView stringByEvaluatingJavaScriptFromString:actionSentence];
 }
 
+- (void)addVocabularyWithID:(NSInteger)vocabID englishText:(NSString *)engText spanishText:(NSString *)spanText {
+    NSString *addVocabularyString = [NSString stringWithFormat:@"addVocabulary('s%d', '%@', '%@')", vocabID, engText, spanText];
+    [self.bookView stringByEvaluatingJavaScriptFromString:addVocabularyString];
+}
+
 /*
 #pragma mark - UIScrollView delegates
 
@@ -418,8 +427,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     if (![positionString isEqualToString:@""]) {
         position = [positionString componentsSeparatedByString:@", "];
     }
-    
-    return CGPointMake([position[0] floatValue], [position[1] floatValue]);
+    CGPoint point = CGPointMake([position[0] floatValue], [position[1] floatValue]);
+    return point;
 }
 
 /*
@@ -807,6 +816,11 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     [self.bookView stringByEvaluatingJavaScriptFromString:highlight];
 }
 
+- (void)highlightLocation:(int)originX : (int)originY : (int)width : (int)height {
+    NSString *highlight = [NSString stringWithFormat:@"highlightLocation(%d, %d, %d, %d)", originX, originY, width, height];
+    [self.bookView stringByEvaluatingJavaScriptFromString:highlight];
+}
+
 - (void)highlightObjectOnWordTap:(NSString *)objectId {
     NSString *highlight = [NSString stringWithFormat:@"highlightObjectOnWordTap(%@)", objectId];
     [self.bookView stringByEvaluatingJavaScriptFromString:highlight];
@@ -1115,5 +1129,102 @@ shouldUpdateConnection:(BOOL)updateCon
     }
     return CGPointMake(-99, -99);
 }
+
+- (void)removeAllSentences {
+    //Get the number of sentences on the page
+    NSString *requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('sentence').length"];
+    int sentenceCount = [[self.bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount] intValue];
+    
+    //Get the id number of the last sentence on the page
+    NSString *requestLastSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[%d - 1].id", sentenceCount];
+    NSString *lastSentenceId = [self.bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
+    int lastSentenceIdNumber = [[lastSentenceId substringFromIndex:1] intValue];
+    
+    //Get the id number of the first sentence on the page
+    NSString *requestFirstSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[0].id"];
+    NSString *firstSentenceId = [self.bookView stringByEvaluatingJavaScriptFromString:requestFirstSentenceId];
+    int firstSentenceIdNumber = [[firstSentenceId substringFromIndex:1] intValue];
+    
+    NSString *removeSentenceString;
+    
+    //Remove all sentences on page
+    for (int i = firstSentenceIdNumber; i <= lastSentenceIdNumber; i++) {
+        //Skip the title (sentence 0) if it's the first on the page
+        if (i > 0) {
+            removeSentenceString = [NSString stringWithFormat:@"removeSentence('s%d')", i];
+            [self.bookView stringByEvaluatingJavaScriptFromString:removeSentenceString];
+        }
+    }
+}
+
+- (void)addSentence:(AlternateSentence *)sentenceToAdd withSentenceNumber:(int)sentenceNumber andVocabulary:(NSMutableSet *)vocabulary {
+    NSString *addSentenceString;
+    //Get alternate sentence information
+    BOOL action = [sentenceToAdd actionSentence];
+    NSString *text = [sentenceToAdd text];
+    
+    //Split sentence text into individual tokens (words)
+    NSArray *textTokens = [text componentsSeparatedByString:@" "];
+    
+    //Contains the vocabulary words that appear in the sentence
+    NSMutableArray *words = [[NSMutableArray alloc] init];
+    
+    //Contains the sentence text split around vocabulary words
+    NSMutableArray *splitText = [[NSMutableArray alloc] init];
+    
+    //Combines tokens into the split sentence text
+    NSString *currentSplit = @"";
+    
+    for (NSString *textToken in textTokens) {
+        NSString *modifiedTextToken = textToken;
+        
+        //Replaces the ' character if it exists in the token
+        if ([modifiedTextToken rangeOfString:@"'"].location != NSNotFound) {
+            modifiedTextToken = [modifiedTextToken stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
+        }
+        
+        BOOL addedWord = false; //whether token contains vocabulary word
+        
+        for (NSString *vocab in vocabulary) {
+            // Match the whole vocabulary word only
+            NSString *regex = [NSString stringWithFormat:@"\\b%@\\b", vocab];
+            
+            NSRange range = [modifiedTextToken rangeOfString:regex options:NSRegularExpressionSearch|NSCaseInsensitiveSearch];
+            
+            // Token contains vocabulary word
+            if (range.location != NSNotFound) {
+                [words addObject:[modifiedTextToken substringWithRange:range]]; // Add word to list
+                addedWord = true;
+                
+                [splitText addObject:currentSplit];
+                
+                // Reset current split to be anything that appears after the vocabulary word and add a space in the beginning
+                currentSplit = [[modifiedTextToken stringByReplacingCharactersInRange:range withString:@""] stringByAppendingString:@" "];
+                
+                break;
+            }
+        }
+        
+        //Token does not contain vocabulary word
+        if (!addedWord) {
+            //Add token to current split with a space after it
+            NSString *textTokenSpace = [NSString stringWithFormat:@"%@ ", modifiedTextToken];
+            currentSplit = [currentSplit stringByAppendingString:textTokenSpace];
+        }
+    }
+    
+    [splitText addObject:currentSplit]; //make sure to add the last split
+    
+    //Create array strings for vocabulary and split text to send to JS function
+    NSString *wordsArrayString = [words componentsJoinedByString:@"','"];
+    NSString *splitTextArrayString = [splitText componentsJoinedByString:@"','"];
+    
+    //Add alternate sentence to page
+    addSentenceString = [NSString stringWithFormat:@"addSentence('s%d', %@, ['%@'], ['%@'])", sentenceNumber++, action ? @"true" : @"false", splitTextArrayString, wordsArrayString];
+    [self.bookView stringByEvaluatingJavaScriptFromString:addSentenceString];
+    
+}
+
+
 
 @end

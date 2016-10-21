@@ -693,6 +693,14 @@ function highlightObject(object) {
     highlight(object.offsetLeft, object.offsetTop, object.offsetWidth, object.offsetHeight, "under");
 }
 
+
+/*
+ *  Highlights a location using the locations passed in values
+ */
+function highlightLocation(topleftX, topleftY, objectWidth, objectHeight){
+    highlight(topleftX, topleftY, objectWidth, objectHeight, "over");
+}
+
 /*
  * Create an oval highlight using the top left corner and width and height specified.
  * If highlighting only one object the top left corner specified will be based on the offsetLeft and offsetTop properies
@@ -1016,6 +1024,70 @@ function addSentence(sentenceId, action, splitTextArray, wordsArray) {
     }
     
     textbox.appendChild(newSentence); //add sentence to textbox
+}
+
+/*
+ * Adds vocabulary with the specified sentence ID, English text, and optional Spanish text
+ */
+function addVocabulary(sentenceID, englishText, spanishText) {
+    var textboxCol = document.getElementsByClassName("col-2")[0];
+    var newSentence = document.createElement("div");
+    
+    newSentence.className = "sentence actionSentence";
+    newSentence.id = sentenceID;
+
+    if (spanishText.length > 0) {
+        var newSpanishVocabulary = document.createElement("a");
+        
+        newSpanishVocabulary.className = "audible";
+        newSpanishVocabulary.id = sentenceID.slice(1);
+        newSpanishVocabulary.innerHTML = spanishText[0].toUpperCase() + spanishText.slice(1);
+        
+        newSentence.appendChild(newSpanishVocabulary);
+        
+        var divider = document.createElement("a");
+        
+        divider.className = "divider";
+        divider.innerHTML = "&nbsp;/&nbsp;";
+        
+        newSentence.appendChild(divider);
+    }
+    
+    var newEnglishVocabulary = document.createElement("a");
+    
+    newEnglishVocabulary.className = "audible";
+    newEnglishVocabulary.id = sentenceID.slice(1);
+    newEnglishVocabulary.innerHTML = englishText[0].toUpperCase() + englishText.slice(1);
+    
+    newSentence.appendChild(newEnglishVocabulary);
+    
+    textboxCol.appendChild(newSentence);
+}
+
+function getTextAtLocation(x, y) {
+    var element = document.elementFromPoint(x, y);
+    
+    if (element.classList.contains("audible")) {
+        return element.innerHTML;
+    }
+    // NOTE: For some reason, tapping on a dynamically added underlined word returns the inner HTML of the entire
+    // sentence, rather than the word itself. Thus, we have to manually check all the audible words in the sentence
+    // to figure out which one was tapped.
+    else {
+        var audibleElements = element.getElementsByClassName("audible");
+        var threshold = 15; // This is used because x-coordinate of tap location and word location appear off
+        
+        for (var i = 0; i < audibleElements.length; i++) {
+            var audibleElement = audibleElements[i];
+            var rect = audibleElement.getBoundingClientRect();
+            
+            if (x >= rect.left - threshold && x <= rect.right + threshold && y >= rect.top && y <= rect.bottom) {
+                return audibleElement.innerHTML;
+            }
+        }
+        
+        return null;
+    }
 }
 
 function getImagePosition (object) {

@@ -129,7 +129,7 @@
         
         NSURL *soundFileURL = [self.audioQueue objectAtIndex:0];
         NSError *audioError;
-        NSLog(@"Audio file - %@", soundFileURL);
+
         self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&audioError];
         self.audioPlayer.delegate = self;
         self.audioPlayerAfter = nil;

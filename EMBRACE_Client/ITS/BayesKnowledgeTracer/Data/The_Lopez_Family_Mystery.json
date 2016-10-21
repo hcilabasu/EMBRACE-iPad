@@ -1,0 +1,8 @@
+{
+	"pronouns": {
+		"martin": ["he", "his"],
+		"rosa": ["she","her"],
+		"baby": ["she","her"],
+		"paco": ["he"]
+	}
+}

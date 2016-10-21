@@ -1240,7 +1240,6 @@ function moveToLocation(aniObject) {
     }, seconds * 1000);
 }
 
-
 function shootArrow(aniObject) {
     
     aniObject.object.style.WebkitTransitionDuration='4s';

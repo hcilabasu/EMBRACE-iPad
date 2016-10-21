@@ -198,8 +198,10 @@
 - (NSMutableArray *)returnCurrentSolutionSteps {
     NSMutableArray *currSolSteps;
     
-    if (conditionSetup.appMode == ITS) {
-        currSolSteps = [[sentenceContext.pageSentences objectAtIndex:sentenceContext.currentSentence - 1] solutionSteps];
+    if (conditionSetup.appMode == ITS && ![pageContext.currentPageId containsString:DASH_INTRO]) {
+        if(sentenceContext.currentSentence > 0){
+            currSolSteps = [[sentenceContext.pageSentences objectAtIndex:sentenceContext.currentSentence - 1] solutionSteps];
+        }
     }
     else {
         if (conditionSetup.condition == CONTROL) {
@@ -208,8 +210,8 @@
         else if (conditionSetup.condition == EMBRACE) {
             if (conditionSetup.currentMode == PM_MODE) {
                 //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                if ([mvc.bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound &&
-                    [pageContext.currentPageId rangeOfString:DASH_INTRO].location == NSNotFound) {
+                if (([mvc.bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound &&
+                    [pageContext.currentPageId rangeOfString:DASH_INTRO].location == NSNotFound) || conditionSetup.appMode == ITS) {
                     currSolSteps = [stepContext.PMSolution getStepsForSentence:sentenceContext.currentIdea];
                 }
                 else {
@@ -249,40 +251,62 @@
  * Dynamically creates pm and im vocab solutions for an intro page
  */
 - (void)createVocabSolutionsForPage {
+    Chapter *chapter = [mvc.book getChapterWithTitle:mvc.chapterTitle];
     
-    stepContext.PMSolution = [[PhysicalManipulationSolution alloc] init];
-    stepContext.IMSolution = [[ImagineManipulationSolution alloc] init];
+    NSMutableSet *newVocab = [[NSMutableSet alloc] init];
+    NSMutableArray *vocabSolutionSteps = [[NSMutableArray alloc] init];
     
+    // Adds new vocabulary introduced in the chapter
     for (int i = 1; i < sentenceContext.totalSentences + 1; i++) {
-        
-        NSString *sentenceText = [[mvc.manipulationView getVocabAtId:i] lowercaseString];
+        NSString *vocabText = [[mvc.manipulationView getVocabAtId:i] lowercaseString];
         
         if (conditionSetup.language == BILINGUAL) {
-            if (![[mvc.sc getEnglishTranslation:sentenceText] isEqualToString:NULL_TXT]) {
-                sentenceText = [mvc.sc getEnglishTranslation:sentenceText];
+            if (![[mvc.sc getEnglishTranslation:vocabText] isEqualToString:NULL_TXT]) {
+                vocabText = [mvc.sc getEnglishTranslation:vocabText];
             }
         }
         
-        ActionStep *solutionStep = [[ActionStep alloc] initAsSolutionStep:i :nil : 1 : TAPWORD : sentenceText : nil : nil: nil : nil : nil : nil];
+        [newVocab addObject:vocabText];
         
-        if (conditionSetup.currentMode == PM_MODE || conditionSetup.condition == CONTROL) {
-            [stepContext.PMSolution addSolutionStep:solutionStep];
-        }
-        else if (conditionSetup.currentMode == IM_MODE) {
-            [stepContext.IMSolution addSolutionStep:solutionStep];
+        ActionStep *vocabSolutionStep = [[ActionStep alloc] initAsSolutionStep:i :nil :1 :@"tapWord" :vocabText :nil :nil :nil :nil :nil :nil];
+        [vocabSolutionSteps addObject:vocabSolutionStep];
+    }
+    
+    if (conditionSetup.appMode == ITS) {
+        NSMutableSet *vocabToAdd = [[ITSController sharedInstance] getExtraIntroductionVocabularyForChapter:chapter inBook:mvc.book];
+        
+        for (NSString *vocab in vocabToAdd) {
+            sentenceContext.totalSentences++;
+            
+            NSString *englishText = vocab;
+            NSString *spanishText = [NSString stringWithFormat:@""];
+            
+            if (conditionSetup.language == BILINGUAL) {
+                if (![[mvc.sc getEnglishTranslation:vocab] isEqualToString:NULL_TXT]) {
+                    englishText = [mvc.sc getEnglishTranslation:vocab];
+                    spanishText = vocab;
+                }
+            }
+            
+            [mvc.manipulationView addVocabularyWithID:sentenceContext.totalSentences englishText:englishText spanishText:spanishText];
+            
+            ActionStep *vocabSolutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceContext.totalSentences :nil :1 :@"tapWord" :englishText :nil :nil :nil :nil :nil :nil];
+            [vocabSolutionSteps addObject:vocabSolutionStep];
         }
     }
     
-    Chapter *chapter = [mvc.book getChapterWithTitle:mvc.chapterTitle]; //get current chapter
-    
-    //Add PMSolution to page
     if (conditionSetup.currentMode == PM_MODE || conditionSetup.condition == CONTROL) {
-        PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; //get PM Activity only
+        stepContext.PMSolution = [[PhysicalManipulationSolution alloc] init];
+        stepContext.PMSolution.solutionSteps = vocabSolutionSteps;
+        
+        PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE];
         [PMActivity addPMSolution:stepContext.PMSolution forActivityId:pageContext.currentPageId];
     }
-    //Add IMSolution to page
     else if (conditionSetup.currentMode == IM_MODE) {
-        ImagineManipulationActivity *IMActivity = (ImagineManipulationActivity *)[chapter getActivityOfType:IM_MODE]; //get IM Activity only
+        stepContext.IMSolution = [[ImagineManipulationSolution alloc] init];
+        stepContext.IMSolution.solutionSteps = vocabSolutionSteps;
+        
+        ImagineManipulationActivity *IMActivity = (ImagineManipulationActivity *)[chapter getActivityOfType:IM_MODE];
         [IMActivity addIMSolution:stepContext.IMSolution forActivityId:pageContext.currentPageId];
     }
 }

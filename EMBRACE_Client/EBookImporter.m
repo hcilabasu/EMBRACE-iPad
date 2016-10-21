@@ -418,13 +418,18 @@
     [self readSetupMetadata:book :[[book mainContentPath] stringByAppendingString:@"Setups-MetaData.xml"]];
     
     //Read PM and IM solutions
-    [self readSolutionMetadata:book :PM_MODE :[[book mainContentPath] stringByAppendingString:@"Solutions-MetaData.xml"]];
+    
+    if (conditionSetup.appMode == ITS) {
+        [self readSolutionMetadata:book :PM_MODE :[[book mainContentPath] stringByAppendingString:@"Solutions-MetaData-ITS.xml"]];
+    } else {
+        [self readSolutionMetadata:book :PM_MODE :[[book mainContentPath] stringByAppendingString:@"Solutions-MetaData.xml"]];
+    }
     [self readSolutionMetadata:book :IM_MODE :[[book mainContentPath] stringByAppendingString:@"IMSolutions-MetaData.xml"]];
     
     [self readAlternateSentenceMetadata:book :[[book mainContentPath] stringByAppendingString:@"AlternateSentences-MetaData.xml"]];
     [self readIntroductionMetadata:model :[[book mainContentPath] stringByAppendingString:@"Introductions-MetaData.xml"]];
     [self readVocabularyIntroductionMetadata:model :[[book mainContentPath] stringByAppendingString:@"VocabularyIntroductions-MetaData.xml"]];
-    
+    [self readVocabularyMetadata:book :[[book mainContentPath] stringByAppendingString:@"Vocabulary-MetaData.xml"]];
     
     //Separate Assessment metadata files depending on language
     if (conditionSetup.language == ENGLISH && conditionSetup.assessmentMode == ENDOFCHAPTER) {
@@ -440,6 +445,8 @@
         [self readAssessmentMetadata:model :[[book mainContentPath] stringByAppendingString:@"AssessmentActivitiesEOBSpanish-MetaData.xml"]];
     }
     [self readScriptMetadata:book filePath:[[book mainContentPath] stringByAppendingString:@"Script-Metadata.xml"]];
+    [self readWordMappingMetadata:model :[[book mainContentPath] stringByAppendingString:@"WordMapping.xml"]];
+    
 }
 
 - (void)readRelationshipMetadata:(InteractionModel *)model :(NSString *)filepath {
@@ -1209,6 +1216,42 @@
     }
 }
 
+- (void)readVocabularyMetadata:(Book *)book :(NSString *)filepath {
+    NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
+    NSError *error;
+    GDataXMLDocument *metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:&error];
+    
+    NSArray *vocabularyElements = [metadataDoc nodesForXPath:@"//vocabulary" error:nil];
+    
+    if ([vocabularyElements count] > 0) {
+        GDataXMLElement *vocabularyElement = (GDataXMLElement *)[vocabularyElements objectAtIndex:0];
+        
+        NSArray *storyElements = [vocabularyElement elementsForName:@"story"];
+        
+        for (GDataXMLElement *storyElement in storyElements) {
+            NSString *storyTitle = [[storyElement attributeForName:@"title"] stringValue];
+            
+            NSArray *vocabElements = [storyElement elementsForName:@"vocabulary"];
+            NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+            
+            for (GDataXMLElement *vocabElement in vocabElements) {
+                BOOL introWord = false;
+                
+                if ([[[vocabElement attributeForName:@"introWord"] stringValue] isEqualToString:@"true"]) {
+                    introWord = true;
+                }
+                
+                NSString *word = vocabElement.stringValue;
+                
+                [dictionary setValue:@(introWord) forKey:word];
+            }
+            
+            Chapter *chapter = [book getChapterWithTitle:storyTitle];
+            chapter.vocabulary = dictionary;
+        }
+    }
+}
+
 - (void)readAssessmentMetadata:(InteractionModel *)model :(NSString *)filepath {
     NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
     NSError *error;
@@ -1289,6 +1332,33 @@
         }
     }
     
+    
+}
+
+- (void)readWordMappingMetadata:(InteractionModel *)model :(NSString *)filepath {
+    
+    NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
+    NSError *error;
+    GDataXMLDocument *metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:&error];
+    
+    if (xmlData) {
+        NSArray *words = [metadataDoc nodesForXPath:@"//word" error:nil];
+        
+        for (GDataXMLElement *wordElement in words) {
+            NSString *title = [[wordElement attributeForName:@"keyWord"] stringValue];
+            NSArray *mappedWords = [wordElement elementsForName:@"mappedWords"];
+            for (GDataXMLElement *mpWord in mappedWords) {
+                NSArray *subWords = [mpWord elementsForName:@"subWord"];
+                
+                for (GDataXMLElement *subw in subWords) {
+                    NSString *subWord = subw.stringValue;
+                    
+                    [model addWordMapping:subWord andKey:title];
+                }
+            }
+        }
+        
+    }
     
 }
 
