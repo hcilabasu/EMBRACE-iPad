@@ -20,21 +20,23 @@
 @implementation ITSController
 
 + (instancetype)sharedInstance {
-    
     static ITSController *sharedInstance = nil;
     static dispatch_once_t onceToken;
+    
     dispatch_once(&onceToken, ^{
         sharedInstance = [[ITSController alloc] init];
-
     });
+    
     return sharedInstance;
 }
 
 - (instancetype)init {
     self = [super init];
+    
     if (self) {
         _manipulationAnalyser = [[ManipulationAnalyser alloc] init];
     }
+    
     return self;
 }
 
@@ -46,29 +48,18 @@
 
 - (void)userDidPlayWord:(NSString *)word {
     [self.manipulationAnalyser userDidPlayWord:word];
-    
 }
 
 - (void)userDidVocabPreviewWord:(NSString *)word {
     [self.manipulationAnalyser userDidVocabPreviewWord:word];
 }
 
-
-- (void)movedObject:(NSString *)objectId
- destinationObjects:(NSArray *)destinationObjs
-         isVerified:(BOOL)verified
-         actionStep:(ActionStep *)actionStep
-manipulationContext:(ManipulationContext *)context
-        forSentence:(NSString *)sentence
-    withWordMapping:(NSDictionary *)mapDict {
-    
-    if ([[ConditionSetup sharedInstance] appMode] != ITS) {
-        return;
-    }
-    
+- (void)movedObject:(NSString *)objectId destinationObjects:(NSArray *)destinationObjs isVerified:(BOOL)verified actionStep:(ActionStep *)actionStep manipulationContext:(ManipulationContext *)context forSentence:(NSString *)sentence withWordMapping:(NSDictionary *)mapDict {
     NSString *dest = nil;
+    
     if ([destinationObjs count] > 0) {
-           dest = [destinationObjs objectAtIndex:0];
+        dest = [destinationObjs objectAtIndex:0];
+        
         if ([destinationObjs containsObject:actionStep.object2Id]) {
             dest = [actionStep.object2Id copy];
         }
@@ -76,34 +67,36 @@ manipulationContext:(ManipulationContext *)context
     
     NSString *actionObj1 = actionStep.object1Id;
     NSString *correctDest = nil;
+    
     if (actionStep.object2Id != nil) {
         correctDest = actionStep.object2Id;
-        
-    } else if (actionStep.locationId != nil) {
+    }
+    else if (actionStep.locationId != nil) {
         correctDest = actionStep.locationId;
-        
-    } else if (actionStep.areaId != nil) {
+    }
+    else if (actionStep.areaId != nil) {
         correctDest = actionStep.areaId;
     }
-
-
+    
     // Convert the words to the mapped keys if present
     for (NSString *key in mapDict.allKeys) {
-        
         NSArray *mappedWords = [mapDict objectForKey:key];
+        
         if ([mappedWords containsObject:objectId]) {
             objectId = [key copy];
         }
+        
         if ([mappedWords containsObject:dest]) {
             dest = [key copy];
         }
+        
         if ([mappedWords containsObject:actionObj1]) {
             actionObj1 = [key copy];
         }
+        
         if ([mappedWords containsObject:correctDest]) {
             correctDest = [key copy];
         }
-        
     }
     
     UserAction *userAction = [[UserAction alloc] initWithMovedObjectId:objectId
@@ -113,37 +106,31 @@ manipulationContext:(ManipulationContext *)context
                                          actionStepDestinationObjectId:correctDest
                                                            forSentence:sentence];
     
-    [self.manipulationAnalyser actionPerformed:userAction
-                           manipulationContext:context];
-
+    [self.manipulationAnalyser actionPerformed:userAction manipulationContext:context];
 }
 
-- (void)pressedNextWithManipulationContext:(ManipulationContext *)context
-                               forSentence:(NSString *)sentence
-                                isVerified:(BOOL)verified {
+- (void)pressedNextWithManipulationContext:(ManipulationContext *)context forSentence:(NSString *)sentence isVerified:(BOOL)verified {
     
 }
 
 - (EMComplexity)getCurrentComplexity {
-    
     double easySkillValue = [self.manipulationAnalyser easySyntaxSkillValue];
     double medSkillValue = [self.manipulationAnalyser medSyntaxSkillValue];
     double complexSkillValue = [self.manipulationAnalyser complexSyntaxSkillValue];
     
     EMComplexity complexity = EM_Medium;
-    if (complexSkillValue == 0 && easySkillValue == 0 &&
-        medSkillValue == 0) {
+    
+    if (complexSkillValue == 0 && easySkillValue == 0 && medSkillValue == 0) {
         complexity = EM_Medium;
-        
-    } else if (complexSkillValue > 0.8 || medSkillValue > 0.9) {
+    }
+    else if (complexSkillValue > 0.8 || medSkillValue > 0.9) {
         complexity = EM_Complex;
-        
-    } else if (easySkillValue > 0.9 ) {
+    }
+    else if (easySkillValue > 0.9 ) {
         complexity = EM_Medium;
-        
-    } else {
+    }
+    else {
         complexity = EM_Easy;
-        
     }
     
     return complexity;

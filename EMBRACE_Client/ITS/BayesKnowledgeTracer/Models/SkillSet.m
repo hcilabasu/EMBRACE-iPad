@@ -22,8 +22,8 @@
 @implementation SkillSet
 
 - (instancetype)init {
-    
     self = [super init];
+    
     if (self) {
         _wordSkillDict = [[NSMutableDictionary alloc] init];
         
@@ -33,11 +33,10 @@
         
         [_easySyntaxSkill updateSkillValue:0.99];
         
-        
-        
         _usabilitySkill = [[UsabilitySkill alloc] init];
         
     }
+    
     return self;
 }
 
@@ -47,16 +46,18 @@
 
 - (Skill *)skillForWord:(NSString *)word {
     Skill *skill = [self.wordSkillDict objectForKey:word];
+    
     if (skill == nil) {
         skill = [Skill skillForWord:word];
         [self addWordSkill:skill forWord:word];
     }
+    
     return skill;
 }
 
 - (SyntaxSkill *)syntaxSkillFor:(EMComplexity)complexity {
-    
     SyntaxSkill *sk = nil;
+    
     switch (complexity) {
         case EM_Easy:
             sk = self.easySyntaxSkill;
@@ -70,6 +71,7 @@
         default:
             break;
     }
+    
     return sk;
 }
 

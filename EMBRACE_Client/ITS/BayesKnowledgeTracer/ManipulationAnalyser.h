@@ -17,16 +17,13 @@
 
 @property (nonatomic, weak) id <ManipulationAnalyserProtocol> delegate;
 
-- (void)actionPerformed:(UserAction *)userAction
-    manipulationContext:(ManipulationContext *)context;
+- (void)actionPerformed:(UserAction *)userAction manipulationContext:(ManipulationContext *)context;
 
 - (void)userDidPlayWord:(NSString *)word;
 - (void)userDidVocabPreviewWord:(NSString *)word;
 - (NSMutableSet *)getRequestedVocab;
 
-- (void)pressedNextWithManipulationContext:(ManipulationContext *)context
-                               forSentence:(NSString *)sentence
-                                isVerified:(BOOL)verified;
+- (void)pressedNextWithManipulationContext:(ManipulationContext *)context forSentence:(NSString *)sentence isVerified:(BOOL)verified;
 
 - (double)easySyntaxSkillValue;
 - (double)medSyntaxSkillValue;
@@ -37,7 +34,6 @@
 - (NSString *)getMostProbableErrorType;
 
 @end
-
 
 @protocol ManipulationAnalyserProtocol <NSObject>
 

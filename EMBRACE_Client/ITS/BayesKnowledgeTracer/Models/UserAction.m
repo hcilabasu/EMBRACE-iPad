@@ -19,8 +19,6 @@
 
 @property (nonatomic, assign) BOOL isVerified;
 
-
-
 @property (nonatomic, copy) NSString *actionStepMovedObjectId;
 
 @property (nonatomic, copy) NSString *actionStepDestinationObjectId;
@@ -37,10 +35,9 @@
               actionStepMovedObjectId:(NSString *)actionStepMovedObjectId
         actionStepDestinationObjectId:(NSString *)actionStepDestinationObjectId
                           forSentence:(NSString *)sentenceText {
-    
     self = [super init];
+    
     if (self) {
-        
         _movedObjectId = [movedObjId copy];
         _destinationObjectId = [destinationId copy];
 
@@ -49,11 +46,9 @@
         
         _actionStepMovedObjectId = [actionStepMovedObjectId copy];
         _actionStepDestinationObjectId = [actionStepDestinationObjectId copy];
-        
     }
-    return self;
     
+    return self;
 }
-
 
 @end

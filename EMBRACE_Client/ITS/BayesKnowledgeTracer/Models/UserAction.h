@@ -16,7 +16,6 @@
  **/
 @interface UserAction : NSObject
 
-
 - (instancetype)initWithMovedObjectId:(NSString *)movedObjId
                         destinationId:(NSString *)destinationId
                            isVerified:(BOOL)isverified
@@ -24,13 +23,11 @@
         actionStepDestinationObjectId:(NSString *)actionStepDestinationObjectId
                           forSentence:(NSString *)sentenceText;
 
-
 @property (nonatomic, readonly) NSString *movedObjectId;
 
 @property (nonatomic, readonly) NSString *destinationObjectId;
 
 @property (nonatomic, readonly) BOOL isVerified;
-
 
 @property (nonatomic, readonly) NSString *actionStepMovedObjectId;
 
@@ -38,11 +35,8 @@
 
 @property (nonatomic, readonly) NSString *sentenceText;
 
-
-
 @property (nonatomic, assign) NSInteger sentenceNumber;
 
 @property (nonatomic, assign) NSInteger ideaNumber;
-
 
 @end

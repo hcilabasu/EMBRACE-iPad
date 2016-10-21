@@ -11,7 +11,6 @@
 @implementation UsabilitySkill
 
 - (NSString *)description {
-
     return  [NSString stringWithFormat:@"Usability -  %f", self.skillValue];
 }
 

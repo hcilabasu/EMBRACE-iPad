@@ -13,7 +13,6 @@ typedef NS_ENUM(NSInteger, SkillType) {
     SkillType_Vocab,
     SkillType_Usability,
     SkillType_Syntax
-    
 };
 
 @interface Skill : NSObject
