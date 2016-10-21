@@ -96,8 +96,6 @@
         
         stepContext.stepsComplete = TRUE; //no steps to complete for non-action sentence
     }
-    
-    mvc.startTime = [NSDate date]; //for page statistics
 }
 
 /* Sets up the appearance of the current sentence by highlighting it as blue (if it is an action sentence)
@@ -202,38 +200,9 @@
             for (AlternateSentence *sentenceToAdd in sentencesToAdd) {
                 [self.manipulationView addSentence:sentenceToAdd withSentenceNumber:sentenceNumber andVocabulary:vocabulary];
                 sentenceNumber++;
+                
                 //Add alternate sentence to array
                 [sentenceContext.pageSentences addObject:sentenceToAdd];
-                
-                BOOL transference = FALSE;
-                
-                //Count number of user steps for page statistics
-                for (ActionStep *as in [sentenceToAdd solutionSteps]) {
-                    if (!([[as stepType] isEqualToString:@"ungroup"] ||
-                          [[as stepType] isEqualToString:@"move"] ||
-                          [[as stepType] isEqualToString:@"swapImage"])) {
-                        //Make sure transference steps don't get counted twice
-                        if ([[as stepType] isEqualToString:@"transferAndGroup"] ||
-                            [[as stepType] isEqualToString:@"transferAndDisappear"]) {
-                            if (!transference) {
-                                [[mvc.pageStatistics objectForKey:pageContext.currentPageId] addStepForComplexity:([sentenceToAdd complexity] - 1)];
-                                
-                                transference = TRUE;
-                            }
-                            else {
-                                transference = FALSE;
-                            }
-                        }
-                        else {
-                            [[mvc.pageStatistics objectForKey:pageContext.currentPageId] addStepForComplexity:([sentenceToAdd complexity] - 1)];
-                        }
-                    }
-                }
-                
-                //Count number of non-action sentences for each complexity
-                if ([sentenceToAdd actionSentence] == FALSE) {
-                    [[mvc.pageStatistics objectForKey:pageContext.currentPageId] addNonActSentForComplexity:([sentenceToAdd complexity] - 1)];
-                }
             }
         }
     }

@@ -39,15 +39,16 @@
         condition = EMBRACE;
         language = ENGLISH;
         reader = USER;
-        appMode = Study;
-        currentMode = IM_MODE;
+        appMode = ITS;
+        currentMode = PM_MODE;
+        
         newInstructions = FALSE;
-        isVocabPageEnabled = false;
+        isVocabPageEnabled = FALSE;
         isAssessmentPageEnabled = FALSE;
         assessmentMode = ENDOFBOOK;
         shouldShowITSMessages = YES;
         
-        allowFileSync = true; //NOTE: Still testing this functionality
+        allowFileSync = TRUE;
     }
     
     return self;

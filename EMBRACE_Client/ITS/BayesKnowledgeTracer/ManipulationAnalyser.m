@@ -414,8 +414,6 @@
             self.mostProbableErrorType = @"usability";
         }
     }
-    
-    NSLog(@"*** lowestSkillValue: %f", lowestSkillValue);
 }
 
 - (void)showMessageWith:(NSArray *)skills {

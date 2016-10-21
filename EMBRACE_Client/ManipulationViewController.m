@@ -23,11 +23,9 @@
 #import "ManipulationAnalyser.h"
 
 @interface ManipulationViewController ()<ManipulationViewDelegate> {
-    
     NSString *chapterTitle;
     NSString *bookTitle;
 
-    
     //TODO: Determine what I can delete from here to next comment
     //NSString *currentPage; //Current page being shown, so that the next page can be requested
     //NSString *currentPageId; //Id of the current page being shown
@@ -49,8 +47,6 @@
     //NSUInteger currentStep; //Active step to be completed
     //BOOL stepsComplete; //True if all steps have been completed for a sentence
     //TODO: Determine what I can delete from previous todo to here
-    
-    BOOL chooseComplexity; //True if using alternate sentences
     
     InteractionRestriction useSubject; //Determines which objects the user can manipulate as the subject
     InteractionRestriction useObject; //Determines which objects the user can interact with as the object
@@ -80,13 +76,10 @@
     
     NSTimer *timer; //Controls the timing of the audio file that is playing
     BOOL isAudioLeft;
-    
-    
 }
 
 @property (nonatomic, strong) IBOutlet UIWebView *bookView;
 //@property (nonatomic, strong) IBOutlet ManipulationView *manipulationView;
-
 
 @end
 
@@ -248,7 +241,7 @@ BOOL wasPathFollowed = false;
     allRelationships = [[NSMutableArray alloc] init];
     currentGroupings = [[NSMutableDictionary alloc] init];
     
-    if (conditionSetup.condition  == CONTROL) {
+    if (conditionSetup.condition == CONTROL) {
         allowInteractions = FALSE;
         
         useSubject = NO_ENTITIES;
@@ -269,21 +262,12 @@ BOOL wasPathFollowed = false;
             useObject = NO_ENTITIES;
         }
     }
-    
-    if (conditionSetup.appMode == ITS) {
-        chooseComplexity = TRUE;
-        pageStatistics = [[NSMutableDictionary alloc] init];
-    }
-    else {
-        chooseComplexity = FALSE;
-    }
 
     [[ITSController sharedInstance] setAnalyzerDelegate:self];
 }
 
 //Custom back button to confirm navigation to library page
--(void)backButtonPressed:(id)sender
-{
+- (void)backButtonPressed:(id)sender {
     //Custom Back Button to confirm navigation
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(RETURN_TO_LIBRARY, EMPTYSTRING) message:NSLocalizedString(@"Are you sure you want to return to the Library?", EMPTYSTRING) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", EMPTYSTRING) otherButtonTitles:NSLocalizedString(@"Yes", EMPTYSTRING), nil];
     [alertView show];
@@ -314,7 +298,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    
     //Disable user selection
     [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitUserSelect='none';"];
     
@@ -338,7 +321,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 
 //Function is called back from the ManipulationView after loading to setup sentences and areas
 - (void)manipulationViewDidLoad:(ManipulationView *)view {
-    
     isLoadPageInProgress = false; //page has finished loading
     
     //Start off with no objects grouped together
@@ -363,9 +345,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  *  Draws areas and paths for page
  */
 - (void)drawAreasForPage {
-    
     //If there is at least one area/path to build
-    if ([model getAreaWithPageId:pageContext.currentPageId] || [model getAreaWithPageId:ALL_CHAPTERS]  ) {
+    if ([model getAreaWithPageId:pageContext.currentPageId] || [model getAreaWithPageId:ALL_CHAPTERS]) {
         //Build area/path
         for (Area *area in [model areas]) {
             if ([area.pageId isEqualToString:pageContext.currentPageId] || [area.pageId isEqualToString:ALL_CHAPTERS]) {
@@ -394,7 +375,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  */
 - (void)drawArea:(NSString *)areaName :(NSString *)chapter :(NSString *)pageId {
     if ([chapterTitle isEqualToString:chapter] && [pageContext.currentPageId isEqualToString:pageId]) {
-       
         [self.manipulationView drawArea:areaName
                       chapter:chapter
                        pageId:pageId
@@ -402,96 +382,16 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     }
 }
 
-//Temporary menu to select complexity of sentences on page or to dismiss page statistics
-//TODO: remove temporary menu or enable for debug/testing mode only
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if ([[alertView title] isEqualToString:@"Choose sentence complexity levels"]) {
-//        Statistics *statistics = [[Statistics alloc] init];
-//        [pageStatistics setObject:statistics forKey:currentPageId];
-//        
-//        pageSentences = [[pageStatistics objectForKey:currentPageId] pageSentences];
-//        
-//        if (buttonIndex == 0) {
-//            //Swap sentences for specified complexity level
-//            [self swapSentencesOnPage:60 :20 :20];
-//        }
-//        else if (buttonIndex == 1) {
-//            //Swap sentences for specified complexity level
-//            [self swapSentencesOnPage:20 :60 :20];
-//        }
-//        else if (buttonIndex == 2) {
-//            //Swap sentences for specified complexity level
-//            [self swapSentencesOnPage:20 :20 :60];
-//        }
-//        else if (buttonIndex == 3) {
-//            //Keeps current sentences
-//            [self swapSentencesOnPage:0 :100 :0];
-//        }
-//        
-//        //Get the number of sentences on the page
-//        NSString *requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('sentence').length"];
-//        int sentenceCount = [[bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount] intValue];
-//        
-//        //Get the id number of the last sentence on the page and set it equal to the total number of sentences.
-//        //Because the PMActivity may have multiple pages, this id number may not match the sentence count for the page.
-//        //   Ex. Page 1 may have three sentences: 1, 2, and 3. Page 2 may also have three sentences: 4, 5, and 6.
-//        //   The total number of sentences is like a running total, so by page 2, there are 6 sentences instead of 3.
-//        //This is to make sure we access the solution steps for the correct sentence on this page, and not a sentence on
-//        //a previous page.
-//        //if (![vocabularies objectForKey:chapterTitle]) {
-//        NSString *requestLastSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[%d - 1].id", sentenceCount];
-//        NSString *lastSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
-//        int lastSentenceIdNumber = [[lastSentenceId substringFromIndex:1] intValue];
-//        totalSentences = lastSentenceIdNumber;
-//        
-//        //Get the id number of the first sentence on the page and set it equal to the current sentence number.
-//        //Because the PMActivity may have multiple pages, the first sentence on the page is not necessarily sentence 1.
-//        //   Ex. Page 1 may start at sentence 1, but page 2 may start at sentence 4.
-//        //   Thus, the first sentence on page 2 is sentence 4, not 1.
-//        //This is also to make sure we access the solution steps for the correct sentence.
-//        NSString *requestFirstSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[0].id"];
-//        NSString *firstSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestFirstSentenceId];
-//        int firstSentenceIdNumber = [[firstSentenceId substringFromIndex:1] intValue];
-//        currentSentence = firstSentenceIdNumber;
-//        
-//        //Set up current sentence appearance and solution steps
-//        [self setupCurrentSentence];
-//        [self setupCurrentSentenceColor];
-    }
-    else if ([[alertView title] isEqualToString:PAGE_STATISTICS]) {
-        if (buttonIndex == 0) {
-            [pc loadNextPage];
-        }
-    }
-    else if([[alertView title] isEqualToString:RETURN_TO_LIBRARY])
-    {
+    if ([[alertView title] isEqualToString:RETURN_TO_LIBRARY]) {
         //Get title of pressed alert button
         NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
         
         //If button pressed is Yes, return to libraryView
-        if([title isEqualToString:@"Yes"])
-        {
+        if ([title isEqualToString:@"Yes"]) {
             [self.navigationController popViewControllerAnimated:YES];
         }
     }
-}
-
-//Temporary function to show page statistics
-//TODO: remove or enable for debug/testing only
-- (void)showPageStatistics {
-    Statistics *statistics = [pageStatistics objectForKey:pageContext.currentPageId];
-    
-    NSString *numStepsString = [NSString stringWithFormat:@"Number of steps:\nSimple: %d\nMedium: %d\nComplex: %d", [statistics getNumStepsForComplexity:0], [statistics getNumStepsForComplexity:1], [statistics getNumStepsForComplexity:2]];
-    NSString *numErrorsString = [NSString stringWithFormat:@"Number of errors:\nSimple: %d\nMedium: %d\nComplex: %d", [statistics getNumErrorsForComplexity:0], [statistics getNumErrorsForComplexity:1], [statistics getNumErrorsForComplexity:2]];
-    NSString *timeString = [NSString stringWithFormat:@"Average time per step:\nSimple: %f\nMedium: %f\nComplex: %f", [statistics calculateAverageTimePerStepForComplexity:0], [statistics calculateAverageTimePerStepForComplexity:1], [statistics calculateAverageTimePerStepForComplexity:2]];
-    NSString *numNonActSentsString = [NSString stringWithFormat:@"Number of non-action sentences:\nSimple: %d\nMedium: %d\nComplex: %d", [statistics getNumNonActSentsForComplexity:0], [statistics getNumNonActSentsForComplexity:1], [statistics getNumNonActSentsForComplexity:2]];
-    NSString *timeForNonActsSentsString = [NSString stringWithFormat:@"Average time per non-action sentence:\nSimple: %f\nMedium: %f\nComplex: %f", [statistics calculateAverageTimePerNonActSentForComplexity:0], [statistics calculateAverageTimePerNonActSentForComplexity:1], [statistics calculateAverageTimePerNonActSentForComplexity:2]];
-    NSString *numVocabRequestsString = [NSString stringWithFormat:@"Number of vocabulary requests:\nSimple: %d\nMedium: %d\nComplex: %d", [statistics getNumVocabTapsForComplexity:0], [statistics getNumVocabTapsForComplexity:1], [statistics getNumVocabTapsForComplexity:2]];
-    
-    NSString *message = [NSString stringWithFormat:@"%@\n\n%@\n\n%@\n\n%@\n\n%@\n\n%@", numStepsString, numErrorsString, timeString, numNonActSentsString, timeForNonActsSentsString, numVocabRequestsString];
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:PAGE_STATISTICS message:message delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-    [alert show];
 }
 
 /*
@@ -624,7 +524,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  * Performs ungroup, move, appear, disappear, changezindex, annimate, and swap image steps automatically
  */
 - (void)performAutomaticSteps {
-    
     //Perform steps only if they exist for the sentence
     if (stepContext.numSteps > 0 && allowInteractions) {
         //Get steps for current sentence
@@ -672,16 +571,14 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             [ssc incrementCurrentStep];
         }
         else if ([[currSolStep stepType] isEqualToString:ANIMATE]) {
-            
             //If last step was a check step and user moved the object to the correct end location, then just move object to correct
             //last coordinate point for the path
-            if([currSolSteps count] >= 2 && stepContext.currentStep >= 2 && [[[currSolSteps objectAtIndex:stepContext.currentStep - 2] stepType] isEqualToString:CHECK]
-               && [self isHotspotInsideLocation:true]){
-                
+            if ([currSolSteps count] >= 2 && stepContext.currentStep >= 2 && [[[currSolSteps objectAtIndex:stepContext.currentStep - 2] stepType] isEqualToString:CHECK]
+               && [self isHotspotInsideLocation:true]) {
                 NSString *areaId = [currSolStep areaId];
                 
                 //Get area that hotspot should be inside
-                Area* area = [model getArea:areaId:pageContext.currentPageId];
+                Area *area = [model getArea:areaId:pageContext.currentPageId];
                 
                 NSArray *areaKeys = [area.points allKeys];
                 NSString *maxKey;
@@ -699,6 +596,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                         maxKey = curKey;
                     }
                 }
+                
                 //Create the cgpoint for the end of path
                 CGPoint endOfPath;
                 NSString *xPoint = [area.points valueForKey:[NSString stringWithFormat:@"x%@", maxKey]];
@@ -709,7 +607,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 [self moveObject:movingObjectId :endOfPath:CGPointMake(0, 0) :false];
                 [ssc incrementCurrentStep];
             }
-            else{
+            else {
                 [self animateObject];
                 [ssc incrementCurrentStep];
             }
@@ -717,11 +615,11 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         else if ([[currSolStep stepType] isEqualToString:PLAYSOUND]) {
             NSString *file = [currSolStep fileName];
             
-            
             if ([file isEqualToString:@"NaughtyMonkey_Script4.mp3"]
                 && conditionSetup.language == BILINGUAL) {
                 [self.playaudioClass playAudioFile:self :@"NaughtyMonkey_Script4_S.mp3"];
-            } else {
+            }
+            else {
                 [self.playaudioClass playAudioFile:self :file];
             }
             
@@ -845,14 +743,11 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         NSString *sentenceText;
         
         //Capture the clicked text, if it exists
-        if([pageContext.currentPageId containsString:DASH_INTRO])
-        {
+        if ([pageContext.currentPageId containsString:DASH_INTRO]) {
             //Capture the clicked text, if it exists
             sentenceText = [self.manipulationView getVocabAtId:sentenceIDNum];
         }
-        else if([pageContext.currentPageId containsString:@"-PM"])
-        {
-            
+        else if ([pageContext.currentPageId containsString:@"-PM"]) {
             sentenceText = [self.manipulationView getTextAtLocation:location];
         }
         
@@ -861,13 +756,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         NSString *englishSentenceText = sentenceText;
         
         //Capture the spanish extension
-        
         NSString *spanishExt = [self.manipulationView getSpanishExtention:location];
-        
-        if (conditionSetup.appMode == ITS) {
-            //Record vocabulary request for complexity
-            [[pageStatistics objectForKey:pageContext.currentPageId] addVocabTapForComplexity:(currentComplexity - 1)];
-        }
         
         if (conditionSetup.language == BILINGUAL) {
             if (![[sc getEnglishTranslation:sentenceText] isEqualToString:NULL_TXT]) {
@@ -880,8 +769,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             [self tapGestureOnVocabWord: englishSentenceText:sentenceText:sentenceIDNum];
         }
         //Taps on vocab word in story
-        else if ([pageContext.currentPageId containsString:@"-PM"])
-        {
+        else if ([pageContext.currentPageId containsString:@"-PM"]) {
             [self tapGestureOnStoryWord:englishSentenceText:sentenceIDNum:spanishExt:sentenceText];
         }
     }
@@ -895,7 +783,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 /*
  *  Handles tap gesture on menu items for PM and IM menus
  */
-- (void) tapGestureOnMenu: (CGPoint) location{
+- (void)tapGestureOnMenu:(CGPoint)location {
     allowSnapback = false;
     
     int menuItem = [menu pointInMenuItem:location];
@@ -948,7 +836,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 /*
  *  Handles tap gesture on vocab words on intro page to play vocab audio and increment step
  */
-- (void) tapGestureOnVocabWord: (NSString *) englishSentenceText :(NSString *) sentenceText :(NSInteger) sentenceIDNum{
+- (void)tapGestureOnVocabWord:(NSString *)englishSentenceText :(NSString *)sentenceText :(NSInteger)sentenceIDNum {
     //Get steps for current sentence
     NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
     
@@ -956,28 +844,23 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         //Get current step to be completed
         ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
         
-        if([[currSolStep stepType] isEqualToString:TAPWORD])
-        {
-            if([englishSentenceText containsString: [currSolStep object1Id]] &&
-               (sentenceContext.currentSentence == sentenceIDNum) && !stepContext.stepsComplete)
-            {
+        if ([[currSolStep stepType] isEqualToString:TAPWORD]) {
+            if ([englishSentenceText containsString: [currSolStep object1Id]] &&
+               (sentenceContext.currentSentence == sentenceIDNum) && !stepContext.stepsComplete) {
                 [[ServerCommunicationController sharedInstance] logTapWord:sentenceText :manipulationContext];
                 
                 [ssc incrementCurrentStep];
                 [self playIntroVocabWord: englishSentenceText : currSolStep];
             }
-            else
-            {
+            else {
                 //pressed wrong word
             }
         }
-        else
-        {
+        else {
             //incorrect solution step created for vocabulary page
         }
     }
-    else
-    {
+    else {
         //no vocab steps
     }
 }
@@ -985,37 +868,35 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 /*
  *  Handles tap gesture on vocab words in story to play audio
  */
-- (void) tapGestureOnStoryWord: (NSString *) englishSentenceText :(NSInteger) sentenceIDNum :(NSString *)spanishExt :(NSString *) sentenceText{
+- (void)tapGestureOnStoryWord:(NSString *)englishSentenceText :(NSInteger)sentenceIDNum :(NSString *)spanishExt :(NSString *)sentenceText {
     //Get steps for current sentence
     NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
-    if(![self.playaudioClass isAudioLeftInSequence])
-    {
+    
+    if (![self.playaudioClass isAudioLeftInSequence]) {
         BOOL playedAudio = false;
         
-        if (currSolSteps !=nil && [currSolSteps count] > 0) {
+        if (currSolSteps != nil && [currSolSteps count] > 0) {
             //Get current step to be completed
             ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
             
-            if ([[currSolStep stepType] isEqualToString:TAPWORD])
-            {
+            if ([[currSolStep stepType] isEqualToString:TAPWORD]) {
                 if (([[currSolStep object1Id] containsString: englishSentenceText] && (sentenceContext.currentSentence == sentenceIDNum)) ||
                     ([chapterTitle isEqualToString:@"The Naughty Monkey"] && conditionSetup.condition == CONTROL && [[currSolStep object1Id] containsString: englishSentenceText] && sentenceContext.currentSentence == 2 && [pageContext.currentPageId containsString:@"-PM-2"]) ||
-                    ([chapterTitle isEqualToString:@"The Naughty Monkey"] && conditionSetup.condition == EMBRACE && [[currSolStep object1Id] containsString: englishSentenceText] && (sentenceContext.currentSentence == sentenceIDNum) && sentenceContext.currentSentence !=2 && [pageContext.currentPageId containsString:@"-PM-2"]))
-                {
+                    ([chapterTitle isEqualToString:@"The Naughty Monkey"] && conditionSetup.condition == EMBRACE && [[currSolStep object1Id] containsString: englishSentenceText] && (sentenceContext.currentSentence == sentenceIDNum) && sentenceContext.currentSentence !=2 && [pageContext.currentPageId containsString:@"-PM-2"])) {
                     playedAudio = true;
                     [[ServerCommunicationController sharedInstance] logTapWord:sentenceText :manipulationContext];
                     [self.playaudioClass stopPlayAudioFile];
-                    [self playAudioForVocabWord: englishSentenceText : spanishExt];
+                    [self playAudioForVocabWord:englishSentenceText :spanishExt];
                     [ssc incrementCurrentStep];
                 }
             }
         }
         
-        if(!playedAudio && [englishSentenceText length] > 0)// && [[Translation translationWords] objectForKey:englishSentenceText])
+        if (!playedAudio && [englishSentenceText length] > 0)// && [[Translation translationWords] objectForKey:englishSentenceText])
         {
             [[ServerCommunicationController sharedInstance] logTapWord:englishSentenceText :manipulationContext];
             [self.playaudioClass stopPlayAudioFile];
-            [self playAudioForVocabWord: englishSentenceText : spanishExt];
+            [self playAudioForVocabWord:englishSentenceText :spanishExt];
         }
     }
 }
@@ -1023,7 +904,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 /*
  *  Handles tap gesture on object
  */
-- (void) tapGestureOnObject: (CGPoint) location{
+- (void)tapGestureOnObject:(CGPoint)location {
     //Get steps for current sentence
     NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
     
@@ -1034,7 +915,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         if ([[currSolStep stepType] isEqualToString:TAPTOANIMATE] ||
                  [[currSolStep stepType] isEqualToString:SHAKEORTAP] ||
                  [[currSolStep stepType] isEqualToString:CHECKANDSWAP]) {
-            
             //Get the object at this point
             NSString *imageAtPoint = [self getObjectAtPoint:location ofType:nil];
             
@@ -1044,8 +924,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             if ([ssc checkSolutionForSubject:imageAtPoint]) {
                 [[ServerCommunicationController sharedInstance] logVerification:true forAction:TAP_OBJECT context:manipulationContext];
                 
-                if([[currSolStep stepType] isEqualToString:CHECKANDSWAP])
+                if ([[currSolStep stepType] isEqualToString:CHECKANDSWAP]) {
                     [self swapObjectImage];
+                }
                 
                 [ssc incrementCurrentStep];
             }
@@ -1057,7 +938,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  *  Plays audio for vocab word on story page
  */
 - (void)playAudioForVocabWord:(NSString *)englishSentenceText :(NSString *)spanishExt {
-    
     [self highlightImageForText:englishSentenceText];
     
     //Remove any whitespaces since this would cause the a failure for reading the file name
@@ -1112,28 +992,23 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 /*
  *  Plays vocab word audio for intro page
  */
-- (void) playIntroVocabWord: (NSString *) englishSentenceText : (ActionStep *) currSolStep
-{
-    if(conditionSetup.language == ENGLISH)
-    {
+- (void)playIntroVocabWord:(NSString *)englishSentenceText :(ActionStep *)currSolStep {
+    if (conditionSetup.language == ENGLISH) {
         //Play En audio
         bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3", [englishSentenceText capitalizedString], DEF_E]];
         
-        if (!success)
-        {
+        if (!success) {
             //if error try m4a format
             [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.m4a", englishSentenceText, E]];
         }
         
         [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:ENGLISH_TXT ofType:PLAY_WORD_WITH_DEF :manipulationContext];
     }
-    else
-    {
+    else {
         //Play Sp Audio
         bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3",[englishSentenceText capitalizedString],DEF_S]];
         
-        if (!success)
-        {
+        if (!success) {
             //if error try m4a format
             [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.m4a" ,englishSentenceText, S]];
         }
@@ -1145,31 +1020,27 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     
     // This delay is needed in order to be able to play the last definition on a vocabulary page
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW,[self.playaudioClass audioDuration]*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        
         //if audioPlayer is nil then we have returned to library view and should not play audio
-        if ([self.playaudioClass audioPlayer] != nil)
-        {
-            
+        if ([self.playaudioClass audioPlayer] != nil) {
             //Play En audio
             bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3",[englishSentenceText capitalizedString],DEF_E]];
             
             //Failed to load file with mp3 type, try m4a
-            if (!success)
-            {
+            if (!success) {
                 //if error try m4a format
                 [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,E]];
             }
             
             [self highlightImageForText:englishSentenceText];
             
-                sentenceContext.currentSentence++;
-                sentenceContext.currentSentenceText = [self.manipulationView getCurrentSentenceAt:sentenceContext.currentSentence];
-                stepContext.stepsComplete = NO;
-                
-                manipulationContext.sentenceNumber = sentenceContext.currentSentence;
-                manipulationContext.sentenceText = sentenceContext.currentSentenceText;
-                manipulationContext.manipulationSentence = [sc isManipulationSentence:sentenceContext.currentSentence];
-                [[ServerCommunicationController sharedInstance] logLoadSentence:sentenceContext.currentSentence withText:sentenceContext.currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
+            sentenceContext.currentSentence++;
+            sentenceContext.currentSentenceText = [self.manipulationView getCurrentSentenceAt:sentenceContext.currentSentence];
+            stepContext.stepsComplete = NO;
+            
+            manipulationContext.sentenceNumber = sentenceContext.currentSentence;
+            manipulationContext.sentenceText = sentenceContext.currentSentenceText;
+            manipulationContext.manipulationSentence = [sc isManipulationSentence:sentenceContext.currentSentence];
+            [[ServerCommunicationController sharedInstance] logLoadSentence:sentenceContext.currentSentence withText:sentenceContext.currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
             
             [sc performSelector:@selector(colorSentencesUponNext) withObject:nil afterDelay:([self.playaudioClass audioPlayer].duration)];
         }
@@ -1267,7 +1138,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             [self checkSolutionForInteraction:interaction];
         }
         
-        if(stepContext.stepsComplete){
+        if (stepContext.stepsComplete) {
             [self pressedNext:self];
         }
     }
@@ -1362,7 +1233,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 /*
  * Handles beginning of a pan gesture
  */
-- (void) panGestureBegan: (CGPoint) location{
+- (void)panGestureBegan:(CGPoint)location {
     //Starts true because the object starts within the area
     wasPathFollowed = true;
     panning = TRUE;
@@ -1406,7 +1277,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 /*
  * Handles the end of a pan gesture
  */
-- (void) panGestureEnded: (CGPoint) location{
+- (void)panGestureEnded:(CGPoint)location {
     panning = FALSE;
     BOOL useProximity = NO;
     
@@ -1483,8 +1354,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     
                     // Find the location if overlapping is nil;
                     if (overlappingWith == nil) {
-                        
                         NSString *areaId = [model getObjectIdAtLocation:endLocation];
+                        
                         if (areaId)
                             overlappingWith = @[areaId];
                         
@@ -1499,7 +1370,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                                                 withWordMapping:model.wordMapping];
 
                     [self handleErrorForAction:MOVE_OBJECT];
-                    
                 }
             }
             else if ([[currSolStep stepType] isEqualToString:SHAKEORTAP]) {
@@ -1522,7 +1392,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     [ssc incrementCurrentStep];
                 }
                 else {
-                    
                     [[ITSController sharedInstance] movedObject:movingObjectId
                                              destinationObjects:@[currSolStep.locationId]
                                                      isVerified:false
@@ -1544,7 +1413,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     [ssc incrementCurrentStep];
                 }
                 else {
-
                     [self handleErrorForAction:MOVE_OBJECT];
                 }
             }
@@ -1566,7 +1434,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     
                     //No possible interactions were found
                     if ([possibleInteractions count] == 0) {
-
                         [[ITSController sharedInstance] movedObject:movingObjectId
                                                  destinationObjects:overlappingWith
                                                          isVerified:false
@@ -1653,7 +1520,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     if (overlappingWith == nil) {
                         //TODO: Find the object precent in destination location.
                         NSString *areaId = [model getObjectIdAtLocation:endLocation];
-                        NSLog(@"Area - %@",areaId);
+                        
                         if (areaId)
                             overlappingWith = @[areaId];
                         
@@ -1684,8 +1551,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 /*
  * Handles a pan gesture in progress
  */
-- (void) panGestureInProgress: (UIPanGestureRecognizer *)recognizer : (CGPoint) location {
-    
+- (void)panGestureInProgress:(UIPanGestureRecognizer *)recognizer :(CGPoint)location {
     [self moveObject:movingObjectId :location :delta :true];
     
     //If we're overlapping with another object, then we need to figure out which hotspots are currently active and highlight those hotspots.
@@ -1709,13 +1575,11 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  * Pan gesture. Used to move objects from one location to another.
  */
 - (IBAction)panGesturePerformed:(UIPanGestureRecognizer *)recognizer {
-    
     //get current coordinate point of gesture
     CGPoint location = [recognizer locationInView:self.view];
     
     //TODO: pinchig functionality currently not utilized
     if (!pinching && allowInteractions) {
-        
         if (recognizer.state == UIGestureRecognizerStateBegan) {
             [self panGestureBegan: location];
         }
@@ -1883,11 +1747,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  *  Simulate ungrouping two objects and new positions of each object
  */
 - (void)simulateUngrouping:(NSString *)obj1 :(NSString *)obj2 :(NSMutableDictionary *)images :(float)GAP {
-    
-    [self.manipulationView simulateUngrouping:obj1
-                            object2:obj2
-                             images:images
-                                gap:GAP];
+    [self.manipulationView simulateUngrouping:obj1 object2:obj2 images:images gap:GAP];
 }
 
 /*
@@ -1996,10 +1856,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 
                 [[ServerCommunicationController sharedInstance] logAppearOrDisappearObject:object1Id ofType:APPEAR_OBJECT context:manipulationContext];
             }
-            else if([[currSolStep stepType] isEqualToString:APPEARAUTOWITHDELAY]) {
+            else if ([[currSolStep stepType] isEqualToString:APPEARAUTOWITHDELAY]) {
                 NSInteger delay = [[currSolStep object2Id] intValue];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW,delay * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                    
                     [self.manipulationView loadImage:object1Id
                               alternateSrc:altSrc
                                      width:width
@@ -2091,7 +1950,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  * Returns true if the hotspot of an object (for a check step type) is inside the correct location.
  * Otherwise, returns false.
  */
-- (BOOL)isHotspotInsideLocation: (BOOL) isPreviousStep {
+- (BOOL)isHotspotInsideLocation:(BOOL)isPreviousStep {
     //Check solution only if it exists for the sentence
     if (stepContext.numSteps > 0) {
         //Get steps for current sentence
@@ -2154,7 +2013,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             //Get information for check step type
             NSString *objectId = [currSolStep object1Id];
             NSString *action = [currSolStep action];
-            
             NSString *areaId = [currSolStep areaId];
             
             //Get hotspot location of correct subject
@@ -2223,7 +2081,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             //Get information for check step type
             NSString *objectId = [currSolStep object1Id];
             NSString *action = [currSolStep action];
-            
             NSString *areaId = [currSolStep areaId];
             
             //Get hotspot location of correct subject
@@ -2231,9 +2088,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             CGPoint hotspotLocation = [self.manipulationView getHotspotLocation:hotspot];
             
             //Get area that hotspot should be inside
-            Area *area = [model getArea:areaId : pageContext.currentPageId];
+            Area *area = [model getArea:areaId :pageContext.currentPageId];
             
-            if ([area.aPath containsPoint:hotspotLocation]){
+            if ([area.aPath containsPoint:hotspotLocation]) {
                 return true;
             }
         }
@@ -2249,7 +2106,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  * background) before returning it.
  */
 - (NSString *)getObjectAtPoint:(CGPoint) location ofType:(NSString *)class {
-
     //Temporarily hide the overlay canvas to get the object we need
     [self.manipulationView hideCanvas];
     
@@ -2305,7 +2161,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             
             didSelectCorrectMenuOption = true;
         }
-        else if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == PM_MODE){
+        else if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == PM_MODE) {
             if (menu) {
                 [[ServerCommunicationController sharedInstance] logVerification:true forAction:SELECT_MENU_ITEM context:manipulationContext];
                 
@@ -2353,7 +2209,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         NSString *action;
         
         if (menu != nil) {
-            
             action = SELECT_MENU_ITEM;
         }
         else {
@@ -2390,27 +2245,28 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     
     [[ServerCommunicationController sharedInstance] logVerification:false forAction:action context:manipulationContext];
     
-    [self playErrorNoise];
+    [self playNoiseName:ERROR_NOISE];
     [self resetObjectLocation];
     
     stepContext.numAttempts++;
     
+    double delay = 0.0;
+    
+    if (conditionSetup.appMode == ITS && conditionSetup.shouldShowITSMessages == YES) {
+        delay = 5.5;
+    }
+    
     if (stepContext.numAttempts >= stepContext.maxAttempts) {
         stepContext.numAttempts = 0;
         
-        [self provideFeedbackForErrorType:@"usability"];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, delay * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [self provideFeedbackForErrorType:@"usability"];
+        });
     }
     else {
         if (conditionSetup.appMode == ITS) {
-            double delay = 0.0;
-            
-            if (conditionSetup.shouldShowITSMessages == YES) {
-                delay = 5.5;
-            }
-            
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, delay * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                 NSString *mostProbableErrorType = [[ITSController sharedInstance] getMostProbableErrorType];
-                NSLog(@"*** mostProbableErrorType: %@", mostProbableErrorType);
                 
                 if (mostProbableErrorType != nil) {
                     [self provideFeedbackForErrorType:mostProbableErrorType];
@@ -2420,21 +2276,16 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 }
             });
         }
-        else{
+        else {
             allowInteractions = TRUE;
         }
-    }
-    
-    if (conditionSetup.appMode == ITS) {
-        //Record error for complexity
-        [[pageStatistics objectForKey:pageContext.currentPageId] addErrorForComplexity:(currentComplexity - 1)];
     }
 }
 
 // TODO: Change error type NSString to enum
 - (void)provideFeedbackForErrorType:(NSString *)errorType {
     if ([errorType isEqualToString:@"vocabulary"]) {
-        [playaudioClass playErrorFeedbackNoise];
+        [self playNoiseName:ERROR_FEEDBACK_NOISE];
         
         // Get steps for current sentence
         NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
@@ -2444,12 +2295,12 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         NSString *stepType = [currSolStep stepType];
         
         // Highlight correct object and location
-        if ([stepType isEqualToString:@"check"] || [stepType isEqualToString:@"checkLeft"] || [stepType isEqualToString:@"checkRight"] || [stepType isEqualToString:@"checkUp"] || [stepType isEqualToString:@"checkDown"] || [stepType isEqualToString:@"checkAndSwap"] || [stepType isEqualToString:@"tapToAnimate"] || [stepType isEqualToString:@"checkPath"] || [stepType isEqualToString:@"shakeAndTap"] || [stepType isEqualToString:@"tapWord"] ) {
+        if ([stepType isEqualToString:CHECK] || [stepType isEqualToString:CHECKLEFT] || [stepType isEqualToString:CHECKRIGHT] || [stepType isEqualToString:CHECKUP] || [stepType isEqualToString:CHECKDOWN] || [stepType isEqualToString:CHECKANDSWAP] || [stepType isEqualToString:TAPTOANIMATE] || [stepType isEqualToString:CHECKPATH] || [stepType isEqualToString:SHAKEORTAP] || [stepType isEqualToString:TAPWORD] ) {
             
             NSString *object1Id = [currSolStep object1Id];
             NSString *locationId = [currSolStep locationId];
             
-            if ([locationId isEqualToString:@""]) {
+            if ([locationId isEqualToString:EMPTYSTRING]) {
                 locationId = [currSolStep areaId];
             }
             
@@ -2464,11 +2315,11 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             });
         }
         // Highlight correct objects for transference
-        else if ([stepType isEqualToString:@"transferAndGroup"] || [stepType isEqualToString:@"transferAndDisappear"]) {
+        else if ([stepType isEqualToString:TRANSFERANDGROUP_TXT] || [stepType isEqualToString:TRANSFERANDDISAPPEAR_TXT]) {
             NSString *object1Id = [currSolStep object1Id];
             ActionStep *nextSolStep = [currSolSteps objectAtIndex:stepContext.currentStep];
             
-            if (nextSolStep != nil && ([[nextSolStep stepType] isEqualToString:@"transferAndGroup"] || [stepType isEqualToString:@"transferAndDisappear"])) {
+            if (nextSolStep != nil && ([[nextSolStep stepType] isEqualToString:TRANSFERANDGROUP_TXT] || [stepType isEqualToString:TRANSFERANDDISAPPEAR_TXT])) {
                 NSString *nextObject1Id = [nextSolStep object1Id];
                 
                 if ([nextObject1Id isEqualToString:[currSolStep object2Id]]) {
@@ -2541,14 +2392,14 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         // Present simpler sentence(s)
         if ([simplerSentences count] > 0) {
             // Join sentences together and remove any slash characters
-            NSString *message = [[simplerSentences componentsJoinedByString:@" "] stringByReplacingOccurrencesOfString:@"\\" withString:@""];
+            NSString *message = [[simplerSentences componentsJoinedByString:@" "] stringByReplacingOccurrencesOfString:@"\\" withString:EMPTYSTRING];
             
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Hint" message:message preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
             [alert addAction:action];
             [self presentViewController:alert animated:YES completion:nil];
             
-            [playaudioClass playErrorFeedbackNoise];
+            [self playNoiseName:ERROR_FEEDBACK_NOISE];
             allowInteractions = TRUE;
         }
         // Default to usability error feedback if there are no simpler sentences available
@@ -2565,7 +2416,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                           }]];
         [self presentViewController:alert animated:YES completion:nil];
         
-        [playaudioClass playErrorFeedbackNoise];
+        [self playNoiseName:ERROR_FEEDBACK_NOISE];
     }
 }
 
@@ -2630,7 +2481,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     
     //Get the objects that this object is overlapping with
     NSArray *overlappingWith = [self getObjectsOverlappingWithObject:obj];
-    BOOL ObjectIDUsed = false;
+    BOOL objectIDUsed = false;
     NSString *tempCollisionObject = nil;
     
     if (overlappingWith != nil) {
@@ -2642,15 +2493,15 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 if (![ssc checkSolutionForObject:objId]) {
                     getInteractions = FALSE;
                     
-                    if (!ObjectIDUsed) {
-                        ObjectIDUsed = true;
+                    if (!objectIDUsed) {
+                        objectIDUsed = true;
                         tempCollisionObject = objId;
                     }
                 }
             }
             
             if (getInteractions) {
-                ObjectIDUsed = true;
+                objectIDUsed = true;
                 tempCollisionObject = objId;
                 
                 NSMutableArray *hotspots = [model getHotspotsForObject:objId OverlappingWithObject:obj];
@@ -2808,7 +2659,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  * Returns an array containing pairs of grouped objects (with the format "hay, farmer") connected to the object specified
  */
 - (NSArray *)getObjectsGroupedWithObject:(NSString *)object {
-
     return [self.manipulationView getObjectsGroupedWithObject:object];
 }
 
@@ -2816,7 +2666,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  * Returns an array containing objects that are overlapping with the object specified
  */
 - (NSArray *)getObjectsOverlappingWithObject:(NSString *)object {
-    
     return [self.manipulationView getObjectsOverlappingWithObject:object movingObject:movingObjectId];
 }
 
@@ -2978,7 +2827,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  * Updates the JS Connection hotspot locations if necessary.
  */
 - (void)moveObject:(NSString *)object :(CGPoint)location :(CGPoint)offset :(BOOL)updateCon {
-    
     endLocation = [self.manipulationView moveObject:object
                    location:location
                      offset:offset
@@ -2993,7 +2841,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  * Calls the JS function to group two objects at the specified hotspots.
  */
 - (void)groupObjects:(NSString *)object1 :(CGPoint)object1Hotspot :(NSString *)object2 :(CGPoint)object2Hotspot {
-
     //Maintain a list of current groupings, with the subject as a key. Currently only supports two objects
     
     //Get the current groupings of the objects
@@ -3015,14 +2862,12 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                object1HotSpot:object1Hotspot
                       object2:object2
                object2Hotspot:object2Hotspot];
-
 }
 
 /*
  * Calls the JS function to ungroup two objects.
  */
 - (void)ungroupObjects:(NSString *)object1 :(NSString *)object2 {
-    
     //Get the current groupings of the objects
     NSMutableArray *object1Groups = [currentGroupings objectForKey:object1];
     NSMutableArray *object2Groups = [currentGroupings objectForKey:object2];
@@ -3035,6 +2880,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         [object2Groups removeObject:object1];
         [currentGroupings setValue:object2Groups forKey:object2];
     }
+    
     [self.manipulationView ungroupObjects:object1 object2:object2];
 }
 
@@ -3042,7 +2888,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  * Calls the JS function to ungroup two objects.
  */
 - (void)ungroupObjectsAndStay:(NSString *)object1 :(NSString *)object2 {
-    
     //Get the current groupings of the objects
     NSMutableArray *object1Groups = [currentGroupings objectForKey:object1];
     NSMutableArray *object2Groups = [currentGroupings objectForKey:object2];
@@ -3070,7 +2915,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                                               movingObject:movingObjectId
                                              startLocation:startLocation
                                                  shouldPan:NO];
-    if(point.x != -99) {
+    if (point.x != -99) {
         endLocation = point;
     }
 }
@@ -3088,7 +2933,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  * Returns the hotspot location in pixels based on the object image size
  */
 - (CGPoint)getHotspotLocationOnImage:(Hotspot *)hotspot {
-    
     return [self.manipulationView getHotspotLocationOnImage:hotspot];
 }
 
@@ -3128,9 +2972,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     return YES;
 }
 
-- (void) pressedNextIntro{
-    if(sentenceContext.currentSentence > sentenceContext.totalSentences) {
+- (void) pressedNextIntro {
+    if (sentenceContext.currentSentence > sentenceContext.totalSentences) {
         [self.playaudioClass stopPlayAudioFile];
+        
         sentenceContext.currentSentence = 1;
         
         manipulationContext.sentenceNumber = sentenceContext.currentSentence;
@@ -3140,9 +2985,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         [pc loadNextPage];
     }
     else if (sentenceContext.currentSentence == sentenceContext.totalSentences &&
-             [bookTitle containsString:@"Introduction to EMBRACE - Unknown"])
-    {
+             [bookTitle containsString:@"Introduction to EMBRACE - Unknown"]) {
         [self.playaudioClass stopPlayAudioFile];
+        
         sentenceContext.currentSentence = 1;
         
         manipulationContext.sentenceNumber = sentenceContext.currentSentence;
@@ -3151,8 +2996,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         
         [pc loadNextPage];
     }
-    else
-    {
+    else {
         [self.view setUserInteractionEnabled:YES];
     }
 }
@@ -3164,7 +3008,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     NSString *sentenceClass = [self.manipulationView getSentenceClass:sentenceContext.currentSentence];
     
     if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && ([sentenceClass containsString: @"sentence actionSentence"] || [sentenceClass containsString: @"sentence IMactionSentence"])) {
-        
         //Reset allRelationships arrray
         if ([allRelationships count]) {
             [allRelationships removeAllObjects];
@@ -3203,8 +3046,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             }
         }
     }
-    else if (stepContext.stepsComplete || stepContext.numSteps == 0 || (allowInteractions && ([chapterTitle isEqualToString:@"The Naughty Monkey"] && [pageContext.currentPageId containsString:PM2] && conditionSetup.condition == EMBRACE && !stepContext.stepsComplete && sentenceContext.currentSentence == 2)) || (!allowInteractions && ![chapterTitle isEqualToString:@"The Naughty Monkey"]) || (!allowInteractions && ([chapterTitle isEqualToString:@"The Naughty Monkey"] && [pageContext.currentPageId containsString:PM2] && conditionSetup.condition == CONTROL && stepContext.stepsComplete && sentenceContext.currentSentence == 2)) || (!allowInteractions && ([chapterTitle isEqualToString:@"The Naughty Monkey"] && conditionSetup.condition == CONTROL && !stepContext.stepsComplete && sentenceContext.currentSentence != 2)))
-    {
+    else if (stepContext.stepsComplete || stepContext.numSteps == 0 || (allowInteractions && ([chapterTitle isEqualToString:@"The Naughty Monkey"] && [pageContext.currentPageId containsString:PM2] && conditionSetup.condition == EMBRACE && !stepContext.stepsComplete && sentenceContext.currentSentence == 2)) || (!allowInteractions && ![chapterTitle isEqualToString:@"The Naughty Monkey"]) || (!allowInteractions && ([chapterTitle isEqualToString:@"The Naughty Monkey"] && [pageContext.currentPageId containsString:PM2] && conditionSetup.condition == CONTROL && stepContext.stepsComplete && sentenceContext.currentSentence == 2)) || (!allowInteractions && ([chapterTitle isEqualToString:@"The Naughty Monkey"] && conditionSetup.condition == CONTROL && !stepContext.stepsComplete && sentenceContext.currentSentence != 2))) {
         if (sentenceContext.currentSentence > 0) {
             sentenceContext.currentIdea++;
             manipulationContext.ideaNumber = sentenceContext.currentIdea;
@@ -3219,22 +3061,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         
         //currentSentence is 1 indexed
         if (sentenceContext.currentSentence > sentenceContext.totalSentences) {
-            if (conditionSetup.appMode == ITS && ![pageContext.currentPageId containsString:INTRO] && ![chapterTitle isEqualToString:@"Introduction to The Best Farm"] && ![bookTitle containsString:@"The Circulatory System"]) {
-                [self showPageStatistics]; //show popup window with page statistics
-            }
-            else {
-                [pc loadNextPage];
-            }
+            [pc loadNextPage];
         }
         else {
-            //For page statistics
-            if (conditionSetup.appMode == ITS && stepContext.numSteps == 0 && currentComplexity > 0) {
-                endTime = [NSDate date];
-                
-                //Record time for non-action sentence for complexity
-                [[pageStatistics objectForKey:pageContext.currentPageId] addTimeForNonActSents:[endTime timeIntervalSinceDate:startTime] ForComplexity:(currentComplexity - 1)];
-            }
-            
             //Set up current sentence appearance and solution steps
             [sc setupCurrentSentence];
             [sc colorSentencesUponNext];
@@ -3245,7 +3074,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Press Next" context:manipulationContext];
         
         //Play noise if not all steps have been completed
-        [self playErrorNoise];
+        [self playNoiseName:ERROR_NOISE];
         [self.view setUserInteractionEnabled:YES];
     }
 }
@@ -3303,9 +3132,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  */
 - (IBAction)pressedNext:(id)sender {
     @synchronized(self) {
-        
         if (!pressedNextLock && !isLoadPageInProgress) {
-            
             pressedNextLock = true;
             [self.view setUserInteractionEnabled:NO];
             
@@ -3341,19 +3168,17 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     return interactions;
 }
 
-/*
- *  Plays error noise with incorrect user action
- */
-- (void)playErrorNoise {
-    [self.playaudioClass playErrorNoise];
-    
-    [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:ERROR_NOISE inLanguage:NULL_TXT ofType:PLAY_ERROR_NOISE :manipulationContext];
-}
-
-- (void)playErrorFeedbackNoise {
-    [self.playaudioClass playErrorFeedbackNoise];
-    
-    [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:ERROR_FEEDBACK_NOISE inLanguage:NULL_TXT ofType:ERROR_FEEDBACK_NOISE :manipulationContext];
+- (void)playNoiseName:(NSString *)name {
+    if ([name isEqualToString:ERROR_NOISE]) {
+        [self.playaudioClass playErrorNoise];
+        
+        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:ERROR_NOISE inLanguage:NULL_TXT ofType:PLAY_ERROR_NOISE :manipulationContext];
+    }
+    else if ([name isEqualToString:ERROR_FEEDBACK_NOISE]) {
+        [self.playaudioClass playErrorFeedbackNoise];
+        
+        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:ERROR_FEEDBACK_NOISE inLanguage:NULL_TXT ofType:ERROR_FEEDBACK_NOISE :manipulationContext];
+    }
 }
 
 - (void)animatePerformingStep {
@@ -3517,7 +3342,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  *  Plays audio for the current sentence
  */
 - (void)playCurrentSentenceAudio {
-    
     //disable user interactions when preparing to play audio to prevent users from skipping audio
     [self.view setUserInteractionEnabled:NO];
     
@@ -3538,37 +3362,31 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         
         //If we are on the first or second manipulation page of Cleaning Up, play the audio of the current sentence
         if ([chapterTitle isEqualToString:@"Cleaning Up"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2])) {
-            
             sentenceAudioFile = [NSString stringWithFormat:@"CleaningUpS%dE.mp3", sentenceContext.currentSentence];
         }
         
         //If we are on the first or second manipulation page of Getting Ready, play the audio of the current sentence
         if ([chapterTitle isEqualToString:@"Getting Ready"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2])) {
-            
             sentenceAudioFile = [NSString stringWithFormat:@"GettingReadyS%dE.mp3", sentenceContext.currentSentence];
         }
         
         //If we are on the first or second manipulation page of Who is the Best Animal?, play the audio of the current sentence
         if ([chapterTitle isEqualToString:@"Who is the Best Animal?"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2])) {
-            
             sentenceAudioFile = [NSString stringWithFormat:@"WhoIsTheBestAnimalS%dE.mp3", sentenceContext.currentSentence];
         }
         
         //If we are on the first or second manipulation page of The Wise Owl, play the audio of the current sentence
         if ([chapterTitle isEqualToString:@"The Wise Owl"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2])) {
-            
             sentenceAudioFile = [NSString stringWithFormat:@"TheWiseOwlS%dE.mp3", sentenceContext.currentSentence];
         }
         
         //If we are on the first or second manipulation page of Everyone Helps, play the audio of the current sentence
         if ([chapterTitle isEqualToString:@"Everyone Helps"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2])) {
-            
             sentenceAudioFile = [NSString stringWithFormat:@"EveryoneHelpsS%dE.mp3", sentenceContext.currentSentence];
         }
         
         //If we are on the first or second manipulation page of The Best Farm Award, play the audio of the current sentence
         if ([chapterTitle isEqualToString:@"The Best Farm Award"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2])) {
-            
             sentenceAudioFile = [NSString stringWithFormat:@"TheBestFarmAwardS%dE.mp3", sentenceContext.currentSentence];
         }
         
@@ -3594,31 +3412,26 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         
         //If we are on the first or second manipulation page of Is Paco a Thief?, play the current sentence
         if ([chapterTitle isEqualToString:@"Is Paco a Thief?"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
-            
             sentenceAudioFile = [NSString stringWithFormat:@"IsPacoAThiefS%dE.mp3", sentenceContext.currentSentence];
         }
         
         //If we are on the first or second manipulation page of Missing Keys, play the current sentence
         if ([chapterTitle isEqualToString:@"Missing Keys"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
-            
             sentenceAudioFile = [NSString stringWithFormat:@"MissingKeysS%dE.mp3", sentenceContext.currentSentence];
         }
         
         //If we are on the first or second manipulation page of More is Missing!, play the current sentence
         if ([chapterTitle isEqualToString:@"More is Missing!"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
-            
             sentenceAudioFile = [NSString stringWithFormat:@"MoreIsMissingS%dE.mp3", sentenceContext.currentSentence];
         }
         
         //If we are on the first or second manipulation page of The Baby's Rattle is Gone, Too!, play the current sentence
         if ([chapterTitle isEqualToString:@"The Baby's Rattle is Gone, Too!"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
-            
             sentenceAudioFile = [NSString stringWithFormat:@"TheBaby'sRattleIsGoneTooS%dE.mp3", sentenceContext.currentSentence];
         }
         
         //If we are on the first or second manipulation page of The Mystery is Solved, play the current sentence
         if ([chapterTitle isEqualToString:@"The Mystery is Solved"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
-            
             sentenceAudioFile = [NSString stringWithFormat:@"TheMysteryIsSolvedS%dE.mp3", sentenceContext.currentSentence];
         }
         
@@ -3634,36 +3447,28 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         
         //If we are on the first or second manipulation page of Baby Brother, play the current sentence
         if ([chapterTitle isEqualToString:@"Baby Brother"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
-            
             sentenceAudioFile = [NSString stringWithFormat:@"BabyBrotherS%dE.mp3", sentenceContext.currentSentence];
             
         }
         
         //If we are on the first or second manipulation page of Catch!, play the current sentence
         if ([chapterTitle isEqualToString:@"Catch!"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
-            
             sentenceAudioFile = [NSString stringWithFormat:@"CatchS%dE.mp3", sentenceContext.currentSentence];
             
         }
         
         //If we are on the first or second manipulation page of Magic Toys, play the current sentence
         if ([chapterTitle isEqualToString:@"Magic Toys"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2])) {
-            
             sentenceAudioFile = [NSString stringWithFormat:@"MagicToysS%dE.mp3", sentenceContext.currentSentence];
-            
         }
         
         //If we are on the first or second manipulation page of Words of Wisdom, play the current sentence
         if ([chapterTitle isEqualToString:@"Words of Wisdom"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
-            
             sentenceAudioFile = [NSString stringWithFormat:@"WordsOfWisdomS%dE.mp3", sentenceContext.currentSentence];
-            
         }
         
         //If we are on the first or second manipulation page of The Naughty Monkey, play the current sentence
-        if ([chapterTitle isEqualToString:@"The Naughty Monkey"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] ||
-                                                                     [pageContext.currentPageId containsString:PM3]) &&
-            sentenceContext.currentSentence != 1) {
+        if ([chapterTitle isEqualToString:@"The Naughty Monkey"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3]) && sentenceContext.currentSentence != 1) {
             if (conditionSetup.language == BILINGUAL && sentenceContext.currentSentence < 8) {
                 sentenceAudioFile = [NSString stringWithFormat:@"TheNaughtyMonkeyS%dS.mp3", sentenceContext.currentSentence - 2];
             }
@@ -3714,37 +3519,27 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         
         //If we are on the first or second manipulation page of Mancha the Horse, play the current sentence
         if ([chapterTitle isEqualToString:@"Mancha the Horse"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
-            
             sentenceAudioFile = [NSString stringWithFormat:@"ManchaTheHorseS%dE.mp3", sentenceContext.currentSentence];
-            
         }
         
         //If we are on the first or second manipulation page of A Friend in Need, play the current sentence
         if ([chapterTitle isEqualToString:@"A Friend in Need"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
-            
             sentenceAudioFile = [NSString stringWithFormat:@"AFriendInNeedS%dE.mp3", sentenceContext.currentSentence];
-            
         }
         
         //If we are on the first or second manipulation page of Shopping at the Market, play the current sentence
         if ([chapterTitle isEqualToString:@"Shopping at the Market"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3] || [pageContext.currentPageId containsString:PM4])) {
-            
             sentenceAudioFile = [NSString stringWithFormat:@"ShoppingAtTheMarketS%dE.mp3", sentenceContext.currentSentence];
-            
         }
         
         //If we are on the first or second manipulation page of A Gift for the Bride, play the current sentence
         if ([chapterTitle isEqualToString:@"A Gift for the Bride"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3] || [pageContext.currentPageId containsString:PM4] || [pageContext.currentPageId containsString:PM5])) {
-            
             sentenceAudioFile = [NSString stringWithFormat:@"AGiftForTheBrideS%dE.mp3", sentenceContext.currentSentence];
-            
         }
         
         //If we are on the first or second manipulation page of Homecoming, play the current sentence
         if ([chapterTitle isEqualToString:@"Homecoming"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3] || [pageContext.currentPageId containsString:PM4])) {
-            
             sentenceAudioFile = [NSString stringWithFormat:@"HomecomingS%dE.mp3", sentenceContext.currentSentence];
-            
         }
         
         //If we are on the first or second manipulation page of Disasters Intro, play the current sentence
@@ -3773,30 +3568,26 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     ScriptAudio *script = nil;
     NSString *introAudio = nil;
     LibraryViewController *vc = (LibraryViewController *)libraryViewController;
-    ActivitySequenceController * seqController = vc.sequenceController;
+    ActivitySequenceController *seqController = vc.sequenceController;
     
     if (seqController && [seqController.sequences count] > 1) {
-        
         ActivitySequence *seq = [seqController.sequences objectAtIndex:1];
         ActivityMode *mode = [seq getModeForChapter:chapterTitle];
         
-        if([pageContext.currentPageId containsString:DASH_INTRO] &&
+        if ([pageContext.currentPageId containsString:DASH_INTRO] &&
            [pageContext.currentPageId containsString:@"story1"] &&
            ([chapterTitle isEqualToString:@"The Lucky Stone"] || [chapterTitle isEqualToString:@"The Lopez Family"])
            && [bookTitle containsString:seq.bookTitle]) {
-            
             introAudio = @"splWordsIntro";
             
             [array addObject:[NSString stringWithFormat:@"%@.mp3",introAudio]];
+            
             if (mode.language == BILINGUAL && mode.newInstructions) {
-                
                 introAudio = [NSString stringWithFormat:@"%@_S",introAudio];
                 [array addObject:[NSString stringWithFormat:@"%@.mp3",introAudio]];
-                
             }
         }
     }
-    
     
     if ([ConditionSetup sharedInstance].condition == EMBRACE) {
         script = [chapter embraceScriptFor:[NSString stringWithFormat:@"%lu", (unsigned long)sentenceContext.currentSentence]];
@@ -3822,13 +3613,11 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     }
     
     if (preAudio != nil) {
-        
         // Check if the preAudio is an introduction.
         // If it is an introduction, add appropriate extension
         if (preAudio.count == 1) {
             NSString *audio = [preAudio objectAtIndex:0];
             if ([audio containsString:INTRO]) {
-                
                 if ([ConditionSetup sharedInstance].condition == EMBRACE) {
                     if ([ConditionSetup sharedInstance].currentMode == PM_MODE) {
                         if ([ConditionSetup sharedInstance].reader == USER) {
@@ -3851,7 +3640,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     }
                 }
                 
-                
                 if (audio) {
                     NSString *spanishAudio = nil;
                     
@@ -3869,7 +3657,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 }
             }
         }
-        
         
         [array addObjectsFromArray:preAudio];
         
@@ -3895,201 +3682,11 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     if ([array count] > 0) {
         [self.playaudioClass playAudioInSequence:array :self];
     }
-    else
-    {
+    else {
         //there are no audio files to play so allow interactions
         [self.view setUserInteractionEnabled:YES];
     }
 }
-
-/*
- * Swaps all sentences on the current page for the versions with the specified level of complexity
- */
-//TODO: move logic in if else statements into new functions and move into new class
-- (void)swapSentencesOnPage:(double)simple :(double)medium :(double)complex {
-//    Chapter *chapter = [book getChapterWithTitle:chapterTitle]; //get current chapter
-//    PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
-//    NSMutableArray *alternateSentences = [[PMActivity alternateSentences] objectForKey:currentPageId]; //get alternate sentences for current page
-//    
-//    if ([alternateSentences count] > 0) {
-//        //Get the number of sentences on the page
-//        NSString *requestSentenceCount = [NSString stringWithFormat:@"document.getElementsByClassName('sentence').length"];
-//        int sentenceCount = [[bookView stringByEvaluatingJavaScriptFromString:requestSentenceCount] intValue];
-//        
-//        //Get the id number of the last sentence on the page
-//        NSString *requestLastSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[%d - 1].id", sentenceCount];
-//        NSString *lastSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestLastSentenceId];
-//        int lastSentenceIdNumber = [[lastSentenceId substringFromIndex:1] intValue];
-//        
-//        //Get the id number of the first sentence on the page
-//        NSString *requestFirstSentenceId = [NSString stringWithFormat:@"document.getElementsByClassName('sentence')[0].id"];
-//        NSString *firstSentenceId = [bookView stringByEvaluatingJavaScriptFromString:requestFirstSentenceId];
-//        int firstSentenceIdNumber = [[firstSentenceId substringFromIndex:1] intValue];
-//        
-//        NSString *removeSentenceString;
-//        
-//        //Remove all sentences on page
-//        for (int i = firstSentenceIdNumber; i <= lastSentenceIdNumber; i++) {
-//            //Skip the title (sentence 0) if it's the first on the page
-//            if (i > 0) {
-//                removeSentenceString = [NSString stringWithFormat:@"removeSentence('s%d')", i];
-//                [bookView stringByEvaluatingJavaScriptFromString:removeSentenceString];
-//            }
-//        }
-//        
-//        NSString *addSentenceString;
-//        int sentenceNumber = 1; //used for assigning sentence ids
-//        int previousIdeaNum = 0; //used for making sure same idea does not get repeated
-//        
-//        NSMutableArray *ideaNums = [PMSolution getIdeaNumbers]; //get list of idea numbers on the page
-//        
-//        double sumOfComplexities[3]; //running sum of complexity parameters used to randomly choose complexity
-//        sumOfComplexities[0] = simple;
-//        sumOfComplexities[1] = sumOfComplexities[0] + medium;
-//        sumOfComplexities[2] = sumOfComplexities[1] + complex;
-//        
-//        //Add alternate sentences associated with each idea
-//        for (NSNumber *ideaNum in ideaNums) {
-//            if ([ideaNum intValue] > previousIdeaNum) {
-//                NSUInteger complexity = 0;
-//                double generateComplexity = ((double) arc4random() / 0x100000000) * 100; //randomly choose complexity
-//                
-//                for (int i = 0; i < 3; i++) {
-//                    if (generateComplexity <= sumOfComplexities[i]) {
-//                        complexity = i + 1;
-//                        break;
-//                    }
-//                }
-//                
-//                BOOL foundIdea = false; //flag to check if there is a sentence with the specified complexity for the idea number
-//                
-//                //Create an array to hold sentences that will be added to the page
-//                NSMutableArray *sentencesToAdd = [[NSMutableArray alloc] init];
-//                
-//                //Look for alternate sentences that match the idea number and complexity
-//                for (AlternateSentence *altSent in alternateSentences) {
-//                    if ([[[altSent ideas] objectAtIndex:0] isEqualToNumber:ideaNum] && [altSent complexity] == complexity) {
-//                        foundIdea = true;
-//                        [sentencesToAdd addObject:altSent];
-//                        previousIdeaNum = [[[altSent ideas] lastObject] intValue];
-//                    }
-//                }
-//                
-//                //If a sentence with the specified complexity was not found for the idea number, look for a
-//                //sentence with complexity level 2
-//                if (!foundIdea) {
-//                    for (AlternateSentence *altSent in alternateSentences) {
-//                        if ([[[altSent ideas] objectAtIndex:0] isEqualToNumber:ideaNum] && [altSent complexity] == 2) {
-//                            foundIdea = true;
-//                            [sentencesToAdd addObject:altSent];
-//                            previousIdeaNum = [[[altSent ideas] lastObject] intValue];
-//                        }
-//                    }
-//                }
-//                
-//                for (AlternateSentence *sentenceToAdd in sentencesToAdd) {
-//                    //Get alternate sentence information
-//                    BOOL action = [sentenceToAdd actionSentence];
-//                    NSString *text = [sentenceToAdd text];
-//                    
-//                    //Split sentence text into individual tokens (words)
-//                    NSArray *textTokens = [text componentsSeparatedByString:@" "];
-//                    
-//                    //Contains the vocabulary words that appear in the sentence
-//                    NSMutableArray *words = [[NSMutableArray alloc] init];
-//                    
-//                    //Contains the sentence text split around vocabulary words
-//                    NSMutableArray *splitText = [[NSMutableArray alloc] init];
-//                    
-//                    //Combines tokens into the split sentence text
-//                    NSString *currentSplit = EMPTYSTRING;
-//                    
-//                    for (NSString *textToken in textTokens) {
-//                        NSString *modifiedTextToken = textToken;
-//                        
-//                        //Replaces the ' character if it exists in the token
-//                        if ([modifiedTextToken rangeOfString:@"'"].location != NSNotFound) {
-//                            modifiedTextToken = [modifiedTextToken stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
-//                        }
-//                        
-//                        BOOL addedWord = false; //whether token contains vocabulary word
-//                        
-//                        for (NSString *vocab in [[Translation translationWords] allKeys]) {
-//                            //Match the whole vocabulary word only
-//                            NSString *regex = [NSString stringWithFormat:@"\\b%@\\b", vocab];
-//                            
-//                            //Token contains vocabulary word
-//                            if ([modifiedTextToken rangeOfString:regex options:NSRegularExpressionSearch].location != NSNotFound) {
-//                                [words addObject:vocab]; //add word to list
-//                                addedWord = true;
-//                                
-//                                [splitText addObject:currentSplit];
-//                                
-//                                //Reset current split to be anything that appears after the vocabulary word and add a space in the beginning
-//                                currentSplit = [[modifiedTextToken stringByReplacingOccurrencesOfString:vocab withString:EMPTYSTRING] stringByAppendingString:@" "];
-//                                
-//                                break;
-//                            }
-//                        }
-//                        
-//                        //Token does not contain vocabulary word
-//                        if (!addedWord) {
-//                            //Add token to current split with a space after it
-//                            NSString *textTokenSpace = [NSString stringWithFormat:@"%@ ", modifiedTextToken];
-//                            currentSplit = [currentSplit stringByAppendingString:textTokenSpace];
-//                        }
-//                    }
-//                    
-//                    [splitText addObject:currentSplit]; //make sure to add the last split
-//                    
-//                    //Create array strings for vocabulary and split text to send to JS function
-//                    NSString *wordsArrayString = [words componentsJoinedByString:@"','"];
-//                    NSString *splitTextArrayString = [splitText componentsJoinedByString:@"','"];
-//                    
-//                    //Add alternate sentence to page
-//                    addSentenceString = [NSString stringWithFormat:@"addSentence('s%d', %@, ['%@'], ['%@'])", sentenceNumber++, action ? @"true" : @"false", splitTextArrayString, wordsArrayString];
-//                    [bookView stringByEvaluatingJavaScriptFromString:addSentenceString];
-//                    
-//                    //Add alternate sentence to array
-//                    [pageSentences addObject:sentenceToAdd];
-//                    
-//                    BOOL transference = FALSE;
-//                    
-//                    //Count number of user steps for page statistics
-//                    for (ActionStep *as in [sentenceToAdd solutionSteps]) {
-//                        if (!([[as stepType] isEqualToString:UNGROUP] ||
-//                              [[as stepType] isEqualToString:MOVE] ||
-//                              [[as stepType] isEqualToString:SWAPIMAGE])) {
-//                            //Make sure transference steps don't get counted twice
-//                            if ([[as stepType] isEqualToString:TRANSFERANDGROUP] ||
-//                                [[as stepType] isEqualToString:TRANSFERANDDISAPPEAR]) {
-//                                if (!transference) {
-//                                    [[pageStatistics objectForKey:currentPageId] addStepForComplexity:([sentenceToAdd complexity] - 1)];
-//                                    
-//                                    transference = TRUE;
-//                                }
-//                                else {
-//                                    transference = FALSE;
-//                                }
-//                            }
-//                            else {
-//                                [[pageStatistics objectForKey:currentPageId] addStepForComplexity:([sentenceToAdd complexity] - 1)];
-//                            }
-//                        }
-//                    }
-//                    
-//                    //Count number of non-action sentences for each complexity
-//                    if ([sentenceToAdd actionSentence] == FALSE) {
-//                        [[pageStatistics objectForKey:currentPageId] addNonActSentForComplexity:([sentenceToAdd complexity] - 1)];
-//                    }
-//                }
-//            }
-//        }
-//    }
-}
-
-
-
 
 /*
  * Creates the menuDataSource from the list of possible interactions.
@@ -4216,18 +3813,17 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     if (([chapterTitle isEqualToString:@"The Naughty Monkey"]) && sentenceContext.currentSentence == 6 && stepContext.currentStep == 2) {
         if (conditionSetup.language == ENGLISH) {
             [self.playaudioClass playAudioFile:self :@"NaughtyMonkey_Script5.mp3"];
-        } else {
+        }
+        else {
             [self.playaudioClass playAudioFile:self :@"NaughtyMonkey_Script5_S.mp3"];
         }
-        
-        
     } else if (([chapterTitle isEqualToString:@"The Naughty Monkey"]) && sentenceContext.currentSentence == 7 && stepContext.currentStep == 3 ) {
         if (conditionSetup.language == ENGLISH) {
             [self.playaudioClass playAudioFile:self :@"NaughtyMonkey_Script7.mp3"];
-        } else {
+        }
+        else {
             [self.playaudioClass playAudioFile:self :@"NaughtyMonkey_Script7_S.mp3"];
         }
-        
     }
     
     [[ServerCommunicationController sharedInstance] logDisplayMenuItems:menuItemsData context:manipulationContext];
@@ -4263,9 +3859,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 
 #pragma mark - ManipulationAnalyserProtocol
 
-- (CGPoint)locationOfObject:(NSString *)object
-                   analyzer:(ManipulationAnalyser *)analyzer {
-    
+- (CGPoint)locationOfObject:(NSString *)object analyzer:(ManipulationAnalyser *)analyzer {
     return [self getObjectPosition:object];
 }
 
@@ -4274,15 +3868,11 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 }
 
 - (void)analyzer:(ManipulationAnalyser *)analyzer showMessage:(NSString *)message {
-   
     if (conditionSetup.shouldShowITSMessages == NO)
         return;
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil
-                                                                   message:message
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *action = [UIAlertAction actionWithTitle:@"Dismiss"
-                                                     style:UIAlertActionStyleCancel
-                                                   handler:nil];
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleCancel handler:nil];
     [alert addAction:action];
     [self presentViewController:alert animated:YES completion:nil];
     

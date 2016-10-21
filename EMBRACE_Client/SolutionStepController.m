@@ -324,31 +324,18 @@
     //Get current step to be completed
     ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
     
-    if (conditionSetup.appMode == ITS) {
-        //Not automatic step
-        if (!([[currSolStep stepType] isEqualToString:UNGROUP_TXT] || [[currSolStep stepType] isEqualToString:MOVE] || [[currSolStep stepType] isEqualToString:SWAPIMAGE])) {
-            mvc.endTime = [NSDate date];
-            double elapsedTime = [mvc.endTime timeIntervalSinceDate:mvc.startTime];
-            
-            //Record time for complexity
-            [[mvc.pageStatistics objectForKey:pageContext.currentPageId] addTime:elapsedTime ForComplexity:(mvc.currentComplexity - 1)];
-            
-            mvc.startTime = [NSDate date];
-        }
-    }
-    
     //Check if we able to increment current step
     if (stepContext.currentStep < stepContext.numSteps) {
         stepContext.numAttempts = 0;
         
         //if the current solution step is a custom pm, then increment current step minMenuOption times
-        if ([PM_CUSTOM isEqualToString: [currSolStep menuType]]){
-            for (int i=0; i<minMenuItems; i++) {
+        if ([PM_CUSTOM isEqualToString:[currSolStep menuType]]) {
+            for (int i = 0; i < minMenuItems; i++) {
                 stepContext.currentStep++;
             }
         }
         //current solution step is normal and just increment once
-        else{
+        else {
             stepContext.currentStep++;
         }
         
