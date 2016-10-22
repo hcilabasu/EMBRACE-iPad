@@ -42,6 +42,7 @@
 - (CGSize)sizeOfObject:(NSString *)object analyzer:(ManipulationAnalyser *)analyzer;
 
 - (NSArray *)getNextStepsForCurrentSentence:(ManipulationAnalyser *)analyzer;
+- (NSArray *)getStepsForCurrentSentence:(ManipulationAnalyser *)analyzer;
 
 - (EMComplexity)analyzer:(ManipulationAnalyser *)analyzer getComplexityForSentence:(int)sentenceNumber;
 

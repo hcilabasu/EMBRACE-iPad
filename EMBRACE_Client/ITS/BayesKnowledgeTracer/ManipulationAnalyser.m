@@ -169,39 +169,43 @@
         
         return;
     }
+    // Check for syntax error
+    // Check if the student moved objects that are both involved in the sentence
     else {
-        // Check if the user preformed a future step
-        NSArray *nextSteps = [self.delegate getNextStepsForCurrentSentence:self];
+        NSArray *currentSteps = [self.delegate getStepsForCurrentSentence:self];
+        NSMutableSet *objectsInvolved = [[NSMutableSet alloc] init];
         
-        for (ActionStep *nextStep in nextSteps) {
-            NSString *correctDest = nil;
+        for (ActionStep *currentStep in currentSteps) {
+            NSString *object1Id = [currentStep object1Id];
+            NSString *object2Id = [currentStep object2Id];
+            NSString *locationId = [currentStep locationId];
+            NSString *areaId = [currentStep areaId];
             
-            if (nextStep.object2Id != nil) {
-                correctDest = nextStep.object2Id;
-            }
-            else if (nextStep.locationId != nil) {
-                correctDest = nextStep.locationId;
-            }
-            else if (nextStep.areaId != nil) {
-                correctDest = nextStep.areaId;
+            if (object1Id != nil) {
+                [objectsInvolved addObject:object1Id];
             }
             
-            // Check if any of the step uses 
-            if (([nextStep.object1Id isEqualToString:userAction.movedObjectId] &&
-                [correctDest isEqualToString:userAction.destinationObjectId] )||
-                ([nextStep.object1Id isEqualToString:userAction.destinationObjectId] &&
-                [correctDest isEqualToString:userAction.movedObjectId])) {
-                
-                NSLog(@"Performed a future step");
-                
-                EMComplexity com = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
-                Skill *skill = [self.knowledgeTracer updateSyntaxSkill:NO withComplexity:com shouldDampen:!isFirstAttempt];
-                [skills addObject:skill];
-                [self showMessageWith:skills];
-                [self determineMostProbableErrorTypeFromSkills:skills];
-                
-                return;
+            if (object2Id != nil) {
+                [objectsInvolved addObject:object2Id];
             }
+            
+            if (locationId != nil) {
+                [objectsInvolved addObject:locationId];
+            }
+            
+            if (areaId != nil) {
+                [objectsInvolved addObject:areaId];
+            }
+        }
+        
+        if ([objectsInvolved containsObject:[userAction movedObjectId]] && [objectsInvolved containsObject:[userAction destinationObjectId]]) {
+            EMComplexity com = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
+            Skill *skill = [self.knowledgeTracer updateSyntaxSkill:NO withComplexity:com shouldDampen:!isFirstAttempt];
+            [skills addObject:skill];
+            [self showMessageWith:skills];
+            [self determineMostProbableErrorTypeFromSkills:skills];
+            
+            return;
         }
     }
     
@@ -316,7 +320,7 @@
     double USABILITY_THRESHOLD = 0.5;
     
     self.mostProbableErrorType = nil;
-    double lowestSkillValue = [[skillValues firstObject] doubleValue];
+    double lowestSkillValue = 1.0;
     
     // Select the most probable error type from the lowest skill below its corresponding threshold
     for (int i = 0; i < [skillValues count]; i++) {

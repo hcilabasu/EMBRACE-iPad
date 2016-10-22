@@ -3931,6 +3931,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     return nextSteps;
 }
 
+- (NSArray *)getStepsForCurrentSentence:(ManipulationAnalyser *)analyzer {
+    return [ssc returnCurrentSolutionSteps];
+}
+
 - (EMComplexity)analyzer:(ManipulationAnalyser *)analyzer getComplexityForSentence:(int)sentenceNumber {
     return self.currentComplexityLevel;
 }

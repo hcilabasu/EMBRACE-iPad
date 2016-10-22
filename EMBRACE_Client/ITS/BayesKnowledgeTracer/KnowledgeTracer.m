@@ -49,7 +49,6 @@
 - (void)updateDampenValue:(BOOL)shouldDampen {
     if (shouldDampen) {
         self.dampenValue *= 10;
-        
     }
     else {
         self.dampenValue = 1.0;
@@ -81,7 +80,6 @@
         double skillEvaluated = [self calcCorrect:skill.skillValue];
         newSkill = [self calcNewSkillValue:skillEvaluated];
         [skill updateSkillValue:newSkill];
-        
     }
     else {
         double skillEvaluated = [self calcIncorrect:skill.skillValue];
