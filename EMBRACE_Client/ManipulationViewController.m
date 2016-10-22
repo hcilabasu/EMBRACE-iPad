@@ -631,13 +631,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 }
 
 /*
- * Returns a CGPoint containing the x and y coordinates of the position of an object
- */
-- (CGPoint)getObjectPosition:(NSString *)object {
-    return [self.manipulationView getObjectPosition:object];
-}
-
-/*
  * animateObject based on current animation step
  */
 - (void)animateObject {
@@ -660,7 +653,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 areaId = AREA;
             }
             
-            CGPoint imageLocation = [self getObjectPosition:object1Id];
+            CGPoint imageLocation = [self.manipulationView getObjectPosition:object1Id];
             
             //Calculate offset between top-left corner of image and the point clicked.
             delta = [self calculateDeltaForMovingObjectAtPoint:imageLocation];
@@ -1331,13 +1324,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                         [[ServerCommunicationController sharedInstance] logVerification:true forAction:MOVE_OBJECT context:manipulationContext];
                         
                         if (conditionSetup.appMode == ITS) {
-                            [[ITSController sharedInstance] movedObject:movingObjectId
-                                                     destinationObjects:@[destination]
-                                                             isVerified:true
-                                                             actionStep:currSolStep
-                                                    manipulationContext:manipulationContext
-                                                            forSentence:sentenceContext.currentSentenceText
-                                                        withWordMapping:model.wordMapping];
+                            [[ITSController sharedInstance] movedObjectIDs:[self.manipulationView getSetOfObjectsGroupedWithObject:movingObjectId] destinationIDs:@[destination] isVerified:true actionStep:currSolStep manipulationContext:manipulationContext forSentence:sentenceContext.currentSentenceText withWordMapping:model.wordMapping];
                         }
                         
                         [animatingObjects setObject:STOP forKey:movingObjectId];
@@ -1348,13 +1335,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                         [[ServerCommunicationController sharedInstance] logMoveObject:movingObjectId toDestination:NULL_TXT ofType:LOCATION startPos:startLocation endPos:endLocation performedBy:USER context:manipulationContext];
                         
                         if (conditionSetup.appMode == ITS) {
-                            [[ITSController sharedInstance] movedObject:movingObjectId
-                                                     destinationObjects:overlappingWith
-                                                             isVerified:false
-                                                             actionStep:currSolStep
-                                                    manipulationContext:manipulationContext
-                                                            forSentence:sentenceContext.currentSentenceText
-                                                        withWordMapping:model.wordMapping];
+                            [[ITSController sharedInstance] movedObjectIDs:[self.manipulationView getSetOfObjectsGroupedWithObject:movingObjectId] destinationIDs:overlappingWith isVerified:false actionStep:currSolStep manipulationContext:manipulationContext forSentence:sentenceContext.currentSentenceText withWordMapping:model.wordMapping];
                         }
 
                         [self handleErrorForAction:MOVE_OBJECT];
@@ -1373,13 +1354,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     }
                     
                     if (conditionSetup.appMode == ITS) {
-                        [[ITSController sharedInstance] movedObject:movingObjectId
-                                                 destinationObjects:overlappingWith
-                                                         isVerified:false
-                                                         actionStep:currSolStep
-                                                manipulationContext:manipulationContext
-                                                        forSentence:sentenceContext.currentSentenceText
-                                                    withWordMapping:model.wordMapping];
+                        [[ITSController sharedInstance] movedObjectIDs:[self.manipulationView getSetOfObjectsGroupedWithObject:movingObjectId] destinationIDs:overlappingWith isVerified:false actionStep:currSolStep manipulationContext:manipulationContext forSentence:sentenceContext.currentSentenceText withWordMapping:model.wordMapping];
                     }
 
                     [self handleErrorForAction:MOVE_OBJECT];
@@ -1394,13 +1369,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     [animatingObjects setObject:STOP forKey:movingObjectId];
                     
                     if (conditionSetup.appMode == ITS) {
-                        [[ITSController sharedInstance] movedObject:movingObjectId
-                                                 destinationObjects:@[currSolStep.locationId]
-                                                         isVerified:true
-                                                         actionStep:currSolStep
-                                                manipulationContext:manipulationContext
-                                                        forSentence:sentenceContext.currentSentenceText
-                                                    withWordMapping:model.wordMapping];
+                        [[ITSController sharedInstance] movedObjectIDs:[self.manipulationView getSetOfObjectsGroupedWithObject:movingObjectId] destinationIDs:@[currSolStep.locationId] isVerified:true actionStep:currSolStep manipulationContext:manipulationContext forSentence:sentenceContext.currentSentenceText withWordMapping:model.wordMapping];
                     }
                     
                     [self resetObjectLocation];
@@ -1408,13 +1377,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 }
                 else {
                     if (conditionSetup.appMode == ITS) {
-                        [[ITSController sharedInstance] movedObject:movingObjectId
-                                                 destinationObjects:@[currSolStep.locationId]
-                                                         isVerified:false
-                                                         actionStep:currSolStep
-                                                manipulationContext:manipulationContext
-                                                        forSentence:sentenceContext.currentSentenceText
-                                                    withWordMapping:model.wordMapping];
+                        [[ITSController sharedInstance] movedObjectIDs:[self.manipulationView getSetOfObjectsGroupedWithObject:movingObjectId] destinationIDs:@[currSolStep.locationId] isVerified:false actionStep:currSolStep manipulationContext:manipulationContext forSentence:sentenceContext.currentSentenceText withWordMapping:model.wordMapping];
                     }
                 
                     [self handleErrorForAction:MOVE_OBJECT];
@@ -1452,13 +1415,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     //No possible interactions were found
                     if ([possibleInteractions count] == 0) {
                         if (conditionSetup.appMode == ITS) {
-                            [[ITSController sharedInstance] movedObject:movingObjectId
-                                                     destinationObjects:overlappingWith
-                                                             isVerified:false
-                                                             actionStep:currSolStep
-                                                    manipulationContext:manipulationContext
-                                                            forSentence:sentenceContext.currentSentenceText
-                                                        withWordMapping:model.wordMapping];
+                            [[ITSController sharedInstance] movedObjectIDs:[self.manipulationView getSetOfObjectsGroupedWithObject:movingObjectId] destinationIDs:overlappingWith isVerified:false actionStep:currSolStep manipulationContext:manipulationContext forSentence:sentenceContext.currentSentenceText withWordMapping:model.wordMapping];
                         }
                         
                         [self handleErrorForAction:MOVE_OBJECT];
@@ -1527,6 +1484,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                         }
                         //Otherwise reset object location and play error noise
                         else {
+                            if (conditionSetup.appMode == ITS) {
+                                [[ITSController sharedInstance] movedObjectIDs:[self.manipulationView getSetOfObjectsGroupedWithObject:movingObjectId] destinationIDs:overlappingWith isVerified:false actionStep:currSolStep manipulationContext:manipulationContext forSentence:sentenceContext.currentSentenceText withWordMapping:model.wordMapping];
+                            }
+                            
                             [self handleErrorForAction:MOVE_OBJECT];
                         }
                     }
@@ -1546,13 +1507,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     }
                     
                     if (conditionSetup.appMode == ITS) {
-                        [[ITSController sharedInstance] movedObject:movingObjectId
-                                                 destinationObjects:overlappingWith
-                                                         isVerified:false
-                                                         actionStep:currSolStep
-                                                manipulationContext:manipulationContext
-                                                        forSentence:sentenceContext.currentSentenceText
-                                                    withWordMapping:model.wordMapping];
+                        [[ITSController sharedInstance] movedObjectIDs:[self.manipulationView getSetOfObjectsGroupedWithObject:movingObjectId] destinationIDs:overlappingWith isVerified:false actionStep:currSolStep manipulationContext:manipulationContext forSentence:sentenceContext.currentSentenceText withWordMapping:model.wordMapping];
                     }
                     
                     [self handleErrorForAction:MOVE_OBJECT];
@@ -2205,13 +2160,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
                 ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
                 
-                [[ITSController sharedInstance] movedObject:[con.objects objectAtIndex:0]
-                                         destinationObjects:@[[con.objects objectAtIndex:1]]
-                                                 isVerified:true
-                                                 actionStep:currSolStep
-                                        manipulationContext:manipulationContext
-                                                forSentence:sentenceContext.currentSentenceText
-                                            withWordMapping:model.wordMapping];
+                [[ITSController sharedInstance] movedObjectIDs:[self.manipulationView getSetOfObjectsGroupedWithObject:[con.objects objectAtIndex:0]] destinationIDs:@[[con.objects objectAtIndex:1]] isVerified:true actionStep:currSolStep manipulationContext:manipulationContext forSentence:sentenceContext.currentSentenceText withWordMapping:model.wordMapping];
             }
             
             [pic performInteraction:interaction];
@@ -2242,16 +2191,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         if (conditionSetup.appMode == ITS) {
             Connection *con = [interaction.connections objectAtIndex:0];
             NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
-            
-            //Get current step to be completed
             ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
-            [[ITSController sharedInstance] movedObject:[con.objects objectAtIndex:0]
-                                     destinationObjects:@[[con.objects objectAtIndex:1]]
-                                             isVerified:false
-                                             actionStep:currSolStep
-                                    manipulationContext:manipulationContext
-                                            forSentence:sentenceContext.currentSentenceText
-                                        withWordMapping:model.wordMapping];
+            
+            [[ITSController sharedInstance] movedObjectIDs:[self.manipulationView getSetOfObjectsGroupedWithObject:[con.objects objectAtIndex:0]] destinationIDs:@[[con.objects objectAtIndex:1]] isVerified:false actionStep:currSolStep manipulationContext:manipulationContext forSentence:sentenceContext.currentSentenceText withWordMapping:model.wordMapping];
         }
         
         [self handleErrorForAction:action];
@@ -2292,7 +2234,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     else {
         if (conditionSetup.appMode == ITS) {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, delay * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                NSString *mostProbableErrorType = [[ITSController sharedInstance] getMostProbableErrorType];
+//                NSString *mostProbableErrorType = [[ITSController sharedInstance] getMostProbableErrorType];
+                NSString *mostProbableErrorType = nil;
                 
                 if (mostProbableErrorType != nil) {
                     [self provideFeedbackForErrorType:mostProbableErrorType];
@@ -3896,11 +3839,37 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 #pragma mark - ManipulationAnalyserProtocol
 
 - (CGPoint)locationOfObject:(NSString *)object analyzer:(ManipulationAnalyser *)analyzer {
-    return [self getObjectPosition:object];
+    CGPoint location = [self.manipulationView getObjectPosition:object];
+    
+    if (CGPointEqualToPoint(location, CGPointZero)) {
+        Location *loc = [model getLocationWithId:object];
+        
+        if (loc != nil) {
+            float locX = [loc.originX floatValue] / 100.0 * [bookView frame].size.width;
+            float locY = [loc.originY floatValue] / 100.0 * [bookView frame].size.height;
+            
+            location = CGPointMake(locX, locY);
+        }
+    }
+    
+    return location;
 }
 
 - (CGSize)sizeOfObject:(NSString *)object analyzer:(ManipulationAnalyser *)analyzer {
-    return [self.manipulationView sizeOfObject:object];
+    CGSize size = [self.manipulationView sizeOfObject:object];
+    
+    if (CGSizeEqualToSize(size, CGSizeZero)) {
+        Location *loc = [model getLocationWithId:object];
+        
+        if (loc != nil) {
+            float locWidth = [loc.width floatValue] / 100.0 * [bookView frame].size.width;
+            float locHeight = [loc.height floatValue] / 100.0 * [bookView frame].size.height;
+            
+            size = CGSizeMake(locWidth, locHeight);
+        }
+    }
+    
+    return size;
 }
 
 - (void)analyzer:(ManipulationAnalyser *)analyzer showMessage:(NSString *)message {

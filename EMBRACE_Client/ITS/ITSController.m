@@ -54,56 +54,65 @@
     [self.manipulationAnalyser userDidVocabPreviewWord:word];
 }
 
-- (void)movedObject:(NSString *)objectId destinationObjects:(NSArray *)destinationObjs isVerified:(BOOL)verified actionStep:(ActionStep *)actionStep manipulationContext:(ManipulationContext *)context forSentence:(NSString *)sentence withWordMapping:(NSDictionary *)mapDict {
-    NSString *dest = nil;
+- (void)movedObjectIDs:(NSMutableSet *)objectIDs destinationIDs:(NSArray *)destinationIDs isVerified:(BOOL)verified actionStep:(ActionStep *)actionStep manipulationContext:(ManipulationContext *)context forSentence:(NSString *)sentence withWordMapping:(NSDictionary *)mapDict {
+    NSString *destinationID = nil;
     
-    if ([destinationObjs count] > 0) {
-        dest = [destinationObjs objectAtIndex:0];
+    if ([destinationIDs count] > 0) {
+        destinationID = [destinationIDs objectAtIndex:0];
         
-        if ([destinationObjs containsObject:actionStep.object2Id]) {
-            dest = [actionStep.object2Id copy];
+        if ([destinationIDs containsObject:actionStep.object2Id]) {
+            destinationID = [actionStep.object2Id copy];
         }
     }
     
-    NSString *actionObj1 = actionStep.object1Id;
-    NSString *correctDest = nil;
+    NSString *actionStepMovedObjectID = actionStep.object1Id;
+    NSString *actionStepDestinationID = nil;
     
+    // Set action step destination based on object, location, or area
     if (actionStep.object2Id != nil) {
-        correctDest = actionStep.object2Id;
+        actionStepDestinationID = actionStep.object2Id;
     }
     else if (actionStep.locationId != nil) {
-        correctDest = actionStep.locationId;
+        actionStepDestinationID = actionStep.locationId;
     }
     else if (actionStep.areaId != nil) {
-        correctDest = actionStep.areaId;
+        actionStepDestinationID = actionStep.areaId;
     }
+    
+    NSMutableSet *adjustedObjectIDs = [[NSMutableSet alloc] init];
     
     // Convert the words to the mapped keys if present
     for (NSString *key in mapDict.allKeys) {
         NSArray *mappedWords = [mapDict objectForKey:key];
         
-        if ([mappedWords containsObject:objectId]) {
-            objectId = [key copy];
+        for (NSString *objectID in objectIDs) {
+            if ([mappedWords containsObject:objectID]) {
+                [adjustedObjectIDs addObject:[key copy]];
+            }
+            else {
+                // Nothing to convert, so just use the word itself
+                [adjustedObjectIDs addObject:objectID];
+            }
         }
         
-        if ([mappedWords containsObject:dest]) {
-            dest = [key copy];
+        if ([mappedWords containsObject:destinationID]) {
+            destinationID = [key copy];
         }
         
-        if ([mappedWords containsObject:actionObj1]) {
-            actionObj1 = [key copy];
+        if ([mappedWords containsObject:actionStepMovedObjectID]) {
+            actionStepMovedObjectID = [key copy];
         }
         
-        if ([mappedWords containsObject:correctDest]) {
-            correctDest = [key copy];
+        if ([mappedWords containsObject:actionStepDestinationID]) {
+            actionStepDestinationID = [key copy];
         }
     }
     
-    UserAction *userAction = [[UserAction alloc] initWithMovedObjectId:objectId
-                                                         destinationId:dest
+    UserAction *userAction = [[UserAction alloc] initWithMovedObjectIDs:adjustedObjectIDs
+                                                         destinationIDs:destinationID
                                                             isVerified:verified
-                                               actionStepMovedObjectId:actionObj1
-                                         actionStepDestinationObjectId:correctDest
+                                               actionStepMovedObjectID:actionStepMovedObjectID
+                                                actionStepDestinationID:actionStepDestinationID
                                                            forSentence:sentence];
     
     [self.manipulationAnalyser actionPerformed:userAction manipulationContext:context];

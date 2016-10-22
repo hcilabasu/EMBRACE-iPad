@@ -340,10 +340,25 @@
     return itemPairArray;
 }
 
+- (NSMutableSet *)getSetOfObjectsGroupedWithObject:(NSString *)object {
+    NSMutableSet *objectsInGroup = [[NSMutableSet alloc] initWithObjects:object, nil];
+    NSArray *itemPairArray = [self getObjectsGroupedWithObject:object];
+    
+    for (NSString *itemPair in itemPairArray) {
+        NSArray *objects = [itemPair componentsSeparatedByString:@", "];
+        
+        for (NSString *object in objects) {
+            [objectsInGroup addObject:object];
+        }
+    }
+    
+    return objectsInGroup;
+}
+
 /*
  * Returns an array containing objects that are overlapping with the object specified
  */
-- (NSArray *)getObjectsOverlappingWithObject:(NSString *)object movingObject:(NSString *)movingObjectId{
+- (NSArray *)getObjectsOverlappingWithObject:(NSString *)object movingObject:(NSString *)movingObjectId {
     NSArray *overlappingWith; //contains overlapping objects
     
     //Check if object is overlapping anything
@@ -355,6 +370,10 @@
     }
     
     return overlappingWith;
+}
+
+- (NSSet *)getSetOfObjectsOverlappingWithObject:(NSString *)object {
+    
 }
 
 - (NSString *)getSentenceClass:(NSInteger)sentenceNumber {

@@ -66,6 +66,7 @@
 - (CGSize)sizeOfObject:(NSString *)objectId;
 
 - (NSArray *)getObjectsGroupedWithObject:(NSString *)object;
+- (NSMutableSet *)getSetOfObjectsGroupedWithObject:(NSString *)object;
 
 - (NSArray *)getObjectsOverlappingWithObject:(NSString *)object movingObject:(NSString *)movingObjectId;
 

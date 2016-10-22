@@ -121,32 +121,37 @@
     [status addUserAction:userAction];
 }
 
-
 - (void)analyzeAndUpdateSkill:(UserAction *)userAction andContext:(ManipulationContext *)context isFirstAttempt:(BOOL)isFirstAttempt {
+    // Correct action
     if (userAction.isVerified) {
         NSMutableArray *skillList = [NSMutableArray array];
         
-        // Update the two object's skills
-        Skill *movedSkill = [self.knowledgeTracer updateSkillFor:userAction.movedObjectId isVerified:YES shouldDampen:!isFirstAttempt];
-        [skillList addObject:movedSkill];
+        // Increase vocabulary skill for the object(s) moved
+        for (NSString *objectID in [userAction movedObjectIDs]) {
+            Skill *movedSkill = [self.knowledgeTracer updateSkillFor:objectID isVerified:YES shouldDampen:!isFirstAttempt];
+            [skillList addObject:movedSkill];
+        }
         
-        Skill *destSkill = nil;
-        if (userAction.actionStepDestinationObjectId && ![userAction.actionStepDestinationObjectId isEqualToString:@""]) {
-            destSkill = [self.knowledgeTracer updateSkillFor:userAction.actionStepDestinationObjectId isVerified:YES shouldDampen:!isFirstAttempt];
+        // Increase vocabulary skill for the destination
+        if (userAction.actionStepDestinationID && ![userAction.actionStepDestinationID isEqualToString:@""]) {
+            Skill *destSkill = [self.knowledgeTracer updateSkillFor:userAction.actionStepDestinationID isVerified:YES shouldDampen:!isFirstAttempt];
             [skillList addObject:destSkill];
         }
         
-        // Update the syntax and usability skill
+        // Increase syntax skill
         EMComplexity com = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
         Skill *synSkill = [self.knowledgeTracer updateSyntaxSkill:YES withComplexity:com shouldDampen:!isFirstAttempt];
         [skillList addObject:synSkill];
+        
+        // Increase usability skill
         Skill *useSkill = [self.knowledgeTracer updateUsabilitySkill:YES shouldDampen:!isFirstAttempt];
         [skillList addObject:useSkill];
         
         [self showMessageWith:skillList];
     }
+    // Incorrect action
     else {
-        // If the action is not verified, find out the kind of error the user made.
+        // Determine what skills to adjust based on error
         [self updateSkillBasedOnMovedObject:userAction andContext:context isFirstAttempt:isFirstAttempt];
     }
 }
@@ -155,14 +160,11 @@
     NSMutableArray *skills = [NSMutableArray array];
     
     // Check for syntax error
-    // Check if the student mixed up subject and object
-    if ([userAction.destinationObjectId isEqualToString:userAction.actionStepMovedObjectId] &&
-        [userAction.movedObjectId isEqualToString:userAction.actionStepDestinationObjectId]) {
-        
-        NSLog(@"Mixed up objects");
+    // Mixed subject and object
+    if ([userAction.destinationID isEqualToString:userAction.actionStepMovedObjectID] && [userAction.movedObjectIDs containsObject:userAction.actionStepDestinationID]) {
+        // Decrease syntax skill
         EMComplexity com = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
         Skill *skill = [self.knowledgeTracer updateSyntaxSkill:NO withComplexity:com shouldDampen:!isFirstAttempt];
-        
         [skills addObject:skill];
         [self showMessageWith:skills];
         [self determineMostProbableErrorTypeFromSkills:skills];
@@ -170,11 +172,12 @@
         return;
     }
     // Check for syntax error
-    // Check if the student moved objects that are both involved in the sentence
+    // Moved objects involved in the sentence
     else {
         NSArray *currentSteps = [self.delegate getStepsForCurrentSentence:self];
         NSMutableSet *objectsInvolved = [[NSMutableSet alloc] init];
         
+        // Get all the objects (objects, locations, areas) involved in the sentence
         for (ActionStep *currentStep in currentSteps) {
             NSString *object1Id = [currentStep object1Id];
             NSString *object2Id = [currentStep object2Id];
@@ -198,88 +201,131 @@
             }
         }
         
-        if ([objectsInvolved containsObject:[userAction movedObjectId]] && [objectsInvolved containsObject:[userAction destinationObjectId]]) {
-            EMComplexity com = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
-            Skill *skill = [self.knowledgeTracer updateSyntaxSkill:NO withComplexity:com shouldDampen:!isFirstAttempt];
-            [skills addObject:skill];
-            [self showMessageWith:skills];
-            [self determineMostProbableErrorTypeFromSkills:skills];
-            
-            return;
+        // Check if any of the moved objects and destination object are involved in the sentence
+        for (NSString *movedObjectID in [userAction movedObjectIDs]) {
+            if ([objectsInvolved containsObject:movedObjectID] && [objectsInvolved containsObject:[userAction destinationID]]) {
+                // Decrease syntax skill
+                EMComplexity com = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
+                Skill *skill = [self.knowledgeTracer updateSyntaxSkill:NO withComplexity:com shouldDampen:!isFirstAttempt];
+                [skills addObject:skill];
+                [self showMessageWith:skills];
+                [self determineMostProbableErrorTypeFromSkills:skills];
+                
+                return;
+            }
         }
     }
     
+    Skill *usabilitySkill;
+    
+    // Check for vocabulary or usability errors
     // Moved incorrect subject
-    if (![userAction.movedObjectId isEqualToString:userAction.actionStepMovedObjectId]) {
-        CGPoint movedFromLocation = [self.delegate locationOfObject:userAction.movedObjectId analyzer:self];
-        CGPoint actualLocation = [self.delegate locationOfObject:userAction.actionStepMovedObjectId analyzer:self];
-        CGSize firstObjectSize = [self.delegate sizeOfObject:userAction.movedObjectId analyzer:self];
-        CGSize secondObjectSize = [self.delegate sizeOfObject:userAction.actionStepMovedObjectId analyzer:self];
-        
-        CGRect firstRect = CGRectMake(movedFromLocation.x, movedFromLocation.y, firstObjectSize.width, firstObjectSize.height);
-        CGRect secondRect = CGRectMake(actualLocation.x, actualLocation.y, secondObjectSize.width, secondObjectSize.height);
-        
-        float distance = distanceBetween(firstRect, secondRect);
-        
-        if (distance > DISTANCE_THRESHOLD) {
+    if (![userAction.movedObjectIDs containsObject:userAction.actionStepMovedObjectID]) {
+        for (NSString *movedObjectID in [userAction movedObjectIDs]) {
+            float distance = 0.0;
+            
+            CGPoint actualLocation = [self.delegate locationOfObject:userAction.actionStepMovedObjectID analyzer:self];
+            
+            // Found actual location
+            if (!CGPointEqualToPoint(actualLocation, CGPointZero)) {
+                CGPoint movedFromLocation = [self.delegate locationOfObject:movedObjectID analyzer:self];
+                
+                CGSize firstObjectSize = [self.delegate sizeOfObject:movedObjectID analyzer:self];
+                CGSize secondObjectSize = [self.delegate sizeOfObject:userAction.actionStepMovedObjectID analyzer:self];
+                
+                CGRect firstRect = CGRectMake(movedFromLocation.x, movedFromLocation.y, firstObjectSize.width, firstObjectSize.height);
+                CGRect secondRect = CGRectMake(actualLocation.x, actualLocation.y, secondObjectSize.width, secondObjectSize.height);
+                
+                distance = distanceBetween(firstRect, secondRect);
+            }
+            // Could not find actual location, so default to vocabulary error
+            else {
+                distance = DISTANCE_THRESHOLD;
+            }
+            
             // Vocabulary error
-            Skill *movedSkill = [self.knowledgeTracer updateSkillFor:userAction.movedObjectId isVerified:NO shouldDampen:!isFirstAttempt];
-            
-            Skill *actionObjSkill = [self.knowledgeTracer updateSkillFor:userAction.actionStepMovedObjectId isVerified:NO shouldDampen:!isFirstAttempt];
-            
-            [skills addObject:movedSkill];
-            [skills addObject:actionObjSkill];
-        }
-        else {
+            if (distance > DISTANCE_THRESHOLD) {
+                // Decrease vocabulary skills for the moved object and the correct object to move
+                Skill *movedSkill = [self.knowledgeTracer updateSkillFor:movedObjectID isVerified:NO shouldDampen:!isFirstAttempt];
+                Skill *actionObjSkill = [self.knowledgeTracer updateSkillFor:userAction.actionStepMovedObjectID isVerified:NO shouldDampen:!isFirstAttempt];
+                
+                [skills addObject:movedSkill];
+                [skills addObject:actionObjSkill];
+            }
             // Usability error
-            Skill *skill = [self.knowledgeTracer updateUsabilitySkill:NO shouldDampen:!isFirstAttempt];
+            else {
+                // Decrease usability skill
+                usabilitySkill = [self.knowledgeTracer updateUsabilitySkill:NO shouldDampen:!isFirstAttempt];
+            }
+        }
+    }
+    // Moved correct subject
+    else {
+        for (NSString *movedObjectID in [userAction movedObjectIDs]) {
+            // Increase vocabulary skill for the moved object
+            Skill *skill = [self.knowledgeTracer updateSkillFor:movedObjectID isVerified:YES shouldDampen:!isFirstAttempt];
             [skills addObject:skill];
         }
     }
-    else {
-        Skill *skill = [self.knowledgeTracer updateSkillFor:userAction.movedObjectId isVerified:YES shouldDampen:!isFirstAttempt];
-        [skills addObject:skill];
-    }
     
-    NSString *correctDest = userAction.actionStepDestinationObjectId;
+    NSString *correctDest = userAction.actionStepDestinationID;
     
-    // If user action destination is nil, it means user doesnot know the object
-    // so update the vocab skill for the object.
-    if (userAction.destinationObjectId == nil) {
+    // Check for vocabulary or usability errors
+    // Vocabulary error
+    if (userAction.destinationID == nil) {
+        // Decrease vocabulary error for the correct destination
         Skill *skill = [self.knowledgeTracer updateSkillFor:correctDest isVerified:NO shouldDampen:!isFirstAttempt];
         [skills addObject:skill];
     }
-    else if (![userAction.destinationObjectId isEqualToString:correctDest]) {
-        CGPoint movedFromLocation = [self.delegate locationOfObject:userAction.destinationObjectId analyzer:self];
+    // Incorrect destination
+    else if (![userAction.destinationID isEqualToString:correctDest]) {
+        float distance = 0.0;
+        
         CGPoint actualLocation = [self.delegate locationOfObject:correctDest analyzer:self];
         
-        CGSize firstObjectSize = [self.delegate sizeOfObject:userAction.destinationObjectId analyzer:self];
-        CGSize secondObjectSize = [self.delegate sizeOfObject:correctDest analyzer:self];
-        
-        CGRect firstRect = CGRectMake(movedFromLocation.x, movedFromLocation.y, firstObjectSize.width, firstObjectSize.height);
-        CGRect secondRect = CGRectMake(actualLocation.x, actualLocation.y, secondObjectSize.width, secondObjectSize.height);
-        
-        float distance = distanceBetween(firstRect, secondRect);
-        
-        if (distance > DISTANCE_THRESHOLD) {
-            // Vocabulary error
-            Skill *destObjSkill = [self.knowledgeTracer updateSkillFor:userAction.destinationObjectId isVerified:NO shouldDampen:!isFirstAttempt];
+        // Found actual location
+        if (!CGPointEqualToPoint(actualLocation, CGPointZero)) {
+            CGPoint movedFromLocation = [self.delegate locationOfObject:userAction.destinationID analyzer:self];
             
+            CGSize firstObjectSize = [self.delegate sizeOfObject:userAction.destinationID analyzer:self];
+            CGSize secondObjectSize = [self.delegate sizeOfObject:correctDest analyzer:self];
+            
+            CGRect firstRect = CGRectMake(movedFromLocation.x, movedFromLocation.y, firstObjectSize.width, firstObjectSize.height);
+            CGRect secondRect = CGRectMake(actualLocation.x, actualLocation.y, secondObjectSize.width, secondObjectSize.height);
+            
+            distance = distanceBetween(firstRect, secondRect);
+        }
+        // Could not find actual location, so default to vocabulary error
+        else {
+            distance = DISTANCE_THRESHOLD;
+        }
+        
+        // Vocabulary error
+        if (distance > DISTANCE_THRESHOLD) {
+            // Decrease vocabulary skills for the destination and correct destination
+            Skill *destObjSkill = [self.knowledgeTracer updateSkillFor:userAction.destinationID isVerified:NO shouldDampen:!isFirstAttempt];
             Skill *actualDestSkill = [self.knowledgeTracer updateSkillFor:correctDest isVerified:NO shouldDampen:!isFirstAttempt];
             
             [skills addObject:destObjSkill];
             [skills addObject:actualDestSkill];
             
         }
+        // Usability error
         else {
-            // Usability error
-            Skill *skill = [self.knowledgeTracer updateUsabilitySkill:NO shouldDampen:!isFirstAttempt];
-            [skills addObject:skill];
+            // Decrease usability skill
+            usabilitySkill = [self.knowledgeTracer updateUsabilitySkill:NO shouldDampen:!isFirstAttempt];
         }
     }
+    // Correct destination
     else {
-        Skill *skill = [self.knowledgeTracer updateSkillFor:userAction.destinationObjectId isVerified:YES shouldDampen:!isFirstAttempt];
+        // Increase vocabulary skill for the destination
+        Skill *skill = [self.knowledgeTracer updateSkillFor:userAction.destinationID isVerified:YES shouldDampen:!isFirstAttempt];
         [skills addObject:skill];
+    }
+    
+    // Add usability skill if it was updated
+    if (usabilitySkill != nil) {
+        [skills addObject:usabilitySkill];
     }
     
     [self showMessageWith:skills];
