@@ -54,66 +54,104 @@
     [self.manipulationAnalyser userDidVocabPreviewWord:word];
 }
 
-- (void)movedObjectIDs:(NSMutableSet *)objectIDs destinationIDs:(NSArray *)destinationIDs isVerified:(BOOL)verified actionStep:(ActionStep *)actionStep manipulationContext:(ManipulationContext *)context forSentence:(NSString *)sentence withWordMapping:(NSDictionary *)mapDict {
-    NSString *destinationID = nil;
+- (void)movedObjectIDs:(NSMutableSet *)movedObjectIDs destinationIDs:(NSArray *)destinationIDs isVerified:(BOOL)verified actionStep:(ActionStep *)actionStep manipulationContext:(ManipulationContext *)context forSentence:(NSString *)sentence withWordMapping:(NSDictionary *)mapDict {
+    // Get step information
+    NSString *object1ID = [actionStep object1Id];
+    NSString *object2ID = [actionStep object2Id];
+    NSString *locationID = [actionStep locationId];
+    NSString *areaID = [actionStep areaId];
     
-    if ([destinationIDs count] > 0) {
-        destinationID = [destinationIDs objectAtIndex:0];
+    // If the current step involves transference, we need the next step to help determine object1ID and object2ID
+    if ([[actionStep stepType] isEqualToString:@"transferAndGroup"] || [[actionStep stepType] isEqualToString:@"transferAndDisappear"]) {
+        ActionStep *nextStep = [[self.manipulationAnalyser.delegate getNextStepsForCurrentSentence:self.manipulationAnalyser] firstObject];
         
-        if ([destinationIDs containsObject:actionStep.object2Id]) {
-            destinationID = [actionStep.object2Id copy];
+        // Try to select the distinct objects in the transference steps.
+        if ([[actionStep object2Id] isEqualToString:[nextStep object2Id]]) {
+            object1ID = [actionStep object1Id];
+            object2ID = [nextStep object1Id];
+        }
+        else if ([[actionStep object2Id] isEqualToString:[nextStep object1Id]]) {
+            object1ID = [actionStep object1Id];
+            object2ID = [nextStep object2Id];
+        }
+        else if ([[actionStep object1Id] isEqualToString:[nextStep object2Id]]) {
+            object1ID = [nextStep object1Id];
+            object2ID = [actionStep object2Id];
         }
     }
     
-    NSString *actionStepMovedObjectID = actionStep.object1Id;
-    NSString *actionStepDestinationID = nil;
+    NSString *correctMovedObjectID = object1ID;
+    NSString *correctDestinationID;
     
     // Set action step destination based on object, location, or area
-    if (actionStep.object2Id != nil) {
-        actionStepDestinationID = actionStep.object2Id;
+    if (object2ID != nil) {
+        correctDestinationID = object2ID;
     }
-    else if (actionStep.locationId != nil) {
-        actionStepDestinationID = actionStep.locationId;
+    else if (locationID != nil) {
+        correctDestinationID = locationID;
     }
-    else if (actionStep.areaId != nil) {
-        actionStepDestinationID = actionStep.areaId;
+    else if (areaID != nil) {
+        correctDestinationID = areaID;
     }
     
-    NSMutableSet *adjustedObjectIDs = [[NSMutableSet alloc] init];
-    
-    // Convert the words to the mapped keys if present
+    // Convert the action step moved object and destination to the mapped keys if present
     for (NSString *key in mapDict.allKeys) {
         NSArray *mappedWords = [mapDict objectForKey:key];
         
-        for (NSString *objectID in objectIDs) {
-            if ([mappedWords containsObject:objectID]) {
-                [adjustedObjectIDs addObject:[key copy]];
-            }
-            else {
-                // Nothing to convert, so just use the word itself
-                [adjustedObjectIDs addObject:objectID];
-            }
+        if ([mappedWords containsObject:correctMovedObjectID]) {
+            correctMovedObjectID = [key copy];
         }
         
-        if ([mappedWords containsObject:destinationID]) {
-            destinationID = [key copy];
-        }
-        
-        if ([mappedWords containsObject:actionStepMovedObjectID]) {
-            actionStepMovedObjectID = [key copy];
-        }
-        
-        if ([mappedWords containsObject:actionStepDestinationID]) {
-            actionStepDestinationID = [key copy];
+        if ([mappedWords containsObject:correctDestinationID]) {
+            correctDestinationID = [key copy];
         }
     }
     
-    UserAction *userAction = [[UserAction alloc] initWithMovedObjectIDs:adjustedObjectIDs
-                                                         destinationIDs:destinationID
-                                                            isVerified:verified
-                                               actionStepMovedObjectID:actionStepMovedObjectID
-                                                actionStepDestinationID:actionStepDestinationID
-                                                           forSentence:sentence];
+    NSMutableSet *convertedMovedObjectIDs = [[NSMutableSet alloc] init];
+    
+    // Convert the moved objects to the mapped keys if present
+    for (NSString *movedObjectID in movedObjectIDs) {
+        BOOL present = FALSE;
+        
+        for (NSString *key in mapDict.allKeys) {
+            NSArray *mappedWords = [mapDict objectForKey:key];
+            
+            if ([mappedWords containsObject:movedObjectID]) {
+                present = TRUE;
+                [convertedMovedObjectIDs addObject:[key copy]];
+                break;
+            }
+        }
+        
+        if (!present) {
+            // Nothing to convert, so just use the word itself
+            [convertedMovedObjectIDs addObject:movedObjectID];
+        }
+    }
+    
+    NSMutableSet *convertedDestinationIDs = [[NSMutableSet alloc] init];
+    
+    // Convert the destinations to the mapped keys if present
+    for (NSString *destinationID in destinationIDs) {
+        BOOL present = FALSE;
+        
+        for (NSString *key in mapDict.allKeys) {
+            NSArray *mappedWords = [mapDict objectForKey:key];
+            
+            if ([mappedWords containsObject:destinationID]) {
+                present = TRUE;
+                [convertedDestinationIDs addObject:[key copy]];
+                break;
+            }
+        }
+        
+        if (!present) {
+            // Nothing to convert, so just use the word itself
+            [convertedDestinationIDs addObject:destinationID];
+        }
+    }
+    
+    UserAction *userAction = [[UserAction alloc] initWithMovedObjectIDs:convertedMovedObjectIDs destinationIDs:convertedDestinationIDs isVerified:verified correctMovedObjectID:correctMovedObjectID correctDestinationID:correctDestinationID forSentence:sentence];
     
     [self.manipulationAnalyser actionPerformed:userAction manipulationContext:context];
 }

@@ -13,10 +13,10 @@
 
 @property (nonatomic, strong) ActionStep *actionStep;
 @property (nonatomic, copy) NSMutableSet *movedObjectIDs;
-@property (nonatomic, copy) NSString *destinationID;
+@property (nonatomic, copy) NSMutableSet *destinationIDs;
 @property (nonatomic, assign) BOOL isVerified;
-@property (nonatomic, copy) NSString *actionStepMovedObjectID;
-@property (nonatomic, copy) NSString *actionStepDestinationID;
+@property (nonatomic, copy) NSString *correctMovedObjectID;
+@property (nonatomic, copy) NSString *correctDestinationID;
 @property (nonatomic, copy) NSString *sentenceText;
 
 @end
@@ -24,22 +24,22 @@
 @implementation UserAction
 
 - (instancetype)initWithMovedObjectIDs:(NSMutableSet*)movedObjectIDs
-                        destinationIDs:(NSString *)destinationID
+                        destinationIDs:(NSMutableSet *)destinationIDs
                             isVerified:(BOOL)verified
-               actionStepMovedObjectID:(NSString *)actionStepMovedObjectID
-               actionStepDestinationID:(NSString *)actionStepDestinationID
+               correctMovedObjectID:(NSString *)correctMovedObjectID
+               correctDestinationID:(NSString *)correctDestinationID
                            forSentence:(NSString *)sentence {
     self = [super init];
 
     if (self) {
         _movedObjectIDs = [movedObjectIDs copy];
-        _destinationID = [destinationID copy];
+        _destinationIDs = [destinationIDs copy];
 
         _isVerified = verified;
         _sentenceText = [sentence copy];
 
-        _actionStepMovedObjectID = [actionStepMovedObjectID copy];
-        _actionStepDestinationID = [actionStepDestinationID copy];
+        _correctMovedObjectID = [correctMovedObjectID copy];
+        _correctDestinationID = [correctDestinationID copy];
     }
     
     return self;

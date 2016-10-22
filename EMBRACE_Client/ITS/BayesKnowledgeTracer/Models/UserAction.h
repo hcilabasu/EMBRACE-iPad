@@ -16,18 +16,18 @@
  */
 @interface UserAction : NSObject
 
-- (instancetype)initWithMovedObjectIDs:(NSMutableSet*)movedObjectIDs
-                        destinationIDs:(NSString *)destinationID
+- (instancetype)initWithMovedObjectIDs:(NSMutableSet *)movedObjectIDs
+                        destinationIDs:(NSMutableSet *)destinationIDs
                             isVerified:(BOOL)verified
-               actionStepMovedObjectID:(NSString *)actionStepMovedObjectID
-               actionStepDestinationID:(NSString *)actionStepDestinationID
+               correctMovedObjectID:(NSString *)correctMovedObjectID
+               correctDestinationID:(NSString *)correctDestinationID
                            forSentence:(NSString *)sentence;
 
 @property (nonatomic, readonly) NSMutableSet *movedObjectIDs;
-@property (nonatomic, readonly) NSString *destinationID;
+@property (nonatomic, readonly) NSMutableSet *destinationIDs;
 @property (nonatomic, readonly) BOOL isVerified;
-@property (nonatomic, readonly) NSString *actionStepMovedObjectID;
-@property (nonatomic, readonly) NSString *actionStepDestinationID;
+@property (nonatomic, readonly) NSString *correctMovedObjectID;
+@property (nonatomic, readonly) NSString *correctDestinationID;
 @property (nonatomic, readonly) NSString *sentenceText;
 @property (nonatomic, assign) NSInteger sentenceNumber;
 @property (nonatomic, assign) NSInteger ideaNumber;
