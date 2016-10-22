@@ -15,11 +15,10 @@
 // Probability of correctly applying a not known skill
 #define DEFAULT_GUESS 0.1
 
-// Probability of make a mistake applying a known skill
+// Probability of making a mistake applying a known skill
 #define DEFAULT_SLIP 0.2
 
-// Probability of student’s knowledge of a skill transitioning
-// from not known to known state after an opportunity to apply it.
+// Probability of student’s knowledge of a skill transitioning from not known to known state after an opportunity to apply it.
 #define DEFAULT_SYNTAX_TRANSITION 0.05
 #define DEFAULT_VOCAB_TRANSITION 0.1
 #define DEFAULT_USABILITY_TRANSITION 0.01
@@ -54,44 +53,48 @@
         self.dampenValue = 1.0;
     }
 }
-#pragma mark -
-
-- (Skill *)updateSkillFor:(NSString *)action isVerified:(BOOL)isVerified shouldDampen:(BOOL)shouldDampen {
-    if (action == nil) {
-        return nil;
-    }
-    
-    Skill *prevSkill = [self.skillSet skillForWord:action];
-    Skill *sk = [self updateSkill:prevSkill isVerified:isVerified];
-    
-    NSLog(@"Skill value %@ - %f", action, sk.skillValue);
-    
-    return prevSkill;
-}
-
-- (Skill *)updateSkillFor:(NSString *)action isVerified:(BOOL)isVerified {
-    return [self updateSkillFor:action isVerified:isVerified shouldDampen:NO];
-}
 
 - (Skill *)updateSkill:(Skill *)skill isVerified:(BOOL)isVerified {
     double newSkill = 0.0;
     
     if (isVerified) {
         double skillEvaluated = [self calcCorrect:skill.skillValue];
-        newSkill = [self calcNewSkillValue:skillEvaluated];
+        newSkill = [self calcNewSkillValue:skillEvaluated skillType:[skill skillType]];
         [skill updateSkillValue:newSkill];
     }
     else {
         double skillEvaluated = [self calcIncorrect:skill.skillValue];
-        newSkill = [self calcNewSkillValue:skillEvaluated];
+        newSkill = [self calcNewSkillValue:skillEvaluated skillType:[skill skillType]];
         [skill updateSkillValue:newSkill];
     }
     
     return skill;
 }
 
+#pragma mark - Updating Vocabulary Skills
+
+- (Skill *)updateSkillFor:(NSString *)word isVerified:(BOOL)isVerified shouldDampen:(BOOL)shouldDampen {
+    if (word == nil) {
+        return nil;
+    }
+    
+    [self updateDampenValue:shouldDampen];
+    
+    Skill *sk = [self.skillSet skillForWord:word];
+    sk = [self updateSkill:sk isVerified:isVerified];
+    
+    return sk;
+}
+
+- (Skill *)updateSkillFor:(NSString *)action isVerified:(BOOL)isVerified {
+    return [self updateSkillFor:action isVerified:isVerified shouldDampen:NO];
+}
+
+#pragma mark - Updating Usability Skill
+
 - (Skill *)updateUsabilitySkill:(BOOL)isVerified shouldDampen:(BOOL)shouldDampen {
     [self updateDampenValue:shouldDampen];
+    
     Skill *sk = [self.skillSet usabilitySkill];
     sk = [self updateSkill:sk isVerified:isVerified];
     
@@ -102,8 +105,11 @@
     return [self updateUsabilitySkill:isVerified shouldDampen:NO];
 }
 
+#pragma mark - Updating Syntax Skills
+
 - (Skill *)updateSyntaxSkill:(BOOL)isVerified withComplexity:(EMComplexity)complex shouldDampen:(BOOL)shouldDampen {
     [self updateDampenValue:shouldDampen];
+    
     Skill *sk = [self.skillSet syntaxSkillFor:complex];
     sk = [self updateSkill:sk isVerified:isVerified];
     
@@ -114,12 +120,7 @@
     return [self updateSyntaxSkill:isVerified withComplexity:complex shouldDampen:NO];
 }
 
-- (WordSkill *)getWordSkillFor:(NSString *)word {
-    Skill *skill = [self.skillSet skillForWord:word];
-    
-    return (WordSkill *)skill;
-}
-
+#pragma mark - Getter methods for skills
 
 - (Skill *)syntaxSkillFor:(EMComplexity)complex {
     Skill *sk  = [self.skillSet syntaxSkillFor:complex];
@@ -169,10 +170,6 @@
     double noGuess = 1 - guess;
     
     return (prevSkillValue * slip) / ((slip * prevSkillValue) + (noGuess * (1 - prevSkillValue)));
-}
-
-- (double)calcNewSkillValue:(double)skillEvaluated {
-    return [self calcNewSkillValue:skillEvaluated skillType:SkillType_Usability];
 }
 
 - (double)calcNewSkillValue:(double)skillEvaluated skillType:(SkillType)type {

@@ -14,7 +14,6 @@
 @property (nonatomic, strong) SyntaxSkill *easySyntaxSkill;
 @property (nonatomic, strong) SyntaxSkill *medSyntaxSkill;
 @property (nonatomic, strong) SyntaxSkill *complexSyntaxSkill;
-
 @property (nonatomic, strong) UsabilitySkill *usabilitySkill;
 
 @end
@@ -27,14 +26,13 @@
     if (self) {
         _wordSkillDict = [[NSMutableDictionary alloc] init];
         
-        _easySyntaxSkill = [[SyntaxSkill alloc] initWithComplexity:EM_Easy];
-        _medSyntaxSkill = [[SyntaxSkill alloc] initWithComplexity:EM_Medium];
-        _complexSyntaxSkill = [[SyntaxSkill alloc] initWithComplexity:EM_Complex];
+        _easySyntaxSkill = (SyntaxSkill *) [Skill syntaxSkillWithComplexity:EM_Easy];
+        _medSyntaxSkill = (SyntaxSkill *) [Skill syntaxSkillWithComplexity:EM_Medium];
+        _complexSyntaxSkill = (SyntaxSkill *) [Skill syntaxSkillWithComplexity:EM_Complex];
         
         [_easySyntaxSkill updateSkillValue:0.99];
         
-        _usabilitySkill = [[UsabilitySkill alloc] init];
-        
+        _usabilitySkill = (UsabilitySkill *) [Skill usabilitySkill];
     }
     
     return self;
