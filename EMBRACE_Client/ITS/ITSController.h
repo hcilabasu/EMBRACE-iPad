@@ -19,7 +19,8 @@ typedef NS_ENUM(NSInteger, EMComplexity) {
 
 @interface ITSController : NSObject
 
-+ (instancetype)sharedInstance;
++ (ITSController *)sharedInstance;
++ (void)resetSharedInstance;
 
 - (void)setAnalyzerDelegate:(id)delegate;
 

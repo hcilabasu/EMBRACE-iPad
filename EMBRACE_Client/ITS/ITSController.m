@@ -19,18 +19,21 @@
 
 @implementation ITSController
 
-+ (instancetype)sharedInstance {
-    static ITSController *sharedInstance = nil;
-    static dispatch_once_t onceToken;
-    
-    dispatch_once(&onceToken, ^{
+static ITSController *sharedInstance = nil;
+
++ (ITSController *)sharedInstance {
+    if (sharedInstance == nil) {
         sharedInstance = [[ITSController alloc] init];
-    });
+    }
     
     return sharedInstance;
 }
 
-- (instancetype)init {
++ (void)resetSharedInstance {
+    sharedInstance = nil;
+}
+
+- (id)init {
     self = [super init];
     
     if (self) {

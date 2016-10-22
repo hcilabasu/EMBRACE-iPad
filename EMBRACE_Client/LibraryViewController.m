@@ -360,8 +360,9 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
         //[[ServerCommunicationController sharedInstance] uploadFilesForStudent:student];
     }
     
-    //Reset ServerCommunicationController to end session
+    //Reset ServerCommunicationController and ITSController to end session
     [ServerCommunicationController resetSharedInstance];
+    [ITSController resetSharedInstance];
     
     [self.navigationController popViewControllerAnimated:YES];
 }

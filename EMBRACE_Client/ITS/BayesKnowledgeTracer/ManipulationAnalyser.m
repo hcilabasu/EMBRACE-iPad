@@ -142,11 +142,11 @@
         
         // Increase syntax skill
         EMComplexity complexity = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
-        Skill *syntaxSkill = [self.knowledgeTracer updateSyntaxSkill:YES withComplexity:complexity shouldDampen:!isFirstAttempt];
+        Skill *syntaxSkill = [self.knowledgeTracer updateSyntaxSkill:YES withComplexity:complexity shouldDampen:YES];
         [skills addObject:syntaxSkill];
         
         // Increase usability skill
-        Skill *usabilitySkill = [self.knowledgeTracer updateUsabilitySkill:YES shouldDampen:!isFirstAttempt];
+        Skill *usabilitySkill = [self.knowledgeTracer updateUsabilitySkill:YES shouldDampen:YES];
         [skills addObject:usabilitySkill];
         
         [self showMessageWith:skills];

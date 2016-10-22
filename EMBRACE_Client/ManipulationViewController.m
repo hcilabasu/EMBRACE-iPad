@@ -2234,8 +2234,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     else {
         if (conditionSetup.appMode == ITS) {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, delay * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-//                NSString *mostProbableErrorType = [[ITSController sharedInstance] getMostProbableErrorType];
-                NSString *mostProbableErrorType = nil;
+                NSString *mostProbableErrorType = [[ITSController sharedInstance] getMostProbableErrorType];
                 
                 if (mostProbableErrorType != nil) {
                     [self provideFeedbackForErrorType:mostProbableErrorType];
@@ -2363,7 +2362,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             // Join sentences together and remove any slash characters
             NSString *message = [[simplerSentences componentsJoinedByString:@" "] stringByReplacingOccurrencesOfString:@"\\" withString:EMPTYSTRING];
             
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Hint" message:message preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
             [alert addAction:action];
             [self presentViewController:alert animated:YES completion:nil];
@@ -2377,7 +2376,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         }
     }
     else if ([errorType isEqualToString:@"usability"]) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Need help?" message:@"The iPad will show you how to complete this step." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Need help? The iPad will show you how to complete this step." preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action)
                           {
                               [self.view setUserInteractionEnabled:YES];
