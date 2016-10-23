@@ -2244,14 +2244,35 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     }
     else {
         if (conditionSetup.appMode == ITS) {
+            BOOL showDemo = FALSE;
+            
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, delay * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                 NSString *mostProbableErrorType = [[ITSController sharedInstance] getMostProbableErrorType];
                 
-                if (mostProbableErrorType != nil) {
-                    [self provideFeedbackForErrorType:mostProbableErrorType];
+                // NOTE: Temporary UIAlertView to select most appropriate error feedback type
+                if (showDemo) {
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Select the most probable error type:" preferredStyle:UIAlertControllerStyleAlert];
+                    [alert addAction:[UIAlertAction actionWithTitle:@"Vocabulary" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                        [self provideFeedbackForErrorType:@"vocabulary"];
+                    }]];
+                    [alert addAction:[UIAlertAction actionWithTitle:@"Syntax" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                        [self provideFeedbackForErrorType:@"syntax"];
+                    }]];
+                    [alert addAction:[UIAlertAction actionWithTitle:@"Usability" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                        [self provideFeedbackForErrorType:@"usability"];
+                    }]];
+                    [alert addAction:[UIAlertAction actionWithTitle:@"None" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
+                        allowInteractions = TRUE;
+                    }]];
+                    [self presentViewController:alert animated:YES completion:nil];
                 }
                 else {
-                    allowInteractions = TRUE;
+                    if (mostProbableErrorType != nil) {
+                        [self provideFeedbackForErrorType:mostProbableErrorType];
+                    }
+                    else {
+                        allowInteractions = TRUE;
+                    }
                 }
             });
         }
