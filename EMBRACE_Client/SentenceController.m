@@ -60,7 +60,7 @@
         if (sentenceContext.currentSentence > 0) {
             stepContext.numSteps = [[[sentenceContext.pageSentences objectAtIndex:sentenceContext.currentSentence - 1] solutionSteps] count];
             
-            //Set current complexity based on senten ce
+            //Set current complexity based on sentence
             mvc.currentComplexity = [[sentenceContext.pageSentences objectAtIndex:sentenceContext.currentSentence - 1] complexity];
         }
         else {
@@ -73,8 +73,8 @@
         }
         else if (conditionSetup.condition == EMBRACE) {
             if (conditionSetup.currentMode == PM_MODE) {
-                //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound || conditionSetup.appMode == ITS) {
+                //NOTE: Currently hardcoded because some Solutions-MetaData.xml files are different format from other stories
+                if (([mvc.bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound || [mvc.bookTitle rangeOfString:@"The Lopez Family Mystery"].location != NSNotFound || [mvc.bookTitle rangeOfString:@"Bottled Up Joy"].location != NSNotFound)) {
                     stepContext.numSteps = [stepContext.PMSolution getNumStepsForSentence:sentenceContext.currentIdea];
                 }
                 else {
@@ -117,11 +117,11 @@
     if ([pageContext.currentPageId rangeOfString:DASH_INTRO].location != NSNotFound) {
         [mvc.ssc createVocabSolutionsForPage];
     }
-    else{
+    else {
         if (conditionSetup.condition != CONTROL) {
             mvc.allowInteractions = TRUE;
         }
-        if(conditionSetup.appMode == ITS){
+        if (conditionSetup.appMode == ITS) {
             mvc.currentComplexityLevel = [[ITSController sharedInstance] getCurrentComplexity];
             [self.manipulationView removeAllSentences];
             [self addSentencesWithComplexity: mvc.currentComplexityLevel];

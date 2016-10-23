@@ -209,11 +209,8 @@
         }
         else if (conditionSetup.condition == EMBRACE) {
             if (conditionSetup.currentMode == PM_MODE) {
-                //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                if ([mvc.bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound && [pageContext.currentPageId rangeOfString:DASH_INTRO].location == NSNotFound) {
-                    currSolSteps = [stepContext.PMSolution getStepsForSentence:sentenceContext.currentIdea];
-                }
-                else if (conditionSetup.appMode == ITS && [pageContext.currentPageId rangeOfString:DASH_INTRO].location == NSNotFound) {
+                //NOTE: Currently hardcoded because some Solutions-MetaData.xml files are different format from other stories
+                if (([mvc.bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound || [mvc.bookTitle rangeOfString:@"The Lopez Family Mystery"].location != NSNotFound || [mvc.bookTitle rangeOfString:@"Bottled Up Joy"].location != NSNotFound) && [pageContext.currentPageId rangeOfString:DASH_INTRO].location == NSNotFound) {
                     currSolSteps = [stepContext.PMSolution getStepsForSentence:sentenceContext.currentIdea];
                 }
                 else {

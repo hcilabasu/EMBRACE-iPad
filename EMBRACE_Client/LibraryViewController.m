@@ -593,17 +593,26 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                 if ([currentMode interventionType] == PM_INTERVENTION) {
                     conditionSetup.condition = EMBRACE;
                     conditionSetup.currentMode = PM_MODE;
+                    conditionSetup.appMode = Study;
                 }
                 else if ([currentMode interventionType] == IM_INTERVENTION) {
                     conditionSetup.condition = EMBRACE;
                     conditionSetup.currentMode = IM_MODE;
+                    conditionSetup.appMode = Study;
                 }
                 else if ([currentMode interventionType] == R_INTERVENTION) {
                     conditionSetup.condition = CONTROL;
+                    conditionSetup.appMode = Study;
+                }
+                else if ([currentMode interventionType] == ITS_INTERVENTION) {
+                    conditionSetup.condition = EMBRACE;
+                    conditionSetup.currentMode = PM_MODE;
+                    conditionSetup.appMode = ITS;
                 }
                 //Current mode for chapter was not found; default to control
                 else {
                     conditionSetup.condition = CONTROL;
+                    conditionSetup.appMode = Study;
                 }
                 
                 //Set language, reader, and new instructions

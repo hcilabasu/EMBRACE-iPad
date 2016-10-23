@@ -43,6 +43,10 @@
 		038BECE91C8956BF00ECFE28 /* StudyContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 038BECE81C8956BF00ECFE28 /* StudyContext.m */; };
 		03A401141C9B6F2E00FBE6D2 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A401131C9B6F2E00FBE6D2 /* NSString+HTML.m */; };
 		03A4011C1C9B6FF300FBE6D2 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A4011B1C9B6FF300FBE6D2 /* GTMNSString+HTML.m */; };
+		03CE17461DBC4E6400AE7F56 /* sequences_ITSP01.xml in Resources */ = {isa = PBXBuildFile; fileRef = 03CE17421DBC4E6400AE7F56 /* sequences_ITSP01.xml */; };
+		03CE17471DBC4E6400AE7F56 /* sequences_ITSP02.xml in Resources */ = {isa = PBXBuildFile; fileRef = 03CE17431DBC4E6400AE7F56 /* sequences_ITSP02.xml */; };
+		03CE17481DBC4E6400AE7F56 /* sequences_ITSP03.xml in Resources */ = {isa = PBXBuildFile; fileRef = 03CE17441DBC4E6400AE7F56 /* sequences_ITSP03.xml */; };
+		03CE17491DBC4E6400AE7F56 /* sequences_ITSP04.xml in Resources */ = {isa = PBXBuildFile; fileRef = 03CE17451DBC4E6400AE7F56 /* sequences_ITSP04.xml */; };
 		1A0385061C2B156400A973D8 /* hook_n_key_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0385051C2B156400A973D8 /* hook_n_key_large.png */; };
 		1A0385091C2B1F2500A973D8 /* cilia_inside.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0385071C2B1F2500A973D8 /* cilia_inside.png */; };
 		1A03850A1C2B1F2500A973D8 /* cilia_outside.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0385081C2B1F2500A973D8 /* cilia_outside.png */; };
@@ -5191,6 +5195,10 @@
 		03A401151C9B6F5C00FBE6D2 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
 		03A4011A1C9B6FF300FBE6D2 /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+HTML.h"; sourceTree = "<group>"; };
 		03A4011B1C9B6FF300FBE6D2 /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+HTML.m"; sourceTree = "<group>"; };
+		03CE17421DBC4E6400AE7F56 /* sequences_ITSP01.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = sequences_ITSP01.xml; path = ITSP/sequences_ITSP01.xml; sourceTree = "<group>"; };
+		03CE17431DBC4E6400AE7F56 /* sequences_ITSP02.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = sequences_ITSP02.xml; path = ITSP/sequences_ITSP02.xml; sourceTree = "<group>"; };
+		03CE17441DBC4E6400AE7F56 /* sequences_ITSP03.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = sequences_ITSP03.xml; path = ITSP/sequences_ITSP03.xml; sourceTree = "<group>"; };
+		03CE17451DBC4E6400AE7F56 /* sequences_ITSP04.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = sequences_ITSP04.xml; path = ITSP/sequences_ITSP04.xml; sourceTree = "<group>"; };
 		1A0385051C2B156400A973D8 /* hook_n_key_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hook_n_key_large.png; sourceTree = "<group>"; };
 		1A0385071C2B1F2500A973D8 /* cilia_inside.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cilia_inside.png; sourceTree = "<group>"; };
 		1A0385081C2B1F2500A973D8 /* cilia_outside.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cilia_outside.png; sourceTree = "<group>"; };
@@ -10374,6 +10382,7 @@
 		033FC8571C6C538800CF3850 /* sequences */ = {
 			isa = PBXGroup;
 			children = (
+				03CE17411DBC4E5600AE7F56 /* ITSP */,
 				037E97AF1CBC4C2B00F9F5AC /* EEG */,
 				037E97AE1CBC4C2400F9F5AC /* MCD1 */,
 				036C26B91D9B1B94003626FC /* MCD2 */,
@@ -10457,6 +10466,17 @@
 				03A401131C9B6F2E00FBE6D2 /* NSString+HTML.m */,
 			);
 			name = "NSString+HTML Parser";
+			sourceTree = "<group>";
+		};
+		03CE17411DBC4E5600AE7F56 /* ITSP */ = {
+			isa = PBXGroup;
+			children = (
+				03CE17421DBC4E6400AE7F56 /* sequences_ITSP01.xml */,
+				03CE17431DBC4E6400AE7F56 /* sequences_ITSP02.xml */,
+				03CE17441DBC4E6400AE7F56 /* sequences_ITSP03.xml */,
+				03CE17451DBC4E6400AE7F56 /* sequences_ITSP04.xml */,
+			);
+			name = ITSP;
 			sourceTree = "<group>";
 		};
 		1A631C671C0E4D3900251CB3 /* EPUBs */ = {
@@ -18207,6 +18227,7 @@
 				5C72E5121C727E2000CE4877 /* TheNavajoHoganQ2A1.mp3 in Resources */,
 				5C9F28B81C5C6B2E008ACE48 /* TheLopezFamilyQ2A3S.mp3 in Resources */,
 				5CF6CA091CCB2BB50093D3FD /* AwhileE.mp3 in Resources */,
+				03CE17481DBC4E6400AE7F56 /* sequences_ITSP03.xml in Resources */,
 				5C04216E1C618C2B001BBE9D /* CatchQ4A2.mp3 in Resources */,
 				5C28DCCB1C2BA66E005ACD07 /* ropecoil.png in Resources */,
 				5CF793371C76986E00216337 /* old_BFEC0.m4a in Resources */,
@@ -20418,6 +20439,7 @@
 				5C1C4D001D2386AD00547783 /* EnergyS.mp3 in Resources */,
 				5CA5CBCA1CD15E13002A631F /* AFriendInNeedS5E.mp3 in Resources */,
 				5C43D1161C7FCFE3000C5F6D /* Totem Poles_def_E.mp3 in Resources */,
+				03CE17491DBC4E6400AE7F56 /* sequences_ITSP04.xml in Resources */,
 				5CF793321C76986E00216337 /* BFEC5.m4a in Resources */,
 				5C72E7A51C72BF1000CE4877 /* NewtonsfirstlawQ2A4.mp3 in Resources */,
 				1A6322431C0E4D3B00251CB3 /* scene1.png in Resources */,
@@ -21561,6 +21583,7 @@
 				1A6323131C0E4D3B00251CB3 /* ch6.png in Resources */,
 				5C0ED8C31C75334200003B5A /* KeyIngredientsQ6.mp3 in Resources */,
 				5CB7103B1C6C0B650062AD61 /* HowDoObjectsMoveS2E.mp3 in Resources */,
+				03CE17461DBC4E6400AE7F56 /* sequences_ITSP01.xml in Resources */,
 				5C43D10F1C7FCFE3000C5F6D /* Modern_def_E.mp3 in Resources */,
 				1A6321291C0E4D3B00251CB3 /* Story1-Key-Ingredients-Intro-E.xhtml in Resources */,
 				5C72E5051C727E2000CE4877 /* TheNavajoHoganQ4A4.mp3 in Resources */,
@@ -21724,6 +21747,7 @@
 				5C72E7881C72BF1000CE4877 /* NewtonsFirstLawonEarthQ2A3.mp3 in Resources */,
 				5C72E5E21C72A46F00CE4877 /* TheSeminoleChickeeQ3.mp3 in Resources */,
 				1AA631911DB04CDE0006B194 /* Hug_def_E.mp3 in Resources */,
+				03CE17471DBC4E6400AE7F56 /* sequences_ITSP02.xml in Resources */,
 				5CCD8FE61C7405EC00D2EC2B /* VolcanoesQ7A1.mp3 in Resources */,
 				5C09DF6E1C84F7DB00EC4E78 /* Squeezes_def_E.mp3 in Resources */,
 				5CF6CA1E1CCB2BB50093D3FD /* MillionE.mp3 in Resources */,

@@ -420,7 +420,12 @@
     //Read PM and IM solutions
     
     if (conditionSetup.appMode == ITS) {
-        [self readSolutionMetadata:book :PM_MODE :[[book mainContentPath] stringByAppendingString:@"Solutions-MetaData-ITS.xml"]];
+        if ([[book title] isEqualToString:@"Introduction to EMBRACE"]) {
+            [self readSolutionMetadata:book :PM_MODE :[[book mainContentPath] stringByAppendingString:@"Solutions-MetaData.xml"]];
+        }
+        else {
+            [self readSolutionMetadata:book :PM_MODE :[[book mainContentPath] stringByAppendingString:@"Solutions-MetaData-ITS.xml"]];
+        }
     } else {
         [self readSolutionMetadata:book :PM_MODE :[[book mainContentPath] stringByAppendingString:@"Solutions-MetaData.xml"]];
     }

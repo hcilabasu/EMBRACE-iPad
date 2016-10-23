@@ -262,8 +262,10 @@ BOOL wasPathFollowed = false;
             useObject = NO_ENTITIES;
         }
     }
-
-    [[ITSController sharedInstance] setAnalyzerDelegate:self];
+    
+    if (conditionSetup.appMode == ITS) {
+        [[ITSController sharedInstance] setAnalyzerDelegate:self];
+    }
 }
 
 //Custom back button to confirm navigation to library page
@@ -841,7 +843,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             if ([englishSentenceText containsString: [currSolStep object1Id]] &&
                (sentenceContext.currentSentence == sentenceIDNum) && !stepContext.stepsComplete) {
                 [[ServerCommunicationController sharedInstance] logTapWord:sentenceText :manipulationContext];
-                [[ITSController sharedInstance] userDidVocabPreviewWord:sentenceText];
+                
+                if (conditionSetup.appMode == ITS) {
+                    [[ITSController sharedInstance] userDidVocabPreviewWord:sentenceText];
+                }
                 
                 [ssc incrementCurrentStep];
                 [self playIntroVocabWord:englishSentenceText :currSolStep];
@@ -879,7 +884,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     ([chapterTitle isEqualToString:@"The Naughty Monkey"] && conditionSetup.condition == EMBRACE && [[currSolStep object1Id] containsString: englishSentenceText] && (sentenceContext.currentSentence == sentenceIDNum) && sentenceContext.currentSentence != 2 && [pageContext.currentPageId containsString:@"-PM-2"])) {
                     playedAudio = true;
                     [[ServerCommunicationController sharedInstance] logTapWord:sentenceText :manipulationContext];
-                    [[ITSController sharedInstance] userDidPlayWord:sentenceText];
+                    
+                    if (conditionSetup.appMode == ITS) {
+                        [[ITSController sharedInstance] userDidPlayWord:sentenceText];
+                    }
                     
                     [self.playaudioClass stopPlayAudioFile];
                     [self playAudioForVocabWord:englishSentenceText :spanishExt];
@@ -892,7 +900,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         if (!playedAudio && [englishSentenceText length] > 0)// && [[Translation translationWords] objectForKey:englishSentenceText])
         {
             [[ServerCommunicationController sharedInstance] logTapWord:englishSentenceText :manipulationContext];
-            [[ITSController sharedInstance] userDidPlayWord:englishSentenceText];
+            
+            if (conditionSetup.appMode == ITS) {
+                [[ITSController sharedInstance] userDidPlayWord:englishSentenceText];
+            }
             
             [self.playaudioClass stopPlayAudioFile];
             [self playAudioForVocabWord:englishSentenceText :spanishExt];
@@ -2940,7 +2951,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     return YES;
 }
 
-- (void) pressedNextIntro {
+- (void)pressedNextIntro {
     if (sentenceContext.currentSentence > sentenceContext.totalSentences) {
         [self.playaudioClass stopPlayAudioFile];
         
