@@ -269,16 +269,6 @@
             </sentence>
             <sentence number="7" action="yes">
                 <attributes complexity="3"/>
-                <text>Martin looked in the living room for the keys.</text>
-                <ideas>
-                    <idea number="17"/>
-                </ideas>
-                <solution>
-                    <step number="10"/>
-                </solution>
-            </sentence>
-            <sentence number="8" action="yes">
-                <attributes complexity="3"/>
                 <text>In the meantime, Paco sniffed for the keys outside.</text>
                 <ideas>
                     <idea number="18"/>
@@ -287,7 +277,7 @@
                     <step number="11"/>
                 </solution>
             </sentence>
-            <sentence number="9" action="yes">
+            <sentence number="8" action="yes">
                 <attributes complexity="3"/>
                 <text>Lola the bunny looked for the keys on the top floor because the baby plays there sometimes.</text>
                 <ideas>
@@ -456,15 +446,6 @@
                 <text>Martin told Paco he was a bad dog and would have to stay outside all day for stealing the keys.</text>
                 <ideas>
                     <idea number="28"/>
-                </ideas>
-                <solution>
-                </solution>
-            </sentence>
-            <sentence number="10" action="no">
-                <attributes complexity="3"/>
-                <text>Paco was very sad.</text>
-                <ideas>
-                    <idea number="29"/>
                 </ideas>
                 <solution>
                 </solution>
@@ -772,16 +753,7 @@
                     <step number="30"/>
                 </solution>
             </sentence>
-            <sentence number="8" action="no">
-                <attributes complexity="1"/>
-                <text>The baby started to cry.</text>
-                <ideas>
-                    <idea number="43"/>
-                </ideas>
-                <solution>
-                </solution>
-            </sentence>
-            <sentence number="9" action="yes">
+            <sentence number="8" action="yes">
                 <attributes complexity="3"/>
                 <text>She looked in the living room, but when she couldn't find her rattle there, the baby started to cry.</text>
                 <ideas>
@@ -793,7 +765,7 @@
                     <step number="30"/>
                 </solution>
             </sentence>
-            <sentence number="10" action="yes">
+            <sentence number="9" action="yes">
                 <attributes complexity="3"/>
                 <text>Then, Lola the bunny jumped into the baby's lap to comfort her.</text>
                 <ideas>
