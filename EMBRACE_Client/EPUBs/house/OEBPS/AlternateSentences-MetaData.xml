@@ -576,23 +576,14 @@
             </sentence>
             <sentence number="5" action="no">
                 <attributes complexity="2"/>
-                <text>Rosa said, \"Paco, you are a bad dog for stealing my silver spoon.</text>
+                <text>Rosa said, \"Paco, you are a bad dog for stealing my silver spoon. You will have to stay outside all day.\"</text>
                 <ideas>
                     <idea number="38"/>
                 </ideas>
                 <solution>
                 </solution>
             </sentence>
-            <sentence number="6" action="no">
-                <attributes complexity="2"/>
-                <text>You will have to stay outside all day.\"</text>
-                <ideas>
-                    <idea number="39"/>
-                </ideas>
-                <solution>
-                </solution>
-            </sentence>
-            <sentence number="7" action="yes">
+            <sentence number="6" action="yes">
                 <attributes complexity="1"/>
                 <text>Rosa went to the living room.</text>
                 <ideas>
@@ -602,7 +593,7 @@
                     <step number="22"/>
                 </solution>
             </sentence>
-            <sentence number="8" action="no">
+            <sentence number="7" action="no">
                 <attributes complexity="1"/>
                 <text>\"Paco, did you take the silver spoon?\" she asked.</text>
                 <ideas>
@@ -611,7 +602,7 @@
                 <solution>
                 </solution>
             </sentence>
-            <sentence number="9" action="yes">
+            <sentence number="8" action="yes">
                 <attributes complexity="1"/>
                 <text>He barked and barked.</text>
                 <ideas>
@@ -621,7 +612,7 @@
                     <step number="24"/>
                 </solution>
             </sentence>
-            <sentence number="10" action="no">
+            <sentence number="9" action="yes">
                 <attributes complexity="1"/>
                 <text>Then the silver spoon dropped to the ground!</text>
                 <ideas>
@@ -631,7 +622,7 @@
                     <step number="25"/>
                 </solution>
             </sentence>
-            <sentence number="11" action="yes">
+            <sentence number="10" action="yes">
                 <attributes complexity="3"/>
                 <text>Rosa went to the living room and asked Paco if he had taken the silver spoon.</text>
                 <ideas>
@@ -641,8 +632,8 @@
                     <step number="22"/>
                 </solution>
             </sentence>
-            <sentence number="12" action="yes">
-                <attributes complexity="1"/>
+            <sentence number="11" action="yes">
+                <attributes complexity="3"/>
                 <text>Paco ran out to the tree, where he barked.</text>
                 <ideas>
                     <idea number="35"/>
@@ -651,8 +642,8 @@
                     <step number="23"/>
                 </solution>
             </sentence>
-            <sentence number="13" action="yes">
-                <attributes complexity="1"/>
+            <sentence number="12" action="yes">
+                <attributes complexity="3"/>
                 <text>While Paco barked and barked, the silver spoon dropped to the ground!</text>
                 <ideas>
                     <idea number="36"/>
@@ -662,7 +653,7 @@
                     <step number="25"/>
                 </solution>
             </sentence>
-            <sentence number="14" action="yes">
+            <sentence number="13" action="yes">
                 <attributes complexity="3"/>
                 <text>After Paco picked up the spoon, he carried it to Rosa.</text>
                 <ideas>
@@ -673,7 +664,7 @@
                     <step number="27"/>
                 </solution>
             </sentence>
-            <sentence number="15" action="no">
+            <sentence number="14" action="no">
                 <attributes complexity="3"/>
                 <text>Rosa told Paco he was a bad dog for stealing her silver spoon and he would have to stay outside all day.</text>
                 <ideas>
@@ -688,7 +679,7 @@
                 <attributes complexity="2"/>
                 <text>Later in the day, the baby wanted to play with her rattle.</text>
                 <ideas>
-                    <idea number="40"/>
+                    <idea number="39"/>
                 </ideas>
                 <solution>
                 </solution>
@@ -697,7 +688,7 @@
                 <attributes complexity="2"/>
                 <text>She looked in her crib, but it wasn't there.</text>
                 <ideas>
-                    <idea number="41"/>
+                    <idea number="40"/>
                 </ideas>
                 <solution>
                     <step number="28"/>
@@ -707,7 +698,7 @@
                 <attributes complexity="2"/>
                 <text>She looked in the living room, but she couldn't find her rattle there either.</text>
                 <ideas>
-                    <idea number="42"/>
+                    <idea number="41"/>
                 </ideas>
                 <solution>
                     <step number="29"/>
@@ -718,7 +709,7 @@
                 <attributes complexity="2"/>
                 <text>The baby started to cry.</text>
                 <ideas>
-                    <idea number="43"/>
+                    <idea number="42"/>
                 </ideas>
                 <solution>
                 </solution>
@@ -727,7 +718,7 @@
                 <attributes complexity="2"/>
                 <text>Lola the bunny jumped into the baby's lap to comfort her.</text>
                 <ideas>
-                    <idea number="44"/>
+                    <idea number="43"/>
                 </ideas>
                 <solution>
                     <step number="31"/>
@@ -737,28 +728,28 @@
                 <attributes complexity="1"/>
                 <text>The baby looked in the living room.</text>
                 <ideas>
-                    <idea number="42"/>
+                    <idea number="41"/>
                 </ideas>
                 <solution>
                     <step number="29"/>
+                    <step number="30"/>
                 </solution>
             </sentence>
             <sentence number="7" action="no">
                 <attributes complexity="1"/>
                 <text>She couldn't find her rattle there either.</text>
                 <ideas>
-                    <idea number="42"/>
+                    <idea number="41"/>
                 </ideas>
                 <solution>
-                    <step number="30"/>
                 </solution>
             </sentence>
             <sentence number="8" action="yes">
                 <attributes complexity="3"/>
                 <text>She looked in the living room, but when she couldn't find her rattle there, the baby started to cry.</text>
                 <ideas>
-                <idea number="42"/>
-                   <idea number="43"/>
+                   <idea number="41"/>
+                   <idea number="42"/>
                 </ideas>
                 <solution>
                     <step number="29"/>
@@ -769,7 +760,7 @@
                 <attributes complexity="3"/>
                 <text>Then, Lola the bunny jumped into the baby's lap to comfort her.</text>
                 <ideas>
-                    <idea number="44"/>
+                    <idea number="43"/>
                 </ideas>
                 <solution>
                     <step number="31"/>
@@ -781,7 +772,7 @@
                 <attributes complexity="2"/>
                 <text>Rosa went into the living room when she heard the baby cry.</text>
                 <ideas>
-                    <idea number="45"/>
+                    <idea number="44"/>
                 </ideas>
                 <solution>
                     <step number="32"/>
@@ -791,7 +782,7 @@
                 <attributes complexity="2"/>
                 <text>Paco heard the baby cry, too.</text>
                 <ideas>
-                    <idea number="46"/>
+                    <idea number="45"/>
                 </ideas>
                 <solution>
                 </solution>
@@ -800,7 +791,7 @@
                 <attributes complexity="2"/>
                 <text>He looked up in the tree and there was the baby's rattle!</text>
                 <ideas>
-                    <idea number="47"/>
+                    <idea number="46"/>
                 </ideas>
                 <solution>
                 </solution>
@@ -809,7 +800,7 @@
                 <attributes complexity="2"/>
                 <text>Paco barked and barked, and the rattle dropped to the ground.</text>
                 <ideas>
-                    <idea number="48"/>
+                    <idea number="47"/>
                 </ideas>
                 <solution>
                     <step number="33"/>
@@ -820,7 +811,7 @@
                 <attributes complexity="2"/>
                 <text>Rosa picked up the baby and went out to see why Paco was barking.</text>
                 <ideas>
-                    <idea number="49"/>
+                    <idea number="48"/>
                 </ideas>
                 <solution>
                     <step number="35"/>
@@ -832,7 +823,7 @@
                 <attributes complexity="2"/>
                 <text>Lola went out, too.</text>
                 <ideas>
-                    <idea number="50"/>
+                    <idea number="49"/>
                 </ideas>
                 <solution>
                     <step number="38"/>
@@ -842,7 +833,7 @@
                 <attributes complexity="1"/>
                 <text>Rosa heard the baby cry.</text>
                 <ideas>
-                    <idea number="45"/>
+                    <idea number="44"/>
                 </ideas>
                 <solution>
                 </solution>
@@ -851,7 +842,7 @@
                 <attributes complexity="1"/>
                 <text>She went into the living room.</text>
                 <ideas>
-                    <idea number="45"/>
+                    <idea number="44"/>
                 </ideas>
                 <solution>
                     <step number="32"/>
@@ -861,7 +852,7 @@
                 <attributes complexity="1"/>
                 <text>He looked up in the tree.</text>
                 <ideas>
-                    <idea number="47"/>
+                    <idea number="46"/>
                 </ideas>
                 <solution>
                 </solution>
@@ -870,7 +861,7 @@
                 <attributes complexity="1"/>
                 <text>There was the baby's rattle!</text>
                 <ideas>
-                    <idea number="47"/>
+                    <idea number="46"/>
                 </ideas>
                 <solution>
                 </solution>
@@ -879,17 +870,17 @@
                 <attributes complexity="1"/>
                 <text>Paco barked and barked.</text>
                 <ideas>
-                    <idea number="48"/>
+                    <idea number="47"/>
                 </ideas>
                 <solution>
                     <step number="33"/>
                 </solution>
             </sentence>
-            <sentence number="12" action="no">
+            <sentence number="12" action="yes">
                 <attributes complexity="1"/>
                 <text>Then the rattle dropped to the ground.</text>
                 <ideas>
-                    <idea number="48"/>
+                    <idea number="47"/>
                 </ideas>
                 <solution>
                     <step number="34"/>
@@ -899,7 +890,7 @@
                 <attributes complexity="3"/>
                 <text>He looked up in the tree where he saw the baby's rattle!</text>
                 <ideas>
-                    <idea number="47"/>
+                    <idea number="46"/>
                 </ideas>
                 <solution>
                 </solution>
@@ -908,7 +899,7 @@
                 <attributes complexity="3"/>
                 <text>As Paco barked and barked, the rattle dropped to the ground.</text>
                 <ideas>
-                    <idea number="48"/>
+                    <idea number="47"/>
                 </ideas>
                 <solution>
                     <step number="33"/>
@@ -921,7 +912,7 @@
                 <attributes complexity="2"/>
                 <text>Martin drove home and put his keys on the hook.</text>
                 <ideas>
-                    <idea number="51"/>
+                    <idea number="50"/>
                 </ideas>
                 <solution>
                     <step number="39"/>
@@ -932,7 +923,7 @@
                 <attributes complexity="2"/>
                 <text>Paco, Rosa, Lola and the baby were by the tree, and Martin went out to join them.</text>
                 <ideas>
-                    <idea number="52"/>
+                    <idea number="51"/>
                 </ideas>
                 <solution>
                     <step number="41"/>
@@ -942,7 +933,7 @@
                 <attributes complexity="2"/>
                 <text>Just then, a bird flew out of the tree and into the kitchen.</text>
                 <ideas>
-                    <idea number="53"/>
+                    <idea number="52"/>
                 </ideas>
                 <solution>
                     <step number="42"/>
@@ -952,7 +943,7 @@
                 <attributes complexity="2"/>
                 <text>The bird took the keys and flew to its nest.</text>
                 <ideas>
-                    <idea number="54"/>
+                    <idea number="53"/>
                 </ideas>
                 <solution>
                     <step number="43"/>
@@ -963,7 +954,7 @@
                 <attributes complexity="1"/>
                 <text>Martin drove home.</text>
                 <ideas>
-                    <idea number="51"/>
+                    <idea number="50"/>
                 </ideas>
                 <solution>
                     <step number="39"/>
@@ -973,7 +964,7 @@
                 <attributes complexity="1"/>
                 <text>He put his keys on the hook.</text>
                 <ideas>
-                    <idea number="51"/>
+                    <idea number="50"/>
                 </ideas>
                 <solution>
                     <step number="40"/>
@@ -983,7 +974,7 @@
                 <attributes complexity="1"/>
                 <text>Paco, Rosa, Lola, and the baby were by the tree.</text>
                 <ideas>
-                    <idea number="52"/>
+                    <idea number="51"/>
                 </ideas>
                 <solution>
                 </solution>
@@ -992,7 +983,7 @@
                 <attributes complexity="1"/>
                 <text>Martin went out to join them.</text>
                 <ideas>
-                    <idea number="52"/>
+                    <idea number="51"/>
                 </ideas>
                 <solution>
                     <step number="41"/>
@@ -1002,7 +993,7 @@
                 <attributes complexity="1"/>
                 <text>Just then, a bird flew out of the tree.</text>
                 <ideas>
-                    <idea number="53"/>
+                    <idea number="52"/>
                 </ideas>
                 <solution>
                 </solution>
@@ -1011,7 +1002,7 @@
                 <attributes complexity="1"/>
                 <text>It flew into the kitchen.</text>
                 <ideas>
-                    <idea number="53"/>
+                    <idea number="52"/>
                 </ideas>
                 <solution>
                     <step number="42"/>
@@ -1021,7 +1012,7 @@
                 <attributes complexity="1"/>
                 <text>The bird took the keys.</text>
                 <ideas>
-                    <idea number="54"/>
+                    <idea number="53"/>
                 </ideas>
                 <solution>
                     <step number="43"/>
@@ -1031,7 +1022,7 @@
                 <attributes complexity="1"/>
                 <text>Then it flew to its nest.</text>
                 <ideas>
-                    <idea number="54"/>
+                    <idea number="53"/>
                 </ideas>
                 <solution>
                     <step number="44"/>
@@ -1041,7 +1032,7 @@
                 <attributes complexity="3"/>
                 <text>After Martin drove home, he put his keys on the hook.</text>
                 <ideas>
-                    <idea number="51"/>
+                    <idea number="50"/>
                 </ideas>
                 <solution>
                     <step number="39"/>
@@ -1052,7 +1043,7 @@
                 <attributes complexity="3"/>
                 <text>The bird took the keys, and then it flew to its nest.</text>
                 <ideas>
-                    <idea number="54"/>
+                    <idea number="53"/>
                 </ideas>
                 <solution>
                     <step number="43"/>
@@ -1065,7 +1056,7 @@
                 <attributes complexity="2"/>
                 <text>Paco barked and barked, and the bird dropped the keys to the ground.</text>
                 <ideas>
-                    <idea number="55"/>
+                    <idea number="54"/>
                 </ideas>
                 <solution>
                     <step number="45"/>
@@ -1076,7 +1067,7 @@
                 <attributes complexity="2"/>
                 <text>Now everyone understood that the bird loved to take shiny things, and the bird was the thief!</text>
                 <ideas>
-                    <idea number="56"/>
+                    <idea number="55"/>
                 </ideas>
                 <solution>
                 </solution>
@@ -1085,7 +1076,7 @@
                 <attributes complexity="2"/>
                 <text>So, the mystery was finally solved.</text>
                 <ideas>
-                    <idea number="57"/>
+                    <idea number="56"/>
                 </ideas>
                 <solution>
                 </solution>
@@ -1094,7 +1085,7 @@
                 <attributes complexity="2"/>
                 <text>And, Paco was a hero!</text>
                 <ideas>
-                    <idea number="58"/>
+                    <idea number="57"/>
                 </ideas>
                 <solution>
                 </solution>
@@ -1103,7 +1094,7 @@
                 <attributes complexity="2"/>
                 <text>That night, Paco got a big steak dinner for a reward.</text>
                 <ideas>
-                    <idea number="59"/>
+                    <idea number="58"/>
                 </ideas>
                 <solution>
                 </solution>
@@ -1112,17 +1103,17 @@
                 <attributes complexity="1"/>
                 <text>Paco barked and barked.</text>
                 <ideas>
-                    <idea number="55"/>
+                    <idea number="54"/>
                 </ideas>
                 <solution>
                     <step number="45"/>
                 </solution>
             </sentence>
-            <sentence number="7" action="no">
+            <sentence number="7" action="yes">
                 <attributes complexity="1"/>
                 <text>Then the bird dropped the keys to the ground.</text>
                 <ideas>
-                    <idea number="55"/>
+                    <idea number="54"/>
                 </ideas>
                 <solution>
                     <step number="46"/>
@@ -1132,7 +1123,7 @@
                 <attributes complexity="1"/>
                 <text>Now everyone understood.</text>
                 <ideas>
-                    <idea number="56"/>
+                    <idea number="55"/>
                 </ideas>
                 <solution>
                 </solution>
@@ -1141,7 +1132,7 @@
                 <attributes complexity="1"/>
                 <text>The bird loved to take shiny things.</text>
                 <ideas>
-                    <idea number="56"/>
+                    <idea number="55"/>
                 </ideas>
                 <solution>
                 </solution>
@@ -1150,7 +1141,7 @@
                 <attributes complexity="1"/>
                 <text>The bird was the thief!</text>
                 <ideas>
-                    <idea number="56"/>
+                    <idea number="55"/>
                 </ideas>
                 <solution>
                 </solution>
@@ -1159,8 +1150,8 @@
                 <attributes complexity="3"/>
                 <text>So, the mystery was finally solved, and Paco was a hero!</text>
                 <ideas>
+                    <idea number="56"/>
                     <idea number="57"/>
-                    <idea number="58"/>
                 </ideas>
                 <solution>
                 </solution>

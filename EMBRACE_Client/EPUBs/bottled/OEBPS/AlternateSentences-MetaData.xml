@@ -290,14 +290,13 @@
                 <attributes complexity="3"/>
                 <text>As Lucas picked up the ball, he realized that he needed someone to catch it.</text>
                 <ideas>
-                    <idea number="16"/>
                     <idea number="17"/>
                 </ideas>
                 <solution>
                     <step number="10"/>
                 </solution>
             </sentence>
-            <sentence number="12" action="yes">
+            <sentence number="13" action="yes">
                 <attributes complexity="3"/>
                 <text>So, he put it back down and opened the board-game instead.</text>
                 <ideas>
@@ -389,7 +388,7 @@
                 <attributes complexity="1"/>
                 <text>All of this thinking made him sleepy.</text>
                 <ideas>
-                    <idea number="22"/>
+                    <idea number="23"/>
                 </ideas>
                 <solution>
                 </solution>
@@ -422,18 +421,9 @@
                 <solution>
                 </solution>
             </sentence>
-            <sentence number="12" action="no">
+            <sentence number="12" action="yes">
                 <attributes complexity="1"/>
-                <text>He jumped out of bed.</text>
-                <ideas>
-                    <idea number="25"/>
-                </ideas>
-                <solution>
-                </solution>
-            </sentence>
-            <sentence number="13" action="yes">
-                <attributes complexity="1"/>
-                <text>He ran to tell Papa.</text>
+                <text>He jumped out of bed. He ran to tell Papa.</text>
                 <ideas>
                     <idea number="25"/>
                 </ideas>
@@ -441,7 +431,7 @@
                     <step number="14"/>
                 </solution>
             </sentence>
-            <sentence number="14" action="no">
+            <sentence number="13" action="no">
                 <attributes complexity="3"/>
                 <text>After making his first wish too quickly, Lucas felt silly.</text>
                 <ideas>
@@ -450,7 +440,7 @@
                 <solution>
                 </solution>
             </sentence>
-            <sentence number="15" action="no">
+            <sentence number="14" action="no">
                 <attributes complexity="3"/>
                 <text>So, he decided to think harder about his next one.</text>
                 <ideas>
@@ -459,7 +449,7 @@
                 <solution>
                 </solution>
             </sentence>
-            <sentence number="16" action="yes">
+            <sentence number="15" action="yes">
                 <attributes complexity="3"/>
                 <text>Because all this thinking made him sleepy, he took a nap.</text>
                 <ideas>
@@ -469,7 +459,7 @@
                     <step number="13"/>
                 </solution>
             </sentence>
-            <sentence number="17" action="yes">
+            <sentence number="16" action="yes">
                 <attributes complexity="3"/>
                 <text>After he jumped out of bed, he ran to tell Papa.</text>
                 <ideas>
@@ -654,23 +644,23 @@
                     <step number="18"/>
                 </solution>
             </sentence>
-            <sentence number="10" action="no">
+            <sentence number="10" action="yes">
                 <attributes complexity="1"/>
                 <text>This time, he threw it to his brother.</text>
                 <ideas>
                     <idea number="33"/>
                 </ideas>
                 <solution>
+                    <step number="19"/>
                 </solution>
             </sentence>
-            <sentence number="11" action="yes">
+            <sentence number="11" action="no">
                 <attributes complexity="1"/>
                 <text>But the ball flew right past him.</text>
                 <ideas>
                     <idea number="33"/>
                 </ideas>
                 <solution>
-                    <step number="19"/>
                 </solution>
             </sentence>
             <sentence number="12" action="yes">
@@ -756,52 +746,33 @@
             </sentence>
             <sentence number="2" action="no">
                 <attributes complexity="2"/>
-                <text>\"See the river,\" he continued.</text>
+                <text>\"See the river,\" he continued. \"Its happiness does not come from things or wishes. Instead, its joy comes from within.\"</text>
                 <ideas>
                     <idea number="39"/>
                 </ideas>
                 <solution>
                 </solution>
             </sentence>
-            <sentence number="3" action="no">
-                <attributes complexity="2"/>
-                <text>\"Its happiness does not come from things or wishes.</text>
-                <ideas>
-                    <idea number="40"/>
-                </ideas>
-                <solution>
-                </solution>
-            </sentence>
-            <sentence number="4" action="no">
-                <attributes complexity="2"/>
-                <text>Instead, its joy comes from within.\"</text>
-                <ideas>
-                    <idea number="41"/>
-                    <idea number="42"/>
-                </ideas>
-                <solution>
-                </solution>
-            </sentence>
-            <sentence number="5" action="yes">
+            <sentence number="3" action="yes">
                 <attributes complexity="2"/>
                 <text>Lucas understood and tossed the bottle and stone back into the water.</text>
                 <ideas>
-                    <idea number="43"/>
+                    <idea number="40"/>
                 </ideas>
                 <solution>
                     <step number="23"/>
                 </solution>
             </sentence>
-            <sentence number="6" action="no">
+            <sentence number="4" action="no">
                 <attributes complexity="2"/>
                 <text>\"I do not need my last wish to be happy,\" he thought.</text>
                 <ideas>
-                    <idea number="44"/>
+                    <idea number="41"/>
                 </ideas>
                 <solution>
                 </solution>
             </sentence>
-            <sentence number="7" action="no">
+            <sentence number="5" action="no">
                 <attributes complexity="1"/>
                 <text>\"Follow me,\" said Papa.</text>
                 <ideas>
@@ -810,7 +781,7 @@
                 <solution>
                 </solution>
             </sentence>
-            <sentence number="8" action="yes">
+            <sentence number="6" action="yes">
                 <attributes complexity="1"/>
                 <text>He walked down the hill while carrying the baby.</text>
                 <ideas>
@@ -820,7 +791,7 @@
                     <step number="22"/>
                 </solution>
             </sentence>
-            <sentence number="9" action="no">
+            <sentence number="7" action="no">
                 <attributes complexity="1"/>
                 <text>Papa continued, \"See the river.</text>
                 <ideas>
@@ -829,35 +800,44 @@
                 <solution>
                 </solution>
             </sentence>
-            <sentence number="10" action="no">
+            <sentence number="8" action="no">
                 <attributes complexity="1"/>
                 <text>Its happiness does not come from things or wishes.</text>
+                <ideas>
+                   <idea number="39"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="9" action="no">
+                <attributes complexity="1"/>
+                <text>Instead, its joy comes from within.\"</text>
+                <ideas>
+                    <idea number="39"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="10" action="no">
+                <attributes complexity="1"/>
+                <text>Lucas understood.</text>
                 <ideas>
                    <idea number="40"/>
                 </ideas>
                 <solution>
                 </solution>
             </sentence>
-            <sentence number="11" action="no">
-                <attributes complexity="1"/>
-                <text>Lucas understood.</text>
-                <ideas>
-                   <idea number="43"/>
-                </ideas>
-                <solution>
-                </solution>
-            </sentence>
-            <sentence number="12" action="yes">
+            <sentence number="11" action="yes">
                 <attributes complexity="1"/>
                 <text>He tossed the bottle and stone back into the water.</text>
                 <ideas>
-                    <idea number="43"/>
+                    <idea number="40"/>
                 </ideas>
                 <solution>
                     <step number="23"/>
                 </solution>
             </sentence>
-            <sentence number="13" action="yes">
+            <sentence number="12" action="yes">
                 <attributes complexity="3"/>
                 <text>His papa told him to follow him as he walked down the hill while carrying the baby.</text>
                 <ideas>
@@ -867,11 +847,11 @@
                     <step number="22"/>
                 </solution>
             </sentence>
-            <sentence number="14" action="yes">
+            <sentence number="13" action="yes">
                 <attributes complexity="3"/>
                 <text>When Lucas understood, he tossed the bottle and stone back into the water.</text>
                 <ideas>
-                    <idea number="43"/>
+                    <idea number="40"/>
                 </ideas>
                 <solution>
                     <step number="23"/>
@@ -883,7 +863,7 @@
                 <attributes complexity="2"/>
                 <text>Papa filled a cup with water from the river.</text>
                 <ideas>
-                    <idea number="45"/>
+                    <idea number="42"/>
                 </ideas>
                 <solution>
                     <step number="24"/>
@@ -893,108 +873,97 @@
                 <attributes complexity="2"/>
                 <text>He told the boy one last thing: \"By sharing its water, the river helps others, and that brings it joy.\"</text>
                 <ideas>
-                    <idea number="46"/>
-                    <idea number="47"/>
+                    <idea number="43"/>
                 </ideas>
                 <solution>
                 </solution>
             </sentence>
             <sentence number="3" action="yes">
                 <attributes complexity="2"/>
-                <text>The boy gave Papa a hug and said, \"Thank you for your words of wisdom.</text>
+                <text>The boy gave Papa a hug and said, \"Thank you for your words of wisdom. I am so lucky to have a dad like you!\"</text>
                 <ideas>
-                    <idea number="48"/>
+                    <idea number="44"/>
                 </ideas>
                 <solution>
                     <step number="25"/>
                 </solution>
             </sentence>
-            <sentence number="4" action="no">
-                <attributes complexity="2"/>
-                <text>I am so lucky to have a dad like you!\"</text>
-                <ideas>
-                    <idea number="49"/>
-                </ideas>
-                <solution>
-                </solution>
-            </sentence>
-            <sentence number="5" action="yes">
+            <sentence number="4" action="yes">
                 <attributes complexity="2"/>
                 <text>Lucas picked up his brother and went back to the house to play.</text>
                 <ideas>
-                    <idea number="50"/>
+                    <idea number="45"/>
                 </ideas>
                 <solution>
                     <step number="26"/>
                     <step number="27"/>
                 </solution>
             </sentence>
-            <sentence number="6" action="yes">
+            <sentence number="5" action="yes">
                 <attributes complexity="1"/>
                 <text>The boy gave Papa a hug.</text>
                 <ideas>
-                    <idea number="48"/>
+                    <idea number="44"/>
                 </ideas>
                 <solution>
                     <step number="25"/>
                 </solution>
             </sentence>
-            <sentence number="7" action="no">
+            <sentence number="6" action="no">
                 <attributes complexity="1"/>
-                <text>He said, \"Thank you for your words of wisdom.</text>
+                <text>He said, \"Thank you for your words of wisdom. I am so lucky to have a dad like you!\"</text>
                 <ideas>
-                    <idea number="48"/>
+                    <idea number="44"/>
                 </ideas>
                 <solution>
+                </solution>
+            </sentence>
+            <sentence number="7" action="yes">
+                <attributes complexity="1"/>
+                <text>Lucas picked up his brother.</text>
+                <ideas>
+                    <idea number="45"/>
+                </ideas>
+                <solution>
+                    <step number="26"/>
                 </solution>
             </sentence>
             <sentence number="8" action="yes">
                 <attributes complexity="1"/>
-                <text>Lucas picked up his brother.</text>
-                <ideas>
-                    <idea number="50"/>
-                </ideas>
-                <solution>
-                    <step number="26"/>
-                </solution>
-            </sentence>
-            <sentence number="9" action="yes">
-                <attributes complexity="1"/>
                 <text>He went back to the house to play.</text>
                 <ideas>
-                    <idea number="50"/>
+                    <idea number="45"/>
                 </ideas>
                 <solution>
                     <step number="27"/>
                 </solution>
             </sentence>
-            <sentence number="10" action="yes">
+            <sentence number="9" action="yes">
                 <attributes complexity="3"/>
                 <text>As Papa filled a cup with water from the river, he told the boy one last thing, \"By sharing its water, the river helps others, and that brings it joy.\"</text>
                 <ideas>
-                    <idea number="45"/>
-                    <idea number="46"/>
-                    <idea number="47"/>
+                    <idea number="42"/>
+                    <idea number="43"/>
                 </ideas>
                 <solution>
                     <step number="24"/>
                 </solution>
             </sentence>
-            <sentence number="12" action="yes">
+            <sentence number="10" action="yes">
                 <attributes complexity="3"/>
-                <text>While the boy gave Papa a hug, he said, \"Thank you for your words of wisdom.</text>
+                <text>While the boy gave Papa a hug, he said, \"Thank you for your words of wisdom. I am so lucky to have a dad like you!\"</text>
                 <ideas>
-                    <idea number="48"/>
+                    <idea number="44"/>
                 </ideas>
                 <solution>
                     <step number="25"/>
                 </solution>
             </sentence>
-            <sentence number="13" action="yes">
+            <sentence number="11" action="yes">
                 <attributes complexity="3"/>
                 <text>Lucas picked up his brother so they could go back to the house to play.</text>
                 <ideas>
-                    <idea number="50"/>
+                    <idea number="45"/>
                 </ideas>
                 <solution>
                     <step number="26"/>
@@ -1007,7 +976,7 @@
                 <attributes complexity="2"/>
                 <text>This time, he grabbed the rattle from the green chair and gave it to the baby.</text>
                 <ideas>
-                    <idea number="51"/>
+                    <idea number="46"/>
                 </ideas>
                 <solution>
                     <step number="28"/>
@@ -1017,7 +986,7 @@
                 <attributes complexity="2"/>
                 <text>Lucas had decided to make the baby happy instead of himself.</text>
                 <ideas>
-                    <idea number="52"/>
+                    <idea number="47"/>
                 </ideas>
                 <solution>
                 </solution>
@@ -1026,44 +995,35 @@
                 <attributes complexity="2"/>
                 <text>When he heard his brother giggle, Lucas became very happy, too!</text>
                 <ideas>
-                    <idea number="53"/>
+                    <idea number="48"/>
                 </ideas>
                 <solution>
                 </solution>
             </sentence>
-            <sentence number="4" action="no">
+            <sentence number="4" action="yes">
                 <attributes complexity="1"/>
-                <text>He grabbed the rattle from the green chair.</text>
+                <text>He grabbed the rattle from the green chair. Then he gave it to the baby.</text>
                 <ideas>
-                    <idea number="51"/>
-                </ideas>
-                <solution>
-                </solution>
-            </sentence>
-            <sentence number="5" action="yes">
-                <attributes complexity="1"/>
-                <text>Then he gave it to the baby.</text>
-                <ideas>
-                    <idea number="51"/>
+                    <idea number="46"/>
                 </ideas>
                 <solution>
                     <step number="28"/>
                 </solution>
             </sentence>
-            <sentence number="6" action="no">
+            <sentence number="5" action="no">
                 <attributes complexity="1"/>
                 <text>He heard his brother giggle.</text>
                 <ideas>
-                    <idea number="53"/>
+                    <idea number="48"/>
                 </ideas>
                 <solution>
                 </solution>
             </sentence>
-            <sentence number="7" action="no">
+            <sentence number="6" action="no">
                 <attributes complexity="1"/>
                 <text>Lucas became very happy too!</text>
                 <ideas>
-                    <idea number="53"/>
+                    <idea number="48"/>
                 </ideas>
                 <solution>
                 </solution>
@@ -1074,7 +1034,7 @@
                 <attributes complexity="2"/>
                 <text>A few days later, as usual, Lucas took a stroll along the river while playing with his ball.</text>
                 <ideas>
-                    <idea number="54"/>
+                    <idea number="49"/>
                 </ideas>
                 <solution>
                     <step number="29"/>
@@ -1084,7 +1044,7 @@
                 <attributes complexity="2"/>
                 <text>He was relieved to see that the bottle and stone were out of sight.</text>
                 <ideas>
-                    <idea number="55"/>
+                    <idea number="50"/>
                 </ideas>
                 <solution>
                 </solution>
@@ -1093,7 +1053,7 @@
                 <attributes complexity="2"/>
                 <text>All of a sudden, a young girl crossed his path.</text>
                 <ideas>
-                    <idea number="56"/>
+                    <idea number="51"/>
                 </ideas>
                 <solution>
                     <step number="30"/>
@@ -1103,7 +1063,7 @@
                 <attributes complexity="2"/>
                 <text>\"Hi, I'm Olivia! I live just on the other side of that hill,\" she said.</text>
                 <ideas>
-                    <idea number="57"/>
+                    <idea number="52"/>
                 </ideas>
                 <solution>
                 </solution>
@@ -1112,35 +1072,35 @@
                 <attributes complexity="2"/>
                 <text>He noticed that the girl had something in her hand.</text>
                 <ideas>
-                    <idea number="58"/>
+                    <idea number="53"/>
                 </ideas>
                 <solution>
                 </solution>
             </sentence>
-            <sentence number="6" action="no">
+            <sentence number="6" action="yes">
                 <attributes complexity="1"/>
                 <text>A few days later, Lucas took a stroll along the river.</text>
                 <ideas>
-                    <idea number="54"/>
-                </ideas>
-                <solution>
-                </solution>
-            </sentence>
-            <sentence number="7" action="yes">
-                <attributes complexity="1"/>
-                <text>He was playing with his ball.</text>
-                <ideas>
-                    <idea number="54"/>
+                    <idea number="49"/>
                 </ideas>
                 <solution>
                     <step number="29"/>
+                </solution>
+            </sentence>
+            <sentence number="7" action="no">
+                <attributes complexity="1"/>
+                <text>He was playing with his ball.</text>
+                <ideas>
+                    <idea number="49"/>
+                </ideas>
+                <solution>
                 </solution>
             </sentence>
             <sentence number="8" action="no">
                 <attributes complexity="3"/>
                 <text>When he saw that the bottle and stone were out of sight, he was relieved.</text>
                 <ideas>
-                    <idea number="58"/>
+                    <idea number="50"/>
                 </ideas>
                 <solution>
                 </solution>
@@ -1149,7 +1109,7 @@
                 <attributes complexity="3"/>
                 <text>Just then, he noticed that the girl had something in her hand.</text>
                 <ideas>
-                    <idea number="58"/>
+                    <idea number="53"/>
                 </ideas>
                 <solution>
                 </solution>
@@ -1160,7 +1120,7 @@
                 <attributes complexity="2"/>
                 <text>Lucas asked Olivia what she was holding, but she replied, \"Nothing!\" Then she threw the bottle behind the bush to hide it.</text>
                 <ideas>
-                    <idea number="59"/>
+                    <idea number="54"/>
                 </ideas>
                 <solution>
                     <step number="31"/>
@@ -1170,7 +1130,7 @@
                 <attributes complexity="2"/>
                 <text>\"I don't want to take your wish, Olivia.</text>
                 <ideas>
-                    <idea number="60"/>
+                    <idea number="55"/>
                 </ideas>
                 <solution>
                 </solution>
@@ -1179,7 +1139,7 @@
                 <attributes complexity="2"/>
                 <text>Can we just be friends?\" asked the boy while picking up the bottle and handing it to her.</text>
                 <ideas>
-                    <idea number="61"/>
+                    <idea number="56"/>
                 </ideas>
                 <solution>
                     <step number="32"/>
@@ -1189,7 +1149,7 @@
                 <attributes complexity="1"/>
                 <text>\"What are you holding?\" asked Lucas.</text>
                 <ideas>
-                    <idea number="59"/>
+                    <idea number="54"/>
                 </ideas>
                 <solution>
                 </solution>
@@ -1198,45 +1158,45 @@
                 <attributes complexity="1"/>
                 <text>Olivia replied, \"Nothing!\" Then she threw the bottle behind the bush to hide it.</text>
                 <ideas>
-                    <idea number="59"/>
+                    <idea number="54"/>
                 </ideas>
                 <solution>
                     <step number="31"/>
                 </solution>
             </sentence>
-            <sentence number="6" action="yes">
+            <sentence number="6" action="no">
                 <attributes complexity="1"/>
-                <text>Lucas picked up the bottle and handed it to her.</text>
+                <text>He said, \"I don't want to take your wish, Olivia.</text>
                 <ideas>
-                    <idea number="61"/>
+                    <idea number="55"/>
                 </ideas>
                 <solution>
-                    <step number="32"/>
                 </solution>
             </sentence>
             <sentence number="7" action="no">
                 <attributes complexity="1"/>
-                <text>He said, \"I don't want to take your wish, Olivia.</text>
+                <text>Can we just be friends?\"</text>
                 <ideas>
-                    <idea number="61"/>
+                    <idea number="56"/>
                 </ideas>
                 <solution>
                 </solution>
             </sentence>
-            <sentence number="8" action="no">
+            <sentence number="8" action="yes">
                 <attributes complexity="1"/>
-                <text>Can we just be friends?\"</text>
+                <text>Lucas picked up the bottle and handed it to her.</text>
                 <ideas>
-                    <idea number="61"/>
+                    <idea number="56"/>
                 </ideas>
                 <solution>
+                    <step number="32"/>
                 </solution>
             </sentence>
             <sentence number="9" action="yes">
                 <attributes complexity="3"/>
                 <text>When Lucas asked Olivia what she was holding, she replied, \"Nothing!\" and then she threw the bottle behind the bush to hide it.</text>
                 <ideas>
-                    <idea number="59"/>
+                    <idea number="54"/>
                 </ideas>
                 <solution>
                     <step number="31"/>
@@ -1246,77 +1206,65 @@
         <story title="Catch!" page_id="story5-PM-3">
             <sentence number="1" action="no">
                 <attributes complexity="2"/>
-                <text>\"I would love to be friends!\" she replied.</text>
+                <text>\"I would love to be friends!\" she replied. \"I don't need a wish anymore.\"</text>
                 <ideas>
-                    <idea number="62"/>
+                    <idea number="57"/>
                 </ideas>
                 <solution>
                 </solution>
             </sentence>
-            <sentence number="2" action="no">
-                <attributes complexity="2"/>
-                <text>\"I don't need a wish anymore.\"</text>
-                <ideas>
-                    <idea number="63"/>
-                    <idea number="64"/>
-                </ideas>
-                <solution>
-                </solution>
-            </sentence>
-            <sentence number="3" action="yes">
+            <sentence number="2" action="yes">
                 <attributes complexity="2"/>
                 <text>\"Catch!\" Lucas yelled as he threw her the ball.</text>
                 <ideas>
-                    <idea number="65"/>
+                    <idea number="58"/>
                 </ideas>
                 <solution>
                     <step number="33"/>
                 </solution>
             </sentence>
-            <sentence number="4" action="no">
+            <sentence number="3" action="no">
                 <attributes complexity="2"/>
                 <text>From that day forward, the two friends were always together.</text>
                 <ideas>
-                    <idea number="66"/>
+                    <idea number="59"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="4" action="no">
+                <attributes complexity="2"/>
+                <text>By treating others with kindness and finding joy within himself, Lucas got exactly what he needed: someone to catch the ball.</text>
+                <ideas>
+                    <idea number="60"/>
                 </ideas>
                 <solution>
                 </solution>
             </sentence>
             <sentence number="5" action="no">
-                <attributes complexity="2"/>
-                <text>By treating others with kindness and finding joy within himself, Lucas got exactly what he needed: someone to catch the ball.</text>
-                <ideas>
-                    <idea number="67"/>
-                </ideas>
-                <solution>
-                </solution>
-            </sentence>
-            <sentence number="6" action="no">
                 <attributes complexity="1"/>
                 <text>\"Catch!\" Lucas yelled.</text>
                 <ideas>
-                    <idea number="65"/>
+                    <idea number="58"/>
                 </ideas>
                 <solution>
                 </solution>
             </sentence>
-            <sentence number="7" action="yes">
+            <sentence number="6" action="yes">
                 <attributes complexity="1"/>
                 <text>He threw her the ball.</text>
                 <ideas>
-                    <idea number="65"/>
+                    <idea number="58"/>
                 </ideas>
                 <solution>
                     <step number="33"/>
                 </solution>
             </sentence>
-            <sentence number="8" action="no">
+            <sentence number="7" action="no">
                 <attributes complexity="3"/>
                 <text>Olivia said that she would love to be friends and that she didn't need a wish anymore.</text>
                 <ideas>
-                    <idea number="62"/>
-                    <idea number="63"/>
-                    <idea number="64"/>
+                    <idea number="57"/>
                 </ideas>
                 <solution>
                 </solution>

@@ -90,8 +90,6 @@
                     <move obj1Id="lucas" action="getIn" waypointId="lucasBedroom"/>
                 </step>
             </idea>
-            
-            
             <idea number="19">
                 <step number="12">
                     <group obj1Id="lucas" action="grabRight" obj2Id="boardgame"/>
@@ -197,10 +195,7 @@
                 </step>
             </idea>
             <idea number="39"/>
-            <idea number="40"/>
-            <idea number="41"/>
-            <idea number="42"/>
-            <idea number="43">
+            <idea number="40">
                 <step number="23">
                     <shakeOrTap obj1Id="lucas" action="getIn" locationId="riverSide"/>
                     <ungroupAndStay obj1Id="lucas" action="drop" obj2Id="bottle"/>
@@ -208,10 +203,10 @@
                     <move obj1Id="bottle" action="getIn" waypointId="bottleRiver"/>
                 </step>
             </idea>
-            <idea number="44"/>
+            <idea number="41"/>
         </story>
         <story title="Words of Wisdom" activity_id="story4-PM-2">
-            <idea number="45">
+            <idea number="42">
                 <step number="24">
                     <check obj1Id="papa" action="getIn" locationId="riverSide"/>
                     <ungroup obj1Id="cup" action="drop" obj2Id="papa"/>
@@ -220,9 +215,8 @@
                     <move obj1Id="papa" action="getIn" waypointId="papaRiver"/>
                 </step>
             </idea>
-            <idea number="46"/>
-            <idea number="47"/>
-            <idea number="48">
+            <idea number="43"/>
+            <idea number="44">
                 <step number="25">
                     <group obj1Id="lucas" action="hug" obj2Id="papa"/>
                     <ungroup obj1Id="lucas" action="leave" obj2Id="papa"/>
@@ -232,8 +226,7 @@
                     <disappearAuto obj1Id="papa" action="disappear" obj2Id="papa"/>
                 </step>
             </idea>
-            <idea number="49"/>
-            <idea number="50">
+            <idea number="45">
                 <step number="26">
                     <disappearAuto obj1Id="hug" action="disappear" obj2Id="hug"/>
                     <appear obj1Id="lucas" action="appear"/>
@@ -250,7 +243,7 @@
             </idea>
         </story>
         <story title="Words of Wisdom" activity_id="story4-PM-3">
-            <idea number="51">
+            <idea number="46">
                 <step number="28">
                     <group obj1Id="lucas" action="grabRight" obj2Id="rattle"/>
                     <move obj1Id="lucas" action="getIn" waypointId="lucasRattle"/>
@@ -259,11 +252,11 @@
                     <move obj1Id="lucas" action="getIn" waypointId="lucasLivingRoom"/>
                 </step>
             </idea>
-            <idea number="52"/>
-            <idea number="53"/>
+            <idea number="47"/>
+            <idea number="48"/>
         </story>
         <story title="Catch!" activity_id="story5-PM-1">
-            <idea number="54">
+            <idea number="49">
                 <step number="29">
                     <check obj1Id="lucas" action="getIn" locationId="riverSide"/>
                     <ungroup obj1Id="lucas" action="drop" obj2Id="ball"/>
@@ -272,8 +265,8 @@
                     <groupAuto obj1Id="lucas" action="grabRight" obj2Id="ball"/>
                 </step>
             </idea>
-            <idea number="55"/>
-            <idea number="56">
+            <idea number="50"/>
+            <idea number="51">
                 <step number="30">
                     <check obj1Id="olivia" action="getIn" locationId="riverSide"/>
                     <ungroup obj1Id="olivia" action="drop" obj2Id="bottle"/>
@@ -282,11 +275,11 @@
                     <groupAuto obj1Id="bottle" action="getIn" obj2Id="olivia"/>
                 </step>
             </idea>
-            <idea number="57"/>
-            <idea number="58"/>
+            <idea number="52"/>
+            <idea number="53"/>
         </story>
         <story title="Catch!" activity_id="story5-PM-2">
-            <idea number="59">
+            <idea number="54">
                 <step number="31">
                     <check obj1Id="olivia" action="getIn" locationId="bush"/>
                     <ungroup obj1Id="olivia" action="drop" obj2Id="bottle"/>
@@ -294,8 +287,8 @@
                     <move obj1Id="bottle" action="getIn" waypointId="bottleBush"/>
                 </step>
             </idea>
-            <idea number="60"/>
-            <idea number="61">
+            <idea number="55"/>
+            <idea number="56">
                 <step number="32">
                     <group obj1Id="lucas" action="grabLeft" obj2Id="bottle"/>
                     <move obj1Id="lucas" action="getIn" waypointId="lucasBush"/>
@@ -306,10 +299,8 @@
             </idea>
         </story>
         <story title="Catch!" activity_id="story5-PM-3">
-            <idea number="62"/>
-            <idea number="63"/>
-            <idea number="64"/>
-            <idea number="65">
+            <idea number="57"/>
+            <idea number="58">
                 <step number="33">
                     <shakeOrTap obj1Id="lucas" action="getIn" locationId="anywhere"/>
                     <ungroup obj1Id="lucas" action="drop" obj2Id="ball"/>
@@ -317,8 +308,8 @@
                     <groupAuto obj1Id="ball" action="grabRight" obj2Id="olivia"/>
                 </step>
             </idea>
-            <idea number="66"/>
-            <idea number="67"/>
+            <idea number="59"/>
+            <idea number="60"/>
         </story>
     </solutions>
 </metadata>
