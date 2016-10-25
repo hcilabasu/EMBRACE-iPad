@@ -2288,6 +2288,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     if ([errorType isEqualToString:@"vocabulary"]) {
         [self playNoiseName:ERROR_FEEDBACK_NOISE];
         
+        // Record highlighted objects/locations for logging
+        NSMutableArray *highlightedItems = [[NSMutableArray alloc] init];
+        
         // Get steps for current sentence
         NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
         
@@ -2304,6 +2307,11 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             if ([locationId isEqualToString:EMPTYSTRING]) {
                 locationId = [currSolStep areaId];
             }
+            
+            [highlightedItems addObject:object1Id];
+            [highlightedItems addObject:locationId];
+            
+            [[ServerCommunicationController sharedInstance] logVocabularyErrorFeedback:highlightedItems context:manipulationContext];
             
             [self highlightImageForText:object1Id];
             
@@ -2327,6 +2335,11 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     nextObject1Id = [nextSolStep object2Id];
                 }
                 
+                [highlightedItems addObject:object1Id];
+                [highlightedItems addObject:nextObject1Id];
+                
+                [[ServerCommunicationController sharedInstance] logVocabularyErrorFeedback:highlightedItems context:manipulationContext];
+                
                 [self highlightImageForText:object1Id];
                 [self highlightImageForText:nextObject1Id];
                 
@@ -2339,6 +2352,11 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         else {
             NSString *object1Id = [currSolStep object1Id];
             NSString *object2Id = [currSolStep object2Id];
+            
+            [highlightedItems addObject:object1Id];
+            [highlightedItems addObject:object2Id];
+            
+            [[ServerCommunicationController sharedInstance] logVocabularyErrorFeedback:highlightedItems context:manipulationContext];
             
             [self highlightImageForText:object1Id];
             [self highlightImageForText:object2Id];
@@ -2395,6 +2413,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             // Join sentences together and remove any slash characters
             NSString *message = [[simplerSentences componentsJoinedByString:@" "] stringByReplacingOccurrencesOfString:@"\\" withString:EMPTYSTRING];
             
+            [[ServerCommunicationController sharedInstance] logSyntaxErrorFeedback:message context:manipulationContext];
+            
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
             [alert addAction:action];
@@ -2405,6 +2425,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         }
         // Default to usability error feedback if there are no simpler sentences available
         else {
+            // Log attempted syntax error feedback
+            [[ServerCommunicationController sharedInstance] logSyntaxErrorFeedback:@"NULL" context:manipulationContext];
+            
             [self provideFeedbackForErrorType:@"usability"];
         }
     }
@@ -3007,7 +3030,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 /*
  *  Handles moving to next sentence, page, IMMenu, or assessment
  */
-- (void) pressedNextStory{
+- (void)pressedNextStory{
     NSString *sentenceClass = [self.manipulationView getSentenceClass:sentenceContext.currentSentence];
     
     if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && ([sentenceClass containsString: @"sentence actionSentence"] || [sentenceClass containsString: @"sentence IMactionSentence"])) {
@@ -3087,7 +3110,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 /*
  *  Creates the IMMenu page for im solutions
  */
-- (void) createIMMenuPage{
+- (void)createIMMenuPage{
     //Get steps for current sentence
     NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
     
@@ -3194,6 +3217,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
     NSString *stepType = [currSolStep stepType];
     
+    // Record animated objects/locations for logging
+    NSMutableArray *animatedItems;
+    
+    if (conditionSetup.appMode == ITS) {
+        animatedItems = [[NSMutableArray alloc] init];
+    }
+    
     // Animate moving object to location
     if ([stepType isEqualToString:CHECK] || [stepType isEqualToString:CHECKLEFT] || [stepType isEqualToString:CHECKRIGHT] || [stepType isEqualToString:CHECKUP] || [stepType isEqualToString:CHECKDOWN] || [stepType isEqualToString:CHECKANDSWAP] || [stepType isEqualToString:TAPTOANIMATE] || [stepType isEqualToString:CHECKPATH] || [stepType isEqualToString:SHAKEORTAP] || [stepType isEqualToString:TAPWORD] ) {
         if ([stepType isEqualToString:CHECK]) {
@@ -3206,6 +3236,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 
                 Waypoint *waypoint = [model getWaypointWithId:[nextSolStep waypointId]];
                 CGPoint waypointLocation = [self getWaypointLocation:waypoint];
+                
+                if (conditionSetup.appMode == ITS) {
+                    [animatedItems addObject:object1Id];
+                    [animatedItems addObject:[waypoint waypointId]];
+                    
+                    [[ServerCommunicationController sharedInstance] logUsabilityErrorFeedback:animatedItems context:manipulationContext];
+                }
                 
                 [self highlightObject:object1Id :2.0];
                 
@@ -3226,11 +3263,21 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 });
             }
             else {
+                if (conditionSetup.appMode == ITS) {
+                    // Log attempted usability error feedback
+                    [[ServerCommunicationController sharedInstance] logUsabilityErrorFeedback:animatedItems context:manipulationContext];
+                }
+                
                 allowInteractions = TRUE;
                 [ssc incrementCurrentStep];
             }
         }
         else {
+            if (conditionSetup.appMode == ITS) {
+                // Log attempted usability error feedback
+                [[ServerCommunicationController sharedInstance] logUsabilityErrorFeedback:animatedItems context:manipulationContext];
+            }
+            
             allowInteractions = TRUE;
             
             if ([stepType isEqualToString:CHECKANDSWAP]) {
@@ -3288,6 +3335,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             CGPoint objectHotspotLocation = [self.manipulationView getHotspotLocation:objectHotspot];
             CGPoint nextObjectHotspotLocation = [self.manipulationView getHotspotLocation:nextObjectHotspot];
             
+            if (conditionSetup.appMode == ITS) {
+                [animatedItems addObject:objectId];
+                [animatedItems addObject:nextObjectId];
+                
+                [[ServerCommunicationController sharedInstance] logUsabilityErrorFeedback:animatedItems context:manipulationContext];
+            }
+            
             [self highlightObject:objectId :2.0];
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
@@ -3324,6 +3378,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         
         CGPoint object1HotspotLocation = [self.manipulationView getHotspotLocation:object1Hotspot];
         CGPoint object2HotspotLocation = [self.manipulationView getHotspotLocation:object2Hotspot];
+        
+        if (conditionSetup.appMode == ITS) {
+            [animatedItems addObject:object1Id];
+            [animatedItems addObject:object2Id];
+            
+            [[ServerCommunicationController sharedInstance] logUsabilityErrorFeedback:animatedItems context:manipulationContext];
+        }
         
         [self highlightObject:object1Id :2.0];
         

@@ -1839,15 +1839,105 @@ static ServerCommunicationController *sharedInstance = nil;
 }
 
 - (void)logVocabularyErrorFeedback:(NSArray *)highlightedItems context:(ManipulationContext *)context {
-
+    //Start with base node for system action
+    DDXMLElement *nodeBaseAction = [self getBaseActionForActor:SYSTEM];
+    [study addChild:nodeBaseAction];
+    
+    //Set selection
+    DDXMLElement *nodeSelection = [[nodeBaseAction elementsForName:@"Selection"] objectAtIndex:0];
+    [nodeSelection setStringValue:@"Vocabulary Error"];
+    
+    //Set action
+    DDXMLElement *nodeAction = [[nodeBaseAction elementsForName:@"Action"] objectAtIndex:0];
+    [nodeAction setStringValue:@"Provide Vocabulary Error Feedback"];
+    
+    //Get input
+    DDXMLElement *nodeInput = [[nodeBaseAction elementsForName:@"Input"] objectAtIndex:0];
+    
+    //Create nodes for input information
+    DDXMLElement *nodeHighlightedItems = [DDXMLElement elementWithName:@"Highlighted_Items" stringValue:[highlightedItems componentsJoinedByString:@", "]];
+    
+    //Add above nodes to input
+    [nodeInput addChild:nodeHighlightedItems];
+    
+    //Get context
+    DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
+    
+    //Create nodes for context information
+    DDXMLElement *nodeManipulationContext = [self getManipulationContext:context];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
+    
+    //Add above nodes to context
+    [nodeContext addChild:nodeManipulationContext];
+    [nodeContext addChild:nodeStudyContext];
 }
 
 - (void)logSyntaxErrorFeedback:(NSString *)simplerSentence context:(ManipulationContext *)context {
+    //Start with base node for system action
+    DDXMLElement *nodeBaseAction = [self getBaseActionForActor:SYSTEM];
+    [study addChild:nodeBaseAction];
     
+    //Set selection
+    DDXMLElement *nodeSelection = [[nodeBaseAction elementsForName:@"Selection"] objectAtIndex:0];
+    [nodeSelection setStringValue:@"Syntax Error"];
+    
+    //Set action
+    DDXMLElement *nodeAction = [[nodeBaseAction elementsForName:@"Action"] objectAtIndex:0];
+    [nodeAction setStringValue:@"Provide Syntax Error Feedback"];
+    
+    //Get input
+    DDXMLElement *nodeInput = [[nodeBaseAction elementsForName:@"Input"] objectAtIndex:0];
+    
+    //Create nodes for input information
+    DDXMLElement *nodeSimplerSentence = [DDXMLElement elementWithName:@"Simpler_Sentence" stringValue:simplerSentence];
+    
+    //Add above nodes to input
+    [nodeInput addChild:nodeSimplerSentence];
+    
+    //Get context
+    DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
+    
+    //Create nodes for context information
+    DDXMLElement *nodeManipulationContext = [self getManipulationContext:context];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
+    
+    //Add above nodes to context
+    [nodeContext addChild:nodeManipulationContext];
+    [nodeContext addChild:nodeStudyContext];
 }
 
 - (void)logUsabilityErrorFeedback:(NSArray *)animatedItems context:(ManipulationContext *)context {
+    //Start with base node for system action
+    DDXMLElement *nodeBaseAction = [self getBaseActionForActor:SYSTEM];
+    [study addChild:nodeBaseAction];
     
+    //Set selection
+    DDXMLElement *nodeSelection = [[nodeBaseAction elementsForName:@"Selection"] objectAtIndex:0];
+    [nodeSelection setStringValue:@"Usability Error"];
+    
+    //Set action
+    DDXMLElement *nodeAction = [[nodeBaseAction elementsForName:@"Action"] objectAtIndex:0];
+    [nodeAction setStringValue:@"Provide Usability Error Feedback"];
+    
+    //Get input
+    DDXMLElement *nodeInput = [[nodeBaseAction elementsForName:@"Input"] objectAtIndex:0];
+    
+    //Create nodes for input information
+    DDXMLElement *nodeAnimatedItems = [DDXMLElement elementWithName:@"Animated_Items" stringValue:[animatedItems componentsJoinedByString:@", "]];
+    
+    //Add above nodes to input
+    [nodeInput addChild:nodeAnimatedItems];
+    
+    //Get context
+    DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
+    
+    //Create nodes for context information
+    DDXMLElement *nodeManipulationContext = [self getManipulationContext:context];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
+    
+    //Add above nodes to context
+    [nodeContext addChild:nodeManipulationContext];
+    [nodeContext addChild:nodeStudyContext];
 }
 
 #pragma mark - Saving/loading progress files
