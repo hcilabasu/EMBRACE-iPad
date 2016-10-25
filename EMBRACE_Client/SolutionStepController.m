@@ -274,6 +274,8 @@
     if (conditionSetup.appMode == ITS) {
         NSMutableSet *vocabToAdd = [[ITSController sharedInstance] getExtraIntroductionVocabularyForChapter:chapter inBook:mvc.book];
         
+        [[ServerCommunicationController sharedInstance] logAdaptVocabulary:[NSArray arrayWithArray:[vocabToAdd allObjects]] context:manipulationContext];
+        
         for (NSString *vocab in vocabToAdd) {
             sentenceContext.totalSentences++;
             

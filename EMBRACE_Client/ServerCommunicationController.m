@@ -1838,6 +1838,40 @@ static ServerCommunicationController *sharedInstance = nil;
     [nodeContext addChild:nodeStudyContext];
 }
 
+- (void)logAdaptVocabulary:(NSArray *)addedWords context:(ManipulationContext *)context {
+    //Start with base node for system action
+    DDXMLElement *nodeBaseAction = [self getBaseActionForActor:SYSTEM];
+    [study addChild:nodeBaseAction];
+    
+    //Set selection
+    DDXMLElement *nodeSelection = [[nodeBaseAction elementsForName:@"Selection"] objectAtIndex:0];
+    [nodeSelection setStringValue:@"Vocabulary Introduction"];
+    
+    //Set action
+    DDXMLElement *nodeAction = [[nodeBaseAction elementsForName:@"Action"] objectAtIndex:0];
+    [nodeAction setStringValue:@"Adapted Vocabulary Introduction"];
+    
+    //Get input
+    DDXMLElement *nodeInput = [[nodeBaseAction elementsForName:@"Input"] objectAtIndex:0];
+    
+    //Create nodes for input information
+    DDXMLElement *nodeExtraVocabulary = [DDXMLElement elementWithName:@"Extra_Vocabulary" stringValue:[addedWords componentsJoinedByString:@", "]];
+    
+    //Add above nodes to input
+    [nodeInput addChild:nodeExtraVocabulary];
+    
+    //Get context
+    DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
+    
+    //Create nodes for context information
+    DDXMLElement *nodeManipulationContext = [self getManipulationContext:context];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
+    
+    //Add above nodes to context
+    [nodeContext addChild:nodeManipulationContext];
+    [nodeContext addChild:nodeStudyContext];
+}
+
 - (void)logVocabularyErrorFeedback:(NSArray *)highlightedItems context:(ManipulationContext *)context {
     //Start with base node for system action
     DDXMLElement *nodeBaseAction = [self getBaseActionForActor:SYSTEM];
