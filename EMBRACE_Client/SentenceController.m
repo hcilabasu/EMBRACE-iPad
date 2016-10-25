@@ -228,8 +228,8 @@
 - (NSInteger)getComplexityOfCurrentSentence {
     NSInteger complexity = 0; // No complexity
     
-    if ([[sentenceContext pageSentences] count] > 0) {
-        AlternateSentence *currentSentence = [sentenceContext.pageSentences objectAtIndex:sentenceContext.currentSentence];
+    if ([[sentenceContext pageSentences] count] > 0 && sentenceContext.currentSentence > 0) {
+        AlternateSentence *currentSentence = [sentenceContext.pageSentences objectAtIndex:sentenceContext.currentSentence - 1];
         complexity = [currentSentence complexity];
     }
     

@@ -16,8 +16,16 @@
 // Probability of correctly applying a not known skill
 #define DEFAULT_GUESS 0.1
 
+#define DEFAULT_SYNTAX_GUESS 0.1
+#define DEFAULT_VOCAB_GUESS 0.4
+#define DEFAULT_USABILITY_GUESS 0.1
+
 // Probability of making a mistake applying a known skill
 #define DEFAULT_SLIP 0.2
+
+#define DEFAULT_SYNTAX_SLIP 0.1
+#define DEFAULT_VOCAB_SLIP 0.1
+#define DEFAULT_USABILITY_SLIP 0.1
 
 // Probability of student’s knowledge of a skill transitioning from not known to known state after an opportunity to apply it.
 #define DEFAULT_SYNTAX_TRANSITION 0.05
@@ -58,13 +66,15 @@
 - (Skill *)updateSkill:(Skill *)skill isVerified:(BOOL)isVerified {
     double newSkill = 0.0;
     
+    NSLog(@"\n");
+    
     if (isVerified) {
-        double skillEvaluated = [self calcCorrect:skill.skillValue];
+        double skillEvaluated = [self calcCorrect:skill.skillValue skillType:[skill skillType]];
         newSkill = [self calcNewSkillValue:skillEvaluated skillType:[skill skillType]];
         [skill updateSkillValue:newSkill];
     }
     else {
-        double skillEvaluated = [self calcIncorrect:skill.skillValue];
+        double skillEvaluated = [self calcIncorrect:skill.skillValue skillType:[skill skillType]];
         newSkill = [self calcNewSkillValue:skillEvaluated skillType:[skill skillType]];
         [skill updateSkillValue:newSkill];
     }
@@ -88,6 +98,7 @@
     double newSkillValue = [sk skillValue];
     
     [[ServerCommunicationController sharedInstance] logUpdateSkill:word ofType:@"Vocabulary" prevValue:prevSkillValue newSkillValue:newSkillValue context:context];
+    NSLog(@"\nUpdated Vocabulary Skill: %@\nPrevious Value: %f\nNew Value: %f", word, prevSkillValue, newSkillValue);
     
     return sk;
 }
@@ -108,6 +119,7 @@
     double newSkillValue = [sk skillValue];
     
     [[ServerCommunicationController sharedInstance] logUpdateSkill:@"Usability" ofType:@"Usability" prevValue:prevSkillValue newSkillValue:newSkillValue context:context];
+    NSLog(@"\nUpdated Usability Skill\nPrevious Value: %f\nNew Value: %f", prevSkillValue, newSkillValue);
     
     return sk;
 }
@@ -128,6 +140,7 @@
     double newSkillValue = [sk skillValue];
     
     [[ServerCommunicationController sharedInstance] logUpdateSkill:[NSString stringWithFormat:@"%d", complex] ofType:@"Syntax" prevValue:prevSkillValue newSkillValue:newSkillValue context:context];
+    NSLog(@"\nUpdated Syntax Skill: %d\nPrevious Value: %f\nNew Value: %f", complex, prevSkillValue, newSkillValue);
     
     return sk;
 }
@@ -152,70 +165,101 @@
 
 #pragma mark -
 
-- (double)getSlip {
-    return DEFAULT_SLIP;
+- (double)getSlipForSkillType:(SkillType)type {
+    double slip = DEFAULT_SLIP;
+    
+    switch (type) {
+        case SkillType_Usability:
+            slip = DEFAULT_USABILITY_SLIP;
+            break;
+        case SkillType_Syntax:
+            slip = DEFAULT_SYNTAX_SLIP;
+            break;
+        case SkillType_Vocab:
+            slip = DEFAULT_VOCAB_SLIP;
+            break;
+        default:
+            break;
+    }
+    
+    return slip;
 }
 
-- (double)getGuess {
-    return DEFAULT_GUESS;
+- (double)getGuessForSkillType:(SkillType)type {
+    double guess = DEFAULT_GUESS;
+    
+    switch (type) {
+        case SkillType_Usability:
+            guess = DEFAULT_USABILITY_GUESS;
+            break;
+        case SkillType_Syntax:
+            guess = DEFAULT_SYNTAX_GUESS;
+            break;
+        case SkillType_Vocab:
+            guess = DEFAULT_VOCAB_GUESS;
+            break;
+        default:
+            break;
+    }
+
+    return guess;
 }
 
-- (double)getSyntaxTransition {
-    return DEFAULT_SYNTAX_TRANSITION;
+- (double)getTransitionForSkillType:(SkillType)type {
+    double transition = 1.0;
+    
+    switch (type) {
+        case SkillType_Usability:
+            transition = DEFAULT_USABILITY_TRANSITION;
+            break;
+        case SkillType_Syntax:
+            transition = DEFAULT_SYNTAX_TRANSITION;
+            break;
+        case SkillType_Vocab:
+            transition = DEFAULT_VOCAB_TRANSITION;
+            break;
+        default:
+            break;
+    }
+    
+    return transition;
 }
 
-- (double)getVocabTransition {
-    return DEFAULT_VOCAB_TRANSITION;
-}
-
-- (double)getUsabilityTransition {
-    return DEFAULT_USABILITY_TRANSITION;
-}
-
-- (double)calcCorrect:(double)prevSkillValue {
-    double slip = [self getSlip] / self.dampenValue;
-    double guess = [self getGuess] / self.dampenValue;
+- (double)calcCorrect:(double)prevSkillValue skillType:(SkillType)type {
+    double slip = [self getSlipForSkillType:type] / self.dampenValue;
+    double guess = [self getGuessForSkillType:type] / self.dampenValue;
     double noSlip = 1 - slip;
     
     return (prevSkillValue * noSlip) / (prevSkillValue * noSlip + (1 - prevSkillValue) * guess);
 }
 
-- (double)calcIncorrect:(double)prevSkillValue {
-    double slip = [self getSlip] / self.dampenValue;
-    double guess = [self getGuess] / self.dampenValue;
+- (double)calcIncorrect:(double)prevSkillValue skillType:(SkillType)type {
+    double slip = [self getSlipForSkillType:type] / self.dampenValue;
+    double guess = [self getGuessForSkillType:type] / self.dampenValue;
     double noGuess = 1 - guess;
     
     return (prevSkillValue * slip) / ((slip * prevSkillValue) + (noGuess * (1 - prevSkillValue)));
 }
 
 - (double)calcNewSkillValue:(double)skillEvaluated skillType:(SkillType)type {
-    double transition = 1.0;
+    double transition = [self getTransitionForSkillType:type];
+    double newSkillValue = skillEvaluated + ((1 - skillEvaluated) * transition);
     
-    switch (type) {
-        case SkillType_Usability:
-            transition = [self getUsabilityTransition];
-            break;
-        case SkillType_Syntax:
-            transition = [self getSyntaxTransition];
-            break;
-        case SkillType_Vocab:
-            transition = [self getVocabTransition];
-            break;
-        default:
-            break;
+    if (newSkillValue >= 0.99) {
+        newSkillValue = 0.99;
     }
     
-    return skillEvaluated + ((1 - skillEvaluated) * transition);
+    return newSkillValue;
 }
 
 #pragma mark - Playword
 
 - (double)calcCorrectPlayWord:(double)prevSkillValue {
-    return (prevSkillValue * (1 - [self getSlip])) / (prevSkillValue * (1 - [self getSlip]) + (1 - prevSkillValue) * [self getGuess]);
+    return (prevSkillValue * (1 - [self getSlipForSkillType:SkillType_Vocab])) / (prevSkillValue * (1 - [self getSlipForSkillType:SkillType_Vocab]) + (1 - prevSkillValue) * [self getGuessForSkillType:SkillType_Vocab]);
 }
 
 - (double) calcIncorrectPlayWord:(double) prevSkillValue {
-    return (prevSkillValue * [self getSlip]) / (([self getSlip] * prevSkillValue) + ((1 - [self getGuess]) * (1 - prevSkillValue)));
+    return (prevSkillValue * [self getSlipForSkillType:SkillType_Vocab]) / (([self getSlipForSkillType:SkillType_Vocab] * prevSkillValue) + ((1 - [self getGuessForSkillType:SkillType_Vocab]) * (1 - prevSkillValue)));
 }
 
 @end

@@ -104,6 +104,7 @@
     
     userAction.sentenceNumber = context.sentenceNumber;
     userAction.ideaNumber = context.ideaNumber;
+    userAction.stepNumber = context.stepNumber;
     
     NSString *bookTitle = context.bookTitle;
     NSMutableDictionary *bookDetails = [self bookDictionaryForTitle:bookTitle];
@@ -142,11 +143,11 @@
         
         // Increase syntax skill
         EMComplexity complexity = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
-        Skill *syntaxSkill = [self.knowledgeTracer updateSyntaxSkill:YES withComplexity:complexity shouldDampen:YES context:context];
+        Skill *syntaxSkill = [self.knowledgeTracer updateSyntaxSkill:YES withComplexity:complexity shouldDampen:!isFirstAttempt context:context];
         [skills addObject:syntaxSkill];
         
         // Increase usability skill
-        Skill *usabilitySkill = [self.knowledgeTracer updateUsabilitySkill:YES shouldDampen:YES context:context];
+        Skill *usabilitySkill = [self.knowledgeTracer updateUsabilitySkill:YES shouldDampen:!isFirstAttempt context:context];
         [skills addObject:usabilitySkill];
         
         [self showMessageWith:skills];

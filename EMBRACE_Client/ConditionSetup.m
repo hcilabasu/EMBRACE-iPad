@@ -46,7 +46,7 @@
         isVocabPageEnabled = TRUE;
         isAssessmentPageEnabled = FALSE;
         assessmentMode = ENDOFBOOK;
-        shouldShowITSMessages = TRUE;
+        shouldShowITSMessages = FALSE;
         
         allowFileSync = TRUE;
     }
