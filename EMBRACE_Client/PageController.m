@@ -89,7 +89,7 @@
     NSString *pageLanguage = [pageContext.currentPage containsString:@"S.xhtml"] ? SPANISH_TXT : ENGLISH_TXT;
     manipulationContext.pageLanguage = pageLanguage;
     
-    [[ServerCommunicationController sharedInstance] logLoadPage:[manipulationContext pageLanguage] mode:[manipulationContext pageMode] number:[manipulationContext pageNumber] context:manipulationContext];
+    [[ServerCommunicationController sharedInstance] logLoadPage:[manipulationContext pageLanguage] mode:[manipulationContext pageMode] number:[manipulationContext pageNumber] complexity:[manipulationContext pageComplexity] context:manipulationContext];
     
     //TODO: Remove hard coded strings
     //Get the solutions for the appropriate manipulation activity

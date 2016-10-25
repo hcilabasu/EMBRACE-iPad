@@ -110,7 +110,7 @@
 /*
  * Set the current sentence number, text, type, appearance and associated solution steps. (creations solutions for vocab pages)
  */
-- (void) setupSentencesForPage {
+- (void)setupSentencesForPage {
     sentenceContext.totalSentences = (int)[self.manipulationView totalSentences];
     
     //Dynamically reads the vocabulary words on the vocab page and creates and adds solutionsteps
@@ -121,10 +121,11 @@
         if (conditionSetup.condition != CONTROL) {
             mvc.allowInteractions = TRUE;
         }
+        
         if (conditionSetup.appMode == ITS) {
             mvc.currentComplexityLevel = [[ITSController sharedInstance] getCurrentComplexity];
             [self.manipulationView removeAllSentences];
-            [self addSentencesWithComplexity: mvc.currentComplexityLevel];
+            [self addSentencesWithComplexity:mvc.currentComplexityLevel];
         }
     }
     
@@ -140,9 +141,10 @@
     sentenceContext.currentSentenceText = [self.manipulationView getCurrentSentenceAt:sentenceContext.currentSentence];
     
     manipulationContext.sentenceNumber = sentenceContext.currentSentence;
+    manipulationContext.sentenceComplexity = [self getComplexityOfCurrentSentence];
     manipulationContext.sentenceText = sentenceContext.currentSentenceText;
     manipulationContext.manipulationSentence = [self isManipulationSentence:sentenceContext.currentSentence];
-    [[ServerCommunicationController sharedInstance] logLoadSentence:sentenceContext.currentSentence withText:sentenceContext.currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
+    [[ServerCommunicationController sharedInstance] logLoadSentence:sentenceContext.currentSentence withComplexity:manipulationContext.sentenceComplexity withText:sentenceContext.currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
     
     //Remove any PM specific sentence instructions
     if(conditionSetup.currentMode == IM_MODE || conditionSetup.condition == CONTROL) {
@@ -221,6 +223,17 @@
     }
     
     return isManipulationSentence;
+}
+
+- (NSInteger)getComplexityOfCurrentSentence {
+    NSInteger complexity = 0; // No complexity
+    
+    if ([[sentenceContext pageSentences] count] > 0) {
+        AlternateSentence *currentSentence = [sentenceContext.pageSentences objectAtIndex:sentenceContext.currentSentence];
+        complexity = [currentSentence complexity];
+    }
+    
+    return complexity;
 }
 
 - (void)colorSentencesUponNext {

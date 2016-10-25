@@ -1044,9 +1044,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             stepContext.stepsComplete = NO;
             
             manipulationContext.sentenceNumber = sentenceContext.currentSentence;
+            manipulationContext.sentenceComplexity = [sc getComplexityOfCurrentSentence];
             manipulationContext.sentenceText = sentenceContext.currentSentenceText;
             manipulationContext.manipulationSentence = [sc isManipulationSentence:sentenceContext.currentSentence];
-            [[ServerCommunicationController sharedInstance] logLoadSentence:sentenceContext.currentSentence withText:sentenceContext.currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
+            [[ServerCommunicationController sharedInstance] logLoadSentence:sentenceContext.currentSentence withComplexity:manipulationContext.sentenceComplexity withText:sentenceContext.currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
             
             [sc performSelector:@selector(colorSentencesUponNext) withObject:nil afterDelay:([self.playaudioClass audioPlayer].duration)];
         }
@@ -2979,6 +2980,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         sentenceContext.currentSentence = 1;
         
         manipulationContext.sentenceNumber = sentenceContext.currentSentence;
+        manipulationContext.sentenceComplexity = [sc getComplexityOfCurrentSentence];
         manipulationContext.sentenceText = sentenceContext.currentSentenceText;
         manipulationContext.manipulationSentence = [sc isManipulationSentence:sentenceContext.currentSentence];
         
@@ -2991,6 +2993,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         sentenceContext.currentSentence = 1;
         
         manipulationContext.sentenceNumber = sentenceContext.currentSentence;
+        manipulationContext.sentenceComplexity = [sc getComplexityOfCurrentSentence];
         manipulationContext.sentenceText = sentenceContext.currentSentenceText;
         manipulationContext.manipulationSentence = [sc isManipulationSentence:sentenceContext.currentSentence];
         
@@ -3030,9 +3033,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             sentenceContext.currentSentence++;
             sentenceContext.currentSentenceText = [self.manipulationView getCurrentSentenceAt:sentenceContext.currentSentence];
             manipulationContext.sentenceNumber = sentenceContext.currentSentence;
+            manipulationContext.sentenceComplexity = [sc getComplexityOfCurrentSentence];
             manipulationContext.sentenceText = sentenceContext.currentSentenceText;
             manipulationContext.manipulationSentence = [sc isManipulationSentence:sentenceContext.currentSentence];
-            [[ServerCommunicationController sharedInstance] logLoadSentence:sentenceContext.currentSentence withText:sentenceContext.currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
+            [[ServerCommunicationController sharedInstance] logLoadSentence:sentenceContext.currentSentence withComplexity:manipulationContext.sentenceComplexity withText:sentenceContext.currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
             
             //currentSentence is 1 indexed.
             if (sentenceContext.currentSentence > sentenceContext.totalSentences) {
@@ -3055,9 +3059,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         sentenceContext.currentSentence++;
         sentenceContext.currentSentenceText = [self.manipulationView getCurrentSentenceAt:sentenceContext.currentSentence];
         manipulationContext.sentenceNumber = sentenceContext.currentSentence;
+        manipulationContext.sentenceComplexity = [sc getComplexityOfCurrentSentence];
         manipulationContext.sentenceText = sentenceContext.currentSentenceText;
         manipulationContext.manipulationSentence = [sc isManipulationSentence:sentenceContext.currentSentence];
-        [[ServerCommunicationController sharedInstance] logLoadSentence:sentenceContext.currentSentence withText:sentenceContext.currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
+        [[ServerCommunicationController sharedInstance] logLoadSentence:sentenceContext.currentSentence withComplexity:manipulationContext.sentenceComplexity withText:sentenceContext.currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
         
         //currentSentence is 1 indexed
         if (sentenceContext.currentSentence > sentenceContext.totalSentences) {
@@ -3864,6 +3869,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     }
     else {
         manipulationContext.pageMode = INTERVENTION;
+    }
+    
+    if (conditionSetup.appMode == ITS) {
+        manipulationContext.pageComplexity = [[ITSController sharedInstance] getCurrentComplexity];
     }
 }
 

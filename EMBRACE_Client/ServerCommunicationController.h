@@ -69,8 +69,8 @@
 - (void)logPressNextInManipulationActivity:(ManipulationContext *)context;
 - (void)logEmergencySwipe:(ManipulationContext *)context;
 - (void)logLoadStep:(NSInteger)stepNumber ofType:(NSString *)stepType context:(ManipulationContext *)context;
-- (void)logLoadSentence:(NSInteger)sentenceNumber withText:(NSString *)sentenceText manipulationSentence:(BOOL)manipulationSentence context:(ManipulationContext *)context;
-- (void)logLoadPage:(NSString *)pageLanguage mode:(NSString *)pageMode number:(NSInteger)pageNumber context:(ManipulationContext *)context;
+- (void)logLoadSentence:(NSInteger)sentenceNumber withComplexity:(NSInteger)sentenceComplexity withText:(NSString *)sentenceText manipulationSentence:(BOOL)manipulationSentence context:(ManipulationContext *)context;
+- (void)logLoadPage:(NSString *)pageLanguage mode:(NSString *)pageMode number:(NSInteger)pageNumber complexity:(NSInteger)pageComplexity context:(ManipulationContext *)context;
 - (void)logPressLibrary:(ManipulationContext *)context;
 - (void)logCompleteManipulation:(ManipulationContext *)context;
 

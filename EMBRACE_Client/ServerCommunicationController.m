@@ -214,9 +214,11 @@ static ServerCommunicationController *sharedInstance = nil;
  *  <Chapter_Title>...</Chapter_Title>
  *  <Page_Language>...</Page_Language>
  *  <Page_Mode>...</Page_Mode>
+ *  <Page_Complexity>...</Page_Complexity>
  *  <Page_Number>...</Page_Number>
  *  <Sentence_Number>...</Sentence_Number>
  *  <Sentence_Text>...</Sentence_Text>
+ *  <Sentence_Complexity>...</Sentence_Complexity>
  *  <Manipulation_Sentence>...</Manipulation_Sentence>
  *  <Step_Number>...</Step_Number>
  *  <Idea_Number>...</Idea_Number>
@@ -238,9 +240,11 @@ static ServerCommunicationController *sharedInstance = nil;
     DDXMLElement *nodePageLanguage = [DDXMLElement elementWithName:@"Page_Language" stringValue:[context pageLanguage]];
     DDXMLElement *nodePageMode = [DDXMLElement elementWithName:@"Page_Mode" stringValue:[context pageMode]];
     DDXMLElement *nodePageNumber = [DDXMLElement elementWithName:@"Page_Number" stringValue:[NSString stringWithFormat:@"%ld", (long)[context pageNumber]]];
+    DDXMLElement *nodePageComplexity = [DDXMLElement elementWithName:@"Page_Complexity" stringValue:[NSString stringWithFormat:@"%ld", (long)[context pageComplexity]]];
     
     //Create nodes for sentence information
     DDXMLElement *nodeSentenceNumber = [DDXMLElement elementWithName:@"Sentence_Number" stringValue:[NSString stringWithFormat:@"%ld", (long)[context sentenceNumber]]];
+    DDXMLElement *nodeSentenceComplexity = [DDXMLElement elementWithName:@"Sentence_Complexity" stringValue:[NSString stringWithFormat:@"%ld", (long)[context sentenceComplexity]]];
     NSString *sentenceText = [[context sentenceText] isEqualToString:@""] || [context sentenceText] == nil ? @"NULL" : [context sentenceText];
     DDXMLElement *nodeSentenceText = [DDXMLElement elementWithName:@"Sentence_Text" stringValue:sentenceText];
     DDXMLElement *nodeManipulationSentence = [DDXMLElement elementWithName:@"Manipulation_Sentence" stringValue:[context manipulationSentence] ? @"Yes" : @"No"];
@@ -256,7 +260,9 @@ static ServerCommunicationController *sharedInstance = nil;
     [nodeManipulationContext addChild:nodePageLanguage];
     [nodeManipulationContext addChild:nodePageMode];
     [nodeManipulationContext addChild:nodePageNumber];
+    [nodeManipulationContext addChild:nodePageComplexity];
     [nodeManipulationContext addChild:nodeSentenceNumber];
+    [nodeManipulationContext addChild:nodeSentenceComplexity];
     [nodeManipulationContext addChild:nodeSentenceText];
     [nodeManipulationContext addChild:nodeManipulationSentence];
     [nodeManipulationContext addChild:nodeStepNumber];
@@ -1276,7 +1282,7 @@ static ServerCommunicationController *sharedInstance = nil;
 /*
  * Logging for loading a sentence
  */
-- (void)logLoadSentence:(NSInteger)sentenceNumber withText:(NSString *)sentenceText manipulationSentence:(BOOL)manipulationSentence context:(ManipulationContext *)context {
+- (void)logLoadSentence:(NSInteger)sentenceNumber withComplexity:(NSInteger)sentenceComplexity withText:(NSString *)sentenceText manipulationSentence:(BOOL)manipulationSentence context:(ManipulationContext *)context {
     //Start with base node for system action
     DDXMLElement *nodeBaseAction = [self getBaseActionForActor:SYSTEM];
     [study addChild:nodeBaseAction];
@@ -1293,13 +1299,15 @@ static ServerCommunicationController *sharedInstance = nil;
     DDXMLElement *nodeInput = [[nodeBaseAction elementsForName:@"Input"] objectAtIndex:0];
     
     //Create nodes for input information
-    DDXMLElement *nodeSentenceNumber = [DDXMLElement elementWithName:@"Sentence_Number" stringValue:[NSString stringWithFormat:@"%d", sentenceNumber]];
+    DDXMLElement *nodeSentenceNumber = [DDXMLElement elementWithName:@"Sentence_Number" stringValue:[NSString stringWithFormat:@"%ld", (long)sentenceNumber]];
+    DDXMLElement *nodeSentenceComplexity = [DDXMLElement elementWithName:@"Sentence_Complexity" stringValue:[NSString stringWithFormat:@"%ld", (long)sentenceComplexity]];
     sentenceText = [sentenceText isEqualToString:@""] || sentenceText == nil ? @"NULL" : sentenceText;
     DDXMLElement *nodeSentenceText = [DDXMLElement elementWithName:@"Sentence_Text" stringValue:sentenceText];
     DDXMLElement *nodeManipulationSentence = [DDXMLElement elementWithName:@"Manipulation_Sentence" stringValue:manipulationSentence ? @"Yes" : @"No"];
     
     //Add above nodes to input
     [nodeInput addChild:nodeSentenceNumber];
+    [nodeInput addChild:nodeSentenceComplexity];
     [nodeInput addChild:nodeSentenceText];
     [nodeInput addChild:nodeManipulationSentence];
     
@@ -1318,7 +1326,7 @@ static ServerCommunicationController *sharedInstance = nil;
 /*
  * Logging for loading a page
  */
-- (void)logLoadPage:(NSString *)pageLanguage mode:(NSString *)pageMode number:(NSInteger)pageNumber context:(ManipulationContext *)context {
+- (void)logLoadPage:(NSString *)pageLanguage mode:(NSString *)pageMode number:(NSInteger)pageNumber complexity:(NSInteger)pageComplexity  context:(ManipulationContext *)context {
     //Start with base node for system action
     DDXMLElement *nodeBaseAction = [self getBaseActionForActor:SYSTEM];
     [study addChild:nodeBaseAction];
@@ -1337,12 +1345,14 @@ static ServerCommunicationController *sharedInstance = nil;
     //Create nodes for input information
     DDXMLElement *nodePageLanguage = [DDXMLElement elementWithName:@"Page_Language" stringValue:pageLanguage];
     DDXMLElement *nodePageMode = [DDXMLElement elementWithName:@"Page_Mode" stringValue:pageMode];
-    DDXMLElement *nodePageNumber = [DDXMLElement elementWithName:@"Page_Number" stringValue:[NSString stringWithFormat:@"%d", pageNumber]];
+    DDXMLElement *nodePageNumber = [DDXMLElement elementWithName:@"Page_Number" stringValue:[NSString stringWithFormat:@"%ld", (long)pageNumber]];
+    DDXMLElement *nodePageComplexity = [DDXMLElement elementWithName:@"Page_Complexity" stringValue:[NSString stringWithFormat:@"%ld", (long)pageComplexity]];
     
     //Add above nodes to input
     [nodeInput addChild:nodePageLanguage];
     [nodeInput addChild:nodePageMode];
     [nodeInput addChild:nodePageNumber];
+    [nodeInput addChild:nodePageComplexity];
     
     //Get context
     DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
