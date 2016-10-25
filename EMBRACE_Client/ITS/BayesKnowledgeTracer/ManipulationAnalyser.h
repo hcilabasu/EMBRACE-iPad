@@ -19,8 +19,8 @@
 
 - (void)actionPerformed:(UserAction *)userAction manipulationContext:(ManipulationContext *)context;
 
-- (void)userDidPlayWord:(NSString *)word;
-- (void)userDidVocabPreviewWord:(NSString *)word;
+- (void)userDidPlayWord:(NSString *)word context:(ManipulationContext *)context;
+- (void)userDidVocabPreviewWord:(NSString *)word context:(ManipulationContext *)context;
 - (NSMutableSet *)getRequestedVocab;
 
 - (void)pressedNextWithManipulationContext:(ManipulationContext *)context forSentence:(NSString *)sentence isVerified:(BOOL)verified;

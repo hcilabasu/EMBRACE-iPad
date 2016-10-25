@@ -89,6 +89,13 @@
 - (void)logLoadAssessmentStep:(NSInteger)assessmentStepNumber context:(AssessmentContext *)context;
 - (void)logCompleteAssessment:(AssessmentContext *)context;
 
+# pragma mark - Logging (ITS)
+
+- (void)logUpdateSkill:(NSString *)skillName ofType:(NSString *)skillType prevValue:(double)prevSkillValue newSkillValue:(double)newSkillValue context:(ManipulationContext *)context;
+- (void)logVocabularyErrorFeedback:(NSArray *)highlightedItems context:(ManipulationContext *)context;
+- (void)logSyntaxErrorFeedback:(NSString *)simplerSentence context:(ManipulationContext *)context;
+- (void)logUsabilityErrorFeedback:(NSArray *)animatedItems context:(ManipulationContext *)context;
+
 #pragma mark - Saving/loading progress files
 
 - (Progress *)loadProgress:(Student *)student;

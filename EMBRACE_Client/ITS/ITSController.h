@@ -26,9 +26,9 @@ typedef NS_ENUM(NSInteger, EMComplexity) {
 
 - (void)movedObjectIDs:(NSMutableSet *)movedObjectIDs destinationIDs:(NSArray *)destinationIDs isVerified:(BOOL)verified actionStep:(ActionStep *)actionStep manipulationContext:(ManipulationContext *)context forSentence:(NSString *)sentence withWordMapping:(NSDictionary *)mapDict;
 
-- (void)userDidPlayWord:(NSString *)word;
+- (void)userDidPlayWord:(NSString *)word context:(ManipulationContext *)context;
 
-- (void)userDidVocabPreviewWord:(NSString *)word;
+- (void)userDidVocabPreviewWord:(NSString *)word context:(ManipulationContext *)context;
 
 - (void)pressedNextWithManipulationContext:(ManipulationContext *)context
                                forSentence:(NSString *)sentence

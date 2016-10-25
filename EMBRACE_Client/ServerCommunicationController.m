@@ -1798,6 +1798,58 @@ static ServerCommunicationController *sharedInstance = nil;
     [self writeLogFile];
 }
 
+# pragma mark - Logging (ITS)
+
+- (void)logUpdateSkill:(NSString *)skillName ofType:(NSString *)skillType prevValue:(double)prevSkillValue newSkillValue:(double)newSkillValue  context:(ManipulationContext *)context {
+    //Start with base node for system action
+    DDXMLElement *nodeBaseAction = [self getBaseActionForActor:SYSTEM];
+    [study addChild:nodeBaseAction];
+    
+    //Set selection
+    DDXMLElement *nodeSelection = [[nodeBaseAction elementsForName:@"Selection"] objectAtIndex:0];
+    [nodeSelection setStringValue:[NSString stringWithFormat:@"%@ Skill", skillType]];
+    
+    //Set action
+    DDXMLElement *nodeAction = [[nodeBaseAction elementsForName:@"Action"] objectAtIndex:0];
+    [nodeAction setStringValue:@"Updated Skill Value"];
+    
+    //Get input
+    DDXMLElement *nodeInput = [[nodeBaseAction elementsForName:@"Input"] objectAtIndex:0];
+    
+    //Create nodes for input information
+    DDXMLElement *nodeSkillName = [DDXMLElement elementWithName:@"Skill_Name" stringValue:skillName];
+    DDXMLElement *nodePreviousSkillValue = [DDXMLElement elementWithName:@"Previous_Skill_Value" stringValue:[NSString stringWithFormat:@"%f", prevSkillValue]];
+    DDXMLElement *nodeNewSkillValue = [DDXMLElement elementWithName:@"New_Skill_Value" stringValue:[NSString stringWithFormat:@"%f", newSkillValue]];
+    
+    //Add above nodes to input
+    [nodeInput addChild:nodeSkillName];
+    [nodeInput addChild:nodePreviousSkillValue];
+    [nodeInput addChild:nodeNewSkillValue];
+    
+    //Get context
+    DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
+    
+    //Create nodes for context information
+    DDXMLElement *nodeManipulationContext = [self getManipulationContext:context];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
+    
+    //Add above nodes to context
+    [nodeContext addChild:nodeManipulationContext];
+    [nodeContext addChild:nodeStudyContext];
+}
+
+- (void)logVocabularyErrorFeedback:(NSArray *)highlightedItems context:(ManipulationContext *)context {
+
+}
+
+- (void)logSyntaxErrorFeedback:(NSString *)simplerSentence context:(ManipulationContext *)context {
+    
+}
+
+- (void)logUsabilityErrorFeedback:(NSArray *)animatedItems context:(ManipulationContext *)context {
+    
+}
+
 #pragma mark - Saving/loading progress files
 
 /*

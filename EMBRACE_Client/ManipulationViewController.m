@@ -845,7 +845,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 [[ServerCommunicationController sharedInstance] logTapWord:sentenceText :manipulationContext];
                 
                 if (conditionSetup.appMode == ITS) {
-                    [[ITSController sharedInstance] userDidVocabPreviewWord:sentenceText];
+                    [[ITSController sharedInstance] userDidVocabPreviewWord:sentenceText context:manipulationContext];
                 }
                 
                 [ssc incrementCurrentStep];
@@ -886,7 +886,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     [[ServerCommunicationController sharedInstance] logTapWord:sentenceText :manipulationContext];
                     
                     if (conditionSetup.appMode == ITS) {
-                        [[ITSController sharedInstance] userDidPlayWord:sentenceText];
+                        [[ITSController sharedInstance] userDidPlayWord:sentenceText context:manipulationContext];
                     }
                     
                     [self.playaudioClass stopPlayAudioFile];
@@ -902,7 +902,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             [[ServerCommunicationController sharedInstance] logTapWord:englishSentenceText :manipulationContext];
             
             if (conditionSetup.appMode == ITS) {
-                [[ITSController sharedInstance] userDidPlayWord:englishSentenceText];
+                [[ITSController sharedInstance] userDidPlayWord:englishSentenceText context:manipulationContext];
             }
             
             [self.playaudioClass stopPlayAudioFile];

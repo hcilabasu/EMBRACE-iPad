@@ -49,12 +49,12 @@ static ITSController *sharedInstance = nil;
 
 #pragma  mark - 
 
-- (void)userDidPlayWord:(NSString *)word {
-    [self.manipulationAnalyser userDidPlayWord:word];
+- (void)userDidPlayWord:(NSString *)word context:(ManipulationContext *)context {
+    [self.manipulationAnalyser userDidPlayWord:word context:context];
 }
 
-- (void)userDidVocabPreviewWord:(NSString *)word {
-    [self.manipulationAnalyser userDidVocabPreviewWord:word];
+- (void)userDidVocabPreviewWord:(NSString *)word context:(ManipulationContext *)context {
+    [self.manipulationAnalyser userDidVocabPreviewWord:word context:context];
 }
 
 - (void)movedObjectIDs:(NSMutableSet *)movedObjectIDs destinationIDs:(NSArray *)destinationIDs isVerified:(BOOL)verified actionStep:(ActionStep *)actionStep manipulationContext:(ManipulationContext *)context forSentence:(NSString *)sentence withWordMapping:(NSDictionary *)mapDict {

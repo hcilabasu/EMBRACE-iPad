@@ -11,6 +11,7 @@
 #import "UserAction.h"
 #import "ActionStep.h"
 #import "WordSkill.h"
+#import "ServerCommunicationController.h"
 
 // Probability of correctly applying a not known skill
 #define DEFAULT_GUESS 0.1
@@ -73,7 +74,7 @@
 
 #pragma mark - Updating Vocabulary Skills
 
-- (Skill *)updateSkillFor:(NSString *)word isVerified:(BOOL)isVerified shouldDampen:(BOOL)shouldDampen {
+- (Skill *)updateSkillFor:(NSString *)word isVerified:(BOOL)isVerified shouldDampen:(BOOL)shouldDampen context:(ManipulationContext *)context {
     if (word == nil) {
         return nil;
     }
@@ -81,43 +82,58 @@
     [self updateDampenValue:shouldDampen];
     
     Skill *sk = [self.skillSet skillForWord:word];
+    double prevSkillValue = [sk skillValue];
+    
     sk = [self updateSkill:sk isVerified:isVerified];
+    double newSkillValue = [sk skillValue];
+    
+    [[ServerCommunicationController sharedInstance] logUpdateSkill:word ofType:@"Vocabulary" prevValue:prevSkillValue newSkillValue:newSkillValue context:context];
     
     return sk;
 }
 
-- (Skill *)updateSkillFor:(NSString *)action isVerified:(BOOL)isVerified {
-    return [self updateSkillFor:action isVerified:isVerified shouldDampen:NO];
+- (Skill *)updateSkillFor:(NSString *)action isVerified:(BOOL)isVerified context:(ManipulationContext *)context {
+    return [self updateSkillFor:action isVerified:isVerified shouldDampen:NO context:context];
 }
 
 #pragma mark - Updating Usability Skill
 
-- (Skill *)updateUsabilitySkill:(BOOL)isVerified shouldDampen:(BOOL)shouldDampen {
+- (Skill *)updateUsabilitySkill:(BOOL)isVerified shouldDampen:(BOOL)shouldDampen context:(ManipulationContext *)context {
     [self updateDampenValue:shouldDampen];
     
     Skill *sk = [self.skillSet usabilitySkill];
+    double prevSkillValue = [sk skillValue];
+    
     sk = [self updateSkill:sk isVerified:isVerified];
+    double newSkillValue = [sk skillValue];
+    
+    [[ServerCommunicationController sharedInstance] logUpdateSkill:@"Usability" ofType:@"Usability" prevValue:prevSkillValue newSkillValue:newSkillValue context:context];
     
     return sk;
 }
 
-- (Skill *)updateUsabilitySkill:(BOOL)isVerified {
-    return [self updateUsabilitySkill:isVerified shouldDampen:NO];
+- (Skill *)updateUsabilitySkill:(BOOL)isVerified context:(ManipulationContext *)context {
+    return [self updateUsabilitySkill:isVerified shouldDampen:NO context:context];
 }
 
 #pragma mark - Updating Syntax Skills
 
-- (Skill *)updateSyntaxSkill:(BOOL)isVerified withComplexity:(EMComplexity)complex shouldDampen:(BOOL)shouldDampen {
+- (Skill *)updateSyntaxSkill:(BOOL)isVerified withComplexity:(EMComplexity)complex shouldDampen:(BOOL)shouldDampen context:(ManipulationContext *)context {
     [self updateDampenValue:shouldDampen];
     
     Skill *sk = [self.skillSet syntaxSkillFor:complex];
+    double prevSkillValue = [sk skillValue];
+    
     sk = [self updateSkill:sk isVerified:isVerified];
+    double newSkillValue = [sk skillValue];
+    
+    [[ServerCommunicationController sharedInstance] logUpdateSkill:[NSString stringWithFormat:@"%d", complex] ofType:@"Syntax" prevValue:prevSkillValue newSkillValue:newSkillValue context:context];
     
     return sk;
 }
 
-- (Skill *)updateSyntaxSkill:(BOOL)isVerified withComplexity:(EMComplexity)complex {
-    return [self updateSyntaxSkill:isVerified withComplexity:complex shouldDampen:NO];
+- (Skill *)updateSyntaxSkill:(BOOL)isVerified withComplexity:(EMComplexity)complex context:(ManipulationContext *)context {
+    return [self updateSyntaxSkill:isVerified withComplexity:complex shouldDampen:NO context:context];
 }
 
 #pragma mark - Getter methods for skills

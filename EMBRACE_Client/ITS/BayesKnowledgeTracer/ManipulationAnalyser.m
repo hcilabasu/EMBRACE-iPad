@@ -49,20 +49,20 @@
     return self;
 }
 
-- (void)userDidPlayWord:(NSString *)word {
+- (void)userDidPlayWord:(NSString *)word context:(ManipulationContext *)context {
     [self.playWords addObject:word];
     
     NSMutableArray *skillList = [NSMutableArray array];
-    Skill *movedSkill = [self.knowledgeTracer updateSkillFor:word isVerified:NO];
+    Skill *movedSkill = [self.knowledgeTracer updateSkillFor:word isVerified:NO context:context];
     [skillList addObject:movedSkill];
     [self showMessageWith:skillList];
 }
 
-- (void)userDidVocabPreviewWord:(NSString *)word {
+- (void)userDidVocabPreviewWord:(NSString *)word context:(ManipulationContext *)context {
     [self.playWords addObject:word];
     
     NSMutableArray *skillList = [NSMutableArray array];
-    Skill *movedSkill = [self.knowledgeTracer updateSkillFor:word isVerified:YES];
+    Skill *movedSkill = [self.knowledgeTracer updateSkillFor:word isVerified:YES context:context];
     [skillList addObject:movedSkill];
     [self showMessageWith:skillList];
 }
@@ -128,7 +128,7 @@
         
         // Increase vocabulary skill for the object(s) moved
         for (NSString *movedObjectID in [userAction movedObjectIDs]) {
-            Skill *wordSkill = [self.knowledgeTracer updateSkillFor:movedObjectID isVerified:YES shouldDampen:!isFirstAttempt];
+            Skill *wordSkill = [self.knowledgeTracer updateSkillFor:movedObjectID isVerified:YES shouldDampen:!isFirstAttempt context:context];
             [skills addObject:wordSkill];
         }
         
@@ -136,17 +136,17 @@
         
         // Increase vocabulary skill for the destination
         if (correctDestinationID != nil && ![correctDestinationID isEqualToString:@""]) {
-            Skill *wordSkill = [self.knowledgeTracer updateSkillFor:correctDestinationID isVerified:YES shouldDampen:!isFirstAttempt];
+            Skill *wordSkill = [self.knowledgeTracer updateSkillFor:correctDestinationID isVerified:YES shouldDampen:!isFirstAttempt context:context];
             [skills addObject:wordSkill];
         }
         
         // Increase syntax skill
         EMComplexity complexity = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
-        Skill *syntaxSkill = [self.knowledgeTracer updateSyntaxSkill:YES withComplexity:complexity shouldDampen:YES];
+        Skill *syntaxSkill = [self.knowledgeTracer updateSyntaxSkill:YES withComplexity:complexity shouldDampen:YES context:context];
         [skills addObject:syntaxSkill];
         
         // Increase usability skill
-        Skill *usabilitySkill = [self.knowledgeTracer updateUsabilitySkill:YES shouldDampen:YES];
+        Skill *usabilitySkill = [self.knowledgeTracer updateUsabilitySkill:YES shouldDampen:YES context:context];
         [skills addObject:usabilitySkill];
         
         [self showMessageWith:skills];
@@ -172,7 +172,7 @@
     if ([destinationIDs containsObject:correctMovedObjectID] && [movedObjectIDs containsObject:correctDestinationID]) {
         // Decrease syntax skill
         EMComplexity complexity = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
-        Skill *syntaxSkill = [self.knowledgeTracer updateSyntaxSkill:NO withComplexity:complexity shouldDampen:!isFirstAttempt];
+        Skill *syntaxSkill = [self.knowledgeTracer updateSyntaxSkill:NO withComplexity:complexity shouldDampen:!isFirstAttempt context:context];
         [skills addObject:syntaxSkill];
         [self showMessageWith:skills];
         [self determineMostProbableErrorTypeFromSkills:skills];
@@ -191,7 +191,7 @@
                 if ([objectsInvolved containsObject:movedObjectID] && [objectsInvolved containsObject:destinationID]) {
                     // Decrease syntax skill
                     EMComplexity complexity = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
-                    Skill *syntaxSkill = [self.knowledgeTracer updateSyntaxSkill:NO withComplexity:complexity shouldDampen:!isFirstAttempt];
+                    Skill *syntaxSkill = [self.knowledgeTracer updateSyntaxSkill:NO withComplexity:complexity shouldDampen:!isFirstAttempt context:context];
                     [skills addObject:syntaxSkill];
                     [self showMessageWith:skills];
                     [self determineMostProbableErrorTypeFromSkills:skills];
@@ -211,25 +211,25 @@
         if (![self isDistanceBelowThreshold:movedObjectIDs :correctMovedObjectID]) {
             // Decrease vocabulary skills for the moved objects
             for (NSString *movedObjectID in movedObjectIDs) {
-                Skill *wordSkill = [self.knowledgeTracer updateSkillFor:movedObjectID isVerified:NO shouldDampen:!isFirstAttempt];
+                Skill *wordSkill = [self.knowledgeTracer updateSkillFor:movedObjectID isVerified:NO shouldDampen:!isFirstAttempt context:context];
                 [skills addObject:wordSkill];
             }
             
             // Decrease vocabulary skill for the correct object to move
-            Skill *wordSkill = [self.knowledgeTracer updateSkillFor:correctMovedObjectID isVerified:NO shouldDampen:!isFirstAttempt];
+            Skill *wordSkill = [self.knowledgeTracer updateSkillFor:correctMovedObjectID isVerified:NO shouldDampen:!isFirstAttempt context:context];
             [skills addObject:wordSkill];
         }
         // Usability error
         else {
             // Decrease usability skill
-            usabilitySkill = [self.knowledgeTracer updateUsabilitySkill:NO shouldDampen:!isFirstAttempt];
+            usabilitySkill = [self.knowledgeTracer updateUsabilitySkill:NO shouldDampen:!isFirstAttempt context:context];
         }
     }
     // Moved correct object
     else {
         for (NSString *movedObjectID in movedObjectIDs) {
             // Increase vocabulary skill for the moved object
-            Skill *wordSkill = [self.knowledgeTracer updateSkillFor:movedObjectID isVerified:YES shouldDampen:!isFirstAttempt];
+            Skill *wordSkill = [self.knowledgeTracer updateSkillFor:movedObjectID isVerified:YES shouldDampen:!isFirstAttempt context:context];
             [skills addObject:wordSkill];
         }
     }
@@ -238,7 +238,7 @@
     // Vocabulary error
     if ([destinationIDs count] == 0) {
         // Decrease vocabulary error for the correct destination
-        Skill *wordSkill = [self.knowledgeTracer updateSkillFor:correctDestinationID isVerified:NO shouldDampen:!isFirstAttempt];
+        Skill *wordSkill = [self.knowledgeTracer updateSkillFor:correctDestinationID isVerified:NO shouldDampen:!isFirstAttempt context:context];
         [skills addObject:wordSkill];
     }
     // Moved to incorrect destination
@@ -247,24 +247,24 @@
         if (![self isDistanceBelowThreshold:destinationIDs :correctDestinationID]) {
             // Decrease vocabulary skills for the destinations
             for (NSString *destinationID in destinationIDs) {
-                Skill *wordSkill = [self.knowledgeTracer updateSkillFor:destinationID isVerified:NO shouldDampen:!isFirstAttempt];
+                Skill *wordSkill = [self.knowledgeTracer updateSkillFor:destinationID isVerified:NO shouldDampen:!isFirstAttempt context:context];
                 [skills addObject:wordSkill];
             }
             
             // Decrease vocabulary skill for the correct destination
-            Skill *wordSkill = [self.knowledgeTracer updateSkillFor:correctDestinationID isVerified:NO shouldDampen:!isFirstAttempt];
+            Skill *wordSkill = [self.knowledgeTracer updateSkillFor:correctDestinationID isVerified:NO shouldDampen:!isFirstAttempt context:context];
             [skills addObject:wordSkill];
         }
         // Usability error
         else {
             // Decrease usability skill
-            usabilitySkill = [self.knowledgeTracer updateUsabilitySkill:NO shouldDampen:!isFirstAttempt];
+            usabilitySkill = [self.knowledgeTracer updateUsabilitySkill:NO shouldDampen:!isFirstAttempt context:context];
         }
     }
     // Moved to correct destination
     else {
         // Increase vocabulary skill for the destination
-        Skill *wordSkill = [self.knowledgeTracer updateSkillFor:correctDestinationID isVerified:YES shouldDampen:!isFirstAttempt];
+        Skill *wordSkill = [self.knowledgeTracer updateSkillFor:correctDestinationID isVerified:YES shouldDampen:!isFirstAttempt context:context];
         [skills addObject:wordSkill];
     }
     
