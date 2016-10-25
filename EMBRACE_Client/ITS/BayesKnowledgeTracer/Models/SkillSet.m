@@ -32,7 +32,9 @@
         
         [_easySyntaxSkill updateSkillValue:0.99];
         
-        _usabilitySkill = (UsabilitySkill *) [Skill usabilitySkill];        
+        _usabilitySkill = (UsabilitySkill *) [Skill usabilitySkill];
+        
+        [_usabilitySkill updateSkillValue:0.5];
     }
     
     return self;
