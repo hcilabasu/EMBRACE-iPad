@@ -1872,6 +1872,42 @@ static ServerCommunicationController *sharedInstance = nil;
     [nodeContext addChild:nodeStudyContext];
 }
 
+- (void)logAdaptSyntax:(NSInteger)prevComplexity :(NSInteger)newComplexity context:(ManipulationContext *)context {
+    //Start with base node for system action
+    DDXMLElement *nodeBaseAction = [self getBaseActionForActor:SYSTEM];
+    [study addChild:nodeBaseAction];
+    
+    //Set selection
+    DDXMLElement *nodeSelection = [[nodeBaseAction elementsForName:@"Selection"] objectAtIndex:0];
+    [nodeSelection setStringValue:@"Chapter Syntax"];
+    
+    //Set action
+    DDXMLElement *nodeAction = [[nodeBaseAction elementsForName:@"Action"] objectAtIndex:0];
+    [nodeAction setStringValue:@"Adapted Chapter Syntax"];
+    
+    //Get input
+    DDXMLElement *nodeInput = [[nodeBaseAction elementsForName:@"Input"] objectAtIndex:0];
+    
+    //Create nodes for input information
+    DDXMLElement *nodePreviousComplexity = [DDXMLElement elementWithName:@"Previous_Complexity" stringValue:[NSString stringWithFormat:@"%d", prevComplexity]];
+    DDXMLElement *nodeNewComplexity = [DDXMLElement elementWithName:@"New_Complexity" stringValue:[NSString stringWithFormat:@"%d", newComplexity]];
+    
+    //Add above nodes to input
+    [nodeInput addChild:nodePreviousComplexity];
+    [nodeInput addChild:nodeNewComplexity];
+    
+    //Get context
+    DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
+    
+    //Create nodes for context information
+    DDXMLElement *nodeManipulationContext = [self getManipulationContext:context];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
+    
+    //Add above nodes to context
+    [nodeContext addChild:nodeManipulationContext];
+    [nodeContext addChild:nodeStudyContext];
+}
+
 - (void)logVocabularyErrorFeedback:(NSArray *)highlightedItems context:(ManipulationContext *)context {
     //Start with base node for system action
     DDXMLElement *nodeBaseAction = [self getBaseActionForActor:SYSTEM];

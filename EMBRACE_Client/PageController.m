@@ -89,6 +89,19 @@
     NSString *pageLanguage = [pageContext.currentPage containsString:@"S.xhtml"] ? SPANISH_TXT : ENGLISH_TXT;
     manipulationContext.pageLanguage = pageLanguage;
     
+    if (conditionSetup.appMode == ITS) {
+        // Set the complexity level at the beginning of the chapter
+        if ([pageContext.currentPageId rangeOfString:PM1].location != NSNotFound) {
+            EMComplexity prevComplexity = [[ITSController sharedInstance] getCurrentComplexity];
+            [[ITSController sharedInstance] setCurrentComplexity];
+            EMComplexity newComplexity = [[ITSController sharedInstance] getCurrentComplexity];
+            
+            [[ServerCommunicationController sharedInstance] logAdaptSyntax:prevComplexity :newComplexity context:manipulationContext];
+        }
+        
+        manipulationContext.pageComplexity = [[ITSController sharedInstance] getCurrentComplexity];
+    }
+    
     [[ServerCommunicationController sharedInstance] logLoadPage:[manipulationContext pageLanguage] mode:[manipulationContext pageMode] number:[manipulationContext pageNumber] complexity:[manipulationContext pageComplexity] context:manipulationContext];
     
     //TODO: Remove hard coded strings

@@ -35,6 +35,7 @@ typedef NS_ENUM(NSInteger, EMComplexity) {
                                 isVerified:(BOOL)verified;
 
 - (EMComplexity)getCurrentComplexity;
+- (EMComplexity)setCurrentComplexity;
 
 - (NSMutableSet *)getExtraIntroductionVocabularyForChapter:(Chapter *)chapter inBook:(Book *)book;
 

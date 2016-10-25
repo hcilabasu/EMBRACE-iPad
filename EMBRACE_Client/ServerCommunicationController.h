@@ -93,6 +93,7 @@
 
 - (void)logUpdateSkill:(NSString *)skillName ofType:(NSString *)skillType prevValue:(double)prevSkillValue newSkillValue:(double)newSkillValue context:(ManipulationContext *)context;
 - (void)logAdaptVocabulary:(NSArray *)addedWords context:(ManipulationContext *)context;
+- (void)logAdaptSyntax:(NSInteger)prevComplexity :(NSInteger)newComplexity context:(ManipulationContext *)context;
 - (void)logVocabularyErrorFeedback:(NSArray *)highlightedItems context:(ManipulationContext *)context;
 - (void)logSyntaxErrorFeedback:(NSString *)simplerSentence context:(ManipulationContext *)context;
 - (void)logUsabilityErrorFeedback:(NSArray *)animatedItems context:(ManipulationContext *)context;

@@ -14,6 +14,7 @@
 @interface ITSController()
 
 @property (nonatomic, strong) ManipulationAnalyser *manipulationAnalyser;
+@property (nonatomic, assign) EMComplexity currentComplexity;
 
 @end
 
@@ -38,6 +39,7 @@ static ITSController *sharedInstance = nil;
     
     if (self) {
         _manipulationAnalyser = [[ManipulationAnalyser alloc] init];
+        _currentComplexity = EM_Medium;
     }
     
     return self;
@@ -164,11 +166,15 @@ static ITSController *sharedInstance = nil;
 }
 
 - (EMComplexity)getCurrentComplexity {
+    return _currentComplexity;
+}
+
+- (EMComplexity)setCurrentComplexity {
     double easySkillValue = [self.manipulationAnalyser easySyntaxSkillValue];
     double medSkillValue = [self.manipulationAnalyser medSyntaxSkillValue];
     double complexSkillValue = [self.manipulationAnalyser complexSyntaxSkillValue];
     
-    EMComplexity complexity = EM_Medium;
+    EMComplexity complexity = _currentComplexity;
     
     if (complexSkillValue == 0 && easySkillValue == 0 && medSkillValue == 0) {
         complexity = EM_Medium;
@@ -182,6 +188,8 @@ static ITSController *sharedInstance = nil;
     else {
         complexity = EM_Easy;
     }
+    
+    _currentComplexity = complexity;
     
     return complexity;
 }

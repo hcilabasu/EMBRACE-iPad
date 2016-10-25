@@ -3931,10 +3931,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     else {
         manipulationContext.pageMode = INTERVENTION;
     }
-    
-    if (conditionSetup.appMode == ITS) {
-        manipulationContext.pageComplexity = [[ITSController sharedInstance] getCurrentComplexity];
-    }
 }
 
 #pragma mark - ManipulationAnalyserProtocol

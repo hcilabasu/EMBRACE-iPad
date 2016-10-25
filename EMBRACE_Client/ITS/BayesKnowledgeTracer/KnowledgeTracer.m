@@ -226,17 +226,17 @@
 }
 
 - (double)calcCorrect:(double)prevSkillValue skillType:(SkillType)type {
-    double slip = [self getSlipForSkillType:type] / self.dampenValue;
+    double slip = [self getSlipForSkillType:type];
     double guess = [self getGuessForSkillType:type] / self.dampenValue;
-    double noSlip = 1 - slip;
+    double noSlip = (1 - slip) / self.dampenValue;
     
     return (prevSkillValue * noSlip) / (prevSkillValue * noSlip + (1 - prevSkillValue) * guess);
 }
 
 - (double)calcIncorrect:(double)prevSkillValue skillType:(SkillType)type {
     double slip = [self getSlipForSkillType:type] / self.dampenValue;
-    double guess = [self getGuessForSkillType:type] / self.dampenValue;
-    double noGuess = 1 - guess;
+    double guess = [self getGuessForSkillType:type];
+    double noGuess = (1 - guess) / self.dampenValue;
     
     return (prevSkillValue * slip) / ((slip * prevSkillValue) + (noGuess * (1 - prevSkillValue)));
 }
