@@ -142,7 +142,7 @@
         }
         
         // Increase syntax skill
-        EMComplexity complexity = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
+        EMComplexity complexity = [self.delegate getComplexityForCurrentSentence:self];
         Skill *syntaxSkill = [self.knowledgeTracer updateSyntaxSkill:YES withComplexity:complexity shouldDampen:!isFirstAttempt context:context];
         [skills addObject:syntaxSkill];
         
@@ -172,7 +172,7 @@
     // Mixed up order of subject and object
     if ([destinationIDs containsObject:correctMovedObjectID] && [movedObjectIDs containsObject:correctDestinationID]) {
         // Decrease syntax skill
-        EMComplexity complexity = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
+        EMComplexity complexity = [self.delegate getComplexityForCurrentSentence:self];
         Skill *syntaxSkill = [self.knowledgeTracer updateSyntaxSkill:NO withComplexity:complexity shouldDampen:!isFirstAttempt context:context];
         [skills addObject:syntaxSkill];
         [self showMessageWith:skills];
@@ -191,7 +191,7 @@
             for (NSString *destinationID in destinationIDs) {
                 if ([objectsInvolved containsObject:movedObjectID] && [objectsInvolved containsObject:destinationID]) {
                     // Decrease syntax skill
-                    EMComplexity complexity = [self.delegate analyzer:self getComplexityForSentence:context.sentenceNumber];
+                    EMComplexity complexity = [self.delegate getComplexityForCurrentSentence:self];
                     Skill *syntaxSkill = [self.knowledgeTracer updateSyntaxSkill:NO withComplexity:complexity shouldDampen:!isFirstAttempt context:context];
                     [skills addObject:syntaxSkill];
                     [self showMessageWith:skills];

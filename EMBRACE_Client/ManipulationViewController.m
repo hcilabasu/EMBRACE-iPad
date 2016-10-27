@@ -1004,37 +1004,43 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3", [englishSentenceText capitalizedString], DEF_E]];
         
         if (!success) {
-            //if error try m4a format
-            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.m4a", englishSentenceText, E]];
+            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3", [englishSentenceText capitalizedString], E]];
+            
+            [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:ENGLISH_TXT ofType:PLAY_WORD :manipulationContext];
         }
-        
-        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:ENGLISH_TXT ofType:PLAY_WORD_WITH_DEF :manipulationContext];
+        else {
+            [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:ENGLISH_TXT ofType:PLAY_WORD_WITH_DEF :manipulationContext];
+        }
     }
     else {
         //Play Sp Audio
-        bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3",[englishSentenceText capitalizedString],DEF_S]];
+        bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3", [englishSentenceText capitalizedString],DEF_S]];
         
         if (!success) {
-            //if error try m4a format
-            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.m4a" ,englishSentenceText, S]];
+            [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3", [englishSentenceText capitalizedString], S]];
+            [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:SPANISH_TXT ofType:PLAY_WORD :manipulationContext];
         }
-        
-        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:SPANISH_TXT ofType:PLAY_WORD_WITH_DEF :manipulationContext];
+        else {
+            [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:SPANISH_TXT ofType:PLAY_WORD_WITH_DEF :manipulationContext];
+        }
     }
     
     [self highlightImageForText:englishSentenceText];
     
     // This delay is needed in order to be able to play the last definition on a vocabulary page
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW,[self.playaudioClass audioDuration]*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW,[self.playaudioClass audioDuration] * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         //if audioPlayer is nil then we have returned to library view and should not play audio
         if ([self.playaudioClass audioPlayer] != nil) {
             //Play En audio
-            bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3",[englishSentenceText capitalizedString],DEF_E]];
+            bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3", [englishSentenceText capitalizedString],DEF_E]];
             
-            //Failed to load file with mp3 type, try m4a
             if (!success) {
-                //if error try m4a format
-                [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,E]];
+                [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3", [englishSentenceText capitalizedString],E]];
+                
+                [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:ENGLISH_TXT ofType:PLAY_WORD :manipulationContext];
+            }
+            else {
+                [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:ENGLISH_TXT ofType:PLAY_WORD_WITH_DEF :manipulationContext];
             }
             
             [self highlightImageForText:englishSentenceText];
@@ -4016,8 +4022,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     return [ssc returnCurrentSolutionSteps];
 }
 
-- (EMComplexity)analyzer:(ManipulationAnalyser *)analyzer getComplexityForSentence:(int)sentenceNumber {
-    return self.currentComplexityLevel;
+- (EMComplexity)getComplexityForCurrentSentence:(ManipulationAnalyser *)analyzer {
+    return [sc getComplexityOfCurrentSentence];
 }
 
 @end

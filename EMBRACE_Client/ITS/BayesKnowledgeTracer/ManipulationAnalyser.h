@@ -44,7 +44,7 @@
 - (NSArray *)getNextStepsForCurrentSentence:(ManipulationAnalyser *)analyzer;
 - (NSArray *)getStepsForCurrentSentence:(ManipulationAnalyser *)analyzer;
 
-- (EMComplexity)analyzer:(ManipulationAnalyser *)analyzer getComplexityForSentence:(int)sentenceNumber;
+- (EMComplexity)getComplexityForCurrentSentence:(ManipulationAnalyser *)analyzer;
 
 - (void)analyzer:(ManipulationAnalyser *)analyzer showMessage:(NSString *)message;
 

@@ -195,7 +195,7 @@ static ITSController *sharedInstance = nil;
 }
 
 - (NSMutableSet *)getExtraIntroductionVocabularyForChapter:(Chapter *)chapter inBook:(Book *)book {
-    double HIGH_VOCABULARY_SKILL_THRESHOLD = 0.9;
+    double HIGH_VOCABULARY_SKILL_THRESHOLD = 0.8;
     int MAX_EXTRA_VOCABULARY = 8.0 - [[chapter getNewVocabulary] count];
     
     NSMutableSet *extraVocabulary = [[NSMutableSet alloc] init];

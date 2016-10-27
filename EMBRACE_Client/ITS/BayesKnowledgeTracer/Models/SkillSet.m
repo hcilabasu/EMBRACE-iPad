@@ -32,9 +32,7 @@
         
         [_easySyntaxSkill updateSkillValue:0.99];
         
-        _usabilitySkill = (UsabilitySkill *) [Skill usabilitySkill];
-        
-        [_usabilitySkill updateSkillValue:0.5];
+        _usabilitySkill = (UsabilitySkill *) [Skill usabilitySkill];        
     }
     
     return self;
@@ -49,7 +47,10 @@
     
     if (skill == nil) {
         skill = [Skill skillForWord:word];
-        [self addWordSkill:skill forWord:word];
+        
+        if (skill != nil) {
+            [self addWordSkill:skill forWord:word];
+        }
     }
     
     return skill;
