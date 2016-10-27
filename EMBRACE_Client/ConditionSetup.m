@@ -20,6 +20,7 @@
 @synthesize isAssessmentPageEnabled;
 @synthesize assessmentMode;
 @synthesize shouldShowITSMessages;
+@synthesize isAutomaticAnimationEnabled;
 
 @synthesize allowFileSync;
 
@@ -42,10 +43,11 @@
         appMode = Study;
         currentMode = IM_MODE;
         newInstructions = FALSE;
-        isVocabPageEnabled = false;
-        isAssessmentPageEnabled = FALSE;
-        assessmentMode = ENDOFBOOK;
+        isVocabPageEnabled = true;
+        isAssessmentPageEnabled = true;
+        assessmentMode = ENDOFCHAPTER;
         shouldShowITSMessages = YES;
+        isAutomaticAnimationEnabled = NO;
         
         allowFileSync = true; //NOTE: Still testing this functionality
     }

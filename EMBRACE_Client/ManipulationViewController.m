@@ -2123,10 +2123,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             Location *location = [model getLocationWithId:locationId];
             
             //Calculate the x,y coordinates and the width and height in pixels from %
-            float locationX = [location.originX floatValue] / 100.0 * [self.manipulationView frame].size.width;
-            float locationY = [location.originY floatValue] / 100.0 * [self.manipulationView frame].size.height;
-            float locationWidth = [location.width floatValue] / 100.0 * [self.manipulationView frame].size.width;
-            float locationHeight = [location.height floatValue] / 100.0 * [self.manipulationView frame].size.height;
+            float locationX = [location.originX floatValue] / 100.0 * [bookView frame].size.width;
+            float locationY = [location.originY floatValue] / 100.0 * [bookView frame].size.height;
+            float locationWidth = [location.width floatValue] / 100.0 * [bookView frame].size.width;
+            float locationHeight = [location.height floatValue] / 100.0 * [bookView frame].size.height;
             
             //Check if hotspot is inside location
             if (((hotspotLocation.x < locationX + locationWidth) && (hotspotLocation.x > locationX)
@@ -2396,7 +2396,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     
     stepContext.numAttempts++;
     
-    if (stepContext.numAttempts >= stepContext.maxAttempts) {
+    if ((stepContext.numAttempts >= stepContext.maxAttempts) && conditionSetup.isAutomaticAnimationEnabled) {
         stepContext.numAttempts = 0;
         
         [self provideFeedbackForErrorType:@"usability"];
@@ -2413,7 +2413,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 NSString *mostProbableErrorType = [[ITSController sharedInstance] getMostProbableErrorType];
                 NSLog(@"*** mostProbableErrorType: %@", mostProbableErrorType);
                 
-                if (mostProbableErrorType != nil) {
+                if (mostProbableErrorType != nil && conditionSetup.isAutomaticAnimationEnabled) {
                     [self provideFeedbackForErrorType:mostProbableErrorType];
                 }
                 else {
@@ -4137,10 +4137,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         Location *loc = [model getLocationWithId:object];
         
         //Calculate the x,y coordinates and the width and height in pixels from %
-        float locationX = [loc.originX floatValue] / 100.0 * [self.view frame].size.width;
-        float locationY = [loc.originY floatValue] / 100.0 * [self.view frame].size.height;
-        float locationWidth = [loc.width floatValue] / 100.0 * [self.view frame].size.width;
-        float locationHeight = [loc.height floatValue] / 100.0 * [self.view frame].size.height;
+        float locationX = [loc.originX floatValue] / 100.0 * [bookView frame].size.width;
+        float locationY = [loc.originY floatValue] / 100.0 * [bookView frame].size.height;
+        float locationWidth = [loc.width floatValue] / 100.0 * [bookView frame].size.width;
+        float locationHeight = [loc.height floatValue] / 100.0 * [bookView frame].size.height;
         
         [self.manipulationView highlightLocation:lroundf(locationX):lroundf(locationY):lroundf(locationWidth):lroundf(locationHeight)];
     }
