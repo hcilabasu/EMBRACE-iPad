@@ -2222,6 +2222,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  */
 - (void)handleErrorForAction:(NSString *)action {
     allowInteractions = FALSE;
+    [self.view setUserInteractionEnabled:NO];
     
     [[ServerCommunicationController sharedInstance] logVerification:false forAction:action context:manipulationContext];
     
@@ -2264,6 +2265,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     }]];
                     [alert addAction:[UIAlertAction actionWithTitle:@"None" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
                         allowInteractions = TRUE;
+                        [self.view setUserInteractionEnabled:YES];
                     }]];
                     [self presentViewController:alert animated:YES completion:nil];
                 }
@@ -2273,12 +2275,14 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     }
                     else {
                         allowInteractions = TRUE;
+                        [self.view setUserInteractionEnabled:YES];
                     }
                 }
             });
         }
         else {
             allowInteractions = TRUE;
+            [self.view setUserInteractionEnabled:YES];
         }
     }
 }
@@ -2321,6 +2325,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                 allowInteractions = TRUE;
+                [self.view setUserInteractionEnabled:YES];
             });
         }
         // Highlight correct objects for transference
@@ -2345,6 +2350,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                     allowInteractions = TRUE;
+                    [self.view setUserInteractionEnabled:YES];
                 });
             }
         }
@@ -2363,6 +2369,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                 allowInteractions = TRUE;
+                [self.view setUserInteractionEnabled:YES];
             });
         }
     }
@@ -2405,6 +2412,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                 allowInteractions = TRUE;
+                [self.view setUserInteractionEnabled:YES];
             });
         }
         
@@ -2422,6 +2430,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             
             [self playNoiseName:ERROR_FEEDBACK_NOISE];
             allowInteractions = TRUE;
+            [self.view setUserInteractionEnabled:YES];
         }
         // Default to usability error feedback if there are no simpler sentences available
         else {
@@ -2435,7 +2444,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Need help? The iPad will show you how to complete this step." preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action)
                           {
-                              [self.view setUserInteractionEnabled:YES];
                               [self animatePerformingStep];
                           }]];
         [self presentViewController:alert animated:YES completion:nil];
@@ -3257,6 +3265,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                         
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                             allowInteractions = TRUE;
+                            [self.view setUserInteractionEnabled:YES];
                             [ssc incrementCurrentStep];
                         });
                     });
@@ -3269,6 +3278,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 }
                 
                 allowInteractions = TRUE;
+                [self.view setUserInteractionEnabled:YES];
                 [ssc incrementCurrentStep];
             }
         }
@@ -3279,6 +3289,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             }
             
             allowInteractions = TRUE;
+            [self.view setUserInteractionEnabled:YES];
             
             if ([stepType isEqualToString:CHECKANDSWAP]) {
                 [self swapObjectImage];
@@ -3352,6 +3363,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                     allowInteractions = TRUE;
+                    [self.view setUserInteractionEnabled:YES];
                     
                     //Get the interaction to be performed
                     PossibleInteraction *interaction = [pic getCorrectInteraction];
@@ -3363,6 +3375,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     if ([interaction interactionType] == TRANSFERANDGROUP || [interaction interactionType] == TRANSFERANDDISAPPEAR) {
                         [ssc incrementCurrentStep];
                     }
+                    
+                    [self highlightObject:objectId :2.0];
                 });
             });
         }
@@ -3396,6 +3410,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                 allowInteractions = TRUE;
+                [self.view setUserInteractionEnabled:YES];
                 
                 //Get the interaction to be performed
                 PossibleInteraction *interaction = [pic getCorrectInteraction];

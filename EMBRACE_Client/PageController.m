@@ -74,7 +74,6 @@
  * Loads the html content and solution steps for the current page.
  */
 - (void)loadPage {
-    
     animatingObjects = [[NSMutableDictionary alloc] init];
     mvc.animatingObjects = animatingObjects;
     
@@ -125,7 +124,13 @@
             mvc.allowInteractions = false;
         }
         else if (conditionSetup.currentMode == PM_MODE) {
-            mvc.allowInteractions = true;
+            if ([pageContext.currentPageId rangeOfString:DASH_INTRO].location != NSNotFound) {
+                mvc.allowInteractions = false;
+            }
+            else {
+                mvc.allowInteractions = true;
+            }
+            
             //Get the PM solution steps for the current chapter
             Chapter *chapter = [mvc.book getChapterWithTitle:chapterTitle]; //get current chapter
             PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
