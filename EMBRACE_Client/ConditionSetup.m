@@ -42,11 +42,11 @@
         appMode = ITS;
         currentMode = PM_MODE;
         
-        newInstructions = FALSE;
+        newInstructions = TRUE;
         isVocabPageEnabled = TRUE;
-        isAssessmentPageEnabled = FALSE;
+        isAssessmentPageEnabled = TRUE;
         assessmentMode = ENDOFBOOK;
-        shouldShowITSMessages = FALSE;
+        shouldShowITSMessages = TRUE;
         
         allowFileSync = TRUE;
     }
