@@ -2015,6 +2015,9 @@ static ServerCommunicationController *sharedInstance = nil;
             locDirName = @"ProgressFiles";
             filePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/CurrentSession/%@",locDirName, fileToUpload]]; //Path of file on iPad
         }
+        else if([pathExtension isEqualToString:@""]){
+            continue;
+        }
         else {
             dbDirName = @"Embrace/FileSync/UnknownFiles";
             filePath = [documentsDirectory stringByAppendingPathComponent: fileToUpload]; //Path of file on iPad
@@ -2050,13 +2053,8 @@ static ServerCommunicationController *sharedInstance = nil;
             if(![fileManager createDirectoryAtPath:backupProgressFilePath withIntermediateDirectories:YES attributes:nil error:NULL])
                 NSLog(@"Error: Create folder failed %@", backupProgressFilePath);
         
-        assert(fileManager != nil);
-        NSError* error = nil;
-        //Move file from CurrentSession to Backup folder
-        [fileManager moveItemAtPath:localPathOrigin toPath:localPathDestination error:&error];
-        
         NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:sessionConfiguration delegate:self delegateQueue:[NSOperationQueue mainQueue]];
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api-content.dropbox.com/1/files_put/auto/%@?overwrite=true", [dbFileName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]]; //Files with same name will be overwritten
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api-content.dropbox.com/1/files_put/auto/%@?overwrite=True", [dbFileName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]]; //Files with same name will be overwritten
         [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
         [request setHTTPMethod:@"PUT"];
         [request setHTTPBody:data];
@@ -2065,6 +2063,15 @@ static ServerCommunicationController *sharedInstance = nil;
         NSURLSessionDataTask *doDataTask = [defaultSession dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
             if (!error) {
                 NSLog(@"Successfully uploaded student files to Dropbox.");
+                NSLog(@"Response: %@", response);
+                
+                assert(fileManager != nil);
+                NSError* error = nil;
+                if ([pathExtension isEqualToString:@"xml"]) {
+                    //Move file from CurrentSession to Backup folder
+                    [fileManager moveItemAtPath:localPathOrigin toPath:localPathDestination error:&error];
+                }
+                
                 completionHandler(YES);
                 failureHandler(NO);
             }
