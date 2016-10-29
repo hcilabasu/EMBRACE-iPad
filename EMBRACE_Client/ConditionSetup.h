@@ -34,11 +34,17 @@ typedef enum Actor {
     USER
 } Actor;
 
-//Differentiates system from user
+//Differentiates assessment mode
 typedef enum Assessment {
     ENDOFCHAPTER,
     ENDOFBOOK
 } Assessment;
+
+//Differentiates animated automatic step completion
+typedef enum AnimatedStepCompletion {
+    PERSENTENCE,
+    PERSTEP
+} AnimatedStepCompletion;
 
 @interface ConditionSetup : NSObject
 
@@ -48,6 +54,7 @@ typedef enum Assessment {
 @property (nonatomic) AppMode appMode;
 @property (nonatomic) Mode currentMode; //PM or IM
 @property (nonatomic) Assessment assessmentMode;
+@property (nonatomic) AnimatedStepCompletion animatedStepCompletionMode; //Per step or per sentence
 @property (nonatomic) BOOL newInstructions; //whether new audio instructions should be played (for sequences)
 @property (nonatomic) BOOL isVocabPageEnabled; //whether the vocab page should be displayed
 @property (nonatomic) BOOL isAssessmentPageEnabled; //whether the assessment page should be displayed

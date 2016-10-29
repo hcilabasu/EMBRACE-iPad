@@ -19,6 +19,7 @@
 @synthesize isVocabPageEnabled;
 @synthesize isAssessmentPageEnabled;
 @synthesize assessmentMode;
+@synthesize animatedStepCompletionMode;
 @synthesize shouldShowITSMessages;
 @synthesize isAutomaticAnimationEnabled;
 
@@ -48,6 +49,7 @@
         assessmentMode = ENDOFCHAPTER;
         shouldShowITSMessages = YES;
         isAutomaticAnimationEnabled = NO;
+        animatedStepCompletionMode = PERSTEP;
         
         allowFileSync = true; //NOTE: Still testing this functionality
     }
