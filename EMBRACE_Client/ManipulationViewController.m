@@ -2388,6 +2388,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  */
 - (void)handleErrorForAction:(NSString *)action {
     allowInteractions = FALSE;
+    [self.view setUserInteractionEnabled:NO];
     
     [[ServerCommunicationController sharedInstance] logVerification:false forAction:action context:manipulationContext];
     
@@ -2418,11 +2419,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 }
                 else {
                     allowInteractions = TRUE;
+                    [self.view setUserInteractionEnabled:YES];
                 }
             });
         }
         else{
             allowInteractions = TRUE;
+            [self.view setUserInteractionEnabled:YES];
         }
     }
     
@@ -2561,7 +2564,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Need help?" message:@"The iPad will show you how to complete this step." preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action)
                           {
-                              [self.view setUserInteractionEnabled:YES];
+                              [self.view setUserInteractionEnabled:NO];
                               [self animatePerformingStep];
                           }]];
         [self presentViewController:alert animated:YES completion:nil];
@@ -3361,6 +3364,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     // Get steps for current sentence
     NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
     
+    if (stepContext.stepsComplete) {
+        allowInteractions = TRUE;
+        [self.view setUserInteractionEnabled:YES];
+        return;
+    }
+    else{
+    
     // Get current step to be completed
     ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
     NSString *stepType = [currSolStep stepType];
@@ -3390,25 +3400,45 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                         [self highlightObject:object1Id :2.0];
                         
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                            allowInteractions = TRUE;
                             [ssc incrementCurrentStep];
+                            
+                            if(conditionSetup.animatedStepCompletionMode == PERSENTENCE){
+                                [self animatePerformingStep];
+                            }
+                            else{
+                                allowInteractions = TRUE;
+                                [self.view setUserInteractionEnabled:YES];
+                            }
                         });
                     });
                 });
             }
             else {
-                allowInteractions = TRUE;
                 [ssc incrementCurrentStep];
+                
+                if(conditionSetup.animatedStepCompletionMode == PERSENTENCE){
+                    [self animatePerformingStep];
+                }
+                else{
+                    allowInteractions = TRUE;
+                    [self.view setUserInteractionEnabled:YES];
+                }
             }
         }
         else {
-            allowInteractions = TRUE;
             
             if ([stepType isEqualToString:CHECKANDSWAP]) {
                 [self swapObjectImage];
             }
             
             [ssc incrementCurrentStep];
+            if(conditionSetup.animatedStepCompletionMode == PERSENTENCE){
+                [self animatePerformingStep];
+            }
+            else{
+                allowInteractions = TRUE;
+                [self.view setUserInteractionEnabled:YES];
+            }
         }
     }
     // Animate moving object for transference
@@ -3468,17 +3498,22 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 [[ServerCommunicationController sharedInstance] logAnimateObject:objectId forAction:[objectHotspot action] context:manipulationContext];
                 
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                    allowInteractions = TRUE;
                     
                     //Get the interaction to be performed
                     PossibleInteraction *interaction = [pic getCorrectInteraction];
                     
                     //Perform the interaction and increment the step
                     [self checkSolutionForInteraction:interaction];
+                    if(conditionSetup.animatedStepCompletionMode == PERSENTENCE){
+                        [self animatePerformingStep];
+                    }
+                    else{
+                        allowInteractions = TRUE;
+                        [self.view setUserInteractionEnabled:YES];
+                    }
                 });
             });
         }
-        
     }
     // Animate object moving to object
     else {
@@ -3500,17 +3535,24 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             [[ServerCommunicationController sharedInstance] logAnimateObject:object1Id forAction:[currSolStep action] context:manipulationContext];
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                allowInteractions = TRUE;
+                [self highlightObject:object1Id :2.0];
                 
                 //Get the interaction to be performed
                 PossibleInteraction *interaction = [pic getCorrectInteraction];
-                
+               
                 //Perform the interaction and increment the step
                 [self checkSolutionForInteraction:interaction];
                 
-                [self highlightObject:object1Id :2.0];
+                if(conditionSetup.animatedStepCompletionMode == PERSENTENCE){
+                    [self animatePerformingStep];
+                }
+                else{
+                    allowInteractions = TRUE;
+                    [self.view setUserInteractionEnabled:YES];
+                }
             });
         });
+    }
     }
 }
 

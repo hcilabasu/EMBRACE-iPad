@@ -42,13 +42,13 @@
         language = ENGLISH;
         reader = USER;
         appMode = Study;
-        currentMode = IM_MODE;
+        currentMode = PM_MODE;
         newInstructions = FALSE;
         isVocabPageEnabled = true;
         isAssessmentPageEnabled = true;
         assessmentMode = ENDOFCHAPTER;
         shouldShowITSMessages = YES;
-        isAutomaticAnimationEnabled = NO;
+        isAutomaticAnimationEnabled = YES;
         animatedStepCompletionMode = PERSTEP;
         
         allowFileSync = true; //NOTE: Still testing this functionality
