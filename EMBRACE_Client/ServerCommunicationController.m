@@ -2053,14 +2053,6 @@ static ServerCommunicationController *sharedInstance = nil;
             if(![fileManager createDirectoryAtPath:backupProgressFilePath withIntermediateDirectories:YES attributes:nil error:NULL])
                 NSLog(@"Error: Create folder failed %@", backupProgressFilePath);
         
-        assert(fileManager != nil);
-        NSError* error = nil;
-        
-        if ([pathExtension isEqualToString:@"xml"]) {
-            //Move file from CurrentSession to Backup folder
-            [fileManager moveItemAtPath:localPathOrigin toPath:localPathDestination error:&error];
-        }
-        
         NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:sessionConfiguration delegate:self delegateQueue:[NSOperationQueue mainQueue]];
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api-content.dropbox.com/1/files_put/auto/%@?overwrite=True", [dbFileName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]]; //Files with same name will be overwritten
         [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
@@ -2072,6 +2064,14 @@ static ServerCommunicationController *sharedInstance = nil;
             if (!error) {
                 NSLog(@"Successfully uploaded student files to Dropbox.");
                 NSLog(@"Response: %@", response);
+                
+                assert(fileManager != nil);
+                NSError* error = nil;
+                if ([pathExtension isEqualToString:@"xml"]) {
+                    //Move file from CurrentSession to Backup folder
+                    [fileManager moveItemAtPath:localPathOrigin toPath:localPathDestination error:&error];
+                }
+                
                 completionHandler(YES);
                 failureHandler(NO);
             }
