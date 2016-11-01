@@ -19,7 +19,9 @@
 @synthesize isVocabPageEnabled;
 @synthesize isAssessmentPageEnabled;
 @synthesize assessmentMode;
+@synthesize animatedStepCompletionMode;
 @synthesize shouldShowITSMessages;
+@synthesize isAutomaticAnimationEnabled;
 
 @synthesize allowFileSync;
 
@@ -40,12 +42,14 @@
         language = ENGLISH;
         reader = USER;
         appMode = Study;
-        currentMode = IM_MODE;
+        currentMode = PM_MODE;
         newInstructions = FALSE;
-        isVocabPageEnabled = false;
-        isAssessmentPageEnabled = FALSE;
-        assessmentMode = ENDOFBOOK;
+        isVocabPageEnabled = true;
+        isAssessmentPageEnabled = true;
+        assessmentMode = ENDOFCHAPTER;
         shouldShowITSMessages = YES;
+        isAutomaticAnimationEnabled = YES;
+        animatedStepCompletionMode = PERSTEP;
         
         allowFileSync = true; //NOTE: Still testing this functionality
     }
