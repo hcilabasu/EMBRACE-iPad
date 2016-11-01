@@ -19,6 +19,8 @@
 @synthesize isVocabPageEnabled;
 @synthesize isAssessmentPageEnabled;
 @synthesize assessmentMode;
+@synthesize animatedStepCompletionMode;
+@synthesize isAutomaticAnimationEnabled;
 @synthesize useKnowledgeTracing;
 @synthesize shouldShowITSMessages;
 
@@ -42,16 +44,19 @@
         reader = USER;
         appMode = ITS;
         currentMode = PM_MODE;
-        
-        newInstructions = TRUE;
-        isVocabPageEnabled = TRUE;
-        isAssessmentPageEnabled = TRUE;
+
+        newInstructions = YES;
+        isVocabPageEnabled = YES;
+        isAssessmentPageEnabled = YES;
         assessmentMode = ENDOFCHAPTER;
         
-        useKnowledgeTracing = TRUE;
-        shouldShowITSMessages = FALSE;
+        isAutomaticAnimationEnabled = YES;
+        animatedStepCompletionMode = PERSTEP;
         
-        allowFileSync = TRUE;
+        useKnowledgeTracing = YES;
+        shouldShowITSMessages = NO;
+        
+        allowFileSync = YES;
     }
     
     return self;

@@ -18,10 +18,10 @@
 
 - (id)initWithValues:(NSString *)school :(NSString *)participant :(NSString *)study :(NSString *)experimenter {
     if (self = [super init]) {
-        schoolCode = school;
-        participantCode = participant;
+        schoolCode = [school lowercaseString];
+        participantCode = [participant lowercaseString];
         studyDay = study;
-        experimenterName = experimenter;
+        experimenterName = [experimenter lowercaseString];
     }
     
     return self;

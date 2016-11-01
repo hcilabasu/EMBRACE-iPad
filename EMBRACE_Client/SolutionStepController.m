@@ -341,7 +341,14 @@
         }
         
         manipulationContext.stepNumber = stepContext.currentStep;
-        [mvc performAutomaticSteps]; //automatically perform ungroup or move steps if necessary
+        if(!mvc.allowInteractions) {
+            mvc.allowInteractions = YES;
+            [mvc performAutomaticSteps]; //automatically perform ungroup or move steps if necessary
+            mvc.allowInteractions = NO;
+        }
+        else{
+            [mvc performAutomaticSteps]; //automatically perform ungroup or move steps if necessary
+        }
     }
     else {
         stepContext.stepsComplete = TRUE; //no more steps to complete

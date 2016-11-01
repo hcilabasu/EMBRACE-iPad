@@ -2243,7 +2243,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         delay = 5.5;
     }
     
-    if (stepContext.numAttempts >= stepContext.maxAttempts) {
+    if (stepContext.numAttempts >= stepContext.maxAttempts && conditionSetup.isAutomaticAnimationEnabled) {
         stepContext.numAttempts = 0;
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, delay * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
@@ -2267,7 +2267,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                         [self provideFeedbackForErrorType:@"syntax"];
                     }]];
                     [alert addAction:[UIAlertAction actionWithTitle:@"Usability" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                        [self provideFeedbackForErrorType:@"usability"];
+                        if (conditionSetup.isAutomaticAnimationEnabled) {
+                            [self provideFeedbackForErrorType:@"usability"];
+                        }
                     }]];
                     [alert addAction:[UIAlertAction actionWithTitle:@"None" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
                         allowInteractions = TRUE;
@@ -2276,7 +2278,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     [self presentViewController:alert animated:YES completion:nil];
                 }
                 else {
-                    if (mostProbableErrorType != nil) {
+                    if (mostProbableErrorType != nil && conditionSetup.isAutomaticAnimationEnabled) {
                         [self provideFeedbackForErrorType:mostProbableErrorType];
                     }
                     else {
@@ -2443,13 +2445,16 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             // Log attempted syntax error feedback
             [[ServerCommunicationController sharedInstance] logSyntaxErrorFeedback:@"NULL" context:manipulationContext];
             
-            [self provideFeedbackForErrorType:@"usability"];
+            if (conditionSetup.isAutomaticAnimationEnabled) {
+                [self provideFeedbackForErrorType:@"usability"];
+            }
         }
     }
     else if ([errorType isEqualToString:@"usability"]) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Need help? The iPad will show you how to complete this step." preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action)
                           {
+                              [self.view setUserInteractionEnabled:NO];
                               [self animatePerformingStep];
                           }]];
         [self presentViewController:alert animated:YES completion:nil];
@@ -3227,153 +3232,224 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     // Get steps for current sentence
     NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
     
-    // Get current step to be completed
-    ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
-    NSString *stepType = [currSolStep stepType];
-    
-    // Record animated objects/locations for logging
-    NSMutableArray *animatedItems;
-    
-    if (conditionSetup.appMode == ITS) {
-        animatedItems = [[NSMutableArray alloc] init];
+    if (stepContext.stepsComplete) {
+        allowInteractions = TRUE;
+        [self.view setUserInteractionEnabled:YES];
+        return;
     }
-    
-    // Animate moving object to location
-    if ([stepType isEqualToString:CHECK] || [stepType isEqualToString:CHECKLEFT] || [stepType isEqualToString:CHECKRIGHT] || [stepType isEqualToString:CHECKUP] || [stepType isEqualToString:CHECKDOWN] || [stepType isEqualToString:CHECKANDSWAP] || [stepType isEqualToString:TAPTOANIMATE] || [stepType isEqualToString:CHECKPATH] || [stepType isEqualToString:SHAKEORTAP] || [stepType isEqualToString:TAPWORD] ) {
-        if ([stepType isEqualToString:CHECK]) {
-            NSString *object1Id = [currSolStep object1Id];
-            ActionStep *nextSolStep = [currSolSteps objectAtIndex:stepContext.currentStep];
-            
-            if (nextSolStep != nil && [[nextSolStep stepType] isEqualToString:MOVE] && [[nextSolStep object1Id] isEqualToString:object1Id]) {
-                Hotspot *object1Hotspot = [model getHotspotforObjectWithActionAndRole:object1Id :[currSolStep action] :SUBJECT];
-                CGPoint object1HotspotLocation = [self.manipulationView getHotspotLocation:object1Hotspot];
+    else {
+        // Get current step to be completed
+        ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
+        NSString *stepType = [currSolStep stepType];
+        
+        // Record animated objects/locations for logging
+        NSMutableArray *animatedItems;
+        
+        if (conditionSetup.appMode == ITS) {
+            animatedItems = [[NSMutableArray alloc] init];
+        }
+        
+        // Animate moving object to location
+        if ([stepType isEqualToString:CHECK] || [stepType isEqualToString:CHECKLEFT] || [stepType isEqualToString:CHECKRIGHT] || [stepType isEqualToString:CHECKUP] || [stepType isEqualToString:CHECKDOWN] || [stepType isEqualToString:CHECKANDSWAP] || [stepType isEqualToString:TAPTOANIMATE] || [stepType isEqualToString:CHECKPATH] || [stepType isEqualToString:SHAKEORTAP] || [stepType isEqualToString:TAPWORD] ) {
+            if ([stepType isEqualToString:CHECK]) {
+                NSString *object1Id = [currSolStep object1Id];
+                ActionStep *nextSolStep = [currSolSteps objectAtIndex:stepContext.currentStep];
                 
-                Waypoint *waypoint = [model getWaypointWithId:[nextSolStep waypointId]];
-                CGPoint waypointLocation = [self getWaypointLocation:waypoint];
-                
-                if (conditionSetup.appMode == ITS) {
-                    [animatedItems addObject:object1Id];
-                    [animatedItems addObject:[waypoint waypointId]];
+                if (nextSolStep != nil && [[nextSolStep stepType] isEqualToString:MOVE] && [[nextSolStep object1Id] isEqualToString:object1Id]) {
+                    Hotspot *object1Hotspot = [model getHotspotforObjectWithActionAndRole:object1Id :[currSolStep action] :SUBJECT];
+                    CGPoint object1HotspotLocation = [self.manipulationView getHotspotLocation:object1Hotspot];
                     
-                    [[ServerCommunicationController sharedInstance] logUsabilityErrorFeedback:animatedItems context:manipulationContext];
-                }
-                
-                [self highlightObject:object1Id :2.0];
-                
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                    movingObjectId = object1Id;
+                    Waypoint *waypoint = [model getWaypointWithId:[nextSolStep waypointId]];
+                    CGPoint waypointLocation = [self getWaypointLocation:waypoint];
                     
-                    [self.manipulationView animateObject:object1Id from:object1HotspotLocation to:waypointLocation action:MOVETOLOCATION areaId:EMPTYSTRING];
-                    [[ServerCommunicationController sharedInstance] logAnimateObject:object1Id forAction:[currSolStep action] context:manipulationContext];
-                    
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                        [self highlightObject:object1Id :2.0];
+                    if (conditionSetup.appMode == ITS) {
+                        [animatedItems addObject:object1Id];
+                        [animatedItems addObject:[waypoint waypointId]];
                         
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                            allowInteractions = TRUE;
-                            [self.view setUserInteractionEnabled:YES];
-                            [ssc incrementCurrentStep];
+                        [[ServerCommunicationController sharedInstance] logUsabilityErrorFeedback:animatedItems context:manipulationContext];
+                    }
+                    
+                    [self highlightObject:object1Id :2.0];
+                    
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                        movingObjectId = object1Id;
+                        
+                        [self.manipulationView animateObject:object1Id from:object1HotspotLocation to:waypointLocation action:MOVETOLOCATION areaId:EMPTYSTRING];
+                        [[ServerCommunicationController sharedInstance] logAnimateObject:object1Id forAction:[currSolStep action] context:manipulationContext];
+                        
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                            [self highlightObject:object1Id :2.0];
+                            
+                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                                [ssc incrementCurrentStep];
+                                
+                                if (conditionSetup.animatedStepCompletionMode == PERSENTENCE) {
+                                    [self animatePerformingStep];
+                                }
+                                else {
+                                    allowInteractions = TRUE;
+                                    [self.view setUserInteractionEnabled:YES];
+                                }
+                            });
                         });
                     });
-                });
+                }
+                else {
+                    if (conditionSetup.appMode == ITS) {
+                        // Log attempted usability error feedback
+                        [[ServerCommunicationController sharedInstance] logUsabilityErrorFeedback:animatedItems context:manipulationContext];
+                    }
+                    
+                    [ssc incrementCurrentStep];
+                    
+                    if (conditionSetup.animatedStepCompletionMode == PERSENTENCE) {
+                        [self animatePerformingStep];
+                    }
+                    else {
+                        allowInteractions = TRUE;
+                        [self.view setUserInteractionEnabled:YES];
+                    }
+                }
             }
             else {
                 if (conditionSetup.appMode == ITS) {
                     // Log attempted usability error feedback
                     [[ServerCommunicationController sharedInstance] logUsabilityErrorFeedback:animatedItems context:manipulationContext];
                 }
+
+                if ([stepType isEqualToString:CHECKANDSWAP]) {
+                    [self swapObjectImage];
+                }
                 
-                allowInteractions = TRUE;
-                [self.view setUserInteractionEnabled:YES];
                 [ssc incrementCurrentStep];
-            }
-        }
-        else {
-            if (conditionSetup.appMode == ITS) {
-                // Log attempted usability error feedback
-                [[ServerCommunicationController sharedInstance] logUsabilityErrorFeedback:animatedItems context:manipulationContext];
-            }
-            
-            allowInteractions = TRUE;
-            [self.view setUserInteractionEnabled:YES];
-            
-            if ([stepType isEqualToString:CHECKANDSWAP]) {
-                [self swapObjectImage];
-            }
-            
-            [ssc incrementCurrentStep];
-        }
-    }
-    // Animate moving object for transference
-    else if ([stepType isEqualToString:TRANSFERANDGROUP_TXT] || [stepType isEqualToString:TRANSFERANDDISAPPEAR_TXT]) {
-        ActionStep *nextSolStep = [currSolSteps objectAtIndex:stepContext.currentStep];
-        
-        if (nextSolStep != nil && ([[nextSolStep stepType] isEqualToString:TRANSFERANDGROUP_TXT] || [stepType isEqualToString:TRANSFERANDDISAPPEAR_TXT])) {
-            NSString *objectId;
-            NSString *nextObjectId;
-            NSString *objectAction;
-            NSString *nextObjectAction;
-            
-            // Try to select the distinct objects in the transference steps.
-            // NOTE: This is a somewhat hardcoded solution to possible inconsistencies in the way solutions and hotspots are encoded.
-            if ([[currSolStep object2Id] isEqualToString:[nextSolStep object2Id]]) {
-                objectId = [currSolStep object1Id];
-                nextObjectId = [nextSolStep object1Id];
-                objectAction = [currSolStep action];
-                nextObjectAction = [nextSolStep action];
-            }
-            else if ([[currSolStep object2Id] isEqualToString:[nextSolStep object1Id]]) {
-                objectId = [currSolStep object1Id];
-                nextObjectId = [nextSolStep object2Id];
-                objectAction = [currSolStep action];
-                nextObjectAction = [nextSolStep action];
-            }
-            else if ([[currSolStep object1Id] isEqualToString:[nextSolStep object2Id]]) {
-                objectId = [nextSolStep object1Id];
-                nextObjectId = [currSolStep object2Id];
-                objectAction = [nextSolStep action];
-                nextObjectAction = [currSolStep action];
-            }
-            
-            Hotspot *objectHotspot = [model getHotspotforObjectWithActionAndRole:objectId :objectAction :SUBJECT];
-            
-            // Default to "getIn" hotspot since most objects should have one...
-            if (objectHotspot == nil) {
-                objectHotspot = [model getHotspotforObjectWithActionAndRole:objectId :@"getIn" :SUBJECT];
-            }
-            
-            Hotspot *nextObjectHotspot = [model getHotspotforObjectWithActionAndRole:nextObjectId :nextObjectAction :SUBJECT];
-            
-            // Default to "getIn" hotspot since most objects should have one...
-            if (nextObjectHotspot == nil) {
-                nextObjectHotspot = [model getHotspotforObjectWithActionAndRole:nextObjectId :@"getIn" :SUBJECT];
-            }
-            
-            CGPoint objectHotspotLocation = [self.manipulationView getHotspotLocation:objectHotspot];
-            CGPoint nextObjectHotspotLocation = [self.manipulationView getHotspotLocation:nextObjectHotspot];
-            
-            if (conditionSetup.appMode == ITS) {
-                [animatedItems addObject:objectId];
-                [animatedItems addObject:nextObjectId];
                 
-                [[ServerCommunicationController sharedInstance] logUsabilityErrorFeedback:animatedItems context:manipulationContext];
-            }
-            
-            [self highlightObject:objectId :2.0];
-            
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                movingObjectId = objectId;
-                
-                [self.manipulationView animateObject:objectId from:objectHotspotLocation to:nextObjectHotspotLocation action:MOVETOLOCATION areaId:EMPTYSTRING];
-                [[ServerCommunicationController sharedInstance] logAnimateObject:objectId forAction:[objectHotspot action] context:manipulationContext];
-                
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                if (conditionSetup.animatedStepCompletionMode == PERSENTENCE) {
+                    [self animatePerformingStep];
+                }
+                else {
                     allowInteractions = TRUE;
                     [self.view setUserInteractionEnabled:YES];
+                }
+            }
+        }
+        // Animate moving object for transference
+        else if ([stepType isEqualToString:TRANSFERANDGROUP_TXT] || [stepType isEqualToString:TRANSFERANDDISAPPEAR_TXT]) {
+            ActionStep *nextSolStep = [currSolSteps objectAtIndex:stepContext.currentStep];
+            
+            if (nextSolStep != nil && ([[nextSolStep stepType] isEqualToString:TRANSFERANDGROUP_TXT] || [stepType isEqualToString:TRANSFERANDDISAPPEAR_TXT])) {
+                NSString *objectId;
+                NSString *nextObjectId;
+                NSString *objectAction;
+                NSString *nextObjectAction;
+                
+                // Try to select the distinct objects in the transference steps.
+                // NOTE: This is a somewhat hardcoded solution to possible inconsistencies in the way solutions and hotspots are encoded.
+                if ([[currSolStep object2Id] isEqualToString:[nextSolStep object2Id]]) {
+                    objectId = [currSolStep object1Id];
+                    nextObjectId = [nextSolStep object1Id];
+                    objectAction = [currSolStep action];
+                    nextObjectAction = [nextSolStep action];
+                }
+                else if ([[currSolStep object2Id] isEqualToString:[nextSolStep object1Id]]) {
+                    objectId = [currSolStep object1Id];
+                    nextObjectId = [nextSolStep object2Id];
+                    objectAction = [currSolStep action];
+                    nextObjectAction = [nextSolStep action];
+                }
+                else if ([[currSolStep object1Id] isEqualToString:[nextSolStep object2Id]]) {
+                    objectId = [nextSolStep object1Id];
+                    nextObjectId = [currSolStep object2Id];
+                    objectAction = [nextSolStep action];
+                    nextObjectAction = [currSolStep action];
+                }
+                
+                Hotspot *objectHotspot = [model getHotspotforObjectWithActionAndRole:objectId :objectAction :SUBJECT];
+                
+                // Default to "getIn" hotspot since most objects should have one...
+                if (objectHotspot == nil) {
+                    objectHotspot = [model getHotspotforObjectWithActionAndRole:objectId :@"getIn" :SUBJECT];
+                }
+                
+                Hotspot *nextObjectHotspot = [model getHotspotforObjectWithActionAndRole:nextObjectId :nextObjectAction :SUBJECT];
+                
+                // Default to "getIn" hotspot since most objects should have one...
+                if (nextObjectHotspot == nil) {
+                    nextObjectHotspot = [model getHotspotforObjectWithActionAndRole:nextObjectId :@"getIn" :SUBJECT];
+                }
+                
+                CGPoint objectHotspotLocation = [self.manipulationView getHotspotLocation:objectHotspot];
+                CGPoint nextObjectHotspotLocation = [self.manipulationView getHotspotLocation:nextObjectHotspot];
+                
+                if (conditionSetup.appMode == ITS) {
+                    [animatedItems addObject:objectId];
+                    [animatedItems addObject:nextObjectId];
                     
+                    [[ServerCommunicationController sharedInstance] logUsabilityErrorFeedback:animatedItems context:manipulationContext];
+                }
+                
+                [self highlightObject:objectId :2.0];
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                    movingObjectId = objectId;
+                    
+                    [self.manipulationView animateObject:objectId from:objectHotspotLocation to:nextObjectHotspotLocation action:MOVETOLOCATION areaId:EMPTYSTRING];
+                    [[ServerCommunicationController sharedInstance] logAnimateObject:objectId forAction:[objectHotspot action] context:manipulationContext];
+                    
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                        //Get the interaction to be performed
+                        PossibleInteraction *interaction = [pic getCorrectInteraction];
+                        
+                        //Perform the interaction and increment the step
+                        [pic performInteraction:interaction];
+                        [ssc incrementCurrentStep];
+                        
+                        if (conditionSetup.animatedStepCompletionMode == PERSENTENCE) {
+                            [self animatePerformingStep];
+                        }
+                        else {
+                            allowInteractions = TRUE;
+                            [self.view setUserInteractionEnabled:YES];
+                        }
+                        
+                        if ([interaction interactionType] == TRANSFERANDGROUP || [interaction interactionType] == TRANSFERANDDISAPPEAR) {
+                            [ssc incrementCurrentStep];
+                        }
+                        
+                        [self highlightObject:objectId :2.0];
+                    });
+                });
+            }
+        }
+        // Animate object moving to object
+        else {
+            NSString *object1Id = [currSolStep object1Id];
+            NSString *object2Id = [currSolStep object2Id];
+            
+            Hotspot *object1Hotspot = [model getHotspotforObjectWithActionAndRole:object1Id :[currSolStep action] :SUBJECT];
+            Hotspot *object2Hotspot = [model getHotspotforObjectWithActionAndRole:object2Id :[currSolStep action] :OBJECT];
+            
+            CGPoint object1HotspotLocation = [self.manipulationView getHotspotLocation:object1Hotspot];
+            CGPoint object2HotspotLocation = [self.manipulationView getHotspotLocation:object2Hotspot];
+            
+            if (conditionSetup.appMode == ITS) {
+                [animatedItems addObject:object1Id];
+                [animatedItems addObject:object2Id];
+                
+                [[ServerCommunicationController sharedInstance] logUsabilityErrorFeedback:animatedItems context:manipulationContext];
+            }
+            
+            [self highlightObject:object1Id :2.0];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                movingObjectId = object1Id;
+                
+                [self.manipulationView animateObject:object1Id from:object1HotspotLocation to:object2HotspotLocation action:MOVETOLOCATION areaId:EMPTYSTRING];
+                [[ServerCommunicationController sharedInstance] logAnimateObject:object1Id forAction:[currSolStep action] context:manipulationContext];
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                     //Get the interaction to be performed
                     PossibleInteraction *interaction = [pic getCorrectInteraction];
-                    
+                   
                     //Perform the interaction and increment the step
                     [pic performInteraction:interaction];
                     [ssc incrementCurrentStep];
@@ -3382,56 +3458,18 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                         [ssc incrementCurrentStep];
                     }
                     
-                    [self highlightObject:objectId :2.0];
+                    if (conditionSetup.animatedStepCompletionMode == PERSENTENCE) {
+                        [self animatePerformingStep];
+                    }
+                    else {
+                        allowInteractions = TRUE;
+                        [self.view setUserInteractionEnabled:YES];
+                    }
+                    
+                    [self highlightObject:object1Id :2.0];
                 });
             });
         }
-        
-    }
-    // Animate object moving to object
-    else {
-        NSString *object1Id = [currSolStep object1Id];
-        NSString *object2Id = [currSolStep object2Id];
-        
-        Hotspot *object1Hotspot = [model getHotspotforObjectWithActionAndRole:object1Id :[currSolStep action] :SUBJECT];
-        Hotspot *object2Hotspot = [model getHotspotforObjectWithActionAndRole:object2Id :[currSolStep action] :OBJECT];
-        
-        CGPoint object1HotspotLocation = [self.manipulationView getHotspotLocation:object1Hotspot];
-        CGPoint object2HotspotLocation = [self.manipulationView getHotspotLocation:object2Hotspot];
-        
-        if (conditionSetup.appMode == ITS) {
-            [animatedItems addObject:object1Id];
-            [animatedItems addObject:object2Id];
-            
-            [[ServerCommunicationController sharedInstance] logUsabilityErrorFeedback:animatedItems context:manipulationContext];
-        }
-        
-        [self highlightObject:object1Id :2.0];
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            movingObjectId = object1Id;
-            
-            [self.manipulationView animateObject:object1Id from:object1HotspotLocation to:object2HotspotLocation action:MOVETOLOCATION areaId:EMPTYSTRING];
-            [[ServerCommunicationController sharedInstance] logAnimateObject:object1Id forAction:[currSolStep action] context:manipulationContext];
-            
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                allowInteractions = TRUE;
-                [self.view setUserInteractionEnabled:YES];
-                
-                //Get the interaction to be performed
-                PossibleInteraction *interaction = [pic getCorrectInteraction];
-                
-                //Perform the interaction and increment the step
-                [pic performInteraction:interaction];
-                [ssc incrementCurrentStep];
-                
-                if ([interaction interactionType] == TRANSFERANDGROUP || [interaction interactionType] == TRANSFERANDDISAPPEAR) {
-                    [ssc incrementCurrentStep];
-                }
-                
-                [self highlightObject:object1Id :2.0];
-            });
-        });
     }
 }
 
@@ -3830,10 +3868,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         Location *loc = [model getLocationWithId:object];
         
         //Calculate the x,y coordinates and the width and height in pixels from %
-        float locationX = [loc.originX floatValue] / 100.0 * [self.view frame].size.width;
-        float locationY = [loc.originY floatValue] / 100.0 * [self.view frame].size.height;
-        float locationWidth = [loc.width floatValue] / 100.0 * [self.view frame].size.width;
-        float locationHeight = [loc.height floatValue] / 100.0 * [self.view frame].size.height;
+        float locationX = [loc.originX floatValue] / 100.0 * [bookView frame].size.width;
+        float locationY = [loc.originY floatValue] / 100.0 * [bookView frame].size.height;
+        float locationWidth = [loc.width floatValue] / 100.0 * [bookView frame].size.width;
+        float locationHeight = [loc.height floatValue] / 100.0 * [bookView frame].size.height;
         
         [self.manipulationView highlightLocation:lroundf(locationX):lroundf(locationY):lroundf(locationWidth):lroundf(locationHeight)];
     }
