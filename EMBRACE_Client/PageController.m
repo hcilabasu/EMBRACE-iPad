@@ -88,7 +88,7 @@
     NSString *pageLanguage = [pageContext.currentPage containsString:@"S.xhtml"] ? SPANISH_TXT : ENGLISH_TXT;
     manipulationContext.pageLanguage = pageLanguage;
     
-    if (conditionSetup.appMode == ITS) {
+    if (conditionSetup.appMode == ITS && conditionSetup.useKnowledgeTracing) {
         // Set the complexity level at the beginning of the chapter
         if ([pageContext.currentPageId rangeOfString:PM1].location != NSNotFound) {
             EMComplexity prevComplexity = [[ITSController sharedInstance] getCurrentComplexity];

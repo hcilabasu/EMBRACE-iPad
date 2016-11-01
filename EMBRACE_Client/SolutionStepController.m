@@ -271,7 +271,7 @@
         [vocabSolutionSteps addObject:vocabSolutionStep];
     }
     
-    if (conditionSetup.appMode == ITS) {
+    if (conditionSetup.appMode == ITS && conditionSetup.useKnowledgeTracing) {
         NSMutableSet *vocabToAdd = [[ITSController sharedInstance] getExtraIntroductionVocabularyForChapter:chapter inBook:mvc.book];
         
         [[ServerCommunicationController sharedInstance] logAdaptVocabulary:[NSArray arrayWithArray:[vocabToAdd allObjects]] context:manipulationContext];

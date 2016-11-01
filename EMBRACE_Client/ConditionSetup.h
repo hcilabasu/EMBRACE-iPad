@@ -53,6 +53,7 @@ typedef enum Assessment {
 @property (nonatomic) BOOL isAssessmentPageEnabled; //whether the assessment page should be displayed
 @property (nonatomic) BOOL allowFileSync; //whether log and progress files should be synced with Dropbox
 
+@property (nonatomic) BOOL useKnowledgeTracing; //whether to update skills
 @property (nonatomic) BOOL shouldShowITSMessages; //whether to show ITS skill changes as popup messages
 
 + (ConditionSetup*)sharedInstance;

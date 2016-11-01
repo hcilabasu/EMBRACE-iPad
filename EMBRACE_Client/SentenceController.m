@@ -120,12 +120,12 @@
     else {
         if (conditionSetup.condition != CONTROL) {
             mvc.allowInteractions = TRUE;
-        }
-        
-        if (conditionSetup.appMode == ITS) {
-            mvc.currentComplexityLevel = [[ITSController sharedInstance] getCurrentComplexity];
-            [self.manipulationView removeAllSentences];
-            [self addSentencesWithComplexity:mvc.currentComplexityLevel];
+            
+            if (conditionSetup.useKnowledgeTracing) {
+                mvc.currentComplexityLevel = [[ITSController sharedInstance] getCurrentComplexity];
+                [self.manipulationView removeAllSentences];
+                [self addSentencesWithComplexity:mvc.currentComplexityLevel];
+            }
         }
     }
     

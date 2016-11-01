@@ -19,6 +19,7 @@
 @synthesize isVocabPageEnabled;
 @synthesize isAssessmentPageEnabled;
 @synthesize assessmentMode;
+@synthesize useKnowledgeTracing;
 @synthesize shouldShowITSMessages;
 
 @synthesize allowFileSync;
@@ -45,8 +46,10 @@
         newInstructions = TRUE;
         isVocabPageEnabled = TRUE;
         isAssessmentPageEnabled = TRUE;
-        assessmentMode = ENDOFBOOK;
-        shouldShowITSMessages = TRUE;
+        assessmentMode = ENDOFCHAPTER;
+        
+        useKnowledgeTracing = TRUE;
+        shouldShowITSMessages = FALSE;
         
         allowFileSync = TRUE;
     }
