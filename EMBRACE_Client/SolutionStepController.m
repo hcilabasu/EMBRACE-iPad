@@ -271,7 +271,7 @@
         [vocabSolutionSteps addObject:vocabSolutionStep];
     }
     
-    if (conditionSetup.appMode == ITS && conditionSetup.useKnowledgeTracing) {
+    if (conditionSetup.appMode == ITS && conditionSetup.useKnowledgeTracing && ![mvc.chapterTitle isEqualToString:@"The Naughty Monkey"]) {
         NSMutableSet *vocabToAdd = [[ITSController sharedInstance] getExtraIntroductionVocabularyForChapter:chapter inBook:mvc.book];
         
         [[ServerCommunicationController sharedInstance] logAdaptVocabulary:[NSArray arrayWithArray:[vocabToAdd allObjects]] context:manipulationContext];

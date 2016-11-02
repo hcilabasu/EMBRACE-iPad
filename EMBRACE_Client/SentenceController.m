@@ -121,7 +121,7 @@
         if (conditionSetup.condition != CONTROL) {
             mvc.allowInteractions = TRUE;
             
-            if (conditionSetup.useKnowledgeTracing) {
+            if (conditionSetup.useKnowledgeTracing && ![chapterTitle isEqualToString:@"The Naughty Monkey"]) {
                 mvc.currentComplexityLevel = [[ITSController sharedInstance] getCurrentComplexity];
                 [self.manipulationView removeAllSentences];
                 [self addSentencesWithComplexity:mvc.currentComplexityLevel];
