@@ -79,11 +79,11 @@
 		1A519C7D1D9089A500FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C7B1D9089A500FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */; };
 		1A519C801D9089B200FADCF7 /* AssessmentActivitiesEOB-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C7E1D9089B200FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */; };
 		1A519C811D9089B200FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C7F1D9089B200FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */; };
-		1A519C841D9089BE00FADCF7 /* AssessmentActivities-EOBMetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C821D9089BE00FADCF7 /* AssessmentActivities-EOBMetaData.xml */; };
+		1A519C841D9089BE00FADCF7 /* AssessmentActivitiesEOB-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C821D9089BE00FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */; };
 		1A519C851D9089BE00FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C831D9089BE00FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */; };
 		1A519C881D9089CA00FADCF7 /* AssessmentActivitiesEOB-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C861D9089CA00FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */; };
 		1A519C891D9089CA00FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C871D9089CA00FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */; };
-		1A519C8C1D9089D800FADCF7 /* AssessmentActivities-EOBMetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C8A1D9089D800FADCF7 /* AssessmentActivities-EOBMetaData.xml */; };
+		1A519C8C1D9089D800FADCF7 /* AssessmentActivitiesEOB-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C8A1D9089D800FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */; };
 		1A519C8D1D9089D800FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C8B1D9089D800FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */; };
 		1A519C901D9089E200FADCF7 /* AssessmentActivitiesEOB-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C8E1D9089E200FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */; };
 		1A519C911D9089E200FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C8F1D9089E200FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */; };
@@ -5052,11 +5052,11 @@
 		1A519C7B1D9089A500FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOBSpanish-MetaData.xml"; sourceTree = "<group>"; };
 		1A519C7E1D9089B200FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOB-MetaData.xml"; sourceTree = "<group>"; };
 		1A519C7F1D9089B200FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOBSpanish-MetaData.xml"; sourceTree = "<group>"; };
-		1A519C821D9089BE00FADCF7 /* AssessmentActivities-EOBMetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivities-EOBMetaData.xml"; sourceTree = "<group>"; };
+		1A519C821D9089BE00FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOB-MetaData.xml"; sourceTree = "<group>"; };
 		1A519C831D9089BE00FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOBSpanish-MetaData.xml"; sourceTree = "<group>"; };
 		1A519C861D9089CA00FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOB-MetaData.xml"; sourceTree = "<group>"; };
 		1A519C871D9089CA00FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOBSpanish-MetaData.xml"; sourceTree = "<group>"; };
-		1A519C8A1D9089D800FADCF7 /* AssessmentActivities-EOBMetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivities-EOBMetaData.xml"; sourceTree = "<group>"; };
+		1A519C8A1D9089D800FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOB-MetaData.xml"; sourceTree = "<group>"; };
 		1A519C8B1D9089D800FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOBSpanish-MetaData.xml"; sourceTree = "<group>"; };
 		1A519C8E1D9089E200FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOB-MetaData.xml"; sourceTree = "<group>"; };
 		1A519C8F1D9089E200FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOBSpanish-MetaData.xml"; sourceTree = "<group>"; };
@@ -10296,7 +10296,7 @@
 			children = (
 				5DB79E861C91739A003B2AFC /* Script-Metadata.xml */,
 				1A631CED1C0E4D3900251CB3 /* AlternateImages-MetaData.xml */,
-				1A519C821D9089BE00FADCF7 /* AssessmentActivities-EOBMetaData.xml */,
+				1A519C821D9089BE00FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */,
 				1A519C831D9089BE00FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */,
 				1A631CEE1C0E4D3900251CB3 /* Areas-MetaData.xml */,
 				1A631CEF1C0E4D3900251CB3 /* AssessmentActivities-MetaData.xml */,
@@ -10830,7 +10830,7 @@
 			children = (
 				5DB79E7C1C916DCD003B2AFC /* Script-Metadata.xml */,
 				1A631E531C0E4D3A00251CB3 /* AlternateImages-MetaData.xml */,
-				1A519C8A1D9089D800FADCF7 /* AssessmentActivities-EOBMetaData.xml */,
+				1A519C8A1D9089D800FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */,
 				1A519C8B1D9089D800FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */,
 				1A631E551C0E4D3A00251CB3 /* AssessmentActivities-MetaData.xml */,
 				1A631E541C0E4D3A00251CB3 /* Areas-MetaData.xml */,
@@ -16977,7 +16977,7 @@
 				5C28DC741C2BA66E005ACD07 /* boat_large.png in Resources */,
 				5D9E34721C590E9500636150 /* TheLopezFamilyQ1A3.mp3 in Resources */,
 				5C9B8B641CB5EFC800420053 /* HayloftS.mp3 in Resources */,
-				1A519C8C1D9089D800FADCF7 /* AssessmentActivities-EOBMetaData.xml in Resources */,
+				1A519C8C1D9089D800FADCF7 /* AssessmentActivitiesEOB-MetaData.xml in Resources */,
 				1A63219D1C0E4D3B00251CB3 /* Story1-Why-We-Breathe-PM-2S.xhtml in Resources */,
 				5D9E34791C590E9500636150 /* TheLopezFamilyQ3.mp3 in Resources */,
 				1A6322971C0E4D3B00251CB3 /* cribf_large_high_res.png in Resources */,
@@ -19352,7 +19352,7 @@
 				5CB70FDF1C6BF8B50062AD61 /* KeyIngredientsS0E.mp3 in Resources */,
 				5C28DCCE1C2BA66E005ACD07 /* seminole_mom.png in Resources */,
 				5C9C07931C57385A00702FCD /* BFCE4_1.m4a in Resources */,
-				1A519C841D9089BE00FADCF7 /* AssessmentActivities-EOBMetaData.xml in Resources */,
+				1A519C841D9089BE00FADCF7 /* AssessmentActivitiesEOB-MetaData.xml in Resources */,
 				1A6321DF1C0E4D3B00251CB3 /* bg_volcano.png in Resources */,
 				5C04215A1C618C2B001BBE9D /* BabyBrotherQ8A2.mp3 in Resources */,
 				5CA955731C3237690038FB56 /* zebra.png in Resources */,

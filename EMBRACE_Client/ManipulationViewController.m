@@ -3066,7 +3066,14 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         
         stepContext.numAttempts = 0;
         
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Need help?" message:@"The iPad will show you how to complete this step." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert;
+        if(conditionSetup.language == BILINGUAL){
+            alert = [UIAlertController alertControllerWithTitle:@"Need help?\nNecesitas ayuda?" message:@"Now, the iPad will show you how to complete this step.\n\nAhora, el iPad te mostrará como completar esta parte." preferredStyle:UIAlertControllerStyleAlert];
+        }
+        else{
+            alert = [UIAlertController alertControllerWithTitle:@"Need help?" message:@"The iPad will show you how to complete this step." preferredStyle:UIAlertControllerStyleAlert];
+        }
+        
         [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action)
             {
                 [self animatePerformingStep];
