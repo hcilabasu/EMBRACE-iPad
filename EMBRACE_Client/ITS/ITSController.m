@@ -176,17 +176,17 @@ static ITSController *sharedInstance = nil;
     
     EMComplexity complexity = _currentComplexity;
     
-    if (complexSkillValue == 0 && easySkillValue == 0 && medSkillValue == 0) {
+    if (easySkillValue == 0 && medSkillValue == 0 && complexSkillValue == 0) {
         complexity = EM_Medium;
     }
-    else if (complexSkillValue > 0.8 || medSkillValue > 0.9) {
-        complexity = EM_Complex;
+    else if (easySkillValue < 0.9 || (easySkillValue > 0.9 && (medSkillValue < 0.4 && medSkillValue > 0.15))) {
+        complexity = EM_Easy;
     }
-    else if (easySkillValue > 0.9 ) {
+    else if (medSkillValue < 0.9 || (medSkillValue > 0.9 && (complexSkillValue < 0.4 && complexSkillValue > 0.15))) {
         complexity = EM_Medium;
     }
     else {
-        complexity = EM_Easy;
+        complexity = EM_Complex;
     }
     
     _currentComplexity = complexity;

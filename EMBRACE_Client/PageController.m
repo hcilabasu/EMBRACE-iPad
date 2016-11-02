@@ -89,8 +89,8 @@
     manipulationContext.pageLanguage = pageLanguage;
     
     if (conditionSetup.appMode == ITS && conditionSetup.useKnowledgeTracing) {
-        // Set the complexity level at the beginning of the chapter
-        if ([pageContext.currentPageId rangeOfString:PM1].location != NSNotFound) {
+        // Set the complexity level at the beginning of the chapter (except for the first chapter of the story)
+        if (manipulationContext.chapterNumber > 1 && [pageContext.currentPageId rangeOfString:PM1].location != NSNotFound) {
             EMComplexity prevComplexity = [[ITSController sharedInstance] getCurrentComplexity];
             [[ITSController sharedInstance] setCurrentComplexity];
             EMComplexity newComplexity = [[ITSController sharedInstance] getCurrentComplexity];
