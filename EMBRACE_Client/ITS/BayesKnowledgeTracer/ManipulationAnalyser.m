@@ -162,6 +162,8 @@
 - (void)updateSkillBasedOnMovedObject:(UserAction *)userAction andContext:(ManipulationContext *)context isFirstAttempt:(BOOL)isFirstAttempt {
     NSMutableArray *skills = [NSMutableArray array];
     
+    EMComplexity complexity = [self.delegate getComplexityForCurrentSentence:self];
+    
     // Get user action information
     NSSet *movedObjectIDs = [userAction movedObjectIDs];
     NSSet *destinationIDs = [userAction destinationIDs];
@@ -172,7 +174,6 @@
     // Mixed up order of subject and object
     if ([destinationIDs containsObject:correctMovedObjectID] && [movedObjectIDs containsObject:correctDestinationID]) {
         // Decrease syntax skill
-        EMComplexity complexity = [self.delegate getComplexityForCurrentSentence:self];
         Skill *syntaxSkill = [self.knowledgeTracer updateSyntaxSkill:NO withComplexity:complexity shouldDampen:!isFirstAttempt context:context];
         [skills addObject:syntaxSkill];
         [self showMessageWith:skills];
@@ -191,7 +192,6 @@
             for (NSString *destinationID in destinationIDs) {
                 if ([objectsInvolved containsObject:movedObjectID] && [objectsInvolved containsObject:destinationID]) {
                     // Decrease syntax skill
-                    EMComplexity complexity = [self.delegate getComplexityForCurrentSentence:self];
                     Skill *syntaxSkill = [self.knowledgeTracer updateSyntaxSkill:NO withComplexity:complexity shouldDampen:!isFirstAttempt context:context];
                     [skills addObject:syntaxSkill];
                     [self showMessageWith:skills];
@@ -203,22 +203,35 @@
         }
     }
     
+    Skill *syntaxSkill;
     Skill *usabilitySkill;
     
-    // Check for vocabulary or usability errors
+    double HIGH_VOCABULARY_SKILL_THRESHOLD = 0.8;
+    
+    // Check for vocabulary, syntax, or usability errors
     // Moved incorrect object
     if (![movedObjectIDs containsObject:correctMovedObjectID]) {
-        // Vocabulary error
+        // Vocabulary or syntax error
         if (![self isDistanceBelowThreshold:movedObjectIDs :correctMovedObjectID]) {
-            // Decrease vocabulary skills for the moved objects
-            for (NSString *movedObjectID in movedObjectIDs) {
-                Skill *wordSkill = [self.knowledgeTracer updateSkillFor:movedObjectID isVerified:NO shouldDampen:!isFirstAttempt context:context];
-                [skills addObject:wordSkill];
-            }
+            double correctSkillValue = [[self.knowledgeTracer vocabSkillForWord:correctMovedObjectID] skillValue];
             
-            // Decrease vocabulary skill for the correct object to move
-            Skill *wordSkill = [self.knowledgeTracer updateSkillFor:correctMovedObjectID isVerified:NO shouldDampen:!isFirstAttempt context:context];
-            [skills addObject:wordSkill];
+            // Vocabulary error
+            if (correctSkillValue < HIGH_VOCABULARY_SKILL_THRESHOLD) {
+                // Decrease vocabulary skill for the correct object to move
+                Skill *wordSkill = [self.knowledgeTracer updateSkillFor:correctMovedObjectID isVerified:NO shouldDampen:!isFirstAttempt context:context];
+                [skills addObject:wordSkill];
+                
+                // Decrease vocabulary skills for the moved objects
+                for (NSString *movedObjectID in movedObjectIDs) {
+                    Skill *wordSkill = [self.knowledgeTracer updateSkillFor:movedObjectID isVerified:NO shouldDampen:!isFirstAttempt context:context];
+                    [skills addObject:wordSkill];
+                }
+            }
+            // Syntax error
+            else {
+                // Decrease syntax skill
+                syntaxSkill = [self.knowledgeTracer updateSyntaxSkill:NO withComplexity:complexity shouldDampen:!isFirstAttempt context:context];
+            }
         }
         // Usability error
         else {
@@ -235,26 +248,46 @@
         }
     }
     
-    // Check for vocabulary or usability errors
-    // Vocabulary error
+    // Check for vocabulary, syntax, or usability errors
+    // Vocabulary or syntax error
     if ([destinationIDs count] == 0) {
-        // Decrease vocabulary error for the correct destination
-        Skill *wordSkill = [self.knowledgeTracer updateSkillFor:correctDestinationID isVerified:NO shouldDampen:!isFirstAttempt context:context];
-        [skills addObject:wordSkill];
+        double correctSkillValue = [[self.knowledgeTracer vocabSkillForWord:correctDestinationID] skillValue];
+        
+        // Vocabulary error
+        if (correctSkillValue < HIGH_VOCABULARY_SKILL_THRESHOLD) {
+            // Decrease vocabulary error for the correct destination
+            Skill *wordSkill = [self.knowledgeTracer updateSkillFor:correctDestinationID isVerified:NO shouldDampen:!isFirstAttempt context:context];
+            [skills addObject:wordSkill];
+        }
+        // Syntax error
+        else {
+            // Decrease syntax skill
+            syntaxSkill = [self.knowledgeTracer updateSyntaxSkill:NO withComplexity:complexity shouldDampen:!isFirstAttempt context:context];
+        }
     }
     // Moved to incorrect destination
     else if (![destinationIDs containsObject:correctDestinationID]) {
-        // Vocabulary error
+        // Vocabulary or syntax error
         if (![self isDistanceBelowThreshold:destinationIDs :correctDestinationID]) {
-            // Decrease vocabulary skills for the destinations
-            for (NSString *destinationID in destinationIDs) {
-                Skill *wordSkill = [self.knowledgeTracer updateSkillFor:destinationID isVerified:NO shouldDampen:!isFirstAttempt context:context];
-                [skills addObject:wordSkill];
-            }
+            double correctSkillValue = [[self.knowledgeTracer vocabSkillForWord:correctDestinationID] skillValue];
             
-            // Decrease vocabulary skill for the correct destination
-            Skill *wordSkill = [self.knowledgeTracer updateSkillFor:correctDestinationID isVerified:NO shouldDampen:!isFirstAttempt context:context];
-            [skills addObject:wordSkill];
+            // Vocabulary error
+            if (correctSkillValue < HIGH_VOCABULARY_SKILL_THRESHOLD) {
+                // Decrease vocabulary skill for the correct destination
+                Skill *wordSkill = [self.knowledgeTracer updateSkillFor:correctDestinationID isVerified:NO shouldDampen:!isFirstAttempt context:context];
+                [skills addObject:wordSkill];
+                
+                // Decrease vocabulary skills for the destinations
+                for (NSString *destinationID in destinationIDs) {
+                    Skill *wordSkill = [self.knowledgeTracer updateSkillFor:destinationID isVerified:NO shouldDampen:!isFirstAttempt context:context];
+                    [skills addObject:wordSkill];
+                }
+            }
+            // Syntax error
+            else {
+                // Decrease syntax skill
+                syntaxSkill = [self.knowledgeTracer updateSyntaxSkill:NO withComplexity:complexity shouldDampen:!isFirstAttempt context:context];
+            }
         }
         // Usability error
         else {
@@ -267,6 +300,11 @@
         // Increase vocabulary skill for the destination
         Skill *wordSkill = [self.knowledgeTracer updateSkillFor:correctDestinationID isVerified:YES shouldDampen:!isFirstAttempt context:context];
         [skills addObject:wordSkill];
+    }
+    
+    // Add syntax skill if it was updated
+    if (syntaxSkill != nil) {
+        [skills addObject:syntaxSkill];
     }
     
     // Add usability skill if it was updated
