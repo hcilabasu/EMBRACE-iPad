@@ -65,6 +65,7 @@ typedef enum AnimatedStepCompletion {
 @property (nonatomic) BOOL shouldShowITSMessages; //whether to show ITS skill changes as popup messages
 
 + (ConditionSetup*)sharedInstance;
++ (void)resetSharedInstance;
 
 - (NSString *)returnLanguageEnumtoString:(Language)type;
 - (NSString *)returnConditionEnumToString:(Condition)type;

@@ -26,15 +26,18 @@
 
 @synthesize allowFileSync;
 
-+ (id)sharedInstance {
-    static ConditionSetup *sharedMyManager = nil;
-    static dispatch_once_t onceToken;
+static ConditionSetup *sharedInstance = nil;
+
++ (ConditionSetup *)sharedInstance {
+    if (sharedInstance == nil) {
+        sharedInstance = [[ConditionSetup alloc] init];
+    }
     
-    dispatch_once(&onceToken, ^{
-        sharedMyManager = [[self alloc] init];
-    });
-    
-    return sharedMyManager;
+    return sharedInstance;
+}
+
++ (void)resetSharedInstance {
+    sharedInstance = nil;
 }
 
 - (id)init {
