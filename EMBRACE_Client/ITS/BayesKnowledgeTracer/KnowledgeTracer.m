@@ -85,7 +85,7 @@
 #pragma mark - Updating Vocabulary Skills
 
 - (Skill *)updateSkillFor:(NSString *)word isVerified:(BOOL)isVerified shouldDampen:(BOOL)shouldDampen context:(ManipulationContext *)context {
-    if (word == nil) {
+    if (word == nil || [word isEqualToString:@""]) {
         return nil;
     }
     

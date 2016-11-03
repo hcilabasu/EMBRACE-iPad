@@ -130,7 +130,10 @@
         // Increase vocabulary skill for the object(s) moved
         for (NSString *movedObjectID in [userAction movedObjectIDs]) {
             Skill *wordSkill = [self.knowledgeTracer updateSkillFor:movedObjectID isVerified:YES shouldDampen:!isFirstAttempt context:context];
-            [skills addObject:wordSkill];
+            
+            if (wordSkill != nil) {
+                [skills addObject:wordSkill];
+            }
         }
         
         NSString *correctDestinationID = [userAction correctDestinationID];
@@ -138,7 +141,10 @@
         // Increase vocabulary skill for the destination
         if (correctDestinationID != nil && ![correctDestinationID isEqualToString:@""]) {
             Skill *wordSkill = [self.knowledgeTracer updateSkillFor:correctDestinationID isVerified:YES shouldDampen:!isFirstAttempt context:context];
-            [skills addObject:wordSkill];
+            
+            if (wordSkill != nil) {
+                [skills addObject:wordSkill];
+            }
         }
         
         // Increase syntax skill
@@ -219,12 +225,18 @@
             if (correctSkillValue < HIGH_VOCABULARY_SKILL_THRESHOLD) {
                 // Decrease vocabulary skill for the correct object to move
                 Skill *wordSkill = [self.knowledgeTracer updateSkillFor:correctMovedObjectID isVerified:NO shouldDampen:!isFirstAttempt context:context];
-                [skills addObject:wordSkill];
+                
+                if (wordSkill != nil) {
+                    [skills addObject:wordSkill];
+                }
                 
                 // Decrease vocabulary skills for the moved objects
                 for (NSString *movedObjectID in movedObjectIDs) {
                     Skill *wordSkill = [self.knowledgeTracer updateSkillFor:movedObjectID isVerified:NO shouldDampen:!isFirstAttempt context:context];
-                    [skills addObject:wordSkill];
+                    
+                    if (wordSkill != nil) {
+                        [skills addObject:wordSkill];
+                    }
                 }
             }
             // Syntax error
@@ -244,7 +256,10 @@
         for (NSString *movedObjectID in movedObjectIDs) {
             // Increase vocabulary skill for the moved object
             Skill *wordSkill = [self.knowledgeTracer updateSkillFor:movedObjectID isVerified:YES shouldDampen:!isFirstAttempt context:context];
-            [skills addObject:wordSkill];
+            
+            if (wordSkill != nil) {
+                [skills addObject:wordSkill];
+            }
         }
     }
     
@@ -257,7 +272,10 @@
         if (correctSkillValue < HIGH_VOCABULARY_SKILL_THRESHOLD) {
             // Decrease vocabulary error for the correct destination
             Skill *wordSkill = [self.knowledgeTracer updateSkillFor:correctDestinationID isVerified:NO shouldDampen:!isFirstAttempt context:context];
-            [skills addObject:wordSkill];
+            
+            if (wordSkill != nil) {
+                [skills addObject:wordSkill];
+            }
         }
         // Syntax error
         else {
@@ -275,12 +293,18 @@
             if (correctSkillValue < HIGH_VOCABULARY_SKILL_THRESHOLD) {
                 // Decrease vocabulary skill for the correct destination
                 Skill *wordSkill = [self.knowledgeTracer updateSkillFor:correctDestinationID isVerified:NO shouldDampen:!isFirstAttempt context:context];
-                [skills addObject:wordSkill];
+                
+                if (wordSkill != nil) {
+                    [skills addObject:wordSkill];
+                }
                 
                 // Decrease vocabulary skills for the destinations
                 for (NSString *destinationID in destinationIDs) {
                     Skill *wordSkill = [self.knowledgeTracer updateSkillFor:destinationID isVerified:NO shouldDampen:!isFirstAttempt context:context];
-                    [skills addObject:wordSkill];
+                    
+                    if (wordSkill != nil) {
+                        [skills addObject:wordSkill];
+                    }
                 }
             }
             // Syntax error
@@ -299,7 +323,10 @@
     else {
         // Increase vocabulary skill for the destination
         Skill *wordSkill = [self.knowledgeTracer updateSkillFor:correctDestinationID isVerified:YES shouldDampen:!isFirstAttempt context:context];
-        [skills addObject:wordSkill];
+        
+        if (wordSkill != nil) {
+            [skills addObject:wordSkill];
+        }
     }
     
     // Add syntax skill if it was updated

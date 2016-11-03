@@ -40,7 +40,7 @@
             <language>English</language>
             <intervention>PM</intervention>
         </mode>
-        <mode chapterTitle="Missing Keys" newInstructions="false" vocabPage="true" assessmentPage="true">
+        <mode chapterTitle="Missing Keys" newInstructions="true" vocabPage="true" assessmentPage="true">
             <reader>User</reader>
             <language>English</language>
             <intervention>PM</intervention>
