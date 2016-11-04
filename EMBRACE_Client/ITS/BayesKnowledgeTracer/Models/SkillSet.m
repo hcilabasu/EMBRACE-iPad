@@ -14,7 +14,6 @@
 @property (nonatomic, strong) SyntaxSkill *easySyntaxSkill;
 @property (nonatomic, strong) SyntaxSkill *medSyntaxSkill;
 @property (nonatomic, strong) SyntaxSkill *complexSyntaxSkill;
-
 @property (nonatomic, strong) UsabilitySkill *usabilitySkill;
 
 @end
@@ -22,22 +21,20 @@
 @implementation SkillSet
 
 - (instancetype)init {
-    
     self = [super init];
+    
     if (self) {
         _wordSkillDict = [[NSMutableDictionary alloc] init];
         
-        _easySyntaxSkill = [[SyntaxSkill alloc] initWithComplexity:EM_Easy];
-        _medSyntaxSkill = [[SyntaxSkill alloc] initWithComplexity:EM_Medium];
-        _complexSyntaxSkill = [[SyntaxSkill alloc] initWithComplexity:EM_Complex];
+        _easySyntaxSkill = (SyntaxSkill *) [Skill syntaxSkillWithComplexity:EM_Easy];
+        _medSyntaxSkill = (SyntaxSkill *) [Skill syntaxSkillWithComplexity:EM_Medium];
+        _complexSyntaxSkill = (SyntaxSkill *) [Skill syntaxSkillWithComplexity:EM_Complex];
         
         [_easySyntaxSkill updateSkillValue:0.99];
         
-        
-        
-        _usabilitySkill = [[UsabilitySkill alloc] init];
-        
+        _usabilitySkill = (UsabilitySkill *) [Skill usabilitySkill];        
     }
+    
     return self;
 }
 
@@ -47,16 +44,21 @@
 
 - (Skill *)skillForWord:(NSString *)word {
     Skill *skill = [self.wordSkillDict objectForKey:word];
+    
     if (skill == nil) {
         skill = [Skill skillForWord:word];
-        [self addWordSkill:skill forWord:word];
+        
+        if (skill != nil) {
+            [self addWordSkill:skill forWord:word];
+        }
     }
+    
     return skill;
 }
 
 - (SyntaxSkill *)syntaxSkillFor:(EMComplexity)complexity {
-    
     SyntaxSkill *sk = nil;
+    
     switch (complexity) {
         case EM_Easy:
             sk = self.easySyntaxSkill;
@@ -70,6 +72,7 @@
         default:
             break;
     }
+    
     return sk;
 }
 

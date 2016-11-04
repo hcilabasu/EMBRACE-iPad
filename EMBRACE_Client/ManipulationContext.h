@@ -18,8 +18,10 @@
 @property (nonatomic, strong) NSString *pageLanguage;
 @property (nonatomic, strong) NSString *pageMode;
 @property (nonatomic, assign) NSInteger pageNumber;
+@property (nonatomic, assign) NSInteger pageComplexity;
 
 @property (nonatomic, assign) NSInteger sentenceNumber;
+@property (nonatomic, assign) NSInteger sentenceComplexity;
 @property (nonatomic, strong) NSString *sentenceText;
 @property (nonatomic, assign) BOOL manipulationSentence;
 

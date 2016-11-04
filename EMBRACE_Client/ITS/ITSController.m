@@ -14,27 +14,34 @@
 @interface ITSController()
 
 @property (nonatomic, strong) ManipulationAnalyser *manipulationAnalyser;
+@property (nonatomic, assign) EMComplexity currentComplexity;
 
 @end
 
 @implementation ITSController
 
-+ (instancetype)sharedInstance {
-    
-    static ITSController *sharedInstance = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedInstance = [[ITSController alloc] init];
+static ITSController *sharedInstance = nil;
 
-    });
++ (ITSController *)sharedInstance {
+    if (sharedInstance == nil) {
+        sharedInstance = [[ITSController alloc] init];
+    }
+    
     return sharedInstance;
 }
 
-- (instancetype)init {
++ (void)resetSharedInstance {
+    sharedInstance = nil;
+}
+
+- (id)init {
     self = [super init];
+    
     if (self) {
         _manipulationAnalyser = [[ManipulationAnalyser alloc] init];
+        _currentComplexity = EM_Medium;
     }
+    
     return self;
 }
 
@@ -44,113 +51,151 @@
 
 #pragma  mark - 
 
-- (void)userDidPlayWord:(NSString *)word {
-    [self.manipulationAnalyser userDidPlayWord:word];
-    
+- (void)userDidPlayWord:(NSString *)word context:(ManipulationContext *)context {
+    [self.manipulationAnalyser userDidPlayWord:word context:context];
 }
 
-- (void)userDidVocabPreviewWord:(NSString *)word {
-    [self.manipulationAnalyser userDidVocabPreviewWord:word];
+- (void)userDidVocabPreviewWord:(NSString *)word context:(ManipulationContext *)context {
+    [self.manipulationAnalyser userDidVocabPreviewWord:word context:context];
 }
 
-
-- (void)movedObject:(NSString *)objectId
- destinationObjects:(NSArray *)destinationObjs
-         isVerified:(BOOL)verified
-         actionStep:(ActionStep *)actionStep
-manipulationContext:(ManipulationContext *)context
-        forSentence:(NSString *)sentence
-    withWordMapping:(NSDictionary *)mapDict {
+- (void)movedObjectIDs:(NSMutableSet *)movedObjectIDs destinationIDs:(NSArray *)destinationIDs isVerified:(BOOL)verified actionStep:(ActionStep *)actionStep manipulationContext:(ManipulationContext *)context forSentence:(NSString *)sentence withWordMapping:(NSDictionary *)mapDict {
+    // Get step information
+    NSString *object1ID = [actionStep object1Id];
+    NSString *object2ID = [actionStep object2Id];
+    NSString *locationID = [actionStep locationId];
+    NSString *areaID = [actionStep areaId];
     
-    if ([[ConditionSetup sharedInstance] appMode] != ITS) {
-        return;
-    }
-    
-    NSString *dest = nil;
-    if ([destinationObjs count] > 0) {
-           dest = [destinationObjs objectAtIndex:0];
-        if ([destinationObjs containsObject:actionStep.object2Id]) {
-            dest = [actionStep.object2Id copy];
+    // If the current step involves transference, we need the next step to help determine object1ID and object2ID
+    if ([[actionStep stepType] isEqualToString:@"transferAndGroup"] || [[actionStep stepType] isEqualToString:@"transferAndDisappear"]) {
+        ActionStep *nextStep = [[self.manipulationAnalyser.delegate getNextStepsForCurrentSentence:self.manipulationAnalyser] firstObject];
+        
+        // Try to select the distinct objects in the transference steps.
+        if ([[actionStep object2Id] isEqualToString:[nextStep object2Id]]) {
+            object1ID = [actionStep object1Id];
+            object2ID = [nextStep object1Id];
+        }
+        else if ([[actionStep object2Id] isEqualToString:[nextStep object1Id]]) {
+            object1ID = [actionStep object1Id];
+            object2ID = [nextStep object2Id];
+        }
+        else if ([[actionStep object1Id] isEqualToString:[nextStep object2Id]]) {
+            object1ID = [nextStep object1Id];
+            object2ID = [actionStep object2Id];
         }
     }
     
-    NSString *actionObj1 = actionStep.object1Id;
-    NSString *correctDest = nil;
-    if (actionStep.object2Id != nil) {
-        correctDest = actionStep.object2Id;
-        
-    } else if (actionStep.locationId != nil) {
-        correctDest = actionStep.locationId;
-        
-    } else if (actionStep.areaId != nil) {
-        correctDest = actionStep.areaId;
+    NSString *correctMovedObjectID = object1ID;
+    NSString *correctDestinationID;
+    
+    // Set action step destination based on object, location, or area
+    if (object2ID != nil) {
+        correctDestinationID = object2ID;
     }
-
-
-    // Convert the words to the mapped keys if present
+    else if (locationID != nil) {
+        correctDestinationID = locationID;
+    }
+    else if (areaID != nil) {
+        correctDestinationID = areaID;
+    }
+    
+    // Convert the action step moved object and destination to the mapped keys if present
     for (NSString *key in mapDict.allKeys) {
-        
         NSArray *mappedWords = [mapDict objectForKey:key];
-        if ([mappedWords containsObject:objectId]) {
-            objectId = [key copy];
-        }
-        if ([mappedWords containsObject:dest]) {
-            dest = [key copy];
-        }
-        if ([mappedWords containsObject:actionObj1]) {
-            actionObj1 = [key copy];
-        }
-        if ([mappedWords containsObject:correctDest]) {
-            correctDest = [key copy];
+        
+        if ([mappedWords containsObject:correctMovedObjectID]) {
+            correctMovedObjectID = [key copy];
         }
         
+        if ([mappedWords containsObject:correctDestinationID]) {
+            correctDestinationID = [key copy];
+        }
     }
     
-    UserAction *userAction = [[UserAction alloc] initWithMovedObjectId:objectId
-                                                         destinationId:dest
-                                                            isVerified:verified
-                                               actionStepMovedObjectId:actionObj1
-                                         actionStepDestinationObjectId:correctDest
-                                                           forSentence:sentence];
+    NSMutableSet *convertedMovedObjectIDs = [[NSMutableSet alloc] init];
     
-    [self.manipulationAnalyser actionPerformed:userAction
-                           manipulationContext:context];
-
+    // Convert the moved objects to the mapped keys if present
+    for (NSString *movedObjectID in movedObjectIDs) {
+        BOOL present = FALSE;
+        
+        for (NSString *key in mapDict.allKeys) {
+            NSArray *mappedWords = [mapDict objectForKey:key];
+            
+            if ([mappedWords containsObject:movedObjectID]) {
+                present = TRUE;
+                [convertedMovedObjectIDs addObject:[key copy]];
+                break;
+            }
+        }
+        
+        if (!present) {
+            // Nothing to convert, so just use the word itself
+            [convertedMovedObjectIDs addObject:movedObjectID];
+        }
+    }
+    
+    NSMutableSet *convertedDestinationIDs = [[NSMutableSet alloc] init];
+    
+    // Convert the destinations to the mapped keys if present
+    for (NSString *destinationID in destinationIDs) {
+        BOOL present = FALSE;
+        
+        for (NSString *key in mapDict.allKeys) {
+            NSArray *mappedWords = [mapDict objectForKey:key];
+            
+            if ([mappedWords containsObject:destinationID]) {
+                present = TRUE;
+                [convertedDestinationIDs addObject:[key copy]];
+                break;
+            }
+        }
+        
+        if (!present) {
+            // Nothing to convert, so just use the word itself
+            [convertedDestinationIDs addObject:destinationID];
+        }
+    }
+    
+    UserAction *userAction = [[UserAction alloc] initWithMovedObjectIDs:convertedMovedObjectIDs destinationIDs:convertedDestinationIDs isVerified:verified correctMovedObjectID:correctMovedObjectID correctDestinationID:correctDestinationID forSentence:sentence];
+    
+    [self.manipulationAnalyser actionPerformed:userAction manipulationContext:context];
 }
 
-- (void)pressedNextWithManipulationContext:(ManipulationContext *)context
-                               forSentence:(NSString *)sentence
-                                isVerified:(BOOL)verified {
+- (void)pressedNextWithManipulationContext:(ManipulationContext *)context forSentence:(NSString *)sentence isVerified:(BOOL)verified {
     
 }
 
 - (EMComplexity)getCurrentComplexity {
-    
+    return _currentComplexity;
+}
+
+- (EMComplexity)setCurrentComplexity {
     double easySkillValue = [self.manipulationAnalyser easySyntaxSkillValue];
     double medSkillValue = [self.manipulationAnalyser medSyntaxSkillValue];
     double complexSkillValue = [self.manipulationAnalyser complexSyntaxSkillValue];
     
-    EMComplexity complexity = EM_Medium;
-    if (complexSkillValue == 0 && easySkillValue == 0 &&
-        medSkillValue == 0) {
+    EMComplexity complexity = _currentComplexity;
+    
+    if (easySkillValue == 0 && medSkillValue == 0 && complexSkillValue == 0) {
         complexity = EM_Medium;
-        
-    } else if (complexSkillValue > 0.8 || medSkillValue > 0.9) {
-        complexity = EM_Complex;
-        
-    } else if (easySkillValue > 0.9 ) {
-        complexity = EM_Medium;
-        
-    } else {
-        complexity = EM_Easy;
-        
     }
+    else if (easySkillValue < 0.9 || (easySkillValue > 0.9 && (medSkillValue < 0.4 && medSkillValue > 0.15))) {
+        complexity = EM_Easy;
+    }
+    else if (medSkillValue < 0.9 || (medSkillValue > 0.9 && (complexSkillValue < 0.4 && complexSkillValue > 0.15))) {
+        complexity = EM_Medium;
+    }
+    else {
+        complexity = EM_Complex;
+    }
+    
+    _currentComplexity = complexity;
     
     return complexity;
 }
 
 - (NSMutableSet *)getExtraIntroductionVocabularyForChapter:(Chapter *)chapter inBook:(Book *)book {
-    double HIGH_VOCABULARY_SKILL_THRESHOLD = 0.9;
+    double HIGH_VOCABULARY_SKILL_THRESHOLD = 0.8;
     int MAX_EXTRA_VOCABULARY = 8.0 - [[chapter getNewVocabulary] count];
     
     NSMutableSet *extraVocabulary = [[NSMutableSet alloc] init];

@@ -61,9 +61,11 @@ typedef enum AnimatedStepCompletion {
 @property (nonatomic) BOOL allowFileSync; //whether log and progress files should be synced with Dropbox
 @property (nonatomic) BOOL isAutomaticAnimationEnabled; //whether the system will automatically complete steps and animate the steps.
 
+@property (nonatomic) BOOL useKnowledgeTracing; //whether to update skills
 @property (nonatomic) BOOL shouldShowITSMessages; //whether to show ITS skill changes as popup messages
 
 + (ConditionSetup*)sharedInstance;
++ (void)resetSharedInstance;
 
 - (NSString *)returnLanguageEnumtoString:(Language)type;
 - (NSString *)returnConditionEnumToString:(Condition)type;

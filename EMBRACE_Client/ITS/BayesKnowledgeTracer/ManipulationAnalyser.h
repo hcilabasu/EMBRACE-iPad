@@ -17,16 +17,13 @@
 
 @property (nonatomic, weak) id <ManipulationAnalyserProtocol> delegate;
 
-- (void)actionPerformed:(UserAction *)userAction
-    manipulationContext:(ManipulationContext *)context;
+- (void)actionPerformed:(UserAction *)userAction manipulationContext:(ManipulationContext *)context;
 
-- (void)userDidPlayWord:(NSString *)word;
-- (void)userDidVocabPreviewWord:(NSString *)word;
+- (void)userDidPlayWord:(NSString *)word context:(ManipulationContext *)context;
+- (void)userDidVocabPreviewWord:(NSString *)word context:(ManipulationContext *)context;
 - (NSMutableSet *)getRequestedVocab;
 
-- (void)pressedNextWithManipulationContext:(ManipulationContext *)context
-                               forSentence:(NSString *)sentence
-                                isVerified:(BOOL)verified;
+- (void)pressedNextWithManipulationContext:(ManipulationContext *)context forSentence:(NSString *)sentence isVerified:(BOOL)verified;
 
 - (double)easySyntaxSkillValue;
 - (double)medSyntaxSkillValue;
@@ -38,7 +35,6 @@
 
 @end
 
-
 @protocol ManipulationAnalyserProtocol <NSObject>
 
 - (CGPoint)locationOfObject:(NSString *)object analyzer:(ManipulationAnalyser *)analyzer;
@@ -46,8 +42,9 @@
 - (CGSize)sizeOfObject:(NSString *)object analyzer:(ManipulationAnalyser *)analyzer;
 
 - (NSArray *)getNextStepsForCurrentSentence:(ManipulationAnalyser *)analyzer;
+- (NSArray *)getStepsForCurrentSentence:(ManipulationAnalyser *)analyzer;
 
-- (EMComplexity)analyzer:(ManipulationAnalyser *)analyzer getComplexityForSentence:(int)sentenceNumber;
+- (EMComplexity)getComplexityForCurrentSentence:(ManipulationAnalyser *)analyzer;
 
 - (void)analyzer:(ManipulationAnalyser *)analyzer showMessage:(NSString *)message;
 

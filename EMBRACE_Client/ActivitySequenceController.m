@@ -19,8 +19,8 @@
 }
 
 - (NSString *)getAdjustedParticipantCode:(NSString *)participantCode {
-    //TEST: Match test ID to MCD2 participant code
-    participantCode = [[participantCode uppercaseString] stringByReplacingOccurrencesOfString:@"TEST" withString:@"MCD2"];
+    //TEST: Match test ID to ITSP participant code
+    participantCode = [[participantCode uppercaseString] stringByReplacingOccurrencesOfString:@"TEST" withString:@"ITSP"];
     
     int numSequences = 0;
     NSString *adjustedParticipantCode;
@@ -65,6 +65,20 @@
         }
         else {
             adjustedParticipantCode = [NSString stringWithFormat:@"MCD20%d", sequenceNumber];
+        }
+    }
+    // ITSP sequence
+    else if ([participantCode rangeOfString:@"ITSP"].location != NSNotFound && [[participantCode componentsSeparatedByString:@"ITSP"][1] length] == 2) {
+        numSequences = 4;
+        
+        //Get number at end of participant code and match it to appropriate sequence
+        NSInteger sequenceNumber = [[participantCode componentsSeparatedByString:@"ITSP"][1] integerValue] % numSequences;
+        
+        if (sequenceNumber == 0) {
+            adjustedParticipantCode = [NSString stringWithFormat:@"ITSP04"];
+        }
+        else {
+            adjustedParticipantCode = [NSString stringWithFormat:@"ITSP0%d", sequenceNumber];
         }
     }
     
@@ -158,6 +172,9 @@
                 }
                 else if ([interventionString isEqualToString:@"R"]) {
                     intervention = R_INTERVENTION;
+                }
+                else if ([interventionString isEqualToString:@"ITS"]) {
+                    intervention = ITS_INTERVENTION;
                 }
                 else {
                     intervention = R_INTERVENTION; //default intervention

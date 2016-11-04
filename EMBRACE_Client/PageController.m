@@ -74,7 +74,6 @@
  * Loads the html content and solution steps for the current page.
  */
 - (void)loadPage {
-    
     animatingObjects = [[NSMutableDictionary alloc] init];
     mvc.animatingObjects = animatingObjects;
     
@@ -89,7 +88,20 @@
     NSString *pageLanguage = [pageContext.currentPage containsString:@"S.xhtml"] ? SPANISH_TXT : ENGLISH_TXT;
     manipulationContext.pageLanguage = pageLanguage;
     
-    [[ServerCommunicationController sharedInstance] logLoadPage:[manipulationContext pageLanguage] mode:[manipulationContext pageMode] number:[manipulationContext pageNumber] context:manipulationContext];
+    if (conditionSetup.appMode == ITS && conditionSetup.useKnowledgeTracing && ![chapterTitle isEqualToString:@"The Naughty Monkey"]) {
+        // Set the complexity level at the beginning of the chapter (except for the first chapter of the story)
+        if (manipulationContext.chapterNumber > 1 && [pageContext.currentPageId rangeOfString:PM1].location != NSNotFound) {
+            EMComplexity prevComplexity = [[ITSController sharedInstance] getCurrentComplexity];
+            [[ITSController sharedInstance] setCurrentComplexity];
+            EMComplexity newComplexity = [[ITSController sharedInstance] getCurrentComplexity];
+            
+            [[ServerCommunicationController sharedInstance] logAdaptSyntax:prevComplexity :newComplexity context:manipulationContext];
+        }
+        
+        manipulationContext.pageComplexity = [[ITSController sharedInstance] getCurrentComplexity];
+    }
+    
+    [[ServerCommunicationController sharedInstance] logLoadPage:[manipulationContext pageLanguage] mode:[manipulationContext pageMode] number:[manipulationContext pageNumber] complexity:[manipulationContext pageComplexity] context:manipulationContext];
     
     //TODO: Remove hard coded strings
     //Get the solutions for the appropriate manipulation activity
@@ -112,7 +124,13 @@
             mvc.allowInteractions = false;
         }
         else if (conditionSetup.currentMode == PM_MODE) {
-            mvc.allowInteractions = true;
+            if ([pageContext.currentPageId rangeOfString:DASH_INTRO].location != NSNotFound) {
+                mvc.allowInteractions = false;
+            }
+            else {
+                mvc.allowInteractions = true;
+            }
+            
             //Get the PM solution steps for the current chapter
             Chapter *chapter = [mvc.book getChapterWithTitle:chapterTitle]; //get current chapter
             PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter

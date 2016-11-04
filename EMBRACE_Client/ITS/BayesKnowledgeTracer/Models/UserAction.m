@@ -12,48 +12,37 @@
 @interface UserAction()
 
 @property (nonatomic, strong) ActionStep *actionStep;
-
-@property (nonatomic, copy) NSString *movedObjectId;
-
-@property (nonatomic, copy) NSString *destinationObjectId;
-
+@property (nonatomic, copy) NSMutableSet *movedObjectIDs;
+@property (nonatomic, copy) NSMutableSet *destinationIDs;
 @property (nonatomic, assign) BOOL isVerified;
-
-
-
-@property (nonatomic, copy) NSString *actionStepMovedObjectId;
-
-@property (nonatomic, copy) NSString *actionStepDestinationObjectId;
-
+@property (nonatomic, copy) NSString *correctMovedObjectID;
+@property (nonatomic, copy) NSString *correctDestinationID;
 @property (nonatomic, copy) NSString *sentenceText;
 
 @end
 
 @implementation UserAction
 
-- (instancetype)initWithMovedObjectId:(NSString *)movedObjId
-                        destinationId:(NSString *)destinationId
-                           isVerified:(BOOL)isverified
-              actionStepMovedObjectId:(NSString *)actionStepMovedObjectId
-        actionStepDestinationObjectId:(NSString *)actionStepDestinationObjectId
-                          forSentence:(NSString *)sentenceText {
-    
+- (instancetype)initWithMovedObjectIDs:(NSMutableSet*)movedObjectIDs
+                        destinationIDs:(NSMutableSet *)destinationIDs
+                            isVerified:(BOOL)verified
+               correctMovedObjectID:(NSString *)correctMovedObjectID
+               correctDestinationID:(NSString *)correctDestinationID
+                           forSentence:(NSString *)sentence {
     self = [super init];
+
     if (self) {
-        
-        _movedObjectId = [movedObjId copy];
-        _destinationObjectId = [destinationId copy];
+        _movedObjectIDs = [movedObjectIDs copy];
+        _destinationIDs = [destinationIDs copy];
 
-        _isVerified = isverified;
-        _sentenceText = [sentenceText copy];
-        
-        _actionStepMovedObjectId = [actionStepMovedObjectId copy];
-        _actionStepDestinationObjectId = [actionStepDestinationObjectId copy];
-        
+        _isVerified = verified;
+        _sentenceText = [sentence copy];
+
+        _correctMovedObjectID = [correctMovedObjectID copy];
+        _correctDestinationID = [correctDestinationID copy];
     }
-    return self;
     
+    return self;
 }
-
 
 @end

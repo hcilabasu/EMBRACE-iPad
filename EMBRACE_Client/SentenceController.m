@@ -60,7 +60,7 @@
         if (sentenceContext.currentSentence > 0) {
             stepContext.numSteps = [[[sentenceContext.pageSentences objectAtIndex:sentenceContext.currentSentence - 1] solutionSteps] count];
             
-            //Set current complexity based on senten ce
+            //Set current complexity based on sentence
             mvc.currentComplexity = [[sentenceContext.pageSentences objectAtIndex:sentenceContext.currentSentence - 1] complexity];
         }
         else {
@@ -73,8 +73,8 @@
         }
         else if (conditionSetup.condition == EMBRACE) {
             if (conditionSetup.currentMode == PM_MODE) {
-                //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                if ([bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound || conditionSetup.appMode == ITS) {
+                //NOTE: Currently hardcoded because some Solutions-MetaData.xml files are different format from other stories
+                if (([mvc.bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound || [mvc.bookTitle rangeOfString:@"The Lopez Family Mystery"].location != NSNotFound || [mvc.bookTitle rangeOfString:@"Bottled Up Joy"].location != NSNotFound)) {
                     stepContext.numSteps = [stepContext.PMSolution getNumStepsForSentence:sentenceContext.currentIdea];
                 }
                 else {
@@ -96,8 +96,6 @@
         
         stepContext.stepsComplete = TRUE; //no steps to complete for non-action sentence
     }
-    
-    mvc.startTime = [NSDate date]; //for page statistics
 }
 
 /* Sets up the appearance of the current sentence by highlighting it as blue (if it is an action sentence)
@@ -112,21 +110,22 @@
 /*
  * Set the current sentence number, text, type, appearance and associated solution steps. (creations solutions for vocab pages)
  */
-- (void) setupSentencesForPage {
+- (void)setupSentencesForPage {
     sentenceContext.totalSentences = (int)[self.manipulationView totalSentences];
     
     //Dynamically reads the vocabulary words on the vocab page and creates and adds solutionsteps
     if ([pageContext.currentPageId rangeOfString:DASH_INTRO].location != NSNotFound) {
         [mvc.ssc createVocabSolutionsForPage];
     }
-    else{
+    else {
         if (conditionSetup.condition != CONTROL) {
             mvc.allowInteractions = TRUE;
-        }
-        if(conditionSetup.appMode == ITS){
-            mvc.currentComplexityLevel = [[ITSController sharedInstance] getCurrentComplexity];
-            [self.manipulationView removeAllSentences];
-            [self addSentencesWithComplexity: mvc.currentComplexityLevel];
+            
+            if (conditionSetup.useKnowledgeTracing && ![chapterTitle isEqualToString:@"The Naughty Monkey"]) {
+                mvc.currentComplexityLevel = [[ITSController sharedInstance] getCurrentComplexity];
+                [self.manipulationView removeAllSentences];
+                [self addSentencesWithComplexity:mvc.currentComplexityLevel];
+            }
         }
     }
     
@@ -142,9 +141,10 @@
     sentenceContext.currentSentenceText = [self.manipulationView getCurrentSentenceAt:sentenceContext.currentSentence];
     
     manipulationContext.sentenceNumber = sentenceContext.currentSentence;
+    manipulationContext.sentenceComplexity = [self getComplexityOfCurrentSentence];
     manipulationContext.sentenceText = sentenceContext.currentSentenceText;
     manipulationContext.manipulationSentence = [self isManipulationSentence:sentenceContext.currentSentence];
-    [[ServerCommunicationController sharedInstance] logLoadSentence:sentenceContext.currentSentence withText:sentenceContext.currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
+    [[ServerCommunicationController sharedInstance] logLoadSentence:sentenceContext.currentSentence withComplexity:manipulationContext.sentenceComplexity withText:sentenceContext.currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
     
     //Remove any PM specific sentence instructions
     if(conditionSetup.currentMode == IM_MODE || conditionSetup.condition == CONTROL) {
@@ -202,38 +202,9 @@
             for (AlternateSentence *sentenceToAdd in sentencesToAdd) {
                 [self.manipulationView addSentence:sentenceToAdd withSentenceNumber:sentenceNumber andVocabulary:vocabulary];
                 sentenceNumber++;
+                
                 //Add alternate sentence to array
                 [sentenceContext.pageSentences addObject:sentenceToAdd];
-                
-                BOOL transference = FALSE;
-                
-                //Count number of user steps for page statistics
-                for (ActionStep *as in [sentenceToAdd solutionSteps]) {
-                    if (!([[as stepType] isEqualToString:@"ungroup"] ||
-                          [[as stepType] isEqualToString:@"move"] ||
-                          [[as stepType] isEqualToString:@"swapImage"])) {
-                        //Make sure transference steps don't get counted twice
-                        if ([[as stepType] isEqualToString:@"transferAndGroup"] ||
-                            [[as stepType] isEqualToString:@"transferAndDisappear"]) {
-                            if (!transference) {
-                                [[mvc.pageStatistics objectForKey:pageContext.currentPageId] addStepForComplexity:([sentenceToAdd complexity] - 1)];
-                                
-                                transference = TRUE;
-                            }
-                            else {
-                                transference = FALSE;
-                            }
-                        }
-                        else {
-                            [[mvc.pageStatistics objectForKey:pageContext.currentPageId] addStepForComplexity:([sentenceToAdd complexity] - 1)];
-                        }
-                    }
-                }
-                
-                //Count number of non-action sentences for each complexity
-                if ([sentenceToAdd actionSentence] == FALSE) {
-                    [[mvc.pageStatistics objectForKey:pageContext.currentPageId] addNonActSentForComplexity:([sentenceToAdd complexity] - 1)];
-                }
             }
         }
     }
@@ -252,6 +223,17 @@
     }
     
     return isManipulationSentence;
+}
+
+- (NSInteger)getComplexityOfCurrentSentence {
+    NSInteger complexity = 0; // No complexity
+    
+    if ([[sentenceContext pageSentences] count] > 0 && sentenceContext.currentSentence > 0 && sentenceContext.currentSentence <= [[sentenceContext pageSentences] count]) {
+        AlternateSentence *currentSentence = [sentenceContext.pageSentences objectAtIndex:sentenceContext.currentSentence - 1];
+        complexity = [currentSentence complexity];
+    }
+    
+    return complexity;
 }
 
 - (void)colorSentencesUponNext {

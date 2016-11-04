@@ -6,7 +6,6 @@
             <idea number="2"/>
             <idea number="3"/>
             <idea number="4"/>
-
             <idea number="5">
                 <step number="1">
                     <group obj1Id="man" action="grab" obj2Id="keys"/>
@@ -192,17 +191,16 @@
                 </step>
             </idea>
             <idea number="38"/>
-            <idea number="39"/>
         </story>
         <story title="The Baby's Rattle is Gone, Too!" activity_id="story5-PM-1">
-            <idea number="40"/>
-            <idea number="41">
+            <idea number="39"/>
+            <idea number="40">
                 <step number="28">
                     <check obj1Id="baby" action="getIn" locationId="crib"/>
                     <move obj1Id="baby" action="getIn" waypointId="crib"/>
                 </step>
             </idea>
-            <idea number="42">
+            <idea number="41">
                 <step number="29">
                     <move obj1Id="baby" action="getIn" waypointId="nearCrib"/>
                 </step>
@@ -211,23 +209,23 @@
                     <move obj1Id="baby" action="getIn" waypointId="livingRoom3"/>
                 </step>
             </idea>
-            <idea number="43"/>
-            <idea number="44">
+            <idea number="42"/>
+            <idea number="43">
                 <step number="31">
                     <group obj1Id="rabbit" action="sit" obj2Id="baby"/>
                 </step>
             </idea>
         </story>
         <story title="The Baby's Rattle is Gone, Too!" activity_id="story5-PM-2">
-            <idea number="45">
+            <idea number="44">
                 <step number="32">
                     <check obj1Id="woman" action="getIn" locationId="livingRoom"/>
                     <move obj1Id="woman" action="getIn" waypointId="livingRoom"/>
                 </step>
             </idea>
+            <idea number="45"/>
             <idea number="46"/>
-            <idea number="47"/>
-            <idea number="48">
+            <idea number="47">
                 <step number="33">
                     <shakeOrTap obj1Id="dog" action="getIn" locationId="anywhere"/>
                     <move obj1Id="dog" action="getIn" waypointId="nearTree2"/>
@@ -237,7 +235,7 @@
                     <animate obj1Id="rattle" action="fallAnimation" waypointId="nearTree" areaId=""/>
                 </step>
             </idea>
-            <idea number="49">
+            <idea number="48">
                 <step number="35">
                     <ungroup obj1Id="rabbit" action="leave" obj2Id="baby"/>
                     <move obj1Id="rabbit" action="getIn" waypointId="livingRoom4"/>
@@ -252,7 +250,7 @@
                     <move obj1Id="woman" action="getIn" waypointId="rightOfHouse2"/>
                 </step>
             </idea>
-            <idea number="50">
+            <idea number="49">
                 <step number="38">
                     <check obj1Id="rabbit" action="getIn" locationId="" areaId="outside"/>
                     <move obj1Id="rabbit" action="getIn" waypointId="rightOfHouse3"/>
@@ -260,7 +258,7 @@
             </idea>
         </story>
         <story title="The Mystery is Solved" activity_id="story6-PM-1">
-            <idea number="51">
+            <idea number="50">
                 <step number="39">
                     <check obj1Id="man" action="getIn" locationId="frontHouse"/>
                     <ungroup obj1Id="man" action="getOut" obj2Id="car"/>
@@ -274,19 +272,19 @@
                     <move obj1Id="keys" action="getIn" waypointId="onHook"/>
                 </step>
             </idea>
-            <idea number="52">
+            <idea number="51">
                 <step number="41">
                     <check obj1Id="man" action="getIn" locationId="" areaId="outside"/>
                     <move obj1Id="man" action="getIn" waypointId="rightOfHouse4"/>
                 </step>
             </idea>
-            <idea number="53">
+            <idea number="52">
                 <step number="42">
                     <check obj1Id="bird" action="getIn" locationId="kitchen"/>
                     <move obj1Id="bird" action="getIn" waypointId="fridge"/>
                 </step>
             </idea>
-            <idea number="54">
+            <idea number="53">
                 <step number="43">
                     <group obj1Id="bird" action="pickUp" obj2Id="keys"/>
                 </step>
@@ -297,7 +295,7 @@
             </idea>
         </story>
         <story title="The Mystery is Solved" activity_id="story6-PM-2">
-            <idea number="55">
+            <idea number="54">
                 <step number="45">
                     <shakeOrTap obj1Id="dog" action="getIn" locationId="anywhere"/>
                     <move obj1Id="dog" action="getIn" waypointId="nearTree2"/>
@@ -307,10 +305,10 @@
                     <animate obj1Id="keys" action="fallAnimation" waypointId="nearTree" areaId=""/>
                 </step>
             </idea>
+            <idea number="55"/>
             <idea number="56"/>
             <idea number="57"/>
             <idea number="58"/>
-            <idea number="59"/>
         </story>
     </solutions>
 </metadata>

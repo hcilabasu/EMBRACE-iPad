@@ -199,7 +199,7 @@
     NSMutableArray *currSolSteps;
     
     if (conditionSetup.appMode == ITS && ![pageContext.currentPageId containsString:DASH_INTRO]) {
-        if(sentenceContext.currentSentence > 0){
+        if (sentenceContext.currentSentence > 0) {
             currSolSteps = [[sentenceContext.pageSentences objectAtIndex:sentenceContext.currentSentence - 1] solutionSteps];
         }
     }
@@ -209,9 +209,8 @@
         }
         else if (conditionSetup.condition == EMBRACE) {
             if (conditionSetup.currentMode == PM_MODE) {
-                //NOTE: Currently hardcoded because The Best Farm Solutions-MetaData.xml is different format from other stories
-                if (([mvc.bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound &&
-                    [pageContext.currentPageId rangeOfString:DASH_INTRO].location == NSNotFound) || conditionSetup.appMode == ITS) {
+                //NOTE: Currently hardcoded because some Solutions-MetaData.xml files are different format from other stories
+                if (([mvc.bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound || [mvc.bookTitle rangeOfString:@"The Lopez Family Mystery"].location != NSNotFound || [mvc.bookTitle rangeOfString:@"Bottled Up Joy"].location != NSNotFound) && [pageContext.currentPageId rangeOfString:DASH_INTRO].location == NSNotFound) {
                     currSolSteps = [stepContext.PMSolution getStepsForSentence:sentenceContext.currentIdea];
                 }
                 else {
@@ -272,8 +271,10 @@
         [vocabSolutionSteps addObject:vocabSolutionStep];
     }
     
-    if (conditionSetup.appMode == ITS) {
+    if (conditionSetup.appMode == ITS && conditionSetup.useKnowledgeTracing && ![mvc.chapterTitle isEqualToString:@"The Naughty Monkey"]) {
         NSMutableSet *vocabToAdd = [[ITSController sharedInstance] getExtraIntroductionVocabularyForChapter:chapter inBook:mvc.book];
+        
+        [[ServerCommunicationController sharedInstance] logAdaptVocabulary:[NSArray arrayWithArray:[vocabToAdd allObjects]] context:manipulationContext];
         
         for (NSString *vocab in vocabToAdd) {
             sentenceContext.totalSentences++;
@@ -324,31 +325,18 @@
     //Get current step to be completed
     ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
     
-    if (conditionSetup.appMode == ITS) {
-        //Not automatic step
-        if (!([[currSolStep stepType] isEqualToString:UNGROUP_TXT] || [[currSolStep stepType] isEqualToString:MOVE] || [[currSolStep stepType] isEqualToString:SWAPIMAGE])) {
-            mvc.endTime = [NSDate date];
-            double elapsedTime = [mvc.endTime timeIntervalSinceDate:mvc.startTime];
-            
-            //Record time for complexity
-            [[mvc.pageStatistics objectForKey:pageContext.currentPageId] addTime:elapsedTime ForComplexity:(mvc.currentComplexity - 1)];
-            
-            mvc.startTime = [NSDate date];
-        }
-    }
-    
     //Check if we able to increment current step
     if (stepContext.currentStep < stepContext.numSteps) {
         stepContext.numAttempts = 0;
         
         //if the current solution step is a custom pm, then increment current step minMenuOption times
-        if ([PM_CUSTOM isEqualToString: [currSolStep menuType]]){
-            for (int i=0; i<minMenuItems; i++) {
+        if ([PM_CUSTOM isEqualToString:[currSolStep menuType]]) {
+            for (int i = 0; i < minMenuItems; i++) {
                 stepContext.currentStep++;
             }
         }
         //current solution step is normal and just increment once
-        else{
+        else {
             stepContext.currentStep++;
         }
         

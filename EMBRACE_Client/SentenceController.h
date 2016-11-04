@@ -27,6 +27,7 @@
 - (void) setupCurrentSentenceColor;
 - (void) setupCurrentSentence;
 - (BOOL)isManipulationSentence:(NSInteger)sentenceNumber;
+- (NSInteger)getComplexityOfCurrentSentence;
 - (void)colorSentencesUponNext;
 - (NSString *)getSpanishTranslation:(NSString *)sentence;
 - (NSString *)getEnglishTranslation:(NSString *)sentence;

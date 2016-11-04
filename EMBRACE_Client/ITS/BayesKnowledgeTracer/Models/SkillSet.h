@@ -14,7 +14,7 @@
 
 @interface SkillSet : NSObject
 
-- (void)addWordSkill:(Skill *)wordSkill forWord:(NSString *)word ;
+- (void)addWordSkill:(Skill *)wordSkill forWord:(NSString *)word;
 
 - (Skill *)skillForWord:(NSString *)word;
 

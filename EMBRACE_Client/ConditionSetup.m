@@ -20,20 +20,24 @@
 @synthesize isAssessmentPageEnabled;
 @synthesize assessmentMode;
 @synthesize animatedStepCompletionMode;
-@synthesize shouldShowITSMessages;
 @synthesize isAutomaticAnimationEnabled;
+@synthesize useKnowledgeTracing;
+@synthesize shouldShowITSMessages;
 
 @synthesize allowFileSync;
 
-+ (id)sharedInstance {
-    static ConditionSetup *sharedMyManager = nil;
-    static dispatch_once_t onceToken;
+static ConditionSetup *sharedInstance = nil;
+
++ (ConditionSetup *)sharedInstance {
+    if (sharedInstance == nil) {
+        sharedInstance = [[ConditionSetup alloc] init];
+    }
     
-    dispatch_once(&onceToken, ^{
-        sharedMyManager = [[self alloc] init];
-    });
-    
-    return sharedMyManager;
+    return sharedInstance;
+}
+
++ (void)resetSharedInstance {
+    sharedInstance = nil;
 }
 
 - (id)init {
@@ -41,17 +45,21 @@
         condition = EMBRACE;
         language = ENGLISH;
         reader = USER;
-        appMode = Study;
+        appMode = ITS;
         currentMode = PM_MODE;
-        newInstructions = FALSE;
-        isVocabPageEnabled = true;
-        isAssessmentPageEnabled = true;
+
+        newInstructions = YES;
+        isVocabPageEnabled = YES;
+        isAssessmentPageEnabled = YES;
         assessmentMode = ENDOFCHAPTER;
-        shouldShowITSMessages = YES;
+        
         isAutomaticAnimationEnabled = YES;
         animatedStepCompletionMode = PERSTEP;
         
-        allowFileSync = true; //NOTE: Still testing this functionality
+        useKnowledgeTracing = YES;
+        shouldShowITSMessages = NO;
+        
+        allowFileSync = YES;
     }
     
     return self;
