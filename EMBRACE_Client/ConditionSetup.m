@@ -37,13 +37,13 @@
     if (self = [super init]) {
         condition = EMBRACE;
         language = BILINGUAL;
-        reader = SYSTEM;
+        reader = USER;
         appMode = Study;
         currentMode = PM_MODE;
-        newInstructions = false;
-        isVocabPageEnabled = false;
+        newInstructions = true;
+        isVocabPageEnabled = true;
         isAssessmentPageEnabled = true;
-        assessmentMode = ENDOFBOOK;
+        assessmentMode = ENDOFCHAPTER;
         allowFileSync = true; //NOTE: Still testing this functionality
     }
     
