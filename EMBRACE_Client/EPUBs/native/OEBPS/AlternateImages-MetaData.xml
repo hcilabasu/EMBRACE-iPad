@@ -19,6 +19,7 @@
         <alternateImage objId="frame" action="tied" originalSrc="frame_onground.png" alternateSrc="frame_withrope.png" width="450px" x="35.937500%" y="72.514206%" class="manipulationObject center" z="0"/>
         <alternateImage objId="haida" action="axe" originalSrc="haida_large.png" alternateSrc="haida_axe.png" width="78px" x="38.183594%" y="55.894886%" class="manipulationObject center" z="1"/>
         <alternateImage objId="haida" action="no_axe" originalSrc="haida_axe.png" alternateSrc="haida_large.png" width="78px" x="40.322266%" y="58.394890%" class="manipulationObject center" z="2"/>
+        <alternateImage objId="hogan" action="getsFilled" originalSrc="hogan_withhole2.png" alternateSrc="hogan.png" width="682px" x="0%" y="34.161930%" class="manipulationObject center" z="0"/>
         <alternateImage objId="hole" action="hole" originalSrc="hole_outline.png" alternateSrc="hole.png" width="411px" x="46.289062%" y="63.139206%" class="manipulationObject center" z="0"/>
         <alternateImage objId="igloo" action="window" originalSrc="igloo_withhole.png" alternateSrc="igloo_window.png" width="494px" x="41.552734%" y="30.113638%" class="manipulationObject center" z="0"/>
         <alternateImage objId="log1" action="appear" originalSrc="log_flip.png" alternateSrc="log_flip.png" width="150px" x="22.998047%" y="82.883522%" class="manipulationObject center" z="3"/>
