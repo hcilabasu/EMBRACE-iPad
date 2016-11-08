@@ -10,6 +10,7 @@
 
 @interface StudyContext : Context
 
+@property (nonatomic, strong) NSString *appMode;
 @property (nonatomic, strong) NSString *condition;
 @property (nonatomic, strong) NSString *schoolCode;
 @property (nonatomic, strong) NSString *participantCode;

@@ -68,6 +68,7 @@ typedef enum AnimatedStepCompletion {
 + (void)resetSharedInstance;
 
 - (NSString *)returnLanguageEnumtoString:(Language)type;
+- (NSString *)returnAppModeEnumToString:(AppMode)type;
 - (NSString *)returnConditionEnumToString:(Condition)type;
 
 @end
