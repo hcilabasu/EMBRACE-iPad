@@ -147,6 +147,7 @@ static ServerCommunicationController *sharedInstance = nil;
     if (student != nil) {
         studyContext = [[StudyContext alloc] init];
         
+        studyContext.appMode = [[ConditionSetup sharedInstance] returnAppModeEnumToString:[[ConditionSetup sharedInstance] appMode]];
         studyContext.condition = @"NULL";
         studyContext.schoolCode = [student schoolCode];
         studyContext.participantCode = [student participantCode];
@@ -173,6 +174,7 @@ static ServerCommunicationController *sharedInstance = nil;
  *
  * <Study_Context>
  *  <School>...</School>
+ *  <App_Mode>...</App_Mode>
  *  <Condition>...</Condition>
  *  <Day>...</Day>
  *  <Participant_ID>...</Participant_ID>
@@ -186,6 +188,7 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for study information
     DDXMLElement *nodeSchoolCode = [DDXMLElement elementWithName:@"School_Code" stringValue:[context schoolCode]];
+    DDXMLElement *nodeAppMode = [DDXMLElement elementWithName:@"App_Mode" stringValue:[context appMode]];
     DDXMLElement *nodeCondition = [DDXMLElement elementWithName:@"Condition" stringValue:[context condition]];
     DDXMLElement *nodeStudyDay = [DDXMLElement elementWithName:@"Study_Day" stringValue:[context studyDay]];
     DDXMLElement *nodeParticipantCode = [DDXMLElement elementWithName:@"Participant_Code" stringValue:[context participantCode]];
@@ -195,6 +198,7 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Add nodes to study context
     [nodeStudyContext addChild:nodeSchoolCode];
+    [nodeStudyContext addChild:nodeAppMode];
     [nodeStudyContext addChild:nodeCondition];
     [nodeStudyContext addChild:nodeStudyDay];
     [nodeStudyContext addChild:nodeParticipantCode];

@@ -109,7 +109,7 @@
         <hotspot objId="horse" action="moveTo" role="subject" x="0%" y="100%"/>
         <hotspot objId="horse" action="pickUp" role="subject" x="6%" y="42%"/>
         <hotspot objId="horse" action="push" role="subject" x="19%" y="92%"/>
-        <hotspot objId="horse" action="receive" role="subject" x="50%" y="50%"/>
+        <hotspot objId="horse" action="receive" role="subject" x="6%" y="42%"/>
         <hotspot objId="horse" action="visit" role="object" x="0%" y="100%"/>
         <hotspot objId="horse" action="visit" role="subject" x="100%" y="100%"/>
         <hotspot objId="judge" action="award" role="subject" x="11%" y="62%"/>

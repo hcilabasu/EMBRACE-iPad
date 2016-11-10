@@ -638,6 +638,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                 }
             }
             
+            [[ServerCommunicationController sharedInstance] studyContext].appMode = [conditionSetup returnAppModeEnumToString:[conditionSetup appMode]];
             [[ServerCommunicationController sharedInstance] studyContext].condition = condition;
             [[ServerCommunicationController sharedInstance] logLoadChapter:selectedChapterTitle inBook:selectedBookTitle];
             

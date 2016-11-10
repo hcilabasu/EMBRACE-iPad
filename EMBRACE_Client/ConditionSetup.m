@@ -87,6 +87,30 @@ static ConditionSetup *sharedInstance = nil;
 }
 
 /*
+ * Returns a string with the current value of the AppMode enumeration
+ */
+- (NSString *)returnAppModeEnumToString:(AppMode)type {
+    NSString *result = nil;
+    
+    switch (type) {
+        case Authoring:
+            result = @"Authoring";
+            break;
+        case Study:
+            result = @"Study";
+            break;
+        case ITS:
+            result = @"ITS";
+            break;
+        default:
+            [NSException raise:NSGenericException format:@"Unexpected FormatType."];
+            break;
+    }
+    
+    return result;
+}
+
+/*
  * Returns a string with the current value of the Language enumeration
  */
 - (NSString *)returnLanguageEnumtoString:(Language)type {
