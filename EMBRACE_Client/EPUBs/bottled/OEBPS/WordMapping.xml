@@ -6,14 +6,21 @@
             <subWord>nearHouse</subWord>
         </mappedWords>
     </word>
-    
+    <word keyWord="river">
+        <mappedWords>
+            <subWord>riverSide</subWord>
+        </mappedWords>
+    </word>
+    <word keyWord="bedroom">
+        <mappedWords>
+            <subWord>bedroom</subWord>
+            <subWord>bed</subWord>
+        </mappedWords>
+    </word>
     <!--
-    bed
-    bedroom
-    bench
-    bush
-    chair
-    livingRoom
-    riverSide
+     bench
+     bush
+     chair
+     livingRoom
      -->
 </wordMappings>

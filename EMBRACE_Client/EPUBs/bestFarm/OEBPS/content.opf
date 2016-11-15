@@ -1,19 +1,15 @@
 <?xml version="1.0"  encoding="UTF-8"?>
 <package xmlns="http://www.idpf.org/2007/opf" unique-identifier="BookId" version="2.0">
-  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
-    <dc:creator opf:role="aut" opf:file-as="Unknown-1">Unknown-1</dc:creator>
-<dc:identifier id="BookId" opf:scheme="UUID">urn:uuid:eece7575-28d0-4489-9868-0084485e93e6</dc:identifier>
-    <dc:contributor opf:role="bkp">calibre (1.31.0) [http://calibre-ebook.com]</dc:contributor>
-    <dc:date>2014-07-30T07:00:00+00:00</dc:date>
-    <dc:date opf:event="modification">2014-08-19</dc:date>
+ 
+ <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+    <dc:identifier id="BookId" opf:scheme="UUID">urn:uuid:eece7575-28d0-4489-9868-0084485e93e6</dc:identifier>
+    <dc:date opf:event="modification">2015-07-06</dc:date>
     <meta content="0.7.4" name="Sigil version"/>
-    <meta content="The Best Farm" name="calibre:title_sort"/>
-    <meta content="{&quot;Unknown-1&quot;: &quot;&quot;}" name="calibre:author_link_map"/>
-    <meta content="{}" name="calibre:user_categories"/>
-  <dc:title>The Best Farm</dc:title>
-<dc:language>en</dc:language>
-<dc:identifier opf:scheme="calibre">cc82906e-720b-427f-b0a2-363e72fe2bb6</dc:identifier>
+    <dc:title>The Best Farm</dc:title>
+    <dc:language>en</dc:language>
+    <dc:identifier opf:scheme="calibre">cc82906e-720b-427f-b0a2-363e72fe2bb6</dc:identifier>
 </metadata>
+  
   <manifest>
     <item href="Text/Introduction-to-Best-Farm-Characters-Title.xhtml" id="Introduction-to-Best-Farm-Characters-Title.xhtml" media-type="application/xhtml+xml"/>
     <item href="Text/Story1-The-Contest-Title.xhtml" id="Chapter1Title" media-type="application/xhtml+xml"/>

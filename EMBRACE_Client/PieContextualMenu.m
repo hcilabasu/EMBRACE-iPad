@@ -90,6 +90,10 @@ int const minMenuItems = 2; //Total number of items the menu must display. chang
             else if (conditionSetup.currentMode == IM_MODE) {
                 rect = CGRectMake(currX - itemRadiusIM, currY - itemRadiusIM, itemRadiusIM * 2, itemRadiusIM * 2);
             }
+            else{
+                //TODO: add default rect cgmake
+            }
+            
         }
         
         PieContextualMenuItem *item = [[PieContextualMenuItem alloc] initWithFrameAndData:rect :angle :[[self dataSource] dataObjectAtIndex:i]];

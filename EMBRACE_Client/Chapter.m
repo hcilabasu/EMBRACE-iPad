@@ -202,6 +202,13 @@
         }
     }
     
+    // NOTE: Currently hardcoded to remove invalid solution vocabulary that could not be filtered out
+    if ([title isEqualToString:@"Words of Wisdom"]) {
+        if ([solutionVocabulary containsObject:@"babybrother"]) {
+            [solutionVocabulary removeObject:@"babybrother"];
+        }
+    }
+    
     return solutionVocabulary;
 }
 

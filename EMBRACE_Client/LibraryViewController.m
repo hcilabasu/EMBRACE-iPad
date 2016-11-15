@@ -11,7 +11,7 @@
 #import "BookCellView.h"
 #import "BookHeaderView.h"
 #import "Book.h"
-#import "PMViewController.h"
+#import "ManipulationViewController.h"
 #import "AuthoringModeViewController.h"
 #import "ServerCommunicationController.h"
 #import "ConditionSetup.h"
@@ -322,7 +322,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
         [destination loadFirstPage];
     }
     else {
-        PMViewController *destination = [segue destinationViewController];
+        ManipulationViewController *destination = [segue destinationViewController];
         destination.bookImporter = bookImporter;
         destination.bookTitle = self.bookToOpen;
         destination.chapterTitle = self.chapterToOpen;
@@ -360,8 +360,10 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
         //[[ServerCommunicationController sharedInstance] uploadFilesForStudent:student];
     }
     
-    //Reset ServerCommunicationController to end session
+    //Reset shared instances to end session
     [ServerCommunicationController resetSharedInstance];
+    [ITSController resetSharedInstance];
+    [ConditionSetup resetSharedInstance];
     
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -581,10 +583,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
             //Get selected book
             Book *book = [books objectAtIndex:selectedBookIndex];
             
-            NSString *title = [[book title] stringByAppendingString:@" - "];
-            title = [title stringByAppendingString:[book author]];
-            
-            self.bookToOpen = title;
+            self.bookToOpen = [book title];
             self.chapterToOpen = [[[book chapters] objectAtIndex:indexPath.row] title];
             
             if (useSequence) {
@@ -595,25 +594,34 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                 if ([currentMode interventionType] == PM_INTERVENTION) {
                     conditionSetup.condition = EMBRACE;
                     conditionSetup.currentMode = PM_MODE;
+                    conditionSetup.appMode = Study;
                 }
                 else if ([currentMode interventionType] == IM_INTERVENTION) {
                     conditionSetup.condition = EMBRACE;
                     conditionSetup.currentMode = IM_MODE;
+                    conditionSetup.appMode = Study;
                 }
                 else if ([currentMode interventionType] == R_INTERVENTION) {
                     conditionSetup.condition = CONTROL;
+                    conditionSetup.appMode = Study;
+                }
+                else if ([currentMode interventionType] == ITS_INTERVENTION) {
+                    conditionSetup.condition = EMBRACE;
+                    conditionSetup.currentMode = PM_MODE;
+                    conditionSetup.appMode = ITS;
                 }
                 //Current mode for chapter was not found; default to control
                 else {
                     conditionSetup.condition = CONTROL;
+                    conditionSetup.appMode = Study;
                 }
                 
                 //Set language, reader, and new instructions
                 conditionSetup.language = [currentMode language];
                 conditionSetup.reader = [currentMode reader];
                 conditionSetup.newInstructions = [currentMode newInstructions];
-                conditionSetup.vocabPageEnabled = [currentMode vocabPageEnabled];
-                conditionSetup.assessmentPageEnabled = [currentMode assessmentPageEnabled];
+                conditionSetup.isVocabPageEnabled = [currentMode vocabPageEnabled];
+                conditionSetup.isAssessmentPageEnabled = [currentMode assessmentPageEnabled];
             }
             
             NSString *condition = @"Unknown";
@@ -630,6 +638,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                 }
             }
             
+            [[ServerCommunicationController sharedInstance] studyContext].appMode = [conditionSetup returnAppModeEnumToString:[conditionSetup appMode]];
             [[ServerCommunicationController sharedInstance] studyContext].condition = condition;
             [[ServerCommunicationController sharedInstance] logLoadChapter:selectedChapterTitle inBook:selectedBookTitle];
             

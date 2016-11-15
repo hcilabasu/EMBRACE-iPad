@@ -18,10 +18,12 @@
 
 - (instancetype)initWithWord:(NSString *)word {
     self = [super init];
+    
     if (self) {
         _word = [word copy];
         
     }
+    
     return self;
 }
 

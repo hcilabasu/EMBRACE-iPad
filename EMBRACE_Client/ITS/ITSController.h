@@ -19,34 +19,23 @@ typedef NS_ENUM(NSInteger, EMComplexity) {
 
 @interface ITSController : NSObject
 
-+ (instancetype)sharedInstance;
++ (ITSController *)sharedInstance;
++ (void)resetSharedInstance;
 
 - (void)setAnalyzerDelegate:(id)delegate;
 
-- (void)movedObject:(NSString *)objectId
-  destinationObjects:(NSArray *)destinationObjs
-         isVerified:(BOOL)verified
-         actionStep:(ActionStep *)actionStep
-manipulationContext:(ManipulationContext *)context
-        forSentence:(NSString *)sentence
-    withWordMapping:(NSDictionary *)mapDict;
+- (void)movedObjectIDs:(NSMutableSet *)movedObjectIDs destinationIDs:(NSArray *)destinationIDs isVerified:(BOOL)verified actionStep:(ActionStep *)actionStep manipulationContext:(ManipulationContext *)context forSentence:(NSString *)sentence withWordMapping:(NSDictionary *)mapDict;
 
-- (void)movedObject:(NSString *)objectId
- destinationObjects:(NSArray *)destinationObjs
-         isVerified:(BOOL)verified
-         actionStep:(ActionStep *)actionStep
-manipulationContext:(ManipulationContext *)context
-        forSentence:(NSString *)sentence;
+- (void)userDidPlayWord:(NSString *)word context:(ManipulationContext *)context;
 
-- (void)userDidPlayWord:(NSString *)word;
-
-- (void)userDidVocabPreviewWord:(NSString *)word;
+- (void)userDidVocabPreviewWord:(NSString *)word context:(ManipulationContext *)context;
 
 - (void)pressedNextWithManipulationContext:(ManipulationContext *)context
                                forSentence:(NSString *)sentence
                                 isVerified:(BOOL)verified;
 
 - (EMComplexity)getCurrentComplexity;
+- (EMComplexity)setCurrentComplexity;
 
 - (NSMutableSet *)getExtraIntroductionVocabularyForChapter:(Chapter *)chapter inBook:(Book *)book;
 

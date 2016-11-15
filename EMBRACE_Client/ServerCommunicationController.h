@@ -55,6 +55,7 @@
 - (void)logDisplayMenuItems:(NSArray *)menuItemsData context:(ManipulationContext *)context;
 - (void)logSelectMenuItem:(NSArray *)menuItemData atIndex:(int)index context:(ManipulationContext *)context;
 - (void)logVerification:(BOOL)verification forAction:(NSString *)action context:(ManipulationContext *)context;
+- (void)logMaximumAttemptsReachedForAction:(NSString *)action context:(ManipulationContext *)context;
 - (void)logResetObject:(NSString *)object startPos:(CGPoint)start endPos:(CGPoint)end context:(ManipulationContext *)context;
 - (void)logAppearOrDisappearObject:(NSString *)object ofType:(NSString *)objectType context:(ManipulationContext *)context;
 - (void)logSwapImageForObject:(NSString *)object altImage:(NSString *)image context:(ManipulationContext *)context;
@@ -68,8 +69,8 @@
 - (void)logPressNextInManipulationActivity:(ManipulationContext *)context;
 - (void)logEmergencySwipe:(ManipulationContext *)context;
 - (void)logLoadStep:(NSInteger)stepNumber ofType:(NSString *)stepType context:(ManipulationContext *)context;
-- (void)logLoadSentence:(NSInteger)sentenceNumber withText:(NSString *)sentenceText manipulationSentence:(BOOL)manipulationSentence context:(ManipulationContext *)context;
-- (void)logLoadPage:(NSString *)pageLanguage mode:(NSString *)pageMode number:(NSInteger)pageNumber context:(ManipulationContext *)context;
+- (void)logLoadSentence:(NSInteger)sentenceNumber withComplexity:(NSInteger)sentenceComplexity withText:(NSString *)sentenceText manipulationSentence:(BOOL)manipulationSentence context:(ManipulationContext *)context;
+- (void)logLoadPage:(NSString *)pageLanguage mode:(NSString *)pageMode number:(NSInteger)pageNumber complexity:(NSInteger)pageComplexity context:(ManipulationContext *)context;
 - (void)logPressLibrary:(ManipulationContext *)context;
 - (void)logCompleteManipulation:(ManipulationContext *)context;
 
@@ -87,6 +88,15 @@
 - (void)logPressNextInAssessmentActivity:(AssessmentContext *)context;
 - (void)logLoadAssessmentStep:(NSInteger)assessmentStepNumber context:(AssessmentContext *)context;
 - (void)logCompleteAssessment:(AssessmentContext *)context;
+
+# pragma mark - Logging (ITS)
+
+- (void)logUpdateSkill:(NSString *)skillName ofType:(NSString *)skillType prevValue:(double)prevSkillValue newSkillValue:(double)newSkillValue context:(ManipulationContext *)context;
+- (void)logAdaptVocabulary:(NSArray *)addedWords context:(ManipulationContext *)context;
+- (void)logAdaptSyntax:(NSInteger)prevComplexity :(NSInteger)newComplexity context:(ManipulationContext *)context;
+- (void)logVocabularyErrorFeedback:(NSArray *)highlightedItems context:(ManipulationContext *)context;
+- (void)logSyntaxErrorFeedback:(NSString *)simplerSentence context:(ManipulationContext *)context;
+- (void)logUsabilityErrorFeedback:(NSArray *)animatedItems context:(ManipulationContext *)context;
 
 #pragma mark - Saving/loading progress files
 

@@ -15,11 +15,13 @@
 @synthesize chapterTitle;
 @synthesize chapterNumber;
 
-@synthesize pageNumber;
 @synthesize pageLanguage;
 @synthesize pageMode;
+@synthesize pageNumber;
+@synthesize pageComplexity;
 
 @synthesize sentenceNumber;
+@synthesize sentenceComplexity;
 @synthesize sentenceText;
 @synthesize manipulationSentence;
 

@@ -23,6 +23,7 @@
     if (self) {
         _userActionSteps = [[NSMutableArray alloc] init];
     }
+    
     return self;
 }
 
@@ -30,6 +31,7 @@
     if (action.isVerified) {
         self.isCompleted = YES;
     }
+    
     [self.userActionSteps addObject:action];
 }
 
@@ -37,14 +39,13 @@
     return [NSArray arrayWithArray:self.userActionSteps];
 }
 
-
 - (BOOL)containsAction:(UserAction *)action {
     for (UserAction *exAction in self.userActionSteps) {
-        if (exAction.sentenceNumber == action.sentenceNumber &&
-            exAction.ideaNumber == action.ideaNumber) {
+        if (exAction.sentenceNumber == action.sentenceNumber && exAction.ideaNumber == action.ideaNumber && exAction.stepNumber == action.stepNumber) {
             return YES;
         }
     }
+    
     return NO;
 }
 

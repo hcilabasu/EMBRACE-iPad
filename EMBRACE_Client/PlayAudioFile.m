@@ -18,7 +18,7 @@
 
 @implementation PlayAudioFile
 @synthesize syn;
-@synthesize PmviewController;
+@synthesize manipulationViewController;
 @synthesize audioPlayer;
 @synthesize audioPlayerAfter;
 @synthesize audioDuration;
@@ -76,7 +76,7 @@
 /* Plays an audio file at a given path */
 -(BOOL) playAudioFile:(UIViewController*) viewController : (NSString*) path {
     
-    self.PmviewController = viewController;
+    self.manipulationViewController = viewController;
     [viewController.view setUserInteractionEnabled:NO];
     
     [self initPlayer:path];
@@ -85,7 +85,7 @@
     
     if (self.audioPlayer == nil)
     {
-        [PmviewController.view setUserInteractionEnabled:YES];
+        [manipulationViewController.view setUserInteractionEnabled:YES];
         return false;
     }
     else
@@ -112,7 +112,7 @@
         return;
     }
     
-    self.PmviewController = controller;
+    self.manipulationViewController = controller;
     NSMutableArray *array = [NSMutableArray array];
     for (NSString *path in audioList) {
         NSString *soundFilePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], path];
@@ -137,10 +137,10 @@
         if (self.audioPlayer == nil) {
             self.audioQueue = nil;
             NSLog(@"Audio error %@",[audioError description]);
-            [PmviewController.view setUserInteractionEnabled:YES];
+            [manipulationViewController.view setUserInteractionEnabled:YES];
         }
         else {
-            [PmviewController.view setUserInteractionEnabled:NO];
+            [manipulationViewController.view setUserInteractionEnabled:NO];
             [self.audioPlayer prepareToPlay];
             AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:soundFileURL options:[NSDictionary dictionaryWithObjectsAndKeys: [NSNumber numberWithBool:YES], AVURLAssetPreferPreciseDurationAndTimingKey, nil]];
             self.audioDuration = CMTimeGetSeconds(asset.duration);
@@ -150,7 +150,7 @@
     }
     else
     {
-        [PmviewController.view setUserInteractionEnabled:YES];
+        [manipulationViewController.view setUserInteractionEnabled:YES];
     }
 }
 
@@ -158,8 +158,8 @@
 /* Plays one audio file after the other */
 -(BOOL) playAudioInSequence: (UIViewController*) viewController : (NSString*) path :(NSString*) path2 {
    
-        self.PmviewController = viewController;
-        [PmviewController.view setUserInteractionEnabled:NO];
+        self.manipulationViewController = viewController;
+        [manipulationViewController.view setUserInteractionEnabled:NO];
     
         NSString *soundFilePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], path];
         NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
@@ -182,7 +182,7 @@
             NSLog(@"%@",[audioError2 description]);
             self.audioPlayer = nil;
             self.audioPlayerAfter = nil;
-            [PmviewController.view setUserInteractionEnabled:YES];
+            [manipulationViewController.view setUserInteractionEnabled:YES];
             return false;
         }
         else
@@ -211,8 +211,8 @@
     }
     else
     {
-        //make sure we have an instance of the PMViewController
-        if(PmviewController != nil)
+        //make sure we have an instance of the PmanipulationViewController
+        if(manipulationViewController != nil)
         {
             //reenable user interaction after second audio file finishes playing if it exists otherwise just renable user interaction after first audio file finishes playing
             if (self.audioPlayerAfter != nil) {
@@ -221,12 +221,12 @@
                 [self.audioPlayerAfter play];
                 
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW,self.audioAfterDuration*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                    [PmviewController.view setUserInteractionEnabled:YES];
+                    [manipulationViewController.view setUserInteractionEnabled:YES];
                 });
             }
             else
             {
-                [PmviewController.view setUserInteractionEnabled:YES];
+                [manipulationViewController.view setUserInteractionEnabled:YES];
             }
         }
     }

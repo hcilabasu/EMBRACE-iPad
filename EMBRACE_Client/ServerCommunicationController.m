@@ -147,6 +147,7 @@ static ServerCommunicationController *sharedInstance = nil;
     if (student != nil) {
         studyContext = [[StudyContext alloc] init];
         
+        studyContext.appMode = [[ConditionSetup sharedInstance] returnAppModeEnumToString:[[ConditionSetup sharedInstance] appMode]];
         studyContext.condition = @"NULL";
         studyContext.schoolCode = [student schoolCode];
         studyContext.participantCode = [student participantCode];
@@ -173,6 +174,7 @@ static ServerCommunicationController *sharedInstance = nil;
  *
  * <Study_Context>
  *  <School>...</School>
+ *  <App_Mode>...</App_Mode>
  *  <Condition>...</Condition>
  *  <Day>...</Day>
  *  <Participant_ID>...</Participant_ID>
@@ -186,6 +188,7 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for study information
     DDXMLElement *nodeSchoolCode = [DDXMLElement elementWithName:@"School_Code" stringValue:[context schoolCode]];
+    DDXMLElement *nodeAppMode = [DDXMLElement elementWithName:@"App_Mode" stringValue:[context appMode]];
     DDXMLElement *nodeCondition = [DDXMLElement elementWithName:@"Condition" stringValue:[context condition]];
     DDXMLElement *nodeStudyDay = [DDXMLElement elementWithName:@"Study_Day" stringValue:[context studyDay]];
     DDXMLElement *nodeParticipantCode = [DDXMLElement elementWithName:@"Participant_Code" stringValue:[context participantCode]];
@@ -195,6 +198,7 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Add nodes to study context
     [nodeStudyContext addChild:nodeSchoolCode];
+    [nodeStudyContext addChild:nodeAppMode];
     [nodeStudyContext addChild:nodeCondition];
     [nodeStudyContext addChild:nodeStudyDay];
     [nodeStudyContext addChild:nodeParticipantCode];
@@ -214,9 +218,11 @@ static ServerCommunicationController *sharedInstance = nil;
  *  <Chapter_Title>...</Chapter_Title>
  *  <Page_Language>...</Page_Language>
  *  <Page_Mode>...</Page_Mode>
+ *  <Page_Complexity>...</Page_Complexity>
  *  <Page_Number>...</Page_Number>
  *  <Sentence_Number>...</Sentence_Number>
  *  <Sentence_Text>...</Sentence_Text>
+ *  <Sentence_Complexity>...</Sentence_Complexity>
  *  <Manipulation_Sentence>...</Manipulation_Sentence>
  *  <Step_Number>...</Step_Number>
  *  <Idea_Number>...</Idea_Number>
@@ -238,9 +244,11 @@ static ServerCommunicationController *sharedInstance = nil;
     DDXMLElement *nodePageLanguage = [DDXMLElement elementWithName:@"Page_Language" stringValue:[context pageLanguage]];
     DDXMLElement *nodePageMode = [DDXMLElement elementWithName:@"Page_Mode" stringValue:[context pageMode]];
     DDXMLElement *nodePageNumber = [DDXMLElement elementWithName:@"Page_Number" stringValue:[NSString stringWithFormat:@"%ld", (long)[context pageNumber]]];
+    DDXMLElement *nodePageComplexity = [DDXMLElement elementWithName:@"Page_Complexity" stringValue:[NSString stringWithFormat:@"%ld", (long)[context pageComplexity]]];
     
     //Create nodes for sentence information
     DDXMLElement *nodeSentenceNumber = [DDXMLElement elementWithName:@"Sentence_Number" stringValue:[NSString stringWithFormat:@"%ld", (long)[context sentenceNumber]]];
+    DDXMLElement *nodeSentenceComplexity = [DDXMLElement elementWithName:@"Sentence_Complexity" stringValue:[NSString stringWithFormat:@"%ld", (long)[context sentenceComplexity]]];
     NSString *sentenceText = [[context sentenceText] isEqualToString:@""] || [context sentenceText] == nil ? @"NULL" : [context sentenceText];
     DDXMLElement *nodeSentenceText = [DDXMLElement elementWithName:@"Sentence_Text" stringValue:sentenceText];
     DDXMLElement *nodeManipulationSentence = [DDXMLElement elementWithName:@"Manipulation_Sentence" stringValue:[context manipulationSentence] ? @"Yes" : @"No"];
@@ -256,7 +264,9 @@ static ServerCommunicationController *sharedInstance = nil;
     [nodeManipulationContext addChild:nodePageLanguage];
     [nodeManipulationContext addChild:nodePageMode];
     [nodeManipulationContext addChild:nodePageNumber];
+    [nodeManipulationContext addChild:nodePageComplexity];
     [nodeManipulationContext addChild:nodeSentenceNumber];
+    [nodeManipulationContext addChild:nodeSentenceComplexity];
     [nodeManipulationContext addChild:nodeSentenceText];
     [nodeManipulationContext addChild:nodeManipulationSentence];
     [nodeManipulationContext addChild:nodeStepNumber];
@@ -856,6 +866,31 @@ static ServerCommunicationController *sharedInstance = nil;
     [nodeContext addChild:nodeStudyContext];
 }
 
+- (void)logMaximumAttemptsReachedForAction:(NSString *)action context:(ManipulationContext *)context {
+    //Start with base node for system action
+    DDXMLElement *nodeBaseAction = [self getBaseActionForActor:SYSTEM];
+    [study addChild:nodeBaseAction];
+    
+    //Set selection
+    DDXMLElement *nodeSelection = [[nodeBaseAction elementsForName:@"Selection"] objectAtIndex:0];
+    [nodeSelection setStringValue:action];
+    
+    //Set action
+    DDXMLElement *nodeAction = [[nodeBaseAction elementsForName:@"Action"] objectAtIndex:0];
+    [nodeAction setStringValue:@"Maximum Attempts Reached"];
+    
+    //Get context
+    DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
+    
+    //Create nodes for context information
+    DDXMLElement *nodeManipulationContext = [self getManipulationContext:context];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
+    
+    //Add above nodes to context
+    [nodeContext addChild:nodeManipulationContext];
+    [nodeContext addChild:nodeStudyContext];
+}
+
 /*
  * Logging for when an object is reset (i.e., snaps object back to original position after an error)
  */
@@ -1251,7 +1286,7 @@ static ServerCommunicationController *sharedInstance = nil;
 /*
  * Logging for loading a sentence
  */
-- (void)logLoadSentence:(NSInteger)sentenceNumber withText:(NSString *)sentenceText manipulationSentence:(BOOL)manipulationSentence context:(ManipulationContext *)context {
+- (void)logLoadSentence:(NSInteger)sentenceNumber withComplexity:(NSInteger)sentenceComplexity withText:(NSString *)sentenceText manipulationSentence:(BOOL)manipulationSentence context:(ManipulationContext *)context {
     //Start with base node for system action
     DDXMLElement *nodeBaseAction = [self getBaseActionForActor:SYSTEM];
     [study addChild:nodeBaseAction];
@@ -1268,13 +1303,15 @@ static ServerCommunicationController *sharedInstance = nil;
     DDXMLElement *nodeInput = [[nodeBaseAction elementsForName:@"Input"] objectAtIndex:0];
     
     //Create nodes for input information
-    DDXMLElement *nodeSentenceNumber = [DDXMLElement elementWithName:@"Sentence_Number" stringValue:[NSString stringWithFormat:@"%d", sentenceNumber]];
+    DDXMLElement *nodeSentenceNumber = [DDXMLElement elementWithName:@"Sentence_Number" stringValue:[NSString stringWithFormat:@"%ld", (long)sentenceNumber]];
+    DDXMLElement *nodeSentenceComplexity = [DDXMLElement elementWithName:@"Sentence_Complexity" stringValue:[NSString stringWithFormat:@"%ld", (long)sentenceComplexity]];
     sentenceText = [sentenceText isEqualToString:@""] || sentenceText == nil ? @"NULL" : sentenceText;
     DDXMLElement *nodeSentenceText = [DDXMLElement elementWithName:@"Sentence_Text" stringValue:sentenceText];
     DDXMLElement *nodeManipulationSentence = [DDXMLElement elementWithName:@"Manipulation_Sentence" stringValue:manipulationSentence ? @"Yes" : @"No"];
     
     //Add above nodes to input
     [nodeInput addChild:nodeSentenceNumber];
+    [nodeInput addChild:nodeSentenceComplexity];
     [nodeInput addChild:nodeSentenceText];
     [nodeInput addChild:nodeManipulationSentence];
     
@@ -1293,7 +1330,7 @@ static ServerCommunicationController *sharedInstance = nil;
 /*
  * Logging for loading a page
  */
-- (void)logLoadPage:(NSString *)pageLanguage mode:(NSString *)pageMode number:(NSInteger)pageNumber context:(ManipulationContext *)context {
+- (void)logLoadPage:(NSString *)pageLanguage mode:(NSString *)pageMode number:(NSInteger)pageNumber complexity:(NSInteger)pageComplexity  context:(ManipulationContext *)context {
     //Start with base node for system action
     DDXMLElement *nodeBaseAction = [self getBaseActionForActor:SYSTEM];
     [study addChild:nodeBaseAction];
@@ -1312,12 +1349,14 @@ static ServerCommunicationController *sharedInstance = nil;
     //Create nodes for input information
     DDXMLElement *nodePageLanguage = [DDXMLElement elementWithName:@"Page_Language" stringValue:pageLanguage];
     DDXMLElement *nodePageMode = [DDXMLElement elementWithName:@"Page_Mode" stringValue:pageMode];
-    DDXMLElement *nodePageNumber = [DDXMLElement elementWithName:@"Page_Number" stringValue:[NSString stringWithFormat:@"%d", pageNumber]];
+    DDXMLElement *nodePageNumber = [DDXMLElement elementWithName:@"Page_Number" stringValue:[NSString stringWithFormat:@"%ld", (long)pageNumber]];
+    DDXMLElement *nodePageComplexity = [DDXMLElement elementWithName:@"Page_Complexity" stringValue:[NSString stringWithFormat:@"%ld", (long)pageComplexity]];
     
     //Add above nodes to input
     [nodeInput addChild:nodePageLanguage];
     [nodeInput addChild:nodePageMode];
     [nodeInput addChild:nodePageNumber];
+    [nodeInput addChild:nodePageComplexity];
     
     //Get context
     DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
@@ -1763,6 +1802,218 @@ static ServerCommunicationController *sharedInstance = nil;
     [self writeLogFile];
 }
 
+# pragma mark - Logging (ITS)
+
+- (void)logUpdateSkill:(NSString *)skillName ofType:(NSString *)skillType prevValue:(double)prevSkillValue newSkillValue:(double)newSkillValue  context:(ManipulationContext *)context {
+    //Start with base node for system action
+    DDXMLElement *nodeBaseAction = [self getBaseActionForActor:SYSTEM];
+    [study addChild:nodeBaseAction];
+    
+    //Set selection
+    DDXMLElement *nodeSelection = [[nodeBaseAction elementsForName:@"Selection"] objectAtIndex:0];
+    [nodeSelection setStringValue:[NSString stringWithFormat:@"%@ Skill", skillType]];
+    
+    //Set action
+    DDXMLElement *nodeAction = [[nodeBaseAction elementsForName:@"Action"] objectAtIndex:0];
+    [nodeAction setStringValue:@"Updated Skill Value"];
+    
+    //Get input
+    DDXMLElement *nodeInput = [[nodeBaseAction elementsForName:@"Input"] objectAtIndex:0];
+    
+    //Create nodes for input information
+    DDXMLElement *nodeSkillName = [DDXMLElement elementWithName:@"Skill_Name" stringValue:skillName];
+    DDXMLElement *nodePreviousSkillValue = [DDXMLElement elementWithName:@"Previous_Skill_Value" stringValue:[NSString stringWithFormat:@"%f", prevSkillValue]];
+    DDXMLElement *nodeNewSkillValue = [DDXMLElement elementWithName:@"New_Skill_Value" stringValue:[NSString stringWithFormat:@"%f", newSkillValue]];
+    
+    //Add above nodes to input
+    [nodeInput addChild:nodeSkillName];
+    [nodeInput addChild:nodePreviousSkillValue];
+    [nodeInput addChild:nodeNewSkillValue];
+    
+    //Get context
+    DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
+    
+    //Create nodes for context information
+    DDXMLElement *nodeManipulationContext = [self getManipulationContext:context];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
+    
+    //Add above nodes to context
+    [nodeContext addChild:nodeManipulationContext];
+    [nodeContext addChild:nodeStudyContext];
+}
+
+- (void)logAdaptVocabulary:(NSArray *)addedWords context:(ManipulationContext *)context {
+    //Start with base node for system action
+    DDXMLElement *nodeBaseAction = [self getBaseActionForActor:SYSTEM];
+    [study addChild:nodeBaseAction];
+    
+    //Set selection
+    DDXMLElement *nodeSelection = [[nodeBaseAction elementsForName:@"Selection"] objectAtIndex:0];
+    [nodeSelection setStringValue:@"Vocabulary Introduction"];
+    
+    //Set action
+    DDXMLElement *nodeAction = [[nodeBaseAction elementsForName:@"Action"] objectAtIndex:0];
+    [nodeAction setStringValue:@"Adapted Vocabulary Introduction"];
+    
+    //Get input
+    DDXMLElement *nodeInput = [[nodeBaseAction elementsForName:@"Input"] objectAtIndex:0];
+    
+    //Create nodes for input information
+    DDXMLElement *nodeExtraVocabulary = [DDXMLElement elementWithName:@"Extra_Vocabulary" stringValue:[addedWords componentsJoinedByString:@", "]];
+    
+    //Add above nodes to input
+    [nodeInput addChild:nodeExtraVocabulary];
+    
+    //Get context
+    DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
+    
+    //Create nodes for context information
+    DDXMLElement *nodeManipulationContext = [self getManipulationContext:context];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
+    
+    //Add above nodes to context
+    [nodeContext addChild:nodeManipulationContext];
+    [nodeContext addChild:nodeStudyContext];
+}
+
+- (void)logAdaptSyntax:(NSInteger)prevComplexity :(NSInteger)newComplexity context:(ManipulationContext *)context {
+    //Start with base node for system action
+    DDXMLElement *nodeBaseAction = [self getBaseActionForActor:SYSTEM];
+    [study addChild:nodeBaseAction];
+    
+    //Set selection
+    DDXMLElement *nodeSelection = [[nodeBaseAction elementsForName:@"Selection"] objectAtIndex:0];
+    [nodeSelection setStringValue:@"Chapter Syntax"];
+    
+    //Set action
+    DDXMLElement *nodeAction = [[nodeBaseAction elementsForName:@"Action"] objectAtIndex:0];
+    [nodeAction setStringValue:@"Adapted Chapter Syntax"];
+    
+    //Get input
+    DDXMLElement *nodeInput = [[nodeBaseAction elementsForName:@"Input"] objectAtIndex:0];
+    
+    //Create nodes for input information
+    DDXMLElement *nodePreviousComplexity = [DDXMLElement elementWithName:@"Previous_Complexity" stringValue:[NSString stringWithFormat:@"%d", prevComplexity]];
+    DDXMLElement *nodeNewComplexity = [DDXMLElement elementWithName:@"New_Complexity" stringValue:[NSString stringWithFormat:@"%d", newComplexity]];
+    
+    //Add above nodes to input
+    [nodeInput addChild:nodePreviousComplexity];
+    [nodeInput addChild:nodeNewComplexity];
+    
+    //Get context
+    DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
+    
+    //Create nodes for context information
+    DDXMLElement *nodeManipulationContext = [self getManipulationContext:context];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
+    
+    //Add above nodes to context
+    [nodeContext addChild:nodeManipulationContext];
+    [nodeContext addChild:nodeStudyContext];
+}
+
+- (void)logVocabularyErrorFeedback:(NSArray *)highlightedItems context:(ManipulationContext *)context {
+    //Start with base node for system action
+    DDXMLElement *nodeBaseAction = [self getBaseActionForActor:SYSTEM];
+    [study addChild:nodeBaseAction];
+    
+    //Set selection
+    DDXMLElement *nodeSelection = [[nodeBaseAction elementsForName:@"Selection"] objectAtIndex:0];
+    [nodeSelection setStringValue:@"Vocabulary Error"];
+    
+    //Set action
+    DDXMLElement *nodeAction = [[nodeBaseAction elementsForName:@"Action"] objectAtIndex:0];
+    [nodeAction setStringValue:@"Provide Vocabulary Error Feedback"];
+    
+    //Get input
+    DDXMLElement *nodeInput = [[nodeBaseAction elementsForName:@"Input"] objectAtIndex:0];
+    
+    //Create nodes for input information
+    DDXMLElement *nodeHighlightedItems = [DDXMLElement elementWithName:@"Highlighted_Items" stringValue:[highlightedItems componentsJoinedByString:@", "]];
+    
+    //Add above nodes to input
+    [nodeInput addChild:nodeHighlightedItems];
+    
+    //Get context
+    DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
+    
+    //Create nodes for context information
+    DDXMLElement *nodeManipulationContext = [self getManipulationContext:context];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
+    
+    //Add above nodes to context
+    [nodeContext addChild:nodeManipulationContext];
+    [nodeContext addChild:nodeStudyContext];
+}
+
+- (void)logSyntaxErrorFeedback:(NSString *)simplerSentence context:(ManipulationContext *)context {
+    //Start with base node for system action
+    DDXMLElement *nodeBaseAction = [self getBaseActionForActor:SYSTEM];
+    [study addChild:nodeBaseAction];
+    
+    //Set selection
+    DDXMLElement *nodeSelection = [[nodeBaseAction elementsForName:@"Selection"] objectAtIndex:0];
+    [nodeSelection setStringValue:@"Syntax Error"];
+    
+    //Set action
+    DDXMLElement *nodeAction = [[nodeBaseAction elementsForName:@"Action"] objectAtIndex:0];
+    [nodeAction setStringValue:@"Provide Syntax Error Feedback"];
+    
+    //Get input
+    DDXMLElement *nodeInput = [[nodeBaseAction elementsForName:@"Input"] objectAtIndex:0];
+    
+    //Create nodes for input information
+    DDXMLElement *nodeSimplerSentence = [DDXMLElement elementWithName:@"Simpler_Sentence" stringValue:simplerSentence];
+    
+    //Add above nodes to input
+    [nodeInput addChild:nodeSimplerSentence];
+    
+    //Get context
+    DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
+    
+    //Create nodes for context information
+    DDXMLElement *nodeManipulationContext = [self getManipulationContext:context];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
+    
+    //Add above nodes to context
+    [nodeContext addChild:nodeManipulationContext];
+    [nodeContext addChild:nodeStudyContext];
+}
+
+- (void)logUsabilityErrorFeedback:(NSArray *)animatedItems context:(ManipulationContext *)context {
+    //Start with base node for system action
+    DDXMLElement *nodeBaseAction = [self getBaseActionForActor:SYSTEM];
+    [study addChild:nodeBaseAction];
+    
+    //Set selection
+    DDXMLElement *nodeSelection = [[nodeBaseAction elementsForName:@"Selection"] objectAtIndex:0];
+    [nodeSelection setStringValue:@"Usability Error"];
+    
+    //Set action
+    DDXMLElement *nodeAction = [[nodeBaseAction elementsForName:@"Action"] objectAtIndex:0];
+    [nodeAction setStringValue:@"Provide Usability Error Feedback"];
+    
+    //Get input
+    DDXMLElement *nodeInput = [[nodeBaseAction elementsForName:@"Input"] objectAtIndex:0];
+    
+    //Create nodes for input information
+    DDXMLElement *nodeAnimatedItems = [DDXMLElement elementWithName:@"Animated_Items" stringValue:[animatedItems componentsJoinedByString:@", "]];
+    
+    //Add above nodes to input
+    [nodeInput addChild:nodeAnimatedItems];
+    
+    //Get context
+    DDXMLElement *nodeContext = [[nodeBaseAction elementsForName:@"Context"] objectAtIndex:0];
+    
+    //Create nodes for context information
+    DDXMLElement *nodeManipulationContext = [self getManipulationContext:context];
+    DDXMLElement *nodeStudyContext = [self getStudyContext:studyContext];
+    
+    //Add above nodes to context
+    [nodeContext addChild:nodeManipulationContext];
+    [nodeContext addChild:nodeStudyContext];
+}
+
 #pragma mark - Saving/loading progress files
 
 /*
@@ -1990,6 +2241,9 @@ static ServerCommunicationController *sharedInstance = nil;
             locDirName = @"ProgressFiles";
             filePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/CurrentSession/%@",locDirName, fileToUpload]]; //Path of file on iPad
         }
+        else if([pathExtension isEqualToString:@""]){
+            continue;
+        }
         else {
             dbDirName = @"Embrace/FileSync/UnknownFiles";
             filePath = [documentsDirectory stringByAppendingPathComponent: fileToUpload]; //Path of file on iPad
@@ -2025,13 +2279,8 @@ static ServerCommunicationController *sharedInstance = nil;
             if(![fileManager createDirectoryAtPath:backupProgressFilePath withIntermediateDirectories:YES attributes:nil error:NULL])
                 NSLog(@"Error: Create folder failed %@", backupProgressFilePath);
         
-        assert(fileManager != nil);
-        NSError* error = nil;
-        //Move file from CurrentSession to Backup folder
-        [fileManager moveItemAtPath:localPathOrigin toPath:localPathDestination error:&error];
-        
         NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:sessionConfiguration delegate:self delegateQueue:[NSOperationQueue mainQueue]];
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api-content.dropbox.com/1/files_put/auto/%@?overwrite=true", [dbFileName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]]; //Files with same name will be overwritten
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api-content.dropbox.com/1/files_put/auto/%@?overwrite=True", [dbFileName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]]; //Files with same name will be overwritten
         [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
         [request setHTTPMethod:@"PUT"];
         [request setHTTPBody:data];
@@ -2040,6 +2289,15 @@ static ServerCommunicationController *sharedInstance = nil;
         NSURLSessionDataTask *doDataTask = [defaultSession dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
             if (!error) {
                 NSLog(@"Successfully uploaded student files to Dropbox.");
+                NSLog(@"Response: %@", response);
+                
+                assert(fileManager != nil);
+                NSError* error = nil;
+                if ([pathExtension isEqualToString:@"xml"]) {
+                    //Move file from CurrentSession to Backup folder
+                    [fileManager moveItemAtPath:localPathOrigin toPath:localPathDestination error:&error];
+                }
+                
                 completionHandler(YES);
                 failureHandler(NO);
             }

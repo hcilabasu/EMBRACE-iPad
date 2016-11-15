@@ -16,21 +16,28 @@
 @synthesize appMode;
 @synthesize currentMode;
 @synthesize newInstructions;
-@synthesize vocabPageEnabled;
-@synthesize assessmentPageEnabled;
+@synthesize isVocabPageEnabled;
+@synthesize isAssessmentPageEnabled;
+@synthesize assessmentMode;
+@synthesize animatedStepCompletionMode;
+@synthesize isAutomaticAnimationEnabled;
+@synthesize useKnowledgeTracing;
 @synthesize shouldShowITSMessages;
 
 @synthesize allowFileSync;
 
-+ (id)sharedInstance {
-    static ConditionSetup *sharedMyManager = nil;
-    static dispatch_once_t onceToken;
+static ConditionSetup *sharedInstance = nil;
+
++ (ConditionSetup *)sharedInstance {
+    if (sharedInstance == nil) {
+        sharedInstance = [[ConditionSetup alloc] init];
+    }
     
-    dispatch_once(&onceToken, ^{
-        sharedMyManager = [[self alloc] init];
-    });
-    
-    return sharedMyManager;
+    return sharedInstance;
+}
+
++ (void)resetSharedInstance {
+    sharedInstance = nil;
 }
 
 - (id)init {
@@ -40,12 +47,19 @@
         reader = USER;
         appMode = ITS;
         currentMode = PM_MODE;
-        newInstructions = false;
-        vocabPageEnabled = false;
-        assessmentPageEnabled = false;
+
+        newInstructions = YES;
+        isVocabPageEnabled = YES;
+        isAssessmentPageEnabled = YES;
+        assessmentMode = ENDOFCHAPTER;
         
+        isAutomaticAnimationEnabled = YES;
+        animatedStepCompletionMode = PERSTEP;
+        
+        useKnowledgeTracing = YES;
         shouldShowITSMessages = NO;
-        allowFileSync = true; //NOTE: Still testing this functionality
+        
+        allowFileSync = YES;
     }
     
     return self;
@@ -63,6 +77,30 @@
             break;
         case CONTROL:
             result = @"Control";
+            break;
+        default:
+            [NSException raise:NSGenericException format:@"Unexpected FormatType."];
+            break;
+    }
+    
+    return result;
+}
+
+/*
+ * Returns a string with the current value of the AppMode enumeration
+ */
+- (NSString *)returnAppModeEnumToString:(AppMode)type {
+    NSString *result = nil;
+    
+    switch (type) {
+        case Authoring:
+            result = @"Authoring";
+            break;
+        case Study:
+            result = @"Study";
+            break;
+        case ITS:
+            result = @"ITS";
             break;
         default:
             [NSException raise:NSGenericException format:@"Unexpected FormatType."];

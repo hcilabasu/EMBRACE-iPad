@@ -34,6 +34,18 @@ typedef enum Actor {
     USER
 } Actor;
 
+//Differentiates assessment mode
+typedef enum Assessment {
+    ENDOFCHAPTER,
+    ENDOFBOOK
+} Assessment;
+
+//Differentiates animated automatic step completion
+typedef enum AnimatedStepCompletion {
+    PERSENTENCE,
+    PERSTEP
+} AnimatedStepCompletion;
+
 @interface ConditionSetup : NSObject
 
 @property (nonatomic) Condition condition;
@@ -41,17 +53,22 @@ typedef enum Actor {
 @property (nonatomic) Actor reader; //who should read the text
 @property (nonatomic) AppMode appMode;
 @property (nonatomic) Mode currentMode; //PM or IM
+@property (nonatomic) Assessment assessmentMode;
+@property (nonatomic) AnimatedStepCompletion animatedStepCompletionMode; //Per step or per sentence
 @property (nonatomic) BOOL newInstructions; //whether new audio instructions should be played (for sequences)
-@property (nonatomic) BOOL vocabPageEnabled; //whether the vocab page should be displayed
-@property (nonatomic) BOOL assessmentPageEnabled; //whether the assessment page should be displayed
-
+@property (nonatomic) BOOL isVocabPageEnabled; //whether the vocab page should be displayed
+@property (nonatomic) BOOL isAssessmentPageEnabled; //whether the assessment page should be displayed
 @property (nonatomic) BOOL allowFileSync; //whether log and progress files should be synced with Dropbox
+@property (nonatomic) BOOL isAutomaticAnimationEnabled; //whether the system will automatically complete steps and animate the steps.
 
+@property (nonatomic) BOOL useKnowledgeTracing; //whether to update skills
 @property (nonatomic) BOOL shouldShowITSMessages; //whether to show ITS skill changes as popup messages
 
 + (ConditionSetup*)sharedInstance;
++ (void)resetSharedInstance;
 
 - (NSString *)returnLanguageEnumtoString:(Language)type;
+- (NSString *)returnAppModeEnumToString:(AppMode)type;
 - (NSString *)returnConditionEnumToString:(Condition)type;
 
 @end

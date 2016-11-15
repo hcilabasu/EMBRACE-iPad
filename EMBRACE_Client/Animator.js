@@ -103,7 +103,6 @@ function animateObject(objectName, posX, posY, endX, endY, animName, pathToFollo
     else if (animatingObjects[animatingObjectsIndex].animName == "followAnimation") {
         
         animatingObjects[animatingObjectsIndex].velocity.x = animatingObjects[animatingObjectsIndex].maxSpeed;
-        //animatingObjects[animatingObjectsIndex].velocity.x = 2;
         animatingObjects[animatingObjectsIndex].velocity.y = 0;
     }
     
@@ -1225,17 +1224,17 @@ function moveToLocation(aniObject) {
     setTimeout(function() {
         aniObject.object.style.WebkitTransitionDuration = '';
         aniObject.object.style.webkitTransform = '';
-        
+
         aniObject.object.style.left = aniObject.ex - offsetDiffX + 'px';
         aniObject.object.style.top = aniObject.ey - offsetDiffY + 'px';
-               
+
         for (var i = 0; i < groupedWithObjects.length; i++) {
             if (groupedWithObjects[i].id != aniObject.object.id) {
-               groupedWithObjects[i].style.WebkitTransitionDuration = '';
-               groupedWithObjects[i].style.webkitTransform = '';
-               
-               groupedWithObjects[i].style.left = groupedWithObjectsEX[i] + 'px';
-               groupedWithObjects[i].style.top = groupedWithObjectsEY[i] + 'px';
+                groupedWithObjects[i].style.WebkitTransitionDuration = '';
+                groupedWithObjects[i].style.webkitTransform = '';
+
+                groupedWithObjects[i].style.left = groupedWithObjectsEX[i] + 'px';
+                groupedWithObjects[i].style.top = groupedWithObjectsEY[i] + 'px';
             }
         }
     }, seconds * 1000);

@@ -11,9 +11,10 @@
 
 //Type of intervention to use
 typedef enum InterventionType {
-    PM_INTERVENTION, //physical manipulation
-    IM_INTERVENTION, //imagine manipulation
-    R_INTERVENTION //read-only
+    PM_INTERVENTION, // Physical manipulation
+    IM_INTERVENTION, // Imagine manipulation
+    R_INTERVENTION, // Read-only
+    ITS_INTERVENTION // ITS + physical manipulation
 } InterventionType;
 
 @interface ActivityMode : NSObject

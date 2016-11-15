@@ -10,6 +10,7 @@
 
 @implementation StudyContext
 
+@synthesize appMode;
 @synthesize condition;
 @synthesize schoolCode;
 @synthesize participantCode;

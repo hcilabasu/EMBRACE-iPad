@@ -30,18 +30,21 @@
     
     WordSkill *skill = [[WordSkill alloc] initWithWord:word];
     skill.skillType = SkillType_Vocab;
+    
     return skill;
 }
 
 + (Skill *)syntaxSkillWithComplexity:(EMComplexity)complexity {
     SyntaxSkill *skill = [[SyntaxSkill alloc] initWithComplexity:complexity];
     skill.skillType = SkillType_Syntax;
+    
     return skill;
 }
 
 + (Skill *)usabilitySkill {
     UsabilitySkill *skill = [[UsabilitySkill alloc] init];
     skill.skillType = SkillType_Usability;
+    
     return skill;
 }
 
@@ -49,12 +52,13 @@
     return DEFAULT_INITIAL_VALUE;
 }
 
-
 - (instancetype)init {
     self = [super init];
+    
     if (self) {
         _skillValue = DEFAULT_INITIAL_VALUE;
     }
+    
     return self;
 }
 
@@ -63,7 +67,7 @@
 }
 
 - (NSString *)description {
-    return  [NSString stringWithFormat:@"Skill -  %f", self.skillValue];
+    return [NSString stringWithFormat:@"Skill -  %f", self.skillValue];
 }
 
 @end

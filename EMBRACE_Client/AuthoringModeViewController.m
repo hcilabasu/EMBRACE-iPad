@@ -1929,6 +1929,34 @@ ConditionSetup *conditionSetup;
         }
         //If we're in the middle of moving the object, just call the JS to move it.
         else if(movingObject)  {
+            
+            //Set to true for debugging; set to false to disable
+             static UIBezierPath *path = nil;
+             static CAShapeLayer *shapeLayer = nil;
+             
+             if (false) {
+                 // Start drawing the path
+                 CGPoint pointLocation = [recognizer locationInView:recognizer.view];
+             
+                 if (!path) {
+                    path = [UIBezierPath bezierPath];
+                    [path moveToPoint:pointLocation];
+                     NSLog(@"%@", NSStringFromCGPoint(pointLocation));
+                     
+                     shapeLayer = [[CAShapeLayer alloc] init];
+                     shapeLayer.strokeColor = [UIColor greenColor].CGColor;
+                     shapeLayer.fillColor = [UIColor clearColor].CGColor;
+                     shapeLayer.lineWidth = 10.0;
+                     [recognizer.view.layer addSublayer:shapeLayer];
+             
+                 }
+                 else {
+                     [path addLineToPoint:pointLocation];
+                     shapeLayer.path = path.CGPath;
+                     NSLog(@"%@", NSStringFromCGPoint(pointLocation));
+                 }
+             }
+            
             [self moveObject:movingObjectId :location :delta :true : @"isMoving"];
             
         }
