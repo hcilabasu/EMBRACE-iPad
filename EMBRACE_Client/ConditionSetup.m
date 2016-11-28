@@ -44,7 +44,7 @@ static ConditionSetup *sharedInstance = nil;
     if (self = [super init]) {
         condition = EMBRACE;
         language = ENGLISH;
-        reader = USER;
+        reader = SYSTEM;
         appMode = ITS;
         currentMode = PM_MODE;
 

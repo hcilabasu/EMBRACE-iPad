@@ -3473,6 +3473,21 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     }
 }
 
+/**
+ Returns the audio index to be played based on the current app mode.
+ ITS and Study mode works differently, so we need to use idea numbers 
+ in ITS and sentence number in Study.
+ **/
+- (int)currentSentenceAudioIndex {
+    
+    if (conditionSetup.appMode == ITS) {
+        if (sentenceContext.currentSentence != 0) {
+            return (int)sentenceContext.currentIdea;
+        }
+    }
+    return (int)sentenceContext.currentSentence;
+}
+
 /*
  *  Plays audio for the current sentence
  */
@@ -3481,7 +3496,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     [self.view setUserInteractionEnabled:NO];
     
     NSString *sentenceAudioFile = nil;
-    
+    NSLog(@"sentenceContext.currentSentence %d sentenceContext.currentIdea %d",sentenceContext.currentSentence,sentenceContext.currentIdea);
     //TODO: move chapter checks to new class or function
     //Only play sentence audio if system is reading
     if (conditionSetup.reader == SYSTEM) {
@@ -3541,12 +3556,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 sentenceAudioFile = [NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3", sentenceContext.currentSentence];
             }
             else {
-                if ([[sentenceContext pageSentences] count] > 0 && sentenceContext.currentSentence != 0) {
-                    sentenceAudioFile = [NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3", sentenceContext.currentIdea];
-                }
-                else {
-                    sentenceAudioFile = [NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3", sentenceContext.currentSentence];
-                }
+                sentenceAudioFile = [NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3", [self currentSentenceAudioIndex]];
             }
         }
         
@@ -3581,12 +3591,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 sentenceAudioFile = [NSString stringWithFormat:@"TheLuckyStoneS%dS.mp3", sentenceContext.currentSentence];
             }
             else {
-                if ([[sentenceContext pageSentences] count] > 0 && sentenceContext.currentSentence != 0) {
-                    sentenceAudioFile = [NSString stringWithFormat:@"TheLuckyStoneS%dE.mp3", sentenceContext.currentIdea];
-                }
-                else {
-                    sentenceAudioFile = [NSString stringWithFormat:@"TheLuckyStoneS%dE.mp3", sentenceContext.currentSentence];
-                }
+                sentenceAudioFile = [NSString stringWithFormat:@"TheLuckyStoneS%dE.mp3", [self currentSentenceAudioIndex]];
             }
         }
         
