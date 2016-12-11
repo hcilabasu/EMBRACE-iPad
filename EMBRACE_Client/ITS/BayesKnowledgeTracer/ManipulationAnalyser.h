@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ITSController.h"
 
+@class SkillSet;
 @class UserAction, ActionStep;
 @class ManipulationContext;
 @protocol ManipulationAnalyserProtocol;
@@ -16,6 +17,9 @@
 @interface ManipulationAnalyser : NSObject
 
 @property (nonatomic, weak) id <ManipulationAnalyserProtocol> delegate;
+
+- (SkillSet *)getSkillSet;
+- (void)setSkillSet:(SkillSet *)skillSet;
 
 - (void)actionPerformed:(UserAction *)userAction manipulationContext:(ManipulationContext *)context;
 

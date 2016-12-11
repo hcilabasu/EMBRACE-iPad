@@ -49,6 +49,14 @@
     return self;
 }
 
+- (SkillSet *)getSkillSet {
+    return [_knowledgeTracer getSkillSet];
+}
+
+- (void)setSkillSet:(SkillSet *)skillSet {
+    [_knowledgeTracer setSkillSet:skillSet];
+}
+
 - (void)userDidPlayWord:(NSString *)word context:(ManipulationContext *)context {
     [self.playWords addObject:word];
     

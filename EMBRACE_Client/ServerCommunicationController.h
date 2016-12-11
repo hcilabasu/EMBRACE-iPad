@@ -17,6 +17,7 @@
 #import "ConditionSetup.h"
 #import "Student.h"
 #import "Progress.h"
+#import "SkillSet.h"
 #import "StudyContext.h"
 #import "ManipulationContext.h"
 #import "AssessmentContext.h"
@@ -102,6 +103,11 @@
 
 - (Progress *)loadProgress:(Student *)student;
 - (void)saveProgress:(Student *)student :(Progress *)progress;
+
+#pragma mark - Saving/loading skills files
+
+- (SkillSet *)loadSkills:(Student *)student;
+- (void)saveSkills:(Student *)student :(SkillSet *)skills;
 
 #pragma mark - Syncing log/progress files with Dropbox
 

@@ -80,4 +80,8 @@
     return _usabilitySkill;
 }
 
+- (NSMutableDictionary *)getVocabularySkills {
+    return _wordSkillDict;
+}
+
 @end

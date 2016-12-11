@@ -9,9 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "ITSController.h"
 
-@class UserAction, Skill;
+@class UserAction, Skill, SkillSet;
 
 @interface KnowledgeTracer : NSObject
+
+- (SkillSet *)getSkillSet;
+- (void)setSkillSet:(SkillSet *)skillSet;
 
 // Update vocabulary skill
 - (Skill *)updateSkillFor:(NSString *)action isVerified:(BOOL)isVerified context:(ManipulationContext *)context;
