@@ -1051,6 +1051,7 @@
 		1ADDE3051D809BE7002FB71C /* StepContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ADDE3041D809BE7002FB71C /* StepContext.m */; };
 		1AE35F2C1CAA35DA0005213E /* lucasByBed.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AE35F2A1CAA35DA0005213E /* lucasByBed.png */; };
 		1AE35F2D1CAA35DA0005213E /* lucasInBed.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AE35F2B1CAA35DA0005213E /* lucasInBed.png */; };
+		1AE8A1461DE02FE100E7E57D /* speakerIconMin.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AE8A1451DE02FE100E7E57D /* speakerIconMin.png */; };
 		1AEC241C1CB9CCD600803580 /* road.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AEC241B1CB9CCD600803580 /* road.png */; };
 		1AEC241E1CB9E32200803580 /* market_post.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AEC241D1CB9E32200803580 /* market_post.png */; };
 		1AF008491D34A55B00EDF057 /* CarbondioxideE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AF008481D34A55B00EDF057 /* CarbondioxideE.mp3 */; };
@@ -6152,6 +6153,7 @@
 		1ADDE3081D80A2C7002FB71C /* ResourceStrings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResourceStrings.h; sourceTree = "<group>"; };
 		1AE35F2A1CAA35DA0005213E /* lucasByBed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lucasByBed.png; sourceTree = "<group>"; };
 		1AE35F2B1CAA35DA0005213E /* lucasInBed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lucasInBed.png; sourceTree = "<group>"; };
+		1AE8A1451DE02FE100E7E57D /* speakerIconMin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speakerIconMin.png; sourceTree = "<group>"; };
 		1AEC241B1CB9CCD600803580 /* road.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = road.png; sourceTree = "<group>"; };
 		1AEC241D1CB9E32200803580 /* market_post.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = market_post.png; sourceTree = "<group>"; };
 		1AF008481D34A55B00EDF057 /* CarbondioxideE.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CarbondioxideE.mp3; sourceTree = "<group>"; };
@@ -11784,6 +11786,7 @@
 				1A9CF8461C31DAF90000C135 /* speakerIcon.png */,
 				1ABD84AD1A49F54B0043A685 /* PlayAudioIcon.png */,
 				31109701174AB35E00B02BF7 /* cover_default.png */,
+				1AE8A1451DE02FE100E7E57D /* speakerIconMin.png */,
 				31058C75176BCFF900595AAE /* logo57.png */,
 				31058C73176BCFF200595AAE /* logo114.png */,
 				C39DFB851BD81341005C3975 /* library_background.png */,
@@ -20539,6 +20542,7 @@
 				5C9F28BB1C5C6B2E008ACE48 /* TheLopezFamilyQ3A1S.mp3 in Resources */,
 				5C72E51B1C727E2000CE4877 /* NativeIntroQ3A2.mp3 in Resources */,
 				5D9E341B1C590E9500636150 /* MoreIsMissingQ6A1.mp3 in Resources */,
+				1AE8A1461DE02FE100E7E57D /* speakerIconMin.png in Resources */,
 				1A6320731C0E4D3B00251CB3 /* toc.ncx in Resources */,
 				5C72E7831C72BF1000CE4877 /* NewtonsFirstLawonEarthQ1A3.mp3 in Resources */,
 				5C72E5D71C72A46F00CE4877 /* TheSeminoleChickeeQ5A2.mp3 in Resources */,

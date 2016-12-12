@@ -243,6 +243,13 @@
                                           andMode:conditionSetup.currentMode];
 }
 
+- (void)colorSentencesUponBack {
+    
+    [self.manipulationView colorSentencesUponBack:sentenceContext.currentSentence
+                                        condition:conditionSetup.condition
+                                          andMode:conditionSetup.currentMode];
+}
+
 /*
  *  Converts the passed in sentence text into english using the setence text as the key to the
  *  Translation dictionary

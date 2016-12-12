@@ -192,6 +192,27 @@
 }
 
 /*
+ * Loads the previous page for the current chapter based on the current activity.
+ * If the activity has multiple pages, it would load the previous page in the activity.
+ * Otherwise, it will load the previous chaper.
+ */
+- (void) loadPreviousPage {
+    mvc.isLoadPageInProgress = true;
+    [mvc.playaudioClass stopPlayAudioFile];
+    
+    pageContext.currentPage = [mvc.book getPreviousPageForChapterAndActivity:chapterTitle :PM_MODE :pageContext.currentPage];
+    
+    //No more pages in chapter
+    if (pageContext.currentPage == nil) {
+        //Return to library view
+        [mvc.navigationController popViewControllerAnimated:YES];
+    }
+    else {
+        [self loadPage];
+    }
+}
+
+/*
  * Displays the assessment activity view controller
  */
 - (void)loadAssessmentActivity {

@@ -62,6 +62,19 @@
     return nil;
 }
 
+-(NSString*) getPreviousPageForMode:(Mode) mode :(NSString*)currentPage {
+    for(Activity* activity in activities) {
+        if((mode == PM_MODE) && ([activity isKindOfClass:[PhysicalManipulationActivity class]])) {
+            return [self getPreviousPageInActivity:activity :currentPage];
+        }
+        else if(mode == IM_MODE && ([activity isKindOfClass:[ImagineManipulationActivity class]])) {
+            return [self getPreviousPageInActivity:activity :currentPage];
+        }
+    }
+    
+    return nil;
+}
+
 -(NSString*) getNextPageInActivity:(Activity* )activity :(NSString* )currentPage {
     NSMutableArray* pages = [activity pages];
     
@@ -80,6 +93,30 @@
         if([[page pagePath] isEqualToString:currentPage]) {
             if(i < [pages count] - 1)
                 return [[pages objectAtIndex:i + 1] pagePath];
+        }
+    }
+    
+    return nil;
+}
+
+-(NSString*) getPreviousPageInActivity:(Activity* )activity :(NSString* )currentPage {
+    NSMutableArray* pages = [activity pages];
+    
+    //If we're loading the first page.
+    if(currentPage == nil) {
+        //NSLog(@"current Page is nil");
+        return [[pages objectAtIndex:0] pagePath];
+    }
+    
+    //NSLog(@"current page is not nil...looking for next page");
+    
+    for(int i = 0; i < [pages count]; i ++) {
+        Page* page = [pages objectAtIndex:i];
+        
+        //if we've found the current page, we can return the next page, if there is a next page.
+        if([[page pagePath] isEqualToString:currentPage]) {
+            if(i > 0)
+                return [[pages objectAtIndex:i - 1] pagePath];
         }
     }
     

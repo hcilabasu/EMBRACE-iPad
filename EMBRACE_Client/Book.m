@@ -116,6 +116,16 @@
     return nil; //No page after this one..
 }
 
+-(NSString*) getPreviousPageForChapterAndActivity:(NSString*)chapterTitle :(Mode) activity :(NSString*) currentPage{
+    for(Chapter* chapter in chapters) {
+        if([[chapter title] isEqualToString:chapterTitle]) {
+            return [chapter getPreviousPageForMode:activity :currentPage];
+        }
+    }
+    
+    return nil; //No page after this one..
+}
+
 -(NSString* ) getChapterAfterChapter:(NSString* )chapterTitle {
     for(int i = 0; i < [chapters count] - 1; i ++) {
         Chapter* chapter = [chapters objectAtIndex:i];
@@ -125,6 +135,19 @@
     }
     
     return nil; //These is no chapter after this one.
+}
+
+-(NSString* ) getChapterBeforeChapter:(NSString* )chapterTitle {
+    for(int i = 0; i < [chapters count] - 1; i ++) {
+        Chapter* chapter = [chapters objectAtIndex:i];
+        
+        if([[chapter title] isEqualToString:chapterTitle])
+            if (i > 0) {
+                return [[chapters objectAtIndex:i - 1] title];
+            }
+    }
+    
+    return nil; //These is no chapter before this one.
 }
 
 /*

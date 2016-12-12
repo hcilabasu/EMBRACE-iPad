@@ -120,6 +120,7 @@
 @synthesize allRelationships;
 @synthesize menuDataSource;
 @synthesize bookView;
+@synthesize isUserMovingBack;
 
 //Used to determine the required proximity of 2 hotspots to group two items together.
 float const groupingProximity = 20.0;
@@ -231,6 +232,7 @@ BOOL wasPathFollowed = false;
     allowSnapback = TRUE;
     pressedNextLock = false;
     isLoadPageInProgress = false;
+    isUserMovingBack = false;
     didSelectCorrectMenuOption = false;
     
     movingObject = FALSE;
@@ -264,6 +266,21 @@ BOOL wasPathFollowed = false;
         
         if (conditionSetup.useKnowledgeTracing && ![chapterTitle isEqualToString:@"The Naughty Monkey"]) {
             [[ITSController sharedInstance] setAnalyzerDelegate:self];
+        }
+    }
+    
+    if(conditionSetup.reader == USER){
+        NSArray *arrSubviews = [self.view subviews];
+        for(UIView *tmpView in arrSubviews)
+        {
+            if([tmpView isMemberOfClass:[UIButton class]])
+            {
+                // Optionally, check button.tag
+                if(tmpView.tag == 2) {
+                    // Do some action on UIButton like
+                    [tmpView setHidden: true];
+                }
+            }
         }
     }
 }
@@ -764,7 +781,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             [self tapGestureOnVocabWord: englishSentenceText:sentenceText:sentenceIDNum];
         }
         //Taps on vocab word in story
-        else if ([pageContext.currentPageId containsString:@"-PM"]) {
+        else if ([pageContext.currentPageId containsString:@"-PM"] && conditionSetup.isOnDemandVocabEnabled) {
             [self tapGestureOnStoryWord:englishSentenceText:sentenceIDNum:spanishExt:sentenceText];
         }
     }
@@ -3052,7 +3069,28 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 - (void)pressedNextStory{
     NSString *sentenceClass = [self.manipulationView getSentenceClass:sentenceContext.currentSentence];
     
-    if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && ([sentenceClass containsString: @"sentence actionSentence"] || [sentenceClass containsString: @"sentence IMactionSentence"])) {
+    if (isUserMovingBack && ![self isMostForwardProgress]) {
+        //TODO:
+        sentenceContext.currentSentence++;
+        sentenceContext.currentSentenceText = [self.manipulationView getCurrentSentenceAt:sentenceContext.currentSentence];
+        manipulationContext.sentenceNumber = sentenceContext.currentSentence;
+        manipulationContext.sentenceComplexity = [sc getComplexityOfCurrentSentence];
+        manipulationContext.sentenceText = sentenceContext.currentSentenceText;
+        manipulationContext.manipulationSentence = [sc isManipulationSentence:sentenceContext.currentSentence];
+        [[ServerCommunicationController sharedInstance] logLoadSentence:sentenceContext.currentSentence withComplexity:manipulationContext.sentenceComplexity withText:sentenceContext.currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
+        
+        //currentSentence is 1 indexed.
+        if (sentenceContext.currentSentence > sentenceContext.totalSentences) {
+            [pc loadNextPage];
+        }
+        else {
+            //Set up current sentence appearance and solution steps
+            [sc setupCurrentSentence];
+            [sc colorSentencesUponNext];
+            [self playCurrentSentenceAudio];
+        }
+    }
+    else if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && ([sentenceClass containsString: @"sentence actionSentence"] || [sentenceClass containsString: @"sentence IMactionSentence"])) {
         //Reset allRelationships arrray
         if ([allRelationships count]) {
             [allRelationships removeAllObjects];
@@ -3198,6 +3236,94 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         }
     }
 }
+
+- (IBAction)pressedBack:(id)sender {
+    @synchronized(self) {
+        //TODO: Refactor pressedNextLock to pressedBackLock
+        if (!pressedNextLock && !isLoadPageInProgress) {
+            pressedNextLock = true;
+            [self.view setUserInteractionEnabled:NO];
+            
+            //TODO: Add logging for pressed back
+            //[[ServerCommunicationController sharedInstance] logPressNextInManipulationActivity:manipulationContext];
+            
+            //NSString *preAudio = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(preaudio)"]];
+            
+            //TODO:
+            // First check if our toggle is enabled
+            // if its not, then store the current context as the most forward progressed context
+            if(!isUserMovingBack){
+                isUserMovingBack = true;
+                //TODO: save current progress
+                //pageId,
+                //currentSentence,
+                //currentStep
+            }
+            
+            if ([pageContext.currentPageId containsString:DASH_INTRO]) {
+                [self pressedBackIntro];
+            }
+            else {
+                [self pressedBackStory];
+            }
+            
+            pressedNextLock = false;
+        }
+    }
+}
+
+-(void) pressedBackIntro{
+    //TODO: Return to library view?
+}
+
+-(void) pressedBackStory{
+    //TODO: decrease sentence context and highlight last sentence
+    
+     sentenceContext.currentSentence--;
+     sentenceContext.currentSentenceText = [self.manipulationView getCurrentSentenceAt:sentenceContext.currentSentence];
+     manipulationContext.sentenceNumber = sentenceContext.currentSentence;
+     manipulationContext.sentenceComplexity = [sc getComplexityOfCurrentSentence];
+     manipulationContext.sentenceText = sentenceContext.currentSentenceText;
+     manipulationContext.manipulationSentence = [sc isManipulationSentence:sentenceContext.currentSentence];
+     [[ServerCommunicationController sharedInstance] logLoadSentence:sentenceContext.currentSentence withComplexity:manipulationContext.sentenceComplexity withText:sentenceContext.currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
+     
+     //currentSentence is 1 indexed.
+     if (sentenceContext.currentSentence < 0) {
+        [pc loadPreviousPage];
+     }
+     else {
+        //Set up current sentence appearance and solution steps
+        [sc setupCurrentSentence];
+        [sc colorSentencesUponBack];
+        [self playCurrentSentenceAudio];
+     }
+}
+
+-(BOOL) isMostForwardProgress{
+    
+    //TODO: compare most forward progress with current progress + 1
+    //if they are the same then we return true, if they are not we return false
+    /*
+     if(forwardProgress.pageID == pageContext.currentPageId &&
+        forwardProgress.sentenceNum == sentenceContext.currentSentence &&
+        forwardProgress.stepNum == stepContext.currentStep){
+        
+        isUserMovingBack = false;
+     
+        return true;
+     }
+     else{
+        return false;
+     }
+     */
+}
+
+- (IBAction)pressedPlayAudio:(id)sender {
+    if([pageContext.currentPageId containsString:DASH_PM]){
+            [self playCurrentSentenceAudio];
+    }
+}
+
 
 /*
  * Randomizer function that randomizes the menu options

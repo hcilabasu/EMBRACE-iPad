@@ -89,6 +89,7 @@ typedef enum InteractionMode {
 @property (nonatomic, strong) NSMutableDictionary *currentGroupings;
 @property (nonatomic, strong) ContextualMenuDataSource *menuDataSource;
 @property (nonatomic, assign) EMComplexity currentComplexityLevel;
+@property (nonatomic) BOOL isUserMovingBack;
 
 - (void)loadFirstPage;
 - (void)setManipulationContext;
