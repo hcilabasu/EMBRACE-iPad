@@ -1100,6 +1100,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  */
 - (void) playIntroVocabWord: (NSString *) englishSentenceText : (ActionStep *) currSolStep
 {
+    [self highlightImageForText:englishSentenceText];
+    
+    NSString *englishTappedWord = englishSentenceText;
+    
+    //Remove any whitespaces since this would cause the a failure for reading the file name
+    englishSentenceText = [englishSentenceText stringByReplacingOccurrencesOfString:@" " withString:EMPTYSTRING];
+    
     if(conditionSetup.language == ENGLISH)
     {
         //Play En audio
@@ -1127,8 +1134,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:SPANISH_TXT ofType:PLAY_WORD_WITH_DEF :manipulationContext];
     }
     
-    [self highlightImageForText:englishSentenceText];
-    
     // This delay is needed in order to be able to play the last definition on a vocabulary page
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW,[self.playaudioClass audioDuration]*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         
@@ -1146,7 +1151,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.m4a",englishSentenceText,E]];
             }
             
-            [self highlightImageForText:englishSentenceText];
+            [self highlightImageForText:englishTappedWord];
             
                 sentenceContext.currentSentence++;
                 sentenceContext.currentSentenceText = [self.manipulationView getCurrentSentenceAt:sentenceContext.currentSentence];

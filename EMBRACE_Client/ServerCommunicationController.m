@@ -16,6 +16,7 @@
     DDXMLElement *study;
     
     NSString *studyFileName; //name of current log file
+    NSString *studyFileNameNoTimestamp; // name of current log file without timestamp
 }
 
 @end
@@ -165,6 +166,7 @@ static ServerCommunicationController *sharedInstance = nil;
         //}
         
         studyFileName = fileName;
+        studyFileNameNoTimestamp = [NSString stringWithFormat:@"%@ %@ %@ ", [student schoolCode], [student participantCode], [student studyDay]];
     }
 }
 
@@ -1431,6 +1433,18 @@ static ServerCommunicationController *sharedInstance = nil;
     [nodeContext addChild:nodeStudyContext];
     
     [self writeLogFile];
+}
+
+/*
+ *  Forces new creation of log file by changing the timestamp
+ */
+- (void) createNewLogFile{
+    NSDate *currentTime = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM-dd-yyyy'T'hh:mm.ss.SSS"];
+    NSString *timeStampValue = [dateFormatter stringFromDate: currentTime];
+    
+    studyFileName = [NSString stringWithFormat:@"%@%@", studyFileNameNoTimestamp, timeStampValue];
 }
 
 # pragma mark - Logging (Assessment)
