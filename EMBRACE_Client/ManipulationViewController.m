@@ -4078,4 +4078,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     return [sc getComplexityOfCurrentSentence];
 }
 
+- (NSString *)getCurrentSentenceText:(ManipulationAnalyser *)analyzer {
+    return [manipulationContext sentenceText];
+}
+
 @end

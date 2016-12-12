@@ -380,6 +380,16 @@
         }
     }
     
+    NSArray *currentSentenceTextTokens = [[self.delegate getCurrentSentenceText:self] componentsSeparatedByCharactersInSet:[[NSCharacterSet letterCharacterSet] invertedSet]];
+    
+    // Get all the words involved in the sentence
+    for (NSString *currentSentenceTextToken in currentSentenceTextTokens) {
+        // Discard tokens that are too short
+        if ([currentSentenceTextToken length] > 1) {
+            [objectsInvolved addObject:currentSentenceTextToken];
+        }
+    }
+    
     return objectsInvolved;
 }
 
