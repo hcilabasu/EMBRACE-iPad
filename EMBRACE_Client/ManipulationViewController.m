@@ -2417,13 +2417,12 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                                   [self animatePerformingStep];
                               }]];
             [self presentViewController:alert animated:YES completion:nil];
+            [self playNoiseName:ERROR_FEEDBACK_NOISE];
         }
         else {
             [self.view setUserInteractionEnabled:NO];
             [self animatePerformingStep];
         }
-        
-        [self playNoiseName:ERROR_FEEDBACK_NOISE];
     }
 }
 
