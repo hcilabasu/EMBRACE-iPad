@@ -14,6 +14,7 @@
 @synthesize currentStep; //Active step to be completed
 @synthesize maxAttempts;
 @synthesize numAttempts;
+@synthesize numSyntaxErrors;
 @synthesize PMSolution;
 @synthesize IMSolution;
 @synthesize stepsComplete;
