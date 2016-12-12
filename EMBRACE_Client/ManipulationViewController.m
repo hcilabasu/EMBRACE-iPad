@@ -2240,14 +2240,14 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     [self resetObjectLocation];
     
     stepContext.numAttempts++;
-    
+
     double delay = 0.0;
     
     if (conditionSetup.appMode == ITS && conditionSetup.shouldShowITSMessages == YES) {
         delay = 5.5;
     }
     
-    if (stepContext.numAttempts >= stepContext.maxAttempts && conditionSetup.isAutomaticAnimationEnabled) {
+    if (stepContext.numAttempts >= stepContext.maxAttempts && conditionSetup.isAutomaticAnimationEnabled && menu == nil) {
         stepContext.numAttempts = 0;
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, delay * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
@@ -2255,7 +2255,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         });
     }
     else {
-        if (conditionSetup.appMode == ITS && conditionSetup.useKnowledgeTracing && ![chapterTitle isEqualToString:@"The Naughty Monkey"]) {
+        if (conditionSetup.appMode == ITS && conditionSetup.useKnowledgeTracing && ![chapterTitle isEqualToString:@"The Naughty Monkey"] && menu == nil) {
             BOOL showDemo = FALSE;
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, delay * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
