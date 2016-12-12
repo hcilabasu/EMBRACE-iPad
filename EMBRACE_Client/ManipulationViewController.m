@@ -2394,16 +2394,19 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         stepContext.numSyntaxErrors++;
         
         [self playNoiseName:ERROR_FEEDBACK_NOISE];
-        [self playCurrentSentenceAudio];
         
-        // After first attempt
-        if (stepContext.numSyntaxErrors > 1 && conditionSetup.isAutomaticAnimationEnabled) {
-            [self provideFeedbackForErrorType:@"usability" showAlert:NO];
-        }
-        else {
-            allowInteractions = TRUE;
-            [self.view setUserInteractionEnabled:YES];
-        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [self playCurrentSentenceAudio];
+            
+            // After first attempt
+            if (stepContext.numSyntaxErrors > 1 && conditionSetup.isAutomaticAnimationEnabled) {
+                [self provideFeedbackForErrorType:@"usability" showAlert:NO];
+            }
+            else {
+                allowInteractions = TRUE;
+                [self.view setUserInteractionEnabled:YES];
+            }
+        });
     }
     else if ([errorType isEqualToString:@"usability"]) {
         if (showAlert) {
