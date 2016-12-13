@@ -390,7 +390,30 @@
         }
     }
     
-    return objectsInvolved;
+    NSDictionary *wordMapping = [self.delegate getWordMapping];
+    NSMutableSet *convertedObjectsInvolved = [[NSMutableSet alloc] init];
+    
+    // Convert objects involved to the mapped keys if present
+    for (NSString *objectInvolved in objectsInvolved) {
+        BOOL present = FALSE;
+        
+        for (NSString *key in wordMapping.allKeys) {
+            NSArray *mappedWords = [wordMapping objectForKey:key];
+            
+            if ([mappedWords containsObject:objectInvolved]) {
+                present = TRUE;
+                [convertedObjectsInvolved addObject:[key copy]];
+                break;
+            }
+        }
+        
+        if (!present) {
+            // Nothing to convert, so just use the word itself
+            [convertedObjectsInvolved addObject:objectInvolved];
+        }
+    }
+    
+    return convertedObjectsInvolved;
 }
 
 - (BOOL)isDistanceBelowThreshold:(NSSet *)movedObjectOrDestinationIDs :(NSString *)correctMovedObjectOrDestinationID {

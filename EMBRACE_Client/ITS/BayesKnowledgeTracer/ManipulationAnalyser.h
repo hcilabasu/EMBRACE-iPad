@@ -51,6 +51,8 @@
 - (EMComplexity)getComplexityForCurrentSentence:(ManipulationAnalyser *)analyzer;
 - (NSString *)getCurrentSentenceText:(ManipulationAnalyser *)analyzer;
 
+- (NSDictionary *)getWordMapping;
+
 - (void)analyzer:(ManipulationAnalyser *)analyzer showMessage:(NSString *)message;
 
 @end

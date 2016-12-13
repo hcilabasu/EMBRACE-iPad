@@ -4041,4 +4041,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     return [manipulationContext sentenceText];
 }
 
+- (NSDictionary *)getWordMapping {
+    return [model wordMapping];
+}
+
 @end
