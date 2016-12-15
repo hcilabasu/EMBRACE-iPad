@@ -49,6 +49,14 @@ static ITSController *sharedInstance = nil;
     self.manipulationAnalyser.delegate = delegate;
 }
 
+- (SkillSet *)getSkillSet {
+    return [_manipulationAnalyser getSkillSet];
+}
+
+- (void)setSkillSet:(SkillSet *)skillSet {
+    [_manipulationAnalyser setSkillSet:skillSet];
+}
+
 #pragma  mark - 
 
 - (void)userDidPlayWord:(NSString *)word context:(ManipulationContext *)context {

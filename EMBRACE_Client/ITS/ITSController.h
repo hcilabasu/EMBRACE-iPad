@@ -11,6 +11,8 @@
 #import "ActionStep.h"
 #import "Book.h"
 
+@class SkillSet;
+
 typedef NS_ENUM(NSInteger, EMComplexity) {
     EM_Easy = 1,
     EM_Medium,
@@ -23,6 +25,9 @@ typedef NS_ENUM(NSInteger, EMComplexity) {
 + (void)resetSharedInstance;
 
 - (void)setAnalyzerDelegate:(id)delegate;
+
+- (SkillSet *)getSkillSet;
+- (void)setSkillSet:(SkillSet *)skillSet;
 
 - (void)movedObjectIDs:(NSMutableSet *)movedObjectIDs destinationIDs:(NSArray *)destinationIDs isVerified:(BOOL)verified actionStep:(ActionStep *)actionStep manipulationContext:(ManipulationContext *)context forSentence:(NSString *)sentence withWordMapping:(NSDictionary *)mapDict;
 

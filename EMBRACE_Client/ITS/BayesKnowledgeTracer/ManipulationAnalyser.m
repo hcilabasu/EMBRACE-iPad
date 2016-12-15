@@ -49,6 +49,14 @@
     return self;
 }
 
+- (SkillSet *)getSkillSet {
+    return [_knowledgeTracer getSkillSet];
+}
+
+- (void)setSkillSet:(SkillSet *)skillSet {
+    [_knowledgeTracer setSkillSet:skillSet];
+}
+
 - (void)userDidPlayWord:(NSString *)word context:(ManipulationContext *)context {
     [self.playWords addObject:word];
     
@@ -372,7 +380,40 @@
         }
     }
     
-    return objectsInvolved;
+    NSArray *currentSentenceTextTokens = [[self.delegate getCurrentSentenceText:self] componentsSeparatedByCharactersInSet:[[NSCharacterSet letterCharacterSet] invertedSet]];
+    
+    // Get all the words involved in the sentence
+    for (NSString *currentSentenceTextToken in currentSentenceTextTokens) {
+        // Discard tokens that are too short
+        if ([currentSentenceTextToken length] > 1) {
+            [objectsInvolved addObject:currentSentenceTextToken];
+        }
+    }
+    
+    NSDictionary *wordMapping = [self.delegate getWordMapping];
+    NSMutableSet *convertedObjectsInvolved = [[NSMutableSet alloc] init];
+    
+    // Convert objects involved to the mapped keys if present
+    for (NSString *objectInvolved in objectsInvolved) {
+        BOOL present = FALSE;
+        
+        for (NSString *key in wordMapping.allKeys) {
+            NSArray *mappedWords = [wordMapping objectForKey:key];
+            
+            if ([mappedWords containsObject:objectInvolved]) {
+                present = TRUE;
+                [convertedObjectsInvolved addObject:[key copy]];
+                break;
+            }
+        }
+        
+        if (!present) {
+            // Nothing to convert, so just use the word itself
+            [convertedObjectsInvolved addObject:objectInvolved];
+        }
+    }
+    
+    return convertedObjectsInvolved;
 }
 
 - (BOOL)isDistanceBelowThreshold:(NSSet *)movedObjectOrDestinationIDs :(NSString *)correctMovedObjectOrDestinationID {
@@ -435,8 +476,8 @@
     }
     
     double VOCABULARY_THRESHOLD = 0.5;
-    double SYNTAX_THRESHOLD = 0.5;
-    double USABILITY_THRESHOLD = 0.5;
+    double SYNTAX_THRESHOLD = 0.65;
+    double USABILITY_THRESHOLD = 0.75;
     
     self.mostProbableErrorType = nil;
     double lowestSkillValue = 1.0;

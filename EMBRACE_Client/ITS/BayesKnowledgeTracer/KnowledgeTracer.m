@@ -52,6 +52,14 @@
     return self;
 }
 
+- (SkillSet *)getSkillSet {
+    return _skillSet;
+}
+
+- (void)setSkillSet:(SkillSet *)skillSet {
+    _skillSet = skillSet;
+}
+
 #pragma mark -
 
 - (void)updateDampenValue:(BOOL)shouldDampen {

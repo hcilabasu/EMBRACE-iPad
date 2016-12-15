@@ -264,6 +264,7 @@ BOOL wasPathFollowed = false;
         
         if (conditionSetup.useKnowledgeTracing && ![chapterTitle isEqualToString:@"The Naughty Monkey"]) {
             [[ITSController sharedInstance] setAnalyzerDelegate:self];
+            stepContext.numSyntaxErrors = 0;
         }
     }
 }
@@ -933,6 +934,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             //If the correct object was tapped, increment the step
             if ([ssc checkSolutionForSubject:imageAtPoint]) {
                 [[ServerCommunicationController sharedInstance] logVerification:true forAction:TAP_OBJECT context:manipulationContext];
+                
+                if (conditionSetup.useKnowledgeTracing && ![chapterTitle isEqualToString:@"The Naughty Monkey"]) {
+                    [[ITSController sharedInstance] movedObjectIDs:[self.manipulationView getSetOfObjectsGroupedWithObject:imageAtPoint] destinationIDs:@[currSolStep.locationId] isVerified:true actionStep:currSolStep manipulationContext:manipulationContext forSentence:sentenceContext.currentSentenceText withWordMapping:model.wordMapping];
+                }
                 
                 if ([[currSolStep stepType] isEqualToString:CHECKANDSWAP]) {
                     [self swapObjectImage];
@@ -2236,22 +2241,26 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     [self resetObjectLocation];
     
     stepContext.numAttempts++;
-    
+
     double delay = 0.0;
     
     if (conditionSetup.appMode == ITS && conditionSetup.shouldShowITSMessages == YES) {
         delay = 5.5;
     }
     
-    if (stepContext.numAttempts >= stepContext.maxAttempts && conditionSetup.isAutomaticAnimationEnabled) {
+    if (stepContext.numAttempts >= stepContext.maxAttempts && conditionSetup.isAutomaticAnimationEnabled && menu == nil) {
         stepContext.numAttempts = 0;
         
+        if (conditionSetup.appMode == ITS && conditionSetup.useKnowledgeTracing && ![chapterTitle isEqualToString:@"The Naughty Monkey"]) {
+            stepContext.numSyntaxErrors = 0;
+        }
+        
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, delay * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            [self provideFeedbackForErrorType:@"usability"];
+            [self provideFeedbackForErrorType:@"usability" showAlert:YES];
         });
     }
     else {
-        if (conditionSetup.appMode == ITS && conditionSetup.useKnowledgeTracing && ![chapterTitle isEqualToString:@"The Naughty Monkey"]) {
+        if (conditionSetup.appMode == ITS && conditionSetup.useKnowledgeTracing && ![chapterTitle isEqualToString:@"The Naughty Monkey"] && menu == nil) {
             BOOL showDemo = FALSE;
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, delay * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
@@ -2261,14 +2270,14 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 if (showDemo) {
                     UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Select the most probable error type:" preferredStyle:UIAlertControllerStyleAlert];
                     [alert addAction:[UIAlertAction actionWithTitle:@"Vocabulary" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                        [self provideFeedbackForErrorType:@"vocabulary"];
+                        [self provideFeedbackForErrorType:@"vocabulary" showAlert:NO];
                     }]];
                     [alert addAction:[UIAlertAction actionWithTitle:@"Syntax" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                        [self provideFeedbackForErrorType:@"syntax"];
+                        [self provideFeedbackForErrorType:@"syntax" showAlert:NO];
                     }]];
                     [alert addAction:[UIAlertAction actionWithTitle:@"Usability" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
                         if (conditionSetup.isAutomaticAnimationEnabled) {
-                            [self provideFeedbackForErrorType:@"usability"];
+                            [self provideFeedbackForErrorType:@"usability" showAlert:YES];
                         }
                     }]];
                     [alert addAction:[UIAlertAction actionWithTitle:@"None" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
@@ -2279,7 +2288,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 }
                 else {
                     if (mostProbableErrorType != nil && conditionSetup.isAutomaticAnimationEnabled) {
-                        [self provideFeedbackForErrorType:mostProbableErrorType];
+                        [self provideFeedbackForErrorType:mostProbableErrorType showAlert:YES];
                     }
                     else {
                         allowInteractions = TRUE;
@@ -2296,7 +2305,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 }
 
 // TODO: Change error type NSString to enum
-- (void)provideFeedbackForErrorType:(NSString *)errorType {
+- (void)provideFeedbackForErrorType:(NSString *)errorType showAlert:(BOOL)showAlert {
     if ([errorType isEqualToString:@"vocabulary"]) {
         [self playNoiseName:ERROR_FEEDBACK_NOISE];
         
@@ -2382,84 +2391,38 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         }
     }
     else if ([errorType isEqualToString:@"syntax"]) {
-        NSMutableArray *simplerSentences = [[NSMutableArray alloc] init];
-        
-        if (currentComplexity > 1) {
-            Chapter *chapter = [book getChapterWithTitle:chapterTitle]; // Get current chapter
-            PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; // Get PM Activity from chapter
-            
-            // Get steps for current sentence
-            NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
-            
-            // Get current step to be completed
-            ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
-            
-            // Look for simpler version of the current sentence
-            for (AlternateSentence *alternateSentence in [[PMActivity alternateSentences] objectForKey:pageContext.currentPageId]) {
-                if ([alternateSentence complexity] == currentComplexity - 1) {
-                    for (NSNumber *idea in [[sentenceContext.pageSentences objectAtIndex:sentenceContext.currentSentence - 1] ideas]) {
-                        if ([[alternateSentence ideas] containsObject:idea]) {
-                            // Add sentences with no solution steps if they share the same idea
-                            if ([[alternateSentence solutionSteps] count] == 0) {
-                                [simplerSentences addObject:[alternateSentence text]];
-                                break;
-                            }
-                            else {
-                                // Add sentences with solution steps only if they share the same idea and current step
-                                for (ActionStep *solutionStep in [alternateSentence solutionSteps]) {
-                                    if ([solutionStep stepNumber] == [currSolStep stepNumber]) {
-                                        [simplerSentences addObject:[alternateSentence text]];
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                allowInteractions = TRUE;
-                [self.view setUserInteractionEnabled:YES];
-            });
-        }
-        
-        // Present simpler sentence(s)
-        if ([simplerSentences count] > 0) {
-            // Join sentences together and remove any slash characters
-            NSString *message = [[simplerSentences componentsJoinedByString:@" "] stringByReplacingOccurrencesOfString:@"\\" withString:EMPTYSTRING];
-            
-            [[ServerCommunicationController sharedInstance] logSyntaxErrorFeedback:message context:manipulationContext];
-            
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
-            [alert addAction:action];
-            [self presentViewController:alert animated:YES completion:nil];
-            
-            [self playNoiseName:ERROR_FEEDBACK_NOISE];
-            allowInteractions = TRUE;
-            [self.view setUserInteractionEnabled:YES];
-        }
-        // Default to usability error feedback if there are no simpler sentences available
-        else {
-            // Log attempted syntax error feedback
-            [[ServerCommunicationController sharedInstance] logSyntaxErrorFeedback:@"NULL" context:manipulationContext];
-            
-            if (conditionSetup.isAutomaticAnimationEnabled) {
-                [self provideFeedbackForErrorType:@"usability"];
-            }
-        }
-    }
-    else if ([errorType isEqualToString:@"usability"]) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Need help? The iPad will show you how to complete this step." preferredStyle:UIAlertControllerStyleAlert];
-        [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action)
-                          {
-                              [self.view setUserInteractionEnabled:NO];
-                              [self animatePerformingStep];
-                          }]];
-        [self presentViewController:alert animated:YES completion:nil];
+        stepContext.numSyntaxErrors++;
         
         [self playNoiseName:ERROR_FEEDBACK_NOISE];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [self playCurrentSentenceAudio];
+            
+            // After first attempt
+            if (stepContext.numSyntaxErrors > 1 && conditionSetup.isAutomaticAnimationEnabled) {
+                [self provideFeedbackForErrorType:@"usability" showAlert:NO];
+            }
+            else {
+                allowInteractions = TRUE;
+                [self.view setUserInteractionEnabled:YES];
+            }
+        });
+    }
+    else if ([errorType isEqualToString:@"usability"]) {
+        if (showAlert) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Need help? The iPad will show you how to complete this step." preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action)
+                              {
+                                  [self.view setUserInteractionEnabled:NO];
+                                  [self animatePerformingStep];
+                              }]];
+            [self presentViewController:alert animated:YES completion:nil];
+            [self playNoiseName:ERROR_FEEDBACK_NOISE];
+        }
+        else {
+            [self.view setUserInteractionEnabled:NO];
+            [self animatePerformingStep];
+        }
     }
 }
 
@@ -3483,8 +3446,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     NSString *sentenceAudioFile = nil;
     
     //TODO: move chapter checks to new class or function
-    //Only play sentence audio if system is reading
-    if (conditionSetup.reader == SYSTEM) {
+    //Only play sentence audio if system is reading or user made a syntax error
+    if (conditionSetup.reader == SYSTEM || (conditionSetup.appMode == ITS && conditionSetup.useKnowledgeTracing && stepContext.numSyntaxErrors > 0)) {
         //If we are on the first or second manipulation page of The Contest, play the audio of the current sentence
         if ([chapterTitle isEqualToString:@"The Contest"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2])) {
             if ((conditionSetup.language == BILINGUAL)) {
@@ -4072,6 +4035,14 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 
 - (EMComplexity)getComplexityForCurrentSentence:(ManipulationAnalyser *)analyzer {
     return [sc getComplexityOfCurrentSentence];
+}
+
+- (NSString *)getCurrentSentenceText:(ManipulationAnalyser *)analyzer {
+    return [manipulationContext sentenceText];
+}
+
+- (NSDictionary *)getWordMapping {
+    return [model wordMapping];
 }
 
 @end

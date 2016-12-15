@@ -329,6 +329,10 @@
     if (stepContext.currentStep < stepContext.numSteps) {
         stepContext.numAttempts = 0;
         
+        if (conditionSetup.appMode == ITS && conditionSetup.useKnowledgeTracing && ![[manipulationContext chapterTitle] isEqualToString:@"The Naughty Monkey"]) {
+            stepContext.numSyntaxErrors = 0;
+        }
+        
         //if the current solution step is a custom pm, then increment current step minMenuOption times
         if ([PM_CUSTOM isEqualToString:[currSolStep menuType]]) {
             for (int i = 0; i < minMenuItems; i++) {
