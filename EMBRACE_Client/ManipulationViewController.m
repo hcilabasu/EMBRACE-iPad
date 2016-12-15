@@ -1015,8 +1015,17 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 /*
  *  Plays vocab word audio for intro page
  */
-- (void)playIntroVocabWord:(NSString *)englishSentenceText :(ActionStep *)currSolStep {
-    if (conditionSetup.language == ENGLISH) {
+- (void) playIntroVocabWord: (NSString *) englishSentenceText : (ActionStep *) currSolStep
+{
+    [self highlightImageForText:englishSentenceText];
+    
+    NSString *englishTappedWord = englishSentenceText;
+    
+    //Remove any whitespaces since this would cause the a failure for reading the file name
+    englishSentenceText = [englishSentenceText stringByReplacingOccurrencesOfString:@" " withString:EMPTYSTRING];
+    
+    if(conditionSetup.language == ENGLISH)
+    {
         //Play En audio
         bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3", [englishSentenceText capitalizedString], DEF_E]];
         
@@ -1042,8 +1051,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         }
     }
     
-    [self highlightImageForText:englishSentenceText];
-    
     // This delay is needed in order to be able to play the last definition on a vocabulary page
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW,[self.playaudioClass audioDuration] * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         //if audioPlayer is nil then we have returned to library view and should not play audio
@@ -1060,7 +1067,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:ENGLISH_TXT ofType:PLAY_WORD_WITH_DEF :manipulationContext];
             }
             
-            [self highlightImageForText:englishSentenceText];
+            [self highlightImageForText:englishTappedWord];
             
             sentenceContext.currentSentence++;
             sentenceContext.currentSentenceText = [self.manipulationView getCurrentSentenceAt:sentenceContext.currentSentence];
@@ -3347,7 +3354,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         
         [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:ERROR_NOISE inLanguage:NULL_TXT ofType:PLAY_ERROR_NOISE :manipulationContext];
     }
-    else if ([name isEqualToString:ERROR_FEEDBACK_NOISE]) {
+    else if([name isEqualToString:ERROR_FEEDBACK_NOISE]){
         [self.playaudioClass playErrorFeedbackNoise];
         
         [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:ERROR_FEEDBACK_NOISE inLanguage:NULL_TXT ofType:ERROR_FEEDBACK_NOISE :manipulationContext];
@@ -3442,7 +3449,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     // Log attempted usability error feedback
                     [[ServerCommunicationController sharedInstance] logUsabilityErrorFeedback:animatedItems context:manipulationContext];
                 }
-
+                
                 if ([stepType isEqualToString:CHECKANDSWAP]) {
                     [self swapObjectImage];
                 }
@@ -3575,7 +3582,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                     //Get the interaction to be performed
                     PossibleInteraction *interaction = [pic getCorrectInteraction];
-                   
+                    
                     //Perform the interaction and increment the step
                     [pic performInteraction:interaction];
                     [ssc incrementCurrentStep];

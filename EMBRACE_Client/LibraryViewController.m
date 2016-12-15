@@ -91,6 +91,12 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
     
     if (studentProgress != nil) {
         [self updateProgress];
+        
+        //Update progress with any new books/chapters that might have been added
+        [studentProgress addNewContent:books]; 
+        
+        //Update progress indicators
+        [self.libraryView reloadSections:[NSIndexSet indexSetWithIndex:0]];
     }
 }
 

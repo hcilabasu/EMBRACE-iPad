@@ -181,6 +181,8 @@
                     [self loadAssessmentActivity];
             }
             else{
+                [[ServerCommunicationController sharedInstance] createNewLogFile];
+                
                 //Return to library view
                 [mvc.navigationController popViewControllerAnimated:YES];
             }
