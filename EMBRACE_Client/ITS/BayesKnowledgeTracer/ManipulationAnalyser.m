@@ -476,8 +476,8 @@
     }
     
     double VOCABULARY_THRESHOLD = 0.5;
-    double SYNTAX_THRESHOLD = 0.5;
-    double USABILITY_THRESHOLD = 0.5;
+    double SYNTAX_THRESHOLD = 0.65;
+    double USABILITY_THRESHOLD = 0.75;
     
     self.mostProbableErrorType = nil;
     double lowestSkillValue = 1.0;
