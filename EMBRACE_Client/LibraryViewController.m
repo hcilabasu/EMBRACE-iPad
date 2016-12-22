@@ -297,6 +297,9 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
     
     //Save progress to file
     [[ServerCommunicationController sharedInstance] saveProgress:student :studentProgress];
+    
+    //Save skills to file
+    [[ServerCommunicationController sharedInstance] saveSkills:student :[[ITSController sharedInstance] getSkillSet]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -353,6 +356,9 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
     
     //Save progress to file
     [[ServerCommunicationController sharedInstance] saveProgress:student :studentProgress];
+    
+    //Save skills to file
+    [[ServerCommunicationController sharedInstance] saveSkills:student :[[ITSController sharedInstance] getSkillSet]];
     
     if (conditionSetup.allowFileSync) {
         //NOTE: Still testing this functionality

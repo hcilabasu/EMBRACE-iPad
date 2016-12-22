@@ -30,7 +30,7 @@
         _medSyntaxSkill = (SyntaxSkill *) [Skill syntaxSkillWithComplexity:EM_Medium];
         _complexSyntaxSkill = (SyntaxSkill *) [Skill syntaxSkillWithComplexity:EM_Complex];
         
-        [_easySyntaxSkill updateSkillValue:0.99];
+        [_easySyntaxSkill updateSkillValue:0.9];
         
         _usabilitySkill = (UsabilitySkill *) [Skill usabilitySkill];        
     }
@@ -78,6 +78,10 @@
 
 - (UsabilitySkill *)usabilitySkill {
     return _usabilitySkill;
+}
+
+- (NSMutableDictionary *)getVocabularySkills {
+    return _wordSkillDict;
 }
 
 @end

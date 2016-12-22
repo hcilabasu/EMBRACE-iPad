@@ -5,7 +5,8 @@
             <sentence number="5">
                 <step number="1">
                     <check obj1Id="mud" action="getIn" locationId="hogan"/>
-                    <move obj1Id="mud" action="getIn" waypointId="hogan"/>
+                    <swapImage obj1Id="hogan" action="getsFilled"/>
+                    <disappearAuto obj1Id="mud" action="disappear" obj2Id="mud"/>
                 </step>
             </sentence>
             <sentence number="6">

@@ -19,5 +19,6 @@
 @property (nonatomic) NSUInteger currentStep; //Active step to be completed
 @property (nonatomic) NSUInteger maxAttempts; // Maximum number of attempts user can make before system automatically performs step
 @property (nonatomic) NSUInteger numAttempts; // Number of attempts user has made for current step
+@property (nonatomic) NSUInteger numSyntaxErrors; // Number of syntax errors for current step
 
 @end
