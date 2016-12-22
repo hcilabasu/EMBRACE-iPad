@@ -2,8 +2,10 @@
 <metadata>
     <alternateSentences>
         <story title="The Lucky Stone" page_id="story1-PM-1">
+            <!-- Default sentences-->
+
             <sentence number="1" action="no">
-                <attributes complexity="2"/>
+                <attributes complexity="10"/>
                 <text>On top of a hill which overlooked a beautiful river, there lived a young boy whose name was Lucas.</text>
                 <ideas>
                     <idea number="1"/>
@@ -12,7 +14,7 @@
                 </solution>
             </sentence>
             <sentence number="2" action="yes">
-                <attributes complexity="2"/>
+                <attributes complexity="10"/>
                 <text>Like most afternoons, the boy walked down the hill to watch the sun set over the river.</text>
                 <ideas>
                     <idea number="2"/>
@@ -22,7 +24,7 @@
                 </solution>
             </sentence>
             <sentence number="3" action="no">
-                <attributes complexity="2"/>
+                <attributes complexity="10"/>
                 <text>But this time was special because Lucas found a bottle floating in the water.</text>
                 <ideas>
                     <idea number="3"/>
@@ -31,6 +33,48 @@
                 </solution>
             </sentence>
             <sentence number="4" action="yes">
+                <attributes complexity="10"/>
+                <text>He picked it up and carried it home to give to his father.</text>
+                <ideas>
+                    <idea number="4"/>
+                </ideas>
+                <solution>
+                    <step number="2"/>
+                    <step number="3"/>
+                </solution>
+            </sentence>
+            
+            <!-- End Default sentences-->
+            
+            <sentence number="5" action="no">
+                <attributes complexity="2"/>
+                <text>On top of a hill which overlooked a beautiful river, there lived a young boy whose name was Lucas.</text>
+                <ideas>
+                    <idea number="1"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="6" action="yes">
+                <attributes complexity="2"/>
+                <text>Like most afternoons, the boy walked down the hill to watch the sun set over the river.</text>
+                <ideas>
+                    <idea number="2"/>
+                </ideas>
+                <solution>
+                    <step number="1"/>
+                </solution>
+            </sentence>
+            <sentence number="7" action="no">
+                <attributes complexity="2"/>
+                <text>But this time was special because Lucas found a bottle floating in the water.</text>
+                <ideas>
+                    <idea number="3"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="8" action="yes">
                 <attributes complexity="2"/>
                 <text>He picked it up and carried it home to give to his father.</text>
                 <ideas>
@@ -41,10 +85,13 @@
                     <step number="3"/>
                 </solution>
             </sentence>
+
         </story>
         <story title="The Lucky Stone" page_id="story1-PM-2">
+            
+            <!-- Default sentences-->
             <sentence number="1" action="no">
-                <attributes complexity="2"/>
+                <attributes complexity="10"/>
                 <text>\"What's this?\" Papa asked.</text>
                 <ideas>
                     <idea number="5"/>
@@ -53,7 +100,7 @@
                 </solution>
             </sentence>
             <sentence number="2" action="yes">
-                <attributes complexity="2"/>
+                <attributes complexity="10"/>
                 <text>Papa opened the bottle to find out.</text>
                 <ideas>
                     <idea number="6"/>
@@ -63,7 +110,7 @@
                 </solution>
             </sentence>
             <sentence number="3" action="no">
-                <attributes complexity="2"/>
+                <attributes complexity="10"/>
                 <text>Just then, a note wrapped around a stone fell out and tumbled across the floor.</text>
                 <ideas>
                     <idea number="7"/>
@@ -72,7 +119,7 @@
                 </solution>
             </sentence>
             <sentence number="4" action="yes">
-                <attributes complexity="2"/>
+                <attributes complexity="10"/>
                 <text>Papa picked up the note and read, \"He who finds this lucky stone will be granted three wishes!\"</text>
                 <ideas>
                     <idea number="8"/>
@@ -82,7 +129,7 @@
                 </solution>
             </sentence>
             <sentence number="5" action="no">
-                <attributes complexity="2"/>
+                <attributes complexity="10"/>
                 <text>\"That's me!\" yelled the boy.</text>
                 <ideas>
                     <idea number="9"/>
@@ -91,6 +138,65 @@
                 </solution>
             </sentence>
             <sentence number="6" action="yes">
+                <attributes complexity="10"/>
+                <text>Lucas picked up the stone and promised to make the best wishes.</text>
+                <ideas>
+                    <idea number="10"/>
+                </ideas>
+                <solution>
+                    <step number="6"/>
+                </solution>
+            </sentence>
+            <!-- End Default sentences-->
+            
+            <sentence number="7" action="no">
+                <attributes complexity="2"/>
+                <text>\"What's this?\" Papa asked.</text>
+                <ideas>
+                    <idea number="5"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="8" action="yes">
+                <attributes complexity="2"/>
+                <text>Papa opened the bottle to find out.</text>
+                <ideas>
+                    <idea number="6"/>
+                </ideas>
+                <solution>
+                    <step number="4"/>
+                </solution>
+            </sentence>
+            <sentence number="9" action="no">
+                <attributes complexity="2"/>
+                <text>Just then, a note wrapped around a stone fell out and tumbled across the floor.</text>
+                <ideas>
+                    <idea number="7"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="10" action="yes">
+                <attributes complexity="2"/>
+                <text>Papa picked up the note and read, \"He who finds this lucky stone will be granted three wishes!\"</text>
+                <ideas>
+                    <idea number="8"/>
+                </ideas>
+                <solution>
+                    <step number="5"/>
+                </solution>
+            </sentence>
+            <sentence number="11" action="no">
+                <attributes complexity="2"/>
+                <text>\"That's me!\" yelled the boy.</text>
+                <ideas>
+                    <idea number="9"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="12" action="yes">
                 <attributes complexity="2"/>
                 <text>Lucas picked up the stone and promised to make the best wishes.</text>
                 <ideas>
@@ -102,8 +208,10 @@
             </sentence>
         </story>
         <story title="Magic Toys" page_id="story2-PM-1">
+            
+            
             <sentence number="1" action="yes">
-                <attributes complexity="2"/>
+                <attributes complexity="10"/>
                 <text>The next day, the boy went back to the river where he had found his lucky stone.</text>
                 <ideas>
                     <idea number="11"/>
@@ -113,7 +221,7 @@
                 </solution>
             </sentence>
             <sentence number="2" action="yes">
-                <attributes complexity="2"/>
+                <attributes complexity="10"/>
                 <text>He sat on the bench and thought about his wishes.</text>
                 <ideas>
                     <idea number="12"/>
@@ -123,7 +231,7 @@
                 </solution>
             </sentence>
             <sentence number="3" action="no">
-                <attributes complexity="2"/>
+                <attributes complexity="10"/>
                 <text>What did he really want?</text>
                 <ideas>
                     <idea number="13"/>
@@ -132,6 +240,46 @@
                 </solution>
             </sentence>
             <sentence number="4" action="no">
+                <attributes complexity="10"/>
+                <text>\"Ooh,\" he said, \"I want a room full of the best toys!\"</text>
+                <ideas>
+                    <idea number="14"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            
+            
+            <sentence number="5" action="yes">
+                <attributes complexity="2"/>
+                <text>The next day, the boy went back to the river where he had found his lucky stone.</text>
+                <ideas>
+                    <idea number="11"/>
+                </ideas>
+                <solution>
+                    <step number="7"/>
+                </solution>
+            </sentence>
+            <sentence number="6" action="yes">
+                <attributes complexity="2"/>
+                <text>He sat on the bench and thought about his wishes.</text>
+                <ideas>
+                    <idea number="12"/>
+                </ideas>
+                <solution>
+                    <step number="8"/>
+                </solution>
+            </sentence>
+            <sentence number="7" action="no">
+                <attributes complexity="2"/>
+                <text>What did he really want?</text>
+                <ideas>
+                    <idea number="13"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="8" action="no">
                 <attributes complexity="2"/>
                 <text>\"Ooh,\" he said, \"I want a room full of the best toys!\"</text>
                 <ideas>
@@ -140,7 +288,7 @@
                 <solution>
                 </solution>
             </sentence>
-            <sentence number="5" action="no">
+            <sentence number="9" action="no">
                 <attributes complexity="1"/>
                 <text>The next day, the boy went back to the river.</text>
                 <ideas>
@@ -149,7 +297,7 @@
                 <solution>
                 </solution>
             </sentence>
-            <sentence number="6" action="yes">
+            <sentence number="10" action="yes">
                 <attributes complexity="1"/>
                 <text>He went to where he had found his lucky stone.</text>
                 <ideas>
@@ -159,7 +307,7 @@
                     <step number="7"/>
                 </solution>
             </sentence>
-            <sentence number="7" action="yes">
+            <sentence number="11" action="yes">
                 <attributes complexity="3"/>
                 <text>While he sat on the bench, he thought about his wishes.</text>
                 <ideas>
@@ -169,7 +317,7 @@
                     <step number="8"/>
                 </solution>
             </sentence>
-            <sentence number="8" action="no">
+            <sentence number="12" action="no">
                 <attributes complexity="3"/>
                 <text>\"What do I really want,\" he thought.</text>
                 <ideas>
@@ -180,8 +328,9 @@
             </sentence>
         </story>
         <story title="Magic Toys" page_id="story2-PM-2">
+            
             <sentence number="1" action="yes">
-                <attributes complexity="2"/>
+                <attributes complexity="10"/>
                 <text>Later that day, the boy walked up to his room and found that the toys had magically appeared!</text>
                 <ideas>
                     <idea number="15"/>
@@ -191,7 +340,7 @@
                 </solution>
             </sentence>
             <sentence number="2" action="no">
-                <attributes complexity="2"/>
+                <attributes complexity="10"/>
                 <text>He could not wait to start playing with them.</text>
                 <ideas>
                     <idea number="16"/>
@@ -200,7 +349,7 @@
                 </solution>
             </sentence>
             <sentence number="3" action="yes">
-                <attributes complexity="2"/>
+                <attributes complexity="10"/>
                 <text>Lucas picked up the ball, but soon realized that he needed someone to catch it.</text>
                 <ideas>
                     <idea number="17"/>
@@ -210,7 +359,7 @@
                 </solution>
             </sentence>
             <sentence number="4" action="yes">
-                <attributes complexity="2"/>
+                <attributes complexity="10"/>
                 <text>So, he put it back down.</text>
                 <ideas>
                     <idea number="18"/>
@@ -220,7 +369,7 @@
                 </solution>
             </sentence>
             <sentence number="5" action="yes">
-                <attributes complexity="2"/>
+                <attributes complexity="10"/>
                 <text>Then, he opened the board-game instead.</text>
                 <ideas>
                     <idea number="19"/>
@@ -230,6 +379,67 @@
                 </solution>
             </sentence>
             <sentence number="6" action="no">
+                <attributes complexity="10"/>
+                <text>Once again, he needed somebody to play with.</text>
+                <ideas>
+                    <idea number="20"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            
+            
+            
+            <sentence number="7" action="yes">
+                <attributes complexity="2"/>
+                <text>Later that day, the boy walked up to his room and found that the toys had magically appeared!</text>
+                <ideas>
+                    <idea number="15"/>
+                </ideas>
+                <solution>
+                    <step number="9"/>
+                </solution>
+            </sentence>
+            <sentence number="8" action="no">
+                <attributes complexity="2"/>
+                <text>He could not wait to start playing with them.</text>
+                <ideas>
+                    <idea number="16"/>
+                </ideas>
+                <solution>
+                </solution>
+            </sentence>
+            <sentence number="9" action="yes">
+                <attributes complexity="2"/>
+                <text>Lucas picked up the ball, but soon realized that he needed someone to catch it.</text>
+                <ideas>
+                    <idea number="17"/>
+                </ideas>
+                <solution>
+                    <step number="10"/>
+                </solution>
+            </sentence>
+            <sentence number="10" action="yes">
+                <attributes complexity="2"/>
+                <text>So, he put it back down.</text>
+                <ideas>
+                    <idea number="18"/>
+                </ideas>
+                <solution>
+                    <step number="11"/>
+                </solution>
+            </sentence>
+            <sentence number="11" action="yes">
+                <attributes complexity="2"/>
+                <text>Then, he opened the board-game instead.</text>
+                <ideas>
+                    <idea number="19"/>
+                </ideas>
+                <solution>
+                    <step number="12"/>
+                </solution>
+            </sentence>
+            <sentence number="12" action="no">
                 <attributes complexity="2"/>
                 <text>Once again, he needed somebody to play with.</text>
                 <ideas>
@@ -238,7 +448,7 @@
                 <solution>
                 </solution>
             </sentence>
-            <sentence number="7" action="yes">
+            <sentence number="13" action="yes">
                 <attributes complexity="1"/>
                 <text>Later that day, the boy walked up to his room.</text>
                 <ideas>
@@ -248,7 +458,7 @@
                     <step number="9"/>
                 </solution>
             </sentence>
-            <sentence number="8" action="no">
+            <sentence number="14" action="no">
                 <attributes complexity="1"/>
                 <text>He found that the toys had magically appeared.</text>
                 <ideas>
@@ -257,7 +467,7 @@
                 <solution>
                 </solution>
             </sentence>
-            <sentence number="9" action="yes">
+            <sentence number="15" action="yes">
                 <attributes complexity="1"/>
                 <text>Lucas picked up the ball.</text>
                 <ideas>
@@ -267,7 +477,7 @@
                     <step number="10"/>
                 </solution>
             </sentence>
-            <sentence number="10" action="no">
+            <sentence number="16" action="no">
                 <attributes complexity="1"/>
                 <text>He soon realized that he needed someone to catch it.</text>
                 <ideas>
@@ -276,7 +486,7 @@
                 <solution>
                 </solution>
             </sentence>
-            <sentence number="11" action="yes">
+            <sentence number="17" action="yes">
                 <attributes complexity="3"/>
                 <text>When the boy walked up to his room later that day, he found that the toys had magically appeared.</text>
                 <ideas>
@@ -286,7 +496,7 @@
                     <step number="9"/>
                 </solution>
             </sentence>
-            <sentence number="12" action="yes">
+            <sentence number="18" action="yes">
                 <attributes complexity="3"/>
                 <text>As Lucas picked up the ball, he realized that he needed someone to catch it.</text>
                 <ideas>
@@ -296,7 +506,7 @@
                     <step number="10"/>
                 </solution>
             </sentence>
-            <sentence number="13" action="yes">
+            <sentence number="19" action="yes">
                 <attributes complexity="3"/>
                 <text>So, he put it back down and opened the board-game instead.</text>
                 <ideas>
@@ -308,7 +518,7 @@
                     <step number="12"/>
                 </solution>
             </sentence>
-            <sentence number="14" action="no">
+            <sentence number="20" action="no">
                 <attributes complexity="3"/>
                 <text>Once again, he realized, he needed somebody to play with.</text>
                 <ideas>
