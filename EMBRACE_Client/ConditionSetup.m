@@ -48,9 +48,9 @@ static ConditionSetup *sharedInstance = nil;
         appMode = ITS;
         currentMode = PM_MODE;
 
-        newInstructions = YES;
-        isVocabPageEnabled = YES;
-        isAssessmentPageEnabled = YES;
+        newInstructions = NO;
+        isVocabPageEnabled = NO;
+        isAssessmentPageEnabled = NO;
         assessmentMode = ENDOFCHAPTER;
         
         isAutomaticAnimationEnabled = YES;

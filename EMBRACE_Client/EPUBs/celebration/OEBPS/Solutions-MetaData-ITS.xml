@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <solutions>
-        <story title="Key Ingredients" activity_id="story1-PM-2">
+        <story title="Key Ingredients" activity_id="story1-PM-1">
             <idea number="1"/>
             <idea number="2"/>
             <idea number="3"/>
             <idea number="4"/>
-            <idea number="5">
+        </story>
+        <story title="Key Ingredients" activity_id="story1-PM-2">
+                        <idea number="5">
                 <step number="1">
                     <group obj1Id="sofia" action="pickUp" obj2Id="chili"/>
                     <move obj1Id="sofia" action="getIn" waypointId="nearChili"/>

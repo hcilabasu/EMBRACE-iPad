@@ -158,11 +158,19 @@
         // Increase syntax skill
         EMComplexity complexity = [self.delegate getComplexityForCurrentSentence:self];
         Skill *syntaxSkill = [self.knowledgeTracer updateSyntaxSkill:YES withComplexity:complexity shouldDampen:!isFirstAttempt context:context];
-        [skills addObject:syntaxSkill];
+        
+        if (syntaxSkill != nil) {
+            [skills addObject:syntaxSkill];
+        }
+        
         
         // Increase usability skill
         Skill *usabilitySkill = [self.knowledgeTracer updateUsabilitySkill:YES shouldDampen:!isFirstAttempt context:context];
-        [skills addObject:usabilitySkill];
+        
+        if (usabilitySkill != nil) {
+            [skills addObject:usabilitySkill];
+        }
+        
         
         [self showMessageWith:skills];
     }

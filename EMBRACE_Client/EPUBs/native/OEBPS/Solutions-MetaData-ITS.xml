@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <solutions>
+        <story title="Introduction to Native American Homes" activity_id="story0-PM">
+            <idea number="83"/>
+            <idea number="84"/>
+            <idea number="85"/>
+            
+        </story>
+        <story title="Introduction to Native American Homes" activity_id="story0-PM-2">
+            <idea number="86"/>
+            <idea number="87"/>
+            <idea number="88"/>
+            
+        </story>
         <story title="The Navajo Hogan" activity_id="story1-PM-1">
             <idea number="1"/>
             <idea number="2"/>

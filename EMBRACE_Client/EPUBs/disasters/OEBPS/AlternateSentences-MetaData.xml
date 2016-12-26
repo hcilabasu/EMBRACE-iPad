@@ -6,9 +6,10 @@
         
         <story title="The Moving Earth" page_id="story1-PM-1">
             
+            
             <sentence number="1" action="no">
                 
-                <attributes complexity="2"/>
+                <attributes complexity="10"/>
                 
                 <text>The picture shows how the earth looked 300 million years ago.</text>
                 
@@ -25,7 +26,7 @@
             
             <sentence number="2" action="yes">
                 
-                <attributes complexity="2"/>
+                <attributes complexity="10"/>
                 
                 <text>The yellow part moved away and became Africa.</text>
                 
@@ -43,7 +44,7 @@
             
             <sentence number="3" action="no">
                 
-                <attributes complexity="2"/>
+                <attributes complexity="10"/>
                 
                 <text>But why did it move.</text>
                 
@@ -59,6 +60,78 @@
             </sentence>
             
             <sentence number="4" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>The land we live on, and even the land under the oceans, are like plates on top of a layer of very, very hot rock inside the earth.</text>
+                
+                <ideas>
+                    
+                    <idea number="4"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            <sentence number="5" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>The picture shows how the earth looked 300 million years ago.</text>
+                
+                <ideas>
+                    
+                    <idea number="1"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="6" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>The yellow part moved away and became Africa.</text>
+                
+                <ideas>
+                    
+                    <idea number="2"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="1"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="7" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>But why did it move.</text>
+                
+                <ideas>
+                    
+                    <idea number="3"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="8" action="no">
                 
                 <attributes complexity="2"/>
                 
@@ -79,7 +152,120 @@
         
         <story title="The Moving Earth" page_id="story1-PM-2">
             
-            <sentence number="5" action="no">
+            
+            <sentence number="9" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>The layer of hot rock is called the mantle.</text>
+                
+                <ideas>
+                    
+                    <idea number="5"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="10" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>The heat makes the mantle slowly spin, and that makes the plates on top move.</text>
+                
+                <ideas>
+                    
+                    <idea number="6"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="11" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>The red plate drifted away and became India.</text>
+                
+                <ideas>
+                    
+                    <idea number="7"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="12" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Then it hit the pink plate that became Asia.</text>
+                
+                <ideas>
+                    
+                    <idea number="8"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="2"/>
+                    <step number="3"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="13" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>The India plate pushed hard and went under the Asia plate, which lifted up the land and made mountains.</text>
+                
+                <ideas>
+                    
+                    <idea number="9"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="4"/>
+                    <step number="5"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="14" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>These are the Himalaya Mountains, the tallest in the world.</text>
+                
+                <ideas>
+                    
+                    <idea number="10"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            
+            
+            <sentence number="15" action="no">
                 
                 <attributes complexity="2"/>
                 
@@ -96,7 +282,7 @@
                 
             </sentence>
             
-            <sentence number="6" action="no">
+            <sentence number="16" action="no">
                 
                 <attributes complexity="2"/>
                 
@@ -113,7 +299,7 @@
                 
             </sentence>
             
-            <sentence number="7" action="no">
+            <sentence number="17" action="no">
                 
                 <attributes complexity="2"/>
                 
@@ -130,7 +316,7 @@
                 
             </sentence>
             
-            <sentence number="8" action="yes">
+            <sentence number="18" action="yes">
                 
                 <attributes complexity="2"/>
                 
@@ -149,7 +335,7 @@
                 
             </sentence>
             
-            <sentence number="9" action="yes">
+            <sentence number="19" action="yes">
                 
                 <attributes complexity="2"/>
                 
@@ -168,7 +354,7 @@
                 
             </sentence>
             
-            <sentence number="10" action="no">
+            <sentence number="20" action="no">
                 
                 <attributes complexity="2"/>
                 
@@ -189,7 +375,82 @@
         
         <story title="The Moving Earth" page_id="story1-PM-3">
             
-            <sentence number="11" action="no">
+            <sentence number="21" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Instead of sliding under, sometimes plates slide past each other.</text>
+                
+                <ideas>
+                    
+                    <idea number="11"/>
+                    
+                </ideas>
+                
+                <solution>
+                    
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="22" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>The small brown plate became part of California, and it is sliding past the big brown plate that became the rest of North America.</text>
+                
+                <ideas>
+                    
+                    <idea number="12"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="23" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>If you slide the small brown plate up a little bit, you will see how California is still moving!.</text>
+                
+                <ideas>
+                    
+                    <idea number="13"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="6"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="24" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Because the plates are still moving, they cause some types of natural disasters that you will read about.</text>
+                
+                <ideas>
+                    
+                    <idea number="14"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            
+            <sentence number="25" action="no">
                 
                 <attributes complexity="2"/>
                 
@@ -207,7 +468,7 @@
                 
             </sentence>
             
-            <sentence number="12" action="no">
+            <sentence number="26" action="no">
                 
                 <attributes complexity="2"/>
                 
@@ -224,7 +485,7 @@
                 
             </sentence>
             
-            <sentence number="13" action="yes">
+            <sentence number="27" action="yes">
                 
                 <attributes complexity="2"/>
                 
@@ -242,7 +503,7 @@
                 
             </sentence>
             
-            <sentence number="14" action="no">
+            <sentence number="28" action="no">
                 
                 <attributes complexity="2"/>
                 
@@ -263,9 +524,10 @@
         
         <story title="Earthquakes" page_id="story2-PM-1">
             
+            
             <sentence number="1" action="yes">
                 
-                <attributes complexity="2"/>
+                <attributes complexity="10"/>
                 
                 <text>The ground shakes and slides&#8230;the buildings move&#8230;.</text>
                 
@@ -283,7 +545,7 @@
             
             <sentence number="2" action="no">
                 
-                <attributes complexity="2"/>
+                <attributes complexity="10"/>
                 
                 <text>It&#8217;s an earthquake! Why do earthquakes happen.</text>
                 
@@ -300,7 +562,7 @@
             
             <sentence number="3" action="no">
                 
-                <attributes complexity="2"/>
+                <attributes complexity="10"/>
                 
                 <text>The plates on top of the mantle move, and this movement is called plate tectonics.</text>
                 
@@ -317,6 +579,80 @@
             
             <sentence number="4" action="no">
                 
+                <attributes complexity="10"/>
+                
+                <text>Plate tectonics causes earthquakes.</text>
+                
+                <ideas>
+                    
+                    <idea number="18"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            
+            <sentence number="5" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>The ground shakes and slides&#8230;the buildings move&#8230;.</text>
+                
+                <ideas>
+                    
+                    <idea number="15"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="7"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="6" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>It&#8217;s an earthquake! Why do earthquakes happen.</text>
+                
+                <ideas>
+                    
+                    <idea number="16"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="7" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>The plates on top of the mantle move, and this movement is called plate tectonics.</text>
+                
+                <ideas>
+                    
+                    <idea number="17"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="8" action="no">
+                
                 <attributes complexity="2"/>
                 
                 <text>Plate tectonics causes earthquakes.</text>
@@ -332,7 +668,7 @@
                 
             </sentence>
             
-            <sentence number="5" action="no">
+            <sentence number="9" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -350,7 +686,7 @@
                 
             </sentence>
             
-            <sentence number="6" action="no">
+            <sentence number="10" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -367,7 +703,7 @@
                 
             </sentence>
             
-            <sentence number="7" action="no">
+            <sentence number="11" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -384,7 +720,7 @@
                 
             </sentence>
             
-            <sentence number="8" action="no">
+            <sentence number="12" action="no">
                 
                 <attributes complexity="3"/>
                 
@@ -407,7 +743,99 @@
         
         <story title="Earthquakes" page_id="story2-PM-2">
             
-            <sentence number="9" action="no">
+            <sentence number="13" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Sometimes when plates slide past each other, parts become stuck.</text>
+                
+                <ideas>
+                    
+                    <idea number="19"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="14" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>If you try to slide the little brown plate, California, past the big brown plate, North America, it won&#8217;t move much.</text>
+                
+                <ideas>
+                    
+                    <idea number="20"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="8"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="15" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>But the plates still push on each other and pressure builds.</text>
+                
+                <ideas>
+                    
+                    <idea number="21"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="16" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>A fault line is the place where plates push on each other.</text>
+                
+                <ideas>
+                    
+                    <idea number="22"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="17" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>But the plates still push on each other, which makes them build pressure.</text>
+                
+                <ideas>
+                    
+                    <idea number="21"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            
+            
+            <sentence number="18" action="no">
                 
                 <attributes complexity="2"/>
                 
@@ -424,7 +852,7 @@
                 
             </sentence>
             
-            <sentence number="10" action="yes">
+            <sentence number="19" action="yes">
                 
                 <attributes complexity="2"/>
                 
@@ -442,7 +870,7 @@
                 
             </sentence>
             
-            <sentence number="11" action="no">
+            <sentence number="20" action="no">
                 
                 <attributes complexity="2"/>
                 
@@ -459,7 +887,7 @@
                 
             </sentence>
             
-            <sentence number="12" action="no">
+            <sentence number="21" action="no">
                 
                 <attributes complexity="2"/>
                 
@@ -476,7 +904,7 @@
                 
             </sentence>
             
-            <sentence number="13" action="no">
+            <sentence number="22" action="no">
                 
                 <attributes complexity="3"/>
                 
@@ -497,7 +925,80 @@
         
         <story title="Earthquakes" page_id="story2-PM-3">
             
-            <sentence number="14" action="yes">
+            <sentence number="23" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Then, because of the pressure at the fault line, part of the little brown plate moves suddenly&#160;&#8230;BOOM!.</text>
+                
+                <ideas>
+                    
+                    <idea number="23"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="9"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="24" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>The ground on one side of the fault line slides past the ground on the other side, and that sudden movement is an earthquake.</text>
+                
+                <ideas>
+                    
+                    <idea number="24"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="25" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Buildings that are near a fault line can fall down when the plates move.</text>
+                
+                <ideas>
+                    
+                    <idea number="25"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="10"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="26" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>When that happens, there can be fires, and many people can be hurt.</text>
+                
+                <ideas>
+                    
+                    <idea number="26"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            <sentence number="27" action="yes">
                 
                 <attributes complexity="2"/>
                 
@@ -515,7 +1016,7 @@
                 
             </sentence>
             
-            <sentence number="15" action="no">
+            <sentence number="28" action="no">
                 
                 <attributes complexity="2"/>
                 
@@ -532,7 +1033,7 @@
                 
             </sentence>
             
-            <sentence number="16" action="yes">
+            <sentence number="29" action="yes">
                 
                 <attributes complexity="2"/>
                 
@@ -550,7 +1051,7 @@
                 
             </sentence>
             
-            <sentence number="17" action="no">
+            <sentence number="30" action="no">
                 
                 <attributes complexity="2"/>
                 
@@ -567,7 +1068,7 @@
                 
             </sentence>
             
-            <sentence number="18" action="yes">
+            <sentence number="31" action="yes">
                 
                 <attributes complexity="1"/>
                 
@@ -585,7 +1086,7 @@
                 
             </sentence>
             
-            <sentence number="19" action="no">
+            <sentence number="32" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -602,7 +1103,7 @@
                 
             </sentence>
             
-            <sentence number="20" action="no">
+            <sentence number="33" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -619,7 +1120,7 @@
                 
             </sentence>
             
-            <sentence number="21" action="no">
+            <sentence number="34" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -636,7 +1137,7 @@
                 
             </sentence>
             
-            <sentence number="22" action="no">
+            <sentence number="35" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -659,7 +1160,7 @@
             
             <sentence number="1" action="no">
                 
-                <attributes complexity="2"/>
+                <attributes complexity="10"/>
                 
                 <text>A tsunami is a giant wave that can cause a lot of damage.</text>
                 
@@ -676,7 +1177,7 @@
             
             <sentence number="2" action="no">
                 
-                <attributes complexity="2"/>
+                <attributes complexity="10"/>
                 
                 <text>A tsunami near India killed more than 200,000 people in 2004.</text>
                 
@@ -693,7 +1194,7 @@
             
             <sentence number="3" action="no">
                 
-                <attributes complexity="2"/>
+                <attributes complexity="10"/>
                 
                 <text>The picture shows two plates pushing under the ocean.</text>
                 
@@ -710,6 +1211,79 @@
             
             <sentence number="4" action="no">
                 
+                <attributes complexity="10"/>
+                
+                <text>Over many, many years, the pushing causes a bulge in the plate.</text>
+                
+                <ideas>
+                    
+                    <idea number="30"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            
+            <sentence number="5" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>A tsunami is a giant wave that can cause a lot of damage.</text>
+                
+                <ideas>
+                    
+                    <idea number="27"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="6" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>A tsunami near India killed more than 200,000 people in 2004.</text>
+                
+                <ideas>
+                    
+                    <idea number="28"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="7" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>The picture shows two plates pushing under the ocean.</text>
+                
+                <ideas>
+                    
+                    <idea number="29"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="8" action="no">
+                
                 <attributes complexity="2"/>
                 
                 <text>Over many, many years, the pushing causes a bulge in the plate.</text>
@@ -725,7 +1299,12 @@
                 
             </sentence>
             
-            <sentence number="5" action="no">
+            
+            
+            
+            
+            
+            <sentence number="9" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -742,7 +1321,7 @@
                 
             </sentence>
             
-            <sentence number="6" action="no">
+            <sentence number="10" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -759,7 +1338,7 @@
                 
             </sentence>
             
-            <sentence number="7" action="no">
+            <sentence number="11" action="no">
                 
                 <attributes complexity="3"/>
                 
@@ -776,7 +1355,7 @@
                 
             </sentence>
             
-            <sentence number="8" action="no">
+            <sentence number="12" action="no">
                 
                 <attributes complexity="3"/>
                 
@@ -793,7 +1372,7 @@
                 
             </sentence>
             
-            <sentence number="9" action="no">
+            <sentence number="13" action="no">
                 
                 <attributes complexity="3"/>
                 
@@ -816,7 +1395,82 @@
         
         <story title="Tsunamis" page_id="story3-PM-2">
             
-            <sentence number="10" action="yes">
+            <sentence number="14" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Sometimes, there is a sudden earthquake under the water when the bottom plate slides quickly under the top plate.</text>
+                
+                <ideas>
+                    
+                    <idea number="31"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="11"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="15" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>When that happens, there is a hole under the water, and water rushes in from all around to fill up the hole.</text>
+                
+                <ideas>
+                    
+                    <idea number="32"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="16" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Water even rushes into the hole from near the shore, and that is called a drawback.</text>
+                
+                <ideas>
+                    
+                    <idea number="33"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="12"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="17" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>The drawback makes it look like the ocean is moving away from the land!.</text>
+                
+                <ideas>
+                    
+                    <idea number="34"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            
+            <sentence number="18" action="yes">
                 
                 <attributes complexity="2"/>
                 
@@ -834,7 +1488,7 @@
                 
             </sentence>
             
-            <sentence number="11" action="no">
+            <sentence number="19" action="no">
                 
                 <attributes complexity="2"/>
                 
@@ -851,7 +1505,7 @@
                 
             </sentence>
             
-            <sentence number="12" action="yes">
+            <sentence number="20" action="yes">
                 
                 <attributes complexity="2"/>
                 
@@ -869,7 +1523,7 @@
                 
             </sentence>
             
-            <sentence number="13" action="no">
+            <sentence number="21" action="no">
                 
                 <attributes complexity="2"/>
                 
@@ -886,7 +1540,7 @@
                 
             </sentence>
             
-            <sentence number="14" action="no">
+            <sentence number="22" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -903,7 +1557,7 @@
                 
             </sentence>
             
-            <sentence number="15" action="yes">
+            <sentence number="23" action="yes">
                 
                 <attributes complexity="1"/>
                 
@@ -921,7 +1575,7 @@
                 
             </sentence>
             
-            <sentence number="16" action="no">
+            <sentence number="24" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -938,7 +1592,7 @@
                 
             </sentence>
             
-            <sentence number="17" action="no">
+            <sentence number="25" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -955,7 +1609,7 @@
                 
             </sentence>
             
-            <sentence number="18" action="yes">
+            <sentence number="26" action="yes">
                 
                 <attributes complexity="1"/>
                 
@@ -973,7 +1627,7 @@
                 
             </sentence>
             
-            <sentence number="19" action="no">
+            <sentence number="27" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -990,7 +1644,7 @@
                 
             </sentence>
             
-            <sentence number="20" action="yes">
+            <sentence number="28" action="yes">
                 
                 <attributes complexity="3"/>
                 
@@ -1012,7 +1666,82 @@
         
         <story title="Tsunamis" page_id="story3-PM-3">
             
-            <sentence number="21" action="no">
+            <sentence number="29" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>But all of that extra water forms a huge wave.</text>
+                
+                <ideas>
+                    
+                    <idea number="35"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="30" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>The wave moves towards the shore, and when it gets close, it can grow to 100 feet tall and cover the buildings!.</text>
+                
+                <ideas>
+                    
+                    <idea number="36"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="13"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="31" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>After the wave passes, there is another drawback, and the water rushes back to the ocean.</text>
+                
+                <ideas>
+                    
+                    <idea number="37"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="14"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="32" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>The drawback can carry people, animals, and buildings into the ocean.</text>
+                
+                <ideas>
+                    
+                    <idea number="38"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            
+            <sentence number="33" action="no">
                 
                 <attributes complexity="2"/>
                 
@@ -1029,7 +1758,7 @@
                 
             </sentence>
             
-            <sentence number="22" action="yes">
+            <sentence number="34" action="yes">
                 
                 <attributes complexity="2"/>
                 
@@ -1047,7 +1776,7 @@
                 
             </sentence>
             
-            <sentence number="23" action="yes">
+            <sentence number="35" action="yes">
                 
                 <attributes complexity="2"/>
                 
@@ -1065,7 +1794,7 @@
                 
             </sentence>
             
-            <sentence number="24" action="no">
+            <sentence number="36" action="no">
                 
                 <attributes complexity="2"/>
                 
@@ -1082,7 +1811,7 @@
                 
             </sentence>
             
-            <sentence number="25" action="no">
+            <sentence number="37" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -1099,7 +1828,7 @@
                 
             </sentence>
             
-            <sentence number="26" action="yes">
+            <sentence number="38" action="yes">
                 
                 <attributes complexity="1"/>
                 
@@ -1117,7 +1846,7 @@
                 
             </sentence>
             
-            <sentence number="27" action="yes">
+            <sentence number="39" action="yes">
                 
                 <attributes complexity="3"/>
                 
@@ -1139,7 +1868,28 @@
         
         <story title="Tsunamis" page_id="story3-PM-4">
             
-            <sentence number="28" action="yes">
+            <sentence number="40" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>If you are near the ocean and see the water disappear, or if you hear a tsunami warning, you should climb up high to escape the wave and the drawback.</text>
+                
+                <ideas>
+                    
+                    <idea number="39"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="15"/>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            <sentence number="41" action="yes">
                 
                 <attributes complexity="2"/>
                 
@@ -1157,7 +1907,7 @@
                 
             </sentence>
             
-            <sentence number="29" action="yes">
+            <sentence number="42" action="yes">
                 
                 <attributes complexity="1"/>
                 
@@ -1175,7 +1925,7 @@
                 
             </sentence>
             
-            <sentence number="30" action="no">
+            <sentence number="43" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -1198,7 +1948,7 @@
             
             <sentence number="1" action="no">
                 
-                <attributes complexity="2"/>
+                <attributes complexity="10"/>
                 
                 <text>Volcanoes spew out hot, melted rock from within the earth.</text>
                 
@@ -1215,7 +1965,7 @@
             
             <sentence number="2" action="no">
                 
-                <attributes complexity="2"/>
+                <attributes complexity="10"/>
                 
                 <text>The melted rock is called lava.</text>
                 
@@ -1232,7 +1982,7 @@
             
             <sentence number="3" action="no">
                 
-                <attributes complexity="2"/>
+                <attributes complexity="10"/>
                 
                 <text>Volcanoes are often found where plates meet, but sometimes a hotspot lets lava spew up in the middle of a plate.</text>
                 
@@ -1249,7 +1999,7 @@
             
             <sentence number="4" action="no">
                 
-                <attributes complexity="2"/>
+                <attributes complexity="10"/>
                 
                 <text>The islands of Hawai&#8217;i were formed by the Pacific plate moving over a hotspot.</text>
                 
@@ -1265,6 +2015,97 @@
             </sentence>
             
             <sentence number="5" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>The lava moves up the plume from the mantle deep in the earth.</text>
+                
+                <ideas>
+                    
+                    <idea number="44"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="16"/>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            
+            <sentence number="6" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Volcanoes spew out hot, melted rock from within the earth.</text>
+                
+                <ideas>
+                    
+                    <idea number="40"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="7" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>The melted rock is called lava.</text>
+                
+                <ideas>
+                    
+                    <idea number="41"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="8" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Volcanoes are often found where plates meet, but sometimes a hotspot lets lava spew up in the middle of a plate.</text>
+                
+                <ideas>
+                    
+                    <idea number="42"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="9" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>The islands of Hawai&#8217;i were formed by the Pacific plate moving over a hotspot.</text>
+                
+                <ideas>
+                    
+                    <idea number="43"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="10" action="yes">
                 
                 <attributes complexity="2"/>
                 
@@ -1282,7 +2123,7 @@
                 
             </sentence>
             
-            <sentence number="6" action="no">
+            <sentence number="11" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -1299,7 +2140,7 @@
                 
             </sentence>
             
-            <sentence number="7" action="no">
+            <sentence number="12" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -1316,7 +2157,7 @@
                 
             </sentence>
             
-            <sentence number="8" action="no">
+            <sentence number="13" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -1333,7 +2174,7 @@
                 
             </sentence>
             
-            <sentence number="9" action="yes">
+            <sentence number="14" action="yes">
                 
                 <attributes complexity="1"/>
                 
@@ -1350,7 +2191,7 @@
                 
             </sentence>
             
-            <sentence number="10" action="no">
+            <sentence number="15" action="no">
                 
                 <attributes complexity="3"/>
                 
@@ -1373,7 +2214,82 @@
         
         <story title="Volcanoes and the Making of Hawaii" page_id="story4-PM-2">
             
-            <sentence number="11" action="no">
+            
+            <sentence number="16" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>When the lava hits the ocean, it cools off and becomes rock.</text>
+                
+                <ideas>
+                    
+                    <idea number="45"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="17" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Then, more and more lava moves up.</text>
+                
+                <ideas>
+                    
+                    <idea number="46"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="17"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="18" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>As lava forms enough rocks, the volcano makes an island.</text>
+                
+                <ideas>
+                    
+                    <idea number="47"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="19" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>The picture shows the Hawaiian island of Kaua&#8217;i that was made about five million years ago.</text>
+                
+                <ideas>
+                    
+                    <idea number="48"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            
+            <sentence number="20" action="no">
                 
                 <attributes complexity="2"/>
                 
@@ -1390,7 +2306,7 @@
                 
             </sentence>
             
-            <sentence number="12" action="yes">
+            <sentence number="21" action="yes">
                 
                 <attributes complexity="2"/>
                 
@@ -1408,7 +2324,7 @@
                 
             </sentence>
             
-            <sentence number="13" action="no">
+            <sentence number="22" action="no">
                 
                 <attributes complexity="2"/>
                 
@@ -1425,7 +2341,7 @@
                 
             </sentence>
             
-            <sentence number="14" action="no">
+            <sentence number="23" action="no">
                 
                 <attributes complexity="2"/>
                 
@@ -1442,7 +2358,7 @@
                 
             </sentence>
             
-            <sentence number="15" action="no">
+            <sentence number="24" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -1459,7 +2375,7 @@
                 
             </sentence>
             
-            <sentence number="16" action="no">
+            <sentence number="25" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -1476,7 +2392,7 @@
                 
             </sentence>
             
-            <sentence number="17" action="yes">
+            <sentence number="26" action="yes">
                 
                 <attributes complexity="1"/>
                 
@@ -1494,7 +2410,7 @@
                 
             </sentence>
             
-            <sentence number="18" action="no">
+            <sentence number="27" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -1511,7 +2427,7 @@
                 
             </sentence>
             
-            <sentence number="19" action="no">
+            <sentence number="28" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -1528,7 +2444,7 @@
                 
             </sentence>
             
-            <sentence number="20" action="no">
+            <sentence number="29" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -1545,7 +2461,7 @@
                 
             </sentence>
             
-            <sentence number="21" action="yes">
+            <sentence number="30" action="yes">
                 
                 <attributes complexity="3"/>
                 
@@ -1568,7 +2484,66 @@
         
         <story title="Volcanoes and the Making of Hawaii" page_id="story4-PM-3">
             
-            <sentence number="22" action="yes">
+            <sentence number="31" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>But remember, the Pacific plate is moving to the left in the picture.</text>
+                
+                <ideas>
+                    
+                    <idea number="49"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="18"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="32" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>After the plate moves, the plume spews up lava to form a new island.</text>
+                
+                <ideas>
+                    
+                    <idea number="50"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="19"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="33" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>This is the island of Oahu that was made about three million years ago.</text>
+                
+                <ideas>
+                    
+                    <idea number="51"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            
+            
+            <sentence number="34" action="yes">
                 
                 <attributes complexity="2"/>
                 
@@ -1586,7 +2561,7 @@
                 
             </sentence>
             
-            <sentence number="23" action="yes">
+            <sentence number="35" action="yes">
                 
                 <attributes complexity="2"/>
                 
@@ -1604,7 +2579,7 @@
                 
             </sentence>
             
-            <sentence number="24" action="no">
+            <sentence number="36" action="no">
                 
                 <attributes complexity="2"/>
                 
@@ -1621,7 +2596,7 @@
                 
             </sentence>
             
-            <sentence number="25" action="no">
+            <sentence number="37" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -1638,7 +2613,7 @@
                 
             </sentence>
             
-            <sentence number="26" action="yes">
+            <sentence number="38" action="yes">
                 
                 <attributes complexity="1"/>
                 
@@ -1660,7 +2635,49 @@
         
         <story title="Volcanoes and the Making of Hawaii" page_id="story4-PM-4">
             
-            <sentence number="27" action="yes">
+            
+            
+            <sentence number="39" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>The Pacific plate kept moving and made all of the other Hawaiian Islands.</text>
+                
+                <ideas>
+                    
+                    <idea number="52"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="20"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="40" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>The plume is still there, and it is adding rock to the Big Island (also called Hawai&#8217;i).</text>
+                
+                <ideas>
+                    
+                    <idea number="53"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+
+
+
+
+
+            
+            <sentence number="41" action="yes">
                 
                 <attributes complexity="2"/>
                 
@@ -1678,7 +2695,7 @@
                 
             </sentence>
             
-            <sentence number="28" action="no">
+            <sentence number="42" action="no">
                 
                 <attributes complexity="2"/>
                 
@@ -1695,7 +2712,7 @@
                 
             </sentence>
             
-            <sentence number="29" action="yes">
+            <sentence number="43" action="yes">
                 
                 <attributes complexity="1"/>
                 
@@ -1713,7 +2730,7 @@
                 
             </sentence>
             
-            <sentence number="30" action="no">
+            <sentence number="44" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -1730,7 +2747,7 @@
                 
             </sentence>
             
-            <sentence number="31" action="no">
+            <sentence number="45" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -1747,7 +2764,7 @@
                 
             </sentence>
             
-            <sentence number="32" action="no">
+            <sentence number="46" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -1764,7 +2781,7 @@
                 
             </sentence>
             
-            <sentence number="33" action="yes">
+            <sentence number="47" action="yes">
                 
                 <attributes complexity="3"/>
                 
@@ -1782,7 +2799,7 @@
                 
             </sentence>
             
-            <sentence number="34" action="no">
+            <sentence number="48" action="no">
                 
                 <attributes complexity="3"/>
                 
@@ -1803,7 +2820,46 @@
         
         <story title="Volcanoes and the Making of Hawaii" page_id="story4-PM-5">
             
-            <sentence number="35" action="yes">
+            <sentence number="49" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Visitors to Hawai&#8217;i can see the lava coming to the top of the volcano and making the island bigger.</text>
+                
+                <ideas>
+                    
+                    <idea number="54"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="21"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="50" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>But the lava can also destroy buildings and roads, and hot gases from volcanoes can kill people.</text>
+                
+                <ideas>
+                    
+                    <idea number="55"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            <sentence number="51" action="yes">
                 
                 <attributes complexity="2"/>
                 
@@ -1821,7 +2877,7 @@
                 
             </sentence>
             
-            <sentence number="36" action="no">
+            <sentence number="52" action="no">
                 
                 <attributes complexity="2"/>
                 
@@ -1838,7 +2894,7 @@
                 
             </sentence>
             
-            <sentence number="37" action="no">
+            <sentence number="53" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -1855,7 +2911,7 @@
                 
             </sentence>
             
-            <sentence number="38" action="no">
+            <sentence number="54" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -1876,9 +2932,10 @@
         
         <story title="Tornados" page_id="story5-PM-1">
             
+            
             <sentence number="1" action="no">
                 
-                <attributes complexity="2"/>
+                <attributes complexity="10"/>
                 
                 <text>Tornados are large, rapidly swirling columns of air.</text>
                 
@@ -1895,7 +2952,7 @@
             
             <sentence number="2" action="no">
                 
-                <attributes complexity="2"/>
+                <attributes complexity="10"/>
                 
                 <text>Tornados start as a very large rain cloud called a supercell.</text>
                 
@@ -1912,7 +2969,7 @@
             
             <sentence number="3" action="yes">
                 
-                <attributes complexity="2"/>
+                <attributes complexity="10"/>
                 
                 <text>Some of the cool air (the blue arrow) starts to spin in the cloud.</text>
                 
@@ -1930,6 +2987,81 @@
             
             <sentence number="4" action="yes">
                 
+                <attributes complexity="10"/>
+                
+                <text>Then, rain from the cloud drags down the spinning cool air.</text>
+                
+                <ideas>
+                    
+                    <idea number="59"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="23"/>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            
+            <sentence number="5" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Tornados are large, rapidly swirling columns of air.</text>
+                
+                <ideas>
+                    
+                    <idea number="56"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="6" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Tornados start as a very large rain cloud called a supercell.</text>
+                
+                <ideas>
+                    
+                    <idea number="57"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="7" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Some of the cool air (the blue arrow) starts to spin in the cloud.</text>
+                
+                <ideas>
+                    
+                    <idea number="58"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="22"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="8" action="yes">
+                
                 <attributes complexity="2"/>
                 
                 <text>Then, rain from the cloud drags down the spinning cool air.</text>
@@ -1946,7 +3078,7 @@
                 
             </sentence>
             
-            <sentence number="5" action="no">
+            <sentence number="9" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -1962,7 +3094,7 @@
                 
             </sentence>
             
-            <sentence number="6" action="no">
+            <sentence number="10" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -1979,7 +3111,7 @@
                 
             </sentence>
             
-            <sentence number="7" action="no">
+            <sentence number="11" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -1996,7 +3128,7 @@
                 
             </sentence>
             
-            <sentence number="8" action="no">
+            <sentence number="12" action="no">
                 
                 <attributes complexity="3"/>
                 
@@ -2019,7 +3151,83 @@
         
         <story title="Tornados" page_id="story5-PM-2">
             
-            <sentence number="9" action="yes">
+            <sentence number="13" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Air near the ground is warm (the red arrow) and starts to rise in front of the spinning cool air.</text>
+                
+                <ideas>
+                    
+                    <idea number="60"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="24"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="14" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>The rising warm air also pulls in dirt that helps you see the swirling air.</text>
+                
+                <ideas>
+                    
+                    <idea number="61"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="25"/>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="15" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>As the tornado develops, the air swirls very fast, as fast as 300 miles per hour!.</text>
+                
+                <ideas>
+                    
+                    <idea number="62"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="16" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>When a large tornado moves near a house, it can pull off the roof and cause a lot of damage.</text>
+                
+                <ideas>
+                    
+                    <idea number="63"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="26"/>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            
+            <sentence number="17" action="yes">
                 
                 <attributes complexity="2"/>
                 
@@ -2037,7 +3245,7 @@
                 
             </sentence>
             
-            <sentence number="10" action="yes">
+            <sentence number="18" action="yes">
                 
                 <attributes complexity="2"/>
                 
@@ -2055,7 +3263,7 @@
                 
             </sentence>
             
-            <sentence number="11" action="no">
+            <sentence number="19" action="no">
                 
                 <attributes complexity="2"/>
                 
@@ -2072,7 +3280,7 @@
                 
             </sentence>
             
-            <sentence number="12" action="yes">
+            <sentence number="20" action="yes">
                 
                 <attributes complexity="2"/>
                 
@@ -2090,7 +3298,7 @@
                 
             </sentence>
             
-            <sentence number="13" action="no">
+            <sentence number="21" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -2105,7 +3313,7 @@
                 
             </sentence>
             
-            <sentence number="14" action="yes">
+            <sentence number="22" action="yes">
                 
                 <attributes complexity="1"/>
                 
@@ -2120,7 +3328,7 @@
                 
             </sentence>
             
-            <sentence number="15" action="yes">
+            <sentence number="23" action="yes">
                 
                 <attributes complexity="1"/>
                 
@@ -2138,7 +3346,7 @@
                 
             </sentence>
             
-            <sentence number="16" action="no">
+            <sentence number="24" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -2155,7 +3363,7 @@
                 
             </sentence>
             
-            <sentence number="17" action="no">
+            <sentence number="25" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -2172,7 +3380,7 @@
                 
             </sentence>
             
-            <sentence number="18" action="no">
+            <sentence number="26" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -2189,7 +3397,7 @@
                 
             </sentence>
             
-            <sentence number="19" action="yes">
+            <sentence number="27" action="yes">
                 
                 <attributes complexity="3"/>
                 
@@ -2211,7 +3419,80 @@
         
         <story title="Tornados" page_id="story5-PM-3">
             
-            <sentence number="20" action="yes">
+            <sentence number="28" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>After awhile, the cool air in the back of the tornado moves toward the front.</text>
+                
+                <ideas>
+                    
+                    <idea number="64"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="29" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Then, the cool air blocks the warm air, and that causes the tornado to shrink.</text>
+                
+                <ideas>
+                    
+                    <idea number="65"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="30" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Some tornados can last for hours and destroy many buildings.</text>
+                
+                <ideas>
+                    
+                    <idea number="66"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="31" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Fortunately, most tornados last just a few minutes, although they can still cause serious damage.</text>
+                
+                <ideas>
+                    
+                    <idea number="67"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            
+            <sentence number="32" action="yes">
                 
                 <attributes complexity="2"/>
                 
@@ -2228,7 +3509,7 @@
                 
             </sentence>
             
-            <sentence number="21" action="no">
+            <sentence number="33" action="no">
                 
                 <attributes complexity="2"/>
                 
@@ -2245,7 +3526,7 @@
                 
             </sentence>
             
-            <sentence number="22" action="no">
+            <sentence number="34" action="no">
                 
                 <attributes complexity="2"/>
                 
@@ -2262,7 +3543,7 @@
                 
             </sentence>
             
-            <sentence number="23" action="no">
+            <sentence number="35" action="no">
                 
                 <attributes complexity="2"/>
                 
@@ -2279,7 +3560,7 @@
                 
             </sentence>
             
-            <sentence number="24" action="no">
+            <sentence number="36" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -2296,7 +3577,7 @@
                 
             </sentence>
             
-            <sentence number="25" action="no">
+            <sentence number="37" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -2313,7 +3594,7 @@
                 
             </sentence>
             
-            <sentence number="26" action="no">
+            <sentence number="38" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -2332,7 +3613,7 @@
                 
             </sentence>
             
-            <sentence number="27" action="no">
+            <sentence number="39" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -2349,7 +3630,7 @@
                 
             </sentence>
             
-            <sentence number="28" action="no">
+            <sentence number="40" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -2366,7 +3647,7 @@
                 
             </sentence>
             
-            <sentence number="29" action="no">
+            <sentence number="41" action="no">
                 
                 <attributes complexity="3"/>
                 
