@@ -193,7 +193,7 @@
             //sentence with complexity level 2
             if (!foundIdea) {
                 for (AlternateSentence *altSent in alternateSentences) {
-                    if ([[[altSent ideas] objectAtIndex:0] isEqualToNumber:ideaNum] && [altSent complexity] == 2) {
+                    if ([[[altSent ideas] objectAtIndex:0] isEqualToNumber:ideaNum] && [altSent complexity] == 10) {
                         foundIdea = true;
                         [sentencesToAdd addObject:altSent];
                         previousIdeaNum = [[[altSent ideas] lastObject] intValue];
