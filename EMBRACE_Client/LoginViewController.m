@@ -154,7 +154,14 @@ NSString* const DROPBOX_PASSWORD_LOCKED = @"goodbye"; //used to set locked books
             
             //Load progress for student if it exists
                 studentProgress = [[ServerCommunicationController sharedInstance] loadProgress:student];
-                
+            
+            // Load skills for student if available
+            SkillSet *skillSet = [[ServerCommunicationController sharedInstance] loadSkills:student];
+            
+            if (skillSet != nil) {
+                [[ITSController sharedInstance] setSkillSet:skillSet];
+            }
+            
                 //Then take the user to the library view.
                 [self performSegueWithIdentifier: @"OpenLibrarySegue" sender: self];
             //}];
@@ -162,6 +169,13 @@ NSString* const DROPBOX_PASSWORD_LOCKED = @"goodbye"; //used to set locked books
         else {
             //Load progress for student if it exists
             studentProgress = [[ServerCommunicationController sharedInstance] loadProgress:student];
+            
+            // Load skills for student if available
+            SkillSet *skillSet = [[ServerCommunicationController sharedInstance] loadSkills:student];
+            
+            if (skillSet != nil) {
+                [[ITSController sharedInstance] setSkillSet:skillSet];
+            }
             
             //Then take the user to the library view.
             [self performSegueWithIdentifier: @"OpenLibrarySegue" sender: self];

@@ -2203,6 +2203,146 @@ static ServerCommunicationController *sharedInstance = nil;
     }
 }
 
+# pragma mark - Saving/loading ITS data
+
+- (SkillSet *)loadSkills:(Student *)student {
+    NSArray *directories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [directories objectAtIndex:0];
+    
+    //Get skills file name and path
+    NSString *skillsFileName = [NSString stringWithFormat:@"%@_skills.xml", [student participantCode]];
+//    NSString *skillsFileCurrentSessionPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"SkillsFiles/CurrentSession/%@", skillsFileName]];
+    NSString *skillsFileCurrentSessionPath = [documentsDirectory stringByAppendingPathComponent:skillsFileName];
+
+    //Try to load skills data
+    NSData *skillsData = [[NSMutableData alloc] initWithContentsOfFile:skillsFileCurrentSessionPath];
+
+    //If the file doesn't exist in the CurrentSession Folder, check the Master Folder
+    if (skillsData == nil){
+        NSString *skillsFileMasterPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"SkillFiles/Master/%@", skillsFileName]];
+        skillsData = [[NSMutableData alloc] initWithContentsOfFile:skillsFileMasterPath];
+        
+        //Copy data from Master Folder to CurrentSession Folder
+        if (skillsData != nil) {
+            [skillsData writeToFile:skillsFileCurrentSessionPath atomically:YES];
+        }
+    }
+
+    //Skills file for given student exists
+    if (skillsData != nil){
+        NSError *error;
+        GDataXMLDocument *skillsXMLDocument = [[GDataXMLDocument alloc] initWithData:skillsData error:&error];
+    
+        SkillSet *skills = [[SkillSet alloc] init];
+    
+        GDataXMLElement *skillsElement = (GDataXMLElement *)[[skillsXMLDocument nodesForXPath:@"//skills" error:nil] objectAtIndex:0];
+    
+        // Read vocabulary skills
+        GDataXMLElement *vocabularySkillsElement = [[skillsElement elementsForName:@"vocabularySkills"] objectAtIndex:0];
+        NSArray *vocabularyElements = [vocabularySkillsElement elementsForName:@"vocabulary"];
+    
+        for (GDataXMLElement *vocabularyElement in vocabularyElements) {
+            NSString *word = [[vocabularyElement attributeForName:@"word"] stringValue];
+            double skillValue = [[[vocabularyElement attributeForName:@"value"] stringValue] doubleValue];
+            
+            Skill *vocabularySkill = [Skill skillForWord:word];
+            
+            [vocabularySkill updateSkillValue:skillValue];
+            [skills addWordSkill:vocabularySkill forWord:word];
+        }
+        
+        // Read syntax skills
+        GDataXMLElement *syntaxSkillsElement = [[skillsElement elementsForName:@"syntaxSkills"] objectAtIndex:0];
+        NSArray *syntaxElements = [syntaxSkillsElement elementsForName:@"syntax"];
+    
+        for (GDataXMLElement *syntaxElement in syntaxElements) {
+            EMComplexity complexityLevel = [[[syntaxElement attributeForName:@"complexity"] stringValue] intValue];
+            double skillValue = [[[syntaxElement attributeForName:@"value"] stringValue] doubleValue];
+            [[skills syntaxSkillFor:complexityLevel] updateSkillValue:skillValue];
+        }
+        
+        // Read usability skill
+        GDataXMLElement *usabilitySkillElement = [[skillsElement elementsForName:@"usabilitySkill"] objectAtIndex:0];
+        GDataXMLElement *usabilityElement = [[usabilitySkillElement elementsForName:@"usability"] objectAtIndex:0];
+        double skillValue = [[[usabilityElement attributeForName:@"value"] stringValue] doubleValue];
+        [[skills usabilitySkill] updateSkillValue:skillValue];
+        
+        return skills;
+    }
+    //No skills file for given student exists
+    else {
+        return nil;
+    }
+}
+
+- (void)saveSkills:(Student *)student :(SkillSet *)skills {
+    DDXMLDocument *skillsXMLDocument = [[DDXMLDocument alloc] initWithXMLString:@"<skills/>" options:0 error:nil];
+    DDXMLElement *skillsXMLElement = [skillsXMLDocument rootElement];
+    
+    // Write vocabulary skills
+    DDXMLElement *vocabularyXMLElement = [DDXMLElement elementWithName:@"vocabularySkills"];
+
+    NSMutableDictionary *vocabularySkills = [skills getVocabularySkills];
+    
+    for (NSString *word in vocabularySkills) {
+        WordSkill *vocabularySkill = (WordSkill *)[vocabularySkills objectForKey:word];
+        
+        DDXMLElement *vocabularySkillXMLElement = [DDXMLElement elementWithName:@"vocabulary"];
+        [vocabularySkillXMLElement addAttributeWithName:@"word" stringValue:[vocabularySkill word]];
+        [vocabularySkillXMLElement addAttributeWithName:@"value" stringValue:@([vocabularySkill skillValue]).stringValue];
+        
+        [vocabularyXMLElement addChild:vocabularySkillXMLElement];
+    }
+
+    [skillsXMLElement addChild:vocabularyXMLElement];
+    
+    // Write syntax skills
+    DDXMLElement *syntaxXMLElement = [DDXMLElement elementWithName:@"syntaxSkills"];
+    
+    DDXMLElement *easySyntaxSkillXMLElement = [DDXMLElement elementWithName:@"syntax"];
+    [easySyntaxSkillXMLElement addAttributeWithName:@"complexity" stringValue:@"1"];
+    [easySyntaxSkillXMLElement addAttributeWithName:@"value" stringValue:@([[skills syntaxSkillFor:EM_Easy] skillValue]).stringValue];
+    [syntaxXMLElement addChild:easySyntaxSkillXMLElement];
+
+    DDXMLElement *mediumSyntaxSkillXMLElement = [DDXMLElement elementWithName:@"syntax"];
+    [mediumSyntaxSkillXMLElement addAttributeWithName:@"complexity" stringValue:@"2"];
+    [mediumSyntaxSkillXMLElement addAttributeWithName:@"value" stringValue:@([[skills syntaxSkillFor:EM_Medium] skillValue]).stringValue];
+    [syntaxXMLElement addChild:mediumSyntaxSkillXMLElement];
+    
+    DDXMLElement *complexSyntaxSkillXMLElement = [DDXMLElement elementWithName:@"syntax"];
+    [complexSyntaxSkillXMLElement addAttributeWithName:@"complexity" stringValue:@"3"];
+    [complexSyntaxSkillXMLElement addAttributeWithName:@"value" stringValue:@([[skills syntaxSkillFor:EM_Complex] skillValue]).stringValue];
+    [syntaxXMLElement addChild:complexSyntaxSkillXMLElement];
+
+    [skillsXMLElement addChild:syntaxXMLElement];
+
+    // Write usability skill
+    DDXMLElement *usabilityXMLElement = [DDXMLElement elementWithName:@"usabilitySkill"];
+    DDXMLElement *usabilitySkillXMLElement = [DDXMLElement elementWithName:@"usability"];
+    [usabilitySkillXMLElement addAttributeWithName:@"value" stringValue:@([[skills usabilitySkill] skillValue]).stringValue];
+    [usabilityXMLElement addChild:usabilitySkillXMLElement];
+    [skillsXMLElement addChild:usabilityXMLElement];
+    
+    //Contents of skills file as a string
+    NSString *skillsXMLString = [skillsXMLDocument XMLStringWithOptions:DDXMLNodePrettyPrint];
+    
+    NSArray *directories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [directories objectAtIndex:0];
+    
+    //Get skills file name and path
+    NSString *skillsFileName = [NSString stringWithFormat:@"%@_skills.xml", [student participantCode]];
+//    NSString *skillsFilePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"SkillsFiles/CurrentSession/%@", skillsFileName]];
+    NSString *skillsFilePath = [documentsDirectory stringByAppendingPathComponent:skillsFileName];
+    
+    //Write skills to file
+    if (![skillsXMLString writeToFile:skillsFilePath atomically:YES encoding:NSUTF8StringEncoding error:nil]) {
+        NSLog(@"Failed to save skills:\n\n%@", skillsXMLString);
+    }
+    else {
+        NSLog(@"Successfully saved skills.");
+    }
+}
+
 #pragma mark - Syncing log/progress files with Dropbox
 
 /*

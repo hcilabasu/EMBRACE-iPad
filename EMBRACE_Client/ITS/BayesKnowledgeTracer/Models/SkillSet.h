@@ -22,4 +22,6 @@
 
 - (UsabilitySkill *)usabilitySkill;
 
+- (NSMutableDictionary *)getVocabularySkills;
+
 @end

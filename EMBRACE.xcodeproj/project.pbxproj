@@ -5027,6 +5027,18 @@
 		5DED1CAD1C765BD200B29369 /* NaughtyMonkey_Script_C7.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DED1CA01C765BD200B29369 /* NaughtyMonkey_Script_C7.mp3 */; };
 		5DED1CAE1C765BD200B29369 /* NaughtyMonkey_Script_C8.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DED1CA11C765BD200B29369 /* NaughtyMonkey_Script_C8.mp3 */; };
 		5DED1CAF1C765BD200B29369 /* NaughtyMonkey_Script_C9.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DED1CA21C765BD200B29369 /* NaughtyMonkey_Script_C9.mp3 */; };
+		7112BA161DA4154700E08B7B /* AlternateSentences-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 7112BA141DA4154700E08B7B /* AlternateSentences-MetaData.xml */; };
+		7112BA171DA4154700E08B7B /* Solutions-MetaData-ITS.xml in Resources */ = {isa = PBXBuildFile; fileRef = 7112BA151DA4154700E08B7B /* Solutions-MetaData-ITS.xml */; };
+		712D5FBB1DB18D8B00AE3590 /* Solutions-MetaData-ITS.xml in Resources */ = {isa = PBXBuildFile; fileRef = 712D5FBA1DB18D8B00AE3590 /* Solutions-MetaData-ITS.xml */; };
+		713269991DC8EDD300121E28 /* AlternateSentences-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 713269971DC8EDD300121E28 /* AlternateSentences-MetaData.xml */; };
+		7132699A1DC8EDD300121E28 /* Solutions-MetaData-ITS.xml in Resources */ = {isa = PBXBuildFile; fileRef = 713269981DC8EDD300121E28 /* Solutions-MetaData-ITS.xml */; };
+		715DFBAD1DC907CD00C32C28 /* AlternateSentences-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 715DFBAB1DC907CD00C32C28 /* AlternateSentences-MetaData.xml */; };
+		715DFBAE1DC907CD00C32C28 /* Solutions-MetaData-ITS.xml in Resources */ = {isa = PBXBuildFile; fileRef = 715DFBAC1DC907CD00C32C28 /* Solutions-MetaData-ITS.xml */; };
+		7171C33A1DBF7EA40037E69F /* AlternateSentences-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 7171C3381DBF7EA40037E69F /* AlternateSentences-MetaData.xml */; };
+		7171C33B1DBF7EA40037E69F /* Solutions-MetaData-ITS.xml in Resources */ = {isa = PBXBuildFile; fileRef = 7171C3391DBF7EA40037E69F /* Solutions-MetaData-ITS.xml */; };
+		7171C33E1DBFD7280037E69F /* AlternateSentences-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 7171C33C1DBFD7280037E69F /* AlternateSentences-MetaData.xml */; };
+		7171C33F1DBFD7280037E69F /* Solutions-MetaData-ITS.xml in Resources */ = {isa = PBXBuildFile; fileRef = 7171C33D1DBFD7280037E69F /* Solutions-MetaData-ITS.xml */; };
+		719D48D31DAD509D00027A7F /* Solutions-MetaData-ITS.xml in Resources */ = {isa = PBXBuildFile; fileRef = 719D48D21DAD509D00027A7F /* Solutions-MetaData-ITS.xml */; };
 		C30D022D1BABBFD500DF53F1 /* PlayAudioIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABD84AD1A49F54B0043A685 /* PlayAudioIcon.png */; };
 		C30D022E1BABBFD500DF53F1 /* cover_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 31109701174AB35E00B02BF7 /* cover_default.png */; };
 		C30D022F1BABBFD500DF53F1 /* logo57.png in Resources */ = {isa = PBXBuildFile; fileRef = 31058C75176BCFF900595AAE /* logo57.png */; };
@@ -10174,6 +10186,18 @@
 		5DED1CA01C765BD200B29369 /* NaughtyMonkey_Script_C7.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkey_Script_C7.mp3; sourceTree = "<group>"; };
 		5DED1CA11C765BD200B29369 /* NaughtyMonkey_Script_C8.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkey_Script_C8.mp3; sourceTree = "<group>"; };
 		5DED1CA21C765BD200B29369 /* NaughtyMonkey_Script_C9.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaughtyMonkey_Script_C9.mp3; sourceTree = "<group>"; };
+		7112BA141DA4154700E08B7B /* AlternateSentences-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AlternateSentences-MetaData.xml"; sourceTree = "<group>"; };
+		7112BA151DA4154700E08B7B /* Solutions-MetaData-ITS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Solutions-MetaData-ITS.xml"; sourceTree = "<group>"; };
+		712D5FBA1DB18D8B00AE3590 /* Solutions-MetaData-ITS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Solutions-MetaData-ITS.xml"; sourceTree = "<group>"; };
+		713269971DC8EDD300121E28 /* AlternateSentences-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AlternateSentences-MetaData.xml"; sourceTree = "<group>"; };
+		713269981DC8EDD300121E28 /* Solutions-MetaData-ITS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Solutions-MetaData-ITS.xml"; sourceTree = "<group>"; };
+		715DFBAB1DC907CD00C32C28 /* AlternateSentences-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AlternateSentences-MetaData.xml"; sourceTree = "<group>"; };
+		715DFBAC1DC907CD00C32C28 /* Solutions-MetaData-ITS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Solutions-MetaData-ITS.xml"; sourceTree = "<group>"; };
+		7171C3381DBF7EA40037E69F /* AlternateSentences-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AlternateSentences-MetaData.xml"; sourceTree = "<group>"; };
+		7171C3391DBF7EA40037E69F /* Solutions-MetaData-ITS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Solutions-MetaData-ITS.xml"; sourceTree = "<group>"; };
+		7171C33C1DBFD7280037E69F /* AlternateSentences-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AlternateSentences-MetaData.xml"; sourceTree = "<group>"; };
+		7171C33D1DBFD7280037E69F /* Solutions-MetaData-ITS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Solutions-MetaData-ITS.xml"; sourceTree = "<group>"; };
+		719D48D21DAD509D00027A7F /* Solutions-MetaData-ITS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Solutions-MetaData-ITS.xml"; sourceTree = "<group>"; };
 		C32DA0DF1BF92A52006C2418 /* Progress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Progress.h; sourceTree = "<group>"; };
 		C32DA0E01BF92A52006C2418 /* Progress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Progress.m; sourceTree = "<group>"; };
 		C35F427B1BDAAD3600B4BCF0 /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
@@ -10767,6 +10791,9 @@
 		1A631D431C0E4D3A00251CB3 /* OEBPS */ = {
 			isa = PBXGroup;
 			children = (
+				7171C3381DBF7EA40037E69F /* AlternateSentences-MetaData.xml */,
+				7171C3391DBF7EA40037E69F /* Solutions-MetaData-ITS.xml */,
+				033DA4DE1D7D1EA700648C2F /* Vocabulary-MetaData.xml */,
 				1A631D441C0E4D3A00251CB3 /* AlternateImages-MetaData.xml */,
 				1A9FCB1A1DB6FDD2005C5DAE /* Vocabulary-MetaData.xml */,
 				1A9FCB1B1DB6FDD2005C5DAE /* WordMapping.xml */,
@@ -11155,6 +11182,9 @@
 		1A631E521C0E4D3A00251CB3 /* OEBPS */ = {
 			isa = PBXGroup;
 			children = (
+				713269971DC8EDD300121E28 /* AlternateSentences-MetaData.xml */,
+				713269981DC8EDD300121E28 /* Solutions-MetaData-ITS.xml */,
+				033DA4E21D7D1EC600648C2F /* Vocabulary-MetaData.xml */,
 				5DB79E7C1C916DCD003B2AFC /* Script-Metadata.xml */,
 				1A9FCB121DB6FDB6005C5DAE /* Vocabulary-MetaData.xml */,
 				1A9FCB131DB6FDB6005C5DAE /* WordMapping.xml */,
@@ -11579,6 +11609,10 @@
 		1A631F8D1C0E4D3A00251CB3 /* OEBPS */ = {
 			isa = PBXGroup;
 			children = (
+				7171C33C1DBFD7280037E69F /* AlternateSentences-MetaData.xml */,
+				7171C33D1DBFD7280037E69F /* Solutions-MetaData-ITS.xml */,
+				033DA4E61D7D1EDD00648C2F /* Vocabulary-MetaData.xml */,
+				1A6C140F1D9F2F1B004658F5 /* WordMapping.xml */,
 				5DB79E7E1C9170D1003B2AFC /* Script-Metadata.xml */,
 				1A9FCB0E1DB6FDA4005C5DAE /* Vocabulary-MetaData.xml */,
 				1A9FCB0F1DB6FDA4005C5DAE /* WordMapping.xml */,
@@ -13616,6 +13650,9 @@
 		5C28DB931C2BA66E005ACD07 /* OEBPS */ = {
 			isa = PBXGroup;
 			children = (
+				715DFBAB1DC907CD00C32C28 /* AlternateSentences-MetaData.xml */,
+				715DFBAC1DC907CD00C32C28 /* Solutions-MetaData-ITS.xml */,
+				033DA4D81D7D1E8000648C2F /* Vocabulary-MetaData.xml */,
 				5DB79E8A1C917403003B2AFC /* Script-Metadata.xml */,
 				1A9FCB1E1DB6FDE4005C5DAE /* Vocabulary-MetaData.xml */,
 				1A9FCB1F1DB6FDE4005C5DAE /* WordMapping.xml */,
@@ -17716,6 +17753,7 @@
 				5C030F8C1C863196006E1BEA /* Barn_def_S.mp3 in Resources */,
 				5C62A9481C853C7400F28BEB /* Law_def_S.mp3 in Resources */,
 				5CB710F41C6C292B0062AD61 /* CWWB4.m4a in Resources */,
+				7171C33B1DBF7EA40037E69F /* Solutions-MetaData-ITS.xml in Resources */,
 				5CA955831C3237690038FB56 /* tocE.ncx in Resources */,
 				5C72E6671C72A46F00CE4877 /* TheInuitIglooQ4A1.mp3 in Resources */,
 				5CA5CC6E1CD1B1C6002A631F /* WhoIsTheBestAnimalS14E.mp3 in Resources */,
@@ -17756,6 +17794,7 @@
 				5C9C07F51C57385A00702FCD /* BFES_12.m4a in Resources */,
 				5CF6CA2C1CCB2BB50093D3FD /* SpewsE.mp3 in Resources */,
 				1A63211C1C0E4D3B00251CB3 /* vase_flower.png in Resources */,
+				715DFBAD1DC907CD00C32C28 /* AlternateSentences-MetaData.xml in Resources */,
 				1A6321481C0E4D3B00251CB3 /* Story6-Homecoming-PM-3.xhtml in Resources */,
 				5C04204A1C616BEA001BBE9D /* TheLuckyStoneS7S.mp3 in Resources */,
 				5C0ED9A11C753AD400003B5A /* CigaretteSmokeHurtsYourLungsQ2.mp3 in Resources */,
@@ -18338,6 +18377,7 @@
 				5C0420261C614653001BBE9D /* TheLopezFamilyS9E.mp3 in Resources */,
 				5CF6CA591CCB2BB50093D3FD /* PressureS.mp3 in Resources */,
 				5CAE95DF1C921DCD00702DB4 /* EntrywayS.mp3 in Resources */,
+				713269991DC8EDD300121E28 /* AlternateSentences-MetaData.xml in Resources */,
 				5C8A55E21CD3E26D009F1ED4 /* BabyBrotherS6E.mp3 in Resources */,
 				5CA5CC411CD1A9C7002A631F /* CleaningUpS10E.mp3 in Resources */,
 				5C09DF641C84F7DB00EC4E78 /* Blood_def_E.mp3 in Resources */,
@@ -18833,6 +18873,7 @@
 				1A6322991C0E4D3B00251CB3 /* dog_large_high_res.png in Resources */,
 				5D9E340F1C590E9500636150 /* MoreIsMissingQ3A4.mp3 in Resources */,
 				5CA5CCA21CD1B85D002A631F /* EveryoneHelpsS12E.mp3 in Resources */,
+				7171C33E1DBFD7280037E69F /* AlternateSentences-MetaData.xml in Resources */,
 				5C0ED6ED1C752C2F00003B5A /* TheContestQ6A1.mp3 in Resources */,
 				5C40AEC71CBF5C7C00BFEB9F /* AccelerationS.mp3 in Resources */,
 				5C030F8B1C863196006E1BEA /* Award_def_S.mp3 in Resources */,
@@ -19039,6 +19080,7 @@
 				5C9C07CB1C57385A00702FCD /* BFE_CH1.m4a in Resources */,
 				1A2425541C6AD271002CBB13 /* backgroundGate_closed.png in Resources */,
 				1A63213C1C0E4D3B00251CB3 /* Story4-Shopping-at-the-Market-PM-4.xhtml in Resources */,
+				7132699A1DC8EDD300121E28 /* Solutions-MetaData-ITS.xml in Resources */,
 				5C72E7A91C72BF1000CE4877 /* NewtonsfirstlawQ3A3.mp3 in Resources */,
 				5D9E33E61C590E9500636150 /* MissingKeysQ1A3.mp3 in Resources */,
 				5D9E33D21C590E9400636150 /* IsPacoAThiefQ5A3.mp3 in Resources */,
@@ -19389,6 +19431,7 @@
 				5C5C6FD91C45ADE9002A67F9 /* liftingpole.png in Resources */,
 				5D9E327D1C588DF800636150 /* TheNaughtyMonkeyQ1A2.mp3 in Resources */,
 				5C0420201C614653001BBE9D /* TheLopezFamilyS6E.mp3 in Resources */,
+				7171C33F1DBFD7280037E69F /* Solutions-MetaData-ITS.xml in Resources */,
 				5C0ED8DA1C75334200003B5A /* ManchatheHorseQ3A3.mp3 in Resources */,
 				5D9E34561C590E9500636150 /* TheFamilyIsRattledQ2.mp3 in Resources */,
 				5CCD8F3D1C7405EC00D2EC2B /* EarthquakesQ2A2.mp3 in Resources */,
@@ -20361,6 +20404,7 @@
 				5C72E65A1C72A46F00CE4877 /* TheInuitIglooQ6A4.mp3 in Resources */,
 				5C0421A01C618C2B001BBE9D /* MagicToysQ7A2.mp3 in Resources */,
 				5D9E34371C590E9500636150 /* old_MissingKeysQ6A2.mp3 in Resources */,
+				7171C33A1DBF7EA40037E69F /* AlternateSentences-MetaData.xml in Resources */,
 				5CF6CA271CCB2BB50093D3FD /* RapidlyE.mp3 in Resources */,
 				1A6322301C0E4D3B00251CB3 /* north_america_nofault.png in Resources */,
 				5C0ED8F01C75334200003B5A /* ShoppingattheMarketQ1.mp3 in Resources */,
@@ -20621,6 +20665,7 @@
 				5C9C07DE1C57385A00702FCD /* BFEE_11A.m4a in Resources */,
 				5C9C07EC1C57385A00702FCD /* BFEE_8.m4a in Resources */,
 				1A6321E81C0E4D3B00251CB3 /* california_nofault.png in Resources */,
+				715DFBAE1DC907CD00C32C28 /* Solutions-MetaData-ITS.xml in Resources */,
 				5C5D091C1CA9F55800B7C8D9 /* Granted_type1S.mp3 in Resources */,
 				5C0ED6661C752C2F00003B5A /* CleaningUpQ4A1.mp3 in Resources */,
 				1A6320D11C0E4D3B00251CB3 /* Hotspots-MetaData.xml in Resources */,
