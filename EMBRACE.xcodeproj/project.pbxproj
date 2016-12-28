@@ -1044,6 +1044,7 @@
 		1AD3CC861A251C5300E18B1C /* IntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3CC851A251C5300E18B1C /* IntroductionViewController.m */; };
 		1AD3CC891A251CBA00E18B1C /* BuildHTMLString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3CC881A251CBA00E18B1C /* BuildHTMLString.m */; };
 		1AD3CC8C1A251CE600E18B1C /* PlayAudioFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3CC8B1A251CE600E18B1C /* PlayAudioFile.m */; };
+		1AD9181E1E12E84600C1C2AA /* ForwardProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD9181D1E12E84600C1C2AA /* ForwardProgress.m */; };
 		1ADDE2F71D808CBC002FB71C /* PageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ADDE2F61D808CBC002FB71C /* PageController.m */; };
 		1ADDE2FA1D808CD7002FB71C /* SentenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ADDE2F91D808CD7002FB71C /* SentenceController.m */; };
 		1ADDE2FD1D8092E2002FB71C /* PageContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ADDE2FC1D8092E2002FB71C /* PageContext.m */; };
@@ -6140,6 +6141,8 @@
 		1AD3CC881A251CBA00E18B1C /* BuildHTMLString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BuildHTMLString.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		1AD3CC8A1A251CE600E18B1C /* PlayAudioFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayAudioFile.h; sourceTree = "<group>"; };
 		1AD3CC8B1A251CE600E18B1C /* PlayAudioFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayAudioFile.m; sourceTree = "<group>"; };
+		1AD9181C1E12E80000C1C2AA /* ForwardProgress.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForwardProgress.h; sourceTree = "<group>"; };
+		1AD9181D1E12E84600C1C2AA /* ForwardProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForwardProgress.m; sourceTree = "<group>"; };
 		1ADDE2F51D808CBC002FB71C /* PageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageController.h; sourceTree = "<group>"; };
 		1ADDE2F61D808CBC002FB71C /* PageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageController.m; sourceTree = "<group>"; };
 		1ADDE2F81D808CD7002FB71C /* SentenceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SentenceController.h; sourceTree = "<group>"; };
@@ -10299,6 +10302,8 @@
 				038BECDB1C88C33F00ECFE28 /* Context.m */,
 				038BECDD1C88C79600ECFE28 /* ManipulationContext.h */,
 				038BECDE1C88C79600ECFE28 /* ManipulationContext.m */,
+				1AD9181C1E12E80000C1C2AA /* ForwardProgress.h */,
+				1AD9181D1E12E84600C1C2AA /* ForwardProgress.m */,
 				1ADDE2FB1D8092E2002FB71C /* PageContext.h */,
 				1ADDE2FC1D8092E2002FB71C /* PageContext.m */,
 				1ADDE2FE1D80933E002FB71C /* SentenceContext.h */,
@@ -22037,6 +22042,7 @@
 				1AF3815B1A40A4C600D967FD /* AssessmentActivityViewController.m in Sources */,
 				31953E8D1729EE6E00570087 /* BookCellView.m in Sources */,
 				5CFA85AB1950EFDC00C7537D /* IntroductionStep.m in Sources */,
+				1AD9181E1E12E84600C1C2AA /* ForwardProgress.m in Sources */,
 				033BC06A1C507BD100A1EC14 /* ActivitySequenceController.m in Sources */,
 				31953E8F1729EE6E00570087 /* LibraryView.m in Sources */,
 				5D1168DB1C5A982B00536340 /* ManipulationViewController.m in Sources */,

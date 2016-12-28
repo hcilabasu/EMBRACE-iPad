@@ -24,6 +24,7 @@
 #import "ManipulationView.h"
 #import "ResourceStrings.h"
 #import "ManipulationContext.h"
+#import "ForwardProgress.h"
 #import "PageContext.h"
 #import "SentenceContext.h"
 #import "StepContext.h"
@@ -70,6 +71,7 @@ typedef enum InteractionMode {
 @property (nonatomic, strong) InteractionModel *model;
 @property (nonatomic, strong) ConditionSetup *conditionSetup;
 @property (nonatomic, strong) ManipulationContext *manipulationContext;
+@property (nonatomic, strong) ForwardProgress *forwardProgress;
 @property (nonatomic, strong) PageContext *pageContext;
 @property (nonatomic, strong) SentenceContext *sentenceContext;
 @property (nonatomic, strong) StepContext *stepContext;

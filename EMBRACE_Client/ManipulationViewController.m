@@ -65,6 +65,7 @@
     BOOL replenishSupply; //True if object should reappear after disappearing
     BOOL allowSnapback; //True if objects should snap back to original location upon error
     BOOL pressedNextLock; // True if user pressed next, and false after next function finishes execution
+    BOOL pressedBackLock; //True is user pressed back, and false after back button function finishes execution
     BOOL didSelectCorrectMenuOption; // True if user selected the correct menu option in IM mode
     
     CGPoint endLocation; // ending location of an object after it is moved
@@ -89,6 +90,7 @@
 @synthesize stepContext;
 @synthesize sentenceContext;
 @synthesize manipulationContext;
+@synthesize forwardProgress;
 @synthesize conditionSetup;
 @synthesize model;
 
@@ -199,6 +201,7 @@ BOOL wasPathFollowed = false;
     
     conditionSetup = [ConditionSetup sharedInstance];
     manipulationContext = [[ManipulationContext alloc] init];
+    forwardProgress = [[ForwardProgress alloc] init];
     pageContext = [[PageContext alloc] init];
     sentenceContext = [[SentenceContext alloc] init];
     stepContext = [[StepContext alloc] init];
@@ -3076,8 +3079,12 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 - (void)pressedNextStory{
     NSString *sentenceClass = [self.manipulationView getSentenceClass:sentenceContext.currentSentence];
     
-    if (isUserMovingBack && ![self isMostForwardProgress]) {
-        //TODO:
+    if (isUserMovingBack){
+        if([self isMostForwardProgress]) {
+            stepContext.currentStep = (-1*forwardProgress.stepNumber);
+            isUserMovingBack = false;
+        }
+        
         sentenceContext.currentSentence++;
         sentenceContext.currentSentenceText = [self.manipulationView getCurrentSentenceAt:sentenceContext.currentSentence];
         manipulationContext.sentenceNumber = sentenceContext.currentSentence;
@@ -3097,7 +3104,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             [self playCurrentSentenceAudio];
         }
     }
-    else if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && ([sentenceClass containsString: @"sentence actionSentence"] || [sentenceClass containsString: @"sentence IMactionSentence"])) {
+    else if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) &&
+             ([sentenceClass containsString: @"sentence actionSentence"] || [sentenceClass containsString: @"sentence IMactionSentence"])) {
         //Reset allRelationships arrray
         if ([allRelationships count]) {
             [allRelationships removeAllObjects];
@@ -3137,7 +3145,12 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             }
         }
     }
-    else if (stepContext.stepsComplete || stepContext.numSteps == 0 || (allowInteractions && ([chapterTitle isEqualToString:@"The Naughty Monkey"] && [pageContext.currentPageId containsString:PM2] && conditionSetup.condition == EMBRACE && !stepContext.stepsComplete && sentenceContext.currentSentence == 2)) || (!allowInteractions && ![chapterTitle isEqualToString:@"The Naughty Monkey"]) || (!allowInteractions && ([chapterTitle isEqualToString:@"The Naughty Monkey"] && [pageContext.currentPageId containsString:PM2] && conditionSetup.condition == CONTROL && stepContext.stepsComplete && sentenceContext.currentSentence == 2)) || (!allowInteractions && ([chapterTitle isEqualToString:@"The Naughty Monkey"] && conditionSetup.condition == CONTROL && !stepContext.stepsComplete && sentenceContext.currentSentence != 2))) {
+    else if (stepContext.stepsComplete ||
+             stepContext.numSteps == 0 ||
+             (allowInteractions && ([chapterTitle isEqualToString:@"The Naughty Monkey"] && [pageContext.currentPageId containsString:PM2] && conditionSetup.condition == EMBRACE && !stepContext.stepsComplete && sentenceContext.currentSentence == 2)) ||
+             (!allowInteractions && ![chapterTitle isEqualToString:@"The Naughty Monkey"]) ||
+             (!allowInteractions && ([chapterTitle isEqualToString:@"The Naughty Monkey"] && [pageContext.currentPageId containsString:PM2] && conditionSetup.condition == CONTROL && stepContext.stepsComplete && sentenceContext.currentSentence == 2)) ||
+             (!allowInteractions && ([chapterTitle isEqualToString:@"The Naughty Monkey"] && conditionSetup.condition == CONTROL && !stepContext.stepsComplete && sentenceContext.currentSentence != 2))) {
         if (sentenceContext.currentSentence > 0) {
             sentenceContext.currentIdea++;
             manipulationContext.ideaNumber = sentenceContext.currentIdea;
@@ -3247,8 +3260,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 - (IBAction)pressedBack:(id)sender {
     @synchronized(self) {
         //TODO: Refactor pressedNextLock to pressedBackLock
-        if (!pressedNextLock && !isLoadPageInProgress) {
-            pressedNextLock = true;
+        if (!pressedBackLock && !isLoadPageInProgress) {
+            pressedBackLock = true;
             [self.view setUserInteractionEnabled:NO];
             
             //TODO: Add logging for pressed back
@@ -3256,15 +3269,16 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             
             //NSString *preAudio = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(preaudio)"]];
             
-            //TODO:
             // First check if our toggle is enabled
-            // if its not, then store the current context as the most forward progressed context
+            // if it is not, then store the current context as the most forward progressed context
             if(!isUserMovingBack){
                 isUserMovingBack = true;
-                //TODO: save current progress
-                //pageId,
-                //currentSentence,
-                //currentStep
+                //Save current progress
+                forwardProgress.pageId = pageContext.currentPageId;
+                NSArray *currentPageIdComponents = [pageContext.currentPageId componentsSeparatedByString:@"-"];
+                forwardProgress.pageNumber = [currentPageIdComponents count] == 3 ? [[currentPageIdComponents objectAtIndex:2] intValue] : 0;
+                forwardProgress.sentenceNumber = sentenceContext.currentSentence;
+                forwardProgress.stepNumber = stepContext.currentStep;
             }
             
             if ([pageContext.currentPageId containsString:DASH_INTRO]) {
@@ -3274,7 +3288,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 [self pressedBackStory];
             }
             
-            pressedNextLock = false;
+            pressedBackLock = false;
         }
     }
 }
@@ -3308,21 +3322,19 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 
 -(BOOL) isMostForwardProgress{
     
-    //TODO: compare most forward progress with current progress + 1
     //if they are the same then we return true, if they are not we return false
-    /*
-     if(forwardProgress.pageID == pageContext.currentPageId &&
-        forwardProgress.sentenceNum == sentenceContext.currentSentence &&
-        forwardProgress.stepNum == stepContext.currentStep){
-        
-        isUserMovingBack = false;
-     
+    NSArray *currentPageIdComponents = [pageContext.currentPageId componentsSeparatedByString:@"-"];
+    
+     if(forwardProgress.pageNumber == ([currentPageIdComponents count] == 3 ? [[currentPageIdComponents objectAtIndex:2] intValue] : 0) &&
+        forwardProgress.pageId == (pageContext.currentPageId) &&
+        forwardProgress.sentenceNumber == (sentenceContext.currentSentence+1)
+        //&& forwardProgress.stepNumber == (stepContext.currentStep+1)
+        ){
         return true;
      }
      else{
         return false;
      }
-     */
 }
 
 - (IBAction)pressedPlayAudio:(id)sender {

@@ -46,7 +46,7 @@ static ConditionSetup *sharedInstance = nil;
         condition = EMBRACE;
         language = ENGLISH;
         reader = SYSTEM;
-        appMode = ITS;
+        appMode = Study;
         currentMode = PM_MODE;
 
         newInstructions = YES;

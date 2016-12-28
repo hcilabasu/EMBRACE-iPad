@@ -1272,8 +1272,9 @@ shouldUpdateConnection:(BOOL)updateCon
     NSString *wordsArrayString = [words componentsJoinedByString:@"','"];
     NSString *splitTextArrayString = [splitText componentsJoinedByString:@"','"];
     
+    ConditionSetup *conditionSetup = [ConditionSetup sharedInstance];
     //Add alternate sentence to page
-    addSentenceString = [NSString stringWithFormat:@"addSentence('s%d', %@, ['%@'], ['%@'])", sentenceNumber++, action ? @"true" : @"false", splitTextArrayString, wordsArrayString];
+    addSentenceString = [NSString stringWithFormat:@"addSentence('s%d', %@, ['%@'], ['%@'], %@)", sentenceNumber++, action ? @"true" : @"false", splitTextArrayString, wordsArrayString, conditionSetup.isOnDemandVocabEnabled ? @"true" : @"false"];
     [self.bookView stringByEvaluatingJavaScriptFromString:addSentenceString];
     
 }
