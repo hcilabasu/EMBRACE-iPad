@@ -211,6 +211,7 @@ UIImage *BackgroundImage;   //The background image related to the story
     //Return to the library view
     else {
         self.navigationController.navigationBar.hidden = NO;
+        [[ServerCommunicationController sharedInstance] createNewLogFile];
         [super.navigationController popViewControllerAnimated:YES]; //return to library view
     }
 }
@@ -337,6 +338,7 @@ UIImage *BackgroundImage;   //The background image related to the story
         [[(LibraryViewController *)libraryView studentProgress] setStatusOfChapter:ChapterTitle :COMPLETED fromBook:BookTitle];
         
         self.navigationController.navigationBar.hidden = NO;
+        [[ServerCommunicationController sharedInstance] createNewLogFile];
         [self.navigationController popToViewController:libraryView animated:YES];
     }
 }

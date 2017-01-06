@@ -65,6 +65,7 @@
     BOOL replenishSupply; //True if object should reappear after disappearing
     BOOL allowSnapback; //True if objects should snap back to original location upon error
     BOOL pressedNextLock; // True if user pressed next, and false after next function finishes execution
+    BOOL pressedBackLock; //True is user pressed back, and false after back button function finishes execution
     BOOL didSelectCorrectMenuOption; // True if user selected the correct menu option in IM mode
     
     CGPoint endLocation; // ending location of an object after it is moved
@@ -89,6 +90,7 @@
 @synthesize stepContext;
 @synthesize sentenceContext;
 @synthesize manipulationContext;
+@synthesize forwardProgress;
 @synthesize conditionSetup;
 @synthesize model;
 
@@ -120,6 +122,7 @@
 @synthesize allRelationships;
 @synthesize menuDataSource;
 @synthesize bookView;
+@synthesize isUserMovingBack;
 
 //Used to determine the required proximity of 2 hotspots to group two items together.
 float const groupingProximity = 20.0;
@@ -198,6 +201,7 @@ BOOL wasPathFollowed = false;
     
     conditionSetup = [ConditionSetup sharedInstance];
     manipulationContext = [[ManipulationContext alloc] init];
+    forwardProgress = [[ForwardProgress alloc] init];
     pageContext = [[PageContext alloc] init];
     sentenceContext = [[SentenceContext alloc] init];
     stepContext = [[StepContext alloc] init];
@@ -231,6 +235,7 @@ BOOL wasPathFollowed = false;
     allowSnapback = TRUE;
     pressedNextLock = false;
     isLoadPageInProgress = false;
+    isUserMovingBack = false;
     didSelectCorrectMenuOption = false;
     
     movingObject = FALSE;
@@ -265,6 +270,21 @@ BOOL wasPathFollowed = false;
         if (conditionSetup.useKnowledgeTracing && ![chapterTitle isEqualToString:@"The Naughty Monkey"]) {
             [[ITSController sharedInstance] setAnalyzerDelegate:self];
             stepContext.numSyntaxErrors = 0;
+        }
+    }
+    
+    if(conditionSetup.reader == USER){
+        NSArray *arrSubviews = [self.view subviews];
+        for(UIView *tmpView in arrSubviews)
+        {
+            if([tmpView isMemberOfClass:[UIButton class]])
+            {
+                // Optionally, check button.tag
+                if(tmpView.tag == 2) {
+                    // Do some action on UIButton like
+                    [tmpView setHidden: true];
+                }
+            }
         }
     }
 }
@@ -765,7 +785,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             [self tapGestureOnVocabWord: englishSentenceText:sentenceText:sentenceIDNum];
         }
         //Taps on vocab word in story
-        else if ([pageContext.currentPageId containsString:@"-PM"]) {
+        else if ([pageContext.currentPageId containsString:@"-PM"] && conditionSetup.isOnDemandVocabEnabled) {
             [self tapGestureOnStoryWord:englishSentenceText:sentenceIDNum:spanishExt:sentenceText];
         }
     }
@@ -1003,8 +1023,17 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 /*
  *  Plays vocab word audio for intro page
  */
-- (void)playIntroVocabWord:(NSString *)englishSentenceText :(ActionStep *)currSolStep {
-    if (conditionSetup.language == ENGLISH) {
+- (void) playIntroVocabWord: (NSString *) englishSentenceText : (ActionStep *) currSolStep
+{
+    [self highlightImageForText:englishSentenceText];
+    
+    NSString *englishTappedWord = englishSentenceText;
+    
+    //Remove any whitespaces since this would cause the a failure for reading the file name
+    englishSentenceText = [englishSentenceText stringByReplacingOccurrencesOfString:@" " withString:EMPTYSTRING];
+    
+    if(conditionSetup.language == ENGLISH)
+    {
         //Play En audio
         bool success = [self.playaudioClass playAudioFile:self:[NSString stringWithFormat:@"%@%@.mp3", [englishSentenceText capitalizedString], DEF_E]];
         
@@ -1030,8 +1059,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         }
     }
     
-    [self highlightImageForText:englishSentenceText];
-    
     // This delay is needed in order to be able to play the last definition on a vocabulary page
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW,[self.playaudioClass audioDuration] * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         //if audioPlayer is nil then we have returned to library view and should not play audio
@@ -1048,7 +1075,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:englishSentenceText inLanguage:ENGLISH_TXT ofType:PLAY_WORD_WITH_DEF :manipulationContext];
             }
             
-            [self highlightImageForText:englishSentenceText];
+            [self highlightImageForText:englishTappedWord];
             
             sentenceContext.currentSentence++;
             sentenceContext.currentSentenceText = [self.manipulationView getCurrentSentenceAt:sentenceContext.currentSentence];
@@ -3015,7 +3042,33 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 - (void)pressedNextStory{
     NSString *sentenceClass = [self.manipulationView getSentenceClass:sentenceContext.currentSentence];
     
-    if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && ([sentenceClass containsString: @"sentence actionSentence"] || [sentenceClass containsString: @"sentence IMactionSentence"])) {
+    if (isUserMovingBack){
+        if([self isMostForwardProgress]) {
+            stepContext.currentStep = (-1*forwardProgress.stepNumber);
+            isUserMovingBack = false;
+        }
+        
+        sentenceContext.currentSentence++;
+        sentenceContext.currentSentenceText = [self.manipulationView getCurrentSentenceAt:sentenceContext.currentSentence];
+        manipulationContext.sentenceNumber = sentenceContext.currentSentence;
+        manipulationContext.sentenceComplexity = [sc getComplexityOfCurrentSentence];
+        manipulationContext.sentenceText = sentenceContext.currentSentenceText;
+        manipulationContext.manipulationSentence = [sc isManipulationSentence:sentenceContext.currentSentence];
+        [[ServerCommunicationController sharedInstance] logLoadSentence:sentenceContext.currentSentence withComplexity:manipulationContext.sentenceComplexity withText:sentenceContext.currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
+        
+        //currentSentence is 1 indexed.
+        if (sentenceContext.currentSentence > sentenceContext.totalSentences) {
+            [pc loadNextPage];
+        }
+        else {
+            //Set up current sentence appearance and solution steps
+            [sc setupCurrentSentence];
+            [sc colorSentencesUponNext];
+            [self playCurrentSentenceAudio];
+        }
+    }
+    else if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) &&
+             ([sentenceClass containsString: @"sentence actionSentence"] || [sentenceClass containsString: @"sentence IMactionSentence"])) {
         //Reset allRelationships arrray
         if ([allRelationships count]) {
             [allRelationships removeAllObjects];
@@ -3055,7 +3108,12 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             }
         }
     }
-    else if (stepContext.stepsComplete || stepContext.numSteps == 0 || (allowInteractions && ([chapterTitle isEqualToString:@"The Naughty Monkey"] && [pageContext.currentPageId containsString:PM2] && conditionSetup.condition == EMBRACE && !stepContext.stepsComplete && sentenceContext.currentSentence == 2)) || (!allowInteractions && ![chapterTitle isEqualToString:@"The Naughty Monkey"]) || (!allowInteractions && ([chapterTitle isEqualToString:@"The Naughty Monkey"] && [pageContext.currentPageId containsString:PM2] && conditionSetup.condition == CONTROL && stepContext.stepsComplete && sentenceContext.currentSentence == 2)) || (!allowInteractions && ([chapterTitle isEqualToString:@"The Naughty Monkey"] && conditionSetup.condition == CONTROL && !stepContext.stepsComplete && sentenceContext.currentSentence != 2))) {
+    else if (stepContext.stepsComplete ||
+             stepContext.numSteps == 0 ||
+             (allowInteractions && ([chapterTitle isEqualToString:@"The Naughty Monkey"] && [pageContext.currentPageId containsString:PM2] && conditionSetup.condition == EMBRACE && !stepContext.stepsComplete && sentenceContext.currentSentence == 2)) ||
+             (!allowInteractions && ![chapterTitle isEqualToString:@"The Naughty Monkey"]) ||
+             (!allowInteractions && ([chapterTitle isEqualToString:@"The Naughty Monkey"] && [pageContext.currentPageId containsString:PM2] && conditionSetup.condition == CONTROL && stepContext.stepsComplete && sentenceContext.currentSentence == 2)) ||
+             (!allowInteractions && ([chapterTitle isEqualToString:@"The Naughty Monkey"] && conditionSetup.condition == CONTROL && !stepContext.stepsComplete && sentenceContext.currentSentence != 2))) {
         if (sentenceContext.currentSentence > 0) {
             sentenceContext.currentIdea++;
             manipulationContext.ideaNumber = sentenceContext.currentIdea;
@@ -3162,6 +3220,93 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     }
 }
 
+- (IBAction)pressedBack:(id)sender {
+    @synchronized(self) {
+        //TODO: Refactor pressedNextLock to pressedBackLock
+        if (!pressedBackLock && !isLoadPageInProgress) {
+            pressedBackLock = true;
+            [self.view setUserInteractionEnabled:NO];
+            
+            //TODO: Add logging for pressed back
+            //[[ServerCommunicationController sharedInstance] logPressNextInManipulationActivity:manipulationContext];
+            
+            //NSString *preAudio = [bookView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.getElementById(preaudio)"]];
+            
+            // First check if our toggle is enabled
+            // if it is not, then store the current context as the most forward progressed context
+            if(!isUserMovingBack){
+                isUserMovingBack = true;
+                //Save current progress
+                forwardProgress.pageId = pageContext.currentPageId;
+                NSArray *currentPageIdComponents = [pageContext.currentPageId componentsSeparatedByString:@"-"];
+                forwardProgress.pageNumber = [currentPageIdComponents count] == 3 ? [[currentPageIdComponents objectAtIndex:2] intValue] : 0;
+                forwardProgress.sentenceNumber = sentenceContext.currentSentence;
+                forwardProgress.stepNumber = stepContext.currentStep;
+            }
+            
+            if ([pageContext.currentPageId containsString:DASH_INTRO]) {
+                [self pressedBackIntro];
+            }
+            else {
+                [self pressedBackStory];
+            }
+            
+            pressedBackLock = false;
+        }
+    }
+}
+
+-(void) pressedBackIntro{
+    //TODO: Return to library view?
+}
+
+-(void) pressedBackStory{
+    //TODO: decrease sentence context and highlight last sentence
+    
+     sentenceContext.currentSentence--;
+     sentenceContext.currentSentenceText = [self.manipulationView getCurrentSentenceAt:sentenceContext.currentSentence];
+     manipulationContext.sentenceNumber = sentenceContext.currentSentence;
+     manipulationContext.sentenceComplexity = [sc getComplexityOfCurrentSentence];
+     manipulationContext.sentenceText = sentenceContext.currentSentenceText;
+     manipulationContext.manipulationSentence = [sc isManipulationSentence:sentenceContext.currentSentence];
+     [[ServerCommunicationController sharedInstance] logLoadSentence:sentenceContext.currentSentence withComplexity:manipulationContext.sentenceComplexity withText:sentenceContext.currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
+     
+     //currentSentence is 1 indexed.
+     if (sentenceContext.currentSentence < 0) {
+        [pc loadPreviousPage];
+     }
+     else {
+        //Set up current sentence appearance and solution steps
+        [sc setupCurrentSentence];
+        [sc colorSentencesUponBack];
+        [self playCurrentSentenceAudio];
+     }
+}
+
+-(BOOL) isMostForwardProgress{
+    
+    //if they are the same then we return true, if they are not we return false
+    NSArray *currentPageIdComponents = [pageContext.currentPageId componentsSeparatedByString:@"-"];
+    
+     if(forwardProgress.pageNumber == ([currentPageIdComponents count] == 3 ? [[currentPageIdComponents objectAtIndex:2] intValue] : 0) &&
+        forwardProgress.pageId == (pageContext.currentPageId) &&
+        forwardProgress.sentenceNumber == (sentenceContext.currentSentence+1)
+        //&& forwardProgress.stepNumber == (stepContext.currentStep+1)
+        ){
+        return true;
+     }
+     else{
+        return false;
+     }
+}
+
+- (IBAction)pressedPlayAudio:(id)sender {
+    if([pageContext.currentPageId containsString:DASH_PM]){
+            [self playCurrentSentenceAudio];
+    }
+}
+
+
 /*
  * Randomizer function that randomizes the menu options
  */
@@ -3184,7 +3329,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         
         [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:ERROR_NOISE inLanguage:NULL_TXT ofType:PLAY_ERROR_NOISE :manipulationContext];
     }
-    else if ([name isEqualToString:ERROR_FEEDBACK_NOISE]) {
+    else if([name isEqualToString:ERROR_FEEDBACK_NOISE]){
         [self.playaudioClass playErrorFeedbackNoise];
         
         [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:ERROR_FEEDBACK_NOISE inLanguage:NULL_TXT ofType:ERROR_FEEDBACK_NOISE :manipulationContext];
@@ -3279,7 +3424,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     // Log attempted usability error feedback
                     [[ServerCommunicationController sharedInstance] logUsabilityErrorFeedback:animatedItems context:manipulationContext];
                 }
-
+                
                 if ([stepType isEqualToString:CHECKANDSWAP]) {
                     [self swapObjectImage];
                 }
@@ -3412,7 +3557,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 4.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                     //Get the interaction to be performed
                     PossibleInteraction *interaction = [pic getCorrectInteraction];
-                   
+                    
                     //Perform the interaction and increment the step
                     [pic performInteraction:interaction];
                     [ssc incrementCurrentStep];

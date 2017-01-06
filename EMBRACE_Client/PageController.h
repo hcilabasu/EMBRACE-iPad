@@ -29,4 +29,5 @@
 - (id)initWithController: (ManipulationViewController*) superMvc;
 - (void) loadFirstPage;
 - (void) loadNextPage;
+- (void) loadPreviousPage;
 @end

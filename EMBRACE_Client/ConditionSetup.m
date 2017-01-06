@@ -23,6 +23,7 @@
 @synthesize isAutomaticAnimationEnabled;
 @synthesize useKnowledgeTracing;
 @synthesize shouldShowITSMessages;
+@synthesize isOnDemandVocabEnabled;
 
 @synthesize allowFileSync;
 
@@ -45,13 +46,14 @@ static ConditionSetup *sharedInstance = nil;
         condition = EMBRACE;
         language = ENGLISH;
         reader = SYSTEM;
-        appMode = ITS;
+        appMode = Study;
         currentMode = PM_MODE;
 
         newInstructions = NO;
         isVocabPageEnabled = NO;
         isAssessmentPageEnabled = NO;
         assessmentMode = ENDOFCHAPTER;
+        isOnDemandVocabEnabled = NO;
         
         isAutomaticAnimationEnabled = YES;
         animatedStepCompletionMode = PERSTEP;

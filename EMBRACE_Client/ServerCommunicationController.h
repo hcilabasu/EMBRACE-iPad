@@ -74,6 +74,7 @@
 - (void)logLoadPage:(NSString *)pageLanguage mode:(NSString *)pageMode number:(NSInteger)pageNumber complexity:(NSInteger)pageComplexity context:(ManipulationContext *)context;
 - (void)logPressLibrary:(ManipulationContext *)context;
 - (void)logCompleteManipulation:(ManipulationContext *)context;
+- (void)createNewLogFile;
 
 # pragma mark - Logging (Assessment)
 

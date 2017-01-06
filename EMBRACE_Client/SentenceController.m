@@ -50,7 +50,12 @@
  * Performs steps automatically if needed. Step is complete if it's a non-action sentence.
  */
 - (void)setupCurrentSentence {
-    stepContext.currentStep = 1;
+    if(stepContext.currentStep < 0){
+        stepContext.currentStep = abs(stepContext.currentStep);
+    }
+    else{
+        stepContext.currentStep = 1;
+    }
     manipulationContext.stepNumber = stepContext.currentStep;
     stepContext.stepsComplete = FALSE;
     stepContext.numAttempts = 0;
@@ -241,6 +246,13 @@
 - (void)colorSentencesUponNext {
     
     [self.manipulationView colorSentencesUponNext:sentenceContext.currentSentence
+                                        condition:conditionSetup.condition
+                                          andMode:conditionSetup.currentMode];
+}
+
+- (void)colorSentencesUponBack {
+    
+    [self.manipulationView colorSentencesUponBack:sentenceContext.currentSentence
                                         condition:conditionSetup.condition
                                           andMode:conditionSetup.currentMode];
 }
