@@ -34,6 +34,8 @@
 #define EMPTYSTRING @""
 #define ENGLISH_TXT @"English"
 #define ERROR_NOISE @"Error Noise"
+#define MORE_ERROR @"More to do sound"
+
 #define ERROR_FEEDBACK_NOISE @"Error Feedback Noise"
 #define GROUP_TXT @"group"
 #define GROUPAUTO @"groupAuto"

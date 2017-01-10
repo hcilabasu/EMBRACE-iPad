@@ -18,6 +18,7 @@
 #import "UsabilitySkill.h"
 
 #define DISTANCE_THRESHOLD 90
+#define HIGH_VOCABULARY_SKILL_THRESHOLD  0.8
 
 @interface ManipulationAnalyser ()
 
@@ -32,6 +33,8 @@
 @property (nonatomic, strong) NSMutableSet *playWords;
 
 @property (nonatomic, strong) NSString *mostProbableErrorType;
+
+@property (nonatomic, strong) SentenceStatus *currentSentenceStatus;
 
 @end
 
@@ -79,10 +82,6 @@
     return self.playWords;
 }
 
-- (void)pressedNextWithManipulationContext:(ManipulationContext *)context forSentence:(NSString *)sentence isVerified:(BOOL)verified {
-    // TODO
-}
-
 - (double)easySyntaxSkillValue {
     Skill *sk = [self.knowledgeTracer syntaxSkillFor:EM_Easy];
     
@@ -116,43 +115,47 @@
     
     NSString *bookTitle = context.bookTitle;
     NSMutableDictionary *bookDetails = [self bookDictionaryForTitle:bookTitle];
-    SentenceStatus *status = [self getActionListFrom:bookDetails forChapter:context.chapterTitle sentenceNumber:context.sentenceNumber andIdeaNumber:context.ideaNumber];
+    self.currentSentenceStatus = [self getActionListFrom:bookDetails forChapter:context.chapterTitle sentenceNumber:context.sentenceNumber andIdeaNumber:context.ideaNumber];
     
-    if ([status containsAction:userAction]) {
+    if ([self.currentSentenceStatus containsAction:userAction]) {
         // The sentence has been tried before
         [self analyzeAndUpdateSkill:userAction andContext:context isFirstAttempt:NO];
     }
     else {
         // First try by user
+        self.currentSentenceStatus.updatedVocabSkills = [NSMutableSet set];
         [self analyzeAndUpdateSkill:userAction andContext:context isFirstAttempt:YES];
     }
     
-    [status addUserAction:userAction];
+    [self.currentSentenceStatus addUserAction:userAction];
 }
 
-- (void)analyzeAndUpdateSkill:(UserAction *)userAction andContext:(ManipulationContext *)context isFirstAttempt:(BOOL)isFirstAttempt {
+- (void)analyzeAndUpdateSkill:(UserAction *)userAction
+                   andContext:(ManipulationContext *)context
+               isFirstAttempt:(BOOL)isFirstAttempt {
+    
     // Correct action
     if (userAction.isVerified) {
         NSMutableArray *skills = [NSMutableArray array];
         
         // Increase vocabulary skill for the object(s) moved
         for (NSString *movedObjectID in [userAction movedObjectIDs]) {
-            Skill *wordSkill = [self.knowledgeTracer updateSkillFor:movedObjectID isVerified:YES shouldDampen:!isFirstAttempt context:context];
-            
-            if (wordSkill != nil) {
-                [skills addObject:wordSkill];
-            }
+            [self updateVocabSkillFor:movedObjectID
+                               skills:skills
+                           isVerified:YES
+                       isFirstAttempt:isFirstAttempt
+                              context:context];
         }
         
         NSString *correctDestinationID = [userAction correctDestinationID];
         
         // Increase vocabulary skill for the destination
         if (correctDestinationID != nil && ![correctDestinationID isEqualToString:@""]) {
-            Skill *wordSkill = [self.knowledgeTracer updateSkillFor:correctDestinationID isVerified:YES shouldDampen:!isFirstAttempt context:context];
-            
-            if (wordSkill != nil) {
-                [skills addObject:wordSkill];
-            }
+            [self updateVocabSkillFor:correctDestinationID
+                               skills:skills
+                           isVerified:YES
+                       isFirstAttempt:isFirstAttempt
+                              context:context];
         }
         
         // Increase syntax skill
@@ -173,7 +176,10 @@
     }
 }
 
-- (void)updateSkillBasedOnMovedObject:(UserAction *)userAction andContext:(ManipulationContext *)context isFirstAttempt:(BOOL)isFirstAttempt {
+- (void)updateSkillBasedOnMovedObject:(UserAction *)userAction
+                           andContext:(ManipulationContext *)context
+                       isFirstAttempt:(BOOL)isFirstAttempt {
+    
     NSMutableArray *skills = [NSMutableArray array];
     
     EMComplexity complexity = [self.delegate getComplexityForCurrentSentence:self];
@@ -220,31 +226,170 @@
     Skill *syntaxSkill;
     Skill *usabilitySkill;
     
-    double HIGH_VOCABULARY_SKILL_THRESHOLD = 0.8;
+    
+    [self checkMovedObjectWithObjects:movedObjectIDs
+                             correctObject:correctMovedObjectID
+                                    skills:skills
+                              firstAttempt:isFirstAttempt
+                                complexity:complexity
+                                andContext:context];
+    
+    
+    [self checkDestinationObjectWithObjects:destinationIDs
+                              correctObject:correctDestinationID
+                                     skills:skills
+                               firstAttempt:isFirstAttempt
+                                 complexity:complexity
+                                 andContext:context];
+    
+    // Add syntax skill if it was updated
+    if (syntaxSkill != nil) {
+        [skills addObject:syntaxSkill];
+    }
+    
+    // Add usability skill if it was updated
+    if (usabilitySkill != nil) {
+        [skills addObject:usabilitySkill];
+    }
+    
+    [self showMessageWith:skills];
+    [self determineMostProbableErrorTypeFromSkills:skills];
+}
+
+/**
+ * Check all possible skill updates based on the destination objects.
+ * Different cases are:
+ *
+ * 1. Check if the destination is emtpy.
+ * 2. Correct destination object is not present in the Destination objects list.
+ *      i. Check the distance is above a threshold and if true it is usability
+ *      ii. Else it is a syntax or vocab
+ * 3. If Correct Destination object is present in Destinations objects list, increase the syntax skill.
+ **/
+- (void) checkDestinationObjectWithObjects:(NSSet *)destinationIDs
+                       correctObject:(NSString *)correctDestinationID
+                              skills:(NSMutableArray *)skills
+                        firstAttempt:(BOOL)isFirstAttempt
+                          complexity:(EMComplexity) complexity
+                          andContext:(ManipulationContext *)context {
+    
+    Skill *syntaxSkill;
+    Skill *usabilitySkill;
+    
+    // Check for vocabulary, syntax, or usability errors
+    // Vocabulary or syntax error
+    if ([destinationIDs count] == 0) {
+        double correctSkillValue = [[self.knowledgeTracer vocabSkillForWord:correctDestinationID] skillValue];
+        
+        // Vocabulary error
+        if (correctSkillValue < HIGH_VOCABULARY_SKILL_THRESHOLD) {
+            // Decrease vocabulary error for the correct destination
+            [self updateVocabSkillFor:correctDestinationID
+                               skills:skills
+                           isVerified:NO
+                       isFirstAttempt:isFirstAttempt
+                              context:context];
+        }
+        // Syntax error
+        else {
+            // Decrease syntax skill
+            syntaxSkill = [self.knowledgeTracer updateSyntaxSkill:NO withComplexity:complexity shouldDampen:!isFirstAttempt context:context];
+        }
+    }
+    // Moved to incorrect destination
+    else if (![destinationIDs containsObject:correctDestinationID]) {
+        // Vocabulary or syntax error
+        if (![self isDestDistanceBelowThreshold:destinationIDs :correctDestinationID]) {
+            double correctSkillValue = [[self.knowledgeTracer vocabSkillForWord:correctDestinationID] skillValue];
+            
+            // Vocabulary error
+            if (correctSkillValue < HIGH_VOCABULARY_SKILL_THRESHOLD) {
+                // Decrease vocabulary skill for the correct destination
+                [self updateVocabSkillFor:correctDestinationID
+                                   skills:skills
+                               isVerified:NO
+                           isFirstAttempt:isFirstAttempt
+                                  context:context];
+                
+                // Decrease vocabulary skills for the destinations
+                for (NSString *destinationID in destinationIDs) {
+                    
+                    [self updateVocabSkillFor:destinationID
+                                       skills:skills
+                                   isVerified:NO
+                               isFirstAttempt:isFirstAttempt
+                                      context:context];
+                }
+            }
+            // Syntax error
+            else {
+                // Decrease syntax skill
+                syntaxSkill = [self.knowledgeTracer updateSyntaxSkill:NO withComplexity:complexity shouldDampen:!isFirstAttempt context:context];
+            }
+        }
+        // Usability error
+        else {
+            // Decrease usability skill
+            usabilitySkill = [self.knowledgeTracer updateUsabilitySkill:NO shouldDampen:!isFirstAttempt context:context];
+        }
+    }
+    // Moved to correct destination
+    else {
+        // Increase vocabulary skill for the destination
+        [self updateVocabSkillFor:correctDestinationID
+                           skills:skills
+                       isVerified:YES
+                   isFirstAttempt:isFirstAttempt
+                          context:context];
+        
+    }
+    
+}
+
+
+/**
+ * Check all possible skill updates based on the moved objects.
+ * Different cases are:
+ *
+ * 1. Correct moved object is not present in the moved objects list.
+ *      i. Check the distance is above a threshold and if true it is usability
+ *      ii. Else it is a syntax or vocab
+ * 2. If Correct Moved object is present in moved objects list, increase the syntax skill.
+ **/
+- (void) checkMovedObjectWithObjects:(NSSet *)movedObjectIDs
+                       correctObject:(NSString *)correctMovedObjectID
+                              skills:(NSMutableArray *)skills
+                        firstAttempt:(BOOL)isFirstAttempt
+                          complexity:(EMComplexity) complexity
+                          andContext:(ManipulationContext *)context {
+    
+    
+    Skill *syntaxSkill;
+    Skill *usabilitySkill;
     
     // Check for vocabulary, syntax, or usability errors
     // Moved incorrect object
     if (![movedObjectIDs containsObject:correctMovedObjectID]) {
         // Vocabulary or syntax error
-        if (![self isDistanceBelowThreshold:movedObjectIDs :correctMovedObjectID]) {
+        if (![self isInitialDistanceBelowThreshold:movedObjectIDs :correctMovedObjectID]) {
             double correctSkillValue = [[self.knowledgeTracer vocabSkillForWord:correctMovedObjectID] skillValue];
             
             // Vocabulary error
             if (correctSkillValue < HIGH_VOCABULARY_SKILL_THRESHOLD) {
                 // Decrease vocabulary skill for the correct object to move
-                Skill *wordSkill = [self.knowledgeTracer updateSkillFor:correctMovedObjectID isVerified:NO shouldDampen:!isFirstAttempt context:context];
-                
-                if (wordSkill != nil) {
-                    [skills addObject:wordSkill];
-                }
+                [self updateVocabSkillFor:correctMovedObjectID
+                                   skills:skills
+                               isVerified:NO
+                           isFirstAttempt:isFirstAttempt
+                                  context:context];
                 
                 // Decrease vocabulary skills for the moved objects
                 for (NSString *movedObjectID in movedObjectIDs) {
-                    Skill *wordSkill = [self.knowledgeTracer updateSkillFor:movedObjectID isVerified:NO shouldDampen:!isFirstAttempt context:context];
-                    
-                    if (wordSkill != nil) {
-                        [skills addObject:wordSkill];
-                    }
+                    [self updateVocabSkillFor:movedObjectID
+                                       skills:skills
+                                   isVerified:NO
+                               isFirstAttempt:isFirstAttempt
+                                      context:context];
                 }
             }
             // Syntax error
@@ -263,80 +408,13 @@
     else {
         for (NSString *movedObjectID in movedObjectIDs) {
             // Increase vocabulary skill for the moved object
-            Skill *wordSkill = [self.knowledgeTracer updateSkillFor:movedObjectID isVerified:YES shouldDampen:!isFirstAttempt context:context];
-            
-            if (wordSkill != nil) {
-                [skills addObject:wordSkill];
-            }
+            [self updateVocabSkillFor:movedObjectID
+                               skills:skills
+                           isVerified:YES
+                       isFirstAttempt:isFirstAttempt
+                              context:context];
         }
     }
-    
-    // Check for vocabulary, syntax, or usability errors
-    // Vocabulary or syntax error
-    if ([destinationIDs count] == 0) {
-        double correctSkillValue = [[self.knowledgeTracer vocabSkillForWord:correctDestinationID] skillValue];
-        
-        // Vocabulary error
-        if (correctSkillValue < HIGH_VOCABULARY_SKILL_THRESHOLD) {
-            // Decrease vocabulary error for the correct destination
-            Skill *wordSkill = [self.knowledgeTracer updateSkillFor:correctDestinationID isVerified:NO shouldDampen:!isFirstAttempt context:context];
-            
-            if (wordSkill != nil) {
-                [skills addObject:wordSkill];
-            }
-        }
-        // Syntax error
-        else {
-            // Decrease syntax skill
-            syntaxSkill = [self.knowledgeTracer updateSyntaxSkill:NO withComplexity:complexity shouldDampen:!isFirstAttempt context:context];
-        }
-    }
-    // Moved to incorrect destination
-    else if (![destinationIDs containsObject:correctDestinationID]) {
-        // Vocabulary or syntax error
-        if (![self isDistanceBelowThreshold:destinationIDs :correctDestinationID]) {
-            double correctSkillValue = [[self.knowledgeTracer vocabSkillForWord:correctDestinationID] skillValue];
-            
-            // Vocabulary error
-            if (correctSkillValue < HIGH_VOCABULARY_SKILL_THRESHOLD) {
-                // Decrease vocabulary skill for the correct destination
-                Skill *wordSkill = [self.knowledgeTracer updateSkillFor:correctDestinationID isVerified:NO shouldDampen:!isFirstAttempt context:context];
-                
-                if (wordSkill != nil) {
-                    [skills addObject:wordSkill];
-                }
-                
-                // Decrease vocabulary skills for the destinations
-                for (NSString *destinationID in destinationIDs) {
-                    Skill *wordSkill = [self.knowledgeTracer updateSkillFor:destinationID isVerified:NO shouldDampen:!isFirstAttempt context:context];
-                    
-                    if (wordSkill != nil) {
-                        [skills addObject:wordSkill];
-                    }
-                }
-            }
-            // Syntax error
-            else {
-                // Decrease syntax skill
-                syntaxSkill = [self.knowledgeTracer updateSyntaxSkill:NO withComplexity:complexity shouldDampen:!isFirstAttempt context:context];
-            }
-        }
-        // Usability error
-        else {
-            // Decrease usability skill
-            usabilitySkill = [self.knowledgeTracer updateUsabilitySkill:NO shouldDampen:!isFirstAttempt context:context];
-        }
-    }
-    // Moved to correct destination
-    else {
-        // Increase vocabulary skill for the destination
-        Skill *wordSkill = [self.knowledgeTracer updateSkillFor:correctDestinationID isVerified:YES shouldDampen:!isFirstAttempt context:context];
-        
-        if (wordSkill != nil) {
-            [skills addObject:wordSkill];
-        }
-    }
-    
     // Add syntax skill if it was updated
     if (syntaxSkill != nil) {
         [skills addObject:syntaxSkill];
@@ -346,9 +424,28 @@
     if (usabilitySkill != nil) {
         [skills addObject:usabilitySkill];
     }
+}
+
+- (void)updateVocabSkillFor:(NSString *)word
+                     skills:(NSMutableArray *)skills
+                 isVerified:(BOOL)isVerified
+               isFirstAttempt:(BOOL)isFirstAttempt
+                    context:(ManipulationContext *)context {
     
-    [self showMessageWith:skills];
-    [self determineMostProbableErrorTypeFromSkills:skills];
+    // Update the vocab skill if it was not updated before in the current sentence
+    //
+    if ([self.currentSentenceStatus.updatedVocabSkills containsObject:word] == NO) {
+        Skill *wordSkill = [self.knowledgeTracer updateSkillFor:word
+                                                     isVerified:isVerified
+                                                   shouldDampen:!isFirstAttempt
+                                                        context:context];
+        
+        if (wordSkill != nil) {
+            [skills addObject:wordSkill];
+            [self.currentSentenceStatus.updatedVocabSkills addObject:word];
+        }
+    }
+    
 }
 
 - (NSSet *)getObjectsInvolvedInCurrentSentence {
@@ -416,23 +513,59 @@
     return convertedObjectsInvolved;
 }
 
-- (BOOL)isDistanceBelowThreshold:(NSSet *)movedObjectOrDestinationIDs :(NSString *)correctMovedObjectOrDestinationID {
-    CGPoint correctMovedObjectOrDestinationLocation = [self.delegate locationOfObject:correctMovedObjectOrDestinationID analyzer:self];
+
+- (BOOL)isDestDistanceBelowThreshold:(NSSet *)destinationIDs :(NSString *)correctDestinationID {
+    
+    CGPoint correctMovedObjectOrDestinationLocation = [self.delegate locationOfObject:correctDestinationID analyzer:self];
     
     // Found correct moved object or destination
     if (!CGPointEqualToPoint(correctMovedObjectOrDestinationLocation, CGPointZero)) {
         // Calculate size and rect of correct moved object or destination
-        CGSize correctMovedObjectOrDestinationSize = [self.delegate sizeOfObject:correctMovedObjectOrDestinationID analyzer:self];
+        CGSize correctMovedObjectOrDestinationSize = [self.delegate sizeOfObject:correctDestinationID analyzer:self];
         CGRect correctMovedObjectOrDestinationRect = CGRectMake(correctMovedObjectOrDestinationLocation.x, correctMovedObjectOrDestinationLocation.y, correctMovedObjectOrDestinationSize.width, correctMovedObjectOrDestinationSize.height);
         
         // For each moved object or destination, compare its distance to the correct moved object or destination.
-        for (NSString *movedObjectOrDestinationID in movedObjectOrDestinationIDs) {
+        for (NSString *movedObjectOrDestinationID in destinationIDs) {
             float distance = 0.0;
             
             // Calculate size and rect of moved object or destination
             CGPoint movedObjectOrDestinationLocation = [self.delegate locationOfObject:movedObjectOrDestinationID analyzer:self];
             CGSize movedObjectOrDestinationSize = [self.delegate sizeOfObject:movedObjectOrDestinationID analyzer:self];
             CGRect movedObjectOrDestinationRect = CGRectMake(movedObjectOrDestinationLocation.x, movedObjectOrDestinationLocation.y, movedObjectOrDestinationSize.width, movedObjectOrDestinationSize.height);
+            
+            NSLog(@"Calculcated values Destinations = %@ - %f, %@ - %f", destinationIDs, movedObjectOrDestinationRect.origin.x, correctDestinationID, correctMovedObjectOrDestinationRect.origin.x);
+            
+            // Calculate distance
+            distance = distanceBetween(movedObjectOrDestinationRect, correctMovedObjectOrDestinationRect);
+            
+            if (distance <= DISTANCE_THRESHOLD) {
+                return true;
+            }
+        }
+    }
+    
+    return false;
+}
+
+- (BOOL)isInitialDistanceBelowThreshold:(NSSet *)movedObjectIds :(NSString *)correctObjToBeMovedID {
+    CGPoint correctMovedObjectOrDestinationLocation = [self.delegate locationOfObject:correctObjToBeMovedID analyzer:self];
+    
+    // Found correct moved object or destination
+    if (!CGPointEqualToPoint(correctMovedObjectOrDestinationLocation, CGPointZero)) {
+        // Calculate size and rect of correct moved object or destination
+        CGSize correctMovedObjectOrDestinationSize = [self.delegate sizeOfObject:correctObjToBeMovedID analyzer:self];
+        CGRect correctMovedObjectOrDestinationRect = CGRectMake(correctMovedObjectOrDestinationLocation.x, correctMovedObjectOrDestinationLocation.y, correctMovedObjectOrDestinationSize.width, correctMovedObjectOrDestinationSize.height);
+        
+        // For each moved object or destination, compare its distance to the correct moved object or destination.
+        for (NSString *movedObjectOrDestinationID in movedObjectIds) {
+            float distance = 0.0;
+            
+            // Calculate size and rect of moved object or destination
+            CGPoint movedObjectOrDestinationLocation = [self.delegate analyzerInitialPositionOfMovedObject:self];
+            CGSize movedObjectOrDestinationSize = [self.delegate sizeOfObject:movedObjectOrDestinationID analyzer:self];
+            CGRect movedObjectOrDestinationRect = CGRectMake(movedObjectOrDestinationLocation.x, movedObjectOrDestinationLocation.y, movedObjectOrDestinationSize.width, movedObjectOrDestinationSize.height);
+            
+            NSLog(@"Calculcated values Initials = %@ - %f, %@ - %f", movedObjectIds, movedObjectOrDestinationRect.origin.x, correctObjToBeMovedID, correctMovedObjectOrDestinationRect.origin.x);
             
             // Calculate distance
             distance = distanceBetween(movedObjectOrDestinationRect, correctMovedObjectOrDestinationRect);

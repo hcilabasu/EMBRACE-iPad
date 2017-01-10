@@ -265,6 +265,7 @@ BOOL wasPathFollowed = false;
         if (conditionSetup.useKnowledgeTracing && ![chapterTitle isEqualToString:@"The Naughty Monkey"]) {
             [[ITSController sharedInstance] setAnalyzerDelegate:self];
             stepContext.numSyntaxErrors = 0;
+            stepContext.numVocabErrors = 0;
         }
     }
 }
@@ -2253,6 +2254,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         
         if (conditionSetup.appMode == ITS && conditionSetup.useKnowledgeTracing && ![chapterTitle isEqualToString:@"The Naughty Monkey"]) {
             stepContext.numSyntaxErrors = 0;
+            stepContext.numVocabErrors = 0;
         }
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, delay * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
@@ -2307,63 +2309,90 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 // TODO: Change error type NSString to enum
 - (void)provideFeedbackForErrorType:(NSString *)errorType showAlert:(BOOL)showAlert {
     if ([errorType isEqualToString:@"vocabulary"]) {
+        stepContext.numVocabErrors++;
         [self playNoiseName:ERROR_FEEDBACK_NOISE];
         
-        // Record highlighted objects/locations for logging
-        NSMutableArray *highlightedItems = [[NSMutableArray alloc] init];
+        if ((stepContext.numVocabErrors > 1) && conditionSetup.isAutomaticAnimationEnabled) {
+            [self provideFeedbackForErrorType:@"usability" showAlert:NO];
         
-        // Get steps for current sentence
-        NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
         
-        // Get current step to be completed
-        ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
-        NSString *stepType = [currSolStep stepType];
-        
-        // Highlight correct object and location
-        if ([stepType isEqualToString:CHECK] || [stepType isEqualToString:CHECKLEFT] || [stepType isEqualToString:CHECKRIGHT] || [stepType isEqualToString:CHECKUP] || [stepType isEqualToString:CHECKDOWN] || [stepType isEqualToString:CHECKANDSWAP] || [stepType isEqualToString:TAPTOANIMATE] || [stepType isEqualToString:CHECKPATH] || [stepType isEqualToString:SHAKEORTAP] || [stepType isEqualToString:TAPWORD] ) {
+        } else {
             
-            NSString *object1Id = [currSolStep object1Id];
-            NSString *locationId = [currSolStep locationId];
             
-            if ([locationId isEqualToString:EMPTYSTRING]) {
-                locationId = [currSolStep areaId];
-            }
+            // Record highlighted objects/locations for logging
+            NSMutableArray *highlightedItems = [[NSMutableArray alloc] init];
             
-            [highlightedItems addObject:object1Id];
-            [highlightedItems addObject:locationId];
+            // Get steps for current sentence
+            NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
             
-            [[ServerCommunicationController sharedInstance] logVocabularyErrorFeedback:highlightedItems context:manipulationContext];
+            // Get current step to be completed
+            ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
+            NSString *stepType = [currSolStep stepType];
             
-            [self highlightImageForText:object1Id];
-            
-            if ([model getLocationWithId:locationId] || [model getAreaWithId:locationId]) {
-                [self highlightObject:locationId :1.5];
-            }
-            
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                allowInteractions = TRUE;
-                [self.view setUserInteractionEnabled:YES];
-            });
-        }
-        // Highlight correct objects for transference
-        else if ([stepType isEqualToString:TRANSFERANDGROUP_TXT] || [stepType isEqualToString:TRANSFERANDDISAPPEAR_TXT]) {
-            NSString *object1Id = [currSolStep object1Id];
-            ActionStep *nextSolStep = [currSolSteps objectAtIndex:stepContext.currentStep];
-            
-            if (nextSolStep != nil && ([[nextSolStep stepType] isEqualToString:TRANSFERANDGROUP_TXT] || [stepType isEqualToString:TRANSFERANDDISAPPEAR_TXT])) {
-                NSString *nextObject1Id = [nextSolStep object1Id];
+            // Highlight correct object and location
+            if ([stepType isEqualToString:CHECK] || [stepType isEqualToString:CHECKLEFT] || [stepType isEqualToString:CHECKRIGHT] || [stepType isEqualToString:CHECKUP] || [stepType isEqualToString:CHECKDOWN] || [stepType isEqualToString:CHECKANDSWAP] || [stepType isEqualToString:TAPTOANIMATE] || [stepType isEqualToString:CHECKPATH] || [stepType isEqualToString:SHAKEORTAP] || [stepType isEqualToString:TAPWORD] ) {
                 
-                if ([nextObject1Id isEqualToString:[currSolStep object2Id]]) {
-                    nextObject1Id = [nextSolStep object2Id];
+                NSString *object1Id = [currSolStep object1Id];
+                NSString *locationId = [currSolStep locationId];
+                
+                if ([locationId isEqualToString:EMPTYSTRING]) {
+                    locationId = [currSolStep areaId];
                 }
                 
                 [highlightedItems addObject:object1Id];
-                [highlightedItems addObject:nextObject1Id];
+                [highlightedItems addObject:locationId];
                 
                 [[ServerCommunicationController sharedInstance] logVocabularyErrorFeedback:highlightedItems context:manipulationContext];
                 
                 [self highlightImageForText:object1Id];
-                [self highlightImageForText:nextObject1Id];
+                
+                if ([model getLocationWithId:locationId] || [model getAreaWithId:locationId]) {
+                    [self highlightObject:locationId :1.5];
+                }
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                    allowInteractions = TRUE;
+                    [self.view setUserInteractionEnabled:YES];
+                });
+            }
+            // Highlight correct objects for transference
+            else if ([stepType isEqualToString:TRANSFERANDGROUP_TXT] || [stepType isEqualToString:TRANSFERANDDISAPPEAR_TXT]) {
+                NSString *object1Id = [currSolStep object1Id];
+                ActionStep *nextSolStep = [currSolSteps objectAtIndex:stepContext.currentStep];
+                
+                if (nextSolStep != nil && ([[nextSolStep stepType] isEqualToString:TRANSFERANDGROUP_TXT] || [stepType isEqualToString:TRANSFERANDDISAPPEAR_TXT])) {
+                    NSString *nextObject1Id = [nextSolStep object1Id];
+                    
+                    if ([nextObject1Id isEqualToString:[currSolStep object2Id]]) {
+                        nextObject1Id = [nextSolStep object2Id];
+                    }
+                    
+                    [highlightedItems addObject:object1Id];
+                    [highlightedItems addObject:nextObject1Id];
+                    
+                    [[ServerCommunicationController sharedInstance] logVocabularyErrorFeedback:highlightedItems context:manipulationContext];
+                    
+                    [self highlightImageForText:object1Id];
+                    [self highlightImageForText:nextObject1Id];
+                    
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                        allowInteractions = TRUE;
+                        [self.view setUserInteractionEnabled:YES];
+                    });
+                }
+            }
+            // Highlight correct objects
+            else {
+                NSString *object1Id = [currSolStep object1Id];
+                NSString *object2Id = [currSolStep object2Id];
+                
+                [highlightedItems addObject:object1Id];
+                [highlightedItems addObject:object2Id];
+                
+                [[ServerCommunicationController sharedInstance] logVocabularyErrorFeedback:highlightedItems context:manipulationContext];
+                
+                [self highlightImageForText:object1Id];
+                [self highlightImageForText:object2Id];
                 
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                     allowInteractions = TRUE;
@@ -2371,24 +2400,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 });
             }
         }
-        // Highlight correct objects
-        else {
-            NSString *object1Id = [currSolStep object1Id];
-            NSString *object2Id = [currSolStep object2Id];
-            
-            [highlightedItems addObject:object1Id];
-            [highlightedItems addObject:object2Id];
-            
-            [[ServerCommunicationController sharedInstance] logVocabularyErrorFeedback:highlightedItems context:manipulationContext];
-            
-            [self highlightImageForText:object1Id];
-            [self highlightImageForText:object2Id];
-            
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                allowInteractions = TRUE;
-                [self.view setUserInteractionEnabled:YES];
-            });
-        }
+        
     }
     else if ([errorType isEqualToString:@"syntax"]) {
         stepContext.numSyntaxErrors++;
@@ -3084,7 +3096,12 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Press Next" context:manipulationContext];
         
         //Play noise if not all steps have been completed
-        [self playNoiseName:ERROR_NOISE];
+        if (stepContext.currentStep > 1) {
+            [self playNoiseName:MORE_ERROR];
+        } else {
+            [self playNoiseName:ERROR_NOISE];
+        }
+        
         [self.view setUserInteractionEnabled:YES];
     }
 }
@@ -3179,6 +3196,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 }
 
 - (void)playNoiseName:(NSString *)name {
+   
     if ([name isEqualToString:ERROR_NOISE]) {
         [self.playaudioClass playErrorNoise];
         
@@ -3188,6 +3206,12 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         [self.playaudioClass playErrorFeedbackNoise];
         
         [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:ERROR_FEEDBACK_NOISE inLanguage:NULL_TXT ofType:ERROR_FEEDBACK_NOISE :manipulationContext];
+        
+    } else if ([name isEqualToString:MORE_ERROR]) {
+        
+        NSLog(@" %d %d",stepContext.numSteps,stepContext.currentStep);
+        [self.playaudioClass playAudioInSequence:@[@"thereismore.mp3"] :self];
+        [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:MORE_ERROR inLanguage:NULL_TXT ofType:MORE_ERROR :manipulationContext];
     }
 }
 
@@ -3966,6 +3990,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 }
 
 #pragma mark - ManipulationAnalyserProtocol
+
+- (CGPoint)analyzerInitialPositionOfMovedObject:(ManipulationAnalyser *)analyzer {
+    return self.startLocation;
+}
 
 - (CGPoint)locationOfObject:(NSString *)object analyzer:(ManipulationAnalyser *)analyzer {
     CGPoint location = [self.manipulationView getObjectPosition:object];
