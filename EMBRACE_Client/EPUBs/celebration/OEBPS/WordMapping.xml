@@ -74,11 +74,16 @@
         </mappedWords>
     </word>
     
+    <word keyWord="dirtRoad">
+        <mappedWords>
+            <subWord>dirtRoad</subWord>
+            <subWord>dirtRoa2</subWord>
+        </mappedWords>
+    </word>
+    
     <!--
     cashier
     counter
-    dirtRoad
-    dirtRoad2
     door
     gate
     herd

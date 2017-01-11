@@ -35,6 +35,7 @@
 -(Activity*) getActivityOfType:(Mode) mode;
 
 -(NSString*) getNextPageForMode:(Mode) mode :(NSString*)currentPage;  //Get the next page in this chapter.
+-(NSString*) getPreviousPageForMode:(Mode) mode :(NSString*)currentPage;  //Get the previous page in this chapter.
 
 - (void)addEmbraceScript:(ScriptAudio *)script forSentence:(NSString *)sentenceId;
 - (void)addControlScript:(ScriptAudio *)script forSentence:(NSString *)sentenceId;

@@ -985,6 +985,8 @@
 
 - (void)readAlternateSentenceMetadata:(Book *)book :(NSString *)filepath {
     NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
+    
+
     NSError *error;
     GDataXMLDocument *metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:&error];
     
@@ -994,7 +996,10 @@
         GDataXMLElement *alternateSentenceElement = (GDataXMLElement *)[alternateSentenceElements objectAtIndex:0];
         
         NSArray *storyAlternateSentenceElements = [alternateSentenceElement elementsForName:@"story"];
-        
+        for (GDataXMLElement *storyAlternateSentenceElement in storyAlternateSentenceElements) {
+             NSString *pageId = [[storyAlternateSentenceElement attributeForName:@"page_id"] stringValue];
+            NSLog(pageId);
+        }
         for (GDataXMLElement *storyAlternateSentenceElement in storyAlternateSentenceElements) {
             //Get story title
             NSString *storyTitle = [[storyAlternateSentenceElement attributeForName:@"title"] stringValue];

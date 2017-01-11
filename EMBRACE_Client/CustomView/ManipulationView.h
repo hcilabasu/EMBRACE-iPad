@@ -122,6 +122,10 @@
                      condition:(Condition)condition
                        andMode:(Mode)mode;
 
+- (void)colorSentencesUponBack:(NSInteger)currentSentence
+                     condition:(Condition)condition
+                       andMode:(Mode)mode;
+
 - (void)highLightArea:(NSString *)objectId;
 
 - (void)highlightLocation:(int)originX : (int)originY : (int)width : (int)height;

@@ -830,6 +830,40 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     }
 }
 
+- (void)colorSentencesUponBack:(NSInteger)currentSentence
+                     condition:(Condition)condition
+                       andMode:(Mode)mode {
+    
+    //Set the color of the current sentence to black by default
+    NSString *setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%ld, 'black')", (long)currentSentence];
+    [self.bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
+    
+    //Change the opacity to 1
+    NSString *setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%ld, 1)", (long)currentSentence];
+    [self.bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
+    
+    //Set the color of the previous sentence to black
+    setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%d, 'black')", currentSentence + 1];
+    [self.bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
+    
+    //Decrease the opacity of the previous sentence
+    setSentenceOpacity = [NSString stringWithFormat:@"setSentenceOpacity(s%d, .2)", currentSentence + 1];
+    [self.bookView stringByEvaluatingJavaScriptFromString:setSentenceOpacity];
+    
+    //Get the sentence class
+    NSString *actionSentence = [NSString stringWithFormat:@"getSentenceClass(s%ld)", (long)currentSentence];
+    NSString *sentenceClass = [self.bookView stringByEvaluatingJavaScriptFromString:actionSentence];
+    
+    //If it is a non-black action sentence (i.e., requires user manipulation), then set the color to blue
+    if (![sentenceClass containsString:@"black"]) {
+        if ([sentenceClass containsString: @"sentence actionSentence"] ||
+            ([sentenceClass containsString: @"sentence IMactionSentence"] && condition == EMBRACE && mode == IM_MODE)) {
+            setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%ld, 'blue')", (long)currentSentence];
+            [self.bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
+        }
+    }
+}
+
 - (void)highLightArea:(NSString *)objectId {
     NSString *highlight = [NSString stringWithFormat:@"highlightArea('%@')", objectId];
     [self.bookView stringByEvaluatingJavaScriptFromString:highlight];
@@ -1257,8 +1291,9 @@ shouldUpdateConnection:(BOOL)updateCon
     NSString *wordsArrayString = [words componentsJoinedByString:@"','"];
     NSString *splitTextArrayString = [splitText componentsJoinedByString:@"','"];
     
+    ConditionSetup *conditionSetup = [ConditionSetup sharedInstance];
     //Add alternate sentence to page
-    addSentenceString = [NSString stringWithFormat:@"addSentence('s%d', %@, ['%@'], ['%@'])", sentenceNumber++, action ? @"true" : @"false", splitTextArrayString, wordsArrayString];
+    addSentenceString = [NSString stringWithFormat:@"addSentence('s%d', %@, ['%@'], ['%@'], %@)", sentenceNumber++, action ? @"true" : @"false", splitTextArrayString, wordsArrayString, conditionSetup.isOnDemandVocabEnabled ? @"true" : @"false"];
     [self.bookView stringByEvaluatingJavaScriptFromString:addSentenceString];
     
 }

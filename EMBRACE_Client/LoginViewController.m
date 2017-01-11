@@ -25,6 +25,9 @@
 
 @implementation LoginViewController
 
+NSString* const DROPBOX_PASSWORD_UNLOCKED = @"hello"; //used to set locked books/chapters to in progress
+NSString* const DROPBOX_PASSWORD_LOCKED = @"goodbye"; //used to set locked books/chapters to completed
+
 - (void)viewDidLoad {
     [schoolCodeField setDelegate:self];
     [participantCodeField setDelegate:self];
@@ -176,6 +179,58 @@
             
             //Then take the user to the library view.
             [self performSegueWithIdentifier: @"OpenLibrarySegue" sender: self];
+        }
+    }
+}
+
+/*
+ * Displays prompt to enter password to unlock dropboxbuttons
+ */
+- (IBAction)showPasswordPrompt:(id)sender {
+    UIAlertView *passwordPrompt = [[UIAlertView alloc] initWithTitle:@"Password" message:@"Enter password to lock/unlock dropbox" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+    passwordPrompt.alertViewStyle = UIAlertViewStyleSecureTextInput;
+    [passwordPrompt show];
+}
+
+/*
+ * Checks if user input for password prompt is correct to unlock the selected book or chapter
+ */
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if ([[alertView title] isEqualToString:@"Password"] && buttonIndex == 1) {
+        
+        //Password is correct for unlocking dropbox buttons
+        if ([[[alertView textFieldAtIndex:0] text] isEqualToString:DROPBOX_PASSWORD_UNLOCKED]) {
+            NSArray *arrSubviews = [self.view subviews];
+            for(UIView *tmpView in arrSubviews)
+            {
+                if([tmpView isMemberOfClass:[UIButton class]])
+                {
+                    if(tmpView.tag == 2) {
+                        [tmpView setHidden: false];
+                    }
+                    
+                    if(tmpView.tag == 3) {
+                        [tmpView setHidden: false];
+                    }
+                }
+            }
+        }
+        //Password is correct for locking dropbox buttons
+        else if ([[[alertView textFieldAtIndex:0] text] isEqualToString:DROPBOX_PASSWORD_LOCKED]) {
+            NSArray *arrSubviews = [self.view subviews];
+            for(UIView *tmpView in arrSubviews)
+            {
+                if([tmpView isMemberOfClass:[UIButton class]])
+                {
+                    if(tmpView.tag == 2) {
+                        [tmpView setHidden: true];
+                    }
+                    
+                    if(tmpView.tag == 3) {
+                        [tmpView setHidden: true];
+                    }
+                }
+            }
         }
     }
 }
