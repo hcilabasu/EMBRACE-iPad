@@ -3096,11 +3096,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         [[ServerCommunicationController sharedInstance] logVerification:false forAction:@"Press Next" context:manipulationContext];
         
         //Play noise if not all steps have been completed
-        if (stepContext.currentStep > 1) {
-            [self playNoiseName:MORE_ERROR];
-        } else {
-            [self playNoiseName:ERROR_NOISE];
-        }
+        [self playNoiseName:MORE_ERROR];
         
         [self.view setUserInteractionEnabled:YES];
     }

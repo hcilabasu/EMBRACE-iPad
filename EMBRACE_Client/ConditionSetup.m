@@ -57,7 +57,7 @@ static ConditionSetup *sharedInstance = nil;
         animatedStepCompletionMode = PERSTEP;
         
         useKnowledgeTracing = YES;
-        shouldShowITSMessages = NO;
+        shouldShowITSMessages = YES;
         
         allowFileSync = YES;
     }
