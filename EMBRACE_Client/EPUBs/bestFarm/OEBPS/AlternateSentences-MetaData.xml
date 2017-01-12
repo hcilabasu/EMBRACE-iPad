@@ -314,7 +314,7 @@
             </sentence>
             <sentence number="12" action="yes">
                 <attributes complexity="3"/>
-                <text>Manuel pulled the empty cart to the pumpkins.</text>
+                <text>Manuel pulled the cart to the pumpkins.</text>
                 <ideas>
                     <idea number="17"/>
                 </ideas>
@@ -690,7 +690,7 @@
             </sentence>
             <sentence number="4" action="no">
                 <attributes complexity="2"/>
-                <text>The cow said to the horse, \"Bring me some hay so I can look healthy and strong.</text>
+                <text>The cow said to the horse, \"Bring me some hay to eat so that I can look healthy and strong.</text>
                 <ideas>
                     <idea number="44"/>
                 </ideas>
