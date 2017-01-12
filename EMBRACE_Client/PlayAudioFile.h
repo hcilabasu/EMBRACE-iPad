@@ -29,6 +29,7 @@
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag;
 - (IBAction)playErrorNoise;
 - (IBAction)playErrorFeedbackNoise;
+- (IBAction)playBeepBeepNoise;
 - (void)textToSpeech:(NSString *)text;
 - (void)playAudioInSequence:(NSArray *)audioList :(UIViewController *)controller;
 - (BOOL)isAudioLeftInSequence;

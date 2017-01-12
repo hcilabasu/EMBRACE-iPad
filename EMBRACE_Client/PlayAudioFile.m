@@ -258,7 +258,11 @@
 - (IBAction)playErrorFeedbackNoise {
     AudioServicesPlaySystemSound(1054);
 }
-
+    
+- (IBAction)playBeepBeepNoise {
+    AudioServicesPlaySystemSound(1106);
+}
+    
 - (void)textToSpeech:(NSString *)text {
     syn = [[AVSpeechSynthesizer alloc] init];
     AVSpeechUtterance *utteranceEn = [[AVSpeechUtterance alloc]initWithString:text];
