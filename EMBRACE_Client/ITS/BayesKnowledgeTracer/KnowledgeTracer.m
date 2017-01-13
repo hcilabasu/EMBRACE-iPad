@@ -32,6 +32,8 @@
 #define DEFAULT_VOCAB_TRANSITION 0.1
 #define DEFAULT_USABILITY_TRANSITION 0.01
 
+#define DEFAULT_DAMPENING_FACTOR 2
+
 @interface KnowledgeTracer()
 
 @property (nonatomic, strong) SkillSet *skillSet;
@@ -64,7 +66,7 @@
 
 - (void)updateDampenValue:(BOOL)shouldDampen {
     if (shouldDampen) {
-        self.dampenValue *= 10;
+        self.dampenValue /= DEFAULT_DAMPENING_FACTOR;
     }
     else {
         self.dampenValue = 1.0;
@@ -92,7 +94,11 @@
 
 #pragma mark - Updating Vocabulary Skills
 
-- (Skill *)updateSkillFor:(NSString *)word isVerified:(BOOL)isVerified shouldDampen:(BOOL)shouldDampen context:(ManipulationContext *)context {
+- (Skill *)updateSkillFor:(NSString *)word
+               isVerified:(BOOL)isVerified
+             shouldDampen:(BOOL)shouldDampen
+                  context:(ManipulationContext *)context {
+    
     if (word == nil || [word isEqualToString:@""]) {
         return nil;
     }
@@ -235,16 +241,16 @@
 
 - (double)calcCorrect:(double)prevSkillValue skillType:(SkillType)type {
     double slip = [self getSlipForSkillType:type];
-    double guess = [self getGuessForSkillType:type] / self.dampenValue;
-    double noSlip = (1 - slip) / self.dampenValue;
+    double guess = [self getGuessForSkillType:type];
+    double noSlip = (1 - slip);
     
     return (prevSkillValue * noSlip) / (prevSkillValue * noSlip + (1 - prevSkillValue) * guess);
 }
 
 - (double)calcIncorrect:(double)prevSkillValue skillType:(SkillType)type {
-    double slip = [self getSlipForSkillType:type] / self.dampenValue;
+    double slip = [self getSlipForSkillType:type];
     double guess = [self getGuessForSkillType:type];
-    double noGuess = (1 - guess) / self.dampenValue;
+    double noGuess = (1 - guess) ;
     
     return (prevSkillValue * slip) / ((slip * prevSkillValue) + (noGuess * (1 - prevSkillValue)));
 }
@@ -252,12 +258,30 @@
 - (double)calcNewSkillValue:(double)skillEvaluated skillType:(SkillType)type {
     double transition = [self getTransitionForSkillType:type];
     double newSkillValue = skillEvaluated + ((1 - skillEvaluated) * transition);
+    newSkillValue = newSkillValue * self.dampenValue;
     
     if (newSkillValue >= 0.99) {
         newSkillValue = 0.99;
     }
-    
     return newSkillValue;
+}
+
+- (double)calcNewSkillValue:(double)skillEvaluated
+                  prevSkill:(double)prevSkillValue
+                  skillType:(SkillType)type {
+    
+    double transition = [self getTransitionForSkillType:type];
+    double newSkillValue = skillEvaluated + ((1 - skillEvaluated) * transition);
+    
+    double diff = newSkillValue - prevSkillValue;
+    double change = diff * self.dampenValue;
+    
+    double finalCalValue = prevSkillValue + change;
+    if (finalCalValue >= 0.99) {
+        finalCalValue = 0.99;
+    }
+    
+    return finalCalValue;
 }
 
 #pragma mark - Playword

@@ -67,7 +67,14 @@ static ITSController *sharedInstance = nil;
     [self.manipulationAnalyser userDidVocabPreviewWord:word context:context];
 }
 
-- (void)movedObjectIDs:(NSMutableSet *)movedObjectIDs destinationIDs:(NSArray *)destinationIDs isVerified:(BOOL)verified actionStep:(ActionStep *)actionStep manipulationContext:(ManipulationContext *)context forSentence:(NSString *)sentence withWordMapping:(NSDictionary *)mapDict {
+- (void)movedObjectIDs:(NSMutableSet *)movedObjectIDs
+        destinationIDs:(NSArray *)destinationIDs
+            isVerified:(BOOL)verified
+            actionStep:(ActionStep *)actionStep
+   manipulationContext:(ManipulationContext *)context
+           forSentence:(NSString *)sentence
+       withWordMapping:(NSDictionary *)mapDict {
+    
     // Get step information
     NSString *object1ID = [actionStep object1Id];
     NSString *object2ID = [actionStep object2Id];
@@ -167,10 +174,6 @@ static ITSController *sharedInstance = nil;
     UserAction *userAction = [[UserAction alloc] initWithMovedObjectIDs:convertedMovedObjectIDs destinationIDs:convertedDestinationIDs isVerified:verified correctMovedObjectID:correctMovedObjectID correctDestinationID:correctDestinationID forSentence:sentence];
     
     [self.manipulationAnalyser actionPerformed:userAction manipulationContext:context];
-}
-
-- (void)pressedNextWithManipulationContext:(ManipulationContext *)context forSentence:(NSString *)sentence isVerified:(BOOL)verified {
-    
 }
 
 - (EMComplexity)getCurrentComplexity {
