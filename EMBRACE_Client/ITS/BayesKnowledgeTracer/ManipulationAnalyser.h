@@ -27,7 +27,7 @@
 - (void)userDidVocabPreviewWord:(NSString *)word context:(ManipulationContext *)context;
 - (NSMutableSet *)getRequestedVocab;
 
-- (void)pressedNextWithManipulationContext:(ManipulationContext *)context forSentence:(NSString *)sentence isVerified:(BOOL)verified;
+
 
 - (double)easySyntaxSkillValue;
 - (double)medSyntaxSkillValue;
@@ -42,6 +42,8 @@
 @protocol ManipulationAnalyserProtocol <NSObject>
 
 - (CGPoint)locationOfObject:(NSString *)object analyzer:(ManipulationAnalyser *)analyzer;
+
+- (CGPoint)analyzerInitialPositionOfMovedObject:(ManipulationAnalyser *)analyzer;
 
 - (CGSize)sizeOfObject:(NSString *)object analyzer:(ManipulationAnalyser *)analyzer;
 

@@ -23,6 +23,9 @@
 
 @property (nonatomic, assign) BOOL isCompleted;
 
+/// The list of objects whose syntax has already been updated.
+@property (nonatomic, strong) NSMutableSet *updatedVocabSkills;
+
 - (void)addUserAction:(UserAction *)action;
 
 - (NSArray *)userActions;

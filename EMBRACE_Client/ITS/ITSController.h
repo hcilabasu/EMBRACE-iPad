@@ -35,9 +35,7 @@ typedef NS_ENUM(NSInteger, EMComplexity) {
 
 - (void)userDidVocabPreviewWord:(NSString *)word context:(ManipulationContext *)context;
 
-- (void)pressedNextWithManipulationContext:(ManipulationContext *)context
-                               forSentence:(NSString *)sentence
-                                isVerified:(BOOL)verified;
+
 
 - (EMComplexity)getCurrentComplexity;
 - (EMComplexity)setCurrentComplexity;

@@ -15,6 +15,7 @@
 @synthesize maxAttempts;
 @synthesize numAttempts;
 @synthesize numSyntaxErrors;
+@synthesize numVocabErrors;
 @synthesize PMSolution;
 @synthesize IMSolution;
 @synthesize stepsComplete;

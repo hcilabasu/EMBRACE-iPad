@@ -1216,8 +1216,27 @@ shouldUpdateConnection:(BOOL)updateCon
     BOOL action = [sentenceToAdd actionSentence];
     NSString *text = [sentenceToAdd text];
     
+    
+    // Fix for double quotes missplacing.
+    NSArray *tTokens = [text componentsSeparatedByString:@" "];
+    NSMutableArray *tempArray = [NSMutableArray array];
+    
+    for (NSString *t in tTokens) {
+        NSArray *insideArray = [t componentsSeparatedByString:@"\\\""];
+       
+        if ([insideArray count] > 1) {
+            for (NSString *insideT in insideArray) {
+                [tempArray addObject:insideT];
+                [tempArray addObject:@"\\\""];
+            }
+            [tempArray removeLastObject];
+        } else {
+            [tempArray addObject:t];
+        }
+        
+    }
     //Split sentence text into individual tokens (words)
-    NSArray *textTokens = [text componentsSeparatedByString:@" "];
+    NSArray *textTokens = [NSArray arrayWithArray:tempArray];
     
     //Contains the vocabulary words that appear in the sentence
     NSMutableArray *words = [[NSMutableArray alloc] init];
