@@ -2436,7 +2436,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         [self playNoiseName:ERROR_FEEDBACK_NOISE];
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            [self playCurrentSentenceAudio];
+            
+            //TODO: Reable once all sentences have correct audio
+            //[self playCurrentSentenceAudio];
+            [self playNoiseName:@"BeepBeep"];
             
             // After first attempt
             if (stepContext.numSyntaxErrors > 1 && conditionSetup.isAutomaticAnimationEnabled) {
@@ -3354,6 +3357,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         NSLog(@" %d %d",stepContext.numSteps,stepContext.currentStep);
         [self.playaudioClass playAudioInSequence:@[@"thereismore.mp3"] :self];
         [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:MORE_ERROR inLanguage:NULL_TXT ofType:MORE_ERROR :manipulationContext];
+    }
+    //TODO: remove temporary function in place of missing sentence audio once all audio is added
+    else if([name isEqualToString:@"BeepBeep"]){
+        [self.playaudioClass playBeepBeepNoise];
     }
 }
 

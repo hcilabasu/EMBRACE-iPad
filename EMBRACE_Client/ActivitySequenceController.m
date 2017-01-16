@@ -81,6 +81,20 @@
             adjustedParticipantCode = [NSString stringWithFormat:@"ITSP0%d", sequenceNumber];
         }
     }
+    // ITS sequence
+    else if ([participantCode rangeOfString:@"ITS"].location != NSNotFound && [[participantCode componentsSeparatedByString:@"ITS"][1] length] == 2) {
+        numSequences = 12;
+        
+        //Get number at end of participant code and match it to appropriate sequence
+        NSInteger sequenceNumber = [[participantCode componentsSeparatedByString:@"ITS"][1] integerValue] % numSequences;
+        
+        if (sequenceNumber == 0) {
+            adjustedParticipantCode = [NSString stringWithFormat:@"ITS04"];
+        }
+        else {
+            adjustedParticipantCode = [NSString stringWithFormat:@"ITS0%d", sequenceNumber];
+        }
+    }
     
     return adjustedParticipantCode;
 }
