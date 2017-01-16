@@ -27,11 +27,9 @@
                 </step>
             </idea>
             <idea number="8"/>
-            <idea number="9"/>
-            <idea number="10"/>
         </story>
         <story title="Key Ingredients" activity_id="story1-PM-3">
-            <idea number="11">
+            <idea number="9">
                 <step number="4">
                     <group obj1Id="sofia" action="grabLeft" obj2Id="notebook"/>
                     <move obj1Id="sofia" action="getIn" waypointId="nearChili"/>
@@ -42,8 +40,8 @@
                     <move obj1Id="sofia" action="getIn" waypointId="nearMom"/>
                 </step>
             </idea>
-            <idea number="12"/>
-            <idea number="13">
+            <idea number="10"/>
+            <idea number="11">
                 <step number="6">
                     <ungroupAndStay obj1Id="notebook" action="getOut" obj2Id="mom"/>
                     <move obj1Id="notebook" action="getIn" waypointId="notebookCounter"/>
@@ -57,7 +55,7 @@
                     <swapImage obj1Id="mom" action="tote"/>
                 </step>
             </idea>
-            <idea number="14">
+            <idea number="12">
                 <step number="7">
                     <group obj1Id="mom" action="moveTo" obj2Id="sofia"/>
                     <ungroupAndStay obj1Id="mom" action="leave" obj2Id="sofia"/>
@@ -65,7 +63,7 @@
                     <swapImage obj1Id="sofia" action="tote"/>
                 </step>
             </idea>
-            <idea number="15">
+            <idea number="13">
                 <step number="8">
                     <group obj1Id="mom" action="grabLeft" obj2Id="pesos"/>
                     <move obj1Id="mom" action="getIn" waypointId="nearPesos"/>
@@ -76,7 +74,7 @@
                     <move obj1Id="mom" action="getIn" waypointId="nearPesos"/>
                 </step>
             </idea>
-            <idea number="16">
+            <idea number="14">
                 <step number="10">
                     <check obj1Id="sofia" action="getIn" locationId="door"/>
                     <swapImage obj1Id="sofia" action="door"/>
