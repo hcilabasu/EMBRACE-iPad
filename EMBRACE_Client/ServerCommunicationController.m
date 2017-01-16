@@ -2211,15 +2211,15 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Get skills file name and path
     NSString *skillsFileName = [NSString stringWithFormat:@"%@_skills.xml", [student participantCode]];
-//    NSString *skillsFileCurrentSessionPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"SkillsFiles/CurrentSession/%@", skillsFileName]];
-    NSString *skillsFileCurrentSessionPath = [documentsDirectory stringByAppendingPathComponent:skillsFileName];
-
+    
+    NSString *skillsFileCurrentSessionPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"ProgressFiles/CurrentSession/%@", skillsFileName]];
+    
     //Try to load skills data
     NSData *skillsData = [[NSMutableData alloc] initWithContentsOfFile:skillsFileCurrentSessionPath];
-
+    
     //If the file doesn't exist in the CurrentSession Folder, check the Master Folder
     if (skillsData == nil){
-        NSString *skillsFileMasterPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"SkillFiles/Master/%@", skillsFileName]];
+        NSString *skillsFileMasterPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"ProgressFiles/Master/%@", skillsFileName]];
         skillsData = [[NSMutableData alloc] initWithContentsOfFile:skillsFileMasterPath];
         
         //Copy data from Master Folder to CurrentSession Folder
@@ -2331,8 +2331,8 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Get skills file name and path
     NSString *skillsFileName = [NSString stringWithFormat:@"%@_skills.xml", [student participantCode]];
-//    NSString *skillsFilePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"SkillsFiles/CurrentSession/%@", skillsFileName]];
-    NSString *skillsFilePath = [documentsDirectory stringByAppendingPathComponent:skillsFileName];
+
+    NSString *skillsFilePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"ProgressFiles/CurrentSession/%@", skillsFileName]];
     
     //Write skills to file
     if (![skillsXMLString writeToFile:skillsFilePath atomically:YES encoding:NSUTF8StringEncoding error:nil]) {
