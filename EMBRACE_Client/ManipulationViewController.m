@@ -3705,40 +3705,40 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             }
         }
         
-        //If we are on the first or second manipulation page of The Lopez Family, play the current sentence
-        if ([chapterTitle isEqualToString:@"The Lopez Family"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
-            if (conditionSetup.language == BILINGUAL) {
-                sentenceAudioFile = [NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3", sentenceContext.currentSentence];
-            }
-            else {
-                sentenceAudioFile = [NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3", [self currentSentenceAudioIndex]];
-            }
-        }
-        
-        //If we are on the first or second manipulation page of Is Paco a Thief?, play the current sentence
-        if ([chapterTitle isEqualToString:@"Is Paco a Thief?"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
-            sentenceAudioFile = [NSString stringWithFormat:@"IsPacoAThiefS%dE.mp3", [self currentSentenceAudioIndex]];
-        }
-        
-        //If we are on the first or second manipulation page of Missing Keys, play the current sentence
-        if ([chapterTitle isEqualToString:@"Missing Keys"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
-            sentenceAudioFile = [NSString stringWithFormat:@"MissingKeysS%dE.mp3", [self currentSentenceAudioIndex]];
-        }
-        
-        //If we are on the first or second manipulation page of More is Missing!, play the current sentence
-        if ([chapterTitle isEqualToString:@"More is Missing!"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
-            sentenceAudioFile = [NSString stringWithFormat:@"MoreIsMissingS%dE.mp3", [self currentSentenceAudioIndex]];
-        }
-        
-        //If we are on the first or second manipulation page of The Baby's Rattle is Gone, Too!, play the current sentence
-        if ([chapterTitle isEqualToString:@"The Baby's Rattle is Gone, Too!"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
-            sentenceAudioFile = [NSString stringWithFormat:@"TheBaby'sRattleIsGoneTooS%dE.mp3", [self currentSentenceAudioIndex]];
-        }
-        
-        //If we are on the first or second manipulation page of The Mystery is Solved, play the current sentence
-        if ([chapterTitle isEqualToString:@"The Mystery is Solved"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
-            sentenceAudioFile = [NSString stringWithFormat:@"TheMysteryIsSolvedS%dE.mp3", [self currentSentenceAudioIndex]];
-        }
+//        //If we are on the first or second manipulation page of The Lopez Family, play the current sentence
+//        if ([chapterTitle isEqualToString:@"The Lopez Family"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
+//            if (conditionSetup.language == BILINGUAL) {
+//                sentenceAudioFile = [NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3", sentenceContext.currentSentence];
+//            }
+//            else {
+//                sentenceAudioFile = [NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3", [self currentSentenceAudioIndex]];
+//            }
+//        }
+//        
+//        //If we are on the first or second manipulation page of Is Paco a Thief?, play the current sentence
+//        if ([chapterTitle isEqualToString:@"Is Paco a Thief?"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
+//            sentenceAudioFile = [NSString stringWithFormat:@"IsPacoAThiefS%dE.mp3", [self currentSentenceAudioIndex]];
+//        }
+//        
+//        //If we are on the first or second manipulation page of Missing Keys, play the current sentence
+//        if ([chapterTitle isEqualToString:@"Missing Keys"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
+//            sentenceAudioFile = [NSString stringWithFormat:@"MissingKeysS%dE.mp3", [self currentSentenceAudioIndex]];
+//        }
+//        
+//        //If we are on the first or second manipulation page of More is Missing!, play the current sentence
+//        if ([chapterTitle isEqualToString:@"More is Missing!"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
+//            sentenceAudioFile = [NSString stringWithFormat:@"MoreIsMissingS%dE.mp3", [self currentSentenceAudioIndex]];
+//        }
+//        
+//        //If we are on the first or second manipulation page of The Baby's Rattle is Gone, Too!, play the current sentence
+//        if ([chapterTitle isEqualToString:@"The Baby's Rattle is Gone, Too!"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
+//            sentenceAudioFile = [NSString stringWithFormat:@"TheBaby'sRattleIsGoneTooS%dE.mp3", [self currentSentenceAudioIndex]];
+//        }
+//        
+//        //If we are on the first or second manipulation page of The Mystery is Solved, play the current sentence
+//        if ([chapterTitle isEqualToString:@"The Mystery is Solved"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
+//            sentenceAudioFile = [NSString stringWithFormat:@"TheMysteryIsSolvedS%dE.mp3", [self currentSentenceAudioIndex]];
+//        }
         
         
         //If we are on the first or second manipulation page of The Naughty Monkey, play the current sentence
@@ -3750,36 +3750,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 sentenceAudioFile = [NSString stringWithFormat:@"TheNaughtyMonkeyS%dE.mp3", sentenceContext.currentSentence - 2 ];
             }
         }
+      
         
-        //If we are on the first or second manipulation page of How Do Objects Move, play the current sentence
-        if ([chapterTitle isEqualToString:@"How do Objects Move?"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2])) {
-            if (conditionSetup.language == BILINGUAL) {
-                sentenceAudioFile = [NSString stringWithFormat:@"HowDoObjectsMoveS%dS.mp3", sentenceContext.currentSentence];
-            }
-            else {
-                sentenceAudioFile = [NSString stringWithFormat:@"HowDoObjectsMoveS%dE.mp3", [self currentSentenceAudioIndex]];
-            }
-        }
         
-        //If we are on the first or second manipulation page of The Navajo Hogan, play the current sentence
-        if ([chapterTitle isEqualToString:@"The Navajo Hogan"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
-            if (conditionSetup.language == BILINGUAL) {
-                sentenceAudioFile = [NSString stringWithFormat:@"TheNavajoHoganS%dS.mp3", sentenceContext.currentSentence];
-            }
-            else {
-                sentenceAudioFile = [NSString stringWithFormat:@"TheNavajoHoganS%dE.mp3", [self currentSentenceAudioIndex]];
-            }
-        }
-        
-        //If we are on the first or second manipulation page of Native Intro, play the current sentence
-        if ([chapterTitle isEqualToString:@"Introduction to Native American Homes"] && ([pageContext.currentPageId containsString:@"PM"] || [pageContext.currentPageId containsString:PM2])) {
-            if (conditionSetup.language == BILINGUAL) {
-                sentenceAudioFile = [NSString stringWithFormat:@"NativeIntroS%dS.mp3", sentenceContext.currentSentence];
-            }
-            else {
-                sentenceAudioFile = [NSString stringWithFormat:@"NativeIntroS%dE.mp3", [self currentSentenceAudioIndex]];
-            }
-        }
         
         // Use hash value of the sentence to find the audio file.
         if ([bookTitle isEqualToString:@"A Celebration to Remember" ]) {
@@ -3797,6 +3770,47 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             else {
                 sentenceAudioFile = [NSString stringWithFormat:@"%@.mp3", [sentenceContext.currentSentenceText MD5String]];
             }
+            
+        } else if ([bookTitle isEqualToString:@"How Objects Move" ]) {
+            
+            if (conditionSetup.language == BILINGUAL) {
+                sentenceAudioFile = [NSString stringWithFormat:@"HowDoObjectsMoveS%dS.mp3", sentenceContext.currentSentence];
+            }
+            else {
+                
+            }
+            
+        } else if ([bookTitle isEqualToString:@"Native American Homes" ]) {
+            
+            //If we are on the first or second manipulation page of The Navajo Hogan, play the current sentence
+            if ([chapterTitle isEqualToString:@"The Navajo Hogan"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
+                if (conditionSetup.language == BILINGUAL) {
+                    sentenceAudioFile = [NSString stringWithFormat:@"TheNavajoHoganS%dS.mp3", sentenceContext.currentSentence];
+                }
+                else {
+                    sentenceAudioFile = [NSString stringWithFormat:@"%@.mp3", [sentenceContext.currentSentenceText MD5String]];
+                }
+            }
+            
+            //If we are on the first or second manipulation page of Native Intro, play the current sentence
+            if ([chapterTitle isEqualToString:@"Introduction to Native American Homes"] && ([pageContext.currentPageId containsString:@"PM"] || [pageContext.currentPageId containsString:PM2])) {
+                if (conditionSetup.language == BILINGUAL) {
+                    sentenceAudioFile = [NSString stringWithFormat:@"NativeIntroS%dS.mp3", sentenceContext.currentSentence];
+                }
+                else {
+                    sentenceAudioFile = [NSString stringWithFormat:@"%@.mp3", [sentenceContext.currentSentenceText MD5String]];
+                }
+            }
+            
+        } else if ([bookTitle isEqualToString:@"The Lopez Family Mystery"]) {
+            
+            if (conditionSetup.language == BILINGUAL) {
+                sentenceAudioFile = [NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3", sentenceContext.currentSentence];
+            }
+            else {
+                sentenceAudioFile = [NSString stringWithFormat:@"%@.mp3", [sentenceContext.currentSentenceText MD5String]];
+            }
+           
             
         }
 
