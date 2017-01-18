@@ -275,7 +275,7 @@ BOOL wasPathFollowed = false;
         }
     }
     
-    if(conditionSetup.reader == USER){
+    if(conditionSetup.reader == USER || !conditionSetup.isSpeakerButtonEnabled){
         NSArray *arrSubviews = [self.view subviews];
         for(UIView *tmpView in arrSubviews)
         {
@@ -283,7 +283,22 @@ BOOL wasPathFollowed = false;
             {
                 // Optionally, check button.tag
                 if(tmpView.tag == 2) {
-                    // Do some action on UIButton like
+                    //hide the Speaker Icon
+                    [tmpView setHidden: true];
+                }
+            }
+        }
+    }
+    
+    if(!conditionSetup.isBackButtonEnabled){
+        NSArray *arrSubviews = [self.view subviews];
+        for(UIView *tmpView in arrSubviews)
+        {
+            if([tmpView isMemberOfClass:[UIButton class]])
+            {
+                // Optionally, check button.tag
+                if(tmpView.tag == 3) {
+                    //hide the Speaker Icon
                     [tmpView setHidden: true];
                 }
             }

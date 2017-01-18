@@ -63,6 +63,8 @@ typedef enum AnimatedStepCompletion {
 @property (nonatomic) BOOL isOnDemandVocabEnabled; //whether the system will play and highlight vocab words in story
 @property (nonatomic) BOOL useKnowledgeTracing; //whether to update skills
 @property (nonatomic) BOOL shouldShowITSMessages; //whether to show ITS skill changes as popup messages
+@property (nonatomic) BOOL isBackButtonEnabled; //whether the back button is visibile and enabled
+@property (nonatomic) BOOL isSpeakerButtonEnabled; //whether the speaker button is visibile and enabled
 
 + (ConditionSetup*)sharedInstance;
 + (void)resetSharedInstance;

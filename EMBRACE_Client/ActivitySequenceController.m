@@ -82,17 +82,17 @@
         }
     }
     // ITS sequence
-    else if ([participantCode rangeOfString:@"ITS"].location != NSNotFound && [[participantCode componentsSeparatedByString:@"ITS"][1] length] == 2) {
-        numSequences = 12;
+    else if ([participantCode rangeOfString:@"ITS"].location != NSNotFound && [[participantCode componentsSeparatedByString:@"ITS"][1] length] == 3) {
+        numSequences = 4;
         
         //Get number at end of participant code and match it to appropriate sequence
         NSInteger sequenceNumber = [[participantCode componentsSeparatedByString:@"ITS"][1] integerValue] % numSequences;
         
         if (sequenceNumber == 0) {
-            adjustedParticipantCode = [NSString stringWithFormat:@"ITS04"];
+            adjustedParticipantCode = [NSString stringWithFormat:@"ITS004"];
         }
         else {
-            adjustedParticipantCode = [NSString stringWithFormat:@"ITS0%d", sequenceNumber];
+            adjustedParticipantCode = [NSString stringWithFormat:@"ITS00%d", sequenceNumber];
         }
     }
     

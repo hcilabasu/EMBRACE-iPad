@@ -24,6 +24,8 @@
 @synthesize useKnowledgeTracing;
 @synthesize shouldShowITSMessages;
 @synthesize isOnDemandVocabEnabled;
+@synthesize isBackButtonEnabled;
+@synthesize isSpeakerButtonEnabled;
 
 @synthesize allowFileSync;
 
@@ -50,13 +52,16 @@ static ConditionSetup *sharedInstance = nil;
         currentMode = PM_MODE;
 
         newInstructions = NO;
-        isVocabPageEnabled = NO;
-        isAssessmentPageEnabled = NO;
+        isVocabPageEnabled = YES;
+        isAssessmentPageEnabled = YES;
         assessmentMode = ENDOFCHAPTER;
-        isOnDemandVocabEnabled = NO;
+        isOnDemandVocabEnabled = YES;
         
         isAutomaticAnimationEnabled = YES;
         animatedStepCompletionMode = PERSTEP;
+        
+        isBackButtonEnabled = NO;
+        isSpeakerButtonEnabled = NO;
         
         useKnowledgeTracing = YES;
         shouldShowITSMessages = YES;
