@@ -3705,40 +3705,25 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             }
         }
         
-//        //If we are on the first or second manipulation page of The Lopez Family, play the current sentence
-//        if ([chapterTitle isEqualToString:@"The Lopez Family"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
-//            if (conditionSetup.language == BILINGUAL) {
-//                sentenceAudioFile = [NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3", sentenceContext.currentSentence];
-//            }
-//            else {
-//                sentenceAudioFile = [NSString stringWithFormat:@"TheLopezFamilyS%dE.mp3", [self currentSentenceAudioIndex]];
-//            }
-//        }
-//        
-//        //If we are on the first or second manipulation page of Is Paco a Thief?, play the current sentence
-//        if ([chapterTitle isEqualToString:@"Is Paco a Thief?"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
-//            sentenceAudioFile = [NSString stringWithFormat:@"IsPacoAThiefS%dE.mp3", [self currentSentenceAudioIndex]];
-//        }
-//        
-//        //If we are on the first or second manipulation page of Missing Keys, play the current sentence
-//        if ([chapterTitle isEqualToString:@"Missing Keys"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
-//            sentenceAudioFile = [NSString stringWithFormat:@"MissingKeysS%dE.mp3", [self currentSentenceAudioIndex]];
-//        }
-//        
-//        //If we are on the first or second manipulation page of More is Missing!, play the current sentence
-//        if ([chapterTitle isEqualToString:@"More is Missing!"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
-//            sentenceAudioFile = [NSString stringWithFormat:@"MoreIsMissingS%dE.mp3", [self currentSentenceAudioIndex]];
-//        }
-//        
-//        //If we are on the first or second manipulation page of The Baby's Rattle is Gone, Too!, play the current sentence
-//        if ([chapterTitle isEqualToString:@"The Baby's Rattle is Gone, Too!"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
-//            sentenceAudioFile = [NSString stringWithFormat:@"TheBaby'sRattleIsGoneTooS%dE.mp3", [self currentSentenceAudioIndex]];
-//        }
-//        
-//        //If we are on the first or second manipulation page of The Mystery is Solved, play the current sentence
-//        if ([chapterTitle isEqualToString:@"The Mystery is Solved"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
-//            sentenceAudioFile = [NSString stringWithFormat:@"TheMysteryIsSolvedS%dE.mp3", [self currentSentenceAudioIndex]];
-//        }
+        //If we are on the first or second manipulation page of Disasters Intro, play the current sentence
+        if ([chapterTitle isEqualToString:@"Introduction to Natural Disasters"] && ([pageContext.currentPageId containsString:@"PM"] || [pageContext.currentPageId containsString:PM2])) {
+            if (conditionSetup.language == BILINGUAL) {
+                sentenceAudioFile = [NSString stringWithFormat:@"DisastersIntroS%dS.mp3", sentenceContext.currentSentence];
+            }
+            else {
+                sentenceAudioFile = [NSString stringWithFormat:@"DisastersIntroS%dE.mp3", [self currentSentenceAudioIndex]];
+            }
+        }
+        
+        //If we are on the first or second manipulation page of The Moving Earth, play the current sentence
+        if ([chapterTitle isEqualToString:@"The Moving Earth"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
+            if (conditionSetup.language == BILINGUAL) {
+                sentenceAudioFile = [NSString stringWithFormat:@"TheMovingEarthS%dS.mp3", sentenceContext.currentSentence];
+            }
+            else {
+                sentenceAudioFile = [NSString stringWithFormat:@"TheMovingEarthS%dE.mp3", [self currentSentenceAudioIndex]];
+            }
+        }
         
         
         //If we are on the first or second manipulation page of The Naughty Monkey, play the current sentence
@@ -3815,25 +3800,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         }
 
         
-        //If we are on the first or second manipulation page of Disasters Intro, play the current sentence
-        if ([chapterTitle isEqualToString:@"Introduction to Natural Disasters"] && ([pageContext.currentPageId containsString:@"PM"] || [pageContext.currentPageId containsString:PM2])) {
-            if (conditionSetup.language == BILINGUAL) {
-                sentenceAudioFile = [NSString stringWithFormat:@"DisastersIntroS%dS.mp3", sentenceContext.currentSentence];
-            }
-            else {
-                sentenceAudioFile = [NSString stringWithFormat:@"DisastersIntroS%dE.mp3", [self currentSentenceAudioIndex]];
-            }
-        }
         
-        //If we are on the first or second manipulation page of The Moving Earth, play the current sentence
-        if ([chapterTitle isEqualToString:@"The Moving Earth"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
-            if (conditionSetup.language == BILINGUAL) {
-                sentenceAudioFile = [NSString stringWithFormat:@"TheMovingEarthS%dS.mp3", sentenceContext.currentSentence];
-            }
-            else {
-                sentenceAudioFile = [NSString stringWithFormat:@"TheMovingEarthS%dE.mp3", [self currentSentenceAudioIndex]];
-            }
-        }
     }
     
     NSMutableArray *array = [NSMutableArray array];
