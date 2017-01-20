@@ -63,7 +63,7 @@
     //Get number of steps for current sentence
     if (conditionSetup.appMode == ITS && [sentenceContext.pageSentences count] > 0) {
         stepContext.numSyntaxErrors = 0;
-        
+        stepContext.numVocabErrors = 0;
         if (sentenceContext.currentSentence > 0) {
             stepContext.numSteps = [[[sentenceContext.pageSentences objectAtIndex:sentenceContext.currentSentence - 1] solutionSteps] count];
             

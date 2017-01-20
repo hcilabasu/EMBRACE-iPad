@@ -3,7 +3,88 @@
 <metadata>
     
     <alternateSentences>
-        
+        <story title="Introduction to Natural Disasters" page_id="story0-PM">
+            <sentence number="1" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Nature can be calm and beautiful, like a forest, a flower, or a sunset.</text>
+                
+                <ideas>
+                    
+                    <idea number="68"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            <sentence number="2" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>But sometimes, nature can be violent and produce natural disasters that kill many people.</text>
+                
+                <ideas>
+                    
+                    <idea number="69"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            <sentence number="3" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>In these chapters, you will learn about disasters caused by the ground moving and by strong winds.</text>
+                
+                <ideas>
+                    
+                    <idea number="70"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            <sentence number="4" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>When the ground moves, it causes earthquakes, tsunamis, and some volcanoes.</text>
+                
+                <ideas>
+                    
+                    <idea number="71"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            <sentence number="5" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Strong winds can cause tornados that destroy buildings and can also kill people.</text>
+                
+                <ideas>
+                    
+                    <idea number="72"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+        </story>
         <story title="The Moving Earth" page_id="story1-PM-1">
             
             
