@@ -22,6 +22,7 @@
     
     if (self) {
         _userActionSteps = [[NSMutableArray alloc] init];
+        _numOfSyntaxErrors = 0;
     }
     
     return self;

@@ -26,7 +26,7 @@
 @interface ManipulationViewController ()<ManipulationViewDelegate> {
     NSString *chapterTitle;
     NSString *bookTitle;
-
+    
     //TODO: Determine what I can delete from here to next comment
     //NSString *currentPage; //Current page being shown, so that the next page can be requested
     //NSString *currentPageId; //Id of the current page being shown
@@ -137,8 +137,8 @@ BOOL wasPathFollowed = false;
 }
 
 /*  Initial view setup after webview loads. Adds manipulationView as a subview and adds view constraints
-*   Initilizes class variables
-*/
+ *   Initilizes class variables
+ */
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.manipulationView = [[ManipulationView alloc] initWithFrameAndView:self.view.frame:bookView];
@@ -147,46 +147,46 @@ BOOL wasPathFollowed = false;
     self.manipulationView.delegate = self;
     //[self.view sendSubviewToBack:self.manipulationView];
     
-//    NSLayoutConstraint *xCenterConstraint = [NSLayoutConstraint constraintWithItem:self.manipulationView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0];
-//    [self.view addConstraint:xCenterConstraint];
-//    
-//    NSLayoutConstraint *yCenterConstraint = [NSLayoutConstraint constraintWithItem:self.manipulationView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0];
-//    [self.view addConstraint:yCenterConstraint];
+    //    NSLayoutConstraint *xCenterConstraint = [NSLayoutConstraint constraintWithItem:self.manipulationView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0];
+    //    [self.view addConstraint:xCenterConstraint];
+    //
+    //    NSLayoutConstraint *yCenterConstraint = [NSLayoutConstraint constraintWithItem:self.manipulationView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0];
+    //    [self.view addConstraint:yCenterConstraint];
     
     
     /*[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.manipulationView
-                                                              attribute:NSLayoutAttributeTop
-                                                              relatedBy:NSLayoutRelationEqual
-                                                                 toItem:self.view
-                                                              attribute:NSLayoutAttributeTop
-                                                             multiplier:1.0
-                                                               constant:0.0]];
-    
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.manipulationView
-                                                              attribute:NSLayoutAttributeLeading
-                                                              relatedBy:NSLayoutRelationEqual
-                                                                 toItem:self.view
-                                                              attribute:NSLayoutAttributeLeading
-                                                             multiplier:1.0
-                                                               constant:0.0]];
-    
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.manipulationView
-                                                              attribute:NSLayoutAttributeBottom
-                                                              relatedBy:NSLayoutRelationEqual
-                                                                 toItem:self.view
-                                                              attribute:NSLayoutAttributeBottom
-                                                             multiplier:1.0
-                                                               constant:0.0]];
-    
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.manipulationView
-                                                              attribute:NSLayoutAttributeTrailing
-                                                              relatedBy:NSLayoutRelationEqual
-                                                                 toItem:self.view
-                                                              attribute:NSLayoutAttributeTrailing
-                                                             multiplier:1.0
-                                                               constant:0.0]];
+     attribute:NSLayoutAttributeTop
+     relatedBy:NSLayoutRelationEqual
+     toItem:self.view
+     attribute:NSLayoutAttributeTop
+     multiplier:1.0
+     constant:0.0]];
+     
+     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.manipulationView
+     attribute:NSLayoutAttributeLeading
+     relatedBy:NSLayoutRelationEqual
+     toItem:self.view
+     attribute:NSLayoutAttributeLeading
+     multiplier:1.0
+     constant:0.0]];
+     
+     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.manipulationView
+     attribute:NSLayoutAttributeBottom
+     relatedBy:NSLayoutRelationEqual
+     toItem:self.view
+     attribute:NSLayoutAttributeBottom
+     multiplier:1.0
+     constant:0.0]];
+     
+     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.manipulationView
+     attribute:NSLayoutAttributeTrailing
+     relatedBy:NSLayoutRelationEqual
+     toItem:self.view
+     attribute:NSLayoutAttributeTrailing
+     multiplier:1.0
+     constant:0.0]];
      */
-
+    
     
     //[self.manipulationView addGesture:tapRecognizer];
     //[self.manipulationView addGesture:swipeRecognizer];
@@ -417,9 +417,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 - (void)drawArea:(NSString *)areaName :(NSString *)chapter :(NSString *)pageId {
     if ([chapterTitle isEqualToString:chapter] && [pageContext.currentPageId isEqualToString:pageId]) {
         [self.manipulationView drawArea:areaName
-                      chapter:chapter
-                       pageId:pageId
-                    withModel:model];
+                                chapter:chapter
+                                 pageId:pageId
+                              withModel:model];
     }
 }
 
@@ -615,7 +615,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             //If last step was a check step and user moved the object to the correct end location, then just move object to correct
             //last coordinate point for the path
             if ([currSolSteps count] >= 2 && stepContext.currentStep >= 2 && [[[currSolSteps objectAtIndex:stepContext.currentStep - 2] stepType] isEqualToString:CHECK]
-               && [self isHotspotInsideLocation:true]) {
+                && [self isHotspotInsideLocation:true]) {
                 NSString *areaId = [currSolStep areaId];
                 
                 //Get area that hotspot should be inside
@@ -744,8 +744,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 }
 
 /*
-* Tap gesture handles taps on menus, words, images
-*/
+ * Tap gesture handles taps on menus, words, images
+ */
 - (IBAction)tapGesturePerformed:(UITapGestureRecognizer *)recognizer {
     CGPoint location = [recognizer locationInView:self.view];
     
@@ -880,7 +880,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         
         if ([[currSolStep stepType] isEqualToString:TAPWORD]) {
             if ([englishSentenceText containsString: [currSolStep object1Id]] &&
-               (sentenceContext.currentSentence == sentenceIDNum) && !stepContext.stepsComplete) {
+                (sentenceContext.currentSentence == sentenceIDNum) && !stepContext.stepsComplete) {
                 [[ServerCommunicationController sharedInstance] logTapWord:sentenceText :manipulationContext];
                 
                 if (conditionSetup.useKnowledgeTracing && ![chapterTitle isEqualToString:@"The Naughty Monkey"]) {
@@ -962,8 +962,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
         
         if ([[currSolStep stepType] isEqualToString:TAPTOANIMATE] ||
-                 [[currSolStep stepType] isEqualToString:SHAKEORTAP] ||
-                 [[currSolStep stepType] isEqualToString:CHECKANDSWAP]) {
+            [[currSolStep stepType] isEqualToString:SHAKEORTAP] ||
+            [[currSolStep stepType] isEqualToString:CHECKANDSWAP]) {
             //Get the object at this point
             NSString *imageAtPoint = [self getObjectAtPoint:location ofType:nil];
             
@@ -1115,7 +1115,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  */
 - (void)highlightImageForText:(NSString *)englishSentenceText {
     NSObject *valueImage = [[Translation translationImages]objectForKey:englishSentenceText];
-
+    
     NSString *imageHighlighted = EMPTYSTRING;
     
     if (valueImage == nil) {
@@ -1405,7 +1405,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                         if (conditionSetup.useKnowledgeTracing && ![chapterTitle isEqualToString:@"The Naughty Monkey"]) {
                             [[ITSController sharedInstance] movedObjectIDs:[self.manipulationView getSetOfObjectsGroupedWithObject:movingObjectId] destinationIDs:overlappingWith isVerified:false actionStep:currSolStep manipulationContext:manipulationContext forSentence:sentenceContext.currentSentenceText withWordMapping:model.wordMapping];
                         }
-
+                        
                         [self handleErrorForAction:MOVE_OBJECT];
                     }
                 }
@@ -1424,7 +1424,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     if (conditionSetup.useKnowledgeTracing && ![chapterTitle isEqualToString:@"The Naughty Monkey"]) {
                         [[ITSController sharedInstance] movedObjectIDs:[self.manipulationView getSetOfObjectsGroupedWithObject:movingObjectId] destinationIDs:overlappingWith isVerified:false actionStep:currSolStep manipulationContext:manipulationContext forSentence:sentenceContext.currentSentenceText withWordMapping:model.wordMapping];
                     }
-
+                    
                     [self handleErrorForAction:MOVE_OBJECT];
                 }
             }
@@ -1447,7 +1447,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                     if (conditionSetup.useKnowledgeTracing && ![chapterTitle isEqualToString:@"The Naughty Monkey"]) {
                         [[ITSController sharedInstance] movedObjectIDs:[self.manipulationView getSetOfObjectsGroupedWithObject:movingObjectId] destinationIDs:@[currSolStep.locationId] isVerified:false actionStep:currSolStep manipulationContext:manipulationContext forSentence:sentenceContext.currentSentenceText withWordMapping:model.wordMapping];
                     }
-                
+                    
                     [self handleErrorForAction:MOVE_OBJECT];
                 }
             }
@@ -1650,13 +1650,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             NSArray *animation = [[animatingObjects objectForKey:movingObjectId] componentsSeparatedByString: @","];
             NSString *animationType = animation[1];
             NSString *animationAreaId = animation[2];
-        
+            
             [self.manipulationView animateObject:movingObjectId
-                                  from:startLocation
-                                    to:CGPointZero
-                                action:animationType
-                                areaId:animationAreaId];
-           
+                                            from:startLocation
+                                              to:CGPointZero
+                                          action:animationType
+                                          areaId:animationAreaId];
+            
             [animatingObjects setObject:[NSString stringWithFormat:@"%@,%@,%@", ANIMATE, animationType, animationAreaId] forKey:movingObjectId];
         }
         
@@ -1848,13 +1848,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             NSString *height = [altImage height];
             CGPoint location = [altImage location];
             NSString *zIndex = [altImage zPosition];
-        
+            
             [self.manipulationView swapImages:object1Id
-                       alternateSrc:altSrc
-                              width:width
-                             height:height
-                           location:location
-                             zIndex:zIndex];
+                                 alternateSrc:altSrc
+                                        width:width
+                                       height:height
+                                     location:location
+                                       zIndex:zIndex];
             
             [[ServerCommunicationController sharedInstance] logSwapImageForObject:object1Id altImage:[altSrc stringByDeletingPathExtension] context:manipulationContext];
         }
@@ -1889,15 +1889,15 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             NSString *className = [altImage className];
             NSString *zPosition = [altImage zPosition];
             
-        
+            
             if ([[currSolStep stepType] isEqualToString:APPEAR]) {
-               [self.manipulationView loadImage:object1Id
-                         alternateSrc:altSrc
-                                width:width
-                               height:height
-                             location:location
-                            className:className
-                               zIndex:zPosition];
+                [self.manipulationView loadImage:object1Id
+                                    alternateSrc:altSrc
+                                           width:width
+                                          height:height
+                                        location:location
+                                       className:className
+                                          zIndex:zPosition];
                 
                 [[ServerCommunicationController sharedInstance] logAppearOrDisappearObject:object1Id ofType:APPEAR_OBJECT context:manipulationContext];
             }
@@ -1905,12 +1905,12 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 NSInteger delay = [[currSolStep object2Id] intValue];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW,delay * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                     [self.manipulationView loadImage:object1Id
-                              alternateSrc:altSrc
-                                     width:width
-                                    height:height
-                                  location:location
-                                 className:className
-                                    zIndex:zPosition];
+                                        alternateSrc:altSrc
+                                               width:width
+                                              height:height
+                                            location:location
+                                           className:className
+                                              zIndex:zPosition];
                     
                     [[ServerCommunicationController sharedInstance] logAppearOrDisappearObject:object1Id ofType:APPEAR_OBJECT context:manipulationContext];
                 });
@@ -1979,12 +1979,12 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             
             //Swap images using alternative src
             [self.manipulationView loadImage:object1Id
-                      alternateSrc:altSrc
-                             width:width
-                            height:EMPTYSTRING
-                          location:location
-                         className:className
-                            zIndex:zPosition];
+                                alternateSrc:altSrc
+                                       width:width
+                                      height:EMPTYSTRING
+                                    location:location
+                                   className:className
+                                      zIndex:zPosition];
             
             [[ServerCommunicationController sharedInstance] logSwapImageForObject:object1Id altImage:altSrc context:manipulationContext];
         }
@@ -2171,7 +2171,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             if ([ssc checkSolutionForSubject:imageAtPoint])
                 return imageAtPoint;
         }
-       
+        
     }
     
     return nil;
@@ -2286,7 +2286,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     [self resetObjectLocation];
     
     stepContext.numAttempts++;
-
+    
     double delay = 0.0;
     
     if (conditionSetup.appMode == ITS && conditionSetup.shouldShowITSMessages == YES) {
@@ -2359,91 +2359,12 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         
         if ((stepContext.numVocabErrors > 1) && conditionSetup.isAutomaticAnimationEnabled) {
             [self showFeedback:NO];
-        
-        
+            
+            
         } else {
             
+            [self showHighlightFeedback];
             
-            // Record highlighted objects/locations for logging
-            NSMutableArray *highlightedItems = [[NSMutableArray alloc] init];
-            
-            // Get steps for current sentence
-            NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
-            
-            // Get current step to be completed
-            ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
-            NSString *stepType = [currSolStep stepType];
-            
-            // Highlight correct object and location
-            if ([stepType isEqualToString:CHECK] || [stepType isEqualToString:CHECKLEFT] || [stepType isEqualToString:CHECKRIGHT] || [stepType isEqualToString:CHECKUP] || [stepType isEqualToString:CHECKDOWN] || [stepType isEqualToString:CHECKANDSWAP] || [stepType isEqualToString:TAPTOANIMATE] || [stepType isEqualToString:CHECKPATH] || [stepType isEqualToString:SHAKEORTAP] || [stepType isEqualToString:TAPWORD] ) {
-                
-                NSString *object1Id = [currSolStep object1Id];
-                NSString *locationId = [currSolStep locationId];
-                
-                if ([locationId isEqualToString:EMPTYSTRING]) {
-                    locationId = [currSolStep areaId];
-                }
-                
-                [highlightedItems addObject:object1Id];
-                [highlightedItems addObject:locationId];
-                
-                [[ServerCommunicationController sharedInstance] logVocabularyErrorFeedback:highlightedItems context:manipulationContext];
-                
-                [self highlightImageForText:object1Id];
-                
-                if ([model getLocationWithId:locationId] || [model getAreaWithId:locationId]) {
-                    [self highlightObject:locationId :1.5];
-                }
-                
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                    allowInteractions = TRUE;
-                    [self.view setUserInteractionEnabled:YES];
-                });
-            }
-            // Highlight correct objects for transference
-            else if ([stepType isEqualToString:TRANSFERANDGROUP_TXT] || [stepType isEqualToString:TRANSFERANDDISAPPEAR_TXT]) {
-                NSString *object1Id = [currSolStep object1Id];
-                ActionStep *nextSolStep = [currSolSteps objectAtIndex:stepContext.currentStep];
-                
-                if (nextSolStep != nil && ([[nextSolStep stepType] isEqualToString:TRANSFERANDGROUP_TXT] || [stepType isEqualToString:TRANSFERANDDISAPPEAR_TXT])) {
-                    NSString *nextObject1Id = [nextSolStep object1Id];
-                    
-                    if ([nextObject1Id isEqualToString:[currSolStep object2Id]]) {
-                        nextObject1Id = [nextSolStep object2Id];
-                    }
-                    
-                    [highlightedItems addObject:object1Id];
-                    [highlightedItems addObject:nextObject1Id];
-                    
-                    [[ServerCommunicationController sharedInstance] logVocabularyErrorFeedback:highlightedItems context:manipulationContext];
-                    
-                    [self highlightImageForText:object1Id];
-                    [self highlightImageForText:nextObject1Id];
-                    
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                        allowInteractions = TRUE;
-                        [self.view setUserInteractionEnabled:YES];
-                    });
-                }
-            }
-            // Highlight correct objects
-            else {
-                NSString *object1Id = [currSolStep object1Id];
-                NSString *object2Id = [currSolStep object2Id];
-                
-                [highlightedItems addObject:object1Id];
-                [highlightedItems addObject:object2Id];
-                
-                [[ServerCommunicationController sharedInstance] logVocabularyErrorFeedback:highlightedItems context:manipulationContext];
-                
-                [self highlightImageForText:object1Id];
-                [self highlightImageForText:object2Id];
-                
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                    allowInteractions = TRUE;
-                    [self.view setUserInteractionEnabled:YES];
-                });
-            }
         }
         
     }
@@ -2463,9 +2384,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 [self showFeedback:NO];
             }
             else {
-                allowInteractions = TRUE;
-                [self.view setUserInteractionEnabled:YES];
-            }
+                [self showHighlightFeedback];            }
         });
     }
     else if ([errorType isEqualToString:@"usability"]) {
@@ -2499,6 +2418,92 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         [self animatePerformingStep];
     }
 }
+
+- (void)showHighlightFeedback {
+    // Record highlighted objects/locations for logging
+    NSMutableArray *highlightedItems = [[NSMutableArray alloc] init];
+    
+    // Get steps for current sentence
+    NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
+    
+    // Get current step to be completed
+    ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
+    NSString *stepType = [currSolStep stepType];
+    
+    // Highlight correct object and location
+    if ([stepType isEqualToString:CHECK] || [stepType isEqualToString:CHECKLEFT] || [stepType isEqualToString:CHECKRIGHT] || [stepType isEqualToString:CHECKUP] || [stepType isEqualToString:CHECKDOWN] || [stepType isEqualToString:CHECKANDSWAP] || [stepType isEqualToString:TAPTOANIMATE] || [stepType isEqualToString:CHECKPATH] || [stepType isEqualToString:SHAKEORTAP] || [stepType isEqualToString:TAPWORD] ) {
+        
+        NSString *object1Id = [currSolStep object1Id];
+        NSString *locationId = [currSolStep locationId];
+        
+        if ([locationId isEqualToString:EMPTYSTRING]) {
+            locationId = [currSolStep areaId];
+        }
+        
+        [highlightedItems addObject:object1Id];
+        [highlightedItems addObject:locationId];
+        
+        [[ServerCommunicationController sharedInstance] logVocabularyErrorFeedback:highlightedItems context:manipulationContext];
+        
+        [self highlightImageForText:object1Id];
+        
+        if ([model getLocationWithId:locationId] || [model getAreaWithId:locationId]) {
+            [self highlightObject:locationId :1.5];
+        }
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            allowInteractions = TRUE;
+            [self.view setUserInteractionEnabled:YES];
+        });
+    }
+    // Highlight correct objects for transference
+    else if ([stepType isEqualToString:TRANSFERANDGROUP_TXT] || [stepType isEqualToString:TRANSFERANDDISAPPEAR_TXT]) {
+        NSString *object1Id = [currSolStep object1Id];
+        ActionStep *nextSolStep = [currSolSteps objectAtIndex:stepContext.currentStep];
+        
+        if (nextSolStep != nil && ([[nextSolStep stepType] isEqualToString:TRANSFERANDGROUP_TXT] || [stepType isEqualToString:TRANSFERANDDISAPPEAR_TXT])) {
+            NSString *nextObject1Id = [nextSolStep object1Id];
+            
+            if ([nextObject1Id isEqualToString:[currSolStep object2Id]]) {
+                nextObject1Id = [nextSolStep object2Id];
+            }
+            
+            [highlightedItems addObject:object1Id];
+            [highlightedItems addObject:nextObject1Id];
+            
+            [[ServerCommunicationController sharedInstance] logVocabularyErrorFeedback:highlightedItems context:manipulationContext];
+            
+            [self highlightImageForText:object1Id];
+            [self highlightImageForText:nextObject1Id];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                allowInteractions = TRUE;
+                [self.view setUserInteractionEnabled:YES];
+            });
+        }
+    }
+    // Highlight correct objects
+    else {
+        NSString *object1Id = [currSolStep object1Id];
+        NSString *object2Id = [currSolStep object2Id];
+        
+        [highlightedItems addObject:object1Id];
+        [highlightedItems addObject:object2Id];
+        
+        [[ServerCommunicationController sharedInstance] logVocabularyErrorFeedback:highlightedItems context:manipulationContext];
+        
+        [self highlightImageForText:object1Id];
+        [self highlightImageForText:object2Id];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            allowInteractions = TRUE;
+            [self.view setUserInteractionEnabled:YES];
+        });
+    }
+    
+    
+}
+
 
 /*
  * Checks if one object is contained inside another object and returns the contained object
@@ -2908,13 +2913,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  */
 - (void)moveObject:(NSString *)object :(CGPoint)location :(CGPoint)offset :(BOOL)updateCon {
     endLocation = [self.manipulationView moveObject:object
-                   location:location
-                     offset:offset
-     shouldUpdateConnection:updateCon
-                  withModel:model
-               movingObject:movingObjectId
-              startLocation:startLocation
-                  shouldPan:panning];
+                                           location:location
+                                             offset:offset
+                             shouldUpdateConnection:updateCon
+                                          withModel:model
+                                       movingObject:movingObjectId
+                                      startLocation:startLocation
+                                          shouldPan:panning];
 }
 
 /*
@@ -2939,9 +2944,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     [currentGroupings setValue:object1Groups forKey:object1];
     [currentGroupings setValue:object2Groups forKey:object2];
     [self.manipulationView groupObjects:object1
-               object1HotSpot:object1Hotspot
-                      object2:object2
-               object2Hotspot:object2Hotspot];
+                         object1HotSpot:object1Hotspot
+                                object2:object2
+                         object2Hotspot:object2Hotspot];
 }
 
 /*
@@ -2980,7 +2985,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         [object2Groups removeObject:object1];
         [currentGroupings setValue:object2Groups forKey:object2];
     }
-
+    
     [self.manipulationView ungroupObjectsAndStay:object1 object2:object2];
 }
 
@@ -2990,11 +2995,11 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  */
 - (void)consumeAndReplenishSupply:(NSString *)disappearingObject {
     CGPoint point = [self.manipulationView consumeAndReplenishSupply:disappearingObject
-                                           shouldReplenish:replenishSupply
-                                                     model:model
-                                              movingObject:movingObjectId
-                                             startLocation:startLocation
-                                                 shouldPan:NO];
+                                                     shouldReplenish:replenishSupply
+                                                               model:model
+                                                        movingObject:movingObjectId
+                                                       startLocation:startLocation
+                                                           shouldPan:NO];
     if (point.x != -99) {
         endLocation = point;
     }
@@ -3311,24 +3316,24 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 -(void) pressedBackStory{
     //TODO: decrease sentence context and highlight last sentence
     
-     sentenceContext.currentSentence--;
-     sentenceContext.currentSentenceText = [self.manipulationView getCurrentSentenceAt:sentenceContext.currentSentence];
-     manipulationContext.sentenceNumber = sentenceContext.currentSentence;
-     manipulationContext.sentenceComplexity = [sc getComplexityOfCurrentSentence];
-     manipulationContext.sentenceText = sentenceContext.currentSentenceText;
-     manipulationContext.manipulationSentence = [sc isManipulationSentence:sentenceContext.currentSentence];
-     [[ServerCommunicationController sharedInstance] logLoadSentence:sentenceContext.currentSentence withComplexity:manipulationContext.sentenceComplexity withText:sentenceContext.currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
-     
-     //currentSentence is 1 indexed.
-     if (sentenceContext.currentSentence < 0) {
+    sentenceContext.currentSentence--;
+    sentenceContext.currentSentenceText = [self.manipulationView getCurrentSentenceAt:sentenceContext.currentSentence];
+    manipulationContext.sentenceNumber = sentenceContext.currentSentence;
+    manipulationContext.sentenceComplexity = [sc getComplexityOfCurrentSentence];
+    manipulationContext.sentenceText = sentenceContext.currentSentenceText;
+    manipulationContext.manipulationSentence = [sc isManipulationSentence:sentenceContext.currentSentence];
+    [[ServerCommunicationController sharedInstance] logLoadSentence:sentenceContext.currentSentence withComplexity:manipulationContext.sentenceComplexity withText:sentenceContext.currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
+    
+    //currentSentence is 1 indexed.
+    if (sentenceContext.currentSentence < 0) {
         [pc loadPreviousPage];
-     }
-     else {
+    }
+    else {
         //Set up current sentence appearance and solution steps
         [sc setupCurrentSentence];
         [sc colorSentencesUponBack];
         [self playCurrentSentenceAudio];
-     }
+    }
 }
 
 -(BOOL) isMostForwardProgress{
@@ -3336,21 +3341,21 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     //if they are the same then we return true, if they are not we return false
     NSArray *currentPageIdComponents = [pageContext.currentPageId componentsSeparatedByString:@"-"];
     
-     if(forwardProgress.pageNumber == ([currentPageIdComponents count] == 3 ? [[currentPageIdComponents objectAtIndex:2] intValue] : 0) &&
-        forwardProgress.pageId == (pageContext.currentPageId) &&
-        forwardProgress.sentenceNumber == (sentenceContext.currentSentence+1)
-        //&& forwardProgress.stepNumber == (stepContext.currentStep+1)
-        ){
+    if(forwardProgress.pageNumber == ([currentPageIdComponents count] == 3 ? [[currentPageIdComponents objectAtIndex:2] intValue] : 0) &&
+       forwardProgress.pageId == (pageContext.currentPageId) &&
+       forwardProgress.sentenceNumber == (sentenceContext.currentSentence+1)
+       //&& forwardProgress.stepNumber == (stepContext.currentStep+1)
+       ){
         return true;
-     }
-     else{
+    }
+    else{
         return false;
-     }
+    }
 }
 
 - (IBAction)pressedPlayAudio:(id)sender {
     if([pageContext.currentPageId containsString:DASH_PM]){
-            [self playCurrentSentenceAudio];
+        [self playCurrentSentenceAudio];
     }
 }
 
@@ -3372,7 +3377,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 }
 
 - (void)playNoiseName:(NSString *)name {
-   
+    
     if ([name isEqualToString:ERROR_NOISE]) {
         [self.playaudioClass playErrorNoise];
         
@@ -3642,7 +3647,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 
 /**
  Returns the audio index to be played based on the current app mode.
- ITS and Study mode works differently, so we need to use idea numbers 
+ ITS and Study mode works differently, so we need to use idea numbers
  in ITS and sentence number in Study.
  **/
 - (int)currentSentenceAudioIndex {
@@ -3668,7 +3673,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
           sentenceContext.currentSentence,sentenceContext.currentIdea,pageContext.currentPageId);
     NSLog(@"Sentence text: %@ - %@ ", sentenceContext.currentSentenceText, [sentenceContext.currentSentenceText MD5String]);
     
-          
+    
     //TODO: move chapter checks to new class or function
     //Only play sentence audio if system is reading or user made a syntax error
     if (conditionSetup.reader == SYSTEM || (conditionSetup.appMode == ITS && conditionSetup.useKnowledgeTracing && stepContext.numSyntaxErrors > 0)) {
@@ -3752,7 +3757,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 sentenceAudioFile = [NSString stringWithFormat:@"TheNaughtyMonkeyS%dE.mp3", sentenceContext.currentSentence - 2 ];
             }
         }
-      
+        
         
         
         
@@ -3764,7 +3769,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             else {
                 sentenceAudioFile = [NSString stringWithFormat:@"%@.mp3", [sentenceContext.currentSentenceText MD5String]];
             }
-
+            
         } else if ([bookTitle isEqualToString:@"Bottled Up Joy" ]) {
             if (conditionSetup.language == BILINGUAL) {
                 sentenceAudioFile = [NSString stringWithFormat:@"TheLuckyStoneS%dS.mp3", sentenceContext.currentSentence];
@@ -3779,7 +3784,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 sentenceAudioFile = [NSString stringWithFormat:@"HowDoObjectsMoveS%dS.mp3", sentenceContext.currentSentence];
             }
             else {
-               sentenceAudioFile = [NSString stringWithFormat:@"%@.mp3", [sentenceContext.currentSentenceText MD5String]]; 
+                sentenceAudioFile = [NSString stringWithFormat:@"%@.mp3", [sentenceContext.currentSentenceText MD5String]];
             }
             
         } else if ([bookTitle isEqualToString:@"Native American Homes" ]) {
@@ -3812,10 +3817,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             else {
                 sentenceAudioFile = [NSString stringWithFormat:@"%@.mp3", [sentenceContext.currentSentenceText MD5String]];
             }
-           
+            
             
         }
-
+        
         
         
     }
@@ -3832,9 +3837,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         ActivityMode *mode = [seq getModeForChapter:chapterTitle];
         
         if ([pageContext.currentPageId containsString:DASH_INTRO] &&
-           [pageContext.currentPageId containsString:@"story1"] &&
-           ([chapterTitle isEqualToString:@"The Lucky Stone"] || [chapterTitle isEqualToString:@"The Lopez Family"])
-           && [bookTitle containsString:seq.bookTitle]) {
+            [pageContext.currentPageId containsString:@"story1"] &&
+            ([chapterTitle isEqualToString:@"The Lucky Stone"] || [chapterTitle isEqualToString:@"The Lopez Family"])
+            && [bookTitle containsString:seq.bookTitle]) {
             introAudio = @"splWordsIntro";
             
             [array addObject:[NSString stringWithFormat:@"%@.mp3",introAudio]];

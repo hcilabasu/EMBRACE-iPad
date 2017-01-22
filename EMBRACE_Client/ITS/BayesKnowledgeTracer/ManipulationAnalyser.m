@@ -168,8 +168,9 @@
         
         // Increase syntax skill
         EMComplexity complexity = [self.delegate getComplexityForCurrentSentence:self];
-        Skill *syntaxSkill = [self.knowledgeTracer updateSyntaxSkill:YES withComplexity:complexity context:context];
-        
+        Skill *syntaxSkill = [self updateSyntaxSkillwithComplexity:complexity
+                                                        isVerified:YES
+                                                           context:context];
         if (syntaxSkill != nil) {
             [skills addObject:syntaxSkill];
         }
@@ -210,7 +211,9 @@
     // Mixed up order of subject and object
     if ([destinationIDs containsObject:correctMovedObjectID] && [movedObjectIDs containsObject:correctDestinationID]) {
         // Decrease syntax skill
-        Skill *syntaxSkill = [self.knowledgeTracer updateSyntaxSkill:NO withComplexity:complexity context:context];
+        Skill *syntaxSkill = [self updateSyntaxSkillwithComplexity:complexity
+                                                        isVerified:NO
+                                                           context:context];
         [skills addObject:syntaxSkill];
         [self showMessageWith:skills];
         [self determineMostProbableErrorTypeFromSkills:skills];
@@ -228,7 +231,9 @@
             for (NSString *destinationID in destinationIDs) {
                 if ([objectsInvolved containsObject:movedObjectID] && [objectsInvolved containsObject:destinationID]) {
                     // Decrease syntax skill
-                    Skill *syntaxSkill = [self.knowledgeTracer updateSyntaxSkill:NO withComplexity:complexity context:context];
+                    Skill *syntaxSkill = [self updateSyntaxSkillwithComplexity:complexity
+                                                                    isVerified:NO
+                                                                       context:context];
                     [skills addObject:syntaxSkill];
                     [self showMessageWith:skills];
                     [self determineMostProbableErrorTypeFromSkills:skills];
@@ -309,7 +314,9 @@
         // Syntax error
         else {
             // Decrease syntax skill
-            syntaxSkill = [self.knowledgeTracer updateSyntaxSkill:NO withComplexity:complexity context:context];
+            syntaxSkill = [self updateSyntaxSkillwithComplexity:complexity
+                                                            isVerified:NO
+                                                               context:context];
         }
     }
     // Moved to incorrect destination
@@ -340,7 +347,9 @@
             // Syntax error
             else {
                 // Decrease syntax skill
-                syntaxSkill = [self.knowledgeTracer updateSyntaxSkill:NO withComplexity:complexity context:context];
+                syntaxSkill = [self updateSyntaxSkillwithComplexity:complexity
+                                                                isVerified:NO
+                                                                   context:context];
             }
         }
         // Usability error
@@ -421,7 +430,9 @@
             // Syntax error
             else {
                 // Decrease syntax skill
-                syntaxSkill = [self.knowledgeTracer updateSyntaxSkill:NO withComplexity:complexity context:context];
+                syntaxSkill = [self updateSyntaxSkillwithComplexity:complexity
+                                                                isVerified:NO
+                                                                   context:context];
             }
         }
         // Usability error
@@ -450,6 +461,23 @@
     if (usabilitySkill != nil) {
         [skills addObject:usabilitySkill];
     }
+}
+
+- (Skill *)updateSyntaxSkillwithComplexity:(EMComplexity)complexity
+                             isVerified:(BOOL)isVerified
+                                context:(ManipulationContext *)context{
+    
+    Skill *sk = nil;
+    if (isVerified) {
+        if (self.currentSentenceStatus.numOfSyntaxErrors == 0) {
+            sk = [self.knowledgeTracer updateSyntaxSkill:isVerified withComplexity:complexity context:context];
+        }
+    } else {
+        self.currentSentenceStatus.numOfSyntaxErrors++;
+        sk = [self.knowledgeTracer updateSyntaxSkill:isVerified withComplexity:complexity context:context];
+        
+    }
+    return sk;
 }
 
 - (void)updateVocabSkillFor:(NSString *)word
