@@ -27,11 +27,11 @@
 - (void)userDidVocabPreviewWord:(NSString *)word context:(ManipulationContext *)context;
 - (NSMutableSet *)getRequestedVocab;
 
+- (double)syntaxSkillValue;
 
-
-- (double)easySyntaxSkillValue;
-- (double)medSyntaxSkillValue;
-- (double)complexSyntaxSkillValue;
+//- (double)easySyntaxSkillValue;
+//- (double)medSyntaxSkillValue;
+//- (double)complexSyntaxSkillValue;
 
 - (double)vocabSkillForWord:(NSString *)word;
 

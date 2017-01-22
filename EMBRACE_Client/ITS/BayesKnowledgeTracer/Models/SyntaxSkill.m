@@ -34,6 +34,9 @@
     }
     else if (self.complexityLevel == EM_Complex) {
         complexLevel = @"Complex Syntax";
+        
+    } else if (self.complexityLevel == EM_Default) {
+        complexLevel = @"Default Syntax";
     }
     
     return  [NSString stringWithFormat:@"%@ -  %f",complexLevel, self.skillValue];

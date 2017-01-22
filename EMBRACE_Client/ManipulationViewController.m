@@ -272,6 +272,7 @@ BOOL wasPathFollowed = false;
             [[ITSController sharedInstance] setAnalyzerDelegate:self];
             stepContext.numSyntaxErrors = 0;
             stepContext.numVocabErrors = 0;
+            stepContext.numUsabilityErrors = 0;
         }
     }
     
@@ -2289,7 +2290,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     double delay = 0.0;
     
     if (conditionSetup.appMode == ITS && conditionSetup.shouldShowITSMessages == YES) {
-        delay = 5.5;
+        delay = 5.0;
     }
     
     if (stepContext.numAttempts >= stepContext.maxAttempts && conditionSetup.isAutomaticAnimationEnabled && menu == nil) {
@@ -2298,10 +2299,11 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         if (conditionSetup.appMode == ITS && conditionSetup.useKnowledgeTracing && ![chapterTitle isEqualToString:@"The Naughty Monkey"]) {
             stepContext.numSyntaxErrors = 0;
             stepContext.numVocabErrors = 0;
+            stepContext.numUsabilityErrors = 0;
         }
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, delay * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            [self provideFeedbackForErrorType:@"usability" showAlert:YES];
+            [self showFeedback:YES];
         });
     }
     else {
@@ -2356,7 +2358,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         [self playNoiseName:ERROR_FEEDBACK_NOISE];
         
         if ((stepContext.numVocabErrors > 1) && conditionSetup.isAutomaticAnimationEnabled) {
-            [self provideFeedbackForErrorType:@"usability" showAlert:NO];
+            [self showFeedback:NO];
         
         
         } else {
@@ -2458,7 +2460,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             
             // After first attempt
             if (stepContext.numSyntaxErrors > 1 && conditionSetup.isAutomaticAnimationEnabled) {
-                [self provideFeedbackForErrorType:@"usability" showAlert:NO];
+                [self showFeedback:NO];
             }
             else {
                 allowInteractions = TRUE;
@@ -2467,20 +2469,34 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         });
     }
     else if ([errorType isEqualToString:@"usability"]) {
-        if (showAlert) {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Need help? The iPad will show you how to complete this step." preferredStyle:UIAlertControllerStyleAlert];
-            [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action)
-                              {
-                                  [self.view setUserInteractionEnabled:NO];
-                                  [self animatePerformingStep];
-                              }]];
-            [self presentViewController:alert animated:YES completion:nil];
-            [self playNoiseName:ERROR_FEEDBACK_NOISE];
+        stepContext.numUsabilityErrors++;
+        // After first attempt
+        if (stepContext.numUsabilityErrors > 1 && conditionSetup.isAutomaticAnimationEnabled) {
+            [self showFeedback:YES];
         }
         else {
-            [self.view setUserInteractionEnabled:NO];
-            [self animatePerformingStep];
+            allowInteractions = TRUE;
+            [self.view setUserInteractionEnabled:YES];
         }
+        
+        
+    }
+}
+
+- (void)showFeedback:(BOOL)showAlert {
+    if (showAlert) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Need help? The iPad will show you how to complete this step." preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action)
+                          {
+                              [self.view setUserInteractionEnabled:NO];
+                              [self animatePerformingStep];
+                          }]];
+        [self presentViewController:alert animated:YES completion:nil];
+        [self playNoiseName:ERROR_FEEDBACK_NOISE];
+    }
+    else {
+        [self.view setUserInteractionEnabled:NO];
+        [self animatePerformingStep];
     }
 }
 
@@ -3643,6 +3659,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  *  Plays audio for the current sentence
  */
 - (void)playCurrentSentenceAudio {
+    
     //disable user interactions when preparing to play audio to prevent users from skipping audio
     [self.view setUserInteractionEnabled:NO];
     

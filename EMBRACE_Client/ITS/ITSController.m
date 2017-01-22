@@ -180,29 +180,33 @@ static ITSController *sharedInstance = nil;
     return _currentComplexity;
 }
 
-- (EMComplexity)setCurrentComplexity {
-    double easySkillValue = [self.manipulationAnalyser easySyntaxSkillValue];
-    double medSkillValue = [self.manipulationAnalyser medSyntaxSkillValue];
-    double complexSkillValue = [self.manipulationAnalyser complexSyntaxSkillValue];
-    
+- (void)setCurrentComplexity {
+   
+    double syntaxSkillValue = [self.manipulationAnalyser syntaxSkillValue];
     EMComplexity complexity = _currentComplexity;
     
-    if (easySkillValue == 0 && medSkillValue == 0 && complexSkillValue == 0) {
+    if (syntaxSkillValue < 0.3) {
+       complexity = EM_Easy;
+        
+    } else if (syntaxSkillValue >= 0.3 && syntaxSkillValue < 0.7) {
         complexity = EM_Medium;
-    }
-    else if (easySkillValue < 0.9 || (easySkillValue > 0.9 && medSkillValue < 0.4 )) {
-        complexity = EM_Easy;
-    }
-    else if (medSkillValue < 0.9 || (medSkillValue > 0.9 && complexSkillValue < 0.4)) {
-        complexity = EM_Medium;
-    }
-    else {
+        
+    } else {
         complexity = EM_Complex;
     }
+
     
-    _currentComplexity = complexity;
+    // Go down or up by only one step
+    if (_currentComplexity == EM_Easy && complexity == EM_Complex) {
+        _currentComplexity = EM_Medium;
+        
+    } else if (_currentComplexity == EM_Complex && complexity == EM_Easy) {
+        _currentComplexity = EM_Medium;
+        
+    } else {
+        _currentComplexity = complexity;
+    }
     
-    return complexity;
 }
 
 - (NSMutableSet *)getExtraIntroductionVocabularyForChapter:(Chapter *)chapter inBook:(Book *)book {

@@ -14,6 +14,8 @@
 @property (nonatomic, strong) SyntaxSkill *easySyntaxSkill;
 @property (nonatomic, strong) SyntaxSkill *medSyntaxSkill;
 @property (nonatomic, strong) SyntaxSkill *complexSyntaxSkill;
+
+@property (nonatomic, strong) SyntaxSkill *defaultSyntaxSkill;
 @property (nonatomic, strong) UsabilitySkill *usabilitySkill;
 
 @end
@@ -29,7 +31,8 @@
         _easySyntaxSkill = (SyntaxSkill *) [Skill syntaxSkillWithComplexity:EM_Easy];
         _medSyntaxSkill = (SyntaxSkill *) [Skill syntaxSkillWithComplexity:EM_Medium];
         _complexSyntaxSkill = (SyntaxSkill *) [Skill syntaxSkillWithComplexity:EM_Complex];
-        
+        _defaultSyntaxSkill = (SyntaxSkill *) [Skill syntaxSkillWithComplexity:EM_Default];
+        [_defaultSyntaxSkill updateSkillValue:0.5];
         [_easySyntaxSkill updateSkillValue:0.9];
         
         _usabilitySkill = (UsabilitySkill *) [Skill usabilitySkill];        
@@ -57,23 +60,25 @@
 }
 
 - (SyntaxSkill *)syntaxSkillFor:(EMComplexity)complexity {
-    SyntaxSkill *sk = nil;
-    
-    switch (complexity) {
-        case EM_Easy:
-            sk = self.easySyntaxSkill;
-            break;
-        case EM_Medium:
-            sk = self.medSyntaxSkill;
-            break;
-        case EM_Complex:
-            sk = self.complexSyntaxSkill;
-            break;
-        default:
-            break;
-    }
-    
-    return sk;
+    return self.defaultSyntaxSkill;
+//    SyntaxSkill *sk = nil;
+//    
+//    switch (complexity) {
+//        case EM_Easy:
+//            sk = self.easySyntaxSkill;
+//            break;
+//        case EM_Medium:
+//            sk = self.medSyntaxSkill;
+//            break;
+//        case EM_Complex:
+//            sk = self.complexSyntaxSkill;
+//            break;
+//        default:
+//            sk = self.defaultSyntaxSkill;
+//            break;
+//    }
+//    
+//    return sk;
 }
 
 - (UsabilitySkill *)usabilitySkill {
