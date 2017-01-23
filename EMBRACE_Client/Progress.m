@@ -9,6 +9,12 @@
 #import "Progress.h"
 #import "Book.h"
 
+@interface Progress() {
+    ConditionSetup *conditionSetup;
+}
+
+@end
+
 @implementation Progress
 
 @synthesize chaptersCompleted;
@@ -25,6 +31,7 @@
     //Not using sequence by default
     sequenceId = @"NONE";
     currentSequence = -1;
+    conditionSetup = [ConditionSetup sharedInstance];
     
     return self;
 }
@@ -38,7 +45,7 @@
         
         NSMutableArray *chapterTitles = [[NSMutableArray alloc] init];
         
-        for (Chapter *chapter in [book chapters]) {
+        for (Chapter *chapter in (conditionSetup.language == ENGLISH ? [book englishChapters] : [book spanishChapters])) {
             NSString *chapterTitle = [chapter title];
             
             [chapterTitles addObject:chapterTitle];
@@ -81,7 +88,7 @@
         
         //Book already exists
         if (bookStatus != NO_STATUS) {
-            for (Chapter *chapter in [book chapters]) {
+            for (Chapter *chapter in (conditionSetup.language == ENGLISH ? [book englishChapters] : [book spanishChapters])) {
                 NSString *chapterTitle = [chapter title];
                 
                 Status chapterStatus = [self getStatusOfChapter:chapterTitle fromBook:bookTitle];

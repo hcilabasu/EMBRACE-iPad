@@ -21,7 +21,8 @@
     NSDictionary *bookItems; //manifest items read in from opf file. The key is the id and the object is the href.
     NSMutableArray *itemOrder; //array that keeps track of the order the items should appear in. Stores the ids in order of the hrefs in bookItems.
     
-    NSMutableArray *chapters;
+    NSMutableArray *englishChapters;
+    NSMutableArray *spanishChapters;
     InteractionModel *model;
 }
 
@@ -35,7 +36,8 @@
 @property (nonatomic, strong) NSDictionary *bookItems;
 @property (nonatomic, strong) NSMutableArray *itemOrder;
 
-@property (nonatomic, strong) NSMutableArray* chapters;
+@property (nonatomic, strong) NSMutableArray* englishChapters;
+@property (nonatomic, strong) NSMutableArray* spanishChapters;
 
 @property (nonatomic, strong) InteractionModel* model;
 
@@ -51,7 +53,10 @@
 
 - (NSString*) getIdForPageInChapterAndActivity:(NSString*)pagePath :(NSString*)chapterTitle :(Mode)activityMode; //Get the id for the specified page in the chapter with activity
 
--(void) addChapter:(Chapter*)chapter; //Add a chapter to the book as we're reading it in.
+-(void) addEnglishChapter:(Chapter*)chapter; //Add an english chapter to the book as we're reading it in.
+-(void) addSpanishChapter:(Chapter*)chapter; //Add an english chapter to the book as we're reading it in.
+
+- (NSMutableArray*) getChapters; // Returns the correct array of chapters based on current condition language
 
 -(NSString*) getNextPageForChapterAndActivity:(NSString*)chapterTitle :(Mode) activity :(NSString*) currentPage; //Get the page number for the specified chapter and activity mode.
 

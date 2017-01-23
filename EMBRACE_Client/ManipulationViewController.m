@@ -258,7 +258,7 @@ BOOL wasPathFollowed = false;
         stepContext.maxAttempts = 5;
         stepContext.numAttempts = 0;
         
-        if (conditionSetup.currentMode == PM_MODE) {
+        if (conditionSetup.currentMode == PM_MODE || conditionSetup.currentMode == ITSPM_MODE) {
             useSubject = ALL_ENTITIES;
             useObject = ONLY_CORRECT;
         }
@@ -1162,7 +1162,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         [pc loadNextPage];
     }
     //Perform steps only if they exist for the sentence and have not been completed
-    else if ((stepContext.numSteps > 0 && !stepContext.stepsComplete && conditionSetup.condition == EMBRACE && conditionSetup.currentMode == PM_MODE) || ([chapterTitle isEqualToString:@"The Naughty Monkey"] && stepContext.numSteps > 0 && !stepContext.stepsComplete)) {
+    else if (
+             (stepContext.numSteps > 0 && !stepContext.stepsComplete && conditionSetup.condition == EMBRACE &&
+              (conditionSetup.currentMode == PM_MODE ||conditionSetup.currentMode == ITSPM_MODE)) ||
+             ([chapterTitle isEqualToString:@"The Naughty Monkey"] && stepContext.numSteps > 0 && !stepContext.stepsComplete)) {
         [[ServerCommunicationController sharedInstance] logEmergencySwipe:manipulationContext];
         
         //Get steps for current sentence
@@ -2204,7 +2207,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             
             didSelectCorrectMenuOption = true;
         }
-        else if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == PM_MODE) {
+        else if (conditionSetup.condition == EMBRACE && (conditionSetup.currentMode == PM_MODE || conditionSetup.currentMode == ITSPM_MODE)) {
             if (menu) {
                 [[ServerCommunicationController sharedInstance] logVerification:true forAction:SELECT_MENU_ITEM context:manipulationContext];
                 
@@ -2232,14 +2235,14 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             [pic performInteraction:interaction];
         }
         
-        if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == PM_MODE) {
+        if (conditionSetup.condition == EMBRACE && (conditionSetup.currentMode == PM_MODE || conditionSetup.currentMode == ITSPM_MODE)) {
             [ssc incrementCurrentStep];
         }
         
         //Transference counts as two steps, so we must increment again
         if ([interaction interactionType] == TRANSFERANDGROUP ||
             [interaction interactionType] == TRANSFERANDDISAPPEAR) {
-            if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == PM_MODE) {
+            if (conditionSetup.condition == EMBRACE && (conditionSetup.currentMode == PM_MODE || conditionSetup.currentMode == ITSPM_MODE)) {
                 [ssc incrementCurrentStep];
             }
         }
@@ -2254,7 +2257,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             action = MOVE_OBJECT;
         }
         
-        if (conditionSetup.useKnowledgeTracing && ![chapterTitle isEqualToString:@"The Naughty Monkey"]) {
+        if (conditionSetup.appMode == ITS && conditionSetup.useKnowledgeTracing && ![chapterTitle isEqualToString:@"The Naughty Monkey"]) {
             Connection *con = [interaction.connections objectAtIndex:0];
             NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
             ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
@@ -3919,7 +3922,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             NSString *audio = [preAudio objectAtIndex:0];
             if ([audio containsString:INTRO]) {
                 if ([ConditionSetup sharedInstance].condition == EMBRACE) {
-                    if ([ConditionSetup sharedInstance].currentMode == PM_MODE) {
+                    if ([ConditionSetup sharedInstance].currentMode == PM_MODE || [ConditionSetup sharedInstance].currentMode == ITSPM_MODE) {
                         if ([ConditionSetup sharedInstance].reader == USER) {
                             audio = @"IntroDyadReads_PM";
                         } else {

@@ -8,11 +8,13 @@
 
 #import "Context.h"
 #import "PhysicalManipulationSolution.h"
+#import "ITSPhysicalManipulationSolution.h"
 #import "ImagineManipulationSolution.h"
 
 @interface StepContext : NSObject
 
 @property (nonatomic, strong) PhysicalManipulationSolution *PMSolution; //PM solution steps for current chapter
+@property (nonatomic, strong) ITSPhysicalManipulationSolution *ITSPMSolution; //ITSPM solution steps for current chapter
 @property (nonatomic, strong) ImagineManipulationSolution *IMSolution; //IM solution steps for current chapter
 @property (nonatomic) BOOL stepsComplete; //True if all steps have been completed for a sentence
 @property (nonatomic) NSUInteger numSteps; //Number of steps for current sentence

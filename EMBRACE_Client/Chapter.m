@@ -43,6 +43,8 @@
     for(Activity* activity in activities) {
         if((mode == PM_MODE) && ([activity isKindOfClass:[PhysicalManipulationActivity class]]))
             return activity;
+        else if((mode == ITSPM_MODE) && ([activity isKindOfClass:[ITSPhysicalManipulationActivity class]]))
+            return activity;
         else if((mode == IM_MODE) && ([activity isKindOfClass:[ImagineManipulationActivity class]]))
             return activity;
     }
@@ -52,6 +54,9 @@
 -(NSString*) getNextPageForMode:(Mode) mode :(NSString*)currentPage {
     for(Activity* activity in activities) {
         if((mode == PM_MODE) && ([activity isKindOfClass:[PhysicalManipulationActivity class]])) {
+            return [self getNextPageInActivity:activity :currentPage];
+        }
+        if((mode == ITSPM_MODE) && ([activity isKindOfClass:[ITSPhysicalManipulationActivity class]])) {
             return [self getNextPageInActivity:activity :currentPage];
         }
         else if(mode == IM_MODE && ([activity isKindOfClass:[ImagineManipulationActivity class]])) {
@@ -65,6 +70,9 @@
 -(NSString*) getPreviousPageForMode:(Mode) mode :(NSString*)currentPage {
     for(Activity* activity in activities) {
         if((mode == PM_MODE) && ([activity isKindOfClass:[PhysicalManipulationActivity class]])) {
+            return [self getPreviousPageInActivity:activity :currentPage];
+        }
+        if((mode == ITSPM_MODE) && ([activity isKindOfClass:[ITSPhysicalManipulationActivity class]])) {
             return [self getPreviousPageInActivity:activity :currentPage];
         }
         else if(mode == IM_MODE && ([activity isKindOfClass:[ImagineManipulationActivity class]])) {

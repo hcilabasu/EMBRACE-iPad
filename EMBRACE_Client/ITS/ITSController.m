@@ -214,7 +214,7 @@ static ITSController *sharedInstance = nil;
     // Get all vocabulary that comes from solutions of previous chapters
     NSMutableSet *solutionVocabulary = [[NSMutableSet alloc] init];
     
-    for (Chapter *bookChapter in [book chapters]) {
+    for (Chapter *bookChapter in [book getChapters]) {
         if ([[bookChapter title] isEqualToString:[chapter title]]) {
             break;
         }

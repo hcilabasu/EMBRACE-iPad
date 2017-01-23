@@ -43,7 +43,7 @@ int const minMenuItems = 2; //Total number of items the menu must display. chang
         
         if (conditionSetup.condition == EMBRACE) {
             //PM Condition
-            if (conditionSetup.currentMode == PM_MODE) {
+            if (conditionSetup.currentMode == PM_MODE || conditionSetup.currentMode == ITSPM_MODE) {
                 float boxSize = [self frame].size.height - (itemRadiusPM * 2) - 50.0;
                 float originX = ([self frame].size.width - boxSize) / 2;
                 float originY = ([self frame].size.height - boxSize) / 2;
@@ -83,7 +83,7 @@ int const minMenuItems = 2; //Total number of items the menu must display. chang
         
         if (conditionSetup.condition == EMBRACE) {
             //PM Condition
-            if (conditionSetup.currentMode == PM_MODE) {
+            if (conditionSetup.currentMode == PM_MODE || conditionSetup.currentMode == ITSPM_MODE) {
                 rect = CGRectMake(currX - itemRadiusPM, currY - itemRadiusPM, itemRadiusPM * 2, itemRadiusPM * 2);
             }
             //IM Condition

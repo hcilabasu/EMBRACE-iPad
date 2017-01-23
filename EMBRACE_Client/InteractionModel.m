@@ -8,6 +8,12 @@
 
 #import "InteractionModel.h"
 
+@interface InteractionModel() {
+    ConditionSetup *conditionSetup;
+}
+
+@end
+
 @implementation InteractionModel
 
 @synthesize relationships;
@@ -19,7 +25,10 @@
 @synthesize sentenceMetadata;
 @synthesize introductions;
 @synthesize vocabularies;
-@synthesize assessmentActivities;
+@synthesize assessmentActivitiesEOBEnglish;
+@synthesize assessmentActivitiesEOBSpanish;
+@synthesize assessmentActivitiesEOCEnglish;
+@synthesize assessmentActivitiesEOCSpanish;
 @synthesize areas;
 
 - (id) init {
@@ -35,20 +44,59 @@
         useConstraints = TRUE;
         introductions = [[NSMutableDictionary alloc] init];
         vocabularies = [[NSMutableDictionary alloc] init];
-        assessmentActivities = [[NSMutableDictionary alloc] init];
+        assessmentActivitiesEOCEnglish = [[NSMutableDictionary alloc] init];
+        assessmentActivitiesEOCSpanish = [[NSMutableDictionary alloc] init];
+        assessmentActivitiesEOBEnglish = [[NSMutableDictionary alloc] init];
+        assessmentActivitiesEOBSpanish = [[NSMutableDictionary alloc] init];
         areas = [[NSMutableSet alloc] init];
         _wordMapping = [[NSMutableDictionary alloc]init];
+        conditionSetup = [ConditionSetup sharedInstance];
     }
     
     return self;
 }
 
-- (void) addAssessmentActivity:(NSString*) storyTitle :(NSMutableArray*) questions {
-    [assessmentActivities setObject:questions forKey:storyTitle];
+- (void) addAssessmentActivity:(NSString*) storyTitle :(NSMutableArray*) questions :(Language) language :(Assessment) assessmentMode {
+    //Separate Assessment metadata files depending on language
+    if (language == ENGLISH && assessmentMode == ENDOFCHAPTER) {
+        [assessmentActivitiesEOCEnglish setObject:questions forKey:storyTitle];
+    }
+    else if (language == BILINGUAL && assessmentMode == ENDOFCHAPTER) {
+        [assessmentActivitiesEOCSpanish setObject:questions forKey:storyTitle];
+    }
+    else if (language == ENGLISH && assessmentMode == ENDOFBOOK) {
+        [assessmentActivitiesEOBEnglish setObject:questions forKey:storyTitle];
+    }
+    else if (language == BILINGUAL && assessmentMode == ENDOFBOOK) {
+        [assessmentActivitiesEOBSpanish setObject:questions forKey:storyTitle];
+    }
+    else{
+        //error
+    }
 }
 
 - (NSMutableDictionary*) getAssessmentActivity{
-    return assessmentActivities;
+    return [self getAssessmentActivityForLanguageAndMode];
+}
+
+- (NSMutableDictionary*) getAssessmentActivityForLanguageAndMode{
+    //Separate Assessment metadata files depending on language
+    if (conditionSetup.language == ENGLISH && conditionSetup.assessmentMode == ENDOFCHAPTER) {
+        return assessmentActivitiesEOCEnglish;
+    }
+    else if (conditionSetup.language == BILINGUAL && conditionSetup.assessmentMode == ENDOFCHAPTER) {
+        return assessmentActivitiesEOCSpanish;
+    }
+    else if (conditionSetup.language == ENGLISH && conditionSetup.assessmentMode == ENDOFBOOK) {
+         return assessmentActivitiesEOBEnglish;
+    }
+    else if (conditionSetup.language == BILINGUAL && conditionSetup.assessmentMode == ENDOFBOOK) {
+         return assessmentActivitiesEOBSpanish;
+    }
+    else{
+        //error
+        return NULL;
+    }
 }
 
 /*

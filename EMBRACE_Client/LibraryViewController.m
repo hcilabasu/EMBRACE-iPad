@@ -111,7 +111,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
     
     for (Book *book in books) {
         //Use the image for the first chapter as the image for the book
-        NSString *bookImagePath = [[[book chapters] objectAtIndex:0] chapterImagePath];
+        NSString *bookImagePath = [[[book getChapters] objectAtIndex:0] chapterImagePath];
         
         UIImage *bookImage;
         
@@ -127,7 +127,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
         NSMutableArray *bookChapterImages = [[NSMutableArray alloc] init];
         NSMutableArray *bookChapterTitles = [[NSMutableArray alloc] init];
         
-        for (Chapter *chapter in [book chapters]) {
+        for (Chapter *chapter in [book getChapters]) {
             //Get image for chapter
             NSString *chapterImagePath = [chapter chapterImagePath];
             
@@ -170,7 +170,16 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
         NSString *conditionString = [conditionSetup returnConditionEnumToString:conditionSetup.condition];
         NSString *languageString = [conditionSetup returnLanguageEnumtoString:conditionSetup.language];
         NSString *readerString = [conditionSetup reader] == SYSTEM ? @"System" : @"User";
-        NSString *currentModeString = [conditionSetup currentMode] == PM_MODE ? @"PM" : @"IM";
+        NSString *currentModeString;
+        if([conditionSetup currentMode] == PM_MODE){
+            currentModeString = @"PM";
+        }
+        else if([conditionSetup currentMode] == ITSPM_MODE){
+            currentModeString = @"ITSPM";
+        }
+        else{
+            currentModeString = @"IM";
+        }
         
         self.title = [NSString stringWithFormat:@"%@ / %@ / %@ / %@", conditionString, languageString, readerString, currentModeString];
     }
@@ -596,7 +605,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
             Book *book = [books objectAtIndex:selectedBookIndex];
             
             self.bookToOpen = [book title];
-            self.chapterToOpen = [[[book chapters] objectAtIndex:indexPath.row] title];
+            self.chapterToOpen = [[[book getChapters] objectAtIndex:indexPath.row] title];
             
             if (useSequence) {
                 //Get mode information for selected chapter
@@ -619,7 +628,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                 }
                 else if ([currentMode interventionType] == ITS_INTERVENTION) {
                     conditionSetup.condition = EMBRACE;
-                    conditionSetup.currentMode = PM_MODE;
+                    conditionSetup.currentMode = ITSPM_MODE;
                     conditionSetup.appMode = ITS;
                 }
                 //Current mode for chapter was not found; default to control
@@ -648,6 +657,9 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                 else if (conditionSetup.currentMode == IM_MODE) {
                     condition = @"IM";
                 }
+                else if(conditionSetup.currentMode == ITSPM_MODE){
+                    condition = @"ITSPM";
+                }
             }
             
             [[ServerCommunicationController sharedInstance] studyContext].appMode = [conditionSetup returnAppModeEnumToString:[conditionSetup appMode]];
@@ -659,6 +671,9 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                 [self performSegueWithIdentifier:@"OpenAuthoringSegue" sender:self];
             }
             else if (conditionSetup.currentMode == PM_MODE) {
+                [self performSegueWithIdentifier: @"OpenPMActivitySegue" sender:self];
+            }
+            else if (conditionSetup.currentMode == ITSPM_MODE) {
                 [self performSegueWithIdentifier: @"OpenPMActivitySegue" sender:self];
             }
             else if (conditionSetup.currentMode == IM_MODE) {

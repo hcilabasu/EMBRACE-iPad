@@ -79,10 +79,10 @@
             stepContext.numSteps = [stepContext.PMSolution getNumStepsForSentence:sentenceContext.currentSentence];
         }
         else if (conditionSetup.condition == EMBRACE) {
-            if (conditionSetup.currentMode == PM_MODE) {
+            if (conditionSetup.currentMode == PM_MODE || conditionSetup.currentMode == ITSPM_MODE) {
                 //NOTE: Currently hardcoded because some Solutions-MetaData.xml files are different format from other stories
                 if (conditionSetup.appMode == ITS && ([mvc.bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound || [mvc.bookTitle rangeOfString:@"The Lopez Family Mystery"].location != NSNotFound || [mvc.bookTitle rangeOfString:@"Bottled Up Joy"].location != NSNotFound)) {
-                    stepContext.numSteps = [stepContext.PMSolution getNumStepsForSentence:sentenceContext.currentIdea];
+                    stepContext.numSteps = [stepContext.ITSPMSolution getNumStepsForSentence:sentenceContext.currentIdea];
                 }
                 else {
                     stepContext.numSteps = [stepContext.PMSolution getNumStepsForSentence:sentenceContext.currentSentence];
@@ -128,7 +128,7 @@
         if (conditionSetup.condition != CONTROL) {
             mvc.allowInteractions = TRUE;
             
-            if (conditionSetup.appMode == ITS && conditionSetup.useKnowledgeTracing && ![chapterTitle isEqualToString:@"The Naughty Monkey"]) {
+            if (conditionSetup.appMode == ITS && conditionSetup.useKnowledgeTracing && ![chapterTitle isEqualToString:@"The Naughty Monkey"] && !(conditionSetup.language == BILINGUAL && [pageContext.currentPageId.lowercaseString containsString:@"story1"])) {
                 mvc.currentComplexityLevel = [[ITSController sharedInstance] getCurrentComplexity];
                 [self.manipulationView removeAllSentences];
                 [self addSentencesWithComplexity:mvc.currentComplexityLevel];
@@ -165,8 +165,8 @@
 
 - (void)addSentencesWithComplexity:(EMComplexity)complexity {
     Chapter *chapter = [mvc.book getChapterWithTitle:chapterTitle]; //get current chapter
-    PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
-    NSMutableArray *alternateSentences = [[PMActivity alternateSentences] objectForKey:pageContext.currentPageId]; //get alternate sentences for current page
+    ITSPhysicalManipulationActivity *ITSPMActivity = (ITSPhysicalManipulationActivity *)[chapter getActivityOfType:ITSPM_MODE]; //get PM Activity from chapter
+    NSMutableArray *alternateSentences = [[ITSPMActivity alternateSentences] objectForKey:pageContext.currentPageId]; //get alternate sentences for current page
     
     // Underlined vocabulary includes chapter vocabulary and vocabulary from solution steps
     NSMutableSet *vocabulary = [[NSMutableSet alloc] initWithArray:[[chapter vocabulary] allKeys]];
@@ -175,7 +175,7 @@
     int sentenceNumber = 1; //used for assigning sentence ids
     int previousIdeaNum = 0; //used for making sure same idea does not get repeated
     
-    NSMutableArray *ideaNums = [stepContext.PMSolution getIdeaNumbers]; //get list of idea numbers on the page
+    NSMutableArray *ideaNums = [stepContext.ITSPMSolution getIdeaNumbers]; //get list of idea numbers on the page
     sentenceContext.pageSentences = [NSMutableArray array];
     //Add alternate sentences associated with each idea
     for (NSNumber *ideaNum in ideaNums) {

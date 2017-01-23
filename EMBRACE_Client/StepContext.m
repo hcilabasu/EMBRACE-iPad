@@ -17,6 +17,7 @@
 @synthesize numSyntaxErrors;
 @synthesize numVocabErrors;
 @synthesize PMSolution;
+@synthesize ITSPMSolution;
 @synthesize IMSolution;
 @synthesize stepsComplete;
 

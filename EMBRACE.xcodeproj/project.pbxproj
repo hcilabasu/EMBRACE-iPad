@@ -1045,6 +1045,10 @@
 		1AC7A3971C592D2F003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AC7A3961C592D2F003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml */; };
 		1AC7A3991C592E84003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AC7A3981C592E84003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml */; };
 		1AC8A2BB1D15963B007CE13C /* bigrocket_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AC8A2BA1D15963B007CE13C /* bigrocket_up.png */; };
+		1AD35FFD1E33B5CA00D06413 /* ITSPhysicalManipulationActivity.h in Sources */ = {isa = PBXBuildFile; fileRef = 1A9FA4FB1E31C87400AFE40D /* ITSPhysicalManipulationActivity.h */; };
+		1AD35FFE1E33B5D000D06413 /* ITSPhysicalManipulationActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9FA4FC1E31C87400AFE40D /* ITSPhysicalManipulationActivity.m */; };
+		1AD35FFF1E33B5D500D06413 /* ITSPhysicalManipulationSolution.h in Sources */ = {isa = PBXBuildFile; fileRef = 1A9FA4FA1E31C81600AFE40D /* ITSPhysicalManipulationSolution.h */; };
+		1AD360001E33B5DA00D06413 /* ITSPhysicalManipulationSolution.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9FA4F81E31C7CE00AFE40D /* ITSPhysicalManipulationSolution.m */; };
 		1AD3CC861A251C5300E18B1C /* IntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3CC851A251C5300E18B1C /* IntroductionViewController.m */; };
 		1AD3CC891A251CBA00E18B1C /* BuildHTMLString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3CC881A251CBA00E18B1C /* BuildHTMLString.m */; };
 		1AD3CC8C1A251CE600E18B1C /* PlayAudioFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3CC8B1A251CE600E18B1C /* PlayAudioFile.m */; };
@@ -6045,6 +6049,10 @@
 		1A9CF8421C31C3A00000C135 /* island_Kauai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = island_Kauai.png; sourceTree = "<group>"; };
 		1A9CF8441C31C7310000C135 /* native.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = native.epub; sourceTree = "<group>"; };
 		1A9CF8461C31DAF90000C135 /* speakerIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speakerIcon.png; sourceTree = "<group>"; };
+		1A9FA4F81E31C7CE00AFE40D /* ITSPhysicalManipulationSolution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITSPhysicalManipulationSolution.m; sourceTree = "<group>"; };
+		1A9FA4FA1E31C81600AFE40D /* ITSPhysicalManipulationSolution.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ITSPhysicalManipulationSolution.h; sourceTree = "<group>"; };
+		1A9FA4FB1E31C87400AFE40D /* ITSPhysicalManipulationActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITSPhysicalManipulationActivity.h; sourceTree = "<group>"; };
+		1A9FA4FC1E31C87400AFE40D /* ITSPhysicalManipulationActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITSPhysicalManipulationActivity.m; sourceTree = "<group>"; };
 		1A9FCAF81DB6FD4C005C5DAE /* Solutions-MetaData-ITS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Solutions-MetaData-ITS.xml"; sourceTree = "<group>"; };
 		1A9FCAF91DB6FD4C005C5DAE /* Vocabulary-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Vocabulary-MetaData.xml"; sourceTree = "<group>"; };
 		1A9FCAFA1DB6FD4C005C5DAE /* WordMapping.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WordMapping.xml; sourceTree = "<group>"; };
@@ -11874,6 +11882,8 @@
 				311646AD175FCFE100B483F0 /* Chapter.m */,
 				311646AF175FD03F00B483F0 /* Activity.h */,
 				311646B0175FD03F00B483F0 /* Activity.m */,
+				1A9FA4FB1E31C87400AFE40D /* ITSPhysicalManipulationActivity.h */,
+				1A9FA4FC1E31C87400AFE40D /* ITSPhysicalManipulationActivity.m */,
 				31058C77176BE71C00595AAE /* PhysicalManipulationActivity.h */,
 				31058C78176BE71C00595AAE /* PhysicalManipulationActivity.m */,
 				31058C7A176BE73C00595AAE /* ImagineManipulationActivity.h */,
@@ -11884,6 +11894,8 @@
 				31C306C1183D900B0043DEDD /* Solution.m */,
 				C3B5214E19254BA2003FF639 /* ActionStep.h */,
 				C3B5214F19254BA2003FF639 /* ActionStep.m */,
+				1A9FA4FA1E31C81600AFE40D /* ITSPhysicalManipulationSolution.h */,
+				1A9FA4F81E31C7CE00AFE40D /* ITSPhysicalManipulationSolution.m */,
 				C3B5215019254BA2003FF639 /* PhysicalManipulationSolution.h */,
 				C3B5215119254BA2003FF639 /* PhysicalManipulationSolution.m */,
 				030C8A961C5B1C6A00042C6F /* ImagineManipulationSolution.h */,
@@ -22072,6 +22084,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AD360001E33B5DA00D06413 /* ITSPhysicalManipulationSolution.m in Sources */,
+				1AD35FFF1E33B5D500D06413 /* ITSPhysicalManipulationSolution.h in Sources */,
+				1AD35FFE1E33B5D000D06413 /* ITSPhysicalManipulationActivity.m in Sources */,
+				1AD35FFD1E33B5CA00D06413 /* ITSPhysicalManipulationActivity.h in Sources */,
 				1AFC9BFE1DAC485A00189CD2 /* UsabilitySkill.m in Sources */,
 				038BECDC1C88C33F00ECFE28 /* Context.m in Sources */,
 				C3B66AA11BC33C2D005DF0AC /* LibraryCellView.m in Sources */,

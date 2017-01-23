@@ -52,7 +52,7 @@ typedef enum AnimatedStepCompletion {
 @property (nonatomic) Language language;
 @property (nonatomic) Actor reader; //who should read the text
 @property (nonatomic) AppMode appMode;
-@property (nonatomic) Mode currentMode; //PM or IM
+@property (nonatomic) Mode currentMode; //PM or IM or ITSPM
 @property (nonatomic) Assessment assessmentMode;
 @property (nonatomic) AnimatedStepCompletion animatedStepCompletionMode; //Per step or per sentence
 @property (nonatomic) BOOL newInstructions; //whether new audio instructions should be played (for sequences)
