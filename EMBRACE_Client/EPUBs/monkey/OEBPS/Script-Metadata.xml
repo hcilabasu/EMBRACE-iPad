@@ -14,7 +14,8 @@
                         </english>
                         
                         <bilingual>
-                            <audio seq="1">NaughtyMonkey_Script1_S.mp3</audio>
+                            <audio seq="1">NaughtyMonkey_Script_C1_S.mp3</audio>
+                            <audio seq="2">NaughtyMonkey_Script_C2_S.mp3</audio>
                             
                         </bilingual>
                     </postAudio>
@@ -47,13 +48,16 @@
                         </english>
                         
                         <bilingual>
-                            <audio seq="1">NaughtyMonkey_Script2_S.mp3</audio>
+                            <audio seq="1">NaughtyMonkey_Script_C3_S.mp3</audio>
                         </bilingual>
                     </preAudio>
                     <postAudio>
                         <english>
                             <audio seq="1">NaughtyMonkeyEEG_Script3.mp3</audio>
                         </english>
+                        <bilingual>
+                            <audio seq="1">NaughtyMonkey_Script_C4_S.mp3</audio>
+                        </bilingual>
                     </postAudio>
                     
                 </embrace>
@@ -91,7 +95,8 @@
                         </english>
                         
                         <bilingual>
-                            <audio seq="1">NaughtyMonkey_Script2_S.mp3</audio>
+                            <audio seq="1">NaughtyMonkey_Script_C5_S.mp3</audio>
+                            <audio seq="2">NaughtyMonkey_Script_C6_S.mp3</audio>
                         </bilingual>
                     </preAudio>
                     
@@ -123,7 +128,8 @@
                         </english>
                         
                         <bilingual>
-                            <audio seq="1">NaughtyMonkey_Script2_S.mp3</audio>
+                            <audio seq="1">NaughtyMonkey_Script_C5_S.mp3</audio>
+                            <audio seq="2">NaughtyMonkey_Script_C6_S.mp3</audio>
                         </bilingual>
                     </preAudio>
                     

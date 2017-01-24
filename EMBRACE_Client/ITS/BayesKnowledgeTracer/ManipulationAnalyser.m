@@ -18,7 +18,7 @@
 #import "UsabilitySkill.h"
 
 #define DISTANCE_THRESHOLD 90
-#define HIGH_VOCABULARY_SKILL_THRESHOLD  0.8
+#define HIGH_VOCABULARY_SKILL_THRESHOLD  0.9
 
 @interface ManipulationAnalyser ()
 

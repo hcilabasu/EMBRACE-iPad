@@ -16,14 +16,17 @@
 // Probability of correctly applying a not known skill
 #define DEFAULT_GUESS 0.1
 
-#define DEFAULT_SYNTAX_GUESS 0.4
+#define DEFAULT_SYNTAX_GUESS 0.5
 #define DEFAULT_VOCAB_GUESS 0.3
 #define DEFAULT_USABILITY_GUESS 0.4
+
+
+#define PREVIEW_VOCAB_GUESS 0.5
 
 // Probability of making a mistake applying a known skill
 #define DEFAULT_SLIP 0.2
 
-#define DEFAULT_SYNTAX_SLIP 0.3
+#define DEFAULT_SYNTAX_SLIP 0.2
 #define DEFAULT_VOCAB_SLIP 0.2
 #define DEFAULT_USABILITY_SLIP 0.5
 

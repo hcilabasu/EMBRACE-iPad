@@ -185,10 +185,10 @@ static ITSController *sharedInstance = nil;
     double syntaxSkillValue = [self.manipulationAnalyser syntaxSkillValue];
     EMComplexity complexity = _currentComplexity;
     
-    if (syntaxSkillValue < 0.3) {
+    if (syntaxSkillValue < 0.5) {
        complexity = EM_Easy;
         
-    } else if (syntaxSkillValue >= 0.3 && syntaxSkillValue < 0.7) {
+    } else if (syntaxSkillValue >= 0.5 && syntaxSkillValue < 0.9) {
         complexity = EM_Medium;
         
     } else {
