@@ -242,27 +242,27 @@
         </mode>
     </sequence>
     <sequence bookTitle="Bottled Up Joy">
-        <mode chapterTitle="The Lucky Stone" newInstructions="true" vocabPage="true" assessmentPage="true">
-            <reader>System</reader>
-            <language>English</language>
-            <intervention>R</intervention>
-        </mode>
-        <mode chapterTitle="Magic Toys" newInstructions="true" vocabPage="true" assessmentPage="true">
+        <mode chapterTitle="The Lucky Stone" newInstructions="false" vocabPage="false" assessmentPage="true">
             <reader>User</reader>
             <language>English</language>
             <intervention>R</intervention>
         </mode>
-        <mode chapterTitle="Baby Brother" newInstructions="false" vocabPage="true" assessmentPage="true">
+        <mode chapterTitle="Magic Toys" newInstructions="false" vocabPage="false" assessmentPage="true">
             <reader>User</reader>
             <language>English</language>
             <intervention>R</intervention>
         </mode>
-        <mode chapterTitle="Words of Wisdom" newInstructions="false" vocabPage="true" assessmentPage="true">
+        <mode chapterTitle="Baby Brother" newInstructions="false" vocabPage="false" assessmentPage="true">
             <reader>User</reader>
             <language>English</language>
             <intervention>R</intervention>
         </mode>
-        <mode chapterTitle="Catch!" newInstructions="false" vocabPage="true" assessmentPage="true">
+        <mode chapterTitle="Words of Wisdom" newInstructions="false" vocabPage="false" assessmentPage="true">
+            <reader>User</reader>
+            <language>English</language>
+            <intervention>R</intervention>
+        </mode>
+        <mode chapterTitle="Catch!" newInstructions="false" vocabPage="false" assessmentPage="true">
             <reader>User</reader>
             <language>English</language>
             <intervention>R</intervention>
