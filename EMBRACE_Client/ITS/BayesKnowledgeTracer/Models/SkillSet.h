@@ -16,6 +16,8 @@
 
 - (void)addWordSkill:(Skill *)wordSkill forWord:(NSString *)word;
 
+- (Skill *)skillForWord:(NSString *)word withPreviewType:(BOOL)isPreview;
+
 - (Skill *)skillForWord:(NSString *)word;
 
 - (SyntaxSkill *)syntaxSkillFor:(EMComplexity)complexity;

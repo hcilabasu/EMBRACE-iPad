@@ -100,14 +100,17 @@
 
 - (Skill *)updateSkillFor:(NSString *)word
                isVerified:(BOOL)isVerified
-                  context:(ManipulationContext *)context {
-    
+                  context:(ManipulationContext *)context
+            isFromPreview:(BOOL)isFromPreview {
+ 
     if (word == nil || [word isEqualToString:@""]) {
         return nil;
     }
     
     
-    Skill *sk = [self.skillSet skillForWord:word];
+    Skill *sk = [self.skillSet skillForWord:word withPreviewType:isFromPreview];
+    
+    
     double prevSkillValue = [sk skillValue];
     
     sk = [self updateSkill:sk isVerified:isVerified];
@@ -117,6 +120,16 @@
     NSLog(@"\nUpdated Vocabulary Skill: %@\nPrevious Value: %f\nNew Value: %f", word, prevSkillValue, newSkillValue);
     
     return sk;
+}
+
+- (Skill *)updateSkillFor:(NSString *)word
+               isVerified:(BOOL)isVerified
+                  context:(ManipulationContext *)context {
+    
+   return  [self updateSkillFor:word
+              isVerified:isVerified
+                 context:context
+           isFromPreview:NO];
 }
 
 

@@ -45,7 +45,7 @@
     [self.wordSkillDict setObject:wordSkill forKey:word];
 }
 
-- (Skill *)skillForWord:(NSString *)word {
+- (Skill *)skillForWord:(NSString *)word withPreviewType:(BOOL)isPreview {
     Skill *skill = [self.wordSkillDict objectForKey:word];
     
     if (skill == nil) {
@@ -56,7 +56,16 @@
         }
     }
     
+    if (isPreview) {
+        skill.skillType = SkillType_Prev_Vocab;
+    } else {
+        skill.skillType = SkillType_Vocab;
+    }
     return skill;
+}
+
+- (Skill *)skillForWord:(NSString *)word {
+    return [self skillForWord:word withPreviewType:NO];
 }
 
 - (SyntaxSkill *)syntaxSkillFor:(EMComplexity)complexity {
