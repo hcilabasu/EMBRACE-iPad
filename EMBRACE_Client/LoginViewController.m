@@ -205,11 +205,11 @@ NSString* const DROPBOX_PASSWORD_LOCKED = @"goodbye"; //used to set locked books
             {
                 if([tmpView isMemberOfClass:[UIButton class]])
                 {
-                    if(tmpView.tag == 2) {
+                    if(tmpView.tag == 4) {
                         [tmpView setHidden: false];
                     }
                     
-                    if(tmpView.tag == 3) {
+                    if(tmpView.tag == 5) {
                         [tmpView setHidden: false];
                     }
                 }
@@ -222,11 +222,11 @@ NSString* const DROPBOX_PASSWORD_LOCKED = @"goodbye"; //used to set locked books
             {
                 if([tmpView isMemberOfClass:[UIButton class]])
                 {
-                    if(tmpView.tag == 2) {
+                    if(tmpView.tag == 4) {
                         [tmpView setHidden: true];
                     }
                     
-                    if(tmpView.tag == 3) {
+                    if(tmpView.tag == 5) {
                         [tmpView setHidden: true];
                     }
                 }
