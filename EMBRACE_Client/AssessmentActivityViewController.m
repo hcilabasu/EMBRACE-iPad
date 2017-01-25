@@ -165,8 +165,7 @@ UIImage *BackgroundImage;   //The background image related to the story
     //Hide the navigation bar to force completion
     self.navigationController.navigationBar.hidden = YES;
     
-    if ([ChapterTitle isEqualToString:@"The Naughty Monkey"] &&
-        conditionSetup.condition == CONTROL) {
+    if ([ChapterTitle isEqualToString:@"The Naughty Monkey"]) {
         
         self.playaudioClass = [[PlayAudioFile alloc]init];
         [self.playaudioClass playAudioFile:self :@"NaughtyMonkey_Script_C12.mp3"];
