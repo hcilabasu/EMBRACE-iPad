@@ -235,6 +235,7 @@
                                                                        context:context];
                     [skills addObject:syntaxSkill];
                     syntaxErrorFound = YES;
+                    break;
                 }
             }
         }
@@ -668,6 +669,7 @@
     return false;
 }
 
+#pragma mark - Feedback
 
 - (ErrorFeedback *)feedbackToShow {
     return _currentFeedback;
