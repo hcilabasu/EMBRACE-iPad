@@ -101,8 +101,8 @@
                     </preAudio>
                     
                 </embrace>
-
-
+                
+                
                 <control>
                     <preAudio>
                         <english>
@@ -138,7 +138,7 @@
                     <preAudio>
                         <english>
                             <audio seq="1">NaughtyMonkeyEEG_Script4.mp3</audio>
-
+                            
                         </english>
                         
                         <bilingual>
@@ -173,7 +173,7 @@
                         
                         <bilingual>
                             <audio seq="1">NaughtyMonkey_Script_C7_S.mp3</audio>
-                           
+                            
                         </bilingual>
                     </preAudio>
                     
@@ -181,26 +181,26 @@
             </sentence>
             
             <sentence number="6">
-               
-               <embrace>
-                   <preAudio>
-                       <english>
-                           <audio seq="1">NaughtyMonkey_Script4.mp3</audio>
-                           
-                       </english>
-                       
-                       <bilingual>
-                           <audio seq="1">NaughtyMonkey_Script4_S.mp3</audio>
-                           
-                       </bilingual>
-                   </preAudio>
-                   
-               </embrace>
+                
+                <embrace>
+                    <preAudio>
+                        <english>
+                            <audio seq="1">NaughtyMonkey_Script4.mp3</audio>
+                            
+                        </english>
+                        
+                        <bilingual>
+                            <audio seq="1">NaughtyMonkey_Script4_S.mp3</audio>
+                            
+                        </bilingual>
+                    </preAudio>
+                    
+                </embrace>
                 <control>
                     <preAudio>
                         <english>
                             <audio seq="1">NaughtyMonkey_Script4.mp3</audio>
-
+                            
                         </english>
                         
                         <bilingual>
@@ -226,7 +226,7 @@
                         </bilingual>
                     </preAudio>
                     
-                   
+                    
                     
                 </embrace>
                 
@@ -280,7 +280,7 @@
             </sentence>
             
             
-        
+            
         </story>
         
         
