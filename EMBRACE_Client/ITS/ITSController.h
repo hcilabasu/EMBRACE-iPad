@@ -10,13 +10,15 @@
 #import "ManipulationContext.h"
 #import "ActionStep.h"
 #import "Book.h"
+#import "ErrorFeedback.h"
 
 @class SkillSet;
 
 typedef NS_ENUM(NSInteger, EMComplexity) {
     EM_Easy = 1,
     EM_Medium,
-    EM_Complex
+    EM_Complex,
+    EM_Default
 };
 
 @interface ITSController : NSObject
@@ -38,10 +40,9 @@ typedef NS_ENUM(NSInteger, EMComplexity) {
 
 
 - (EMComplexity)getCurrentComplexity;
-- (EMComplexity)setCurrentComplexity;
+- (void)setCurrentComplexity;
 
 - (NSMutableSet *)getExtraIntroductionVocabularyForChapter:(Chapter *)chapter inBook:(Book *)book;
 
-- (NSString *)getMostProbableErrorType;
-
+- (ErrorFeedback *)feedbackToShow;
 @end

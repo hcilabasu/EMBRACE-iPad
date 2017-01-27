@@ -22,4 +22,6 @@
 @property (nonatomic) NSUInteger numSyntaxErrors; // Number of syntax errors for current step
 @property (nonatomic) NSUInteger numVocabErrors; // Number of vocab errors for current step
 
+@property (nonatomic) NSUInteger numUsabilityErrors;
+
 @end

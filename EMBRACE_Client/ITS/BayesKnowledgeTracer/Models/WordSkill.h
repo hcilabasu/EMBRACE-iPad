@@ -8,7 +8,7 @@
 
 #import "Skill.h"
 
-@interface WordSkill : Skill
+@interface WordSkill : Skill <NSCopying>
 
 - (instancetype)initWithWord:(NSString *)word;
 

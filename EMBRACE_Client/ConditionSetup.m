@@ -47,13 +47,13 @@ static ConditionSetup *sharedInstance = nil;
     if (self = [super init]) {
         condition = EMBRACE;
         language = ENGLISH;
-        reader = SYSTEM;
-        appMode = Study;
+        reader = USER;
+        appMode = ITS;
         currentMode = PM_MODE;
 
         newInstructions = NO;
         isVocabPageEnabled = YES;
-        isAssessmentPageEnabled = YES;
+        isAssessmentPageEnabled = NO;
         assessmentMode = ENDOFCHAPTER;
         isOnDemandVocabEnabled = YES;
         

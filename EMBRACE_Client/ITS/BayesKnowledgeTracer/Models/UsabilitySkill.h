@@ -8,6 +8,6 @@
 
 #import "Skill.h"
 
-@interface UsabilitySkill : Skill
+@interface UsabilitySkill : Skill <NSCopying>
 
 @end

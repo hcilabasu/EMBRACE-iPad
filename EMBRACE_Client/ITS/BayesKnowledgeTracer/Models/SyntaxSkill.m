@@ -16,6 +16,18 @@
 
 @implementation SyntaxSkill
 
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    id copy = [super copyWithZone:zone];
+    
+    if (copy) {
+        [copy setComplexityLevel:self.complexityLevel];
+    }
+    
+    return copy;
+}
+
 - (instancetype)initWithComplexity:(EMComplexity)level {
     self = [super init];
     
@@ -34,6 +46,9 @@
     }
     else if (self.complexityLevel == EM_Complex) {
         complexLevel = @"Complex Syntax";
+        
+    } else if (self.complexityLevel == EM_Default) {
+        complexLevel = @"Default Syntax";
     }
     
     return  [NSString stringWithFormat:@"%@ -  %f",complexLevel, self.skillValue];

@@ -11,11 +11,13 @@
 
 typedef NS_ENUM(NSInteger, SkillType) {
     SkillType_Vocab,
+    SkillType_Prev_Vocab,
     SkillType_Usability,
-    SkillType_Syntax
+    SkillType_Syntax,
+    SkillType_None
 };
 
-@interface Skill : NSObject
+@interface Skill : NSObject <NSCopying>
 
 + (Skill *)skillForWord:(NSString *)word;
 
@@ -31,6 +33,6 @@ typedef NS_ENUM(NSInteger, SkillType) {
 
 @property (nonatomic, readonly) double skillValue;
 
-@property (nonatomic, readonly) SkillType skillType;
+@property (nonatomic, assign) SkillType skillType;
 
 @end

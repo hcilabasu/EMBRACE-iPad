@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <solutions>
+        <story title="Introduction to Natural Disasters" activity_id="story0-PM">
+            <idea number="68"/>
+            <idea number="69"/>
+            <idea number="70"/>
+            <idea number="71"/>
+            <idea number="72"/>
+            
+        </story>
         <story title="The Moving Earth" activity_id="story1-PM-1">
             <idea number="1"/>
             <idea number="2">

@@ -26,6 +26,12 @@
 /// The list of objects whose syntax has already been updated.
 @property (nonatomic, strong) NSMutableSet *updatedVocabSkills;
 
+@property (nonatomic, assign) NSInteger numOfSyntaxErrors;
+
+@property (nonatomic, assign) NSInteger numOfVocabErrors;
+
+@property (nonatomic, assign) NSInteger numOfUsabilityErrors;
+
 - (void)addUserAction:(UserAction *)action;
 
 - (NSArray *)userActions;

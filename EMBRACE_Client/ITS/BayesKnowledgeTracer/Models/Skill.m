@@ -17,7 +17,7 @@
 
 @property (nonatomic, assign) double skillValue;
 
-@property (nonatomic, assign) SkillType skillType;
+
 
 @end
 
@@ -30,6 +30,17 @@
     
     WordSkill *skill = [[WordSkill alloc] initWithWord:word];
     skill.skillType = SkillType_Vocab;
+    
+    return skill;
+}
+
++ (Skill *)skillForPreviewWord:(NSString *)word {
+    if (word == nil || [word isEqualToString:@""]) {
+        return nil;
+    }
+    
+    WordSkill *skill = [[WordSkill alloc] initWithWord:word];
+    skill.skillType = SkillType_Prev_Vocab;
     
     return skill;
 }
@@ -50,6 +61,19 @@
 
 + (double)defaultInitialValue {
     return DEFAULT_INITIAL_VALUE;
+}
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    id copy = [[[self class] alloc] init];
+    
+    if (copy) {
+        [copy setIsVerified:self.isVerified];
+        [copy setSkillType:self.skillType];
+        [copy setSkillValue:self.skillValue];
+    }
+    
+    return copy;
 }
 
 - (instancetype)init {
