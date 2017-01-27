@@ -9,7 +9,7 @@
 #import "Skill.h"
 #import "ITSController.h"
 
-@interface SyntaxSkill : Skill
+@interface SyntaxSkill : Skill <NSCopying>
 
 - (instancetype)initWithComplexity:(EMComplexity)level;
 

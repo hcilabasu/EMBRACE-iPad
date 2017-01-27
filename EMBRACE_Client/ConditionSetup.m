@@ -53,7 +53,7 @@ static ConditionSetup *sharedInstance = nil;
 
         newInstructions = NO;
         isVocabPageEnabled = YES;
-        isAssessmentPageEnabled = YES;
+        isAssessmentPageEnabled = NO;
         assessmentMode = ENDOFCHAPTER;
         isOnDemandVocabEnabled = YES;
         

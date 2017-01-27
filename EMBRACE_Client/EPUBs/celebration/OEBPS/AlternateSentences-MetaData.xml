@@ -208,45 +208,11 @@
                 
                 <attributes complexity="10"/>
                 
-                <text>&#8220;Oh dear, Sofia!&#8221; her mother said.</text>
+                <text>&#8220;Oh dear, Sofia!&#8221; her mother said. &#8220;We are missing some key ingredients&#8221;.</text>
                 
                 <ideas>
                     
                     <idea number="8"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="13" action="no">
-                
-                <attributes complexity="10"/>
-                
-                <text>&#8220;We are missing some key ingredients.</text>
-                
-                <ideas>
-                    
-                    <idea number="9"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="14" action="no">
-                
-                <attributes complexity="10"/>
-                
-                <text>&#8221;.</text>
-                
-                <ideas>
-                    
-                    <idea number="10"/>
                     
                 </ideas>
                 
@@ -317,45 +283,11 @@
                 
                 <attributes complexity="2"/>
                 
-                <text>&#8220;Oh dear, Sofia!&#8221; her mother said.</text>
+                <text>&#8220;Oh dear, Sofia!&#8221; her mother said. &#8220;We are missing some key ingredients&#8221;.</text>
                 
                 <ideas>
                     
                     <idea number="8"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="19" action="no">
-                
-                <attributes complexity="2"/>
-                
-                <text>&#8220;We are missing some key ingredients.</text>
-                
-                <ideas>
-                    
-                    <idea number="9"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="20" action="no">
-                
-                <attributes complexity="2"/>
-                
-                <text>&#8221;.</text>
-                
-                <ideas>
-                    
-                    <idea number="10"/>
                     
                 </ideas>
                 
@@ -377,7 +309,7 @@
                 
                 <ideas>
                     
-                    <idea number="11"/>
+                    <idea number="9"/>
                     
                 </ideas>
                 
@@ -396,7 +328,7 @@
                 
                 <ideas>
                     
-                    <idea number="12"/>
+                    <idea number="10"/>
                     
                 </ideas>
                 
@@ -413,7 +345,7 @@
                 
                 <ideas>
                     
-                    <idea number="13"/>
+                    <idea number="11"/>
                     
                 </ideas>
                 
@@ -431,7 +363,7 @@
                 
                 <ideas>
                     
-                    <idea number="14"/>
+                    <idea number="12"/>
                     
                 </ideas>
                 
@@ -449,7 +381,7 @@
                 
                 <ideas>
                     
-                    <idea number="15"/>
+                    <idea number="13"/>
                     
                 </ideas>
                 
@@ -468,7 +400,7 @@
                 
                 <ideas>
                     
-                    <idea number="16"/>
+                    <idea number="14"/>
                     
                 </ideas>
                 
@@ -489,7 +421,7 @@
                 
                 <ideas>
                     
-                    <idea number="11"/>
+                    <idea number="9"/>
                     
                 </ideas>
                 
@@ -508,7 +440,7 @@
                 
                 <ideas>
                     
-                    <idea number="12"/>
+                    <idea number="10"/>
                     
                 </ideas>
                 
@@ -525,7 +457,7 @@
                 
                 <ideas>
                     
-                    <idea number="13"/>
+                    <idea number="11"/>
                     
                 </ideas>
                 
@@ -543,7 +475,7 @@
                 
                 <ideas>
                     
-                    <idea number="14"/>
+                    <idea number="12"/>
                     
                 </ideas>
                 
@@ -561,7 +493,7 @@
                 
                 <ideas>
                     
-                    <idea number="15"/>
+                    <idea number="13"/>
                     
                 </ideas>
                 
@@ -580,7 +512,7 @@
                 
                 <ideas>
                     
-                    <idea number="16"/>
+                    <idea number="14"/>
                     
                 </ideas>
                 

@@ -166,7 +166,7 @@
 }
 
 - (NSString *)getCurrentSentenceAt:(NSInteger)sentenceNumber {
-    NSString *request = [NSString stringWithFormat:@"document.getElementById('s%ld').innerHTML", (long)sentenceNumber];
+    NSString *request = [NSString stringWithFormat:@"document.getElementById('s%ld').textContent", (long)sentenceNumber];
     return [[self.bookView stringByEvaluatingJavaScriptFromString:request] stringByConvertingHTMLToPlainText];
 }
 

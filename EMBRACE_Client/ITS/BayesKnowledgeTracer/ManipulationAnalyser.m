@@ -18,7 +18,7 @@
 #import "UsabilitySkill.h"
 
 #define DISTANCE_THRESHOLD 90
-#define HIGH_VOCABULARY_SKILL_THRESHOLD  0.8
+#define HIGH_VOCABULARY_SKILL_THRESHOLD  0.9
 
 @interface ManipulationAnalyser ()
 
@@ -32,7 +32,7 @@
 
 @property (nonatomic, strong) NSMutableSet *playWords;
 
-@property (nonatomic, strong) NSString *mostProbableErrorType;
+@property (nonatomic, strong) ErrorFeedback *currentFeedback;
 
 @property (nonatomic, strong) SentenceStatus *currentSentenceStatus;
 
@@ -62,18 +62,18 @@
 
 - (void)userDidPlayWord:(NSString *)word context:(ManipulationContext *)context {
     [self.playWords addObject:word];
-    
+    //JR:
     NSMutableArray *skillList = [NSMutableArray array];
-    Skill *movedSkill = [self.knowledgeTracer updateSkillFor:word isVerified:NO context:context];
+    Skill *movedSkill = [self.knowledgeTracer generateSkillFor:word isVerified:NO context:context];
     [skillList addObject:movedSkill];
     [self showMessageWith:skillList];
 }
 
 - (void)userDidVocabPreviewWord:(NSString *)word context:(ManipulationContext *)context {
     [self.playWords addObject:word];
-    
+    //JR:
     NSMutableArray *skillList = [NSMutableArray array];
-    Skill *movedSkill = [self.knowledgeTracer updateSkillFor:word isVerified:YES context:context];
+    Skill *movedSkill = [self.knowledgeTracer generateSkillFor:word isVerified:YES context:context];
     [skillList addObject:movedSkill];
     [self showMessageWith:skillList];
 }
@@ -82,23 +82,29 @@
     return self.playWords;
 }
 
-- (double)easySyntaxSkillValue {
-    Skill *sk = [self.knowledgeTracer syntaxSkillFor:EM_Easy];
+- (double)syntaxSkillValue {
+    Skill *sk = [self.knowledgeTracer syntaxSkillFor:EM_Default];
     
     return sk.skillValue;
 }
 
-- (double)medSyntaxSkillValue {
-    Skill *sk = [self.knowledgeTracer syntaxSkillFor:EM_Medium];
-    
-    return sk.skillValue;
-}
-
-- (double)complexSyntaxSkillValue {
-    Skill *sk = [self.knowledgeTracer syntaxSkillFor:EM_Complex];
-    
-    return sk.skillValue;
-}
+//- (double)easySyntaxSkillValue {
+//    Skill *sk = [self.knowledgeTracer syntaxSkillFor:EM_Easy];
+//
+//    return sk.skillValue;
+//}
+//
+//- (double)medSyntaxSkillValue {
+//    Skill *sk = [self.knowledgeTracer syntaxSkillFor:EM_Medium];
+//
+//    return sk.skillValue;
+//}
+//
+//- (double)complexSyntaxSkillValue {
+//    Skill *sk = [self.knowledgeTracer syntaxSkillFor:EM_Complex];
+//
+//    return sk.skillValue;
+//}
 
 - (double)vocabSkillForWord:(NSString *)word {
     Skill *sk = [self.knowledgeTracer vocabSkillForWord:word];
@@ -134,6 +140,8 @@
                    andContext:(ManipulationContext *)context
                isFirstAttempt:(BOOL)isFirstAttempt {
     
+    [self.knowledgeTracer updateDampenValue:!isFirstAttempt];
+    
     // Correct action
     if (userAction.isVerified) {
         NSMutableArray *skills = [NSMutableArray array];
@@ -160,22 +168,25 @@
         
         // Increase syntax skill
         EMComplexity complexity = [self.delegate getComplexityForCurrentSentence:self];
-        Skill *syntaxSkill = [self.knowledgeTracer updateSyntaxSkill:YES withComplexity:complexity shouldDampen:!isFirstAttempt context:context];
-        
+        Skill *syntaxSkill = [self updateSyntaxSkillwithComplexity:complexity
+                                                        isVerified:YES
+                                                           context:context];
         if (syntaxSkill != nil) {
             [skills addObject:syntaxSkill];
         }
         
         
         // Increase usability skill
-        Skill *usabilitySkill = [self.knowledgeTracer updateUsabilitySkill:YES shouldDampen:!isFirstAttempt context:context];
+        Skill *usabilitySkill = [self.knowledgeTracer generateUsabilitySkill:YES context:context];
         
         if (usabilitySkill != nil) {
             [skills addObject:usabilitySkill];
         }
         
         
-        [self showMessageWith:skills];
+        NSArray *finalSkills = [self filterSkillsForCorrectAction:skills];
+        [self.knowledgeTracer updateSkills:finalSkills];
+        [self showMessageWith:finalSkills];
     }
     // Incorrect action
     else {
@@ -188,8 +199,8 @@
                            andContext:(ManipulationContext *)context
                        isFirstAttempt:(BOOL)isFirstAttempt {
     
+    BOOL syntaxErrorFound = NO;
     NSMutableArray *skills = [NSMutableArray array];
-    
     EMComplexity complexity = [self.delegate getComplexityForCurrentSentence:self];
     
     // Get user action information
@@ -202,12 +213,11 @@
     // Mixed up order of subject and object
     if ([destinationIDs containsObject:correctMovedObjectID] && [movedObjectIDs containsObject:correctDestinationID]) {
         // Decrease syntax skill
-        Skill *syntaxSkill = [self.knowledgeTracer updateSyntaxSkill:NO withComplexity:complexity shouldDampen:!isFirstAttempt context:context];
+        Skill *syntaxSkill = [self updateSyntaxSkillwithComplexity:complexity
+                                                        isVerified:NO
+                                                           context:context];
         [skills addObject:syntaxSkill];
-        [self showMessageWith:skills];
-        [self determineMostProbableErrorTypeFromSkills:skills];
-        
-        return;
+        syntaxErrorFound = YES;
     }
     // Check for syntax error
     // Moved objects involved in the sentence
@@ -220,48 +230,100 @@
             for (NSString *destinationID in destinationIDs) {
                 if ([objectsInvolved containsObject:movedObjectID] && [objectsInvolved containsObject:destinationID]) {
                     // Decrease syntax skill
-                    Skill *syntaxSkill = [self.knowledgeTracer updateSyntaxSkill:NO withComplexity:complexity shouldDampen:!isFirstAttempt context:context];
+                    Skill *syntaxSkill = [self updateSyntaxSkillwithComplexity:complexity
+                                                                    isVerified:NO
+                                                                       context:context];
                     [skills addObject:syntaxSkill];
-                    [self showMessageWith:skills];
-                    [self determineMostProbableErrorTypeFromSkills:skills];
-                    
-                    return;
+                    syntaxErrorFound = YES;
+                    break;
                 }
             }
         }
     }
     
-    Skill *syntaxSkill;
-    Skill *usabilitySkill;
-    
-    
-    [self checkMovedObjectWithObjects:movedObjectIDs
-                             correctObject:correctMovedObjectID
-                                    skills:skills
-                              firstAttempt:isFirstAttempt
-                                complexity:complexity
-                                andContext:context];
-    
-    
-    [self checkDestinationObjectWithObjects:destinationIDs
-                              correctObject:correctDestinationID
-                                     skills:skills
-                               firstAttempt:isFirstAttempt
-                                 complexity:complexity
-                                 andContext:context];
-    
-    // Add syntax skill if it was updated
-    if (syntaxSkill != nil) {
-        [skills addObject:syntaxSkill];
+    if (syntaxErrorFound == NO) {
+        Skill *syntaxSkill;
+        Skill *usabilitySkill;
+        
+        
+        [self checkMovedObjectWithObjects:movedObjectIDs
+                            correctObject:correctMovedObjectID
+                                   skills:skills
+                             firstAttempt:isFirstAttempt
+                               complexity:complexity
+                               andContext:context];
+        
+        
+        [self checkDestinationObjectWithObjects:destinationIDs
+                                  correctObject:correctDestinationID
+                                         skills:skills
+                                   firstAttempt:isFirstAttempt
+                                     complexity:complexity
+                                     andContext:context];
+        
+        // Add syntax skill if it was updated
+        if (syntaxSkill != nil) {
+            [skills addObject:syntaxSkill];
+        }
+        
+        // Add usability skill if it was updated
+        if (usabilitySkill != nil) {
+            [skills addObject:usabilitySkill];
+        }
     }
     
-    // Add usability skill if it was updated
-    if (usabilitySkill != nil) {
-        [skills addObject:usabilitySkill];
-    }
+    [self determineFeedbackToShow:skills];
+    NSArray *finalSkills = [self filterSkillsForError:skills];
+    [self.knowledgeTracer updateSkills:finalSkills];
+    [self showMessageWith:finalSkills];
     
-    [self showMessageWith:skills];
-    [self determineMostProbableErrorTypeFromSkills:skills];
+}
+
+- (NSMutableArray *)filterSkillsForCorrectAction:(NSMutableArray *)skills  {
+    NSMutableArray *array = [NSMutableArray array];
+    for (Skill *skill in skills) {
+        
+        if(skill.skillType == SkillType_Syntax) {
+            if (self.currentSentenceStatus.numOfSyntaxErrors == 0) {
+                    [array addObject:skill];
+            } else {
+                // If same sentence has two steps, new step has 0 syntax skill value
+                self.currentSentenceStatus.numOfSyntaxErrors = 0;
+            }
+            
+        } else {
+            [array addObject:skill];
+        }
+    }
+
+    return array;
+}
+
+
+- (NSMutableArray *)filterSkillsForError:(NSMutableArray *)skills {
+    
+    NSMutableArray *array = [NSMutableArray array];
+    for (Skill *skill in skills) {
+        
+        if(skill.skillType == SkillType_Vocab ||
+           skill.skillType == SkillType_Prev_Vocab) {
+
+            WordSkill *wskill = (WordSkill *)skill;
+                // Update the vocab skill if it was not updated before in the current sentence
+                //
+                if ([self.currentSentenceStatus.updatedVocabSkills containsObject:wskill.word] == NO) {
+                    
+                    if (wskill != nil) {
+                        [array addObject:wskill];
+                        [self.currentSentenceStatus.updatedVocabSkills addObject:wskill.word];
+                    }
+                }
+        } else {
+            [array addObject:skill];
+        }
+    }
+    return  array;
+    
 }
 
 /**
@@ -275,11 +337,11 @@
  * 3. If Correct Destination object is present in Destinations objects list, increase the syntax skill.
  **/
 - (void) checkDestinationObjectWithObjects:(NSSet *)destinationIDs
-                       correctObject:(NSString *)correctDestinationID
-                              skills:(NSMutableArray *)skills
-                        firstAttempt:(BOOL)isFirstAttempt
-                          complexity:(EMComplexity) complexity
-                          andContext:(ManipulationContext *)context {
+                             correctObject:(NSString *)correctDestinationID
+                                    skills:(NSMutableArray *)skills
+                              firstAttempt:(BOOL)isFirstAttempt
+                                complexity:(EMComplexity) complexity
+                                andContext:(ManipulationContext *)context {
     
     Skill *syntaxSkill;
     Skill *usabilitySkill;
@@ -301,7 +363,9 @@
         // Syntax error
         else {
             // Decrease syntax skill
-            syntaxSkill = [self.knowledgeTracer updateSyntaxSkill:NO withComplexity:complexity shouldDampen:!isFirstAttempt context:context];
+            syntaxSkill = [self updateSyntaxSkillwithComplexity:complexity
+                                                            isVerified:NO
+                                                               context:context];
         }
     }
     // Moved to incorrect destination
@@ -332,13 +396,15 @@
             // Syntax error
             else {
                 // Decrease syntax skill
-                syntaxSkill = [self.knowledgeTracer updateSyntaxSkill:NO withComplexity:complexity shouldDampen:!isFirstAttempt context:context];
+                syntaxSkill = [self updateSyntaxSkillwithComplexity:complexity
+                                                                isVerified:NO
+                                                                   context:context];
             }
         }
         // Usability error
         else {
             // Decrease usability skill
-            usabilitySkill = [self.knowledgeTracer updateUsabilitySkill:NO shouldDampen:!isFirstAttempt context:context];
+            usabilitySkill = [self.knowledgeTracer generateUsabilitySkill:NO context:context];
         }
     }
     // Moved to correct destination
@@ -350,6 +416,16 @@
                    isFirstAttempt:isFirstAttempt
                           context:context];
         
+    }
+    
+    // Add syntax skill if it was updated
+    if (syntaxSkill != nil) {
+        [skills addObject:syntaxSkill];
+    }
+    
+    // Add usability skill if it was updated
+    if (usabilitySkill != nil) {
+        [skills addObject:usabilitySkill];
     }
     
 }
@@ -403,13 +479,15 @@
             // Syntax error
             else {
                 // Decrease syntax skill
-                syntaxSkill = [self.knowledgeTracer updateSyntaxSkill:NO withComplexity:complexity shouldDampen:!isFirstAttempt context:context];
+                syntaxSkill = [self updateSyntaxSkillwithComplexity:complexity
+                                                                isVerified:NO
+                                                                   context:context];
             }
         }
         // Usability error
         else {
             // Decrease usability skill
-            usabilitySkill = [self.knowledgeTracer updateUsabilitySkill:NO shouldDampen:!isFirstAttempt context:context];
+            usabilitySkill = [self.knowledgeTracer generateUsabilitySkill:NO context:context];
         }
     }
     // Moved correct object
@@ -434,24 +512,28 @@
     }
 }
 
+- (Skill *)updateSyntaxSkillwithComplexity:(EMComplexity)complexity
+                             isVerified:(BOOL)isVerified
+                                context:(ManipulationContext *)context{
+    Skill *sk = nil;
+    sk = [self.knowledgeTracer generateSyntaxSkill:isVerified withComplexity:complexity context:context];
+    
+    return sk;
+}
+
 - (void)updateVocabSkillFor:(NSString *)word
                      skills:(NSMutableArray *)skills
                  isVerified:(BOOL)isVerified
-               isFirstAttempt:(BOOL)isFirstAttempt
+             isFirstAttempt:(BOOL)isFirstAttempt
                     context:(ManipulationContext *)context {
     
-    // Update the vocab skill if it was not updated before in the current sentence
-    //
-    if ([self.currentSentenceStatus.updatedVocabSkills containsObject:word] == NO) {
-        Skill *wordSkill = [self.knowledgeTracer updateSkillFor:word
-                                                     isVerified:isVerified
-                                                   shouldDampen:!isFirstAttempt
-                                                        context:context];
-        
-        if (wordSkill != nil) {
-            [skills addObject:wordSkill];
-            [self.currentSentenceStatus.updatedVocabSkills addObject:word];
-        }
+    
+    Skill *wordSkill = [self.knowledgeTracer generateSkillFor:word
+                                                 isVerified:isVerified
+                                                    context:context];
+    
+    if (wordSkill != nil) {
+        [skills addObject:wordSkill];
     }
     
 }
@@ -587,11 +669,132 @@
     return false;
 }
 
-- (NSString *)getMostProbableErrorType {
-    return [self mostProbableErrorType];
+#pragma mark - Feedback
+
+- (ErrorFeedback *)feedbackToShow {
+    return _currentFeedback;
 }
 
-- (void)determineMostProbableErrorTypeFromSkills:(NSMutableArray *)skills {
+
+- (void)determineFeedbackToShow:(NSArray *)skills {
+    
+    BOOL containsSyntaxt = NO;
+    BOOL containsVocab = NO;
+    BOOL containsUsability = NO;
+    
+    // First check if the list contains any vocab or syntax errror.
+    for (id object in skills) {
+        if (containsSyntaxt == NO && [object isKindOfClass:[SyntaxSkill class]]) {
+            containsSyntaxt = YES;
+            
+        } else if (containsVocab == NO && [object isKindOfClass:[WordSkill class]]) {
+            containsVocab = YES;
+            
+        }  else if (containsUsability == NO && [object isKindOfClass:[UsabilitySkill class]]) {
+            containsUsability = YES;
+            
+        }
+        
+    }
+    
+    NSString *mostProbError = [self determineMostProbableErrorTypeFromSkills:skills];
+    ErrorFeedback *feedbackObjc = [[ErrorFeedback alloc] init];
+    
+    if ([mostProbError isEqualToString:@"vocabulary"]) {
+        self.currentSentenceStatus.numOfVocabErrors++;
+        if (self.currentSentenceStatus.numOfVocabErrors == 1) {
+            feedbackObjc.feedbackType = EMFeedbackType_Highlight;
+            feedbackObjc.skillType = SkillType_Vocab;
+            
+        } else if (self.currentSentenceStatus.numOfVocabErrors > 1) {
+            feedbackObjc.feedbackType = EMFeedbackType_AutoComplete;
+            feedbackObjc.skillType = SkillType_Vocab;
+        }
+        
+        
+    } else if ([mostProbError isEqualToString:@"syntax"]) {
+        
+        self.currentSentenceStatus.numOfSyntaxErrors++;
+        if (self.currentSentenceStatus.numOfSyntaxErrors == 1) {
+            feedbackObjc.feedbackType = EMFeedbackType_Highlight;
+            feedbackObjc.skillType = SkillType_Syntax;
+            
+        } else if (self.currentSentenceStatus.numOfSyntaxErrors > 1) {
+            feedbackObjc.feedbackType = EMFeedbackType_AutoComplete;
+            feedbackObjc.skillType = SkillType_Syntax;
+        }
+        
+        
+    } else if ([mostProbError isEqualToString:@"usability"]) {
+        
+        self.currentSentenceStatus.numOfUsabilityErrors++;
+        if (self.currentSentenceStatus.numOfUsabilityErrors > 1) {
+            feedbackObjc.feedbackType = EMFeedbackType_AutoComplete;
+            feedbackObjc.skillType = SkillType_Usability;
+        }
+        
+    } else {
+        
+        // If syntax error is present and we have already encountered syntax error
+        if (containsSyntaxt) {
+            
+            self.currentSentenceStatus.numOfSyntaxErrors++;
+            feedbackObjc.skillType = SkillType_Syntax;
+            if (self.currentSentenceStatus.numOfSyntaxErrors == 2) {
+                feedbackObjc.feedbackType = EMFeedbackType_Highlight;
+                
+            } else if (self.currentSentenceStatus.numOfSyntaxErrors > 2){
+                feedbackObjc.feedbackType = EMFeedbackType_AutoComplete;
+                
+            }
+        }
+        // If vocab error is present and we have already encountered vocab error
+        else if (containsVocab ) {
+            
+            self.currentSentenceStatus.numOfVocabErrors++;
+            feedbackObjc.skillType = SkillType_Vocab;
+            
+            if (self.currentSentenceStatus.numOfVocabErrors == 2) {
+                feedbackObjc.feedbackType = EMFeedbackType_Highlight;
+                
+            } else if (self.currentSentenceStatus.numOfVocabErrors > 2) {
+                feedbackObjc.feedbackType = EMFeedbackType_AutoComplete;
+                
+            }
+        }
+    }
+    
+    NSString *errorType = @"Nil";
+    NSInteger errorCount = 0;
+    NSString *feedback = @"Nil";
+    
+    if (feedbackObjc.skillType == SkillType_Syntax) {
+        errorType = @"Syntax";
+        errorCount = self.currentSentenceStatus.numOfSyntaxErrors;
+        
+    } else if (feedbackObjc.skillType == SkillType_Vocab) {
+        errorType = @"Vocab";
+        errorCount = self.currentSentenceStatus.numOfVocabErrors;
+        
+    } else if (feedbackObjc.skillType == SkillType_Syntax) {
+        errorType = @"Usability";
+        errorCount = self.currentSentenceStatus.numOfUsabilityErrors;
+        
+    }
+    
+    if (feedbackObjc.feedbackType == EMFeedbackType_AutoComplete) {
+        feedback = @"AutoComplete";
+    } else if (feedbackObjc.feedbackType == EMFeedbackType_Highlight) {
+        feedback = @"Highlight";
+        
+    }
+    NSLog(@" Error type = %@ || Error count = %d || Type of feedback = %@ ", errorType, errorCount, feedback);
+    self.currentFeedback = feedbackObjc;
+    
+}
+
+
+- (NSString *)determineMostProbableErrorTypeFromSkills:(NSArray *)skills {
     // Calculate overall values for each of the skills
     NSMutableArray *skillValues = [[NSMutableArray alloc] initWithObjects:@0.0, @0.0, @0.0, nil];
     
@@ -620,7 +823,7 @@
     double SYNTAX_THRESHOLD = 0.65;
     double USABILITY_THRESHOLD = 0.75;
     
-    self.mostProbableErrorType = nil;
+    NSString * mostProbableErrorType = nil;
     double lowestSkillValue = 1.0;
     
     // Select the most probable error type from the lowest skill below its corresponding threshold
@@ -630,26 +833,27 @@
         if (skillValue > 0.0) {
             if (i == INDEX_VOCABULARY) {
                 if (skillValue <= VOCABULARY_THRESHOLD && skillValue <= lowestSkillValue) {
-                    self.mostProbableErrorType = @"vocabulary";
+                    mostProbableErrorType = @"vocabulary";
                     lowestSkillValue = skillValue;
                 }
             }
             else if (i == INDEX_SYNTAX) {
                 if (skillValue <= SYNTAX_THRESHOLD && skillValue <= lowestSkillValue) {
-                    self.mostProbableErrorType = @"syntax";
+                    mostProbableErrorType = @"syntax";
                     lowestSkillValue = skillValue;
                 }
             }
             else if (i == INDEX_USABILITY) {
                 if (skillValue <= USABILITY_THRESHOLD && skillValue <= lowestSkillValue) {
-                    self.mostProbableErrorType = @"usability";
+                    mostProbableErrorType = @"usability";
                     lowestSkillValue = skillValue;
                 }
             }
         }
     }
     
-    NSLog(@"mostProbableErrorType: %@   lowestSkillValue: %f", self.mostProbableErrorType, lowestSkillValue);
+    NSLog(@"mostProbableErrorType: %@   lowestSkillValue: %f", mostProbableErrorType, lowestSkillValue);
+    return mostProbableErrorType;
 }
 
 - (void)showMessageWith:(NSArray *)skills {

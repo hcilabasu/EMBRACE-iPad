@@ -27,6 +27,18 @@
     return self;
 }
 
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    id copy = [super copyWithZone:zone];
+    
+    if (copy) {
+        [copy setWord:self.word];
+    }
+    
+    return copy;
+}
+
 - (NSString *)description {
     return  [NSString stringWithFormat:@"%@ -  %f",self.word, self.skillValue];
 }

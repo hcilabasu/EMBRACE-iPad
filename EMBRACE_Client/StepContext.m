@@ -16,6 +16,8 @@
 @synthesize numAttempts;
 @synthesize numSyntaxErrors;
 @synthesize numVocabErrors;
+@synthesize numUsabilityErrors;
+
 @synthesize PMSolution;
 @synthesize ITSPMSolution;
 @synthesize IMSolution;

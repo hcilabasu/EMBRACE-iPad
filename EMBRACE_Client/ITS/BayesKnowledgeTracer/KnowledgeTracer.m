@@ -17,20 +17,23 @@
 #define DEFAULT_GUESS 0.1
 
 #define DEFAULT_SYNTAX_GUESS 0.5
-#define DEFAULT_VOCAB_GUESS 0.4
+#define DEFAULT_VOCAB_GUESS 0.3
 #define DEFAULT_USABILITY_GUESS 0.4
+
+
+#define PREVIEW_VOCAB_GUESS 0.5
 
 // Probability of making a mistake applying a known skill
 #define DEFAULT_SLIP 0.2
 
-#define DEFAULT_SYNTAX_SLIP 0.3
+#define DEFAULT_SYNTAX_SLIP 0.2
 #define DEFAULT_VOCAB_SLIP 0.2
 #define DEFAULT_USABILITY_SLIP 0.5
 
 // Probability of student’s knowledge of a skill transitioning from not known to known state after an opportunity to apply it.
 #define DEFAULT_SYNTAX_TRANSITION 0.05
 #define DEFAULT_VOCAB_TRANSITION 0.1
-#define DEFAULT_USABILITY_TRANSITION 0.01
+#define DEFAULT_USABILITY_TRANSITION 0.05
 
 #define DEFAULT_DAMPENING_FACTOR 2
 
@@ -71,6 +74,7 @@
     else {
         self.dampenValue = 1.0;
     }
+    NSLog(@"Dampenvalue - %f \n",self.dampenValue);
 }
 
 - (Skill *)updateSkill:(Skill *)skill isVerified:(BOOL)isVerified {
@@ -80,88 +84,122 @@
     
     if (isVerified) {
         double skillEvaluated = [self calcCorrect:skill.skillValue skillType:[skill skillType]];
-        newSkill = [self calcNewSkillValue:skillEvaluated skillType:[skill skillType]];
+        newSkill = [self calcNewSkillValue:skillEvaluated skillType:[skill skillType] prevSkillValue:skill.skillValue];
         [skill updateSkillValue:newSkill];
     }
     else {
         double skillEvaluated = [self calcIncorrect:skill.skillValue skillType:[skill skillType]];
-        newSkill = [self calcNewSkillValue:skillEvaluated skillType:[skill skillType]];
+        newSkill = [self calcNewSkillValue:skillEvaluated skillType:[skill skillType] prevSkillValue:skill.skillValue];
         [skill updateSkillValue:newSkill];
     }
     
     return skill;
 }
 
+- (void)updateSkills:(NSArray *)skills {
+    
+    for (Skill *sk in skills) {
+        
+        switch (sk.skillType) {
+            case SkillType_Prev_Vocab:
+            case SkillType_Vocab: {
+                WordSkill *wordSkill = (WordSkill *)sk;
+                Skill *skill = [self.skillSet skillForWord:wordSkill.word withPreviewType:NO];
+                [skill updateSkillValue:wordSkill.skillValue];
+                break;
+            }
+                
+            case SkillType_Syntax: {
+                SyntaxSkill *syntaxSkill = (SyntaxSkill *)sk;
+                Skill *skill = [self.skillSet syntaxSkillFor:syntaxSkill.complexityLevel];
+                [skill updateSkillValue:syntaxSkill.skillValue];
+                break;
+            }
+            case SkillType_Usability: {
+                UsabilitySkill *usabilitySkill = (UsabilitySkill *)sk;
+                Skill *skill = [self.skillSet usabilitySkill];
+                [skill updateSkillValue:usabilitySkill.skillValue];
+                break;
+            }
+            default:
+                break;
+        }
+    }
+}
+
 #pragma mark - Updating Vocabulary Skills
 
-- (Skill *)updateSkillFor:(NSString *)word
-               isVerified:(BOOL)isVerified
-             shouldDampen:(BOOL)shouldDampen
-                  context:(ManipulationContext *)context {
+- (Skill *)generateSkillFor:(NSString *)word
+                 isVerified:(BOOL)isVerified
+                    context:(ManipulationContext *)context
+              isFromPreview:(BOOL)isFromPreview {
     
     if (word == nil || [word isEqualToString:@""]) {
         return nil;
     }
     
-    [self updateDampenValue:shouldDampen];
     
-    Skill *sk = [self.skillSet skillForWord:word];
+    Skill *sk = [self.skillSet skillForWord:word withPreviewType:isFromPreview];
+    
+    
     double prevSkillValue = [sk skillValue];
-    
-    sk = [self updateSkill:sk isVerified:isVerified];
-    double newSkillValue = [sk skillValue];
+    Skill *updatingSK = [sk copy];
+    updatingSK = [self updateSkill:updatingSK isVerified:isVerified];
+    double newSkillValue = [updatingSK skillValue];
     
     [[ServerCommunicationController sharedInstance] logUpdateSkill:word ofType:@"Vocabulary" prevValue:prevSkillValue newSkillValue:newSkillValue context:context];
     NSLog(@"\nUpdated Vocabulary Skill: %@\nPrevious Value: %f\nNew Value: %f", word, prevSkillValue, newSkillValue);
     
-    return sk;
+    return updatingSK;
 }
 
-- (Skill *)updateSkillFor:(NSString *)action isVerified:(BOOL)isVerified context:(ManipulationContext *)context {
-    return [self updateSkillFor:action isVerified:isVerified shouldDampen:NO context:context];
+- (Skill *)generateSkillFor:(NSString *)word
+                 isVerified:(BOOL)isVerified
+                    context:(ManipulationContext *)context {
+    
+    return  [self generateSkillFor:word
+                        isVerified:isVerified
+                           context:context
+                     isFromPreview:NO];
 }
+
 
 #pragma mark - Updating Usability Skill
 
-- (Skill *)updateUsabilitySkill:(BOOL)isVerified shouldDampen:(BOOL)shouldDampen context:(ManipulationContext *)context {
-    [self updateDampenValue:shouldDampen];
+- (Skill *)generateUsabilitySkill:(BOOL)isVerified context:(ManipulationContext *)context {
+    
     
     Skill *sk = [self.skillSet usabilitySkill];
     double prevSkillValue = [sk skillValue];
     
-    sk = [self updateSkill:sk isVerified:isVerified];
-    double newSkillValue = [sk skillValue];
+    Skill *updatingSK = [sk copy];
+    updatingSK = [self updateSkill:updatingSK isVerified:isVerified];
+    double newSkillValue = [updatingSK skillValue];
     
     [[ServerCommunicationController sharedInstance] logUpdateSkill:@"Usability" ofType:@"Usability" prevValue:prevSkillValue newSkillValue:newSkillValue context:context];
     NSLog(@"\nUpdated Usability Skill\nPrevious Value: %f\nNew Value: %f", prevSkillValue, newSkillValue);
     
-    return sk;
-}
-
-- (Skill *)updateUsabilitySkill:(BOOL)isVerified context:(ManipulationContext *)context {
-    return [self updateUsabilitySkill:isVerified shouldDampen:NO context:context];
+    return updatingSK;
 }
 
 #pragma mark - Updating Syntax Skills
 
-- (Skill *)updateSyntaxSkill:(BOOL)isVerified withComplexity:(EMComplexity)complex shouldDampen:(BOOL)shouldDampen context:(ManipulationContext *)context {
-    [self updateDampenValue:shouldDampen];
+- (Skill *)generateSyntaxSkill:(BOOL)isVerified withComplexity:(EMComplexity)complex context:(ManipulationContext *)context {
+    
     
     Skill *sk = [self.skillSet syntaxSkillFor:complex];
     double prevSkillValue = [sk skillValue];
     
-    sk = [self updateSkill:sk isVerified:isVerified];
-    double newSkillValue = [sk skillValue];
+    Skill *updatingSK = [sk copy];
+    updatingSK = [self updateSkill:updatingSK isVerified:isVerified];
+    double newSkillValue = [updatingSK skillValue];
     
     [[ServerCommunicationController sharedInstance] logUpdateSkill:[NSString stringWithFormat:@"%d", complex] ofType:@"Syntax" prevValue:prevSkillValue newSkillValue:newSkillValue context:context];
-    NSLog(@"\nUpdated Syntax Skill: %d\nPrevious Value: %f\nNew Value: %f", complex, prevSkillValue, newSkillValue);
+    NSLog(@"\nUpdated Syntax Skill: %d Previous Value: %f New Value: %f", complex, prevSkillValue, newSkillValue);
     
-    return sk;
+    return updatingSK;
 }
 
-- (Skill *)updateSyntaxSkill:(BOOL)isVerified withComplexity:(EMComplexity)complex context:(ManipulationContext *)context {
-    return [self updateSyntaxSkill:isVerified withComplexity:complex shouldDampen:NO context:context];
-}
 
 #pragma mark - Getter methods for skills
 
@@ -215,7 +253,7 @@
         default:
             break;
     }
-
+    
     return guess;
 }
 
@@ -243,7 +281,7 @@
     double slip = [self getSlipForSkillType:type];
     double guess = [self getGuessForSkillType:type];
     double noSlip = (1 - slip);
-    
+    NSLog(@"\n\n\n(prevSkillValue * noSlip) / (prevSkillValue * noSlip + (1 - prevSkillValue) * guess) \n(%f * %f) / (%f * %f + (1 - %f) * %f)", prevSkillValue ,noSlip,prevSkillValue,noSlip , prevSkillValue,guess);
     return (prevSkillValue * noSlip) / (prevSkillValue * noSlip + (1 - prevSkillValue) * guess);
 }
 
@@ -252,37 +290,47 @@
     double guess = [self getGuessForSkillType:type];
     double noGuess = (1 - guess) ;
     
+    NSLog(@"\n\n\n(prevSkillValue * slip) / ((slip * prevSkillValue) + (noGuess * (1 - prevSkillValue))) \n(%f * %f) / (%f * %f + %f * (1 - %f) ", prevSkillValue ,slip,slip,prevSkillValue,noGuess ,prevSkillValue);
     return (prevSkillValue * slip) / ((slip * prevSkillValue) + (noGuess * (1 - prevSkillValue)));
 }
 
-- (double)calcNewSkillValue:(double)skillEvaluated skillType:(SkillType)type {
+- (double)calcNewSkillValue:(double)skillEvaluated skillType:(SkillType)type prevSkillValue:(double)prevSkillValue {
+    
     double transition = [self getTransitionForSkillType:type];
     double newSkillValue = skillEvaluated + ((1 - skillEvaluated) * transition);
-    newSkillValue = newSkillValue * self.dampenValue;
+    
+    NSLog(@"New value = \nskillEvaluated + ((1 - skillEvaluated) * transition) - \n%f + ((1 - %f) * %f) ", skillEvaluated,skillEvaluated,transition);
+    NSLog(@"New skill - %f Dampenvalue - %f", newSkillValue, self.dampenValue);
+    
+    newSkillValue = prevSkillValue - (prevSkillValue - newSkillValue) * self.dampenValue;
+    
+    
     
     if (newSkillValue >= 0.99) {
         newSkillValue = 0.99;
     }
+    
+    
     return newSkillValue;
 }
 
-- (double)calcNewSkillValue:(double)skillEvaluated
-                  prevSkill:(double)prevSkillValue
-                  skillType:(SkillType)type {
-    
-    double transition = [self getTransitionForSkillType:type];
-    double newSkillValue = skillEvaluated + ((1 - skillEvaluated) * transition);
-    
-    double diff = newSkillValue - prevSkillValue;
-    double change = diff * self.dampenValue;
-    
-    double finalCalValue = prevSkillValue + change;
-    if (finalCalValue >= 0.99) {
-        finalCalValue = 0.99;
-    }
-    
-    return finalCalValue;
-}
+//- (double)calcNewSkillValue:(double)skillEvaluated
+//                  prevSkill:(double)prevSkillValue
+//                  skillType:(SkillType)type {
+//
+//    double transition = [self getTransitionForSkillType:type];
+//    double newSkillValue = skillEvaluated + ((1 - skillEvaluated) * transition);
+//
+//    double diff = newSkillValue - prevSkillValue;
+//    double change = diff * self.dampenValue;
+//
+//    double finalCalValue = prevSkillValue + change;
+//    if (finalCalValue >= 0.99) {
+//        finalCalValue = 0.99;
+//    }
+//
+//    return finalCalValue;
+//}
 
 #pragma mark - Playword
 
