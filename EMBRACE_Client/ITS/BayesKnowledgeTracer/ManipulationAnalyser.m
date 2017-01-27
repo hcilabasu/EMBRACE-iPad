@@ -62,7 +62,6 @@
 
 - (void)userDidPlayWord:(NSString *)word context:(ManipulationContext *)context {
     [self.playWords addObject:word];
-    //JR:
     NSMutableArray *skillList = [NSMutableArray array];
     Skill *movedSkill = [self.knowledgeTracer generateSkillFor:word isVerified:NO context:context];
     [skillList addObject:movedSkill];
@@ -71,9 +70,12 @@
 
 - (void)userDidVocabPreviewWord:(NSString *)word context:(ManipulationContext *)context {
     [self.playWords addObject:word];
-    //JR:
+    
     NSMutableArray *skillList = [NSMutableArray array];
-    Skill *movedSkill = [self.knowledgeTracer generateSkillFor:word isVerified:YES context:context];
+    Skill *movedSkill = [self.knowledgeTracer generateSkillFor:word
+                                                    isVerified:YES
+                                                       context:context
+                                                 isFromPreview:YES];
     [skillList addObject:movedSkill];
     [self showMessageWith:skillList];
 }
