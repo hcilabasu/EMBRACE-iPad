@@ -32,7 +32,7 @@
         _medSyntaxSkill = (SyntaxSkill *) [Skill syntaxSkillWithComplexity:EM_Medium];
         _complexSyntaxSkill = (SyntaxSkill *) [Skill syntaxSkillWithComplexity:EM_Complex];
         _defaultSyntaxSkill = (SyntaxSkill *) [Skill syntaxSkillWithComplexity:EM_Default];
-        [_defaultSyntaxSkill updateSkillValue:0.5];
+        [_defaultSyntaxSkill updateSkillValue:0.3];
         [_easySyntaxSkill updateSkillValue:0.9];
         
         _usabilitySkill = (UsabilitySkill *) [Skill usabilitySkill];        

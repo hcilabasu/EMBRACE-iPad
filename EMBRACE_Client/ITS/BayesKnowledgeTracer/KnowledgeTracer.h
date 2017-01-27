@@ -17,18 +17,18 @@
 - (void)setSkillSet:(SkillSet *)skillSet;
 
 // Update vocabulary skill
-- (Skill *)updateSkillFor:(NSString *)action isVerified:(BOOL)isVerified context:(ManipulationContext *)context;
+- (Skill *)generateSkillFor:(NSString *)action isVerified:(BOOL)isVerified context:(ManipulationContext *)context;
 
 // Update usability skill
-- (Skill *)updateUsabilitySkill:(BOOL)isVerified context:(ManipulationContext *)context;
+- (Skill *)generateUsabilitySkill:(BOOL)isVerified context:(ManipulationContext *)context;
 
 // Update syntax skill
-- (Skill *)updateSyntaxSkill:(BOOL)isVerified withComplexity:(EMComplexity)complex context:(ManipulationContext *)context;
-
+- (Skill *)generateSyntaxSkill:(BOOL)isVerified withComplexity:(EMComplexity)complex context:(ManipulationContext *)context;
 
 - (Skill *)syntaxSkillFor:(EMComplexity)complex;
 - (Skill *)vocabSkillForWord:(NSString *)word;
 
+- (void)updateSkills:(NSArray *)skills;
 
 - (void)updateDampenValue:(BOOL)shouldDampen;
 

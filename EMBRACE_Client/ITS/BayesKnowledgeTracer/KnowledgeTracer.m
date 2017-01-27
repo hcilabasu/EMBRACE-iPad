@@ -96,13 +96,44 @@
     return skill;
 }
 
+- (void)updateSkills:(NSArray *)skills {
+    
+    for (Skill *sk in skills) {
+        
+        switch (sk.skillType) {
+            case SkillType_Prev_Vocab:
+            case SkillType_Vocab: {
+                WordSkill *wordSkill = (WordSkill *)sk;
+                Skill *skill = [self.skillSet skillForWord:wordSkill.word withPreviewType:NO];
+                [skill updateSkillValue:wordSkill.skillValue];
+                break;
+            }
+                
+            case SkillType_Syntax: {
+                SyntaxSkill *syntaxSkill = (SyntaxSkill *)sk;
+                Skill *skill = [self.skillSet syntaxSkillFor:syntaxSkill.complexityLevel];
+                [skill updateSkillValue:syntaxSkill.skillValue];
+                break;
+            }
+            case SkillType_Usability: {
+                UsabilitySkill *usabilitySkill = (UsabilitySkill *)sk;
+                Skill *skill = [self.skillSet usabilitySkill];
+                [skill updateSkillValue:usabilitySkill.skillValue];
+                break;
+            }
+            default:
+                break;
+        }
+    }
+}
+
 #pragma mark - Updating Vocabulary Skills
 
-- (Skill *)updateSkillFor:(NSString *)word
-               isVerified:(BOOL)isVerified
-                  context:(ManipulationContext *)context
-            isFromPreview:(BOOL)isFromPreview {
- 
+- (Skill *)generateSkillFor:(NSString *)word
+                 isVerified:(BOOL)isVerified
+                    context:(ManipulationContext *)context
+              isFromPreview:(BOOL)isFromPreview {
+    
     if (word == nil || [word isEqualToString:@""]) {
         return nil;
     }
@@ -112,59 +143,61 @@
     
     
     double prevSkillValue = [sk skillValue];
-    
-    sk = [self updateSkill:sk isVerified:isVerified];
-    double newSkillValue = [sk skillValue];
+    Skill *updatingSK = [sk copy];
+    updatingSK = [self updateSkill:updatingSK isVerified:isVerified];
+    double newSkillValue = [updatingSK skillValue];
     
     [[ServerCommunicationController sharedInstance] logUpdateSkill:word ofType:@"Vocabulary" prevValue:prevSkillValue newSkillValue:newSkillValue context:context];
     NSLog(@"\nUpdated Vocabulary Skill: %@\nPrevious Value: %f\nNew Value: %f", word, prevSkillValue, newSkillValue);
     
-    return sk;
+    return updatingSK;
 }
 
-- (Skill *)updateSkillFor:(NSString *)word
-               isVerified:(BOOL)isVerified
-                  context:(ManipulationContext *)context {
+- (Skill *)generateSkillFor:(NSString *)word
+                 isVerified:(BOOL)isVerified
+                    context:(ManipulationContext *)context {
     
-   return  [self updateSkillFor:word
-              isVerified:isVerified
-                 context:context
-           isFromPreview:NO];
+    return  [self generateSkillFor:word
+                        isVerified:isVerified
+                           context:context
+                     isFromPreview:NO];
 }
 
 
 #pragma mark - Updating Usability Skill
 
-- (Skill *)updateUsabilitySkill:(BOOL)isVerified context:(ManipulationContext *)context {
+- (Skill *)generateUsabilitySkill:(BOOL)isVerified context:(ManipulationContext *)context {
     
     
     Skill *sk = [self.skillSet usabilitySkill];
     double prevSkillValue = [sk skillValue];
     
-    sk = [self updateSkill:sk isVerified:isVerified];
-    double newSkillValue = [sk skillValue];
+    Skill *updatingSK = [sk copy];
+    updatingSK = [self updateSkill:updatingSK isVerified:isVerified];
+    double newSkillValue = [updatingSK skillValue];
     
     [[ServerCommunicationController sharedInstance] logUpdateSkill:@"Usability" ofType:@"Usability" prevValue:prevSkillValue newSkillValue:newSkillValue context:context];
     NSLog(@"\nUpdated Usability Skill\nPrevious Value: %f\nNew Value: %f", prevSkillValue, newSkillValue);
     
-    return sk;
+    return updatingSK;
 }
 
 #pragma mark - Updating Syntax Skills
 
-- (Skill *)updateSyntaxSkill:(BOOL)isVerified withComplexity:(EMComplexity)complex context:(ManipulationContext *)context {
+- (Skill *)generateSyntaxSkill:(BOOL)isVerified withComplexity:(EMComplexity)complex context:(ManipulationContext *)context {
     
     
     Skill *sk = [self.skillSet syntaxSkillFor:complex];
     double prevSkillValue = [sk skillValue];
     
-    sk = [self updateSkill:sk isVerified:isVerified];
-    double newSkillValue = [sk skillValue];
+    Skill *updatingSK = [sk copy];
+    updatingSK = [self updateSkill:updatingSK isVerified:isVerified];
+    double newSkillValue = [updatingSK skillValue];
     
     [[ServerCommunicationController sharedInstance] logUpdateSkill:[NSString stringWithFormat:@"%d", complex] ofType:@"Syntax" prevValue:prevSkillValue newSkillValue:newSkillValue context:context];
     NSLog(@"\nUpdated Syntax Skill: %d Previous Value: %f New Value: %f", complex, prevSkillValue, newSkillValue);
     
-    return sk;
+    return updatingSK;
 }
 
 
@@ -220,7 +253,7 @@
         default:
             break;
     }
-
+    
     return guess;
 }
 
@@ -256,7 +289,7 @@
     double slip = [self getSlipForSkillType:type];
     double guess = [self getGuessForSkillType:type];
     double noGuess = (1 - guess) ;
-   
+    
     NSLog(@"\n\n\n(prevSkillValue * slip) / ((slip * prevSkillValue) + (noGuess * (1 - prevSkillValue))) \n(%f * %f) / (%f * %f + %f * (1 - %f) ", prevSkillValue ,slip,slip,prevSkillValue,noGuess ,prevSkillValue);
     return (prevSkillValue * slip) / ((slip * prevSkillValue) + (noGuess * (1 - prevSkillValue)));
 }
@@ -284,18 +317,18 @@
 //- (double)calcNewSkillValue:(double)skillEvaluated
 //                  prevSkill:(double)prevSkillValue
 //                  skillType:(SkillType)type {
-//    
+//
 //    double transition = [self getTransitionForSkillType:type];
 //    double newSkillValue = skillEvaluated + ((1 - skillEvaluated) * transition);
-//    
+//
 //    double diff = newSkillValue - prevSkillValue;
 //    double change = diff * self.dampenValue;
-//    
+//
 //    double finalCalValue = prevSkillValue + change;
 //    if (finalCalValue >= 0.99) {
 //        finalCalValue = 0.99;
 //    }
-//    
+//
 //    return finalCalValue;
 //}
 

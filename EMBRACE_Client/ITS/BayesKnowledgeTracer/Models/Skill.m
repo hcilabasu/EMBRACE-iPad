@@ -63,6 +63,19 @@
     return DEFAULT_INITIAL_VALUE;
 }
 
+- (id)copyWithZone:(NSZone *)zone
+{
+    id copy = [[[self class] alloc] init];
+    
+    if (copy) {
+        [copy setIsVerified:self.isVerified];
+        [copy setSkillType:self.skillType];
+        [copy setSkillValue:self.skillValue];
+    }
+    
+    return copy;
+}
+
 - (instancetype)init {
     self = [super init];
     

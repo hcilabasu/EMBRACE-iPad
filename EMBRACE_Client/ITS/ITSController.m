@@ -276,8 +276,8 @@ static ITSController *sharedInstance = nil;
     return extraVocabulary;
 }
 
-- (NSString *)getMostProbableErrorType {
-    return [self.manipulationAnalyser getMostProbableErrorType];
+- (ErrorFeedback *)feedbackToShow {
+    return [self.manipulationAnalyser feedbackToShow];
 }
 
 @end

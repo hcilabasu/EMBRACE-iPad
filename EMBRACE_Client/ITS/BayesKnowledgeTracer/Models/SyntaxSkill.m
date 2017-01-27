@@ -16,6 +16,18 @@
 
 @implementation SyntaxSkill
 
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    id copy = [super copyWithZone:zone];
+    
+    if (copy) {
+        [copy setComplexityLevel:self.complexityLevel];
+    }
+    
+    return copy;
+}
+
 - (instancetype)initWithComplexity:(EMComplexity)level {
     self = [super init];
     

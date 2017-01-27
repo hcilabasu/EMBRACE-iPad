@@ -2308,40 +2308,20 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     }
     else {
         if (conditionSetup.appMode == ITS && conditionSetup.useKnowledgeTracing && ![chapterTitle isEqualToString:@"The Naughty Monkey"] && menu == nil) {
-            BOOL showDemo = FALSE;
+            
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, delay * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                NSString *mostProbableErrorType = [[ITSController sharedInstance] getMostProbableErrorType];
+                ErrorFeedback *errFeedback = [[ITSController sharedInstance] feedbackToShow];
                 
-                // NOTE: Temporary UIAlertView to select most appropriate error feedback type
-                if (showDemo) {
-                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"Select the most probable error type:" preferredStyle:UIAlertControllerStyleAlert];
-                    [alert addAction:[UIAlertAction actionWithTitle:@"Vocabulary" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                        [self provideFeedbackForErrorType:@"vocabulary" showAlert:NO];
-                    }]];
-                    [alert addAction:[UIAlertAction actionWithTitle:@"Syntax" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                        [self provideFeedbackForErrorType:@"syntax" showAlert:NO];
-                    }]];
-                    [alert addAction:[UIAlertAction actionWithTitle:@"Usability" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                        if (conditionSetup.isAutomaticAnimationEnabled) {
-                            [self provideFeedbackForErrorType:@"usability" showAlert:YES];
-                        }
-                    }]];
-                    [alert addAction:[UIAlertAction actionWithTitle:@"None" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
-                        allowInteractions = TRUE;
-                        [self.view setUserInteractionEnabled:YES];
-                    }]];
-                    [self presentViewController:alert animated:YES completion:nil];
-                }
-                else {
-                    if (mostProbableErrorType != nil && conditionSetup.isAutomaticAnimationEnabled) {
-                        [self provideFeedbackForErrorType:mostProbableErrorType showAlert:YES];
+               
+                    if (errFeedback.feedbackType != EMFeedbackType_None && conditionSetup.isAutomaticAnimationEnabled) {
+                        [self provideFeedback:errFeedback];
                     }
                     else {
                         allowInteractions = TRUE;
                         [self.view setUserInteractionEnabled:YES];
                     }
-                }
+                
             });
         }
         else {
@@ -2352,54 +2332,101 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 }
 
 // TODO: Change error type NSString to enum
-- (void)provideFeedbackForErrorType:(NSString *)errorType showAlert:(BOOL)showAlert {
-    if ([errorType isEqualToString:@"vocabulary"]) {
-        stepContext.numVocabErrors++;
-        [self playNoiseName:ERROR_FEEDBACK_NOISE];
+- (void)provideFeedback:( ErrorFeedback *)feedback {
+    
+    if (feedback.feedbackType == EMFeedbackType_AutoComplete) {
         
-        if ((stepContext.numVocabErrors > 1) && conditionSetup.isAutomaticAnimationEnabled) {
+        if (feedback.skillType == SkillType_Vocab) {
+            [self playNoiseName:ERROR_FEEDBACK_NOISE];
             [self showFeedback:NO];
             
+        } else if (feedback.skillType == SkillType_Syntax) {
+            [self playNoiseName:ERROR_FEEDBACK_NOISE];
             
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                
+                //TODO: Reable once all sentences have correct audio
+                //[self playCurrentSentenceAudio];
+                [self playNoiseName:@"BeepBeep"];
+                
+                 [self showFeedback:NO];
+            });
         } else {
-            
-            [self showHighlightFeedback];
-            
-        }
-        
-    }
-    else if ([errorType isEqualToString:@"syntax"]) {
-        stepContext.numSyntaxErrors++;
-        
-        [self playNoiseName:ERROR_FEEDBACK_NOISE];
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            
-            //TODO: Reable once all sentences have correct audio
-            //[self playCurrentSentenceAudio];
-            [self playNoiseName:@"BeepBeep"];
-            
-            // After first attempt
-            if (stepContext.numSyntaxErrors > 1 && conditionSetup.isAutomaticAnimationEnabled) {
-                [self showFeedback:NO];
-            }
-            else {
-                [self showHighlightFeedback];            }
-        });
-    }
-    else if ([errorType isEqualToString:@"usability"]) {
-        stepContext.numUsabilityErrors++;
-        // After first attempt
-        if (stepContext.numUsabilityErrors > 1 && conditionSetup.isAutomaticAnimationEnabled) {
             [self showFeedback:YES];
         }
-        else {
-            allowInteractions = TRUE;
-            [self.view setUserInteractionEnabled:YES];
+        
+    } else if (feedback.feedbackType == EMFeedbackType_Highlight) {
+        
+        
+        if (feedback.skillType == SkillType_Vocab) {
+            [self playNoiseName:ERROR_FEEDBACK_NOISE];
+            [self showHighlightFeedback];
+            
+        } else if (feedback.skillType == SkillType_Syntax) {
+            [self playNoiseName:ERROR_FEEDBACK_NOISE];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                
+                //TODO: Reable once all sentences have correct audio
+                //[self playCurrentSentenceAudio];
+                [self playNoiseName:@"BeepBeep"];
+                
+                [self showHighlightFeedback];
+            });
         }
         
-        
+    } else {
+        allowInteractions = TRUE;
+        [self.view setUserInteractionEnabled:YES];
     }
+    
+//    if ([errorType isEqualToString:@"vocabulary"]) {
+//        stepContext.numVocabErrors++;
+//        [self playNoiseName:ERROR_FEEDBACK_NOISE];
+//        
+//        if ((stepContext.numVocabErrors > 1) && conditionSetup.isAutomaticAnimationEnabled) {
+//            [self showFeedback:NO];
+//            
+//            
+//        } else {
+//            
+//            [self showHighlightFeedback];
+//            
+//        }
+//        
+//    }
+//    else if ([errorType isEqualToString:@"syntax"]) {
+//        stepContext.numSyntaxErrors++;
+//        
+//        [self playNoiseName:ERROR_FEEDBACK_NOISE];
+//        
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+//            
+//            //TODO: Reable once all sentences have correct audio
+//            //[self playCurrentSentenceAudio];
+//            [self playNoiseName:@"BeepBeep"];
+//            
+//            // After first attempt
+//            if (stepContext.numSyntaxErrors > 1 && conditionSetup.isAutomaticAnimationEnabled) {
+//                [self showFeedback:NO];
+//            }
+//            else {
+//                [self showHighlightFeedback];            }
+//        });
+//    }
+//    else if ([errorType isEqualToString:@"usability"]) {
+//        stepContext.numUsabilityErrors++;
+//        // After first attempt
+//        if (stepContext.numUsabilityErrors > 1 && conditionSetup.isAutomaticAnimationEnabled) {
+//            [self showFeedback:YES];
+//        }
+//        else {
+//            allowInteractions = TRUE;
+//            [self.view setUserInteractionEnabled:YES];
+//        }
+//        
+//        
+//    }
 }
 
 - (void)showFeedback:(BOOL)showAlert {

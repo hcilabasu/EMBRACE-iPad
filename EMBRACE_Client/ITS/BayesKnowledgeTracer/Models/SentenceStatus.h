@@ -28,6 +28,10 @@
 
 @property (nonatomic, assign) NSInteger numOfSyntaxErrors;
 
+@property (nonatomic, assign) NSInteger numOfVocabErrors;
+
+@property (nonatomic, assign) NSInteger numOfUsabilityErrors;
+
 - (void)addUserAction:(UserAction *)action;
 
 - (NSArray *)userActions;
