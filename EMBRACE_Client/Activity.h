@@ -14,7 +14,8 @@
 typedef enum modeTypes {
     PM_MODE,
     IM_MODE,
-    ITSPM_MODE
+    ITSPM_MODE,
+    ITSIM_MODE
 } Mode;
 
 typedef enum modePhase {

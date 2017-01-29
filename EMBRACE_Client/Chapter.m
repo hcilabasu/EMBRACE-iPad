@@ -47,6 +47,8 @@
             return activity;
         else if((mode == IM_MODE) && ([activity isKindOfClass:[ImagineManipulationActivity class]]))
             return activity;
+        else if((mode == ITSIM_MODE) && ([activity isKindOfClass:[ITSImagineManipulationActivity class]]))
+            return activity;
     }
     return nil;
 }
@@ -60,6 +62,9 @@
             return [self getNextPageInActivity:activity :currentPage];
         }
         else if(mode == IM_MODE && ([activity isKindOfClass:[ImagineManipulationActivity class]])) {
+            return [self getNextPageInActivity:activity :currentPage];
+        }
+        else if(mode == ITSIM_MODE && ([activity isKindOfClass:[ITSImagineManipulationActivity class]])) {
             return [self getNextPageInActivity:activity :currentPage];
         }
     }
@@ -76,6 +81,9 @@
             return [self getPreviousPageInActivity:activity :currentPage];
         }
         else if(mode == IM_MODE && ([activity isKindOfClass:[ImagineManipulationActivity class]])) {
+            return [self getPreviousPageInActivity:activity :currentPage];
+        }
+        else if(mode == ITSIM_MODE && ([activity isKindOfClass:[ITSImagineManipulationActivity class]])) {
             return [self getPreviousPageInActivity:activity :currentPage];
         }
     }

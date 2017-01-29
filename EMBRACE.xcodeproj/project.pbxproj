@@ -94,6 +94,8 @@
 		1A519C941D9089EC00FADCF7 /* AssessmentActivitiesEOB-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C921D9089EC00FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */; };
 		1A519C951D9089EC00FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C931D9089EC00FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */; };
 		1A5BB0CA1BD327D1002D1AEA /* bottled.epub in Resources */ = {isa = PBXBuildFile; fileRef = 1A5BB0741BD327D1002D1AEA /* bottled.epub */; };
+		1A5DAAE81E3C3FDA00665345 /* ITSImagineManipulationActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5DAAE71E3C3FDA00665345 /* ITSImagineManipulationActivity.m */; };
+		1A5DAAEA1E3C408200665345 /* ITSImagineManipulationSolution.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5DAAE91E3C408200665345 /* ITSImagineManipulationSolution.m */; };
 		1A631FFF1C0E4D3B00251CB3 /* bestFarm.epub in Resources */ = {isa = PBXBuildFile; fileRef = 1A631C691C0E4D3900251CB3 /* bestFarm.epub */; };
 		1A6320001C0E4D3B00251CB3 /* container.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A631C6B1C0E4D3900251CB3 /* container.xml */; };
 		1A6320011C0E4D3B00251CB3 /* mimetype in Resources */ = {isa = PBXBuildFile; fileRef = 1A631C6C1C0E4D3900251CB3 /* mimetype */; };
@@ -5646,6 +5648,10 @@
 		1A519C921D9089EC00FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOB-MetaData.xml"; sourceTree = "<group>"; };
 		1A519C931D9089EC00FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOBSpanish-MetaData.xml"; sourceTree = "<group>"; };
 		1A5BB0741BD327D1002D1AEA /* bottled.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = bottled.epub; path = EPUBs/bottled/bottled.epub; sourceTree = "<group>"; };
+		1A5DAAE61E3C3FB600665345 /* ITSImagineManipulationActivity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ITSImagineManipulationActivity.h; sourceTree = "<group>"; };
+		1A5DAAE71E3C3FDA00665345 /* ITSImagineManipulationActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITSImagineManipulationActivity.m; sourceTree = "<group>"; };
+		1A5DAAE91E3C408200665345 /* ITSImagineManipulationSolution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITSImagineManipulationSolution.m; sourceTree = "<group>"; };
+		1A5DAAEB1E3C409400665345 /* ITSImagineManipulationSolution.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ITSImagineManipulationSolution.h; sourceTree = "<group>"; };
 		1A631C691C0E4D3900251CB3 /* bestFarm.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = bestFarm.epub; sourceTree = "<group>"; };
 		1A631C6B1C0E4D3900251CB3 /* container.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = container.xml; sourceTree = "<group>"; };
 		1A631C6C1C0E4D3900251CB3 /* mimetype */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mimetype; sourceTree = "<group>"; };
@@ -12798,6 +12804,8 @@
 				31058C78176BE71C00595AAE /* PhysicalManipulationActivity.m */,
 				31058C7A176BE73C00595AAE /* ImagineManipulationActivity.h */,
 				31058C7B176BE73D00595AAE /* ImagineManipulationActivity.m */,
+				1A5DAAE61E3C3FB600665345 /* ITSImagineManipulationActivity.h */,
+				1A5DAAE71E3C3FDA00665345 /* ITSImagineManipulationActivity.m */,
 				31058C80176BEB6200595AAE /* Page.h */,
 				31058C81176BEB6200595AAE /* Page.m */,
 				31C306C0183D900B0043DEDD /* Solution.h */,
@@ -12810,6 +12818,8 @@
 				C3B5215119254BA2003FF639 /* PhysicalManipulationSolution.m */,
 				030C8A961C5B1C6A00042C6F /* ImagineManipulationSolution.h */,
 				030C8A971C5B1C6A00042C6F /* ImagineManipulationSolution.m */,
+				1A5DAAEB1E3C409400665345 /* ITSImagineManipulationSolution.h */,
+				1A5DAAE91E3C408200665345 /* ITSImagineManipulationSolution.m */,
 				5C466ADA192293290056EA4B /* Translation.h */,
 				5C466ADB192293290056EA4B /* Translation.m */,
 				C36473EC1A9AA5C100FD7494 /* AlternateSentence.h */,
@@ -23992,9 +24002,11 @@
 				31953E781729ED5A00570087 /* zip.c in Sources */,
 				31953E791729ED5A00570087 /* ZipArchive.mm in Sources */,
 				31953E841729EE4100570087 /* Book.m in Sources */,
+				1A5DAAE81E3C3FDA00665345 /* ITSImagineManipulationActivity.m in Sources */,
 				1AD3CC8C1A251CE600E18B1C /* PlayAudioFile.m in Sources */,
 				31953E871729EE5800570087 /* LibraryViewController.m in Sources */,
 				1AFC9BFB1DAC485A00189CD2 /* Skill.m in Sources */,
+				1A5DAAEA1E3C408200665345 /* ITSImagineManipulationSolution.m in Sources */,
 				C3B5215A192AB610003FF639 /* EBookImporter.m in Sources */,
 				1AFC9C011DAC485A00189CD2 /* ITSController.m in Sources */,
 				1ADDE2FA1D808CD7002FB71C /* SentenceController.m in Sources */,

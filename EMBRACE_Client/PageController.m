@@ -62,7 +62,7 @@
 
     if (!conditionSetup.isVocabPageEnabled && [pageContext.currentPage containsString:DASH_INTRO]) {
         sentenceContext.currentSentence = 1;
-        pageContext.currentPage = [mvc.book getNextPageForChapterAndActivity:chapterTitle :(conditionSetup.currentMode == IM_MODE ? PM_MODE : conditionSetup.currentMode) :pageContext.currentPage];
+        pageContext.currentPage = [mvc.book getNextPageForChapterAndActivity:chapterTitle :((conditionSetup.currentMode == IM_MODE || conditionSetup.currentMode == ITSIM_MODE) ? PM_MODE : conditionSetup.currentMode) :pageContext.currentPage];
     }
     
     pageContext.actualPage = pageContext.currentPage;
@@ -109,6 +109,7 @@
         PhysicalManipulationActivity *PMActivity;
         ITSPhysicalManipulationActivity *ITSPMActivity;
         ImagineManipulationActivity *IMActivity;
+        ITSImagineManipulationActivity *ITSIMActivity;
         
         if (([chapterTitle isEqualToString:@"The Naughty Monkey"] && ([pageContext.currentPageId rangeOfString:PM2].location != NSNotFound) && conditionSetup.condition == CONTROL))
         {
@@ -160,6 +161,12 @@
             IMActivity = (ImagineManipulationActivity *)[chapter getActivityOfType:IM_MODE]; //get IM Activity from chapter
             stepContext.IMSolution = [[[IMActivity IMSolutions] objectForKey:pageContext.currentPageId] objectAtIndex:0]; //get IM solution
         }
+        else if (conditionSetup.currentMode == ITSIM_MODE) {
+            //Get the IM solution steps for the current chapter
+            Chapter *chapter = [mvc.book getChapterWithTitle:chapterTitle]; //get current chapter
+            ITSIMActivity = (ITSImagineManipulationActivity *)[chapter getActivityOfType:ITSIM_MODE]; //get IM Activity from chapter
+            stepContext.ITSIMSolution = [[[ITSIMActivity ITSIMSolutions] objectForKey:pageContext.currentPageId] objectAtIndex:0]; //get IM solution
+        }
     }
 }
 
@@ -172,7 +179,7 @@
     mvc.isLoadPageInProgress = true;
     [mvc.playaudioClass stopPlayAudioFile];
     
-    pageContext.currentPage = [mvc.book getNextPageForChapterAndActivity:chapterTitle :(conditionSetup.currentMode == IM_MODE ? PM_MODE : conditionSetup.currentMode) :pageContext.currentPage];
+    pageContext.currentPage = [mvc.book getNextPageForChapterAndActivity:chapterTitle :((conditionSetup.currentMode == IM_MODE || conditionSetup.currentMode == ITSIM_MODE) ? PM_MODE : conditionSetup.currentMode) :pageContext.currentPage];
     
     //No more pages in chapter
     if (pageContext.currentPage == nil) {
@@ -218,7 +225,7 @@
     mvc.isLoadPageInProgress = true;
     [mvc.playaudioClass stopPlayAudioFile];
     
-    pageContext.currentPage = [mvc.book getPreviousPageForChapterAndActivity:chapterTitle :(conditionSetup.currentMode == IM_MODE ? PM_MODE : conditionSetup.currentMode) :pageContext.currentPage];
+    pageContext.currentPage = [mvc.book getPreviousPageForChapterAndActivity:chapterTitle :((conditionSetup.currentMode == IM_MODE || conditionSetup.currentMode == ITSIM_MODE) ? PM_MODE : conditionSetup.currentMode) :pageContext.currentPage];
     
     //No more pages in chapter
     if (pageContext.currentPage == nil) {

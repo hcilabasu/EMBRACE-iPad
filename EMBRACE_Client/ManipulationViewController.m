@@ -263,7 +263,7 @@ BOOL wasPathFollowed = false;
             useSubject = ALL_ENTITIES;
             useObject = ONLY_CORRECT;
         }
-        else if (conditionSetup.currentMode == IM_MODE) {
+        else if (conditionSetup.currentMode == IM_MODE || conditionSetup.currentMode == ITSIM_MODE) {
             useSubject = NO_ENTITIES;
             useObject = NO_ENTITIES;
         }
@@ -749,7 +749,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 - (IBAction)tapGesturePerformed:(UITapGestureRecognizer *)recognizer {
     CGPoint location = [recognizer locationInView:self.view];
     
-    if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && !allowInteractions) {
+    if ((conditionSetup.condition == EMBRACE && (conditionSetup.currentMode == IM_MODE || conditionSetup.currentMode == ITSIM_MODE)) && !allowInteractions) {
         allowInteractions = true;
     }
     
@@ -809,7 +809,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     }
     
     //Disable user interactions in IM mode
-    if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && allowInteractions) {
+    if ((conditionSetup.condition == EMBRACE && (conditionSetup.currentMode == IM_MODE || conditionSetup.currentMode == ITSIM_MODE)) && allowInteractions) {
         allowInteractions = false;
     }
 }
@@ -850,7 +850,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         
         [self checkSolutionForInteraction:interaction]; //check if selected interaction is correct
         
-        if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && (allowInteractions)) {
+        if ((conditionSetup.condition == EMBRACE && (conditionSetup.currentMode == IM_MODE || conditionSetup.currentMode == ITSIM_MODE)) && (allowInteractions)) {
             allowInteractions = FALSE;
         }
         
@@ -2192,7 +2192,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     
     //Check if selected interaction is correct
     if ([interaction isEqual:correctInteraction]) {
-        if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) {
+        if (conditionSetup.condition == EMBRACE && (conditionSetup.currentMode == IM_MODE || conditionSetup.currentMode == ITSIM_MODE)) {
             [[ServerCommunicationController sharedInstance] logVerification:true forAction:SELECT_MENU_ITEM context:manipulationContext];
             
             //Re-add the tap gesture recognizer before the menu is removed
@@ -3149,7 +3149,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             [self playCurrentSentenceAudio];
         }
     }
-    else if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) &&
+    else if ((conditionSetup.condition == EMBRACE && (conditionSetup.currentMode == IM_MODE || conditionSetup.currentMode == ITSIM_MODE)) &&
              ([sentenceClass containsString: @"sentence actionSentence"] || [sentenceClass containsString: @"sentence IMactionSentence"])) {
         //Reset allRelationships arrray
         if ([allRelationships count]) {
@@ -4050,7 +4050,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     menu = [[PieContextualMenu alloc] initWithFrame:[bookView frame]];
     [menu addGestureRecognizer:tapRecognizer];
     
-    if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) {
+    if (conditionSetup.condition == EMBRACE && (conditionSetup.currentMode == IM_MODE || conditionSetup.currentMode == ITSIM_MODE)) {
         [IMViewMenu addSubview:menu];
     }
     else {
@@ -4062,7 +4062,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     
     CGFloat radius;
     
-    if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) {
+    if (conditionSetup.condition == EMBRACE && (conditionSetup.currentMode == IM_MODE || conditionSetup.currentMode == ITSIM_MODE)) {
         //Calculate the radius of the circle
         radius = (menuBoundingBoxIM -  (itemRadiusIM * 2)) / 2;
     }

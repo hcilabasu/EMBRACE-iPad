@@ -346,12 +346,14 @@
             PhysicalManipulationActivity *currPMActivity = (PhysicalManipulationActivity *)[currChapter getActivityOfType:PM_MODE];
             ITSPhysicalManipulationActivity *currITSPMActivity = (ITSPhysicalManipulationActivity *)[currChapter getActivityOfType:ITSPM_MODE];
             ImagineManipulationActivity *currIMActivity = (ImagineManipulationActivity *)[currChapter getActivityOfType:IM_MODE];
+            ITSImagineManipulationActivity *currITSIMActivity = (ITSImagineManipulationActivity *)[currChapter getActivityOfType:ITSIM_MODE];
             
             //Chapter doesn't have a PMActivity or IMActivity, so we'll create them
             if (currPMActivity == nil || currIMActivity == nil || currITSPMActivity == nil) {
                 currPMActivity = [[PhysicalManipulationActivity alloc] init];
                 currITSPMActivity = [[ITSPhysicalManipulationActivity alloc] init];
                 currIMActivity = [[ImagineManipulationActivity alloc] init];
+                currITSIMActivity = [[ITSImagineManipulationActivity alloc] init];
                 newActivity = TRUE;
             }
             
@@ -361,6 +363,7 @@
             [currPMActivity addPage:currPage];
             [currITSPMActivity addPage:currPage];
             [currIMActivity addPage:currPage];
+            [currITSIMActivity addPage:currPage];
             
             //Get the title of the activity. Don't care about this right now.
             GDataXMLElement *activityTitleElement = [[element elementsForName:@"navLabel"] objectAtIndex:0];
@@ -368,12 +371,14 @@
             [currPMActivity setActivityTitle:activityTitle];
             [currITSPMActivity setActivityTitle:activityTitle];
             [currIMActivity setActivityTitle:activityTitle];
+            [currITSIMActivity setActivityTitle:activityTitle];
             
             //If we had to create an activity that doesn't exist in the chapter..add the activity.
             if (newActivity) {
                 [currChapter addActivity:currPMActivity];
                 [currChapter addActivity:currITSPMActivity];
                 [currChapter addActivity:currIMActivity];
+                [currChapter addActivity:currITSIMActivity];
             }
         }
         
@@ -437,9 +442,11 @@
     [self readSolutionMetadata:book :ITSPM_MODE :[[book mainContentPath] stringByAppendingString:@"Solutions-MetaData-ITS.xml"]:ENGLISH];
     [self readSolutionMetadata:book :PM_MODE :[[book mainContentPath] stringByAppendingString:@"Solutions-MetaData.xml"]:ENGLISH];
     [self readSolutionMetadata:book :IM_MODE :[[book mainContentPath] stringByAppendingString:@"IMSolutions-MetaData.xml"]:ENGLISH];
+    [self readSolutionMetadata:book :ITSIM_MODE :[[book mainContentPath] stringByAppendingString:@"IMSolutions-MetaData.xml"]:ENGLISH];
     [self readSolutionMetadata:book :ITSPM_MODE :[[book mainContentPath] stringByAppendingString:@"Solutions-MetaData-ITS.xml"]:BILINGUAL];
     [self readSolutionMetadata:book :PM_MODE :[[book mainContentPath] stringByAppendingString:@"Solutions-MetaData.xml"]:BILINGUAL];
     [self readSolutionMetadata:book :IM_MODE :[[book mainContentPath] stringByAppendingString:@"IMSolutions-MetaData.xml"]:BILINGUAL];
+    [self readSolutionMetadata:book :ITSIM_MODE :[[book mainContentPath] stringByAppendingString:@"IMSolutions-MetaData.xml"]:BILINGUAL];
     
     
     
@@ -810,7 +817,7 @@
     NSError *error;
     GDataXMLDocument *metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:&error];
     
-    //Read in the solutions and add them to the PhysicalManipulationActivity they belong to
+    //Read in the solutions and add them to the ManipulationActivity they belong to
     NSArray *solutionsElements = [metadataDoc nodesForXPath:@"//solutions" error:nil];
     GDataXMLElement *solutionsElement = (GDataXMLElement *)[solutionsElements objectAtIndex:0];
     
@@ -828,6 +835,7 @@
             PhysicalManipulationSolution *PMSolution;
             ImagineManipulationSolution *IMSolution;
             ITSPhysicalManipulationSolution *ITSPMSolution;
+            ITSImagineManipulationSolution *ITSIMSolution;
             
             if (mode == PM_MODE) {
                 PMSolution = [[PhysicalManipulationSolution alloc] init];
@@ -837,6 +845,9 @@
             }
             else if (mode == IM_MODE) {
                 IMSolution = [[ImagineManipulationSolution alloc] init];
+            }
+            else if (mode == ITSIM_MODE) {
+                ITSIMSolution = [[ITSImagineManipulationSolution alloc] init];
             }
             
             //Solution metadata will change to include "idea" instead of "sentence" but some epubs may still be using "sentence"
@@ -865,6 +876,9 @@
                     else if (mode == IM_MODE) {
                         [IMSolution addSolutionStep:solutionStep];
                     }
+                    else if (mode == ITSIM_MODE) {
+                        [ITSIMSolution addSolutionStep:solutionStep];
+                    }
                 }
                 
                 for (GDataXMLElement *stepSolution in stepSolutions) {
@@ -887,6 +901,9 @@
                             else if (mode == IM_MODE) {
                                 [IMSolution addSolutionStep:solutionStep];
                             }
+                            else if (mode == ITSIM_MODE) {
+                                [ITSIMSolution addSolutionStep:solutionStep];
+                            }
                         }
                     }
                 }
@@ -906,6 +923,11 @@
             else if (mode == IM_MODE) {
                 ImagineManipulationActivity *IMActivity = (ImagineManipulationActivity *)[chapter getActivityOfType:IM_MODE]; //get IM Activity only
                 [IMActivity addIMSolution:IMSolution forActivityId:activityId];
+            }
+            //Add ITSIMSolution to page
+            else if (mode == ITSIM_MODE) {
+                ITSImagineManipulationActivity *ITSIMActivity = (ITSImagineManipulationActivity *)[chapter getActivityOfType:ITSIM_MODE]; //get IM Activity only
+                [ITSIMActivity addITSIMSolution:ITSIMSolution forActivityId:activityId];
             }
         }
     }

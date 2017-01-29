@@ -51,7 +51,7 @@ int const minMenuItems = 2; //Total number of items the menu must display. chang
                 circleRadius = boxSize / 2;
             }
             //IM Condition
-            else if (conditionSetup.currentMode == IM_MODE) {
+            else if (conditionSetup.currentMode == IM_MODE || conditionSetup.currentMode == ITSIM_MODE) {
                 float boxSize = [self frame].size.height - (itemRadiusIM * 2) - 50.0;
                 float originX = ([self frame].size.width - boxSize/.6) / 2;
                 float originY = ([self frame].size.height - boxSize/.6) / 2;
@@ -87,7 +87,7 @@ int const minMenuItems = 2; //Total number of items the menu must display. chang
                 rect = CGRectMake(currX - itemRadiusPM, currY - itemRadiusPM, itemRadiusPM * 2, itemRadiusPM * 2);
             }
             //IM Condition
-            else if (conditionSetup.currentMode == IM_MODE) {
+            else if (conditionSetup.currentMode == IM_MODE || conditionSetup.currentMode == ITSIM_MODE) {
                 rect = CGRectMake(currX - itemRadiusIM, currY - itemRadiusIM, itemRadiusIM * 2, itemRadiusIM * 2);
             }
             else{

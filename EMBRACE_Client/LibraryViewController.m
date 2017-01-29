@@ -626,9 +626,14 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                     conditionSetup.condition = CONTROL;
                     conditionSetup.appMode = Study;
                 }
-                else if ([currentMode interventionType] == ITS_INTERVENTION) {
+                else if ([currentMode interventionType] == ITSPM_INTERVENTION) {
                     conditionSetup.condition = EMBRACE;
                     conditionSetup.currentMode = ITSPM_MODE;
+                    conditionSetup.appMode = ITS;
+                }
+                else if ([currentMode interventionType] == ITSIM_INTERVENTION) {
+                    conditionSetup.condition = EMBRACE;
+                    conditionSetup.currentMode = ITSIM_MODE;
                     conditionSetup.appMode = ITS;
                 }
                 //Current mode for chapter was not found; default to control
@@ -660,6 +665,9 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                 else if(conditionSetup.currentMode == ITSPM_MODE){
                     condition = @"ITSPM";
                 }
+                else if(conditionSetup.currentMode == ITSIM_MODE){
+                    condition = @"ITSIM";
+                }
             }
             
             [[ServerCommunicationController sharedInstance] studyContext].appMode = [conditionSetup returnAppModeEnumToString:[conditionSetup appMode]];
@@ -677,8 +685,9 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
                 [self performSegueWithIdentifier: @"OpenPMActivitySegue" sender:self];
             }
             else if (conditionSetup.currentMode == IM_MODE) {
-                //TODO: Currently only using PM segue and PMViewController
-//                [self performSegueWithIdentifier: @"OpenIMActivitySegue" sender:self];
+                [self performSegueWithIdentifier: @"OpenPMActivitySegue" sender:self];
+            }
+            else if (conditionSetup.currentMode == ITSIM_MODE) {
                 [self performSegueWithIdentifier: @"OpenPMActivitySegue" sender:self];
             }
         }

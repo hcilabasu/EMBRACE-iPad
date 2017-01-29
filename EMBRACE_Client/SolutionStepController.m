@@ -223,6 +223,9 @@
             else if (conditionSetup.currentMode == IM_MODE) {
                 currSolSteps = [stepContext.IMSolution getStepsForSentence:sentenceContext.currentSentence];
             }
+            else if (conditionSetup.currentMode == ITSIM_MODE) {
+                currSolSteps = [stepContext.ITSIMSolution getStepsForSentence:sentenceContext.currentSentence];
+            }
         }
     }
     
@@ -327,6 +330,13 @@
         
         ImagineManipulationActivity *IMActivity = (ImagineManipulationActivity *)[chapter getActivityOfType:IM_MODE];
         [IMActivity addIMSolution:stepContext.IMSolution forActivityId:pageContext.currentPageId];
+    }
+    else if (conditionSetup.currentMode == ITSIM_MODE) {
+        stepContext.ITSIMSolution = [[ITSImagineManipulationSolution alloc] init];
+        stepContext.ITSIMSolution.solutionSteps = vocabSolutionSteps;
+        
+        ITSImagineManipulationActivity *ITSIMActivity = (ITSImagineManipulationActivity *)[chapter getActivityOfType:ITSIM_MODE];
+        [ITSIMActivity addITSIMSolution:stepContext.ITSIMSolution forActivityId:pageContext.currentPageId];
     }
 }
 

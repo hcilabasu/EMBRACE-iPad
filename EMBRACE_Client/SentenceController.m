@@ -90,7 +90,7 @@
                     stepContext.numSteps = [stepContext.PMSolution getNumStepsForSentence:sentenceContext.currentSentence];
                 }
             }
-            else if (conditionSetup.currentMode == IM_MODE) {
+            else if (conditionSetup.currentMode == IM_MODE || conditionSetup.currentMode == ITSIM_MODE) {
                 stepContext.numSteps = [stepContext.IMSolution getNumStepsForSentence:sentenceContext.currentSentence];
             }
         }
@@ -156,7 +156,7 @@
     [[ServerCommunicationController sharedInstance] logLoadSentence:sentenceContext.currentSentence withComplexity:manipulationContext.sentenceComplexity withText:sentenceContext.currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
     
     //Remove any PM specific sentence instructions
-    if(conditionSetup.currentMode == IM_MODE || conditionSetup.condition == CONTROL) {
+    if(conditionSetup.currentMode == IM_MODE || conditionSetup.currentMode == ITSIM_MODE || conditionSetup.condition == CONTROL) {
         [self.manipulationView removePMInstructions:sentenceContext.totalSentences];
     }
     
@@ -227,7 +227,7 @@
     
     //Get the sentence class
     NSString *sentenceClass = [self.manipulationView getSentenceClass:sentenceNumber];
-    if ([sentenceClass containsString: @"sentence actionSentence"] || ([sentenceClass containsString: @"sentence IMactionSentence"] && conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE)) {
+    if ([sentenceClass containsString: @"sentence actionSentence"] || ([sentenceClass containsString: @"sentence IMactionSentence"] && conditionSetup.condition == EMBRACE && (conditionSetup.currentMode == IM_MODE || conditionSetup.currentMode == ITSIM_MODE))) {
         isManipulationSentence = true;
     }
     

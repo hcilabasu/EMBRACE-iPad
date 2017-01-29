@@ -664,7 +664,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     if (![sentenceClass containsString:@"black"]) {
         if ([sentenceClass containsString: @"sentence actionSentence"] ||
             ([sentenceClass containsString: @"sentence IMactionSentence"] &&
-             condition == EMBRACE && mode == IM_MODE)) {
+             condition == EMBRACE && (mode == IM_MODE || mode == ITSIM_MODE))) {
                 NSString *setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%ld, 'blue')", (long)currentSentence];
                 [self.bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
             }
@@ -823,7 +823,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     //If it is a non-black action sentence (i.e., requires user manipulation), then set the color to blue
     if (![sentenceClass containsString:@"black"]) {
         if ([sentenceClass containsString: @"sentence actionSentence"] ||
-            ([sentenceClass containsString: @"sentence IMactionSentence"] && condition == EMBRACE && mode == IM_MODE)) {
+            ([sentenceClass containsString: @"sentence IMactionSentence"] && condition == EMBRACE && (mode == IM_MODE || mode == ITSIM_MODE))) {
             setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%ld, 'blue')", (long)currentSentence];
             [self.bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
         }
@@ -857,7 +857,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     //If it is a non-black action sentence (i.e., requires user manipulation), then set the color to blue
     if (![sentenceClass containsString:@"black"]) {
         if ([sentenceClass containsString: @"sentence actionSentence"] ||
-            ([sentenceClass containsString: @"sentence IMactionSentence"] && condition == EMBRACE && mode == IM_MODE)) {
+            ([sentenceClass containsString: @"sentence IMactionSentence"] && condition == EMBRACE && (mode == IM_MODE || mode == ITSIM_MODE))) {
             setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%ld, 'blue')", (long)currentSentence];
             [self.bookView stringByEvaluatingJavaScriptFromString:setSentenceColor];
         }
