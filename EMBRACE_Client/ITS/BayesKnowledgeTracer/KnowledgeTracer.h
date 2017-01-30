@@ -23,6 +23,7 @@
                     context:(ManipulationContext *)context
               isFromPreview:(BOOL)isFromPreview;
 
+
 // Update usability skill
 - (Skill *)generateUsabilitySkill:(BOOL)isVerified context:(ManipulationContext *)context;
 

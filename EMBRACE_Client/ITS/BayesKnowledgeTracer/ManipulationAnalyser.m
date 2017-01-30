@@ -65,6 +65,7 @@
     NSMutableArray *skillList = [NSMutableArray array];
     Skill *movedSkill = [self.knowledgeTracer generateSkillFor:word isVerified:NO context:context];
     [skillList addObject:movedSkill];
+    [self.knowledgeTracer updateSkills:@[movedSkill]];
     [self showMessageWith:skillList];
 }
 
@@ -77,6 +78,7 @@
                                                        context:context
                                                  isFromPreview:YES];
     [skillList addObject:movedSkill];
+    [self.knowledgeTracer updateSkills:@[movedSkill]];
     [self showMessageWith:skillList];
 }
 
