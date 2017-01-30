@@ -16,9 +16,9 @@
 
 typedef NS_ENUM(NSInteger, EMComplexity) {
     EM_Easy = 1,
-    EM_Medium,
-    EM_Complex,
-    EM_Default
+    EM_Medium = 2,
+    EM_Complex = 3,
+    EM_Default = 10
 };
 
 @interface ITSController : NSObject

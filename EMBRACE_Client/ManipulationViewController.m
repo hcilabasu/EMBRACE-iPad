@@ -3421,7 +3421,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     } else if ([name isEqualToString:MORE_ERROR]) {
         
         NSLog(@" %d %d",stepContext.numSteps,stepContext.currentStep);
-        [self.playaudioClass playAudioInSequence:@[@"thereismore.mp3"] :self];
+        
+        if(conditionSetup.language == BILINGUAL){
+            [self.playaudioClass playAudioInSequence:@[@"thereismoreS.mp3"] :self];
+        }else if(conditionSetup.language == ENGLISH){
+            [self.playaudioClass playAudioInSequence:@[@"thereismore.mp3"] :self];
+        }
+        
         [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:MORE_ERROR inLanguage:NULL_TXT ofType:MORE_ERROR :manipulationContext];
     }
     //TODO: remove temporary function in place of missing sentence audio once all audio is added
