@@ -166,9 +166,28 @@
 }
 
 - (void)addSentencesWithComplexity:(EMComplexity)complexity {
+    Language tempLang = conditionSetup.language;
+    
+    if (conditionSetup.language != ENGLISH) {
+        tempLang = conditionSetup.language;
+        conditionSetup.language = ENGLISH;
+    }
+    
     Chapter *chapter = [mvc.book getChapterWithTitle:chapterTitle]; //get current chapter
-    ITSPhysicalManipulationActivity *ITSPMActivity = (ITSPhysicalManipulationActivity *)[chapter getActivityOfType:ITSPM_MODE]; //get PM Activity from chapter
-    NSMutableArray *alternateSentences = [[ITSPMActivity alternateSentences] objectForKey:pageContext.currentPageId]; //get alternate sentences for current page
+    
+    conditionSetup.language = tempLang;
+    
+    ITSPhysicalManipulationActivity *ITSPMActivity;
+    ITSImagineManipulationActivity *ITSIMActivity;
+    NSMutableArray *alternateSentences;
+    if (conditionSetup.currentMode == ITSPM_MODE) {
+        ITSPMActivity = (ITSPhysicalManipulationActivity *)[chapter getActivityOfType:ITSPM_MODE]; //get PM Activity from chapter
+        alternateSentences = [[ITSPMActivity alternateSentences] objectForKey:pageContext.currentPageId]; //get alternate sentences for current page
+    } else if (conditionSetup.currentMode == ITSIM_MODE) {
+        ITSIMActivity = (ITSImagineManipulationActivity *)[chapter getActivityOfType:ITSIM_MODE]; //get PM Activity from chapter
+        alternateSentences = [[ITSIMActivity alternateSentences] objectForKey:pageContext.currentPageId]; //get alternate sentences for current page
+    }
+    
     
     // Underlined vocabulary includes chapter vocabulary and vocabulary from solution steps
     NSMutableSet *vocabulary = [[NSMutableSet alloc] initWithArray:[[chapter vocabulary] allKeys]];
@@ -177,7 +196,13 @@
     int sentenceNumber = 1; //used for assigning sentence ids
     int previousIdeaNum = 0; //used for making sure same idea does not get repeated
     
-    NSMutableArray *ideaNums = [stepContext.ITSPMSolution getIdeaNumbers]; //get list of idea numbers on the page
+    NSMutableArray *ideaNums;
+    if(conditionSetup.currentMode == ITSPM_MODE){
+        ideaNums = [stepContext.ITSPMSolution getIdeaNumbers]; //get list of idea numbers on the page
+    } else if(conditionSetup.currentMode == ITSIM_MODE){
+        ideaNums = [stepContext.ITSIMSolution getIdeaNumbers]; //get list of idea numbers on the page
+    }
+    
     sentenceContext.pageSentences = [NSMutableArray array];
     //Add alternate sentences associated with each idea
     for (NSNumber *ideaNum in ideaNums) {

@@ -10,4 +10,6 @@
 
 @interface ITSImagineManipulationSolution : Solution
 
+- (NSMutableArray *)getIdeaNumbers;
+
 @end

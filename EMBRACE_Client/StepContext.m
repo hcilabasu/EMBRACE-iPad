@@ -21,6 +21,7 @@
 @synthesize PMSolution;
 @synthesize ITSPMSolution;
 @synthesize IMSolution;
+@synthesize ITSIMSolution;
 @synthesize stepsComplete;
 
 - (id)init {

@@ -349,7 +349,7 @@
             ITSImagineManipulationActivity *currITSIMActivity = (ITSImagineManipulationActivity *)[currChapter getActivityOfType:ITSIM_MODE];
             
             //Chapter doesn't have a PMActivity or IMActivity, so we'll create them
-            if (currPMActivity == nil || currIMActivity == nil || currITSPMActivity == nil) {
+            if (currPMActivity == nil || currIMActivity == nil || currITSPMActivity == nil || currITSIMActivity == nil) {
                 currPMActivity = [[PhysicalManipulationActivity alloc] init];
                 currITSPMActivity = [[ITSPhysicalManipulationActivity alloc] init];
                 currIMActivity = [[ImagineManipulationActivity alloc] init];
@@ -360,6 +360,7 @@
             [currPMActivity setActivityId:pageId];
             [currITSPMActivity setActivityId:pageId];
             [currIMActivity setActivityId:pageId];
+            [currITSIMActivity setActivityId:pageId];
             [currPMActivity addPage:currPage];
             [currITSPMActivity addPage:currPage];
             [currIMActivity addPage:currPage];
@@ -450,7 +451,8 @@
     
     
     
-    [self readAlternateSentenceMetadata:book :[[book mainContentPath] stringByAppendingString:@"AlternateSentences-MetaData.xml"]:ENGLISH];
+    [self readAlternateSentenceMetadata:book :[[book mainContentPath] stringByAppendingString:@"AlternateSentences-MetaData.xml"]:ENGLISH:ITSPM_MODE];
+    [self readAlternateSentenceMetadata:book :[[book mainContentPath] stringByAppendingString:@"AlternateSentences-MetaData.xml"]:ENGLISH:ITSIM_MODE];
     //[self readAlternateSentenceMetadata:book :[[book mainContentPath] stringByAppendingString:@"AlternateSentences-MetaData.xml"]:BILINGUAL];
     [self readIntroductionMetadata:model :[[book mainContentPath] stringByAppendingString:@"Introductions-MetaData.xml"]];
     [self readVocabularyIntroductionMetadata:model :[[book mainContentPath] stringByAppendingString:@"VocabularyIntroductions-MetaData.xml"]];
@@ -802,7 +804,7 @@
 }
 
 /*
- * Reads solution metadata based on the mode--PM_MODE or IM_MODE or ITSPM_MODE
+ * Reads solution metadata based on the mode--PM_MODE or IM_MODE or ITSPM_MODE or ITSIM_MODE
  */
 - (void)readSolutionMetadata:(Book *)book :(Mode)mode :(NSString *)filepath :(Language) language {
     
@@ -870,7 +872,7 @@
                     if (mode == PM_MODE) {
                         [PMSolution addSolutionStep:solutionStep];
                     }
-                    else if (ITSPM_MODE){
+                    else if (mode == ITSPM_MODE){
                         [ITSPMSolution addSolutionStep:solutionStep];
                     }
                     else if (mode == IM_MODE) {
@@ -914,7 +916,7 @@
                 PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; //get PM Activity only
                 [PMActivity addPMSolution:PMSolution forActivityId:activityId];
             }
-            //Add ISPMSolution to page
+            //Add ITSPMSolution to page
             else if (mode == ITSPM_MODE) {
                 ITSPhysicalManipulationActivity *ITSPMActivity = (ITSPhysicalManipulationActivity *)[chapter getActivityOfType:ITSPM_MODE]; //get ITSPM Activity only
                 [ITSPMActivity addITSPMSolution:ITSPMSolution forActivityId:activityId];
@@ -926,7 +928,7 @@
             }
             //Add ITSIMSolution to page
             else if (mode == ITSIM_MODE) {
-                ITSImagineManipulationActivity *ITSIMActivity = (ITSImagineManipulationActivity *)[chapter getActivityOfType:ITSIM_MODE]; //get IM Activity only
+                ITSImagineManipulationActivity *ITSIMActivity = (ITSImagineManipulationActivity *)[chapter getActivityOfType:ITSIM_MODE]; //get ITSIM Activity only
                 [ITSIMActivity addITSIMSolution:ITSIMSolution forActivityId:activityId];
             }
         }
@@ -1052,7 +1054,7 @@
     return solutionStep;
 }
 
-- (void)readAlternateSentenceMetadata:(Book *)book :(NSString *)filepath :(Language) language {
+- (void)readAlternateSentenceMetadata:(Book *)book :(NSString *)filepath :(Language) language :(Mode) mode {
     
     Language tempLang = conditionSetup.language;
     
@@ -1086,8 +1088,18 @@
             NSString *pageId = [[storyAlternateSentenceElement attributeForName:@"page_id"] stringValue];
             
             if (chapter != nil) {
-                ITSPhysicalManipulationActivity *ITSPMActivity = (ITSPhysicalManipulationActivity *)[chapter getActivityOfType:ITSPM_MODE]; //get PM Activity only
-                ITSPhysicalManipulationSolution *ITSPMSolution = [[[ITSPMActivity ITSPMSolutions] objectForKey:pageId] objectAtIndex:0]; //get PMSolution
+                ITSPhysicalManipulationActivity *ITSPMActivity;
+                ITSPhysicalManipulationSolution *ITSPMSolution;
+                ITSImagineManipulationActivity *ITSIMActivity;
+                ITSImagineManipulationSolution *ITSIMSolution;
+                if (mode == ITSPM_MODE) {
+                    ITSPMActivity = (ITSPhysicalManipulationActivity *)[chapter getActivityOfType:ITSPM_MODE]; //get PM Activity only
+                    ITSPMSolution = [[[ITSPMActivity ITSPMSolutions] objectForKey:pageId] objectAtIndex:0]; //get PMSolution
+                }else if(mode == ITSIM_MODE){
+                    ITSIMActivity = (ITSImagineManipulationActivity *)[chapter getActivityOfType:ITSIM_MODE]; //get PM Activity only
+                    ITSIMSolution = [[[ITSIMActivity ITSIMSolutions] objectForKey:pageId] objectAtIndex:0]; //get PMSolution
+                }
+                
                 
                 NSArray *storyAlternateSentences = [storyAlternateSentenceElement elementsForName:@"sentence"];
                 
@@ -1145,7 +1157,14 @@
                             NSUInteger stepNum = [[[alternateSentenceStep attributeForName:@"number"] stringValue] intValue];
                             
                             //Get associated ActionStep
-                            NSMutableArray *step = [ITSPMSolution getStepsWithNumber:stepNum];
+                            NSMutableArray *step;
+                            if(mode == ITSPM_MODE){
+                                step = [ITSPMSolution getStepsWithNumber:stepNum];
+                            }
+                            else if(mode == ITSIM_MODE){
+                                step = [ITSIMSolution getStepsWithNumber:stepNum];
+                            }
+                            
                             
                             for (ActionStep *as in step) {
                                 [solutionSteps addObject:as];
@@ -1155,7 +1174,12 @@
                     
                     //Create alternate sentence and add to PMActivity
                     AlternateSentence *altSent = [[AlternateSentence alloc] initWithValues:sentenceNum :action :complexity :text :ideaNums :solutionSteps];
-                    [ITSPMActivity addAlternateSentence:altSent forPageId:pageId];
+                    if(mode == ITSPM_MODE){
+                        [ITSPMActivity addAlternateSentence:altSent forPageId:pageId];
+                    }
+                    else if(mode == ITSIM_MODE){
+                        [ITSIMActivity addAlternateSentence:altSent forPageId:pageId];
+                    }
                 }
             }
         }

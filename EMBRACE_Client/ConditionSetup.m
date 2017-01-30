@@ -46,7 +46,7 @@ static ConditionSetup *sharedInstance = nil;
 - (id)init {
     if (self = [super init]) {
         condition = EMBRACE;
-        language = BILINGUAL;
+        language = ENGLISH;
         reader = SYSTEM;
         appMode = Study;
         currentMode = PM_MODE;
@@ -64,7 +64,7 @@ static ConditionSetup *sharedInstance = nil;
         isSpeakerButtonEnabled = NO;
         
         useKnowledgeTracing = YES;
-        shouldShowITSMessages = YES;
+        shouldShowITSMessages = NO;
         
         allowFileSync = YES;
     }
