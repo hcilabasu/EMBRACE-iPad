@@ -76,6 +76,7 @@
 		1A3EFFF81C635E2A00927997 /* bg_market_entrance.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A3EFFF71C635E2A00927997 /* bg_market_entrance.png */; };
 		1A4542F31CA35428004D1CE0 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A4542F21CA35428004D1CE0 /* CoreMedia.framework */; };
 		1A4E023D1E3F0DC70050533C /* thereismoreS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E023C1E3F0DC70050533C /* thereismoreS.mp3 */; };
+		1A4E023F1E400AF00050533C /* IMSolutions-MetaData-ITS.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E023E1E400AF00050533C /* IMSolutions-MetaData-ITS.xml */; };
 		1A519C731D8EF05500FADCF7 /* AssessmentActivitiesEOB-Metadata.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C721D8EF05500FADCF7 /* AssessmentActivitiesEOB-Metadata.xml */; };
 		1A519C751D8EF07300FADCF7 /* AssessmentActivitiesEOBSpanish-Metadata.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C741D8EF07300FADCF7 /* AssessmentActivitiesEOBSpanish-Metadata.xml */; };
 		1A519C781D90899700FADCF7 /* AssessmentActivitiesEOB-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C761D90899700FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */; };
@@ -1039,6 +1040,7 @@
 		1AA631841DB04CD30006B194 /* StoneE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AA6317C1DB04CD30006B194 /* StoneE.mp3 */; };
 		1AAF05EC1D82295F005BB457 /* SolutionStepController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAF05EB1D82295F005BB457 /* SolutionStepController.m */; };
 		1AB028FC1ACF0890006CC916 /* AuthoringModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB028FB1ACF0890006CC916 /* AuthoringModeViewController.m */; };
+		1ABB7D0C1E410E25007FCF59 /* AlternateSentences-MetaData-IM.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1ABB7D0B1E410E25007FCF59 /* AlternateSentences-MetaData-IM.xml */; };
 		1ABDDCFE1CBDAAD100EA4DF2 /* island_lava_Oahu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABDDCFD1CBDAAD100EA4DF2 /* island_lava_Oahu.png */; };
 		1AC450771CAC8243004B7810 /* pigRight_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AC450761CAC8243004B7810 /* pigRight_large.png */; };
 		1AC7A38F1C59259C003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AC7A38E1C59259C003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml */; };
@@ -5631,6 +5633,7 @@
 		1A3EFFF71C635E2A00927997 /* bg_market_entrance.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_market_entrance.png; sourceTree = "<group>"; };
 		1A4542F21CA35428004D1CE0 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		1A4E023C1E3F0DC70050533C /* thereismoreS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = thereismoreS.mp3; sourceTree = "<group>"; };
+		1A4E023E1E400AF00050533C /* IMSolutions-MetaData-ITS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "IMSolutions-MetaData-ITS.xml"; sourceTree = "<group>"; };
 		1A519C721D8EF05500FADCF7 /* AssessmentActivitiesEOB-Metadata.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOB-Metadata.xml"; sourceTree = "<group>"; };
 		1A519C741D8EF07300FADCF7 /* AssessmentActivitiesEOBSpanish-Metadata.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOBSpanish-Metadata.xml"; sourceTree = "<group>"; };
 		1A519C761D90899700FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOB-MetaData.xml"; sourceTree = "<group>"; };
@@ -6611,6 +6614,7 @@
 		1AAF05EB1D82295F005BB457 /* SolutionStepController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolutionStepController.m; sourceTree = "<group>"; };
 		1AB028FA1ACF0890006CC916 /* AuthoringModeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthoringModeViewController.h; sourceTree = "<group>"; };
 		1AB028FB1ACF0890006CC916 /* AuthoringModeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthoringModeViewController.m; sourceTree = "<group>"; };
+		1ABB7D0B1E410E25007FCF59 /* AlternateSentences-MetaData-IM.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AlternateSentences-MetaData-IM.xml"; sourceTree = "<group>"; };
 		1ABD84AD1A49F54B0043A685 /* PlayAudioIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayAudioIcon.png; sourceTree = "<group>"; };
 		1ABDDCFD1CBDAAD100EA4DF2 /* island_lava_Oahu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = island_lava_Oahu.png; sourceTree = "<group>"; };
 		1AC450761CAC8243004B7810 /* pigRight_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pigRight_large.png; sourceTree = "<group>"; };
@@ -12366,6 +12370,7 @@
 			children = (
 				5DB79E801C917296003B2AFC /* Script-Metadata.xml */,
 				1A9FCB061DB6FD91005C5DAE /* AlternateSentences-MetaData.xml */,
+				1ABB7D0B1E410E25007FCF59 /* AlternateSentences-MetaData-IM.xml */,
 				1A9FCB071DB6FD91005C5DAE /* Solutions-MetaData-ITS.xml */,
 				1A9FCB081DB6FD91005C5DAE /* Vocabulary-MetaData.xml */,
 				1A9FCB091DB6FD91005C5DAE /* WordMapping.xml */,
@@ -12380,6 +12385,7 @@
 				1A631F131C0E4D3A00251CB3 /* Hotspots-MetaData.xml */,
 				1A631F141C0E4D3A00251CB3 /* Images */,
 				1A631F491C0E4D3A00251CB3 /* IMSolutions-MetaData.xml */,
+				1A4E023E1E400AF00050533C /* IMSolutions-MetaData-ITS.xml */,
 				1A631F4A1C0E4D3A00251CB3 /* Introductions-MetaData.xml */,
 				1A631F4B1C0E4D3A00251CB3 /* Locations-MetaData.xml */,
 				1A631F4C1C0E4D3A00251CB3 /* metadata.xml */,
@@ -20013,6 +20019,7 @@
 				1A03850A1C2B1F2500A973D8 /* cilia_outside.png in Resources */,
 				1A6322B21C0E4D3B00251CB3 /* Story-1-At-the-House.png in Resources */,
 				5C0ED70E1C752C2F00003B5A /* TheWiseOwlQ5A4.mp3 in Resources */,
+				1A4E023F1E400AF00050533C /* IMSolutions-MetaData-ITS.xml in Resources */,
 				5C72E5001C727E2000CE4877 /* TheNavajoHoganQ5A4.mp3 in Resources */,
 				5C8C35751CA1E60C00E07A5C /* MonkeyS.mp3 in Resources */,
 				5C09DF631C84F7DB00EC4E78 /* Bit_def_E.mp3 in Resources */,
@@ -20833,6 +20840,7 @@
 				5C0421FC1C618C2B001BBE9D /* WordsOfWisdomQ2A4.mp3 in Resources */,
 				5C0ED8CD1C75334200003B5A /* ManchatheHorseQ1.mp3 in Resources */,
 				5C9C07E51C57385A00702FCD /* BFEE_19A.m4a in Resources */,
+				1ABB7D0C1E410E25007FCF59 /* AlternateSentences-MetaData-IM.xml in Resources */,
 				71193D2A1E2FCF4D003D7EB5 /* dfabed74199e779703dce272759629f9.mp3 in Resources */,
 				5C28DCE51C2BA66E005ACD07 /* woman3.png in Resources */,
 				5D9E34B21C590E9600636150 /* TheMysteryIsSolvedQ7A2.mp3 in Resources */,

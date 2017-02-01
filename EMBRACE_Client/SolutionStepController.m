@@ -224,7 +224,7 @@
                 currSolSteps = [stepContext.IMSolution getStepsForSentence:sentenceContext.currentSentence];
             }
             else if (conditionSetup.currentMode == ITSIM_MODE) {
-                currSolSteps = [stepContext.ITSIMSolution getStepsForSentence:sentenceContext.currentSentence];
+                currSolSteps = [stepContext.ITSIMSolution getStepsForSentence:sentenceContext.currentIdea];
             }
         }
     }

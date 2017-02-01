@@ -443,16 +443,16 @@
     [self readSolutionMetadata:book :ITSPM_MODE :[[book mainContentPath] stringByAppendingString:@"Solutions-MetaData-ITS.xml"]:ENGLISH];
     [self readSolutionMetadata:book :PM_MODE :[[book mainContentPath] stringByAppendingString:@"Solutions-MetaData.xml"]:ENGLISH];
     [self readSolutionMetadata:book :IM_MODE :[[book mainContentPath] stringByAppendingString:@"IMSolutions-MetaData.xml"]:ENGLISH];
-    [self readSolutionMetadata:book :ITSIM_MODE :[[book mainContentPath] stringByAppendingString:@"IMSolutions-MetaData.xml"]:ENGLISH];
+    [self readSolutionMetadata:book :ITSIM_MODE :[[book mainContentPath] stringByAppendingString:@"IMSolutions-MetaData-ITS.xml"]:ENGLISH];
     [self readSolutionMetadata:book :ITSPM_MODE :[[book mainContentPath] stringByAppendingString:@"Solutions-MetaData-ITS.xml"]:BILINGUAL];
     [self readSolutionMetadata:book :PM_MODE :[[book mainContentPath] stringByAppendingString:@"Solutions-MetaData.xml"]:BILINGUAL];
     [self readSolutionMetadata:book :IM_MODE :[[book mainContentPath] stringByAppendingString:@"IMSolutions-MetaData.xml"]:BILINGUAL];
-    [self readSolutionMetadata:book :ITSIM_MODE :[[book mainContentPath] stringByAppendingString:@"IMSolutions-MetaData.xml"]:BILINGUAL];
+    [self readSolutionMetadata:book :ITSIM_MODE :[[book mainContentPath] stringByAppendingString:@"IMSolutions-MetaData-ITS.xml"]:BILINGUAL];
     
     
     
     [self readAlternateSentenceMetadata:book :[[book mainContentPath] stringByAppendingString:@"AlternateSentences-MetaData.xml"]:ENGLISH:ITSPM_MODE];
-    [self readAlternateSentenceMetadata:book :[[book mainContentPath] stringByAppendingString:@"AlternateSentences-MetaData.xml"]:ENGLISH:ITSIM_MODE];
+    [self readAlternateSentenceMetadata:book :[[book mainContentPath] stringByAppendingString:@"AlternateSentences-MetaData-IM.xml"]:ENGLISH:ITSIM_MODE];
     //[self readAlternateSentenceMetadata:book :[[book mainContentPath] stringByAppendingString:@"AlternateSentences-MetaData.xml"]:BILINGUAL];
     [self readIntroductionMetadata:model :[[book mainContentPath] stringByAppendingString:@"Introductions-MetaData.xml"]];
     [self readVocabularyIntroductionMetadata:model :[[book mainContentPath] stringByAppendingString:@"VocabularyIntroductions-MetaData.xml"]];

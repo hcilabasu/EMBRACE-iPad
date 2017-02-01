@@ -166,6 +166,8 @@
             Chapter *chapter = [mvc.book getChapterWithTitle:chapterTitle]; //get current chapter
             ITSIMActivity = (ITSImagineManipulationActivity *)[chapter getActivityOfType:ITSIM_MODE]; //get IM Activity from chapter
             stepContext.ITSIMSolution = [[[ITSIMActivity ITSIMSolutions] objectForKey:pageContext.currentPageId] objectAtIndex:0]; //get IM solution
+            sentenceContext.currentIdea = [[[stepContext.ITSIMSolution solutionSteps] objectAtIndex:0] sentenceNumber];
+            manipulationContext.ideaNumber = sentenceContext.currentIdea;
         }
     }
 }

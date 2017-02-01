@@ -55,7 +55,7 @@ static ConditionSetup *sharedInstance = nil;
         isVocabPageEnabled = YES;
         isAssessmentPageEnabled = NO;
         assessmentMode = ENDOFCHAPTER;
-        isOnDemandVocabEnabled = YES;
+        isOnDemandVocabEnabled = NO;
         
         isAutomaticAnimationEnabled = YES;
         animatedStepCompletionMode = PERSTEP;

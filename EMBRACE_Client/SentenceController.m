@@ -90,8 +90,11 @@
                     stepContext.numSteps = [stepContext.PMSolution getNumStepsForSentence:sentenceContext.currentSentence];
                 }
             }
-            else if (conditionSetup.currentMode == IM_MODE || conditionSetup.currentMode == ITSIM_MODE) {
+            else if (conditionSetup.currentMode == IM_MODE) {
                 stepContext.numSteps = [stepContext.IMSolution getNumStepsForSentence:sentenceContext.currentSentence];
+            }
+            else if (conditionSetup.appMode == ITS && conditionSetup.currentMode == ITSIM_MODE) {
+                stepContext.numSteps = [stepContext.ITSIMSolution getNumStepsForSentence:sentenceContext.currentIdea];
             }
         }
     }
@@ -136,6 +139,10 @@
                 [self addSentencesWithComplexity:mvc.currentComplexityLevel];
             }
         }
+    }
+    
+    if(!conditionSetup.isOnDemandVocabEnabled && [pageContext.currentPageId rangeOfString:DASH_INTRO].location == NSNotFound){
+        [self.manipulationView removeAllAudibleTags];
     }
     
     sentenceContext.totalSentences = (int)[self.manipulationView totalSentences];

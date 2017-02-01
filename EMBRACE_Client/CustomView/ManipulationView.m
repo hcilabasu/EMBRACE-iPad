@@ -1210,6 +1210,11 @@ shouldUpdateConnection:(BOOL)updateCon
     }
 }
 
+- (void)removeAllAudibleTags {
+        NSString *removeSentenceString = [NSString stringWithFormat:@"removeAudibleTagFromSentence()"];
+        [self.bookView stringByEvaluatingJavaScriptFromString:removeSentenceString];
+}
+
 - (void)addSentence:(AlternateSentence *)sentenceToAdd withSentenceNumber:(int)sentenceNumber andVocabulary:(NSMutableSet *)vocabulary {
     NSString *addSentenceString;
     //Get alternate sentence information
