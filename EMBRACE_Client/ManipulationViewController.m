@@ -259,11 +259,11 @@ BOOL wasPathFollowed = false;
         stepContext.maxAttempts = 5;
         stepContext.numAttempts = 0;
         
-        if (conditionSetup.currentMode == PM_MODE) {
+        if (conditionSetup.currentMode == PM_MODE || conditionSetup.currentMode == ITSPM_MODE) {
             useSubject = ALL_ENTITIES;
             useObject = ONLY_CORRECT;
         }
-        else if (conditionSetup.currentMode == IM_MODE) {
+        else if (conditionSetup.currentMode == IM_MODE || conditionSetup.currentMode == ITSIM_MODE) {
             useSubject = NO_ENTITIES;
             useObject = NO_ENTITIES;
         }
@@ -749,7 +749,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 - (IBAction)tapGesturePerformed:(UITapGestureRecognizer *)recognizer {
     CGPoint location = [recognizer locationInView:self.view];
     
-    if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && !allowInteractions) {
+    if ((conditionSetup.condition == EMBRACE && (conditionSetup.currentMode == IM_MODE || conditionSetup.currentMode == ITSIM_MODE)) && !allowInteractions) {
         allowInteractions = true;
     }
     
@@ -809,7 +809,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     }
     
     //Disable user interactions in IM mode
-    if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && allowInteractions) {
+    if ((conditionSetup.condition == EMBRACE && (conditionSetup.currentMode == IM_MODE || conditionSetup.currentMode == ITSIM_MODE)) && allowInteractions) {
         allowInteractions = false;
     }
 }
@@ -850,7 +850,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         
         [self checkSolutionForInteraction:interaction]; //check if selected interaction is correct
         
-        if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) && (allowInteractions)) {
+        if ((conditionSetup.condition == EMBRACE && (conditionSetup.currentMode == IM_MODE || conditionSetup.currentMode == ITSIM_MODE)) && (allowInteractions)) {
             allowInteractions = FALSE;
         }
         
@@ -1164,7 +1164,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         [pc loadNextPage];
     }
     //Perform steps only if they exist for the sentence and have not been completed
-    else if ((stepContext.numSteps > 0 && !stepContext.stepsComplete && conditionSetup.condition == EMBRACE && conditionSetup.currentMode == PM_MODE) || ([chapterTitle isEqualToString:@"The Naughty Monkey"] && stepContext.numSteps > 0 && !stepContext.stepsComplete)) {
+    else if (
+             (stepContext.numSteps > 0 && !stepContext.stepsComplete && conditionSetup.condition == EMBRACE &&
+              (conditionSetup.currentMode == PM_MODE ||conditionSetup.currentMode == ITSPM_MODE)) ||
+             ([chapterTitle isEqualToString:@"The Naughty Monkey"] && stepContext.numSteps > 0 && !stepContext.stepsComplete)) {
         [[ServerCommunicationController sharedInstance] logEmergencySwipe:manipulationContext];
         
         //Get steps for current sentence
@@ -2189,7 +2192,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     
     //Check if selected interaction is correct
     if ([interaction isEqual:correctInteraction]) {
-        if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) {
+        if (conditionSetup.condition == EMBRACE && (conditionSetup.currentMode == IM_MODE || conditionSetup.currentMode == ITSIM_MODE)) {
             [[ServerCommunicationController sharedInstance] logVerification:true forAction:SELECT_MENU_ITEM context:manipulationContext];
             
             //Re-add the tap gesture recognizer before the menu is removed
@@ -2206,7 +2209,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             
             didSelectCorrectMenuOption = true;
         }
-        else if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == PM_MODE) {
+        else if (conditionSetup.condition == EMBRACE && (conditionSetup.currentMode == PM_MODE || conditionSetup.currentMode == ITSPM_MODE)) {
             if (menu) {
                 [[ServerCommunicationController sharedInstance] logVerification:true forAction:SELECT_MENU_ITEM context:manipulationContext];
                 
@@ -2234,14 +2237,14 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             [pic performInteraction:interaction];
         }
         
-        if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == PM_MODE) {
+        if (conditionSetup.condition == EMBRACE && (conditionSetup.currentMode == PM_MODE || conditionSetup.currentMode == ITSPM_MODE)) {
             [ssc incrementCurrentStep];
         }
         
         //Transference counts as two steps, so we must increment again
         if ([interaction interactionType] == TRANSFERANDGROUP ||
             [interaction interactionType] == TRANSFERANDDISAPPEAR) {
-            if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == PM_MODE) {
+            if (conditionSetup.condition == EMBRACE && (conditionSetup.currentMode == PM_MODE || conditionSetup.currentMode == ITSPM_MODE)) {
                 [ssc incrementCurrentStep];
             }
         }
@@ -2256,7 +2259,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             action = MOVE_OBJECT;
         }
         
-        if (conditionSetup.useKnowledgeTracing && ![chapterTitle isEqualToString:@"The Naughty Monkey"]) {
+        if (conditionSetup.appMode == ITS && conditionSetup.useKnowledgeTracing && ![chapterTitle isEqualToString:@"The Naughty Monkey"]) {
             Connection *con = [interaction.connections objectAtIndex:0];
             NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
             ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
@@ -3146,7 +3149,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             [self playCurrentSentenceAudio];
         }
     }
-    else if ((conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) &&
+    else if ((conditionSetup.condition == EMBRACE && (conditionSetup.currentMode == IM_MODE || conditionSetup.currentMode == ITSIM_MODE)) &&
              ([sentenceClass containsString: @"sentence actionSentence"] || [sentenceClass containsString: @"sentence IMactionSentence"])) {
         //Reset allRelationships arrray
         if ([allRelationships count]) {
@@ -3418,7 +3421,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     } else if ([name isEqualToString:MORE_ERROR]) {
         
         NSLog(@" %d %d",stepContext.numSteps,stepContext.currentStep);
-        [self.playaudioClass playAudioInSequence:@[@"thereismore.mp3"] :self];
+        
+        if(conditionSetup.language == BILINGUAL){
+            [self.playaudioClass playAudioInSequence:@[@"thereismoreS.mp3"] :self];
+        }else if(conditionSetup.language == ENGLISH){
+            [self.playaudioClass playAudioInSequence:@[@"thereismore.mp3"] :self];
+        }
+        
         [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:MORE_ERROR inLanguage:NULL_TXT ofType:MORE_ERROR :manipulationContext];
     }
     //TODO: remove temporary function in place of missing sentence audio once all audio is added
@@ -3908,7 +3917,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             NSString *audio = [preAudio objectAtIndex:0];
             if ([audio containsString:INTRO]) {
                 if ([ConditionSetup sharedInstance].condition == EMBRACE) {
-                    if ([ConditionSetup sharedInstance].currentMode == PM_MODE) {
+                    if ([ConditionSetup sharedInstance].currentMode == PM_MODE || [ConditionSetup sharedInstance].currentMode == ITSPM_MODE) {
                         if ([ConditionSetup sharedInstance].reader == USER) {
                             audio = @"IntroDyadReads_PM";
                         } else {
@@ -4047,7 +4056,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     menu = [[PieContextualMenu alloc] initWithFrame:[bookView frame]];
     [menu addGestureRecognizer:tapRecognizer];
     
-    if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) {
+    if (conditionSetup.condition == EMBRACE && (conditionSetup.currentMode == IM_MODE || conditionSetup.currentMode == ITSIM_MODE)) {
         [IMViewMenu addSubview:menu];
     }
     else {
@@ -4059,7 +4068,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     
     CGFloat radius;
     
-    if (conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE) {
+    if (conditionSetup.condition == EMBRACE && (conditionSetup.currentMode == IM_MODE || conditionSetup.currentMode == ITSIM_MODE)) {
         //Calculate the radius of the circle
         radius = (menuBoundingBoxIM -  (itemRadiusIM * 2)) / 2;
     }

@@ -21,6 +21,7 @@
 #import "VocabularyStep.h"
 #import "AssessmentActivity.h"
 #import "Area.h"
+#import "ConditionSetup.h"
 
 @interface InteractionModel : NSObject {
     NSMutableSet* relationships;
@@ -32,7 +33,10 @@
     NSMutableSet* sentenceMetadata;
     NSMutableDictionary* introductions;
     NSMutableDictionary* vocabularies;
-    NSMutableDictionary *assessmentActivities;
+    NSMutableDictionary *assessmentActivitiesEOCEnglish;
+    NSMutableDictionary *assessmentActivitiesEOCSpanish;
+    NSMutableDictionary *assessmentActivitiesEOBEnglish;
+    NSMutableDictionary *assessmentActivitiesEOBSpanish;
     
     BOOL useRelationships;
     BOOL useConstraints;
@@ -40,7 +44,10 @@
     NSMutableSet* areas;
 }
 
-@property (nonatomic, strong) NSMutableDictionary *assessmentActivities;
+@property (nonatomic, strong) NSMutableDictionary *assessmentActivitiesEOCEnglish;
+@property (nonatomic, strong) NSMutableDictionary *assessmentActivitiesEOCSpanish;
+@property (nonatomic, strong) NSMutableDictionary *assessmentActivitiesEOBEnglish;
+@property (nonatomic, strong) NSMutableDictionary *assessmentActivitiesEOBSpanish;
 @property (nonatomic, strong) NSMutableSet* relationships;
 @property (nonatomic, strong) NSMutableSet* constraints;
 @property (nonatomic, strong) NSMutableDictionary* hotspots;
@@ -55,7 +62,7 @@
 @property (nonatomic, strong) NSMutableDictionary* wordMapping;
 
 - (NSMutableDictionary*) getAssessmentActivity;
-- (void) addAssessmentActivity:(NSString*) storyTitle :(NSMutableArray*) questions;
+- (void) addAssessmentActivity:(NSString*) storyTitle :(NSMutableArray*) questions :(Language) lanugage :(Assessment) assessmentMode;
 
 - (void) addHotspot:(NSString*)objId :(NSString*)act :(NSString*)objRole :(CGPoint)loc; //add hotspot to object with objectId at location loc.
 

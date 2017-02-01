@@ -75,6 +75,8 @@
 		1A3EFFF61C635BE300927997 /* bg_corral.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A3EFFF51C635BE300927997 /* bg_corral.png */; };
 		1A3EFFF81C635E2A00927997 /* bg_market_entrance.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A3EFFF71C635E2A00927997 /* bg_market_entrance.png */; };
 		1A4542F31CA35428004D1CE0 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A4542F21CA35428004D1CE0 /* CoreMedia.framework */; };
+		1A4E023D1E3F0DC70050533C /* thereismoreS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E023C1E3F0DC70050533C /* thereismoreS.mp3 */; };
+		1A4E023F1E400AF00050533C /* IMSolutions-MetaData-ITS.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E023E1E400AF00050533C /* IMSolutions-MetaData-ITS.xml */; };
 		1A519C731D8EF05500FADCF7 /* AssessmentActivitiesEOB-Metadata.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C721D8EF05500FADCF7 /* AssessmentActivitiesEOB-Metadata.xml */; };
 		1A519C751D8EF07300FADCF7 /* AssessmentActivitiesEOBSpanish-Metadata.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C741D8EF07300FADCF7 /* AssessmentActivitiesEOBSpanish-Metadata.xml */; };
 		1A519C781D90899700FADCF7 /* AssessmentActivitiesEOB-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C761D90899700FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */; };
@@ -94,6 +96,8 @@
 		1A519C941D9089EC00FADCF7 /* AssessmentActivitiesEOB-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C921D9089EC00FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */; };
 		1A519C951D9089EC00FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A519C931D9089EC00FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */; };
 		1A5BB0CA1BD327D1002D1AEA /* bottled.epub in Resources */ = {isa = PBXBuildFile; fileRef = 1A5BB0741BD327D1002D1AEA /* bottled.epub */; };
+		1A5DAAE81E3C3FDA00665345 /* ITSImagineManipulationActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5DAAE71E3C3FDA00665345 /* ITSImagineManipulationActivity.m */; };
+		1A5DAAEA1E3C408200665345 /* ITSImagineManipulationSolution.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5DAAE91E3C408200665345 /* ITSImagineManipulationSolution.m */; };
 		1A631FFF1C0E4D3B00251CB3 /* bestFarm.epub in Resources */ = {isa = PBXBuildFile; fileRef = 1A631C691C0E4D3900251CB3 /* bestFarm.epub */; };
 		1A6320001C0E4D3B00251CB3 /* container.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A631C6B1C0E4D3900251CB3 /* container.xml */; };
 		1A6320011C0E4D3B00251CB3 /* mimetype in Resources */ = {isa = PBXBuildFile; fileRef = 1A631C6C1C0E4D3900251CB3 /* mimetype */; };
@@ -1036,6 +1040,7 @@
 		1AA631841DB04CD30006B194 /* StoneE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1AA6317C1DB04CD30006B194 /* StoneE.mp3 */; };
 		1AAF05EC1D82295F005BB457 /* SolutionStepController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAF05EB1D82295F005BB457 /* SolutionStepController.m */; };
 		1AB028FC1ACF0890006CC916 /* AuthoringModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB028FB1ACF0890006CC916 /* AuthoringModeViewController.m */; };
+		1ABB7D0C1E410E25007FCF59 /* AlternateSentences-MetaData-IM.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1ABB7D0B1E410E25007FCF59 /* AlternateSentences-MetaData-IM.xml */; };
 		1ABDDCFE1CBDAAD100EA4DF2 /* island_lava_Oahu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABDDCFD1CBDAAD100EA4DF2 /* island_lava_Oahu.png */; };
 		1AC450771CAC8243004B7810 /* pigRight_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AC450761CAC8243004B7810 /* pigRight_large.png */; };
 		1AC7A38F1C59259C003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AC7A38E1C59259C003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml */; };
@@ -1045,6 +1050,10 @@
 		1AC7A3971C592D2F003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AC7A3961C592D2F003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml */; };
 		1AC7A3991C592E84003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AC7A3981C592E84003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml */; };
 		1AC8A2BB1D15963B007CE13C /* bigrocket_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AC8A2BA1D15963B007CE13C /* bigrocket_up.png */; };
+		1AD35FFD1E33B5CA00D06413 /* ITSPhysicalManipulationActivity.h in Sources */ = {isa = PBXBuildFile; fileRef = 1A9FA4FB1E31C87400AFE40D /* ITSPhysicalManipulationActivity.h */; };
+		1AD35FFE1E33B5D000D06413 /* ITSPhysicalManipulationActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9FA4FC1E31C87400AFE40D /* ITSPhysicalManipulationActivity.m */; };
+		1AD35FFF1E33B5D500D06413 /* ITSPhysicalManipulationSolution.h in Sources */ = {isa = PBXBuildFile; fileRef = 1A9FA4FA1E31C81600AFE40D /* ITSPhysicalManipulationSolution.h */; };
+		1AD360001E33B5DA00D06413 /* ITSPhysicalManipulationSolution.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9FA4F81E31C7CE00AFE40D /* ITSPhysicalManipulationSolution.m */; };
 		1AD3CC861A251C5300E18B1C /* IntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3CC851A251C5300E18B1C /* IntroductionViewController.m */; };
 		1AD3CC891A251CBA00E18B1C /* BuildHTMLString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3CC881A251CBA00E18B1C /* BuildHTMLString.m */; };
 		1AD3CC8C1A251CE600E18B1C /* PlayAudioFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3CC8B1A251CE600E18B1C /* PlayAudioFile.m */; };
@@ -5623,6 +5632,8 @@
 		1A3EFFF51C635BE300927997 /* bg_corral.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_corral.png; sourceTree = "<group>"; };
 		1A3EFFF71C635E2A00927997 /* bg_market_entrance.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_market_entrance.png; sourceTree = "<group>"; };
 		1A4542F21CA35428004D1CE0 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		1A4E023C1E3F0DC70050533C /* thereismoreS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = thereismoreS.mp3; sourceTree = "<group>"; };
+		1A4E023E1E400AF00050533C /* IMSolutions-MetaData-ITS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "IMSolutions-MetaData-ITS.xml"; sourceTree = "<group>"; };
 		1A519C721D8EF05500FADCF7 /* AssessmentActivitiesEOB-Metadata.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOB-Metadata.xml"; sourceTree = "<group>"; };
 		1A519C741D8EF07300FADCF7 /* AssessmentActivitiesEOBSpanish-Metadata.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOBSpanish-Metadata.xml"; sourceTree = "<group>"; };
 		1A519C761D90899700FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOB-MetaData.xml"; sourceTree = "<group>"; };
@@ -5642,6 +5653,10 @@
 		1A519C921D9089EC00FADCF7 /* AssessmentActivitiesEOB-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOB-MetaData.xml"; sourceTree = "<group>"; };
 		1A519C931D9089EC00FADCF7 /* AssessmentActivitiesEOBSpanish-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesEOBSpanish-MetaData.xml"; sourceTree = "<group>"; };
 		1A5BB0741BD327D1002D1AEA /* bottled.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = bottled.epub; path = EPUBs/bottled/bottled.epub; sourceTree = "<group>"; };
+		1A5DAAE61E3C3FB600665345 /* ITSImagineManipulationActivity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ITSImagineManipulationActivity.h; sourceTree = "<group>"; };
+		1A5DAAE71E3C3FDA00665345 /* ITSImagineManipulationActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITSImagineManipulationActivity.m; sourceTree = "<group>"; };
+		1A5DAAE91E3C408200665345 /* ITSImagineManipulationSolution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITSImagineManipulationSolution.m; sourceTree = "<group>"; };
+		1A5DAAEB1E3C409400665345 /* ITSImagineManipulationSolution.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ITSImagineManipulationSolution.h; sourceTree = "<group>"; };
 		1A631C691C0E4D3900251CB3 /* bestFarm.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = bestFarm.epub; sourceTree = "<group>"; };
 		1A631C6B1C0E4D3900251CB3 /* container.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = container.xml; sourceTree = "<group>"; };
 		1A631C6C1C0E4D3900251CB3 /* mimetype */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mimetype; sourceTree = "<group>"; };
@@ -6498,6 +6513,10 @@
 		1A9CF8421C31C3A00000C135 /* island_Kauai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = island_Kauai.png; sourceTree = "<group>"; };
 		1A9CF8441C31C7310000C135 /* native.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = native.epub; sourceTree = "<group>"; };
 		1A9CF8461C31DAF90000C135 /* speakerIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speakerIcon.png; sourceTree = "<group>"; };
+		1A9FA4F81E31C7CE00AFE40D /* ITSPhysicalManipulationSolution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITSPhysicalManipulationSolution.m; sourceTree = "<group>"; };
+		1A9FA4FA1E31C81600AFE40D /* ITSPhysicalManipulationSolution.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ITSPhysicalManipulationSolution.h; sourceTree = "<group>"; };
+		1A9FA4FB1E31C87400AFE40D /* ITSPhysicalManipulationActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITSPhysicalManipulationActivity.h; sourceTree = "<group>"; };
+		1A9FA4FC1E31C87400AFE40D /* ITSPhysicalManipulationActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITSPhysicalManipulationActivity.m; sourceTree = "<group>"; };
 		1A9FCAF81DB6FD4C005C5DAE /* Solutions-MetaData-ITS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Solutions-MetaData-ITS.xml"; sourceTree = "<group>"; };
 		1A9FCAF91DB6FD4C005C5DAE /* Vocabulary-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Vocabulary-MetaData.xml"; sourceTree = "<group>"; };
 		1A9FCAFA1DB6FD4C005C5DAE /* WordMapping.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WordMapping.xml; sourceTree = "<group>"; };
@@ -6595,6 +6614,7 @@
 		1AAF05EB1D82295F005BB457 /* SolutionStepController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolutionStepController.m; sourceTree = "<group>"; };
 		1AB028FA1ACF0890006CC916 /* AuthoringModeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthoringModeViewController.h; sourceTree = "<group>"; };
 		1AB028FB1ACF0890006CC916 /* AuthoringModeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthoringModeViewController.m; sourceTree = "<group>"; };
+		1ABB7D0B1E410E25007FCF59 /* AlternateSentences-MetaData-IM.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AlternateSentences-MetaData-IM.xml"; sourceTree = "<group>"; };
 		1ABD84AD1A49F54B0043A685 /* PlayAudioIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayAudioIcon.png; sourceTree = "<group>"; };
 		1ABDDCFD1CBDAAD100EA4DF2 /* island_lava_Oahu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = island_lava_Oahu.png; sourceTree = "<group>"; };
 		1AC450761CAC8243004B7810 /* pigRight_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pigRight_large.png; sourceTree = "<group>"; };
@@ -12350,6 +12370,7 @@
 			children = (
 				5DB79E801C917296003B2AFC /* Script-Metadata.xml */,
 				1A9FCB061DB6FD91005C5DAE /* AlternateSentences-MetaData.xml */,
+				1ABB7D0B1E410E25007FCF59 /* AlternateSentences-MetaData-IM.xml */,
 				1A9FCB071DB6FD91005C5DAE /* Solutions-MetaData-ITS.xml */,
 				1A9FCB081DB6FD91005C5DAE /* Vocabulary-MetaData.xml */,
 				1A9FCB091DB6FD91005C5DAE /* WordMapping.xml */,
@@ -12364,6 +12385,7 @@
 				1A631F131C0E4D3A00251CB3 /* Hotspots-MetaData.xml */,
 				1A631F141C0E4D3A00251CB3 /* Images */,
 				1A631F491C0E4D3A00251CB3 /* IMSolutions-MetaData.xml */,
+				1A4E023E1E400AF00050533C /* IMSolutions-MetaData-ITS.xml */,
 				1A631F4A1C0E4D3A00251CB3 /* Introductions-MetaData.xml */,
 				1A631F4B1C0E4D3A00251CB3 /* Locations-MetaData.xml */,
 				1A631F4C1C0E4D3A00251CB3 /* metadata.xml */,
@@ -12784,20 +12806,28 @@
 				311646AD175FCFE100B483F0 /* Chapter.m */,
 				311646AF175FD03F00B483F0 /* Activity.h */,
 				311646B0175FD03F00B483F0 /* Activity.m */,
+				1A9FA4FB1E31C87400AFE40D /* ITSPhysicalManipulationActivity.h */,
+				1A9FA4FC1E31C87400AFE40D /* ITSPhysicalManipulationActivity.m */,
 				31058C77176BE71C00595AAE /* PhysicalManipulationActivity.h */,
 				31058C78176BE71C00595AAE /* PhysicalManipulationActivity.m */,
 				31058C7A176BE73C00595AAE /* ImagineManipulationActivity.h */,
 				31058C7B176BE73D00595AAE /* ImagineManipulationActivity.m */,
+				1A5DAAE61E3C3FB600665345 /* ITSImagineManipulationActivity.h */,
+				1A5DAAE71E3C3FDA00665345 /* ITSImagineManipulationActivity.m */,
 				31058C80176BEB6200595AAE /* Page.h */,
 				31058C81176BEB6200595AAE /* Page.m */,
 				31C306C0183D900B0043DEDD /* Solution.h */,
 				31C306C1183D900B0043DEDD /* Solution.m */,
 				C3B5214E19254BA2003FF639 /* ActionStep.h */,
 				C3B5214F19254BA2003FF639 /* ActionStep.m */,
+				1A9FA4FA1E31C81600AFE40D /* ITSPhysicalManipulationSolution.h */,
+				1A9FA4F81E31C7CE00AFE40D /* ITSPhysicalManipulationSolution.m */,
 				C3B5215019254BA2003FF639 /* PhysicalManipulationSolution.h */,
 				C3B5215119254BA2003FF639 /* PhysicalManipulationSolution.m */,
 				030C8A961C5B1C6A00042C6F /* ImagineManipulationSolution.h */,
 				030C8A971C5B1C6A00042C6F /* ImagineManipulationSolution.m */,
+				1A5DAAEB1E3C409400665345 /* ITSImagineManipulationSolution.h */,
+				1A5DAAE91E3C408200665345 /* ITSImagineManipulationSolution.m */,
 				5C466ADA192293290056EA4B /* Translation.h */,
 				5C466ADB192293290056EA4B /* Translation.m */,
 				C36473EC1A9AA5C100FD7494 /* AlternateSentence.h */,
@@ -18047,6 +18077,7 @@
 		716631331E245B690097F1E6 /* nextButton */ = {
 			isa = PBXGroup;
 			children = (
+				1A4E023C1E3F0DC70050533C /* thereismoreS.mp3 */,
 				716631341E245B690097F1E6 /* thereismore.mp3 */,
 			);
 			path = nextButton;
@@ -19988,6 +20019,7 @@
 				1A03850A1C2B1F2500A973D8 /* cilia_outside.png in Resources */,
 				1A6322B21C0E4D3B00251CB3 /* Story-1-At-the-House.png in Resources */,
 				5C0ED70E1C752C2F00003B5A /* TheWiseOwlQ5A4.mp3 in Resources */,
+				1A4E023F1E400AF00050533C /* IMSolutions-MetaData-ITS.xml in Resources */,
 				5C72E5001C727E2000CE4877 /* TheNavajoHoganQ5A4.mp3 in Resources */,
 				5C8C35751CA1E60C00E07A5C /* MonkeyS.mp3 in Resources */,
 				5C09DF631C84F7DB00EC4E78 /* Bit_def_E.mp3 in Resources */,
@@ -20808,6 +20840,7 @@
 				5C0421FC1C618C2B001BBE9D /* WordsOfWisdomQ2A4.mp3 in Resources */,
 				5C0ED8CD1C75334200003B5A /* ManchatheHorseQ1.mp3 in Resources */,
 				5C9C07E51C57385A00702FCD /* BFEE_19A.m4a in Resources */,
+				1ABB7D0C1E410E25007FCF59 /* AlternateSentences-MetaData-IM.xml in Resources */,
 				71193D2A1E2FCF4D003D7EB5 /* dfabed74199e779703dce272759629f9.mp3 in Resources */,
 				5C28DCE51C2BA66E005ACD07 /* woman3.png in Resources */,
 				5D9E34B21C590E9600636150 /* TheMysteryIsSolvedQ7A2.mp3 in Resources */,
@@ -22151,6 +22184,7 @@
 				5D9E34371C590E9500636150 /* old_MissingKeysQ6A2.mp3 in Resources */,
 				7171C33A1DBF7EA40037E69F /* AlternateSentences-MetaData.xml in Resources */,
 				5CF6CA271CCB2BB50093D3FD /* RapidlyE.mp3 in Resources */,
+				1A4E023D1E3F0DC70050533C /* thereismoreS.mp3 in Resources */,
 				1A6322301C0E4D3B00251CB3 /* north_america_nofault.png in Resources */,
 				5C0ED8F01C75334200003B5A /* ShoppingattheMarketQ1.mp3 in Resources */,
 				5CF6CA671CCB2BB50093D3FD /* SwirlsS.mp3 in Resources */,
@@ -23950,6 +23984,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AD360001E33B5DA00D06413 /* ITSPhysicalManipulationSolution.m in Sources */,
+				1AD35FFF1E33B5D500D06413 /* ITSPhysicalManipulationSolution.h in Sources */,
+				1AD35FFE1E33B5D000D06413 /* ITSPhysicalManipulationActivity.m in Sources */,
+				1AD35FFD1E33B5CA00D06413 /* ITSPhysicalManipulationActivity.h in Sources */,
 				1AFC9BFE1DAC485A00189CD2 /* UsabilitySkill.m in Sources */,
 				038BECDC1C88C33F00ECFE28 /* Context.m in Sources */,
 				C3B66AA11BC33C2D005DF0AC /* LibraryCellView.m in Sources */,
@@ -23976,9 +24014,11 @@
 				31953E781729ED5A00570087 /* zip.c in Sources */,
 				31953E791729ED5A00570087 /* ZipArchive.mm in Sources */,
 				31953E841729EE4100570087 /* Book.m in Sources */,
+				1A5DAAE81E3C3FDA00665345 /* ITSImagineManipulationActivity.m in Sources */,
 				1AD3CC8C1A251CE600E18B1C /* PlayAudioFile.m in Sources */,
 				31953E871729EE5800570087 /* LibraryViewController.m in Sources */,
 				1AFC9BFB1DAC485A00189CD2 /* Skill.m in Sources */,
+				1A5DAAEA1E3C408200665345 /* ITSImagineManipulationSolution.m in Sources */,
 				C3B5215A192AB610003FF639 /* EBookImporter.m in Sources */,
 				1AFC9C011DAC485A00189CD2 /* ITSController.m in Sources */,
 				1ADDE2FA1D808CD7002FB71C /* SentenceController.m in Sources */,

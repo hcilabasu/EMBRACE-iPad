@@ -195,6 +195,8 @@ shouldUpdateConnection:(BOOL)updateCon
 
 - (void)removeAllSentences;
 
+- (void)removeAllAudibleTags;
+
 - (void)addSentence:(AlternateSentence *)sentenceToAdd withSentenceNumber:(int)sentenceNumber andVocabulary:(NSMutableSet *)vocabulary ;
 
 @end

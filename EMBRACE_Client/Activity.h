@@ -13,7 +13,9 @@
 //The mode enum will provide the information for what mode we're in.
 typedef enum modeTypes {
     PM_MODE,
-    IM_MODE
+    IM_MODE,
+    ITSPM_MODE,
+    ITSIM_MODE
 } Mode;
 
 typedef enum modePhase {
