@@ -20,7 +20,6 @@
 #define DEFAULT_VOCAB_GUESS 0.3
 #define DEFAULT_USABILITY_GUESS 0.4
 
-
 #define PREVIEW_VOCAB_GUESS 0.5
 
 // Probability of making a mistake applying a known skill
@@ -249,6 +248,9 @@
             break;
         case SkillType_Vocab:
             guess = DEFAULT_VOCAB_GUESS;
+            break;
+        case SkillType_Prev_Vocab:
+            guess = PREVIEW_VOCAB_GUESS;
             break;
         default:
             break;

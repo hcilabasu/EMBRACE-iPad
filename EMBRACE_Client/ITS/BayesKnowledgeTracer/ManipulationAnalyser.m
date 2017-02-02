@@ -62,6 +62,7 @@
 
 - (void)userDidPlayWord:(NSString *)word context:(ManipulationContext *)context {
     [self.playWords addObject:word];
+    [self.knowledgeTracer updateDampenValue:NO];
     NSMutableArray *skillList = [NSMutableArray array];
     Skill *movedSkill = [self.knowledgeTracer generateSkillFor:word isVerified:NO context:context];
     [skillList addObject:movedSkill];
@@ -71,6 +72,7 @@
 
 - (void)userDidVocabPreviewWord:(NSString *)word context:(ManipulationContext *)context {
     [self.playWords addObject:word];
+    [self.knowledgeTracer updateDampenValue:NO];
     
     NSMutableArray *skillList = [NSMutableArray array];
     Skill *movedSkill = [self.knowledgeTracer generateSkillFor:word
@@ -641,6 +643,18 @@
     return false;
 }
 
+- (void)resetSyntaxForContext:(ManipulationContext *)context {
+
+    NSString *bookTitle = context.bookTitle;
+    NSMutableDictionary *bookDetails = [self bookDictionaryForTitle:bookTitle];
+    SentenceStatus *stat = [self getActionListFrom:bookDetails
+                                        forChapter:context.chapterTitle
+                                    sentenceNumber:context.sentenceNumber
+                                     andIdeaNumber:context.ideaNumber];
+    stat.numOfSyntaxErrors = 0;
+    
+}
+
 - (BOOL)isInitialDistanceBelowThreshold:(NSSet *)movedObjectIds :(NSString *)correctObjToBeMovedID {
     CGPoint correctMovedObjectOrDestinationLocation = [self.delegate locationOfObject:correctObjToBeMovedID analyzer:self];
     
@@ -720,7 +734,7 @@
         
         self.currentSentenceStatus.numOfSyntaxErrors++;
         if (self.currentSentenceStatus.numOfSyntaxErrors == 1) {
-            feedbackObjc.feedbackType = EMFeedbackType_Highlight;
+            feedbackObjc.feedbackType = EMFeedbackType_ReadSentence;
             feedbackObjc.skillType = SkillType_Syntax;
             
         } else if (self.currentSentenceStatus.numOfSyntaxErrors > 1) {
@@ -745,7 +759,7 @@
             self.currentSentenceStatus.numOfSyntaxErrors++;
             feedbackObjc.skillType = SkillType_Syntax;
             if (self.currentSentenceStatus.numOfSyntaxErrors == 2) {
-                feedbackObjc.feedbackType = EMFeedbackType_Highlight;
+                feedbackObjc.feedbackType = EMFeedbackType_ReadSentence;
                 
             } else if (self.currentSentenceStatus.numOfSyntaxErrors > 2){
                 feedbackObjc.feedbackType = EMFeedbackType_AutoComplete;
@@ -791,7 +805,10 @@
     } else if (feedbackObjc.feedbackType == EMFeedbackType_Highlight) {
         feedback = @"Highlight";
         
+    } else if (feedbackObjc.feedbackType == EMFeedbackType_ReadSentence) {
+        feedback = @"Read";
     }
+    
     NSLog(@" Error type = %@ || Error count = %d || Type of feedback = %@ ", errorType, errorCount, feedback);
     self.currentFeedback = feedbackObjc;
     

@@ -280,4 +280,11 @@ static ITSController *sharedInstance = nil;
     return [self.manipulationAnalyser feedbackToShow];
 }
 
+- (void)resetSyntaxErrorCountWithContext:(ManipulationContext *)context {
+   
+    
+    [self.manipulationAnalyser resetSyntaxForContext:context];
+    
+}
+
 @end
