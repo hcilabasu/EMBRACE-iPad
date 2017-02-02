@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "PhysicalManipulationActivity.h"
 #import "ImagineManipulationActivity.h"
+#import "ITSPhysicalManipulationActivity.h"
+#import "ITSImagineManipulationActivity.h"
 #import "ScriptAudio.h"
 
 @interface Chapter : NSObject {

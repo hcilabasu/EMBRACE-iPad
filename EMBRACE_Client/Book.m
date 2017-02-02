@@ -8,6 +8,12 @@
 
 #import "Book.h"
 
+@interface Book() {
+    ConditionSetup *conditionSetup;
+}
+
+@end
+
 @implementation Book
 
 @synthesize title;
@@ -20,7 +26,8 @@
 @synthesize bookItems;
 @synthesize itemOrder;
 
-@synthesize chapters;
+@synthesize englishChapters;
+@synthesize spanishChapters;
 
 @synthesize model;
 
@@ -30,8 +37,10 @@
         title = bookTitle;
         author = bookAuthor;
         coverImagePath = nil;
-        chapters = [[NSMutableArray alloc] init];
+        englishChapters = [[NSMutableArray alloc] init];
+        spanishChapters = [[NSMutableArray alloc] init];
         model = [[InteractionModel alloc] init];
+        conditionSetup = [ConditionSetup sharedInstance];
     }
     
     return self;
@@ -52,7 +61,7 @@
 
 -(NSString*) getPageForChapter:(NSString*)chapterTitle {
     //Find the chapter so we can get the chapter ID.
-    for(Chapter* chapter in chapters) {
+    for(Chapter* chapter in [self getChapters]) {
         if([[chapter title] isEqualToString:chapterTitle]) {
             NSString* chapterId = [chapter chapterId];
             NSString* page = [bookItems objectForKey:chapterId];
@@ -74,7 +83,7 @@
 
 //Get the id for the specified page in the chapter with activity
 - (NSString*) getIdForPageInChapterAndActivity:(NSString*)pagePath :(NSString*)chapterTitle :(Mode)activityMode {
-    for (Chapter* chapter in chapters) {
+    for (Chapter* chapter in [self getChapters]) {
         if ([[chapter title] isEqualToString:chapterTitle]) {
             Activity* activity = [chapter getActivityOfType:activityMode];
             
@@ -102,12 +111,20 @@
     return [itemOrder count];
 }
 
--(void) addChapter:(Chapter*)chapter {
-    [chapters addObject:chapter];
+-(void) addEnglishChapter:(Chapter*)chapter {
+    [englishChapters addObject:chapter];
+}
+
+-(void) addSpanishChapter:(Chapter*)chapter {
+    [spanishChapters addObject:chapter];
+}
+
+- (NSMutableArray*) getChapters{
+    return (conditionSetup.language == ENGLISH ? englishChapters : spanishChapters);
 }
 
 -(NSString*) getNextPageForChapterAndActivity:(NSString*)chapterTitle :(Mode) activity :(NSString*) currentPage{
-    for(Chapter* chapter in chapters) {
+    for(Chapter* chapter in [self getChapters]) {
         if([[chapter title] isEqualToString:chapterTitle]) {
             return [chapter getNextPageForMode:activity :currentPage];
         }
@@ -117,7 +134,7 @@
 }
 
 -(NSString*) getPreviousPageForChapterAndActivity:(NSString*)chapterTitle :(Mode) activity :(NSString*) currentPage{
-    for(Chapter* chapter in chapters) {
+    for(Chapter* chapter in [self getChapters]) {
         if([[chapter title] isEqualToString:chapterTitle]) {
             return [chapter getPreviousPageForMode:activity :currentPage];
         }
@@ -127,23 +144,23 @@
 }
 
 -(NSString* ) getChapterAfterChapter:(NSString* )chapterTitle {
-    for(int i = 0; i < [chapters count] - 1; i ++) {
-        Chapter* chapter = [chapters objectAtIndex:i];
+    for(int i = 0; i < [[self getChapters] count] - 1; i ++) {
+        Chapter* chapter = [[self getChapters] objectAtIndex:i];
         
         if([[chapter title] isEqualToString:chapterTitle])
-            return [[chapters objectAtIndex:i + 1] title];
+            return [[[self getChapters] objectAtIndex:i + 1] title];
     }
     
     return nil; //These is no chapter after this one.
 }
 
 -(NSString* ) getChapterBeforeChapter:(NSString* )chapterTitle {
-    for(int i = 0; i < [chapters count] - 1; i ++) {
-        Chapter* chapter = [chapters objectAtIndex:i];
+    for(int i = 0; i < [[self getChapters] count] - 1; i ++) {
+        Chapter* chapter = [[self getChapters] objectAtIndex:i];
         
         if([[chapter title] isEqualToString:chapterTitle])
             if (i > 0) {
-                return [[chapters objectAtIndex:i - 1] title];
+                return [[[self getChapters] objectAtIndex:i - 1] title];
             }
     }
     
@@ -154,7 +171,7 @@
  * Returns the Chapter object with the specified chapter title
  */
 -(Chapter* ) getChapterWithTitle:(NSString* )chapterTitle {
-    for(Chapter* chapter in chapters) {
+    for(Chapter* chapter in [self getChapters]) {
         //Chapter title matches
         if ([[chapter title] isEqualToString:chapterTitle]) {
             return chapter;

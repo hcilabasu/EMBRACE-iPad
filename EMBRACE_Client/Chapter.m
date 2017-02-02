@@ -43,7 +43,11 @@
     for(Activity* activity in activities) {
         if((mode == PM_MODE) && ([activity isKindOfClass:[PhysicalManipulationActivity class]]))
             return activity;
+        else if((mode == ITSPM_MODE) && ([activity isKindOfClass:[ITSPhysicalManipulationActivity class]]))
+            return activity;
         else if((mode == IM_MODE) && ([activity isKindOfClass:[ImagineManipulationActivity class]]))
+            return activity;
+        else if((mode == ITSIM_MODE) && ([activity isKindOfClass:[ITSImagineManipulationActivity class]]))
             return activity;
     }
     return nil;
@@ -54,7 +58,13 @@
         if((mode == PM_MODE) && ([activity isKindOfClass:[PhysicalManipulationActivity class]])) {
             return [self getNextPageInActivity:activity :currentPage];
         }
+        if((mode == ITSPM_MODE) && ([activity isKindOfClass:[ITSPhysicalManipulationActivity class]])) {
+            return [self getNextPageInActivity:activity :currentPage];
+        }
         else if(mode == IM_MODE && ([activity isKindOfClass:[ImagineManipulationActivity class]])) {
+            return [self getNextPageInActivity:activity :currentPage];
+        }
+        else if(mode == ITSIM_MODE && ([activity isKindOfClass:[ITSImagineManipulationActivity class]])) {
             return [self getNextPageInActivity:activity :currentPage];
         }
     }
@@ -67,7 +77,13 @@
         if((mode == PM_MODE) && ([activity isKindOfClass:[PhysicalManipulationActivity class]])) {
             return [self getPreviousPageInActivity:activity :currentPage];
         }
+        if((mode == ITSPM_MODE) && ([activity isKindOfClass:[ITSPhysicalManipulationActivity class]])) {
+            return [self getPreviousPageInActivity:activity :currentPage];
+        }
         else if(mode == IM_MODE && ([activity isKindOfClass:[ImagineManipulationActivity class]])) {
+            return [self getPreviousPageInActivity:activity :currentPage];
+        }
+        else if(mode == ITSIM_MODE && ([activity isKindOfClass:[ITSImagineManipulationActivity class]])) {
             return [self getPreviousPageInActivity:activity :currentPage];
         }
     }

@@ -47,15 +47,15 @@ static ConditionSetup *sharedInstance = nil;
     if (self = [super init]) {
         condition = EMBRACE;
         language = ENGLISH;
-        reader = USER;
-        appMode = ITS;
+        reader = SYSTEM;
+        appMode = Study;
         currentMode = PM_MODE;
 
         newInstructions = NO;
         isVocabPageEnabled = YES;
         isAssessmentPageEnabled = NO;
         assessmentMode = ENDOFCHAPTER;
-        isOnDemandVocabEnabled = YES;
+        isOnDemandVocabEnabled = NO;
         
         isAutomaticAnimationEnabled = YES;
         animatedStepCompletionMode = PERSTEP;
@@ -64,7 +64,7 @@ static ConditionSetup *sharedInstance = nil;
         isSpeakerButtonEnabled = NO;
         
         useKnowledgeTracing = YES;
-        shouldShowITSMessages = YES;
+        shouldShowITSMessages = NO;
         
         allowFileSync = YES;
     }

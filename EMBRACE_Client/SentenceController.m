@@ -81,10 +81,10 @@
             stepContext.numSteps = [stepContext.PMSolution getNumStepsForSentence:sentenceContext.currentSentence];
         }
         else if (conditionSetup.condition == EMBRACE) {
-            if (conditionSetup.currentMode == PM_MODE) {
+            if (conditionSetup.currentMode == PM_MODE || conditionSetup.currentMode == ITSPM_MODE) {
                 //NOTE: Currently hardcoded because some Solutions-MetaData.xml files are different format from other stories
                 if (conditionSetup.appMode == ITS && ([mvc.bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound || [mvc.bookTitle rangeOfString:@"The Lopez Family Mystery"].location != NSNotFound || [mvc.bookTitle rangeOfString:@"Bottled Up Joy"].location != NSNotFound)) {
-                    stepContext.numSteps = [stepContext.PMSolution getNumStepsForSentence:sentenceContext.currentIdea];
+                    stepContext.numSteps = [stepContext.ITSPMSolution getNumStepsForSentence:sentenceContext.currentIdea];
                 }
                 else {
                     stepContext.numSteps = [stepContext.PMSolution getNumStepsForSentence:sentenceContext.currentSentence];
@@ -92,6 +92,9 @@
             }
             else if (conditionSetup.currentMode == IM_MODE) {
                 stepContext.numSteps = [stepContext.IMSolution getNumStepsForSentence:sentenceContext.currentSentence];
+            }
+            else if (conditionSetup.appMode == ITS && conditionSetup.currentMode == ITSIM_MODE) {
+                stepContext.numSteps = [stepContext.ITSIMSolution getNumStepsForSentence:sentenceContext.currentIdea];
             }
         }
     }
@@ -130,12 +133,16 @@
         if (conditionSetup.condition != CONTROL) {
             mvc.allowInteractions = TRUE;
             
-            if (conditionSetup.appMode == ITS && conditionSetup.useKnowledgeTracing && ![chapterTitle isEqualToString:@"The Naughty Monkey"]) {
+            if (conditionSetup.appMode == ITS && conditionSetup.useKnowledgeTracing && ![chapterTitle isEqualToString:@"The Naughty Monkey"] && !(conditionSetup.language == BILINGUAL && [pageContext.currentPageId.lowercaseString containsString:@"story1"])) {
                 mvc.currentComplexityLevel = [[ITSController sharedInstance] getCurrentComplexity];
                 [self.manipulationView removeAllSentences];
                 [self addSentencesWithComplexity:mvc.currentComplexityLevel];
             }
         }
+    }
+    
+    if(!conditionSetup.isOnDemandVocabEnabled && [pageContext.currentPageId rangeOfString:DASH_INTRO].location == NSNotFound){
+        [self.manipulationView removeAllAudibleTags];
     }
     
     sentenceContext.totalSentences = (int)[self.manipulationView totalSentences];
@@ -156,7 +163,7 @@
     [[ServerCommunicationController sharedInstance] logLoadSentence:sentenceContext.currentSentence withComplexity:manipulationContext.sentenceComplexity withText:sentenceContext.currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
     
     //Remove any PM specific sentence instructions
-    if(conditionSetup.currentMode == IM_MODE || conditionSetup.condition == CONTROL) {
+    if(conditionSetup.currentMode == IM_MODE || conditionSetup.currentMode == ITSIM_MODE || conditionSetup.condition == CONTROL) {
         [self.manipulationView removePMInstructions:sentenceContext.totalSentences];
     }
     
@@ -166,9 +173,28 @@
 }
 
 - (void)addSentencesWithComplexity:(EMComplexity)complexity {
+    Language tempLang = conditionSetup.language;
+    
+    if (conditionSetup.language != ENGLISH) {
+        tempLang = conditionSetup.language;
+        conditionSetup.language = ENGLISH;
+    }
+    
     Chapter *chapter = [mvc.book getChapterWithTitle:chapterTitle]; //get current chapter
-    PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; //get PM Activity from chapter
-    NSMutableArray *alternateSentences = [[PMActivity alternateSentences] objectForKey:pageContext.currentPageId]; //get alternate sentences for current page
+    
+    conditionSetup.language = tempLang;
+    
+    ITSPhysicalManipulationActivity *ITSPMActivity;
+    ITSImagineManipulationActivity *ITSIMActivity;
+    NSMutableArray *alternateSentences;
+    if (conditionSetup.currentMode == ITSPM_MODE) {
+        ITSPMActivity = (ITSPhysicalManipulationActivity *)[chapter getActivityOfType:ITSPM_MODE]; //get PM Activity from chapter
+        alternateSentences = [[ITSPMActivity alternateSentences] objectForKey:pageContext.currentPageId]; //get alternate sentences for current page
+    } else if (conditionSetup.currentMode == ITSIM_MODE) {
+        ITSIMActivity = (ITSImagineManipulationActivity *)[chapter getActivityOfType:ITSIM_MODE]; //get PM Activity from chapter
+        alternateSentences = [[ITSIMActivity alternateSentences] objectForKey:pageContext.currentPageId]; //get alternate sentences for current page
+    }
+    
     
     // Underlined vocabulary includes chapter vocabulary and vocabulary from solution steps
     NSMutableSet *vocabulary = [[NSMutableSet alloc] initWithArray:[[chapter vocabulary] allKeys]];
@@ -177,7 +203,13 @@
     int sentenceNumber = 1; //used for assigning sentence ids
     int previousIdeaNum = 0; //used for making sure same idea does not get repeated
     
-    NSMutableArray *ideaNums = [stepContext.PMSolution getIdeaNumbers]; //get list of idea numbers on the page
+    NSMutableArray *ideaNums;
+    if(conditionSetup.currentMode == ITSPM_MODE){
+        ideaNums = [stepContext.ITSPMSolution getIdeaNumbers]; //get list of idea numbers on the page
+    } else if(conditionSetup.currentMode == ITSIM_MODE){
+        ideaNums = [stepContext.ITSIMSolution getIdeaNumbers]; //get list of idea numbers on the page
+    }
+    
     sentenceContext.pageSentences = [NSMutableArray array];
     //Add alternate sentences associated with each idea
     for (NSNumber *ideaNum in ideaNums) {
@@ -227,7 +259,7 @@
     
     //Get the sentence class
     NSString *sentenceClass = [self.manipulationView getSentenceClass:sentenceNumber];
-    if ([sentenceClass containsString: @"sentence actionSentence"] || ([sentenceClass containsString: @"sentence IMactionSentence"] && conditionSetup.condition == EMBRACE && conditionSetup.currentMode == IM_MODE)) {
+    if ([sentenceClass containsString: @"sentence actionSentence"] || ([sentenceClass containsString: @"sentence IMactionSentence"] && conditionSetup.condition == EMBRACE && (conditionSetup.currentMode == IM_MODE || conditionSetup.currentMode == ITSIM_MODE))) {
         isManipulationSentence = true;
     }
     

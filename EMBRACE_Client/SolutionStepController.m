@@ -198,7 +198,7 @@
 - (NSMutableArray *)returnCurrentSolutionSteps {
     NSMutableArray *currSolSteps;
     
-    if (conditionSetup.appMode == ITS && ![pageContext.currentPageId containsString:DASH_INTRO]) {
+    if (conditionSetup.appMode == ITS && ![pageContext.currentPageId containsString:DASH_INTRO] && !([pageContext.currentPageId.lowercaseString containsString:@"story1"])) {
         if (sentenceContext.currentSentence > 0) {
             currSolSteps = [[sentenceContext.pageSentences objectAtIndex:sentenceContext.currentSentence - 1] solutionSteps];
         }
@@ -208,17 +208,23 @@
             currSolSteps = [stepContext.PMSolution getStepsForSentence:sentenceContext.currentSentence];
         }
         else if (conditionSetup.condition == EMBRACE) {
-            if (conditionSetup.currentMode == PM_MODE) {
+            if (conditionSetup.currentMode == PM_MODE || conditionSetup.currentMode == ITSPM_MODE) {
                 //NOTE: Currently hardcoded because some Solutions-MetaData.xml files are different format from other stories
                 if (conditionSetup.appMode == ITS && ([mvc.bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound || [mvc.bookTitle rangeOfString:@"The Lopez Family Mystery"].location != NSNotFound || [mvc.bookTitle rangeOfString:@"Bottled Up Joy"].location != NSNotFound) && [pageContext.currentPageId rangeOfString:DASH_INTRO].location == NSNotFound) {
-                    currSolSteps = [stepContext.PMSolution getStepsForSentence:sentenceContext.currentIdea];
+                    currSolSteps = [stepContext.ITSPMSolution getStepsForSentence:sentenceContext.currentIdea];
                 }
-                else {
+                else if(conditionSetup.currentMode == PM_MODE){
                     currSolSteps = [stepContext.PMSolution getStepsForSentence:sentenceContext.currentSentence];
+                }
+                else if(conditionSetup.currentMode == ITSPM_MODE){
+                    currSolSteps = [stepContext.ITSPMSolution getStepsForSentence:sentenceContext.currentSentence];
                 }
             }
             else if (conditionSetup.currentMode == IM_MODE) {
                 currSolSteps = [stepContext.IMSolution getStepsForSentence:sentenceContext.currentSentence];
+            }
+            else if (conditionSetup.currentMode == ITSIM_MODE) {
+                currSolSteps = [stepContext.ITSIMSolution getStepsForSentence:sentenceContext.currentIdea];
             }
         }
     }
@@ -287,6 +293,14 @@
                     englishText = [mvc.sc getEnglishTranslation:vocab];
                     spanishText = vocab;
                 }
+                else if(![[mvc.sc getSpanishTranslation:vocab] isEqualToString:NULL_TXT]){
+                    englishText = vocab;
+                    spanishText = [mvc.sc getSpanishTranslation:vocab];
+                }
+                else{
+                    englishText = vocab;
+                    spanishText = vocab;
+                }
             }
             
             [mvc.manipulationView addVocabularyWithID:sentenceContext.totalSentences englishText:englishText spanishText:spanishText];
@@ -303,12 +317,26 @@
         PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE];
         [PMActivity addPMSolution:stepContext.PMSolution forActivityId:pageContext.currentPageId];
     }
+    else if (conditionSetup.currentMode == ITSPM_MODE) {
+        stepContext.ITSPMSolution = [[ITSPhysicalManipulationSolution alloc] init];
+        stepContext.ITSPMSolution.solutionSteps = vocabSolutionSteps;
+        
+        ITSPhysicalManipulationActivity *ITSPMActivity = (ITSPhysicalManipulationActivity *)[chapter getActivityOfType:ITSPM_MODE];
+        [ITSPMActivity addITSPMSolution:stepContext.ITSPMSolution forActivityId:pageContext.currentPageId];
+    }
     else if (conditionSetup.currentMode == IM_MODE) {
         stepContext.IMSolution = [[ImagineManipulationSolution alloc] init];
         stepContext.IMSolution.solutionSteps = vocabSolutionSteps;
         
         ImagineManipulationActivity *IMActivity = (ImagineManipulationActivity *)[chapter getActivityOfType:IM_MODE];
         [IMActivity addIMSolution:stepContext.IMSolution forActivityId:pageContext.currentPageId];
+    }
+    else if (conditionSetup.currentMode == ITSIM_MODE) {
+        stepContext.ITSIMSolution = [[ITSImagineManipulationSolution alloc] init];
+        stepContext.ITSIMSolution.solutionSteps = vocabSolutionSteps;
+        
+        ITSImagineManipulationActivity *ITSIMActivity = (ITSImagineManipulationActivity *)[chapter getActivityOfType:ITSIM_MODE];
+        [ITSIMActivity addITSIMSolution:stepContext.ITSIMSolution forActivityId:pageContext.currentPageId];
     }
 }
 

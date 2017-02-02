@@ -272,7 +272,9 @@
     }
     
     //Read the TOC for the book and create any Chapters and Activities as necessary
-    [self readTOCForBook:book];
+    [self readTOCForBook:book: ENGLISH];
+    [self readTOCForBook:book: BILINGUAL];
+    
     
     //Read the metadata for the book
     [self readMetadataForBook:book];
@@ -284,14 +286,14 @@
  * TOC is in the same location as the .opf file. That means that we can use the mainContentPath to find it.
  * TOC file is always named toc.ncx
  */
-- (void)readTOCForBook:(Book *)book {
+- (void)readTOCForBook:(Book *)book : (Language) language {
     NSString *filepath = nil;
     
     //Separate TOC files depending on language
-    if (conditionSetup.language == BILINGUAL) {
+    if (language == BILINGUAL) {
         filepath = [[book mainContentPath] stringByAppendingString:@"toc.ncx"];
     }
-    else if (conditionSetup.language == ENGLISH) {
+    else if( language == ENGLISH) {
         filepath = [[book mainContentPath] stringByAppendingString:@"tocE.ncx"];
     }
     
@@ -342,35 +344,54 @@
             //NOTE: Previously, we used the navPoint class in the TOC file to determine which type of Activity to create. However, the class is irrelevant now because pages don't differ between PM_MODE and IM_MODE. (Only their solutions differ.) Instead, we go ahead and create a PhysicalManipulationActivity and an ImagineManipulationActivity for every chapter. Code below is not the most elegant solution, so we'll need to refactor things later.
             bool newActivity = FALSE;
             PhysicalManipulationActivity *currPMActivity = (PhysicalManipulationActivity *)[currChapter getActivityOfType:PM_MODE];
+            ITSPhysicalManipulationActivity *currITSPMActivity = (ITSPhysicalManipulationActivity *)[currChapter getActivityOfType:ITSPM_MODE];
             ImagineManipulationActivity *currIMActivity = (ImagineManipulationActivity *)[currChapter getActivityOfType:IM_MODE];
+            ITSImagineManipulationActivity *currITSIMActivity = (ITSImagineManipulationActivity *)[currChapter getActivityOfType:ITSIM_MODE];
             
             //Chapter doesn't have a PMActivity or IMActivity, so we'll create them
-            if (currPMActivity == nil || currIMActivity == nil) {
+            if (currPMActivity == nil || currIMActivity == nil || currITSPMActivity == nil || currITSIMActivity == nil) {
                 currPMActivity = [[PhysicalManipulationActivity alloc] init];
+                currITSPMActivity = [[ITSPhysicalManipulationActivity alloc] init];
                 currIMActivity = [[ImagineManipulationActivity alloc] init];
+                currITSIMActivity = [[ITSImagineManipulationActivity alloc] init];
                 newActivity = TRUE;
             }
             
             [currPMActivity setActivityId:pageId];
+            [currITSPMActivity setActivityId:pageId];
             [currIMActivity setActivityId:pageId];
+            [currITSIMActivity setActivityId:pageId];
             [currPMActivity addPage:currPage];
+            [currITSPMActivity addPage:currPage];
             [currIMActivity addPage:currPage];
+            [currITSIMActivity addPage:currPage];
             
             //Get the title of the activity. Don't care about this right now.
             GDataXMLElement *activityTitleElement = [[element elementsForName:@"navLabel"] objectAtIndex:0];
             NSString *activityTitle = [activityTitleElement stringValue];
             [currPMActivity setActivityTitle:activityTitle];
+            [currITSPMActivity setActivityTitle:activityTitle];
             [currIMActivity setActivityTitle:activityTitle];
+            [currITSIMActivity setActivityTitle:activityTitle];
             
             //If we had to create an activity that doesn't exist in the chapter..add the activity.
             if (newActivity) {
                 [currChapter addActivity:currPMActivity];
+                [currChapter addActivity:currITSPMActivity];
                 [currChapter addActivity:currIMActivity];
+                [currChapter addActivity:currITSIMActivity];
             }
         }
         
-        //Add chapter to book
-        [book addChapter:currChapter];
+        //Separate chapter files depending on language
+        if (language == BILINGUAL) {
+            //Add chapter to book
+            [book addSpanishChapter:currChapter];
+        }
+        else if(language == ENGLISH) {
+            //Add chapter to book
+            [book addEnglishChapter:currChapter];
+        }
     }
 }
 
@@ -415,41 +436,37 @@
     [self readAreaMetadata:model :[[book mainContentPath] stringByAppendingString:@"Areas-MetaData.xml"]];
     [self readWaypointMetadata:model :[[book mainContentPath] stringByAppendingString:@"Waypoints-MetaData.xml"]];
     [self readAlternateImageMetadata:model :[[book mainContentPath] stringByAppendingString:@"AlternateImages-MetaData.xml"]];
-    [self readSetupMetadata:book :[[book mainContentPath] stringByAppendingString:@"Setups-MetaData.xml"]];
+    [self readSetupMetadata:book :[[book mainContentPath] stringByAppendingString:@"Setups-MetaData.xml"]:ENGLISH];
+    [self readSetupMetadata:book :[[book mainContentPath] stringByAppendingString:@"Setups-MetaData.xml"]:BILINGUAL];
     
-    //Read PM and IM solutions
+    //Read PM, IM, or ITSPM solutions
+    [self readSolutionMetadata:book :ITSPM_MODE :[[book mainContentPath] stringByAppendingString:@"Solutions-MetaData-ITS.xml"]:ENGLISH];
+    [self readSolutionMetadata:book :PM_MODE :[[book mainContentPath] stringByAppendingString:@"Solutions-MetaData.xml"]:ENGLISH];
+    [self readSolutionMetadata:book :IM_MODE :[[book mainContentPath] stringByAppendingString:@"IMSolutions-MetaData.xml"]:ENGLISH];
+    [self readSolutionMetadata:book :ITSIM_MODE :[[book mainContentPath] stringByAppendingString:@"IMSolutions-MetaData-ITS.xml"]:ENGLISH];
+    [self readSolutionMetadata:book :ITSPM_MODE :[[book mainContentPath] stringByAppendingString:@"Solutions-MetaData-ITS.xml"]:BILINGUAL];
+    [self readSolutionMetadata:book :PM_MODE :[[book mainContentPath] stringByAppendingString:@"Solutions-MetaData.xml"]:BILINGUAL];
+    [self readSolutionMetadata:book :IM_MODE :[[book mainContentPath] stringByAppendingString:@"IMSolutions-MetaData.xml"]:BILINGUAL];
+    [self readSolutionMetadata:book :ITSIM_MODE :[[book mainContentPath] stringByAppendingString:@"IMSolutions-MetaData-ITS.xml"]:BILINGUAL];
     
-    if (conditionSetup.appMode == ITS) {
-        if ([[book title] isEqualToString:@"Introduction to EMBRACE"]) {
-            [self readSolutionMetadata:book :PM_MODE :[[book mainContentPath] stringByAppendingString:@"Solutions-MetaData.xml"]];
-        }
-        else {
-            [self readSolutionMetadata:book :PM_MODE :[[book mainContentPath] stringByAppendingString:@"Solutions-MetaData-ITS.xml"]];
-        }
-    } else {
-        [self readSolutionMetadata:book :PM_MODE :[[book mainContentPath] stringByAppendingString:@"Solutions-MetaData.xml"]];
-    }
-    [self readSolutionMetadata:book :IM_MODE :[[book mainContentPath] stringByAppendingString:@"IMSolutions-MetaData.xml"]];
     
-    [self readAlternateSentenceMetadata:book :[[book mainContentPath] stringByAppendingString:@"AlternateSentences-MetaData.xml"]];
+    
+    [self readAlternateSentenceMetadata:book :[[book mainContentPath] stringByAppendingString:@"AlternateSentences-MetaData.xml"]:ENGLISH:ITSPM_MODE];
+    [self readAlternateSentenceMetadata:book :[[book mainContentPath] stringByAppendingString:@"AlternateSentences-MetaData-IM.xml"]:ENGLISH:ITSIM_MODE];
+    //[self readAlternateSentenceMetadata:book :[[book mainContentPath] stringByAppendingString:@"AlternateSentences-MetaData.xml"]:BILINGUAL];
     [self readIntroductionMetadata:model :[[book mainContentPath] stringByAppendingString:@"Introductions-MetaData.xml"]];
     [self readVocabularyIntroductionMetadata:model :[[book mainContentPath] stringByAppendingString:@"VocabularyIntroductions-MetaData.xml"]];
-    [self readVocabularyMetadata:book :[[book mainContentPath] stringByAppendingString:@"Vocabulary-MetaData.xml"]];
+    [self readVocabularyMetadata:book :[[book mainContentPath] stringByAppendingString:@"Vocabulary-MetaData.xml"]:ENGLISH];
+    [self readVocabularyMetadata:book :[[book mainContentPath] stringByAppendingString:@"Vocabulary-MetaData.xml"]:BILINGUAL];
     
     //Separate Assessment metadata files depending on language
-    if (conditionSetup.language == ENGLISH && conditionSetup.assessmentMode == ENDOFCHAPTER) {
-        [self readAssessmentMetadata:model :[[book mainContentPath] stringByAppendingString:@"AssessmentActivities-MetaData.xml"]];
-    }
-    else if (conditionSetup.language == BILINGUAL && conditionSetup.assessmentMode == ENDOFCHAPTER) {
-        [self readAssessmentMetadata:model :[[book mainContentPath] stringByAppendingString:@"AssessmentActivitiesSpanish-MetaData.xml"]];
-    }
-    else if (conditionSetup.language == ENGLISH && conditionSetup.assessmentMode == ENDOFBOOK) {
-        [self readAssessmentMetadata:model :[[book mainContentPath] stringByAppendingString:@"AssessmentActivitiesEOB-MetaData.xml"]];
-    }
-    else if (conditionSetup.language == BILINGUAL && conditionSetup.assessmentMode == ENDOFBOOK) {
-        [self readAssessmentMetadata:model :[[book mainContentPath] stringByAppendingString:@"AssessmentActivitiesEOBSpanish-MetaData.xml"]];
-    }
-    [self readScriptMetadata:book filePath:[[book mainContentPath] stringByAppendingString:@"Script-Metadata.xml"]];
+    [self readAssessmentMetadata:model :[[book mainContentPath] stringByAppendingString:@"AssessmentActivities-MetaData.xml"]: ENGLISH:ENDOFCHAPTER];
+    [self readAssessmentMetadata:model :[[book mainContentPath] stringByAppendingString:@"AssessmentActivitiesSpanish-MetaData.xml"]:BILINGUAL:ENDOFCHAPTER];
+    [self readAssessmentMetadata:model :[[book mainContentPath] stringByAppendingString:@"AssessmentActivitiesEOB-MetaData.xml"]:ENGLISH:ENDOFBOOK];
+    [self readAssessmentMetadata:model :[[book mainContentPath] stringByAppendingString:@"AssessmentActivitiesEOBSpanish-MetaData.xml"]:BILINGUAL:ENDOFBOOK];
+    
+    [self readScriptMetadata:book filePath:[[book mainContentPath] stringByAppendingString:@"Script-Metadata.xml"]:ENGLISH];
+    [self readScriptMetadata:book filePath:[[book mainContentPath] stringByAppendingString:@"Script-Metadata.xml"]:BILINGUAL];
     [self readWordMappingMetadata:model :[[book mainContentPath] stringByAppendingString:@"WordMapping.xml"]];
     
 }
@@ -735,7 +752,15 @@
     }
 }
 
-- (void)readSetupMetadata:(Book *)book :(NSString *)filepath {
+- (void)readSetupMetadata:(Book *)book :(NSString *)filepath :(Language) language {
+    
+    Language tempLang = conditionSetup.language;
+    
+    if (conditionSetup.language != language) {
+        tempLang = conditionSetup.language;
+        conditionSetup.language = language;
+    }
+    
     NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
     NSError *error;
     GDataXMLDocument *metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:&error];
@@ -755,6 +780,8 @@
         
         if (chapter != nil) {
             PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; //get PM Activity only
+            ITSPhysicalManipulationActivity *ITSPMActivity = (ITSPhysicalManipulationActivity *)[chapter getActivityOfType:ITSPM_MODE]; //get ITSPM Activity only
+            //PhysicalManipulationActivity *IMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:IM_MODE]; //get IM Activity only
             
             NSArray *storySetupSteps = [storySetupElement children];
             
@@ -767,20 +794,32 @@
                 
                 ActionStep *setupStep = [[ActionStep alloc] initAsSetupStep:stepType :obj1Id :obj2Id :action];
                 [PMActivity addSetupStep:setupStep forPageId:pageId];
+                [ITSPMActivity addSetupStep:setupStep forPageId:pageId];
+                //[IMActivity addSetupStep:setupStep forPageId:pageId];
             }
         }
     }
+    
+    conditionSetup.language = tempLang;
 }
 
 /*
- * Reads solution metadata based on the mode--PM_MODE or IM_MODE
+ * Reads solution metadata based on the mode--PM_MODE or IM_MODE or ITSPM_MODE or ITSIM_MODE
  */
-- (void)readSolutionMetadata:(Book *)book :(Mode)mode :(NSString *)filepath {
+- (void)readSolutionMetadata:(Book *)book :(Mode)mode :(NSString *)filepath :(Language) language {
+    
+    Language tempLang = conditionSetup.language;
+    
+    if (conditionSetup.language != language) {
+        tempLang = conditionSetup.language;
+        conditionSetup.language = language;
+    }
+    
     NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
     NSError *error;
     GDataXMLDocument *metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:&error];
     
-    //Read in the solutions and add them to the PhysicalManipulationActivity they belong to
+    //Read in the solutions and add them to the ManipulationActivity they belong to
     NSArray *solutionsElements = [metadataDoc nodesForXPath:@"//solutions" error:nil];
     GDataXMLElement *solutionsElement = (GDataXMLElement *)[solutionsElements objectAtIndex:0];
     
@@ -797,12 +836,20 @@
         if (chapter != nil) {
             PhysicalManipulationSolution *PMSolution;
             ImagineManipulationSolution *IMSolution;
+            ITSPhysicalManipulationSolution *ITSPMSolution;
+            ITSImagineManipulationSolution *ITSIMSolution;
             
             if (mode == PM_MODE) {
                 PMSolution = [[PhysicalManipulationSolution alloc] init];
             }
+            else if(mode == ITSPM_MODE){
+                ITSPMSolution = [[ITSPhysicalManipulationSolution alloc] init];
+            }
             else if (mode == IM_MODE) {
                 IMSolution = [[ImagineManipulationSolution alloc] init];
+            }
+            else if (mode == ITSIM_MODE) {
+                ITSIMSolution = [[ITSImagineManipulationSolution alloc] init];
             }
             
             //Solution metadata will change to include "idea" instead of "sentence" but some epubs may still be using "sentence"
@@ -825,8 +872,14 @@
                     if (mode == PM_MODE) {
                         [PMSolution addSolutionStep:solutionStep];
                     }
+                    else if (mode == ITSPM_MODE){
+                        [ITSPMSolution addSolutionStep:solutionStep];
+                    }
                     else if (mode == IM_MODE) {
                         [IMSolution addSolutionStep:solutionStep];
+                    }
+                    else if (mode == ITSIM_MODE) {
+                        [ITSIMSolution addSolutionStep:solutionStep];
                     }
                 }
                 
@@ -844,8 +897,14 @@
                             if (mode == PM_MODE) {
                                 [PMSolution addSolutionStep:solutionStep];
                             }
+                            else if(mode == ITSPM_MODE){
+                                [ITSPMSolution addSolutionStep:solutionStep];
+                            }
                             else if (mode == IM_MODE) {
                                 [IMSolution addSolutionStep:solutionStep];
+                            }
+                            else if (mode == ITSIM_MODE) {
+                                [ITSIMSolution addSolutionStep:solutionStep];
                             }
                         }
                     }
@@ -857,13 +916,25 @@
                 PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; //get PM Activity only
                 [PMActivity addPMSolution:PMSolution forActivityId:activityId];
             }
+            //Add ITSPMSolution to page
+            else if (mode == ITSPM_MODE) {
+                ITSPhysicalManipulationActivity *ITSPMActivity = (ITSPhysicalManipulationActivity *)[chapter getActivityOfType:ITSPM_MODE]; //get ITSPM Activity only
+                [ITSPMActivity addITSPMSolution:ITSPMSolution forActivityId:activityId];
+            }
             //Add IMSolution to page
             else if (mode == IM_MODE) {
                 ImagineManipulationActivity *IMActivity = (ImagineManipulationActivity *)[chapter getActivityOfType:IM_MODE]; //get IM Activity only
                 [IMActivity addIMSolution:IMSolution forActivityId:activityId];
             }
+            //Add ITSIMSolution to page
+            else if (mode == ITSIM_MODE) {
+                ITSImagineManipulationActivity *ITSIMActivity = (ITSImagineManipulationActivity *)[chapter getActivityOfType:ITSIM_MODE]; //get ITSIM Activity only
+                [ITSIMActivity addITSIMSolution:ITSIMSolution forActivityId:activityId];
+            }
         }
     }
+    
+    conditionSetup.language = tempLang;
 }
 
 /*
@@ -983,7 +1054,15 @@
     return solutionStep;
 }
 
-- (void)readAlternateSentenceMetadata:(Book *)book :(NSString *)filepath {
+- (void)readAlternateSentenceMetadata:(Book *)book :(NSString *)filepath :(Language) language :(Mode) mode {
+    
+    Language tempLang = conditionSetup.language;
+    
+    if (conditionSetup.language != language) {
+        tempLang = conditionSetup.language;
+        conditionSetup.language = language;
+    }
+    
     NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
     
 
@@ -1009,8 +1088,18 @@
             NSString *pageId = [[storyAlternateSentenceElement attributeForName:@"page_id"] stringValue];
             
             if (chapter != nil) {
-                PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; //get PM Activity only
-                PhysicalManipulationSolution *PMSolution = [[[PMActivity PMSolutions] objectForKey:pageId] objectAtIndex:0]; //get PMSolution
+                ITSPhysicalManipulationActivity *ITSPMActivity;
+                ITSPhysicalManipulationSolution *ITSPMSolution;
+                ITSImagineManipulationActivity *ITSIMActivity;
+                ITSImagineManipulationSolution *ITSIMSolution;
+                if (mode == ITSPM_MODE) {
+                    ITSPMActivity = (ITSPhysicalManipulationActivity *)[chapter getActivityOfType:ITSPM_MODE]; //get PM Activity only
+                    ITSPMSolution = [[[ITSPMActivity ITSPMSolutions] objectForKey:pageId] objectAtIndex:0]; //get PMSolution
+                }else if(mode == ITSIM_MODE){
+                    ITSIMActivity = (ITSImagineManipulationActivity *)[chapter getActivityOfType:ITSIM_MODE]; //get PM Activity only
+                    ITSIMSolution = [[[ITSIMActivity ITSIMSolutions] objectForKey:pageId] objectAtIndex:0]; //get PMSolution
+                }
+                
                 
                 NSArray *storyAlternateSentences = [storyAlternateSentenceElement elementsForName:@"sentence"];
                 
@@ -1068,7 +1157,14 @@
                             NSUInteger stepNum = [[[alternateSentenceStep attributeForName:@"number"] stringValue] intValue];
                             
                             //Get associated ActionStep
-                            NSMutableArray *step = [PMSolution getStepsWithNumber:stepNum];
+                            NSMutableArray *step;
+                            if(mode == ITSPM_MODE){
+                                step = [ITSPMSolution getStepsWithNumber:stepNum];
+                            }
+                            else if(mode == ITSIM_MODE){
+                                step = [ITSIMSolution getStepsWithNumber:stepNum];
+                            }
+                            
                             
                             for (ActionStep *as in step) {
                                 [solutionSteps addObject:as];
@@ -1078,11 +1174,18 @@
                     
                     //Create alternate sentence and add to PMActivity
                     AlternateSentence *altSent = [[AlternateSentence alloc] initWithValues:sentenceNum :action :complexity :text :ideaNums :solutionSteps];
-                    [PMActivity addAlternateSentence:altSent forPageId:pageId];
+                    if(mode == ITSPM_MODE){
+                        [ITSPMActivity addAlternateSentence:altSent forPageId:pageId];
+                    }
+                    else if(mode == ITSIM_MODE){
+                        [ITSIMActivity addAlternateSentence:altSent forPageId:pageId];
+                    }
                 }
             }
         }
     }
+    
+    conditionSetup.language = tempLang;
 }
 
 - (void)readIntroductionMetadata:(InteractionModel *)model :(NSString *)filepath {
@@ -1226,7 +1329,15 @@
     }
 }
 
-- (void)readVocabularyMetadata:(Book *)book :(NSString *)filepath {
+- (void)readVocabularyMetadata:(Book *)book :(NSString *)filepath :(Language) language {
+    
+    Language tempLang = conditionSetup.language;
+    
+    if (conditionSetup.language != language) {
+        tempLang = conditionSetup.language;
+        conditionSetup.language = language;
+    }
+    
     NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
     NSError *error;
     GDataXMLDocument *metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:&error];
@@ -1260,9 +1371,11 @@
             chapter.vocabulary = dictionary;
         }
     }
+    
+    conditionSetup.language = tempLang;
 }
 
-- (void)readAssessmentMetadata:(InteractionModel *)model :(NSString *)filepath {
+- (void)readAssessmentMetadata:(InteractionModel *)model :(NSString *)filepath :(Language) language :(Assessment) assessmentMode {
     NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
     NSError *error;
     GDataXMLDocument *metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:&error];
@@ -1338,7 +1451,7 @@
                 
             }
             
-            [model addAssessmentActivity:title :storyQuestions];
+            [model addAssessmentActivity:title :storyQuestions :language :assessmentMode];
         }
     }
     
@@ -1372,7 +1485,15 @@
     
 }
 
-- (void)readScriptMetadata:(Book *)book filePath:(NSString *)filepath {
+- (void)readScriptMetadata:(Book *)book filePath:(NSString *)filepath :(Language) language {
+    
+    Language tempLang = conditionSetup.language;
+    
+    if (conditionSetup.language != language) {
+        tempLang = conditionSetup.language;
+        conditionSetup.language = language;
+    }
+    
     NSData *xmlData = [[NSMutableData alloc] initWithContentsOfFile:filepath];
     NSError *error;
     NSLog(@"Start for - %@",book.title);
@@ -1421,6 +1542,7 @@
         
     }
     
+    conditionSetup.language = tempLang;
 }
 
 - (ScriptAudio *)parseScriptAudio:(GDataXMLElement  *)elem

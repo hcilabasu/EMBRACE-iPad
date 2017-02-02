@@ -973,6 +973,25 @@ function setOuterHTMLText (sentenceID, text) {
 }
 
 /*
+ * Removes audible tag from setence
+ */
+function removeAudibleTagFromSentence() {
+    var els = document.getElementsByClassName('audible');
+    console.log(els);
+    console.log(els.length);
+    
+    /*[].forEach.call(els, function(el){
+                    console.log(el);
+                    el.className = "";
+                    });
+    */
+    for(i = 0; i < els.length; i++){
+        console.log(els[i]);
+        els[i].className = "";
+    }
+}
+
+/*
  * Removes sentence with the specified sentence id
  */
 function removeSentence(sentenceId) {

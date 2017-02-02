@@ -187,8 +187,11 @@
                 else if ([interventionString isEqualToString:@"R"]) {
                     intervention = R_INTERVENTION;
                 }
-                else if ([interventionString isEqualToString:@"ITS"]) {
-                    intervention = ITS_INTERVENTION;
+                else if ([interventionString isEqualToString:@"ITSPM"]) {
+                    intervention = ITSPM_INTERVENTION;
+                }
+                else if ([interventionString isEqualToString:@"ITSIM"]) {
+                    intervention = ITSIM_INTERVENTION;
                 }
                 else {
                     intervention = R_INTERVENTION; //default intervention
