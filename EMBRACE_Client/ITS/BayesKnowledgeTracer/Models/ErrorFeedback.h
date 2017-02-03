@@ -12,7 +12,8 @@
 typedef NS_ENUM(NSInteger, EMFeedbackType) {
     EMFeedbackType_None,
     EMFeedbackType_Highlight,
-    EMFeedbackType_AutoComplete
+    EMFeedbackType_AutoComplete,
+    EMFeedbackType_ReadSentence
 };
 
 

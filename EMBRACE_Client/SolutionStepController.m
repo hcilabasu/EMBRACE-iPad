@@ -359,6 +359,7 @@
         
         if (conditionSetup.appMode == ITS && conditionSetup.useKnowledgeTracing && ![[manipulationContext chapterTitle] isEqualToString:@"The Naughty Monkey"]) {
             stepContext.numSyntaxErrors = 0;
+            [[ITSController sharedInstance] resetSyntaxErrorCountWithContext:manipulationContext];
         }
         
         //if the current solution step is a custom pm, then increment current step minMenuOption times

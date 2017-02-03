@@ -20,7 +20,6 @@
 #define DEFAULT_VOCAB_GUESS 0.3
 #define DEFAULT_USABILITY_GUESS 0.4
 
-
 #define PREVIEW_VOCAB_GUESS 0.5
 
 // Probability of making a mistake applying a known skill
@@ -29,6 +28,8 @@
 #define DEFAULT_SYNTAX_SLIP 0.2
 #define DEFAULT_VOCAB_SLIP 0.2
 #define DEFAULT_USABILITY_SLIP 0.5
+
+#define PREVIEW_VOCAB_SLIP 0.2
 
 // Probability of student’s knowledge of a skill transitioning from not known to known state after an opportunity to apply it.
 #define DEFAULT_SYNTAX_TRANSITION 0.05
@@ -230,6 +231,9 @@
         case SkillType_Vocab:
             slip = DEFAULT_VOCAB_SLIP;
             break;
+        case SkillType_Prev_Vocab:
+            slip = PREVIEW_VOCAB_SLIP;
+            break;
         default:
             break;
     }
@@ -250,6 +254,9 @@
         case SkillType_Vocab:
             guess = DEFAULT_VOCAB_GUESS;
             break;
+        case SkillType_Prev_Vocab:
+            guess = PREVIEW_VOCAB_GUESS;
+            break;
         default:
             break;
     }
@@ -268,6 +275,9 @@
             transition = DEFAULT_SYNTAX_TRANSITION;
             break;
         case SkillType_Vocab:
+            transition = DEFAULT_VOCAB_TRANSITION;
+            break;
+        case SkillType_Prev_Vocab:
             transition = DEFAULT_VOCAB_TRANSITION;
             break;
         default:

@@ -2378,6 +2378,12 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             });
         }
         
+    } else if (feedback.feedbackType == EMFeedbackType_ReadSentence) {
+       
+        NSString *sentenceAudioFile = [NSString stringWithFormat:@"%@.mp3", [sentenceContext.currentSentenceText MD5String]];
+        [self.playaudioClass playAudioInSequence:@[sentenceAudioFile] :self];
+        allowInteractions = TRUE;
+
     } else {
         allowInteractions = TRUE;
         [self.view setUserInteractionEnabled:YES];

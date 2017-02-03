@@ -32,6 +32,8 @@
 
 @property (nonatomic, assign) NSInteger numOfUsabilityErrors;
 
+@property (nonatomic, assign) NSInteger numOfAttempts;
+
 - (void)addUserAction:(UserAction *)action;
 
 - (NSArray *)userActions;

@@ -18,6 +18,11 @@
 
 // Update vocabulary skill
 - (Skill *)generateSkillFor:(NSString *)action isVerified:(BOOL)isVerified context:(ManipulationContext *)context;
+- (Skill *)generateSkillFor:(NSString *)word
+                 isVerified:(BOOL)isVerified
+                    context:(ManipulationContext *)context
+              isFromPreview:(BOOL)isFromPreview;
+
 
 // Update usability skill
 - (Skill *)generateUsabilitySkill:(BOOL)isVerified context:(ManipulationContext *)context;

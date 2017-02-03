@@ -45,4 +45,7 @@ typedef NS_ENUM(NSInteger, EMComplexity) {
 - (NSMutableSet *)getExtraIntroductionVocabularyForChapter:(Chapter *)chapter inBook:(Book *)book;
 
 - (ErrorFeedback *)feedbackToShow;
+
+- (void)resetSyntaxErrorCountWithContext:(ManipulationContext *)context;
+
 @end
