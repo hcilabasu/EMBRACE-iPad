@@ -125,7 +125,8 @@
                 <step number="11">
                     <group obj1Id="keys_on_hookIM" action="on" obj2Id="keys_on_hookIM"/>
                     <group obj1Id="keys_IM" action="off" obj2Id="hook_IM"/>
-                </step>            </idea>
+                </step>
+            </idea>
             <idea number="51"/>
             <idea number="52"/>
             <idea number="53">
