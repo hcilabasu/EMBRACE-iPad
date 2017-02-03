@@ -89,9 +89,6 @@
                     <group obj1Id="smallrocketMin_IM" action="fasterSpeed" obj2Id="bigrocketUp_IM"/>
                 </step>
             </idea>
-            <sentence number="9">
-                
-            </sentence>
         </story>
         <story title="Newton's Law of Acceleration on Earth" activity_id="story5-PM-1">
             <idea number="42">
