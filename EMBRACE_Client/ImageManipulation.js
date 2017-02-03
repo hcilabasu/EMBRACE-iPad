@@ -980,11 +980,6 @@ function removeAudibleTagFromSentence() {
     console.log(els);
     console.log(els.length);
     
-    /*[].forEach.call(els, function(el){
-                    console.log(el);
-                    el.className = "";
-                    });
-    */
     for(i = 0; i < els.length; i++){
         console.log(els[i]);
         els[i].className = "";
