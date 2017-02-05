@@ -205,8 +205,12 @@
                 NSString *assessmentPageString = [[modeElement attributeForName:@"assessmentPage"] stringValue];
                 BOOL assesssmentPage = [assessmentPageString isEqualToString:@"true"] ? true : false;
                 
+                //Get onDemandVocab flag
+                NSString *onDemandVocabString = [[modeElement attributeForName:@"vocabOnDemand"] stringValue];
+                BOOL onDemandVocab = (onDemandVocabString && ![onDemandVocabString isEqualToString:@""]) ?[onDemandVocabString boolValue] : true;
+                
                 //Create mode for chapter and add to array of modes
-                ActivityMode *mode = [[ActivityMode alloc] initWithValues:chapterTitle :newInstructions :reader :language :intervention:vocabPage:assesssmentPage];
+                ActivityMode *mode = [[ActivityMode alloc] initWithValues:chapterTitle :newInstructions :reader :language :intervention:vocabPage:onDemandVocab:assesssmentPage];
                 [modes addObject:mode];
             }
             
