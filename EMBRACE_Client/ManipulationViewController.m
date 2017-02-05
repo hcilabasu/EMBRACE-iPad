@@ -1047,7 +1047,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     
     NSString *englishTappedWord = englishSentenceText;
     
-    //Remove any whitespaces since this would cause the a failure for reading the file name
+    //Remove any whitespaces since this would cause a failure for reading the file name
     englishSentenceText = [englishSentenceText stringByReplacingOccurrencesOfString:@" " withString:EMPTYSTRING];
     
     if(conditionSetup.language == ENGLISH)
