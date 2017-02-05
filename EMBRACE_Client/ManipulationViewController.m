@@ -2348,9 +2348,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                 
-                //TODO: Reable once all sentences have correct audio
-                //[self playCurrentSentenceAudio];
-                [self playNoiseName:@"BeepBeep"];
+                [self playCurrentSentenceAudio];
                 
                  [self showFeedback:NO];
             });
@@ -2370,9 +2368,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                 
-                //TODO: Reable once all sentences have correct audio
-                //[self playCurrentSentenceAudio];
-                [self playNoiseName:@"BeepBeep"];
+                [self playCurrentSentenceAudio];
                 
                 [self showHighlightFeedback];
             });
@@ -2411,9 +2407,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 //        
 //        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
 //            
-//            //TODO: Reable once all sentences have correct audio
-//            //[self playCurrentSentenceAudio];
-//            [self playNoiseName:@"BeepBeep"];
+//            [self playCurrentSentenceAudio];
 //            
 //            // After first attempt
 //            if (stepContext.numSyntaxErrors > 1 && conditionSetup.isAutomaticAnimationEnabled) {
@@ -3435,10 +3429,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         }
         
         [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:MORE_ERROR inLanguage:NULL_TXT ofType:MORE_ERROR :manipulationContext];
-    }
-    //TODO: remove temporary function in place of missing sentence audio once all audio is added
-    else if([name isEqualToString:@"BeepBeep"]){
-        [self.playaudioClass playBeepBeepNoise];
     }
 }
 
