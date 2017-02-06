@@ -1165,7 +1165,6 @@
                                 step = [ITSIMSolution getStepsWithNumber:stepNum];
                             }
                             
-                            
                             for (ActionStep *as in step) {
                                 [solutionSteps addObject:as];
                             }

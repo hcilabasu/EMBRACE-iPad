@@ -1047,7 +1047,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     
     NSString *englishTappedWord = englishSentenceText;
     
-    //Remove any whitespaces since this would cause the a failure for reading the file name
+    //Remove any whitespaces since this would cause a failure for reading the file name
     englishSentenceText = [englishSentenceText stringByReplacingOccurrencesOfString:@" " withString:EMPTYSTRING];
     
     if(conditionSetup.language == ENGLISH)
@@ -2345,10 +2345,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             
         } else if (feedback.skillType == SkillType_Syntax) {
             [self playNoiseName:ERROR_FEEDBACK_NOISE];
-            
-            //TODO: Reable once all sentences have correct audio
-            //[self playCurrentSentenceAudio];
-            [self playNoiseName:@"BeepBeep"];
             [self showFeedback:NO];
             
         } else {
@@ -2357,18 +2353,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         
     } else if (feedback.feedbackType == EMFeedbackType_Highlight) {
         
-        
-        if (feedback.skillType == SkillType_Vocab) {
-            [self playNoiseName:ERROR_FEEDBACK_NOISE];
-            [self showHighlightFeedback];
-            
-        } else if (feedback.skillType == SkillType_Syntax) {
-            [self playNoiseName:ERROR_FEEDBACK_NOISE];
-            //TODO: Reable once all sentences have correct audio
-            //[self playCurrentSentenceAudio];
-            [self playNoiseName:@"BeepBeep"];
-            [self showHighlightFeedback];
-        }
+        [self playNoiseName:ERROR_FEEDBACK_NOISE];
+        [self showHighlightFeedback];
         
     } else if (feedback.feedbackType == EMFeedbackType_ReadSentence) {
        
@@ -2403,9 +2389,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 //        
 //        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
 //            
-//            //TODO: Reable once all sentences have correct audio
-//            //[self playCurrentSentenceAudio];
-//            [self playNoiseName:@"BeepBeep"];
+//            [self playCurrentSentenceAudio];
 //            
 //            // After first attempt
 //            if (stepContext.numSyntaxErrors > 1 && conditionSetup.isAutomaticAnimationEnabled) {
@@ -3428,10 +3412,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         
         [[ServerCommunicationController sharedInstance] logPlayManipulationAudio:MORE_ERROR inLanguage:NULL_TXT ofType:MORE_ERROR :manipulationContext];
     }
-    //TODO: remove temporary function in place of missing sentence audio once all audio is added
-    else if([name isEqualToString:@"BeepBeep"]){
-        [self.playaudioClass playBeepBeepNoise];
-    }
 }
 
 - (void)animatePerformingStep {
@@ -3836,7 +3816,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             
         } else if ([bookTitle isEqualToString:@"The Lopez Family Mystery"]) {
             
-            if (conditionSetup.language == BILINGUAL) {
+            if (conditionSetup.language == BILINGUAL && [chapterTitle isEqualToString:@"The Lopez Family"] ) {
                 sentenceAudioFile = [NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3", sentenceContext.currentSentence];
             }
             else {

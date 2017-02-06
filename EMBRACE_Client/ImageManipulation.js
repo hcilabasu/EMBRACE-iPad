@@ -976,18 +976,16 @@ function setOuterHTMLText (sentenceID, text) {
  * Removes audible tag from setence
  */
 function removeAudibleTagFromSentence() {
-    var els = document.getElementsByClassName('audible');
-    console.log(els);
-    console.log(els.length);
+    var els = document.getElementsByClassName("audible");
     
-    /*[].forEach.call(els, function(el){
-                    console.log(el);
-                    el.className = "";
-                    });
-    */
     for(i = 0; i < els.length; i++){
-        console.log(els[i]);
-        els[i].className = "";
+        console.log(els[i].classList);
+        els[i].className = "disabledVocab";
+    }
+    
+    els = document.getElementsByClassName("audible");
+    if(els && els.length > 0){
+        removeAudibleTagFromSentence();
     }
 }
 

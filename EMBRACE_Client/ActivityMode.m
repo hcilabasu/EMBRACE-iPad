@@ -16,9 +16,10 @@
 @synthesize language;
 @synthesize interventionType;
 @synthesize vocabPageEnabled;
+@synthesize onDemandVocabEnabled;
 @synthesize assessmentPageEnabled;
 
-- (id)initWithValues:(NSString *)title :(BOOL)newInstruct :(Actor)read :(Language)lang :(InterventionType)type :(BOOL) isVocabPageEnabled :(BOOL) isAssessmentPageEnabled {
+- (id)initWithValues:(NSString *)title :(BOOL)newInstruct :(Actor)read :(Language)lang :(InterventionType)type :(BOOL) isVocabPageEnabled :(BOOL) isOnDemandVocabEnabled :(BOOL) isAssessmentPageEnabled {
     if (self = [super init]) {
         chapterTitle = title;
         newInstructions = newInstruct;
@@ -26,6 +27,7 @@
         language = lang;
         interventionType = type;
         vocabPageEnabled = isVocabPageEnabled;
+        onDemandVocabEnabled = isOnDemandVocabEnabled;
         assessmentPageEnabled = isAssessmentPageEnabled;
     }
     

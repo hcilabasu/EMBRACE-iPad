@@ -81,20 +81,23 @@
             stepContext.numSteps = [stepContext.PMSolution getNumStepsForSentence:sentenceContext.currentSentence];
         }
         else if (conditionSetup.condition == EMBRACE) {
-            if (conditionSetup.currentMode == PM_MODE || conditionSetup.currentMode == ITSPM_MODE) {
-                //NOTE: Currently hardcoded because some Solutions-MetaData.xml files are different format from other stories
-                if (conditionSetup.appMode == ITS && ([mvc.bookTitle rangeOfString:@"The Best Farm"].location != NSNotFound || [mvc.bookTitle rangeOfString:@"The Lopez Family Mystery"].location != NSNotFound || [mvc.bookTitle rangeOfString:@"Bottled Up Joy"].location != NSNotFound)) {
-                    stepContext.numSteps = [stepContext.ITSPMSolution getNumStepsForSentence:sentenceContext.currentIdea];
-                }
-                else {
-                    stepContext.numSteps = [stepContext.PMSolution getNumStepsForSentence:sentenceContext.currentSentence];
-                }
+            if (conditionSetup.currentMode == ITSPM_MODE && [pageContext.currentPageId rangeOfString:DASH_INTRO].location == NSNotFound) {
+                stepContext.numSteps = [stepContext.ITSPMSolution getNumStepsForSentence:sentenceContext.currentIdea];
+            }
+            else if(conditionSetup.currentMode == ITSPM_MODE && [pageContext.currentPageId rangeOfString:DASH_INTRO].location != NSNotFound){
+                stepContext.numSteps = [stepContext.ITSPMSolution getNumStepsForSentence:sentenceContext.currentSentence];
+            }
+            else if(conditionSetup.currentMode == PM_MODE){
+                stepContext.numSteps = [stepContext.PMSolution getNumStepsForSentence:sentenceContext.currentSentence];
             }
             else if (conditionSetup.currentMode == IM_MODE) {
                 stepContext.numSteps = [stepContext.IMSolution getNumStepsForSentence:sentenceContext.currentSentence];
             }
-            else if (conditionSetup.appMode == ITS && conditionSetup.currentMode == ITSIM_MODE) {
+            else if (conditionSetup.currentMode == ITSIM_MODE && [pageContext.currentPageId containsString:DASH_INTRO] == NSNotFound) {
                 stepContext.numSteps = [stepContext.ITSIMSolution getNumStepsForSentence:sentenceContext.currentIdea];
+            }
+            else if (conditionSetup.currentMode == ITSIM_MODE && [pageContext.currentPageId containsString:DASH_INTRO] != NSNotFound) {
+                stepContext.numSteps = [stepContext.ITSIMSolution getNumStepsForSentence:sentenceContext.currentSentence];
             }
         }
     }
