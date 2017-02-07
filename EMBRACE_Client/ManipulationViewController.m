@@ -3785,7 +3785,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             
         } else if ([bookTitle isEqualToString:@"How Objects Move" ]) {
             
-            if (conditionSetup.language == BILINGUAL) {
+            if (conditionSetup.language == BILINGUAL &&( [pageContext.currentPageId containsString:PM1] ||
+                                                        [pageContext.currentPageId containsString:PM2])) {
+
                 sentenceAudioFile = [NSString stringWithFormat:@"HowDoObjectsMoveS%dS.mp3", sentenceContext.currentSentence];
             }
             else {
@@ -3828,7 +3830,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         
         
         
-    
+    if (sentenceAudioFile == nil || [sentenceAudioFile isEqualToString:@""]) {
+        sentenceAudioFile = [NSString stringWithFormat:@"%@.mp3", [sentenceContext.currentSentenceText MD5String]];
+    }
     return sentenceAudioFile;
 }
 
@@ -3952,7 +3956,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             
         } else if ([bookTitle isEqualToString:@"How Objects Move" ]) {
             
-            if (conditionSetup.language == BILINGUAL) {
+            if (conditionSetup.language == BILINGUAL &&( [pageContext.currentPageId containsString:PM1] ||
+                                                       [pageContext.currentPageId containsString:PM2])) {
                 sentenceAudioFile = [NSString stringWithFormat:@"HowDoObjectsMoveS%dS.mp3", sentenceContext.currentSentence];
             }
             else {
@@ -3983,7 +3988,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             
         } else if ([bookTitle isEqualToString:@"The Lopez Family Mystery"]) {
             
-            if (conditionSetup.language == BILINGUAL) {
+            if (conditionSetup.language == BILINGUAL &&( [pageContext.currentPageId containsString:PM1] ||
+                                                        [pageContext.currentPageId containsString:PM2])) {
                 sentenceAudioFile = [NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3", sentenceContext.currentSentence];
             }
             else {
