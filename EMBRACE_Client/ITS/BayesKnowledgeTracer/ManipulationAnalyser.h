@@ -37,6 +37,8 @@
 
 - (ErrorFeedback * )feedbackToShow;
 
+- (void)resetSyntaxForContext:(ManipulationContext *)context;
+
 @end
 
 @protocol ManipulationAnalyserProtocol <NSObject>

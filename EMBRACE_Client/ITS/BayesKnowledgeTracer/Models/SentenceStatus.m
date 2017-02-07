@@ -25,6 +25,7 @@
         _numOfSyntaxErrors = 0;
         _numOfVocabErrors = 0;
         _numOfUsabilityErrors = 0;
+        _numOfAttempts = 0;
     }
     
     return self;

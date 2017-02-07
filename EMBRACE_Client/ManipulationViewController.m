@@ -2293,7 +2293,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     double delay = 0.0;
     
     if (conditionSetup.appMode == ITS && conditionSetup.shouldShowITSMessages == YES) {
-        delay = 5.0;
+        delay = 2.0;
     }
     
     if (stepContext.numAttempts >= stepContext.maxAttempts && conditionSetup.isAutomaticAnimationEnabled && menu == nil) {
@@ -2345,35 +2345,23 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             
         } else if (feedback.skillType == SkillType_Syntax) {
             [self playNoiseName:ERROR_FEEDBACK_NOISE];
+            [self showFeedback:NO];
             
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                
-                [self playCurrentSentenceAudio];
-                
-                 [self showFeedback:NO];
-            });
         } else {
             [self showFeedback:YES];
         }
         
     } else if (feedback.feedbackType == EMFeedbackType_Highlight) {
         
+        [self playNoiseName:ERROR_FEEDBACK_NOISE];
+        [self showHighlightFeedback];
         
-        if (feedback.skillType == SkillType_Vocab) {
-            [self playNoiseName:ERROR_FEEDBACK_NOISE];
-            [self showHighlightFeedback];
-            
-        } else if (feedback.skillType == SkillType_Syntax) {
-            [self playNoiseName:ERROR_FEEDBACK_NOISE];
-            
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                
-                [self playCurrentSentenceAudio];
-                
-                [self showHighlightFeedback];
-            });
-        }
-        
+    } else if (feedback.feedbackType == EMFeedbackType_ReadSentence) {
+       
+        NSString *sentenceAudioFile = [self fileNameForCurrentSentence];
+        [self.playaudioClass playAudioInSequence:@[sentenceAudioFile] :self];
+        allowInteractions = TRUE;
+
     } else {
         allowInteractions = TRUE;
         [self.view setUserInteractionEnabled:YES];
@@ -3686,6 +3674,168 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     return (int)sentenceContext.currentSentence;
 }
 
+//TODO: Use this in method playCurrentSentenceAudio
+- (NSString *)fileNameForCurrentSentence {
+    
+    NSString *sentenceAudioFile = nil;
+    NSLog(@"sentenceContext.currentSentence %d sentenceContext.currentIdea %d pageContext.currentPageId %@",
+          sentenceContext.currentSentence,sentenceContext.currentIdea,pageContext.currentPageId);
+    NSLog(@"Sentence text: %@ - %@ ", sentenceContext.currentSentenceText, [sentenceContext.currentSentenceText MD5String]);
+    
+        //If we are on the first or second manipulation page of The Contest, play the audio of the current sentence
+        if ([chapterTitle isEqualToString:@"The Contest"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2])) {
+            if ((conditionSetup.language == BILINGUAL)) {
+                sentenceAudioFile = [NSString stringWithFormat:@"BFEC%d.m4a", sentenceContext.currentSentence];
+            }
+            else {
+                sentenceAudioFile = [NSString stringWithFormat:@"BFTC%d.m4a", sentenceContext.currentSentence];
+            }
+        }
+        
+        //If we are on the first or second manipulation page of Cleaning Up, play the audio of the current sentence
+        if ([chapterTitle isEqualToString:@"Cleaning Up"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2])) {
+            sentenceAudioFile = [NSString stringWithFormat:@"CleaningUpS%dE.mp3", sentenceContext.currentSentence];
+        }
+        
+        //If we are on the first or second manipulation page of Getting Ready, play the audio of the current sentence
+        if ([chapterTitle isEqualToString:@"Getting Ready"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2])) {
+            sentenceAudioFile = [NSString stringWithFormat:@"GettingReadyS%dE.mp3", sentenceContext.currentSentence];
+        }
+        
+        //If we are on the first or second manipulation page of Who is the Best Animal?, play the audio of the current sentence
+        if ([chapterTitle isEqualToString:@"Who is the Best Animal?"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2])) {
+            sentenceAudioFile = [NSString stringWithFormat:@"WhoIsTheBestAnimalS%dE.mp3", sentenceContext.currentSentence];
+        }
+        
+        //If we are on the first or second manipulation page of The Wise Owl, play the audio of the current sentence
+        if ([chapterTitle isEqualToString:@"The Wise Owl"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2])) {
+            sentenceAudioFile = [NSString stringWithFormat:@"TheWiseOwlS%dE.mp3", sentenceContext.currentSentence];
+        }
+        
+        //If we are on the first or second manipulation page of Everyone Helps, play the audio of the current sentence
+        if ([chapterTitle isEqualToString:@"Everyone Helps"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2])) {
+            sentenceAudioFile = [NSString stringWithFormat:@"EveryoneHelpsS%dE.mp3", sentenceContext.currentSentence];
+        }
+        
+        //If we are on the first or second manipulation page of The Best Farm Award, play the audio of the current sentence
+        if ([chapterTitle isEqualToString:@"The Best Farm Award"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2])) {
+            sentenceAudioFile = [NSString stringWithFormat:@"TheBestFarmAwardS%dE.mp3", sentenceContext.currentSentence];
+        }
+        
+        //If we are on the first or second manipulation page of Why We Breathe, play the audio of the current sentence
+        if ([chapterTitle isEqualToString:@"Why We Breathe"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
+            if ((conditionSetup.language == BILINGUAL)) {
+                sentenceAudioFile = [NSString stringWithFormat:@"CPQR%d.m4a", sentenceContext.currentSentence];
+            }
+            else {
+                sentenceAudioFile = [NSString stringWithFormat:@"CWWB%d.m4a", sentenceContext.currentSentence];
+            }
+        }
+        
+        //If we are on the first or second manipulation page of Disasters Intro, play the current sentence
+        if ([chapterTitle isEqualToString:@"Introduction to Natural Disasters"] && ([pageContext.currentPageId containsString:@"PM"] || [pageContext.currentPageId containsString:PM2])) {
+            if (conditionSetup.language == BILINGUAL) {
+                sentenceAudioFile = [NSString stringWithFormat:@"DisastersIntroS%dS.mp3", sentenceContext.currentSentence];
+            }
+            else {
+                sentenceAudioFile = [NSString stringWithFormat:@"DisastersIntroS%dE.mp3", [self currentSentenceAudioIndex]];
+            }
+        }
+        
+        //If we are on the first or second manipulation page of The Moving Earth, play the current sentence
+        if ([chapterTitle isEqualToString:@"The Moving Earth"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
+            if (conditionSetup.language == BILINGUAL) {
+                sentenceAudioFile = [NSString stringWithFormat:@"TheMovingEarthS%dS.mp3", sentenceContext.currentSentence];
+            }
+            else {
+                sentenceAudioFile = [NSString stringWithFormat:@"TheMovingEarthS%dE.mp3", [self currentSentenceAudioIndex]];
+            }
+        }
+        
+        
+        //If we are on the first or second manipulation page of The Naughty Monkey, play the current sentence
+        if ([chapterTitle isEqualToString:@"The Naughty Monkey"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3]) && sentenceContext.currentSentence != 1) {
+            if (conditionSetup.language == BILINGUAL && sentenceContext.currentSentence < 8) {
+                sentenceAudioFile = [NSString stringWithFormat:@"TheNaughtyMonkeyS%dS.mp3", sentenceContext.currentSentence - 2];
+            }
+            else {
+                sentenceAudioFile = [NSString stringWithFormat:@"TheNaughtyMonkeyS%dE.mp3", sentenceContext.currentSentence - 2 ];
+            }
+        }
+        
+        
+        
+        
+        // Use hash value of the sentence to find the audio file.
+        if ([bookTitle isEqualToString:@"A Celebration to Remember" ]) {
+            if (conditionSetup.language == BILINGUAL) {
+                sentenceAudioFile = [NSString stringWithFormat:@"KeyIngredientsS%dS.mp3", sentenceContext.currentSentence];
+            }
+            else {
+                sentenceAudioFile = [NSString stringWithFormat:@"%@.mp3", [sentenceContext.currentSentenceText MD5String]];
+            }
+            
+        } else if ([bookTitle isEqualToString:@"Bottled Up Joy" ]) {
+            if (conditionSetup.language == BILINGUAL) {
+                sentenceAudioFile = [NSString stringWithFormat:@"TheLuckyStoneS%dS.mp3", sentenceContext.currentSentence];
+            }
+            else {
+                sentenceAudioFile = [NSString stringWithFormat:@"%@.mp3", [sentenceContext.currentSentenceText MD5String]];
+            }
+            
+        } else if ([bookTitle isEqualToString:@"How Objects Move" ]) {
+            
+            if (conditionSetup.language == BILINGUAL &&( [pageContext.currentPageId containsString:PM1] ||
+                                                        [pageContext.currentPageId containsString:PM2])) {
+
+                sentenceAudioFile = [NSString stringWithFormat:@"HowDoObjectsMoveS%dS.mp3", sentenceContext.currentSentence];
+            }
+            else {
+                sentenceAudioFile = [NSString stringWithFormat:@"%@.mp3", [sentenceContext.currentSentenceText MD5String]];
+            }
+            
+        } else if ([bookTitle isEqualToString:@"Native American Homes" ]) {
+            
+            //If we are on the first or second manipulation page of The Navajo Hogan, play the current sentence
+            if ([chapterTitle isEqualToString:@"The Navajo Hogan"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
+                if (conditionSetup.language == BILINGUAL) {
+                    sentenceAudioFile = [NSString stringWithFormat:@"TheNavajoHoganS%dS.mp3", sentenceContext.currentSentence];
+                }
+                else {
+                    sentenceAudioFile = [NSString stringWithFormat:@"%@.mp3", [sentenceContext.currentSentenceText MD5String]];
+                }
+            }
+            
+            //If we are on the first or second manipulation page of Native Intro, play the current sentence
+            if ([chapterTitle isEqualToString:@"Introduction to Native American Homes"] && ([pageContext.currentPageId containsString:@"PM"] || [pageContext.currentPageId containsString:PM2])) {
+                if (conditionSetup.language == BILINGUAL) {
+                    sentenceAudioFile = [NSString stringWithFormat:@"NativeIntroS%dS.mp3", sentenceContext.currentSentence];
+                }
+                else {
+                    sentenceAudioFile = [NSString stringWithFormat:@"%@.mp3", [sentenceContext.currentSentenceText MD5String]];
+                }
+            }
+            
+        } else if ([bookTitle isEqualToString:@"The Lopez Family Mystery"]) {
+            
+            if (conditionSetup.language == BILINGUAL && [chapterTitle isEqualToString:@"The Lopez Family"] ) {
+                sentenceAudioFile = [NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3", sentenceContext.currentSentence];
+            }
+            else {
+                sentenceAudioFile = [NSString stringWithFormat:@"%@.mp3", [sentenceContext.currentSentenceText MD5String]];
+            }
+            
+            
+        }
+        
+        
+        
+    if (sentenceAudioFile == nil || [sentenceAudioFile isEqualToString:@""]) {
+        sentenceAudioFile = [NSString stringWithFormat:@"%@.mp3", [sentenceContext.currentSentenceText MD5String]];
+    }
+    return sentenceAudioFile;
+}
+
 /*
  *  Plays audio for the current sentence
  */
@@ -3806,7 +3956,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             
         } else if ([bookTitle isEqualToString:@"How Objects Move" ]) {
             
-            if (conditionSetup.language == BILINGUAL) {
+            if (conditionSetup.language == BILINGUAL &&( [pageContext.currentPageId containsString:PM1] ||
+                                                       [pageContext.currentPageId containsString:PM2])) {
                 sentenceAudioFile = [NSString stringWithFormat:@"HowDoObjectsMoveS%dS.mp3", sentenceContext.currentSentence];
             }
             else {
@@ -3837,7 +3988,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             
         } else if ([bookTitle isEqualToString:@"The Lopez Family Mystery"]) {
             
-            if (conditionSetup.language == BILINGUAL) {
+            if (conditionSetup.language == BILINGUAL &&( [pageContext.currentPageId containsString:PM1] ||
+                                                        [pageContext.currentPageId containsString:PM2])) {
                 sentenceAudioFile = [NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3", sentenceContext.currentSentence];
             }
             else {

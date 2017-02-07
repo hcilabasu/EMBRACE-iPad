@@ -40,7 +40,7 @@
         </mode>
     </sequence>
     <sequence bookTitle="How Objects Move">
-        <mode chapterTitle="How do Objects Move?" newInstructions="true" vocabPage="true" assessmentPage="true">
+        <mode chapterTitle="How do Objects Move?" newInstructions="false" vocabPage="true" assessmentPage="true">
             <reader>System</reader>
             <language>Spanish</language>
             <intervention>ITSPM</intervention>
