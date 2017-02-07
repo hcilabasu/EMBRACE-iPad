@@ -71,13 +71,13 @@
         <story title="Newton's Second Law: Acceleration" activity_id="story4-PM-2">
             <sentence number="4">
                 <step number="1">
-                    <check obj1Id="smallrocket" action="getIn" locationId="forward"/>
+                    <checkRight obj1Id="smallrocket" action="getIn" locationId="anywhere"/>
                     <animate obj1Id="smallrocket" action="moveRightAndWrap" waypointId="" areaId=""/>
                 </step>
             </sentence>
             <sentence number="6">
                 <step number="1">
-                    <check obj1Id="bigrocket" action="getIn" locationId="big_forward"/>
+                    <checkRight obj1Id="bigrocket" action="getIn" locationId="anywhere"/>
                     <animate obj1Id="bigrocket" action="moveRightAndWrapSlower" waypointId="" areaId=""/>
                 </step>
             </sentence>
