@@ -3416,7 +3416,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         
         NSLog(@" %d %d",stepContext.numSteps,stepContext.currentStep);
         
-        if(conditionSetup.language == BILINGUAL){
+        if(conditionSetup.language == BILINGUAL && [pageContext.currentPageId.lowercaseString containsString:@"story1"]){
             [self.playaudioClass playAudioInSequence:@[@"thereismoreS.mp3"] :self];
         }else if(conditionSetup.language == ENGLISH){
             [self.playaudioClass playAudioInSequence:@[@"thereismore.mp3"] :self];
