@@ -658,6 +658,7 @@
                 </ideas>
                 
                 <solution>
+                    <step number="6"/>
                 </solution>
                 
             </sentence>
@@ -2035,7 +2036,7 @@
                 
                 <attributes complexity="3"/>
                 
-                <text>Juan ties the dog to the cart , and the dog pulls the cart to Maria.</text>
+                <text>Juan ties the dog to the cart, and the dog pulls the cart to Maria.</text>
                 
                 <ideas>
                     
@@ -2046,6 +2047,9 @@
                 </ideas>
                 
                 <solution>
+                    <step number="14"/>
+                    <step number="15"/>
+                    <step number="16"/>
                 </solution>
                 
             </sentence>
@@ -2065,6 +2069,8 @@
                 </ideas>
                 
                 <solution>
+                    <step number="17"/>
+                    <step number="18"/>
                 </solution>
                 
             </sentence>
@@ -2270,6 +2276,7 @@
                 </ideas>
                 
                 <solution>
+                    <step number="19"/>
                 </solution>
                 
             </sentence>
@@ -2287,6 +2294,8 @@
                 </ideas>
                 
                 <solution>
+                    <step number="20"/>
+                    <step number="21"/>
                 </solution>
                 
             </sentence>
@@ -2482,6 +2491,7 @@
                 </ideas>
                 
                 <solution>
+                    <step number="25"/>
                 </solution>
                 
             </sentence>
@@ -2981,6 +2991,7 @@
                 </ideas>
                 
                 <solution>
+                    <step number="28"/>
                 </solution>
                 
             </sentence>
@@ -3152,6 +3163,7 @@
                 </ideas>
                 
                 <solution>
+                    <step number="30"/>
                 </solution>
                 
             </sentence>
