@@ -1056,11 +1056,10 @@
                 <text>Juan ties the dog to the cart , and the dog pulls the cart to Maria.</text>                
                 <ideas>                    
                     <idea number="42"/>                    
-                    <idea number="43">
-                        <step number="3"/>
-                    </idea>
+                    <idea number="43"/>
                 </ideas>                
                 <solution>
+                    <step number="3"/>
                 </solution>
             </sentence>            
             <sentence number="12" action="yes">                

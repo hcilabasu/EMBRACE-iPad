@@ -25,15 +25,14 @@
             <idea number="9"/>
         </story>
         <story title="Newton's First Law" activity_id="story2-PM-1">
-            <idea number="10"/>
-            <idea number="11"/>
-            <idea number="12"/>
-            <idea number="13"/>
-            <sentence number="0">
+            <idea number="10">
                 <step number="3">
                     <animate obj1Id="smallrocket" action="moveRightAndWrap" waypointId="" areaId=""/>
                 </step>
-            </sentence>
+            </idea>
+            <idea number="11"/>
+            <idea number="12"/>
+            <idea number="13"/>
         </story>
         <story title="Newton's First Law" activity_id="story2-PM-2">
             <idea number="14">
@@ -106,14 +105,14 @@
         <story title="Newton's Second Law: Acceleration" activity_id="story4-PM-2">
             <idea number="36">
                 <step number="9">
-                    <check obj1Id="smallrocket" action="getIn" locationId="forward"/>
+                    <checkRight obj1Id="smallrocket" action="getIn" locationId="anywhere"/>
                     <animate obj1Id="smallrocket" action="moveRightAndWrap" waypointId="" areaId=""/>
                 </step>
             </idea>
             <idea number="37"/>
             <idea number="38">
                 <step number="10">
-                    <check obj1Id="bigrocket" action="getIn" locationId="big_forward"/>
+                    <checkRight obj1Id="bigrocket" action="getIn" locationId="anywhere"/>
                     <animate obj1Id="bigrocket" action="moveRightAndWrapSlower" waypointId="" areaId=""/>
                 </step>
             </idea>
@@ -125,19 +124,17 @@
                     <animate obj1Id="smallrocket" action="moveRightAndWrap" waypointId="" areaId=""/>
                     <animate obj1Id="bigrocket" action="moveRightAndWrapSlower" waypointId="" areaId=""/>
                 </step>
-            </idea>
-            <idea number="41">
                 <step number="12">
                     <shakeOrTap obj1Id="bigrocket" action="getIn" locationId="anywhere"/>
                     <animate obj1Id="bigrocket" action="moveRightAndWrapSlow" waypointId="" areaId=""/>
                 </step>
             </idea>
-            <sentence number="9">
+            <idea number="41">
                 <step number="13">
                     <shakeOrTap obj1Id="bigrocket" action="getIn" locationId="anywhere"/>
                     <animate obj1Id="bigrocket" action="moveRightAndWrap" waypointId="" areaId=""/>
                 </step>
-            </sentence>
+            </idea>
         </story>
         <story title="Newton's Law of Acceleration on Earth" activity_id="story5-PM-1">
             <idea number="42">
