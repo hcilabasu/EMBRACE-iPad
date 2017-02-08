@@ -47,13 +47,13 @@ static ConditionSetup *sharedInstance = nil;
     if (self = [super init]) {
         condition = EMBRACE;
         language = ENGLISH;
-        reader = USER;
+        reader = SYSTEM;
         appMode = ITS;
         currentMode = PM_MODE;
 
         newInstructions = NO;
         isVocabPageEnabled = YES;
-        isAssessmentPageEnabled = NO;
+        isAssessmentPageEnabled = YES;
         assessmentMode = ENDOFCHAPTER;
         isOnDemandVocabEnabled = YES;
         
@@ -64,7 +64,7 @@ static ConditionSetup *sharedInstance = nil;
         isSpeakerButtonEnabled = NO;
         
         useKnowledgeTracing = YES;
-        shouldShowITSMessages = YES;
+        shouldShowITSMessages = NO;
         
         allowFileSync = YES;
     }
