@@ -183,16 +183,6 @@
                     <step number="12"/>
                 </solution>
             </sentence>
-            <sentence number="9" action="no">
-                <attributes complexity="1"/>
-                <text>The milk makes the cat’s fur shiny.</text>
-                <ideas>
-                    <idea number="14"/>
-                </ideas>
-                <solution>
-                    <step number="12"/>
-                </solution>
-            </sentence>
             
             
             
