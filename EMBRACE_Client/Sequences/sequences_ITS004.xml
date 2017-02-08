@@ -77,7 +77,7 @@
         </mode>
     </sequence>
     <sequence bookTitle="The Best Farm">
-        <mode chapterTitle="The Contest" newInstructions="true" vocabPage="true" assessmentPage="true">
+        <mode chapterTitle="The Contest" newInstructions="false" vocabPage="true" assessmentPage="true">
             <reader>System</reader>
             <language>Spanish</language>
             <intervention>ITSPM</intervention>
@@ -97,7 +97,7 @@
             <language>Spanish</language>
             <intervention>ITSPM</intervention>
         </mode>
-        <mode chapterTitle="The Wise Owl" newInstructions="true" vocabPage="true" assessmentPage="true">
+        <mode chapterTitle="The Wise Owl" newInstructions="false" vocabPage="true" assessmentPage="true">
             <reader>User</reader>
             <language>Spanish</language>
             <intervention>ITSIM</intervention>

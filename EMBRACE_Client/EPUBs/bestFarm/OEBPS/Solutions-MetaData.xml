@@ -2,7 +2,7 @@
 <metadata>
 <solutions>
     <story title="Introduction to The Best Farm" activity_id="story0-PM">
-        <idea number="1">
+        <sentence number="1">
             <step number="1">
                 <check obj1Id="farmer" action="getIn" locationId="corralArea"/>
             </step>
@@ -22,26 +22,26 @@
                 <transferAndDisappear obj1Id="farmer" action="give" obj2Id="apple"/>
                 <transferAndDisappear obj1Id="goat" action="receive" obj2Id="apple"/>
             </step>
-        </idea>
+        </sentence>
     </story>
     <story title="The Contest" activity_id="story1-PM-1">
-        <idea number="2"/>
-        <idea number="3">
+        
+        <sentence number="3">
             <step number="6">
                 <group obj1Id="farmer" action="open" obj2Id="pen4"/>
                 <ungroup obj1Id="farmer" action="letGo" obj2Id="pen4"/>
                 <move obj1Id="pen4" action="open" waypointId="pen4Open"/>
                 <move obj1Id="farmer" action="letGo" waypointId="nearCowPen"/>
             </step>
-        </idea>
-        <idea number="4">
+        </sentence>
+        <sentence number="4">
             <step number="7">
                 <check obj1Id="cow" action="getIn" locationId="corralArea"/>
                 <move obj1Id="cow" action="getIn" waypointId="nearCorral"/>
                 <move obj1Id="pen4" action="close" waypointId="pen4Close"/>
             </step>
-        </idea>
-        <idea number="5">
+        </sentence>
+        <sentence number="5">
             <step number="8">
                 <group obj1Id="farmer" action="open" obj2Id="pen3"/>
                 <ungroup obj1Id="farmer" action="letGo" obj2Id="pen3"/>
@@ -52,33 +52,33 @@
                 <group obj1Id="goat" action="visit" obj2Id="cow"/>
                 <move obj1Id="pen3" action="close" waypointId="pen3Close"/>
             </step>
-        </idea>
-        <idea number="6">
+        </sentence>
+        <sentence number="6">
             <step number="10">
                 <group obj1Id="chicken" action="getOn" obj2Id="cow"/>
             </step>
-        </idea>
+        </sentence>
     </story>
     <story title="The Contest" activity_id="story1-PM-2">
-        <idea number="7"/>
-        <idea number="8"/>
-        <idea number="9"/>
-        <idea number="10"/>
-        <idea number="11">
+        <sentence number="7"/>
+        <sentence number="8"/>
+        <sentence number="9"/>
+        <sentence number="10"/>
+        <sentence number="11">
             <step number="11">
                 <group obj1Id="cat" action="jumpOn" obj2Id="farmer"/>
             </step>
-        </idea>
+        </sentence>
     </story>
     <story title="Getting Ready" activity_id="story2-PM-1">
-        <idea number="12"/>
-        <idea number="13">
+        <sentence number="12"/>
+        <sentence number="13">
             <step number="12">
                 <check obj1Id="farmer" action="getIn" locationId="nearGoat"/>
                 <move obj1Id="farmer" action="getIn" waypointId="combGoat"/>
             </step>
-        </idea>
-        <idea number="14">
+        </sentence>
+        <sentence number="14">
             <step number="13">
                 <ungroup obj1Id="farmer" action="release" obj2Id="comb"/>
                 <move obj1Id="comb" action="release" waypointId="dropComb"/>
@@ -90,8 +90,8 @@
                 <transferAndGroup obj1Id="farmer" action="give" obj2Id="bucket"/>
                 <transferAndGroup obj1Id="cat" action="finish" obj2Id="bucket"/>
             </step>
-        </idea>
-        <idea number="15">
+        </sentence>
+        <sentence number="15">
             <step number="16">
                 <ungroup obj1Id="cat" action="leave" obj2Id="bucket"/>
                 <move obj1Id="cat" action="getIn" waypointId="catDrink"/>
@@ -100,10 +100,10 @@
                 <group obj1Id="cat" action="finish" obj2Id="bucket"/>
                 <animate obj1Id="cat" action="bobAnimation" waypointId="catDrink" areaId=""/>
             </step>
-        </idea>
+        </sentence>
     </story>
     <story title="Getting Ready" activity_id="story2-PM-2">
-        <idea number="16">
+        <sentence number="16">
             <step number="18">
                 <group obj1Id="farmer" action="lead" obj2Id="apple"/>
             </step>
@@ -112,9 +112,9 @@
                 <transferAndDisappear obj1Id="horse" action="receive" obj2Id="apple"/>
                 <move obj1Id="farmer" action="getIn" waypointId="farmerFeedHorse"/>
             </step>
-        </idea>
-        <idea number="17"/>
-        <idea number="18">
+        </sentence>
+        <sentence number="17"/>
+        <sentence number="18">
             <step number="20">
                 <group obj1Id="farmer" action="grab" obj2Id="cart"/>
             </step>
@@ -122,8 +122,8 @@
                 <check obj1Id="farmer" action="getIn" locationId="pumpkinPatch"/>
                 <move obj1Id="farmer" action="getIn" waypointId="pumpkinPatch"/>
             </step>
-        </idea>
-        <idea number="19">
+        </sentence>
+        <sentence number="19">
             <step number="22">
                 <ungroup obj1Id="farmer" action="release" obj2Id="cart"/>
             </step>
@@ -135,9 +135,9 @@
                 <transferAndGroup obj1Id="pumpkin" action="getIn" obj2Id="cart"/>
                 <move obj1Id="farmer" action="getIn" waypointId="pumpkinPatch"/>
             </step>
-        </idea>
-        <idea number="20"/>
-        <idea number="21">
+        </sentence>
+        <sentence number="20"/>
+        <sentence number="21">
             <step number="25">
                 <group obj1Id="farmer" action="grab" obj2Id="cart"/>
             </step>
@@ -145,8 +145,8 @@
                 <check obj1Id="farmer" action="getIn" locationId="" areaId="barnSolution"/>
                 <move obj1Id="farmer" action="getIn" waypointId="nearBarn"/>
             </step>
-        </idea>
-        <idea number="22">
+        </sentence>
+        <sentence number="22">
             <step number="27">
                 <ungroup obj1Id="farmer" action="release" obj2Id="cart"/>
                 <move obj1Id="cart" action="getIn" waypointId="cartNearBarn"/>
@@ -162,13 +162,13 @@
                 <transferAndDisappear obj1Id="pig" action="receive" obj2Id="pumpkin"/>
                 <move obj1Id="farmer" action="getIn" waypointId="farmerFeedPig"/>
             </step>
-        </idea>
-        <idea number="23"/>
+        </sentence>
+        <sentence number="23"/>
     </story>
     <story title="Cleaning Up" activity_id="story3-PM-1">
-        <idea number="22"/>
-        <idea number="23"/>
-        <idea number="24">
+        <sentence number="22"/>
+        <sentence number="23"/>
+        <sentence number="24">
             <step number="30">
                 <group obj1Id="farmer" action="lead" obj2Id="horse"/>
             </step>
@@ -190,9 +190,9 @@
                 <ungroup obj1Id="farmer" action="leave" obj2Id="cow"/>
                 <move obj1Id="corralDoor" action="close" waypointId="corralDoorClose"/>
             </step>
-        </idea>
-        <idea number="25"/>
-        <idea number="26">
+        </sentence>
+        <sentence number="25"/>
+        <sentence number="26">
             <step number="36">
                 <group obj1Id="farmer" action="lead" obj2Id="pig"/>
             </step>
@@ -205,23 +205,23 @@
                 <move obj1Id="pen2" action="close" waypointId="pen2Close"/>
                 <move obj1Id="farmer" action="getIn" waypointId="farmerNearPig"/>
             </step>
-        </idea>
+        </sentence>
     </story>
     <story title="Cleaning Up" activity_id="story3-PM-2">
-        <idea number="27">
+        <sentence number="27">
             <step number="39">
                 <check obj1Id="farmer" action="getIn" locationId="pumpkinPatch"/>
                 <move obj1Id="farmer" action="getIn" waypointId="pumpkinPatch"/>
             </step>
-        </idea>
-        <idea number="28"/>
-        <idea number="29">
+        </sentence>
+        <sentence number="28"/>
+        <sentence number="29">
             <step number="40">
                 <check obj1Id="farmer" action="getIn" locationId="" areaId="barnSolution"/>
                 <move obj1Id="farmer" action="getIn" waypointId="nearBarn"/>
             </step>
-        </idea>
-        <idea number="30">
+        </sentence>
+        <sentence number="30">
             <step number="41">
                 <group obj1Id="farmer" action="pickUp" obj2Id="hay"/>
             </step>
@@ -230,8 +230,8 @@
                 <move obj1Id="farmer" action="getIn" waypointId="farmerInHayloft"/>
                 <ungroup obj1Id="farmer" action="putDown" obj2Id="hay"/>
             </step>
-        </idea>
-        <idea number="31">
+        </sentence>
+        <sentence number="31">
             <step number="43">
                 <check obj1Id="farmer" action="getIn" locationId="farmerFall"/>
             </step>
@@ -240,61 +240,61 @@
                 <move obj1Id="farmer" action="getIn" waypointId="farmerFallPosition"/>
                 <animate obj1Id="hay" action="fallAnimation" waypointId="hayFallPosition" areaId=""/>
             </step>
-        </idea>
-        <idea number="32"/>
+        </sentence>
+        <sentence number="32"/>
     </story>
     <story title="Who is the Best Animal?" activity_id="story4-PM-1">
-        <idea number="33"/>
-        <idea number="34"/>
-        <idea number="35">
+        <sentence number="33"/>
+        <sentence number="34"/>
+        <sentence number="35">
             <step number="45">
                 <group obj1Id="cat" action="moveTo" obj2Id="chicken"/>
             </step>
-        </idea>
-        <idea number="36"/>
-        <idea number="37"/>
-        <idea number="38"/>
-        <idea number="39"/>
+        </sentence>
+        <sentence number="36"/>
+        <sentence number="37"/>
+        <sentence number="38"/>
+        <sentence number="39"/>
     </story>
     <story title="Who is the Best Animal?" activity_id="story4-PM-2">
-        <idea number="40"/>
-        <idea number="41">
+        <sentence number="40"/>
+        <sentence number="41">
             <step number="46">
                 <disappear obj1Id="goat" action="receive" obj2Id="apple"/>
             </step>
-        </idea>
-        <idea number="42"/>
-        <idea number="43"/>
-        <idea number="44"/>
-        <idea number="45">
+        </sentence>
+        <sentence number="42"/>
+        <sentence number="43"/>
+        <sentence number="44"/>
+        <sentence number="45">
             <step number="47">
                 <disappear obj1Id="horse" action="receive" obj2Id="hay"/>
             </step>
-        </idea>
-        <idea number="46"/>
-        <idea number="47"/>
-        <idea number="48"/>
+        </sentence>
+        <sentence number="46"/>
+        <sentence number="47"/>
+        <sentence number="48"/>
     </story>
     <story title="The Wise Owl" activity_id="story5-PM-1">
-        <idea number="46"/>
-        <idea number="47"/>
-        <idea number="48">
+        <sentence number="46"/>
+        <sentence number="47"/>
+        <sentence number="48">
             <step number="48">
                 <group obj1Id="owl" action="visit" obj2Id="farmer"/>
             </step>
-        </idea>
-        <idea number="49"/>
-        <idea number="50">
+        </sentence>
+        <sentence number="49"/>
+        <sentence number="50">
             <step number="49">
                 <ungroupAndStay obj1Id="owl" action="leave" obj2Id="farmer"/>
             </step>
             <step number="50">
                 <group obj1Id="owl" action="moveTo" obj2Id="chicken"/>
             </step>
-        </idea>
+        </sentence>
     </story>
     <story title="The Wise Owl" activity_id="story5-PM-2">
-        <idea number="51">
+        <sentence number="51">
             <step number="51">
                 <ungroup obj1Id="chicken" action="leave" obj2Id="owl"/>
             </step>
@@ -302,16 +302,16 @@
                 <group obj1Id="chicken" action="count" obj2Id="egg"/>
                 <animate obj1Id="chicken" action="bobAnimation" waypointId="chickenNextToNest" areaId=""/>
             </step>
-        </idea>
-        <idea number="52"/>
-        <idea number="53">
+        </sentence>
+        <sentence number="52"/>
+        <sentence number="53">
             <step number="53">
                 <group obj1Id="owl" action="visit" obj2Id="pig"/>
             </step>
-        </idea>
-        <idea number="54"/>
-        <idea number="55"/>
-        <idea number="56">
+        </sentence>
+        <sentence number="54"/>
+        <sentence number="55"/>
+        <sentence number="56">
             <step number="54">
                 <ungroup obj1Id="owl" action="leave" obj2Id="pig"/>
                 <move obj1Id="pig" action="getIn" waypointId="insidePen2"/>
@@ -319,16 +319,16 @@
             <step number="55">
                 <group obj1Id="owl" action="visit" obj2Id="farmer"/>
             </step>
-        </idea>
+        </sentence>
     </story>
     <story title="Everyone Helps" activity_id="story6-PM-1">
-        <idea number="57">
+        <sentence number="57">
             <step number="56">
                 <group obj1Id="owl" action="moveTo" obj2Id="chicken"/>
             </step>
-        </idea>
-        <idea number="58"/>
-        <idea number="59">
+        </sentence>
+        <sentence number="58"/>
+        <sentence number="59">
             <step number="57">
                 <ungroupAndStay obj1Id="chicken" action="leave" obj2Id="owl"/>
             </step>
@@ -338,15 +338,15 @@
                 <move obj1Id="pen2" action="open" waypointId="pen2Open"/>
                 <move obj1Id="chicken" action="leave" waypointId="nearPigPen"/>
             </step>
-        </idea>
-        <idea number="60"/>
-        <idea number="61">
+        </sentence>
+        <sentence number="60"/>
+        <sentence number="61">
             <step number="59">
                 <disappear obj1Id="pig" action="receive" obj2Id="pumpkin"/>
                 <move obj1Id="pen2" action="close" waypointId="pen2Close"/>
             </step>
-        </idea>
-        <idea number="62">
+        </sentence>
+        <sentence number="62">
             <step number="60">
                 <group obj1Id="pig" action="pickUp" obj2Id="apple"/>
             </step>
@@ -355,11 +355,11 @@
                 <transferAndDisappear obj1Id="horse" action="receive" obj2Id="apple"/>
                 <move obj1Id="pig" action="getIn" waypointId="pigNearHorse"/>
             </step>
-        </idea>
-        <idea number="63"/>
+        </sentence>
+        <sentence number="63"/>
     </story>
     <story title="Everyone Helps" activity_id="story6-PM-2">
-        <idea number="64">
+        <sentence number="64">
             <step number="62">
                 <group obj1Id="horse" action="push" obj2Id="hay"/>
                 <move obj1Id="pen4" action="open" waypointId="pen4Open"/>
@@ -369,15 +369,15 @@
                 <transferAndDisappear obj1Id="cow" action="receive" obj2Id="hay"/>
                 <move obj1Id="horse" action="getIn" waypointId="horseFeedCow"/>
             </step>
-        </idea>
-        <idea number="65"/>
-        <idea number="66">
+        </sentence>
+        <sentence number="65"/>
+        <sentence number="66">
             <step number="64">
                 <group obj1Id="cat" action="finish" obj2Id="bucket"/>
                 <animate obj1Id="cat" action="bobAnimation" waypointId="catDrink" areaId=""/>
             </step>
-        </idea>
-        <idea number="67">
+        </sentence>
+        <sentence number="67">
             <step number="65">
                 <ungroup obj1Id="cat" action="leave" obj2Id="bucket"/>
             </step>
@@ -385,8 +385,8 @@
                 <check obj1Id="cat" action="getIn" locationId="nest"/>
                 <move obj1Id="cat" action="getIn" waypointId="catInNest"/>
             </step>
-        </idea>
-        <idea number="68">
+        </sentence>
+        <sentence number="68">
             <step number="67">
                 <check obj1Id="chicken" action="getIn" locationId="nest"/>
                 <move obj1Id="chicken" action="getIn" waypointId="chickenInNest"/>
@@ -395,25 +395,25 @@
                 <swapImage obj1Id="egg" action="lay"/>
                 <animate obj1Id="chicken" action="bobAnimation" waypointId="chickenInNest" areaId=""/>
             </step>
-        </idea>
+        </sentence>
     </story>
     <story title="The Best Farm Award" activity_id="story7-PM-1">
-        <idea number="66"/>
-        <idea number="67">
+        <sentence number="66"/>
+        <sentence number="67">
             <step number="69">
                 <group obj1Id="judge" action="visit" obj2Id="cow"/>
             </step>
-        </idea>
-        <idea number="68">
+        </sentence>
+        <sentence number="68">
             <step number="70">
                 <ungroup obj1Id="judge" action="leave" obj2Id="cow"/>
             </step>
             <step number="71">
                 <group obj1Id="judge" action="grab" obj2Id="bucket"/>
             </step>
-        </idea>
-        <idea number="69"/>
-        <idea number="70">
+        </sentence>
+        <sentence number="69"/>
+        <sentence number="70">
             <step number="72">
                 <ungroup obj1Id="judge" action="leave" obj2Id="bucket"/>
                 <move obj1Id="bucket" action="getin" waypointId="dropBucket"/>
@@ -421,19 +421,19 @@
             <step number="73">
                 <group obj1Id="judge" action="count" obj2Id="eggs"/>
             </step>
-        </idea>
-        <idea number="71">
+        </sentence>
+        <sentence number="71">
             <step number="74">
                 <ungroup obj1Id="judge" action="stopCount" obj2Id="eggs"/>
             </step>
             <step number="75">
                 <group obj1Id="judge" action="visit" obj2Id="pig"/>
             </step>
-        </idea>
-        <idea number="72"/>
+        </sentence>
+        <sentence number="72"/>
     </story>
     <story title="The Best Farm Award" activity_id="story7-PM-2">
-        <idea number="73">
+        <sentence number="73">
             <step number="76">
                 <ungroup obj1Id="judge" action="leave" obj2Id="pig"/>
                 <move obj1Id="pig" action="getIn" waypointId="insidePen2"/>
@@ -442,15 +442,15 @@
                 <group obj1Id="judge" action="open" obj2Id="corralDoor"/>
                 <move obj1Id="corralDoor" action="open" waypointId="corralDoorOpen"/>
             </step>
-        </idea>
-        <idea number="74"/>
-        <idea number="75">
+        </sentence>
+        <sentence number="74"/>
+        <sentence number="75">
             <step number="78">
                 <group obj1Id="horse" action="visit" obj2Id="judge"/>
             </step>
-        </idea>
-        <idea number="76"/>
-        <idea number="77">
+        </sentence>
+        <sentence number="76"/>
+        <sentence number="77">
             <step number="79">
                 <ungroup obj1Id="judge" action="letGo" obj2Id="corralDoor"/>
             </step>
@@ -461,9 +461,9 @@
                 <transferAndGroup obj1Id="judge" action="give" obj2Id="award"/>
                 <transferAndGroup obj1Id="farmer" action="receive" obj2Id="award"/>
             </step>
-        </idea>
-        <idea number="78"/>
-        <idea number="79">
+        </sentence>
+        <sentence number="78"/>
+        <sentence number="79">
             <step number="82">
                 <animate obj1Id="chicken" action="cheerAnimation" waypointId="" areaId=""/>
                 <animate obj1Id="owl" action="cheerAnimation" waypointId="" areaId=""/>
@@ -473,7 +473,7 @@
                 <animate obj1Id="cow" action="cheerAnimation" waypointId="" areaId=""/>
                 <animate obj1Id="horse" action="cheerAnimation" waypointId="" areaId=""/>
             </step>
-        </idea>
+        </sentence>
     </story>
 </solutions>
 </metadata>
