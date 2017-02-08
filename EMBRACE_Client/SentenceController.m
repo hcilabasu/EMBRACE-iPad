@@ -139,7 +139,7 @@
             if (conditionSetup.appMode == ITS && conditionSetup.useKnowledgeTracing && ![chapterTitle isEqualToString:@"The Naughty Monkey"] && !(conditionSetup.language == BILINGUAL && [pageContext.currentPageId.lowercaseString containsString:@"story1"])) {
                 mvc.currentComplexityLevel = [[ITSController sharedInstance] getCurrentComplexity];
                 [self.manipulationView removeAllSentences];
-                [self addSentencesWithComplexity:EM_Easy];
+                [self addSentencesWithComplexity:mvc.currentComplexityLevel];
             }
         }
     }
