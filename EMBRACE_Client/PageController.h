@@ -11,19 +11,19 @@
 
 @interface PageController : NSObject
 
-@property (nonatomic, strong) ManipulationViewController *mvc;
-@property (nonatomic, strong) InteractionModel *model;
-@property (nonatomic, strong) ConditionSetup *conditionSetup;
-@property (nonatomic, strong) ManipulationContext *manipulationContext;
-@property (nonatomic, strong) PageContext *pageContext;
-@property (nonatomic, strong) SentenceContext *sentenceContext;
-@property (nonatomic, strong) StepContext *stepContext;
-@property (nonatomic, strong) EBookImporter *bookImporter;
+@property (nonatomic, weak) ManipulationViewController *mvc;
+@property (nonatomic, weak) InteractionModel *model;
+@property (nonatomic, weak) ConditionSetup *conditionSetup;
+@property (nonatomic, weak) ManipulationContext *manipulationContext;
+@property (nonatomic, weak) PageContext *pageContext;
+@property (nonatomic, weak) SentenceContext *sentenceContext;
+@property (nonatomic, weak) StepContext *stepContext;
+@property (nonatomic, weak) EBookImporter *bookImporter;
 @property (nonatomic, strong) NSString *bookTitle;
 @property (nonatomic, strong) NSString *chapterTitle;
-@property (nonatomic, strong) Book *book;
-@property (nonatomic, strong) IBOutlet ManipulationView *manipulationView;
-@property (nonatomic, strong) NSMutableDictionary *animatingObjects;
+@property (nonatomic, weak) Book *book;
+@property (nonatomic, weak) IBOutlet ManipulationView *manipulationView;
+@property (nonatomic, weak) NSMutableDictionary *animatingObjects;
 //@property (nonatomic) BOOL allowInteractions; //TRUE if objects can be manipulated; FALSE otherwise
 
 - (id)initWithController: (ManipulationViewController*) superMvc;

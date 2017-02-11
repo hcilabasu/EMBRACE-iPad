@@ -78,8 +78,7 @@
                     <connections>
                         <outlet property="booksButton" destination="itY-fs-yEV" id="c1h-x7-hbG"/>
                         <outlet property="libraryView" destination="aSi-Zv-eMG" id="RDA-WP-kCm"/>
-                        <segue destination="NLI-lb-tHz" kind="push" identifier="OpenPMActivitySegue" id="Z12-Kb-24m"/>
-                        <segue destination="3Sz-rj-6wY" kind="push" identifier="OpenIMActivitySegue" id="0xy-ba-a1I"/>
+                        <segue destination="NLI-lb-tHz" kind="push" identifier="OpenManipulationActivitySegue" id="Z12-Kb-24m"/>
                         <segue destination="QFo-Zh-1Dd" kind="push" identifier="OpenAuthoringSegue" id="cG3-iJ-IqP"/>
                     </connections>
                 </viewController>
@@ -150,46 +149,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jym-OZ-SdO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3656" y="-2919"/>
-        </scene>
-        <!--Introduction View Controller-->
-        <scene sceneID="DiR-F6-feM">
-            <objects>
-                <viewController storyboardIdentifier="IntroductionViewController" id="vpk-2b-xlU" customClass="IntroductionViewController" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="n6G-66-K6C">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="kJg-hJ-FTe" userLabel="Bar Button Item - Back"/>
-                    </navigationItem>
-                    <connections>
-                        <segue destination="021-vN-Gg0" kind="push" id="PGe-Vh-msr"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="neN-60-WVH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="58E-Ms-BP4">
-                    <rect key="frame" x="0.0" y="0.0" width="768" height="1004"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wuG-0a-zVO">
-                            <rect key="frame" x="0.0" y="0.0" width="768" height="1004"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </webView>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="11N-z8-sTe" customClass="UIButton">
-                            <rect key="frame" x="940" y="270" width="75" height="25"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <accessibility key="accessibilityConfiguration">
-                                <accessibilityTraits key="traits" button="YES"/>
-                                <bool key="isElement" value="YES"/>
-                            </accessibility>
-                        </view>
-                    </subviews>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                </view>
-                <tapGestureRecognizer id="ihe-d0-VsW"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="3Ue-qx-NbZ"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="hPP-96-hab"/>
-                <pinchGestureRecognizer id="82z-SG-iIg"/>
-            </objects>
-            <point key="canvasLocation" x="2091" y="-1320"/>
         </scene>
         <!--ManipulationView Controller-->
         <scene sceneID="OH6-RJ-2K5">
@@ -306,74 +265,6 @@
                 </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2111" y="-3491"/>
-        </scene>
-        <!--IMView Controller-->
-        <scene sceneID="aA6-Bo-4E4">
-            <objects>
-                <pageViewController storyboardIdentifier="IMViewController" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="3Sz-rj-6wY" userLabel="IMView Controller" customClass="ManipulationViewController" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="aaU-Ac-eWA">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="NyP-eZ-035"/>
-                        <barButtonItem key="rightBarButtonItem" title="Help" id="bfT-sl-6wM">
-                            <connections>
-                                <segue destination="021-vN-Gg0" kind="push" id="lri-90-NjS"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
-                    <connections>
-                        <outlet property="nextButton" destination="Ubx-qn-Yia" id="yx7-yH-YRv"/>
-                        <outlet property="panRecognizer" destination="iaN-Wz-vgI" id="K3n-ge-A1O"/>
-                        <outlet property="pinchRecognizer" destination="IG0-TB-X5w" id="DiC-dr-Fo3"/>
-                        <outlet property="view" destination="erm-JD-CyO" id="9vt-5c-jdY"/>
-                    </connections>
-                </pageViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bmB-qY-ulY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view clipsSubviews="YES" contentMode="scaleAspectFit" id="Jqi-Zg-Bmj">
-                    <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <webView clipsSubviews="YES" contentMode="scaleAspectFit" fixedFrame="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6aj-gV-asA">
-                            <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <dataDetectorType key="dataDetectorTypes"/>
-                            <connections>
-                                <outlet property="delegate" destination="3Sz-rj-6wY" id="mGI-Zy-Aya"/>
-                                <outletCollection property="gestureRecognizers" destination="DSA-Rh-q8c" appends="YES" id="b25-Ws-Z3a"/>
-                                <outletCollection property="gestureRecognizers" destination="cAV-zU-nbn" appends="YES" id="7c5-ax-Eyt"/>
-                            </connections>
-                        </webView>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ubx-qn-Yia">
-                            <rect key="frame" x="939" y="685" width="75" height="49"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="30"/>
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <state key="normal" title="Next">
-                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="pressedNext:" destination="3Sz-rj-6wY" eventType="touchUpInside" id="FTi-mq-vcP"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                </view>
-                <tapGestureRecognizer id="DSA-Rh-q8c">
-                    <connections>
-                        <action selector="tapGesturePerformed:" destination="3Sz-rj-6wY" id="AWw-VY-ryK"/>
-                        <outlet property="delegate" destination="3Sz-rj-6wY" id="hoM-se-F94"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="cAV-zU-nbn">
-                    <connections>
-                        <action selector="longPressGesturePerformed:" destination="3Sz-rj-6wY" id="qi3-Ho-AOc"/>
-                        <outlet property="delegate" destination="3Sz-rj-6wY" id="n2M-pB-lPc"/>
-                    </connections>
-                </pongPressGestureRecognizer>
-            </objects>
-            <point key="canvasLocation" x="2099" y="-2375"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="OEV-5U-xhQ">
@@ -645,7 +536,4 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="y3V-Kf-tce"/>
-    </inferredMetricsTieBreakers>
 </document>

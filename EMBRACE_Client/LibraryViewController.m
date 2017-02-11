@@ -679,17 +679,14 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
             if (conditionSetup.appMode == Authoring) {
                 [self performSegueWithIdentifier:@"OpenAuthoringSegue" sender:self];
             }
-            else if (conditionSetup.currentMode == PM_MODE) {
-                [self performSegueWithIdentifier: @"OpenPMActivitySegue" sender:self];
+            else if (conditionSetup.currentMode == PM_MODE ||
+                     conditionSetup.currentMode == ITSPM_MODE ||
+                     conditionSetup.currentMode == IM_MODE ||
+                     conditionSetup.currentMode == ITSIM_MODE) {
+                [self performSegueWithIdentifier: @"OpenManipulationActivitySegue" sender:self];
             }
-            else if (conditionSetup.currentMode == ITSPM_MODE) {
-                [self performSegueWithIdentifier: @"OpenPMActivitySegue" sender:self];
-            }
-            else if (conditionSetup.currentMode == IM_MODE) {
-                [self performSegueWithIdentifier: @"OpenPMActivitySegue" sender:self];
-            }
-            else if (conditionSetup.currentMode == ITSIM_MODE) {
-                [self performSegueWithIdentifier: @"OpenPMActivitySegue" sender:self];
+            else{
+                //FATAL ERROR; UNRECOGNIZED CURRENTMODE STATE
             }
         }
         else {

@@ -963,6 +963,8 @@
 		1A9174771C339CBB00D54971 /* house.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A9174761C339CBA00D54971 /* house.png */; };
 		1A9CF8431C31C3A00000C135 /* island_Kauai.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A9CF8421C31C3A00000C135 /* island_Kauai.png */; };
 		1A9CF8451C31C7310000C135 /* native.epub in Resources */ = {isa = PBXBuildFile; fileRef = 1A9CF8441C31C7310000C135 /* native.epub */; };
+		1A9E513D1E4F55A600807209 /* AlternateSentences-MetaData-IM.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A9E513B1E4F55A600807209 /* AlternateSentences-MetaData-IM.xml */; };
+		1A9E513E1E4F55A600807209 /* IMSolutions-MetaData-ITS.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A9E513C1E4F55A600807209 /* IMSolutions-MetaData-ITS.xml */; };
 		1A9FCAFB1DB6FD4C005C5DAE /* Solutions-MetaData-ITS.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A9FCAF81DB6FD4C005C5DAE /* Solutions-MetaData-ITS.xml */; };
 		1A9FCAFC1DB6FD4C005C5DAE /* Vocabulary-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A9FCAF91DB6FD4C005C5DAE /* Vocabulary-MetaData.xml */; };
 		1A9FCAFD1DB6FD4C005C5DAE /* WordMapping.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A9FCAFA1DB6FD4C005C5DAE /* WordMapping.xml */; };
@@ -1071,7 +1073,6 @@
 		1AD35FFE1E33B5D000D06413 /* ITSPhysicalManipulationActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9FA4FC1E31C87400AFE40D /* ITSPhysicalManipulationActivity.m */; };
 		1AD35FFF1E33B5D500D06413 /* ITSPhysicalManipulationSolution.h in Sources */ = {isa = PBXBuildFile; fileRef = 1A9FA4FA1E31C81600AFE40D /* ITSPhysicalManipulationSolution.h */; };
 		1AD360001E33B5DA00D06413 /* ITSPhysicalManipulationSolution.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9FA4F81E31C7CE00AFE40D /* ITSPhysicalManipulationSolution.m */; };
-		1AD3CC861A251C5300E18B1C /* IntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3CC851A251C5300E18B1C /* IntroductionViewController.m */; };
 		1AD3CC891A251CBA00E18B1C /* BuildHTMLString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3CC881A251CBA00E18B1C /* BuildHTMLString.m */; };
 		1AD3CC8C1A251CE600E18B1C /* PlayAudioFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3CC8B1A251CE600E18B1C /* PlayAudioFile.m */; };
 		1AD9181E1E12E84600C1C2AA /* ForwardProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD9181D1E12E84600C1C2AA /* ForwardProgress.m */; };
@@ -6778,6 +6779,8 @@
 		1A9CF8421C31C3A00000C135 /* island_Kauai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = island_Kauai.png; sourceTree = "<group>"; };
 		1A9CF8441C31C7310000C135 /* native.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = native.epub; sourceTree = "<group>"; };
 		1A9CF8461C31DAF90000C135 /* speakerIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speakerIcon.png; sourceTree = "<group>"; };
+		1A9E513B1E4F55A600807209 /* AlternateSentences-MetaData-IM.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AlternateSentences-MetaData-IM.xml"; sourceTree = "<group>"; };
+		1A9E513C1E4F55A600807209 /* IMSolutions-MetaData-ITS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "IMSolutions-MetaData-ITS.xml"; sourceTree = "<group>"; };
 		1A9FA4F81E31C7CE00AFE40D /* ITSPhysicalManipulationSolution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITSPhysicalManipulationSolution.m; sourceTree = "<group>"; };
 		1A9FA4FA1E31C81600AFE40D /* ITSPhysicalManipulationSolution.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ITSPhysicalManipulationSolution.h; sourceTree = "<group>"; };
 		1A9FA4FB1E31C87400AFE40D /* ITSPhysicalManipulationActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITSPhysicalManipulationActivity.h; sourceTree = "<group>"; };
@@ -6890,8 +6893,6 @@
 		1AC7A3961C592D2F003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesSpanish-MetaData.xml"; sourceTree = "<group>"; };
 		1AC7A3981C592E84003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesSpanish-MetaData.xml"; sourceTree = "<group>"; };
 		1AC8A2BA1D15963B007CE13C /* bigrocket_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigrocket_up.png; sourceTree = "<group>"; };
-		1AD3CC841A251C5300E18B1C /* IntroductionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroductionViewController.h; sourceTree = "<group>"; };
-		1AD3CC851A251C5300E18B1C /* IntroductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroductionViewController.m; sourceTree = "<group>"; };
 		1AD3CC871A251CBA00E18B1C /* BuildHTMLString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildHTMLString.h; sourceTree = "<group>"; };
 		1AD3CC881A251CBA00E18B1C /* BuildHTMLString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BuildHTMLString.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		1AD3CC8A1A251CE600E18B1C /* PlayAudioFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayAudioFile.h; sourceTree = "<group>"; };
@@ -12232,6 +12233,8 @@
 			isa = PBXGroup;
 			children = (
 				7171C3381DBF7EA40037E69F /* AlternateSentences-MetaData.xml */,
+				1A9E513B1E4F55A600807209 /* AlternateSentences-MetaData-IM.xml */,
+				1A9E513C1E4F55A600807209 /* IMSolutions-MetaData-ITS.xml */,
 				7171C3391DBF7EA40037E69F /* Solutions-MetaData-ITS.xml */,
 				1A631D441C0E4D3A00251CB3 /* AlternateImages-MetaData.xml */,
 				1A9FCB1A1DB6FDD2005C5DAE /* Vocabulary-MetaData.xml */,
@@ -13541,8 +13544,6 @@
 			children = (
 				1AFC9BDE1DAC485A00189CD2 /* ITS */,
 				316CFADF1773A512004216D0 /* Physical Manipulation */,
-				1AD3CC841A251C5300E18B1C /* IntroductionViewController.h */,
-				1AD3CC851A251C5300E18B1C /* IntroductionViewController.m */,
 				1AD3CC8A1A251CE600E18B1C /* PlayAudioFile.h */,
 				1AD3CC8B1A251CE600E18B1C /* PlayAudioFile.m */,
 				1AD3CC871A251CBA00E18B1C /* BuildHTMLString.h */,
@@ -19502,6 +19503,7 @@
 				71193D1C1E2FCF4D003D7EB5 /* be72a9de7aff6a3e2815c712491f641a.mp3 in Resources */,
 				1A23DA3B1C20A4FC00FE7C46 /* O2_select large_high_res_min.png in Resources */,
 				5C9C07971C57385A00702FCD /* BFCE6_3.m4a in Resources */,
+				1A9E513D1E4F55A600807209 /* AlternateSentences-MetaData-IM.xml in Resources */,
 				5C137D011C8A79CC0023901C /* PlankE.mp3 in Resources */,
 				71E425781E2D4DAD0029BDEC /* e1443fcedbf7575899414fee6570d229.mp3 in Resources */,
 				5C1C4CEB1D2386AD00547783 /* AtriumS.mp3 in Resources */,
@@ -20562,6 +20564,7 @@
 				71193CEF1E2FCF4D003D7EB5 /* 63e572ce03c47a52e07f676bef4138ad.mp3 in Resources */,
 				5CF6CA651CCB2BB50093D3FD /* SwirlingS.mp3 in Resources */,
 				5C40AEF51CBF5DFB00BFEB9F /* Pair_type1S.mp3 in Resources */,
+				1A9E513E1E4F55A600807209 /* IMSolutions-MetaData-ITS.xml in Resources */,
 				1A6322371C0E4D3B00251CB3 /* ocean_wave.png in Resources */,
 				5CB7108D1C6C1AD80062AD61 /* TheMovingEarthS14S.mp3 in Resources */,
 				5C40E00F1CC863FC00D8BC48 /* GuideE.mp3 in Resources */,
@@ -25084,7 +25087,6 @@
 				1ADDE2FD1D8092E2002FB71C /* PageContext.m in Sources */,
 				C6805216197ECDE5002A5249 /* DDXMLDocument.m in Sources */,
 				C6805217197ECDE5002A5249 /* DDXMLElement.m in Sources */,
-				1AD3CC861A251C5300E18B1C /* IntroductionViewController.m in Sources */,
 				C6805218197ECDE5002A5249 /* DDXMLNode.m in Sources */,
 				C680521B197ECDF4002A5249 /* DDXMLElementAdditions.m in Sources */,
 				C680521E197ECE02002A5249 /* NSString+DDXML.m in Sources */,

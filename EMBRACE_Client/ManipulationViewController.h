@@ -11,7 +11,6 @@
 #import "EbookImporter.h"
 #import "Book.h"
 #import "AVFoundation/AVSpeechSynthesis.h"
-#import "IntroductionViewController.h"
 #import "AssessmentActivityViewController.h"
 #import "ManipulationContext.h"
 #import "ManipulationView.h"
@@ -62,8 +61,6 @@ typedef enum InteractionMode {
 @property (nonatomic, strong) NSString *chapterTitle;
 @property (nonatomic, strong) Book *book;
 @property (nonatomic, strong) AVSpeechSynthesizer *syn;
-@property (nonatomic, strong) IntroductionViewController *IntroductionClass;
-@property (nonatomic, strong) BuildHTMLString *buildStringClass;
 @property (nonatomic, strong) PlayAudioFile *playaudioClass;
 @property (nonatomic, strong) UIViewController *libraryViewController;
 @property (nonatomic) BOOL allowInteractions; //TRUE if objects can be manipulated; FALSE otherwise

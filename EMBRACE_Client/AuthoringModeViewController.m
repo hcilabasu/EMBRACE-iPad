@@ -14,7 +14,6 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import <AVFoundation/AVFoundation.h>
 #import "ConditionSetup.h"
-#import "IntroductionViewController.h"
 #import "foundation/foundation.h"
 
 DDXMLDocument *xmlDocTemp;
@@ -109,8 +108,6 @@ typedef enum InteractionMode {
 
 @synthesize libraryViewController;
 
-@synthesize IntroductionClass;
-@synthesize buildStringClass;
 @synthesize playaudioClass;
 
 @synthesize ImageOptions;
@@ -177,9 +174,7 @@ ConditionSetup *conditionSetup;
     
     self.ImageOptions = [NSArray arrayWithObjects: @"Save Waypoint", @"Save Hotspot", @"Save Location", @"Save Z-Index", @"Save Width", @"Save Height", @"Save Manipulation Type", @"Save Area" ,@"FR: Save Animation", nil];
     
-    IntroductionClass = [[IntroductionViewController alloc]init];
     conditionSetup = [ConditionSetup sharedInstance];
-    buildStringClass = [[BuildHTMLString alloc]init];
     playaudioClass = [[PlayAudioFile alloc]init];
     
     syn = [[AVSpeechSynthesizer alloc] init];
@@ -210,10 +205,6 @@ ConditionSetup *conditionSetup;
     separatingObjectId = nil;
     
     currentPage = nil;
-    
-    IntroductionClass.languageString = @"E";
-    IntroductionClass.allowInteractions = TRUE;
-    IntroductionClass.sameWordClicked = false;
     
     useSubject = ALL_ENTITIES;
     useObject = ONLY_CORRECT;
@@ -288,24 +279,10 @@ ConditionSetup *conditionSetup;
     [self setupCurrentSentence];
     [self setupCurrentSentenceColor];
     
-    if ([IntroductionClass.introductions objectForKey:chapterTitle] || ([IntroductionClass.vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound)) {
-        IntroductionClass.allowInteractions = FALSE;
-    }
-    
-    //Load the first step for the current chapter
-    if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
-        [IntroductionClass loadIntroStep:bookView:self: currentSentence];
-    }
-    
     //Create UIView for textbox area to recognize swipe gesture
     //NOTE: Currently not in use because it disables tap gesture recognition over the textbox area and we haven't
     //found a way to fix this yet.
     //[self createTextboxView];
-    
-    //Load the first vocabulary step for the current chapter (hard-coded for now)
-    if ([IntroductionClass.vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
-        [IntroductionClass loadVocabStep:bookView: self:currentSentence: chapterTitle];
-    }
     
     isAudioLeft = false;
     
@@ -378,9 +355,6 @@ ConditionSetup *conditionSetup;
     
     actualPage = currentPage;
     
-    //instantiates all introduction variables
-    [IntroductionClass loadFirstPageIntroduction:model :chapterTitle];
-    
     [self loadPage];
 }
 
@@ -430,11 +404,6 @@ ConditionSetup *conditionSetup;
     PhysicalManipulationActivity* PMActivity = (PhysicalManipulationActivity*)[chapter getActivityOfType:conditionSetup.currentMode]; //get PM Activity from chapter
     //PMSolution = [PMActivity PMSolution]; //get PM solution
     //PMSolution = [[[PMActivity PMSolutions] objectForKey:currentPageId] objectAtIndex:0]; //get PM solution
-    
-    //instantiates all vocab variables
-    [IntroductionClass loadFirstPageVocabulary:model :chapterTitle];
-    
-    IntroductionClass.allowInteractions = TRUE;
     
 }
 
@@ -1860,7 +1829,7 @@ ConditionSetup *conditionSetup;
     CGPoint location = [recognizer locationInView:self.view];
     
     //This should work with requireGestureRecognizerToFail:pinchRecognizer but it doesn't currently.
-    if(!pinching && IntroductionClass.allowInteractions) {
+    if(!pinching) {
         BOOL useProximity = NO;
         
         if(recognizer.state == UIGestureRecognizerStateBegan) {
@@ -2722,26 +2691,6 @@ ConditionSetup *conditionSetup;
  * is correct, then it will move on to the next sentence. If the manipulation is not current, then feedback will be provided.
  */
 -(IBAction)pressedNext:(id)sender {
-    if ([IntroductionClass.introductions objectForKey:chapterTitle]) {
-        // If the user pressed next
-            if (IntroductionClass.currentIntroStep > IntroductionClass.totalIntroSteps) {
-                [self saveCurrentHTML];
-                [self loadNextPage]; //logging done in loadNextPage
-            }
-            else {
-                // Load the next step
-                [IntroductionClass loadIntroStep:bookView:self: currentSentence];
-                [self setupCurrentSentenceColor];
-                
-                //add logging: next intro step
-            }
-    }
-    else if ([IntroductionClass.vocabularies objectForKey:chapterTitle] && [currentPageId rangeOfString:@"Intro"].location != NSNotFound) {
-    
-            [self saveCurrentHTML];
-            [self loadNextPage]; //logging done in loadNextPage
-    }
-        else{
             //For the moment just move through the sentences, until you get to the last one, then move to the next activity.
             currentSentence++;
             
@@ -2755,7 +2704,6 @@ ConditionSetup *conditionSetup;
                 [self loadNextPage];
                 //logging done in loadNextPage
             }
-    }
 }
 
 

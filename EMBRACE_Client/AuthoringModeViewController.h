@@ -12,7 +12,6 @@
 #import "EbookImporter.h"
 #import "Book.h"
 #import "AVFoundation/AVSpeechSynthesis.h"
-#import "IntroductionViewController.h"
 #import "AssessmentActivityViewController.h"
 
 @interface AuthoringModeViewController : UIViewController <UIGestureRecognizerDelegate, UIScrollViewDelegate, UIPickerViewDelegate>{
@@ -31,8 +30,6 @@
 @property (nonatomic, strong) NSString *chapterTitle;
 @property (nonatomic, strong) Book *book;
 @property (nonatomic, strong) AVSpeechSynthesizer *syn;
-@property (nonatomic, strong) IntroductionViewController *IntroductionClass;
-@property (nonatomic, strong) BuildHTMLString *buildStringClass;
 @property (nonatomic,strong) PlayAudioFile *playaudioClass;
 @property (nonatomic, strong) UIViewController *libraryViewController;
 @property (nonatomic, strong) UIPickerView *picker;

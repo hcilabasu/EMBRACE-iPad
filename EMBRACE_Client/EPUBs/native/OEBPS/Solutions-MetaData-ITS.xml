@@ -282,9 +282,7 @@
         </story>
         <story title="The Algonquian Wigwam" activity_id="story4-PM-4">
             <idea number="51"/>
-            <idea number="52"/>
-            
-            <idea number="53">
+            <idea number="52">
                 <step number="33">
                     <check obj1Id="man_ch4" action="getIn" locationId="bark"/>
                     <groupAuto obj1Id="bark" action="getIn" obj2Id="man_ch4"/>
@@ -297,10 +295,7 @@
                     <swapImage obj1Id="wigwam" action="first_bark"/>
                 </step>
             </idea>
-            <idea number="54"/>
-            <idea number="55"/>
-            <idea number="56"/>
-            <sentence number="16">
+            <idea number="53">
                 <step number="35">
                     <check obj1Id="man_ch4" action="getIn" locationId="bark"/>
                     <groupAuto obj1Id="bark2" action="getIn" obj2Id="man_ch4"/>
@@ -313,7 +308,10 @@
                     <swapImage obj1Id="wigwam" action="complete"/>
                     <disappearAuto obj1Id="bark_pile2" action="disappear" obj2Id="bark_pile2"/>
                 </step>
-            </sentence>
+            </idea>
+            <idea number="54"/>
+            <idea number="55"/>
+            <idea number="56"/>
         </story>
         <story title="The Haida Plank House" activity_id="story5-PM-1">
             <idea number="57"/>
