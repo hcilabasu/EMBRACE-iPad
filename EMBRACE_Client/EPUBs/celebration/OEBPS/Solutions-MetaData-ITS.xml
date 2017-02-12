@@ -8,7 +8,7 @@
             <idea number="4"/>
         </story>
         <story title="Key Ingredients" activity_id="story1-PM-2">
-                        <idea number="5">
+            <idea number="5">
                 <step number="1">
                     <group obj1Id="sofia" action="pickUp" obj2Id="chili"/>
                     <move obj1Id="sofia" action="getIn" waypointId="nearChili"/>
@@ -213,7 +213,6 @@
             <idea number="39"/>
             <idea number="40"/>
             <idea number="41"/>
-            
             <idea number="42">
                 <step number="27">
                     <shakeOrTap obj1Id="emilio_horse" action="getIn" locationId="anywhere"/>
@@ -415,8 +414,8 @@
                     <appear obj1Id="mancha" action="appear2"/>
                 </step>
             </idea>
-            <idea number="2">
-                <step number="68">
+            <idea number="68">
+                <step number="53">
                     <check obj1Id="sofia" action="getIn" locationId="nearHorse"/>
                     <swapImage obj1Id="mancha" action="bridle"/>
                     <appear obj1Id="saddle" action="appear"/>
@@ -521,13 +520,12 @@
                     <swapImage obj1Id="sofia" action="waving"/>
                 </step>
             </idea>
-            <idea number="80"/>
-            <sentence number="12">
+            <idea number="80">
                 <step number="64">
                     <check obj1Id="sofia" action="getIn" locationId="anywhere"/>
                     <disappearAuto obj1Id="sofia" action="disappear" obj2Id="sofia"/>
                 </step>
-            </sentence>
+            </idea>
         </story>
     </solutions>
 </metadata>

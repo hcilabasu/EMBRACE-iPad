@@ -11,12 +11,12 @@
 
 @interface SolutionStepController : NSObject
 
-@property (nonatomic, strong) ManipulationViewController *mvc;
-@property (nonatomic, strong) StepContext *stepContext;
-@property (nonatomic, strong) ConditionSetup *conditionSetup;
-@property (nonatomic, strong) PageContext *pageContext;
-@property (nonatomic, strong) SentenceContext *sentenceContext;
-@property (nonatomic, strong) ManipulationContext *manipulationContext;
+@property (nonatomic, weak) ManipulationViewController *mvc;
+@property (nonatomic, weak) StepContext *stepContext;
+@property (nonatomic, weak) ConditionSetup *conditionSetup;
+@property (nonatomic, weak) PageContext *pageContext;
+@property (nonatomic, weak) SentenceContext *sentenceContext;
+@property (nonatomic, weak) ManipulationContext *manipulationContext;
 
 -(id)initWithController:(ManipulationViewController *) superMvc;
 - (NSMutableArray *)returnCurrentSolutionSteps;

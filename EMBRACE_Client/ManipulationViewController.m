@@ -12,7 +12,6 @@
 #import "Translation.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import <AVFoundation/AVFoundation.h>
-#import "IntroductionViewController.h"
 #import "Statistics.h"
 #import "LibraryViewController.h"
 #import "NSString+HTML.h"
@@ -102,7 +101,6 @@
 @synthesize bookImporter;
 
 @synthesize libraryViewController;
-@synthesize buildStringClass;
 @synthesize playaudioClass;
 @synthesize syn;
 @synthesize allowInteractions;
@@ -208,7 +206,6 @@ BOOL wasPathFollowed = false;
     stepContext = [[StepContext alloc] init];
     book = [[Book alloc]init];
     model = [[InteractionModel alloc]init];
-    buildStringClass = [[BuildHTMLString alloc] init];
     playaudioClass = [[PlayAudioFile alloc] init];
     
     syn = [[AVSpeechSynthesizer alloc] init];

@@ -12,18 +12,18 @@
 
 @interface AssessmentActivityViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) IBOutlet UISwipeGestureRecognizer *swipeRecognizer;
-@property (nonatomic, strong) IBOutlet UITableView *AnswerList;
-@property (nonatomic, strong) IBOutlet UIView *transparentLayer;
-@property (nonatomic, strong) IBOutlet UIButton *nextButton;
-@property (nonatomic, strong) NSString *ChapterTitle;
+@property (nonatomic, weak) IBOutlet UISwipeGestureRecognizer *swipeRecognizer;
+@property (nonatomic, weak) IBOutlet UITableView *AnswerList;
+@property (nonatomic, weak) IBOutlet UIView *transparentLayer;
+@property (nonatomic, weak) IBOutlet UIButton *nextButton;
+@property (nonatomic, weak) NSString *ChapterTitle;
 
-@property (nonatomic,strong) IBOutlet UIButton *questionButton;
-@property (nonatomic,strong) IBOutlet UIButton *answer1Button;
-@property (nonatomic,strong) IBOutlet UIButton *answer2Button;
-@property (nonatomic,strong) IBOutlet UIButton *answer3Button;
-@property (nonatomic,strong) IBOutlet UIButton *answer4Button;
-@property (nonatomic, strong) PlayAudioFile *playAudioFileClass;
+@property (nonatomic, weak) IBOutlet UIButton *questionButton;
+@property (nonatomic, weak) IBOutlet UIButton *answer1Button;
+@property (nonatomic, weak) IBOutlet UIButton *answer2Button;
+@property (nonatomic, weak) IBOutlet UIButton *answer3Button;
+@property (nonatomic, weak) IBOutlet UIButton *answer4Button;
+@property (nonatomic, weak) PlayAudioFile *playAudioFileClass;
 
 - (id)initWithModel:(InteractionModel *)model :(UIViewController *)libraryViewController :(UIImage *)backgroundImage :(NSString *)bookTitle :(NSString *)chapterTitle :(NSString *)currentPage :(NSString *)currentSentence :(NSString *)currentStep;
 - (void)loadNextAssessmentActivityQuestion;
