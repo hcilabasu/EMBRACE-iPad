@@ -130,11 +130,12 @@
         </story>
         <story title="The Algonquian Wigwam" activity_id="story4-PM-4">
             <idea number="51"/>
-            <idea number="52"/>
+            <idea number="52">
                 <step number="4">
                     <group obj1Id="barkIM" action="bottom" obj2Id="wigwamIM"/>
                     <group obj1Id="barkIM" action="top" obj2Id="wigwamIM"/>
                 </step>
+            </idea>
             <idea number="53">
             </idea>
             <idea number="54"/>
