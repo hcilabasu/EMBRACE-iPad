@@ -216,7 +216,7 @@
             
             <sentence number="7" action="no">
                 
-                <attributes complexity="2"/>
+                <attributes complexity="10"/>
                 
                 <text>The frame of a hogan is made from tree branches.</text>
                 
@@ -558,6 +558,7 @@
                 </ideas>
                 
                 <solution>
+                    <step number="5"/>
                 </solution>
                 
             </sentence>
@@ -613,6 +614,7 @@
                 </ideas>
                 
                 <solution>
+                    <step number="5"/>
                 </solution>
                 
             </sentence>
@@ -944,7 +946,7 @@
                 
                 <attributes complexity="10"/>
                 
-                <text>There is no need for a fire!.</text>
+                <text>There is no need for a fire!</text>
                 
                 <ideas>
                     
@@ -1018,7 +1020,7 @@
                 
                 <attributes complexity="2"/>
                 
-                <text>There is no need for a fire!.</text>
+                <text>There is no need for a fire!</text>
                 
                 <ideas>
                     
@@ -1633,7 +1635,7 @@
                 
             </sentence>
             
-            <sentence number="30" action="no">
+            <sentence number="30" action="yes">
                 
                 <attributes complexity="1"/>
                 
@@ -1646,11 +1648,13 @@
                 </ideas>
                 
                 <solution>
+                    <step number="15"/>
+                    <step number="16"/>
                 </solution>
                 
             </sentence>
             
-            <sentence number="31" action="yes">
+            <sentence number="31" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -1663,8 +1667,7 @@
                 </ideas>
                 
                 <solution>
-                    <step number="15"/>
-                    <step number="16"/>
+                    
                 </solution>
                 
             </sentence>
@@ -2054,8 +2057,22 @@
                 </solution>
                 
             </sentence>
-            
             <sentence number="52" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Not only was the fire used for cooking, but also helped the Sioux stay warm.</text>
+                
+                <ideas>
+                    <idea number="37"/>
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="53" action="no">
                 
                 <attributes complexity="10"/>
                 
@@ -2063,7 +2080,7 @@
                 
                 <ideas>
                     
-                    <idea number="37"/>
+                    <idea number="38"/>
                     
                 </ideas>
                 
@@ -2076,7 +2093,7 @@
             
             
             
-            <sentence number="53" action="yes">
+            <sentence number="54" action="yes">
                 
                 <attributes complexity="2"/>
                 
@@ -2095,7 +2112,7 @@
                 
             </sentence>
             
-            <sentence number="54" action="no">
+            <sentence number="55" action="no">
                 
                 <attributes complexity="2"/>
                 
@@ -2103,24 +2120,7 @@
                 
                 <ideas>
                     
-                    <idea number="37"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="55" action="no">
-                
-                <attributes complexity="1"/>
-                
-                <text>It was important to leave a hole at the top of the teepee.</text>
-                
-                <ideas>
-                    
-                    <idea number="37"/>
+                    <idea number="38"/>
                     
                 </ideas>
                 
@@ -2133,11 +2133,11 @@
                 
                 <attributes complexity="1"/>
                 
-                <text>This let smoke from the fire escape.</text>
+                <text>It was important to leave a hole at the top of the teepee.</text>
                 
                 <ideas>
                     
-                    <idea number="37"/>
+                    <idea number="38"/>
                     
                 </ideas>
                 
@@ -2148,11 +2148,13 @@
             
             <sentence number="57" action="no">
                 
-                <attributes complexity="3"/>
+                <attributes complexity="1"/>
                 
-                <text>Not only was the fire used for cooking, but also helped the Sioux stay warm.</text>
+                <text>This let smoke from the fire escape.</text>
                 
                 <ideas>
+                    
+                    <idea number="38"/>
                     
                 </ideas>
                 
@@ -2160,6 +2162,8 @@
                 </solution>
                 
             </sentence>
+            
+            
             
             <sentence number="58" action="no">
                 
@@ -2169,7 +2173,8 @@
                 
                 <ideas>
                     
-                    <idea number="37"/>
+
+                    <idea number="38"/>
                     
                 </ideas>
                 
@@ -2191,7 +2196,7 @@
                 
                 <ideas>
                     
-                    <idea number="38"/>
+                    <idea number="39"/>
                     
                 </ideas>
                 
@@ -2208,7 +2213,7 @@
                 
                 <ideas>
                     
-                    <idea number="39"/>
+                    <idea number="40"/>
                     
                 </ideas>
                 
@@ -2225,7 +2230,7 @@
                 
                 <ideas>
                     
-                    <idea number="40"/>
+                    <idea number="41"/>
                     
                 </ideas>
                 
@@ -2242,7 +2247,7 @@
                 
                 <ideas>
                     
-                    <idea number="41"/>
+                    <idea number="42"/>
                     
                 </ideas>
                 
@@ -2264,7 +2269,7 @@
                 
                 <ideas>
                     
-                    <idea number="38"/>
+                    <idea number="39"/>
                     
                 </ideas>
                 
@@ -2281,7 +2286,7 @@
                 
                 <ideas>
                     
-                    <idea number="39"/>
+                    <idea number="40"/>
                     
                 </ideas>
                 
@@ -2298,7 +2303,7 @@
                 
                 <ideas>
                     
-                    <idea number="40"/>
+                    <idea number="41"/>
                     
                 </ideas>
                 
@@ -2315,7 +2320,7 @@
                 
                 <ideas>
                     
-                    <idea number="41"/>
+                    <idea number="42"/>
                     
                 </ideas>
                 
@@ -2334,7 +2339,7 @@
                 
                 <ideas>
                     
-                    <idea number="38"/>
+                    <idea number="39"/>
                     
                 </ideas>
                 
@@ -2351,7 +2356,7 @@
                 
                 <ideas>
                     
-                    <idea number="38"/>
+                    <idea number="39"/>
                     
                 </ideas>
                 
@@ -2368,7 +2373,7 @@
                 
                 <ideas>
                     
-                    <idea number="39"/>
+                    <idea number="40"/>
                     
                 </ideas>
                 
@@ -2385,7 +2390,7 @@
                 
                 <ideas>
                     
-                    <idea number="39"/>
+                    <idea number="40"/>
                     
                 </ideas>
                 
@@ -2402,7 +2407,7 @@
                 
                 <ideas>
                     
-                    <idea number="40"/>
+                    <idea number="41"/>
                     
                 </ideas>
                 
@@ -2419,7 +2424,7 @@
                 
                 <ideas>
                     
-                    <idea number="41"/>
+                    <idea number="42"/>
                     
                 </ideas>
                 
@@ -2441,7 +2446,7 @@
                 
                 <ideas>
                     
-                    <idea number="42"/>
+                    <idea number="43"/>
                     
                 </ideas>
                 
@@ -2460,7 +2465,7 @@
                 
                 <ideas>
                     
-                    <idea number="43"/>
+                    <idea number="44"/>
                     
                 </ideas>
                 
@@ -2478,7 +2483,7 @@
                 
                 <ideas>
                     
-                    <idea number="44"/>
+                    <idea number="45"/>
                     
                 </ideas>
                 
@@ -2495,7 +2500,7 @@
                 
                 <ideas>
                     
-                    <idea number="45"/>
+                    <idea number="46"/>
                     
                 </ideas>
                 
@@ -2517,7 +2522,7 @@
                 
                 <ideas>
                     
-                    <idea number="42"/>
+                    <idea number="43"/>
                     
                 </ideas>
                 
@@ -2536,7 +2541,7 @@
                 
                 <ideas>
                     
-                    <idea number="43"/>
+                    <idea number="44"/>
                     
                 </ideas>
                 
@@ -2554,7 +2559,7 @@
                 
                 <ideas>
                     
-                    <idea number="44"/>
+                    <idea number="45"/>
                     
                 </ideas>
                 
@@ -2571,7 +2576,7 @@
                 
                 <ideas>
                     
-                    <idea number="45"/>
+                    <idea number="46"/>
                     
                 </ideas>
                 
@@ -2590,7 +2595,7 @@
                 
                 <ideas>
                     
-                    <idea number="42"/>
+                    <idea number="43"/>
                     
                 </ideas>
                 
@@ -2609,7 +2614,7 @@
                 
                 <ideas>
                     
-                    <idea number="42"/>
+                    <idea number="43"/>
                     
                 </ideas>
                 
@@ -2632,7 +2637,7 @@
                 
                 <ideas>
                     
-                    <idea number="46"/>
+                    <idea number="47"/>
                     
                 </ideas>
                 
@@ -2650,7 +2655,7 @@
                 
                 <ideas>
                     
-                    <idea number="47"/>
+                    <idea number="48"/>
                     
                 </ideas>
                 
@@ -2667,7 +2672,7 @@
                 
                 <ideas>
                     
-                    <idea number="48"/>
+                    <idea number="49"/>
                     
                 </ideas>
                 
@@ -2685,7 +2690,7 @@
                 
                 <ideas>
                     
-                    <idea number="49"/>
+                    <idea number="50"/>
                     
                 </ideas>
                 
@@ -2702,7 +2707,7 @@
                 
                 <ideas>
                     
-                    <idea number="50"/>
+                    <idea number="51"/>
                     
                 </ideas>
                 
@@ -2723,7 +2728,7 @@
                 
                 <ideas>
                     
-                    <idea number="46"/>
+                    <idea number="47"/>
                     
                 </ideas>
                 
@@ -2741,7 +2746,7 @@
                 
                 <ideas>
                     
-                    <idea number="47"/>
+                    <idea number="48"/>
                     
                 </ideas>
                 
@@ -2758,7 +2763,7 @@
                 
                 <ideas>
                     
-                    <idea number="48"/>
+                    <idea number="49"/>
                     
                 </ideas>
                 
@@ -2776,7 +2781,7 @@
                 
                 <ideas>
                     
-                    <idea number="49"/>
+                    <idea number="50"/>
                     
                 </ideas>
                 
@@ -2793,8 +2798,8 @@
                 
                 <ideas>
                     
-                    <idea number="50"/>
-                    
+                    <idea number="51"/>
+                
                 </ideas>
                 
                 <solution>
@@ -2810,9 +2815,9 @@
                 
                 <ideas>
                     
-                    <idea number="47"/>
-                    
                     <idea number="48"/>
+                    
+                    <idea number="49"/>
                     
                 </ideas>
                 
@@ -2835,7 +2840,7 @@
                 
                 <ideas>
                     
-                    <idea number="51"/>
+                    <idea number="52"/>
                     
                 </ideas>
                 
@@ -2852,7 +2857,7 @@
                 
                 <ideas>
                     
-                    <idea number="52"/>
+                    <idea number="53"/>
                     
                 </ideas>
                 
@@ -2871,7 +2876,7 @@
                 
                 <ideas>
                     
-                    <idea number="53"/>
+                    <idea number="54"/>
                     
                 </ideas>
                 
@@ -2890,7 +2895,7 @@
                 
                 <ideas>
                     
-                    <idea number="54"/>
+                    <idea number="55"/>
                     
                 </ideas>
                 
@@ -2907,7 +2912,7 @@
                 
                 <ideas>
                     
-                    <idea number="55"/>
+                    <idea number="56"/>
                     
                 </ideas>
                 
@@ -2924,7 +2929,7 @@
                 
                 <ideas>
                     
-                    <idea number="56"/>
+                    <idea number="57"/>
                     
                 </ideas>
                 
@@ -2945,7 +2950,7 @@
                 
                 <ideas>
                     
-                    <idea number="51"/>
+                    <idea number="52"/>
                     
                 </ideas>
                 
@@ -2962,7 +2967,7 @@
                 
                 <ideas>
                     
-                    <idea number="52"/>
+                    <idea number="53"/>
                     
                 </ideas>
                 
@@ -2981,7 +2986,7 @@
                 
                 <ideas>
                     
-                    <idea number="53"/>
+                    <idea number="54"/>
                     
                 </ideas>
                 
@@ -3000,7 +3005,7 @@
                 
                 <ideas>
                     
-                    <idea number="54"/>
+                    <idea number="55"/>
                     
                 </ideas>
                 
@@ -3017,7 +3022,7 @@
                 
                 <ideas>
                     
-                    <idea number="55"/>
+                    <idea number="56"/>
                     
                 </ideas>
                 
@@ -3034,7 +3039,7 @@
                 
                 <ideas>
                     
-                    <idea number="56"/>
+                    <idea number="57"/>
                     
                 </ideas>
                 
@@ -3051,7 +3056,7 @@
                 
                 <ideas>
                     
-                    <idea number="51"/>
+                    <idea number="52"/>
                     
                     
                     
@@ -3069,7 +3074,7 @@
                 <text>They put the bark near the bottom of the wigwam first.</text>
                 
                 <ideas>
-                    <idea number="52"/>
+                    <idea number="53"/>
                 </ideas>
                 
                 <solution>
@@ -3087,7 +3092,7 @@
                 
                 <ideas>
                     
-                    <idea number="54"/>
+                    <idea number="55"/>
                     
                 </ideas>
                 
@@ -3104,7 +3109,7 @@
                 
                 <ideas>
                     
-                    <idea number="54"/>
+                    <idea number="55"/>
                     
                 </ideas>
                 
@@ -3121,9 +3126,9 @@
                 
                 <ideas>
                     
-                    <idea number="51"/>
-                    
                     <idea number="52"/>
+                    
+                    <idea number="53"/>
                     
                 </ideas>
                 
@@ -3142,7 +3147,7 @@
                 
                 <ideas>
                     
-                    <idea number="54"/>
+                    <idea number="55"/>
                     
                 </ideas>
                 
@@ -3159,9 +3164,9 @@
                 
                 <ideas>
                     
-                    <idea number="55"/>
-                    
                     <idea number="56"/>
+                    
+                    <idea number="57"/>
                     
                 </ideas>
                 
@@ -3182,7 +3187,7 @@
                 
                 <ideas>
                     
-                    <idea number="57"/>
+                    <idea number="58"/>
                     
                 </ideas>
                 
@@ -3199,7 +3204,7 @@
                 
                 <ideas>
                     
-                    <idea number="58"/>
+                    <idea number="59"/>
                     
                 </ideas>
                 
@@ -3220,7 +3225,7 @@
                 
                 <ideas>
                     
-                    <idea number="57"/>
+                    <idea number="58"/>
                     
                 </ideas>
                 
@@ -3237,7 +3242,7 @@
                 
                 <ideas>
                     
-                    <idea number="58"/>
+                    <idea number="59"/>
                     
                 </ideas>
                 
@@ -3257,7 +3262,7 @@
                 
                 <ideas>
                     
-                    <idea number="59"/>
+                    <idea number="60"/>
                     
                 </ideas>
                 
@@ -3274,7 +3279,7 @@
                 
                 <ideas>
                     
-                    <idea number="60"/>
+                    <idea number="61"/>
                     
                 </ideas>
                 
@@ -3297,7 +3302,7 @@
                 
                 <ideas>
                     
-                    <idea number="59"/>
+                    <idea number="60"/>
                     
                 </ideas>
                 
@@ -3314,7 +3319,7 @@
                 
                 <ideas>
                     
-                    <idea number="60"/>
+                    <idea number="61"/>
                     
                 </ideas>
                 
@@ -3333,7 +3338,7 @@
                 
                 <ideas>
                     
-                    <idea number="60"/>
+                    <idea number="61"/>
                     
                 </ideas>
                 
@@ -3351,7 +3356,7 @@
                 
                 <ideas>
                     
-                    <idea number="59"/>
+                    <idea number="60"/>
                     
                 </ideas>
                 
@@ -3372,7 +3377,7 @@
                 
                 <ideas>
                     
-                    <idea number="61"/>
+                    <idea number="62"/>
                     
                 </ideas>
                 
@@ -3391,7 +3396,7 @@
                 
                 <ideas>
                     
-                    <idea number="62"/>
+                    <idea number="63"/>
                     
                 </ideas>
                 
@@ -3409,7 +3414,7 @@
                 
                 <ideas>
                     
-                    <idea number="63"/>
+                    <idea number="64"/>
                     
                 </ideas>
                 
@@ -3432,7 +3437,7 @@
                 
                 <ideas>
                     
-                    <idea number="61"/>
+                    <idea number="62"/>
                     
                 </ideas>
                 
@@ -3451,7 +3456,7 @@
                 
                 <ideas>
                     
-                    <idea number="62"/>
+                    <idea number="63"/>
                     
                 </ideas>
                 
@@ -3469,7 +3474,7 @@
                 
                 <ideas>
                     
-                    <idea number="63"/>
+                    <idea number="64"/>
                     
                 </ideas>
                 
@@ -3488,7 +3493,7 @@
                 
                 <ideas>
                     
-                    <idea number="62"/>
+                    <idea number="63"/>
                     
                 </ideas>
                 
@@ -3505,7 +3510,7 @@
                 
                 <ideas>
                     
-                    <idea number="63"/>
+                    <idea number="64"/>
                     
                 </ideas>
                 
@@ -3527,7 +3532,7 @@
                 
                 <ideas>
                     
-                    <idea number="64"/>
+                    <idea number="65"/>
                     
                 </ideas>
                 
@@ -3544,7 +3549,7 @@
                 
                 <ideas>
                     
-                    <idea number="65"/>
+                    <idea number="66"/>
                     
                 </ideas>
                 
@@ -3561,7 +3566,7 @@
                 
                 <ideas>
                     
-                    <idea number="66"/>
+                    <idea number="67"/>
                     
                 </ideas>
                 
@@ -3585,7 +3590,7 @@
                 
                 <ideas>
                     
-                    <idea number="64"/>
+                    <idea number="65"/>
                     
                 </ideas>
                 
@@ -3602,7 +3607,7 @@
                 
                 <ideas>
                     
-                    <idea number="65"/>
+                    <idea number="66"/>
                     
                 </ideas>
                 
@@ -3619,7 +3624,7 @@
                 
                 <ideas>
                     
-                    <idea number="66"/>
+                    <idea number="67"/>
                     
                 </ideas>
                 
@@ -3638,7 +3643,7 @@
                 
                 <ideas>
                     
-                    <idea number="66"/>
+                    <idea number="67"/>
                     
                 </ideas>
                 
@@ -3655,7 +3660,7 @@
                 
                 <ideas>
                     
-                    <idea number="66"/>
+                    <idea number="67"/>
                     
                 </ideas>
                 
@@ -3672,7 +3677,7 @@
                 
                 <ideas>
                     
-                    <idea number="66"/>
+                    <idea number="67"/>
                     
                 </ideas>
                 
@@ -3689,7 +3694,7 @@
                 
                 <ideas>
                     
-                    <idea number="66"/>
+                    <idea number="67"/>
                     
                 </ideas>
                 
@@ -3706,7 +3711,7 @@
                 
                 <ideas>
                     
-                    <idea number="66"/>
+                    <idea number="67"/>
                     
                 </ideas>
                 
@@ -3728,7 +3733,7 @@
                 
                 <ideas>
                     
-                    <idea number="67"/>
+                    <idea number="68"/>
                     
                 </ideas>
                 
@@ -3747,7 +3752,7 @@
                 
                 <ideas>
                     
-                    <idea number="68"/>
+                    <idea number="69"/>
                     
                 </ideas>
                 
@@ -3768,7 +3773,7 @@
                 
                 <ideas>
                     
-                    <idea number="67"/>
+                    <idea number="68"/>
                     
                 </ideas>
                 
@@ -3787,7 +3792,7 @@
                 
                 <ideas>
                     
-                    <idea number="68"/>
+                    <idea number="69"/>
                     
                 </ideas>
                 
@@ -3804,7 +3809,7 @@
                 
                 <ideas>
                     
-                    <idea number="68"/>
+                    <idea number="69"/>
                     
                 </ideas>
                 
@@ -3825,7 +3830,7 @@
                 
                 <ideas>
                     
-                    <idea number="69"/>
+                    <idea number="70"/>
                     
                 </ideas>
                 
@@ -3843,7 +3848,7 @@
                 
                 <ideas>
                     
-                    <idea number="69"/>
+                    <idea number="70"/>
                     
                 </ideas>
                 
@@ -3865,7 +3870,7 @@
                 
                 <ideas>
                     
-                    <idea number="70"/>
+                    <idea number="71"/>
                     
                 </ideas>
                 
@@ -3882,7 +3887,7 @@
                 
                 <ideas>
                     
-                    <idea number="71"/>
+                    <idea number="72"/>
                     
                 </ideas>
                 
@@ -3900,7 +3905,7 @@
                 
                 <ideas>
                     
-                    <idea number="72"/>
+                    <idea number="73"/>
                     
                 </ideas>
                 
@@ -3921,7 +3926,7 @@
                 
                 <ideas>
                     
-                    <idea number="70"/>
+                    <idea number="71"/>
                     
                 </ideas>
                 
@@ -3938,7 +3943,7 @@
                 
                 <ideas>
                     
-                    <idea number="71"/>
+                    <idea number="72"/>
                     
                 </ideas>
                 
@@ -3956,7 +3961,7 @@
                 
                 <ideas>
                     
-                    <idea number="72"/>
+                    <idea number="73"/>
                     
                 </ideas>
                 
@@ -3974,11 +3979,7 @@
                 
                 <ideas>
                     
-                    <idea number="72"/>
-                    
-                    <idea number="72"/>
-                    
-                    <idea number="72"/>
+                    <idea number="71"/>
                     
                 </ideas>
                 
@@ -3997,9 +3998,6 @@
                     
                     <idea number="72"/>
                     
-                    <idea number="72"/>
-                    
-                    <idea number="72"/>
                     
                 </ideas>
                 
@@ -4016,11 +4014,7 @@
                 
                 <ideas>
                     
-                    <idea number="72"/>
-                    
-                    <idea number="72"/>
-                    
-                    <idea number="72"/>
+                    <idea number="73"/>
                     
                 </ideas>
                 
@@ -4037,7 +4031,7 @@
                 
                 <ideas>
                     
-                    <idea number="72"/>
+                    <idea number="73"/>
                     
                     <idea number="72"/>
                     
@@ -4058,11 +4052,7 @@
                 
                 <ideas>
                     
-                    <idea number="72"/>
-                    
-                    <idea number="72"/>
-                    
-                    <idea number="72"/>
+                    <idea number="73"/>
                     
                 </ideas>
                 
@@ -4078,12 +4068,8 @@
                 <text>But the Seminoles fled into swamps called the Everglades when the U.</text>
                 
                 <ideas>
-                    
                     <idea number="72"/>
-                    
-                    <idea number="72"/>
-                    
-                    <idea number="72"/>
+                    <idea number="73"/>
                     
                 </ideas>
                 
@@ -4101,10 +4087,7 @@
                 <ideas>
                     
                     <idea number="72"/>
-                    
-                    <idea number="72"/>
-                    
-                    <idea number="72"/>
+                    <idea number="73"/>
                     
                 </ideas>
                 
@@ -4122,10 +4105,7 @@
                 <ideas>
                     
                     <idea number="72"/>
-                    
-                    <idea number="72"/>
-                    
-                    <idea number="72"/>
+                    <idea number="73"/>
                     
                 </ideas>
                 
@@ -4146,7 +4126,7 @@
                 
                 <ideas>
                     
-                    <idea number="73"/>
+                    <idea number="74"/>
                     
                 </ideas>
                 
@@ -4163,7 +4143,7 @@
                 
                 <ideas>
                     
-                    <idea number="74"/>
+                    <idea number="75"/>
                     
                 </ideas>
                 
@@ -4180,7 +4160,7 @@
                 
                 <ideas>
                     
-                    <idea number="75"/>
+                    <idea number="76"/>
                     
                 </ideas>
                 
@@ -4199,7 +4179,7 @@
                 
                 <ideas>
                     
-                    <idea number="76"/>
+                    <idea number="77"/>
                     
                 </ideas>
                 
@@ -4222,7 +4202,7 @@
                 
                 <ideas>
                     
-                    <idea number="73"/>
+                    <idea number="74"/>
                     
                 </ideas>
                 
@@ -4239,7 +4219,7 @@
                 
                 <ideas>
                     
-                    <idea number="74"/>
+                    <idea number="75"/>
                     
                 </ideas>
                 
@@ -4256,7 +4236,7 @@
                 
                 <ideas>
                     
-                    <idea number="75"/>
+                    <idea number="76"/>
                     
                 </ideas>
                 
@@ -4275,7 +4255,7 @@
                 
                 <ideas>
                     
-                    <idea number="76"/>
+                    <idea number="77"/>
                     
                 </ideas>
                 
@@ -4294,7 +4274,7 @@
                 
                 <ideas>
                     
-                    <idea number="76"/>
+                    <idea number="74"/>
                     
                 </ideas>
                 
@@ -4311,7 +4291,7 @@
                 
                 <ideas>
                     
-                    <idea number="76"/>
+                    <idea number="74"/>
                     
                 </ideas>
                 
@@ -4328,7 +4308,7 @@
                 
                 <ideas>
                     
-                    <idea number="76"/>
+                    <idea number="75"/>
                     
                 </ideas>
                 
@@ -4345,7 +4325,7 @@
                 
                 <ideas>
                     
-                    <idea number="76"/>
+                    <idea number="75"/>
                     
                 </ideas>
                 
@@ -4379,7 +4359,7 @@
                 
                 <ideas>
                     
-                    <idea number="76"/>
+                    <idea number="77"/>
                     
                 </ideas>
                 
@@ -4401,7 +4381,7 @@
                 
                 <ideas>
                     
-                    <idea number="77"/>
+                    <idea number="78"/>
                     
                 </ideas>
                 
@@ -4420,7 +4400,7 @@
                 
                 <ideas>
                     
-                    <idea number="78"/>
+                    <idea number="79"/>
                     
                 </ideas>
                 
@@ -4437,7 +4417,7 @@
                 
                 <ideas>
                     
-                    <idea number="79"/>
+                    <idea number="80"/>
                     
                 </ideas>
                 
@@ -4456,7 +4436,7 @@
                 
                 <ideas>
                     
-                    <idea number="80"/>
+                    <idea number="81"/>
                     
                 </ideas>
                 
@@ -4475,7 +4455,7 @@
                 
                 <ideas>
                     
-                    <idea number="81"/>
+                    <idea number="82"/>
                     
                 </ideas>
                 
@@ -4492,7 +4472,7 @@
                 
                 <ideas>
                     
-                    <idea number="82"/>
+                    <idea number="83"/>
                     
                 </ideas>
                 
@@ -4512,7 +4492,7 @@
                 
                 <ideas>
                     
-                    <idea number="77"/>
+                    <idea number="78"/>
                     
                 </ideas>
                 
@@ -4531,7 +4511,7 @@
                 
                 <ideas>
                     
-                    <idea number="78"/>
+                    <idea number="79"/>
                     
                 </ideas>
                 
@@ -4548,7 +4528,7 @@
                 
                 <ideas>
                     
-                    <idea number="79"/>
+                    <idea number="80"/>
                     
                 </ideas>
                 
@@ -4567,7 +4547,7 @@
                 
                 <ideas>
                     
-                    <idea number="80"/>
+                    <idea number="81"/>
                     
                 </ideas>
                 
@@ -4586,7 +4566,7 @@
                 
                 <ideas>
                     
-                    <idea number="81"/>
+                    <idea number="82"/>
                     
                 </ideas>
                 
@@ -4603,7 +4583,7 @@
                 
                 <ideas>
                     
-                    <idea number="82"/>
+                    <idea number="83"/>
                     
                 </ideas>
                 
@@ -4620,7 +4600,7 @@
                 
                 <ideas>
                     
-                    <idea number="82"/>
+                    <idea number="78"/>
                     
                 </ideas>
                 
@@ -4637,7 +4617,7 @@
                 
                 <ideas>
                     
-                    <idea number="82"/>
+                    <idea number="78"/>
                     
                 </ideas>
                 
@@ -4654,7 +4634,7 @@
                 
                 <ideas>
                     
-                    <idea number="82"/>
+                    <idea number="81"/>
                     
                 </ideas>
                 
@@ -4671,7 +4651,7 @@
                 
                 <ideas>
                     
-                    <idea number="82"/>
+                    <idea number="81"/>
                     
                 </ideas>
                 
@@ -4688,7 +4668,7 @@
                 
                 <ideas>
                     
-                    <idea number="82"/>
+                    <idea number="78"/>
                     
                 </ideas>
                 
@@ -4705,7 +4685,7 @@
                 
                 <ideas>
                     
-                    <idea number="82"/>
+                    <idea number="81"/>
                     
                 </ideas>
                 

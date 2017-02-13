@@ -114,7 +114,7 @@
         </mode>
     </sequence>
     <sequence bookTitle="Native American Homes">
-        <mode chapterTitle="Introduction to Native American Homes" newInstructions="true" vocabPage="true" assessmentPage="true">
+        <mode chapterTitle="Introduction to Native American Homes" newInstructions="false" vocabPage="true" assessmentPage="true">
             <reader>System</reader>
             <language>Spanish</language>
             <intervention>ITSPM</intervention>
