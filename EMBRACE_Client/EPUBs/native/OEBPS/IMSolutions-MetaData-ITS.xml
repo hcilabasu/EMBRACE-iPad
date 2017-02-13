@@ -158,10 +158,9 @@
                     <group obj1Id="haidaIM" action="with" obj2Id="canoeIM"/>
                 </step>
             </idea>
-            <idea number="62">
-            </idea>
-            <idea number="63">
-            </idea>
+            <idea number="62"/>
+            <idea number="63"/>
+            
         </story>
         <story title="The Haida Plank House" activity_id="story5-PM-4">
             <idea number="64"/>

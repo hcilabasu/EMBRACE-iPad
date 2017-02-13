@@ -24,7 +24,8 @@
             <idea number="5">
                 <step number="1">
                     <check obj1Id="mud" action="getIn" locationId="hogan"/>
-                    <move obj1Id="mud" action="getIn" waypointId="hogan"/>
+                    <swapImage obj1Id="hogan" action="getsFilled"/>
+                    <disappearAuto obj1Id="mud" action="disappear" obj2Id="mud"/>
                 </step>
             </idea>
             <idea number="6">
@@ -213,13 +214,14 @@
                 </step>
             </idea>
             <idea number="37"/>
+            <idea number="38"/>
         </story>
         <story title="The Algonquian Wigwam" activity_id="story4-PM-1">
             
-            <idea number="38"/>
             <idea number="39"/>
             <idea number="40"/>
-            <idea number="41">
+            <idea number="41"/>
+            <idea number="42">
                 <step number="25">
                     <group obj1Id="man_ch4" action="grab" obj2Id="rock"/>
                 </step>
@@ -232,7 +234,7 @@
             </idea>
         </story>
         <story title="The Algonquian Wigwam" activity_id="story4-PM-2">
-            <idea number="42">
+            <idea number="43">
                 <step number="27">
                     <check obj1Id="man_ch4" action="getIn" locationId="sticks"/>
                     <swapImage obj1Id="man_ch4" action="stick"/>
@@ -244,15 +246,15 @@
                     <appear obj1Id="circle" action="appear"/>
                 </step>
             </idea>
-            <idea number="43">
+            <idea number="44">
                 <step number="29">
                     <check obj1Id="man_ch4" action="getIn" locationId="circleCh4"/>
                     <move obj1Id="man_ch4" action="getIn" waypointId="clearedArea"/>
                     <swapImage obj1Id="circle" action="holes"/>
                 </step>
             </idea>
-            <idea number="44"/>
-            <idea number="45">
+            <idea number="45"/>
+            <idea number="46">
                 <step number="30">
                     <check obj1Id="man_ch4" action="getIn" locationId="logs"/>
                     <appear obj1Id="branch" action="appear"/>
@@ -267,9 +269,9 @@
             </idea>
         </story>
         <story title="The Algonquian Wigwam" activity_id="story4-PM-3">
-            <idea number="46"/>
             <idea number="47"/>
-            <idea number="48">
+            <idea number="48"/>
+            <idea number="49">
             
                 <step number="32">
                     <check obj1Id="man_ch4" action="getIn" locationId="circleCh4"/>
@@ -277,12 +279,12 @@
                     <disappearAuto obj1Id="man_ch4" action="disappear" obj2Id="man_ch4"/>
                 </step>
             </idea>
-            <idea number="49"/>
             <idea number="50"/>
+            <idea number="51"/>
         </story>
         <story title="The Algonquian Wigwam" activity_id="story4-PM-4">
-            <idea number="51"/>
-            <idea number="52">
+            <idea number="52"/>
+            <idea number="53">
                 <step number="33">
                     <check obj1Id="man_ch4" action="getIn" locationId="bark"/>
                     <groupAuto obj1Id="bark" action="getIn" obj2Id="man_ch4"/>
@@ -295,7 +297,7 @@
                     <swapImage obj1Id="wigwam" action="first_bark"/>
                 </step>
             </idea>
-            <idea number="53">
+            <idea number="54">
                 <step number="35">
                     <check obj1Id="man_ch4" action="getIn" locationId="bark"/>
                     <groupAuto obj1Id="bark2" action="getIn" obj2Id="man_ch4"/>
@@ -309,17 +311,17 @@
                     <disappearAuto obj1Id="bark_pile2" action="disappear" obj2Id="bark_pile2"/>
                 </step>
             </idea>
-            <idea number="54"/>
             <idea number="55"/>
             <idea number="56"/>
+            <idea number="57"/>
         </story>
         <story title="The Haida Plank House" activity_id="story5-PM-1">
-            <idea number="57"/>
             <idea number="58"/>
+            <idea number="59"/>
             </story>
         <story title="The Haida Plank House" activity_id="story5-PM-2">
-            <idea number="59"/>
-            <idea number="60">
+            <idea number="60"/>
+            <idea number="61">
                 <step number="37">
                     <check obj1Id="haida" action="getIn" locationId="boat"/>
                     <disappearAuto obj1Id="haida" action="disappear" obj2Id="haida"/>
@@ -332,7 +334,7 @@
             </idea>
         </story>
         <story title="The Haida Plank House" activity_id="story5-PM-3">
-            <idea number="61">
+            <idea number="62">
                 <step number="39">
                     <group obj1Id="haida" action="grab" obj2Id="axe"/>
                     <ungroup obj1Id="haida" action="drop" obj2Id="axe"/>
@@ -349,7 +351,7 @@
                     <disappearAutoWithDelay obj1Id="fallen_tree" action="disappear" obj2Id="5"/>
                 </step>
             </idea>
-            <idea number="62">
+            <idea number="63">
                 <step number="41">
                     <group obj1Id="haida" action="grab" obj2Id="fallen_tree2"/>
                     <ungroup obj1Id="haida" action="drop" obj2Id="fallen_tree2"/>
@@ -361,7 +363,7 @@
                     <appear obj1Id="axe" action="appear"/>
                 </step>
             </idea>
-            <idea number="63">
+            <idea number="64">
                 <step number="42">
                     <group obj1Id="haida" action="roll" obj2Id="log1"/>
                     <move obj1Id="haida" action="getIn" waypointId="log"/>
@@ -373,9 +375,9 @@
             </idea>
         </story>
         <story title="The Haida Plank House" activity_id="story5-PM-4">
-            <idea number="64"/>
             <idea number="65"/>
-            <idea number="66">
+            <idea number="66"/>
+            <idea number="67">
                 <step number="44">
                     <check obj1Id="haida" action="getIn" locationId="planks"/>
                     <groupAuto obj1Id="plank" action="getIn" obj2Id="haida"/>
@@ -388,7 +390,7 @@
             </idea>
         </story>
         <story title="The Haida Plank House" activity_id="story5-PM-5">
-            <idea number="67">
+            <idea number="68">
                 <step number="46">
                     <check obj1Id="haida" action="getIn" locationId="planks2"/>
                     <groupAuto obj1Id="plank" action="getIn" obj2Id="haida"/>
@@ -402,15 +404,15 @@
                     <move obj1Id="haida" action="getIn" waypointId="plankHole"/>
                 </step>
             </idea>
-            <idea number="68"/>
+            <idea number="69"/>
         </story>
         <story title="The Seminole Chickee" activity_id="story6-PM-1">
-            <idea number="69"/>
+            <idea number="70"/>
             </story>
         <story title="The Seminole Chickee" activity_id="story6-PM-2">
-            <idea number="70"/>
             <idea number="71"/>
-            <idea number="72">
+            <idea number="72"/>
+            <idea number="73">
                 <step number="48">
                     <check obj1Id="seminole_dad" action="getIn" locationId="swamp"/>
                     <move obj1Id="seminole_dad" action="getIn" waypointId="swampDad"/>
@@ -420,9 +422,9 @@
             </idea>
         </story>
         <story title="The Seminole Chickee" activity_id="story6-PM-3">
-            <idea number="73"/>
             <idea number="74"/>
-            <idea number="75">
+            <idea number="75"/>
+            <idea number="76">
                 <step number="49">
                     <group obj1Id="seminole_dad" action="pickUp" obj2Id="log_ch6"/>
                 </step>
@@ -434,7 +436,7 @@
                     <swapImage obj1Id="chickee" action="adds_log"/>
                 </step>
             </idea>
-            <idea number="76">
+            <idea number="77">
                 <step number="51">
                     <group obj1Id="seminole_dad" action="pickUp" obj2Id="pole_ch6"/>
                     <move obj1Id="seminole_dad" action="getIn" waypointId="poles2"/>
@@ -448,7 +450,7 @@
             </idea>
         </story>
         <story title="The Seminole Chickee" activity_id="story6-PM-4">
-            <idea number="77">
+            <idea number="78">
                 <step number="53">
                     <check obj1Id="seminole_dad" action="getIn" locationId="palms"/>
                     <groupAuto obj1Id="seminole_dad" action="grab" obj2Id="palm_platform"/>
@@ -461,9 +463,9 @@
                     <move obj1Id="palm_platform" action="getIn" waypointId="chickeePalm"/>
                 </step>
             </idea>
-            <idea number="78"/>
+            <idea number="79"/>
             
-            <idea number="79">
+            <idea number="80">
                 <step number="55">
                     <check obj1Id="seminole_dad" action="getIn" locationId="palms"/>
                     <groupAuto obj1Id="seminole_dad" action="grab" obj2Id="palm_roof"/>
@@ -477,7 +479,7 @@
                     <swapImage obj1Id="chickee" action="finished"/>
                 </step>
             </idea>
-            <idea number="80">
+            <idea number="81">
                 <step number="57">
                     <group obj1Id="seminole_dad" action="pickUp" obj2Id="ladder"/>
                 </step>
@@ -488,9 +490,9 @@
                     <move obj1Id="ladder" action="getIn" waypointId="chickeeLadder"/>
                 </step>
             </idea>
-            <idea number="81"/>
             <idea number="82"/>
-            <idea number="83">
+            <idea number="83"/>
+            <idea number="84">
                 <step number="59">
                     <appear obj1Id="mosquito1" action="appear"/>
                     <appear obj1Id="mosquito2" action="appear"/>

@@ -970,7 +970,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             if ([ssc checkSolutionForSubject:imageAtPoint]) {
                 [[ServerCommunicationController sharedInstance] logVerification:true forAction:TAP_OBJECT context:manipulationContext];
                 
-                if (conditionSetup.useKnowledgeTracing && ![chapterTitle isEqualToString:@"The Naughty Monkey"]) {
+                if (conditionSetup.useKnowledgeTracing && ![chapterTitle isEqualToString:@"The Naughty Monkey"] &&
+                    currSolStep.locationId != nil) {
                     [[ITSController sharedInstance] movedObjectIDs:[self.manipulationView getSetOfObjectsGroupedWithObject:imageAtPoint] destinationIDs:@[currSolStep.locationId] isVerified:true actionStep:currSolStep manipulationContext:manipulationContext forSentence:sentenceContext.currentSentenceText withWordMapping:model.wordMapping];
                 }
                 
