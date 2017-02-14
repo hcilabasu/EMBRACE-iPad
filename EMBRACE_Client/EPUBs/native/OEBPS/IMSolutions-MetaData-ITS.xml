@@ -18,7 +18,7 @@
             <idea number="2"/>
             <idea number="3"/>
             
-         </story>
+        </story>
         <story title="The Navajo Hogan" activity_id="story1-PM-2">
             <idea number="4"/>
             <idea number="5">
@@ -98,22 +98,22 @@
                 </step>
             </idea>
             <idea number="37"/>
+            <idea number="38"/>
         </story>
         <story title="The Algonquian Wigwam" activity_id="story4-PM-1">
-            
-            <idea number="38"/>
             <idea number="39"/>
             <idea number="40"/>
-            <idea number="41">
+            <idea number="41"/>
+            <idea number="42">
             </idea>
         </story>
         <story title="The Algonquian Wigwam" activity_id="story4-PM-2">
-            <idea number="42">
-            </idea>
             <idea number="43">
             </idea>
-            <idea number="44"/>
-            <idea number="45">
+            <idea number="44">
+            </idea>
+            <idea number="45"/>
+            <idea number="46">
                 <step number="3">
                     <group obj1Id="poleIM" action="inside" obj2Id="poleIM"/>
                     <group obj1Id="stoneIM" action="inside" obj2Id="holeIM"/>
@@ -121,99 +121,100 @@
             </idea>
         </story>
         <story title="The Algonquian Wigwam" activity_id="story4-PM-3">
-            <idea number="46"/>
             <idea number="47"/>
-            <idea number="48">
+            <idea number="48"/>
+            <idea number="49">
             </idea>
-            <idea number="49"/>
             <idea number="50"/>
+            <idea number="51"/>
         </story>
         <story title="The Algonquian Wigwam" activity_id="story4-PM-4">
-            <idea number="51"/>
-            <idea number="52">
+            <idea number="52"/>
+            <idea number="53">
                 <step number="4">
                     <group obj1Id="barkIM" action="bottom" obj2Id="wigwamIM"/>
                     <group obj1Id="barkIM" action="top" obj2Id="wigwamIM"/>
                 </step>
             </idea>
-            <idea number="53">
+            <idea number="54">
             </idea>
-            <idea number="54"/>
             <idea number="55"/>
             <idea number="56"/>
+            <idea number="57"/>
         </story>
         <story title="The Haida Plank House" activity_id="story5-PM-1">
-            <idea number="57"/>
             <idea number="58"/>
-            </story>
-        <story title="The Haida Plank House" activity_id="story5-PM-2">
             <idea number="59"/>
-            <idea number="60">
+        </story>
+        <story title="The Haida Plank House" activity_id="story5-PM-2">
+            <idea number="60"/>
+            <idea number="61">
             </idea>
         </story>
         <story title="The Haida Plank House" activity_id="story5-PM-3">
-            <idea number="61">
+            <idea number="62">
                 <step number="5">
                     <group obj1Id="haidaIM" action="with" obj2Id="axeIM"/>
                     <group obj1Id="haidaIM" action="with" obj2Id="canoeIM"/>
                 </step>
             </idea>
-            <idea number="62"/>
-            <idea number="63"/>
-            
+            <idea number="63">
+            </idea>
+            <idea number="64">
+            </idea>
         </story>
         <story title="The Haida Plank House" activity_id="story5-PM-4">
-            <idea number="64"/>
             <idea number="65"/>
-            <idea number="66">
+            <idea number="66"/>
+            <idea number="67">
+            </idea>
+        </story>
+        <story title="The Haida Plank House" activity_id="story5-PM-5">
+            <idea number="68">
+            </idea>
+            <idea number="69">
                 <step number="6">
                     <group obj1Id="haidaIM" action="carry" obj2Id="planksIM"/>
                     <group obj1Id="haidaIM" action="standOn" obj2Id="planksIM"/>
                 </step>
             </idea>
         </story>
-        <story title="The Haida Plank House" activity_id="story5-PM-5">
-            <idea number="67">
-            </idea>
-            <idea number="68"/>
-        </story>
         <story title="The Seminole Chickee" activity_id="story6-PM-1">
-            <idea number="69"/>
-            </story>
-        <story title="The Seminole Chickee" activity_id="story6-PM-2">
             <idea number="70"/>
+        </story>
+        <story title="The Seminole Chickee" activity_id="story6-PM-2">
             <idea number="71"/>
-            <idea number="72">
+            <idea number="72"/>
+            <idea number="73">
             </idea>
         </story>
         <story title="The Seminole Chickee" activity_id="story6-PM-3">
-            <idea number="73"/>
             <idea number="74"/>
-            <idea number="75">
+            <idea number="75"/>
+            <idea number="76">
                 <step number="7">
                     <group obj1Id="logsInGroundIM" action="stuckIn" obj2Id="logsInGroundIM"/>
                     <group obj1Id="logsIM" action="pile" obj2Id="groundIM"/>
                 </step>
             </idea>
-            <idea number="76">
+            <idea number="77">
             </idea>
         </story>
         <story title="The Seminole Chickee" activity_id="story6-PM-4">
-            <idea number="77">
+            <idea number="78">
             </idea>
-            <idea number="78"/>
-            
-            <idea number="79">
-            </idea>
+            <idea number="79"/>
             <idea number="80">
+            </idea>
+            <idea number="81">
                 <step number="8">
                     <group obj1Id="ladderIM" action="attached" obj2Id="houseIM"/>
                     <group obj1Id="poleIM" action="attached" obj2Id="houseIM"/>
                 </step>
             </idea>
-            <idea number="81"/>
             <idea number="82"/>
-            <idea number="83">
+            <idea number="83"/>
+            <idea number="84">
             </idea>
         </story>
     </solutions>

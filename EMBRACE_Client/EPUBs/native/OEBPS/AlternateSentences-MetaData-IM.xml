@@ -216,7 +216,7 @@
             
             <sentence number="7" action="no">
                 
-                <attributes complexity="2"/>
+                <attributes complexity="10"/>
                 
                 <text>The frame of a hogan is made from tree branches.</text>
                 
@@ -558,6 +558,7 @@
                 </ideas>
                 
                 <solution>
+                    
                 </solution>
                 
             </sentence>
@@ -613,6 +614,7 @@
                 </ideas>
                 
                 <solution>
+                    
                 </solution>
                 
             </sentence>
@@ -1633,7 +1635,7 @@
                 
             </sentence>
             
-            <sentence number="30" action="no">
+            <sentence number="30" action="yes">
                 
                 <attributes complexity="1"/>
                 
@@ -1646,11 +1648,13 @@
                 </ideas>
                 
                 <solution>
+                    
+                    
                 </solution>
                 
             </sentence>
             
-            <sentence number="31" action="yes">
+            <sentence number="31" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -1663,7 +1667,6 @@
                 </ideas>
                 
                 <solution>
-                    
                     
                 </solution>
                 
@@ -1723,7 +1726,6 @@
                 
                 <solution>
                     <step number="1"/>
-                    
                 </solution>
                 
             </sentence>
@@ -2050,8 +2052,22 @@
                 </solution>
                 
             </sentence>
-            
             <sentence number="52" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Not only was the fire used for cooking, but also helped the Sioux stay warm.</text>
+                
+                <ideas>
+                    <idea number="37"/>
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="53" action="no">
                 
                 <attributes complexity="10"/>
                 
@@ -2059,7 +2075,7 @@
                 
                 <ideas>
                     
-                    <idea number="37"/>
+                    <idea number="38"/>
                     
                 </ideas>
                 
@@ -2072,7 +2088,7 @@
             
             
             
-            <sentence number="53" action="yes">
+            <sentence number="54" action="yes">
                 
                 <attributes complexity="2"/>
                 
@@ -2090,7 +2106,7 @@
                 
             </sentence>
             
-            <sentence number="54" action="no">
+            <sentence number="55" action="no">
                 
                 <attributes complexity="2"/>
                 
@@ -2098,24 +2114,7 @@
                 
                 <ideas>
                     
-                    <idea number="37"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="55" action="no">
-                
-                <attributes complexity="1"/>
-                
-                <text>It was important to leave a hole at the top of the teepee.</text>
-                
-                <ideas>
-                    
-                    <idea number="37"/>
+                    <idea number="38"/>
                     
                 </ideas>
                 
@@ -2128,11 +2127,11 @@
                 
                 <attributes complexity="1"/>
                 
-                <text>This let smoke from the fire escape.</text>
+                <text>It was important to leave a hole at the top of the teepee.</text>
                 
                 <ideas>
                     
-                    <idea number="37"/>
+                    <idea number="38"/>
                     
                 </ideas>
                 
@@ -2143,11 +2142,13 @@
             
             <sentence number="57" action="no">
                 
-                <attributes complexity="3"/>
+                <attributes complexity="1"/>
                 
-                <text>Not only was the fire used for cooking, but also helped the Sioux stay warm.</text>
+                <text>This let smoke from the fire escape.</text>
                 
                 <ideas>
+                    
+                    <idea number="38"/>
                     
                 </ideas>
                 
@@ -2155,6 +2156,8 @@
                 </solution>
                 
             </sentence>
+            
+            
             
             <sentence number="58" action="no">
                 
@@ -2164,7 +2167,8 @@
                 
                 <ideas>
                     
-                    <idea number="37"/>
+                    
+                    <idea number="38"/>
                     
                 </ideas>
                 
@@ -2186,7 +2190,7 @@
                 
                 <ideas>
                     
-                    <idea number="38"/>
+                    <idea number="39"/>
                     
                 </ideas>
                 
@@ -2203,7 +2207,7 @@
                 
                 <ideas>
                     
-                    <idea number="39"/>
+                    <idea number="40"/>
                     
                 </ideas>
                 
@@ -2220,7 +2224,7 @@
                 
                 <ideas>
                     
-                    <idea number="40"/>
+                    <idea number="41"/>
                     
                 </ideas>
                 
@@ -2237,7 +2241,7 @@
                 
                 <ideas>
                     
-                    <idea number="41"/>
+                    <idea number="42"/>
                     
                 </ideas>
                 
@@ -2259,7 +2263,7 @@
                 
                 <ideas>
                     
-                    <idea number="38"/>
+                    <idea number="39"/>
                     
                 </ideas>
                 
@@ -2276,7 +2280,7 @@
                 
                 <ideas>
                     
-                    <idea number="39"/>
+                    <idea number="40"/>
                     
                 </ideas>
                 
@@ -2293,7 +2297,7 @@
                 
                 <ideas>
                     
-                    <idea number="40"/>
+                    <idea number="41"/>
                     
                 </ideas>
                 
@@ -2310,7 +2314,7 @@
                 
                 <ideas>
                     
-                    <idea number="41"/>
+                    <idea number="42"/>
                     
                 </ideas>
                 
@@ -2329,7 +2333,7 @@
                 
                 <ideas>
                     
-                    <idea number="38"/>
+                    <idea number="39"/>
                     
                 </ideas>
                 
@@ -2346,7 +2350,7 @@
                 
                 <ideas>
                     
-                    <idea number="38"/>
+                    <idea number="39"/>
                     
                 </ideas>
                 
@@ -2363,7 +2367,7 @@
                 
                 <ideas>
                     
-                    <idea number="39"/>
+                    <idea number="40"/>
                     
                 </ideas>
                 
@@ -2380,7 +2384,7 @@
                 
                 <ideas>
                     
-                    <idea number="39"/>
+                    <idea number="40"/>
                     
                 </ideas>
                 
@@ -2397,7 +2401,7 @@
                 
                 <ideas>
                     
-                    <idea number="40"/>
+                    <idea number="41"/>
                     
                 </ideas>
                 
@@ -2414,7 +2418,7 @@
                 
                 <ideas>
                     
-                    <idea number="41"/>
+                    <idea number="42"/>
                     
                 </ideas>
                 
@@ -2436,7 +2440,7 @@
                 
                 <ideas>
                     
-                    <idea number="42"/>
+                    <idea number="43"/>
                     
                 </ideas>
                 
@@ -2455,7 +2459,7 @@
                 
                 <ideas>
                     
-                    <idea number="43"/>
+                    <idea number="44"/>
                     
                 </ideas>
                 
@@ -2473,7 +2477,7 @@
                 
                 <ideas>
                     
-                    <idea number="44"/>
+                    <idea number="45"/>
                     
                 </ideas>
                 
@@ -2490,12 +2494,13 @@
                 
                 <ideas>
                     
-                    <idea number="45"/>
+                    <idea number="46"/>
                     
                 </ideas>
                 
                 <solution>
                     <step number="3"/>
+                    
                 </solution>
                 
             </sentence>
@@ -2511,7 +2516,7 @@
                 
                 <ideas>
                     
-                    <idea number="42"/>
+                    <idea number="43"/>
                     
                 </ideas>
                 
@@ -2530,7 +2535,7 @@
                 
                 <ideas>
                     
-                    <idea number="43"/>
+                    <idea number="44"/>
                     
                 </ideas>
                 
@@ -2548,7 +2553,7 @@
                 
                 <ideas>
                     
-                    <idea number="44"/>
+                    <idea number="45"/>
                     
                 </ideas>
                 
@@ -2565,12 +2570,13 @@
                 
                 <ideas>
                     
-                    <idea number="45"/>
+                    <idea number="46"/>
                     
                 </ideas>
                 
                 <solution>
                     <step number="3"/>
+                    
                 </solution>
                 
             </sentence>
@@ -2583,7 +2589,7 @@
                 
                 <ideas>
                     
-                    <idea number="42"/>
+                    <idea number="43"/>
                     
                 </ideas>
                 
@@ -2602,7 +2608,7 @@
                 
                 <ideas>
                     
-                    <idea number="42"/>
+                    <idea number="43"/>
                     
                 </ideas>
                 
@@ -2625,7 +2631,7 @@
                 
                 <ideas>
                     
-                    <idea number="46"/>
+                    <idea number="47"/>
                     
                 </ideas>
                 
@@ -2643,7 +2649,7 @@
                 
                 <ideas>
                     
-                    <idea number="47"/>
+                    <idea number="48"/>
                     
                 </ideas>
                 
@@ -2660,7 +2666,7 @@
                 
                 <ideas>
                     
-                    <idea number="48"/>
+                    <idea number="49"/>
                     
                 </ideas>
                 
@@ -2678,7 +2684,7 @@
                 
                 <ideas>
                     
-                    <idea number="49"/>
+                    <idea number="50"/>
                     
                 </ideas>
                 
@@ -2695,7 +2701,7 @@
                 
                 <ideas>
                     
-                    <idea number="50"/>
+                    <idea number="51"/>
                     
                 </ideas>
                 
@@ -2716,7 +2722,7 @@
                 
                 <ideas>
                     
-                    <idea number="46"/>
+                    <idea number="47"/>
                     
                 </ideas>
                 
@@ -2734,7 +2740,7 @@
                 
                 <ideas>
                     
-                    <idea number="47"/>
+                    <idea number="48"/>
                     
                 </ideas>
                 
@@ -2751,7 +2757,7 @@
                 
                 <ideas>
                     
-                    <idea number="48"/>
+                    <idea number="49"/>
                     
                 </ideas>
                 
@@ -2769,7 +2775,7 @@
                 
                 <ideas>
                     
-                    <idea number="49"/>
+                    <idea number="50"/>
                     
                 </ideas>
                 
@@ -2786,7 +2792,7 @@
                 
                 <ideas>
                     
-                    <idea number="50"/>
+                    <idea number="51"/>
                     
                 </ideas>
                 
@@ -2803,9 +2809,9 @@
                 
                 <ideas>
                     
-                    <idea number="47"/>
-                    
                     <idea number="48"/>
+                    
+                    <idea number="49"/>
                     
                 </ideas>
                 
@@ -2828,7 +2834,7 @@
                 
                 <ideas>
                     
-                    <idea number="51"/>
+                    <idea number="52"/>
                     
                 </ideas>
                 
@@ -2845,12 +2851,13 @@
                 
                 <ideas>
                     
-                    <idea number="52"/>
+                    <idea number="53"/>
                     
                 </ideas>
                 
                 <solution>
                     <step number="4"/>
+                    
                 </solution>
                 
             </sentence>
@@ -2863,7 +2870,7 @@
                 
                 <ideas>
                     
-                    <idea number="53"/>
+                    <idea number="54"/>
                     
                 </ideas>
                 
@@ -2882,7 +2889,7 @@
                 
                 <ideas>
                     
-                    <idea number="54"/>
+                    <idea number="55"/>
                     
                 </ideas>
                 
@@ -2899,7 +2906,7 @@
                 
                 <ideas>
                     
-                    <idea number="55"/>
+                    <idea number="56"/>
                     
                 </ideas>
                 
@@ -2916,7 +2923,7 @@
                 
                 <ideas>
                     
-                    <idea number="56"/>
+                    <idea number="57"/>
                     
                 </ideas>
                 
@@ -2937,7 +2944,7 @@
                 
                 <ideas>
                     
-                    <idea number="51"/>
+                    <idea number="52"/>
                     
                 </ideas>
                 
@@ -2954,12 +2961,13 @@
                 
                 <ideas>
                     
-                    <idea number="52"/>
+                    <idea number="53"/>
                     
                 </ideas>
                 
                 <solution>
                     <step number="4"/>
+                    
                 </solution>
                 
             </sentence>
@@ -2972,7 +2980,7 @@
                 
                 <ideas>
                     
-                    <idea number="53"/>
+                    <idea number="54"/>
                     
                 </ideas>
                 
@@ -2991,7 +2999,7 @@
                 
                 <ideas>
                     
-                    <idea number="54"/>
+                    <idea number="55"/>
                     
                 </ideas>
                 
@@ -3008,7 +3016,7 @@
                 
                 <ideas>
                     
-                    <idea number="55"/>
+                    <idea number="56"/>
                     
                 </ideas>
                 
@@ -3025,7 +3033,7 @@
                 
                 <ideas>
                     
-                    <idea number="56"/>
+                    <idea number="57"/>
                     
                 </ideas>
                 
@@ -3042,7 +3050,7 @@
                 
                 <ideas>
                     
-                    <idea number="51"/>
+                    <idea number="52"/>
                     
                     
                     
@@ -3060,11 +3068,12 @@
                 <text>They put the bark near the bottom of the wigwam first.</text>
                 
                 <ideas>
-                    <idea number="52"/>
+                    <idea number="53"/>
                 </ideas>
                 
                 <solution>
                     <step number="4"/>
+                    
                 </solution>
                 
             </sentence>
@@ -3077,7 +3086,7 @@
                 
                 <ideas>
                     
-                    <idea number="54"/>
+                    <idea number="55"/>
                     
                 </ideas>
                 
@@ -3094,7 +3103,7 @@
                 
                 <ideas>
                     
-                    <idea number="54"/>
+                    <idea number="55"/>
                     
                 </ideas>
                 
@@ -3111,14 +3120,15 @@
                 
                 <ideas>
                     
-                    <idea number="51"/>
-                    
                     <idea number="52"/>
+                    
+                    <idea number="53"/>
                     
                 </ideas>
                 
                 <solution>
                     <step number="4"/>
+                    
                 </solution>
                 
             </sentence>
@@ -3131,7 +3141,7 @@
                 
                 <ideas>
                     
-                    <idea number="54"/>
+                    <idea number="55"/>
                     
                 </ideas>
                 
@@ -3148,9 +3158,9 @@
                 
                 <ideas>
                     
-                    <idea number="55"/>
-                    
                     <idea number="56"/>
+                    
+                    <idea number="57"/>
                     
                 </ideas>
                 
@@ -3171,7 +3181,7 @@
                 
                 <ideas>
                     
-                    <idea number="57"/>
+                    <idea number="58"/>
                     
                 </ideas>
                 
@@ -3188,7 +3198,7 @@
                 
                 <ideas>
                     
-                    <idea number="58"/>
+                    <idea number="59"/>
                     
                 </ideas>
                 
@@ -3209,7 +3219,7 @@
                 
                 <ideas>
                     
-                    <idea number="57"/>
+                    <idea number="58"/>
                     
                 </ideas>
                 
@@ -3226,7 +3236,7 @@
                 
                 <ideas>
                     
-                    <idea number="58"/>
+                    <idea number="59"/>
                     
                 </ideas>
                 
@@ -3246,7 +3256,7 @@
                 
                 <ideas>
                     
-                    <idea number="59"/>
+                    <idea number="60"/>
                     
                 </ideas>
                 
@@ -3263,7 +3273,7 @@
                 
                 <ideas>
                     
-                    <idea number="60"/>
+                    <idea number="61"/>
                     
                 </ideas>
                 
@@ -3286,7 +3296,7 @@
                 
                 <ideas>
                     
-                    <idea number="59"/>
+                    <idea number="60"/>
                     
                 </ideas>
                 
@@ -3303,7 +3313,7 @@
                 
                 <ideas>
                     
-                    <idea number="60"/>
+                    <idea number="61"/>
                     
                 </ideas>
                 
@@ -3322,7 +3332,7 @@
                 
                 <ideas>
                     
-                    <idea number="60"/>
+                    <idea number="61"/>
                     
                 </ideas>
                 
@@ -3340,7 +3350,7 @@
                 
                 <ideas>
                     
-                    <idea number="59"/>
+                    <idea number="60"/>
                     
                 </ideas>
                 
@@ -3361,12 +3371,13 @@
                 
                 <ideas>
                     
-                    <idea number="61"/>
+                    <idea number="62"/>
                     
                 </ideas>
                 
                 <solution>
                     <step number="5"/>
+                    
                 </solution>
                 
             </sentence>
@@ -3379,7 +3390,7 @@
                 
                 <ideas>
                     
-                    <idea number="62"/>
+                    <idea number="63"/>
                     
                 </ideas>
                 
@@ -3397,7 +3408,7 @@
                 
                 <ideas>
                     
-                    <idea number="63"/>
+                    <idea number="64"/>
                     
                 </ideas>
                 
@@ -3420,12 +3431,13 @@
                 
                 <ideas>
                     
-                    <idea number="61"/>
+                    <idea number="62"/>
                     
                 </ideas>
                 
                 <solution>
                     <step number="5"/>
+                    
                 </solution>
                 
             </sentence>
@@ -3438,7 +3450,7 @@
                 
                 <ideas>
                     
-                    <idea number="62"/>
+                    <idea number="63"/>
                     
                 </ideas>
                 
@@ -3456,7 +3468,7 @@
                 
                 <ideas>
                     
-                    <idea number="63"/>
+                    <idea number="64"/>
                     
                 </ideas>
                 
@@ -3475,7 +3487,7 @@
                 
                 <ideas>
                     
-                    <idea number="62"/>
+                    <idea number="63"/>
                     
                 </ideas>
                 
@@ -3514,7 +3526,8 @@
                 
                 <ideas>
                     
-                    <idea number="64"/>
+                    <idea number="65"/>
+                    <idea number="66"/>
                     
                 </ideas>
                 
@@ -3531,7 +3544,8 @@
                 
                 <ideas>
                     
-                    <idea number="65"/>
+                    <idea number="67"/>
+                    <idea number="68"/>
                     
                 </ideas>
                 
@@ -3548,7 +3562,7 @@
                 
                 <ideas>
                     
-                    <idea number="66"/>
+                    <idea number="69"/>
                     
                 </ideas>
                 
@@ -3572,7 +3586,8 @@
                 
                 <ideas>
                     
-                    <idea number="64"/>
+                    <idea number="65"/>
+                    <idea number="66"/>
                     
                 </ideas>
                 
@@ -3589,7 +3604,8 @@
                 
                 <ideas>
                     
-                    <idea number="65"/>
+                    <idea number="67"/>
+                    <idea number="68"/>
                     
                 </ideas>
                 
@@ -3606,12 +3622,13 @@
                 
                 <ideas>
                     
-                    <idea number="66"/>
+                    <idea number="69"/>
                     
                 </ideas>
                 
                 <solution>
                     <step number="6"/>
+                    
                 </solution>
                 
             </sentence>
@@ -3624,7 +3641,7 @@
                 
                 <ideas>
                     
-                    <idea number="66"/>
+                    <idea number="65"/>
                     
                 </ideas>
                 
@@ -3658,7 +3675,7 @@
                 
                 <ideas>
                     
-                    <idea number="66"/>
+                    <idea number="67"/>
                     
                 </ideas>
                 
@@ -3675,7 +3692,7 @@
                 
                 <ideas>
                     
-                    <idea number="66"/>
+                    <idea number="68"/>
                     
                 </ideas>
                 
@@ -3692,7 +3709,8 @@
                 
                 <ideas>
                     
-                    <idea number="66"/>
+                    <idea number="67"/>
+                    <idea number="68"/>
                     
                 </ideas>
                 
@@ -3714,7 +3732,7 @@
                 
                 <ideas>
                     
-                    <idea number="67"/>
+                    <idea number="70"/>
                     
                 </ideas>
                 
@@ -3733,7 +3751,7 @@
                 
                 <ideas>
                     
-                    <idea number="68"/>
+                    <idea number="71"/>
                     
                 </ideas>
                 
@@ -3754,7 +3772,7 @@
                 
                 <ideas>
                     
-                    <idea number="67"/>
+                    <idea number="70"/>
                     
                 </ideas>
                 
@@ -3773,7 +3791,7 @@
                 
                 <ideas>
                     
-                    <idea number="68"/>
+                    <idea number="71"/>
                     
                 </ideas>
                 
@@ -3790,7 +3808,7 @@
                 
                 <ideas>
                     
-                    <idea number="68"/>
+                    <idea number="70"/>
                     
                 </ideas>
                 
@@ -3811,7 +3829,7 @@
                 
                 <ideas>
                     
-                    <idea number="69"/>
+                    <idea number="72"/>
                     
                 </ideas>
                 
@@ -3829,7 +3847,7 @@
                 
                 <ideas>
                     
-                    <idea number="69"/>
+                    <idea number="70"/>
                     
                 </ideas>
                 
@@ -3847,24 +3865,7 @@
                 
                 <attributes complexity="10"/>
                 
-                <text>But in 1830, the U.</text>
-                
-                <ideas>
-                    
-                    <idea number="70"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="4" action="no">
-                
-                <attributes complexity="10"/>
-                
-                <text>S.</text>
+                <text>But in 1830, the U.S.</text>
                 
                 <ideas>
                     
@@ -3873,12 +3874,11 @@
                 </ideas>
                 
                 <solution>
-                    
                 </solution>
                 
             </sentence>
             
-            <sentence number="5" action="yes">
+            <sentence number="4" action="yes">
                 
                 <attributes complexity="10"/>
                 
@@ -3886,7 +3886,7 @@
                 
                 <ideas>
                     
-                    <idea number="72"/>
+                    <idea number="73"/>
                     
                 </ideas>
                 
@@ -3899,28 +3899,11 @@
             
             
             
-            <sentence number="6" action="no">
+            <sentence number="5" action="no">
                 
                 <attributes complexity="2"/>
                 
-                <text>But in 1830, the U.</text>
-                
-                <ideas>
-                    
-                    <idea number="70"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="7" action="no">
-                
-                <attributes complexity="2"/>
-                
-                <text>S.</text>
+                <text>But in 1830, the U.S.</text>
                 
                 <ideas>
                     
@@ -3929,12 +3912,11 @@
                 </ideas>
                 
                 <solution>
-                    
                 </solution>
                 
             </sentence>
             
-            <sentence number="8" action="yes">
+            <sentence number="6" action="yes">
                 
                 <attributes complexity="2"/>
                 
@@ -3942,7 +3924,7 @@
                 
                 <ideas>
                     
-                    <idea number="72"/>
+                    <idea number="73"/>
                     
                 </ideas>
                 
@@ -3956,15 +3938,11 @@
                 
                 <attributes complexity="1"/>
                 
-                <text>But in 1830, the U.</text>
+                <text>But in 1830, the U.S</text>
                 
                 <ideas>
                     
-                    <idea number="72"/>
-                    
-                    <idea number="72"/>
-                    
-                    <idea number="72"/>
+                    <idea number="71"/>
                     
                 </ideas>
                 
@@ -3972,29 +3950,9 @@
                 </solution>
                 
             </sentence>
+            
             
             <sentence number="10" action="no">
-                
-                <attributes complexity="1"/>
-                
-                <text>S.</text>
-                
-                <ideas>
-                    
-                    <idea number="72"/>
-                    
-                    <idea number="72"/>
-                    
-                    <idea number="72"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="11" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -4002,11 +3960,7 @@
                 
                 <ideas>
                     
-                    <idea number="72"/>
-                    
-                    <idea number="72"/>
-                    
-                    <idea number="72"/>
+                    <idea number="73"/>
                     
                 </ideas>
                 
@@ -4015,19 +3969,31 @@
                 
             </sentence>
             
-            <sentence number="12" action="yes">
+            <sentence number="11" action="yes">
                 
                 <attributes complexity="1"/>
                 
                 <text>The Seminoles fled into swamps.</text>
                 
                 <ideas>
-                    
                     <idea number="72"/>
+                    <idea number="73"/>
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="12" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>These swamps are called the Everglades.</text>
+                
+                <ideas>
                     
-                    <idea number="72"/>
-                    
-                    <idea number="72"/>
+                    <idea number="73"/>
                     
                 </ideas>
                 
@@ -4038,38 +4004,13 @@
             
             <sentence number="13" action="no">
                 
-                <attributes complexity="1"/>
-                
-                <text>These swamps are called the Everglades.</text>
-                
-                <ideas>
-                    
-                    <idea number="72"/>
-                    
-                    <idea number="72"/>
-                    
-                    <idea number="72"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="14" action="no">
-                
                 <attributes complexity="3"/>
                 
-                <text>But the Seminoles fled into swamps called the Everglades when the U.</text>
+                <text>But the Seminoles fled into swamps called the Everglades when the U.S.</text>
                 
                 <ideas>
-                    
                     <idea number="72"/>
-                    
-                    <idea number="72"/>
-                    
-                    <idea number="72"/>
+                    <idea number="73"/>
                     
                 </ideas>
                 
@@ -4078,28 +4019,7 @@
                 
             </sentence>
             
-            <sentence number="15" action="no">
-                
-                <attributes complexity="3"/>
-                
-                <text>S.</text>
-                
-                <ideas>
-                    
-                    <idea number="72"/>
-                    
-                    <idea number="72"/>
-                    
-                    <idea number="72"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="16" action="yes">
+            <sentence number="14" action="yes">
                 
                 <attributes complexity="3"/>
                 
@@ -4108,10 +4028,7 @@
                 <ideas>
                     
                     <idea number="72"/>
-                    
-                    <idea number="72"/>
-                    
-                    <idea number="72"/>
+                    <idea number="73"/>
                     
                 </ideas>
                 
@@ -4124,28 +4041,11 @@
         
         <story title="The Seminole Chickee" page_id="story6-PM-3">
             
-            <sentence number="17" action="no">
+            <sentence number="16" action="no">
                 
                 <attributes complexity="10"/>
                 
                 <text>Because the Everglades are very wet, the Seminoles could not build houses on the ground.</text>
-                
-                <ideas>
-                    
-                    <idea number="73"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="18" action="no">
-                
-                <attributes complexity="10"/>
-                
-                <text>Instead, they invented the chickee, a house built above the ground.</text>
                 
                 <ideas>
                     
@@ -4154,6 +4054,41 @@
                 </ideas>
                 
                 <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="17" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Instead, they invented the chickee, a house built above the ground.</text>
+                
+                <ideas>
+                    
+                    <idea number="75"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="18" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>First, a Seminole man would stick thick logs into the ground making stilts.</text>
+                
+                <ideas>
+                    
+                    <idea number="76"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="7"/>
                 </solution>
                 
             </sentence>
@@ -4162,29 +4097,11 @@
                 
                 <attributes complexity="10"/>
                 
-                <text>First, a Seminole man would stick thick logs into the ground making stilts.</text>
-                
-                <ideas>
-                    
-                    <idea number="75"/>
-                    
-                </ideas>
-                
-                <solution>
-                    <step number="7"/>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="20" action="yes">
-                
-                <attributes complexity="10"/>
-                
                 <text>Then he tied long poles between the stilts.</text>
                 
                 <ideas>
                     
-                    <idea number="76"/>
+                    <idea number="77"/>
                     
                 </ideas>
                 
@@ -4199,28 +4116,11 @@
             
             
             
-            <sentence number="21" action="no">
+            <sentence number="20" action="no">
                 
                 <attributes complexity="2"/>
                 
                 <text>Because the Everglades are very wet, the Seminoles could not build houses on the ground.</text>
-                
-                <ideas>
-                    
-                    <idea number="73"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="22" action="no">
-                
-                <attributes complexity="2"/>
-                
-                <text>Instead, they invented the chickee, a house built above the ground.</text>
                 
                 <ideas>
                     
@@ -4233,7 +4133,24 @@
                 
             </sentence>
             
-            <sentence number="23" action="yes">
+            <sentence number="21" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Instead, they invented the chickee, a house built above the ground.</text>
+                
+                <ideas>
+                    
+                    <idea number="75"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="22" action="yes">
                 
                 <attributes complexity="2"/>
                 
@@ -4241,7 +4158,7 @@
                 
                 <ideas>
                     
-                    <idea number="75"/>
+                    <idea number="76"/>
                     
                 </ideas>
                 
@@ -4251,7 +4168,7 @@
                 
             </sentence>
             
-            <sentence number="24" action="yes">
+            <sentence number="23" action="yes">
                 
                 <attributes complexity="2"/>
                 
@@ -4259,7 +4176,7 @@
                 
                 <ideas>
                     
-                    <idea number="76"/>
+                    <idea number="77"/>
                     
                 </ideas>
                 
@@ -4270,7 +4187,7 @@
                 
             </sentence>
             
-            <sentence number="25" action="no">
+            <sentence number="24" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -4278,7 +4195,24 @@
                 
                 <ideas>
                     
-                    <idea number="76"/>
+                    <idea number="74"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="25" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>So, the Seminoles could not build houses on the ground.</text>
+                
+                <ideas>
+                    
+                    <idea number="74"/>
                     
                 </ideas>
                 
@@ -4291,11 +4225,11 @@
                 
                 <attributes complexity="1"/>
                 
-                <text>So, the Seminoles could not build houses on the ground.</text>
+                <text>Instead, they invented the chickee.</text>
                 
                 <ideas>
                     
-                    <idea number="76"/>
+                    <idea number="75"/>
                     
                 </ideas>
                 
@@ -4308,28 +4242,11 @@
                 
                 <attributes complexity="1"/>
                 
-                <text>Instead, they invented the chickee.</text>
-                
-                <ideas>
-                    
-                    <idea number="76"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="28" action="no">
-                
-                <attributes complexity="1"/>
-                
                 <text>The chickee is a house built above the ground.</text>
                 
                 <ideas>
                     
-                    <idea number="76"/>
+                    <idea number="75"/>
                     
                 </ideas>
                 
@@ -4338,7 +4255,7 @@
                 
             </sentence>
             
-            <sentence number="29" action="yes">
+            <sentence number="28" action="yes">
                 
                 <attributes complexity="1"/>
                 
@@ -4351,11 +4268,12 @@
                 </ideas>
                 
                 <solution>
+                    <step number="7"/>
                 </solution>
                 
             </sentence>
             
-            <sentence number="30" action="yes">
+            <sentence number="29" action="yes">
                 
                 <attributes complexity="1"/>
                 
@@ -4363,7 +4281,7 @@
                 
                 <ideas>
                     
-                    <idea number="76"/>
+                    <idea number="77"/>
                     
                 </ideas>
                 
@@ -4377,7 +4295,7 @@
         <story title="The Seminole Chickee" page_id="story6-PM-4">
             
             
-            <sentence number="31" action="yes">
+            <sentence number="30" action="yes">
                 
                 <attributes complexity="10"/>
                 
@@ -4385,7 +4303,7 @@
                 
                 <ideas>
                     
-                    <idea number="77"/>
+                    <idea number="78"/>
                     
                 </ideas>
                 
@@ -4396,7 +4314,7 @@
                 
             </sentence>
             
-            <sentence number="32" action="no">
+            <sentence number="31" action="no">
                 
                 <attributes complexity="10"/>
                 
@@ -4404,11 +4322,30 @@
                 
                 <ideas>
                     
-                    <idea number="78"/>
+                    <idea number="79"/>
                     
                 </ideas>
                 
                 <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="32" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Then he covered the roof with bark and leaves.</text>
+                
+                <ideas>
+                    
+                    <idea number="80"/>
+                    
+                </ideas>
+                
+                <solution>
+                    
+                    
                 </solution>
                 
             </sentence>
@@ -4417,44 +4354,7 @@
                 
                 <attributes complexity="10"/>
                 
-                <text>Then he covered the roof with bark and leaves.</text>
-                
-                <ideas>
-                    
-                    <idea number="79"/>
-                    
-                </ideas>
-                
-                <solution>
-                    
-                    
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="34" action="yes">
-                
-                <attributes complexity="10"/>
-                
                 <text>Finally, he attached a ladder to the house to help people climb up to the floor.</text>
-                
-                <ideas>
-                    
-                    <idea number="80"/>
-                    
-                </ideas>
-                
-                <solution>
-                    <step number="8"/>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="35" action="no">
-                
-                <attributes complexity="10"/>
-                
-                <text>For most of the year, chickees did not have any walls because of the warm weather in Florida.</text>
                 
                 <ideas>
                     
@@ -4463,15 +4363,17 @@
                 </ideas>
                 
                 <solution>
+                    
+                    
                 </solution>
                 
             </sentence>
             
-            <sentence number="36" action="no">
+            <sentence number="34" action="no">
                 
                 <attributes complexity="10"/>
                 
-                <text>But without walls, the Seminoles must have been plagued by mosquitos!.</text>
+                <text>For most of the year, chickees did not have any walls because of the warm weather in Florida.</text>
                 
                 <ideas>
                     
@@ -4484,10 +4386,27 @@
                 
             </sentence>
             
+            <sentence number="35" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>But without walls, the Seminoles must have been plagued by mosquitos!.</text>
+                
+                <ideas>
+                    
+                    <idea number="83"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
             
             
             
-            <sentence number="37" action="yes">
+            
+            <sentence number="36" action="yes">
                 
                 <attributes complexity="2"/>
                 
@@ -4495,7 +4414,7 @@
                 
                 <ideas>
                     
-                    <idea number="77"/>
+                    <idea number="78"/>
                     
                 </ideas>
                 
@@ -4506,11 +4425,100 @@
                 
             </sentence>
             
-            <sentence number="38" action="no">
+            <sentence number="37" action="no">
                 
                 <attributes complexity="2"/>
                 
                 <text>He used more poles to build the slanted roof.</text>
+                
+                <ideas>
+                    
+                    <idea number="79"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="38" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Then he covered the roof with bark and leaves.</text>
+                
+                <ideas>
+                    
+                    <idea number="80"/>
+                    
+                </ideas>
+                
+                <solution>
+                    
+                    
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="39" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Finally, he attached a ladder to the house to help people climb up to the floor.</text>
+                
+                <ideas>
+                    
+                    <idea number="81"/>
+                    
+                </ideas>
+                
+                <solution>
+                    
+                    
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="40" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>For most of the year, chickees did not have any walls because of the warm weather in Florida.</text>
+                
+                <ideas>
+                    
+                    <idea number="82"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="41" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>But without walls, the Seminoles must have been plagued by mosquitos!.</text>
+                
+                <ideas>
+                    
+                    <idea number="83"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="42" action="yes">
+                
+                <attributes complexity="1"/>
+                
+                <text>He used palm leaves to cover the poles.</text>
                 
                 <ideas>
                     
@@ -4523,48 +4531,28 @@
                 
             </sentence>
             
-            <sentence number="39" action="yes">
+            <sentence number="43" action="no">
                 
-                <attributes complexity="2"/>
+                <attributes complexity="1"/>
                 
-                <text>Then he covered the roof with bark and leaves.</text>
+                <text>This made a floor above the wet ground.</text>
                 
                 <ideas>
                     
-                    <idea number="79"/>
+                    <idea number="78"/>
                     
                 </ideas>
                 
                 <solution>
-                    
-                    
                 </solution>
                 
             </sentence>
             
-            <sentence number="40" action="yes">
+            <sentence number="44" action="yes">
                 
-                <attributes complexity="2"/>
+                <attributes complexity="1"/>
                 
-                <text>Finally, he attached a ladder to the house to help people climb up to the floor.</text>
-                
-                <ideas>
-                    
-                    <idea number="80"/>
-                    
-                </ideas>
-                
-                <solution>
-                    <step number="8"/>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="41" action="no">
-                
-                <attributes complexity="2"/>
-                
-                <text>For most of the year, chickees did not have any walls because of the warm weather in Florida.</text>
+                <text>He attached a ladder to the house.</text>
                 
                 <ideas>
                     
@@ -4577,75 +4565,7 @@
                 
             </sentence>
             
-            <sentence number="42" action="no">
-                
-                <attributes complexity="2"/>
-                
-                <text>But without walls, the Seminoles must have been plagued by mosquitos!.</text>
-                
-                <ideas>
-                    
-                    <idea number="82"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="43" action="yes">
-                
-                <attributes complexity="1"/>
-                
-                <text>He used palm leaves to cover the poles.</text>
-                
-                <ideas>
-                    
-                    <idea number="82"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="44" action="no">
-                
-                <attributes complexity="1"/>
-                
-                <text>This made a floor above the wet ground.</text>
-                
-                <ideas>
-                    
-                    <idea number="82"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="45" action="yes">
-                
-                <attributes complexity="1"/>
-                
-                <text>He attached a ladder to the house.</text>
-                
-                <ideas>
-                    
-                    <idea number="82"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="46" action="no">
+            <sentence number="45" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -4653,7 +4573,24 @@
                 
                 <ideas>
                     
-                    <idea number="82"/>
+                    <idea number="81"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="46" action="yes">
+                
+                <attributes complexity="3"/>
+                
+                <text>In order to make a floor above the wet ground, he used palm leaves to cover the poles.</text>
+                
+                <ideas>
+                    
+                    <idea number="78"/>
                     
                 </ideas>
                 
@@ -4666,28 +4603,11 @@
                 
                 <attributes complexity="3"/>
                 
-                <text>In order to make a floor above the wet ground, he used palm leaves to cover the poles.</text>
-                
-                <ideas>
-                    
-                    <idea number="82"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="48" action="yes">
-                
-                <attributes complexity="3"/>
-                
                 <text>Finally, he attached a ladder to the house, which in turn helped people climb up to the floor.</text>
                 
                 <ideas>
                     
-                    <idea number="82"/>
+                    <idea number="81"/>
                     
                 </ideas>
                 
