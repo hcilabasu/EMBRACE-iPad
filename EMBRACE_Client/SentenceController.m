@@ -295,7 +295,7 @@
 }
 
 /*
- *  Converts the passed in sentence text into english using the setence text as the key to the
+ *  Converts the passed in sentence text into english using the sentence text as the key to the
  *  Translation dictionary
  */
 - (NSString *)getEnglishTranslation:(NSString *)sentence {
