@@ -1241,7 +1241,7 @@ shouldUpdateConnection:(BOOL)updateCon
         
     }
     //Split sentence text into individual tokens (words)
-    NSArray *textTokens = [NSArray arrayWithArray:tempArray];
+    NSArray *textTokens = [NSArray arrayWithArray:tTokens];
     
     //Contains the vocabulary words that appear in the sentence
     NSMutableArray *words = [[NSMutableArray alloc] init];
