@@ -183,43 +183,38 @@
             <idea number="70"/>
         </story>
         <story title="The Seminole Chickee" activity_id="story6-PM-2">
-            <idea number="71"/>
-            <idea number="72"/>
-            <idea number="73">
+            <idea number="71">
             </idea>
         </story>
         <story title="The Seminole Chickee" activity_id="story6-PM-3">
-            <idea number="74"/>
-            <idea number="75"/>
-            <idea number="76">
+            <idea number="72"/>
+            <idea number="73"/>
+            <idea number="74">
                 <step number="7">
                     <group obj1Id="logsInGroundIM" action="stuckIn" obj2Id="logsInGroundIM"/>
                     <group obj1Id="logsIM" action="pile" obj2Id="groundIM"/>
                 </step>
             </idea>
-            <idea number="77">
+            <idea number="75">
             </idea>
         </story>
         <story title="The Seminole Chickee" activity_id="story6-PM-4">
+            <idea number="76">
+            </idea>
+            <idea number="77"/>
+            
             <idea number="78">
             </idea>
-            <idea number="79"/>
-            
-            <idea number="80">
-            </idea>
-            <idea number="81">
+            <idea number="79">
                 <step number="8">
                     <group obj1Id="ladderIM" action="attached" obj2Id="houseIM"/>
                     <group obj1Id="poleIM" action="attached" obj2Id="houseIM"/>
                 </step>
             </idea>
-            <idea number="82"/>
-            <idea number="83"/>
-            <idea number="84">
-                
+            <idea number="80"/>
+            <idea number="81"/>
+            <idea number="82">
             </idea>
         </story>
     </solutions>
 </metadata>
-
-                
