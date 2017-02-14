@@ -1273,6 +1273,13 @@ shouldUpdateConnection:(BOOL)updateCon
                 [words addObject:[modifiedTextToken substringWithRange:range]]; // Add word to list
                 addedWord = true;
                 
+                //Add the first part of the word like quotes to the previous token
+                if(range.location > 0) {
+                    NSRange firstRange = NSMakeRange(0, range.location);
+                    NSString *firstPart = [modifiedTextToken substringWithRange:firstRange];
+                    currentSplit = [currentSplit stringByAppendingString:firstPart];
+                    range = NSMakeRange(0, range.location + range.length);
+                }
                 [splitText addObject:currentSplit];
                 
                 // Reset current split to be anything that appears after the vocabulary word and add a space in the beginning
