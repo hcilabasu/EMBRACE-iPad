@@ -136,7 +136,10 @@
         if (conditionSetup.condition != CONTROL) {
             mvc.allowInteractions = TRUE;
             
-            if (conditionSetup.appMode == ITS && conditionSetup.useKnowledgeTracing && ![chapterTitle isEqualToString:@"The Naughty Monkey"] && !(conditionSetup.language == BILINGUAL && [pageContext.currentPageId.lowercaseString containsString:@"story1"])) {
+            if ((conditionSetup.appMode == ITS && conditionSetup.useKnowledgeTracing && ![chapterTitle isEqualToString:@"The Naughty Monkey"] && !(conditionSetup.language == BILINGUAL && [pageContext.currentPageId.lowercaseString containsString:@"story1"])) &&
+                
+                !(conditionSetup.language == BILINGUAL && [pageContext.currentPageId.lowercaseString containsString:@"story0"] && [chapterTitle isEqualToString:@"Introduction to Native American Homes"])) {
+                
                 mvc.currentComplexityLevel = [[ITSController sharedInstance] getCurrentComplexity];
                 [self.manipulationView removeAllSentences];
                 [self addSentencesWithComplexity:mvc.currentComplexityLevel];
