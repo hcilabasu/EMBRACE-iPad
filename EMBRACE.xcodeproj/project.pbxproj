@@ -5416,6 +5416,7 @@
 		71193D421E2FCF4E003D7EB5 /* TheLopezFamilyS9S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 71193CC31E2FCF4D003D7EB5 /* TheLopezFamilyS9S.mp3 */; };
 		713269991DC8EDD300121E28 /* AlternateSentences-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 713269971DC8EDD300121E28 /* AlternateSentences-MetaData.xml */; };
 		7132699A1DC8EDD300121E28 /* Solutions-MetaData-ITS.xml in Resources */ = {isa = PBXBuildFile; fileRef = 713269981DC8EDD300121E28 /* Solutions-MetaData-ITS.xml */; };
+		714B421B1E537170005BB5BE /* c52e5721fd2b160d1887b44c5371af22.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 714B421A1E537170005BB5BE /* c52e5721fd2b160d1887b44c5371af22.mp3 */; };
 		715DFBAD1DC907CD00C32C28 /* AlternateSentences-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 715DFBAB1DC907CD00C32C28 /* AlternateSentences-MetaData.xml */; };
 		715DFBAE1DC907CD00C32C28 /* Solutions-MetaData-ITS.xml in Resources */ = {isa = PBXBuildFile; fileRef = 715DFBAC1DC907CD00C32C28 /* Solutions-MetaData-ITS.xml */; };
 		716631351E245B690097F1E6 /* thereismore.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 716631341E245B690097F1E6 /* thereismore.mp3 */; };
@@ -11294,6 +11295,7 @@
 		71193CC31E2FCF4D003D7EB5 /* TheLopezFamilyS9S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheLopezFamilyS9S.mp3; sourceTree = "<group>"; };
 		713269971DC8EDD300121E28 /* AlternateSentences-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AlternateSentences-MetaData.xml"; sourceTree = "<group>"; };
 		713269981DC8EDD300121E28 /* Solutions-MetaData-ITS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Solutions-MetaData-ITS.xml"; sourceTree = "<group>"; };
+		714B421A1E537170005BB5BE /* c52e5721fd2b160d1887b44c5371af22.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = c52e5721fd2b160d1887b44c5371af22.mp3; sourceTree = "<group>"; };
 		715DFBAB1DC907CD00C32C28 /* AlternateSentences-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AlternateSentences-MetaData.xml"; sourceTree = "<group>"; };
 		715DFBAC1DC907CD00C32C28 /* Solutions-MetaData-ITS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Solutions-MetaData-ITS.xml"; sourceTree = "<group>"; };
 		716631341E245B690097F1E6 /* thereismore.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = thereismore.mp3; sourceTree = "<group>"; };
@@ -18487,6 +18489,7 @@
 		71193ACC1E2FB796003D7EB5 /* English */ = {
 			isa = PBXGroup;
 			children = (
+				714B421A1E537170005BB5BE /* c52e5721fd2b160d1887b44c5371af22.mp3 */,
 				71E18ECC1E52F53700306BDC /* 2993a26aed318eec6f25204849acc072.mp3 */,
 				71E18ECD1E52F53700306BDC /* 451726821c00c37ad5eeb3e7bfc1af4e.mp3 */,
 				71E18ECE1E52F53700306BDC /* b3d1e87bfe709135bdcdf38d98d7af96.mp3 */,
@@ -22386,6 +22389,7 @@
 				5C72E7681C72BF1000CE4877 /* HowdoObjectsMoveQ1A1.mp3 in Resources */,
 				5C0ED86B1C75334200003B5A /* AGiftfortheBrideQ2A2.mp3 in Resources */,
 				1A6321311C0E4D3B00251CB3 /* Story2-Mancha-the-Horse-PM-3.xhtml in Resources */,
+				714B421B1E537170005BB5BE /* c52e5721fd2b160d1887b44c5371af22.mp3 in Resources */,
 				5C0ED8671C75334200003B5A /* AGiftfortheBrideQ1A3.mp3 in Resources */,
 				71AAEE8E1E318D9D00DFCF08 /* 612fb7de5671b935c848bcba11df758b.mp3 in Resources */,
 				5C72E7C61C72BF1000CE4877 /* NewtonsLawofAccelerationonEarthQ4A2.mp3 in Resources */,
