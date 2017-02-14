@@ -410,9 +410,7 @@
             <idea number="70"/>
             </story>
         <story title="The Seminole Chickee" activity_id="story6-PM-2">
-            <idea number="71"/>
-            <idea number="72"/>
-            <idea number="73">
+            <idea number="71">
                 <step number="48">
                     <check obj1Id="seminole_dad" action="getIn" locationId="swamp"/>
                     <move obj1Id="seminole_dad" action="getIn" waypointId="swampDad"/>
@@ -422,9 +420,9 @@
             </idea>
         </story>
         <story title="The Seminole Chickee" activity_id="story6-PM-3">
-            <idea number="74"/>
-            <idea number="75"/>
-            <idea number="76">
+            <idea number="72"/>
+            <idea number="73"/>
+            <idea number="74">
                 <step number="49">
                     <group obj1Id="seminole_dad" action="pickUp" obj2Id="log_ch6"/>
                 </step>
@@ -436,7 +434,7 @@
                     <swapImage obj1Id="chickee" action="adds_log"/>
                 </step>
             </idea>
-            <idea number="77">
+            <idea number="75">
                 <step number="51">
                     <group obj1Id="seminole_dad" action="pickUp" obj2Id="pole_ch6"/>
                     <move obj1Id="seminole_dad" action="getIn" waypointId="poles2"/>
@@ -450,7 +448,7 @@
             </idea>
         </story>
         <story title="The Seminole Chickee" activity_id="story6-PM-4">
-            <idea number="78">
+            <idea number="76">
                 <step number="53">
                     <check obj1Id="seminole_dad" action="getIn" locationId="palms"/>
                     <groupAuto obj1Id="seminole_dad" action="grab" obj2Id="palm_platform"/>
@@ -463,9 +461,9 @@
                     <move obj1Id="palm_platform" action="getIn" waypointId="chickeePalm"/>
                 </step>
             </idea>
-            <idea number="79"/>
+            <idea number="77"/>
             
-            <idea number="80">
+            <idea number="78">
                 <step number="55">
                     <check obj1Id="seminole_dad" action="getIn" locationId="palms"/>
                     <groupAuto obj1Id="seminole_dad" action="grab" obj2Id="palm_roof"/>
@@ -479,7 +477,7 @@
                     <swapImage obj1Id="chickee" action="finished"/>
                 </step>
             </idea>
-            <idea number="81">
+            <idea number="79">
                 <step number="57">
                     <group obj1Id="seminole_dad" action="pickUp" obj2Id="ladder"/>
                 </step>
@@ -490,9 +488,9 @@
                     <move obj1Id="ladder" action="getIn" waypointId="chickeeLadder"/>
                 </step>
             </idea>
-            <idea number="82"/>
-            <idea number="83"/>
-            <idea number="84">
+            <idea number="80"/>
+            <idea number="81"/>
+            <idea number="82">
                 <step number="59">
                     <appear obj1Id="mosquito1" action="appear"/>
                     <appear obj1Id="mosquito2" action="appear"/>
