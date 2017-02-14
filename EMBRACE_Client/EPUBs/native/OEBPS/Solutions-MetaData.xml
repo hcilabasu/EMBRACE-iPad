@@ -4,7 +4,7 @@
         <story title="The Navajo Hogan" activity_id="story1-PM-2">
             <sentence number="5">
                 <step number="1">
-                    <check obj1Id="mud" action="getIn" locationId="hogan"/>
+                    <check obj1Id="mud" action="getIn" locationId="hoganLocation"/>
                     <swapImage obj1Id="hogan" action="getsFilled"/>
                     <disappearAuto obj1Id="mud" action="disappear" obj2Id="mud"/>
                 </step>
@@ -238,7 +238,7 @@
         <story title="The Algonquian Wigwam" activity_id="story4-PM-4">
             <sentence number="15">
                 <step number="1">
-                    <check obj1Id="man_ch4" action="getIn" locationId="bark"/>
+                    <check obj1Id="man_ch4" action="getIn" locationId="barkLocation"/>
                     <groupAuto obj1Id="bark" action="getIn" obj2Id="man_ch4"/>
                 </step>
                 <step number="2">
@@ -251,7 +251,7 @@
             </sentence>
             <sentence number="16">
                 <step number="1">
-                    <check obj1Id="man_ch4" action="getIn" locationId="bark"/>
+                    <check obj1Id="man_ch4" action="getIn" locationId="barkLocation"/>
                     <groupAuto obj1Id="bark2" action="getIn" obj2Id="man_ch4"/>
                 </step>
                 <step number="2">
@@ -363,7 +363,7 @@
                     <group obj1Id="seminole_dad" action="pickUp" obj2Id="log_ch6"/>
                 </step>
                 <step number="2">
-                    <check obj1Id="seminole_dad" action="getIn" locationId="chickee"/>
+                    <check obj1Id="seminole_dad" action="getIn" locationId="chickeeLocation"/>
                     <ungroup obj1Id="seminole_dad" action="drop" obj2Id="log_ch6"/>
                     <disappearAuto obj1Id="log_ch6" action="disappear" obj2Id="log_ch6"/>
                     <move obj1Id="seminole_dad" action="getIn" waypointId="chickee"/>
@@ -376,7 +376,7 @@
                     <move obj1Id="seminole_dad" action="getIn" waypointId="poles2"/>
                 </step>
                 <step number="2">
-                    <check obj1Id="seminole_dad" action="getIn" locationId="chickee"/>
+                    <check obj1Id="seminole_dad" action="getIn" locationId="chickeeLocation"/>
                     <ungroup obj1Id="seminole_dad" action="drop" obj2Id="pole_ch6"/>
                     <move obj1Id="seminole_dad" action="getIn" waypointId="chickee"/>
                     <move obj1Id="pole_ch6" action="getIn" waypointId="chickeePole"/>
@@ -391,7 +391,7 @@
                     <move obj1Id="seminole_dad" action="getIn" waypointId="palms"/>
                 </step>
                 <step number="2">
-                    <check obj1Id="seminole_dad" action="getIn" locationId="chickee"/>
+                    <check obj1Id="seminole_dad" action="getIn" locationId="chickeeLocation"/>
                     <ungroup obj1Id="seminole_dad" action="drop" obj2Id="palm_platform"/>
                     <move obj1Id="seminole_dad" action="getIn" waypointId="chickee"/>
                     <move obj1Id="palm_platform" action="getIn" waypointId="chickeePalm"/>
@@ -416,7 +416,7 @@
                     <group obj1Id="seminole_dad" action="pickUp" obj2Id="ladder"/>
                 </step>
                 <step number="2">
-                    <check obj1Id="seminole_dad" action="getIn" locationId="chickee"/>
+                    <check obj1Id="seminole_dad" action="getIn" locationId="chickeeLocation"/>
                     <ungroup obj1Id="seminole_dad" action="drop" obj2Id="ladder"/>
                     <move obj1Id="seminole_dad" action="getIn" waypointId="chickee"/>
                     <move obj1Id="ladder" action="getIn" waypointId="chickeeLadder"/>

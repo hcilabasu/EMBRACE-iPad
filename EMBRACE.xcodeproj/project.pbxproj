@@ -1061,8 +1061,6 @@
 		1AAF05EC1D82295F005BB457 /* SolutionStepController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAF05EB1D82295F005BB457 /* SolutionStepController.m */; };
 		1AB028FC1ACF0890006CC916 /* AuthoringModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB028FB1ACF0890006CC916 /* AuthoringModeViewController.m */; };
 		1ABB7D0C1E410E25007FCF59 /* AlternateSentences-MetaData-IM.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1ABB7D0B1E410E25007FCF59 /* AlternateSentences-MetaData-IM.xml */; };
-		1ABD6BDB1E527515000D2541 /* Ashley Temp.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1ABD6BDA1E527515000D2541 /* Ashley Temp.xml */; };
-		1ABD6BDD1E527547000D2541 /* Ashley Temp.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1ABD6BDC1E527547000D2541 /* Ashley Temp.xml */; };
 		1ABDDCFE1CBDAAD100EA4DF2 /* island_lava_Oahu.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABDDCFD1CBDAAD100EA4DF2 /* island_lava_Oahu.png */; };
 		1AC450771CAC8243004B7810 /* pigRight_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AC450761CAC8243004B7810 /* pigRight_large.png */; };
 		1AC7A38F1C59259C003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1AC7A38E1C59259C003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml */; };
@@ -20039,7 +20037,6 @@
 				1A6321E21C0E4D3B00251CB3 /* buildings.png in Resources */,
 				5C5F7CD31C62F42000CF70A1 /* Story1-Introduction-PM-S.xhtml in Resources */,
 				5C72E5091C727E2000CE4877 /* TheNavajoHoganQ4.mp3 in Resources */,
-				1ABD6BDB1E527515000D2541 /* Ashley Temp.xml in Resources */,
 				5C0422191C618C2B001BBE9D /* WordsOfWisdomQ8A3.mp3 in Resources */,
 				1A6322D11C0E4D3B00251CB3 /* Story1-The-Lopez-Family-PM-2.xhtml in Resources */,
 				5CF792DC1C7694A900216337 /* TheContestQ6A2S.mp3 in Resources */,
@@ -23814,7 +23811,6 @@
 				5C137D0E1C8A79CC0023901C /* TeepeesE.mp3 in Resources */,
 				5C09DF681C84F7DB00EC4E78 /* Heart_def_E.mp3 in Resources */,
 				71193D361E2FCF4D003D7EB5 /* TheLopezFamilyS0S.mp3 in Resources */,
-				1ABD6BDD1E527547000D2541 /* Ashley Temp.xml in Resources */,
 				5CF6CA5E1CCB2BB50093D3FD /* Spew_type1S.mp3 in Resources */,
 				5C0ED9FE1C753AD400003B5A /* TheAmazingHeartQ3A3.mp3 in Resources */,
 				5C09DF6D1C84F7DB00EC4E78 /* Rush_def_E.mp3 in Resources */,
