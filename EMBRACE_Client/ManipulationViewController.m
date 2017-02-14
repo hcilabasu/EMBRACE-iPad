@@ -889,6 +889,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 //TODO: REMOVE THIS TEMP HARDCODED FIX
                 if([chapterTitle isEqualToString:@"The Contest"] && [pageContext.currentPageId containsString:DASH_INTRO] && [englishSentenceText isEqualToString:@"award"]){
                     [self playIntroVocabWord:@"prize" :currSolStep];
+                    
+                }else if([chapterTitle isEqualToString:@"The Contest"] && [pageContext.currentPageId containsString:DASH_INTRO] && [englishSentenceText isEqualToString:@"pen"]){
+                    [self playIntroVocabWord:@"corral" :currSolStep];
                 }else{
                     [self playIntroVocabWord:englishSentenceText :currSolStep];
                 }
