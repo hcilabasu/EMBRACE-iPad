@@ -8,7 +8,7 @@
         <location locationId="boatAcross" x="0%" y="40%" height="47%" width="53%"/>
         <location locationId="chickeeLocation" x="0%" y="20%" height="40%" width="45%"/>
         <location locationId="chickeeRoof" x="0%" y="0%" height="30%" width="37%"/>
-        <location locationId="circle" x="33%" y="37%" height="100%" width="100%"/>
+        <location locationId="circleLocation" x="33%" y="37%" height="100%" width="100%"/>
         <location locationId="circleCh4" x="40%" y="50%" height="100%" width="50%"/>
         <location locationId="clearedArea" x="5%" y="50%" height="100%" width="85%"/>
         <location locationId="doorway" x="44%" y="47%" height="30%" width="12%"/>

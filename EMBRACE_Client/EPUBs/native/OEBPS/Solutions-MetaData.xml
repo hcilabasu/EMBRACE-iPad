@@ -34,7 +34,7 @@
             <sentence number="3">
                 <step number="1">
                     <group obj1Id="inuit" action="grab" obj2Id="shovel"/>
-                    <check obj1Id="inuit" action="getIn" locationId="circle"/>
+                    <check obj1Id="inuit" action="getIn" locationId="circleLocation"/>
                     <move obj1Id="inuit" action="getIn" waypointId="circle"/>
                     <swapImage obj1Id="hole" action="hole"/>
                     <appear obj1Id="snowpile" action="appear"/>
@@ -57,7 +57,7 @@
                     <group obj1Id="inuit" action="pickUp" obj2Id="snowblock"/>
                 </step>
                 <step number="2">
-                    <check obj1Id="inuit" action="getIn" locationId="circle"/>
+                    <check obj1Id="inuit" action="getIn" locationId="circleLocation"/>
                     <ungroup obj1Id="inuit" action="drop" obj2Id="snowblock"/>
                     <move obj1Id="inuit" action="getIn" waypointId="circle2"/>
                     <move obj1Id="snowblock" action="getIn" waypointId="circleSnowblock"/>
@@ -70,7 +70,7 @@
                     <group obj1Id="inuit" action="pickUp" obj2Id="snowblock"/>
                 </step>
                 <step number="2">
-                    <check obj1Id="inuit" action="getIn" locationId="circle"/>
+                    <check obj1Id="inuit" action="getIn" locationId="circleLocation"/>
                     <ungroup obj1Id="inuit" action="drop" obj2Id="snowblock"/>
                     <move obj1Id="inuit" action="getIn" waypointId="circle2"/>
                     <move obj1Id="snowblock" action="getIn" waypointId="circleSnowblock2"/>
