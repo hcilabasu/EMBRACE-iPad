@@ -279,7 +279,7 @@
     
     if (conditionSetup.appMode == ITS && conditionSetup.useKnowledgeTracing && ![mvc.chapterTitle isEqualToString:@"The Naughty Monkey"]) {
         NSMutableSet *vocabToAdd = [[ITSController sharedInstance] getExtraIntroductionVocabularyForChapter:chapter inBook:mvc.book];
-        
+        [vocabToAdd minusSet:newVocab];
         [[ServerCommunicationController sharedInstance] logAdaptVocabulary:[NSArray arrayWithArray:[vocabToAdd allObjects]] context:manipulationContext];
         
         for (NSString *vocab in vocabToAdd) {

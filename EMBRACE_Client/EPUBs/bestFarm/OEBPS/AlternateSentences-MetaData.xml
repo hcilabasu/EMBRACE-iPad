@@ -121,15 +121,13 @@
                     <step number="10"/>
                 </solution>
             </sentence>
-            <sentence number="4" action="yes">
+            <sentence number="4" action="no">
                 <attributes complexity="10"/>
                 <text>The cat drank the milk to make her fur shiny.</text>
                 <ideas>
                     <idea number="14"/>
                 </ideas>
                 <solution>
-                    <step number="11"/>
-                    <step number="12"/>
                 </solution>
             </sentence>
             
@@ -163,14 +161,13 @@
                     <step number="10"/>
                 </solution>
             </sentence>
-            <sentence number="8" action="yes">
+            <sentence number="8" action="no">
                 <attributes complexity="1"/>
                 <text>The cat drank the milk.</text>
                 <ideas>
                     <idea number="14"/>
                 </ideas>
                 <solution>
-                    <step number="11"/>
                 </solution>
             </sentence>
             <sentence number="9" action="no">
@@ -180,7 +177,6 @@
                     <idea number="14"/>
                 </ideas>
                 <solution>
-                    <step number="12"/>
                 </solution>
             </sentence>
             
