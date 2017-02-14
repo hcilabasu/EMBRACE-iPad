@@ -885,7 +885,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 }
                 
                 [ssc incrementCurrentStep];
-                [self playIntroVocabWord:englishSentenceText :currSolStep];
+                
+                //TODO: REMOVE THIS TEMP HARDCODED FIX
+                if([chapterTitle isEqualToString:@"The Contest"] && [pageContext.currentPageId containsString:DASH_INTRO] && [englishSentenceText isEqualToString:@"award"]){
+                    [self playIntroVocabWord:@"prize" :currSolStep];
+                }else{
+                    [self playIntroVocabWord:englishSentenceText :currSolStep];
+                }
             }
             else {
                 //pressed wrong word
