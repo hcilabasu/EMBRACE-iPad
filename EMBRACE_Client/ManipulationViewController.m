@@ -2452,12 +2452,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         NSString *object1Id = [currSolStep object1Id];
         NSString *locationId = [currSolStep locationId];
         
-        if ([locationId isEqualToString:EMPTYSTRING]) {
+        if (locationId == nil || [locationId isEqualToString:EMPTYSTRING]) {
             locationId = [currSolStep areaId];
         }
         
         [highlightedItems addObject:object1Id];
-        [highlightedItems addObject:locationId];
+        if (locationId != nil)
+            [highlightedItems addObject:locationId];
         
         [[ServerCommunicationController sharedInstance] logVocabularyErrorFeedback:highlightedItems context:manipulationContext];
         
