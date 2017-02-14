@@ -101,6 +101,7 @@
             <idea number="38"/>
         </story>
         <story title="The Algonquian Wigwam" activity_id="story4-PM-1">
+            
             <idea number="39"/>
             <idea number="40"/>
             <idea number="41"/>
@@ -167,17 +168,16 @@
             <idea number="65"/>
             <idea number="66"/>
             <idea number="67">
-            </idea>
-        </story>
-        <story title="The Haida Plank House" activity_id="story5-PM-5">
-            <idea number="68">
-            </idea>
-            <idea number="69">
                 <step number="6">
                     <group obj1Id="haidaIM" action="carry" obj2Id="planksIM"/>
                     <group obj1Id="haidaIM" action="standOn" obj2Id="planksIM"/>
                 </step>
             </idea>
+        </story>
+        <story title="The Haida Plank House" activity_id="story5-PM-5">
+            <idea number="68">
+            </idea>
+            <idea number="69"/>
         </story>
         <story title="The Seminole Chickee" activity_id="story6-PM-1">
             <idea number="70"/>
@@ -204,6 +204,7 @@
             <idea number="78">
             </idea>
             <idea number="79"/>
+            
             <idea number="80">
             </idea>
             <idea number="81">
@@ -215,7 +216,10 @@
             <idea number="82"/>
             <idea number="83"/>
             <idea number="84">
+                
             </idea>
         </story>
     </solutions>
 </metadata>
+
+                
