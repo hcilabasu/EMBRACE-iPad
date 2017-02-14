@@ -1726,6 +1726,7 @@
                 
                 <solution>
                     <step number="1"/>
+                    
                 </solution>
                 
             </sentence>
@@ -1764,6 +1765,7 @@
                 
                 <solution>
                     <step number="1"/>
+                    
                 </solution>
                 
             </sentence>
@@ -1799,6 +1801,7 @@
                 
                 <solution>
                     <step number="1"/>
+                    
                 </solution>
                 
             </sentence>
@@ -1817,6 +1820,7 @@
                 
                 <solution>
                     <step number="1"/>
+                    
                 </solution>
                 
             </sentence>
@@ -2049,6 +2053,7 @@
                 
                 <solution>
                     <step number="2"/>
+                    
                 </solution>
                 
             </sentence>
@@ -3338,6 +3343,7 @@
                 
                 <solution>
                     
+                    
                 </solution>
                 
             </sentence>
@@ -3384,7 +3390,7 @@
             
             <sentence number="12" action="yes">
                 
-                <attributes complexity="11"/>
+                <attributes complexity="10"/>
                 
                 <text>Then they used the axes to cut branches off the tree trunk to make logs.</text>
                 
@@ -3402,7 +3408,7 @@
             
             <sentence number="13" action="yes">
                 
-                <attributes complexity="12"/>
+                <attributes complexity="10"/>
                 
                 <text>They rolled the logs to the canoes.</text>
                 
@@ -3492,6 +3498,7 @@
                 </ideas>
                 
                 <solution>
+                    
                 </solution>
                 
             </sentence>
@@ -3509,6 +3516,7 @@
                 </ideas>
                 
                 <solution>
+                    
                 </solution>
                 
             </sentence>
@@ -3527,7 +3535,6 @@
                 <ideas>
                     
                     <idea number="65"/>
-                    <idea number="66"/>
                     
                 </ideas>
                 
@@ -3544,8 +3551,7 @@
                 
                 <ideas>
                     
-                    <idea number="67"/>
-                    <idea number="68"/>
+                    <idea number="66"/>
                     
                 </ideas>
                 
@@ -3562,7 +3568,7 @@
                 
                 <ideas>
                     
-                    <idea number="69"/>
+                    <idea number="67"/>
                     
                 </ideas>
                 
@@ -3587,7 +3593,6 @@
                 <ideas>
                     
                     <idea number="65"/>
-                    <idea number="66"/>
                     
                 </ideas>
                 
@@ -3604,8 +3609,7 @@
                 
                 <ideas>
                     
-                    <idea number="67"/>
-                    <idea number="68"/>
+                    <idea number="66"/>
                     
                 </ideas>
                 
@@ -3622,7 +3626,7 @@
                 
                 <ideas>
                     
-                    <idea number="69"/>
+                    <idea number="67"/>
                     
                 </ideas>
                 
@@ -3658,7 +3662,7 @@
                 
                 <ideas>
                     
-                    <idea number="66"/>
+                    <idea number="65"/>
                     
                 </ideas>
                 
@@ -3675,7 +3679,7 @@
                 
                 <ideas>
                     
-                    <idea number="67"/>
+                    <idea number="66"/>
                     
                 </ideas>
                 
@@ -3692,7 +3696,7 @@
                 
                 <ideas>
                     
-                    <idea number="68"/>
+                    <idea number="66"/>
                     
                 </ideas>
                 
@@ -3709,8 +3713,7 @@
                 
                 <ideas>
                     
-                    <idea number="67"/>
-                    <idea number="68"/>
+                    <idea number="66"/>
                     
                 </ideas>
                 
@@ -3732,7 +3735,7 @@
                 
                 <ideas>
                     
-                    <idea number="70"/>
+                    <idea number="68"/>
                     
                 </ideas>
                 
@@ -3751,7 +3754,7 @@
                 
                 <ideas>
                     
-                    <idea number="71"/>
+                    <idea number="69"/>
                     
                 </ideas>
                 
@@ -3772,7 +3775,7 @@
                 
                 <ideas>
                     
-                    <idea number="70"/>
+                    <idea number="68"/>
                     
                 </ideas>
                 
@@ -3791,7 +3794,7 @@
                 
                 <ideas>
                     
-                    <idea number="71"/>
+                    <idea number="69"/>
                     
                 </ideas>
                 
@@ -3808,7 +3811,7 @@
                 
                 <ideas>
                     
-                    <idea number="70"/>
+                    <idea number="68"/>
                     
                 </ideas>
                 
@@ -3829,7 +3832,7 @@
                 
                 <ideas>
                     
-                    <idea number="72"/>
+                    <idea number="70"/>
                     
                 </ideas>
                 
@@ -3865,7 +3868,7 @@
                 
                 <attributes complexity="10"/>
                 
-                <text>But in 1830, the U.S.</text>
+                <text>But in 1830, the U.S. Army took over their land and the Seminoles fled into swamps called the Everglades.</text>
                 
                 <ideas>
                     
@@ -3874,23 +3877,6 @@
                 </ideas>
                 
                 <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="4" action="yes">
-                
-                <attributes complexity="10"/>
-                
-                <text>Army took over their land and the Seminoles fled into swamps called the Everglades.</text>
-                
-                <ideas>
-                    
-                    <idea number="73"/>
-                    
-                </ideas>
-                
-                <solution>
                     
                 </solution>
                 
@@ -3898,12 +3884,31 @@
             
             
             
-            
-            <sentence number="5" action="no">
+            <sentence number="4" action="no">
                 
                 <attributes complexity="2"/>
                 
-                <text>But in 1830, the U.S.</text>
+                <text>But in 1830, the U.S. Army took over their land and the Seminoles fled into swamps called the Everglades.</text>
+                
+                <ideas>
+                    
+                    <idea number="71"/>
+                    
+                </ideas>
+                
+                <solution>
+                    
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            <sentence number="5" action="yes">
+                
+                <attributes complexity="1"/>
+                
+                <text>But in 1830, the U.S. Army took over their land. The Seminoles fled into swamps.</text>
                 
                 <ideas>
                     
@@ -3915,77 +3920,10 @@
                 </solution>
                 
             </sentence>
+            
+            
             
             <sentence number="6" action="yes">
-                
-                <attributes complexity="2"/>
-                
-                <text>Army took over their land and the Seminoles fled into swamps called the Everglades.</text>
-                
-                <ideas>
-                    
-                    <idea number="73"/>
-                    
-                </ideas>
-                
-                <solution>
-                    
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="9" action="no">
-                
-                <attributes complexity="1"/>
-                
-                <text>But in 1830, the U.S</text>
-                
-                <ideas>
-                    
-                    <idea number="71"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            
-            <sentence number="10" action="no">
-                
-                <attributes complexity="1"/>
-                
-                <text>Army took over their land.</text>
-                
-                <ideas>
-                    
-                    <idea number="73"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="11" action="yes">
-                
-                <attributes complexity="1"/>
-                
-                <text>The Seminoles fled into swamps.</text>
-                
-                <ideas>
-                    <idea number="72"/>
-                    <idea number="73"/>
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="12" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -3993,7 +3931,124 @@
                 
                 <ideas>
                     
+                    <idea number="71"/>
+                    
+                </ideas>
+                
+                <solution>
+                    
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="7" action="yes">
+                
+                <attributes complexity="3"/>
+                
+                <text>But the Seminoles fled into swamps called the Everglades when the U.S. Army took over their land in 1830.</text>
+                
+                <ideas>
+                    <idea number="71"/>
+                    
+                </ideas>
+                
+                <solution>
+                    
+                </solution>
+                
+            </sentence>
+            
+            
+            
+        </story>
+        
+        <story title="The Seminole Chickee" page_id="story6-PM-3">
+            
+            <sentence number="8" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Because the Everglades are very wet, the Seminoles could not build houses on the ground.</text>
+                
+                <ideas>
+                    
+                    <idea number="72"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="9" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>Instead, they invented the chickee, a house built above the ground.</text>
+                
+                <ideas>
+                    
                     <idea number="73"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="10" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>First, a Seminole man would stick thick logs into the ground making stilts.</text>
+                
+                <ideas>
+                    
+                    <idea number="74"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="7"/>
+                    
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="11" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Then he tied long poles between the stilts.</text>
+                
+                <ideas>
+                    
+                    <idea number="75"/>
+                    
+                </ideas>
+                
+                <solution>
+                    
+                    
+                </solution>
+                
+            </sentence>
+            
+            
+            
+            
+            
+            <sentence number="12" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>Because the Everglades are very wet, the Seminoles could not build houses on the ground.</text>
+                
+                <ideas>
+                    
+                    <idea number="72"/>
                     
                 </ideas>
                 
@@ -4004,12 +4059,12 @@
             
             <sentence number="13" action="no">
                 
-                <attributes complexity="3"/>
+                <attributes complexity="2"/>
                 
-                <text>But the Seminoles fled into swamps called the Everglades when the U.S.</text>
+                <text>Instead, they invented the chickee, a house built above the ground.</text>
                 
                 <ideas>
-                    <idea number="72"/>
+                    
                     <idea number="73"/>
                     
                 </ideas>
@@ -4021,35 +4076,51 @@
             
             <sentence number="14" action="yes">
                 
-                <attributes complexity="3"/>
+                <attributes complexity="2"/>
                 
-                <text>Army took over their land in 1830.</text>
-                
-                <ideas>
-                    
-                    <idea number="72"/>
-                    <idea number="73"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-        </story>
-        
-        <story title="The Seminole Chickee" page_id="story6-PM-3">
-            
-            <sentence number="16" action="no">
-                
-                <attributes complexity="10"/>
-                
-                <text>Because the Everglades are very wet, the Seminoles could not build houses on the ground.</text>
+                <text>First, a Seminole man would stick thick logs into the ground making stilts.</text>
                 
                 <ideas>
                     
                     <idea number="74"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="7"/>
+                    
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="15" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Then he tied long poles between the stilts.</text>
+                
+                <ideas>
+                    
+                    <idea number="75"/>
+                    
+                </ideas>
+                
+                <solution>
+                    
+                    
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="16" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>The Everglades are very wet.</text>
+                
+                <ideas>
+                    
+                    <idea number="72"/>
                     
                 </ideas>
                 
@@ -4060,159 +4131,13 @@
             
             <sentence number="17" action="no">
                 
-                <attributes complexity="10"/>
-                
-                <text>Instead, they invented the chickee, a house built above the ground.</text>
-                
-                <ideas>
-                    
-                    <idea number="75"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="18" action="yes">
-                
-                <attributes complexity="10"/>
-                
-                <text>First, a Seminole man would stick thick logs into the ground making stilts.</text>
-                
-                <ideas>
-                    
-                    <idea number="76"/>
-                    
-                </ideas>
-                
-                <solution>
-                    <step number="7"/>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="19" action="yes">
-                
-                <attributes complexity="10"/>
-                
-                <text>Then he tied long poles between the stilts.</text>
-                
-                <ideas>
-                    
-                    <idea number="77"/>
-                    
-                </ideas>
-                
-                <solution>
-                    
-                    
-                </solution>
-                
-            </sentence>
-            
-            
-            
-            
-            
-            <sentence number="20" action="no">
-                
-                <attributes complexity="2"/>
-                
-                <text>Because the Everglades are very wet, the Seminoles could not build houses on the ground.</text>
-                
-                <ideas>
-                    
-                    <idea number="74"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="21" action="no">
-                
-                <attributes complexity="2"/>
-                
-                <text>Instead, they invented the chickee, a house built above the ground.</text>
-                
-                <ideas>
-                    
-                    <idea number="75"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="22" action="yes">
-                
-                <attributes complexity="2"/>
-                
-                <text>First, a Seminole man would stick thick logs into the ground making stilts.</text>
-                
-                <ideas>
-                    
-                    <idea number="76"/>
-                    
-                </ideas>
-                
-                <solution>
-                    <step number="7"/>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="23" action="yes">
-                
-                <attributes complexity="2"/>
-                
-                <text>Then he tied long poles between the stilts.</text>
-                
-                <ideas>
-                    
-                    <idea number="77"/>
-                    
-                </ideas>
-                
-                <solution>
-                    
-                    
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="24" action="no">
-                
-                <attributes complexity="1"/>
-                
-                <text>The Everglades are very wet.</text>
-                
-                <ideas>
-                    
-                    <idea number="74"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="25" action="no">
-                
                 <attributes complexity="1"/>
                 
                 <text>So, the Seminoles could not build houses on the ground.</text>
                 
                 <ideas>
                     
-                    <idea number="74"/>
+                    <idea number="72"/>
                     
                 </ideas>
                 
@@ -4221,7 +4146,7 @@
                 
             </sentence>
             
-            <sentence number="26" action="no">
+            <sentence number="18" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -4229,7 +4154,7 @@
                 
                 <ideas>
                     
-                    <idea number="75"/>
+                    <idea number="73"/>
                     
                 </ideas>
                 
@@ -4238,7 +4163,7 @@
                 
             </sentence>
             
-            <sentence number="27" action="no">
+            <sentence number="19" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -4246,7 +4171,7 @@
                 
                 <ideas>
                     
-                    <idea number="75"/>
+                    <idea number="73"/>
                     
                 </ideas>
                 
@@ -4255,7 +4180,7 @@
                 
             </sentence>
             
-            <sentence number="28" action="yes">
+            <sentence number="20" action="yes">
                 
                 <attributes complexity="1"/>
                 
@@ -4263,7 +4188,7 @@
                 
                 <ideas>
                     
-                    <idea number="76"/>
+                    <idea number="74"/>
                     
                 </ideas>
                 
@@ -4273,7 +4198,7 @@
                 
             </sentence>
             
-            <sentence number="29" action="yes">
+            <sentence number="21" action="yes">
                 
                 <attributes complexity="1"/>
                 
@@ -4281,7 +4206,7 @@
                 
                 <ideas>
                     
-                    <idea number="77"/>
+                    <idea number="75"/>
                     
                 </ideas>
                 
@@ -4295,11 +4220,47 @@
         <story title="The Seminole Chickee" page_id="story6-PM-4">
             
             
-            <sentence number="30" action="yes">
+            <sentence number="22" action="yes">
                 
                 <attributes complexity="10"/>
                 
                 <text>He used palm leaves to cover the poles and make a floor above the wet ground.</text>
+                
+                <ideas>
+                    
+                    <idea number="76"/>
+                    
+                </ideas>
+                
+                <solution>
+                    
+                    
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="23" action="no">
+                
+                <attributes complexity="10"/>
+                
+                <text>He used more poles to build the slanted roof.</text>
+                
+                <ideas>
+                    
+                    <idea number="77"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="24" action="yes">
+                
+                <attributes complexity="10"/>
+                
+                <text>Then he covered the roof with bark and leaves.</text>
                 
                 <ideas>
                     
@@ -4314,11 +4275,11 @@
                 
             </sentence>
             
-            <sentence number="31" action="no">
+            <sentence number="25" action="yes">
                 
                 <attributes complexity="10"/>
                 
-                <text>He used more poles to build the slanted roof.</text>
+                <text>Finally, he attached a ladder to the house to help people climb up to the floor.</text>
                 
                 <ideas>
                     
@@ -4327,15 +4288,17 @@
                 </ideas>
                 
                 <solution>
+                    
+                    
                 </solution>
                 
             </sentence>
             
-            <sentence number="32" action="yes">
+            <sentence number="26" action="no">
                 
                 <attributes complexity="10"/>
                 
-                <text>Then he covered the roof with bark and leaves.</text>
+                <text>For most of the year, chickees did not have any walls because of the warm weather in Florida.</text>
                 
                 <ideas>
                     
@@ -4344,17 +4307,15 @@
                 </ideas>
                 
                 <solution>
-                    
-                    
                 </solution>
                 
             </sentence>
             
-            <sentence number="33" action="yes">
+            <sentence number="27" action="no">
                 
                 <attributes complexity="10"/>
                 
-                <text>Finally, he attached a ladder to the house to help people climb up to the floor.</text>
+                <text>But without walls, the Seminoles must have been plagued by mosquitos!.</text>
                 
                 <ideas>
                     
@@ -4363,42 +4324,6 @@
                 </ideas>
                 
                 <solution>
-                    
-                    
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="34" action="no">
-                
-                <attributes complexity="10"/>
-                
-                <text>For most of the year, chickees did not have any walls because of the warm weather in Florida.</text>
-                
-                <ideas>
-                    
-                    <idea number="82"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="35" action="no">
-                
-                <attributes complexity="10"/>
-                
-                <text>But without walls, the Seminoles must have been plagued by mosquitos!.</text>
-                
-                <ideas>
-                    
-                    <idea number="83"/>
-                    
-                </ideas>
-                
-                <solution>
                 </solution>
                 
             </sentence>
@@ -4406,11 +4331,47 @@
             
             
             
-            <sentence number="36" action="yes">
+            <sentence number="28" action="yes">
                 
                 <attributes complexity="2"/>
                 
                 <text>He used palm leaves to cover the poles and make a floor above the wet ground.</text>
+                
+                <ideas>
+                    
+                    <idea number="76"/>
+                    
+                </ideas>
+                
+                <solution>
+                    
+                    
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="29" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>He used more poles to build the slanted roof.</text>
+                
+                <ideas>
+                    
+                    <idea number="77"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="30" action="yes">
+                
+                <attributes complexity="2"/>
+                
+                <text>Then he covered the roof with bark and leaves.</text>
                 
                 <ideas>
                     
@@ -4425,11 +4386,120 @@
                 
             </sentence>
             
-            <sentence number="37" action="no">
+            <sentence number="31" action="yes">
                 
                 <attributes complexity="2"/>
                 
-                <text>He used more poles to build the slanted roof.</text>
+                <text>Finally, he attached a ladder to the house to help people climb up to the floor.</text>
+                
+                <ideas>
+                    
+                    <idea number="79"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="8"/>
+                    
+                    
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="32" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>For most of the year, chickees did not have any walls because of the warm weather in Florida.</text>
+                
+                <ideas>
+                    
+                    <idea number="80"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="33" action="no">
+                
+                <attributes complexity="2"/>
+                
+                <text>But without walls, the Seminoles must have been plagued by mosquitos!.</text>
+                
+                <ideas>
+                    
+                    <idea number="81"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="34" action="yes">
+                
+                <attributes complexity="1"/>
+                
+                <text>He used palm leaves to cover the poles.</text>
+                
+                <ideas>
+                    
+                    <idea number="76"/>
+                    
+                </ideas>
+                
+                <solution>
+                    
+                    
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="35" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>This made a floor above the wet ground.</text>
+                
+                <ideas>
+                    
+                    <idea number="76"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="36" action="yes">
+                
+                <attributes complexity="1"/>
+                
+                <text>He attached a ladder to the house.</text>
+                
+                <ideas>
+                    
+                    <idea number="79"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="8"/>
+                    
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="37" action="no">
+                
+                <attributes complexity="1"/>
+                
+                <text>The ladder helped people climb up to the floor.</text>
                 
                 <ideas>
                     
@@ -4444,13 +4514,13 @@
             
             <sentence number="38" action="yes">
                 
-                <attributes complexity="2"/>
+                <attributes complexity="3"/>
                 
-                <text>Then he covered the roof with bark and leaves.</text>
+                <text>In order to make a floor above the wet ground, he used palm leaves to cover the poles.</text>
                 
                 <ideas>
                     
-                    <idea number="80"/>
+                    <idea number="76"/>
                     
                 </ideas>
                 
@@ -4463,155 +4533,20 @@
             
             <sentence number="39" action="yes">
                 
-                <attributes complexity="2"/>
-                
-                <text>Finally, he attached a ladder to the house to help people climb up to the floor.</text>
-                
-                <ideas>
-                    
-                    <idea number="81"/>
-                    
-                </ideas>
-                
-                <solution>
-                    
-                    
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="40" action="no">
-                
-                <attributes complexity="2"/>
-                
-                <text>For most of the year, chickees did not have any walls because of the warm weather in Florida.</text>
-                
-                <ideas>
-                    
-                    <idea number="82"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="41" action="no">
-                
-                <attributes complexity="2"/>
-                
-                <text>But without walls, the Seminoles must have been plagued by mosquitos!.</text>
-                
-                <ideas>
-                    
-                    <idea number="83"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="42" action="yes">
-                
-                <attributes complexity="1"/>
-                
-                <text>He used palm leaves to cover the poles.</text>
-                
-                <ideas>
-                    
-                    <idea number="78"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="43" action="no">
-                
-                <attributes complexity="1"/>
-                
-                <text>This made a floor above the wet ground.</text>
-                
-                <ideas>
-                    
-                    <idea number="78"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="44" action="yes">
-                
-                <attributes complexity="1"/>
-                
-                <text>He attached a ladder to the house.</text>
-                
-                <ideas>
-                    
-                    <idea number="81"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="45" action="no">
-                
-                <attributes complexity="1"/>
-                
-                <text>The ladder helped people climb up to the floor.</text>
-                
-                <ideas>
-                    
-                    <idea number="81"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="46" action="yes">
-                
-                <attributes complexity="3"/>
-                
-                <text>In order to make a floor above the wet ground, he used palm leaves to cover the poles.</text>
-                
-                <ideas>
-                    
-                    <idea number="78"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="47" action="yes">
-                
                 <attributes complexity="3"/>
                 
                 <text>Finally, he attached a ladder to the house, which in turn helped people climb up to the floor.</text>
                 
                 <ideas>
                     
-                    <idea number="81"/>
+                    <idea number="79"/>
                     
                 </ideas>
                 
                 <solution>
+                    <step number="8"/>
+                    
+                    
                 </solution>
                 
             </sentence>
