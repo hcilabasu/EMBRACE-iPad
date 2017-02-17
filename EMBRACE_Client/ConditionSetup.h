@@ -52,6 +52,7 @@ typedef enum Assessment {
 @property (nonatomic) BOOL isVocabPageEnabled; //whether the vocab page should be displayed
 @property (nonatomic) BOOL isAssessmentPageEnabled; //whether the assessment page should be displayed
 @property (nonatomic) BOOL allowFileSync; //whether log and progress files should be synced with Dropbox
+@property (nonatomic) BOOL isOnDemandVocabEnabled; //whether the system will play and highlight vocab words in story
 
 + (ConditionSetup*)sharedInstance;
 

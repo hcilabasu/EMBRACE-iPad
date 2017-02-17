@@ -976,7 +976,7 @@ function removeSentence(sentenceId) {
  * Adds sentence with the specified sentence id, action information (whether it is
  * an action sentence or not), text, and vocabulary words (if any)
  */
-function addSentence(sentenceId, action, splitTextArray, wordsArray) {
+function addSentence(sentenceId, action, splitTextArray, wordsArray, vocabOnDemand) {
     var textbox = document.getElementsByClassName('textbox')[0]; //get textbox element
     var newSentence = document.createElement("p"); //create new sentence
     
@@ -989,7 +989,9 @@ function addSentence(sentenceId, action, splitTextArray, wordsArray) {
             
             //Vocabulary word
             var newWord = document.createElement("p");
-            newWord.className = "audible";
+            if(vocabOnDemand){
+                newWord.className = "audible";
+            }
             newWord.appendChild(document.createTextNode(wordsArray[i]));
             
             newSentence.appendChild(newText);

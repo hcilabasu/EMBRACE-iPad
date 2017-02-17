@@ -19,6 +19,7 @@
 @synthesize isVocabPageEnabled;
 @synthesize isAssessmentPageEnabled;
 @synthesize assessmentMode;
+@synthesize isOnDemandVocabEnabled;
 
 @synthesize allowFileSync;
 
@@ -43,6 +44,7 @@
         newInstructions = true;
         isVocabPageEnabled = true;
         isAssessmentPageEnabled = true;
+        isOnDemandVocabEnabled = YES;
         assessmentMode = ENDOFCHAPTER;
         allowFileSync = true; //NOTE: Still testing this functionality
     }

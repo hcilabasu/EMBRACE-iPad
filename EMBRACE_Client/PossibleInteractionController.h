@@ -13,13 +13,13 @@
 
 -(id)initWithController:(ManipulationViewController *) superMvc;
 
-@property (nonatomic, strong) ManipulationViewController *mvc;
-@property (nonatomic, strong) SolutionStepController *ssc;
-@property (nonatomic, strong) StepContext *stepContext;
+@property (nonatomic, weak) ManipulationViewController *mvc;
+@property (nonatomic, weak) SolutionStepController *ssc;
+@property (nonatomic, weak) StepContext *stepContext;
 //@property (nonatomic, strong) ConditionSetup *conditionSetup;
 //@property (nonatomic, strong) PageContext *pageContext;
 //@property (nonatomic, strong) SentenceContext *sentenceContext;
-@property (nonatomic, strong) ManipulationContext *manipulationContext;
+@property (nonatomic, weak) ManipulationContext *manipulationContext;
 
 - (void)performInteraction:(PossibleInteraction *)interaction;
 - (void)rankPossibleInteractions:(NSMutableArray *)possibleInteractions;

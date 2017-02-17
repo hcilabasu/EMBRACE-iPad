@@ -1116,4 +1116,9 @@ shouldUpdateConnection:(BOOL)updateCon
     return CGPointMake(-99, -99);
 }
 
+- (void)removeAllAudibleTags {
+    NSString *removeSentenceString = [NSString stringWithFormat:@"removeAudibleTagFromSentence()"];
+    [self.bookView stringByEvaluatingJavaScriptFromString:removeSentenceString];
+}
+
 @end

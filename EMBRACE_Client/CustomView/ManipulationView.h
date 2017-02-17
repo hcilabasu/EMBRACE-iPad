@@ -182,6 +182,8 @@ shouldUpdateConnection:(BOOL)updateCon
                     startLocation:(CGPoint)startLocation
                         shouldPan:(BOOL)isPanning;
 
+- (void)removeAllAudibleTags;
+
 
 @end
 

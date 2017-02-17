@@ -67,6 +67,20 @@
             adjustedParticipantCode = [NSString stringWithFormat:@"MCD20%d", sequenceNumber];
         }
     }
+    // ADS sequence
+    else if ([participantCode rangeOfString:@"ADS"].location != NSNotFound && [[participantCode componentsSeparatedByString:@"ADS"][1] length] == 2) {
+        numSequences = 2;
+        
+        //Get number at end of participant code and match it to appropriate sequence
+        NSInteger sequenceNumber = [[participantCode componentsSeparatedByString:@"ADS"][1] integerValue] % numSequences;
+        
+        if (sequenceNumber == 0) {
+            adjustedParticipantCode = [NSString stringWithFormat:@"ADS001"];
+        }
+        else {
+            adjustedParticipantCode = [NSString stringWithFormat:@"ADS002"];
+        }
+    }
     
     return adjustedParticipantCode;
 }
@@ -171,8 +185,12 @@
                 NSString *assessmentPageString = [[modeElement attributeForName:@"assessmentPage"] stringValue];
                 BOOL assesssmentPage = [assessmentPageString isEqualToString:@"true"] ? true : false;
                 
+                //Get onDemandVocab flag
+                NSString *onDemandVocabString = [[modeElement attributeForName:@"vocabOnDemand"] stringValue];
+                BOOL onDemandVocab = (onDemandVocabString && ![onDemandVocabString isEqualToString:@""]) ?[onDemandVocabString boolValue] : true;
+                
                 //Create mode for chapter and add to array of modes
-                ActivityMode *mode = [[ActivityMode alloc] initWithValues:chapterTitle :newInstructions :reader :language :intervention:vocabPage:assesssmentPage];
+                ActivityMode *mode = [[ActivityMode alloc] initWithValues:chapterTitle :newInstructions :reader :language :intervention:vocabPage:onDemandVocab:assesssmentPage];
                 [modes addObject:mode];
             }
             

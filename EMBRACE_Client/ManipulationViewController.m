@@ -230,7 +230,7 @@ BOOL wasPathFollowed = false;
     else if (conditionSetup.condition == EMBRACE) {
         allowInteractions = TRUE;
         
-        stepContext.maxAttempts = 5;
+        stepContext.maxAttempts = 3;
         stepContext.numAttempts = 0;
         
         if (conditionSetup.currentMode == PM_MODE) {
@@ -862,7 +862,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             [self tapGestureOnVocabWord: englishSentenceText:sentenceText:sentenceIDNum];
         }
         //Taps on vocab word in story
-        else if ([pageContext.currentPageId containsString:@"-PM"])
+        else if ([pageContext.currentPageId containsString:@"-PM"] && conditionSetup.isOnDemandVocabEnabled)
         {
             [self tapGestureOnStoryWord:englishSentenceText:sentenceIDNum:spanishExt:sentenceText];
         }

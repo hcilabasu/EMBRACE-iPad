@@ -138,6 +138,11 @@
         [self.manipulationView removePMInstructions:sentenceContext.totalSentences];
     }
     
+    if(!conditionSetup.isOnDemandVocabEnabled && [pageContext.currentPageId rangeOfString:DASH_INTRO].location == NSNotFound){
+            [self.manipulationView removeAllAudibleTags];
+    }
+    
+    
     //Set up current sentence appearance and solution steps
     [self setupCurrentSentence];
     [self setupCurrentSentenceColor];

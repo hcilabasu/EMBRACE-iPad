@@ -63,6 +63,8 @@
 		1A2AAD451C20DCFA00A709E9 /* baby_large_high_res_min.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A2AAD431C20DCFA00A709E9 /* baby_large_high_res_min.png */; };
 		1A2AAD461C20DCFA00A709E9 /* cribb_large_high_res_min.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A2AAD441C20DCFA00A709E9 /* cribb_large_high_res_min.png */; };
 		1A2C94971D8464E4001E46A2 /* PossibleInteractionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2C94961D8464E4001E46A2 /* PossibleInteractionController.m */; };
+		1A30E1221E56A85F007E3543 /* sequences_ADS001.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A30E1211E56A85F007E3543 /* sequences_ADS001.xml */; };
+		1A30E1241E56A88E007E3543 /* sequences_ADS002.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A30E1231E56A88E007E3543 /* sequences_ADS002.xml */; };
 		1A338D8C1C4EB8D100F02859 /* bench.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A338D8B1C4EB8D100F02859 /* bench.png */; };
 		1A385FF81C325A80005BF7D0 /* dirt_tornado_min.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A385FF71C325A80005BF7D0 /* dirt_tornado_min.png */; };
 		1A385FFB1C325EDC005BF7D0 /* bottle_noteandstone_max.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A385FF91C325EDC005BF7D0 /* bottle_noteandstone_max.png */; };
@@ -5036,6 +5038,8 @@
 		1A2AAD441C20DCFA00A709E9 /* cribb_large_high_res_min.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cribb_large_high_res_min.png; sourceTree = "<group>"; };
 		1A2C94951D8464E4001E46A2 /* PossibleInteractionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PossibleInteractionController.h; sourceTree = "<group>"; };
 		1A2C94961D8464E4001E46A2 /* PossibleInteractionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PossibleInteractionController.m; sourceTree = "<group>"; };
+		1A30E1211E56A85F007E3543 /* sequences_ADS001.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = sequences_ADS001.xml; path = ADS/sequences_ADS001.xml; sourceTree = "<group>"; };
+		1A30E1231E56A88E007E3543 /* sequences_ADS002.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = sequences_ADS002.xml; path = ADS/sequences_ADS002.xml; sourceTree = "<group>"; };
 		1A338D8B1C4EB8D100F02859 /* bench.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bench.png; sourceTree = "<group>"; };
 		1A385FF71C325A80005BF7D0 /* dirt_tornado_min.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dirt_tornado_min.png; sourceTree = "<group>"; };
 		1A385FF91C325EDC005BF7D0 /* bottle_noteandstone_max.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottle_noteandstone_max.png; sourceTree = "<group>"; };
@@ -10012,6 +10016,7 @@
 		033FC8571C6C538800CF3850 /* sequences */ = {
 			isa = PBXGroup;
 			children = (
+				1A30E1201E56A728007E3543 /* ADS */,
 				037E97AF1CBC4C2B00F9F5AC /* EEG */,
 				037E97AE1CBC4C2400F9F5AC /* MCD1 */,
 				036C26B91D9B1B94003626FC /* MCD2 */,
@@ -10095,6 +10100,15 @@
 				03A401131C9B6F2E00FBE6D2 /* NSString+HTML.m */,
 			);
 			name = "NSString+HTML Parser";
+			sourceTree = "<group>";
+		};
+		1A30E1201E56A728007E3543 /* ADS */ = {
+			isa = PBXGroup;
+			children = (
+				1A30E1211E56A85F007E3543 /* sequences_ADS001.xml */,
+				1A30E1231E56A88E007E3543 /* sequences_ADS002.xml */,
+			);
+			name = ADS;
 			sourceTree = "<group>";
 		};
 		1A631C671C0E4D3900251CB3 /* EPUBs */ = {
@@ -19545,6 +19559,7 @@
 				5CB7103D1C6C0B650062AD61 /* HowDoObjectsMoveS3E.mp3 in Resources */,
 				5C1C4CF11D2386AD00547783 /* Breathe_type1S.mp3 in Resources */,
 				5CB711081C6C292B0062AD61 /* old_CPQR8.m4a in Resources */,
+				1A30E1241E56A88E007E3543 /* sequences_ADS002.xml in Resources */,
 				5CCD8E531C73E73200D2EC2B /* IntroductionToNaturalDisastersQ2S.mp3 in Resources */,
 				5C40E01D1CC863FC00D8BC48 /* BridleS.mp3 in Resources */,
 				5D4B478F1C5735200096BC1E /* TheNaughtyMonkeyS3E.mp3 in Resources */,
@@ -20962,6 +20977,7 @@
 				5CF6CA531CCB2BB50093D3FD /* NatureS.mp3 in Resources */,
 				5C9D5FF61C811959002EC986 /* Hunted_def_S.mp3 in Resources */,
 				5C28DCB81C2BA66E005ACD07 /* man_withstick.png in Resources */,
+				1A30E1221E56A85F007E3543 /* sequences_ADS001.xml in Resources */,
 				5C5D09631CA9F6DD00B7C8D9 /* AdoptedE.mp3 in Resources */,
 				5C9F28C01C5C6B2E008ACE48 /* TheLopezFamilyQ4A1S.mp3 in Resources */,
 				5CB710F11C6C292B0062AD61 /* CWWB13.m4a in Resources */,
