@@ -19,8 +19,8 @@
 }
 
 - (NSString *)getAdjustedParticipantCode:(NSString *)participantCode {
-    //TEST: Match test ID to MCD2 participant code
-    participantCode = [[participantCode uppercaseString] stringByReplacingOccurrencesOfString:@"TEST" withString:@"MCD2"];
+    
+    participantCode = [participantCode uppercaseString];
     
     int numSequences = 0;
     NSString *adjustedParticipantCode;
@@ -68,17 +68,17 @@
         }
     }
     // ADS sequence
-    else if ([participantCode rangeOfString:@"ADS"].location != NSNotFound && [[participantCode componentsSeparatedByString:@"ADS"][1] length] == 2) {
+    else if ([participantCode rangeOfString:@"ADS"].location != NSNotFound && [[participantCode componentsSeparatedByString:@"ADS"][1] length] == 3) {
         numSequences = 2;
         
         //Get number at end of participant code and match it to appropriate sequence
         NSInteger sequenceNumber = [[participantCode componentsSeparatedByString:@"ADS"][1] integerValue] % numSequences;
         
         if (sequenceNumber == 0) {
-            adjustedParticipantCode = [NSString stringWithFormat:@"ADS001"];
+            adjustedParticipantCode = @"ADS001";
         }
         else {
-            adjustedParticipantCode = [NSString stringWithFormat:@"ADS002"];
+            adjustedParticipantCode = @"ADS002";
         }
     }
     
