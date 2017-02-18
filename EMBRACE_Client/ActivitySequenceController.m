@@ -74,7 +74,7 @@
         //Get number at end of participant code and match it to appropriate sequence
         NSInteger sequenceNumber = [[participantCode componentsSeparatedByString:@"ADS"][1] integerValue] % numSequences;
         
-        if (sequenceNumber == 0) {
+        if (sequenceNumber == 1) {
             adjustedParticipantCode = @"ADS001";
         }
         else {
