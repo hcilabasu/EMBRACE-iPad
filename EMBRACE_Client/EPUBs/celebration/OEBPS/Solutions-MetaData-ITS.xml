@@ -165,7 +165,7 @@
             <idea number="31"/>
             <idea number="32">
                 <step number="20">
-                    <check obj1Id="sofia_on_mancha" action="getIn" locationId="herd"/>
+                    <check obj1Id="sofia_on_mancha" action="getIn" locationId="herdLoc"/>
                     <swapImage obj1Id="sofia_on_mancha" action="flip"/>
                 </step>
             </idea>
@@ -257,7 +257,7 @@
             </idea>
             <idea number="46">
                 <step number="33">
-                    <check obj1Id="sofia" action="getIn" locationId="tomatillos"/>
+                    <check obj1Id="sofia" action="getIn" locationId="tomatillosLoc"/>
                     <swapImage obj1Id="sofia" action="fullTote"/>
                     <groupAuto obj1Id="tomatillos" action="getIn" obj2Id="sofia"/>
                 </step>

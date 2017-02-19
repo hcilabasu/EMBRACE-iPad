@@ -208,7 +208,7 @@
                 
                 <attributes complexity="10"/>
                 
-                <text>&#8220;Oh dear, Sofia!&#8221; her mother said. &#8220;We are missing some key ingredients&#8221;.</text>
+                <text>&#8220;Oh dear, Sofia!&#8221; her mother said. &#8220;We are missing some key ingredients.&#8221;</text>
                 
                 <ideas>
                     
@@ -283,7 +283,7 @@
                 
                 <attributes complexity="2"/>
                 
-                <text>&#8220;Oh dear, Sofia!&#8221; her mother said. &#8220;We are missing some key ingredients&#8221;.</text>
+                <text>&#8220;Oh dear, Sofia!&#8221; her mother said. &#8220;We are missing some key ingredients.&#8221;</text>
                 
                 <ideas>
                     
@@ -1684,7 +1684,7 @@
                 
                 <attributes complexity="10"/>
                 
-                <text>&#8220;Without your help, I would still be chasing cows.</text>
+                <text>&#8220;Without your help, I would still be chasing cows.&#8221;</text>
                 
                 <ideas>
                     
@@ -1697,22 +1697,6 @@
                 
             </sentence>
             
-            <sentence number="34" action="no">
-                
-                <attributes complexity="10"/>
-                
-                <text>&#8221;.</text>
-                
-                <ideas>
-                    
-                    <idea number="41"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
             
             <sentence number="35" action="yes">
                 
@@ -1812,28 +1796,11 @@
                 
                 <attributes complexity="2"/>
                 
-                <text>&#8220;Without your help, I would still be chasing cows.</text>
+                <text>&#8220;Without your help, I would still be chasing cows.&#8221;</text>
                 
                 <ideas>
                     
                     <idea number="40"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="41" action="no">
-                
-                <attributes complexity="2"/>
-                
-                <text>&#8221;.</text>
-                
-                <ideas>
-                    
-                    <idea number="41"/>
                     
                 </ideas>
                 
@@ -1934,7 +1901,7 @@
                 
                 <attributes complexity="1"/>
                 
-                <text>He said, "Sofia, thank you! Without your help, I would still be chasing cows.</text>
+                <text>He said, "Sofia, thank you! Without your help, I would still be chasing cows.&#8221;</text>
                 
                 <ideas>
                     
@@ -1943,23 +1910,6 @@
                     <idea number="39"/>
                     
                     <idea number="40"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="48" action="no">
-                
-                <attributes complexity="1"/>
-                
-                <text>".</text>
-                
-                <ideas>
-                    
-                    <idea number="41"/>
                     
                 </ideas>
                 
@@ -2572,29 +2522,11 @@
                 
                 <attributes complexity="10"/>
                 
-                <text>Sofia walked over to Mrs.</text>
+                <text>Sofia walked over to Mrs. Pe&#241;a and paid for her groceries; the total was 30 pesos.</text>
                 
                 <ideas>
                     
                     <idea number="51"/>
-                    
-                </ideas>
-                
-                <solution>
-                    
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="31" action="yes">
-                
-                <attributes complexity="10"/>
-                
-                <text>Pe&#241;a and paid for her groceries; the total was 30 pesos.</text>
-                
-                <ideas>
-                    
-                    <idea number="52"/>
                     
                 </ideas>
                 
@@ -2646,29 +2578,11 @@
                 
                 <attributes complexity="2"/>
                 
-                <text>Sofia walked over to Mrs.</text>
+                <text>Sofia walked over to Mrs. Pe&#241;a and paid for her groceries; the total was 30 pesos.</text>
                 
                 <ideas>
                     
                     <idea number="51"/>
-                    
-                </ideas>
-                
-                <solution>
-                    
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="35" action="yes">
-                
-                <attributes complexity="2"/>
-                
-                <text>Pe&#241;a and paid for her groceries; the total was 30 pesos.</text>
-                
-                <ideas>
-                    
-                    <idea number="52"/>
                     
                 </ideas>
                 
@@ -2717,7 +2631,7 @@
                 
                 <attributes complexity="1"/>
                 
-                <text>Sofia walked over to Mrs.</text>
+                <text>Sofia walked over to Mrs. Pe&#241;a.</text>
                 
                 <ideas>
                     
@@ -2726,24 +2640,6 @@
                 </ideas>
                 
                 <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="39" action="yes">
-                
-                <attributes complexity="1"/>
-                
-                <text>Pe&#241;a.</text>
-                
-                <ideas>
-                    
-                    <idea number="52"/>
-                    
-                </ideas>
-                
-                <solution>
-                    
                 </solution>
                 
             </sentence>
@@ -2820,7 +2716,7 @@
                 
                 <attributes complexity="3"/>
                 
-                <text>Sofia walked over to Mrs.</text>
+                <text>Sofia walked over to Mrs. Pe&#241;a who told her the total for her groceries was 30 pesos.</text>
                 
                 <ideas>
                     
@@ -2833,46 +2729,12 @@
                 
             </sentence>
             
-            <sentence number="45" action="yes">
-                
-                <attributes complexity="3"/>
-                
-                <text>Pe&#241;a who told her the total for her groceries was 30 pesos.</text>
-                
-                <ideas>
-                    
-                    <idea number="52"/>
-                    
-                </ideas>
-                
-                <solution>
-                    
-                </solution>
-                
-            </sentence>
             
             <sentence number="46" action="no">
                 
                 <attributes complexity="3"/>
                 
-                <text>Then she paid Mrs.</text>
-                
-                <ideas>
-                    
-                    <idea number="52"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="47" action="no">
-                
-                <attributes complexity="3"/>
-                
-                <text>Pe&#241;a.</text>
+                <text>Then she paid Mrs. Pe&#241;a.</text>
                 
                 <ideas>
                     
@@ -3415,28 +3277,11 @@
                 
                 <attributes complexity="10"/>
                 
-                <text>&#8220;Your sister is going to love these, Sofia!&#8221; said Mrs.</text>
+                <text>&#8220;Your sister is going to love these, Sofia!&#8221; said Mrs. Pe&#241;a.</text>
                 
                 <ideas>
                     
                     <idea number="63"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="30" action="no">
-                
-                <attributes complexity="10"/>
-                
-                <text>Pe&#241;a.</text>
-                
-                <ideas>
-                    
-                    <idea number="64"/>
                     
                 </ideas>
                 
@@ -3487,28 +3332,11 @@
                 
                 <attributes complexity="2"/>
                 
-                <text>&#8220;Your sister is going to love these, Sofia!&#8221; said Mrs.</text>
+                <text>&#8220;Your sister is going to love these, Sofia!&#8221; said Mrs. Pe&#241;a.</text>
                 
                 <ideas>
                     
                     <idea number="63"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="34" action="no">
-                
-                <attributes complexity="2"/>
-                
-                <text>Pe&#241;a.</text>
-                
-                <ideas>
-                    
-                    <idea number="64"/>
                     
                 </ideas>
                 
@@ -3557,30 +3385,11 @@
                 
                 <attributes complexity="3"/>
                 
-                <text>Mrs.</text>
+                <text>Mrs. Pe&#241;a told Sofia that Olivia would love the the flowers.</text>
                 
                 <ideas>
                     
                     <idea number="63"/>
-                    
-                </ideas>
-                
-                <solution>
-                    
-                    
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="38" action="no">
-                
-                <attributes complexity="3"/>
-                
-                <text>Pe&#241;a told Sofia that Olivia would love the the flowers.</text>
-                
-                <ideas>
-                    
-                    <idea number="64"/>
                     
                 </ideas>
                 
@@ -3922,7 +3731,7 @@
                 
                 <attributes complexity="10"/>
                 
-                <text>I even had enough money to buy Olivia these roses!&#8221;.</text>
+                <text>I even had enough money to buy Olivia these roses!&#8221;</text>
                 
                 <ideas>
                     
@@ -3979,7 +3788,7 @@
                 
                 <attributes complexity="2"/>
                 
-                <text>I even had enough money to buy Olivia these roses!&#8221;.</text>
+                <text>I even had enough money to buy Olivia these roses!&#8221;</text>
                 
                 <ideas>
                     
@@ -4035,7 +3844,7 @@
                 
                 <attributes complexity="1"/>
                 
-                <text>I even had enough money to buy Olivia these roses!".</text>
+                <text>I even had enough money to buy Olivia these roses!&#8221;</text>
                 
                 <ideas>
                     
@@ -4074,28 +3883,11 @@
                 
                 <attributes complexity="10"/>
                 
-                <text>She said, &#8220;You did a great job picking the freshest produce, Sofia! Now I can finish dinner, and we can have ourselves a party.</text>
+                <text>She said, &#8220;You did a great job picking the freshest produce, Sofia! Now I can finish dinner, and we can have ourselves a party.&#8221;</text>
                 
                 <ideas>
                     
                     <idea number="75"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="23" action="no">
-                
-                <attributes complexity="10"/>
-                
-                <text>&#8221;.</text>
-                
-                <ideas>
-                    
-                    <idea number="76"/>
                     
                 </ideas>
                 
@@ -4146,28 +3938,11 @@
                 
                 <attributes complexity="2"/>
                 
-                <text>She said, &#8220;You did a great job picking the freshest produce, Sofia! Now I can finish dinner, and we can have ourselves a party.</text>
+                <text>She said, &#8220;You did a great job picking the freshest produce, Sofia! Now I can finish dinner, and we can have ourselves a party&#8221;.</text>
                 
                 <ideas>
                     
                     <idea number="75"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="27" action="no">
-                
-                <attributes complexity="2"/>
-                
-                <text>&#8221;.</text>
-                
-                <ideas>
-                    
-                    <idea number="76"/>
                     
                 </ideas>
                 
