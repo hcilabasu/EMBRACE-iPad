@@ -892,8 +892,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 }
                 else if([chapterTitle isEqualToString:@"Mancha the Horse"] && [englishSentenceText isEqualToString:@"pen"]){
                     [self playIntroVocabWord:@"corral" :currSolStep];
-                }
-                else{
+                    
+                }else if([chapterTitle isEqualToString:@"The Contest"] && [pageContext.currentPageId containsString:DASH_INTRO] && [englishSentenceText isEqualToString:@"pen"]){
+                    [self playIntroVocabWord:@"corral" :currSolStep];
+                }else{
                     [self playIntroVocabWord:englishSentenceText :currSolStep];
                 }
             }

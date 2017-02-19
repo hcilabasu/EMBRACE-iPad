@@ -120,7 +120,7 @@
             <intervention>R</intervention>
         </mode>
         <mode chapterTitle="The Navajo Hogan" newInstructions="true" vocabPage="true" assessmentPage="true">
-            <reader>User</reader>
+            <reader>System</reader>
             <language>English</language>
             <intervention>R</intervention>
         </mode>
