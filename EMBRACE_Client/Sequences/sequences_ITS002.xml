@@ -151,7 +151,7 @@
         </mode>
     </sequence>
     <sequence bookTitle="A Celebration to Remember">
-        <mode chapterTitle="Key Ingredients" newInstructions="true" vocabPage="true" assessmentPage="true">
+        <mode chapterTitle="Key Ingredients" newInstructions="false" vocabPage="true" assessmentPage="true">
             <reader>System</reader>
             <language>English</language>
             <intervention>PM</intervention>
@@ -166,7 +166,7 @@
             <language>English</language>
             <intervention>PM</intervention>
         </mode>
-        <mode chapterTitle="Shopping at the Market" newInstructions="true" vocabPage="true" assessmentPage="true">
+        <mode chapterTitle="Shopping at the Market" newInstructions="false" vocabPage="true" assessmentPage="true">
             <reader>User</reader>
             <language>English</language>
             <intervention>IM</intervention>
@@ -183,7 +183,7 @@
         </mode>
     </sequence>
     <sequence bookTitle="Natural Disasters">
-        <mode chapterTitle="Introduction to Natural Disasters" newInstructions="true" vocabPage="true" assessmentPage="true">
+        <mode chapterTitle="Introduction to Natural Disasters" newInstructions="false" vocabPage="true" assessmentPage="true">
             <reader>System</reader>
             <language>English</language>
             <intervention>PM</intervention>
@@ -203,7 +203,7 @@
             <language>English</language>
             <intervention>PM</intervention>
         </mode>
-        <mode chapterTitle="Volcanoes and the Making of Hawaii" newInstructions="true" vocabPage="true" assessmentPage="true">
+        <mode chapterTitle="Volcanoes and the Making of Hawaii" newInstructions="false" vocabPage="true" assessmentPage="true">
             <reader>User</reader>
             <language>English</language>
             <intervention>IM</intervention>
@@ -215,12 +215,12 @@
         </mode>
     </sequence>
     <sequence bookTitle="The Circulatory System">
-        <mode chapterTitle="Why We Breathe" newInstructions="true" vocabPage="true" assessmentPage="true">
+        <mode chapterTitle="Why We Breathe" newInstructions="false" vocabPage="true" assessmentPage="true">
             <reader>System</reader>
             <language>English</language>
             <intervention>PM</intervention>
         </mode>
-        <mode chapterTitle="The Amazing Heart" newInstructions="true" vocabPage="true" assessmentPage="true">
+        <mode chapterTitle="The Amazing Heart" newInstructions="false" vocabPage="true" assessmentPage="true">
             <reader>User</reader>
             <language>English</language>
             <intervention>PM</intervention>
@@ -230,7 +230,7 @@
             <language>English</language>
             <intervention>PM</intervention>
         </mode>
-        <mode chapterTitle="Getting More Oxygen for the Muscles" newInstructions="true" vocabPage="true" assessmentPage="true">
+        <mode chapterTitle="Getting More Oxygen for the Muscles" newInstructions="false" vocabPage="true" assessmentPage="true">
             <reader>User</reader>
             <language>English</language>
             <intervention>IM</intervention>

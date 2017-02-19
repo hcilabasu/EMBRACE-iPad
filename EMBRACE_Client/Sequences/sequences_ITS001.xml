@@ -151,12 +151,12 @@
         </mode>
     </sequence>
     <sequence bookTitle="A Celebration to Remember">
-        <mode chapterTitle="Key Ingredients" newInstructions="true" vocabPage="true" assessmentPage="true">
+        <mode chapterTitle="Key Ingredients" newInstructions="false" vocabPage="true" assessmentPage="true">
             <reader>System</reader>
             <language>English</language>
-            <intervention>PM</intervention>
+            <intervention>R</intervention>
         </mode>
-        <mode chapterTitle="Mancha the Horse" newInstructions="true" vocabPage="true" assessmentPage="true">
+        <mode chapterTitle="Mancha the Horse" newInstructions="false" vocabPage="true" assessmentPage="true">
             <reader>User</reader>
             <language>English</language>
             <intervention>R</intervention>
@@ -183,12 +183,12 @@
         </mode>
     </sequence>
     <sequence bookTitle="Natural Disasters">
-        <mode chapterTitle="Introduction to Natural Disasters" newInstructions="true" vocabPage="true" assessmentPage="true">
+        <mode chapterTitle="Introduction to Natural Disasters" newInstructions="false" vocabPage="true" assessmentPage="true">
             <reader>System</reader>
             <language>English</language>
             <intervention>R</intervention>
         </mode>
-        <mode chapterTitle="The Moving Earth" newInstructions="true" vocabPage="true" assessmentPage="true">
+        <mode chapterTitle="The Moving Earth" newInstructions="false" vocabPage="true" assessmentPage="true">
             <reader>User</reader>
             <language>English</language>
             <intervention>R</intervention>
@@ -215,12 +215,12 @@
         </mode>
     </sequence>
     <sequence bookTitle="The Circulatory System">
-        <mode chapterTitle="Why We Breathe" newInstructions="true" vocabPage="true" assessmentPage="true">
+        <mode chapterTitle="Why We Breathe" newInstructions="false" vocabPage="true" assessmentPage="true">
             <reader>System</reader>
             <language>English</language>
             <intervention>R</intervention>
         </mode>
-        <mode chapterTitle="The Amazing Heart" newInstructions="true" vocabPage="true" assessmentPage="true">
+        <mode chapterTitle="The Amazing Heart" newInstructions="false" vocabPage="true" assessmentPage="true">
             <reader>User</reader>
             <language>English</language>
             <intervention>R</intervention>

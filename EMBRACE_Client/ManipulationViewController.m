@@ -889,7 +889,11 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 //TODO: REMOVE THIS TEMP HARDCODED FIX
                 if([chapterTitle isEqualToString:@"The Contest"] && [pageContext.currentPageId containsString:DASH_INTRO] && [englishSentenceText isEqualToString:@"award"]){
                     [self playIntroVocabWord:@"prize" :currSolStep];
-                }else{
+                }
+                else if([chapterTitle isEqualToString:@"Mancha the Horse"] && [englishSentenceText isEqualToString:@"pen"]){
+                    [self playIntroVocabWord:@"corral" :currSolStep];
+                }
+                else{
                     [self playIntroVocabWord:englishSentenceText :currSolStep];
                 }
             }
@@ -3920,14 +3924,14 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         
         // Use hash value of the sentence to find the audio file.
         if ([bookTitle isEqualToString:@"A Celebration to Remember" ]) {
-            if (conditionSetup.language == BILINGUAL) {
+            if (conditionSetup.language == BILINGUAL && [pageContext.currentPageId.lowercaseString containsString:@"story1"]) {
                 sentenceAudioFile = [NSString stringWithFormat:@"KeyIngredientsS%dS.mp3", sentenceContext.currentSentence];
             }
             else {
                 sentenceAudioFile = [NSString stringWithFormat:@"%@.mp3", [sentenceContext.currentSentenceText MD5String]];
             }
             
-        } else if ([bookTitle isEqualToString:@"Bottled Up Joy" ]) {
+        } else if ([bookTitle isEqualToString:@"Bottled Up Joy" ] && [pageContext.currentPageId.lowercaseString containsString:@"story1"]) {
             if (conditionSetup.language == BILINGUAL) {
                 sentenceAudioFile = [NSString stringWithFormat:@"TheLuckyStoneS%dS.mp3", sentenceContext.currentSentence];
             }
@@ -3935,7 +3939,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 sentenceAudioFile = [NSString stringWithFormat:@"%@.mp3", [sentenceContext.currentSentenceText MD5String]];
             }
             
-        } else if ([bookTitle isEqualToString:@"How Objects Move" ]) {
+        } else if ([bookTitle isEqualToString:@"How Objects Move" ] && [pageContext.currentPageId.lowercaseString containsString:@"story1"]) {
             
             if (conditionSetup.language == BILINGUAL &&( [pageContext.currentPageId containsString:PM1] ||
                                                        [pageContext.currentPageId containsString:PM2])) {
@@ -3949,7 +3953,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             
             //If we are on the first or second manipulation page of The Navajo Hogan, play the current sentence
             if ([chapterTitle isEqualToString:@"The Navajo Hogan"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
-                if (conditionSetup.language == BILINGUAL) {
+                if (conditionSetup.language == BILINGUAL && [pageContext.currentPageId.lowercaseString containsString:@"story1"]) {
                     sentenceAudioFile = [NSString stringWithFormat:@"TheNavajoHoganS%dS.mp3", sentenceContext.currentSentence];
                 }
                 else {
@@ -3959,7 +3963,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             
             //If we are on the first or second manipulation page of Native Intro, play the current sentence
             if ([chapterTitle isEqualToString:@"Introduction to Native American Homes"] && ([pageContext.currentPageId containsString:@"PM"] || [pageContext.currentPageId containsString:PM2])) {
-                if (conditionSetup.language == BILINGUAL) {
+                if (conditionSetup.language == BILINGUAL && [pageContext.currentPageId.lowercaseString containsString:@"story1"]) {
                     sentenceAudioFile = [NSString stringWithFormat:@"NativeIntroS%dS.mp3", sentenceContext.currentSentence];
                 }
                 else {
@@ -3969,7 +3973,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             
         } else if ([bookTitle isEqualToString:@"The Lopez Family Mystery"]) {
             
-            if (conditionSetup.language == BILINGUAL &&( [pageContext.currentPageId containsString:PM1] ||
+            if (conditionSetup.language == BILINGUAL && [pageContext.currentPageId.lowercaseString containsString:@"story1"] &&( [pageContext.currentPageId containsString:PM1] ||
                                                         [pageContext.currentPageId containsString:PM2])) {
                 sentenceAudioFile = [NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3", sentenceContext.currentSentence];
             }

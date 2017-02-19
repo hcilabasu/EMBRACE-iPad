@@ -208,7 +208,7 @@
                 
                 <attributes complexity="10"/>
                 
-                <text>&#8220;Oh dear, Sofia!&#8221; her mother said. &#8220;We are missing some key ingredients&#8221;.</text>
+                <text>&#8220;Oh dear, Sofia!&#8221; her mother said. &#8220;We are missing some key ingredients.&#8221;</text>
                 
                 <ideas>
                     
@@ -283,7 +283,7 @@
                 
                 <attributes complexity="2"/>
                 
-                <text>&#8220;Oh dear, Sofia!&#8221; her mother said. &#8220;We are missing some key ingredients&#8221;.</text>
+                <text>&#8220;Oh dear, Sofia!&#8221; her mother said. &#8220;We are missing some key ingredients.&#8221;</text>
                 
                 <ideas>
                     
@@ -1684,28 +1684,11 @@
                 
                 <attributes complexity="10"/>
                 
-                <text>&#8220;Without your help, I would still be chasing cows.</text>
+                <text>&#8220;Without your help, I would still be chasing cows.&#8221;</text>
                 
                 <ideas>
                     
                     <idea number="40"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="34" action="no">
-                
-                <attributes complexity="10"/>
-                
-                <text>&#8221;.</text>
-                
-                <ideas>
-                    
-                    <idea number="41"/>
                     
                 </ideas>
                 
@@ -1813,28 +1796,11 @@
                 
                 <attributes complexity="2"/>
                 
-                <text>&#8220;Without your help, I would still be chasing cows.</text>
+                <text>&#8220;Without your help, I would still be chasing cows.&#8221;</text>
                 
                 <ideas>
                     
                     <idea number="40"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="41" action="no">
-                
-                <attributes complexity="2"/>
-                
-                <text>&#8221;.</text>
-                
-                <ideas>
-                    
-                    <idea number="41"/>
                     
                 </ideas>
                 
@@ -1936,7 +1902,7 @@
                 
                 <attributes complexity="1"/>
                 
-                <text>He said, "Sofia, thank you! Without your help, I would still be chasing cows.</text>
+                <text>He said, "Sofia, thank you! Without your help, I would still be chasing cows.&#8221;</text>
                 
                 <ideas>
                     
@@ -1945,23 +1911,6 @@
                     <idea number="39"/>
                     
                     <idea number="40"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="48" action="no">
-                
-                <attributes complexity="1"/>
-                
-                <text>".</text>
-                
-                <ideas>
-                    
-                    <idea number="41"/>
                     
                 </ideas>
                 
@@ -3927,7 +3876,7 @@
                 
                 <attributes complexity="10"/>
                 
-                <text>I even had enough money to buy Olivia these roses!&#8221;.</text>
+                <text>I even had enough money to buy Olivia these roses!&#8221;</text>
                 
                 <ideas>
                     
@@ -3984,7 +3933,7 @@
                 
                 <attributes complexity="2"/>
                 
-                <text>I even had enough money to buy Olivia these roses!&#8221;.</text>
+                <text>I even had enough money to buy Olivia these roses!&#8221;</text>
                 
                 <ideas>
                     
@@ -4079,28 +4028,11 @@
                 
                 <attributes complexity="10"/>
                 
-                <text>She said, &#8220;You did a great job picking the freshest produce, Sofia! Now I can finish dinner, and we can have ourselves a party.</text>
+                <text>She said, &#8220;You did a great job picking the freshest produce, Sofia! Now I can finish dinner, and we can have ourselves a party.&#8221;</text>
                 
                 <ideas>
                     
                     <idea number="75"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="23" action="no">
-                
-                <attributes complexity="10"/>
-                
-                <text>&#8221;.</text>
-                
-                <ideas>
-                    
-                    <idea number="76"/>
                     
                 </ideas>
                 
@@ -4151,28 +4083,11 @@
                 
                 <attributes complexity="2"/>
                 
-                <text>She said, &#8220;You did a great job picking the freshest produce, Sofia! Now I can finish dinner, and we can have ourselves a party.</text>
+                <text>She said, &#8220;You did a great job picking the freshest produce, Sofia! Now I can finish dinner, and we can have ourselves a party.&#8221;</text>
                 
                 <ideas>
                     
                     <idea number="75"/>
-                    
-                </ideas>
-                
-                <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="27" action="no">
-                
-                <attributes complexity="2"/>
-                
-                <text>&#8221;.</text>
-                
-                <ideas>
-                    
-                    <idea number="76"/>
                     
                 </ideas>
                 
