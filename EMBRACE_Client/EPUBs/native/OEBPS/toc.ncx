@@ -25,19 +25,19 @@
                 <navLabel>
                     <text>Introduction to Native American Homes - Intro</text>
                 </navLabel>
-                <content src="Text/Story1-Introduction-Intro-S.xhtml"/>
+                <content src="Text/Story1-Introduction-Intro-E.xhtml"/>
             </navPoint>
             <navPoint class="PM_MODE" id="story0-PM">
                 <navLabel>
                     <text>Introduction to Native American Homes - PM</text>
                 </navLabel>
-                <content src="Text/Story1-Introduction-PM-S.xhtml"/>
+                <content src="Text/Story1-Introduction-PM.xhtml"/>
             </navPoint>
             <navPoint class="PM_MODE" id="story0-PM-2">
                 <navLabel>
                     <text>Introduction to Native American Homes - PM</text>
                 </navLabel>
-                <content src="Text/Story1-Introduction-PM-2S.xhtml"/>
+                <content src="Text/Story1-Introduction-PM-2.xhtml"/>
             </navPoint>
         </navPoint>
         
@@ -50,25 +50,25 @@
                 <navLabel>
                     <text>The Navajo Hogan - Intro</text>
                 </navLabel>
-                <content src="Text/Story1-The-Navajo-Hogan-Intro-S.xhtml"/>
+                <content src="Text/Story1-The-Navajo-Hogan-Intro-E.xhtml"/>
             </navPoint>
             <navPoint class="PM_MODE" id="story1-PM-1">
                 <navLabel>
                     <text>The Navajo Hogan - PM</text>
                 </navLabel>
-                <content src="Text/Story1-The-Navajo-Hogan-PM-1S.xhtml"/>
+                <content src="Text/Story1-The-Navajo-Hogan-PM-1.xhtml"/>
             </navPoint>
             <navPoint class="PM_MODE" id="story1-PM-2">
                 <navLabel>
                     <text>The Navajo Hogan - PM</text>
                 </navLabel>
-                <content src="Text/Story1-The-Navajo-Hogan-PM-2S.xhtml"/>
+                <content src="Text/Story1-The-Navajo-Hogan-PM-2.xhtml"/>
             </navPoint>
             <navPoint class="PM_MODE" id="story1-PM-3">
                 <navLabel>
                     <text>The Navajo Hogan - PM</text>
                 </navLabel>
-                <content src="Text/Story1-The-Navajo-Hogan-PM-3S.xhtml"/>
+                <content src="Text/Story1-The-Navajo-Hogan-PM-3.xhtml"/>
             </navPoint>
         </navPoint>
         
@@ -81,7 +81,7 @@
                 <navLabel>
                     <text>The Inuit Igloo - Intro</text>
                 </navLabel>
-                <content src="Text/Story2-The-Inuit-Igloo-Intro-S.xhtml"/>
+                <content src="Text/Story2-The-Inuit-Igloo-Intro-E.xhtml"/>
             </navPoint>
             <navPoint class="PM_MODE" id="story2-PM-1">
                 <navLabel>
@@ -118,7 +118,7 @@
                 <navLabel>
                     <text>The Sioux Teepee - Intro</text>
                 </navLabel>
-                <content src="Text/Story3-The-Sioux-Teepee-Intro-S.xhtml"/>
+                <content src="Text/Story3-The-Sioux-Teepee-Intro-E.xhtml"/>
             </navPoint>
             <navPoint class="PM_MODE" id="story3-PM-1">
                 <navLabel>
@@ -161,7 +161,7 @@
                 <navLabel>
                     <text>The Algonquian Wigwam - Intro</text>
                 </navLabel>
-                <content src="Text/Story4-The-Algonquian-Wigwam-Intro-S.xhtml"/>
+                <content src="Text/Story4-The-Algonquian-Wigwam-Intro-E.xhtml"/>
             </navPoint>
             <navPoint class="PM_MODE" id="story4-PM-1">
                 <navLabel>
@@ -198,7 +198,7 @@
                 <navLabel>
                     <text>The Haida Plank House - Intro</text>
                 </navLabel>
-                <content src="Text/Story5-The-Haida-Plank-House-Intro-S.xhtml"/>
+                <content src="Text/Story5-The-Haida-Plank-House-Intro-E.xhtml"/>
             </navPoint>
             <navPoint class="PM_MODE" id="story5-PM-1">
                 <navLabel>
@@ -241,7 +241,7 @@
                 <navLabel>
                     <text>The Seminole Chickee - Intro</text>
                 </navLabel>
-                <content src="Text/Story6-The-Seminole-Chickee-Intro-S.xhtml"/>
+                <content src="Text/Story6-The-Seminole-Chickee-Intro-E.xhtml"/>
             </navPoint>
             <navPoint class="PM_MODE" id="story6-PM-1">
                 <navLabel>
@@ -268,7 +268,7 @@
                 <content src="Text/Story6-The-Seminole-Chickee-PM-4.xhtml"/>
             </navPoint>
         </navPoint>
-
+        
         
     </navMap>
     <pageList>

@@ -26,7 +26,7 @@
         <mode chapterTitle="Who is the Best Animal?" newInstructions="true" vocabPage="true" assessmentPage="true">
             <reader>User</reader>
             <language>Spanish</language>
-            <intervention>IM</intervention>
+            <intervention>PM</intervention>
         </mode>
         <mode chapterTitle="The Wise Owl" newInstructions="true" vocabPage="true" assessmentPage="true">
             <reader>User</reader>
@@ -108,30 +108,30 @@
             <intervention>IM</intervention>
         </mode>
     </sequence>
-    <sequence bookTitle="The Circulatory System">
+    <sequence bookTitle="Introduction to Circulatory Characters">
         <mode chapterTitle="Why We Breathe" newInstructions="true" vocabPage="true" assessmentPage="true">
             <reader>System</reader>
-            <language>English</language>
+            <language>Spanish</language>
             <intervention>PM</intervention>
         </mode>
         <mode chapterTitle="The Amazing Heart" newInstructions="false" vocabPage="true" assessmentPage="true">
             <reader>User</reader>
-            <language>English</language>
+            <language>Spanish</language>
             <intervention>PM</intervention>
         </mode>
         <mode chapterTitle="Muscles Use Oxygen" newInstructions="false" vocabPage="true" assessmentPage="true">
             <reader>User</reader>
-            <language>English</language>
+            <language>Spanish</language>
             <intervention>PM</intervention>
         </mode>
         <mode chapterTitle="Getting More Oxygen for the Muscles" newInstructions="true" vocabPage="true" assessmentPage="true">
             <reader>User</reader>
-            <language>English</language>
+            <language>Spanish</language>
             <intervention>IM</intervention>
         </mode>
         <mode chapterTitle="Cigarette Smoke Hurts Your Lungs" newInstructions="false" vocabPage="true" assessmentPage="true">
             <reader>User</reader>
-            <language>English</language>
+            <language>Spanish</language>
             <intervention>IM</intervention>
         </mode>
     </sequence>

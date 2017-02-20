@@ -35,36 +35,36 @@
     </navPoint>
     
     <navPoint class="ChapterTitle" id="Chapter1Title" playOrder="1">
-		<navLabel>
-			<text>The Moving Earth</text>
-		</navLabel>
-		<content src="Text/Story1-The-Moving-Earth-Title.xhtml"/>
-		<navPoint class="PM_MODE" id="story1-Intro">
+        <navLabel>
+            <text>The Moving Earth</text>
+        </navLabel>
+        <content src="Text/Story1-The-Moving-Earth-Title.xhtml"/>
+        <navPoint class="PM_MODE" id="story1-Intro">
             <navLabel>
                 <text>The Moving Earth - Intro</text>
             </navLabel>
-            <content src="Text/Story1-The-Moving-Earth-Intro-S.xhtml"/>
-		</navPoint>
+            <content src="Text/Story1-The-Moving-Earth-Intro-E.xhtml"/>
+        </navPoint>
         <navPoint class="PM_MODE" id="story1-PM-1">
-		  <navLabel>
-    		<text>The Moving Earth - PM</text>
-		  </navLabel>
-		  <content src="Text/Story1-The-Moving-Earth-PM-1S.xhtml"/>
-		</navPoint>
-       <navPoint class="PM_MODE" id="story1-PM-2">
-		  <navLabel>
-	    	<text>The Moving Earth - PM</text>
-		  </navLabel>
-		  <content src="Text/Story1-The-Moving-Earth-PM-2S.xhtml"/>
-		</navPoint>
-       <navPoint class="PM_MODE" id="story1-PM-3">
-		  <navLabel>
-    		<text>The Moving Earth - PM</text>
-		  </navLabel>
-		  <content src="Text/Story1-The-Moving-Earth-PM-3S.xhtml"/>
-		</navPoint>
-	</navPoint>
-	
+            <navLabel>
+                <text>The Moving Earth - PM</text>
+            </navLabel>
+            <content src="Text/Story1-The-Moving-Earth-PM-1.xhtml"/>
+        </navPoint>
+        <navPoint class="PM_MODE" id="story1-PM-2">
+            <navLabel>
+                <text>The Moving Earth - PM</text>
+            </navLabel>
+            <content src="Text/Story1-The-Moving-Earth-PM-2.xhtml"/>
+        </navPoint>
+        <navPoint class="PM_MODE" id="story1-PM-3">
+            <navLabel>
+                <text>The Moving Earth - PM</text>
+            </navLabel>
+            <content src="Text/Story1-The-Moving-Earth-PM-3.xhtml"/>
+        </navPoint>
+    </navPoint>
+
     <navPoint class="ChapterTitle" id="Chapter2Title" playOrder="2">
 		<navLabel>
 			<text>Earthquakes</text>
