@@ -3926,7 +3926,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         
         // Use hash value of the sentence to find the audio file.
         if ([bookTitle isEqualToString:@"A Celebration to Remember" ]) {
-            if (conditionSetup.language == BILINGUAL && [pageContext.currentPageId.lowercaseString containsString:@"story1"]) {
+            if (conditionSetup.language == BILINGUAL && [pageContext.currentPageId.lowercaseString containsString:@"story1"] &&
+                 ![pageContext.currentPageId.lowercaseString containsString:@"intro"]) {
+                
                 sentenceAudioFile = [NSString stringWithFormat:@"KeyIngredientsS%dS.mp3", sentenceContext.currentSentence];
             }
             else {
