@@ -1294,6 +1294,34 @@ shouldUpdateConnection:(BOOL)updateCon
             //Add token to current split with a space after it
             NSString *textTokenSpace = [NSString stringWithFormat:@"%@ ", modifiedTextToken];
             currentSplit = [currentSplit stringByAppendingString:textTokenSpace];
+            
+//            ///Hard coded for fix begin
+//            NSString *vocab = @"plate tectonics ";
+//            NSString *regex = [NSString stringWithFormat:@"\\b%@\\b", vocab];
+//            
+//            NSRange range = [currentSplit rangeOfString:regex options:NSRegularExpressionSearch|NSCaseInsensitiveSearch];
+//            
+//            // Token contains vocabulary word
+//            if (range.location != NSNotFound) {
+//                
+//                NSString *copyOfcurrentSplit = [currentSplit copy];
+//                
+//                [words addObject:[copyOfcurrentSplit substringWithRange:range]]; // Add word to list
+//                addedWord = true;
+//                
+//                //Add the first part of the word like quotes to the previous token
+//                if(range.location > 0) {
+//                    NSRange firstRange = NSMakeRange(0, range.location);
+//                    currentSplit = [copyOfcurrentSplit substringWithRange:firstRange];
+//                    range = NSMakeRange(0, range.location + range.length);
+//                }
+//                [splitText addObject:currentSplit];
+//                
+//                // Reset current split to be anything that appears after the vocabulary word and add a space in the beginning
+//                currentSplit = [[copyOfcurrentSplit stringByReplacingCharactersInRange:range withString:@""] stringByAppendingString:@" "];
+//                
+//                
+//            }
         }
     }
     
