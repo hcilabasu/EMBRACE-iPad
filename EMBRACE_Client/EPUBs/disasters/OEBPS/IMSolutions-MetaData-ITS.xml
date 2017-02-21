@@ -66,12 +66,20 @@
             </idea>
             <idea number="32"/>
             <idea number="33">
+                <step number="1">
+                    <group obj1Id="waterAwayShoreIM" action="away" obj2Id="waterAwayShoreIM"/>
+                    <group obj1Id="waveIM" action="cover" obj2Id="buildingsIM"/>
+                </step>
             </idea>
             <idea number="34"/>
         </story>
         <story title="Tsunamis" activity_id="story3-PM-3">
            <idea number="35"/>
            <idea number="36">
+               <step number="2">
+                   <group obj1Id="waveIM" action="cover" obj2Id="buildingsIM"/>
+                   <group obj1Id="buildingsIM" action="with" obj2Id="buildingsIM"/>
+               </step>
             </idea>
             <idea number="37">
             </idea>
@@ -99,6 +107,10 @@
         </story>
         <story title="Volcanoes and the Making of Hawaii" activity_id="story4-PM-3">
             <idea number="49">
+                <step number="3">
+                    <group obj1Id="kauai_leftIM" action="getInLeft" obj2Id="kauai_leftIM"/>
+                    <group obj1Id="kauai_rightIM" action="getInRight" obj2Id="kauai_rightIM"/>
+                </step>
             </idea>
             <idea number="50">
             </idea>
@@ -111,6 +123,10 @@
         </story>
         <story title="Volcanoes and the Making of Hawaii" activity_id="story4-PM-5">
             <idea number="54">
+                <step number="4">
+                    <group obj1Id="hawaii_lavaIM" action="getIn" obj2Id="hawaii_lavaIM"/>
+                    <group obj1Id="oahu_lavaIM" action="getIn" obj2Id="oahu_lavaIM"/>
+                </step>
             </idea>
             <idea number="55"/>
         </story>
@@ -121,6 +137,10 @@
             </idea>
             
             <idea number="59">
+                <step number="5">
+                    <group obj1Id="air_blueIM" action="getWith" obj2Id="rainIM"/>
+                    <group obj1Id="air_blueIM" action="getWith" obj2Id="houseIM"/>
+                </step>
             </idea>
         </story>
         <story title="Tornados" activity_id="story5-PM-2">
@@ -130,6 +150,10 @@
             </idea>
             <idea number="62"/>
             <idea number="63">
+                <step number="6">
+                    <group obj1Id="roofDamageIM" action="nextTo" obj2Id="houseDamageIM"/>
+                    <group obj1Id="houseWholeIM" action="getWith" obj2Id="houseWholeIM"/>
+                </step>
             </idea>
         </story>
         <story title="Tornados" activity_id="story5-PM-3">

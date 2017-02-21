@@ -1524,7 +1524,7 @@
                 </ideas>
                 
                 <solution>
-                    
+                    <step number="1"/>
                 </solution>
                 
             </sentence>
@@ -1599,7 +1599,7 @@
                 </ideas>
                 
                 <solution>
-                    
+                    <step number="1"/>
                 </solution>
                 
             </sentence>
@@ -1703,7 +1703,7 @@
                 </ideas>
                 
                 <solution>
-                    
+                    <step number="1"/>
                 </solution>
                 
             </sentence>
@@ -1777,7 +1777,7 @@
                 </ideas>
                 
                 <solution>
-                    
+                    <step number="2"/>
                 </solution>
                 
             </sentence>
@@ -1852,7 +1852,7 @@
                 </ideas>
                 
                 <solution>
-                    
+                    <step number="2"/>
                 </solution>
                 
             </sentence>
@@ -1940,7 +1940,7 @@
                 </ideas>
                 
                 <solution>
-                    
+                    <step number="2"/>
                 </solution>
                 
             </sentence>
@@ -2578,7 +2578,7 @@
                 </ideas>
                 
                 <solution>
-                    
+                    <step number="3"/>
                 </solution>
                 
             </sentence>
@@ -2637,7 +2637,7 @@
                 </ideas>
                 
                 <solution>
-                    
+                    <step number="3"/>
                 </solution>
                 
             </sentence>
@@ -2707,7 +2707,7 @@
                 </ideas>
                 
                 <solution>
-                    
+                    <step number="3"/>
                 </solution>
                 
             </sentence>
@@ -2914,7 +2914,7 @@
                 </ideas>
                 
                 <solution>
-                    
+                    <step number="4"/>
                 </solution>
                 
             </sentence>
@@ -2953,7 +2953,7 @@
                 </ideas>
                 
                 <solution>
-                    
+                    <step number="4"/>
                 </solution>
                 
             </sentence>
@@ -3079,7 +3079,7 @@
                 </ideas>
                 
                 <solution>
-                    
+                    <step number="5"/>
                 </solution>
                 
             </sentence>
@@ -3154,7 +3154,7 @@
                 </ideas>
                 
                 <solution>
-                    
+                    <step number="5"/>
                 </solution>
                 
             </sentence>
@@ -3298,6 +3298,7 @@
                 </ideas>
                 
                 <solution>
+                    <step number="6"/>
                     
                 </solution>
                 
@@ -3374,7 +3375,7 @@
                 </ideas>
                 
                 <solution>
-                    
+                    <step number="6"/>
                 </solution>
                 
             </sentence>

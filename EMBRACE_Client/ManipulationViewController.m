@@ -890,7 +890,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 if([chapterTitle isEqualToString:@"The Contest"] && [pageContext.currentPageId containsString:DASH_INTRO] && [englishSentenceText isEqualToString:@"award"]){
                     [self playIntroVocabWord:@"prize" :currSolStep];
                 }
-                else if([chapterTitle isEqualToString:@"Mancha the Horse"] && [englishSentenceText isEqualToString:@"pen"]){
+                else if([bookTitle isEqualToString:@"A Celebration to Remember"] && [englishSentenceText isEqualToString:@"pen"]){
                     [self playIntroVocabWord:@"corral" :currSolStep];
                     
                 }else if([chapterTitle isEqualToString:@"The Contest"] && [pageContext.currentPageId containsString:DASH_INTRO] && [englishSentenceText isEqualToString:@"pen"]){
