@@ -3725,9 +3725,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             if (conditionSetup.language == BILINGUAL) {
                 sentenceAudioFile = [NSString stringWithFormat:@"DisastersIntroS%dS.mp3", sentenceContext.currentSentence];
             }
-            else {
-                sentenceAudioFile = [NSString stringWithFormat:@"DisastersIntroS%dE.mp3", [self currentSentenceAudioIndex]];
-            }
+            
         }
         
         //If we are on the first or second manipulation page of The Moving Earth, play the current sentence
@@ -3905,25 +3903,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             }
         }
         
-        //If we are on the first or second manipulation page of Disasters Intro, play the current sentence
-        if ([chapterTitle isEqualToString:@"Introduction to Natural Disasters"] && ([pageContext.currentPageId containsString:@"PM"] || [pageContext.currentPageId containsString:PM2])) {
-            if (conditionSetup.language == BILINGUAL) {
-                sentenceAudioFile = [NSString stringWithFormat:@"DisastersIntroS%dS.mp3", sentenceContext.currentSentence];
-            }
-            else {
-                sentenceAudioFile = [NSString stringWithFormat:@"DisastersIntroS%dE.mp3", [self currentSentenceAudioIndex]];
-            }
-        }
         
-        //If we are on the first or second manipulation page of The Moving Earth, play the current sentence
-        if ([chapterTitle isEqualToString:@"The Moving Earth"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
-            if (conditionSetup.language == BILINGUAL) {
-                sentenceAudioFile = [NSString stringWithFormat:@"TheMovingEarthS%dS.mp3", sentenceContext.currentSentence];
-            }
-            else {
-                sentenceAudioFile = [NSString stringWithFormat:@"TheMovingEarthS%dE.mp3", [self currentSentenceAudioIndex]];
-            }
-        }
         
         
         //If we are on the first or second manipulation page of The Naughty Monkey, play the current sentence
@@ -4005,6 +3985,28 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             
             if (conditionSetup.language == BILINGUAL && [chapterTitle isEqualToString:@"The Contest"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2])) {
                 sentenceAudioFile = [NSString stringWithFormat:@"BFEC%d.m4a", sentenceContext.currentSentence];
+            }
+            else {
+                sentenceAudioFile = [NSString stringWithFormat:@"%@.mp3", [sentenceContext.currentSentenceText MD5String]];
+            }
+            
+        }  else if ([bookTitle isEqualToString:@"Natural Disasters"]) {
+            
+            if (conditionSetup.language == BILINGUAL) {
+                //If we are on the first or second manipulation page of Disasters Intro, play the current sentence
+                if ([chapterTitle isEqualToString:@"Introduction to Natural Disasters"] && ([pageContext.currentPageId containsString:@"PM"] || [pageContext.currentPageId containsString:PM2])) {
+                    if (conditionSetup.language == BILINGUAL) {
+                        sentenceAudioFile = [NSString stringWithFormat:@"DisastersIntroS%dS.mp3", sentenceContext.currentSentence];
+                    }
+                    
+                } else if ([chapterTitle isEqualToString:@"The Moving Earth"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
+                    if (conditionSetup.language == BILINGUAL) {
+                        sentenceAudioFile = [NSString stringWithFormat:@"TheMovingEarthS%dS.mp3", sentenceContext.currentSentence];
+                    }
+                    
+                } else {
+                   sentenceAudioFile = [NSString stringWithFormat:@"%@.mp3", [sentenceContext.currentSentenceText MD5String]];
+                }
             }
             else {
                 sentenceAudioFile = [NSString stringWithFormat:@"%@.mp3", [sentenceContext.currentSentenceText MD5String]];
