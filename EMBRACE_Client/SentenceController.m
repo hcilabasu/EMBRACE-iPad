@@ -140,7 +140,7 @@
                 
                 !(conditionSetup.language == BILINGUAL && [pageContext.currentPageId.lowercaseString containsString:@"story0"] && [chapterTitle isEqualToString:@"Introduction to Native American Homes"])&&
                 
-                !(conditionSetup.language == BILINGUAL && [pageContext.currentPageId.lowercaseString containsString:@"story0"] && [chapterTitle isEqualToString:@"Introduction to Natural Disasters"])) {
+                !( [pageContext.currentPageId.lowercaseString containsString:@"story0"] && [chapterTitle isEqualToString:@"Introduction to Natural Disasters"])) {
                 
                 mvc.currentComplexityLevel = [[ITSController sharedInstance] getCurrentComplexity];
                 [self.manipulationView removeAllSentences];
