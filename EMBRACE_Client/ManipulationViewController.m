@@ -3509,12 +3509,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         
         //If we are on the first or second manipulation page of The Moving Earth, play the current sentence
         if ([chapterTitle isEqualToString:@"The Moving Earth"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
-            if (conditionSetup.language == BILINGUAL) {
-                sentenceAudioFile = [NSString stringWithFormat:@"TheMovingEarthS%dS.mp3", sentenceContext.currentSentence];
-            }
-            else {
                 sentenceAudioFile = [NSString stringWithFormat:@"TheMovingEarthS%dE.mp3", sentenceContext.currentSentence];
-            }
         }
     }
     

@@ -3,134 +3,134 @@
     <ActivityAssessment>
         <Questions title="Native American Homes">
             <Question number="1">
-                <QuestionText>Podemos aprender de la gente conociendo acerca de...? </QuestionText>
-                <QuestionAudio>NativeIntroQ1S.mp3</QuestionAudio>
-                <Answer1>Sus casas</Answer1>
-                <Answer1Audio>NativeIntroQ1A1S.mp3</Answer1Audio>
-                <expectedSelection>Sus casas</expectedSelection>
-                <Answer2>Los animales salvajes</Answer2>
-                <Answer2Audio>NativeIntroQ1A2S.mp3</Answer2Audio>
-                <Answer3>La lluvia y el viento</Answer3>
-                <Answer3Audio>NativeIntroQ1A3S.mp3</Answer3Audio>
-                <Answer4>Sus problemas</Answer4>
-                <Answer4Audio>NativeIntroQ1A4S.mp3</Answer4Audio>
+                <QuestionText>We can learn about people by learning about...?</QuestionText>
+                <QuestionAudio>NativeIntroQ1.mp3</QuestionAudio>
+                <Answer1>Their homes</Answer1>
+                <Answer1Audio>NativeIntroQ1A1.mp3</Answer1Audio>
+                <expectedSelection>Their homes</expectedSelection>
+                <Answer2>Wild animals</Answer2>
+                <Answer2Audio>NativeIntroQ1A2.mp3</Answer2Audio>
+                <Answer3>The rain and wind</Answer3>
+                <Answer3Audio>NativeIntroQ1A3.mp3</Answer3Audio>
+                <Answer4>Problems</Answer4>
+                <Answer4Audio>NativeIntroQ1A4.mp3</Answer4Audio>
             </Question>
             <Question number="2">
-                <QuestionText>En este capítulo, las casas proveen un espacio para…?</QuestionText>
-                <QuestionAudio>NativeIntroQ2S.mp3</QuestionAudio>
-                <Answer1>Reuniones familiares y de la comunidad</Answer1>
-                <Answer1Audio>NativeIntroQ2A1S.mp3</Answer1Audio>
-                <expectedSelection>Reuniones familiares y de la comunidad</expectedSelection>
-                <Answer2>La lluvia y los animales salvajes</Answer2>
-                <Answer2Audio>NativeIntroQ2A2S.mp3</Answer2Audio>
-                <Answer3>Resolver problemas importantes</Answer3>
-                <Answer3Audio>NativeIntroQ2A3S.mp3</Answer3Audio>
-                <Answer4>Manejar un coche</Answer4>
-                <Answer4Audio>NativeIntroQ2A4S.mp3</Answer4Audio>
+                <QuestionText>In this chapter, homes provide a place for...?</QuestionText>
+                <QuestionAudio>NativeIntroQ2.mp3</QuestionAudio>
+                <Answer1>Family and community events</Answer1>
+                <Answer1Audio>NativeIntroQ2A1.mp3</Answer1Audio>
+                <expectedSelection>Family and community events</expectedSelection>
+                <Answer2>Rain and wild animals</Answer2>
+                <Answer2Audio>NativeIntroQ2A2.mp3</Answer2Audio>
+                <Answer3>Solving important problems</Answer3>
+                <Answer3Audio>NativeIntroQ2A3.mp3</Answer3Audio>
+                <Answer4>Driving a car</Answer4>
+                <Answer4Audio>NativeIntroQ2A4.mp3</Answer4Audio>
             </Question>
             <Question number="3">
-                <QuestionText>¿Cuáles son algunos de los materiales para construir casas que se mencionan en este capítulo?</QuestionText>
-                <QuestionAudio>NativeIntroQ3S.mp3</QuestionAudio>
-                <Answer1>Hielo, árboles, y pieles de animales</Answer1>
-                <Answer1Audio>NativeIntroQ3A1S.mp3</Answer1Audio>
-                <expectedSelection>Hielo, árboles, y pieles de animales</expectedSelection>
-                <Answer2>Agua, arbustos, y pelo de animales</Answer2>
-                <Answer2Audio>NativeIntroQ3A2S.mp3</Answer2Audio>
-                <Answer3>Plástico, vidrio y metal</Answer3>
-                <Answer3Audio>NativeIntroQ3A3S.mp3</Answer3Audio>
-                <Answer4>Azúcar, caramelos, y galletas</Answer4>
-                <Answer4Audio>NativeIntroQ3A4S.mp3</Answer4Audio>
+                <QuestionText>What are some materials that this chapter mentions for making homes?</QuestionText>
+                <QuestionAudio>NativeIntroQ3.mp3</QuestionAudio>
+                <Answer1>Ice, trees, and animal skins</Answer1>
+                <Answer1Audio>NativeIntroQ3A1.mp3</Answer1Audio>
+                <expectedSelection>Ice, trees, and animal skins</expectedSelection>
+                <Answer2>Water, bushes, and animal fur</Answer2>
+                <Answer2Audio>NativeIntroQ3A2.mp3</Answer2Audio>
+                <Answer3>Plastic, glass, and metal</Answer3>
+                <Answer3Audio>NativeIntroQ3A3.mp3</Answer3Audio>
+                <Answer4>Gingerbread, frosting, and sprinkles</Answer4>
+                <Answer4Audio>NativeIntroQ3A4.mp3</Answer4Audio>
             </Question>
             <Question number="4">
-                <QuestionText>¿Para qué se usa un hogan?</QuestionText>
-                <QuestionAudio>TheNavajoHoganQ1S.mp3</QuestionAudio>
-                <Answer1>Ceremonias</Answer1>
-                <Answer1Audio>TheNavajoHoganQ1A1S.mp3</Answer1Audio>
-                <expectedSelection>Ceremonias</expectedSelection>
-                <Answer2>Leer libros</Answer2>
-                <Answer2Audio>TheNavajoHoganQ1A2S.mp3</Answer2Audio>
-                <Answer3>Dormir</Answer3>
-                <Answer3Audio>TheNavajoHoganQ1A3S.mp3</Answer3Audio>
-                <Answer4>Pelear</Answer4>
-                <Answer4Audio>TheNavajoHoganQ1A4S.mp3</Answer4Audio>
+                <QuestionText>What are hogans used for?</QuestionText>
+                <QuestionAudio>TheNavajoHoganQ1.mp3</QuestionAudio>
+                <Answer1>Ceremonies</Answer1>
+                <Answer1Audio>TheNavajoHoganQ1A1.mp3</Answer1Audio>
+                <expectedSelection>Ceremonies</expectedSelection>
+                <Answer2>Reading books</Answer2>
+                <Answer2Audio>TheNavajoHoganQ1A2.mp3</Answer2Audio>
+                <Answer3>Sleeping</Answer3>
+                <Answer3Audio>TheNavajoHoganQ1A3.mp3</Answer3Audio>
+                <Answer4>Wrestling</Answer4>
+                <Answer4Audio>TheNavajoHoganQ1A4.mp3</Answer4Audio>
             </Question>
             <Question number="5">
-                <QuestionText>Los Hogans pueden tener distintas formas. ¿Cuáles de las siguientes formas no se usa para los hogans?</QuestionText>
-                <QuestionAudio>TheNavajoHoganQ2S.mp3</QuestionAudio>
-                <Answer1>Triángulo</Answer1>
-                <Answer1Audio>TheNavajoHoganQ2A1S.mp3</Answer1Audio>
-                <expectedSelection>Triángulo</expectedSelection>
-                <Answer2>Cuadrado</Answer2>
-                <Answer2Audio>TheNavajoHoganQ2A2S.mp3</Answer2Audio>
-                <Answer3>Círculo</Answer3>
-                <Answer3Audio>TheNavajoHoganQ2A3S.mp3</Answer3Audio>
-                <Answer4>Octágono</Answer4>
-                <Answer4Audio>TheNavajoHoganQ2A4S.mp3</Answer4Audio>
+                <QuestionText>Hogans have different shapes. Which of these shapes is not used for hogans?</QuestionText>
+                <QuestionAudio>TheNavajoHoganQ2.mp3</QuestionAudio>
+                <Answer1>Triangle</Answer1>
+                <Answer1Audio>TheNavajoHoganQ2A1.mp3</Answer1Audio>
+                <expectedSelection>Triangle</expectedSelection>
+                <Answer2>Square</Answer2>
+                <Answer2Audio>TheNavajoHoganQ2A2.mp3</Answer2Audio>
+                <Answer3>Round</Answer3>
+                <Answer3Audio>TheNavajoHoganQ2A3.mp3</Answer3Audio>
+                <Answer4>Octagon</Answer4>
+                <Answer4Audio>TheNavajoHoganQ2A4.mp3</Answer4Audio>
             </Question>
             <Question number="6">
-                <QuestionText>¿Qué parte de un hogan está hecho de ramas de árboles?</QuestionText>
-                <QuestionAudio>TheNavajoHoganQ3S.mp3</QuestionAudio>
-                <Answer1>La estructura</Answer1>
-                <Answer1Audio>TheNavajoHoganQ3A1S.mp3</Answer1Audio>
-                <expectedSelection>La estructura</expectedSelection>
-                <Answer2>La entrada</Answer2>
-                <Answer2Audio>TheNavajoHoganQ3A2S.mp3</Answer2Audio>
-                <Answer3>El techo</Answer3>
-                <Answer3Audio>TheNavajoHoganQ3A3S.mp3</Answer3Audio>
-                <Answer4>La mejor parte</Answer4>
-                <Answer4Audio>TheNavajoHoganQ3A4S.mp3</Answer4Audio>
+                <QuestionText>Which part of a hogan is made from tree branches?</QuestionText>
+                <QuestionAudio>TheNavajoHoganQ3.mp3</QuestionAudio>
+                <Answer1>The frame</Answer1>
+                <Answer1Audio>TheNavajoHoganQ3A1.mp3</Answer1Audio>
+                <expectedSelection>The frame</expectedSelection>
+                <Answer2>The entryway</Answer2>
+                <Answer2Audio>TheNavajoHoganQ3A2.mp3</Answer2Audio>
+                <Answer3>The ceiling</Answer3>
+                <Answer3Audio>TheNavajoHoganQ3A3.mp3</Answer3Audio>
+                <Answer4>The best part</Answer4>
+                <Answer4Audio>TheNavajoHoganQ3A4.mp3</Answer4Audio>
             </Question>
             <Question number="7">
-                <QuestionText>¿De qué están rellenos los espacios entre las ramas?</QuestionText>
-                <QuestionAudio>TheNavajoHoganQ4S.mp3</QuestionAudio>
-                <Answer1>Barro</Answer1>
-                <Answer1Audio>TheNavajoHoganQ4A1S.mp3</Answer1Audio>
-                <expectedSelection>Barro</expectedSelection>
-                <Answer2>Mantas</Answer2>
-                <Answer2Audio>TheNavajoHoganQ4A2S.mp3</Answer2Audio>
-                <Answer3>Madera</Answer3>
-                <Answer3Audio>TheNavajoHoganQ4A3S.mp3</Answer3Audio>
-                <Answer4>Plastilina</Answer4>
-                <Answer4Audio>TheNavajoHoganQ4A4S.mp3</Answer4Audio>
+                <QuestionText>What are the spaces between the branches filled with?</QuestionText>
+                <QuestionAudio>TheNavajoHoganQ4.mp3</QuestionAudio>
+                <Answer1>Mud</Answer1>
+                <Answer1Audio>TheNavajoHoganQ4A1.mp3</Answer1Audio>
+                <expectedSelection>Mud</expectedSelection>
+                <Answer2>Blankets</Answer2>
+                <Answer2Audio>TheNavajoHoganQ4A2.mp3</Answer2Audio>
+                <Answer3>Wood</Answer3>
+                <Answer3Audio>TheNavajoHoganQ4A3.mp3</Answer3Audio>
+                <Answer4>Play-Doh</Answer4>
+                <Answer4Audio>TheNavajoHoganQ4A4.mp3</Answer4Audio>
             </Question>
             <Question number="8">
-                <QuestionText>Si estás parado en un hogan, y miras por la puerta en la mañana, ¿qué verías?</QuestionText>
-                <QuestionAudio>TheNavajoHoganQ5S.mp3</QuestionAudio>
-                <Answer1>El sol</Answer1>
-                <Answer1Audio>TheNavajoHoganQ5A1S.mp3</Answer1Audio>
-                <expectedSelection>El sol</expectedSelection>
-                <Answer2>Una fogata</Answer2>
-                <Answer2Audio>TheNavajoHoganQ5A2S.mp3</Answer2Audio>
-                <Answer3>Un taxi</Answer3>
-                <Answer3Audio>TheNavajoHoganQ5A3S.mp3</Answer3Audio>
-                <Answer4>Unas rosas</Answer4>
-                <Answer4Audio>TheNavajoHoganQ5A4S.mp3</Answer4Audio>
+                <QuestionText>If you stand in a hogan and look out the door in the morning, what will you see?</QuestionText>
+                <QuestionAudio>TheNavajoHoganQ5.mp3</QuestionAudio>
+                <Answer1>The sun</Answer1>
+                <Answer1Audio>TheNavajoHoganQ5A1.mp3</Answer1Audio>
+                <expectedSelection>The sun</expectedSelection>
+                <Answer2>A fire</Answer2>
+                <Answer2Audio>TheNavajoHoganQ5A2.mp3</Answer2Audio>
+                <Answer3>A taxi</Answer3>
+                <Answer3Audio>TheNavajoHoganQ5A3.mp3</Answer3Audio>
+                <Answer4>Morning glories</Answer4>
+                <Answer4Audio>TheNavajoHoganQ5A4.mp3</Answer4Audio>
             </Question>
             <Question number="9">
-                <QuestionText>¿Por qué cubren los Navajo las entradas con mantas?</QuestionText>
-                <QuestionAudio>TheNavajoHoganQ6S.mp3</QuestionAudio>
-                <Answer1>Para evitar que el viento y el frío entren</Answer1>
-                <Answer1Audio>TheNavajoHoganQ6A1S.mp3</Answer1Audio>
-                <expectedSelection>Para evitar que el viento y el frío entren</expectedSelection>
-                <Answer2>Para bloquear el sol</Answer2>
-                <Answer2Audio>TheNavajoHoganQ6A2S.mp3</Answer2Audio>
-                <Answer3>Para tener privacidad</Answer3>
-                <Answer3Audio>TheNavajoHoganQ6A3S.mp3</Answer3Audio>
-                <Answer4>¡Para jugar a las escondidas!</Answer4>
-                <Answer4Audio>TheNavajoHoganQ6A4S.mp3</Answer4Audio>
+                <QuestionText>Why do the Navajos cover the entryways with blankets?</QuestionText>
+                <QuestionAudio>TheNavajoHoganQ6.mp3</QuestionAudio>
+                <Answer1>To keep the wind and cold out</Answer1>
+                <Answer1Audio>TheNavajoHoganQ6A1.mp3</Answer1Audio>
+                <expectedSelection>To keep the wind and cold out</expectedSelection>
+                <Answer2>To block the sun</Answer2>
+                <Answer2Audio>TheNavajoHoganQ6A2.mp3</Answer2Audio>
+                <Answer3>For privacy</Answer3>
+                <Answer3Audio>TheNavajoHoganQ6A3.mp3</Answer3Audio>
+                <Answer4>To play peek-a-boo!</Answer4>
+                <Answer4Audio>TheNavajoHoganQ6A4.mp3</Answer4Audio>
             </Question>
             <Question number="10">
-                <QuestionText>Si quitas la manta que cuelga del techo, ¿cuántos cuartos habría?</QuestionText>
-                <QuestionAudio>TheNavajoHoganQ7S.mp3</QuestionAudio>
-                <Answer1>Uno</Answer1>
-                <Answer1Audio>TheNavajoHoganQ7A1S.mp3</Answer1Audio>
-                <expectedSelection>Uno</expectedSelection>
-                <Answer2>Dos</Answer2>
-                <Answer2Audio>TheNavajoHoganQ7A2S.mp3</Answer2Audio>
-                <Answer3>Cuatro</Answer3>
-                <Answer3Audio>TheNavajoHoganQ7A3S.mp3</Answer3Audio>
+                <QuestionText>If you take away the blanket hung from the ceiling, how many rooms will the hogan have?</QuestionText>
+                <QuestionAudio>TheNavajoHoganQ7.mp3</QuestionAudio>
+                <Answer1>One</Answer1>
+                <Answer1Audio>TheNavajoHoganQ7A1.mp3</Answer1Audio>
+                <expectedSelection>One</expectedSelection>
+                <Answer2>Two</Answer2>
+                <Answer2Audio>TheNavajoHoganQ7A2.mp3</Answer2Audio>
+                <Answer3>Four</Answer3>
+                <Answer3Audio>TheNavajoHoganQ7A3.mp3</Answer3Audio>
                 <Answer4>3.14</Answer4>
-                <Answer4Audio>TheNavajoHoganQ7A4S.mp3</Answer4Audio>
+                <Answer4Audio>TheNavajoHoganQ7A4.mp3</Answer4Audio>
             </Question>
             <Question number="11">
                 <QuestionText>Why are there no igloos in warm parts of the world?</QuestionText>

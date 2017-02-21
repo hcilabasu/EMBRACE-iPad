@@ -43,7 +43,7 @@
             <navLabel>
                 <text>The Moving Earth - Intro</text>
             </navLabel>
-            <content src="Text/Story1-The-Moving-Earth-Intro-E.xhtml"/>
+            <content src="Text/Story1-The-Moving-Earth-Intro-S.xhtml"/>
         </navPoint>
         <navPoint class="PM_MODE" id="story1-PM-1">
             <navLabel>
