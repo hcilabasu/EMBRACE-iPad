@@ -101,7 +101,8 @@
 
 - (void)setupCurrentSentenceColor:(NSInteger)currentSentence
                         condition:(Condition)condition
-                          andMode:(Mode)mode;
+                          andMode:(Mode)mode
+                        bookTitle:(NSString*)bookTitle;
 
 - (void)clearAllHighLighting;
 

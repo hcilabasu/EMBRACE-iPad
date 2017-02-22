@@ -44,7 +44,7 @@
                 
                 <attributes complexity="10"/>
                 
-                <text>Sofia&#8217;s sister, Olivia, was getting married!.</text>
+                <text>Sofia&#8217;s sister, Olivia, was getting married!</text>
                 
                 <ideas>
                     
@@ -115,7 +115,7 @@
                 
                 <attributes complexity="2"/>
                 
-                <text>Sofia&#8217;s sister, Olivia, was getting married!.</text>
+                <text>Sofia&#8217;s sister, Olivia, was getting married!</text>
                 
                 <ideas>
                     
@@ -3727,7 +3727,7 @@
                 
             </sentence>
             
-            <sentence number="14" action="yes">
+            <sentence number="14" action="no">
                 
                 <attributes complexity="10"/>
                 
@@ -3784,7 +3784,7 @@
                 
             </sentence>
             
-            <sentence number="17" action="yes">
+            <sentence number="17" action="no">
                 
                 <attributes complexity="2"/>
                 
@@ -3981,7 +3981,7 @@
                 </ideas>
                 
                 <solution>
-                    
+                    <step number="7"/>
                 </solution>
                 
             </sentence>
@@ -3999,7 +3999,7 @@
                 </ideas>
                 
                 <solution>
-                    <step number="7"/>
+                    
                 </solution>
                 
             </sentence>
