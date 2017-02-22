@@ -119,7 +119,7 @@
 - (void)setupCurrentSentenceColor {
     //
     [self.manipulationView setupCurrentSentenceColor:sentenceContext.currentSentence condition:conditionSetup.condition
-                                             andMode:conditionSetup.currentMode];
+                                             andMode:conditionSetup.currentMode bookTitle:bookTitle];
 }
 
 /*

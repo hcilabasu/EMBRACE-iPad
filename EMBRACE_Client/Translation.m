@@ -289,7 +289,7 @@
                  @"unties" : @"desata",
                  @"weight" : @"peso",
                  
-                 @"sofia" : @"sofia",
+                 @"sofia" : @"sofía",
                  @"chili" : @"chile",
                  @"notebook" : @"cuaderno",
                  @"list" : @"lista",
@@ -680,7 +680,7 @@
                  @"desata" : @"unties",
                  @"peso" : @"weight",
                  
-                 @"sofia" : @"sofia",
+                 @"sofía" : @"sofia",
                  @"chile" : @"chili",
                  @"cuaderno" : @"notebook",
                  @"lista" : @"list",
