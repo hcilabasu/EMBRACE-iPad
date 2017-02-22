@@ -261,6 +261,10 @@
             [solutionVocabulary removeObject:@"babybrother"];
         }
     }
+    if ([title isEqualToString:@"A Friend in Need"]) {
+        NSArray *myArray = @[@"sofia"];
+        [solutionVocabulary addObjectsFromArray:myArray];
+    }
     
     
     //TODO: REMOVE HARD CODED SOLUTION FOR ADDING VOCAB
