@@ -261,6 +261,10 @@
             [solutionVocabulary removeObject:@"babybrother"];
         }
     }
+    if ([title isEqualToString:@"A Friend in Need"]) {
+        NSArray *myArray = @[@"sofia"];
+        [solutionVocabulary addObjectsFromArray:myArray];
+    }
     
     /*
     //TODO: REMOVE HARD CODED SOLUTION FOR ADDING VOCAB
@@ -295,10 +299,7 @@
         NSArray *myArray = @[@"vocabWord1", @"vocabWord2"];
         [solutionVocabulary addObjectsFromArray:myArray];
     }
-    if ([title isEqualToString:@"A Friend in Need"]) {
-        NSArray *myArray = @[@"vocabWord1", @"vocabWord2"];
-        [solutionVocabulary addObjectsFromArray:myArray];
-    }
+    
     if ([title isEqualToString:@"Shopping at the Market"]) {
         NSArray *myArray = @[@"vocabWord1", @"vocabWord2"];
         [solutionVocabulary addObjectsFromArray:myArray];
