@@ -3864,7 +3864,7 @@
         <story title="The Seminole Chickee" page_id="story6-PM-2">
             
             
-            <sentence number="3" action="no">
+            <sentence number="3" action="yes">
                 
                 <attributes complexity="10"/>
                 
@@ -3884,7 +3884,7 @@
             
             
             
-            <sentence number="4" action="no">
+            <sentence number="4" action="yes">
                 
                 <attributes complexity="2"/>
                 
@@ -3923,7 +3923,7 @@
             
             
             
-            <sentence number="6" action="yes">
+            <sentence number="6" action="no">
                 
                 <attributes complexity="1"/>
                 

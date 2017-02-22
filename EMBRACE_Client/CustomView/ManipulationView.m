@@ -650,7 +650,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 
 - (void)setupCurrentSentenceColor:(NSInteger)currentSentence
                         condition:(Condition)condition
-                          andMode:(Mode)mode {
+                          andMode:(Mode)mode
+                        bookTitle:(NSString*)bookTitle{
     
     //Highlight the sentence and set its color to black
     [self highlightSentenceToBlack:currentSentence];
@@ -661,7 +662,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     NSString *sentenceClass = [self.bookView stringByEvaluatingJavaScriptFromString:actionSentence];
     
     //If it is a non-black action sentence (i.e., requires user manipulation), then set the color to blue
-    if (![sentenceClass containsString:@"black"]) {
+    if (![sentenceClass containsString:@"black"] && ![bookTitle isEqualToString:@"Bottled Up Joy"]) {
         if ([sentenceClass containsString: @"sentence actionSentence"] ||
             ([sentenceClass containsString: @"sentence IMactionSentence"] &&
              condition == EMBRACE && (mode == IM_MODE || mode == ITSIM_MODE))) {

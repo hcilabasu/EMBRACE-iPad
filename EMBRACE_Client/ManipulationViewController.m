@@ -3754,7 +3754,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         
         // Use hash value of the sentence to find the audio file.
         if ([bookTitle isEqualToString:@"A Celebration to Remember" ]) {
-            if (conditionSetup.language == BILINGUAL) {
+            if (conditionSetup.language == BILINGUAL && [pageContext.currentPageId.lowercaseString containsString:@"story1"]) {
                 sentenceAudioFile = [NSString stringWithFormat:@"KeyIngredientsS%dS.mp3", sentenceContext.currentSentence];
             }
             else {
@@ -3827,15 +3827,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             if (conditionSetup.language == BILINGUAL) {
                 //If we are on the first or second manipulation page of Disasters Intro, play the current sentence
                 if ([chapterTitle isEqualToString:@"Introduction to Natural Disasters"] && ([pageContext.currentPageId containsString:@"PM"] || [pageContext.currentPageId containsString:PM2])) {
-                    if (conditionSetup.language == BILINGUAL) {
                         sentenceAudioFile = [NSString stringWithFormat:@"DisastersIntroS%dS.mp3", sentenceContext.currentSentence];
-                    }
-                    
                 } else if ([chapterTitle isEqualToString:@"The Moving Earth"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
-                    if (conditionSetup.language == BILINGUAL) {
                         sentenceAudioFile = [NSString stringWithFormat:@"TheMovingEarthS%dS.mp3", sentenceContext.currentSentence];
-                    }
-                    
                 } else {
                     sentenceAudioFile = [NSString stringWithFormat:@"%@.mp3", [sentenceContext.currentSentenceText MD5String]];
                 }
@@ -4200,6 +4194,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  *  Highlights object or area
  */
 - (void)highlightObject:(NSString *)object :(double)delay {
+    //TODO: Remove hardcoded fix
+    if(![chapterTitle isEqualToString:@"Tsunamis"]){
     if ([model getArea:object:pageContext.currentPageId]) {
         //Highlight the tapped object
         [self.manipulationView highLightArea:object];
@@ -4222,6 +4218,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     
     //Clear highlighted object
     [self performSelector:@selector(clearHighlightedObject) withObject:nil afterDelay:delay];
+    }
 }
 
 /*
