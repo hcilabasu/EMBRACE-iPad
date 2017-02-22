@@ -5480,6 +5480,7 @@
 		713CFF2E1E5D63BF00A27657 /* 1227272119507d65b5970546548daa73.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 713CFF281E5D63BF00A27657 /* 1227272119507d65b5970546548daa73.mp3 */; };
 		713CFF2F1E5D63BF00A27657 /* b3f051d87ce2a4f7f441bfb90590bfc9.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 713CFF291E5D63BF00A27657 /* b3f051d87ce2a4f7f441bfb90590bfc9.mp3 */; };
 		713CFF311E5D668D00A27657 /* 51d28c9f9bbc5cfaecf166e085b87bd9.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 713CFF301E5D668D00A27657 /* 51d28c9f9bbc5cfaecf166e085b87bd9.mp3 */; };
+		713CFF331E5D68B100A27657 /* c87b12b0cc508c98ca5711a16de8feab.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 713CFF321E5D68B100A27657 /* c87b12b0cc508c98ca5711a16de8feab.mp3 */; };
 		714B421B1E537170005BB5BE /* c52e5721fd2b160d1887b44c5371af22.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 714B421A1E537170005BB5BE /* c52e5721fd2b160d1887b44c5371af22.mp3 */; };
 		715DFBAD1DC907CD00C32C28 /* AlternateSentences-MetaData.xml in Resources */ = {isa = PBXBuildFile; fileRef = 715DFBAB1DC907CD00C32C28 /* AlternateSentences-MetaData.xml */; };
 		715DFBAE1DC907CD00C32C28 /* Solutions-MetaData-ITS.xml in Resources */ = {isa = PBXBuildFile; fileRef = 715DFBAC1DC907CD00C32C28 /* Solutions-MetaData-ITS.xml */; };
@@ -11523,6 +11524,7 @@
 		713CFF281E5D63BF00A27657 /* 1227272119507d65b5970546548daa73.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 1227272119507d65b5970546548daa73.mp3; sourceTree = "<group>"; };
 		713CFF291E5D63BF00A27657 /* b3f051d87ce2a4f7f441bfb90590bfc9.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = b3f051d87ce2a4f7f441bfb90590bfc9.mp3; sourceTree = "<group>"; };
 		713CFF301E5D668D00A27657 /* 51d28c9f9bbc5cfaecf166e085b87bd9.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 51d28c9f9bbc5cfaecf166e085b87bd9.mp3; sourceTree = "<group>"; };
+		713CFF321E5D68B100A27657 /* c87b12b0cc508c98ca5711a16de8feab.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = c87b12b0cc508c98ca5711a16de8feab.mp3; sourceTree = "<group>"; };
 		714B421A1E537170005BB5BE /* c52e5721fd2b160d1887b44c5371af22.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = c52e5721fd2b160d1887b44c5371af22.mp3; sourceTree = "<group>"; };
 		715DFBAB1DC907CD00C32C28 /* AlternateSentences-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AlternateSentences-MetaData.xml"; sourceTree = "<group>"; };
 		715DFBAC1DC907CD00C32C28 /* Solutions-MetaData-ITS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Solutions-MetaData-ITS.xml"; sourceTree = "<group>"; };
@@ -19541,6 +19543,7 @@
 		71E4243B1E2D4DAC0029BDEC /* English */ = {
 			isa = PBXGroup;
 			children = (
+				713CFF321E5D68B100A27657 /* c87b12b0cc508c98ca5711a16de8feab.mp3 */,
 				713CFF301E5D668D00A27657 /* 51d28c9f9bbc5cfaecf166e085b87bd9.mp3 */,
 				713CFF241E5D63BF00A27657 /* 9fc3959304fbe15f209db0b0feb63fe9.mp3 */,
 				713CFF251E5D63BF00A27657 /* 77cbcd06712b2e683363255f855d77fd.mp3 */,
@@ -23948,6 +23951,7 @@
 				5CF6CA0F1CCB2BB50093D3FD /* EarthE.mp3 in Resources */,
 				1A6321171C0E4D3B00251CB3 /* spinach.png in Resources */,
 				5C40AEDC1CBF5C7C00BFEB9F /* ObjectsS.mp3 in Resources */,
+				713CFF331E5D68B100A27657 /* c87b12b0cc508c98ca5711a16de8feab.mp3 in Resources */,
 				711939371E2F3CF8003D7EB5 /* 76dc574f35a631952804edb12d4de97e.mp3 in Resources */,
 				5C9F28BB1C5C6B2E008ACE48 /* TheLopezFamilyQ3A1S.mp3 in Resources */,
 				5C72E51B1C727E2000CE4877 /* NativeIntroQ3A2.mp3 in Resources */,
