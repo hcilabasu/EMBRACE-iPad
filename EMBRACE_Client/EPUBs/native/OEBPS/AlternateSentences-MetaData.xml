@@ -3905,7 +3905,7 @@
             
             
             
-            <sentence number="5" action="no">
+            <sentence number="5" action="yes">
                 
                 <attributes complexity="1"/>
                 
@@ -3918,13 +3918,14 @@
                 </ideas>
                 
                 <solution>
+                    <step number="48"/>
                 </solution>
                 
             </sentence>
             
            
             
-            <sentence number="6" action="yes">
+            <sentence number="6" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -3937,7 +3938,6 @@
                 </ideas>
                 
                 <solution>
-                    <step number="48"/>
                 </solution>
                 
             </sentence>
