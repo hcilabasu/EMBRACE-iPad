@@ -3865,7 +3865,7 @@
         <story title="The Seminole Chickee" page_id="story6-PM-2">
             
             
-            <sentence number="3" action="no">
+            <sentence number="3" action="yes">
                 
                 <attributes complexity="10"/>
                 
@@ -3885,7 +3885,7 @@
             
             
             
-            <sentence number="4" action="no">
+            <sentence number="4" action="yes">
                 
                 <attributes complexity="2"/>
                 
@@ -3905,7 +3905,7 @@
             
             
             
-            <sentence number="5" action="yes">
+            <sentence number="5" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -4315,7 +4315,7 @@
                 
                 <attributes complexity="10"/>
                 
-                <text>But without walls, the Seminoles must have been plagued by mosquitos!.</text>
+                <text>But without walls, the Seminoles must have been plagued by mosquitos!</text>
                 
                 <ideas>
                     
@@ -4426,7 +4426,7 @@
                 
                 <attributes complexity="2"/>
                 
-                <text>But without walls, the Seminoles must have been plagued by mosquitos!.</text>
+                <text>But without walls, the Seminoles must have been plagued by mosquitos!</text>
                 
                 <ideas>
                     

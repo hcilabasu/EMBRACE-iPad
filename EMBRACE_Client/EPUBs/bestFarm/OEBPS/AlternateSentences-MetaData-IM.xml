@@ -121,7 +121,7 @@
                     
                 </solution>
             </sentence>
-            <sentence number="4" action="yes">
+            <sentence number="4" action="no">
                 <attributes complexity="10"/>
                 <text>The cat drank the milk to make her fur shiny.</text>
                 <ideas>
@@ -161,7 +161,7 @@
                     
                 </solution>
             </sentence>
-            <sentence number="8" action="yes">
+            <sentence number="8" action="no">
                 <attributes complexity="1"/>
                 <text>The cat drank the milk.</text>
                 <ideas>

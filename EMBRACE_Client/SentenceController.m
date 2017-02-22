@@ -138,7 +138,9 @@
             
             if ((conditionSetup.appMode == ITS && conditionSetup.useKnowledgeTracing && ![chapterTitle isEqualToString:@"The Naughty Monkey"] && !(conditionSetup.language == BILINGUAL && [pageContext.currentPageId.lowercaseString containsString:@"story1"])) &&
                 
-                !(conditionSetup.language == BILINGUAL && [pageContext.currentPageId.lowercaseString containsString:@"story0"] && [chapterTitle isEqualToString:@"Introduction to Native American Homes"])) {
+                !(conditionSetup.language == BILINGUAL && [pageContext.currentPageId.lowercaseString containsString:@"story0"] && [chapterTitle isEqualToString:@"Introduction to Native American Homes"])&&
+                
+                !( [pageContext.currentPageId.lowercaseString containsString:@"story0"] && [chapterTitle isEqualToString:@"Introduction to Natural Disasters"])) {
                 
                 mvc.currentComplexityLevel = [[ITSController sharedInstance] getCurrentComplexity];
                 [self.manipulationView removeAllSentences];
