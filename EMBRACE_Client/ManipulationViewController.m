@@ -3153,7 +3153,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         else {
             //Set up current sentence appearance and solution steps
             [sc setupCurrentSentence];
-            [sc colorSentencesUponNext];
+            [sc colorSentencesUponNext:bookTitle];
             [self playCurrentSentenceAudio];
         }
     }
@@ -3193,7 +3193,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             else {
                 //Set up current sentence appearance and solution steps
                 [sc setupCurrentSentence];
-                [sc colorSentencesUponNext];
+                [sc colorSentencesUponNext:bookTitle];
                 [self playCurrentSentenceAudio];
             }
         }
@@ -3224,7 +3224,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         else {
             //Set up current sentence appearance and solution steps
             [sc setupCurrentSentence];
-            [sc colorSentencesUponNext];
+            [sc colorSentencesUponNext:bookTitle];
             [self playCurrentSentenceAudio];
         }
     }
@@ -3369,7 +3369,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     else {
         //Set up current sentence appearance and solution steps
         [sc setupCurrentSentence];
-        [sc colorSentencesUponBack];
+        [sc colorSentencesUponBack:bookTitle];
         [self playCurrentSentenceAudio];
     }
 }
