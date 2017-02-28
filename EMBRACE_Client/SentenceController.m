@@ -285,18 +285,20 @@
     return complexity;
 }
 
-- (void)colorSentencesUponNext {
+- (void)colorSentencesUponNext:(NSString*)BookTitle {
     
     [self.manipulationView colorSentencesUponNext:sentenceContext.currentSentence
                                         condition:conditionSetup.condition
-                                          andMode:conditionSetup.currentMode];
+                                          andMode:conditionSetup.currentMode
+                                        bookTitle:BookTitle];
 }
 
-- (void)colorSentencesUponBack {
+- (void)colorSentencesUponBack:(NSString*)BookTitle {
     
     [self.manipulationView colorSentencesUponBack:sentenceContext.currentSentence
                                         condition:conditionSetup.condition
-                                          andMode:conditionSetup.currentMode];
+                                          andMode:conditionSetup.currentMode
+                                        bookTitle:BookTitle];
 }
 
 /*

@@ -28,8 +28,8 @@
 - (void) setupCurrentSentence;
 - (BOOL)isManipulationSentence:(NSInteger)sentenceNumber;
 - (NSInteger)getComplexityOfCurrentSentence;
-- (void)colorSentencesUponNext;
-- (void)colorSentencesUponBack;
+- (void)colorSentencesUponNext:(NSString*)bookTitle;
+- (void)colorSentencesUponBack:(NSString*)bookTitle;
 - (NSString *)getSpanishTranslation:(NSString *)sentence;
 - (NSString *)getEnglishTranslation:(NSString *)sentence;
 - (void) setupSentencesForPage;

@@ -799,7 +799,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 
 - (void)colorSentencesUponNext:(NSInteger)currentSentence
                      condition:(Condition)condition
-                       andMode:(Mode)mode {
+                       andMode:(Mode)mode
+                     bookTitle:(NSString*)bookTitle{
     
     //Set the color of the current sentence to black by default
     NSString *setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%ld, 'black')", (long)currentSentence];
@@ -822,7 +823,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     NSString *sentenceClass = [self.bookView stringByEvaluatingJavaScriptFromString:actionSentence];
     
     //If it is a non-black action sentence (i.e., requires user manipulation), then set the color to blue
-    if (![sentenceClass containsString:@"black"]) {
+    if (![sentenceClass containsString:@"black"] && ![bookTitle isEqualToString:@"Bottled Up Joy"]) {
         if ([sentenceClass containsString: @"sentence actionSentence"] ||
             ([sentenceClass containsString: @"sentence IMactionSentence"] && condition == EMBRACE && (mode == IM_MODE || mode == ITSIM_MODE))) {
             setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%ld, 'blue')", (long)currentSentence];
@@ -833,7 +834,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 
 - (void)colorSentencesUponBack:(NSInteger)currentSentence
                      condition:(Condition)condition
-                       andMode:(Mode)mode {
+                       andMode:(Mode)mode
+                     bookTitle:(NSString*)bookTitle{
     
     //Set the color of the current sentence to black by default
     NSString *setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%ld, 'black')", (long)currentSentence];
@@ -856,7 +858,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     NSString *sentenceClass = [self.bookView stringByEvaluatingJavaScriptFromString:actionSentence];
     
     //If it is a non-black action sentence (i.e., requires user manipulation), then set the color to blue
-    if (![sentenceClass containsString:@"black"]) {
+    if (![sentenceClass containsString:@"black"] && ![bookTitle isEqualToString:@"Bottled Up Joy"]) {
         if ([sentenceClass containsString: @"sentence actionSentence"] ||
             ([sentenceClass containsString: @"sentence IMactionSentence"] && condition == EMBRACE && (mode == IM_MODE || mode == ITSIM_MODE))) {
             setSentenceColor = [NSString stringWithFormat:@"setSentenceColor(s%ld, 'blue')", (long)currentSentence];

@@ -121,11 +121,13 @@
 
 - (void)colorSentencesUponNext:(NSInteger)currentSentence
                      condition:(Condition)condition
-                       andMode:(Mode)mode;
+                       andMode:(Mode)mode
+                     bookTitle:(NSString*)BookTitle;
 
 - (void)colorSentencesUponBack:(NSInteger)currentSentence
                      condition:(Condition)condition
-                       andMode:(Mode)mode;
+                       andMode:(Mode)mode
+                     bookTitle:(NSString*)BookTitle;
 
 - (void)highLightArea:(NSString *)objectId;
 
