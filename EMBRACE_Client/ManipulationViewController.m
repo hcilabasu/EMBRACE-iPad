@@ -4119,7 +4119,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                         spanishAudio = [NSString stringWithFormat:@"%@_S.mp3",audio];
                         
                     }
-                    
+                    if ([bookTitle isEqualToString:@"Bottled Up Joy" ]) {
+                        audio = @"IntroReadNextChapter";
+                    }
                     audio = [NSString stringWithFormat:@"%@.mp3",audio];
                     preAudio = [NSArray arrayWithObjects:audio, spanishAudio, nil];
                     
