@@ -266,52 +266,55 @@
         [solutionVocabulary addObjectsFromArray:myArray];
     }
     
-    /*
+    
     //TODO: REMOVE HARD CODED SOLUTION FOR ADDING VOCAB
     //DISASTER VOCAB
     if ([title isEqualToString:@"The Moving Earth"]) {
-        NSArray *myArray = @[@"vocabWord1", @"vocabWord2"];
+        NSArray *myArray = @[@"awhile", @"California", @"cloud", @"columns", @"disasters", @"disaster", @"drifted", @"earth", @"earthquake", @"earthquakes", @"enough", @"fault line", @"forest", @"Hawai'i", @"Hawaiian", @"Himalaya", @"hotspot", @"India", @"islands", @"island", @"kaua'i", @"lava", @"mantle", @"million", @"mountains", @"nature", @"Oahu", @"ocean", @"oceans", @"Pacific", @"plate tectonics", @"pressure", @"rapidly", @"rise", @"serious", @"spew", @"spews", @"spin", @"spining", @"supercell", @"swirl", @"swirls", @"swirling", @"sometimes", @"tornado", @"tornados", @"tsunami", @"tsunamis", @"violent", @"volcano", @"volcanoes", @"winds"];
         [solutionVocabulary addObjectsFromArray:myArray];
     }
     if ([title isEqualToString:@"Earthquakes"]) {
-        NSArray *myArray = @[@"vocabWord1", @"vocabWord2"];
+        NSArray *myArray = @[@"awhile", @"California", @"cloud", @"columns", @"disasters", @"disaster", @"drifted", @"earth", @"earthquake", @"earthquakes", @"enough", @"fault line", @"forest", @"Hawai'i", @"Hawaiian", @"Himalaya", @"hotspot", @"India", @"islands", @"island", @"kaua'i", @"lava", @"mantle", @"million", @"mountains", @"nature", @"Oahu", @"ocean", @"oceans", @"Pacific", @"plate tectonics", @"pressure", @"rapidly", @"rise", @"serious", @"spew", @"spews", @"spin", @"spining", @"supercell", @"swirl", @"swirls", @"swirling", @"sometimes", @"tornado", @"tornados", @"tsunami", @"tsunamis", @"violent", @"volcano", @"volcanoes", @"winds"];
         [solutionVocabulary addObjectsFromArray:myArray];
     }
     if ([title isEqualToString:@"Tsunamis"]) {
-        NSArray *myArray = @[@"vocabWord1", @"vocabWord2"];
+        NSArray *myArray = @[@"awhile", @"California", @"cloud", @"columns", @"disasters", @"disaster", @"drifted", @"earth", @"earthquake", @"earthquakes", @"enough", @"fault line", @"forest", @"Hawai'i", @"Hawaiian", @"Himalaya", @"hotspot", @"India", @"islands", @"island", @"kaua'i", @"lava", @"mantle", @"million", @"mountains", @"nature", @"Oahu", @"ocean", @"oceans", @"Pacific", @"plate tectonics", @"pressure", @"rapidly", @"rise", @"serious", @"spew", @"spews", @"spin", @"spining", @"supercell", @"swirl", @"swirls", @"swirling", @"sometimes", @"tornado", @"tornados", @"tsunami", @"tsunamis", @"violent", @"volcano", @"volcanoes", @"winds"];
         [solutionVocabulary addObjectsFromArray:myArray];
     }
     if ([title isEqualToString:@"Volcanoes and the Making of Hawaii"]) {
-        NSArray *myArray = @[@"vocabWord1", @"vocabWord2"];
+        NSArray *myArray = @[@"awhile", @"California", @"cloud", @"columns", @"disasters", @"disaster", @"drifted", @"earth", @"earthquake", @"earthquakes", @"enough", @"fault line", @"forest", @"Hawai'i", @"Hawaiian", @"Himalaya", @"hotspot", @"India", @"islands", @"island", @"kaua'i", @"lava", @"mantle", @"million", @"mountains", @"nature", @"Oahu", @"ocean", @"oceans", @"Pacific", @"plate tectonics", @"pressure", @"rapidly", @"rise", @"serious", @"spew", @"spews", @"spin", @"spining", @"supercell", @"swirl", @"swirls", @"swirling", @"sometimes", @"tornado", @"tornados", @"tsunami", @"tsunamis", @"violent", @"volcano", @"volcanoes", @"winds"];
         [solutionVocabulary addObjectsFromArray:myArray];
     }
     if ([title isEqualToString:@"Tornados"]) {
-        NSArray *myArray = @[@"vocabWord1", @"vocabWord2"];
+        NSArray *myArray = @[@"awhile", @"California", @"cloud", @"columns", @"disasters", @"disaster", @"drifted", @"earth", @"earthquake", @"earthquakes", @"enough", @"fault line", @"forest", @"Hawai'i", @"Hawaiian", @"Himalaya", @"hotspot", @"India", @"islands", @"island", @"kaua'i", @"lava", @"mantle", @"million", @"mountains", @"nature", @"Oahu", @"ocean", @"oceans", @"Pacific", @"plate tectonics", @"pressure", @"rapidly", @"rise", @"serious", @"spew", @"spews", @"spin", @"spining", @"supercell", @"swirl", @"swirls", @"swirling", @"sometimes", @"tornado", @"tornados", @"tsunami", @"tsunamis", @"violent", @"volcano", @"volcanoes", @"winds"];
         [solutionVocabulary addObjectsFromArray:myArray];
     }
     
     //CELEBRATION VOCAB
     if ([title isEqualToString:@"Key Ingredients"]) {
-        NSArray *myArray = @[@"vocabWord1", @"vocabWord2"];
+        NSArray *myArray = @[@"celebration", @"champurrado", @"enthusiastically", @"evening", @"grind", @"ingredients", @"mole", @"supplies", @"tote", @"bridle", @"calf", @"cattle", @"corral", @"dairy", @"dozen", @"guide", @"guided", @"herd", @"post", @"produce", @"saddle", @"scale", @"straps", @"successful", @"tomatillos", @"vase", @"mancha", @"sofia", @"sofía"];
         [solutionVocabulary addObjectsFromArray:myArray];
     }
     if ([title isEqualToString:@"Mancha the Horse"]) {
-        NSArray *myArray = @[@"vocabWord1", @"vocabWord2"];
+        NSArray *myArray = @[@"celebration", @"champurrado", @"enthusiastically", @"evening", @"grind", @"ingredients", @"mole", @"supplies", @"tote", @"bridle", @"calf", @"cattle", @"corral", @"dairy", @"dozen", @"guide", @"guided", @"herd", @"post", @"produce", @"saddle", @"scale", @"straps", @"successful", @"tomatillos", @"vase", @"mancha", @"sofia", @"sofía"];
         [solutionVocabulary addObjectsFromArray:myArray];
     }
-    
+    if ([title isEqualToString:@"A Friend in Need"]) {
+        NSArray *myArray = @[@"celebration", @"champurrado", @"enthusiastically", @"evening", @"grind", @"ingredients", @"mole", @"supplies", @"tote", @"bridle", @"calf", @"cattle", @"corral", @"dairy", @"dozen", @"guide", @"guided", @"herd", @"post", @"produce", @"saddle", @"scale", @"straps", @"successful", @"tomatillos", @"vase", @"mancha", @"sofia", @"sofía"];
+        [solutionVocabulary addObjectsFromArray:myArray];
+    }
     if ([title isEqualToString:@"Shopping at the Market"]) {
-        NSArray *myArray = @[@"vocabWord1", @"vocabWord2"];
+        NSArray *myArray = @[@"celebration", @"champurrado", @"enthusiastically", @"evening", @"grind", @"ingredients", @"mole", @"supplies", @"tote", @"bridle", @"calf", @"cattle", @"corral", @"dairy", @"dozen", @"guide", @"guided", @"herd", @"post", @"produce", @"saddle", @"scale", @"straps", @"successful", @"tomatillos", @"vase", @"mancha", @"sofia", @"sofía"];
         [solutionVocabulary addObjectsFromArray:myArray];
     }
     if ([title isEqualToString:@"A Gift for the Bride"]) {
-        NSArray *myArray = @[@"vocabWord1", @"vocabWord2"];
+        NSArray *myArray = @[@"celebration", @"champurrado", @"enthusiastically", @"evening", @"grind", @"ingredients", @"mole", @"supplies", @"tote", @"bridle", @"calf", @"cattle", @"corral", @"dairy", @"dozen", @"guide", @"guided", @"herd", @"post", @"produce", @"saddle", @"scale", @"straps", @"successful", @"tomatillos", @"vase", @"mancha", @"sofia", @"sofía"];
         [solutionVocabulary addObjectsFromArray:myArray];
     }
     if ([title isEqualToString:@"Homecoming"]) {
-        NSArray *myArray = @[@"vocabWord1", @"vocabWord2"];
+        NSArray *myArray = @[@"celebration", @"champurrado", @"enthusiastically", @"evening", @"grind", @"ingredients", @"mole", @"supplies", @"tote", @"bridle", @"calf", @"cattle", @"corral", @"dairy", @"dozen", @"guide", @"guided", @"herd", @"post", @"produce", @"saddle", @"scale", @"straps", @"successful", @"tomatillos", @"vase", @"mancha", @"sofia", @"sofía"];
         [solutionVocabulary addObjectsFromArray:myArray];
-    }*/
+    }
     
     return solutionVocabulary;
 }
