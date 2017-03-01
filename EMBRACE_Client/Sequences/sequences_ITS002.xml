@@ -214,7 +214,7 @@
             <intervention>IM</intervention>
         </mode>
     </sequence>
-    <!--<sequence bookTitle="The Circulatory System">
+    <sequence bookTitle="The Circulatory System">
         <mode chapterTitle="Why We Breathe" newInstructions="false" vocabPage="true" assessmentPage="true">
             <reader>System</reader>
             <language>English</language>
@@ -240,7 +240,7 @@
             <language>English</language>
             <intervention>IM</intervention>
         </mode>
-    </sequence>-->
+    </sequence>
     <sequence bookTitle="Bottled Up Joy">
         <mode chapterTitle="The Lucky Stone" newInstructions="false" vocabPage="false" vocabOnDemand="false" assessmentPage="true">
             <reader>User</reader>
