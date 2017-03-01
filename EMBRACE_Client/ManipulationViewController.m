@@ -1130,7 +1130,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             manipulationContext.manipulationSentence = [sc isManipulationSentence:sentenceContext.currentSentence];
             [[ServerCommunicationController sharedInstance] logLoadSentence:sentenceContext.currentSentence withComplexity:manipulationContext.sentenceComplexity withText:sentenceContext.currentSentenceText manipulationSentence:manipulationContext.manipulationSentence context:manipulationContext];
             
-            [sc performSelector:@selector(colorSentencesUponNext) withObject:nil afterDelay:([self.playaudioClass audioPlayer].duration)];
+            [sc performSelector:@selector(colorSentencesUponNext:) withObject:bookTitle afterDelay:([self.playaudioClass audioPlayer].duration)];
         }
     });
 }
