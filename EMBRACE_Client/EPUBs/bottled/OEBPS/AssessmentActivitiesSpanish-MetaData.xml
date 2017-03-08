@@ -3,108 +3,108 @@
     <ActivityAssessment>
         <Questions title= "The Lucky Stone">
             <Question number="1">
-                <QuestionText>¿Qué puede ver Lucas desde la montaña?</QuestionText>
-                <QuestionAudio>TheLuckyStoneQ1S.mp3</QuestionAudio>
-                <Answer1>Un río</Answer1>
-                <Answer1Audio>TheLuckyStoneQ1A1S.mp3</Answer1Audio>
-                <Answer2>Una botella</Answer2>
-                <Answer2Audio>TheLuckyStoneQ1A2S.mp3</Answer2Audio>
-                <Answer3>Un parque</Answer3>
-                <Answer3Audio>TheLuckyStoneQ1A3S.mp3</Answer3Audio>
-                <Answer4>Un perro tomando té</Answer4>
-                <Answer4Audio>TheLuckyStoneQ1A4S.mp3</Answer4Audio>
-                <expectedSelection>Un río</expectedSelection>
+                <QuestionText>What can Lucas see from the hill?</QuestionText>
+                <QuestionAudio>TheLuckyStoneQ1.mp3</QuestionAudio>
+                <Answer1>A river</Answer1>
+                <Answer1Audio>TheLuckyStoneQ1A1.mp3</Answer1Audio>
+                <Answer2>A bottle</Answer2>
+                <Answer2Audio>TheLuckyStoneQ1A2.mp3</Answer2Audio>
+                <Answer3>A playground</Answer3>
+                <Answer3Audio>TheLuckyStoneQ1A3.mp3</Answer3Audio>
+                <Answer4>Clearly now the rain is gone</Answer4>
+                <Answer4Audio>TheLuckyStoneQ1A4.mp3</Answer4Audio>
+                <expectedSelection>A river</expectedSelection>
             </Question>
             <Question number="2">
-                <QuestionText>¿A qué bajaba Lucas de la montaña casi todas las tardes?</QuestionText>
-                <QuestionAudio>TheLuckyStoneQ2S.mp3</QuestionAudio>
-                <Answer1>A ver la puesta del sol</Answer1>
-                <Answer1Audio>TheLuckyStoneQ2A1S.mp3</Answer1Audio>
-                <Answer2>A almorzar</Answer2>
-                <Answer2Audio>TheLuckyStoneQ2A2S.mp3</Answer2Audio>
-                <Answer3>A ir a pescar</Answer3>
-                <Answer3Audio>TheLuckyStoneQ2A3S.mp3</Answer3Audio>
-                <Answer4>Porque le tiene miedo a las alturas</Answer4>
-                <Answer4Audio>TheLuckyStoneQ2A4S.mp3</Answer4Audio>
-                <expectedSelection>A ver la puesta del sol</expectedSelection>
+                <QuestionText>Why does Lucas walk down the hill most afternoons?</QuestionText>
+                <QuestionAudio>TheLuckyStoneQ2.mp3</QuestionAudio>
+                <Answer1>To watch the sunset</Answer1>
+                <Answer1Audio>TheLuckyStoneQ2A1.mp3</Answer1Audio>
+                <Answer2>To grab lunch</Answer2>
+                <Answer2Audio>TheLuckyStoneQ2A2.mp3</Answer2Audio>
+                <Answer3>To go fishing</Answer3>
+                <Answer3Audio>TheLuckyStoneQ2A3.mp3</Answer3Audio>
+                <Answer4>Because he's scared of heights</Answer4>
+                <Answer4Audio>TheLuckyStoneQ2A4.mp3</Answer4Audio>
+                <expectedSelection>To watch the sunset</expectedSelection>
             </Question>
             <Question number="3">
-                <QuestionText>¿Por qué esta tarde fue especial?</QuestionText>
-                <QuestionAudio>TheLuckyStoneQ3S.mp3</QuestionAudio>
-                <Answer1>Lucas encontró una botella flotando en el agua</Answer1>
-                <Answer1Audio>TheLuckyStoneQ3A1S.mp3</Answer1Audio>
-                <Answer2>Su papá estaba en casa</Answer2>
-                <Answer2Audio>TheLuckyStoneQ3A2S.mp3</Answer2Audio>
-                <Answer3>Lucas saltó al agua</Answer3>
-                <Answer3Audio>TheLuckyStoneQ3A3S.mp3</Answer3Audio>
-                <Answer4>No hubo puesta del sol</Answer4>
-                <Answer4Audio>TheLuckyStoneQ3A4S.mp3</Answer4Audio>
-                <expectedSelection>Lucas encontró una botella flotando en el agua</expectedSelection>
+                <QuestionText>What was so special about this afternoon?</QuestionText>
+                <QuestionAudio>TheLuckyStoneQ3.mp3</QuestionAudio>
+                <Answer1>Lucas found a bottle floating in the water</Answer1>
+                <Answer1Audio>TheLuckyStoneQ3A1.mp3</Answer1Audio>
+                <Answer2>Papa was home</Answer2>
+                <Answer2Audio>TheLuckyStoneQ3A2.mp3</Answer2Audio>
+                <Answer3>Lucas jumped in the water</Answer3>
+                <Answer3Audio>TheLuckyStoneQ3A3.mp3</Answer3Audio>
+                <Answer4>The sun didn't set</Answer4>
+                <Answer4Audio>TheLuckyStoneQ3A4.mp3</Answer4Audio>
+                <expectedSelection>Lucas found a bottle floating in the water</expectedSelection>
             </Question>
             <Question number="4">
-                <QuestionText>¿A dónde llevó Lucas la botella?</QuestionText>
-                <QuestionAudio>TheLuckyStoneQ4S.mp3</QuestionAudio>
-                <Answer1>A su casa con su papá</Answer1>
-                <Answer1Audio>TheLuckyStoneQ4A1S.mp3</Answer1Audio>
-                <Answer2>Arriba a su cuarto</Answer2>
-                <Answer2Audio>TheLuckyStoneQ4A2S.mp3</Answer2Audio>
-                <Answer3>Al otro lado del río</Answer3>
-                <Answer3Audio>TheLuckyStoneQ4A3S.mp3</Answer3Audio>
-                <Answer4>A Ciudad Botella</Answer4>
-                <Answer4Audio>TheLuckyStoneQ4A4S.mp3</Answer4Audio>
-                <expectedSelection>A su casa con su papá</expectedSelection>
+                <QuestionText>Where did Lucas bring the bottle?</QuestionText>
+                <QuestionAudio>TheLuckyStoneQ4.mp3</QuestionAudio>
+                <Answer1>Home to his papa</Answer1>
+                <Answer1Audio>TheLuckyStoneQ4A1.mp3</Answer1Audio>
+                <Answer2>Up to his room</Answer2>
+                <Answer2Audio>TheLuckyStoneQ4A2.mp3</Answer2Audio>
+                <Answer3>Across the river</Answer3>
+                <Answer3Audio>TheLuckyStoneQ4A3.mp3</Answer3Audio>
+                <Answer4>To Bottle Village</Answer4>
+                <Answer4Audio>TheLuckyStoneQ4A4.mp3</Answer4Audio>
+                <expectedSelection>Home to his papa</expectedSelection>
             </Question>
             <Question number="5">
-                <QuestionText>¿Qué hizo el papá con la botella?</QuestionText>
-                <QuestionAudio>TheLuckyStoneQ5S.mp3</QuestionAudio>
-                <Answer1>La abrió</Answer1>
-                <Answer1Audio>TheLuckyStoneQ5A1S.mp3</Answer1Audio>
-                <Answer2>Se la tomó</Answer2>
-                <Answer2Audio>TheLuckyStoneQ5A2S.mp3</Answer2Audio>
-                <Answer3>La rompió</Answer3>
-                <Answer3Audio>TheLuckyStoneQ5A3S.mp3</Answer3Audio>
-                <Answer4>La recicló</Answer4>
-                <Answer4Audio>TheLuckyStoneQ5A4S.mp3</Answer4Audio>
-                <expectedSelection>La abrió</expectedSelection>
+                <QuestionText>What did Papa do with the bottle?</QuestionText>
+                <QuestionAudio>TheLuckyStoneQ5.mp3</QuestionAudio>
+                <Answer1>He opened it</Answer1>
+                <Answer1Audio>TheLuckyStoneQ5A1.mp3</Answer1Audio>
+                <Answer2>He drank it</Answer2>
+                <Answer2Audio>TheLuckyStoneQ5A2.mp3</Answer2Audio>
+                <Answer3>He broke it</Answer3>
+                <Answer3Audio>TheLuckyStoneQ5A3.mp3</Answer3Audio>
+                <Answer4>He recycled it</Answer4>
+                <Answer4Audio>TheLuckyStoneQ5A4.mp3</Answer4Audio>
+                <expectedSelection>He opened it</expectedSelection>
             </Question>
             <Question number="6">
-                <QuestionText>¿Qué rodó por el piso?</QuestionText>
-                <QuestionAudio>TheLuckyStoneQ6S.mp3</QuestionAudio>
-                <Answer1>Una nota y una piedra</Answer1>
-                <Answer1Audio>TheLuckyStoneQ6A1S.mp3</Answer1Audio>
-                <Answer2>Una botella</Answer2>
-                <Answer2Audio>TheLuckyStoneQ6A2S.mp3</Answer2Audio>
-                <Answer3>Unos dados</Answer3>
-                <Answer3Audio>TheLuckyStoneQ6A3S.mp3</Answer3Audio>
-                <Answer4>Un carro</Answer4>
-                <Answer4Audio>TheLuckyStoneQ6A4S.mp3</Answer4Audio>
-                <expectedSelection>Una nota y una piedra</expectedSelection>
+                <QuestionText>What tumbled across the floor?</QuestionText>
+                <QuestionAudio>TheLuckyStoneQ6.mp3</QuestionAudio>
+                <Answer1>A note and stone</Answer1>
+                <Answer1Audio>TheLuckyStoneQ6A1.mp3</Answer1Audio>
+                <Answer2>A bottle</Answer2>
+                <Answer2Audio>TheLuckyStoneQ6A2.mp3</Answer2Audio>
+                <Answer3>Dice</Answer3>
+                <Answer3Audio>TheLuckyStoneQ6A3.mp3</Answer3Audio>
+                <Answer4>Cheerleaders</Answer4>
+                <Answer4Audio>TheLuckyStoneQ6A4.mp3</Answer4Audio>
+                <expectedSelection>A note and stone</expectedSelection>
             </Question>
             <Question number="7">
-                <QuestionText>¿Qué recogió el papá del piso?</QuestionText>
-                <QuestionAudio>TheLuckyStoneQ7S.mp3</QuestionAudio>
-                <Answer1>La nota</Answer1>
-                <Answer1Audio>TheLuckyStoneQ7A1S.mp3</Answer1Audio>
-                <Answer2>La piedra</Answer2>
-                <Answer2Audio>TheLuckyStoneQ7A2S.mp3</Answer2Audio>
-                <Answer3>La botella</Answer3>
-                <Answer3Audio>TheLuckyStoneQ7A3S.mp3</Answer3Audio>
-                <Answer4>Su sombra</Answer4>
-                <Answer4Audio>TheLuckyStoneQ7A4S.mp3</Answer4Audio>
-                <expectedSelection>La nota</expectedSelection>
+                <QuestionText>What did Papa pick up from the ground?</QuestionText>
+                <QuestionAudio>TheLuckyStoneQ7.mp3</QuestionAudio>
+                <Answer1>The note</Answer1>
+                <Answer1Audio>TheLuckyStoneQ7A1.mp3</Answer1Audio>
+                <Answer2>The stone</Answer2>
+                <Answer2Audio>TheLuckyStoneQ7A2.mp3</Answer2Audio>
+                <Answer3>The bottle</Answer3>
+                <Answer3Audio>TheLuckyStoneQ7A3.mp3</Answer3Audio>
+                <Answer4>His shadow</Answer4>
+                <Answer4Audio>TheLuckyStoneQ7A4.mp3</Answer4Audio>
+                <expectedSelection>The note</expectedSelection>
             </Question>
             <Question number="8">
-                <QuestionText>¿Por qué pensó Lucas que se le concederán tres deseos?</QuestionText>
-                <QuestionAudio>TheLuckyStoneQ8S.mp3</QuestionAudio>
-                <Answer1>Porque él encontró la piedra de la suerte</Answer1>
-                <Answer1Audio>TheLuckyStoneQ8A1S.mp3</Answer1Audio>
-                <Answer2>Porque su papá le dio la piedra de la suerte</Answer2>
-                <Answer2Audio>TheLuckyStoneQ8A2S.mp3</Answer2Audio>
-                <Answer3>Porque la nota tenía su nombre</Answer3>
-                <Answer3Audio>TheLuckyStoneQ8A3S.mp3</Answer3Audio>
-                <Answer4>Porque un genio salió de la botella</Answer4>
-                <Answer4Audio>TheLuckyStoneQ8A4S.mp3</Answer4Audio>
-                <expectedSelection>Porque él encontró la piedra de la suerte</expectedSelection>
+                <QuestionText>Why did Lucas think he would be granted three wishes?</QuestionText>
+                <QuestionAudio>TheLuckyStoneQ8.mp3</QuestionAudio>
+                <Answer1>Because he found the lucky stone</Answer1>
+                <Answer1Audio>TheLuckyStoneQ8A1.mp3</Answer1Audio>
+                <Answer2>Because Papa gave him the lucky stone</Answer2>
+                <Answer2Audio>TheLuckyStoneQ8A2.mp3</Answer2Audio>
+                <Answer3>Because the note had his name on it</Answer3>
+                <Answer3Audio>TheLuckyStoneQ8A3.mp3</Answer3Audio>
+                <Answer4>Because a genie popped out of the bottle</Answer4>
+                <Answer4Audio>TheLuckyStoneQ8A4.mp3</Answer4Audio>
+                <expectedSelection>Because he found the lucky stone</expectedSelection>
             </Question>
         </Questions>
         <Questions title= "Magic Toys">

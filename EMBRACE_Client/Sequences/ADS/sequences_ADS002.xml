@@ -179,7 +179,7 @@
             <intervention>R</intervention>
         </mode>
         <mode chapterTitle="The Moving Earth" newInstructions="false" vocabPage="true" assessmentPage="true">
-            <reader>System</reader>
+            <reader>User</reader>
             <language>Spanish</language>
             <intervention>R</intervention>
         </mode>
