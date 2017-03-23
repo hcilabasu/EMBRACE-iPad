@@ -889,7 +889,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
         
         if ([[currSolStep stepType] isEqualToString:TAPWORD]) {
-            if ([englishSentenceText containsString: [currSolStep object1Id]] &&
+            if ([[englishSentenceText lowercaseString] containsString: [[currSolStep object1Id] lowercaseString]] &&
                 (sentenceContext.currentSentence == sentenceIDNum) && !stepContext.stepsComplete) {
                 [[ServerCommunicationController sharedInstance] logTapWord:sentenceText :manipulationContext];
                 
