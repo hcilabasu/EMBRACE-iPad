@@ -43,12 +43,16 @@ static ServerCommunicationController *sharedInstance = nil;
 
 - (id)init {
     if (self = [super init]){
-        xmlDocTemp = [[DDXMLDocument alloc] initWithXMLString:@"<Study/>" options:0 error:nil];
-        study = [xmlDocTemp rootElement];
+        [self initializeLog];
         userActionID = 0;
     }
     
     return self;
+}
+
+- (void)initializeLog {
+    xmlDocTemp = [[DDXMLDocument alloc] initWithXMLString:@"<Study/>" options:0 error:nil];
+    study = [xmlDocTemp rootElement];
 }
 
 - (void)dealloc {
@@ -65,7 +69,7 @@ static ServerCommunicationController *sharedInstance = nil;
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.txt", studyFileName]];
     NSString *stringxml = [xmlDocTemp XMLStringWithOptions:DDXMLNodePrettyPrint];
-    
+    NSLog(@"Writing - %@",path);
 //    NSLog(@"\n\n%@\n\n", stringxml);
     
     if (![stringxml writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil]) {
@@ -1453,12 +1457,16 @@ static ServerCommunicationController *sharedInstance = nil;
  *  Forces new creation of log file by changing the timestamp
  */
 - (void) createNewLogFile{
+    
+    [self writeLogFile];
+    
     NSDate *currentTime = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MM-dd-yyyy'T'hh:mm.ss.SSS"];
     NSString *timeStampValue = [dateFormatter stringFromDate: currentTime];
     
     studyFileName = [NSString stringWithFormat:@"%@%@", studyFileNameNoTimestamp, timeStampValue];
+    [self initializeLog]; // Clear all previos values.
 }
 
 # pragma mark - Logging (Assessment)

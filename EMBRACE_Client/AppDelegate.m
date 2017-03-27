@@ -20,24 +20,24 @@
     
     // Create this path in the app sandbox (it doesn't exist by default)
     NSFileManager *fileManager = [NSFileManager defaultManager];
-
-    //Remove old epub files. This is for debugging purposes only.
-    if(DEBUG) {
-        NSError *error = nil;
-        NSArray *directoryContents = [fileManager contentsOfDirectoryAtPath:documentsDirectory error:&error];
-        if (error == nil) {
-            for (NSString *path in directoryContents) {
-                //EPUB files are located in a folder called "ASU"
-                if ([path isEqualToString:@"ASU"]) {
-                    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:path];
-                    BOOL removeSuccess = [fileManager removeItemAtPath:fullPath error:&error];
-                    if (!removeSuccess) {
-                        NSLog(@"could not remove files in document directory");
-                    }
-                }
-            }
-        }
-    }
+//
+//    //Remove old epub files. This is for debugging purposes only.
+//    if(DEBUG) {
+//        NSError *error = nil;
+//        NSArray *directoryContents = [fileManager contentsOfDirectoryAtPath:documentsDirectory error:&error];
+//        if (error == nil) {
+//            for (NSString *path in directoryContents) {
+//                //EPUB files are located in a folder called "ASU"
+//                if ([path isEqualToString:@"ASU"]) {
+//                    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:path];
+//                    BOOL removeSuccess = [fileManager removeItemAtPath:fullPath error:&error];
+//                    if (!removeSuccess) {
+//                        NSLog(@"could not remove files in document directory");
+//                    }
+//                }
+//            }
+//        }
+//    }
     
     //Strings used for copying epub files
     NSString* filePath;
