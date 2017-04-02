@@ -270,23 +270,23 @@
     //TODO: REMOVE HARD CODED SOLUTION FOR ADDING VOCAB
     //DISASTER VOCAB
     if ([title isEqualToString:@"The Moving Earth"]) {
-        NSArray *myArray = @[@"awhile", @"California", @"cloud", @"columns", @"disasters", @"disaster", @"drifted", @"earth", @"earthquake", @"earthquakes", @"enough", @"fault line", @"forest", @"Hawai'i", @"Hawaiian", @"Himalaya", @"hotspot", @"India", @"islands", @"island", @"kaua'i", @"lava", @"mantle", @"million", @"mountains", @"nature", @"Oahu", @"ocean", @"oceans", @"Pacific", @"plate tectonics", @"pressure", @"rapidly", @"rise", @"serious", @"spew", @"spews", @"spin", @"spining", @"supercell", @"swirl", @"swirls", @"swirling", @"sometimes", @"tornado", @"tornados", @"tsunami", @"tsunamis", @"violent", @"volcano", @"volcanoes", @"winds"];
+        NSArray *myArray = @[@"California", @"disasters", @"disaster", @"drifted", @"earth", @"Himalaya", @"India", @"mantle", @"million", @"mountains", @"ocean", @"oceans", @"spin", @"spining",   @"sometimes"];
         [solutionVocabulary addObjectsFromArray:myArray];
     }
     if ([title isEqualToString:@"Earthquakes"]) {
-        NSArray *myArray = @[@"awhile", @"California", @"cloud", @"columns", @"disasters", @"disaster", @"drifted", @"earth", @"earthquake", @"earthquakes", @"enough", @"fault line", @"forest", @"Hawai'i", @"Hawaiian", @"Himalaya", @"hotspot", @"India", @"islands", @"island", @"kaua'i", @"lava", @"mantle", @"million", @"mountains", @"nature", @"Oahu", @"ocean", @"oceans", @"Pacific", @"plate tectonics", @"pressure", @"rapidly", @"rise", @"serious", @"spew", @"spews", @"spin", @"spining", @"supercell", @"swirl", @"swirls", @"swirling", @"sometimes", @"tornado", @"tornados", @"tsunami", @"tsunamis", @"violent", @"volcano", @"volcanoes", @"winds"];
+        NSArray *myArray = @[@"California", @"earthquake", @"earthquakes", @"fault line", @"mantle", @"plate tectonics", @"pressure", @"sometimes"];
         [solutionVocabulary addObjectsFromArray:myArray];
     }
     if ([title isEqualToString:@"Tsunamis"]) {
-        NSArray *myArray = @[@"awhile", @"California", @"cloud", @"columns", @"disasters", @"disaster", @"drifted", @"earth", @"earthquake", @"earthquakes", @"enough", @"fault line", @"forest", @"Hawai'i", @"Hawaiian", @"Himalaya", @"hotspot", @"India", @"islands", @"island", @"kaua'i", @"lava", @"mantle", @"million", @"mountains", @"nature", @"Oahu", @"ocean", @"oceans", @"Pacific", @"plate tectonics", @"pressure", @"rapidly", @"rise", @"serious", @"spew", @"spews", @"spin", @"spining", @"supercell", @"swirl", @"swirls", @"swirling", @"sometimes", @"tornado", @"tornados", @"tsunami", @"tsunamis", @"violent", @"volcano", @"volcanoes", @"winds"];
+        NSArray *myArray = @[@"earthquake", @"earthquakes", @"India", @"ocean", @"oceans",  @"sometimes", @"tsunami", @"tsunamis"];
         [solutionVocabulary addObjectsFromArray:myArray];
     }
     if ([title isEqualToString:@"Volcanoes and the Making of Hawaii"]) {
-        NSArray *myArray = @[@"awhile", @"California", @"cloud", @"columns", @"disasters", @"disaster", @"drifted", @"earth", @"earthquake", @"earthquakes", @"enough", @"fault line", @"forest", @"Hawai'i", @"Hawaiian", @"Himalaya", @"hotspot", @"India", @"islands", @"island", @"kaua'i", @"lava", @"mantle", @"million", @"mountains", @"nature", @"Oahu", @"ocean", @"oceans", @"Pacific", @"plate tectonics", @"pressure", @"rapidly", @"rise", @"serious", @"spew", @"spews", @"spin", @"spining", @"supercell", @"swirl", @"swirls", @"swirling", @"sometimes", @"tornado", @"tornados", @"tsunami", @"tsunamis", @"violent", @"volcano", @"volcanoes", @"winds"];
+        NSArray *myArray = @[@"earth", @"enough", @"Hawai'i", @"Hawaiian", @"hotspot", @"islands", @"island", @"kaua'i", @"lava", @"mantle", @"million", @"Oahu", @"ocean", @"oceans", @"Pacific", @"spew", @"spews", @"sometimes", @"volcano", @"volcanoes"];
         [solutionVocabulary addObjectsFromArray:myArray];
     }
     if ([title isEqualToString:@"Tornados"]) {
-        NSArray *myArray = @[@"awhile", @"California", @"cloud", @"columns", @"disasters", @"disaster", @"drifted", @"earth", @"earthquake", @"earthquakes", @"enough", @"fault line", @"forest", @"Hawai'i", @"Hawaiian", @"Himalaya", @"hotspot", @"India", @"islands", @"island", @"kaua'i", @"lava", @"mantle", @"million", @"mountains", @"nature", @"Oahu", @"ocean", @"oceans", @"Pacific", @"plate tectonics", @"pressure", @"rapidly", @"rise", @"serious", @"spew", @"spews", @"spin", @"spining", @"supercell", @"swirl", @"swirls", @"swirling", @"sometimes", @"tornado", @"tornados", @"tsunami", @"tsunamis", @"violent", @"volcano", @"volcanoes", @"winds"];
+        NSArray *myArray = @[@"awhile", @"cloud", @"columns", @"rapidly", @"rise", @"serious",  @"spin", @"spining", @"supercell", @"swirl", @"swirls", @"swirling", @"tornado", @"tornados"];
         [solutionVocabulary addObjectsFromArray:myArray];
     }
     

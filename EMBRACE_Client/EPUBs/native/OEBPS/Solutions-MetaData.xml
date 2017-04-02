@@ -267,7 +267,7 @@
         <story title="The Haida Plank House" activity_id="story5-PM-2">
             <sentence number="4">
                 <step number="1">
-                    <check obj1Id="haida" action="getIn" locationId="boat"/>
+                    <check obj1Id="haida" action="getIn" locationId="boatArea"/>
                     <disappearAuto obj1Id="haida" action="disappear" obj2Id="haida"/>
                     <swapImage obj1Id="boat" action="adds_man"/>
                 </step>

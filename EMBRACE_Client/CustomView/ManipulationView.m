@@ -1255,7 +1255,14 @@ shouldUpdateConnection:(BOOL)updateCon
     //Combines tokens into the split sentence text
     NSString *currentSplit = @"";
     
+    BOOL skipCurrentToken = false;
+    
     for (NSString *textToken in textTokens) {
+        if(skipCurrentToken){
+            skipCurrentToken = false;
+            continue;
+        }
+        
         NSString *modifiedTextToken = textToken;
         
         //Replaces the ' character if it exists in the token
@@ -1264,12 +1271,41 @@ shouldUpdateConnection:(BOOL)updateCon
         }
         
         BOOL addedWord = false; //whether token contains vocabulary word
+        NSInteger vocabIndex =0;
         
         for (NSString *vocab in vocabulary) {
             // Match the whole vocabulary word only
             NSString *regex = [NSString stringWithFormat:@"\\b%@\\b", vocab];
             
             NSRange range = [modifiedTextToken rangeOfString:regex options:NSRegularExpressionSearch|NSCaseInsensitiveSearch];
+            NSRange nextTokenRange = [modifiedTextToken rangeOfString:regex options:NSRegularExpressionSearch|NSCaseInsensitiveSearch];
+            if (range.location == NSNotFound) {
+                nextTokenRange = [vocab rangeOfString:modifiedTextToken options:NSCaseInsensitiveSearch];
+                
+                if(nextTokenRange.location != NSNotFound ){
+                    if ((vocabIndex+1) < textTokens.count) {
+                        NSString *nextTextToken = [textTokens objectAtIndex:(vocabIndex+1)];
+                        
+                        //Replaces the ' character if it exists in the token
+                        if ([nextTextToken rangeOfString:@"'"].location != NSNotFound) {
+                            nextTextToken = [nextTextToken stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
+                        }
+                        
+                        NSString *tempModifiedTextToken = [NSString stringWithFormat:@"%@ %@", modifiedTextToken, nextTextToken];
+                        nextTokenRange = [tempModifiedTextToken rangeOfString:regex options:NSRegularExpressionSearch|NSCaseInsensitiveSearch];
+                        if(nextTokenRange.location != NSNotFound ){
+                            skipCurrentToken = true;
+                            modifiedTextToken = tempModifiedTextToken;
+                            range = nextTokenRange;
+                        }
+                    }
+                    else{
+                        range.location = NSNotFound; //reset location since we are at the end of the array
+                    }
+                }
+            }
+            
+            vocabIndex++;
             
             // Token contains vocabulary word
             if (range.location != NSNotFound) {

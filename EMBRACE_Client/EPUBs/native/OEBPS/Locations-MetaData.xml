@@ -3,7 +3,7 @@
     <locations>
         <location locationId="anywhere" x="0%" y="0%" height="100%" width="100%"/>
         <location locationId="barkLocation" x="0%" y="65%" height="100%" width="35%"/>
-        <location locationId="boat" x="38%" y="60%" height="22%" width="34%"/>
+        <location locationId="boatArea" x="38%" y="60%" height="22%" width="34%"/>
         <location locationId="boat2" x="48%" y="65%" height="100%" width="100%"/>
         <location locationId="boatAcross" x="0%" y="40%" height="47%" width="53%"/>
         <location locationId="chickeeLocation" x="0%" y="20%" height="40%" width="45%"/>

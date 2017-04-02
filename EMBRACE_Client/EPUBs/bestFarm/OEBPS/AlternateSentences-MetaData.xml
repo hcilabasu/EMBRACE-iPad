@@ -121,7 +121,7 @@
                     <step number="10"/>
                 </solution>
             </sentence>
-            <sentence number="4" action="no">
+            <sentence number="4" action="yes">
                 <attributes complexity="10"/>
                 <text>The cat drank the milk to make her fur shiny.</text>
                 <ideas>
