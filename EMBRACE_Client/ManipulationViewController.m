@@ -3154,7 +3154,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             //Set up current sentence appearance and solution steps
             [sc setupCurrentSentence];
             [sc colorSentencesUponNext:bookTitle];
-            [self playCurrentSentenceAudio];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                [self playCurrentSentenceAudio];
+            });
         }
     }
     else if ((conditionSetup.condition == EMBRACE && (conditionSetup.currentMode == IM_MODE || conditionSetup.currentMode == ITSIM_MODE)) &&
@@ -3194,7 +3196,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 //Set up current sentence appearance and solution steps
                 [sc setupCurrentSentence];
                 [sc colorSentencesUponNext:bookTitle];
-                [self playCurrentSentenceAudio];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                    [self playCurrentSentenceAudio];
+                });
             }
         }
     }
@@ -3225,7 +3229,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             //Set up current sentence appearance and solution steps
             [sc setupCurrentSentence];
             [sc colorSentencesUponNext:bookTitle];
-            [self playCurrentSentenceAudio];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                [self playCurrentSentenceAudio];
+            });
         }
     }
     else {
@@ -3370,7 +3376,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         //Set up current sentence appearance and solution steps
         [sc setupCurrentSentence];
         [sc colorSentencesUponBack:bookTitle];
-        [self playCurrentSentenceAudio];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [self playCurrentSentenceAudio];
+        });
     }
 }
 
@@ -3945,18 +3953,19 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 sentenceAudioFile = [NSString stringWithFormat:@"%@.mp3", [sentenceContext.currentSentenceText MD5String]];
             }
             
-        } else if ([bookTitle isEqualToString:@"Bottled Up Joy" ] && [pageContext.currentPageId.lowercaseString containsString:@"story1"]) {
-            if (conditionSetup.language == BILINGUAL) {
+        } else if ([bookTitle isEqualToString:@"Bottled Up Joy" ]) {
+            if (conditionSetup.language == BILINGUAL && [pageContext.currentPageId.lowercaseString containsString:@"story1"] &&
+                ![pageContext.currentPageId.lowercaseString containsString:@"intro"]) {
                 sentenceAudioFile = [NSString stringWithFormat:@"TheLuckyStoneS%dS.mp3", sentenceContext.currentSentence];
             }
             else {
                 sentenceAudioFile = [NSString stringWithFormat:@"%@.mp3", [sentenceContext.currentSentenceText MD5String]];
             }
             
-        } else if ([bookTitle isEqualToString:@"How Objects Move" ] && [pageContext.currentPageId.lowercaseString containsString:@"story1"]) {
+        } else if ([bookTitle isEqualToString:@"How Objects Move" ]) {
             
-            if (conditionSetup.language == BILINGUAL &&( [pageContext.currentPageId containsString:PM1] ||
-                                                       [pageContext.currentPageId containsString:PM2])) {
+            if (conditionSetup.language == BILINGUAL && [pageContext.currentPageId.lowercaseString containsString:@"story1"] &&
+                ![pageContext.currentPageId.lowercaseString containsString:@"intro"]) {
                 sentenceAudioFile = [NSString stringWithFormat:@"HowDoObjectsMoveS%dS.mp3", sentenceContext.currentSentence];
             }
             else {
@@ -3987,8 +3996,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             
         } else if ([bookTitle isEqualToString:@"The Lopez Family Mystery"]) {
             
-            if (conditionSetup.language == BILINGUAL && [pageContext.currentPageId.lowercaseString containsString:@"story1"] &&( [pageContext.currentPageId containsString:PM1] ||
-                                                        [pageContext.currentPageId containsString:PM2])) {
+            if (conditionSetup.language == BILINGUAL && [pageContext.currentPageId.lowercaseString containsString:@"story1"] &&
+                ![pageContext.currentPageId.lowercaseString containsString:@"intro"]) {
                 sentenceAudioFile = [NSString stringWithFormat:@"TheLopezFamilyS%dS.mp3", sentenceContext.currentSentence];
             }
             else {
@@ -3998,7 +4007,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             
         } else if ([bookTitle isEqualToString:@"The Best Farm"]) {
             
-            if (conditionSetup.language == BILINGUAL && [chapterTitle isEqualToString:@"The Contest"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2])) {
+            if (conditionSetup.language == BILINGUAL && [chapterTitle isEqualToString:@"The Contest"] && ![pageContext.currentPageId.lowercaseString containsString:@"intro"]) {
                 sentenceAudioFile = [NSString stringWithFormat:@"BFEC%d.m4a", sentenceContext.currentSentence];
             }
             else {
@@ -4009,27 +4018,20 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             
             if (conditionSetup.language == BILINGUAL) {
                 //If we are on the first or second manipulation page of Disasters Intro, play the current sentence
-                if ([chapterTitle isEqualToString:@"Introduction to Natural Disasters"] && ([pageContext.currentPageId containsString:@"PM"] || [pageContext.currentPageId containsString:PM2])) {
-                    if (conditionSetup.language == BILINGUAL) {
+                if (conditionSetup.language == BILINGUAL && [chapterTitle isEqualToString:@"Introduction to Natural Disasters"] && ![pageContext.currentPageId.lowercaseString containsString:@"intro"]) {
                         sentenceAudioFile = [NSString stringWithFormat:@"DisastersIntroS%dS.mp3", sentenceContext.currentSentence];
-                    }
                     
-                } else if ([chapterTitle isEqualToString:@"The Moving Earth"] && ([pageContext.currentPageId containsString:PM1] || [pageContext.currentPageId containsString:PM2] || [pageContext.currentPageId containsString:PM3])) {
-                    if (conditionSetup.language == BILINGUAL) {
+                } else if (conditionSetup.language == BILINGUAL && [chapterTitle isEqualToString:@"The Moving Earth"] && ![pageContext.currentPageId.lowercaseString containsString:@"intro"]) {
                         sentenceAudioFile = [NSString stringWithFormat:@"TheMovingEarthS%dS.mp3", sentenceContext.currentSentence];
-                    }
                     
                 } else {
-                   sentenceAudioFile = [NSString stringWithFormat:@"%@.mp3", [sentenceContext.currentSentenceText MD5String]];
+                        sentenceAudioFile = [NSString stringWithFormat:@"%@.mp3", [sentenceContext.currentSentenceText MD5String]];
                 }
             }
             else {
                 sentenceAudioFile = [NSString stringWithFormat:@"%@.mp3", [sentenceContext.currentSentenceText MD5String]];
             }
         }
-        
-        
-        
     }
     
     NSMutableArray *array = [NSMutableArray array];
