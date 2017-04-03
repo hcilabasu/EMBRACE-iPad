@@ -2785,10 +2785,6 @@ ConditionSetup *conditionSetup;
     [self performSelector:@selector(clearHighlightedObject) withObject:nil afterDelay:delay];
 }
 
-- (void) viewDidDisappear:(BOOL)animated {
-    //[timer invalidate];
-    //timer = nil;
-}
 
 - (NSString*) getEnglishTranslation: (NSString*)sentence {
     NSArray* keys = [[Translation translationWords] allKeysForObject:sentence];

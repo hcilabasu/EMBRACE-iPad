@@ -29,6 +29,7 @@ NSString* const DROPBOX_PASSWORD_UNLOCKED = @"hello"; //used to set locked books
 NSString* const DROPBOX_PASSWORD_LOCKED = @"goodbye"; //used to set locked books/chapters to completed
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
     [schoolCodeField setDelegate:self];
     [participantCodeField setDelegate:self];
     [studyDayField setDelegate:self];

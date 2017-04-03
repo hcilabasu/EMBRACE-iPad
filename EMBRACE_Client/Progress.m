@@ -24,6 +24,7 @@
 @synthesize sequenceId;
 
 - (id)init {
+    self = [super init];
     chaptersCompleted = [[NSMutableDictionary alloc] init];
     chaptersInProgress = [[NSMutableDictionary alloc] init];
     chaptersIncomplete = [[NSMutableDictionary alloc] init];

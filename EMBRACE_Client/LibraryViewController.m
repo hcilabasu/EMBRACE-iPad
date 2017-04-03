@@ -115,12 +115,14 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
         
         UIImage *bookImage;
         
+        //Add book image and title
         if (bookImagePath != nil) {
             bookImage = [[UIImage alloc] initWithContentsOfFile:bookImagePath];
+            [bookImages addObject:bookImage];
         }
         
-        //Add book image and title
-        [bookImages addObject:bookImage];
+        
+        
         [bookTitles addObject:[book title]];
         
         //Create temporary arrays to hold chapter images and titles for the book
@@ -138,7 +140,8 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
             }
             
             //Add chapter image and title
-            [bookChapterImages addObject:chapterImage];
+            if (chapterImage != nil)
+                [bookChapterImages addObject:chapterImage];
             [bookChapterTitles addObject:[chapter title]];
         }
         

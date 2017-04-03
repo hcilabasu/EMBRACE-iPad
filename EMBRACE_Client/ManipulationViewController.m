@@ -313,6 +313,7 @@ BOOL wasPathFollowed = false;
 
 //Memory warning; potentially expand functionality if there is a memory leak
 - (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
     NSLog(@"***************** Memory warning!! *****************");
 }
 
@@ -760,12 +761,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             [self tapGestureOnObject:location];
         }
         
-        //Get the object at that point if it's a manipulation object.
-        NSString *imageAtPoint = [self getObjectAtPoint:location ofType:MANIPULATIONOBJECT];
-        
-        //Retrieve the name of the object at this location
-        
-        imageAtPoint = [self.manipulationView getElementAtLocation:location];
         
         //Capture the clicked text id, if it exists
         NSString *sentenceID = [self.manipulationView getElementAtLocation:location];
@@ -3593,8 +3588,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 CGPoint nextObjectHotspotLocation = [self.manipulationView getHotspotLocation:nextObjectHotspot];
                 
                 if (conditionSetup.appMode == ITS) {
-                    [animatedItems addObject:objectId];
-                    [animatedItems addObject:nextObjectId];
+                    if (objectId != nil)
+                        [animatedItems addObject:objectId];
+                    if (nextObjectId != nil)
+                        [animatedItems addObject:nextObjectId];
                     
                     [[ServerCommunicationController sharedInstance] logUsabilityErrorFeedback:animatedItems context:manipulationContext];
                 }
