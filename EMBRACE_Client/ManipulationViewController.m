@@ -208,7 +208,7 @@ BOOL wasPathFollowed = false;
     model = [[InteractionModel alloc]init];
     playaudioClass = [[PlayAudioFile alloc] init];
     
-    syn = [[AVSpeechSynthesizer alloc] init];
+   // syn = [[AVSpeechSynthesizer alloc] init];
     
     menuDataSource = [[ContextualMenuDataSource alloc] init];
     
