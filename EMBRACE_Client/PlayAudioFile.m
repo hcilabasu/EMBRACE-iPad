@@ -36,6 +36,17 @@
     self.audioDuration = CMTimeGetSeconds(asset.duration);
 }
 
+-(void)initPlayer2: (NSString*) audioFilePath
+{
+    NSURL *soundFileURL = [NSURL fileURLWithPath:audioFilePath];
+    NSError *error;
+    
+    self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:&error];
+    
+    AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:soundFileURL options:[NSDictionary dictionaryWithObjectsAndKeys: [NSNumber numberWithBool:YES], AVURLAssetPreferPreciseDurationAndTimingKey, nil]];
+    self.audioDuration = CMTimeGetSeconds(asset.duration);
+}
+
 /* Plays text-to-speech audio in a given language in a certain time */
 -(void)playWordAudioTimed:(NSTimer *) wordAndLang {
     NSDictionary *wrapper = (NSDictionary *)[wordAndLang userInfo];
