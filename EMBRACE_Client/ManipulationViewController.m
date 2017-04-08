@@ -122,6 +122,10 @@
 @synthesize menuDataSource;
 @synthesize bookView;
 @synthesize isUserMovingBack;
+@synthesize pinchRecognizer;
+@synthesize panRecognizer;
+@synthesize tapRecognizer;
+@synthesize swipeRecognizer;
 
 //Used to determine the required proximity of 2 hotspots to group two items together.
 float const groupingProximity = 20.0;
@@ -309,6 +313,7 @@ BOOL wasPathFollowed = false;
     //Custom Back Button to confirm navigation
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(RETURN_TO_LIBRARY, EMPTYSTRING) message:NSLocalizedString(@"Are you sure you want to return to the Library?", EMPTYSTRING) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", EMPTYSTRING) otherButtonTitles:NSLocalizedString(@"Yes", EMPTYSTRING), nil];
     [alertView show];
+    
 }
 
 //Memory warning; potentially expand functionality if there is a memory leak

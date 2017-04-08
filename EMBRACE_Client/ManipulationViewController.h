@@ -49,12 +49,13 @@ typedef enum InteractionMode {
 
 @interface ManipulationViewController : UIViewController <UIGestureRecognizerDelegate, UIScrollViewDelegate, PieContextualMenuDelegate> {
     
-    IBOutlet UIPinchGestureRecognizer *pinchRecognizer;
-    IBOutlet UIPanGestureRecognizer *panRecognizer;
-    IBOutlet UITapGestureRecognizer *tapRecognizer;
-    IBOutlet UISwipeGestureRecognizer *swipeRecognizer;
+    
 }
 
+@property (nonatomic, weak) IBOutlet UIPinchGestureRecognizer *pinchRecognizer;
+@property (nonatomic, weak) IBOutlet UIPanGestureRecognizer *panRecognizer;
+@property (nonatomic, weak) IBOutlet UITapGestureRecognizer *tapRecognizer;
+@property (nonatomic, weak) IBOutlet UISwipeGestureRecognizer *swipeRecognizer;
 @property (nonatomic, strong) id dataObject;
 @property (nonatomic, weak) EBookImporter *bookImporter;
 @property (nonatomic, copy) NSString *bookTitle;
