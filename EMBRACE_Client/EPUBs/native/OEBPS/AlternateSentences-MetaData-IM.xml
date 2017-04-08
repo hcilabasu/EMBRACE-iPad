@@ -3904,11 +3904,28 @@
             
             
             
-            <sentence number="5" action="yes">
+            <sentence number="5" action="no">
                 
                 <attributes complexity="1"/>
                 
-                <text>But in 1830, the U.S. Army took over their land. The Seminoles fled into swamps.</text>
+                <text>But in 1830, the U.S. Army took over their land.</text>
+                
+                <ideas>
+                    
+                    <idea number="71"/>
+                    
+                </ideas>
+                
+                <solution>
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="6" action="yes">
+                
+                <attributes complexity="1"/>
+                
+                <text>The Seminoles fled into swamps.</text>
                 
                 <ideas>
                     
@@ -3922,8 +3939,7 @@
             </sentence>
             
             
-            
-            <sentence number="6" action="no">
+            <sentence number="7" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -3941,7 +3957,7 @@
                 
             </sentence>
             
-            <sentence number="7" action="yes">
+            <sentence number="8" action="yes">
                 
                 <attributes complexity="3"/>
                 
@@ -3964,7 +3980,7 @@
         
         <story title="The Seminole Chickee" page_id="story6-PM-3">
             
-            <sentence number="8" action="no">
+            <sentence number="9" action="no">
                 
                 <attributes complexity="10"/>
                 
@@ -3981,7 +3997,7 @@
                 
             </sentence>
             
-            <sentence number="9" action="no">
+            <sentence number="10" action="no">
                 
                 <attributes complexity="10"/>
                 
@@ -3994,25 +4010,6 @@
                 </ideas>
                 
                 <solution>
-                </solution>
-                
-            </sentence>
-            
-            <sentence number="10" action="yes">
-                
-                <attributes complexity="10"/>
-                
-                <text>First, a Seminole man would stick thick logs into the ground making stilts.</text>
-                
-                <ideas>
-                    
-                    <idea number="74"/>
-                    
-                </ideas>
-                
-                <solution>
-                    <step number="7"/>
-                    
                 </solution>
                 
             </sentence>
@@ -4021,6 +4018,25 @@
                 
                 <attributes complexity="10"/>
                 
+                <text>First, a Seminole man would stick thick logs into the ground making stilts.</text>
+                
+                <ideas>
+                    
+                    <idea number="74"/>
+                    
+                </ideas>
+                
+                <solution>
+                    <step number="7"/>
+                    
+                </solution>
+                
+            </sentence>
+            
+            <sentence number="12" action="yes">
+                
+                <attributes complexity="10"/>
+                
                 <text>Then he tied long poles between the stilts.</text>
                 
                 <ideas>
@@ -4040,7 +4056,7 @@
             
             
             
-            <sentence number="12" action="no">
+            <sentence number="13" action="no">
                 
                 <attributes complexity="2"/>
                 
@@ -4057,7 +4073,7 @@
                 
             </sentence>
             
-            <sentence number="13" action="no">
+            <sentence number="14" action="no">
                 
                 <attributes complexity="2"/>
                 
@@ -4074,7 +4090,7 @@
                 
             </sentence>
             
-            <sentence number="14" action="yes">
+            <sentence number="15" action="yes">
                 
                 <attributes complexity="2"/>
                 
@@ -4093,7 +4109,7 @@
                 
             </sentence>
             
-            <sentence number="15" action="yes">
+            <sentence number="16" action="yes">
                 
                 <attributes complexity="2"/>
                 
@@ -4112,7 +4128,7 @@
                 
             </sentence>
             
-            <sentence number="16" action="no">
+            <sentence number="17" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -4129,7 +4145,7 @@
                 
             </sentence>
             
-            <sentence number="17" action="no">
+            <sentence number="18" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -4146,7 +4162,7 @@
                 
             </sentence>
             
-            <sentence number="18" action="no">
+            <sentence number="19" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -4163,7 +4179,7 @@
                 
             </sentence>
             
-            <sentence number="19" action="no">
+            <sentence number="20" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -4180,7 +4196,7 @@
                 
             </sentence>
             
-            <sentence number="20" action="yes">
+            <sentence number="21" action="yes">
                 
                 <attributes complexity="1"/>
                 
@@ -4198,7 +4214,7 @@
                 
             </sentence>
             
-            <sentence number="21" action="yes">
+            <sentence number="22" action="yes">
                 
                 <attributes complexity="1"/>
                 
@@ -4220,7 +4236,7 @@
         <story title="The Seminole Chickee" page_id="story6-PM-4">
             
             
-            <sentence number="22" action="yes">
+            <sentence number="23" action="yes">
                 
                 <attributes complexity="10"/>
                 
@@ -4239,7 +4255,7 @@
                 
             </sentence>
             
-            <sentence number="23" action="no">
+            <sentence number="24" action="no">
                 
                 <attributes complexity="10"/>
                 
@@ -4256,7 +4272,7 @@
                 
             </sentence>
             
-            <sentence number="24" action="yes">
+            <sentence number="25" action="yes">
                 
                 <attributes complexity="10"/>
                 
@@ -4275,7 +4291,7 @@
                 
             </sentence>
             
-            <sentence number="25" action="yes">
+            <sentence number="26" action="yes">
                 
                 <attributes complexity="10"/>
                 
@@ -4294,7 +4310,7 @@
                 
             </sentence>
             
-            <sentence number="26" action="no">
+            <sentence number="27" action="no">
                 
                 <attributes complexity="10"/>
                 
@@ -4311,7 +4327,7 @@
                 
             </sentence>
             
-            <sentence number="27" action="no">
+            <sentence number="28" action="no">
                 
                 <attributes complexity="10"/>
                 
@@ -4331,7 +4347,7 @@
             
             
             
-            <sentence number="28" action="yes">
+            <sentence number="29" action="yes">
                 
                 <attributes complexity="2"/>
                 
@@ -4350,7 +4366,7 @@
                 
             </sentence>
             
-            <sentence number="29" action="no">
+            <sentence number="30" action="no">
                 
                 <attributes complexity="2"/>
                 
@@ -4367,7 +4383,7 @@
                 
             </sentence>
             
-            <sentence number="30" action="yes">
+            <sentence number="31" action="yes">
                 
                 <attributes complexity="2"/>
                 
@@ -4386,7 +4402,7 @@
                 
             </sentence>
             
-            <sentence number="31" action="yes">
+            <sentence number="32" action="yes">
                 
                 <attributes complexity="2"/>
                 
@@ -4406,7 +4422,7 @@
                 
             </sentence>
             
-            <sentence number="32" action="no">
+            <sentence number="33" action="no">
                 
                 <attributes complexity="2"/>
                 
@@ -4423,7 +4439,7 @@
                 
             </sentence>
             
-            <sentence number="33" action="no">
+            <sentence number="34" action="no">
                 
                 <attributes complexity="2"/>
                 
@@ -4440,7 +4456,7 @@
                 
             </sentence>
             
-            <sentence number="34" action="yes">
+            <sentence number="35" action="yes">
                 
                 <attributes complexity="1"/>
                 
@@ -4459,7 +4475,7 @@
                 
             </sentence>
             
-            <sentence number="35" action="no">
+            <sentence number="36" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -4476,7 +4492,7 @@
                 
             </sentence>
             
-            <sentence number="36" action="yes">
+            <sentence number="37" action="yes">
                 
                 <attributes complexity="1"/>
                 
@@ -4495,7 +4511,7 @@
                 
             </sentence>
             
-            <sentence number="37" action="no">
+            <sentence number="38" action="no">
                 
                 <attributes complexity="1"/>
                 
@@ -4512,7 +4528,7 @@
                 
             </sentence>
             
-            <sentence number="38" action="yes">
+            <sentence number="39" action="yes">
                 
                 <attributes complexity="3"/>
                 
@@ -4531,7 +4547,7 @@
                 
             </sentence>
             
-            <sentence number="39" action="yes">
+            <sentence number="40" action="yes">
                 
                 <attributes complexity="3"/>
                 
