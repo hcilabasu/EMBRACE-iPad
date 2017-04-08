@@ -56,13 +56,13 @@ typedef enum InteractionMode {
 }
 
 @property (nonatomic, strong) id dataObject;
-@property (nonatomic, strong) EBookImporter *bookImporter;
-@property (nonatomic, strong) NSString *bookTitle;
-@property (nonatomic, strong) NSString *chapterTitle;
-@property (nonatomic, strong) Book *book;
+@property (nonatomic, weak) EBookImporter *bookImporter;
+@property (nonatomic, copy) NSString *bookTitle;
+@property (nonatomic, copy) NSString *chapterTitle;
+@property (nonatomic, weak) Book *book;
 @property (nonatomic, strong) AVSpeechSynthesizer *syn;
 @property (nonatomic, strong) PlayAudioFile *playaudioClass;
-@property (nonatomic, strong) UIViewController *libraryViewController;
+@property (nonatomic, weak) UIViewController *libraryViewController;
 @property (nonatomic) BOOL allowInteractions; //TRUE if objects can be manipulated; FALSE otherwise
 @property (nonatomic, strong) IBOutlet ManipulationView *manipulationView;
 @property (nonatomic, strong) InteractionModel *model;

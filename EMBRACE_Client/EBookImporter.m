@@ -1307,6 +1307,7 @@
                 
                 IntroductionStep *introStep = [[IntroductionStep alloc] initWithValues:stepNum:englishAudioFileName:spanishAudioFileName:englishText:spanishText:expectedSelection:expectedAction: expectedInput];
                 [introSteps addObject:introStep];
+                [introStep release];
                 
             }
             
@@ -1380,6 +1381,7 @@
                 
                 VocabularyStep *vocabStep = [[VocabularyStep alloc] initWithValues:wordNum:englishAudioFileName:spanishAudioFileName:englishText:spanishText:expectedSelection:expectedAction: expectedInput];
                 [storyWords addObject:vocabStep];
+                [vocabStep release];
                 
             }
             
@@ -1512,6 +1514,7 @@
                 
                 AssessmentActivity *storyQuestion = [[AssessmentActivity alloc] initWithValues:questionNum :QuestionText :QuestionAudio :Answer1 :Answer1Audio :Answer2 :Answer2Audio :Answer3 :Answer3Audio :Answer4 :Answer4Audio :expectedSelection];
                 [storyQuestions addObject:storyQuestion];
+                [storyQuestion release];
                 
             }
             

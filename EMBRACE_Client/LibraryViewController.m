@@ -450,6 +450,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
     UIAlertView *passwordPrompt = [[UIAlertView alloc] initWithTitle:@"Password" message:@"Enter password to unlock this item" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
     passwordPrompt.alertViewStyle = UIAlertViewStyleSecureTextInput;
     [passwordPrompt show];
+    
 }
 
 /*

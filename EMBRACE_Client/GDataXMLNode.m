@@ -300,7 +300,7 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
         theClass = [GDataXMLNode class];
     }
     
-    return [[theClass alloc] initBorrowingXMLNode:theXMLNode];
+    return [[[theClass alloc] initBorrowingXMLNode:theXMLNode] autorelease];
 }
 
 - (id)initBorrowingXMLNode:(xmlNodePtr)theXMLNode {

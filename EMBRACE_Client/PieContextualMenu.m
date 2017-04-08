@@ -79,7 +79,7 @@ int const minMenuItems = 2; //Total number of items the menu must display. chang
         CGFloat currX = center.x + radius * cos(angle);
         CGFloat currY = center.y + radius * sin(angle);
         
-        CGRect rect;
+        CGRect rect = CGRectZero;
         
         if (conditionSetup.condition == EMBRACE) {
             //PM Condition
