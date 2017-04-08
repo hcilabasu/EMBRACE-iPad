@@ -2541,7 +2541,7 @@ static ServerCommunicationController *sharedInstance = nil;
     request.HTTPBody = jsonData;
     
     // Create url connection and fire request
-    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+   
     
     NSMutableArray *masterProgressFiles = [[NSMutableArray alloc] init];
     
@@ -2552,9 +2552,8 @@ static ServerCommunicationController *sharedInstance = nil;
             //NSLog(@"%@", error);
         }
         
-        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-        long responseCode = (long)[httpResponse statusCode];
-        NSString *myString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+      
+       
         //NSLog(@"%@", myString);
         //NSLog(@"%@", response);
         //NSLog(@"%@", httpResponse);

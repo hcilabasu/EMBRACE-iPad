@@ -36,6 +36,7 @@
 
 -(void) dealloc
 {
+    _delegate=nil;
 	[self CloseZipFile2];
 	[super dealloc];
 }
