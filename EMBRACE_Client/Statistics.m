@@ -13,6 +13,7 @@
 @synthesize pageSentences;
 
 - (id)init {
+    self = [super init];
     pageSentences = [[NSMutableArray alloc] init];
     
     for (int i = 0; i < 3; i++) {

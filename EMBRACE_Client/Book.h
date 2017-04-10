@@ -26,12 +26,12 @@
     InteractionModel *model;
 }
 
-@property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) NSString *author;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *author;
 
-@property (nonatomic, strong) NSString *coverImagePath;
-@property (nonatomic, strong) NSString *bookPath;
-@property (nonatomic, strong) NSString* mainContentPath;
+@property (nonatomic, copy) NSString *coverImagePath;
+@property (nonatomic, copy) NSString *bookPath;
+@property (nonatomic, copy) NSString* mainContentPath;
 
 @property (nonatomic, strong) NSDictionary *bookItems;
 @property (nonatomic, strong) NSMutableArray *itemOrder;

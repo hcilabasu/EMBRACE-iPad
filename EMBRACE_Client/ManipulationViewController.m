@@ -122,6 +122,10 @@
 @synthesize menuDataSource;
 @synthesize bookView;
 @synthesize isUserMovingBack;
+@synthesize pinchRecognizer;
+@synthesize panRecognizer;
+@synthesize tapRecognizer;
+@synthesize swipeRecognizer;
 
 //Used to determine the required proximity of 2 hotspots to group two items together.
 float const groupingProximity = 20.0;
@@ -208,7 +212,7 @@ BOOL wasPathFollowed = false;
     model = [[InteractionModel alloc]init];
     playaudioClass = [[PlayAudioFile alloc] init];
     
-    syn = [[AVSpeechSynthesizer alloc] init];
+   // syn = [[AVSpeechSynthesizer alloc] init];
     
     menuDataSource = [[ContextualMenuDataSource alloc] init];
     
@@ -309,10 +313,12 @@ BOOL wasPathFollowed = false;
     //Custom Back Button to confirm navigation
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(RETURN_TO_LIBRARY, EMPTYSTRING) message:NSLocalizedString(@"Are you sure you want to return to the Library?", EMPTYSTRING) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", EMPTYSTRING) otherButtonTitles:NSLocalizedString(@"Yes", EMPTYSTRING), nil];
     [alertView show];
+    
 }
 
 //Memory warning; potentially expand functionality if there is a memory leak
 - (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
     NSLog(@"***************** Memory warning!! *****************");
 }
 
@@ -760,12 +766,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             [self tapGestureOnObject:location];
         }
         
-        //Get the object at that point if it's a manipulation object.
-        NSString *imageAtPoint = [self getObjectAtPoint:location ofType:MANIPULATIONOBJECT];
-        
-        //Retrieve the name of the object at this location
-        
-        imageAtPoint = [self.manipulationView getElementAtLocation:location];
         
         //Capture the clicked text id, if it exists
         NSString *sentenceID = [self.manipulationView getElementAtLocation:location];
@@ -889,7 +889,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         ActionStep *currSolStep = [currSolSteps objectAtIndex:stepContext.currentStep - 1];
         
         if ([[currSolStep stepType] isEqualToString:TAPWORD]) {
-            if ([englishSentenceText containsString: [currSolStep object1Id]] &&
+            if ([[englishSentenceText lowercaseString] containsString: [[currSolStep object1Id] lowercaseString]] &&
                 (sentenceContext.currentSentence == sentenceIDNum) && !stepContext.stepsComplete) {
                 [[ServerCommunicationController sharedInstance] logTapWord:sentenceText :manipulationContext];
                 
@@ -3601,8 +3601,10 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 CGPoint nextObjectHotspotLocation = [self.manipulationView getHotspotLocation:nextObjectHotspot];
                 
                 if (conditionSetup.appMode == ITS) {
-                    [animatedItems addObject:objectId];
-                    [animatedItems addObject:nextObjectId];
+                    if (objectId != nil)
+                        [animatedItems addObject:objectId];
+                    if (nextObjectId != nil)
+                        [animatedItems addObject:nextObjectId];
                     
                     [[ServerCommunicationController sharedInstance] logUsabilityErrorFeedback:animatedItems context:manipulationContext];
                 }

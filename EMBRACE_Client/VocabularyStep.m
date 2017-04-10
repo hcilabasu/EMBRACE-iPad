@@ -21,14 +21,14 @@
 
 - (id) initWithValues:(NSInteger)wordNum :(NSString*)englishAudioFile :(NSString*)spanishAudioFile :(NSString*)english :(NSString*)spanish :(NSString*)selection :(NSString*)action :(NSString*)input {
     if (self = [super init]) {
-        wordNumber = wordNum;
-        englishAudioFileName = englishAudioFile;
-        spanishAudioFileName = spanishAudioFile;
-        englishText = english;
-        spanishText = spanish;
-        expectedSelection = selection;
-        expectedAction = action;
-        expectedInput = input;
+        self.wordNumber = wordNum;
+        self.englishAudioFileName = englishAudioFile;
+        self.spanishAudioFileName = spanishAudioFile;
+        self.englishText = english;
+        self.spanishText = spanish;
+        self.expectedSelection = selection;
+        self.expectedAction = action;
+        self.expectedInput = input;
     }
     return self;
 }

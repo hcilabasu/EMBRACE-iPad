@@ -28,7 +28,7 @@
         if (![[arrayOfViews objectAtIndex:0] isKindOfClass:[UICollectionViewCell class]]) {
             return nil;
         }
-        
+        self = nil;
         self = [arrayOfViews objectAtIndex:0];
         
         CALayer* imageLayer = [coverImage layer];

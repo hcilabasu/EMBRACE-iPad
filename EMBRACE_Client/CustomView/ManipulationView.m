@@ -732,7 +732,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     imagePath = [imagePath stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     UIImage *rawImage = [[UIImage alloc] initWithContentsOfFile:imagePath];
-    UIImage *image = [UIImage alloc];
+    UIImage *image = nil;
     
     //Horizontally flip the image
     if ([FLIP isEqualToString:@"rotate"]) {

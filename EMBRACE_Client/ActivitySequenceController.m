@@ -13,6 +13,7 @@
 @synthesize sequences;
 
 - (id)init {
+    self = [super init];
     sequences = [[NSMutableArray alloc] init];
     
     return self;
@@ -218,6 +219,7 @@
             ActivitySequence *sequence = [[ActivitySequence alloc] initWithValues:bookTitle :modes];
             [sequences addObject:sequence];
         }
+        sequencesXMLDocument = nil;
         
         return true;
     }

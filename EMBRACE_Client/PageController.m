@@ -74,9 +74,9 @@
  * Loads the html content and solution steps for the current page.
  */
 - (void)loadPage {
-    animatingObjects = [[NSMutableDictionary alloc] init];
-    mvc.animatingObjects = animatingObjects;
     
+    mvc.animatingObjects = [[NSMutableDictionary alloc] init];
+    animatingObjects = mvc.animatingObjects;
     [manipulationView loadPageFor:mvc.book andCurrentPage:pageContext.currentPage];
     mvc.title = chapterTitle;
     
