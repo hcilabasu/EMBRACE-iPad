@@ -89,7 +89,10 @@ typedef enum InteractionMode {
 @property (nonatomic, strong) ContextualMenuDataSource *menuDataSource;
 @property (nonatomic, assign) EMComplexity currentComplexityLevel;
 @property (nonatomic) BOOL isUserMovingBack;
+@property (nonatomic, strong) TheContestChinese* chineseModel;
+@property int txtlanguageType;
 
+-(void)playEnglishSpeech;
 - (void)loadFirstPage;
 - (void)setManipulationContext;
 - (UIImage *)getBackgroundImage;

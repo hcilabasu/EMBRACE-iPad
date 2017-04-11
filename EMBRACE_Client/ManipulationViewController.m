@@ -122,7 +122,8 @@
 @synthesize menuDataSource;
 @synthesize bookView;
 @synthesize isUserMovingBack;
-
+@synthesize chineseModel;
+@synthesize  txtlanguageType;
 //Used to determine the required proximity of 2 hotspots to group two items together.
 float const groupingProximity = 20.0;
 
@@ -132,6 +133,12 @@ BOOL wasPathFollowed = false;
     [super viewWillAppear:animated];
     
     bookView.frame = self.view.bounds;
+    if( [chapterTitle isEqualToString:@"The Contest"]&&[bookTitle isEqualToString:@"The Best Farm"] ){
+        txtlanguageType=1;//Chinese
+    }else{
+        txtlanguageType=0;//English
+    }
+    
 }
 
 /*  Initial view setup after webview loads. Adds manipulationView as a subview and adds view constraints
@@ -929,6 +936,22 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  *  Handles tap gesture on vocab words in story to play audio
  */
 - (void)tapGestureOnStoryWord:(NSString *)englishSentenceText :(NSInteger)sentenceIDNum :(NSString *)spanishExt :(NSString *)sentenceText {
+   
+    /*START SHANG CODE*/
+    NSError* speakerr;
+    NSString* chineseString=englishSentenceText;
+    
+    ChinsesTrans* transModel=[[ChinsesTrans alloc]init];
+    NSString* EngString=englishSentenceText;
+    if(1==txtlanguageType){
+        EngString= [transModel ChinesetoEnglish:englishSentenceText];
+    }
+    
+   // [[BDSSpeechSynthesizer sharedInstance] speakSentence: output withError:&speakerr];
+    
+    //Get steps for current sentence*/
+    /*END SHANG CODE*/
+    
     //Get steps for current sentence
     NSMutableArray *currSolSteps = [ssc returnCurrentSolutionSteps];
     
@@ -3882,7 +3905,15 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 sentenceAudioFile = [NSString stringWithFormat:@"BFEC%d.m4a", sentenceContext.currentSentence];
             }
             else {
-                sentenceAudioFile = [NSString stringWithFormat:@"BFTC%d.m4a", sentenceContext.currentSentence];
+                /*START SHANG CODE*/
+                //[chineseModel playSentence: (int)sentenceContext.currentSentence];
+                int ttt=(int)sentenceContext.currentSentence;
+                if(1==txtlanguageType&&ttt<6){
+                    sentenceAudioFile = [NSString stringWithFormat:@"BFTCC%d.mp3", sentenceContext.currentSentence];
+                }else{
+                    sentenceAudioFile = [NSString stringWithFormat:@"BFTC%d.m4a", sentenceContext.currentSentence];
+                }
+                /*END SHANG CODE*/
             }
         }
         

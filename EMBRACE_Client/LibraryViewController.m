@@ -53,7 +53,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     //Add background image
     UIGraphicsBeginImageContext(self.view.frame.size);
     [[UIImage imageNamed:@"library_background"] drawInRect:self.view.bounds];
