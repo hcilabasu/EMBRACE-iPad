@@ -1210,17 +1210,19 @@
                             NSUInteger stepNum = [[[alternateSentenceStep attributeForName:@"number"] stringValue] intValue];
                             
                             //Get associated ActionStep
-                            NSMutableArray *step;
+                            NSMutableArray *step = nil;
                             if(mode == ITSPM_MODE){
                                 step = [ITSPMSolution getStepsWithNumber:stepNum];
                             }
                             else if(mode == ITSIM_MODE){
                                 step = [ITSIMSolution getStepsWithNumber:stepNum];
                             }
-                            
-                            for (ActionStep *as in step) {
-                                [solutionSteps addObject:as];
+                            if (step) {
+                                for (ActionStep *as in step) {
+                                    [solutionSteps addObject:as];
+                                }
                             }
+                            
                         }
                     }
                     

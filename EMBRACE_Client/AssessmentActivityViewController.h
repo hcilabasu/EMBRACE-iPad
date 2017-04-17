@@ -16,7 +16,7 @@
 @property (nonatomic, weak) IBOutlet UITableView *AnswerList;
 @property (nonatomic, weak) IBOutlet UIView *transparentLayer;
 @property (nonatomic, weak) IBOutlet UIButton *nextButton;
-@property (nonatomic, weak) NSString *ChapterTitle;
+@property (nonatomic, copy) NSString *chapterTitle;
 
 @property (nonatomic, weak) IBOutlet UIButton *questionButton;
 @property (nonatomic, weak) IBOutlet UIButton *answer1Button;

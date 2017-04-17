@@ -10,8 +10,8 @@
 
 @interface AssessmentContext : Context
 
-@property (nonatomic, strong) NSString *bookTitle;
-@property (nonatomic, strong) NSString *chapterTitle;
+@property (nonatomic, copy) NSString *bookTitle;
+@property (nonatomic, copy) NSString *chapterTitle;
 @property (nonatomic, assign) NSInteger assessmentStepNumber;
 
 @end
