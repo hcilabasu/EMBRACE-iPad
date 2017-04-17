@@ -202,15 +202,15 @@ BOOL wasPathFollowed = false;
     //Sets leftBarButtonItem to the custom back button in place of default back button
     self.navigationItem.leftBarButtonItem = backButton;
     
-    conditionSetup = [ConditionSetup sharedInstance];
-    manipulationContext = [[ManipulationContext alloc] init];
-    forwardProgress = [[ForwardProgress alloc] init];
-    pageContext = [[PageContext alloc] init];
-    sentenceContext = [[SentenceContext alloc] init];
-    stepContext = [[StepContext alloc] init];
-    book = [[Book alloc]init];
-    model = [[InteractionModel alloc]init];
-    playaudioClass = [[PlayAudioFile alloc] init];
+    self.conditionSetup = [ConditionSetup sharedInstance];
+    self.manipulationContext = [[ManipulationContext alloc] init];
+    self.forwardProgress = [[ForwardProgress alloc] init];
+    self.pageContext = [[PageContext alloc] init];
+    self.sentenceContext = [[SentenceContext alloc] init];
+    self.stepContext = [[StepContext alloc] init];
+    
+    self.model = [[InteractionModel alloc]init];
+    self.playaudioClass = [[PlayAudioFile alloc] init];
     
    // syn = [[AVSpeechSynthesizer alloc] init];
     

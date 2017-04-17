@@ -8,32 +8,39 @@
 
 #import "StudyContext.h"
 
+
+@interface StudyContext()
+
+@property (nonatomic,strong) NSDateFormatter *dateFormatter;
+@property (nonatomic,strong) NSDateFormatter *timeFormatter;
+
+@end
+
 @implementation StudyContext
 
-@synthesize appMode;
-@synthesize condition;
-@synthesize schoolCode;
-@synthesize participantCode;
-@synthesize studyDay;
-@synthesize experimenterName;
-@synthesize language;
-
 - (id)init {
-    return [super init];
+    
+    self = [super init];
+    if (self) {
+        self.dateFormatter = [[NSDateFormatter alloc] init];
+        [self.dateFormatter setDateFormat:@"MM-dd-yyyy"];
+        
+        self.timeFormatter = [[NSDateFormatter alloc] init];
+        [self.timeFormatter setDateFormat:@"hh:mm:ss"];
+    }
+    
+    return self;
 }
 
 - (NSMutableDictionary *)generateTimestamp {
     NSMutableDictionary *newTimestamp = [[NSMutableDictionary alloc] init];
     
     NSDate *currentDate = [NSDate date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    
-    [dateFormatter setDateFormat:@"MM-dd-yyyy"];
-    NSString *date = [dateFormatter stringFromDate:currentDate];
+    NSString *date = [self.dateFormatter stringFromDate:currentDate];
     [newTimestamp setObject:date forKey:@"date"];
     
-    [dateFormatter setDateFormat:@"hh:mm:ss"];
-    NSString *time = [dateFormatter stringFromDate:currentDate];
+    [self.timeFormatter setDateFormat:@"hh:mm:ss"];
+    NSString *time = [self.timeFormatter stringFromDate:currentDate];
     [newTimestamp setObject:time forKey:@"time"];
     
     return newTimestamp;
