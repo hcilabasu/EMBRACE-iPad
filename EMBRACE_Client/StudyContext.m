@@ -39,7 +39,6 @@
     NSString *date = [self.dateFormatter stringFromDate:currentDate];
     [newTimestamp setObject:date forKey:@"date"];
     
-    [self.timeFormatter setDateFormat:@"hh:mm:ss"];
     NSString *time = [self.timeFormatter stringFromDate:currentDate];
     [newTimestamp setObject:time forKey:@"time"];
     
