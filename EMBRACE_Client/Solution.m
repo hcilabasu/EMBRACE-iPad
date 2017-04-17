@@ -14,7 +14,7 @@
 
 - (id)init {
     if (self = [super init]) {
-        solutionSteps = [[NSMutableArray alloc] init];
+        self.solutionSteps = [[NSMutableArray alloc] init];
     }
     
     return self;

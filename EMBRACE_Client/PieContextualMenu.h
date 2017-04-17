@@ -15,8 +15,8 @@
 
 @interface PieContextualMenu : UIView
 
-@property (nonatomic, strong) id<PieContextualMenuDelegate> delegate;
-@property (nonatomic, strong) id<PieContextualMenuDataSource> dataSource;
+@property (nonatomic, weak) id<PieContextualMenuDelegate> delegate;
+@property (nonatomic, weak) id<PieContextualMenuDataSource> dataSource;
 @property (nonatomic, assign) CGPoint center;
 @property (nonatomic, assign) CGFloat radius;
 
