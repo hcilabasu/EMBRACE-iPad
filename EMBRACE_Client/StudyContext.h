@@ -10,13 +10,13 @@
 
 @interface StudyContext : Context
 
-@property (nonatomic, strong) NSString *appMode;
-@property (nonatomic, strong) NSString *condition;
-@property (nonatomic, strong) NSString *schoolCode;
-@property (nonatomic, strong) NSString *participantCode;
-@property (nonatomic, strong) NSString *studyDay;
-@property (nonatomic, strong) NSString *experimenterName;
-@property (nonatomic, strong) NSString *language;
+@property (nonatomic, copy) NSString *appMode;
+@property (nonatomic, copy) NSString *condition;
+@property (nonatomic, copy) NSString *schoolCode;
+@property (nonatomic, copy) NSString *participantCode;
+@property (nonatomic, copy) NSString *studyDay;
+@property (nonatomic, copy) NSString *experimenterName;
+@property (nonatomic, copy) NSString *language;
 
 - (NSMutableDictionary *)generateTimestamp;
 

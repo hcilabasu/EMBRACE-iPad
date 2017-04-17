@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <UIKit/UIKit.h>
 #import "PieContextualMenuDelegate.h"
-#import "EbookImporter.h"
+#import "EBookImporter.h"
 #import "Book.h"
 #import "AVFoundation/AVSpeechSynthesis.h"
 #import "AssessmentActivityViewController.h"

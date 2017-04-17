@@ -18,7 +18,7 @@
 
 @implementation PlayAudioFile
 @synthesize syn;
-@synthesize manipulationViewController;
+
 @synthesize audioPlayer;
 @synthesize audioPlayerAfter;
 @synthesize audioDuration;
@@ -85,7 +85,7 @@
     
     if (self.audioPlayer == nil)
     {
-        [manipulationViewController.view setUserInteractionEnabled:YES];
+        [self.manipulationViewController.view setUserInteractionEnabled:YES];
         return false;
     }
     else
@@ -137,10 +137,10 @@
         if (self.audioPlayer == nil) {
             self.audioQueue = nil;
             NSLog(@"Audio error %@",[audioError description]);
-            [manipulationViewController.view setUserInteractionEnabled:YES];
+            [self.manipulationViewController.view setUserInteractionEnabled:YES];
         }
         else {
-            [manipulationViewController.view setUserInteractionEnabled:NO];
+            [self.manipulationViewController.view setUserInteractionEnabled:NO];
             [self.audioPlayer prepareToPlay];
             AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:soundFileURL options:[NSDictionary dictionaryWithObjectsAndKeys: [NSNumber numberWithBool:YES], AVURLAssetPreferPreciseDurationAndTimingKey, nil]];
             self.audioDuration = CMTimeGetSeconds(asset.duration);
@@ -150,7 +150,7 @@
     }
     else
     {
-        [manipulationViewController.view setUserInteractionEnabled:YES];
+        [self.manipulationViewController.view setUserInteractionEnabled:YES];
     }
 }
 
@@ -159,7 +159,7 @@
 -(BOOL) playAudioInSequence: (UIViewController*) viewController : (NSString*) path :(NSString*) path2 {
    
         self.manipulationViewController = viewController;
-        [manipulationViewController.view setUserInteractionEnabled:NO];
+        [self.manipulationViewController.view setUserInteractionEnabled:NO];
     
         NSString *soundFilePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], path];
         NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
@@ -182,7 +182,7 @@
             NSLog(@"%@",[audioError2 description]);
             self.audioPlayer = nil;
             self.audioPlayerAfter = nil;
-            [manipulationViewController.view setUserInteractionEnabled:YES];
+            [self.manipulationViewController.view setUserInteractionEnabled:YES];
             return false;
         }
         else
@@ -212,7 +212,7 @@
     else
     {
         //make sure we have an instance of the PmanipulationViewController
-        if(manipulationViewController != nil)
+        if(self.manipulationViewController != nil)
         {
             //reenable user interaction after second audio file finishes playing if it exists otherwise just renable user interaction after first audio file finishes playing
             if (self.audioPlayerAfter != nil) {
@@ -221,12 +221,12 @@
                 [self.audioPlayerAfter play];
                 
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW,self.audioAfterDuration*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                    [manipulationViewController.view setUserInteractionEnabled:YES];
+                    [self.manipulationViewController.view setUserInteractionEnabled:YES];
                 });
             }
             else
             {
-                [manipulationViewController.view setUserInteractionEnabled:YES];
+                [self.manipulationViewController.view setUserInteractionEnabled:YES];
             }
         }
     }
@@ -264,7 +264,7 @@
 }
     
 - (void)textToSpeech:(NSString *)text {
-    syn = [[AVSpeechSynthesizer alloc] init];
+    self.syn = [[AVSpeechSynthesizer alloc] init];
     AVSpeechUtterance *utteranceEn = [[AVSpeechUtterance alloc]initWithString:text];
     utteranceEn.rate = AVSpeechUtteranceMaximumSpeechRate/7;
     //utteranceEn.voice = [AVSpeechSynthesisVoice voiceWithLanguage:obj2];

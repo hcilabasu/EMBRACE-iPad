@@ -16,14 +16,14 @@
 @property (nonatomic, weak) IBOutlet UITableView *AnswerList;
 @property (nonatomic, weak) IBOutlet UIView *transparentLayer;
 @property (nonatomic, weak) IBOutlet UIButton *nextButton;
-@property (nonatomic, weak) NSString *ChapterTitle;
+@property (nonatomic, copy) NSString *chapterTitle;
 
 @property (nonatomic, weak) IBOutlet UIButton *questionButton;
 @property (nonatomic, weak) IBOutlet UIButton *answer1Button;
 @property (nonatomic, weak) IBOutlet UIButton *answer2Button;
 @property (nonatomic, weak) IBOutlet UIButton *answer3Button;
 @property (nonatomic, weak) IBOutlet UIButton *answer4Button;
-@property (nonatomic, strong) PlayAudioFile *playAudioFileClass;
+
 
 - (id)initWithModel:(InteractionModel *)model :(UIViewController *)libraryViewController :(UIImage *)backgroundImage :(NSString *)bookTitle :(NSString *)chapterTitle :(NSString *)currentPage :(NSString *)currentSentence :(NSString *)currentStep;
 - (void)loadNextAssessmentActivityQuestion;

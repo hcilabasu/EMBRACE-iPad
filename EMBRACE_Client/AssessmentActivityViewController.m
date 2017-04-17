@@ -19,6 +19,14 @@
 
 @property (nonatomic, strong) PlayAudioFile *playaudioClass;
 
+@property (nonatomic, weak) UIViewController *libraryView;                      //Local instance of the library view controller
+
+//Context variables
+@property (nonatomic, copy) NSString *bookTitle;
+@property (nonatomic, copy) NSString *currentPage;
+@property (nonatomic, copy) NSString *currentSentence;
+@property (nonatomic, copy) NSString *currentStep;
+
 @end
 
 NSInteger AnswerSelection[4];           //Array of answers selected
@@ -40,13 +48,7 @@ NSMutableDictionary *assessmentActivities;          //the total assessment activ
 NSMutableArray *currentAssessmentActivitySteps;     //the current assessment activity step details
 NSInteger totalAssessmentActivitySteps;             //the total assessment activity steps
 NSInteger currentAssessmentActivityStep;            //the current assessment activity step
-UIViewController *libraryView;                      //Local instance of the library view controller
 
-//Context variables
-NSString *BookTitle;
-NSString *CurrentPage;
-NSString *CurrentSentence;
-NSString *CurrentStep;
 
 UIImage *BackgroundImage;   //The background image related to the story
 
@@ -54,24 +56,24 @@ UIImage *BackgroundImage;   //The background image related to the story
 @synthesize AnswerList;
 @synthesize transparentLayer;
 @synthesize nextButton;
-@synthesize ChapterTitle;
-@synthesize playAudioFileClass;
+
+
 
 - (id)initWithModel:(InteractionModel *)model :(UIViewController *)libraryViewController :(UIImage *)backgroundImage :(NSString *)bookTitle :(NSString *)chapterTitle :(NSString *)currentPage :(NSString *)currentSentence :(NSString *)currentStep {
     self = [super init];
     
     if (self) {
         //Local instance of library view controller
-        libraryView = libraryViewController;
+        self.libraryView = libraryViewController;
         
         conditionSetup = [ConditionSetup sharedInstance];
         
         //Context variables for logging
-        BookTitle = bookTitle;
-        ChapterTitle = chapterTitle;
-        CurrentPage = currentPage;
-        CurrentSentence = currentSentence;
-        CurrentStep = currentStep;
+        self.bookTitle = bookTitle;
+        self.chapterTitle = chapterTitle;
+        self.currentPage = currentPage;
+        self.currentSentence = currentSentence;
+        self.currentStep = currentStep;
         
         assessmentContext = [[AssessmentContext alloc] init];
         [self setAssessmentContext];
@@ -130,7 +132,7 @@ UIImage *BackgroundImage;   //The background image related to the story
         
         [[ServerCommunicationController sharedInstance] logDisplayAssessmentQuestion:Question withOptions:AnswerOptions context:assessmentContext];
         
-        playAudioFileClass = [[PlayAudioFile alloc] init];
+        self.playaudioClass = [[PlayAudioFile alloc] init];
     }
     
     return self;
@@ -153,7 +155,7 @@ UIImage *BackgroundImage;   //The background image related to the story
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"%@ %@",ChapterTitle, BookTitle);
+    NSLog(@"%@ %@",self.chapterTitle, self.bookTitle);
     //Set up design
     nextButton.hidden = true;
     self.view.backgroundColor = [UIColor colorWithRed:165.0/255.0 green:203.0/255.0 blue:231.0/255.0 alpha:1.0];
@@ -165,7 +167,7 @@ UIImage *BackgroundImage;   //The background image related to the story
     //Hide the navigation bar to force completion
     self.navigationController.navigationBar.hidden = YES;
     
-    if ([ChapterTitle isEqualToString:@"The Naughty Monkey"]) {
+    if ([self.chapterTitle isEqualToString:@"The Naughty Monkey"]) {
         
         self.playaudioClass = [[PlayAudioFile alloc]init];
         [self.playaudioClass playAudioFile:self :@"NaughtyMonkey_Script_C12.mp3"];
@@ -173,18 +175,15 @@ UIImage *BackgroundImage;   //The background image related to the story
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    
     if (self.playaudioClass) {
         [self.playaudioClass stopPlayAudioFile];
     }
-    
+    self.playaudioClass = nil;
     [super viewWillDisappear:animated];
 
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 //Not being used currently may delete
 - (void)loadNextAssessmentActivityQuestion{
@@ -221,7 +220,7 @@ UIImage *BackgroundImage;   //The background image related to the story
 - (IBAction)PlayQuestionAudioPressed:(id)sender {
     [[ServerCommunicationController sharedInstance] logTapAssessmentAudioButton:Question buttonType:@"Question" context:assessmentContext];
     
-    [playAudioFileClass playAudioFile:self :QuestionAudio];
+    [self.playaudioClass playAudioFile:self :QuestionAudio];
     
     [[ServerCommunicationController sharedInstance] logPlayAssessmentAudio:[QuestionAudio stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Play Question Audio" :assessmentContext];
 }
@@ -229,7 +228,7 @@ UIImage *BackgroundImage;   //The background image related to the story
 - (IBAction)PlayAnswer1AudioPressed:(id)sender {
     [[ServerCommunicationController sharedInstance] logTapAssessmentAudioButton:AnswerOptions[0] buttonType:@"Answer Option" context:assessmentContext];
     
-    [playAudioFileClass playAudioFile:self :AnswerAudios[0]];
+    [self.playaudioClass playAudioFile:self :AnswerAudios[0]];
     
     [[ServerCommunicationController sharedInstance] logPlayAssessmentAudio:[AnswerAudios[0] stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Play Answer Audio" :assessmentContext];
 }
@@ -237,7 +236,7 @@ UIImage *BackgroundImage;   //The background image related to the story
 - (IBAction)PlayAnswer2AudioPressed:(id)sender {
     [[ServerCommunicationController sharedInstance] logTapAssessmentAudioButton:AnswerOptions[1] buttonType:@"Answer Option" context:assessmentContext];
     
-    [playAudioFileClass playAudioFile:self :AnswerAudios[1]];
+    [self.playaudioClass playAudioFile:self :AnswerAudios[1]];
     
     [[ServerCommunicationController sharedInstance] logPlayAssessmentAudio:[AnswerAudios[1] stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Play Answer Audio" :assessmentContext];
 }
@@ -245,7 +244,7 @@ UIImage *BackgroundImage;   //The background image related to the story
 - (IBAction)PlayAnswer3AudioPressed:(id)sender {
     [[ServerCommunicationController sharedInstance] logTapAssessmentAudioButton:AnswerOptions[2] buttonType:@"Answer Option" context:assessmentContext];
     
-    [playAudioFileClass playAudioFile:self :AnswerAudios[2]];
+    [self.playaudioClass playAudioFile:self :AnswerAudios[2]];
     
     [[ServerCommunicationController sharedInstance] logPlayAssessmentAudio:[AnswerAudios[2] stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Play Answer Audio" :assessmentContext];
 }
@@ -253,7 +252,7 @@ UIImage *BackgroundImage;   //The background image related to the story
 - (IBAction)PlayAnswer4AudioPressed:(id)sender {
     [[ServerCommunicationController sharedInstance] logTapAssessmentAudioButton:AnswerOptions[3] buttonType:@"Answer Option" context:assessmentContext];
     
-    [playAudioFileClass playAudioFile:self :AnswerAudios[3]];
+    [self.playaudioClass playAudioFile:self :AnswerAudios[3]];
     
     [[ServerCommunicationController sharedInstance] logPlayAssessmentAudio:[AnswerAudios[3] stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Play Answer Audio" :assessmentContext];
 }
@@ -334,11 +333,11 @@ UIImage *BackgroundImage;   //The background image related to the story
         [[ServerCommunicationController sharedInstance] studyContext].condition = @"NULL";
         
         //Set chapter as completed
-        [[(LibraryViewController *)libraryView studentProgress] setStatusOfChapter:ChapterTitle :COMPLETED fromBook:BookTitle];
+        [[(LibraryViewController *)self.libraryView studentProgress] setStatusOfChapter:self.chapterTitle :COMPLETED fromBook:self.bookTitle];
         
         self.navigationController.navigationBar.hidden = NO;
         [[ServerCommunicationController sharedInstance] createNewLogFile];
-        [self.navigationController popToViewController:libraryView animated:YES];
+        [self.navigationController popToViewController:self.libraryView animated:YES];
     }
 }
 
@@ -439,8 +438,8 @@ UIImage *BackgroundImage;   //The background image related to the story
 }
 
 - (void)setAssessmentContext {
-    assessmentContext.bookTitle = BookTitle;
-    assessmentContext.chapterTitle = ChapterTitle;
+    assessmentContext.bookTitle = self.bookTitle;
+    assessmentContext.chapterTitle = self.chapterTitle;
     assessmentContext.assessmentStepNumber = currentAssessmentActivityStep;
 }
 

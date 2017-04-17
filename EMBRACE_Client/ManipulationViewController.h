@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PieContextualMenuDelegate.h"
-#import "EbookImporter.h"
+#import "EBookImporter.h"
 #import "Book.h"
 #import "AVFoundation/AVSpeechSynthesis.h"
 #import "AssessmentActivityViewController.h"
@@ -52,16 +52,15 @@ typedef enum InteractionMode {
     
 }
 
-@property (nonatomic, weak) IBOutlet UIPinchGestureRecognizer *pinchRecognizer;
-@property (nonatomic, weak) IBOutlet UIPanGestureRecognizer *panRecognizer;
+
 @property (nonatomic, weak) IBOutlet UITapGestureRecognizer *tapRecognizer;
-@property (nonatomic, weak) IBOutlet UISwipeGestureRecognizer *swipeRecognizer;
-@property (nonatomic, strong) id dataObject;
+
+
 @property (nonatomic, weak) EBookImporter *bookImporter;
 @property (nonatomic, copy) NSString *bookTitle;
 @property (nonatomic, copy) NSString *chapterTitle;
 @property (nonatomic, weak) Book *book;
-@property (nonatomic, strong) AVSpeechSynthesizer *syn;
+
 @property (nonatomic, strong) PlayAudioFile *playaudioClass;
 @property (nonatomic, weak) UIViewController *libraryViewController;
 @property (nonatomic) BOOL allowInteractions; //TRUE if objects can be manipulated; FALSE otherwise

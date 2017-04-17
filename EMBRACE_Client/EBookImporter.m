@@ -964,21 +964,25 @@
             if (mode == PM_MODE) {
                 PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; //get PM Activity only
                 [PMActivity addPMSolution:PMSolution forActivityId:activityId];
+                [PMSolution release];
             }
             //Add ITSPMSolution to page
             else if (mode == ITSPM_MODE) {
                 ITSPhysicalManipulationActivity *ITSPMActivity = (ITSPhysicalManipulationActivity *)[chapter getActivityOfType:ITSPM_MODE]; //get ITSPM Activity only
                 [ITSPMActivity addITSPMSolution:ITSPMSolution forActivityId:activityId];
+                [ITSPMSolution release];
             }
             //Add IMSolution to page
             else if (mode == IM_MODE) {
                 ImagineManipulationActivity *IMActivity = (ImagineManipulationActivity *)[chapter getActivityOfType:IM_MODE]; //get IM Activity only
                 [IMActivity addIMSolution:IMSolution forActivityId:activityId];
+                [IMSolution release];
             }
             //Add ITSIMSolution to page
             else if (mode == ITSIM_MODE) {
                 ITSImagineManipulationActivity *ITSIMActivity = (ITSImagineManipulationActivity *)[chapter getActivityOfType:ITSIM_MODE]; //get ITSIM Activity only
                 [ITSIMActivity addITSIMSolution:ITSIMSolution forActivityId:activityId];
+                [ITSIMSolution release];
             }
         }
     }
@@ -1210,17 +1214,19 @@
                             NSUInteger stepNum = [[[alternateSentenceStep attributeForName:@"number"] stringValue] intValue];
                             
                             //Get associated ActionStep
-                            NSMutableArray *step;
+                            NSMutableArray *step = nil;
                             if(mode == ITSPM_MODE){
                                 step = [ITSPMSolution getStepsWithNumber:stepNum];
                             }
                             else if(mode == ITSIM_MODE){
                                 step = [ITSIMSolution getStepsWithNumber:stepNum];
                             }
-                            
-                            for (ActionStep *as in step) {
-                                [solutionSteps addObject:as];
+                            if (step) {
+                                for (ActionStep *as in step) {
+                                    [solutionSteps addObject:as];
+                                }
                             }
+                            
                         }
                     }
                     

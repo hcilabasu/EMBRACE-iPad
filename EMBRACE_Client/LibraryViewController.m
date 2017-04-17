@@ -32,11 +32,11 @@
     ConditionSetup *conditionSetup;
 }
 
-@property (nonatomic, strong) IBOutlet UICollectionView *libraryView;
+@property (nonatomic, weak) IBOutlet UICollectionView *libraryView;
 @property (nonatomic, strong) EBookImporter *bookImporter;
 @property (nonatomic, strong) NSMutableArray *books;
-@property (nonatomic, strong) NSString *bookToOpen;
-@property (nonatomic, strong) NSString *chapterToOpen;
+@property (nonatomic, copy) NSString *bookToOpen;
+@property (nonatomic, copy) NSString *chapterToOpen;
 
 @end
 

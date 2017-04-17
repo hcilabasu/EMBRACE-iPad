@@ -19,8 +19,8 @@
 @property (nonatomic, weak) SentenceContext *sentenceContext;
 @property (nonatomic, weak) StepContext *stepContext;
 @property (nonatomic, weak) EBookImporter *bookImporter;
-@property (nonatomic, strong) NSString *bookTitle;
-@property (nonatomic, strong) NSString *chapterTitle;
+@property (nonatomic, copy) NSString *bookTitle;
+@property (nonatomic, copy) NSString *chapterTitle;
 @property (nonatomic, weak) Book *book;
 @property (nonatomic, weak) IBOutlet ManipulationView *manipulationView;
 @property (nonatomic, weak) NSMutableDictionary *animatingObjects;

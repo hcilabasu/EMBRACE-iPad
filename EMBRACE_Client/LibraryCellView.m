@@ -37,7 +37,7 @@
         [imageLayer setBorderWidth:2];
         [imageLayer setMasksToBounds:YES];
         
-        progressIndicator = [[UIImageView alloc] init];
+        self.progressIndicator = [[UIImageView alloc] init];
         progressIconY = 14.5;
     }
     

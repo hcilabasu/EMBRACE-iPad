@@ -79,7 +79,7 @@
     BOOL isAudioLeft;
 }
 
-@property (nonatomic, strong) IBOutlet UIWebView *bookView;
+@property (nonatomic, weak) IBOutlet UIWebView *bookView;
 //@property (nonatomic, strong) IBOutlet ManipulationView *manipulationView;
 
 @end
@@ -102,7 +102,7 @@
 
 @synthesize libraryViewController;
 @synthesize playaudioClass;
-@synthesize syn;
+
 @synthesize allowInteractions;
 @synthesize animatingObjects;
 @synthesize isLoadPageInProgress;
@@ -122,10 +122,6 @@
 @synthesize menuDataSource;
 @synthesize bookView;
 @synthesize isUserMovingBack;
-@synthesize pinchRecognizer;
-@synthesize panRecognizer;
-@synthesize tapRecognizer;
-@synthesize swipeRecognizer;
 
 //Used to determine the required proximity of 2 hotspots to group two items together.
 float const groupingProximity = 20.0;
@@ -145,54 +141,7 @@ BOOL wasPathFollowed = false;
     [super viewDidLoad];
     self.manipulationView = [[ManipulationView alloc] initWithFrameAndView:self.view.frame:bookView];
     
-    //[self.view addSubview:self.manipulationView];
     self.manipulationView.delegate = self;
-    //[self.view sendSubviewToBack:self.manipulationView];
-    
-    //    NSLayoutConstraint *xCenterConstraint = [NSLayoutConstraint constraintWithItem:self.manipulationView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0];
-    //    [self.view addConstraint:xCenterConstraint];
-    //
-    //    NSLayoutConstraint *yCenterConstraint = [NSLayoutConstraint constraintWithItem:self.manipulationView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0];
-    //    [self.view addConstraint:yCenterConstraint];
-    
-    
-    /*[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.manipulationView
-     attribute:NSLayoutAttributeTop
-     relatedBy:NSLayoutRelationEqual
-     toItem:self.view
-     attribute:NSLayoutAttributeTop
-     multiplier:1.0
-     constant:0.0]];
-     
-     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.manipulationView
-     attribute:NSLayoutAttributeLeading
-     relatedBy:NSLayoutRelationEqual
-     toItem:self.view
-     attribute:NSLayoutAttributeLeading
-     multiplier:1.0
-     constant:0.0]];
-     
-     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.manipulationView
-     attribute:NSLayoutAttributeBottom
-     relatedBy:NSLayoutRelationEqual
-     toItem:self.view
-     attribute:NSLayoutAttributeBottom
-     multiplier:1.0
-     constant:0.0]];
-     
-     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.manipulationView
-     attribute:NSLayoutAttributeTrailing
-     relatedBy:NSLayoutRelationEqual
-     toItem:self.view
-     attribute:NSLayoutAttributeTrailing
-     multiplier:1.0
-     constant:0.0]];
-     */
-    
-    
-    //[self.manipulationView addGesture:tapRecognizer];
-    //[self.manipulationView addGesture:swipeRecognizer];
-    //[self.manipulationView addGesture:panRecognizer];
     
     //hides the default navigation bar to add custom back button
     self.navigationItem.hidesBackButton = YES;
@@ -202,19 +151,19 @@ BOOL wasPathFollowed = false;
     //Sets leftBarButtonItem to the custom back button in place of default back button
     self.navigationItem.leftBarButtonItem = backButton;
     
-    conditionSetup = [ConditionSetup sharedInstance];
-    manipulationContext = [[ManipulationContext alloc] init];
-    forwardProgress = [[ForwardProgress alloc] init];
-    pageContext = [[PageContext alloc] init];
-    sentenceContext = [[SentenceContext alloc] init];
-    stepContext = [[StepContext alloc] init];
-    book = [[Book alloc]init];
-    model = [[InteractionModel alloc]init];
-    playaudioClass = [[PlayAudioFile alloc] init];
+    self.conditionSetup = [ConditionSetup sharedInstance];
+    self.manipulationContext = [[ManipulationContext alloc] init];
+    self.forwardProgress = [[ForwardProgress alloc] init];
+    self.pageContext = [[PageContext alloc] init];
+    self.sentenceContext = [[SentenceContext alloc] init];
+    self.stepContext = [[StepContext alloc] init];
+    
+    self.model = [[InteractionModel alloc]init];
+    self.playaudioClass = [[PlayAudioFile alloc] init];
     
    // syn = [[AVSpeechSynthesizer alloc] init];
     
-    menuDataSource = [[ContextualMenuDataSource alloc] init];
+    self.menuDataSource = [[ContextualMenuDataSource alloc] init];
     
     //Added to deal with ios7 view changes. This makes it so the UIWebView and the navigation bar do not overlap.
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
@@ -245,8 +194,8 @@ BOOL wasPathFollowed = false;
     collisionObjectId = nil;
     separatingObjectId = nil;
     lastRelationship = nil;
-    allRelationships = [[NSMutableArray alloc] init];
-    currentGroupings = [[NSMutableDictionary alloc] init];
+    self.allRelationships = [[NSMutableArray alloc] init];
+    self.currentGroupings = [[NSMutableDictionary alloc] init];
     
     if (conditionSetup.condition == CONTROL) {
         allowInteractions = FALSE;
@@ -308,11 +257,63 @@ BOOL wasPathFollowed = false;
     }
 }
 
+- (void)dealloc {
+    
+    for (UIGestureRecognizer *reg in self.bookView.gestureRecognizers) {
+        [self.bookView removeGestureRecognizer:reg];
+    }
+    
+    for (UIGestureRecognizer *reg in self.view.gestureRecognizers) {
+        [self.view removeGestureRecognizer:reg];
+    }
+    self.bookView = nil;
+    
+    self.bookImporter = nil;
+    self.bookTitle = nil;
+
+    self.chapterTitle= nil;
+    self.book = nil;
+    
+    self.playaudioClass = nil;
+    self.libraryViewController = nil;
+    
+    
+    self.manipulationView = nil;
+    self.model = nil;
+    self.conditionSetup = nil;
+    self.manipulationContext = nil;
+    self.forwardProgress = nil;
+    self.pageContext = nil;
+    self.sentenceContext = nil;
+    self.stepContext = nil;
+    self.animatingObjects = nil;
+    
+    self.pc = nil;
+    self.sc = nil;
+    self.ssc = nil;
+    self.pic = nil;
+    
+    self.startTime = nil;
+    self.endTime = nil;
+    
+    self.pageStatistics = nil;
+    self.lastRelationship = nil;
+    self.allRelationships = nil;
+    self.currentGroupings = nil;
+    self.tapRecognizer = nil;
+    self.menuDataSource = nil;
+    
+}
+
 //Custom back button to confirm navigation to library page
 - (void)backButtonPressed:(id)sender {
     //Custom Back Button to confirm navigation
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(RETURN_TO_LIBRARY, EMPTYSTRING) message:NSLocalizedString(@"Are you sure you want to return to the Library?", EMPTYSTRING) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", EMPTYSTRING) otherButtonTitles:NSLocalizedString(@"Yes", EMPTYSTRING), nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Return to Library", @"")
+                                                        message:NSLocalizedString(@"Are you sure you want to return to the Library?", @"")
+                                                       delegate:self
+                                              cancelButtonTitle:NSLocalizedString(@"Cancel", @"") otherButtonTitles:NSLocalizedString(@"Yes", @""), nil];
     [alertView show];
+    alertView = nil;
     
 }
 
@@ -368,7 +369,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     isLoadPageInProgress = false; //page has finished loading
     
     //Start off with no objects grouped together
-    currentGroupings = [[NSMutableDictionary alloc] init];
+    self.currentGroupings = [[NSMutableDictionary alloc] init];
     
     //Perform setup of setentences for page
     [sc setupSentencesForPage];
@@ -445,14 +446,14 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  * Calls the function to load the html content for the activity.
  */
 - (void)loadFirstPage {
-    pc = [[PageController alloc] initWithController:self];
+    self.pc = [[PageController alloc] initWithController:self];
     [pc loadFirstPage];
     
-    sc = [[SentenceController alloc] initWithController:self];
+    self.sc = [[SentenceController alloc] initWithController:self];
     
-    ssc = [[SolutionStepController alloc] initWithController:self];
+    self.ssc = [[SolutionStepController alloc] initWithController:self];
     
-    pic = [[PossibleInteractionController alloc] initWithController:self];
+    self.pic = [[PossibleInteractionController alloc] initWithController:self];
 }
 
 /*
@@ -2221,7 +2222,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
             [[ServerCommunicationController sharedInstance] logVerification:true forAction:SELECT_MENU_ITEM context:manipulationContext];
             
             //Re-add the tap gesture recognizer before the menu is removed
-            [self.view addGestureRecognizer:tapRecognizer];
+            [menu removeGestureRecognizer:self.tapRecognizer];
+            [self.view addGestureRecognizer:self.tapRecognizer];
             
             //Remove menu
             [menu removeFromSuperview];
@@ -2239,7 +2241,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                 [[ServerCommunicationController sharedInstance] logVerification:true forAction:SELECT_MENU_ITEM context:manipulationContext];
                 
                 //Re-add the tap gesture recognizer before the menu is removed
-                [self.view addGestureRecognizer:tapRecognizer];
+                [menu removeGestureRecognizer:self.tapRecognizer];
+                [self.view addGestureRecognizer:self.tapRecognizer];
                 
                 //Remove menu
                 [menu removeFromSuperview];
@@ -4233,8 +4236,13 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
  */
 //TODO: simplify im and pm menu logic
 - (void)expandMenu {
+    if (menu) {
+        [menu removeGestureRecognizer:self.tapRecognizer];
+        menu = nil;
+    }
     menu = [[PieContextualMenu alloc] initWithFrame:[bookView frame]];
-    [menu addGestureRecognizer:tapRecognizer];
+    [self.view removeGestureRecognizer:self.tapRecognizer];
+    [menu addGestureRecognizer:self.tapRecognizer];
     
     if (conditionSetup.condition == EMBRACE && (conditionSetup.currentMode == IM_MODE || conditionSetup.currentMode == ITSIM_MODE)) {
         [IMViewMenu addSubview:menu];
