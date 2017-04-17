@@ -102,7 +102,7 @@
 
 @synthesize libraryViewController;
 @synthesize playaudioClass;
-@synthesize syn;
+
 @synthesize allowInteractions;
 @synthesize animatingObjects;
 @synthesize isLoadPageInProgress;
@@ -306,6 +306,42 @@ BOOL wasPathFollowed = false;
             }
         }
     }
+}
+
+- (void)dealloc {
+    self.bookImporter = nil;
+    self.bookTitle = nil;
+
+    self.chapterTitle= nil;
+    self.book = nil;
+    
+    self.playaudioClass = nil;
+    self.libraryViewController = nil;
+    
+    self.manipulationView = nil;
+    self.model = nil;
+    self.conditionSetup = nil;
+    self.manipulationContext = nil;
+    self.forwardProgress = nil;
+    self.pageContext = nil;
+    self.sentenceContext = nil;
+    self.stepContext = nil;
+    self.animatingObjects = nil;
+    
+    self.pc = nil;
+    self.sc = nil;
+    self.ssc = nil;
+    self.pic = nil;
+    
+    self.startTime = nil;
+    self.endTime = nil;
+    
+    self.pageStatistics = nil;
+    self.lastRelationship = nil;
+    self.allRelationships = nil;
+    self.currentGroupings = nil;
+    self.menuDataSource = nil;
+    
 }
 
 //Custom back button to confirm navigation to library page

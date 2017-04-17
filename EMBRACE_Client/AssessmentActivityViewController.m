@@ -55,7 +55,7 @@ UIImage *BackgroundImage;   //The background image related to the story
 @synthesize transparentLayer;
 @synthesize nextButton;
 @synthesize ChapterTitle;
-@synthesize playAudioFileClass;
+
 
 - (id)initWithModel:(InteractionModel *)model :(UIViewController *)libraryViewController :(UIImage *)backgroundImage :(NSString *)bookTitle :(NSString *)chapterTitle :(NSString *)currentPage :(NSString *)currentSentence :(NSString *)currentStep {
     self = [super init];
@@ -130,7 +130,7 @@ UIImage *BackgroundImage;   //The background image related to the story
         
         [[ServerCommunicationController sharedInstance] logDisplayAssessmentQuestion:Question withOptions:AnswerOptions context:assessmentContext];
         
-        playAudioFileClass = [[PlayAudioFile alloc] init];
+        self.playaudioClass = [[PlayAudioFile alloc] init];
     }
     
     return self;
@@ -221,7 +221,7 @@ UIImage *BackgroundImage;   //The background image related to the story
 - (IBAction)PlayQuestionAudioPressed:(id)sender {
     [[ServerCommunicationController sharedInstance] logTapAssessmentAudioButton:Question buttonType:@"Question" context:assessmentContext];
     
-    [playAudioFileClass playAudioFile:self :QuestionAudio];
+    [self.playaudioClass playAudioFile:self :QuestionAudio];
     
     [[ServerCommunicationController sharedInstance] logPlayAssessmentAudio:[QuestionAudio stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Play Question Audio" :assessmentContext];
 }
@@ -229,7 +229,7 @@ UIImage *BackgroundImage;   //The background image related to the story
 - (IBAction)PlayAnswer1AudioPressed:(id)sender {
     [[ServerCommunicationController sharedInstance] logTapAssessmentAudioButton:AnswerOptions[0] buttonType:@"Answer Option" context:assessmentContext];
     
-    [playAudioFileClass playAudioFile:self :AnswerAudios[0]];
+    [self.playaudioClass playAudioFile:self :AnswerAudios[0]];
     
     [[ServerCommunicationController sharedInstance] logPlayAssessmentAudio:[AnswerAudios[0] stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Play Answer Audio" :assessmentContext];
 }
@@ -237,7 +237,7 @@ UIImage *BackgroundImage;   //The background image related to the story
 - (IBAction)PlayAnswer2AudioPressed:(id)sender {
     [[ServerCommunicationController sharedInstance] logTapAssessmentAudioButton:AnswerOptions[1] buttonType:@"Answer Option" context:assessmentContext];
     
-    [playAudioFileClass playAudioFile:self :AnswerAudios[1]];
+    [self.playaudioClass playAudioFile:self :AnswerAudios[1]];
     
     [[ServerCommunicationController sharedInstance] logPlayAssessmentAudio:[AnswerAudios[1] stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Play Answer Audio" :assessmentContext];
 }
@@ -245,7 +245,7 @@ UIImage *BackgroundImage;   //The background image related to the story
 - (IBAction)PlayAnswer3AudioPressed:(id)sender {
     [[ServerCommunicationController sharedInstance] logTapAssessmentAudioButton:AnswerOptions[2] buttonType:@"Answer Option" context:assessmentContext];
     
-    [playAudioFileClass playAudioFile:self :AnswerAudios[2]];
+    [self.playaudioClass playAudioFile:self :AnswerAudios[2]];
     
     [[ServerCommunicationController sharedInstance] logPlayAssessmentAudio:[AnswerAudios[2] stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Play Answer Audio" :assessmentContext];
 }
@@ -253,7 +253,7 @@ UIImage *BackgroundImage;   //The background image related to the story
 - (IBAction)PlayAnswer4AudioPressed:(id)sender {
     [[ServerCommunicationController sharedInstance] logTapAssessmentAudioButton:AnswerOptions[3] buttonType:@"Answer Option" context:assessmentContext];
     
-    [playAudioFileClass playAudioFile:self :AnswerAudios[3]];
+    [self.playaudioClass playAudioFile:self :AnswerAudios[3]];
     
     [[ServerCommunicationController sharedInstance] logPlayAssessmentAudio:[AnswerAudios[3] stringByDeletingPathExtension] inLanguage:[conditionSetup returnLanguageEnumtoString:[conditionSetup language]] ofType:@"Play Answer Audio" :assessmentContext];
 }

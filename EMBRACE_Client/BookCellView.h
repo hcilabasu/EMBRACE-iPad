@@ -11,8 +11,8 @@
 
 @interface BookCellView : LibraryCellView
 
-@property (nonatomic, strong) IBOutlet UIImageView *coverImage;
-@property (nonatomic, strong) IBOutlet UILabel* coverTitle;
+@property (nonatomic, weak) IBOutlet UIImageView *coverImage;
+@property (nonatomic, weak) IBOutlet UILabel* coverTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *coverImageBackground;
 
 @end

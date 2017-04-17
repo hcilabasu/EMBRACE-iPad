@@ -23,7 +23,7 @@
 @property (nonatomic, weak) IBOutlet UIButton *answer2Button;
 @property (nonatomic, weak) IBOutlet UIButton *answer3Button;
 @property (nonatomic, weak) IBOutlet UIButton *answer4Button;
-@property (nonatomic, strong) PlayAudioFile *playAudioFileClass;
+
 
 - (id)initWithModel:(InteractionModel *)model :(UIViewController *)libraryViewController :(UIImage *)backgroundImage :(NSString *)bookTitle :(NSString *)chapterTitle :(NSString *)currentPage :(NSString *)currentSentence :(NSString *)currentStep;
 - (void)loadNextAssessmentActivityQuestion;
