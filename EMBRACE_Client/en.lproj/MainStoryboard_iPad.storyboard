@@ -166,9 +166,6 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
                         <outlet property="bookView" destination="chF-4H-yn4" id="Jxw-wO-SkX"/>
-                        <outlet property="panRecognizer" destination="iaN-Wz-vgI" id="DDs-ye-s0g"/>
-                        <outlet property="pinchRecognizer" destination="IG0-TB-X5w" id="ZYE-6c-rPe"/>
-                        <outlet property="swipeRecognizer" destination="skg-93-SYv" id="moo-tZ-moZ"/>
                         <outlet property="tapRecognizer" destination="6LS-gR-BKA" id="Rdy-ac-T01"/>
                         <outlet property="view" destination="erm-JD-CyO" id="O9j-oO-dyD"/>
                     </connections>
@@ -186,7 +183,6 @@
                                 <outlet property="delegate" destination="NLI-lb-tHz" id="PNa-Ph-0NJ"/>
                                 <outletCollection property="gestureRecognizers" destination="6LS-gR-BKA" appends="YES" id="Roi-Ni-wnj"/>
                                 <outletCollection property="gestureRecognizers" destination="iaN-Wz-vgI" appends="YES" id="0zK-EJ-z8G"/>
-                                <outletCollection property="gestureRecognizers" destination="j3h-7r-Imw" appends="YES" id="jsO-U5-wAq"/>
                                 <outletCollection property="gestureRecognizers" destination="IG0-TB-X5w" appends="YES" id="Dhj-H6-iHL"/>
                                 <outletCollection property="gestureRecognizers" destination="skg-93-SYv" appends="YES" id="1w7-67-e9G"/>
                             </connections>
@@ -245,12 +241,6 @@
                         <outlet property="delegate" destination="NLI-lb-tHz" id="AE8-We-mHD"/>
                     </connections>
                 </panGestureRecognizer>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="j3h-7r-Imw">
-                    <connections>
-                        <action selector="longPressGesturePerformed:" destination="NLI-lb-tHz" id="zm1-NP-w4C"/>
-                        <outlet property="delegate" destination="NLI-lb-tHz" id="IwW-z6-rec"/>
-                    </connections>
-                </pongPressGestureRecognizer>
                 <pinchGestureRecognizer id="IG0-TB-X5w">
                     <connections>
                         <action selector="pinchGesturePerformed:" destination="NLI-lb-tHz" id="1Jv-eU-KDA"/>

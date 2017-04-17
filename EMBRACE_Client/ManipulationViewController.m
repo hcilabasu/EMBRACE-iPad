@@ -300,6 +300,7 @@ BOOL wasPathFollowed = false;
     self.lastRelationship = nil;
     self.allRelationships = nil;
     self.currentGroupings = nil;
+    self.tapRecognizer = nil;
     self.menuDataSource = nil;
     
 }

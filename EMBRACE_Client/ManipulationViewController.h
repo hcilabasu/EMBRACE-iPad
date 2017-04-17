@@ -52,10 +52,9 @@ typedef enum InteractionMode {
     
 }
 
-@property (nonatomic, weak) IBOutlet UIPinchGestureRecognizer *pinchRecognizer;
-@property (nonatomic, weak) IBOutlet UIPanGestureRecognizer *panRecognizer;
+
 @property (nonatomic, weak) IBOutlet UITapGestureRecognizer *tapRecognizer;
-@property (nonatomic, weak) IBOutlet UISwipeGestureRecognizer *swipeRecognizer;
+
 
 @property (nonatomic, weak) EBookImporter *bookImporter;
 @property (nonatomic, copy) NSString *bookTitle;
