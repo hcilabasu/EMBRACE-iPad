@@ -18,8 +18,27 @@ typedef enum Condition {
 //Language of text/audio
 typedef enum Language {
     ENGLISH,
+    SPANISH,
+    MANDRAIN,
     BILINGUAL //English + Spanish
 } Language;
+
+
+//Target language, indicating what language students are learning
+typedef enum Target_Language {
+    TARGET_ENGLISH,
+    TARGET_MANDRAIN,
+    TARGET_SPANISH
+} Target_Language;
+
+//Native language of the student
+typedef enum NATIVE_Language {
+    NATIVE_ENGLISH,
+    NATIVE_MANDRAIN,
+    NATIVE_SPANISH
+} NATIVE_Language;
+
+
 
 //Different modes of the app
 typedef enum AppMode {
@@ -55,6 +74,9 @@ typedef enum AnimatedStepCompletion {
 @property (nonatomic) Mode currentMode; //PM or IM or ITSPM
 @property (nonatomic) Assessment assessmentMode;
 @property (nonatomic) AnimatedStepCompletion animatedStepCompletionMode; //Per step or per sentence
+@property (nonatomic) Language nativeLanguage;
+@property (nonatomic) Language targetLanguage;
+
 @property (nonatomic) BOOL newInstructions; //whether new audio instructions should be played (for sequences)
 @property (nonatomic) BOOL isVocabPageEnabled; //whether the vocab page should be displayed
 @property (nonatomic) BOOL isAssessmentPageEnabled; //whether the assessment page should be displayed

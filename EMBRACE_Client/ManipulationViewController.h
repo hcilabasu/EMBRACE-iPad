@@ -111,5 +111,7 @@ typedef enum InteractionMode {
 - (void)simulateGroupingMultipleObjects:(NSMutableArray *)objs :(NSMutableArray *)hotspots :(NSMutableDictionary *)images;
 - (CGRect)getBoundingBoxOfImages:(NSMutableArray *)images;
 - (PossibleInteraction *)convertActionStepToPossibleInteraction:(ActionStep *)step;
+- (void)playAudioForChineseVocabWord:(NSString *)englishSentenceText :(NSString *)chineseTxt;
+- (void)playSpanishAudioForVocabWord:(NSString *)englishSentenceText :(NSString *)spanishExt;
 
 @end

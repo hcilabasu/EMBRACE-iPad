@@ -290,6 +290,7 @@
     NSString *filepath = nil;
     
     //Separate TOC files depending on language
+    //deciding whether to load English or Spanish text for the book
     if (language == BILINGUAL) {
         filepath = [[book mainContentPath] stringByAppendingString:@"toc.ncx"];
     }
@@ -1479,7 +1480,6 @@
                 }
             }
         }
-        
     }
     
 }
@@ -1535,8 +1535,6 @@
                     }
                 }
             }
-            
-            
         }
         
     }
@@ -1550,7 +1548,6 @@
     ScriptAudio *script = nil;
     NSArray *preEnglish = nil;
     NSArray *postEnglish = nil;
-    
     NSArray *preBilingual = nil;
     NSArray *postBilingual = nil;
     
@@ -1562,8 +1559,6 @@
         if ([englishArrayElem count]>0) {
             GDataXMLElement *eng = [englishArrayElem objectAtIndex:0];
             preEnglish = [[eng elementsForName:@"audio"]valueForKey:@"stringValue"];
-            
-            
         }
         
         NSArray *bilinArrayElem = [preAudio nodesForXPath:@"bilingual" error:nil];

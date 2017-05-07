@@ -44,7 +44,6 @@
         self.manipulationView = mvc.manipulationView;
         self.animatingObjects = mvc.animatingObjects;
     }
-    
     return self;
 }
 
@@ -64,7 +63,6 @@
         sentenceContext.currentSentence = 1;
         pageContext.currentPage = [mvc.book getNextPageForChapterAndActivity:chapterTitle :((conditionSetup.currentMode == IM_MODE || conditionSetup.currentMode == ITSIM_MODE) ? PM_MODE : conditionSetup.currentMode) :pageContext.currentPage];
     }
-    
     pageContext.actualPage = pageContext.currentPage;
     
     [self loadPage];

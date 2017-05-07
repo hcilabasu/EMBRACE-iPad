@@ -33,5 +33,5 @@
 - (void)textToSpeech:(NSString *)text;
 - (void)playAudioInSequence:(NSArray *)audioList :(UIViewController *)controller;
 - (BOOL)isAudioLeftInSequence;
-
+-(BOOL) playAudioWithFilePath:(UIViewController*) viewController : (NSString*) path;
 @end

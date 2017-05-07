@@ -1231,6 +1231,47 @@
 		31AA5FAA175FB16500E9A9B3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AA5FA9175FB16500E9A9B3 /* LoginViewController.m */; };
 		31C306C2183D900B0043DEDD /* Solution.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C306C1183D900B0043DEDD /* Solution.m */; };
 		31C306C5183E93A60043DEDD /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 31C306C4183E93A60043DEDD /* Connection.m */; };
+		561638451E65E14D0090FE57 /* TheContestChinese.m in Sources */ = {isa = PBXBuildFile; fileRef = 561638441E65E14D0090FE57 /* TheContestChinese.m */; };
+		56196F791EB90358004E8ACF /* toc_Spanish_to_Spanish.ncx in Resources */ = {isa = PBXBuildFile; fileRef = 56196F781EB90358004E8ACF /* toc_Spanish_to_Spanish.ncx */; };
+		561F0B111E5F73CD00816D8D /* libetts_device_simulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 561F0B101E5F73CD00816D8D /* libetts_device_simulator.a */; };
+		561F0B1B1E5F74EE00816D8D /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 561F0B131E5F74EE00816D8D /* .gitignore */; };
+		561F0B1C1E5F74EE00816D8D /* Chinese_Speech_Female.dat in Resources */ = {isa = PBXBuildFile; fileRef = 561F0B141E5F74EE00816D8D /* Chinese_Speech_Female.dat */; };
+		561F0B1D1E5F74EE00816D8D /* Chinese_Speech_Male.dat in Resources */ = {isa = PBXBuildFile; fileRef = 561F0B151E5F74EE00816D8D /* Chinese_Speech_Male.dat */; };
+		561F0B1E1E5F74EE00816D8D /* Chinese_Text.dat in Resources */ = {isa = PBXBuildFile; fileRef = 561F0B161E5F74EE00816D8D /* Chinese_Text.dat */; };
+		561F0B1F1E5F74EE00816D8D /* English_Speech_Female.dat in Resources */ = {isa = PBXBuildFile; fileRef = 561F0B171E5F74EE00816D8D /* English_Speech_Female.dat */; };
+		561F0B201E5F74EE00816D8D /* English_Speech_Male.dat in Resources */ = {isa = PBXBuildFile; fileRef = 561F0B181E5F74EE00816D8D /* English_Speech_Male.dat */; };
+		561F0B211E5F74EE00816D8D /* English_Text.dat in Resources */ = {isa = PBXBuildFile; fileRef = 561F0B191E5F74EE00816D8D /* English_Text.dat */; };
+		561F0B241E5F75AB00816D8D /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 561F0B231E5F75AB00816D8D /* CoreTelephony.framework */; };
+		561F0B261E5F75B500816D8D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 561F0B251E5F75B500816D8D /* SystemConfiguration.framework */; };
+		561F0B281E5F75BD00816D8D /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 561F0B271E5F75BD00816D8D /* libz.1.2.5.tbd */; };
+		561F0B2A1E5F75C800816D8D /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 561F0B291E5F75C800816D8D /* libc++.tbd */; };
+		561F0B2C1E5F75DA00816D8D /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 561F0B2B1E5F75DA00816D8D /* libstdc++.6.0.9.tbd */; };
+		561F0B2D1E5F7D5A00816D8D /* BDSBuiltInPlayer.h in Resources */ = {isa = PBXBuildFile; fileRef = 561F0B0A1E5F73CD00816D8D /* BDSBuiltInPlayer.h */; };
+		561F0B2E1E5F7D5A00816D8D /* BDSSpeechSynthesizer.h in Resources */ = {isa = PBXBuildFile; fileRef = 561F0B0B1E5F73CD00816D8D /* BDSSpeechSynthesizer.h */; };
+		561F0B2F1E5F7D5A00816D8D /* BDSSpeechSynthesizerDelegate.h in Resources */ = {isa = PBXBuildFile; fileRef = 561F0B0C1E5F73CD00816D8D /* BDSSpeechSynthesizerDelegate.h */; };
+		561F0B301E5F7D5A00816D8D /* BDSSpeechSynthesizerErrors.h in Resources */ = {isa = PBXBuildFile; fileRef = 561F0B0D1E5F73CD00816D8D /* BDSSpeechSynthesizerErrors.h */; };
+		561F0B311E5F7D5A00816D8D /* BDSSpeechSynthesizerParams.h in Resources */ = {isa = PBXBuildFile; fileRef = 561F0B0E1E5F73CD00816D8D /* BDSSpeechSynthesizerParams.h */; };
+		561F0B321E5F7D5A00816D8D /* BDSSynthesizerLogLevel.h in Resources */ = {isa = PBXBuildFile; fileRef = 561F0B0F1E5F73CD00816D8D /* BDSSynthesizerLogLevel.h */; };
+		561F0B331E5F7D5A00816D8D /* libetts_device_simulator.a in Resources */ = {isa = PBXBuildFile; fileRef = 561F0B101E5F73CD00816D8D /* libetts_device_simulator.a */; };
+		561F0B351E5F7E6000816D8D /* libiconv.2.4.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 561F0B341E5F7E6000816D8D /* libiconv.2.4.0.tbd */; };
+		564123101E77CF38006D0075 /* ChinsesTrans.m in Sources */ = {isa = PBXBuildFile; fileRef = 5641230F1E77CF38006D0075 /* ChinsesTrans.m */; };
+		5651375E1E960EFC00F524C0 /* BFTCC1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 565137591E960EFC00F524C0 /* BFTCC1.mp3 */; };
+		5651375F1E960EFC00F524C0 /* BFTCC2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5651375A1E960EFC00F524C0 /* BFTCC2.mp3 */; };
+		565137601E960EFC00F524C0 /* BFTCC3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5651375B1E960EFC00F524C0 /* BFTCC3.mp3 */; };
+		565137611E960EFC00F524C0 /* BFTCC4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5651375C1E960EFC00F524C0 /* BFTCC4.mp3 */; };
+		565137621E960EFC00F524C0 /* BFTCC5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5651375D1E960EFC00F524C0 /* BFTCC5.mp3 */; };
+		5651376D1E961E4C00F524C0 /* ChickenC.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 565137641E961E4C00F524C0 /* ChickenC.mp3 */; };
+		5651376E1E961E4C00F524C0 /* ContestC.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 565137651E961E4C00F524C0 /* ContestC.mp3 */; };
+		5651376F1E961E4C00F524C0 /* CorralC.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 565137661E961E4C00F524C0 /* CorralC.mp3 */; };
+		565137701E961E4C00F524C0 /* FarmC.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 565137671E961E4C00F524C0 /* FarmC.mp3 */; };
+		565137711E961E4C00F524C0 /* FlewC.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 565137681E961E4C00F524C0 /* FlewC.mp3 */; };
+		565137721E961E4C00F524C0 /* JudgeC.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 565137691E961E4C00F524C0 /* JudgeC.mp3 */; };
+		565137731E961E4C00F524C0 /* JumpedC.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5651376A1E961E4C00F524C0 /* JumpedC.mp3 */; };
+		565137741E961E4C00F524C0 /* ManuelC.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5651376B1E961E4C00F524C0 /* ManuelC.mp3 */; };
+		565137751E961E4C00F524C0 /* WalkedC.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5651376C1E961E4C00F524C0 /* WalkedC.mp3 */; };
+		5661D0DF1E936FDD0075DB6B /* ContestE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5661D0DE1E936FDD0075DB6B /* ContestE.mp3 */; };
+		5662086B1E8D8BFA00A94AB8 /* temp_license in Resources */ = {isa = PBXBuildFile; fileRef = 5662086A1E8D8BFA00A94AB8 /* temp_license */; };
+		5662086D1E8D8C1200A94AB8 /* temp_license.dat in Resources */ = {isa = PBXBuildFile; fileRef = 5662086C1E8D8C1200A94AB8 /* temp_license.dat */; };
 		5C030F8B1C863196006E1BEA /* Award_def_S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C030F7A1C863196006E1BEA /* Award_def_S.mp3 */; };
 		5C030F8C1C863196006E1BEA /* Barn_def_S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C030F7B1C863196006E1BEA /* Barn_def_S.mp3 */; };
 		5C030F8D1C863196006E1BEA /* Bucket_def_S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5C030F7C1C863196006E1BEA /* Bucket_def_S.mp3 */; };
@@ -7304,6 +7345,48 @@
 		31C306C1183D900B0043DEDD /* Solution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Solution.m; sourceTree = "<group>"; };
 		31C306C3183E93A60043DEDD /* Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Connection.h; sourceTree = "<group>"; };
 		31C306C4183E93A60043DEDD /* Connection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connection.m; sourceTree = "<group>"; };
+		561638431E65E14D0090FE57 /* TheContestChinese.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheContestChinese.h; sourceTree = "<group>"; };
+		561638441E65E14D0090FE57 /* TheContestChinese.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheContestChinese.m; sourceTree = "<group>"; };
+		56196F781EB90358004E8ACF /* toc_Spanish_to_Spanish.ncx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = toc_Spanish_to_Spanish.ncx; sourceTree = "<group>"; };
+		561F0B0A1E5F73CD00816D8D /* BDSBuiltInPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDSBuiltInPlayer.h; sourceTree = "<group>"; };
+		561F0B0B1E5F73CD00816D8D /* BDSSpeechSynthesizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDSSpeechSynthesizer.h; sourceTree = "<group>"; };
+		561F0B0C1E5F73CD00816D8D /* BDSSpeechSynthesizerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDSSpeechSynthesizerDelegate.h; sourceTree = "<group>"; };
+		561F0B0D1E5F73CD00816D8D /* BDSSpeechSynthesizerErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDSSpeechSynthesizerErrors.h; sourceTree = "<group>"; };
+		561F0B0E1E5F73CD00816D8D /* BDSSpeechSynthesizerParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDSSpeechSynthesizerParams.h; sourceTree = "<group>"; };
+		561F0B0F1E5F73CD00816D8D /* BDSSynthesizerLogLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDSSynthesizerLogLevel.h; sourceTree = "<group>"; };
+		561F0B101E5F73CD00816D8D /* libetts_device_simulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libetts_device_simulator.a; sourceTree = "<group>"; };
+		561F0B131E5F74EE00816D8D /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		561F0B141E5F74EE00816D8D /* Chinese_Speech_Female.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = Chinese_Speech_Female.dat; sourceTree = "<group>"; };
+		561F0B151E5F74EE00816D8D /* Chinese_Speech_Male.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = Chinese_Speech_Male.dat; sourceTree = "<group>"; };
+		561F0B161E5F74EE00816D8D /* Chinese_Text.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = Chinese_Text.dat; sourceTree = "<group>"; };
+		561F0B171E5F74EE00816D8D /* English_Speech_Female.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = English_Speech_Female.dat; sourceTree = "<group>"; };
+		561F0B181E5F74EE00816D8D /* English_Speech_Male.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = English_Speech_Male.dat; sourceTree = "<group>"; };
+		561F0B191E5F74EE00816D8D /* English_Text.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = English_Text.dat; sourceTree = "<group>"; };
+		561F0B231E5F75AB00816D8D /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		561F0B251E5F75B500816D8D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		561F0B271E5F75BD00816D8D /* libz.1.2.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.5.tbd; path = usr/lib/libz.1.2.5.tbd; sourceTree = SDKROOT; };
+		561F0B291E5F75C800816D8D /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		561F0B2B1E5F75DA00816D8D /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
+		561F0B341E5F7E6000816D8D /* libiconv.2.4.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.2.4.0.tbd; path = usr/lib/libiconv.2.4.0.tbd; sourceTree = SDKROOT; };
+		5641230E1E77CF38006D0075 /* ChinsesTrans.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChinsesTrans.h; sourceTree = "<group>"; };
+		5641230F1E77CF38006D0075 /* ChinsesTrans.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChinsesTrans.m; sourceTree = "<group>"; };
+		565137591E960EFC00F524C0 /* BFTCC1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BFTCC1.mp3; sourceTree = "<group>"; };
+		5651375A1E960EFC00F524C0 /* BFTCC2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BFTCC2.mp3; sourceTree = "<group>"; };
+		5651375B1E960EFC00F524C0 /* BFTCC3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BFTCC3.mp3; sourceTree = "<group>"; };
+		5651375C1E960EFC00F524C0 /* BFTCC4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BFTCC4.mp3; sourceTree = "<group>"; };
+		5651375D1E960EFC00F524C0 /* BFTCC5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BFTCC5.mp3; sourceTree = "<group>"; };
+		565137641E961E4C00F524C0 /* ChickenC.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ChickenC.mp3; sourceTree = "<group>"; };
+		565137651E961E4C00F524C0 /* ContestC.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ContestC.mp3; sourceTree = "<group>"; };
+		565137661E961E4C00F524C0 /* CorralC.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CorralC.mp3; sourceTree = "<group>"; };
+		565137671E961E4C00F524C0 /* FarmC.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = FarmC.mp3; sourceTree = "<group>"; };
+		565137681E961E4C00F524C0 /* FlewC.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = FlewC.mp3; sourceTree = "<group>"; };
+		565137691E961E4C00F524C0 /* JudgeC.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = JudgeC.mp3; sourceTree = "<group>"; };
+		5651376A1E961E4C00F524C0 /* JumpedC.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = JumpedC.mp3; sourceTree = "<group>"; };
+		5651376B1E961E4C00F524C0 /* ManuelC.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ManuelC.mp3; sourceTree = "<group>"; };
+		5651376C1E961E4C00F524C0 /* WalkedC.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WalkedC.mp3; sourceTree = "<group>"; };
+		5661D0DE1E936FDD0075DB6B /* ContestE.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ContestE.mp3; path = sounds/bestFarm/PronounceWord/English/ContestE.mp3; sourceTree = "<group>"; };
+		5662086A1E8D8BFA00A94AB8 /* temp_license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = temp_license; sourceTree = "<group>"; };
+		5662086C1E8D8C1200A94AB8 /* temp_license.dat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = temp_license.dat; sourceTree = "<group>"; };
 		5C030F7A1C863196006E1BEA /* Award_def_S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Award_def_S.mp3; sourceTree = "<group>"; };
 		5C030F7B1C863196006E1BEA /* Barn_def_S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Barn_def_S.mp3; sourceTree = "<group>"; };
 		5C030F7C1C863196006E1BEA /* Bucket_def_S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Bucket_def_S.mp3; sourceTree = "<group>"; };
@@ -12292,6 +12375,7 @@
 				1A631CAC1C0E4D3900251CB3 /* Text */,
 				1A631CE21C0E4D3900251CB3 /* toc.ncx */,
 				1A631CE31C0E4D3900251CB3 /* tocE.ncx */,
+				56196F781EB90358004E8ACF /* toc_Spanish_to_Spanish.ncx */,
 				1A631CE41C0E4D3900251CB3 /* Translations-MetaData.xml */,
 				1A631CE51C0E4D3900251CB3 /* VocabularyIntroductions-MetaData.xml */,
 				1A631CE61C0E4D3900251CB3 /* Waypoints-MetaData.xml */,
@@ -22443,6 +22527,7 @@
 				1A63209C1C0E4D3B00251CB3 /* stone.png in Resources */,
 				1A6322601C0E4D3B00251CB3 /* Story1-The-Moving-Earth-PM-1.xhtml in Resources */,
 				5CA5CCB81CD1BA00002A631F /* TheBestFarmAwardS6E.mp3 in Resources */,
+				56196F791EB90358004E8ACF /* toc_Spanish_to_Spanish.ncx in Resources */,
 				5C0ED8D81C75334200003B5A /* ManchatheHorseQ3A1.mp3 in Resources */,
 				1A6320C31C0E4D3B00251CB3 /* Story5-Catch-Title.xhtml in Resources */,
 				71D6C9A51E5CA86C00AD3E28 /* 299009e03c88a921f25692693172424b.mp3 in Resources */,

@@ -107,6 +107,32 @@
     }
 }
 
+
+/* Plays an audio file at a given path */
+-(BOOL) playAudioWithFilePath:(UIViewController*) viewController : (NSString*) path {
+    
+    self.manipulationViewController = viewController;
+    [viewController.view setUserInteractionEnabled:NO];
+    
+    NSString *soundFilePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], path];
+    [self initPlayer2:soundFilePath];
+    self.audioPlayerAfter = nil;
+    self.audioPlayer.delegate = self;
+    
+    if (self.audioPlayer == nil)
+    {
+        [manipulationViewController.view setUserInteractionEnabled:YES];
+        return false;
+    }
+    else
+    {
+        [self.audioPlayer prepareToPlay];
+        [self.audioPlayer play];
+        return true;
+    }
+}
+
+
 -(void) stopPlayAudioFile
 {
     [self.audioPlayer stop];
