@@ -23,20 +23,20 @@
             </sentence>
         </story>
         <story title="Why We Breathe" activity_id="story1-PM-2">
-            <sentence number="9">
+            <sentence number="10">
                 <step number="1">
                     <check obj1Id="CO2_1" action="getIn" locationId="lung2"/>
                     <move obj1Id="CO2_1" action="getIn" waypointId="lung2"/>
                 </step>
             </sentence>
-            <sentence number="10">
+            <sentence number="11">
                 <step number="1">
                     <group obj1Id="O2_1" action="attach" obj2Id="bloodcell_1"/>
                 </step>
             </sentence>
         </story>
         <story title="Why We Breathe" activity_id="story1-PM-3">
-            <sentence number="11">
+            <sentence number="12">
                 <step number="1">
                     <check obj1Id="CO2_1" action="getIn" locationId="air"/>
                     <move obj1Id="CO2_1" action="getIn" waypointId="air"/>
