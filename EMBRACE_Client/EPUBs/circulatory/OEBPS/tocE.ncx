@@ -146,12 +146,6 @@
 		  </navLabel>
 		  <content src="Text/Story4-Getting-More-Oxygen-for-the-Muscles-PM-5.xhtml"/>
 		</navPoint>
-      <navPoint class="PM_MODE" id="story4-PM-6">
-		  <navLabel>
-    		<text>Getting More Oxygen for the Muscles - PM</text>
-		  </navLabel>
-		  <content src="Text/Story4-Getting-More-Oxygen-for-the-Muscles-PM-6.xhtml"/>
-		</navPoint>
 	</navPoint>
 
   <navPoint class="ChapterTitle" id="Chapter5Title" playOrder="5">

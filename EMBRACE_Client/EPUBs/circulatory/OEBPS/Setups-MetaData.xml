@@ -31,7 +31,7 @@
         <story title="Getting More Oxygen for the Muscles" page_id="story4-PM-3">
             <group obj1Id="CO2_1" action="attach" obj2Id="bloodcell_1"/>
         </story>
-        <story title="Getting More Oxygen for the Muscles" page_id="story4-PM-6">
+        <story title="Getting More Oxygen for the Muscles" page_id="story4-PM-5">
             <group obj1Id="O2_1" action="attach" obj2Id="bloodcell_1"/>
         </story>
     </setups>

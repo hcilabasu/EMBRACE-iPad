@@ -154,13 +154,6 @@
         <story title="Getting More Oxygen for the Muscles" activity_id="story4-PM-5">
             <sentence number="10">
                 <step number="1">
-                    <group obj1Id="O2_1" action="attach" obj2Id="bloodcell_1"/>
-                </step>
-            </sentence>
-        </story>
-        <story title="Getting More Oxygen for the Muscles" activity_id="story4-PM-6">
-            <sentence number="11">
-                <step number="1">
                     <check obj1Id="bloodcell_1" action="getIn" locationId="heart3"/>
                     <move obj1Id="bloodcell_1" action="getIn" waypointId="heart3"/>
                 </step>

@@ -5405,7 +5405,6 @@
 		1A631E391C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-3.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; lineEnding = 0; path = "Story4-Getting-More-Oxygen-for-the-Muscles-PM-3.xhtml"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.xml; };
 		1A631E3B1C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-4.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; lineEnding = 0; path = "Story4-Getting-More-Oxygen-for-the-Muscles-PM-4.xhtml"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.xml; };
 		1A631E3C1C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-5.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; lineEnding = 0; path = "Story4-Getting-More-Oxygen-for-the-Muscles-PM-5.xhtml"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.xml; };
-		1A631E3D1C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-6.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; lineEnding = 0; path = "Story4-Getting-More-Oxygen-for-the-Muscles-PM-6.xhtml"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.xml; };
 		1A631E3E1C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-Title.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story4-Getting-More-Oxygen-for-the-Muscles-Title.xhtml"; sourceTree = "<group>"; };
 		1A631E3F1C0E4D3A00251CB3 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-IM-1.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-Cigarette-Smoke-Hurts-Your-Lungs-IM-1.xhtml"; sourceTree = "<group>"; };
 		1A631E401C0E4D3A00251CB3 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-IM-2.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Story5-Cigarette-Smoke-Hurts-Your-Lungs-IM-2.xhtml"; sourceTree = "<group>"; };
@@ -11803,7 +11802,6 @@
 				1A631E391C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-3.xhtml */,
 				1A631E3B1C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-4.xhtml */,
 				1A631E3C1C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-5.xhtml */,
-				1A631E3D1C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-PM-6.xhtml */,
 				1A631E3E1C0E4D3A00251CB3 /* Story4-Getting-More-Oxygen-for-the-Muscles-Title.xhtml */,
 				1A631E3F1C0E4D3A00251CB3 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-IM-1.xhtml */,
 				1A631E401C0E4D3A00251CB3 /* Story5-Cigarette-Smoke-Hurts-Your-Lungs-IM-2.xhtml */,
