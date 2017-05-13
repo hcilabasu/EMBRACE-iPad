@@ -87,13 +87,13 @@
             <sentence number="2">
                 <step number="2">
                     <check obj1Id="O2_1" action="getIn" locationId="muscle2"/>
-                    <move obj1Id="O2_1" action="getIn" waypointId="muscle2"/>
+                    <swapImage obj1Id="O2_1" action="swap"/>
                     <move obj1Id="bloodcell_1" action="getIn" waypointId="vein"/>
                 </step>
             </sentence>
             <sentence number="4">
                 <step number="1">
-                    <group obj1Id="CO2_1" action="attach" obj2Id="bloodcell_1"/>
+                    <group obj1Id="O2_1" action="attach" obj2Id="bloodcell_1"/>
                 </step>
             </sentence>
         </story>
