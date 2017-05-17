@@ -1173,15 +1173,17 @@ shouldUpdateConnection:(BOOL)updateCon
         
         NSString *modifiedTextToken = textToken;
         
-        //Replaces the ' character if it exists in the token
-        if ([modifiedTextToken rangeOfString:@"'"].location != NSNotFound) {
-            modifiedTextToken = [modifiedTextToken stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
-        }
         
         BOOL addedWord = false; //whether token contains vocabulary word
         NSInteger vocabIndex =0;
         
-        for (NSString *vocab in vocabulary) {
+        // Sort and reverse so that words with single quote comes first
+        NSArray *sortedArray = [[vocabulary allObjects] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+        NSArray* reversedArray = [[sortedArray reverseObjectEnumerator] allObjects];
+        
+        for (NSString *vocab in reversedArray) {
+            
+        
             // Match the whole vocabulary word only
             NSString *regex = [NSString stringWithFormat:@"\\b%@\\b", vocab];
             
@@ -1273,10 +1275,34 @@ shouldUpdateConnection:(BOOL)updateCon
     }
     
     [splitText addObject:currentSplit]; //make sure to add the last split
-    
+    NSMutableArray *tempWordArray = [NSMutableArray array];
+    for (NSString *word in words) {
+        
+        if ([word rangeOfString:@"'"].location != NSNotFound) {
+            NSString *modWord = [word stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
+            [tempWordArray addObject:modWord];
+        } else {
+            [tempWordArray addObject:word];
+        }
+        
+
+    }
     //Create array strings for vocabulary and split text to send to JS function
-    NSString *wordsArrayString = [words componentsJoinedByString:@"','"];
-    NSString *splitTextArrayString = [splitText componentsJoinedByString:@"','"];
+    NSString *wordsArrayString = [tempWordArray componentsJoinedByString:@"','"];
+    
+    tempWordArray = [NSMutableArray array];
+    for (NSString *word in splitText) {
+        
+        if ([word rangeOfString:@"'"].location != NSNotFound) {
+            NSString *modWord = [word stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
+            [tempWordArray addObject:modWord];
+        } else {
+            [tempWordArray addObject:word];
+        }
+        
+        
+    }
+    NSString *splitTextArrayString = [tempWordArray componentsJoinedByString:@"','"];
     
     ConditionSetup *conditionSetup = [ConditionSetup sharedInstance];
     //Add alternate sentence to page
