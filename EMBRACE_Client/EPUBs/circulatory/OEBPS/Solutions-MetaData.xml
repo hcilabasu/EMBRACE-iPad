@@ -108,7 +108,7 @@
         <story title="Getting More Oxygen for the Muscles" activity_id="story4-PM-1">
             <sentence number="2">
                 <step number="1">
-                    <check obj1Id="bloodcell_1" action="getIn" locationId="rightAtrium"/>
+                    <check obj1Id="bloodcell_1" action="getIn" areaId="rightAtrium"/>
                     <move obj1Id="bloodcell_1" action="getIn" waypointId="rightAtrium"/>
                 </step>
             </sentence>
@@ -133,7 +133,7 @@
             <sentence number="7">
                 <step number="1">
                     <check obj1Id="bloodcell_1" action="getIn" locationId="lung1"/>
-                    <move obj1Id="bloodcell_1" action="getIn" waypointId="lung3"/>
+                    <animate obj1Id="bloodcell_1" action="followAnimation" waypointId="" areaId="veinPath2"/>
                 </step>
             </sentence>
         </story>
@@ -147,7 +147,7 @@
             <sentence number="9">
                 <step number="1">
                     <check obj1Id="O2_1" action="getIn" locationId="lung1"/>
-                    <move obj1Id="O2_1" action="getIn" waypointId="lung1"/>
+                    <groupAuto obj1Id="O2_1" action="attach" obj2Id="bloodcell_1"/>
                 </step>
             </sentence>
         </story>
