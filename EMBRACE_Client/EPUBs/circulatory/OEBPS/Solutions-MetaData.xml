@@ -133,6 +133,7 @@
             <sentence number="7">
                 <step number="1">
                     <check obj1Id="bloodcell_1" action="getIn" locationId="lung1"/>
+                    <move obj1Id="bloodcell_1" action="getIn" waypointId="beginVein"/>
                     <animate obj1Id="bloodcell_1" action="followAnimation" waypointId="" areaId="veinPath2"/>
                 </step>
             </sentence>
@@ -154,8 +155,10 @@
         <story title="Getting More Oxygen for the Muscles" activity_id="story4-PM-5">
             <sentence number="10">
                 <step number="1">
-                    <check obj1Id="bloodcell_1" action="getIn" locationId="heart3"/>
-                    <move obj1Id="bloodcell_1" action="getIn" waypointId="heart3"/>
+                    <check obj1Id="bloodcell_1" action="getIn"  locationId="heart3"
+                        areaId="muscles"/>
+                    <move obj1Id="bloodcell_1" action="getIn" waypointId="beginAorta"/>
+                    <animate obj1Id="bloodcell_1" action="followAnimation" waypointId="" areaId="aortaPath"/>
                 </step>
             </sentence>
         </story>

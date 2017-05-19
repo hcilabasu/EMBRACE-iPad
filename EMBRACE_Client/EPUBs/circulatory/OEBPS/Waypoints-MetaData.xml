@@ -3,6 +3,8 @@
     <waypoints>
         <waypoint waypointId="air" x="41%" y="26%"/>
         <waypoint waypointId="artery" x="50%" y="22.6%"/>
+        <waypoint waypointId="beginAorta" x="17.322266%" y="45.954544%"/>
+        <waypoint waypointId="beginVein" x="10.742188%" y="77.485794%"/>
         <waypoint waypointId="cilia" x="47%" y="66%"/>
         <waypoint waypointId="heart1" x="16%" y="73%"/>
         <waypoint waypointId="heart2" x="8.5%" y="45%"/>
