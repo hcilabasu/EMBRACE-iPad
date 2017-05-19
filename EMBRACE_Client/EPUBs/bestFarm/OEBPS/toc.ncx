@@ -54,13 +54,13 @@
 		  <navLabel>
     		<text>Getting Ready - PM</text>
 		  </navLabel>
-		  <content src="Text/Story2-Getting-Ready-PM-1.xhtml"/>
+		  <content src="Text/Story2-Getting-Ready-PM-1S.xhtml"/>
 		</navPoint>
        <navPoint class="PM_MODE" id="story2-PM-2">
 		  <navLabel>
 	    	<text>Getting Ready - PM</text>
 		  </navLabel>
-		  <content src="Text/Story2-Getting-Ready-PM-2.xhtml"/>
+		  <content src="Text/Story2-Getting-Ready-PM-2S.xhtml"/>
 		</navPoint>
 	</navPoint>
 	<navPoint class="ChapterTitle" id="Chapter3Title" playOrder="3">
@@ -78,13 +78,13 @@
 		  <navLabel>
     		<text>Cleaning Up - PM</text>
 		  </navLabel>
-		  <content src="Text/Story3-Cleaning-Up-PM-1.xhtml"/>
+		  <content src="Text/Story3-Cleaning-Up-PM-1S.xhtml"/>
 		</navPoint>
        <navPoint class="PM_MODE" id="story3-PM-2">
 		  <navLabel>
 	    	<text>Cleaning Up - PM</text>
 		  </navLabel>
-		  <content src="Text/Story3-Cleaning-Up-PM-2.xhtml"/>
+		  <content src="Text/Story3-Cleaning-Up-PM-2S.xhtml"/>
 		</navPoint>
 	</navPoint>
 	<navPoint class="ChapterTitle" id="Chapter4Title" playOrder="4">
@@ -102,13 +102,13 @@
 		  <navLabel>
     		<text>Who is the Best Animal? - PM</text>
 		  </navLabel>
-		  <content src="Text/Story4-Who-is-the-Best-Animal-PM-1.xhtml"/>
+		  <content src="Text/Story4-Who-is-the-Best-Animal-PM-1S.xhtml"/>
 		</navPoint>
        <navPoint class="PM_MODE" id="story4-PM-2">
 		  <navLabel>
 	    	<text>Who is the Best Animal? - PM</text>
 		  </navLabel>
-		  <content src="Text/Story4-Who-is-the-Best-Animal-PM-2.xhtml"/>
+		  <content src="Text/Story4-Who-is-the-Best-Animal-PM-2S.xhtml"/>
 		</navPoint>
 	</navPoint>
 	<navPoint class="ChapterTitle" id="Chapter5Title" playOrder="5">
@@ -126,13 +126,13 @@
 		  <navLabel>
     		<text>The Wise Owl - PM</text>
 		  </navLabel>
-		  <content src="Text/Story5-The-Wise-Owl-PM-1.xhtml"/>
+		  <content src="Text/Story5-The-Wise-Owl-PM-1S.xhtml"/>
 		</navPoint>
        <navPoint class="PM_MODE" id="story5-PM-2">
 		  <navLabel>
 	    	<text>The Wise Owl - PM</text>
 		  </navLabel>
-		  <content src="Text/Story5-The-Wise-Owl-PM-2.xhtml"/>
+		  <content src="Text/Story5-The-Wise-Owl-PM-2S.xhtml"/>
 		</navPoint>
 	</navPoint>
 	<navPoint class="ChapterTitle" id="Chapter6Title" playOrder="6">
@@ -150,13 +150,13 @@
 		  <navLabel>
     		<text>Everyone Helps - PM</text>
 		  </navLabel>
-		  <content src="Text/Story6-Everyone-Helps-PM-1.xhtml"/>
+		  <content src="Text/Story6-Everyone-Helps-PM-1S.xhtml"/>
 		</navPoint>
        <navPoint class="PM_MODE" id="story6-PM-2">
 		  <navLabel>
 	    	<text>Everyone Helps - PM</text>
 		  </navLabel>
-		  <content src="Text/Story6-Everyone-Helps-PM-2.xhtml"/>
+		  <content src="Text/Story6-Everyone-Helps-PM-2S.xhtml"/>
 		</navPoint>
 	</navPoint>
 	<navPoint class="ChapterTitle" id="Chapter7Title" playOrder="7">
@@ -174,13 +174,13 @@
 		  <navLabel>
     		<text>The Best Farm Award - PM</text>
 		  </navLabel>
-		  <content src="Text/Story7-The-Best-Farm-Award-PM-1.xhtml"/>
+		  <content src="Text/Story7-The-Best-Farm-Award-PM-1S.xhtml"/>
 		</navPoint>
        <navPoint class="PM_MODE" id="story7-PM-2">
 		  <navLabel>
 	    	<text>The Best Farm Award - PM</text>
 		  </navLabel>
-		  <content src="Text/Story7-The-Best-Farm-Award-PM-2.xhtml"/>
+		  <content src="Text/Story7-The-Best-Farm-Award-PM-2S.xhtml"/>
 		</navPoint>
 	</navPoint>
 </navMap>
