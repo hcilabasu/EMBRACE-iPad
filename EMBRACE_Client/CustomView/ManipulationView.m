@@ -373,7 +373,7 @@
 }
 
 - (NSSet *)getSetOfObjectsOverlappingWithObject:(NSString *)object {
-    
+    return nil;
 }
 
 - (NSString *)getSentenceClass:(NSInteger)sentenceNumber {
@@ -1224,7 +1224,6 @@ shouldUpdateConnection:(BOOL)updateCon
     BOOL action = [sentenceToAdd actionSentence];
     NSString *text = [sentenceToAdd text];
     
-    
     // Fix for double quotes missplacing.
     NSArray *tTokens = [text componentsSeparatedByString:@" "];
     NSMutableArray *tempArray = [NSMutableArray array];
@@ -1257,39 +1256,37 @@ shouldUpdateConnection:(BOOL)updateCon
     
     BOOL skipCurrentToken = false;
     
+    NSInteger textTokenIndex = 0;
     for (NSString *textToken in textTokens) {
+        
         if(skipCurrentToken){
             skipCurrentToken = false;
+            textTokenIndex++;
             continue;
         }
         
         NSString *modifiedTextToken = textToken;
         
-        //Replaces the ' character if it exists in the token
-        if ([modifiedTextToken rangeOfString:@"'"].location != NSNotFound) {
-            modifiedTextToken = [modifiedTextToken stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
-        }
-        
         BOOL addedWord = false; //whether token contains vocabulary word
-        NSInteger vocabIndex =0;
         
         for (NSString *vocab in vocabulary) {
+            NSString *modifiedVocab = vocab;
+            
             // Match the whole vocabulary word only
-            NSString *regex = [NSString stringWithFormat:@"\\b%@\\b", vocab];
+            NSString *regex = [NSString stringWithFormat:@"\\b%@\\b", modifiedVocab];
             
             NSRange range = [modifiedTextToken rangeOfString:regex options:NSRegularExpressionSearch|NSCaseInsensitiveSearch];
             NSRange nextTokenRange = [modifiedTextToken rangeOfString:regex options:NSRegularExpressionSearch|NSCaseInsensitiveSearch];
+            
+            //If vocab word doesn't match token see if it is a two-word vocab word
             if (range.location == NSNotFound) {
-                nextTokenRange = [vocab rangeOfString:modifiedTextToken options:NSCaseInsensitiveSearch];
                 
+                nextTokenRange = [modifiedVocab rangeOfString:modifiedTextToken options:NSCaseInsensitiveSearch];
+                
+                //If vocab word matches check to see if it matches a two-word vocab word
                 if(nextTokenRange.location != NSNotFound ){
-                    if ((vocabIndex+1) < textTokens.count) {
-                        NSString *nextTextToken = [textTokens objectAtIndex:(vocabIndex+1)];
-                        
-                        //Replaces the ' character if it exists in the token
-                        if ([nextTextToken rangeOfString:@"'"].location != NSNotFound) {
-                            nextTextToken = [nextTextToken stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
-                        }
+                    if (textTokenIndex < textTokens.count) {
+                        NSString *nextTextToken = [textTokens objectAtIndex:(textTokenIndex+1)];
                         
                         NSString *tempModifiedTextToken = [NSString stringWithFormat:@"%@ %@", modifiedTextToken, nextTextToken];
                         nextTokenRange = [tempModifiedTextToken rangeOfString:regex options:NSRegularExpressionSearch|NSCaseInsensitiveSearch];
@@ -1305,11 +1302,18 @@ shouldUpdateConnection:(BOOL)updateCon
                 }
             }
             
-            vocabIndex++;
-            
             // Token contains vocabulary word
             if (range.location != NSNotFound) {
-                [words addObject:[modifiedTextToken substringWithRange:range]]; // Add word to list
+                NSString* wordToAdd = [modifiedTextToken substringWithRange:range];
+                
+                //Replaces the ' character if it exists in the token
+                if ([wordToAdd rangeOfString:@"'"].location != NSNotFound ||
+                    [wordToAdd rangeOfString:@"’"].location != NSNotFound ) {
+                    wordToAdd = [wordToAdd stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
+                    wordToAdd = [wordToAdd stringByReplacingOccurrencesOfString:@"’" withString:@"\\'"];
+                }
+                
+                [words addObject:wordToAdd]; // Add word to list
                 addedWord = true;
                 
                 //Add the first part of the word like quotes to the previous token
@@ -1328,39 +1332,13 @@ shouldUpdateConnection:(BOOL)updateCon
             }
         }
         
+        textTokenIndex++;
+        
         //Token does not contain vocabulary word
         if (!addedWord) {
             //Add token to current split with a space after it
             NSString *textTokenSpace = [NSString stringWithFormat:@"%@ ", modifiedTextToken];
             currentSplit = [currentSplit stringByAppendingString:textTokenSpace];
-            
-//            ///Hard coded for fix begin
-//            NSString *vocab = @"plate tectonics ";
-//            NSString *regex = [NSString stringWithFormat:@"\\b%@\\b", vocab];
-//            
-//            NSRange range = [currentSplit rangeOfString:regex options:NSRegularExpressionSearch|NSCaseInsensitiveSearch];
-//            
-//            // Token contains vocabulary word
-//            if (range.location != NSNotFound) {
-//                
-//                NSString *copyOfcurrentSplit = [currentSplit copy];
-//                
-//                [words addObject:[copyOfcurrentSplit substringWithRange:range]]; // Add word to list
-//                addedWord = true;
-//                
-//                //Add the first part of the word like quotes to the previous token
-//                if(range.location > 0) {
-//                    NSRange firstRange = NSMakeRange(0, range.location);
-//                    currentSplit = [copyOfcurrentSplit substringWithRange:firstRange];
-//                    range = NSMakeRange(0, range.location + range.length);
-//                }
-//                [splitText addObject:currentSplit];
-//                
-//                // Reset current split to be anything that appears after the vocabulary word and add a space in the beginning
-//                currentSplit = [[copyOfcurrentSplit stringByReplacingCharactersInRange:range withString:@""] stringByAppendingString:@" "];
-//                
-//                
-//            }
         }
     }
     
