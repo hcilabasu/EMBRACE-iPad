@@ -18,10 +18,10 @@
 
 - (id)initWithValues:(NSString *)school :(NSString *)participant :(NSString *)study :(NSString *)experimenter {
     if (self = [super init]) {
-        schoolCode = [school lowercaseString];
-        participantCode = [participant lowercaseString];
-        studyDay = study;
-        experimenterName = [experimenter lowercaseString];
+        self.schoolCode = [school lowercaseString];
+        self.participantCode = [participant lowercaseString];
+        self.studyDay = study;
+        self.experimenterName = [experimenter lowercaseString];
     }
     
     return self;
@@ -32,7 +32,7 @@
  * For new students who have never logged in before, currentTimestamp will be left nil.
  */
 - (void)setCurrentTimestamp:(NSString *)timestamp {
-    currentTimestamp = timestamp;
+    currentTimestamp = [timestamp copy];
 }
 
 @end

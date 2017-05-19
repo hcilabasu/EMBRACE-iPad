@@ -7,15 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <UIKit/UIKit.h>
 #import "PieContextualMenuDelegate.h"
-#import "EbookImporter.h"
+#import "EBookImporter.h"
 #import "Book.h"
 #import "AVFoundation/AVSpeechSynthesis.h"
 #import "AssessmentActivityViewController.h"
 
 @interface AuthoringModeViewController : UIViewController <UIGestureRecognizerDelegate, UIScrollViewDelegate, UIPickerViewDelegate>{
-    EBookImporter *bookImporter;
+    EBookImporter __weak *bookImporter;
     Book *book;
     
     IBOutlet UIPinchGestureRecognizer *pinchRecognizer;
@@ -25,9 +24,9 @@
 }
 
 @property (strong, nonatomic) id dataObject;
-@property (nonatomic, strong) EBookImporter *bookImporter;
-@property (nonatomic, strong) NSString *bookTitle;
-@property (nonatomic, strong) NSString *chapterTitle;
+@property (nonatomic, weak) EBookImporter *bookImporter;
+@property (nonatomic, copy) NSString *bookTitle;
+@property (nonatomic, copy) NSString *chapterTitle;
 @property (nonatomic, strong) Book *book;
 @property (nonatomic, strong) AVSpeechSynthesizer *syn;
 @property (nonatomic,strong) PlayAudioFile *playaudioClass;

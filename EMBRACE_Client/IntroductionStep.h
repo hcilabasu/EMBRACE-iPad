@@ -12,13 +12,13 @@
 }
 
 @property (nonatomic, assign) NSInteger stepNumber;
-@property (nonatomic, assign) NSString * englishAudioFileName;
-@property (nonatomic, assign) NSString * spanishAudioFileName;
-@property (nonatomic, assign) NSString * englishText;
-@property (nonatomic, assign) NSString * spanishText;
-@property (nonatomic, assign) NSString * expectedSelection;
-@property (nonatomic, assign) NSString * expectedAction;
-@property (nonatomic, assign) NSString * expectedInput;
+@property (nonatomic, copy) NSString * englishAudioFileName;
+@property (nonatomic, copy) NSString * spanishAudioFileName;
+@property (nonatomic, copy) NSString * englishText;
+@property (nonatomic, copy) NSString * spanishText;
+@property (nonatomic, copy) NSString * expectedSelection;
+@property (nonatomic, copy) NSString * expectedAction;
+@property (nonatomic, copy) NSString * expectedInput;
 
 
 - (id) initWithValues:(NSInteger)stepNum :(NSString*)englishAudioFile :(NSString*)spanishAudioFile :(NSString*)english :(NSString*)spanish :(NSString*)selection :(NSString*)action :(NSString*)input;

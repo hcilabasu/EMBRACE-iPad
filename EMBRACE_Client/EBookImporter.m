@@ -167,6 +167,8 @@
         //Once opf file has been found, read the opf file for the book
         [self readOpfForBook:opfBookFile :filepath];
     }
+    [xmlData release];
+    [containerDoc release];
 }
 
 /*
@@ -280,6 +282,13 @@
     [self readMetadataForBook:book];
     
     [library addObject:book];
+    [book release];
+    [ids release];
+    [hrefs release];
+    [bookItems release];
+    [itemOrder release];
+    [xmlData release];
+    [opfDoc release];
 }
 
 /*
@@ -365,7 +374,7 @@
             [currITSPMActivity addPage:currPage];
             [currIMActivity addPage:currPage];
             [currITSIMActivity addPage:currPage];
-            
+            [currPage release];
             //Get the title of the activity. Don't care about this right now.
             GDataXMLElement *activityTitleElement = [[element elementsForName:@"navLabel"] objectAtIndex:0];
             NSString *activityTitle = [activityTitleElement stringValue];
@@ -380,7 +389,21 @@
                 [currChapter addActivity:currITSPMActivity];
                 [currChapter addActivity:currIMActivity];
                 [currChapter addActivity:currITSIMActivity];
+                
+                [currITSIMActivity release];
+                currITSIMActivity =  nil;
+                
+                [currIMActivity release];
+                currIMActivity =  nil;
+                
+                [currITSPMActivity release];
+                currITSPMActivity =  nil;
+                
+                [currPMActivity release];
+                currPMActivity =  nil;
             }
+            
+
         }
         
         //Separate chapter files depending on language
@@ -392,7 +415,10 @@
             //Add chapter to book
             [book addEnglishChapter:currChapter];
         }
+        [currChapter release];
     }
+    [xmlData release];
+    [tocDoc release];
 }
 
 /*
@@ -421,6 +447,9 @@
     NSString *chapterFilePath = [[book mainContentPath] stringByAppendingString:chapterFilename];
     
     [chapter setChapterImagePath:chapterFilePath];
+    
+    [chapterTitlePage release];
+    [htmlData release];
 }
 
 /*
@@ -489,6 +518,8 @@
         
         [model addRelationship:obj1Id :can :type :obj2Id];
     }
+    [metadataDoc release];
+    [xmlData release];
 }
 
 - (void)readConstraintMetadata:(InteractionModel *)model :(NSString *)filepath {
@@ -553,7 +584,11 @@
         }
         
         [model addComboConstraint:objectId :comboActs];
+        [comboActs release];
     }
+    
+    [metadataDoc release];
+    [xmlData release];
 }
 
 - (void)readHotspotMetadata:(InteractionModel *)model :(NSString *)filepath {
@@ -581,6 +616,8 @@
         
         [model addHotspot:objectId :action :role :location];
     }
+    [metadataDoc release];
+    [xmlData release];
 }
 
 - (void)readLocationMetadata:(InteractionModel *)model :(NSString *)filepath {
@@ -602,6 +639,8 @@
         
         [model addLocation:locationId :originX :originY :height :width];
     }
+    [metadataDoc release];
+    [xmlData release];
 }
 
 - (void)readAreaMetadata:(InteractionModel *)model :(NSString *)filepath {
@@ -628,12 +667,12 @@
         
         int pointID = 0;
         
-        float firstpointX;
-        float firstpointY;
-        float secondpointX;
-        float secondpointY;
-        float thirdpointX;
-        float thirdpointY;
+        float firstpointX = 0.0f;
+        float firstpointY = 0.0f;
+        float secondpointX = 0.0f;
+        float secondpointY = 0.0f;
+        float thirdpointX = 0.0f;
+        float thirdpointY = 0.0f;
         
         for (GDataXMLElement *point in points) {
             NSString *pointX = [[point attributeForName:@"x"] stringValue];
@@ -689,7 +728,10 @@
         }
         
         [model addArea:areaId :aPath :areaDictionary :pageId];
+        [areaDictionary release];
     }
+    [metadataDoc release];
+    [xmlData release];
 }
 
 - (void)readWaypointMetadata:(InteractionModel *)model :(NSString *)filepath {
@@ -715,6 +757,8 @@
         
         [model addWaypoint:waypointId :location];
     }
+    [metadataDoc release];
+    [xmlData release];
 }
 
 - (void)readAlternateImageMetadata:(InteractionModel *)model :(NSString *)filepath {
@@ -750,6 +794,8 @@
             [model addAlternateImage:objectId :action :originalSrc :alternateSrc :width : height :location :className :locationZString];
         }
     }
+    [metadataDoc release];
+    [xmlData release];
 }
 
 - (void)readSetupMetadata:(Book *)book :(NSString *)filepath :(Language) language {
@@ -796,10 +842,12 @@
                 [PMActivity addSetupStep:setupStep forPageId:pageId];
                 [ITSPMActivity addSetupStep:setupStep forPageId:pageId];
                 //[IMActivity addSetupStep:setupStep forPageId:pageId];
+                [setupStep release];
             }
         }
     }
-    
+    [metadataDoc release];
+    [xmlData release];
     conditionSetup.language = tempLang;
 }
 
@@ -867,7 +915,7 @@
                 
                 //Add idea without any steps (used for non-manipulation sentences)
                 if ([stepSolutions count] == 0) {
-                    ActionStep *solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum : nil :nil : nil : nil : nil : nil: nil : nil : nil : nil];
+                    ActionStep *solutionStep = [[ActionStep alloc] initAsSolutionStep:sentenceNum : nil :0 : nil : nil : nil : nil: nil : nil : nil : nil];
                     
                     if (mode == PM_MODE) {
                         [PMSolution addSolutionStep:solutionStep];
@@ -881,6 +929,7 @@
                     else if (mode == ITSIM_MODE) {
                         [ITSIMSolution addSolutionStep:solutionStep];
                     }
+                    [solutionStep release];
                 }
                 
                 for (GDataXMLElement *stepSolution in stepSolutions) {
@@ -915,33 +964,39 @@
             if (mode == PM_MODE) {
                 PhysicalManipulationActivity *PMActivity = (PhysicalManipulationActivity *)[chapter getActivityOfType:PM_MODE]; //get PM Activity only
                 [PMActivity addPMSolution:PMSolution forActivityId:activityId];
+                [PMSolution release];
             }
             //Add ITSPMSolution to page
             else if (mode == ITSPM_MODE) {
                 ITSPhysicalManipulationActivity *ITSPMActivity = (ITSPhysicalManipulationActivity *)[chapter getActivityOfType:ITSPM_MODE]; //get ITSPM Activity only
                 [ITSPMActivity addITSPMSolution:ITSPMSolution forActivityId:activityId];
+                [ITSPMSolution release];
             }
             //Add IMSolution to page
             else if (mode == IM_MODE) {
                 ImagineManipulationActivity *IMActivity = (ImagineManipulationActivity *)[chapter getActivityOfType:IM_MODE]; //get IM Activity only
                 [IMActivity addIMSolution:IMSolution forActivityId:activityId];
+                [IMSolution release];
             }
             //Add ITSIMSolution to page
             else if (mode == ITSIM_MODE) {
                 ITSImagineManipulationActivity *ITSIMActivity = (ITSImagineManipulationActivity *)[chapter getActivityOfType:ITSIM_MODE]; //get ITSIM Activity only
                 [ITSIMActivity addITSIMSolution:ITSIMSolution forActivityId:activityId];
+                [ITSIMSolution release];
             }
         }
     }
     
     conditionSetup.language = tempLang;
+    [metadataDoc release];
+    [xmlData release];
 }
 
 /*
  * Reads and returns a single solution step
  */
 - (ActionStep *)readSolutionStep:(GDataXMLElement *)step :(NSUInteger)sentenceNum : (NSUInteger)stepNum {
-    ActionStep *solutionStep;
+    ActionStep *solutionStep = nil;
     
     NSString *stepType = [step name]; //get step type
     
@@ -1050,7 +1105,9 @@
         //TODO: add default solutionStep
     }
     
-    
+    if (solutionStep) {
+        return [solutionStep autorelease];
+    }
     return solutionStep;
 }
 
@@ -1068,8 +1125,8 @@
 
     NSError *error;
     GDataXMLDocument *metadataDoc = [[GDataXMLDocument alloc] initWithData:xmlData error:&error];
-    
     NSArray *alternateSentenceElements = [metadataDoc nodesForXPath:@"//alternateSentences" error:nil];
+    
     
     if ([alternateSentenceElements count] > 0) {
         GDataXMLElement *alternateSentenceElement = (GDataXMLElement *)[alternateSentenceElements objectAtIndex:0];
@@ -1157,17 +1214,19 @@
                             NSUInteger stepNum = [[[alternateSentenceStep attributeForName:@"number"] stringValue] intValue];
                             
                             //Get associated ActionStep
-                            NSMutableArray *step;
+                            NSMutableArray *step = nil;
                             if(mode == ITSPM_MODE){
                                 step = [ITSPMSolution getStepsWithNumber:stepNum];
                             }
                             else if(mode == ITSIM_MODE){
                                 step = [ITSIMSolution getStepsWithNumber:stepNum];
                             }
-                            
-                            for (ActionStep *as in step) {
-                                [solutionSteps addObject:as];
+                            if (step) {
+                                for (ActionStep *as in step) {
+                                    [solutionSteps addObject:as];
+                                }
                             }
+                            
                         }
                     }
                     
@@ -1179,11 +1238,15 @@
                     else if(mode == ITSIM_MODE){
                         [ITSIMActivity addAlternateSentence:altSent forPageId:pageId];
                     }
+                    [solutionSteps release];
+                    [ideaNums release];
+                    [altSent release];
                 }
             }
         }
     }
-    
+    [xmlData release];
+    [metadataDoc release];
     conditionSetup.language = tempLang;
 }
 
@@ -1250,12 +1313,16 @@
                 
                 IntroductionStep *introStep = [[IntroductionStep alloc] initWithValues:stepNum:englishAudioFileName:spanishAudioFileName:englishText:spanishText:expectedSelection:expectedAction: expectedInput];
                 [introSteps addObject:introStep];
+                [introStep release];
                 
             }
             
             [model addIntroduction:title :introSteps];
+            [introSteps release];
         }
     }
+    [xmlData release];
+    [metadataDoc release];
 }
 
 - (void)readVocabularyIntroductionMetadata:(InteractionModel *)model :(NSString *)filepath {
@@ -1320,12 +1387,16 @@
                 
                 VocabularyStep *vocabStep = [[VocabularyStep alloc] initWithValues:wordNum:englishAudioFileName:spanishAudioFileName:englishText:spanishText:expectedSelection:expectedAction: expectedInput];
                 [storyWords addObject:vocabStep];
+                [vocabStep release];
                 
             }
             
             [model addVocabulary:storyTitle :storyWords];
+            [storyWords release];
         }
     }
+    [xmlData release];
+    [metadataDoc release];
 }
 
 - (void)readVocabularyMetadata:(Book *)book :(NSString *)filepath :(Language) language {
@@ -1368,9 +1439,11 @@
             
             Chapter *chapter = [book getChapterWithTitle:storyTitle];
             chapter.vocabulary = dictionary;
+            [dictionary release];
         }
     }
-    
+    [xmlData release];
+    [metadataDoc release];
     conditionSetup.language = tempLang;
 }
 
@@ -1447,13 +1520,16 @@
                 
                 AssessmentActivity *storyQuestion = [[AssessmentActivity alloc] initWithValues:questionNum :QuestionText :QuestionAudio :Answer1 :Answer1Audio :Answer2 :Answer2Audio :Answer3 :Answer3Audio :Answer4 :Answer4Audio :expectedSelection];
                 [storyQuestions addObject:storyQuestion];
+                [storyQuestion release];
                 
             }
             
             [model addAssessmentActivity:title :storyQuestions :language :assessmentMode];
+            [storyQuestions release];
         }
     }
-    
+    [xmlData release];
+    [metadataDoc release];
     
 }
 
@@ -1481,6 +1557,8 @@
         }
         
     }
+    [xmlData release];
+    [metadataDoc release];
     
 }
 
@@ -1540,7 +1618,8 @@
         }
         
     }
-    
+    [xmlData release];
+    [metadataDoc release];
     conditionSetup.language = tempLang;
 }
 
@@ -1604,7 +1683,7 @@
                                     bilingualaPostAudio:postBilingual];
     }
     
-    return script;
+    return [script autorelease];
     
 }
 

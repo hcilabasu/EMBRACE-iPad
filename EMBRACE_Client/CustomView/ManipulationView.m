@@ -25,60 +25,13 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        bookView = bv;
-        
-        //bookview = [[UIWebView alloc] initWithFrame:frame];
-        /*bookview.scalesPageToFit = YES;
-        bookview.scrollView.delegate = self;
-        bookview.delegate = self;
-        
-        [[bookview scrollView] setBounces: NO];
-        [[bookview scrollView] setScrollEnabled:NO];
-        [self addSubview:bookview];
-        
-        
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:bookview
-                                                              attribute:NSLayoutAttributeTop
-                                                              relatedBy:NSLayoutRelationEqual
-                                                                 toItem:self
-                                                              attribute:NSLayoutAttributeTop
-                                                             multiplier:1.0
-                                                               constant:0.0]];
-        
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:bookview
-                                                              attribute:NSLayoutAttributeLeading
-                                                              relatedBy:NSLayoutRelationEqual
-                                                                 toItem:self
-                                                              attribute:NSLayoutAttributeLeading
-                                                             multiplier:1.0
-                                                               constant:0.0]];
-        
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:bookview
-                                                              attribute:NSLayoutAttributeBottom
-                                                              relatedBy:NSLayoutRelationEqual
-                                                                 toItem:self
-                                                              attribute:NSLayoutAttributeBottom
-                                                             multiplier:1.0
-                                                               constant:0.0]];
-        
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:bookview
-                                                              attribute:NSLayoutAttributeTrailing
-                                                              relatedBy:NSLayoutRelationEqual
-                                                                 toItem:self
-                                                              attribute:NSLayoutAttributeTrailing
-                                                             multiplier:1.0
-                                                               constant:0.0]];
-         */
+        self.bookView = bv;
 
-        
     }
     return self;
 }
 
-/*
-- (void)addGesture:(UIGestureRecognizer *)recogniser {
-    [self.bookView addGestureRecognizer:recogniser];
-}*/
+
 
 #pragma mark -
 
@@ -386,51 +339,6 @@
     [self.bookView stringByEvaluatingJavaScriptFromString:addVocabularyString];
 }
 
-/*
-#pragma mark - UIScrollView delegates
-
-//Remove zoom in scroll view for UIWebView
-- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
-    return nil;
-}*/
-
-#pragma mark - Webview delegates
-
-/*
-- (BOOL)webView:(UIWebView *)webView
-shouldStartLoadWithRequest:(NSURLRequest *)request
- navigationType:(UIWebViewNavigationType)navigationType {
-    
-    NSString *requestString = [[[request URL] absoluteString] stringByReplacingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
-    
-    if ([requestString hasPrefix:@"ios-log:"]) {
-        NSString *logString = [[requestString componentsSeparatedByString:@":#iOS#"] objectAtIndex:1];
-        NSLog(@"UIWebView console: %@", logString);
-        return NO;
-    }
-    
-    return YES;
-}
-
-- (void)webViewDidStartLoad:(UIWebView *)webView {
-    
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-    
-    //Disable user selection
-    [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitUserSelect='none';"];
-    
-    //Disable callout
-    [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitTouchCallout='none';"];
-    
-    [self loadJsFiles];
-    [self.delegate manipulationViewDidLoad:self];
-}
-
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    
-}*/
 
 #pragma mark - Positions
 
@@ -732,7 +640,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     imagePath = [imagePath stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     UIImage *rawImage = [[UIImage alloc] initWithContentsOfFile:imagePath];
-    UIImage *image = [UIImage alloc];
+    UIImage *image = nil;
     
     //Horizontally flip the image
     if ([FLIP isEqualToString:@"rotate"]) {
@@ -1347,7 +1255,7 @@ shouldUpdateConnection:(BOOL)updateCon
     //Create array strings for vocabulary and split text to send to JS function
     NSString *wordsArrayString = [words componentsJoinedByString:@"','"];
     NSString *splitTextArrayString = [splitText componentsJoinedByString:@"','"];
-    
+  
     ConditionSetup *conditionSetup = [ConditionSetup sharedInstance];
     //Add alternate sentence to page
     addSentenceString = [NSString stringWithFormat:@"addSentence('s%d', %@, ['%@'], ['%@'], %@)", sentenceNumber++, action ? @"true" : @"false", splitTextArrayString, wordsArrayString, conditionSetup.isOnDemandVocabEnabled ? @"true" : @"false"];

@@ -5,9 +5,10 @@
         <!--<alternateImage objId="bloodcell_2" action="deoxygenate" originalSrc="bloodcell_select_oxygenated.png" alternateSrc="bloodcell_select.png" width="40px" x="50%" y="50%"/>-->
         <alternateImage objId="handle" action="open" originalSrc="handle_close.png" alternateSrc="handle_open.png" width="70px" x="41.5%" y="48%" class="manipulationObject" z=""/>
         <alternateImage objId="handle" action="close" originalSrc="handle_open.png" alternateSrc="handle_close.png" width="58px" x="42.5%" y="48%" class="manipulationObject" z=""/>
-        <alternateImage objId="handle" action="open2" originalSrc="handle_close.png" alternateSrc="handle_open.png" width="72px" x="16.5%" y="62%" class="manipulationObject" z=""/>
-        <alternateImage objId="handle" action="close2" originalSrc="handle_open.png" alternateSrc="handle_close.png" width="67px" x="17%" y="63%" class="manipulationObject" z=""/>
-        <alternateImage objId="handle" action="open3" originalSrc="gray_handle_close.png" alternateSrc="gray_handle_open.png" width="70px" x="41.5%" y="48%" class="manipulationObject" z=""/>
-        <alternateImage objId="handle" action="close3" originalSrc="gray_handle_open.png" alternateSrc="gray_handle_close.png" width="58px" x="42.5%" y="48%" class="manipulationObject" z=""/>
+        <alternateImage objId="handle" action="open2" originalSrc="handle_close.png" alternateSrc="handle_open.png" width="72px" x="16.269531%" y="60.315342%" class="manipulationObject" z=""/>
+        <alternateImage objId="handle" action="close2" originalSrc="handle_open.png" alternateSrc="handle_close.png" width="67px" x="16.269531%" y="60.315342%" class="manipulationObject" z=""/>
+        <alternateImage objId="handle" action="open3" originalSrc="gray_handle_close.png" alternateSrc="gray_handle_open.png" width="74px" x="38.867188%" y="44.602272%" class="manipulationObject" z=""/>
+        <alternateImage objId="handle" action="close3" originalSrc="gray_handle_open.png" alternateSrc="gray_handle_close.png" width="58px" x="40.673828%" y="45.954544%" class="manipulationObject" z=""/>
+        <alternateImage objId="O2_1" action="swap" originalSrc="O2_select.png" alternateSrc="CO2_select.png" width="40px" x="37%" y="33%" class="manipulationObject" z="4"/>
     </alternateImages>
 </metadata>

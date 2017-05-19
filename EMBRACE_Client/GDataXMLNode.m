@@ -280,7 +280,7 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
     } else {
         theClass = [GDataXMLNode class];
     }
-    return [[theClass alloc] initConsumingXMLNode:theXMLNode];
+    return [[[theClass alloc] initConsumingXMLNode:theXMLNode] autorelease];
 }
 
 - (id)initConsumingXMLNode:(xmlNodePtr)theXMLNode {
@@ -300,7 +300,7 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
         theClass = [GDataXMLNode class];
     }
     
-    return [[theClass alloc] initBorrowingXMLNode:theXMLNode];
+    return [[[theClass alloc] initBorrowingXMLNode:theXMLNode] autorelease];
 }
 
 - (id)initBorrowingXMLNode:(xmlNodePtr)theXMLNode {
@@ -314,10 +314,13 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
 
 - (void)releaseCachedValues {
     
+    [cachedName_ release];
     cachedName_ = nil;
     
+    [cachedChildren_ release];
     cachedChildren_ = nil;
     
+    [cachedAttributes_ release];
     cachedAttributes_ = nil;
 }
 
@@ -383,6 +386,7 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
     }
     
     [self releaseCachedValues];
+    [super dealloc];
 }
 
 #pragma mark -
@@ -453,9 +457,9 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
             int result = xmlNodeDump(buff, doc, xmlNode_, level, format);
             
             if (result > -1) {
-                str = [[NSString alloc] initWithBytes:(xmlBufferContent(buff))
-											   length:(xmlBufferLength(buff))
-											 encoding:NSUTF8StringEncoding];
+                str = [[[NSString alloc] initWithBytes:(xmlBufferContent(buff))
+                                                length:(NSUInteger)(xmlBufferLength(buff))
+                                              encoding:NSUTF8StringEncoding] autorelease];
             }
             xmlBufferFree(buff);
         }
@@ -557,7 +561,7 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
     
     NSString *str = [self qualifiedName];
     
-    cachedName_ = str;
+    cachedName_ = [str retain];
     
     return str;
 }
@@ -636,7 +640,7 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
             currChild = currChild->next;
         }
         
-        cachedChildren_ = array;
+        cachedChildren_ = [array retain];
     }
     return array;
 }
@@ -951,6 +955,7 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
                                              code:-1
                                          userInfo:nil];
             }
+            [self release];
             return nil;
         }
     }
@@ -1269,7 +1274,7 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
             prop = prop->next;
         }
         
-        cachedAttributes_ = array;
+        cachedAttributes_ = [array retain];
     }
     return array;
 }
@@ -1732,6 +1737,7 @@ const char *IANAEncodingCStringFromNSStringEncoding(NSStringEncoding encoding)
 									 userInfo:nil];
 			// TODO(grobbins) use xmlSetGenericErrorFunc to capture error
 		}
+        [self release];
 		return nil;
 	} else {
 		if (error) *error = NULL;
@@ -1834,6 +1840,7 @@ const char *IANAEncodingCStringFromNSStringEncoding(NSStringEncoding encoding)
         
         xmlFreeDoc(xmlDoc_);
     }
+    [super dealloc];
 }
 
 #pragma mark -

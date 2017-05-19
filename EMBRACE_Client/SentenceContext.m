@@ -17,8 +17,5 @@
 
 @synthesize currentIdea; //Current idea number to be completed
 
-- (id)init {
-    return [super init];
-}
 
 @end

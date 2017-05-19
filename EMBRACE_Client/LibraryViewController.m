@@ -32,11 +32,11 @@
     ConditionSetup *conditionSetup;
 }
 
-@property (nonatomic, strong) IBOutlet UICollectionView *libraryView;
+@property (nonatomic, weak) IBOutlet UICollectionView *libraryView;
 @property (nonatomic, strong) EBookImporter *bookImporter;
 @property (nonatomic, strong) NSMutableArray *books;
-@property (nonatomic, strong) NSString *bookToOpen;
-@property (nonatomic, strong) NSString *chapterToOpen;
+@property (nonatomic, copy) NSString *bookToOpen;
+@property (nonatomic, copy) NSString *chapterToOpen;
 
 @end
 
@@ -115,12 +115,14 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
         
         UIImage *bookImage;
         
+        //Add book image and title
         if (bookImagePath != nil) {
             bookImage = [[UIImage alloc] initWithContentsOfFile:bookImagePath];
+            [bookImages addObject:bookImage];
         }
         
-        //Add book image and title
-        [bookImages addObject:bookImage];
+        
+        
         [bookTitles addObject:[book title]];
         
         //Create temporary arrays to hold chapter images and titles for the book
@@ -138,7 +140,8 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
             }
             
             //Add chapter image and title
-            [bookChapterImages addObject:chapterImage];
+            if (chapterImage != nil)
+                [bookChapterImages addObject:chapterImage];
             [bookChapterTitles addObject:[chapter title]];
         }
         
@@ -447,6 +450,7 @@ NSString* const LIBRARY_PASSWORD_COMPLETED = @"goodbye"; //used to set locked bo
     UIAlertView *passwordPrompt = [[UIAlertView alloc] initWithTitle:@"Password" message:@"Enter password to unlock this item" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
     passwordPrompt.alertViewStyle = UIAlertViewStyleSecureTextInput;
     [passwordPrompt show];
+    
 }
 
 /*

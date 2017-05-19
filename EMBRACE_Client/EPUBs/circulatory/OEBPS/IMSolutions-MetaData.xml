@@ -9,8 +9,8 @@
                 </step>
             </sentence>
         </story>
-        <story title="Getting More Oxygen for the Muscles" activity_id="story4-PM-6">
-            <sentence number="11">
+        <story title="Getting More Oxygen for the Muscles" activity_id="story4-PM-5">
+            <sentence number="10">
                 <step number="1">
                     <group obj1Id="O2_1_IM" action="getIn" obj2Id="bloodcell_IM"/>
                     <group obj1Id="O2_1_IM" action="getOut" obj2Id="bloodcell_IM"/>
