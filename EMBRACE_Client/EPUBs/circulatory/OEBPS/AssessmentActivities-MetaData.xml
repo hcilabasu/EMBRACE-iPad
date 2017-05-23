@@ -109,11 +109,11 @@
                 <Answer4Audio>TheAmazingHeartQ3A4.mp3</Answer4Audio>
             </Question>
             <Question number="4">
-                <QuestionText>Where do arteries take the blood?</QuestionText>
+                <QuestionText>Where does the blood go when it leaves the heart?</QuestionText>
                 <QuestionAudio>TheAmazingHeartQ4.mp3</QuestionAudio>
-                <Answer1>From the heart to the body</Answer1>
+                <Answer1>Through the arteries</Answer1>
                 <Answer1Audio>TheAmazingHeartQ4A1.mp3</Answer1Audio>
-                <expectedSelection>From the heart to the body</expectedSelection>
+                <expectedSelection>Through the arteries</expectedSelection>
                 <Answer2>To the atrium</Answer2>
                 <Answer2Audio>TheAmazingHeartQ4A2.mp3</Answer2Audio>
                 <Answer3>To the valves</Answer3>
@@ -122,16 +122,16 @@
                 <Answer4Audio>TheAmazingHeartQ4A4.mp3</Answer4Audio>
             </Question>
             <Question number="5">
-                <QuestionText>How many times a minute does the left ventricle squeeze hard?</QuestionText>
+                <QuestionText>What needs to happen to allow the blood to flow from the atrium to the left ventricle?</QuestionText>
                 <QuestionAudio>TheAmazingHeartQ5.mp3</QuestionAudio>
-                <Answer1>80 to 100</Answer1>
+                <Answer1>The valve opens</Answer1>
                 <Answer1Audio>TheAmazingHeartQ5A1.mp3</Answer1Audio>
-                <expectedSelection>80 to 100</expectedSelection>
-                <Answer2>200 to 300</Answer2>
+                <expectedSelection>The valve opens</expectedSelection>
+                <Answer2>The valve closes</Answer2>
                 <Answer2Audio>TheAmazingHeartQ5A2.mp3</Answer2Audio>
-                <Answer3>8 to 10</Answer3>
+                <Answer3>The blood rushes through the arteries</Answer3>
                 <Answer3Audio>TheAmazingHeartQ5A3.mp3</Answer3Audio>
-                <Answer4>8675309</Answer4>
+                <Answer4>Parents sign a waiver</Answer4>
                 <Answer4Audio>TheAmazingHeartQ5A4.mp3</Answer4Audio>
             </Question>
         </Questions>
@@ -204,7 +204,7 @@
         </Questions>
         <Questions title="Getting More Oxygen for the Muscles">
             <Question number="1">
-                <QuestionText>What does the valve do to help the blood flow into the right ventricle?</QuestionText>
+                <QuestionText>What does the valve do to help the blood flow into the ventricle?</QuestionText>
                 <QuestionAudio>GettingMoreOxygenfortheMusclesQ1.mp3</QuestionAudio>
                 <Answer1>Opens</Answer1>
                 <Answer1Audio>GettingMoreOxygenfortheMusclesQ1A1.mp3</Answer1Audio>
@@ -217,7 +217,7 @@
                 <Answer4Audio>GettingMoreOxygenfortheMusclesQ1A4.mp3</Answer4Audio>
             </Question>
             <Question number="2">
-                <QuestionText>What does the right ventricle do to push the blood toward the lungs?</QuestionText>
+                <QuestionText>What does the ventricle do to push the blood toward the lungs?</QuestionText>
                 <QuestionAudio>GettingMoreOxygenfortheMusclesQ2.mp3</QuestionAudio>
                 <Answer1>Squeezes hard</Answer1>
                 <Answer1Audio>GettingMoreOxygenfortheMusclesQ2A1.mp3</Answer1Audio>
@@ -230,7 +230,7 @@
                 <Answer4Audio>GettingMoreOxygenfortheMusclesQ2A4.mp3</Answer4Audio>
             </Question>
             <Question number="3">
-                <QuestionText>Why can't the blood go from the right ventricle to the atrium?</QuestionText>
+                <QuestionText>Why can't the blood go from the ventricle to the atrium?</QuestionText>
                 <QuestionAudio>GettingMoreOxygenfortheMusclesQ3.mp3</QuestionAudio>
                 <Answer1>The valve is closed</Answer1>
                 <Answer1Audio>GettingMoreOxygenfortheMusclesQ3A1.mp3</Answer1Audio>
@@ -269,7 +269,7 @@
                 <Answer4Audio>GettingMoreOxygenfortheMusclesQ5A4.mp3</Answer4Audio>
             </Question>
             <Question number="6">
-                <QuestionText>Why does blood in the right ventricle first go to the lungs and not the muscles?</QuestionText>
+                <QuestionText>Why does blood in the ventricle first go to the lungs and not the muscles?</QuestionText>
                 <QuestionAudio>GettingMoreOxygenfortheMusclesQ6.mp3</QuestionAudio>
                 <Answer1>The blood needs to get more oxygen first</Answer1>
                 <Answer1Audio>GettingMoreOxygenfortheMusclesQ6A1.mp3</Answer1Audio>
