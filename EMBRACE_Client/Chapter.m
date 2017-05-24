@@ -270,7 +270,7 @@
     //TODO: REMOVE HARD CODED SOLUTION FOR ADDING VOCAB
     //DISASTER VOCAB
     if ([title isEqualToString:@"The Moving Earth"]) {
-        NSArray *myArray = @[@"California", @"disasters", @"disaster", @"drifted", @"earth", @"Himalaya", @"India", @"mantle", @"million", @"mountains", @"ocean", @"oceans", @"spin", @"spining",   @"sometimes"];
+        NSArray *myArray = @[@"California", @"disasters", @"disaster", @"drifted", @"earth", @"Himalaya", @"India", @"mantle", @"million", @"mountains", @"ocean", @"oceans", @"spin", @"spinning",   @"sometimes"];
         [solutionVocabulary addObjectsFromArray:myArray];
     }
     if ([title isEqualToString:@"Earthquakes"]) {
@@ -286,33 +286,39 @@
         [solutionVocabulary addObjectsFromArray:myArray];
     }
     if ([title isEqualToString:@"Tornados"]) {
-        NSArray *myArray = @[@"awhile", @"cloud", @"columns", @"rapidly", @"rise", @"serious",  @"spin", @"spining", @"supercell", @"swirl", @"swirls", @"swirling", @"tornado", @"tornados"];
+        NSArray *myArray = @[@"awhile", @"cloud", @"columns", @"rapidly", @"rise", @"serious",  @"spin", @"spinning", @"supercell", @"swirl", @"swirls", @"swirling", @"tornado", @"tornados"];
         [solutionVocabulary addObjectsFromArray:myArray];
     }
     
     //CELEBRATION VOCAB
     if ([title isEqualToString:@"Key Ingredients"]) {
-        NSArray *myArray = @[@"celebration", @"champurrado", @"enthusiastically", @"evening", @"grind", @"ingredients", @"mole", @"supplies", @"tote", @"bridle", @"calf", @"cattle", @"corral", @"dairy", @"dozen", @"guide", @"guided", @"herd", @"post", @"produce", @"saddle", @"scale", @"straps", @"successful", @"tomatillos", @"vase", @"mancha", @"sofia", @"sofía"];
+        NSArray *myArray = @[@"celebration", @"champurrado", @"enthusiastically", @"evening", @"grind", @"ingredients", @"mole", @"supplies", @"tote", @"bridle", @"calf", @"cattle", @"corral", @"dairy", @"dozen", @"guide", @"guided", @"herd", @"post", @"produce", @"saddle", @"scale", @"straps", @"successful", @"tomatillos", @"vase", @"mancha", @"sofia"];
         [solutionVocabulary addObjectsFromArray:myArray];
     }
     if ([title isEqualToString:@"Mancha the Horse"]) {
-        NSArray *myArray = @[@"celebration", @"champurrado", @"enthusiastically", @"evening", @"grind", @"ingredients", @"mole", @"supplies", @"tote", @"bridle", @"calf", @"cattle", @"corral", @"dairy", @"dozen", @"guide", @"guided", @"herd", @"post", @"produce", @"saddle", @"scale", @"straps", @"successful", @"tomatillos", @"vase", @"mancha", @"sofia", @"sofía"];
+        NSArray *myArray = @[@"celebration", @"champurrado", @"enthusiastically", @"evening", @"grind", @"ingredients", @"mole", @"supplies", @"tote", @"bridle", @"calf", @"cattle", @"corral", @"dairy", @"dozen", @"guide", @"guided", @"herd", @"post", @"produce", @"saddle", @"scale", @"straps", @"successful", @"tomatillos", @"vase", @"mancha", @"sofia"];
         [solutionVocabulary addObjectsFromArray:myArray];
     }
     if ([title isEqualToString:@"A Friend in Need"]) {
-        NSArray *myArray = @[@"celebration", @"champurrado", @"enthusiastically", @"evening", @"grind", @"ingredients", @"mole", @"supplies", @"tote", @"bridle", @"calf", @"cattle", @"corral", @"dairy", @"dozen", @"guide", @"guided", @"herd", @"post", @"produce", @"saddle", @"scale", @"straps", @"successful", @"tomatillos", @"vase", @"mancha", @"sofia", @"sofía"];
+        NSArray *myArray = @[@"celebration", @"champurrado", @"enthusiastically", @"evening", @"grind", @"ingredients", @"mole", @"supplies", @"tote", @"bridle", @"calf", @"cattle", @"corral", @"dairy", @"dozen", @"guide", @"guided", @"herd", @"post", @"produce", @"saddle", @"scale", @"straps", @"successful", @"tomatillos", @"vase", @"mancha", @"sofia"];
         [solutionVocabulary addObjectsFromArray:myArray];
     }
     if ([title isEqualToString:@"Shopping at the Market"]) {
-        NSArray *myArray = @[@"celebration", @"champurrado", @"enthusiastically", @"evening", @"grind", @"ingredients", @"mole", @"supplies", @"tote", @"bridle", @"calf", @"cattle", @"corral", @"dairy", @"dozen", @"guide", @"guided", @"herd", @"post", @"produce", @"saddle", @"scale", @"straps", @"successful", @"tomatillos", @"vase", @"mancha", @"sofia", @"sofía"];
+        NSArray *myArray = @[@"celebration", @"champurrado", @"enthusiastically", @"evening", @"grind", @"ingredients", @"mole", @"supplies", @"tote", @"bridle", @"calf", @"cattle", @"corral", @"dairy", @"dozen", @"guide", @"guided", @"herd", @"post", @"produce", @"saddle", @"scale", @"straps", @"successful", @"tomatillos", @"vase", @"mancha", @"sofia"];
         [solutionVocabulary addObjectsFromArray:myArray];
     }
     if ([title isEqualToString:@"A Gift for the Bride"]) {
-        NSArray *myArray = @[@"celebration", @"champurrado", @"enthusiastically", @"evening", @"grind", @"ingredients", @"mole", @"supplies", @"tote", @"bridle", @"calf", @"cattle", @"corral", @"dairy", @"dozen", @"guide", @"guided", @"herd", @"post", @"produce", @"saddle", @"scale", @"straps", @"successful", @"tomatillos", @"vase", @"mancha", @"sofia", @"sofía"];
+        NSArray *myArray = @[@"celebration", @"champurrado", @"enthusiastically", @"evening", @"grind", @"ingredients", @"mole", @"supplies", @"tote", @"bridle", @"calf", @"cattle", @"corral", @"dairy", @"dozen", @"guide", @"guided", @"herd", @"post", @"produce", @"saddle", @"scale", @"straps", @"successful", @"tomatillos", @"vase", @"mancha", @"sofia"];
         [solutionVocabulary addObjectsFromArray:myArray];
     }
     if ([title isEqualToString:@"Homecoming"]) {
-        NSArray *myArray = @[@"celebration", @"champurrado", @"enthusiastically", @"evening", @"grind", @"ingredients", @"mole", @"supplies", @"tote", @"bridle", @"calf", @"cattle", @"corral", @"dairy", @"dozen", @"guide", @"guided", @"herd", @"post", @"produce", @"saddle", @"scale", @"straps", @"successful", @"tomatillos", @"vase", @"mancha", @"sofia", @"sofía"];
+        NSArray *myArray = @[@"celebration", @"champurrado", @"enthusiastically", @"evening", @"grind", @"ingredients", @"mole", @"supplies", @"tote", @"bridle", @"calf", @"cattle", @"corral", @"dairy", @"dozen", @"guide", @"guided", @"post", @"produce", @"saddle", @"straps", @"successful", @"tomatillos", @"vase", @"mancha", @"sofia"];
+        [solutionVocabulary addObjectsFromArray:myArray];
+    }
+    
+    //NATIVE VOCAB
+    if ([title isEqualToString:@"Introduction to Native American Homes"]) {
+        NSArray *myArray = @[@"community", @"protect"];
         [solutionVocabulary addObjectsFromArray:myArray];
     }
     
