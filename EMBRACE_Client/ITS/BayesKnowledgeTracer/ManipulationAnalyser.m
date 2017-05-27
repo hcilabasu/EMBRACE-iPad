@@ -809,7 +809,7 @@
         feedback = @"Read";
     }
     
-    NSLog(@" Error type = %@ || Error count = %d || Type of feedback = %@ ", errorType, errorCount, feedback);
+    NSLog(@" Error type = %@ || Error count = %ld || Type of feedback = %@ ", errorType, (long)errorCount, feedback);
     self.currentFeedback = feedbackObjc;
     
 }

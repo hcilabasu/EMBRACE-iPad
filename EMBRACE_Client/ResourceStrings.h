@@ -14,6 +14,7 @@
 #define APPEARAUTOWITHDELAY @"appearAutoWithDelay"
 #define APPEAR_OBJECT @"Appear Object"
 #define AREA @"area"
+#define C @"C"
 #define CHANGEZINDEX @"changeZIndex"
 #define CHECK @"check"
 #define CHECKANDSWAP @"checkAndSwap"
