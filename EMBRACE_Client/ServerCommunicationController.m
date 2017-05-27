@@ -1908,7 +1908,7 @@ static ServerCommunicationController *sharedInstance = nil;
     
     //Create nodes for input information
     DDXMLElement *nodePreviousComplexity = [DDXMLElement elementWithName:@"Previous_Complexity" stringValue:[NSString stringWithFormat:@"%d", prevComplexity]];
-    DDXMLElement *nodeNewComplexity = [DDXMLElement elementWithName:@"New_Complexity" stringValue:[NSString stringWithFormat:@"%d", newComplexity]];
+    DDXMLElement *nodeNewComplexity = [DDXMLElement elementWithName:@"New_Complexity" stringValue:[NSString stringWithFormat:@"%ld", (long)newComplexity]];
     
     //Add above nodes to input
     [nodeInput addChild:nodePreviousComplexity];

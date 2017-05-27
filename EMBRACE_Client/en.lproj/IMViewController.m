@@ -23,10 +23,7 @@
     BOOL pinching;
 
     CGPoint delta; //distance between the top-left corner of the image being moved and the point clicked.
-    }
-
-    @property (nonatomic, strong) IBOutlet UIWebView *bookView;
-
-@end
+    
+}
 
 @end

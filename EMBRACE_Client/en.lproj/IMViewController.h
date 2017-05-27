@@ -18,6 +18,7 @@
 @property (nonatomic, strong) EBookImporter *bookImporter;
 @property (nonatomic, strong) NSString *bookTitle;
 @property (nonatomic, strong) Book* book;
+@property (nonatomic, strong) IBOutlet UIWebView *bookView;
 
 -(void) loadFirstPage;
 

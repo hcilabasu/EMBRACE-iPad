@@ -33,7 +33,7 @@
 }
 
 - (void)dealloc {
-    [super dealloc];
+    //[super dealloc];
 }
 
 /*
@@ -119,7 +119,7 @@
     [zipArchive UnzipFileTo:epubDirectoryPath overWrite:YES];
     [zipArchive UnzipCloseFile];
     
-    [zipArchive release];
+    //[zipArchive release];
     
     //Read the container to find the path for the opf
     [self readContainerForBook:filepath];
@@ -1078,7 +1078,7 @@
         NSArray *storyAlternateSentenceElements = [alternateSentenceElement elementsForName:@"story"];
         for (GDataXMLElement *storyAlternateSentenceElement in storyAlternateSentenceElements) {
              NSString *pageId = [[storyAlternateSentenceElement attributeForName:@"page_id"] stringValue];
-            NSLog(pageId);
+            NSLog(@"%@", pageId);
         }
         for (GDataXMLElement *storyAlternateSentenceElement in storyAlternateSentenceElements) {
             //Get story title

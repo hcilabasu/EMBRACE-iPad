@@ -122,7 +122,7 @@
 @synthesize menuDataSource;
 @synthesize bookView;
 @synthesize isUserMovingBack;
-@synthesize chineseModel;
+//@synthesize chineseModel;
 @synthesize  txtlanguageType;
 //Used to determine the required proximity of 2 hotspots to group two items together.
 float const groupingProximity = 20.0;

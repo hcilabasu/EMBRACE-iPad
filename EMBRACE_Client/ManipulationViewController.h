@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PieContextualMenuDelegate.h"
-#import "EbookImporter.h"
+#import "EBookImporter.h"
 #import "Book.h"
 #import "AVFoundation/AVSpeechSynthesis.h"
 #import "AssessmentActivityViewController.h"
@@ -28,6 +28,7 @@
 #import "SentenceContext.h"
 #import "StepContext.h"
 #import "ContextualMenuDataSource.h"
+//#import "TheContestChinese.m"
 #import "ITSController.h"
 
 @class PageController;
@@ -89,7 +90,7 @@ typedef enum InteractionMode {
 @property (nonatomic, strong) ContextualMenuDataSource *menuDataSource;
 @property (nonatomic, assign) EMComplexity currentComplexityLevel;
 @property (nonatomic) BOOL isUserMovingBack;
-@property (nonatomic, strong) TheContestChinese* chineseModel;
+//@property (nonatomic, strong) TheContestChinese* chineseModel;
 @property int txtlanguageType;
 
 -(void)playEnglishSpeech;
