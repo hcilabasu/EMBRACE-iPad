@@ -72,6 +72,8 @@
 
 - (NSString *)getSentenceClass:(NSInteger)sentenceNumber;
 
+- (NSInteger) getSentenceCount;
+
 - (void)addVocabularyWithID:(NSInteger)vocabID englishText:(NSString *)engText spanishText:(NSString *)spanText;
 
 #pragma mark - 
