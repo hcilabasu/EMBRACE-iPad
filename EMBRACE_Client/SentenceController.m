@@ -143,8 +143,37 @@
                 !( [pageContext.currentPageId.lowercaseString containsString:@"story0"] && [chapterTitle isEqualToString:@"Introduction to Natural Disasters"])) {
                 
                 mvc.currentComplexityLevel = [[ITSController sharedInstance] getCurrentComplexity];
+                
+                //TODO: Actually add the alternative sentences for spanish
+                //[self.manipulationView removeAllSentences];
+                //[self addSentencesWithComplexity:mvc.currentComplexityLevel];
+                
+                //TODO: Remove temporary logic once alternative sentences for spanish are added
+                Chapter *chapter = [mvc.book getChapterWithTitle:chapterTitle]; //get current chapter
+                
+                // Underlined vocabulary includes chapter vocabulary and vocabulary from solution steps
+                NSMutableSet *vocabulary = [[NSMutableSet alloc] initWithArray:[[chapter vocabulary] allKeys]];
+                [vocabulary unionSet:[chapter getVocabularyFromSolutions]];
+                
+                int sentenceNumber = 1; //used for assigning sentence ids
+                //TODO: get all sentence text from current page
+                NSMutableArray *defaultSentences = [[NSMutableArray alloc] init];
+                
+                [self.manipulationView removeAllAudibleTags];
+                
+                for(int i=1; i < [self.manipulationView getSentenceCount]; i++){
+                    AlternateSentence *altSent = [[AlternateSentence alloc] initWithValues:i :[[self.manipulationView getSentenceClass:i] containsString:@"actionSentence"] :10 : [self.manipulationView getCurrentSentenceAt:i]:NULL :NULL];
+                    [defaultSentences addObject: altSent];
+                }
+                
                 [self.manipulationView removeAllSentences];
-                [self addSentencesWithComplexity:mvc.currentComplexityLevel];
+                
+                //Get the sentence text
+                for (AlternateSentence *sentenceToAdd in defaultSentences) {
+                    [self.manipulationView addSentence:sentenceToAdd withSentenceNumber:sentenceNumber andVocabulary:vocabulary];
+                    sentenceNumber++;
+                }
+                
             }
         }
     }
@@ -237,7 +266,7 @@
             }
             
             //If a sentence with the specified complexity was not found for the idea number, look for a
-            //sentence with complexity level 2
+            //sentence with complexity level 10 for default
             if (!foundIdea) {
                 for (AlternateSentence *altSent in alternateSentences) {
                     if ([[[altSent ideas] objectAtIndex:0] isEqualToNumber:ideaNum] && [altSent complexity] == 10) {
