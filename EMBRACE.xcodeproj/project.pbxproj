@@ -4790,6 +4790,7 @@
 		71E425981E2D4DAD0029BDEC /* KeyIngredientsS9S.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 71E424EA1E2D4DAC0029BDEC /* KeyIngredientsS9S.mp3 */; };
 		71F208FB1E5DBF9F000BBF45 /* 74608b10f15a9a95b4fdeea8a5b3e193.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 71F208FA1E5DBF9F000BBF45 /* 74608b10f15a9a95b4fdeea8a5b3e193.mp3 */; };
 		71F208FD1E5DC006000BBF45 /* ea16adc67650f47c36595a2acb335cd2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 71F208FC1E5DC006000BBF45 /* ea16adc67650f47c36595a2acb335cd2.mp3 */; };
+		B5BFDF9E1EDCF88D008D571F /* eurasia_flip.png in Resources */ = {isa = PBXBuildFile; fileRef = B5BFDF9D1EDCF88D008D571F /* eurasia_flip.png */; };
 		C30D022D1BABBFD500DF53F1 /* PlayAudioIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABD84AD1A49F54B0043A685 /* PlayAudioIcon.png */; };
 		C30D022E1BABBFD500DF53F1 /* cover_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 31109701174AB35E00B02BF7 /* cover_default.png */; };
 		C30D022F1BABBFD500DF53F1 /* logo57.png in Resources */ = {isa = PBXBuildFile; fileRef = 31058C75176BCFF900595AAE /* logo57.png */; };
@@ -10840,6 +10841,7 @@
 		71E424EA1E2D4DAC0029BDEC /* KeyIngredientsS9S.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = KeyIngredientsS9S.mp3; sourceTree = "<group>"; };
 		71F208FA1E5DBF9F000BBF45 /* 74608b10f15a9a95b4fdeea8a5b3e193.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 74608b10f15a9a95b4fdeea8a5b3e193.mp3; sourceTree = "<group>"; };
 		71F208FC1E5DC006000BBF45 /* ea16adc67650f47c36595a2acb335cd2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ea16adc67650f47c36595a2acb335cd2.mp3; sourceTree = "<group>"; };
+		B5BFDF9D1EDCF88D008D571F /* eurasia_flip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eurasia_flip.png; sourceTree = "<group>"; };
 		C32DA0DF1BF92A52006C2418 /* Progress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Progress.h; sourceTree = "<group>"; };
 		C32DA0E01BF92A52006C2418 /* Progress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Progress.m; sourceTree = "<group>"; };
 		C35F427B1BDAAD3600B4BCF0 /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
@@ -11877,6 +11879,7 @@
 		1A631E591C0E4D3A00251CB3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B5BFDF9D1EDCF88D008D571F /* eurasia_flip.png */,
 				5CF6C99C1CCAEC1B0093D3FD /* island_lava_Hawaii2.png */,
 				1A631E5A1C0E4D3A00251CB3 /* africa.png */,
 				1A7C78021C74FACF0031041D /* air_particle.png */,
@@ -22982,6 +22985,7 @@
 				5CCD8F6B1C7405EC00D2EC2B /* TheMovingEarthQ3A3.mp3 in Resources */,
 				5CCD8F621C7405EC00D2EC2B /* TheMovingEarthQ1A4.mp3 in Resources */,
 				5C40AE811CBF591A00BFEB9F /* FrictionE.mp3 in Resources */,
+				B5BFDF9E1EDCF88D008D571F /* eurasia_flip.png in Resources */,
 				5C0421EF1C618C2B001BBE9D /* TheLuckyStoneQ8A1.mp3 in Resources */,
 				5C40AE751CBF591A00BFEB9F /* ActionE.mp3 in Resources */,
 				5C5D09251CA9F55800B7C8D9 /* Realized_type1S.mp3 in Resources */,
