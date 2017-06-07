@@ -17,7 +17,6 @@
       <vocabulary introWord="true">celebration</vocabulary>
     </story>
     <story title="Shopping at the Market">
-      <vocabulary introWord="false">scale</vocabulary>
       <vocabulary introWord="false">tote</vocabulary>
       <vocabulary introWord="true">produce</vocabulary>
       <vocabulary introWord="true">dairy</vocabulary>
