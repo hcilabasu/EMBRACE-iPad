@@ -17,8 +17,8 @@
 		038BECE91C8956BF00ECFE28 /* StudyContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 038BECE81C8956BF00ECFE28 /* StudyContext.m */; };
 		03A401141C9B6F2E00FBE6D2 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A401131C9B6F2E00FBE6D2 /* NSString+HTML.m */; };
 		03A4011C1C9B6FF300FBE6D2 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A4011B1C9B6FF300FBE6D2 /* GTMNSString+HTML.m */; };
-		1A1C715E1EE62B50009B18BA /* sequences_SOS001 .xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A1C715C1EE62B50009B18BA /* sequences_SOS001 .xml */; };
-		1A1C715F1EE62B50009B18BA /* sequences_SOS002.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A1C715D1EE62B50009B18BA /* sequences_SOS002.xml */; };
+		1A1C715E1EE62B50009B18BA /* sequences_SOSPEM .xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A1C715C1EE62B50009B18BA /* sequences_SOSPEM .xml */; };
+		1A1C715F1EE62B50009B18BA /* sequences_SOSPITS.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1A1C715D1EE62B50009B18BA /* sequences_SOSPITS.xml */; };
 		1A2C94971D8464E4001E46A2 /* PossibleInteractionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2C94961D8464E4001E46A2 /* PossibleInteractionController.m */; };
 		1A4542F31CA35428004D1CE0 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A4542F21CA35428004D1CE0 /* CoreMedia.framework */; };
 		1A5DAAE81E3C3FDA00665345 /* ITSImagineManipulationActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5DAAE71E3C3FDA00665345 /* ITSImagineManipulationActivity.m */; };
@@ -6056,6 +6056,7 @@
 		1A8C7A701ED8B98B0082AB44 /* sequences_MCD210.xml in Resources */ = {isa = PBXBuildFile; fileRef = 036C26AE1D9B1B8D003626FC /* sequences_MCD210.xml */; };
 		1AAF05EC1D82295F005BB457 /* SolutionStepController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAF05EB1D82295F005BB457 /* SolutionStepController.m */; };
 		1AB028FC1ACF0890006CC916 /* AuthoringModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB028FB1ACF0890006CC916 /* AuthoringModeViewController.m */; };
+		1ACD8C501EF0EB1300806F30 /* sequences_SOSIND.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1ACD8C4F1EF0EB1300806F30 /* sequences_SOSIND.xml */; };
 		1AD35FFD1E33B5CA00D06413 /* ITSPhysicalManipulationActivity.h in Sources */ = {isa = PBXBuildFile; fileRef = 1A9FA4FB1E31C87400AFE40D /* ITSPhysicalManipulationActivity.h */; };
 		1AD35FFE1E33B5D000D06413 /* ITSPhysicalManipulationActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9FA4FC1E31C87400AFE40D /* ITSPhysicalManipulationActivity.m */; };
 		1AD35FFF1E33B5D500D06413 /* ITSPhysicalManipulationSolution.h in Sources */ = {isa = PBXBuildFile; fileRef = 1A9FA4FA1E31C81600AFE40D /* ITSPhysicalManipulationSolution.h */; };
@@ -6388,8 +6389,8 @@
 		1A0385081C2B1F2500A973D8 /* cilia_outside.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cilia_outside.png; sourceTree = "<group>"; };
 		1A11B3C21C7D0ACF00525D34 /* sofia_on_horse2_flip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sofia_on_horse2_flip.png; sourceTree = "<group>"; };
 		1A1B5CBD1C27569500E56004 /* lava_ball_min.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lava_ball_min.png; sourceTree = "<group>"; };
-		1A1C715C1EE62B50009B18BA /* sequences_SOS001 .xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "sequences_SOS001 .xml"; sourceTree = "<group>"; };
-		1A1C715D1EE62B50009B18BA /* sequences_SOS002.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_SOS002.xml; sourceTree = "<group>"; };
+		1A1C715C1EE62B50009B18BA /* sequences_SOSPEM .xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "sequences_SOSPEM .xml"; sourceTree = "<group>"; };
+		1A1C715D1EE62B50009B18BA /* sequences_SOSPITS.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_SOSPITS.xml; sourceTree = "<group>"; };
 		1A20637F1CC0157E00EEF024 /* logpile_side.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logpile_side.png; sourceTree = "<group>"; };
 		1A2063811CC01BB700EEF024 /* smallrocket_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallrocket_left.png; sourceTree = "<group>"; };
 		1A23DA381C20A46200FE7C46 /* bloodcell_select_large_high_res_min.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bloodcell_select_large_high_res_min.png; sourceTree = "<group>"; };
@@ -7437,6 +7438,7 @@
 		1AC7A3961C592D2F003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesSpanish-MetaData.xml"; sourceTree = "<group>"; };
 		1AC7A3981C592E84003B96C6 /* AssessmentActivitiesSpanish-MetaData.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "AssessmentActivitiesSpanish-MetaData.xml"; sourceTree = "<group>"; };
 		1AC8A2BA1D15963B007CE13C /* bigrocket_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigrocket_up.png; sourceTree = "<group>"; };
+		1ACD8C4F1EF0EB1300806F30 /* sequences_SOSIND.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sequences_SOSIND.xml; sourceTree = "<group>"; };
 		1AD3CC871A251CBA00E18B1C /* BuildHTMLString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildHTMLString.h; sourceTree = "<group>"; };
 		1AD3CC881A251CBA00E18B1C /* BuildHTMLString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BuildHTMLString.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		1AD3CC8A1A251CE600E18B1C /* PlayAudioFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayAudioFile.h; sourceTree = "<group>"; };
@@ -12745,8 +12747,9 @@
 		1A1C715B1EE62A9B009B18BA /* SOS */ = {
 			isa = PBXGroup;
 			children = (
-				1A1C715C1EE62B50009B18BA /* sequences_SOS001 .xml */,
-				1A1C715D1EE62B50009B18BA /* sequences_SOS002.xml */,
+				1A1C715C1EE62B50009B18BA /* sequences_SOSPEM .xml */,
+				1A1C715D1EE62B50009B18BA /* sequences_SOSPITS.xml */,
+				1ACD8C4F1EF0EB1300806F30 /* sequences_SOSIND.xml */,
 			);
 			name = SOS;
 			sourceTree = "<group>";
@@ -23117,6 +23120,7 @@
 				1A8C6CA01ED8B9600082AB44 /* AGiftfortheBrideQ4A4.mp3 in Resources */,
 				1A8C6CA11ED8B9600082AB44 /* AGiftfortheBrideQ5.mp3 in Resources */,
 				1A8C6CA21ED8B9600082AB44 /* AGiftfortheBrideQ5A1.mp3 in Resources */,
+				1ACD8C501EF0EB1300806F30 /* sequences_SOSIND.xml in Resources */,
 				1A8C6CA31ED8B9600082AB44 /* AGiftfortheBrideQ5A2.mp3 in Resources */,
 				1A8C6CA41ED8B9600082AB44 /* AGiftfortheBrideQ5A4.mp3 in Resources */,
 				1A8C6CA51ED8B9600082AB44 /* AGiftfortheBrideQ6.mp3 in Resources */,
@@ -24404,7 +24408,7 @@
 				1A8C71841ED8B96B0082AB44 /* BFCE_10A.m4a in Resources */,
 				1A8C71851ED8B96B0082AB44 /* BFCE_14.m4a in Resources */,
 				1A8C71861ED8B96B0082AB44 /* BFCE_18.m4a in Resources */,
-				1A1C715E1EE62B50009B18BA /* sequences_SOS001 .xml in Resources */,
+				1A1C715E1EE62B50009B18BA /* sequences_SOSPEM .xml in Resources */,
 				1A8C71871ED8B96B0082AB44 /* BFCE_18A.m4a in Resources */,
 				1A8C71881ED8B96B0082AB44 /* BFCE_22.m4a in Resources */,
 				1A8C71891ED8B96B0082AB44 /* BFCE_22A.m4a in Resources */,
@@ -25865,7 +25869,7 @@
 				1A8C77161ED8B97D0082AB44 /* FrictionS.mp3 in Resources */,
 				1A8C77171ED8B97D0082AB44 /* GravityS.mp3 in Resources */,
 				1A8C77181ED8B97D0082AB44 /* HeavyS.mp3 in Resources */,
-				1A1C715F1EE62B50009B18BA /* sequences_SOS002.xml in Resources */,
+				1A1C715F1EE62B50009B18BA /* sequences_SOSPITS.xml in Resources */,
 				1A8C77191ED8B97D0082AB44 /* LawS.mp3 in Resources */,
 				1A8C771A1ED8B97D0082AB44 /* LawsS.mp3 in Resources */,
 				1A8C771B1ED8B97D0082AB44 /* MotionS.mp3 in Resources */,
