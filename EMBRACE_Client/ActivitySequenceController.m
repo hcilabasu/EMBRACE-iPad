@@ -7,6 +7,7 @@
 //
 
 #import "ActivitySequenceController.h"
+#import "ConditionSetup.h"
 
 @implementation ActivitySequenceController
 
@@ -96,18 +97,16 @@
         }
     }
     // ITS sequence
-    else if ([participantCode rangeOfString:@"SOS"].location != NSNotFound && [[participantCode componentsSeparatedByString:@"SOS"][1] length] == 3) {
-            numSequences = 2;
-            
-            //Get number at end of participant code and match it to appropriate sequence
-            NSInteger sequenceNumber = [[participantCode componentsSeparatedByString:@"SOS"][1] integerValue] % numSequences;
-            
-            if (sequenceNumber == 0) {
-                adjustedParticipantCode = [NSString stringWithFormat:@"SOS002"];
-            }
-            else {
-                adjustedParticipantCode = [NSString stringWithFormat:@"SOS00%d", sequenceNumber];
-            }
+    else if ([participantCode rangeOfString:@"SOSPEM"].location != NSNotFound) {
+        adjustedParticipantCode = participantCode;
+    }
+    // ITS sequence
+    else if ([participantCode rangeOfString:@"SOSPITS"].location != NSNotFound) {
+        adjustedParticipantCode = participantCode;
+    }
+    // ITS sequence
+    else if ([participantCode rangeOfString:@"SOSIND"].location != NSNotFound) {
+        adjustedParticipantCode = participantCode;
     }
     
     return adjustedParticipantCode;
@@ -222,6 +221,13 @@
                 //Get onDemandVocab flag
                 NSString *onDemandVocabString = [[modeElement attributeForName:@"vocabOnDemand"] stringValue];
                 BOOL onDemandVocab = (onDemandVocabString && ![onDemandVocabString isEqualToString:@""]) ?[onDemandVocabString boolValue] : true;
+                
+                ConditionSetup *conditionSetup = [ConditionSetup sharedInstance];
+                if ([participantCode rangeOfString:@"ITS"].location != NSNotFound) {
+                    conditionSetup.appMode = ITS;
+                }else{
+                    conditionSetup.appMode = Study;
+                }
                 
                 //Create mode for chapter and add to array of modes
                 ActivityMode *mode = [[ActivityMode alloc] initWithValues:chapterTitle :newInstructions :reader :language :intervention:vocabPage:onDemandVocab:assesssmentPage];
