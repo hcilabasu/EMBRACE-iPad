@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
     <waypoints>
-        <waypoint waypointId="africa_away" x="21.289062%" y="36.576702%"/>
+        <waypoint waypointId="africa_away" x="21.044922%" y="44.389202%"/>
         <waypoint waypointId="air_down" x="54.5%" y="50.5%"/>
         <waypoint waypointId="air_up" x="80%" y="46%"/>
         <waypoint waypointId="air_animation" x="90.320312%" y="2.982955%"/>
-        <waypoint waypointId="california_boom" x="4.589844%" y="33.380680%"/>
-        <waypoint waypointId="california_up" x="0.000000%" y="17.684660%"/>
-        <waypoint waypointId="california_up2" x="6.054688%" y="31.534090%"/>
+        <waypoint waypointId="california_boom" x="13.427734%" y="34.303978%"/>
+        <waypoint waypointId="california_up" x="4.589844%" y="40.269886%"/>
+        <waypoint waypointId="california_up2" x="14.062500%" y="34.019886%"/>
         <waypoint waypointId="californiaEarthquake" x="10%" y="38.139202%"/>
         <waypoint waypointId="droplet_stay" x="79.003906%" y="27.698862%"/>
         <waypoint waypointId="gap" x="50%" y="50%"/>
