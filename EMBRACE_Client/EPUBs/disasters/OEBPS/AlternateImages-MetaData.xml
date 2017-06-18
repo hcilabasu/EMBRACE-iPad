@@ -17,7 +17,7 @@
         <alternateImage objId="house_noroof2" action="damage" originalSrc="house_noroof2.png" alternateSrc="house_noroof2_damaged.png" width="201px" x="25.244141%" y="83.238640%" class="manipulationObject" z="2"/>
         <alternateImage objId="house_roof2" action="flip" originalSrc="house_roof2.png" alternateSrc="house_roof2_damaged.png" width="237px" x="44.873047%" y="74.005684%" class="manipulationObject" z="3"/>
         <alternateImage objId="houses" action="fall" originalSrc="houses.png" alternateSrc="houses_burn.png" width="40px" x="15.234375%" y="37.571022%" class="manipulationObject" z=""/>
-        <alternateImage objId="india" action="flip" originalSrc="india_whole.png" alternateSrc="india_flip.png" width="125px" x="48.876953%" y="37.215908%" class="manipulationObject" z="1"/>
+        <alternateImage objId="india" action="flip" originalSrc="india_whole.png" alternateSrc="india_flip.png" width="125px" x="48.876953%" y="39.275570%" class="manipulationObject" z="1"/>
         <alternateImage objId="india" action="push" originalSrc="india_whole.png" alternateSrc="india_himalayas.png" width="125px" x="48.876953%" y="37.215908%" class="manipulationObject" z=""/>
         <alternateImage objId="kauai" action="appear" originalSrc="island_Kauai.png" alternateSrc="island_Kauai.png" width="225px" height="104px" x="56%" y="45%" class="manipulationObject" z="2"/>
         <alternateImage objId="label_hawaii" action="appear" originalSrc="Hawaii.png" alternateSrc="Hawaii.png" width="77px" height="19px" x="50" y="10%" class="manipulationObject" z="5"/>
